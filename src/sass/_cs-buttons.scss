@@ -1,0 +1,61 @@
+/* BUTTON STYLING */
+.cs-btn {
+	display: inline-flex;
+	padding: 0 1rem;
+	height: 2rem;
+	font-weight: normal;
+	cursor: pointer;
+	border-radius: 0.25rem;
+	user-select: none;
+	position: relative;
+	@include css4 {
+		border: 1px solid cvar(--cs-button-br);
+	}
+
+	.label {
+		display: inline-flex;
+		height: calc(2rem - 2px);
+		align-items: center;
+		justify-content: center;
+		@include sc(--cs-button-bg);
+		z-index: 2;
+	}
+	.icon {
+		z-index: 2;
+		height: 100%;
+		width: 2rem;
+		margin-left: 0.5rem;
+		@include sf(--cs-button-bg);
+	}
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		z-index: 1;
+		@include sbg(--cs-main-c);
+	}
+
+	&:hover {
+		&::before {
+			@include bgd(--cs-main-c, 0.2, darkblue);
+		}
+	}
+
+	&:active {
+		&::before {
+			@include bgl(--cs-main-c, 0.5);
+		}
+	}
+}
+
+/* REMOVE WHEN ICON STYLES ARE DONE */
+.temporary-styles {
+	height: 1.5rem;
+	width: 1.5rem;
+	margin-right: 0.5rem;
+	z-index: 1;
+}

@@ -1,0 +1,217 @@
+@font-face {
+	font-family: "SFFont";
+	src: url("fonts/SalesforceSans-Regular.ttf");
+	src: url("fonts/SalesforceSans-Regular.woff") format("woff"), /* Modern Browsers */
+	url("fonts/SalesforceSans-Regular.ttf") format("truetype"); /* Safari, Android, iOS */
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: "SFFont";
+	src: url("fonts/SalesforceSans-Bold.ttf");
+	src: url("fonts/SalesforceSans-Bold.woff") format("woff"), /* Modern Browsers */
+	url("fonts/SalesforceSans-Bold.ttf") format("truetype"); /* Safari, Android, iOS */
+	font-weight: bold;
+	font-style: normal;
+}
+* {
+	box-sizing: border-box;
+	font-family: "SFFont";
+}
+.app-wrapper {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+.app-main-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	position: relative;
+	z-index: 2;
+	background-color: #fff;
+	color: #080707;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		.main-header-tab a {
+			text-decoration: none;
+			color: rgba(54, 58, 59, 0.7803921568627451);
+			padding: 0.5rem 1.25rem;
+			font-size: 1.4rem;
+			display: inline-block;
+			cursor: pointer;
+			border-top: 5px solid transparent;
+			border-bottom: 5px solid transparent;
+			&:hover {
+				border-bottom: 5px solid #00ABD2;
+			}
+			&.active-main-header-tab {
+				color: #363a3b;
+				border-bottom: 5px solid #00ABD2;
+				background: #f2f3f3;
+			}
+		}
+	}
+	img {
+		padding: 0 1rem;
+	}
+}
+.app-body {
+	display: flex;
+	flex: 1;
+	background: #ecebea;
+	overflow: auto;
+}
+.components-list {
+	overflow: auto;
+	flex: 0 0 auto;
+	min-width: 15rem;
+	max-width: 25rem;
+	margin: 0;
+	padding: 0.5rem 0;
+	background: #444747;
+	color: #fff;
+	list-style: none;
+	.ui-component a {
+		display: block;
+		padding: 0.5rem 1rem;
+		cursor: pointer;
+		color: #fff;
+		text-decoration: none;
+		overflow: hidden;
+		word-break: break-all;
+		&:hover {
+			background: #00abd3;
+		}
+		&.active-component {
+			background: #363a3b;
+		}
+	}
+}
+.components-preview {
+	flex-direction: column;
+	flex: 1;
+	padding: 1rem;
+	overflow: auto;
+	.property-name {
+		margin: 0 0 0.5rem 0;
+		font-size: 1.35rem;
+	}
+	.component-name {
+		margin: 1rem 0 0.5rem;
+		font-size: 1.1rem;
+	}
+}
+.component-version {
+	display: flex;
+	width: 100%;
+	background: #fff;
+	border-radius: 0.25rem;
+	margin-bottom: 1rem;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.10980392156862745);
+	.version-preview {
+		min-width: 15rem;
+		flex: 1;
+		overflow: auto;
+		padding: 0.5rem;
+	}
+	.version-description {
+		background: #f8f8f8;
+		border-radius: 0 0.25rem 0.25rem 0;
+		min-width: 25%;
+	}
+}
+.code-snippet {
+	background: #f8f8f8 !important;
+	margin: 0 !important;
+	border-radius: 0 0.25rem 0.25rem 0;
+	code {
+		font-family: monospace;
+	}
+}
+.table-row {
+	display: flex;
+	border-bottom: 1px solid #d8dde6;
+	background: #fff;
+	.table-cell {
+		display: flex;
+		flex: 1;
+		flex-wrap: wrap;
+		padding: 0.5rem 1rem;
+		overflow: hidden;
+		white-space: normal;
+		&:first-child {
+			flex: 0 1 15rem;
+		}
+		.prop-option {
+			background: #ecebea;
+			margin: 0.1rem 0.5rem 0.1rem 0;
+			padding: 0 0.25rem;
+		}
+	}
+}
+.table-header {
+	.table-row {
+		background: #00abd3;
+		color: #fff;
+		.table-cell {
+			padding: 0.25rem 1rem;
+		}
+	}
+}
+.icons-preview {
+	margin: 0;
+	padding: 0;
+	display: inline-flex;
+	flex-wrap: wrap;
+	li {
+		padding: 25px 55px 55px;
+		border-radius: 0.25rem;
+		transition: background 0.2s;
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		list-style: none;
+		background: #fff;
+		margin: 0.5rem;
+		svg {
+			display: block;
+			width: 32px;
+			height: auto;
+			max-height: 32px;
+			g, path {
+				fill: #706e6b;
+			}
+		}
+		p {
+			font-size: 0.8rem;
+			margin: 0;
+			overflow: hidden;
+			position: absolute;
+			word-break: break-all;
+			top: 76px;
+			left: 0;
+			width: 100%;
+			padding: 0 16px;
+			text-align: center;
+			color: #363a3b;
+		}
+	}
+}
+.chip-label {
+	display: inline-block;
+	margin-bottom: 0.25rem;
+	background-color: rgba(255, 255, 255, 0.34);
+	color: #6a7682;
+	padding: 0.25rem 0.5rem;
+	border-radius: 15rem;
+	font-size: 0.8rem;
+	border: 1px solid #929da7;
+	line-height: 1;
+	margin-right: 0.3rem;
+}
