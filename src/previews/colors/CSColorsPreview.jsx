@@ -1,16 +1,19 @@
 import React from "react";
+import colors from '../../colors/colors.js';
+import CSColorPreview from './CSColorPreview';
 
-class CSComponentsList extends React.Component {
+class CSColorsPreview extends React.Component {
 	render() {
-
 		return (
-			<>
-				<div className="components-preview">
-					<p>In progress...</p>
+			<div className="components-preview">
+				<div className="cs-colors">
+					{colors.map((color, i) => (
+						<CSColorPreview key={i} name={color.colorName} color={color.colorValue} />
+					))}
 				</div>
-			</>
+			</div>
 		)
 	}
 }
 
-export default CSComponentsList;
+export default CSColorsPreview;

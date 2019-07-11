@@ -77,7 +77,16 @@ $variables: (
 	--cs-button-disabled-bg: $gray-medium-11,
 	--cs-button-icon-c: $gray-dark-9,
 
+	--cs-color-name-c: $black,
+	--cs-color-body-bg: $white,
+	--cs-color-body-c: $gray-medium-12,
+
 	--cs-transparent: transparent,
+
+	--cs-shadow-focus: $blue-sf,
+	--cs-shadow-light: rgba($black, 0.11),
+	--cs-shadow-medium: rgba($black, 0.22),
+	--cs-shadow-dark: rgba($black, 0.5),
 );
 
 // This will be used later for dark theme support
