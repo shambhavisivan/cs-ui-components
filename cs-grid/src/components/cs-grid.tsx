@@ -1,0 +1,394 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import {
+	CellValueChangedEvent,
+	ColumnApi,
+	GetQuickFilterTextParams,
+	GridApi,
+	GridReadyEvent,
+	RowNode,
+	SelectionChangedEvent
+} from 'ag-grid-community';
+import 'ag-grid-community/dist/styles/ag-theme-balham.css';
+import { AgGridReact, AgGridReactProps } from 'ag-grid-react';
+
+// tslint:disable-next-line: no-submodule-imports
+import { CellKeyPressEvent } from 'ag-grid-community/dist/lib/events';
+import { CellData } from '../models/cs-grid-base-interfaces';
+import CSGridBooleanEditor from './cs-grid-boolean-editor';
+import CSGridBooleanRenderer from './cs-grid-boolean-renderer';
+import { CSGridCurrencyEditor } from './cs-grid-currency-editor';
+import { CSGridCurrencyRenderer } from './cs-grid-currency-renderer';
+import CSGridDateEditor from './cs-grid-date-editor';
+import CSGridDateRenderer from './cs-grid-date-renderer';
+import CSGridDecimalEditor from './cs-grid-decimal-editor';
+import { CSGridDecimalRenderer } from './cs-grid-decimal-renderer';
+import CSGridHeader from './cs-grid-header';
+import { CSGridIntegerEditor } from './cs-grid-integer-editor';
+import { CSGridIntegerRenderer } from './cs-grid-integer-renderer';
+import CSGridLookupEditor from './cs-grid-lookup-editor';
+import CSGridLookupRenderer from './cs-grid-lookup-renderer';
+import { CSGridMultiSelectLookupEditor } from './cs-grid-multi-select-lookup-editor';
+import { CSGridMultiSelectPicklistEditor } from './cs-grid-multi-select-picklist-editor';
+import CSGridPaginator, { CSGridPagination, CSGridPaginationLocation } from './cs-grid-pagination';
+import CSGridPicklistEditor from './cs-grid-picklist-editor';
+import CSGridPicklistRenderer from './cs-grid-picklist-renderer';
+import QuickFilter, { CSGridQuickFilter, CSGridQuickFilterLocation } from './cs-grid-quick-filter';
+import CSGridRowSelectionRenderer from './cs-grid-row-selection-renderer';
+import CSGridRowValidationRenderer from './cs-grid-row-validation-renderer';
+import CSGridTextEditor from './cs-grid-text-editor';
+import CSGridTextRenderer from './cs-grid-text-renderer';
+
+export interface CSGridProps extends AgGridReactProps {
+	pageSizes?: Array<number>;
+	csGridPagination: CSGridPagination;
+	csGridQuickFilter: CSGridQuickFilter;
+	editorComponents?: Record<string, any>;
+	rendererComponents?: Record<string, any>;
+	multiSelect: boolean;
+	uniqueIdentifierColumnName: string;
+	onSelectionChange?(selectedRows: Array<any>): void;
+	onCellValueChange?(rowNodeId: string, oldValue: any, newValue: any): Promise<void>;
+}
+
+class CSGridState {
+	filterText: string = null;
+	sideBar: boolean = false;
+	rowCount: string = null;
+	icons: Record<string, string> = {
+		columnRemoveFromGroup: '<i className="fa fa-times"/>',
+		filter: '<i className="fa fa-filter"/>',
+		groupContracted: '<i className="far fa-plus-square"/>',
+		groupExpanded: '<i className="far fa-minus-square"/>',
+		sortAscending: '<i className="fa fa-long-arrow-alt-down"/>',
+		sortDescending: '<i className="fa fa-long-arrow-alt-up"/>'
+	};
+	frameworkComponents = {
+		booleanEditor: CSGridBooleanEditor,
+		booleanRenderer: CSGridBooleanRenderer,
+		currencyEditor: CSGridCurrencyEditor,
+		currencyRenderer: CSGridCurrencyRenderer,
+		dateEditor: CSGridDateEditor,
+		dateRenderer: CSGridDateRenderer,
+		decimalEditor: CSGridDecimalEditor,
+		decimalRenderer: CSGridDecimalRenderer,
+		integerEditor: CSGridIntegerEditor,
+		integerRenderer: CSGridIntegerRenderer,
+		lookupEditor: CSGridLookupEditor,
+		lookupRenderer: CSGridLookupRenderer,
+		multiSelectLookupEditor: CSGridMultiSelectLookupEditor,
+		multiSelectLookupRenderer: CSGridLookupRenderer,
+		multiSelectPicklistEditor: CSGridMultiSelectPicklistEditor,
+		multiSelectPicklistRenderer: CSGridPicklistRenderer,
+		picklistEditor: CSGridPicklistEditor,
+		picklistRenderer: CSGridPicklistRenderer,
+		rowSelectionRenderer: CSGridRowSelectionRenderer,
+		rowValidationRenderer: CSGridRowValidationRenderer,
+		textEditor: CSGridTextEditor,
+		textRenderer: CSGridTextRenderer
+	};
+
+	firstRowOnPage: number;
+	lastRowOnPage: number;
+	totalRows: number;
+	currentPage: number;
+	totalPages: number;
+	onLastPage: boolean;
+	currentPageSize: number;
+}
+
+export default class CSGrid extends React.Component<CSGridProps, CSGridState> {
+	state: CSGridState = new CSGridState();
+	private gridApi: GridApi;
+	private columnApi: ColumnApi;
+	private defaultPageSizes: Array<number> = [10, 25, 50, 100];
+
+	constructor(props: CSGridProps) {
+		super(props);
+
+		const editorComponents = this.props.editorComponents || {};
+		const rendererComponents = this.props.rendererComponents || {};
+
+		this.state.frameworkComponents = {
+			...this.state.frameworkComponents,
+			...editorComponents,
+			...rendererComponents
+		};
+	}
+
+	getSelectedRows = (): Array<any> => {
+		return this.gridApi.getSelectedRows();
+	};
+
+	render() {
+		const pageSizes = this.props.pageSizes || this.defaultPageSizes;
+		const paginationLocation = this.props.csGridPagination.location;
+		const csGridPaginations: Array<React.ReactPortal> = [];
+		let paginator: JSX.Element;
+		if (paginationLocation !== CSGridPaginationLocation.None) {
+			paginator = (
+				<CSGridPaginator
+					firstRowOnPage={this.state.firstRowOnPage}
+					lastRowOnPage={this.state.lastRowOnPage}
+					totalRows={this.state.totalRows}
+					currentPage={this.state.currentPage}
+					totalPages={this.state.totalPages}
+					onLastPage={this.state.onLastPage}
+					pageSizes={pageSizes}
+					onPageSizeChanged={this.onPageSizeChanged}
+					currentPageSize={this.state.currentPageSize}
+					onBtFirst={this.onBtFirst}
+					onBtLast={this.onBtLast}
+					onBtNext={this.onBtNext}
+					onBtPrevious={this.onBtPrevious}
+				/>
+			);
+
+			if (this.props.csGridPagination.detachedCSSClass) {
+				const elements: HTMLCollectionOf<Element> = document.getElementsByClassName(
+					this.props.csGridPagination.detachedCSSClass
+				);
+
+				for (const element of elements) {
+					csGridPaginations.push(ReactDOM.createPortal(paginator, element));
+				}
+			}
+		}
+
+		const quickFilterLocation = this.props.csGridQuickFilter.location;
+		const csGridQuickFilters: Array<React.ReactPortal> = [];
+		let quickFilter: JSX.Element;
+		if (quickFilterLocation !== CSGridQuickFilterLocation.None) {
+			quickFilter = (
+				<QuickFilter onFilterText={this.onFilterText} filterText={this.state.filterText} />
+			);
+
+			if (this.props.csGridQuickFilter.detachedCSSClass) {
+				const elements: HTMLCollectionOf<Element> = document.getElementsByClassName(
+					this.props.csGridQuickFilter.detachedCSSClass
+				);
+
+				for (const element of elements) {
+					csGridQuickFilters.push(ReactDOM.createPortal(quickFilter, element));
+				}
+			}
+		}
+
+		return (
+			<>
+				{(paginationLocation === CSGridPaginationLocation.Header ||
+					paginationLocation === CSGridPaginationLocation.Both) &&
+					paginator}
+				{(quickFilterLocation === CSGridQuickFilterLocation.Header ||
+					quickFilterLocation === CSGridQuickFilterLocation.Both) &&
+					quickFilter}
+				<div className='app-wrapper' style={{ padding: '2rem' }}>
+					<div style={{ height: 400 }} className='ag-theme-balham main'>
+						<AgGridReact
+							// listening for events
+							onGridReady={this.onGridReady}
+							onSelectionChanged={this.onSelectionChanged}
+							onModelUpdated={this.calculateRowCount}
+							quickFilterText={this.state.filterText}
+							// binding to an object property
+							icons={this.state.icons}
+							columnDefs={this.props.columnDefs}
+							rowData={this.props.rowData}
+							pagination={paginationLocation !== CSGridPaginationLocation.None}
+							suppressPaginationPanel={true}
+							paginationPageSize={pageSizes[0]}
+							onPaginationChanged={this.onPaginationChanged}
+							singleClickEdit={true}
+							// setting default column properties
+							defaultColDef={{
+								comparator: this.comparator,
+								editable: true,
+								filter: true,
+								filterParams: {
+									textFormatter: (value: any) => {
+										if (typeof value === 'string' || value instanceof String) {
+											return value.toLowerCase();
+										}
+
+										const cellValue = value.cellValue;
+										if (cellValue === undefined && cellValue == null) {
+											return '';
+										}
+
+										return cellValue.toString().toLowerCase();
+									}
+								},
+								// This is needed to avoid toString=[object,object] result with objects.
+								getQuickFilterText: (params: GetQuickFilterTextParams) => {
+									return params.value.cellValue;
+								},
+								headerComponentFramework: CSGridHeader,
+								lockPinned: true,
+								resizable: true,
+								sortable: true
+							}}
+							frameworkComponents={this.state.frameworkComponents}
+							onCellKeyPress={this.onCellKeyPress}
+							stopEditingWhenGridLosesFocus={true}
+							suppressDragLeaveHidesColumns={true}
+							rowSelection={this.props.multiSelect ? 'multiple' : 'single'}
+							suppressRowClickSelection={true}
+							enableBrowserTooltips={true}
+							// A pass through to allow cs-grid users to use all ag-grid props.
+							{...this.props}
+							onCellValueChanged={this.onCellValueChanged}
+							getRowNodeId={this.getRowNodeId}
+						/>
+					</div>
+				</div>
+				{(quickFilterLocation === CSGridQuickFilterLocation.Footer ||
+					quickFilterLocation === CSGridQuickFilterLocation.Both) &&
+					quickFilter}
+				{(paginationLocation === CSGridPaginationLocation.Footer ||
+					paginationLocation === CSGridPaginationLocation.Both) &&
+					paginator}
+				{csGridPaginations}
+				{csGridQuickFilters}
+			</>
+		);
+	}
+
+	private onFilterText = (event: React.ChangeEvent<HTMLInputElement>): void => {
+		this.setState({ filterText: event.target.value });
+	};
+
+	/* Grid Events we're listening to */
+	private onGridReady = (params: GridReadyEvent) => {
+		this.gridApi = params.api;
+		this.columnApi = params.columnApi;
+
+		this.gridApi.sizeColumnsToFit();
+
+		this.calculateRowCount();
+		this.onPaginationChanged();
+	};
+
+	private onCellValueChanged = (event: CellValueChangedEvent) => {
+		console.log(
+			'this.getRowNodeId(event.data) : ' + JSON.stringify(this.getRowNodeId(event.data))
+		);
+		console.log('oldValue : ' + JSON.stringify(event.oldValue));
+		console.log('newValue : ' + JSON.stringify(event.newValue));
+		if (this.props.onCellValueChange) {
+			this.props.onCellValueChange(
+				this.getRowNodeId(event.data),
+				event.oldValue,
+				event.newValue
+			);
+		}
+	};
+
+	private onCellKeyPress = (event: CellKeyPressEvent) => {
+		console.log('onCellKeyPress event.node.data : ' + JSON.stringify(event.node.data));
+	};
+
+	private onSelectionChanged = (event: SelectionChangedEvent): void => {
+		if (this.props.onSelectionChange) {
+			this.props.onSelectionChange(this.gridApi.getSelectedRows());
+		}
+	};
+
+	private deselectAll() {
+		this.gridApi.deselectAll();
+	}
+
+	private calculateRowCount = () => {
+		if (this.gridApi && this.props.rowData) {
+			const model = this.gridApi.getModel();
+			const totalRows = this.props.rowData.length;
+			const processedRows = model.getRowCount();
+			this.setState({
+				rowCount: `${processedRows.toLocaleString()}/${totalRows.toLocaleString()}`
+			});
+		}
+	};
+
+	private onPageSizeChanged = (event: React.ChangeEvent<HTMLSelectElement>) => {
+		const value = event.target.value;
+		this.gridApi.paginationSetPageSize(Number(value));
+
+		this.setState({
+			currentPageSize: this.gridApi.paginationGetPageSize()
+		});
+	};
+
+	private onPaginationChanged = () => {
+		if (this.gridApi) {
+			const totalRows = this.gridApi.paginationGetRowCount();
+			let lastRowOnPage =
+				(this.gridApi.paginationGetCurrentPage() + 1) *
+				this.gridApi.paginationGetPageSize();
+			if (lastRowOnPage > totalRows) {
+				lastRowOnPage = totalRows;
+			}
+			const currentPage = this.gridApi.paginationGetCurrentPage() + 1;
+			const totalPages = this.gridApi.paginationGetTotalPages();
+			this.setState({
+				currentPage,
+				firstRowOnPage:
+					this.gridApi.paginationGetCurrentPage() * this.gridApi.paginationGetPageSize() +
+					1,
+				lastRowOnPage,
+				onLastPage: currentPage === totalPages,
+				totalPages,
+				totalRows
+			});
+		}
+	};
+
+	private onBtFirst = () => {
+		this.gridApi.paginationGoToFirstPage();
+	};
+
+	private onBtLast = () => {
+		console.log('here');
+		this.gridApi.paginationGoToLastPage();
+	};
+
+	private onBtNext = () => {
+		this.gridApi.paginationGoToNextPage();
+	};
+
+	private onBtPrevious = () => {
+		this.gridApi.paginationGoToPreviousPage();
+	};
+
+	private getRowNodeId = (data: any) => {
+		return data[this.props.uniqueIdentifierColumnName].cellValue;
+	};
+
+	private comparator = (
+		a: CellData<any>,
+		b: CellData<any>,
+		nodeA: RowNode,
+		nodeB: RowNode,
+		isInverted: boolean
+	) => {
+		let aValue = a.cellValue;
+		let bValue = b.cellValue;
+
+		if (aValue === undefined || aValue == null) {
+			if (bValue === undefined || bValue == null) {
+				return 0;
+			}
+
+			return -1;
+		}
+		if (bValue === undefined || bValue == null) {
+			return 1;
+		}
+
+		if (typeof aValue === 'string') {
+			aValue = aValue.toUpperCase();
+			bValue = bValue.toUpperCase();
+		}
+
+		return aValue > bValue ? 1 : aValue < bValue ? -1 : 0;
+	};
+}

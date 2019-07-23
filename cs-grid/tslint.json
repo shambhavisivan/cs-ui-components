@@ -1,0 +1,118 @@
+{
+    "linterOptions": {
+        "exclude": [
+          "build",
+          "config",
+          "coverage",
+          "node_modules",
+          "dist"
+        ]
+    },
+    "defaultSeverity": "warning",
+    "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"],
+    "jsRules": {},
+    "rules": {
+        "jsx-wrap-multiline": false,
+        "prettier": [true, "./.prettierrc"],
+        "interface-name": [true, "never-prefix"],
+        "max-classes-per-file": [true, 2, "exclude-class-expressions"],
+        "no-submodule-imports": [true, "@material-ui/core", "toastr/build/toastr.min.css", "ag-grid-community/dist/styles/ag-theme-balham.css", "ag-grid-community/dist/styles/ag-grid.css"],
+        "array-type": [true, "generic"],
+        "ban": [
+			true,
+			["describe", "only"],
+			{"name": ["it", "only"], "message": "Don't focus tests"}
+        ],
+		"class-name": true,
+		"comment-format": [
+            true,
+            "check-space"
+        ],
+        "indent": [
+            true,
+            "tabs"
+		],
+		"no-eval": true,
+		"no-internal-module": true,
+		"no-empty-interface": false,
+		"no-trailing-whitespace": true,
+		"no-unsafe-finally": true,
+		"no-var-keyword": true,
+		"no-console": false,
+		"one-line": [
+            true,
+            "check-open-brace",
+            "check-whitespace"
+        ],
+        "whitespace": [
+            true,
+            "check-branch",
+            "check-module",
+            "check-decl",
+            "check-operator",
+            "check-separator",
+            "check-type"
+		],
+		"semicolon": [
+            true,
+			"always",
+			"ignore-bound-class-methods"
+		],
+		"triple-equals": [
+            true,
+            "allow-null-check"
+        ],
+        "typedef-whitespace": [
+            true,
+            {
+              	"call-signature": "nospace",
+              	"index-signature": "nospace",
+              	"parameter": "nospace",
+              	"property-declaration": "nospace",
+              	"variable-declaration": "nospace"
+            }
+        ],
+        "variable-name": [
+            true,
+            "ban-keywords"
+        ],
+		"adjacent-overload-signatures": true,
+		"no-angle-bracket-type-assertion": true,
+		"no-parameter-reassignment": true,
+		"no-var-requires": true,
+		"prefer-for-of": true,
+		"curly": true,
+		"forin": true,
+		"no-shadowed-variable": true,
+		"no-sparse-arrays": true,
+		"no-switch-case-fall-through": true,
+		"prefer-object-spread": true,
+		"radix": true,
+		"eofline": true,
+		"prefer-const": true,
+		"no-string-throw": true,
+		"prefer-template": [true, "allow-single-concat"],
+		"only-arrow-functions": [true, "allow-declarations", "allow-named-functions"],
+		"no-unused-expression": true,
+		"no-return-await": true,
+		"await-promise": [true, "Bluebird"],
+		"arrow-return-shorthand": true,
+		"trailing-comma": [
+      		true,
+			{
+				"multiline": "never",
+				"singleline": "never"
+			}
+    	],
+		"no-implicit-dependencies": [true, "dev", ["chai", "sinon", "proxyquire"]],
+		"no-consecutive-blank-lines": true,
+		"import-spacing": true,
+		"no-unnecessary-class": true,
+		"newline-before-return": true,
+		"no-unnecessary-callback-wrapper": true,
+		"object-literal-shorthand": true,
+		"member-access": [true, "no-public"],
+		"prefer-function-over-method": true
+    },
+    "rulesDirectory": ["tslint-plugin-prettier"]
+}

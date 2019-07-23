@@ -27,3 +27,8 @@ yarn-error.log*
 .project
 .vscode
 .settings
+
+# cs-grid
+/node_modules/**/*
+/cs-grid/lib
+/cs-grid/cs-grid-demo

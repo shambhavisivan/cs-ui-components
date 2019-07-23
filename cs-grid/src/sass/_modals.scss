@@ -1,0 +1,116 @@
+/* MODAL GENERAL */
+.modal {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1300;
+	position: fixed;
+	.modal-wrapper {
+		position: relative;
+		width: 500px;
+		height: 300px;
+		margin: 30vh auto;
+		background: transparent;
+		line-height: initial;
+		.modal-content {
+			width: 500px;
+			height: 300px;
+			margin-top: 20vh;
+			display: flex;
+			flex-direction: column;
+			border-radius: 0.25rem;;
+			@include sbg(--modal-content-bg);
+			@include css4 {
+				border: 1px solid cvar(--modal-content-br);
+				box-shadow: 0 3px 9px cvar(--modal-content-box);
+			}
+		}
+	}
+}
+
+body div {
+	.modal-header {
+		padding: 1rem;
+	}
+	.modal-body {
+		padding: 0.5rem 1rem;
+	}
+	.modal-footer {
+		padding: 0.75rem 1rem;
+	}
+}
+
+/* CUSTOM MODAL */
+.custom-modal {
+	div[class*="jss"] {
+		max-width: none !important;
+	}
+
+	/* 12 MONTH DATE PICKER IN CUSTOM EDITOR */
+	.calendar-modal-body {
+		padding: 0 0.5rem;
+		+ .modal-footer {
+			padding: 0;
+			.btn-group.navigation {
+				margin-left: 0.75rem;
+			}
+		}
+	}
+
+	.modal-footer {
+		margin: 0;
+		.toggle-checkbox-wrapper {
+			margin: 0 0.5rem;
+		}
+		.toggle-checkbox-wrapper + .button-row {
+			margin-left: 1rem;
+		}
+		.button-row .cs-btn:first-child {
+			margin-right: 0.25rem;
+		}
+	}
+}
+
+/* BULK EDIT MODAL */
+.bulk-modal {
+	.modal-header {
+		h2 {
+			font-size: 1rem;
+		}
+	}
+	.modal-body {
+		overflow: visible;
+	}
+	.modal-footer {
+		margin: 0;
+		.toggle-checkbox-wrapper {
+			margin: 0 0.5rem;
+		}
+		.button-row {
+			margin-left: 1rem;
+			.cs-btn:first-child {
+				margin-right: 0.25rem;
+			}
+		}
+	}
+}
+
+
+/* SAVING MODAL WITH PROGRESS BAR */
+.modal.progress-dialog {
+	.modal-content {
+		height: auto;
+		.modal-body {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			height: 60px;
+			text-align: center;
+			padding: 0.75rem 1rem;
+			p {
+				font-size: 1rem;
+			}
+		}
+	}
+}

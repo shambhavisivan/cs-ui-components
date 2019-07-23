@@ -1,0 +1,159 @@
+/* MAIN LAYOUT */
+html.ext-strict, html {
+	height: 100%;
+}
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	@include sbg(--main-alt-bg);
+}
+.slds-scope, .app-wrapper {
+	height: 100%;
+}
+.app-wrapper {
+	display: flex;
+	flex-direction: column;
+	.main {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+/* PAGE HEADER */
+.app-wrapper .page-header {
+	flex: none;
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+	padding: 1rem;
+	@include sbg(--main-header-bg);
+	@include css4 {
+		border-bottom: 1px solid cvar(--main-br);
+	}
+	.icon-title-wrapper {
+		display: flex;
+		align-items: center;
+		margin-right: 1rem;
+		.header-icon-wrapper {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 1.4rem;
+			width: 2rem;
+			height: 2rem;
+			border-radius: 0.25rem;
+			margin-right: 0.75rem;
+			@include sbg(--main-logo-bg);
+			@include sc(--font-inverse-c);
+			.icon-new-lead {
+				position: relative;
+				top: 1px;
+			}
+		}
+		h1 {
+			font-size: 1.25rem;
+			font-weight: 700;
+			@include sc(--font-c);
+		}
+	}
+	.cs-logo {
+		transform: translateY(4px); // Relative move 4px because image not centered
+		width: 135px;
+		height: 22px;
+		background: url(/resource/JILE/src/assets/images/cs_logo_dark_blue_min_185x31.png);
+		background-size: contain;
+		background-repeat: no-repeat;
+	}
+}
+
+.separator {
+	position: relative;
+	display: inline-block;
+	height: 2rem;
+	margin: 0 0.5rem;
+	@include css4 {
+		border-left: 1px solid cvar(--main-br);
+	}
+}
+
+.hidden {
+	display: none !important;
+}
+
+/* TABS */
+.tabs-wrapper {
+	display: flex;
+	li {
+		display: inline-flex;
+		position: relative;
+		.tab-name {
+			position: relative;
+			display: flex;
+			padding: 0.5rem 0.75rem 0.6rem 0.75rem;
+			cursor: pointer;
+			user-select: none;
+			font-size: 0.9rem;
+			@include sc(--form-label-c);
+			&::after {
+				display: block;
+				position: absolute;
+				content: "";
+				bottom: 0;
+				left: 0;
+				right: 0;
+				height: 0;
+				transition: height 0.2s ease;
+				@include sbg(--main-c);
+			}
+			&:hover::after {
+				height: 0.125rem;
+			}
+			&.tab-active {
+				font-weight: bold;
+				@include sc(--font-c);
+				&::after {
+					height: 0.1875rem;
+				}
+			}
+			.icon-info {
+				display: flex;
+				margin-top: 0.25rem;
+				font-size: 0.9rem;
+				margin-right: 0.5rem;
+				@include sc(--form-tooltip-warning-bg);
+			}
+		}
+	}
+}
+
+.dark-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	min-height: 805px;
+	opacity: 0.7;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* PROGRESS BAR WHEN SAVING */
+.meter {
+	display: block;
+	height: 0.5rem;
+	border: 0;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	bottom: 10px;
+	@include sbg(--progress-meter-bg);
+	.percentage-bar {
+		display: block;
+		height: 100%;
+		width: 0%; /* <---- change this value to get loading progress-bar */
+		transition: all 250ms ease-in;
+		@include sbg(--progress-meter-bar-bg);
+	}
+}

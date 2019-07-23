@@ -1,0 +1,53 @@
+/* SF DIFFERENCES */
+
+/* LIGHTNING SF */
+// html classes: ext-strict
+// body classes: sfdcBody brandQuaternaryBgr slds-vf-scope  ext-webkit ext-chrome
+// HTML Structure: body.sfdcBody > div.CScontainer
+
+/* CLASSIC SF */
+// html classes: ext-strict
+// body classes: hasMotif homeTab  sfdcBody brandQuaternaryBgr  ext-webkit ext-chrome
+// HTML Structure: body.sfdcBody > div#contentWrapper > div.bodyDiv > table.outerNoSidebar > tbody > tr > span > app-root
+
+/* CLASSIC SF ONLY */
+#contentWrapper {
+	min-width: 0;
+}
+.outer td.oRight {
+	padding: 0;
+}
+.sidebarCollapsible.sidebarCollapsed {
+	padding: 9px 0 0 0;
+}
+.noSidebarCell, .sidebarCell .fixed {
+	padding: 0;
+}
+.zen .zen-moreTabs ul {
+	z-index: $z-index-reset-zen-more-tabs-ul;
+}
+div.bodyDiv app-root {
+	min-height: calc(100vh - 111px - 76px - 5px); /* sf header - sf footer - margin */
+}
+
+/* CSS reset */
+.app-wrapper { /* add modal wrapper class as well */
+	* {
+		font-family: 'Salesforce Sans';
+		box-sizing: border-box;
+	}
+	ol, ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		li {
+			margin-left: 0;
+		}
+	}
+	h1, h2, h3, h4, h5 {
+		margin: 0;
+		padding: 0;
+		font-weight: normal;
+		display: block;
+	}
+}
