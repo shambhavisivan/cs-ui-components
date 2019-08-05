@@ -1,0 +1,14 @@
+{
+	"name": "@cloudsense/react-datepicker-dynamiclocale",
+	"version": "2.0.1",
+	"description": "Helper module for injecting arbitrary date localisation strings into react-datepicker",
+	"main": "src/index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Peter LS <peter.lukacs-singer@cloudsense.com",
+	"dependencies": {},
+	"devDependencies": {
+		"documentation": "^12.0.3"
+	}
+}
