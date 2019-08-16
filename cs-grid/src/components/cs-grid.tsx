@@ -102,7 +102,7 @@ export default class CSGrid extends React.Component<CSGridProps, CSGridState> {
 	state: CSGridState = new CSGridState();
 	private gridApi: GridApi;
 	private columnApi: ColumnApi;
-	private defaultPageSizes: Array<number> = [10, 25, 50, 100];
+	private defaultPageSizes: Array<number> = [10, 20, 50, 100];
 
 	constructor(props: CSGridProps) {
 		super(props);
@@ -183,7 +183,7 @@ export default class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				{(quickFilterLocation === CSGridQuickFilterLocation.Header ||
 					quickFilterLocation === CSGridQuickFilterLocation.Both) &&
 					quickFilter}
-				<div className='app-wrapper' style={{ padding: '2rem' }}>
+				<div className='app-wrapper'>
 					<div style={{ height: 400 }} className='ag-theme-balham main'>
 						<AgGridReact
 							// listening for events

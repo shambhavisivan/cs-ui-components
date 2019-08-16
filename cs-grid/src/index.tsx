@@ -501,7 +501,7 @@ export default class App extends React.Component<object, AppState> {
 					ref={this.csGridRef}
 					columnDefs={this.state.columnDefs}
 					rowData={this.state.rowData}
-					pageSizes={[22, 11, 133, 444]}
+					pageSizes={[10, 20, 50, 100]}
 					csGridPagination={{
 						detachedCSSClass: 'example-pagination',
 						location: CSGridPaginationLocation.Both

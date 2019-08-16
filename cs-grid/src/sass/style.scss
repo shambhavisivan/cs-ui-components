@@ -1,61 +1,23 @@
 @import "settings/z-index";
 @import "settings/overflow-ellipsis";
 
-@import "reset";
 @import "font";
 @import "theme";
-@import "form-elements";
-@import "buttons";
-@import "main-layout";
-@import "table";
-@import "datepicker-override";
-@import "modals";
+@import "quick-filter";
+@import "pagination";
 
-/* SPECIFICATION EDITOR ATTRIBUTE */
-/* BULK EDIT */
-#form-dialog-content .slds-dropdown, #form-dialog-content .react-datepicker-popper {
-	position: inherit !important;
-	transform: none !important;
+body {
+	padding: 1rem;
+
+	> div > div {
+		margin-bottom: 1rem;
+	}
 }
 
-/* BELOW IS UNCHECKED CODE */
-/* CHECK AND CLEAN UP IF NOT NEEDED */
-/* -------------------------------- */
-
-[class^="MuiDialog-container"] [class^="MuiPaper"] {
-		max-width: unset;
-}
-
-/* APP.CSS */
-.menu-overflow-hidden {
-	overflow: hidden !important;
-	height: 100% !important;
-}
-
-.mat-menu-panel {
-	overflow: hidden !important;
-}
-
-/* SPINNER-ELEMENT.CSS */
-.spinner-overlay {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	min-height: 805px;
-	opacity: 0.7;
-	background: rgba(0, 0, 0, 0.288);
-	z-index: $z-index-overlay;
-}
-.spinner_container {
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	height: 70px;
-	width: 70px;
-	border-radius: 10px;
-	z-index: $z-index-spinner-container;
-	opacity: 0.7;
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+	font-family: Salesforce Sans, Arial, sans-serif;
 }
