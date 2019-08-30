@@ -1,0 +1,129 @@
+.date-attribute {
+    overflow: hidden;
+}
+
+.react-datepicker {
+    font-size: 0.8125rem;
+    border: none !important;
+    border-radius: 0.25rem;
+    display: inline-block;
+    position: relative;
+    @include sc(--csgrid-datepicker-c);
+    @include sbg(--csgrid-datepicker-bg);
+
+    .react-datepicker__navigation--previous,
+    .react-datepicker__navigation--next {
+        top: 0.8125rem;
+        overflow: visible;
+        font-family: "cs-plm";
+        font-size: 0;
+        border: none;
+        height: 1.25rem;
+        width: 1.25rem;
+        border-radius: 0.25rem;
+
+        &:before {
+            position: absolute;
+            top: 2px;
+            right: 3px;
+            font-size: 0.875rem;
+            line-height: initial;
+        }
+    }
+
+    .react-datepicker__navigation--previous {
+        left: 0.25rem;
+
+        &:before {
+            content: "\62";
+        }
+    }
+
+    .react-datepicker__navigation--next {
+        right: 0.25rem;
+
+        &:before {
+            content: "\63";
+        }
+    }
+
+    .react-datepicker__month-container {
+
+        .react-datepicker__header {
+            border-bottom: none;
+            border-radius: 0.25rem;
+            padding-top: 1rem;
+            @include sbg(--csgrid-datepicker-bg);
+
+            .react-datepicker__current-month {
+                margin-bottom: 0.5rem;
+            }
+
+            .datepicker__header__dropdown {
+                margin-bottom: 0.5rem
+            }
+
+            .react-datepicker__month-dropdown-container,
+            .react-datepicker__year-dropdown-container {
+                position: relative;
+                margin: 0 0.125rem;
+
+                &:before {
+                    font-family: "cs-plm";
+                    position: absolute;
+                    right: 0.4375rem;
+                    top: 0.6125rem;
+                    content: "\75";
+                    font-size: 0.625rem;
+                    pointer-events: none;
+                    @include sc(--csgrid-datepicker-arrow-c);
+                }
+
+                .react-datepicker__month-select,
+                .react-datepicker__year-select {
+                    line-height: 1.75rem;
+                    padding-right: 1.25rem;
+                    border-radius: 0.25rem;
+                    cursor: pointer;
+                    appearance: none;
+                    -webkit-appearance: none;
+                    padding: 0 1.25rem 0 0.5rem;
+                    font-size: 0.8125rem;
+                    @include sbg(--csgrid-datepicker-bg);
+                    @include css4 {
+                        border: 1px solid var(--csgrid-datepicker-br);
+                    }
+                }
+
+            }
+
+            .react-datepicker__day-names {
+                font-weight: 700;
+            }
+        }
+
+        .react-datepicker__month {
+            margin-top: 0;
+
+            .react-datepicker__week {
+
+                .react-datepicker__day {
+
+                    &:hover {
+                        border-radius: 50%;
+                        color: inherit;
+                        font-weight: 700;
+                        @include sbg(--csgrid-datepicker-hover-bg);
+                    }
+
+                    &.react-datepicker__day--selected {
+                        border-radius: 50%;
+                        font-weight: 700;
+                        @include sbg(--csgrid-datepicker-selected-bg);
+                        @include sc(--csgrid-datepicker-selected-c);
+                    }
+                }
+            }
+        }
+    }
+}

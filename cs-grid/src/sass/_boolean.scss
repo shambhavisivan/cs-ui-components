@@ -1,0 +1,88 @@
+.cs-grid_checkbox-wrapper {
+
+	.cs-grid_checkbox {
+		width: 1px;
+		height: 1px;
+		border: 0;
+		clip: rect(0 0 0 0);
+		margin: -1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+
+		&:checked + .cs-grid_checkbox-faux:after {
+			display: block;
+			content: "";
+			height: 0.25rem;
+			width: 0.5rem;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%) rotate(-45deg);
+			box-sizing: border-box;
+			@include css4 {
+				border-bottom: 2px solid cvar(--csgrid-checkbox-checked-br);
+				border-left: 2px solid cvar(--csgrid-checkbox-checked-br);
+			}
+		}
+
+		&:focus + .cs-grid_checkbox-faux {
+			outline: 0;
+			@include css4 {
+				border: 1px solid cvar(--csgrid-checkbox-focus-br);
+				box-shadow: 0 0 3px cvar(--csgrid-checkbox-focus-box);
+			}
+		}
+
+		&:disabled + .cs-grid_checkbox-faux {
+			cursor: default;
+			@include sbg(--csgrid-checkbox-disabled-bg);
+			@include css4 {
+				border: 1px solid cvar(--csgrid-checkbox-disabled-br);
+			}
+		}
+
+		&:disabled:checked + .cs-grid_checkbox-faux:after {
+			@include css4 {
+				border-bottom: 2px solid cvar(--csgrid-checkbox-disabled-checked-br);
+				border-left: 2px solid cvar(--csgrid-checkbox-disabled-checked-br);
+			}
+		}
+
+		&:required + .cs-grid_checkbox-faux::before {
+			display: block;
+			content: "*";
+			margin: 0 -0.5rem;
+			font-size: 0.8125rem;
+			line-height: 0.875;
+			@include sc(--csgrid-checkbox-required-c)
+		}
+	}
+
+	.cs-grid_checkbox-faux {
+		width: 1rem;
+		height: 1rem;
+		top: -1px;
+		display: inline-block;
+		position: relative;
+		vertical-align: middle;
+		cursor: pointer;
+		border-radius: 0.125rem;
+		@include sbg(--csgrid-checkbox-bg);
+		@include css4 {
+			border: 1px solid cvar(--csgrid-checkbox-br);
+		}
+	}
+
+	.cs-grid_checkbox-label {
+		display: inline;
+		vertical-align: bottom;
+		font-size: 0.8125rem;
+		margin-left: 0.5rem;
+		overflow-wrap: break-word;
+		word-wrap: break-word;
+		hyphens: auto;
+		padding-right: 0.5rem;
+		@include sc(--csgrid-checkbox-label-c);
+	}
+}

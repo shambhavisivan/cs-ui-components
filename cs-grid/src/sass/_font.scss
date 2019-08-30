@@ -34,7 +34,17 @@
     url("../fonts/cs-jile.svg#cs-jile") format("svg");
   font-weight: normal;
   font-style: normal;
+}
 
+@font-face {
+	font-family: "cs-plm";
+	src:url("../fonts/cs-plm.eot");
+	src:url("../fonts/cs-plm.eot?#iefix") format("embedded-opentype"),
+		url("../fonts/cs-plm.woff") format("woff"),
+		url("../fonts/cs-plm.ttf") format("truetype"),
+		url("../fonts/cs-plm.svg#cs-plm") format("svg");
+	font-weight: normal;
+	font-style: normal;
 }
 
 [data-icon]::before {
@@ -81,8 +91,14 @@
 .icon-check::before {
   content: "\66";
 }
-.icon-info::before {
-  content: "\67";
+.icon-info {
+  &::before {
+    content: "\67";
+    color: #706e6b;
+  }
+  &:hover::before {
+    color: #005fb2;
+  }
 }
 .icon-search::before {
   content: "\68";
@@ -90,14 +106,21 @@
 .icon-event::before {
   content: "\69";
 }
-.icon-left::before {
-  content: "\6a";
+.icon-menu::before {
+  content: "q";
+  font-family: "cs-plm" !important;
 }
 .icon-close::before {
   content: "\6b";
 }
-.icon-warning::before {
-  content: "\6c";
+.icon-warning {
+  &::before {
+    content: "\6c";
+    color: #706e6b;
+  }
+  &:hover::before {
+    color: #c23934;
+  }
 }
 .icon-new-lead::before {
   content: "\6d";

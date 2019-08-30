@@ -1,0 +1,17 @@
+.cs-tooltip-group {
+    margin-left: 0.5rem;
+    margin-right: auto;
+
+    .cs-tooltip-text {
+
+        .icon-info {
+            display: flex;
+        }
+    }
+
+    .cs-tooltip {
+
+        &:before {
+        }
+    }
+}

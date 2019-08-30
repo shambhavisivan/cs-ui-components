@@ -1,4 +1,9 @@
-.cs-grid_quick-filter {
+.cs-grid_search-wrapper {
+    padding: 0.5rem;
+    min-width: 300px;
+}
+
+.cs-grid_search {
 	position: relative;
 
 	.cs-grid_search-icon {
@@ -11,7 +16,7 @@
 		}
 	}
 
-	.cs-grid_quick-filter-input {
+	.cs-grid_search-input {
 		width: 100%;
 		padding: 0 1rem 0 2rem;
 		border-radius: 0.25rem;

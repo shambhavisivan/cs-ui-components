@@ -184,7 +184,7 @@ export default class CSGrid extends React.Component<CSGridProps, CSGridState> {
 					quickFilterLocation === CSGridQuickFilterLocation.Both) &&
 					quickFilter}
 				<div className='app-wrapper'>
-					<div style={{ height: 400 }} className='ag-theme-balham main'>
+					<div className='ag-theme-balham main'>
 						<AgGridReact
 							// listening for events
 							onGridReady={this.onGridReady}
@@ -235,6 +235,7 @@ export default class CSGrid extends React.Component<CSGridProps, CSGridState> {
 							rowSelection={this.props.multiSelect ? 'multiple' : 'single'}
 							suppressRowClickSelection={true}
 							enableBrowserTooltips={true}
+							rowHeight={42}
 							// A pass through to allow cs-grid users to use all ag-grid props.
 							{...this.props}
 							onCellValueChanged={this.onCellValueChanged}

@@ -67,7 +67,7 @@ export default class CSGridHeader extends React.Component<CSGridHeaderProps, CSG
 					className='customHeaderMenuButton'
 					onClick={this.onMenuClick}
 				>
-					<i className='icon-left' />
+					<i className='icon-menu' />
 				</span>
 			);
 		}

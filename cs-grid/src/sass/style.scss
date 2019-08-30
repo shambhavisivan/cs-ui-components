@@ -5,13 +5,14 @@
 @import "theme";
 @import "quick-filter";
 @import "pagination";
+@import "boolean";
+@import "picklist";
+@import "datepicker";
+@import "lookup";
+@import "tooltip";
 
-body {
-	padding: 1rem;
-
-	> div > div {
-		margin-bottom: 1rem;
-	}
+body > div > div {
+	margin-bottom: 1rem;
 }
 
 * {
@@ -20,4 +21,226 @@ body {
 	box-sizing: border-box;
 	-webkit-font-smoothing: antialiased;
 	font-family: Salesforce Sans, Arial, sans-serif;
+}
+
+.ag-theme-balham {
+    font-weight: 400;
+    font-size: 0.75rem;
+	line-height: 1;
+	font-family: Salesforce Sans, Arial, sans-serif;
+	@include sc(--csgrid-theme-c);
+	@include sbg(--csgrid-theme-bg);
+
+	&.main {
+		height: 400px;
+	}
+
+	.ag-root {
+		@include css4 {
+			border: 1px solid var(--csgrid-row-br);
+		}
+
+		.ag-header {
+			height: 35px !important;
+			min-height: 35px !important;
+			font-size: 0.75rem;
+			font-weight: 400;
+			@include sbg(--csgrid-header-row-bg);
+			@include sc(--csgrid-header-row-c);
+			@include css4 {
+				border-bottom: 1px solid var(--csgrid-row-br);
+			}
+
+			.ag-header-row {
+				height: 35px !important;
+				min-height: 35px !important;
+
+				.ag-header-cell {
+					border: none;
+
+					.icon-menu {
+						display: flex;
+					}
+
+					.ag-react-container > div {
+						display: flex;
+						justify-content: flex-start;
+						align-items: center;
+
+						.btn-icon {
+							margin: 0 0 0 0.5rem;
+							display: block;
+							padding-top: 4px;
+						}
+					}
+
+					.customHeaderMenuButton {
+						margin: 0 0.25rem 0 0;
+					}
+				}
+			}
+		}
+	}
+
+	.ag-selection-checkbox {
+		display: flex;
+	}
+
+	.ag-checkbox-checked,
+	.ag-icon.ag-icon-checkbox-checked,
+	.ag-checkbox-unchecked,
+	.ag-icon.ag-icon-checkbox-unchecked,
+	.ag-checkbox-indeterminate,
+	.ag-icon.ag-icon-checkbox-indeterminate {
+		position: relative;
+		width: 1rem;
+		height: 1rem;
+		border-radius: 0.125rem;
+		cursor: pointer;
+		@include sbg(--csgrid-checkbox-bg);
+		@include css4 {
+			border: 1px solid var(--csgrid-checkbox-br);
+		}
+
+		&:before {
+			display: none;
+		}
+
+		&:active,
+		&:focus {
+			outline: 0;
+			@include css4 {
+				border: 1px solid var(--csgrid-checkbox-checked-br);
+				box-shadow: 0 0 3px var(--csgrid-checkbox-checked-br);
+			}
+		}
+	}
+
+	.ag-checkbox-checked,
+	.ag-icon.ag-icon-checkbox-checked {
+		&:after {
+			display: block;
+			content: "";
+			height: 0.25rem;
+			width: 0.5rem;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+			box-sizing: border-box;
+			@include css4 {
+				border-bottom: 2px solid var(--csgrid-checkbox-checked-br);
+				border-left: 2px solid var(--csgrid-checkbox-checked-br);
+			}
+		}
+	}
+
+	.ag-checkbox-indeterminate,
+	.ag-icon.ag-icon-checkbox-indeterminate {
+
+		&:after {
+			display: block;
+			content: "";
+			height: 0.25rem;
+			width: 0.5rem;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate3d(-50%, -65%, 0);
+			box-sizing: border-box;
+			@include css4 {
+				border-bottom: 2px solid var(--csgrid-checkbox-checked-br);
+			}
+		}
+	}
+
+	.ag-checkbox-checked > .ag-icon.ag-icon-checkbox-checked,
+	.ag-checkbox-unchecked > .ag-icon.ag-icon-checkbox-unchecked,
+	.ag-checkbox-indeterminate > .ag-icon.ag-icon.ag-icon-checkbox-indeterminate {
+		display: none;
+	}
+
+	.ag-row-even,
+	.ag-row-odd {
+		@include sbg(--csgrid-row-bg);
+
+		&.ag-row-hover {
+			@include sbg(--csgrid-row-hover-bg);
+		}
+	}
+
+	.ag-cell {
+		padding-right: 0.75rem;
+		padding-left: 0.75rem;
+		overflow: visible;
+	}
+
+	.ag-cell-value {
+		overflow: visible;
+	}
+
+	.ag-cell,
+	.ag-cell.ag-cell-inline-editing,
+	.ag-cell.ag-cell-not-inline-editing {
+		display: flex;
+		align-items: center;
+		height: 100%;
+		border-radius: 0;
+		@include sbg(--csgrid-transparent);
+
+		.ag-react-container {
+			display: flex;
+			align-items: center;
+			height: 50px;
+
+			input:not(.cs-grid_checkbox) {
+				border: none !important;
+				height: 50px;
+				font-size: 0.75rem;
+				line-height: 26px;
+				padding-bottom: 1px;
+				@include sbg(--csgrid-transparent);
+			}
+		}
+
+		.ag-input-text-wrapper input {
+			border: none !important;
+			height: 50px;
+			font-size: 0.75rem;
+			line-height: 26px;
+			padding-bottom: 1px;
+			@include sbg(--csgrid-transparent);
+		}
+	}
+}
+
+.ag-theme-balham .ag-header-cell::after,
+.ag-theme-balham .ag-header-group-cell::after {
+	margin-top: 0;
+	top: 0;
+	height: 35px;
+	width: 2rem;
+	background-image: linear-gradient(to right, transparent, #f8f8f8);
+	@include css4 {
+		border-right: 1px solid var(--csgrid-input-br);
+	}
+}
+
+.ag-row:hover {
+	z-index: 1;
+}
+
+.ag-row-selected {
+	@include sbg(--csgrid-main);
+	@include sc(--csgrid-secondary);
+
+	input {
+		@include sc(--csgrid-secondary);
+	}
+}
+
+.ag-react-container > div,
+.ag-react-container > span {
+	display: flex;
+	align-items: center;
 }

@@ -56,7 +56,6 @@ export default class CSGridPicklistRenderer
 			<div className='select-wrapper'>
 				<span>{this.format(this.state.value.cellValue)}</span>
 				<CSGridCellError errorMessage={this.state.value.errorMessage} />
-				<span className='icon-left' />
 			</div>
 		);
 	}

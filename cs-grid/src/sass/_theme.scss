@@ -110,9 +110,38 @@ $css4: true;
 
 // It is necessary to define the variables in sass map instead of :root, for compatibility reasons.
 $variables: (
-	--cs-main-c: $cs-blue-sf,
-	--cs-secondary-c: $cs-gray-dark-1,
-	--cs-main-bg: $cs-white,
+	--csgrid-main: $cs-blue-sf !important,
+	--csgrid-secondary: $cs-white !important,
+	--csgrid-tertiary: $cs-gray-dark-1 !important,
+
+	--csgrid-theme-c: $cs-black,
+	--csgrid-theme-bg: $cs-white,
+
+	--csgrid-row-bg: $cs-white,
+	--csgrid-row-hover-bg: $cs-gray-light-7,
+	--csgrid-row-br: $cs-gray-light-2,
+
+	--csgrid-header-row-c: $cs-gray-dark-4,
+	--csgrid-header-row-bg: $cs-gray-light-7,
+
+	--csgrid-container-after-c: $cs-gray-dark-5,
+	--csgrid-container-after-selected-c: $cs-white,
+	--csgrid-popup-box: $cs-gray-light-2,
+	--csgrid-popup-br: $cs-gray-light-2,
+
+	--csgrid-picklist-hover-bg: $cs-gray-light-8,
+	--csgrid-picklist-selected-bg: $cs-blue-sf,
+	--csgrid-picklist-selected-c: $cs-white,
+	--csgrid-picklist-tick-br: $cs-white,
+	--csgrid-picklist-br: rgba($cs-white, 0.25),
+
+	--csgrid-datepicker-c: $cs-black,
+	--csgrid-datepicker-bg: $cs-white,
+	--csgrid-datepicker-arrow-c: $cs-gray-dark-5,
+	--csgrid-datepicker-br: $cs-gray-light-2,
+	--csgrid-datepicker-hover-bg: $cs-gray-light-7,
+	--csgrid-datepicker-selected-bg: $cs-blue-sf,
+	--csgrid-datepicker-selected-c: $cs-white,
 
 	--cs-component-header-c: rgba($cs-gray-dark-2, 0.7),
 	--cs-component-header-active-c: $cs-gray-dark-2,
@@ -175,18 +204,18 @@ $variables: (
 	--cs-color-body-bg: $cs-white,
 	--cs-color-body-c: $cs-gray-medium-1,
 
-	--cs-input-bg: $cs-white,
-	--cs-input-br: $cs-gray-light-2,
-	--cs-input-active-br: $cs-blue-medium-5,
+	--csgrid-input-bg: $cs-white,
+	--csgrid-input-br: $cs-gray-light-2,
+	--csgrid-input-active-br: $cs-blue-medium-5,
 	--cs-input-active-bg: $cs-white,
 	--cs-input-disabled-bg: $cs-gray-light-5,
 	--cs-input-disabled-br: $cs-gray-medium-3,
 	--cs-input-readonly-shadow-br: $cs-blue-sf,
-	--cs-input-box: $cs-blue-sf,
+	--csgrid-input-box: $cs-blue-sf,
 	--cs-input-error-c: $cs-red-medium-1,
 	--cs-input-error-br: $cs-red-medium-1,
 	--cs-input-error-shadow: $cs-red-medium-1,
-	--cs-input-icon-fill: $cs-gray-medium-2,
+	--csgrid-input-icon-fill: $cs-gray-medium-2,
 
 	--cs-input-number-bg: $cs-white,
 	--cs-input-number-br: $cs-gray-light-2,
@@ -241,7 +270,7 @@ $variables: (
 
 	--cs-label-required-c: $cs-red-medium-1,
 
-	--cs-transparent: transparent,
+	--csgrid-transparent: transparent !important,
 
 	--cs-tab-br: $cs-gray-light-2,
 	--cs-tab-c: $cs-gray-dark-2,
@@ -263,23 +292,23 @@ $variables: (
 	--cs-table-row-active-bg: $cs-blue-sf,
 	--cs-table-row-active-c: $cs-white,
 
-	--cs-pagination-bg: $cs-white,
-	--cs-pagination-br: $cs-gray-light-2,
-	--cs-pagination-c: $cs-blue-sf,
-	--cs-pagination-hover-bg: $cs-gray-light-8,
-	--cs-pagination-icon-bg: $cs-gray-medium-2,
+	--csgrid-pagination-bg: $cs-white,
+	--csgrid-pagination-br: $cs-gray-light-2,
+	--csgrid-pagination-c: $cs-blue-sf,
+	--csgrid-pagination-hover-bg: $cs-gray-light-8,
+	--csgrid-pagination-icon-bg: $cs-gray-medium-2,
 
-	--cs-checkbox-bg: $cs-white,
-	--cs-checkbox-br: $cs-gray-light-2,
-	--cs-checkbox-checked-br: $cs-blue-sf,
-	--cs-checkbox-focus-br: $cs-blue-medium-5,
-	--cs-checkbox-focus-box: $cs-blue-sf,
-	--cs-checkbox-disabled-bg: $cs-gray-light-5,
-	--cs-checkbox-disabled-br: $cs-gray-medium-3,
-	--cs-checkbox-disabled-checked-br: $cs-gray-medium-1,
-	--cs-checkbox-required-c: $cs-red-medium-2,
+	--csgrid-checkbox-bg: $cs-white,
+	--csgrid-checkbox-br: $cs-gray-light-2,
+	--csgrid-checkbox-checked-br: $cs-blue-sf,
+	--csgrid-checkbox-focus-br: $cs-blue-medium-5,
+	--csgrid-checkbox-focus-box: $cs-blue-sf,
+	--csgrid-checkbox-disabled-bg: $cs-gray-light-5,
+	--csgrid-checkbox-disabled-br: $cs-gray-medium-3,
+	--csgrid-checkbox-disabled-checked-br: $cs-gray-medium-1,
+	--csgrid-checkbox-required-c: $cs-red-medium-2,
 	--cs-checkbox-error-br: $cs-red-medium-2,
-	--cs-checkbox-label-c: $cs-gray-dark-2,
+	--csgrid-checkbox-label-c: $cs-gray-dark-2,
 
 	--cs-toggle-c: $cs-gray-dark-2,
 	--cs-toggle-br: $cs-gray-medium-2,

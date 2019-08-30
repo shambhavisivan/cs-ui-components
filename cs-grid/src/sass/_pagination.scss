@@ -18,10 +18,10 @@
 			font-size: 0.75rem;
 			text-decoration: none;
 			cursor: pointer;
-			@include sbg(--cs-pagination-bg);
-			@include sc(--cs-pagination-c);
+			@include sbg(--csgrid-pagination-bg);
+			@include sc(--csgrid-pagination-c);
 			@include css4 {
-				border: 1px solid var(--cs-pagination-br);
+				border: 1px solid var(--csgrid-pagination-br);
 			}
 
 			&:nth-of-type(n+2) {
@@ -44,22 +44,22 @@
 
 				svg path {
 					@include css4 {
-						fill: var(--cs-pagination-icon-bg) !important;
+						fill: var(--csgrid-pagination-icon-bg) !important;
 					}
 				}
 			}
 
 			&.active {
-				@include sc(--cs-pagination-bg);
-				@include sbg(--cs-pagination-c);
+				@include sc(--csgrid-pagination-bg);
+				@include sbg(--csgrid-pagination-c);
 
 				&:hover {
-					@include sbg(--cs-pagination-c);
+					@include sbg(--csgrid-pagination-c);
 				}
 			}
 
 			&:hover {
-				@include sbg(--cs-pagination-hover-bg);
+				@include sbg(--csgrid-pagination-hover-bg);
 			}
 		}
 	}
@@ -80,9 +80,9 @@
 			-webkit-appearance: none;
 			appearance: none;
 			padding: 0 1rem 0 0.5rem;
-			@include sbg(--cs-pagination-bg);
+			@include sbg(--csgrid-pagination-bg);
 			@include css4 {
-				border: 1px solid var(--cs-pagination-br);
+				border: 1px solid var(--csgrid-pagination-br);
 			}
 		}
 

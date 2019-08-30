@@ -80,17 +80,17 @@ export default class CSGridBooleanRenderer
 			<>
 				<label
 					className={
-						'toggle-checkbox-wrapper' + (this.state.readOnly ? ' read-only' : '')
+						'cs-grid_checkbox-wrapper' + (this.state.readOnly ? ' read-only' : '')
 					}
 				>
 					<input
-						className='default-checkbox'
+						className='cs-grid_checkbox'
 						type='checkbox'
 						onClick={!this.state.readOnly ? this.onClick : undefined}
 						defaultChecked={this.state.value.cellValue}
 						readOnly={this.state.readOnly}
 					/>
-					<span className='toggle-checkbox' />
+					<span className='cs-grid_checkbox-faux' />
 				</label>
 
 				<CSGridCellError errorMessage={this.state.value.errorMessage} />
