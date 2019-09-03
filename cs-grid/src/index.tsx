@@ -9,7 +9,6 @@ import '../../src/sass/style.scss';
 import './sass/style.scss';
 
 import { ColDef, ColGroupDef } from 'ag-grid-community';
-import CSTooltip from '../../src/components/CSTooltip';
 import CSGrid from './components/cs-grid';
 import { CSGridLookupSearchResult } from './components/cs-grid-lookup-editor';
 import { CSGridPaginationLocation } from './components/cs-grid-pagination';
@@ -82,7 +81,7 @@ export default class App extends React.Component<object, AppState> {
 				lockVisible: true,
 				resizable: false,
 				sortable: false,
-				width: 55
+				width: 75
 			},
 			{
 				field: 'guid',

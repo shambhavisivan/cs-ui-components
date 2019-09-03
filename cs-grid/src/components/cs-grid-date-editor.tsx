@@ -2,6 +2,7 @@ import moment from 'moment';
 import React from 'react';
 import DatePicker from 'react-datepicker';
 import '../../node_modules/react-datepicker/dist/react-datepicker.css';
+
 import {
 	CellData,
 	CSGridCellEditor,
@@ -9,20 +10,16 @@ import {
 } from '../models/cs-grid-base-interfaces';
 import CSGridCellError from './cs-grid-cell-error';
 
-export interface CSGridDateEditorProps extends CSGridCellEditorProps<string> {}
-
 interface CSGridDateEditorState {
 	value: CellData<string>;
 }
 
 export default class CSGridDateEditor
-	extends React.Component<CSGridDateEditorProps, CSGridDateEditorState>
+	extends React.Component<CSGridCellEditorProps<string>, CSGridDateEditorState>
 	implements CSGridCellEditor {
-	private KEY_BACKSPACE = 8;
-	private KEY_DELETE = 46;
 	private dateValueFormat: string = 'YYYY-MM-DD';
 
-	constructor(props: CSGridDateEditorProps) {
+	constructor(props: CSGridCellEditorProps<string>) {
 		super(props);
 
 		moment.locale(this.props.userInfo.userLocale);
@@ -43,22 +40,6 @@ export default class CSGridDateEditor
 
 	isPopup = () => {
 		return true;
-	};
-
-	onKeyDown = (event: KeyboardEvent) => {
-		if (this.isLeftOrRight(event) || this.deleteOrBackspace(event)) {
-			event.stopPropagation();
-
-			return;
-		}
-	};
-
-	isLeftOrRight = (event: KeyboardEvent) => {
-		return [37, 39].indexOf(event.keyCode) > -1;
-	};
-
-	deleteOrBackspace = (event: KeyboardEvent) => {
-		return [this.KEY_DELETE, this.KEY_BACKSPACE].indexOf(event.keyCode) > -1;
 	};
 
 	onChange = async (date: Date): Promise<void> => {
@@ -96,10 +77,6 @@ export default class CSGridDateEditor
 
 		return (
 			<>
-				<span>
-					{formattedDate}
-					<CSGridCellError errorMessage={this.state.value.errorMessage} />
-				</span>
 				<div className='date-attribute'>
 					<DatePicker
 						selected={date}

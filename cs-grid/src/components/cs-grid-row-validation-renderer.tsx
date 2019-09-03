@@ -2,15 +2,10 @@ import React from 'react';
 
 import CSTooltip from '../../../src/components/CSTooltip';
 import {
-	CellData,
 	CSGridCellRenderer,
-	CSGridCellRendererProps
+	CSGridCellRendererProps,
+	CSGridCellRendererState
 } from '../models/cs-grid-base-interfaces';
-
-export interface CSGridRowValidationRendererProps
-	extends CSGridCellRendererProps<ValidationStatus> {
-	value: CellData<ValidationStatus>;
-}
 
 export enum ValidationStatus {
 	Info = 'Info',
@@ -20,23 +15,39 @@ export enum ValidationStatus {
 }
 
 export default class CSGridRowValidationRenderer
-	extends React.Component<CSGridRowValidationRendererProps>
+	extends React.Component<
+		CSGridCellRendererProps<ValidationStatus>,
+		CSGridCellRendererState<ValidationStatus>
+	>
 	implements CSGridCellRenderer {
-	constructor(props: CSGridRowValidationRendererProps) {
+	constructor(props: CSGridCellRendererProps<ValidationStatus>) {
 		super(props);
+
+		this.state = { value: this.props.value, isLastColumn: this.isLastColumn() };
 	}
 
-	refresh = (params: CSGridRowValidationRendererProps): boolean => {
+	refresh = (params: CSGridCellRendererProps<ValidationStatus>): boolean => {
+		const isLastColumn = this.isLastColumn();
 		if (
-			params.value.cellValue !== this.props.value.cellValue ||
-			params.value.errorMessage !== this.props.value.errorMessage
+			params.value.cellValue !== this.state.value.cellValue ||
+			params.value.errorMessage !== this.state.value.errorMessage ||
+			isLastColumn !== this.state.isLastColumn
 		) {
 			this.setState({
+				isLastColumn,
 				value: params.value
 			});
 		}
 
 		return true;
+	};
+
+	isLastColumn = (): boolean => {
+		const currentColumns = this.props.columnApi.getAllGridColumns();
+
+		return (
+			currentColumns[currentColumns.length - 1].getColId() === this.props.column.getColId()
+		);
 	};
 
 	render() {

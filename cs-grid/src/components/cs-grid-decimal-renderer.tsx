@@ -1,10 +1,13 @@
-import CSGridNumberRenderer, { CSGridNumberRendererProps } from './cs-grid-number-renderer';
+import { CSGridCellRendererProps } from '../models/cs-grid-base-interfaces';
+import CSGridNumberRenderer from './cs-grid-number-renderer';
 
-export interface CSGridDecimalRendererProps extends CSGridNumberRendererProps {
+export interface CSGridDecimalRendererProps extends CSGridCellRendererProps<number> {
 	noOfDecimalDigits: number;
 }
 
-export class CSGridDecimalRenderer extends CSGridNumberRenderer<CSGridDecimalRendererProps> {
+export default class CSGridDecimalRenderer extends CSGridNumberRenderer<
+	CSGridDecimalRendererProps
+> {
 	constructor(props: CSGridDecimalRendererProps) {
 		super(props);
 

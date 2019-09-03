@@ -1,10 +1,11 @@
+import { CSGridCellEditorProps } from '../models/cs-grid-base-interfaces';
 import NumberFormat from '../models/number-format.enum';
-import CSGridNumberEditor, { CSGridNumberEditorProps } from './cs-grid-number-editor';
+import CSGridNumberEditor from './cs-grid-number-editor';
 
-export interface CSGridDecimalEditorProps extends CSGridNumberEditorProps {}
-
-export default class CSGridDecimalEditor extends CSGridNumberEditor<CSGridDecimalEditorProps> {
-	constructor(props: CSGridDecimalEditorProps) {
+export default class CSGridDecimalEditor extends CSGridNumberEditor<
+	CSGridCellEditorProps<string | number>
+> {
+	constructor(props: CSGridCellEditorProps<string | number>) {
 		super(props);
 
 		this.numberFormat = new Intl.NumberFormat(this.props.userInfo.userLocale, {

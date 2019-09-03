@@ -7,21 +7,19 @@ import {
 } from '../models/cs-grid-base-interfaces';
 import CSGridCellError from './cs-grid-cell-error';
 
-export interface CSGridTextEditorProps extends CSGridCellEditorProps<string> {}
-
 interface CSGridTextEditorState {
 	value: CellData<string>;
 }
 
 export default class CSGridTextEditor
-	extends React.Component<CSGridTextEditorProps, CSGridTextEditorState>
+	extends React.Component<CSGridCellEditorProps<string>, CSGridTextEditorState>
 	implements CSGridCellEditor {
-	private KEY_BACKSPACE = 8;
-	private KEY_DELETE = 46;
+	inputRef: React.RefObject<HTMLInputElement>;
 
-	constructor(props: CSGridTextEditorProps) {
+	constructor(props: CSGridCellEditorProps<string>) {
 		super(props);
 
+		this.inputRef = React.createRef();
 		this.state = { value: this.props.value };
 	}
 
@@ -41,23 +39,29 @@ export default class CSGridTextEditor
 		return false;
 	};
 
-	onKeyDown = (event: KeyboardEvent) => {
-		if (this.isLeftOrRight(event) || this.deleteOrBackspace(event)) {
-			event.stopPropagation();
+	afterGuiAttached() {
+		const eInput = this.inputRef.current;
+		eInput.focus();
+		eInput.select();
+	}
 
-			return;
-		}
-	};
+	render() {
+		return (
+			<>
+				<input
+					type='text'
+					ref={this.inputRef}
+					value={this.state.value.cellValue}
+					onChange={this.onChange}
+					placeholder=''
+					style={{ width: '90%' }}
+				/>
+				<CSGridCellError errorMessage={this.state.value.errorMessage} />
+			</>
+		);
+	}
 
-	isLeftOrRight = (event: KeyboardEvent) => {
-		return [37, 39].indexOf(event.keyCode) > -1;
-	};
-
-	deleteOrBackspace = (event: KeyboardEvent) => {
-		return [this.KEY_DELETE, this.KEY_BACKSPACE].indexOf(event.keyCode) > -1;
-	};
-
-	onChange = async (event: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
+	private onChange = async (event: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
 		const newValue = event.target.value;
 
 		let value: CellData<string> = {
@@ -75,19 +79,4 @@ export default class CSGridTextEditor
 
 		this.setState({ value });
 	};
-
-	render() {
-		return (
-			<>
-				<input
-					type='text'
-					value={this.state.value.cellValue}
-					onChange={this.onChange}
-					placeholder=''
-					style={{ width: '90%' }}
-				/>
-				<CSGridCellError errorMessage={this.state.value.errorMessage} />
-			</>
-		);
-	}
 }

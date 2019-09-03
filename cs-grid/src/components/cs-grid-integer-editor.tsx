@@ -1,11 +1,12 @@
+import { CSGridCellEditorProps } from '../models/cs-grid-base-interfaces';
 import NumberFormat from '../models/number-format.enum';
-import CSGridNumberEditor, { CSGridNumberEditorProps } from './cs-grid-number-editor';
+import CSGridNumberEditor from './cs-grid-number-editor';
 
-export interface CSGridIntegerEditorProps extends CSGridNumberEditorProps {
+export interface CSGridIntegerEditorProps extends CSGridCellEditorProps<string | number> {
 	stepperArrows?: boolean;
 }
 
-export class CSGridIntegerEditor extends CSGridNumberEditor<CSGridIntegerEditorProps> {
+export default class CSGridIntegerEditor extends CSGridNumberEditor<CSGridIntegerEditorProps> {
 	constructor(props: CSGridIntegerEditorProps) {
 		super(props);
 

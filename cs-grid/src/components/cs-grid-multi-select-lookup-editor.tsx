@@ -1,6 +1,6 @@
 import CSGridLookupEditor, { CSGridLookupEditorProps } from './cs-grid-lookup-editor';
 
-export class CSGridMultiSelectLookupEditor extends CSGridLookupEditor {
+export default class CSGridMultiSelectLookupEditor extends CSGridLookupEditor {
 	constructor(props: CSGridLookupEditorProps) {
 		super(props);
 		this.multiSelect = true;

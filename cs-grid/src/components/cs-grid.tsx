@@ -1,36 +1,32 @@
+import {
+	CellValueChangedEvent,
+	GetQuickFilterTextParams,
+	GridApi,
+	GridReadyEvent
+} from 'ag-grid-community';
+// tslint:disable-next-line: no-submodule-imports
+import { CellEditingStoppedEvent } from 'ag-grid-community/dist/lib/events';
+import 'ag-grid-community/dist/styles/ag-theme-balham.css';
+import { AgGridReact, AgGridReactProps } from 'ag-grid-react';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {
-	CellValueChangedEvent,
-	ColumnApi,
-	GetQuickFilterTextParams,
-	GridApi,
-	GridReadyEvent,
-	RowNode,
-	SelectionChangedEvent
-} from 'ag-grid-community';
-import 'ag-grid-community/dist/styles/ag-theme-balham.css';
-import { AgGridReact, AgGridReactProps } from 'ag-grid-react';
-
-// tslint:disable-next-line: no-submodule-imports
-import { CellKeyPressEvent } from 'ag-grid-community/dist/lib/events';
 import { CellData } from '../models/cs-grid-base-interfaces';
 import CSGridBooleanEditor from './cs-grid-boolean-editor';
 import CSGridBooleanRenderer from './cs-grid-boolean-renderer';
-import { CSGridCurrencyEditor } from './cs-grid-currency-editor';
-import { CSGridCurrencyRenderer } from './cs-grid-currency-renderer';
+import CSGridCurrencyEditor from './cs-grid-currency-editor';
+import CSGridCurrencyRenderer from './cs-grid-currency-renderer';
 import CSGridDateEditor from './cs-grid-date-editor';
 import CSGridDateRenderer from './cs-grid-date-renderer';
 import CSGridDecimalEditor from './cs-grid-decimal-editor';
-import { CSGridDecimalRenderer } from './cs-grid-decimal-renderer';
+import CSGridDecimalRenderer from './cs-grid-decimal-renderer';
 import CSGridHeader from './cs-grid-header';
-import { CSGridIntegerEditor } from './cs-grid-integer-editor';
-import { CSGridIntegerRenderer } from './cs-grid-integer-renderer';
+import CSGridIntegerEditor from './cs-grid-integer-editor';
+import CSGridIntegerRenderer from './cs-grid-integer-renderer';
 import CSGridLookupEditor from './cs-grid-lookup-editor';
 import CSGridLookupRenderer from './cs-grid-lookup-renderer';
-import { CSGridMultiSelectLookupEditor } from './cs-grid-multi-select-lookup-editor';
-import { CSGridMultiSelectPicklistEditor } from './cs-grid-multi-select-picklist-editor';
+import CSGridMultiSelectLookupEditor from './cs-grid-multi-select-lookup-editor';
+import CSGridMultiSelectPicklistEditor from './cs-grid-multi-select-picklist-editor';
 import CSGridPaginator, { CSGridPagination, CSGridPaginationLocation } from './cs-grid-pagination';
 import CSGridPicklistEditor from './cs-grid-picklist-editor';
 import CSGridPicklistRenderer from './cs-grid-picklist-renderer';
@@ -49,21 +45,16 @@ export interface CSGridProps extends AgGridReactProps {
 	multiSelect: boolean;
 	uniqueIdentifierColumnName: string;
 	onSelectionChange?(selectedRows: Array<any>): void;
-	onCellValueChange?(rowNodeId: string, oldValue: any, newValue: any): Promise<void>;
+	onCellValueChange?(
+		rowNodeId: string,
+		ColumnField: string,
+		oldValue: any,
+		newValue: any
+	): Promise<void>;
 }
 
 class CSGridState {
 	filterText: string = null;
-	sideBar: boolean = false;
-	rowCount: string = null;
-	icons: Record<string, string> = {
-		columnRemoveFromGroup: '<i className="fa fa-times"/>',
-		filter: '<i className="fa fa-filter"/>',
-		groupContracted: '<i className="far fa-plus-square"/>',
-		groupExpanded: '<i className="far fa-minus-square"/>',
-		sortAscending: '<i className="fa fa-long-arrow-alt-down"/>',
-		sortDescending: '<i className="fa fa-long-arrow-alt-up"/>'
-	};
 	frameworkComponents = {
 		booleanEditor: CSGridBooleanEditor,
 		booleanRenderer: CSGridBooleanRenderer,
@@ -101,7 +92,6 @@ class CSGridState {
 export default class CSGrid extends React.Component<CSGridProps, CSGridState> {
 	state: CSGridState = new CSGridState();
 	private gridApi: GridApi;
-	private columnApi: ColumnApi;
 	private defaultPageSizes: Array<number> = [10, 20, 50, 100];
 
 	constructor(props: CSGridProps) {
@@ -142,6 +132,7 @@ export default class CSGrid extends React.Component<CSGridProps, CSGridState> {
 					onBtLast={this.onBtLast}
 					onBtNext={this.onBtNext}
 					onBtPrevious={this.onBtPrevious}
+					goToPage={this.goToPage}
 				/>
 			);
 
@@ -161,7 +152,11 @@ export default class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		let quickFilter: JSX.Element;
 		if (quickFilterLocation !== CSGridQuickFilterLocation.None) {
 			quickFilter = (
-				<QuickFilter onFilterText={this.onFilterText} filterText={this.state.filterText} />
+				<QuickFilter
+					onFilterText={this.onFilterText}
+					filterText={this.state.filterText}
+					clearFilter={this.clearFilter}
+				/>
 			);
 
 			if (this.props.csGridQuickFilter.detachedCSSClass) {
@@ -189,10 +184,7 @@ export default class CSGrid extends React.Component<CSGridProps, CSGridState> {
 							// listening for events
 							onGridReady={this.onGridReady}
 							onSelectionChanged={this.onSelectionChanged}
-							onModelUpdated={this.calculateRowCount}
 							quickFilterText={this.state.filterText}
-							// binding to an object property
-							icons={this.state.icons}
 							columnDefs={this.props.columnDefs}
 							rowData={this.props.rowData}
 							pagination={paginationLocation !== CSGridPaginationLocation.None}
@@ -229,17 +221,18 @@ export default class CSGrid extends React.Component<CSGridProps, CSGridState> {
 								sortable: true
 							}}
 							frameworkComponents={this.state.frameworkComponents}
-							onCellKeyPress={this.onCellKeyPress}
 							stopEditingWhenGridLosesFocus={true}
 							suppressDragLeaveHidesColumns={true}
 							rowSelection={this.props.multiSelect ? 'multiple' : 'single'}
 							suppressRowClickSelection={true}
 							enableBrowserTooltips={true}
 							rowHeight={42}
+							onCellEditingStopped={this.onCellEditingStopped}
 							// A pass through to allow cs-grid users to use all ag-grid props.
 							{...this.props}
 							onCellValueChanged={this.onCellValueChanged}
 							getRowNodeId={this.getRowNodeId}
+							onColumnMoved={this.onColumnMoved}
 						/>
 					</div>
 				</div>
@@ -259,62 +252,48 @@ export default class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		this.setState({ filterText: event.target.value });
 	};
 
+	private clearFilter = (): void => {
+		this.setState({ filterText: '' });
+	};
+
 	/* Grid Events we're listening to */
 	private onGridReady = (params: GridReadyEvent) => {
 		this.gridApi = params.api;
-		this.columnApi = params.columnApi;
-
 		this.gridApi.sizeColumnsToFit();
-
-		this.calculateRowCount();
 		this.onPaginationChanged();
 	};
 
+	private onColumnMoved = () => {
+		const params = {
+			force: true
+		};
+		this.gridApi.refreshCells(params);
+	};
+
 	private onCellValueChanged = (event: CellValueChangedEvent) => {
-		console.log(
-			'this.getRowNodeId(event.data) : ' + JSON.stringify(this.getRowNodeId(event.data))
-		);
-		console.log('oldValue : ' + JSON.stringify(event.oldValue));
-		console.log('newValue : ' + JSON.stringify(event.newValue));
 		if (this.props.onCellValueChange) {
 			this.props.onCellValueChange(
 				this.getRowNodeId(event.data),
+				event.colDef.field,
 				event.oldValue,
 				event.newValue
 			);
 		}
 	};
 
-	private onCellKeyPress = (event: CellKeyPressEvent) => {
-		console.log('onCellKeyPress event.node.data : ' + JSON.stringify(event.node.data));
-	};
-
-	private onSelectionChanged = (event: SelectionChangedEvent): void => {
+	private onSelectionChanged = (): void => {
 		if (this.props.onSelectionChange) {
-			this.props.onSelectionChange(this.gridApi.getSelectedRows());
-		}
-	};
-
-	private deselectAll() {
-		this.gridApi.deselectAll();
-	}
-
-	private calculateRowCount = () => {
-		if (this.gridApi && this.props.rowData) {
-			const model = this.gridApi.getModel();
-			const totalRows = this.props.rowData.length;
-			const processedRows = model.getRowCount();
-			this.setState({
-				rowCount: `${processedRows.toLocaleString()}/${totalRows.toLocaleString()}`
-			});
+			this.props.onSelectionChange(this.getSelectedRows());
 		}
 	};
 
 	private onPageSizeChanged = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		const value = event.target.value;
 		this.gridApi.paginationSetPageSize(Number(value));
+		this.gridApi.paginationGoToPage(0);
 
 		this.setState({
+			currentPage: 0,
 			currentPageSize: this.gridApi.paginationGetPageSize()
 		});
 	};
@@ -348,7 +327,6 @@ export default class CSGrid extends React.Component<CSGridProps, CSGridState> {
 	};
 
 	private onBtLast = () => {
-		console.log('here');
 		this.gridApi.paginationGoToLastPage();
 	};
 
@@ -360,17 +338,19 @@ export default class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		this.gridApi.paginationGoToPreviousPage();
 	};
 
+	private goToPage = (page: number) => {
+		this.gridApi.paginationGoToPage(page);
+	};
+
 	private getRowNodeId = (data: any) => {
 		return data[this.props.uniqueIdentifierColumnName].cellValue;
 	};
 
-	private comparator = (
-		a: CellData<any>,
-		b: CellData<any>,
-		nodeA: RowNode,
-		nodeB: RowNode,
-		isInverted: boolean
-	) => {
+	private onCellEditingStopped = (event: CellEditingStoppedEvent) => {
+		this.gridApi.setFocusedCell(event.rowIndex, event.colDef.field);
+	};
+
+	private comparator = (a: CellData<any>, b: CellData<any>) => {
 		let aValue = a.cellValue;
 		let bValue = b.cellValue;
 

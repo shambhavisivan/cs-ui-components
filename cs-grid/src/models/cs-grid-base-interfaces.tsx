@@ -11,6 +11,11 @@ export interface CSGridCellRendererProps<T> extends ICellRendererParams, CSGridC
 	value: CellData<T>;
 }
 
+export interface CSGridCellRendererState<T> {
+	value: CellData<T>;
+	isLastColumn: boolean;
+}
+
 export interface CSGridCellProps<T> {
 	userInfo: UserInfo;
 	onChange?(rowNodeId: string, oldValue: T, newValue: T): Promise<CellData<T>>;

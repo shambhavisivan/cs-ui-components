@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
 	CellData,
 	CSGridCellEditor,
@@ -27,7 +28,6 @@ export default class CSGridPicklistEditor
 		super(props);
 
 		const options: Map<string, boolean> = this.getOptions(this.props.value.cellValue);
-
 		this.state = { options, searchTerm: '', errorMessage: this.props.value.errorMessage };
 	}
 
@@ -50,61 +50,20 @@ export default class CSGridPicklistEditor
 		return false;
 	};
 
-	onChange = async (key: string): Promise<void> => {
-		const options = new Map(this.state.options);
-		const selected = !options.get(key);
-
-		if (!this.multiSelect) {
-			for (const option of this.props.options) {
-				options.set(option, false);
-			}
-		}
-		options.set(key, selected);
-
-		let value: CellData<string | Array<string>> = {
-			cellValue: this.getSelected(options),
-			errorMessage: this.state.errorMessage
-		};
-
-		if (this.props.onChange) {
-			value = await this.props.onChange(
-				this.props.node.id,
-				this.getValue().cellValue,
-				this.getSelected(options)
-			);
-		}
-
-		this.setState(
-			{ options: this.getOptions(value.cellValue), errorMessage: value.errorMessage },
-			() => {
-				if (!this.multiSelect) {
-					this.props.stopEditing();
-				}
-			}
-		);
-	};
-
-	onFilterText = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const searchTerm = event.target.value;
-		const options: Map<string, boolean> = new Map();
-
-		for (const option of this.props.options) {
-			if (option.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0) {
-				options.set(option, this.state.options.get(option));
-			}
-		}
-
-		this.setState({ options, searchTerm });
-	};
-
 	render() {
 		const value = this.getValue().cellValue;
 
 		let currentlySelected: string;
 		if (value.length > 0) {
-			currentlySelected = value.reduce((result: string, item: string) => {
-				return `${result}, ${item}`;
-			});
+			if (!this.multiSelect) {
+				currentlySelected = value as string;
+			} else {
+				currentlySelected = (value as Array<string>).reduce(
+					(result: string, item: string) => {
+						return `${result}, ${item}`;
+					}
+				);
+			}
 		} else {
 			currentlySelected = this.noneSelected;
 		}
@@ -142,12 +101,10 @@ export default class CSGridPicklistEditor
 							onChange={this.onFilterText}
 							placeholder={'Search...'}
 						/>
-						<CSGridCellError errorMessage={this.state.errorMessage} />
 					</>
 				) : (
 					<div className='picklist-header'>
 						<div className='picklist-header-title'>{currentlySelected}</div>
-						<CSGridCellError errorMessage={this.state.errorMessage} />
 					</div>
 				)}
 				<ul className='picklist-list'>{dropDownValues}</ul>
@@ -155,12 +112,64 @@ export default class CSGridPicklistEditor
 		);
 	}
 
-	private getSelected = (options: Map<string, boolean>): Array<string> => {
+	private onChange = async (key: string): Promise<void> => {
+		const options = new Map(this.state.options);
+		const selected = !options.get(key);
+
+		if (!this.multiSelect) {
+			for (const option of this.props.options) {
+				options.set(option, false);
+			}
+		}
+		options.set(key, selected);
+
+		const cellValue = this.getSelected(options);
+		let value: CellData<string | Array<string>> = {
+			cellValue,
+			errorMessage: this.state.errorMessage
+		};
+
+		if (this.props.onChange) {
+			value = await this.props.onChange(
+				this.props.node.id,
+				this.getValue().cellValue,
+				cellValue
+			);
+		}
+
+		this.setState(
+			{ options: this.getOptions(value.cellValue), errorMessage: value.errorMessage },
+			() => {
+				if (!this.multiSelect) {
+					this.props.stopEditing();
+				}
+			}
+		);
+	};
+
+	private onFilterText = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const searchTerm = event.target.value;
+		const options: Map<string, boolean> = new Map();
+
+		for (const option of this.props.options) {
+			if (option.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0) {
+				options.set(option, this.state.options.get(option));
+			}
+		}
+
+		this.setState({ options, searchTerm });
+	};
+
+	private getSelected = (options: Map<string, boolean>): Array<string> | string => {
 		const values: Array<string> = [];
 		for (const [key, value] of options.entries()) {
 			if (value) {
 				values.push(key);
 			}
+		}
+
+		if (!this.multiSelect) {
+			return values[0] || '';
 		}
 
 		return values;

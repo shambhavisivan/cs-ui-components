@@ -6,21 +6,19 @@ import React from 'react';
 import {
 	CellData,
 	CSGridCellRenderer,
-	CSGridCellRendererProps
+	CSGridCellRendererProps,
+	CSGridCellRendererState
 } from '../models/cs-grid-base-interfaces';
 import CSGridCellError from './cs-grid-cell-error';
 
-export interface CSGridBooleanRendererProps extends CSGridCellRendererProps<boolean> {}
-
-interface CSGridBooleanRendererState {
-	value: CellData<boolean>;
+interface CSGridBooleanRendererState extends CSGridCellRendererState<boolean> {
 	readOnly: boolean;
 }
 
 export default class CSGridBooleanRenderer
-	extends React.Component<CSGridBooleanRendererProps, CSGridBooleanRendererState>
+	extends React.Component<CSGridCellRendererProps<boolean>, CSGridBooleanRendererState>
 	implements CSGridCellRenderer {
-	constructor(props: CSGridBooleanRendererProps) {
+	constructor(props: CSGridCellRendererProps<boolean>) {
 		super(props);
 
 		let readOnly: boolean;
@@ -40,39 +38,34 @@ export default class CSGridBooleanRenderer
 		}
 
 		this.state = {
+			isLastColumn: this.isLastColumn(),
 			readOnly,
 			value: props.value
 		};
 	}
 
-	refresh(params: CSGridBooleanRendererProps): boolean {
+	refresh = (params: CSGridCellRendererProps<boolean>): boolean => {
+		const isLastColumn = this.isLastColumn();
 		if (
-			params.value.cellValue !== this.props.value.cellValue ||
-			params.value.errorMessage !== this.props.value.errorMessage
+			params.value.cellValue !== this.state.value.cellValue ||
+			params.value.errorMessage !== this.state.value.errorMessage ||
+			isLastColumn !== this.state.isLastColumn
 		) {
 			this.setState({
+				isLastColumn,
 				value: params.value
 			});
 		}
 
 		return true;
-	}
+	};
 
-	onClick = async () => {
-		let value: CellData<boolean> = {
-			cellValue: !this.state.value.cellValue,
-			errorMessage: this.state.value.errorMessage
-		};
+	isLastColumn = (): boolean => {
+		const currentColumns = this.props.columnApi.getAllGridColumns();
 
-		if (this.props.onChange) {
-			value = await this.props.onChange(
-				this.props.node.id,
-				this.state.value.cellValue,
-				!this.state.value.cellValue
-			);
-		}
-
-		this.props.setValue(value);
+		return (
+			currentColumns[currentColumns.length - 1].getColId() === this.props.column.getColId()
+		);
 	};
 
 	render() {
@@ -97,4 +90,21 @@ export default class CSGridBooleanRenderer
 			</>
 		);
 	}
+
+	private onClick = async () => {
+		let value: CellData<boolean> = {
+			cellValue: !this.state.value.cellValue,
+			errorMessage: this.state.value.errorMessage
+		};
+
+		if (this.props.onChange) {
+			value = await this.props.onChange(
+				this.props.node.id,
+				this.state.value.cellValue,
+				!this.state.value.cellValue
+			);
+		}
+
+		this.props.setValue(value);
+	};
 }

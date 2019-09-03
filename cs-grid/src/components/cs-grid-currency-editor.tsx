@@ -1,10 +1,11 @@
+import { CSGridCellEditorProps } from '../models/cs-grid-base-interfaces';
 import NumberFormat from '../models/number-format.enum';
-import CSGridNumberEditor, { CSGridNumberEditorProps } from './cs-grid-number-editor';
+import CSGridNumberEditor from './cs-grid-number-editor';
 
-export interface CSGridCurrencyEditorProps extends CSGridNumberEditorProps {}
-
-export class CSGridCurrencyEditor extends CSGridNumberEditor<CSGridCurrencyEditorProps> {
-	constructor(props: CSGridCurrencyEditorProps) {
+export default class CSGridCurrencyEditor extends CSGridNumberEditor<
+	CSGridCellEditorProps<string | number>
+> {
+	constructor(props: CSGridCellEditorProps<string | number>) {
 		super(props);
 
 		this.numberFormat = new Intl.NumberFormat(this.props.userInfo.userLocale, {
@@ -17,4 +18,13 @@ export class CSGridCurrencyEditor extends CSGridNumberEditor<CSGridCurrencyEdito
 		);
 		this.numberFormatType = NumberFormat.Currency;
 	}
+
+	private getCurrencySymbol = (locale: string, currency: string): string => {
+		const formatter = new Intl.NumberFormat(locale, {
+			currency,
+			style: 'currency'
+		});
+
+		return formatter.formatToParts(1).find(part => part.type === 'currency').value;
+	};
 }

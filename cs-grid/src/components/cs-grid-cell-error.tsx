@@ -2,7 +2,7 @@ import React from 'react';
 
 import CSTooltip from '../../../src/components/CSTooltip';
 
-interface CSGridCellErrorProps {
+export interface CSGridCellErrorProps {
 	errorMessage: string;
 }
 

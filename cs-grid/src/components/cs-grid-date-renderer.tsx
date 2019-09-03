@@ -1,44 +1,48 @@
 import moment from 'moment';
 import React from 'react';
+
 import {
-	CellData,
 	CSGridCellRenderer,
-	CSGridCellRendererProps
+	CSGridCellRendererProps,
+	CSGridCellRendererState
 } from '../models/cs-grid-base-interfaces';
 import CSGridCellError from './cs-grid-cell-error';
 
-export interface CSGridDateRendererProps extends CSGridCellRendererProps<string> {}
-
-interface CSGridDateRendererState {
-	value: CellData<string>;
-}
-
 export default class CSGridDateRenderer
-	extends React.Component<CSGridDateRendererProps, CSGridDateRendererState>
+	extends React.Component<CSGridCellRendererProps<string>, CSGridCellRendererState<string>>
 	implements CSGridCellRenderer {
 	private dateValueFormat: string = 'YYYY-MM-DD';
 
-	constructor(props: CSGridDateRendererProps) {
+	constructor(props: CSGridCellRendererProps<string>) {
 		super(props);
 		moment.locale(this.props.userInfo.userLocale);
 
-		this.state = {
-			value: props.value
-		};
+		this.state = { value: this.props.value, isLastColumn: this.isLastColumn() };
 	}
 
-	refresh(params: CSGridDateRendererProps): boolean {
+	refresh = (params: CSGridCellRendererProps<string>): boolean => {
+		const isLastColumn = this.isLastColumn();
 		if (
-			params.value.cellValue !== this.props.value.cellValue ||
-			params.value.errorMessage !== this.props.value.errorMessage
+			params.value.cellValue !== this.state.value.cellValue ||
+			params.value.errorMessage !== this.state.value.errorMessage ||
+			isLastColumn !== this.state.isLastColumn
 		) {
 			this.setState({
+				isLastColumn,
 				value: params.value
 			});
 		}
 
 		return true;
-	}
+	};
+
+	isLastColumn = (): boolean => {
+		const currentColumns = this.props.columnApi.getAllGridColumns();
+
+		return (
+			currentColumns[currentColumns.length - 1].getColId() === this.props.column.getColId()
+		);
+	};
 
 	formattedDate = (): string => {
 		let date: Date = null;
