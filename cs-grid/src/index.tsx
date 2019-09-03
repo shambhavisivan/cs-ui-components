@@ -72,7 +72,7 @@ export default class App extends React.Component<object, AppState> {
 				cellRenderer: 'rowSelectionRenderer',
 				checkboxSelection: true,
 				editable: false,
-				field: 'rowSelection',
+				field: 'exampleRowSelection',
 				filter: false,
 				headerCheckboxSelection: true,
 				headerCheckboxSelectionFilteredOnly: true,
@@ -84,14 +84,14 @@ export default class App extends React.Component<object, AppState> {
 				width: 75
 			},
 			{
-				field: 'guid',
+				field: 'exampleGuid',
 				headerName: 'GUID',
 				hide: true
 			},
 			{
 				cellEditor: 'textEditor',
 				cellRenderer: 'textRenderer',
-				field: 'text',
+				field: 'exampleText',
 				headerName: 'Text Column'
 				// sort: SortOrder.Descending
 			},
@@ -105,7 +105,7 @@ export default class App extends React.Component<object, AppState> {
 					noOfDecimalDigits: 3,
 					userInfo
 				},
-				field: 'decimal',
+				field: 'exampleDecimal',
 				headerName: 'Decimal Column'
 			},
 			{
@@ -117,17 +117,15 @@ export default class App extends React.Component<object, AppState> {
 				cellRendererParams: {
 					userInfo
 				},
-				field: 'currency',
+				field: 'exampleCurrency',
 				headerName: 'Currency Column'
 			},
 			{
 				cellEditor: 'booleanEditor',
 				cellRenderer: 'booleanRenderer',
 				editable: () => Math.floor(Math.random() * 2) === 1,
-				field: 'boolean',
-				// filter: false,
+				field: 'exampleBoolean',
 				headerName: 'Boolean Column'
-				// sortable: false
 			},
 			{
 				cellEditor: 'dateEditor',
@@ -138,14 +136,14 @@ export default class App extends React.Component<object, AppState> {
 				cellRendererParams: {
 					userInfo
 				},
-				field: 'date',
+				field: 'exampleDate',
 				headerName: 'Date Column'
 			},
 			{
 				cellEditor: 'lookupEditor',
 				cellEditorParams: { displayColumn: 'text1', getLookupValues },
 				cellRenderer: 'lookupRenderer',
-				field: 'lookup',
+				field: 'exampleLookup',
 				headerName: 'Lookup'
 			},
 			{
@@ -156,7 +154,7 @@ export default class App extends React.Component<object, AppState> {
 					minSearchTermLength: 3
 				},
 				cellRenderer: 'multiSelectLookupRenderer',
-				field: 'multiSelectLookup',
+				field: 'exampleMultiSelectLookup',
 				headerName: 'Multi Select Lookup'
 			},
 			{
@@ -180,7 +178,7 @@ export default class App extends React.Component<object, AppState> {
 				cellRendererParams: {
 					userInfo
 				},
-				field: 'integerStep',
+				field: 'exampleIntegerStep',
 				headerName: 'Integer With Stepper Arrows'
 			},
 			{
@@ -193,7 +191,7 @@ export default class App extends React.Component<object, AppState> {
 				cellRendererParams: {
 					userInfo
 				},
-				field: 'integer',
+				field: 'exampleInteger',
 				headerName: 'Integer No Stepper Arrows'
 			},
 			{
@@ -217,7 +215,7 @@ export default class App extends React.Component<object, AppState> {
 					]
 				},
 				cellRenderer: 'picklistRenderer',
-				field: 'picklist',
+				field: 'examplePicklist',
 				headerComponentParams: {
 					className: 'PicklistOverrideClass'
 				},
@@ -243,13 +241,13 @@ export default class App extends React.Component<object, AppState> {
 					]
 				},
 				cellRenderer: 'multiSelectPicklistRenderer',
-				field: 'multiSelectPicklist',
+				field: 'exampleMultiSelectPicklist',
 				headerName: 'Multi Select Picklist'
 			},
 			{
 				cellRenderer: 'rowValidationRenderer',
 				editable: false,
-				field: 'rowValidation',
+				field: 'exampleRowValidation',
 				filter: false,
 				headerName: '',
 				sortable: false,
@@ -259,196 +257,196 @@ export default class App extends React.Component<object, AppState> {
 
 		const rowDataSeeds = [
 			{
-				boolean: {
+				exampleBoolean: {
 					cellValue: false
 				},
-				currency: {
+				exampleCurrency: {
 					cellValue: 34000.67
 				},
-				date: {
+				exampleDate: {
 					cellValue: '1992/01/27'
 				},
-				decimal: {
+				exampleDecimal: {
 					cellValue: 35000.567567
 				},
-				guid: {
+				exampleGuid: {
 					cellValue: '1'
 				},
-				integer: {
+				exampleInteger: {
 					cellValue: 35000
 				},
-				integerStep: {
+				exampleIntegerStep: {
 					cellValue: 3500
 				},
-				lookup: {
+				exampleLookup: {
 					cellValue: 'Bob'
 				},
-				multiSelectLookup: {
+				exampleMultiSelectLookup: {
 					cellValue: ['Bob', 'Harry']
 				},
-				multiSelectPicklist: {
+				exampleMultiSelectPicklist: {
 					cellValue: ['Harry', 'Sally']
 				},
-				picklist: {
+				examplePicklist: {
 					cellValue: 'Bob'
 				},
-				rowSelection: {},
-				rowValidation: {
+				exampleRowSelection: {},
+				exampleRowValidation: {
 					cellValue: ValidationStatus.None
 				},
-				text: {
+				exampleText: {
 					cellValue: 'Toyota'
 				}
 			},
 			{
-				boolean: {
+				exampleBoolean: {
 					cellValue: true,
 					errorMessage: 'An error message'
 				},
-				currency: {
+				exampleCurrency: {
 					cellValue: 33000.77,
 					errorMessage: 'An error message'
 				},
-				date: {
+				exampleDate: {
 					cellValue: '1992/01/28',
 					errorMessage: 'An error message'
 				},
-				decimal: {
+				exampleDecimal: {
 					cellValue: 32000.56756,
 					errorMessage: 'An error message'
 				},
-				guid: {
+				exampleGuid: {
 					cellValue: '2',
 					errorMessage: 'An error message'
 				},
-				integer: {
+				exampleInteger: {
 					cellValue: 32000,
 					errorMessage: 'An error message'
 				},
-				integerStep: {
+				exampleIntegerStep: {
 					cellValue: 32000,
 					errorMessage: 'An error message'
 				},
-				lookup: {
+				exampleLookup: {
 					cellValue: 'Harry',
 					errorMessage: 'An error message'
 				},
-				multiSelectLookup: {
+				exampleMultiSelectLookup: {
 					cellValue: ['Harry', 'Sally'],
 					errorMessage: 'An error message'
 				},
-				multiSelectPicklist: {
+				exampleMultiSelectPicklist: {
 					cellValue: ['Sally', 'Bob'],
 					errorMessage: 'An error message'
 				},
-				picklist: {
+				examplePicklist: {
 					cellValue: 'Harry',
 					errorMessage: 'An error message'
 				},
-				rowSelection: {},
-				rowValidation: {
+				exampleRowSelection: {},
+				exampleRowValidation: {
 					cellValue: ValidationStatus.Error,
 					errorMessage: 'Error 1\nError 2'
 				},
-				text: {
+				exampleText: {
 					cellValue: 'Ford',
 					errorMessage: 'An error message'
 				}
 			},
 			{
-				boolean: {
+				exampleBoolean: {
 					cellValue: false
 				},
-				currency: {
+				exampleCurrency: {
 					cellValue: 73000.98
 				},
-				date: {
+				exampleDate: {
 					cellValue: '1992/01/29'
 				},
-				decimal: {
+				exampleDecimal: {
 					cellValue: 72000.67878
 				},
-				guid: {
+				exampleGuid: {
 					cellValue: '3'
 				},
-				integer: {
+				exampleInteger: {
 					cellValue: 72000
 				},
-				integerStep: {
+				exampleIntegerStep: {
 					cellValue: 72000
 				},
-				lookup: {
+				exampleLookup: {
 					cellValue: 'Sally'
 				},
-				multiSelectLookup: {
+				exampleMultiSelectLookup: {
 					cellValue: ['Sally', 'Bob']
 				},
-				multiSelectPicklist: {
+				exampleMultiSelectPicklist: {
 					cellValue: ['Bob', 'Harry']
 				},
-				picklist: {
+				examplePicklist: {
 					cellValue: 'Sally'
 				},
-				rowSelection: {},
-				rowValidation: {
+				exampleRowSelection: {},
+				exampleRowValidation: {
 					cellValue: ValidationStatus.Info,
 					errorMessage: 'Info 1\nInfo 2'
 				},
-				text: {
+				exampleText: {
 					cellValue: 'Toyota'
 				}
 			},
 			{
-				boolean: {
+				exampleBoolean: {
 					cellValue: false,
 					errorMessage: ''
 				},
-				currency: {
+				exampleCurrency: {
 					cellValue: undefined as number,
 					errorMessage: ''
 				},
-				date: {
+				exampleDate: {
 					cellValue: '1986/11/15',
 					errorMessage: ''
 				},
-				decimal: {
+				exampleDecimal: {
 					cellValue: 99000.67878,
 					errorMessage: ''
 				},
-				guid: {
+				exampleGuid: {
 					cellValue: '4',
 					errorMessage: ''
 				},
-				integer: {
+				exampleInteger: {
 					cellValue: 99000,
 					errorMessage: ''
 				},
-				integerStep: {
+				exampleIntegerStep: {
 					cellValue: 99000,
 					errorMessage: ''
 				},
-				lookup: {
+				exampleLookup: {
 					cellValue: 'Sue',
 					errorMessage: ''
 				},
-				multiSelectLookup: {
+				exampleMultiSelectLookup: {
 					cellValue: ['Sue', 'Sean'],
 					errorMessage: ''
 				},
-				multiSelectPicklist: {
+				exampleMultiSelectPicklist: {
 					cellValue: ['Sean', 'Sue'],
 					errorMessage: ''
 				},
-				picklist: {
+				examplePicklist: {
 					cellValue: 'Sean',
 					errorMessage: ''
 				},
-				rowSelection: {},
-				rowValidation: {
+				exampleRowSelection: {},
+				exampleRowValidation: {
 					cellValue: ValidationStatus.Warning,
 					errorMessage: 'Warning 1\nWarning 2'
 				},
-				text: {
+				exampleText: {
 					cellValue: 'Ford',
 					errorMessage: ''
 				}
@@ -459,7 +457,7 @@ export default class App extends React.Component<object, AppState> {
 
 		for (let i = 0; i < 200; i++) {
 			const row = { ...rowDataSeeds[Math.floor(rowDataSeeds.length * Math.random())] };
-			row.guid = { cellValue: this.generateGuid() };
+			row.exampleGuid = { cellValue: this.generateGuid() };
 			rowData.push(row);
 		}
 
@@ -512,7 +510,7 @@ export default class App extends React.Component<object, AppState> {
 					// suppressDragLeaveHidesColumns={false}
 					multiSelect={true}
 					onSelectionChange={this.onSelectionChange}
-					uniqueIdentifierColumnName={'guid'}
+					uniqueIdentifierColumnName={'exampleGuid'}
 				/>
 				<div className='example-pagination' />
 				<div className='example-filter' />

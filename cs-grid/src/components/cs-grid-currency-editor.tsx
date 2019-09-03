@@ -2,6 +2,9 @@ import { CSGridCellEditorProps } from '../models/cs-grid-base-interfaces';
 import NumberFormat from '../models/number-format.enum';
 import CSGridNumberEditor from './cs-grid-number-editor';
 
+/**
+ * A cell editor for editing a localised currency.
+ */
 export default class CSGridCurrencyEditor extends CSGridNumberEditor<
 	CSGridCellEditorProps<string | number>
 > {
@@ -19,6 +22,9 @@ export default class CSGridCurrencyEditor extends CSGridNumberEditor<
 		this.numberFormatType = NumberFormat.Currency;
 	}
 
+	/**
+	 * Returns the localised currency symbol.
+	 */
 	private getCurrencySymbol = (locale: string, currency: string): string => {
 		const formatter = new Intl.NumberFormat(locale, {
 			currency,

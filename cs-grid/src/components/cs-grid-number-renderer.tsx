@@ -1,15 +1,12 @@
 import React from 'react';
 
-import {
-	CSGridCellRenderer,
-	CSGridCellRendererProps,
-	CSGridCellRendererState
-} from '../models/cs-grid-base-interfaces';
+import { CSGridCellRendererProps } from '../models/cs-grid-base-interfaces';
+import CSGridBaseRenderer from './cs-grid-base-renderer';
 import CSGridCellError from './cs-grid-cell-error';
 
-export default class CSGridNumberRenderer<P extends CSGridCellRendererProps<number>>
-	extends React.Component<P, CSGridCellRendererState<number>>
-	implements CSGridCellRenderer {
+export default class CSGridNumberRenderer<
+	P extends CSGridCellRendererProps<number>
+> extends CSGridBaseRenderer<number, P> {
 	numberFormat: Intl.NumberFormat;
 
 	constructor(props: P) {
@@ -18,40 +15,16 @@ export default class CSGridNumberRenderer<P extends CSGridCellRendererProps<numb
 		this.state = { value: this.props.value, isLastColumn: this.isLastColumn() };
 	}
 
-	refresh = (params: P): boolean => {
-		const isLastColumn = this.isLastColumn();
-		if (
-			params.value.cellValue !== this.state.value.cellValue ||
-			params.value.errorMessage !== this.state.value.errorMessage ||
-			isLastColumn !== this.state.isLastColumn
-		) {
-			this.setState({
-				isLastColumn,
-				value: params.value
-			});
-		}
-
-		return true;
-	};
-
-	isLastColumn = (): boolean => {
-		const currentColumns = this.props.columnApi.getAllGridColumns();
-
-		return (
-			currentColumns[currentColumns.length - 1].getColId() === this.props.column.getColId()
-		);
-	};
-
 	componentDidMount() {
 		this.refresh(this.props);
 	}
 
 	render() {
 		return (
-			<div style={{ textAlign: 'right' }}>
-				{this.format(this.state.value.cellValue)}{' '}
+			<span style={{ textAlign: 'right' }}>
+				<span>{this.format(this.state.value.cellValue)}</span>
 				<CSGridCellError errorMessage={this.state.value.errorMessage} />
-			</div>
+			</span>
 		);
 	}
 

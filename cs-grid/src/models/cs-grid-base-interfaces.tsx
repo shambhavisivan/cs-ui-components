@@ -16,6 +16,14 @@ export interface CSGridCellRendererState<T> {
 	isLastColumn: boolean;
 }
 
+/**
+ * Ag-grid requires all editors have a state that holds the latest value so
+ * the getValue() function can be called to update the grid.
+ */
+export interface CSGridCellEditorState<T> {
+	value: CellData<T>;
+}
+
 export interface CSGridCellProps<T> {
 	userInfo: UserInfo;
 	onChange?(rowNodeId: string, oldValue: T, newValue: T): Promise<CellData<T>>;

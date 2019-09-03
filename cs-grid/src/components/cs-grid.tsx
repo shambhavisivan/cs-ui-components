@@ -4,8 +4,6 @@ import {
 	GridApi,
 	GridReadyEvent
 } from 'ag-grid-community';
-// tslint:disable-next-line: no-submodule-imports
-import { CellEditingStoppedEvent } from 'ag-grid-community/dist/lib/events';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import { AgGridReact, AgGridReactProps } from 'ag-grid-react';
 import React from 'react';
@@ -217,6 +215,7 @@ export default class CSGrid extends React.Component<CSGridProps, CSGridState> {
 								},
 								headerComponentFramework: CSGridHeader,
 								lockPinned: true,
+								minWidth: 140,
 								resizable: true,
 								sortable: true
 							}}
@@ -227,7 +226,6 @@ export default class CSGrid extends React.Component<CSGridProps, CSGridState> {
 							suppressRowClickSelection={true}
 							enableBrowserTooltips={true}
 							rowHeight={42}
-							onCellEditingStopped={this.onCellEditingStopped}
 							// A pass through to allow cs-grid users to use all ag-grid props.
 							{...this.props}
 							onCellValueChanged={this.onCellValueChanged}
@@ -344,10 +342,6 @@ export default class CSGrid extends React.Component<CSGridProps, CSGridState> {
 
 	private getRowNodeId = (data: any) => {
 		return data[this.props.uniqueIdentifierColumnName].cellValue;
-	};
-
-	private onCellEditingStopped = (event: CellEditingStoppedEvent) => {
-		this.gridApi.setFocusedCell(event.rowIndex, event.colDef.field);
 	};
 
 	private comparator = (a: CellData<any>, b: CellData<any>) => {

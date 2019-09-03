@@ -7,7 +7,6 @@ export enum CSGridPaginationLocation {
 	Footer = 'Footer',
 	Both = 'Both',
 	Detached = 'Detached',
-	// Will turn off pagination on ag-grid.
 	None = 'None'
 }
 

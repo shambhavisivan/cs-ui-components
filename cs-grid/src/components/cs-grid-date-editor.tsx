@@ -6,16 +6,15 @@ import '../../node_modules/react-datepicker/dist/react-datepicker.css';
 import {
 	CellData,
 	CSGridCellEditor,
-	CSGridCellEditorProps
+	CSGridCellEditorProps,
+	CSGridCellEditorState
 } from '../models/cs-grid-base-interfaces';
-import CSGridCellError from './cs-grid-cell-error';
 
-interface CSGridDateEditorState {
-	value: CellData<string>;
-}
-
+/**
+ * A cell editor that displays a date picker.
+ */
 export default class CSGridDateEditor
-	extends React.Component<CSGridCellEditorProps<string>, CSGridDateEditorState>
+	extends React.Component<CSGridCellEditorProps<string>, CSGridCellEditorState<string>>
 	implements CSGridCellEditor {
 	private dateValueFormat: string = 'YYYY-MM-DD';
 
@@ -26,6 +25,9 @@ export default class CSGridDateEditor
 		this.state = { value: this.props.value };
 	}
 
+	/**
+	 * Returns the current value, required by ag-grid.
+	 */
 	getValue() {
 		return this.state.value;
 	}
@@ -63,13 +65,16 @@ export default class CSGridDateEditor
 		});
 	};
 
+	/**
+	 * Formats a Date object into a localised date string.
+	 */
 	format = (value: Date): string => {
 		return value ? moment(value).format(moment.localeData().longDateFormat('L')) : '';
 	};
 
 	render() {
 		let date: Date = null;
-		if (this.state.value) {
+		if (this.state.value.cellValue) {
 			date = moment(this.state.value.cellValue, this.dateValueFormat).toDate();
 		}
 		const formattedDate = this.format(date);

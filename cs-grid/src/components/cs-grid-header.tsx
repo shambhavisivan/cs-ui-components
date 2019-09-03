@@ -2,14 +2,25 @@ import React from 'react';
 
 import { IHeaderParams } from 'ag-grid-community';
 
+/**
+ * className? - An optional class added to span surrounding the header title.
+ */
 interface CSGridHeaderProps extends IHeaderParams {
 	className?: string;
 }
 
+/**
+ * sorted - the current order of the column.
+ * filtered - a flag that determines whether the table has some filtered rows using this column as the filter.
+ */
 interface CSGridHeaderState {
 	sorted: SortOrder;
+	filtered: boolean;
 }
 
+/**
+ * The possible orderings of a column in the grid.
+ */
 export enum SortOrder {
 	Ascending = 'asc',
 	Descending = 'desc',
@@ -17,9 +28,8 @@ export enum SortOrder {
 }
 
 /**
- * Allows custom css for the column header and enables the use of display name keys.
- *
- * TODO Implement something to show if a column has been filtered.
+ * A custom header class for cs-grid, which manages sorting, column filtering and the column title.
+ * Allows custom css for the column header.
  */
 export default class CSGridHeader extends React.Component<CSGridHeaderProps, CSGridHeaderState> {
 	menuButtonRef: React.RefObject<HTMLSpanElement>;
@@ -29,16 +39,19 @@ export default class CSGridHeader extends React.Component<CSGridHeaderProps, CSG
 
 		this.menuButtonRef = React.createRef();
 		this.props.column.addEventListener('sortChanged', this.onSortChanged);
+		this.props.column.addEventListener('filterChanged', this.onFilterChanged);
 
 		const sort: string = props.column.getSort();
 		const sorted: SortOrder = sort ? (sort as SortOrder) : SortOrder.None;
 		this.state = {
+			filtered: this.props.column.isFilterActive(),
 			sorted
 		};
 	}
 
 	componentWillUnmount() {
 		this.props.column.removeEventListener('sortChanged', this.onSortChanged);
+		this.props.column.removeEventListener('filterChanged', this.onFilterChanged);
 	}
 
 	render() {
@@ -55,6 +68,7 @@ export default class CSGridHeader extends React.Component<CSGridHeaderProps, CSG
 				<span
 					key={`up${this.props.displayName}`}
 					className={`btn-icon ${downArrowClass} ${upArrowClass}`}
+					onClick={this.props.enableSorting ? this.onSortRequested : undefined}
 				/>
 			);
 		}
@@ -75,6 +89,12 @@ export default class CSGridHeader extends React.Component<CSGridHeaderProps, CSG
 		return (
 			<div style={{ width: '100%' }}>
 				{menuButton}
+				{this.state.filtered && (
+					<span className='ag-header-icon ag-filter-icon'>
+						<span className='ag-icon ag-icon-filter' />
+					</span>
+				)}
+
 				<span
 					onClick={this.props.enableSorting ? this.onSortRequested : undefined}
 					className={this.props.className}
@@ -87,6 +107,9 @@ export default class CSGridHeader extends React.Component<CSGridHeaderProps, CSG
 		);
 	}
 
+	/**
+	 * Calls ag-grid to order the table using this column to order.
+	 */
 	onSortRequested = (event: { shiftKey: boolean }) => {
 		let newOrder = SortOrder.None;
 		if (this.state.sorted === SortOrder.None) {
@@ -97,6 +120,9 @@ export default class CSGridHeader extends React.Component<CSGridHeaderProps, CSG
 		this.props.setSort(newOrder, event.shiftKey);
 	};
 
+	/**
+	 * Is called after the grid has been ordered to update the state.
+	 */
 	onSortChanged = () => {
 		if (this.props.column.isSortAscending()) {
 			this.setState({
@@ -113,6 +139,18 @@ export default class CSGridHeader extends React.Component<CSGridHeaderProps, CSG
 		}
 	};
 
+	/**
+	 * Is called after the grid has been column filtered to update the state.
+	 */
+	onFilterChanged = () => {
+		this.setState({
+			filtered: this.props.column.isFilterActive()
+		});
+	};
+
+	/**
+	 * Shows the column filter menu.
+	 */
 	onMenuClick = () => {
 		this.props.showColumnMenu(this.menuButtonRef.current);
 	};

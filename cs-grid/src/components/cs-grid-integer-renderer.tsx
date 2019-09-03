@@ -1,6 +1,9 @@
 import { CSGridCellRendererProps } from '../models/cs-grid-base-interfaces';
 import CSGridNumberRenderer from './cs-grid-number-renderer';
 
+/**
+ * A cell renderer for displaying a localised integer.
+ */
 export default class CSGridIntegerRenderer extends CSGridNumberRenderer<
 	CSGridCellRendererProps<number>
 > {

@@ -3,16 +3,13 @@ import React from 'react';
 import {
 	CellData,
 	CSGridCellEditor,
-	CSGridCellEditorProps
+	CSGridCellEditorProps,
+	CSGridCellEditorState
 } from '../models/cs-grid-base-interfaces';
 import CSGridCellError from './cs-grid-cell-error';
 
-interface CSGridTextEditorState {
-	value: CellData<string>;
-}
-
 export default class CSGridTextEditor
-	extends React.Component<CSGridCellEditorProps<string>, CSGridTextEditorState>
+	extends React.Component<CSGridCellEditorProps<string>, CSGridCellEditorState<string>>
 	implements CSGridCellEditor {
 	inputRef: React.RefObject<HTMLInputElement>;
 
@@ -23,6 +20,9 @@ export default class CSGridTextEditor
 		this.state = { value: this.props.value };
 	}
 
+	/**
+	 * Returns the current value - required by ag-grid.
+	 */
 	getValue() {
 		return this.state.value;
 	}

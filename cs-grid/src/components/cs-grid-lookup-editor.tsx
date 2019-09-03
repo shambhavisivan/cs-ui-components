@@ -5,9 +5,9 @@ import React from 'react';
 import {
 	CellData,
 	CSGridCellEditor,
-	CSGridCellEditorProps
+	CSGridCellEditorProps,
+	CSGridCellEditorState
 } from '../models/cs-grid-base-interfaces';
-import CSGridCellError from './cs-grid-cell-error';
 import CSGridHeader from './cs-grid-header';
 
 export interface CSGridLookupSearchResult {
@@ -21,13 +21,12 @@ export interface CSGridLookupEditorProps extends CSGridCellEditorProps<string | 
 	getLookupValues(searchTerm: string): Promise<CSGridLookupSearchResult>;
 }
 
-interface CSGridLookupEditorState {
+interface CSGridLookupEditorState extends CSGridCellEditorState<string | Array<string>> {
 	selected: Array<string>;
 	searchTerm: string;
 	columnDefs: Array<ColDef>;
 	rowData: Array<Record<string, string>>;
 	showGrid: boolean;
-	value: CellData<string | Array<string>>;
 }
 
 export default class CSGridLookupEditor
@@ -62,6 +61,9 @@ export default class CSGridLookupEditor
 		return true;
 	};
 
+	/**
+	 * Returns the current value - required by ag-grid.
+	 */
 	getValue() {
 		return this.state.value;
 	}
@@ -166,6 +168,7 @@ export default class CSGridLookupEditor
 						node.setSelected(true, false, true);
 					}
 				});
+				this.gridApi.sizeColumnsToFit();
 			}
 		);
 	};
@@ -219,7 +222,7 @@ export default class CSGridLookupEditor
 		});
 
 		if (showGrid) {
-			this.getLookupValues();
+			await this.getLookupValues();
 		}
 	};
 }

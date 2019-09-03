@@ -3,17 +3,14 @@ import React from 'react';
 import {
 	CellData,
 	CSGridCellEditor,
-	CSGridCellEditorProps
+	CSGridCellEditorProps,
+	CSGridCellEditorState
 } from '../models/cs-grid-base-interfaces';
 import NumberFormat from '../models/number-format.enum';
 import CSGridCellError from './cs-grid-cell-error';
 
-export interface CSGridNumberEditorState {
-	value: CellData<string | number>;
-}
-
 export default class CSGridNumberEditor<P extends CSGridCellEditorProps<string | number>>
-	extends React.Component<P, CSGridNumberEditorState>
+	extends React.Component<P, CSGridCellEditorState<string | number>>
 	implements CSGridCellEditor {
 	numberFormatType: NumberFormat = NumberFormat.Decimal;
 	numberFormat: Intl.NumberFormat;
@@ -50,6 +47,9 @@ export default class CSGridNumberEditor<P extends CSGridCellEditorProps<string |
 		eInput.select();
 	}
 
+	/**
+	 * Returns the current value - required by ag-grid.
+	 */
 	getValue() {
 		return this.state.value;
 	}

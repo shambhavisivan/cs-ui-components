@@ -3,43 +3,49 @@ import React from 'react';
 import {
 	CellData,
 	CSGridCellEditor,
-	CSGridCellEditorProps
+	CSGridCellEditorProps,
+	CSGridCellEditorState
 } from '../models/cs-grid-base-interfaces';
-import CSGridCellError from './cs-grid-cell-error';
 
 export interface CSGridPicklistEditorProps extends CSGridCellEditorProps<string | Array<string>> {
 	options: Array<string>;
 	filterAboveSize?: number;
+	clearAllName?: string;
 }
 
-interface CSGridPicklistEditorState {
+interface CSGridPicklistEditorState extends CSGridCellEditorState<string | Array<string>> {
 	options: Map<string, boolean>;
 	searchTerm: string;
-	errorMessage: string;
+	noneSelected: boolean;
 }
 
 export default class CSGridPicklistEditor
 	extends React.Component<CSGridPicklistEditorProps, CSGridPicklistEditorState>
 	implements CSGridCellEditor {
 	multiSelect: boolean = false;
-	private noneSelected = '--None--';
+	private defaultClearAllName = '--None--';
 
 	constructor(props: CSGridPicklistEditorProps) {
 		super(props);
 
 		const options: Map<string, boolean> = this.getOptions(this.props.value.cellValue);
-		this.state = { options, searchTerm: '', errorMessage: this.props.value.errorMessage };
+		this.state = {
+			noneSelected: this.getNoOfSelected(options) === 0,
+			options,
+			searchTerm: '',
+			value: this.props.value
+		};
 	}
 
 	isPopup = () => {
 		return true;
 	};
 
+	/**
+	 * Returns the current value - required by ag-grid.
+	 */
 	getValue() {
-		return {
-			cellValue: this.getSelected(this.state.options),
-			errorMessage: this.state.errorMessage
-		};
+		return this.state.value;
 	}
 
 	isCancelBeforeStart = () => {
@@ -51,41 +57,22 @@ export default class CSGridPicklistEditor
 	};
 
 	render() {
-		const value = this.getValue().cellValue;
-
-		let currentlySelected: string;
-		if (value.length > 0) {
-			if (!this.multiSelect) {
-				currentlySelected = value as string;
-			} else {
-				currentlySelected = (value as Array<string>).reduce(
-					(result: string, item: string) => {
-						return `${result}, ${item}`;
-					}
-				);
-			}
-		} else {
-			currentlySelected = this.noneSelected;
-		}
-
 		const dropDownValues: Array<
 			React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>
 		> = [];
 
-		this.state.options.forEach(
-			(selected: boolean, key: string, map: Map<string, boolean>): void => {
-				const selectOption = () => this.onChange(key);
-				dropDownValues.push(
-					<li
-						className={'picklist-list-item' + (selected ? ' selected' : '')}
-						key={key}
-						onClick={selectOption}
-					>
-						{key}
-					</li>
-				);
-			}
-		);
+		this.state.options.forEach((selected: boolean, key: string): void => {
+			const selectOption = () => this.optionSelected(key);
+			dropDownValues.push(
+				<li
+					className={'picklist-list-item' + (selected ? ' selected' : '')}
+					key={key}
+					onClick={selectOption}
+				>
+					{key}
+				</li>
+			);
+		});
 
 		const filter: boolean =
 			this.props.filterAboveSize !== undefined &&
@@ -93,7 +80,7 @@ export default class CSGridPicklistEditor
 
 		return (
 			<div className='cs-grid_popup-wrapper'>
-				{filter ? (
+				{filter && (
 					<div className='cs-grid_search-wrapper cs-grid_picklist-search-wrapper'>
 						<div className='cs-grid_search'>
 							<svg
@@ -129,18 +116,32 @@ export default class CSGridPicklistEditor
 							)}
 						</div>
 					</div>
-				) : (
-					// <div className='picklist-header'>
-					// 	<div className='picklist-header-title'>{currentlySelected}</div>
-					// </div>
-					<></>
 				)}
-				<ul className='picklist-list'>{dropDownValues}</ul>
+				<ul className='picklist-list'>
+					<li
+						className={
+							'picklist-list-item' + (this.state.noneSelected ? ' selected' : '')
+						}
+						key='0'
+						onClick={this.clearSelected}
+					>
+						{this.props.clearAllName || this.defaultClearAllName}
+					</li>
+					{dropDownValues}
+				</ul>
 			</div>
 		);
 	}
 
-	private onChange = async (key: string): Promise<void> => {
+	private clearSelected = async () => {
+		const options = new Map(this.state.options);
+		for (const option of this.props.options) {
+			options.set(option, false);
+		}
+		await this.onChange(options);
+	};
+
+	private optionSelected = async (key: string): Promise<void> => {
 		const options = new Map(this.state.options);
 		const selected = !options.get(key);
 
@@ -151,10 +152,14 @@ export default class CSGridPicklistEditor
 		}
 		options.set(key, selected);
 
+		await this.onChange(options);
+	};
+
+	private onChange = async (options: Map<string, boolean>): Promise<void> => {
 		const cellValue = this.getSelected(options);
 		let value: CellData<string | Array<string>> = {
 			cellValue,
-			errorMessage: this.state.errorMessage
+			errorMessage: this.state.value.errorMessage
 		};
 
 		if (this.props.onChange) {
@@ -166,7 +171,11 @@ export default class CSGridPicklistEditor
 		}
 
 		this.setState(
-			{ options: this.getOptions(value.cellValue), errorMessage: value.errorMessage },
+			{
+				noneSelected: this.getNoOfSelected(options) === 0,
+				options: this.getOptions(value.cellValue),
+				value
+			},
 			() => {
 				if (!this.multiSelect) {
 					this.props.stopEditing();
@@ -176,7 +185,14 @@ export default class CSGridPicklistEditor
 	};
 
 	private onFilterText = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const searchTerm = event.target.value;
+		this.filterText(event.target.value);
+	};
+
+	private clearFilter = () => {
+		this.filterText('');
+	};
+
+	private filterText = (searchTerm: string) => {
 		const options: Map<string, boolean> = new Map();
 
 		for (const option of this.props.options) {
@@ -212,4 +228,15 @@ export default class CSGridPicklistEditor
 
 		return options;
 	}
+
+	private getNoOfSelected = (options: Map<string, boolean>): number => {
+		let total: number = 0;
+		for (const selected of options.values()) {
+			if (selected) {
+				total++;
+			}
+		}
+
+		return total;
+	};
 }
