@@ -239,8 +239,19 @@ body > div > div {
 	}
 }
 
+.ag-react-container {
+	display: flex;
+	flex: 1;
+}
+
 .ag-react-container > div,
 .ag-react-container > span {
 	display: flex;
 	align-items: center;
+}
+
+.cs-grid_popup-wrapper {
+	display: flex !important;
+	flex-direction: column;
+	flex: 1;
 }
