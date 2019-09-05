@@ -10,6 +10,7 @@
 @import "datepicker";
 @import "lookup";
 @import "tooltip";
+@import "filter";
 
 body > div > div {
 	margin-bottom: 1rem;
@@ -67,6 +68,14 @@ body > div > div {
 						justify-content: flex-start;
 						align-items: center;
 
+						> span:not(.btn-icon):not(.customHeaderMenuButton):not(.ag-filter-icon) {
+							display: block;
+							overflow: hidden;
+							text-overflow: ellipsis;
+							white-space: nowrap;
+							width: 100%;
+						}
+
 						.btn-icon {
 							margin: 0 0 0 0.5rem;
 							display: block;
@@ -74,16 +83,22 @@ body > div > div {
 						}
 					}
 
-					.customHeaderMenuButton {
+					span {
 						margin: 0 0.25rem 0 0;
 					}
 				}
 			}
 		}
+
+		.ag-header-select-all,
+		.ag-header-select-all span {
+			margin: 0 !important;
+		}
 	}
 
 	.ag-selection-checkbox {
 		display: flex;
+		margin-left: -1px;
 	}
 
 	.ag-checkbox-checked,
@@ -179,6 +194,26 @@ body > div > div {
 		overflow: visible;
 	}
 
+	.ag-cell .ag-react-container {
+
+		input[type="number"] {
+			width: 100% !important;
+		}
+
+		> span {
+			width: 100%;
+			display: flex;
+
+			> span {
+				display: block;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				max-width: 100%;
+			}
+		}
+	}
+
 	.ag-cell,
 	.ag-cell.ag-cell-inline-editing,
 	.ag-cell.ag-cell-not-inline-editing {
@@ -219,8 +254,7 @@ body > div > div {
 	margin-top: 0;
 	top: 0;
 	height: 35px;
-	width: 2rem;
-	background-image: linear-gradient(to right, transparent, #f8f8f8);
+	width: 0;
 	@include css4 {
 		border-right: 1px solid var(--csgrid-input-br);
 	}
@@ -254,4 +288,26 @@ body > div > div {
 	display: flex !important;
 	flex-direction: column;
 	flex: 1;
+}
+
+.is-last-column .cs-tooltip,
+.is-last-column ~ * .cs-tooltip {
+	right: -17px;
+	left: unset;
+
+	&:before {
+		right: 1.5rem;
+		left: unset;
+	}
+}
+
+.read-only-cell {
+	@include sc(--csgrid-checkbox-disabled-checked-br);
+}
+
+.ag-row-selected {
+
+	.read-only-cell {
+		@include sc(--csgrid-highlighted-disabled-c);
+	}
 }

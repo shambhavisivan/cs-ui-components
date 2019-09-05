@@ -9,21 +9,11 @@ import {
 import CSGridBaseRenderer from './cs-grid-base-renderer';
 import CSGridCellError from './cs-grid-cell-error';
 
-/**
- * A readOnly flag is needed because user changes happen in the renderer for the boolean cells not the editor.
- */
-interface CSGridBooleanRendererState extends CSGridCellRendererState<boolean> {
-	readOnly: boolean;
-}
-
-/**
- * A cell renderer for displaying a checkbox.
- */
 export default class CSGridBooleanRenderer
 	extends CSGridBaseRenderer<
 		boolean,
 		CSGridCellRendererProps<boolean>,
-		CSGridBooleanRendererState
+		CSGridCellRendererState<boolean>
 	>
 	implements CSGridCellRenderer {
 	constructor(props: CSGridCellRendererProps<boolean>) {
@@ -31,27 +21,28 @@ export default class CSGridBooleanRenderer
 
 		this.state = {
 			isLastColumn: this.isLastColumn(),
-			readOnly: this.isCellEditable(),
 			value: props.value
 		};
 	}
 
 	render() {
 		return (
-			<span>
+			<span className={this.isReadOnly() ? ' read-only-cell' : ''}>
 				<label
 					className={
-						'cs-grid_checkbox-wrapper' + (this.state.readOnly ? ' read-only' : '')
+						'cs-grid_checkbox-wrapper' +
+						(this.state.isLastColumn ? ' is-last-column' : '')
 					}
 				>
 					<input
 						className='cs-grid_checkbox'
 						type='checkbox'
-						onClick={!this.state.readOnly ? this.onClick : undefined}
+						onClick={!this.isReadOnly() ? this.onClick : undefined}
 						defaultChecked={this.state.value.cellValue}
-						readOnly={this.state.readOnly}
+						readOnly={this.isReadOnly()}
+						disabled={this.isReadOnly()}
 					/>
-					<span className='cs-grid_checkbox-faux' />
+					<span className='cs-grid_checkbox-faux'/>
 				</label>
 
 				<CSGridCellError errorMessage={this.state.value.errorMessage} />

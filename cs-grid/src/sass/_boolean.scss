@@ -34,21 +34,6 @@
 			}
 		}
 
-		&:disabled + .cs-grid_checkbox-faux {
-			cursor: default;
-			@include sbg(--csgrid-checkbox-disabled-bg);
-			@include css4 {
-				border: 1px solid cvar(--csgrid-checkbox-disabled-br);
-			}
-		}
-
-		&:disabled:checked + .cs-grid_checkbox-faux:after {
-			@include css4 {
-				border-bottom: 2px solid cvar(--csgrid-checkbox-disabled-checked-br);
-				border-left: 2px solid cvar(--csgrid-checkbox-disabled-checked-br);
-			}
-		}
-
 		&:required + .cs-grid_checkbox-faux::before {
 			display: block;
 			content: "*";
@@ -84,5 +69,23 @@
 		hyphens: auto;
 		padding-right: 0.5rem;
 		@include sc(--csgrid-checkbox-label-c);
+	}
+}
+
+.read-only-cell .cs-grid_checkbox-wrapper {
+
+	.cs-grid_checkbox-faux {
+		cursor: default;
+		@include sbg(--csgrid-checkbox-disabled-bg);
+		@include css4 {
+			border: 1px solid cvar(--csgrid-checkbox-disabled-br);
+		}
+	}
+
+	.cs-grid_checkbox-faux:after {
+		@include css4 {
+			border-bottom: 2px solid cvar(--csgrid-checkbox-disabled-checked-br) !important;
+			border-left: 2px solid cvar(--csgrid-checkbox-disabled-checked-br) !important;
+		}
 	}
 }

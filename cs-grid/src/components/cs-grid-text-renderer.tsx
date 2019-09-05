@@ -13,7 +13,12 @@ export default class CSGridTextRenderer extends CSGridBaseRenderer<string> {
 
 	render() {
 		return (
-			<span>
+			<span
+				className={
+					(this.state.isLastColumn ? ' is-last-column' : '') +
+					(this.isReadOnly() ? ' read-only-cell' : '')
+				}
+			>
 				<span>{this.state.value.cellValue}</span>
 				<CSGridCellError errorMessage={this.state.value.errorMessage} />
 			</span>

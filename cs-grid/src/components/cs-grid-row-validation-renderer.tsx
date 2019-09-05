@@ -35,7 +35,12 @@ export default class CSGridRowValidationRenderer extends CSGridBaseRenderer<Vali
 		}
 
 		return (
-			<span>
+			<span
+				className={
+					(this.state.isLastColumn ? ' is-last-column' : '') +
+					(this.isReadOnly() ? ' read-only-cell' : '')
+				}
+			>
 				{status !== ValidationStatus.None && (
 					<CSTooltip helpText={this.props.value.errorMessage}>
 						<span className={className} aria-hidden='true' />

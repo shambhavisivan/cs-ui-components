@@ -13,7 +13,13 @@ export default class CSGridLookupRenderer extends CSGridBaseRenderer<Array<strin
 
 	render() {
 		return (
-			<span className='select-wrapper'>
+			<span
+				className={
+					'select-wrapper' +
+					(this.state.isLastColumn ? ' is-last-column' : '') +
+					(this.isReadOnly() ? ' read-only-cell' : '')
+				}
+			>
 				<span>{this.format(this.state.value.cellValue)}</span>
 				<CSGridCellError errorMessage={this.state.value.errorMessage} />
 			</span>

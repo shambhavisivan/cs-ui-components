@@ -119,6 +119,16 @@
     color: #706e6b;
   }
   &:hover::before {
+    color: #ffb75d;
+  }
+}
+.icon-error {
+  &::before {
+    content: "A";
+    font-family: "cs-plm" !important;
+    color: #706e6b;
+  }
+  &:hover::before {
     color: #c23934;
   }
 }

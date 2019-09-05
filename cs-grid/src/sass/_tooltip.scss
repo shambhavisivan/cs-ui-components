@@ -1,17 +1,35 @@
+.ag-react-container > .cs-tooltip-group:last-child {
+    margin: 0 0 0 0.5rem;
+}
+
+.ag-react-container .cs-tooltip-group:only-child {
+    margin: 0;
+}
+
 .cs-tooltip-group {
-    margin-left: 0.5rem;
-    margin-right: auto;
+    margin: 0 0.5rem;
 
     .cs-tooltip-text {
 
-        .icon-info {
+        .icon-info,
+        .icon-warning,
+        .icon-error {
             display: flex;
         }
     }
+}
 
-    .cs-tooltip {
+.ag-row-selected .ag-react-container .icon-info:before,
+.ag-row-selected .ag-react-container .icon-warning:before,
+.ag-row-selected .ag-react-container .icon-error:before {
+    @include sc(--csgrid-container-after-selected-c);
+}
 
-        &:before {
-        }
+.ag-row-last .cs-tooltip-group .cs-tooltip {
+    top: -57px;
+
+    &:before {
+        bottom: -1rem;
+        top: unset;
     }
 }

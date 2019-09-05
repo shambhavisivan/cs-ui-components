@@ -32,7 +32,12 @@ export default class CSGridDateRenderer extends CSGridBaseRenderer<string> {
 
 	render() {
 		return (
-			<span>
+			<span
+				className={
+					(this.state.isLastColumn ? ' is-last-column' : '') +
+					(this.isReadOnly() ? ' read-only-cell' : '')
+				}
+			>
 				<span>{this.formattedDate()}</span>
 
 				{this.state.value.cellValue && (

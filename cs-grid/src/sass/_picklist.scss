@@ -11,13 +11,14 @@
             content: "\75";
             font-size: 1rem;
             pointer-events: none;
+            margin-left: auto;
             @include sc(--csgrid-container-after-c);
         }
     }
 }
 
 .cs-grid_picklist-search-wrapper {
-    min-width: 150px !important;
+    width: 100%;
     @include css4 {
         border-bottom: 1px solid var(--csgrid-popup-br);
     }
@@ -29,7 +30,7 @@
 
 .ag-popup-editor {
     display: flex;
-    min-width: 150px !important;
+    width: 240px !important;
     max-height: 300px;
     border-radius: 0.25rem !important;
     overflow: hidden;

@@ -215,7 +215,6 @@ export default class CSGrid extends React.Component<CSGridProps, CSGridState> {
 								},
 								headerComponentFramework: CSGridHeader,
 								lockPinned: true,
-								minWidth: 140,
 								resizable: true,
 								sortable: true
 							}}

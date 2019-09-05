@@ -79,9 +79,9 @@ export default class App extends React.Component<object, AppState> {
 				headerName: '',
 				lockPosition: true,
 				lockVisible: true,
+				maxWidth: 40,
 				resizable: false,
-				sortable: false,
-				width: 75
+				sortable: false
 			},
 			{
 				field: 'exampleGuid',
@@ -137,7 +137,8 @@ export default class App extends React.Component<object, AppState> {
 					userInfo
 				},
 				field: 'exampleDate',
-				headerName: 'Date Column'
+				headerName: 'Date Column',
+				editable: false
 			},
 			{
 				cellEditor: 'lookupEditor',

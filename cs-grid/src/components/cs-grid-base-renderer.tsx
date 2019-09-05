@@ -20,7 +20,7 @@ export default abstract class CSGridBaseRenderer<
 	constructor(props: P) {
 		super(props);
 
-		this.props.eGridCell.className += this.isCellEditable() ? ' read-only-cell' : '';
+		this.props.eGridCell.className += this.isReadOnly() ? ' read-only-cell' : '';
 	}
 
 	/**
@@ -42,10 +42,7 @@ export default abstract class CSGridBaseRenderer<
 		return true;
 	};
 
-	/**
-	 * Resolves the editable setting provided in the column definition.
-	 */
-	isCellEditable = (): boolean => {
+	isReadOnly = (): boolean => {
 		let readOnly: boolean;
 		if (typeof this.props.colDef.editable === 'function') {
 			const params: IsColumnFuncParams = {
