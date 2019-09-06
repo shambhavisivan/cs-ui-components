@@ -1,16 +1,17 @@
 {
 	"name": "@cloudsense/cs-grid",
-	"version": "1.0.0",
+	"version": "1.0.10",
 	"description": "CloudSense Grid",
-	"main": "main.js",
+	"main": "./main.js",
 	"author": "CloudSense",
 	"repository": {
 		"type": "git",
 		"url": "https://gerrit.cloudsenseltd.com/gerrit/cs-ui-components"
 	},
 	"scripts": {
-		"build": "rm -rf ./lib/* && tsc",
+		"build": "rm -rf ./lib/* && cp -a ./src/fonts/ ./fonts/ && npm run scss && tsc",
 		"prepare": "npm run build",
+		"scss": "node-sass ./src/sass/style.scss ./css/styles.css",
 		"test": "./test.sh",
 		"start": "npm run lint && webpack-dev-server --content-base src/ --config config/webpack.development.config.js --mode development --open",
 		"build-demo": "rm -rf ./cs-grid-demo && webpack --mode development --config config/webpack.demo.config.js",
@@ -21,9 +22,12 @@
 	"license": "UNLICENSED",
 	"files": [
 		"lib",
-		"main.js"
+		"css",
+		"fonts",
+		"main.js",
+		"main.d.ts"
 	],
-	"types": "./lib/cs-grid.d.ts",
+	"types": "./main.d.ts",
 	"eslintConfig": {
 		"extends": "react-app"
 	},
@@ -33,7 +37,11 @@
 		"moment": "^2.24.0",
 		"react": "^16.8.6",
 		"react-datepicker": "^2.8.0",
-		"react-dom": "^16.8.6"
+		"react-dom": "^16.8.6",
+		"@types/react": "^16.8.23",
+		"@types/react-datepicker": "^2.8.1",
+		"@types/react-dom": "^16.8.4",
+		"typescript": "^3.5.3"
 	},
 	"devDependencies": {
 		"@babel/core": "7.4.4",
@@ -41,9 +49,6 @@
 		"@babel/plugin-proposal-function-bind": "7.2.0",
 		"@babel/preset-env": "^7.5.5",
 		"@babel/preset-react": "7.0.0",
-		"@types/react": "^16.8.23",
-		"@types/react-datepicker": "^2.8.1",
-		"@types/react-dom": "^16.8.4",
 		"@types/webpack-env": "^1.13.9",
 		"awesome-typescript-loader": "^5.2.1",
 		"babel-loader": "^8.0.6",
@@ -63,7 +68,6 @@
 		"tslint-config-prettier": "^1.18.0",
 		"tslint-plugin-prettier": "^2.0.1",
 		"tslint-react": "^4.0.0",
-		"typescript": "^3.5.3",
 		"url-loader": "^1.1.2",
 		"webpack": "^4.39.3",
 		"webpack-cli": "^3.3.6",

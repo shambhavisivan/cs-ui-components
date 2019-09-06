@@ -20,7 +20,7 @@ interface CSGridQuickFilterProps {
 	clearFilter(): void;
 }
 
-export default function CSGridQuickFilter(props: CSGridQuickFilterProps) {
+export function CSGridQuickFilter(props: CSGridQuickFilterProps) {
 	return (
 		<div className='cs-grid_quick-filter-wrapper'>
 			<div className='cs-grid_quick-filter'>

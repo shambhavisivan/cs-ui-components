@@ -1,18 +1,16 @@
-// This type is needed to correctly call the editable function.
-// tslint:disable-next-line: no-submodule-imports
-import { IsColumnFuncParams } from 'ag-grid-community/dist/lib/entities/colDef';
 import React from 'react';
 
 import {
 	CSGridCellRenderer,
 	CSGridCellRendererProps,
-	CSGridCellRendererState
-} from '../models/cs-grid-base-interfaces';
+	CSGridCellRendererState,
+	IsColumnFuncParams
+} from '../interfaces/cs-grid-base-interfaces';
 
 /**
  * A base class for all cell renderers.
  */
-export default abstract class CSGridBaseRenderer<
+export abstract class CSGridBaseRenderer<
 	T,
 	P extends CSGridCellRendererProps<T> = CSGridCellRendererProps<T>,
 	S extends CSGridCellRendererState<T> = CSGridCellRendererState<T>

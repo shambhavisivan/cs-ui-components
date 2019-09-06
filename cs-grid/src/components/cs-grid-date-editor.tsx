@@ -1,19 +1,20 @@
 import moment from 'moment';
 import React from 'react';
 import DatePicker from 'react-datepicker';
-import '../../node_modules/react-datepicker/dist/react-datepicker.css';
+// tslint:disable-next-line: no-submodule-imports
+import 'react-datepicker/dist/react-datepicker.css';
 
 import {
 	CellData,
 	CSGridCellEditor,
 	CSGridCellEditorProps,
 	CSGridCellEditorState
-} from '../models/cs-grid-base-interfaces';
+} from '../interfaces/cs-grid-base-interfaces';
 
 /**
  * A cell editor that displays a date picker.
  */
-export default class CSGridDateEditor
+export class CSGridDateEditor
 	extends React.Component<CSGridCellEditorProps<string>, CSGridCellEditorState<string>>
 	implements CSGridCellEditor {
 	private dateValueFormat: string = 'YYYY-MM-DD';
@@ -81,21 +82,19 @@ export default class CSGridDateEditor
 		const placeholderText = 'Click to select a date';
 
 		return (
-			<>
-				<div className='date-attribute'>
-					<DatePicker
-						selected={date}
-						onChange={this.onChange}
-						isClearable={true}
-						placeholderText={placeholderText}
-						showMonthDropdown={true}
-						showYearDropdown={true}
-						dropdownMode='select'
-						inline={true}
-						value={formattedDate}
-					/>
-				</div>
-			</>
+			<div className='date-attribute'>
+				<DatePicker
+					selected={date}
+					onChange={this.onChange}
+					isClearable={true}
+					placeholderText={placeholderText}
+					showMonthDropdown={true}
+					showYearDropdown={true}
+					dropdownMode='select'
+					inline={true}
+					value={formattedDate}
+				/>
+			</div>
 		);
 	}
 }

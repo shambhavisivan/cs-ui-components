@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { CSGridCellRendererProps } from '../models/cs-grid-base-interfaces';
-import CSGridBaseRenderer from './cs-grid-base-renderer';
-import CSGridCellError from './cs-grid-cell-error';
+import { CSGridCellRendererProps } from '../interfaces/cs-grid-base-interfaces';
+import { CSGridBaseRenderer } from './cs-grid-base-renderer';
+import { CSGridCellError } from './cs-grid-cell-error';
 
-export default class CSGridPicklistRenderer extends CSGridBaseRenderer<Array<string> | string> {
+export class CSGridPicklistRenderer extends CSGridBaseRenderer<Array<string> | string> {
 	constructor(props: CSGridCellRendererProps<Array<string> | string>) {
 		super(props);
 
@@ -14,11 +14,9 @@ export default class CSGridPicklistRenderer extends CSGridBaseRenderer<Array<str
 	render() {
 		return (
 			<span
-				className={
-					'select-wrapper' +
-					(this.state.isLastColumn ? ' is-last-column' : '') +
-					(this.isReadOnly() ? ' read-only-cell' : '')
-				}
+				className={`select-wrapper ${this.state.isLastColumn ? 'is-last-column' : ''} ${
+					this.isReadOnly() ? 'read-only-cell' : ''
+				}`}
 			>
 				<span>{this.format(this.state.value.cellValue)}</span>
 				<CSGridCellError errorMessage={this.state.value.errorMessage} />

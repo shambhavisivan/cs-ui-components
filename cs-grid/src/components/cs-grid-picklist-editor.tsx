@@ -5,7 +5,7 @@ import {
 	CSGridCellEditor,
 	CSGridCellEditorProps,
 	CSGridCellEditorState
-} from '../models/cs-grid-base-interfaces';
+} from '../interfaces/cs-grid-base-interfaces';
 
 export interface CSGridPicklistEditorProps extends CSGridCellEditorProps<string | Array<string>> {
 	options: Array<string>;
@@ -19,7 +19,7 @@ interface CSGridPicklistEditorState extends CSGridCellEditorState<string | Array
 	noneSelected: boolean;
 }
 
-export default class CSGridPicklistEditor
+export class CSGridPicklistEditor
 	extends React.Component<CSGridPicklistEditorProps, CSGridPicklistEditorState>
 	implements CSGridCellEditor {
 	multiSelect: boolean = false;

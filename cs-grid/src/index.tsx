@@ -3,18 +3,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-balham.css';
-import '../../src/sass/style.scss';
 import './sass/style.scss';
 
-import { ColDef, ColGroupDef } from 'ag-grid-community';
-import CSGrid from './components/cs-grid';
+import { CSGrid } from './components/cs-grid';
 import { CSGridLookupSearchResult } from './components/cs-grid-lookup-editor';
 import { CSGridPaginationLocation } from './components/cs-grid-pagination';
 import { CSGridQuickFilterLocation } from './components/cs-grid-quick-filter';
 import { ValidationStatus } from './components/cs-grid-row-validation-renderer';
-import { CellData } from './models/cs-grid-base-interfaces';
+import { CellData, ColGroupDef, ColDef } from './interfaces/cs-grid-base-interfaces';
 
 interface AppState {
 	columnDefs: Array<ColDef | ColGroupDef>;
@@ -24,7 +20,7 @@ interface AppState {
 /**
  * Creates an example CS Grid with dummy data.
  */
-export default class App extends React.Component<object, AppState> {
+export class App extends React.Component<object, AppState> {
 	private csGridRef: React.RefObject<CSGrid>;
 	constructor(props: object) {
 		super(props);
@@ -123,7 +119,7 @@ export default class App extends React.Component<object, AppState> {
 			{
 				cellEditor: 'booleanEditor',
 				cellRenderer: 'booleanRenderer',
-				editable: () => Math.floor(Math.random() * 2) === 1,
+				// editable: () => false,
 				field: 'exampleBoolean',
 				headerName: 'Boolean Column'
 			},
@@ -137,8 +133,7 @@ export default class App extends React.Component<object, AppState> {
 					userInfo
 				},
 				field: 'exampleDate',
-				headerName: 'Date Column',
-				editable: false
+				headerName: 'Date Column'
 			},
 			{
 				cellEditor: 'lookupEditor',

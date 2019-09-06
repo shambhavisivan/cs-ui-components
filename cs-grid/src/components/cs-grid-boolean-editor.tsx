@@ -1,12 +1,11 @@
 import React, { ReactNode } from 'react';
-import '../../node_modules/react-datepicker/dist/react-datepicker.css';
-import { CSGridCellEditor, CSGridCellEditorProps } from '../models/cs-grid-base-interfaces';
+import { CSGridCellEditor, CSGridCellEditorProps } from '../interfaces/cs-grid-base-interfaces';
 
 /**
  * Required to ensure an editor is never opened when clicking a boolean type cell
  * because a boolean cell is managed in the renderer.
  */
-export default class CSGridBooleanEditor extends React.Component<CSGridCellEditorProps<boolean>>
+export class CSGridBooleanEditor extends React.Component<CSGridCellEditorProps<boolean>>
 	implements CSGridCellEditor {
 	constructor(props: CSGridCellEditorProps<boolean>) {
 		super(props);

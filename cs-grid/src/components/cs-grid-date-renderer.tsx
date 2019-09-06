@@ -1,14 +1,14 @@
 import moment from 'moment';
 import React from 'react';
 
-import { CellData, CSGridCellRendererProps } from '../models/cs-grid-base-interfaces';
-import CSGridBaseRenderer from './cs-grid-base-renderer';
-import CSGridCellError from './cs-grid-cell-error';
+import { CellData, CSGridCellRendererProps } from '../interfaces/cs-grid-base-interfaces';
+import { CSGridBaseRenderer } from './cs-grid-base-renderer';
+import { CSGridCellError } from './cs-grid-cell-error';
 
 /**
  * A cell renderer for displaying a localised date.
  */
-export default class CSGridDateRenderer extends CSGridBaseRenderer<string> {
+export class CSGridDateRenderer extends CSGridBaseRenderer<string> {
 	private dateValueFormat: string = 'YYYY-MM-DD';
 
 	constructor(props: CSGridCellRendererProps<string>) {
@@ -31,24 +31,21 @@ export default class CSGridDateRenderer extends CSGridBaseRenderer<string> {
 	};
 
 	render() {
+		const readOnly = this.isReadOnly();
+
 		return (
 			<span
 				className={
 					(this.state.isLastColumn ? ' is-last-column' : '') +
-					(this.isReadOnly() ? ' read-only-cell' : '')
+					(readOnly ? ' read-only-cell' : '')
 				}
 			>
-				<span
-					className={'cs-grid_date-cell-value' + (this.isReadOnly() ? '-read-only' : '')}
-				>
+				<span className={'cs-grid_date-cell-value' + (readOnly ? '-read-only' : '')}>
 					{this.formattedDate()}
 				</span>
 				<CSGridCellError errorMessage={this.state.value.errorMessage} />
-				{this.state.value.cellValue && (
-					<button
-						className={'cs-grid_clear-button' + (this.isReadOnly() ? '-hidden' : '')}
-						onClick={this.clearDate}
-					>
+				{this.state.value.cellValue && !readOnly && (
+					<button className='cs-grid_clear-button' onClick={this.clearDate}>
 						<svg
 							className='cs-grid_clear-icon'
 							xmlns='http://www.w3.org/2000/svg'

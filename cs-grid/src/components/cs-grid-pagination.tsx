@@ -33,7 +33,7 @@ interface CSGridPaginationProps {
 	goToPage: (page: number) => void;
 }
 
-export default function CSGridPaginator(props: CSGridPaginationProps) {
+export function CSGridPaginator(props: CSGridPaginationProps) {
 	const pageSizeOptions: Array<
 		React.DetailedHTMLProps<React.OptionHTMLAttributes<HTMLOptionElement>, HTMLOptionElement>
 	> = [];

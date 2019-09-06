@@ -3,22 +3,23 @@
         "outDir": "./lib",
         "target": "es2015",
         "module": "commonjs",
-        // Only commented out until the rest of cs-ui-components use typescript.
-        //"noImplicitAny": true,
+        "noImplicitAny": true,
         "removeComments": true,
         "declaration": true,
-        "sourceMap": true,
+        "declarationDir": "./lib",
+        "sourceMap": false,
         "esModuleInterop": true,
         "jsx": "react",
         "typeRoots": [
             "node_modules/@types"
-        ],
+        ]
     },
     "include": [
         "./src/**/*.tsx",
         "./src/**/*.ts"
     ],
     "exclude": [
-        "node_modules"
+        "node_modules",
+        "./src/index.tsx"
     ]
 }

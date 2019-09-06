@@ -32,3 +32,6 @@ yarn-error.log*
 /node_modules/**/*
 /cs-grid/lib
 /cs-grid/cs-grid-demo
+/cs-grid/css
+/cs-grid/fonts
+

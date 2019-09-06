@@ -5,18 +5,20 @@ import {
 	CSGridCellEditor,
 	CSGridCellEditorProps,
 	CSGridCellEditorState
-} from '../models/cs-grid-base-interfaces';
-import NumberFormat from '../models/number-format.enum';
-import CSGridCellError from './cs-grid-cell-error';
+} from '../interfaces/cs-grid-base-interfaces';
+import { NumberFormat } from '../interfaces/number-format.enum';
+import { CSGridCellError } from './cs-grid-cell-error';
 
-export default class CSGridNumberEditor<P extends CSGridCellEditorProps<string | number>>
+/**
+ * A cell editor for editing a localised number.
+ */
+export class CSGridNumberEditor<P extends CSGridCellEditorProps<string | number>>
 	extends React.Component<P, CSGridCellEditorState<string | number>>
 	implements CSGridCellEditor {
 	numberFormatType: NumberFormat = NumberFormat.Decimal;
 	numberFormat: Intl.NumberFormat;
 	currencySymbol: string = '';
 	inputType = 'text';
-
 	private inputRef: React.RefObject<HTMLInputElement>;
 	private decimalSeparator: string;
 
@@ -41,6 +43,9 @@ export default class CSGridNumberEditor<P extends CSGridCellEditorProps<string |
 		});
 	}
 
+	/**
+	 * Focus on the cell when its opened.
+	 */
 	afterGuiAttached() {
 		const eInput = this.inputRef.current;
 		eInput.focus();
@@ -79,6 +84,10 @@ export default class CSGridNumberEditor<P extends CSGridCellEditorProps<string |
 		);
 	}
 
+	/**
+	 * Localises the input value.
+	 * @param value - a localised string.
+	 */
 	format(value: number | string): number | string {
 		if (value === undefined || value === null) {
 			return '';
@@ -94,29 +103,30 @@ export default class CSGridNumberEditor<P extends CSGridCellEditorProps<string |
 		return result;
 	}
 
+	/**
+	 * Created a number from a localised string.
+	 * @param num - a localised string or a number.
+	 */
 	formatDecimalNumber = (num: string | number): number => {
 		if (num === '') {
 			return undefined;
 		}
-		const replaceHelper = (dec: string): string => {
-			let replaced: string;
-			if (this.decimalSeparator === ',') {
-				// remove periods;
-				replaced = dec.replace(/[\s.]+/g, '');
-				// replace remaining comma with a period;
-				replaced = replaced.replace(/\,/, '.');
-			} else {
-				replaced = dec.replace(/[\s,]+/g, '');
-			}
 
-			return replaced;
-		};
-
-		if (typeof num === 'string') {
-			return parseFloat(replaceHelper(num));
-		} else {
+		if (typeof num !== 'string') {
 			return num;
 		}
+
+		let replaced: string;
+		if (this.decimalSeparator === ',') {
+			// remove periods;
+			replaced = num.replace(/[\s.]+/g, '');
+			// replace remaining comma with a period;
+			replaced = replaced.replace(/\,/, '.');
+		} else {
+			replaced = num.replace(/[\s,]+/g, '');
+		}
+
+		return parseFloat(replaced);
 	};
 
 	private handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -5,10 +5,10 @@ import {
 	CSGridCellEditor,
 	CSGridCellEditorProps,
 	CSGridCellEditorState
-} from '../models/cs-grid-base-interfaces';
-import CSGridCellError from './cs-grid-cell-error';
+} from '../interfaces/cs-grid-base-interfaces';
+import { CSGridCellError } from './cs-grid-cell-error';
 
-export default class CSGridTextEditor
+export class CSGridTextEditor
 	extends React.Component<CSGridCellEditorProps<string>, CSGridCellEditorState<string>>
 	implements CSGridCellEditor {
 	inputRef: React.RefObject<HTMLInputElement>;

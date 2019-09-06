@@ -1,9 +1,8 @@
 import React from 'react';
 
-// TODO: Work around until cs-ui-components npm package exists.
-import CSTooltip from '../../../src/components/CSTooltip';
-import { CSGridCellRendererProps } from '../models/cs-grid-base-interfaces';
-import CSGridBaseRenderer from './cs-grid-base-renderer';
+import { CSGridCellRendererProps } from '../interfaces/cs-grid-base-interfaces';
+import { CSGridBaseRenderer } from './cs-grid-base-renderer';
+import { CSGridTooltip } from './cs-grid-tooltip';
 
 export enum ValidationStatus {
 	Info = 'Info',
@@ -12,7 +11,7 @@ export enum ValidationStatus {
 	None = 'None'
 }
 
-export default class CSGridRowValidationRenderer extends CSGridBaseRenderer<ValidationStatus> {
+export class CSGridRowValidationRenderer extends CSGridBaseRenderer<ValidationStatus> {
 	constructor(props: CSGridCellRendererProps<ValidationStatus>) {
 		super(props);
 
@@ -42,9 +41,9 @@ export default class CSGridRowValidationRenderer extends CSGridBaseRenderer<Vali
 				}
 			>
 				{status !== ValidationStatus.None && (
-					<CSTooltip helpText={this.props.value.errorMessage}>
+					<CSGridTooltip helpText={this.props.value.errorMessage}>
 						<span className={className} aria-hidden='true' />
-					</CSTooltip>
+					</CSGridTooltip>
 				)}
 			</span>
 		);

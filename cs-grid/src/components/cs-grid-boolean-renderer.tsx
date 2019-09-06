@@ -3,18 +3,12 @@ import React from 'react';
 import {
 	CellData,
 	CSGridCellRenderer,
-	CSGridCellRendererProps,
-	CSGridCellRendererState
-} from '../models/cs-grid-base-interfaces';
-import CSGridBaseRenderer from './cs-grid-base-renderer';
-import CSGridCellError from './cs-grid-cell-error';
+	CSGridCellRendererProps
+} from '../interfaces/cs-grid-base-interfaces';
+import { CSGridBaseRenderer } from './cs-grid-base-renderer';
+import { CSGridCellError } from './cs-grid-cell-error';
 
-export default class CSGridBooleanRenderer
-	extends CSGridBaseRenderer<
-		boolean,
-		CSGridCellRendererProps<boolean>,
-		CSGridCellRendererState<boolean>
-	>
+export class CSGridBooleanRenderer extends CSGridBaseRenderer<boolean>
 	implements CSGridCellRenderer {
 	constructor(props: CSGridCellRendererProps<boolean>) {
 		super(props);
@@ -26,8 +20,10 @@ export default class CSGridBooleanRenderer
 	}
 
 	render() {
+		const readOnly = this.isReadOnly();
+
 		return (
-			<span className={this.isReadOnly() ? ' read-only-cell' : ''}>
+			<span className={readOnly ? ' read-only-cell' : ''}>
 				<label
 					className={
 						'cs-grid_checkbox-wrapper' +
@@ -37,12 +33,12 @@ export default class CSGridBooleanRenderer
 					<input
 						className='cs-grid_checkbox'
 						type='checkbox'
-						onClick={!this.isReadOnly() ? this.onClick : undefined}
+						onClick={!readOnly ? this.onClick : undefined}
 						defaultChecked={this.state.value.cellValue}
-						readOnly={this.isReadOnly()}
-						disabled={this.isReadOnly()}
+						readOnly={readOnly}
+						disabled={readOnly}
 					/>
-					<span className='cs-grid_checkbox-faux'/>
+					<span className='cs-grid_checkbox-faux' />
 				</label>
 
 				<CSGridCellError errorMessage={this.state.value.errorMessage} />

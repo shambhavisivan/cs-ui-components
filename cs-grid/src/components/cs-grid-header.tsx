@@ -31,7 +31,7 @@ export enum SortOrder {
  * A custom header class for cs-grid, which manages sorting, column filtering and the column title.
  * Allows custom css for the column header.
  */
-export default class CSGridHeader extends React.Component<CSGridHeaderProps, CSGridHeaderState> {
+export class CSGridHeader extends React.Component<CSGridHeaderProps, CSGridHeaderState> {
 	menuButtonRef: React.RefObject<HTMLSpanElement>;
 
 	constructor(props: CSGridHeaderProps) {

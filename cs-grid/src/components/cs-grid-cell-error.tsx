@@ -1,7 +1,6 @@
 import React from 'react';
 
-// TODO: Work around until cs-ui-components npm package exists.
-import CSTooltip from '../../../src/components/CSTooltip';
+import { CSGridTooltip } from './cs-grid-tooltip';
 
 /**
  * errorMessage - An error message for displaying in the tooltip.
@@ -14,14 +13,14 @@ export interface CSGridCellErrorProps {
  * Creates an info icon with a tooltip popup.
  * @param props - errorMessage: An error message for displaying in the tooltip.
  */
-export default function CSGridCellError(props: CSGridCellErrorProps) {
+export function CSGridCellError(props: CSGridCellErrorProps) {
 	if (!props.errorMessage) {
 		return null;
 	}
 
 	return (
-		<CSTooltip helpText={props.errorMessage}>
+		<CSGridTooltip helpText={props.errorMessage}>
 			<span className='icon-info' aria-hidden='true' />
-		</CSTooltip>
+		</CSGridTooltip>
 	);
 }

@@ -9,30 +9,30 @@ import { AgGridReact, AgGridReactProps } from 'ag-grid-react';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { CellData } from '../models/cs-grid-base-interfaces';
-import CSGridBooleanEditor from './cs-grid-boolean-editor';
-import CSGridBooleanRenderer from './cs-grid-boolean-renderer';
-import CSGridCurrencyEditor from './cs-grid-currency-editor';
-import CSGridCurrencyRenderer from './cs-grid-currency-renderer';
-import CSGridDateEditor from './cs-grid-date-editor';
-import CSGridDateRenderer from './cs-grid-date-renderer';
-import CSGridDecimalEditor from './cs-grid-decimal-editor';
-import CSGridDecimalRenderer from './cs-grid-decimal-renderer';
-import CSGridHeader from './cs-grid-header';
-import CSGridIntegerEditor from './cs-grid-integer-editor';
-import CSGridIntegerRenderer from './cs-grid-integer-renderer';
-import CSGridLookupEditor from './cs-grid-lookup-editor';
-import CSGridLookupRenderer from './cs-grid-lookup-renderer';
-import CSGridMultiSelectLookupEditor from './cs-grid-multi-select-lookup-editor';
-import CSGridMultiSelectPicklistEditor from './cs-grid-multi-select-picklist-editor';
-import CSGridPaginator, { CSGridPagination, CSGridPaginationLocation } from './cs-grid-pagination';
-import CSGridPicklistEditor from './cs-grid-picklist-editor';
-import CSGridPicklistRenderer from './cs-grid-picklist-renderer';
-import QuickFilter, { CSGridQuickFilter, CSGridQuickFilterLocation } from './cs-grid-quick-filter';
-import CSGridRowSelectionRenderer from './cs-grid-row-selection-renderer';
-import CSGridRowValidationRenderer from './cs-grid-row-validation-renderer';
-import CSGridTextEditor from './cs-grid-text-editor';
-import CSGridTextRenderer from './cs-grid-text-renderer';
+import { CellData } from '../interfaces/cs-grid-base-interfaces';
+import { CSGridBooleanEditor } from './cs-grid-boolean-editor';
+import { CSGridBooleanRenderer } from './cs-grid-boolean-renderer';
+import { CSGridCurrencyEditor } from './cs-grid-currency-editor';
+import { CSGridCurrencyRenderer } from './cs-grid-currency-renderer';
+import { CSGridDateEditor } from './cs-grid-date-editor';
+import { CSGridDateRenderer } from './cs-grid-date-renderer';
+import { CSGridDecimalEditor } from './cs-grid-decimal-editor';
+import { CSGridDecimalRenderer } from './cs-grid-decimal-renderer';
+import { CSGridHeader } from './cs-grid-header';
+import { CSGridIntegerEditor } from './cs-grid-integer-editor';
+import { CSGridIntegerRenderer } from './cs-grid-integer-renderer';
+import { CSGridLookupEditor } from './cs-grid-lookup-editor';
+import { CSGridLookupRenderer } from './cs-grid-lookup-renderer';
+import { CSGridMultiSelectLookupEditor } from './cs-grid-multi-select-lookup-editor';
+import { CSGridMultiSelectPicklistEditor } from './cs-grid-multi-select-picklist-editor';
+import { CSGridPagination, CSGridPaginationLocation, CSGridPaginator } from './cs-grid-pagination';
+import { CSGridPicklistEditor } from './cs-grid-picklist-editor';
+import { CSGridPicklistRenderer } from './cs-grid-picklist-renderer';
+import { CSGridQuickFilter, CSGridQuickFilterLocation } from './cs-grid-quick-filter';
+import { CSGridRowSelectionRenderer } from './cs-grid-row-selection-renderer';
+import { CSGridRowValidationRenderer } from './cs-grid-row-validation-renderer';
+import { CSGridTextEditor } from './cs-grid-text-editor';
+import { CSGridTextRenderer } from './cs-grid-text-renderer';
 
 export interface CSGridProps extends AgGridReactProps {
 	pageSizes?: Array<number>;
@@ -87,7 +87,7 @@ class CSGridState {
 	currentPageSize: number;
 }
 
-export default class CSGrid extends React.Component<CSGridProps, CSGridState> {
+export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 	state: CSGridState = new CSGridState();
 	private gridApi: GridApi;
 	private defaultPageSizes: Array<number> = [10, 20, 50, 100];
@@ -150,7 +150,7 @@ export default class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		let quickFilter: JSX.Element;
 		if (quickFilterLocation !== CSGridQuickFilterLocation.None) {
 			quickFilter = (
-				<QuickFilter
+				<CSGridQuickFilter
 					onFilterText={this.onFilterText}
 					filterText={this.state.filterText}
 					clearFilter={this.clearFilter}

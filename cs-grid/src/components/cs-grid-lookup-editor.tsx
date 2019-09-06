@@ -1,26 +1,47 @@
-import { ColDef, GridApi, GridReadyEvent } from 'ag-grid-community';
+import { GridApi, GridReadyEvent } from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react';
 import React from 'react';
 
 import {
 	CellData,
+	ColDef,
 	CSGridCellEditor,
 	CSGridCellEditorProps,
 	CSGridCellEditorState
-} from '../models/cs-grid-base-interfaces';
-import CSGridHeader from './cs-grid-header';
+} from '../interfaces/cs-grid-base-interfaces';
+import { CSGridHeader } from './cs-grid-header';
 
+/**
+ * columnDefs - An array of column definitions each needs to contain a field name and a column header:
+ * {
+ *      field: 'text1',
+ *      headerName: 'Name'
+ * }
+ * rowData - Maps the field names above to row values.
+ */
 export interface CSGridLookupSearchResult {
 	columnDefs: Array<ColDef>;
 	rowData: Array<Record<string, string>>;
 }
 
+/**
+ * minSearchTermLength - The minimum number of characters needed before the lookup will trigger.
+ * displayColumn - The column to display in the renderer.
+ * getLookupValues - Returns the latest lookup values depending on the search term input.
+ */
 export interface CSGridLookupEditorProps extends CSGridCellEditorProps<string | Array<string>> {
 	minSearchTermLength: number;
 	displayColumn: string;
 	getLookupValues(searchTerm: string): Promise<CSGridLookupSearchResult>;
 }
 
+/**
+ * selected - A list of display column values for the selected rows.
+ * searchTerm - The current user inputted search term.
+ * columnDefs - The column definitions returned from the getLookupValues call.
+ * rowData - The rows returned from the getLookupValues call.
+ * showGrid - A flag to know when the grid should be shown.
+ */
 interface CSGridLookupEditorState extends CSGridCellEditorState<string | Array<string>> {
 	selected: Array<string>;
 	searchTerm: string;
@@ -29,7 +50,10 @@ interface CSGridLookupEditorState extends CSGridCellEditorState<string | Array<s
 	showGrid: boolean;
 }
 
-export default class CSGridLookupEditor
+/**
+ * A cell editor that displays lookup results in the form of an ag-grid table with selectable rows.
+ */
+export class CSGridLookupEditor
 	extends React.Component<CSGridLookupEditorProps, CSGridLookupEditorState>
 	implements CSGridCellEditor {
 	gridApi: GridApi;
@@ -151,6 +175,9 @@ export default class CSGridLookupEditor
 		);
 	}
 
+	/**
+	 * Retrieves the lookup values and updates the state accordingly.
+	 */
 	private getLookupValues = async () => {
 		const results: CSGridLookupSearchResult = await this.props.getLookupValues('');
 
@@ -173,6 +200,9 @@ export default class CSGridLookupEditor
 		);
 	};
 
+	/**
+	 * Called when the user selects a row in the grid.
+	 */
 	private onSelectionChanged = async (): Promise<void> => {
 		let selected = [];
 		const selectedRows = this.gridApi.getSelectedRows();
@@ -204,14 +234,23 @@ export default class CSGridLookupEditor
 		});
 	};
 
+	/**
+	 * Called when the search term changes.
+	 */
 	private updateSearch = async (event: React.ChangeEvent<HTMLInputElement>) => {
 		await this.search(event.target.value);
 	};
 
+	/**
+	 * Clears the current search term.
+	 */
 	private clearFilter = async () => {
 		await this.search('');
 	};
 
+	/**
+	 * Updates the grid given a search term.
+	 */
 	private search = async (searchTerm: string) => {
 		const showGrid =
 			!this.props.minSearchTermLength || searchTerm.length >= this.props.minSearchTermLength;

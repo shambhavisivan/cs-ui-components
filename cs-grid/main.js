@@ -1,1 +1,1 @@
-exports.CSGrid = require("./lib/cs-grid").CSGrid;
+exports.CSGrid = require("./lib/components/cs-grid").CSGrid;

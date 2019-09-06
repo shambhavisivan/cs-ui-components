@@ -12,6 +12,9 @@
 @import "tooltip";
 @import "filter";
 
+@import "../../node_modules/ag-grid-community/dist/styles/ag-grid";
+@import "../../node_modules/ag-grid-community/dist/styles/ag-theme-balham";
+
 // THIS WAS IN INDEX.HTML - REMOVING IT DOESN'T SEEM TO HAVE A NEGATIVE EFFECT BUT NEED TO CHECK
 
 // html, body {

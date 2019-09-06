@@ -1,12 +1,10 @@
-import { CSGridCellRendererProps } from '../models/cs-grid-base-interfaces';
-import CSGridNumberRenderer from './cs-grid-number-renderer';
+import { CSGridCellRendererProps } from '../interfaces/cs-grid-base-interfaces';
+import { CSGridNumberRenderer } from './cs-grid-number-renderer';
 
 /**
  * A cell renderer for displaying a localised currency.
  */
-export default class CSGridCurrencyRenderer extends CSGridNumberRenderer<
-	CSGridCellRendererProps<number>
-> {
+export class CSGridCurrencyRenderer extends CSGridNumberRenderer<CSGridCellRendererProps<number>> {
 	constructor(props: CSGridCellRendererProps<number>) {
 		super(props);
 		this.numberFormat = new Intl.NumberFormat(this.props.userInfo.userLocale, {

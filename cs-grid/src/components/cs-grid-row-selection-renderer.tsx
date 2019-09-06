@@ -1,9 +1,8 @@
 import React, { ReactNode } from 'react';
 
-import { CSGridCellRenderer, CSGridCellRendererProps } from '../models/cs-grid-base-interfaces';
+import { CSGridCellRenderer, CSGridCellRendererProps } from '../interfaces/cs-grid-base-interfaces';
 
-export default class CSGridRowSelectionRenderer
-	extends React.Component<CSGridCellRendererProps<boolean>>
+export class CSGridRowSelectionRenderer extends React.Component<CSGridCellRendererProps<boolean>>
 	implements CSGridCellRenderer {
 	constructor(props: CSGridCellRendererProps<boolean>) {
 		super(props);
