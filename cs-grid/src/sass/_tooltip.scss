@@ -7,7 +7,7 @@
 }
 
 .cs-tooltip-group {
-    margin: 0 0.5rem;
+    padding: 0 0.5rem;
 
     .cs-tooltip-text {
 
@@ -32,4 +32,19 @@
         bottom: -1rem;
         top: unset;
     }
+}
+
+.cs-tooltip {
+    left: -9px;
+}
+
+.is-last-column .cs-tooltip,
+.is-last-column ~ * .cs-tooltip {
+	right: -9px;
+	left: unset;
+
+	&:before {
+		right: 1.5rem;
+		left: unset;
+	}
 }

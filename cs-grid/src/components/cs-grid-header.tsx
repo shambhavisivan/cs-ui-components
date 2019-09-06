@@ -87,7 +87,7 @@ export default class CSGridHeader extends React.Component<CSGridHeaderProps, CSG
 		}
 
 		return (
-			<div style={{ width: '100%' }}>
+			<div className='cs-grid_header-inner'>
 				{menuButton}
 				{this.state.filtered && (
 					<span className='ag-header-icon ag-filter-icon'>

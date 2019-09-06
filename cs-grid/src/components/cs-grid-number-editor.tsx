@@ -72,7 +72,7 @@ export default class CSGridNumberEditor<P extends CSGridCellEditorProps<string |
 					onChange={this.handleChange}
 					onBlur={this.onBlur}
 					placeholder=''
-					style={{ width: '90%' }}
+					className='cs-grid_number-inner'
 				/>
 				<CSGridCellError errorMessage={this.state.value.errorMessage} />
 			</>

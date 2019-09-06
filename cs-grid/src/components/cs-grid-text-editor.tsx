@@ -54,7 +54,7 @@ export default class CSGridTextEditor
 					value={this.state.value.cellValue}
 					onChange={this.onChange}
 					placeholder=''
-					style={{ width: '90%' }}
+					className='cs-grid_text-inner'
 				/>
 				<CSGridCellError errorMessage={this.state.value.errorMessage} />
 			</>

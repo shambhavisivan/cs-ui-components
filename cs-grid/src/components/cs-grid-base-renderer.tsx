@@ -20,7 +20,7 @@ export default abstract class CSGridBaseRenderer<
 	constructor(props: P) {
 		super(props);
 
-		this.props.eGridCell.className += this.isReadOnly() ? ' read-only-cell' : '';
+		this.props.eGridCell.className += this.isReadOnly() ? ' read-only-cell-wrapper' : '';
 	}
 
 	/**

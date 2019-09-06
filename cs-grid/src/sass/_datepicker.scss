@@ -127,3 +127,45 @@
         }
     }
 }
+
+.cs-grid_date-cell-value {
+
+    &-read-only {
+        margin-right: 0;
+
+        + .cs-tooltip-group {
+            margin-right: 0;
+        }
+    }
+}
+
+.ag-react-container {
+
+    .cs-grid_clear-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: none;
+        border: none;
+        margin: 0 0 0 auto;
+        cursor: pointer;
+
+        &:active,
+        &:focus {
+            border: none;
+            box-shadow: none;
+            outline: none;
+        }
+
+        .cs-grid_clear-icon {
+            @include css4 {
+                fill: var(--csgrid-input-icon-fill);
+            }
+        }
+
+        &-hidden {
+            display: none;
+        }
+    }
+}
+

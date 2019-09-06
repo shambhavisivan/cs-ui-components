@@ -38,10 +38,17 @@ export default class CSGridDateRenderer extends CSGridBaseRenderer<string> {
 					(this.isReadOnly() ? ' read-only-cell' : '')
 				}
 			>
-				<span>{this.formattedDate()}</span>
-
+				<span
+					className={'cs-grid_date-cell-value' + (this.isReadOnly() ? '-read-only' : '')}
+				>
+					{this.formattedDate()}
+				</span>
+				<CSGridCellError errorMessage={this.state.value.errorMessage} />
 				{this.state.value.cellValue && (
-					<button className='cs-grid_clear-button' onClick={this.clearDate}>
+					<button
+						className={'cs-grid_clear-button' + (this.isReadOnly() ? '-hidden' : '')}
+						onClick={this.clearDate}
+					>
 						<svg
 							className='cs-grid_clear-icon'
 							xmlns='http://www.w3.org/2000/svg'
@@ -53,7 +60,6 @@ export default class CSGridDateRenderer extends CSGridBaseRenderer<string> {
 						</svg>
 					</button>
 				)}
-				<CSGridCellError errorMessage={this.state.value.errorMessage} />
 			</span>
 		);
 	}
