@@ -36,7 +36,7 @@ export class CSGridDateRenderer extends CSGridBaseRenderer<string> {
 		return (
 			<span
 				className={
-					(this.state.isLastColumn ? ' is-last-column' : '') +
+					(this.state.isLastColumn ? 'is-last-column' : '') +
 					(readOnly ? ' read-only-cell' : '')
 				}
 			>

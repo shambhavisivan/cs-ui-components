@@ -40,7 +40,6 @@ export class CSGridBooleanRenderer extends CSGridBaseRenderer<boolean>
 					/>
 					<span className='cs-grid_checkbox-faux' />
 				</label>
-
 				<CSGridCellError errorMessage={this.state.value.errorMessage} />
 			</span>
 		);

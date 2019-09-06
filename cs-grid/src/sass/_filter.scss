@@ -1,63 +1,57 @@
 .ag-menu {
-    top: 35px !important;
-    margin-left: -13px;
-    @include css4 {
-        border: 1px solid var(--csgrid-popup-br) !important;
-        box-shadow: 0 2px 3px 0 (--csgrid-popup-box) !important;
-    }
+	top: 35px !important;
+	margin-left: -13px;
+	@include css4 {
+		border: 1px solid var(--csgrid-popup-br) !important;
+		box-shadow: 0 2px 3px 0 (--csgrid-popup-box) !important;
+	}
 }
 
 .ag-filter {
-    min-width: 150px;
+	min-width: 150px;
 
-    > div {
+	> div .ag-filter-body-wrapper {
+		padding: 0.5rem;
 
-        .ag-filter-body-wrapper {
-            padding: 0.5rem;
+		.ag-filter-select {
+			height: 2rem;
+			border-radius: 0.25rem;
+			margin: 0 0 0.5rem 0;
+			@include sbg(--csgrid-input-bg);
+			@include css4 {
+				border: 1px solid var(--csgrid-input-br);
+			}
+		}
 
-            .ag-filter-select {
-                height: 2rem;
-                border-radius: 0.25rem;
-                margin: 0 0 0.5rem 0;
-                @include sbg(--csgrid-input-bg);
-                @include css4 {
-                    border: 1px solid var(--csgrid-input-br);
-                }
-            }
+		.ag-filter-body {
+			margin: 0;
 
-            .ag-filter-body {
-                margin: 0;
+			.ag-input-text-wrapper .ag-filter-filter {
+				height: 2rem;
+				border-radius: 0.25rem;
+				margin: 0;
+				padding: 0 0.5rem;
+				@include sbg(--csgrid-input-bg);
+				@include css4 {
+					border: 1px solid var(--csgrid-input-br);
+				}
+			}
+		}
 
-                .ag-input-text-wrapper {
+		.ag-filter-condition {
+			display: flex;
+			align-items: center;
+			padding: 0.4rem 0;
 
-                    .ag-filter-filter {
-                        height: 2rem;
-                        border-radius: 0.25rem;
-                        margin: 0;
-                        padding: 0 0.5rem;
-                        @include sbg(--csgrid-input-bg);
-                        @include css4 {
-                            border: 1px solid var(--csgrid-input-br);
-                        }
-                    }
-                }
-            }
+			label {
+				display: flex;
+				align-items: center;
+				font-size: 0.75rem;
 
-            .ag-filter-condition {
-                display: flex;
-                align-items: center;
-                padding: 0.4rem 0;
-
-                label {
-                    display: flex;
-                    align-items: center;
-                    font-size: 0.75rem;
-
-                    input {
-                        margin: 0 0.25rem -1px 0.5rem;
-                    }
-                }
-            }
-        }
-    }
+				input {
+					margin: 0 0.25rem -1px 0.5rem;
+				}
+			}
+		}
+	}
 }

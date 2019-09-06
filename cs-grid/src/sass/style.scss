@@ -408,12 +408,12 @@ body > div > div {
 .ag-react-container {
 	display: flex;
 	flex: 1;
-}
 
-.ag-react-container > div,
-.ag-react-container > span {
-	display: flex;
-	align-items: center;
+	> div,
+	> span {
+		display: flex;
+		align-items: center;
+	}
 }
 
 .cs-grid_popup-wrapper {
@@ -426,11 +426,8 @@ body > div > div {
 	@include sc(--csgrid-checkbox-disabled-checked-br);
 }
 
-.ag-row-selected {
-
-	.read-only-cell {
-		@include sc(--csgrid-highlighted-disabled-c);
-	}
+.ag-row-selected .read-only-cell {
+	@include sc(--csgrid-highlighted-disabled-c);
 }
 
 .cs-grid_number-inner,
@@ -438,13 +435,12 @@ body > div > div {
 	width: 90%;
 }
 
-.ag-theme-balham .ag-cell.read-only-cell-wrapper {
+.ag-theme-balham .ag-cell.read-only-cell-wrapper:focus {
+	background: rgba(0,0,0,0.05) !important;
 
-	&:focus {
-		background: rgba(0,0,0,0.05) !important;
-
-		&.ag-cell-focus {
-			border: 1px solid transparent;
+	&.ag-cell-focus {
+		@include css4 {
+			border: 1px solid var(--csgrid-transparent);
 		}
 	}
 }

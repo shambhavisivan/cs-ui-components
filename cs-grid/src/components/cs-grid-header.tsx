@@ -94,7 +94,6 @@ export class CSGridHeader extends React.Component<CSGridHeaderProps, CSGridHeade
 						<span className='ag-icon ag-icon-filter' />
 					</span>
 				)}
-
 				<span
 					onClick={this.props.enableSorting ? this.onSortRequested : undefined}
 					className={this.props.className}

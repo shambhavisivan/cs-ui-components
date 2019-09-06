@@ -119,9 +119,7 @@ export class CSGridPicklistEditor
 				)}
 				<ul className='picklist-list'>
 					<li
-						className={
-							'picklist-list-item' + (this.state.noneSelected ? ' selected' : '')
-						}
+						className={'picklist-list-item' + (this.state.noneSelected ? ' selected' : '')}
 						key='0'
 						onClick={this.clearSelected}
 					>
