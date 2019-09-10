@@ -15,7 +15,6 @@
 	.react-datepicker__navigation--next {
 		top: 0.8125rem;
 		overflow: visible;
-		font-family: "cs-plm";
 		font-size: 0;
 		border: none;
 		height: 1.25rem;
@@ -34,17 +33,10 @@
 	.react-datepicker__navigation--previous {
 		left: 0.25rem;
 
-		&:before {
-			content: "\62";
-		}
 	}
 
 	.react-datepicker__navigation--next {
 		right: 0.25rem;
-
-		&:before {
-			content: "\63";
-		}
 	}
 
 	.react-datepicker__month-container {
@@ -69,11 +61,9 @@
 				margin: 0 0.125rem;
 
 				&:before {
-					font-family: "cs-plm";
 					position: absolute;
 					right: 0.4375rem;
 					top: 0.6125rem;
-					content: "\75";
 					font-size: 0.625rem;
 					pointer-events: none;
 					@include sc(--csgrid-datepicker-arrow-c);

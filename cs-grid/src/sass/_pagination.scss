@@ -42,10 +42,8 @@
 				cursor: default;
 				pointer-events: none;
 
-				svg path {
-					@include css4 {
-						fill: var(--csgrid-pagination-icon-bg) !important;
-					}
+				span {
+					@include sc (--csgrid-pagination-icon-bg);
 				}
 			}
 

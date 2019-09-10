@@ -11,9 +11,6 @@
 		bottom: 50%;
 		position: absolute;
 		transform: translateY(50%);
-		@include css4 {
-			fill: var(--csgrid-input-icon-fill);
-		}
 	}
 
 	.cs-grid_search-input {

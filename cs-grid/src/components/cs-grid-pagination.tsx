@@ -88,17 +88,7 @@ export function CSGridPaginator(props: CSGridPaginationProps) {
 					onClick={props.onBtPrevious}
 					className={props.currentPage === 1 ? 'disabled' : ''}
 				>
-					<svg
-						xmlns='http://www.w3.org/2000/svg'
-						width='14'
-						height='14'
-						viewBox='0 0 52 52'
-					>
-						<path
-							fill='#0070d2'
-							d='m38 8.3v35.4c0 1-1.3 1.7-2.2 0.9l-21.2-17.3c-0.8-0.6-0.8-1.9 0-2.5l21.2-17.5c0.9-0.7 2.2-0.1 2.2 1z'
-						/>
-					</svg>
+					<span className='cs-grid_pagination-icon-left' />
 				</div>
 				{pages.map(PageButton)}
 				<div
@@ -109,17 +99,7 @@ export function CSGridPaginator(props: CSGridPaginationProps) {
 							: ''
 					}
 				>
-					<svg
-						xmlns='http://www.w3.org/2000/svg'
-						width='14'
-						height='14'
-						viewBox='0 0 52 52'
-					>
-						<path
-							fill='#0070d2'
-							d='m14 43.7v-35.4c0-1 1.3-1.7 2.2-0.9l21.2 17.3c0.8 0.6 0.8 1.9 0 2.5l-21.2 17.5c-0.9 0.7-2.2 0.1-2.2-1z'
-						/>
-					</svg>
+					<span className='cs-grid_pagination-icon-right' />
 				</div>
 			</div>
 			<div className='cs-grid_pagination-select-wrapper'>
@@ -131,17 +111,7 @@ export function CSGridPaginator(props: CSGridPaginationProps) {
 				>
 					{pageSizeOptions}
 				</select>
-				<svg
-					className='cs-grid_pagination-select-icon'
-					xmlns='http://www.w3.org/2000/svg'
-					width='9.55'
-					height='6.04'
-				>
-					<path
-						d='M.33 0h8.91c.25 0 .43.33.23.55L5.11 5.89c-.15.2-.48.2-.63 0L.08.55C-.1.33.05 0 .33 0z'
-						fill='#706e6b'
-					/>
-				</svg>
+				<span className='cs-grid_pagination-select-icon' />
 			</div>
 		</div>
 	);
