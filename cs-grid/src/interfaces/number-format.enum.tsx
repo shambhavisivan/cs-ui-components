@@ -1,5 +1,1 @@
-export enum NumberFormat {
-	Currency = 'Currency',
-	Decimal = 'Decimal',
-	Integer = 'Integer'
-}
+export type NumberFormat = 'Currency' | 'Decimal' | 'Integer';

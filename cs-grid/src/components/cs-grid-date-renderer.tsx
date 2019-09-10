@@ -19,7 +19,7 @@ export class CSGridDateRenderer extends CSGridBaseRenderer<string> {
 	}
 
 	/**
-	 * Localises the date held in the state.
+	 * Localizes the date held in the state.
 	 */
 	formattedDate = (): string => {
 		let date: Date = null;
@@ -45,9 +45,7 @@ export class CSGridDateRenderer extends CSGridBaseRenderer<string> {
 				</span>
 				<CSGridCellError errorMessage={this.state.value.errorMessage} />
 				{this.state.value.cellValue && !readOnly && (
-					<button className='cs-grid_clear-button' onClick={this.clearDate}>
-
-					</button>
+					<button className='cs-grid_clear-button' onClick={this.clearDate} />
 				)}
 			</span>
 		);

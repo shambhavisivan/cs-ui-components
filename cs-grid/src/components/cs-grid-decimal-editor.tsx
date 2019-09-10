@@ -1,5 +1,4 @@
 import { CSGridCellEditorProps } from '../interfaces/cs-grid-base-interfaces';
-import { NumberFormat } from '../interfaces/number-format.enum';
 import { CSGridNumberEditor } from './cs-grid-number-editor';
 
 /**
@@ -14,6 +13,6 @@ export class CSGridDecimalEditor extends CSGridNumberEditor<
 		this.numberFormat = new Intl.NumberFormat(this.props.userInfo.userLocale, {
 			maximumFractionDigits: 20
 		});
-		this.numberFormatType = NumberFormat.Decimal;
+		this.numberFormatType = 'Decimal';
 	}
 }

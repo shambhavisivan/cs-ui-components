@@ -4,12 +4,7 @@ import { CSGridCellRendererProps } from '../interfaces/cs-grid-base-interfaces';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
 import { CSGridTooltip } from './cs-grid-tooltip';
 
-export enum ValidationStatus {
-	Info = 'Info',
-	Warning = 'Warning',
-	Error = 'Error',
-	None = 'None'
-}
+export type ValidationStatus = 'Info' | 'Warning' | 'Error' | 'None';
 
 export class CSGridRowValidationRenderer extends CSGridBaseRenderer<ValidationStatus> {
 	constructor(props: CSGridCellRendererProps<ValidationStatus>) {
@@ -22,13 +17,13 @@ export class CSGridRowValidationRenderer extends CSGridBaseRenderer<ValidationSt
 		const status = this.props.value.cellValue;
 		let className: string;
 		switch (status) {
-			case ValidationStatus.Info:
+			case 'Info':
 				className = 'icon-info';
 				break;
-			case ValidationStatus.Warning:
+			case 'Warning':
 				className = 'icon-warning';
 				break;
-			case ValidationStatus.Error:
+			case 'Error':
 				className = 'icon-error';
 				break;
 		}
@@ -40,7 +35,7 @@ export class CSGridRowValidationRenderer extends CSGridBaseRenderer<ValidationSt
 					(this.isReadOnly() ? ' read-only-cell' : '')
 				}
 			>
-				{status !== ValidationStatus.None && (
+				{status !== 'None' && (
 					<CSGridTooltip helpText={this.props.value.errorMessage}>
 						<span className={className} aria-hidden='true' />
 					</CSGridTooltip>

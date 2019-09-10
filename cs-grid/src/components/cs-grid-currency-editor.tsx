@@ -1,5 +1,4 @@
 import { CSGridCellEditorProps } from '../interfaces/cs-grid-base-interfaces';
-import { NumberFormat } from '../interfaces/number-format.enum';
 import { CSGridNumberEditor } from './cs-grid-number-editor';
 
 /**
@@ -19,7 +18,7 @@ export class CSGridCurrencyEditor extends CSGridNumberEditor<
 			this.props.userInfo.userLocale,
 			this.props.userInfo.currencyCode
 		);
-		this.numberFormatType = NumberFormat.Currency;
+		this.numberFormatType = 'Currency';
 	}
 
 	/**

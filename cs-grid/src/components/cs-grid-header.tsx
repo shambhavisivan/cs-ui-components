@@ -21,11 +21,7 @@ interface CSGridHeaderState {
 /**
  * The possible orderings of a column in the grid.
  */
-export enum SortOrder {
-	Ascending = 'asc',
-	Descending = 'desc',
-	None = ''
-}
+export type SortOrder = 'asc' | 'desc' | '';
 
 /**
  * A custom header class for cs-grid, which manages sorting, column filtering and the column title.
@@ -42,7 +38,7 @@ export class CSGridHeader extends React.Component<CSGridHeaderProps, CSGridHeade
 		this.props.column.addEventListener('filterChanged', this.onFilterChanged);
 
 		const sort: string = props.column.getSort();
-		const sorted: SortOrder = sort ? (sort as SortOrder) : SortOrder.None;
+		const sorted: SortOrder = sort ? (sort as SortOrder) : '';
 		this.state = {
 			filtered: this.props.column.isFilterActive(),
 			sorted
@@ -60,9 +56,8 @@ export class CSGridHeader extends React.Component<CSGridHeaderProps, CSGridHeade
 			HTMLSpanElement
 		>;
 		if (this.props.enableSorting) {
-			const downArrowClass =
-				this.state.sorted === SortOrder.Descending ? 'icon-chevrondown' : '';
-			const upArrowClass = this.state.sorted === SortOrder.Ascending ? 'icon-chevronup' : '';
+			const downArrowClass = this.state.sorted === 'desc' ? 'icon-chevrondown' : '';
+			const upArrowClass = this.state.sorted === 'asc' ? 'icon-chevronup' : '';
 
 			sortElement = (
 				<span
@@ -110,11 +105,11 @@ export class CSGridHeader extends React.Component<CSGridHeaderProps, CSGridHeade
 	 * Calls ag-grid to order the table using this column to order.
 	 */
 	onSortRequested = (event: { shiftKey: boolean }) => {
-		let newOrder = SortOrder.None;
-		if (this.state.sorted === SortOrder.None) {
-			newOrder = SortOrder.Ascending;
-		} else if (this.state.sorted === SortOrder.Ascending) {
-			newOrder = SortOrder.Descending;
+		let newOrder = '';
+		if (this.state.sorted === '') {
+			newOrder = 'asc';
+		} else if (this.state.sorted === 'asc') {
+			newOrder = 'desc';
 		}
 		this.props.setSort(newOrder, event.shiftKey);
 	};
@@ -125,15 +120,15 @@ export class CSGridHeader extends React.Component<CSGridHeaderProps, CSGridHeade
 	onSortChanged = () => {
 		if (this.props.column.isSortAscending()) {
 			this.setState({
-				sorted: SortOrder.Ascending
+				sorted: 'asc'
 			});
 		} else if (this.props.column.isSortDescending()) {
 			this.setState({
-				sorted: SortOrder.Descending
+				sorted: 'desc'
 			});
 		} else {
 			this.setState({
-				sorted: SortOrder.None
+				sorted: ''
 			});
 		}
 	};

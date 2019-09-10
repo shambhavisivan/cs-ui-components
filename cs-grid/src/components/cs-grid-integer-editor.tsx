@@ -1,5 +1,4 @@
 import { CSGridCellEditorProps } from '../interfaces/cs-grid-base-interfaces';
-import { NumberFormat } from '../interfaces/number-format.enum';
 import { CSGridNumberEditor } from './cs-grid-number-editor';
 
 /**
@@ -20,7 +19,7 @@ export class CSGridIntegerEditor extends CSGridNumberEditor<CSGridIntegerEditorP
 			maximumFractionDigits: 0,
 			minimumFractionDigits: 0
 		});
-		this.numberFormatType = NumberFormat.Integer;
+		this.numberFormatType = 'Integer';
 
 		if (props.stepperArrows) {
 			this.inputType = 'number';
@@ -28,7 +27,7 @@ export class CSGridIntegerEditor extends CSGridNumberEditor<CSGridIntegerEditorP
 	}
 
 	/**
-	 * Localises the input if the stepperArrows are not used otherwise returns the integer.
+	 * Localizes the input if the stepperArrows are not used otherwise returns the integer.
 	 * @param value - Either the underlying number or a localised string.
 	 */
 	format(value: number | string): number | string {

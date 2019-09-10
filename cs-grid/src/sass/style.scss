@@ -157,7 +157,7 @@ body > div > div {
 	@include sc(--csgrid-theme-c);
 	@include sbg(--csgrid-theme-bg);
 
-	&.main {
+	&.cs-grid_main {
 		height: 400px;
 	}
 
@@ -441,6 +441,26 @@ body > div > div {
 	&.ag-cell-focus {
 		@include css4 {
 			border: 1px solid var(--csgrid-transparent);
+		}
+	}
+}
+
+body .cs-grid_app-wrapper .cs-grid_main {
+	input, select {		
+		display: initial;
+		padding: initial;
+		border-radius: initial;
+		transition: initial;
+		line-height: initial;
+		height: initial;
+		font-size: initial;
+		width: auto;
+		appearance: initial;
+		-webkit-appearance: initial;
+		@include sc(--csgrid-main);
+		@include sbg(--csgrid-secondary);
+		@include css4 {
+			border: 1px solid cvar(--csgrid-tertiary);
 		}
 	}
 }

@@ -2,13 +2,7 @@ import React from 'react';
 
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
-export enum CSGridPaginationLocation {
-	Header = 'Header',
-	Footer = 'Footer',
-	Both = 'Both',
-	Detached = 'Detached',
-	None = 'None'
-}
+export type CSGridPaginationLocation = 'Header' | 'Footer' | 'Both' | 'Detached' | 'None';
 
 export interface CSGridPagination {
 	location: CSGridPaginationLocation;

@@ -7,9 +7,6 @@ import './sass/style.scss';
 
 import { CSGrid } from './components/cs-grid';
 import { CSGridLookupSearchResult } from './components/cs-grid-lookup-editor';
-import { CSGridPaginationLocation } from './components/cs-grid-pagination';
-import { CSGridQuickFilterLocation } from './components/cs-grid-quick-filter';
-import { ValidationStatus } from './components/cs-grid-row-validation-renderer';
 import { CellData, ColGroupDef, ColDef } from './interfaces/cs-grid-base-interfaces';
 
 interface AppState {
@@ -288,7 +285,7 @@ export class App extends React.Component<object, AppState> {
 				},
 				exampleRowSelection: {},
 				exampleRowValidation: {
-					cellValue: ValidationStatus.None
+					cellValue: 'None'
 				},
 				exampleText: {
 					cellValue: 'Toyota'
@@ -341,7 +338,7 @@ export class App extends React.Component<object, AppState> {
 				},
 				exampleRowSelection: {},
 				exampleRowValidation: {
-					cellValue: ValidationStatus.Error,
+					cellValue: 'Error',
 					errorMessage: 'Error 1\nError 2'
 				},
 				exampleText: {
@@ -385,7 +382,7 @@ export class App extends React.Component<object, AppState> {
 				},
 				exampleRowSelection: {},
 				exampleRowValidation: {
-					cellValue: ValidationStatus.Info,
+					cellValue: 'Info',
 					errorMessage: 'Info 1\nInfo 2'
 				},
 				exampleText: {
@@ -439,7 +436,7 @@ export class App extends React.Component<object, AppState> {
 				},
 				exampleRowSelection: {},
 				exampleRowValidation: {
-					cellValue: ValidationStatus.Warning,
+					cellValue: 'Warning',
 					errorMessage: 'Warning 1\nWarning 2'
 				},
 				exampleText: {
@@ -462,6 +459,7 @@ export class App extends React.Component<object, AppState> {
 			rowData
 		};
 	}
+
 	delayResponse = (result: any) => {
 		return new Promise<any>((resolve, reject) => {
 			setTimeout(() => {
@@ -497,11 +495,11 @@ export class App extends React.Component<object, AppState> {
 					pageSizes={[10, 20, 50, 100]}
 					csGridPagination={{
 						detachedCSSClass: 'example-pagination',
-						location: CSGridPaginationLocation.Both
+						location: 'Both'
 					}}
 					csGridQuickFilter={{
 						detachedCSSClass: 'example-filter',
-						location: CSGridQuickFilterLocation.Both
+						location: 'Both'
 					}}
 					// suppressDragLeaveHidesColumns={false}
 					multiSelect={true}

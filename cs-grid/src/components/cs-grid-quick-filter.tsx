@@ -1,12 +1,6 @@
 import React from 'react';
 
-export enum CSGridQuickFilterLocation {
-	Header = 'Header',
-	Footer = 'Footer',
-	Both = 'Both',
-	Detached = 'Detached',
-	None = 'None'
-}
+export type CSGridQuickFilterLocation = 'Header' | 'Footer' | 'Both' | 'Detached' | 'None';
 
 export interface CSGridQuickFilter {
 	location: CSGridQuickFilterLocation;
@@ -24,7 +18,7 @@ export function CSGridQuickFilter(props: CSGridQuickFilterProps) {
 	return (
 		<div className='cs-grid_quick-filter-wrapper'>
 			<div className='cs-grid_quick-filter'>
-				<span className='cs-grid_search-icon'/>
+				<span className='cs-grid_search-icon' />
 				<input
 					className='cs-grid_quick-filter-input'
 					type='text'

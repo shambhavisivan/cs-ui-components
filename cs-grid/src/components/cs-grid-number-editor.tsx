@@ -15,7 +15,7 @@ import { CSGridCellError } from './cs-grid-cell-error';
 export class CSGridNumberEditor<P extends CSGridCellEditorProps<string | number>>
 	extends React.Component<P, CSGridCellEditorState<string | number>>
 	implements CSGridCellEditor {
-	numberFormatType: NumberFormat = NumberFormat.Decimal;
+	numberFormatType: NumberFormat = 'Decimal';
 	numberFormat: Intl.NumberFormat;
 	currencySymbol: string = '';
 	inputType = 'text';
@@ -27,8 +27,12 @@ export class CSGridNumberEditor<P extends CSGridCellEditorProps<string | number>
 
 		this.decimalSeparator = this.getSeparator(this.props.userInfo.userLocale, 'decimal');
 		this.inputRef = React.createRef();
+
 		this.state = {
-			value: props.value
+			value: {
+				cellValue: '',
+				errorMessage: props.value.errorMessage
+			}
 		};
 
 		this.format = this.format.bind(this);
@@ -73,7 +77,7 @@ export class CSGridNumberEditor<P extends CSGridCellEditorProps<string | number>
 				<input
 					type={this.inputType}
 					ref={this.inputRef}
-					value={this.state.value.cellValue}
+					value={this.state.value.cellValue || ''}
 					onChange={this.handleChange}
 					onBlur={this.onBlur}
 					placeholder=''
@@ -85,7 +89,7 @@ export class CSGridNumberEditor<P extends CSGridCellEditorProps<string | number>
 	}
 
 	/**
-	 * Localises the input value.
+	 * Localised the input value.
 	 * @param value - a localised string.
 	 */
 	format(value: number | string): number | string {
@@ -147,7 +151,7 @@ export class CSGridNumberEditor<P extends CSGridCellEditorProps<string | number>
 			return;
 		}
 
-		if (this.numberFormatType === NumberFormat.Integer && numberOfSeparatorOccurrences >= 1) {
+		if (this.numberFormatType === 'Integer' && numberOfSeparatorOccurrences >= 1) {
 			return;
 		}
 

@@ -14,11 +14,9 @@ export class CSGridPicklistRenderer extends CSGridBaseRenderer<Array<string> | s
 	render() {
 		return (
 			<span
-				className={
-					`select-wrapper
-					${this.state.isLastColumn ? 'is-last-column' : ''}
-					${this.isReadOnly() ? 'read-only-cell' : ''}`
-				}
+				className={`select-wrapper ${this.state.isLastColumn ? 'is-last-column' : ''} ${
+					this.isReadOnly() ? 'read-only-cell' : ''
+				}`}
 			>
 				<span>{this.format(this.state.value.cellValue)}</span>
 				<CSGridCellError errorMessage={this.state.value.errorMessage} />

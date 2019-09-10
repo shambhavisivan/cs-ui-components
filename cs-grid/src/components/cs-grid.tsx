@@ -25,10 +25,10 @@ import { CSGridLookupEditor } from './cs-grid-lookup-editor';
 import { CSGridLookupRenderer } from './cs-grid-lookup-renderer';
 import { CSGridMultiSelectLookupEditor } from './cs-grid-multi-select-lookup-editor';
 import { CSGridMultiSelectPicklistEditor } from './cs-grid-multi-select-picklist-editor';
-import { CSGridPagination, CSGridPaginationLocation, CSGridPaginator } from './cs-grid-pagination';
+import { CSGridPagination, CSGridPaginator } from './cs-grid-pagination';
 import { CSGridPicklistEditor } from './cs-grid-picklist-editor';
 import { CSGridPicklistRenderer } from './cs-grid-picklist-renderer';
-import { CSGridQuickFilter, CSGridQuickFilterLocation } from './cs-grid-quick-filter';
+import { CSGridQuickFilter } from './cs-grid-quick-filter';
 import { CSGridRowSelectionRenderer } from './cs-grid-row-selection-renderer';
 import { CSGridRowValidationRenderer } from './cs-grid-row-validation-renderer';
 import { CSGridTextEditor } from './cs-grid-text-editor';
@@ -114,7 +114,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		const paginationLocation = this.props.csGridPagination.location;
 		const csGridPaginations: Array<React.ReactPortal> = [];
 		let paginator: JSX.Element;
-		if (paginationLocation !== CSGridPaginationLocation.None) {
+		if (paginationLocation !== 'None') {
 			paginator = (
 				<CSGridPaginator
 					firstRowOnPage={this.state.firstRowOnPage}
@@ -148,7 +148,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		const quickFilterLocation = this.props.csGridQuickFilter.location;
 		const csGridQuickFilters: Array<React.ReactPortal> = [];
 		let quickFilter: JSX.Element;
-		if (quickFilterLocation !== CSGridQuickFilterLocation.None) {
+		if (quickFilterLocation !== 'None') {
 			quickFilter = (
 				<CSGridQuickFilter
 					onFilterText={this.onFilterText}
@@ -170,14 +170,11 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 
 		return (
 			<>
-				{(paginationLocation === CSGridPaginationLocation.Header ||
-					paginationLocation === CSGridPaginationLocation.Both) &&
-					paginator}
-				{(quickFilterLocation === CSGridQuickFilterLocation.Header ||
-					quickFilterLocation === CSGridQuickFilterLocation.Both) &&
+				{(paginationLocation === 'Header' || paginationLocation === 'Both') && paginator}
+				{(quickFilterLocation === 'Header' || quickFilterLocation === 'Both') &&
 					quickFilter}
-				<div className='app-wrapper'>
-					<div className='ag-theme-balham main'>
+				<div className='cs-grid_app-wrapper'>
+					<div className='ag-theme-balham cs-grid_main'>
 						<AgGridReact
 							// listening for events
 							onGridReady={this.onGridReady}
@@ -185,7 +182,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 							quickFilterText={this.state.filterText}
 							columnDefs={this.props.columnDefs}
 							rowData={this.props.rowData}
-							pagination={paginationLocation !== CSGridPaginationLocation.None}
+							pagination={paginationLocation !== 'None'}
 							suppressPaginationPanel={true}
 							paginationPageSize={pageSizes[0]}
 							onPaginationChanged={this.onPaginationChanged}
@@ -202,7 +199,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 										}
 
 										const cellValue = value.cellValue;
-										if (cellValue === undefined && cellValue == null) {
+										if (cellValue === undefined || cellValue == null) {
 											return '';
 										}
 
@@ -233,12 +230,9 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 						/>
 					</div>
 				</div>
-				{(quickFilterLocation === CSGridQuickFilterLocation.Footer ||
-					quickFilterLocation === CSGridQuickFilterLocation.Both) &&
+				{(quickFilterLocation === 'Footer' || quickFilterLocation === 'Both') &&
 					quickFilter}
-				{(paginationLocation === CSGridPaginationLocation.Footer ||
-					paginationLocation === CSGridPaginationLocation.Both) &&
-					paginator}
+				{(paginationLocation === 'Footer' || paginationLocation === 'Both') && paginator}
 				{csGridPaginations}
 				{csGridQuickFilters}
 			</>
