@@ -130,7 +130,7 @@ export class CSGridLookupEditor
 					</div>
 				</div>
 				{this.state.showGrid && (
-					<div className='lookup-grid'>
+					<div className='cs-grid_lookup-grid'>
 						<AgGridReact
 							overlayLoadingTemplate={'Searching...'}
 							rowSelection={this.multiSelect ? 'multiple' : 'single'}

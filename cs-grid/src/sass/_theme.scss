@@ -47,65 +47,6 @@ $cs-red-medium-2: #c23934;
 $cs-red-medium-3: #d9675d;
 $cs-white: #ffffff;
 
-/* OLD COLOR VALUES */
-// $black: #000;
-// $blue-dark-1: #16325c;
-// $blue-dark-2: #30486c;
-// $blue-dark-3: #1b3d71;
-// $blue-dark-4: #54698d;
-// $blue-light-1: #b6dde9;
-// $blue-light-2: #c6e1ff;
-// $blue-light-4: #e3f3ff;
-// $blue-medium-1: #005fb2;
-// $blue-medium-2: #0062b8;
-// $blue-medium-3: #1589ee;
-// $blue-medium-4: #1090ff;
-// $blue-medium-5: #5897fb;
-// $blue-medium-6: #5eb4ff;
-// $gray-medium-17: #b0adab;
-// $blue-sf: #0070d2;
-// $gray-dark-1: #080707;
-// $gray-dark-2: #444444;
-// $gray-dark-3: #4e5c60;
-// $gray-dark-4: #5e5d60;
-// $gray-dark-5: #6a6a6a;
-// $gray-dark-6: #747474;
-// $gray-dark-7: #777f8b;
-// $gray-dark-8: #3e3e3c;
-// $gray-dark-9: #706e6b;
-// $gray-light-2: #dddddd;
-// $gray-light-5: #dddbda;
-// $gray-light-6: #d8dde6;
-// $gray-light-7: #ebebeb;
-// $gray-light-8: #e0e5ee;
-// $gray-light-10: #e4ebf6;
-// $gray-light-11: #ecebea;
-// $gray-light-12: #eef1f6;
-// $gray-light-14: #f2f3f3;
-// $gray-light-17: #f8f8f8;
-// $gray-light-19: #f4f6f9;
-// $gray-light-20: #fdfdfd;
-// $gray-light-21: #fafaf9;
-// $gray-light-26: #fafaf9;
-// $gray-medium-1: #999999;
-// $gray-medium-2: #969492;
-// $gray-medium-4: #9a9ea5;
-// $gray-medium-6: #aaaaaa;
-// $gray-medium-7: #a9a9a9;
-// $gray-medium-8: #b0b0b0;
-// $gray-medium-11: #c9c7c5;
-// $gray-medium-12: #a8b7c7;
-// $green-dark-1: #04844b;
-// $green-light-3: #4bca81;
-// $orange-medium-1: #ffb75d;
-// $orange-cs: #ffa429;
-// $red-medium-1: #c11a1a;
-// $red-medium-2: #c23934;
-// $red-medium-3: #d81c2a;
-// $red-medium-4: #d9675d;
-// $green-medium-1: #06aad1;
-// $white: #fff;
-
 $css4: true;
 
 // It is necessary to define the variables in sass map instead of :root, for compatibility reasons.
@@ -143,21 +84,10 @@ $variables: (
 	--csgrid-datepicker-selected-bg: $cs-blue-sf,
 	--csgrid-datepicker-selected-c: $cs-white,
 
-	// --cs-shadow-light: rgba($cs-black, 0.1),
-	// --cs-shadow-medium: rgba($cs-black, 0.22),
-	// --cs-shadow-dark: rgba($cs-black, 0.5),
-
 	--csgrid-input-bg: $cs-white,
 	--csgrid-input-br: $cs-gray-light-2,
 	--csgrid-input-active-br: $cs-blue-medium-5,
-	// --cs-input-active-bg: $cs-white,
-	// --cs-input-disabled-bg: $cs-gray-light-5,
-	// --cs-input-disabled-br: $cs-gray-medium-3,
-	// --cs-input-readonly-shadow-br: $cs-blue-sf,
 	--csgrid-input-box: $cs-blue-sf,
-	// --cs-input-error-c: $cs-red-medium-1,
-	// --cs-input-error-br: $cs-red-medium-1,
-	// --cs-input-error-shadow: $cs-red-medium-1,
 	--csgrid-input-icon-fill: $cs-gray-medium-2,
 
 	--csgrid-transparent: transparent !important,
@@ -177,10 +107,13 @@ $variables: (
 	--csgrid-checkbox-disabled-br: $cs-gray-medium-3,
 	--csgrid-checkbox-disabled-checked-br: $cs-gray-medium-1,
 	--csgrid-checkbox-required-c: $cs-red-medium-2,
-	// --cs-checkbox-error-br: $cs-red-medium-2,
 	--csgrid-checkbox-label-c: $cs-gray-dark-2,
 
-	--csgrid-highlighted-disabled-c: rgba($cs-white, 0.5)
+	--csgrid-highlighted-disabled-c: rgba($cs-white, 0.5),
+
+	--csgrid-tooltip-bg: $cs-blue-dark-1,
+	--csgrid-tooltip-c: $cs-white,
+	--csgrid-tooltip-link-c: $cs-white,
 );
 
 // This will be used later for dark theme support

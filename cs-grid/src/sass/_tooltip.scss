@@ -8,13 +8,30 @@
 
 .cs-tooltip-group {
     padding: 0 0.5rem;
+    align-items: center;
+	display: inline-flex;
+	position: relative;
 
     .cs-tooltip-text {
+        &:hover ~ .cs-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
 
         .icon-info,
         .icon-warning,
         .icon-error {
             display: flex;
+        }
+
+        a {
+            font-size: 0.875rem;
+            text-decoration: none;
+            @include sc(--cs-tooltip-link-c);
+
+            &:hover {
+                text-decoration: underline;
+            }
         }
     }
 }
@@ -25,6 +42,41 @@
     @include sc(--csgrid-container-after-selected-c);
 }
 
+.cs-tooltip {
+    left: -9px;
+    border-radius: 0.25rem;
+	display: inline-flex;
+    font-size: 0.75rem;
+    max-width: 20rem;
+    min-height: 2rem;
+    opacity: 0;
+	padding: 0.5rem 0.75rem;
+	position: absolute;
+	top: calc(100% + 1rem);
+	transition: 0.25s;
+	visibility: hidden;
+	width: 170px;
+	@include sbg(--csgrid-tooltip-bg);
+    @include sc(--csgrid-tooltip-c);
+
+    &::before {
+		background-color: inherit;
+		content: "";
+		bottom: -0.5rem;
+		left: 1.5rem;
+		height: 1rem;
+		margin-bottom: 0.5rem;
+		margin-left: -0.5rem;
+		margin-right: -0.5rem;
+		margin-top: -0.5rem;
+		position: absolute;
+		right: 0;
+		top: 0;
+		transform: rotate(45deg);
+		width: 1rem;
+	}
+}
+
 .ag-row-last .cs-tooltip-group .cs-tooltip {
     top: -57px;
 
@@ -32,10 +84,6 @@
         bottom: -1rem;
         top: unset;
     }
-}
-
-.cs-tooltip {
-    left: -9px;
 }
 
 .is-last-column .cs-tooltip,
