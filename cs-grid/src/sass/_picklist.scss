@@ -1,100 +1,103 @@
-.ag-react-container {
-	width: 100%;
-
-	.select-wrapper {
+.cs-grid_app-wrapper {
+	.ag-react-container {
 		width: 100%;
-		display: flex;
-		justify-content: space-between;
 
-		&:after {
-			content: "g";
-			font-size: 1rem;
-			pointer-events: none;
-			margin-left: auto;
-			@include sc(--csgrid-container-after-c);
+		.select-wrapper {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+
+			&:after {
+				content: "g";
+				font-size: 1rem;
+				pointer-events: none;
+				margin-left: auto;
+				@include sc(--csgrid-container-after-c);
+			}
 		}
 	}
-}
 
-.cs-grid_picklist-search-wrapper {
-	width: 100%;
-	@include css4 {
-		border-bottom: 1px solid var(--csgrid-popup-br);
-	}
-}
-
-.ag-row-selected .ag-react-container .select-wrapper:after {
-	@include sc(--csgrid-container-after-selected-c);
-}
-
-.ag-popup-editor {
-	display: flex;
-	width: 240px !important;
-	max-height: 300px;
-	border-radius: 0.25rem !important;
-	overflow: hidden;
-	@include css4 {
-		border: 1px solid var(--csgrid-popup-br) !important;
-		box-shadow: 0 2px 3px 0 (--csgrid-popup-box) !important;
+	.cs-grid_picklist-search-wrapper {
+		width: 100%;
+		@include css4 {
+			border-bottom: 1px solid var(--csgrid-popup-br);
+		}
 	}
 
-	> .ag-react-container > div {
-		display: block;
+	.ag-row-selected .ag-react-container .select-wrapper:after {
+		@include sc(--csgrid-container-after-selected-c);
 	}
 
-	> div {
-		box-shadow: none;
+	.ag-popup-editor {
+		display: flex;
+		width: 240px !important;
+		max-height: 300px;
+		border-radius: 0.25rem !important;
+		overflow: hidden;
+		@include css4 {
+			border: 1px solid var(--csgrid-popup-br) !important;
+			box-shadow: 0 2px 3px 0 (--csgrid-popup-box) !important;
+		}
+
+		> .ag-react-container > div {
+			display: block;
+		}
 
 		> div {
-			width: 100% !important;
+			box-shadow: none;
+
+			> div {
+				width: 100% !important;
+			}
 		}
-	}
 
-	.picklist-header {
-		display: flex;
-		align-items: center;
-		padding: 0.4rem 0.5rem 0.4rem 0.6rem;
-	}
-
-	.picklist-list {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		overflow: auto;
-
-		.picklist-list-item {
-			position: relative;
+		.picklist-header {
 			display: flex;
 			align-items: center;
 			padding: 0.4rem 0.5rem 0.4rem 0.6rem;
-			cursor: pointer;
-			@include css4 {
-				border-bottom: 1px solid var(--csgrid-picklist-br);
-			}
+		}
 
-			&:hover {
-				@include sbg(--csgrid-picklist-hover-bg)
-			}
+		.picklist-list {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			overflow: auto;
 
-			&.selected {
-				@include sc(--csgrid-picklist-selected-c);
-				@include sbg(--csgrid-picklist-selected-bg);
+			.picklist-list-item {
+				position: relative;
+				display: flex;
+				align-items: center;
+				padding: 0.4rem 0.5rem 0.4rem 0.6rem;
+				cursor: pointer;
+				@include css4 {
+					border-bottom: 1px solid var(--csgrid-picklist-br);
+				}
 
-				&:after {
-					display: block;
-					content: "";
-					height: 0.25rem;
-					width: 0.5rem;
-					position: absolute;
-					top: 50%;
-					right: 0.6rem;
-					transform: translateY(-50%) rotate(-45deg);
-					@include css4 {
-						border-bottom: 2px solid var(--csgrid-picklist-tick-br);
-						border-left: 2px solid var(--csgrid-picklist-tick-br);
+				&:hover {
+					@include sbg(--csgrid-picklist-hover-bg)
+				}
+
+				&.selected {
+					@include sc(--csgrid-picklist-selected-c);
+					@include sbg(--csgrid-picklist-selected-bg);
+
+					&:after {
+						display: block;
+						content: "";
+						height: 0.25rem;
+						width: 0.5rem;
+						position: absolute;
+						top: 50%;
+						right: 0.6rem;
+						transform: translateY(-50%) rotate(-45deg);
+						@include css4 {
+							border-bottom: 2px solid var(--csgrid-picklist-tick-br);
+							border-left: 2px solid var(--csgrid-picklist-tick-br);
+						}
 					}
 				}
 			}
 		}
 	}
 }
+

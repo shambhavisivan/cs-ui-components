@@ -17,9 +17,17 @@
 			height: 2rem;
 			border-radius: 0.25rem;
 			margin: 0 0 0.5rem 0;
+			font-size: 0.75rem;
+			padding: 0 0.5rem;
+			box-shadow: none !important;
 			@include sbg(--csgrid-input-bg);
 			@include css4 {
 				border: 1px solid var(--csgrid-input-br);
+			}
+			&:focus {
+				@include css4 {
+					border: 1px solid var(--csgrid-main);
+				}
 			}
 		}
 
@@ -31,9 +39,17 @@
 				border-radius: 0.25rem;
 				margin: 0;
 				padding: 0 0.5rem;
+				font-size: 0.75rem;
+				box-shadow: none !important;
 				@include sbg(--csgrid-input-bg);
 				@include css4 {
 					border: 1px solid var(--csgrid-input-br);
+				}
+
+				&:focus {
+					@include css4 {
+						border: 1px solid var(--csgrid-main);
+					}
 				}
 			}
 		}

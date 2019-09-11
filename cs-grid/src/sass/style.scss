@@ -15,352 +15,237 @@
 @import "../../node_modules/ag-grid-community/dist/styles/ag-grid";
 @import "../../node_modules/ag-grid-community/dist/styles/ag-theme-balham";
 
-// THIS WAS IN INDEX.HTML - REMOVING IT DOESN'T SEEM TO HAVE A NEGATIVE EFFECT BUT NEED TO CHECK
+.cs-grid_pagination-wrapper,
+.cs-grid_quick-filter-wrapper,
+.cs-grid_app-wrapper {
 
-// html, body {
-// 	height: 100%;
-// }
+	.ag-theme-balham {
+		font-weight: 400;
+		font-size: 0.75rem;
+		line-height: 1;
+		font-family: Salesforce Sans, Arial, sans-serif;
+		@include sc(--csgrid-theme-c);
+		@include sbg(--csgrid-theme-bg);
 
-// body {
-// 	line-height: 1
-// }
-
-// h1 {
-// 	font-size: 1.5rem;
-// }
-
-// div.card-body > a {
-// 	margin-top: 5px
-// }
-
-// .btn-primary {
-// 	margin-right: 5px;
-// }
-
-// button {
-// 	margin-left: 4px;
-// 	margin-right: 4px;
-// }
-
-// .align-right {
-// 	text-align: right
-// }
-
-// .customHeaderMenuButton {
-// 	margin-left: 4px;
-// 	float: left;
-// }
-
-// .customHeaderLabel {
-// 	margin-left: 5px;
-// 	float: left;
-// }
-
-// .customSortDownLabel {
-// 	float: left;
-// 	margin-left: 10px;
-// }
-
-// .customSortUpLabel {
-// 	float: left;
-// 	margin-left: 3px;
-// }
-
-// .customSortRemoveLabel {
-// 	float: left;
-// 	font-size: 11px;
-// 	margin-left: 3px;
-// }
-
-// .active {
-// 	color: cornflowerblue;
-// }
-
-// .hidden {
-// 	display: none;
-// }
-
-// .customHeaderLabel {
-// 	margin-left: 5px;
-// 	float: left;
-// }
-
-// .customExpandButton {
-// 	float: right;
-// 	margin-left: 3px;
-// }
-
-// .expanded {
-// 	animation-name: toExpanded;
-// 	animation-duration: 1s;
-// 	-ms-transform: rotate(180deg); /* IE 9 */
-// 	-webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
-// 	transform: rotate(180deg);
-// }
-
-// .collapsed {
-// 	color: cornflowerblue;
-// 	animation-name: toCollapsed;
-// 	animation-duration: 1s;
-// 	-ms-transform: rotate(0deg); /* IE 9 */
-// 	-webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
-// 	transform: rotate(0deg);
-// }
-
-// @keyframes toExpanded {
-// 	from {
-// 		color: cornflowerblue;
-// 		-ms-transform: rotate(0deg); /* IE 9 */
-// 		-webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
-// 		transform: rotate(0deg);
-// 	}
-// 	to {
-// 		color: black;
-// 		-ms-transform: rotate(180deg); /* IE 9 */
-// 		-webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
-// 		transform: rotate(180deg);
-// 	}
-// }
-
-// @keyframes toCollapsed {
-// 	from {
-// 		color: black;
-// 		-ms-transform: rotate(180deg); /* IE 9 */
-// 		-webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
-// 		transform: rotate(180deg);
-// 	}
-// 	to {
-// 		color: cornflowerblue;
-// 		-ms-transform: rotate(0deg); /* IE 9 */
-// 		-webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
-// 		transform: rotate(0deg);
-// 	}
-// }
-
-body > div > div {
-	margin-bottom: 1rem;
-}
-
-* {
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
-	-webkit-font-smoothing: antialiased;
-	font-family: Salesforce Sans, Arial, sans-serif;
-}
-
-.ag-theme-balham {
-    font-weight: 400;
-    font-size: 0.75rem;
-	line-height: 1;
-	font-family: Salesforce Sans, Arial, sans-serif;
-	@include sc(--csgrid-theme-c);
-	@include sbg(--csgrid-theme-bg);
-
-	&.cs-grid_main {
-		height: 400px;
-	}
-
-	.ag-root {
-		@include css4 {
-			border: 1px solid var(--csgrid-row-br);
+		&.cs-grid_main {
+			height: 400px;
 		}
 
-		.ag-header {
-			height: 35px !important;
-			min-height: 35px !important;
-			font-size: 0.75rem;
-			font-weight: 400;
-			@include sbg(--csgrid-header-row-bg);
-			@include sc(--csgrid-header-row-c);
+		.ag-root {
 			@include css4 {
-				border-bottom: 1px solid var(--csgrid-row-br);
+				border: 1px solid var(--csgrid-row-br);
 			}
 
-			.ag-header-row {
+			.ag-header {
 				height: 35px !important;
 				min-height: 35px !important;
+				font-size: 0.75rem;
+				font-weight: 400;
+				@include sbg(--csgrid-header-row-bg);
+				@include sc(--csgrid-header-row-c);
+				@include css4 {
+					border-bottom: 1px solid var(--csgrid-row-br);
+				}
 
-				.ag-header-cell {
-					border: none;
+				.ag-header-row {
+					height: 35px !important;
+					min-height: 35px !important;
 
-					.cs-grid_header-inner {
-						width: 100%;
-					}
+					.ag-header-cell {
+						border: none;
 
-					.icon-menu {
-						display: flex;
-					}
-
-					.ag-react-container > div {
-						display: flex;
-						justify-content: flex-start;
-						align-items: center;
-
-						> span:not(.btn-icon):not(.customHeaderMenuButton):not(.ag-filter-icon) {
-							display: block;
-							overflow: hidden;
-							text-overflow: ellipsis;
-							white-space: nowrap;
+						.cs-grid_header-inner {
 							width: 100%;
-							margin: 0;
-							padding-right: 0.5rem;
 						}
 
-						.customHeaderMenuButton,
-						.ag-filter-icon {
-							margin-right: 0.25rem;
+						.icon-menu {
+							display: flex;
 						}
 
-						.btn-icon {
-							margin: 0;
-							display: block;
-							padding-top: 4px;
+						.ag-react-container > div {
+							display: flex;
+							justify-content: flex-start;
+							align-items: center;
+
+							> span:not(.btn-icon):not(.customHeaderMenuButton):not(.ag-filter-icon) {
+								display: block;
+								overflow: hidden;
+								text-overflow: ellipsis;
+								white-space: nowrap;
+								width: 100%;
+								margin: 0;
+								padding-right: 0.5rem;
+							}
+
+							.customHeaderMenuButton,
+							.ag-filter-icon {
+								margin-right: 0.25rem;
+							}
+
+							.btn-icon {
+								margin: 0;
+								display: block;
+								padding-top: 4px;
+							}
 						}
 					}
 				}
 			}
+
+			.ag-header-select-all,
+			.ag-header-select-all span {
+				margin: 0 !important;
+			}
 		}
 
-		.ag-header-select-all,
-		.ag-header-select-all span {
-			margin: 0 !important;
-		}
-	}
-
-	.ag-selection-checkbox {
-		display: flex;
-		margin-left: -1px;
-	}
-
-	.ag-checkbox-checked,
-	.ag-icon.ag-icon-checkbox-checked,
-	.ag-checkbox-unchecked,
-	.ag-icon.ag-icon-checkbox-unchecked,
-	.ag-checkbox-indeterminate,
-	.ag-icon.ag-icon-checkbox-indeterminate {
-		position: relative;
-		width: 1rem;
-		height: 1rem;
-		border-radius: 0.125rem;
-		cursor: pointer;
-		@include sbg(--csgrid-checkbox-bg);
-		@include css4 {
-			border: 1px solid var(--csgrid-checkbox-br);
+		.ag-selection-checkbox {
+			display: flex;
+			margin-left: -1px;
 		}
 
-		&:before {
+		.ag-checkbox-checked,
+		.ag-icon.ag-icon-checkbox-checked,
+		.ag-checkbox-unchecked,
+		.ag-icon.ag-icon-checkbox-unchecked,
+		.ag-checkbox-indeterminate,
+		.ag-icon.ag-icon-checkbox-indeterminate {
+			position: relative;
+			width: 1rem;
+			height: 1rem;
+			border-radius: 0.125rem;
+			cursor: pointer;
+			@include sbg(--csgrid-checkbox-bg);
+			@include css4 {
+				border: 1px solid var(--csgrid-checkbox-br);
+			}
+
+			&:before {
+				display: none;
+			}
+
+			&:active,
+			&:focus {
+				outline: 0;
+				@include css4 {
+					border: 1px solid var(--csgrid-checkbox-checked-br);
+					box-shadow: 0 0 3px var(--csgrid-checkbox-checked-br);
+				}
+			}
+		}
+
+		.ag-checkbox-checked,
+		.ag-icon.ag-icon-checkbox-checked {
+			&:after {
+				display: block;
+				content: "";
+				height: 0.25rem;
+				width: 0.5rem;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+				box-sizing: border-box;
+				@include css4 {
+					border-bottom: 2px solid var(--csgrid-checkbox-checked-br);
+					border-left: 2px solid var(--csgrid-checkbox-checked-br);
+				}
+			}
+		}
+
+		.ag-checkbox-indeterminate,
+		.ag-icon.ag-icon-checkbox-indeterminate {
+
+			&:after {
+				display: block;
+				content: "";
+				height: 0.25rem;
+				width: 0.5rem;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate3d(-50%, -65%, 0);
+				box-sizing: border-box;
+				@include css4 {
+					border-bottom: 2px solid var(--csgrid-checkbox-checked-br);
+				}
+			}
+		}
+
+		.ag-checkbox-checked > .ag-icon.ag-icon-checkbox-checked,
+		.ag-checkbox-unchecked > .ag-icon.ag-icon-checkbox-unchecked,
+		.ag-checkbox-indeterminate > .ag-icon.ag-icon.ag-icon-checkbox-indeterminate {
 			display: none;
 		}
 
-		&:active,
-		&:focus {
-			outline: 0;
-			@include css4 {
-				border: 1px solid var(--csgrid-checkbox-checked-br);
-				box-shadow: 0 0 3px var(--csgrid-checkbox-checked-br);
+		.ag-row-even,
+		.ag-row-odd {
+			@include sbg(--csgrid-row-bg);
+
+			&.ag-row-hover {
+				@include sbg(--csgrid-row-hover-bg);
 			}
 		}
-	}
 
-	.ag-checkbox-checked,
-	.ag-icon.ag-icon-checkbox-checked {
-		&:after {
-			display: block;
-			content: "";
-			height: 0.25rem;
-			width: 0.5rem;
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate3d(-50%, -50%, 0) rotate(-45deg);
-			box-sizing: border-box;
-			@include css4 {
-				border-bottom: 2px solid var(--csgrid-checkbox-checked-br);
-				border-left: 2px solid var(--csgrid-checkbox-checked-br);
+		.ag-cell {
+			padding-right: 0.75rem;
+			padding-left: 0.75rem;
+			overflow: visible;
+		}
+
+		.ag-cell-value {
+			overflow: visible;
+		}
+
+		.ag-cell .ag-react-container {
+
+			input[type="number"] {
+				width: 100% !important;
 			}
-		}
-	}
-
-	.ag-checkbox-indeterminate,
-	.ag-icon.ag-icon-checkbox-indeterminate {
-
-		&:after {
-			display: block;
-			content: "";
-			height: 0.25rem;
-			width: 0.5rem;
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate3d(-50%, -65%, 0);
-			box-sizing: border-box;
-			@include css4 {
-				border-bottom: 2px solid var(--csgrid-checkbox-checked-br);
-			}
-		}
-	}
-
-	.ag-checkbox-checked > .ag-icon.ag-icon-checkbox-checked,
-	.ag-checkbox-unchecked > .ag-icon.ag-icon-checkbox-unchecked,
-	.ag-checkbox-indeterminate > .ag-icon.ag-icon.ag-icon-checkbox-indeterminate {
-		display: none;
-	}
-
-	.ag-row-even,
-	.ag-row-odd {
-		@include sbg(--csgrid-row-bg);
-
-		&.ag-row-hover {
-			@include sbg(--csgrid-row-hover-bg);
-		}
-	}
-
-	.ag-cell {
-		padding-right: 0.75rem;
-		padding-left: 0.75rem;
-		overflow: visible;
-	}
-
-	.ag-cell-value {
-		overflow: visible;
-	}
-
-	.ag-cell .ag-react-container {
-
-		input[type="number"] {
-			width: 100% !important;
-		}
-
-		> span {
-			width: 100%;
-			display: flex;
 
 			> span {
-				display: block;
-				overflow: hidden;
-				text-overflow: ellipsis;
-				white-space: nowrap;
-				max-width: 100%;
+				width: 100%;
+				display: flex;
+
+				> span {
+					display: block;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					max-width: 100%;
+				}
 			}
 		}
-	}
 
-	.ag-cell,
-	.ag-cell.ag-cell-inline-editing,
-	.ag-cell.ag-cell-not-inline-editing {
-		display: flex;
-		align-items: center;
-		height: 100%;
-		border-radius: 0;
-		@include sbg(--csgrid-transparent);
-
-		.ag-react-container {
+		.ag-cell,
+		.ag-cell.ag-cell-inline-editing,
+		.ag-cell.ag-cell-not-inline-editing {
 			display: flex;
 			align-items: center;
-			height: 50px;
+			height: 100%;
+			border-radius: 0;
+			@include sbg(--csgrid-transparent);
 
-			input:not(.cs-grid_checkbox) {
+			.ag-react-container {
+				display: flex;
+				align-items: center;
+				height: 42px;
+				border: none !important;
+				border-radius: 0 !important;
+				box-shadow: none !important;
+				outline: none !important;
+
+				input:not(.cs-grid_checkbox) {
+					border: none !important;
+					height: 42px;
+					font-size: 0.75rem;
+					line-height: 26px;
+					padding-bottom: 1px;
+					padding: 0 0.75rem 1px;
+					@include sbg(--csgrid-transparent);
+				}
+			}
+
+			.ag-input-text-wrapper input {
 				border: none !important;
 				height: 50px;
 				font-size: 0.75rem;
@@ -370,97 +255,88 @@ body > div > div {
 			}
 		}
 
-		.ag-input-text-wrapper input {
-			border: none !important;
-			height: 50px;
-			font-size: 0.75rem;
-			line-height: 26px;
-			padding-bottom: 1px;
-			@include sbg(--csgrid-transparent);
+		.ag-cell.ag-cell-inline-editing {
+			padding: 0;
 		}
 	}
-}
 
-.ag-theme-balham .ag-header-cell::after,
-.ag-theme-balham .ag-header-group-cell::after {
-	margin-top: 0;
-	top: 0;
-	height: 35px;
-	width: 0;
-	@include css4 {
-		border-right: 1px solid var(--csgrid-input-br);
+	.ag-theme-balham .ag-header-cell::after,
+	.ag-theme-balham .ag-header-group-cell::after {
+		margin-top: 0;
+		top: 0;
+		height: 35px;
+		width: 0;
+		@include css4 {
+			border-right: 1px solid var(--csgrid-input-br);
+		}
 	}
-}
 
-.ag-row:hover {
-	z-index: 1;
-}
+	.ag-row:hover {
+		z-index: 1;
+	}
 
-.ag-row-selected {
-	@include sbg(--csgrid-main);
-	@include sc(--csgrid-secondary);
-
-	input {
+	.ag-row-selected {
+		@include sbg(--csgrid-main);
 		@include sc(--csgrid-secondary);
-	}
-}
 
-.ag-react-container {
-	display: flex;
-	flex: 1;
-
-	> div,
-	> span {
-		display: flex;
-		align-items: center;
-	}
-}
-
-.cs-grid_popup-wrapper {
-	display: flex !important;
-	flex-direction: column;
-	flex: 1;
-}
-
-.read-only-cell {
-	@include sc(--csgrid-checkbox-disabled-checked-br);
-}
-
-.ag-row-selected .read-only-cell {
-	@include sc(--csgrid-highlighted-disabled-c);
-}
-
-.cs-grid_number-inner,
-.cs-grid_text-inner {
-	width: 90%;
-}
-
-.ag-theme-balham .ag-cell.read-only-cell-wrapper:focus {
-	background: rgba(0,0,0,0.05) !important;
-
-	&.ag-cell-focus {
-		@include css4 {
-			border: 1px solid var(--csgrid-transparent);
+		input {
+			@include sc(--csgrid-secondary);
 		}
 	}
-}
 
-body .cs-grid_app-wrapper .cs-grid_main {
-	input, select {		
-		display: initial;
-		padding: initial;
-		border-radius: initial;
-		transition: initial;
-		line-height: initial;
-		height: initial;
-		font-size: initial;
-		width: auto;
-		appearance: initial;
-		-webkit-appearance: initial;
-		@include sc(--csgrid-main);
-		@include sbg(--csgrid-secondary);
-		@include css4 {
-			border: 1px solid cvar(--csgrid-tertiary);
+	.ag-react-container {
+		display: flex;
+		flex: 1;
+
+		> div,
+		> span {
+			display: flex;
+			align-items: center;
+		}
+	}
+
+	.cs-grid_popup-wrapper {
+		display: flex !important;
+		flex-direction: column;
+		flex: 1;
+	}
+
+	.read-only-cell {
+		@include sc(--csgrid-checkbox-disabled-checked-br);
+	}
+
+	.ag-row-selected .read-only-cell {
+		@include sc(--csgrid-highlighted-disabled-c);
+	}
+
+	.cs-grid_number-inner,
+	.cs-grid_text-inner {
+		width: 90% !important;
+		border: none !important;
+		border-radius: 0 !important;
+		box-shadow: none !important;
+		outline: none !important;
+	}
+
+	.ag-theme-balham .ag-cell.read-only-cell-wrapper:focus {
+		background: rgba(0,0,0,0.05) !important;
+
+		&.ag-cell-focus {
+			@include css4 {
+				border: 1px solid var(--csgrid-transparent);
+			}
+		}
+	}
+
+	// Overides for Jil
+	.ag-filter-condition {
+		label input {
+			border: none !important;
+			box-shadow: none !important;
+			border-radius: 50% !important;
+			width: 1rem !important;
+			height: 1rem !important;
+			padding: 0 !important;
 		}
 	}
 }

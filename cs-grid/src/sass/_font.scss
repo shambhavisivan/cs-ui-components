@@ -36,181 +36,188 @@
 	font-style: normal;
 }
 
-[data-icon]::before {
-	font-family: "cs-grid" !important;
-	content: attr(data-icon);
-	font-style: normal !important;
-	font-weight: normal !important;
-	font-variant: normal !important;
-	text-transform: none !important;
-	speak: none;
-	line-height: 1;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
+.cs-grid_pagination-wrapper,
+.cs-grid_quick-filter-wrapper,
+.cs-grid_app-wrapper {
 
-[class^="icon-"]::before,
-[class*=" icon-"]::before {
-	font-family: "cs-grid" !important;
-	font-style: normal !important;
-	font-weight: normal !important;
-	font-variant: normal !important;
-	text-transform: none !important;
-	speak: none;
-	line-height: 1;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-.icon-chevrondown::before {
-	content: "b";
-}
-
-.icon-chevronleft::before {
-	content: "c";
-}
-
-.icon-chevronright::before {
-	content: "d";
-}
-
-.icon-chevronup::before {
-	content: "e";
-}
-
-.icon-add::before {
-	content: "a";
-}
-.icon-check::before {
-	content: "m";
-}
-.icon-info {
-
-	&::before {
-		content: "j";
-		color: #706e6b;
+	[data-icon]::before {
+		font-family: "cs-grid" !important;
+		content: attr(data-icon);
+		font-style: normal !important;
+		font-weight: normal !important;
+		font-variant: normal !important;
+		text-transform: none !important;
+		speak: none;
+		line-height: 1;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
 	}
 
-	&:hover::before {
-		color: #005fb2;
-	}
-}
-
-.icon-search::before {
-	content: "\68"; // needs this
-}
-
-.icon-event::before {
-	content: "\69"; // need this
-}
-
-.icon-menu::before {
-	content: "l";
-}
-
-.icon-close::before {
-	content: "f";
-}
-
-.icon-warning {
-
-	&::before {
-		content: "o";
-		color: #706e6b;
+	[class^="icon-"]::before,
+	[class*=" icon-"]::before {
+		font-family: "cs-grid" !important;
+		font-style: normal !important;
+		font-weight: normal !important;
+		font-variant: normal !important;
+		text-transform: none !important;
+		speak: none;
+		line-height: 1;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
 	}
 
-	&:hover::before {
-		color: #ffb75d;
-	}
-}
-
-.icon-error {
-
-	&::before {
-		content: "h";
-		color: #706e6b;
+	.icon-chevrondown::before {
+		content: "b";
 	}
 
-	&:hover::before {
-		color: #c23934;
-	}
-}
-
-.icon-new-lead::before {
-	content: "\6d"; // need this
-}
-
-.select-wrapper:after {
-	content: "g";
-	font-size: 0.75rem !important;
-	font-family: "cs-grid"
-}
-
-.ag-icon-filter {
-	display: flex;
-
-	&:before {
-		content: "i" !important;
-		font-family: "cs-grid";
-		font-size: 0.75rem;
-	}
-}
-
-.cs-grid_clear-button::before {
-	content: "f";
-	font-family: "cs-grid";
-	@include sc(--csgrid-input-icon-fill);
-}
-
-.cs-grid_search-icon::before {
-	content: "p";
-	font-size: 0.75rem;
-	font-family: "cs-grid";
-	@include sc(--csgrid-input-icon-fill);
-}
-
-.cs-grid_pagination-icon-left {
-	display: flex;
-
-	&::before {
-		content: "u";
-		font-size: 0.75rem;
-		font-family: "cs-grid";
-	}
-}
-
-.cs-grid_pagination-icon-right {
-	display: flex;
-
-	&::before {
-		content: "v";
-		font-size: 0.75rem;
-		font-family: "cs-grid";
-	}
-}
-
-.cs-grid_pagination-select-icon::before {
-	content: "g";
-	font-size: 0.75rem;
-	font-family: "cs-grid";
-	@include sc(--csgrid-container-after-c);
-}
-
-.react-datepicker {
-
-	.react-datepicker__navigation--previous::before {
+	.icon-chevronleft::before {
 		content: "c";
-		font-family: "cs-grid";
 	}
 
-	.react-datepicker__navigation--next::before {
+	.icon-chevronright::before {
 		content: "d";
-		font-family: "cs-grid";
 	}
 
-	.react-datepicker__month-dropdown-container--select::before,
-	.react-datepicker__year-dropdown-container--select::before {
+	.icon-chevronup::before {
+		content: "e";
+	}
+
+	.icon-add::before {
+		content: "a";
+	}
+
+	.icon-check::before {
+		content: "m";
+	}
+
+	.icon-info {
+
+		&::before {
+			content: "j";
+			color: #706e6b;
+		}
+
+		&:hover::before {
+			color: #005fb2;
+		}
+	}
+
+	.icon-search::before {
+		content: "\68"; // needs this
+	}
+
+	.icon-event::before {
+		content: "\69"; // need this
+	}
+
+	.icon-menu::before {
+		content: "l";
+	}
+
+	.icon-close::before {
+		content: "f";
+	}
+
+	.icon-warning {
+
+		&::before {
+			content: "o";
+			color: #706e6b;
+		}
+
+		&:hover::before {
+			color: #ffb75d;
+		}
+	}
+
+	.icon-error {
+
+		&::before {
+			content: "h";
+			color: #706e6b;
+		}
+
+		&:hover::before {
+			color: #c23934;
+		}
+	}
+
+	.icon-new-lead::before {
+		content: "\6d"; // need this
+	}
+
+	.select-wrapper:after {
 		content: "g";
+		font-size: 0.75rem !important;
+		font-family: "cs-grid"
+	}
+
+	.ag-icon-filter {
+		display: flex;
+
+		&:before {
+			content: "i" !important;
+			font-family: "cs-grid";
+			font-size: 0.75rem;
+		}
+	}
+
+	.cs-grid_clear-button::before {
+		content: "f";
 		font-family: "cs-grid";
+		@include sc(--csgrid-input-icon-fill);
+	}
+
+	.cs-grid_search-icon::before {
+		content: "p";
+		font-size: 0.75rem;
+		font-family: "cs-grid";
+		@include sc(--csgrid-input-icon-fill);
+	}
+
+	.cs-grid_pagination-icon-left {
+		display: flex;
+
+		&::before {
+			content: "u";
+			font-size: 0.75rem;
+			font-family: "cs-grid";
+		}
+	}
+
+	.cs-grid_pagination-icon-right {
+		display: flex;
+
+		&::before {
+			content: "v";
+			font-size: 0.75rem;
+			font-family: "cs-grid";
+		}
+	}
+
+	.cs-grid_pagination-select-icon::before {
+		content: "g";
+		font-size: 0.75rem;
+		font-family: "cs-grid";
+		@include sc(--csgrid-container-after-c);
+	}
+
+	.react-datepicker {
+
+		.react-datepicker__navigation--previous::before {
+			content: "c";
+			font-family: "cs-grid";
+		}
+
+		.react-datepicker__navigation--next::before {
+			content: "d";
+			font-family: "cs-grid";
+		}
+
+		.react-datepicker__month-dropdown-container--select::before,
+		.react-datepicker__year-dropdown-container--select::before {
+			content: "g";
+			font-family: "cs-grid";
+		}
 	}
 }
