@@ -30,7 +30,8 @@
 
 	.ag-popup-editor {
 		display: flex;
-		width: 240px !important;
+		min-width: 240px !important;
+		max-width: 800px !important;
 		max-height: 300px;
 		border-radius: 0.25rem !important;
 		overflow: hidden;

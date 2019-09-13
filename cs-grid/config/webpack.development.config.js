@@ -2,7 +2,7 @@ const { resolve } = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const PORT = '8080';
+const PORT = '8090';
 
 module.exports = {
     mode: 'development',

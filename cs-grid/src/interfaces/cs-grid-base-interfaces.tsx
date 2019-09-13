@@ -1,4 +1,12 @@
-import { ColDef, ColGroupDef, ICellEditorParams, ICellRendererParams } from 'ag-grid-community';
+import {
+	CellClickedEvent,
+	ColDef,
+	ColGroupDef,
+	GridApi,
+	GridReadyEvent,
+	ICellEditorParams,
+	ICellRendererParams
+} from 'ag-grid-community';
 // This type is needed to correctly call the editable function.
 // tslint:disable-next-line: no-submodule-imports
 import { IsColumnFuncParams } from 'ag-grid-community/dist/lib/entities/colDef';
@@ -45,3 +53,6 @@ export interface CSGridCellRenderer extends ICellRendererReactComp {}
 export interface IsColumnFuncParams extends IsColumnFuncParams {}
 export interface ColDef extends ColDef {}
 export interface ColGroupDef extends ColGroupDef {}
+export interface GridReadyEvent extends GridReadyEvent {}
+export interface CellClickedEvent extends CellClickedEvent {}
+export interface GridApi extends GridApi {}

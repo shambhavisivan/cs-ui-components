@@ -1,4 +1,4 @@
-import { GridApi, GridReadyEvent } from 'ag-grid-community';
+import { ColumnApi, GridApi, GridReadyEvent } from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react';
 import React from 'react';
 
@@ -27,12 +27,15 @@ export interface CSGridLookupSearchResult {
 /**
  * minSearchTermLength - The minimum number of characters needed before the lookup will trigger.
  * displayColumn - The column to display in the renderer.
+ * guidColumn - A unique ID for the row, this value will not be shown in the grid.
  * getLookupValues - Returns the latest lookup values depending on the search term input.
  */
-export interface CSGridLookupEditorProps extends CSGridCellEditorProps<string | Array<string>> {
+export interface CSGridLookupEditorProps
+	extends CSGridCellEditorProps<Array<Record<string, string>> | Record<string, string>> {
 	minSearchTermLength: number;
 	displayColumn: string;
-	getLookupValues(searchTerm: string): Promise<CSGridLookupSearchResult>;
+	guidColumn: string;
+	getLookupValues(searchTerm: string, guid: string): Promise<CSGridLookupSearchResult>;
 }
 
 /**
@@ -42,8 +45,9 @@ export interface CSGridLookupEditorProps extends CSGridCellEditorProps<string | 
  * rowData - The rows returned from the getLookupValues call.
  * showGrid - A flag to know when the grid should be shown.
  */
-interface CSGridLookupEditorState extends CSGridCellEditorState<string | Array<string>> {
-	selected: Array<string>;
+interface CSGridLookupEditorState
+	extends CSGridCellEditorState<Array<Record<string, string>> | Record<string, string>> {
+	selected: Array<Record<string, string>>;
 	searchTerm: string;
 	columnDefs: Array<ColDef>;
 	rowData: Array<Record<string, string>>;
@@ -57,6 +61,7 @@ export class CSGridLookupEditor
 	extends React.Component<CSGridLookupEditorProps, CSGridLookupEditorState>
 	implements CSGridCellEditor {
 	gridApi: GridApi;
+	columnApi: ColumnApi;
 	multiSelect: boolean = false;
 
 	constructor(props: CSGridLookupEditorProps) {
@@ -103,6 +108,7 @@ export class CSGridLookupEditor
 	/* Grid Events we're listening to */
 	onGridReady = (params: GridReadyEvent) => {
 		this.gridApi = params.api;
+		this.columnApi = params.columnApi;
 		this.gridApi.sizeColumnsToFit();
 	};
 
@@ -159,7 +165,10 @@ export class CSGridLookupEditor
 	 * Retrieves the lookup values and updates the state accordingly.
 	 */
 	private getLookupValues = async () => {
-		const results: CSGridLookupSearchResult = await this.props.getLookupValues('');
+		const results: CSGridLookupSearchResult = await this.props.getLookupValues(
+			this.state.searchTerm,
+			this.props.node.id
+		);
 
 		this.setState(
 			{
@@ -169,13 +178,43 @@ export class CSGridLookupEditor
 			},
 			() => {
 				this.gridApi.forEachNode(node => {
-					const row = node.data[this.props.displayColumn];
+					const rowGuid = node.data[this.props.guidColumn];
 
-					if (this.state.selected.indexOf(row) > -1) {
-						node.setSelected(true, false, true);
+					for (const row of this.state.selected) {
+						if (row && row[this.props.guidColumn] === rowGuid) {
+							node.setSelected(true, false, true);
+						}
 					}
 				});
-				this.gridApi.sizeColumnsToFit();
+
+				this.columnApi.autoSizeAllColumns();
+
+				let gridWidth = this.columnApi
+					.getColumnState()
+					.reduce((totalWidth, column) => totalWidth + column.width, 0);
+				gridWidth += 4;
+
+				// Calculate width to fit contents.
+				const popupWrapper: any = document.querySelectorAll(
+					'.cs-grid_app-wrapper .cs-grid_main .ag-popup-editor'
+				)[0];
+				popupWrapper.style.width = `${gridWidth}px`;
+
+				const popupWrapperInfo = popupWrapper.getBoundingClientRect();
+				const outerGrid = document
+					.querySelectorAll('.cs-grid_app-wrapper')[0]
+					.getBoundingClientRect();
+
+				// Calculate position to fit within the outer grid.
+				const diff = popupWrapperInfo.left + gridWidth - outerGrid.width + 3;
+				if (diff > 0) {
+					popupWrapper.style.left = `${popupWrapperInfo.left - diff}px`;
+				}
+
+				const visibleGridHeight = outerGrid.height - (popupWrapperInfo.top - outerGrid.top);
+				if (visibleGridHeight - popupWrapperInfo.height + 3 < 0) {
+					popupWrapper.style.top = `${outerGrid.height - popupWrapperInfo.height - 3}px`;
+				}
 			}
 		);
 	};
@@ -184,17 +223,11 @@ export class CSGridLookupEditor
 	 * Called when the user selects a row in the grid.
 	 */
 	private onSelectionChanged = async (): Promise<void> => {
-		let selected = [];
-		const selectedRows = this.gridApi.getSelectedRows();
-		if (!this.multiSelect) {
-			selected = selectedRows[0] ? selectedRows[0][this.props.displayColumn] : '';
-		} else {
-			for (const row of selectedRows) {
-				selected.push(row[this.props.displayColumn]);
-			}
-		}
+		let selected: Array<Record<string, string>> | Record<string, string>;
+		const selectedRows: Array<Record<string, string>> = this.gridApi.getSelectedRows();
+		selected = this.multiSelect ? [...selectedRows] : selectedRows[0];
 
-		let value: CellData<string | Array<string>> = {
+		let value: CellData<Array<Record<string, string>> | Record<string, string>> = {
 			cellValue: selected,
 			errorMessage: this.state.value.errorMessage
 		};
@@ -217,31 +250,34 @@ export class CSGridLookupEditor
 	/**
 	 * Called when the search term changes.
 	 */
-	private updateSearch = async (event: React.ChangeEvent<HTMLInputElement>) => {
-		await this.search(event.target.value);
+	private updateSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+		this.search(event.target.value);
 	};
 
 	/**
 	 * Clears the current search term.
 	 */
-	private clearFilter = async () => {
-		await this.search('');
+	private clearFilter = () => {
+		this.search('');
 	};
 
 	/**
 	 * Updates the grid given a search term.
 	 */
-	private search = async (searchTerm: string) => {
+	private search = (searchTerm: string) => {
 		const showGrid =
 			!this.props.minSearchTermLength || searchTerm.length >= this.props.minSearchTermLength;
 
-		this.setState({
-			searchTerm,
-			showGrid
-		});
-
-		if (showGrid) {
-			await this.getLookupValues();
-		}
+		this.setState(
+			{
+				searchTerm,
+				showGrid
+			},
+			() => {
+				if (this.state.showGrid) {
+					this.getLookupValues();
+				}
+			}
+		);
 	};
 }

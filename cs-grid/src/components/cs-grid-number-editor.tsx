@@ -97,7 +97,7 @@ export class CSGridNumberEditor<P extends CSGridCellEditorProps<string | number>
 			return '';
 		}
 
-		let result: string = this.numberFormat.format(Number(value));
+		let result: string = this.numberFormat.format(this.formatDecimalNumber(value));
 
 		result =
 			result.indexOf('NaN') > -1 || value === ''
@@ -172,6 +172,8 @@ export class CSGridNumberEditor<P extends CSGridCellEditorProps<string | number>
 			errorMessage: this.state.value.errorMessage
 		};
 
+		this.setState({ value });
+
 		if (this.props.onChange) {
 			value = await this.props.onChange(
 				this.props.node.id,
@@ -194,8 +196,8 @@ export class CSGridNumberEditor<P extends CSGridCellEditorProps<string | number>
 	private getSeparator = (locale: string, separatorType: string): string => {
 		const numberWithGroupAndDecimalSeparator = 1000.1;
 
-		return Intl.NumberFormat(locale)
+		return (Intl.NumberFormat(locale) as any)
 			.formatToParts(numberWithGroupAndDecimalSeparator)
-			.find(part => part.type === separatorType).value;
+			.find((part: any) => part.type === separatorType).value;
 	};
 }

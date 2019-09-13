@@ -53,6 +53,7 @@ export class CSGridDateEditor
 			errorMessage: this.state.value.errorMessage
 		};
 
+		this.setState({ value });
 		if (this.props.onChange) {
 			value = await this.props.onChange(
 				this.props.node.id,

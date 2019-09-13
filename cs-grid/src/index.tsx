@@ -29,7 +29,7 @@ export class App extends React.Component<object, AppState> {
 			userLocale: 'en-US'
 		};
 
-		const getLookupValues = (searchTerm: string): Promise<CSGridLookupSearchResult> => {
+		const getLookupValues = (searchTerm: string, guid: string): Promise<CSGridLookupSearchResult> => {
 			const results: CSGridLookupSearchResult = {
 				columnDefs: [
 					{
@@ -43,8 +43,8 @@ export class App extends React.Component<object, AppState> {
 				],
 				rowData: [
 					{
-						text1: 'Bob',
-						text2: '645612'
+						text1: 'Bob the Great',
+						text2: '1234567890987654321'
 					},
 					{
 						text1: 'Harry',
@@ -118,7 +118,8 @@ export class App extends React.Component<object, AppState> {
 				cellRenderer: 'booleanRenderer',
 				// editable: () => false,
 				field: 'exampleBoolean',
-				headerName: 'Boolean Column'
+				headerName: 'Boolean Column',
+				editable: false
 			},
 			{
 				cellEditor: 'dateEditor',
@@ -134,19 +135,25 @@ export class App extends React.Component<object, AppState> {
 			},
 			{
 				cellEditor: 'lookupEditor',
-				cellEditorParams: { displayColumn: 'text1', getLookupValues },
+				cellEditorParams: { guidColumn: 'text2', getLookupValues },
 				cellRenderer: 'lookupRenderer',
+				cellRendererParams: {
+					displayColumn: 'text1'
+				},
 				field: 'exampleLookup',
 				headerName: 'Lookup'
 			},
 			{
 				cellEditor: 'multiSelectLookupEditor',
 				cellEditorParams: {
-					displayColumn: 'text1',
+					guidColumn: 'text2',
 					getLookupValues,
 					minSearchTermLength: 3
 				},
 				cellRenderer: 'multiSelectLookupRenderer',
+				cellRendererParams: {
+					displayColumn: 'text1'
+				},
 				field: 'exampleMultiSelectLookup',
 				headerName: 'Multi Select Lookup'
 			},
@@ -272,10 +279,20 @@ export class App extends React.Component<object, AppState> {
 					cellValue: 3500
 				},
 				exampleLookup: {
-					cellValue: 'Bob'
+					cellValue: { 
+                        text1: 'Bob',
+                        text2: '645612'
+                    }
 				},
 				exampleMultiSelectLookup: {
-					cellValue: ['Bob', 'Harry']
+					cellValue: [{ 
+                        text1: 'Bob',
+                        text2: '645612'
+                    },
+                    {
+                        text1: 'Harry',
+                        text2: '564768'
+                    }]
 				},
 				exampleMultiSelectPicklist: {
 					cellValue: ['Harry', 'Sally']
@@ -321,11 +338,22 @@ export class App extends React.Component<object, AppState> {
 					errorMessage: 'An error message'
 				},
 				exampleLookup: {
-					cellValue: 'Harry',
+					cellValue: {
+                        text1: 'Harry',
+                        text2: '564768'
+                    },
 					errorMessage: 'An error message'
 				},
 				exampleMultiSelectLookup: {
-					cellValue: ['Harry', 'Sally'],
+					cellValue: [
+                    {
+                        text1: 'Harry',
+                        text2: '564768'
+                    },
+					{
+                        text1: 'Sally',
+                        text2: '079845'
+					}],
 					errorMessage: 'An error message'
 				},
 				exampleMultiSelectPicklist: {
@@ -369,10 +397,21 @@ export class App extends React.Component<object, AppState> {
 					cellValue: 72000
 				},
 				exampleLookup: {
-					cellValue: 'Sally'
+					cellValue: {
+                        text1: 'Sally',
+                        text2: '079845'
+					}
 				},
 				exampleMultiSelectLookup: {
-					cellValue: ['Sally', 'Bob']
+					cellValue: [
+					{
+                        text1: 'Sally',
+                        text2: '079845'
+					},
+					{
+                        text1: 'Bob',
+                        text2: '645612'
+                    }]
 				},
 				exampleMultiSelectPicklist: {
 					cellValue: ['Bob', 'Harry']
@@ -419,11 +458,22 @@ export class App extends React.Component<object, AppState> {
 					errorMessage: ''
 				},
 				exampleLookup: {
-					cellValue: 'Sue',
+					cellValue: {
+                        text1: 'Sue',
+                        text2: '123456'
+					},
 					errorMessage: ''
 				},
 				exampleMultiSelectLookup: {
-					cellValue: ['Sue', 'Sean'],
+					cellValue: [
+					{
+                        text1: 'Sue',
+                        text2: '123456'
+					},
+					{
+                        text1: 'Sean',
+                        text2: '987654'
+                    }],
 					errorMessage: ''
 				},
 				exampleMultiSelectPicklist: {

@@ -1,5 +1,4 @@
 export * from "./lib/components/cs-grid";
-export * from "./lib/components/cs-grid-base-renderer";
 export * from "./lib/components/cs-grid-boolean-editor";
 export * from "./lib/components/cs-grid-boolean-renderer";
 export * from "./lib/components/cs-grid-cell-error";
@@ -30,3 +29,4 @@ export * from "./lib/components/cs-grid-tooltip";
 export * from "./lib/interfaces/cs-grid-base-interfaces";
 export * from "./lib/interfaces/number-format.enum";
 export * from "./lib/interfaces/user-info";
+export * from "./lib/components/cs-grid-base-renderer";

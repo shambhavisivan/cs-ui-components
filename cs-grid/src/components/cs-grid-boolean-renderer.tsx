@@ -51,6 +51,7 @@ export class CSGridBooleanRenderer extends CSGridBaseRenderer<boolean>
 			errorMessage: this.state.value.errorMessage
 		};
 
+		this.props.setValue(value);
 		if (this.props.onChange) {
 			value = await this.props.onChange(
 				this.props.node.id,

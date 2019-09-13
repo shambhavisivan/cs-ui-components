@@ -30,6 +30,7 @@ export class CSGridCurrencyEditor extends CSGridNumberEditor<
 			style: 'currency'
 		});
 
-		return formatter.formatToParts(1).find(part => part.type === 'currency').value;
+		return (formatter as any).formatToParts(1).find((part: any) => part.type === 'currency')
+			.value;
 	};
 }

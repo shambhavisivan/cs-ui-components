@@ -49,6 +49,7 @@ export interface CSGridProps extends AgGridReactProps {
 		oldValue: any,
 		newValue: any
 	): Promise<void>;
+	onGridReady?(params: GridReadyEvent): void;
 }
 
 class CSGridState {
@@ -177,7 +178,6 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 					<div className='ag-theme-balham cs-grid_main'>
 						<AgGridReact
 							// listening for events
-							onGridReady={this.onGridReady}
 							onSelectionChanged={this.onSelectionChanged}
 							quickFilterText={this.state.filterText}
 							columnDefs={this.props.columnDefs}
@@ -216,7 +216,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 								sortable: true
 							}}
 							frameworkComponents={this.state.frameworkComponents}
-							// stopEditingWhenGridLosesFocus={true}
+							stopEditingWhenGridLosesFocus={true}
 							suppressDragLeaveHidesColumns={true}
 							rowSelection={this.props.multiSelect ? 'multiple' : 'single'}
 							suppressRowClickSelection={true}
@@ -227,6 +227,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 							onCellValueChanged={this.onCellValueChanged}
 							getRowNodeId={this.getRowNodeId}
 							onColumnMoved={this.onColumnMoved}
+							onGridReady={this.onGridReady}
 						/>
 					</div>
 				</div>
@@ -252,6 +253,10 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		this.gridApi = params.api;
 		this.gridApi.sizeColumnsToFit();
 		this.onPaginationChanged();
+
+		if (this.props.onGridReady) {
+			this.props.onGridReady(params);
+		}
 	};
 
 	private onColumnMoved = () => {

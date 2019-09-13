@@ -38,12 +38,39 @@ export class CSGridNumberRenderer<
 			return '';
 		}
 
-		let result: string = this.numberFormat.format(Number(value));
+		let result: any = this.numberFormat.format(value as any);
+
+		if (typeof value === 'string') {
+			let replaced: string;
+			const decimalSeparator = this.getSeparator(this.props.userInfo.userLocale, 'decimal');
+			if (decimalSeparator === ',') {
+				// remove periods;
+				replaced = value.replace(/[\s.]+/g, '');
+				// replace remaining comma with a period;
+				replaced = replaced.replace(/\,/, '.');
+			} else {
+				replaced = value.replace(/[\s,]+/g, '');
+			}
+
+			result = parseFloat(replaced);
+		} else {
+			result = value;
+		}
+
+		result = this.numberFormat.format(result);
 
 		if (result.indexOf('NaN') > -1 || value === '') {
 			result = value.toString();
 		}
 
 		return result;
+	};
+
+	private getSeparator = (locale: string, separatorType: string): string => {
+		const numberWithGroupAndDecimalSeparator = 1000.1;
+
+		return (Intl.NumberFormat(locale) as any)
+			.formatToParts(numberWithGroupAndDecimalSeparator)
+			.find((part: any) => part.type === separatorType).value;
 	};
 }
