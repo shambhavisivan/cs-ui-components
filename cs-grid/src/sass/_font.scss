@@ -94,10 +94,6 @@
 
 		&::before {
 			content: "j";
-			color: #706e6b;
-		}
-
-		&:hover::before {
 			color: #005fb2;
 		}
 	}
@@ -122,11 +118,7 @@
 
 		&::before {
 			content: "o";
-			color: #706e6b;
-		}
-
-		&:hover::before {
-			color: #ffb75d;
+			color: #c23934;
 		}
 	}
 
@@ -134,10 +126,6 @@
 
 		&::before {
 			content: "h";
-			color: #706e6b;
-		}
-
-		&:hover::before {
 			color: #c23934;
 		}
 	}
@@ -219,5 +207,12 @@
 			content: "g";
 			font-family: "cs-grid";
 		}
+	}
+
+	.ag-checkbox-checked:after,
+	.ag-icon.ag-icon-checkbox-checked:after,
+	.cs-grid_checkbox:checked + .cs-grid_checkbox-faux:before {
+		content: "n";
+		font-family: "cs-grid";
 	}
 }

@@ -35,6 +35,7 @@ $cs-blue-medium-5: #1589ee;
 $cs-blue-light-1: #e3f3ff;
 $cs-blue-light-2: #f0f8fc;
 $cs-blue-light-3: #e4ebf6;
+$cs-blue-light-4: #f5f9fd;
 $cs-green-dark-1: #1f7245;
 $cs-green-dark-2: #04844b;
 $cs-green-medium-1: #009540;
@@ -59,8 +60,9 @@ $variables: (
 	--csgrid-theme-bg: $cs-white,
 
 	--csgrid-row-bg: $cs-white,
-	--csgrid-row-hover-bg: $cs-gray-light-7,
+	--csgrid-row-hover-bg: $cs-blue-light-4,
 	--csgrid-row-br: $cs-gray-light-2,
+	--csgrid-row-selected-bg: $cs-gray-light-7,
 
 	--csgrid-header-row-c: $cs-gray-dark-4,
 	--csgrid-header-row-bg: $cs-gray-light-7,
@@ -100,6 +102,7 @@ $variables: (
 
 	--csgrid-checkbox-bg: $cs-white,
 	--csgrid-checkbox-br: $cs-gray-light-2,
+	--csgrid-checkbox-checked-bg: $cs-blue-sf,
 	--csgrid-checkbox-checked-br: $cs-blue-sf,
 	--csgrid-checkbox-focus-br: $cs-blue-medium-5,
 	--csgrid-checkbox-focus-box: $cs-blue-sf,

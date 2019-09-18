@@ -20,6 +20,8 @@
 			font-size: 0.75rem;
 			padding: 0 0.5rem;
 			box-shadow: none !important;
+			-webkit-appearance: none;
+			appearance: none;
 			@include sbg(--csgrid-input-bg);
 			@include css4 {
 				border: 1px solid var(--csgrid-input-br);
@@ -67,6 +69,37 @@
 				input {
 					margin: 0 0.25rem -1px 0.5rem;
 				}
+			}
+		}
+	}
+}
+
+.ag-menu {
+	overflow: hidden !important;
+
+	.ag-filter {
+		overflow: hidden !important;
+
+		.ag-filter-body-wrapper {
+			overflow: hidden !important;
+
+			&:before, &:after {
+				content: "g";
+				font-family: "cs-grid";
+				font-size: 0.75rem;
+				pointer-events: none;
+				margin-left: 0.5rem;
+				color: #706e6b;
+				position: absolute;
+				right: 1rem;
+			}
+
+			&:before {
+				top: 1.1875rem;
+			}
+
+			&:after {
+				top: 7.4375rem;
 			}
 		}
 	}

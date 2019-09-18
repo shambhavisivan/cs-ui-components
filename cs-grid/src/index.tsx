@@ -279,13 +279,13 @@ export class App extends React.Component<object, AppState> {
 					cellValue: 3500
 				},
 				exampleLookup: {
-					cellValue: { 
+					cellValue: {
                         text1: 'Bob',
                         text2: '645612'
                     }
 				},
 				exampleMultiSelectLookup: {
-					cellValue: [{ 
+					cellValue: [{
                         text1: 'Bob',
                         text2: '645612'
                     },
@@ -311,7 +311,7 @@ export class App extends React.Component<object, AppState> {
 			{
 				exampleBoolean: {
 					cellValue: true,
-					errorMessage: 'An error message'
+					errorMessage: 'An error message sdufgids isdug isddifduf fu dsiufysduf'
 				},
 				exampleCurrency: {
 					cellValue: 33000.77,

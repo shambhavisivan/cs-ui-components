@@ -11,7 +11,7 @@
 				content: "g";
 				font-size: 1rem;
 				pointer-events: none;
-				margin-left: auto;
+				margin-left: 0.5rem;
 				@include sc(--csgrid-container-after-c);
 			}
 		}
@@ -22,10 +22,6 @@
 		@include css4 {
 			border-bottom: 1px solid var(--csgrid-popup-br);
 		}
-	}
-
-	.ag-row-selected .ag-react-container .select-wrapper:after {
-		@include sc(--csgrid-container-after-selected-c);
 	}
 
 	.ag-popup-editor {

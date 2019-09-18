@@ -100,7 +100,7 @@ module.exports = {
               loader: 'file-loader?name=images/[hash].[ext]',
             },
         ]
-    },  
+    },
     plugins: [
         // enable HMR globally
         new webpack.HotModuleReplacementPlugin(),

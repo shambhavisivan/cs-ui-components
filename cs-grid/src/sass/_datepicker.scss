@@ -120,11 +120,12 @@
 		}
 	}
 
+	.cs-grid_date-cell-value,
 	.cs-grid_date-cell-value-read-only {
-		margin-right: 0;
+		margin-right: auto;
 
 		+ .cs-tooltip-group {
-			margin-right: 0;
+			margin-left: 0;
 		}
 	}
 
@@ -134,8 +135,9 @@
 		align-items: center;
 		background: none;
 		border: none;
-		margin: 0 0 0 auto;
+		margin-left: 0.5rem;
 		cursor: pointer;
+		padding: 0;
 
 		&:active,
 		&:focus {
@@ -152,12 +154,6 @@
 
 		&-hidden {
 			display: none;
-		}
-	}
-
-	.ag-row-selected .ag-react-container .cs-grid_clear-button::before {
-		@include css4 {
-			color: var(--csgrid-secondary);
 		}
 	}
 }
