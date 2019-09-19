@@ -7,16 +7,16 @@ import {
 	CSGridCellEditorState
 } from '../interfaces/cs-grid-base-interfaces';
 import { NumberFormat } from '../interfaces/number-format.enum';
+import { getIntl } from '../polyfill/cs-grid-Intl';
 import { CSGridCellError } from './cs-grid-cell-error';
 
 /**
  * A cell editor for editing a localised number.
  */
-export class CSGridNumberEditor<P extends CSGridCellEditorProps<string | number>>
+export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string | number>>
 	extends React.Component<P, CSGridCellEditorState<string | number>>
 	implements CSGridCellEditor {
 	numberFormatType: NumberFormat = 'Decimal';
-	numberFormat: Intl.NumberFormat;
 	currencySymbol: string = '';
 	inputType = 'text';
 	private inputRef: React.RefObject<HTMLInputElement>;
@@ -38,10 +38,11 @@ export class CSGridNumberEditor<P extends CSGridCellEditorProps<string | number>
 		this.format = this.format.bind(this);
 	}
 
-	componentDidMount() {
+	async componentDidMount() {
+		const cellValue = await this.format(this.props.value.cellValue);
 		this.setState({
 			value: {
-				cellValue: this.format(this.props.value.cellValue),
+				cellValue,
 				errorMessage: this.props.value.errorMessage
 			}
 		});
@@ -68,6 +69,12 @@ export class CSGridNumberEditor<P extends CSGridCellEditorProps<string | number>
 	};
 
 	isCancelAfterEnd = () => {
+		this.setState(prevState => {
+			prevState.value.cellValue = this.formatDecimalNumber(this.state.value.cellValue);
+
+			return { value: prevState.value };
+		});
+
 		return false;
 	};
 
@@ -79,7 +86,6 @@ export class CSGridNumberEditor<P extends CSGridCellEditorProps<string | number>
 					ref={this.inputRef}
 					value={this.state.value.cellValue || ''}
 					onChange={this.handleChange}
-					onBlur={this.onBlur}
 					placeholder=''
 					className='cs-grid_number-inner'
 				/>
@@ -92,20 +98,27 @@ export class CSGridNumberEditor<P extends CSGridCellEditorProps<string | number>
 	 * Localised the input value.
 	 * @param value - a localised string.
 	 */
-	format(value: number | string): number | string {
+	async format(value: number | string): Promise<number | string> {
 		if (value === undefined || value === null) {
 			return '';
 		}
 
-		let result: string = this.numberFormat.format(this.formatDecimalNumber(value));
+		let result: string = (await this.getNumberFormat()).format(this.formatDecimalNumber(value));
+
+		const currencySymbol = await this.getCurrencySymbol(
+			this.props.userInfo.userLocale,
+			this.props.userInfo.currencyCode
+		);
 
 		result =
 			result.indexOf('NaN') > -1 || value === ''
 				? value.toString()
-				: result.replace(new RegExp(`[${this.currencySymbol}]`, 'g'), '').trim();
+				: result.replace(new RegExp(`[${currencySymbol}]`, 'g'), '').trim();
 
 		return result;
 	}
+
+	abstract async getNumberFormat(): Promise<any>;
 
 	/**
 	 * Created a number from a localised string.
@@ -185,19 +198,23 @@ export class CSGridNumberEditor<P extends CSGridCellEditorProps<string | number>
 		this.setState({ value });
 	};
 
-	private onBlur = (): void => {
-		this.setState(prevState => {
-			prevState.value.cellValue = this.formatDecimalNumber(this.state.value.cellValue);
-
-			return { value: prevState.value };
-		});
-	};
-
 	private getSeparator = (locale: string, separatorType: string): string => {
 		const numberWithGroupAndDecimalSeparator = 1000.1;
 
 		return (Intl.NumberFormat(locale) as any)
 			.formatToParts(numberWithGroupAndDecimalSeparator)
 			.find((part: any) => part.type === separatorType).value;
+	};
+
+	/**
+	 * Returns the localised currency symbol.
+	 */
+	private getCurrencySymbol = async (locale: string, currency: string): Promise<string> => {
+		const formatter = (await getIntl(locale)).NumberFormat(locale, {
+			currency,
+			style: 'currency'
+		});
+
+		return formatter.formatToParts(1).find((part: any) => part.type === 'currency').value;
 	};
 }

@@ -32,6 +32,7 @@ export class CSGridDateRenderer extends CSGridBaseRenderer<string> {
 
 	render() {
 		const readOnly = this.isReadOnly();
+		const value = this.formattedDate();
 
 		return (
 			<span
@@ -40,12 +41,19 @@ export class CSGridDateRenderer extends CSGridBaseRenderer<string> {
 					(readOnly ? ' read-only-cell' : '')
 				}
 			>
-				<span className={'cs-grid_date-cell-value' + (readOnly ? '-read-only' : '')}>
-					{this.formattedDate()}
+				<span
+					className={'cs-grid_date-cell-value' + (readOnly ? '-read-only' : '')}
+					title={value}
+				>
+					{value}
 				</span>
 				<CSGridCellError errorMessage={this.state.value.errorMessage} />
 				{this.state.value.cellValue && !readOnly && (
-					<button className='cs-grid_clear-button' onClick={this.clearDate} />
+					<button
+						title='Clear Date'
+						className='cs-grid_clear-button'
+						onClick={this.clearDate}
+					/>
 				)}
 			</span>
 		);

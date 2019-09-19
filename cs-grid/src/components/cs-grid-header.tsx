@@ -75,6 +75,7 @@ export class CSGridHeader extends React.Component<CSGridHeaderProps, CSGridHeade
 					ref={this.menuButtonRef}
 					className='customHeaderMenuButton'
 					onClick={this.onMenuClick}
+					title='Column filter'
 				>
 					<i className='icon-menu' />
 				</span>
@@ -85,13 +86,14 @@ export class CSGridHeader extends React.Component<CSGridHeaderProps, CSGridHeade
 			<div className='cs-grid_header-inner'>
 				{menuButton}
 				{this.state.filtered && (
-					<span className='ag-header-icon ag-filter-icon'>
+					<span className='ag-header-icon ag-filter-icon' title='Filtered'>
 						<span className='ag-icon ag-icon-filter' />
 					</span>
 				)}
 				<span
 					onClick={this.props.enableSorting ? this.onSortRequested : undefined}
 					className={this.props.className}
+					title={this.props.displayName}
 				>
 					{' '}
 					{this.props.displayName}

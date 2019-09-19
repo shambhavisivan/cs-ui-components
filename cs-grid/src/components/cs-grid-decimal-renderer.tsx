@@ -1,4 +1,5 @@
 import { CSGridCellRendererProps } from '../interfaces/cs-grid-base-interfaces';
+import { getIntl } from '../polyfill/cs-grid-Intl';
 import { CSGridNumberRenderer } from './cs-grid-number-renderer';
 
 /**
@@ -14,13 +15,18 @@ export interface CSGridDecimalRendererProps extends CSGridCellRendererProps<numb
 export class CSGridDecimalRenderer extends CSGridNumberRenderer<CSGridDecimalRendererProps> {
 	constructor(props: CSGridDecimalRendererProps) {
 		super(props);
+	}
 
+	async getNumberFormat(): Promise<any> {
 		const noOfDecimalDigits =
-			props.noOfDecimalDigits !== undefined ? props.noOfDecimalDigits : 5;
+			this.props.noOfDecimalDigits !== undefined ? this.props.noOfDecimalDigits : 5;
 
-		this.numberFormat = new Intl.NumberFormat(props.userInfo.userLocale, {
-			maximumFractionDigits: noOfDecimalDigits,
-			minimumFractionDigits: noOfDecimalDigits
-		});
+		return (await getIntl(this.props.userInfo.userLocale)).NumberFormat(
+			this.props.userInfo.userLocale,
+			{
+				maximumFractionDigits: noOfDecimalDigits,
+				minimumFractionDigits: noOfDecimalDigits
+			}
+		);
 	}
 }

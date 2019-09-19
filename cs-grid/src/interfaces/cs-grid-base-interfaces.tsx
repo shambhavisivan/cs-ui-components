@@ -9,7 +9,7 @@ import {
 } from 'ag-grid-community';
 // This type is needed to correctly call the editable function.
 // tslint:disable-next-line: no-submodule-imports
-import { IsColumnFuncParams } from 'ag-grid-community/dist/lib/entities/colDef';
+import { IsColumnFunc, IsColumnFuncParams } from 'ag-grid-community/dist/lib/entities/colDef';
 
 import { ICellEditorReactComp, ICellRendererReactComp } from 'ag-grid-react';
 import { UserInfo } from './user-info';
@@ -20,6 +20,7 @@ export interface CSGridCellEditorProps<T> extends ICellEditorParams, CSGridCellP
 
 export interface CSGridCellRendererProps<T> extends ICellRendererParams, CSGridCellProps<T> {
 	value: CellData<T>;
+	readonly?: boolean | IsColumnFunc;
 }
 
 export interface CSGridCellRendererState<T> {
@@ -51,6 +52,7 @@ export interface CellData<T> {
 export interface CSGridCellEditor extends ICellEditorReactComp {}
 export interface CSGridCellRenderer extends ICellRendererReactComp {}
 export interface IsColumnFuncParams extends IsColumnFuncParams {}
+export interface IsColumnFunc extends IsColumnFunc {}
 export interface ColDef extends ColDef {}
 export interface ColGroupDef extends ColGroupDef {}
 export interface GridReadyEvent extends GridReadyEvent {}

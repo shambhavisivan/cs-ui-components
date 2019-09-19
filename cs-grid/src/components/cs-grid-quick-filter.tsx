@@ -23,11 +23,20 @@ export function CSGridQuickFilter(props: CSGridQuickFilterProps) {
 					className='cs-grid_quick-filter-input'
 					type='text'
 					value={props.filterText ? props.filterText : ''}
+					title={
+						props.filterText
+							? `Search value ${props.filterText}`
+							: props.placeholder || 'Quick search'
+					}
 					onChange={props.onFilterText}
 					placeholder={props.placeholder || 'Quick search'}
 				/>
 				{props.filterText && (
-					<button className='cs-grid_clear-button' onClick={props.clearFilter} />
+					<button
+						title='Clear filter'
+						className='cs-grid_clear-button'
+						onClick={props.clearFilter}
+					/>
 				)}
 			</div>
 		</div>

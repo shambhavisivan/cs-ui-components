@@ -113,6 +113,10 @@ export class CSGridLookupEditor
 	};
 
 	render() {
+		const placeholder =
+			'Search...' +
+			(this.props.minSearchTermLength ? ` (min ${this.props.minSearchTermLength} char)` : '');
+
 		return (
 			<div className='ag-theme-balham'>
 				<div className='cs-grid_search-wrapper'>
@@ -123,15 +127,19 @@ export class CSGridLookupEditor
 							type='text'
 							value={this.state.searchTerm}
 							onChange={this.updateSearch}
-							placeholder={
-								'Search...' +
-								(this.props.minSearchTermLength
-									? ` (min ${this.props.minSearchTermLength} char)`
-									: '')
+							placeholder={placeholder}
+							title={
+								this.state.searchTerm
+									? `Search value ${this.state.searchTerm}`
+									: placeholder
 							}
 						/>
 						{this.state.searchTerm && (
-							<button className='cs-grid_clear-button' onClick={this.clearFilter} />
+							<button
+								className='cs-grid_clear-button'
+								onClick={this.clearFilter}
+								title='Clear filter'
+							/>
 						)}
 					</div>
 				</div>
@@ -191,7 +199,11 @@ export class CSGridLookupEditor
 
 				let gridWidth = this.columnApi
 					.getColumnState()
-					.reduce((totalWidth, column) => totalWidth + column.width, 0);
+					.reduce(
+						(totalWidth, column) =>
+							column.hide ? totalWidth : totalWidth + column.width,
+						0
+					);
 				gridWidth += 4;
 
 				// Calculate width to fit contents.

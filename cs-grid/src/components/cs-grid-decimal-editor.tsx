@@ -1,4 +1,5 @@
 import { CSGridCellEditorProps } from '../interfaces/cs-grid-base-interfaces';
+import { getIntl } from '../polyfill/cs-grid-Intl';
 import { CSGridNumberEditor } from './cs-grid-number-editor';
 
 /**
@@ -9,10 +10,15 @@ export class CSGridDecimalEditor extends CSGridNumberEditor<
 > {
 	constructor(props: CSGridCellEditorProps<string | number>) {
 		super(props);
-
-		this.numberFormat = new Intl.NumberFormat(this.props.userInfo.userLocale, {
-			maximumFractionDigits: 20
-		});
 		this.numberFormatType = 'Decimal';
+	}
+
+	async getNumberFormat(): Promise<any> {
+		return (await getIntl(this.props.userInfo.userLocale)).NumberFormat(
+			this.props.userInfo.userLocale,
+			{
+				maximumFractionDigits: 20
+			}
+		);
 	}
 }

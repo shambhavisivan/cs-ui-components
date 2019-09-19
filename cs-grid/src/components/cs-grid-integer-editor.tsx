@@ -1,4 +1,5 @@
 import { CSGridCellEditorProps } from '../interfaces/cs-grid-base-interfaces';
+import { getIntl } from '../polyfill/cs-grid-Intl';
 import { CSGridNumberEditor } from './cs-grid-number-editor';
 
 /**
@@ -15,10 +16,6 @@ export class CSGridIntegerEditor extends CSGridNumberEditor<CSGridIntegerEditorP
 	constructor(props: CSGridIntegerEditorProps) {
 		super(props);
 
-		this.numberFormat = new Intl.NumberFormat(this.props.userInfo.userLocale, {
-			maximumFractionDigits: 0,
-			minimumFractionDigits: 0
-		});
 		this.numberFormatType = 'Integer';
 
 		if (props.stepperArrows) {
@@ -30,11 +27,21 @@ export class CSGridIntegerEditor extends CSGridNumberEditor<CSGridIntegerEditorP
 	 * Localizes the input if the stepperArrows are not used otherwise returns the integer.
 	 * @param value - Either the underlying number or a localised string.
 	 */
-	format(value: number | string): number | string {
+	async format(value: number | string): Promise<number | string> {
 		if (this.props.stepperArrows) {
 			return this.formatDecimalNumber(value);
 		} else {
 			return super.format(value);
 		}
+	}
+
+	async getNumberFormat(): Promise<any> {
+		return (await getIntl(this.props.userInfo.userLocale)).NumberFormat(
+			this.props.userInfo.userLocale,
+			{
+				maximumFractionDigits: 0,
+				minimumFractionDigits: 0
+			}
+		);
 	}
 }

@@ -41,8 +41,8 @@ export abstract class CSGridBaseRenderer<
 	};
 
 	isReadOnly = (): boolean => {
-		let readOnly: boolean;
-		if (typeof this.props.colDef.editable === 'function') {
+		const readonly: any = this.props.readonly;
+		if (typeof this.props.readonly === 'function') {
 			const params: IsColumnFuncParams = {
 				api: this.props.api,
 				colDef: this.props.colDef,
@@ -52,12 +52,11 @@ export abstract class CSGridBaseRenderer<
 				data: this.props.data,
 				node: this.props.node
 			};
-			readOnly = !this.props.colDef.editable(params);
-		} else {
-			readOnly = !this.props.colDef.editable;
-		}
 
-		return readOnly;
+			return readonly(params);
+		} else {
+			return readonly !== undefined && readonly;
+		}
 	};
 
 	/**

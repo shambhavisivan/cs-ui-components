@@ -12,6 +12,8 @@ export class CSGridTextRenderer extends CSGridBaseRenderer<string> {
 	}
 
 	render() {
+		const value = this.state.value.cellValue;
+
 		return (
 			<span
 				className={
@@ -19,7 +21,7 @@ export class CSGridTextRenderer extends CSGridBaseRenderer<string> {
 					(this.isReadOnly() ? ' read-only-cell' : '')
 				}
 			>
-				<span>{this.state.value.cellValue}</span>
+				<span title={value}>{value}</span>
 				<CSGridCellError errorMessage={this.state.value.errorMessage} />
 			</span>
 		);

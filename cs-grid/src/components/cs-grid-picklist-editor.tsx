@@ -90,11 +90,17 @@ export class CSGridPicklistEditor
 								value={this.state.searchTerm}
 								onChange={this.onFilterText}
 								placeholder={'Search...'}
+								title={
+									this.state.searchTerm
+										? `Search value ${this.state.searchTerm}`
+										: 'Search...'
+								}
 							/>
 							{this.state.searchTerm && (
 								<button
 									className='cs-grid_clear-button'
 									onClick={this.clearFilter}
+									title='Clear filter'
 								/>
 							)}
 						</div>

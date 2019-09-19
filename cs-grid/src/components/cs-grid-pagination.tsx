@@ -33,7 +33,7 @@ export function CSGridPaginator(props: CSGridPaginationProps) {
 	> = [];
 	for (const pageSize of props.pageSizes) {
 		pageSizeOptions.push(
-			<option key={pageSize} value={pageSize}>
+			<option key={pageSize} value={pageSize} title={`${pageSize} rows per page`}>
 				{pageSize}
 			</option>
 		);
@@ -69,6 +69,7 @@ export function CSGridPaginator(props: CSGridPaginationProps) {
 				className={props.currentPage === page + 1 ? 'active' : ''}
 				onClick={onPageClick}
 				key={page}
+				title={`Go to page ${page + 1}`}
 			>
 				{page + 1}
 			</div>
@@ -81,6 +82,7 @@ export function CSGridPaginator(props: CSGridPaginationProps) {
 				<div
 					onClick={props.onBtPrevious}
 					className={props.currentPage === 1 ? 'disabled' : ''}
+					title={'Previous Page' + (props.currentPage === 1 ? ' Disabled' : '')}
 				>
 					<span className='cs-grid_pagination-icon-left' />
 				</div>
@@ -92,6 +94,12 @@ export function CSGridPaginator(props: CSGridPaginationProps) {
 							? 'disabled'
 							: ''
 					}
+					title={
+						'Next Page' +
+						(props.currentPage === props.totalPages || props.totalPages === 0
+							? ' Disabled'
+							: '')
+					}
 				>
 					<span className='cs-grid_pagination-icon-right' />
 				</div>
@@ -102,6 +110,7 @@ export function CSGridPaginator(props: CSGridPaginationProps) {
 					value={props.currentPageSize ? props.currentPageSize.toString() : ''}
 					onChange={props.onPageSizeChanged}
 					id='page-size'
+					title='Page Size Options'
 				>
 					{pageSizeOptions}
 				</select>

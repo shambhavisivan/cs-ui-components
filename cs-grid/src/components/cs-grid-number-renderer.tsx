@@ -1,25 +1,43 @@
 import React from 'react';
 
-import { CSGridCellRendererProps } from '../interfaces/cs-grid-base-interfaces';
+import {
+	CSGridCellRendererProps,
+	CSGridCellRendererState
+} from '../interfaces/cs-grid-base-interfaces';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
 import { CSGridCellError } from './cs-grid-cell-error';
 
-export class CSGridNumberRenderer<
-	P extends CSGridCellRendererProps<number>
-> extends CSGridBaseRenderer<number, P> {
+interface CSGridNumberRendererState extends CSGridCellRendererState<number> {
 	numberFormat: Intl.NumberFormat;
-
+}
+export abstract class CSGridNumberRenderer<
+	P extends CSGridCellRendererProps<number>
+> extends CSGridBaseRenderer<number, P, CSGridNumberRendererState> {
 	constructor(props: P) {
 		super(props);
 
-		this.state = { value: this.props.value, isLastColumn: this.isLastColumn() };
+		this.state = {
+			isLastColumn: this.isLastColumn(),
+			numberFormat: undefined,
+			value: this.props.value
+		};
 	}
 
-	componentDidMount() {
-		this.refresh(this.props);
+	async componentDidMount() {
+		const numberFormat = await this.getNumberFormat();
+		this.setState(
+			{
+				numberFormat
+			},
+			() => {
+				this.refresh(this.props);
+			}
+		);
 	}
 
 	render() {
+		const value = this.format(this.state.value.cellValue);
+
 		return (
 			<span
 				className={
@@ -27,18 +45,24 @@ export class CSGridNumberRenderer<
 					(this.isReadOnly() ? ' read-only-cell' : '')
 				}
 			>
-				<span>{this.format(this.state.value.cellValue)}</span>
+				<span title={value}>{value}</span>
 				<CSGridCellError errorMessage={this.state.value.errorMessage} />
 			</span>
 		);
 	}
+
+	abstract async getNumberFormat(): Promise<any>;
 
 	private format = (value: number | string): string => {
 		if (value === undefined || value === null) {
 			return '';
 		}
 
-		let result: any = this.numberFormat.format(value as any);
+		if (!this.state.numberFormat) {
+			return `${value}`;
+		}
+
+		let result: any = this.state.numberFormat.format(value as any);
 
 		if (typeof value === 'string') {
 			let replaced: string;
@@ -57,7 +81,7 @@ export class CSGridNumberRenderer<
 			result = value;
 		}
 
-		result = this.numberFormat.format(result);
+		result = this.state.numberFormat.format(result);
 
 		if (result.indexOf('NaN') > -1 || value === '') {
 			result = value.toString();

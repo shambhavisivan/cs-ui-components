@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import './sass/style.scss';
 
 import { CSGrid } from './components/cs-grid';
+import { CSGridLookupComparator } from './components/cs-grid-lookup-comparator';
 import { CSGridLookupSearchResult } from './components/cs-grid-lookup-editor';
 import { CellData, ColGroupDef, ColDef } from './interfaces/cs-grid-base-interfaces';
 
@@ -25,8 +26,8 @@ export class App extends React.Component<object, AppState> {
 		this.csGridRef = React.createRef();
 
 		const userInfo = {
-			currencyCode: 'USD',
-			userLocale: 'en-US'
+			currencyCode: 'EUR',
+			userLocale: 'fr-FR'
 		};
 
 		const getLookupValues = (searchTerm: string, guid: string): Promise<CSGridLookupSearchResult> => {
@@ -39,20 +40,28 @@ export class App extends React.Component<object, AppState> {
 					{
 						field: 'text2',
 						headerName: 'Order Number'
+					},
+					{
+						field: 'hidden',
+						headerName: 'hidden',
+						hide: true
 					}
 				],
 				rowData: [
 					{
 						text1: 'Bob the Great',
-						text2: '1234567890987654321'
+						text2: '1234567890987654321',
+						hidden: '11111111111'
 					},
 					{
 						text1: 'Harry',
-						text2: '564768'
+						text2: '564768',
+						hidden: '22222222222'
 					},
 					{
 						text1: 'Sally',
-						text2: '079845'
+						text2: '079845',
+						hidden: '33333333333'
 					}
 				]
 			};
@@ -116,10 +125,12 @@ export class App extends React.Component<object, AppState> {
 			{
 				cellEditor: 'booleanEditor',
 				cellRenderer: 'booleanRenderer',
-				// editable: () => false,
+				cellRendererParams: {
+					readonly: true
+				},
+				editable: false,
 				field: 'exampleBoolean',
-				headerName: 'Boolean Column',
-				editable: false
+				headerName: 'Boolean Column'
 			},
 			{
 				cellEditor: 'dateEditor',
@@ -140,6 +151,7 @@ export class App extends React.Component<object, AppState> {
 				cellRendererParams: {
 					displayColumn: 'text1'
 				},
+				comparator: (a: CellData<any>, b: CellData<any>) => CSGridLookupComparator(a, b, 'text1'),
 				field: 'exampleLookup',
 				headerName: 'Lookup'
 			},
@@ -154,6 +166,7 @@ export class App extends React.Component<object, AppState> {
 				cellRendererParams: {
 					displayColumn: 'text1'
 				},
+				comparator: (a: CellData<any>, b: CellData<any>) => CSGridLookupComparator(a, b, 'text1'),
 				field: 'exampleMultiSelectLookup',
 				headerName: 'Multi Select Lookup'
 			},
@@ -281,17 +294,20 @@ export class App extends React.Component<object, AppState> {
 				exampleLookup: {
 					cellValue: {
                         text1: 'Bob',
-                        text2: '645612'
+                        text2: '645612',
+						hidden: '11111111111'
                     }
 				},
 				exampleMultiSelectLookup: {
 					cellValue: [{
                         text1: 'Bob',
-                        text2: '645612'
+                        text2: '645612',
+						hidden: '11111111111'
                     },
                     {
                         text1: 'Harry',
-                        text2: '564768'
+                        text2: '564768',
+						hidden: '11111111111'
                     }]
 				},
 				exampleMultiSelectPicklist: {

@@ -346,6 +346,11 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		let aValue = a.cellValue;
 		let bValue = b.cellValue;
 
+		if (Array.isArray(aValue) && Array.isArray(bValue)) {
+			aValue = aValue[0];
+			bValue = bValue[0];
+		}
+
 		if (aValue === undefined || aValue == null) {
 			if (bValue === undefined || bValue == null) {
 				return 0;
