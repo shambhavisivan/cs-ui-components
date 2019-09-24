@@ -9,6 +9,7 @@ export interface CSGridTooltipProps {
 	position?: string;
 	icon?: boolean;
 	helpText: string;
+	test?: string;
 }
 
 /**
@@ -16,7 +17,7 @@ export interface CSGridTooltipProps {
  */
 export const CSGridTooltip: React.FunctionComponent<CSGridTooltipProps> = props => {
 	return (
-		<div className='cs-tooltip-group'>
+		<div className={'cs-tooltip-group ' + props.test + '-wrapper'}>
 			{props.children && <span className='cs-tooltip-text'>{props.children}</span>}
 			<div className={'cs-tooltip ' + (props.position ? props.position : '')}>
 				{props.helpText}

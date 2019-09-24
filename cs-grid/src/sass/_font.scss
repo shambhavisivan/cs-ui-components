@@ -94,16 +94,21 @@
 
 		&::before {
 			content: "j";
+			color: #706e6b;
+			cursor: pointer;
+		}
+
+		&:hover::before {
 			color: #005fb2;
 		}
 	}
 
 	.icon-search::before {
-		content: "\68"; // needs this
+		content: "\68";
 	}
 
 	.icon-event::before {
-		content: "\69"; // need this
+		content: "\69";
 	}
 
 	.icon-menu::before {
@@ -114,16 +119,14 @@
 		content: "f";
 	}
 
-	.icon-error {
-
-		&::before {
-			content: "o";
-			color: #c23934;
-		}
+	.icon-error:before {
+		content: "o";
+		color: #c23934;
+		cursor: pointer;
 	}
 
 	.icon-new-lead::before {
-		content: "\6d"; // need this
+		content: "\6d";
 	}
 
 	.select-wrapper:after {

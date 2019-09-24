@@ -1,7 +1,6 @@
 .cs-grid_checkbox-wrapper {
 
 	.cs-grid_checkbox {
-
 		width: 1px;
 		height: 1px;
 		border: 0;
@@ -75,14 +74,11 @@
 	}
 }
 
-.read-only-cell .cs-grid_checkbox-wrapper {
-
-	.cs-grid_checkbox-faux {
-		opacity: 0.5;
-		cursor: default;
-		@include sbg(--csgrid-checkbox-disabled-bg);
-		@include css4 {
-			border: 1px solid cvar(--csgrid-checkbox-disabled-br);
-		}
+.read-only-cell .cs-grid_checkbox-wrapper .cs-grid_checkbox-faux {
+	opacity: 0.5;
+	cursor: default;
+	@include sbg(--csgrid-checkbox-disabled-bg);
+	@include css4 {
+		border: 1px solid cvar(--csgrid-checkbox-disabled-br);
 	}
 }

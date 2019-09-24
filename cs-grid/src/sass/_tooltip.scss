@@ -10,6 +10,7 @@
 	position: relative;
 
     .cs-tooltip-text {
+
         &:hover ~ .cs-tooltip {
             opacity: 1;
             visibility: visible;
@@ -29,6 +30,32 @@
                 text-decoration: underline;
             }
         }
+
+        &::before {
+            opacity: 0;
+            visibility: hidden;
+            content: "";
+            bottom: 1.125rem;
+            height: 1rem;
+            margin-bottom: 0.5rem;
+            margin-left: -0.5rem;
+            margin-right: -0.5rem;
+            margin-top: -0.5rem;
+            position: absolute;
+            right: 0.4375rem;
+            transform: rotate(45deg);
+            width: 1rem;
+            @include sbg(--csgrid-tooltip-bg);
+        }
+
+        &:hover::before {
+            opacity: 1;;
+            visibility: visible;
+        }
+    }
+
+    &.icon-error-wrapper .cs-tooltip-text:before {
+        @include sbg(--csgrid-tooltip-error-bg);
     }
 }
 
@@ -42,30 +69,13 @@
     opacity: 0;
 	padding: 0.5rem 0.75rem;
 	position: absolute;
-	top: calc(100% + 1rem);
-	transition: 0.25s;
+    top: -57px;
 	visibility: hidden;
     white-space: normal;
     width: 200px;
+    z-index: 10;
 	@include sbg(--csgrid-tooltip-bg);
     @include sc(--csgrid-tooltip-c);
-
-    &::before {
-		background-color: inherit;
-		content: "";
-		bottom: -0.5rem;
-		left: 1.5rem;
-		height: 1rem;
-		margin-bottom: 0.5rem;
-		margin-left: -0.5rem;
-		margin-right: -0.5rem;
-		margin-top: -0.5rem;
-		position: absolute;
-		right: 0;
-		top: 0;
-		transform: rotate(45deg);
-		width: 1rem;
-    }
 
     &:hover {
         opacity: 1;
@@ -73,13 +83,24 @@
     }
 }
 
-.ag-row-last .cs-tooltip-group .cs-tooltip {
-    top: -57px;
+.icon-error-wrapper .cs-tooltip {
+    @include sbg(--csgrid-tooltip-error-bg);
+}
 
-    &:before {
-        bottom: -1rem;
-        top: unset;
+.ag-row-first .cs-tooltip-group {
+
+    .cs-tooltip-text::before {
+        top: 1.8125rem;
     }
+
+    .cs-tooltip {
+        top: calc(100% + 1rem);
+
+            &:before {
+                bottom: -0.5rem;
+                top: 0;
+            }
+        }
 }
 
 .is-last-column .cs-tooltip,

@@ -11,15 +11,14 @@
 	min-width: 150px;
 
 	> div .ag-filter-body-wrapper {
-		padding: 0.5rem;
+		padding: 0.25rem;
 
 		.ag-filter-select {
 			height: 2rem;
 			border-radius: 0.25rem;
-			margin: 0 0 0.5rem 0;
+			margin: 0.25rem;
 			font-size: 0.75rem;
 			padding: 0 0.5rem;
-			box-shadow: none !important;
 			-webkit-appearance: none;
 			appearance: none;
 			@include sbg(--csgrid-input-bg);
@@ -29,6 +28,7 @@
 			&:focus {
 				@include css4 {
 					border: 1px solid var(--csgrid-main);
+					box-shadow: 0 0 3px var(--csgrid-input-box);
 				}
 			}
 		}
@@ -39,10 +39,9 @@
 			.ag-input-text-wrapper .ag-filter-filter {
 				height: 2rem;
 				border-radius: 0.25rem;
-				margin: 0;
+				margin: 0.25rem;
 				padding: 0 0.5rem;
 				font-size: 0.75rem;
-				box-shadow: none !important;
 				@include sbg(--csgrid-input-bg);
 				@include css4 {
 					border: 1px solid var(--csgrid-input-br);
@@ -51,6 +50,7 @@
 				&:focus {
 					@include css4 {
 						border: 1px solid var(--csgrid-main);
+						box-shadow: 0 0 3px var(--csgrid-input-box);
 					}
 				}
 			}
@@ -99,7 +99,7 @@
 			}
 
 			&:after {
-				top: 7.4375rem;
+				top: 7.9375rem;
 			}
 		}
 	}

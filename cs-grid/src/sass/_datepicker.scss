@@ -34,7 +34,6 @@
 
 		.react-datepicker__navigation--previous {
 			left: 0.25rem;
-
 		}
 
 		.react-datepicker__navigation--next {
@@ -66,7 +65,7 @@
 						position: absolute;
 						right: 0.4375rem;
 						top: 0.6125rem;
-						font-size: 0.625rem;
+						font-size: 0.6125rem;
 						pointer-events: none;
 						@include sc(--csgrid-datepicker-arrow-c);
 					}
@@ -97,23 +96,20 @@
 			.react-datepicker__month {
 				margin-top: 0;
 
-				.react-datepicker__week {
+				.react-datepicker__week .react-datepicker__day {
 
-					.react-datepicker__day {
+					&:hover {
+						border-radius: 50%;
+						color: inherit;
+						font-weight: 700;
+						@include sbg(--csgrid-datepicker-hover-bg);
+					}
 
-						&:hover {
-							border-radius: 50%;
-							color: inherit;
-							font-weight: 700;
-							@include sbg(--csgrid-datepicker-hover-bg);
-						}
-
-						&.react-datepicker__day--selected {
-							border-radius: 50%;
-							font-weight: 700;
-							@include sbg(--csgrid-datepicker-selected-bg);
-							@include sc(--csgrid-datepicker-selected-c);
-						}
+					&.react-datepicker__day--selected {
+						border-radius: 50%;
+						font-weight: 700;
+						@include sbg(--csgrid-datepicker-selected-bg);
+						@include sc(--csgrid-datepicker-selected-c);
 					}
 				}
 			}

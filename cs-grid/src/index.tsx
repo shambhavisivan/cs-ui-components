@@ -128,7 +128,7 @@ export class App extends React.Component<object, AppState> {
 				cellRendererParams: {
 					readonly: true
 				},
-				editable: false,
+				editable: true,
 				field: 'exampleBoolean',
 				headerName: 'Boolean Column'
 			},
@@ -327,7 +327,8 @@ export class App extends React.Component<object, AppState> {
 			{
 				exampleBoolean: {
 					cellValue: true,
-					errorMessage: 'An error message sdufgids isdug isddifduf fu dsiufysduf'
+					errorMessage:
+						'This is a really long error message so that we can test various sizes. It is so very very looooonnnnngggg.'
 				},
 				exampleCurrency: {
 					cellValue: 33000.77,
