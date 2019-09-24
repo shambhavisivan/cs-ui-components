@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import './sass/style.scss';
 
 import { CSGrid } from './components/cs-grid';
-import { CSGridLookupComparator } from './components/cs-grid-lookup-comparator';
+import { CSGridLookupComparator } from './utils/cs-grid-lookup-comparator';
 import { CSGridLookupSearchResult } from './components/cs-grid-lookup-editor';
 import { CellData, ColGroupDef, ColDef } from './interfaces/cs-grid-base-interfaces';
 
@@ -502,8 +502,8 @@ export class App extends React.Component<object, AppState> {
 				},
 				exampleRowSelection: {},
 				exampleRowValidation: {
-					cellValue: 'Warning',
-					errorMessage: 'Warning 1\nWarning 2'
+					cellValue: 'Error',
+					errorMessage: 'Error 1\Error 2'
 				},
 				exampleText: {
 					cellValue: 'Ford',

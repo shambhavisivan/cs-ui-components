@@ -7,7 +7,7 @@ import {
 	CSGridCellEditorState
 } from '../interfaces/cs-grid-base-interfaces';
 import { NumberFormat } from '../interfaces/number-format.enum';
-import { getIntl } from '../polyfill/cs-grid-Intl';
+import { getIntl } from '../polyfill/cs-grid-intl';
 import { CSGridCellError } from './cs-grid-cell-error';
 
 /**
@@ -63,10 +63,6 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 	getValue() {
 		return this.state.value;
 	}
-
-	isCancelBeforeStart = () => {
-		return false;
-	};
 
 	isCancelAfterEnd = () => {
 		this.setState(prevState => {

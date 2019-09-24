@@ -1,7 +1,6 @@
 import moment from 'moment';
 import React from 'react';
 import DatePicker from 'react-datepicker';
-// tslint:disable-next-line: no-submodule-imports
 import 'react-datepicker/dist/react-datepicker.css';
 
 import {
@@ -32,14 +31,6 @@ export class CSGridDateEditor
 	getValue() {
 		return this.state.value;
 	}
-
-	isCancelBeforeStart = () => {
-		return false;
-	};
-
-	isCancelAfterEnd = () => {
-		return false;
-	};
 
 	isPopup = () => {
 		return true;

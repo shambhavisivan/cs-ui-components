@@ -1,5 +1,5 @@
 import { CSGridCellEditorProps } from '../interfaces/cs-grid-base-interfaces';
-import { getIntl } from '../polyfill/cs-grid-Intl';
+import { getIntl } from '../polyfill/cs-grid-intl';
 import { CSGridNumberEditor } from './cs-grid-number-editor';
 
 /**

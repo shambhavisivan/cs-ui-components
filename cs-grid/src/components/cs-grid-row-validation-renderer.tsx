@@ -4,7 +4,7 @@ import { CSGridCellRendererProps } from '../interfaces/cs-grid-base-interfaces';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
 import { CSGridTooltip } from './cs-grid-tooltip';
 
-export type ValidationStatus = 'Info' | 'Warning' | 'Error' | 'None';
+export type ValidationStatus = 'Info' | 'Error' | 'None';
 
 export class CSGridRowValidationRenderer extends CSGridBaseRenderer<ValidationStatus> {
 	constructor(props: CSGridCellRendererProps<ValidationStatus>) {
@@ -19,9 +19,6 @@ export class CSGridRowValidationRenderer extends CSGridBaseRenderer<ValidationSt
 		switch (status) {
 			case 'Info':
 				className = 'icon-info';
-				break;
-			case 'Warning':
-				className = 'icon-warning';
 				break;
 			case 'Error':
 				className = 'icon-error';

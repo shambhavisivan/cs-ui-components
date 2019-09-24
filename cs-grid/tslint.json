@@ -16,7 +16,7 @@
         "prettier": [true, "./.prettierrc"],
         "interface-name": [true, "never-prefix"],
         "max-classes-per-file": [true, 2, "exclude-class-expressions"],
-        "no-submodule-imports": [true, "@material-ui/core", "toastr/build/toastr.min.css", "ag-grid-community/dist/styles/ag-theme-balham.css", "ag-grid-community/dist/styles/ag-grid.css"],
+        "no-submodule-imports": [true, "@material-ui/core", "toastr/build/toastr.min.css", "ag-grid-community/dist/styles/ag-theme-balham.css", "ag-grid-community/dist/styles/ag-grid.css", "react-datepicker/dist/react-datepicker.css", "ag-grid-community/dist/lib/entities/colDef"],
         "array-type": [true, "generic"],
         "ban": [
 			true,

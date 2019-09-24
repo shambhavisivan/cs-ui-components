@@ -48,14 +48,6 @@ export class CSGridPicklistEditor
 		return this.state.value;
 	}
 
-	isCancelBeforeStart = () => {
-		return false;
-	};
-
-	isCancelAfterEnd = () => {
-		return false;
-	};
-
 	render() {
 		const dropDownValues: Array<
 			React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>

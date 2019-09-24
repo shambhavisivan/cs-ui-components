@@ -114,18 +114,10 @@
 		content: "f";
 	}
 
-	.icon-warning {
-
-		&::before {
-			content: "o";
-			color: #c23934;
-		}
-	}
-
 	.icon-error {
 
 		&::before {
-			content: "h";
+			content: "o";
 			color: #c23934;
 		}
 	}

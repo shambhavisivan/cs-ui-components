@@ -27,18 +27,6 @@ export class CSGridTextEditor
 		return this.state.value;
 	}
 
-	isCancelBeforeStart = () => {
-		return false;
-	};
-
-	isCancelAfterEnd = () => {
-		return false;
-	};
-
-	isPopup = () => {
-		return false;
-	};
-
 	afterGuiAttached() {
 		const eInput = this.inputRef.current;
 		eInput.focus();

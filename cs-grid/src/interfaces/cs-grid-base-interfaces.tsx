@@ -7,8 +7,6 @@ import {
 	ICellEditorParams,
 	ICellRendererParams
 } from 'ag-grid-community';
-// This type is needed to correctly call the editable function.
-// tslint:disable-next-line: no-submodule-imports
 import { IsColumnFunc, IsColumnFuncParams } from 'ag-grid-community/dist/lib/entities/colDef';
 
 import { ICellEditorReactComp, ICellRendererReactComp } from 'ag-grid-react';

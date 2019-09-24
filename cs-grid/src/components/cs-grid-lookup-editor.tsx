@@ -97,14 +97,6 @@ export class CSGridLookupEditor
 		return this.state.value;
 	}
 
-	isCancelBeforeStart = () => {
-		return false;
-	};
-
-	isCancelAfterEnd = () => {
-		return false;
-	};
-
 	/* Grid Events we're listening to */
 	onGridReady = (params: GridReadyEvent) => {
 		this.gridApi = params.api;

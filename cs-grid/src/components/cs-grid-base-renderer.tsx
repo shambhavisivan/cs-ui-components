@@ -73,7 +73,7 @@ export abstract class CSGridBaseRenderer<
 	/**
 	 * Is this cell within the last row on the page.
 	 */
-	isLastRowOnPage = (): boolean => {
-		return (this.props.rowIndex + 1) % this.props.api.paginationGetPageSize() === 0;
+	isFirstRowOnPage = (): boolean => {
+		return (this.props.rowIndex + 1) % this.props.api.paginationGetPageSize() === 1;
 	};
 }
