@@ -126,9 +126,9 @@ export class App extends React.Component<object, AppState> {
 				cellEditor: 'booleanEditor',
 				cellRenderer: 'booleanRenderer',
 				cellRendererParams: {
-					readonly: true
+					readonly: () => {return true;}
 				},
-				editable: true,
+				editable: () => {return false;},
 				field: 'exampleBoolean',
 				headerName: 'Boolean Column'
 			},
@@ -211,21 +211,23 @@ export class App extends React.Component<object, AppState> {
 				cellEditor: 'picklistEditor',
 				cellEditorParams: {
 					filterAboveSize: 5,
-					options: [
-						'Bob',
-						'Harry',
-						'Sally',
-						'Mary',
-						'John',
-						'Jack',
-						'Sue',
-						'Sean',
-						'Niall',
-						'Albert',
-						'Fred',
-						'Jenny',
-						'Larry'
-					]
+					getOptions: () => {
+						return [
+							'Bob',
+							'Harry',
+							'Sally',
+							'Mary',
+							'John',
+							'Jack',
+							'Sue',
+							'Sean',
+							'Niall',
+							'Albert',
+							'Fred',
+							'Jenny',
+							'Larry'
+						]; 
+					}
 				},
 				cellRenderer: 'picklistRenderer',
 				field: 'examplePicklist',
@@ -237,21 +239,23 @@ export class App extends React.Component<object, AppState> {
 			{
 				cellEditor: 'multiSelectPicklistEditor',
 				cellEditorParams: {
-					options: [
-						'Bob',
-						'Harry',
-						'Sally',
-						'Mary',
-						'John',
-						'Jack',
-						'Sue',
-						'Sean',
-						'Niall',
-						'Albert',
-						'Fred',
-						'Jenny',
-						'Larry'
-					]
+					getOptions: () => {
+						return [
+							'Bob',
+							'Harry',
+							'Sally',
+							'Mary',
+							'John',
+							'Jack',
+							'Sue',
+							'Sean',
+							'Niall',
+							'Albert',
+							'Fred',
+							'Jenny',
+							'Larry'
+						];
+					}
 				},
 				cellRenderer: 'multiSelectPicklistRenderer',
 				field: 'exampleMultiSelectPicklist',

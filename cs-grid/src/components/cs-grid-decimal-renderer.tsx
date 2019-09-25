@@ -17,11 +17,11 @@ export class CSGridDecimalRenderer extends CSGridNumberRenderer<CSGridDecimalRen
 		super(props);
 	}
 
-	async getNumberFormat(): Promise<any> {
+	getNumberFormat(): any {
 		const noOfDecimalDigits =
 			this.props.noOfDecimalDigits !== undefined ? this.props.noOfDecimalDigits : 5;
 
-		return (await getIntl(this.props.userInfo.userLocale)).NumberFormat(
+		return getIntl(this.props.userInfo.userLocale).NumberFormat(
 			this.props.userInfo.userLocale,
 			{
 				maximumFractionDigits: noOfDecimalDigits,

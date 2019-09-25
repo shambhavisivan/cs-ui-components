@@ -8,9 +8,9 @@ import {
 } from '../interfaces/cs-grid-base-interfaces';
 
 export interface CSGridPicklistEditorProps extends CSGridCellEditorProps<string | Array<string>> {
-	options: Array<string>;
 	filterAboveSize?: number;
 	clearAllName?: string;
+	getOptions(guid: string): Array<string>;
 }
 
 interface CSGridPicklistEditorState extends CSGridCellEditorState<string | Array<string>> {
@@ -28,7 +28,7 @@ export class CSGridPicklistEditor
 	constructor(props: CSGridPicklistEditorProps) {
 		super(props);
 
-		const options: Map<string, boolean> = this.getOptions(this.props.value.cellValue);
+		const options: Map<string, boolean> = this.getSelectedOptions(this.props.value.cellValue);
 		this.state = {
 			noneSelected: this.getNoOfSelected(options) === 0,
 			options,
@@ -68,7 +68,7 @@ export class CSGridPicklistEditor
 
 		const filter: boolean =
 			this.props.filterAboveSize !== undefined &&
-			this.props.filterAboveSize < this.props.options.length;
+			this.props.filterAboveSize < this.props.getOptions(this.props.node.id).length;
 
 		return (
 			<div className='cs-grid_popup-wrapper'>
@@ -116,7 +116,7 @@ export class CSGridPicklistEditor
 
 	private clearSelected = async () => {
 		const options = new Map(this.state.options);
-		for (const option of this.props.options) {
+		for (const option of this.props.getOptions(this.props.node.id)) {
 			options.set(option, false);
 		}
 		await this.onChange(options);
@@ -127,7 +127,7 @@ export class CSGridPicklistEditor
 		const selected = !options.get(key);
 
 		if (!this.multiSelect) {
-			for (const option of this.props.options) {
+			for (const option of this.props.getOptions(this.props.node.id)) {
 				options.set(option, false);
 			}
 		}
@@ -154,7 +154,7 @@ export class CSGridPicklistEditor
 		this.setState(
 			{
 				noneSelected: this.getNoOfSelected(options) === 0,
-				options: this.getOptions(value.cellValue),
+				options: this.getSelectedOptions(value.cellValue),
 				value
 			},
 			() => {
@@ -176,7 +176,7 @@ export class CSGridPicklistEditor
 	private filterText = (searchTerm: string) => {
 		const options: Map<string, boolean> = new Map();
 
-		for (const option of this.props.options) {
+		for (const option of this.props.getOptions(this.props.node.id)) {
 			if (option.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0) {
 				options.set(option, this.state.options.get(option));
 			}
@@ -200,10 +200,10 @@ export class CSGridPicklistEditor
 		return values;
 	};
 
-	private getOptions(selected: Array<string> | string) {
+	private getSelectedOptions(selected: Array<string> | string) {
 		const options: Map<string, boolean> = new Map();
 
-		for (const option of this.props.options) {
+		for (const option of this.props.getOptions(this.props.node.id)) {
 			options.set(option, selected.indexOf(option) >= 0);
 		}
 

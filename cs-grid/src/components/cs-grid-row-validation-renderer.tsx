@@ -33,7 +33,10 @@ export class CSGridRowValidationRenderer extends CSGridBaseRenderer<ValidationSt
 				}
 			>
 				{status !== 'None' && (
-					<CSGridTooltip test={className} helpText={this.props.value.errorMessage}>
+					<CSGridTooltip
+						additionalClassnames={className + '-wrapper'}
+						helpText={this.props.value.errorMessage}
+					>
 						<span className={className} aria-hidden='true' />
 					</CSGridTooltip>
 				)}

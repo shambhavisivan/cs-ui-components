@@ -4,6 +4,7 @@ import {
 	CSGridCellRendererProps,
 	CSGridCellRendererState
 } from '../interfaces/cs-grid-base-interfaces';
+import { getIntl } from '../polyfill/cs-grid-intl';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
 import { CSGridCellError } from './cs-grid-cell-error';
 
@@ -23,8 +24,8 @@ export abstract class CSGridNumberRenderer<
 		};
 	}
 
-	async componentDidMount() {
-		const numberFormat = await this.getNumberFormat();
+	componentDidMount() {
+		const numberFormat = this.getNumberFormat();
 		this.setState(
 			{
 				numberFormat
@@ -51,7 +52,7 @@ export abstract class CSGridNumberRenderer<
 		);
 	}
 
-	abstract async getNumberFormat(): Promise<any>;
+	abstract getNumberFormat(): any;
 
 	private format = (value: number | string): string => {
 		if (value === undefined || value === null) {
@@ -93,7 +94,8 @@ export abstract class CSGridNumberRenderer<
 	private getSeparator = (locale: string, separatorType: string): string => {
 		const numberWithGroupAndDecimalSeparator = 1000.1;
 
-		return (Intl.NumberFormat(locale) as any)
+		return getIntl(locale)
+			.NumberFormat(locale)
 			.formatToParts(numberWithGroupAndDecimalSeparator)
 			.find((part: any) => part.type === separatorType).value;
 	};

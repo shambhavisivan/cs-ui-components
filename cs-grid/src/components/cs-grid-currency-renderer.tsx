@@ -10,8 +10,8 @@ export class CSGridCurrencyRenderer extends CSGridNumberRenderer<CSGridCellRende
 		super(props);
 	}
 
-	async getNumberFormat(): Promise<any> {
-		return (await getIntl(this.props.userInfo.userLocale)).NumberFormat(
+	getNumberFormat(): any {
+		return getIntl(this.props.userInfo.userLocale).NumberFormat(
 			this.props.userInfo.userLocale,
 			{
 				currency: this.props.userInfo.currencyCode,

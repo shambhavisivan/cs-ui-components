@@ -3,7 +3,8 @@ import React from 'react';
 import {
 	CellData,
 	CSGridCellRenderer,
-	CSGridCellRendererProps
+	CSGridCellRendererProps,
+	IsColumnFuncParams
 } from '../interfaces/cs-grid-base-interfaces';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
 import { CSGridCellError } from './cs-grid-cell-error';
@@ -22,6 +23,23 @@ export class CSGridBooleanRenderer extends CSGridBaseRenderer<boolean>
 	render() {
 		const readOnly = this.isReadOnly();
 
+		let editable: boolean;
+		if (typeof this.props.colDef.editable === 'function') {
+			const params: IsColumnFuncParams = {
+				api: this.props.api,
+				colDef: this.props.colDef,
+				column: this.props.column,
+				columnApi: this.props.columnApi,
+				context: this.props.context,
+				data: this.props.data,
+				node: this.props.node
+			};
+
+			editable = this.props.colDef.editable(params);
+		} else {
+			editable = this.props.colDef.editable;
+		}
+
 		return (
 			<span className={readOnly ? ' read-only-cell' : ''}>
 				<label
@@ -33,10 +51,10 @@ export class CSGridBooleanRenderer extends CSGridBaseRenderer<boolean>
 					<input
 						className='cs-grid_checkbox'
 						type='checkbox'
-						onClick={!readOnly ? this.onClick : undefined}
+						onClick={editable ? this.onClick : undefined}
 						defaultChecked={this.state.value.cellValue}
 						readOnly={readOnly}
-						disabled={readOnly}
+						disabled={!editable}
 					/>
 					<span className='cs-grid_checkbox-faux' />
 				</label>

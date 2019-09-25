@@ -6,7 +6,7 @@ cs-grid is a fully-featured and highly customizable React Typescript data grid, 
 Features
 --------------
 
-Besides the standard set of features you'd expect from any grid:
+Besides the standard set of features you'd expect from any grid cs-grid includes:
 
 * Column Interactions (resize, reorder, and pin columns)
 * Pagination
@@ -23,25 +23,84 @@ Usage Overview
 
 #### Import the grid and styles
 
-import { CSGrid } from '@cloudsense/cs-grid';
-import '@cloudsense/cs-grid/css/styles.css';
+	import { CSGrid } from '@cloudsense/cs-grid';
+	import '@cloudsense/cs-grid/css/styles.css';
 
 ### Set configuration
 
-    const gridOptions = {
-    	columnDefs: [
-    		{headerName: 'Make', field: 'make'},
-    		{headerName: 'Model', field: 'model'},
-    		{headerName: 'Price', field: 'price'}
-    	],
-    	rowData: [
-    		{make: 'Toyota', model: 'Celica', price: 35000},
-    		{make: 'Ford', model: 'Mondeo', price: 32000},
-    		{make: 'Porsche', model: 'Boxter', price: 72000}
-    	]
-    };
+	const userInfo = {
+		currencyCode: 'EUR',
+		userLocale: 'fr-FR'
+	};
 
-### Initialize the grid
+	const gridOptions = {
+		columnDefs: [
+			{
+				headerName: 'Make',
+				field: 'make',
+				cellEditor: 'textEditor',
+				cellRenderer: 'textRenderer'
+			},
+			{
+				headerName: 'Model',
+				field: 'model',
+				cellEditor: 'textEditor',
+				cellRenderer: 'textRenderer'
+			},
+			{
+				headerName: 'Price',
+				field: 'price',
+				cellEditor: 'currencyEditor',
+				cellRenderer: 'currencyRenderer',
+				cellEditorParams: {
+					userInfo
+				},
+				cellRendererParams: {
+					userInfo
+				}
+			},
+			{
+				headerName: 'guid',
+				field: 'guid',
+				hide: true,
+				cellEditor: 'textEditor',
+				cellRenderer: 'textRenderer'
+			}
+		],
+		rowData: [
+			{
+				make: {
+					cellValue: 'Fiat'
+				},
+				model: {
+					cellValue: 'Uno'
+				},
+				price: {
+					cellValue: 35000,
+					errorMessage: 'Too expensive'
+				},
+				guid: {
+					cellValue: 1
+				}
+			},
+			{
+				make: {
+					cellValue: 'Ford'
+				},
+				model: {
+					cellValue: 'Mondeo'
+				},
+				price: {
+					cellValue: 32000
+				},
+				guid: {
+					cellValue: 2
+				}
+			}
+		]
+	};
+
+### Initialize the cs-grid react component
 
 	<CSGrid
 		columnDefs={this.state.columnDefs}

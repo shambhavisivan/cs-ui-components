@@ -94,14 +94,14 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 	 * Localised the input value.
 	 * @param value - a localised string.
 	 */
-	async format(value: number | string): Promise<number | string> {
+	format(value: number | string): number | string {
 		if (value === undefined || value === null) {
 			return '';
 		}
 
-		let result: string = (await this.getNumberFormat()).format(this.formatDecimalNumber(value));
+		let result: string = this.getNumberFormat().format(this.formatDecimalNumber(value));
 
-		const currencySymbol = await this.getCurrencySymbol(
+		const currencySymbol = this.getCurrencySymbol(
 			this.props.userInfo.userLocale,
 			this.props.userInfo.currencyCode
 		);
@@ -114,7 +114,7 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 		return result;
 	}
 
-	abstract async getNumberFormat(): Promise<any>;
+	abstract getNumberFormat(): any;
 
 	/**
 	 * Created a number from a localised string.
@@ -197,7 +197,8 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 	private getSeparator = (locale: string, separatorType: string): string => {
 		const numberWithGroupAndDecimalSeparator = 1000.1;
 
-		return (Intl.NumberFormat(locale) as any)
+		return getIntl(locale)
+			.NumberFormat(locale)
 			.formatToParts(numberWithGroupAndDecimalSeparator)
 			.find((part: any) => part.type === separatorType).value;
 	};
@@ -205,8 +206,8 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 	/**
 	 * Returns the localised currency symbol.
 	 */
-	private getCurrencySymbol = async (locale: string, currency: string): Promise<string> => {
-		const formatter = (await getIntl(locale)).NumberFormat(locale, {
+	private getCurrencySymbol = (locale: string, currency: string): string => {
+		const formatter = getIntl(locale).NumberFormat(locale, {
 			currency,
 			style: 'currency'
 		});

@@ -69,11 +69,4 @@ export abstract class CSGridBaseRenderer<
 			currentColumns[currentColumns.length - 1].getColId() === this.props.column.getColId()
 		);
 	};
-
-	/**
-	 * Is this cell within the first row on the page.
-	 */
-	isFirstRowOnPage = (): boolean => {
-		return (this.props.rowIndex + 1) % this.props.api.paginationGetPageSize() === 1;
-	};
 }

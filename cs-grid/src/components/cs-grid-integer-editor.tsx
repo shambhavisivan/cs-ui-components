@@ -27,7 +27,7 @@ export class CSGridIntegerEditor extends CSGridNumberEditor<CSGridIntegerEditorP
 	 * Localizes the input if the stepperArrows are not used otherwise returns the integer.
 	 * @param value - Either the underlying number or a localised string.
 	 */
-	async format(value: number | string): Promise<number | string> {
+	format(value: number | string): number | string {
 		if (this.props.stepperArrows) {
 			return this.formatDecimalNumber(value);
 		} else {
@@ -35,8 +35,8 @@ export class CSGridIntegerEditor extends CSGridNumberEditor<CSGridIntegerEditorP
 		}
 	}
 
-	async getNumberFormat(): Promise<any> {
-		return (await getIntl(this.props.userInfo.userLocale)).NumberFormat(
+	getNumberFormat(): any {
+		return getIntl(this.props.userInfo.userLocale).NumberFormat(
 			this.props.userInfo.userLocale,
 			{
 				maximumFractionDigits: 0,
