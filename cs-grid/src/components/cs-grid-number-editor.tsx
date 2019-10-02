@@ -39,7 +39,7 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 	}
 
 	async componentDidMount() {
-		const cellValue = await this.format(this.props.value.cellValue);
+		const cellValue = this.format(this.props.value.cellValue);
 		this.setState({
 			value: {
 				cellValue,
@@ -66,7 +66,14 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 
 	isCancelAfterEnd = () => {
 		this.setState(prevState => {
-			prevState.value.cellValue = this.formatDecimalNumber(this.state.value.cellValue);
+			let formattedValue: string | number = this.formatDecimalNumber(
+				this.state.value.cellValue
+			);
+			formattedValue = Number.isNaN(formattedValue)
+				? this.state.value.cellValue
+				: formattedValue;
+
+			prevState.value.cellValue = formattedValue;
 
 			return { value: prevState.value };
 		});

@@ -251,7 +251,6 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 	/* Grid Events we're listening to */
 	private onGridReady = (params: GridReadyEvent) => {
 		this.gridApi = params.api;
-		this.gridApi.sizeColumnsToFit();
 		this.onPaginationChanged();
 
 		if (this.props.onGridReady) {

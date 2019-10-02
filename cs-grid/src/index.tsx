@@ -82,6 +82,8 @@ export class App extends React.Component<object, AppState> {
 				lockPosition: true,
 				lockVisible: true,
 				maxWidth: 40,
+				minWidth: 40,
+				width: 40,
 				resizable: false,
 				sortable: false
 			},
@@ -268,7 +270,10 @@ export class App extends React.Component<object, AppState> {
 				filter: false,
 				headerName: '',
 				sortable: false,
-				suppressMenu: true
+				suppressMenu: true,
+				maxWidth: 40,
+				minWidth: 40,
+				width: 40
 			}
 		];
 
