@@ -121,7 +121,7 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 		return result;
 	}
 
-	abstract getNumberFormat(): any;
+	abstract getNumberFormat(): Intl.NumberFormat;
 
 	/**
 	 * Created a number from a localised string.
@@ -207,7 +207,7 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 		return getIntl(locale)
 			.NumberFormat(locale)
 			.formatToParts(numberWithGroupAndDecimalSeparator)
-			.find((part: any) => part.type === separatorType).value;
+			.find(part => part.type === separatorType).value;
 	};
 
 	/**
@@ -219,6 +219,6 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 			style: 'currency'
 		});
 
-		return formatter.formatToParts(1).find((part: any) => part.type === 'currency').value;
+		return formatter.formatToParts(1).find(part => part.type === 'currency').value;
 	};
 }

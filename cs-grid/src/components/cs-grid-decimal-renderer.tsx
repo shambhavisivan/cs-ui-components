@@ -17,7 +17,7 @@ export class CSGridDecimalRenderer extends CSGridNumberRenderer<CSGridDecimalRen
 		super(props);
 	}
 
-	getNumberFormat(): any {
+	getNumberFormat() {
 		const noOfDecimalDigits =
 			this.props.noOfDecimalDigits !== undefined ? this.props.noOfDecimalDigits : 5;
 

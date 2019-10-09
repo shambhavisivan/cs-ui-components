@@ -14,7 +14,7 @@ export class CSGridCurrencyEditor extends CSGridNumberEditor<
 		this.numberFormatType = 'Currency';
 	}
 
-	getNumberFormat(): any {
+	getNumberFormat() {
 		return getIntl(this.props.userInfo.userLocale).NumberFormat(
 			this.props.userInfo.userLocale,
 			{

@@ -1,19 +1,33 @@
 import {
+	AgGridEvent,
 	CellValueChangedEvent,
 	GetQuickFilterTextParams,
 	GridApi,
-	GridReadyEvent
+	GridReadyEvent,
+	IDatasource,
+	IGetRowsParams
 } from 'ag-grid-community';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import { AgGridReact, AgGridReactProps } from 'ag-grid-react';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { CellData } from '../interfaces/cs-grid-base-interfaces';
+import { CellData, CSGridControl, Row } from '../interfaces/cs-grid-base-interfaces';
+import {
+	ColumnFilterCondition,
+	Condition,
+	DataSourceAPI,
+	FilterModel,
+	OrderBy
+} from '../interfaces/cs-grid-data-source-api';
+import { CSGridDefaultComparator } from '../utils/cs-grid-default-comparator';
+import { SearchUtils } from '../utils/search-utils';
 import { CSGridBooleanEditor } from './cs-grid-boolean-editor';
 import { CSGridBooleanRenderer } from './cs-grid-boolean-renderer';
+import { CSGridClientSidePagination } from './cs-grid-client-side-pagination';
 import { CSGridCurrencyEditor } from './cs-grid-currency-editor';
 import { CSGridCurrencyRenderer } from './cs-grid-currency-renderer';
+import { CSGridDataSourcePagination } from './cs-grid-data-source-pagination';
 import { CSGridDateEditor } from './cs-grid-date-editor';
 import { CSGridDateRenderer } from './cs-grid-date-renderer';
 import { CSGridDecimalEditor } from './cs-grid-decimal-editor';
@@ -25,10 +39,9 @@ import { CSGridLookupEditor } from './cs-grid-lookup-editor';
 import { CSGridLookupRenderer } from './cs-grid-lookup-renderer';
 import { CSGridMultiSelectLookupEditor } from './cs-grid-multi-select-lookup-editor';
 import { CSGridMultiSelectPicklistEditor } from './cs-grid-multi-select-picklist-editor';
-import { CSGridPagination, CSGridPaginator } from './cs-grid-pagination';
 import { CSGridPicklistEditor } from './cs-grid-picklist-editor';
 import { CSGridPicklistRenderer } from './cs-grid-picklist-renderer';
-import { CSGridQuickFilter } from './cs-grid-quick-filter';
+import { CSGridQuickFilter, CSGridQuickFilterControl } from './cs-grid-quick-filter';
 import { CSGridRowSelectionRenderer } from './cs-grid-row-selection-renderer';
 import { CSGridRowValidationRenderer } from './cs-grid-row-validation-renderer';
 import { CSGridTextEditor } from './cs-grid-text-editor';
@@ -36,13 +49,17 @@ import { CSGridTextRenderer } from './cs-grid-text-renderer';
 
 export interface CSGridProps extends AgGridReactProps {
 	pageSizes?: Array<number>;
-	csGridPagination: CSGridPagination;
-	csGridQuickFilter: CSGridQuickFilter;
+	csGridPagination: CSGridControl;
+	csGridQuickFilter: CSGridQuickFilterControl;
+	dataSourceAPI?: DataSourceAPI;
 	editorComponents?: Record<string, any>;
 	rendererComponents?: Record<string, any>;
 	multiSelect: boolean;
 	uniqueIdentifierColumnName: string;
-	onSelectionChange?(selectedRows: Array<any>): void;
+	rowData?: Array<Row>;
+	columnState?: string;
+	onColumnStateChange?(columnState: string): void;
+	onSelectionChange?(selectedRows: Array<Row>): void;
 	onCellValueChange?(
 		rowNodeId: string,
 		ColumnField: string,
@@ -53,7 +70,6 @@ export interface CSGridProps extends AgGridReactProps {
 }
 
 class CSGridState {
-	filterText: string = null;
 	frameworkComponents = {
 		booleanEditor: CSGridBooleanEditor,
 		booleanRenderer: CSGridBooleanRenderer,
@@ -79,12 +95,16 @@ class CSGridState {
 		textRenderer: CSGridTextRenderer
 	};
 
-	firstRowOnPage: number;
-	lastRowOnPage: number;
-	totalRows: number;
-	currentPage: number;
+	filterText: string = null;
+	nonIncrementalFilterText: string = null;
+	qualifiedSearchError: string = '';
+	qualifiedSearchFilter: FilterModel = {
+		columnFilters: new Map(),
+		unqualifiedSearchTerms: []
+	};
+
+	currentPage: number = 0;
 	totalPages: number;
-	onLastPage: boolean;
 	currentPageSize: number;
 }
 
@@ -106,107 +126,58 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		};
 	}
 
-	getSelectedRows = (): Array<any> => {
+	getSelectedRows = (): Array<Row> => {
 		return this.gridApi.getSelectedRows();
 	};
 
 	render() {
 		const pageSizes = this.props.pageSizes || this.defaultPageSizes;
+		const isDataSourceRowModel = !!this.props.dataSourceAPI;
+
 		const paginationLocation = this.props.csGridPagination.location;
-		const csGridPaginations: Array<React.ReactPortal> = [];
-		let paginator: JSX.Element;
-		if (paginationLocation !== 'None') {
-			paginator = (
-				<CSGridPaginator
-					firstRowOnPage={this.state.firstRowOnPage}
-					lastRowOnPage={this.state.lastRowOnPage}
-					totalRows={this.state.totalRows}
-					currentPage={this.state.currentPage}
-					totalPages={this.state.totalPages}
-					onLastPage={this.state.onLastPage}
-					pageSizes={pageSizes}
-					onPageSizeChanged={this.onPageSizeChanged}
-					currentPageSize={this.state.currentPageSize}
-					onBtFirst={this.onBtFirst}
-					onBtLast={this.onBtLast}
-					onBtNext={this.onBtNext}
-					onBtPrevious={this.onBtPrevious}
-					goToPage={this.goToPage}
-				/>
-			);
-
-			if (this.props.csGridPagination.detachedCSSClass) {
-				const elements: HTMLCollectionOf<Element> = document.getElementsByClassName(
-					this.props.csGridPagination.detachedCSSClass
-				);
-
-				for (const element of elements) {
-					csGridPaginations.push(ReactDOM.createPortal(paginator, element));
-				}
-			}
-		}
+		const paginationElement = this.getPagination();
+		const paginationPortals = this.getReactPortals(
+			this.props.csGridPagination,
+			paginationElement
+		);
 
 		const quickFilterLocation = this.props.csGridQuickFilter.location;
-		const csGridQuickFilters: Array<React.ReactPortal> = [];
-		let quickFilter: JSX.Element;
-		if (quickFilterLocation !== 'None') {
-			quickFilter = (
-				<CSGridQuickFilter
-					onFilterText={this.onFilterText}
-					filterText={this.state.filterText}
-					clearFilter={this.clearFilter}
-				/>
-			);
-
-			if (this.props.csGridQuickFilter.detachedCSSClass) {
-				const elements: HTMLCollectionOf<Element> = document.getElementsByClassName(
-					this.props.csGridQuickFilter.detachedCSSClass
-				);
-
-				for (const element of elements) {
-					csGridQuickFilters.push(ReactDOM.createPortal(quickFilter, element));
-				}
-			}
-		}
+		const quickFilter = this.getQuickFilter();
+		const quickFilterPortals = this.getReactPortals(this.props.csGridQuickFilter, quickFilter);
 
 		return (
 			<>
-				{(paginationLocation === 'Header' || paginationLocation === 'Both') && paginator}
+				{(paginationLocation === 'Header' || paginationLocation === 'Both') &&
+					paginationElement}
 				{(quickFilterLocation === 'Header' || quickFilterLocation === 'Both') &&
 					quickFilter}
 				<div className='cs-grid_app-wrapper'>
 					<div className='ag-theme-balham cs-grid_main'>
 						<AgGridReact
-							// listening for events
 							onSelectionChanged={this.onSelectionChanged}
-							quickFilterText={this.state.filterText}
+							quickFilterText={
+								!isDataSourceRowModel ? this.state.filterText : undefined
+							}
+							cacheBlockSize={isDataSourceRowModel ? pageSizes[0] : undefined}
+							maxBlocksInCache={isDataSourceRowModel ? 1 : undefined}
+							maxConcurrentDatasourceRequests={isDataSourceRowModel ? 1 : undefined}
+							rowModelType={isDataSourceRowModel ? 'infinite' : undefined}
 							columnDefs={this.props.columnDefs}
 							rowData={this.props.rowData}
 							pagination={paginationLocation !== 'None'}
-							suppressPaginationPanel={true}
 							paginationPageSize={pageSizes[0]}
-							onPaginationChanged={this.onPaginationChanged}
+							suppressPaginationPanel={true}
+							onPaginationChanged={
+								paginationLocation !== 'None' ? this.onPaginationChanged : undefined
+							}
 							singleClickEdit={true}
-							// setting default column properties
 							defaultColDef={{
-								comparator: this.comparator,
+								comparator: CSGridDefaultComparator,
 								editable: true,
 								filter: true,
 								filterParams: {
-									textFormatter: (value: any) => {
-										if (typeof value === 'string' || value instanceof String) {
-											return value.toLowerCase();
-										}
-
-										const cellValue = value.cellValue;
-										if (cellValue === undefined || cellValue == null) {
-											return '';
-										}
-
-										return cellValue.toString().toLowerCase();
-									}
+									textFormatter: this.formatTextForFiltering
 								},
-								// This is needed to avoid toString=[object,object] result with objects.
 								getQuickFilterText: (params: GetQuickFilterTextParams) => {
 									return params.value.cellValue;
 								},
@@ -228,30 +199,239 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 							getRowNodeId={this.getRowNodeId}
 							onColumnMoved={this.onColumnMoved}
 							onGridReady={this.onGridReady}
+							onColumnVisible={this.onColumnStateChange}
+							onDragStopped={this.onColumnStateChange}
 						/>
 					</div>
 				</div>
 				{(quickFilterLocation === 'Footer' || quickFilterLocation === 'Both') &&
 					quickFilter}
-				{(paginationLocation === 'Footer' || paginationLocation === 'Both') && paginator}
-				{csGridPaginations}
-				{csGridQuickFilters}
+				{(paginationLocation === 'Footer' || paginationLocation === 'Both') &&
+					paginationElement}
+				{paginationPortals}
+				{quickFilterPortals}
 			</>
 		);
 	}
 
-	private onFilterText = (event: React.ChangeEvent<HTMLInputElement>): void => {
-		this.setState({ filterText: event.target.value });
+	private onFilterText = (filterText: string) => {
+		if (this.props.csGridQuickFilter.nonIncremental) {
+			this.setState({ nonIncrementalFilterText: filterText });
+		} else {
+			this.setState({ filterText }, () => {
+				this.triggerDataSourceQuickFilter();
+			});
+		}
 	};
 
-	private clearFilter = (): void => {
-		this.setState({ filterText: '' });
+	private searchQuickFilter = () => {
+		// Empty filter.
+		let qualifiedSearchFilter: FilterModel = {
+			columnFilters: new Map(),
+			unqualifiedSearchTerms: []
+		};
+		let qualifiedSearchError = '';
+
+		if (this.state.nonIncrementalFilterText !== '') {
+			// remove trailing semicolons, colons and backslashes.
+			const cleansedString = SearchUtils.trimDelimiters(this.state.nonIncrementalFilterText);
+
+			// parse semicolons that were escaped.
+			const afterSemiColonRemoved = SearchUtils.removeEscapesAndSplitForSearchFilter(
+				cleansedString,
+				';'
+			);
+
+			const qualifiedSearchQueries: Record<string, string> = {};
+			const unqualifiedSearchQueries = [];
+
+			for (let singleQuery of afterSemiColonRemoved) {
+				/**
+				 * 'singleQuery' in each iteration is now either a
+				 * Qualified or unqualified search.
+				 */
+				singleQuery = singleQuery.trim();
+
+				// parse colons that were escaped.
+				const afterQualifierSplit = SearchUtils.removeEscapesAndSplitForSearchFilter(
+					singleQuery,
+					':'
+				);
+
+				/**
+				 *  if there are more than 2 elements in 'afterQualifierSplit',
+				 *  that means the user did not escape the colon and our
+				 *  escape tests above failed. So we throw an error.
+				 *
+				 *  NOTE: we don't have to do this for ';' because there
+				 *  is no way to tell if the user actually meant it as a
+				 *  part of search string itself, or he just slipped in
+				 *  an unqualified search between qualified search.
+				 *  So we assume it as unqualified search at all times.
+				 *  the user can still search for a string with semicolon in it
+				 *  if they escape it. Although, the colon scenario can't be done
+				 *  this way because it breaks our tokenizing logic.
+				 */
+				if (afterQualifierSplit.length > 2) {
+					const errAt = afterQualifierSplit.reduce((prev, curr) => {
+						return `${prev}:${curr}`;
+					});
+
+					qualifiedSearchError += `Invalid Query at "${errAt}". Please check your query. `;
+				}
+
+				if (afterQualifierSplit.length > 1 && afterQualifierSplit[1].trim() !== '') {
+					const columnName = SearchUtils.handleBackslashes(afterQualifierSplit[0].trim());
+					qualifiedSearchQueries[columnName] = afterQualifierSplit[1].trim();
+				} else if (afterQualifierSplit[0].trim() !== '') {
+					const unqualifiedSearchQuery = SearchUtils.handleBackslashes(
+						afterQualifierSplit[0].trim()
+					);
+					unqualifiedSearchQueries.push(unqualifiedSearchQuery);
+				}
+			}
+
+			qualifiedSearchError += SearchUtils.validateQualifiedSearch(
+				this.props.columnDefs,
+				qualifiedSearchQueries
+			);
+
+			if (!qualifiedSearchError) {
+				const columnFilters = SearchUtils.convertQueriesToColumnFilters(
+					this.props.columnDefs,
+					qualifiedSearchQueries
+				);
+
+				qualifiedSearchFilter = {
+					columnFilters,
+					unqualifiedSearchTerms: unqualifiedSearchQueries
+				};
+			}
+		}
+
+		this.setState(
+			{
+				qualifiedSearchError,
+				qualifiedSearchFilter
+			},
+			() => {
+				if (!qualifiedSearchError) {
+					this.triggerDataSourceQuickFilter();
+				}
+			}
+		);
+	};
+
+	private triggerDataSourceQuickFilter = () => {
+		if (this.props.dataSourceAPI) {
+			if (this.gridApi.paginationGetCurrentPage() !== 0) {
+				this.gridApi.paginationGoToPage(0);
+			} else {
+				(this.gridApi as any).infinitePageRowModel.resetCache();
+			}
+		}
 	};
 
 	/* Grid Events we're listening to */
 	private onGridReady = (params: GridReadyEvent) => {
 		this.gridApi = params.api;
 		this.onPaginationChanged();
+
+		if (this.props.columnState) {
+			params.columnApi.setColumnState(JSON.parse(this.props.columnState));
+		}
+
+		const dataSourceAPI = this.props.dataSourceAPI;
+		if (dataSourceAPI) {
+			const dataSource: IDatasource = {
+				getRows: async (getRowsParams: IGetRowsParams) => {
+					const pageSize = getRowsParams.endRow - getRowsParams.startRow;
+
+					let rows;
+					if (getRowsParams.startRow === 0) {
+						const orderByList: Array<OrderBy> = [];
+						for (const sortElement of getRowsParams.sortModel) {
+							orderByList.push({
+								columnId: sortElement.colId,
+								sortDirection:
+									sortElement.sort.toLowerCase() === 'asc'
+										? 'SORT_ASC'
+										: 'SORT_DESC'
+							});
+						}
+
+						const columnFilters = new Map(
+							this.state.qualifiedSearchFilter.columnFilters
+						);
+
+						const makeCondition = (agColumnCondition: any): Condition => {
+							if (agColumnCondition) {
+								return {
+									filterText: agColumnCondition.filter,
+									type: agColumnCondition.type
+								};
+							}
+						};
+
+						for (const columnId in getRowsParams.filterModel) {
+							if (!getRowsParams.filterModel.hasOwnProperty(columnId)) {
+								continue;
+							}
+
+							const agColumnCondition = getRowsParams.filterModel[columnId];
+							const columnCondition: ColumnFilterCondition = {
+								condition1: makeCondition(
+									agColumnCondition.condition1 || agColumnCondition
+								),
+								condition2: makeCondition(agColumnCondition.condition2),
+								operator: agColumnCondition.operator
+							};
+
+							const columnConditions = columnFilters.get(columnId) || [];
+							columnConditions.push(columnCondition);
+
+							columnFilters.set(columnId, columnConditions);
+						}
+
+						const unqualifiedSearchTerms = this.props.csGridQuickFilter.nonIncremental
+							? [...this.state.qualifiedSearchFilter.unqualifiedSearchTerms]
+							: [this.state.filterText];
+
+						const filterModel: FilterModel = {
+							columnFilters,
+							unqualifiedSearchTerms
+						};
+						rows = await dataSourceAPI.onContextChange(
+							pageSize,
+							orderByList,
+							filterModel
+						);
+					} else {
+						const firstRowOnCurrentPage = this.state.currentPage * pageSize;
+						rows =
+							firstRowOnCurrentPage < getRowsParams.startRow
+								? await dataSourceAPI.onBtNext()
+								: await dataSourceAPI.onBtPrevious();
+					}
+
+					let lastRow = -1;
+					const lastRowOnPage = getRowsParams.startRow + rows.length - 1;
+					if (lastRowOnPage !== getRowsParams.endRow - 1) {
+						lastRow = lastRowOnPage;
+
+						if (lastRow <= 0) {
+							lastRow = 0;
+						}
+					}
+
+					this.setState({
+						currentPage: this.gridApi.paginationGetCurrentPage()
+					});
+					getRowsParams.successCallback(rows, lastRow);
+				}
+			};
+			params.api.setDatasource(dataSource);
+		}
 
 		if (this.props.onGridReady) {
 			this.props.onGridReady(params);
@@ -283,8 +463,15 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 	};
 
 	private onPageSizeChanged = (event: React.ChangeEvent<HTMLSelectElement>) => {
-		const value = event.target.value;
-		this.gridApi.paginationSetPageSize(Number(value));
+		const pageSize = Number(event.target.value);
+
+		if (this.props.dataSourceAPI) {
+			// Force new cache block size by resetting internal cache
+			(this.gridApi as any).gridOptionsWrapper.setProperty('cacheBlockSize', pageSize);
+			(this.gridApi as any).infinitePageRowModel.resetCache();
+		}
+
+		this.gridApi.paginationSetPageSize(pageSize);
 		this.gridApi.paginationGoToPage(0);
 
 		this.setState({
@@ -294,35 +481,12 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 	};
 
 	private onPaginationChanged = () => {
-		if (this.gridApi) {
-			const totalRows = this.gridApi.paginationGetRowCount();
-			let lastRowOnPage =
-				(this.gridApi.paginationGetCurrentPage() + 1) *
-				this.gridApi.paginationGetPageSize();
-			if (lastRowOnPage > totalRows) {
-				lastRowOnPage = totalRows;
-			}
-			const currentPage = this.gridApi.paginationGetCurrentPage() + 1;
-			const totalPages = this.gridApi.paginationGetTotalPages();
+		if (this.gridApi && !this.props.dataSourceAPI) {
 			this.setState({
-				currentPage,
-				firstRowOnPage:
-					this.gridApi.paginationGetCurrentPage() * this.gridApi.paginationGetPageSize() +
-					1,
-				lastRowOnPage,
-				onLastPage: currentPage === totalPages,
-				totalPages,
-				totalRows
+				currentPage: this.gridApi.paginationGetCurrentPage(),
+				totalPages: this.gridApi.paginationGetTotalPages()
 			});
 		}
-	};
-
-	private onBtFirst = () => {
-		this.gridApi.paginationGoToFirstPage();
-	};
-
-	private onBtLast = () => {
-		this.gridApi.paginationGoToLastPage();
 	};
 
 	private onBtNext = () => {
@@ -341,31 +505,97 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		return data[this.props.uniqueIdentifierColumnName].cellValue;
 	};
 
-	private comparator = (a: CellData<any>, b: CellData<any>) => {
-		let aValue = a.cellValue;
-		let bValue = b.cellValue;
+	private getPagination = () => {
+		let paginationElement: JSX.Element;
 
-		if (Array.isArray(aValue) && Array.isArray(bValue)) {
-			aValue = aValue[0];
-			bValue = bValue[0];
+		if (this.props.csGridPagination.location !== 'None') {
+			const pageSizes = this.props.pageSizes || this.defaultPageSizes;
+
+			paginationElement = this.props.dataSourceAPI ? (
+				<CSGridDataSourcePagination
+					currentPage={this.state.currentPage}
+					pageSizes={pageSizes}
+					onPageSizeChanged={this.onPageSizeChanged}
+					currentPageSize={this.state.currentPageSize}
+					isLastPage={this.props.dataSourceAPI.isLastPage}
+					onBtNext={this.onBtNext}
+					onBtPrevious={this.onBtPrevious}
+				/>
+			) : (
+				<CSGridClientSidePagination
+					currentPage={this.state.currentPage}
+					pageSizes={pageSizes}
+					onPageSizeChanged={this.onPageSizeChanged}
+					currentPageSize={this.state.currentPageSize}
+					onBtNext={this.onBtNext}
+					onBtPrevious={this.onBtPrevious}
+					totalPages={this.state.totalPages}
+					goToPage={this.goToPage}
+				/>
+			);
 		}
 
-		if (aValue === undefined || aValue == null) {
-			if (bValue === undefined || bValue == null) {
-				return 0;
+		return paginationElement;
+	};
+
+	private getQuickFilter = () => {
+		let quickFilter: JSX.Element;
+
+		if (this.props.csGridQuickFilter.location !== 'None') {
+			quickFilter = (
+				<CSGridQuickFilter
+					onFilterText={this.onFilterText}
+					filterText={
+						this.props.csGridQuickFilter.nonIncremental
+							? this.state.nonIncrementalFilterText
+							: this.state.filterText
+					}
+					search={
+						this.props.csGridQuickFilter.nonIncremental
+							? this.searchQuickFilter
+							: undefined
+					}
+					errorMessage={this.state.qualifiedSearchError}
+				/>
+			);
+		}
+
+		return quickFilter;
+	};
+
+	private getReactPortals = (csGridControl: CSGridControl, controller: JSX.Element) => {
+		const controlPortals: Array<React.ReactPortal> = [];
+
+		if (csGridControl.location !== 'None' && csGridControl.detachedCSSClass) {
+			const elements: HTMLCollectionOf<Element> = document.getElementsByClassName(
+				csGridControl.detachedCSSClass
+			);
+
+			for (const element of elements) {
+				controlPortals.push(ReactDOM.createPortal(controller, element));
 			}
-
-			return -1;
-		}
-		if (bValue === undefined || bValue == null) {
-			return 1;
 		}
 
-		if (typeof aValue === 'string') {
-			aValue = aValue.toUpperCase();
-			bValue = bValue.toUpperCase();
+		return controlPortals;
+	};
+
+	private formatTextForFiltering = (value: string | CellData<any>) => {
+		if (typeof value === 'string' || value instanceof String) {
+			return value.toLowerCase();
 		}
 
-		return aValue > bValue ? 1 : aValue < bValue ? -1 : 0;
+		const cellValue = value.cellValue;
+		if (cellValue === undefined || cellValue == null) {
+			return '';
+		}
+
+		return cellValue.toString().toLowerCase();
+	};
+
+	private onColumnStateChange = (event: AgGridEvent): void => {
+		if (this.props.onColumnStateChange) {
+			const columnState = JSON.stringify(event.columnApi.getColumnState());
+			this.props.onColumnStateChange(columnState);
+		}
 	};
 }

@@ -34,4 +34,5 @@ yarn-error.log*
 /cs-grid/cs-grid-demo
 /cs-grid/css
 /cs-grid/fonts
+/cs-grid/coverage
 

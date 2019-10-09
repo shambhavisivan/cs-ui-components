@@ -14,6 +14,10 @@ export class CSGridRowValidationRenderer extends CSGridBaseRenderer<ValidationSt
 	}
 
 	render() {
+		if (!this.props.value) {
+			return null;
+		}
+
 		const status = this.props.value.cellValue;
 		let className: string;
 		switch (status) {

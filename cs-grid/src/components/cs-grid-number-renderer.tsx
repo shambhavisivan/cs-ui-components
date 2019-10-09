@@ -37,6 +37,10 @@ export abstract class CSGridNumberRenderer<
 	}
 
 	render() {
+		if (!this.state.value) {
+			return null;
+		}
+
 		const value = this.format(this.state.value.cellValue);
 
 		return (
@@ -52,7 +56,7 @@ export abstract class CSGridNumberRenderer<
 		);
 	}
 
-	abstract getNumberFormat(): any;
+	abstract getNumberFormat(): Intl.NumberFormat;
 
 	private format = (value: number | string): string => {
 		if (value === undefined || value === null) {
@@ -63,7 +67,7 @@ export abstract class CSGridNumberRenderer<
 			return `${value}`;
 		}
 
-		let result: any = this.state.numberFormat.format(value as any);
+		let result: number | string = this.state.numberFormat.format(value as any);
 
 		if (typeof value === 'string') {
 			let replaced: string;
@@ -97,6 +101,6 @@ export abstract class CSGridNumberRenderer<
 		return getIntl(locale)
 			.NumberFormat(locale)
 			.formatToParts(numberWithGroupAndDecimalSeparator)
-			.find((part: any) => part.type === separatorType).value;
+			.find(part => part.type === separatorType).value;
 	};
 }

@@ -6,31 +6,48 @@ import ReactDOM from 'react-dom';
 import './sass/style.scss';
 
 import { CSGrid } from './components/cs-grid';
-import { CSGridLookupComparator } from './utils/cs-grid-lookup-comparator';
 import { CSGridLookupSearchResult } from './components/cs-grid-lookup-editor';
-import { CellData, ColGroupDef, ColDef } from './interfaces/cs-grid-base-interfaces';
+import { CellData, ColDef, ColGroupDef, Row } from './interfaces/cs-grid-base-interfaces';
+import {
+	ColumnFilterCondition,
+	Condition,
+	FilterModel,
+	OrderBy
+} from './interfaces/cs-grid-data-source-api';
+import { CSGridDefaultComparator } from './utils/cs-grid-default-comparator';
+import { CSGridLookupComparator } from './utils/cs-grid-lookup-comparator';
 
 interface AppState {
 	columnDefs: Array<ColDef | ColGroupDef>;
-	rowData: Array<any>;
+	rowData: Array<Row>;
+	isDataSourceRowModel: boolean;
 }
 
 /**
  * Creates an example CS Grid with dummy data.
  */
 export class App extends React.Component<object, AppState> {
-	private csGridRef: React.RefObject<CSGrid>;
+	private currentPage = 0;
+	private pageSizes = [10, 20, 50, 100];
+	private currentPageSize = this.pageSizes[0];
+	private lookupDisplayColumn = 'text1';
+	private sortedAndFilteredRows: Array<Row>;
+
+	private columnState: string =
+		'[{"colId":"exampleRowSelection","hide":false,"aggFunc":null,"width":40,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleGuid","hide":true,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleDecimal","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleText","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleCurrency","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleDate","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleLookup","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleMultiSelectLookup","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleBoolean","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleIntegerStep","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleInteger","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"examplePicklist","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleMultiSelectPicklist","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleRowValidation","hide":false,"aggFunc":null,"width":40,"pivotIndex":null,"pinned":null,"rowGroupIndex":null}]';
+
 	constructor(props: object) {
 		super(props);
-
-		this.csGridRef = React.createRef();
 
 		const userInfo = {
 			currencyCode: 'EUR',
 			userLocale: 'fr-FR'
 		};
 
-		const getLookupValues = (searchTerm: string, guid: string): Promise<CSGridLookupSearchResult> => {
+		const getLookupValues = (
+			searchTerm: string,
+			guid: string
+		): Promise<CSGridLookupSearchResult> => {
 			const results: CSGridLookupSearchResult = {
 				columnDefs: [
 					{
@@ -49,19 +66,19 @@ export class App extends React.Component<object, AppState> {
 				],
 				rowData: [
 					{
+						hidden: '11111111111',
 						text1: 'Bob the Great',
-						text2: '1234567890987654321',
-						hidden: '11111111111'
+						text2: '1234567890987654321'
 					},
 					{
+						hidden: '22222222222',
 						text1: 'Harry',
-						text2: '564768',
-						hidden: '22222222222'
+						text2: '564768'
 					},
 					{
+						hidden: '33333333333',
 						text1: 'Sally',
-						text2: '079845',
-						hidden: '33333333333'
+						text2: '079845'
 					}
 				]
 			};
@@ -83,9 +100,9 @@ export class App extends React.Component<object, AppState> {
 				lockVisible: true,
 				maxWidth: 40,
 				minWidth: 40,
-				width: 40,
 				resizable: false,
-				sortable: false
+				sortable: false,
+				width: 40
 			},
 			{
 				field: 'exampleGuid',
@@ -128,9 +145,9 @@ export class App extends React.Component<object, AppState> {
 				cellEditor: 'booleanEditor',
 				cellRenderer: 'booleanRenderer',
 				cellRendererParams: {
-					readonly: () => {return true;}
+					readonly: () => true
 				},
-				editable: () => {return false;},
+				editable: () => false,
 				field: 'exampleBoolean',
 				headerName: 'Boolean Column'
 			},
@@ -151,24 +168,26 @@ export class App extends React.Component<object, AppState> {
 				cellEditorParams: { guidColumn: 'text2', getLookupValues },
 				cellRenderer: 'lookupRenderer',
 				cellRendererParams: {
-					displayColumn: 'text1'
+					displayColumn: this.lookupDisplayColumn
 				},
-				comparator: (a: CellData<any>, b: CellData<any>) => CSGridLookupComparator(a, b, 'text1'),
+				comparator: (a: CellData<any>, b: CellData<any>) =>
+					CSGridLookupComparator(a, b, this.lookupDisplayColumn),
 				field: 'exampleLookup',
 				headerName: 'Lookup'
 			},
 			{
 				cellEditor: 'multiSelectLookupEditor',
 				cellEditorParams: {
-					guidColumn: 'text2',
 					getLookupValues,
+					guidColumn: 'text2',
 					minSearchTermLength: 3
 				},
 				cellRenderer: 'multiSelectLookupRenderer',
 				cellRendererParams: {
-					displayColumn: 'text1'
+					displayColumn: this.lookupDisplayColumn
 				},
-				comparator: (a: CellData<any>, b: CellData<any>) => CSGridLookupComparator(a, b, 'text1'),
+				comparator: (a: CellData<any>, b: CellData<any>) =>
+					CSGridLookupComparator(a, b, this.lookupDisplayColumn),
 				field: 'exampleMultiSelectLookup',
 				headerName: 'Multi Select Lookup'
 			},
@@ -228,7 +247,7 @@ export class App extends React.Component<object, AppState> {
 							'Fred',
 							'Jenny',
 							'Larry'
-						]; 
+						];
 					}
 				},
 				cellRenderer: 'picklistRenderer',
@@ -269,10 +288,10 @@ export class App extends React.Component<object, AppState> {
 				field: 'exampleRowValidation',
 				filter: false,
 				headerName: '',
-				sortable: false,
-				suppressMenu: true,
 				maxWidth: 40,
 				minWidth: 40,
+				sortable: false,
+				suppressMenu: true,
 				width: 40
 			}
 		];
@@ -302,22 +321,24 @@ export class App extends React.Component<object, AppState> {
 				},
 				exampleLookup: {
 					cellValue: {
-                        text1: 'Bob',
-                        text2: '645612',
-						hidden: '11111111111'
-                    }
+						hidden: '11111111111',
+						text1: 'Bob',
+						text2: '645612'
+					}
 				},
 				exampleMultiSelectLookup: {
-					cellValue: [{
-                        text1: 'Bob',
-                        text2: '645612',
-						hidden: '11111111111'
-                    },
-                    {
-                        text1: 'Harry',
-                        text2: '564768',
-						hidden: '11111111111'
-                    }]
+					cellValue: [
+						{
+							hidden: '11111111111',
+							text1: 'Bob',
+							text2: '645612'
+						},
+						{
+							hidden: '11111111111',
+							text1: 'Harry',
+							text2: '564768'
+						}
+					]
 				},
 				exampleMultiSelectPicklist: {
 					cellValue: ['Harry', 'Sally']
@@ -330,7 +351,7 @@ export class App extends React.Component<object, AppState> {
 					cellValue: 'None'
 				},
 				exampleText: {
-					cellValue: 'Toyota'
+					cellValue: 'Toy&o|:;ta'
 				}
 			},
 			{
@@ -365,21 +386,22 @@ export class App extends React.Component<object, AppState> {
 				},
 				exampleLookup: {
 					cellValue: {
-                        text1: 'Harry',
-                        text2: '564768'
-                    },
+						text1: 'Harry',
+						text2: '564768'
+					},
 					errorMessage: 'An error message'
 				},
 				exampleMultiSelectLookup: {
 					cellValue: [
-                    {
-                        text1: 'Harry',
-                        text2: '564768'
-                    },
-					{
-                        text1: 'Sally',
-                        text2: '079845'
-					}],
+						{
+							text1: 'Harry',
+							text2: '564768'
+						},
+						{
+							text1: 'Sally',
+							text2: '079845'
+						}
+					],
 					errorMessage: 'An error message'
 				},
 				exampleMultiSelectPicklist: {
@@ -424,20 +446,21 @@ export class App extends React.Component<object, AppState> {
 				},
 				exampleLookup: {
 					cellValue: {
-                        text1: 'Sally',
-                        text2: '079845'
+						text1: 'Sally',
+						text2: '079845'
 					}
 				},
 				exampleMultiSelectLookup: {
 					cellValue: [
-					{
-                        text1: 'Sally',
-                        text2: '079845'
-					},
-					{
-                        text1: 'Bob',
-                        text2: '645612'
-                    }]
+						{
+							text1: 'Sally',
+							text2: '079845'
+						},
+						{
+							text1: 'Bob',
+							text2: '645612'
+						}
+					]
 				},
 				exampleMultiSelectPicklist: {
 					cellValue: ['Bob', 'Harry']
@@ -485,21 +508,22 @@ export class App extends React.Component<object, AppState> {
 				},
 				exampleLookup: {
 					cellValue: {
-                        text1: 'Sue',
-                        text2: '123456'
+						text1: 'Sue',
+						text2: '123456'
 					},
 					errorMessage: ''
 				},
 				exampleMultiSelectLookup: {
 					cellValue: [
-					{
-                        text1: 'Sue',
-                        text2: '123456'
-					},
-					{
-                        text1: 'Sean',
-                        text2: '987654'
-                    }],
+						{
+							text1: 'Sue',
+							text2: '123456'
+						},
+						{
+							text1: 'Sean',
+							text2: '987654'
+						}
+					],
 					errorMessage: ''
 				},
 				exampleMultiSelectPicklist: {
@@ -513,7 +537,7 @@ export class App extends React.Component<object, AppState> {
 				exampleRowSelection: {},
 				exampleRowValidation: {
 					cellValue: 'Error',
-					errorMessage: 'Error 1\Error 2'
+					errorMessage: 'Error 1Error 2'
 				},
 				exampleText: {
 					cellValue: 'Ford',
@@ -522,7 +546,7 @@ export class App extends React.Component<object, AppState> {
 			}
 		];
 
-		const rowData: any = [];
+		const rowData: Array<any> = [];
 
 		for (let i = 0; i < 200; i++) {
 			const row = { ...rowDataSeeds[Math.floor(rowDataSeeds.length * Math.random())] };
@@ -530,19 +554,13 @@ export class App extends React.Component<object, AppState> {
 			rowData.push(row);
 		}
 
+		this.sortedAndFilteredRows = rowData;
 		this.state = {
 			columnDefs,
+			isDataSourceRowModel: false,
 			rowData
 		};
 	}
-
-	delayResponse = (result: any) => {
-		return new Promise<any>((resolve, reject) => {
-			setTimeout(() => {
-				return resolve(result);
-			}, 500);
-		});
-	};
 
 	s4 = (): string => {
 		return Math.floor((1 + Math.random()) * 0x10000)
@@ -554,39 +572,366 @@ export class App extends React.Component<object, AppState> {
 		return `${this.s4()}${this.s4()}-${this.s4()}-${this.s4()}-${this.s4()}-${this.s4()}${this.s4()}${this.s4()}`;
 	};
 
-	onSelectionChange = (selectedRows: Array<any>): void => {
+	onSelectionChange = (selectedRows: Array<Row>): void => {
 		console.log(selectedRows);
-		console.log(this.csGridRef.current.getSelectedRows());
 	};
 
 	render() {
 		return (
 			<>
-				<div className='example-filter' />
-				<div className='example-pagination' />
-				<CSGrid
-					ref={this.csGridRef}
-					columnDefs={this.state.columnDefs}
-					rowData={this.state.rowData}
-					pageSizes={[10, 20, 50, 100]}
-					csGridPagination={{
-						detachedCSSClass: 'example-pagination',
-						location: 'Both'
-					}}
-					csGridQuickFilter={{
-						detachedCSSClass: 'example-filter',
-						location: 'Both'
-					}}
-					// suppressDragLeaveHidesColumns={false}
-					multiSelect={true}
-					onSelectionChange={this.onSelectionChange}
-					uniqueIdentifierColumnName={'exampleGuid'}
-				/>
-				<div className='example-pagination' />
-				<div className='example-filter' />
+				<div className='cs-grid_pagination-wrapper'>
+					<div className='cs-grid_pagination'>
+						<div
+							className={
+								'cs-btn icon-only toggle-table-button' +
+								(this.state.isDataSourceRowModel ? '' : ' active')
+							}
+							style={{ width: '5rem', marginBottom: '0.5rem' }}
+							onClick={this.clientDemo}
+						>
+							Client Demo
+						</div>
+						<div
+							className={
+								'cs-btn icon-only toggle-grid-button' +
+								(this.state.isDataSourceRowModel ? ' active' : '')
+							}
+							style={{ width: '5rem' }}
+							onClick={this.serverDemo}
+						>
+							Server Demo
+						</div>
+					</div>
+				</div>
+				{this.state.isDataSourceRowModel ? (
+					<CSGrid
+						key='server'
+						columnDefs={this.state.columnDefs}
+						pageSizes={this.pageSizes}
+						csGridPagination={{
+							detachedCSSClass: 'example-server-pagination',
+							location: 'Both'
+						}}
+						csGridQuickFilter={{
+							detachedCSSClass: 'example-server-filter',
+							location: 'Both',
+							nonIncremental: true
+						}}
+						multiSelect={true}
+						onSelectionChange={this.onSelectionChange}
+						uniqueIdentifierColumnName={'exampleGuid'}
+						dataSourceAPI={{
+							isLastPage: this.isLastPage,
+							onBtNext: this.onBtNext,
+							onBtPrevious: this.onBtPrevious,
+							onContextChange: this.onContextChange
+						}}
+						onColumnStateChange={this.onColumnStateChange}
+						columnState={this.columnState}
+					/>
+				) : (
+					<CSGrid
+						key='client'
+						columnDefs={this.state.columnDefs}
+						rowData={this.state.rowData}
+						pageSizes={this.pageSizes}
+						csGridPagination={{
+							detachedCSSClass: 'example-client-pagination',
+							location: 'Both'
+						}}
+						csGridQuickFilter={{
+							detachedCSSClass: 'example-client-filter',
+							location: 'Both'
+						}}
+						multiSelect={true}
+						onSelectionChange={this.onSelectionChange}
+						uniqueIdentifierColumnName={'exampleGuid'}
+					/>
+				)}
+				<>
+					<hr />
+					<h1 style={{ marginBottom: '0.25rem' }}>Externally controlled by CS-Grid</h1>
+					<div style={{ display: '-webkit-inline-box' }}>
+						<div style={{ marginRight: '0.25rem' }}>
+							<div className='example-server-pagination' />
+							<div className='example-client-pagination' />
+						</div>
+						<div className='example-server-filter' />
+						<div className='example-client-filter' />
+					</div>
+				</>
 			</>
 		);
 	}
+
+	delayResponse = (result: any) => {
+		return new Promise<any>((resolve, reject) => {
+			setTimeout(() => {
+				return resolve(result);
+			}, 200);
+		});
+	};
+
+	onSearchFilterChange = (rows: Array<Row>, unqualifiedSearchTerms: Array<string>) => {
+		let filteredRows = rows;
+
+		for (const filterText of unqualifiedSearchTerms) {
+			const resultOfFilter: Array<Row> = [];
+
+			const condition: Condition = {
+				filterText,
+				type: 'contains'
+			};
+
+			for (const row of filteredRows) {
+				let passFilters = false;
+				for (const columnId in row) {
+					if (
+						!row.hasOwnProperty(columnId) ||
+						columnId === 'exampleGuid' ||
+						columnId === 'exampleRowSelection' ||
+						columnId === 'exampleRowValidation'
+					) {
+						continue;
+					}
+
+					const cellValue = this.formatValue(row[columnId].cellValue);
+					if (this.individualConditionPasses(cellValue, condition)) {
+						passFilters = true;
+						break;
+					}
+				}
+				if (passFilters) {
+					resultOfFilter.push(row);
+				}
+			}
+			filteredRows = resultOfFilter;
+		}
+
+		return filteredRows;
+	};
+
+	onBtNext = async () => {
+		if (!this.isLastPage()) {
+			this.currentPage += 1;
+		}
+
+		return this.changeRows();
+	};
+
+	onBtPrevious = async () => {
+		if (this.currentPage > 0) {
+			this.currentPage -= 1;
+		}
+
+		return this.changeRows();
+	};
+
+	isLastPage = () => {
+		return (this.currentPage + 1) * this.currentPageSize >= this.sortedAndFilteredRows.length;
+	};
+
+	onContextChange = async (
+		pageSize: number,
+		sortModel: Array<OrderBy>,
+		filterModel: FilterModel
+	) => {
+		this.currentPageSize = pageSize;
+		this.currentPage = 0;
+
+		this.sortedAndFilteredRows = this.sortAndFilter(
+			this.state.rowData,
+			sortModel,
+			filterModel.columnFilters
+		);
+		this.sortedAndFilteredRows = this.onSearchFilterChange(
+			this.sortedAndFilteredRows,
+			filterModel.unqualifiedSearchTerms
+		);
+
+		return this.changeRows();
+	};
+
+	sortAndFilter = (
+		rows: Array<Row>,
+		sortModel: Array<OrderBy>,
+		filterModel: Map<string, Array<ColumnFilterCondition>>
+	) => {
+		return this.sortData(sortModel, this.filterData(filterModel, rows));
+	};
+
+	sortData = (sortModel: Array<OrderBy>, rows: Array<Row>) => {
+		const sortPresent = sortModel && sortModel.length > 0;
+		if (!sortPresent) {
+			return rows;
+		}
+
+		const resultOfSort = rows.slice();
+		resultOfSort.sort((a, b) => {
+			for (const sortColModel of sortModel) {
+				const valueA = a[sortColModel.columnId];
+				const valueB = b[sortColModel.columnId];
+
+				const columnIndex = this.state.columnDefs.findIndex(
+					(column: any) => column.field === sortColModel.columnId
+				);
+
+				const result =
+					(this.state.columnDefs[columnIndex] as any).cellRenderer
+						.toLowerCase()
+						.indexOf('lookup') >= 0
+						? CSGridLookupComparator(valueA, valueB, this.lookupDisplayColumn)
+						: CSGridDefaultComparator(valueA, valueB);
+				const sortDirection = sortColModel.sortDirection === 'SORT_ASC' ? 1 : -1;
+
+				return sortDirection * result;
+			}
+		});
+
+		return resultOfSort;
+	};
+
+	filterData = (filterModel: Map<string, Array<ColumnFilterCondition>>, rows: Array<Row>) => {
+		const filterPresent = filterModel && filterModel.size > 0;
+		if (!filterPresent) {
+			return rows;
+		}
+		const resultOfFilter = [];
+		for (const row of rows) {
+			let passFilters = true;
+			for (const [columnId, columnFilterConditions] of filterModel) {
+				for (const columnFilterCondition of columnFilterConditions) {
+					const cellValue = this.formatValue(row[columnId].cellValue);
+					if (!this.doesFilterPass(cellValue, columnFilterCondition)) {
+						passFilters = false;
+						break;
+					}
+				}
+				if (!passFilters) {
+					break;
+				}
+			}
+			if (passFilters) {
+				resultOfFilter.push(row);
+			}
+		}
+
+		return resultOfFilter;
+	};
+
+	private changeRows = async () => {
+		const startRow = this.currentPage * this.currentPageSize;
+		const endRow = startRow + this.currentPageSize;
+		const results = this.sortedAndFilteredRows.slice(startRow, endRow);
+
+		return this.delayResponse(results);
+	};
+
+	private clientDemo = (): void => {
+		this.changeDemo(false);
+	};
+
+	private serverDemo = (): void => {
+		this.changeDemo(true);
+	};
+
+	private changeDemo = (isDataSourceRowModel: boolean): void => {
+		this.currentPage = 0;
+		this.currentPageSize = this.pageSizes[0];
+
+		const columnDefs: Array<any> = [...this.state.columnDefs];
+		const rowSelectionIndex = columnDefs.findIndex(
+			(column: any) => column.cellRenderer === 'rowSelectionRenderer'
+		);
+		columnDefs[rowSelectionIndex].headerCheckboxSelection = !isDataSourceRowModel;
+
+		this.setState({
+			columnDefs,
+			isDataSourceRowModel
+		});
+	};
+
+	private doesFilterPass = (
+		cellValue: string,
+		columnFilterCondition: ColumnFilterCondition
+	): boolean => {
+		const isCombined = !!columnFilterCondition.condition2;
+		if (isCombined) {
+			const firstResult = this.individualConditionPasses(
+				cellValue,
+				columnFilterCondition.condition1
+			);
+			const secondResult = this.individualConditionPasses(
+				cellValue,
+				columnFilterCondition.condition2
+			);
+			if (columnFilterCondition.operator === 'AND') {
+				return firstResult && secondResult;
+			} else {
+				return firstResult || secondResult;
+			}
+		} else {
+			const result = this.individualConditionPasses(
+				cellValue,
+				columnFilterCondition.condition1
+			);
+
+			return result;
+		}
+	};
+
+	private individualConditionPasses = (cellValue: string, condition: Condition) => {
+		const filterText = condition.filterText;
+		const filterOption = condition.type;
+
+		if (cellValue === '') {
+			return filterOption === 'notEqual' || filterOption === 'notContain';
+		}
+
+		const filterTextFormatted = this.formatValue(filterText);
+
+		return this.comparator(filterOption, cellValue, filterTextFormatted);
+	};
+
+	private comparator = (filter: string, cellValue: string, filterText: string) => {
+		switch (filter) {
+			case 'contains':
+				return cellValue.indexOf(filterText) >= 0;
+			case 'notContain':
+				return cellValue.indexOf(filterText) === -1;
+			case 'equals':
+				return cellValue === filterText;
+			case 'notEqual':
+				return cellValue !== filterText;
+			case 'startsWith':
+				return cellValue.indexOf(filterText) === 0;
+			case 'endsWith':
+				const index = cellValue.lastIndexOf(filterText);
+
+				return index >= 0 && index === cellValue.length - filterText.length;
+			default:
+				// should never happen
+				console.warn('invalid filter type ' + filter);
+
+				return false;
+		}
+	};
+
+	private formatValue = (value: any): string => {
+		if (!value) {
+			return '';
+		}
+
+		if (typeof value === 'string' || value instanceof String) {
+			return value.toLowerCase();
+		}
+
+		return value.toString().toLowerCase();
+	};
+
+	private onColumnStateChange = (columnState: string): void => {
+		console.log(columnState);
+	};
 }
 
 document.addEventListener('DOMContentLoaded', () => {

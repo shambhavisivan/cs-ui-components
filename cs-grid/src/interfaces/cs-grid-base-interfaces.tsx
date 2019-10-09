@@ -44,9 +44,26 @@ export interface CellData<T> {
 	errorMessage?: string;
 }
 
+export type Row = Record<string, CellData<any>>;
+
 /**
- * Ag-grid interfaces have been extended so they are not exposed in the cs-grid package.
+ * Defines the location of an object relative to the grid.
  */
+export type CSGridLocation = 'Header' | 'Footer' | 'Both' | 'Detached' | 'None';
+
+export interface CSGridControl {
+	/**
+	 * Defines the location of controller relative to the grid.
+	 */
+	location: CSGridLocation;
+	/**
+	 * All html elements with the specified class will be replaced with the controller while still being controlled by cs-grid.
+	 * This property is only necessary if the location property has be set to 'Detached'.
+	 */
+	detachedCSSClass?: string;
+}
+
+// Ag-grid interfaces have been extended so they are not exposed in the cs-grid package.
 export interface CSGridCellEditor extends ICellEditorReactComp {}
 export interface CSGridCellRenderer extends ICellRendererReactComp {}
 export interface IsColumnFuncParams extends IsColumnFuncParams {}

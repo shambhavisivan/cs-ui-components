@@ -10,7 +10,7 @@ export class CSGridCurrencyRenderer extends CSGridNumberRenderer<CSGridCellRende
 		super(props);
 	}
 
-	getNumberFormat(): any {
+	getNumberFormat() {
 		return getIntl(this.props.userInfo.userLocale).NumberFormat(
 			this.props.userInfo.userLocale,
 			{

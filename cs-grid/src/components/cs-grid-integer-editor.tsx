@@ -35,7 +35,7 @@ export class CSGridIntegerEditor extends CSGridNumberEditor<CSGridIntegerEditorP
 		}
 	}
 
-	getNumberFormat(): any {
+	getNumberFormat() {
 		return getIntl(this.props.userInfo.userLocale).NumberFormat(
 			this.props.userInfo.userLocale,
 			{

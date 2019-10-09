@@ -9,7 +9,6 @@ import {
 
 export interface CSGridPicklistEditorProps extends CSGridCellEditorProps<string | Array<string>> {
 	filterAboveSize?: number;
-	clearAllName?: string;
 	getOptions(guid: string): Array<string>;
 }
 
@@ -23,7 +22,7 @@ export class CSGridPicklistEditor
 	extends React.Component<CSGridPicklistEditorProps, CSGridPicklistEditorState>
 	implements CSGridCellEditor {
 	multiSelect: boolean = false;
-	private defaultClearAllName = '--None--';
+	private clearAllName = '--None--';
 
 	constructor(props: CSGridPicklistEditorProps) {
 		super(props);
@@ -106,7 +105,7 @@ export class CSGridPicklistEditor
 						key='0'
 						onClick={this.clearSelected}
 					>
-						{this.props.clearAllName || this.defaultClearAllName}
+						{this.clearAllName}
 					</li>
 					{dropDownValues}
 				</ul>

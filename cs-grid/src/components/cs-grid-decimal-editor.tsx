@@ -13,7 +13,7 @@ export class CSGridDecimalEditor extends CSGridNumberEditor<
 		this.numberFormatType = 'Decimal';
 	}
 
-	getNumberFormat(): any {
+	getNumberFormat() {
 		return getIntl(this.props.userInfo.userLocale).NumberFormat(
 			this.props.userInfo.userLocale,
 			{

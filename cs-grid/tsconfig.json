@@ -17,10 +17,11 @@
     "include": [
         "./main.ts",
         "./src/**/*.tsx",
-        "./src/**/*.ts"
+        "./src/**/*.ts",
+        "./test/**/*.tsx",
+        "./test/**/*.ts"
     ],
     "exclude": [
-        "node_modules",
-        "./src/index.tsx"
+        "node_modules"
     ]
 }

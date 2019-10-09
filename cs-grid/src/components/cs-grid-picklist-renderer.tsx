@@ -12,6 +12,10 @@ export class CSGridPicklistRenderer extends CSGridBaseRenderer<Array<string> | s
 	}
 
 	render() {
+		if (!this.state.value) {
+			return null;
+		}
+
 		const value = this.format(this.state.value.cellValue);
 
 		return (

@@ -21,6 +21,9 @@ export class CSGridBooleanRenderer extends CSGridBaseRenderer<boolean>
 	}
 
 	render() {
+		if (!this.state.value) {
+			return null;
+		}
 		const readOnly = this.isReadOnly();
 
 		let editable: boolean;

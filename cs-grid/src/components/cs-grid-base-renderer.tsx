@@ -4,6 +4,7 @@ import {
 	CSGridCellRenderer,
 	CSGridCellRendererProps,
 	CSGridCellRendererState,
+	IsColumnFunc,
 	IsColumnFuncParams
 } from '../interfaces/cs-grid-base-interfaces';
 
@@ -27,9 +28,10 @@ export abstract class CSGridBaseRenderer<
 	refresh = (params: P): boolean => {
 		const isLastColumn = this.isLastColumn();
 		if (
-			params.value.cellValue !== this.state.value.cellValue ||
-			params.value.errorMessage !== this.state.value.errorMessage ||
-			isLastColumn !== this.state.isLastColumn
+			params.value &&
+			(params.value.cellValue !== this.state.value.cellValue ||
+				params.value.errorMessage !== this.state.value.errorMessage ||
+				isLastColumn !== this.state.isLastColumn)
 		) {
 			this.setState({
 				isLastColumn,
@@ -41,8 +43,8 @@ export abstract class CSGridBaseRenderer<
 	};
 
 	isReadOnly = (): boolean => {
-		const readonly: any = this.props.readonly;
-		if (typeof this.props.readonly === 'function') {
+		const readonly: boolean | IsColumnFunc = this.props.readonly;
+		if (typeof readonly === 'function') {
 			const params: IsColumnFuncParams = {
 				api: this.props.api,
 				colDef: this.props.colDef,

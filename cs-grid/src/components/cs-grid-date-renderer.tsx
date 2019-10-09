@@ -31,6 +31,10 @@ export class CSGridDateRenderer extends CSGridBaseRenderer<string> {
 	};
 
 	render() {
+		if (!this.state.value) {
+			return null;
+		}
+
 		const readOnly = this.isReadOnly();
 		const value = this.formattedDate();
 

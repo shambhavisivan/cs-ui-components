@@ -26,6 +26,10 @@ export class CSGridLookupRenderer extends CSGridBaseRenderer<
 	}
 
 	render() {
+		if (!this.state.value) {
+			return null;
+		}
+
 		const value = this.format(this.state.value.cellValue);
 
 		return (

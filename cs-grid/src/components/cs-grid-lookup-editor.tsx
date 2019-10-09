@@ -199,7 +199,7 @@ export class CSGridLookupEditor
 				gridWidth += 4;
 
 				// Calculate width to fit contents.
-				const popupWrapper: any = document.querySelectorAll(
+				const popupWrapper: HTMLElement = document.querySelectorAll<HTMLElement>(
 					'.cs-grid_app-wrapper .cs-grid_main .ag-popup-editor'
 				)[0];
 				popupWrapper.style.width = `${gridWidth}px`;
