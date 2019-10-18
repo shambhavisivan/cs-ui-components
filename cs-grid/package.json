@@ -1,6 +1,6 @@
 {
 	"name": "@cloudsense/cs-grid",
-	"version": "1.0.43",
+	"version": "1.0.47",
 	"description": "CloudSense Grid",
 	"main": "./lib/main.js",
 	"author": "CloudSense",
@@ -20,7 +20,6 @@
 		"empty_lib_test": "rm -rf ./lib/test && rm -rf ./lib/src/index.js && rm -rf ./lib/src/index.d.ts",
 		"move_fonts": "cp -a ./src/fonts/ ./fonts/",
 		"clearJest": "jest --clearCache",
-		"jest": "jest --coverage",
 		"test": "npm run clearJest && jest"
 	},
 	"private": false,
@@ -47,7 +46,6 @@
 		"ag-grid"
 	],
 	"dependencies": {
-		"@types/enzyme-adapter-react-16": "^1.0.5",
 		"@types/react": "^16.8.23",
 		"@types/react-datepicker": "^2.8.1",
 		"@types/react-dom": "^16.8.4",
@@ -66,6 +64,7 @@
 		"@babel/preset-env": "^7.5.5",
 		"@babel/preset-react": "7.0.0",
 		"@types/enzyme": "^3.10.3",
+		"@types/enzyme-adapter-react-16": "^1.0.5",
 		"@types/jest": "^24.0.19",
 		"@types/webpack-env": "^1.13.9",
 		"awesome-typescript-loader": "^5.2.1",

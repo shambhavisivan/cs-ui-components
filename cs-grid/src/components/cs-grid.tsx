@@ -8,11 +8,17 @@ import {
 	IGetRowsParams
 } from 'ag-grid-community';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
-import { AgGridReact, AgGridReactProps } from 'ag-grid-react';
+import { AgGridReact } from 'ag-grid-react';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { CellData, CSGridControl, Row } from '../interfaces/cs-grid-base-interfaces';
+import {
+	CellClickedEvent,
+	CellData,
+	ColDef,
+	CSGridControl,
+	Row
+} from '../interfaces/cs-grid-base-interfaces';
 import {
 	ColumnFilterCondition,
 	Condition,
@@ -47,7 +53,7 @@ import { CSGridRowValidationRenderer } from './cs-grid-row-validation-renderer';
 import { CSGridTextEditor } from './cs-grid-text-editor';
 import { CSGridTextRenderer } from './cs-grid-text-renderer';
 
-export interface CSGridProps extends AgGridReactProps {
+export interface CSGridProps {
 	pageSizes?: Array<number>;
 	csGridPagination: CSGridControl;
 	csGridQuickFilter: CSGridQuickFilterControl;
@@ -58,6 +64,14 @@ export interface CSGridProps extends AgGridReactProps {
 	uniqueIdentifierColumnName: string;
 	rowData?: Array<Row>;
 	columnState?: string;
+	columnDefs?: Array<ColDef>;
+	/**
+	 * When deltaRowDataMode is on, the grid will compare the new row data with the current row data and create a transaction object for you.
+	 * The grid then executes the change as an update transaction, keeping all of the grids selections, filters etc.
+	 * Use this if you want to manage the data outside of the grid (eg in a Redux store)
+	 * and then let the grid work out what changes are needed to keep the grid's version of the data up to date.
+	 */
+	deltaRowDataMode?: boolean;
 	onColumnStateChange?(columnState: string): void;
 	onSelectionChange?(selectedRows: Array<Row>): void;
 	onCellValueChange?(
@@ -67,6 +81,7 @@ export interface CSGridProps extends AgGridReactProps {
 		newValue: any
 	): Promise<void>;
 	onGridReady?(params: GridReadyEvent): void;
+	onCellClicked?(event: CellClickedEvent): void;
 }
 
 class CSGridState {
@@ -193,14 +208,14 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 							suppressRowClickSelection={true}
 							enableBrowserTooltips={true}
 							rowHeight={42}
-							// A pass through to allow cs-grid users to use all ag-grid props.
-							{...this.props}
 							onCellValueChanged={this.onCellValueChanged}
 							getRowNodeId={this.getRowNodeId}
 							onColumnMoved={this.onColumnMoved}
 							onGridReady={this.onGridReady}
 							onColumnVisible={this.onColumnStateChange}
 							onDragStopped={this.onColumnStateChange}
+							onCellClicked={this.props.onCellClicked}
+							deltaRowDataMode={this.props.deltaRowDataMode}
 						/>
 					</div>
 				</div>

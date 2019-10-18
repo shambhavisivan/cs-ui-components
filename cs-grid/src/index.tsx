@@ -7,7 +7,7 @@ import './sass/style.scss';
 
 import { CSGrid } from './components/cs-grid';
 import { CSGridLookupSearchResult } from './components/cs-grid-lookup-editor';
-import { CellData, ColDef, ColGroupDef, Row } from './interfaces/cs-grid-base-interfaces';
+import { CellData, ColDef, Row } from './interfaces/cs-grid-base-interfaces';
 import {
 	ColumnFilterCondition,
 	Condition,
@@ -18,7 +18,7 @@ import { CSGridDefaultComparator } from './utils/cs-grid-default-comparator';
 import { CSGridLookupComparator } from './utils/cs-grid-lookup-comparator';
 
 interface AppState {
-	columnDefs: Array<ColDef | ColGroupDef>;
+	columnDefs: Array<ColDef>;
 	rowData: Array<Row>;
 	isDataSourceRowModel: boolean;
 }
