@@ -1,0 +1,46 @@
+import React from 'react';
+import { SimpleField } from '../..//fields/SimpleField';
+
+import { shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import Enzyme from 'enzyme';
+import { FieldDescriptor } from '../../types/FormDescriptor';
+import { ElementWrapper } from '../..';
+import { LocaleSettings } from '../../SFObjectForm';
+
+Enzyme.configure({ adapter: new Adapter() });
+
+const descriptor: FieldDescriptor = {
+	fieldType: 'PICKLIST',
+	name: 'testField',
+	label: 'Test field'
+};
+
+const locale: LocaleSettings = {} as unknown as LocaleSettings;
+
+const wrapper: ElementWrapper = {
+	injectInputProps: () => null
+} as unknown as ElementWrapper;
+
+function nop(): any { }
+
+it('renders a text input', () => {
+	const uut = shallow(<SimpleField locale={locale} wrapper={wrapper} descriptor={descriptor} handleFieldChange={nop} fetchPossibleValues={nop} value="test" status="enabled" />);
+	expect(uut.find('input[type="text"]')).toHaveLength(1);
+	expect(uut.find('input[type="text"]').prop('value')).toBe('test');
+	expect(uut.find('input[type="text"]').prop('name')).toBe('testField');
+});
+
+it('sets readonly', () => {
+	const uut = shallow(<SimpleField locale={locale} wrapper={wrapper} descriptor={descriptor} handleFieldChange={nop} fetchPossibleValues={nop} value="test" status="visible" />);
+	expect(uut.find('input[type="text"]').prop('readOnly')).toBe(true);
+});
+
+it('calls onChange() on change', done => {
+	const onChange = (value: any) => {
+		expect(value).toBe('new value');
+		done();
+	};
+	const uut = shallow(<SimpleField locale={locale} wrapper={wrapper} descriptor={descriptor} handleFieldChange={onChange} fetchPossibleValues={nop} value="test" status="enabled" />);
+	uut.simulate('change', { target: { value: 'new value' } });
+});
