@@ -203,7 +203,7 @@ export class CSGridPicklistEditor
 		const options: Map<string, boolean> = new Map();
 
 		for (const option of this.props.getOptions(this.props.node.id)) {
-			options.set(option, selected.indexOf(option) >= 0);
+			options.set(option, selected && selected.indexOf(option) >= 0);
 		}
 
 		return options;
