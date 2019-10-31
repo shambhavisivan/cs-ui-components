@@ -215,3 +215,81 @@
 	line-height: 1;
 	margin-right: 0.3rem;
 }
+
+/* CS COLORS PREVIEW STYLES */
+.cs-colors {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-column-gap: 1rem;
+	grid-row-gap: 1rem;
+	align-items: start;
+
+	.cs-color {
+		font-size: 0.875rem;
+		border-radius: 0.25rem;
+		outline: 0;
+		overflow: hidden;
+		&:focus {
+			box-shadow: 0 0 3px #0070d2;
+		}
+	}
+
+	.cs-color-header {
+		padding: 2rem;
+	}
+
+	.cs-color-body {
+		padding: 0.75rem;
+		min-width: 125px;
+		font-size: 0.875rem;
+		border-radius: 0 0 0.25rem 0.25rem;
+		overflow: hidden;
+		box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.11);
+		text-align: center;
+		background: white;
+		color: #999999;
+	}
+
+	.cs-color-header {
+		padding-top: 60%;
+	}
+
+	.cs-color-name {
+		margin: 0 0 0.5rem 0;
+		width: 100%;
+		font-weight: normal;
+		color: #080707;
+	}
+}
+
+@media only screen and (min-width: 1100px) {
+	.cs-colors {
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+	}
+}
+
+@media only screen and (min-width: 1350px) {
+	.cs-colors {
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	}
+}
+
+@media only screen and (min-width: 1600px) {
+	.cs-colors {
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	}
+}
+
+@media only screen and (min-width: 1750px) {
+	.cs-colors {
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	}
+}
+
+@media only screen and (min-width: 1900px) {
+	.cs-colors {
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	}
+}
+/* END OF COLOR PREVIEW STYLES */
