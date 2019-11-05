@@ -34,8 +34,7 @@ export type FormSettings = any;
  * 				- label
  * 				- input
  * 				- error message
- *		- save button
- *
+ * 		- save button
  */
 export interface ElementWrapper {
 	/**
@@ -95,14 +94,14 @@ export interface FormLabels {
 }
 
 /**
- * Properties required by the <SFObjectForm> component.
+ * Properties required by the <CSForm> component.
  */
 export interface FormProps {
 	descriptor: FormDescriptor;
 	/**
 	 * The form object that is being edited. Has to be flat.
 	 */
-	sfObject: Record<string, any>;
+	data: Record<string, any>;
 	/**
 	 * Validation errors that have been calculated outside the form, the key is
 	 * the field name, the value is the error message that will be displayed as-is.
@@ -114,9 +113,9 @@ export interface FormProps {
 	wrapper: ElementWrapper;
 	/**
 	 * Called whenever the form object changes.
-	 * @param sfObject New form object.
+	 * @param data New form object.
 	 */
-	update(sfObject: Record<string, any>): void;
+	update(data: Record<string, any>): void;
 	/**
 	 * Called when the save button is pressed.
 	 * @returns The form object after the save operation. (For example some fields might have been recalculated on save.)
@@ -131,7 +130,7 @@ export interface FormProps {
 	fetchPossibleValues(field: FieldDescriptor): Promise<Array<SelectOption>>;
 }
 
-export class SFObjectForm extends React.Component<FormProps, {}> {
+export class CSForm extends React.Component<FormProps, {}> {
 
 	private validator: Validator;
 	constructor(props: FormProps) {
@@ -143,17 +142,18 @@ export class SFObjectForm extends React.Component<FormProps, {}> {
 	}
 
 	handleFieldChange(name: string, newValue: any) {
-		this.props.update(cloneAndReplaceField(this.props.sfObject, name, newValue));
+		this.props.update(cloneAndReplaceField(this.props.data, name, newValue));
 	}
 
 	async save(): Promise<void> {
-		const errors = this.validator.validate(this.props.sfObject);
+		const errors = this.validator.validate(this.props.data);
 		if (Object.getOwnPropertyNames(errors).length === 0) {
 			try {
 				const newObject: Record<string, any> = await this.props.save();
 				this.props.update(newObject);
 			} catch (e) {
 				// TODO: display error message when we've got a UI for it
+				// tslint:disable-next-line: no-console
 				console.error('Save failed', e);
 				throw e;
 			}
@@ -171,10 +171,10 @@ export class SFObjectForm extends React.Component<FormProps, {}> {
 
 	private createFormPanel(panel: FormPanelDescriptor) {
 		return (<FormPanel
-			errors={{ ...(this.props.externalValidationErrors || {}), ...this.validator.validate(this.props.sfObject) }}
+			errors={{ ...(this.props.externalValidationErrors || {}), ...this.validator.validate(this.props.data) }}
 			key={panel.title}
 			descriptor={panel}
-			sfObject={this.props.sfObject}
+			data={this.props.data}
 			handleFieldChange={this.handleFieldChange}
 			fetchPossibleValues={this.props.fetchPossibleValues}
 			wrapper={this.props.wrapper}

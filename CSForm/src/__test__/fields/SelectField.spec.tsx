@@ -1,13 +1,12 @@
 import React from 'react';
 
-import { shallow } from 'enzyme';
+import { shallow, default as Enzyme } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Enzyme from 'enzyme';
 import { SelectField } from '../..//fields/SelectField';
 import waitUntil from 'async-wait-until';
 import { FieldDescriptor } from '../../types/FormDescriptor';
 import { ElementWrapper } from '../..';
-import { LocaleSettings } from '../../SFObjectForm';
+import { LocaleSettings } from '../../CSForm';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -34,7 +33,9 @@ const wrapper: ElementWrapper = {
 	injectInputProps: () => null
 } as unknown as ElementWrapper;
 
-function nop(): any { }
+function nop(): any {
+	// dummy function
+}
 
 it('renders a dropdown box', async () => {
 	const uut = shallow(<SelectField value="option1" wrapper={wrapper} descriptor={descriptor} locale={locale} handleFieldChange={nop} fetchPossibleValues={optionFetcher} status="enabled" />);

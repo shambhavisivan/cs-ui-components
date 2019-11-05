@@ -1,5 +1,5 @@
 import { evaluateCustomExpression } from '../../utils/ExpressionEvaluator';
-import { FormSettings } from '../../SFObjectForm';
+import { FormSettings } from '../../CSForm';
 
 const formSettings: FormSettings = {
 	locale: 'test locale',

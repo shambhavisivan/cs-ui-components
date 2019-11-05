@@ -4,11 +4,11 @@ import { FormSettings, ElementWrapper } from '.';
 import { FormPanelDescriptor, FieldDescriptor } from './types/FormDescriptor';
 import { calculateComponentStatus } from './utils/ComponentStatusUtil';
 import { SelectOption } from './types/SelectOption';
-import { LocaleSettings } from './SFObjectForm';
+import { LocaleSettings } from './CSForm';
 
 export interface FormPanelProps {
 	descriptor: FormPanelDescriptor;
-	sfObject: Record<string, any>;
+	data: Record<string, any>;
 	errors: Record<string, string>;
 	locale: LocaleSettings;
 	formSettings: FormSettings;
@@ -26,13 +26,13 @@ export const FormPanel: React.FC<FormPanelProps> = props => {
 		return <FormField
 			locale={props.locale}
 			errorMessage={props.errors[field.name]}
-			status={calculateComponentStatus(field, props.formSettings, props.sfObject)}
+			status={calculateComponentStatus(field, props.formSettings, props.data)}
 			handleFieldChange={value => props.handleFieldChange(field.name, value)}
 			fetchPossibleValues={fetch}
 			key={field.name}
 			descriptor={field}
 			wrapper={props.wrapper}
-			value={props.sfObject[field.name]} />;
+			value={props.data[field.name]} />;
 	}
 
 	return props.wrapper.wrapPanel(

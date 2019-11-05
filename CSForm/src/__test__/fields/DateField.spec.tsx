@@ -1,13 +1,12 @@
 import React from 'react';
 
-import { shallow } from 'enzyme';
+import { shallow, default as Enzyme } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Enzyme from 'enzyme';
 import { DateField } from '../../fields/DateField';
 import DatePicker from 'react-datepicker';
 import { ElementWrapper } from '../..';
 import { FieldDescriptor } from '../../types/FormDescriptor';
-import { LocaleSettings } from '../../SFObjectForm';
+import { LocaleSettings } from '../../CSForm';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -32,7 +31,9 @@ const descriptor: FieldDescriptor = {
 	label: 'Test field'
 };
 
-function nop(): any { }
+function nop(): any {
+	// dummy function
+}
 
 it('renders a date picker', () => {
 	const uut = shallow(<DateField locale={locale} wrapper={wrapper} descriptor={descriptor} value={Date.UTC(1970, 1, 2)} handleFieldChange={nop} fetchPossibleValues={nop} status="enabled" />);

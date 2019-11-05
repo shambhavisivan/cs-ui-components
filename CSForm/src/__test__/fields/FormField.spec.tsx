@@ -1,14 +1,13 @@
 import React, { ReactElement } from 'react';
 
-import { shallow } from 'enzyme';
+import { shallow, default as Enzyme } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Enzyme from 'enzyme';
 import { FormField } from '../..//fields/FormField';
 import { BooleanField } from '../..//fields/BooleanField';
 import { FieldDescriptor } from '../../types/FormDescriptor';
 import { ElementWrapper } from '../..';
 import { ComponentStatus } from '../../types/ComponentStatus';
-import { LocaleSettings } from '../../SFObjectForm';
+import { LocaleSettings } from '../../CSForm';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -25,7 +24,9 @@ const wrapper: ElementWrapper = {
 	injectInputProps: () => null
 } as unknown as ElementWrapper;
 
-function nop(): any { }
+function nop(): any {
+	// dummy function
+}
 
 it('renders nothing if hidden', () => {
 	const uut = shallow(<FormField descriptor={descriptor} wrapper={wrapper} locale={locale} value handleFieldChange={nop} fetchPossibleValues={nop} status="hidden" />);

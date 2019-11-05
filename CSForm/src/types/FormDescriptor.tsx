@@ -31,10 +31,10 @@ export interface FieldDescriptor extends ComponentStatusConfiguration {
 	/**
 	 * Regex validation rules.
 	 */
-	validation?: Array<ValidationRule>;
+	validations?: Array<ValidationRule>;
 	/**
 	 * Static list of options for `'PICKLIST'` type fields. In most cases their
-	 * use is discouraged, the dynamic mechanism of `SFObjectForm.FormProps.fetchPossibleValues()`
+	 * use is discouraged, the dynamic mechanism of `CSForm.FormProps.fetchPossibleValues()`
 	 * is preferred.
 	 */
 	fixedPicklistOptions?: Array<SelectOption>;

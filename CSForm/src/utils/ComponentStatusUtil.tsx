@@ -11,21 +11,21 @@ import { FormSettings } from '..';
  * if we need to display the field at all. If this falls through, the status will be `'hidden'`.
  * @param config
  * @param formSettings
- * @param sfObject
+ * @param data
  */
-export function calculateComponentStatus(config: ComponentStatusConfiguration, formSettings: FormSettings, sfObject: Record<string, any>): ComponentStatus {
+export function calculateComponentStatus(config: ComponentStatusConfiguration, formSettings: FormSettings, data: Record<string, any>): ComponentStatus {
 	if (config.mandatory) {
-		if (evaluateCustomExpression(formSettings, sfObject, config.mandatory)) {
+		if (evaluateCustomExpression(formSettings, data, config.mandatory)) {
 			return 'mandatory';
 		}
 	}
 	if (config.enabled) {
-		if (evaluateCustomExpression(formSettings, sfObject, config.enabled)) {
+		if (evaluateCustomExpression(formSettings, data, config.enabled)) {
 			return 'enabled';
 		}
 	}
 	if (config.visible) {
-		if (evaluateCustomExpression(formSettings, sfObject, config.visible)) {
+		if (evaluateCustomExpression(formSettings, data, config.visible)) {
 			return 'visible';
 		}
 	}

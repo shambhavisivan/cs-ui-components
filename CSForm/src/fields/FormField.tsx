@@ -6,7 +6,7 @@ import { DateField } from './DateField';
 import { BooleanField } from './BooleanField';
 import { ComponentStatus } from '../types/ComponentStatus';
 import { SelectOption } from '../types/SelectOption';
-import { ElementWrapper, LocaleSettings } from '../SFObjectForm';
+import { ElementWrapper, LocaleSettings } from '../CSForm';
 
 export interface FormFieldProps {
 	value: any;
