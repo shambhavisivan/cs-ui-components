@@ -2,6 +2,7 @@
 	"extends": ["tslint:latest", "tslint-react"],
 	"defaultSeverity": "error",
 	"rules": {
+		"no-invalid-template-strings": false,
 		"align": [true, "parameters", "statements"],
 		"array-type": [true, "generic"],
 		"arrow-parens": [true, "ban-single-arg-parens"],

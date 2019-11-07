@@ -80,13 +80,20 @@ export interface ElementWrapper {
  */
 export interface FormLabels {
 	/**
-	 * Used when a mandatory field is empty, it is possible to use the ${name} placeholder in this string, which will be replaced with the label of the field.
+	 * Used when a mandatory field is empty.
+	 * It is possible to use the ${name} placeholder in this string, which will be replaced with the label of the field.
 	 */
-	validationMessage_required: string;
+	validation_message_required: string;
 	/**
-	 * Used when a 'NUMBER' type field contains something other than a number, it is possible to use the ${name} placeholder in this string, which will be replaced with the label of the field.
+	 * Used when a 'NUMBER' type field contains something other than a number,
+	 * It is possible to use the ${name} placeholder in this string, which will be replaced with the label of the field.
 	 */
-	validationMessage_numberFormat: string;
+	validation_message_number_format: string;
+	/**
+	 * Used when a 'STRING' type field exceeds maximum length,
+	 * It is possible to use the ${name} placeholder in this string, which will be replaced with the label of the field.
+	 */
+	validation_message_exceeds_length: string;
 	/**
 	 * The caption of the save button.
 	 */
@@ -138,7 +145,7 @@ export class CSForm extends React.Component<FormProps, {}> {
 		this.handleFieldChange = this.handleFieldChange.bind(this);
 		this.save = this.save.bind(this);
 		this.createFormPanel = this.createFormPanel.bind(this);
-		this.validator = new Validator(applyDefaults(props.descriptor), props.formSettings, props.labels.validationMessage_required, props.labels.validationMessage_numberFormat);
+		this.validator = new Validator(applyDefaults(props.descriptor), props.formSettings, props.labels);
 	}
 
 	handleFieldChange(name: string, newValue: any) {

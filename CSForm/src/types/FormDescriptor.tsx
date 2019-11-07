@@ -38,6 +38,20 @@ export interface FieldDescriptor extends ComponentStatusConfiguration {
 	 * is preferred.
 	 */
 	fixedPicklistOptions?: Array<SelectOption>;
+	/**
+	 * Maximum length to be applied to field value, relevant for STRING fieldType.
+	 */
+	maxLength?: number;
+	/**
+	 * Scale to be applied to field value, relevant for NUMBER fieldType.
+	 * Works in conjunction with FieldDescriptor.precision
+	 */
+	scale?: number;
+	/**
+	 * Precision to be applied to field value, relevant for NUMBER fieldType.
+	 * Works in conjunction with FieldDescriptor.scale
+	 */
+	precision?: number;
 }
 
 /**

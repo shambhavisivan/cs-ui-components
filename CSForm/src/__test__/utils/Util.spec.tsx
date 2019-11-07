@@ -2,21 +2,17 @@ import { interpolateString, cloneAndReplaceField } from '../../utils/Util';
 
 describe('interpolateString()', () => {
 	it('leaves normal strings alone', () => {
-		// tslint:disable-next-line no-invalid-template-strings
 		const result = interpolateString('string without placeholders', {});
 		expect(result).toBe('string without placeholders');
 	});
 
 	it('replaces template placeholders', () => {
-		// tslint:disable-next-line no-invalid-template-strings
 		const result = interpolateString('string ${x} placeholders', { x: 'with' });
 		expect(result).toBe('string with placeholders');
 	});
 
 	it('fails on missing placeholder value', () => {
-		// tslint:disable-next-line no-invalid-template-strings
 		expect(() => interpolateString('string ${x} placeholders', {})).toThrowError('Missing value for key ${x}');
-
 	});
 });
 
