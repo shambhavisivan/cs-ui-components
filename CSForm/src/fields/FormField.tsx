@@ -1,12 +1,12 @@
 import React from 'react';
 import { FieldDescriptor } from '../types/FormDescriptor';
 import { SimpleField } from './SimpleField';
-import { SelectField } from './SelectField';
 import { DateField } from './DateField';
 import { BooleanField } from './BooleanField';
 import { ComponentStatus } from '../types/ComponentStatus';
 import { SelectOption } from '../types/SelectOption';
 import { ElementWrapper, LocaleSettings } from '../CSForm';
+import { SelectFieldContainer } from './SelectFieldContainer';
 
 export interface FormFieldProps {
 	value: any;
@@ -15,8 +15,8 @@ export interface FormFieldProps {
 	locale: LocaleSettings;
 	wrapper: ElementWrapper;
 	errorMessage?: string;
-	fetchPossibleValues(): Promise<Array<SelectOption>>;
 	handleFieldChange(newValue: any): void;
+	fetchPossibleValues(): Promise<Array<SelectOption>>;
 }
 
 /**
@@ -26,8 +26,8 @@ export class FormField extends React.Component<FormFieldProps, {}> {
 
 	renderField() {
 		switch (this.props.descriptor.fieldType) {
-			case 'REFERENCE': return <SelectField {...this.props} />;
-			case 'PICKLIST': return <SelectField {...this.props} />;
+			case 'REFERENCE': return <SelectFieldContainer {...this.props} />;
+			case 'PICKLIST': return <SelectFieldContainer {...this.props} />;
 			case 'DATE': return <DateField {...this.props} />;
 			case 'BOOLEAN': return <BooleanField {...this.props} />;
 			default: return <SimpleField {...this.props} />;

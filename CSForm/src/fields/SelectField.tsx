@@ -3,26 +3,18 @@ import { FormFieldProps } from './FormField';
 import { SelectOption } from '../types/SelectOption';
 import { FieldType } from '../types/FormDescriptor';
 
-interface State {
-	options: Array<SelectOption>;
+interface SelectFieldProps extends FormFieldProps {
+	selectOptions: Array<SelectOption>;
 }
 
-export class SelectField extends React.Component<FormFieldProps, State> {
-
-	async componentDidMount() {
-		const records = await this.props.fetchPossibleValues();
-		this.setState({ options: [{ label: '--- None ---', value: '' }, ...records] });
-	}
-
-	render() {
-		return <select
-			{...this.props.wrapper.injectInputProps(this.props.descriptor.name, this.props.descriptor.fieldType as FieldType, this.props.status)}
-			value={this.props.value || ''}
-			name={this.props.descriptor.name}
-			onChange={e => this.props.handleFieldChange(e.target.value)}
-			required={this.props.status === 'mandatory'}
-			disabled={this.props.status === 'visible'}>
-			{this.state && this.state.options.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
-		</select>;
-	}
-}
+export const SelectField: React.FC<SelectFieldProps> = props => {
+	return <select
+		{...props.wrapper.injectInputProps(props.descriptor.name, props.descriptor.fieldType as FieldType, props.status)}
+		value={props.value || ''}
+		name={props.descriptor.name}
+		onChange={e => props.handleFieldChange(e.target.value)}
+		required={props.status === 'mandatory'}
+		disabled={props.status === 'visible'}>
+		{props.selectOptions && props.selectOptions.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
+	</select>;
+};
