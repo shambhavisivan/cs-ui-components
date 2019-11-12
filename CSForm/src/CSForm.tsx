@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { FormDescriptor, FormPanelDescriptor, FieldDescriptor, FieldType } from './types/FormDescriptor';
 import { FormPanel } from './FormPanel';
-import { SaveButton } from './SaveButton';
+import { Button } from './Button';
 import { cloneAndReplaceField } from './utils/Util';
 import { SelectOption } from './types/SelectOption';
 import { Validator } from './utils/Validator';
@@ -72,7 +72,7 @@ export interface ElementWrapper {
 	/**
 	 * Like injectInputProps(), except for the save button.
 	 */
-	injectSaveButtonProps(): any;
+	injectSaveButtonProps(): Record<string, any>;
 }
 
 /**
@@ -171,9 +171,18 @@ export class CSForm extends React.Component<FormProps, {}> {
 	}
 
 	render() {
-		return this.props.wrapper.wrapForm(<>
-			{applyDefaults(this.props.descriptor).panels.map(this.createFormPanel)}</>,
-			<><SaveButton enabled label={this.props.labels.button_save} clicked={this.save} wrapper={this.props.wrapper} /></>);
+		return this.props.wrapper.wrapForm(
+			<>
+				{applyDefaults(this.props.descriptor).panels.map(this.createFormPanel)}
+			</>,
+			<>
+				<Button
+					enabled label={this.props.labels.button_save}
+					clicked={this.save}
+					additionalProps={this.props.wrapper.injectSaveButtonProps()}
+				/>
+			</>
+		);
 	}
 
 	private createFormPanel(panel: FormPanelDescriptor) {
