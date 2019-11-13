@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { FieldDescriptor } from '../types/FormDescriptor';
 import { SimpleField } from './SimpleField';
 import { DateField } from './DateField';
@@ -14,7 +14,7 @@ export interface FormFieldProps {
 	descriptor: FieldDescriptor;
 	locale: LocaleSettings;
 	wrapper: ElementWrapper;
-	errorMessage?: string;
+	errorMessages?: Array<string>;
 	handleFieldChange(newValue: any): void;
 	fetchPossibleValues(): Promise<Array<SelectOption>>;
 }
@@ -34,6 +34,18 @@ export class FormField extends React.Component<FormFieldProps, {}> {
 		}
 	}
 
+	renderErrors(): ReactElement|null {
+		if (this.props.errorMessages && this.props.errorMessages.length > 0) {
+			return <>
+				{this.props.errorMessages.map((error, idx) =>
+					<React.Fragment key={`${this.props.descriptor.name}-error${idx}`}>{error}</React.Fragment>
+				)}
+			</>;
+		}
+
+		return null;
+	}
+
 	render() {
 		if (this.props.status !== 'hidden') {
 			return this.props.wrapper.wrapField(
@@ -41,7 +53,7 @@ export class FormField extends React.Component<FormFieldProps, {}> {
 				this.props.status,
 				<>{this.props.descriptor.label}</>,
 				<>{this.renderField()}</>,
-				typeof this.props.errorMessage !== 'undefined' ? <>{this.props.errorMessage}</> : undefined
+				this.renderErrors()
 			);
 		} else {
 			return null;

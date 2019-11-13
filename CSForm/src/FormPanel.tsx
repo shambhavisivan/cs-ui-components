@@ -4,18 +4,17 @@ import { FormSettings, ElementWrapper } from '.';
 import { FormPanelDescriptor, FieldDescriptor } from './types/FormDescriptor';
 import { calculateComponentStatus } from './utils/ComponentStatusUtil';
 import { SelectOption } from './types/SelectOption';
-import { LocaleSettings } from './CSForm';
+import { LocaleSettings, ValidationErrors } from './CSForm';
 
 export interface FormPanelProps {
 	descriptor: FormPanelDescriptor;
 	data: Record<string, any>;
-	errors: Record<string, string>;
+	errors: Record<string, Array<string>>;
 	locale: LocaleSettings;
 	formSettings: FormSettings;
 	wrapper: ElementWrapper;
 	fetchPossibleValues(field: FieldDescriptor): Promise<Array<SelectOption>>;
 	handleFieldChange(name: string, newValue: any): void;
-
 }
 
 export const FormPanel: React.FC<FormPanelProps> = props => {
@@ -25,7 +24,7 @@ export const FormPanel: React.FC<FormPanelProps> = props => {
 		const fetch: any = typeof field.fixedPicklistOptions !== 'undefined' ? () => Promise.resolve(field.fixedPicklistOptions) : () => props.fetchPossibleValues(field);
 		return <FormField
 			locale={props.locale}
-			errorMessage={props.errors[field.name]}
+			errorMessages={props.errors[field.name]}
 			status={calculateComponentStatus(field, props.formSettings, props.data)}
 			handleFieldChange={value => props.handleFieldChange(field.name, value)}
 			fetchPossibleValues={fetch}

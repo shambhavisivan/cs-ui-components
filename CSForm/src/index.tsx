@@ -14,3 +14,4 @@ export type ValidationRule = fd.ValidationRule;
 export type FieldType = fd.FieldType;
 export type FormPanelDescriptor = fd.FormPanelDescriptor;
 export type SelectOption = so.SelectOption;
+export type ValidationError = Form.ValidationErrors;

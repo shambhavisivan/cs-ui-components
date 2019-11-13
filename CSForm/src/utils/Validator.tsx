@@ -13,18 +13,18 @@ export class Validator {
 
 	}
 
-	validate = (data: Record<string, any>): Record<string, string> => {
+	validate = (data: Record<string, any>): Record<string, Array<string>> => {
 		return Object.keys(data)
 			.map(name => this.validateField(data, name, data[name]))
 			.reduce((ret, r) => {
 				if (r) {
-					ret[r.name] = r.message;
+					ret[r.name] = r.errors;
 				}
 				return ret;
-			}, {} as any as Record<string, string>);
+			}, {} as any as Record<string, Array<string>>);
 	}
 
-	private validateField = (data: Record<string, any>, name: string, value: any): { name: string, message: string } | null => {
+	private validateField = (data: Record<string, any>, name: string, value: any): { name: string, errors: Array<string> } | null => {
 		const fieldDescriptor: FieldDescriptor | undefined = findFieldInFormDescriptor(this.descriptor, name);
 
 		if (!fieldDescriptor) {
@@ -34,14 +34,14 @@ export class Validator {
 		if (!isMandatoryFieldPresent(calculateComponentStatus(fieldDescriptor, this.formSettings, data), value)) {
 			return {
 				name,
-				message: interpolateString(this.formLabels.validation_message_required, { name: fieldDescriptor.label })
+				errors: [interpolateString(this.formLabels.validation_message_required, { name: fieldDescriptor.label })]
 			};
 		}
 
 		if (fieldDescriptor.fieldType === 'NUMBER') {
 			const numberFormatError = {
 				name,
-				message: interpolateString(this.formLabels.validation_message_number_format, { name: fieldDescriptor.label })
+				errors: [interpolateString(this.formLabels.validation_message_number_format, { name: fieldDescriptor.label })]
 			};
 
 			if (isNaN(Number(value))) {
@@ -68,18 +68,27 @@ export class Validator {
 			if ((String(value).length > fieldDescriptor.maxLength)) {
 				return {
 					name,
-					message: interpolateString(this.formLabels.validation_message_exceeds_length, { name: fieldDescriptor.label })
+					errors: [interpolateString(this.formLabels.validation_message_exceeds_length, { name: fieldDescriptor.label })]
 				};
 			}
 		}
 
 		if (fieldDescriptor.validations && typeof value === 'string') {
-			const failedRule = fieldDescriptor.validations.find(rule => !new RegExp(rule.regex).test(value));
-			if (failedRule) {
-				return {
-					name,
-					message: interpolateString(failedRule.errorMessage, { name: fieldDescriptor.label })
-				};
+			const errors: Array<string> = [];
+
+			fieldDescriptor.validations.reduce(
+				(failureMessages, rule) => {
+					if (!new RegExp(rule.regex).test(value)) {
+						failureMessages.push(interpolateString(rule.errorMessage, { name: fieldDescriptor.label }));
+					}
+
+					return failureMessages;
+				},
+				errors
+			);
+
+			if (errors.length > 0) {
+				return { name, errors };
 			}
 		}
 

@@ -7,6 +7,7 @@ import { SelectOption } from './types/SelectOption';
 import { Validator } from './utils/Validator';
 import { ComponentStatus } from './types/ComponentStatus';
 import { applyDefaults } from './utils/FormDescriptorUtils';
+import { ErrorPanel } from './ErrorPanel';
 
 export interface LocaleSettings {
 	dates: {
@@ -39,10 +40,11 @@ export type FormSettings = any;
 export interface ElementWrapper {
 	/**
 	 * Wrap the entire form, combining the panels and the save button.
+	 * @param errorPanel react element encompassing all form level errors.
 	 * @param contents All the panels of the form.
 	 * @param saveButton The save button of the form.
 	 */
-	wrapForm(contents: ReactElement, saveButton: ReactElement): ReactElement;
+	wrapForm(errorPanel: ReactElement, contents: ReactElement, saveButton: ReactElement): ReactElement;
 	/**
 	 * Wrap a single panel of the form, combining the title and the fields.
 	 * @param key React key to be set on wrapper component to help React with change detection
@@ -56,9 +58,9 @@ export interface ElementWrapper {
 	 * @param status Current status of the field (note: "hidden" will never occur here as hidden fields aren't displayed at all)
 	 * @param label The label component of the field
 	 * @param input The input component of the field
-	 * @param errorMessage The error message component of the field
+	 * @param errorMessages The error message component of the field, is null if there are no errors
 	 */
-	wrapField(name: string, status: ComponentStatus, label: ReactElement, input: ReactElement, errorMessage?: ReactElement): ReactElement;
+	wrapField(name: string, status: ComponentStatus, label: ReactElement, input: ReactElement, errorMessages: ReactElement|null): ReactElement;
 	/**
 	 * Create additional properties to be set directly on the input component (i.e. the actual <input>/<select>/etc. HTML tag)
 	 * @param name Name of input field
@@ -73,6 +75,12 @@ export interface ElementWrapper {
 	 * Like injectInputProps(), except for the save button.
 	 */
 	injectSaveButtonProps(): Record<string, any>;
+	/**
+	 * Wrap a single panel of the form encompassing any form level errors.
+	 * @param key React key to be set on wrapper component to help React with change detection
+	 * @param contents All the field components of the panel
+	 */
+	wrapErrorPanel(key: string, contents: ReactElement): ReactElement;
 }
 
 /**
@@ -101,6 +109,20 @@ export interface FormLabels {
 }
 
 /**
+ * Wrapper for errors.
+ */
+export interface ValidationErrors {
+	/**
+	 * Errors that are not specifically linked to a form field.
+	 */
+	formErrors: Array<string>;
+	/**
+	 * Errors specific to form fields, a record of field name vs related errors.
+	 */
+	fieldErrors: Record<string, Array<string>>;
+}
+
+/**
  * Properties required by the <CSForm> component.
  */
 export interface FormProps {
@@ -113,7 +135,7 @@ export interface FormProps {
 	 * Validation errors that have been calculated outside the form, the key is
 	 * the field name, the value is the error message that will be displayed as-is.
 	 */
-	externalValidationErrors?: Record<string, string>;
+	externalValidationErrors?: ValidationErrors;
 	labels: FormLabels;
 	locale: LocaleSettings;
 	formSettings: FormSettings;
@@ -173,8 +195,12 @@ export class CSForm extends React.Component<FormProps, {}> {
 	render() {
 		return this.props.wrapper.wrapForm(
 			<>
-				{applyDefaults(this.props.descriptor).panels.map(this.createFormPanel)}
+				<ErrorPanel
+					wrapper={this.props.wrapper}
+					errors={this.props.externalValidationErrors ? this.props.externalValidationErrors.formErrors : []}
+				/>
 			</>,
+			<>{applyDefaults(this.props.descriptor).panels.map(this.createFormPanel)}</>,
 			<>
 				<Button
 					enabled label={this.props.labels.button_save}
@@ -187,7 +213,7 @@ export class CSForm extends React.Component<FormProps, {}> {
 
 	private createFormPanel(panel: FormPanelDescriptor) {
 		return (<FormPanel
-			errors={{ ...(this.props.externalValidationErrors || {}), ...this.validator.validate(this.props.data) }}
+			errors={{ ...(this.getFieldErrors()), ...this.validator.validate(this.props.data) }}
 			key={panel.title}
 			descriptor={panel}
 			data={this.props.data}
@@ -196,5 +222,13 @@ export class CSForm extends React.Component<FormProps, {}> {
 			wrapper={this.props.wrapper}
 			formSettings={this.props.formSettings}
 			locale={this.props.locale} />);
+	}
+
+	private getFieldErrors(): Record<string, Array<string>> {
+		if (this.props.externalValidationErrors && this.props.externalValidationErrors.fieldErrors) {
+			return this.props.externalValidationErrors.fieldErrors;
+		}
+
+		return {} as unknown as Record<string, Array<string>>;
 	}
 }

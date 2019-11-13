@@ -31,7 +31,6 @@ function nop(): any {
 it('renders nothing if hidden', () => {
 	const uut = shallow(<FormField descriptor={descriptor} wrapper={wrapper} locale={locale} value handleFieldChange={nop} fetchPossibleValues={nop} status="hidden" />);
 	expect(uut.html()).toBeNull();
-
 });
 
 it('renders a checkbox for type BOOLEAN', () => {
@@ -40,8 +39,19 @@ it('renders a checkbox for type BOOLEAN', () => {
 });
 
 it('renders error message if provided', () => {
-	const uut = shallow(<FormField errorMessage="TEST ERROR" descriptor={descriptor} wrapper={wrapper} locale={locale} value handleFieldChange={nop} fetchPossibleValues={nop} status="enabled" />);
-	expect(uut.text()).toContain('TEST ERROR');
+	const uut = shallow(
+		<FormField
+			errorMessages={['Field Error 1', 'Field Error 2']}
+			descriptor={descriptor}
+			wrapper={wrapper}
+			locale={locale}
+			value
+			handleFieldChange={nop}
+			fetchPossibleValues={nop}
+			status="enabled"
+		/>
+	);
+	expect(uut.text()).toContain('Field Error 1Field Error 2');
 });
 
 it('calls onChange() on change', done => {
