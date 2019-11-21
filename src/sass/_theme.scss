@@ -112,6 +112,11 @@ $css4: true;
 $variables: (
 	--cs-main-c: $cs-blue-sf,
 
+	--cs-shadow-focus: $cs-blue-sf,
+	--cs-shadow-light: rgba($cs-black, 0.1),
+	--cs-shadow-medium: rgba($cs-black, 0.22),
+	--cs-shadow-dark: rgba($cs-black, 0.5),
+
 	--cs-button-c: $cs-blue-sf,
 	--cs-button-inverse-c: $cs-white,
 	--cs-button-bg: $cs-white,
@@ -128,10 +133,6 @@ $variables: (
 
 	--cs-transparent: transparent,
 
-	--cs-shadow-focus: $cs-blue-sf,
-	--cs-shadow-light: rgba($cs-black, 0.11),
-	--cs-shadow-medium: rgba($cs-black, 0.22),
-	--cs-shadow-dark: rgba($cs-black, 0.5),
 );
 
 // This will be used later for dark theme support

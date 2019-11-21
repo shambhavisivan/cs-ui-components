@@ -1,5 +1,4 @@
 import React from "react";
-import {Route, NavLink} from "react-router-dom";
 import CSButtonPreview from "./components/CSButtonPreview";
 import CSIconPreview from "./components/CSIconPreview";
 import CSInputTextPreview from "./components/CSInputTextPreview";
@@ -22,6 +21,7 @@ import CSPaginationPreview from "./components/CSPaginationPreview";
 import CSChipPreview from "./components/CSChipPreview";
 import CSTooltipPreview from "./components/CSTooltipPreview";
 import CSPathPreview from "./components/CSPathPreview";
+import SidebarList from "./SidebarList";
 
 class CSComponentsList extends React.Component {
 	constructor(props) {
@@ -117,22 +117,10 @@ class CSComponentsList extends React.Component {
 			}
 		];
 	}
+
 	render() {
 		return (
-			<>
-				<ul className="components-list">
-					{this.componentsList.map((component) => (
-						<li className="ui-component" key={component.name}>
-							<NavLink to={`/components/CS${component.name}`} activeClassName="active-component">{component.name}</NavLink>
-						</li>)
-					)}
-				</ul>
-				<div className="components-preview">
-					{this.componentsList.map((component) => (
-						<Route key={component.name} path={`/components/CS${component.name}`} component={component.component}/>
-					))}
-				</div>
-			</>
+			<SidebarList toggle={true} search={true} sidebarList={this.componentsList} path='/components/CS'/>
 		)
 	}
 }
