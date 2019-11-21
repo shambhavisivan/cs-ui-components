@@ -17,7 +17,7 @@ class CSComponentsList extends React.Component {
 						<NavLink to={"/icons/CloudSenseIcons"} activeClassName="active-component">CloudSense Icons</NavLink>
 					</li>
 				</ul>
-				<div className="components-preview">
+				<div className="components-preview icons">
 					<Route path="/icons/LightningIcons" component={LightningIconsPreview}/>
 					<Route path="/icons/CloudSenseIcons" component={CloudSenseIconsPreview}/>
 				</div>
