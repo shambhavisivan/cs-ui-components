@@ -4,33 +4,36 @@ $font-weight-light: 300;
 $font-weight-normal: 400;
 $font-weight-bold: 700;
 
-/* APP TITLE */
-h1 {
-	font-size: 1.125rem;
-	font-weight: $font-weight-bold;
-}
+body .app-wrapper {
 
-/* EXPANDABLE SECTION HEADER */
-h2 {
-	font-size: 1rem;
-}
+	/* APP TITLE */
+	h1 {
+		font-size: 1.125rem;
+		font-weight: $font-weight-bold;
+	}
 
-/* MODAL TITLE */
-h3 {
-	font-size: 1.1875rem;
-}
+	/* EXPANDABLE SECTION HEADER */
+	h2 {
+		font-size: 1rem;
+	}
 
-/* SECTION TITLE */
-h4 {
-	font-size: 1rem;
-}
+	/* MODAL TITLE */
+	h3 {
+		font-size: 1.1875rem;
+	}
 
-/* SUBSECTION TITLE */
-h5 {
-	font-size: 0.9375rem;
-}
+	/* SECTION TITLE */
+	h4 {
+		font-size: 1rem;
+	}
 
-/* SUBSECTION TITLE */
-h6 {
-	font-size: 0.875rem;
+	/* SUBSECTION TITLE */
+	h5 {
+		font-size: 0.9375rem;
+	}
+
+	/* SUBSECTION TITLE */
+	h6 {
+		font-size: 0.875rem;
+	}
 }
