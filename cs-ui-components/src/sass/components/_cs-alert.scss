@@ -1,0 +1,186 @@
+.cs-alert {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	font-weight: $font-weight-light;
+	font-size: 0.8125rem;
+	text-align: center;
+	padding: 0.5rem 2rem 0.5rem 1rem;
+	width: 100%;
+
+	&.info {
+		@include sbg(--cs-alert-info-bg);
+		@include sc(--cs-alert-info-c);
+
+		.temporary-styles {
+			width: 1rem;
+			min-width: 1rem;
+			height: 1rem;
+			margin-right: 0.5rem;
+			@include css4 {
+				fill: cvar(--cs-alert-info-fill);
+			}
+		}
+
+		.cs-alert-link {
+			@include sc(--cs-alert-info-c);
+		}
+	}
+
+	&.warning {
+		@include sbg(--cs-alert-warning-bg);
+		@include sc(--cs-alert-warning-c);
+
+		.temporary-styles {
+			width: 1rem;
+			min-width: 1rem;
+			height: 1rem;
+			margin-right: 0.5rem;
+			@include css4 {
+				fill: cvar(--cs-alert-warning-fill);
+			}
+		}
+
+		.cs-alert-link {
+			@include sc(--cs-alert-warning-c);
+		}
+	}
+
+	&.error {
+		@include sbg(--cs-alert-error-bg);
+		@include sc(--cs-alert-error-c);
+
+		.temporary-styles {
+			width: 1rem;
+			min-width: 1rem;
+			height: 1rem;
+			margin-right: 0.5rem;
+			@include css4 {
+				fill: cvar(--cs-alert-error-fill);
+			}
+		}
+
+		.cs-alert-link {
+			@include sc(--cs-alert-error-c);
+		}
+	}
+
+	&.offline {
+		@include sbg(--cs-alert-offline-bg);
+		@include sc(--cs-alert-offline-c);
+
+		.temporary-styles {
+			width: 1rem;
+			min-width: 1rem;
+			height: 1rem;
+			margin-right: 0.5rem;
+			@include css4 {
+				fill: cvar(--cs-alert-offline-fill);
+			}
+		}
+
+		.cs-alert-link {
+			@include sc(--cs-alert-offline-c);
+		}
+	}
+
+	.cs-alert-text {
+		flex: 1;
+		display: flex;
+		align-items: center;
+	}
+
+	&.left .cs-alert-text {
+		justify-content: flex-start;
+	}
+
+	&.center .cs-alert-text,
+	&.undefined .cs-alert-text {
+		justify-content: center;
+	}
+
+	.cs-alert-link {
+		text-decoration: underline;
+
+		&:hover {
+			text-decoration: none;
+		}
+	}
+
+	.cs-alert-close {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: absolute;
+		width: 1.5rem;
+		height: 1.5rem;
+		top: 50%;
+		right: 0.75rem;
+		padding: 0;
+		border-radius: 0.25rem;
+		cursor: pointer;
+		-webkit-appearance: none;
+		border: none;
+		margin-left: 0.25rem;
+		transform: translateY(-50%);
+		@include sbg(--cs-transparent);
+
+		svg {
+			width: 0.875rem;
+			height: 0.875rem;
+			@include css4 {
+				fill: cvar(--cs-alert-close-fill);
+			}
+		}
+
+		&:hover {
+			svg {
+				@include css4 {
+					fill: cvar(--cs-alert-hover-fill);
+				}
+			}
+		}
+
+		&:focus {
+			outline: none;
+			@include css4 {
+				box-shadow: 0 0 3px cvar(--cs-alert-box);
+				border: 1px solid cvar(--cs-alert-br);
+			}
+		}
+
+		&:active {
+			svg {
+				@include css4 {
+					fill: cvar(--cs-alert-active-fill);
+				}
+			}
+		}
+	}
+
+	&.warning .cs-alert-close {
+
+		svg {
+			@include css4 {
+				fill: cvar(--cs-alert-warning-fill);
+			}
+		}
+
+		&:hover,
+		&:active {
+			svg {
+				@include css4 {
+					fill: cvar(--cs-alert-warning-hover-fill);
+				}
+			}
+		}
+
+		&:focus {
+			@include css4 {
+				box-shadow: 0 0 3px cvar(--cs-alert-warning-box);
+				border: 1px solid cvar(--cs-alert-warning-br);
+			}
+		}
+	}
+}

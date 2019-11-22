@@ -21,6 +21,7 @@ import CSPaginationPreview from './components/CSPaginationPreview';
 import CSChipPreview from './components/CSChipPreview';
 import CSTooltipPreview from './components/CSTooltipPreview';
 import CSPathPreview from './components/CSPathPreview';
+import CSAlertPreview from './components/CSAlertPreview';
 import SidebarList from './SidebarList';
 
 class CSComponentsList extends React.Component {
@@ -114,6 +115,10 @@ class CSComponentsList extends React.Component {
 			{
 				name: 'Path',
 				component: CSPathPreview
+			},
+			{
+				name: 'Alert',
+				component: CSAlertPreview
 			}
 		];
 

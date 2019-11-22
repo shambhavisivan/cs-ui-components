@@ -35,6 +35,7 @@
 		]
 	},
 	"devDependencies": {
+		"@types/react-syntax-highlighter": "^11.0.2",
 		"classnames": "^2.2.6",
 		"jsx-to-string": "^1.4.0",
 		"tslint": "^5.20.1",

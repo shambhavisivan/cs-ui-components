@@ -139,6 +139,27 @@ $variables: (
 
 	--cs-transparent: transparent,
 
+	--cs-alert-info-bg: $cs-gray-dark-5,
+	--cs-alert-info-c: $cs-white,
+	--cs-alert-info-fill: $cs-white,
+	--cs-alert-warning-bg: $cs-orange-medium-2,
+	--cs-alert-warning-c: $cs-gray-dark-4,
+	--cs-alert-warning-fill: $cs-gray-dark-4,
+	--cs-alert-warning-hover-fill: $cs-gray-dark-5,
+	--cs-alert-warning-box: $cs-gray-dark-4,
+	--cs-alert-warning-br: $cs-gray-dark-4,
+	--cs-alert-error-bg: $cs-red-medium-2,
+	--cs-alert-error-c: $cs-white,
+	--cs-alert-error-fill: $cs-white,
+	--cs-alert-offline-bg: $cs-gray-dark-3,
+	--cs-alert-offline-c: $cs-white,
+	--cs-alert-offline-fill: $cs-white,
+	--cs-alert-close-fill: $cs-white,
+	--cs-alert-hover-fill: rgba($cs-white, 0.75),
+	--cs-alert-active-fill: rgba($cs-white, 0.5),
+	--cs-alert-box: $cs-gray-light-5,
+	--cs-alert-br: $cs-gray-light-5,
+
 );
 
 // This will be used later for dark theme support
