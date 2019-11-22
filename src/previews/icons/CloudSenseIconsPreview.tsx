@@ -2,10 +2,10 @@ import React from 'react'
 import IconsViewer from "./IconsViewer";
 
 class CloudSenseIconsPreview extends React.Component {
-	constructor(props) {
-		super(props);
 
-		this.cloudSenseIcons = [
+	render() {
+
+		const cloudSenseIcons = [
 			{
 				name: 'action',
 				svg: '<svg viewBox="0 0 52 52"><g stroke="none" fill="#000000"><path d="M52 26l-14.7-9.5V22H21.5v8h15.9v5.5L52 26z"/><path d="M9 17c-5 0-9 4-9 9s4 9 9 9 9-4 9-9-4-9-9-9z"/></g></svg>'
@@ -115,11 +115,9 @@ class CloudSenseIconsPreview extends React.Component {
 				svg: '<svg viewBox="0 0 52 52"><g stroke="none" fill="#000000"><path d="M0 48c0 1.8 1.4 3.2 3.2 3.2h8.5c1.8 0 3.2-1.4 3.2-3.2V4c0-1.8-1.4-3.2-3.2-3.2H3.2C1.4.8 0 2.2 0 4v44z"/><path d="M21.7.8c-1.8 0-3.2 1.4-3.2 3.2v44c0 1.8 1.4 3.2 3.2 3.2h8.5c1.8 0 3.2-1.4 3.2-3.2V4c0-1.8-1.4-3.2-3.2-3.2h-8.5z"/><path d="M40.3 51.2h8.5c1.8 0 3.2-1.4 3.2-3.2V4C52 2.2 50.6.8 48.8.8h-8.5c-1.8 0-3.2 1.4-3.2 3.2v44c0 1.8 1.4 3.2 3.2 3.2z"/></g></svg>'
 			}
 		];
-	}
 
-	render() {
 		return (
-			<IconsViewer icons={this.cloudSenseIcons} />
+			<IconsViewer icons={cloudSenseIcons} />
 		);
 	}
 }
