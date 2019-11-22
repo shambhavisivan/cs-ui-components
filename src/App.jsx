@@ -14,7 +14,7 @@ class App extends React.Component {
 
 		return (
 			<Router>
-				<div className="app-wrapper">
+				<div className="cs-app-wrapper">
 					<div className="app-main-header">
 						<ul>
 							<li className="main-header-tab">

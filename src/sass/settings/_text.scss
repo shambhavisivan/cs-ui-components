@@ -1,10 +1,27 @@
+@font-face {
+	font-family: "SFFont";
+	src: url("./../fonts/SalesforceSans-Regular.ttf");
+	src: url("./../fonts/SalesforceSans-Regular.woff") format("woff"), /* Modern Browsers */
+	url("./../fonts/SalesforceSans-Regular.ttf") format("truetype"); /* Safari, Android, iOS */
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: "SFFont";
+	src: url("./../fonts/SalesforceSans-Bold.ttf");
+	src: url("./../fonts/SalesforceSans-Bold.woff") format("woff"), /* Modern Browsers */
+	url("./../fonts/SalesforceSans-Bold.ttf") format("truetype"); /* Safari, Android, iOS */
+	font-weight: 700;
+	font-style: normal;
+}
+
 $font-primary: 'SFFont', sans-serif;
 
 $font-weight-light: 300;
 $font-weight-normal: 400;
 $font-weight-bold: 700;
 
-body .app-wrapper {
+body .cs-app-wrapper {
 
 	/* APP TITLE */
 	h1 {
