@@ -4,14 +4,26 @@ import {Route, NavLink} from "react-router-dom";
 import CSIcon from "../../src/components/CSIcon";
 import classNames from 'classnames';
 
-function searchingFor(term) {
-	return function(x) {
-		return x.name.toLowerCase().includes(term.toLowerCase()) || !term;
-	}
+type SidebarItem = {
+	name: string;
+	component: React.ComponentType<any>;
 }
 
-class SidebarList extends React.Component {
-	constructor(props) {
+export interface SidebarListProps {
+	sidebarList: SidebarItem[];
+	path: string;
+	toggle?: boolean;
+	search?: boolean;
+	customClass?: string;
+}
+
+export interface SidebarListState {
+	sidebarOpen: boolean;
+	term: string;
+}
+
+class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
+	constructor(props: SidebarListProps) {
 		super(props);
 
 		this.toggleSidebar = this.toggleSidebar.bind(this);
@@ -27,14 +39,20 @@ class SidebarList extends React.Component {
 		this.setState({ sidebarOpen: !this.state.sidebarOpen });
 	};
 
-	searchHandler(event) {
+	searchHandler(event: any) {
 		this.setState({
 			term: event.target.value
 		});
 	}
 
+	searchingFor(term: string) {
+		return function(x: any) {
+			return x.name.toLowerCase().includes(term.toLowerCase()) || !term;
+		}
+	}
+
 	render() {
-		const { term } = this.state;
+
 		let componentPreviewClass = classNames(
 			"components-preview",
 			{
@@ -47,15 +65,14 @@ class SidebarList extends React.Component {
 				<div className={"components-list-wrapper" + (this.state.sidebarOpen ? " sidebar-open" : "")}>
 					{this.props.search && this.state.sidebarOpen ?
 						<div className="components-list-search">
-							<input placeholder="Search..." onChange={this.searchHandler} value={term}/>
+							<input placeholder="Search..." onChange={this.searchHandler} value={this.state.term}/>
 						</div>
 						: null
 					}
 					{this.state.sidebarOpen ?
-						<div
-							className="components-list-inner">
+						<div className="components-list-inner">
 							<ul className="components-list">
-								{this.props.sidebarList.filter(searchingFor(term)).map((component) => (
+								{this.props.sidebarList.filter(this.searchingFor(this.state.term)).map((component) => (
 									<li className="ui-component" key={component.name.split(' ').join('')}>
 										<NavLink to={`${this.props.path}${component.name.split(' ').join('')}`}
 											activeClassName="active-component">{component.name}</NavLink>

@@ -24,9 +24,9 @@ import CSPathPreview from "./components/CSPathPreview";
 import SidebarList from "./SidebarList";
 
 class CSComponentsList extends React.Component {
-	constructor(props) {
-		super(props);
-		this.componentsList = [
+
+	render() {
+		const componentsList = [
 			{
 				"name": "Button",
 				"component": CSButtonPreview
@@ -116,11 +116,9 @@ class CSComponentsList extends React.Component {
 				"component": CSPathPreview
 			}
 		];
-	}
 
-	render() {
 		return (
-			<SidebarList toggle={true} search={true} sidebarList={this.componentsList} path='/components/CS'/>
+			<SidebarList toggle={true} search={true} sidebarList={componentsList} path='/components/CS'/>
 		)
 	}
 }
