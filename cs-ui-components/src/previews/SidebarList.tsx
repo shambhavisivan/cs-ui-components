@@ -1,16 +1,16 @@
-import React from "react";
-import {Route, NavLink} from "react-router-dom";
+import React from 'react';
+import {Route, NavLink} from 'react-router-dom';
 
-import CSIcon from "../../src/components/CSIcon";
+import CSIcon from '../../src/components/CSIcon';
 import classNames from 'classnames';
 
-type SidebarItem = {
+interface SidebarItem {
 	name: string;
 	component: React.ComponentType<any>;
 }
 
 export interface SidebarListProps {
-	sidebarList: SidebarItem[];
+	sidebarList: Array<SidebarItem>;
 	path: string;
 	toggle?: boolean;
 	search?: boolean;
@@ -27,7 +27,7 @@ class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
 		super(props);
 
 		this.toggleSidebar = this.toggleSidebar.bind(this);
-		this.searchHandler= this.searchHandler.bind(this);
+		this.searchHandler = this.searchHandler.bind(this);
 
 		this.state = {
 			sidebarOpen: true,
@@ -37,7 +37,7 @@ class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
 
 	toggleSidebar() {
 		this.setState({ sidebarOpen: !this.state.sidebarOpen });
-	};
+	}
 
 	searchHandler(event: any) {
 		this.setState({
@@ -45,16 +45,10 @@ class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
 		});
 	}
 
-	searchingFor(term: string) {
-		return function(x: any) {
-			return x.name.toLowerCase().includes(term.toLowerCase()) || !term;
-		}
-	}
-
 	render() {
 
-		let componentPreviewClass = classNames(
-			"components-preview",
+		const componentPreviewClass = classNames(
+			'components-preview',
 			{
 				[`${this.props.customClass}`] : this.props.customClass
 			}
@@ -62,7 +56,7 @@ class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
 
 		return (
 			<>
-				<div className={"components-list-wrapper" + (this.state.sidebarOpen ? " sidebar-open" : "")}>
+				<div className={'components-list-wrapper' + (this.state.sidebarOpen ? ' sidebar-open' : '')}>
 					{this.props.search && this.state.sidebarOpen ?
 						<div className="components-list-search">
 							<input placeholder="Search..." onChange={this.searchHandler} value={this.state.term}/>
@@ -72,7 +66,10 @@ class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
 					{this.state.sidebarOpen ?
 						<div className="components-list-inner">
 							<ul className="components-list">
-								{this.props.sidebarList.filter(this.searchingFor(this.state.term)).map((component) => (
+								{this.props.sidebarList.filter(component => {
+									const term = this.state.term.toLowerCase();
+									return component.name.toLowerCase().includes(term) || !term;
+								}).map(component => (
 									<li className="ui-component" key={component.name.split(' ').join('')}>
 										<NavLink to={`${this.props.path}${component.name.split(' ').join('')}`}
 											activeClassName="active-component">{component.name}</NavLink>
@@ -87,19 +84,19 @@ class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
 				<div className="components-preview-wrapper">
 					{this.props.toggle ?
 						<div className="sidebar-toggle" onClick={this.toggleSidebar}>
-							<CSIcon name={this.state.sidebarOpen ? "close" : "rows"}/>
+							<CSIcon name={this.state.sidebarOpen ? 'close' : 'rows'}/>
 						</div>
 						:
 						null
 					}
 					<div className={componentPreviewClass}>
-						{this.props.sidebarList.map((component) => (
+						{this.props.sidebarList.map(component => (
 							<Route key={component.name} path={`${this.props.path}${component.name.split(' ').join('')}`} component={component.component}/>
 						))}
 					</div>
 				</div>
 			</>
-		)
+		);
 	}
 }
 

@@ -2,7 +2,7 @@ import './App.scss';
 import './sass/style.scss';
 import React from 'react';
 
-import {BrowserRouter as Router, Route, NavLink} from "react-router-dom";
+import {BrowserRouter as Router, Route, NavLink} from 'react-router-dom';
 
 import CSComponentsList from './previews/CSComponentsList';
 import CSIconsList from './previews/CSIconsList';
@@ -36,7 +36,7 @@ class App extends React.Component {
 					</div>
 				</div>
 			</Router>
-		)
+		);
 	}
 }
 

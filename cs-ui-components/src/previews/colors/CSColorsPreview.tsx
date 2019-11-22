@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import colors from '../../colors/colors.js';
 import CSColorPreview from './CSColorPreview';
 
@@ -12,7 +12,7 @@ class CSColorsPreview extends React.Component {
 					))}
 				</div>
 			</div>
-		)
+		);
 	}
 }
 

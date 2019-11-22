@@ -1,13 +1,13 @@
-import React from "react";
-import CSIcon from "../../components/CSIcon";
+import React from 'react';
+import CSIcon from '../../components/CSIcon';
 
-type Icon = {
+interface Icon {
 	name: string;
 	svg: string;
 }
 
 interface IconsViewerProps {
-	icons: Icon[];
+	icons: Array<Icon>;
 }
 
 interface IconsViewerState {
@@ -23,7 +23,7 @@ class IconsViewer extends React.Component<IconsViewerProps, IconsViewerState> {
 
 		this.state = {
 			term: ''
-		}
+		};
 	}
 
 	searchHandler(event: any) {
@@ -32,17 +32,12 @@ class IconsViewer extends React.Component<IconsViewerProps, IconsViewerState> {
 		});
 	}
 
-	searchingFor(term: string) {
-		return function (x: any) {
-			return x.name.toLowerCase().includes(term.toLowerCase()) || !term;
-		}
-	}
-
 	clearSearch() {
 		this.setState({
 			term: ''
 		});
 	}
+
 	render() {
 		return (
 			<>
@@ -58,7 +53,10 @@ class IconsViewer extends React.Component<IconsViewerProps, IconsViewerState> {
 				</div>
 				<div className="icons-preview-wrapper">
 					<div className="icons-preview">
-						{this.props.icons.filter(this.searchingFor(this.state.term)).map((icons, i) => (
+						{this.props.icons.filter(icon => {
+							const term = this.state.term.toLowerCase();
+							return icon.name.toLowerCase().includes(term) || !term;
+						}).map((icons, i) => (
 							<div key={i}>
 								<div className="svg-wrapper">
 									<div dangerouslySetInnerHTML={{__html: icons.svg}}/>

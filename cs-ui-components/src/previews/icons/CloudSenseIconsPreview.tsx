@@ -1,5 +1,5 @@
-import React from 'react'
-import IconsViewer from "./IconsViewer";
+import React from 'react';
+import IconsViewer from './IconsViewer';
 
 class CloudSenseIconsPreview extends React.Component {
 
