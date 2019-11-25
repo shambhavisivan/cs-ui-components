@@ -1,6 +1,6 @@
 {
-	"name": "@cloudsense/csform",
-	"version": "0.0.1",
+	"name": "@cloudsense/cs-form",
+	"version": "1.0.0-alpha.0",
 	"description": "",
 	"scripts": {
 		"test": "jest",
