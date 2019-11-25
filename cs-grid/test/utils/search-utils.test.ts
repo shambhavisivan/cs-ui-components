@@ -1,4 +1,4 @@
-import { ColDef } from '../../src/interfaces/cs-grid-base-interfaces';
+import { ColDef } from '../../src/interfaces/cs-grid-col-def';
 import { ColumnFilterCondition } from '../../src/interfaces/cs-grid-data-source-api';
 import { SearchUtils } from '../../src/utils/search-utils';
 
@@ -21,19 +21,37 @@ describe('Search Utils', () => {
 	const AndQuery = `${simpleQuery1} & ${simpleQuery2}`;
 	const OrQuery = `${simpleQuery1}|${simpleQuery2}`;
 
+	const userInfo = {
+		currencyCode: 'EUR',
+		userLocale: 'fr-FR'
+	};
+
 	const columnDefinitions: Array<ColDef> = [
 		{
-			field: validFieldName1,
-			headerName: validHeaderName1
+			cellType: 'Text',
+			header: {
+				label: validHeaderName1
+			},
+			name: validFieldName1,
+			userInfo
 		},
 		{
-			field: validFieldName2,
-			headerName: validHeaderName2
+			cellType: 'Text',
+			header: {
+				label: validHeaderName2
+			},
+			name: validFieldName2,
+			userInfo,
+			visible: true
 		},
 		{
-			field: hiddenFieldName,
-			headerName: hiddenHeaderName,
-			hide: true
+			cellType: 'Text',
+			header: {
+				label: hiddenHeaderName
+			},
+			name: hiddenFieldName,
+			userInfo,
+			visible: false
 		}
 	];
 

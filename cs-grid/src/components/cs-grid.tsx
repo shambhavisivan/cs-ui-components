@@ -1,12 +1,14 @@
 import {
 	AgGridEvent,
 	CellValueChangedEvent,
+	ColDef as AgGridColDef,
 	GetQuickFilterTextParams,
 	GridApi,
 	GridReadyEvent,
 	IDatasource,
 	IGetRowsParams
 } from 'ag-grid-community';
+
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import { AgGridReact } from 'ag-grid-react';
 import React from 'react';
@@ -15,10 +17,10 @@ import ReactDOM from 'react-dom';
 import {
 	CellClickedEvent,
 	CellData,
-	ColDef,
 	CSGridControl,
 	Row
 } from '../interfaces/cs-grid-base-interfaces';
+import { ColDef } from '../interfaces/cs-grid-col-def';
 import {
 	ColumnFilterCondition,
 	Condition,
@@ -131,8 +133,8 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 	constructor(props: CSGridProps) {
 		super(props);
 
-		const editorComponents = this.props.editorComponents || {};
-		const rendererComponents = this.props.rendererComponents || {};
+		const editorComponents = props.editorComponents || {};
+		const rendererComponents = props.rendererComponents || {};
 
 		this.state.frameworkComponents = {
 			...this.state.frameworkComponents,
@@ -146,6 +148,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 	};
 
 	render() {
+		const columnDefs = this.convertColumnDefs(this.props.columnDefs);
 		const pageSizes = this.props.pageSizes || this.defaultPageSizes;
 		const isDataSourceRowModel = !!this.props.dataSourceAPI;
 
@@ -177,7 +180,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 							maxBlocksInCache={isDataSourceRowModel ? 1 : undefined}
 							maxConcurrentDatasourceRequests={isDataSourceRowModel ? 1 : undefined}
 							rowModelType={isDataSourceRowModel ? 'infinite' : undefined}
-							columnDefs={this.props.columnDefs}
+							columnDefs={columnDefs}
 							rowData={this.props.rowData}
 							pagination={paginationLocation !== 'None'}
 							paginationPageSize={pageSizes[0]}
@@ -612,5 +615,176 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			const columnState = JSON.stringify(event.columnApi.getColumnState());
 			this.props.onColumnStateChange(columnState);
 		}
+	};
+
+	private addIfDefined = (target: any, key: string, value: any) => {
+		if (value !== undefined) {
+			target[key] = value;
+		}
+	};
+
+	private convertColumnDefs = (columnDefs: Array<ColDef>): Array<AgGridColDef> => {
+		const agGridColDefs: Array<AgGridColDef> = [];
+
+		for (const columnDef of columnDefs) {
+			let agGridColDef: AgGridColDef = {};
+
+			this.addIfDefined(agGridColDef, 'checkboxSelection', columnDef.checkboxSelection);
+			this.addIfDefined(agGridColDef, 'comparator', columnDef.comparator);
+			this.addIfDefined(agGridColDef, 'editable', columnDef.editable);
+			this.addIfDefined(agGridColDef, 'field', columnDef.name);
+			this.addIfDefined(agGridColDef, 'filter', columnDef.hasFilter);
+			this.addIfDefined(
+				agGridColDef,
+				'headerCheckboxSelection',
+				columnDef.headerCheckboxSelection
+			);
+			this.addIfDefined(
+				agGridColDef,
+				'headerCheckboxSelectionFilteredOnly',
+				columnDef.selectFilteredOnly
+			);
+			this.addIfDefined(agGridColDef, 'lockVisible', columnDef.lockVisible);
+			this.addIfDefined(agGridColDef, 'maxWidth', columnDef.maxWidth);
+			this.addIfDefined(agGridColDef, 'minWidth', columnDef.minWidth);
+			this.addIfDefined(agGridColDef, 'resizable', columnDef.resizable);
+			this.addIfDefined(agGridColDef, 'sortable', columnDef.sortable);
+			this.addIfDefined(agGridColDef, 'width', columnDef.width);
+
+			if (columnDef.visible !== undefined) {
+				agGridColDef.hide = !columnDef.visible;
+			}
+
+			if (columnDef.header !== undefined) {
+				this.addIfDefined(agGridColDef, 'headerName', columnDef.header.label);
+
+				agGridColDef.headerComponentParams = {};
+				this.addIfDefined(
+					agGridColDef.headerComponentParams,
+					'header',
+					columnDef.header.class
+				);
+			}
+
+			const cellParams: any = {};
+			this.addIfDefined(cellParams, 'onChange', columnDef.onChange);
+			this.addIfDefined(cellParams, 'readonly', columnDef.readonly);
+			this.addIfDefined(cellParams, 'userInfo', columnDef.userInfo);
+
+			if (columnDef.cellType === 'Picklist' || columnDef.cellType === 'MultiSelectPicklist') {
+				agGridColDef.cellEditor = 'picklistEditor';
+				agGridColDef.cellRenderer = 'picklistRenderer';
+
+				this.addIfDefined(cellParams, 'filterAboveSize', columnDef.filterAboveSize);
+				this.addIfDefined(cellParams, 'getOptions', columnDef.getOptions);
+			}
+
+			if (columnDef.cellType === 'Lookup' || columnDef.cellType === 'MultiSelectLookup') {
+				agGridColDef.cellEditor = 'lookupEditor';
+				agGridColDef.cellRenderer = 'lookupRenderer';
+
+				this.addIfDefined(cellParams, 'minSearchTermLength', columnDef.minSearchTermLength);
+				this.addIfDefined(cellParams, 'displayColumn', columnDef.displayColumn);
+				this.addIfDefined(cellParams, 'guidColumn', columnDef.guidColumn);
+				this.addIfDefined(cellParams, 'getLookupValues', columnDef.getLookupValues);
+			}
+
+			if (columnDef.cellType === 'Integer') {
+				agGridColDef.cellEditor = 'integerEditor';
+				agGridColDef.cellRenderer = 'integerRenderer';
+
+				this.addIfDefined(cellParams, 'stepperArrows', columnDef.stepperArrows);
+			}
+
+			if (columnDef.cellType === 'Decimal') {
+				agGridColDef.cellEditor = 'decimalEditor';
+				agGridColDef.cellRenderer = 'decimalRenderer';
+
+				this.addIfDefined(cellParams, 'noOfDecimalDigits', columnDef.noOfDecimalDigits);
+			}
+
+			if (columnDef.cellType === 'Currency') {
+				agGridColDef.cellEditor = 'currencyEditor';
+				agGridColDef.cellRenderer = 'currencyRenderer';
+			}
+
+			if (columnDef.cellType === 'Boolean') {
+				agGridColDef.cellEditor = 'booleanEditor';
+				agGridColDef.cellRenderer = 'booleanRenderer';
+			}
+
+			if (columnDef.cellType === 'Date') {
+				agGridColDef.cellEditor = 'dateEditor';
+				agGridColDef.cellRenderer = 'dateRenderer';
+			}
+
+			if (columnDef.cellType === 'Text') {
+				agGridColDef.cellEditor = 'textEditor';
+				agGridColDef.cellRenderer = 'textRenderer';
+			}
+
+			if (columnDef.cellType === 'MultiSelectLookup') {
+				agGridColDef.cellEditor = 'multiSelectLookupEditor';
+				agGridColDef.cellRenderer = 'multiSelectLookupRenderer';
+			}
+
+			if (columnDef.cellType === 'MultiSelectPicklist') {
+				agGridColDef.cellEditor = 'multiSelectPicklistEditor';
+				agGridColDef.cellRenderer = 'multiSelectPicklistRenderer';
+			}
+
+			if (columnDef.cellType === 'RowValidation') {
+				agGridColDef.cellRenderer = 'rowValidationRenderer';
+
+				const defaultSettings = {
+					editable: false,
+					filter: false,
+					sortable: false,
+					suppressMenu: true,
+					width: 150
+				};
+
+				agGridColDef = { ...defaultSettings, ...agGridColDef };
+			}
+
+			if (columnDef.cellType === 'RowSelection') {
+				agGridColDef.cellRenderer = 'rowSelectionRenderer';
+
+				const defaultSettings = {
+					checkboxSelection: true,
+					editable: false,
+					filter: false,
+					headerCheckboxSelection: true,
+					headerCheckboxSelectionFilteredOnly: true,
+					headerName: '',
+					lockPosition: true,
+					lockVisible: true,
+					maxWidth: 40,
+					minWidth: 40,
+					resizable: false,
+					sortable: false,
+					width: 40
+				};
+
+				agGridColDef = { ...defaultSettings, ...agGridColDef };
+			}
+
+			if (columnDef.cellType === 'Custom') {
+				agGridColDef.cellEditorParams = { ...cellParams, ...columnDef.cellEditorParams };
+				agGridColDef.cellRendererParams = {
+					...cellParams,
+					...columnDef.cellRendererParams
+				};
+				agGridColDef.cellEditor = columnDef.cellEditor;
+				agGridColDef.cellRenderer = columnDef.cellRenderer;
+			} else {
+				agGridColDef.cellEditorParams = cellParams;
+				agGridColDef.cellRendererParams = cellParams;
+			}
+
+			agGridColDefs.push(agGridColDef);
+		}
+
+		return agGridColDefs;
 	};
 }

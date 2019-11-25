@@ -1,24 +1,15 @@
 import {
 	CellClickedEvent,
-	ColDef,
+	Column,
+	ColumnApi,
 	GridApi,
 	GridReadyEvent,
-	ICellEditorParams,
-	ICellRendererParams
+	RowNode
 } from 'ag-grid-community';
-import { IsColumnFunc, IsColumnFuncParams } from 'ag-grid-community/dist/lib/entities/colDef';
+import { IsColumnFunc } from 'ag-grid-community/dist/lib/entities/colDef';
 
 import { ICellEditorReactComp, ICellRendererReactComp } from 'ag-grid-react';
 import { UserInfo } from './user-info';
-
-export interface CSGridCellEditorProps<T> extends ICellEditorParams, CSGridCellProps<T> {
-	value: CellData<T>;
-}
-
-export interface CSGridCellRendererProps<T> extends ICellRendererParams, CSGridCellProps<T> {
-	value: CellData<T>;
-	readonly?: boolean | IsColumnFunc;
-}
 
 export interface CSGridCellRendererState<T> {
 	value: CellData<T>;
@@ -33,17 +24,14 @@ export interface CSGridCellEditorState<T> {
 	value: CellData<T>;
 }
 
-export interface CSGridCellProps<T> {
-	userInfo: UserInfo;
-	onChange?(rowNodeId: string, oldValue: T, newValue: T): Promise<CellData<T>>;
-}
-
 export interface CellData<T> {
 	cellValue: T;
 	errorMessage?: string;
 }
 
 export type Row = Record<string, CellData<any>>;
+
+export type CustomCellType = 'Custom';
 
 /**
  * Defines the location of an object relative to the grid.
@@ -62,12 +50,15 @@ export interface CSGridControl {
 	detachedCSSClass?: string;
 }
 
+export interface IsColumnFuncParams {
+	node: RowNode;
+}
+
+export type IsColumnFunc = (params: IsColumnFuncParams) => boolean;
+
 // Ag-grid interfaces have been extended so they are not exposed in the cs-grid package.
 export interface CSGridCellEditor extends ICellEditorReactComp {}
 export interface CSGridCellRenderer extends ICellRendererReactComp {}
-export interface IsColumnFuncParams extends IsColumnFuncParams {}
-export interface IsColumnFunc extends IsColumnFunc {}
-export interface ColDef extends ColDef {}
 export interface GridReadyEvent extends GridReadyEvent {}
 export interface CellClickedEvent extends CellClickedEvent {}
 export interface GridApi extends GridApi {}

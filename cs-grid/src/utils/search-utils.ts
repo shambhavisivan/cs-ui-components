@@ -1,4 +1,4 @@
-import { ColDef } from '../interfaces/cs-grid-base-interfaces';
+import { ColDef } from '../interfaces/cs-grid-col-def';
 import {
 	ColumnFilterCondition,
 	Condition,
@@ -70,7 +70,10 @@ const validateQualifiedSearch = (
 		}
 
 		const validColumnName = columnDefinitions.some(
-			column => column.headerName.toLowerCase() === columnName.toLowerCase() && !column.hide
+			column =>
+				column.header &&
+				column.header.label.toLowerCase() === columnName.toLowerCase() &&
+				(column.visible === undefined || column.visible)
 		);
 
 		if (!validColumnName) {
@@ -150,13 +153,16 @@ const convertQueriesToColumnFilters = (
 		};
 
 		const columnDefinition = columnDefinitions.find(
-			column => column.headerName.toLowerCase() === columnName.toLowerCase() && !column.hide
+			column =>
+				column.header &&
+				column.header.label.toLowerCase() === columnName.toLowerCase() &&
+				(column.visible === undefined || column.visible)
 		);
 
-		const columnFilterConditions = columnFilters.get(columnDefinition.field) || [];
+		const columnFilterConditions = columnFilters.get(columnDefinition.name) || [];
 		columnFilterConditions.push(columnFilterCondition);
 
-		columnFilters.set(columnDefinition.field, columnFilterConditions);
+		columnFilters.set(columnDefinition.name, columnFilterConditions);
 	}
 
 	return columnFilters;

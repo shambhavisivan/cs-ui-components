@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CSGridCellRendererProps } from '../interfaces/cs-grid-base-interfaces';
+import { CSGridCellRendererProps } from '../interfaces/cs-grid-cell-props';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
 import { CSGridTooltip } from './cs-grid-tooltip';
 

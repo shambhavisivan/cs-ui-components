@@ -1,9 +1,7 @@
 import React from 'react';
 
-import {
-	CSGridCellRendererProps,
-	CSGridCellRendererState
-} from '../interfaces/cs-grid-base-interfaces';
+import { CSGridCellRendererState } from '../interfaces/cs-grid-base-interfaces';
+import { CSGridCellRendererProps } from '../interfaces/cs-grid-cell-props';
 import { getIntl } from '../polyfill/cs-grid-intl';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
 import { CSGridCellError } from './cs-grid-cell-error';

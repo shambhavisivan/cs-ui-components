@@ -1,41 +1,29 @@
-import { ColumnApi, GridApi, GridReadyEvent } from 'ag-grid-community';
+import { ColDef as AgGridColDef, ColumnApi, GridApi, GridReadyEvent } from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react';
 import React from 'react';
 
 import {
 	CellData,
-	ColDef,
 	CSGridCellEditor,
-	CSGridCellEditorProps,
 	CSGridCellEditorState
 } from '../interfaces/cs-grid-base-interfaces';
+import { CSGridCellEditorProps, LookupProps } from '../interfaces/cs-grid-cell-props';
+import { LookupSearchColDef } from '../interfaces/cs-grid-col-def';
 import { CSGridHeader } from './cs-grid-header';
 
 /**
- * columnDefs - An array of column definitions each needs to contain a field name and a column header:
+ * columnDefs - An array of column definitions:
  * {
- *      field: 'text1',
- *      headerName: 'Name'
+ *     header: {
+ *         label: 'Name'
+ *     },
+ *     name: 'text1'
  * }
  * rowData - Maps the field names above to row values.
  */
 export interface CSGridLookupSearchResult {
-	columnDefs: Array<ColDef>;
+	columnDefs: Array<LookupSearchColDef>;
 	rowData: Array<Record<string, string>>;
-}
-
-/**
- * minSearchTermLength - The minimum number of characters needed before the lookup will trigger.
- * displayColumn - The column to display in the renderer.
- * guidColumn - A unique ID for the row, this value will not be shown in the grid.
- * getLookupValues - Returns the latest lookup values depending on the search term input.
- */
-export interface CSGridLookupEditorProps
-	extends CSGridCellEditorProps<Array<Record<string, string>> | Record<string, string>> {
-	minSearchTermLength: number;
-	displayColumn: string;
-	guidColumn: string;
-	getLookupValues(searchTerm: string, guid: string): Promise<CSGridLookupSearchResult>;
 }
 
 /**
@@ -49,7 +37,7 @@ interface CSGridLookupEditorState
 	extends CSGridCellEditorState<Array<Record<string, string>> | Record<string, string>> {
 	selected: Array<Record<string, string>>;
 	searchTerm: string;
-	columnDefs: Array<ColDef>;
+	columnDefs: Array<LookupSearchColDef>;
 	rowData: Array<Record<string, string>>;
 	showGrid: boolean;
 }
@@ -58,13 +46,19 @@ interface CSGridLookupEditorState
  * A cell editor that displays lookup results in the form of an ag-grid table with selectable rows.
  */
 export class CSGridLookupEditor
-	extends React.Component<CSGridLookupEditorProps, CSGridLookupEditorState>
+	extends React.Component<
+		CSGridCellEditorProps<Array<Record<string, string>> | Record<string, string>> & LookupProps,
+		CSGridLookupEditorState
+	>
 	implements CSGridCellEditor {
 	gridApi: GridApi;
 	columnApi: ColumnApi;
 	multiSelect: boolean = false;
 
-	constructor(props: CSGridLookupEditorProps) {
+	constructor(
+		props: CSGridCellEditorProps<Array<Record<string, string>> | Record<string, string>> &
+			LookupProps
+	) {
 		super(props);
 
 		const selected = Array.isArray(this.props.value.cellValue)
@@ -105,6 +99,8 @@ export class CSGridLookupEditor
 	};
 
 	render() {
+		const columnDefs = this.convertColumnDefs(this.state.columnDefs);
+
 		const placeholder =
 			'Search...' +
 			(this.props.minSearchTermLength ? ` (min ${this.props.minSearchTermLength} char)` : '');
@@ -144,7 +140,7 @@ export class CSGridLookupEditor
 							// listening for events
 							onGridReady={this.onGridReady}
 							onSelectionChanged={this.onSelectionChanged}
-							columnDefs={this.state.columnDefs}
+							columnDefs={columnDefs}
 							rowData={this.state.rowData}
 							// setting default column properties
 							defaultColDef={{
@@ -160,6 +156,30 @@ export class CSGridLookupEditor
 			</div>
 		);
 	}
+
+	private convertColumnDefs = (columnDefs: Array<LookupSearchColDef>): Array<AgGridColDef> => {
+		const agGridColDefs: Array<AgGridColDef> = [];
+
+		for (const columnDef of columnDefs) {
+			const agGridColDef: AgGridColDef = {};
+
+			if (columnDef.name !== undefined) {
+				agGridColDef.field = columnDef.name;
+			}
+
+			if (columnDef.header !== undefined && columnDef.header.label) {
+				agGridColDef.headerName = columnDef.header.label;
+			}
+
+			if (columnDef.visible !== undefined) {
+				agGridColDef.hide = !columnDef.visible;
+			}
+
+			agGridColDefs.push(agGridColDef);
+		}
+
+		return agGridColDefs;
+	};
 
 	/**
 	 * Retrieves the lookup values and updates the state accordingly.

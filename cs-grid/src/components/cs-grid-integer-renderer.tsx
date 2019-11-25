@@ -1,12 +1,14 @@
-import { CSGridCellRendererProps } from '../interfaces/cs-grid-base-interfaces';
+import { CSGridCellRendererProps, IntegerProps } from '../interfaces/cs-grid-cell-props';
 import { getIntl } from '../polyfill/cs-grid-intl';
 import { CSGridNumberRenderer } from './cs-grid-number-renderer';
 
 /**
  * A cell renderer for displaying a localised integer.
  */
-export class CSGridIntegerRenderer extends CSGridNumberRenderer<CSGridCellRendererProps<number>> {
-	constructor(props: CSGridCellRendererProps<number>) {
+export class CSGridIntegerRenderer extends CSGridNumberRenderer<
+	CSGridCellRendererProps<number> & IntegerProps
+> {
+	constructor(props: CSGridCellRendererProps<number> & IntegerProps) {
 		super(props);
 	}
 

@@ -36,35 +36,34 @@ Usage Overview
 	const gridOptions = {
 		columnDefs: [
 			{
-				headerName: 'Make',
-				field: 'make',
-				cellEditor: 'textEditor',
-				cellRenderer: 'textRenderer'
-			},
-			{
-				headerName: 'Model',
-				field: 'model',
-				cellEditor: 'textEditor',
-				cellRenderer: 'textRenderer'
-			},
-			{
-				headerName: 'Price',
-				field: 'price',
-				cellEditor: 'currencyEditor',
-				cellRenderer: 'currencyRenderer',
-				cellEditorParams: {
-					userInfo
+				cellType: 'Text',
+				header: {
+					label: 'Vehicle Make'
 				},
-				cellRendererParams: {
-					userInfo
-				}
+				name: 'make',
+				userInfo
 			},
 			{
-				headerName: 'guid',
-				field: 'guid',
-				hide: true,
-				cellEditor: 'textEditor',
-				cellRenderer: 'textRenderer'
+				cellType: 'Text',
+				header: {
+					label: 'Model'
+				},
+				name: 'model',
+				userInfo
+			},
+			{
+				cellType: 'Currency',
+				header: {
+					label: 'Price'
+				},
+				name: 'price',
+				userInfo
+			},
+			{
+				cellType: 'Text',
+				name: 'guid',
+				userInfo,
+				visible: false
 			}
 		],
 		rowData: [
@@ -103,8 +102,8 @@ Usage Overview
 ### Initialize the cs-grid react component
 
 	<CSGrid
-		columnDefs={this.state.columnDefs}
-		rowData={this.props.rowData}
+		columnDefs={this.gridOptions.columnDefs}
+		rowData={this.gridOptions.rowData}
 		csGridPagination={{
 			location: 'Footer'
 		}}

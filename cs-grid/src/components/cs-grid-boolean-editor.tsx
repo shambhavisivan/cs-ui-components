@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
-import { CSGridCellEditor, CSGridCellEditorProps } from '../interfaces/cs-grid-base-interfaces';
+import { CSGridCellEditor } from '../interfaces/cs-grid-base-interfaces';
+import { CSGridCellEditorProps } from '../interfaces/cs-grid-cell-props';
 
 /**
  * Required to ensure an editor is never opened when clicking a boolean type cell

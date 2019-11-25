@@ -2,11 +2,11 @@ import React from 'react';
 
 import {
 	CSGridCellRenderer,
-	CSGridCellRendererProps,
 	CSGridCellRendererState,
 	IsColumnFunc,
 	IsColumnFuncParams
 } from '../interfaces/cs-grid-base-interfaces';
+import { CSGridCellRendererProps } from '../interfaces/cs-grid-cell-props';
 
 /**
  * A base class for all cell renderers.
@@ -46,12 +46,6 @@ export abstract class CSGridBaseRenderer<
 		const readonly: boolean | IsColumnFunc = this.props.readonly;
 		if (typeof readonly === 'function') {
 			const params: IsColumnFuncParams = {
-				api: this.props.api,
-				colDef: this.props.colDef,
-				column: this.props.column,
-				columnApi: this.props.columnApi,
-				context: this.props.context,
-				data: this.props.data,
 				node: this.props.node
 			};
 

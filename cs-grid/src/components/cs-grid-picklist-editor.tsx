@@ -3,14 +3,9 @@ import React from 'react';
 import {
 	CellData,
 	CSGridCellEditor,
-	CSGridCellEditorProps,
 	CSGridCellEditorState
 } from '../interfaces/cs-grid-base-interfaces';
-
-export interface CSGridPicklistEditorProps extends CSGridCellEditorProps<string | Array<string>> {
-	filterAboveSize?: number;
-	getOptions(guid: string): Array<string>;
-}
+import { CSGridCellEditorProps, PicklistProps } from '../interfaces/cs-grid-cell-props';
 
 interface CSGridPicklistEditorState extends CSGridCellEditorState<string | Array<string>> {
 	options: Map<string, boolean>;
@@ -19,12 +14,15 @@ interface CSGridPicklistEditorState extends CSGridCellEditorState<string | Array
 }
 
 export class CSGridPicklistEditor
-	extends React.Component<CSGridPicklistEditorProps, CSGridPicklistEditorState>
+	extends React.Component<
+		CSGridCellEditorProps<string | Array<string>> & PicklistProps,
+		CSGridPicklistEditorState
+	>
 	implements CSGridCellEditor {
 	multiSelect: boolean = false;
 	private clearAllName = '--None--';
 
-	constructor(props: CSGridPicklistEditorProps) {
+	constructor(props: CSGridCellEditorProps<string | Array<string>> & PicklistProps) {
 		super(props);
 
 		const options: Map<string, boolean> = this.getSelectedOptions(this.props.value.cellValue);

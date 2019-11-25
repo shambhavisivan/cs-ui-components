@@ -1,4 +1,4 @@
-import { CSGridCellRendererProps } from '../interfaces/cs-grid-base-interfaces';
+import { CSGridCellRendererProps } from '../interfaces/cs-grid-cell-props';
 import { getIntl } from '../polyfill/cs-grid-intl';
 import { CSGridNumberRenderer } from './cs-grid-number-renderer';
 

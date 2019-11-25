@@ -1,25 +1,20 @@
 import React from 'react';
 
-import { CSGridCellRendererProps } from '../interfaces/cs-grid-base-interfaces';
+import { CSGridCellRendererProps, LookupProps } from '../interfaces/cs-grid-cell-props';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
 import { CSGridCellError } from './cs-grid-cell-error';
-
-/**
- * displayColumn - The column to display in the renderer.
- */
-export interface CSGridLookupRendererProps
-	extends CSGridCellRendererProps<Array<Record<string, string>> | Record<string, string>> {
-	displayColumn: string;
-}
 
 /**
  * A cell renderer for displaying the currently selected lookup values.
  */
 export class CSGridLookupRenderer extends CSGridBaseRenderer<
 	Array<Record<string, string>> | Record<string, string>,
-	CSGridLookupRendererProps
+	CSGridCellRendererProps<Array<Record<string, string>> | Record<string, string>> & LookupProps
 > {
-	constructor(props: CSGridLookupRendererProps) {
+	constructor(
+		props: CSGridCellRendererProps<Array<Record<string, string>> | Record<string, string>> &
+			LookupProps
+	) {
 		super(props);
 
 		this.state = { value: this.props.value, isLastColumn: this.isLastColumn() };

@@ -7,7 +7,8 @@ import './sass/style.scss';
 
 import { CSGrid } from './components/cs-grid';
 import { CSGridLookupSearchResult } from './components/cs-grid-lookup-editor';
-import { CellData, ColDef, Row } from './interfaces/cs-grid-base-interfaces';
+import { CellData, Row } from './interfaces/cs-grid-base-interfaces';
+import { ColDef } from './interfaces/cs-grid-col-def';
 import {
 	ColumnFilterCondition,
 	Condition,
@@ -51,17 +52,23 @@ export class App extends React.Component<object, AppState> {
 			const results: CSGridLookupSearchResult = {
 				columnDefs: [
 					{
-						field: 'text1',
-						headerName: 'Name'
+						header: {
+							label: 'Name'
+						},
+						name: 'text1'
 					},
 					{
-						field: 'text2',
-						headerName: 'Order Number'
+						header: {
+							label: 'Order Number'
+						},
+						name: 'text2'
 					},
 					{
-						field: 'hidden',
-						headerName: 'hidden',
-						hide: true
+						header: {
+							label: 'hidden'
+						},
+						name: 'hidden',
+						visible: false
 					}
 				],
 				rowData: [
@@ -86,213 +93,173 @@ export class App extends React.Component<object, AppState> {
 			return this.delayResponse(results);
 		};
 
-		const columnDefs = [
+		const columnDefs: Array<ColDef> = [
 			{
-				cellRenderer: 'rowSelectionRenderer',
-				checkboxSelection: true,
-				editable: false,
-				field: 'exampleRowSelection',
-				filter: false,
-				headerCheckboxSelection: true,
-				headerCheckboxSelectionFilteredOnly: true,
-				headerName: '',
-				lockPosition: true,
-				lockVisible: true,
-				maxWidth: 40,
-				minWidth: 40,
-				resizable: false,
-				sortable: false,
-				width: 40
+				cellType: 'RowSelection',
+				name: 'exampleRowSelection',
+				userInfo
 			},
 			{
-				field: 'exampleGuid',
-				headerName: 'GUID',
-				hide: true
+				cellType: 'Text',
+				name: 'exampleGuid',
+				userInfo,
+				visible: false
 			},
 			{
-				cellEditor: 'textEditor',
-				cellRenderer: 'textRenderer',
-				field: 'exampleText',
-				headerName: 'Text Column'
-				// sort: SortOrder.Descending
+				cellType: 'Text',
+				header: {
+					label: 'Text Column'
+				},
+				name: 'exampleText',
+				userInfo
 			},
 			{
-				cellEditor: 'decimalEditor',
-				cellEditorParams: {
-					userInfo
+				cellType: 'Decimal',
+				header: {
+					label: 'Decimal Column'
 				},
-				cellRenderer: 'decimalRenderer',
-				cellRendererParams: {
-					noOfDecimalDigits: 3,
-					userInfo
-				},
-				field: 'exampleDecimal',
-				headerName: 'Decimal Column'
+				name: 'exampleDecimal',
+				noOfDecimalDigits: 3,
+				userInfo
 			},
 			{
-				cellEditor: 'currencyEditor',
-				cellEditorParams: {
-					userInfo
+				cellType: 'Currency',
+				header: {
+					label: 'Currency Column'
 				},
-				cellRenderer: 'currencyRenderer',
-				cellRendererParams: {
-					userInfo
-				},
-				field: 'exampleCurrency',
-				headerName: 'Currency Column'
+				name: 'exampleCurrency',
+				userInfo
 			},
 			{
-				cellEditor: 'booleanEditor',
-				cellRenderer: 'booleanRenderer',
-				cellRendererParams: {
-					readonly: () => true
-				},
+				cellType: 'Boolean',
 				editable: () => false,
-				field: 'exampleBoolean',
-				headerName: 'Boolean Column'
+				header: {
+					label: 'Boolean Column'
+				},
+				name: 'exampleBoolean',
+				readonly: () => true,
+				userInfo
 			},
 			{
-				cellEditor: 'dateEditor',
-				cellEditorParams: {
-					userInfo
+				cellType: 'Date',
+				header: {
+					label: 'Date Column'
 				},
-				cellRenderer: 'dateRenderer',
-				cellRendererParams: {
-					userInfo
-				},
-				field: 'exampleDate',
-				headerName: 'Date Column'
+				name: 'exampleDate',
+				userInfo
 			},
 			{
-				cellEditor: 'lookupEditor',
-				cellEditorParams: { guidColumn: 'text2', getLookupValues },
-				cellRenderer: 'lookupRenderer',
-				cellRendererParams: {
-					displayColumn: this.lookupDisplayColumn
-				},
+				cellType: 'Lookup',
 				comparator: (a: CellData<any>, b: CellData<any>) =>
 					CSGridLookupComparator(a, b, this.lookupDisplayColumn),
-				field: 'exampleLookup',
-				headerName: 'Lookup'
+				displayColumn: this.lookupDisplayColumn,
+				getLookupValues,
+				guidColumn: 'text2',
+				header: {
+					label: 'Lookup'
+				},
+				name: 'exampleLookup',
+				userInfo
 			},
 			{
-				cellEditor: 'multiSelectLookupEditor',
-				cellEditorParams: {
-					getLookupValues,
-					guidColumn: 'text2',
-					minSearchTermLength: 3
-				},
-				cellRenderer: 'multiSelectLookupRenderer',
-				cellRendererParams: {
-					displayColumn: this.lookupDisplayColumn
-				},
+				cellType: 'MultiSelectLookup',
 				comparator: (a: CellData<any>, b: CellData<any>) =>
 					CSGridLookupComparator(a, b, this.lookupDisplayColumn),
-				field: 'exampleMultiSelectLookup',
-				headerName: 'Multi Select Lookup'
+				displayColumn: this.lookupDisplayColumn,
+				getLookupValues,
+				guidColumn: 'text2',
+				header: {
+					label: 'Multi Select Lookup'
+				},
+				minSearchTermLength: 3,
+				name: 'exampleMultiSelectLookup',
+				userInfo
 			},
 			{
-				cellEditor: 'integerEditor',
-				cellEditorParams: {
-					onChange: (rowNodeId: string, oldValue: any, newValue: any) => {
-						console.log(
-							`onChange called with rowNodeId = ${rowNodeId} oldValue = ${oldValue} newValue = ${newValue}`
-						);
-						const value: CellData<number> = {
-							cellValue: newValue,
-							errorMessage: 'onChange error message'
-						};
+				cellType: 'Integer',
+				header: {
+					label: 'Integer With Stepper Arrows'
+				},
+				name: 'exampleIntegerStep',
+				onChange: (rowNodeId: string, oldValue: any, newValue: any) => {
+					console.log(
+						`onChange called with rowNodeId = ${rowNodeId} oldValue = ${oldValue} newValue = ${newValue}`
+					);
+					const value: CellData<number> = {
+						cellValue: newValue,
+						errorMessage: 'onChange error message'
+					};
 
-						return Promise.resolve(value);
-					},
-					stepperArrows: true,
-					userInfo
+					return Promise.resolve(value);
 				},
-				cellRenderer: 'integerRenderer',
-				cellRendererParams: {
-					userInfo
-				},
-				field: 'exampleIntegerStep',
-				headerName: 'Integer With Stepper Arrows'
+				stepperArrows: true,
+				userInfo
 			},
 			{
-				cellEditor: 'integerEditor',
-				cellEditorParams: {
-					stepperArrows: false,
-					userInfo
+				cellType: 'Integer',
+				header: {
+					label: 'Integer No Stepper Arrows'
 				},
-				cellRenderer: 'integerRenderer',
-				cellRendererParams: {
-					userInfo
-				},
-				field: 'exampleInteger',
-				headerName: 'Integer No Stepper Arrows'
+				name: 'exampleInteger',
+				stepperArrows: false,
+				userInfo
 			},
 			{
-				cellEditor: 'picklistEditor',
-				cellEditorParams: {
-					filterAboveSize: 5,
-					getOptions: () => {
-						return [
-							'Bob',
-							'Harry',
-							'Sally',
-							'Mary',
-							'John',
-							'Jack',
-							'Sue',
-							'Sean',
-							'Niall',
-							'Albert',
-							'Fred',
-							'Jenny',
-							'Larry'
-						];
-					}
+				cellType: 'Picklist',
+				filterAboveSize: 5,
+				getOptions: () => {
+					return [
+						'Bob',
+						'Harry',
+						'Sally',
+						'Mary',
+						'John',
+						'Jack',
+						'Sue',
+						'Sean',
+						'Niall',
+						'Albert',
+						'Fred',
+						'Jenny',
+						'Larry'
+					];
 				},
-				cellRenderer: 'picklistRenderer',
-				field: 'examplePicklist',
-				headerComponentParams: {
-					className: 'PicklistOverrideClass'
+				header: {
+					class: 'PicklistOverrideClass',
+					label: 'Picklist'
 				},
-				headerName: 'Picklist'
+				name: 'examplePicklist',
+				userInfo
 			},
 			{
-				cellEditor: 'multiSelectPicklistEditor',
-				cellEditorParams: {
-					getOptions: () => {
-						return [
-							'Bob',
-							'Harry',
-							'Sally',
-							'Mary',
-							'John',
-							'Jack',
-							'Sue',
-							'Sean',
-							'Niall',
-							'Albert',
-							'Fred',
-							'Jenny',
-							'Larry'
-						];
-					}
+				cellType: 'MultiSelectPicklist',
+				getOptions: () => {
+					return [
+						'Bob',
+						'Harry',
+						'Sally',
+						'Mary',
+						'John',
+						'Jack',
+						'Sue',
+						'Sean',
+						'Niall',
+						'Albert',
+						'Fred',
+						'Jenny',
+						'Larry'
+					];
 				},
-				cellRenderer: 'multiSelectPicklistRenderer',
-				field: 'exampleMultiSelectPicklist',
-				headerName: 'Multi Select Picklist'
+				header: {
+					label: 'Multi Select Picklist'
+				},
+				name: 'exampleMultiSelectPicklist',
+				userInfo
 			},
 			{
-				cellRenderer: 'rowValidationRenderer',
-				editable: false,
-				field: 'exampleRowValidation',
-				filter: false,
-				headerName: '',
-				maxWidth: 40,
-				minWidth: 40,
-				sortable: false,
-				suppressMenu: true,
-				width: 40
+				cellType: 'RowValidation',
+				name: 'exampleRowValidation',
+				userInfo
 			}
 		];
 
@@ -773,11 +740,11 @@ export class App extends React.Component<object, AppState> {
 				const valueB = b[sortColModel.columnId];
 
 				const columnIndex = this.state.columnDefs.findIndex(
-					(column: any) => column.field === sortColModel.columnId
+					(column: any) => column.name === sortColModel.columnId
 				);
 
 				const result =
-					(this.state.columnDefs[columnIndex] as any).cellRenderer
+					(this.state.columnDefs[columnIndex] as any).cellType
 						.toLowerCase()
 						.indexOf('lookup') >= 0
 						? CSGridLookupComparator(valueA, valueB, this.lookupDisplayColumn)
@@ -841,7 +808,7 @@ export class App extends React.Component<object, AppState> {
 
 		const columnDefs: Array<any> = [...this.state.columnDefs];
 		const rowSelectionIndex = columnDefs.findIndex(
-			(column: any) => column.cellRenderer === 'rowSelectionRenderer'
+			(column: any) => column.cellType === 'RowSelection'
 		);
 		columnDefs[rowSelectionIndex].headerCheckboxSelection = !isDataSourceRowModel;
 

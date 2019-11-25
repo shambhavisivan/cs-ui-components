@@ -1,19 +1,14 @@
-import { CSGridCellEditorProps } from '../interfaces/cs-grid-base-interfaces';
+import { CSGridCellEditorProps, IntegerProps } from '../interfaces/cs-grid-cell-props';
 import { getIntl } from '../polyfill/cs-grid-intl';
 import { CSGridNumberEditor } from './cs-grid-number-editor';
 
 /**
- * stepperArrows? - an optional property to add stepper arrows to the right of the integer, false if not provided.
- */
-export interface CSGridIntegerEditorProps extends CSGridCellEditorProps<string | number> {
-	stepperArrows?: boolean;
-}
-
-/**
  * A cell editor for editing a localised integer.
  */
-export class CSGridIntegerEditor extends CSGridNumberEditor<CSGridIntegerEditorProps> {
-	constructor(props: CSGridIntegerEditorProps) {
+export class CSGridIntegerEditor extends CSGridNumberEditor<
+	CSGridCellEditorProps<string | number> & IntegerProps
+> {
+	constructor(props: CSGridCellEditorProps<string | number> & IntegerProps) {
 		super(props);
 
 		this.numberFormatType = 'Integer';

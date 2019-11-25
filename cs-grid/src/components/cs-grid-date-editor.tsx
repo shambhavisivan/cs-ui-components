@@ -2,11 +2,11 @@ import moment from 'moment';
 import React from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { CSGridCellEditorProps } from '../interfaces/cs-grid-cell-props';
 
 import {
 	CellData,
 	CSGridCellEditor,
-	CSGridCellEditorProps,
 	CSGridCellEditorState
 } from '../interfaces/cs-grid-base-interfaces';
 

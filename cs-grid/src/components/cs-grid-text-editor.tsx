@@ -3,9 +3,9 @@ import React from 'react';
 import {
 	CellData,
 	CSGridCellEditor,
-	CSGridCellEditorProps,
 	CSGridCellEditorState
 } from '../interfaces/cs-grid-base-interfaces';
+import { CSGridCellEditorProps } from '../interfaces/cs-grid-cell-props';
 import { CSGridCellError } from './cs-grid-cell-error';
 
 export class CSGridTextEditor

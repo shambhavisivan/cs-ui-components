@@ -1,19 +1,14 @@
-import { CSGridCellRendererProps } from '../interfaces/cs-grid-base-interfaces';
+import { CSGridCellRendererProps, DecimalProps } from '../interfaces/cs-grid-cell-props';
 import { getIntl } from '../polyfill/cs-grid-intl';
 import { CSGridNumberRenderer } from './cs-grid-number-renderer';
 
 /**
- * noOfDecimalDigits - used to format the value shown in the cell to the given number of decimal places.
- */
-export interface CSGridDecimalRendererProps extends CSGridCellRendererProps<number> {
-	noOfDecimalDigits: number;
-}
-
-/**
  * A cell renderer for displaying a localised decimal number.
  */
-export class CSGridDecimalRenderer extends CSGridNumberRenderer<CSGridDecimalRendererProps> {
-	constructor(props: CSGridDecimalRendererProps) {
+export class CSGridDecimalRenderer extends CSGridNumberRenderer<
+	CSGridCellRendererProps<number> & DecimalProps
+> {
+	constructor(props: CSGridCellRendererProps<number> & DecimalProps) {
 		super(props);
 	}
 

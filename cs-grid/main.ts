@@ -32,6 +32,8 @@ export * from './src/components/cs-grid-base-renderer';
 export * from './src/interfaces/cs-grid-base-interfaces';
 export * from './src/interfaces/cs-grid-data-source-api';
 export * from './src/interfaces/number-format.enum';
+export * from './src/interfaces/cs-grid-cell-props';
+export * from './src/interfaces/cs-grid-col-def';
 export * from './src/interfaces/user-info';
 export * from './src/utils/cs-grid-default-comparator';
 export * from './src/utils/cs-grid-lookup-comparator';

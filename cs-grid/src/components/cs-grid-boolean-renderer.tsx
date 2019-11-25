@@ -1,11 +1,8 @@
 import React from 'react';
 
-import {
-	CellData,
-	CSGridCellRenderer,
-	CSGridCellRendererProps,
-	IsColumnFuncParams
-} from '../interfaces/cs-grid-base-interfaces';
+import { IsColumnFuncParams } from 'ag-grid-community/dist/lib/entities/colDef';
+import { CellData, CSGridCellRenderer } from '../interfaces/cs-grid-base-interfaces';
+import { CSGridCellRendererProps } from '../interfaces/cs-grid-cell-props';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
 import { CSGridCellError } from './cs-grid-cell-error';
 
