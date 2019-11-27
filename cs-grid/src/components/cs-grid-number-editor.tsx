@@ -124,7 +124,7 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 	abstract getNumberFormat(): Intl.NumberFormat;
 
 	/**
-	 * Created a number from a localised string.
+	 * Creates a number from a localised string.
 	 * @param num - a localised string or a number.
 	 */
 	formatDecimalNumber = (num: string | number): number => {

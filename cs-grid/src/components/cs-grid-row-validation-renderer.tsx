@@ -32,7 +32,7 @@ export class CSGridRowValidationRenderer extends CSGridBaseRenderer<ValidationSt
 		return (
 			<span
 				className={
-					(this.state.isLastColumn ? ' is-last-column' : '') +
+					(this.state.isLastColumn ? 'is-last-column' : '') +
 					(this.isReadOnly() ? ' read-only-cell' : '')
 				}
 			>

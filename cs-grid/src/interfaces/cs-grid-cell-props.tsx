@@ -30,7 +30,7 @@ export interface CSGridCellProps<T> extends BaseProps<T> {
  * noOfDecimalDigits - used to format the value shown in the cell to the given number of decimal places.
  */
 export interface DecimalProps {
-	noOfDecimalDigits: number;
+	noOfDecimalDigits?: number;
 }
 
 /**

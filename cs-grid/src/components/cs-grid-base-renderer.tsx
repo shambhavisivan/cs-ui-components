@@ -27,9 +27,12 @@ export abstract class CSGridBaseRenderer<
 	 */
 	refresh = (params: P): boolean => {
 		const isLastColumn = this.isLastColumn();
+
 		if (
+			params &&
 			params.value &&
-			(params.value.cellValue !== this.state.value.cellValue ||
+			(!this.state ||
+				params.value.cellValue !== this.state.value.cellValue ||
 				params.value.errorMessage !== this.state.value.errorMessage ||
 				isLastColumn !== this.state.isLastColumn)
 		) {
@@ -62,6 +65,8 @@ export abstract class CSGridBaseRenderer<
 		const currentColumns = this.props.columnApi.getAllGridColumns();
 
 		return (
+			currentColumns &&
+			currentColumns.length > 0 &&
 			currentColumns[currentColumns.length - 1].getColId() === this.props.column.getColId()
 		);
 	};

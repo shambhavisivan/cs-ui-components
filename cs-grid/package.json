@@ -20,7 +20,7 @@
 		"empty_lib_test": "rm -rf ./lib/test && rm -rf ./lib/src/index.js && rm -rf ./lib/src/index.d.ts",
 		"move_fonts": "cp -a ./src/fonts/ ./fonts/",
 		"clearJest": "jest --clearCache",
-		"test": "npm run clearJest && jest"
+		"test": "npm run clearJest && cross-env NODE_ICU_DATA=node_modules/full-icu jest --verbose"
 	},
 	"private": false,
 	"license": "UNLICENSED",
@@ -58,6 +58,7 @@
 		"typescript": "^3.5.3"
 	},
 	"devDependencies": {
+		"full-icu": "^1.3.0",
 		"@babel/core": "7.4.4",
 		"@babel/plugin-proposal-class-properties": "7.4.4",
 		"@babel/plugin-proposal-function-bind": "7.2.0",
@@ -69,6 +70,7 @@
 		"@types/webpack-env": "^1.13.9",
 		"awesome-typescript-loader": "^5.2.1",
 		"babel-loader": "^8.0.6",
+		"cross-env": "^6.0.3",
 		"css-loader": "^2.1.1",
 		"enzyme": "^3.10.0",
 		"enzyme-adapter-react-16": "^1.15.1",

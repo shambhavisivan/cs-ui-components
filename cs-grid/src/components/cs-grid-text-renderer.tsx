@@ -16,12 +16,12 @@ export class CSGridTextRenderer extends CSGridBaseRenderer<string> {
 			return null;
 		}
 
-		const value = this.state.value.cellValue;
+		const value = this.state.value.cellValue || '';
 
 		return (
 			<span
 				className={
-					(this.state.isLastColumn ? ' is-last-column' : '') +
+					(this.state.isLastColumn ? 'is-last-column' : '') +
 					(this.isReadOnly() ? ' read-only-cell' : '')
 				}
 			>

@@ -34,15 +34,18 @@ export class CSGridTextEditor
 	}
 
 	render() {
+		const value = this.state.value.cellValue || '';
+
 		return (
 			<>
 				<input
 					type='text'
 					ref={this.inputRef}
-					value={this.state.value.cellValue}
+					value={value}
 					onChange={this.onChange}
 					placeholder=''
 					className='cs-grid_text-inner'
+					title={value}
 				/>
 				<CSGridCellError errorMessage={this.state.value.errorMessage} />
 			</>
@@ -50,7 +53,7 @@ export class CSGridTextEditor
 	}
 
 	private onChange = async (event: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
-		const newValue = event.target.value;
+		const newValue = event.target.value || '';
 
 		let value: CellData<string> = {
 			cellValue: newValue,

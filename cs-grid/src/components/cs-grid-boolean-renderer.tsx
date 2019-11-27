@@ -41,7 +41,7 @@ export class CSGridBooleanRenderer extends CSGridBaseRenderer<boolean>
 		}
 
 		return (
-			<span className={readOnly ? ' read-only-cell' : ''}>
+			<span className={readOnly ? 'read-only-cell' : ''}>
 				<label
 					className={
 						'cs-grid_checkbox-wrapper' +
