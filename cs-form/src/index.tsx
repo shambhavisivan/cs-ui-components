@@ -1,6 +1,7 @@
 import * as Form from './CSForm';
 import * as fd from './types/FormDescriptor';
 import * as so from './types/SelectOption';
+import * as status from './types/ComponentStatus';
 
 export const CSForm = Form.CSForm;
 export type FormSettings = Form.FormSettings;
@@ -8,6 +9,8 @@ export type LocaleSettings = Form.LocaleSettings;
 export type ElementWrapper = Form.ElementWrapper;
 export type FormLabels = Form.FormLabels;
 export type FormProps = Form.FormProps;
+export type ComponentStatus = status.ComponentStatus;
+export type ComponentStatusConfiguration = status.ComponentStatusConfiguration;
 export type FormDescriptor = fd.FormDescriptor;
 export type FieldDescriptor = fd.FieldDescriptor;
 export type ValidationRule = fd.ValidationRule;
