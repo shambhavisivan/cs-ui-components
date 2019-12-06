@@ -8,15 +8,12 @@ import { Validator } from './utils/Validator';
 import { ComponentStatus } from './types/ComponentStatus';
 import { applyDefaults } from './utils/FormDescriptorUtils';
 import { ErrorPanel } from './ErrorPanel';
+import { NumberFieldLocale } from './fields/NumberField';
+import { DateFieldLocale } from './fields/DateField';
 
 export interface LocaleSettings {
-	dates: {
-		format: string,
-		daysOfWeek: Array<string>,
-		monthsOfYear: Array<string>,
-		firstDayOfWeek: number,
-		daysInFirstWeek: number
-	};
+	dates: DateFieldLocale;
+	number?: NumberFieldLocale;
 }
 
 /**

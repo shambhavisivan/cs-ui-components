@@ -52,6 +52,14 @@ export interface FieldDescriptor extends ComponentStatusConfiguration {
 	 * Works in conjunction with FieldDescriptor.scale
 	 */
 	precision?: number;
+	/**
+	 * max value to be applied to field value, relevant for NUMBER fieldType.
+	 */
+	maxVal?: number;
+	/**
+	 * min value to be applied to field value, relevant for NUMBER fieldType.
+	 */
+	minVal?: number;
 }
 
 /**

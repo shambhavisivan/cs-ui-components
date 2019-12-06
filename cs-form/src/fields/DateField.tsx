@@ -6,6 +6,14 @@ import createDynamicLocale from '@cloudsense/react-datepicker-dynamiclocale';
 import DatePicker from 'react-datepicker';
 import { FieldType } from '..';
 
+export interface DateFieldLocale {
+	format: string;
+	daysOfWeek: Array<string>;
+	monthsOfYear: Array<string>;
+	firstDayOfWeek: number;
+	daysInFirstWeek: number;
+}
+
 export class DateField extends React.Component<FormFieldProps, {}> {
 
 	private static dateToNumber(date: Date | null) {

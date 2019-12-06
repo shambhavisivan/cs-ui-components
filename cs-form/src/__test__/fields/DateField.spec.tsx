@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { shallow, default as Enzyme } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { DateField } from '../../fields/DateField';
@@ -19,7 +18,7 @@ const locale: LocaleSettings = {
 		format: 'yyyy-MM-dd'
 	}
 
-} as unknown as LocaleSettings;
+};
 
 const wrapper: ElementWrapper = {
 	injectInputProps: () => null

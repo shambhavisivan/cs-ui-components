@@ -18,7 +18,9 @@ const formDescriptor: FormDescriptor = {
 					name: 'RestrictedNumber',
 					fieldType: 'NUMBER',
 					scale: 2,
-					precision: 5
+					precision: 5,
+					maxVal: 50,
+					minVal: 1
 				},
 				{
 					name: 'SimpleString',
@@ -57,11 +59,6 @@ const validator = new Validator(
 );
 
 describe('NUMBER Validations', () => {
-	it('errors when value is not a number', () => {
-		const result: Record<string, Array<string>> = validator.validate({ SimpleNumber: 'abc' });
-
-		expect(result.SimpleNumber).toEqual(['Field "SimpleNumber" must be a valid number and within range.']);
-	});
 
 	it('should not error when valid number', () => {
 		const result: Record<string, Array<string>> = validator.validate({ SimpleNumber: '12345.6789' });
@@ -69,20 +66,22 @@ describe('NUMBER Validations', () => {
 		expect(result).toEqual({});
 	});
 
-	it('errors when number does not confirm to precision and scale', () => {
-		const result1: Record<string, Array<string>> = validator.validate({ RestrictedNumber: '12356.6789' });
-		const result2: Record<string, Array<string>> = validator.validate({ RestrictedNumber: '123.6789' });
-		const result3: Record<string, Array<string>> = validator.validate({ RestrictedNumber: '123456.67' });
+	it('errors when value is greater than the  maxvalue', () => {
+		const result: Record<string, Array<string>> = validator.validate({ RestrictedNumber: '52' });
 
-		[result1, result2, result3].map(result => {
-			expect(result.RestrictedNumber).toEqual(['Field "RestrictedNumber" must be a valid number and within range.']);
-		});
+		expect(result.RestrictedNumber).toEqual(['Field "RestrictedNumber" must be a valid number and within range.']);
+	});
+
+	it('errors when value is lesser than the  minvalue', () => {
+		const result: Record<string, Array<string>> = validator.validate({ RestrictedNumber: '-52' });
+
+		expect(result.RestrictedNumber).toEqual(['Field "RestrictedNumber" must be a valid number and within range.']);
 	});
 
 	it('should not error when number confirms to precision and scale', () => {
-		const result1: Record<string, Array<string>> = validator.validate({ RestrictedNumber: '123.45' });
-		const result2: Record<string, Array<string>> = validator.validate({ RestrictedNumber: '123' });
-		const result3: Record<string, Array<string>> = validator.validate({ RestrictedNumber: '0.45' });
+		const result1: Record<string, Array<string>> = validator.validate({ RestrictedNumber: '12.45' });
+		const result2: Record<string, Array<string>> = validator.validate({ RestrictedNumber: '12' });
+		const result3: Record<string, Array<string>> = validator.validate({ RestrictedNumber: '1.35' });
 
 		[result1, result2, result3].map(result => {
 			expect(result).toEqual({});

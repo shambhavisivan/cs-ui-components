@@ -7,6 +7,7 @@ import { ComponentStatus } from '../types/ComponentStatus';
 import { SelectOption } from '../types/SelectOption';
 import { ElementWrapper, LocaleSettings } from '../CSForm';
 import { SelectFieldContainer } from './SelectFieldContainer';
+import { NumberField } from './NumberField';
 
 export interface FormFieldProps {
 	value: any;
@@ -30,11 +31,12 @@ export class FormField extends React.Component<FormFieldProps, {}> {
 			case 'PICKLIST': return <SelectFieldContainer {...this.props} />;
 			case 'DATE': return <DateField {...this.props} />;
 			case 'BOOLEAN': return <BooleanField {...this.props} />;
+			case 'NUMBER': return <NumberField {...this.props} />;
 			default: return <SimpleField {...this.props} />;
 		}
 	}
 
-	renderErrors(): ReactElement|null {
+	renderErrors(): ReactElement | null {
 		if (this.props.errorMessages && this.props.errorMessages.length > 0) {
 			return <>
 				{this.props.errorMessages.map((error, idx) =>
