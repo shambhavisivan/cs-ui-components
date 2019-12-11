@@ -18,9 +18,10 @@
 		"outDir": "./dist",
 		"declarationMap": true,
 		"noEmit": true,
-		"jsx": "react"
+		"jsx": "react",
+		"typeRoots":["./typings"]
 	},
-	"include": ["src"],
+	"include": ["src", "typings"],
 	"exclude": ["node_modules"],
 	"parcel-plugin-typescript": {
 		"transpileOnly": false

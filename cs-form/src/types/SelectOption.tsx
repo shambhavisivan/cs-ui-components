@@ -1,5 +1,5 @@
 /**
- * Represents a single option of a 'REFERENCE' or 'PICKLIST' type field.
+ * Represents a single option of a 'PICKLIST' type field.
  */
 export interface SelectOption {
 	value: string;

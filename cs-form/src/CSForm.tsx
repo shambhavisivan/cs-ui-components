@@ -10,6 +10,7 @@ import { applyDefaults } from './utils/FormDescriptorUtils';
 import { ErrorPanel } from './ErrorPanel';
 import { NumberFieldLocale } from './fields/NumberField';
 import { DateFieldLocale } from './fields/DateField';
+import { ReferenceOption } from './types/ReferenceOption';
 
 export interface LocaleSettings {
 	dates: DateFieldLocale;
@@ -148,12 +149,19 @@ export interface FormProps {
 	 */
 	save(): Promise<Record<string, any>>;
 	/**
-	 * Provide selection options for 'REFERENCE or 'PICKLIST' type fields for which no fixed list of options have been
+	 * Provide selection options for 'PICKLIST' type fields for which no fixed list of options have been
 	 * specified in the form descriptor.
 	 * @param field The field for which the options are required
 	 * @returns The list of options, which will be displayed in the order provided.
 	 */
 	fetchPossibleValues(field: FieldDescriptor): Promise<Array<SelectOption>>;
+
+	/**
+	 * Provide selection options for 'REFERENCE' type fields.
+	 * @param field The field for which the options are required
+	 * @returns The list of options, which will be displayed in the order provided.
+	 */
+	fetchReferenceOptions(field: FieldDescriptor, searchTerm: string): Promise<Array<ReferenceOption>>;
 }
 
 export class CSForm extends React.Component<FormProps, {}> {
@@ -216,6 +224,7 @@ export class CSForm extends React.Component<FormProps, {}> {
 			data={this.props.data}
 			handleFieldChange={this.handleFieldChange}
 			fetchPossibleValues={this.props.fetchPossibleValues}
+			fetchReferenceOptions={this.props.fetchReferenceOptions}
 			wrapper={this.props.wrapper}
 			formSettings={this.props.formSettings}
 			locale={this.props.locale} />);

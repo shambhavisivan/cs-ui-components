@@ -1,5 +1,6 @@
 import { ComponentStatusConfiguration } from './ComponentStatus';
 import { SelectOption } from './SelectOption';
+import { ReferenceOptionColumn } from './ReferenceOption';
 
 export interface FormDescriptor {
 	type: 'FORM';
@@ -60,6 +61,9 @@ export interface FieldDescriptor extends ComponentStatusConfiguration {
 	 * min value to be applied to field value, relevant for NUMBER fieldType.
 	 */
 	minVal?: number;
+	/* Columns to be displayed in reference field options.When absent 'Name' column is displayed
+	 */
+	referenceOptionColumnDefs?: Array<ReferenceOptionColumn>;
 }
 
 /**
@@ -67,9 +71,15 @@ export interface FieldDescriptor extends ComponentStatusConfiguration {
  * be displayed. The placeholder ${name} will be replaced with the field label.
  */
 export interface ValidationRule {
-
 	regex: string;
 	errorMessage: string;
 }
 
-export type FieldType = 'STRING' | 'BOOLEAN' | 'REFERENCE' | 'NUMBER' | 'PICKLIST' | 'DATE' | 'ID';
+export type FieldType =
+	| 'STRING'
+	| 'BOOLEAN'
+	| 'REFERENCE'
+	| 'NUMBER'
+	| 'PICKLIST'
+	| 'DATE'
+	| 'ID';

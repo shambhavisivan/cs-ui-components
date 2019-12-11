@@ -16,3 +16,6 @@ Generic configurable React form component.
 2. Run `npm run build` to package everything up.
 3. Run `npm test` to make sure everything still works.
 4. Run `npm publish` to publish your package. (You can publish beta (or alpha) versions via `npm publish --tag beta` (or alpha), and to try them out in another project, you can install them via `npm install @cloudsense/csform@beta`)
+
+## typings:
+* The typings folder should eventually have all the typings that are exposed by csform.

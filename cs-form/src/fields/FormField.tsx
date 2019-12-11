@@ -4,10 +4,12 @@ import { SimpleField } from './SimpleField';
 import { DateField } from './DateField';
 import { BooleanField } from './BooleanField';
 import { ComponentStatus } from '../types/ComponentStatus';
-import { SelectOption } from '../types/SelectOption';
+import { ReferenceOption } from '../types/ReferenceOption';
 import { ElementWrapper, LocaleSettings } from '../CSForm';
 import { SelectFieldContainer } from './SelectFieldContainer';
 import { NumberField } from './NumberField';
+import { ReferenceField } from './ReferenceField';
+import { SelectOption } from '../types/SelectOption';
 
 export interface FormFieldProps {
 	value: any;
@@ -18,6 +20,7 @@ export interface FormFieldProps {
 	errorMessages?: Array<string>;
 	handleFieldChange(newValue: any): void;
 	fetchPossibleValues(): Promise<Array<SelectOption>>;
+	fetchReferenceOptions?(field: FieldDescriptor, searchTerm: string): Promise<Array<ReferenceOption>>;
 }
 
 /**
@@ -27,7 +30,7 @@ export class FormField extends React.Component<FormFieldProps, {}> {
 
 	renderField() {
 		switch (this.props.descriptor.fieldType) {
-			case 'REFERENCE': return <SelectFieldContainer {...this.props} />;
+			case 'REFERENCE': return <ReferenceField {...this.props} />;
 			case 'PICKLIST': return <SelectFieldContainer {...this.props} />;
 			case 'DATE': return <DateField {...this.props} />;
 			case 'BOOLEAN': return <BooleanField {...this.props} />;

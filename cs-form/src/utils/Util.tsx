@@ -33,3 +33,5 @@ export function cloneAndReplaceField<T extends Record<string, any>>(input: T, na
 	}
 	return ret as T;
 }
+
+export const debounceInterval = 100;
