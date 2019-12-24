@@ -37,7 +37,7 @@ afterEach(() => {
 	jestHandleChangeMock.mockClear();
 });
 
-it('render number field with default locale (en-US)', () => {
+it('render number field with default locale (en-US) and display formatted value', () => {
 	ReactDOM.render(
 		<NumberField
 			value="123432423434.78"
@@ -50,15 +50,15 @@ it('render number field with default locale (en-US)', () => {
 		/>,
 		container
 	);
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>('input')!;
+	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>('#display-field')!;
 
 	expect(textInput.value).toEqual('123,432,423,434.78');
 });
 
-it('render number field with default locale (en-US) on input', () => {
+it('switch to edit mode and verify the unformatted value in edit mode', () => {
 	ReactDOM.render(
 		<NumberField
-			value=""
+			value="123432423434.78"
 			wrapper={wrapper}
 			descriptor={descriptor}
 			locale={locale}
@@ -68,18 +68,12 @@ it('render number field with default locale (en-US) on input', () => {
 		/>,
 		container
 	);
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>('input')!;
+	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>('#display-field')!;
+	expect(textInput.value).toEqual('123,432,423,434.78');
+	ReactTestUtils.Simulate.focus(textInput);
 
-	ReactTestUtils.Simulate.change(textInput, ({
-		target: { value: '123456.789' }
-	} as any) as SyntheticEventData);
-
-	ReactTestUtils.Simulate.blur(textInput, ({
-		target: { value: '123456.789' }
-	} as any) as SyntheticEventData);
-
-	expect(jestHandleChangeMock).toHaveBeenCalledWith('123456.789');
-	expect(textInput.value).toEqual('123,456.789');
+	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
+	expect(editTextInput.value).toEqual('123432423434.78');
 });
 
 it('should call handleChange method onblur with non-formatted value', done => {
@@ -106,18 +100,16 @@ it('should call handleChange method onblur with non-formatted value', done => {
 			container
 		);
 	});
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>('input')!;
+	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>('#display-field')!;
+	ReactTestUtils.Simulate.focus(textInput);
 
-	ReactTestUtils.Simulate.change(textInput, ({
+	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
+
+	ReactTestUtils.Simulate.blur(editTextInput, ({
 		target: { value: '123456.789' }
 	} as any) as SyntheticEventData);
-
-	ReactTestUtils.Simulate.blur(textInput, ({
-		target: { value: '123456.789' }
-	} as any) as SyntheticEventData);
-
-	expect(jestHandleChangeMock).toHaveBeenCalledWith('123456.79');
-	expect(textInput.value).toEqual('123,456.79');
+	expect(jestHandleChangeMock).toHaveBeenCalledWith(123456.79);
+	expect(editTextInput.value).toEqual('123,456.79');
 	done();
 });
 
@@ -139,13 +131,15 @@ it('should respect precision and scale if provided.', done => {
 			container
 		);
 	});
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>('input')!;
+	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>('#display-field')!;
+	ReactTestUtils.Simulate.focus(textInput);
 
-	ReactTestUtils.Simulate.change(textInput, ({
+	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
+	ReactTestUtils.Simulate.change(editTextInput, ({
 		target: { value: '12' }
 	} as any) as SyntheticEventData);
 
-	ReactTestUtils.Simulate.blur(textInput, ({
+	ReactTestUtils.Simulate.blur(editTextInput, ({
 		target: { value: '12' }
 	} as any) as SyntheticEventData);
 
@@ -172,14 +166,16 @@ it('does not allow data outside precision and scale to be entered in field', don
 			container
 		);
 	});
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>('input')!;
+	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>('#display-field')!;
+	ReactTestUtils.Simulate.focus(textInput);
 
 	ReactTestUtils.Simulate.change(textInput, ({
 		target: { value: '1234123456789' }
 	} as any) as SyntheticEventData);
+	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
 
 	expect(jestHandleChangeMock).not.toHaveBeenCalled();
-	expect(textInput.value).toEqual('');
+	expect(editTextInput.value).toEqual('');
 	done();
 });
 
@@ -198,12 +194,14 @@ it('should allow negative numbers', done => {
 			container
 		);
 	});
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>('input')!;
+	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>('#display-field')!;
+	ReactTestUtils.Simulate.focus(textInput);
 
-	ReactTestUtils.Simulate.blur(textInput, ({
+	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
+	ReactTestUtils.Simulate.blur(editTextInput, ({
 		target: { value: '-12' }
 	} as any) as SyntheticEventData);
-	expect(jestHandleChangeMock).toHaveBeenCalledWith('-12.00');
+	expect(jestHandleChangeMock).toHaveBeenCalledWith(-12);
 	done();
 });
 
@@ -222,12 +220,14 @@ it('should ignore + and display positive number', done => {
 			container
 		);
 	});
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>('input')!;
+	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>('#display-field')!;
+	ReactTestUtils.Simulate.focus(textInput);
 
-	ReactTestUtils.Simulate.blur(textInput, ({
+	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
+	ReactTestUtils.Simulate.blur(editTextInput, ({
 		target: { value: '+12' }
 	} as any) as SyntheticEventData);
-	expect(jestHandleChangeMock).toHaveBeenCalledWith('12.00');
+	expect(jestHandleChangeMock).toHaveBeenCalledWith(12);
 	done();
 });
 
@@ -254,21 +254,54 @@ it('should render values for {fi-Fi} locale', done => {
 			container
 		);
 	});
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>('input')!;
+	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>('#display-field')!;
+	ReactTestUtils.Simulate.focus(textInput);
 
-	ReactTestUtils.Simulate.change(textInput, ({
+	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
+	ReactTestUtils.Simulate.change(editTextInput, ({
 		target: { value: '123456,89' }
 	} as any) as SyntheticEventData);
 
-	ReactTestUtils.Simulate.blur(textInput, ({
+	ReactTestUtils.Simulate.blur(editTextInput, ({
 		target: { value: '123456,89' }
 	} as any) as SyntheticEventData);
 
-	expect(jestHandleChangeMock).toHaveBeenCalledWith('123456.89');
+	expect(jestHandleChangeMock).toHaveBeenCalledWith(123456.89);
 	/**
 	 * Intl.NumberFormat does not use space (ASCII 32) but non-breaking space (ASCII 160)
 	 * jest uses (ASCII 32) spaces so it is converted to (ASCII 160) for comparision.
 	 */
-	expect(textInput.value.replace(/\s/, ' ')).toEqual('123 456,89');
+	expect(editTextInput.value.replace(/\s/, ' ')).toEqual('123 456,89');
+	done();
+});
+
+it('does not allow invalid numbers when copy pasted', done => {
+	descriptor.precision = 2;
+	descriptor.scale = 2;
+
+	act(() => {
+		ReactDOM.render(
+			<NumberField
+				value=""
+				wrapper={wrapper}
+				descriptor={descriptor}
+				locale={locale}
+				handleFieldChange={jestHandleChangeMock}
+				fetchPossibleValues={jestFetchPossibleValuesMock}
+				status="enabled"
+			/>,
+			container
+		);
+	});
+	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>('#display-field')!;
+	ReactTestUtils.Simulate.focus(textInput);
+
+	ReactTestUtils.Simulate.change(textInput, ({
+		target: { value: '12,34,1234.5678,9' }
+	} as any) as SyntheticEventData);
+	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
+
+	expect(jestHandleChangeMock).not.toHaveBeenCalled();
+	expect(editTextInput.value).toEqual('');
 	done();
 });

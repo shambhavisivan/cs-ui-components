@@ -11,7 +11,7 @@ export interface NumberFieldLocale {
 interface NumberFieldState {
 	value: string;
 	locale: NumberFieldLocale;
-	shouldFormat: boolean;
+	isFormatterVisible: boolean;
 }
 
 export class NumberField extends React.Component<FormFieldProps, NumberFieldState> {
@@ -22,46 +22,54 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 			userLocaleCountry: 'US',
 			decimalSeparator: '.'
 		};
+
 		if (Object.keys(props.locale).includes('number') && props.locale.number) {
 			numberLocale = props.locale.number;
 		}
 		this.state = {
 			locale: numberLocale,
-			value: (this.props.value.length > 0) ?
+			value: this.props.value !== undefined ?
 				this.numberFormatter(this.props.value, numberLocale) : '',
-			shouldFormat: false
+			isFormatterVisible: true
 		};
-	}
-
-	componentDidUpdate(prevProps: FormFieldProps) {
-		if (prevProps.value.length > 0 && prevProps.value !== this.props.value) {
-			if (!this.state.shouldFormat) {
-				this.setState({ value: this.props.value });
-			} else {
-				this.setState({ value: this.numberFormatter(this.props.value, this.state.locale), shouldFormat: false });
-			}
-		}
 	}
 
 	render() {
 		return (
-			<input
-				{...this.props.wrapper.injectInputProps(
-					this.props.descriptor.name,
-					this.props.descriptor.fieldType as FieldType,
-					this.props.status
-				)}
-				type="text"
-				name={this.props.descriptor.name}
-				value={this.state.value}
-				onChange={e => this.handleBasicValidations(e)}
-				required={this.props.status === 'mandatory'}
-				readOnly={this.props.status === 'visible'}
-				maxLength={20} // formatter does not support values with length > 20
-				onBlur={e => this.handleFormattingOnBlur(e.target.value)}
-				min={this.props.descriptor.minVal}
-				max={this.props.descriptor.maxVal}
-			/>
+			<div>
+				{(this.state.isFormatterVisible) ? (<input
+					{...this.props.wrapper.injectInputProps(
+						this.props.descriptor.name,
+						this.props.descriptor.fieldType as FieldType,
+						this.props.status
+					)}
+					id="display-field"
+					type="text"
+					name={this.props.descriptor.name}
+					value={this.state.value}
+					maxLength={20} // formatter does not support values with length > 20
+					min={this.props.descriptor.minVal}
+					max={this.props.descriptor.maxVal}
+					onFocus={() => this.setState({ isFormatterVisible: false })}
+				/>) : (<input
+					{...this.props.wrapper.injectInputProps(
+						this.props.descriptor.name,
+						this.props.descriptor.fieldType as FieldType,
+						this.props.status
+					)}
+					id="edit-field"
+					type="text"
+					name={this.props.descriptor.name}
+					value={this.props.value}
+					onChange={e => this.handleBasicValidations(e)}
+					required={this.props.status === 'mandatory'}
+					readOnly={this.props.status === 'visible'}
+					maxLength={20} // intl number formatter does not support values with length > 20
+					onBlur={e => this.handleFormattingOnBlur(e.target.value)}
+					min={this.props.descriptor.minVal}
+					max={this.props.descriptor.maxVal}
+				/>)}
+			</div>
 		);
 	}
 
@@ -149,36 +157,26 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 			minimumFractionDigits: this.props.descriptor.scale
 		});
 
-		const replaceHelper = () => {
-			let replaced;
+		const replaceHelper = (): string => {
 			if (localeDecimalSeparator === ',') {
-				// remove periods;
-				replaced = unformattedValue.replace(/[\s.]+/g, '');
 				// replace remaining comma with a period;
-				replaced = replaced.replace(/\,/, '.');
-			} else {
-				replaced = unformattedValue.replace(/[\s,]+/g, '');
+				return unformattedValue.replace(/\,/, '.');
 			}
-			return replaced;
+			return unformattedValue.replace(/[\s,]+/g, '');
 		};
-
-		const toFormat =
-			typeof unformattedValue === 'string'
-				? replaceHelper()
-				: unformattedValue;
-		return f.format(Number(toFormat));
+		return f.format(Number(replaceHelper()));
 	}
 
 	handleFormattingOnBlur(value: string): void {
 		if (value.length > 0) {
 			if (value !== '-' && value !== '+') {
 				const formattedValue = this.numberFormatter(value, this.state.locale);
-				this.setState({ value: formattedValue, shouldFormat: true });
+				this.setState({ value: formattedValue, isFormatterVisible: true });
 				const unformatValueArray = formattedValue.split(this.state.locale.decimalSeparator);
-				// removes non-numbers but escapes {-} and replaces {,} with {.}
+				// removes non-numbers but escapes {-}
 				unformatValueArray[0] = unformatValueArray[0].replace(/[^0-9\-]+/g, '');
 
-				this.props.handleFieldChange(unformatValueArray.join('.'));
+				this.props.handleFieldChange(parseFloat(parseFloat(unformatValueArray.join('.')).toFixed(this.props.descriptor.scale)));
 			} else {
 				this.props.handleFieldChange(value);
 			}
