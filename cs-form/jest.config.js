@@ -12,7 +12,7 @@ module.exports = {
 		}
 	},
 	collectCoverage: true,
-	collectCoverageFrom: ["src/**/*.{js,jsx,ts,tsx}", "!src/**/*.d.ts"],
+	collectCoverageFrom: ["src/**/*.{js,jsx,ts,tsx}", "!src/**/*.d.ts", "!src/stories/*"],
 	coverageDirectory: "coverage",
 	coverageReporters: ["text", "html", "clover"],
 	transformIgnorePatterns: ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$", "^.+\\.module\\.(css|sass|scss)$"]
