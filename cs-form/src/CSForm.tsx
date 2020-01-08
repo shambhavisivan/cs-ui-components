@@ -161,7 +161,7 @@ export interface FormProps {
 	 * @param field The field for which the options are required
 	 * @returns The list of options, which will be displayed in the order provided.
 	 */
-	fetchReferenceOptions(field: FieldDescriptor, searchTerm: string): Promise<Array<ReferenceOption>>;
+	fetchReferenceOptions?(field: FieldDescriptor, searchTerm: string): Promise<Array<ReferenceOption>>;
 }
 
 export class CSForm extends React.Component<FormProps, {}> {
