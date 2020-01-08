@@ -51,6 +51,7 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 					min={this.props.descriptor.minVal}
 					max={this.props.descriptor.maxVal}
 					onFocus={() => this.setState({ isFormatterVisible: false })}
+					readOnly
 				/>) : (<input
 					{...this.props.wrapper.injectInputProps(
 						this.props.descriptor.name,
@@ -164,7 +165,8 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 			}
 			return unformattedValue.replace(/[\s,]+/g, '');
 		};
-		return f.format(Number(replaceHelper()));
+		const toFormat = typeof unformattedValue === 'string' ? replaceHelper() : unformattedValue;
+		return f.format(Number(toFormat));
 	}
 
 	handleFormattingOnBlur(value: string): void {
