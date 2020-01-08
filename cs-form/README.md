@@ -2,6 +2,17 @@
 
 Generic configurable React form component.
 
+### 1.0.0-alpha.106:
+* Made fetchReferenceOptions an optional prop to CSForm.
+* minor bug fixes.
+
+### 1.0.0-alpha.105:
+* Added support to ReferenceField.
+* bumped react to 16.12.
+
+### 1.0.0-alpha.104:
+* Added support to NumberField.
+
 ## Scripts:
 
 * `npm test`: run all tests
