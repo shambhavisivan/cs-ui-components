@@ -2,6 +2,9 @@
 
 Generic configurable React form component.
 
+### 1.0.0-alpha.107:
+* added styles for referenceField, numberField and selectField
+
 ### 1.0.0-alpha.106:
 * Made fetchReferenceOptions an optional prop to CSForm.
 * minor bug fixes.
