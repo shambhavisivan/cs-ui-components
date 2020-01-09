@@ -134,15 +134,15 @@ export class ReferenceField extends React.Component<FormFieldProps, State> {
 
 	render() {
 		return (
-			<div ref={this.fieldRef} className="custom-select" tabIndex={0}>
+			<div ref={this.fieldRef} className="lookup-wrapper">
 				{/* SEARCH INPUT OR SELECTED OPTION ON START */}
 				{this.state.startedEditing ? (
 					<div className="input-wrapper">
 						<input
+							className="input-edit-mode"
 							type="text"
 							value={this.state.searchTerm}
 							onChange={e => this.handleSearch(e)}
-							autoFocus
 						/>
 						<span className="icon-search" aria-hidden="true" />
 						{this.state.searchTerm.length ? (
@@ -157,24 +157,19 @@ export class ReferenceField extends React.Component<FormFieldProps, State> {
 						) : null}
 					</div>
 				) : (
-						<div className="input-wrapper">
-							{this.props.value !== undefined ?
-								(
-									<div title={this.props.value ? this.props.value.name : 'value'}>
-										<div className="input-wrapper">{this.props.value ? this.props.value.name : ''}</div>
-									</div>
-								) :
-								(
-									<div className="input-wrapper" />
-								)
-							}
-							<button
-								id="startEditButton"
-								onClick={event => {
-									event.preventDefault();
-									this.startEdit();
-								}}
+						<div className="input-wrapper"
+							id="startEditButton"
+							onClick={event => {
+							event.preventDefault();
+							this.startEdit();
+						}}>
+							<input
+								id="search-input"
+								type="text"
+								value={this.props.value ? this.props.value.name : ''}
+								onChange={e => this.handleSearch(e)}
 							/>
+							<span className="icon-search" aria-hidden="true" />
 						</div>
 					)
 				}

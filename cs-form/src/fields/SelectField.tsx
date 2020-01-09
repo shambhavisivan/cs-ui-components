@@ -8,13 +8,17 @@ interface SelectFieldProps extends FormFieldProps {
 }
 
 export const SelectField: React.FC<SelectFieldProps> = props => {
-	return <select
-		{...props.wrapper.injectInputProps(props.descriptor.name, props.descriptor.fieldType as FieldType, props.status)}
-		value={props.value || ''}
-		name={props.descriptor.name}
-		onChange={e => props.handleFieldChange(e.target.value)}
-		required={props.status === 'mandatory'}
-		disabled={props.status === 'visible'}>
-		{props.selectOptions && props.selectOptions.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
-	</select>;
+	return (
+		<div className="select-wrapper">
+			<select
+				{...props.wrapper.injectInputProps(props.descriptor.name, props.descriptor.fieldType as FieldType, props.status)}
+				value={props.value || ''}
+				name={props.descriptor.name}
+				onChange={e => props.handleFieldChange(e.target.value)}
+				required={props.status === 'mandatory'}
+				disabled={props.status === 'visible'}>
+				{props.selectOptions && props.selectOptions.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
+			</select>
+		</div>
+	);
 };

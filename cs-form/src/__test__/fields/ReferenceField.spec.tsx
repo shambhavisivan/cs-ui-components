@@ -62,8 +62,8 @@ it('renders name property of field value and start button on load', () => {
 	});
 
 	// On initial load, just the selectoption value should be rendered
-	expect(container.textContent).toBe('Initial name');
-	const containerButtons = container.querySelector('button');
+	expect(container.querySelector('#search-input')!.value).toBe('Initial name');
+	const containerButtons = container.querySelector('#startEditButton');
 	expect(
 		containerButtons !== null && containerButtons.id === 'startEditButton'
 	).toBeTruthy();
@@ -161,7 +161,7 @@ it('on click outside the editor panel should hide editor', () => {
 
 	expect(container.querySelector('#startEditButton')).toBeNull();
 	/** expect the input box to appear */
-	expect(container.querySelectorAll('input').length).toBe(1);
+	expect(container.querySelectorAll('.input-edit-mode').length).toBe(1);
 
 	/** click on container (i.e) outside the ReferenceField Component */
 	act(() => {
@@ -169,5 +169,5 @@ it('on click outside the editor panel should hide editor', () => {
 	});
 
 	/** field switches back from edit mode to display mode, hence input is removed from DOM */
-	expect(container.querySelectorAll('input').length).toBe(0);
+	expect(container.querySelectorAll('.input-edit-mode').length).toBe(0);
 });

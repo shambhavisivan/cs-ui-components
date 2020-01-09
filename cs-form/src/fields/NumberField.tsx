@@ -51,7 +51,6 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 					min={this.props.descriptor.minVal}
 					max={this.props.descriptor.maxVal}
 					onFocus={() => this.setState({ isFormatterVisible: false })}
-					readOnly
 				/>) : (<input
 					{...this.props.wrapper.injectInputProps(
 						this.props.descriptor.name,
