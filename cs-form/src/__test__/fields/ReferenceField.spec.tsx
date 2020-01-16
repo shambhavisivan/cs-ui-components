@@ -22,10 +22,10 @@ function nop(): any {
 
 const referenceOptionFetcher = (field: FieldDescriptor, searchTerm: string) => {
 	if (searchTerm === 'A') {
-		return Promise.resolve([{ Id: 'OnDemandIdA', name: 'On Demand NameA' }]);
+		return Promise.resolve([{ Id: 'OnDemandIdA', Name: 'On Demand NameA' }] as Array<ReferenceOption>);
 	}
 
-	return Promise.resolve([{ Id: 'OnDemandIdB', name: 'On Demand NameB' }]);
+	return Promise.resolve([{ Id: 'OnDemandIdB', Name: 'On Demand NameB' }] as Array<ReferenceOption>);
 };
 
 const descriptor: FieldDescriptor = {
@@ -56,13 +56,15 @@ it('renders name property of field value and start button on load', () => {
 				handleFieldChange={nop}
 				fetchReferenceOptions={referenceOptionFetcher}
 				status="enabled"
+				fetchPossibleValues={nop}
 			/>,
 			container
 		);
 	});
 
 	// On initial load, just the selectoption value should be rendered
-	expect(container.querySelector('#search-input')!.value).toBe('Initial name');
+	const searchInput: HTMLInputElement | null = container.querySelector('#search-input');
+	expect(searchInput != null && searchInput.value).toBe('Initial name');
 	const containerButtons = container.querySelector('#startEditButton');
 	expect(
 		containerButtons !== null && containerButtons.id === 'startEditButton'
@@ -80,6 +82,7 @@ it('on StartEdit click, renders an input box', () => {
 				handleFieldChange={nop}
 				fetchReferenceOptions={referenceOptionFetcher}
 				status="enabled"
+				fetchPossibleValues={nop}
 			/>,
 			container
 		);
@@ -108,6 +111,7 @@ it('on filling search input, fetches options using fetchReferenceOptions', () =>
 			handleFieldChange={mockHandleChange}
 			fetchReferenceOptions={referenceOptionFetcher}
 			status="enabled"
+			fetchPossibleValues={nop}
 		/>
 	);
 
@@ -128,7 +132,7 @@ it('on filling search input, fetches options using fetchReferenceOptions', () =>
 
 	const selected: ReferenceOption = {
 		Id: 'SAAFAES',
-		name: 'Decima Technologies',
+		Name: 'Decima Technologies',
 		key: 'DCMA'
 	};
 	act(() => {
@@ -137,7 +141,70 @@ it('on filling search input, fetches options using fetchReferenceOptions', () =>
 	expect(component.state('selectedOption')).toBe(selected);
 });
 
-it('on click outside the editor panel should hide editor', () => {
+describe('on click outside editor panel when editing', () => {
+	const mockHandleChange = jest.fn();
+
+	beforeEach(() => {
+		act(() => {
+			ReactDOM.render(
+				<ReferenceField
+					value={{ Id: 'InitialId', name: 'Initial name' }}
+					wrapper={wrapper}
+					descriptor={descriptor}
+					locale={locale}
+					handleFieldChange={mockHandleChange}
+					fetchReferenceOptions={referenceOptionFetcher}
+					status="enabled"
+					fetchPossibleValues={nop}
+				/>,
+				container
+			);
+
+			/** Enter edit mode by clicking startEdit */
+			const startEditButton = container.querySelector('#startEditButton');
+			if (startEditButton) {
+				ReactTestUtils.Simulate.click(startEditButton);
+			}
+		});
+	});
+
+	it('should hide editor', () => {
+		expect(container.querySelector('#startEditButton')).toBeNull();
+		/** expect the input box to appear */
+		expect(container.querySelectorAll('.input-edit-mode').length).toBe(1);
+
+		/** click on container (i.e) outside the ReferenceField Component */
+		act(() => {
+			container.click();
+		});
+
+		/** field switches back from edit mode to display mode, hence input is removed from DOM */
+		expect(container.querySelectorAll('.input-edit-mode').length).toBe(0);
+	});
+
+	it('should update selectedOption to be null when edited input is blank', () => {
+		mockHandleChange.mockClear();
+
+		act(() => {
+			const startEditButton = container.querySelector('.input-edit-mode');
+			if (startEditButton) {
+				ReactTestUtils.Simulate.change(startEditButton, { target: { value: '' } } as any);
+			}
+		});
+
+		act(() => {
+			container.click();
+		});
+
+		expect(mockHandleChange).toHaveBeenCalledWith(null);
+		/** field switches back from edit mode to display mode, hence input is removed from DOM */
+		expect(container.querySelectorAll('.input-edit-mode').length).toBe(0);
+	});
+});
+
+it('handleOutsideClick should do nothing when not in edit mode', () => {
+	const mockHandleChange = jest.fn();
+
 	act(() => {
 		ReactDOM.render(
 			<ReferenceField
@@ -145,29 +212,23 @@ it('on click outside the editor panel should hide editor', () => {
 				wrapper={wrapper}
 				descriptor={descriptor}
 				locale={locale}
-				handleFieldChange={nop}
+				handleFieldChange={mockHandleChange}
 				fetchReferenceOptions={referenceOptionFetcher}
 				status="enabled"
+				fetchPossibleValues={nop}
 			/>,
 			container
 		);
-
-		/** Enter edit mode by clicking startEdit */
-		const startEditButton = container.querySelector('#startEditButton');
-		if (startEditButton) {
-			ReactTestUtils.Simulate.click(startEditButton);
-		}
 	});
 
-	expect(container.querySelector('#startEditButton')).toBeNull();
-	/** expect the input box to appear */
-	expect(container.querySelectorAll('.input-edit-mode').length).toBe(1);
+	expect(container.querySelectorAll('#startEditButton').length).toBe(1);
+	expect(container.querySelectorAll('.input-edit-mode').length).toBe(0);
 
-	/** click on container (i.e) outside the ReferenceField Component */
 	act(() => {
 		container.click();
 	});
 
-	/** field switches back from edit mode to display mode, hence input is removed from DOM */
+	expect(container.querySelectorAll('#startEditButton').length).toBe(1);
 	expect(container.querySelectorAll('.input-edit-mode').length).toBe(0);
+	expect(mockHandleChange).toHaveBeenCalledTimes(0);
 });

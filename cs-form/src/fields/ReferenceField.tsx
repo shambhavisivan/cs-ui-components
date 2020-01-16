@@ -101,12 +101,15 @@ export class ReferenceField extends React.Component<FormFieldProps, State> {
 	}
 
 	handleClickOutside = (event: any) => {
-
 		if (this.fieldRef && !this.fieldRef.current.contains(event.target)) {
-			if (this.state.searchTerm === '') {
-				this.selectOption(null);
+			// clear dropDown and come out of edit mode if user has clicked outside reference field while editing it.
+			if (this.state.startedEditing) {
+				if (this.props.value && this.state.searchTerm === '') { // user has cleared entire value
+					this.selectOption(null);
+				} else {
+					this.setState({ startedEditing: false, dropdownValues: [] });
+				}
 			}
-			this.setState({ startedEditing: false, dropdownValues: [] });
 		}
 	}
 
@@ -127,7 +130,9 @@ export class ReferenceField extends React.Component<FormFieldProps, State> {
 	}
 
 	clearSearch() {
-		if (this.state.searchTerm === '') { return; }
+		if (this.state.searchTerm === '') {
+			return;
+		}
 
 		this.setState({ searchTerm: '', dropdownValues: [] });
 	}
