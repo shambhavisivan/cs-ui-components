@@ -7,7 +7,7 @@ export const SimpleField: React.FC<FormFieldProps> = props => {
 		{...props.wrapper.injectInputProps(props.descriptor.name, props.descriptor.fieldType as FieldType, props.status)}
 		type="text"
 		name={props.descriptor.name}
-		value={props.value}
+		value={props.value ? props.value : ''}
 		onChange={e => props.handleFieldChange(e.target.value)}
 		required={props.status === 'mandatory'}
 		readOnly={props.status === 'visible'}

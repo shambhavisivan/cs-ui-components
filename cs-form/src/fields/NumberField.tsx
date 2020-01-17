@@ -28,10 +28,20 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 		}
 		this.state = {
 			locale: numberLocale,
-			value: this.props.value !== undefined ?
+			value: this.props.value ?
 				this.numberFormatter(this.props.value, numberLocale) : '',
 			isFormatterVisible: true
 		};
+	}
+
+	componentDidUpdate(prevProps: FormFieldProps) {
+		if (this.props.value !== prevProps.value) {
+			if ((this.props.value)) {
+				this.setState({ value: this.numberFormatter(this.props.value, this.state.locale) });
+			} else {
+				this.setState({ value: '' });
+			}
+		}
 	}
 
 	render() {
@@ -60,7 +70,7 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 					id="edit-field"
 					type="text"
 					name={this.props.descriptor.name}
-					value={this.props.value}
+					value={this.props.value ? this.props.value : ''}
 					onChange={e => this.handleBasicValidations(e)}
 					required={this.props.status === 'mandatory'}
 					readOnly={this.props.status === 'visible'}
