@@ -2,6 +2,9 @@
 
 Generic configurable React form component.
 
+### 1.0.0-alpha.109:
+* added fixes for numberfield to display 0.
+
 ### 1.0.0-alpha.108:
 * added simple fixes for numberfield and simplefield.
 * added fix for handleclickoutside overriding other fields' click.
