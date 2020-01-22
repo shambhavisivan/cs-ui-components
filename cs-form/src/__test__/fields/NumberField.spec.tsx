@@ -305,3 +305,34 @@ it('does not allow invalid numbers when copy pasted', done => {
 	expect(editTextInput.value).toEqual('');
 	done();
 });
+
+it('should allow zero and format it in required format', done => {
+	descriptor.precision = 2;
+	descriptor.scale = 2;
+
+	act(() => {
+		ReactDOM.render(
+			<NumberField
+				value="0"
+				wrapper={wrapper}
+				descriptor={descriptor}
+				locale={locale}
+				handleFieldChange={jestHandleChangeMock}
+				fetchPossibleValues={jestFetchPossibleValuesMock}
+				status="enabled"
+			/>,
+			container
+		);
+	});
+	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>('#display-field')!;
+	ReactTestUtils.Simulate.focus(textInput);
+
+	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
+	ReactTestUtils.Simulate.blur(editTextInput, ({
+			target: { value: '0' }
+		} as any) as SyntheticEventData);
+
+	expect(jestHandleChangeMock).toHaveBeenCalledWith(0.00);
+	expect(editTextInput.value).toEqual('0,00');
+	done();
+});
