@@ -679,6 +679,10 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				this.addIfDefined(cellParams, 'getOptions', columnDef.getOptions);
 			}
 
+			if (columnDef.cellType === 'Picklist') {
+				this.addIfDefined(cellParams, 'toggleSelection', columnDef.toggleSelection);
+			}
+
 			if (columnDef.cellType === 'Lookup' || columnDef.cellType === 'MultiSelectLookup') {
 				agGridColDef.cellEditor = 'lookupEditor';
 				agGridColDef.cellRenderer = 'lookupRenderer';

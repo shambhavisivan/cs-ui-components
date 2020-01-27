@@ -121,7 +121,11 @@ export class CSGridPicklistEditor
 
 	private optionSelected = async (key: string): Promise<void> => {
 		const options = new Map(this.state.options);
-		const selected = !options.get(key);
+		const toggleSelection =
+			this.multiSelect || this.props.toggleSelection === undefined
+				? true
+				: this.props.toggleSelection;
+		const selected = toggleSelection ? !options.get(key) : true;
 
 		if (!this.multiSelect) {
 			for (const option of this.props.getOptions(this.props.node.id)) {
@@ -201,7 +205,12 @@ export class CSGridPicklistEditor
 		const options: Map<string, boolean> = new Map();
 
 		for (const option of this.props.getOptions(this.props.node.id)) {
-			options.set(option, selected && selected.indexOf(option) >= 0);
+			options.set(
+				option,
+				selected && Array.isArray(selected)
+					? selected.includes(option)
+					: selected === option
+			);
 		}
 
 		return options;

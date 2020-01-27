@@ -229,6 +229,7 @@ export class App extends React.Component<object, AppState> {
 					label: 'Picklist'
 				},
 				name: 'examplePicklist',
+				toggleSelection: false,
 				userInfo
 			},
 			{

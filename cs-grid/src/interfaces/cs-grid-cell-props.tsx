@@ -55,6 +55,7 @@ export interface LookupProps {
 
 export interface PicklistProps {
 	filterAboveSize?: number;
+	toggleSelection?: boolean;
 	getOptions(guid: string): Array<string>;
 }
 
