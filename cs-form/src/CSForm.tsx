@@ -58,7 +58,7 @@ export interface ElementWrapper {
 	 * @param input The input component of the field
 	 * @param errorMessages The error message component of the field, is null if there are no errors
 	 */
-	wrapField(name: string, status: ComponentStatus, label: ReactElement, input: ReactElement, errorMessages: ReactElement|null): ReactElement;
+	wrapField(name: string, status: ComponentStatus, label: ReactElement, input: ReactElement, errorMessages: ReactElement | null): ReactElement;
 	/**
 	 * Create additional properties to be set directly on the input component (i.e. the actual <input>/<select>/etc. HTML tag)
 	 * @param name Name of input field
@@ -141,8 +141,9 @@ export interface FormProps {
 	/**
 	 * Called whenever the form object changes.
 	 * @param data New form object.
+	 * @param errors The currently calculated validation errors
 	 */
-	update(data: Record<string, any>): void;
+	update(data: Record<string, any>, errors: ValidationErrors): void;
 	/**
 	 * Called when the save button is pressed.
 	 * @returns The form object after the save operation. (For example some fields might have been recalculated on save.)
@@ -176,15 +177,15 @@ export class CSForm extends React.Component<FormProps, {}> {
 	}
 
 	handleFieldChange(name: string, newValue: any) {
-		this.props.update(cloneAndReplaceField(this.props.data, name, newValue));
+		const newData = cloneAndReplaceField(this.props.data, name, newValue);
+		this.props.update(newData, this.validate(newData));
 	}
-
 	async save(): Promise<void> {
-		const errors = this.validator.validate(this.props.data);
-		if (Object.getOwnPropertyNames(errors).length === 0) {
+		const errors = this.validate(this.props.data);
+		if (errors.formErrors.length === 0 && Object.getOwnPropertyNames(errors.fieldErrors).length === 0) {
 			try {
 				const newObject: Record<string, any> = await this.props.save();
-				this.props.update(newObject);
+				this.props.update(newObject, errors);
 			} catch (e) {
 				// TODO: display error message when we've got a UI for it
 				// tslint:disable-next-line: no-console
@@ -214,6 +215,26 @@ export class CSForm extends React.Component<FormProps, {}> {
 				/>
 			</>
 		);
+	}
+
+	private mergeErrors: (one: Record<string, Array<string>>, other: Record<string, Array<string>>) => Record<string, Array<string>> = (one, other) => {
+		const keys = new Set<string>([...Object.keys(one), ...Object.keys(other)]);
+		const ret: Record<string, Array<string>> = {};
+		keys.forEach(key => {
+			ret[key] = [...(one[key] || []), ...(other[key] || [])];
+		});
+		return ret;
+	}
+
+	private validate: (data: Record<string, any>) => ValidationErrors = data => {
+		const internalErrors = this.validator.validate(data);
+		const externalErrors: ValidationErrors = this.props.externalValidationErrors || { formErrors: [], fieldErrors: {} };
+		const formErrors = externalErrors.formErrors;
+		const fieldErrors = this.mergeErrors(internalErrors, externalErrors.fieldErrors);
+		return {
+			formErrors,
+			fieldErrors
+		};
 	}
 
 	private createFormPanel(panel: FormPanelDescriptor) {

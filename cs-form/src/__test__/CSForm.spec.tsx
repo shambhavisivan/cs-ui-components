@@ -6,6 +6,9 @@ import { CSForm, LocaleSettings } from '../CSForm';
 import { ElementWrapper, FormDescriptor } from '../..';
 import { FormLabels, FieldType } from '..';
 import { ComponentStatus } from '../types/ComponentStatus';
+import { FormPanel } from '../FormPanel';
+import { FormField } from '../fields/FormField';
+import { SimpleField } from '../fields/SimpleField';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -18,7 +21,8 @@ export const testFormDescriptor: FormDescriptor = {
 			title: 'General',
 			fields: [
 				{
-					name: 'Id'
+					name: 'Id',
+					mandatory: 'true'
 				}
 			],
 			isOpenByDefault: true
@@ -75,4 +79,60 @@ it('renders save button', () => {
 
 it('renders error panel', () => {
 	expect(uut.find('ErrorPanel')).toHaveLength(1);
+});
+
+it('returns form data and errors to update function', () => {
+	const update = jest.fn();
+	const form = shallow(<CSForm
+		descriptor={testFormDescriptor}
+		data={{ Id: '123' }}
+		update={update}
+		save={() => Promise.resolve({})}
+		fetchPossibleValues={() => Promise.resolve([])}
+		labels={{ button_save: 'SAVE', validation_message_required: 'MISSING' } as unknown as FormLabels}
+		locale={locale}
+		formSettings={{}}
+		wrapper={wrapper}
+	/>);
+	const field = form.find(FormPanel).dive().find(FormField).dive().find(SimpleField);
+	field.prop('handleFieldChange')('');
+	expect(update).toHaveBeenCalledWith({ Id: '' }, { formErrors: [], fieldErrors: { Id: ['MISSING'] } });
+});
+
+it('returns form data and external errors to update function', () => {
+	const update = jest.fn();
+	const form = shallow(<CSForm
+		descriptor={testFormDescriptor}
+		data={{ Id: '123' }}
+		update={update}
+		save={() => Promise.resolve({})}
+		fetchPossibleValues={() => Promise.resolve([])}
+		labels={{ button_save: 'SAVE', validation_message_required: 'MISSING' } as unknown as FormLabels}
+		locale={locale}
+		formSettings={{}}
+		externalValidationErrors={{ formErrors: [], fieldErrors: { Id: ['EXTERNAL'] } }}
+		wrapper={wrapper}
+	/>);
+	const field = form.find(FormPanel).dive().find(FormField).dive().find(SimpleField);
+	field.prop('handleFieldChange')('42');
+	expect(update).toHaveBeenCalledWith({ Id: '42' }, { formErrors: [], fieldErrors: { Id: ['EXTERNAL'] } });
+});
+
+it('merges internal and external errors for update function', () => {
+	const update = jest.fn();
+	const form = shallow(<CSForm
+		descriptor={testFormDescriptor}
+		data={{ Id: '123' }}
+		update={update}
+		save={() => Promise.resolve({})}
+		fetchPossibleValues={() => Promise.resolve([])}
+		labels={{ button_save: 'SAVE', validation_message_required: 'MISSING' } as unknown as FormLabels}
+		locale={locale}
+		formSettings={{}}
+		wrapper={wrapper}
+		externalValidationErrors={{ formErrors: [], fieldErrors: { Id: ['EXTERNAL'] } }}
+	/>);
+	const field = form.find(FormPanel).dive().find(FormField).dive().find(SimpleField);
+	field.prop('handleFieldChange')('');
+	expect(update).toHaveBeenCalledWith({ Id: '' }, { formErrors: [], fieldErrors: { Id: ['MISSING', 'EXTERNAL'] } });
 });
