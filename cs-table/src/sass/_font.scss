@@ -1,0 +1,163 @@
+@charset "UTF-8";
+
+$font-salesforce: "Salesforce Sans";
+$font-icon: "cs-dm";
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-semi-bold: 500;
+$font-weight-bold: 700;
+
+
+@font-face {
+	font-family: "Salesforce Sans";
+	src:url("./../fonts/SalesforceSans-Light.woff") format("woff"); /* Modern Browsers */
+	font-weight: $font-weight-light;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Salesforce Sans";
+	src:url("./../fonts/SalesforceSans-Regular.ttf");
+	src:url("./../fonts/SalesforceSans-Regular.woff") format("woff"), /* Modern Browsers */
+	url("./../fonts/SalesforceSans-Regular.ttf")  format("truetype"); /* Safari, Android, iOS */
+	font-weight: $font-weight-normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Salesforce Sans";
+	src:url("../fonts/SalesforceSans-Bold.ttf");
+	src:url("../fonts/SalesforceSans-Bold.woff") format("woff"), /* Modern Browsers */
+	url("../fonts/SalesforceSans-Bold.ttf")  format("truetype"); /* Safari, Android, iOS */
+	font-weight: $font-weight-bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "cs-dm";
+	src:url("../fonts/cs-dm/fonts/cs-dm.eot");
+	src:url("../fonts/cs-dm/fonts/cs-dm.eot?#iefix") format("embedded-opentype"),
+		url("../fonts/cs-dm/fonts/cs-dm.woff") format("woff"),
+		url("../fonts/cs-dm/fonts/cs-dm.ttf") format("truetype"),
+		url("../fonts/cs-dm/fonts/cs-dm.svg#cs-dm") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+
+*[class^="icon-"],
+*[class*=" icon-"] {
+	font-family: $font-icon;
+}
+
+/* Reusable icon class names */
+.icon-chevrondown::before {
+	content: "a";
+}
+
+.icon-chevronleft::before {
+	content: "b";
+}
+
+.icon-chevronright::before {
+	content: "c";
+}
+
+.icon-chevronup::before {
+	content: "d";
+}
+
+.icon-add::before {
+	content: "e";
+}
+
+.icon-check::before {
+	content: "f";
+}
+
+.icon-close::before {
+	content: "g";
+}
+
+.icon-clear::before {
+	content: "h";
+}
+
+.icon-info::before {
+	content: "i";
+}
+
+.icon-success::before {
+	content: "j";
+}
+
+.icon-warning::before {
+	content: "k";
+}
+
+.icon-error::before {
+	content: "l";
+}
+
+.icon-down::before {
+	content: "m";
+}
+
+.icon-left:before {
+	content: "n";
+}
+
+.icon-right:before {
+	content: "o";
+}
+
+.icon-up:before {
+	content: "p";
+}
+
+.icon-menu::before {
+	content: "q";
+}
+
+.icon-delete:before {
+	content: "r";
+}
+
+.icon-edit:before {
+	content: "s";
+}
+
+.icon-filter:before {
+	content: "t";
+}
+
+.icon-card:before {
+	content: "u";
+}
+
+.icon-money:before {
+	content: "v";
+}
+
+.icon-calender:before {
+	content: "w";
+}
+
+.icon-man:before {
+	content: "x";
+}
+
+.icon-recall:before {
+	content: "y";
+}
+
+.icon-thumbs-up:before {
+	content: "z";
+}
+
+.icon-thumbs-down:before {
+	content: "A";
+}
+
+.icon-approval:before {
+	content: "B";
+}

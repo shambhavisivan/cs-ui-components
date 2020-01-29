@@ -1,0 +1,95 @@
+.cs-pagination-wrapper {
+	display: flex;
+	justify-content: flex-end;
+	padding: 1rem;
+
+	.cs-pagination {
+		display: flex;
+		padding: 0;
+		margin: 0;
+
+		a {
+			position: relative;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 2rem;
+			height: 2rem;
+			padding: 0;
+			font-size: 0.75rem;
+			text-decoration: none;
+			cursor: pointer;
+			@include sbg(--cs-pagination-bg);
+			@include sc(--cs-pagination-c);
+			@include css4 {
+				border: 1px solid cvar(--cs-pagination-br);
+			}
+
+			&:first-child {
+				border-top-left-radius: 0.25rem;
+				border-bottom-left-radius: 0.25rem;
+			}
+
+			&:last-child {
+				border-top-right-radius: 0.25rem;
+				border-bottom-right-radius: 0.25rem;
+			}
+
+			&:not(:first-child) {
+				margin-left: -1px;
+			}
+
+			&:hover {
+				@include sbg(--cs-pagination-hover-bg);
+			}
+
+			&:focus {
+				outline: none;
+				position: relative;
+				@include css4 {
+					border: 1px solid cvar(--cs-pagination-c);
+					box-shadow: 0 0 3px cvar(--cs-pagination-c);
+				}
+			}
+
+			&.active,
+        	&.active:hover {
+				@include sbg(--cs-pagination-c);
+				@include sc(--cs-pagination-bg);
+			}
+
+			&.disabled {
+				cursor: default;
+				@include sc(--cs-button-disabled-c);
+				@include sbg(--cs-button-bg);
+			}
+
+			.cs-btn-icon {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				height: calc(2rem - 2px);
+				@include sf(--cs-button-icon-c);
+
+				svg {
+					height: 1rem;
+					width: 1rem;
+				}
+			}
+
+			&:first-child,
+			&:last-child {
+
+				span:first-child {
+					position: absolute;
+					left: 6px;
+				}
+
+				span:last-child {
+					position: absolute;
+					right: 6px;
+				}
+			}
+		}
+	}
+}

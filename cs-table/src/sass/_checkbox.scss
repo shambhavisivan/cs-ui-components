@@ -1,0 +1,88 @@
+.cs-checkbox-wrapper {
+
+	.cs-checkbox {
+		width: 1px;
+		height: 1px;
+		border: 0;
+		clip: rect(0 0 0 0);
+		margin: -1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+
+		&:checked + .cs-checkbox-faux {
+
+			&::after {
+				display: block;
+				content: "";
+				height: 0.25rem;
+				width: 0.5rem;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate3d(-50%,-50%,0) rotate(-45deg);
+				box-sizing: border-box;
+				@include css4 {
+					border-bottom: 2px solid cvar(--cs-checkbox-checked-br);
+					border-left: 2px solid cvar(--cs-checkbox-checked-br);
+				}
+			}
+		}
+
+		&:focus + .cs-checkbox-faux {
+			outline: 0;
+			@include css4 {
+				border: 1px solid cvar(--cs-checkbox-focus-br);
+				box-shadow: 0 0 3px cvar(--cs-checkbox-focus-box);
+			}
+		}
+
+		&:disabled + .cs-checkbox-faux {
+			cursor: default;
+			@include sbg(--cs-checkbox-disabled-bg);
+			@include css4 {
+				border: 1px solid cvar(--cs-checkbox-disabled-br);
+			}
+		}
+
+		&:disabled:checked + .cs-checkbox-faux {
+
+			&::after {
+				@include css4 {
+					border-bottom: 2px solid cvar(--cs-checkbox-disabled-checked-br);
+					border-left: 2px solid cvar(--cs-checkbox-disabled-checked-br);
+				}
+			}
+		}
+
+		&:required + .cs-checkbox-faux::before {
+			display: block;
+			content: "*";
+			margin: 0 -0.5rem;
+			font-size: 0.8125rem;
+			line-height: 0.875;
+			@include sc(--cs-checkbox-required-c)
+		}
+
+		&.error + .cs-checkbox-faux {
+			box-shadow: none;
+			@include css4 {
+				border: 2px solid cvar(--cs-checkbox-error-br);
+			}
+		}
+	}
+
+	.cs-checkbox-faux {
+		width: 1rem;
+		height: 1rem;
+		display: inline-block;
+		position: relative;
+		vertical-align: middle;
+		cursor: pointer;
+		border-radius: 0.125rem;
+		@include sbg(--cs-checkbox-bg);
+		@include css4 {
+			border: 1px solid cvar(--cs-checkbox-br);
+		}
+	}
+}

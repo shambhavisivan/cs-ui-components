@@ -1,0 +1,115 @@
+.cs-table-wrapper {
+	width: 100%;
+	overflow-y: auto;
+}
+
+table.cs-table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+	@include sbg(--dm-table-bg);
+	@include css4 {
+		border-top: 1px solid cvar(--dm-table-br);
+		border-bottom: 1px solid cvar(--dm-table-br);
+	}
+
+	> thead > tr > .cs-table-header {
+		font-size: 0.75rem;
+		padding: 0.5rem;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		min-width: 50px;
+		vertical-align: middle;
+		line-height: normal;
+		@include sbg(--dm-table-header-bg);
+
+		&:first-child {
+			padding-left: 1rem;
+		}
+
+		&:last-child {
+			padding-right: 1rem;
+		}
+
+		.cs-table-header-text {
+			@include overflow-ellipsis;
+			font-weight: $font-weight-semi-bold;
+			text-align: left;
+			max-width: 200px;
+			@include sc(--dm-table-header-c);
+		}
+	}
+
+	.cs-table-body .cs-table-row {
+
+		.cs-table-cell {
+			@include overflow-ellipsis;
+			min-width: 50px;
+			max-width: 200px;
+			vertical-align: middle;
+			padding: 0.75rem 0.5rem;
+			font-size: 0.8125rem;
+			font-weight: $font-weight-normal;
+			text-align: left;
+			@include sc(--dm-table-cell-c);
+			@include css4 {
+				border-top: 1px solid cvar(--dm-table-br);
+			}
+
+			&:first-child {
+				padding-left: 1rem;
+				font-weight: $font-weight-bold;
+			}
+
+			&:last-child {
+				padding-right: 1rem;
+			}
+
+			&:not(:first-child) span {
+				@include overflow-ellipsis;
+			}
+		}
+
+		&:hover {
+			@include sbg(--dm-table-row-hover-bg);
+		}
+	}
+
+	// Specific styling for credit funds table
+
+	+ .cs-table-pagination {
+		display: flex;
+		justify-content: flex-end;
+		padding: 1rem;
+	}
+
+	&.credit-funds-table {
+		background: none;
+		border: none;
+
+		> thead > tr > .cs-table-header {
+			background: none;
+
+			.cs-table-header-text {
+				@include sc(--dm-credit-funds-table-header-c);
+			}
+		}
+
+		.cs-table-body .cs-table-row {
+
+			.cs-table-cell {
+				border: none;
+				padding: 0.5rem;
+				@include sc(--dm-credit-funds-table-c);
+
+				&:first-child {
+					padding-left: 1rem;
+				}
+			}
+
+			&:hover {
+				background: none;
+			}
+		}
+	}
+}

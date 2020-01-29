@@ -1,0 +1,31 @@
+@import "theme";
+@import "font";
+@import "settings/overflow";
+@import "settings/z-index";
+
+@import "checkbox";
+@import "cs-table";
+@import "pagination";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	--webkit-font-smoothing: antialiased;
+	font-family: $font-salesforce;
+}
+
+body {
+	margin: 0;
+}
+
+.error-text {
+	color: red;
+}
+
+.app-wrapper {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
