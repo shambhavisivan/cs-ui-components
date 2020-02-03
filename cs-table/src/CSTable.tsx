@@ -37,6 +37,10 @@ export interface CSTableRow {
 	 */
 	data: CSTableData;
 	/**
+	 * CSS class attached to row
+	 */
+	classNames?: Array<string>;
+	/**
 	 * Does this row consist of cells or just one block, spanning the table width.
 	 */
 	fullWidth?: boolean;
@@ -123,7 +127,7 @@ export const CSTable: React.FC<CSTableProps> = props => {
 	};
 
 	const renderRow = (row: CSTableRow) => {
-		return <tr className="cs-table-row" key={row.id}>
+		return <tr className={"cs-table-row " + (row.classNames ? row.classNames.join(' ') : '')} key={row.id}>
 			{row.fullWidth ? renderFullWidth(row) : props.cols.map(col => renderCell(col, row))}
 		</tr>;
 	};

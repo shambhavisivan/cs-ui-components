@@ -51,7 +51,7 @@ describe('CSTable', () => {
 		const rows: Array<CSTableRow> = [
 			{
 				id: '1',
-				data: { values: { test_1: 'v1.1' } }
+				data: { values: { test_1: 'v1.1' } },
 			},
 			{
 				id: '2',
@@ -64,6 +64,28 @@ describe('CSTable', () => {
 		expect(uut.find('tbody tr')).toHaveLength(2);
 		expect(uut.find('tbody tr').at(0).find('td').text()).toBe('v1.1');
 		expect(uut.find('tbody tr').at(1).find('td').text()).toBe('v2.1');
+
+	});
+
+	it('displays standard renderered rows with classNames property', () => {
+		const cols: Array<CSTableColumn> = [
+			{
+				name: 'test_1',
+				label: 'Test 1'
+			}
+		];
+		const rows: Array<CSTableRow> = [
+			{
+				id: '1',
+				data: { values: { test_1: 'v1.1' } },
+				classNames: ['class1', 'class2']
+			}
+		];
+
+		const uut = shallow(<CSTable rows={rows} cols={cols} />);
+
+		expect(uut.find('tbody tr.class1')).toHaveLength(1);
+		expect(uut.find('tbody tr.class2')).toHaveLength(1);
 	});
 
 	it('renders missing and object values correctly', () => {
