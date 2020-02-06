@@ -1,6 +1,6 @@
 {
 	"name": "@cloudsense/cs-table",
-	"version": "1.0.0-alpha-5",
+	"version": "1.0.0-alpha-8",
 	"scripts": {
 		"test": "cross-env NODE_ICU_DATA=node_modules/full-icu jest",
 		"build": "npm run lint && rollup -c",
@@ -19,7 +19,6 @@
 	"module": "dist/index.es.js",
 	"jsnext:main": "dist/index.es.js",
 	"dependencies": {
-		"lodash": "^4.17.15",
 		"typescript": "3.7.3"
 	},
 	"peerDependencies": {

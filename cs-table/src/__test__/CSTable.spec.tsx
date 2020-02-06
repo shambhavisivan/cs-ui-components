@@ -51,7 +51,7 @@ describe('CSTable', () => {
 		const rows: Array<CSTableRow> = [
 			{
 				id: '1',
-				data: { values: { test_1: 'v1.1' } },
+				data: { values: { test_1: 'v1.1' } }
 			},
 			{
 				id: '2',

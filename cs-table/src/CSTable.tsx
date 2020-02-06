@@ -127,7 +127,7 @@ export const CSTable: React.FC<CSTableProps> = props => {
 	};
 
 	const renderRow = (row: CSTableRow) => {
-		return <tr className={"cs-table-row " + (row.classNames ? row.classNames.join(' ') : '')} key={row.id}>
+		return <tr className={'cs-table-row ' + (row.classNames ? row.classNames.join(' ') : '')} key={row.id}>
 			{row.fullWidth ? renderFullWidth(row) : props.cols.map(col => renderCell(col, row))}
 		</tr>;
 	};

@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 
 /**
  * Table pagination box properties.
@@ -21,13 +20,21 @@ export interface CSTablePaginationControlsProps {
 	changePage(newPage: number): void;
 }
 
+const generateRange = (start: number, end: number): Array<number> => {
+	const ret: Array<number> = [];
+	for (let i = start; i < end; i++) {
+		ret.push(i);
+	}
+	return ret;
+};
+
 /**
  * Pagination control box component to be used in conjunction with `usePagination` hook.
  *
  * @param param0
  */
 export const CSTablePaginationControls: React.FC<CSTablePaginationControlsProps> = ({ currentPage, lastPage, changePage }) => {
-	let range = _.range(Math.max(0, currentPage - 4, Math.min(lastPage + 1, currentPage + 5)));
+	let range = generateRange(Math.max(0, currentPage - 4), Math.min(lastPage + 1, currentPage + 5));
 	const firstPage = 0;
 	while (range.length > 5) {
 		const currentPos = range.findIndex(p => p === currentPage);
