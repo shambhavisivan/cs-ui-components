@@ -1,11 +1,12 @@
 import { ValidationStatus } from '../components/cs-grid-row-validation-renderer';
-import { CellData, IsColumnFunc } from './cs-grid-base-interfaces';
+import { CellData, IsColumnFunc, SuppressKeyboardEventParams } from './cs-grid-base-interfaces';
 import {
 	BaseProps,
 	DecimalProps,
 	IntegerProps,
 	LookupProps,
-	PicklistProps
+	PicklistProps,
+	RowSelectionProps
 } from './cs-grid-cell-props';
 
 export type ColDef =
@@ -59,7 +60,7 @@ interface RowValidationColDef extends BaseColDef<ValidationStatus> {
 	cellType: 'RowValidation';
 }
 
-interface RowSelectionColDef extends BaseColDef<boolean> {
+interface RowSelectionColDef extends BaseColDef<boolean>, RowSelectionProps {
 	cellType: 'RowSelection';
 }
 
@@ -143,4 +144,7 @@ interface BaseColDef<T> extends BaseProps<T> {
 	comparator?: (valueA: CellData<T>, valueB: CellData<T>) => number;
 
 	pinned?: 'left' | 'right';
+
+	/** Allows user to suppress certain keyboard events */
+	suppressKeyboardEvent?: (params: SuppressKeyboardEventParams) => boolean;
 }

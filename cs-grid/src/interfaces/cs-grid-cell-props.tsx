@@ -53,6 +53,16 @@ export interface LookupProps {
 	getLookupValues(searchTerm: string, guid: string): Promise<CSGridLookupSearchResult>;
 }
 
+export interface RowSelectionProps {
+	getActions?(guid: string): Array<RowSelectionAction>;
+}
+
+export interface RowSelectionAction {
+	name: string;
+	icon?: JSX.Element;
+	action: () => void;
+}
+
 export interface PicklistProps {
 	filterAboveSize?: number;
 	toggleSelection?: boolean;

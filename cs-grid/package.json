@@ -46,11 +46,14 @@
 		"ag-grid"
 	],
 	"dependencies": {
+		"@types/jsdom": "^12.2.4",
 		"@types/react": "^16.8.23",
 		"@types/react-datepicker": "^2.8.1",
 		"@types/react-dom": "^16.8.4",
 		"ag-grid-community": "~21.0.1",
 		"ag-grid-react": "~21.0.1",
+		"jsdom": "^16.1.0",
+		"keycode-js": "^2.0.3",
 		"moment": "^2.24.0",
 		"react": "^16.8.6",
 		"react-datepicker": "^2.8.0",

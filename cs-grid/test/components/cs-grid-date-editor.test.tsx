@@ -110,7 +110,7 @@ describe('CS Grid Date Editor', () => {
 		expect(instance.state.value.cellValue).toBe('');
 	});
 
-	test('Renders a date editor should call the passed in onChange function when the onChange function is called.', () => {
+	test('A date editor should call the passed in onChange function when the onChange function is called.', () => {
 		const mockOnChange = jest.fn();
 		const testDate = '2019-01-07';
 

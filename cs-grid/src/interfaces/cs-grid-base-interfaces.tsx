@@ -54,6 +54,11 @@ export interface IsColumnFuncParams {
 	node: RowNode;
 }
 
+export interface SuppressKeyboardEventParams extends IsColumnFuncParams {
+	event: KeyboardEvent;
+	editing: boolean;
+}
+
 export type IsColumnFunc = (params: IsColumnFuncParams) => boolean;
 
 // Ag-grid interfaces have been extended so they are not exposed in the cs-grid package.

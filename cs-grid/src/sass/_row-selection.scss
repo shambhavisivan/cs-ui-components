@@ -1,0 +1,46 @@
+.cs-grid_app-wrapper {
+	
+	.row-menu-wrapper {
+		margin-top: 0.4rem;
+		cursor: pointer;
+		.icon-menu {
+			background: none;
+    		border: 0;
+		}
+	}
+	.ag-popup-editor {
+
+		.row-selection-list {
+			min-width: 5rem;
+			width: 100%;
+			flex-direction: column;
+			overflow: auto;
+
+			display: none; // Changes to flex in js after the menu is moved.
+
+			.row-selection-list-item {
+				position: relative;
+				display: flex;
+				align-items: center;
+				padding: 0.4rem 0.5rem 0.4rem 0.6rem;
+				cursor: pointer;
+				border: 0;
+
+				&:hover {
+					@include sbg(--csgrid-row-selection-hover-bg)
+				}
+
+				.row-selection-icon-wrapper {
+					flex: 1;
+					min-width: 1.5rem;
+				}
+				.row-selection-name-wrapper {
+					flex: 5;
+					min-width: 7rem;
+					text-align: left;
+				}
+			}
+		}
+	}
+}
+

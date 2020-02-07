@@ -12,6 +12,8 @@ import {
 
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import { AgGridReact } from 'ag-grid-react';
+import * as KeyCode from 'keycode-js';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -19,7 +21,8 @@ import {
 	CellClickedEvent,
 	CellData,
 	CSGridControl,
-	Row
+	Row,
+	SuppressKeyboardEventParams
 } from '../interfaces/cs-grid-base-interfaces';
 import { ColDef } from '../interfaces/cs-grid-col-def';
 import {
@@ -51,6 +54,7 @@ import { CSGridMultiSelectPicklistEditor } from './cs-grid-multi-select-picklist
 import { CSGridPicklistEditor } from './cs-grid-picklist-editor';
 import { CSGridPicklistRenderer } from './cs-grid-picklist-renderer';
 import { CSGridQuickFilter, CSGridQuickFilterControl } from './cs-grid-quick-filter';
+import { CSGridRowSelectionEditor } from './cs-grid-row-selection-editor';
 import { CSGridRowSelectionRenderer } from './cs-grid-row-selection-renderer';
 import { CSGridRowValidationRenderer } from './cs-grid-row-validation-renderer';
 import { CSGridTextEditor } from './cs-grid-text-editor';
@@ -108,6 +112,7 @@ class CSGridState {
 		multiSelectPicklistRenderer: CSGridPicklistRenderer,
 		picklistEditor: CSGridPicklistEditor,
 		picklistRenderer: CSGridPicklistRenderer,
+		rowSelectionEditor: CSGridRowSelectionEditor,
 		rowSelectionRenderer: CSGridRowSelectionRenderer,
 		rowValidationRenderer: CSGridRowValidationRenderer,
 		textEditor: CSGridTextEditor,
@@ -280,7 +285,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				);
 
 				/**
-				 *  if there are more than 2 elements in 'afterQualifierSplit',
+				 *  If there are more than 2 elements in 'afterQualifierSplit',
 				 *  that means the user did not escape the colon and our
 				 *  escape tests above failed. So we throw an error.
 				 *
@@ -660,6 +665,11 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			this.addIfDefined(agGridColDef, 'sortable', columnDef.sortable);
 			this.addIfDefined(agGridColDef, 'width', columnDef.width);
 			this.addIfDefined(agGridColDef, 'pinned', columnDef.pinned);
+			this.addIfDefined(
+				agGridColDef,
+				'suppressKeyboardEvent',
+				columnDef.suppressKeyboardEvent
+			);
 
 			if (columnDef.visible !== undefined) {
 				agGridColDef.hide = !columnDef.visible;
@@ -762,9 +772,10 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			}
 
 			if (columnDef.cellType === 'RowSelection') {
+				agGridColDef.cellEditor = 'rowSelectionEditor';
 				agGridColDef.cellRenderer = 'rowSelectionRenderer';
 
-				const defaultSettings = {
+				const defaultSettings: AgGridColDef = {
 					checkboxSelection: true,
 					editable: false,
 					filter: false,
@@ -779,6 +790,25 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 					sortable: false,
 					width: 40
 				};
+
+				if (columnDef.getActions !== undefined) {
+					defaultSettings.width = 80;
+
+					defaultSettings.suppressKeyboardEvent = (
+						params: SuppressKeyboardEventParams
+					) => {
+						return (
+							params.event.which === KeyCode.KEY_ENTER ||
+							params.event.which === KeyCode.KEY_RETURN ||
+							(params.editing &&
+								(params.event.which === KeyCode.KEY_TAB ||
+									params.event.which === KeyCode.KEY_UP ||
+									params.event.which === KeyCode.KEY_DOWN))
+						);
+					};
+				}
+
+				this.addIfDefined(cellParams, 'getActions', columnDef.getActions);
 
 				agGridColDef = { ...defaultSettings, ...agGridColDef };
 			}
