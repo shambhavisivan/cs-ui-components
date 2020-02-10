@@ -17,6 +17,7 @@ import CSModalHeader from './components/CSModalHeader';
 import CSModalFooter from './components/CSModalFooter';
 import CSPaginationWrapper from './components/CSPaginationWrapper';
 import CSPath from './components/CSPath';
+import CSProgressBar from './components/CSProgressBar';
 import CSSelect from './components/CSSelect';
 import CSSection from './components/CSSection';
 import CSSpinner from './components/CSSpinner';
@@ -51,6 +52,7 @@ export {
 	CSModalFooter,
 	CSPaginationWrapper,
 	CSPath,
+	CSProgressBar,
 	CSSelect,
 	CSSection,
 	CSSpinner,

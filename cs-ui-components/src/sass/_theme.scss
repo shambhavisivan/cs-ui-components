@@ -310,6 +310,10 @@ $variables: (
 	--cs-section-bg: $cs-gray-light-10,
 	--cs-section-hover-bg: $cs-blue-light-5,
 	--cs-section-button-shadow: $cs-blue-sf,
+	
+	--cs-progress-indicator-c: $cs-gray-dark-1,
+	--cs-progress-bar-bg: $cs-gray-light-2,
+	--cs-progress-bar-value-bg: $cs-blue
 );
 
 // This will be used later for dark theme support

@@ -23,6 +23,8 @@ import CSToastPreview from './components/CSToastPreview';
 import CSAlertPreview from './components/CSAlertPreview';
 import CSButtonPreview from './components/CSButtonPreview';
 import CSLabelPreview from './components/CSLabelPreview';
+import CSProgressBarPreview from './components/CSProgressBarPreview';
+
 import SidebarList from './SidebarList';
 
 class CSComponentsList extends React.Component {
@@ -124,6 +126,10 @@ class CSComponentsList extends React.Component {
 			{
 				name: 'Label',
 				component: CSLabelPreview
+			},
+			{
+				name: 'Progress Bar',
+				component: CSProgressBarPreview
 			}
 		];
 
