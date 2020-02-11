@@ -141,4 +141,6 @@ interface BaseColDef<T> extends BaseProps<T> {
 
 	/** Comparator function for custom sorting. */
 	comparator?: (valueA: CellData<T>, valueB: CellData<T>) => number;
+
+	pinned?: 'left' | 'right';
 }

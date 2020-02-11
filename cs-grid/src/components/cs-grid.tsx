@@ -659,6 +659,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			this.addIfDefined(agGridColDef, 'resizable', columnDef.resizable);
 			this.addIfDefined(agGridColDef, 'sortable', columnDef.sortable);
 			this.addIfDefined(agGridColDef, 'width', columnDef.width);
+			this.addIfDefined(agGridColDef, 'pinned', columnDef.pinned);
 
 			if (columnDef.visible !== undefined) {
 				agGridColDef.hide = !columnDef.visible;

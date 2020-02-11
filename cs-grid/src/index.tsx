@@ -97,6 +97,7 @@ export class App extends React.Component<object, AppState> {
 			{
 				cellType: 'RowSelection',
 				name: 'exampleRowSelection',
+				pinned: 'left',
 				userInfo
 			},
 			{
@@ -111,6 +112,7 @@ export class App extends React.Component<object, AppState> {
 					label: 'Text Column'
 				},
 				name: 'exampleText',
+				pinned: 'left',
 				userInfo
 			},
 			{
@@ -128,6 +130,7 @@ export class App extends React.Component<object, AppState> {
 					label: 'Currency Column'
 				},
 				name: 'exampleCurrency',
+				pinned: 'right',
 				userInfo
 			},
 			{
