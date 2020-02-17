@@ -53,7 +53,7 @@ describe('usePagination()', () => {
 
 	it('returns first page by default', () => {
 		const TestComponent: React.FC<{}> = () => {
-			const pagination = usePagination(2, () => ROWS.length, () => ROWS);
+			const pagination = usePagination(2, () => ROWS.length, (page, pSize) => ROWS.slice(page * pSize, (page + 1) * pSize));
 			expect(pagination.pageContents).toHaveLength(2);
 			expect(pagination.currentPage).toBe(0);
 			expect(pagination.lastPage).toBe(2);

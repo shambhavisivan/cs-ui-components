@@ -44,7 +44,7 @@ export function usePagination(pageSize: number, rowCount: () => number, pageCalc
 	const lastPage = Math.max(0, Math.floor((rowCount() - 1) / pageSize));
 	const page = currentPage < 0 ? 0 : (currentPage > lastPage ? lastPage : currentPage);
 	return {
-		pageContents: pageCalculator(page, pageSize).slice(0, pageSize),
+		pageContents: pageCalculator(page, pageSize),
 		lastPage,
 		currentPage: page,
 		setCurrentPage
