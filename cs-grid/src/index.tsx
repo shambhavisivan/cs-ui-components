@@ -614,6 +614,7 @@ export class App extends React.Component<object, AppState> {
 						multiSelect={true}
 						onSelectionChange={this.onSelectionChange}
 						uniqueIdentifierColumnName={'exampleGuid'}
+						onCellEditingStopped={this.onCellEditingStopped}
 					/>
 				)}
 				<>
@@ -899,6 +900,12 @@ export class App extends React.Component<object, AppState> {
 
 	private onColumnStateChange = (columnState: string): void => {
 		console.log(columnState);
+	};
+
+	private onCellEditingStopped = (rowNodeId: string, columnField: string) => {
+		console.log(
+			`onCellEditingStopped called with rowNodeId = ${rowNodeId} and columnField = ${columnField}`
+		);
 	};
 }
 

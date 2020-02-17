@@ -1,5 +1,6 @@
 import {
 	AgGridEvent,
+	CellEditingStoppedEvent,
 	CellValueChangedEvent,
 	ColDef as AgGridColDef,
 	GetQuickFilterTextParams,
@@ -78,10 +79,11 @@ export interface CSGridProps {
 	onSelectionChange?(selectedRows: Array<Row>): void;
 	onCellValueChange?(
 		rowNodeId: string,
-		ColumnField: string,
+		columnField: string,
 		oldValue: any,
 		newValue: any
 	): Promise<void>;
+	onCellEditingStopped?(rowNodeId: string, columnField: string): void;
 	onGridReady?(params: GridReadyEvent): void;
 	onCellClicked?(event: CellClickedEvent): void;
 }
@@ -219,6 +221,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 							onDragStopped={this.onColumnStateChange}
 							onCellClicked={this.props.onCellClicked}
 							deltaRowDataMode={this.props.deltaRowDataMode}
+							onCellEditingStopped={this.onCellEditingStopped}
 						/>
 					</div>
 				</div>
@@ -477,6 +480,12 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 	private onSelectionChanged = (): void => {
 		if (this.props.onSelectionChange) {
 			this.props.onSelectionChange(this.getSelectedRows());
+		}
+	};
+
+	private onCellEditingStopped = (event: CellEditingStoppedEvent) => {
+		if (this.props.onCellEditingStopped) {
+			this.props.onCellEditingStopped(this.getRowNodeId(event.data), event.colDef.field);
 		}
 	};
 
