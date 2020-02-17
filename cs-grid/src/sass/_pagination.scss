@@ -21,7 +21,7 @@
 			@include sbg(--csgrid-pagination-bg);
 			@include sc(--csgrid-pagination-c);
 			@include css4 {
-				border: 1px solid var(--csgrid-pagination-br);
+				border: 1px solid cvar(--csgrid-pagination-br);
 			}
 
 			&:nth-of-type(n+2) {
@@ -80,7 +80,7 @@
 			padding: 0 1rem 0 0.5rem;
 			@include sbg(--csgrid-pagination-bg);
 			@include css4 {
-				border: 1px solid var(--csgrid-pagination-br);
+				border: 1px solid cvar(--csgrid-pagination-br);
 			}
 		}
 

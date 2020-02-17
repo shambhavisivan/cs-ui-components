@@ -21,20 +21,20 @@
 	.cs-grid_picklist-search-wrapper {
 		width: 100%;
 		@include css4 {
-			border-bottom: 1px solid var(--csgrid-popup-br);
+			border-bottom: 1px solid cvar(--csgrid-popup-br);
 		}
 	}
 
-	.ag-popup-editor {
+	.ag-popup-editor.ag-popup-editor {
 		display: flex;
-		min-width: 0 !important;
-		max-width: 800px !important;
+		min-width: 0;
+		max-width: 800px;
 		max-height: 300px;
-		border-radius: 0.25rem !important;
+		border-radius: 0.25rem;
 		overflow: hidden;
 		@include css4 {
-			border: 1px solid var(--csgrid-popup-br) !important;
-			box-shadow: 0 2px 3px 0 (--csgrid-popup-box) !important;
+			border: 1px solid cvar(--csgrid-popup-br);
+			box-shadow: 0 2px 3px 0 cvar(--csgrid-popup-box);
 		}
 
 		> .ag-react-container > div {
@@ -45,7 +45,7 @@
 			box-shadow: none;
 
 			> div {
-				width: 100% !important;
+				width: 100%;
 			}
 		}
 
@@ -69,7 +69,7 @@
 				padding: 0.4rem 0.5rem 0.4rem 0.6rem;
 				cursor: pointer;
 				@include css4 {
-					border-bottom: 1px solid var(--csgrid-picklist-br);
+					border-bottom: 1px solid cvar(--csgrid-picklist-br);
 				}
 
 				&:hover {
@@ -90,8 +90,8 @@
 						right: 0.6rem;
 						transform: translateY(-50%) rotate(-45deg);
 						@include css4 {
-							border-bottom: 2px solid var(--csgrid-picklist-tick-br);
-							border-left: 2px solid var(--csgrid-picklist-tick-br);
+							border-bottom: 2px solid cvar(--csgrid-picklist-tick-br);
+							border-left: 2px solid cvar(--csgrid-picklist-tick-br);
 						}
 					}
 				}

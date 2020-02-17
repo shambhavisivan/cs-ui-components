@@ -2,7 +2,7 @@
 	top: 35px !important;
 	margin-left: -13px;
 	@include css4 {
-		border: 1px solid var(--csgrid-popup-br) !important;
+		border: 1px solid cvar(--csgrid-popup-br) !important;
 		box-shadow: 0 2px 3px 0 (--csgrid-popup-box) !important;
 	}
 }
@@ -23,12 +23,12 @@
 			appearance: none;
 			@include sbg(--csgrid-input-bg);
 			@include css4 {
-				border: 1px solid var(--csgrid-input-br);
+				border: 1px solid cvar(--csgrid-input-br);
 			}
 			&:focus {
 				@include css4 {
-					border: 1px solid var(--csgrid-main);
-					box-shadow: 0 0 3px var(--csgrid-input-box);
+					border: 1px solid cvar(--csgrid-main);
+					box-shadow: 0 0 3px cvar(--csgrid-input-box);
 				}
 			}
 		}
@@ -44,13 +44,13 @@
 				font-size: 0.75rem;
 				@include sbg(--csgrid-input-bg);
 				@include css4 {
-					border: 1px solid var(--csgrid-input-br);
+					border: 1px solid cvar(--csgrid-input-br);
 				}
 
 				&:focus {
 					@include css4 {
-						border: 1px solid var(--csgrid-main);
-						box-shadow: 0 0 3px var(--csgrid-input-box);
+						border: 1px solid cvar(--csgrid-main);
+						box-shadow: 0 0 3px cvar(--csgrid-input-box);
 					}
 				}
 			}

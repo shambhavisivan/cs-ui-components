@@ -41,7 +41,7 @@ export class CSGridRowSelectionEditor
 			if (popupWrapper) {
 				const currentTop = parseInt(popupWrapper.style.top.slice(0, -2), 10);
 				popupWrapper.style.top = `${this.props.node.rowHeight + currentTop}px`;
-				popupWrapper.style.left = `${this.props.colDef.width - 30}px`;
+				popupWrapper.style.left = `${this.props.colDef.width - 40}px`;
 			}
 
 			const rowSelectionList: HTMLElement = document.querySelectorAll<HTMLElement>(

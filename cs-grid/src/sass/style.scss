@@ -33,7 +33,7 @@
 
 		.ag-root {
 			@include css4 {
-				border: 1px solid var(--csgrid-row-br);
+				border: 1px solid cvar(--csgrid-row-br);
 			}
 
 			.ag-header {
@@ -44,7 +44,7 @@
 				@include sbg(--csgrid-header-row-bg);
 				@include sc(--csgrid-header-row-c);
 				@include css4 {
-					border-bottom: 1px solid var(--csgrid-row-br);
+					border-bottom: 1px solid cvar(--csgrid-row-br);
 				}
 
 				.ag-header-row {
@@ -121,7 +121,7 @@
 			cursor: pointer;
 			@include sbg(--csgrid-checkbox-bg);
 			@include css4 {
-				border: 1px solid var(--csgrid-checkbox-br);
+				border: 1px solid cvar(--csgrid-checkbox-br);
 			}
 
 			&:before {
@@ -132,8 +132,8 @@
 			&:focus {
 				outline: 0;
 				@include css4 {
-					border: 1px solid var(--csgrid-checkbox-checked-br);
-					box-shadow: 0 0 3px var(--csgrid-checkbox-checked-br);
+					border: 1px solid cvar(--csgrid-checkbox-checked-br);
+					box-shadow: 0 0 3px cvar(--csgrid-checkbox-checked-br);
 				}
 			}
 		}
@@ -174,7 +174,7 @@
 				transform: translate3d(-50%, -65%, 0);
 				box-sizing: border-box;
 				@include css4 {
-					border-bottom: 2px solid var(--csgrid-secondary);
+					border-bottom: 2px solid cvar(--csgrid-secondary);
 				}
 			}
 		}
@@ -199,7 +199,7 @@
 			padding-left: 0.75rem;
 			overflow: visible;
 			@include css4 {
-				border: 2px solid var(--csgrid-transparent);
+				border: 2px solid cvar(--csgrid-transparent);
 			}
 		}
 
@@ -267,7 +267,7 @@
 
 			&:focus:not(.read-only-cell-wrapper).ag-cell-focus.ag-cell-focus {
 				@include css4 {
-					border: 2px dashed var(--csgrid-main);
+					border: 2px dashed cvar(--csgrid-main);
 				}
 			}
 		}
@@ -280,7 +280,7 @@
 		height: 35px;
 		width: 0;
 		@include css4 {
-			border-right: 1px solid var(--csgrid-input-br);
+			border-right: 1px solid cvar(--csgrid-input-br);
 		}
 	}
 
@@ -338,7 +338,7 @@
 
 		&.ag-cell-focus {
 			@include css4 {
-				border: 2px solid var(--csgrid-transparent) !important;
+				border: 2px solid cvar(--csgrid-transparent) !important;
 			}
 		}
 	}
@@ -370,6 +370,6 @@
 
 .ag-theme-balham .ag-ltr .ag-has-focus.ag-has-focus .ag-cell-focus:not(.ag-cell-range-selected) {
 	@include css4 {
-		border: 2px dashed var(--csgrid-main);
+		border: 2px dashed cvar(--csgrid-main);
 	}
 }

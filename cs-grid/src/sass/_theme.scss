@@ -78,8 +78,12 @@ $variables: (
 	--csgrid-picklist-tick-br: $cs-white,
 	--csgrid-picklist-br: rgba($cs-white, 0.25),
 
-	--csgrid-row-selection-hover-bg: $cs-gray-light-8,
-	--csgrid-row-selection-br: rgba($cs-white, 0.25),
+	--csgrid-row-selection-hover-bg: $cs-gray-light-7,
+	--csgrid-row-selection-br: $cs-blue-sf,
+	--csgrid-row-selection-transparent-br: transparent,
+	--csgrid-row-selection-c: $cs-gray-dark-1,
+	--csgrid-row-selection-bg: $cs-white,
+	--csgrid-row-selection-icon-hover-c: $cs-gray-dark-3,
 
 	--csgrid-datepicker-c: $cs-black,
 	--csgrid-datepicker-bg: $cs-white,

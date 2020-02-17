@@ -82,7 +82,7 @@
 						font-size: 0.8125rem;
 						@include sbg(--csgrid-datepicker-bg);
 						@include css4 {
-							border: 1px solid var(--csgrid-datepicker-br);
+							border: 1px solid cvar(--csgrid-datepicker-br);
 						}
 					}
 
@@ -144,7 +144,7 @@
 
 		&::before {
 			@include css4 {
-				fill: var(--csgrid-input-icon-fill);
+				fill: cvar(--csgrid-input-icon-fill);
 			}
 		}
 

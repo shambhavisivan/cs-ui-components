@@ -29,8 +29,8 @@
 		&:focus + .cs-grid_checkbox-faux {
 			outline: 0;
 			@include css4 {
-				border: 1px solid var(--csgrid-checkbox-checked-br);
-				box-shadow: 0 0 3px var(--csgrid-checkbox-checked-br);
+				border: 1px solid cvar(--csgrid-checkbox-checked-br);
+				box-shadow: 0 0 3px cvar(--csgrid-checkbox-checked-br);
 			}
 		}
 

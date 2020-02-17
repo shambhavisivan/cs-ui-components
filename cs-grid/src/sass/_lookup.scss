@@ -22,15 +22,15 @@
 		line-height: 1.875rem;
 		@include sbg(--csgrid-input-bg);
 		@include css4 {
-			border: 1px solid var(--csgrid-input-br);
+			border: 1px solid cvar(--csgrid-input-br);
 		}
 
 		&:active,
 		&:focus {
 			outline: none;
 			@include css4 {
-				border-color: var(--csgrid-input-active-br);
-				box-shadow: 0 0 3px var(--csgrid-input-box);
+				border-color: cvar(--csgrid-input-active-br);
+				box-shadow: 0 0 3px cvar(--csgrid-input-box);
 			}
 		}
 	}
@@ -58,7 +58,7 @@
 
 		.cs-grid_clear-icon {
 			@include css4 {
-				fill: var(--csgrid-input-icon-fill);
+				fill: cvar(--csgrid-input-icon-fill);
 			}
 		}
 	}
@@ -70,6 +70,6 @@
 
 	.ag-root-wrapper .ag-root {
 		border: none;
-		border-top: 1px solid var(--csgrid-row-br);
+		border-top: 1px solid cvar(--csgrid-row-br);
 	}
 }
