@@ -1,0 +1,67 @@
+// CS custom select
+//
+// CS custom select component.
+
+.cs-custom-select {
+	position: relative;
+
+	.cs-input-text:read-only {
+		padding: 0 1rem 0 0.75rem;
+		@include sbg(--cs-input-bg);
+		@include css4 {
+			border: 1px solid cvar(--cs-input-br);
+		}
+
+		&:active,
+		&:focus {
+			@include sbg(--cs-input-active-bg);
+			@include css4 {
+				border-color: cvar(--cs-input-active-br);
+				box-shadow: 0 0 0.1875rem cvar(--cs-custom-select-shadow);
+			}
+		}
+	}
+}
+
+// Dropdown
+.cs-custom-select-dropdown {
+	border-radius: 0.25rem;
+	font-size: 0.8125rem;
+	list-style: none;
+	margin-top: 0.25rem;
+	min-width: 6rem;
+	max-width: 20rem;
+	padding: 0.25rem 0;
+	position: absolute;
+	width: 100%;
+	@include sbg(--cs-custom-select-dropdown-bg);
+	@include css4 {
+		border: 1px solid cvar(--cs-custom-select-dropdown-br);
+		box-shadow: 0 2px 3px 0 cvar(--cs-custom-select-dropdown-shadow);
+	}
+
+	> div {
+		cursor: pointer;
+		padding: 0.5rem 0.75rem;
+
+		> svg {
+			margin-right: 0.5rem;
+		}
+
+		&:hover {
+			@include sbg(--cs-custom-select-dropdown-hover-bg);
+		}
+	}
+}
+
+// Input
+.cs-custom-select-input {
+	position: relative;
+
+	svg {
+		bottom: 50%;
+		position: absolute;
+		right: 1rem;
+		transform: translateY(50%);
+	}
+}

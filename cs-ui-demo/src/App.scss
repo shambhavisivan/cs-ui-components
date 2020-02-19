@@ -387,6 +387,13 @@ body,
 					}
 				}
 
+				&.custom-select-preview{
+
+					.custom-class {
+						border: 3px solid pink;
+					}
+				}
+
 				.blue-background {
 					background-color: #16325c;
 					padding: 0.5rem;

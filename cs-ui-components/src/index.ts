@@ -1,5 +1,6 @@
 import CSAlert from './components/CSAlert';
 import CSButton from './components/CSButton';
+import CSCustomSelect from './components/CSCustomSelect';
 import CSLabel from './components/CSLabel';
 import CSIcon from './components/CSIcon';
 import CSInputNumber from './components/CSInputNumber';
@@ -25,6 +26,7 @@ import './sass/style.scss';
 export {
 	CSAlert,
 	CSButton,
+	CSCustomSelect,
 	CSLabel,
 	CSIcon,
 	CSInputNumber,

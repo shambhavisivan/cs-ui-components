@@ -243,6 +243,12 @@ $variables: (
 	--cs-select-focus: $cs-blue-sf,
 	--cs-select-icon-fill: $cs-gray-dark-5,
 	--cs-select-icon-disabled-fill: $cs-gray-dark-5,
+
+	--cs-custom-select-dropdown-bg: $cs-white,
+	--cs-custom-select-dropdown-br: $cs-gray-light-2,
+	--cs-custom-select-dropdown-shadow: $cs-gray-light-5,
+	--cs-custom-select-dropdown-hover-bg: $cs-gray-light-2,
+	--cs-custom-select-shadow: $cs-blue-sf,
 );
 
 // This will be used later for dark theme support
