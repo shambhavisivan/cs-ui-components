@@ -57,9 +57,6 @@ $css4: true;
 $variables: (
 	--cs-main-c: $cs-blue-sf,
 
-	--cs-card-bg: $cs-white,
-	--cs-card-br: $cs-gray-light-2,
-
 	--cs-shadow-focus: $cs-blue-sf,
 	--cs-shadow-light: rgba($cs-black, 0.1),
 	--cs-shadow-medium: rgba($cs-black, 0.22),
@@ -267,6 +264,10 @@ $variables: (
 	--cs-chip-success-bg: $cs-green-light-1,
 	--cs-chip-success-c: $cs-green-light-1,
 	--cs-chip-success-br: $cs-green-light-1,
+
+	--cs-card-bg: $cs-white,
+	--cs-card-br: $cs-gray-light-3,
+	--cs-card-shadow: $cs-gray-light-4,
 );
 
 // This will be used later for dark theme support
