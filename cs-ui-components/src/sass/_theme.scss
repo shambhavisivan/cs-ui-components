@@ -138,7 +138,7 @@ $variables: (
 	--cs-input-number-disabled-bg: $cs-gray-light-5,
 	--cs-input-number-disabled-br: $cs-gray-medium-3,
 	--cs-input-number-readonly-shadow-br: $cs-blue-sf,
-	
+
 	--cs-textarea-bg: $cs-white,
 	--cs-textarea-br: $cs-gray-light-2,
 	--cs-textarea-active-br: $cs-blue-medium-5,
@@ -235,20 +235,38 @@ $variables: (
 	--cs-tab-hover-br: $cs-blue-sf,
 
 	--cs-select-bg: $cs-white,
-	--cs-select-br: $cs-gray-light-2,
-	--cs-select-active-br: $cs-blue-medium-5,
+	--cs-select-br: $cs-gray-light-3,
+	--cs-select-active-br: $cs-blue-dark-3,
 	--cs-select-active-bg: $cs-white,
-	--cs-select-disabled-bg: $cs-gray-light-5,
+	--cs-select-disabled-bg: $cs-gray-light-2,
 	--cs-select-disabled-br: $cs-gray-medium-3,
 	--cs-select-focus: $cs-blue-sf,
 	--cs-select-icon-fill: $cs-gray-dark-5,
 	--cs-select-icon-disabled-fill: $cs-gray-dark-5,
 
 	--cs-custom-select-dropdown-bg: $cs-white,
-	--cs-custom-select-dropdown-br: $cs-gray-light-2,
-	--cs-custom-select-dropdown-shadow: $cs-gray-light-5,
-	--cs-custom-select-dropdown-hover-bg: $cs-gray-light-2,
+	--cs-custom-select-dropdown-br: $cs-gray-light-3,
+	--cs-custom-select-dropdown-shadow: $cs-gray-light-2,
+	--cs-custom-select-dropdown-hover-bg: $cs-gray-light-3,
 	--cs-custom-select-shadow: $cs-blue-sf,
+
+	--cs-chip-transparent-bg: transparent,
+	--cs-chip-c: $cs-white,
+	--cs-chip-neutral-bg: $cs-gray-light-5,
+	--cs-chip-neutral-c: $cs-gray-dark-1,
+	--cs-chip-neutral-br: $cs-gray-medium-1,
+	--cs-chip-brand-bg: $cs-blue-sf,
+	--cs-chip-brand-c: $cs-blue-sf,
+	--cs-chip-brand-br: $cs-blue-sf,
+	--cs-chip-warning-bg: $cs-orange-medium-2,
+	--cs-chip-warning-c: $cs-orange-medium-2,
+	--cs-chip-warning-br: $cs-orange-medium-2,
+	--cs-chip-error-bg: $cs-red-medium-2,
+	--cs-chip-error-c: $cs-red-medium-2,
+	--cs-chip-error-br: $cs-red-medium-2,
+	--cs-chip-success-bg: $cs-green-light-1,
+	--cs-chip-success-c: $cs-green-light-1,
+	--cs-chip-success-br: $cs-green-light-1,
 );
 
 // This will be used later for dark theme support

@@ -1,0 +1,78 @@
+// CS Chip
+//
+// CS Chip component.
+
+.cs-chip {
+	border-radius: 0.75rem;
+	display: inline-block;
+	font-size: 0.6125rem;
+	letter-spacing: 0.125rem;
+	line-height: 1;
+	padding: 0.5rem 0.75rem;
+	text-transform: uppercase;
+	@include sbg(--cs-chip-transparent-bg);
+
+
+	&-brand {
+		@include sbg(--cs-chip-brand-bg);
+		@include sc(--cs-chip-c);
+	}
+
+	&-warning {
+		@include sbg(--cs-chip-warning-bg);
+		@include sc(--cs-chip-c);
+	}
+
+	&-error {
+		@include sbg(--cs-chip-error-bg);
+		@include sc(--cs-chip-c);
+	}
+
+	&-success {
+		@include sbg(--cs-chip-success-bg);
+		@include sc(--cs-chip-c);
+	}
+
+	&-transparent {
+		@include sbg(--transparent);
+	}
+	&-neutral {
+		@include sbg(--cs-chip-neutral-bg);
+		@include sc(--cs-chip-neutral-c);
+	}
+
+	&-neutral-border {
+		@include sc(--cs-chip-neutral-c);
+		@include css4 {
+			border: 1px solid cvar(--cs-chip-neutral-br);
+		}
+	}
+
+	&-brand-border {
+		@include sc(--cs-chip-brand-c);
+		@include css4 {
+			border: 1px solid cvar(--cs-chip-brand-br);
+		}
+	}
+
+	&-warning-border {
+		@include sc(--cs-chip-warning-c);
+		@include css4 {
+			border: 1px solid cvar(--cs-chip-warning-br);
+		}
+	}
+
+	&-error-border {
+		@include sc(--cs-chip-error-c);
+		@include css4 {
+			border: 1px solid cvar(--cs-chip-error-br);
+		}
+	}
+
+	&-success-border {
+		@include sc(--cs-chip-success-c);
+		@include css4 {
+			border: 1px solid cvar(--cs-chip-success-br);
+		}
+	}
+}

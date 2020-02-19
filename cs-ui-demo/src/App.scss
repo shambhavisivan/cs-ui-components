@@ -394,6 +394,13 @@ body,
 					}
 				}
 
+				&.chip-preview {
+
+					.custom-class {
+						background-color: pink;
+					}
+				}
+
 				.blue-background {
 					background-color: #16325c;
 					padding: 0.5rem;
