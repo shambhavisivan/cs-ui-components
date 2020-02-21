@@ -66,7 +66,12 @@ export interface RowSelectionAction {
 export interface PicklistProps {
 	filterAboveSize?: number;
 	toggleSelection?: boolean;
-	getOptions(guid: string): Array<string>;
+	getOptions(guid: string): Array<string | PicklistOption>;
+}
+
+export interface PicklistOption {
+	id: string;
+	label: string;
 }
 
 export interface BaseProps<T> {

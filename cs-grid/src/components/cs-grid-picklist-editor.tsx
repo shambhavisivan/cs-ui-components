@@ -5,30 +5,44 @@ import {
 	CSGridCellEditor,
 	CSGridCellEditorState
 } from '../interfaces/cs-grid-base-interfaces';
-import { CSGridCellEditorProps, PicklistProps } from '../interfaces/cs-grid-cell-props';
+import {
+	CSGridCellEditorProps,
+	PicklistOption,
+	PicklistProps
+} from '../interfaces/cs-grid-cell-props';
 
-interface CSGridPicklistEditorState extends CSGridCellEditorState<string | Array<string>> {
-	options: Map<string, boolean>;
+type PicklistCellValueType = string | PicklistOption | Array<string | PicklistOption>;
+interface PickListRow {
+	isSelected: boolean;
+	label: string;
+}
+type PickListRows = Map<string, PickListRow>;
+
+interface CSGridPicklistEditorState extends CSGridCellEditorState<PicklistCellValueType> {
+	options: PickListRows;
+	rows: Array<string | PicklistOption>;
 	searchTerm: string;
 	noneSelected: boolean;
 }
 
 export class CSGridPicklistEditor
 	extends React.Component<
-		CSGridCellEditorProps<string | Array<string>> & PicklistProps,
+		CSGridCellEditorProps<PicklistCellValueType> & PicklistProps,
 		CSGridPicklistEditorState
 	>
 	implements CSGridCellEditor {
 	multiSelect: boolean = false;
 	private clearAllName = '--None--';
 
-	constructor(props: CSGridCellEditorProps<string | Array<string>> & PicklistProps) {
+	constructor(props: CSGridCellEditorProps<PicklistCellValueType> & PicklistProps) {
 		super(props);
 
-		const options: Map<string, boolean> = this.getSelectedOptions(this.props.value.cellValue);
+		const rows = this.props.getOptions(this.props.node.id);
+		const options = this.getOptions(this.props.value.cellValue, rows);
 		this.state = {
 			noneSelected: this.getNoOfSelected(options) === 0,
 			options,
+			rows,
 			searchTerm: '',
 			value: this.props.value
 		};
@@ -50,22 +64,22 @@ export class CSGridPicklistEditor
 			React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>
 		> = [];
 
-		this.state.options.forEach((selected: boolean, key: string): void => {
-			const selectOption = () => this.optionSelected(key);
+		this.state.options.forEach((option: PickListRow, id: string): void => {
+			const selectOption = () => this.optionSelected(id);
 			dropDownValues.push(
 				<li
-					className={'picklist-list-item' + (selected ? ' selected' : '')}
-					key={key}
+					className={'picklist-list-item' + (option.isSelected ? ' selected' : '')}
+					key={id}
 					onClick={selectOption}
 				>
-					{key}
+					{option.label}
 				</li>
 			);
 		});
 
 		const filter: boolean =
 			this.props.filterAboveSize !== undefined &&
-			this.props.filterAboveSize < this.props.getOptions(this.props.node.id).length;
+			this.props.filterAboveSize < this.state.rows.length;
 
 		return (
 			<div className='cs-grid_popup-wrapper'>
@@ -112,34 +126,34 @@ export class CSGridPicklistEditor
 	}
 
 	private clearSelected = async () => {
-		const options = new Map(this.state.options);
-		for (const option of this.props.getOptions(this.props.node.id)) {
-			options.set(option, false);
+		const options: PickListRows = new Map(this.state.options);
+		for (const option of this.state.rows) {
+			this.setRow(options, option, false);
 		}
 		await this.onChange(options);
 	};
 
-	private optionSelected = async (key: string): Promise<void> => {
+	private optionSelected = async (id: string): Promise<void> => {
 		const options = new Map(this.state.options);
 		const toggleSelection =
 			this.multiSelect || this.props.toggleSelection === undefined
 				? true
 				: this.props.toggleSelection;
-		const selected = toggleSelection ? !options.get(key) : true;
+		const selected = toggleSelection ? !options.get(id).isSelected : true;
 
 		if (!this.multiSelect) {
-			for (const option of this.props.getOptions(this.props.node.id)) {
-				options.set(option, false);
+			for (const option of this.state.rows) {
+				this.setRow(options, option, false);
 			}
 		}
-		options.set(key, selected);
+		this.setRow(options, { id, label: options.get(id).label }, selected);
 
 		await this.onChange(options);
 	};
 
-	private onChange = async (options: Map<string, boolean>): Promise<void> => {
+	private onChange = async (options: PickListRows): Promise<void> => {
 		const cellValue = this.getSelected(options);
-		let value: CellData<string | Array<string>> = {
+		let value: CellData<PicklistCellValueType> = {
 			cellValue,
 			errorMessage: this.state.value.errorMessage
 		};
@@ -155,7 +169,7 @@ export class CSGridPicklistEditor
 		this.setState(
 			{
 				noneSelected: this.getNoOfSelected(options) === 0,
-				options: this.getSelectedOptions(value.cellValue),
+				options: this.getOptions(value.cellValue, this.state.rows),
 				value
 			},
 			() => {
@@ -175,22 +189,27 @@ export class CSGridPicklistEditor
 	};
 
 	private filterText = (searchTerm: string) => {
-		const options: Map<string, boolean> = new Map();
+		const options: PickListRows = new Map();
 
-		for (const option of this.props.getOptions(this.props.node.id)) {
-			if (option.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0) {
-				options.set(option, this.state.options.get(option));
+		const fullList = this.getOptions(this.props.value.cellValue, this.state.rows);
+
+		for (const [id, pickListRow] of fullList.entries()) {
+			if (pickListRow.label.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0) {
+				options.set(id, fullList.get(id));
 			}
 		}
 
 		this.setState({ options, searchTerm });
 	};
 
-	private getSelected = (options: Map<string, boolean>): Array<string> | string => {
-		const values: Array<string> = [];
-		for (const [key, value] of options.entries()) {
-			if (value) {
-				values.push(key);
+	private getSelected = (options: PickListRows): PicklistCellValueType => {
+		const values: Array<string | PicklistOption> = [];
+
+		const stringCells = typeof this.state.rows[0] === 'string';
+
+		for (const [id, pickListRow] of options.entries()) {
+			if (pickListRow.isSelected) {
+				values.push(stringCells ? id : { id, label: pickListRow.label });
 			}
 		}
 
@@ -201,29 +220,50 @@ export class CSGridPicklistEditor
 		return values;
 	};
 
-	private getSelectedOptions(selected: Array<string> | string) {
-		const options: Map<string, boolean> = new Map();
+	private getOptions = (
+		selected: PicklistCellValueType,
+		pickListRows: Array<string | PicklistOption>
+	) => {
+		const options: PickListRows = new Map();
 
-		for (const option of this.props.getOptions(this.props.node.id)) {
-			options.set(
-				option,
-				selected && Array.isArray(selected)
-					? selected.includes(option)
-					: selected === option
-			);
+		for (const option of pickListRows) {
+			const id = typeof option === 'string' ? option : option.id;
+			const label = typeof option === 'string' ? option : option.label;
+
+			let isSelected = false;
+			if (selected) {
+				let _selected = Array.isArray(selected) ? selected : [selected];
+				_selected = _selected.map(selectedOption =>
+					typeof selectedOption === 'string' ? selectedOption : selectedOption.id
+				);
+
+				isSelected = _selected.includes(id);
+			}
+
+			options.set(id, { isSelected, label });
 		}
 
 		return options;
-	}
+	};
 
-	private getNoOfSelected = (options: Map<string, boolean>): number => {
+	private getNoOfSelected = (options: PickListRows): number => {
 		let total: number = 0;
 		for (const selected of options.values()) {
-			if (selected) {
+			if (selected.isSelected) {
 				total++;
 			}
 		}
 
 		return total;
+	};
+
+	private setRow = (
+		options: PickListRows,
+		option: string | PicklistOption,
+		isSelected: boolean
+	) => {
+		const id = typeof option === 'string' ? option : option.id;
+		const label = typeof option === 'string' ? option : option.label;
+		options.set(id, { isSelected, label });
 	};
 }

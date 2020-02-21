@@ -35,7 +35,7 @@ export class App extends React.Component<object, AppState> {
 	private sortedAndFilteredRows: Array<Row>;
 
 	private columnState: string =
-		'[{"colId":"exampleRowSelection","hide":false,"aggFunc":null,"width":80,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleGuid","hide":true,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleDecimal","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleText","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleCurrency","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleDate","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleLookup","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleMultiSelectLookup","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleBoolean","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleIntegerStep","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleInteger","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"examplePicklist","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleMultiSelectPicklist","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleRowValidation","hide":false,"aggFunc":null,"width":40,"pivotIndex":null,"pinned":null,"rowGroupIndex":null}]';
+		'[{"colId":"exampleRowSelection","hide":false,"aggFunc":null,"width":80,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleGuid","hide":true,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleDecimal","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleText","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleCurrency","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleDate","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleLookup","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleMultiSelectLookup","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleBoolean","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleIntegerStep","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleInteger","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"examplePicklist","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"examplePicklistWithLabels","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleMultiSelectPicklist","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleMultiSelectPicklistWithLabels","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleRowValidation","hide":false,"aggFunc":null,"width":40,"pivotIndex":null,"pinned":null,"rowGroupIndex":null}]';
 
 	constructor(props: object) {
 		super(props);
@@ -266,6 +266,34 @@ export class App extends React.Component<object, AppState> {
 				userInfo
 			},
 			{
+				cellType: 'Picklist',
+				filterAboveSize: 5,
+				getOptions: () => {
+					return [
+						{ id: '1', label: 'Bob' },
+						{ id: '2', label: 'Harry' },
+						{ id: '3', label: 'Sally' },
+						{ id: '4', label: 'Mary' },
+						{ id: '5', label: 'John' },
+						{ id: '6', label: 'Jack' },
+						{ id: '7', label: 'Sue' },
+						{ id: '8', label: 'Sean' },
+						{ id: '9', label: 'Niall' },
+						{ id: '10', label: 'Albert' },
+						{ id: '11', label: 'Fred' },
+						{ id: '12', label: 'Jenny' },
+						{ id: '1', label: 'Larry' }
+					];
+				},
+				header: {
+					class: 'PicklistOverrideClass',
+					label: 'Picklist With Labels'
+				},
+				name: 'examplePicklistWithLabels',
+				toggleSelection: false,
+				userInfo
+			},
+			{
 				cellType: 'MultiSelectPicklist',
 				getOptions: () => {
 					return [
@@ -288,6 +316,32 @@ export class App extends React.Component<object, AppState> {
 					label: 'Multi Select Picklist'
 				},
 				name: 'exampleMultiSelectPicklist',
+				userInfo
+			},
+			{
+				cellType: 'MultiSelectPicklist',
+				filterAboveSize: 5,
+				getOptions: () => {
+					return [
+						{ id: '1', label: 'Bob' },
+						{ id: '2', label: 'Harry' },
+						{ id: '3', label: 'Sally' },
+						{ id: '4', label: 'Mary' },
+						{ id: '5', label: 'John' },
+						{ id: '6', label: 'Jack' },
+						{ id: '7', label: 'Sue' },
+						{ id: '8', label: 'Sean' },
+						{ id: '9', label: 'Niall' },
+						{ id: '10', label: 'Albert' },
+						{ id: '11', label: 'Fred' },
+						{ id: '12', label: 'Jenny' },
+						{ id: '1', label: 'Larry' }
+					];
+				},
+				header: {
+					label: 'Multi Select Picklist With Labels'
+				},
+				name: 'exampleMultiSelectPicklistWithLabels',
 				userInfo
 			},
 			{
@@ -344,8 +398,14 @@ export class App extends React.Component<object, AppState> {
 				exampleMultiSelectPicklist: {
 					cellValue: ['Harry', 'Sally']
 				},
+				exampleMultiSelectPicklistWithLabels: {
+					cellValue: [{ id: '2', label: 'Harry' }, { id: '3', label: 'Sally' }]
+				},
 				examplePicklist: {
 					cellValue: 'Bob'
+				},
+				examplePicklistWithLabels: {
+					cellValue: { id: '2', label: 'Harry' }
 				},
 				exampleRowSelection: {},
 				exampleRowValidation: {
@@ -409,8 +469,15 @@ export class App extends React.Component<object, AppState> {
 					cellValue: ['Sally', 'Bob'],
 					errorMessage: 'An error message'
 				},
+				exampleMultiSelectPicklistWithLabels: {
+					cellValue: [{ id: '5', label: 'John' }, { id: '3', label: 'Sally' }]
+				},
 				examplePicklist: {
 					cellValue: 'Harry',
+					errorMessage: 'An error message'
+				},
+				examplePicklistWithLabels: {
+					cellValue: { id: '5', label: 'John' },
 					errorMessage: 'An error message'
 				},
 				exampleRowSelection: {},
@@ -466,8 +533,15 @@ export class App extends React.Component<object, AppState> {
 				exampleMultiSelectPicklist: {
 					cellValue: ['Bob', 'Harry']
 				},
+				exampleMultiSelectPicklistWithLabels: {
+					cellValue: [{ id: '5', label: 'John' }, { id: '11', label: 'Fred' }]
+				},
 				examplePicklist: {
 					cellValue: 'Sally'
+				},
+				examplePicklistWithLabels: {
+					cellValue: { id: '11', label: 'Fred' },
+					errorMessage: 'An error message'
 				},
 				exampleRowSelection: {},
 				exampleRowValidation: {
@@ -531,8 +605,16 @@ export class App extends React.Component<object, AppState> {
 					cellValue: ['Sean', 'Sue'],
 					errorMessage: ''
 				},
+				exampleMultiSelectPicklistWithLabels: {
+					cellValue: [{ id: '7', label: 'Sue' }, { id: '11', label: 'Fred' }],
+					errorMessage: ''
+				},
 				examplePicklist: {
 					cellValue: 'Sean',
+					errorMessage: ''
+				},
+				examplePicklistWithLabels: {
+					cellValue: { id: '7', label: 'Sue' },
 					errorMessage: ''
 				},
 				exampleRowSelection: {},
