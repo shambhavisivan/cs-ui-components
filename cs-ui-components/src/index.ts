@@ -5,6 +5,7 @@ import CSCardHeader from './components/card/CSCardHeader';
 import CSCheckbox from './components/CSCheckbox';
 import CSChip from './components/CSChip';
 import CSCustomSelect from './components/CSCustomSelect';
+import CSDatepicker from './components/CSDatepicker';
 import CSLabel from './components/CSLabel';
 import CSIcon from './components/CSIcon';
 import CSInputNumber from './components/CSInputNumber';
@@ -38,6 +39,7 @@ export {
 	CSCheckbox,
 	CSChip,
 	CSCustomSelect,
+	CSDatepicker,
 	CSLabel,
 	CSIcon,
 	CSInputNumber,
