@@ -5,6 +5,7 @@ import CSSelectPreview from './components/CSSelectPreview';
 import CSCheckboxPreview from './components/CSCheckboxPreview';
 import CSTogglePreview from './components/CSTogglePreview';
 import CSTextareaPreview from './components/CSTextareaPreview';
+import CSIconPreview from './components/CSIconPreview';
 import CSInputSearchPreview from './components/CSInputSearchPreview';
 import CSCustomSelectPreview from './components/CSCustomSelectPreview';
 import CSDatepickerPreview from './components/CSDatepickerPreview';
@@ -130,6 +131,10 @@ class CSComponentsList extends React.Component {
 			{
 				name: 'Progress Bar',
 				component: CSProgressBarPreview
+			},
+			{
+				name: 'Icon',
+				component: CSIconPreview
 			}
 		];
 
