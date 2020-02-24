@@ -1,7 +1,6 @@
 import React from 'react';
 import {Route, NavLink} from 'react-router-dom';
 
-import CSIcon from '../../src/components/CSIcon';
 import classNames from 'classnames';
 
 interface SidebarItem {
@@ -82,13 +81,7 @@ class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
 					}
 				</div>
 				<div className="components-preview-wrapper">
-					{this.props.toggle ?
-						<div className="sidebar-toggle" onClick={this.toggleSidebar}>
-							<CSIcon name={this.state.sidebarOpen ? 'close' : 'rows'}/>
-						</div>
-						:
-						null
-					}
+					{null}
 					<div className={componentPreviewClass}>
 						{this.props.sidebarList.map(component => (
 							<Route key={component.name} path={`${this.props.path}${component.name.split(' ').join('')}`} component={component.component}/>

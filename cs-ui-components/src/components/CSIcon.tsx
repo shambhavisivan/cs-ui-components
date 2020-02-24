@@ -1,31 +1,35 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import slds from '../icons/slds-icons.svg';
-import cs from '../icons/cs-icons.svg';
+import SldsIconSvg from '../icons/slds-icons.svg';
+import CsIconSvg from '../icons/cs-icons.svg';
 
-class CSIcon extends React.Component {
+// export interface CSIconProps {
+// 	name: string;
+// }
+
+class CSIcon extends React.Component<any> {
 
 	render() {
 
-		var styleClass = classNames(
+		const styleClass = classNames(
 			'cs-icon',
 			{
 				[`${this.props.styleClass}`] : this.props.styleClass
 			}
 		);
 
-		let origin = slds;
+		let origin = SldsIconSvg;
 		let prefix = 'cssfi-';
 		if (this.props.origin === 'cs') {
-			origin = cs;
+			origin = CsIconSvg;
 			prefix = 'csi-';
 		}
 		return (
 			<svg className={styleClass}>
 				<use xlinkHref={`${origin}#${prefix}${this.props.name}`}/>
 			</svg>
-		)
+		);
 	}
 }
 

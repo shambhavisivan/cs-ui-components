@@ -1,5 +1,5 @@
 import './App.scss';
-import './sass/style.scss';
+// import '../../cs-ui-components/src/sass/style.scss';
 import React from 'react';
 
 import {BrowserRouter as Router, Route, NavLink} from 'react-router-dom';
@@ -27,7 +27,7 @@ class App extends React.Component {
 								<NavLink to={'/colors'} activeClassName="active-main-header-tab">Colors</NavLink>
 							</li>
 						</ul>
-						<img alt="CS logo" src={require('./images/cs_logo_dark_blue_small.png')}/>
+						{/*<img alt="CS logo" src={require('../../cs-ui-components/src/images/cs_logo_dark_blue_small.png')}/>*/}
 					</div>
 					<div className="app-body">
 						<Route path="/components" component={CSComponentsList}/>

@@ -1,5 +1,4 @@
 import React from 'react';
-import CSIcon from '../../components/CSIcon';
 
 interface Icon {
 	name: string;
@@ -42,12 +41,9 @@ class IconsViewer extends React.Component<IconsViewerProps, IconsViewerState> {
 		return (
 			<>
 				<div className="icons-search-wrapper">
-					<CSIcon name="search" styleClass="search-icon"/>
 					<input className="icons-search" placeholder="Search..." onChange={this.searchHandler} value={this.state.term} />
 					{ this.state.term ?
-						<button className="clear-search-btn" onClick={this.clearSearch}>
-							<CSIcon name="close" styleClass="clear-icon" />
-						</button>
+						<button className="clear-search-btn" onClick={this.clearSearch} />
 						: null
 					}
 				</div>

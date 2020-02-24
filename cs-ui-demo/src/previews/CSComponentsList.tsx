@@ -1,6 +1,4 @@
 import React from 'react';
-import CSButtonPreview from './components/CSButtonPreview';
-import CSIconPreview from './components/CSIconPreview';
 import CSInputTextPreview from './components/CSInputTextPreview';
 import CSInputNumberPreview from './components/CSInputNumberPreview';
 import CSSelectPreview from './components/CSSelectPreview';
@@ -28,14 +26,6 @@ class CSComponentsList extends React.Component {
 
 	render() {
 		const componentsList = [
-			{
-				name: 'Button',
-				component: CSButtonPreview
-			},
-			{
-				name: 'Icon',
-				component: CSIconPreview
-			},
 			{
 				name: 'InputText',
 				component: CSInputTextPreview

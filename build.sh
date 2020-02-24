@@ -12,6 +12,14 @@ npm run build;
 echo "Finished validating CS UI Components"
 cd ..;
 
+echo "Validating CS UI Demo"
+cd cs-ui-demo;
+npm ci;
+echo "Running CS UI Demo Lint"
+npm run lint;
+echo "Finished validating CS UI Demo"
+cd ..;
+
 echo "Validating cs-form"
 cd cs-form;
 npm ci;

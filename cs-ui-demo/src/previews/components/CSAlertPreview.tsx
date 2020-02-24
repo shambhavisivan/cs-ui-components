@@ -1,7 +1,7 @@
 import React from 'react';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
 
-import CSAlert from '../../components/CSAlert';
+import { CSAlert } from 'cs-ui-components';
 
 interface CSAlertPreviewProps {
 	component: React.ComponentType<any>;
