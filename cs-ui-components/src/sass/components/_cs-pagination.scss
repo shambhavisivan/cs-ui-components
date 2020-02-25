@@ -1,0 +1,93 @@
+.cs-pagination-wrapper {
+	display: flex;
+	justify-content: flex-end;
+
+	.cs-pagination {
+		display: flex;
+		padding: 0;
+		border-radius: 0.25rem;
+		margin: 0;
+
+		li {
+			list-style: none;
+
+			a {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 2rem;
+				height: 2rem;
+				padding: 0;
+				font-size: 0.75rem;
+				text-decoration: none;
+				cursor: pointer;
+				@include sbg(--cs-pagination-bg);
+				@include sc(--cs-pagination-c);
+				@include css4 {
+					border: 1px solid cvar(--cs-pagination-br);
+				}
+			}
+
+			&:first-child a {
+				border-top-left-radius: 0.25rem;
+				border-bottom-left-radius: 0.25rem;
+			}
+
+			&:last-child a {
+				border-top-right-radius: 0.25rem;
+				border-bottom-right-radius: 0.25rem;
+			}
+
+			&:nth-of-type(n+2) a {
+				border-left: none;
+			}
+
+			&.active a,
+			&.active a:hover {
+				@include sbg(--cs-pagination-c);
+				@include sc(--cs-pagination-bg);
+			}
+
+			& a:hover {
+				@include sbg(--cs-pagination-hover-bg);
+			}
+
+			& a:focus {
+				outline: none;
+				position: relative;
+				@include css4 {
+					border: 1px solid cvar(--cs-pagination-c);
+					box-shadow: 0 0 3px cvar(--cs-pagination-c);
+				}
+			}
+
+			&.disabled a {
+				cursor: default;
+
+				&:hover {
+					@include sbg(--cs-pagination-bg);
+					@include sc(--cs-pagination-c);
+					@include css4 {
+						border: 1px solid cvar(--cs-pagination-br);
+				}
+				}
+
+				svg path {
+					@include css4 {
+						fill: cvar(--cs-pagination-icon-bg)
+					}
+				}
+			}
+
+			&:nth-of-type(n+2).disabled a {
+				border-left: none;
+			}
+		}
+	}
+}
+
+// CSSelect Styling
+
+.cs-pagination-wrapper button {
+	margin-left: 1rem;
+}

@@ -13,6 +13,7 @@ import CSMainHeader from './components/CSMainHeader';
 import CSModal from './components/CSModal';
 import CSModalHeader from './components/CSModalHeader';
 import CSModalFooter from './components/CSModalFooter';
+import CSPaginationWrapper from './components/CSPaginationWrapper';
 import CSPath from './components/CSPath';
 import CSSelect from './components/CSSelect';
 import CSSection from './components/CSSection';
@@ -43,6 +44,7 @@ export {
 	CSModal,
 	CSModalHeader,
 	CSModalFooter,
+	CSPaginationWrapper,
 	CSPath,
 	CSSelect,
 	CSSection,
