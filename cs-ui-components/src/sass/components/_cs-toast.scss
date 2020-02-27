@@ -1,0 +1,158 @@
+.cs-toast-wrapper {
+	padding: 0.5rem;
+
+	.cs-toast {
+		display: inline-flex;
+		justify-content: flex-start;
+		align-items: flex-start;
+		position: relative;
+		border-radius: 0.25rem;
+		padding: 0.75rem 3rem 0.75rem 1.5rem;
+		min-width: 30rem;
+
+		> .cs-icon {
+			width: 1.5rem;
+			height: 1.5rem;
+			margin-right: 0.5rem;
+		}
+
+		&.info {
+			@include sbg(--cs-toast-info-bg);
+			@include sc(--cs-toast-info-c);
+
+			.cs-toast-link {
+				@include sc(--cs-toast-info-c);
+			}
+
+			> .cs-icon {
+				@include sf(--cs-toast-info-fill);
+			}
+		}
+
+		&.success {
+			@include sbg(--cs-toast-success-bg);
+			@include sc(--cs-toast-success-c);
+
+			.cs-toast-link {
+				@include sc(--cs-toast-success-c);
+			}
+
+			> .cs-icon {
+				@include sf(--cs-toast-success-fill);
+			}
+		}
+
+		&.warning {
+			@include sbg(--cs-toast-warning-bg);
+			@include sc(--cs-toast-warning-c);
+
+			.cs-toast-link {
+				@include sc(--cs-toast-warning-c);
+			}
+
+			> .cs-icon {
+				@include sf(--cs-toast-warning-fill);
+			}
+		}
+
+		&.error {
+			@include sbg(--cs-toast-error-bg);
+			@include sc(--cs-toast-error-c);
+
+			.cs-toast-link {
+				@include sc(--cs-toast-error-c);
+			}
+
+			> .cs-icon {
+				@include sf(--cs-toast-error-fill);
+			}
+		}
+
+		&.left {
+			text-align: left;
+		}
+
+		&.center {
+			text-align: center;
+		}
+
+		.cs-toast-text {
+			flex: 1;
+			padding-top: 0.125rem;
+
+			.cs-toast-detail {
+				margin: 0;
+				padding: 0;
+				font-size: 0.8125rem;
+			}
+		}
+
+		.cs-toast-link {
+			text-decoration: underline;
+
+			&:hover {
+				text-decoration: none;
+			}
+		}
+
+		.cs-toast-close {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: absolute;
+			width: 1.625rem;
+			height: 1.625rem;
+			top: 0.6875rem;
+			right: 0.75rem;
+			padding: 0;
+			border-radius: 0.25rem;
+			cursor: pointer;
+			-webkit-appearance: none;
+			background: transparent;
+			border: none;
+
+			svg {
+				width: 1.5rem;
+				height: 1.5rem;
+				@include sf(--cs-toast-close-fill);
+			}
+
+			&:hover svg {
+				@include sf(--cs-toast-hover-fill);
+			}
+
+			&:focus {
+				outline: none;
+				@include css4 {
+					box-shadow: 0 0 3px cvar(--cs-toast-box);
+					border: 1px solid cvar(--cs-toast-br);
+				}
+			}
+
+			&:active svg {
+				@include sf(--cs-toast-active-fill);
+			}
+		}
+
+		&.warning .cs-toast-close {
+
+			svg {
+				@include sf(--cs-toast-warning-fill);
+			}
+
+			&:hover,
+			&:active {
+				svg {
+					@include sf(--cs-toast-warning-hover-fill);
+				}
+			}
+
+			&:focus {
+				@include css4 {
+					box-shadow: 0 0 3px cvar(--cs-toast-warning-box);
+					border: 1px solid cvar(--cs-toast-warning-br);
+				}
+			}
+		}
+	}
+}

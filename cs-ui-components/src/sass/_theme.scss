@@ -143,7 +143,7 @@ $variables: (
 	--cs-alert-info-c: $cs-white,
 	--cs-alert-info-fill: $cs-white,
 	--cs-alert-warning-bg: $cs-orange-medium-2,
-	--cs-alert-warning-c: $cs-gray-dark-4,
+	--cs-alert-warning-c: $cs-gray-dark-1,
 	--cs-alert-warning-fill: $cs-gray-dark-4,
 	--cs-alert-warning-hover-fill: $cs-gray-dark-5,
 	--cs-alert-warning-box: $cs-gray-dark-4,
@@ -159,6 +159,27 @@ $variables: (
 	--cs-alert-active-fill: rgba($cs-white, 0.5),
 	--cs-alert-box: $cs-gray-light-5,
 	--cs-alert-br: $cs-gray-light-5,
+
+	--cs-toast-info-bg: $cs-gray-dark-5,
+	--cs-toast-info-c: $cs-white,
+	--cs-toast-info-fill: $cs-white,
+	--cs-toast-success-bg: $cs-green-dark-2,
+	--cs-toast-success-c: $cs-white,
+	--cs-toast-success-fill: $cs-white,
+	--cs-toast-warning-bg: $cs-orange-medium-2,
+	--cs-toast-warning-c: $cs-gray-dark-1,
+	--cs-toast-warning-fill: $cs-gray-dark-4,
+	--cs-toast-warning-hover-fill: $cs-gray-dark-5,
+	--cs-toast-warning-box: $cs-gray-dark-4,
+	--cs-toast-warning-br: $cs-gray-dark-4,
+	--cs-toast-error-bg: $cs-red-medium-2,
+	--cs-toast-error-c: $cs-white,
+	--cs-toast-error-fill: $cs-white,
+	--cs-toast-close-fill: $cs-white,
+	--cs-toast-hover-fill: rgba($cs-white, 0.75),
+	--cs-toast-active-fill: rgba($cs-white, 0.5),
+	--cs-toast-box: $cs-gray-light-5,
+	--cs-toast-br: $cs-gray-light-5
 
 );
 

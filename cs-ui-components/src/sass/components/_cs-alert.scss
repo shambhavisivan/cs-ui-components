@@ -3,7 +3,6 @@
 	justify-content: center;
 	align-items: center;
 	position: relative;
-	font-weight: $font-weight-light;
 	font-size: 0.8125rem;
 	text-align: center;
 	padding: 0.5rem 2rem 0.5rem 1rem;
@@ -13,18 +12,12 @@
 		@include sbg(--cs-alert-info-bg);
 		@include sc(--cs-alert-info-c);
 
-		.temporary-styles {
-			width: 1rem;
-			min-width: 1rem;
-			height: 1rem;
-			margin-right: 0.5rem;
-			@include css4 {
-				fill: cvar(--cs-alert-info-fill);
-			}
-		}
-
 		.cs-alert-link {
 			@include sc(--cs-alert-info-c);
+		}
+
+		.cs-alert-text .cs-icon {
+			@include sf(--cs-alert-info-fill);
 		}
 	}
 
@@ -32,18 +25,12 @@
 		@include sbg(--cs-alert-warning-bg);
 		@include sc(--cs-alert-warning-c);
 
-		.temporary-styles {
-			width: 1rem;
-			min-width: 1rem;
-			height: 1rem;
-			margin-right: 0.5rem;
-			@include css4 {
-				fill: cvar(--cs-alert-warning-fill);
-			}
-		}
-
 		.cs-alert-link {
 			@include sc(--cs-alert-warning-c);
+		}
+
+		.cs-alert-text .cs-icon {
+			@include sf(--cs-alert-warning-fill);
 		}
 	}
 
@@ -51,18 +38,12 @@
 		@include sbg(--cs-alert-error-bg);
 		@include sc(--cs-alert-error-c);
 
-		.temporary-styles {
-			width: 1rem;
-			min-width: 1rem;
-			height: 1rem;
-			margin-right: 0.5rem;
-			@include css4 {
-				fill: cvar(--cs-alert-error-fill);
-			}
-		}
-
 		.cs-alert-link {
 			@include sc(--cs-alert-error-c);
+		}
+
+		.cs-alert-text .cs-icon {
+			@include sf(--cs-alert-error-fill);
 		}
 	}
 
@@ -70,18 +51,12 @@
 		@include sbg(--cs-alert-offline-bg);
 		@include sc(--cs-alert-offline-c);
 
-		.temporary-styles {
-			width: 1rem;
-			min-width: 1rem;
-			height: 1rem;
-			margin-right: 0.5rem;
-			@include css4 {
-				fill: cvar(--cs-alert-offline-fill);
-			}
-		}
-
 		.cs-alert-link {
 			@include sc(--cs-alert-offline-c);
+		}
+
+		.cs-alert-text .cs-icon {
+			@include sf(--cs-alert-offline-fill);
 		}
 	}
 
@@ -89,6 +64,12 @@
 		flex: 1;
 		display: flex;
 		align-items: center;
+
+		.cs-icon {
+			width: 1rem;
+			height: 1rem;
+			margin-right: 0.5rem;
+		}
 	}
 
 	&.left .cs-alert-text {

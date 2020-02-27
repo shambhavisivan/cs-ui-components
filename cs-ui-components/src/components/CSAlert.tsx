@@ -1,18 +1,23 @@
 import React from 'react';
 import jsxToString from 'jsx-to-string';
 import CSIcon from './CSIcon';
+import classNames from 'classnames';
 
 export interface CSAlertProps {
-	title?: string;
-	variant?: string;
-	textAlign?: string;
-	iconName?: string;
 	closeButton?: boolean;
+	iconName?: string;
+	iconVisibility?: boolean;
 	onClose?: undefined;
+	text?: string;
+	textAlign?: string;
+	variant: string;
+	className?: string;
 }
 
 class CSAlert extends React.Component<CSAlertProps> {
-
+	public static defaultProps = {
+		iconVisibility: true
+	};
 	static getDoc() {
 
 		const json = {
@@ -29,7 +34,7 @@ class CSAlert extends React.Component<CSAlertProps> {
 								<CSAlert
 									variant="info"
 									closeButton
-									title="This is an example info alert"
+									text="This is an example info alert"
 								/>
 						},
 						{
@@ -39,7 +44,7 @@ class CSAlert extends React.Component<CSAlertProps> {
 								<CSAlert
 									variant="warning"
 									closeButton
-									title="This is an example warning alert"
+									text="This is an example warning alert"
 								/>
 						},
 						{
@@ -49,7 +54,7 @@ class CSAlert extends React.Component<CSAlertProps> {
 								<CSAlert
 									variant="error"
 									closeButton
-									title="This is an example error alert"
+									text="This is an example error alert"
 								/>
 						},
 						{
@@ -59,7 +64,7 @@ class CSAlert extends React.Component<CSAlertProps> {
 								<CSAlert
 									variant="offline"
 									closeButton
-									title="This is an example offline alert"
+									text="This is an example offline alert"
 								/>
 						}
 					]
@@ -75,7 +80,7 @@ class CSAlert extends React.Component<CSAlertProps> {
 									variant="info"
 									textAlign="left"
 									closeButton
-									title="This is an example toast with text aligned left"
+									text="This is an example toast with text aligned left"
 								/>
 						},
 						{
@@ -86,57 +91,50 @@ class CSAlert extends React.Component<CSAlertProps> {
 									variant="info"
 									textAlign="center"
 									closeButton
-									title="This is an example toast with text aligned center"
+									text="This is an example toast with text aligned center"
 								/>
 						}
 					]
 				},
 				{
 					propName: 'iconName',
-					customText: 'This is how it looks when used on other variants that aren\'t custom.',
+					customText: 'This is used for overriding default icon defined by variant',
 					variations: [
 						{
-							variationName: ['info'],
-							string: '',
-							component:
-								<CSAlert
-									variant="info"
-									iconName="info"
-									closeButton
-									title="This is an example alert with iconName prop info"
-								/>
-						},
-						{
-							variationName: ['warning'],
+							variationName: ['quote'],
 							string: '',
 							component:
 								<CSAlert
 									variant="warning"
-									iconName="warning"
+									iconName="quote"
 									closeButton
-									title="This is an example alert with iconName prop warning"
+									text="This is an example alert for overriding the icon with iconName prop"
 								/>
-						},
+						}
+					]
+				},
+				{
+					propName: 'iconVisibility',
+					variations: [
 						{
-							variationName: ['error'],
+							variationName: ['true'],
 							string: '',
 							component:
 								<CSAlert
-									variant="error"
-									iconName="error"
+									variant="info"
 									closeButton
-									title="This is an example alert with iconName prop error"
+									text="This is an example alert with an icon"
 								/>
 						},
 						{
-							variationName: ['offline'],
+							variationName: ['false'],
 							string: '',
 							component:
 								<CSAlert
-									variant="offline"
-									iconName="offline"
+									variant="info"
+									iconVisibility={false}
 									closeButton
-									title="This is an example alert with iconName prop offline"
+									text="This is an example alert without an icon"
 								/>
 						}
 					]
@@ -150,9 +148,8 @@ class CSAlert extends React.Component<CSAlertProps> {
 							component:
 								<CSAlert
 									variant="info"
-									iconName="info"
 									closeButton
-									title="This is an example alert with a close button"
+									text="This is an example alert with a close button"
 								/>
 						},
 						{
@@ -161,16 +158,30 @@ class CSAlert extends React.Component<CSAlertProps> {
 							component:
 								<CSAlert
 									variant="info"
-									iconName="info"
-									closeButton={false}
-									title="This is an example alert without a close button"
+									text="This is an example alert without a close button"
+								/>
+						}
+					]
+				},
+				{
+					propName: 'className',
+					variations: [
+						{
+							variationName: ['className'],
+							string: '',
+							component:
+								<CSAlert
+									variant="info"
+									className="custom-class"
+									closeButton
+									text="This is an example alert with a close button"
 								/>
 						}
 					]
 				},
 				{
 					propName: 'custom',
-					customText: 'Want to add custom styling or features? Anything besides plain text isn\'t supported using props so you can use children instead. Just write the code inside the component tags as shown below. If you need to add a link there is already a .cs-alert-link class to make it easy. Inspect the example below for a better look.',
+					customText: 'Want to add custom styling or features? Just write the code inside the component tags as shown below. If you need to add a link there is already a .cs-alert-link class to make it easy. Inspect the example below for a better look.',
 					variations: [
 						{
 							variationName: ['Add a custom link'],
@@ -180,7 +191,7 @@ class CSAlert extends React.Component<CSAlertProps> {
 									variant="info"
 									iconName="info"
 								>
-									<span>This is a custom line of code which includes a <a href="./CSAlert" className="cs-alert-link">link</a></span>
+									<span>This custom text includes a <a href="./CSAlert" className="cs-alert-link">link</a></span>
 								</CSAlert>
 						},
 						{
@@ -191,7 +202,7 @@ class CSAlert extends React.Component<CSAlertProps> {
 									variant="info"
 									iconName="info"
 								>
-									<span>This is a custom line of code which includes <b>bold</b> and <i>italic</i> text</span>
+									<span>This custom text includes <b>bold</b> and <i>italic</i> text</span>
 								</CSAlert>
 						}
 					]
@@ -201,7 +212,7 @@ class CSAlert extends React.Component<CSAlertProps> {
 			properties: [
 				{
 					propertyName: 'variant',
-					description: 'Color variant of alert',
+					description: 'Color and icon variant of alert',
 					options: [
 						'info',
 						'warning',
@@ -219,12 +230,12 @@ class CSAlert extends React.Component<CSAlertProps> {
 				},
 				{
 					propertyName: 'iconName',
-					description: 'Name of icon from icons library',
+					description: 'Name of icon from icons library which overrides the default icon defined by variant',
 					options: [
 					]
 				},
 				{
-					propertyName: 'title',
+					propertyName: 'text',
 					description: 'Text content of alert',
 					options: [
 					]
@@ -240,6 +251,20 @@ class CSAlert extends React.Component<CSAlertProps> {
 					description: 'Close Alert',
 					options: [
 					]
+				},
+				{
+					propertyName: 'iconVisibility',
+					description: 'Logic for icon visibility state',
+					options: [
+						'true',
+						'false'
+					]
+				},
+				{
+					propertyName: 'className',
+					description: 'For implementing custom class to component',
+					options: [
+					]
 				}
 			]
 		};
@@ -252,21 +277,32 @@ class CSAlert extends React.Component<CSAlertProps> {
 
 		return json;
 	}
+
 	render() {
+
+		const alertClasses = classNames(
+			'cs-alert',
+			[`${this.props.variant}`],
+			[`${this.props.textAlign}`],
+			{
+				[`${this.props.className}`]: this.props.className
+			}
+		);
+
 		return (
-			<div className={`cs-alert ${this.props.variant} ${this.props.textAlign}`} role="alert">
+			<div className={alertClasses} role="alert">
 				<h4 className="cs-alert-text">
-					{this.props.iconName ? (
+					{this.props.iconVisibility ? (this.props.iconName ? (
 						<CSIcon name={this.props.iconName}/>
-					) : null }
-					{this.props.title}
+					) : (
+						<CSIcon name={this.props.variant}/>
+					)) : null}
+					{this.props.text}
 					{this.props.children}
 				</h4>
 				{this.props.closeButton ? (
 					<button className="cs-alert-close" onClick={this.props.onClose} aria-label="close">
-						<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 52 52">
-							<path d="m31 25.4l13-13.1c0.6-0.6 0.6-1.5 0-2.1l-2-2.1c-0.6-0.6-1.5-0.6-2.1 0l-13.1 13.1c-0.4 0.4-1 0.4-1.4 0l-13.1-13.2c-0.6-0.6-1.5-0.6-2.1 0l-2.1 2.1c-0.6 0.6-0.6 1.5 0 2.1l13.1 13.1c0.4 0.4 0.4 1 0 1.4l-13.2 13.2c-0.6 0.6-0.6 1.5 0 2.1l2.1 2.1c0.6 0.6 1.5 0.6 2.1 0l13.1-13.1c0.4-0.4 1-0.4 1.4 0l13.1 13.1c0.6 0.6 1.5 0.6 2.1 0l2.1-2.1c0.6-0.6 0.6-1.5 0-2.1l-13-13.1c-0.4-0.4-0.4-1 0-1.4z"/>
-						</svg>
+						<CSIcon name="close"/>
 					</button>
 				) : null}
 			</div>

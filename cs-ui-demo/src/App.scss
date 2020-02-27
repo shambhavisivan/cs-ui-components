@@ -134,6 +134,8 @@ html, body, #root {
 		flex: 1;
 		position: relative;
 		background: transparent;
+		width: calc(100% - 15rem);
+
 
 		.sidebar-toggle {
 			display: flex;
@@ -169,7 +171,6 @@ html, body, #root {
 		flex: 1;
 		display: flex;
 		flex-direction: column;
-		padding: 2rem;
 		overflow: auto;
 		box-shadow: 0 0 10px rgba(#000, 0.22);
 
@@ -237,7 +238,7 @@ html, body, #root {
 			box-shadow: 1px 1px 3px rgba(#000, 0.1);
 
 			.version-preview {
-				min-width: 15rem;
+				width: 70%;
 				flex: 1;
 				overflow: auto;
 				padding: 0.5rem;
@@ -278,12 +279,25 @@ html, body, #root {
 				&.toggle-preview {
 					padding: 1rem;
 				}
+				&.alert-preview{
+
+					.custom-class{
+						background-color: pink;
+					}
+				}
+				&.toast-preview{
+
+					.custom-class{
+						background-color: pink;
+					}
+				}
 			}
 
 			.version-description {
 				border-radius: 0 0.25rem 0.25rem 0;
-				min-width: 25%;
+				width: 30%;
 				background: #f8f8f8;
+				overflow-x: auto;
 			}
 		}
 		&.icons {

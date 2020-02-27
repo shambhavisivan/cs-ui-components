@@ -1,16 +1,16 @@
 import React from 'react';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
 
-import { CSAlert } from 'cs-ui-components';
+import { CSToast } from 'cs-ui-components';
 import CSComponentPreviewProps from '../CSComponentsList';
 
-class CSAlertPreview extends React.Component<CSComponentPreviewProps> {
+class CSToastPreview extends React.Component<CSComponentPreviewProps> {
 	constructor(props: CSComponentPreviewProps) {
 		super(props);
 	}
 
 	render() {
-		const component = CSAlert.getDoc();
+		const component = CSToast.getDoc();
 		return (
 			<>
 				<div className="preview-heading">
@@ -21,15 +21,15 @@ class CSAlertPreview extends React.Component<CSComponentPreviewProps> {
 				{component.examples.map((example: any) => (
 					<div className={`property-section ${example.propName}`} key={example.propName}>
 						<h2 className="property-name">{example.propName}</h2>
-						<div key={example.customText}>
-							<p className="info-text">{example.customText}</p>
+						<div>
+							{example.customText ? <p className="info-text">{example.customText}</p> : null}
 							{example.variations.map((variation: any, i: any) => (
 								<React.Fragment key={i}>
 									{variation.variationName.map((chip: any) => (
 										<div key={chip} className="chip-label">{chip}</div>
 									))}
 									<div className="component-version">
-										<div className="version-preview alert-preview">
+										<div className="version-preview toast-preview">
 											{variation.component}
 										</div>
 										<div className="version-description">
@@ -73,4 +73,4 @@ class CSAlertPreview extends React.Component<CSComponentPreviewProps> {
 	}
 }
 
-export default CSAlertPreview;
+export default CSToastPreview;

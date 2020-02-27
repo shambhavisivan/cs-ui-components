@@ -43,7 +43,7 @@ class IconsViewer extends React.Component<IconsViewerProps, IconsViewerState> {
 				<div className="icons-search-wrapper">
 					<input className="icons-search" placeholder="Search..." onChange={this.searchHandler} value={this.state.term} />
 					{ this.state.term ?
-						<button className="clear-search-btn" onClick={this.clearSearch} />
+						<button className="clear-search-btn" onClick={this.clearSearch}/>
 						: null
 					}
 				</div>
