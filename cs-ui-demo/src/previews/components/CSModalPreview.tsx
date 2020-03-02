@@ -1,16 +1,20 @@
 import React from 'react';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
 
-import { CSAlert } from 'cs-ui-components';
+import { CSModal, CSModalHeader, CSModalFooter } from 'cs-ui-components';
 import CSComponentPreviewProps from '../CSComponentsList';
 
-class CSAlertPreview extends React.Component<CSComponentPreviewProps> {
+class CSModalPreview extends React.Component<CSComponentPreviewProps> {
 	constructor(props: CSComponentPreviewProps) {
 		super(props);
 	}
 
 	render() {
-		const component = CSAlert.getDoc();
+
+		const component = CSModal.getDoc();
+		const component2 = CSModalHeader.getDoc();
+		const component3 = CSModalFooter.getDoc();
+
 		return (
 			<>
 				<div className="preview-heading">
@@ -29,7 +33,7 @@ class CSAlertPreview extends React.Component<CSComponentPreviewProps> {
 										<div key={chip} className="chip-label">{chip}</div>
 									))}
 									<div className="component-version">
-										<div className="version-preview alert-preview">
+										<div className="version-preview modal-preview">
 											{variation.component}
 										</div>
 										<div className="version-description">
@@ -68,9 +72,59 @@ class CSAlertPreview extends React.Component<CSComponentPreviewProps> {
 						</div>
 					</div>
 				</div>
+				<div className="table-wrapper properties-table-wrapper">
+					<h3 className="component-name">{component2.name}</h3>
+					<div className="properties-table">
+						<div className="table-header">
+							<div className="table-row">
+								<div className="table-cell">Property name</div>
+								<div className="table-cell">Description</div>
+								<div className="table-cell">Options</div>
+							</div>
+						</div>
+						<div className="table-body">
+							{component2.properties.map((prop: any, i: any) => (
+								<div className="table-row" key={i}>
+									<div className="table-cell">{prop.propertyName}</div>
+									<div className="table-cell">{prop.description}</div>
+									<div className="table-cell">
+										{prop.options.map((option: any) => (
+											<span className="prop-option" key={option}>{option}</span>
+										))}
+									</div>
+								</div>
+							))}
+						</div>
+					</div>
+				</div>
+				<div className="table-wrapper properties-table-wrapper">
+					<h3 className="component-name">{component3.name}</h3>
+					<div className="properties-table">
+						<div className="table-header">
+							<div className="table-row">
+								<div className="table-cell">Property name</div>
+								<div className="table-cell">Description</div>
+								<div className="table-cell">Options</div>
+							</div>
+						</div>
+						<div className="table-body">
+							{component3.properties.map((prop: any, i: any) => (
+								<div className="table-row" key={i}>
+									<div className="table-cell">{prop.propertyName}</div>
+									<div className="table-cell">{prop.description}</div>
+									<div className="table-cell">
+										{prop.options.map((option: any) => (
+											<span className="prop-option" key={option}>{option}</span>
+										))}
+									</div>
+								</div>
+							))}
+						</div>
+					</div>
+				</div>
 			</>
 		);
 	}
 }
 
-export default CSAlertPreview;
+export default CSModalPreview;

@@ -42,7 +42,7 @@ class CSToastPreview extends React.Component<CSComponentPreviewProps> {
 					</div>
 				))}
 
-				<div className="properties-table-wrapper">
+				<div className="table-wrapper properties-table-wrapper">
 					<h2 className="property-name">Properties list</h2>
 					<h3 className="component-name">{component.name}</h3>
 					<div className="properties-table">

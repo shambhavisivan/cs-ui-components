@@ -1,4 +1,6 @@
-html, body, #root {
+html,
+body,
+#root {
 	height: 100%;
 	overflow: hidden;
 	margin: 0;
@@ -36,6 +38,7 @@ html, body, #root {
 			color: rgba(#3e3e3c, 0.7);
 			border-top: 5px solid transparent;
 			border-bottom: 5px solid transparent;
+
 			&:hover {
 				border-bottom: 5px solid #00abd2;
 			}
@@ -220,12 +223,16 @@ html, body, #root {
 
 		.property-name {
 			margin: 0 0 0.5rem 0;
-			font-size: 1.35rem;
+			font-size: 1.375rem;
 		}
 
 		.component-name {
 			margin: 1rem 0 0.5rem;
-			font-size: 1.1rem;
+			font-size: 1.125rem;
+
+			&:first-child {
+				margin: 0 0 0.5rem;
+			}
 		}
 
 		.component-version {
@@ -246,6 +253,10 @@ html, body, #root {
 					min-height: 30rem;
 					flex: 1;
 					transform: translate3d(0, 0, 0);
+
+					.custom-class{
+						background-color: pink;
+					}
 				}
 
 				&.spinner-preview {
@@ -298,12 +309,6 @@ html, body, #root {
 						padding: 0.5rem;
 					}
 				}
-				.version-description {
-					border-radius: 0 0.25rem 0.25rem 0;
-					width: 30%;
-					background: #f8f8f8;
-					overflow-x: auto;
-				}
 			}
 			&.icons {
 				padding: 0;
@@ -316,10 +321,16 @@ html, body, #root {
 	}
 
 	/* COMPONENT CODE SNIPPET */
+	.version-description {
+		border-radius: 0 0.25rem 0.25rem 0;
+		width: 30%;
+		overflow-x: auto;
+		background: #f5f2f0;
+	}
 	.code-snippet {
 		margin: 0 !important;
 		border-radius: 0 0.25rem 0.25rem 0;
-		background: #f8f8f8;
+		//background: #f8f8f8;
 
 		code {
 			font-family: monospace;
@@ -575,10 +586,11 @@ html, body, #root {
 				}
 			}
 		}
-		@media only screen and (min-width: 1250px) {
-			.icons-preview {
-				grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-			}
+	}
+
+	@media only screen and (min-width: 1250px) {
+		.icons-preview {
+			grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 		}
 
 		@media only screen and (min-width: 1400px) {
