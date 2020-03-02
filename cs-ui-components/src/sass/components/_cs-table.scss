@@ -1,0 +1,75 @@
+.cs-table {
+	@include css4 {
+		border-top: 1px solid cvar(--cs-table-br);
+		border-bottom: 1px solid cvar(--cs-table-br);
+	}
+
+	.cs-table-header {
+		display: flex;
+		justify-content: space-between;
+		@include sbg(--cs-table-header-bg);
+
+		.cs-table-cell {
+			font-size: 0.75rem;
+			flex: 1;
+			padding: 0.5rem;
+			vertical-align: middle;
+			line-height: normal;
+			@include overflow-ellipsis;
+
+			&:first-child {
+				padding-inline-start: 1rem;
+			}
+
+			&:last-child {
+				padding-inline-end: 1rem;
+			}
+
+			> .cs-table-cell-text {
+				font-weight: $font-weight-bold;
+				text-align: left;
+				@include sc(--cs-table-header-c);
+				@include overflow-ellipsis;
+			}
+		}
+	}
+
+	.cs-table-body {
+		overflow-y: auto;
+		flex: 1;
+
+		.cs-table-row {
+			display: flex;
+			@include sbg(--cs-table-row-bg);
+
+			.cs-table-cell {
+				display: flex;
+				vertical-align: middle;
+				padding: 0.75rem 0.5rem;
+				font-size: 0.8125rem;
+				font-weight: $font-weight-normal;
+				text-align: left;
+				flex: 1;
+				align-items: center;
+				@include sc(--cs-table-c);
+				@include overflow-ellipsis;
+				@include css4 {
+					border-top: 1px solid cvar(--cs-table-br);
+				}
+
+				&:first-child {
+					padding-inline-start: 1rem;
+					font-weight: $font-weight-bold;
+				}
+
+				&:last-child {
+					padding-inline-end: 1rem;
+				}
+			}
+
+			&:hover {
+				@include sbg(--cs-table-row-hover-bg);
+			}
+		}
+	}
+}
