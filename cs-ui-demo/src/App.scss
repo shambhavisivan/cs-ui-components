@@ -307,6 +307,10 @@ body,
 
 				&.toggle-preview {
 					padding: 1rem;
+
+					.custom-class {
+						border: 2px solid pink;
+					}
 				}
 
 				&.tooltip-preview {

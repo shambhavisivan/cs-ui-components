@@ -23,6 +23,7 @@ import CSTable from './components/CSTable';
 import CSTabGroup from './components/CSTabGroup';
 import CSTextarea from './components/CSTextarea';
 import CSToast from './components/CSToast';
+import CSToggle from './components/CSToggle';
 import CSTooltip from './components/CSTooltip';
 
 import './sass/style.scss';
@@ -55,5 +56,6 @@ export {
 	CSTabGroup,
 	CSTextarea,
 	CSToast,
+	CSToggle,
 	CSTooltip
 };
