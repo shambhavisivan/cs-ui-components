@@ -2,6 +2,7 @@ import CSAlert from './components/CSAlert';
 import CSButton from './components/CSButton';
 import CSLabel from './components/CSLabel';
 import CSIcon from './components/CSIcon';
+import CSInputNumber from './components/CSInputNumber';
 import CSInputText from './components/CSInputText';
 import CSMainHeader from './components/CSMainHeader';
 import CSModal from './components/CSModal';
@@ -23,6 +24,7 @@ export {
 	CSButton,
 	CSLabel,
 	CSIcon,
+	CSInputNumber,
 	CSInputText,
 	CSMainHeader,
 	CSModal,

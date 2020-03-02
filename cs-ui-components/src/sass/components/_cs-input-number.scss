@@ -1,0 +1,41 @@
+// CS Input Number
+//
+// CS number input component.
+
+.cs-input-number {
+	@include sbg(--cs-input-number-bg);
+	@include css4 {
+		border: 1px solid cvar(--cs-input-number-br);
+	}
+
+	&:active,
+	&:focus {
+		outline: 0;
+		@include sbg(--cs-input-number-active-bg);
+		@include css4 {
+			border-color: cvar(--cs-input-number-active-br);
+			box-shadow: 0 0 0.1875rem cvar(--cs-input-shadow);
+		}
+	}
+
+	&:disabled {
+		cursor: not-allowed;
+		user-select: none;
+		@include sbg(--cs-input-number-disabled-bg);
+		@include css4 {
+			border-color: cvar(--cs-input-number-disabled-br);
+		}
+	}
+
+	@include input;
+}
+
+// Square
+.cs-input-number-square {
+	border-radius: 0;
+}
+
+// Version
+.component-version-input .version-preview {
+	overflow: visible;
+}
