@@ -15,6 +15,7 @@ import CSModalHeader from './components/CSModalHeader';
 import CSModalFooter from './components/CSModalFooter';
 import CSPath from './components/CSPath';
 import CSSelect from './components/CSSelect';
+import CSSection from './components/CSSection';
 import CSSpinner from './components/CSSpinner';
 import CSTable from './components/CSTable';
 import CSTabGroup from './components/CSTabGroup';
@@ -44,6 +45,7 @@ export {
 	CSModalFooter,
 	CSPath,
 	CSSelect,
+	CSSection,
 	CSSpinner,
 	CSTable,
 	CSTabGroup,

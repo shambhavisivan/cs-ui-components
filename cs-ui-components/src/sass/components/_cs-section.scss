@@ -1,0 +1,69 @@
+// CS Section
+//
+// CS section component.
+
+.cs-section {
+	margin-bottom: 0.5rem;
+	margin-top: 0.5rem;
+
+	ul {
+		list-style: none;
+		padding: 0;
+	}
+
+	.cs-section-wrapper {
+		align-items: center;
+		border-radius: 0.25rem;
+		height: 1.75rem;
+		display: flex;
+		align-items: center;
+		@include sbg(--cs-section-bg);
+		@include css4 {
+			border: 1px solid cvar(--cs-transparent);
+		}
+
+		.cs-section-title {
+			font-size: 0.875rem;
+		}
+
+		.cs-section-button {
+			align-items: center;
+			cursor: pointer;
+			display: flex;
+			padding: 0 0.5rem;
+			background-color: inherit;
+			text-align: left;
+			width: 100%;
+			height: 100%;
+			border-radius: inherit;
+			@include css4 {
+				border: 1px solid cvar(--cs-transparent);
+			}
+
+			&:focus {
+				outline: 0;
+				@include css4 {
+					box-shadow: 0 0 3px cvar(--cs-section-button-shadow);
+				}
+			}
+			&:active {
+				@include css4 {
+					box-shadow: 0 0 7px cvar(--cs-section-button-shadow);
+				}
+			}
+			&:hover{
+				@include sbg(--cs-section-hover-bg);
+			}
+			.cs-icon {
+				width: 0.875rem;
+				height: 0.875rem;
+				margin-right: 0.5rem;
+			}
+		}
+
+		&.cs-section-wrapper-padding {
+			padding: 0 0.75rem;
+		}
+	}
+}
+
