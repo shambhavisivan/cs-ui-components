@@ -270,6 +270,10 @@ body,
 				&.header-preview {
 					min-height: 10rem;
 					padding: 0;
+
+					.custom-class{
+						background-color: pink;
+					}
 				}
 
 				&.path-preview {

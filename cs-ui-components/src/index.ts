@@ -1,6 +1,7 @@
 import CSAlert from './components/CSAlert';
 import CSButton from './components/CSButton';
 import CSIcon from './components/CSIcon';
+import CSMainHeader from './components/CSMainHeader';
 import CSModal from './components/CSModal';
 import CSModalHeader from './components/CSModalHeader';
 import CSModalFooter from './components/CSModalFooter';
@@ -16,6 +17,7 @@ export {
 	CSAlert,
 	CSButton,
 	CSIcon,
+	CSMainHeader,
 	CSModal,
 	CSModalHeader,
 	CSModalFooter,

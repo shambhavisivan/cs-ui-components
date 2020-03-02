@@ -1,0 +1,155 @@
+.cs-main-header {
+	display: flex;
+	position: relative;
+	justify-content: center;
+	padding: 1rem;
+	height: 4rem;
+
+	&.cs-main-header-sticky {
+		position: sticky;
+		top: 0;
+	}
+
+	&.cs-main-header-neutral {
+		@include sbg(--cs-main-header-neutral-bg);
+		@include css4 {
+			box-shadow: 0 1px 2px 0 cvar(--cs-shadow-medium);
+		}
+
+		.cs-main-header-icon .cs-icon {
+			@include css4 {
+				fill: var(--cs-main-header-neutral-icon);
+			}
+		}
+
+		.cs-main-header-title {
+			@include sc(--cs-main-header-neutral-c);
+		}
+
+		.cs-main-header-subtitle {
+			@include sc(--cs-main-header-subtitle-c);
+		}
+	}
+
+	&.cs-main-header-brand {
+		@include sbg(--cs-main-header-brand-bg);
+		@include css4 {
+			box-shadow: 0 1px 2px 0 cvar(--cs-shadow-dark);
+		}
+
+		.cs-main-header-icon .cs-icon {
+			@include css4 {
+				fill: var(--cs-main-header-brand-icon);
+			}
+		}
+
+		.cs-main-header-title,
+		.cs-main-header-subtitle {
+			font-weight: $font-weight-normal;
+			@include sc(--cs-main-header-brand-c);
+		}
+
+		.cs-main-header-subtitle {
+			opacity: 0.4;
+		}
+	}
+
+	&.cs-main-header-error {
+		@include sbg(--cs-main-header-error-bg);
+		@include css4 {
+			box-shadow: 0 1px 2px 0 cvar(--cs-shadow-dark);
+		}
+
+		.cs-main-header-icon .cs-icon {
+			@include css4 {
+				fill: var(--cs-main-header-error-icon);
+			}
+		}
+
+		.cs-main-header-title,
+		.cs-main-header-subtitle {
+			font-weight: $font-weight-normal;
+			@include sc(--cs-main-header-error-c);
+		}
+
+		.cs-main-header-subtitle {
+			opacity: 0.4;
+		}
+	}
+
+	&.cs-main-header-info {
+		@include sbg(--cs-main-header-info-bg);
+		@include css4 {
+			box-shadow: 0 1px 2px 0 cvar(--cs-shadow-dark);
+		}
+
+		.cs-main-header-icon .cs-icon {
+			@include css4 {
+				fill: var(--cs-main-header-info-icon);
+			}
+		}
+
+		.cs-main-header-title,
+		.cs-main-header-subtitle {
+			font-weight: $font-weight-normal;
+			@include sc(--cs-main-header-info-c);
+		}
+
+		.cs-main-header-subtitle {
+			opacity: 0.4;
+		}
+	}
+
+	.cs-main-header-inner {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+
+		.cs-main-header-icon {
+			width: 2rem;
+			height: 2rem;
+			margin-right: 0.75rem;
+
+			.cs-icon {
+				width: 2rem;
+				height: 2rem;;
+			}
+		}
+
+		.cs-main-header-left {
+			display: flex;
+			align-items: center;
+			flex-grow: 1;
+
+			.cs-main-header-heading {
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
+				margin-inline-end: 1rem;
+
+				.cs-main-header-title {
+					font-size: 1.25rem;
+					line-height: 1;
+					margin: 0;
+				}
+
+				.cs-main-header-subtitle {
+					font-size: 0.8125rem;
+					line-height: 1;
+					font-weight: $font-weight-normal;
+					margin: 0;
+				}
+			}
+		}
+
+		.cs-main-header-right {
+			display: flex;
+			align-items: center;
+
+			> * {
+				margin-left: 0.5rem;
+			}
+		}
+	}
+}
