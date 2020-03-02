@@ -1,0 +1,75 @@
+// CS Input Search
+//
+// CS search input component.
+
+.cs-input-search {
+	@include sbg(--cs-input-bg);
+	@include css4 {
+		border: 1px solid cvar(--cs-input-br);
+	}
+
+	&:active,
+	&:focus {
+		outline: 0;
+		@include sbg(--cs-input-active-bg);
+		@include css4 {
+			border-color: cvar(--cs-input-active-br);
+			box-shadow: 0 0 0.1875rem cvar(--cs-input-shadow);
+		}
+	}
+
+	&:disabled {
+		cursor: not-allowed;
+		user-select: none;
+		@include sbg(--cs-input-disabled-bg);
+		@include css4 {
+			border-color: cvar(--cs-input-disabled-br);
+		}
+	}
+	@include input;
+}
+
+// Wrapper
+.cs-input-search-wrapper {
+	position: relative;
+
+	.cs-icon{
+		width: 1rem;
+		height: 1rem;
+		fill: var(--cs-input-search-icon-fill);
+		transform: translateY(50%);
+		display: block;
+		cursor: pointer;
+	}
+
+	.cs-input-icon-wrapper, .cs-input-search-clear {
+		position: absolute;
+		bottom: 50%;
+	}
+
+	&.cs-icon-left {
+		.cs-input-search {
+			padding: 0 1rem 0 2rem;
+		}
+		.cs-input-icon-wrapper {
+			left: 0.5rem;
+		}
+		.cs-input-search-clear {
+			right: 0.5rem;
+		}
+	}
+
+	&.cs-icon-right {
+		.cs-input-icon-wrapper {
+			right: 0.5rem;
+		}
+		.cs-input-search-clear{
+			right: 1.75rem;
+		}
+	}
+}
+
+// Square
+.cs-input-search-square {
+	border-radius: 0;
+}

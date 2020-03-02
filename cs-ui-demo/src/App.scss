@@ -359,6 +359,13 @@ body,
 					}
 				}
 
+				&.input-search-preview {
+
+					.custom-class {
+						border: 3px solid pink;
+					}
+				}
+
 				&.label-preview {
 
 					.custom-class {

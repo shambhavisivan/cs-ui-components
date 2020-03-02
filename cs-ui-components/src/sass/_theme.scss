@@ -130,7 +130,7 @@ $variables: (
 	--cs-input-error-br: $cs-red-medium-1,
 	--cs-input-error-shadow: $cs-red-medium-1,
 	--cs-input-shadow: $cs-blue-sf,
-	
+
 	--cs-input-number-bg: $cs-white,
 	--cs-input-number-br: $cs-gray-light-2,
 	--cs-input-number-active-br: $cs-blue-medium-5,
@@ -138,6 +138,8 @@ $variables: (
 	--cs-input-number-disabled-bg: $cs-gray-light-5,
 	--cs-input-number-disabled-br: $cs-gray-medium-3,
 	--cs-input-number-readonly-shadow-br: $cs-blue-sf,
+
+	--cs-input-search-icon-fill: $cs-gray-dark-5,
 
 	--cs-tooltip-info-bg: $cs-blue-dark-1,
 	--cs-tooltip-info-c: $cs-white,
