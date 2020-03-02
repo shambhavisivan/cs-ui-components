@@ -1,53 +1,543 @@
 /* BUTTON STYLING */
-.cs-btn {
+.cs-btn { // Type default, style initial
 	display: inline-flex;
-	padding: 0 1rem;
+	align-items: center;
+	position: relative;
+	padding: 0 1rem 0 0.5rem;
 	height: 2rem;
-	font-weight: normal;
+	font-weight: $font-weight-normal;
 	cursor: pointer;
 	border-radius: 0.25rem;
 	user-select: none;
-	position: relative;
-	@include css4 {
-		border: 1px solid cvar(--cs-button-br);
-	}
-
-	.label {
+	border: none;
+	background: none;
+	@at-root .cs-btn-has-link {
 		display: inline-flex;
-		height: calc(2rem - 2px);
-		align-items: center;
-		justify-content: center;
-		@include sc(--cs-button-bg);
-		z-index: 2;
+		text-decoration: none;
 	}
-	.icon {
-		z-index: 2;
-		height: 100%;
-		width: 2rem;
-		margin-left: 0.5rem;
-		@include sf(--cs-button-bg);
-	}
-
-	&::before {
+	&::before, &::after { // Background and border
 		content: "";
 		position: absolute;
 		top: 0;
 		right: 0;
 		left: 0;
 		bottom: 0;
-		z-index: 1;
-		@include sbg(--cs-main-c);
+		border-radius: 0.25rem;
+		pointer-events: none;
 	}
-
-	&:hover {
-		&::before {
-			@include bgd(--cs-main-c, 0.2, darkblue);
+	&::before {
+		@include sbg(--cs-button-bg);
+		clip-path: inset(1px 1px 1px 1px); // Fix for background overflowing borders
+	}
+	&::after {
+		@include css4 {
+			border: 1px solid cvar(--cs-button-br);
+		}
+	}
+	.cs-btn-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		height: calc(2rem - 2px);
+		min-width: 2rem; // IE11 Support
+		width: 2rem;
+		z-index: $z-index-button-icon;
+		@include sf(--cs-button-icon-c);
+		svg {
+			height: 1rem;
+			width: 1rem;
+		}
+	}
+	.cs-btn-label {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		height: calc(2rem - 2px);
+		font-size: 0.8125rem;
+		white-space: nowrap;
+		z-index: $z-index-button-label;
+		@include sc(--cs-button-c);
+	}
+	&:hover::before {
+		@include sbg(--cs-button-hover-bg);
+	}
+	&:focus {
+		outline: none;
+		position: relative;
+		z-index: $z-index-button;
+		&::after {
+			@include css4 {
+				box-shadow: 0 0 3px cvar(--cs-button-box);
+			}
+		}
+	}
+	&:active::after {
+		@include css4 {
+			border: 1px solid cvar(--cs-button-active-br);
+		}
+	}
+	&[disabled] {
+		cursor: default;
+	}
+	/* ALL BUTTONS PROPERTIES */
+	&.cs-btn-round {
+		border-radius: 1rem;
+		padding: 0 1rem 0 0.5rem; // Padding left needs to be 1rem or icon is cut off unless icon itself having border-radius
+		&::before, &::after {
+			border-radius: 1rem;
+		}
+		.cs-btn-icon { // Default left side icon
+			border-radius: 1rem 0 0 1rem;
+		}
+		&.cs-btn-icon-right .cs-btn-icon {
+			border-radius: 0 1rem 1rem 0;
+		}
+	}
+	/* ICON POSITION */
+	&.cs-btn-icon-right {
+		padding: 0 0.5rem 0 1rem;
+		.cs-btn-icon {
+			order: 1;
+		}
+	}
+	/* ICON DISPLAY */
+	&.cs-btn-no-icon {
+		padding: 0 1rem;
+		.cs-btn-icon {
+			display: none;
+		}
+	}
+	&.cs-btn-icon-only {
+		justify-content: center;
+		min-width: 2rem; // IE11 Support
+		padding: 0;
+		.cs-btn-icon {
+			min-width: calc(2rem - 2px);
+			width: calc(2rem - 2px);
+			border-radius: 0.25rem;
+		}
+		.cs-btn-label {
+			display: none;
+		}
+		&:hover .cs-btn-icon {
+			@include sf(--cs-button-icon-hover-c);
+		}
+		&.cs-btn-round .cs-btn-icon {
+			border-radius: 1rem;
+		}
+	}
+	/* WIDTH */
+	&.cs-btn-max-width {
+		display: flex;
+		width: 100%;
+		padding-right: 1.5rem;
+		margin-left: 0;
+		.cs-btn-label {
+			flex: 1;
+			@include overflow-ellipsis;
+		}
+		&.cs-btn-no-icon {
+			padding: 0 1rem;
+		}
+		&.cs-btn-icon-right {
+			padding: 0 0 0 1.5rem;
+		}
+	}
+	/* SIZE */
+	&.cs-btn-size-small {
+		height: 1.5rem;
+		padding: 0 0.75rem 0 0.25rem;
+		&.cs-btn-no-icon {
+			padding: 0 1rem;
+		}
+		.cs-btn-label, .cs-btn-icon {
+			height: calc(1.5rem - 2px);
+		}
+	}
+	&.cs-btn-size-extra-small {
+		height: 1.25rem;
+		padding: 0 0.25rem;
+		.cs-btn-icon {
+			min-width: 1.25rem;
+			width: 1.25rem;
+			svg {
+				height: 0.75rem;
+				width: 0.75rem;
+			}
+		}
+		.cs-btn-label, .cs-btn-icon {
+			height: calc(1.25rem - 2px);
+		}
+	}
+	&.cs-btn-size-large {
+		height: 3rem;
+		padding: 0 2rem 0 0.5rem;
+		.cs-btn-icon {
+			margin: 0 0.5rem 0 0;
+		}
+		&.cs-btn-no-icon {
+			padding: 0 2rem;
+		}
+		&.cs-btn-icon-right {
+			padding: 0 0.5rem 0 2rem;
+			.cs-btn-icon {
+				margin: 0 0 0 0.5rem;
+			}
 		}
 	}
 
-	&:active {
+	/*** BUTTON TYPES ***/
+	/* TYPE - DEFAULT */
+	&.cs-btn-default {
+		/* STYLE - BRAND */
+		&.cs-btn-brand {
+			&::before {
+				@include sbg(--cs-button-brand-bg);
+			}
+			.cs-btn-label {
+				@include sc(--cs-button-inverse-c);
+			}
+			.cs-btn-icon {
+				@include sf(--cs-button-inverse-c);
+			}
+			&:hover::before {
+				@include bgd(--cs-button-brand-bg, 0.15, var(--cs-main-c));
+			}
+			&:focus::after {
+				@include css4 {
+					border: 1px solid cvar(--cs-button-c);
+				}
+			}
+			&:active::before {
+				@include bgd(--cs-button-brand-bg, 0.25, var(--cs-main-c));
+			}
+			&[disabled] {
+				&::after {
+					@include css4 {
+						border-color: cvar(--cs-button-br);
+					}
+				}
+				&:hover::before {
+					@include sbg(--cs-button-disabled-bg);
+				}
+			}
+		}
+		/* STYLE - OUTLINE */
+		&.cs-btn-outline {
+			&::after {
+				@include css4 {
+					border: 1px solid cvar(--cs-button-brand-br);
+				}
+			}
+			&:hover::before {
+				@include sbg(--cs-button-hover-bg);
+			}
+			&:active::before {
+				@include bgd(--cs-button-hover-bg, 0.02);
+			}
+		}
+	}
+
+	/* TYPE - SUCESS */
+	&.cs-btn-success {
+		/* STYLE - INITIAL & ALL OTHER */
+		.cs-btn-label {
+			@include sc(--cs-button-success-c);
+		}
+		.cs-btn-icon {
+			@include sf(--cs-button-success-c);
+		}
+		&:focus::after {
+			@include css4 {
+				box-shadow: 0 0 3px cvar(--cs-button-success-box);
+			}
+		}
+		&:active::after {
+			@include css4 {
+				border: 1px solid cvar(--cs-button-success-br);
+			}
+		}
+		/* STYLE - BRAND */
+		&.cs-btn-brand {
+			&::before {
+				@include sbg(--cs-button-success-brand-bg);
+			}
+			.cs-btn-label {
+				@include sc(--cs-button-inverse-c);
+			}
+			.cs-btn-icon {
+				@include sf(--cs-button-inverse-c);
+			}
+			&:hover::before {
+				@include bgd(--cs-button-success-brand-bg, 0.15);
+			}
+			&:focus::after {
+				@include css4 {
+					border: 1px solid cvar(--cs-button-success-br);
+					box-shadow: 0 0 3px cvar(--cs-button-success-box);
+				}
+			}
+			&:active::before {
+				@include bgd(--cs-button-success-brand-bg, 0.25);
+			}
+		}
+		/* STYLE - OUTLINE */
+		&.cs-btn-outline {
+			&::after {
+				@include css4 {
+					border: 1px solid cvar(--cs-button-success-br);
+				}
+			}
+			&:active::before {
+				@include bgd(--cs-button-bg, 0.02);
+			}
+		}
+	}
+
+	/* TYPE - ERROR */
+	&.cs-btn-error {
+		/* STYLE - INITIAL & ALL OTHER */
+		.cs-btn-label {
+			@include sc(--cs-button-error-c);
+		}
+		.cs-btn-icon {
+			@include sf(--cs-button-error-c);
+		}
+		&:focus::after {
+			@include css4 {
+				box-shadow: 0 0 3px cvar(--cs-button-error-box);
+			}
+		}
+		&:active::after {
+			@include css4 {
+				border: 1px solid cvar(--cs-button-error-br);
+			}
+		}
+		/* STYLE - BRAND */
+		&.cs-btn-brand {
+			&::before {
+				@include sbg(--cs-button-error-bg);
+			}
+			.cs-btn-label {
+				@include sc(--cs-button-inverse-c);
+			}
+			.cs-btn-icon {
+				@include sf(--cs-button-inverse-c);
+			}
+			&:hover::before {
+				@include bgd(--cs-button-error-bg, 0.15);
+			}
+			&:focus::after {
+				@include css4 {
+					border: 1px solid cvar(--cs-button-error-br);
+				}
+			}
+			&:active::before {
+				@include bgd(--cs-button-error-bg, 0.25);
+			}
+		}
+
+		/* STYLE - OUTLINE */
+		&.cs-btn-outline {
+			&::after {
+				@include css4 {
+					border: 1px solid cvar(--cs-button-error-br);
+				}
+			}
+			&:focus::after {
+				@include css4 {
+					box-shadow: 0 0 3px cvar(--cs-button-error-box);
+				}
+			}
+			&:active::before {
+				@include bgd(--cs-button-bg, 0.02);
+			}
+		}
+	}
+	/* TYPE - TRANSPARENT */
+	&.cs-btn-transparent {
 		&::before {
-			@include bgl(--cs-main-c, 0.5);
+			@include sbg(--cs-transparent);
+		}
+		&:hover .cs-btn-label {
+			text-decoration: underline;
+		}
+		/* STYLE - INITIAL */
+		&.cs-btn-initial {
+			background: none;
+			.cs-btn-label {
+				@include sc(--cs-button-inverse-c);
+			}
+			.cs-btn-icon {
+				@include sf(--cs-button-inverse-c);
+			}
+			&::before {
+				@include sbg(--cs-transparent);
+			}
+			&::after {
+				@include css4 {
+					border: 1px solid cvar(--cs-transparent);
+				}
+			}
+			&:focus::after {
+				@include css4 {
+					box-shadow: 0 0 3px cvar(--cs-button-transparent-inverse-box);
+				}
+			}
+			&:active::after {
+				@include css4 {
+					border: 1px solid cvar(--cs-button-white-br);
+				}
+			}
+		}
+		/* STYLE - BRAND */
+		&.cs-btn-brand {
+			&::after {
+				@include css4 {
+					border: 1px solid cvar(--cs-transparent);
+				}
+			}
+			&:hover {
+				@include sbg(--cs-transparent);
+			}
+			&:active {
+				@include sbg(--cs-button-transparent-focus-bg);
+			}
+		}
+
+		/* STYLE - OUTLINE */
+		&.cs-btn-outline {
+			.cs-btn-label {
+				@include sc(--cs-button-inverse-c);
+			}
+			.cs-btn-icon {
+				@include sf(--cs-button-inverse-c);
+			}
+			&::before {
+				@include sbg(--cs-transparent);
+			}
+			&::after {
+				@include css4 {
+					border: 1px solid cvar(--cs-button-inverse-c);
+				}
+			}
+			&:hover::before {
+				@include sbg(--cs-button-transparent-inverse-focus-bg);
+			}
+			&:focus {
+				@include css4 {
+					box-shadow: 0 0 6px cvar(--cs-button-transparent-inverse-box);
+				}
+			}
+			&:active::before {
+				@include sbg(--cs-button-transparent-inverse-focus-bg);
+			}
+		}
+	}
+
+	/*** DISABLED STATES ***/
+	/* DISABLED STATE FOR ALL TYPES OF STYLE BRAND */
+	&.cs-btn-brand[disabled][disabled] {
+		.cs-btn-label {
+			@include sc(--cs-button-inverse-c);
+		}
+		&::before {
+			filter: brightness(1);
+			@include sbg(--cs-button-disabled-bg);
+		}
+		&::after {
+			@include css4 {
+				border-color: cvar(--cs-button-br);
+			}
+		}
+		&:focus::after {
+			@include css4 {
+				border: 1px solid cvar(--cs-button-br);
+			}
+		}
+	}
+
+	/* DISABLED STATE FOR ALL TYPES OF STYLE OUTLINE */
+	&.cs-btn-outline[disabled][disabled] {
+		.cs-btn-label {
+			@include sc(--cs-button-disabled-c);
+		}
+		.cs-btn-icon {
+			@include sf(--cs-button-disabled-c);
+		}
+		&::before {
+			filter: brightness(1);
+			@include sbg(--cs-button-bg);
+		}
+		&::after {
+			@include css4 {
+				border-color: cvar(--cs-button-br);
+			}
+		}
+	}
+	/* DISABLED STATE FOR ALL TYPES OF STYLE INITIAL */
+	&.cs-btn-initial[disabled][disabled] {
+		.cs-btn-label {
+			@include sc(--cs-button-disabled-c);
+		}
+		.cs-btn-icon {
+			@include sf(--cs-button-disabled-c);
+		}
+		&::before {
+			@include sbg(--cs-button-bg);
+		}
+		&::after {
+			@include css4 {
+				border-color: cvar(--cs-button-br);
+			}
+		}
+	}
+
+	/* DISABLED STATE FOR ALL TRANSPARENT TYPES */
+	&.cs-btn-transparent[disabled][disabled] {
+		box-shadow: none;
+		opacity: 0.75;
+		.cs-btn-label {
+			@include sc(--cs-button-disabled-c);
+		}
+		.cs-btn-icon {
+			@include sf(--cs-button-disabled-c);
+		}
+		&:active {
+			@include sbg(--cs-transparent);
+		}
+		&::before {
+			@include sbg(--cs-transparent);
+		}
+		&:hover {
+			.cs-btn-label {
+				text-decoration: none;
+			}
+			&::before {
+				@include sbg(--cs-transparent);
+			}
+		}
+		&.cs-btn-brand, .cs-btn-outline {
+			opacity: 0.75; // Revise design
+		}
+	}
+}
+.cs-btn-group {
+	display: inline-flex;
+	margin: 0.25rem 0.1875rem;
+	.cs-btn {
+		margin: 0;
+		margin-left: -1px;
+		&::after {
+			border-radius: 0;
+		}
+		&:first-child::after {
+			border-top-left-radius: 0.25rem;
+			border-bottom-left-radius: 0.25rem;
+		}
+		&:last-child::after {
+			border-top-right-radius: 0.25rem;
+			border-bottom-right-radius: 0.25rem;
 		}
 	}
 }

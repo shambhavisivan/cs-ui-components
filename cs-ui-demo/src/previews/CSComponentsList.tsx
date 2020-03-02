@@ -21,6 +21,7 @@ import CSTooltipPreview from './components/CSTooltipPreview';
 import CSPathPreview from './components/CSPathPreview';
 import CSToastPreview from './components/CSToastPreview';
 import CSAlertPreview from './components/CSAlertPreview';
+import CSButtonPreview from './components/CSButtonPreview';
 import SidebarList from './SidebarList';
 
 class CSComponentsList extends React.Component {
@@ -114,6 +115,10 @@ class CSComponentsList extends React.Component {
 			{
 				name: 'Alert',
 				component: CSAlertPreview
+			},
+			{
+				name: 'Button',
+				component: CSButtonPreview
 			}
 		];
 
