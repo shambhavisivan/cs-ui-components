@@ -160,6 +160,20 @@ $variables: (
 
 	--cs-label-required-c: $cs-red-medium-1,
 
+	--cs-checkbox-bg-neutral: $cs-white,
+	--cs-checkbox-bg-brand: $cs-blue-sf,
+	--cs-checkbox-br: $cs-gray-light-2,
+	--cs-checkbox-neutral-checked-br: $cs-blue-sf,
+	--cs-checkbox-brand-checked-br: $cs-white,
+	--cs-checkbox-focus-br: $cs-blue-medium-5,
+	--cs-checkbox-focus-box: $cs-blue-sf,
+	--cs-checkbox-disabled-bg: $cs-gray-light-5,
+	--cs-checkbox-disabled-br: $cs-gray-medium-3,
+	--cs-checkbox-disabled-checked-br: $cs-gray-medium-1,
+	--cs-checkbox-required-c: $cs-red-medium-2,
+	--cs-checkbox-error-br: $cs-red-medium-2,
+	--cs-checkbox-label-c: $cs-gray-dark-2,
+
 	--cs-pagination-bg: $cs-white,
 	--cs-pagination-br: $cs-gray-light-2,
 	--cs-pagination-c: $cs-blue-sf,

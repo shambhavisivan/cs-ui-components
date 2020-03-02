@@ -2,6 +2,7 @@ import CSAlert from './components/CSAlert';
 import CSButton from './components/CSButton';
 import CSCard from './components/card/CSCard';
 import CSCardHeader from './components/card/CSCardHeader';
+import CSCheckbox from './components/CSCheckbox';
 import CSChip from './components/CSChip';
 import CSCustomSelect from './components/CSCustomSelect';
 import CSLabel from './components/CSLabel';
@@ -33,6 +34,7 @@ export {
 	CSButton,
 	CSCard,
 	CSCardHeader,
+	CSCheckbox,
 	CSChip,
 	CSCustomSelect,
 	CSLabel,
