@@ -261,7 +261,10 @@ body,
 
 				&.spinner-preview {
 					position: relative;
-					min-height: 10rem;
+
+					.custom-class {
+						background-color: pink;
+					}
 				}
 
 				&.header-preview {

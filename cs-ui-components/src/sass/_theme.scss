@@ -119,6 +119,10 @@ $variables: (
 	--cs-alert-box: $cs-gray-light-5,
 	--cs-alert-br: $cs-gray-light-5,
 
+	--cs-spinner-bg: rgba($cs-white, 0.75),
+	--cs-spinner-neutral-bg: $cs-gray-medium-2,
+	--cs-spinner-brand-bg: $cs-blue-medium-5,
+
 	--cs-modal-wrapper-bg: rgba($cs-gray-dark-1, 0.6),
 	--cs-modal-bg: $cs-white,
 	--cs-modal-footer-bg: $cs-gray-light-6,

@@ -1,12 +1,12 @@
 import React from 'react';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
 
-import { CSAlert } from 'cs-ui-components';
+import { CSSpinner } from 'cs-ui-components';
 
-class CSAlertPreview extends React.Component {
+class CSSpinnerPreview extends React.Component {
 
 	render() {
-		const component = CSAlert.getDoc();
+		const component = CSSpinner.getDoc();
 
 		return (
 			<>
@@ -26,7 +26,7 @@ class CSAlertPreview extends React.Component {
 										<div key={chip} className="chip-label">{chip}</div>
 									))}
 									<div className="component-version">
-										<div className="version-preview alert-preview">
+										<div className="version-preview spinner-preview">
 											{variation.component}
 										</div>
 										<div className="version-description">
@@ -70,4 +70,4 @@ class CSAlertPreview extends React.Component {
 	}
 }
 
-export default CSAlertPreview;
+export default CSSpinnerPreview;

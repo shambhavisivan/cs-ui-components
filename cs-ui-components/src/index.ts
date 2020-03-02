@@ -4,8 +4,9 @@ import CSIcon from './components/CSIcon';
 import CSModal from './components/CSModal';
 import CSModalHeader from './components/CSModalHeader';
 import CSModalFooter from './components/CSModalFooter';
-import CSToast from './components/CSToast';
+import CSSpinner from './components/CSSpinner';
 import CSTabGroup from './components/CSTabGroup';
+import CSToast from './components/CSToast';
 
 import './sass/style.scss';
 
@@ -18,6 +19,7 @@ export {
 	CSModal,
 	CSModalHeader,
 	CSModalFooter,
+	CSSpinner,
 	CSTabGroup,
 	CSToast
 };
