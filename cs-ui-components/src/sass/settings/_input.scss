@@ -1,0 +1,46 @@
+@mixin input {
+	border-radius: 0.25rem;
+	display: inline-block;
+	font-size: 0.75rem;
+	line-height: 1.875rem;
+	min-height: 2rem;
+	padding: 0 1rem 0 0.75rem;
+	transition: border 0.1s linear, background-color 0.1s linear;
+	width: 100%;
+
+	&:required {
+		box-shadow: none;
+	}
+
+	&:read-only {
+		font-size: 0.875rem;
+		font-weight: $font-weight-normal;
+		padding-left: 0;
+		@include sbg(--cs-transparent);
+		@include css4 {
+			border-color: cvar(--cs-transparent);
+		}
+
+		&:active,
+		&:focus {
+			@include css4 {
+				box-shadow: 0 0 3px cvar(--cs-input-readonly-shadow-br);
+			}
+		}
+	}
+
+	// Error
+	&-error {
+		@include css4 {
+			border: 1px solid cvar(--cs-input-error-br);
+		}
+
+		&:active,
+		&:focus {
+			@include css4 {
+				border-color: cvar(--cs-input-error-c);
+				box-shadow: 0 0 3px cvar(--cs-input-error-shadow);
+			}
+		}
+	}
+}

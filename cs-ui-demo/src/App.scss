@@ -304,13 +304,26 @@ body,
 				&.toggle-preview {
 					padding: 1rem;
 				}
-				&.alert-preview {
+
+				&.tooltip-preview {
+					height: 15rem;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+
+					.custom-class{
+						background-color: pink;
+					}
+				}
+
+				&.alert-preview{
 
 					.custom-class {
 						background-color: pink;
 					}
 				}
-				&.toast-preview {
+
+				&.toast-preview{
 
 					.custom-class {
 						background-color: pink;
@@ -323,11 +336,26 @@ body,
 					}
 				}
 
+
 				&.button-preview {
 
 					.blue-background {
 						background-color: #16325c;
 						padding: 0.5rem;
+					}
+				}
+
+				&.input-text-preview {
+
+					.custom-class {
+						background-color: pink;
+					}
+				}
+
+				&.label-preview {
+
+					.custom-class {
+						background-color: pink;
 					}
 				}
 			}

@@ -1,0 +1,186 @@
+// CS Tooltip
+//
+// CS tooltip component.
+
+.cs-tooltip {
+	border-radius: 0.25rem;
+	display: none;
+	font-size: 0.75rem;
+	max-width: 20rem;
+	min-height: 2rem;
+	padding: 0.5rem 0.75rem;
+	position: absolute;
+	transition: 0.25s;
+	width: 170px;
+
+	&.cs-tooltip-info {
+		@include sbg(--cs-tooltip-info-bg);
+		@include sc(--cs-tooltip-info-c);
+	}
+
+	&.cs-tooltip-warning {
+		@include sbg(--cs-tooltip-warning-bg);
+		@include sc(--cs-tooltip-warning-c);
+	}
+
+	&.cs-tooltip-error {
+		@include sbg(--cs-tooltip-error-bg);
+		@include sc(--cs-tooltip-error-c);
+	}
+
+	&::before {
+		background-color: inherit;
+		content: "";
+		height: 1rem;
+		margin-bottom: 0.5rem;
+		margin-left: -0.5rem;
+		margin-right: -0.5rem;
+		margin-top: -0.5rem;
+		position: absolute;
+		transform: rotate(45deg);
+		width: 1rem;
+	}
+
+	&.cs-bottom-right {
+		top: calc(100% + 1rem);
+		left: -1rem;
+
+		&::before {
+			left: 1.5rem;
+			bottom: -0.5rem;
+			right: 0;
+			top: 0;
+		}
+
+	}
+	&.cs-bottom-left {
+		right: calc(100% - 3rem);
+		top: calc(100% + 1rem);
+
+		&::before {
+			left: 8rem;
+			bottom: -0.5rem;
+			right: 0;
+			top: 0;
+		}
+	}
+	&.cs-top-right {
+		bottom: 2rem;
+		left: -1rem;
+
+		&::before {
+			margin-bottom: 0;
+			margin-right: 0;
+			left: 2em;
+			top: 100%;
+		}
+	}
+	&.cs-top-left {
+		bottom: 2rem;
+		right: calc(100% - 2.1rem);
+
+		&::before {
+			margin-bottom: 0;
+			margin-right: 0;
+			left:9rem;
+			top: 100%;
+		}
+	}
+
+	&.cs-tooltip-with-header {
+		flex-direction: column;
+		padding: 0;
+
+		.cs-tooltip-header {
+			padding:0.5rem 0.375rem;
+			border-radius: 0.25rem 0.25rem 0 0;
+			font-size: 1.0625rem;
+		}
+
+		.cs-tooltip-body {
+			padding: 0.75rem;
+			border-radius: 0 0 0.25rem 0.25rem;
+			font-size:  0.8125rem;
+			box-shadow: 0 2px 3px 0 rgba(0,0,0,.16);
+			word-wrap: break-word;
+			}
+		&.cs-tooltip::before{
+			background-color: var(--cs-tooltip-body-bg);
+			box-shadow: 2px 2px 4px 0 rgba(0,0,0,.16);
+			}
+
+		&.cs-tooltip-info {
+
+			.cs-tooltip-header {
+				@include sbg(--cs-tooltip-info-bg);
+				@include sc(--cs-tooltip-info-c);
+			}
+			.cs-tooltip-body {
+				@include sbg(--cs-tooltip-body-bg);
+				@include sc(--cs-tooltip-body-c);
+			}
+		}
+
+		&.cs-tooltip-warning {
+
+			.cs-tooltip-header {
+				@include sbg(--cs-tooltip-warning-bg);
+				@include sc(--cs-tooltip-warning-c);
+			}
+			.cs-tooltip-body {
+				@include sbg(--cs-tooltip-body-bg);
+				@include sc(--cs-tooltip-body-c);
+			}
+		}
+
+		&.cs-tooltip-error {
+
+			.cs-tooltip-header {
+				@include sbg(--cs-tooltip-error-bg);
+				@include sc(--cs-tooltip-error-c);
+			}
+			.cs-tooltip-body {
+				@include sbg(--cs-tooltip-body-bg);
+				@include sc(--cs-tooltip-body-c);
+			}
+		}
+	}
+}
+
+.cs-tooltip-wrapper {
+	align-items: center;
+	display: inline-flex;
+	position: relative;
+
+	.cs-icon {
+		cursor: pointer;
+		margin-right: 0.5rem;
+
+		&:hover ~ .cs-tooltip {
+			display: flex;
+		}
+
+		&.cs-icon-small {
+			width: 0.875rem;
+			height: 0.875rem;
+		}
+
+		&.cs-icon-medium {
+			width: 1rem;
+			height: 1rem;
+		}
+	}
+
+	&.cs-tw-info .cs-icon {
+		@include sf(--cs-tooltip-icon-info);
+	}
+
+	&.cs-tw-warning .cs-icon {
+		@include sf(--cs-tooltip-warning-bg);
+	}
+
+	&.cs-tw-error .cs-icon {
+		@include sf(--cs-tooltip-error-bg);
+	}
+}
+

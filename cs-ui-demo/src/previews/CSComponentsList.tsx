@@ -22,6 +22,7 @@ import CSPathPreview from './components/CSPathPreview';
 import CSToastPreview from './components/CSToastPreview';
 import CSAlertPreview from './components/CSAlertPreview';
 import CSButtonPreview from './components/CSButtonPreview';
+import CSLabelPreview from './components/CSLabelPreview';
 import SidebarList from './SidebarList';
 
 class CSComponentsList extends React.Component {
@@ -119,6 +120,10 @@ class CSComponentsList extends React.Component {
 			{
 				name: 'Button',
 				component: CSButtonPreview
+			},
+			{
+				name: 'Label',
+				component: CSLabelPreview
 			}
 		];
 

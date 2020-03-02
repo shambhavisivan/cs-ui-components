@@ -6,6 +6,7 @@ import CsIconSvg from '../icons/cs-icons.svg';
 
 // export interface CSIconProps {
 // 	name: string;
+
 // }
 
 class CSIcon extends React.Component<any> {
@@ -15,7 +16,8 @@ class CSIcon extends React.Component<any> {
 		const styleClass = classNames(
 			'cs-icon',
 			{
-				[`${this.props.styleClass}`] : this.props.styleClass
+				[`${this.props.cssClass}`] : this.props.cssClass
+
 			}
 		);
 

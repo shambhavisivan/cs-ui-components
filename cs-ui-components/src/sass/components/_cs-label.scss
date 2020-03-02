@@ -1,0 +1,29 @@
+// CS Label
+//
+// CS label component.
+.cs-label-wrapper {
+	display: flex;
+	padding-bottom: 0.5rem;
+	align-items: flex-end;
+
+	.required-true {
+		display: inline-block;
+		padding-right: 0.25rem;
+		@include sc(--cs-label-required-c);
+	}
+
+	.required-false {
+		display: none;
+	}
+
+	.cs-tooltip-group {
+		display: inline-flex;
+		margin-left: 0.25rem;
+	}
+
+	.cs-label {
+		display: inline-flex;
+		position: relative;
+		font-size: 0.75rem;
+	}
+}

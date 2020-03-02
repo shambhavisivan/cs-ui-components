@@ -1,0 +1,36 @@
+// CS Input Text
+//
+// CS text input component.
+
+.cs-input-text {
+	@include sbg(--cs-input-bg);
+	@include css4 {
+		border: 1px solid cvar(--cs-input-br);
+	}
+
+	&:active,
+	&:focus {
+		outline: 0;
+		@include sbg(--cs-input-active-bg);
+		@include css4 {
+			border-color: cvar(--cs-input-active-br);
+			box-shadow: 0 0 0.1875rem cvar(--cs-input-shadow);
+		}
+	}
+
+	&:disabled {
+		cursor: not-allowed;
+		user-select: none;
+		@include sbg(--cs-input-disabled-bg);
+		@include css4 {
+			border-color: cvar(--cs-input-disabled-br);
+		}
+	}
+	@include input;
+}
+
+// Square
+.cs-input-text-square {
+	border-radius: 0;
+}
+
