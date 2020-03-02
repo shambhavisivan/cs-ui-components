@@ -2,12 +2,8 @@ import React from 'react';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
 
 import { CSToast } from 'cs-ui-components';
-import CSComponentPreviewProps from '../CSComponentsList';
 
-class CSToastPreview extends React.Component<CSComponentPreviewProps> {
-	constructor(props: CSComponentPreviewProps) {
-		super(props);
-	}
+class CSToastPreview extends React.Component {
 
 	render() {
 		const component = CSToast.getDoc();

@@ -300,8 +300,14 @@ body,
 					.custom-class {
 						background-color: pink;
 					}
-
 				}
+				&.tab-preview{
+
+					.custom-class{
+						background-color: pink;
+					}
+				}
+
 				&.button-preview {
 
 					.blue-background {

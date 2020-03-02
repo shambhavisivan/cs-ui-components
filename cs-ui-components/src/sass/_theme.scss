@@ -151,7 +151,13 @@ $variables: (
 	--cs-toast-hover-fill: rgba($cs-white, 0.75),
 	--cs-toast-active-fill: rgba($cs-white, 0.5),
 	--cs-toast-box: $cs-gray-light-5,
-	--cs-toast-br: $cs-gray-light-5
+	--cs-toast-br: $cs-gray-light-5,
+
+	--cs-tab-br: $cs-gray-light-2,
+	--cs-tab-c: $cs-gray-dark-2,
+	--cs-tab-active-c: $cs-gray-dark-1,
+	--cs-tab-active-br: $cs-blue-medium-5,
+	--cs-tab-hover-br: $cs-blue-sf,
 
 );
 

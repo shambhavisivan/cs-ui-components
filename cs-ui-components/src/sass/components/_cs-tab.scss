@@ -1,0 +1,47 @@
+.cs-tab-group {
+	display: flex;
+	align-items: flex-start;
+	width: 100%;
+	@include css4 {
+		border-bottom: 1px solid cvar(--cs-tab-br);
+	}
+
+	.cs-tab {
+		cursor: pointer;
+		display: block;
+		height: 2.5rem;
+		line-height: 2.5rem;
+		position: relative;
+		padding: 0 0.75rem;
+		margin-bottom: -1px;
+		font-size: 0.8125rem;
+		@include overflow-ellipsis;
+		@include sc(--cs-tab-c);
+
+		&.cs-tab-active {
+			font-weight: $font-weight-bold;
+			@include sc(--cs-tab-active-c);
+
+			&::after {
+				height: 0.1875rem;
+				@include sbg(--cs-tab-active-br);
+			}
+		}
+
+		&::after {
+			display: block;
+			content: "";
+			bottom: 0;
+			left: 0;
+			right: 0;
+			height: 0;
+			position: absolute;
+		}
+
+		&:hover::after {
+			height: 0.125rem;
+			transition: 0.3s;
+			@include sbg(--cs-tab-hover-br);
+		}
+	}
+}
