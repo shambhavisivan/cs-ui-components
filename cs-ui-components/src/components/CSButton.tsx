@@ -19,6 +19,7 @@ export interface CSButtonProps {
 	disabled?: boolean;
 	label?: string;
 	link?: string;
+	className?: string;
 }
 
 class CSButton extends React.Component<CSButtonProps> {
@@ -200,6 +201,17 @@ class CSButton extends React.Component<CSButtonProps> {
 							component: <CSButton iconName="activity" label="default" link="www.google.com"/>
 						}
 					]
+				},
+				{
+					propName: 'className',
+					customText: '',
+					variations: [
+						{
+							variationName: ['className'],
+							string: '',
+							component: <CSButton  iconName="activity" label="default initial" className="custom-class"/>
+						}
+					]
 				}
 			],
 			properties: [
@@ -310,6 +322,11 @@ class CSButton extends React.Component<CSButtonProps> {
 					options: [
 						'<condition>'
 					]
+				},
+				{
+					propertyName: 'className',
+					description: 'For implementing custom class to component',
+					options: []
 				}
 			],
 			backlog: [
@@ -368,7 +385,9 @@ class CSButton extends React.Component<CSButtonProps> {
 
 			'cs-btn-size-extra-small': this.props.size === 'extra-small',
 			'cs-btn-size-small': this.props.size === 'small',
-			'cs-btn-size-large': this.props.size === 'large'
+			'cs-btn-size-large': this.props.size === 'large',
+
+			[`${this.props.className}`]: this.props.className
 		}
 	);
 
