@@ -1,13 +1,9 @@
 import React from 'react';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
 
-import { CSButton } from 'cs-ui-components';
-import CSComponentPreviewProps from '../CSComponentsList';
+import {CSButton} from '@cloudsense/cs-ui-components';
 
-class CSButtonPreview extends React.Component<CSComponentPreviewProps> {
-	constructor(props: CSComponentPreviewProps) {
-		super(props);
-	}
+class CSButtonPreview extends React.Component {
 
 	render() {
 		const component = CSButton.getDoc();
@@ -34,7 +30,8 @@ class CSButtonPreview extends React.Component<CSComponentPreviewProps> {
 											{variation.component}
 										</div>
 										<div className="version-description">
-											<SyntaxHighlighter className="code-snippet" language="jsx">{variation.string}</SyntaxHighlighter>
+											<SyntaxHighlighter className="code-snippet"
+												language="jsx">{variation.string}</SyntaxHighlighter>
 										</div>
 									</div>
 								</React.Fragment>

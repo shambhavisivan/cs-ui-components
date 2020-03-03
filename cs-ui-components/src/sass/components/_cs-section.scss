@@ -51,7 +51,7 @@
 					box-shadow: 0 0 7px cvar(--cs-section-button-shadow);
 				}
 			}
-			&:hover{
+			&:hover {
 				@include sbg(--cs-section-hover-bg);
 			}
 			.cs-icon {

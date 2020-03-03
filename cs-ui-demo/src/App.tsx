@@ -1,5 +1,4 @@
 import './App.scss';
-// import '../../cs-ui-components/src/sass/style.scss';
 import React from 'react';
 
 import {BrowserRouter as Router, Route, NavLink} from 'react-router-dom';

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
 
-import { CSCard, CSCardHeader } from 'cs-ui-components';
+import {CSCard, CSCardHeader} from '@cloudsense/cs-ui-components';
 
 class CSCardPreview extends React.Component {
 
@@ -31,7 +31,8 @@ class CSCardPreview extends React.Component {
 											{variation.component}
 										</div>
 										<div className="version-description">
-											<SyntaxHighlighter className="code-snippet" language="jsx">{variation.string}</SyntaxHighlighter>
+											<SyntaxHighlighter className="code-snippet"
+												language="jsx">{variation.string}</SyntaxHighlighter>
 										</div>
 									</div>
 								</React.Fragment>

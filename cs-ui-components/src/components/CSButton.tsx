@@ -384,7 +384,6 @@ class CSButton extends React.Component<CSButtonProps> {
 		);
 	}
 
-
 }
 
 export default CSButton;

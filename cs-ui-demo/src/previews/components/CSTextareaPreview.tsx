@@ -1,7 +1,7 @@
 import React from 'react';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
 
-import { CSTextarea } from 'cs-ui-components';
+import {CSTextarea} from '@cloudsense/cs-ui-components';
 
 class CSTextareaPreview extends React.Component {
 
@@ -30,7 +30,8 @@ class CSTextareaPreview extends React.Component {
 											{variation.component}
 										</div>
 										<div className="version-description">
-											<SyntaxHighlighter className="code-snippet" language="jsx">{variation.string}</SyntaxHighlighter>
+											<SyntaxHighlighter className="code-snippet"
+												language="jsx">{variation.string}</SyntaxHighlighter>
 										</div>
 									</div>
 								</React.Fragment>

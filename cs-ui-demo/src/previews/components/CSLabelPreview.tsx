@@ -1,7 +1,7 @@
 import React from 'react';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
 
-import { CSLabel } from 'cs-ui-components';
+import {CSLabel} from '@cloudsense/cs-ui-components';
 
 class CSLabelPreview extends React.Component {
 
@@ -30,7 +30,8 @@ class CSLabelPreview extends React.Component {
 											{variation.component}
 										</div>
 										<div className="version-description">
-											<SyntaxHighlighter className="code-snippet" language="jsx">{variation.string}</SyntaxHighlighter>
+											<SyntaxHighlighter className="code-snippet"
+												language="jsx">{variation.string}</SyntaxHighlighter>
 										</div>
 									</div>
 								</React.Fragment>
@@ -39,7 +40,7 @@ class CSLabelPreview extends React.Component {
 					</div>
 				))}
 
-				<div className="table--wrapper properties-table-wrapper">
+				<div className="table-wrapper properties-table-wrapper">
 					<h2 className="property-name">Properties list</h2>
 					<h3 className="component-name">{component.name}</h3>
 					<div className="properties-table">

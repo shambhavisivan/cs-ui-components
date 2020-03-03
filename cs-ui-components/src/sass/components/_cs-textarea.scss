@@ -7,7 +7,7 @@
 	outline: 0;
 	padding: 0.5rem 0.75rem;
 	resize: vertical;
-	transition: border 0.1s linear,background-color 0.1s linear;
+	transition: border 0.1s linear, background-color 0.1s linear;
 	width: 100%;
 	@include sbg(--cs-textarea-bg);
 	@include css4 {

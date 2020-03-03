@@ -16,11 +16,11 @@
 
 	.cs-spinner-wrapper-label {
 		display: flex;
-    	flex-direction: column;
-    	align-items: center;
+		flex-direction: column;
+		align-items: center;
 
 		.cs-spinner-label {
-    		overflow: hidden;
+			overflow: hidden;
 			word-break: break-word;
 			text-align: center;
 			position: relative;
@@ -194,11 +194,11 @@
 @keyframes dotsBounceBefore-xsmall {
 	60% {
 		transform: translateX(0);
-		animation-timing-function: cubic-bezier(0.275,0.0425,0.34,0.265);
+		animation-timing-function: cubic-bezier(0.275, 0.0425, 0.34, 0.265);
 	}
 
 	80% {
-		animation-timing-function: cubic-bezier(0,0.555,0.35,0.715);
+		animation-timing-function: cubic-bezier(0, 0.555, 0.35, 0.715);
 		transform: translateX(-0.125rem);
 	}
 
@@ -209,12 +209,12 @@
 
 @keyframes dotsBounceAfter-xsmall {
 	60% {
-		animation-timing-function: cubic-bezier(0.275,0.0425,0.34,0.265);
+		animation-timing-function: cubic-bezier(0.275, 0.0425, 0.34, 0.265);
 		transform: translateX(0);
 	}
 
 	80% {
-		animation-timing-function: cubic-bezier(0,0.555,0.35,0.715);
+		animation-timing-function: cubic-bezier(0, 0.555, 0.35, 0.715);
 		transform: translateX(0.125rem);
 	}
 
@@ -260,11 +260,11 @@
 @keyframes dotsBounceBefore-small {
 	60% {
 		transform: translateX(0);
-		animation-timing-function: cubic-bezier(0.55,0.085,0.68,0.53);
+		animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
 	}
 
 	80% {
-		animation-timing-function: cubic-bezier(0,1.11,0.7,1.43);
+		animation-timing-function: cubic-bezier(0, 1.11, 0.7, 1.43);
 		transform: translateX(-0.25rem);
 	}
 
@@ -275,12 +275,12 @@
 
 @keyframes dotsBounceAfter-small {
 	60% {
-		animation-timing-function: cubic-bezier(0.55,0.085,0.68,0.53);
+		animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
 		transform: translateX(0);
 	}
 
 	80% {
-		animation-timing-function: cubic-bezier(0,1.11,0.7,1.43);
+		animation-timing-function: cubic-bezier(0, 1.11, 0.7, 1.43);
 		transform: translateX(0.25rem);
 	}
 
@@ -326,11 +326,11 @@
 @keyframes dotsBounceBefore-medium {
 	60% {
 		transform: translateX(0);
-		animation-timing-function: cubic-bezier(0.55,0.085,0.68,0.53);
+		animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
 	}
 
 	80% {
-		animation-timing-function: cubic-bezier(0,1.11,0.7,1.43);
+		animation-timing-function: cubic-bezier(0, 1.11, 0.7, 1.43);
 		transform: translateX(-0.375rem);
 	}
 
@@ -341,12 +341,12 @@
 
 @keyframes dotsBounceAfter-medium {
 	60% {
-		animation-timing-function: cubic-bezier(0.55,0.085,0.68,0.53);
+		animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
 		transform: translateX(0);
 	}
 
 	80% {
-		animation-timing-function: cubic-bezier(0,1.11,0.7,1.43);
+		animation-timing-function: cubic-bezier(0, 1.11, 0.7, 1.43);
 		transform: translateX(0.375rem);
 	}
 
@@ -376,7 +376,7 @@
 .cs-spinner-large.cs-spinner:before,
 .cs-spinner-large .cs-spinner-dot-a:before,
 .cs-spinner-large .cs-spinner-dot-b:before {
-	animation-name:dotsBounceBefore-large;
+	animation-name: dotsBounceBefore-large;
 	top: -0.25rem;
 	left: -0.25rem;
 }
@@ -384,7 +384,7 @@
 .cs-spinner-large.cs-spinner:after,
 .cs-spinner-large .cs-spinner-dot-a:after,
 .cs-spinner-large .cs-spinner-dot-b:after {
-	animation-name:dotsBounceAfter-large;
+	animation-name: dotsBounceAfter-large;
 	top: -0.25rem;
 	right: -0.25rem;
 }
@@ -392,11 +392,11 @@
 @keyframes dotsBounceBefore-large {
 	60% {
 		transform: translateX(0);
-		animation-timing-function: cubic-bezier(0.55,0.085,0.68,0.53);
+		animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
 	}
 
 	80% {
-		animation-timing-function: cubic-bezier(0,1.11,0.7,1.43);
+		animation-timing-function: cubic-bezier(0, 1.11, 0.7, 1.43);
 		transform: translateX(-0.5rem);
 	}
 
@@ -407,12 +407,12 @@
 
 @keyframes dotsBounceAfter-large {
 	60% {
-		animation-timing-function: cubic-bezier(0.55,0.085,0.68,0.53);
+		animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
 		transform: translateX(0);
 	}
 
 	80% {
-		animation-timing-function: cubic-bezier(0,1.11,0.7,1.43);
+		animation-timing-function: cubic-bezier(0, 1.11, 0.7, 1.43);
 		transform: translateX(0.5rem);
 	}
 
@@ -458,11 +458,11 @@
 @keyframes dotsBounceBefore-xlarge {
 	60% {
 		transform: translateX(0);
-		animation-timing-function: cubic-bezier(0.55,0.085,0.68,0.53);
+		animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
 	}
 
 	80% {
-		animation-timing-function: cubic-bezier(0,1.11,0.7,1.43);
+		animation-timing-function: cubic-bezier(0, 1.11, 0.7, 1.43);
 		transform: translateX(-0.75rem);
 	}
 
@@ -473,12 +473,12 @@
 
 @keyframes dotsBounceAfter-xlarge {
 	60% {
-		animation-timing-function: cubic-bezier(0.55,0.085,0.68,0.53);
+		animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
 		transform: translateX(0);
 	}
 
 	80% {
-		animation-timing-function: cubic-bezier(0,1.11,0.7,1.43);
+		animation-timing-function: cubic-bezier(0, 1.11, 0.7, 1.43);
 		transform: translateX(0.75rem);
 	}
 

@@ -30,8 +30,6 @@ import CSTooltip from './components/CSTooltip';
 
 import './sass/style.scss';
 
-
-
 export {
 	CSAlert,
 	CSButton,

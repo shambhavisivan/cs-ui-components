@@ -1,14 +1,15 @@
 var path = require("path");
+var mode = 'development';
 
 module.exports = {
-	mode: "production",
-	entry: "./src/index.ts",
+	mode: mode,
+	entry: "./src/index.tsx",
 	output: {
 		path: path.resolve(__dirname, "dist"),
 		filename: "index.js",
 		libraryTarget: "commonjs2"
 	},
-	devtool: 'inline-source-map',
+	devtool: (mode === 'development') ? 'inline-source-map' : false,
 	module: {
 		rules: [
 			{

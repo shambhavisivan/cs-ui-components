@@ -12,7 +12,6 @@
 	text-transform: uppercase;
 	@include sbg(--cs-chip-transparent-bg);
 
-
 	&-brand {
 		@include sbg(--cs-chip-brand-bg);
 		@include sc(--cs-chip-c);

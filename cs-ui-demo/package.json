@@ -1,5 +1,5 @@
 {
-	"name": "cs-ui-demo",
+	"name": "@cloudsense/cs-ui-demo",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
@@ -10,7 +10,7 @@
 		"@types/react-dom": "^16.9.5",
 		"@types/react-router-dom": "^5.1.3",
 		"common-tags": "^1.8.0",
-		"cs-ui-components": "file:../cs-ui-components",
+		"@cloudsense/cs-ui-components": "file:../cs-ui-components",
 		"node-sass": "^4.13.1",
 		"react": "^16.12.0",
 		"react-dom": "^16.12.0",

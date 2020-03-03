@@ -31,15 +31,15 @@ class CSTable extends React.Component<CSTableProps> {
 									<CSTableHeader>
 										<CSTableCell
 											title="Header Item 1"
-											grow="2"
+											grow={2}
 										/>
 										<CSTableCell
 											title="Header Item 2"
-											grow="1"
+											grow={1}
 										/>
 										<CSTableCell
 											title="Header Item 3"
-											grow="1"
+											grow={1}
 										/>
 										<CSTableCell
 											title="Button Column"
@@ -50,15 +50,15 @@ class CSTable extends React.Component<CSTableProps> {
 										<CSTableRow>
 											<CSTableCell
 												title="Body Item 1"
-												grow="2"
+												grow={2}
 											/>
 											<CSTableCell
 												title="Body Item 2"
-												grow="1"
+												grow={1}
 											/>
 											<CSTableCell
 												title="Body Item 3"
-												grow="1"
+												grow={1}
 											/>
 											<CSTableCell
 												maxWidth="100px"
@@ -73,15 +73,15 @@ class CSTable extends React.Component<CSTableProps> {
 										<CSTableRow>
 											<CSTableCell
 												title="Second Row Item 1"
-												grow="2"
+												grow={2}
 											/>
 											<CSTableCell
 												title="Second Row Item 2"
-												grow="1"
+												grow={1}
 											/>
 											<CSTableCell
 												title="Second Row Item 3"
-												grow="1"
+												grow={1}
 											/>
 											<CSTableCell
 												maxWidth="100px"

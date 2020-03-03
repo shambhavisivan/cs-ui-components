@@ -1,7 +1,7 @@
 import React from 'react';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
 
-import { CSInputNumber } from 'cs-ui-components';
+import {CSInputNumber} from '@cloudsense/cs-ui-components';
 
 class CSInputNumberPreview extends React.Component {
 	render() {
@@ -29,7 +29,8 @@ class CSInputNumberPreview extends React.Component {
 											{variation.component}
 										</div>
 										<div className="version-description">
-											<SyntaxHighlighter className="code-snippet" language="jsx">{variation.string}</SyntaxHighlighter>
+											<SyntaxHighlighter className="code-snippet"
+												language="jsx">{variation.string}</SyntaxHighlighter>
 										</div>
 									</div>
 								</React.Fragment>

@@ -1,9 +1,10 @@
 import React from 'react';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
 
-import { CSToggle } from 'cs-ui-components';
+import {CSToggle} from '@cloudsense/cs-ui-components';
 
 class CSTogglePreview extends React.Component {
+
 	render() {
 		const component = CSToggle.getDoc();
 
@@ -29,7 +30,8 @@ class CSTogglePreview extends React.Component {
 											{variation.component}
 										</div>
 										<div className="version-description">
-											<SyntaxHighlighter className="code-snippet" language="jsx">{variation.string}</SyntaxHighlighter>
+											<SyntaxHighlighter className="code-snippet"
+												language="jsx">{variation.string}</SyntaxHighlighter>
 										</div>
 									</div>
 								</React.Fragment>

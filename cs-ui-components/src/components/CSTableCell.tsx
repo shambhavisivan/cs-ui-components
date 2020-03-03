@@ -2,7 +2,7 @@ import React from 'react';
 
 export interface CSTableCellProps {
 	title?: string;
-	grow?: string;
+	grow?: number;
 	maxWidth?: string;
 }
 

@@ -1,13 +1,9 @@
 import React from 'react';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
 
-import { CSModal, CSModalHeader, CSModalFooter } from 'cs-ui-components';
-import CSComponentPreviewProps from '../CSComponentsList';
+import {CSModal, CSModalHeader, CSModalFooter} from '@cloudsense/cs-ui-components';
 
-class CSModalPreview extends React.Component<CSComponentPreviewProps> {
-	constructor(props: CSComponentPreviewProps) {
-		super(props);
-	}
+class CSModalPreview extends React.Component {
 
 	render() {
 
@@ -37,7 +33,8 @@ class CSModalPreview extends React.Component<CSComponentPreviewProps> {
 											{variation.component}
 										</div>
 										<div className="version-description">
-											<SyntaxHighlighter className="code-snippet" language="jsx">{variation.string}</SyntaxHighlighter>
+											<SyntaxHighlighter className="code-snippet"
+												language="jsx">{variation.string}</SyntaxHighlighter>
 										</div>
 									</div>
 								</React.Fragment>
