@@ -13,6 +13,7 @@ import CSPath from './components/CSPath';
 import CSSpinner from './components/CSSpinner';
 import CSTable from './components/CSTable';
 import CSTabGroup from './components/CSTabGroup';
+import CSTextarea from './components/CSTextarea';
 import CSToast from './components/CSToast';
 import CSTooltip from './components/CSTooltip';
 
@@ -36,6 +37,7 @@ export {
 	CSSpinner,
 	CSTable,
 	CSTabGroup,
+	CSTextarea,
 	CSToast,
 	CSTooltip
 };
