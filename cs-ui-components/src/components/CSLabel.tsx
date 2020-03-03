@@ -7,7 +7,7 @@ import classNames from 'classnames';
 export interface CSLabelProps {
 	required?: boolean;
 	for?: string;
-	label?: string;
+	label: string;
 	helpText?: string;
 	tooltipPosition?: string;
 	className?: string;
@@ -29,7 +29,7 @@ class CSLabel extends React.Component<CSLabelProps> {
 							variationName: ['For'],
 							string: '',
 							component:
-								<CSLabel for="Name"/>
+								<CSLabel label="Label" for="Name"/>
 						}
 					]
 				},
@@ -40,7 +40,18 @@ class CSLabel extends React.Component<CSLabelProps> {
 							variationName: ['false', 'true'],
 							string: '',
 							component:
-								<CSLabel required/>
+								<CSLabel label="Label" required/>
+						}
+					]
+				},
+				{
+					propName: 'Tooltip Position',
+					variations: [
+						{
+							variationName: ['tooltipPosition'],
+							string: '',
+							component:
+									<CSLabel label="Label" helpText="Help text example" tooltipPosition="top-left" />
 						}
 					]
 				},
@@ -51,23 +62,28 @@ class CSLabel extends React.Component<CSLabelProps> {
 							variationName: ['Help'],
 							string: '',
 							component:
-								<CSLabel helpText="Example of help text"/>
+								<CSLabel label="Label" helpText="Example of help text"/>
 						}
 					]
 				},
 				{
-					propName: 'Help Text',
+					propName: 'className',
 					variations: [
 						{
 							variationName: ['Help'],
 							string: '',
 							component:
-								<CSLabel helpText="Example of help text" className="custom-class"/>
+								<CSLabel label="Label" helpText="Example of help text" className="custom-class"/>
 						}
 					]
 				}
 			],
 			properties: [
+				{
+					propertyName: 'Label',
+					description: 'Label value',
+					options: []
+				},
 				{
 					propertyName: 'for',
 					description: 'Label id',
@@ -85,6 +101,16 @@ class CSLabel extends React.Component<CSLabelProps> {
 					propertyName: 'helpText',
 					description: 'Label help text display for tooltip',
 					options: []
+				},
+				{
+					propertyName: 'tooltipPosition',
+					description: 'Label tooltip position',
+					options: [
+						'top-right',
+						'top-left',
+						'bottom-right',
+						'bottom-left'
+					]
 				},
 				{
 					propertyName: 'className',
