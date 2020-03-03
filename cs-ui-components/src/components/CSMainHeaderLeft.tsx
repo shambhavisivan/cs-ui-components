@@ -6,6 +6,26 @@ export interface CSMainHeaderLeftProps {
 }
 
 class CSMainHeaderLeft extends React.Component<CSMainHeaderLeftProps> {
+
+	static getDoc() {
+		const json = {
+			name: 'MainHeaderLeft',
+			properties: [
+				{
+					propertyName: 'title',
+					description: 'Main header title',
+					options: ['n/a']
+				},
+				{
+					propertyName: 'subtitle',
+					description: 'Secondary text content',
+					options: ['n/a']
+				}
+			]
+		};
+
+		return json;
+	}
 	render() {
 		return (
 			<div className="cs-main-header-left">

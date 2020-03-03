@@ -12,6 +12,7 @@ import CSInputNumber from './components/CSInputNumber';
 import CSInputSearch from './components/CSInputSearch';
 import CSInputText from './components/CSInputText';
 import CSMainHeader from './components/CSMainHeader';
+import CSMainHeaderLeft from './components/CSMainHeaderLeft';
 import CSModal from './components/CSModal';
 import CSModalHeader from './components/CSModalHeader';
 import CSModalFooter from './components/CSModalFooter';
@@ -45,6 +46,7 @@ export {
 	CSInputSearch,
 	CSInputText,
 	CSMainHeader,
+	CSMainHeaderLeft,
 	CSModal,
 	CSModalHeader,
 	CSModalFooter,

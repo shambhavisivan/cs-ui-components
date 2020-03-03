@@ -1,13 +1,13 @@
 import React from 'react';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
 
-import {CSMainHeader} from '@cloudsense/cs-ui-components';
+import {CSMainHeader, CSMainHeaderLeft} from '@cloudsense/cs-ui-components';
 
 class CSMainHeaderPreview extends React.Component {
 
 	render() {
 		const component = CSMainHeader.getDoc();
-		const component2 = CSMainHeader.getDoc2(); // For CSMainHeaderLeft
+		const component2 = CSMainHeaderLeft.getDoc();
 
 		return (
 			<>
