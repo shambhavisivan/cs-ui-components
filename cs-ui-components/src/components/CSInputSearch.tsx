@@ -17,6 +17,7 @@ export interface CSInputSearchProps {
 	iconPosition?: string;
 	value?: string;
 	className?: string;
+	width?: string;
 	onChange?(): any;
 }
 
@@ -161,6 +162,17 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 					]
 				},
 				{
+					propName: 'width',
+					variations: [
+						{
+							variationName: ['50%'],
+							string: '',
+							component:
+									<CSInputSearch label="Type here:" width="50%" />
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -267,6 +279,16 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 					]
 				},
 				{
+					propertyName: 'width',
+					description: 'Width of the input search',
+					options: [
+						'e.g.',
+						'50%',
+						'30rem',
+						'25px'
+					]
+				},
+				{
 					propertyName: 'className',
 					description: 'For implementing custom class to component',
 					options: [
@@ -355,6 +377,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 						required={this.props.required}
 						value={this.state.value}
 						type="text"
+						style={{width: this.props.width}}
 					/>
 					{this.state.value &&
 						<div className="cs-input-search-clear" onClick={this.clearSearch}>
