@@ -3,9 +3,16 @@
 // CS number input component.
 
 .cs-input-number {
+	-moz-appearance:textfield;
 	@include sbg(--cs-input-number-bg);
 	@include css4 {
 		border: 1px solid cvar(--cs-input-number-br);
+	}
+
+	&::-webkit-outer-spin-button,
+	&::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
 	}
 
 	&:active,
