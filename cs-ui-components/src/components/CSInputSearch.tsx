@@ -17,6 +17,7 @@ export interface CSInputSearchProps {
 	iconPosition?: string;
 	value?: string;
 	className?: string;
+	onChange?(): any;
 }
 
 export interface CSInputSearchState {
@@ -30,6 +31,8 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 	};
 
 	static getDoc() {
+
+		const onChangeHandler = () => alert('Input search changed!');
 
 		const json = {
 			name: 'Input Search',
@@ -167,6 +170,17 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 									<CSInputSearch label="Type here:" className="custom-class" />
 						}
 					]
+				},
+				{
+					propName: 'onChange',
+					variations: [
+						{
+							variationName: ['onChange'],
+							string: '',
+							component:
+									<CSInputSearch label="Type here:" onChange={onChangeHandler} />
+						}
+					]
 				}
 			],
 			properties: [
@@ -258,6 +272,11 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 					options: [
 						'square'
 					]
+				},
+				{
+					propertyName: 'onChange',
+					description: 'Logic for onChange event',
+					options: []
 				}
 			]
 		};
@@ -291,6 +310,10 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 		this.setState({
 			value: e.target.value
 		});
+		if (this.props.onChange) {
+			this.props.onChange();
+		}
+
 	}
 	clearSearch() {
 		this.setState({

@@ -15,6 +15,7 @@ export interface CSCheckboxProps {
 	variant?: string;
 	labelHidden?: boolean;
 	className?: string;
+	onChange?(): any;
 }
 
 export interface CSCheckboxState {
@@ -29,6 +30,8 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 	};
 
 	static getDoc() {
+
+		const onChangeHandler = () => alert('Checbox changed!');
 
 		const json = {
 			name: 'Checkbox',
@@ -212,6 +215,17 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 								<CSCheckbox label="This is a label" className="custom-class" />
 						}
 					]
+				},
+				{
+					propName: 'onChange',
+					variations: [
+						{
+							variationName: ['onChange'],
+							string: '',
+							component:
+								<CSCheckbox label="This is a label" onChange={onChangeHandler} />
+						}
+					]
 				}
 			],
 
@@ -296,6 +310,11 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 					propertyName: 'className',
 					description: 'For implementing custom class to component',
 					options: []
+				},
+				{
+					propertyName: 'onChange',
+					description: 'Logic for onChange event',
+					options: []
 				}
 			]
 		};
@@ -320,6 +339,9 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 
 	toggleCheckbox() {
 		this.setState({checkedValue: !this.state.checkedValue});
+		if (this.props.onChange) {
+			this.props.onChange();
+		}
 	}
 
 	render() {
