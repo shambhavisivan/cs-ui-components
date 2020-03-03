@@ -1,5 +1,6 @@
 import React from 'react';
 import {Route, NavLink} from 'react-router-dom';
+import {CSIcon, CSButton} from '@cloudsense/cs-ui-components';
 
 import classNames from 'classnames';
 
@@ -25,6 +26,7 @@ class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
 	constructor(props: SidebarListProps) {
 		super(props);
 
+		this.clearSearch = this.clearSearch.bind(this);
 		this.toggleSidebar = this.toggleSidebar.bind(this);
 		this.searchHandler = this.searchHandler.bind(this);
 
@@ -36,6 +38,12 @@ class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
 
 	toggleSidebar() {
 		this.setState({ sidebarOpen: !this.state.sidebarOpen });
+	}
+
+	clearSearch() {
+		this.setState({
+			term: ''
+		});
 	}
 
 	searchHandler(event: any) {
@@ -58,7 +66,16 @@ class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
 				<div className={'components-list-wrapper' + (this.state.sidebarOpen ? ' sidebar-open' : '')}>
 					{this.props.search && this.state.sidebarOpen ?
 						<div className="components-list-search">
+							<CSIcon name="search"/>
 							<input placeholder="Search..." onChange={this.searchHandler} value={this.state.term}/>
+							{this.state.term &&
+								<CSButton
+									btnType="transparent"
+									iconName="close"
+									iconDisplay="icon-only"
+									onClick={this.clearSearch}
+								/>
+							}
 						</div>
 						: null
 					}

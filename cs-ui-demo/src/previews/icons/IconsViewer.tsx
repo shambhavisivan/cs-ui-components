@@ -1,4 +1,5 @@
 import React from 'react';
+import {CSIcon, CSButton} from '@cloudsense/cs-ui-components';
 
 interface Icon {
 	name: string;
@@ -41,10 +42,15 @@ class IconsViewer extends React.Component<IconsViewerProps, IconsViewerState> {
 		return (
 			<>
 				<div className="icons-search-wrapper">
+					<CSIcon name="search"/>
 					<input className="icons-search" placeholder="Search..." onChange={this.searchHandler} value={this.state.term} />
-					{ this.state.term ?
-						<button className="clear-search-btn" onClick={this.clearSearch}/>
-						: null
+					{this.state.term &&
+						<CSButton
+							btnType="transparent"
+							iconName="close"
+							iconDisplay="icon-only"
+							onClick={this.clearSearch}
+						/>
 					}
 				</div>
 				<div className="icons-preview-wrapper">
