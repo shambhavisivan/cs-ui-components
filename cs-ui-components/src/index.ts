@@ -5,6 +5,7 @@ import CSMainHeader from './components/CSMainHeader';
 import CSModal from './components/CSModal';
 import CSModalHeader from './components/CSModalHeader';
 import CSModalFooter from './components/CSModalFooter';
+import CSPath from './components/CSPath';
 import CSSpinner from './components/CSSpinner';
 import CSTabGroup from './components/CSTabGroup';
 import CSToast from './components/CSToast';
@@ -21,6 +22,7 @@ export {
 	CSModal,
 	CSModalHeader,
 	CSModalFooter,
+	CSPath,
 	CSSpinner,
 	CSTabGroup,
 	CSToast

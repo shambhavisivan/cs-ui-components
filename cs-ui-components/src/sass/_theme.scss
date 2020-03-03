@@ -118,6 +118,13 @@ $variables: (
 	--cs-alert-active-fill: rgba($cs-white, 0.5),
 	--cs-alert-box: $cs-gray-light-5,
 	--cs-alert-br: $cs-gray-light-5,
+	
+	--cs-path-tab: $cs-gray-light-5,
+	--cs-path-tab-hover: $cs-gray-light-2,
+	--cs-path-tab-c: $cs-gray-dark-1,
+	--cs-path-tab-active: $cs-blue-sf,
+	--cs-path-tab-active-hover: $cs-blue-medium-2,
+	--cs-path-tab-active-c: $cs-white,
 
 	--cs-main-header-neutral-bg: $cs-white,
 	--cs-main-header-neutral-c: $cs-gray-dark-1,

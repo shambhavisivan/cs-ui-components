@@ -1,0 +1,123 @@
+.cs-path {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex: 1;
+	height: 2rem;
+	overflow: hidden;
+
+	.cs-path-wrapper {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		flex: 1;
+		height: 2rem;
+		overflow: hidden;
+		margin-right: 0.5rem;
+		z-index: $z-index-path;
+
+		.cs-path-item {
+			position: relative;
+			flex: 1;
+			height: inherit;
+			font-size: 0.8125rem;
+			border-radius: 0;
+			padding: 0.5rem 2rem;
+			overflow: hidden;
+			margin-left: -0.75rem;
+			text-align: center;
+			cursor: pointer;
+
+			div {
+				@include overflow-ellipsis;
+			}
+
+			&::before,
+			&::after {
+				content: "";
+				display: block;
+				position: absolute;
+				left: 0.5rem;
+				right: 0.5rem;
+				z-index: $z-index-path-psuedo;
+				@include sbg(--cs-path-tab);
+			}
+
+			&::before {
+				top: 50%;
+				bottom: 0;
+				transform: skewX(-28deg);
+			}
+
+			&::after {
+				top: 0;
+				bottom: 50%;
+				transform: skewX(28deg);
+			}
+
+			&:first-of-type {
+				padding: 0.5rem 2rem 0.5rem 1.5rem;
+				border-radius: 1rem 0 0 1rem;
+				margin-left: 0;
+
+				&::before,
+				&::after {
+					left: -1rem;
+				}
+			}
+
+			&:last-of-type {
+				padding: 0.5rem 1.5rem 0.5rem 2rem;
+				border-radius: 0 1rem 1rem 0;
+
+				&::before,
+				&::after {
+					right: -1rem;
+				}
+
+				&.breadcrumbs-tab-active {
+					@include sbg(--transparent);
+				}
+			}
+
+			&:only-of-type {
+				padding: 0.5rem 1.5rem;
+				border-radius: 1rem;
+				@include sbg(--cs-path-tab-active);
+
+				&:hover {
+					@include sbg(--cs-path-tab-active-hover);
+				}
+			}
+
+			&:hover {
+
+				&::before,
+				&::after {
+					@include sbg(--cs-path-tab-hover);
+				}
+			}
+
+			&.cs-path-item-active {
+				@include sc(--cs-path-tab-active-c);
+
+				&::before,
+				&::after {
+					@include sbg(--cs-path-tab-active);
+				}
+
+				&:hover {
+
+					&::before,
+					&::after {
+						@include sbg(--cs-path-tab-active-hover);
+					}
+				}
+			}
+		}
+	}
+
+	.cs-btn {
+		margin-left: 0.5rem;
+	}
+}
