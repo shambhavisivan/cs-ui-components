@@ -234,6 +234,15 @@ $variables: (
 	--cs-tab-active-br: $cs-blue-medium-5,
 	--cs-tab-hover-br: $cs-blue-sf,
 
+	--cs-select-bg: $cs-white,
+	--cs-select-br: $cs-gray-light-2,
+	--cs-select-active-br: $cs-blue-medium-5,
+	--cs-select-active-bg: $cs-white,
+	--cs-select-disabled-bg: $cs-gray-light-5,
+	--cs-select-disabled-br: $cs-gray-medium-3,
+	--cs-select-focus: $cs-blue-sf,
+	--cs-select-icon-fill: $cs-gray-dark-5,
+	--cs-select-icon-disabled-fill: $cs-gray-dark-5,
 );
 
 // This will be used later for dark theme support
