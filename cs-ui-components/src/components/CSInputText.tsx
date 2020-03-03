@@ -50,6 +50,17 @@ class CSInputText extends React.Component<CSInputTextProps> {
 					]
 				},
 				{
+					propName: 'borderType',
+					variations: [
+						{
+							variationName: ['square'],
+							string: '',
+							component:
+								<CSInputText label="Enter value:" borderType="square" />
+						}
+					]
+				},
+				{
 					propName: 'Help Text',
 					variations: [
 						{
@@ -233,6 +244,7 @@ class CSInputText extends React.Component<CSInputTextProps> {
 					propertyName: 'borderType',
 					description: 'Input style',
 					options: [
+						'round',
 						'square'
 					]
 				},

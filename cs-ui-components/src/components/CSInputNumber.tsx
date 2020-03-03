@@ -267,6 +267,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 					propertyName: 'broderType',
 					description: 'Input border type',
 					options: [
+						'round',
 						'square'
 					]
 				},

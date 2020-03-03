@@ -5,6 +5,7 @@ import CSLabel from './CSLabel';
 import CSIcon from './CSIcon';
 
 export interface CSSelectProps {
+	borderType?: string;
 	error?: boolean;
 	label: string;
 	id?: string;
@@ -50,6 +51,21 @@ class CSSelect extends React.Component<CSSelectProps> {
 									<option>Red</option>
 									<option>Blue</option>
 									<option>Green</option>
+								</CSSelect>
+						}
+					]
+				},
+				{
+					propName: 'borderType',
+					variations: [
+						{
+							variationName: ['square'],
+							string: '',
+							component:
+								<CSSelect label="Choose:" borderType="square">
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
 								</CSSelect>
 						}
 					]
@@ -158,6 +174,14 @@ class CSSelect extends React.Component<CSSelectProps> {
 					options: []
 				},
 				{
+					propertyName: 'broderType',
+					description: 'Select border type',
+					options: [
+						'round',
+						'square'
+					]
+				},
+				{
 					propertyName: 'helpText',
 					description: 'Select help text for tooltip display',
 					options: []
@@ -217,7 +241,8 @@ class CSSelect extends React.Component<CSSelectProps> {
 		const selectClasses = classNames(
 			'cs-select',
 			{
-				'cs-select-error': this.props.error
+				'cs-select-error': this.props.error,
+				[`cs-select-${this.props.borderType}`]: this.props.borderType
 			}
 		);
 

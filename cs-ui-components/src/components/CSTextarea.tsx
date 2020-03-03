@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import CSLabel from './CSLabel';
 
 export interface CSTextareaProps {
+	borderType?: string;
 	error?: boolean;
 	label: string;
 	id?: string;
@@ -71,6 +72,17 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 							string: '',
 							component:
 								<CSTextarea label="Enter message:" id="messageBody" />
+						}
+					]
+				},
+				{
+					propName: 'borderType',
+					variations: [
+						{
+							variationName: ['square'],
+							string: '',
+							component:
+								<CSTextarea label="Enter message:" borderType="square" />
 						}
 					]
 				},
@@ -211,6 +223,14 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 					options: []
 				},
 				{
+					propertyName: 'broderType',
+					description: 'Input border type',
+					options: [
+						'round',
+						'square'
+					]
+				},
+				{
 					propertyName: 'disabled',
 					description: 'Logic for disabled state',
 					options: [
@@ -272,7 +292,8 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 		const textareaClasses = classNames(
 			'cs-textarea', {
 				'cs-textarea-error': this.props.error,
-				[`${this.props.className}`]: this.props.className
+				[`${this.props.className}`]: this.props.className,
+				[`cs-textarea-${this.props.borderType}`]: this.props.borderType
 			}
 		);
 		return (

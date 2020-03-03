@@ -275,6 +275,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 					propertyName: 'borderType',
 					description: 'Input border type',
 					options: [
+						'round',
 						'square'
 					]
 				},
