@@ -8,7 +8,7 @@ export interface CSAlertProps {
 	iconName?: string;
 	iconVisibility?: boolean;
 	onClose?: undefined;
-	text?: string;
+	text?: string | Array<string>;
 	textAlign?: string;
 	variant: string;
 	className?: string;
@@ -54,7 +54,7 @@ class CSAlert extends React.Component<CSAlertProps> {
 								<CSAlert
 									variant="error"
 									closeButton
-									text="This is an example error alert"
+									text={['This is an example error alert', 'Second alert', 'Third alert']}
 								/>
 						},
 						{
@@ -81,6 +81,17 @@ class CSAlert extends React.Component<CSAlertProps> {
 									textAlign="left"
 									closeButton
 									text="This is an example toast with text aligned left"
+								/>
+						},
+						{
+							variationName: ['left', 'array'],
+							string: '',
+							component:
+								<CSAlert
+									variant="info"
+									textAlign="left"
+									closeButton
+									text={['This is an example toast with text aligned left', 'One more alert', 'Another alert to display']}
 								/>
 						},
 						{
@@ -291,13 +302,20 @@ class CSAlert extends React.Component<CSAlertProps> {
 
 		return (
 			<div className={alertClasses} role="alert">
-				<h4 className="cs-alert-text">
+				<h4 className="cs-alert-text-wrapper">
 					{this.props.iconVisibility ? (this.props.iconName ? (
 						<CSIcon name={this.props.iconName}/>
 					) : (
 						<CSIcon name={this.props.variant}/>
 					)) : null}
-					{this.props.text}
+
+					{Array.isArray(this.props.text) ?
+						this.props.text.map(t => (
+							<span className="cs-alert-text" key={t}>{t}</span>)
+						) :
+						<span className="cs-alert-text">{this.props.text}</span>
+					}
+
 					{this.props.children}
 				</h4>
 				{this.props.closeButton ? (

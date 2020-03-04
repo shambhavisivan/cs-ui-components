@@ -16,7 +16,7 @@
 			@include sc(--cs-alert-info-c);
 		}
 
-		.cs-alert-text .cs-icon {
+		.cs-alert-text-wrapper .cs-icon {
 			@include sf(--cs-alert-info-fill);
 		}
 	}
@@ -29,7 +29,7 @@
 			@include sc(--cs-alert-warning-c);
 		}
 
-		.cs-alert-text .cs-icon {
+		.cs-alert-text-wrapper .cs-icon {
 			@include sf(--cs-alert-warning-fill);
 		}
 	}
@@ -42,7 +42,7 @@
 			@include sc(--cs-alert-error-c);
 		}
 
-		.cs-alert-text .cs-icon {
+		.cs-alert-text-wrapper .cs-icon {
 			@include sf(--cs-alert-error-fill);
 		}
 	}
@@ -55,15 +55,17 @@
 			@include sc(--cs-alert-offline-c);
 		}
 
-		.cs-alert-text .cs-icon {
+		.cs-alert-text-wrapper .cs-icon {
 			@include sf(--cs-alert-offline-fill);
 		}
 	}
 
-	.cs-alert-text {
+	.cs-alert-text-wrapper {
 		flex: 1;
 		display: flex;
 		align-items: center;
+		justify-content: center;
+		flex-wrap: wrap;
 
 		.cs-icon {
 			width: 1rem;
@@ -71,15 +73,34 @@
 			height: 1rem;
 			margin-right: 0.5rem;
 		}
+
+		// Array of alerts
+		.cs-alert-text + .cs-alert-text::before {
+			 padding: 0 0.5rem;
+			 content: "\2022";
+		 }
 	}
 
-	&.left .cs-alert-text {
-		justify-content: flex-start;
-	}
+	&.left .cs-alert-text-wrapper {
+		display: block;
+		padding: 0 1.5rem;
+		position: relative;
 
-	&.center .cs-alert-text,
-	&.undefined .cs-alert-text {
-		justify-content: center;
+		.cs-icon {
+			position: absolute;
+			left: 0;
+			top: 0.125rem;
+			margin: 0;
+		}
+
+		.cs-alert-text {
+			display: block;
+			text-align: left;
+
+			+.cs-alert-text::before {
+				content: none;
+			}
+		}
 	}
 
 	.cs-alert-link {
@@ -97,15 +118,13 @@
 		position: absolute;
 		width: 1.5rem;
 		height: 1.5rem;
-		top: 50%;
+		top: 0.4375rem;
 		right: 0.75rem;
 		padding: 0;
 		border-radius: 0.25rem;
 		cursor: pointer;
 		-webkit-appearance: none;
 		border: none;
-		margin-left: 0.25rem;
-		transform: translateY(-50%);
 		@include sbg(--cs-transparent);
 
 		svg {
