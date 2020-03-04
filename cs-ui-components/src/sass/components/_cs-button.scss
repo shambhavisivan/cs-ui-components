@@ -155,15 +155,19 @@
 		}
 	}
 	&.cs-btn-size-extra-small {
+		min-width: 1.25rem;
 		height: 1.25rem;
 		padding: 0 0.25rem;
 		.cs-btn-icon {
 			min-width: 1.25rem;
 			width: 1.25rem;
 			svg {
-				height: 0.75rem;
-				width: 0.75rem;
+				height: 0.875rem;
+				width: 0.875rem;
 			}
+		}
+		&.cs-btn-icon-only {
+			padding: 0;
 		}
 		.cs-btn-label, .cs-btn-icon {
 			height: calc(1.25rem - 2px);
