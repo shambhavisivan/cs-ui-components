@@ -16,7 +16,8 @@ export interface CSAlertProps {
 
 class CSAlert extends React.Component<CSAlertProps> {
 	public static defaultProps = {
-		iconVisibility: true
+		iconVisibility: true,
+		textAlign: 'center'
 	};
 	static getDoc() {
 
