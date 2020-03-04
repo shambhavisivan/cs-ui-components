@@ -3,12 +3,13 @@
 // CS Chip component.
 
 .cs-chip {
+	display: inline-flex;
+	align-items: center;
+	height: 1.375rem;
+	padding: 0 0.5rem;
 	border-radius: 0.75rem;
-	display: inline-block;
-	font-size: 0.6125rem;
-	letter-spacing: 0.125rem;
-	line-height: 1;
-	padding: 0.5rem 0.75rem;
+	font-size: 0.5625rem;
+	letter-spacing: 0.1rem;
 	text-transform: uppercase;
 	@include sbg(--cs-chip-transparent-bg);
 
@@ -35,6 +36,7 @@
 	&-transparent {
 		@include sbg(--transparent);
 	}
+
 	&-neutral {
 		@include sbg(--cs-chip-neutral-bg);
 		@include sc(--cs-chip-neutral-c);
