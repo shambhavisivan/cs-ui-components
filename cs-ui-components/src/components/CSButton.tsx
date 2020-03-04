@@ -13,6 +13,7 @@ export interface CSButtonProps {
 	iconDisplay?: string;
 	iconName?: string;
 	iconPosition?: string;
+	iconRotate?: string;
 	origin?: string;
 	btnRound?: string;
 	onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -179,6 +180,11 @@ class CSButton extends React.Component<CSButtonProps> {
 							variationName: ['default icon right'],
 							string: '',
 							component: <CSButton btnRound="round" iconName="activity" iconPosition="right" label="I Leon"/>
+						},
+						{
+							variationName: ['90', '180', '270'],
+							string: '',
+							component: <CSButton btnRound="round" iconName="activity" iconRotate="270" label="Icon rotated 270 degrees"/>
 						}
 					]
 				},
@@ -276,6 +282,11 @@ class CSButton extends React.Component<CSButtonProps> {
 						'left',
 						'right'
 					]
+				},
+				{
+					propertyName: 'iconRotate',
+					description: 'Degree value for clockwise icon rotation',
+					options: ['90', '180', '270']
 				},
 				{
 					propertyName: 'size',
@@ -408,7 +419,7 @@ class CSButton extends React.Component<CSButtonProps> {
 		<button className={btnGroupClasses} onClick={this.props.onClick} disabled={this.props.disabled} aria-label={this.props.label}>
 			{ this.props.iconName ? (
 				<span className="cs-btn-icon">
-					<CSIcon name={this.props.iconName} origin={this.props.origin}/>
+					<CSIcon name={this.props.iconName} rotate={this.props.iconRotate} origin={this.props.origin}/>
 				</span>
 			) : null }
 			{this.props.label && <span className="cs-btn-label">{this.props.label}</span>}

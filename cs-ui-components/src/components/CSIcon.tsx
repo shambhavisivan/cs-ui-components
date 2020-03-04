@@ -8,6 +8,7 @@ import CsIconSvg from '../icons/cs-icons.svg';
 export interface CSIconProps {
 	name: string;
 	origin?: string;
+	rotate?: string;
 	className?: string;
 }
 
@@ -57,6 +58,20 @@ class CSIcon extends React.Component<CSIconProps> {
 					]
 				},
 				{
+					propName: 'rotate',
+					variations: [
+						{
+							variationName: ['90', '180', '270'],
+							string: '',
+							component:
+								<CSIcon
+									name="breadcrumbs"
+									rotate="180"
+								/>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -87,6 +102,11 @@ class CSIcon extends React.Component<CSIconProps> {
 					options: ['slds', 'cs']
 				},
 				{
+					propertyName: 'rotate',
+					description: 'Degree value for clockwise icon rotation',
+					options: ['90', '180', '270']
+				},
+				{
 					propertyName: 'className',
 					description: 'Icon class',
 					options: []
@@ -108,8 +128,8 @@ class CSIcon extends React.Component<CSIconProps> {
 		const styleClass = classNames(
 			'cs-icon',
 			{
-				[`${this.props.className}`] : this.props.className
-
+				[`${this.props.className}`] : this.props.className,
+				[`rotate-${this.props.rotate}`] : this.props.rotate
 			}
 		);
 
