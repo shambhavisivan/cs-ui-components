@@ -75,11 +75,12 @@
 	}
 
 	.cs-icon {
-		width: 1rem;
-		height: 1rem;
+		width: 0.8125rem;
+		height: 0.8125rem;
 		position: absolute;
-		right: 0.5rem;
-		top: 0.5rem;
+		right: 0.6125rem;
+		top: 0.6125rem;
+		pointer-events: none;
 	}
 }
 
