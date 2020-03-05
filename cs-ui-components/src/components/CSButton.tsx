@@ -151,16 +151,29 @@ class CSButton extends React.Component<CSButtonProps> {
 					customText: '',
 					variations: [
 						{
+							variationName: ['icon-only'],
+							string: '',
+							component: <CSButton iconName="activity" iconDisplay="icon-only"/>
+						},
+						{
+							variationName: ['icon-only large'],
+							string: '',
+							component: <CSButton iconName="activity" iconDisplay="icon-only" size="large"/>
+						},
+						{
+							variationName: ['icon-only small'],
+							string: '',
+							component: <CSButton iconName="activity" iconDisplay="icon-only" size="small"/>
+						},
+						{
+							variationName: ['icon-only extra-small'],
+							string: '',
+							component: <CSButton iconName="activity" iconDisplay="icon-only" size="extra-small"/>
+						},
+						{
 							variationName: ['default icon-only round'],
 							string: '',
 							component: <CSButton btnRound="round" origin="cs" iconName="tag" iconDisplay="icon-only" label="default icon-only round"/>
-						},
-						{
-							variationName: ['Icon only'],
-							string: '',
-							component: <div className="blue-background">
-								<CSButton btnType="transparent" iconName="activity" iconDisplay="icon-only"/>
-							</div>
 						},
 						{
 							variationName: ['default icon right'],

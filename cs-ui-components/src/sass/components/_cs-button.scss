@@ -3,7 +3,7 @@
 	display: inline-flex;
 	align-items: center;
 	position: relative;
-	padding: 0 1rem 0 0.5rem;
+	padding: 0 1rem 0 0.25rem;
 	height: 2rem;
 	font-weight: $font-weight-normal;
 	cursor: pointer;
@@ -147,6 +147,11 @@
 	&.cs-btn-size-small {
 		height: 1.5rem;
 		padding: 0 0.75rem 0 0.25rem;
+		&.cs-btn-icon-only {
+			padding: 0;
+			width: 1.5rem;
+			min-width: 1.5rem;
+		}
 		&.cs-btn-no-icon {
 			padding: 0 1rem;
 		}
@@ -176,6 +181,12 @@
 	&.cs-btn-size-large {
 		height: 3rem;
 		padding: 0 2rem 0 0.5rem;
+		&.cs-btn-icon-only {
+			padding: 0 0.5rem;
+			.cs-btn-icon {
+				margin: 0;
+			}
+		}
 		.cs-btn-icon {
 			margin: 0 0.5rem 0 0;
 		}
