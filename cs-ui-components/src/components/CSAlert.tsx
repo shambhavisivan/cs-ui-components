@@ -309,15 +309,16 @@ class CSAlert extends React.Component<CSAlertProps> {
 					) : (
 						<CSIcon name={this.props.variant}/>
 					)) : null}
-
-					{Array.isArray(this.props.text) ?
-						this.props.text.map(t => (
-							<span className="cs-alert-text" key={t}>{t}</span>)
-						) :
-						<span className="cs-alert-text">{this.props.text}</span>
-					}
-
-					{this.props.children}
+					{this.props.text ? (
+						Array.isArray(this.props.text) ?
+							this.props.text.map(t => (
+								<span className="cs-alert-text" key={t}>{t}</span>)
+							) :
+							<span className="cs-alert-text">{this.props.text}</span>
+						) : null}
+					{this.props.children ? (
+						<span className="cs-alert-text">{this.props.children}</span>
+					) : null}
 				</h4>
 				{this.props.closeButton ? (
 					<button className="cs-alert-close" onClick={this.props.onClose} aria-label="close">
