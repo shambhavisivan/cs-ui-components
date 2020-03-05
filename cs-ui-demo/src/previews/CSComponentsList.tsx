@@ -33,32 +33,24 @@ class CSComponentsList extends React.Component {
 	render() {
 		const componentsList = [
 			{
-				name: 'InputText',
-				component: CSInputTextPreview
+				name: 'Alert',
+				component: CSAlertPreview
 			},
 			{
-				name: 'InputNumber',
-				component: CSInputNumberPreview
+				name: 'Button',
+				component: CSButtonPreview
 			},
 			{
-				name: 'Select',
-				component: CSSelectPreview
+				name: 'Card',
+				component: CSCardPreview
 			},
 			{
 				name: 'Checkbox',
 				component: CSCheckboxPreview
 			},
 			{
-				name: 'Toggle',
-				component: CSTogglePreview
-			},
-			{
-				name: 'Textarea',
-				component: CSTextareaPreview
-			},
-			{
-				name: 'InputSearch',
-				component: CSInputSearchPreview
+				name: 'Chip',
+				component: CSChipPreview
 			},
 			{
 				name: 'CustomSelect',
@@ -69,72 +61,80 @@ class CSComponentsList extends React.Component {
 				component: CSDatepickerPreview
 			},
 			{
-				name: 'Tab',
-				component: CSTabPreview
+				name: 'Icon',
+				component: CSIconPreview
 			},
 			{
-				name: 'Modal',
-				component: CSModalPreview
+				name: 'InputNumber',
+				component: CSInputNumberPreview
 			},
 			{
-				name: 'Spinner',
-				component: CSSpinnerPreview
+				name: 'InputSearch',
+				component: CSInputSearchPreview
 			},
 			{
-				name: 'MainHeader',
-				component: CSMainHeaderPreview
-			},
-			{
-				name: 'Card',
-				component: CSCardPreview
-			},
-			{
-				name: 'Section',
-				component: CSSectionPreview
-			},
-			{
-				name: 'Table',
-				component: CSTablePreview
-			},
-			{
-				name: 'Pagination',
-				component: CSPaginationPreview
-			},
-			{
-				name: 'Chip',
-				component: CSChipPreview
-			},
-			{
-				name: 'Tooltip',
-				component: CSTooltipPreview
-			},
-			{
-				name: 'Path',
-				component: CSPathPreview
-			},
-			{
-				name: 'Toast',
-				component: CSToastPreview
-			},
-			{
-				name: 'Alert',
-				component: CSAlertPreview
-			},
-			{
-				name: 'Button',
-				component: CSButtonPreview
+				name: 'InputText',
+				component: CSInputTextPreview
 			},
 			{
 				name: 'Label',
 				component: CSLabelPreview
 			},
 			{
+				name: 'MainHeader',
+				component: CSMainHeaderPreview
+			},
+			{
+				name: 'Modal',
+				component: CSModalPreview
+			},
+			{
+				name: 'Pagination',
+				component: CSPaginationPreview
+			},
+			{
+				name: 'Path',
+				component: CSPathPreview
+			},
+			{
 				name: 'Progress Bar',
 				component: CSProgressBarPreview
 			},
 			{
-				name: 'Icon',
-				component: CSIconPreview
+				name: 'Section',
+				component: CSSectionPreview
+			},
+			{
+				name: 'Select',
+				component: CSSelectPreview
+			},
+			{
+				name: 'Spinner',
+				component: CSSpinnerPreview
+			},
+			{
+				name: 'Tab',
+				component: CSTabPreview
+			},
+			{
+				name: 'Table',
+				component: CSTablePreview
+			},
+			{
+				name: 'Textarea',
+				component: CSTextareaPreview
+			},
+			{
+				name: 'Toast',
+				component: CSToastPreview
+			},
+			{
+				name: 'Toggle',
+				component: CSTogglePreview
+			},
+			{
+				name: 'Tooltip',
+				component: CSTooltipPreview
 			}
 		];
 
