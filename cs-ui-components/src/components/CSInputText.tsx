@@ -16,6 +16,7 @@ export interface CSInputTextProps {
 	readOnly?: boolean;
 	value?: string;
 	className?: string;
+	errorMessage?: string;
 }
 
 class CSInputText extends React.Component<CSInputTextProps> {
@@ -149,6 +150,17 @@ class CSInputText extends React.Component<CSInputTextProps> {
 					]
 				},
 				{
+					propName: 'Error message',
+					variations: [
+						{
+							variationName: ['true', 'false'],
+							string: '',
+							component:
+								<CSInputText label="Enter value:" error errorMessage="Error message!"/>
+						}
+					]
+				},
+				{
 					propName: 'CS Style',
 					variations: [
 						{
@@ -232,7 +244,7 @@ class CSInputText extends React.Component<CSInputTextProps> {
 						'true'
 					]
 				},
-				 {
+				{
 					propertyName: 'error',
 					description: 'Error state',
 					options: [
@@ -240,7 +252,12 @@ class CSInputText extends React.Component<CSInputTextProps> {
 						'true'
 					]
 				},
-				 {
+				{
+					propertyName: 'errorMessage',
+					description: 'Error message text',
+					options: []
+				},
+				{
 					propertyName: 'borderType',
 					description: 'Input style',
 					options: [
@@ -276,20 +293,25 @@ class CSInputText extends React.Component<CSInputTextProps> {
 		);
 		return (
 			<>
-				{this.props.label &&
-				<CSLabel for={this.props.id} label={this.props.label} helpText={this.props.helpText}
-					tooltipPosition={this.props.tooltipPosition} required={this.props.required}/>
-				}
-				<input className={inputTextClasses}
-					id={this.props.id}
-					placeholder={this.props.placeholder}
-					disabled={this.props.disabled}
-					readOnly={this.props.readOnly}
-					required={this.props.required}
-					value={this.props.value}
-					type="text"
-					aria-invalid={this.props.error}
-				/>
+				<div className="cs-input-text-wrapper">
+					{this.props.label &&
+					<CSLabel for={this.props.id} label={this.props.label} helpText={this.props.helpText}
+						tooltipPosition={this.props.tooltipPosition} required={this.props.required}/>
+					}
+					<input className={inputTextClasses}
+						id={this.props.id}
+						placeholder={this.props.placeholder}
+						disabled={this.props.disabled}
+						readOnly={this.props.readOnly}
+						required={this.props.required}
+						value={this.props.value}
+						type="text"
+						aria-invalid={this.props.error}
+					/>
+					{(this.props.error && this.props.errorMessage) &&
+						<span className="cs-input-text-error-msg">{this.props.errorMessage}</span>
+					}
+				</div>
 			</>
 		);
 	}

@@ -14,6 +14,7 @@ export interface CSSelectProps {
 	required?: boolean;
 	disabled?: boolean;
 	className?: string;
+	errorMessage?: string;
 }
 
 class CSSelect extends React.Component<CSSelectProps> {
@@ -146,6 +147,21 @@ class CSSelect extends React.Component<CSSelectProps> {
 					]
 				},
 				{
+					propName: 'Error message',
+					variations: [
+						{
+							variationName: ['true', 'false'],
+							string: '',
+							component:
+								<CSSelect label="Choose value:" error errorMessage="Error message!">
+									<option>10</option>
+									<option>20</option>
+									<option>30</option>
+								</CSSelect>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -221,6 +237,11 @@ class CSSelect extends React.Component<CSSelectProps> {
 					]
 				},
 				{
+					propertyName: 'errorMessage',
+					description: 'Error message text',
+					options: []
+				},
+				{
 					propertyName: 'className',
 					description: 'For implementing custom class to component',
 					options: []
@@ -246,18 +267,18 @@ class CSSelect extends React.Component<CSSelectProps> {
 			}
 		);
 
-		const selectWrapperClasses = classNames(
-			'cs-select-wrapper',
+		const selectGroupClasses = classNames(
+			'cs-select-group',
 			{
 				[`${this.props.className}`]: this.props.className
 			}
 		);
 		return (
-			<div>
+			<div className="cs-select-wrapper">
 				{this.props.label &&
 					<CSLabel for={this.props.id} label={this.props.label} helpText={this.props.helpText} tooltipPosition={this.props.tooltipPosition} required={this.props.required} />
 				}
-				<div className={selectWrapperClasses}>
+				<div className={selectGroupClasses}>
 					<select
 						className={selectClasses}
 						id={this.props.id}
@@ -269,6 +290,9 @@ class CSSelect extends React.Component<CSSelectProps> {
 					</select>
 					<CSIcon name="down"/>
 				</div>
+				{(this.props.error && this.props.errorMessage) &&
+					<span className="cs-select-error-msg">{this.props.errorMessage}</span>
+				}
 			</div>
 		);
 	}

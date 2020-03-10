@@ -1,40 +1,50 @@
 // CS Input Number
 //
 // CS number input component.
+.cs-input-number-wrapper {
+	display: flex;
+	flex-direction: column;
 
-.cs-input-number {
-	-moz-appearance:textfield;
-	@include sbg(--cs-input-number-bg);
-	@include css4 {
-		border: 1px solid cvar(--cs-input-number-br);
-	}
-
-	&::-webkit-outer-spin-button,
-	&::-webkit-inner-spin-button {
-		-webkit-appearance: none;
-		margin: 0;
-	}
-
-	&:active,
-	&:focus {
-		outline: 0;
-		@include sbg(--cs-input-number-active-bg);
+	.cs-input-number {
+		-moz-appearance:textfield;
+		@include sbg(--cs-input-number-bg);
 		@include css4 {
-			border-color: cvar(--cs-input-number-active-br);
-			box-shadow: 0 0 0.1875rem cvar(--cs-input-shadow);
+			border: 1px solid cvar(--cs-input-number-br);
 		}
+
+		&::-webkit-outer-spin-button,
+		&::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+
+		&:active,
+		&:focus {
+			outline: 0;
+			@include sbg(--cs-input-number-active-bg);
+			@include css4 {
+				border-color: cvar(--cs-input-number-active-br);
+				box-shadow: 0 0 0.1875rem cvar(--cs-input-shadow);
+			}
+		}
+
+		&:disabled {
+			cursor: not-allowed;
+			user-select: none;
+			@include sbg(--cs-input-number-disabled-bg);
+			@include css4 {
+				border-color: cvar(--cs-input-number-disabled-br);
+			}
+		}
+
+		@include input;
 	}
 
-	&:disabled {
-		cursor: not-allowed;
-		user-select: none;
-		@include sbg(--cs-input-number-disabled-bg);
-		@include css4 {
-			border-color: cvar(--cs-input-number-disabled-br);
-		}
+	.cs-input-number-error-msg {
+		margin: 0 3px;
+		font-size: 0.6875rem;
+		@include sc(--cs-input-error-c);
 	}
-
-	@include input;
 }
 
 // Square
@@ -46,3 +56,4 @@
 .component-version-input .version-preview {
 	overflow: visible;
 }
+

@@ -15,6 +15,7 @@ export interface CSCheckboxProps {
 	variant?: string;
 	labelHidden?: boolean;
 	className?: string;
+	errorMessage?: string;
 	onChange?(): any;
 }
 
@@ -173,6 +174,17 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 					]
 				},
 				{
+					propName: 'Error message',
+					variations: [
+						{
+							variationName: [],
+							string: '',
+							component:
+								<CSCheckbox label="Enter value:" error errorMessage="Error message!"/>
+						}
+					]
+				},
+				{
 					propName: 'Help Text',
 					variations: [
 						{
@@ -284,6 +296,11 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 					]
 				},
 				{
+					propertyName: 'errorMessage',
+					description: 'Error message text',
+					options: []
+				},
+				{
 					propertyName: 'helptext',
 					description: 'Checkbox help text for tooltip display',
 					options: []
@@ -352,8 +369,8 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 				'cs-checkbox-error': this.props.error === true
 			}
 		);
-		const checkboxWrapperClasses = classNames(
-			'cs-checkbox-wrapper',
+		const checkboxGroupClasses = classNames(
+			'cs-checkbox-group',
 			{
 				[`${this.props.className}`]: this.props.className
 			}
@@ -367,21 +384,26 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 		);
 		return (
 			<>
-				{(this.props.label && !this.props.labelHidden) &&
-					<CSLabel label={this.props.label} helpText={this.props.helpText}
-					tooltipPosition={this.props.tooltipPosition} required={this.props.required}/>
-				}
-				<label className={checkboxWrapperClasses}>
-						<input
-							onChange={this.toggleCheckbox}
-							className={checkboxClasses}
-							type="checkbox"
-							disabled={this.props.disabled}
-							checked={this.state.checkedValue}
-							required={this.props.required}
-						/>
-					<span className={checkboxFauxClasses}/>
-				</label>
+				<div className="cs-checkbox-wrapper">
+					{(this.props.label && !this.props.labelHidden) &&
+						<CSLabel label={this.props.label} helpText={this.props.helpText}
+						tooltipPosition={this.props.tooltipPosition} required={this.props.required}/>
+					}
+					<label className={checkboxGroupClasses}>
+							<input
+								onChange={this.toggleCheckbox}
+								className={checkboxClasses}
+								type="checkbox"
+								disabled={this.props.disabled}
+								checked={this.state.checkedValue}
+								required={this.props.required}
+							/>
+						<span className={checkboxFauxClasses}/>
+					</label>
+					{(this.props.error && this.props.errorMessage) &&
+						<span className="cs-checkbox-error-msg">{this.props.errorMessage}</span>
+					}
+				</div>
 			</>
 		);
 	}

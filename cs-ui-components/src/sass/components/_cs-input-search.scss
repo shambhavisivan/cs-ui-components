@@ -29,45 +29,59 @@
 	@include input;
 }
 
-// Wrapper
+//Wrapper
 .cs-input-search-wrapper {
-	position: relative;
+	display: flex;
+	flex-direction: column;
 
-	.cs-icon {
-		width: 1rem;
-		height: 1rem;
-		fill: var(--cs-input-search-icon-fill);
-		transform: translateY(50%);
-		display: block;
-		cursor: pointer;
+	// Group
+	.cs-input-search-group {
+		position: relative;
+
+		.cs-icon {
+			width: 1rem;
+			height: 1rem;
+			transform: translateY(50%);
+			display: block;
+			cursor: pointer;
+			@include sf(--cs-input-search-icon-fill);
+		}
+
+		.cs-input-icon-wrapper, .cs-input-search-clear {
+			position: absolute;
+			bottom: 50%;
+		}
+
+		&.cs-icon-left {
+			.cs-input-search {
+				padding: 0 1rem 0 2rem;
+			}
+			.cs-input-icon-wrapper {
+				left: 0.5rem;
+			}
+			.cs-input-search-clear {
+				right: 0.5rem;
+			}
+		}
+
+		&.cs-icon-right {
+			.cs-input-icon-wrapper {
+				right: 0.5rem;
+			}
+			.cs-input-search-clear {
+				right: 1.75rem;
+			}
+		}
 	}
 
-	.cs-input-icon-wrapper, .cs-input-search-clear {
-		position: absolute;
-		bottom: 50%;
-	}
-
-	&.cs-icon-left {
-		.cs-input-search {
-			padding: 0 1rem 0 2rem;
-		}
-		.cs-input-icon-wrapper {
-			left: 0.5rem;
-		}
-		.cs-input-search-clear {
-			right: 0.5rem;
-		}
-	}
-
-	&.cs-icon-right {
-		.cs-input-icon-wrapper {
-			right: 0.5rem;
-		}
-		.cs-input-search-clear {
-			right: 1.75rem;
-		}
+	.cs-input-search-error-msg {
+		margin: 0 3px;
+		font-size: 0.6875rem;
+		@include sc(--cs-input-error-c);
 	}
 }
+
+
 
 // Square
 .cs-input-search-square {

@@ -1,67 +1,72 @@
 // CS Input Select
 //
 // CS select input component.
-
 .cs-select-wrapper {
-	position: relative;
+	display: flex;
+	flex-direction: column;
 
-	.temporary-styles {
-		position: absolute;
-		right: 0;
-		width: 1rem;
-		top: 0.25rem;
-		pointer-events: none;
-		@include css4 {
-			fill: cvar(--cs-select-icon-fill);
-		}
-	}
+	.cs-select-group {
+		position: relative;
 
-	.cs-select {
-		border-radius: 0.25rem;
-		font-size: 0.75rem;
-		height: 2rem;
-		transition: border 0.1s linear, background-color 0.1s linear;
-		width: 100%;
-		-webkit-appearance: none;
-		padding: 0 1rem 0 0.75rem;
-		@include sbg(--cs-select-bg);
-		@include css4 {
-			border: 1px solid cvar(--cs-select-br);
-		}
-
-		&:active,
-		&:focus {
-			outline: 0;
-			@include sbg(--cs-select-active-bg);
+		.temporary-styles {
+			position: absolute;
+			right: 0;
+			width: 1rem;
+			top: 0.25rem;
+			pointer-events: none;
 			@include css4 {
 				border-color: cvar(--cs-select-active-br);
 				box-shadow: 0 0 0.1875rem cvar(--cs-select-focus);
+				fill: cvar(--cs-select-icon-fill);
 			}
 		}
 
-		&:disabled {
-			cursor: not-allowed;
-			user-select: none;
-			@include sbg(--cs-select-disabled-bg);
+		.cs-select {
+			border-radius: 0.25rem;
+			font-size: 0.75rem;
+			height: 2rem;
+			transition: border 0.1s linear, background-color 0.1s linear;
+			width: 100%;
+			-webkit-appearance: none;
+			padding: 0 1rem 0 0.75rem;
+			@include sbg(--cs-select-bg);
 			@include css4 {
-				border-color: cvar(--cs-select-disabled-br);
+				border: 1px solid cvar(--cs-select-br);
 			}
 
-			+ .cs-icon {
-				opacity: 0.25;
+			&:active,
+			&:focus {
+				outline: 0;
+				@include sbg(--cs-select-active-bg);
+				@include css4 {
+					box-shadow: 0 0 0.1875rem cvar(--cs-select-focus);
+				}
 			}
-		}
 
-		// Error
-		&-error {
-			@include css4 {
-				border: 1px solid cvar(--cs-input-error-br);
+			&:disabled {
+				cursor: not-allowed;
+				user-select: none;
+				@include sbg(--cs-select-disabled-bg);
+				@include css4 {
+					border-color: cvar(--cs-select-disabled-br);
+				}
 
-				&:active,
-				&:focus {
-					@include css4 {
-						border-color: cvar(--cs-input-error-c);
-						box-shadow: 0 0 3px cvar(--cs-input-error-shadow);
+				+ .cs-icon {
+					opacity: 0.25;
+				}
+			}
+
+			// Error
+			&-error {
+				@include css4 {
+					border: 1px solid cvar(--cs-input-error-br);
+
+					&:active,
+					&:focus {
+						@include css4 {
+							border-color: cvar(--cs-input-error-c);
+							box-shadow: 0 0 3px cvar(--cs-input-error-shadow);
+						}
 					}
 				}
 			}
@@ -81,6 +86,12 @@
 		right: 0.6125rem;
 		top: 0.6125rem;
 		pointer-events: none;
+	}
+
+	.cs-select-error-msg {
+		margin: 0 3px;
+		font-size: 0.6875rem;
+		@include sc(--cs-select-error-c);
 	}
 }
 

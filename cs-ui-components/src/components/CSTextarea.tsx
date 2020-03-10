@@ -18,6 +18,7 @@ export interface CSTextareaProps {
 	rows?: any;
 	cols?: any;
 	className?: any;
+	errorMessage?: string;
 }
 
 class CSTextarea extends React.Component<CSTextareaProps> {
@@ -153,6 +154,17 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 					]
 				},
 				{
+					propName: 'Error message',
+					variations: [
+						{
+							variationName: ['true', 'false'],
+							string: '',
+							component:
+								<CSTextarea label="Enter value:" error errorMessage="Error message!"/>
+						}
+					]
+				},
+				{
 					propName: 'Rows',
 					variations: [
 						{
@@ -263,6 +275,11 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 					]
 				},
 				{
+					propertyName: 'errorMessage',
+					description: 'Error message text',
+					options: []
+				},
+				{
 					propertyName: 'rows',
 					description: 'Textarea rows value',
 					options: []
@@ -298,7 +315,7 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 		);
 		return (
 			<>
-				<div>
+				<div className="cs-textarea-wrapper">
 					{this.props.label &&
 						<CSLabel for={this.props.id} label={this.props.label} helpText={this.props.helpText} tooltipPosition={this.props.tooltipPosition} required={this.props.required} />
 					}
@@ -314,6 +331,9 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 						aria-invalid={this.props.error}
 						value={this.props.value}
 					/>
+					{(this.props.error && this.props.errorMessage) &&
+						<span className="cs-textarea-error-msg">{this.props.errorMessage}</span>
+					}
 				</div>
 			</>
 		);

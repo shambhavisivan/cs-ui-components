@@ -18,6 +18,7 @@ export interface CSInputSearchProps {
 	value?: string;
 	className?: string;
 	width?: string;
+	errorMessage?: string;
 	onChange?(): any;
 }
 
@@ -136,6 +137,17 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 							string: '',
 							component:
 									<CSInputSearch label="Type here:" error />
+						}
+					]
+				},
+				{
+					propName: 'Error message',
+					variations: [
+						{
+							variationName: ['true', 'false'],
+							string: '',
+							component:
+								<CSInputSearch label="Enter value:" error errorMessage="Error message!"/>
 						}
 					]
 				},
@@ -264,6 +276,11 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 					]
 				},
 				{
+					propertyName: 'errorMessage',
+					description: 'Error message text',
+					options: []
+				},
+				{
 					propertyName: 'iconPosition',
 					description: 'Input search icon position',
 					options: [
@@ -352,8 +369,8 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 			}
 		);
 
-		const inputSearchWrapperClasses = classNames(
-			'cs-input-search-wrapper',
+		const inputSearchGroupClasses = classNames(
+			'cs-input-search-group',
 			{
 				'cs-clear': this.state.value,
 				'cs-icon-left': this.props.iconPosition === 'left',
@@ -363,27 +380,31 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 		);
 		return (
 			<>
-				{this.props.label &&
-					<CSLabel for={this.props.id} label={this.props.label} helpText={this.props.helpText} tooltipPosition={this.props.tooltipPosition} required={this.props.required} />
-				}
-				<div className={inputSearchWrapperClasses}>
-					<div className="cs-input-icon-wrapper">
-						<CSIcon name="search" />
-					</div>
-					<input className={inputSearchClasses}
-						onChange={this.setValue}
-						id={this.props.id}
-						placeholder={this.props.placeholder}
-						disabled={this.props.disabled}
-						required={this.props.required}
-						value={this.state.value}
-						type="text"
-						style={{width: this.props.width}}
-					/>
-					{this.state.value &&
-						<div className="cs-input-search-clear" onClick={this.clearSearch}>
-							<CSIcon name="close" />
+				<div className="cs-input-search-wrapper">
+					{this.props.label &&
+						<CSLabel for={this.props.id} label={this.props.label} helpText={this.props.helpText} tooltipPosition={this.props.tooltipPosition} required={this.props.required} />
+					}
+					<div className={inputSearchGroupClasses}>
+						<div className="cs-input-icon-wrapper">
+							<CSIcon name="search" />
 						</div>
+						<input className={inputSearchClasses}
+							onChange={this.setValue}
+							id={this.props.id}
+							placeholder={this.props.placeholder}
+							disabled={this.props.disabled}
+							required={this.props.required}
+							value={this.state.value}
+							type="text"
+						/>
+						{this.state.value &&
+							<div className="cs-input-search-clear" onClick={this.clearSearch}>
+								<CSIcon name="close" />
+							</div>
+						}
+					</div>
+					{(this.props.error && this.props.errorMessage) &&
+						<span className="cs-input-search-error-msg">{this.props.errorMessage}</span>
 					}
 				</div>
 			</>

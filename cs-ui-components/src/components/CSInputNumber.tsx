@@ -18,6 +18,7 @@ export interface CSInputNumberProps {
 	max?: any;
 	value?: any;
 	className?: string;
+	errorMessage?: string;
 }
 
 class CSInputNumber extends React.Component<CSInputNumberProps> {
@@ -141,6 +142,17 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 					]
 				},
 				{
+					propName: 'Error message',
+					variations: [
+						{
+							variationName: ['true', 'false'],
+							string: '',
+							component:
+								<CSInputNumber label="Enter value:" error errorMessage="Error message!"/>
+						}
+					]
+				},
+				{
 					propName: 'Min',
 					variations: [
 						{
@@ -254,6 +266,11 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 					]
 				},
 				{
+					propertyName: 'errorMessage',
+					description: 'Error message text',
+					options: []
+				},
+				{
 					propertyName: 'min',
 					description: 'Input number min value',
 					options: []
@@ -298,7 +315,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 		);
 		return (
 			<>
-				<div>
+				<div className="cs-input-number-wrapper">
 					{this.props.label &&
 						<CSLabel for={this.props.id} label={this.props.label} helpText={this.props.helpText} tooltipPosition={this.props.tooltipPosition}
 						required={this.props.required}
@@ -319,6 +336,9 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 						aria-valuenow={this.props.value}
 						aria-invalid={this.props.error}
 					/>
+					{(this.props.error && this.props.errorMessage) &&
+						<span className="cs-input-number-error-msg">{this.props.errorMessage}</span>
+					}
 				</div>
 			</>
 		);

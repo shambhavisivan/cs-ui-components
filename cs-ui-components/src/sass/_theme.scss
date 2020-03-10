@@ -124,8 +124,8 @@ $variables: (
 	--cs-input-disabled-bg: $cs-gray-light-5,
 	--cs-input-disabled-br: $cs-gray-medium-3,
 	--cs-input-readonly-shadow-br: $cs-blue-sf,
-	--cs-input-error-c: $cs-red-medium-1,
-	--cs-input-error-br: $cs-red-medium-1,
+	--cs-input-error-c: $cs-red-medium-2,
+	--cs-input-error-br: $cs-red-medium-2,
 	--cs-input-error-shadow: $cs-red-medium-1,
 	--cs-input-shadow: $cs-blue-sf,
 
@@ -162,6 +162,7 @@ $variables: (
 	--cs-textarea-disabled-bg: $cs-gray-light-5,
 	--cs-textarea-disabled-br: $cs-gray-medium-3,
 	--cs-textarea-shadow: $cs-blue-sf,
+	--cs-textarea-error-c: $cs-red-medium-2,
 
 	--cs-input-search-icon-fill: $cs-gray-dark-5,
 
@@ -190,6 +191,9 @@ $variables: (
 	--cs-checkbox-disabled-checked-br: $cs-gray-medium-1,
 	--cs-checkbox-required-c: $cs-red-medium-2,
 	--cs-checkbox-error-br: $cs-red-medium-2,
+	--cs-checkbox-error-c: $cs-red-medium-2,
+	--cs-checkbox-error-active-shadow: $cs-red-medium-2,
+	--cs-checkbox-error-focus-shadow: $cs-red-medium-1,
 	--cs-checkbox-label-c: $cs-gray-dark-2,
 
 	--cs-pagination-bg: $cs-white,
@@ -278,6 +282,7 @@ $variables: (
 	--cs-select-focus: $cs-blue-sf,
 	--cs-select-icon-fill: $cs-gray-dark-5,
 	--cs-select-icon-disabled-fill: $cs-gray-dark-5,
+	--cs-select-error-c: $cs-red-medium-2,
 
 	--cs-custom-select-dropdown-bg: $cs-white,
 	--cs-custom-select-dropdown-br: $cs-gray-light-3,
