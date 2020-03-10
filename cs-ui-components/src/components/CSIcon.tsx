@@ -121,7 +121,7 @@ class CSIcon extends React.Component<CSIconProps> {
 		}
 		return (
 			<svg className={styleClass}>
-				<use xlinkHref={`${origin}#${prefix}${this.props.name}`}/>
+				<use href={`${origin}#${prefix}${this.props.name}`}/>
 			</svg>
 		);
 	}
