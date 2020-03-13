@@ -6,16 +6,9 @@
 	flex-direction: column;
 
 	.cs-input-number {
-		-moz-appearance:textfield;
 		@include sbg(--cs-input-number-bg);
 		@include css4 {
 			border: 1px solid cvar(--cs-input-number-br);
-		}
-
-		&::-webkit-outer-spin-button,
-		&::-webkit-inner-spin-button {
-			-webkit-appearance: none;
-			margin: 0;
 		}
 
 		&:active,
@@ -26,34 +19,37 @@
 				border-color: cvar(--cs-input-number-active-br);
 				box-shadow: 0 0 0.1875rem cvar(--cs-input-shadow);
 			}
+
+			&:disabled {
+				cursor: not-allowed;
+				user-select: none;
+				@include sbg(--cs-input-number-disabled-bg);
+				@include css4 {
+					border-color: cvar(--cs-input-number-disabled-br);
+				}
+			}
 		}
 
-		&:disabled {
-			cursor: not-allowed;
-			user-select: none;
-			@include sbg(--cs-input-number-disabled-bg);
-			@include css4 {
-				border-color: cvar(--cs-input-number-disabled-br);
+		&.hide-spinner-true {
+			-moz-appearance:textfield;
+
+			&::-webkit-outer-spin-button,
+			&::-webkit-inner-spin-button {
+				-webkit-appearance: none;
+				margin: 0;
 			}
 		}
 
 		@include input;
 	}
 
-	.cs-input-number-error-msg {
-		margin: 0 3px;
-		font-size: 0.6875rem;
-		@include sc(--cs-input-error-c);
+	// Square
+	.cs-input-number-square {
+		border-radius: 0;
+	}
+
+	// Version
+	.component-version-input .version-preview {
+		overflow: visible;
 	}
 }
-
-// Square
-.cs-input-number-square {
-	border-radius: 0;
-}
-
-// Version
-.component-version-input .version-preview {
-	overflow: visible;
-}
-

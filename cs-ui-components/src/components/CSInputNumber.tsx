@@ -19,6 +19,7 @@ export interface CSInputNumberProps {
 	value?: any;
 	className?: string;
 	errorMessage?: string;
+	hideSpinner?: boolean;
 }
 
 class CSInputNumber extends React.Component<CSInputNumberProps> {
@@ -30,11 +31,11 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 			usage: 'Number inputs are used for number entry.',
 			examples: [
 				{
-					propName: 'Value',
+					propName: 'value',
 					customText: '',
 					variations: [
 						{
-							variationName: ['Value'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" value="1" />
@@ -42,11 +43,11 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 					]
 				},
 				{
-					propName: 'Placeholder',
+					propName: 'placeholder',
 					customText: '',
 					variations: [
 						{
-							variationName: ['Placeholder'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" placeholder="Placeholder text" />
@@ -54,10 +55,10 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 					]
 				},
 				{
-					propName: 'Id',
+					propName: 'id',
 					variations: [
 						{
-							variationName: ['Id'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" id="quantity" />
@@ -65,10 +66,10 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 					]
 				},
 				{
-					propName: 'Label',
+					propName: 'label',
 					variations: [
 						{
-							variationName: ['Label'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" id="value" />
@@ -76,10 +77,10 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 					]
 				},
 				{
-					propName: 'Help Text',
+					propName: 'helpText',
 					variations: [
 						{
-							variationName: ['helpText'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" helpText="Help text example" />
@@ -87,18 +88,36 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 					]
 				},
 				{
-					propName: 'Tooltip Position',
+					propName: 'tooltipPosition',
 					variations: [
 						{
-							variationName: ['tooltipPosition'],
+							variationName: ['top-left'],
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" helpText="Help text example" tooltipPosition="top-left" />
+						},
+						{
+							variationName: ['top-right'],
+							string: '',
+							component:
+								<CSInputNumber label="Enter value:" helpText="Help text example" tooltipPosition="top-right" />
+						},
+						{
+							variationName: ['bottom-left'],
+							string: '',
+							component:
+								<CSInputNumber label="Enter value:" helpText="Help text example" tooltipPosition="bottom-left" />
+						},
+						{
+							variationName: ['bottom-right'],
+							string: '',
+							component:
+								<CSInputNumber label="Enter value:" helpText="Help text example" tooltipPosition="bottom-right" />
 						}
 					]
 				},
 				{
-					propName: 'Disabled',
+					propName: 'disabled',
 					variations: [
 						{
 							variationName: ['true', 'false'],
@@ -109,7 +128,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 					]
 				},
 				{
-					propName: 'Read Only',
+					propName: 'readOnly',
 					variations: [
 						{
 							variationName: ['true', 'false'],
@@ -120,7 +139,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 					]
 				},
 				{
-					propName: 'Required',
+					propName: 'required',
 					variations: [
 						{
 							variationName: ['true', 'false'],
@@ -131,7 +150,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 					]
 				},
 				{
-					propName: 'Error',
+					propName: 'error',
 					variations: [
 						{
 							variationName: ['true', 'false'],
@@ -142,7 +161,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 					]
 				},
 				{
-					propName: 'Error message',
+					propName: 'errorMessage',
 					variations: [
 						{
 							variationName: ['true', 'false'],
@@ -153,10 +172,10 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 					]
 				},
 				{
-					propName: 'Min',
+					propName: 'min',
 					variations: [
 						{
-							variationName: ['min'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" min="1" />
@@ -164,10 +183,10 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 					]
 				},
 				{
-					propName: 'Max',
+					propName: 'max',
 					variations: [
 						{
-							variationName: ['max'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" max="5" />
@@ -186,10 +205,28 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 					]
 				},
 				{
+					propName: 'hideSpinner',
+					customText: '',
+					variations: [
+						{
+							variationName: ['true'],
+							string: '',
+							component:
+								<CSInputNumber label="hideSpinner True" hideSpinner />
+						},
+						{
+							variationName: ['false'],
+							string: '',
+							component:
+								<CSInputNumber label="hideSpinner False" hideSpinner={false} />
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
-							variationName: ['className'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" className="custom-class"/>
@@ -289,6 +326,14 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 					]
 				},
 				{
+					propertyName: 'hideSpinner',
+					description: 'Logic for spinner visibility',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
 					propertyName: 'className',
 					description: 'For implementing custom class to component',
 					options: []
@@ -310,7 +355,8 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 			{
 				[`cs-input-number-${this.props.borderType}`]: this.props.borderType,
 				'cs-input-number-error': this.props.error,
-				[`${this.props.className}`]: this.props.className
+				[`${this.props.className}`]: this.props.className,
+				[`hide-spinner-${this.props.hideSpinner}`]: this.props.hideSpinner
 			}
 		);
 		return (

@@ -396,6 +396,7 @@ body,
 				}
 
 				&.input-number-preview {
+					overflow: visible;
 
 					.custom-class {
 						background-color: pink;
