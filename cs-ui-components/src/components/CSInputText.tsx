@@ -28,11 +28,11 @@ class CSInputText extends React.Component<CSInputTextProps> {
 			usage: 'Text inputs are used for freeform data entry.',
 			examples: [
 				{
-					propName: 'Value',
+					propName: 'value',
 					customText: '',
 					variations: [
 						{
-							variationName: ['value'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputText label="Type here:" value="Enter name"/>
@@ -40,10 +40,10 @@ class CSInputText extends React.Component<CSInputTextProps> {
 					]
 				},
 				{
-					propName: 'Label',
+					propName: 'label',
 					variations: [
 						{
-							variationName: ['Label'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputText label="Type here:" id="name"/>
@@ -62,10 +62,10 @@ class CSInputText extends React.Component<CSInputTextProps> {
 					]
 				},
 				{
-					propName: 'Help Text',
+					propName: 'helpText',
 					variations: [
 						{
-							variationName: ['helpText'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputText label="Type here:" helpText="Example of help text"/>
@@ -73,21 +73,39 @@ class CSInputText extends React.Component<CSInputTextProps> {
 					]
 				},
 				{
-					propName: 'Tooltip Position',
+					propName: 'tooltipPosition',
 					variations: [
 						{
-							variationName: ['Top', 'Right', 'Bottom', 'Left'],
+							variationName: ['top-left'],
 							string: '',
 							component:
 								<CSInputText label="Type here:" helpText="Example of help text" tooltipPosition="top-left"/>
+						},
+						{
+							variationName: ['top-right'],
+							string: '',
+							component:
+								<CSInputText label="Type here:" helpText="Example of help text" tooltipPosition="top-right"/>
+						},
+						{
+							variationName: ['bottom-left'],
+							string: '',
+							component:
+								<CSInputText label="Type here:" helpText="Example of help text" tooltipPosition="bottom-left"/>
+						},
+						{
+							variationName: ['bottom-right'],
+							string: '',
+							component:
+								<CSInputText label="Type here:" helpText="Example of help text" tooltipPosition="bottom-right"/>
 						}
 					]
 				},
 				{
-					propName: 'Placeholder',
+					propName: 'placeholder',
 					variations: [
 						{
-							variationName: ['Placeholder'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputText label="Type here:" placeholder="Enter name"/>
@@ -95,10 +113,10 @@ class CSInputText extends React.Component<CSInputTextProps> {
 					]
 				},
 				{
-					propName: 'Id',
+					propName: 'id',
 					variations: [
 						{
-							variationName: ['Id'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputText label="Type here:" id="name"/>
@@ -106,10 +124,10 @@ class CSInputText extends React.Component<CSInputTextProps> {
 					]
 				},
 				{
-					propName: 'Disabled',
+					propName: 'disabled',
 					variations: [
 						{
-							variationName: ['false', 'true'],
+							variationName: ['true'],
 							string: '',
 							component:
 								<CSInputText label="Type here:" disabled/>
@@ -117,10 +135,10 @@ class CSInputText extends React.Component<CSInputTextProps> {
 					]
 				},
 				{
-					propName: 'Read Only',
+					propName: 'readOnly',
 					variations: [
 						{
-							variationName: ['false', 'true'],
+							variationName: ['true'],
 							string: '',
 							component:
 								<CSInputText label="Type here:" readOnly placeholder="This is read only"/>
@@ -128,10 +146,10 @@ class CSInputText extends React.Component<CSInputTextProps> {
 					]
 				},
 				{
-					propName: 'Required',
+					propName: 'required',
 					variations: [
 						{
-							variationName: ['false', 'true'],
+							variationName: ['true'],
 							string: '',
 							component:
 								<CSInputText required label="Enter job role" id="jobRole" helpText="Example of help text" tooltipPosition="top-left"/>
@@ -139,10 +157,10 @@ class CSInputText extends React.Component<CSInputTextProps> {
 					]
 				},
 				{
-					propName: 'Error',
+					propName: 'error',
 					variations: [
 						{
-							variationName: ['false', 'true'],
+							variationName: ['true'],
 							string: '',
 							component:
 								<CSInputText label="Type here:" error/>
@@ -150,24 +168,13 @@ class CSInputText extends React.Component<CSInputTextProps> {
 					]
 				},
 				{
-					propName: 'Error message',
+					propName: 'errorMessage',
 					variations: [
 						{
-							variationName: ['true', 'false'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputText label="Enter value:" error errorMessage="Error message!"/>
-						}
-					]
-				},
-				{
-					propName: 'CS Style',
-					variations: [
-						{
-							variationName: ['square'],
-							string: '',
-							component:
-								<CSInputText label="Type here:" borderType="square"/>
 						}
 					]
 				},
@@ -176,7 +183,7 @@ class CSInputText extends React.Component<CSInputTextProps> {
 					customText: '',
 					variations: [
 						{
-							variationName: ['value'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputText label="Type here:" className="custom-class"/>

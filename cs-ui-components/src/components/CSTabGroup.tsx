@@ -22,7 +22,7 @@ class CSTabGroup extends React.Component<CSTabGroupProps> {
 					customText: '',
 					variations: [
 						{
-							variationName: ['title'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 							<CSTabGroup>
@@ -44,7 +44,7 @@ class CSTabGroup extends React.Component<CSTabGroupProps> {
 					customText: '',
 					variations: [
 						{
-							variationName: ['className'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 							<CSTabGroup className="custom-class">

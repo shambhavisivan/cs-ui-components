@@ -25,7 +25,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 					customText: '',
 					variations: [
 						{
-							variationName: ['Custom Select'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSCustomSelect>
@@ -41,7 +41,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 					customText: '',
 					variations: [
 						{
-							variationName: ['className'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSCustomSelect className="custom-class">

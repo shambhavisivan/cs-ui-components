@@ -13,7 +13,11 @@ class CSModalFooter extends React.Component<CSModalFooterProps> {
 				{
 					propertyName: 'align',
 					description: 'Alignment of buttons',
-					options: ['center', 'flex-start', 'flex-end']
+					options: [
+						'center',
+						'flex-start',
+						'flex-end'
+					]
 				}
 			]
 		};

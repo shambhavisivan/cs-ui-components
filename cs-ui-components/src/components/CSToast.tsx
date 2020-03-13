@@ -198,7 +198,7 @@ class CSToast extends React.Component<CSToastProps> {
 					propName: 'detail',
 					variations: [
 						{
-							variationName: [],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSToast
@@ -215,7 +215,7 @@ class CSToast extends React.Component<CSToastProps> {
 					propName: 'className',
 					variations: [
 						{
-							variationName: ['className'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSToast

@@ -63,7 +63,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 					]
 				},
 				{
-					propName: 'Checked',
+					propName: 'checked',
 					variations: [
 						{
 							variationName: ['true'],
@@ -88,7 +88,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 					]
 				},
 				{
-					propName: 'Disabled',
+					propName: 'disabled',
 					variations: [
 						{
 							variationName: ['true'],
@@ -113,7 +113,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 					]
 				},
 				{
-					propName: 'Required',
+					propName: 'required',
 					variations: [
 						{
 							variationName: ['true'],
@@ -138,7 +138,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 					]
 				},
 				{
-					propName: 'Variant',
+					propName: 'variant',
 					variations: [
 						{
 							variationName: ['brand'],
@@ -149,7 +149,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 					]
 				},
 				{
-					propName: 'Error',
+					propName: 'error',
 					variations: [
 						{
 							variationName: ['true'],
@@ -174,10 +174,10 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 					]
 				},
 				{
-					propName: 'Error message',
+					propName: 'errorMessage',
 					variations: [
 						{
-							variationName: [],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSCheckbox label="Enter value:" error errorMessage="Error message!"/>
@@ -185,10 +185,10 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 					]
 				},
 				{
-					propName: 'Help Text',
+					propName: 'helpText',
 					variations: [
 						{
-							variationName: ['helpText'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSCheckbox label="This is a label" helpText="Help text example" />
@@ -196,13 +196,31 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 					]
 				},
 				{
-					propName: 'Tooltip Position',
+					propName: 'tooltipPosition',
 					variations: [
 						{
-							variationName: ['tooltipPosition'],
+							variationName: ['top-left'],
 							string: '',
 							component:
 								<CSCheckbox label="This is a label" helpText="Help text example" tooltipPosition="top-left" />
+						},
+						{
+							variationName: ['top-right'],
+							string: '',
+							component:
+								<CSCheckbox label="This is a label" helpText="Help text example" tooltipPosition="top-right" />
+						},
+						{
+							variationName: ['bottom-left'],
+							string: '',
+							component:
+								<CSCheckbox label="This is a label" helpText="Help text example" tooltipPosition="bottom-left" />
+						},
+						{
+							variationName: ['bottom-right'],
+							string: '',
+							component:
+								<CSCheckbox label="This is a label" helpText="Help text example" tooltipPosition="bottom-right" />
 						}
 					]
 				},
@@ -221,7 +239,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 					propName: 'className',
 					variations: [
 						{
-							variationName: ['className'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSCheckbox label="This is a label" className="custom-class" />
@@ -232,7 +250,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 					propName: 'onChange',
 					variations: [
 						{
-							variationName: ['onChange'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSCheckbox label="This is a label" onChange={onChangeHandler} />
@@ -301,7 +319,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 					options: []
 				},
 				{
-					propertyName: 'helptext',
+					propertyName: 'helpText',
 					description: 'Checkbox help text for tooltip display',
 					options: []
 				},

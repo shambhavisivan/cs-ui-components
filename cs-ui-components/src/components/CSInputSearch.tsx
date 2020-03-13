@@ -41,11 +41,11 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 			usage: 'Search input is used for search value entry.',
 			examples: [
 				{
-					propName: 'Value',
+					propName: 'value',
 					customText: '',
 					variations: [
 						{
-							variationName: ['Value'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 									<CSInputSearch label="Type here:" value="Value" />
@@ -53,10 +53,10 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 					]
 				},
 				{
-					propName: 'Label',
+					propName: 'label',
 					variations: [
 						{
-							variationName: ['Label'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 									<CSInputSearch label="Type here:"  id="searchName" />
@@ -64,10 +64,10 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 					]
 				},
 				{
-					propName: 'Help Text',
+					propName: 'helpText',
 					variations: [
 						{
-							variationName: ['helpText'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 									<CSInputSearch label="Type here:" helpText="Help text example" />
@@ -75,21 +75,39 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 					]
 				},
 				{
-					propName: 'Tooltip Position',
+					propName: 'tooltipPosition',
 					variations: [
 						{
-							variationName: ['tooltipPosition'],
+							variationName: ['top-left'],
 							string: '',
 							component:
 									<CSInputSearch label="Type here:" helpText="Help text example" tooltipPosition="top-left" />
+						},
+						{
+							variationName: ['top-right'],
+							string: '',
+							component:
+									<CSInputSearch label="Type here:" helpText="Help text example" tooltipPosition="top-right" />
+						},
+						{
+							variationName: ['bottom-left'],
+							string: '',
+							component:
+									<CSInputSearch label="Type here:" helpText="Help text example" tooltipPosition="bottom-left" />
+						},
+						{
+							variationName: ['bottom-right'],
+							string: '',
+							component:
+									<CSInputSearch label="Type here:" helpText="Help text example" tooltipPosition="bottom-right" />
 						}
 					]
 				},
 				{
-					propName: 'Placeholder',
+					propName: 'placeholder',
 					variations: [
 						{
-							variationName: ['Placeholder'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 									<CSInputSearch label="Type here:" placeholder="Search name" />
@@ -97,10 +115,10 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 					]
 				},
 				{
-					propName: 'Id',
+					propName: 'id',
 					variations: [
 						{
-							variationName: ['Id'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 									<CSInputSearch label="Type here:" id="search" />
@@ -108,10 +126,10 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 					]
 				},
 				{
-					propName: 'Disabled',
+					propName: 'disabled',
 					variations: [
 						{
-							variationName: ['true', 'false'],
+							variationName: ['true'],
 							string: '',
 							component:
 									<CSInputSearch label="Type here:" disabled />
@@ -119,10 +137,10 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 					]
 				},
 				{
-					propName: 'Required',
+					propName: 'required',
 					variations: [
 						{
-							variationName: ['true', 'false'],
+							variationName: ['true'],
 							string: '',
 							component:
 									<CSInputSearch label="Type here:" required id="searchItem" />
@@ -130,10 +148,10 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 					]
 				},
 				{
-					propName: 'Error',
+					propName: 'error',
 					variations: [
 						{
-							variationName: ['true', 'false'],
+							variationName: ['true'],
 							string: '',
 							component:
 									<CSInputSearch label="Type here:" error />
@@ -141,10 +159,10 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 					]
 				},
 				{
-					propName: 'Error message',
+					propName: 'errorMessage',
 					variations: [
 						{
-							variationName: ['true', 'false'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputSearch label="Enter value:" error errorMessage="Error message!"/>
@@ -152,7 +170,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 					]
 				},
 				{
-					propName: 'Icon Position',
+					propName: 'iconPosition',
 					variations: [
 						{
 							variationName: ['right'],
@@ -188,7 +206,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 					propName: 'className',
 					variations: [
 						{
-							variationName: ['className'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 									<CSInputSearch label="Type here:" className="custom-class" />
@@ -199,7 +217,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 					propName: 'onChange',
 					variations: [
 						{
-							variationName: ['onChange'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 									<CSInputSearch label="Type here:" onChange={onChangeHandler} />

@@ -1,7 +1,6 @@
 import React from 'react';
 import jsxToString from 'jsx-to-string';
 import CSTooltip from './CSTooltip';
-import CSIcon from './CSIcon';
 import classNames from 'classnames';
 
 export interface CSLabelProps {
@@ -22,11 +21,11 @@ class CSLabel extends React.Component<CSLabelProps> {
 			usage: 'This is used to associate value with form field.',
 			examples: [
 				{
-					propName: 'For',
+					propName: 'for',
 					customText: '',
 					variations: [
 						{
-							variationName: ['For'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSLabel label="Label" for="Name"/>
@@ -34,10 +33,10 @@ class CSLabel extends React.Component<CSLabelProps> {
 					]
 				},
 				{
-					propName: 'Required',
+					propName: 'required',
 					variations: [
 						{
-							variationName: ['false', 'true'],
+							variationName: ['true'],
 							string: '',
 							component:
 								<CSLabel label="Label" required/>
@@ -45,21 +44,39 @@ class CSLabel extends React.Component<CSLabelProps> {
 					]
 				},
 				{
-					propName: 'Tooltip Position',
+					propName: 'tooltipPosition',
 					variations: [
 						{
-							variationName: ['tooltipPosition'],
+							variationName: ['top-left'],
 							string: '',
 							component:
 									<CSLabel label="Label" helpText="Help text example" tooltipPosition="top-left" />
+						},
+						{
+							variationName: ['top-right'],
+							string: '',
+							component:
+									<CSLabel label="Label" helpText="Help text example" tooltipPosition="top-right" />
+						},
+						{
+							variationName: ['bottom-left'],
+							string: '',
+							component:
+									<CSLabel label="Label" helpText="Help text example" tooltipPosition="bottom-left" />
+						},
+						{
+							variationName: ['bottom-right'],
+							string: '',
+							component:
+									<CSLabel label="Label" helpText="Help text example" tooltipPosition="bottom-right" />
 						}
 					]
 				},
 				{
-					propName: 'Help Text',
+					propName: 'helpText',
 					variations: [
 						{
-							variationName: ['Help'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSLabel label="Label" helpText="Example of help text"/>
@@ -70,7 +87,7 @@ class CSLabel extends React.Component<CSLabelProps> {
 					propName: 'className',
 					variations: [
 						{
-							variationName: ['Help'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSLabel label="Label" helpText="Example of help text" className="custom-class"/>

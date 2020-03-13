@@ -73,16 +73,6 @@ class CSProgressBar extends React.Component<CSProgressBarProps> {
 					customText: '',
 					variations: [
 						{
-							variationName: ['false'],
-							string: '',
-							component:
-								<CSProgressBar
-									progress="50%"
-									progressIndicator={false}
-									label="Progress"
-								/>
-						},
-						{
 							variationName: ['true'],
 							string: '',
 							component:

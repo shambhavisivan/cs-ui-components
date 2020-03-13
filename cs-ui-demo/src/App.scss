@@ -339,6 +339,7 @@ body,
 
 				&.toggle-preview {
 					padding: 1rem;
+					overflow: visible;
 
 					.custom-class {
 						border: 2px solid pink;
@@ -346,10 +347,10 @@ body,
 				}
 
 				&.tooltip-preview {
-					height: 15rem;
 					display: flex;
 					justify-content: center;
 					align-items: center;
+					overflow: visible;
 
 					.custom-class {
 						background-color: pink;
@@ -389,6 +390,7 @@ body,
 				}
 
 				&.input-text-preview {
+					overflow: visible;
 
 					.custom-class {
 						background-color: pink;
@@ -404,6 +406,7 @@ body,
 				}
 
 				&.input-search-preview {
+					overflow: visible;
 
 					.custom-class {
 						border: 3px solid pink;
@@ -411,6 +414,7 @@ body,
 				}
 
 				&.label-preview {
+					overflow: visible;
 
 					.custom-class {
 						background-color: pink;
@@ -418,6 +422,7 @@ body,
 				}
 
 				&.textarea-preview {
+					overflow: visible;
 
 					.custom-class {
 						background-color: pink;
@@ -425,6 +430,7 @@ body,
 				}
 
 				&.select-preview {
+					overflow: visible;
 
 					.custom-class {
 						border: 3px solid pink;

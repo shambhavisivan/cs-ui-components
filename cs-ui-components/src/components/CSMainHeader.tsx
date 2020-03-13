@@ -219,7 +219,7 @@ class CSMainHeader extends React.Component<CSMainHeaderProps> {
 					propName: 'className',
 					variations: [
 						{
-							variationName: ['className'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSMainHeader className="custom-class">

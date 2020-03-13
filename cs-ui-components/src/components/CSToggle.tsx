@@ -27,7 +27,7 @@ class CSToggle extends React.Component<CSToggleProps, CSToggleState> {
 			usage: 'A checkable input that communicates if an option is true, false or indeterminate.',
 			examples: [
 				{
-					propName: 'Checked',
+					propName: 'checked',
 					customText: '',
 					variations: [
 						{
@@ -42,7 +42,7 @@ class CSToggle extends React.Component<CSToggleProps, CSToggleState> {
 					]
 				},
 				{
-					propName: 'Disabled',
+					propName: 'disabled',
 					variations: [
 						{
 							variationName: ['true'],
@@ -56,7 +56,7 @@ class CSToggle extends React.Component<CSToggleProps, CSToggleState> {
 					]
 				},
 				{
-					propName: 'Required',
+					propName: 'required',
 					variations: [
 						{
 							variationName: ['true'],
@@ -70,7 +70,7 @@ class CSToggle extends React.Component<CSToggleProps, CSToggleState> {
 					]
 				},
 				{
-					propName: 'Error',
+					propName: 'error',
 					variations: [
 						{
 							variationName: ['true'],
@@ -84,7 +84,7 @@ class CSToggle extends React.Component<CSToggleProps, CSToggleState> {
 					]
 				},
 				{
-					propName: 'Helptext',
+					propName: 'helpText',
 					variations: [
 						{
 							variationName: ['n/a'],
@@ -98,16 +98,46 @@ class CSToggle extends React.Component<CSToggleProps, CSToggleState> {
 					]
 				},
 				{
-					propName: 'Tooltip Position',
+					propName: 'tooltipPosition',
 					variations: [
 						{
-							variationName: ['n/a'],
+							variationName: ['top-left'],
 							string: '',
 							component:
 								<CSToggle
 									label="This is a label"
 									helpText="Example of help text "
 									tooltipPosition="top-left"
+								/>
+						},
+						{
+							variationName: ['top-right'],
+							string: '',
+							component:
+								<CSToggle
+									label="This is a label"
+									helpText="Example of help text "
+									tooltipPosition="top-right"
+								/>
+						},
+						{
+							variationName: ['bottom-left'],
+							string: '',
+							component:
+								<CSToggle
+									label="This is a label"
+									helpText="Example of help text "
+									tooltipPosition="bottom-left"
+								/>
+						},
+						{
+							variationName: ['bottom-right'],
+							string: '',
+							component:
+								<CSToggle
+									label="This is a label"
+									helpText="Example of help text "
+									tooltipPosition="bottom-right"
 								/>
 						}
 					]

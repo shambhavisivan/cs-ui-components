@@ -12,6 +12,7 @@
 	position: absolute;
 	transition: 0.25s;
 	width: 170px;
+	z-index: $z-index-tooltip;
 
 	&.cs-tooltip-info {
 		@include sbg(--cs-tooltip-info-bg);

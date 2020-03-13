@@ -22,7 +22,7 @@ class CSCard extends React.Component<CSCardProps> {
 					customText: '',
 					variations: [
 						{
-							variationName: ['Card'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSCard>
@@ -42,7 +42,7 @@ class CSCard extends React.Component<CSCardProps> {
 					customText: '',
 					variations: [
 						{
-							variationName: ['className'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSCard className="custom-class">

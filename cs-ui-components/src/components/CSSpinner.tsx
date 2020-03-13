@@ -23,7 +23,7 @@ class CSSpinner extends React.Component<CSSpinnerProps> {
 			usage: 'Spinners are CSS loading indicators that should be shown when retrieving data or performing slow computations. In some cases, the first time a parent component loads, a stencil is preferred to indicate network activity.',
 			examples: [
 				{
-					propName: 'Size',
+					propName: 'size',
 					customText: '',
 					variations: [
 						{
@@ -74,7 +74,7 @@ class CSSpinner extends React.Component<CSSpinnerProps> {
 					]
 				},
 				{
-					propName: 'Color',
+					propName: 'color',
 					variations: [
 						{
 							variationName: ['neutral'],
@@ -97,18 +97,8 @@ class CSSpinner extends React.Component<CSSpinnerProps> {
 					]
 				},
 				{
-					propName: 'Inline',
+					propName: 'inline',
 					variations: [
-						{
-							variationName: ['false'],
-							string: '',
-							component:
-								<CSSpinner
-									size="large"
-									color="neutral"
-									inline={false}
-								/>
-						},
 						{
 							variationName: ['true'],
 							string: '',
@@ -126,7 +116,7 @@ class CSSpinner extends React.Component<CSSpinnerProps> {
 					propName: 'className',
 					variations: [
 						{
-							variationName: ['className'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSSpinner
@@ -141,7 +131,7 @@ class CSSpinner extends React.Component<CSSpinnerProps> {
 					propName: 'label',
 					variations: [
 						{
-							variationName: ['label'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSSpinner

@@ -120,7 +120,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 					propName: 'disabled',
 					variations: [
 						{
-							variationName: ['true', 'false'],
+							variationName: ['true'],
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" disabled />
@@ -131,7 +131,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 					propName: 'readOnly',
 					variations: [
 						{
-							variationName: ['true', 'false'],
+							variationName: ['true'],
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" readOnly placeholder="This is read only"/>
@@ -142,7 +142,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 					propName: 'required',
 					variations: [
 						{
-							variationName: ['true', 'false'],
+							variationName: ['true'],
 							string: '',
 							component:
 								<CSInputNumber required label="Enter value" id="number" />
@@ -153,7 +153,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 					propName: 'error',
 					variations: [
 						{
-							variationName: ['true', 'false'],
+							variationName: ['true'],
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" error />
@@ -164,7 +164,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 					propName: 'errorMessage',
 					variations: [
 						{
-							variationName: ['true', 'false'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" error errorMessage="Error message!"/>
@@ -318,7 +318,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 					options: []
 				},
 				{
-					propertyName: 'broderType',
+					propertyName: 'borderType',
 					description: 'Input border type',
 					options: [
 						'round',

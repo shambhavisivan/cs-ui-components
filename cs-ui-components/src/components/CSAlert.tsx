@@ -81,7 +81,7 @@ class CSAlert extends React.Component<CSAlertProps> {
 									variant="info"
 									textAlign="left"
 									closeButton
-									text="This is an example toast with text aligned left"
+									text="This is an example alert with text aligned left"
 								/>
 						},
 						{
@@ -92,7 +92,7 @@ class CSAlert extends React.Component<CSAlertProps> {
 									variant="info"
 									textAlign="left"
 									closeButton
-									text={['This is an example toast with text aligned left', 'One more alert', 'Another alert to display']}
+									text={['This is an example alert with text aligned left', 'One more alert', 'Another alert to display']}
 								/>
 						},
 						{
@@ -103,7 +103,7 @@ class CSAlert extends React.Component<CSAlertProps> {
 									variant="info"
 									textAlign="center"
 									closeButton
-									text="This is an example toast with text aligned center"
+									text="This is an example alert with text aligned center"
 								/>
 						}
 					]

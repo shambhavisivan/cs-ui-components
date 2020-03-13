@@ -23,7 +23,7 @@ class CSChip extends React.Component<CSChipProps> {
 			usage: 'Chips are labels which hold small amounts of information',
 			examples: [
 				{
-					propName: 'Variant',
+					propName: 'variant',
 					customText: '',
 					variations: [
 						{
@@ -110,7 +110,7 @@ class CSChip extends React.Component<CSChipProps> {
 					customText: '',
 					variations: [
 						{
-							variationName: ['className'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSChip text="brand" className="custom-class" />

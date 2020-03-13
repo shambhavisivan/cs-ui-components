@@ -33,7 +33,7 @@ class CSButton extends React.Component<CSButtonProps> {
 			usage: 'Button provides a base UI for button actions',
 			examples: [
 				{
-					propName: 'btnType',
+					propName: 'btnType and btnStyle',
 					customText: '',
 					variations: [
 						{
@@ -52,7 +52,7 @@ class CSButton extends React.Component<CSButtonProps> {
 							component: <CSButton btnStyle="outline" iconName="activity" label="default outline"/>
 						},
 						{
-							variationName: ['Transparent initial'],
+							variationName: ['transparent initial'],
 							string: '',
 							customClass: 'inverse-background',
 							component: <div className="blue-background">
@@ -60,12 +60,12 @@ class CSButton extends React.Component<CSButtonProps> {
 							</div>
 						},
 						{
-							variationName: ['Transparent brand'],
+							variationName: ['transparent brand'],
 							string: '',
 							component: <CSButton btnType="transparent" btnStyle="brand" iconName="activity" label="transparent brand"/>
 						},
 						{
-							variationName: ['Transparent outline'],
+							variationName: ['transparent outline'],
 							string: '',
 							customClass: 'inverse-background',
 							component: <div className="blue-background">
@@ -73,64 +73,64 @@ class CSButton extends React.Component<CSButtonProps> {
 							</div>
 						},
 						{
-							variationName: ['Error initial'],
+							variationName: ['error initial'],
 							string: '',
 							component: <CSButton btnType="error" iconName="activity" label="error initial"/>
 						},
 						{
-							variationName: ['Error brand'],
+							variationName: ['error brand'],
 							string: '',
 							component: <CSButton btnType="error" btnStyle="brand" iconName="activity" label="error brand"/>
 						},
 						{
-							variationName: ['Error outline'],
+							variationName: ['error outline'],
 							string: '',
 							component: <CSButton btnType="error" btnStyle="outline" iconName="activity" label="error outline"/>
 						},
 						{
-							variationName: ['Success initial'],
+							variationName: ['success initial'],
 							string: '',
 							component: <CSButton btnType="success" iconName="activity" label="success initial"/>
 						},
 						{
-							variationName: ['Success brand'],
+							variationName: ['success brand'],
 							string: '',
 							component: <CSButton btnType="success" btnStyle="brand" iconName="activity" label="success brand"/>
 						},
 						{
-							variationName: ['Success outline'],
+							variationName: ['success outline'],
 							string: '',
 							component: <CSButton btnType="success" btnStyle="outline" iconName="activity" label="success outline"/>
 						}
 					]
 				},
 				{
-					propName: 'Size',
+					propName: 'size',
 					customText: '',
 					variations: [
 						{
-							variationName: ['Large'],
+							variationName: ['large'],
 							string: '',
 							component: <CSButton size="large" iconName="activity" label="default large"/>
 						},
 						{
-							variationName: ['Small'],
+							variationName: ['small'],
 							string: '',
 							component: <CSButton size="small" iconName="activity" label="default small"/>
 						},
 						{
-							variationName: ['Extra small'],
+							variationName: ['extra-small'],
 							string: '',
 							component: <CSButton size="extra-small" iconName="activity" label="default extra-small"/>
 						}
 					]
 				},
 				{
-					propName: 'Round',
+					propName: 'round',
 					customText: '',
 					variations: [
 						{
-							variationName: ['default round'],
+							variationName: ['round'],
 							string: '',
 							component: <CSButton btnRound="round" iconName="activity" label="default round"/>
 						}
@@ -141,14 +141,14 @@ class CSButton extends React.Component<CSButtonProps> {
 					customText: 'onClick prop for onClick event - verify the click by opening browser console',
 					variations: [
 						{
-							variationName: ['default round'],
+							variationName: ['n/a'],
 							string: '',
 							component: <CSButton onClick={clickHandler} btnRound="round" iconName="activity" label="default round"/>
 						}
 					]
 				},
 				{
-					propName: 'Icon',
+					propName: 'icon',
 					customText: '',
 					variations: [
 						{
@@ -189,33 +189,33 @@ class CSButton extends React.Component<CSButtonProps> {
 					]
 				},
 				{
-					propName: 'Width',
+					propName: 'width',
 					customText: '',
 					variations: [
 						{
-							variationName: ['default max'],
+							variationName: ['max'],
 							string: '',
 							component: <CSButton iconName="activity" label="default max" width="max"/>
 						}
 					]
 				},
 				{
-					propName: 'Disabled',
+					propName: 'disabled',
 					customText: '',
 					variations: [
 						{
-							variationName: ['default disabled'],
+							variationName: ['true'],
 							string: '',
 							component: <CSButton iconName="activity" label="default disabled" disabled/>
 						}
 					]
 				},
 				{
-					propName: 'Link',
+					propName: 'link',
 					customText: '',
 					variations: [
 						{
-							variationName: ['default link'],
+							variationName: ['n/a'],
 							string: '',
 							component: <CSButton iconName="activity" label="default" link="www.google.com"/>
 						}
@@ -226,7 +226,7 @@ class CSButton extends React.Component<CSButtonProps> {
 					customText: '',
 					variations: [
 						{
-							variationName: ['className'],
+							variationName: ['n/a'],
 							string: '',
 							component: <CSButton  iconName="activity" label="default initial" className="custom-class"/>
 						}

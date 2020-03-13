@@ -30,11 +30,11 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 			usage: 'Textarea inputs are used for freeform data entry.',
 			examples: [
 				{
-					propName: 'Value',
+					propName: 'value',
 					customText: '',
 					variations: [
 						{
-							variationName: ['Value'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSTextarea label="Enter message:" value="Message" id="message" />
@@ -42,11 +42,11 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 					]
 				},
 				{
-					propName: 'Placeholder',
+					propName: 'placeholder',
 					customText: '',
 					variations: [
 						{
-							variationName: ['Placeholder'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSTextarea label="Enter message:" placeholder="Message" id="message" />
@@ -54,11 +54,11 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 					]
 				},
 				{
-					propName: 'Id',
+					propName: 'id',
 					customText: '',
 					variations: [
 						{
-							variationName: ['Id'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSTextarea label="Enter message:" id="message" />
@@ -66,10 +66,10 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 					]
 				},
 				{
-					propName: 'Label',
+					propName: 'label',
 					variations: [
 						{
-							variationName: ['Label'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSTextarea label="Enter message:" id="messageBody" />
@@ -88,10 +88,10 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 					]
 				},
 				{
-					propName: 'Help Text',
+					propName: 'helpText',
 					variations: [
 						{
-							variationName: ['helpText'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 									<CSTextarea label="Enter message:" helpText="Help" />
@@ -99,21 +99,39 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 					]
 				},
 				{
-					propName: 'Tooltip Position',
+					propName: 'tooltipPosition',
 					variations: [
 						{
-							variationName: ['tooltipPosition'],
+							variationName: ['top-left'],
 							string: '',
 							component:
 									<CSTextarea label="Enter message:" helpText="Help" tooltipPosition="top-left" />
+						},
+						{
+							variationName: ['top-right'],
+							string: '',
+							component:
+									<CSTextarea label="Enter message:" helpText="Help" tooltipPosition="top-right" />
+						},
+						{
+							variationName: ['bottom-left'],
+							string: '',
+							component:
+									<CSTextarea label="Enter message:" helpText="Help" tooltipPosition="bottom-left" />
+						},
+						{
+							variationName: ['bottom-right'],
+							string: '',
+							component:
+									<CSTextarea label="Enter message:" helpText="Help" tooltipPosition="bottom-right" />
 						}
 					]
 				},
 				{
-					propName: 'Disabled',
+					propName: 'disabled',
 					variations: [
 						{
-							variationName: ['true', 'false'],
+							variationName: ['true'],
 							string: '',
 							component:
 								<CSTextarea label="Enter message:" disabled />
@@ -121,10 +139,10 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 					]
 				},
 				{
-					propName: 'Read Only',
+					propName: 'readOnly',
 					variations: [
 						{
-							variationName: ['true', 'false'],
+							variationName: ['true'],
 							string: '',
 							component:
 								<CSTextarea label="Enter message:" readOnly />
@@ -132,10 +150,10 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 					]
 				},
 				{
-					propName: 'Required',
+					propName: 'required',
 					variations: [
 						{
-							variationName: ['true', 'false'],
+							variationName: ['true'],
 							string: '',
 							component:
 								<CSTextarea required label="Enter message:" id="messageContent" />
@@ -143,10 +161,10 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 					]
 				},
 				{
-					propName: 'Error',
+					propName: 'error',
 					variations: [
 						{
-							variationName: ['true', 'false'],
+							variationName: ['true'],
 							string: '',
 							component:
 								<CSTextarea label="Enter message:" error />
@@ -154,10 +172,10 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 					]
 				},
 				{
-					propName: 'Error message',
+					propName: 'errorMessage',
 					variations: [
 						{
-							variationName: ['true', 'false'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSTextarea label="Enter value:" error errorMessage="Error message!"/>
@@ -165,7 +183,7 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 					]
 				},
 				{
-					propName: 'Rows',
+					propName: 'rows',
 					variations: [
 						{
 							variationName: ['10', '20', '30', '40', '50'],
@@ -176,13 +194,13 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 					]
 				},
 				{
-					propName: 'Required',
+					propName: 'cols',
 					variations: [
 						{
 							variationName: ['10', '20', '30', '40', '50'],
 							string: '',
 							component:
-								<CSTextarea label="Enter message:" cols="40" required/>
+								<CSTextarea label="Enter message:" cols="40"/>
 						}
 					]
 				},
@@ -190,7 +208,7 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 					propName: 'className',
 					variations: [
 						{
-							variationName: ['className'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSTextarea label="Enter message:" className="custom-class"/>
@@ -231,11 +249,11 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 				},
 				{
 					propertyName: 'helpText',
-					description: 'Textara help text for tooltip display',
+					description: 'Textarea help text for tooltip display',
 					options: []
 				},
 				{
-					propertyName: 'broderType',
+					propertyName: 'borderType',
 					description: 'Input border type',
 					options: [
 						'round',
@@ -251,7 +269,7 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 					]
 				},
 				{
-					propertyName: 'read-only',
+					propertyName: 'readOnly',
 					description: 'Read only description',
 					options: [
 						'false',

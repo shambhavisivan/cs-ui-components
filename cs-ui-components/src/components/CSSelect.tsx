@@ -26,11 +26,11 @@ class CSSelect extends React.Component<CSSelectProps> {
 			usage: 'Select element presents a menu of options.',
 			examples: [
 				{
-					propName: 'Id',
+					propName: 'id',
 					customText: '',
 					variations: [
 						{
-							variationName: ['Id'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSSelect label="Choose number" id="option">
@@ -45,7 +45,7 @@ class CSSelect extends React.Component<CSSelectProps> {
 					propName: 'label',
 					variations: [
 						{
-							variationName: ['Label'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSSelect label="Choose color" id="colour">
@@ -75,7 +75,7 @@ class CSSelect extends React.Component<CSSelectProps> {
 					propName: 'helpText',
 					variations: [
 						{
-							variationName: ['helpText'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSSelect label="Choose number" helpText="Example of help text">
@@ -90,10 +90,40 @@ class CSSelect extends React.Component<CSSelectProps> {
 					propName: 'tooltipPosition',
 					variations: [
 						{
-							variationName: ['top-right', 'top-left', 'bottom-right', 'bottom-left'],
+							variationName: ['top-left'],
 							string: '',
 							component:
 								<CSSelect label="Choose number" helpText="Example of help text" tooltipPosition="top-left">
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+								</CSSelect>
+						},
+						{
+							variationName: ['top-right'],
+							string: '',
+							component:
+								<CSSelect label="Choose number" helpText="Example of help text" tooltipPosition="top-right">
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+								</CSSelect>
+						},
+						{
+							variationName: ['bottom-left'],
+							string: '',
+							component:
+								<CSSelect label="Choose number" helpText="Example of help text" tooltipPosition="bottom-left">
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+								</CSSelect>
+						},
+						{
+							variationName: ['bottom-right'],
+							string: '',
+							component:
+								<CSSelect label="Choose number" helpText="Example of help text" tooltipPosition="bottom-right">
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
@@ -105,7 +135,7 @@ class CSSelect extends React.Component<CSSelectProps> {
 					propName: 'disabled',
 					variations: [
 						{
-							variationName: ['disabled'],
+							variationName: ['true'],
 							string: '',
 							component:
 								<CSSelect label="Choose number" disabled>
@@ -120,7 +150,7 @@ class CSSelect extends React.Component<CSSelectProps> {
 					propName: 'required',
 					variations: [
 						{
-							variationName: ['required'],
+							variationName: ['true'],
 							string: '',
 							component:
 								<CSSelect label="Choose amount" id="amount" required>
@@ -135,7 +165,7 @@ class CSSelect extends React.Component<CSSelectProps> {
 					propName: 'error',
 					variations: [
 						{
-							variationName: ['true', 'false'],
+							variationName: ['true'],
 							string: '',
 							component:
 								<CSSelect label="Choose amount" error>
@@ -147,10 +177,10 @@ class CSSelect extends React.Component<CSSelectProps> {
 					]
 				},
 				{
-					propName: 'Error message',
+					propName: 'errorMessage',
 					variations: [
 						{
-							variationName: ['true', 'false'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSSelect label="Choose value:" error errorMessage="Error message!">
@@ -165,7 +195,7 @@ class CSSelect extends React.Component<CSSelectProps> {
 					propName: 'className',
 					variations: [
 						{
-							variationName: ['className'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSSelect label="Choose amount" className="custom-class">
@@ -190,7 +220,7 @@ class CSSelect extends React.Component<CSSelectProps> {
 					options: []
 				},
 				{
-					propertyName: 'broderType',
+					propertyName: 'borderType',
 					description: 'Select border type',
 					options: [
 						'round',

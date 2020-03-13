@@ -56,7 +56,7 @@ class CSTooltip extends React.Component<CSTooltipProps> {
 					customText: 'This is used for overriding default icon defined by variant',
 					variations: [
 						{
-							variationName: ['iconName'],
+							variationName: ['quote'],
 							string: '',
 							component:
 								<CSTooltip iconName="quote" helpText="Example of help text "/>
@@ -82,28 +82,28 @@ class CSTooltip extends React.Component<CSTooltipProps> {
 					]
 				},
 				{
-					propName: 'Position',
+					propName: 'position',
 					variations: [
 						{
-							variationName: ['top', 'right'],
+							variationName: ['top-right'],
 							string: '',
 							component:
 								<CSTooltip  helpText="Lorem ipsum dolor sit amet, consectetur adipisicing elit." position="top-right"/>
 						},
 						{
-							variationName: ['top', 'left'],
+							variationName: ['top-left'],
 							string: '',
 							component:
 								<CSTooltip  helpText="Lorem ipsum dolor sit amet, consectetur adipisicing elit." position="top-left"/>
 						},
 						{
-							variationName: ['bottom', 'right'],
+							variationName: ['bottom-right'],
 							string: '',
 							component:
 								<CSTooltip  helpText="Lorem ipsum dolor sit amet, consectetur adipisicing elit." position="bottom-right"/>
 						},
 						{
-							variationName: ['bottom', 'left'],
+							variationName: ['bottom-left'],
 							string: '',
 							component:
 								<CSTooltip  helpText="Lorem ipsum dolor sit amet, consectetur adipisicing elit.." position="bottom-left"/>
@@ -139,7 +139,7 @@ class CSTooltip extends React.Component<CSTooltipProps> {
 					customText: '',
 					variations: [
 						{
-							variationName: ['className'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSTooltip iconName="quote" helpText="Example of help text" className="custom-class"/>

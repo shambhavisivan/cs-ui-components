@@ -6,13 +6,13 @@ import classNames from 'classnames';
 export interface CSSectionProps {
 	title: string;
 	collapsed?: boolean;
-	collapsable?: boolean;
+	collapsible?: boolean;
 	className?: string;
 }
 
 export interface CSSectionState {
 	collapsed?: boolean;
-	collapsable?: boolean;
+	collapsible?: boolean;
 }
 
 class CSSection extends React.Component<CSSectionProps, CSSectionState> {
@@ -24,14 +24,14 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 			usage: 'This is used as a toggle visibility of section content.',
 			examples: [
 				{
-					propName: 'Collapsable',
+					propName: 'collapsible',
 					customText: '',
 					variations: [
 						{
-							variationName: ['Collapsable'],
+							variationName: ['true'],
 							string: '',
 							component:
-								<CSSection collapsable title="Collapsable Section">
+								<CSSection collapsible title="Collapsible Section">
 									<ul>
 										<li>Item 1</li>
 										<li>Item 2</li>
@@ -42,10 +42,10 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 					]
 				},
 				{
-					propName: 'Collapsed',
+					propName: 'collapsed',
 					variations: [
 						{
-							variationName: ['Collapsed'],
+							variationName: ['true'],
 							string: '',
 							component:
 								<CSSection collapsed title="Collapsed Section">
@@ -62,10 +62,10 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 					propName: 'className',
 					variations: [
 						{
-							variationName: ['className'],
+							variationName: ['n/a'],
 							string: '',
 							component:
-								<CSSection collapsable title="Collapsed Section" className="custom-class">
+								<CSSection collapsible title="Collapsed Section" className="custom-class">
 									<ul>
 										<li>Item 1</li>
 										<li>Item 2</li>
@@ -86,8 +86,8 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 					]
 				},
 				{
-					propertyName: 'collapsable',
-					description: 'Section collapsable state',
+					propertyName: 'collapsible',
+					description: 'Section collapsible state',
 					options: [
 						'false',
 						'true'
@@ -157,7 +157,7 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 		return (
 			<section className={sectionClasses}>
 				<h3 className={sectionTitleClasses}>
-					{this.props.collapsable ?
+					{this.props.collapsible ?
 						<button className="cs-section-button" onClick={this.toggle}>
 							{this.state.collapsed ?
 								<CSIcon name="chevronright"/>

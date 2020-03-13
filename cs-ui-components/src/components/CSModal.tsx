@@ -23,7 +23,7 @@ class CSModal extends React.Component<CSModalProps> {
 				'Modals are used to display content in a layer above the app. This paradigm is used in cases such as the creation or editing of a record, as well as various types of messaging and wizards.',
 			examples: [
 				{
-					propName: 'Size',
+					propName: 'size',
 					customText: '',
 					variations: [
 						{
@@ -149,7 +149,7 @@ class CSModal extends React.Component<CSModalProps> {
 					customText: '',
 					variations: [
 						{
-							variationName: ['className'],
+							variationName: ['n/a'],
 							string: '',
 							component: (
 								<CSModal size="small" closeButton className="custom-class">

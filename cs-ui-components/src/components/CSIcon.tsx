@@ -24,7 +24,7 @@ class CSIcon extends React.Component<CSIconProps> {
 					propName: 'name',
 					variations: [
 						{
-							variationName: ['name'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSIcon
@@ -75,7 +75,7 @@ class CSIcon extends React.Component<CSIconProps> {
 					propName: 'className',
 					variations: [
 						{
-							variationName: ['className'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSIcon
