@@ -14,7 +14,7 @@ export interface CSButtonProps {
 	iconName?: string;
 	iconPosition?: string;
 	iconRotate?: string;
-	origin?: string;
+	iconOrigin?: string;
 	btnRound?: string;
 	onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 	disabled?: boolean;
@@ -174,7 +174,7 @@ class CSButton extends React.Component<CSButtonProps> {
 						{
 							variationName: ['default icon-only round'],
 							string: '',
-							component: <CSButton btnRound="round" origin="cs" iconName="tag" iconDisplay="icon-only" label="default icon-only round"/>
+							component: <CSButton btnRound="round" iconOrigin="cs" iconName="tag" iconDisplay="icon-only" label="default icon-only round"/>
 						},
 						{
 							variationName: ['default icon right'],
@@ -263,8 +263,8 @@ class CSButton extends React.Component<CSButtonProps> {
 					propertyName: 'iconOrigin',
 					description: 'SLDS or CloudSense icons',
 					options: [
-						'icon-only',
-						'no-icon'
+						'slds',
+						'cs'
 					]
 				},
 				{
@@ -419,7 +419,7 @@ class CSButton extends React.Component<CSButtonProps> {
 		<button className={btnGroupClasses} onClick={this.props.onClick} disabled={this.props.disabled} aria-label={this.props.label}>
 			{ this.props.iconName ? (
 				<span className="cs-btn-icon">
-					<CSIcon name={this.props.iconName} rotate={this.props.iconRotate} origin={this.props.origin}/>
+					<CSIcon name={this.props.iconName} rotate={this.props.iconRotate} origin={this.props.iconOrigin}/>
 				</span>
 			) : null }
 			{this.props.label && <span className="cs-btn-label">{this.props.label}</span>}
