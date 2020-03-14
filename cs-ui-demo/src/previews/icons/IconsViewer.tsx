@@ -3,7 +3,7 @@ import {CSIcon, CSButton} from '@cloudsense/cs-ui-components';
 
 interface Icon {
 	name: string;
-	svg: string;
+	content: string;
 }
 
 interface IconsViewerProps {
@@ -61,7 +61,7 @@ class IconsViewer extends React.Component<IconsViewerProps, IconsViewerState> {
 						}).map((icons, i) => (
 							<div key={i}>
 								<div className="svg-wrapper">
-									<div dangerouslySetInnerHTML={{__html: icons.svg}}/>
+									<div dangerouslySetInnerHTML={{__html: icons.content}}/>
 								</div>
 								<p>{icons.name}</p>
 							</div>
