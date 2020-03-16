@@ -19,6 +19,7 @@ export interface CSInputSearchProps {
 	className?: string;
 	width?: string;
 	errorMessage?: string;
+	autoFocus?: boolean;
 	onChange?(): any;
 }
 
@@ -223,6 +224,17 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 									<CSInputSearch label="Type here:" onChange={onChangeHandler} />
 						}
 					]
+				},
+				{
+					propName: 'autoFocus',
+					variations: [
+						{
+							variationName: ['onFocus'],
+							string: '',
+							component:
+									<CSInputSearch label="Type here:" autoFocus />
+						}
+					]
 				}
 			],
 			properties: [
@@ -335,6 +347,14 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 					propertyName: 'onChange',
 					description: 'Logic for onChange event',
 					options: []
+				},
+				{
+					propertyName: 'autoFocus',
+					description: 'Auto focus input',
+					options: [
+						'false',
+						'true'
+					]
 				}
 			]
 		};
@@ -379,12 +399,8 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 		});
 	}
 	render() {
-		const inputSearchClasses = classNames(
-			'cs-input-search',
-			{
-				[`cs-input-search-${this.props.borderType}`]: this.props.borderType,
-				'cs-input-search-error': this.props.error
-			}
+		const inputSearchWrapperClasses = classNames(
+			'cs-input-search-wrapper'
 		);
 
 		const inputSearchGroupClasses = classNames(
@@ -396,17 +412,24 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 				[`${this.props.className}`]: this.props.className
 			}
 		);
+
+		const inputSearchClasses = classNames(
+			'cs-input-search',
+			{
+				[`cs-input-search-${this.props.borderType}`]: this.props.borderType,
+				'cs-input-search-error': this.props.error
+			}
+		);
 		return (
 			<>
-				<div className="cs-input-search-wrapper">
+				<div className={inputSearchWrapperClasses}>
 					{this.props.label &&
 						<CSLabel for={this.props.id} label={this.props.label} helpText={this.props.helpText} tooltipPosition={this.props.tooltipPosition} required={this.props.required} />
 					}
-					<div className={inputSearchGroupClasses}>
-						<div className="cs-input-icon-wrapper">
-							<CSIcon name="search" />
-						</div>
+					<div className={inputSearchGroupClasses} style={{'--search-width': this.props.width}}>
+						<CSIcon name="search" className="cs-input-search-icon" />
 						<input className={inputSearchClasses}
+							autoFocus={this.props.autoFocus}
 							onChange={this.setValue}
 							id={this.props.id}
 							placeholder={this.props.placeholder}
@@ -417,8 +440,14 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 							autoComplete="off"
 						/>
 						{this.state.value &&
-							<div className="cs-input-search-clear" onClick={this.clearSearch}>
-								<CSIcon name="close" />
+							<div>
+								<button
+									className="cs-input-search-clear"
+									onClick={this.clearSearch}
+									aria-label="close"
+								>
+									<CSIcon name="close"/>
+								</button>
 							</div>
 						}
 					</div>
