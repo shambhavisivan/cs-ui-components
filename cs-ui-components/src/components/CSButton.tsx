@@ -15,7 +15,7 @@ export interface CSButtonProps {
 	iconPosition?: string;
 	iconRotate?: string;
 	iconOrigin?: string;
-	btnRound?: string;
+	btnRound?: boolean;
 	onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 	disabled?: boolean;
 	label?: string;
@@ -37,22 +37,22 @@ class CSButton extends React.Component<CSButtonProps> {
 					customText: '',
 					variations: [
 						{
-							variationName: ['default initial'],
+							variationName: ['default', 'initial'],
 							string: '',
 							component: <CSButton iconName="activity" label="default initial"/>
 						},
 						{
-							variationName: ['default brand'],
+							variationName: ['default', 'brand'],
 							string: '',
 							component: <CSButton btnStyle="brand" iconName="activity" label="default brand"/>
 						},
 						{
-							variationName: ['default outline'],
+							variationName: ['default', 'outline'],
 							string: '',
 							component: <CSButton btnStyle="outline" iconName="activity" label="default outline"/>
 						},
 						{
-							variationName: ['transparent initial'],
+							variationName: ['transparent', 'initial'],
 							string: '',
 							customClass: 'inverse-background',
 							component: <div className="blue-background">
@@ -60,12 +60,12 @@ class CSButton extends React.Component<CSButtonProps> {
 							</div>
 						},
 						{
-							variationName: ['transparent brand'],
+							variationName: ['transparent', 'brand'],
 							string: '',
 							component: <CSButton btnType="transparent" btnStyle="brand" iconName="activity" label="transparent brand"/>
 						},
 						{
-							variationName: ['transparent outline'],
+							variationName: ['transparent', 'outline'],
 							string: '',
 							customClass: 'inverse-background',
 							component: <div className="blue-background">
@@ -73,32 +73,32 @@ class CSButton extends React.Component<CSButtonProps> {
 							</div>
 						},
 						{
-							variationName: ['error initial'],
+							variationName: ['error', 'initial'],
 							string: '',
 							component: <CSButton btnType="error" iconName="activity" label="error initial"/>
 						},
 						{
-							variationName: ['error brand'],
+							variationName: ['error', 'brand'],
 							string: '',
 							component: <CSButton btnType="error" btnStyle="brand" iconName="activity" label="error brand"/>
 						},
 						{
-							variationName: ['error outline'],
+							variationName: ['error', 'outline'],
 							string: '',
 							component: <CSButton btnType="error" btnStyle="outline" iconName="activity" label="error outline"/>
 						},
 						{
-							variationName: ['success initial'],
+							variationName: ['success', 'initial'],
 							string: '',
 							component: <CSButton btnType="success" iconName="activity" label="success initial"/>
 						},
 						{
-							variationName: ['success brand'],
+							variationName: ['success', 'brand'],
 							string: '',
 							component: <CSButton btnType="success" btnStyle="brand" iconName="activity" label="success brand"/>
 						},
 						{
-							variationName: ['success outline'],
+							variationName: ['success', 'outline'],
 							string: '',
 							component: <CSButton btnType="success" btnStyle="outline" iconName="activity" label="success outline"/>
 						}
@@ -126,13 +126,13 @@ class CSButton extends React.Component<CSButtonProps> {
 					]
 				},
 				{
-					propName: 'round',
+					propName: 'btnRound',
 					customText: '',
 					variations: [
 						{
-							variationName: ['round'],
+							variationName: ['true'],
 							string: '',
-							component: <CSButton btnRound="round" iconName="activity" label="default round"/>
+							component: <CSButton btnRound iconName="activity" label="default round"/>
 						}
 					]
 				},
@@ -143,12 +143,12 @@ class CSButton extends React.Component<CSButtonProps> {
 						{
 							variationName: ['n/a'],
 							string: '',
-							component: <CSButton onClick={clickHandler} btnRound="round" iconName="activity" label="default round"/>
+							component: <CSButton onClick={clickHandler} iconName="activity" label="default round"/>
 						}
 					]
 				},
 				{
-					propName: 'icon',
+					propName: 'iconDisplay',
 					customText: '',
 					variations: [
 						{
@@ -157,34 +157,72 @@ class CSButton extends React.Component<CSButtonProps> {
 							component: <CSButton iconName="activity" iconDisplay="icon-only"/>
 						},
 						{
-							variationName: ['icon-only large'],
+							variationName: ['icon-only', 'large'],
 							string: '',
 							component: <CSButton iconName="activity" iconDisplay="icon-only" size="large"/>
 						},
 						{
-							variationName: ['icon-only small'],
+							variationName: ['icon-only', 'small'],
 							string: '',
 							component: <CSButton iconName="activity" iconDisplay="icon-only" size="small"/>
 						},
 						{
-							variationName: ['icon-only extra-small'],
+							variationName: ['icon-only', 'extra-small'],
 							string: '',
 							component: <CSButton iconName="activity" iconDisplay="icon-only" size="extra-small"/>
+						}
+					]
+				},
+				{
+					propName: 'iconPosition',
+					customText: '',
+					variations: [
+						{
+							variationName: ['default', 'left'],
+							string: '',
+							component: <CSButton iconName="activity" iconPosition="left" label="Icon Left"/>
 						},
 						{
-							variationName: ['default icon-only round'],
+							variationName: ['default', 'right'],
 							string: '',
-							component: <CSButton btnRound="round" iconOrigin="cs" iconName="tag" iconDisplay="icon-only" label="default icon-only round"/>
+							component: <CSButton iconName="activity" iconPosition="right" label="Icon Right"/>
+						}
+					]
+				},
+				{
+					propName: 'iconOrigin',
+					customText: '',
+					variations: [
+						{
+							variationName: ['default', 'icon-only'],
+							string: '',
+							component: <CSButton iconOrigin="slds" iconName="activity" iconDisplay="icon-only" label="default icon-only round"/>
 						},
 						{
-							variationName: ['default icon right'],
+							variationName: ['default', 'icon-only'],
 							string: '',
-							component: <CSButton btnRound="round" iconName="activity" iconPosition="right" label="I Leon"/>
+							component: <CSButton iconOrigin="cs" iconName="tag" iconDisplay="icon-only" label="default icon-only round"/>
+						}
+					]
+				},
+				{
+					propName: 'iconRotate',
+					customText: '',
+					variations: [
+						{
+							variationName: ['90'],
+							string: '',
+							component: <CSButton iconName="activity" iconRotate="90" label="Icon rotated 270 degrees"/>
 						},
 						{
-							variationName: ['90', '180', '270'],
+							variationName: ['180'],
 							string: '',
-							component: <CSButton btnRound="round" iconName="activity" iconRotate="270" label="Icon rotated 270 degrees"/>
+							component: <CSButton iconName="activity" iconRotate="180" label="Icon rotated 270 degrees"/>
+						},
+						{
+							variationName: ['270'],
+							string: '',
+							component: <CSButton iconName="activity" iconRotate="270" label="Icon rotated 270 degrees"/>
 						}
 					]
 				},
@@ -300,9 +338,9 @@ class CSButton extends React.Component<CSButtonProps> {
 				},
 				{
 					propertyName: 'btnRound',
-					description: 'Button edges. Add to type.',
+					description: 'Logic for round button styling',
 					options: [
-						'square',
+						'false',
 						'round'
 					]
 				},
@@ -398,7 +436,7 @@ class CSButton extends React.Component<CSButtonProps> {
 			'cs-btn-brand': this.props.btnStyle === 'brand',
 			'cs-btn-outline': this.props.btnStyle === 'outline',
 
-			'cs-btn-round': this.props.btnRound === 'round',
+			'cs-btn-round': this.props.btnRound === true,
 
 			'cs-btn-icon-only': this.props.iconDisplay === 'icon-only',
 			'cs-btn-no-icon': !this.props.iconName || this.props.iconDisplay === 'no-icon',

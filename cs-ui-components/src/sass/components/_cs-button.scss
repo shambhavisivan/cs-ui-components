@@ -42,10 +42,11 @@
 		min-width: 2rem; // IE11 Support
 		width: 2rem;
 		z-index: $z-index-button-icon;
-		@include sf(--cs-button-icon-c);
-		svg {
+		.cs-icon {
 			height: 1rem;
 			width: 1rem;
+			transition: transform ease 100ms;
+			@include sf(--cs-button-icon-c);
 		}
 	}
 	.cs-btn-label {
@@ -180,15 +181,12 @@
 	}
 	&.cs-btn-size-large {
 		height: 3rem;
-		padding: 0 2rem 0 0.5rem;
+		padding: 0 1rem 0 0.5rem;
 		&.cs-btn-icon-only {
 			padding: 0 0.5rem;
 			.cs-btn-icon {
 				margin: 0;
 			}
-		}
-		.cs-btn-icon {
-			margin: 0 0.5rem 0 0;
 		}
 		&.cs-btn-no-icon {
 			padding: 0 2rem;
@@ -212,7 +210,7 @@
 			.cs-btn-label {
 				@include sc(--cs-button-inverse-c);
 			}
-			.cs-btn-icon {
+			.cs-btn-icon .cs-icon {
 				@include sf(--cs-button-inverse-c);
 			}
 			&:hover::before {
@@ -259,7 +257,7 @@
 		.cs-btn-label {
 			@include sc(--cs-button-success-c);
 		}
-		.cs-btn-icon {
+		.cs-btn-icon .cs-icon {
 			@include sf(--cs-button-success-c);
 		}
 		&:focus::after {
@@ -280,7 +278,7 @@
 			.cs-btn-label {
 				@include sc(--cs-button-inverse-c);
 			}
-			.cs-btn-icon {
+			.cs-btn-icon .cs-icon {
 				@include sf(--cs-button-inverse-c);
 			}
 			&:hover::before {
@@ -315,7 +313,7 @@
 		.cs-btn-label {
 			@include sc(--cs-button-error-c);
 		}
-		.cs-btn-icon {
+		.cs-btn-icon .cs-icon {
 			@include sf(--cs-button-error-c);
 		}
 		&:focus::after {
@@ -336,7 +334,7 @@
 			.cs-btn-label {
 				@include sc(--cs-button-inverse-c);
 			}
-			.cs-btn-icon {
+			.cs-btn-icon .cs-icon {
 				@include sf(--cs-button-inverse-c);
 			}
 			&:hover::before {
@@ -383,7 +381,7 @@
 			.cs-btn-label {
 				@include sc(--cs-button-inverse-c);
 			}
-			.cs-btn-icon {
+			.cs-btn-icon .cs-icon {
 				@include sf(--cs-button-inverse-c);
 			}
 			&::before {
@@ -425,7 +423,7 @@
 			.cs-btn-label {
 				@include sc(--cs-button-inverse-c);
 			}
-			.cs-btn-icon {
+			.cs-btn-icon .cs-icon {
 				@include sf(--cs-button-inverse-c);
 			}
 			&::before {
@@ -477,7 +475,7 @@
 		.cs-btn-label {
 			@include sc(--cs-button-disabled-c);
 		}
-		.cs-btn-icon {
+		.cs-btn-icon .cs-icon {
 			@include sf(--cs-button-disabled-c);
 		}
 		&::before {
@@ -495,7 +493,7 @@
 		.cs-btn-label {
 			@include sc(--cs-button-disabled-c);
 		}
-		.cs-btn-icon {
+		.cs-btn-icon .cs-icon {
 			@include sf(--cs-button-disabled-c);
 		}
 		&::before {
@@ -515,7 +513,7 @@
 		.cs-btn-label {
 			@include sc(--cs-button-disabled-c);
 		}
-		.cs-btn-icon {
+		.cs-btn-icon .cs-icon {
 			@include sf(--cs-button-disabled-c);
 		}
 		&:active {
