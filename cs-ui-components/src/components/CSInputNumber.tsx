@@ -381,6 +381,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 						aria-valuemax={this.props.max}
 						aria-valuenow={this.props.value}
 						aria-invalid={this.props.error}
+						autoComplete="off"
 					/>
 					{(this.props.error && this.props.errorMessage) &&
 						<span className="cs-input-number-error-msg">{this.props.errorMessage}</span>

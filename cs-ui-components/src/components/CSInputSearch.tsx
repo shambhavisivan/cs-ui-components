@@ -414,6 +414,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 							required={this.props.required}
 							value={this.state.value}
 							type="text"
+							autoComplete="off"
 						/>
 						{this.state.value &&
 							<div className="cs-input-search-clear" onClick={this.clearSearch}>

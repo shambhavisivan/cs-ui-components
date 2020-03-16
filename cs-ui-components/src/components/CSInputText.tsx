@@ -314,6 +314,7 @@ class CSInputText extends React.Component<CSInputTextProps> {
 						value={this.props.value}
 						type="text"
 						aria-invalid={this.props.error}
+						autoComplete="off"
 					/>
 					{(this.props.error && this.props.errorMessage) &&
 						<span className="cs-input-text-error-msg">{this.props.errorMessage}</span>
