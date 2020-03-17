@@ -1,5 +1,6 @@
 import CSAlert from './components/CSAlert';
 import CSButton from './components/CSButton';
+import CSButtonDropdown from './components/CSButtonDropdown';
 import CSCard from './components/card/CSCard';
 import CSCardBody from './components/card/CSCardBody';
 import CSCardFooter from './components/card/CSCardFooter';
@@ -47,6 +48,7 @@ import './sass/style.scss';
 export {
 	CSAlert,
 	CSButton,
+	CSButtonDropdown,
 	CSCard,
 	CSCardBody,
 	CSCardFooter,

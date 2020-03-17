@@ -378,7 +378,8 @@ body,
 					}
 				}
 
-				&.button-preview {
+				&.button-preview,
+				&.button-dropdown-preview {
 
 					.blue-background {
 						background-color: #16325c;

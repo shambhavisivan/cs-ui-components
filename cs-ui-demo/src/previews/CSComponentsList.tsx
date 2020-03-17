@@ -25,6 +25,7 @@ import CSAlertPreview from './components/CSAlertPreview';
 import CSButtonPreview from './components/CSButtonPreview';
 import CSLabelPreview from './components/CSLabelPreview';
 import CSProgressBarPreview from './components/CSProgressBarPreview';
+import CSButtonDropdownPreview from './components/CSButtonDropdownPreview';
 
 import SidebarList from './SidebarList';
 
@@ -39,6 +40,10 @@ class CSComponentsList extends React.Component {
 			{
 				name: 'Button',
 				component: CSButtonPreview
+			},
+			{
+				name: 'ButtonDropdown',
+				component: CSButtonDropdownPreview
 			},
 			{
 				name: 'Card',
