@@ -1,0 +1,49 @@
+.cs-button-group {
+	display: inline-flex;
+
+	&.cs-button-group-false > *:not(last-child) {
+		margin-right: 0.5rem;
+	}
+
+	&.cs-button-group-true {
+
+		> .cs-btn:not(:first-child),
+		> .cs-btn-dropdown-wrapper:not(:first-child) > .cs-btn {
+			margin-left: -1px;
+		}
+
+		> .cs-btn,
+		> .cs-btn-dropdown-wrapper > .cs-btn {
+			border-radius: 0;
+
+			&::before,
+			&::after {
+				border-radius: 0;
+			}
+		}
+
+		> .cs-btn:first-child,
+		> .cs-btn-dropdown-wrapper:first-child > .cs-btn {
+			border-top-left-radius: 0.25rem;
+			border-bottom-left-radius: 0.25rem;
+
+			&::before,
+			&::after {
+				border-top-left-radius: 0.25rem;
+				border-bottom-left-radius: 0.25rem;
+			}
+		}
+
+		> .cs-btn:last-child,
+		> .cs-btn-dropdown-wrapper:last-child > .cs-btn {
+			border-top-right-radius: 0.25rem;
+			border-bottom-right-radius: 0.25rem;
+
+			&::before,
+			&::after {
+				border-top-right-radius: 0.25rem;
+				border-bottom-right-radius: 0.25rem;
+			}
+		}
+	}
+}

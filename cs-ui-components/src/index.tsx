@@ -1,6 +1,7 @@
 import CSAlert from './components/CSAlert';
 import CSButton from './components/CSButton';
 import CSButtonDropdown from './components/CSButtonDropdown';
+import CSButtonGroup from './components/CSButtonGroup';
 import CSCard from './components/card/CSCard';
 import CSCardBody from './components/card/CSCardBody';
 import CSCardFooter from './components/card/CSCardFooter';
@@ -49,6 +50,7 @@ export {
 	CSAlert,
 	CSButton,
 	CSButtonDropdown,
+	CSButtonGroup,
 	CSCard,
 	CSCardBody,
 	CSCardFooter,

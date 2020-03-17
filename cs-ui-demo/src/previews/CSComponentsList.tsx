@@ -26,6 +26,7 @@ import CSButtonPreview from './components/CSButtonPreview';
 import CSLabelPreview from './components/CSLabelPreview';
 import CSProgressBarPreview from './components/CSProgressBarPreview';
 import CSButtonDropdownPreview from './components/CSButtonDropdownPreview';
+import CSButtonGroupPreview from './components/CSButtonGroupPreview';
 
 import SidebarList from './SidebarList';
 
@@ -42,8 +43,12 @@ class CSComponentsList extends React.Component {
 				component: CSButtonPreview
 			},
 			{
-				name: 'ButtonDropdown',
+				name: 'Button Dropdown',
 				component: CSButtonDropdownPreview
+			},
+			{
+				name: 'Button Group',
+				component: CSButtonGroupPreview
 			},
 			{
 				name: 'Card',
@@ -58,7 +63,7 @@ class CSComponentsList extends React.Component {
 				component: CSChipPreview
 			},
 			{
-				name: 'CustomSelect',
+				name: 'Custom Select',
 				component: CSCustomSelectPreview
 			},
 			{
@@ -70,7 +75,7 @@ class CSComponentsList extends React.Component {
 				component: CSIconPreview
 			},
 			{
-				name: 'InputNumber',
+				name: 'Input Number',
 				component: CSInputNumberPreview
 			},
 			{
@@ -78,7 +83,7 @@ class CSComponentsList extends React.Component {
 				component: CSInputSearchPreview
 			},
 			{
-				name: 'InputText',
+				name: 'Input Text',
 				component: CSInputTextPreview
 			},
 			{
@@ -86,7 +91,7 @@ class CSComponentsList extends React.Component {
 				component: CSLabelPreview
 			},
 			{
-				name: 'MainHeader',
+				name: 'Main Header',
 				component: CSMainHeaderPreview
 			},
 			{
