@@ -5,6 +5,7 @@
 
 	.cs-checkbox-group {
 		display: inline-flex;
+		width: fit-content;
 
 		.cs-checkbox {
 			width: 1px;
@@ -71,6 +72,10 @@
 				@include css4 {
 					border: 1px solid cvar(--cs-checkbox-disabled-br);
 				}
+			}
+
+			&:disabled:hover + .cs-checkbox-faux {
+				box-shadow: none;
 			}
 
 			&:disabled:checked + .cs-checkbox-faux {

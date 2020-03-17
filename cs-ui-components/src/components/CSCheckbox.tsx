@@ -27,7 +27,8 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 
 	public static defaultProps = {
 		variant: 'neutral',
-		labelHidden: false
+		labelHidden: false,
+		borderType: 'square'
 	};
 
 	static getDoc() {
@@ -70,17 +71,6 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 							string: '',
 							component:
 								<CSCheckbox
-									borderType="square"
-									checked
-									label="This is a label"
-								/>
-						},
-						{
-							variationName: ['false'],
-							string: '',
-							component:
-								<CSCheckbox
-									borderType="round"
 									checked
 									label="This is a label"
 								/>
@@ -95,17 +85,6 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 							string: '',
 							component:
 								<CSCheckbox
-									borderType="square"
-									disabled
-									label="This is a label"
-								/>
-						},
-						{
-							variationName: ['true'],
-							string: '',
-							component:
-								<CSCheckbox
-									borderType="round"
 									disabled
 									label="This is a label"
 								/>
@@ -120,17 +99,6 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 							string: '',
 							component:
 								<CSCheckbox
-									borderType="square"
-									required
-									label="This is a label"
-								/>
-						},
-						{
-							variationName: ['true'],
-							string: '',
-							component:
-								<CSCheckbox
-									borderType="round"
 									required
 									label="This is a label"
 								/>
@@ -144,7 +112,10 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 							variationName: ['brand'],
 							string: '',
 							component:
-								<CSCheckbox label="This is a label" variant="brand" />
+								<CSCheckbox
+									label="This is a label"
+									variant="brand"
+								/>
 						}
 					]
 				},
@@ -156,17 +127,6 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 							string: '',
 							component:
 								<CSCheckbox
-									borderType="square"
-									error
-									label="This is a label"
-								/>
-						},
-						{
-							variationName: ['true'],
-							string: '',
-							component:
-								<CSCheckbox
-									borderType="round"
 									error
 									label="This is a label"
 								/>
@@ -180,7 +140,11 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 							variationName: ['n/a'],
 							string: '',
 							component:
-								<CSCheckbox label="Enter value:" error errorMessage="Error message!"/>
+								<CSCheckbox
+									label="Enter value:"
+									error
+									errorMessage="Error message!"
+								/>
 						}
 					]
 				},
@@ -191,7 +155,10 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 							variationName: ['n/a'],
 							string: '',
 							component:
-								<CSCheckbox label="This is a label" helpText="Help text example" />
+								<CSCheckbox
+									label="This is a label"
+									helpText="Help text example"
+								/>
 						}
 					]
 				},
@@ -202,25 +169,41 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 							variationName: ['top-left'],
 							string: '',
 							component:
-								<CSCheckbox label="This is a label" helpText="Help text example" tooltipPosition="top-left" />
+								<CSCheckbox
+									label="This is a label"
+									helpText="Help text example"
+									tooltipPosition="top-left"
+								/>
 						},
 						{
 							variationName: ['top-right'],
 							string: '',
 							component:
-								<CSCheckbox label="This is a label" helpText="Help text example" tooltipPosition="top-right" />
+								<CSCheckbox
+									label="This is a label"
+									helpText="Help text example"
+									tooltipPosition="top-right"
+								/>
 						},
 						{
 							variationName: ['bottom-left'],
 							string: '',
 							component:
-								<CSCheckbox label="This is a label" helpText="Help text example" tooltipPosition="bottom-left" />
+								<CSCheckbox
+									label="This is a label"
+									helpText="Help text example"
+									tooltipPosition="bottom-left"
+								/>
 						},
 						{
 							variationName: ['bottom-right'],
 							string: '',
 							component:
-								<CSCheckbox label="This is a label" helpText="Help text example" tooltipPosition="bottom-right" />
+								<CSCheckbox
+									label="This is a label"
+									helpText="Help text example"
+									tooltipPosition="bottom-right"
+								/>
 						}
 					]
 				},
@@ -231,7 +214,10 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 							variationName: ['true'],
 							string: '',
 							component:
-								<CSCheckbox label="This is a label" labelHidden />
+								<CSCheckbox
+									label="This is a label"
+									labelHidden
+								/>
 						}
 					]
 				},
@@ -242,7 +228,10 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 							variationName: ['n/a'],
 							string: '',
 							component:
-								<CSCheckbox label="This is a label" className="custom-class" />
+								<CSCheckbox
+									label="This is a label"
+									className="custom-class"
+								/>
 						}
 					]
 				},
@@ -253,7 +242,10 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 							variationName: ['n/a'],
 							string: '',
 							component:
-								<CSCheckbox label="This is a label" onChange={onChangeHandler} />
+								<CSCheckbox
+									label="This is a label"
+									onChange={onChangeHandler}
+								/>
 						}
 					]
 				}
