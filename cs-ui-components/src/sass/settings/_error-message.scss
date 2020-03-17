@@ -1,0 +1,5 @@
+@mixin error-message {
+    margin: 0 3px;
+    font-size: 0.6875rem;
+    @include sc(--cs-input-error-c);
+}

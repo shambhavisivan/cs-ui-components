@@ -15,9 +15,9 @@ export interface CSTextareaProps {
 	disabled?: boolean;
 	readOnly?: boolean;
 	value?: string;
-	rows?: any;
-	cols?: any;
-	className?: any;
+	rows?: number;
+	maxHeight?: string;
+	className?: string;
 	errorMessage?: string;
 }
 
@@ -186,21 +186,27 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 					propName: 'rows',
 					variations: [
 						{
-							variationName: ['10', '20', '30', '40', '50'],
+							variationName: ['10'],
 							string: '',
 							component:
-								<CSTextarea label="Enter message:" rows="10" />
+								<CSTextarea label="Enter message:" rows={10} />
 						}
 					]
 				},
 				{
-					propName: 'cols',
+					propName: 'maxHeight',
 					variations: [
 						{
-							variationName: ['10', '20', '30', '40', '50'],
+							variationName: ['160px'],
 							string: '',
 							component:
-								<CSTextarea label="Enter message:" cols="40"/>
+								<CSTextarea label="Enter message:" maxHeight="200px"/>
+						},
+						{
+							variationName: ['5rem'],
+							string: '',
+							component:
+								<CSTextarea label="Enter message:" maxHeight="5rem"/>
 						}
 					]
 				},
@@ -303,9 +309,13 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 					options: []
 				},
 				{
-					propertyName: 'cols',
-					description: 'Textarea cols value',
-					options: []
+					propertyName: 'maxHeight',
+					description: 'Max height value for textarea',
+					options: [
+						'e.g.',
+						'160px',
+						'5rem'
+					]
 				},
 				{
 					propertyName: 'className',
@@ -345,12 +355,12 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 						readOnly={this.props.readOnly}
 						required={this.props.required}
 						rows={this.props.rows}
-						cols={this.props.cols}
 						aria-invalid={this.props.error}
 						value={this.props.value}
+						style={{'--max-height': this.props.maxHeight}}
 					/>
 					{(this.props.error && this.props.errorMessage) &&
-						<span className="cs-textarea-error-msg">{this.props.errorMessage}</span>
+						<span className="cs-input-error-msg">{this.props.errorMessage}</span>
 					}
 				</div>
 			</>

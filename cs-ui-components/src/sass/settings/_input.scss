@@ -4,15 +4,42 @@
 	font-size: 0.75rem;
 	line-height: 1.875rem;
 	min-height: 2rem;
-	padding: 0 1rem 0 0.75rem;
+	padding: 0 0.75rem;
 	transition: border 0.1s linear, background-color 0.1s linear;
 	width: 100%;
+	@include sbg(--cs-input-bg);
+	@include css4 {
+		border: 1px solid cvar(--cs-input-br);
+	}
 
-	&:required {
-		box-shadow: none;
+	&:active,
+	&:focus {
+		outline: 0;
+		@include css4 {
+			border-color: cvar(--cs-input-active-br);
+			box-shadow: 0 0 0.1875rem cvar(--cs-input-shadow);
+		}
+	}
+
+	&:disabled {
+		cursor: default;
+		user-select: none;
+		@include sbg(--cs-input-disabled-bg);
+		@include css4 {
+			border-color: cvar(--cs-input-disabled-br);
+		}
+
+		&:active,
+		&:focus {
+			box-shadow: none;
+			@include css4 {
+				border-color: cvar(--cs-input-disabled-br);
+			}
+		}
 	}
 
 	&:read-only {
+		cursor: default;
 		font-size: 0.875rem;
 		font-weight: $font-weight-normal;
 		padding-left: 0;
@@ -24,7 +51,7 @@
 		&:active,
 		&:focus {
 			@include css4 {
-				box-shadow: 0 0 3px cvar(--cs-input-readonly-shadow-br);
+				box-shadow: none;
 			}
 		}
 	}

@@ -2,65 +2,30 @@
 //
 // CS textarea input component.
 .cs-textarea-wrapper {
-
 	display: flex;
 	flex-direction: column;
 
 	.cs-textarea {
-		border-radius: 0.25rem;
-		outline: 0;
+		@include input;
 		padding: 0.5rem 0.75rem;
+		line-height: 1.5;
 		resize: vertical;
-		transition: border 0.1s linear, background-color 0.1s linear;
-		width: 100%;
-		@include sbg(--cs-textarea-bg);
-		@include css4 {
-			border: 1px solid cvar(--cs-textarea-br);
-		}
+		height: 5rem;
+		max-height: var(--max-height, 100%);
 
-		&:active,
-		&:focus {
-			outline: 0;
-			@include sbg(--cs-textarea-active-bg);
-			@include css4 {
-				border-color: cvar(--cs-textarea-active-br);
-				box-shadow: 0 0 0.1875rem cvar(--cs-textarea-shadow);
-			}
+		//Square
+		&.cs-textarea-square {
+			border-radius: 0;
 		}
 
 		&:disabled {
-			cursor: not-allowed;
-			user-select: none;
-			@include sbg(--cs-textarea-disabled-bg);
-			@include css4 {
-				border-color: cvar(--cs-textarea-disabled-br);
-			}
-		}
-
-		// Error
-		&-error {
-			@include css4 {
-				border: 1px solid cvar(--cs-input-error-br);
-
-				&:active,
-				&:focus {
-					@include css4 {
-						border-color: cvar(--cs-input-error-c);
-						box-shadow: 0 0 3px cvar(--cs-input-error-shadow);
-					}
-				}
-			}
+			resize: none;
 		}
 	}
-	.cs-textarea-error-msg {
-		margin: 0 3px;
-		font-size: 0.6875rem;
-		@include sc(--cs-textarea-error-c);
+
+	.cs-input-error-msg {
+		@include error-message;
 	}
-}
-//Square
-.cs-textarea-square {
-	border-radius: 0;
 }
 
 // Version

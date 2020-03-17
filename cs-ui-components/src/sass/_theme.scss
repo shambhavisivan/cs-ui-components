@@ -130,14 +130,7 @@ $variables: (
 	--cs-input-error-br: $cs-red-medium-2,
 	--cs-input-error-shadow: $cs-red-medium-1,
 	--cs-input-shadow: $cs-blue-sf,
-
-	--cs-input-number-bg: $cs-white,
-	--cs-input-number-br: $cs-gray-light-2,
-	--cs-input-number-active-br: $cs-blue-medium-5,
-	--cs-input-number-active-bg: $cs-white,
-	--cs-input-number-disabled-bg: $cs-gray-light-5,
-	--cs-input-number-disabled-br: $cs-gray-medium-3,
-	--cs-input-number-readonly-shadow-br: $cs-blue-sf,
+	--cs-input-icon-fill: $cs-gray-dark-5,
 
 	--cs-toggle-c: $cs-gray-dark-2,
 	--cs-toggle-br: $cs-gray-medium-2,
@@ -156,17 +149,6 @@ $variables: (
 	--cs-toggle-focus-box: $cs-blue-sf,
 	--cs-toggle-required-c: $cs-red-medium-2,
 	--cs-toggle-error-br: $cs-red-medium-2,
-
-	--cs-textarea-bg: $cs-white,
-	--cs-textarea-br: $cs-gray-light-2,
-	--cs-textarea-active-br: $cs-blue-medium-5,
-	--cs-textarea-active-bg: $cs-white,
-	--cs-textarea-disabled-bg: $cs-gray-light-5,
-	--cs-textarea-disabled-br: $cs-gray-medium-3,
-	--cs-textarea-shadow: $cs-blue-sf,
-	--cs-textarea-error-c: $cs-red-medium-2,
-
-	--cs-input-search-icon-fill: $cs-gray-dark-5,
 
 	--cs-tooltip-info-bg: $cs-blue-dark-1,
 	--cs-tooltip-info-c: $cs-white,
@@ -275,17 +257,6 @@ $variables: (
 	--cs-tab-active-c: $cs-gray-dark-1,
 	--cs-tab-active-br: $cs-blue-medium-5,
 	--cs-tab-hover-br: $cs-blue-sf,
-
-	--cs-select-bg: $cs-white,
-	--cs-select-br: $cs-gray-light-3,
-	--cs-select-active-br: $cs-blue-medium-5,
-	--cs-select-active-bg: $cs-white,
-	--cs-select-disabled-bg: $cs-gray-light-2,
-	--cs-select-disabled-br: $cs-gray-medium-3,
-	--cs-select-focus: $cs-blue-sf,
-	--cs-select-icon-fill: $cs-gray-dark-5,
-	--cs-select-icon-disabled-fill: $cs-gray-dark-5,
-	--cs-select-error-c: $cs-red-medium-2,
 
 	--cs-custom-select-dropdown-bg: $cs-white,
 	--cs-custom-select-dropdown-br: $cs-gray-light-3,

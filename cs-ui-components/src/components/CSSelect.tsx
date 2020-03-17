@@ -321,7 +321,7 @@ class CSSelect extends React.Component<CSSelectProps> {
 					<CSIcon name="down"/>
 				</div>
 				{(this.props.error && this.props.errorMessage) &&
-					<span className="cs-select-error-msg">{this.props.errorMessage}</span>
+					<span className="cs-input-error-msg">{this.props.errorMessage}</span>
 				}
 			</div>
 		);

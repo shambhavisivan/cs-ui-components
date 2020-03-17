@@ -384,7 +384,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 						autoComplete="off"
 					/>
 					{(this.props.error && this.props.errorMessage) &&
-						<span className="cs-input-number-error-msg">{this.props.errorMessage}</span>
+						<span className="cs-input-error-msg">{this.props.errorMessage}</span>
 					}
 				</div>
 			</>

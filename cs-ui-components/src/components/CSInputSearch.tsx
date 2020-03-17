@@ -440,19 +440,17 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 							autoComplete="off"
 						/>
 						{this.state.value &&
-							<div>
-								<button
-									className="cs-input-search-clear"
-									onClick={this.clearSearch}
-									aria-label="close"
-								>
-									<CSIcon name="close"/>
-								</button>
-							</div>
+							<button
+								className="cs-input-search-clear"
+								onClick={this.clearSearch}
+								aria-label="close"
+							>
+								<CSIcon name="close"/>
+							</button>
 						}
 					</div>
 					{(this.props.error && this.props.errorMessage) &&
-						<span className="cs-input-search-error-msg">{this.props.errorMessage}</span>
+						<span className="cs-input-error-msg">{this.props.errorMessage}</span>
 					}
 				</div>
 			</>
