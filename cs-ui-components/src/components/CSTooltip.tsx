@@ -6,7 +6,7 @@ import CSIcon from './CSIcon';
 export interface CSTooltipProps {
 	iconName?: string;
 	position?: string;
-	helpText: string;
+	helpText: string | Array<string>;
 	variant?: string;
 	iconSize?: string;
 	tooltipHeader?: string;
@@ -85,10 +85,10 @@ class CSTooltip extends React.Component<CSTooltipProps> {
 					propName: 'position',
 					variations: [
 						{
-							variationName: ['top-right'],
+							variationName: ['top-right', 'array'],
 							string: '',
 							component:
-								<CSTooltip  helpText="Lorem ipsum dolor sit amet, consectetur adipisicing elit." position="top-right"/>
+								<CSTooltip helpText={['This is an example tooltip', 'One more tooltip', 'Another tooltip to display']} position="top-right"/>
 						},
 						{
 							variationName: ['top-left'],
@@ -118,7 +118,7 @@ class CSTooltip extends React.Component<CSTooltipProps> {
 							variationName: ['info'],
 							string: '',
 							component:
-								<CSTooltip  tooltipHeader="Info" helpText="Example of help text" />
+								<CSTooltip  tooltipHeader="Info" helpText={['This is an example tooltip', 'One more tooltip', 'Another tooltip to display']} />
 						},
 						{
 							variationName: ['warning'],
@@ -171,6 +171,11 @@ class CSTooltip extends React.Component<CSTooltipProps> {
 						'small',
 						'medium'
 					]
+				},
+				{
+					propertyName: 'helpText',
+					description: 'Tooltip help text content',
+					options: []
 				},
 				{
 					propertyName: 'position',
@@ -238,9 +243,18 @@ class CSTooltip extends React.Component<CSTooltipProps> {
 						<div className="cs-tooltip-header">{this.props.tooltipHeader}</div>
 						: null
 					}
-					<div className="cs-tooltip-body">
-						{this.props.helpText}
-					</div>
+					{this.props.helpText ? (
+						Array.isArray(this.props.helpText) ?
+							this.props.helpText.map(t => (
+								<div className="cs-tooltip-body" key={t}>
+									{t}
+								</div>
+								)
+							) :
+							<div className="cs-tooltip-body">
+								{this.props.helpText}
+							</div>
+						) : null}
 				</div>
 			</div>
 		);
