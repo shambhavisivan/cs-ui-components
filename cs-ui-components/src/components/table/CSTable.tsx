@@ -4,7 +4,7 @@ import CSTableHeader from './CSTableHeader';
 import CSTableBody from './CSTableBody';
 import CSTableRow from './CSTableRow';
 import CSTableCell from './CSTableCell';
-import CSButton from './CSButton';
+import CSButton from '../CSButton';
 import classNames from 'classnames';
 
 export interface CSTableProps {

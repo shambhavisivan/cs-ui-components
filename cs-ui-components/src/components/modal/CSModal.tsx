@@ -3,8 +3,8 @@ import jsxToString from 'jsx-to-string';
 import CSModalHeader from './CSModalHeader';
 import CSModalBody from './CSModalBody';
 import CSModalFooter from './CSModalFooter';
-import CSButton from './CSButton';
-import CSIcon from './CSIcon';
+import CSButton from '../CSButton';
+import CSIcon from '../CSIcon';
 import classNames from 'classnames';
 
 export interface CSModalProps {

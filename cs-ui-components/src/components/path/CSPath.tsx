@@ -2,7 +2,6 @@ import React from 'react';
 import jsxToString from 'jsx-to-string';
 import CSPathWrapper from './CSPathWrapper';
 import CSPathItem from './CSPathItem';
-import CSButton from './CSButton';
 import classNames from 'classnames';
 
 export interface CSPathProps {

@@ -4,8 +4,8 @@ import jsxToString from 'jsx-to-string';
 import CSMainHeaderIcon from './CSMainHeaderIcon';
 import CSMainHeaderLeft from './CSMainHeaderLeft';
 import CSMainHeaderRight from './CSMainHeaderRight';
-import CSButton from './CSButton';
-import CSIcon from './CSIcon';
+import CSButton from '../CSButton';
+import CSIcon from '../CSIcon';
 import classNames from 'classnames';
 
 export interface CSMainHeaderProps {
