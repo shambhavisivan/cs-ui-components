@@ -9,6 +9,7 @@ export interface CSIconProps {
 	name: string;
 	origin?: string;
 	rotate?: string;
+	color?: string;
 	className?: string;
 }
 
@@ -52,7 +53,7 @@ class CSIcon extends React.Component<CSIconProps> {
 							component:
 								<CSIcon
 									origin="cs"
-									name="tag"
+									name="table"
 								/>
 						}
 					]
@@ -67,6 +68,38 @@ class CSIcon extends React.Component<CSIconProps> {
 								<CSIcon
 									name="breadcrumbs"
 									rotate="180"
+								/>
+						}
+					]
+				},
+				{
+					propName: 'color',
+					variations: [
+						{
+							variationName: ['pink'],
+							string: '',
+							component:
+								<CSIcon
+									name="breadcrumbs"
+									color="pink"
+								/>
+						},
+						{
+							variationName: ['#ff0000'],
+							string: '',
+							component:
+								<CSIcon
+									name="breadcrumbs"
+									color="#ff0000"
+								/>
+						},
+						{
+							variationName: ['rgba(100,100,255)'],
+							string: '',
+							component:
+								<CSIcon
+									name="breadcrumbs"
+									color="rgba(100,100,255,1.00)"
 								/>
 						}
 					]
@@ -107,6 +140,16 @@ class CSIcon extends React.Component<CSIconProps> {
 					options: ['90', '180', '270']
 				},
 				{
+					propertyName: 'color',
+					description: 'Color value of icon',
+					options: [
+						'e.g.',
+						'pink',
+						'#ff0000',
+						'rgba(100,100,255,1.00)'
+					]
+				},
+				{
 					propertyName: 'className',
 					description: 'Icon class',
 					options: []
@@ -140,7 +183,10 @@ class CSIcon extends React.Component<CSIconProps> {
 			prefix = 'csi-';
 		}
 		return (
-			<svg className={styleClass}>
+			<svg
+				className={styleClass}
+				style={{'--cs-icon-c': this.props.color}}
+			>
 				<use href={`${origin}#${prefix}${this.props.name}`}/>
 			</svg>
 		);
