@@ -10,6 +10,7 @@ export interface CSAlertProps {
 	onClose?: undefined;
 	text?: string | Array<string>;
 	textAlign?: string;
+	styleType?: string;
 	variant: string;
 	className?: string;
 }
@@ -17,7 +18,8 @@ export interface CSAlertProps {
 class CSAlert extends React.Component<CSAlertProps> {
 	public static defaultProps = {
 		iconVisibility: true,
-		textAlign: 'center'
+		textAlign: 'center',
+		styleType: 'default'
 	};
 	static getDoc() {
 
@@ -66,6 +68,44 @@ class CSAlert extends React.Component<CSAlertProps> {
 									variant="offline"
 									closeButton
 									text="This is an example offline alert"
+								/>
+						}
+					]
+				},
+				{
+					propName: 'styleType',
+					variations: [
+						{
+							variationName: ['light', 'info'],
+							string: '',
+							component:
+								<CSAlert
+									variant="info"
+									styleType="light"
+									closeButton
+									text="This is an example light info alert"
+								/>
+						},
+						{
+							variationName: ['light', 'error'],
+							string: '',
+							component:
+								<CSAlert
+									variant="error"
+									styleType="light"
+									closeButton
+									text="This is an example light error alert"
+								/>
+						},
+						{
+							variationName: ['light', 'warning'],
+							string: '',
+							component:
+								<CSAlert
+									variant="warning"
+									styleType="light"
+									closeButton
+									text="This is an example light warning alert"
 								/>
 						}
 					]
@@ -233,6 +273,14 @@ class CSAlert extends React.Component<CSAlertProps> {
 					]
 				},
 				{
+					propertyName: 'styleType',
+					description: 'Determines styling of text and background',
+					options: [
+						'default',
+						'light'
+					]
+				},
+				{
 					propertyName: 'textAlign',
 					description: 'Alignment of the text inside the alert',
 					options: [
@@ -295,6 +343,7 @@ class CSAlert extends React.Component<CSAlertProps> {
 		const alertClasses = classNames(
 			'cs-alert',
 			[`${this.props.variant}`],
+			[`type-${this.props.styleType}`],
 			[`${this.props.textAlign}`],
 			{
 				[`${this.props.className}`]: this.props.className

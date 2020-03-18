@@ -168,6 +168,10 @@ const colors = [
 		"colorValue": "#ffb75d"
 	},
 	{
+		"colorName": "cs-orange-light-1",
+		"colorValue": "#fff2e2"
+	},
+	{
 		"colorName": "cs-red-medium-1",
 		"colorValue": "#f91e0b"
 	},
@@ -178,6 +182,10 @@ const colors = [
 	{
 		"colorName": "cs-red-medium-3",
 		"colorValue": "#d9675d"
+	},
+	{
+		"colorName": "cs-red-light-1",
+		"colorValue": "#fcedee"
 	},
 	{
 		"colorName": "cs-white",

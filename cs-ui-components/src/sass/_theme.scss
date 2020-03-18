@@ -46,6 +46,7 @@ $cs-green-light-1: #4bca81;
 $cs-purple-medium-1: #7f8de1;
 $cs-orange-medium-1: #ffa429;
 $cs-orange-medium-2: #ffb75d;
+$cs-orange-light-1: #fff2e2;
 $cs-red-medium-1: #d81c2a;
 $cs-red-medium-2: #c23934;
 $cs-red-medium-3: #d9675d;
@@ -101,15 +102,24 @@ $variables: (
 	--cs-alert-info-bg: $cs-gray-dark-5,
 	--cs-alert-info-c: $cs-white,
 	--cs-alert-info-fill: $cs-white,
+	--cs-alert-info-light-bg: $cs-blue-light-1,
+	--cs-alert-info-light-c: $cs-blue-sf,
+	--cs-alert-info-light-fill: $cs-blue-sf,
 	--cs-alert-warning-bg: $cs-orange-medium-2,
 	--cs-alert-warning-c: $cs-gray-dark-1,
 	--cs-alert-warning-fill: $cs-gray-dark-4,
 	--cs-alert-warning-hover-fill: $cs-gray-dark-5,
 	--cs-alert-warning-box: $cs-gray-dark-4,
 	--cs-alert-warning-br: $cs-gray-dark-4,
+	--cs-alert-warning-light-bg: $cs-orange-light-1,
+	--cs-alert-warning-light-c: $cs-orange-medium-1,
+	--cs-alert-warning-light-fill: $cs-orange-medium-1,
 	--cs-alert-error-bg: $cs-red-medium-2,
 	--cs-alert-error-c: $cs-white,
 	--cs-alert-error-fill: $cs-white,
+	--cs-alert-error-light-bg: $cs-red-light-1,
+	--cs-alert-error-light-c: $cs-red-medium-1,
+	--cs-alert-error-light-fill: $cs-red-medium-1,
 	--cs-alert-offline-bg: $cs-gray-dark-3,
 	--cs-alert-offline-c: $cs-white,
 	--cs-alert-offline-fill: $cs-white,
