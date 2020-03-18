@@ -14,7 +14,13 @@ class CSButtonPreview extends React.Component {
 					<h1>{component.name}</h1>
 					{component.usage ? <h2>{component.usage}</h2> : null}
 				</div>
-
+				<div className="cs-btn-image-wrapper">
+					<img
+						className="cs-btn-image"
+						src={require('../../images/CSButton.png')}
+						alt="Button examples"
+					/>
+				</div>
 				{component.examples.map((example: any) => (
 					<div className={`property-section ${example.propName}`} key={example.propName}>
 						<h2 className="property-name">{example.propName}</h2>
