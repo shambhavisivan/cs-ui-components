@@ -402,6 +402,11 @@
 					border: 1px solid cvar(--cs-button-white-br);
 				}
 			}
+			&:disabled::after {
+				@include css4 {
+					border: 1px solid cvar(--cs-transparent);
+				}
+			}
 		}
 		/* STYLE - BRAND */
 		&.cs-btn-brand {
@@ -415,6 +420,11 @@
 			}
 			&:active {
 				@include sbg(--cs-button-transparent-focus-bg);
+			}
+			&:disabled:after {
+				@include css4 {
+					border: 1px solid cvar(--cs-transparent);
+				}
 			}
 		}
 
