@@ -41,7 +41,7 @@ class CSDatepickerPreview extends React.Component {
 					{/*</div>*/}
 				{/*))}*/}
 
-				{/*<div className="table-wrapper properties-table-wrapper">*/}
+				{/*<div className="table-wrapper">*/}
 					{/*<h2 className="property-name">Properties list</h2>*/}
 					{/*<h3 className="component-name">Datepicker</h3>*/}
 					{/*<div className="properties-table">*/}

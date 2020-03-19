@@ -485,6 +485,10 @@ body,
 			&.icons {
 				padding: 0;
 			}
+
+			&:last-child {
+				margin-block-end: 0;
+			}
 		}
 
 		&.colors {
@@ -510,12 +514,12 @@ body,
 	}
 
 	/* COMPONENT PROPERTIES TABLE */
-	.properties-table-wrapper-alt {
-		padding-top: 0;
-	}
-
 	.table-wrapper {
 		padding: 2rem;
+	}
+
+	.table-wrapper-alt {
+		padding-top: 0;
 	}
 
 	.table-row {

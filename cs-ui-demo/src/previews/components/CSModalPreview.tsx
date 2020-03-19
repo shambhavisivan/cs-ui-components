@@ -43,7 +43,7 @@ class CSModalPreview extends React.Component {
 					</div>
 				))}
 
-				<div className="table-wrapper properties-table-wrapper">
+				<div className="table-wrapper">
 					<h2 className="property-name">Properties list</h2>
 					<h3 className="component-name">{component.name}</h3>
 					<div className="properties-table">
@@ -69,7 +69,7 @@ class CSModalPreview extends React.Component {
 						</div>
 					</div>
 				</div>
-				<div className="table-wrapper properties-table-wrapper">
+				<div className="table-wrapper table-wrapper-alt">
 					<h3 className="component-name">{component2.name}</h3>
 					<div className="properties-table">
 						<div className="table-header">
@@ -94,7 +94,7 @@ class CSModalPreview extends React.Component {
 						</div>
 					</div>
 				</div>
-				<div className="table-wrapper properties-table-wrapper">
+				<div className="table-wrapper table-wrapper-alt">
 					<h3 className="component-name">{component3.name}</h3>
 					<div className="properties-table">
 						<div className="table-header">

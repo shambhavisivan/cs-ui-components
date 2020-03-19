@@ -212,12 +212,12 @@ class CSButton extends React.Component<CSButtonProps> {
 						{
 							variationName: ['90'],
 							string: '',
-							component: <CSButton iconName="activity" iconRotate="90" label="Icon rotated 270 degrees"/>
+							component: <CSButton iconName="activity" iconRotate="90" label="Icon rotated 90 degrees"/>
 						},
 						{
 							variationName: ['180'],
 							string: '',
-							component: <CSButton iconName="activity" iconRotate="180" label="Icon rotated 270 degrees"/>
+							component: <CSButton iconName="activity" iconRotate="180" label="Icon rotated 180 degrees"/>
 						},
 						{
 							variationName: ['270'],

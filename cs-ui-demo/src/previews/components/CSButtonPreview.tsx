@@ -40,7 +40,7 @@ class CSButtonPreview extends React.Component {
 					</div>
 				))}
 
-				<div className="table-wrapper properties-table-wrapper">
+				<div className="table-wrapper">
 					<h2 className="property-name">Properties list</h2>
 					<h3 className="component-name">{component.name}</h3>
 					<div className="properties-table">
@@ -67,7 +67,7 @@ class CSButtonPreview extends React.Component {
 					</div>
 				</div>
 
-				<div className="table-wrapper backlog-table-wrapper">
+				<div className="table-wrapper table-wrapper-alt backlog-table-wrapper">
 					<h2 className="property-name">Backlog list</h2>
 					<div className="properties-table">
 						<div className="table-header">
