@@ -26,7 +26,11 @@ class CSPaginationWrapper extends React.Component<CSPaginationWrapperProps> {
 							string: '',
 							component:
 							<CSPaginationWrapper>
-								<CSSelect label="This is a label"/>
+								<CSSelect label="hidden label" labelHidden>
+									<option>10</option>
+									<option>20</option>
+									<option>50</option>
+								</CSSelect>
 							</CSPaginationWrapper>
 						}
 					]

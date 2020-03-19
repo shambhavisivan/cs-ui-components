@@ -8,6 +8,7 @@ export interface CSSelectProps {
 	borderType?: string;
 	error?: boolean;
 	label: string;
+	labelHidden?: boolean;
 	id?: string;
 	helpText?: string;
 	tooltipPosition?: string;
@@ -18,6 +19,10 @@ export interface CSSelectProps {
 }
 
 class CSSelect extends React.Component<CSSelectProps> {
+
+	public static defaultProps = {
+		labelHidden: false
+	};
 
 	static getDoc() {
 
@@ -49,6 +54,21 @@ class CSSelect extends React.Component<CSSelectProps> {
 							string: '',
 							component:
 								<CSSelect label="Choose color" id="colour">
+									<option>Red</option>
+									<option>Blue</option>
+									<option>Green</option>
+								</CSSelect>
+						}
+					]
+				},
+				{
+					propName: 'labelHidden',
+					variations: [
+						{
+							variationName: ['true'],
+							string: '',
+							component:
+								<CSSelect label="Choose color" labelHidden id="colour">
 									<option>Red</option>
 									<option>Blue</option>
 									<option>Green</option>
@@ -220,6 +240,14 @@ class CSSelect extends React.Component<CSSelectProps> {
 					options: []
 				},
 				{
+					propertyName: 'labelHidden',
+					description: 'Logic for visibility of the label',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
 					propertyName: 'borderType',
 					description: 'Select border type',
 					options: [
@@ -305,7 +333,7 @@ class CSSelect extends React.Component<CSSelectProps> {
 		);
 		return (
 			<div className="cs-select-wrapper">
-				{this.props.label &&
+				{(this.props.label && !this.props.labelHidden) &&
 					<CSLabel for={this.props.id} label={this.props.label} helpText={this.props.helpText} tooltipPosition={this.props.tooltipPosition} required={this.props.required} />
 				}
 				<div className={selectGroupClasses}>

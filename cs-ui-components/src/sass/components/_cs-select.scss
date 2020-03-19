@@ -15,7 +15,7 @@
 			transition: border 0.1s linear, background-color 0.1s linear;
 			width: 100%;
 			-webkit-appearance: none;
-			padding: 0 1rem 0 0.75rem;
+			padding: 0 2rem 0 0.75rem;
 			@include sbg(--cs-input-bg);
 			@include css4 {
 				border: 1px solid cvar(--cs-input-br);
