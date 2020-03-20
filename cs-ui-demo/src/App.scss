@@ -415,6 +415,14 @@ body,
 					}
 				}
 
+				&.input-file-preview {
+					overflow: visible;
+
+					.custom-class {
+						border: 3px solid pink;
+					}
+				}
+
 				&.label-preview {
 					overflow: visible;
 

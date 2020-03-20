@@ -1,0 +1,125 @@
+// CS Input File
+//
+// CS Input File component.
+
+.cs-input-file {
+	display: inline-block;
+
+	// Label
+	.cs-input-file-label-body {
+		align-items: center;
+		appearance: none;
+		border-radius: 0.25rem;
+		cursor: pointer;
+		display: inline-flex;
+		font-size: 0.8125rem;
+		line-height: 1.875rem;
+		padding-left: 0.75rem;
+		padding-right: 0.75rem;
+		text-align: center;
+		@include sc(--cs-input-file-label-c);
+		@include css4 {
+			border: 1px solid cvar(--cs-input-file-label-br);
+		}
+
+		&:hover {
+			@include sbg(--cs-input-file-label-hover-bg);
+		}
+	}
+
+	// Icon
+	.cs-input-file-icon {
+		height: 0.875rem;
+		margin-right: 0.5rem;
+		width: 0.875rem;
+		@include css4 {
+			fill: cvar(--cs-input-file-icon-fill);
+		}
+	}
+
+	// File input
+	input[type='file'] {
+		position: absolute;
+		margin: -1px;
+		border: 0;
+		padding: 0;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip: rect(0 0 0 0);
+		text-transform: none;
+		white-space: nowrap;
+
+		// Active/focus
+		&:active + .cs-input-file-label-body {
+			@include css4 {
+				border: 1px solid cvar(--cs-input-file-active-br);
+			}
+		}
+
+		&:focus + .cs-input-file-label-body {
+			outline: 0;
+			@include css4 {
+				box-shadow: 0 0 3px cvar(--cs-input-file-shadow);
+			}
+		}
+
+		// Disabled
+		&:disabled {
+			+ .cs-input-file-label-body {
+				cursor: default;
+				user-select: none;
+				@include sbg(--cs-input-file-label-disabled-bg);
+				@include sc(--cs-input-file-label-disabled-c);
+
+				> .cs-input-file-icon {
+					@include sf(--cs-input-file-disabled-icon-fill);
+				}
+			}
+
+			&:active + .cs-input-file-label-body {
+				@include css4 {
+					border: 1px solid cvar(--cs-input-file-label-br);
+				}
+			}
+
+			&:focus + .cs-input-file-label-body {
+				@include css4 {
+					box-shadow: none;
+				}
+			}
+		}
+	}
+
+	// Error
+	&.cs-input-file-error {
+		input[type='file'] {
+			+ .cs-input-file-label-body {
+				@include sc(--cs-input-file-error-c);
+
+				> svg {
+					@include sf(--cs-input-file-error-icon-fill);
+				}
+			}
+
+			&:focus + .cs-input-file-label-body {
+				@include css4 {
+					box-shadow: 0 0 3px cvar(--cs-input-file-error-shadow);
+				}
+			}
+
+			&:active + .cs-input-file-label-body {
+				@include css4 {
+					border: 1px solid cvar(--cs-input-file-error-br);
+				}
+			}
+		}
+	}
+}
+
+// Error message
+.cs-input-file-error-message {
+	font-size: 0.75rem;
+	padding-top: 0.25rem;
+	@include sc(--cs-input-file-error-message-c);
+}

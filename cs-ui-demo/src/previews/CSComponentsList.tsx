@@ -9,6 +9,7 @@ import CSIconPreview from './components/CSIconPreview';
 import CSInputSearchPreview from './components/CSInputSearchPreview';
 import CSCustomSelectPreview from './components/CSCustomSelectPreview';
 import CSDatepickerPreview from './components/CSDatepickerPreview';
+import CSInputFilePreview from './components/CSInputFilePreview';
 import CSTabPreview from './components/CSTabPreview';
 import CSModalPreview from './components/CSModalPreview';
 import CSSpinnerPreview from './components/CSSpinnerPreview';
@@ -73,6 +74,10 @@ class CSComponentsList extends React.Component {
 			{
 				name: 'Icon',
 				component: CSIconPreview
+			},
+			{
+				name: 'InputFile',
+				component: CSInputFilePreview
 			},
 			{
 				name: 'Input Number',

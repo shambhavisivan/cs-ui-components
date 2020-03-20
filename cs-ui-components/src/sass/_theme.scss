@@ -292,7 +292,22 @@ $variables: (
 
 	--cs-progress-indicator-c: $cs-gray-dark-1,
 	--cs-progress-bar-bg: $cs-gray-light-2,
-	--cs-progress-bar-value-bg: $cs-blue
+	--cs-progress-bar-value-bg: $cs-blue,
+
+	--cs-input-file-label-c: $cs-blue-sf,
+	--cs-input-file-label-br: $cs-gray-light-5,
+	--cs-input-file-label-hover-bg: $cs-gray-light-11,
+	--cs-input-file-label-disabled-bg: $cs-white,
+	--cs-input-file-label-disabled-c: $cs-gray-light-5,
+	--cs-input-file-icon-fill: $cs-blue-sf,
+	--cs-input-file-disabled-icon-fill: $cs-gray-light-5,
+	--cs-input-file-active-br: $cs-blue-sf,
+	--cs-input-file-shadow: $cs-blue-medium-1,
+	--cs-input-file-error-c: $cs-red-medium-2,
+	--cs-input-file-error-icon-fill: $cs-red-medium-2,
+	--cs-input-file-error-message-c: $cs-red-medium-2,
+	--cs-input-file-error-br: $cs-red-medium-2,
+	--cs-input-file-error-shadow: $cs-red-medium-2
 );
 
 // This will be used later for dark theme support
