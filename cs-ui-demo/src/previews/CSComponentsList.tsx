@@ -20,6 +20,7 @@ import CSTablePreview from './components/CSTablePreview';
 import CSPaginationPreview from './components/CSPaginationPreview';
 import CSChipPreview from './components/CSChipPreview';
 import CSTooltipPreview from './components/CSTooltipPreview';
+import CSRadioPreview from './components/CSRadioPreview';
 import CSPathPreview from './components/CSPathPreview';
 import CSToastPreview from './components/CSToastPreview';
 import CSAlertPreview from './components/CSAlertPreview';
@@ -114,6 +115,10 @@ class CSComponentsList extends React.Component {
 			{
 				name: 'Progress Bar',
 				component: CSProgressBarPreview
+			},
+			{
+				name: 'Radio',
+				component: CSRadioPreview
 			},
 			{
 				name: 'Section',

@@ -30,6 +30,8 @@ import CSPath from './components/path/CSPath';
 import CSPathItem from './components/path/CSPathItem';
 import CSPathWrapper from './components/path/CSPathWrapper';
 import CSProgressBar from './components/CSProgressBar';
+import CSRadio from './components/radio/CSRadio';
+import CSRadioOption from './components/radio/CSRadioOption';
 import CSSelect from './components/CSSelect';
 import CSSection from './components/CSSection';
 import CSSpinner from './components/CSSpinner';
@@ -80,6 +82,8 @@ export {
 	CSPathItem,
 	CSPathWrapper,
 	CSProgressBar,
+	CSRadio,
+	CSRadioOption,
 	CSSelect,
 	CSSection,
 	CSSpinner,

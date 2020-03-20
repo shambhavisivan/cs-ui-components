@@ -317,7 +317,23 @@ $variables: (
 	--cs-input-file-error-icon-fill: $cs-red-medium-2,
 	--cs-input-file-error-message-c: $cs-red-medium-2,
 	--cs-input-file-error-br: $cs-red-medium-2,
-	--cs-input-file-error-shadow: $cs-red-medium-2
+	--cs-input-file-error-shadow: $cs-red-medium-2,
+	
+	--cs-radio-bg-default: $cs-blue-sf,
+	--cs-radio-bg-neutral: $cs-white,
+	--cs-radio-bg-brand: $cs-blue-sf,
+	--cs-radio-bg-inner-brand: $cs-white,
+	--cs-radio-br: $cs-gray-light-2,
+	--cs-radio-focus-br: $cs-blue-medium-5,
+	--cs-radio-focus-box: $cs-blue-sf,
+	--cs-radio-disabled-bg: $cs-gray-light-5,
+	--cs-radio-disabled-br: $cs-gray-medium-3,
+	--cs-radio-disabled-checked-br: $cs-gray-medium-1,
+	--cs-radio-error-br: $cs-red-medium-2,
+	--cs-radio-error-bg: $cs-red-medium-2,
+	--cs-radio-error-active-shadow: $cs-red-medium-2,
+	--cs-radio-error-focus-shadow: $cs-red-medium-1,
+	--cs-radio-label-c: $cs-gray-dark-2
 );
 
 // This will be used later for dark theme support

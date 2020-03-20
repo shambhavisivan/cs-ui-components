@@ -347,6 +347,15 @@ body,
 					}
 				}
 
+				&.radio-preview {
+					padding: 1rem;
+					overflow: visible;
+
+					.custom-class {
+						border: 2px solid pink;
+					}
+				}
+
 				&.tooltip-preview {
 					display: flex;
 					justify-content: center;

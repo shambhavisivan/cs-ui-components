@@ -1,0 +1,132 @@
+// CS Radio
+//
+// CS Radio component.
+
+.cs-radio-wrapper {
+	// Label
+	.cs-radio-label {
+		align-items: center;
+		cursor: pointer;
+		display: inline-flex;
+		font-size: 0.875rem;
+		margin-bottom: 0.25rem;
+		@include sc(--cs-radio-label-c);
+	}
+
+	&.cs-radio-disabled .cs-radio-label {
+		cursor: default;
+	}
+
+	// Radio input
+	.cs-radio {
+		width: 1px;
+		height: 1px;
+		border: 0;
+		clip: rect(0 0 0 0);
+		margin: -1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+
+		// Faux
+		+ .cs-radio-faux {
+			border-radius: 0.5rem;
+			width: 1rem;
+			height: 1rem;
+			display: inline-block;
+			margin-right: 0.5rem;
+			position: relative;
+			vertical-align: middle;
+			@include sbg(--cs-radio-bg-neutral);
+			@include css4 {
+				border: 1px solid cvar(--cs-radio-br);
+			}
+		}
+
+		&:checked + .cs-radio-faux {
+
+			&::after {
+				display: block;
+				content: "";
+				border-radius: 50%;
+				height: 0.5rem;
+				width: 0.5rem;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				@include sbg(--cs-radio-bg-default);
+			}
+		}
+
+		&:hover + .cs-radio-faux {
+			@include css4 {
+				box-shadow: 0 0 2px cvar(--cs-radio-focus-box);
+			}
+		}
+
+		// Active
+		&:active + .cs-radio-faux {
+			@include css4 {
+				border: 1px solid cvar(--cs-radio-focus-br);
+			}
+		}
+
+		// Focus
+		&:focus + .cs-radio-faux {
+			outline: 0;
+			@include css4 {
+				box-shadow: 0 0 3px cvar(--cs-radio-focus-box);
+			}
+		}
+
+		// Disabled
+		&:disabled + .cs-radio-faux {
+			@include sbg(--cs-radio-disabled-bg);
+			@include css4 {
+				border: 1px solid cvar(--cs-radio-disabled-br);
+				box-shadow: none;
+			}
+		}
+	}
+
+	// Error
+	&.cs-radio-error .cs-radio-label > .cs-radio {
+		&:hover + .cs-radio-faux {
+			@include css4 {
+				box-shadow: 0 0 2px cvar(--cs-radio-error-focus-shadow);
+			}
+		}
+
+		&:focus + .cs-radio-faux {
+			@include css4 {
+				box-shadow: 0 0 3px cvar(--cs-radio-error-focus-shadow);
+			}
+		}
+
+		&:active + .cs-radio-faux {
+			@include css4 {
+				box-shadow: 0 0 5px cvar(--cs-radio-error-active-shadow);
+			}
+		}
+
+		+ .cs-radio-faux {
+			@include css4 {
+				border: 1px solid cvar(--cs-radio-error-br);
+			}
+
+			&::after {
+				@include sbg(--cs-radio-error-bg);
+			}
+		}
+	}
+
+	// Brand
+	&.cs-radio-brand .cs-radio:checked + .cs-radio-faux {
+		@include sbg(--cs-radio-bg-brand);
+
+		&::after {
+			@include sbg(--cs-radio-bg-inner-brand);
+		}
+	}
+}
