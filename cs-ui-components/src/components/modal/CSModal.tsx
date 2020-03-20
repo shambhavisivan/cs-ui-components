@@ -27,7 +27,7 @@ class CSModal extends React.Component<CSModalProps> {
 					customText: '',
 					variations: [
 						{
-							variationName: ['size="small"', 'closeButton={true}'],
+							variationName: ['size="small"', 'closeButton={true}', 'align="left"'],
 							string: '',
 							component: (
 								<CSModal size="small" closeButton>
@@ -48,7 +48,7 @@ class CSModal extends React.Component<CSModalProps> {
 											consequat elit dolor adipisicing.
 										</p>
 									</CSModalBody>
-									<CSModalFooter align="flex-start">
+									<CSModalFooter align="left">
 										<CSButton label="Default Button"/>
 										<CSButton label="Brand Button" btnStyle="brand"/>
 									</CSModalFooter>
@@ -56,7 +56,7 @@ class CSModal extends React.Component<CSModalProps> {
 							)
 						},
 						{
-							variationName: ['size="medium"', 'closeButton={false}'],
+							variationName: ['size="medium"', 'closeButton={false}', 'align="right"'],
 							string: '',
 							component: (
 								<CSModal size="medium" closeButton={false}>
@@ -77,7 +77,7 @@ class CSModal extends React.Component<CSModalProps> {
 											consequat elit dolor adipisicing.
 										</p>
 									</CSModalBody>
-									<CSModalFooter align="flex-end">
+									<CSModalFooter align="right">
 										<CSButton label="Default Button"/>
 										<CSButton label="Brand Button" btnStyle="brand"/>
 									</CSModalFooter>
@@ -85,7 +85,7 @@ class CSModal extends React.Component<CSModalProps> {
 							)
 						},
 						{
-							variationName: ['size="large"', 'closeButton={true}'],
+							variationName: ['size="large"', 'closeButton={true}', 'align="center"'],
 							string: '',
 							component: (
 								<CSModal size="large" closeButton>
@@ -113,7 +113,7 @@ class CSModal extends React.Component<CSModalProps> {
 							)
 						},
 						{
-							variationName: ['size="xlarge"', 'closeButton={false}'],
+							variationName: ['size="xlarge"', 'closeButton={false}', 'align="right"'],
 							string: '',
 							component: (
 								<CSModal size="xlarge" closeButton={false}>
@@ -134,7 +134,7 @@ class CSModal extends React.Component<CSModalProps> {
 											consequat elit dolor adipisicing.
 										</p>
 									</CSModalBody>
-									<CSModalFooter align="flex-end">
+									<CSModalFooter align="right">
 										<CSButton label="Default Button"/>
 										<CSButton label="Default Button"/>
 										<CSButton label="Brand Button" btnStyle="brand"/>
@@ -170,7 +170,7 @@ class CSModal extends React.Component<CSModalProps> {
 											consequat elit dolor adipisicing.
 										</p>
 									</CSModalBody>
-									<CSModalFooter align="flex-start">
+									<CSModalFooter>
 										<CSButton label="Default Button"/>
 										<CSButton label="Brand Button" btnStyle="brand"/>
 									</CSModalFooter>

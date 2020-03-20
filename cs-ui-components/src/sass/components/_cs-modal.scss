@@ -150,11 +150,11 @@
 				justify-content: center;
 			}
 
-			&.modal-footer-flex-start {
+			&.modal-footer-left {
 				justify-content: flex-start;
 			}
 
-			&.modal-footer-flex-end {
+			&.modal-footer-right {
 				justify-content: flex-end;
 			}
 
@@ -164,18 +164,6 @@
 				&:last-of-type {
 					margin-right: 0;
 				}
-			}
-
-			&.footer-right {
-				justify-content: flex-end;
-			}
-
-			&.footer-left {
-				justify-content: flex-start;
-			}
-
-			&.footer-split {
-				justify-content: space-between;
 			}
 
 			.cs-btn:only-of-type {

@@ -5,6 +5,9 @@ export interface CSModalFooterProps {
 }
 
 class CSModalFooter extends React.Component<CSModalFooterProps> {
+	public static defaultProps = {
+		align: 'right'
+	};
 
 	static getDoc() {
 		const json = {
@@ -14,9 +17,9 @@ class CSModalFooter extends React.Component<CSModalFooterProps> {
 					propertyName: 'align',
 					description: 'Alignment of buttons',
 					options: [
-						'center',
-						'flex-start',
-						'flex-end'
+						'right',
+						'left',
+						'center'
 					]
 				}
 			]
