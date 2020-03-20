@@ -67,7 +67,6 @@
 			white-space: normal;
 			cursor: pointer;
 			@include sbg(--transparent-bg);
-			@include sf(--cs-modal-close-fill);
 			@include css4 {
 				border: 1px solid cvar(--cs-transparent);
 			}
@@ -75,9 +74,10 @@
 			.cs-icon {
 				width: 1.5rem;
 				height: 1.5rem;
+				@include sf(--cs-modal-close-fill);
 			}
 
-			&:hover {
+			&:hover .cs-icon {
 				@include sf(--cs-modal-close-hover-fill);
 			}
 
@@ -89,7 +89,7 @@
 				}
 			}
 
-			&:active {
+			&:active .cs-icon {
 				@include sf(--cs-modal-close-active-fill);
 			}
 		}

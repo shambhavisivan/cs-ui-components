@@ -9,14 +9,15 @@ import classNames from 'classnames';
 
 export interface CSModalProps {
 	closeButton?: boolean;
-	onCloseModal?: undefined;
 	size?: string;
 	className?: string;
+	onClose?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 class CSModal extends React.Component<CSModalProps> {
 
 	static getDoc() {
+
 		const json = {
 			name: 'Modal',
 			usage:
@@ -194,13 +195,13 @@ class CSModal extends React.Component<CSModalProps> {
 					options: ['false', 'true']
 				},
 				{
-					propertyName: 'onCloseModal',
-					description: 'Close Modal',
+					propertyName: 'className',
+					description: 'For implementing custom class to component',
 					options: []
 				},
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component',
+					propertyName: 'onClose',
+					description: 'Logic for onClick event',
 					options: []
 				}
 			]
@@ -238,7 +239,7 @@ class CSModal extends React.Component<CSModalProps> {
 					{this.props.closeButton &&
 						<button
 							className="modal-close"
-							onClick={this.props.onCloseModal}
+							onClick={this.props.onClose}
 							aria-label="close"
 						>
 							<CSIcon name="close"/>
