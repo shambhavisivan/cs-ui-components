@@ -117,6 +117,21 @@ class CSIconPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'size',
+					variations: [
+						{
+							variationName: ['2rem'],
+							string: '',
+							component:
+								<CSIcon
+									origin="cs"
+									name="tag"
+									size="2rem"
+								/>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -159,6 +174,15 @@ class CSIconPreview extends React.Component {
 						'pink',
 						'#ff0000',
 						'rgba(100,100,255,1.00)'
+					]
+				},
+				{
+					propertyName: 'size',
+					description: 'Icon size',
+					options: [
+						'e.g.',
+						'2rem',
+						'100px'
 					]
 				},
 				{

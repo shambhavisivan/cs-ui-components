@@ -10,6 +10,7 @@ export interface CSIconProps {
 	rotate?: string;
 	color?: string;
 	className?: string;
+	size?: string;
 }
 
 class CSIcon extends React.Component<CSIconProps> {
@@ -33,7 +34,10 @@ class CSIcon extends React.Component<CSIconProps> {
 		return (
 			<svg
 				className={styleClass}
-				style={{'--cs-icon-c': this.props.color}}
+				style={{
+					'--cs-icon-c': this.props.color,
+					'--cs-icon-size': this.props.size
+				}}
 			>
 				<use href={`${origin}#${prefix}${this.props.name}`}/>
 			</svg>
