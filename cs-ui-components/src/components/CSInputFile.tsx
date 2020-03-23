@@ -6,12 +6,30 @@ export interface CSInputFileProps {
 	error?: boolean;
 	errorMessage?: string;
 	disabled?: boolean;
-	label?: string;
+	label: string;
 	className?: string;
 }
 
-class CSInputFile extends React.Component<CSInputFileProps> {
+export interface CSInputFileState {
+	label?: string;
+}
 
+class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
+	private fileInput: React.RefObject<HTMLInputElement>;
+	constructor(props: any) {
+		super(props);
+		this.state = {
+			label: ''
+		};
+
+		this.handleFileSubmit = this.handleFileSubmit.bind(this);
+		this.fileInput = React.createRef();
+	}
+	handleFileSubmit() {
+		this.setState({
+			label: this.fileInput.current.files[0].name
+		});
+	}
 	render() {
 		const fileClasses = classNames(
 			'cs-input-file',
@@ -25,11 +43,13 @@ class CSInputFile extends React.Component<CSInputFileProps> {
 				<label className="cs-input-file-label">
 					<input
 						type="file"
+						ref={this.fileInput}
+						onChange={this.handleFileSubmit}
 						disabled={this.props.disabled}
 					/>
 					<span className="cs-input-file-label-body">
 						<CSIcon className="cs-input-file-icon" name="upload"/>
-						<span>{this.props.label ? this.props.label : 'Upload File'}</span>
+						<span>{this.state.label ? this.state.label : this.props.label}</span>
 					</span>
 				</label>
 				{(this.props.error && this.props.errorMessage) &&

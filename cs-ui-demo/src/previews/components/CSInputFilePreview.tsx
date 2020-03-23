@@ -10,7 +10,6 @@ import {CSInputFile} from '@cloudsense/cs-ui-components';
 
 class CSInputFilePreview extends React.Component {
 	getDoc() {
-
 		const json = {
 			name: 'Input File',
 			usage: 'Input File component',
@@ -36,6 +35,7 @@ class CSInputFilePreview extends React.Component {
 							string: '',
 							component:
 								<CSInputFile
+									label="Upload directory"
 									disabled
 								/>
 						}
@@ -49,6 +49,7 @@ class CSInputFilePreview extends React.Component {
 							string: '',
 							component:
 								<CSInputFile
+									label="Upload directory"
 									error
 								/>
 						}
@@ -62,7 +63,9 @@ class CSInputFilePreview extends React.Component {
 							string: '',
 							component:
 								<CSInputFile
-									error errorMessage="File type not supported"
+									label="Upload directory"
+									error
+									errorMessage="File type not supported"
 								/>
 						}
 					]
@@ -75,6 +78,7 @@ class CSInputFilePreview extends React.Component {
 							string: '',
 							component:
 								<CSInputFile
+									label="Upload directory"
 									className="custom-class"
 								/>
 						}
