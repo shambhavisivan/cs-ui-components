@@ -44,9 +44,15 @@ class CSButtonDropdown extends React.Component<CSButtonDropdownProps, CSButtonDr
 	}
 
 	render() {
+		const btnDropdownWrapperClasses = classNames(
+			'cs-btn-dropdown-wrapper',
+			{
+				[`${this.props.className}`]: this.props.className
+			}
+		);
 
 		return (
-			<div className="cs-btn-dropdown-wrapper">
+			<div className={btnDropdownWrapperClasses}>
 				<CSButton
 					className="cs-btn-dropdown cs-btn-icon-only"
 					btnType={this.props.btnType}
