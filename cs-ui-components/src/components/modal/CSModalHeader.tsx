@@ -7,25 +7,6 @@ export interface CSModalHeaderProps {
 
 class CSModalHeader extends React.Component<CSModalHeaderProps> {
 
-	static getDoc() {
-		const json = {
-			name: 'Modal Header',
-			properties: [
-				{
-					propertyName: 'title',
-					description: 'Main header title',
-					options: ['n/a']
-				},
-				{
-					propertyName: 'subtitle',
-					description: 'Secondary text content',
-					options: ['n/a']
-				}
-			]
-		};
-
-		return json;
-	}
 	render() {
 		return (
 			<header className="modal-header">

@@ -11,49 +11,6 @@ export interface CSRadioOptionProps {
 }
 
 class CSRadioOption extends React.Component<CSRadioOptionProps> {
-
-	static getDoc() {
-
-		const onChangeHandler = () => alert('Radio changed!');
-
-		const json = {
-			name: 'Radio Option',
-			usage: 'Individual radio options.',
-			properties: [
-				{
-					propertyName: 'Label',
-					description: 'Radio Option label',
-					options: ['n/a']
-				},
-				{
-					propertyName: 'Name',
-					description: 'Radio Option name',
-					options: ['n/a']
-				},
-				{
-					propertyName: 'disabled',
-					description: 'Logic for disabled state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: ['n/a']
-				},
-				{
-					propertyName: 'onChange',
-					description: 'Logic for onChange event',
-					options: ['n/a']
-				}
-			]
-		};
-
-		return json;
-	}
-
 	constructor(props: CSRadioOptionProps) {
 		super(props);
 

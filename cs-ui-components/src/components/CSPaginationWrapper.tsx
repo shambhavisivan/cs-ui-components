@@ -1,7 +1,5 @@
 import React from 'react';
-import jsxToString from 'jsx-to-string';
 import CSPagination from './CSPagination';
-import CSSelect from './CSSelect';
 import classNames from 'classnames';
 
 export interface CSPaginationWrapperProps {
@@ -10,50 +8,6 @@ export interface CSPaginationWrapperProps {
 }
 
 class CSPaginationWrapper extends React.Component<CSPaginationWrapperProps> {
-
-	static getDoc() {
-
-		const json = {
-			name: 'Pagination',
-			usage: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-			examples: [
-				{
-					propName: '',
-					customText: '',
-					variations: [
-						{
-							variationName: ['n/a'],
-							string: '',
-							component:
-							<CSPaginationWrapper>
-								<CSSelect label="hidden label" labelHidden>
-									<option>10</option>
-									<option>20</option>
-									<option>50</option>
-								</CSSelect>
-							</CSPaginationWrapper>
-						}
-					]
-				}
-			],
-
-			properties: [
-				{
-					propertyName: 'n/a',
-					description: 'n/a',
-					options: ['test']
-				}
-			]
-		};
-
-		for (const example of json.examples) {
-			for (const variation of example.variations) {
-				(variation as any).string = jsxToString(variation.component);
-			}
-		}
-
-		return json;
-	}
 	constructor(props: CSPaginationWrapperProps) {
 		super(props);
 

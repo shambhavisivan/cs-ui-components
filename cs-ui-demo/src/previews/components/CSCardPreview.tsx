@@ -1,13 +1,92 @@
 import React from 'react';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
+import jsxToString from 'jsx-to-string';
 
-import {CSCard, CSCardHeader} from '@cloudsense/cs-ui-components';
+import {CSCard, CSCardHeader, CSCardBody, CSCardFooter} from '@cloudsense/cs-ui-components';
 
 class CSCardPreview extends React.Component {
+	getCSCardDoc() {
 
+		const json = {
+			name: 'Card',
+			usage: 'Cards are used to apply a container around a related grouping of information.',
+			examples: [
+				{
+					propName: '',
+					customText: '',
+					variations: [
+						{
+							variationName: ['n/a'],
+							string: '',
+							component:
+								<CSCard>
+									<CSCardHeader title="Card Header"/>
+									<CSCardBody>
+										Card Body
+									</CSCardBody>
+									<CSCardFooter>
+										Card Footer
+									</CSCardFooter>
+								</CSCard>
+						}
+					]
+				},
+				{
+					propName: 'className',
+					customText: '',
+					variations: [
+						{
+							variationName: ['n/a'],
+							string: '',
+							component:
+								<CSCard className="custom-class">
+									<CSCardHeader title="Card Header"/>
+									<CSCardBody>
+										Card Body
+									</CSCardBody>
+									<CSCardFooter>
+										Card Footer
+									</CSCardFooter>
+								</CSCard>
+						}
+					]
+				}
+			],
+			properties: [
+				{
+					propertyName: 'className',
+					description: 'For implementing custom class to component',
+					options: ['n/a']
+				}
+			]
+		 };
+
+		for (const example of json.examples) {
+			for (const variation of example.variations) {
+				(variation as any).string = jsxToString(variation.component);
+			}
+		}
+
+		return json;
+	}
+
+	getCSCardHeaderDoc() {
+
+		const json = {
+			name: 'Card Header',
+			properties: [
+				{
+					propertyName: 'title',
+					description: 'Card header title',
+					options: ['n/a']
+				}
+			]
+		};
+		return json;
+	}
 	render() {
-		const component = CSCard.getDoc();
-		const component2 = CSCardHeader.getDoc();
+		const component = this.getCSCardDoc();
+		const component2 = this.getCSCardHeaderDoc();
 
 		return (
 			<>

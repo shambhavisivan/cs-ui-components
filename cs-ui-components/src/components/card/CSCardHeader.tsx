@@ -7,21 +7,6 @@ export interface CSCardHeaderProps {
 
 class CSCardHeader extends React.Component<CSCardHeaderProps> {
 
-	static getDoc() {
-
-		const json = {
-			name: 'Card Header',
-			properties: [
-				{
-					propertyName: 'title',
-					description: 'Card header title',
-					options: ['n/a']
-				}
-			]
-		};
-		return json;
-	}
-
 	render() {
 		const cardHeaderClasses = classNames(
 			'cs-card-header'

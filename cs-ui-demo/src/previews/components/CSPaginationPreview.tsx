@@ -1,12 +1,56 @@
 import React from 'react';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
+import jsxToString from 'jsx-to-string';
 
-import {CSPaginationWrapper} from '@cloudsense/cs-ui-components';
+import {CSPaginationWrapper, CSSelect} from '@cloudsense/cs-ui-components';
 
 class CSPaginationPreview extends React.Component {
+	getDoc() {
+
+		const json = {
+			name: 'Pagination',
+			usage: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+			examples: [
+				{
+					propName: '',
+					customText: '',
+					variations: [
+						{
+							variationName: ['n/a'],
+							string: '',
+							component:
+							<CSPaginationWrapper>
+								<CSSelect label="hidden label" labelHidden>
+									<option>10</option>
+									<option>20</option>
+									<option>50</option>
+								</CSSelect>
+							</CSPaginationWrapper>
+						}
+					]
+				}
+			],
+
+			properties: [
+				{
+					propertyName: 'n/a',
+					description: 'n/a',
+					options: ['test']
+				}
+			]
+		};
+
+		for (const example of json.examples) {
+			for (const variation of example.variations) {
+				(variation as any).string = jsxToString(variation.component);
+			}
+		}
+
+		return json;
+	}
 
 	render() {
-		const component = CSPaginationWrapper.getDoc();
+		const component = this.getDoc();
 
 		return (
 			<>

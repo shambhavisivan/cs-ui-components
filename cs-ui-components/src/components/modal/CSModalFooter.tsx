@@ -9,25 +9,6 @@ class CSModalFooter extends React.Component<CSModalFooterProps> {
 		align: 'right'
 	};
 
-	static getDoc() {
-		const json = {
-			name: 'ModalFooter',
-			properties: [
-				{
-					propertyName: 'align',
-					description: 'Alignment of buttons',
-					options: [
-						'right',
-						'left',
-						'center'
-					]
-				}
-			]
-		};
-
-		return json;
-	}
-
 	render() {
 		return (
 			<footer className={`modal-footer modal-footer-${this.props.align}`}>

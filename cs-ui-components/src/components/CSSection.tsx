@@ -1,5 +1,4 @@
 import React from 'react';
-import jsxToString from 'jsx-to-string';
 import CSIcon from './CSIcon';
 import classNames from 'classnames';
 
@@ -16,108 +15,6 @@ export interface CSSectionState {
 }
 
 class CSSection extends React.Component<CSSectionProps, CSSectionState> {
-
-	static getDoc() {
-
-		const json = {
-			name: 'Section',
-			usage: 'This is used as a toggle visibility of section content.',
-			examples: [
-				{
-					propName: 'collapsible',
-					customText: '',
-					variations: [
-						{
-							variationName: ['true'],
-							string: '',
-							component:
-								<CSSection collapsible title="Collapsible Section">
-									<ul>
-										<li>Item 1</li>
-										<li>Item 2</li>
-										<li>Item 3</li>
-									</ul>
-								</CSSection>
-						}
-					]
-				},
-				{
-					propName: 'collapsed',
-					variations: [
-						{
-							variationName: ['true'],
-							string: '',
-							component:
-								<CSSection collapsed title="Collapsed Section">
-									<ul>
-										<li>Item 1</li>
-										<li>Item 2</li>
-										<li>Item 3</li>
-									</ul>
-								</CSSection>
-						}
-					]
-				},
-				{
-					propName: 'className',
-					variations: [
-						{
-							variationName: ['n/a'],
-							string: '',
-							component:
-								<CSSection collapsible title="Collapsed Section" className="custom-class">
-									<ul>
-										<li>Item 1</li>
-										<li>Item 2</li>
-										<li>Item 3</li>
-									</ul>
-								</CSSection>
-						}
-					]
-				}
-			],
-
-			properties: [
-				{
-					propertyName: 'title',
-					description: 'Title content',
-					options: [
-						'n/a'
-					]
-				},
-				{
-					propertyName: 'collapsible',
-					description: 'Section collapsible state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'collapsed',
-					description: 'Collapsed state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
-				}
-			]
-		};
-
-		for (const example of json.examples) {
-			for (const variation of example.variations) {
-				(variation as any).string = jsxToString(variation.component);
-			}
-		}
-
-		return json;
-	}
-
 	constructor(props: CSSectionProps) {
 		super(props);
 

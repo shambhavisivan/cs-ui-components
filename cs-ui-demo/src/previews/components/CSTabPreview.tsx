@@ -1,12 +1,89 @@
 import React from 'react';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
+import jsxToString from 'jsx-to-string';
 
-import {CSTabGroup} from '@cloudsense/cs-ui-components';
+import {CSTabGroup, CSTab} from '@cloudsense/cs-ui-components';
 
 class CSTabPreview extends React.Component {
+	getDoc() {
+
+		const json = {
+			name: 'Tabs',
+			usage: 'Tabs keeps related content in a single container that is shown and hidden through navigation.',
+
+			examples: [
+				{
+					propName: 'title',
+					customText: '',
+					variations: [
+						{
+							variationName: ['n/a'],
+							string: '',
+							component:
+							<CSTabGroup>
+								<CSTab
+									title="Tab One"
+								/>
+								<CSTab
+									title="Tab Two"
+								/>
+								<CSTab
+									title="Tab Three"
+								/>
+							</CSTabGroup>
+						}
+					]
+				},
+				{
+					propName: 'className',
+					customText: '',
+					variations: [
+						{
+							variationName: ['n/a'],
+							string: '',
+							component:
+							<CSTabGroup className="custom-class">
+								<CSTab
+									title="Tab One"
+								/>
+								<CSTab
+									title="Tab Two"
+								/>
+								<CSTab
+									title="Tab Three"
+								/>
+							</CSTabGroup>
+						}
+					]
+				}
+			],
+
+		/* CSTab Properties Table */
+			properties: [
+				{
+					propertyName: 'title',
+					description: 'Text content of tab',
+					options: ['n/a']
+				},
+				{
+					propertyName: 'className',
+					description: 'For implementing custom class to component',
+					options: []
+				}
+			]
+		};
+
+		for (const example of json.examples) {
+			for (const variation of example.variations) {
+				(variation as any).string = jsxToString(variation.component);
+			}
+		}
+
+		return json;
+	}
 
 	render() {
-		const component = CSTabGroup.getDoc();
+		const component = this.getDoc();
 
 		return (
 			<>
