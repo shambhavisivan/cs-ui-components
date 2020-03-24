@@ -9,8 +9,8 @@ describe('CS Grid Tooltip', () => {
 		const tooltip = shallow(<CSGridTooltip helpText={helpText} />);
 		expect(
 			tooltip.equals(
-				<div className='cs-tooltip-group'>
-					<div className='cs-tooltip'>{helpText}</div>
+				<div className='csgrid-tooltip-group'>
+					<div className='csgrid-tooltip'>{helpText}</div>
 				</div>
 			)
 		).toBeTruthy();
@@ -28,11 +28,11 @@ describe('CS Grid Tooltip', () => {
 		);
 		expect(
 			tooltip.equals(
-				<div className='cs-tooltip-group additionalClassnames1'>
-					<span className='cs-tooltip-text'>
+				<div className='csgrid-tooltip-group additionalClassnames1'>
+					<span className='csgrid-tooltip-text'>
 						<span className='className1' />
 					</span>
-					<div className='cs-tooltip position1'>{helpText}</div>
+					<div className='csgrid-tooltip position1'>{helpText}</div>
 				</div>
 			)
 		).toBeTruthy();

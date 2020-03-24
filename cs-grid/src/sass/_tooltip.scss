@@ -1,17 +1,17 @@
-.ag-react-container .cs-tooltip-group:only-child {
+.ag-react-container .csgrid-tooltip-group:only-child {
     margin: 0;
 }
 
-.cs-tooltip-group {
+.csgrid-tooltip-group {
     padding-left: 0.5rem;
     margin-left: auto;
     align-items: center;
 	display: inline-flex;
 	position: relative;
 
-    .cs-tooltip-text {
+    .csgrid-tooltip-text {
 
-        &:hover ~ .cs-tooltip {
+        &:hover ~ .csgrid-tooltip {
             opacity: 1;
             visibility: visible;
         }
@@ -24,7 +24,7 @@
         a {
             font-size: 0.875rem;
             text-decoration: none;
-            @include sc(--cs-tooltip-link-c);
+            @include sc(--csgrid-tooltip-link-c);
 
             &:hover {
                 text-decoration: underline;
@@ -54,12 +54,12 @@
         }
     }
 
-    &.icon-error-wrapper .cs-tooltip-text:before {
+    &.icon-error-wrapper .csgrid-tooltip-text:before {
         @include sbg(--csgrid-tooltip-error-bg);
     }
 }
 
-.cs-tooltip {
+.csgrid-tooltip {
     left: -9px;
     border-radius: 0.25rem;
 	display: inline-flex;
@@ -83,17 +83,17 @@
     }
 }
 
-.icon-error-wrapper .cs-tooltip {
+.icon-error-wrapper .csgrid-tooltip {
     @include sbg(--csgrid-tooltip-error-bg);
 }
 
-.ag-row-first .cs-tooltip-group {
+.ag-row-first .csgrid-tooltip-group {
 
-    .cs-tooltip-text::before {
+    .csgrid-tooltip-text::before {
         top: 1.8125rem;
     }
 
-    .cs-tooltip {
+    .csgrid-tooltip {
         top: calc(100% + 1rem);
 
             &:before {
@@ -103,8 +103,8 @@
         }
 }
 
-.is-last-column .cs-tooltip,
-.is-last-column ~ * .cs-tooltip {
+.is-last-column .csgrid-tooltip,
+.is-last-column ~ * .csgrid-tooltip {
 	right: -17px;
 	left: unset;
 

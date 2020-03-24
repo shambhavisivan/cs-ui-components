@@ -92,7 +92,7 @@ describe('CS Grid Row Selection Editor', () => {
 
 	test('Renders two list items one with an icon and one without.', () => {
 		const icon = (
-			<span className='cs-tooltip-text'>
+			<span className='csgrid-tooltip-text'>
 				<span className='icon-error' aria-hidden='true' />
 			</span>
 		);

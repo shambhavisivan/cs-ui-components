@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * position - Additional class on the cs-tooltip div.
+ * position - Additional class on the csgrid-tooltip div.
  * helpText - Text displayed within the tooltip.
  * additionalClassnames - additional classes on the outermost HTML element.
  */
@@ -18,12 +18,12 @@ export const CSGridTooltip: React.FunctionComponent<CSGridTooltipProps> = props 
 	return (
 		<div
 			className={
-				'cs-tooltip-group' +
+				'csgrid-tooltip-group' +
 				(props.additionalClassnames ? ' ' + props.additionalClassnames : '')
 			}
 		>
-			{props.children && <span className='cs-tooltip-text'>{props.children}</span>}
-			<div className={'cs-tooltip' + (props.position ? ' ' + props.position : '')}>
+			{props.children && <span className='csgrid-tooltip-text'>{props.children}</span>}
+			<div className={'csgrid-tooltip' + (props.position ? ' ' + props.position : '')}>
 				{props.helpText}
 			</div>
 		</div>
