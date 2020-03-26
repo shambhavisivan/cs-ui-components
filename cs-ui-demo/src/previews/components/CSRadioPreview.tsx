@@ -4,6 +4,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewLinks from '../PreviewLinks';
 
 import { CSRadio, CSRadioOption } from '@cloudsense/cs-ui-components';
 
@@ -15,10 +16,10 @@ class CSRadioPreview extends React.Component {
 			usage: 'A checkable input that communicates if an option is true, false or indeterminate.',
 			examples: [
 				{
-					propName: 'Label',
+					propName: 'label',
 					variations: [
 						{
-							variationName: ['label'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSRadio
@@ -31,7 +32,7 @@ class CSRadioPreview extends React.Component {
 					]
 				},
 				{
-					propName: 'Error',
+					propName: 'error',
 					variations: [
 						{
 							variationName: ['true'],
@@ -48,7 +49,7 @@ class CSRadioPreview extends React.Component {
 					]
 				},
 				{
-					propName: 'Required',
+					propName: 'required',
 					variations: [
 						{
 							variationName: ['true'],
@@ -65,7 +66,7 @@ class CSRadioPreview extends React.Component {
 					]
 				},
 				{
-					propName: 'Disabled',
+					propName: 'disabled',
 					variations: [
 						{
 							variationName: ['true'],
@@ -82,10 +83,10 @@ class CSRadioPreview extends React.Component {
 					]
 				},
 				{
-					propName: 'Variant',
+					propName: 'variant',
 					variations: [
 						{
-							variationName: ['variant'],
+							variationName: ['brand'],
 							string: '',
 							component:
 								<CSRadio
@@ -99,10 +100,10 @@ class CSRadioPreview extends React.Component {
 					]
 				},
 				{
-					propName: 'Help Text',
+					propName: 'helpText',
 					variations: [
 						{
-							variationName: ['helpText'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSRadio label="This is a label" helpText="Help text example" tooltipPosition="bottom-right">
@@ -113,13 +114,40 @@ class CSRadioPreview extends React.Component {
 					]
 				},
 				{
-					propName: 'Tooltip Position',
+					propName: 'tooltipPosition',
 					variations: [
 						{
-							variationName: ['tooltipPosition'],
+							variationName: ['top-right'],
+							string: '',
+							component:
+								<CSRadio label="This is a label" helpText="Help text example" tooltipPosition="top-right">
+									<CSRadioOption name="direction" label="left" />
+									<CSRadioOption name="direction" label="right" />
+								</CSRadio>
+						},
+						{
+							variationName: ['top-left'],
+							string: '',
+							component:
+								<CSRadio label="This is a label" helpText="Help text example" tooltipPosition="top-left">
+									<CSRadioOption name="direction" label="left" />
+									<CSRadioOption name="direction" label="right" />
+								</CSRadio>
+						},
+						{
+							variationName: ['bottom-right'],
 							string: '',
 							component:
 								<CSRadio label="This is a label" helpText="Help text example" tooltipPosition="bottom-right">
+									<CSRadioOption name="direction" label="left" />
+									<CSRadioOption name="direction" label="right" />
+								</CSRadio>
+						},
+						{
+							variationName: ['bottom-left'],
+							string: '',
+							component:
+								<CSRadio label="This is a label" helpText="Help text example" tooltipPosition="bottom-left">
 									<CSRadioOption name="direction" label="left" />
 									<CSRadioOption name="direction" label="right" />
 								</CSRadio>
@@ -260,10 +288,16 @@ class CSRadioPreview extends React.Component {
 
 		return (
 			<>
-				<PreviewHeading name={component.name} usage={component.usage} />
-				<PreviewProperties name={component.name} examples={component.examples} />
-				<PreviewTable name={component.name} properties={component.properties} />
-				<PreviewTable name={component2.name} properties={component2.properties} alt />
+				<div className="preview-section-wrapper">
+					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewProperties name={component.name} examples={component.examples} />
+					<PreviewTable name={component.name} properties={component.properties} />
+					<PreviewTable name={component2.name} properties={component2.properties} alt />
+				</div>
+				<div className="prop-sidebar">
+					<h3>Quick Links</h3>
+					<PreviewLinks component={component} />
+				</div>
 			</>
 		);
 	}

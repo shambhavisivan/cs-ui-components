@@ -10,7 +10,7 @@ class PreviewTable extends React.Component<PreviewTableProps> {
 	render() {
 		return (
 			<div className={this.props.alt ? 'table-wrapper table-wrapper-alt' : 'table-wrapper'}>
-				<h2 className="property-name">Properties list</h2>
+				<h2 className="property-name" id={`properties-table-${this.props.name}`}>Properties list</h2>
 				<h3 className="component-name">{this.props.name}</h3>
 				<div className="properties-table">
 					<div className="table-header">

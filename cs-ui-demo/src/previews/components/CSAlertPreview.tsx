@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewLinks from '../PreviewLinks';
 
 import {CSAlert} from '@cloudsense/cs-ui-components';
 
@@ -222,7 +223,7 @@ class CSAlertPreview extends React.Component {
 					customText: 'Want to add custom styling or features? Just write the code inside the component tags as shown below. If you need to add a link there is already a .cs-alert-link class to make it easy. Inspect the example below for a better look.',
 					variations: [
 						{
-							variationName: ['Add a custom link'],
+							variationName: ['custom-link'],
 							string: '',
 							component:
 								<CSAlert
@@ -233,7 +234,7 @@ class CSAlertPreview extends React.Component {
 								</CSAlert>
 						},
 						{
-							variationName: ['Bold and italic text'],
+							variationName: ['custom-text'],
 							string: '',
 							component:
 								<CSAlert
@@ -329,9 +330,15 @@ class CSAlertPreview extends React.Component {
 
 		return (
 			<>
-				<PreviewHeading name={component.name} usage={component.usage} />
-				<PreviewProperties name={component.name} examples={component.examples} />
-				<PreviewTable name={component.name} properties={component.properties} />
+				<div className="preview-section-wrapper">
+					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewProperties name={component.name} examples={component.examples}/>
+					<PreviewTable name={component.name} properties={component.properties}/>
+				</div>
+				<div className="prop-sidebar">
+					<h3>Quick Links</h3>
+					<PreviewLinks component={component} />
+				</div>
 			</>
 		);
 	}

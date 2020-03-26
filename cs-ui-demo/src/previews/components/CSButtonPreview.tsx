@@ -5,6 +5,7 @@ import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
 import PreviewBacklogList from '../PreviewBacklogList';
+import PreviewLinks from '../PreviewLinks';
 
 import {CSButton} from '@cloudsense/cs-ui-components';
 
@@ -410,10 +411,16 @@ class CSButtonPreview extends React.Component {
 
 		return (
 			<>
-				<PreviewHeading name={component.name} usage={component.usage} />
-				<PreviewProperties name={component.name} examples={component.examples} />
-				<PreviewTable name={component.name} properties={component.properties} />
-				<PreviewBacklogList backlog={component.backlog} />
+				<div className="preview-section-wrapper">
+					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewProperties name={component.name} examples={component.examples} />
+					<PreviewTable name={component.name} properties={component.properties} />
+					<PreviewBacklogList backlog={component.backlog} />
+				</div>
+				<div className="prop-sidebar">
+					<h3>Quick Links</h3>
+					<PreviewLinks component={component} />
+				</div>
 			</>
 		);
 	}

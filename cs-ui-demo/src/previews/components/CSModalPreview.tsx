@@ -4,6 +4,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewLinks from '../PreviewLinks';
 
 import {CSModal, CSModalHeader, CSModalBody, CSModalFooter, CSButton} from '@cloudsense/cs-ui-components';
 
@@ -255,11 +256,17 @@ class CSModalPreview extends React.Component {
 
 		return (
 			<>
-				<PreviewHeading name={component.name} usage={component.usage} />
-				<PreviewProperties name={component.name} examples={component.examples} />
-				<PreviewTable name={component.name} properties={component.properties} />
-				<PreviewTable name={component2.name} properties={component2.properties} alt />
-				<PreviewTable name={component3.name} properties={component3.properties} alt />
+				<div className="preview-section-wrapper">
+					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewProperties name={component.name} examples={component.examples} />
+					<PreviewTable name={component.name} properties={component.properties} />
+					<PreviewTable name={component2.name} properties={component2.properties} alt />
+					<PreviewTable name={component3.name} properties={component3.properties} alt />
+				</div>
+				<div className="prop-sidebar">
+					<h3>Quick Links</h3>
+					<PreviewLinks component={component} />
+				</div>
 			</>
 		);
 	}

@@ -4,6 +4,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewLinks from '../PreviewLinks';
 
 import {CSButtonDropdown, CSButton} from '@cloudsense/cs-ui-components';
 
@@ -20,7 +21,7 @@ class CSButtonDropdownPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['default initial'],
+							variationName: ['default', 'initial'],
 							string: '',
 							component: <CSButtonDropdown
 											iconName="down"
@@ -37,7 +38,7 @@ class CSButtonDropdownPreview extends React.Component {
 
 						},
 						{
-							variationName: ['default brand'],
+							variationName: ['default', 'brand'],
 							string: '',
 							component: <CSButtonDropdown
 											btnStyle="brand"
@@ -54,7 +55,7 @@ class CSButtonDropdownPreview extends React.Component {
 										</CSButtonDropdown>
 						},
 						{
-							variationName: ['default outline'],
+							variationName: ['default', 'outline'],
 							string: '',
 							component: <CSButtonDropdown
 											btnStyle="outline"
@@ -71,7 +72,7 @@ class CSButtonDropdownPreview extends React.Component {
 										</CSButtonDropdown>
 						},
 						{
-							variationName: ['Transparent initial'],
+							variationName: ['transparent', 'initial'],
 							string: '',
 							customClass: 'inverse-background',
 							component: <div className="blue-background">
@@ -91,7 +92,7 @@ class CSButtonDropdownPreview extends React.Component {
 							</div>
 						},
 						{
-							variationName: ['Transparent brand'],
+							variationName: ['transparent', 'brand'],
 							string: '',
 							component: <CSButtonDropdown
 											btnType="transparent"
@@ -109,7 +110,7 @@ class CSButtonDropdownPreview extends React.Component {
 										</CSButtonDropdown>
 						},
 						{
-							variationName: ['Transparent outline'],
+							variationName: ['transparent', 'outline'],
 							string: '',
 							customClass: 'inverse-background',
 							component: <div className="blue-background">
@@ -193,7 +194,7 @@ class CSButtonDropdownPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['iconName="down"'],
+							variationName: ['down'],
 							string: '',
 							component: <CSButtonDropdown
 											iconName="down"
@@ -209,7 +210,7 @@ class CSButtonDropdownPreview extends React.Component {
 										</CSButtonDropdown>
 						},
 						{
-							variationName: ['iconName="threedots_vertical"'],
+							variationName: ['threedots_vertical'],
 							string: '',
 							component: <CSButtonDropdown
 											iconName="threedots_vertical"
@@ -460,9 +461,15 @@ class CSButtonDropdownPreview extends React.Component {
 
 		return (
 			<>
-				<PreviewHeading name={component.name} usage={component.usage} />
-				<PreviewProperties name={component.name} examples={component.examples} />
-				<PreviewTable name={component.name} properties={component.properties} />
+				<div className="preview-section-wrapper">
+					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewProperties name={component.name} examples={component.examples} />
+					<PreviewTable name={component.name} properties={component.properties} />
+				</div>
+				<div className="prop-sidebar">
+					<h3>Quick Links</h3>
+					<PreviewLinks component={component} />
+				</div>
 			</>
 		);
 	}

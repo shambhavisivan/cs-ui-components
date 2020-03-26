@@ -29,24 +29,30 @@ body,
 		padding: 0;
 		display: flex;
 
-		.main-header-tab a {
-			text-decoration: none;
-			padding: 0.5rem 1.25rem;
-			font-size: 1.4rem;
-			display: inline-block;
-			cursor: pointer;
-			color: rgba(#3e3e3c, 0.7);
-			border-top: 5px solid transparent;
-			border-bottom: 5px solid transparent;
+		.main-header-tab {
+			a {
+				text-decoration: none;
+				padding: 0.5rem 1.25rem;
+				font-size: 1.4rem;
+				display: inline-block;
+				cursor: pointer;
+				color: rgba(#3e3e3c, 0.7);
+				border-top: 5px solid transparent;
+				border-bottom: 5px solid transparent;
 
-			&:hover {
-				border-bottom: 5px solid #00abd2;
+				&:hover {
+					border-bottom: 5px solid #00abd2;
+				}
+
+				&.active-main-header-tab {
+					color: rgba(#3e3e3c, 0.9);
+					background: #f2f3f3;
+					border-bottom: 5px solid #00abd2;
+				}
 			}
 
-			&.active-main-header-tab {
-				color: rgba(#3e3e3c, 0.9);
-				background: #f2f3f3;
-				border-bottom: 5px solid #00abd2;
+			&:first-child a {
+				width: 15rem;
 			}
 		}
 	}
@@ -178,7 +184,7 @@ body,
 			align-items: center;
 			position: absolute;
 			left: -0.88rem;
-			top: 0.6rem;
+			top: 2rem;
 			width: 1.75rem;
 			height: 1.75rem;
 			border-radius: 50%;
@@ -199,318 +205,373 @@ body,
 				fill: #fff;
 			}
 		}
-
 	}
+
 	.components-preview {
 		position: relative;
 		flex: 1;
 		display: flex;
-		flex-direction: column;
-		overflow: auto;
 		box-shadow: 0 0 10px rgba(#000, 0.22);
 
-		.preview-heading {
-			margin: 0 2rem;
-			padding: 2rem 0;
-			border-bottom: 1px solid #999;
+		.preview-section-wrapper {
+			display: flex;
+			flex-direction: column;
+			flex: 1;
+			overflow-y: auto;
+			border-right: 1px solid #ccc;
 
-			h1 {
-				margin: 0.5rem 0;
-				font-size: 3rem;
+			.preview-heading {
+				margin: 0 2rem;
+				padding: 2rem 0;
+				border-bottom: 1px solid #ccc;
+
+				h1 {
+					margin: 0.5rem 0;
+					font-size: 3rem;
+				}
+
+				h2 {
+					margin-top: 1rem;
+					font-size: 1.25rem;
+					font-weight: 400;
+					color: #999;
+				}
 			}
 
-			h2 {
-				margin-top: 1rem;
-				font-size: 1.25rem;
-				font-weight: 400;
-				color: #999;
-			}
-		}
-
-		.property-section {
-			padding: 2rem 2rem 0;
-
-			.info-text {
-				margin: 0 0 1rem;
-				padding: 0;
-				font-size: 1rem;
-				width: 100%;
-				max-width: 600px;
-				color: #999;
-			}
-
-			&.custom {
-				padding: 2rem;
-				margin-top: 2rem;
-				background: #ddd;
+			.property-section {
+				padding: 2rem 2rem 0;
 
 				.info-text {
-					color: rgba(#706e6b, 0.8);
-				}
-
-				.chip-label {
-					background: transparent;
-				}
-			}
-		}
-
-		.property-name {
-			margin: 0 0 0.5rem 0;
-			font-size: 1.375rem;
-		}
-
-		.component-name {
-			margin: 1rem 0 0.5rem;
-			font-size: 1.125rem;
-
-			&:first-child {
-				margin: 0 0 0.5rem;
-			}
-		}
-
-		.component-version {
-			display: flex;
-			width: 100%;
-			border-radius: 0.25rem;
-			margin-bottom: 1rem;
-			background: #fff;
-			box-shadow: 1px 1px 3px rgba(#000, 0.1);
-
-			.version-preview {
-				width: 70%;
-				flex: 1;
-				overflow: auto;
-				padding: 0.5rem;
-
-				&.modal-preview {
-					min-height: 30rem;
-					flex: 1;
-					transform: translate3d(0, 0, 0);
-
-					.custom-class {
-						background-color: pink;
-					}
-				}
-
-				&.spinner-preview {
-					position: relative;
-
-					.custom-class {
-						background-color: pink;
-					}
-				}
-
-				&.header-preview {
-					min-height: 10rem;
+					margin: 0 0 1rem;
 					padding: 0;
+					font-size: 1rem;
+					width: 100%;
+					max-width: 600px;
+					color: #999;
+				}
 
-					.custom-class {
-						background-color: pink;
+				&.custom {
+					padding: 2rem;
+					margin-top: 2rem;
+					background: #ddd;
+
+					.info-text {
+						color: rgba(#706e6b, 0.8);
+					}
+
+					.chip-label {
+						background: transparent;
+					}
+				}
+			}
+
+			.property-name {
+				margin: 0 0 0.5rem 0;
+				font-size: 1.375rem;
+			}
+
+			.component-name {
+				margin: 1rem 0 0.5rem;
+				font-size: 1.125rem;
+
+				&:first-child {
+					margin: 0 0 0.5rem;
+				}
+			}
+
+			.component-version {
+				display: flex;
+				width: 100%;
+				border-radius: 0.25rem;
+				margin-bottom: 1rem;
+				background: #fff;
+				box-shadow: 1px 1px 3px rgba(#000, 0.1);
+
+				.version-preview {
+					width: 70%;
+					flex: 1;
+					overflow: auto;
+					padding: 0.5rem;
+
+					&.modal-preview {
+						min-height: 30rem;
+						flex: 1;
+						transform: translate3d(0, 0, 0);
+
+						.custom-class {
+							background-color: pink;
+						}
+					}
+
+					&.spinner-preview {
+						position: relative;
+
+						.custom-class {
+							background-color: pink;
+						}
+					}
+
+					&.header-preview {
+						min-height: 10rem;
+						padding: 0;
+
+						.custom-class {
+							background-color: pink;
+						}
+					}
+
+					&.path-preview {
+						min-height: 10rem;
+						padding: 1rem;
+
+						.custom-class {
+							background-color: pink;
+						}
+					}
+
+					&.table-preview {
+						height: auto;
+
+						.custom-class {
+							border-top: 1px solid pink;
+						}
+					}
+
+					&.pagination-preview {
+						padding: 1rem;
+					}
+
+					&.checkbox-preview {
+						padding: 1rem;
+
+						.custom-class {
+							border: 2px solid pink;
+						}
+					}
+
+					&.toggle-preview {
+						padding: 1rem;
+						overflow: visible;
+
+						.custom-class {
+							border: 2px solid pink;
+						}
+					}
+
+					&.radio-preview {
+						padding: 1rem;
+						overflow: visible;
+
+						.custom-class {
+							border: 2px solid pink;
+						}
+					}
+
+					&.tooltip-preview {
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						overflow: visible;
+
+						.custom-class {
+							background-color: pink;
+						}
+					}
+
+					&.alert-preview {
+
+						.custom-class {
+							background-color: pink;
+						}
+					}
+
+					&.toast-preview {
+
+						.custom-class {
+							background-color: pink;
+						}
+					}
+
+					&.tab-preview {
+
+						.custom-class {
+							background-color: pink;
+						}
+					}
+
+					&.button-preview,
+					&.button-dropdown-preview {
+
+						.blue-background {
+							background-color: #16325c;
+							padding: 0.5rem;
+						}
+
+						.custom-class {
+							border: 3px solid pink;
+						}
+					}
+
+					&.input-text-preview {
+						overflow: visible;
+
+						.custom-class {
+							background-color: pink;
+						}
+					}
+
+					&.input-number-preview {
+						overflow: visible;
+
+						.custom-class {
+							background-color: pink;
+						}
+					}
+
+					&.input-search-preview {
+						overflow: visible;
+
+						.custom-class {
+							border: 3px solid pink;
+						}
+					}
+
+					&.input-file-preview {
+						overflow: visible;
+
+						.custom-class {
+							border: 3px solid pink;
+						}
+					}
+
+					&.label-preview {
+						overflow: visible;
+
+						.custom-class {
+							background-color: pink;
+						}
+					}
+
+					&.textarea-preview {
+						overflow: visible;
+
+						.custom-class {
+							background-color: pink;
+						}
+					}
+
+					&.select-preview {
+						overflow: visible;
+
+						.custom-class {
+							border: 3px solid pink;
+						}
+					}
+
+					&.custom-select-preview {
+
+						.custom-class {
+							border: 3px solid pink;
+						}
+					}
+
+					&.chip-preview {
+
+						.custom-class {
+							background-color: pink;
+						}
+					}
+
+					&.card-preview {
+
+						.custom-class {
+							background-color: pink;
+						}
+					}
+
+					&.section-preview {
+
+						.custom-class {
+							background-color: pink;
+						}
+					}
+
+					&.progress-preview {
+
+						.custom-class {
+							background-color: pink;
+						}
+					}
+
+					&.icon-component-preview {
+
+						.custom-class {
+							color: pink;
+						}
 					}
 				}
 
-				&.path-preview {
-					min-height: 10rem;
-					padding: 1rem;
+				&:last-child {
+					margin-block-end: 0;
+				}
+			}
+		}
 
-					.custom-class {
-						background-color: pink;
+		.prop-sidebar {
+			flex: 1;
+			padding: 2rem;
+			max-width: 16rem;
+			overflow-y: auto;
+
+			h3 {
+				margin-block-end: 1rem;
+				font-size: 1.375rem;
+			}
+
+			.prop-group {
+				margin-block-end: 1rem;
+
+				h4 {
+					margin-block-end: 0.25rem;
+					font-size: 1.125rem;
+
+					a {
+						color: #0070d2 !important;
+						text-decoration: none !important;
+						font-weight: 700;
 					}
 				}
 
-				&.table-preview {
-					height: auto;
-
-					.custom-class {
-						border-top: 1px solid pink;
-					}
-				}
-
-				&.pagination-preview {
-					padding: 1rem;
-				}
-
-				&.checkbox-preview {
-					padding: 1rem;
-
-					.custom-class {
-						border: 2px solid pink;
-					}
-				}
-
-				&.toggle-preview {
-					padding: 1rem;
-					overflow: visible;
-
-					.custom-class {
-						border: 2px solid pink;
-					}
-				}
-
-				&.radio-preview {
-					padding: 1rem;
-					overflow: visible;
-
-					.custom-class {
-						border: 2px solid pink;
-					}
-				}
-
-				&.tooltip-preview {
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					overflow: visible;
-
-					.custom-class {
-						background-color: pink;
-					}
-				}
-
-				&.alert-preview {
-
-					.custom-class {
-						background-color: pink;
-					}
-				}
-
-				&.toast-preview {
-
-					.custom-class {
-						background-color: pink;
-					}
-				}
-				&.tabs-preview {
-
-					.custom-class {
-						background-color: pink;
-					}
-				}
-
-				&.button-preview,
-				&.button-dropdown-preview {
-
-					.blue-background {
-						background-color: #16325c;
-						padding: 0.5rem;
-					}
-
-					.custom-class {
-						border: 3px solid pink;
-					}
-				}
-
-				&.input-text-preview {
-					overflow: visible;
-
-					.custom-class {
-						background-color: pink;
-					}
-				}
-
-				&.input-number-preview {
-					overflow: visible;
-
-					.custom-class {
-						background-color: pink;
-					}
-				}
-
-				&.input-search-preview {
-					overflow: visible;
-
-					.custom-class {
-						border: 3px solid pink;
-					}
-				}
-
-				&.input-file-preview {
-					overflow: visible;
-
-					.custom-class {
-						border: 3px solid pink;
-					}
-				}
-
-				&.label-preview {
-					overflow: visible;
-
-					.custom-class {
-						background-color: pink;
-					}
-				}
-
-				&.textarea-preview {
-					overflow: visible;
-
-					.custom-class {
-						background-color: pink;
-					}
-				}
-
-				&.select-preview {
-					overflow: visible;
-
-					.custom-class {
-						border: 3px solid pink;
-					}
-				}
-
-				&.custom-select-preview {
-
-					.custom-class {
-						border: 3px solid pink;
-					}
-				}
-
-				&.chip-preview {
-
-					.custom-class {
-						background-color: pink;
-					}
-				}
-
-				&.card-preview {
-
-					.custom-class {
-						background-color: pink;
-					}
-				}
-
-				&.section-preview {
-
-					.custom-class {
-						background-color: pink;
-					}
-				}
-
-				&.progress-bar-preview {
-
-					.custom-class {
-						background-color: pink;
-					}
-				}
-
-				&.icon-preview {
+				span {
+					display: block;
+					padding: 0.25rem 0 0 1rem;
 
 					.custom-class {
 						fill: pink;
 					}
+
+					a {
+						color: #0070d2 !important;
+						text-decoration: none !important;
+					}
+				}
+
+				&:last-child {
+					margin-bottom: 0;
 				}
 			}
+		}
 
-			&.icons {
-				padding: 0;
-			}
-
-			&:last-child {
-				margin-block-end: 0;
-			}
+		&.icons {
+			padding: 0;
+			flex-direction: column;
 		}
 
 		&.colors {
 			padding: 1rem;
+			flex-direction: column;
 		}
+
 	}
 
 	/* COMPONENT CODE SNIPPET */
@@ -523,7 +584,6 @@ body,
 	.code-snippet {
 		margin: 0 !important;
 		border-radius: 0 0.25rem 0.25rem 0;
-		//background: #f8f8f8;
 
 		code {
 			font-family: monospace;
@@ -560,6 +620,7 @@ body,
 				margin: 0.1rem 0.5rem 0.1rem 0;
 				padding: 0 0.25rem;
 				background: #ecebea;
+				display: inline-table;
 			}
 		}
 	}
@@ -622,7 +683,7 @@ body,
 			box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.11);
 			text-align: center;
 			background: #fff;
-			color: #999999;
+			color: #999;
 
 			h4 {
 				display: block;

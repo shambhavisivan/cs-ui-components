@@ -4,6 +4,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewLinks from '../PreviewLinks';
 
 import {CSCustomSelect} from '@cloudsense/cs-ui-components';
 
@@ -15,7 +16,7 @@ class CSCustomSelectPreview extends React.Component {
 			usage: 'Select element presents a menu of options.',
 			examples: [
 				{
-					propName: 'Id',
+					propName: 'id',
 					customText: '',
 					variations: [
 						{
@@ -30,7 +31,7 @@ class CSCustomSelectPreview extends React.Component {
 					propName: 'label',
 					variations: [
 						{
-							variationName: ['Label'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSCustomSelect label="Choose color" id="color" optionsList={['Red', 'Blue', 'Green']} />
@@ -52,7 +53,7 @@ class CSCustomSelectPreview extends React.Component {
 					propName: 'helpText',
 					variations: [
 						{
-							variationName: ['helpText'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSCustomSelect label="Choose letter" helpText="Example of help text" tooltipPosition="bottom-right" optionsList={['A', 'B', 'C']} />
@@ -63,10 +64,28 @@ class CSCustomSelectPreview extends React.Component {
 					propName: 'tooltipPosition',
 					variations: [
 						{
-							variationName: ['top-right', 'top-left', 'bottom-right', 'bottom-left'],
+							variationName: ['top-right'],
+							string: '',
+							component:
+								<CSCustomSelect label="Choose letter" helpText="Example of help text" tooltipPosition="top-right" optionsList={['A', 'B', 'C']} />
+						},
+						{
+							variationName: ['top-left'],
+							string: '',
+							component:
+								<CSCustomSelect label="Choose letter" helpText="Example of help text" tooltipPosition="top-left" optionsList={['A', 'B', 'C']} />
+						},
+						{
+							variationName: ['bottom-right'],
 							string: '',
 							component:
 								<CSCustomSelect label="Choose letter" helpText="Example of help text" tooltipPosition="bottom-right" optionsList={['A', 'B', 'C']} />
+						},
+						{
+							variationName: ['bottom-left'],
+							string: '',
+							component:
+								<CSCustomSelect label="Choose letter" helpText="Example of help text" tooltipPosition="bottom-left" optionsList={['A', 'B', 'C']} />
 						}
 					]
 				},
@@ -96,7 +115,7 @@ class CSCustomSelectPreview extends React.Component {
 					propName: 'error',
 					variations: [
 						{
-							variationName: ['true', 'false'],
+							variationName: ['true'],
 							string: '',
 							component:
 								<CSCustomSelect label="Choose letter" error optionsList={['A', 'B', 'C']} />
@@ -107,7 +126,7 @@ class CSCustomSelectPreview extends React.Component {
 					propName: 'errorMessage',
 					variations: [
 						{
-							variationName: ['errorMessage'],
+							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSCustomSelect label="Choose letter" error errorMessage="Term not found" optionsList={['A', 'B', 'C']} />
@@ -212,9 +231,15 @@ class CSCustomSelectPreview extends React.Component {
 
 		return (
 			<>
-				<PreviewHeading name={component.name} usage={component.usage} />
-				<PreviewProperties name={component.name} examples={component.examples} />
-				<PreviewTable name={component.name} properties={component.properties} />
+				<div className="preview-section-wrapper">
+					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewProperties name={component.name} examples={component.examples} />
+					<PreviewTable name={component.name} properties={component.properties} />
+				</div>
+				<div className="prop-sidebar">
+					<h3>Quick Links</h3>
+					<PreviewLinks component={component} />
+				</div>
 			</>
 		);
 	}
