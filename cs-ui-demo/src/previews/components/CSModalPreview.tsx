@@ -13,8 +13,7 @@ class CSModalPreview extends React.Component {
 
 		const json = {
 			name: 'Modal',
-			usage:
-				'Modals are used to display content in a layer above the app. This paradigm is used in cases such as the creation or editing of a record, as well as various types of messaging and wizards.',
+			usage: 'Modals are used to display content in a layer above the app. This paradigm is used in cases such as the creation or editing of a record, as well as various types of messaging and wizards.',
 			examples: [
 				{
 					propName: 'size',
@@ -31,7 +30,7 @@ class CSModalPreview extends React.Component {
 									/>
 									<CSModalBody>
 										<p>
-											Sit nulla est ex deserunt exercitation anim occaecat.{' '}
+											Sit nulla est ex deserunt exercitation anim occaecat.
 											<br/>
 											<br/>
 											Nostrud ullamco deserunt aute id consequat veniam
@@ -60,7 +59,7 @@ class CSModalPreview extends React.Component {
 									/>
 									<CSModalBody>
 										<p>
-											Sit nulla est ex deserunt exercitation anim occaecat.{' '}
+											Sit nulla est ex deserunt exercitation anim occaecat.
 											<br/>
 											<br/>
 											Nostrud ullamco deserunt aute id consequat veniam
@@ -89,7 +88,7 @@ class CSModalPreview extends React.Component {
 									/>
 									<CSModalBody>
 										<p>
-											Sit nulla est ex deserunt exercitation anim occaecat.{' '}
+											Sit nulla est ex deserunt exercitation anim occaecat.
 											<br/>
 											<br/>
 											Nostrud ullamco deserunt aute id consequat veniam
@@ -117,7 +116,7 @@ class CSModalPreview extends React.Component {
 									/>
 									<CSModalBody>
 										<p>
-											Sit nulla est ex deserunt exercitation anim occaecat.{' '}
+											Sit nulla est ex deserunt exercitation anim occaecat.
 											<br/>
 											<br/>
 											Nostrud ullamco deserunt aute id consequat veniam
@@ -153,7 +152,42 @@ class CSModalPreview extends React.Component {
 									/>
 									<CSModalBody>
 										<p>
-											Sit nulla est ex deserunt exercitation anim occaecat.{' '}
+											Sit nulla est ex deserunt exercitation anim occaecat.
+											<br/>
+											<br/>
+											Nostrud ullamco deserunt aute id consequat veniam
+											incididunt duis in sint irure nisi. Mollit officia cillum
+											Lorem ullamco minim nostrud elit officia tempor esse quis.
+											Cillum sunt ad dolore quis aute consequat ipsum magna
+											exercitation reprehenderit magna. Tempor cupidatat
+											consequat elit dolor adipisicing.
+										</p>
+									</CSModalBody>
+									<CSModalFooter>
+										<CSButton label="Default Button"/>
+										<CSButton label="Brand Button" btnStyle="brand"/>
+									</CSModalFooter>
+								</CSModal>
+							)
+						}
+					]
+				},
+				{
+					propName: 'padding',
+					customText: '',
+					variations: [
+						{
+							variationName: ['0'],
+							string: '',
+							component: (
+								<CSModal size="small" closeButton>
+									<CSModalHeader
+										title="This is a test heading"
+										subtitle="This is a test subtitle"
+									/>
+									<CSModalBody padding="0">
+										<p>
+											Sit nulla est ex deserunt exercitation anim occaecat.
 											<br/>
 											<br/>
 											Nostrud ullamco deserunt aute id consequat veniam
@@ -209,25 +243,6 @@ class CSModalPreview extends React.Component {
 		return json;
 	}
 
-	getCSModalFooterDoc() {
-		const json = {
-			name: 'ModalFooter',
-			properties: [
-				{
-					propertyName: 'align',
-					description: 'Alignment of buttons',
-					options: [
-						'right',
-						'left',
-						'center'
-					]
-				}
-			]
-		};
-
-		return json;
-	}
-
 	getCSModalHeaderDoc() {
 		const json = {
 			name: 'Modal Header',
@@ -248,11 +263,46 @@ class CSModalPreview extends React.Component {
 		return json;
 	}
 
+	getCSModalBodyDoc() {
+		const json = {
+			name: 'Modal Body',
+			properties: [
+				{
+					propertyName: 'padding',
+					description: 'Modal body padding',
+					options: ['n/a']
+				}
+			]
+		};
+
+		return json;
+	}
+
+	getCSModalFooterDoc() {
+		const json = {
+			name: 'ModalFooter',
+			properties: [
+				{
+					propertyName: 'align',
+					description: 'Alignment of buttons',
+					options: [
+						'right',
+						'left',
+						'center'
+					]
+				}
+			]
+		};
+
+		return json;
+	}
+
 	render() {
 
 		const component = this.getCSModalDoc();
 		const component2 = this.getCSModalHeaderDoc();
-		const component3 = this.getCSModalFooterDoc();
+		const component3 = this.getCSModalBodyDoc();
+		const component4 = this.getCSModalFooterDoc();
 
 		return (
 			<>
@@ -262,6 +312,7 @@ class CSModalPreview extends React.Component {
 					<PreviewTable name={component.name} properties={component.properties} />
 					<PreviewTable name={component2.name} properties={component2.properties} alt />
 					<PreviewTable name={component3.name} properties={component3.properties} alt />
+					<PreviewTable name={component4.name} properties={component4.properties} alt />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

@@ -1,10 +1,17 @@
 import React from 'react';
 
-class CSModalBody extends React.Component {
+export interface CSModalBodyProps {
+	padding?: string;
+}
+
+class CSModalBody extends React.Component<CSModalBodyProps> {
+
 	render() {
-		return <div className="modal-body">
+		return (
+			<div className="modal-body" style={{'--body-padding': this.props.padding}}>
 				{this.props.children}
-			</div>;
+			</div>
+		);
 	}
 }
 

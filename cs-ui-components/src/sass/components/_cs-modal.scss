@@ -125,7 +125,7 @@
 
 		.modal-body {
 			font-size: 0.8125rem;
-			padding: 1rem;
+			padding: var(--body-padding, 1rem);
 			overflow: hidden;
 			overflow-y: auto;
 			@include sbg(--cs-modal-bg);
