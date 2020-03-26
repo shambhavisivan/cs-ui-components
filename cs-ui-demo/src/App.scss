@@ -509,6 +509,12 @@ body,
 							color: pink;
 						}
 					}
+					&.button-group-preview {
+
+						.custom-class {
+							border: 3px solid pink;
+						}
+					}
 				}
 
 				&:last-child {
