@@ -33,6 +33,12 @@ class CSButtonDropdownPreview extends React.Component {
 											<CSButton
 												iconName="world"
 												label="test label large large"
+												disabled
+											/>
+											<CSButton
+												iconName="world"
+												label="test label large large"
+												disabled
 											/>
 										</CSButtonDropdown>
 

@@ -421,7 +421,7 @@
 			&:active {
 				@include sbg(--cs-button-transparent-focus-bg);
 			}
-			&:disabled:after {
+			&:disabled::after {
 				@include css4 {
 					border: 1px solid cvar(--cs-transparent);
 				}
@@ -532,6 +532,11 @@
 		&::before {
 			@include sbg(--cs-transparent);
 		}
+		&::after {
+			@include css4 {
+				border-color: cvar(--cs-transparent);
+			}
+		}
 		&:hover {
 			.cs-btn-label {
 				text-decoration: none;
@@ -590,41 +595,28 @@
 		.cs-btn {
 			display: flex;
 			flex-direction: row;
-			padding: 0 0.75rem 0 0.5rem;
-			cursor: pointer;
 			border-radius: 0;
-
-			&:after {
-				border: none;
-				border-radius: 0;
-			}
-
-			.cs-btn-icon {
-				display: flex;
-				align-items: center;
-
-				.cs-icon {
-					width: 1rem;
-					height: 1rem;
-					margin-right: 0.5rem;
-					@include sf(--cs-button-icon-c);
-				}
-			}
 
 			.cs-btn-label {
 				font-size: 0.75rem;
-				line-height: 1.5;
-				@include overflow-ellipsis;
-				@include sc(--cs-button-c);
 			}
 
-			&:hover {
-				@include sbg(--cs-button-hover-bg);
+			&::after {
+				border-radius: 0;
+				@include css4 {
+					border: 1px solid cvar(--cs-transparent);
+				}
 			}
 
 			&:active::after {
 				@include css4 {
 					border: 1px solid cvar(--cs-button-active-br);
+				}
+			}
+
+			&:disabled::after {
+				@include css4 {
+					border: 1px solid cvar(--cs-transparent);
 				}
 			}
 		}
