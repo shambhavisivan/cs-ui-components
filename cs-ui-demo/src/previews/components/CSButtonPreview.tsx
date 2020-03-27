@@ -104,9 +104,9 @@ class CSButtonPreview extends React.Component {
 							component: <CSButton size="small" iconName="activity" label="default small"/>
 						},
 						{
-							variationName: ['extra-small'],
+							variationName: ['xsmall'],
 							string: '',
-							component: <CSButton size="extra-small" iconName="activity" label="default extra-small"/>
+							component: <CSButton size="xsmall" iconName="activity" label="default xsmall"/>
 						}
 					]
 				},
@@ -152,9 +152,9 @@ class CSButtonPreview extends React.Component {
 							component: <CSButton iconName="activity" iconDisplay="icon-only" size="small"/>
 						},
 						{
-							variationName: ['icon-only', 'extra-small'],
+							variationName: ['icon-only', 'xsmall'],
 							string: '',
-							component: <CSButton iconName="activity" iconDisplay="icon-only" size="extra-small"/>
+							component: <CSButton iconName="activity" iconDisplay="icon-only" size="xsmall"/>
 						}
 					]
 				},
@@ -317,7 +317,7 @@ class CSButtonPreview extends React.Component {
 					options: [
 						'normal',
 						'small',
-						'extra small',
+						'xsmall',
 						'large'
 					]
 				},

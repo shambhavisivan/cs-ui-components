@@ -177,10 +177,10 @@ class CSButtonDropdownPreview extends React.Component {
 										</CSButtonDropdown>
 						},
 						{
-							variationName: ['extra-small'],
+							variationName: ['xsmall'],
 							string: '',
 							component: <CSButtonDropdown
-											size="extra-small"
+											size="xsmall"
 											iconName="down"
 										>
 											<CSButton
@@ -417,7 +417,7 @@ class CSButtonDropdownPreview extends React.Component {
 					options: [
 						'normal',
 						'small',
-						'extra small',
+						'xsmall',
 						'large'
 					]
 				},
