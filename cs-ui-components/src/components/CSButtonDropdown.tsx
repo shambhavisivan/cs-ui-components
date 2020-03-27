@@ -29,6 +29,7 @@ class CSButtonDropdown extends React.Component<CSButtonDropdownProps, CSButtonDr
 		align: 'left',
 		iconName: 'down'
 	};
+	node: HTMLDivElement;
 
 	constructor(props: any) {
 		super(props);
@@ -36,11 +37,25 @@ class CSButtonDropdown extends React.Component<CSButtonDropdownProps, CSButtonDr
 		this.state = {
 			active: false
 		};
+		this.handleOutsideClick = this.handleOutsideClick.bind(this);
 	}
 
 	toggleActive() {
 		const currentState = this.state.active;
+		if (!this.state.active) {
+			document.addEventListener('click', this.handleOutsideClick, false);
+		} else {
+			document.removeEventListener('click', this.handleOutsideClick, false);
+		}
 		this.setState({ active: !currentState });
+	}
+
+	handleOutsideClick(e: any) {
+		// ignore clicks on the component itself
+		if (this.node.contains(e.target)) {
+			return;
+		}
+		this.toggleActive();
 	}
 
 	render() {
@@ -52,7 +67,7 @@ class CSButtonDropdown extends React.Component<CSButtonDropdownProps, CSButtonDr
 		);
 
 		return (
-			<div className={btnDropdownWrapperClasses}>
+			<div className={btnDropdownWrapperClasses} ref={node => this.node = node}>
 				<CSButton
 					className="cs-btn-dropdown cs-btn-icon-only"
 					btnType={this.props.btnType}
