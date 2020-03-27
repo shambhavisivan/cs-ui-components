@@ -81,7 +81,7 @@ class CSTogglePreview extends React.Component {
 							component:
 								<CSToggle
 									label="This is a label"
-									helpText="Example of help text "
+									helpText="Help text example"
 								/>
 						}
 					]
@@ -90,33 +90,23 @@ class CSTogglePreview extends React.Component {
 					propName: 'tooltipPosition',
 					variations: [
 						{
-							variationName: ['top-left'],
-							string: '',
-							component:
-								<CSToggle
-									label="This is a label"
-									helpText="Example of help text "
-									tooltipPosition="top-left"
-								/>
-						},
-						{
 							variationName: ['top-right'],
 							string: '',
 							component:
 								<CSToggle
 									label="This is a label"
-									helpText="Example of help text "
+									helpText="Help text example"
 									tooltipPosition="top-right"
 								/>
 						},
 						{
-							variationName: ['bottom-left'],
+							variationName: ['top-left'],
 							string: '',
 							component:
 								<CSToggle
 									label="This is a label"
-									helpText="Example of help text "
-									tooltipPosition="bottom-left"
+									helpText="Help text example"
+									tooltipPosition="top-left"
 								/>
 						},
 						{
@@ -125,8 +115,18 @@ class CSTogglePreview extends React.Component {
 							component:
 								<CSToggle
 									label="This is a label"
-									helpText="Example of help text "
+									helpText="Help text example"
 									tooltipPosition="bottom-right"
+								/>
+						},
+						{
+							variationName: ['bottom-left'],
+							string: '',
+							component:
+								<CSToggle
+									label="This is a label"
+									helpText="Help text example"
+									tooltipPosition="bottom-left"
 								/>
 						}
 					]
@@ -140,7 +140,7 @@ class CSTogglePreview extends React.Component {
 							component:
 								<CSToggle
 									label="This is a label"
-									helpText="Example of help text "
+									helpText="Help text example"
 									className="custom-class"
 								/>
 						}

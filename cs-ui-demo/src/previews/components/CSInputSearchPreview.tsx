@@ -55,28 +55,28 @@ class CSInputSearchPreview extends React.Component {
 					propName: 'tooltipPosition',
 					variations: [
 						{
-							variationName: ['top-left'],
-							string: '',
-							component:
-									<CSInputSearch label="Type here:" helpText="Help text example" tooltipPosition="top-left" />
-						},
-						{
 							variationName: ['top-right'],
 							string: '',
 							component:
 									<CSInputSearch label="Type here:" helpText="Help text example" tooltipPosition="top-right" />
 						},
 						{
-							variationName: ['bottom-left'],
+							variationName: ['top-left'],
 							string: '',
 							component:
-									<CSInputSearch label="Type here:" helpText="Help text example" tooltipPosition="bottom-left" />
+									<CSInputSearch label="Type here:" helpText="Help text example" tooltipPosition="top-left" />
 						},
 						{
 							variationName: ['bottom-right'],
 							string: '',
 							component:
 									<CSInputSearch label="Type here:" helpText="Help text example" tooltipPosition="bottom-right" />
+						},
+						{
+							variationName: ['bottom-left'],
+							string: '',
+							component:
+									<CSInputSearch label="Type here:" helpText="Help text example" tooltipPosition="bottom-left" />
 						}
 					]
 				},

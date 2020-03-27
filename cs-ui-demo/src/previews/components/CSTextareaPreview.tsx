@@ -80,7 +80,7 @@ class CSTextareaPreview extends React.Component {
 							variationName: ['n/a'],
 							string: '',
 							component:
-									<CSTextarea label="Enter message:" helpText="Help" />
+									<CSTextarea label="Enter message:" helpText="Help text example" />
 						}
 					]
 				},
@@ -88,28 +88,28 @@ class CSTextareaPreview extends React.Component {
 					propName: 'tooltipPosition',
 					variations: [
 						{
-							variationName: ['top-left'],
-							string: '',
-							component:
-									<CSTextarea label="Enter message:" helpText="Help" tooltipPosition="top-left" />
-						},
-						{
 							variationName: ['top-right'],
 							string: '',
 							component:
-									<CSTextarea label="Enter message:" helpText="Help" tooltipPosition="top-right" />
+									<CSTextarea label="Enter message:" helpText="Help text example" tooltipPosition="top-right" />
 						},
 						{
-							variationName: ['bottom-left'],
+							variationName: ['top-left'],
 							string: '',
 							component:
-									<CSTextarea label="Enter message:" helpText="Help" tooltipPosition="bottom-left" />
+									<CSTextarea label="Enter message:" helpText="Help text example" tooltipPosition="top-left" />
 						},
 						{
 							variationName: ['bottom-right'],
 							string: '',
 							component:
-									<CSTextarea label="Enter message:" helpText="Help" tooltipPosition="bottom-right" />
+									<CSTextarea label="Enter message:" helpText="Help text example" tooltipPosition="bottom-right" />
+						},
+						{
+							variationName: ['bottom-left'],
+							string: '',
+							component:
+									<CSTextarea label="Enter message:" helpText="Help text example" tooltipPosition="bottom-left" />
 						}
 					]
 				},

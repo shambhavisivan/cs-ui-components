@@ -56,7 +56,7 @@ class CSInputTextPreview extends React.Component {
 							variationName: ['n/a'],
 							string: '',
 							component:
-								<CSInputText label="Type here:" helpText="Example of help text"/>
+								<CSInputText label="Type here:" helpText="Help text example"/>
 						}
 					]
 				},
@@ -64,28 +64,28 @@ class CSInputTextPreview extends React.Component {
 					propName: 'tooltipPosition',
 					variations: [
 						{
-							variationName: ['top-left'],
-							string: '',
-							component:
-								<CSInputText label="Type here:" helpText="Example of help text" tooltipPosition="top-left"/>
-						},
-						{
 							variationName: ['top-right'],
 							string: '',
 							component:
-								<CSInputText label="Type here:" helpText="Example of help text" tooltipPosition="top-right"/>
+								<CSInputText label="Type here:" helpText="Help text example" tooltipPosition="top-right"/>
 						},
 						{
-							variationName: ['bottom-left'],
+							variationName: ['top-left'],
 							string: '',
 							component:
-								<CSInputText label="Type here:" helpText="Example of help text" tooltipPosition="bottom-left"/>
+								<CSInputText label="Type here:" helpText="Help text example" tooltipPosition="top-left"/>
 						},
 						{
 							variationName: ['bottom-right'],
 							string: '',
 							component:
-								<CSInputText label="Type here:" helpText="Example of help text" tooltipPosition="bottom-right"/>
+								<CSInputText label="Type here:" helpText="Help text example" tooltipPosition="bottom-right"/>
+						},
+						{
+							variationName: ['bottom-left'],
+							string: '',
+							component:
+								<CSInputText label="Type here:" helpText="Help text example" tooltipPosition="bottom-left"/>
 						}
 					]
 				},
@@ -140,7 +140,7 @@ class CSInputTextPreview extends React.Component {
 							variationName: ['true'],
 							string: '',
 							component:
-								<CSInputText required label="Enter job role" id="jobRole" helpText="Example of help text" tooltipPosition="top-left"/>
+								<CSInputText required label="Enter job role" id="jobRole" helpText="Help text example" tooltipPosition="top-left"/>
 						}
 					]
 				},

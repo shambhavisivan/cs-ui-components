@@ -144,16 +144,6 @@ class CSCheckboxPreview extends React.Component {
 					propName: 'tooltipPosition',
 					variations: [
 						{
-							variationName: ['top-left'],
-							string: '',
-							component:
-								<CSCheckbox
-									label="This is a label"
-									helpText="Help text example"
-									tooltipPosition="top-left"
-								/>
-						},
-						{
 							variationName: ['top-right'],
 							string: '',
 							component:
@@ -164,13 +154,13 @@ class CSCheckboxPreview extends React.Component {
 								/>
 						},
 						{
-							variationName: ['bottom-left'],
+							variationName: ['top-left'],
 							string: '',
 							component:
 								<CSCheckbox
 									label="This is a label"
 									helpText="Help text example"
-									tooltipPosition="bottom-left"
+									tooltipPosition="top-left"
 								/>
 						},
 						{
@@ -181,6 +171,16 @@ class CSCheckboxPreview extends React.Component {
 									label="This is a label"
 									helpText="Help text example"
 									tooltipPosition="bottom-right"
+								/>
+						},
+						{
+							variationName: ['bottom-left'],
+							string: '',
+							component:
+								<CSCheckbox
+									label="This is a label"
+									helpText="Help text example"
+									tooltipPosition="bottom-left"
 								/>
 						}
 					]

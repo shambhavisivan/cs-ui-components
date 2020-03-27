@@ -23,19 +23,19 @@ class CSTooltipPreview extends React.Component {
 							variationName: ['info'],
 							string: '',
 							component:
-								<CSTooltip variant="info" helpText="Example of help text"/>
+								<CSTooltip variant="info" helpText="Help text example"/>
 						},
 						{
 							variationName: ['warning'],
 							string: '',
 							component:
-								<CSTooltip variant="warning" helpText="Example of help text"/>
+								<CSTooltip variant="warning" helpText="Help text example"/>
 						},
 						{
 							variationName: ['error'],
 							string: '',
 							component:
-								<CSTooltip variant="error" helpText="Example of help text"/>
+								<CSTooltip variant="error" helpText="Help text example"/>
 						}
 					]
 				},
@@ -47,7 +47,7 @@ class CSTooltipPreview extends React.Component {
 							variationName: ['quote'],
 							string: '',
 							component:
-								<CSTooltip iconName="quote" helpText="Example of help text "/>
+								<CSTooltip iconName="quote" helpText="Help text example"/>
 						}
 					]
 				},
@@ -59,13 +59,13 @@ class CSTooltipPreview extends React.Component {
 							variationName: ['small'],
 							string: '',
 							component:
-								<CSTooltip iconName="info" helpText="Example of help text "/>
+								<CSTooltip iconName="info" helpText="Help text example"/>
 						},
 						{
 							variationName: ['medium'],
 							string: '',
 							component:
-								<CSTooltip iconName="info" iconSize="medium" helpText="Example of help text "/>
+								<CSTooltip iconName="info" iconSize="medium" helpText="Help text example"/>
 						}
 					]
 				},
@@ -112,13 +112,13 @@ class CSTooltipPreview extends React.Component {
 							variationName: ['warning'],
 							string: '',
 							component:
-								<CSTooltip  variant="warning" tooltipHeader="Warning" helpText="Example of help text" />
+								<CSTooltip  variant="warning" tooltipHeader="Warning" helpText="Help text example" />
 						},
 						{
 							variationName: ['error'],
 							string: '',
 							component:
-								<CSTooltip  variant="error" tooltipHeader="Error" helpText="Example of help text" />
+								<CSTooltip  variant="error" tooltipHeader="Error" helpText="Help text example" />
 						}
 					]
 				},
@@ -130,7 +130,7 @@ class CSTooltipPreview extends React.Component {
 							variationName: ['n/a'],
 							string: '',
 							component:
-								<CSTooltip iconName="quote" helpText="Example of help text" className="custom-class"/>
+								<CSTooltip iconName="quote" helpText="Help text example" className="custom-class"/>
 						}
 					]
 				}

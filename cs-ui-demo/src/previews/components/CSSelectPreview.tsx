@@ -83,7 +83,7 @@ class CSSelectPreview extends React.Component {
 							variationName: ['n/a'],
 							string: '',
 							component:
-								<CSSelect label="Choose number" helpText="Example of help text">
+								<CSSelect label="Choose number" helpText="Help text example">
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
@@ -95,30 +95,20 @@ class CSSelectPreview extends React.Component {
 					propName: 'tooltipPosition',
 					variations: [
 						{
-							variationName: ['top-left'],
-							string: '',
-							component:
-								<CSSelect label="Choose number" helpText="Example of help text" tooltipPosition="top-left">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-								</CSSelect>
-						},
-						{
 							variationName: ['top-right'],
 							string: '',
 							component:
-								<CSSelect label="Choose number" helpText="Example of help text" tooltipPosition="top-right">
+								<CSSelect label="Choose number" helpText="Help text example" tooltipPosition="top-right">
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
 								</CSSelect>
 						},
 						{
-							variationName: ['bottom-left'],
+							variationName: ['top-left'],
 							string: '',
 							component:
-								<CSSelect label="Choose number" helpText="Example of help text" tooltipPosition="bottom-left">
+								<CSSelect label="Choose number" helpText="Help text example" tooltipPosition="top-left">
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
@@ -128,7 +118,17 @@ class CSSelectPreview extends React.Component {
 							variationName: ['bottom-right'],
 							string: '',
 							component:
-								<CSSelect label="Choose number" helpText="Example of help text" tooltipPosition="bottom-right">
+								<CSSelect label="Choose number" helpText="Help text example" tooltipPosition="bottom-right">
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+								</CSSelect>
+						},
+						{
+							variationName: ['bottom-left'],
+							string: '',
+							component:
+								<CSSelect label="Choose number" helpText="Help text example" tooltipPosition="bottom-left">
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>

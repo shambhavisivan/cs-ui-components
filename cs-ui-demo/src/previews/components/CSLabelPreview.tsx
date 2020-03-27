@@ -42,28 +42,28 @@ class CSLabelPreview extends React.Component {
 					propName: 'tooltipPosition',
 					variations: [
 						{
-							variationName: ['top-left'],
-							string: '',
-							component:
-									<CSLabel label="Label" helpText="Help text example" tooltipPosition="top-left" />
-						},
-						{
 							variationName: ['top-right'],
 							string: '',
 							component:
 									<CSLabel label="Label" helpText="Help text example" tooltipPosition="top-right" />
 						},
 						{
-							variationName: ['bottom-left'],
+							variationName: ['top-left'],
 							string: '',
 							component:
-									<CSLabel label="Label" helpText="Help text example" tooltipPosition="bottom-left" />
+									<CSLabel label="Label" helpText="Help text example" tooltipPosition="top-left" />
 						},
 						{
 							variationName: ['bottom-right'],
 							string: '',
 							component:
 									<CSLabel label="Label" helpText="Help text example" tooltipPosition="bottom-right" />
+						},
+						{
+							variationName: ['bottom-left'],
+							string: '',
+							component:
+									<CSLabel label="Label" helpText="Help text example" tooltipPosition="bottom-left" />
 						}
 					]
 				},
@@ -74,7 +74,7 @@ class CSLabelPreview extends React.Component {
 							variationName: ['n/a'],
 							string: '',
 							component:
-								<CSLabel label="Label" helpText="Example of help text"/>
+								<CSLabel label="Label" helpText="Help text example"/>
 						}
 					]
 				},
@@ -85,7 +85,7 @@ class CSLabelPreview extends React.Component {
 							variationName: ['n/a'],
 							string: '',
 							component:
-								<CSLabel label="Label" helpText="Example of help text" className="custom-class"/>
+								<CSLabel label="Label" helpText="Help text example" className="custom-class"/>
 						}
 					]
 				}

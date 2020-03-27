@@ -56,7 +56,7 @@ class CSCustomSelectPreview extends React.Component {
 							variationName: ['n/a'],
 							string: '',
 							component:
-								<CSCustomSelect label="Choose letter" helpText="Example of help text" tooltipPosition="bottom-right" optionsList={['A', 'B', 'C']} />
+								<CSCustomSelect label="Choose letter" helpText="Help text example" tooltipPosition="bottom-right" optionsList={['A', 'B', 'C']} />
 						}
 					]
 				},
@@ -67,25 +67,25 @@ class CSCustomSelectPreview extends React.Component {
 							variationName: ['top-right'],
 							string: '',
 							component:
-								<CSCustomSelect label="Choose letter" helpText="Example of help text" tooltipPosition="top-right" optionsList={['A', 'B', 'C']} />
+								<CSCustomSelect label="Choose letter" helpText="Help text example" tooltipPosition="top-right" optionsList={['A', 'B', 'C']} />
 						},
 						{
 							variationName: ['top-left'],
 							string: '',
 							component:
-								<CSCustomSelect label="Choose letter" helpText="Example of help text" tooltipPosition="top-left" optionsList={['A', 'B', 'C']} />
+								<CSCustomSelect label="Choose letter" helpText="Help text example" tooltipPosition="top-left" optionsList={['A', 'B', 'C']} />
 						},
 						{
 							variationName: ['bottom-right'],
 							string: '',
 							component:
-								<CSCustomSelect label="Choose letter" helpText="Example of help text" tooltipPosition="bottom-right" optionsList={['A', 'B', 'C']} />
+								<CSCustomSelect label="Choose letter" helpText="Help text example" tooltipPosition="bottom-right" optionsList={['A', 'B', 'C']} />
 						},
 						{
 							variationName: ['bottom-left'],
 							string: '',
 							component:
-								<CSCustomSelect label="Choose letter" helpText="Example of help text" tooltipPosition="bottom-left" optionsList={['A', 'B', 'C']} />
+								<CSCustomSelect label="Choose letter" helpText="Help text example" tooltipPosition="bottom-left" optionsList={['A', 'B', 'C']} />
 						}
 					]
 				},
