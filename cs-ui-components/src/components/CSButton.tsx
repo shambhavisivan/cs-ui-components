@@ -57,7 +57,13 @@ class CSButton extends React.Component<CSButtonProps> {
 	);
 
 	return (
-		<button className={btnGroupClasses} onClick={this.props.onClick} disabled={this.props.disabled} aria-label={this.props.label}>
+		<button
+			className={btnGroupClasses}
+			onClick={this.props.onClick}
+			disabled={this.props.disabled}
+			aria-label={this.props.label}
+			title={this.props.iconDisplay === 'icon-only' ? this.props.iconName : ''}
+		>
 			{ this.props.iconName ? (
 				<span className="cs-btn-icon">
 					<CSIcon name={this.props.iconName} rotate={this.props.iconRotate} origin={this.props.iconOrigin}/>
