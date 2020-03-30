@@ -19,7 +19,6 @@ class CSRadioPreview extends React.Component {
 					propName: 'label',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSRadio
@@ -103,7 +102,6 @@ class CSRadioPreview extends React.Component {
 					propName: 'helpText',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSRadio label="This is a label" helpText="Help text example" tooltipPosition="bottom-right">
@@ -158,7 +156,6 @@ class CSRadioPreview extends React.Component {
 					propName: 'className',
 					variations: [
 						{
-							variationName: ['className'],
 							string: '',
 							component:
 								<CSRadio label="This is a label" className="custom-class">

@@ -103,7 +103,6 @@ class CSChipPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSChip text="brand" className="custom-class" />

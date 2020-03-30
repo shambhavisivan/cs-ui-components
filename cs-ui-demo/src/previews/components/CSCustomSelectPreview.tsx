@@ -20,7 +20,6 @@ class CSCustomSelectPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSCustomSelect label="Choose letter" id="letter" optionsList={['A', 'B', 'C']} />
@@ -31,7 +30,6 @@ class CSCustomSelectPreview extends React.Component {
 					propName: 'label',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSCustomSelect label="Choose color" id="color" optionsList={['Red', 'Blue', 'Green']} />
@@ -53,7 +51,6 @@ class CSCustomSelectPreview extends React.Component {
 					propName: 'helpText',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSCustomSelect label="Choose letter" helpText="Help text example" tooltipPosition="bottom-right" optionsList={['A', 'B', 'C']} />
@@ -126,7 +123,6 @@ class CSCustomSelectPreview extends React.Component {
 					propName: 'errorMessage',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSCustomSelect label="Choose letter" error errorMessage="Term not found" optionsList={['A', 'B', 'C']} />
@@ -137,7 +133,6 @@ class CSCustomSelectPreview extends React.Component {
 					propName: 'className',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSCustomSelect label="Choose letter" className="custom-class" optionsList={['A', 'B', 'C']} />

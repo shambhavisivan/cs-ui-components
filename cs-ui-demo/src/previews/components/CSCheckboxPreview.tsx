@@ -115,7 +115,6 @@ class CSCheckboxPreview extends React.Component {
 					propName: 'errorMessage',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSCheckbox
@@ -130,7 +129,6 @@ class CSCheckboxPreview extends React.Component {
 					propName: 'helpText',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSCheckbox
@@ -203,7 +201,6 @@ class CSCheckboxPreview extends React.Component {
 					propName: 'className',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSCheckbox
@@ -217,7 +214,6 @@ class CSCheckboxPreview extends React.Component {
 					propName: 'onChange',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSCheckbox

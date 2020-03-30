@@ -20,7 +20,6 @@ class CSTextareaPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSTextarea label="Enter message:" value="Message" id="message" />
@@ -32,7 +31,6 @@ class CSTextareaPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSTextarea label="Enter message:" placeholder="Message" id="message" />
@@ -44,7 +42,6 @@ class CSTextareaPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSTextarea label="Enter message:" id="message" />
@@ -55,7 +52,6 @@ class CSTextareaPreview extends React.Component {
 					propName: 'label',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSTextarea label="Enter message:" id="messageBody" />
@@ -77,7 +73,6 @@ class CSTextareaPreview extends React.Component {
 					propName: 'helpText',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 									<CSTextarea label="Enter message:" helpText="Help text example" />
@@ -161,7 +156,6 @@ class CSTextareaPreview extends React.Component {
 					propName: 'errorMessage',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSTextarea label="Enter value:" error errorMessage="Error message!"/>
@@ -200,7 +194,6 @@ class CSTextareaPreview extends React.Component {
 					propName: 'className',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSTextarea label="Enter message:" className="custom-class"/>

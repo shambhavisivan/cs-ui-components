@@ -19,7 +19,6 @@ class CSIconPreview extends React.Component {
 					propName: 'name',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSIcon
@@ -135,7 +134,6 @@ class CSIconPreview extends React.Component {
 					propName: 'className',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSIcon

@@ -22,7 +22,6 @@ class CSInputSearchPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 									<CSInputSearch label="Type here:" value="Value" />
@@ -33,7 +32,6 @@ class CSInputSearchPreview extends React.Component {
 					propName: 'label',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 									<CSInputSearch label="Type here:"  id="searchName" />
@@ -44,7 +42,6 @@ class CSInputSearchPreview extends React.Component {
 					propName: 'helpText',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 									<CSInputSearch label="Type here:" helpText="Help text example" />
@@ -84,7 +81,6 @@ class CSInputSearchPreview extends React.Component {
 					propName: 'placeholder',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 									<CSInputSearch label="Type here:" placeholder="Search name" />
@@ -95,7 +91,6 @@ class CSInputSearchPreview extends React.Component {
 					propName: 'id',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 									<CSInputSearch label="Type here:" id="search" />
@@ -139,7 +134,6 @@ class CSInputSearchPreview extends React.Component {
 					propName: 'errorMessage',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputSearch label="Enter value:" error errorMessage="Error message!"/>
@@ -183,7 +177,6 @@ class CSInputSearchPreview extends React.Component {
 					propName: 'className',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 									<CSInputSearch label="Type here:" className="custom-class" />
@@ -194,7 +187,6 @@ class CSInputSearchPreview extends React.Component {
 					propName: 'onChange',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 									<CSInputSearch label="Type here:" onChange={onChangeHandler} />

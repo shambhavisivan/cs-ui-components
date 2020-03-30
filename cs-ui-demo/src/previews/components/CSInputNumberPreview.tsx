@@ -20,7 +20,6 @@ class CSInputNumberPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" value="1" />
@@ -32,7 +31,6 @@ class CSInputNumberPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" placeholder="Placeholder text" />
@@ -43,7 +41,6 @@ class CSInputNumberPreview extends React.Component {
 					propName: 'id',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" id="quantity" />
@@ -54,7 +51,6 @@ class CSInputNumberPreview extends React.Component {
 					propName: 'label',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" id="value" />
@@ -65,7 +61,6 @@ class CSInputNumberPreview extends React.Component {
 					propName: 'helpText',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" helpText="Help text example" />
@@ -149,7 +144,6 @@ class CSInputNumberPreview extends React.Component {
 					propName: 'errorMessage',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" error errorMessage="Error message!"/>
@@ -160,7 +154,6 @@ class CSInputNumberPreview extends React.Component {
 					propName: 'min',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" min="1" />
@@ -171,7 +164,6 @@ class CSInputNumberPreview extends React.Component {
 					propName: 'max',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" max="5" />
@@ -205,7 +197,6 @@ class CSInputNumberPreview extends React.Component {
 					propName: 'className',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" className="custom-class"/>

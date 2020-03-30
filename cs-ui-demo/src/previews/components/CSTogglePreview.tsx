@@ -76,7 +76,6 @@ class CSTogglePreview extends React.Component {
 					propName: 'helpText',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSToggle
@@ -135,7 +134,6 @@ class CSTogglePreview extends React.Component {
 					propName: 'className',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSToggle

@@ -21,7 +21,6 @@ class CSTabPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 							<CSTabGroup>
@@ -43,7 +42,6 @@ class CSTabPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 							<CSTabGroup className="custom-class">

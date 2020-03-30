@@ -17,9 +17,11 @@ class PreviewProperties extends React.Component<PreviewPropertiesProps> {
 							<p className="info-text">{example.customText}</p>
 							{example.variations.map((variation: any, i: any) => (
 								<React.Fragment key={i}>
-									{variation.variationName.map((chip: any) => (
-										<div key={chip} id={`${this.props.name}-${example.propName}-${variation.variationName}`}className="chip-label">{chip}</div>
-									))}
+									{variation.variationName &&
+										variation.variationName.map((chip: any) => (
+											<div key={chip} id={`${this.props.name}-${example.propName}-${variation.variationName}`}className="chip-label">{chip}</div>
+										))
+									}
 									<div className="component-version">
 										<div className={this.props.name ? `${this.props.name.replace(/\s+/g, '-').toLowerCase()}-preview version-preview` : 'version-preview'}>
 											{variation.component}

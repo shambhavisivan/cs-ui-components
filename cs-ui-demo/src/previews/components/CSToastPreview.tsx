@@ -187,7 +187,6 @@ class CSToastPreview extends React.Component {
 					propName: 'detail',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSToast
@@ -204,7 +203,6 @@ class CSToastPreview extends React.Component {
 					propName: 'className',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSToast

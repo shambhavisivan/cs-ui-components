@@ -142,7 +142,6 @@ class CSModalPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component: (
 								<CSModal size="small" closeButton className="custom-class">

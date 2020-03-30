@@ -54,7 +54,6 @@ class CSSectionPreview extends React.Component {
 					propName: 'className',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSSection collapsible title="Collapsed Section" className="custom-class">

@@ -20,7 +20,6 @@ class CSPaginationPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 							<CSPaginationWrapper>

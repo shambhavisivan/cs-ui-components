@@ -358,7 +358,6 @@ class CSButtonDropdownPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['className'],
 							string: '',
 							component: <CSButtonDropdown
 											iconName="down"

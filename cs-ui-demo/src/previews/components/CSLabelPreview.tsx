@@ -20,7 +20,6 @@ class CSLabelPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSLabel label="Label" for="Name"/>
@@ -71,7 +70,6 @@ class CSLabelPreview extends React.Component {
 					propName: 'helpText',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSLabel label="Label" helpText="Help text example"/>
@@ -82,7 +80,6 @@ class CSLabelPreview extends React.Component {
 					propName: 'className',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSLabel label="Label" helpText="Help text example" className="custom-class"/>

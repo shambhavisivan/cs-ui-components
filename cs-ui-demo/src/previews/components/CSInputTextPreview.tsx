@@ -20,7 +20,6 @@ class CSInputTextPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputText label="Type here:" value="Enter name"/>
@@ -31,7 +30,6 @@ class CSInputTextPreview extends React.Component {
 					propName: 'label',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputText label="Type here:" id="name"/>
@@ -53,7 +51,6 @@ class CSInputTextPreview extends React.Component {
 					propName: 'helpText',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputText label="Type here:" helpText="Help text example"/>
@@ -93,7 +90,6 @@ class CSInputTextPreview extends React.Component {
 					propName: 'placeholder',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputText label="Type here:" placeholder="Enter name"/>
@@ -104,7 +100,6 @@ class CSInputTextPreview extends React.Component {
 					propName: 'id',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputText label="Type here:" id="name"/>
@@ -159,7 +154,6 @@ class CSInputTextPreview extends React.Component {
 					propName: 'errorMessage',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputText label="Enter value:" error errorMessage="Error message!"/>
@@ -171,7 +165,6 @@ class CSInputTextPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSInputText label="Type here:" className="custom-class"/>

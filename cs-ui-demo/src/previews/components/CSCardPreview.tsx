@@ -20,7 +20,6 @@ class CSCardPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSCard>
@@ -40,7 +39,6 @@ class CSCardPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSCard className="custom-class">

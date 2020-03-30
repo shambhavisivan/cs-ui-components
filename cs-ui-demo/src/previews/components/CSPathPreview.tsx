@@ -20,7 +20,6 @@ class CSPathPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSPath>
@@ -44,7 +43,6 @@ class CSPathPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSPath className="custom-class">

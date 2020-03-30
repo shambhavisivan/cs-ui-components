@@ -20,7 +20,6 @@ class CSSelectPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSSelect label="Choose number" id="option">
@@ -35,7 +34,6 @@ class CSSelectPreview extends React.Component {
 					propName: 'label',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSSelect label="Choose color" id="colour">
@@ -80,7 +78,6 @@ class CSSelectPreview extends React.Component {
 					propName: 'helpText',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSSelect label="Choose number" helpText="Help text example">
@@ -185,7 +182,6 @@ class CSSelectPreview extends React.Component {
 					propName: 'errorMessage',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSSelect label="Choose value:" error errorMessage="Error message!">
@@ -200,7 +196,6 @@ class CSSelectPreview extends React.Component {
 					propName: 'className',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSSelect label="Choose amount" className="custom-class">

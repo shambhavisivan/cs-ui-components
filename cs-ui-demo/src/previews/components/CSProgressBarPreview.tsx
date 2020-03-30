@@ -53,7 +53,6 @@ class CSProgressBarPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSProgressBar
@@ -166,7 +165,6 @@ class CSProgressBarPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSProgressBar

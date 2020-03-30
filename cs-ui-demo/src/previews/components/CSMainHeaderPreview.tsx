@@ -205,7 +205,6 @@ class CSMainHeaderPreview extends React.Component {
 					propName: 'className',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSMainHeader className="custom-class">

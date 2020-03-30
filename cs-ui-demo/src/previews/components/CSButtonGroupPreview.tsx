@@ -90,7 +90,6 @@ class CSButtonGroupPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['className'],
 							string: '',
 							component:
 								<CSButtonGroup

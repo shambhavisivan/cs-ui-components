@@ -109,7 +109,6 @@ class CSSpinnerPreview extends React.Component {
 					propName: 'className',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSSpinner
@@ -124,7 +123,6 @@ class CSSpinnerPreview extends React.Component {
 					propName: 'label',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSSpinner

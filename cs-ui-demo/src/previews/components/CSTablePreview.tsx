@@ -20,7 +20,6 @@ class CSTablePreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSTable className="custom-class">

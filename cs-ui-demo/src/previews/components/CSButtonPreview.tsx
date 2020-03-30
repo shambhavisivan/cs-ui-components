@@ -126,7 +126,7 @@ class CSButtonPreview extends React.Component {
 					customText: 'onClick prop for onClick event - verify the click by opening browser console',
 					variations: [
 						{
-							variationName: ['n/a'],
+
 							string: '',
 							component: <CSButton onClick={clickHandler} iconName="activity" label="default round"/>
 						}
@@ -238,7 +238,6 @@ class CSButtonPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component: <CSButton iconName="activity" label="default" link="www.google.com"/>
 						}
@@ -249,7 +248,6 @@ class CSButtonPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component: <CSButton  iconName="activity" label="default initial" className="custom-class"/>
 						}

@@ -127,7 +127,6 @@ class CSTooltipPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['n/a'],
 							string: '',
 							component:
 								<CSTooltip iconName="quote" helpText="Help text example" className="custom-class"/>
