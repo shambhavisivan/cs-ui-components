@@ -505,6 +505,59 @@ class CSButtonPreview extends React.Component {
 			<>
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} />
+					<div className="cs-btn-type-preview-wrapper">
+						<div className="cs-btn-type-preview">
+							<span className="cs-btnStyle-header">btnStyle</span>
+							<span className="cs-btnType-header">btnType</span>
+							<span className="cs-btnStyle-initial">initial</span>
+							<span className="cs-btnStyle-brand">brand</span>
+							<span className="cs-btnStyle-outline">outline</span>
+							<span className="cs-btnType-default">default</span>
+							<span className="cs-btnType-error">error</span>
+							<span className="cs-btnType-success">success</span>
+							<span className="cs-btnType-transparent">transparent</span>
+							<span className="cs-default-initial">
+								<CSButton iconName="activity" label="default initial"/>
+							</span>
+							<span className="cs-default-brand">
+								<CSButton iconName="activity" btnStyle="brand" label="default initial"/>
+							</span>
+							<span className="cs-default-outline">
+								<CSButton iconName="activity" btnStyle="outline" label="default initial"/>
+							</span>
+							<span className="cs-error-initial">
+								<CSButton iconName="activity" btnType="error" label="error initial"/>
+							</span>
+							<span className="cs-error-brand">
+								<CSButton iconName="activity" btnType="error" btnStyle="brand" label="error initial"/>
+							</span>
+							<span className="cs-error-outline">
+								<CSButton iconName="activity" btnType="error" btnStyle="outline" label="error initial"/>
+							</span>
+							<span className="cs-success-initial">
+								<CSButton iconName="activity" btnType="success" label="success initial"/>
+							</span>
+							<span className="cs-success-brand">
+								<CSButton iconName="activity" btnType="success" btnStyle="brand" label="success initial"/>
+							</span>
+							<span className="cs-success-outline">
+								<CSButton iconName="activity" btnType="success" btnStyle="outline" label="success initial"/>
+							</span>
+							<span className="cs-transparent-initial">
+								<span className="cs-transparent-bg">
+									<CSButton iconName="activity" btnType="transparent" label="transparent initial"/>
+								</span>
+							</span>
+							<span className="cs-transparent-brand">
+								<CSButton iconName="activity" btnType="transparent" btnStyle="brand" label="transparent initial"/>
+							</span>
+							<span className="cs-transparent-outline">
+								<span className="cs-transparent-bg">
+									<CSButton iconName="activity" btnType="transparent" btnStyle="outline" label="transparent initial"/>
+								</span>
+							</span>
+						</div>
+					</div>
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
 					<PreviewBacklogList backlog={component.backlog} />

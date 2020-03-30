@@ -897,3 +897,152 @@ body,
 	width: auto;
 	height: auto;
 }
+
+.cs-btn-type-preview-wrapper {
+	padding: 2rem 2rem 0;
+
+	.cs-btn-type-preview {
+		background: white;
+		border-radius: 0.25rem;
+		box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+		padding: 2rem;
+		display: grid;
+		grid-template-columns: 5rem 7rem 1fr 1fr 1fr;
+		grid-template-rows: 2rem 2rem 2.5rem 2.5rem 2.5rem 2.5rem 2.5rem;
+		grid-column-gap: 0.5rem;
+  		grid-row-gap: 0.5rem;
+		grid-template-areas:
+		". . btnStyle-header btnStyle-header btnStyle-header"
+		". . btnStyle-initial btnStyle-brand btnStyle-outline"
+		"btnType-header btnType-default default-initial default-brand default-outline"
+		"btnType-header btnType-error error-initial error-brand error-outline"
+		"btnType-header btnType-success success-initial success-brand success-outline"
+		"btnType-header btnType-transparent transparent-initial transparent-brand transparent-outline"
+		"btnType-header btnType-custom custom-initial custom-brand custom-outline";
+
+		> * {
+			display: flex;
+			align-items: center;
+			align-self: stretch;
+			justify-content: center;
+		}
+
+		.cs-btnStyle-header {
+			grid-area: btnStyle-header;
+			font-weight: bold;
+		}
+
+		.cs-btnType-header {
+			grid-area: btnType-header;
+			align-self: center;
+			justify-content: flex-start;
+			font-weight: bold;
+		}
+
+		.cs-btnStyle-initial {
+			grid-area: btnStyle-initial;
+		}
+
+		.cs-btnStyle-brand {
+			grid-area: btnStyle-brand;
+		}
+
+		.cs-btnStyle-outline {
+			grid-area: btnStyle-outline;
+		}
+
+		.cs-btnType-default {
+			grid-area: btnType-default;
+			justify-content: flex-end;
+			padding-inline-end: 1rem;
+		}
+
+		.cs-btnType-error {
+			grid-area: btnType-error;
+			justify-content: flex-end;
+			padding-inline-end: 1rem;
+		}
+
+		.cs-btnType-success {
+			grid-area: btnType-success;
+			justify-content: flex-end;
+			padding-inline-end: 1rem;
+		}
+		.cs-btnType-transparent {
+			grid-area: btnType-transparent;
+			justify-content: flex-end;
+			padding-inline-end: 1rem;
+		}
+
+		.cs-btnType-custom {
+			grid-area: btnType-custom;
+			justify-content: flex-end;
+			padding-inline-end: 1rem;
+		}
+
+		.cs-default-initial {
+			grid-area: default-initial;
+		}
+
+		.cs-default-brand {
+			grid-area: default-brand;
+		}
+
+		.cs-default-outline {
+			grid-area: default-outline;
+		}
+
+		.cs-error-initial {
+			grid-area: error-initial;
+		}
+
+		.cs-error-brand {
+			grid-area: error-brand;
+		}
+
+		.cs-error-outline {
+			grid-area: error-outline;
+		}
+
+		.cs-success-initial {
+			grid-area: success-initial;
+		}
+
+		.cs-success-brand {
+			grid-area: success-brand;
+		}
+
+		.cs-success-outline {
+			grid-area: success-outline;
+		}
+
+		.cs-transparent-initial {
+			grid-area: transparent-initial;
+		}
+
+		.cs-transparent-brand {
+			grid-area: transparent-brand;
+		}
+
+		.cs-transparent-outline {
+			grid-area: transparent-outline;
+		}
+
+		.cs-custom-initial {
+			grid-area: custom-initial;
+		}
+
+		.cs-custom-brand {
+			grid-area: custom-brand;
+		}
+
+		.cs-custom-outline {
+			grid-area: custom-outline;
+		}
+
+		.cs-transparent-bg {
+			background: #16325c;
+			padding: 0.25rem;
+		}
+	}
+}
