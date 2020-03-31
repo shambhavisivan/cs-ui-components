@@ -43,7 +43,7 @@ class CSTooltip extends React.Component<CSTooltipProps> {
 		);
 
 		return (
-			<div className={tooltipWrapperClasses}>
+			<div className={tooltipWrapperClasses} tabIndex={0} role="tooltip">
 				{this.props.iconName ?
 					<CSIcon name={this.props.iconName} className={'cs-icon-' + this.props.iconSize}/> :
 					<CSIcon name={this.props.variant} className={'cs-icon-' + this.props.iconSize}/>

@@ -14,6 +14,7 @@
 	position: absolute;
 	transition: 0.25s;
 	z-index: $z-index-tooltip;
+	outline: 0;
 
 	.cs-tooltip-body:not(:first-child) {
 		margin-block-start: 0.25rem;
@@ -179,13 +180,14 @@
 	align-items: center;
 	display: inline-flex;
 	position: relative;
+	outline: 0;
+
+	&:hover .cs-tooltip, &:focus .cs-tooltip {
+		display: flex;
+	}
 
 	.cs-icon {
 		cursor: pointer;
-
-		&:hover ~ .cs-tooltip {
-			display: flex;
-		}
 
 		&.cs-icon-small {
 			width: 0.875rem;

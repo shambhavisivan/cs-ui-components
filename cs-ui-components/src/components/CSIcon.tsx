@@ -38,6 +38,7 @@ class CSIcon extends React.Component<CSIconProps> {
 					'--cs-icon-c': this.props.color,
 					'--cs-icon-size': this.props.size
 				}}
+				aria-hidden="true"
 			>
 				<use href={`${origin}#${prefix}${this.props.name}`}/>
 			</svg>
