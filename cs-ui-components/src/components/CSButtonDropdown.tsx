@@ -65,11 +65,17 @@ class CSButtonDropdown extends React.Component<CSButtonDropdownProps, CSButtonDr
 				[`${this.props.className}`]: this.props.className
 			}
 		);
+		const btnDropdownClasses = classNames(
+			'cs-btn-icon-only',
+			{
+				'cs-btn-dropdown-active': (this.state.active === true)
+			}
+		);
 
 		return (
 			<div className={btnDropdownWrapperClasses} ref={node => this.node = node}>
 				<CSButton
-					className="cs-btn-dropdown cs-btn-icon-only"
+					className={btnDropdownClasses}
 					btnType={this.props.btnType}
 					btnStyle={this.props.btnStyle}
 					size={this.props.size}

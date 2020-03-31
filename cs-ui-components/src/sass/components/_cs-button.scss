@@ -609,7 +609,7 @@
 				}
 			}
 
-			&:active::after {
+			&:active:after {
 				@include css4 {
 					border: 1px solid cvar(--cs-button-active-br);
 				}
@@ -630,4 +630,27 @@
 			right: 0;
 		}
 	}
+
+	.cs-btn-dropdown-active::after {
+		@include css4 {
+			border: 1px solid cvar(--cs-button-active-br);
+		}
+	}
+
+	.cs-btn-transparent {
+
+		&.cs-btn-dropdown-active::after {
+			@include css4 {
+				border: 1px solid cvar(--cs-button-white-br);
+			}
+		}
+
+		&.cs-btn-brand.cs-btn-dropdown-active::after {
+			@include css4 {
+				border: 1px solid cvar(--cs-button-active-br);
+			}
+		}
+	}
+
+
 }
