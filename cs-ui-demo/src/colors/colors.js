@@ -128,6 +128,10 @@ const colors = [
 		"colorValue": "#1589ee"
 	},
 	{
+		"colorName": "cs-blue-medium-6",
+		"colorValue": "#5eb4ff"
+	},
+	{
 		"colorName": "cs-blue-light-1",
 		"colorValue": "#e3f3ff"
 	},

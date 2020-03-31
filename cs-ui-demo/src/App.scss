@@ -793,7 +793,10 @@ body,
 					width: 1rem;
 					height: 1rem;
 					min-width: 1rem;
-					fill: #706e6b;
+
+					svg {
+						fill: #706e6b;
+					}
 				}
 
 				&:active::after,
