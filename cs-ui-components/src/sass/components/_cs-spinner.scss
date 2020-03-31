@@ -33,6 +33,7 @@
 	&.cs-spinner-inline {
 		position: relative;
 		display: inline-flex;
+		@include sbg(--cs-transparent);
 	}
 }
 
@@ -153,6 +154,14 @@
 .cs-spinner-brand .cs-spinner-dot-b:after,
 .cs-spinner-brand .cs-spinner-dot-b:before {
 	@include sbg(--cs-spinner-brand-bg);
+}
+.cs-spinner-inverse.cs-spinner:after,
+.cs-spinner-inverse.cs-spinner:before,
+.cs-spinner-inverse .cs-spinner-dot-a:after,
+.cs-spinner-inverse .cs-spinner-dot-a:before,
+.cs-spinner-inverse .cs-spinner-dot-b:after,
+.cs-spinner-inverse .cs-spinner-dot-b:before {
+	@include sbg(--cs-spinner-inverse-bg);
 }
 
 // Size variants

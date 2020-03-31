@@ -128,6 +128,23 @@
 			border-radius: 1rem;
 		}
 	}
+	/* BUTTON SPINNER */
+	&.cs-btn-spinner {
+		padding: 0 1rem 0 0.25rem;
+
+		&.cs-btn-icon-only {
+			padding: 0 0.25rem 0 0.25rem;
+		}
+
+		.cs-btn-spinner-wrapper {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 2rem;
+			min-width: 2rem;
+		}
+	}
+
 	/* WIDTH */
 	&.cs-btn-max-width {
 		display: flex;

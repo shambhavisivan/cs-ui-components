@@ -190,6 +190,32 @@ class CSButtonPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'loading',
+					customText: '',
+					variations: [
+						{
+							variationName: ['true', 'no icon'],
+							string: '',
+							component: <CSButton loading label="Spinner"/>
+						},
+						{
+							variationName: ['true', 'icon-only'],
+							string: '',
+							component: <CSButton iconOrigin="cs" iconName="tag" iconDisplay="icon-only" loading label="Spinner"/>
+						},
+						{
+							variationName: ['true', 'with icon'],
+							string: '',
+							component: <CSButton iconOrigin="cs" iconName="tag" loading label="Spinner"/>
+						},
+						{
+							variationName: ['true', 'brand'],
+							string: '',
+							component: <CSButton btnStyle="brand" loading label="Spinner"/>
+						}
+					]
+				},
+				{
 					propName: 'iconRotate',
 					customText: '',
 					variations: [
@@ -281,10 +307,11 @@ class CSButtonPreview extends React.Component {
 				},
 				{
 					propertyName: 'iconOrigin',
-					description: 'SLDS or CloudSense icons',
+					description: 'SLDS, CloudSense icons or spinner',
 					options: [
 						'slds',
-						'cs'
+						'cs',
+						'spinner'
 					]
 				},
 				{
@@ -389,7 +416,13 @@ class CSButtonPreview extends React.Component {
 					backlogName: 'CSS optimise - CS icons need additional sc mixin (not sf)',
 					description: 'Color setting for icons is doubled in all places with both sc and sf mixins',
 					obstacles: 'Check how are CS icons different'
+				},
+				{
+					backlogName: 'Support for all spinner sizes',
+					description: 'Spinner size should be the same as the one of the icon on the button if there is an icon. If not then it should be set to 2rem width.',
+					obstacles: 'Check sizes of the icons in buttons'
 				}
+
 			]
 
 		};

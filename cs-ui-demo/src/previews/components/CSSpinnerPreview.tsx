@@ -85,7 +85,17 @@ class CSSpinnerPreview extends React.Component {
 									size="large"
 									color="brand"
 								/>
+						},
+						{
+							variationName: ['inverse'],
+							string: '',
+							component:
+								<CSSpinner
+									size="large"
+									color="inverse"
+								/>
 						}
+
 					]
 				},
 				{
