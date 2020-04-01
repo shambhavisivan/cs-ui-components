@@ -1,5 +1,4 @@
 import React from 'react';
-import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
 import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
