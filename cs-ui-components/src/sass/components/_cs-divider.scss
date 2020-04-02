@@ -1,0 +1,25 @@
+.cs-divider-vertical {
+	align-self: center;
+	width: 0;
+	margin-inline-start: 0.5rem;
+	margin-inline-end: 0.5rem;
+	height: var(--cs-divider-size, 100%);
+	@include css4 {
+		border-right: 1px solid cvar(--cs-button-br);
+	}
+
+	+ .cs-btn {
+		margin-inline-start: 0 !important;
+	}
+}
+
+.cs-divider-horizontal {
+	align-self: center;
+	height: 0;
+	margin-block-start: 0.25rem;
+	margin-block-end: 0.25rem;
+	width: var(--cs-divider-size, 100%);
+	@include css4 {
+		border-bottom: 1px solid cvar(--cs-button-br);
+	}
+}

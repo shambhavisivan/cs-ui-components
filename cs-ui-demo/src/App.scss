@@ -509,10 +509,17 @@ body,
 							color: pink;
 						}
 					}
+
 					&.button-group-preview {
 
 						.custom-class {
 							border: 3px solid pink;
+						}
+					}
+
+					&.divider-preview {
+						.custom-class {
+							border-color: pink;
 						}
 					}
 				}

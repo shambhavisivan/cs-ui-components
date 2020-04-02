@@ -9,6 +9,7 @@ import CSIconPreview from './components/CSIconPreview';
 import CSInputSearchPreview from './components/CSInputSearchPreview';
 import CSCustomSelectPreview from './components/CSCustomSelectPreview';
 import CSDatepickerPreview from './components/CSDatepickerPreview';
+import CSDividerPreview from './components/CSDividerPreview';
 import CSInputFilePreview from './components/CSInputFilePreview';
 import CSTabPreview from './components/CSTabPreview';
 import CSModalPreview from './components/CSModalPreview';
@@ -71,6 +72,10 @@ class CSComponentsList extends React.Component {
 			{
 				name: 'Datepicker',
 				component: CSDatepickerPreview
+			},
+			{
+				name: 'Divider',
+				component: CSDividerPreview
 			},
 			{
 				name: 'Icon',

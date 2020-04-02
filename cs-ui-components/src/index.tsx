@@ -10,6 +10,7 @@ import CSCheckbox from './components/CSCheckbox';
 import CSChip from './components/CSChip';
 import CSCustomSelect from './components/CSCustomSelect';
 import CSDatepicker from './components/CSDatepicker';
+import CSDivider from './components/CSDivider';
 import CSIcon from './components/CSIcon';
 import CSInputFile from './components/CSInputFile';
 import CSInputNumber from './components/CSInputNumber';
@@ -62,6 +63,7 @@ export {
 	CSChip,
 	CSCustomSelect,
 	CSDatepicker,
+	CSDivider,
 	CSLabel,
 	CSIcon,
 	CSInputFile,
