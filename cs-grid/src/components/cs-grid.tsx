@@ -79,6 +79,7 @@ export interface CSGridProps {
 	 * and then let the grid work out what changes are needed to keep the grid's version of the data up to date.
 	 */
 	deltaRowDataMode?: boolean;
+	suppressRowTransform?: boolean;
 	onColumnStateChange?(columnState: string): void;
 	onSelectionChange?(selectedRows: Array<Row>): void;
 	onCellValueChange?(
@@ -192,6 +193,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 							pagination={paginationLocation !== 'None'}
 							paginationPageSize={pageSizes[0]}
 							suppressPaginationPanel={true}
+							suppressRowTransform={this.props.suppressRowTransform}
 							onPaginationChanged={
 								paginationLocation !== 'None' ? this.onPaginationChanged : undefined
 							}
