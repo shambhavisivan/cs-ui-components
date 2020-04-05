@@ -13,7 +13,7 @@ class CSSpinner extends React.Component<CSSpinnerProps> {
 
 	public static defaultProps = {
 		color: 'brand',
-		size: 'xlarge'
+		size: 'large'
 	};
 	render() {
 		const spinnerClasses = classNames(
@@ -31,8 +31,7 @@ class CSSpinner extends React.Component<CSSpinnerProps> {
 							<div className="cs-spinner-dot-a"/>
 							<div className="cs-spinner-dot-b"/>
 						</div>
-						{
-						 !this.props.inline &&
+						{(this.props.label && !this.props.inline) &&
 							<div className="cs-spinner-label">
 								<span>{this.props.label}</span>
 							</div>

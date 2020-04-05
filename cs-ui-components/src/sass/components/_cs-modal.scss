@@ -24,34 +24,42 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		margin: 0 2rem;
 		height: 100%;
 		padding: 3rem 3rem 5.5rem;
 		border-radius: 0.25rem;
 		margin: 0 auto;
 
-		> :nth-child(2) {
-			border-top-right-radius: 0.25rem;
-			border-top-left-radius: 0.25rem;
-		}
-
-		> :last-child {
-			border-bottom-right-radius: 0.25rem;
-			border-bottom-left-radius: 0.25rem;
-		}
-
-		&.no-close-btn {
-			padding: 3rem;
+		.cs-modal-content {
+			max-height: 100%;
+			overflow: hidden;
+			position: relative;
+			display: flex;
+			flex-direction: column;
 
 			> :first-child {
 				border-top-right-radius: 0.25rem;
 				border-top-left-radius: 0.25rem;
 			}
 
-			> :nth-child(2) {
-				border-top-right-radius: 0;
-				border-top-left-radius: 0;
+			> :last-child {
+				border-bottom-right-radius: 0.25rem;
+				border-bottom-left-radius: 0.25rem;
 			}
+
+			> .cs-spinner-wrapper {
+				border-radius: 0.25rem;
+			}
+
+			&.cs-modal-loading {
+				> :nth-last-child(2) {
+					border-bottom-right-radius: 0.25rem;
+					border-bottom-left-radius: 0.25rem;
+				}
+			}
+		}
+
+		&.no-close-btn {
+			padding: 3rem;
 		}
 
 		.modal-close {
@@ -143,7 +151,7 @@
 			@include sbg(--cs-modal-footer-bg);
 			@include css4 {
 				box-shadow: 0 2px 3px 0 cvar(--cs-modal-box);
-				border-top: 2px solid cvar(--cs-modal-br);
+				border-top: 1px solid cvar(--cs-modal-br);
 			}
 
 			&.modal-footer-center {

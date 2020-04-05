@@ -1,6 +1,7 @@
 import React from 'react';
 import CSIcon from '../CSIcon';
 import classNames from 'classnames';
+import CSSpinner from '../CSSpinner';
 
 export interface CSModalProps {
 	closeButton?: boolean;
@@ -8,6 +9,8 @@ export interface CSModalProps {
 	className?: string;
 	onClose?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 	style?: object;
+	loading?: boolean;
+	loadingText?: string;
 }
 
 class CSModal extends React.Component<CSModalProps> {
@@ -42,7 +45,10 @@ class CSModal extends React.Component<CSModalProps> {
 							<CSIcon name="close"/>
 						</button>
 					}
-					{this.props.children}
+					<div className={this.props.loading ? 'cs-modal-content cs-modal-loading' : 'cs-modal-content'}>
+						{this.props.children}
+						{this.props.loading && <CSSpinner label={this.props.loadingText}/>}
+					</div>
 				</div>
 			</div>
 		);

@@ -224,6 +224,46 @@ class CSModalPreview extends React.Component {
 							)
 						}
 					]
+				},
+				{
+					propName: 'loading',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component: (
+								<CSModal size="medium" loading>
+									<CSModalHeader title="Style example"/>
+									<CSModalBody>
+										<p>Sit nulla est ex deserunt exercitation anim occaecat.</p>
+									</CSModalBody>
+									<CSModalFooter>
+										<CSButton label="Default Button"/>
+									</CSModalFooter>
+								</CSModal>
+							)
+						}
+					]
+				},
+				{
+					propName: 'loadingText',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component: (
+								<CSModal size="medium" loading loadingText="Cloning configurations...">
+									<CSModalHeader title="Style example"/>
+									<CSModalBody>
+										<p>Sit nulla est ex deserunt exercitation anim occaecat.</p>
+									</CSModalBody>
+									<CSModalFooter>
+										<CSButton label="Default Button"/>
+									</CSModalFooter>
+								</CSModal>
+							)
+						}
+					]
 				}
 			],
 
@@ -247,6 +287,16 @@ class CSModalPreview extends React.Component {
 				{
 					propertyName: 'onClose',
 					description: 'Logic for onClick event',
+					options: []
+				},
+				{
+					propertyName: 'loading',
+					description: 'Add custom styles as inline css',
+					options: ['false', 'true']
+				},
+				{
+					propertyName: 'loadingText',
+					description: 'Label to show while loading spinner is visible',
 					options: []
 				},
 				{
