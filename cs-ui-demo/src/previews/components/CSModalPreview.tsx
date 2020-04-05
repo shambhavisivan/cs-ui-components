@@ -171,6 +171,26 @@ class CSModalPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'style',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component: (
+								<CSModal size="small" style={{border: '2px solid hotpink'}}>
+									<CSModalHeader title="Style example"/>
+									<CSModalBody>
+										<p>Sit nulla est ex deserunt exercitation anim occaecat.</p>
+									</CSModalBody>
+									<CSModalFooter>
+										<CSButton label="Default Button"/>
+									</CSModalFooter>
+								</CSModal>
+							)
+						}
+					]
+				},
+				{
 					propName: 'padding',
 					customText: '',
 					variations: [
@@ -227,6 +247,11 @@ class CSModalPreview extends React.Component {
 				{
 					propertyName: 'onClose',
 					description: 'Logic for onClick event',
+					options: []
+				},
+				{
+					propertyName: 'style',
+					description: 'Add custom styles as inline css',
 					options: []
 				}
 			]

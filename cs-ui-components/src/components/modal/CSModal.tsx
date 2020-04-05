@@ -7,6 +7,7 @@ export interface CSModalProps {
 	size?: string;
 	className?: string;
 	onClose?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+	style?: object;
 }
 
 class CSModal extends React.Component<CSModalProps> {
@@ -28,6 +29,7 @@ class CSModal extends React.Component<CSModalProps> {
 							? 'modal modal-' + this.props.size
 							: 'no-close-btn modal modal-' + this.props.size
 					}
+					style={this.props.style}
 					role="dialog"
 					aria-modal="true"
 					aria-labelledby="">
