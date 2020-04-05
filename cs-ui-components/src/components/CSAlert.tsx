@@ -43,10 +43,10 @@ class CSAlert extends React.Component<CSAlertProps> {
 					)) : null}
 					{this.props.text ? (
 						Array.isArray(this.props.text) ?
-							this.props.text.map(t => (
-								<span className="cs-alert-text" key={t}>{t}</span>)
-							) :
-							<span className="cs-alert-text">{this.props.text}</span>
+							this.props.text.map((t, index) =>
+								<span className="cs-alert-text" key={index}>{t}</span>
+							)
+							: <span className="cs-alert-text">{this.props.text}</span>
 						) : null}
 					{this.props.children ? (
 						<span className="cs-alert-text">{this.props.children}</span>

@@ -55,15 +55,10 @@ class CSTooltip extends React.Component<CSTooltipProps> {
 					}
 					{this.props.helpText ? (
 						Array.isArray(this.props.helpText) ?
-							this.props.helpText.map(t => (
-								<div className="cs-tooltip-body" key={t}>
-									{t}
-								</div>
-								)
-							) :
-							<div className="cs-tooltip-body">
-								{this.props.helpText}
-							</div>
+							this.props.helpText.map((t, index) =>
+								<div className="cs-tooltip-body" key={index}>{t}</div>
+							)
+							: <div className="cs-tooltip-body">{this.props.helpText}</div>
 						) : null}
 				</div>
 			</div>
