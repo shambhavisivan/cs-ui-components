@@ -1,9 +1,6 @@
-import React, { Component } from 'react';
-// import {stripIndent} from "common-tags/es";
-// import { Link } from 'react-router-dom';
+import React from 'react';
 import CSIcon from './CSIcon';
 import classNames from 'classnames';
-import CSSpinner from './CSSpinner';
 
 export interface CSButtonProps {
 	btnType?: string;
@@ -28,12 +25,6 @@ class CSButton extends React.Component<CSButtonProps> {
 
 	constructor(props: any) {
 		super(props);
-		this.getSpinnerColor = this.getSpinnerColor.bind(this);
-	}
-
-	getSpinnerColor() {
-		const spinnerColor = this.props.btnStyle === 'brand' ? 'inverse' : 'neutral';
-		return spinnerColor;
 	}
 
 	render() {
@@ -54,7 +45,7 @@ class CSButton extends React.Component<CSButtonProps> {
 			'cs-btn-round': this.props.btnRound === true,
 
 			'cs-btn-icon-only': this.props.iconDisplay === 'icon-only',
-			'cs-btn-no-icon': !this.props.iconName || this.props.iconDisplay === 'no-icon',
+			'cs-btn-no-icon': (!this.props.iconName || this.props.iconDisplay === 'no-icon') && !this.props.loading,
 
 			'cs-btn-icon-right': this.props.iconPosition === 'right',
 
@@ -64,14 +55,13 @@ class CSButton extends React.Component<CSButtonProps> {
 			'cs-btn-size-small': this.props.size === 'small',
 			'cs-btn-size-large': this.props.size === 'large',
 
-			'cs-btn-spinner': this.props.loading,
+			'cs-btn-loading': this.props.loading,
 
 			[`${this.props.className}`]: this.props.className
 		}
 	);
 
 	return (
-
 		<button
 			className={btnGroupClasses}
 			onClick={this.props.onClick}
@@ -84,14 +74,11 @@ class CSButton extends React.Component<CSButtonProps> {
 					<CSIcon name={this.props.iconName} rotate={this.props.iconRotate} origin={this.props.iconOrigin}/>
 				</span>
 			)}
-			{this.props.loading && (
-				<CSSpinner
-					className="cs-btn-spinner-wrapper"
-					inline
-					size="small"
-					color={this.getSpinnerColor()}
-				/>
-			)}
+			{this.props.loading &&
+				<span className="cs-btn-icon cs-btn-icon-loading">
+					<CSIcon name="spinner"/>
+				</span>
+			}
 			{this.props.label && <span className="cs-btn-label">{this.props.label}</span>}
 		</button>
 		);

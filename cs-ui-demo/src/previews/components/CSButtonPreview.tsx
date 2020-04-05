@@ -302,8 +302,7 @@ class CSButtonPreview extends React.Component {
 				{
 					propertyName: 'iconName',
 					description: 'Name of icon from icons library',
-					options: [
-					]
+					options: []
 				},
 				{
 					propertyName: 'iconOrigin',
@@ -369,9 +368,7 @@ class CSButtonPreview extends React.Component {
 				{
 					propertyName: 'colorOverride',
 					description: 'Icon and label color (not supported yet)',
-					options: [
-						'<hex value>'
-					]
+					options: ['hex value']
 				},
 				{
 					propertyName: 'label',
@@ -381,18 +378,22 @@ class CSButtonPreview extends React.Component {
 					]
 				},
 				{
+					propertyName: 'loading',
+					description: 'Change icon to spinner and add spin animation. To be used while process is in progress',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
 					propertyName: 'link',
 					description: 'Link path (not supported yet)',
-					options: [
-						'<url>'
-					]
+					options: ['url']
 				},
 				{
 					propertyName: 'disabled',
 					description: 'Logic for disabled state',
-					options: [
-						'<condition>'
-					]
+					options: ['condition']
 				},
 				{
 					propertyName: 'className',
@@ -411,20 +412,8 @@ class CSButtonPreview extends React.Component {
 					backlogName: 'Add colorOverride prop',
 					description: 'Allows to pass custom hex colour.',
 					obstacles: 'Button state colors need to depend on the main hex colour and use darken and lighten mixins'
-				},
-				{
-					backlogName: 'CSS optimise - CS icons need additional sc mixin (not sf)',
-					description: 'Color setting for icons is doubled in all places with both sc and sf mixins',
-					obstacles: 'Check how are CS icons different'
-				},
-				{
-					backlogName: 'Support for all spinner sizes',
-					description: 'Spinner size should be the same as the one of the icon on the button if there is an icon. If not then it should be set to 2rem width.',
-					obstacles: 'Check sizes of the icons in buttons'
 				}
-
 			]
-
 		};
 
 		for (const example of json.examples) {
