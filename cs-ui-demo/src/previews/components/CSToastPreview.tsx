@@ -116,16 +116,16 @@ class CSToastPreview extends React.Component {
 								/>
 						},
 						{
-							variationName: ['600px'],
-							quickLink: '600px',
+							variationName: ['400px'],
+							quickLink: '400px',
 							variationText: ['variant="info"', 'closeButton="true"'],
 							string: '',
 							component:
 								<CSToast
 									variant="info"
 									closeButton
-									minWidth="600px"
-									text="This is an example toast with min width 600px"
+									minWidth="400px"
+									text="This is an example toast with min width 400px"
 								/>
 						}
 					]
