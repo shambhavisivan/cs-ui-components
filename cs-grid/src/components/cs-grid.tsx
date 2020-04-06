@@ -91,6 +91,7 @@ export interface CSGridProps {
 	onCellEditingStopped?(rowNodeId: string, columnField: string): void;
 	onGridReady?(params: GridReadyEvent): void;
 	onCellClicked?(event: CellClickedEvent): void;
+	onRowDoubleClicked?(event: CellClickedEvent): void;
 }
 
 class CSGridState {
@@ -227,6 +228,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 							onColumnVisible={this.onColumnStateChange}
 							onDragStopped={this.onColumnStateChange}
 							onCellClicked={this.props.onCellClicked}
+							onRowDoubleClicked={this.props.onRowDoubleClicked}
 							deltaRowDataMode={this.props.deltaRowDataMode}
 							onCellEditingStopped={this.onCellEditingStopped}
 						/>
