@@ -7,6 +7,7 @@ export interface CSInputSearchProps {
 	borderType?: string;
 	error?: boolean;
 	label: string;
+	labelHidden?: boolean;
 	id?: string;
 	helpText?: string;
 	tooltipPosition?: string;
@@ -19,7 +20,40 @@ export interface CSInputSearchProps {
 	width?: string;
 	errorMessage?: string;
 	autoFocus?: boolean;
-	onChange?(): any;
+	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export function fixControlledValue<T>(value: T) {
+	if (typeof value === 'undefined' || value === null) {
+		return '';
+	}
+	return value;
+}
+
+export function resolveOnChange(
+	target: HTMLInputElement,
+	e:
+		React.ChangeEvent<HTMLInputElement> |
+		React.MouseEvent<HTMLElement, MouseEvent>,
+	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+) {
+	if (onChange) {
+		let event = e;
+		if (e.type === 'click') {
+			// click clear icon
+			event = Object.create(e);
+			event.target = target;
+			event.currentTarget = target;
+			const originalInputValue = target.value;
+			// change target ref value cause e.target.value should be '' when clear input
+			target.value = '';
+			onChange(event as React.ChangeEvent<HTMLInputElement>);
+			// reset target ref value
+			target.value = originalInputValue;
+			return;
+		}
+		onChange(event as React.ChangeEvent<HTMLInputElement>);
+	}
 }
 
 export interface CSInputSearchState {
@@ -29,40 +63,38 @@ export interface CSInputSearchState {
 class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchState> {
 
 	public static defaultProps = {
-		iconPosition: 'left'
+		iconPosition: 'left',
+		labelHidden: false
 	};
+
+	private input: HTMLInputElement;
 
 	constructor(props: CSInputSearchProps) {
 		super(props);
-
-		this.clearSearch = this.clearSearch.bind(this);
-		this.setValue = this.setValue.bind(this);
-
+	 const value = typeof props.value === undefined ? '' : props.value;
 		this.state = {
-			value: this.props.value || ''
+			value
 		};
 	}
-	componentDidMount() {
-		if (this.props.value) {
-			this.setState({
-				value: this.props.value
-			});
-		}
-	}
-	setValue(e: any) {
-		this.setState({
-			value: e.target.value
-		});
-		if (this.props.onChange) {
-			this.props.onChange();
-		}
 
+	saveInputSearch = (node: HTMLInputElement) => {
+		this.input = node;
 	}
-	clearSearch() {
-		this.setState({
-			value: ''
-		});
+
+	setValue(value: string, callback?: () => void) {
+		this.setState({value}, callback);
 	}
+
+	clearSearch = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+		this.setValue('');
+		resolveOnChange(this.input, e, this.props.onChange);
+	}
+
+	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		this.setValue(e.target.value);
+		resolveOnChange(this.input, e, this.props.onChange);
+	}
+
 	render() {
 		const inputSearchWrapperClasses = classNames(
 			'cs-input-search-wrapper'
@@ -88,21 +120,22 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 		return (
 			<>
 				<div className={inputSearchWrapperClasses}>
-					{this.props.label &&
+					{(this.props.label && !this.props.labelHidden) &&
 						<CSLabel for={this.props.id} label={this.props.label} helpText={this.props.helpText} tooltipPosition={this.props.tooltipPosition} required={this.props.required} />
 					}
 					<div className={inputSearchGroupClasses} style={{'--search-width': this.props.width}}>
 						<CSIcon name="search" className="cs-input-search-icon" />
 						<input className={inputSearchClasses}
 							autoFocus={this.props.autoFocus}
-							onChange={this.setValue}
+							onChange={this.handleOnChange}
 							id={this.props.id}
 							placeholder={this.props.placeholder}
 							disabled={this.props.disabled}
 							required={this.props.required}
-							value={this.state.value}
+							value={fixControlledValue(this.state.value)}
 							type="text"
 							autoComplete="off"
+							ref={this.saveInputSearch}
 						/>
 						{this.state.value &&
 							<button
