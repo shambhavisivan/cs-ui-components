@@ -1,3 +1,17 @@
+.cs-toggle-element {
+	display: flex;
+	flex-direction: column;
+
+	&.cs-toggle-label-left {
+		flex-direction: row;
+		align-items: center;
+
+		.cs-label-wrapper {
+			margin-right: 0.5rem;
+		}
+	}
+}
+
 .cs-toggle-wrapper {
 	display: inline-flex;
 	justify-content: flex-start;

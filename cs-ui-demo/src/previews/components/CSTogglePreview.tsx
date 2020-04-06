@@ -10,6 +10,8 @@ import {CSToggle} from '@cloudsense/cs-ui-components';
 class CSTogglePreview extends React.Component {
 	getDoc() {
 
+		const onChangeHandler = () => alert('Toggle changed!');
+
 		const json = {
 			name: 'Toggle',
 			usage: 'A checkable input that communicates if an option is true, false or indeterminate.',
@@ -130,6 +132,34 @@ class CSTogglePreview extends React.Component {
 					]
 				},
 				{
+					propName: 'labelPosition',
+					customText: 'For now we are supporting only default and left variants. We will add more when there will be need',
+					variations: [
+						{
+							variationName: ['left'],
+							string: '',
+							component:
+								<CSToggle
+									label="This label is on the left"
+									labelPosition="left"
+								/>
+						}
+					]
+				},
+				{
+					propName: 'onChange',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSToggle
+									label="This is a label"
+									onChange={onChangeHandler}
+								/>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -153,7 +183,15 @@ class CSTogglePreview extends React.Component {
 				},
 				{
 					propertyName: 'checked',
-					description: 'Logic for checked state',
+					description: 'Value of checkbox',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
+					propertyName: 'defaultChecked',
+					description: 'Default checkbox state',
 					options: [
 						'false',
 						'true'
@@ -197,6 +235,16 @@ class CSTogglePreview extends React.Component {
 						'bottom-right',
 						'bottom-left'
 					]
+				},
+				{
+					propertyName: 'labelPosition',
+					description: 'Label position, for now only default and left are supported',
+					options: ['default', 'left']
+				},
+				{
+					propertyName: 'onChange',
+					description: 'Logic for onChange event',
+					options: []
 				},
 				{
 					propertyName: 'className',
