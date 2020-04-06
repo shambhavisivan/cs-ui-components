@@ -1,5 +1,5 @@
 var path = require("path");
-var mode = 'production';
+var mode = 'development';
 
 module.exports = {
 	mode: mode,

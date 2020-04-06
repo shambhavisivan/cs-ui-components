@@ -4,6 +4,7 @@ import CSLabel from './CSLabel';
 
 export interface CSCheckboxProps {
 	checked?: boolean;
+	defaultChecked?: boolean;
 	error?: boolean;
 	disabled?: boolean;
 	required?: boolean;
@@ -15,11 +16,12 @@ export interface CSCheckboxProps {
 	labelHidden?: boolean;
 	className?: string;
 	errorMessage?: string;
-	onChange?(): any;
+	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => any;
+	id?: string;
 }
 
 export interface CSCheckboxState {
-	checkedValue: boolean | undefined;
+	checked: boolean;
 }
 
 class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
@@ -27,23 +29,23 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 	public static defaultProps = {
 		variant: 'neutral',
 		labelHidden: false,
-		borderType: 'square'
+		borderType: 'square',
+		defaultChecked: false
 	};
 
 	constructor(props: CSCheckboxProps) {
 		super(props);
 
 		this.state = {
-			checkedValue: this.props.checked
+			checked: this.props.checked || this.props.defaultChecked
 		};
 
-		this.toggleCheckbox = this.toggleCheckbox.bind(this);
 	}
 
-	toggleCheckbox() {
-		this.setState({checkedValue: !this.state.checkedValue});
+	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		this.setState({checked: !this.state.checked});
 		if (this.props.onChange) {
-			this.props.onChange();
+			this.props.onChange(e);
 		}
 	}
 
@@ -72,17 +74,21 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 			<>
 				<div className="cs-checkbox-wrapper">
 					{(this.props.label && !this.props.labelHidden) &&
-						<CSLabel label={this.props.label} helpText={this.props.helpText}
-						tooltipPosition={this.props.tooltipPosition} required={this.props.required}/>
+						<CSLabel
+							label={this.props.label}
+							helpText={this.props.helpText}
+							tooltipPosition={this.props.tooltipPosition}
+							required={this.props.required}/>
 					}
 					<label className={checkboxGroupClasses}>
 							<input
-								onChange={this.toggleCheckbox}
+								onChange={this.handleOnChange}
 								className={checkboxClasses}
 								type="checkbox"
 								disabled={this.props.disabled}
-								checked={this.state.checkedValue}
+								checked={this.state.checked}
 								required={this.props.required}
+								id={this.props.id}
 							/>
 						<span className={checkboxFauxClasses}/>
 					</label>
