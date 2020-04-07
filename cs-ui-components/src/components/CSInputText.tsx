@@ -16,9 +16,37 @@ export interface CSInputTextProps {
 	value?: string;
 	className?: string;
 	errorMessage?: string;
+	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => any;
 }
 
-class CSInputText extends React.Component<CSInputTextProps> {
+export interface CSInputTextState {
+	value: string;
+}
+
+export function fixControlledValue<T>(value: T) {
+	if (typeof value === 'undefined' || value === null) {
+		return '';
+	}
+	return value;
+}
+
+class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
+
+	constructor(props: CSInputTextProps) {
+		super(props);
+		const value = typeof props.value === undefined ? '' : props.value;
+		this.state = {
+			value
+		};
+	}
+
+	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		this.setState({value: e.target.value});
+		if (this.props.onChange) {
+			this.props.onChange(e);
+		}
+	}
+
 	render() {
 		const inputTextClasses = classNames(
 			'cs-input-text',
@@ -41,10 +69,11 @@ class CSInputText extends React.Component<CSInputTextProps> {
 						disabled={this.props.disabled}
 						readOnly={this.props.readOnly}
 						required={this.props.required}
-						value={this.props.value}
+						value={fixControlledValue(this.state.value)}
 						type="text"
 						aria-invalid={this.props.error}
 						autoComplete="off"
+						onChange={this.handleOnChange}
 					/>
 					{(this.props.error && this.props.errorMessage) &&
 						<span className="cs-input-error-msg">{this.props.errorMessage}</span>

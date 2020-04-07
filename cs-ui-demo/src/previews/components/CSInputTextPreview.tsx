@@ -10,6 +10,8 @@ import {CSInputText} from '@cloudsense/cs-ui-components';
 class CSInputTextPreview extends React.Component {
 	getDoc() {
 
+		const onChangeHandler = () => alert('Input changed!');
+
 		const json = {
 			name: 'Input Text',
 			usage: 'Text inputs are used for freeform data entry.',
@@ -160,6 +162,17 @@ class CSInputTextPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'onChange',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSInputText label="Enter value:" onChange={onChangeHandler} />
+						}
+					]
+				},
+				{
 					propName: 'className',
 					customText: '',
 					variations: [
@@ -251,6 +264,11 @@ class CSInputTextPreview extends React.Component {
 						'round',
 						'square'
 					]
+				},
+				{
+					propertyName: 'onChange',
+					description: 'Logic for onChange event',
+					options: []
 				},
 				{
 					propertyName: 'className',
