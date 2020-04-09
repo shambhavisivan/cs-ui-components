@@ -18,9 +18,37 @@ export interface CSTextareaProps {
 	maxHeight?: string;
 	className?: string;
 	errorMessage?: string;
+	onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => any;
 }
 
-class CSTextarea extends React.Component<CSTextareaProps> {
+export interface CSTextareaState {
+	value: string;
+}
+
+export function fixControlledValue<T>(value: T) {
+	if (typeof value === 'undefined' || value === null) {
+		return '';
+	}
+	return value;
+}
+
+class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
+
+	constructor(props: CSTextareaProps) {
+		super(props);
+		const value = typeof props.value === undefined ? '' : props.value;
+		this.state = {
+			value
+		};
+	}
+
+	handleOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+		this.setState({value: e.target.value});
+		if (this.props.onChange) {
+			this.props.onChange(e);
+		}
+	}
+
 	render() {
 		const textareaClasses = classNames(
 			'cs-textarea', {
@@ -29,11 +57,18 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 				[`cs-textarea-${this.props.borderType}`]: this.props.borderType
 			}
 		);
+
 		return (
 			<>
 				<div className="cs-textarea-wrapper">
 					{this.props.label &&
-						<CSLabel for={this.props.id} label={this.props.label} helpText={this.props.helpText} tooltipPosition={this.props.tooltipPosition} required={this.props.required} />
+						<CSLabel
+							for={this.props.id}
+							label={this.props.label}
+							helpText={this.props.helpText}
+							tooltipPosition={this.props.tooltipPosition}
+							required={this.props.required}
+						/>
 					}
 					<textarea
 						className={textareaClasses}
@@ -44,8 +79,9 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 						required={this.props.required}
 						rows={this.props.rows}
 						aria-invalid={this.props.error}
-						value={this.props.value}
+						value={fixControlledValue(this.state.value)}
 						style={{'--max-height': this.props.maxHeight}}
+						onChange={this.handleOnChange}
 					/>
 					{(this.props.error && this.props.errorMessage) &&
 						<span className="cs-input-error-msg">{this.props.errorMessage}</span>

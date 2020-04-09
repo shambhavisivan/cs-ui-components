@@ -8,7 +8,10 @@ import PreviewLinks from '../PreviewLinks';
 import {CSTextarea} from '@cloudsense/cs-ui-components';
 
 class CSTextareaPreview extends React.Component {
+
 	getDoc() {
+
+		const onChangeHandler = () => alert('Textarea changed!');
 
 		const json = {
 			name: 'Textarea',
@@ -190,6 +193,16 @@ class CSTextareaPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'onChange',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSTextarea label="Enter message:" onChange={onChangeHandler}/>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -294,6 +307,11 @@ class CSTextareaPreview extends React.Component {
 						'160px',
 						'5rem'
 					]
+				},
+				{
+					propertyName: 'onChange',
+					description: 'Logic for onChange event',
+					options: []
 				},
 				{
 					propertyName: 'className',
