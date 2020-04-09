@@ -11,6 +11,7 @@ class CSCheckboxPreview extends React.Component {
 	getDoc() {
 
 		const onChangeHandler = () => alert('Checbox changed!');
+		const onClickHandler = () => alert('Checkbox was clicked!');
 
 		const json = {
 			name: 'Checkbox',
@@ -221,6 +222,19 @@ class CSCheckboxPreview extends React.Component {
 								/>
 						}
 					]
+				},
+				{
+					propName: 'onClick',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSCheckbox
+									label="This is a label"
+									onClick={onClickHandler}
+								/>
+						}
+					]
 				}
 			],
 
@@ -314,6 +328,11 @@ class CSCheckboxPreview extends React.Component {
 				{
 					propertyName: 'onChange',
 					description: 'Logic for onChange event',
+					options: []
+				},
+				{
+					propertyName: 'onClick',
+					description: 'Logic for onClick event',
 					options: []
 				}
 			]
