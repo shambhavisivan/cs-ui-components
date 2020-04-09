@@ -15,6 +15,7 @@ export interface CSSelectProps {
 	disabled?: boolean;
 	className?: string;
 	errorMessage?: string;
+	onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => any;
 }
 
 class CSSelect extends React.Component<CSSelectProps> {
@@ -23,6 +24,11 @@ class CSSelect extends React.Component<CSSelectProps> {
 		labelHidden: false
 	};
 
+	handleOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		if (this.props.onChange) {
+			this.props.onChange(e);
+		}
+	}
 	render() {
 		const selectClasses = classNames(
 			'cs-select',
@@ -50,6 +56,7 @@ class CSSelect extends React.Component<CSSelectProps> {
 						required={this.props.required}
 						disabled={this.props.disabled}
 						aria-invalid={this.props.error}
+						onChange={this.handleOnChange}
 					>
 						{this.props.children}
 					</select>
