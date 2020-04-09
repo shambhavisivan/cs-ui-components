@@ -1,31 +1,30 @@
 import React from 'react';
+import classNames from 'classnames';
 
 export interface CSTabProps {
 	title: string;
+	active: boolean;
+	tabIndex: number;
+	onClick: any;
 }
-
-class CSTab extends React.Component<CSTabProps, {active: boolean}> {
-	constructor(props: any) {
-		super(props);
-
-		this.state = {
-			active: false
-		};
-
-		this.handleClick = this.handleClick.bind(this);
-	}
-
-	handleClick() {
-		this.setState(prevState => {
-			return { active: !prevState.active };
-		});
-	}
+class CSTab extends React.Component<CSTabProps> {
 
 	render() {
-		const activeClass = (this.state.active ? 'cs-tab-active' : '');
+		const tabClasses = classNames (
+			'cs-tab',
+			{
+				'cs-tab-active': this.props.active
+			}
+		);
 
 		return (
-			<div className={`cs-tab ${activeClass}`} onClick={this.handleClick}>
+			<div
+				className={tabClasses}
+				onClick={event => {
+					event.preventDefault();
+					this.props.onClick(this.props.tabIndex);
+				}}
+			>
 				{this.props.title}
 			</div>
 		);
