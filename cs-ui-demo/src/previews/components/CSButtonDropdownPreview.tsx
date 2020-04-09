@@ -353,6 +353,70 @@ class CSButtonDropdownPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'label',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component: <CSButtonDropdown
+											iconName="down"
+											label="Label"
+										>
+											<CSButton
+												iconName="world"
+												label="test label small"
+											/>
+											<CSButton
+												iconName="world"
+												label="test label large large"
+											/>
+										</CSButtonDropdown>
+						}
+					]
+				},
+				{
+					propName: 'iconPosition',
+					customText: '',
+					variations: [
+						{
+							variationName: ['left'],
+							string: '',
+							component: <CSButtonDropdown
+											iconName="down"
+											label="Label"
+											iconPosition="left"
+										>
+											<CSButton
+												iconName="world"
+												label="test label small"
+											/>
+											<CSButton
+												iconName="world"
+												label="test label large large"
+											/>
+										</CSButtonDropdown>
+						},
+						{
+							variationName: ['right'],
+							string: '',
+							component: <CSButtonDropdown
+											iconName="down"
+											label="Label"
+											iconPosition="right"
+										>
+											<CSButton
+												iconName="world"
+												label="test label small"
+											/>
+											<CSButton
+												iconName="world"
+												label="test label large large"
+											/>
+										</CSButtonDropdown>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					customText: '',
 					variations: [
@@ -442,6 +506,15 @@ class CSButtonDropdownPreview extends React.Component {
 				{
 					propertyName: 'iconRotate',
 					description: 'Degree value for clockwise icon',
+					options: [
+						'90',
+						'180',
+						'270'
+					]
+				},
+				{
+					propertyName: 'label',
+					description: 'Dropdown button label',
 					options: [
 						'90',
 						'180',

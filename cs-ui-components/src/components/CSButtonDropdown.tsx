@@ -14,6 +14,8 @@ export interface CSButtonDropdownProps {
 	align?: string;
 	iconRotate?: string;
 	onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+	label?: string;
+	iconPosition?: string;
 }
 
 export interface CSButtonDropdownStates {
@@ -58,6 +60,14 @@ class CSButtonDropdown extends React.Component<CSButtonDropdownProps, CSButtonDr
 		this.toggleActive();
 	}
 
+	getLabel() {
+		return this.props.label ? this.props.label : 'Toggle dropdown';
+	}
+
+	getIconDisplay() {
+		return this.props.label ? 'default' : 'icon-only';
+	}
+
 	render() {
 		const btnDropdownWrapperClasses = classNames(
 			'cs-btn-dropdown-wrapper',
@@ -66,7 +76,6 @@ class CSButtonDropdown extends React.Component<CSButtonDropdownProps, CSButtonDr
 			}
 		);
 		const btnDropdownClasses = classNames(
-			'cs-btn-icon-only',
 			{
 				'cs-btn-dropdown-active': (this.state.active === true)
 			}
@@ -82,8 +91,11 @@ class CSButtonDropdown extends React.Component<CSButtonDropdownProps, CSButtonDr
 					iconName={this.props.iconName}
 					iconOrigin={this.props.iconOrigin}
 					iconRotate={this.props.iconRotate}
+					iconDisplay={this.getIconDisplay()}
 					disabled={this.props.disabled}
 					onClick={this.toggleActive}
+					label={this.getLabel()}
+					iconPosition={(this.props.label && this.props.iconPosition) ? this.props.iconPosition : undefined}
 				/>
 				{this.state.active ? (
 					<div className={`cs-btn-dropdown-item-wrapper cs-btn-dropdown-${this.props.align}`}>
