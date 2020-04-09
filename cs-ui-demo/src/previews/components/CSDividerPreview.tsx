@@ -38,7 +38,6 @@ class CSDividerPreview extends React.Component {
 										<CSButton label="Button 2"/>
 									</CSMainHeaderRight>
 								</CSMainHeader>
-
 						},
 						{
 							variationName: ['horizontal'],
@@ -67,6 +66,20 @@ class CSDividerPreview extends React.Component {
 								</CSButtonGroup>
 						}
 					]
+				},
+				{
+					propName: 'label',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSDivider
+									variant="horizontal"
+									label="Some label"
+									size="25rem"
+								/>
+						}
+					]
 				}
 			],
 
@@ -90,10 +103,14 @@ class CSDividerPreview extends React.Component {
 					]
 				},
 				{
+					propertyName: 'label',
+					description: 'Divider label to display',
+					options: []
+				},
+				{
 					propertyName: 'className',
 					description: 'For implementing custom class to component',
-					options: [
-					]
+					options: []
 				}
 			]
 		};

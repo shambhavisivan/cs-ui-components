@@ -335,7 +335,9 @@ $variables: (
 	--cs-radio-error-bg: $cs-red-medium-2,
 	--cs-radio-error-active-shadow: $cs-red-medium-2,
 	--cs-radio-error-focus-shadow: $cs-red-medium-1,
-	--cs-radio-label-c: $cs-gray-dark-2
+	--cs-radio-label-c: $cs-gray-dark-2,
+
+	--cs-divider-label-bg: $cs-white
 );
 
 // This will be used later for dark theme support

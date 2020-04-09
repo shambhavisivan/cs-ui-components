@@ -1,3 +1,17 @@
+.cs-divider {
+	position: relative;
+
+	.cs-divider-label {
+		position: absolute;
+		top: -0.65rem;
+		left:50%;
+		transform: translateX(-50%);
+		z-index: 1;
+		padding: 0 1.5rem;
+		@include sbg(--cs-divider-label-bg);
+	}
+}
+
 .cs-divider-vertical {
 	align-self: center;
 	width: 0;
@@ -22,4 +36,12 @@
 	@include css4 {
 		border-bottom: 1px solid cvar(--cs-button-br);
 	}
+
+	&.cs-divider-with-label {
+		margin-block-start: 0.75rem;
+		margin-block-end: 0.75rem;
+	}
 }
+
+
+
