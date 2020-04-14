@@ -80,6 +80,7 @@ class CSButton extends React.Component<CSButtonProps> {
 				</span>
 			}
 			{this.props.label && <span className="cs-btn-label">{this.props.label}</span>}
+			{this.props.children}
 		</button>
 		);
 	}
