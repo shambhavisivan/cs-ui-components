@@ -16,15 +16,144 @@ class CSTabPreview extends React.Component {
 
 			examples: [
 				{
+					propName: 'variant',
+					customText: '',
+					variations: [
+						{
+							variationName: ['large'],
+							string: '',
+							component:
+							<CSTabGroup variant="large">
+								<CSTab
+									title="Tab One"
+								/>
+								<CSTab
+									title="Tab Two"
+								/>
+								<CSTab
+									title="Tab Three"
+								/>
+							</CSTabGroup>
+						},
+						{
+							variationName: ['normal'],
+							string: '',
+							component:
+							<CSTabGroup variant="normal">
+								<CSTab
+									title="Tab One"
+								/>
+								<CSTab
+									title="Tab Two"
+								/>
+								<CSTab
+									title="Tab Three"
+								/>
+							</CSTabGroup>
+						}
+					]
+				},
+				{
+					propName: 'status',
+					customText: '',
+					variations: [
+						{
+							variationName: ['error'],
+							string: '',
+							component:
+							<CSTabGroup
+								variant="large"
+							>
+								<CSTab
+									title="Tab One"
+									status="error"
+								/>
+								<CSTab
+									title="Tab Two"
+									status="error"
+								/>
+								<CSTab
+									title="Tab Three"
+									status="error"
+								/>
+							</CSTabGroup>
+						},
+						{
+							variationName: ['warning'],
+							string: '',
+							component:
+							<CSTabGroup
+								variant="large"
+							>
+								<CSTab
+									title="Tab One"
+									status="warning"
+								/>
+								<CSTab
+									title="Tab Two"
+									status="warning"
+								/>
+								<CSTab
+									title="Tab Three"
+									status="warning"
+								/>
+							</CSTabGroup>
+						},
+						{
+							variationName: ['success'],
+							string: '',
+							component:
+							<CSTabGroup
+								variant="large"
+							>
+								<CSTab
+									title="Tab One"
+									status="success"
+								/>
+								<CSTab
+									title="Tab Two"
+									status="success"
+								/>
+								<CSTab
+									title="Tab Three"
+									status="success"
+								/>
+							</CSTabGroup>
+						}
+					]
+				},
+				{
 					propName: 'title',
 					customText: '',
 					variations: [
 						{
 							string: '',
 							component:
-							<CSTabGroup>
+							<CSTabGroup variant="normal">
 								<CSTab
 									title="Tab One"
+								/>
+								<CSTab
+									title="Tab Two"
+								/>
+								<CSTab
+									title="Tab Three"
+								/>
+							</CSTabGroup>
+						}
+					]
+				},
+				{
+					propName: 'tabIcon',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component:
+							<CSTabGroup variant="normal">
+								<CSTab
+									title="Tab One"
+									tabIcon="activity"
 								/>
 								<CSTab
 									title="Tab Two"
@@ -43,7 +172,10 @@ class CSTabPreview extends React.Component {
 						{
 							string: '',
 							component:
-							<CSTabGroup className="custom-class">
+							<CSTabGroup
+								variant="normal"
+								className="custom-class"
+							>
 								<CSTab
 									title="Tab One"
 								/>
@@ -62,14 +194,36 @@ class CSTabPreview extends React.Component {
 		/* CSTab Properties Table */
 			properties: [
 				{
-					propertyName: 'title',
-					description: 'Text content of tab',
-					options: ['n/a']
-				},
-				{
 					propertyName: 'className',
 					description: 'For implementing custom class to component',
 					options: []
+				},
+				{
+					propertyName: 'status',
+					description: 'Color and icon variant depending on status',
+					options: [
+						'error',
+						'warning',
+						'success'
+					]
+				},
+				{
+					propertyName: 'tabIcon',
+					description: 'Name of icon from icons library which will be visible in tab',
+					options: []
+				},
+				{
+					propertyName: 'title',
+					description: 'Text content of tab',
+					options: []
+				},
+				{
+					propertyName: 'variant',
+					description: 'Tab variant',
+					options: [
+						'large',
+						'normal'
+					]
 				}
 			]
 		};

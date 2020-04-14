@@ -7,24 +7,25 @@
 	}
 
 	.cs-tab {
+		display:flex;
+		align-items: center;
 		cursor: pointer;
-		display: block;
-		height: 2.5rem;
+		height: 100%;
 		line-height: 2.5rem;
 		position: relative;
-		padding: 0 0.75rem;
+		padding: 0.5rem 0.75rem 0.6rem 0.75rem;
 		margin-bottom: -1px;
 		font-size: 0.8125rem;
 		@include overflow-ellipsis;
 		@include sc(--cs-tab-c);
 
-		&.cs-tab-active {
-			font-weight: $font-weight-bold;
-			@include sc(--cs-tab-active-c);
+		.cs-tab-wrapper {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
 
-			&::after {
-				height: 0.1875rem;
-				@include sbg(--cs-tab-active-br);
+			.cs-icon {
+				margin: 0 0.5rem 0 0;
 			}
 		}
 
@@ -36,12 +37,86 @@
 			right: 0;
 			height: 0;
 			position: absolute;
+			transition: height 0.2s ease;
 		}
 
 		&:hover::after {
 			height: 0.125rem;
-			transition: 0.3s;
 			@include sbg(--cs-tab-hover-br);
 		}
+
+		&.cs-tab-active {
+			@include sc(--cs-tab-active-c);
+			cursor: default;
+
+			&::after {
+				height: 0.1875rem;
+				@include sbg(--cs-tab-active-br);
+			}
+			&:hover::after {
+				@include sbg(--cs-tab-active-br);
+			}
+			.cs-icon {
+				@include sf(--cs-tab-active-br)
+			}
+		}
+
+		&-error {
+			.cs-icon {
+				@include sf(--cs-tab-error-fill);
+			}
+			&:hover::after {
+				@include sbg(--cs-tab-error-br);
+			}
+		}
+
+		&-warning {
+			.cs-icon {
+				@include sf(--cs-tab-warning-fill);
+			}
+			&:hover::after {
+				@include sbg(--cs-tab-warning-br);
+			}
+		}
+
+		&-success {
+			.cs-icon {
+				@include sf(--cs-tab-success-fill);
+			}
+			&:hover::after {
+				@include sbg(--cs-tab-success-br);
+			}
+		}
+	}
+
+	&-large {
+		height: 2.875rem;
+
+		.cs-tab {
+			padding: 0.75rem 1rem;
+			@include css4 {
+				border-right: 1px solid cvar(--cs-tab-br);
+				border-bottom: 1px solid cvar(--cs-tab-br);
+				border-top: 1px solid cvar(--cs-tab-br);
+			}
+
+			&:first-of-type {
+				@include css4 {
+					border-left: 1px solid cvar(--cs-tab-br);
+				}
+			}
+
+			&::after {
+				top:0;
+			}
+
+			&.cs-tab-active {
+				@include sbg(--cs-tab-active-bg);
+			}
+		}
+	}
+
+	&-normal {
+		height: 2.5rem;
 	}
 }
