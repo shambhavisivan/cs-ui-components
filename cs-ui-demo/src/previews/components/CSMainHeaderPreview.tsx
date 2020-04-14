@@ -325,8 +325,7 @@ class CSMainHeaderPreview extends React.Component {
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} />
 					<PreviewProperties name={component.name} examples={component.examples} />
-					<PreviewTable name={component.name} properties={component.properties} />
-					<PreviewTable name={component2.name} properties={component2.properties} alt />
+					<PreviewTable components={[component, component2]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

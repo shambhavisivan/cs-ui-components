@@ -131,8 +131,8 @@ class CSDividerPreview extends React.Component {
 			<>
 				<div className="preview-section-wrapper divider-preview">
 					<PreviewHeading name={component.name} usage={component.usage} />
-					<PreviewProperties name={component.name} examples={component.examples}/>
-					<PreviewTable name={component.name} properties={component.properties}/>
+					<PreviewProperties  name={component.name} examples={component.examples}/>
+					<PreviewTable components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

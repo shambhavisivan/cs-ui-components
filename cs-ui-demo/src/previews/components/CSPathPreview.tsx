@@ -94,7 +94,7 @@ class CSPathPreview extends React.Component {
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} />
 					<PreviewProperties name={component.name} examples={component.examples} />
-					<PreviewTable name={component.name} properties={component.properties} />
+					<PreviewTable components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>
