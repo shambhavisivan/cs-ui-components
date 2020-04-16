@@ -271,18 +271,22 @@ export class App extends React.Component<object, AppState> {
 				getOptions: () => {
 					return [
 						{ id: '1', label: 'Bob' },
-						{ id: '2', label: 'Harry' },
+						{ id: '2', label: 'Harry', horizontalDivider: true },
 						{ id: '3', label: 'Sally' },
-						{ id: '4', label: 'Mary' },
+						{ id: '4', label: 'Mary', horizontalDivider: false },
 						{ id: '5', label: 'John' },
 						{ id: '6', label: 'Jack' },
 						{ id: '7', label: 'Sue' },
 						{ id: '8', label: 'Sean' },
 						{ id: '9', label: 'Niall' },
-						{ id: '10', label: 'Albert' },
+						{ id: '10', label: 'Albert', horizontalDivider: true },
 						{ id: '11', label: 'Fred' },
 						{ id: '12', label: 'Jenny' },
-						{ id: '1', label: 'Larry' }
+						{
+							icon: <span className='icon-error' aria-hidden='true' />,
+							id: '1',
+							label: 'Larry'
+						}
 					];
 				},
 				header: {

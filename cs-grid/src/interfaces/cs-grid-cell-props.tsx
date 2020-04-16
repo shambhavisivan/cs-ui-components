@@ -66,12 +66,15 @@ export interface RowSelectionAction {
 export interface PicklistProps {
 	filterAboveSize?: number;
 	toggleSelection?: boolean;
+	getEmptyPicklistContent?(guid: string): JSX.Element;
 	getOptions(guid: string): Array<string | PicklistOption>;
 }
 
 export interface PicklistOption {
 	id: string;
 	label: string;
+	horizontalDivider?: boolean;
+	icon?: JSX.Element;
 }
 
 export interface BaseProps<T> {

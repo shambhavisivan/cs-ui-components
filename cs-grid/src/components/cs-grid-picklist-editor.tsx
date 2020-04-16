@@ -15,6 +15,8 @@ type PicklistCellValueType = string | PicklistOption | Array<string | PicklistOp
 interface PickListRow {
 	isSelected: boolean;
 	label: string;
+	horizontalDivider?: boolean;
+	icon?: JSX.Element;
 }
 type PickListRows = Map<string, PickListRow>;
 
@@ -67,13 +69,17 @@ export class CSGridPicklistEditor
 		this.state.options.forEach((option: PickListRow, id: string): void => {
 			const selectOption = () => this.optionSelected(id);
 			dropDownValues.push(
-				<li
-					className={'picklist-list-item' + (option.isSelected ? ' selected' : '')}
-					key={id}
-					onClick={selectOption}
-				>
-					{option.label}
-				</li>
+				<>
+					{option.horizontalDivider && <div className='divider-horizontal' />}
+					<li
+						className={'picklist-list-item' + (option.isSelected ? ' selected' : '')}
+						key={id}
+						onClick={selectOption}
+					>
+						{option.icon}
+						{option.label}
+					</li>
+				</>
 			);
 		});
 
@@ -83,44 +89,51 @@ export class CSGridPicklistEditor
 
 		return (
 			<div className='cs-grid_popup-wrapper'>
-				{filter && (
-					<div className='cs-grid_search-wrapper cs-grid_picklist-search-wrapper'>
-						<div className='cs-grid_search'>
-							<span className='cs-grid_search-icon' />
-							<input
-								className='cs-grid_search-input'
-								type='text'
-								value={this.state.searchTerm}
-								onChange={this.onFilterText}
-								placeholder={'Search...'}
-								title={
-									this.state.searchTerm
-										? `Search value ${this.state.searchTerm}`
-										: 'Search...'
+				{dropDownValues.length > 0 || !this.props.getEmptyPicklistContent ? (
+					<>
+						{filter && (
+							<div className='cs-grid_search-wrapper cs-grid_picklist-search-wrapper'>
+								<div className='cs-grid_search'>
+									<span className='cs-grid_search-icon' />
+									<input
+										className='cs-grid_search-input'
+										type='text'
+										value={this.state.searchTerm}
+										onChange={this.onFilterText}
+										placeholder={'Search...'}
+										title={
+											this.state.searchTerm
+												? `Search value ${this.state.searchTerm}`
+												: 'Search...'
+										}
+									/>
+									{this.state.searchTerm && (
+										<button
+											className='cs-grid_clear-button'
+											onClick={this.clearFilter}
+											title='Clear filter'
+										/>
+									)}
+								</div>
+							</div>
+						)}
+						<ul className='picklist-list'>
+							<li
+								className={
+									'picklist-list-item' +
+									(this.state.noneSelected ? ' selected' : '')
 								}
-							/>
-							{this.state.searchTerm && (
-								<button
-									className='cs-grid_clear-button'
-									onClick={this.clearFilter}
-									title='Clear filter'
-								/>
-							)}
-						</div>
-					</div>
+								key='0'
+								onClick={this.clearSelected}
+							>
+								{this.clearAllName}
+							</li>
+							{dropDownValues}
+						</ul>
+					</>
+				) : (
+					this.props.getEmptyPicklistContent(this.props.node.id)
 				)}
-				<ul className='picklist-list'>
-					<li
-						className={
-							'picklist-list-item' + (this.state.noneSelected ? ' selected' : '')
-						}
-						key='0'
-						onClick={this.clearSelected}
-					>
-						{this.clearAllName}
-					</li>
-					{dropDownValues}
-				</ul>
 			</div>
 		);
 	}
@@ -229,6 +242,8 @@ export class CSGridPicklistEditor
 		for (const option of pickListRows) {
 			const id = typeof option === 'string' ? option : option.id;
 			const label = typeof option === 'string' ? option : option.label;
+			const horizontalDivider = typeof option !== 'string' && option.horizontalDivider;
+			const icon = typeof option === 'string' ? undefined : option.icon;
 
 			let isSelected = false;
 			if (selected) {
@@ -240,7 +255,7 @@ export class CSGridPicklistEditor
 				isSelected = _selected.includes(id);
 			}
 
-			options.set(id, { isSelected, label });
+			options.set(id, { isSelected, label, horizontalDivider, icon });
 		}
 
 		return options;
@@ -264,6 +279,9 @@ export class CSGridPicklistEditor
 	) => {
 		const id = typeof option === 'string' ? option : option.id;
 		const label = typeof option === 'string' ? option : option.label;
-		options.set(id, { isSelected, label });
+		const horizontalDivider = typeof option !== 'string' && option.horizontalDivider;
+		const icon = typeof option === 'string' ? undefined : option.icon;
+
+		options.set(id, { isSelected, label, horizontalDivider, icon });
 	};
 }

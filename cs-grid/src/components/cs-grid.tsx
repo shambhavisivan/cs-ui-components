@@ -700,6 +700,11 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				agGridColDef.cellRenderer = 'picklistRenderer';
 
 				this.addIfDefined(cellParams, 'filterAboveSize', columnDef.filterAboveSize);
+				this.addIfDefined(
+					cellParams,
+					'getEmptyPicklistContent',
+					columnDef.getEmptyPicklistContent
+				);
 				this.addIfDefined(cellParams, 'getOptions', columnDef.getOptions);
 			}
 
