@@ -36,6 +36,21 @@
 			.cs-icon {
 				@include sf(--cs-alert-info-light-fill);
 			}
+
+			.cs-alert-close {
+
+				&:active {
+					@include css4 {
+						border: 1px solid cvar(--cs-alert-info-br);
+					}
+				}
+
+				&:focus {
+					@include css4 {
+						box-shadow: 0 0 3px cvar(--cs-alert-info-box);
+					}
+				}
+			}
 		}
 	}
 
@@ -57,6 +72,24 @@
 			}
 		}
 
+		.cs-alert-close {
+			svg {
+				@include sf(--cs-alert-warning-fill);
+			}
+
+			&:active {
+				@include css4 {
+					border: 1px solid cvar(--cs-alert-warning-fill);
+				}
+			}
+
+			&:focus {
+				@include css4 {
+					box-shadow: 0 0 3px cvar(--cs-alert-warning-fill);
+				}
+			}
+		}
+
 		&.type-light {
 			@include sbg(--cs-alert-warning-light-bg);
 
@@ -67,6 +100,21 @@
 
 			.cs-icon {
 				@include sf(--cs-alert-warning-light-fill);
+			}
+
+			.cs-alert-close {
+
+				&:active {
+					@include css4 {
+						border: 1px solid cvar(--cs-alert-warning-br);
+					}
+				}
+
+				&:focus {
+					@include css4 {
+						box-shadow: 0 0 3px cvar(--cs-alert-warning-box);
+					}
+				}
 			}
 		}
 	}
@@ -99,6 +147,21 @@
 
 			.cs-icon {
 				@include sf(--cs-alert-error-light-fill);
+			}
+
+			.cs-alert-close {
+
+				&:active {
+					@include css4 {
+						border: 1px solid cvar(--cs-alert-error-br);
+					}
+				}
+
+				&:focus {
+					@include css4 {
+						box-shadow: 0 0 3px cvar(--cs-alert-error-box);
+					}
+				}
 			}
 		}
 	}
@@ -164,7 +227,7 @@
 			display: block;
 			text-align: left;
 
-			+.cs-alert-text::before {
+			+ .cs-alert-text::before {
 				content: none;
 			}
 		}
@@ -194,60 +257,25 @@
 		border: none;
 		@include sbg(--cs-transparent);
 
+		&:hover .cs-icon{
+			opacity: 0.5;
+		}
+
 		svg {
 			width: 0.875rem;
 			height: 0.875rem;
-			@include css4 {
-				fill: cvar(--cs-alert-close-fill);
-			}
+			@include sf(--cs-alert-close-fill);
 		}
 
-		&:hover {
-			svg {
-				@include css4 {
-					fill: cvar(--cs-alert-hover-fill);
-				}
-			}
+		&:active {
+			border: 1px solid cvar(--cs-alert-br);
 		}
 
 		&:focus {
 			outline: none;
 			@include css4 {
 				box-shadow: 0 0 3px cvar(--cs-alert-box);
-				border: 1px solid cvar(--cs-alert-br);
-			}
-		}
 
-		&:active {
-			svg {
-				@include css4 {
-					fill: cvar(--cs-alert-active-fill);
-				}
-			}
-		}
-	}
-
-	&.warning .cs-alert-close {
-
-		svg {
-			@include css4 {
-				fill: cvar(--cs-alert-warning-fill);
-			}
-		}
-
-		&:hover,
-		&:active {
-			svg {
-				@include css4 {
-					fill: cvar(--cs-alert-warning-hover-fill);
-				}
-			}
-		}
-
-		&:focus {
-			@include css4 {
-				box-shadow: 0 0 3px cvar(--cs-alert-warning-box);
-				border: 1px solid cvar(--cs-alert-warning-br);
 			}
 		}
 	}
