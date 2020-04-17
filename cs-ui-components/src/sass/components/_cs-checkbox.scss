@@ -37,6 +37,9 @@
 
 				&.cs-checkbox-brand {
 					@include sbg(--cs-checkbox-bg-brand);
+					@include css4 {
+						border: 1px solid cvar(--cs-checkbox-brand-focus-br);
+					}
 
 					&::after {
 						@include css4 {

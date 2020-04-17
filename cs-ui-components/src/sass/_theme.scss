@@ -140,7 +140,7 @@ $variables: (
 	--cs-input-error-br: $cs-red-medium-2,
 	--cs-input-error-shadow: $cs-red-medium-1,
 	--cs-input-shadow: $cs-blue-sf,
-	--cs-input-icon-fill: $cs-gray-dark-5,
+	--cs-input-icon-fill: $cs-gray-medium-2,
 
 	--cs-toggle-c: $cs-gray-dark-2,
 	--cs-toggle-br: $cs-gray-medium-2,
@@ -179,6 +179,7 @@ $variables: (
 	--cs-checkbox-br: $cs-gray-light-2,
 	--cs-checkbox-neutral-checked-br: $cs-blue-sf,
 	--cs-checkbox-brand-checked-br: $cs-white,
+	--cs-checkbox-brand-focus-br: $cs-blue-sf,
 	--cs-checkbox-focus-br: $cs-blue-medium-5,
 	--cs-checkbox-focus-box: $cs-blue-sf,
 	--cs-checkbox-disabled-bg: $cs-gray-light-5,
