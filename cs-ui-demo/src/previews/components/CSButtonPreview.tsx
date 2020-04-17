@@ -23,7 +23,7 @@ class CSButtonPreview extends React.Component {
 						{
 							variationName: ['default', 'initial'],
 							string: '',
-							component: <CSButton iconName="activity" label="default initial"/>
+							component: <CSButton iconName="activity" label="default initial" />
 						},
 						{
 							variationName: ['default', 'brand'],
@@ -85,6 +85,79 @@ class CSButtonPreview extends React.Component {
 							variationName: ['success', 'outline'],
 							string: '',
 							component: <CSButton btnType="success" btnStyle="outline" iconName="activity" label="success outline"/>
+						}
+					]
+				},
+				{
+					propName: 'color',
+					customText: '',
+					variations: [
+						{
+							variationName: ['pink', 'default', 'initial'],
+							string: '',
+							component: <CSButton
+											btnStyle="default"
+											color="pink"
+											label="custom color button"
+											iconName="activity"
+										/>
+						},
+						{
+							variationName: ['pink', 'default', 'brand'],
+							string: '',
+							component: <CSButton
+											btnStyle="brand"
+											color="pink"
+											label="custom color button"
+											iconName="activity"
+										/>
+						},
+						{
+							variationName: ['pink', 'default', 'outline'],
+							string: '',
+							component: <CSButton
+											btnStyle="outline"
+											color="pink"
+											label="custom color button"
+											iconName="activity"
+										/>
+						},
+						{
+							variationName: ['pink', 'transparent', 'inital'],
+							string: '',
+							component: <div className="blue-background">
+											<CSButton
+												btnType="transparent"
+												btnStyle="initial"
+												color="pink"
+												label="custom color button"
+												iconName="activity"
+											/>
+										</div>
+						},
+						{
+							variationName: ['pink', 'transparent', 'brand'],
+							string: '',
+							component: <CSButton
+											btnType="transparent"
+											btnStyle="brand"
+											color="pink"
+											label="custom color button"
+											iconName="activity"
+										/>
+						},
+						{
+							variationName: ['pink', 'transparent', 'outline'],
+							string: '',
+							component: <div className="blue-background">
+											<CSButton
+												btnType="transparent"
+												btnStyle="outline"
+												color="pink"
+												label="custom color button"
+												iconName="activity"
+										/>
+										</div>
 						}
 					]
 				},
@@ -366,11 +439,6 @@ class CSButtonPreview extends React.Component {
 					]
 				},
 				{
-					propertyName: 'colorOverride',
-					description: 'Icon and label color (not supported yet)',
-					options: ['hex value']
-				},
-				{
 					propertyName: 'label',
 					description: 'Button label to display',
 					options: [
@@ -398,6 +466,11 @@ class CSButtonPreview extends React.Component {
 				{
 					propertyName: 'className',
 					description: 'For implementing custom class to component',
+					options: []
+				},
+				{
+					propertyName: 'color',
+					description: 'For implementing color to component',
 					options: []
 				}
 			],

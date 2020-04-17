@@ -19,6 +19,7 @@ export interface CSButtonProps {
 	link?: string;
 	loading?: boolean;
 	className?: string;
+	color?: string;
 }
 
 class CSButton extends React.Component<CSButtonProps> {
@@ -68,10 +69,11 @@ class CSButton extends React.Component<CSButtonProps> {
 			disabled={this.props.disabled || this.props.loading}
 			aria-label={this.props.label}
 			title={this.props.iconDisplay === 'icon-only' ? this.props.iconName : ''}
+			style={{'--cs-btn-custom-c': this.props.color}}
 		>
 			{(this.props.iconName && !this.props.loading) && (
 				<span className="cs-btn-icon">
-					<CSIcon name={this.props.iconName} rotate={this.props.iconRotate} origin={this.props.iconOrigin}/>
+					<CSIcon name={this.props.iconName} rotate={this.props.iconRotate} origin={this.props.iconOrigin} />
 				</span>
 			)}
 			{this.props.loading &&
