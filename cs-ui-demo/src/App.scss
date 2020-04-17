@@ -659,9 +659,15 @@ body,
 		font-size: 0.8rem;
 		line-height: 1;
 		margin-right: 0.3rem;
-		color: #999;
-		background: rgba(#fff, 0.34);
-		border: 1px solid #999;
+		color: #fff;
+		border: 1px solid #0070d2;
+		background: #0070d2;
+
+		&-secondary {
+			color: #999;
+			background: rgba(#fff, 0.34);
+			border: 1px solid #999;
+		}
 	}
 
 	/* CS COLORS PREVIEW */

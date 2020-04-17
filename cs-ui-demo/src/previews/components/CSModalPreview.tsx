@@ -19,7 +19,8 @@ class CSModalPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['size="small"', 'closeButton={true}', 'align="left"'],
+							variationName: ['small'],
+							variationText: 'closeButton={true}, align="left"',
 							string: '',
 							component: (
 								<CSModal size="small" closeButton>
@@ -48,7 +49,8 @@ class CSModalPreview extends React.Component {
 							)
 						},
 						{
-							variationName: ['size="medium"', 'closeButton={false}', 'align="right"'],
+							variationName: ['medium'],
+							variationText: 'closeButton={false}, align="right"',
 							string: '',
 							component: (
 								<CSModal size="medium" closeButton={false}>
@@ -77,7 +79,8 @@ class CSModalPreview extends React.Component {
 							)
 						},
 						{
-							variationName: ['size="large"', 'closeButton={true}', 'align="center"'],
+							variationName: ['large'],
+							variationText: 'closeButton={true}, align="center"',
 							string: '',
 							component: (
 								<CSModal size="large" closeButton>
@@ -105,7 +108,8 @@ class CSModalPreview extends React.Component {
 							)
 						},
 						{
-							variationName: ['size="xlarge"', 'closeButton={false}', 'align="right"'],
+							variationName: ['xlarge'],
+							variationText: 'closeButton={false}, align="right"',
 							string: '',
 							component: (
 								<CSModal size="xlarge" closeButton={false}>

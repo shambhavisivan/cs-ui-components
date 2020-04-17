@@ -165,7 +165,7 @@
 	/* SIZE */
 	&.cs-btn-size-small {
 		height: 1.5rem;
-		padding: 0 0.75rem 0 0.25rem;
+		padding: 0 0.75rem 0 0.0625rem;
 		&.cs-btn-icon-only {
 			padding: 0;
 			width: 1.5rem;
@@ -175,13 +175,13 @@
 			padding: 0 1rem;
 		}
 		.cs-btn-label, .cs-btn-icon {
-			height: calc(1.5rem - 2px);
+			height: calc(1.5rem - 0.125rem);
 		}
 	}
 	&.cs-btn-size-xsmall {
 		min-width: 1.25rem;
 		height: 1.25rem;
-		padding: 0 0.25rem;
+		padding: 0 0.25rem 0 0.0625rem;
 		.cs-btn-icon {
 			min-width: 1.25rem;
 			width: 1.25rem;
@@ -194,7 +194,7 @@
 			padding: 0;
 		}
 		.cs-btn-label, .cs-btn-icon {
-			height: calc(1.25rem - 2px);
+			height: calc(1.25rem - 0.125rem);
 		}
 	}
 	&.cs-btn-size-large {
