@@ -19,6 +19,7 @@ class CSAlertPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['info'],
+							quickLink: 'info',
 							string: '',
 							component:
 								<CSAlert
@@ -29,6 +30,7 @@ class CSAlertPreview extends React.Component {
 						},
 						{
 							variationName: ['warning'],
+							quickLink: 'warning',
 							string: '',
 							component:
 								<CSAlert
@@ -39,6 +41,7 @@ class CSAlertPreview extends React.Component {
 						},
 						{
 							variationName: ['error'],
+							quickLink: 'error',
 							string: '',
 							component:
 								<CSAlert
@@ -49,6 +52,7 @@ class CSAlertPreview extends React.Component {
 						},
 						{
 							variationName: ['offline'],
+							quickLink: 'offline',
 							string: '',
 							component:
 								<CSAlert
@@ -63,7 +67,9 @@ class CSAlertPreview extends React.Component {
 					propName: 'styleType',
 					variations: [
 						{
-							variationName: ['light', 'info'],
+							variationName: ['light'],
+							quickLink: 'light info',
+							variationText: ['variant="info"'],
 							string: '',
 							component:
 								<CSAlert
@@ -74,7 +80,9 @@ class CSAlertPreview extends React.Component {
 								/>
 						},
 						{
-							variationName: ['light', 'error'],
+							variationName: ['light'],
+							quickLink: 'light error',
+							variationText: ['variant="error"'],
 							string: '',
 							component:
 								<CSAlert
@@ -85,7 +93,9 @@ class CSAlertPreview extends React.Component {
 								/>
 						},
 						{
-							variationName: ['light', 'warning'],
+							variationName: ['light'],
+							quickLink: 'light warning',
+							variationText: ['variant="warning"'],
 							string: '',
 							component:
 								<CSAlert
@@ -102,6 +112,7 @@ class CSAlertPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['left'],
+							quickLink: 'left',
 							string: '',
 							component:
 								<CSAlert
@@ -112,7 +123,9 @@ class CSAlertPreview extends React.Component {
 								/>
 						},
 						{
-							variationName: ['left', 'array'],
+							variationName: ['left'],
+							quickLink: 'left with array',
+							variationText: ['array'],
 							string: '',
 							component:
 								<CSAlert
@@ -124,6 +137,7 @@ class CSAlertPreview extends React.Component {
 						},
 						{
 							variationName: ['center'],
+							quickLink: 'center',
 							string: '',
 							component:
 								<CSAlert
@@ -141,6 +155,7 @@ class CSAlertPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['quote'],
+							quickLink: 'quote',
 							string: '',
 							component:
 								<CSAlert
@@ -157,6 +172,7 @@ class CSAlertPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSAlert
@@ -167,6 +183,7 @@ class CSAlertPreview extends React.Component {
 						},
 						{
 							variationName: ['false'],
+							quickLink: 'false',
 							string: '',
 							component:
 								<CSAlert
@@ -183,6 +200,7 @@ class CSAlertPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSAlert
@@ -193,6 +211,7 @@ class CSAlertPreview extends React.Component {
 						},
 						{
 							variationName: ['false'],
+							quickLink: 'false',
 							string: '',
 							component:
 								<CSAlert
@@ -207,6 +226,7 @@ class CSAlertPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['className'],
+							quickLink: 'custom class',
 							string: '',
 							component:
 								<CSAlert
@@ -223,7 +243,8 @@ class CSAlertPreview extends React.Component {
 					customText: 'Want to add custom styling or features? Just write the code inside the component tags as shown below. If you need to add a link there is already a .cs-alert-link class to make it easy. Inspect the example below for a better look.',
 					variations: [
 						{
-							variationName: ['custom-link'],
+							variationName: ['custom link'],
+							quickLink: 'custom link',
 							string: '',
 							component:
 								<CSAlert
@@ -234,7 +255,8 @@ class CSAlertPreview extends React.Component {
 								</CSAlert>
 						},
 						{
-							variationName: ['custom-text'],
+							variationName: ['custom text'],
+							quickLink: 'custom text',
 							string: '',
 							component:
 								<CSAlert

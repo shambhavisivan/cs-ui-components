@@ -20,36 +20,48 @@ class CSChipPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['brand'],
+							quickLink: 'brand',
+							variationText: ['variantStyle="fill"'],
 							string: '',
 							component:
 								<CSChip text="brand" variant="brand" />
 						},
 						{
 							variationName: ['success'],
+							quickLink: 'success',
+							variationText: ['variantStyle="fill"'],
 							string: '',
 							component:
 								<CSChip text="success" variant="success" />
 						},
 						{
 							variationName: ['neutral'],
+							quickLink: 'neutral',
+							variationText: ['variantStyle="fill"'],
 							string: '',
 							component:
 								<CSChip text="neutral" variant="neutral"/>
 						},
 						{
 							variationName: ['error'],
+							quickLink: 'error',
+							variationText: ['variantStyle="fill"'],
 							string: '',
 							component:
 								<CSChip text="error" variant="error" />
 						},
 						{
 							variationName: ['warning'],
+							quickLink: 'warning',
+							variationText: ['variantStyle="fill"'],
 							string: '',
 							component:
 								<CSChip text="warning" variant="warning" />
 						},
 						{
 							variationName: ['transparent'],
+							quickLink: 'transparent',
+							variationText: ['variantStyle="fill"'],
 							string: '',
 							component:
 								<CSChip text="transparent" variant="transparent" />
@@ -60,37 +72,49 @@ class CSChipPreview extends React.Component {
 					propName: 'variantStyle',
 					variations: [
 						{
-							variationName: ['brand', 'border'],
+							variationName: ['border'],
+							quickLink: 'border brand',
+							variationText: ['variant="brand"'],
 							string: '',
 							component:
 								<CSChip text="brand" variantStyle="border" />
 						},
 						{
-							variationName: ['success', 'border'],
+							variationName: ['border'],
+							quickLink: 'border success',
+							variationText: ['variant="success"'],
 							string: '',
 							component:
 								<CSChip text="success" variant="success" variantStyle="border" />
 						},
 						{
-							variationName: ['neutral', 'border'],
+							variationName: ['border'],
+							quickLink: 'border neutral',
+							variationText: ['variant="brand"'],
 							string: '',
 							component:
 								<CSChip text="neutral" variant="neutral" variantStyle="border" />
 						},
 						{
-							variationName: ['error', 'border'],
+							variationName: ['border'],
+							quickLink: 'border error',
+							variationText: ['variant="error"'],
 							string: '',
 							component:
 								<CSChip text="error" variant="error" variantStyle="border" />
 						},
 						{
-							variationName: ['warning', 'border'],
+							variationName: ['border'],
+							quickLink: 'border warning',
+							variationText: ['variant="warning"'],
 							string: '',
 							component:
 								<CSChip text="warning" variant="warning" variantStyle="border" />
 						},
 						{
-							variationName: ['transparent', 'border'],
+							variationName: ['border'],
+							quickLink: 'border transparent',
+							variationText: ['variant="transparent"'],
 							string: '',
 							component:
 								<CSChip text="transparent" variant="transparent" variantStyle="border" />
@@ -102,6 +126,8 @@ class CSChipPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
+							variationName: ['className'],
+							quickLink: 'custom class',
 							string: '',
 							component:
 								<CSChip text="brand" className="custom-class" />

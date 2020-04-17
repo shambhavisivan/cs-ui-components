@@ -7,14 +7,14 @@
 
 	.cs-input-text {
 		@include input;
+
+		// Square
+		&.cs-input-text-square {
+			border-radius: 0;
+		}
 	}
 
 	.cs-input-error-msg {
 		@include error-message;
 	}
-}
-
-// Square
-.cs-input-text-square {
-	border-radius: 0;
 }

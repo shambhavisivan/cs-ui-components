@@ -42,6 +42,8 @@ class CSPathPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
+							variationName: ['custom class'],
+							quickLink: 'custom class',
 							string: '',
 							component:
 								<CSPath className="custom-class">

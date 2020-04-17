@@ -20,6 +20,8 @@ class CSToastPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['info'],
+							quickLink: 'info',
+							variationText: ['closeButton="true"'],
 							string: '',
 							component:
 								<CSToast
@@ -30,6 +32,8 @@ class CSToastPreview extends React.Component {
 						},
 						{
 							variationName: ['success'],
+							quickLink: 'success',
+							variationText: ['closeButton="true"'],
 							string: '',
 							component:
 								<CSToast
@@ -40,6 +44,8 @@ class CSToastPreview extends React.Component {
 						},
 						{
 							variationName: ['warning'],
+							quickLink: 'warning',
+							variationText: ['closeButton="true"'],
 							string: '',
 							component:
 								<CSToast
@@ -50,6 +56,8 @@ class CSToastPreview extends React.Component {
 						},
 						{
 							variationName: ['error'],
+							quickLink: 'error',
+							variationText: ['closeButton="true"'],
 							string: '',
 							component:
 								<CSToast
@@ -65,6 +73,8 @@ class CSToastPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['left'],
+							quickLink: 'left',
+							variationText: ['variant="info"', 'closeButton="true"'],
 							string: '',
 							component:
 								<CSToast
@@ -76,6 +86,8 @@ class CSToastPreview extends React.Component {
 						},
 						{
 							variationName: ['center'],
+							quickLink: 'center',
+							variationText: ['variant="info"', 'closeButton="true"'],
 							string: '',
 							component:
 								<CSToast
@@ -92,6 +104,8 @@ class CSToastPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['100%'],
+							quickLink: '100%',
+							variationText: ['variant="info"', 'closeButton="true"'],
 							string: '',
 							component:
 								<CSToast
@@ -103,6 +117,8 @@ class CSToastPreview extends React.Component {
 						},
 						{
 							variationName: ['600px'],
+							quickLink: '600px',
+							variationText: ['variant="info"', 'closeButton="true"'],
 							string: '',
 							component:
 								<CSToast
@@ -119,6 +135,8 @@ class CSToastPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
+							variationText: ['variant="info"'],
 							string: '',
 							component:
 								<CSToast
@@ -129,6 +147,8 @@ class CSToastPreview extends React.Component {
 						},
 						{
 							variationName: ['false'],
+							quickLink: 'false',
+							variationText: ['variant="info"'],
 							string: '',
 							component:
 								<CSToast
@@ -145,6 +165,8 @@ class CSToastPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['quote'],
+							quickLink: 'quote',
+							variationText: ['variant="warning"', 'closeButton="true"'],
 							string: '',
 							component:
 								<CSToast
@@ -161,6 +183,8 @@ class CSToastPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
+							variationText: ['variant="info"', 'closeButton="true"'],
 							string: '',
 							component:
 								<CSToast
@@ -171,6 +195,8 @@ class CSToastPreview extends React.Component {
 						},
 						{
 							variationName: ['false'],
+							quickLink: 'false',
+							variationText: ['variant="success"', 'closeButton="true"'],
 							string: '',
 							component:
 								<CSToast
@@ -186,6 +212,7 @@ class CSToastPreview extends React.Component {
 					propName: 'detail',
 					variations: [
 						{
+							variationText: ['variant="info"', 'closeButton="true"', 'iconVisibility="true"'],
 							string: '',
 							component:
 								<CSToast
@@ -202,6 +229,9 @@ class CSToastPreview extends React.Component {
 					propName: 'className',
 					variations: [
 						{
+							variationName: ['custom class'],
+							quickLink: 'custom class',
+							variationText: ['variant="info"', 'closeButton="true"'],
 							string: '',
 							component:
 								<CSToast
@@ -219,10 +249,12 @@ class CSToastPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['Add a custom link'],
+							quickLink: 'Add a custom link',
+							variationText: ['variant="warning"', 'closeButton="true"', 'iconVisibility="true"'],
 							string: '',
 							component:
 								<CSToast
-									variant="info"
+									variant="warning"
 									closeButton
 									iconVisibility
 								>
@@ -231,10 +263,12 @@ class CSToastPreview extends React.Component {
 						},
 						{
 							variationName: ['Bold and italic text'],
+							quickLink: 'Bold and italic text',
+							variationText: ['variant="success"', 'closeButton="true"', 'iconVisibility="true"'],
 							string: '',
 							component:
 								<CSToast
-									variant="info"
+									variant="success"
 									closeButton
 									iconVisibility
 								>

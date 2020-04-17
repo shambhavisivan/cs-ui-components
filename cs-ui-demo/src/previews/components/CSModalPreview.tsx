@@ -20,7 +20,8 @@ class CSModalPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['small'],
-							variationText: 'closeButton={true}, align="left"',
+							quickLink: 'small',
+							variationText: ['closeButton={true}', 'align="left"'],
 							string: '',
 							component: (
 								<CSModal size="small" closeButton>
@@ -50,7 +51,8 @@ class CSModalPreview extends React.Component {
 						},
 						{
 							variationName: ['medium'],
-							variationText: 'closeButton={false}, align="right"',
+							quickLink: 'medium',
+							variationText: ['closeButton={false}', 'align="right"'],
 							string: '',
 							component: (
 								<CSModal size="medium" closeButton={false}>
@@ -80,7 +82,8 @@ class CSModalPreview extends React.Component {
 						},
 						{
 							variationName: ['large'],
-							variationText: 'closeButton={true}, align="center"',
+							quickLink: 'large',
+							variationText: ['closeButton={true}', 'align="center"'],
 							string: '',
 							component: (
 								<CSModal size="large" closeButton>
@@ -109,7 +112,8 @@ class CSModalPreview extends React.Component {
 						},
 						{
 							variationName: ['xlarge'],
-							variationText: 'closeButton={false}, align="right"',
+							quickLink: 'xlarge',
+							variationText: ['closeButton={false}', 'align="right"'],
 							string: '',
 							component: (
 								<CSModal size="xlarge" closeButton={false}>
@@ -141,18 +145,20 @@ class CSModalPreview extends React.Component {
 					]
 				},
 				{
-					propName: 'className',
+					propName: 'padding',
 					customText: '',
 					variations: [
 						{
+							variationName: ['0'],
+							quickLink: '0',
 							string: '',
 							component: (
-								<CSModal size="small" closeButton className="custom-class">
+								<CSModal size="small" closeButton>
 									<CSModalHeader
 										title="This is a test heading"
 										subtitle="This is a test subtitle"
 									/>
-									<CSModalBody>
+									<CSModalBody padding="0">
 										<p>
 											Sit nulla est ex deserunt exercitation anim occaecat.
 											<br/>
@@ -195,45 +201,12 @@ class CSModalPreview extends React.Component {
 					]
 				},
 				{
-					propName: 'padding',
-					customText: '',
-					variations: [
-						{
-							variationName: ['0'],
-							string: '',
-							component: (
-								<CSModal size="small" closeButton>
-									<CSModalHeader
-										title="This is a test heading"
-										subtitle="This is a test subtitle"
-									/>
-									<CSModalBody padding="0">
-										<p>
-											Sit nulla est ex deserunt exercitation anim occaecat.
-											<br/>
-											<br/>
-											Nostrud ullamco deserunt aute id consequat veniam
-											incididunt duis in sint irure nisi. Mollit officia cillum
-											Lorem ullamco minim nostrud elit officia tempor esse quis.
-											Cillum sunt ad dolore quis aute consequat ipsum magna
-											exercitation reprehenderit magna. Tempor cupidatat
-											consequat elit dolor adipisicing.
-										</p>
-									</CSModalBody>
-									<CSModalFooter>
-										<CSButton label="Default Button"/>
-										<CSButton label="Brand Button" btnStyle="brand"/>
-									</CSModalFooter>
-								</CSModal>
-							)
-						}
-					]
-				},
-				{
 					propName: 'loading',
 					customText: '',
 					variations: [
 						{
+							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component: (
 								<CSModal size="medium" loading>
@@ -263,6 +236,42 @@ class CSModalPreview extends React.Component {
 									</CSModalBody>
 									<CSModalFooter>
 										<CSButton label="Default Button"/>
+									</CSModalFooter>
+								</CSModal>
+							)
+						}
+					]
+				},
+				{
+					propName: 'className',
+					customText: '',
+					variations: [
+						{
+							variationName: ['custom class'],
+							quickLink: 'custom class',
+							string: '',
+							component: (
+								<CSModal size="small" closeButton className="custom-class">
+									<CSModalHeader
+										title="This is a test heading"
+										subtitle="This is a test subtitle"
+									/>
+									<CSModalBody>
+										<p>
+											Sit nulla est ex deserunt exercitation anim occaecat.
+											<br/>
+											<br/>
+											Nostrud ullamco deserunt aute id consequat veniam
+											incididunt duis in sint irure nisi. Mollit officia cillum
+											Lorem ullamco minim nostrud elit officia tempor esse quis.
+											Cillum sunt ad dolore quis aute consequat ipsum magna
+											exercitation reprehenderit magna. Tempor cupidatat
+											consequat elit dolor adipisicing.
+										</p>
+									</CSModalBody>
+									<CSModalFooter>
+										<CSButton label="Default Button"/>
+										<CSButton label="Brand Button" btnStyle="brand"/>
 									</CSModalFooter>
 								</CSModal>
 							)

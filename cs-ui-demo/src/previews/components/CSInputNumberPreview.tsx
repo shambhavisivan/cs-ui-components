@@ -74,24 +74,28 @@ class CSInputNumberPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['top-right'],
+							quickLink: 'top-right',
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" helpText="Help text example" tooltipPosition="top-right" />
 						},
 						{
 							variationName: ['top-left'],
+							quickLink: 'top-left',
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" helpText="Help text example" tooltipPosition="top-left" />
 						},
 						{
 							variationName: ['bottom-right'],
+							quickLink: 'bottom-right',
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" helpText="Help text example" tooltipPosition="bottom-right" />
 						},
 						{
 							variationName: ['bottom-left'],
+							quickLink: 'bottom-left',
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" helpText="Help text example" tooltipPosition="bottom-left" />
@@ -103,6 +107,7 @@ class CSInputNumberPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" disabled />
@@ -114,6 +119,7 @@ class CSInputNumberPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" readOnly placeholder="This is read only"/>
@@ -125,6 +131,7 @@ class CSInputNumberPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSInputNumber required label="Enter value" id="number" />
@@ -136,6 +143,7 @@ class CSInputNumberPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" error />
@@ -146,6 +154,7 @@ class CSInputNumberPreview extends React.Component {
 					propName: 'errorMessage',
 					variations: [
 						{
+							variationText: ['error="true"'],
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" error errorMessage="Error message!"/>
@@ -177,6 +186,7 @@ class CSInputNumberPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['square'],
+							quickLink: 'square',
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" borderType="square" />
@@ -189,6 +199,7 @@ class CSInputNumberPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSInputNumber label="hideSpinner true" hideSpinner />
@@ -210,6 +221,8 @@ class CSInputNumberPreview extends React.Component {
 					propName: 'className',
 					variations: [
 						{
+							variationName: ['custom class'],
+							quickLink: 'custom class',
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" className="custom-class"/>

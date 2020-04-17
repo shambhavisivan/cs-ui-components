@@ -16,10 +16,10 @@ class CSButtonGroupPreview extends React.Component {
 			examples: [
 				{
 					propName: 'combined',
-					customText: '',
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSButtonGroup
@@ -53,6 +53,7 @@ class CSButtonGroupPreview extends React.Component {
 						},
 						{
 							variationName: ['false'],
+							quickLink: 'false',
 							string: '',
 							component:
 								<CSButtonGroup
@@ -91,6 +92,8 @@ class CSButtonGroupPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
+							variationName: ['custom class'],
+							quickLink: 'custom class',
 							string: '',
 							component:
 								<CSButtonGroup

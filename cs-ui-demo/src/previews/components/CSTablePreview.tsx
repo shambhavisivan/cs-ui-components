@@ -15,10 +15,12 @@ class CSTablePreview extends React.Component {
 			usage: 'Tables are an enhanced version of an HTML table and are used to display tabular data.',
 			examples: [
 				{
-					propName: '',
+					propName: 'className',
 					customText: '',
 					variations: [
 						{
+							variationName: ['custom class'],
+							quickLink: 'custom class',
 							string: '',
 							component:
 								<CSTable className="custom-class">

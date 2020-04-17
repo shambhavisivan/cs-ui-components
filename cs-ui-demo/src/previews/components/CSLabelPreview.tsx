@@ -30,38 +30,10 @@ class CSLabelPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSLabel label="Label" required/>
-						}
-					]
-				},
-				{
-					propName: 'tooltipPosition',
-					variations: [
-						{
-							variationName: ['top-right'],
-							string: '',
-							component:
-									<CSLabel label="Label" helpText="Help text example" tooltipPosition="top-right" />
-						},
-						{
-							variationName: ['top-left'],
-							string: '',
-							component:
-									<CSLabel label="Label" helpText="Help text example" tooltipPosition="top-left" />
-						},
-						{
-							variationName: ['bottom-right'],
-							string: '',
-							component:
-									<CSLabel label="Label" helpText="Help text example" tooltipPosition="bottom-right" />
-						},
-						{
-							variationName: ['bottom-left'],
-							string: '',
-							component:
-									<CSLabel label="Label" helpText="Help text example" tooltipPosition="bottom-left" />
 						}
 					]
 				},
@@ -76,9 +48,44 @@ class CSLabelPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'tooltipPosition',
+					variations: [
+						{
+							variationName: ['top-right'],
+							quickLink: 'top-right',
+							string: '',
+							component:
+									<CSLabel label="Label" helpText="Help text example" tooltipPosition="top-right" />
+						},
+						{
+							variationName: ['top-left'],
+							quickLink: 'top-left',
+							string: '',
+							component:
+									<CSLabel label="Label" helpText="Help text example" tooltipPosition="top-left" />
+						},
+						{
+							variationName: ['bottom-right'],
+							quickLink: 'bottom-right',
+							string: '',
+							component:
+									<CSLabel label="Label" helpText="Help text example" tooltipPosition="bottom-right" />
+						},
+						{
+							variationName: ['bottom-left'],
+							quickLink: 'bottom-left',
+							string: '',
+							component:
+									<CSLabel label="Label" helpText="Help text example" tooltipPosition="bottom-left" />
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
+							variationName: ['custom class'],
+							quickLink: 'custom class',
 							string: '',
 							component:
 								<CSLabel label="Label" helpText="Help text example" className="custom-class"/>

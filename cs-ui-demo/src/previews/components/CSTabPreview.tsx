@@ -11,7 +11,7 @@ class CSTabPreview extends React.Component {
 	getDoc() {
 
 		const json = {
-			name: 'Tabs',
+			name: 'Tab',
 			usage: 'Tabs keeps related content in a single container that is shown and hidden through navigation.',
 
 			examples: [
@@ -170,6 +170,8 @@ class CSTabPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
+							variationName: ['custom class'],
+							quickLink: 'custom class',
 							string: '',
 							component:
 							<CSTabGroup

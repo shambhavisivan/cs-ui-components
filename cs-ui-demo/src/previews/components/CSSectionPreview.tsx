@@ -20,6 +20,7 @@ class CSSectionPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSSection collapsible title="Collapsible Section">
@@ -37,6 +38,7 @@ class CSSectionPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSSection collapsed title="Collapsed Section">
@@ -53,6 +55,9 @@ class CSSectionPreview extends React.Component {
 					propName: 'className',
 					variations: [
 						{
+							variationName: ['custom class'],
+							quickLink: 'custom class',
+							variationText: ['collapsible="true"'],
 							string: '',
 							component:
 								<CSSection collapsible title="Collapsed Section" className="custom-class">

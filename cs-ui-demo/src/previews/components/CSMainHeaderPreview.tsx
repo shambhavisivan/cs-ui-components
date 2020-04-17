@@ -20,6 +20,7 @@ class CSMainHeaderPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['neutral'],
+							quickLink: 'neutral',
 							string: '',
 							component:
 								<CSMainHeader>
@@ -38,6 +39,7 @@ class CSMainHeaderPreview extends React.Component {
 						},
 						{
 							variationName: ['brand'],
+							quickLink: 'brand',
 							string: '',
 							component:
 								<CSMainHeader color="brand">
@@ -56,6 +58,7 @@ class CSMainHeaderPreview extends React.Component {
 						},
 						{
 							variationName: ['error'],
+							quickLink: 'error',
 							string: '',
 							component:
 								<CSMainHeader
@@ -76,6 +79,7 @@ class CSMainHeaderPreview extends React.Component {
 						},
 						{
 							variationName: ['info'],
+							quickLink: 'info',
 							string: '',
 							component:
 								<CSMainHeader
@@ -101,6 +105,7 @@ class CSMainHeaderPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['720px'],
+							quickLink: '720px',
 							string: '',
 							component:
 								<CSMainHeader maxWidth="720px">
@@ -119,6 +124,7 @@ class CSMainHeaderPreview extends React.Component {
 						},
 						{
 							variationName: ['80rem'],
+							quickLink: '80rem',
 							string: '',
 							component:
 								<CSMainHeader maxWidth="80rem">
@@ -137,6 +143,7 @@ class CSMainHeaderPreview extends React.Component {
 						},
 						{
 							variationName: ['100%'],
+							quickLink: '100%',
 							string: '',
 							component:
 								<CSMainHeader maxWidth="100%">
@@ -161,6 +168,7 @@ class CSMainHeaderPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSMainHeader>
@@ -179,6 +187,7 @@ class CSMainHeaderPreview extends React.Component {
 						},
 						{
 							variationName: ['false'],
+							quickLink: 'false',
 							string: '',
 							component:
 								<CSMainHeader
@@ -204,6 +213,8 @@ class CSMainHeaderPreview extends React.Component {
 					propName: 'className',
 					variations: [
 						{
+							variationName: ['custom class'],
+							quickLink: 'custom class',
 							string: '',
 							component:
 								<CSMainHeader className="custom-class">
@@ -228,6 +239,7 @@ class CSMainHeaderPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['Add custom buttons'],
+							quickLink: 'Add custom buttons',
 							string: '',
 							component:
 								<CSMainHeader maxWidth="100%">

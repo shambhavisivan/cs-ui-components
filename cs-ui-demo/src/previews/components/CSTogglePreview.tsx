@@ -22,6 +22,7 @@ class CSTogglePreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSToggle
@@ -36,6 +37,7 @@ class CSTogglePreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSToggle
@@ -50,6 +52,7 @@ class CSTogglePreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSToggle
@@ -64,6 +67,7 @@ class CSTogglePreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSToggle
@@ -91,6 +95,7 @@ class CSTogglePreview extends React.Component {
 					variations: [
 						{
 							variationName: ['top-right'],
+							quickLink: 'top-right',
 							string: '',
 							component:
 								<CSToggle
@@ -101,6 +106,7 @@ class CSTogglePreview extends React.Component {
 						},
 						{
 							variationName: ['top-left'],
+							quickLink: 'top-left',
 							string: '',
 							component:
 								<CSToggle
@@ -111,6 +117,7 @@ class CSTogglePreview extends React.Component {
 						},
 						{
 							variationName: ['bottom-right'],
+							quickLink: 'bottom-right',
 							string: '',
 							component:
 								<CSToggle
@@ -121,6 +128,7 @@ class CSTogglePreview extends React.Component {
 						},
 						{
 							variationName: ['bottom-left'],
+							quickLink: 'bottom-left',
 							string: '',
 							component:
 								<CSToggle
@@ -163,6 +171,8 @@ class CSTogglePreview extends React.Component {
 					propName: 'className',
 					variations: [
 						{
+							variationName: ['custom class'],
+							quickLink: 'custom class',
 							string: '',
 							component:
 								<CSToggle

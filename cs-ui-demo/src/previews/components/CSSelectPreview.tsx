@@ -50,6 +50,7 @@ class CSSelectPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSSelect label="Choose color" labelHidden id="colour">
@@ -65,6 +66,7 @@ class CSSelectPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['square'],
+							quickLink: 'square',
 							string: '',
 							component:
 								<CSSelect label="Choose:" borderType="square">
@@ -94,6 +96,7 @@ class CSSelectPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['top-right'],
+							quickLink: 'top-right',
 							string: '',
 							component:
 								<CSSelect label="Choose number" helpText="Help text example" tooltipPosition="top-right">
@@ -104,6 +107,7 @@ class CSSelectPreview extends React.Component {
 						},
 						{
 							variationName: ['top-left'],
+							quickLink: 'top-left',
 							string: '',
 							component:
 								<CSSelect label="Choose number" helpText="Help text example" tooltipPosition="top-left">
@@ -114,6 +118,7 @@ class CSSelectPreview extends React.Component {
 						},
 						{
 							variationName: ['bottom-right'],
+							quickLink: 'bottom-right',
 							string: '',
 							component:
 								<CSSelect label="Choose number" helpText="Help text example" tooltipPosition="bottom-right">
@@ -124,6 +129,7 @@ class CSSelectPreview extends React.Component {
 						},
 						{
 							variationName: ['bottom-left'],
+							quickLink: 'bottom-left',
 							string: '',
 							component:
 								<CSSelect label="Choose number" helpText="Help text example" tooltipPosition="bottom-left">
@@ -139,6 +145,7 @@ class CSSelectPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSSelect label="Choose number" disabled>
@@ -154,6 +161,7 @@ class CSSelectPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSSelect label="Choose amount" id="amount" required>
@@ -169,6 +177,7 @@ class CSSelectPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSSelect label="Choose amount" error>
@@ -183,6 +192,7 @@ class CSSelectPreview extends React.Component {
 					propName: 'errorMessage',
 					variations: [
 						{
+							variationText: ['error="true"'],
 							string: '',
 							component:
 								<CSSelect label="Choose value:" error errorMessage="Error message!">
@@ -211,6 +221,8 @@ class CSSelectPreview extends React.Component {
 					propName: 'className',
 					variations: [
 						{
+							variationName: ['custom class'],
+							quickLink: 'custom class',
 							string: '',
 							component:
 								<CSSelect label="Choose amount" className="custom-class">

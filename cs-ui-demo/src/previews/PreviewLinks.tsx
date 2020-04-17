@@ -16,11 +16,13 @@ class PreviewLinks extends React.Component<PreviewLinksProps> {
 							</a>
 						</h4>
 						{example.variations.map((variation: any, j: any) => (
-							<span key={j}>
-								<a href={`#${this.props.component.name}-${example.propName}-${variation.variationName}`}>
-									{variation.variationName}
-								</a>
-							</span>
+							variation.quickLink ? (
+								<span key={j}>
+									<a href={`#${this.props.component.name}-${example.propName}-${variation.quickLink}`}>
+										{variation.quickLink}
+									</a>
+								</span>
+							) : null
 						))}
 					</div>
 				))}

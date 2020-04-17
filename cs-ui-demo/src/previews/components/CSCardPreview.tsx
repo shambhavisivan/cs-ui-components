@@ -15,7 +15,7 @@ class CSCardPreview extends React.Component {
 			usage: 'Cards are used to apply a container around a related grouping of information.',
 			examples: [
 				{
-					propName: '',
+					propName: 'Default View',
 					customText: '',
 					variations: [
 						{
@@ -38,6 +38,8 @@ class CSCardPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
+							variationName: ['className'],
+							quickLink: 'custom class',
 							string: '',
 							component:
 								<CSCard className="custom-class">

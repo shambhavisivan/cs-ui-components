@@ -23,6 +23,7 @@ class CSCheckboxPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['square'],
+							quickLink: 'square',
 							string: '',
 							component:
 								<CSCheckbox
@@ -32,6 +33,7 @@ class CSCheckboxPreview extends React.Component {
 						},
 						{
 							variationName: ['round'],
+							quickLink: 'round',
 							string: '',
 							component:
 								<CSCheckbox
@@ -46,6 +48,7 @@ class CSCheckboxPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSCheckbox
@@ -60,6 +63,7 @@ class CSCheckboxPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSCheckbox
@@ -74,6 +78,7 @@ class CSCheckboxPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSCheckbox
@@ -88,6 +93,7 @@ class CSCheckboxPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['brand'],
+							quickLink: 'brand',
 							string: '',
 							component:
 								<CSCheckbox
@@ -102,6 +108,7 @@ class CSCheckboxPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSCheckbox
@@ -143,6 +150,7 @@ class CSCheckboxPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['top-right'],
+							quickLink: 'top-right',
 							string: '',
 							component:
 								<CSCheckbox
@@ -153,6 +161,7 @@ class CSCheckboxPreview extends React.Component {
 						},
 						{
 							variationName: ['top-left'],
+							quickLink: 'top-left',
 							string: '',
 							component:
 								<CSCheckbox
@@ -163,6 +172,7 @@ class CSCheckboxPreview extends React.Component {
 						},
 						{
 							variationName: ['bottom-right'],
+							quickLink: 'bottom-right',
 							string: '',
 							component:
 								<CSCheckbox
@@ -173,6 +183,7 @@ class CSCheckboxPreview extends React.Component {
 						},
 						{
 							variationName: ['bottom-left'],
+							quickLink: 'bottom-left',
 							string: '',
 							component:
 								<CSCheckbox
@@ -188,6 +199,7 @@ class CSCheckboxPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSCheckbox
@@ -201,6 +213,8 @@ class CSCheckboxPreview extends React.Component {
 					propName: 'className',
 					variations: [
 						{
+							variationName: ['className'],
+							quickLink: 'custom class',
 							string: '',
 							component:
 								<CSCheckbox

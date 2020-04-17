@@ -65,6 +65,7 @@ class CSTextareaPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['square'],
+							quickLink: 'square',
 							string: '',
 							component:
 								<CSTextarea label="Enter message:" borderType="square" />
@@ -86,24 +87,28 @@ class CSTextareaPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['top-right'],
+							quickLink: 'top-right',
 							string: '',
 							component:
 									<CSTextarea label="Enter message:" helpText="Help text example" tooltipPosition="top-right" />
 						},
 						{
 							variationName: ['top-left'],
+							quickLink: 'top-left',
 							string: '',
 							component:
 									<CSTextarea label="Enter message:" helpText="Help text example" tooltipPosition="top-left" />
 						},
 						{
 							variationName: ['bottom-right'],
+							quickLink: 'bottom-right',
 							string: '',
 							component:
 									<CSTextarea label="Enter message:" helpText="Help text example" tooltipPosition="bottom-right" />
 						},
 						{
 							variationName: ['bottom-left'],
+							quickLink: 'bottom-left',
 							string: '',
 							component:
 									<CSTextarea label="Enter message:" helpText="Help text example" tooltipPosition="bottom-left" />
@@ -115,6 +120,7 @@ class CSTextareaPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSTextarea label="Enter message:" disabled />
@@ -126,6 +132,7 @@ class CSTextareaPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSTextarea label="Enter message:" readOnly />
@@ -137,6 +144,7 @@ class CSTextareaPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSTextarea required label="Enter message:" id="messageContent" />
@@ -148,6 +156,7 @@ class CSTextareaPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSTextarea label="Enter message:" error />
@@ -158,6 +167,7 @@ class CSTextareaPreview extends React.Component {
 					propName: 'errorMessage',
 					variations: [
 						{
+							variationText: ['error="true"'],
 							string: '',
 							component:
 								<CSTextarea label="Enter value:" error errorMessage="Error message!"/>
@@ -169,6 +179,7 @@ class CSTextareaPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['10'],
+							quickLink: '10',
 							string: '',
 							component:
 								<CSTextarea label="Enter message:" rows={10} />
@@ -180,12 +191,14 @@ class CSTextareaPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['160px'],
+							quickLink: '160px',
 							string: '',
 							component:
 								<CSTextarea label="Enter message:" maxHeight="200px"/>
 						},
 						{
 							variationName: ['5rem'],
+							quickLink: '5rem',
 							string: '',
 							component:
 								<CSTextarea label="Enter message:" maxHeight="5rem"/>
@@ -206,6 +219,8 @@ class CSTextareaPreview extends React.Component {
 					propName: 'className',
 					variations: [
 						{
+							variationName: ['custom class'],
+							quickLink: 'custom class',
 							string: '',
 							component:
 								<CSTextarea label="Enter message:" className="custom-class"/>

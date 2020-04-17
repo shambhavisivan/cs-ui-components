@@ -19,6 +19,7 @@ class CSDividerPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['vertical'],
+							quickLink: 'vertical',
 							string: '',
 							component:
 								<CSMainHeader>
@@ -41,6 +42,7 @@ class CSDividerPreview extends React.Component {
 						},
 						{
 							variationName: ['horizontal'],
+							quickLink: 'horizontal',
 							string: '',
 							component:
 								<CSButtonDropdown>
@@ -56,6 +58,8 @@ class CSDividerPreview extends React.Component {
 					propName: 'className',
 					variations: [
 						{
+							variationName: ['custom class'],
+							quickLink: 'custom class',
 							string: '',
 							component:
 								<CSButtonGroup>

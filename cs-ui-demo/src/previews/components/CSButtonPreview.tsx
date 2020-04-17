@@ -17,26 +17,34 @@ class CSButtonPreview extends React.Component {
 			usage: 'Button provides a base UI for button actions',
 			examples: [
 				{
-					propName: 'btnType and btnStyle',
+					propName: 'btnType',
 					customText: '',
 					variations: [
 						{
-							variationName: ['default', 'initial'],
+							variationName: ['default'],
+							quickLink: 'default initial',
+							variationText: ['btnStyle="initial"'],
 							string: '',
 							component: <CSButton iconName="activity" label="default initial" />
 						},
 						{
-							variationName: ['default', 'brand'],
+							variationName: ['default'],
+							quickLink: 'default brand',
+							variationText: ['btnStyle="brand"'],
 							string: '',
 							component: <CSButton btnStyle="brand" iconName="activity" label="default brand"/>
 						},
 						{
-							variationName: ['default', 'outline'],
+							variationName: ['default'],
+							quickLink: 'default outline',
+							variationText: ['btnStyle="outline"'],
 							string: '',
 							component: <CSButton btnStyle="outline" iconName="activity" label="default outline"/>
 						},
 						{
-							variationName: ['transparent', 'initial'],
+							variationName: ['transparent'],
+							quickLink: 'transparent initial',
+							variationText: ['btnStyle="initial"'],
 							string: '',
 							customClass: 'inverse-background',
 							component: <div className="blue-background">
@@ -44,12 +52,16 @@ class CSButtonPreview extends React.Component {
 							</div>
 						},
 						{
-							variationName: ['transparent', 'brand'],
+							variationName: ['transparent'],
+							quickLink: 'transparent brand',
+							variationText: ['btnStyle="brand"'],
 							string: '',
 							component: <CSButton btnType="transparent" btnStyle="brand" iconName="activity" label="transparent brand"/>
 						},
 						{
-							variationName: ['transparent', 'outline'],
+							variationName: ['transparent'],
+							quickLink: 'transparent outline',
+							variationText: ['btnStyle="outline"'],
 							string: '',
 							customClass: 'inverse-background',
 							component: <div className="blue-background">
@@ -57,32 +69,44 @@ class CSButtonPreview extends React.Component {
 							</div>
 						},
 						{
-							variationName: ['error', 'initial'],
+							variationName: ['error'],
+							quickLink: 'error initial',
+							variationText: ['btnStyle="initial"'],
 							string: '',
 							component: <CSButton btnType="error" iconName="activity" label="error initial"/>
 						},
 						{
-							variationName: ['error', 'brand'],
+							variationName: ['error'],
+							quickLink: 'error brand',
+							variationText: ['btnStyle="brand"'],
 							string: '',
 							component: <CSButton btnType="error" btnStyle="brand" iconName="activity" label="error brand"/>
 						},
 						{
-							variationName: ['error', 'outline'],
+							variationName: ['error'],
+							quickLink: 'error outline',
+							variationText: ['btnStyle="outline"'],
 							string: '',
 							component: <CSButton btnType="error" btnStyle="outline" iconName="activity" label="error outline"/>
 						},
 						{
-							variationName: ['success', 'initial'],
+							variationName: ['success'],
+							quickLink: 'success initial',
+							variationText: ['btnStyle="initial"'],
 							string: '',
 							component: <CSButton btnType="success" iconName="activity" label="success initial"/>
 						},
 						{
-							variationName: ['success', 'brand'],
+							variationName: ['success'],
+							quickLink: 'success brand',
+							variationText: ['btnStyle="brand"'],
 							string: '',
 							component: <CSButton btnType="success" btnStyle="brand" iconName="activity" label="success brand"/>
 						},
 						{
-							variationName: ['success', 'outline'],
+							variationName: ['success'],
+							quickLink: 'success outline',
+							variationText: ['btnStyle="outline"'],
 							string: '',
 							component: <CSButton btnType="success" btnStyle="outline" iconName="activity" label="success outline"/>
 						}
@@ -167,16 +191,19 @@ class CSButtonPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['large'],
+							quickLink: 'large',
 							string: '',
 							component: <CSButton size="large" iconName="activity" label="default large"/>
 						},
 						{
 							variationName: ['small'],
+							quickLink: 'small',
 							string: '',
 							component: <CSButton size="small" iconName="activity" label="default small"/>
 						},
 						{
 							variationName: ['xsmall'],
+							quickLink: 'xsmall',
 							string: '',
 							component: <CSButton size="xsmall" iconName="activity" label="default xsmall"/>
 						}
@@ -188,6 +215,7 @@ class CSButtonPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component: <CSButton btnRound iconName="activity" label="default round"/>
 						}
@@ -198,7 +226,6 @@ class CSButtonPreview extends React.Component {
 					customText: 'onClick prop for onClick event - verify the click by opening browser console',
 					variations: [
 						{
-
 							string: '',
 							component: <CSButton onClick={clickHandler} iconName="activity" label="default round"/>
 						}
@@ -210,21 +237,28 @@ class CSButtonPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['icon-only'],
+							quickLink: 'icon-only',
 							string: '',
 							component: <CSButton label="activity icon button" iconName="activity" iconDisplay="icon-only"/>
 						},
 						{
-							variationName: ['icon-only', 'large'],
+							variationName: ['icon-only'],
+							quickLink: 'icon-only large',
+							variationText: ['size="large"'],
 							string: '',
 							component: <CSButton label="activity icon button" iconName="activity" iconDisplay="icon-only" size="large"/>
 						},
 						{
-							variationName: ['icon-only', 'small'],
+							variationName: ['icon-only'],
+							quickLink: 'icon-only small',
+							variationText: ['size="small"'],
 							string: '',
 							component: <CSButton label="activity icon button" iconName="activity" iconDisplay="icon-only" size="small"/>
 						},
 						{
-							variationName: ['icon-only', 'xsmall'],
+							variationName: ['icon-only'],
+							quickLink: 'icon-only xsmall',
+							variationText: ['size="xsmall"'],
 							string: '',
 							component: <CSButton label="activity icon button" iconName="activity" iconDisplay="icon-only" size="xsmall"/>
 						}
@@ -235,12 +269,14 @@ class CSButtonPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['default', 'left'],
+							variationName: ['left'],
+							quickLink: 'left',
 							string: '',
 							component: <CSButton iconName="activity" iconPosition="left" label="Icon Left"/>
 						},
 						{
-							variationName: ['default', 'right'],
+							variationName: ['right'],
+							quickLink: 'right',
 							string: '',
 							component: <CSButton iconName="activity" iconPosition="right" label="Icon Right"/>
 						}
@@ -251,12 +287,14 @@ class CSButtonPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['default', 'icon-only'],
+							variationName: ['slds'],
+							quickLink: 'slds',
 							string: '',
 							component: <CSButton iconOrigin="slds" iconName="activity" iconDisplay="icon-only" label="default icon-only round"/>
 						},
 						{
-							variationName: ['default', 'icon-only'],
+							variationName: ['cs'],
+							quickLink: 'cs',
 							string: '',
 							component: <CSButton iconOrigin="cs" iconName="tag" iconDisplay="icon-only" label="default icon-only round"/>
 						}
@@ -294,16 +332,19 @@ class CSButtonPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['90'],
+							quickLink: '90',
 							string: '',
 							component: <CSButton iconName="activity" iconRotate="90" label="Icon rotated 90 degrees"/>
 						},
 						{
 							variationName: ['180'],
+							quickLink: '180',
 							string: '',
 							component: <CSButton iconName="activity" iconRotate="180" label="Icon rotated 180 degrees"/>
 						},
 						{
 							variationName: ['270'],
+							quickLink: '270',
 							string: '',
 							component: <CSButton iconName="activity" iconRotate="270" label="Icon rotated 270 degrees"/>
 						}
@@ -315,6 +356,7 @@ class CSButtonPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['max'],
+							quickLink: 'max',
 							string: '',
 							component: <CSButton iconName="activity" label="default max" width="max"/>
 						}
@@ -326,6 +368,7 @@ class CSButtonPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component: <CSButton iconName="activity" label="default disabled" disabled/>
 						}
@@ -346,6 +389,8 @@ class CSButtonPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
+							variationName: ['custom class'],
+							quickLink: 'custom class',
 							string: '',
 							component: <CSButton  iconName="activity" label="default initial" className="custom-class"/>
 						}

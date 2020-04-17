@@ -20,6 +20,8 @@ class CSSpinnerPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['xsmall'],
+							quickLink: 'xsmall',
+							variationText: ['color="neutral"'],
 							string: '',
 							component:
 								<CSSpinner
@@ -29,6 +31,8 @@ class CSSpinnerPreview extends React.Component {
 						},
 						{
 							variationName: ['small'],
+							quickLink: 'small',
+							variationText: ['color="neutral"'],
 							string: '',
 							component:
 								<CSSpinner
@@ -38,6 +42,8 @@ class CSSpinnerPreview extends React.Component {
 						},
 						{
 							variationName: ['medium'],
+							quickLink: 'medium',
+							variationText: ['color="neutral"'],
 							string: '',
 							component:
 								<CSSpinner
@@ -47,6 +53,8 @@ class CSSpinnerPreview extends React.Component {
 						},
 						{
 							variationName: ['large'],
+							quickLink: 'large',
+							variationText: ['color="neutral"'],
 							string: '',
 							component:
 								<CSSpinner
@@ -56,6 +64,8 @@ class CSSpinnerPreview extends React.Component {
 						},
 						{
 							variationName: ['xlarge'],
+							quickLink: 'xlarge',
+							variationText: ['color="neutral"'],
 							string: '',
 							component:
 								<CSSpinner
@@ -70,6 +80,8 @@ class CSSpinnerPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['neutral'],
+							quickLink: 'neutral',
+							variationText: ['size="large"'],
 							string: '',
 							component:
 								<CSSpinner
@@ -79,6 +91,8 @@ class CSSpinnerPreview extends React.Component {
 						},
 						{
 							variationName: ['brand'],
+							quickLink: 'brand',
+							variationText: ['size="large"'],
 							string: '',
 							component:
 								<CSSpinner
@@ -103,6 +117,8 @@ class CSSpinnerPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
+							variationText: ['size="large"', 'color="neutral"'],
 							string: '',
 							component:
 								<CSSpinner
@@ -115,29 +131,33 @@ class CSSpinnerPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'label',
+					variations: [
+						{
+							variationText: ['size="medium"', 'color="neutral"'],
+							string: '',
+							component:
+								<CSSpinner
+									size="medium"
+									color="neutral"
+									label="This is some label"
+								/>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
+							variationName: ['custom class'],
+							quickLink: 'custom class',
+							variationText: ['size="large"', 'color="neutral"'],
 							string: '',
 							component:
 								<CSSpinner
 									size="large"
 									color="neutral"
 									className="custom-class"
-								/>
-						}
-					]
-				},
-				{
-					propName: 'label',
-					variations: [
-						{
-							string: '',
-							component:
-								<CSSpinner
-									size="xlarge"
-									color="neutral"
-									label="This is some label"
 								/>
 						}
 					]

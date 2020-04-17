@@ -18,6 +18,8 @@ class CSIconPreview extends React.Component {
 					propName: 'name',
 					variations: [
 						{
+							variationName: ['video'],
+							quickLink: 'video',
 							string: '',
 							component:
 								<CSIcon
@@ -32,6 +34,8 @@ class CSIconPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['slds'],
+							quickLink: 'slds',
+							variationText: ['name="video"'],
 							string: '',
 							component:
 								<CSIcon
@@ -41,6 +45,8 @@ class CSIconPreview extends React.Component {
 						},
 						{
 							variationName: ['cs'],
+							quickLink: 'cs',
+							variationText: ['name="table"'],
 							string: '',
 							component:
 								<CSIcon
@@ -55,6 +61,8 @@ class CSIconPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['90'],
+							quickLink: '90',
+							variationText: ['name="breadcrumbs"'],
 							string: '',
 							component:
 								<CSIcon
@@ -64,6 +72,8 @@ class CSIconPreview extends React.Component {
 						},
 						{
 							variationName: ['180'],
+							quickLink: '180',
+							variationText: ['name="breadcrumbs"'],
 							string: '',
 							component:
 								<CSIcon
@@ -73,6 +83,8 @@ class CSIconPreview extends React.Component {
 						},
 						{
 							variationName: ['270'],
+							quickLink: '270',
+							variationText: ['name="breadcrumbs"'],
 							string: '',
 							component:
 								<CSIcon
@@ -87,6 +99,8 @@ class CSIconPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['pink'],
+							quickLink: 'pink',
+							variationText: ['name="breadcrumbs"'],
 							string: '',
 							component:
 								<CSIcon
@@ -96,6 +110,8 @@ class CSIconPreview extends React.Component {
 						},
 						{
 							variationName: ['#ff0000'],
+							quickLink: '#ff0000',
+							variationText: ['name="breadcrumbs"'],
 							string: '',
 							component:
 								<CSIcon
@@ -105,6 +121,8 @@ class CSIconPreview extends React.Component {
 						},
 						{
 							variationName: ['rgba(100,100,255)'],
+							quickLink: 'rgba(100,100,255)',
+							variationText: ['name="breadcrumbs"'],
 							string: '',
 							component:
 								<CSIcon
@@ -119,6 +137,8 @@ class CSIconPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['2rem'],
+							quickLink: '2rem',
+							variationText: ['origin="cs"', 'name="tag"'],
 							string: '',
 							component:
 								<CSIcon
@@ -133,6 +153,9 @@ class CSIconPreview extends React.Component {
 					propName: 'className',
 					variations: [
 						{
+							variationName: ['custom class'],
+							quickLink: 'custom class',
+							variationText: ['origin="cs"', 'name="tag"'],
 							string: '',
 							component:
 								<CSIcon

@@ -15,7 +15,7 @@ class CSPaginationPreview extends React.Component {
 			usage: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
 			examples: [
 				{
-					propName: '',
+					propName: 'Default View',
 					customText: '',
 					variations: [
 						{

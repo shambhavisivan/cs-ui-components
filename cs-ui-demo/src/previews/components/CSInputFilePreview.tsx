@@ -17,7 +17,6 @@ class CSInputFilePreview extends React.Component {
 					propName: 'label',
 					variations: [
 						{
-							variationName: ['label'],
 							string: '',
 							component:
 								<CSInputFile
@@ -30,7 +29,8 @@ class CSInputFilePreview extends React.Component {
 					propName: 'disabled',
 					variations: [
 						{
-							variationName: ['disabled'],
+							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSInputFile
@@ -44,7 +44,8 @@ class CSInputFilePreview extends React.Component {
 					propName: 'error',
 					variations: [
 						{
-							variationName: ['error'],
+							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSInputFile
@@ -58,7 +59,7 @@ class CSInputFilePreview extends React.Component {
 					propName: 'errorMessage',
 					variations: [
 						{
-							variationName: ['errorMessage'],
+							variationText: ['error="true"'],
 							string: '',
 							component:
 								<CSInputFile
@@ -73,7 +74,8 @@ class CSInputFilePreview extends React.Component {
 					propName: 'className',
 					variations: [
 						{
-							variationName: ['className'],
+							variationName: ['custom class'],
+							quickLink: 'custom class',
 							string: '',
 							component:
 								<CSInputFile
