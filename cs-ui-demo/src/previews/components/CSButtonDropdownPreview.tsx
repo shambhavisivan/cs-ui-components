@@ -417,6 +417,29 @@ class CSButtonDropdownPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'hover',
+					customText: '',
+					variations: [
+						{
+							variationName: ['true'],
+							string: '',
+							component: <CSButtonDropdown
+											iconName="down"
+											hover
+										>
+											<CSButton
+												iconName="world"
+												label="test label small"
+											/>
+											<CSButton
+												iconName="world"
+												label="test label large large"
+											/>
+										</CSButtonDropdown>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					customText: '',
 					variations: [
@@ -471,6 +494,14 @@ class CSButtonDropdownPreview extends React.Component {
 					options: [
 						'icon-only',
 						'no-icon'
+					]
+				},
+				{
+					propertyName: 'iconPosition',
+					description: 'Position of the icon if both icon and label are set',
+					options: [
+						'left',
+						'right'
 					]
 				},
 				{

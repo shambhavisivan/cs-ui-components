@@ -3,18 +3,19 @@ import CSButton from './CSButton';
 import classNames from 'classnames';
 
 export interface CSButtonDropdownProps {
-	btnType?: string;
+	align?: string;
 	btnStyle?: string;
-	size?: string;
+	btnType?: string;
+	className?: string;
+	disabled?: boolean;
+	hover?: boolean;
 	iconName?: string;
 	iconOrigin?: string;
-	disabled?: boolean;
-	className?: string;
-	align?: string;
+	iconPosition?: string;
 	iconRotate?: string;
 	label?: string;
 	onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-	iconPosition?: string;
+	size?: string;
 }
 
 export interface CSButtonDropdownStates {
@@ -28,7 +29,8 @@ class CSButtonDropdown extends React.Component<CSButtonDropdownProps, CSButtonDr
 		btnType: 'default',
 		btnStyle: 'initial',
 		align: 'left',
-		iconName: 'down'
+		iconName: 'down',
+		hover: false
 	};
 	node: HTMLDivElement;
 
@@ -59,18 +61,11 @@ class CSButtonDropdown extends React.Component<CSButtonDropdownProps, CSButtonDr
 		this.toggleActive();
 	}
 
-	getLabel() {
-		return this.props.label ? this.props.label : 'Toggle dropdown';
-	}
-
-	getIconDisplay() {
-		return this.props.label ? 'default' : 'icon-only';
-	}
-
 	render() {
 		const btnDropdownWrapperClasses = classNames(
 			'cs-btn-dropdown-wrapper',
 			{
+				'cs-btn-dropdown-hover': (this.props.hover === true),
 				[`${this.props.className}`]: this.props.className
 			}
 		);
@@ -80,31 +75,45 @@ class CSButtonDropdown extends React.Component<CSButtonDropdownProps, CSButtonDr
 			}
 		);
 
+		const btnDropdownItemClasses = classNames(
+			'cs-btn-dropdown-outer-item-wrapper',
+			{
+				[`cs-btn-dropdown-${this.props.align}`]: this.props.align
+			}
+		);
+
 		return (
 			<div className={btnDropdownWrapperClasses} ref={node => this.node = node}>
-				<CSButton
-					className={btnDropdownClasses}
-					btnType={this.props.btnType}
-					btnStyle={this.props.btnStyle}
-					size={this.props.size}
-					iconName={this.props.iconName}
-					iconOrigin={this.props.iconOrigin}
-					iconRotate={this.props.iconRotate}
-					iconDisplay={this.getIconDisplay()}
-					disabled={this.props.disabled}
-					onClick={this.toggleActive}
-					label={this.getLabel()}
-					iconPosition={(this.props.label && this.props.iconPosition) ? this.props.iconPosition : undefined}
-				/>
-				{this.state.active ? (
-					<div className={`cs-btn-dropdown-item-wrapper cs-btn-dropdown-${this.props.align}`}>
-						{this.props.children}
-					</div>
-				) : null}
+					<CSButton
+						btnStyle={this.props.btnStyle}
+						btnType={this.props.btnType}
+						className={btnDropdownClasses}
+						disabled={this.props.disabled}
+						iconDisplay={this.props.label ? 'default' : 'icon-only'}
+						iconName={this.props.iconName}
+						iconOrigin={this.props.iconOrigin}
+						iconPosition={(this.props.label && this.props.iconPosition) ? this.props.iconPosition : undefined}
+						iconRotate={this.props.iconRotate}
+						onClick={!this.props.hover ? this.toggleActive : null}
+						size={this.props.size}
+						label={this.props.label ? this.props.label : 'Toggle dropdown'}
+					/>
+					{this.props.hover ?
+						(<div className={btnDropdownItemClasses}>
+							<div className="cs-btn-dropdown-item-wrapper">
+								{this.props.children}
+							</div>
+						</div>) :
+						(this.state.active &&
+						<div className={btnDropdownItemClasses}>
+							<div className="cs-btn-dropdown-item-wrapper">
+								{this.props.children}
+							</div>
+						</div>)
+					}
 			</div>
 		);
 	}
-
 }
 
 export default CSButtonDropdown;
