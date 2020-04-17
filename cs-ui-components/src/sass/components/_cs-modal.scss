@@ -18,7 +18,7 @@
 		transition: opacity 0.4s linear;
 	}
 
-	.modal {
+	.cs-modal {
 		position: relative;
 		transform: translate(0);
 		display: flex;
@@ -62,7 +62,7 @@
 			padding: 3rem;
 		}
 
-		.modal-close {
+		.cs-modal-close {
 			width: 2rem;
 			height: 2rem;
 			align-self: flex-end;
@@ -102,7 +102,7 @@
 			}
 		}
 
-		.modal-header {
+		.cs-modal-header {
 			position: relative;
 			padding: 1rem;
 			text-align: center;
@@ -131,7 +131,7 @@
 			}
 		}
 
-		.modal-body {
+		.cs-modal-body {
 			font-size: 0.8125rem;
 			padding: var(--body-padding, 1rem);
 			overflow: hidden;
@@ -145,7 +145,7 @@
 			}
 		}
 
-		.modal-footer {
+		.cs-modal-footer {
 			padding: 0.75rem 1rem;
 			display: flex;
 			@include sbg(--cs-modal-footer-bg);
@@ -183,25 +183,25 @@
 			}
 		}
 
-		&.modal-small {
+		&.cs-modal-small {
 			width: 50%;
 			max-width: 40rem;
 			min-width: 20rem;
 		}
 
-		&.modal-medium {
+		&.cs-modal-medium {
 			width: 70%;
 			max-width: 75rem;
 			min-width: 40rem;
 		}
 
-		&.modal-large {
+		&.cs-modal-large {
 			width: 90%;
 			max-width: none;
 			min-width: 40rem;
 		}
 
-		&.modal-xlarge {
+		&.cs-modal-xlarge {
 			width: 100%;
 			padding: 0.5rem 3rem 3rem;
 
@@ -209,7 +209,7 @@
 				padding: 2rem;
 			}
 
-			.modal-body {
+			.cs-modal-body {
 				flex: 1;
 			}
 		}

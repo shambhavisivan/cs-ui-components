@@ -29,8 +29,8 @@ class CSModal extends React.Component<CSModalProps> {
 				<div
 					className={
 						this.props.closeButton
-							? 'modal modal-' + this.props.size
-							: 'no-close-btn modal modal-' + this.props.size
+							? 'cs-modal cs-modal-' + this.props.size
+							: 'no-close-btn cs-modal cs-modal-' + this.props.size
 					}
 					style={this.props.style}
 					role="dialog"
@@ -38,7 +38,7 @@ class CSModal extends React.Component<CSModalProps> {
 					aria-labelledby="">
 					{this.props.closeButton &&
 						<button
-							className="modal-close"
+							className="cs-modal-close"
 							onClick={this.props.onClose}
 							aria-label="close"
 						>

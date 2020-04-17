@@ -9,7 +9,7 @@ class CSModalHeader extends React.Component<CSModalHeaderProps> {
 
 	render() {
 		return (
-			<header className="modal-header">
+			<header className="cs-modal-header">
 				{this.props.title &&
 					<h3 className="header-title">{this.props.title}</h3>
 				}

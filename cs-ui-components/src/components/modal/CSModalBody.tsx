@@ -8,7 +8,7 @@ class CSModalBody extends React.Component<CSModalBodyProps> {
 
 	render() {
 		return (
-			<div className="modal-body" style={{'--body-padding': this.props.padding}}>
+			<div className="cs-modal-body" style={{'--body-padding': this.props.padding}}>
 				{this.props.children}
 			</div>
 		);
