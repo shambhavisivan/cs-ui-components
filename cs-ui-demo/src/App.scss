@@ -581,8 +581,8 @@ body,
 		}
 
 		&.colors {
-			padding: 1rem;
 			flex-direction: column;
+			box-shadow: none;
 		}
 
 	}
@@ -672,6 +672,7 @@ body,
 		grid-column-gap: 1rem;
 		grid-row-gap: 1rem;
 		align-items: start;
+		padding: 1rem;
 
 		.cs-color {
 			font-size: 0.875rem;
