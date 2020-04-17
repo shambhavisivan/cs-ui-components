@@ -8,7 +8,10 @@ import PreviewLinks from '../PreviewLinks';
 import {CSInputNumber} from '@cloudsense/cs-ui-components';
 
 class CSInputNumberPreview extends React.Component {
+
 	getDoc() {
+
+		const onChangeHandler = () => alert('Input changed!');
 
 		const json = {
 			name: 'Input Number',
@@ -193,6 +196,17 @@ class CSInputNumberPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'onChange',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSInputNumber label="Enter value:" onChange={onChangeHandler} />
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -301,6 +315,11 @@ class CSInputNumberPreview extends React.Component {
 						'false',
 						'true'
 					]
+				},
+				{
+					propertyName: 'onChange',
+					description: 'Logic for onChange event',
+					options: []
 				},
 				{
 					propertyName: 'className',
