@@ -56,10 +56,23 @@ module.exports = {
 					publicPath: '../fonts/'
 				}
 			},
-		]
+			{
+				test: /\.(png|jpg|gif)$/i,
+				use: [
+				  {
+					loader: 'url-loader',
+					options: {
+					  	quality: 85,
+					  	esModule: false,
+					}
+				  }
+				]
+			},
+		],
 	},
 	resolve: {
-		extensions: ['.tsx', '.ts', '.js']
+		extensions: ['.tsx', '.ts', '.js'],
+		modules: ['node_modules']
 	},
 	externals: {
 		"react": "react",

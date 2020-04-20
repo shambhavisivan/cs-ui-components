@@ -30,6 +30,7 @@ import CSLabelPreview from './components/CSLabelPreview';
 import CSProgressBarPreview from './components/CSProgressBarPreview';
 import CSButtonDropdownPreview from './components/CSButtonDropdownPreview';
 import CSButtonGroupPreview from './components/CSButtonGroupPreview';
+import CSImagePreview from './components/CSImagePreview';
 
 import SidebarList from './SidebarList';
 
@@ -82,7 +83,11 @@ class CSComponentsList extends React.Component {
 				component: CSIconPreview
 			},
 			{
-				name: 'Input File',
+				name: 'Image',
+				component: CSImagePreview
+			},
+			{
+				name: 'InputFile',
 				component: CSInputFilePreview
 			},
 			{

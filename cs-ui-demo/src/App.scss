@@ -506,7 +506,12 @@ body,
 							color: pink;
 						}
 					}
+					&.image-preview {
 
+						.black-background {
+							background-color: black;
+						}
+					}
 					&.button-group-preview {
 
 						.custom-class {

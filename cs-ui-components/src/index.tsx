@@ -12,6 +12,7 @@ import CSCustomSelect from './components/CSCustomSelect';
 import CSDatepicker from './components/CSDatepicker';
 import CSDivider from './components/CSDivider';
 import CSIcon from './components/CSIcon';
+import CSImage from './components/CSImage';
 import CSInputFile from './components/CSInputFile';
 import CSInputNumber from './components/CSInputNumber';
 import CSInputSearch from './components/CSInputSearch';
@@ -66,6 +67,7 @@ export {
 	CSDivider,
 	CSLabel,
 	CSIcon,
+	CSImage,
 	CSInputFile,
 	CSInputNumber,
 	CSInputSearch,
