@@ -94,7 +94,7 @@ class CSDividerPreview extends React.Component {
 				},
 				{
 					propertyName: 'label',
-					description: 'Divider label to display'
+					description: 'Divider label to display (available only for horizontal variant)'
 				},
 				{
 					propertyName: 'size',
