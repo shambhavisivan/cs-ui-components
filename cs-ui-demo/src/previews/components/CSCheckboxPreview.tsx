@@ -59,6 +59,19 @@ class CSCheckboxPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'id',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSCheckbox
+									label="This is a label"
+									id="1"
+								/>
+						}
+					]
+				},
+				{
 					propName: 'disabled',
 					variations: [
 						{
@@ -296,6 +309,10 @@ class CSCheckboxPreview extends React.Component {
 				{
 					propertyName: 'helpText',
 					description: 'Checkbox help text for tooltip display'
+				},
+				{
+					propertyName: 'id',
+					description: 'Checkbox id value'
 				},
 				{
 					propertyName: 'label',
