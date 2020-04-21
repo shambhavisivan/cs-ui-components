@@ -15,7 +15,7 @@ class CSTabGroup extends React.Component<CSTabGroupProps, CSTabGroupState> {
 		super(props);
 
 		this.state = {
-			activeTabIndex: undefined
+			activeTabIndex: 0
 		};
 
 		this.handleTabClick = this.handleTabClick.bind(this);
