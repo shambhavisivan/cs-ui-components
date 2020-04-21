@@ -196,6 +196,9 @@
 		.cs-btn-label, .cs-btn-icon {
 			height: calc(1.25rem - 0.125rem);
 		}
+		&.cs-btn-no-icon {
+			padding: 0 0.25rem;
+		}
 	}
 	&.cs-btn-size-large {
 		height: 3rem;
