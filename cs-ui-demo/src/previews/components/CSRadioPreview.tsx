@@ -256,8 +256,7 @@ class CSRadioPreview extends React.Component {
 			properties: [
 				{
 					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: ['n/a']
+					description: 'For implementing custom class to component'
 				},
 				{
 					propertyName: 'disabled',
@@ -269,18 +268,15 @@ class CSRadioPreview extends React.Component {
 				},
 				{
 					propertyName: 'label',
-					description: 'Radio Option label',
-					options: ['n/a']
+					description: 'Radio Option label'
 				},
 				{
 					propertyName: 'name',
-					description: 'Radio Option name',
-					options: ['n/a']
+					description: 'Radio Option name'
 				},
 				{
 					propertyName: 'onChange',
-					description: 'Logic for onChange event',
-					options: ['n/a']
+					description: 'Logic for onChange event'
 				}
 			]
 		};

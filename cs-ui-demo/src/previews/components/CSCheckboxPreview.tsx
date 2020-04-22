@@ -271,8 +271,7 @@ class CSCheckboxPreview extends React.Component {
 				},
 				{
 					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
+					description: 'For implementing custom class to component'
 				},
 				{
 					propertyName: 'disabled',
@@ -292,18 +291,15 @@ class CSCheckboxPreview extends React.Component {
 				},
 				{
 					propertyName: 'errorMessage',
-					description: 'Error message text',
-					options: []
+					description: 'Error message text'
 				},
 				{
 					propertyName: 'helpText',
-					description: 'Checkbox help text for tooltip display',
-					options: []
+					description: 'Checkbox help text for tooltip display'
 				},
 				{
 					propertyName: 'label',
-					description: 'Checkbox label to display',
-					options: []
+					description: 'Checkbox label to display'
 				},
 				{
 					propertyName: 'labelHidden',
@@ -315,13 +311,11 @@ class CSCheckboxPreview extends React.Component {
 				},
 				{
 					propertyName: 'onChange',
-					description: 'Logic for onChange event',
-					options: []
+					description: 'Logic for onChange event'
 				},
 				{
 					propertyName: 'onClick',
-					description: 'Logic for onClick event',
-					options: []
+					description: 'Logic for onClick event'
 				},
 				{
 					propertyName: 'required',

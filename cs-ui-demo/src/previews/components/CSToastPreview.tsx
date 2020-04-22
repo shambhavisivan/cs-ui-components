@@ -282,23 +282,19 @@ class CSToastPreview extends React.Component {
 			properties: [
 				{
 					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
+					description: 'For implementing custom class to component'
 				},
 				{
 					propertyName: 'closeButton',
-					description: 'Logic for close button state',
-					options: []
+					description: 'Logic for close button state'
 				},
 				{
 					propertyName: 'detail',
-					description: 'Text content for toast detail',
-					options: []
+					description: 'Text content for toast detail'
 				},
 				{
 					propertyName: 'iconName',
-					description: 'Name of icon from icons library which overrides the default icon defined by variant',
-					options: []
+					description: 'Name of icon from icons library which overrides the default icon defined by variant'
 				},
 				{
 					propertyName: 'iconVisibility',
@@ -320,13 +316,11 @@ class CSToastPreview extends React.Component {
 				},
 				{
 					propertyName: 'onClose',
-					description: 'Close Alert',
-					options: []
+					description: 'Close Alert'
 				},
 				{
 					propertyName: 'text',
-					description: 'Text content for main toast message',
-					options: []
+					description: 'Text content for main toast message'
 				},
 				{
 					propertyName: 'textAlign',

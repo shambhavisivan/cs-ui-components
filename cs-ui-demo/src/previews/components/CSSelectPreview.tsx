@@ -246,8 +246,7 @@ class CSSelectPreview extends React.Component {
 				},
 				{
 					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
+					description: 'For implementing custom class to component'
 				},
 				{
 					propertyName: 'disabled',
@@ -267,23 +266,19 @@ class CSSelectPreview extends React.Component {
 				},
 				{
 					propertyName: 'errorMessage',
-					description: 'Error message text',
-					options: []
+					description: 'Error message text'
 				},
 				{
 					propertyName: 'helpText',
-					description: 'Select help text for tooltip display',
-					options: []
+					description: 'Select help text for tooltip display'
 				},
 				{
 					propertyName: 'id',
-					description: 'Select id value',
-					options: []
+					description: 'Select id value'
 				},
 				{
 					propertyName: 'label',
-					description: 'Select label text to display',
-					options: []
+					description: 'Select label text to display'
 				},
 				{
 					propertyName: 'labelHidden',
@@ -295,8 +290,7 @@ class CSSelectPreview extends React.Component {
 				},
 				{
 					propertyName: 'onChange',
-					description: 'Logic for onChange event',
-					options: []
+					description: 'Logic for onChange event'
 				},
 				{
 					propertyName: 'required',

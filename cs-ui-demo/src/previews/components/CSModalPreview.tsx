@@ -284,8 +284,7 @@ class CSModalPreview extends React.Component {
 			properties: [
 				{
 					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
+					description: 'For implementing custom class to component'
 				},
 				{
 					propertyName: 'closeButton',
@@ -305,13 +304,11 @@ class CSModalPreview extends React.Component {
 				},
 				{
 					propertyName: 'loadingText',
-					description: 'Label to show while loading spinner is visible',
-					options: []
+					description: 'Label to show while loading spinner is visible'
 				},
 				{
 					propertyName: 'onClose',
-					description: 'Logic for onClick event',
-					options: []
+					description: 'Logic for onClick event'
 				},
 				{
 					propertyName: 'size',
@@ -325,8 +322,7 @@ class CSModalPreview extends React.Component {
 				},
 				{
 					propertyName: 'style',
-					description: 'Add custom styles as inline css',
-					options: []
+					description: 'Add custom styles as inline css'
 				}
 			]
 		};

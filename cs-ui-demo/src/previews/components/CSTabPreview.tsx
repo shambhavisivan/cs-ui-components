@@ -197,8 +197,7 @@ class CSTabPreview extends React.Component {
 			properties: [
 				{
 					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
+					description: 'For implementing custom class to component'
 				},
 				{
 					propertyName: 'status',
@@ -211,13 +210,11 @@ class CSTabPreview extends React.Component {
 				},
 				{
 					propertyName: 'tabIcon',
-					description: 'Name of icon from icons library which will be visible in tab',
-					options: []
+					description: 'Name of icon from icons library which will be visible in tab'
 				},
 				{
 					propertyName: 'title',
-					description: 'Text content of tab',
-					options: []
+					description: 'Text content of tab'
 				},
 				{
 					propertyName: 'variant',

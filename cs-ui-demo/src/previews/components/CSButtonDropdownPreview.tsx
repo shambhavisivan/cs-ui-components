@@ -515,8 +515,7 @@ class CSButtonDropdownPreview extends React.Component {
 				},
 				{
 					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
+					description: 'For implementing custom class to component'
 				},
 				{
 					propertyName: 'disabled',
@@ -525,8 +524,7 @@ class CSButtonDropdownPreview extends React.Component {
 				},
 				{
 					propertyName: 'iconName',
-					description: 'Name of icon from icons library',
-					options: []
+					description: 'Name of icon from icons library'
 				},
 				{
 					propertyName: 'iconOrigin',
@@ -555,13 +553,7 @@ class CSButtonDropdownPreview extends React.Component {
 				},
 				{
 					propertyName: 'label',
-					description: 'Dropdown button label',
-					options: [
-						'90',
-						'180',
-						'270'
-
-					]
+					description: 'Dropdown button label'
 				},
 				{
 					propertyName: 'size',

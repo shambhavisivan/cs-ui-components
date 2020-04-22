@@ -156,18 +156,15 @@ class CSTooltipPreview extends React.Component {
 			properties: [
 				{
 					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
+					description: 'For implementing custom class to component'
 				},
 				{
 					propertyName: 'helpText',
-					description: 'Tooltip help text content',
-					options: []
+					description: 'Tooltip help text content'
 				},
 				{
 					propertyName: 'iconName',
-					description: 'Name of icon from icons library which overrides the default icon defined by variant',
-					options: []
+					description: 'Name of icon from icons library which overrides the default icon defined by variant'
 				},
 				{
 					propertyName: 'iconSize',
@@ -189,8 +186,7 @@ class CSTooltipPreview extends React.Component {
 				},
 				{
 					propertyName: 'tooltipHeader',
-					description: 'Content of the tooltip header',
-					options: []
+					description: 'Content of the tooltip header'
 				},
 				{
 					propertyName: 'variant',

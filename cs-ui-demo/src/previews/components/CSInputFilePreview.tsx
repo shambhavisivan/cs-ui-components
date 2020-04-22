@@ -89,8 +89,7 @@ class CSInputFilePreview extends React.Component {
 			properties: [
 				{
 					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
+					description: 'For implementing custom class to component'
 				},
 				{
 					propertyName: 'disabled',
@@ -110,13 +109,11 @@ class CSInputFilePreview extends React.Component {
 				},
 				{
 					propertyName: 'errorMessage',
-					description: 'Error text message',
-					options: []
+					description: 'Error text message'
 				},
 				{
 					propertyName: 'label',
-					description: 'Manually change the label name of the file text',
-					options: []
+					description: 'Manually change the label name of the file text'
 				}
 			]
 		};

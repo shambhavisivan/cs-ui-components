@@ -58,8 +58,7 @@ class CSCardPreview extends React.Component {
 			properties: [
 				{
 					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
+					description: 'For implementing custom class to component'
 				}
 			]
 		 };
@@ -80,8 +79,7 @@ class CSCardPreview extends React.Component {
 			properties: [
 				{
 					propertyName: 'title',
-					description: 'Card header title',
-					options: []
+					description: 'Card header title'
 				}
 			]
 		};

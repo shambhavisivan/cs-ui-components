@@ -99,8 +99,7 @@ class CSTablePreview extends React.Component {
 			properties: [
 				{
 					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
+					description: 'For implementing custom class to component'
 				}
 			]
 		};
@@ -121,8 +120,7 @@ class CSTablePreview extends React.Component {
 
 				{
 					propertyName: 'grow',
-					description: 'Flex grow value for cell',
-					options: []
+					description: 'Flex grow value for cell'
 				},
 				{
 					propertyName: 'maxWidth',
@@ -135,8 +133,7 @@ class CSTablePreview extends React.Component {
 				},
 				{
 					propertyName: 'title',
-					description: 'Text content of cell',
-					options: []
+					description: 'Text content of cell'
 				}
 			]
 		};

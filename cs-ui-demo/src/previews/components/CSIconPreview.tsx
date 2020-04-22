@@ -171,8 +171,7 @@ class CSIconPreview extends React.Component {
 			properties: [
 				{
 					propertyName: 'className',
-					description: 'Icon class',
-					options: []
+					description: 'Icon class'
 				},
 				{
 					propertyName: 'color',

@@ -202,8 +202,7 @@ class CSProgressBarPreview extends React.Component {
 			properties: [
 				{
 					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
+					description: 'For implementing custom class to component'
 				},
 				{
 					propertyName: 'color',
@@ -217,8 +216,7 @@ class CSProgressBarPreview extends React.Component {
 				},
 				{
 					propertyName: 'label',
-					description: 'Text content of label',
-					options: []
+					description: 'Text content of label'
 				},
 				{
 					propertyName: 'progress',

@@ -27,7 +27,7 @@ class PreviewTable extends React.Component<PreviewTableProps> {
 										<div className="table-cell">{prop.propertyName}</div>
 										<div className="table-cell">{prop.description}</div>
 										<div className="table-cell">
-											{prop.options.map((option: any) => (
+											{prop.options && prop.options.map((option: any) => (
 												<span className="prop-option" key={option}>{option}</span>
 											))}
 										</div>

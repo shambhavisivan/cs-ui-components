@@ -438,8 +438,7 @@ class CSButtonPreview extends React.Component {
 				},
 				{
 					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
+					description: 'For implementing custom class to component'
 				},
 				{
 					propertyName: 'color',
@@ -461,8 +460,7 @@ class CSButtonPreview extends React.Component {
 				},
 				{
 					propertyName: 'iconName',
-					description: 'Name of icon from icons library',
-					options: []
+					description: 'Name of icon from icons library'
 				},
 				{
 					propertyName: 'iconOrigin',
@@ -510,8 +508,7 @@ class CSButtonPreview extends React.Component {
 				},
 				{
 					propertyName: 'onClick',
-					description: 'Logic for onClick event',
-					options: []
+					description: 'Logic for onClick event'
 				},
 				{
 					propertyName: 'openInNewTab',

@@ -90,13 +90,11 @@ class CSDividerPreview extends React.Component {
 			properties: [
 				{
 					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
+					description: 'For implementing custom class to component'
 				},
 				{
 					propertyName: 'label',
-					description: 'Divider label to display',
-					options: []
+					description: 'Divider label to display'
 				},
 				{
 					propertyName: 'size',

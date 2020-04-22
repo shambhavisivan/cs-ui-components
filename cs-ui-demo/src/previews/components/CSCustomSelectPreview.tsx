@@ -162,8 +162,7 @@ class CSCustomSelectPreview extends React.Component {
 				},
 				{
 					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
+					description: 'For implementing custom class to component'
 				},
 				{
 					propertyName: 'disabled',
@@ -183,23 +182,19 @@ class CSCustomSelectPreview extends React.Component {
 				},
 				{
 					propertyName: 'errorMessage',
-					description: 'Error text message',
-					options: []
+					description: 'Error text message'
 				},
 				{
 					propertyName: 'helpText',
-					description: 'Select help text for tooltip display',
-					options: []
+					description: 'Select help text for tooltip display'
 				},
 				{
 					propertyName: 'id',
-					description: 'Select id value',
-					options: []
+					description: 'Select id value'
 				},
 				{
 					propertyName: 'label',
-					description: 'Select label text to display',
-					options: []
+					description: 'Select label text to display'
 				},
 				{
 					propertyName: 'required',

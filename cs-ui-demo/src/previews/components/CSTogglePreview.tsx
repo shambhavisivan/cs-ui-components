@@ -196,8 +196,7 @@ class CSTogglePreview extends React.Component {
 				},
 				{
 					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
+					description: 'For implementing custom class to component'
 				},
 				{
 					propertyName: 'defaultChecked',
@@ -225,13 +224,11 @@ class CSTogglePreview extends React.Component {
 				},
 				{
 					propertyName: 'helpText',
-					description: 'Helptext content',
-					options: []
+					description: 'Helptext content'
 				},
 				{
 					propertyName: 'label',
-					description: 'Toggle label to display',
-					options: []
+					description: 'Toggle label to display'
 				},
 				{
 					propertyName: 'labelPosition',
@@ -243,8 +240,7 @@ class CSTogglePreview extends React.Component {
 				},
 				{
 					propertyName: 'onChange',
-					description: 'Logic for onChange event',
-					options: []
+					description: 'Logic for onChange event'
 				},
 				{
 					propertyName: 'required',

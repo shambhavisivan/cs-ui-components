@@ -241,8 +241,7 @@ class CSInputNumberPreview extends React.Component {
 				},
 				{
 					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
+					description: 'For implementing custom class to component'
 				},
 				{
 					propertyName: 'disabled',
@@ -262,13 +261,11 @@ class CSInputNumberPreview extends React.Component {
 				},
 				{
 					propertyName: 'errorMessage',
-					description: 'Error message text',
-					options: []
+					description: 'Error message text'
 				},
 				{
 					propertyName: 'helpText',
-					description: 'Input help text for tooltip display',
-					options: []
+					description: 'Input help text for tooltip display'
 				},
 				{
 					propertyName: 'hideSpinner',
@@ -280,33 +277,27 @@ class CSInputNumberPreview extends React.Component {
 				},
 				{
 					propertyName: 'id',
-					description: 'Input number id value',
-					options: []
+					description: 'Input number id value'
 				},
 				{
 					propertyName: 'label',
-					description: 'Input label text to display',
-					options: []
+					description: 'Input label text to display'
 				},
 				{
 					propertyName: 'max',
-					description: 'Input number max value',
-					options: []
+					description: 'Input number max value'
 				},
 				{
 					propertyName: 'min',
-					description: 'Input number min value',
-					options: []
+					description: 'Input number min value'
 				},
 				{
 					propertyName: 'onChange',
-					description: 'Logic for onChange event',
-					options: []
+					description: 'Logic for onChange event'
 				},
 				{
 					propertyName: 'placeholder',
-					description: 'Input number placeholder to display',
-					options: []
+					description: 'Input number placeholder to display'
 				},
 				{
 					propertyName: 'readOnly',
@@ -336,8 +327,7 @@ class CSInputNumberPreview extends React.Component {
 				},
 				{
 					propertyName: 'value',
-					description: 'Default value to display',
-					options: []
+					description: 'Default value to display'
 				}
 			]
 		};

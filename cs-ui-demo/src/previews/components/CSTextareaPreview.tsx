@@ -239,8 +239,7 @@ class CSTextareaPreview extends React.Component {
 				},
 				{
 					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
+					description: 'For implementing custom class to component'
 				},
 				{
 					propertyName: 'disabled',
@@ -260,23 +259,19 @@ class CSTextareaPreview extends React.Component {
 				},
 				{
 					propertyName: 'errorMessage',
-					description: 'Error message text',
-					options: []
+					description: 'Error message text'
 				},
 				{
 					propertyName: 'helpText',
-					description: 'Textarea help text for tooltip display',
-					options: []
+					description: 'Textarea help text for tooltip display'
 				},
 				{
 					propertyName: 'id',
-					description: 'Textarea id value',
-					options: []
+					description: 'Textarea id value'
 				},
 				{
 					propertyName: 'label',
-					description: 'Textarea label text to display',
-					options: []
+					description: 'Textarea label text to display'
 				},
 				{
 					propertyName: 'maxHeight',
@@ -289,13 +284,11 @@ class CSTextareaPreview extends React.Component {
 				},
 				{
 					propertyName: 'onChange',
-					description: 'Logic for onChange event',
-					options: []
+					description: 'Logic for onChange event'
 				},
 				{
 					propertyName: 'placeholder',
-					description: 'Textarea placeholder to display',
-					options: []
+					description: 'Textarea placeholder to display'
 				},
 				{
 					propertyName: 'readOnly',
@@ -315,8 +308,7 @@ class CSTextareaPreview extends React.Component {
 				},
 				{
 					propertyName: 'rows',
-					description: 'Textarea rows value',
-					options: []
+					description: 'Textarea rows value'
 				},
 				{
 					propertyName: 'tooltipPosition',
@@ -330,8 +322,7 @@ class CSTextareaPreview extends React.Component {
 				},
 				{
 					propertyName: 'value',
-					description: 'Textarea value to display',
-					options: []
+					description: 'Textarea value to display'
 				}
 			]
 		};

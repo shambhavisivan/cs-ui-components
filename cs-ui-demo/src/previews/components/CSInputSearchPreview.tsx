@@ -269,13 +269,11 @@ class CSInputSearchPreview extends React.Component {
 				},
 				{
 					propertyName: 'errorMessage',
-					description: 'Error message text',
-					options: []
+					description: 'Error message text'
 				},
 				{
 					propertyName: 'helpText',
-					description: 'Input help text for tooltip display',
-					options: []
+					description: 'Input help text for tooltip display'
 				},
 				{
 					propertyName: 'iconPosition',
@@ -287,28 +285,27 @@ class CSInputSearchPreview extends React.Component {
 				},
 				{
 					propertyName: 'id',
-					description: 'Input search id value',
-					options: []
+					description: 'Input search id value'
 				},
 				{
 					propertyName: 'label',
-					description: 'Input label text to display',
-					options: []
+					description: 'Input label text to display'
 				},
 				{
 					propertyName: 'labelHidden',
 					description: 'Logic for visibility of the label',
-					options: ['false', 'true']
+					options: [
+						'false',
+						'true'
+					]
 				},
 				{
 					propertyName: 'onChange',
-					description: 'Logic for onChange event',
-					options: []
+					description: 'Logic for onChange event'
 				},
 				{
 					propertyName: 'placeholder',
-					description: 'Input search placeholder to display',
-					options: []
+					description: 'Input search placeholder to display'
 				},
 				{
 					propertyName: 'required',
@@ -330,8 +327,7 @@ class CSInputSearchPreview extends React.Component {
 				},
 				{
 					propertyName: 'value',
-					description: 'Input search value to display',
-					options: []
+					description: 'Input search value to display'
 				},
 				{
 					propertyName: 'width',

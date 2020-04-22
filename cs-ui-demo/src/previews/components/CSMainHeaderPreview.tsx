@@ -265,8 +265,7 @@ class CSMainHeaderPreview extends React.Component {
 			properties: [
 				{
 					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
+					description: 'For implementing custom class to component'
 				},
 				{
 					propertyName: 'color',
@@ -314,13 +313,11 @@ class CSMainHeaderPreview extends React.Component {
 			properties: [
 				{
 					propertyName: 'subtitle',
-					description: 'Secondary text content',
-					options: []
+					description: 'Secondary text content'
 				},
 				{
 					propertyName: 'title',
-					description: 'Main header title',
-					options: []
+					description: 'Main header title'
 				}
 			]
 		};

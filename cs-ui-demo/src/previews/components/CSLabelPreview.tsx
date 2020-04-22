@@ -96,23 +96,19 @@ class CSLabelPreview extends React.Component {
 			properties: [
 				{
 					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
+					description: 'For implementing custom class to component'
 				},
 				{
 					propertyName: 'for',
-					description: 'Label id',
-					options: []
+					description: 'Label id'
 				},
 				{
 					propertyName: 'helpText',
-					description: 'Label help text display for tooltip',
-					options: []
+					description: 'Label help text display for tooltip'
 				},
 				{
 					propertyName: 'label',
-					description: 'Label value',
-					options: []
+					description: 'Label value'
 				},
 				{
 					propertyName: 'required',
