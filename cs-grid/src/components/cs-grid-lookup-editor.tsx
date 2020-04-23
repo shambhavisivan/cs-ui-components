@@ -40,6 +40,7 @@ interface CSGridLookupEditorState
 	columnDefs: Array<LookupSearchColDef>;
 	rowData: Array<Record<string, string>>;
 	showGrid: boolean;
+	guidColumn: string;
 }
 
 /**
@@ -54,6 +55,7 @@ export class CSGridLookupEditor
 	gridApi: GridApi;
 	columnApi: ColumnApi;
 	multiSelect: boolean = false;
+	replacementString = '____';
 
 	constructor(
 		props: CSGridCellEditorProps<Array<Record<string, string>> | Record<string, string>> &
@@ -64,11 +66,18 @@ export class CSGridLookupEditor
 		const selected = Array.isArray(this.props.value.cellValue)
 			? this.props.value.cellValue
 			: [this.props.value.cellValue];
+
+		const guidColumn = this.props.guidColumn.replace(
+			new RegExp(/\./, 'g'),
+			this.replacementString
+		);
+
 		this.state = {
 			columnDefs: [],
+			guidColumn,
 			rowData: undefined,
 			searchTerm: '',
-			selected,
+			selected: this.formatRows(selected, '\\.', this.replacementString),
 			showGrid: !this.props.minSearchTermLength,
 			value: this.props.value
 		};
@@ -190,18 +199,28 @@ export class CSGridLookupEditor
 			this.props.node.id
 		);
 
+		const formattedRows = this.formatRows(results.rowData, '\\.', this.replacementString);
+
+		const formattedColumnDefs: Array<LookupSearchColDef> = [];
+		for (const columnDef of results.columnDefs) {
+			const formattedColumnDef: LookupSearchColDef = { ...columnDef };
+			const newName = columnDef.name.replace(new RegExp('\\.', 'g'), this.replacementString);
+			formattedColumnDef.name = newName;
+			formattedColumnDefs.push(formattedColumnDef);
+		}
+
 		this.setState(
 			{
-				columnDefs: results.columnDefs,
-				rowData: results.rowData,
+				columnDefs: formattedColumnDefs,
+				rowData: formattedRows,
 				showGrid: true
 			},
 			() => {
 				this.gridApi.forEachNode(node => {
-					const rowGuid = node.data[this.props.guidColumn];
+					const rowGuid = node.data[this.state.guidColumn];
 
 					for (const row of this.state.selected) {
-						if (row && row[this.props.guidColumn] === rowGuid) {
+						if (row && row[this.state.guidColumn] === rowGuid) {
 							node.setSelected(true, false, true);
 						}
 					}
@@ -249,7 +268,14 @@ export class CSGridLookupEditor
 	private onSelectionChanged = async (): Promise<void> => {
 		let selected: Array<Record<string, string>> | Record<string, string>;
 		const selectedRows: Array<Record<string, string>> = this.gridApi.getSelectedRows();
-		selected = this.multiSelect ? [...selectedRows] : selectedRows[0];
+
+		if (this.multiSelect) {
+			selected = this.formatRows(selectedRows, this.replacementString, '.');
+		} else {
+			if (selectedRows[0]) {
+				selected = this.replaceAll(selectedRows[0], this.replacementString, '.');
+			}
+		}
 
 		let value: CellData<Array<Record<string, string>> | Record<string, string>> = {
 			cellValue: selected,
@@ -262,6 +288,14 @@ export class CSGridLookupEditor
 				this.getValue().cellValue,
 				selected
 			);
+		}
+
+		if (Array.isArray(value.cellValue)) {
+			value.cellValue = this.formatRows(value.cellValue, '\\.', this.replacementString);
+		} else {
+			if (value.cellValue) {
+				value.cellValue = this.replaceAll(value.cellValue, '\\.', this.replacementString);
+			}
 		}
 
 		this.setState({ value }, () => {
@@ -303,5 +337,34 @@ export class CSGridLookupEditor
 				}
 			}
 		);
+	};
+
+	private formatRows = (
+		rows: Array<Record<string, string>>,
+		original: string,
+		replace: string
+	) => {
+		const formattedRows: Array<Record<string, string>> = [];
+		for (const row of rows) {
+			const formattedRow = this.replaceAll(row, original, replace);
+			formattedRows.push(formattedRow);
+		}
+
+		return formattedRows;
+	};
+
+	private replaceAll = (record: Record<string, string>, original: string, replace: string) => {
+		if (!record) {
+			return record;
+		}
+		const findRegex = RegExp(original, 'g');
+
+		const formattedRecord: Record<string, string> = {};
+		for (const key of Object.keys(record)) {
+			const newKey = key.replace(findRegex, replace);
+			formattedRecord[newKey] = record[key];
+		}
+
+		return formattedRecord;
 	};
 }

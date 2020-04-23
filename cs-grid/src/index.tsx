@@ -61,7 +61,7 @@ export class App extends React.Component<object, AppState> {
 						header: {
 							label: 'Order Number'
 						},
-						name: 'text2'
+						name: 'text2.name.thirdPart'
 					},
 					{
 						header: {
@@ -75,17 +75,17 @@ export class App extends React.Component<object, AppState> {
 					{
 						hidden: '11111111111',
 						text1: 'Bob the Great',
-						text2: '1234567890987654321'
+						'text2.name.thirdPart': '1234567890987654321'
 					},
 					{
 						hidden: '22222222222',
 						text1: 'Harry',
-						text2: '564768'
+						'text2.name.thirdPart': '564768'
 					},
 					{
 						hidden: '33333333333',
 						text1: 'Sally',
-						text2: '079845'
+						'text2.name.thirdPart': '079845'
 					}
 				]
 			};
@@ -187,7 +187,7 @@ export class App extends React.Component<object, AppState> {
 					CSGridLookupComparator(a, b, this.lookupDisplayColumn),
 				displayColumn: this.lookupDisplayColumn,
 				getLookupValues,
-				guidColumn: 'text2',
+				guidColumn: 'text2.name.thirdPart',
 				header: {
 					label: 'Lookup'
 				},
@@ -200,7 +200,7 @@ export class App extends React.Component<object, AppState> {
 					CSGridLookupComparator(a, b, this.lookupDisplayColumn),
 				displayColumn: this.lookupDisplayColumn,
 				getLookupValues,
-				guidColumn: 'text2',
+				guidColumn: 'text2.name.thirdPart',
 				header: {
 					label: 'Multi Select Lookup'
 				},
@@ -382,7 +382,7 @@ export class App extends React.Component<object, AppState> {
 					cellValue: {
 						hidden: '11111111111',
 						text1: 'Bob',
-						text2: '645612'
+						'text2.name.thirdPart': '645612'
 					}
 				},
 				exampleMultiSelectLookup: {
@@ -390,12 +390,12 @@ export class App extends React.Component<object, AppState> {
 						{
 							hidden: '11111111111',
 							text1: 'Bob',
-							text2: '645612'
+							'text2.name.thirdPart': '645612'
 						},
 						{
 							hidden: '11111111111',
 							text1: 'Harry',
-							text2: '564768'
+							'text2.name.thirdPart': '564768'
 						}
 					]
 				},
@@ -452,7 +452,7 @@ export class App extends React.Component<object, AppState> {
 				exampleLookup: {
 					cellValue: {
 						text1: 'Harry',
-						text2: '564768'
+						'text2.name.thirdPart': '564768'
 					},
 					errorMessage: 'An error message'
 				},
@@ -460,11 +460,11 @@ export class App extends React.Component<object, AppState> {
 					cellValue: [
 						{
 							text1: 'Harry',
-							text2: '564768'
+							'text2.name.thirdPart': '564768'
 						},
 						{
 							text1: 'Sally',
-							text2: '079845'
+							'text2.name.thirdPart': '079845'
 						}
 					],
 					errorMessage: 'An error message'
@@ -519,18 +519,18 @@ export class App extends React.Component<object, AppState> {
 				exampleLookup: {
 					cellValue: {
 						text1: 'Sally',
-						text2: '079845'
+						'text2.name.thirdPart': '079845'
 					}
 				},
 				exampleMultiSelectLookup: {
 					cellValue: [
 						{
 							text1: 'Sally',
-							text2: '079845'
+							'text2.name.thirdPart': '079845'
 						},
 						{
 							text1: 'Bob',
-							text2: '645612'
+							'text2.name.thirdPart': '645612'
 						}
 					]
 				},
@@ -588,7 +588,7 @@ export class App extends React.Component<object, AppState> {
 				exampleLookup: {
 					cellValue: {
 						text1: 'Sue',
-						text2: '123456'
+						'text2.name.thirdPart': '123456'
 					},
 					errorMessage: ''
 				},
@@ -596,11 +596,11 @@ export class App extends React.Component<object, AppState> {
 					cellValue: [
 						{
 							text1: 'Sue',
-							text2: '123456'
+							'text2.name.thirdPart': '123456'
 						},
 						{
 							text1: 'Sean',
-							text2: '987654'
+							'text2.name.thirdPart': '987654'
 						}
 					],
 					errorMessage: ''
