@@ -31,6 +31,7 @@ import CSProgressBarPreview from './components/CSProgressBarPreview';
 import CSButtonDropdownPreview from './components/CSButtonDropdownPreview';
 import CSButtonGroupPreview from './components/CSButtonGroupPreview';
 import CSImagePreview from './components/CSImagePreview';
+import CSLookupFieldPreview from './components/CSLookupFieldPreview';
 
 import SidebarList from './SidebarList';
 
@@ -105,6 +106,10 @@ class CSComponentsList extends React.Component {
 			{
 				name: 'Label',
 				component: CSLabelPreview
+			},
+			{
+				name: 'Lookup Field',
+				component: CSLookupFieldPreview
 			},
 			{
 				name: 'Main Header',

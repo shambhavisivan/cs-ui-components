@@ -524,6 +524,13 @@ body,
 							border-color: pink;
 						}
 					}
+					&.lookup-field-preview {
+						overflow: visible;
+
+						.custom-class {
+							border: 3px solid pink;
+						}
+					}
 				}
 
 				&:last-child {

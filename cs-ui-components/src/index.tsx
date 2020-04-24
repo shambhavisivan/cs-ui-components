@@ -18,6 +18,7 @@ import CSInputNumber from './components/CSInputNumber';
 import CSInputSearch from './components/CSInputSearch';
 import CSInputText from './components/CSInputText';
 import CSLabel from './components/CSLabel';
+import CSLookupField from './components/CSLookupField';
 import CSMainHeader from './components/main-header/CSMainHeader';
 import CSMainHeaderIcon from './components/main-header/CSMainHeaderIcon';
 import CSMainHeaderLeft from './components/main-header/CSMainHeaderLeft';
@@ -66,6 +67,7 @@ export {
 	CSDatepicker,
 	CSDivider,
 	CSLabel,
+	CSLookupField,
 	CSIcon,
 	CSImage,
 	CSInputFile,

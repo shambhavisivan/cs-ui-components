@@ -203,6 +203,7 @@ $variables: (
 	--cs-table-row-bg: $cs-white,
 	--cs-table-br: $cs-gray-light-2,
 	--cs-table-row-hover-bg: $cs-gray-light-11,
+	--cs-table-header-bg: $cs-gray-light-11,
 
 	--cs-path-tab: $cs-gray-light-5,
 	--cs-path-tab-hover: $cs-gray-light-2,
@@ -346,7 +347,11 @@ $variables: (
 	--cs-radio-error-focus-shadow: $cs-red-medium-1,
 	--cs-radio-label-c: $cs-gray-dark-2,
 
-	--cs-divider-label-bg: $cs-white
+	--cs-divider-label-bg: $cs-white,
+
+	--cs-lookup-field-results-br:  $cs-gray-light-2,
+	--cs-lookup-field-results-header-c: $cs-gray-medium-1,
+	--cs-lookup-field-results-row-c: $cs-gray-dark-1
 );
 
 // This will be used later for dark theme support
