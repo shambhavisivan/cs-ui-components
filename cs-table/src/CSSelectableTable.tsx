@@ -20,6 +20,7 @@ export interface CSSelectableTableProps extends CSTableProps {
 export const CSSelectableTable: React.FC<CSSelectableTableProps> = props => {
 	const rows = typeof props.rows === 'function' ? props.rows() : props.rows;
 	const normalRows = rows.filter(r => !r.fullWidth);
+	const normalRowsIdSet = new Set(normalRows.map((row:string) => row.id));
 
 	normalRows.forEach(row => {
 		row.data.values.__selected = props.selectedRows.has(row.id);
@@ -32,7 +33,7 @@ export const CSSelectableTable: React.FC<CSSelectableTableProps> = props => {
 	});
 
 	const selectAll = (value: boolean) => {
-		props.selectionChanged(value ? new Set(normalRows.map(r => r.id)) : new Set());
+		props.selectionChanged(value ? new Set([...props.selectedRows, ...normalRowsIdSet]) : new Set([...props.selectedRows].filter((id:string) => !normalRowsIdSet.has(id))));
 	};
 
 	const allSelected = useCallback(() => normalRows.every(row => props.selectedRows.has(row.id)) && normalRows.length > 0, [normalRows, props.selectedRows]);
