@@ -443,6 +443,7 @@ class CSButtonDropdownPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component: <CSButtonDropdown
 								iconName="down"
@@ -521,6 +522,14 @@ class CSButtonDropdownPreview extends React.Component {
 					propertyName: 'disabled',
 					description: 'Logic for disabled state',
 					options: ['<condition>']
+				},
+				{
+					propertyName: 'hover',
+					description: 'Logic for displaying dropdown buttons on hover',
+					options: [
+						'false',
+						'true'
+					]
 				},
 				{
 					propertyName: 'iconName',
