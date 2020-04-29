@@ -237,24 +237,6 @@ class CSSelectPreview extends React.Component {
 
 			properties: [
 				{
-					propertyName: 'id',
-					description: 'Select id value',
-					options: []
-				},
-				{
-					propertyName: 'label',
-					description: 'Select label text to display',
-					options: []
-				},
-				{
-					propertyName: 'labelHidden',
-					description: 'Logic for visibility of the label',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
 					propertyName: 'borderType',
 					description: 'Select border type',
 					options: [
@@ -263,31 +245,13 @@ class CSSelectPreview extends React.Component {
 					]
 				},
 				{
-					propertyName: 'helpText',
-					description: 'Select help text for tooltip display',
+					propertyName: 'className',
+					description: 'For implementing custom class to component',
 					options: []
-				},
-				{
-					propertyName: 'tooltipPosition',
-					description: 'Select tooltip position',
-					options: [
-						'top-right',
-						'top-left',
-						'bottom-right',
-						'bottom-left'
-					]
 				},
 				{
 					propertyName: 'disabled',
 					description: 'Logic for disabled state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'required',
-					description: 'Required state',
 					options: [
 						'false',
 						'true'
@@ -307,14 +271,50 @@ class CSSelectPreview extends React.Component {
 					options: []
 				},
 				{
+					propertyName: 'helpText',
+					description: 'Select help text for tooltip display',
+					options: []
+				},
+				{
+					propertyName: 'id',
+					description: 'Select id value',
+					options: []
+				},
+				{
+					propertyName: 'label',
+					description: 'Select label text to display',
+					options: []
+				},
+				{
+					propertyName: 'labelHidden',
+					description: 'Logic for visibility of the label',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
 					propertyName: 'onChange',
 					description: 'Logic for onChange event',
 					options: []
 				},
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
+					propertyName: 'required',
+					description: 'Required state',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
+					propertyName: 'tooltipPosition',
+					description: 'Select tooltip position',
+					options: [
+						'top-right',
+						'top-left',
+						'bottom-right',
+						'bottom-left'
+					]
 				}
 			]
 		};

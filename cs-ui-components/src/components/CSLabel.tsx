@@ -3,12 +3,12 @@ import CSTooltip from './CSTooltip';
 import classNames from 'classnames';
 
 export interface CSLabelProps {
-	required?: boolean;
-	for?: string;
-	label: string;
-	helpText?: string;
-	tooltipPosition?: string;
 	className?: string;
+	for?: string;
+	helpText?: string;
+	label: string;
+	required?: boolean;
+	tooltipPosition?: string;
 }
 
 class CSLabel extends React.Component<CSLabelProps> {

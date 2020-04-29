@@ -3,6 +3,7 @@ import CSIcon from './CSIcon';
 import classNames from 'classnames';
 
 export interface CSToastProps {
+	className?: string;
 	closeButton?: boolean;
 	detail?: string;
 	iconName?: string;
@@ -12,7 +13,6 @@ export interface CSToastProps {
 	text?: string;
 	textAlign?: string;
 	variant: string;
-	className?: string;
 }
 
 class CSToast extends React.Component<CSToastProps> {

@@ -3,15 +3,15 @@ import CSIcon from './CSIcon';
 import classNames from 'classnames';
 
 export interface CSAlertProps {
+	className?: string;
 	closeButton?: boolean;
 	iconName?: string;
 	iconVisibility?: boolean;
 	onClose?: undefined;
+	styleType?: string;
 	text?: string | Array<string>;
 	textAlign?: string;
-	styleType?: string;
 	variant: string;
-	className?: string;
 }
 
 class CSAlert extends React.Component<CSAlertProps> {

@@ -230,41 +230,6 @@ class CSTextareaPreview extends React.Component {
 			],
 			properties: [
 				{
-					propertyName: 'value',
-					description: 'Textarea value to display',
-					options: []
-				},
-				{
-					propertyName: 'placeholder',
-					description: 'Textarea placeholder to display',
-					options: []
-				},
-				{
-					propertyName: 'id',
-					description: 'Textarea id value',
-					options: []
-				},
-				{
-					propertyName: 'label',
-					description: 'Textarea label text to display',
-					options: []
-				},
-				{
-					propertyName: 'tooltipPosition',
-					description: 'Textarea tooltip position',
-					options: [
-						'top-right',
-						'top-left',
-						'bottom-right',
-						'bottom-left'
-					]
-				},
-				{
-					propertyName: 'helpText',
-					description: 'Textarea help text for tooltip display',
-					options: []
-				},
-				{
 					propertyName: 'borderType',
 					description: 'Input border type',
 					options: [
@@ -273,24 +238,13 @@ class CSTextareaPreview extends React.Component {
 					]
 				},
 				{
+					propertyName: 'className',
+					description: 'For implementing custom class to component',
+					options: []
+				},
+				{
 					propertyName: 'disabled',
 					description: 'Logic for disabled state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'readOnly',
-					description: 'Read only description',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'required',
-					description: 'Required state',
 					options: [
 						'false',
 						'true'
@@ -310,8 +264,18 @@ class CSTextareaPreview extends React.Component {
 					options: []
 				},
 				{
-					propertyName: 'rows',
-					description: 'Textarea rows value',
+					propertyName: 'helpText',
+					description: 'Textarea help text for tooltip display',
+					options: []
+				},
+				{
+					propertyName: 'id',
+					description: 'Textarea id value',
+					options: []
+				},
+				{
+					propertyName: 'label',
+					description: 'Textarea label text to display',
 					options: []
 				},
 				{
@@ -329,8 +293,44 @@ class CSTextareaPreview extends React.Component {
 					options: []
 				},
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component',
+					propertyName: 'placeholder',
+					description: 'Textarea placeholder to display',
+					options: []
+				},
+				{
+					propertyName: 'readOnly',
+					description: 'Read only description',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
+					propertyName: 'required',
+					description: 'Required state',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
+					propertyName: 'rows',
+					description: 'Textarea rows value',
+					options: []
+				},
+				{
+					propertyName: 'tooltipPosition',
+					description: 'Textarea tooltip position',
+					options: [
+						'top-right',
+						'top-left',
+						'bottom-right',
+						'bottom-left'
+					]
+				},
+				{
+					propertyName: 'value',
+					description: 'Textarea value to display',
 					options: []
 				}
 			]

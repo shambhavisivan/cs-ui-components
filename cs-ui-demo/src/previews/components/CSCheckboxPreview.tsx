@@ -254,11 +254,6 @@ class CSCheckboxPreview extends React.Component {
 
 			properties: [
 				{
-					propertyName: 'label',
-					description: 'Checkbox label to display',
-					options: []
-				},
-				{
 					propertyName: 'borderType',
 					description: 'Checkbox style',
 					options: [
@@ -275,27 +270,16 @@ class CSCheckboxPreview extends React.Component {
 					]
 				},
 				{
+					propertyName: 'className',
+					description: 'For implementing custom class to component',
+					options: []
+				},
+				{
 					propertyName: 'disabled',
 					description: 'Logic for disabled state',
 					options: [
 						'false',
 						'true'
-					]
-				},
-				{
-					propertyName: 'required',
-					description: 'Logic for required state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'variant',
-					description: 'Checkbox variant',
-					options: [
-						'neutral',
-						'brand'
 					]
 				},
 				{
@@ -317,14 +301,9 @@ class CSCheckboxPreview extends React.Component {
 					options: []
 				},
 				{
-					propertyName: 'tooltipPosition',
-					description: 'Checkbox tooltip position',
-					options: [
-						'top-right',
-						'top-left',
-						'bottom-right',
-						'bottom-left'
-					]
+					propertyName: 'label',
+					description: 'Checkbox label to display',
+					options: []
 				},
 				{
 					propertyName: 'labelHidden',
@@ -335,11 +314,6 @@ class CSCheckboxPreview extends React.Component {
 					]
 				},
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
-				},
-				{
 					propertyName: 'onChange',
 					description: 'Logic for onChange event',
 					options: []
@@ -348,6 +322,32 @@ class CSCheckboxPreview extends React.Component {
 					propertyName: 'onClick',
 					description: 'Logic for onClick event',
 					options: []
+				},
+				{
+					propertyName: 'required',
+					description: 'Logic for required state',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
+					propertyName: 'tooltipPosition',
+					description: 'Checkbox tooltip position',
+					options: [
+						'top-right',
+						'top-left',
+						'bottom-right',
+						'bottom-left'
+					]
+				},
+				{
+					propertyName: 'variant',
+					description: 'Checkbox variant',
+					options: [
+						'neutral',
+						'brand'
+					]
 				}
 			]
 		};

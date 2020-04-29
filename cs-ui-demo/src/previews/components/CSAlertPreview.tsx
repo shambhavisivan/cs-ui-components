@@ -272,54 +272,19 @@ class CSAlertPreview extends React.Component {
 
 			properties: [
 				{
-					propertyName: 'variant',
-					description: 'Color and icon variant of alert',
-					options: [
-						'info',
-						'warning',
-						'error',
-						'offline'
-					]
-				},
-				{
-					propertyName: 'styleType',
-					description: 'Determines styling of text and background',
-					options: [
-						'default',
-						'light'
-					]
-				},
-				{
-					propertyName: 'textAlign',
-					description: 'Alignment of the text inside the alert',
-					options: [
-						'centre',
-						'left'
-					]
-				},
-				{
-					propertyName: 'iconName',
-					description: 'Name of icon from icons library which overrides the default icon defined by variant',
-					options: [
-					]
-				},
-				{
-					propertyName: 'text',
-					description: 'Text content of alert',
-					options: [
-					]
+					propertyName: 'className',
+					description: 'For implementing custom class to component',
+					options: []
 				},
 				{
 					propertyName: 'closeButton',
 					description: 'Show Close button',
-					options: [
-					]
+					options: []
 				},
 				{
-					propertyName: 'onClose',
-					description: 'Close Alert',
-					options: [
-					]
+					propertyName: 'iconName',
+					description: 'Name of icon from icons library which overrides the default icon defined by variant',
+					options: []
 				},
 				{
 					propertyName: 'iconVisibility',
@@ -330,9 +295,39 @@ class CSAlertPreview extends React.Component {
 					]
 				},
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component',
+					propertyName: 'onClose',
+					description: 'Close Alert',
+					options: []
+				},
+				{
+					propertyName: 'styleType',
+					description: 'Determines styling of text and background',
 					options: [
+						'default',
+						'light'
+					]
+				},
+				{
+					propertyName: 'text',
+					description: 'Text content of alert',
+					options: []
+				},
+				{
+					propertyName: 'textAlign',
+					description: 'Alignment of the text inside the alert',
+					options: [
+						'centre',
+						'left'
+					]
+				},
+				{
+					propertyName: 'variant',
+					description: 'Color and icon variant of alert',
+					options: [
+						'info',
+						'warning',
+						'error',
+						'offline'
 					]
 				}
 			]

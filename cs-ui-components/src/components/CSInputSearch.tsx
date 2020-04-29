@@ -4,23 +4,23 @@ import CSLabel from './CSLabel';
 import CSIcon from './CSIcon';
 
 export interface CSInputSearchProps {
+	autoFocus?: boolean;
 	borderType?: string;
+	className?: string;
+	disabled?: boolean;
 	error?: boolean;
+	errorMessage?: string;
+	helpText?: string;
+	iconPosition?: string;
+	id?: string;
 	label: string;
 	labelHidden?: boolean;
-	id?: string;
-	helpText?: string;
-	tooltipPosition?: string;
-	required?: boolean;
-	placeholder?: string;
-	disabled?: boolean;
-	iconPosition?: string;
-	value?: string;
-	className?: string;
-	width?: string;
-	errorMessage?: string;
-	autoFocus?: boolean;
 	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+	placeholder?: string;
+	required?: boolean;
+	tooltipPosition?: string;
+	value?: string;
+	width?: string;
 }
 
 export function fixControlledValue<T>(value: T) {

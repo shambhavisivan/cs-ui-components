@@ -3,10 +3,10 @@ import CSIcon from './CSIcon';
 import classNames from 'classnames';
 
 export interface CSSectionProps {
-	title: string;
+	className?: string;
 	collapsed?: boolean;
 	collapsible?: boolean;
-	className?: string;
+	title: string;
 }
 
 export interface CSSectionState {

@@ -283,18 +283,29 @@ class CSModalPreview extends React.Component {
 			/* CSModal Properties Table */
 			properties: [
 				{
-					propertyName: 'size',
-					description: 'Modal size',
-					options: ['small', 'medium', 'large', 'xlarge']
+					propertyName: 'className',
+					description: 'For implementing custom class to component',
+					options: []
 				},
 				{
 					propertyName: 'closeButton',
 					description: 'Logic for close button visibility',
-					options: ['false', 'true']
+					options: [
+						'false',
+						'true'
+					]
 				},
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component',
+					propertyName: 'loading',
+					description: 'Add custom styles as inline css',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
+					propertyName: 'loadingText',
+					description: 'Label to show while loading spinner is visible',
 					options: []
 				},
 				{
@@ -303,14 +314,14 @@ class CSModalPreview extends React.Component {
 					options: []
 				},
 				{
-					propertyName: 'loading',
-					description: 'Add custom styles as inline css',
-					options: ['false', 'true']
-				},
-				{
-					propertyName: 'loadingText',
-					description: 'Label to show while loading spinner is visible',
-					options: []
+					propertyName: 'size',
+					description: 'Modal size',
+					options: [
+						'small',
+						'medium',
+						'large',
+						'xlarge'
+					]
 				},
 				{
 					propertyName: 'style',
@@ -334,14 +345,14 @@ class CSModalPreview extends React.Component {
 			name: 'Modal Header',
 			properties: [
 				{
-					propertyName: 'title',
-					description: 'Main header title',
-					options: ['n/a']
-				},
-				{
 					propertyName: 'subtitle',
 					description: 'Secondary text content',
-					options: ['n/a']
+					options: []
+				},
+				{
+					propertyName: 'title',
+					description: 'Main header title',
+					options: []
 				}
 			]
 		};
@@ -356,7 +367,7 @@ class CSModalPreview extends React.Component {
 				{
 					propertyName: 'padding',
 					description: 'Modal body padding',
-					options: ['n/a']
+					options: []
 				}
 			]
 		};

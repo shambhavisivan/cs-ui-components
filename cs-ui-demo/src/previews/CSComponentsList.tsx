@@ -82,7 +82,7 @@ class CSComponentsList extends React.Component {
 				component: CSIconPreview
 			},
 			{
-				name: 'InputFile',
+				name: 'Input File',
 				component: CSInputFilePreview
 			},
 			{
@@ -90,7 +90,7 @@ class CSComponentsList extends React.Component {
 				component: CSInputNumberPreview
 			},
 			{
-				name: 'InputSearch',
+				name: 'Input Search',
 				component: CSInputSearchPreview
 			},
 			{

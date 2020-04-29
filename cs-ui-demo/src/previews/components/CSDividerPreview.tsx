@@ -89,12 +89,14 @@ class CSDividerPreview extends React.Component {
 
 			properties: [
 				{
-					propertyName: 'variant',
-					description: 'Vertical or Horizontal variant',
-					options: [
-						'vertical',
-						'horizontal'
-					]
+					propertyName: 'className',
+					description: 'For implementing custom class to component',
+					options: []
+				},
+				{
+					propertyName: 'label',
+					description: 'Divider label to display',
+					options: []
 				},
 				{
 					propertyName: 'size',
@@ -107,14 +109,12 @@ class CSDividerPreview extends React.Component {
 					]
 				},
 				{
-					propertyName: 'label',
-					description: 'Divider label to display',
-					options: []
-				},
-				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
+					propertyName: 'variant',
+					description: 'Vertical or Horizontal variant',
+					options: [
+						'vertical',
+						'horizontal'
+					]
 				}
 			]
 		};

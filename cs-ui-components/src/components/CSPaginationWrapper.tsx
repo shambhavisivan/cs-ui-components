@@ -3,8 +3,8 @@ import CSPagination from './CSPagination';
 import classNames from 'classnames';
 
 export interface CSPaginationWrapperProps {
-	props?: any;
 	className?:  string;
+	props?: any;
 }
 
 class CSPaginationWrapper extends React.Component<CSPaginationWrapperProps> {

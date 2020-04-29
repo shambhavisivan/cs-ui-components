@@ -3,23 +3,23 @@ import CSIcon from './CSIcon';
 import classNames from 'classnames';
 
 export interface CSButtonProps {
-	btnType?: string;
+	btnRound?: boolean;
 	btnStyle?: string;
-	size?: string;
-	width?: string;
+	btnType?: string;
+	className?: string;
+	color?: string;
+	disabled?: boolean;
 	iconDisplay?: string;
 	iconName?: string;
+	iconOrigin?: string;
 	iconPosition?: string;
 	iconRotate?: string;
-	iconOrigin?: string;
-	btnRound?: boolean;
-	onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-	disabled?: boolean;
 	label: string;
 	link?: string;
 	loading?: boolean;
-	className?: string;
-	color?: string;
+	onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+	size?: string;
+	width?: string;
 }
 
 class CSButton extends React.Component<CSButtonProps> {

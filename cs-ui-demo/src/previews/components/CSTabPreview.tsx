@@ -8,7 +8,7 @@ import PreviewLinks from '../PreviewLinks';
 import {CSTabGroup, CSTab} from '@cloudsense/cs-ui-components';
 
 class CSTabPreview extends React.Component {
-	getDoc() {
+	getCSTabGroupDoc() {
 
 		const json = {
 			name: 'Tab',
@@ -240,7 +240,7 @@ class CSTabPreview extends React.Component {
 	}
 
 	render() {
-		const component = this.getDoc();
+		const component = this.getCSTabGroupDoc();
 
 		return (
 			<>

@@ -138,6 +138,11 @@ class CSChipPreview extends React.Component {
 
 			properties: [
 				{
+					propertyName: 'className',
+					description: 'For implementing custom class to component',
+					options: []
+				},
+				{
 					propertyName: 'variant',
 					description: 'Chip variant',
 					options: [
@@ -155,12 +160,6 @@ class CSChipPreview extends React.Component {
 					options: [
 						'border',
 						'fill'
-					]
-				},
-				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: [
 					]
 				}
 			]

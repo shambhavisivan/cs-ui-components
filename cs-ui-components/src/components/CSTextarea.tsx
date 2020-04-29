@@ -4,21 +4,21 @@ import CSLabel from './CSLabel';
 
 export interface CSTextareaProps {
 	borderType?: string;
-	error?: boolean;
-	label: string;
-	id?: string;
-	helpText?: string;
-	tooltipPosition?: string;
-	required?: boolean;
-	placeholder?: string;
-	disabled?: boolean;
-	readOnly?: boolean;
-	value?: string;
-	rows?: number;
-	maxHeight?: string;
 	className?: string;
+	disabled?: boolean;
+	error?: boolean;
 	errorMessage?: string;
+	helpText?: string;
+	id?: string;
+	label: string;
+	maxHeight?: string;
 	onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => any;
+	placeholder?: string;
+	readOnly?: boolean;
+	required?: boolean;
+	rows?: number;
+	tooltipPosition?: string;
+	value?: string;
 }
 
 export interface CSTextareaState {

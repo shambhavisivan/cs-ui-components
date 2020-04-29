@@ -4,16 +4,16 @@ import classNames from 'classnames';
 
 export interface CSToggleProps {
 	checked?: boolean;
-	defaultChecked?: boolean;
-	error?: boolean;
-	disabled?: boolean;
-	required?: boolean;
-	label: string;
-	helpText?: string;
-	tooltipPosition?: string;
 	className?: string;
-	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => any;
+	defaultChecked?: boolean;
+	disabled?: boolean;
+	error?: boolean;
+	helpText?: string;
+	label: string;
 	labelPosition?: string;
+	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => any;
+	required?: boolean;
+	tooltipPosition?: string;
 }
 
 export interface CSToggleState {

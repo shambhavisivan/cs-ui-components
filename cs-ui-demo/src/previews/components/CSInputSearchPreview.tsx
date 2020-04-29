@@ -231,67 +231,29 @@ class CSInputSearchPreview extends React.Component {
 			],
 			properties: [
 				{
-					propertyName: 'value',
-					description: 'Input search value to display',
-					options: []
-				},
-				{
-					propertyName: 'placeholder',
-					description: 'Input search placeholder to display',
-					options: []
-				},
-				{
-					propertyName: 'id',
-					description: 'Input search id value',
-					options: []
-				},
-				{
-					propertyName: 'label',
-					description: 'Input label text to display',
-					options: []
-				},
-				{
-					propertyName: 'labelHidden',
-					description: 'Logic for visibility of the label',
+					propertyName: 'autoFocus',
+					description: 'Auto focus input',
 					options: [
 						'false',
-						 'true'
+						'true'
 					]
 				},
 				{
-					propertyName: 'helpText',
-					description: 'Input help text for tooltip display',
-					options: []
-				},
-				{
-					propertyName: 'tooltipPosition',
-					description: 'Input tooltip position',
+					propertyName: 'borderType',
+					description: 'Input border type',
 					options: [
-						'top-right',
-						'top-left',
-						'bottom-right',
-						'bottom-left'
+						'round',
+						'square'
 					]
+				},
+				{
+					propertyName: 'className',
+					description: 'For implementing custom class to component',
+					options: ['square']
 				},
 				{
 					propertyName: 'disabled',
 					description: 'Logic for disabled state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'read-only',
-					description: 'Read only description',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'required',
-					description: 'Required state',
 					options: [
 						'false',
 						'true'
@@ -311,6 +273,11 @@ class CSInputSearchPreview extends React.Component {
 					options: []
 				},
 				{
+					propertyName: 'helpText',
+					description: 'Input help text for tooltip display',
+					options: []
+				},
+				{
 					propertyName: 'iconPosition',
 					description: 'Input search icon position',
 					options: [
@@ -319,12 +286,52 @@ class CSInputSearchPreview extends React.Component {
 					]
 				},
 				{
-					propertyName: 'borderType',
-					description: 'Input border type',
+					propertyName: 'id',
+					description: 'Input search id value',
+					options: []
+				},
+				{
+					propertyName: 'label',
+					description: 'Input label text to display',
+					options: []
+				},
+				{
+					propertyName: 'labelHidden',
+					description: 'Logic for visibility of the label',
+					options: ['false', 'true']
+				},
+				{
+					propertyName: 'onChange',
+					description: 'Logic for onChange event',
+					options: []
+				},
+				{
+					propertyName: 'placeholder',
+					description: 'Input search placeholder to display',
+					options: []
+				},
+				{
+					propertyName: 'required',
+					description: 'Required state',
 					options: [
-						'round',
-						'square'
+						'false',
+						'true'
 					]
+				},
+				{
+					propertyName: 'tooltipPosition',
+					description: 'Input tooltip position',
+					options: [
+						'top-right',
+						'top-left',
+						'bottom-right',
+						'bottom-left'
+					]
+				},
+				{
+					propertyName: 'value',
+					description: 'Input search value to display',
+					options: []
 				},
 				{
 					propertyName: 'width',
@@ -334,26 +341,6 @@ class CSInputSearchPreview extends React.Component {
 						'50%',
 						'30rem',
 						'25px'
-					]
-				},
-				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: [
-						'square'
-					]
-				},
-				{
-					propertyName: 'onChange',
-					description: 'Logic for onChange event',
-					options: []
-				},
-				{
-					propertyName: 'autoFocus',
-					description: 'Auto focus input',
-					options: [
-						'false',
-						'true'
 					]
 				}
 			]

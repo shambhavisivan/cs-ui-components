@@ -201,29 +201,9 @@ class CSProgressBarPreview extends React.Component {
 
 			properties: [
 				{
-					propertyName: 'progress',
-					description: 'Percentage value to represent progress',
-					options: [
-						'e.g.',
-						'0%',
-						'50%',
-						'100%'
-					]
-				},
-				{
-					propertyName: 'label',
-					description: 'Text content of label',
-					options: [
-						'n/a'
-					]
-				},
-				{
-					propertyName: 'progressIndicator',
-					description: 'Boolean state of percentage indicator',
-					options: [
-						'false',
-						'true'
-					]
+					propertyName: 'className',
+					description: 'For implementing custom class to component',
+					options: []
 				},
 				{
 					propertyName: 'color',
@@ -236,6 +216,29 @@ class CSProgressBarPreview extends React.Component {
 					]
 				},
 				{
+					propertyName: 'label',
+					description: 'Text content of label',
+					options: []
+				},
+				{
+					propertyName: 'progress',
+					description: 'Percentage value to represent progress',
+					options: [
+						'e.g.',
+						'0%',
+						'50%',
+						'100%'
+					]
+				},
+				{
+					propertyName: 'progressIndicator',
+					description: 'Boolean state of percentage indicator',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
 					propertyName: 'thickness',
 					description: 'Thickness of the progress bar',
 					options: [
@@ -244,11 +247,6 @@ class CSProgressBarPreview extends React.Component {
 						'medium',
 						'large'
 					]
-				},
-				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
 				}
 			]
 		};

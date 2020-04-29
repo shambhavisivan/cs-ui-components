@@ -178,17 +178,9 @@ class CSRadioPreview extends React.Component {
 
 			properties: [
 				{
-					propertyName: 'label',
-					description: 'Radio label to display',
+					propertyName: 'className',
+					description: 'For implementing custom class to component',
 					options: []
-				},
-				{
-					propertyName: 'required',
-					description: 'Logic for required state',
-					options: [
-						'false',
-						'true'
-					]
 				},
 				{
 					propertyName: 'disabled',
@@ -196,14 +188,6 @@ class CSRadioPreview extends React.Component {
 					options: [
 						'false',
 						'true'
-					]
-				},
-				{
-					propertyName: 'variant',
-					description: 'Radio Option variant',
-					options: [
-						'neutral',
-						'brand'
 					]
 				},
 				{
@@ -220,6 +204,19 @@ class CSRadioPreview extends React.Component {
 					options: []
 				},
 				{
+					propertyName: 'label',
+					description: 'Radio label to display',
+					options: []
+				},
+				{
+					propertyName: 'required',
+					description: 'Logic for required state',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
 					propertyName: 'tooltipPosition',
 					description: 'Radio tooltip position',
 					options: [
@@ -230,9 +227,12 @@ class CSRadioPreview extends React.Component {
 					]
 				},
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
+					propertyName: 'variant',
+					description: 'Radio Option variant',
+					options: [
+						'neutral',
+						'brand'
+					]
 				}
 			]
 		};
@@ -255,13 +255,8 @@ class CSRadioPreview extends React.Component {
 			usage: 'Individual radio options.',
 			properties: [
 				{
-					propertyName: 'Label',
-					description: 'Radio Option label',
-					options: ['n/a']
-				},
-				{
-					propertyName: 'Name',
-					description: 'Radio Option name',
+					propertyName: 'className',
+					description: 'For implementing custom class to component',
 					options: ['n/a']
 				},
 				{
@@ -273,8 +268,13 @@ class CSRadioPreview extends React.Component {
 					]
 				},
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component',
+					propertyName: 'label',
+					description: 'Radio Option label',
+					options: ['n/a']
+				},
+				{
+					propertyName: 'name',
+					description: 'Radio Option name',
 					options: ['n/a']
 				},
 				{

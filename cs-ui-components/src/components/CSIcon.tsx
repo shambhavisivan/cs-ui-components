@@ -5,11 +5,11 @@ import SldsIconSvg from '../icons/slds-icons.svg';
 import CsIconSvg from '../icons/cs-icons.svg';
 
 export interface CSIconProps {
+	className?: string;
+	color?: string;
 	name: string;
 	origin?: string;
 	rotate?: string;
-	color?: string;
-	className?: string;
 	size?: string;
 }
 

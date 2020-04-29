@@ -95,13 +95,23 @@ class CSLabelPreview extends React.Component {
 			],
 			properties: [
 				{
-					propertyName: 'Label',
-					description: 'Label value',
+					propertyName: 'className',
+					description: 'For implementing custom class to component',
 					options: []
 				},
 				{
 					propertyName: 'for',
 					description: 'Label id',
+					options: []
+				},
+				{
+					propertyName: 'helpText',
+					description: 'Label help text display for tooltip',
+					options: []
+				},
+				{
+					propertyName: 'label',
+					description: 'Label value',
 					options: []
 				},
 				{
@@ -113,11 +123,6 @@ class CSLabelPreview extends React.Component {
 					]
 				},
 				{
-					propertyName: 'helpText',
-					description: 'Label help text display for tooltip',
-					options: []
-				},
-				{
 					propertyName: 'tooltipPosition',
 					description: 'Label tooltip position',
 					options: [
@@ -126,11 +131,6 @@ class CSLabelPreview extends React.Component {
 						'bottom-right',
 						'bottom-left'
 					]
-				},
-				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
 				}
 			]
 		};

@@ -170,21 +170,9 @@ class CSIconPreview extends React.Component {
 
 			properties: [
 				{
-					propertyName: 'name',
-					description: 'Name prop of Icon',
-					options: [
-						'See icons tab for a full list of icons'
-					]
-				},
-				{
-					propertyName: 'origin',
-					description: 'Origin prop of Icon',
-					options: ['slds', 'cs']
-				},
-				{
-					propertyName: 'rotate',
-					description: 'Degree value for clockwise icon rotation',
-					options: ['90', '180', '270']
+					propertyName: 'className',
+					description: 'Icon class',
+					options: []
 				},
 				{
 					propertyName: 'color',
@@ -197,6 +185,28 @@ class CSIconPreview extends React.Component {
 					]
 				},
 				{
+					propertyName: 'name',
+					description: 'Name prop of Icon',
+					options: ['See icons tab for a full list of icons']
+				},
+				{
+					propertyName: 'origin',
+					description: 'Origin prop of Icon',
+					options: [
+						'slds',
+						'cs'
+					]
+				},
+				{
+					propertyName: 'rotate',
+					description: 'Degree value for clockwise icon rotation',
+					options: [
+						'90',
+						'180',
+						'270'
+					]
+				},
+				{
 					propertyName: 'size',
 					description: 'Icon size',
 					options: [
@@ -204,11 +214,6 @@ class CSIconPreview extends React.Component {
 						'2rem',
 						'100px'
 					]
-				},
-				{
-					propertyName: 'className',
-					description: 'Icon class',
-					options: []
 				}
 			]
 		};

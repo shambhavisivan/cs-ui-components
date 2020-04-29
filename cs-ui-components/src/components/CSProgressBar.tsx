@@ -3,12 +3,12 @@ import CSLabel from './CSLabel';
 import classNames from 'classnames';
 
 export interface CSProgressBarProps {
-	progress: string;
-	label: string;
-	progressIndicator?: boolean;
-	color?: string;
-	thickness?: string;
 	className?: string;
+	color?: string;
+	label: string;
+	progress: string;
+	progressIndicator?: boolean;
+	thickness?: string;
 }
 
 class CSProgressBar extends React.Component<CSProgressBarProps> {

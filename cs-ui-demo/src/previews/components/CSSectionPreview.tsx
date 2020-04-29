@@ -74,10 +74,16 @@ class CSSectionPreview extends React.Component {
 
 			properties: [
 				{
-					propertyName: 'title',
-					description: 'Title content',
+					propertyName: 'className',
+					description: 'For implementing custom class to component',
+					options: []
+				},
+				{
+					propertyName: 'collapsed',
+					description: 'Collapsed state',
 					options: [
-						'n/a'
+						'false',
+						'true'
 					]
 				},
 				{
@@ -89,16 +95,8 @@ class CSSectionPreview extends React.Component {
 					]
 				},
 				{
-					propertyName: 'collapsed',
-					description: 'Collapsed state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component',
+					propertyName: 'title',
+					description: 'Title content',
 					options: []
 				}
 			]

@@ -3,13 +3,13 @@ import classNames from 'classnames';
 import CSIcon from './CSIcon';
 
 export interface CSTooltipProps {
-	iconName?: string;
-	position?: string;
-	helpText: string | Array<string>;
-	variant?: string;
-	iconSize?: string;
-	tooltipHeader?: string;
 	className?: string;
+	helpText: string | Array<string>;
+	iconName?: string;
+	iconSize?: string;
+	position?: string;
+	tooltipHeader?: string;
+	variant?: string;
 }
 
 class CSTooltip extends React.Component<CSTooltipProps> {

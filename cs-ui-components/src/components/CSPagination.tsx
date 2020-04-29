@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export interface CSPaginationProps {
-	items?: any;
 	initialPage?: number;
+	items?: any;
 }
 
 const propTypes = {

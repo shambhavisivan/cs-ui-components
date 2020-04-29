@@ -3,11 +3,11 @@ import classNames from 'classnames';
 import CSIcon from './CSIcon';
 
 export interface CSInputFileProps {
+	className?: string;
+	disabled?: boolean;
 	error?: boolean;
 	errorMessage?: string;
-	disabled?: boolean;
 	label: string;
-	className?: string;
 }
 
 export interface CSInputFileState {

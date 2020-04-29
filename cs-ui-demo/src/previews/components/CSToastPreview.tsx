@@ -281,21 +281,31 @@ class CSToastPreview extends React.Component {
 
 			properties: [
 				{
-					propertyName: 'variant',
-					description: 'Color variant of toast',
-					options: [
-						'info',
-						'success',
-						'warning',
-						'error'
-					]
+					propertyName: 'className',
+					description: 'For implementing custom class to component',
+					options: []
 				},
 				{
-					propertyName: 'textAlign',
-					description: 'Alignment of the text inside the toast',
+					propertyName: 'closeButton',
+					description: 'Logic for close button state',
+					options: []
+				},
+				{
+					propertyName: 'detail',
+					description: 'Text content for toast detail',
+					options: []
+				},
+				{
+					propertyName: 'iconName',
+					description: 'Name of icon from icons library which overrides the default icon defined by variant',
+					options: []
+				},
+				{
+					propertyName: 'iconVisibility',
+					description: 'Logic for icon visibility state',
 					options: [
-						'left',
-						'centre'
+						'true',
+						'false'
 					]
 				},
 				{
@@ -309,47 +319,31 @@ class CSToastPreview extends React.Component {
 					]
 				},
 				{
-					propertyName: 'iconName',
-					description: 'Name of icon from icons library which overrides the default icon defined by variant',
-					options: [
-					]
-				},
-				{
-					propertyName: 'iconVisibility',
-					description: 'Logic for icon visibility state',
-					options: [
-						'true',
-						'false'
-					]
+					propertyName: 'onClose',
+					description: 'Close Alert',
+					options: []
 				},
 				{
 					propertyName: 'text',
 					description: 'Text content for main toast message',
+					options: []
+				},
+				{
+					propertyName: 'textAlign',
+					description: 'Alignment of the text inside the toast',
 					options: [
+						'left',
+						'centre'
 					]
 				},
 				{
-					propertyName: 'detail',
-					description: 'Text content for toast detail',
+					propertyName: 'variant',
+					description: 'Color variant of toast',
 					options: [
-					]
-				},
-				{
-					propertyName: 'closeButton',
-					description: 'Logic for close button state',
-					options: [
-					]
-				},
-				{
-					propertyName: 'onClose',
-					description: 'Close Alert',
-					options: [
-					]
-				},
-				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: [
+						'info',
+						'success',
+						'warning',
+						'error'
 					]
 				}
 			]

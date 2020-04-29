@@ -187,17 +187,17 @@ class CSTogglePreview extends React.Component {
 
 			properties: [
 				{
-					propertyName: 'label',
-					description: 'Toggle label to display',
-					options: []
-				},
-				{
 					propertyName: 'checked',
 					description: 'Value of checkbox',
 					options: [
 						'false',
 						'true'
 					]
+				},
+				{
+					propertyName: 'className',
+					description: 'For implementing custom class to component',
+					options: []
 				},
 				{
 					propertyName: 'defaultChecked',
@@ -210,14 +210,6 @@ class CSTogglePreview extends React.Component {
 				{
 					propertyName: 'disabled',
 					description: 'Logic for disabled state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'required',
-					description: 'Logic for required state',
 					options: [
 						'false',
 						'true'
@@ -237,6 +229,32 @@ class CSTogglePreview extends React.Component {
 					options: []
 				},
 				{
+					propertyName: 'label',
+					description: 'Toggle label to display',
+					options: []
+				},
+				{
+					propertyName: 'labelPosition',
+					description: 'Label position, for now only default and left are supported',
+					options: [
+						'default',
+						'left'
+					]
+				},
+				{
+					propertyName: 'onChange',
+					description: 'Logic for onChange event',
+					options: []
+				},
+				{
+					propertyName: 'required',
+					description: 'Logic for required state',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
 					propertyName: 'tooltipPosition',
 					description: 'Toggle tooltip position',
 					options: [
@@ -245,21 +263,6 @@ class CSTogglePreview extends React.Component {
 						'bottom-right',
 						'bottom-left'
 					]
-				},
-				{
-					propertyName: 'labelPosition',
-					description: 'Label position, for now only default and left are supported',
-					options: ['default', 'left']
-				},
-				{
-					propertyName: 'onChange',
-					description: 'Logic for onChange event',
-					options: []
-				},
-				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
 				}
 			]
 		};

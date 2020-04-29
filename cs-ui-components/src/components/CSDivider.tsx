@@ -2,10 +2,10 @@ import React from 'react';
 import classNames from 'classnames';
 
 export interface CSDividerProps {
-	variant: string;
-	size?: string;
 	className?: string;
 	label?: string;
+	size?: string;
+	variant: string;
 }
 
 class CSDivider extends React.Component<CSDividerProps> {

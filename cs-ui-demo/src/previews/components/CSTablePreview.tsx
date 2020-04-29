@@ -98,25 +98,6 @@ class CSTablePreview extends React.Component {
 
 			properties: [
 				{
-					propertyName: 'title',
-					description: 'Text content of cell',
-					options: []
-				},
-				{
-					propertyName: 'grow',
-					description: 'Flex grow value for cell',
-					options: []
-				},
-				{
-					propertyName: 'maxWidth',
-					description: 'Max width value for cell',
-					options: [
-						'e.g.',
-						'100px',
-						'4rem'
-					]
-				},
-				{
 					propertyName: 'className',
 					description: 'For implementing custom class to component',
 					options: []
@@ -133,15 +114,46 @@ class CSTablePreview extends React.Component {
 		return json;
 	}
 
+	getCSTableCellDoc() {
+		const json = {
+			name: 'TableCell',
+			properties: [
+
+				{
+					propertyName: 'grow',
+					description: 'Flex grow value for cell',
+					options: []
+				},
+				{
+					propertyName: 'maxWidth',
+					description: 'Max width value for cell',
+					options: [
+						'e.g.',
+						'100px',
+						'4rem'
+					]
+				},
+				{
+					propertyName: 'title',
+					description: 'Text content of cell',
+					options: []
+				}
+			]
+		};
+
+		return json;
+	}
+
 	render() {
 		const component = this.getCSTableDoc();
+		const component2 = this.getCSTableCellDoc();
 
 		return (
 			<>
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} />
 					<PreviewProperties name={component.name} examples={component.examples} />
-					<PreviewTable components={[component]} />
+					<PreviewTable components={[component, component2]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

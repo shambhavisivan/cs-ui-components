@@ -232,59 +232,21 @@ class CSInputNumberPreview extends React.Component {
 			],
 			properties: [
 				{
-					propertyName: 'value',
-					description: 'Default value to display',
-					options: []
-				},
-				{
-					propertyName: 'placeholder',
-					description: 'Input number placeholder to display',
-					options: []
-				},
-				{
-					propertyName: 'id',
-					description: 'Input number id value',
-					options: []
-				},
-				{
-					propertyName: 'label',
-					description: 'Input label text to display',
-					options: []
-				},
-				{
-					propertyName: 'helpText',
-					description: 'Input help text for tooltip display',
-					options: []
-				},
-				{
-					propertyName: 'tooltipPosition',
-					description: 'Input tooltip position',
+					propertyName: 'borderType',
+					description: 'Input border type',
 					options: [
-						'top-right',
-						'top-left',
-						'bottom-right',
-						'bottom-left'
+						'round',
+						'square'
 					]
+				},
+				{
+					propertyName: 'className',
+					description: 'For implementing custom class to component',
+					options: []
 				},
 				{
 					propertyName: 'disabled',
 					description: 'Logic for disabled state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'read-only',
-					description: 'Read only description',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'required',
-					description: 'Required state',
 					options: [
 						'false',
 						'true'
@@ -304,22 +266,9 @@ class CSInputNumberPreview extends React.Component {
 					options: []
 				},
 				{
-					propertyName: 'min',
-					description: 'Input number min value',
+					propertyName: 'helpText',
+					description: 'Input help text for tooltip display',
 					options: []
-				},
-				{
-					propertyName: 'max',
-					description: 'Input number max value',
-					options: []
-				},
-				{
-					propertyName: 'borderType',
-					description: 'Input border type',
-					options: [
-						'round',
-						'square'
-					]
 				},
 				{
 					propertyName: 'hideSpinner',
@@ -330,13 +279,64 @@ class CSInputNumberPreview extends React.Component {
 					]
 				},
 				{
+					propertyName: 'id',
+					description: 'Input number id value',
+					options: []
+				},
+				{
+					propertyName: 'label',
+					description: 'Input label text to display',
+					options: []
+				},
+				{
+					propertyName: 'max',
+					description: 'Input number max value',
+					options: []
+				},
+				{
+					propertyName: 'min',
+					description: 'Input number min value',
+					options: []
+				},
+				{
 					propertyName: 'onChange',
 					description: 'Logic for onChange event',
 					options: []
 				},
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component',
+					propertyName: 'placeholder',
+					description: 'Input number placeholder to display',
+					options: []
+				},
+				{
+					propertyName: 'readOnly',
+					description: 'Read only description',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
+					propertyName: 'required',
+					description: 'Required state',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
+					propertyName: 'tooltipPosition',
+					description: 'Input tooltip position',
+					options: [
+						'top-right',
+						'top-left',
+						'bottom-right',
+						'bottom-left'
+					]
+				},
+				{
+					propertyName: 'value',
+					description: 'Default value to display',
 					options: []
 				}
 			]

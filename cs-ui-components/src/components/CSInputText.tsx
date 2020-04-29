@@ -4,19 +4,19 @@ import CSLabel from './CSLabel';
 
 export interface CSInputTextProps {
 	borderType?: string;
-	error?: boolean;
-	label: string;
-	id?: string;
-	helpText?: string;
-	tooltipPosition?: string;
-	required?: boolean;
-	placeholder?: string;
-	disabled?: boolean;
-	readOnly?: boolean;
-	value?: string;
 	className?: string;
+	disabled?: boolean;
+	error?: boolean;
 	errorMessage?: string;
+	helpText?: string;
+	id?: string;
+	label: string;
 	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => any;
+	placeholder?: string;
+	readOnly?: boolean;
+	required?: boolean;
+	tooltipPosition?: string;
+	value?: string;
 }
 
 export interface CSInputTextState {

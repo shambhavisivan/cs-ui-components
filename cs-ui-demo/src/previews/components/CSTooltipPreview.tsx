@@ -155,20 +155,19 @@ class CSTooltipPreview extends React.Component {
 			],
 			properties: [
 				{
-					propertyName: 'variant',
-					description: 'Color variant of tooltip',
-					options: [
-						'info',
-						'warning',
-						'error'
-					]
+					propertyName: 'className',
+					description: 'For implementing custom class to component',
+					options: []
+				},
+				{
+					propertyName: 'helpText',
+					description: 'Tooltip help text content',
+					options: []
 				},
 				{
 					propertyName: 'iconName',
 					description: 'Name of icon from icons library which overrides the default icon defined by variant',
-					options: [
-
-					]
+					options: []
 				},
 				{
 					propertyName: 'iconSize',
@@ -177,11 +176,6 @@ class CSTooltipPreview extends React.Component {
 						'small',
 						'medium'
 					]
-				},
-				{
-					propertyName: 'helpText',
-					description: 'Tooltip help text content',
-					options: []
 				},
 				{
 					propertyName: 'position',
@@ -196,13 +190,15 @@ class CSTooltipPreview extends React.Component {
 				{
 					propertyName: 'tooltipHeader',
 					description: 'Content of the tooltip header',
-					options: [
-					]
+					options: []
 				},
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component',
+					propertyName: 'variant',
+					description: 'Color variant of tooltip',
 					options: [
+						'info',
+						'warning',
+						'error'
 					]
 				}
 			]

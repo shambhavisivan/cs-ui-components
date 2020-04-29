@@ -198,59 +198,21 @@ class CSInputTextPreview extends React.Component {
 			],
 			properties: [
 				{
-					propertyName: 'value',
-					description: 'Input value to display',
-					options: []
-				},
-				{
-					propertyName: 'placeholder',
-					description: 'Input placeholder to display',
-					options: []
-				},
-				{
-					propertyName: 'label',
-					description: 'Input label text to display',
-					options: []
-				},
-				{
-					propertyName: 'id',
-					description: 'Input id value',
-					options: []
-				},
-				{
-					propertyName: 'helpText',
-					description: 'Input help text for tooltip display',
-					options: []
-				},
-				{
-					propertyName: 'tooltipPosition',
-					description: 'Input tooltip position',
+					propertyName: 'borderType',
+					description: 'Input style',
 					options: [
-						'top-right',
-						'top-left',
-						'bottom-right',
-						'bottom-left'
+						'round',
+						'square'
 					]
+				},
+				{
+					propertyName: 'className',
+					description: 'For implementing custom class to component',
+					options: []
 				},
 				{
 					propertyName: 'disabled',
 					description: 'Logic for disabled state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'read-only',
-					description: 'Read only description',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'required',
-					description: 'Required state',
 					options: [
 						'false',
 						'true'
@@ -270,12 +232,19 @@ class CSInputTextPreview extends React.Component {
 					options: []
 				},
 				{
-					propertyName: 'borderType',
-					description: 'Input style',
-					options: [
-						'round',
-						'square'
-					]
+					propertyName: 'helpText',
+					description: 'Input help text for tooltip display',
+					options: []
+				},
+				{
+					propertyName: 'id',
+					description: 'Input id value',
+					options: []
+				},
+				{
+					propertyName: 'label',
+					description: 'Input label text to display',
+					options: []
 				},
 				{
 					propertyName: 'onChange',
@@ -283,10 +252,40 @@ class CSInputTextPreview extends React.Component {
 					options: []
 				},
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component',
+					propertyName: 'placeholder',
+					description: 'Input placeholder to display',
+					options: []
+				},
+				{
+					propertyName: 'readOnly',
+					description: 'Read only description',
 					options: [
+						'false',
+						'true'
 					]
+				},
+				{
+					propertyName: 'required',
+					description: 'Required state',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
+					propertyName: 'tooltipPosition',
+					description: 'Input tooltip position',
+					options: [
+						'top-right',
+						'top-left',
+						'bottom-right',
+						'bottom-left'
+					]
+				},
+				{
+					propertyName: 'value',
+					description: 'Input value to display',
+					options: []
 				}
 			]
 		};

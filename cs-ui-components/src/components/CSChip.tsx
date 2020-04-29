@@ -2,10 +2,10 @@ import React from 'react';
 import classNames from 'classnames';
 
 export interface CSChipProps {
+	className?: string;
+	text: string;
 	variant?: string;
 	variantStyle?: string;
-	text: string;
-	className?: string;
 }
 
 class CSChip extends React.Component<CSChipProps> {

@@ -4,22 +4,22 @@ import CSLabel from './CSLabel';
 
 export interface CSInputNumberProps {
 	borderType?: string;
-	error?: boolean;
-	label: string;
-	id?: string;
-	helpText?: string;
-	tooltipPosition?: string;
-	required?: boolean;
-	placeholder?: string;
-	disabled?: boolean;
-	readOnly?: boolean;
-	min?: any;
-	max?: any;
-	value?: any;
 	className?: string;
+	disabled?: boolean;
+	error?: boolean;
 	errorMessage?: string;
+	helpText?: string;
 	hideSpinner?: boolean;
+	id?: string;
+	label: string;
+	max?: any;
+	min?: any;
 	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => any;
+	placeholder?: string;
+	readOnly?: boolean;
+	required?: boolean;
+	tooltipPosition?: string;
+	value?: any;
 }
 
 export interface CSInputNumberState {

@@ -66,16 +66,15 @@ class CSPathPreview extends React.Component {
 
 			properties: [
 				{
-					propertyName: 'title',
-					description: 'Text content of path item',
-					options: ['n/a']
-				},
-				{
 					propertyName: 'className',
 					description: 'For implementing custom class to component',
-					options: ['n/a']
+					options: []
+				},
+				{
+					propertyName: 'title',
+					description: 'Text content of path item',
+					options: []
 				}
-
 			]
 		};
 

@@ -399,6 +399,23 @@ class CSButtonPreview extends React.Component {
 			],
 			properties: [
 				{
+					propertyName: 'btnRound',
+					description: 'Logic for round button styling',
+					options: [
+						'false',
+						'round'
+					]
+				},
+				{
+					propertyName: 'btnStyle',
+					description: 'Button style',
+					options: [
+						'initial',
+						'brand',
+						'outline'
+					]
+				},
+				{
 					propertyName: 'btnType',
 					description: 'Button type',
 					options: [
@@ -409,12 +426,26 @@ class CSButtonPreview extends React.Component {
 					]
 				},
 				{
-					propertyName: 'btnStyle',
-					description: 'Button style',
+					propertyName: 'className',
+					description: 'For implementing custom class to component',
+					options: []
+				},
+				{
+					propertyName: 'color',
+					description: 'For implementing color to component',
+					options: []
+				},
+				{
+					propertyName: 'disabled',
+					description: 'Logic for disabled state',
+					options: ['condition']
+				},
+				{
+					propertyName: 'iconDisplay',
+					description: 'Icon-only',
 					options: [
-						'initial',
-						'brand',
-						'outline'
+						'icon-only',
+						'no-icon'
 					]
 				},
 				{
@@ -432,14 +463,6 @@ class CSButtonPreview extends React.Component {
 					]
 				},
 				{
-					propertyName: 'iconDisplay',
-					description: 'Icon-only',
-					options: [
-						'icon-only',
-						'no-icon'
-					]
-				},
-				{
 					propertyName: 'iconPosition',
 					description: 'Icon position on left or right edge of button',
 					options: [
@@ -450,7 +473,34 @@ class CSButtonPreview extends React.Component {
 				{
 					propertyName: 'iconRotate',
 					description: 'Degree value for clockwise icon rotation',
-					options: ['90', '180', '270']
+					options: [
+						'90',
+						'180',
+						'270'
+					]
+				},
+				{
+					propertyName: 'label',
+					description: 'Button label to display',
+					options: ['<label>']
+				},
+				{
+					propertyName: 'link',
+					description: 'Link path (not supported yet)',
+					options: ['url']
+				},
+				{
+					propertyName: 'loading',
+					description: 'Change icon to spinner and add spin animation. To be used while process is in progress',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
+					propertyName: 'onClick',
+					description: 'Logic for onClick event',
+					options: []
 				},
 				{
 					propertyName: 'size',
@@ -463,60 +513,12 @@ class CSButtonPreview extends React.Component {
 					]
 				},
 				{
-					propertyName: 'btnRound',
-					description: 'Logic for round button styling',
-					options: [
-						'false',
-						'round'
-					]
-				},
-				{
-					propertyName: 'onClick',
-					description: 'Logic for onClick event',
-					options: []
-				},
-				{
 					propertyName: 'width',
 					description: 'Button width',
 					options: [
 						'auto',
 						'max'
 					]
-				},
-				{
-					propertyName: 'label',
-					description: 'Button label to display',
-					options: [
-						'<label>'
-					]
-				},
-				{
-					propertyName: 'loading',
-					description: 'Change icon to spinner and add spin animation. To be used while process is in progress',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'link',
-					description: 'Link path (not supported yet)',
-					options: ['url']
-				},
-				{
-					propertyName: 'disabled',
-					description: 'Logic for disabled state',
-					options: ['condition']
-				},
-				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
-				},
-				{
-					propertyName: 'color',
-					description: 'For implementing color to component',
-					options: []
 				}
 			],
 			backlog: [

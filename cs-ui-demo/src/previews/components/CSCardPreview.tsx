@@ -59,7 +59,7 @@ class CSCardPreview extends React.Component {
 				{
 					propertyName: 'className',
 					description: 'For implementing custom class to component',
-					options: ['n/a']
+					options: []
 				}
 			]
 		 };
@@ -81,7 +81,7 @@ class CSCardPreview extends React.Component {
 				{
 					propertyName: 'title',
 					description: 'Card header title',
-					options: ['n/a']
+					options: []
 				}
 			]
 		};

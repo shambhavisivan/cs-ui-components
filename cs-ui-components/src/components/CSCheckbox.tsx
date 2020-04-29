@@ -3,22 +3,22 @@ import classNames from 'classnames';
 import CSLabel from './CSLabel';
 
 export interface CSCheckboxProps {
-	checked?: boolean;
-	defaultChecked?: boolean;
-	error?: boolean;
-	disabled?: boolean;
-	required?: boolean;
 	borderType?: string;
-	label: string;
-	helpText?: string;
-	tooltipPosition?: string;
-	variant?: string;
-	labelHidden?: boolean;
+	checked?: boolean;
 	className?: string;
+	defaultChecked?: boolean;
+	disabled?: boolean;
+	error?: boolean;
 	errorMessage?: string;
+	helpText?: string;
+	id?: string;
+	label: string;
+	labelHidden?: boolean;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => any;
 	onClick?: (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
-	id?: string;
+	required?: boolean;
+	tooltipPosition?: string;
+	variant?: string;
 }
 
 export interface CSCheckboxState {

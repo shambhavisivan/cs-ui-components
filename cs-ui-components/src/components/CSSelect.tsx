@@ -5,17 +5,17 @@ import CSIcon from './CSIcon';
 
 export interface CSSelectProps {
 	borderType?: string;
+	className?: string;
+	disabled?: boolean;
 	error?: boolean;
+	errorMessage?: string;
+	helpText?: string;
+	id?: string;
 	label: string;
 	labelHidden?: boolean;
-	id?: string;
-	helpText?: string;
-	tooltipPosition?: string;
-	required?: boolean;
-	disabled?: boolean;
-	className?: string;
-	errorMessage?: string;
 	onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => any;
+	required?: boolean;
+	tooltipPosition?: string;
 }
 
 class CSSelect extends React.Component<CSSelectProps> {

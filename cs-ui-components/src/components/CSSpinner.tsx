@@ -2,11 +2,11 @@ import React from 'react';
 import classNames from 'classnames';
 
 export interface CSSpinnerProps {
+	className?: string;
 	color?: string;
-	size?: string;
 	inline?: boolean;
 	label?: string;
-	className?: string;
+	size?: string;
 }
 
 class CSSpinner extends React.Component<CSSpinnerProps> {

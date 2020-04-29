@@ -166,15 +166,9 @@ class CSSpinnerPreview extends React.Component {
 
 			properties: [
 				{
-					propertyName: 'size',
-					description: 'Size of spinner icon',
-					options: [
-						'large',
-						'xsmall',
-						'small',
-						'medium',
-						'xlarge'
-					]
+					propertyName: 'className',
+					description: 'For implementing custom class to component',
+					options: []
 				},
 				{
 					propertyName: 'color',
@@ -193,14 +187,20 @@ class CSSpinnerPreview extends React.Component {
 					]
 				},
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
-				},
-				{
 					propertyName: 'label',
 					description: 'Spinner label',
 					options: []
+				},
+				{
+					propertyName: 'size',
+					description: 'Size of spinner icon',
+					options: [
+						'large',
+						'xsmall',
+						'small',
+						'medium',
+						'xlarge'
+					]
 				}
 			]
 		};

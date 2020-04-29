@@ -6,16 +6,16 @@ import classNames from 'classnames';
 // tslint:disable-next-line: no-empty-interface
 export interface CSCustomSelectProps {
 	borderType?: string;
+	className?: string;
+	disabled?: boolean;
 	error?: boolean;
 	errorMessage?: string;
-	label: string;
-	id?: string;
 	helpText?: string;
-	tooltipPosition?: string;
-	required?: boolean;
-	disabled?: boolean;
-	className?: string;
+	id?: string;
+	label: string;
 	optionsList?: Array<string>;
+	required?: boolean;
+	tooltipPosition?: string;
 }
 
 export interface CSCustomSelectState {
