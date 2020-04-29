@@ -223,7 +223,7 @@ class CSButtonPreview extends React.Component {
 				},
 				{
 					propName: 'onClick',
-					customText: 'onClick prop for onClick event - verify the click by opening browser console',
+					customText: '',
 					variations: [
 						{
 							string: '',
@@ -380,7 +380,18 @@ class CSButtonPreview extends React.Component {
 					variations: [
 						{
 							string: '',
-							component: <CSButton iconName="activity" label="default" link="www.google.com"/>
+							component: <CSButton iconName="activity" label="default" link="https://www.google.com"/>
+						}
+					]
+				},
+				{
+					propName: 'openInNewTab',
+					customText: '',
+					variations: [
+						{
+							variationName: ['true'],
+							string: '',
+							component: <CSButton iconName="activity" label="default" openInNewTab link="https://www.google.com"/>
 						}
 					]
 				},
@@ -486,7 +497,7 @@ class CSButtonPreview extends React.Component {
 				},
 				{
 					propertyName: 'link',
-					description: 'Link path (not supported yet)',
+					description: 'Link path',
 					options: ['url']
 				},
 				{
@@ -501,6 +512,14 @@ class CSButtonPreview extends React.Component {
 					propertyName: 'onClick',
 					description: 'Logic for onClick event',
 					options: []
+				},
+				{
+					propertyName: 'openInNewTab',
+					description: 'Logic for opening link in new tab',
+					options: [
+						'true',
+						'false'
+					]
 				},
 				{
 					propertyName: 'size',
@@ -522,12 +541,6 @@ class CSButtonPreview extends React.Component {
 				}
 			],
 			backlog: [
-				{
-					backlogName: 'Add link prop',
-					description: 'Allow adding href url',
-					obstacles: 'Accessibility issue on using Link component as a child of button, there are 2 focuses. Alternative - add click routing logic (check frame agreement)'
-
-				},
 				{
 					backlogName: 'Add colorOverride prop',
 					description: 'Allows to pass custom hex colour.',
