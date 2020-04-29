@@ -37,6 +37,7 @@ class CSButtonGroupPreview extends React.Component {
 									/>
 									<CSButtonDropdown
 										iconName="down"
+										label="button dropdown"
 									>
 										<CSButton
 											label="Dropdown item 1"
@@ -69,6 +70,7 @@ class CSButtonGroupPreview extends React.Component {
 									/>
 									<CSButtonDropdown
 										iconName="down"
+										label="button dropdown"
 									>
 										<CSButton
 											label="Dropdown item 1"
@@ -107,6 +109,7 @@ class CSButtonGroupPreview extends React.Component {
 									/>
 									<CSButtonDropdown
 										iconName="down"
+										label="button dropdown"
 									>
 										<CSButton
 											label="Dropdown item 1"

@@ -211,22 +211,22 @@ class CSButtonPreview extends React.Component {
 						{
 							variationName: ['icon-only'],
 							string: '',
-							component: <CSButton iconName="activity" iconDisplay="icon-only"/>
+							component: <CSButton label="activity icon button" iconName="activity" iconDisplay="icon-only"/>
 						},
 						{
 							variationName: ['icon-only', 'large'],
 							string: '',
-							component: <CSButton iconName="activity" iconDisplay="icon-only" size="large"/>
+							component: <CSButton label="activity icon button" iconName="activity" iconDisplay="icon-only" size="large"/>
 						},
 						{
 							variationName: ['icon-only', 'small'],
 							string: '',
-							component: <CSButton iconName="activity" iconDisplay="icon-only" size="small"/>
+							component: <CSButton label="activity icon button" iconName="activity" iconDisplay="icon-only" size="small"/>
 						},
 						{
 							variationName: ['icon-only', 'xsmall'],
 							string: '',
-							component: <CSButton iconName="activity" iconDisplay="icon-only" size="xsmall"/>
+							component: <CSButton label="activity icon button" iconName="activity" iconDisplay="icon-only" size="xsmall"/>
 						}
 					]
 				},

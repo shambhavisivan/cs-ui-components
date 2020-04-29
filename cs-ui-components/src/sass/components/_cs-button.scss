@@ -224,6 +224,11 @@
 			&::before {
 				--cs-button-bg: var(--cs-btn-custom-c, var(--cs-button-brand-bg));
 			}
+			&:focus::after {
+				@include css4 {
+					border: 1px solid cvar(--cs-button-brand-br);
+				}
+			}
 			&:hover::before {
 				@include bgd(--cs-button-bg, 0.15, var(--cs-main-c));
 			}
@@ -380,6 +385,12 @@
 		/* STYLE - INITIAL */
 		&.cs-btn-initial {
 			background: none;
+			&:hover {
+				.cs-btn-label,
+				.cs-btn-icon .cs-icon {
+					@include cd(--cs-button-c, 0.15);
+				}
+			}
 			&:active::after {
 				--cs-button-br: var(--cs-btn-custom-c, var(--cs-button-inverse-c));
 			}
@@ -395,10 +406,13 @@
 				--cs-button-box: var(--cs-btn-custom-c, var(--cs-button-default-c));
 			}
 			&:hover {
-				@include sbg(--cs-transparent);
+				.cs-btn-label,
+				.cs-btn-icon .cs-icon {
+					@include cd(--cs-button-c, 0.15);
+				}
 			}
-			&:active {
-				@include sbg(--cs-button-transparent-focus-bg);
+			&:active::after {
+				--cs-button-br: var(--cs-btn-custom-c, var(--cs-button-brand-br));
 			}
 			&:disabled::after {
 				@include css4 {
@@ -415,8 +429,11 @@
 			&::after {
 				--cs-button-br: var(--cs-btn-custom-c, var(--cs-button-inverse-c));
 			}
-			&:hover::before {
-				@include sbg(--cs-button-transparent-inverse-focus-bg);
+			&:hover {
+				.cs-btn-label,
+				.cs-btn-icon .cs-icon {
+					@include cd(--cs-button-c, 0.15);
+				}
 			}
 			&:active::before {
 				@include sbg(--cs-button-transparent-inverse-focus-bg);

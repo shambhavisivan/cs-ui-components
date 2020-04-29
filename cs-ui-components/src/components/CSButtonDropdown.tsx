@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import CSIcon from './CSIcon';
+import React from 'react';
 import CSButton from './CSButton';
 import classNames from 'classnames';
 
@@ -13,8 +12,8 @@ export interface CSButtonDropdownProps {
 	className?: string;
 	align?: string;
 	iconRotate?: string;
-	onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 	label?: string;
+	onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 	iconPosition?: string;
 }
 

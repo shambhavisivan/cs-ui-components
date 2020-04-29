@@ -15,7 +15,7 @@ export interface CSButtonProps {
 	btnRound?: boolean;
 	onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 	disabled?: boolean;
-	label?: string;
+	label: string;
 	link?: string;
 	loading?: boolean;
 	className?: string;
@@ -68,7 +68,7 @@ class CSButton extends React.Component<CSButtonProps> {
 			onClick={this.props.onClick}
 			disabled={this.props.disabled || this.props.loading}
 			aria-label={this.props.label}
-			title={this.props.iconDisplay === 'icon-only' ? this.props.iconName : ''}
+			title={this.props.iconDisplay === 'icon-only' ? this.props.label : ''}
 			style={{'--cs-btn-custom-c': this.props.color}}
 		>
 			{(this.props.iconName && !this.props.loading) && (
