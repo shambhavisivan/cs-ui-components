@@ -19,7 +19,7 @@
 	margin-inline-end: 0.5rem;
 	height: var(--cs-divider-size, 100%);
 	@include css4 {
-		border-right: 1px solid cvar(--cs-button-br);
+		border-right: 1px solid cvar(--cs-button-default-br);
 	}
 
 	+ .cs-btn {
@@ -34,7 +34,7 @@
 	margin-block-end: 0.25rem;
 	width: var(--cs-divider-size, 100%);
 	@include css4 {
-		border-bottom: 1px solid cvar(--cs-button-br);
+		border-bottom: 1px solid cvar(--cs-button-default-br);
 	}
 
 	&.cs-divider-with-label {

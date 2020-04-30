@@ -12,10 +12,7 @@
 	user-select: none;
 	border: none;
 	background: none;
-	@at-root .cs-btn-has-link {
-		display: inline-flex;
-		text-decoration: none;
-	}
+	text-decoration: none;
 	--cs-button-c: var(--cs-btn-custom-c, var(--cs-button-default-c));
 	--cs-button-bg: var(--cs-button-default-bg);
 	--cs-button-br: var(--cs-button-default-br);
