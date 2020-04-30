@@ -13,10 +13,11 @@ Reusable React UI components.
 ## Publishing a new version:
 
 0. Make sure you've got an npmjs account authorised to publish into the @cloudsense NPM org. (See [here](https://docs.google.com/document/d/1UjmJIR74ag0yWQ_IO39aQBPNYMacfi6E5b6FgVYl-OA/edit).)
-1. Upgrade package version in `package.json`.
+1. In `webpack.config.js` on line 2, change the mode to `production`.
+2. Upgrade package version in `package.json`.
 3. Run `npm run lint` to make sure everything is good.
-2. Run `npm run build` to package everything up.
-4. Run `npm publish` to publish your package. (You can publish beta (or alpha) versions via `npm publish --tag beta` (or alpha), and to try them out in another project you can install them via `npm install @cloudsense/cs-ui-components@beta`)
+4. Run `npm run build` to package everything up.
+5. Run `npm publish` to publish your package. (You can publish beta (or alpha) versions via `npm publish --tag beta` (or alpha), and to try them out in another project you can install them via `npm install @cloudsense/cs-ui-components@beta`)
 
 ## Adding new icon to icon sprite:
 
