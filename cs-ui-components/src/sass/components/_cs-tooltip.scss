@@ -48,7 +48,7 @@
 		width: 1rem;
 	}
 
-	&.cs-bottom-right {
+	&.cs-tooltip-bottom-right {
 		top: calc(100% + 1rem);
 		left: -1rem;
 
@@ -60,7 +60,7 @@
 		}
 
 	}
-	&.cs-bottom-left {
+	&.cs-tooltip-bottom-left {
 		right: calc(100% - 2.1rem);
 		top: calc(100% + 1rem);
 
@@ -71,7 +71,7 @@
 			right: 1rem;
 		}
 	}
-	&.cs-top-right {
+	&.cs-tooltip-top-right {
 		bottom: 2rem;
 		left: -1rem;
 
@@ -82,7 +82,7 @@
 			top: 100%;
 		}
 	}
-	&.cs-top-left {
+	&.cs-tooltip-top-left {
 		bottom: 2rem;
 		right: calc(100% - 2.1rem);
 

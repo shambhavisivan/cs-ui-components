@@ -30,19 +30,19 @@
 		height: 0.5rem;
 		@include sbg(--cs-progress-bar-bg);
 
-		&.x-small {
+		&.cs-progress-bar-xsmall {
 			height: 0.125rem;
 		}
 
-		&.small {
+		&.cs-progress-bar-small {
 			height: 0.25rem;
 		}
 
-		&.medium {
+		&.cs-progress-bar-medium {
 			height: 0.5rem;
 		}
 
-		&.large {
+		&.cs-progress-bar-large {
 			height: 0.75rem;
 		}
 

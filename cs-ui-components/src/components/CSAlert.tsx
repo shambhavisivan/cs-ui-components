@@ -25,9 +25,9 @@ class CSAlert extends React.Component<CSAlertProps> {
 
 		const alertClasses = classNames(
 			'cs-alert',
-			[`${this.props.variant}`],
-			[`type-${this.props.styleType}`],
-			[`${this.props.textAlign}`],
+			[`cs-alert-${this.props.variant}`],
+			[`cs-alert-type-${this.props.styleType}`],
+			[`cs-alert-${this.props.textAlign}`],
 			{
 				[`${this.props.className}`]: this.props.className
 			}

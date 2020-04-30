@@ -21,7 +21,7 @@ class CSIcon extends React.Component<CSIconProps> {
 			'cs-icon',
 			{
 				[`${this.props.className}`] : this.props.className,
-				[`rotate-${this.props.rotate}`] : this.props.rotate
+				[`cs-icon-rotate-${this.props.rotate}`] : this.props.rotate
 			}
 		);
 

@@ -24,7 +24,7 @@ class CSTooltip extends React.Component<CSTooltipProps> {
 		const tooltipClasses = classNames(
 			'cs-tooltip',
 			{
-				[`cs-${this.props.position}`]: this.props.position,
+				[`cs-tooltip-${this.props.position}`]: this.props.position,
 				'cs-tooltip-info': this.props.variant === 'info',
 				'cs-tooltip-warning': this.props.variant === 'warning',
 				'cs-tooltip-error': this.props.variant === 'error',

@@ -130,14 +130,14 @@ class CSProgressBarPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['x-small'],
-							quickLink: 'x-small',
+							variationName: ['xsmall'],
+							quickLink: 'xsmall',
 							variationText: ['progress="50%"'],
 							string: '',
 							component:
 								<CSProgressBar
 									progress="50%"
-									thickness="x-small"
+									thickness="xsmall"
 									label="Progress"
 								/>
 						},

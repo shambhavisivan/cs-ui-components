@@ -16,7 +16,7 @@
 			margin-right: 0.5rem;
 		}
 
-		&.info {
+		&.cs-toast-info {
 			@include sbg(--cs-toast-info-bg);
 			@include sc(--cs-toast-info-c);
 
@@ -29,7 +29,7 @@
 			}
 		}
 
-		&.success {
+		&.cs-toast-success {
 			@include sbg(--cs-toast-success-bg);
 			@include sc(--cs-toast-success-c);
 
@@ -42,7 +42,7 @@
 			}
 		}
 
-		&.warning {
+		&.cs-toast-warning {
 			@include sbg(--cs-toast-warning-bg);
 			@include sc(--cs-toast-warning-c);
 
@@ -55,7 +55,7 @@
 			}
 		}
 
-		&.error {
+		&.cs-toast-error {
 			@include sbg(--cs-toast-error-bg);
 			@include sc(--cs-toast-error-c);
 
@@ -68,11 +68,11 @@
 			}
 		}
 
-		&.left {
+		&.cs-toast-left {
 			text-align: left;
 		}
 
-		&.center {
+		&.cs-toast-center {
 			text-align: center;
 		}
 
@@ -134,7 +134,7 @@
 			}
 		}
 
-		&.warning .cs-toast-close {
+		&.cs-toast-warning .cs-toast-close {
 
 			svg {
 				@include sf(--cs-toast-warning-fill);

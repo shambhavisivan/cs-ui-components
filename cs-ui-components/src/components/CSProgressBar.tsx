@@ -33,7 +33,7 @@ class CSProgressBar extends React.Component<CSProgressBarProps> {
 						</div>
 					) : ('')}
 				</div>
-				<div className={`cs-progress-bar ${this.props.thickness}`}>
+				<div className={`cs-progress-bar cs-progress-bar-${this.props.thickness}`}>
 					<div className="cs-progress-bar-value" style={{width: this.props.progress, backgroundColor: this.props.color}}/>
 				</div>
 			</div>

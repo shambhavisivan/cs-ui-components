@@ -30,7 +30,7 @@ class CSModal extends React.Component<CSModalProps> {
 					className={
 						this.props.closeButton
 							? 'cs-modal cs-modal-' + this.props.size
-							: 'no-close-btn cs-modal cs-modal-' + this.props.size
+							: 'cs-modal-no-close-btn cs-modal cs-modal-' + this.props.size
 					}
 					style={this.props.style}
 					role="dialog"

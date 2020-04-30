@@ -4,15 +4,15 @@
 	min-width: var(--cs-icon-size, 1rem);
 	@include sf(--cs-icon-c);
 
-	&.rotate-90 {
+	&.cs-icon-rotate-90 {
 		transform: rotate(90deg);
 	}
 
-	&.rotate-180 {
+	&.cs-icon-rotate-180 {
 		transform: rotate(180deg);
 	}
 
-	&.rotate-270 {
+	&.cs-icon-rotate-270 {
 		transform: rotate(270deg);
 	}
 }

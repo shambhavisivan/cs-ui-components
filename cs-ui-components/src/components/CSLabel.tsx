@@ -25,7 +25,7 @@ class CSLabel extends React.Component<CSLabelProps> {
 		return (
 			<>
 				<label htmlFor={this.props.for} className={labelClasses}>
-					<span className={this.props.required ? 'required-true' : 'required-false'}
+					<span className={this.props.required ? 'cs-label-required-true' : 'cs-label-required-false'}
 						aria-hidden="true">*</span>
 					<span className="cs-label">
 						{this.props.label}

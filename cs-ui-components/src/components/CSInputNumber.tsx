@@ -64,7 +64,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 				[`cs-input-number-${this.props.borderType}`]: this.props.borderType,
 				'cs-input-number-error': this.props.error,
 				[`${this.props.className}`]: this.props.className,
-				[`hide-spinner-${this.props.hideSpinner}`]: this.props.hideSpinner
+				[`cs-input-number-hide-spinner-${this.props.hideSpinner}`]: this.props.hideSpinner
 			}
 		);
 		return (

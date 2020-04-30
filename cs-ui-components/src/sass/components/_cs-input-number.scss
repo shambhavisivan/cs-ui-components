@@ -8,7 +8,7 @@
 	.cs-input-number {
 		@include input;
 
-		&.hide-spinner-true {
+		&.cs-input-number-hide-spinner-true {
 			-moz-appearance:textfield;
 
 			&::-webkit-outer-spin-button,

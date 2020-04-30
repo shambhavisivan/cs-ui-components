@@ -24,8 +24,8 @@ class CSToast extends React.Component<CSToastProps> {
 
 		const toastClasses = classNames(
 			'cs-toast',
-			[`${this.props.variant}`],
-			[`${this.props.textAlign}`],
+			[`cs-toast-${this.props.variant}`],
+			[`cs-toast-${this.props.textAlign}`],
 			{
 				[`${this.props.className}`]: this.props.className
 			}

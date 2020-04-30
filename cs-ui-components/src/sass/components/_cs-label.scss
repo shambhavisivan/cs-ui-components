@@ -6,14 +6,14 @@
 	padding-bottom: 0.25rem;
 	align-items: flex-end;
 
-	.required-true {
+	.cs-label-required-true {
 		display: inline-block;
 		padding-right: 0.25rem;
 		font-size: 0.875rem;
 		@include sc(--cs-label-required-c);
 	}
 
-	.required-false {
+	.cs-label-required-false {
 		display: none;
 	}
 
