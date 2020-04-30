@@ -4,6 +4,7 @@ import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
 import PreviewLinks from '../PreviewLinks';
+import PreviewBacklogList from '../PreviewBacklogList';
 
 import {CSCustomSelect} from '@cloudsense/cs-ui-components';
 
@@ -234,6 +235,34 @@ class CSCustomSelectPreview extends React.Component {
 						'bottom-left'
 					]
 				}
+			],
+			backlog: [
+				{
+					backlogName: 'Open dropdown on focus',
+					description: 'When focus is moved to input element ul should open with first list item focused',
+					obstacles: 'Tried to implement using refs and this will work but the problem is that this will happen on onClick event also. Input loses focus which prevents user from searching'
+
+				},
+				{
+					backlogName: 'Close dropdown on click outside components',
+					description: 'Dropdown should close if user clicks outside of the component',
+					obstacles: 'For some reason using refs will not work here.'
+				},
+				{
+					backlogName: 'Navigation through list items using arrow keys',
+					description: 'All items should be accessible with up/down arrow keys',
+					obstacles: 'Created the list of refs of all list items, but for some reason focus is not changing'
+				},
+				{
+					backlogName: 'Change focus/hover on list items',
+					description: 'Color setting for icons is doubled in all places with both sc and sf mixins',
+					obstacles: 'This needs a new design'
+				},
+				{
+					backlogName: 'Close dropdown on Esc keypress',
+					description: 'Dropdown should close on Esc keypress',
+					obstacles: ''
+				}
 			]
 		};
 
@@ -255,6 +284,7 @@ class CSCustomSelectPreview extends React.Component {
 					<PreviewHeading name={component.name} usage={component.usage} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
+					<PreviewBacklogList backlog={component.backlog} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

@@ -32,11 +32,14 @@ const searchingFor = (term: any) => {
 };
 
 class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelectState> {
+	listItems: Array<any>;
+	node: HTMLDivElement;
+
 	constructor(props: CSCustomSelectProps) {
 		super(props);
-
 		this.toggle = this.toggle.bind(this);
 		this.search = this.search.bind(this);
+		this.listItems = [];
 
 		this.state = {
 			toggle: false,
@@ -44,15 +47,20 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 			options: this.props.optionsList
 		};
 	}
+
 	toggle() {
 		this.setState({
 			toggle: !this.state.toggle
 		});
 	}
+
 	search(e: any) {
-		this.setState({
-			term: e.target.value
-		});
+		this.setState(
+			(e.type === 'click' || e.key === 'Enter') ?
+			{term: e.target.textContent} :
+			{term: e.target.value}
+		);
+		this.toggle();
 	}
 
 	render() {
@@ -79,30 +87,39 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		);
 
 		return (
-			<div className={customSelectWrapperClasses} onClick={this.toggle}>
+			<div className={customSelectWrapperClasses} ref={node => this.node = node}>
 				{this.props.label &&
 					<CSLabel for={this.props.id} label={this.props.label} helpText={this.props.helpText} tooltipPosition={this.props.tooltipPosition} required={this.props.required} />
 				}
 				<form>
-					<div className={customSelectInputWrapperClasses}>
+					<div className={customSelectInputWrapperClasses} >
 						<CSIcon name="search" className="cs-custom-select-search-icon" />
 						<div className="cs-input-text-wrapper">
 							<input
 								className={customSelectInputClasses}
-								defaultValue={this.state.term}
+								value={this.state.term}
 								type="text"
 								onChange={this.search}
 								id={this.props.id}
 								required={this.props.required}
 								disabled={this.props.disabled}
 								aria-invalid={this.props.error}
+								aria-expanded={this.state.toggle}
+								onMouseDown={this.toggle}
 							/>
 						</div>
 					</div>
 					{(this.state.toggle && !this.props.disabled) &&
 						<ul className="cs-custom-select-dropdown">
 							{this.props.optionsList.filter(searchingFor(term)).map((option, i) => (
-								<li key={i}>{option}</li>
+								<li role="button"
+									tabIndex={0}
+									key={i}
+									onClick={this.search}
+									value={i}
+								>
+									{option}
+								</li>
 							))}
 						</ul>
 					}

@@ -3,6 +3,8 @@
 // CS custom select component.
 
 .cs-custom-select {
+	position: relative;
+
 	.cs-custom-select-input {
 		position: relative;
 
@@ -46,12 +48,13 @@
 	> li {
 		cursor: pointer;
 		padding: 0.5rem 0.75rem;
+		outline: 0;
 
 		> svg {
 			margin-right: 0.5rem;
 		}
 
-		&:hover {
+		&:hover, &:focus {
 			@include sbg(--cs-custom-select-dropdown-hover-bg);
 		}
 	}
