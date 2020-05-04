@@ -43,6 +43,13 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 		};
 	}
 
+	componentWillUpdate(nextProps: CSInputNumberProps) {
+		const { value } = this.state;
+		if (nextProps.value !== value) {
+		 	this.setState({value: nextProps.value});
+		}
+	}
+
 	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		this.setState({value: e.target.value});
 		if (this.props.onChange) {
