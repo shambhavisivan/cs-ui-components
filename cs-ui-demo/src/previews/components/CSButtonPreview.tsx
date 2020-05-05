@@ -246,6 +246,12 @@ class CSButtonPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
+							variationName: ['default'],
+							quickLink: 'default',
+							string: '',
+							component: <CSButton label="activity icon button" iconName="activity" iconDisplay="default"/>
+						},
+						{
 							variationName: ['icon-only'],
 							quickLink: 'icon-only',
 							string: '',
