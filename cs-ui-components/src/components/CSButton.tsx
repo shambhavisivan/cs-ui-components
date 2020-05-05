@@ -14,7 +14,7 @@ export interface CSButtonProps {
 	iconOrigin?: string;
 	iconPosition?: string;
 	iconRotate?: string;
-	label: string;
+	label: string | undefined;
 	link?: string;
 	loading?: boolean;
 	onClick?: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
