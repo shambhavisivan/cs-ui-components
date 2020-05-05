@@ -117,17 +117,21 @@ class CSButtonPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['pink', 'default', 'initial'],
+							variationName: ['pink'],
+							variationText: ['btnType="default"', 'btnStyle="initial"'],
+							quickLink: 'default initial',
 							string: '',
 							component: <CSButton
-											btnStyle="default"
+											btnStyle="inital"
 											color="pink"
 											label="custom color button"
 											iconName="activity"
 										/>
 						},
 						{
-							variationName: ['pink', 'default', 'brand'],
+							variationName: ['pink'],
+							variationText: ['btnType="default"', 'btnStyle="brand"'],
+							quickLink: 'default brand',
 							string: '',
 							component: <CSButton
 											btnStyle="brand"
@@ -137,7 +141,9 @@ class CSButtonPreview extends React.Component {
 										/>
 						},
 						{
-							variationName: ['pink', 'default', 'outline'],
+							variationName: ['pink'],
+							variationText: ['btnType="default"', 'btnStyle="outline"'],
+							quickLink: 'default outline',
 							string: '',
 							component: <CSButton
 											btnStyle="outline"
@@ -147,7 +153,9 @@ class CSButtonPreview extends React.Component {
 										/>
 						},
 						{
-							variationName: ['pink', 'transparent', 'inital'],
+							variationName: ['pink'],
+							variationText: ['btnType="transparent"', 'btnStyle="inital"'],
+							quickLink: 'transparent inital',
 							string: '',
 							component: <div className="blue-background">
 											<CSButton
@@ -160,7 +168,9 @@ class CSButtonPreview extends React.Component {
 										</div>
 						},
 						{
-							variationName: ['pink', 'transparent', 'brand'],
+							variationName: ['pink'],
+							variationText: ['btnType="transparent"', 'btnStyle="brand"'],
+							quickLink: 'transparent brand',
 							string: '',
 							component: <CSButton
 											btnType="transparent"
@@ -171,7 +181,9 @@ class CSButtonPreview extends React.Component {
 										/>
 						},
 						{
-							variationName: ['pink', 'transparent', 'outline'],
+							variationName: ['pink'],
+							variationText: ['btnType="transparent"', 'btnStyle="outline"'],
+							quickLink: 'transparent outline',
 							string: '',
 							component: <div className="blue-background">
 											<CSButton
