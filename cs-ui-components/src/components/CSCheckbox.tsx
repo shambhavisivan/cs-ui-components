@@ -31,7 +31,8 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 		variant: 'neutral',
 		labelHidden: false,
 		borderType: 'square',
-		defaultChecked: false
+		defaultChecked: false,
+		checked: false
 	};
 
 	constructor(props: CSCheckboxProps) {
@@ -43,10 +44,10 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 	}
 
 	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-			this.setState({checked: !this.state.checked});
-			if (this.props.onChange) {
-				this.props.onChange(e);
-			}
+		this.setState({checked: !this.state.checked});
+		if (this.props.onChange) {
+			this.props.onChange(e);
+		}
 	}
 
 	handleOnClick = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
@@ -93,7 +94,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 								className={checkboxClasses}
 								type="checkbox"
 								disabled={this.props.disabled}
-								checked={this.state.checked}
+								checked={this.props.checked}
 								required={this.props.required}
 								id={this.props.id}
 								onClick={this.handleOnClick}
