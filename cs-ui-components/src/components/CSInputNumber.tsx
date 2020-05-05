@@ -14,7 +14,7 @@ export interface CSInputNumberProps {
 	label: string;
 	max?: any;
 	min?: any;
-	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => any;
+	onChange?: (value: any) => void;
 	placeholder?: string;
 	readOnly?: boolean;
 	required?: boolean;
@@ -23,7 +23,8 @@ export interface CSInputNumberProps {
 }
 
 export interface CSInputNumberState {
-	value: string;
+	value: any;
+	prevValue: any;
 }
 
 export function fixControlledValue<T>(value: T) {
@@ -35,25 +36,28 @@ export function fixControlledValue<T>(value: T) {
 
 class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberState> {
 
+	static getDerivedStateFromProps(nextProps: CSInputNumberProps, { prevValue }: CSInputNumberState) {
+		const newState: Partial<CSInputNumberState> = { prevValue: nextProps.value };
+		if (prevValue !== nextProps.value) {
+		  newState.value = nextProps.value;
+		  return newState;
+		}
+		return null;
+	}
+
 	constructor(props: CSInputNumberProps) {
 		super(props);
 		const value = typeof props.value === undefined ? '' : props.value;
 		this.state = {
-			value
+			value,
+			prevValue: props.value
 		};
-	}
-
-	componentWillUpdate(nextProps: CSInputNumberProps) {
-		const { value } = this.state;
-		if (nextProps.value !== value) {
-		 	this.setState({value: nextProps.value});
-		}
 	}
 
 	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		this.setState({value: e.target.value});
 		if (this.props.onChange) {
-			this.props.onChange(e);
+			this.props.onChange(e.target.value);
 		}
 	}
 
