@@ -1,4 +1,6 @@
 import moment from 'moment';
+// tslint:disable-next-line: no-submodule-imports
+import 'moment/min/locales';
 import React from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';

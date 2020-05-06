@@ -1,6 +1,6 @@
 {
 	"name": "@cloudsense/cs-grid",
-	"version": "1.1.11",
+	"version": "1.1.13",
 	"description": "CloudSense Grid",
 	"main": "./lib/main.js",
 	"author": "CloudSense",
@@ -54,7 +54,7 @@
 		"ag-grid-react": "~21.0.1",
 		"jsdom": "^16.1.0",
 		"keycode-js": "^2.0.3",
-		"moment": "^2.24.0",
+		"moment": "^2.25.3",
 		"react": "^16.8.6",
 		"react-datepicker": "^2.8.0",
 		"react-dom": "^16.8.6",
