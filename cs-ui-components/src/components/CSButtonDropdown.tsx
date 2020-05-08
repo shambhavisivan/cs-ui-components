@@ -42,7 +42,6 @@ class CSButtonDropdown extends React.Component<CSButtonDropdownProps, CSButtonDr
 		};
 		this.handleOutsideClick = this.handleOutsideClick.bind(this);
 	}
-
 	toggleActive() {
 		const currentState = this.state.active;
 		if (!this.state.active) {
@@ -53,9 +52,12 @@ class CSButtonDropdown extends React.Component<CSButtonDropdownProps, CSButtonDr
 		this.setState({ active: !currentState });
 	}
 
+	componentWillUnmount() {
+		document.removeEventListener('click', this.handleOutsideClick, false);
+	}
 	handleOutsideClick(e: any) {
 		// ignore clicks on the component itself
-		if (this.node.contains(e.target)) {
+		if (this.node && this.node.contains(e.target)) {
 			return;
 		}
 		this.toggleActive();
