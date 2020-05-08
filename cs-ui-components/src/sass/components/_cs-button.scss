@@ -566,6 +566,7 @@
 		position: absolute;
 		top: 100%;
 		padding: 0.25rem 0 0 0;
+		z-index: $z-index-btn-dropdown-items-wrapper;
 
 		.cs-btn-dropdown-item-wrapper {
 			width: auto;
