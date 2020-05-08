@@ -17,7 +17,7 @@ export interface CSButtonProps {
 	label: string | undefined;
 	link?: string;
 	loading?: boolean;
-	onClick?: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
+	onClick?: (value: any) => any;
 	openInNewTab?: boolean;
 	size?: string;
 	width?: string;
@@ -31,7 +31,7 @@ class CSButton extends React.Component<CSButtonProps> {
 		this.label = this.label.bind(this);
 	}
 
-	handleClick: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement> = e => {
+	handleClick = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
 		const { onClick } = this.props;
 		if (onClick) {
 		  onClick(e);
