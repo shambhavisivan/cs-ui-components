@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { CSTableProps, CSTable, CSTableColumn } from './CSTable';
+import { CSTableProps, CSTable, CSTableColumn, CSTableRow } from './CSTable';
 
 /**
  * Properties for tables with selectable rows
@@ -15,12 +15,19 @@ export interface CSSelectableTableProps extends CSTableProps {
 	 * @param selectedRows Ids of all the rows currently selected
 	 */
 	selectionChanged(selectedRows: Set<string>): any;
+	/**
+	 * Map containing data for advanced slection
+	 */
+	advancedSelection?: {
+		labels: Array<string>,
+		onChange: (selector:string) => void
+	}
 }
 
 export const CSSelectableTable: React.FC<CSSelectableTableProps> = props => {
 	const rows = typeof props.rows === 'function' ? props.rows() : props.rows;
 	const normalRows = rows.filter(r => !r.fullWidth);
-	const normalRowsIdSet = new Set(normalRows.map((row:string) => row.id));
+	const normalRowsIdSet = new Set(normalRows.map((row:CSTableRow) => row.id));
 
 	normalRows.forEach(row => {
 		row.data.values.__selected = props.selectedRows.has(row.id);
@@ -44,6 +51,13 @@ export const CSSelectableTable: React.FC<CSSelectableTableProps> = props => {
 			<label className="cs-checkbox-wrapper">
 				<input className="cs-checkbox cs-table-select-all" type="checkbox" checked={allSelected()} onChange={e => selectAll(e.target.checked)} />
 				<span className="cs-checkbox-faux" />
+
+				{props.advancedSelection && props.advancedSelection.labels && props.advancedSelection.onChange && (<select onChange={(e:React.ChangeEvent<HTMLSelectElement>) => props.advancedSelection.onChange(e.target.value)}>
+					{props.advancedSelection.labels.map(selectionKey => {
+						return (<option key={selectionKey} value={selectionKey}>{selectionKey}</option>)
+					})}
+				</select>)}
+
 			</label>
 		,
 		render: (value, data) =>

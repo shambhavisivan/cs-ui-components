@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { withKnobs, number } from '@storybook/addon-knobs';
 import { CSTableColumn, CSTableRow, CSTable } from '../src/CSTable';
 import { CSTablePaginationControls } from '../src/CSTablePaginationControls';
@@ -7,7 +7,7 @@ import NGC from './ngc.json';
 import { useArrayPagination } from '../src/usePagination';
 import { CSSelectableTable } from '../src/CSSelectableTable';
 import { useQuickFilter } from '../src/useQuickFilter';
-
+import { useAdvancedSelection, AdvancedSelector } from '../src/useAdvancedSelection';
 const COLS: Array<CSTableColumn> = [
 	{
 		name: 'name',
@@ -126,6 +126,36 @@ export const SelectableTableWithQuickfilterAndPagination = () => {
 		<input type="text" placeholder="Filter by constellation" value={term} onChange={e => setTerm(e.target.value)} />
 		<CSTablePaginationControls currentPage={currentPage} lastPage={lastPage} changePage={setCurrentPage} />
 		<CSSelectableTable selectedRows={selected} selectionChanged={setSelected} rows={pageContents} cols={COLS} />
+	</>;
+};
+
+export const SelectableTableWithQuickfilterPaginationAndAdvancedSelect = () => {
+
+	const advancedSelectionData:AdvancedSelector = {
+		"All": (row, index) => true,
+		"None": (row, index) => false,
+		"Galaxy class": (row, index) => row.data.values.Class === "Galaxy",
+		"Cas constellation": (row, index) => row.data.values.Constel === "Cas",
+	}
+
+	const _rows = ROWS.slice(0, number('No. of records', ROWS.length, { range: true, min: 0, max: ROWS.length, step: 1 }));
+	const { term, setTerm, filteredRows } = useQuickFilter(_rows, (row, t) => {
+		return row.data.values.Constel.toLowerCase().includes(t.toLowerCase());
+	});
+
+	const {selected, setSelected, advancedSelectionChanged} = useAdvancedSelection(filteredRows, advancedSelectionData);
+
+	const advancedSelection = {
+		labels: Object.keys(advancedSelectionData),
+		onChange: advancedSelectionChanged
+	}
+
+
+	const { pageContents, currentPage, lastPage, setCurrentPage } = useArrayPagination(number('Page size', 10, { range: true, min: 1, max: filteredRows.length, step: 1 }), filteredRows);
+	return <>
+		<input type="text" placeholder="Filter by constellation" value={term} onChange={e => setTerm(e.target.value)} />
+		<CSTablePaginationControls currentPage={currentPage} lastPage={lastPage} changePage={setCurrentPage} />
+		<CSSelectableTable selectedRows={selected} selectionChanged={setSelected} rows={pageContents} cols={COLS} advancedSelection={advancedSelection} />
 	</>;
 };
 

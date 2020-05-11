@@ -9,35 +9,35 @@ Very lightweight table component with pagination/quickfilter/row selection suppo
 The main table component. Takes an array of column definitions and an array of rows.
 
     const cols: Array<CSTableColumn> = [
-    	{
-    		name: 'name',
-    		label: 'Name'
-    	},
-    	{
-    		name: 'description',
-    		label: 'Item description'
-    	}
+        {
+            name: 'name',
+            label: 'Name'
+        },
+        {
+            name: 'description',
+            label: 'Item description'
+        }
     };
 
     const rows: Array<CSTableRow> = [
-    	{
-    		id: 'item1',
-    		data: {
-    			values: {
-    				name: 'First item',
-    				description: 'This is the description of the first item.'
-    			}
-    		}
-    	},
-    	{
-    		id: 'item2',
-    		data: {
-    			values: {
-    				name: 'First item',
-    				description: 'This is the description of the first item.'
-    			}
-    		}
-    	}
+        {
+            id: 'item1',
+            data: {
+                values: {
+                    name: 'First item',
+                    description: 'This is the description of the first item.'
+                }
+            }
+        },
+        {
+            id: 'item2',
+            data: {
+                values: {
+                    name: 'First item',
+                    description: 'This is the description of the first item.'
+                }
+            }
+        }
     ];
 
     return <CSTable rows={rows} cols={cols}/>
@@ -55,14 +55,57 @@ React hook to be used for quickfilter. Typically needs to be connected up to som
 
     const rows = ...;
     const { term, setTerm, filteredRows } = useQuickFilter(rows, (row, t) => {
-    	return row.data.values.name.toLowerCase().includes(t.toLowerCase());
+        return row.data.values.name.toLowerCase().includes(t.toLowerCase());
     });
     return <>
-    	<input type="text" placeholder="Filter by name" value={term} onChange={e => setTerm(e.target.value)} />
-    	<CSTable rows={filteredRows} cols={...} />
+        <input type="text" placeholder="Filter by name" value={term} onChange={e => setTerm(e.target.value)} />
+        <CSTable rows={filteredRows} cols={...} />
     </>;
 
 _Note: it is possible to chain multiple quick filters after each other for the same data, in this case the `filteredRows` output of one hook should be the input of the next filter hook._
+
+### `useAdvancedSelection()`
+
+React hook to be used for advanced selection which will expand "select all" checkbox with custom filters. This is only usable on `CSSelectableTable` through advancedSelection prop.
+
+    //const rows = ...;
+    
+    const advancedSelectionData = {
+        'All': (row, index) => true,
+        'None': (row, index) => false,
+        'Galaxy class': (row, index) => row.data.values.Class === 'Galaxy',
+        'Cas constellation': (row, index) => row.data.values.Constel === 'Cas',
+    };
+    
+    const { selected, setSelected, advancedSelectionChanged } = useAdvancedSelection(rows, advancedSelectionData);
+    
+    const advancedSelection = {
+        labels: Object.keys(advancedSelectionData),
+        onChange: advancedSelectionChanged,
+    };
+    return (
+            <CSSelectableTable
+                selectedRows={selected}
+                selectionChanged={setSelected}
+                rows={pageContents}
+                cols={COLS}
+                advancedSelection={advancedSelection}
+            />
+    );
+
+
+
+_Note: `useQuickFilter` needs to be set up before advanced selection. filteredRows state needs to be forwarded as the first parameter of useAdvancedSelection() initialization._
+
+    const rows = ...;
+    
+    const { term, setTerm, filteredRows } = useQuickFilter(rows, (row, t) => {
+        return row.data.values.name.toLowerCase().includes(t.toLowerCase());
+    });
+    
+    const advancedSelectionData = {...}
+    const { selected, setSelected, advancedSelectionChanged } = useAdvancedSelection(filteredRows, advancedSelectionData);
+    ...
 
 ### `usePagination()` / `useArrayPagination()`
 
@@ -71,8 +114,8 @@ React hooks used for pagination. They feed into a `<CSTablePaginationControls>` 
     const rows = ...;
     const { pageContents, currentPage, lastPage, setCurrentPage } = useArrayPagination(10, rows);
     return <>
-    	<CSTablePaginationControls currentPage={currentPage} lastPage={lastPage} changePage={setCurrentPage} />
-    	<CSTable rows={pageContents} cols={...} />
+        <CSTablePaginationControls currentPage={currentPage} lastPage={lastPage} changePage={setCurrentPage} />
+        <CSTable rows={pageContents} cols={...} />
     </>;
 
 When used in conjunction with quickfilter, it should be chained **after** the filter, otherwise the result is pages of different lengths.
@@ -81,9 +124,9 @@ When used in conjunction with quickfilter, it should be chained **after** the fi
     const { term, setTerm, filteredRows } = useQuickFilter(rows);
     const { pageContents, currentPage, lastPage, setCurrentPage } = useArrayPagination(10, filteredRows);
     return <>
-    	<input type="text" placeholder="Quickfilter..." value={term} onChange={e => setTerm(e.target.value)} />
-    	<CSTablePaginationControls currentPage={currentPage} lastPage={lastPage} changePage={setCurrentPage} />
-    	<CSTable rows={pageContents} cols={...} />
+        <input type="text" placeholder="Quickfilter..." value={term} onChange={e => setTerm(e.target.value)} />
+        <CSTablePaginationControls currentPage={currentPage} lastPage={lastPage} changePage={setCurrentPage} />
+        <CSTable rows={pageContents} cols={...} />
     </>;
 
 ### `CSTableUtils.applyLabelValuesToColumnDescriptors()`
@@ -91,14 +134,14 @@ When used in conjunction with quickfilter, it should be chained **after** the fi
 Utility function to transform a list of column descriptors containing label keys to one with localised labels.
 
     const cols: Array<CSTableColumn> = [
-    	{
-    		name: 'name',
-    		label: 'record_name'
-    	},
-    	{
-    		name: 'description',
-    		label: 'record_description'
-    	}
+        {
+            name: 'name',
+            label: 'record_name'
+        },
+        {
+            name: 'description',
+            label: 'record_description'
+        }
     };
 
     const germanCols = applyLabelValuesToColumnDescriptors(cols, {record_name: 'Nahme', record_description: 'Beschreibung'});
