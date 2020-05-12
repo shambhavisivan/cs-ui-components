@@ -87,6 +87,21 @@
 				@include sbg(--cs-tab-success-br);
 			}
 		}
+
+		&-disabled {
+			pointer-events: none;
+			cursor: default;
+			@include sc(--cs-tab-disabled-c);
+			.cs-icon {
+				@include sf(--cs-tab-disabled-c)
+			}
+		}
+
+		&-initial {
+			.cs-icon {
+				@include sf(--cs-tab-default-fill)
+			}
+		}
 	}
 
 	&-large {

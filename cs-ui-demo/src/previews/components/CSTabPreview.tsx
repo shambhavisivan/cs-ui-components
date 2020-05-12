@@ -10,6 +10,8 @@ import {CSTabGroup, CSTab} from '@cloudsense/cs-ui-components';
 class CSTabPreview extends React.Component {
 	getCSTabGroupDoc() {
 
+		const clickHandler = () => alert('Tab is clicked!');
+
 		const json = {
 			name: 'Tab',
 			usage: 'Tabs keeps related content in a single container that is shown and hidden through navigation.',
@@ -21,6 +23,7 @@ class CSTabPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['large'],
+							quickLink: 'large',
 							string: '',
 							component:
 							<CSTabGroup variant="large">
@@ -37,6 +40,7 @@ class CSTabPreview extends React.Component {
 						},
 						{
 							variationName: ['normal'],
+							quickLink: 'normal',
 							string: '',
 							component:
 							<CSTabGroup variant="normal">
@@ -58,7 +62,32 @@ class CSTabPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
+							variationName: ['initial'],
+							variationText: ['variant="large"'],
+							quickLink: 'inital large',
+							string: '',
+							component:
+							<CSTabGroup
+								variant="large"
+							>
+								<CSTab
+									title="Tab One"
+									status="initial"
+								/>
+								<CSTab
+									title="Tab Two"
+									status="initial"
+								/>
+								<CSTab
+									title="Tab Three"
+									status="initial"
+								/>
+							</CSTabGroup>
+						},
+						{
 							variationName: ['error'],
+							variationText: ['variant="large"'],
+							quickLink: 'error large',
 							string: '',
 							component:
 							<CSTabGroup
@@ -80,6 +109,8 @@ class CSTabPreview extends React.Component {
 						},
 						{
 							variationName: ['warning'],
+							variationText: ['variant="large"'],
+							quickLink: 'warning large',
 							string: '',
 							component:
 							<CSTabGroup
@@ -101,6 +132,8 @@ class CSTabPreview extends React.Component {
 						},
 						{
 							variationName: ['success'],
+							variationText: ['variant="large"'],
+							quickLink: 'success large',
 							string: '',
 							component:
 							<CSTabGroup
@@ -117,6 +150,97 @@ class CSTabPreview extends React.Component {
 								<CSTab
 									title="Tab Three"
 									status="success"
+								/>
+							</CSTabGroup>
+						},
+						{
+							variationName: ['disabled'],
+							variationText: ['variant="large"'],
+							quickLink: 'disabled large',
+							string: '',
+							component:
+							<CSTabGroup
+								variant="large"
+							>
+								<CSTab
+									title="Tab One"
+									status="disabled"
+								/>
+								<CSTab
+									title="Tab Two"
+									status="disabled"
+								/>
+								<CSTab
+									title="Tab Three"
+									status="disabled"
+								/>
+							</CSTabGroup>
+						}
+					]
+				},
+				{
+					propName: 'active',
+					customText: '',
+					variations: [
+						{
+							variationName: ['true'],
+							variationText: ['variant="large"'],
+							quickLink: 'true large',
+							string: '',
+							component:
+							<CSTabGroup variant="large">
+								<CSTab
+									title="Tab One"
+									active
+								/>
+								<CSTab
+									title="Tab Two"
+								/>
+								<CSTab
+									title="Tab Three"
+								/>
+							</CSTabGroup>
+						},
+						{
+							variationName: ['true'],
+							variationText: ['variant="normal"'],
+							quickLink: 'true normal',
+							string: '',
+							component:
+							<CSTabGroup variant="normal">
+								<CSTab
+									title="Tab One"
+									active
+								/>
+								<CSTab
+									title="Tab Two"
+								/>
+								<CSTab
+									title="Tab Three"
+								/>
+							</CSTabGroup>
+						}
+					]
+				},
+				{
+					propName: 'onClick',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component:
+							<CSTabGroup variant="large">
+								<CSTab
+									title="Tab One"
+									onClick={clickHandler}
+								/>
+								<CSTab
+									title="Tab Two"
+									onClick={clickHandler}
+								/>
+								<CSTab
+									title="Tab Three"
+									onClick={clickHandler}
 								/>
 							</CSTabGroup>
 						}
@@ -148,6 +272,8 @@ class CSTabPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
+							variationName: ['activity'],
+							quickLink: ['activity'],
 							string: '',
 							component:
 							<CSTabGroup variant="normal">
@@ -170,8 +296,6 @@ class CSTabPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							variationName: ['custom class'],
-							quickLink: 'custom class',
 							string: '',
 							component:
 							<CSTabGroup
@@ -196,16 +320,26 @@ class CSTabPreview extends React.Component {
 		/* CSTab Properties Table */
 			properties: [
 				{
+					propertyName: 'active',
+					description: 'Tab styling when the tab is active/selected'
+				},
+				{
 					propertyName: 'className',
 					description: 'For implementing custom class to component'
+				},
+				{
+					propertyName: 'onClick',
+					description: 'Logic for onClick event'
 				},
 				{
 					propertyName: 'status',
 					description: 'Color and icon variant depending on status',
 					options: [
+						'initial',
 						'error',
 						'warning',
-						'success'
+						'success',
+						'disabled'
 					]
 				},
 				{
