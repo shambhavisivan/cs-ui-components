@@ -1,9 +1,14 @@
-const formatDistance = require("./_lib/formatDistance");
-const formatRelative = require("./_lib/formatRelative");
-const { localize, monthValues, dayValues } = require("./_lib/localize");
-const match = require("./_lib/match");
-const formatLong = require("./_lib/formatLong");
-const buildLocalizeFn = require("./_lib/buildLocalizeFn");
+var formatDistance = require("./_lib/formatDistance");
+var formatRelative = require("./_lib/formatRelative");
+
+var _require = require("./_lib/localize"),
+    localize = _require.localize,
+    monthValues = _require.monthValues,
+    dayValues = _require.dayValues;
+
+var match = require("./_lib/match");
+var formatLong = require("./_lib/formatLong");
+var buildLocalizeFn = require("./_lib/buildLocalizeFn");
 
 /**
  * Create date-fns locale with calendar localisations provided dynamically. Intended to work with react-datepicker,
@@ -17,7 +22,7 @@ const buildLocalizeFn = require("./_lib/buildLocalizeFn");
  * explanation see [here])https://en.wikipedia.org/wiki/Week#Week_numbering). (Note: the ISO default used almost everywhere is 4, the US is of course using 1.)
  */
 module.exports = function(days, months, firstDayOfWeek, minimumDaysInFirstWeek) {
-	const localizeCopy = Object.assign([], localize, {
+	var localizeCopy = Object.assign([], localize, {
 		day: buildLocalizeFn({
 			values: Object.assign({}, dayValues, days), // overwrite default day settings with provided ones
 			defaultWidth: "wide"

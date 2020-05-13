@@ -1,5 +1,5 @@
-const buildMatchPatternFn = require("../buildMatchPatternFn");
-const buildMatchFn = require("../buildMatchFn");
+var buildMatchPatternFn = require("../buildMatchPatternFn");
+var buildMatchFn = require("../buildMatchFn");
 
 var matchOrdinalNumberPattern = /^(\d+)(th|st|nd|rd)?/i;
 var parseOrdinalNumberPattern = /\d+/i;

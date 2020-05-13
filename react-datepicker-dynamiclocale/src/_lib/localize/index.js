@@ -1,4 +1,4 @@
-const buildLocalizeFn = require("../buildLocalizeFn");
+var buildLocalizeFn = require("../buildLocalizeFn");
 
 var eraValues = {
 	narrow: ["B", "A"],
@@ -157,7 +157,7 @@ var localize = {
 };
 
 module.exports = {
-	localize,
-	monthValues,
-	dayValues
+	localize: localize,
+	monthValues: monthValues,
+	dayValues: dayValues
 };

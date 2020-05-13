@@ -11,7 +11,7 @@ export interface Values {
  *
  * @example <caption>Example of initialising date picker in TS with dynamic locale</caption>
  *	render() {
- * 	const germanLocale = createDynamicLocale(
+ * 	var germanLocale = createDynamicLocale(
  *      // names of days
  *		{
  *			short: ["Sun", "Mon", "Die", "Mit", "Don", "Fre", "Sam"]

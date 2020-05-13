@@ -1,4 +1,4 @@
-const buildFormatLongFn = require("../buildFormatLongFn");
+var buildFormatLongFn = require("../buildFormatLongFn");
 
 var dateFormats = {
 	full: "EEEE, MMMM do, y",
