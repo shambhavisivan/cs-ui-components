@@ -1,16 +1,16 @@
 import React from 'react';
-import { SimpleField } from '../..//fields/SimpleField';
-
+import { SimpleField } from '../../fields/SimpleField';
 import { shallow, default as Enzyme } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { FieldDescriptor } from '../../types/FormDescriptor';
 import { ElementWrapper } from '../..';
 import { LocaleSettings } from '../../CSForm';
+const { CSInputText } = require('@cloudsense/cs-ui-components');
 
 Enzyme.configure({ adapter: new Adapter() });
 
 const descriptor: FieldDescriptor = {
-	fieldType: 'PICKLIST',
+	fieldType: 'STRING',
 	name: 'testField',
 	label: 'Test field'
 };
@@ -27,14 +27,14 @@ function nop(): any {
 
 it('renders a text input', () => {
 	const uut = shallow(<SimpleField locale={locale} wrapper={wrapper} descriptor={descriptor} handleFieldChange={nop} fetchPossibleValues={nop} value="test" status="enabled" />);
-	expect(uut.find('input[type="text"]')).toHaveLength(1);
-	expect(uut.find('input[type="text"]').prop('value')).toBe('test');
-	expect(uut.find('input[type="text"]').prop('name')).toBe('testField');
+	expect(uut.find(CSInputText)).toHaveLength(1);
+	expect(uut.find(CSInputText).prop('value')).toBe('test');
+	expect(uut.find(CSInputText).prop('name')).toBe('testField');
 });
 
 it('sets readonly', () => {
 	const uut = shallow(<SimpleField locale={locale} wrapper={wrapper} descriptor={descriptor} handleFieldChange={nop} fetchPossibleValues={nop} value="test" status="visible" />);
-	expect(uut.find('input[type="text"]').prop('readOnly')).toBe(true);
+	expect(uut.find(CSInputText).prop('readOnly')).toBe(true);
 });
 
 it('calls onChange() on change', done => {
