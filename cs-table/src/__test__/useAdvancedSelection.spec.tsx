@@ -8,38 +8,38 @@ import { CSTableRow, CSTableColumn } from '../CSTable';
 const COLS: Array<CSTableColumn> = [
 	{
 		name: 'test',
-		label: 'test label',
-	},
+		label: 'test label'
+	}
 ];
 
 const ROWS: Array<CSTableRow> = [
 	{
 		id: '1',
-		data: { values: {} },
+		data: { values: {} }
 	},
 	{
 		id: '2',
-		data: { values: {} },
+		data: { values: {} }
 	},
 	{
 		id: '3',
-		data: { values: {} },
+		data: { values: {} }
 	},
 	{
 		id: '4',
-		data: { values: {} },
+		data: { values: {} }
 	},
 	{
 		id: '5',
-		data: { values: {} },
-	},
+		data: { values: {} }
+	}
 ];
 
 describe('useAdvancedSelection()', () => {
 	it('initialises properly', () => {
 		const TestComponent: React.FC<{}> = () => {
 			const advancedSelectionData: AdvancedSelector = {
-				All: jest.fn().mockReturnValue(true),
+				All: jest.fn().mockReturnValue(true)
 			};
 
 			const { selected, setSelected, advancedSelectionChanged } = useAdvancedSelection(
@@ -57,7 +57,7 @@ describe('useAdvancedSelection()', () => {
 
 	it('checks all rows when filter function returns true', () => {
 		const advancedSelectionData: AdvancedSelector = {
-			All: (row, index) => true,
+			All: (row, index) => true
 		};
 
 		const TestComponent: React.FC<{}> = () => {
@@ -68,7 +68,7 @@ describe('useAdvancedSelection()', () => {
 
 			const advancedSelection = {
 				labels: Object.keys(advancedSelectionData),
-				onChange: advancedSelectionChanged,
+				onChange: advancedSelectionChanged
 			};
 
 			return (
@@ -84,19 +84,16 @@ describe('useAdvancedSelection()', () => {
 
 		const uut = mount(<TestComponent />);
 
-		const event = {
-			preventDefault() {},
-			target: { value: 'All' },
-		};
 
-		uut.find('select').simulate('change', event);
+		uut.find('.cs-checkbox-dropdown-button').simulate('click');
+		uut.find('.cs-checkbox-dropdown button[value="All"]').simulate('click');
 
 		expect(uut.find('.cs-table-select').map((n) => n.prop('checked'))).toEqual([
 			true,
 			true,
 			true,
 			true,
-			true,
+			true
 		]);
 	});
 
@@ -104,7 +101,7 @@ describe('useAdvancedSelection()', () => {
 		const filter = jest.fn().mockReturnValue(true);
 
 		const advancedSelectionData: AdvancedSelector = {
-			All: filter,
+			All: filter
 		};
 
 		const TestComponent: React.FC<{}> = () => {
@@ -115,7 +112,7 @@ describe('useAdvancedSelection()', () => {
 
 			const advancedSelection = {
 				labels: Object.keys(advancedSelectionData),
-				onChange: advancedSelectionChanged,
+				onChange: advancedSelectionChanged
 			};
 
 			return (
@@ -131,12 +128,8 @@ describe('useAdvancedSelection()', () => {
 
 		const uut = mount(<TestComponent />);
 
-		const event = {
-			preventDefault() {},
-			target: { value: 'All' },
-		};
-
-		uut.find('select').simulate('change', event);
+		uut.find('.cs-checkbox-dropdown-button').simulate('click');
+		uut.find('.cs-checkbox-dropdown button[value="All"]').simulate('click');
 
 		expect(filter).toBeCalled();
 	});

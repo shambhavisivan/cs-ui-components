@@ -1,7 +1,7 @@
 .table-filter-wrapper {
-    display: flex;
-    width: 100%;
-    position: sticky;
-    z-index: $z-index-table-filter;
-    @include sbg(--dm-table-bg);
+	display: flex;
+	width: 100%;
+	position: sticky;
+	z-index: $z-index-table-filter;
+	@include sbg(--dm-table-bg);
 }

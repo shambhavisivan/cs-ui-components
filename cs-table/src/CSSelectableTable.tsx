@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { CSTableProps, CSTable, CSTableColumn, CSTableRow } from './CSTable';
 
 /**
@@ -10,24 +10,27 @@ export interface CSSelectableTableProps extends CSTableProps {
 	 */
 	selectedRows: Set<string>;
 	/**
+	 * Map containing data for advanced slection
+	 */
+	advancedSelection?: {
+		labels: Array<string>,
+		onChange: (selector: string) => void
+	};
+	// onClick?: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
+	/**
 	 * Callback invoked when a selection changes.
 	 *
 	 * @param selectedRows Ids of all the rows currently selected
 	 */
 	selectionChanged(selectedRows: Set<string>): any;
-	/**
-	 * Map containing data for advanced slection
-	 */
-	advancedSelection?: {
-		labels: Array<string>,
-		onChange: (selector:string) => void
-	}
 }
 
 export const CSSelectableTable: React.FC<CSSelectableTableProps> = props => {
 	const rows = typeof props.rows === 'function' ? props.rows() : props.rows;
 	const normalRows = rows.filter(r => !r.fullWidth);
-	const normalRowsIdSet = new Set(normalRows.map((row:CSTableRow) => row.id));
+	const normalRowsIdSet = new Set(normalRows.map((row: CSTableRow) => row.id));
+
+	const dropdownRef = useRef(null)
 
 	normalRows.forEach(row => {
 		row.data.values.__selected = props.selectedRows.has(row.id);
@@ -39,25 +42,58 @@ export const CSSelectableTable: React.FC<CSSelectableTableProps> = props => {
 		};
 	});
 
+	const [dropdownState, setDropdownState] = useState(false);
+
 	const selectAll = (value: boolean) => {
-		props.selectionChanged(value ? new Set([...props.selectedRows, ...normalRowsIdSet]) : new Set([...props.selectedRows].filter((id:string) => !normalRowsIdSet.has(id))));
+		props.selectionChanged(value ? new Set([...props.selectedRows, ...normalRowsIdSet]) : new Set([...props.selectedRows].filter((id: string) => !normalRowsIdSet.has(id))));
 	};
+
+	const clickListener = useCallback(
+		(e) => {
+			if (!(dropdownRef.current! as any).contains(e.target)) {
+				setDropdownState(false);
+			}
+		},
+		[dropdownRef.current]
+	);
+
+	useEffect(() => {
+		// Attach the listeners on component mount.
+		document.addEventListener('click', clickListener)
+		// Detach the listeners on component unmount.
+		return () => {
+			document.removeEventListener('click', clickListener)
+		}
+	}, [])
 
 	const allSelected = useCallback(() => normalRows.every(row => props.selectedRows.has(row.id)) && normalRows.length > 0, [normalRows, props.selectedRows]);
 
 	const cols: Array<CSTableColumn> = [{
 		name: '__selected',
 		label:
-			<label className="cs-checkbox-wrapper">
+			<label className="cs-checkbox-dropdown-wrapper" ref={dropdownRef}>
 				<input className="cs-checkbox cs-table-select-all" type="checkbox" checked={allSelected()} onChange={e => selectAll(e.target.checked)} />
 				<span className="cs-checkbox-faux" />
 
-				{props.advancedSelection && props.advancedSelection.labels && props.advancedSelection.onChange && (<select onChange={(e:React.ChangeEvent<HTMLSelectElement>) => props.advancedSelection.onChange(e.target.value)}>
-					{props.advancedSelection.labels.map(selectionKey => {
-						return (<option key={selectionKey} value={selectionKey}>{selectionKey}</option>)
-					})}
-				</select>)}
-
+				{props.advancedSelection ? (<><button className="cs-checkbox-dropdown-button icon-down"
+						title="select"
+						onClick={() => setDropdownState(!dropdownState)}
+					/>
+					{dropdownState ? (
+						<div className="cs-checkbox-dropdown">
+							{props.advancedSelection.labels.map(selectionKey => {
+								return (
+									<button className="cs-checkbox-dropdown-option"
+										key={selectionKey}
+										value={selectionKey}
+										onClick={(e) => { e.preventDefault(); setDropdownState(false); props.advancedSelection.onChange(selectionKey)}}
+									>
+										{selectionKey}
+									</button>);
+							})}
+						</div>
+					) : null}
+				</>) : null}
 			</label>
 		,
 		render: (value, data) =>
