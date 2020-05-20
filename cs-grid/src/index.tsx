@@ -7,7 +7,7 @@ import './sass/style.scss';
 
 import { CSGrid } from './components/cs-grid';
 import { CSGridLookupSearchResult } from './components/cs-grid-lookup-editor';
-import { CellData, Row } from './interfaces/cs-grid-base-interfaces';
+import { CellData, GridApi, GridReadyEvent, Row } from './interfaces/cs-grid-base-interfaces';
 import { ColDef } from './interfaces/cs-grid-col-def';
 import {
 	ColumnFilterCondition,
@@ -33,6 +33,7 @@ export class App extends React.Component<object, AppState> {
 	private currentPageSize = this.pageSizes[0];
 	private lookupDisplayColumn = 'text1';
 	private sortedAndFilteredRows: Array<Row>;
+	private gridApi: GridApi;
 
 	private columnState: string =
 		'[{"colId":"exampleRowSelection","hide":false,"aggFunc":null,"width":80,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleGuid","hide":true,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleDecimal","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleText","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleCurrency","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleDate","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleLookup","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleMultiSelectLookup","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleBoolean","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleIntegerStep","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleInteger","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"examplePicklist","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"examplePicklistWithLabels","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleMultiSelectPicklist","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleMultiSelectPicklistWithLabels","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleRowValidation","hide":false,"aggFunc":null,"width":40,"pivotIndex":null,"pinned":null,"rowGroupIndex":null}]';
@@ -218,6 +219,21 @@ export class App extends React.Component<object, AppState> {
 					console.log(
 						`onChange called with rowNodeId = ${rowNodeId} oldValue = ${oldValue} newValue = ${newValue}`
 					);
+
+					if (this.gridApi) {
+						const node = this.gridApi.getRowNode(rowNodeId);
+						let icon = 'red';
+
+						const exampleIntegerValue: number = parseInt(newValue, 10);
+
+						if (exampleIntegerValue > 50000 && exampleIntegerValue <= 100000) {
+							icon = 'yellow';
+						} else if (exampleIntegerValue > 100000) {
+							icon = 'green';
+						}
+
+						node.setDataValue('status', { cellValue: icon });
+					}
 					const value: CellData<number> = {
 						cellValue: newValue,
 						errorMessage: 'onChange error message'
@@ -349,6 +365,27 @@ export class App extends React.Component<object, AppState> {
 				userInfo
 			},
 			{
+				cellType: 'Icon',
+				getIcon: (guid: string, value: CellData<string>) => {
+					let icon;
+					if (value.cellValue === 'red') {
+						icon = <div>RED</div>;
+					} else if (value.cellValue === 'green') {
+						icon = <div>GREEN</div>;
+					} else if (value.cellValue === 'yellow') {
+						icon = <div>YELLOW</div>;
+					}
+
+					return <div>{icon}</div>;
+				},
+				header: {
+					label: 'Status'
+				},
+				name: 'status',
+				pinned: 'right',
+				userInfo
+			},
+			{
 				cellType: 'RowValidation',
 				name: 'exampleRowValidation',
 				userInfo
@@ -417,6 +454,9 @@ export class App extends React.Component<object, AppState> {
 				},
 				exampleText: {
 					cellValue: 'Toy&o|:;ta'
+				},
+				status: {
+					cellValue: 'red'
 				}
 			},
 			{
@@ -492,6 +532,9 @@ export class App extends React.Component<object, AppState> {
 				exampleText: {
 					cellValue: 'Ford',
 					errorMessage: 'An error message'
+				},
+				status: {
+					cellValue: 'red'
 				}
 			},
 			{
@@ -554,6 +597,9 @@ export class App extends React.Component<object, AppState> {
 				},
 				exampleText: {
 					cellValue: 'Toyota'
+				},
+				status: {
+					cellValue: 'yellow'
 				}
 			},
 			{
@@ -629,6 +675,9 @@ export class App extends React.Component<object, AppState> {
 				exampleText: {
 					cellValue: 'Ford',
 					errorMessage: ''
+				},
+				status: {
+					cellValue: 'yellow'
 				}
 			}
 		];
@@ -715,6 +764,7 @@ export class App extends React.Component<object, AppState> {
 						}}
 						onColumnStateChange={this.onColumnStateChange}
 						columnState={this.columnState}
+						onGridReady={this.onGridReady}
 					/>
 				) : (
 					<CSGrid
@@ -734,6 +784,7 @@ export class App extends React.Component<object, AppState> {
 						onSelectionChange={this.onSelectionChange}
 						uniqueIdentifierColumnName={'exampleGuid'}
 						onCellEditingStopped={this.onCellEditingStopped}
+						onGridReady={this.onGridReady}
 					/>
 				)}
 				<>
@@ -1025,6 +1076,10 @@ export class App extends React.Component<object, AppState> {
 		console.log(
 			`onCellEditingStopped called with rowNodeId = ${rowNodeId} and columnField = ${columnField}`
 		);
+	};
+
+	private onGridReady = (params: GridReadyEvent) => {
+		this.gridApi = params.api;
 	};
 }
 

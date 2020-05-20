@@ -1,5 +1,5 @@
 export * from './src/components/cs-grid';
-export * from './src/components/cs-grid-boolean-editor';
+export * from './src/components/cs-grid-no-editor';
 export * from './src/components/cs-grid-boolean-renderer';
 export * from './src/components/cs-grid-cell-error';
 export * from './src/components/cs-grid-currency-editor';
@@ -37,3 +37,4 @@ export * from './src/interfaces/cs-grid-col-def';
 export * from './src/interfaces/user-info';
 export * from './src/utils/cs-grid-default-comparator';
 export * from './src/utils/cs-grid-lookup-comparator';
+export * from './src/components/cs-grid-icon-renderer';

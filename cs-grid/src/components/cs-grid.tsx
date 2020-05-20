@@ -34,7 +34,6 @@ import {
 } from '../interfaces/cs-grid-data-source-api';
 import { CSGridDefaultComparator } from '../utils/cs-grid-default-comparator';
 import { SearchUtils } from '../utils/search-utils';
-import { CSGridBooleanEditor } from './cs-grid-boolean-editor';
 import { CSGridBooleanRenderer } from './cs-grid-boolean-renderer';
 import { CSGridClientSidePagination } from './cs-grid-client-side-pagination';
 import { CSGridCurrencyEditor } from './cs-grid-currency-editor';
@@ -45,12 +44,14 @@ import { CSGridDateRenderer } from './cs-grid-date-renderer';
 import { CSGridDecimalEditor } from './cs-grid-decimal-editor';
 import { CSGridDecimalRenderer } from './cs-grid-decimal-renderer';
 import { CSGridHeader } from './cs-grid-header';
+import { CSGridIconRenderer } from './cs-grid-icon-renderer';
 import { CSGridIntegerEditor } from './cs-grid-integer-editor';
 import { CSGridIntegerRenderer } from './cs-grid-integer-renderer';
 import { CSGridLookupEditor } from './cs-grid-lookup-editor';
 import { CSGridLookupRenderer } from './cs-grid-lookup-renderer';
 import { CSGridMultiSelectLookupEditor } from './cs-grid-multi-select-lookup-editor';
 import { CSGridMultiSelectPicklistEditor } from './cs-grid-multi-select-picklist-editor';
+import { CSGridNoEditor } from './cs-grid-no-editor';
 import { CSGridPicklistEditor } from './cs-grid-picklist-editor';
 import { CSGridPicklistRenderer } from './cs-grid-picklist-renderer';
 import { CSGridQuickFilter, CSGridQuickFilterControl } from './cs-grid-quick-filter';
@@ -96,7 +97,6 @@ export interface CSGridProps {
 
 class CSGridState {
 	frameworkComponents = {
-		booleanEditor: CSGridBooleanEditor,
 		booleanRenderer: CSGridBooleanRenderer,
 		currencyEditor: CSGridCurrencyEditor,
 		currencyRenderer: CSGridCurrencyRenderer,
@@ -104,6 +104,7 @@ class CSGridState {
 		dateRenderer: CSGridDateRenderer,
 		decimalEditor: CSGridDecimalEditor,
 		decimalRenderer: CSGridDecimalRenderer,
+		iconRenderer: CSGridIconRenderer,
 		integerEditor: CSGridIntegerEditor,
 		integerRenderer: CSGridIntegerRenderer,
 		lookupEditor: CSGridLookupEditor,
@@ -112,6 +113,7 @@ class CSGridState {
 		multiSelectLookupRenderer: CSGridLookupRenderer,
 		multiSelectPicklistEditor: CSGridMultiSelectPicklistEditor,
 		multiSelectPicklistRenderer: CSGridPicklistRenderer,
+		noEditor: CSGridNoEditor,
 		picklistEditor: CSGridPicklistEditor,
 		picklistRenderer: CSGridPicklistRenderer,
 		rowSelectionEditor: CSGridRowSelectionEditor,
@@ -742,7 +744,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			}
 
 			if (columnDef.cellType === 'Boolean') {
-				agGridColDef.cellEditor = 'booleanEditor';
+				agGridColDef.cellEditor = 'noEditor';
 				agGridColDef.cellRenderer = 'booleanRenderer';
 			}
 
@@ -764,6 +766,13 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			if (columnDef.cellType === 'MultiSelectPicklist') {
 				agGridColDef.cellEditor = 'multiSelectPicklistEditor';
 				agGridColDef.cellRenderer = 'multiSelectPicklistRenderer';
+			}
+
+			if (columnDef.cellType === 'Icon') {
+				agGridColDef.cellRenderer = 'iconRenderer';
+				agGridColDef.cellEditor = 'noEditor';
+
+				this.addIfDefined(cellParams, 'getIcon', columnDef.getIcon);
 			}
 
 			if (columnDef.cellType === 'RowValidation') {
@@ -830,6 +839,13 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				};
 				agGridColDef.cellEditor = columnDef.cellEditor;
 				agGridColDef.cellRenderer = columnDef.cellRenderer;
+
+				if (columnDef.cellEditor === 'booleanEditor') {
+					console.warn(
+						'The cell editor "booleanEditor" has been replaced with "noEditor"'
+					);
+					agGridColDef.cellEditor = 'noEditor';
+				}
 			} else {
 				agGridColDef.cellEditorParams = cellParams;
 				agGridColDef.cellRendererParams = cellParams;

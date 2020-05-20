@@ -3,12 +3,11 @@ import { CSGridCellEditor } from '../interfaces/cs-grid-base-interfaces';
 import { CSGridCellEditorProps } from '../interfaces/cs-grid-cell-props';
 
 /**
- * Required to ensure an editor is never opened when clicking a boolean type cell
- * because a boolean cell is managed in the renderer.
+ * Ensures the editor is never opened when clicking a cell using this editor.
  */
-export class CSGridBooleanEditor extends React.Component<CSGridCellEditorProps<boolean>>
+export class CSGridNoEditor extends React.Component<CSGridCellEditorProps<any>>
 	implements CSGridCellEditor {
-	constructor(props: CSGridCellEditorProps<boolean>) {
+	constructor(props: CSGridCellEditorProps<any>) {
 		super(props);
 	}
 
@@ -20,7 +19,7 @@ export class CSGridBooleanEditor extends React.Component<CSGridCellEditorProps<b
 	}
 
 	/**
-	 * Always reject an edit because a boolean cell is managed in the renderer.
+	 * Always reject an edit.
 	 */
 	isCancelBeforeStart = (): boolean => {
 		return true;

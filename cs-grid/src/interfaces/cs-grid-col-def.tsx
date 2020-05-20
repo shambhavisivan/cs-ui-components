@@ -3,6 +3,7 @@ import { CellData, IsColumnFunc, SuppressKeyboardEventParams } from './cs-grid-b
 import {
 	BaseProps,
 	DecimalProps,
+	IconProps,
 	IntegerProps,
 	LookupProps,
 	PicklistProps,
@@ -18,6 +19,7 @@ export type ColDef =
 	| BooleanColDef
 	| DateColDef
 	| TextColDef
+	| IconColDef
 	| RowValidationColDef
 	| RowSelectionColDef
 	| CustomColDef;
@@ -54,6 +56,10 @@ interface DateColDef extends BaseColDef<string> {
 
 interface TextColDef extends BaseColDef<string> {
 	cellType: 'Text';
+}
+
+interface IconColDef extends BaseColDef<string>, IconProps {
+	cellType: 'Icon';
 }
 
 interface RowValidationColDef extends BaseColDef<ValidationStatus> {
@@ -143,6 +149,7 @@ interface BaseColDef<T> extends BaseProps<T> {
 	/** Comparator function for custom sorting. */
 	comparator?: (valueA: CellData<T>, valueB: CellData<T>) => number;
 
+	/** Pins the column to the left or right and the column is always visible. */
 	pinned?: 'left' | 'right';
 
 	/** Allows user to suppress certain keyboard events */

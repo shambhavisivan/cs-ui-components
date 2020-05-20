@@ -77,6 +77,10 @@ export interface PicklistOption {
 	icon?: JSX.Element;
 }
 
+export interface IconProps {
+	getIcon(guid: string, value: CellData<string>): JSX.Element;
+}
+
 export interface BaseProps<T> {
 	readonly?: boolean | IsColumnFunc;
 	userInfo: UserInfo;

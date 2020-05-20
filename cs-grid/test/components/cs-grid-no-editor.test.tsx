@@ -1,13 +1,13 @@
 import { ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
 import { shallow } from 'enzyme';
 import React from 'react';
-import { CSGridBooleanEditor } from '../../src/components/cs-grid-boolean-editor';
+import { CSGridNoEditor } from '../../src/components/cs-grid-no-editor';
 import { CellData } from '../../src/interfaces/cs-grid-base-interfaces';
 import { CSGridCellEditorProps } from '../../src/interfaces/cs-grid-cell-props';
 import { UserInfo } from '../../src/interfaces/user-info';
 
-describe('CS Grid Boolean Editor', () => {
-	let exampleBoolean: CellData<boolean>;
+describe('CS Grid No Editor', () => {
+	let exampleNoEditor: CellData<boolean>;
 	let editable: boolean;
 	let userInfo: UserInfo;
 	const columnId = 'colId';
@@ -19,7 +19,7 @@ describe('CS Grid Boolean Editor', () => {
 	let stopEditingMock: jest.Mock<any, any>;
 
 	beforeEach(() => {
-		exampleBoolean = {
+		exampleNoEditor = {
 			cellValue: false,
 			errorMessage: 'errorMessage'
 		};
@@ -50,25 +50,25 @@ describe('CS Grid Boolean Editor', () => {
 			rowIndex: 0,
 			stopEditing: stopEditingMock,
 			userInfo,
-			value: exampleBoolean
+			value: exampleNoEditor
 		};
 	});
 
-	test('Creates a new boolean editor and checks the getValue function returns the expected value.', () => {
-		const cellEditor = shallow(<CSGridBooleanEditor {...cSGridCellEditorProps} />);
-		const instance = cellEditor.instance() as CSGridBooleanEditor;
+	test('Creates a new no editor and checks the getValue function returns the expected value.', () => {
+		const cellEditor = shallow(<CSGridNoEditor {...cSGridCellEditorProps} />);
+		const instance = cellEditor.instance() as CSGridNoEditor;
 
 		expect(instance.getValue()).toEqual(cSGridCellEditorProps.value);
 	});
 
-	test('The boolean editor should always render nothing', () => {
-		const cellEditor = shallow(<CSGridBooleanEditor {...cSGridCellEditorProps} />);
+	test('The no editor should always render nothing', () => {
+		const cellEditor = shallow(<CSGridNoEditor {...cSGridCellEditorProps} />);
 		expect(cellEditor.equals(null)).toBeTruthy();
 	});
 
-	test('Always reject an edit because a boolean cell is managed in the renderer.', () => {
-		const cellEditor = shallow(<CSGridBooleanEditor {...cSGridCellEditorProps} />);
-		const instance = cellEditor.instance() as CSGridBooleanEditor;
+	test('Always reject an edit because a no editor cell is managed in the renderer.', () => {
+		const cellEditor = shallow(<CSGridNoEditor {...cSGridCellEditorProps} />);
+		const instance = cellEditor.instance() as CSGridNoEditor;
 		expect(instance.isCancelBeforeStart()).toBeTruthy();
 	});
 });
