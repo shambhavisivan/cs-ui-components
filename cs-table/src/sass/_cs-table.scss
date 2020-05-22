@@ -5,38 +5,43 @@
 
 table.cs-table {
 	width: 100%;
-	border-collapse: collapse;
+	border-collapse: separate;
 	border-spacing: 0;
 	@include sbg(--dm-table-bg);
-	@include css4 {
-		border-top: 1px solid cvar(--dm-table-br);
-		border-bottom: 1px solid cvar(--dm-table-br);
-	}
+	
+	> thead {
 
-	> thead > tr > .cs-table-header {
-		font-size: 0.75rem;
-		padding: 0.5rem;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		min-width: 50px;
-		vertical-align: middle;
-		line-height: normal;
-		@include sbg(--dm-table-header-bg);
-
-		&:first-child {
-			padding-left: 1rem;
-		}
-
-		&:last-child {
-			padding-right: 1rem;
-		}
-
-		.cs-table-header-text {
-			@include overflow-ellipsis;
-			font-weight: $font-weight-semi-bold;
-			text-align: left;
-			max-width: 200px;
-			@include sc(--dm-table-header-c);
+		> tr > .cs-table-header {
+			position: sticky;
+			font-size: 0.75rem;
+			padding: 0.5rem;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			min-width: 50px;
+			vertical-align: middle;
+			line-height: normal;
+			z-index: $z-index-table-header;
+			@include sbg(--dm-table-header-bg);
+			@include css4 {
+				border-top: 1px solid cvar(--dm-table-br);
+				border-bottom: 1px solid cvar(--dm-table-br);
+			}
+	
+			&:first-child {
+				padding-left: 1rem;
+			}
+	
+			&:last-child {
+				padding-right: 1rem;
+			}
+	
+			.cs-table-header-text {
+				@include overflow-ellipsis;
+				font-weight: $font-weight-semi-bold;
+				text-align: left;
+				max-width: 200px;
+				@include sc(--dm-table-header-c);
+			}
 		}
 	}
 
@@ -53,12 +58,16 @@ table.cs-table {
 			text-align: left;
 			@include sc(--dm-table-cell-c);
 			@include css4 {
-				border-top: 1px solid cvar(--dm-table-br);
+				border-bottom: 1px solid cvar(--dm-table-br);
 			}
 
 			&:first-child {
 				padding-left: 1rem;
-				font-weight: $font-weight-bold;
+
+				a {
+					text-decoration: none;
+					@include sc(--dm-table-cell-c);	
+				}
 			}
 
 			&:last-child {
@@ -103,7 +112,7 @@ table.cs-table {
 				@include sc(--dm-credit-funds-table-c);
 
 				&:first-child {
-					padding-left: 1rem;
+					padding-left: 1rem;		
 				}
 			}
 

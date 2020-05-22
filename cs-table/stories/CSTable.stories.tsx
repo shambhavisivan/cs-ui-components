@@ -54,14 +54,16 @@ export default {
 	decorators: [withKnobs]
 };
 
-export const SimpleTable = () => <CSTable cols={COLS} rows={ROWS.slice(0, number('No. of records', ROWS.length, { range: true, min: 0, max: ROWS.length, step: 1 }))} />;
+export const SimpleTable = () => <span className="cs-entire-table-wrapper">
+		<CSTable cols={COLS} rows={ROWS.slice(0, number('No. of records', ROWS.length, { range: true, min: 0, max: ROWS.length, step: 1 }))}/>
+	</span>;
 export const TableWithPagination = () => {
 	const _rows = ROWS.slice(0, number('No. of records', ROWS.length, { range: true, min: 0, max: ROWS.length, step: 1 }));
 	const { pageContents, currentPage, lastPage, setCurrentPage } = useArrayPagination(number('Page size', 10, { range: true, min: 1, max: _rows.length, step: 1 }), _rows);
-	return <>
+	return <span className="cs-entire-table-wrapper">
 		<CSTablePaginationControls currentPage={currentPage} lastPage={lastPage} changePage={setCurrentPage} />
 		<CSTable rows={pageContents} cols={COLS} />
-	</>;
+	</span>;
 };
 
 export const TableWithQuickfilter = () => {
@@ -69,10 +71,12 @@ export const TableWithQuickfilter = () => {
 	const { term, setTerm, filteredRows } = useQuickFilter(_rows, (row, t) => {
 		return row.data.values.Constel.toLowerCase().includes(t.toLowerCase());
 	});
-	return <>
-		<input type="text" placeholder="Filter by constellation" value={term} onChange={e => setTerm(e.target.value)} />
-		<CSTable rows={filteredRows} cols={COLS} />
-	</>;
+	return <span className="cs-entire-table-wrapper">
+			<span className="table-filter-wrapper">
+				<input type="text" placeholder="Filter by constellation" className="table-filter" value={term} onChange={e => setTerm(e.target.value)} />
+			</span>
+			<CSTable rows={filteredRows} cols={COLS} />
+		</span>;
 };
 
 export const TableWithQuickfilterAndPagination = () => {
@@ -81,26 +85,34 @@ export const TableWithQuickfilterAndPagination = () => {
 		return row.data.values.Constel.toLowerCase().includes(t.toLowerCase());
 	});
 	const { pageContents, currentPage, lastPage, setCurrentPage } = useArrayPagination(number('Page size', 10, { range: true, min: 1, max: filteredRows.length, step: 1 }), filteredRows);
-	return <>
-		<input type="text" placeholder="Filter by constellation" value={term} onChange={e => setTerm(e.target.value)} />
+	return <span className="cs-entire-table-wrapper">
+		<span className="table-filter-wrapper">
+			<input type="text" placeholder="Filter by constellation" className="table-filter" value={term} onChange={e => setTerm(e.target.value)} />
+		</span>
 		<CSTablePaginationControls currentPage={currentPage} lastPage={lastPage} changePage={setCurrentPage} />
 		<CSTable rows={pageContents} cols={COLS} />
-	</>;
+	</span>;
 };
 
 export const SelectableTable = () => {
 	const [selected, setSelected] = useState(new Set<string>());
 	// tslint:disable-next-line: max-line-length
-	return <CSSelectableTable selectedRows={selected} selectionChanged={setSelected} cols={COLS} rows={ROWS.slice(0, number('No. of records', ROWS.length, { range: true, min: 0, max: ROWS.length, step: 1 }))} />;
+	return <span className="cs-entire-table-wrapper">
+		<CSSelectableTable 
+			selectedRows={selected} 
+			selectionChanged={setSelected} 
+			cols={COLS} 
+			rows={ROWS.slice(0, number('No. of records', ROWS.length, { range: true, min: 0, max: ROWS.length, step: 1 }))} />
+	</span>;
 };
 export const SelectableTableWithPagination = () => {
 	const [selected, setSelected] = useState(new Set<string>());
 	const _rows = ROWS.slice(0, number('No. of records', ROWS.length, { range: true, min: 0, max: ROWS.length, step: 1 }));
 	const { pageContents, currentPage, lastPage, setCurrentPage } = useArrayPagination(number('Page size', 10, { range: true, min: 1, max: _rows.length, step: 1 }), _rows);
-	return <>
+	return <span className="cs-entire-table-wrapper">
 		<CSTablePaginationControls currentPage={currentPage} lastPage={lastPage} changePage={setCurrentPage} />
 		<CSSelectableTable selectedRows={selected} selectionChanged={setSelected} rows={pageContents} cols={COLS} />
-	</>;
+	</span>;
 };
 
 export const SelectableTableWithQuickfilter = () => {
@@ -109,10 +121,12 @@ export const SelectableTableWithQuickfilter = () => {
 	const { term, setTerm, filteredRows } = useQuickFilter(_rows, (row, t) => {
 		return row.data.values.Constel.toLowerCase().includes(t.toLowerCase());
 	});
-	return <>
-		<input type="text" placeholder="Filter by constellation" value={term} onChange={e => setTerm(e.target.value)} />
+	return <span className="cs-entire-table-wrapper">
+		<span className="table-filter-wrapper">
+			<input type="text" placeholder="Filter by constellation" className="table-filter"value={term} onChange={e => setTerm(e.target.value)} />
+		</span>
 		<CSSelectableTable selectedRows={selected} selectionChanged={setSelected} rows={filteredRows} cols={COLS} />
-	</>;
+	</span>;
 };
 
 export const SelectableTableWithQuickfilterAndPagination = () => {
@@ -122,20 +136,22 @@ export const SelectableTableWithQuickfilterAndPagination = () => {
 		return row.data.values.Constel.toLowerCase().includes(t.toLowerCase());
 	});
 	const { pageContents, currentPage, lastPage, setCurrentPage } = useArrayPagination(number('Page size', 10, { range: true, min: 1, max: filteredRows.length, step: 1 }), filteredRows);
-	return <>
-		<input type="text" placeholder="Filter by constellation" value={term} onChange={e => setTerm(e.target.value)} />
+	return <span className="cs-entire-table-wrapper">
+		<span className="table-filter-wrapper">
+			<input type="text" placeholder="Filter by constellation" className="table-filter" value={term} onChange={e => setTerm(e.target.value)} />
+		</span>
 		<CSTablePaginationControls currentPage={currentPage} lastPage={lastPage} changePage={setCurrentPage} />
 		<CSSelectableTable selectedRows={selected} selectionChanged={setSelected} rows={pageContents} cols={COLS} />
-	</>;
+	</span>;
 };
 
 export const SelectableTableWithQuickfilterPaginationAndAdvancedSelect = () => {
 
 	const advancedSelectionData:AdvancedSelector = {
-		"All": (row, index) => true,
-		"None": (row, index) => false,
-		"Galaxy class": (row, index) => row.data.values.Class === "Galaxy",
-		"Cas constellation": (row, index) => row.data.values.Constel === "Cas",
+		'All': (row, index) => true,
+		'None': (row, index) => false,
+		'Galaxy class': (row, index) => row.data.values.Class === 'Galaxy',
+		'Cas constellation': (row, index) => row.data.values.Constel === 'Cas',
 	}
 
 	const _rows = ROWS.slice(0, number('No. of records', ROWS.length, { range: true, min: 0, max: ROWS.length, step: 1 }));
@@ -152,11 +168,13 @@ export const SelectableTableWithQuickfilterPaginationAndAdvancedSelect = () => {
 
 
 	const { pageContents, currentPage, lastPage, setCurrentPage } = useArrayPagination(number('Page size', 10, { range: true, min: 1, max: filteredRows.length, step: 1 }), filteredRows);
-	return <>
-		<input type="text" placeholder="Filter by constellation" value={term} onChange={e => setTerm(e.target.value)} />
+	return <span className="cs-entire-table-wrapper">
+		<span className="table-filter-wrapper">
+			<input type="text" placeholder="Filter by constellation" className="table-filter" value={term} onChange={e => setTerm(e.target.value)} />
+		</span>
 		<CSTablePaginationControls currentPage={currentPage} lastPage={lastPage} changePage={setCurrentPage} />
 		<CSSelectableTable selectedRows={selected} selectionChanged={setSelected} rows={pageContents} cols={COLS} advancedSelection={advancedSelection} />
-	</>;
+	</span>;
 };
 
 export const TableWithFullWidthRows = () => {
@@ -170,7 +188,9 @@ export const TableWithFullWidthRows = () => {
 		});
 		return acc;
 	}, []);
-	return <CSTable rows={rows} cols={COLS} renderFullWidth={row => <code>{row.values.desc}</code>} />;
+	return <span className="cs-entire-table-wrapper">
+		<CSTable rows={rows} cols={COLS} renderFullWidth={row => <code>{row.values.desc}</code>} />
+	</span>;
 };
 
 export const TableWithCustomRenderer = () => {
@@ -183,5 +203,7 @@ export const TableWithCustomRenderer = () => {
 		},
 		...COLS.slice(1)
 	];
-	return <CSTable rows={_rows} cols={cols} />;
+	return <span className="cs-entire-table-wrapper">
+		<CSTable rows={_rows} cols={cols} />
+	</span>;
 };

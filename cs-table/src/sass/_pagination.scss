@@ -2,6 +2,9 @@
 	display: flex;
 	justify-content: flex-end;
 	padding: 1rem;
+	position: sticky;
+	z-index: $z-index-pagination;
+	@include sbg(--cs-pagination-bg);
 
 	.cs-pagination {
 		display: flex;

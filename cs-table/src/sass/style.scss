@@ -6,6 +6,7 @@
 @import "checkbox";
 @import "cs-table";
 @import "pagination";
+@import "table-filter";
 
 * {
 	margin: 0;
@@ -28,4 +29,35 @@ body {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
+}
+
+.cs-entire-table-wrapper {
+
+	> .cs-table:first-child > thead > tr > .cs-table-header {
+		top: 0;
+	}
+
+	> .cs-pagination-wrapper:first-child {
+		top: 0;
+
+		+ .cs-table > thead > tr > .cs-table-header {
+			top: 4rem;
+		}
+	}
+
+	> .table-filter-wrapper:first-child {
+		top: 0;
+
+		+ .cs-pagination-wrapper {
+			top: 18px;
+
+			+ .cs-table > thead > tr > .cs-table-header {
+				top: 82px;
+			}
+		}
+
+		+ .cs-table > thead > tr > .cs-table-header {
+			top: 18px;
+		}
+	}
 }
