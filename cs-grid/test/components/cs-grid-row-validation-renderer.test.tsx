@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import {
 	CSGridRowValidationRenderer,
+	RowValidationValues,
 	ValidationStatus
 } from '../../src/components/cs-grid-row-validation-renderer';
 import { CSGridTooltip } from '../../src/components/cs-grid-tooltip';
@@ -11,14 +12,14 @@ import { CSGridCellRendererProps } from '../../src/interfaces/cs-grid-cell-props
 import { UserInfo } from '../../src/interfaces/user-info';
 
 describe('CS Grid Row Validation Renderer', () => {
-	let exampleRowValidationRenderer: CellData<ValidationStatus>;
+	let exampleRowValidationRenderer: CellData<ValidationStatus | RowValidationValues>;
 	let editable: boolean;
 	let userInfo: UserInfo;
 	const columnId = 'colId';
 	let colDef: ColDef;
 	let column: Column;
 	let columnApi: ColumnApi;
-	let cSGridCellRendererProps: CSGridCellRendererProps<ValidationStatus>;
+	let cSGridCellRendererProps: CSGridCellRendererProps<ValidationStatus | RowValidationValues>;
 
 	beforeEach(() => {
 		exampleRowValidationRenderer = {
@@ -149,6 +150,86 @@ describe('CS Grid Row Validation Renderer', () => {
 					>
 						<span className='icon-info' aria-hidden='true' />
 					</CSGridTooltip>
+				</span>
+			)
+		).toBeTruthy();
+	});
+
+	test('Renders a basic row validation renderer with validation type Info and an optional icon.', () => {
+		cSGridCellRendererProps.value.cellValue = { status: 'Info', icons: ['red'] };
+
+		const redIcon = <div>red</div>;
+		const getIcons = () => {
+			return { red: redIcon };
+		};
+
+		const cellRenderer = shallow(
+			<CSGridRowValidationRenderer {...cSGridCellRendererProps} getIcons={getIcons} />
+		);
+
+		expect(
+			cellRenderer.equals(
+				<span className='is-last-column'>
+					<CSGridTooltip
+						additionalClassnames='icon-info-wrapper'
+						helpText={exampleRowValidationRenderer.errorMessage}
+					>
+						<span className='icon-info' aria-hidden='true' />
+					</CSGridTooltip>
+					<span key={0}>{redIcon}</span>
+				</span>
+			)
+		).toBeTruthy();
+	});
+
+	test('Returning icons in getIcons but the cellValue does not contain any so none should be shown.', () => {
+		cSGridCellRendererProps.value.cellValue = { status: 'Info', icons: [] };
+
+		const redIcon = <div>red</div>;
+		const getIcons = () => {
+			return { red: redIcon };
+		};
+
+		const cellRenderer = shallow(
+			<CSGridRowValidationRenderer {...cSGridCellRendererProps} getIcons={getIcons} />
+		);
+
+		expect(
+			cellRenderer.equals(
+				<span className='is-last-column'>
+					<CSGridTooltip
+						additionalClassnames='icon-info-wrapper'
+						helpText={exampleRowValidationRenderer.errorMessage}
+					>
+						<span className='icon-info' aria-hidden='true' />
+					</CSGridTooltip>
+				</span>
+			)
+		).toBeTruthy();
+	});
+
+	test('Returning icons in getIcons but the cellValue has an icon name that is not the getIcon results so no icons should be shown.', () => {
+		cSGridCellRendererProps.value.cellValue = { status: 'Info', icons: ['green'] };
+
+		const redIcon = <div>red</div>;
+		const getIcons = () => {
+			return { red: redIcon };
+		};
+
+		const cellRenderer = shallow(
+			<CSGridRowValidationRenderer {...cSGridCellRendererProps} getIcons={getIcons} />
+		);
+
+		expect(
+			cellRenderer.equals(
+				<span className='is-last-column'>
+					<CSGridTooltip
+						additionalClassnames='icon-info-wrapper'
+						helpText={exampleRowValidationRenderer.errorMessage}
+					>
+						<span className='icon-info' aria-hidden='true' />
+					</CSGridTooltip>
+					<span />
 				</span>
 			)
 		).toBeTruthy();

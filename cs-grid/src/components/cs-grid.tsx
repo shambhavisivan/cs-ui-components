@@ -209,7 +209,18 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 									textFormatter: this.formatTextForFiltering
 								},
 								getQuickFilterText: (params: GetQuickFilterTextParams) => {
-									return params.value.cellValue;
+									const cellValue = params.value.cellValue;
+									let result = cellValue;
+
+									if (cellValue && typeof cellValue === 'object') {
+										const cellValues = Object.values(cellValue);
+
+										if (cellValues) {
+											result = cellValues.toString();
+										}
+									}
+
+									return result;
 								},
 								headerComponentFramework: CSGridHeader,
 								lockPinned: true,
@@ -777,6 +788,8 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 
 			if (columnDef.cellType === 'RowValidation') {
 				agGridColDef.cellRenderer = 'rowValidationRenderer';
+
+				this.addIfDefined(cellParams, 'getIcons', columnDef.getIcons);
 
 				const defaultSettings = {
 					editable: false,

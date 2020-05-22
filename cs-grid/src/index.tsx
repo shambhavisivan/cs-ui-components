@@ -161,7 +161,6 @@ export class App extends React.Component<object, AppState> {
 					label: 'Currency Column'
 				},
 				name: 'exampleCurrency',
-				pinned: 'right',
 				userInfo
 			},
 			{
@@ -224,6 +223,8 @@ export class App extends React.Component<object, AppState> {
 						const node = this.gridApi.getRowNode(rowNodeId);
 						let icon = 'red';
 
+						const rowValidationIconNames = [];
+
 						const exampleIntegerValue: number = parseInt(newValue, 10);
 
 						if (exampleIntegerValue > 50000 && exampleIntegerValue <= 100000) {
@@ -232,6 +233,22 @@ export class App extends React.Component<object, AppState> {
 							icon = 'green';
 						}
 
+						if (exampleIntegerValue > 50000) {
+							rowValidationIconNames.push('medium');
+						}
+						if (exampleIntegerValue > 100000) {
+							rowValidationIconNames.push('large');
+						}
+
+						const validationCellValue = node.data.exampleRowValidation.cellValue;
+						const status =
+							typeof validationCellValue === 'object'
+								? validationCellValue.status
+								: validationCellValue;
+
+						node.setDataValue('exampleRowValidation', {
+							cellValue: { status, icons: rowValidationIconNames }
+						});
 						node.setDataValue('status', { cellValue: icon });
 					}
 					const value: CellData<number> = {
@@ -241,6 +258,7 @@ export class App extends React.Component<object, AppState> {
 
 					return Promise.resolve(value);
 				},
+				pinned: 'right',
 				stepperArrows: true,
 				userInfo
 			},
@@ -383,12 +401,35 @@ export class App extends React.Component<object, AppState> {
 				},
 				name: 'status',
 				pinned: 'right',
-				userInfo
+				userInfo,
+				width: 100
 			},
 			{
 				cellType: 'RowValidation',
+				getIcons: (guid: string) => {
+					return {
+						large: (
+							<span
+								className='cs-grid_clear-button'
+								aria-hidden='true'
+								style={{ margin: 0, padding: 0 }}
+								key='row-validation-icon-clear-button'
+							/>
+						),
+						medium: (
+							<span
+								className='cs-grid_clear-button'
+								aria-hidden='true'
+								style={{ margin: 0, padding: 0 }}
+								key='row-validation-icon-clear-button'
+							/>
+						)
+					};
+				},
 				name: 'exampleRowValidation',
-				userInfo
+				pinned: 'right',
+				userInfo,
+				width: 100
 			}
 		];
 
@@ -450,7 +491,7 @@ export class App extends React.Component<object, AppState> {
 				},
 				exampleRowSelection: {},
 				exampleRowValidation: {
-					cellValue: 'None'
+					cellValue: { status: 'None' }
 				},
 				exampleText: {
 					cellValue: 'Toy&o|:;ta'
@@ -526,7 +567,7 @@ export class App extends React.Component<object, AppState> {
 				},
 				exampleRowSelection: {},
 				exampleRowValidation: {
-					cellValue: 'Error',
+					cellValue: { status: 'Error' },
 					errorMessage: 'Error 1\nError 2'
 				},
 				exampleText: {
@@ -592,7 +633,7 @@ export class App extends React.Component<object, AppState> {
 				},
 				exampleRowSelection: {},
 				exampleRowValidation: {
-					cellValue: 'Info',
+					cellValue: { status: 'Info', icons: ['medium'] },
 					errorMessage: 'Info 1\nInfo 2'
 				},
 				exampleText: {
@@ -669,7 +710,7 @@ export class App extends React.Component<object, AppState> {
 				},
 				exampleRowSelection: {},
 				exampleRowValidation: {
-					cellValue: 'Error',
+					cellValue: { status: 'Error', icons: ['medium'] },
 					errorMessage: 'Error 1Error 2'
 				},
 				exampleText: {

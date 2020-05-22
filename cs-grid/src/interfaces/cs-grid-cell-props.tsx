@@ -63,6 +63,10 @@ export interface RowSelectionAction {
 	action: () => void;
 }
 
+export interface RowValidationProps {
+	getIcons?(guid: string): Record<string, JSX.Element>;
+}
+
 export interface PicklistProps {
 	filterAboveSize?: number;
 	toggleSelection?: boolean;

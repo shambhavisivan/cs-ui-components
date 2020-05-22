@@ -1,4 +1,7 @@
-import { ValidationStatus } from '../components/cs-grid-row-validation-renderer';
+import {
+	RowValidationValues,
+	ValidationStatus
+} from '../components/cs-grid-row-validation-renderer';
 import { CellData, IsColumnFunc, SuppressKeyboardEventParams } from './cs-grid-base-interfaces';
 import {
 	BaseProps,
@@ -7,7 +10,8 @@ import {
 	IntegerProps,
 	LookupProps,
 	PicklistProps,
-	RowSelectionProps
+	RowSelectionProps,
+	RowValidationProps
 } from './cs-grid-cell-props';
 
 export type ColDef =
@@ -62,7 +66,9 @@ interface IconColDef extends BaseColDef<string>, IconProps {
 	cellType: 'Icon';
 }
 
-interface RowValidationColDef extends BaseColDef<ValidationStatus> {
+interface RowValidationColDef
+	extends BaseColDef<ValidationStatus | RowValidationValues>,
+		RowValidationProps {
 	cellType: 'RowValidation';
 }
 
