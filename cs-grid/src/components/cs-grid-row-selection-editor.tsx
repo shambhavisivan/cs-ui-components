@@ -1,4 +1,3 @@
-import * as KeyCode from 'keycode-js';
 import React from 'react';
 
 import { CSGridCellEditor, CSGridCellEditorState } from '../interfaces/cs-grid-base-interfaces';
@@ -7,6 +6,7 @@ import {
 	RowSelectionAction,
 	RowSelectionProps
 } from '../interfaces/cs-grid-cell-props';
+import { onKeyPressInAList } from '../utils/cs-grid-on-key-press';
 
 interface CSGridRowSelectionEditorState extends CSGridCellEditorState<boolean> {
 	actions: Array<RowSelectionAction>;
@@ -19,14 +19,16 @@ export class CSGridRowSelectionEditor
 	>
 	implements CSGridCellEditor {
 	dropDownRefs: Array<HTMLButtonElement> = [];
-	rowSelectionEditorRef = React.createRef();
 	focusedIndex = 0;
 
 	constructor(props: CSGridCellEditorProps<boolean> & RowSelectionProps) {
 		super(props);
 
+		const actions = this.props.getActions(this.props.node.id);
+		const start = this.props.noOfInlineIcons || 0;
+
 		this.state = {
-			actions: this.props.getActions(this.props.node.id),
+			actions: actions.slice(start, actions.length),
 			value: this.props.value
 		};
 	}
@@ -57,11 +59,11 @@ export class CSGridRowSelectionEditor
 			}
 		});
 
-		document.addEventListener('keydown', this.onTabPress);
+		document.addEventListener('keydown', this.onKeyPress);
 	}
 
 	componentWillUnmount() {
-		document.removeEventListener('keydown', this.onTabPress);
+		document.removeEventListener('keydown', this.onKeyPress);
 	}
 
 	isPopup = () => {
@@ -119,26 +121,14 @@ export class CSGridRowSelectionEditor
 		this.props.stopEditing();
 	};
 
-	private onTabPress = (event: KeyboardEvent) => {
-		if (
-			(event.keyCode === KeyCode.KEY_TAB && event.shiftKey) ||
-			event.keyCode === KeyCode.KEY_UP
-		) {
-			event.preventDefault();
-			this.focusedIndex =
-				(this.focusedIndex - 1 + this.dropDownRefs.length) % this.dropDownRefs.length;
-			this.dropDownRefs[this.focusedIndex].focus();
-		} else if (
-			(event.keyCode === KeyCode.KEY_TAB && !event.shiftKey) ||
-			event.keyCode === KeyCode.KEY_DOWN
-		) {
-			event.preventDefault();
-			this.focusedIndex =
-				(this.focusedIndex + 1 + this.dropDownRefs.length) % this.dropDownRefs.length;
-			this.dropDownRefs[this.focusedIndex].focus();
-		} else if (event.keyCode === KeyCode.KEY_ENTER || event.keyCode === KeyCode.KEY_RETURN) {
-			event.preventDefault();
-			this.actionSelected(this.state.actions[this.focusedIndex].action);
-		}
+	private onKeyPress = (event: KeyboardEvent) => {
+		this.focusedIndex = onKeyPressInAList(
+			event,
+			this.dropDownRefs,
+			this.focusedIndex,
+			true,
+			false,
+			() => this.actionSelected(this.state.actions[this.focusedIndex].action)
+		);
 	};
 }

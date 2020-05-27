@@ -9,6 +9,7 @@ import { CSGridCellError } from './cs-grid-cell-error';
 interface CSGridNumberRendererState extends CSGridCellRendererState<number> {
 	numberFormat: Intl.NumberFormat;
 }
+
 export abstract class CSGridNumberRenderer<
 	P extends CSGridCellRendererProps<number>
 > extends CSGridBaseRenderer<number, P, CSGridNumberRendererState> {

@@ -54,6 +54,7 @@ export interface LookupProps {
 }
 
 export interface RowSelectionProps {
+	noOfInlineIcons?: number;
 	getActions?(guid: string): Array<RowSelectionAction>;
 }
 

@@ -111,6 +111,10 @@ export class App extends React.Component<object, AppState> {
 							name: 'Edit'
 						},
 						{
+							action: () => console.error('no inline icon option called'),
+							name: 'no inline icon'
+						},
+						{
 							action: () => console.error('Delete option called'),
 							icon: (
 								<span
@@ -122,14 +126,20 @@ export class App extends React.Component<object, AppState> {
 							name: 'Delete'
 						},
 						{
-							action: () => console.error('No Icon option called'),
-							name: 'No Icon'
+							action: () => console.error('No Icon 1 option called'),
+							name: 'No Icon 1'
+						},
+						{
+							action: () => console.error('No Icon 2 option called'),
+							name: 'No Icon 2'
 						}
 					];
 				},
 				name: 'exampleRowSelection',
+				noOfInlineIcons: 2,
 				pinned: 'left',
-				userInfo
+				userInfo,
+				width: 150
 			},
 			{
 				cellType: 'Text',

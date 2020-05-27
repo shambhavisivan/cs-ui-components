@@ -834,12 +834,17 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 							(params.editing &&
 								(params.event.which === KeyCode.KEY_TAB ||
 									params.event.which === KeyCode.KEY_UP ||
-									params.event.which === KeyCode.KEY_DOWN))
+									params.event.which === KeyCode.KEY_DOWN)) ||
+							((params as any).column.colId === columnDef.name &&
+								(params.event.which === KeyCode.KEY_TAB ||
+									params.event.which === KeyCode.KEY_LEFT ||
+									params.event.which === KeyCode.KEY_RIGHT))
 						);
 					};
 				}
 
 				this.addIfDefined(cellParams, 'getActions', columnDef.getActions);
+				this.addIfDefined(cellParams, 'noOfInlineIcons', columnDef.noOfInlineIcons);
 
 				agGridColDef = { ...defaultSettings, ...agGridColDef };
 			}
