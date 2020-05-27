@@ -40,7 +40,8 @@ class CSTab extends React.Component<CSTabProps> {
 			'cs-tab',
 			{
 				'cs-tab-active': this.props.active,
-				[`cs-tab-${this.props.status}`]: this.props.status
+				[`cs-tab-${this.props.status}`]: this.props.status,
+				[`cs-tab-${this.props.parentVariant}`]: this.props.parentVariant
 			}
 		);
 

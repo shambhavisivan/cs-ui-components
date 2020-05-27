@@ -18,7 +18,7 @@ class CSTabGroup extends React.Component<CSTabGroupProps> {
 
 	render() {
 		const tabGroupClasses = classNames(
-			'cs-tab-group', [`cs-tab-group-${this.props.variant}`],
+			'cs-tab-group',
 			{
 				[`${this.props.className}`]: this.props.className
 			}

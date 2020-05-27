@@ -10,7 +10,6 @@
 		display:flex;
 		align-items: center;
 		cursor: pointer;
-		height: 100%;
 		line-height: 2.5rem;
 		position: relative;
 		padding: 0.5rem 0.75rem 0.6rem 0.75rem;
@@ -102,12 +101,13 @@
 				@include sf(--cs-tab-default-fill)
 			}
 		}
-	}
 
-	&-large {
-		height: 2.875rem;
+		&-normal {
+			height: 2.5rem;
+		}
 
-		.cs-tab {
+		&-large {
+			height: 2.875rem;
 			padding: 0.75rem 1rem;
 			@include css4 {
 				border-right: 1px solid cvar(--cs-tab-br);
@@ -129,9 +129,5 @@
 				@include sbg(--cs-tab-active-bg);
 			}
 		}
-	}
-
-	&-normal {
-		height: 2.5rem;
 	}
 }
