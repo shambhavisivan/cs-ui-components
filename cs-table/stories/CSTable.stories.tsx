@@ -163,7 +163,9 @@ export const SelectableTableWithQuickfilterPaginationAndAdvancedSelect = () => {
 
 	const advancedSelection = {
 		labels: Object.keys(advancedSelectionData),
-		onChange: advancedSelectionChanged
+		onChange: advancedSelectionChanged,
+		onAdvancedDropdownExpand: () => {console.log("Expanded")},
+		onAdvancedDropdownCollapse: () => {console.log("Collapsed")},
 	}
 
 
@@ -173,7 +175,7 @@ export const SelectableTableWithQuickfilterPaginationAndAdvancedSelect = () => {
 			<input type="text" placeholder="Filter by constellation" className="table-filter" value={term} onChange={e => setTerm(e.target.value)} />
 		</span>
 		<CSTablePaginationControls currentPage={currentPage} lastPage={lastPage} changePage={setCurrentPage} />
-		<CSSelectableTable selectedRows={selected} selectionChanged={setSelected} rows={pageContents} cols={COLS} advancedSelection={advancedSelection} />
+		<CSSelectableTable selectedRows={selected} selectionChanged={(selection) => {setSelected(selection)}} rows={pageContents} cols={COLS} advancedSelection={advancedSelection} />
 	</span>;
 };
 

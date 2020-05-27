@@ -3,6 +3,7 @@ import commonjs from "rollup-plugin-commonjs";
 import external from "rollup-plugin-peer-deps-external";
 import resolve from "rollup-plugin-node-resolve";
 import sass from "rollup-plugin-sass";
+import copy from 'rollup-plugin-copy'
 
 import pkg from "./package.json";
 
@@ -30,6 +31,12 @@ export default {
 			exclude: "**/__tests__/**",
 			clean: true
 		}),
+	    copy({
+	      targets: [
+	        { src: ['src/fonts/*.ttf', 'src/fonts/*.woff', 'src/fonts/*.woff2'], dest: 'dist/fonts' },
+	        { src: ['src/fonts/cs-dm/fonts/cs-dm.eot', 'src/fonts/cs-dm/fonts/cs-dm.svg', 'src/fonts/cs-dm/fonts/cs-dm.ttf', 'src/fonts/cs-dm/fonts/cs-dm.woff'], dest: 'dist/fonts/cs-dm/fonts' }
+	      ]
+	    }),
 		commonjs({
 			include: ["node_modules/**"],
 			namedExports: {
@@ -38,7 +45,7 @@ export default {
 			}
 		}),
 		sass({
-			output: "dist/cstable.css",
+			output: "dist/css/cstable.css",
 			input: "src/sass/style.scss"
 		})
 	]

@@ -18,9 +18,9 @@ export function useAdvancedSelection(
 	const [selected, setSelected] = useState(new Set<string>());
 
 	const advancedSelectionChanged = useCallback(
-		(selector) => {
-			let selectData = rows.filter(advancedSelector[selector]);
-			setSelected(new Set<string>(selectData.map((row) => row.id)));
+		selector => {
+			const selectData = rows.filter(advancedSelector[selector]);
+			setSelected(new Set<string>(selectData.map(row => row.id)));
 		},
 		[rows, advancedSelector]
 	);
@@ -28,6 +28,6 @@ export function useAdvancedSelection(
 	return {
 		selected,
 		setSelected,
-		advancedSelectionChanged,
+		advancedSelectionChanged
 	};
 }

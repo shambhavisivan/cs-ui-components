@@ -84,11 +84,10 @@ describe('useAdvancedSelection()', () => {
 
 		const uut = mount(<TestComponent />);
 
-
 		uut.find('.cs-checkbox-dropdown-button').simulate('click');
 		uut.find('.cs-checkbox-dropdown button[value="All"]').simulate('click');
 
-		expect(uut.find('.cs-table-select').map((n) => n.prop('checked'))).toEqual([
+		expect(uut.find('.cs-table-select').map(n => n.prop('checked'))).toEqual([
 			true,
 			true,
 			true,
@@ -132,5 +131,47 @@ describe('useAdvancedSelection()', () => {
 		uut.find('.cs-checkbox-dropdown button[value="All"]').simulate('click');
 
 		expect(filter).toBeCalled();
+	});
+
+	it('calls expand/collapse pre-events', () => {
+		const filter = jest.fn().mockReturnValue(true);
+
+		const onAdvancedDropdownExpand = jest.fn().mockReturnValue(true);
+		const onAdvancedDropdownCollapse = jest.fn().mockReturnValue(true);
+
+		const advancedSelectionData: AdvancedSelector = {
+			All: filter
+		};
+
+		const TestComponent: React.FC<{}> = () => {
+			const { selected, setSelected, advancedSelectionChanged } = useAdvancedSelection(
+				ROWS,
+				advancedSelectionData
+			);
+
+			const advancedSelection = {
+				labels: Object.keys(advancedSelectionData),
+				onChange: advancedSelectionChanged,
+				onAdvancedDropdownExpand,
+				onAdvancedDropdownCollapse
+			};
+
+			return (
+				<CSSelectableTable
+					rows={ROWS}
+					cols={COLS}
+					selectedRows={selected}
+					selectionChanged={setSelected}
+					advancedSelection={advancedSelection}
+				/>
+			);
+		};
+
+		const uut = mount(<TestComponent />);
+
+		uut.find('.cs-checkbox-dropdown-button').simulate('click');
+		expect(onAdvancedDropdownExpand).toBeCalled();
+		uut.find('.cs-checkbox-dropdown-button').simulate('click');
+		expect(onAdvancedDropdownCollapse).toBeCalled();
 	});
 });

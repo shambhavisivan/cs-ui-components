@@ -93,7 +93,17 @@ React hook to be used for advanced selection which will expand "select all" chec
             />
     );
 
+**advancedSelection** property can hold two more optional event hooks:
+- `onAdvancedDropdownExpand`: will trigger on advanced filter open
+- `onAdvancedDropdownCollapse`: will trigger on advanced filter close
 
+
+    const advancedSelection = {
+        labels: Object.keys(advancedSelectionData),
+        onChange: advancedSelectionChanged,
+        onAdvancedDropdownExpand: () => { console.log("Open") },
+        onAdvancedDropdownCollapse: () => { console.log("Closed") }
+    };
 
 _Note: `useQuickFilter` needs to be set up before advanced selection. filteredRows state needs to be forwarded as the first parameter of useAdvancedSelection() initialization._
 
