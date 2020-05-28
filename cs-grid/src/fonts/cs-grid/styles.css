@@ -56,6 +56,9 @@
 .icon-close:before {
   content: "\66";
 }
+.icon-error:before {
+  content: "\68";
+}
 .icon-filterlist:before {
   content: "\69";
 }
@@ -97,4 +100,7 @@
 }
 .icon-search:before {
   content: "\70";
+}
+.icon-bolt:before {
+  content: "\73";
 }

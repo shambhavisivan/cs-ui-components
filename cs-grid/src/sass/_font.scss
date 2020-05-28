@@ -121,7 +121,7 @@
 
 	.icon-error:before {
 		content: "o";
-		color: #c23934;
+		color: #c23934 !important;
 		cursor: pointer;
 	}
 
@@ -209,5 +209,9 @@
 	.cs-grid_checkbox:checked + .cs-grid_checkbox-faux:before {
 		content: "n";
 		font-family: "cs-grid";
+	}
+
+	.icon-bolt::before {
+		content: "s";
 	}
 }

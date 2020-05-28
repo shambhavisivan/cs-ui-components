@@ -126,6 +126,15 @@ $variables: (
 	--csgrid-tooltip-error-bg: $cs-red-medium-2,
 	--csgrid-tooltip-c: $cs-white,
 	--csgrid-tooltip-link-c: $cs-white,
+
+	--csgrid-button-c: $cs-blue-sf,
+	--csgrid-button-bg: $cs-white,
+	--csgrid-button-br: $cs-gray-light-2,
+	--csgrid-button-box: $cs-blue-sf,
+	--csgrid-button-active-br: $cs-blue-sf,
+	--csgrid-button-hover-bg: $cs-gray-light-8,
+	--csgrid-button-alt-c: $cs-gray-dark-1,
+	--csgrid-button-icon-hover-c: $cs-blue-medium-1,
 );
 
 // This will be used later for dark theme support

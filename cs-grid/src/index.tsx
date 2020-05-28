@@ -101,13 +101,7 @@ export class App extends React.Component<object, AppState> {
 					return [
 						{
 							action: () => console.error('Edit option called'),
-							icon: (
-								<span
-									className='icon-error'
-									aria-hidden='true'
-									style={{ margin: 0, padding: 0 }}
-								/>
-							),
+							icon: <span className='icon-error' aria-hidden='true' />,
 							name: 'Edit'
 						},
 						{

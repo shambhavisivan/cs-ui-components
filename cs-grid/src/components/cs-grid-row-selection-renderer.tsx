@@ -59,7 +59,7 @@ export class CSGridRowSelectionRenderer
 
 				let icon = action.icon;
 				if (!icon) {
-					icon = <div>Default</div>;
+					icon = <span className='icon-bolt' aria-hidden='true' />;
 				}
 
 				icons.push(
@@ -70,7 +70,7 @@ export class CSGridRowSelectionRenderer
 						ref={ref => (this.buttonRefs[index] = ref)}
 						title={action.name}
 					>
-						{<div className='row-selection-icons-wrapper'>{action.icon}</div>}
+						{<div className='cs-btn-icon'>{icon}</div>}
 					</button>
 				);
 			}
@@ -80,13 +80,14 @@ export class CSGridRowSelectionRenderer
 			<>
 				{icons.length > 0 && icons}
 				{this.state.actions.length > icons.length && (
-					<span className='row-menu-wrapper' title='Row Actions'>
-						<button
-							className='icon-menu'
-							onClick={this.startEditing}
-							ref={ref => (this.dropdownRef = ref)}
-						/>
-					</span>
+					<button
+						className='row-selection-icons-item'
+						title='Row Actions'
+						onClick={this.startEditing}
+						ref={ref => (this.dropdownRef = ref)}
+					>
+						<span className='icon-menu' />
+					</button>
 				)}
 			</>
 		);
