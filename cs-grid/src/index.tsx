@@ -105,8 +105,9 @@ export class App extends React.Component<object, AppState> {
 							name: 'Edit'
 						},
 						{
-							action: () => console.error('no inline icon option called'),
-							name: 'no inline icon'
+							action: () => console.error('disabled icons should not get called!'),
+							disabled: true,
+							name: 'disabled icon'
 						},
 						{
 							action: () => console.error('Delete option called'),
@@ -124,8 +125,9 @@ export class App extends React.Component<object, AppState> {
 							name: 'No Icon 1'
 						},
 						{
-							action: () => console.error('No Icon 2 option called'),
-							name: 'No Icon 2'
+							action: () => console.error('disabled icons should not get called!'),
+							disabled: true,
+							name: 'disabled icon 2'
 						}
 					];
 				},

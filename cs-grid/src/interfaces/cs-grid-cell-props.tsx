@@ -62,6 +62,7 @@ export interface RowSelectionAction {
 	name: string;
 	icon?: JSX.Element;
 	action: () => void;
+	disabled?: boolean;
 }
 
 export interface RowValidationProps {

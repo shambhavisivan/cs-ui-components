@@ -69,8 +69,9 @@ export class CSGridRowSelectionRenderer
 						onClick={action.action}
 						ref={ref => (this.buttonRefs[index] = ref)}
 						title={action.name}
+						disabled={action.disabled}
 					>
-						{<div className='cs-btn-icon'>{icon}</div>}
+						<div className='cs-btn-icon'>{icon}</div>
 					</button>
 				);
 			}

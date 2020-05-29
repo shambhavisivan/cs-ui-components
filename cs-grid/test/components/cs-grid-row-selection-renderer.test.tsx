@@ -87,9 +87,13 @@ describe('CS Grid RowSelection Renderer', () => {
 		expect(
 			cellRenderer.equals(
 				<>
-					<span className='row-menu-wrapper' title='Row Actions'>
-						<button className='icon-menu' onClick={instance.startEditing} />
-					</span>
+					<button
+						className='row-selection-icons-item'
+						title='Row Actions'
+						onClick={instance.startEditing}
+					>
+						<span className='icon-menu' />
+					</button>
 				</>
 			)
 		).toBeTruthy();
@@ -148,11 +152,15 @@ describe('CS Grid RowSelection Renderer', () => {
 						onClick={exampleAction}
 						title='Delete'
 					>
-						<div className='row-selection-icons-wrapper'>{exampleIcon}</div>
+						<div className='cs-btn-icon'>{exampleIcon}</div>
 					</button>
-					<span className='row-menu-wrapper' title='Row Actions'>
-						<button className='icon-menu' onClick={instance.startEditing} />
-					</span>
+					<button
+						className='row-selection-icons-item'
+						title='Row Actions'
+						onClick={instance.startEditing}
+					>
+						<span className='icon-menu' />
+					</button>
 				</>
 			)
 		).toBeTruthy();
@@ -180,7 +188,7 @@ describe('CS Grid RowSelection Renderer', () => {
 						onClick={exampleAction}
 						title='Delete'
 					>
-						<div className='row-selection-icons-wrapper'>{exampleIcon}</div>
+						<div className='cs-btn-icon'>{exampleIcon}</div>
 					</button>
 				</>
 			)

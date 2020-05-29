@@ -102,6 +102,7 @@ export class CSGridRowSelectionEditor
 					id={`row-selection-list-item-${action.name}`}
 					onClick={selectAction}
 					ref={ref => (this.dropDownRefs[index] = ref)}
+					disabled={action.disabled}
 				>
 					{showIcons && <div className='row-selection-icon-wrapper'>{action.icon}</div>}
 					<div className='row-selection-name-wrapper'>{action.name}</div>
