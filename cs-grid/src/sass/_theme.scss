@@ -83,6 +83,7 @@ $variables: (
 	--csgrid-row-selection-br: $cs-blue-sf,
 	--csgrid-row-selection-transparent-br: transparent,
 	--csgrid-row-selection-c: $cs-gray-dark-1,
+	--csgrid-row-selection-disabled-c: $cs-gray-light-2,
 	--csgrid-row-selection-bg: $cs-white,
 	--csgrid-row-selection-icon-hover-c: $cs-gray-dark-3,
 
@@ -135,6 +136,7 @@ $variables: (
 	--csgrid-button-hover-bg: $cs-gray-light-8,
 	--csgrid-button-alt-c: $cs-gray-dark-1,
 	--csgrid-button-icon-hover-c: $cs-blue-medium-1,
+	--csgrid-button-disabled-c: $cs-gray-light-2,
 );
 
 // This will be used later for dark theme support

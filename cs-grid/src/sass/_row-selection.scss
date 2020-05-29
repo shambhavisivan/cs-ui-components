@@ -73,6 +73,26 @@
 				&:hover {
 					@include sbg(--csgrid-row-selection-hover-bg);
 				}
+
+				&[disabled] {
+					cursor: default;
+					pointer-events: none;
+					@include sc(--csgrid-row-selection-disabled-c);
+
+					&:hover {
+						@include sbg(--csgrid-row-selection-bg);
+					}
+
+					&:focus,
+					&:active {
+						box-shadow: none;
+						border: none;
+					}
+
+					.row-selection-icon-wrapper span::before {
+						@include sc(--csgrid-row-selection-disabled-c);
+					}
+				}
 			}
 		}
 	}
