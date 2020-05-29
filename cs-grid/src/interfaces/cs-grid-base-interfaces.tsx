@@ -52,6 +52,7 @@ export interface CSGridControl {
 
 export interface IsColumnFuncParams {
 	node: RowNode;
+	column: Column;
 }
 
 export interface SuppressKeyboardEventParams extends IsColumnFuncParams {

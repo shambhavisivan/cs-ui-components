@@ -3,6 +3,7 @@ import {
 	CellEditingStoppedEvent,
 	CellValueChangedEvent,
 	ColDef as AgGridColDef,
+	ColumnResizedEvent,
 	GetQuickFilterTextParams,
 	GridApi,
 	GridReadyEvent,
@@ -140,6 +141,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 	state: CSGridState = new CSGridState();
 	private gridApi: GridApi;
 	private defaultPageSizes: Array<number> = [10, 20, 50, 100];
+	private rowSelectionColumns: Array<string> = [];
 
 	constructor(props: CSGridProps) {
 		super(props);
@@ -244,6 +246,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 							onRowDoubleClicked={this.props.onRowDoubleClicked}
 							deltaRowDataMode={this.props.deltaRowDataMode}
 							onCellEditingStopped={this.onCellEditingStopped}
+							onColumnResized={this.onColumnResized}
 						/>
 					</div>
 				</div>
@@ -511,6 +514,16 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		}
 	};
 
+	private onColumnResized = (event: ColumnResizedEvent) => {
+		if (
+			event.finished &&
+			this.gridApi &&
+			this.rowSelectionColumns.includes(event.column.getColId())
+		) {
+			this.gridApi.refreshCells({ force: true, columns: this.rowSelectionColumns });
+		}
+	};
+
 	private onPageSizeChanged = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		const pageSize = Number(event.target.value);
 
@@ -656,6 +669,8 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 
 	private convertColumnDefs = (columnDefs: Array<ColDef>): Array<AgGridColDef> => {
 		const agGridColDefs: Array<AgGridColDef> = [];
+
+		const rowSelectionColumns: Array<string> = [];
 
 		for (const columnDef of columnDefs) {
 			let agGridColDef: AgGridColDef = {};
@@ -835,7 +850,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 								(params.event.which === KeyCode.KEY_TAB ||
 									params.event.which === KeyCode.KEY_UP ||
 									params.event.which === KeyCode.KEY_DOWN)) ||
-							((params as any).column.colId === columnDef.name &&
+							(params.column.getColId() === columnDef.name &&
 								(params.event.which === KeyCode.KEY_TAB ||
 									params.event.which === KeyCode.KEY_LEFT ||
 									params.event.which === KeyCode.KEY_RIGHT))
@@ -847,6 +862,8 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				this.addIfDefined(cellParams, 'noOfInlineIcons', columnDef.noOfInlineIcons);
 
 				agGridColDef = { ...defaultSettings, ...agGridColDef };
+
+				rowSelectionColumns.push(columnDef.name);
 			}
 
 			if (columnDef.cellType === 'Custom') {
@@ -871,6 +888,8 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 
 			agGridColDefs.push(agGridColDef);
 		}
+
+		this.rowSelectionColumns = rowSelectionColumns;
 
 		return agGridColDefs;
 	};

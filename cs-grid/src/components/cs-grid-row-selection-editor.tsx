@@ -7,6 +7,7 @@ import {
 	RowSelectionProps
 } from '../interfaces/cs-grid-cell-props';
 import { onKeyPressInAList } from '../utils/cs-grid-on-key-press';
+import { noOfVisibleButtons } from '../utils/cs-grid-row-selection-helper';
 
 interface CSGridRowSelectionEditorState extends CSGridCellEditorState<boolean> {
 	actions: Array<RowSelectionAction>;
@@ -25,7 +26,16 @@ export class CSGridRowSelectionEditor
 		super(props);
 
 		const actions = this.props.getActions(this.props.node.id);
-		const start = this.props.noOfInlineIcons || 0;
+
+		let start = this.props.noOfInlineIcons || 0;
+		if (this.props.noOfInlineIcons !== undefined) {
+			start = noOfVisibleButtons(
+				this.props.node.id,
+				this.props.column,
+				this.props.noOfInlineIcons,
+				actions.length
+			);
+		}
 
 		this.state = {
 			actions: actions.slice(start, actions.length),
@@ -40,10 +50,14 @@ export class CSGridRowSelectionEditor
 				'.cs-grid_app-wrapper .cs-grid_main .ag-popup-editor'
 			)[0];
 
-			if (popupWrapper) {
+			const iconMenu: HTMLElement = document.querySelectorAll<HTMLElement>(
+				`.cs-grid_app-wrapper .cs-grid_main .ag-react-container #icon-menu-${this.props.node.id}`
+			)[0];
+
+			if (popupWrapper && iconMenu) {
 				const currentTop = parseInt(popupWrapper.style.top.slice(0, -2), 10);
 				popupWrapper.style.top = `${this.props.node.rowHeight + currentTop}px`;
-				popupWrapper.style.left = `${this.props.colDef.width - 40}px`;
+				popupWrapper.style.left = `${iconMenu.getBoundingClientRect().left + 6}px`;
 			}
 
 			const rowSelectionList: HTMLElement = document.querySelectorAll<HTMLElement>(
@@ -54,8 +68,12 @@ export class CSGridRowSelectionEditor
 				rowSelectionList.style.display = 'flex';
 			}
 
-			if (this.dropDownRefs[0]) {
-				this.dropDownRefs[0].focus();
+			const dropDownRefs = this.dropDownRefs.filter(
+				ref => ref !== null && ref !== undefined && !ref.disabled
+			);
+
+			if (dropDownRefs[0]) {
+				dropDownRefs[0].focus();
 			}
 		});
 
@@ -123,9 +141,13 @@ export class CSGridRowSelectionEditor
 	};
 
 	private onKeyPress = (event: KeyboardEvent) => {
+		const dropDownRefs = this.dropDownRefs.filter(
+			ref => ref !== null && ref !== undefined && !ref.disabled
+		);
+
 		this.focusedIndex = onKeyPressInAList(
 			event,
-			this.dropDownRefs,
+			dropDownRefs,
 			this.focusedIndex,
 			true,
 			false,

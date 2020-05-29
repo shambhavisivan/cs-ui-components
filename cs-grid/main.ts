@@ -39,3 +39,4 @@ export * from './src/interfaces/user-info';
 export * from './src/utils/cs-grid-default-comparator';
 export * from './src/utils/cs-grid-lookup-comparator';
 export * from './src/utils/cs-grid-on-key-press';
+export * from './src/utils/cs-grid-row-selection-helper';

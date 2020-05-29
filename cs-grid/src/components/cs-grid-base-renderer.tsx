@@ -49,6 +49,7 @@ export abstract class CSGridBaseRenderer<
 		const readonly: boolean | IsColumnFunc = this.props.readonly;
 		if (typeof readonly === 'function') {
 			const params: IsColumnFuncParams = {
+				column: this.props.column,
 				node: this.props.node
 			};
 

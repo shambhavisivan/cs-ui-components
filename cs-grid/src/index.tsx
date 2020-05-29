@@ -131,13 +131,14 @@ export class App extends React.Component<object, AppState> {
 						}
 					];
 				},
+				maxWidth: 400,
+				minWidth: 40,
 				name: 'exampleRowSelection',
 				noOfInlineIcons: 2,
 				pinned: 'left',
-				userInfo,
 				resizable: true,
-				width: 150,
-				maxWidth: 400
+				userInfo,
+				width: 115
 			},
 			{
 				cellType: 'Text',

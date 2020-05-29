@@ -26,6 +26,7 @@ describe('CS Grid RowSelection Renderer', () => {
 		/>
 	);
 	const exampleAction = () => console.error('Delete option called');
+	const nodeId = 'nodeId';
 
 	beforeEach(() => {
 		exampleRowSelection = {
@@ -45,6 +46,9 @@ describe('CS Grid RowSelection Renderer', () => {
 		columnApi = new ColumnApi();
 		columnApi.getAllGridColumns = () => [column];
 
+		const node = new RowNode();
+		node.id = nodeId;
+
 		cSGridCellRendererProps = {
 			api: new GridApi(),
 			colDef,
@@ -56,7 +60,7 @@ describe('CS Grid RowSelection Renderer', () => {
 			getValue: () => {
 				// Do nothing
 			},
-			node: new RowNode(),
+			node,
 			rowIndex: 0,
 			setValue: (value: any) => {
 				// Do nothing
@@ -88,11 +92,12 @@ describe('CS Grid RowSelection Renderer', () => {
 			cellRenderer.equals(
 				<>
 					<button
-						className='row-selection-icons-item'
+						className='row-selection-icons-item row-selection-icons-item-menu'
 						title='Row Actions'
 						onClick={instance.startEditing}
+						id={`icon-item-${nodeId}-dropdown`}
 					>
-						<span className='icon-menu' />
+						<span id={`icon-menu-${nodeId}`} className='icon-menu' />
 					</button>
 				</>
 			)
@@ -149,17 +154,20 @@ describe('CS Grid RowSelection Renderer', () => {
 				<>
 					<button
 						className='row-selection-icons-item'
-						onClick={exampleAction}
 						title='Delete'
+						onClick={exampleAction}
+						id={`icon-item-${nodeId}-0`}
 					>
 						<div className='cs-btn-icon'>{exampleIcon}</div>
 					</button>
+
 					<button
-						className='row-selection-icons-item'
+						className='row-selection-icons-item row-selection-icons-item-menu'
 						title='Row Actions'
 						onClick={instance.startEditing}
+						id={`icon-item-${nodeId}-dropdown`}
 					>
-						<span className='icon-menu' />
+						<span id={`icon-menu-${nodeId}`} className='icon-menu' />
 					</button>
 				</>
 			)
@@ -185,8 +193,9 @@ describe('CS Grid RowSelection Renderer', () => {
 				<>
 					<button
 						className='row-selection-icons-item'
-						onClick={exampleAction}
 						title='Delete'
+						onClick={exampleAction}
+						id={`icon-item-${nodeId}-0`}
 					>
 						<div className='cs-btn-icon'>{exampleIcon}</div>
 					</button>

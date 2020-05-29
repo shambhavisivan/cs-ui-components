@@ -8,10 +8,12 @@ import {
 	RowSelectionProps
 } from '../interfaces/cs-grid-cell-props';
 import { onKeyPressInAList } from '../utils/cs-grid-on-key-press';
+import { noOfVisibleButtons } from '../utils/cs-grid-row-selection-helper';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
 
 interface CSGridRowSelectionRendererState extends CSGridCellRendererState<boolean> {
 	actions: Array<RowSelectionAction>;
+	noOfInlineIcons: number;
 }
 
 export class CSGridRowSelectionRenderer
@@ -31,12 +33,19 @@ export class CSGridRowSelectionRenderer
 		this.state = {
 			actions: this.props.getActions ? this.props.getActions(this.props.node.id) : [],
 			isLastColumn: this.isLastColumn(),
+			noOfInlineIcons: this.props.noOfInlineIcons || 0,
 			value: this.props.value
 		};
 	}
 
 	componentDidMount() {
 		document.addEventListener('keydown', this.onKeyPress);
+
+		if (this.state.noOfInlineIcons > 0) {
+			setTimeout(() => {
+				this.onColumnResized();
+			});
+		}
 	}
 
 	componentWillUnmount() {
@@ -44,6 +53,8 @@ export class CSGridRowSelectionRenderer
 	}
 
 	refresh = (): boolean => {
+		this.onColumnResized();
+
 		return true;
 	};
 
@@ -53,8 +64,8 @@ export class CSGridRowSelectionRenderer
 		}
 
 		const icons = [];
-		if (this.props.noOfInlineIcons) {
-			for (let index = 0; index < this.props.noOfInlineIcons; index++) {
+		if (this.state.noOfInlineIcons) {
+			for (let index = 0; index < this.state.noOfInlineIcons; index++) {
 				const action = this.state.actions[index];
 
 				let icon = action.icon;
@@ -70,6 +81,7 @@ export class CSGridRowSelectionRenderer
 						ref={ref => (this.buttonRefs[index] = ref)}
 						title={action.name}
 						disabled={action.disabled}
+						id={`icon-item-${this.props.node.id}-${index}`}
 					>
 						<div className='cs-btn-icon'>{icon}</div>
 					</button>
@@ -86,8 +98,9 @@ export class CSGridRowSelectionRenderer
 						title='Row Actions'
 						onClick={this.startEditing}
 						ref={ref => (this.dropdownRef = ref)}
+						id={`icon-item-${this.props.node.id}-dropdown`}
 					>
-						<span className='icon-menu' />
+						<span id={`icon-menu-${this.props.node.id}`} className='icon-menu' />
 					</button>
 				)}
 			</>
@@ -105,6 +118,10 @@ export class CSGridRowSelectionRenderer
 	};
 
 	private onKeyPress = (event: KeyboardEvent) => {
+		const buttonRefs = this.buttonRefs.filter(
+			ref => ref !== null && ref !== undefined && !ref.disabled
+		);
+
 		if (event.target === this.props.eGridCell) {
 			event.preventDefault();
 			if (event.keyCode === KeyCode.KEY_ENTER || event.keyCode === KeyCode.KEY_RETURN) {
@@ -115,9 +132,9 @@ export class CSGridRowSelectionRenderer
 			) {
 				if (this.dropdownRef) {
 					this.dropdownRef.focus();
-				} else if (this.buttonRefs.length > 0) {
-					this.focusedIndex = this.buttonRefs.length - 1;
-					this.buttonRefs[this.focusedIndex].focus();
+				} else if (buttonRefs.length > 0) {
+					this.focusedIndex = buttonRefs.length - 1;
+					buttonRefs[this.focusedIndex].focus();
 				} else {
 					this.focusOnLastColumn();
 				}
@@ -125,9 +142,9 @@ export class CSGridRowSelectionRenderer
 				(event.keyCode === KeyCode.KEY_TAB && !event.shiftKey) ||
 				event.keyCode === KeyCode.KEY_RIGHT
 			) {
-				if (this.buttonRefs.length > 0) {
+				if (buttonRefs.length > 0) {
 					this.focusedIndex = 0;
-					this.buttonRefs[this.focusedIndex].focus();
+					buttonRefs[this.focusedIndex].focus();
 				} else if (this.dropdownRef) {
 					this.dropdownRef.focus();
 				} else {
@@ -142,9 +159,9 @@ export class CSGridRowSelectionRenderer
 				(event.keyCode === KeyCode.KEY_TAB && event.shiftKey) ||
 				event.keyCode === KeyCode.KEY_LEFT
 			) {
-				if (this.buttonRefs.length > 0) {
-					this.focusedIndex = this.buttonRefs.length - 1;
-					this.buttonRefs[this.focusedIndex].focus();
+				if (buttonRefs.length > 0) {
+					this.focusedIndex = buttonRefs.length - 1;
+					buttonRefs[this.focusedIndex].focus();
 				} else {
 					this.focusOnLastColumn();
 				}
@@ -154,18 +171,18 @@ export class CSGridRowSelectionRenderer
 			) {
 				this.focusOnNextColumn();
 			}
-		} else if (this.buttonRefs.includes(event.target as HTMLButtonElement)) {
+		} else if (buttonRefs.includes(event.target as HTMLButtonElement)) {
 			event.preventDefault();
 			this.focusedIndex = onKeyPressInAList(
 				event,
-				this.buttonRefs,
+				buttonRefs,
 				this.focusedIndex,
 				false,
 				true,
 				() => this.state.actions[this.focusedIndex].action()
 			);
 
-			if (this.focusedIndex >= this.props.noOfInlineIcons) {
+			if (this.focusedIndex >= buttonRefs.length) {
 				if (this.dropdownRef) {
 					this.dropdownRef.focus();
 				} else {
@@ -177,14 +194,29 @@ export class CSGridRowSelectionRenderer
 		}
 	};
 
-	private focusOnLastColumn() {
+	private focusOnLastColumn = () => {
 		const cols = this.props.columnApi.getAllDisplayedColumns();
 		const lastCol = cols[cols.length - 1];
 		this.props.api.setFocusedCell(this.props.rowIndex, lastCol);
-	}
+	};
 
-	private focusOnNextColumn() {
+	private focusOnNextColumn = () => {
 		const nextCol = this.props.columnApi.getDisplayedColAfter(this.props.column);
 		this.props.api.setFocusedCell(this.props.rowIndex, nextCol);
-	}
+	};
+
+	private onColumnResized = () => {
+		const noOfInlineIcons = noOfVisibleButtons(
+			this.props.node.id,
+			this.props.column,
+			this.props.noOfInlineIcons,
+			this.state.actions.length
+		);
+
+		if (noOfInlineIcons !== undefined && noOfInlineIcons !== this.state.noOfInlineIcons) {
+			this.setState({
+				noOfInlineIcons
+			});
+		}
+	};
 }
