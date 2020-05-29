@@ -213,6 +213,15 @@
 							@include sc(--csgrid-button-disabled-c);
 						}
 					}
+
+					&-menu:only-child {
+						&::before {
+							background: none;
+						}
+						&::after {
+							border: none;
+						}
+					}
 				}
 
 				.row-selection-icons-item:not(:first-child) {

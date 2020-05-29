@@ -82,7 +82,7 @@ export class CSGridRowSelectionRenderer
 				{icons.length > 0 && icons}
 				{this.state.actions.length > icons.length && (
 					<button
-						className='row-selection-icons-item'
+						className='row-selection-icons-item row-selection-icons-item-menu'
 						title='Row Actions'
 						onClick={this.startEditing}
 						ref={ref => (this.dropdownRef = ref)}

@@ -135,7 +135,9 @@ export class App extends React.Component<object, AppState> {
 				noOfInlineIcons: 2,
 				pinned: 'left',
 				userInfo,
-				width: 150
+				resizable: true,
+				width: 150,
+				maxWidth: 400
 			},
 			{
 				cellType: 'Text',
