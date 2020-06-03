@@ -69,7 +69,7 @@
 	&:focus {
 		outline: none;
 		position: relative;
-		z-index: $z-index-button;
+		z-index: $z-index-button-focus;
 		&::after {
 			@include css4 {
 				box-shadow: 0 0 3px cvar(--cs-button-box);

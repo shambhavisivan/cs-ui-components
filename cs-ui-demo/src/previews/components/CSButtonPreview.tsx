@@ -232,6 +232,16 @@ class CSButtonPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'id',
+					variations: [
+						{
+							string: '',
+							component: <CSButton label="default with id" id="id"/>
+
+						}
+					]
+				},
+				{
 					propName: 'iconDisplay',
 					customText: '',
 					variations: [
@@ -282,6 +292,16 @@ class CSButtonPreview extends React.Component {
 							variationText: ['size="xsmall"'],
 							string: '',
 							component: <CSButton label="no-icon button" iconName="activity" iconDisplay="no-icon" size="xsmall"/>
+						}
+					]
+				},
+				{
+					propName: 'iconName',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component: <CSButton iconName="activity" label="iconName activity"/>
 						}
 					]
 				},
@@ -508,6 +528,10 @@ class CSButtonPreview extends React.Component {
 						'180',
 						'270'
 					]
+				},
+				{
+					propertyName: 'id',
+					description: 'Button id value'
 				},
 				{
 					propertyName: 'label',

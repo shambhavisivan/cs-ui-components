@@ -14,6 +14,7 @@ export interface CSButtonProps {
 	iconOrigin?: string;
 	iconPosition?: string;
 	iconRotate?: string;
+	id?: string;
 	label: string | undefined;
 	link?: string;
 	loading?: boolean;
@@ -108,7 +109,8 @@ class CSButton extends React.Component<CSButtonProps> {
 			'style': {'--cs-btn-custom-c': this.props.color},
 			'title': this.props.iconDisplay === 'icon-only' ? this.props.label : undefined,
 			'href': this.props.link && this.props.link,
-			'target': (this.props.openInNewTab && this.props.link) ? '_blank' : undefined
+			'target': (this.props.openInNewTab && this.props.link) ? '_blank' : undefined,
+			'id': this.props.id
 		};
 
 		return (
