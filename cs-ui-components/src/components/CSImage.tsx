@@ -1,6 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
-import { CSMainHeaderRight } from '../index';
 
 export interface CSImageProps {
 	type: string;

@@ -1,4 +1,5 @@
-.cs-image {
-    width: var(--cs-image-width);
-    height: var(--cs-image-height);
+// TWO CLASSES REQUIRED TO OVERRIDE SALESFORCE SPECIFICITY
+.cs-image.cs-image {
+	width: var(--cs-image-width);
+	height: var(--cs-image-height);
 }
