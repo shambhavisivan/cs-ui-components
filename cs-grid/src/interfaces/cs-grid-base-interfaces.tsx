@@ -1,15 +1,12 @@
 import {
-	CellClickedEvent,
+	CellClickedEvent as _CellClickedEvent,
 	Column,
-	ColumnApi,
-	GridApi,
-	GridReadyEvent,
+	GridApi as _GridApi,
+	GridReadyEvent as _GridReadyEvent,
 	RowNode
 } from 'ag-grid-community';
-import { IsColumnFunc } from 'ag-grid-community/dist/lib/entities/colDef';
 
 import { ICellEditorReactComp, ICellRendererReactComp } from 'ag-grid-react';
-import { UserInfo } from './user-info';
 
 export interface CSGridCellRendererState<T> {
 	value: CellData<T>;
@@ -55,6 +52,10 @@ export interface IsColumnFuncParams {
 	column: Column;
 }
 
+export interface RowStyleParams {
+	node: RowNode;
+}
+
 export interface SuppressKeyboardEventParams extends IsColumnFuncParams {
 	event: KeyboardEvent;
 	editing: boolean;
@@ -65,6 +66,6 @@ export type IsColumnFunc = (params: IsColumnFuncParams) => boolean;
 // Ag-grid interfaces have been extended so they are not exposed in the cs-grid package.
 export interface CSGridCellEditor extends ICellEditorReactComp {}
 export interface CSGridCellRenderer extends ICellRendererReactComp {}
-export interface GridReadyEvent extends GridReadyEvent {}
-export interface CellClickedEvent extends CellClickedEvent {}
-export interface GridApi extends GridApi {}
+export interface GridReadyEvent extends _GridReadyEvent {}
+export interface CellClickedEvent extends _CellClickedEvent {}
+export interface GridApi extends _GridApi {}

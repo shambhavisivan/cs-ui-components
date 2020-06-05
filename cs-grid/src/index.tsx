@@ -835,6 +835,10 @@ export class App extends React.Component<object, AppState> {
 						uniqueIdentifierColumnName={'exampleGuid'}
 						onCellEditingStopped={this.onCellEditingStopped}
 						onGridReady={this.onGridReady}
+						rowHighlighting={{
+							[this.state.rowData[0].exampleGuid.cellValue]: 'red',
+							[this.state.rowData[3].exampleGuid.cellValue]: '#73d9d2'
+						}}
 					/>
 				)}
 				<>

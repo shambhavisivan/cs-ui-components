@@ -23,6 +23,7 @@ import {
 	CellData,
 	CSGridControl,
 	Row,
+	RowStyleParams,
 	SuppressKeyboardEventParams
 } from '../interfaces/cs-grid-base-interfaces';
 import { ColDef } from '../interfaces/cs-grid-col-def';
@@ -72,6 +73,7 @@ export interface CSGridProps {
 	multiSelect: boolean;
 	uniqueIdentifierColumnName: string;
 	rowData?: Array<Row>;
+	rowHighlighting?: Record<string, string>;
 	columnState?: string;
 	columnDefs?: Array<ColDef>;
 	/**
@@ -158,6 +160,13 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 
 	getSelectedRows = (): Array<Row> => {
 		return this.gridApi.getSelectedRows();
+	};
+
+	getRowStyle = (params: RowStyleParams) => {
+		const colour = this.props.rowHighlighting[params.node.id];
+		if (colour) {
+			return { background: colour };
+		}
 	};
 
 	render() {
@@ -247,6 +256,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 							deltaRowDataMode={this.props.deltaRowDataMode}
 							onCellEditingStopped={this.onCellEditingStopped}
 							onColumnResized={this.onColumnResized}
+							getRowStyle={this.props.rowHighlighting ? this.getRowStyle : undefined}
 						/>
 					</div>
 				</div>
