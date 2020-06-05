@@ -28,7 +28,7 @@ class CSTab extends React.Component<CSTabProps> {
 		}
 	}
 
-	onClickHandler = (event: React.MouseEvent<HTMLDivElement,  MouseEvent>) => {
+	onClickHandler = (event: React.MouseEvent<HTMLLIElement,  MouseEvent>) => {
 		event.preventDefault();
 		if (this.props.onClick) {
 			this.props.onClick();
@@ -46,13 +46,16 @@ class CSTab extends React.Component<CSTabProps> {
 		);
 
 		return (
-			<div
+			<li
 				className={tabClasses}
 				onClick={this.onClickHandler}
-				aria-current={this.props.active}
-				aria-invalid={this.props.status === 'error'}
 			>
-				<div className="cs-tab-wrapper">
+				<button
+					className="cs-tab-wrapper"
+					aria-current={this.props.active}
+					aria-invalid={this.props.status === 'error'}
+					disabled={this.props.disabled}
+				>
 					{(this.props.active && this.props.parentVariant === 'large') ?
 						<CSIcon name="record" /> :
 							(this.props.tabIcon ||
@@ -68,8 +71,8 @@ class CSTab extends React.Component<CSTabProps> {
 							)
 					}
 					{this.props.title}
-				</div>
-			</div>
+				</button>
+			</li>
 		);
 	}
 }

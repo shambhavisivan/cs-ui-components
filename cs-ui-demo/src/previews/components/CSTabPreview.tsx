@@ -152,29 +152,6 @@ class CSTabPreview extends React.Component {
 									status="success"
 								/>
 							</CSTabGroup>
-						},
-						{
-							variationName: ['disabled'],
-							variationText: ['variant="large"'],
-							quickLink: 'disabled large',
-							string: '',
-							component:
-							<CSTabGroup
-								variant="large"
-							>
-								<CSTab
-									title="Tab One"
-									status="disabled"
-								/>
-								<CSTab
-									title="Tab Two"
-									status="disabled"
-								/>
-								<CSTab
-									title="Tab Three"
-									status="disabled"
-								/>
-							</CSTabGroup>
 						}
 					]
 				},
@@ -217,6 +194,59 @@ class CSTabPreview extends React.Component {
 								/>
 								<CSTab
 									title="Tab Three"
+								/>
+							</CSTabGroup>
+						}
+					]
+				},
+				{
+					propName: 'disabled',
+					customText: '',
+					variations: [
+						{
+							variationText: ['variant="large"'],
+							quickLink: 'disabled large',
+							string: '',
+							component:
+							<CSTabGroup
+								variant="large"
+							>
+								<CSTab
+									title="Tab One"
+									disabled
+								/>
+								<CSTab
+									title="Tab Two"
+									disabled
+								/>
+								<CSTab
+									title="Tab Three"
+									disabled
+								/>
+							</CSTabGroup>
+						},
+						{
+							variationText: ['variant="normal"'],
+							quickLink: 'disabled normal',
+							string: '',
+							component:
+							<CSTabGroup
+								variant="normal"
+							>
+								<CSTab
+									title="Tab One"
+									tabIcon="activity"
+									disabled
+								/>
+								<CSTab
+									title="Tab Two"
+									tabIcon="activity"
+									disabled
+								/>
+								<CSTab
+									title="Tab Three"
+									tabIcon="activity"
+									disabled
 								/>
 							</CSTabGroup>
 						}
@@ -328,6 +358,10 @@ class CSTabPreview extends React.Component {
 					description: 'For implementing custom class to component'
 				},
 				{
+					propertyName: 'disabled',
+					description: 'Logic for disabled state'
+				},
+				{
 					propertyName: 'onClick',
 					description: 'Logic for onClick event'
 				},
@@ -338,8 +372,7 @@ class CSTabPreview extends React.Component {
 						'initial',
 						'error',
 						'warning',
-						'success',
-						'disabled'
+						'success'
 					]
 				},
 				{

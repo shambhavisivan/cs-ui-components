@@ -4,6 +4,7 @@ import classNames from 'classnames';
 export interface CSTabGroupProps {
 	className?: string;
 	variant?: string;
+	listName?: string;
 }
 
 class CSTabGroup extends React.Component<CSTabGroupProps> {
@@ -25,7 +26,13 @@ class CSTabGroup extends React.Component<CSTabGroupProps> {
 		);
 		return (
 			<div className={tabGroupClasses}>
-				{this.renderChildrenWithTabsAsProps()}
+				<nav
+					aria-label={this.props.listName ? this.props.listName : 'breadcrumbs'}
+				>
+					<ol>
+						{this.renderChildrenWithTabsAsProps()}
+					</ol>
+				</nav>
 			</div>
 		);
 	}
