@@ -70,6 +70,7 @@ class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
 							<input placeholder="Search..." onChange={this.searchHandler} value={this.state.term}/>
 							{this.state.term &&
 								<CSButton
+									label="clear"
 									btnType="transparent"
 									iconName="close"
 									iconDisplay="icon-only"

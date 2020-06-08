@@ -10,7 +10,7 @@ import CSTableCell from './table/CSTableCell';
 
 export interface CSLookupFieldProps {
 	borderType?: string;
-	className: string;
+	className?: string;
 	disabled?: boolean;
 	error?: boolean;
 	errorMessage?: string;
@@ -19,8 +19,7 @@ export interface CSLookupFieldProps {
 	helpText?: string;
 	hidden?: boolean;
 	id?: string;
-	label?: string;
-	onSelectOption: (selectedrecord: object) => void;
+	label: string;
 	placeholder?: string;
 	required?: boolean;
 	tooltipPosition?: string;

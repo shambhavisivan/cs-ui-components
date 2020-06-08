@@ -244,7 +244,7 @@ class CSMainHeaderPreview extends React.Component {
 							component:
 								<CSMainHeader maxWidth="100%">
 									<CSMainHeaderIcon>
-										<CSButton btnType="transparent" btnStyle="brand" iconName="back" iconDisplay="icon-only"/>
+										<CSButton label="back" btnType="transparent" btnStyle="brand" iconName="back" iconDisplay="icon-only"/>
 									</CSMainHeaderIcon>
 									<CSMainHeaderLeft
 										title="This is a custom header"

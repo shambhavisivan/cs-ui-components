@@ -60,6 +60,7 @@ class CSTablePreview extends React.Component {
 												maxWidth="100px"
 											>
 												<CSButton
+													label="label"
 													btnType="default"
 													iconName="emoji"
 													iconDisplay="icon-only"
@@ -83,6 +84,7 @@ class CSTablePreview extends React.Component {
 												maxWidth="100px"
 											>
 												<CSButton
+													label="label"
 													btnType="default"
 													iconName="emoji"
 													iconDisplay="icon-only"

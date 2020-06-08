@@ -46,6 +46,7 @@ class IconsViewer extends React.Component<IconsViewerProps, IconsViewerState> {
 					<input className="icons-search" placeholder="Search..." onChange={this.searchHandler} value={this.state.term} />
 					{this.state.term &&
 						<CSButton
+							label="clear"
 							btnType="transparent"
 							iconName="close"
 							iconDisplay="icon-only"

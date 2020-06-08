@@ -32,6 +32,7 @@ class CSLookupFieldPreview extends React.Component {
 							string: '',
 							component:
 							<CSLookupField
+								label="Account"
 								id="Accounts"
 								fetchLookupOptions={testArray}
 								fieldToBeDisplayed="Account"
@@ -47,6 +48,7 @@ class CSLookupFieldPreview extends React.Component {
 							string: '',
 							component:
 							<CSLookupField
+								label="Account"
 								fetchLookupOptions={testArray}
 								fieldToBeDisplayed="Account"
 								placeholder="Search..."
