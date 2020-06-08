@@ -8,22 +8,24 @@ import { CSGridCellRendererProps } from '../../src/interfaces/cs-grid-cell-props
 import { UserInfo } from '../../src/interfaces/user-info';
 
 describe('CS Grid Icon Renderer', () => {
-	let exampleIcon: CellData<string>;
+	let exampleIcon: CellData<Array<string>>;
 	let editable: boolean;
 	let userInfo: UserInfo;
 	const columnId = 'colId';
 	let colDef: ColDef;
 	let column: Column;
 	let columnApi: ColumnApi;
-	let cSGridCellRendererProps: CSGridCellRendererProps<string>;
+	let cSGridCellRendererProps: CSGridCellRendererProps<Array<string>>;
 	const icon = <div>ICON</div>;
-	let getIcon = () => icon;
+	let getIcons = () => {
+		return { icon };
+	};
 
 	let setValueMock: jest.Mock<any, any>;
 
 	beforeEach(() => {
 		exampleIcon = {
-			cellValue: 'cellValue',
+			cellValue: ['icon'],
 			errorMessage: 'errorMessage'
 		};
 
@@ -67,14 +69,14 @@ describe('CS Grid Icon Renderer', () => {
 			<CSGridIconRenderer
 				{...cSGridCellRendererProps}
 				readonly={readOnly}
-				getIcon={getIcon}
+				getIcons={getIcons}
 			/>
 		);
 
 		expect(
 			cellRenderer.equals(
 				<span className='is-last-column read-only-cell'>
-					<span title={exampleIcon.cellValue}>{icon}</span>
+					<span key={0}>{icon}</span>
 					<CSGridCellError errorMessage={exampleIcon.errorMessage} />
 				</span>
 			)
@@ -88,14 +90,14 @@ describe('CS Grid Icon Renderer', () => {
 			<CSGridIconRenderer
 				{...cSGridCellRendererProps}
 				readonly={readOnly}
-				getIcon={getIcon}
+				getIcons={getIcons}
 			/>
 		);
 
 		expect(
 			cellRenderer.equals(
 				<span className='is-last-column'>
-					<span title={exampleIcon.cellValue}>{icon}</span>
+					<span key={0}>{icon}</span>
 					<CSGridCellError errorMessage={exampleIcon.errorMessage} />
 				</span>
 			)
@@ -108,13 +110,13 @@ describe('CS Grid Icon Renderer', () => {
 		];
 
 		const cellRenderer = shallow(
-			<CSGridIconRenderer {...cSGridCellRendererProps} getIcon={getIcon} />
+			<CSGridIconRenderer {...cSGridCellRendererProps} getIcons={getIcons} />
 		);
 
 		expect(
 			cellRenderer.equals(
 				<span className=''>
-					<span title={exampleIcon.cellValue}>{icon}</span>
+					<span key={0}>{icon}</span>
 					<CSGridCellError errorMessage={exampleIcon.errorMessage} />
 				</span>
 			)
@@ -123,16 +125,15 @@ describe('CS Grid Icon Renderer', () => {
 
 	test('Renders a icon renderer that has an icon of undefined so should have no text.', () => {
 		cSGridCellRendererProps.value.cellValue = undefined;
-		getIcon = () => undefined;
+		getIcons = () => undefined;
 
 		const cellRenderer = shallow(
-			<CSGridIconRenderer {...cSGridCellRendererProps} getIcon={getIcon} />
+			<CSGridIconRenderer {...cSGridCellRendererProps} getIcons={getIcons} />
 		);
 
 		expect(
 			cellRenderer.equals(
 				<span className='is-last-column'>
-					<span title='' />
 					<CSGridCellError errorMessage={exampleIcon.errorMessage} />
 				</span>
 			)
@@ -143,7 +144,7 @@ describe('CS Grid Icon Renderer', () => {
 		cSGridCellRendererProps.value = undefined;
 
 		const cellRenderer = shallow(
-			<CSGridIconRenderer {...cSGridCellRendererProps} getIcon={getIcon} />
+			<CSGridIconRenderer {...cSGridCellRendererProps} getIcons={getIcons} />
 		);
 		expect(cellRenderer.equals(null)).toBeTruthy();
 	});

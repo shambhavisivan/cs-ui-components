@@ -1,14 +1,17 @@
 import * as KeyCode from 'keycode-js';
 import React, { ReactNode } from 'react';
 
+import { CSIcon } from '@cloudsense/cs-ui-components';
 import { CSGridCellRenderer, CSGridCellRendererState } from '../interfaces/cs-grid-base-interfaces';
 import {
 	CSGridCellRendererProps,
+	Icon,
+	isStandardIcon,
 	RowSelectionAction,
 	RowSelectionProps
 } from '../interfaces/cs-grid-cell-props';
 import { onKeyPressInAList } from '../utils/cs-grid-on-key-press';
-import { noOfVisibleButtons } from '../utils/cs-grid-row-selection-helper';
+import { DefaultIcon, noOfVisibleButtons } from '../utils/cs-grid-row-selection-helper';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
 
 interface CSGridRowSelectionRendererState extends CSGridCellRendererState<boolean> {
@@ -63,14 +66,17 @@ export class CSGridRowSelectionRenderer
 			return null;
 		}
 
-		const icons = [];
+		const icons: Array<Icon> = [];
 		if (this.state.noOfInlineIcons) {
-			for (let index = 0; index < this.state.noOfInlineIcons; index++) {
+			const noOfInlineIcons = Math.min(this.state.noOfInlineIcons, this.state.actions.length);
+			for (let index = 0; index < noOfInlineIcons; index++) {
 				const action = this.state.actions[index];
 
 				let icon = action.icon;
 				if (!icon) {
-					icon = <span className='icon-bolt' aria-hidden='true' />;
+					icon = <DefaultIcon />;
+				} else if (isStandardIcon(icon)) {
+					icon = <CSIcon name={icon.iconName} color={icon.color} />;
 				}
 
 				icons.push(
@@ -179,7 +185,10 @@ export class CSGridRowSelectionRenderer
 				this.focusedIndex,
 				false,
 				true,
-				() => this.state.actions[this.focusedIndex].action()
+				() =>
+					this.state.actions
+						.filter(action => !action.disabled)
+						[this.focusedIndex].action()
 			);
 
 			if (this.focusedIndex >= buttonRefs.length) {
@@ -206,10 +215,12 @@ export class CSGridRowSelectionRenderer
 	};
 
 	private onColumnResized = () => {
+		const maxNoOfInlineIcons = Math.min(this.props.noOfInlineIcons, this.state.actions.length);
+
 		const noOfInlineIcons = noOfVisibleButtons(
 			this.props.node.id,
 			this.props.column,
-			this.props.noOfInlineIcons,
+			maxNoOfInlineIcons,
 			this.state.actions.length
 		);
 

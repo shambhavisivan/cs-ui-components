@@ -229,7 +229,6 @@ describe('CS Grid Row Validation Renderer', () => {
 					>
 						<span className='icon-info' aria-hidden='true' />
 					</CSGridTooltip>
-					<span />
 				</span>
 			)
 		).toBeTruthy();

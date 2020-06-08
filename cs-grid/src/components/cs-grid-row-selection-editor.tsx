@@ -1,13 +1,15 @@
 import React from 'react';
 
+import { CSIcon } from '@cloudsense/cs-ui-components';
 import { CSGridCellEditor, CSGridCellEditorState } from '../interfaces/cs-grid-base-interfaces';
 import {
 	CSGridCellEditorProps,
+	isStandardIcon,
 	RowSelectionAction,
 	RowSelectionProps
 } from '../interfaces/cs-grid-cell-props';
 import { onKeyPressInAList } from '../utils/cs-grid-on-key-press';
-import { noOfVisibleButtons } from '../utils/cs-grid-row-selection-helper';
+import { DefaultIcon, noOfVisibleButtons } from '../utils/cs-grid-row-selection-helper';
 
 interface CSGridRowSelectionEditorState extends CSGridCellEditorState<boolean> {
 	actions: Array<RowSelectionAction>;
@@ -28,11 +30,13 @@ export class CSGridRowSelectionEditor
 		const actions = this.props.getActions(this.props.node.id);
 
 		let start = this.props.noOfInlineIcons || 0;
+		const maxNoOfInlineIcons = Math.min(this.props.noOfInlineIcons, actions.length);
+
 		if (this.props.noOfInlineIcons !== undefined) {
 			start = noOfVisibleButtons(
 				this.props.node.id,
 				this.props.column,
-				this.props.noOfInlineIcons,
+				maxNoOfInlineIcons,
 				actions.length
 			);
 		}
@@ -113,6 +117,14 @@ export class CSGridRowSelectionEditor
 
 		for (const [index, action] of this.state.actions.entries()) {
 			const selectAction = () => this.actionSelected(action.action);
+
+			let icon = action.icon;
+			if (icon && isStandardIcon(icon)) {
+				icon = <CSIcon name={icon.iconName} color={icon.color} />;
+			} else if (!icon && showIcons) {
+				icon = <DefaultIcon />;
+			}
+
 			dropDownValues.push(
 				<button
 					className='row-selection-list-item'
@@ -122,7 +134,7 @@ export class CSGridRowSelectionEditor
 					ref={ref => (this.dropDownRefs[index] = ref)}
 					disabled={action.disabled}
 				>
-					{showIcons && <div className='row-selection-icon-wrapper'>{action.icon}</div>}
+					{showIcons && <div className='row-selection-icon-wrapper'>{icon}</div>}
 					<div className='row-selection-name-wrapper'>{action.name}</div>
 				</button>
 			);
@@ -151,7 +163,10 @@ export class CSGridRowSelectionEditor
 			this.focusedIndex,
 			true,
 			false,
-			() => this.actionSelected(this.state.actions[this.focusedIndex].action)
+			() =>
+				this.actionSelected(
+					this.state.actions.filter(action => !action.disabled)[this.focusedIndex].action
+				)
 		);
 	};
 }

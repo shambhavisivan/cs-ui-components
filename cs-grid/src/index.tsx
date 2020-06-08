@@ -111,13 +111,7 @@ export class App extends React.Component<object, AppState> {
 						},
 						{
 							action: () => console.error('Delete option called'),
-							icon: (
-								<span
-									className='cs-grid_clear-button'
-									aria-hidden='true'
-									style={{ margin: 0, padding: 0 }}
-								/>
-							),
+							icon: { iconName: 'close', color: 'red' },
 							name: 'Delete'
 						},
 						{
@@ -134,7 +128,7 @@ export class App extends React.Component<object, AppState> {
 				maxWidth: 400,
 				minWidth: 40,
 				name: 'exampleRowSelection',
-				noOfInlineIcons: 2,
+				noOfInlineIcons: 3,
 				pinned: 'left',
 				resizable: true,
 				userInfo,
@@ -258,7 +252,7 @@ export class App extends React.Component<object, AppState> {
 						node.setDataValue('exampleRowValidation', {
 							cellValue: { status, icons: rowValidationIconNames }
 						});
-						node.setDataValue('status', { cellValue: icon });
+						node.setDataValue('status', { cellValue: [icon] });
 					}
 					const value: CellData<number> = {
 						cellValue: newValue,
@@ -393,17 +387,13 @@ export class App extends React.Component<object, AppState> {
 			},
 			{
 				cellType: 'Icon',
-				getIcon: (guid: string, value: CellData<string>) => {
-					let icon;
-					if (value.cellValue === 'red') {
-						icon = <div>RED</div>;
-					} else if (value.cellValue === 'green') {
-						icon = <div>GREEN</div>;
-					} else if (value.cellValue === 'yellow') {
-						icon = <div>YELLOW</div>;
-					}
-
-					return <div>{icon}</div>;
+				getIcons: (guid: string) => {
+					return {
+						breadcrumbs: { iconName: 'breadcrumbs', color: 'pink' },
+						green: <div>GREEN</div>,
+						red: <div>RED</div>,
+						yellow: <div>YELLOW</div>
+					};
 				},
 				header: {
 					label: 'Status'
@@ -411,7 +401,7 @@ export class App extends React.Component<object, AppState> {
 				name: 'status',
 				pinned: 'right',
 				userInfo,
-				width: 100
+				width: 150
 			},
 			{
 				cellType: 'RowValidation',
@@ -432,7 +422,8 @@ export class App extends React.Component<object, AppState> {
 								style={{ margin: 0, padding: 0 }}
 								key='row-validation-icon-clear-button'
 							/>
-						)
+						),
+						video: { iconName: 'video', color: '#73d9d2' }
 					};
 				},
 				name: 'exampleRowValidation',
@@ -506,7 +497,7 @@ export class App extends React.Component<object, AppState> {
 					cellValue: 'Toy&o|:;ta'
 				},
 				status: {
-					cellValue: 'red'
+					cellValue: ['red']
 				}
 			},
 			{
@@ -584,7 +575,7 @@ export class App extends React.Component<object, AppState> {
 					errorMessage: 'An error message'
 				},
 				status: {
-					cellValue: 'red'
+					cellValue: ['red', 'yellow', 'breadcrumbs']
 				}
 			},
 			{
@@ -649,7 +640,7 @@ export class App extends React.Component<object, AppState> {
 					cellValue: 'Toyota'
 				},
 				status: {
-					cellValue: 'yellow'
+					cellValue: ['yellow']
 				}
 			},
 			{
@@ -719,7 +710,7 @@ export class App extends React.Component<object, AppState> {
 				},
 				exampleRowSelection: {},
 				exampleRowValidation: {
-					cellValue: { status: 'Error', icons: ['medium'] },
+					cellValue: { status: 'Error', icons: ['medium', 'video'] },
 					errorMessage: 'Error 1Error 2'
 				},
 				exampleText: {
@@ -727,7 +718,7 @@ export class App extends React.Component<object, AppState> {
 					errorMessage: ''
 				},
 				status: {
-					cellValue: 'yellow'
+					cellValue: ['yellow', 'breadcrumbs']
 				}
 			}
 		];

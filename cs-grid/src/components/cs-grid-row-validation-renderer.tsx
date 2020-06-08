@@ -1,6 +1,12 @@
 import React from 'react';
 
-import { CSGridCellRendererProps, RowValidationProps } from '../interfaces/cs-grid-cell-props';
+import { CSIcon } from '@cloudsense/cs-ui-components';
+import {
+	CSGridCellRendererProps,
+	Icon,
+	isStandardIcon,
+	RowValidationProps
+} from '../interfaces/cs-grid-cell-props';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
 import { CSGridTooltip } from './cs-grid-tooltip';
 
@@ -46,10 +52,20 @@ export class CSGridRowValidationRenderer extends CSGridBaseRenderer<
 				break;
 		}
 
-		let icons: Array<JSX.Element> = [];
+		const icons: Array<Icon> = [];
 		if (this.props.getIcons && iconsToShow) {
 			const iconMapping = this.props.getIcons(this.props.node.id);
-			icons = iconsToShow.map(iconName => iconMapping[iconName]);
+
+			for (const iconName of iconsToShow) {
+				const icon = iconMapping[iconName];
+				if (icon) {
+					if (isStandardIcon(icon)) {
+						icons.push(<CSIcon name={icon.iconName} color={icon.color} />);
+					} else {
+						icons.push(icon);
+					}
+				}
+			}
 		}
 
 		return (
@@ -67,9 +83,9 @@ export class CSGridRowValidationRenderer extends CSGridBaseRenderer<
 						<span className={className} aria-hidden='true' />
 					</CSGridTooltip>
 				)}
-				{icons &&
-					icons.length > 0 &&
-					icons.map((icon, index) => <span key={index}>{icon}</span>)}
+				{icons.map((icon, index) => (
+					<span key={index}>{icon}</span>
+				))}
 			</span>
 		);
 	}

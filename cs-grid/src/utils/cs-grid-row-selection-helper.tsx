@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { Column } from 'ag-grid-community';
 
 export function noOfVisibleButtons(
@@ -34,4 +36,8 @@ export function noOfVisibleButtons(
 			return ableToFit;
 		}
 	}
+}
+
+export function DefaultIcon() {
+	return <span className='icon-bolt' aria-hidden='true' />;
 }

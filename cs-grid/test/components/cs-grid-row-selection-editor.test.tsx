@@ -9,6 +9,7 @@ import {
 	RowSelectionProps
 } from '../../src/interfaces/cs-grid-cell-props';
 import { UserInfo } from '../../src/interfaces/user-info';
+import { DefaultIcon } from '../../src/utils/cs-grid-row-selection-helper';
 
 jest.useFakeTimers();
 
@@ -113,6 +114,8 @@ describe('CS Grid Row Selection Editor', () => {
 
 		const cellEditor = shallow(<CSGridRowSelectionEditor {...cSGridCellEditorProps} />);
 
+		console.log(cellEditor.debug());
+
 		expect(
 			cellEditor.containsMatchingElement(
 				<div className='cs-grid_popup-wrapper'>
@@ -121,7 +124,9 @@ describe('CS Grid Row Selection Editor', () => {
 							className='row-selection-list-item'
 							id={`row-selection-list-item-${action1.name}`}
 						>
-							<div className='row-selection-icon-wrapper' />
+							<div className='row-selection-icon-wrapper'>
+								<DefaultIcon />
+							</div>
 							<div className='row-selection-name-wrapper'>{action1.name}</div>
 						</button>
 						<button

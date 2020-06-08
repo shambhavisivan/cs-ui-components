@@ -1,17 +1,22 @@
+import { CSIcon } from '@cloudsense/cs-ui-components';
 import React from 'react';
 
-import { CSGridCellRendererProps, IconProps } from '../interfaces/cs-grid-cell-props';
+import {
+	CSGridCellRendererProps,
+	IconProps,
+	isStandardIcon
+} from '../interfaces/cs-grid-cell-props';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
 import { CSGridCellError } from './cs-grid-cell-error';
 
 /**
- * A cell renderer for displaying an icon.
+ * A cell renderer for displaying icons.
  */
 export class CSGridIconRenderer extends CSGridBaseRenderer<
-	string,
-	CSGridCellRendererProps<string> & IconProps
+	Array<string>,
+	CSGridCellRendererProps<Array<string>> & IconProps
 > {
-	constructor(props: CSGridCellRendererProps<string> & IconProps) {
+	constructor(props: CSGridCellRendererProps<Array<string>> & IconProps) {
 		super(props);
 
 		this.state = { value: this.props.value, isLastColumn: this.isLastColumn() };
@@ -22,8 +27,20 @@ export class CSGridIconRenderer extends CSGridBaseRenderer<
 			return null;
 		}
 
-		const value = this.state.value.cellValue || '';
-		const icon = this.props.getIcon(this.props.node.id, this.state.value);
+		const values = this.state.value.cellValue || [];
+		const icons = this.props.getIcons(this.props.node.id);
+
+		const iconComponents: Array<JSX.Element> = [];
+		for (const iconName of values) {
+			const icon = icons[iconName];
+			if (icon) {
+				if (isStandardIcon(icon)) {
+					iconComponents.push(<CSIcon name={icon.iconName} color={icon.color} />);
+				} else {
+					iconComponents.push(icon);
+				}
+			}
+		}
 
 		return (
 			<span
@@ -32,7 +49,9 @@ export class CSGridIconRenderer extends CSGridBaseRenderer<
 					(this.isReadOnly() ? ' read-only-cell' : '')
 				}
 			>
-				<span title={value}>{icon}</span>
+				{iconComponents.map((icon, index) => (
+					<span key={index}>{icon}</span>
+				))}
 				<CSGridCellError errorMessage={this.state.value.errorMessage} />
 			</span>
 		);

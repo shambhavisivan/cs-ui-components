@@ -808,7 +808,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				agGridColDef.cellRenderer = 'iconRenderer';
 				agGridColDef.cellEditor = 'noEditor';
 
-				this.addIfDefined(cellParams, 'getIcon', columnDef.getIcon);
+				this.addIfDefined(cellParams, 'getIcons', columnDef.getIcons);
 			}
 
 			if (columnDef.cellType === 'RowValidation') {

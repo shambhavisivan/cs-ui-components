@@ -60,14 +60,12 @@ export interface RowSelectionProps {
 
 export interface RowSelectionAction {
 	name: string;
-	icon?: JSX.Element;
+	icon?: Icon;
 	action: () => void;
 	disabled?: boolean;
 }
 
-export interface RowValidationProps {
-	getIcons?(guid: string): Record<string, JSX.Element>;
-}
+export interface RowValidationProps extends IconProps {}
 
 export interface PicklistProps {
 	filterAboveSize?: number;
@@ -84,7 +82,18 @@ export interface PicklistOption {
 }
 
 export interface IconProps {
-	getIcon(guid: string, value: CellData<string>): JSX.Element;
+	getIcons?(guid: string): Record<string, Icon>;
+}
+
+export type Icon = JSX.Element | StandardIcon;
+
+export interface StandardIcon {
+	iconName: string;
+	color: string;
+}
+
+export function isStandardIcon(object: any): object is StandardIcon {
+	return 'iconName' in object && 'color' in object;
 }
 
 export interface BaseProps<T> {
