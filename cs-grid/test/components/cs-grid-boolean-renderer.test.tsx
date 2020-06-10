@@ -162,29 +162,6 @@ describe('CS Grid Boolean Renderer', () => {
 		expect(cellRenderer.equals(null)).toBeTruthy();
 	});
 
-	test('Renders a basic boolean renderer that is not the last column.', () => {
-		cSGridCellRendererProps.columnApi.getAllGridColumns = () => [
-			new Column(colDef, null, 'NotThisColId', true)
-		];
-		const lastColumnClass = '.is-last-column';
-
-		const cellRenderer = shallow(<CSGridBooleanRenderer {...cSGridCellRendererProps} />);
-
-		expect(cellRenderer.find(lastColumnClass).length).toEqual(0);
-	});
-
-	test('Renders a basic boolean renderer that is the last column.', () => {
-		cSGridCellRendererProps.columnApi.getAllGridColumns = () => [
-			new Column(colDef, null, columnId, true)
-		];
-
-		const lastColumnClass = '.is-last-column';
-
-		const cellRenderer = shallow(<CSGridBooleanRenderer {...cSGridCellRendererProps} />);
-
-		expect(cellRenderer.find(lastColumnClass).length).toEqual(1);
-	});
-
 	test("Tests that clicking the input doesn't cause an error when no onChange function is provided.", () => {
 		colDef = { editable: true };
 		column = new Column(colDef, null, 'colId', true);

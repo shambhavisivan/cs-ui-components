@@ -1,6 +1,6 @@
+import { CSTooltip } from '@cloudsense/cs-ui-components';
 import React from 'react';
 import { CSGridControl } from '../interfaces/cs-grid-base-interfaces';
-import { CSGridTooltip } from './cs-grid-tooltip';
 
 export interface CSGridQuickFilterControl extends CSGridControl {
 	nonIncremental?: boolean;
@@ -59,14 +59,7 @@ export function CSGridQuickFilter(props: CSGridQuickFilterProps) {
 					</div>
 				</div>
 			)}
-			{props.errorMessage && (
-				<CSGridTooltip
-					additionalClassnames={'icon-error-wrapper cs-grid_quick-filter-error'}
-					helpText={props.errorMessage}
-				>
-					<span className='icon-error' aria-hidden='true' />
-				</CSGridTooltip>
-			)}
+			{props.errorMessage && <CSTooltip variant='error' content={props.errorMessage} />}
 		</div>
 	);
 }

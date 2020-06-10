@@ -1,16 +1,16 @@
+import { CSTooltip } from '@cloudsense/cs-ui-components';
+// TODO: needs exposing in cs-ui-components.
+// tslint:disable-next-line: no-submodule-imports
+import { CSTooltipPosition } from '@cloudsense/cs-ui-components/dist/src/components/CSTooltip';
 import React from 'react';
 
-import { CSGridTooltip } from './cs-grid-tooltip';
-
-/**
- * errorMessage - An error message for displaying in the tooltip.
- */
 export interface CSGridCellErrorProps {
 	errorMessage: string;
+	position?: CSTooltipPosition;
 }
 
 /**
- * Creates an info icon with a tooltip popup.
+ * Creates an error icon with a tooltip popup.
  * @param props - errorMessage: An error message for displaying in the tooltip.
  */
 export function CSGridCellError(props: CSGridCellErrorProps) {
@@ -18,9 +18,5 @@ export function CSGridCellError(props: CSGridCellErrorProps) {
 		return null;
 	}
 
-	return (
-		<CSGridTooltip helpText={props.errorMessage}>
-			<span className='icon-info' aria-hidden='true' />
-		</CSGridTooltip>
-	);
+	return <CSTooltip content={props.errorMessage} position={props.position} variant='error' />;
 }

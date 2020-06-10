@@ -73,11 +73,11 @@ describe('CS Grid Date Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className='is-last-column read-only-cell'>
+				<span className='read-only-cell'>
 					<span className='cs-grid_date-cell-value-read-only' title={value}>
 						{value}
 					</span>
-					<CSGridCellError errorMessage={exampleDate.errorMessage} />
+					<CSGridCellError errorMessage={exampleDate.errorMessage} position='top-left' />
 				</span>
 			)
 		).toBeTruthy();
@@ -97,11 +97,11 @@ describe('CS Grid Date Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className='is-last-column'>
+				<span className=''>
 					<span className='cs-grid_date-cell-value' title={value}>
 						{value}
 					</span>
-					<CSGridCellError errorMessage={exampleDate.errorMessage} />
+					<CSGridCellError errorMessage={exampleDate.errorMessage} position='top-left' />
 					<button
 						title='Clear Date'
 						className='cs-grid_clear-button'
@@ -112,7 +112,7 @@ describe('CS Grid Date Renderer', () => {
 		).toBeTruthy();
 	});
 
-	test('Renders a basic date renderer that is not the last column so do not have a last column class.', () => {
+	test('Renders a basic date renderer that is not the last column so should have error position as top right.', () => {
 		cSGridCellRendererProps.columnApi.getAllGridColumns = () => [
 			new Column(colDef, null, 'NotThisColId', true)
 		];
@@ -130,7 +130,7 @@ describe('CS Grid Date Renderer', () => {
 					<span className='cs-grid_date-cell-value' title={value}>
 						{value}
 					</span>
-					<CSGridCellError errorMessage={exampleDate.errorMessage} />
+					<CSGridCellError errorMessage={exampleDate.errorMessage} position='top-right' />
 					<button
 						title='Clear Date'
 						className='cs-grid_clear-button'
@@ -148,11 +148,11 @@ describe('CS Grid Date Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className='is-last-column'>
+				<span className=''>
 					<span className='cs-grid_date-cell-value' title=''>
 						{''}
 					</span>
-					<CSGridCellError errorMessage={exampleDate.errorMessage} />
+					<CSGridCellError errorMessage={exampleDate.errorMessage} position='top-left' />
 				</span>
 			)
 		).toBeTruthy();

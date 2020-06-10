@@ -43,16 +43,14 @@ export class CSGridIconRenderer extends CSGridBaseRenderer<
 		}
 
 		return (
-			<span
-				className={
-					(this.state.isLastColumn ? 'is-last-column' : '') +
-					(this.isReadOnly() ? ' read-only-cell' : '')
-				}
-			>
+			<span className={this.isReadOnly() ? 'read-only-cell' : ''}>
 				{iconComponents.map((icon, index) => (
 					<span key={index}>{icon}</span>
 				))}
-				<CSGridCellError errorMessage={this.state.value.errorMessage} />
+				<CSGridCellError
+					errorMessage={this.state.value.errorMessage}
+					position={this.state.isLastColumn ? 'top-left' : 'top-right'}
+				/>
 			</span>
 		);
 	}

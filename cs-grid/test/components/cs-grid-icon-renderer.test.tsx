@@ -75,9 +75,9 @@ describe('CS Grid Icon Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className='is-last-column read-only-cell'>
+				<span className='read-only-cell'>
 					<span key={0}>{icon}</span>
-					<CSGridCellError errorMessage={exampleIcon.errorMessage} />
+					<CSGridCellError errorMessage={exampleIcon.errorMessage} position='top-left' />
 				</span>
 			)
 		).toBeTruthy();
@@ -96,15 +96,15 @@ describe('CS Grid Icon Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className='is-last-column'>
+				<span className=''>
 					<span key={0}>{icon}</span>
-					<CSGridCellError errorMessage={exampleIcon.errorMessage} />
+					<CSGridCellError errorMessage={exampleIcon.errorMessage} position='top-left' />
 				</span>
 			)
 		).toBeTruthy();
 	});
 
-	test('Renders a basic icon renderer that is not the last column so do not have a last column class.', () => {
+	test('Renders a basic icon renderer that is not the last column should have the error message in the top right.', () => {
 		cSGridCellRendererProps.columnApi.getAllGridColumns = () => [
 			new Column(colDef, null, 'NotThisColId', true)
 		];
@@ -117,7 +117,7 @@ describe('CS Grid Icon Renderer', () => {
 			cellRenderer.equals(
 				<span className=''>
 					<span key={0}>{icon}</span>
-					<CSGridCellError errorMessage={exampleIcon.errorMessage} />
+					<CSGridCellError errorMessage={exampleIcon.errorMessage} position='top-right' />
 				</span>
 			)
 		).toBeTruthy();
@@ -133,8 +133,8 @@ describe('CS Grid Icon Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className='is-last-column'>
-					<CSGridCellError errorMessage={exampleIcon.errorMessage} />
+				<span className=''>
+					<CSGridCellError errorMessage={exampleIcon.errorMessage} position='top-left' />
 				</span>
 			)
 		).toBeTruthy();

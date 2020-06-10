@@ -67,9 +67,9 @@ describe('CS Grid Text Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className='is-last-column read-only-cell'>
+				<span className='read-only-cell'>
 					<span title={exampleText.cellValue}>{exampleText.cellValue}</span>
-					<CSGridCellError errorMessage={exampleText.errorMessage} />
+					<CSGridCellError errorMessage={exampleText.errorMessage} position='top-left' />
 				</span>
 			)
 		).toBeTruthy();
@@ -84,15 +84,15 @@ describe('CS Grid Text Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className='is-last-column'>
+				<span className=''>
 					<span title={exampleText.cellValue}>{exampleText.cellValue}</span>
-					<CSGridCellError errorMessage={exampleText.errorMessage} />
+					<CSGridCellError errorMessage={exampleText.errorMessage} position='top-left' />
 				</span>
 			)
 		).toBeTruthy();
 	});
 
-	test('Renders a basic text renderer that is not the last column so do not have a last column class.', () => {
+	test('Renders a basic text renderer that is not the last column so error messages will be top right.', () => {
 		cSGridCellRendererProps.columnApi.getAllGridColumns = () => [
 			new Column(colDef, null, 'NotThisColId', true)
 		];
@@ -103,7 +103,7 @@ describe('CS Grid Text Renderer', () => {
 			cellRenderer.equals(
 				<span className=''>
 					<span title={exampleText.cellValue}>{exampleText.cellValue}</span>
-					<CSGridCellError errorMessage={exampleText.errorMessage} />
+					<CSGridCellError errorMessage={exampleText.errorMessage} position='top-right' />
 				</span>
 			)
 		).toBeTruthy();
@@ -116,9 +116,9 @@ describe('CS Grid Text Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className='is-last-column'>
+				<span className=''>
 					<span title=''>{''}</span>
-					<CSGridCellError errorMessage={exampleText.errorMessage} />
+					<CSGridCellError errorMessage={exampleText.errorMessage} position='top-left' />
 				</span>
 			)
 		).toBeTruthy();

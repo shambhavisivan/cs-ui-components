@@ -19,14 +19,12 @@ export class CSGridTextRenderer extends CSGridBaseRenderer<string> {
 		const value = this.state.value.cellValue || '';
 
 		return (
-			<span
-				className={
-					(this.state.isLastColumn ? 'is-last-column' : '') +
-					(this.isReadOnly() ? ' read-only-cell' : '')
-				}
-			>
+			<span className={this.isReadOnly() ? 'read-only-cell' : ''}>
 				<span title={value}>{value}</span>
-				<CSGridCellError errorMessage={this.state.value.errorMessage} />
+				<CSGridCellError
+					errorMessage={this.state.value.errorMessage}
+					position={this.state.isLastColumn ? 'top-left' : 'top-right'}
+				/>
 			</span>
 		);
 	}

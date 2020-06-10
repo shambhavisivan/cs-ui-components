@@ -42,12 +42,7 @@ export class CSGridBooleanRenderer extends CSGridBaseRenderer<boolean>
 
 		return (
 			<span className={readOnly ? 'read-only-cell' : ''}>
-				<label
-					className={
-						'cs-grid_checkbox-wrapper' +
-						(this.state.isLastColumn ? ' is-last-column' : '')
-					}
-				>
+				<label className='cs-grid_checkbox-wrapper'>
 					<input
 						className='cs-grid_checkbox'
 						type='checkbox'
@@ -58,7 +53,10 @@ export class CSGridBooleanRenderer extends CSGridBaseRenderer<boolean>
 					/>
 					<span className='cs-grid_checkbox-faux' />
 				</label>
-				<CSGridCellError errorMessage={this.state.value.errorMessage} />
+				<CSGridCellError
+					errorMessage={this.state.value.errorMessage}
+					position={this.state.isLastColumn ? 'top-left' : 'top-right'}
+				/>
 			</span>
 		);
 	}

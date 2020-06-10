@@ -33,13 +33,12 @@ export class CSGridLookupRenderer extends CSGridBaseRenderer<
 		const value = this.format(this.state.value.cellValue);
 
 		return (
-			<span
-				className={`select-wrapper ${this.state.isLastColumn ? 'is-last-column' : ''} ${
-					this.isReadOnly() ? 'read-only-cell' : ''
-				}`}
-			>
+			<span className={`select-wrapper ${this.isReadOnly() ? 'read-only-cell' : ''}`}>
 				<span title={value}>{value}</span>
-				<CSGridCellError errorMessage={this.state.value.errorMessage} />
+				<CSGridCellError
+					errorMessage={this.state.value.errorMessage}
+					position={this.state.isLastColumn ? 'top-left' : 'top-right'}
+				/>
 			</span>
 		);
 	}

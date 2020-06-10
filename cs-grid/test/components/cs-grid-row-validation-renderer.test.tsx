@@ -1,3 +1,4 @@
+import { CSTooltip } from '@cloudsense/cs-ui-components';
 import { ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
 import { shallow } from 'enzyme';
 import React from 'react';
@@ -6,7 +7,6 @@ import {
 	RowValidationValues,
 	ValidationStatus
 } from '../../src/components/cs-grid-row-validation-renderer';
-import { CSGridTooltip } from '../../src/components/cs-grid-tooltip';
 import { CellData } from '../../src/interfaces/cs-grid-base-interfaces';
 import { CSGridCellRendererProps } from '../../src/interfaces/cs-grid-cell-props';
 import { UserInfo } from '../../src/interfaces/user-info';
@@ -61,38 +61,38 @@ describe('CS Grid Row Validation Renderer', () => {
 	});
 
 	test('Renders a basic row validation renderer with validation type Info', () => {
-		cSGridCellRendererProps.value.cellValue = 'Info';
+		const cellValue = 'Info';
+		cSGridCellRendererProps.value.cellValue = cellValue;
 
 		const cellRenderer = shallow(<CSGridRowValidationRenderer {...cSGridCellRendererProps} />);
 
 		expect(
 			cellRenderer.equals(
-				<span className='is-last-column'>
-					<CSGridTooltip
-						additionalClassnames='icon-info-wrapper'
-						helpText={exampleRowValidationRenderer.errorMessage}
-					>
-						<span className='icon-info' aria-hidden='true' />
-					</CSGridTooltip>
+				<span className=''>
+					<CSTooltip
+						content={exampleRowValidationRenderer.errorMessage}
+						variant={'info'}
+						position='top-left'
+					/>
 				</span>
 			)
 		).toBeTruthy();
 	});
 
 	test('Renders a basic row validation renderer with validation type Error', () => {
-		cSGridCellRendererProps.value.cellValue = 'Error';
+		const cellValue = 'Error';
+		cSGridCellRendererProps.value.cellValue = cellValue;
 
 		const cellRenderer = shallow(<CSGridRowValidationRenderer {...cSGridCellRendererProps} />);
 
 		expect(
 			cellRenderer.equals(
-				<span className='is-last-column'>
-					<CSGridTooltip
-						additionalClassnames='icon-error-wrapper'
-						helpText={exampleRowValidationRenderer.errorMessage}
-					>
-						<span className='icon-error' aria-hidden='true' />
-					</CSGridTooltip>
+				<span className=''>
+					<CSTooltip
+						content={exampleRowValidationRenderer.errorMessage}
+						variant={'error'}
+						position='top-left'
+					/>
 				</span>
 			)
 		).toBeTruthy();
@@ -103,7 +103,7 @@ describe('CS Grid Row Validation Renderer', () => {
 
 		const cellRenderer = shallow(<CSGridRowValidationRenderer {...cSGridCellRendererProps} />);
 
-		expect(cellRenderer.equals(<span className='is-last-column' />)).toBeTruthy();
+		expect(cellRenderer.equals(<span className='' />)).toBeTruthy();
 	});
 
 	test('The row validation renderer should always render nothing if no value is given', () => {
@@ -113,7 +113,7 @@ describe('CS Grid Row Validation Renderer', () => {
 		expect(cellRenderer.equals(null)).toBeTruthy();
 	});
 
-	test('Renders a basic row validation renderer that is not the last column so do not have a last column class.', () => {
+	test('Renders a basic row validation renderer that is not the last column so do not have the position as top-left.', () => {
 		cSGridCellRendererProps.columnApi.getAllGridColumns = () => [
 			new Column(colDef, null, 'NotThisColId', true)
 		];
@@ -123,12 +123,7 @@ describe('CS Grid Row Validation Renderer', () => {
 		expect(
 			cellRenderer.equals(
 				<span className=''>
-					<CSGridTooltip
-						additionalClassnames='icon-info-wrapper'
-						helpText={exampleRowValidationRenderer.errorMessage}
-					>
-						<span className='icon-info' aria-hidden='true' />
-					</CSGridTooltip>
+					<CSTooltip content={exampleRowValidationRenderer.errorMessage} variant='info' />
 				</span>
 			)
 		).toBeTruthy();
@@ -143,13 +138,12 @@ describe('CS Grid Row Validation Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className='is-last-column read-only-cell'>
-					<CSGridTooltip
-						additionalClassnames='icon-info-wrapper'
-						helpText={exampleRowValidationRenderer.errorMessage}
-					>
-						<span className='icon-info' aria-hidden='true' />
-					</CSGridTooltip>
+				<span className='read-only-cell'>
+					<CSTooltip
+						content={exampleRowValidationRenderer.errorMessage}
+						variant='info'
+						position='top-left'
+					/>
 				</span>
 			)
 		).toBeTruthy();
@@ -169,13 +163,12 @@ describe('CS Grid Row Validation Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className='is-last-column'>
-					<CSGridTooltip
-						additionalClassnames='icon-info-wrapper'
-						helpText={exampleRowValidationRenderer.errorMessage}
-					>
-						<span className='icon-info' aria-hidden='true' />
-					</CSGridTooltip>
+				<span className=''>
+					<CSTooltip
+						content={exampleRowValidationRenderer.errorMessage}
+						variant='info'
+						position='top-left'
+					/>
 					<span key={0}>{redIcon}</span>
 				</span>
 			)
@@ -196,13 +189,12 @@ describe('CS Grid Row Validation Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className='is-last-column'>
-					<CSGridTooltip
-						additionalClassnames='icon-info-wrapper'
-						helpText={exampleRowValidationRenderer.errorMessage}
-					>
-						<span className='icon-info' aria-hidden='true' />
-					</CSGridTooltip>
+				<span className=''>
+					<CSTooltip
+						content={exampleRowValidationRenderer.errorMessage}
+						variant='info'
+						position='top-left'
+					/>
 				</span>
 			)
 		).toBeTruthy();
@@ -222,13 +214,12 @@ describe('CS Grid Row Validation Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className='is-last-column'>
-					<CSGridTooltip
-						additionalClassnames='icon-info-wrapper'
-						helpText={exampleRowValidationRenderer.errorMessage}
-					>
-						<span className='icon-info' aria-hidden='true' />
-					</CSGridTooltip>
+				<span className=''>
+					<CSTooltip
+						content={exampleRowValidationRenderer.errorMessage}
+						variant='info'
+						position='top-left'
+					/>
 				</span>
 			)
 		).toBeTruthy();

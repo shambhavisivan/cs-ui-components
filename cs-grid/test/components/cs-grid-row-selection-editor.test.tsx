@@ -114,8 +114,6 @@ describe('CS Grid Row Selection Editor', () => {
 
 		const cellEditor = shallow(<CSGridRowSelectionEditor {...cSGridCellEditorProps} />);
 
-		console.log(cellEditor.debug());
-
 		expect(
 			cellEditor.containsMatchingElement(
 				<div className='cs-grid_popup-wrapper'>

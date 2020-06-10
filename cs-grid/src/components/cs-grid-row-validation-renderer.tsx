@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { CSIcon } from '@cloudsense/cs-ui-components';
+import { CSIcon, CSTooltip } from '@cloudsense/cs-ui-components';
+// tslint:disable-next-line: no-submodule-imports
+import { CSTooltipVariant } from '@cloudsense/cs-ui-components/dist/src/components/CSTooltip';
 import {
 	CSGridCellRendererProps,
 	Icon,
@@ -8,7 +10,6 @@ import {
 	RowValidationProps
 } from '../interfaces/cs-grid-cell-props';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
-import { CSGridTooltip } from './cs-grid-tooltip';
 
 export type ValidationStatus = 'Info' | 'Error' | 'None';
 
@@ -42,13 +43,13 @@ export class CSGridRowValidationRenderer extends CSGridBaseRenderer<
 			status = cellValue;
 		}
 
-		let className: string;
+		let className: CSTooltipVariant;
 		switch (status) {
 			case 'Info':
-				className = 'icon-info';
+				className = 'info';
 				break;
 			case 'Error':
-				className = 'icon-error';
+				className = 'error';
 				break;
 		}
 
@@ -69,19 +70,13 @@ export class CSGridRowValidationRenderer extends CSGridBaseRenderer<
 		}
 
 		return (
-			<span
-				className={
-					(this.state.isLastColumn ? 'is-last-column' : '') +
-					(this.isReadOnly() ? ' read-only-cell' : '')
-				}
-			>
+			<span className={this.isReadOnly() ? 'read-only-cell' : ''}>
 				{status !== 'None' && (
-					<CSGridTooltip
-						additionalClassnames={className + '-wrapper'}
-						helpText={this.state.value.errorMessage}
-					>
-						<span className={className} aria-hidden='true' />
-					</CSGridTooltip>
+					<CSTooltip
+						content={this.state.value.errorMessage}
+						variant={className}
+						position={this.state.isLastColumn ? 'top-left' : 'top-right'}
+					/>
 				)}
 				{icons.map((icon, index) => (
 					<span key={index}>{icon}</span>

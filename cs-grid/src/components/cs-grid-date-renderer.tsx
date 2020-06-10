@@ -27,19 +27,17 @@ export class CSGridDateRenderer extends CSGridBaseRenderer<string> {
 		const value = formatDate(this.state.value.cellValue, this.props.userInfo.userLocale);
 
 		return (
-			<span
-				className={
-					(this.state.isLastColumn ? 'is-last-column' : '') +
-					(readOnly ? ' read-only-cell' : '')
-				}
-			>
+			<span className={readOnly ? 'read-only-cell' : ''}>
 				<span
 					className={'cs-grid_date-cell-value' + (readOnly ? '-read-only' : '')}
 					title={value}
 				>
 					{value}
 				</span>
-				<CSGridCellError errorMessage={this.state.value.errorMessage} />
+				<CSGridCellError
+					errorMessage={this.state.value.errorMessage}
+					position={this.state.isLastColumn ? 'top-left' : 'top-right'}
+				/>
 				{this.state.value.cellValue && !readOnly && (
 					<button
 						title='Clear Date'
