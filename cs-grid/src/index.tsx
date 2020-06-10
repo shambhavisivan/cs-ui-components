@@ -390,9 +390,39 @@ export class App extends React.Component<object, AppState> {
 				getIcons: (guid: string) => {
 					return {
 						breadcrumbs: { iconName: 'breadcrumbs', color: 'pink' },
-						green: <div>GREEN</div>,
-						red: <div>RED</div>,
-						yellow: <div>YELLOW</div>
+						green: (
+							<span
+								style={{
+									display: 'block',
+									width: '1rem',
+									height: '1rem',
+									borderRadius: '50%',
+									backgroundColor: '#5bb85c'
+								}}
+							/>
+						),
+						red: (
+							<span
+								style={{
+									display: 'block',
+									width: '1rem',
+									height: '1rem',
+									borderRadius: '50%',
+									backgroundColor: '#c23934'
+								}}
+							/>
+						),
+						yellow: (
+							<span
+								style={{
+									display: 'block',
+									width: '1rem',
+									height: '1rem',
+									borderRadius: '50%',
+									backgroundColor: '#ffb75d'
+								}}
+							/>
+						)
 					};
 				},
 				header: {
