@@ -166,6 +166,10 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		const colour = this.props.rowHighlighting[params.node.id];
 		if (colour) {
 			return { background: colour };
+		} else {
+			/* Once set the styling never gets removed so this is
+			   needed to undo the row highlighting. */
+			return { background: '#ffffff' };
 		}
 	};
 

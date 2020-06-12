@@ -118,7 +118,7 @@ export class CSGridRowSelectionRenderer
 
 		const startEditingParams = {
 			colKey: this.props.column.getId(),
-			rowIndex: this.props.rowIndex
+			rowIndex: this.props.node.rowIndex
 		};
 		this.props.api.startEditingCell(startEditingParams);
 	};
@@ -206,12 +206,12 @@ export class CSGridRowSelectionRenderer
 	private focusOnLastColumn = () => {
 		const cols = this.props.columnApi.getAllDisplayedColumns();
 		const lastCol = cols[cols.length - 1];
-		this.props.api.setFocusedCell(this.props.rowIndex, lastCol);
+		this.props.api.setFocusedCell(this.props.node.rowIndex, lastCol);
 	};
 
 	private focusOnNextColumn = () => {
 		const nextCol = this.props.columnApi.getDisplayedColAfter(this.props.column);
-		this.props.api.setFocusedCell(this.props.rowIndex, nextCol);
+		this.props.api.setFocusedCell(this.props.node.rowIndex, nextCol);
 	};
 
 	private onColumnResized = () => {
