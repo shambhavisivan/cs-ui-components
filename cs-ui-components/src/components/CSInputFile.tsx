@@ -3,10 +3,12 @@ import classNames from 'classnames';
 import CSIcon from './CSIcon';
 
 export interface CSInputFileProps {
+	accept?: string;
 	className?: string;
 	disabled?: boolean;
 	error?: boolean;
 	errorMessage?: string;
+	id?: string;
 	label: string;
 }
 
@@ -42,6 +44,8 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 			<div className={fileClasses}>
 				<label className="cs-input-file-label">
 					<input
+						accept={this.props.accept}
+						id={this.props.id}
 						type="file"
 						ref={this.fileInput}
 						onChange={this.handleFileSubmit}

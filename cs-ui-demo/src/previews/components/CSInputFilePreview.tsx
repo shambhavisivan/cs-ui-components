@@ -41,6 +41,51 @@ class CSInputFilePreview extends React.Component {
 					]
 				},
 				{
+					propName: 'accept',
+					variations: [
+						{
+							variationName: ['file extension'],
+							quickLink: 'file extension',
+							string: '',
+							component:
+								<CSInputFile
+									label="Upload a file"
+									accept=".png"
+								/>
+						},
+						{
+							variationName: ['audio/*'],
+							quickLink: 'audio/*',
+							string: '',
+							component:
+								<CSInputFile
+									label="Upload an audio file"
+									accept="audio/*"
+								/>
+						},
+						{
+							variationName: ['video/*'],
+							quickLink: 'video/*',
+							string: '',
+							component:
+								<CSInputFile
+									label="Upload a video file"
+									accept="video/*"
+								/>
+						},
+						{
+							variationName: ['image/*'],
+							quickLink: 'image/*',
+							string: '',
+							component:
+								<CSInputFile
+									label="Upload an image file"
+									accept="image/*"
+								/>
+						}
+					]
+				},
+				{
 					propName: 'error',
 					variations: [
 						{
@@ -71,6 +116,19 @@ class CSInputFilePreview extends React.Component {
 					]
 				},
 				{
+					propName: 'id',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSInputFile
+									label="Upload directory"
+									id="fileInput"
+								/>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -87,6 +145,16 @@ class CSInputFilePreview extends React.Component {
 				}
 			],
 			properties: [
+				{
+					propertyName: 'accept',
+					description: 'Type of file to accept. Multiple values can be accepted separated by a comma',
+					options: [
+						'file extension e.g. ".jpg" ".mp3" ".doc"',
+						'audio/*',
+						'video/*',
+						'image/*'
+					]
+				},
 				{
 					propertyName: 'className',
 					description: 'For implementing custom class to component'
@@ -114,6 +182,10 @@ class CSInputFilePreview extends React.Component {
 				{
 					propertyName: 'label',
 					description: 'Manually change the label name of the file text'
+				},
+				{
+					propertyName: 'id',
+					description: 'File input id value'
 				}
 			]
 		};
