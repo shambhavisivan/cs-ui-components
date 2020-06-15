@@ -91,6 +91,19 @@ class CSTogglePreview extends React.Component {
 					]
 				},
 				{
+					propName: 'id',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSToggle
+									label="This is a label"
+									id="toggle"
+								/>
+						}
+					]
+				},
+				{
 					propName: 'tooltipPosition',
 					variations: [
 						{
@@ -225,6 +238,10 @@ class CSTogglePreview extends React.Component {
 				{
 					propertyName: 'helpText',
 					description: 'Helptext content'
+				},
+				{
+					propertyName: 'id',
+					description: 'Toggle id value'
 				},
 				{
 					propertyName: 'label',

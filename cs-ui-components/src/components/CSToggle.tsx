@@ -9,6 +9,7 @@ export interface CSToggleProps {
 	disabled?: boolean;
 	error?: boolean;
 	helpText?: string;
+	id?: string;
 	label: string;
 	labelPosition?: string;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => any;
@@ -80,6 +81,7 @@ class CSToggle extends React.Component<CSToggleProps, CSToggleState> {
 							disabled={this.props.disabled}
 							checked={this.state.checked}
 							required={this.props.required}
+							id={this.props.id}
 						/>
 						<span className="cs-toggle-faux"/>
 					</label>
