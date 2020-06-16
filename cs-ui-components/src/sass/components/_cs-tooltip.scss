@@ -16,8 +16,12 @@
 	z-index: $z-index-tooltip;
 	outline: 0;
 
-	.cs-tooltip-body:not(:first-child) {
-		margin-block-start: 0.25rem;
+	.cs-tooltip-body {
+		text-align: left;
+
+		&:not(:first-child) {
+			margin-block-start: 0.25rem;
+		}
 	}
 
 	&.cs-tooltip-info {
@@ -102,6 +106,7 @@
 			padding: 0.5rem 0.75rem;
 			border-radius: 0.25rem 0.25rem 0 0;
 			font-size: 1.0625rem;
+			text-align: left;
 		}
 
 		.cs-tooltip-body {
