@@ -227,9 +227,7 @@
 				--cs-button-bg: var(--cs-btn-custom-c, var(--cs-button-brand-bg));
 			}
 			&:focus::after {
-				@include css4 {
-					border: 1px solid cvar(--cs-button-brand-br);
-				}
+				border: 1px solid var(--cs-btn-custom-c, var(--cs-button-brand-br));
 			}
 			&:hover::before {
 				@include bgd(--cs-button-bg, 0.15, var(--cs-main-c));
