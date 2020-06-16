@@ -150,6 +150,24 @@ class CSIconPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'frame',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							variationText: ['origin="cs"', 'name="video"', 'color="pink"'],
+							string: '',
+							component:
+								<CSIcon
+									name="lead"
+									origin="cs"
+									frame
+									size="2rem"
+								/>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -181,6 +199,14 @@ class CSIconPreview extends React.Component {
 						'pink',
 						'#ff0000',
 						'rgba(100,100,255,1.00)'
+					]
+				},
+				{
+					propertyName: 'frame',
+					description: 'Logic for icon frame',
+					options: [
+						'false',
+						'true'
 					]
 				},
 				{

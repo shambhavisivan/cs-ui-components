@@ -7,6 +7,7 @@ import CsIconSvg from '../icons/cs-icons.svg';
 export interface CSIconProps {
 	className?: string;
 	color?: string;
+	frame?: boolean;
 	name: string;
 	origin?: string;
 	rotate?: string;
@@ -37,13 +38,29 @@ class CSIcon extends React.Component<CSIconProps> {
 			prefix = 'csi-';
 		}
 		return (
-			<svg
-				className={styleClass}
-				style={style}
-				aria-hidden="true"
-			>
-				<use href={`${origin}#${prefix}${this.props.name}`}/>
-			</svg>
+			<>
+				{this.props.frame ? (
+					<div
+						className="cs-icon-frame"
+						style={style}
+					>
+						<svg
+							className={styleClass}
+							aria-hidden="true"
+						>
+							<use href={`${origin}#${prefix}${this.props.name}`}/>
+						</svg>
+					</div>
+				) : (
+					<svg
+						className={styleClass}
+						style={style}
+						aria-hidden="true"
+					>
+						<use href={`${origin}#${prefix}${this.props.name}`}/>
+					</svg>
+				)}
+			</>
 		);
 	}
 }
