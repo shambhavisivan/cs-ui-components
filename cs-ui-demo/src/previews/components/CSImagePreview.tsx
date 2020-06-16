@@ -19,6 +19,7 @@ class CSImagePreview extends React.Component {
 					variations: [
 						{
 							variationName: ['logo'],
+							quickLink: 'logo',
 							string: '',
 							component:
 								<CSImage
@@ -29,6 +30,7 @@ class CSImagePreview extends React.Component {
 						},
 						{
 							variationName: ['logomark'],
+							quickLink: 'logomark',
 							string: '',
 							component:
 								<CSImage
@@ -43,7 +45,9 @@ class CSImagePreview extends React.Component {
 					propName: 'color',
 					variations: [
 						{
-							variationName: ['logo', 'white'],
+							variationName: ['white'],
+							variationText: 'type="logo"',
+							quickLink: 'white logo',
 							string: '',
 							component:
 								<div className="black-background">
@@ -55,7 +59,9 @@ class CSImagePreview extends React.Component {
 								</div>
 						},
 						{
-							variationName: ['logo', 'purple'],
+							variationName: ['purple'],
+							variationText: 'type="logo"',
+							quickLink: 'purple logo',
 							string: '',
 							component:
 								<CSImage
@@ -65,7 +71,9 @@ class CSImagePreview extends React.Component {
 								/>
 						},
 						{
-							variationName: ['logomark', 'white'],
+							variationName: ['white'],
+							variationText: 'type="logomark"',
+							quickLink: 'white logomark',
 							string: '',
 							component:
 							<div className="black-background">
@@ -77,7 +85,9 @@ class CSImagePreview extends React.Component {
 							</div>
 						},
 						{
-							variationName: ['logomark', 'black'],
+							variationName: ['black'],
+							variationText: 'type="logomark"',
+							quickLink: 'black logomark',
 							string: '',
 							component:
 								<CSImage
@@ -87,7 +97,9 @@ class CSImagePreview extends React.Component {
 								/>
 						},
 						{
-							variationName: ['logomark', 'purple'],
+							variationName: ['purple'],
+							variationText: 'type="logomark"',
+							quickLink: 'purple logomark',
 							string: '',
 							component:
 								<CSImage
@@ -102,7 +114,9 @@ class CSImagePreview extends React.Component {
 					propName: 'variant',
 					variations: [
 						{
-							variationName: ['logo', 'white', 'initial'],
+							variationName: ['initial'],
+							variationText: ['type="logo"', 'color="white"'],
+							quickLink: 'initial white logo',
 							string: '',
 							component:
 							<div className="black-background">
@@ -114,7 +128,9 @@ class CSImagePreview extends React.Component {
 							</div>
 						},
 						{
-							variationName: ['logo', 'purple', 'initial'],
+							variationName: ['initial'],
+							variationText: ['type="logo"', 'color="purple"'],
+							quickLink: 'initial purple logo',
 							string: '',
 							component:
 								<CSImage
@@ -124,7 +140,9 @@ class CSImagePreview extends React.Component {
 								/>
 						},
 						{
-							variationName: ['logomark', 'white', 'initial'],
+							variationName: ['initial'],
+							variationText: ['type="logomark"', 'color="white"'],
+							quickLink: 'initial white logomark',
 							string: '',
 							component:
 							<div className="black-background">
@@ -136,7 +154,9 @@ class CSImagePreview extends React.Component {
 							</div>
 						},
 						{
-							variationName: ['logomark', 'black', 'reversed'],
+							variationName: ['reversed'],
+							variationText: ['type="logomark"', 'color="black"'],
+							quickLink: 'reversed black logomark',
 							string: '',
 							component:
 								<CSImage
@@ -146,7 +166,9 @@ class CSImagePreview extends React.Component {
 								/>
 						},
 						{
-							variationName: ['logomark', 'purple', 'reversed'],
+							variationName: ['reversed'],
+							variationText: ['type="logomark"', 'color="purple"'],
+							quickLink: 'reversed purple logomark',
 							string: '',
 							component:
 								<CSImage

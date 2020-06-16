@@ -84,6 +84,22 @@ class CSDividerPreview extends React.Component {
 								/>
 						}
 					]
+				},
+				{
+					propName: 'size',
+					variations: [
+						{
+							variationName: ['100px'],
+							string: '',
+							component:
+								<CSButtonGroup>
+									<CSButton label="Button 1"/>
+									<CSButton label="Button 2"/>
+									<CSDivider variant="vertical" size="100px"/>
+									<CSButton label="Button 3"/>
+								</CSButtonGroup>
+						}
+					]
 				}
 			],
 
