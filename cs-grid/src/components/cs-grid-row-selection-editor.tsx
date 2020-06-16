@@ -106,12 +106,10 @@ export class CSGridRowSelectionEditor
 	}
 
 	render() {
-		const dropDownValues: Array<
-			React.DetailedHTMLProps<
-				React.ButtonHTMLAttributes<HTMLButtonElement>,
-				HTMLButtonElement
-			>
-		> = [];
+		const dropDownValues: Array<React.DetailedHTMLProps<
+			React.ButtonHTMLAttributes<HTMLButtonElement>,
+			HTMLButtonElement
+		>> = [];
 
 		const showIcons = this.state.actions.some(action => action.icon);
 

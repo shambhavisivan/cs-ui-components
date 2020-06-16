@@ -62,9 +62,10 @@ export class CSGridPicklistEditor
 	}
 
 	render() {
-		const dropDownValues: Array<
-			React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>
-		> = [];
+		const dropDownValues: Array<React.DetailedHTMLProps<
+			React.LiHTMLAttributes<HTMLLIElement>,
+			HTMLLIElement
+		>> = [];
 
 		this.state.options.forEach((option: PickListRow, id: string): void => {
 			const selectOption = () => this.optionSelected(id);

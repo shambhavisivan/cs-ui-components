@@ -15,6 +15,7 @@ import {
 	FilterModel,
 	OrderBy
 } from './interfaces/cs-grid-data-source-api';
+import { UserInfo } from './interfaces/user-info';
 import { CSGridDefaultComparator } from './utils/cs-grid-default-comparator';
 import { CSGridLookupComparator } from './utils/cs-grid-lookup-comparator';
 
@@ -41,8 +42,27 @@ export class App extends React.Component<object, AppState> {
 	constructor(props: object) {
 		super(props);
 
-		const userInfo = {
+		const userInfo: UserInfo = {
 			currencyCode: 'EUR',
+			dateLocale: {
+				daysInFirstWeek: 5,
+				daysOfWeek: ['Sun', 'Mon', 'Die', 'Mit', 'Don', 'Fre', 'Sam'],
+				firstDayOfWeek: 0,
+				monthsOfYear: [
+					'Januar',
+					'Februar',
+					'März',
+					'April',
+					'Mai',
+					'Juni',
+					'Juli',
+					'August',
+					'September',
+					'Oktober',
+					'November',
+					'Dezember'
+				]
+			},
 			userLocale: 'fr-FR'
 		};
 
@@ -511,7 +531,10 @@ export class App extends React.Component<object, AppState> {
 					cellValue: ['Harry', 'Sally']
 				},
 				exampleMultiSelectPicklistWithLabels: {
-					cellValue: [{ id: '2', label: 'Harry' }, { id: '3', label: 'Sally' }]
+					cellValue: [
+						{ id: '2', label: 'Harry' },
+						{ id: '3', label: 'Sally' }
+					]
 				},
 				examplePicklist: {
 					cellValue: 'Bob'
@@ -585,7 +608,10 @@ export class App extends React.Component<object, AppState> {
 					errorMessage: 'An error message'
 				},
 				exampleMultiSelectPicklistWithLabels: {
-					cellValue: [{ id: '5', label: 'John' }, { id: '3', label: 'Sally' }]
+					cellValue: [
+						{ id: '5', label: 'John' },
+						{ id: '3', label: 'Sally' }
+					]
 				},
 				examplePicklist: {
 					cellValue: 'Harry',
@@ -652,7 +678,10 @@ export class App extends React.Component<object, AppState> {
 					cellValue: ['Bob', 'Harry']
 				},
 				exampleMultiSelectPicklistWithLabels: {
-					cellValue: [{ id: '5', label: 'John' }, { id: '11', label: 'Fred' }]
+					cellValue: [
+						{ id: '5', label: 'John' },
+						{ id: '11', label: 'Fred' }
+					]
 				},
 				examplePicklist: {
 					cellValue: 'Sally'
@@ -727,7 +756,10 @@ export class App extends React.Component<object, AppState> {
 					errorMessage: ''
 				},
 				exampleMultiSelectPicklistWithLabels: {
-					cellValue: [{ id: '7', label: 'Sue' }, { id: '11', label: 'Fred' }],
+					cellValue: [
+						{ id: '7', label: 'Sue' },
+						{ id: '11', label: 'Fred' }
+					],
 					errorMessage: ''
 				},
 				examplePicklist: {

@@ -1,3 +1,4 @@
+import createDynamicLocale from '@cloudsense/react-datepicker-dynamiclocale';
 import moment from 'moment';
 // tslint:disable-next-line: no-submodule-imports
 import 'moment/min/locales';
@@ -11,6 +12,7 @@ import {
 	CSGridCellEditor,
 	CSGridCellEditorState
 } from '../interfaces/cs-grid-base-interfaces';
+import { DateLocale } from '../interfaces/user-info';
 
 /**
  * A cell editor that displays a date picker.
@@ -19,6 +21,25 @@ export class CSGridDateEditor
 	extends React.Component<CSGridCellEditorProps<string>, CSGridCellEditorState<string>>
 	implements CSGridCellEditor {
 	private dateValueFormat: string = 'YYYY-MM-DD';
+	private defaultDateLocale: DateLocale = {
+		daysInFirstWeek: 7,
+		daysOfWeek: ['Sun', 'Mon', 'Tue', ' Wed', 'Thu', 'Fri', 'Sat'],
+		firstDayOfWeek: 0,
+		monthsOfYear: [
+			'Jan',
+			'Feb',
+			'Mar',
+			'Apr',
+			'May',
+			'Jun',
+			'Jul',
+			'Aug',
+			'Sep',
+			'Oct',
+			'Nov',
+			'Dec'
+		]
+	};
 
 	constructor(props: CSGridCellEditorProps<string>) {
 		super(props);
@@ -87,8 +108,24 @@ export class CSGridDateEditor
 					dropdownMode='select'
 					inline={true}
 					value={formattedDate}
+					locale={this.createLocale()}
 				/>
 			</div>
+		);
+	}
+
+	private createLocale(): any {
+		const dates = this.props.userInfo.dateLocale || this.defaultDateLocale;
+
+		return createDynamicLocale(
+			{
+				short: dates.daysOfWeek
+			},
+			{
+				wide: dates.monthsOfYear
+			},
+			dates.firstDayOfWeek,
+			dates.daysInFirstWeek
 		);
 	}
 }

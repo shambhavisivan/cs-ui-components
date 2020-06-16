@@ -7,6 +7,7 @@ import { CSGridCellEditorProps } from '../../src/interfaces/cs-grid-cell-props';
 import { UserInfo } from '../../src/interfaces/user-info';
 
 describe('CS Grid Date Editor', () => {
+	const datePickerComponentName = 'o';
 	let exampleDate: CellData<string>;
 	let editable: boolean;
 	let userInfo: UserInfo;
@@ -58,7 +59,7 @@ describe('CS Grid Date Editor', () => {
 		cSGridCellEditorProps.value.cellValue = undefined;
 		const cellEditor = shallow(<CSGridDateEditor {...cSGridCellEditorProps} />);
 
-		const datePicker = cellEditor.find('DatePicker');
+		const datePicker = cellEditor.find(datePickerComponentName);
 
 		expect(datePicker.prop('value')).toBe('');
 		expect(datePicker.prop('selected')).toBe(null);
@@ -69,13 +70,43 @@ describe('CS Grid Date Editor', () => {
 		cSGridCellEditorProps.value.cellValue = testDate;
 		const cellEditor = shallow(<CSGridDateEditor {...cSGridCellEditorProps} />);
 
-		const datePicker = cellEditor.find('DatePicker');
+		const datePicker = cellEditor.find(datePickerComponentName);
 
 		expect(datePicker.prop('value')).toBe('07/01/2019'); // French format.
 		expect(datePicker.prop('selected')).toEqual(new Date(testDate));
 	});
 
 	test('Created a new date editor and checks the getValue function returns the expected value.', () => {
+		const cellEditor = shallow(<CSGridDateEditor {...cSGridCellEditorProps} />);
+		const instance = cellEditor.instance() as CSGridDateEditor;
+
+		expect(instance.getValue()).toEqual(cSGridCellEditorProps.value);
+	});
+
+	test('Created a new date editor with dateLocale set which should have no effect on the expected value.', () => {
+		cSGridCellEditorProps.userInfo = {
+			currencyCode: 'EUR',
+			dateLocale: {
+				daysInFirstWeek: 4,
+				daysOfWeek: ['Sun', 'Mon', 'Die', 'Mit', 'Don', 'Fre', 'Sam'],
+				firstDayOfWeek: 0,
+				monthsOfYear: [
+					'Januar',
+					'Februar',
+					'März',
+					'April',
+					'Mai',
+					'Juni',
+					'Juli',
+					'August',
+					'September',
+					'Oktober',
+					'November',
+					'Dezember'
+				]
+			},
+			userLocale: 'fr-FR'
+		};
 		const cellEditor = shallow(<CSGridDateEditor {...cSGridCellEditorProps} />);
 		const instance = cellEditor.instance() as CSGridDateEditor;
 
