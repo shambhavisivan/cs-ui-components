@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 
 import SldsIconSvg from '../icons/slds-icons.svg';
@@ -25,6 +25,11 @@ class CSIcon extends React.Component<CSIconProps> {
 			}
 		);
 
+		const style: CSSProperties = {
+			'--cs-icon-c': this.props.color,
+			'--cs-icon-size': this.props.size
+		};
+
 		let origin = SldsIconSvg;
 		let prefix = 'cssfi-';
 		if (this.props.origin === 'cs') {
@@ -34,10 +39,7 @@ class CSIcon extends React.Component<CSIconProps> {
 		return (
 			<svg
 				className={styleClass}
-				style={{
-					'--cs-icon-c': this.props.color,
-					'--cs-icon-size': this.props.size
-				}}
+				style={style}
 				aria-hidden="true"
 			>
 				<use href={`${origin}#${prefix}${this.props.name}`}/>

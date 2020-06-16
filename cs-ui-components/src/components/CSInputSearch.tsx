@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 import CSLabel from './CSLabel';
 import CSIcon from './CSIcon';
@@ -117,13 +117,18 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 				'cs-input-search-error': this.props.error
 			}
 		);
+
+		const style: CSSProperties = {
+			'--search-width': this.props.width
+		};
+
 		return (
 			<>
 				<div className={inputSearchWrapperClasses}>
 					{(this.props.label && !this.props.labelHidden) &&
 						<CSLabel for={this.props.id} label={this.props.label} helpText={this.props.helpText} tooltipPosition={this.props.tooltipPosition} required={this.props.required} />
 					}
-					<div className={inputSearchGroupClasses} style={{'--search-width': this.props.width}}>
+					<div className={inputSearchGroupClasses} style={style}>
 						<CSIcon name="search" className="cs-input-search-icon" />
 						<input className={inputSearchClasses}
 							autoFocus={this.props.autoFocus}

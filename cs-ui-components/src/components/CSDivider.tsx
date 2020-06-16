@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 
 export interface CSDividerProps {
@@ -21,10 +21,14 @@ class CSDivider extends React.Component<CSDividerProps> {
 			}
 		);
 
+		const style: CSSProperties = {
+			'--cs-divider-size': this.props.size
+		};
+
 		return (
 			<div
 				className={dividerClasses}
-				style={{'--cs-divider-size': this.props.size}}
+				style={style}
 			>
 				{(this.props.label && this.props.variant === 'horizontal') &&
 					<span className="cs-divider-label">{this.props.label}</span>

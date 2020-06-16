@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import CSIcon from './CSIcon';
 import classNames from 'classnames';
 
@@ -30,9 +30,14 @@ class CSToast extends React.Component<CSToastProps> {
 				[`${this.props.className}`]: this.props.className
 			}
 		);
+
+		const style: CSSProperties = {
+			minWidth: this.props.minWidth
+		};
+
 		return (
 			<div className="cs-toast-wrapper">
-				<div style={{minWidth: this.props.minWidth}} className={toastClasses} role="alert">
+				<div style={style} className={toastClasses} role="alert">
 					{this.props.iconVisibility ? (this.props.iconName ? (
 						<CSIcon name={this.props.iconName}/>
 					) : (

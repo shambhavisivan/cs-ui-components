@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 
 export interface CSModalBodyProps {
 	padding?: string;
@@ -7,8 +7,13 @@ export interface CSModalBodyProps {
 class CSModalBody extends React.Component<CSModalBodyProps> {
 
 	render() {
+
+		const style: CSSProperties = {
+			'--body-padding': this.props.padding
+		};
+
 		return (
-			<div className="cs-modal-body" style={{'--body-padding': this.props.padding}}>
+			<div className="cs-modal-body" style={style}>
 				{this.props.children}
 			</div>
 		);

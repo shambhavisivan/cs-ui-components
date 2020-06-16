@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 import CSLabel from './CSLabel';
 
@@ -50,6 +50,7 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 	}
 
 	render() {
+
 		const textareaClasses = classNames(
 			'cs-textarea', {
 				'cs-textarea-error': this.props.error,
@@ -57,6 +58,10 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 				[`cs-textarea-${this.props.borderType}`]: this.props.borderType
 			}
 		);
+
+		const style: CSSProperties = {
+			'--max-height': this.props.maxHeight
+		};
 
 		return (
 			<>
@@ -80,7 +85,7 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 						rows={this.props.rows}
 						aria-invalid={this.props.error}
 						value={fixControlledValue(this.state.value)}
-						style={{'--max-height': this.props.maxHeight}}
+						style={style}
 						onChange={this.handleOnChange}
 					/>
 					{(this.props.error && this.props.errorMessage) &&

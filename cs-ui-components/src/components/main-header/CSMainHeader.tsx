@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 
 export interface CSMainHeaderProps {
@@ -30,9 +30,13 @@ class CSMainHeader extends React.Component<CSMainHeaderProps> {
 			}
 		);
 
+		const style: CSSProperties = {
+			maxWidth: this.props.maxWidth
+		};
+
 		return (
 			<div className={mainHeaderGroupClasses}>
-				<div style={{maxWidth: this.props.maxWidth}} className="cs-main-header-inner">
+				<div style={style} className="cs-main-header-inner">
 					{this.props.children}
 				</div>
 			</div>
