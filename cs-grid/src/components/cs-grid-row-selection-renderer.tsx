@@ -215,7 +215,10 @@ export class CSGridRowSelectionRenderer
 	};
 
 	private onColumnResized = () => {
-		const maxNoOfInlineIcons = Math.min(this.props.noOfInlineIcons, this.state.actions.length);
+		const maxNoOfInlineIcons = Math.min(
+			this.props.noOfInlineIcons || 0,
+			this.state.actions.length
+		);
 
 		const noOfInlineIcons = noOfVisibleButtons(
 			this.props.node.id,

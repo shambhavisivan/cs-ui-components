@@ -58,10 +58,16 @@ export class CSGridRowSelectionEditor
 				`.cs-grid_app-wrapper .cs-grid_main .ag-react-container #icon-menu-${this.props.node.id}`
 			)[0];
 
-			if (popupWrapper && iconMenu) {
+			const grid = document.querySelectorAll(
+				`.cs-grid_app-wrapper .cs-grid_main .ag-root-wrapper`
+			)[0];
+
+			if (popupWrapper && iconMenu && grid) {
 				const currentTop = parseInt(popupWrapper.style.top.slice(0, -2), 10);
 				popupWrapper.style.top = `${this.props.node.rowHeight + currentTop}px`;
-				popupWrapper.style.left = `${iconMenu.getBoundingClientRect().left + 6}px`;
+				popupWrapper.style.left = `${iconMenu.getBoundingClientRect().left -
+					grid.getBoundingClientRect().left +
+					12}px`;
 			}
 
 			const rowSelectionList: HTMLElement = document.querySelectorAll<HTMLElement>(
