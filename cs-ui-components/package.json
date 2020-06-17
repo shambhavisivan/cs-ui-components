@@ -1,6 +1,6 @@
 {
 	"name": "@cloudsense/cs-ui-components",
-	"version": "1.0.0-alpha.120",
+	"version": "1.0.0-alpha.122",
 	"description": "",
 	"main": "./dist/index.js",
 	"types": "./dist/src/index.d.ts",

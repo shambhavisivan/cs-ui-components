@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import CSIcon from './CSIcon';
 import classNames from 'classnames';
 
@@ -101,12 +101,16 @@ class CSButton extends React.Component<CSButtonProps> {
 			}
 		);
 
+		const style: CSSProperties = {
+			'--cs-btn-custom-c': this.props.color
+		};
+
 		const componentProps = {
 			'className': btnGroupClasses,
 			'onClick': this.handleClick,
 			'disabled': this.props.disabled || this.props.loading,
 			'aria-label': this.props.label,
-			'style': {'--cs-btn-custom-c': this.props.color},
+			'style': style,
 			'title': this.props.iconDisplay === 'icon-only' ? this.props.label : undefined,
 			'href': this.props.link && this.props.link,
 			'target': (this.props.openInNewTab && this.props.link) ? '_blank' : undefined,
