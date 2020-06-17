@@ -63,25 +63,6 @@
 			}
 		}
 
-		&.cs-tab-active {
-			@include sc(--cs-tab-active-c);
-			cursor: default;
-
-			.cs-tab-wrapper::after {
-				height: 0.1875rem;
-				@include sbg(--cs-tab-active-br);
-			}
-			.cs-tab-wrapper:disabled::after {
-				@include sbg(--cs-tab-disabled-c);
-			}
-			.cs-tab-wrapper:hover::after {
-				@include sbg(--cs-tab-active-br);
-			}
-			.cs-icon {
-				@include sf(--cs-tab-active-br)
-			}
-		}
-
 		&-error {
 			.cs-icon {
 				@include sf(--cs-tab-error-fill);
@@ -112,6 +93,25 @@
 				&:hover::after, &:focus:after {
 					@include sbg(--cs-tab-success-br);
 				}
+			}
+		}
+
+		&.cs-tab-active {
+			@include sc(--cs-tab-active-c);
+			cursor: default;
+
+			.cs-tab-wrapper::after {
+				height: 0.1875rem;
+				@include sbg(--cs-tab-active-br);
+			}
+			.cs-tab-wrapper:disabled::after {
+				@include sbg(--cs-tab-disabled-c);
+			}
+			.cs-tab-wrapper:hover::after {
+				@include sbg(--cs-tab-active-br);
+			}
+			.cs-icon {
+				@include sf(--cs-tab-active-br)
 			}
 		}
 
