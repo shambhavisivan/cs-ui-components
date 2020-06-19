@@ -115,6 +115,18 @@ class CSInputNumberPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'hidden',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSInputNumber label="Enter value:" hidden/>
+						}
+					]
+				},
+				{
 					propName: 'readOnly',
 					variations: [
 						{
@@ -273,6 +285,14 @@ class CSInputNumberPreview extends React.Component {
 				{
 					propertyName: 'errorMessage',
 					description: 'Error message text'
+				},
+				{
+					propertyName: 'hidden',
+					description: 'Hidden state',
+					options: [
+						'false',
+						'true'
+					]
 				},
 				{
 					propertyName: 'helpText',

@@ -113,6 +113,18 @@ class CSInputTextPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'hidden',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSInputText label="Type here:" hidden/>
+						}
+					]
+				},
+				{
 					propName: 'readOnly',
 					variations: [
 						{
@@ -243,6 +255,14 @@ class CSInputTextPreview extends React.Component {
 				{
 					propertyName: 'helpText',
 					description: 'Input help text for tooltip display'
+				},
+				{
+					propertyName: 'hidden',
+					description: 'Hidden state',
+					options: [
+						'false',
+						'true'
+					]
 				},
 				{
 					propertyName: 'id',

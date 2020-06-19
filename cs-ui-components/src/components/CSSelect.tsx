@@ -11,6 +11,7 @@ export interface CSSelectProps {
 	error?: boolean;
 	errorMessage?: string;
 	helpText?: string;
+	hidden?: boolean;
 	id?: string;
 	label: string;
 	labelHidden?: boolean;
@@ -46,8 +47,16 @@ class CSSelect extends React.Component<CSSelectProps> {
 				[`${this.props.className}`]: this.props.className
 			}
 		);
+
+		const selectWrapperClasses = classNames(
+			'cs-select-wrapper',
+			{
+				'cs-element-hidden': this.props.hidden
+			}
+		);
+
 		return (
-			<div className="cs-select-wrapper">
+			<div className={selectWrapperClasses}>
 				{(this.props.label && !this.props.labelHidden) &&
 					<CSLabel for={this.props.id} label={this.props.label} helpText={this.props.helpText} tooltipPosition={this.props.tooltipPosition} required={this.props.required} />
 				}

@@ -10,6 +10,7 @@ export interface CSTextareaProps {
 	error?: boolean;
 	errorMessage?: string;
 	helpText?: string;
+	hidden?: boolean;
 	id?: string;
 	label: string;
 	maxHeight?: string;
@@ -63,10 +64,16 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 		const style: CSSProperties = {
 			'--max-height': this.props.maxHeight
 		};
+		const textareaWrapperClasses = classNames(
+			'cs-textarea-wrapper',
+			{
+				'cs-element-hidden': this.props.hidden
+			}
+		);
 
 		return (
 			<>
-				<div className="cs-textarea-wrapper">
+				<div className={textareaWrapperClasses}>
 					{this.props.label &&
 						<CSLabel
 							for={this.props.id}

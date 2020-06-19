@@ -110,7 +110,6 @@ class CSInputSearchPreview extends React.Component {
 						}
 					]
 				},
-
 				{
 					propName: 'disabled',
 					variations: [
@@ -120,6 +119,18 @@ class CSInputSearchPreview extends React.Component {
 							string: '',
 							component:
 									<CSInputSearch label="Type here:" disabled />
+						}
+					]
+				},
+				{
+					propName: 'hidden',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+									<CSInputSearch label="Type here:" hidden />
 						}
 					]
 				},
@@ -274,6 +285,14 @@ class CSInputSearchPreview extends React.Component {
 				{
 					propertyName: 'helpText',
 					description: 'Input help text for tooltip display'
+				},
+				{
+					propertyName: 'hidden',
+					description: 'Hidden state',
+					options: [
+						'false',
+						'true'
+					]
 				},
 				{
 					propertyName: 'iconPosition',

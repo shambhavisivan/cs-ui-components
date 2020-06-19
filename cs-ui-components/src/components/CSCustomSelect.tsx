@@ -11,6 +11,7 @@ export interface CSCustomSelectProps {
 	error?: boolean;
 	errorMessage?: string;
 	helpText?: string;
+	hidden?: boolean;
 	id?: string;
 	label: string;
 	optionsList?: Array<string>;
@@ -60,7 +61,8 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		const customSelectWrapperClasses = classNames(
 			'cs-custom-select',
 			{
-				[`${this.props.className}`]: this.props.className
+				[`${this.props.className}`]: this.props.className,
+				'cs-element-hidden': this.props.hidden
 			}
 		);
 

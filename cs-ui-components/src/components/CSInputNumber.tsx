@@ -10,6 +10,7 @@ export interface CSInputNumberProps {
 	error?: boolean;
 	errorMessage?: string;
 	helpText?: string;
+	hidden?: boolean;
 	hideSpinner?: boolean;
 	id?: string;
 	label: string;
@@ -64,6 +65,12 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 	}
 
 	render() {
+		const inputNumberWrapperClasses = classNames(
+			'cs-input-number-wrapper',
+			{
+				'cs-element-hidden': this.props.hidden
+			}
+		);
 		const inputNumberClasses = classNames(
 			'cs-input-number',
 			{
@@ -75,7 +82,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 		);
 		return (
 			<>
-				<div className="cs-input-number-wrapper">
+				<div className={inputNumberWrapperClasses}>
 					{this.props.label &&
 						<CSLabel
 							for={this.props.id}

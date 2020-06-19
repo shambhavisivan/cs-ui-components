@@ -103,6 +103,18 @@ class CSCustomSelectPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'hidden',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSCustomSelect label="Choose letter" hidden optionsList={['A', 'B', 'C']} />
+						}
+					]
+				},
+				{
 					propName: 'required',
 					variations: [
 						{
@@ -187,6 +199,14 @@ class CSCustomSelectPreview extends React.Component {
 				{
 					propertyName: 'helpText',
 					description: 'Select help text for tooltip display'
+				},
+				{
+					propertyName: 'hidden',
+					description: 'Hidden state',
+					options: [
+						'false',
+						'true'
+					]
 				},
 				{
 					propertyName: 'id',

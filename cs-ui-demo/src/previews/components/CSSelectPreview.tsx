@@ -157,6 +157,22 @@ class CSSelectPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'hidden',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSSelect label="Choose number" hidden>
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+								</CSSelect>
+						}
+					]
+				},
+				{
 					propName: 'required',
 					variations: [
 						{
@@ -285,6 +301,14 @@ class CSSelectPreview extends React.Component {
 				{
 					propertyName: 'helpText',
 					description: 'Select help text for tooltip display'
+				},
+				{
+					propertyName: 'hidden',
+					description: 'Hidden state',
+					options: [
+						'false',
+						'true'
+					]
 				},
 				{
 					propertyName: 'id',

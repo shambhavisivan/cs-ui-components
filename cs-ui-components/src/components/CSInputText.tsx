@@ -10,6 +10,7 @@ export interface CSInputTextProps {
 	error?: boolean;
 	errorMessage?: string;
 	helpText?: string;
+	hidden?: boolean;
 	id?: string;
 	label: string;
 	name?: string;
@@ -50,6 +51,13 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 	}
 
 	render() {
+
+		const inputTextWrapperClasses = classNames(
+			'cs-input-text-wrapper',
+			{
+				'cs-element-hidden': this.props.hidden
+			}
+		);
 		const inputTextClasses = classNames(
 			'cs-input-text',
 			{
@@ -60,7 +68,7 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 		);
 		return (
 			<>
-				<div className="cs-input-text-wrapper">
+				<div className={inputTextWrapperClasses}>
 					{this.props.label &&
 					<CSLabel for={this.props.id} label={this.props.label} helpText={this.props.helpText}
 						tooltipPosition={this.props.tooltipPosition} required={this.props.required}/>

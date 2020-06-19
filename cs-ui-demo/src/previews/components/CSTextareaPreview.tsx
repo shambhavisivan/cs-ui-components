@@ -128,6 +128,18 @@ class CSTextareaPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'hidden',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSTextarea label="Enter message:" hidden />
+						}
+					]
+				},
+				{
 					propName: 'readOnly',
 					variations: [
 						{
@@ -264,6 +276,14 @@ class CSTextareaPreview extends React.Component {
 				{
 					propertyName: 'helpText',
 					description: 'Textarea help text for tooltip display'
+				},
+				{
+					propertyName: 'hidden',
+					description: 'Hidden state',
+					options: [
+						'false',
+						'true'
+					]
 				},
 				{
 					propertyName: 'id',

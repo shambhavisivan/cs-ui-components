@@ -12,6 +12,7 @@ export interface CSInputSearchProps {
 	error?: boolean;
 	errorMessage?: string;
 	helpText?: string;
+	hidden?: boolean;
 	iconPosition?: string;
 	id?: string;
 	label: string;
@@ -98,7 +99,9 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 
 	render() {
 		const inputSearchWrapperClasses = classNames(
-			'cs-input-search-wrapper'
+			{
+				'cs-element-hidden': this.props.hidden
+			}
 		);
 
 		const inputSearchGroupClasses = classNames(
