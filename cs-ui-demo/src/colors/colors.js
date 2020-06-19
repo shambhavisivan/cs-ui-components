@@ -164,6 +164,14 @@ const colors = [
 		"colorValue": "#4bca81"
 	},
 	{
+		"colorName": "cs-mint",
+		"colorValue": "#3cdbc0"
+	},
+	{
+		"colorName": "cs-purple",
+		"colorValue": "#4a26ab"
+	},
+	{
 		"colorName": "cs-purple-medium-1",
 		"colorValue": "#7f8de1"
 	},
