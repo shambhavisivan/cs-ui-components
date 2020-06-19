@@ -18,6 +18,7 @@
 		padding-right: 0.75rem;
 		text-align: center;
 		@include sc(--cs-input-file-label-c);
+		@include sbg(--cs-input-file-label-bg);
 		@include css4 {
 			border: 1px solid cvar(--cs-input-file-label-br);
 		}

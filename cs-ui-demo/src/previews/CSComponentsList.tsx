@@ -88,7 +88,7 @@ class CSComponentsList extends React.Component {
 				component: CSImagePreview
 			},
 			{
-				name: 'InputFile',
+				name: 'Input File',
 				component: CSInputFilePreview
 			},
 			{
