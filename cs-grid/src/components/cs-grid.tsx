@@ -34,6 +34,8 @@ import {
 	FilterModel,
 	OrderBy
 } from '../interfaces/cs-grid-data-source-api';
+import { UserInfo } from '../interfaces/user-info';
+import { formatDate } from '../utils/cs-grid-date-formatting-helper';
 import { CSGridDefaultComparator } from '../utils/cs-grid-default-comparator';
 import { CSGridNumberComparator } from '../utils/cs-grid-number-comparator';
 import { getSeparator } from '../utils/cs-grid-number-formatting-helper';
@@ -146,6 +148,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 	private gridApi: GridApi;
 	private defaultPageSizes: Array<number> = [10, 20, 50, 100];
 	private rowSelectionColumns: Array<string> = [];
+	private dateColumns: Map<string, UserInfo> = new Map();
 
 	constructor(props: CSGridProps) {
 		super(props);
@@ -228,6 +231,17 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 								getQuickFilterText: (params: GetQuickFilterTextParams) => {
 									const cellValue = params.value.cellValue;
 									let result = cellValue;
+
+									const columnId = params.column.getColId();
+
+									if (this.dateColumns.has(columnId)) {
+										const value = formatDate(
+											cellValue,
+											this.dateColumns.get(columnId).userLocale
+										);
+
+										result += ' ' + value;
+									}
 
 									if (cellValue && typeof cellValue === 'object') {
 										const cellValues = Object.values(cellValue);
@@ -687,6 +701,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		const agGridColDefs: Array<AgGridColDef> = [];
 
 		const rowSelectionColumns: Array<string> = [];
+		const dateColumns: Map<string, UserInfo> = new Map();
 
 		for (const columnDef of columnDefs) {
 			let agGridColDef: AgGridColDef = {};
@@ -803,6 +818,8 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			if (columnDef.cellType === 'Date') {
 				agGridColDef.cellEditor = 'dateEditor';
 				agGridColDef.cellRenderer = 'dateRenderer';
+
+				dateColumns.set(columnDef.name, columnDef.userInfo);
 			}
 
 			if (columnDef.cellType === 'Text') {
@@ -916,6 +933,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		}
 
 		this.rowSelectionColumns = rowSelectionColumns;
+		this.dateColumns = dateColumns;
 
 		return agGridColDefs;
 	};

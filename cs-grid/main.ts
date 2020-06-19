@@ -42,3 +42,4 @@ export * from './src/utils/cs-grid-number-comparator';
 export * from './src/utils/cs-grid-on-key-press';
 export * from './src/utils/cs-grid-row-selection-helper';
 export * from './src/utils/cs-grid-number-formatting-helper';
+export * from './src/utils/cs-grid-date-formatting-helper';

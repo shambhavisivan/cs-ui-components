@@ -492,7 +492,7 @@ export class App extends React.Component<object, AppState> {
 					cellValue: 34000.67
 				},
 				exampleDate: {
-					cellValue: '1992/01/27'
+					cellValue: '1992-01-27'
 				},
 				exampleDecimal: {
 					cellValue: 35000.567567
@@ -564,7 +564,7 @@ export class App extends React.Component<object, AppState> {
 					errorMessage: 'An error message'
 				},
 				exampleDate: {
-					cellValue: '1992/01/28',
+					cellValue: '1992-01-28',
 					errorMessage: 'An error message'
 				},
 				exampleDecimal: {
@@ -642,7 +642,7 @@ export class App extends React.Component<object, AppState> {
 					cellValue: 73000.98
 				},
 				exampleDate: {
-					cellValue: '1992/01/29'
+					cellValue: '1992-01-29'
 				},
 				exampleDecimal: {
 					cellValue: 72000.67878
@@ -712,7 +712,7 @@ export class App extends React.Component<object, AppState> {
 					errorMessage: ''
 				},
 				exampleDate: {
-					cellValue: '1986/11/15',
+					cellValue: '1986-11-15',
 					errorMessage: ''
 				},
 				exampleDecimal: {

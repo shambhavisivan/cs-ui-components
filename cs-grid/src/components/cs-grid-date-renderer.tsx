@@ -3,6 +3,7 @@ import React from 'react';
 
 import { CellData } from '../interfaces/cs-grid-base-interfaces';
 import { CSGridCellRendererProps } from '../interfaces/cs-grid-cell-props';
+import { formatDate } from '../utils/cs-grid-date-formatting-helper';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
 import { CSGridCellError } from './cs-grid-cell-error';
 
@@ -10,8 +11,6 @@ import { CSGridCellError } from './cs-grid-cell-error';
  * A cell renderer for displaying a localised date.
  */
 export class CSGridDateRenderer extends CSGridBaseRenderer<string> {
-	private dateValueFormat: string = 'YYYY-MM-DD';
-
 	constructor(props: CSGridCellRendererProps<string>) {
 		super(props);
 		moment.locale(this.props.userInfo.userLocale);
@@ -19,25 +18,13 @@ export class CSGridDateRenderer extends CSGridBaseRenderer<string> {
 		this.state = { value: this.props.value, isLastColumn: this.isLastColumn() };
 	}
 
-	/**
-	 * Localizes the date held in the state.
-	 */
-	formattedDate = (): string => {
-		let date: Date = null;
-		if (this.state.value && this.state.value.cellValue) {
-			date = moment(this.state.value.cellValue, this.dateValueFormat).toDate();
-		}
-
-		return date ? moment(date).format(moment.localeData().longDateFormat('L')) : '';
-	};
-
 	render() {
 		if (!this.state.value) {
 			return null;
 		}
 
 		const readOnly = this.isReadOnly();
-		const value = this.formattedDate();
+		const value = formatDate(this.state.value.cellValue, this.props.userInfo.userLocale);
 
 		return (
 			<span

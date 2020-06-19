@@ -6,6 +6,7 @@ import { CSGridDateRenderer } from '../../src/components/cs-grid-date-renderer';
 import { CellData } from '../../src/interfaces/cs-grid-base-interfaces';
 import { CSGridCellRendererProps } from '../../src/interfaces/cs-grid-cell-props';
 import { UserInfo } from '../../src/interfaces/user-info';
+import { formatDate } from '../../src/utils/cs-grid-date-formatting-helper';
 
 describe('CS Grid Date Renderer', () => {
 	let exampleDate: CellData<string>;
@@ -65,7 +66,10 @@ describe('CS Grid Date Renderer', () => {
 			<CSGridDateRenderer {...cSGridCellRendererProps} readonly={readOnly} />
 		);
 		const instance = cellRenderer.instance() as CSGridDateRenderer;
-		const value = instance.formattedDate();
+		const value = formatDate(
+			instance.state.value.cellValue,
+			instance.props.userInfo.userLocale
+		);
 
 		expect(
 			cellRenderer.equals(
@@ -86,7 +90,10 @@ describe('CS Grid Date Renderer', () => {
 			<CSGridDateRenderer {...cSGridCellRendererProps} readonly={readOnly} />
 		);
 		const instance = cellRenderer.instance() as CSGridDateRenderer;
-		const value = instance.formattedDate();
+		const value = formatDate(
+			instance.state.value.cellValue,
+			instance.props.userInfo.userLocale
+		);
 
 		expect(
 			cellRenderer.equals(
@@ -112,7 +119,10 @@ describe('CS Grid Date Renderer', () => {
 
 		const cellRenderer = shallow(<CSGridDateRenderer {...cSGridCellRendererProps} />);
 		const instance = cellRenderer.instance() as CSGridDateRenderer;
-		const value = instance.formattedDate();
+		const value = formatDate(
+			instance.state.value.cellValue,
+			instance.props.userInfo.userLocale
+		);
 
 		expect(
 			cellRenderer.equals(
