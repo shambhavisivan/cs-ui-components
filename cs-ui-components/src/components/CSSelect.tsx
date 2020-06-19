@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import CSLabel from './CSLabel';
 import CSIcon from './CSIcon';
+import { CSTooltipPosition } from './CSTooltip';
 
 export interface CSSelectProps {
 	borderType?: string;
@@ -15,7 +16,7 @@ export interface CSSelectProps {
 	labelHidden?: boolean;
 	onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => any;
 	required?: boolean;
-	tooltipPosition?: string;
+	tooltipPosition?: CSTooltipPosition;
 }
 
 class CSSelect extends React.Component<CSSelectProps> {

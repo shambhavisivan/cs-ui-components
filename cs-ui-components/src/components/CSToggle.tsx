@@ -1,6 +1,7 @@
 import React from 'react';
 import CSLabel from './CSLabel';
 import classNames from 'classnames';
+import { CSTooltipPosition } from './CSTooltip';
 
 export interface CSToggleProps {
 	checked?: boolean;
@@ -14,7 +15,7 @@ export interface CSToggleProps {
 	labelPosition?: string;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => any;
 	required?: boolean;
-	tooltipPosition?: string;
+	tooltipPosition?: CSTooltipPosition;
 }
 
 export interface CSToggleState {

@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import CSLabel from './CSLabel';
+import { CSTooltipPosition } from './CSTooltip';
 
 export interface CSInputTextProps {
 	borderType?: string;
@@ -15,7 +16,7 @@ export interface CSInputTextProps {
 	placeholder?: string;
 	readOnly?: boolean;
 	required?: boolean;
-	tooltipPosition?: string;
+	tooltipPosition?: CSTooltipPosition;
 	value?: string;
 }
 

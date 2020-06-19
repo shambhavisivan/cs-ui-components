@@ -7,6 +7,7 @@ import CSTableHeader from './table/CSTableHeader';
 import CSTableBody from './table/CSTableBody';
 import CSTableRow from './table/CSTableRow';
 import CSTableCell from './table/CSTableCell';
+import { CSTooltipPosition } from './CSTooltip';
 
 export interface CSLookupFieldProps {
 	borderType?: string;
@@ -22,7 +23,7 @@ export interface CSLookupFieldProps {
 	label: string;
 	placeholder?: string;
 	required?: boolean;
-	tooltipPosition?: string;
+	tooltipPosition?: CSTooltipPosition;
 	value?: object | null;
 }
 

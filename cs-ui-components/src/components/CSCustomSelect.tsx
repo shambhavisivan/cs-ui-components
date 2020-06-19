@@ -2,6 +2,7 @@ import React from 'react';
 import CSIcon from './CSIcon';
 import CSLabel from './CSLabel';
 import classNames from 'classnames';
+import { CSTooltipPosition } from './CSTooltip';
 
 // tslint:disable-next-line: no-empty-interface
 export interface CSCustomSelectProps {
@@ -15,7 +16,7 @@ export interface CSCustomSelectProps {
 	label: string;
 	optionsList?: Array<string>;
 	required?: boolean;
-	tooltipPosition?: string;
+	tooltipPosition?: CSTooltipPosition;
 }
 
 export interface CSCustomSelectState {

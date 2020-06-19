@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import CSLabel from '../CSLabel';
+import { CSTooltipPosition } from '../CSTooltip';
 
 export interface CSRadioProps {
 	error?: boolean;
@@ -8,7 +9,7 @@ export interface CSRadioProps {
 	disabled?: boolean;
 	label: string;
 	helpText?: string;
-	tooltipPosition?: string;
+	tooltipPosition?: CSTooltipPosition;
 	variant?: string;
 	className?: string;
 }

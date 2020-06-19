@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import CSLabel from './CSLabel';
+import { CSTooltipPosition } from './CSTooltip';
 
 export interface CSCheckboxProps {
 	borderType?: string;
@@ -17,7 +18,7 @@ export interface CSCheckboxProps {
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => any;
 	onClick?: (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
 	required?: boolean;
-	tooltipPosition?: string;
+	tooltipPosition?: CSTooltipPosition;
 	variant?: string;
 }
 

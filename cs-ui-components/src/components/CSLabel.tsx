@@ -1,5 +1,5 @@
 import React from 'react';
-import CSTooltip from './CSTooltip';
+import CSTooltip, { CSTooltipPosition } from './CSTooltip';
 import classNames from 'classnames';
 
 export interface CSLabelProps {
@@ -8,7 +8,7 @@ export interface CSLabelProps {
 	helpText?: string;
 	label: string;
 	required?: boolean;
-	tooltipPosition?: string;
+	tooltipPosition?: CSTooltipPosition;
 }
 
 class CSLabel extends React.Component<CSLabelProps> {
@@ -33,7 +33,7 @@ class CSLabel extends React.Component<CSLabelProps> {
 					<div className="cs-tooltip-group">
 						{this.props.helpText ?
 						<CSTooltip
-							helpText={this.props.helpText}
+							content={this.props.helpText}
 							position={this.props.tooltipPosition}
 						/> : null}
 					</div>

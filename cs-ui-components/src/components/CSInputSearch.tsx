@@ -2,6 +2,7 @@ import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 import CSLabel from './CSLabel';
 import CSIcon from './CSIcon';
+import { CSTooltipPosition } from './CSTooltip';
 
 export interface CSInputSearchProps {
 	autoFocus?: boolean;
@@ -18,7 +19,7 @@ export interface CSInputSearchProps {
 	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	placeholder?: string;
 	required?: boolean;
-	tooltipPosition?: string;
+	tooltipPosition?: CSTooltipPosition;
 	value?: string;
 	width?: string;
 }
