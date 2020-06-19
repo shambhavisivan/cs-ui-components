@@ -9,7 +9,7 @@
         ]
     },
     "defaultSeverity": "warning",
-    "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"],
+    "extends": ["tslint:latest", "tslint-react", "tslint-plugin-prettier", "tslint-config-prettier"],
     "jsRules": {},
     "rules": {
         "jsx-wrap-multiline": false,
@@ -114,5 +114,6 @@
 		"member-access": [true, "no-public"],
 		"prefer-function-over-method": true
     },
-    "rulesDirectory": ["tslint-plugin-prettier"]
+	"rulesDirectory": ["tslint-plugin-prettier"],
+	"max-line-length": [true, 100]
 }

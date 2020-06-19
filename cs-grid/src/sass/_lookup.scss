@@ -71,5 +71,13 @@
 	.ag-root-wrapper .ag-root {
 		border: none;
 		border-top: 1px solid cvar(--csgrid-row-br);
+
+		.ag-row .ag-cell {
+			display: block;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			max-width: 100%;
+		}
 	}
 }

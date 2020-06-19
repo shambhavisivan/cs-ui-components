@@ -95,7 +95,7 @@ export class App extends React.Component<object, AppState> {
 				rowData: [
 					{
 						hidden: '11111111111',
-						text1: 'Bob the Great',
+						text1: 'Bob the Greatdfgdfgdfgdfgdfgdgdfgdfg / fgdf /d dfg / dfgdff /',
 						'text2.name.thirdPart': '1234567890987654321'
 					},
 					{
@@ -413,33 +413,33 @@ export class App extends React.Component<object, AppState> {
 						green: (
 							<span
 								style={{
-									display: 'block',
-									width: '1rem',
-									height: '1rem',
+									backgroundColor: '#5bb85c',
 									borderRadius: '50%',
-									backgroundColor: '#5bb85c'
+									display: 'block',
+									height: '1rem',
+									width: '1rem'
 								}}
 							/>
 						),
 						red: (
 							<span
 								style={{
-									display: 'block',
-									width: '1rem',
-									height: '1rem',
+									backgroundColor: '#c23934',
 									borderRadius: '50%',
-									backgroundColor: '#c23934'
+									display: 'block',
+									height: '1rem',
+									width: '1rem'
 								}}
 							/>
 						),
 						yellow: (
 							<span
 								style={{
-									display: 'block',
-									width: '1rem',
-									height: '1rem',
+									backgroundColor: '#ffb75d',
 									borderRadius: '50%',
-									backgroundColor: '#ffb75d'
+									display: 'block',
+									height: '1rem',
+									width: '1rem'
 								}}
 							/>
 						)

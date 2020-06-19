@@ -149,6 +149,7 @@ export class CSGridLookupEditor
 							// listening for events
 							onGridReady={this.onGridReady}
 							onSelectionChanged={this.onSelectionChanged}
+							suppressColumnVirtualisation={true}
 							columnDefs={columnDefs}
 							rowData={this.state.rowData}
 							// setting default column properties
@@ -228,6 +229,10 @@ export class CSGridLookupEditor
 
 				this.columnApi.autoSizeAllColumns();
 
+				const outerGrid = document
+					.querySelectorAll('.cs-grid_app-wrapper')[0]
+					.getBoundingClientRect();
+
 				let gridWidth = this.columnApi
 					.getColumnState()
 					.reduce(
@@ -236,22 +241,21 @@ export class CSGridLookupEditor
 						0
 					);
 				gridWidth += 4;
+				gridWidth = Math.min(outerGrid.width, gridWidth);
 
 				// Calculate width to fit contents.
 				const popupWrapper: HTMLElement = document.querySelectorAll<HTMLElement>(
 					'.cs-grid_app-wrapper .cs-grid_main .ag-popup-editor'
 				)[0];
 				popupWrapper.style.width = `${gridWidth}px`;
+				popupWrapper.style.maxWidth = `${gridWidth}px`;
 
 				const popupWrapperInfo = popupWrapper.getBoundingClientRect();
-				const outerGrid = document
-					.querySelectorAll('.cs-grid_app-wrapper')[0]
-					.getBoundingClientRect();
 
 				// Calculate position to fit within the outer grid.
 				const diff = popupWrapperInfo.left + gridWidth - outerGrid.width + 3;
 				if (diff > 0) {
-					popupWrapper.style.left = `${popupWrapperInfo.left - diff}px`;
+					popupWrapper.style.left = `${Math.max(popupWrapperInfo.left - diff, 0)}px`;
 				}
 
 				const visibleGridHeight = outerGrid.height - (popupWrapperInfo.top - outerGrid.top);
