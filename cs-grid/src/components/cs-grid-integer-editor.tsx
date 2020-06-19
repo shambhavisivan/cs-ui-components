@@ -1,5 +1,6 @@
 import { CSGridCellEditorProps, IntegerProps } from '../interfaces/cs-grid-cell-props';
 import { getIntl } from '../polyfill/cs-grid-intl';
+import { formatDecimalNumber } from '../utils/cs-grid-number-formatting-helper';
 import { CSGridNumberEditor } from './cs-grid-number-editor';
 
 /**
@@ -24,7 +25,7 @@ export class CSGridIntegerEditor extends CSGridNumberEditor<
 	 */
 	format(value: number | string): number | string {
 		if (this.props.stepperArrows) {
-			return this.formatDecimalNumber(value);
+			return formatDecimalNumber(value, this.decimalSeparator);
 		} else {
 			return super.format(value);
 		}

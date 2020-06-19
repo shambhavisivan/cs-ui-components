@@ -8,6 +8,7 @@ import {
 import { CSGridCellEditorProps } from '../interfaces/cs-grid-cell-props';
 import { NumberFormat } from '../interfaces/number-format.enum';
 import { getIntl } from '../polyfill/cs-grid-intl';
+import { formatDecimalNumber, getSeparator } from '../utils/cs-grid-number-formatting-helper';
 import { CSGridCellError } from './cs-grid-cell-error';
 
 /**
@@ -19,13 +20,13 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 	numberFormatType: NumberFormat = 'Decimal';
 	currencySymbol: string = '';
 	inputType = 'text';
+	decimalSeparator: string;
 	private inputRef: React.RefObject<HTMLInputElement>;
-	private decimalSeparator: string;
 
 	constructor(props: P) {
 		super(props);
 
-		this.decimalSeparator = this.getSeparator(this.props.userInfo.userLocale, 'decimal');
+		this.decimalSeparator = getSeparator(this.props.userInfo.userLocale, 'decimal');
 		this.inputRef = React.createRef();
 
 		this.state = {
@@ -66,8 +67,9 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 
 	isCancelAfterEnd = () => {
 		this.setState(prevState => {
-			let formattedValue: string | number = this.formatDecimalNumber(
-				this.state.value.cellValue
+			let formattedValue: string | number = formatDecimalNumber(
+				this.state.value.cellValue,
+				this.decimalSeparator
 			);
 			formattedValue = Number.isNaN(formattedValue)
 				? this.state.value.cellValue
@@ -106,7 +108,9 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 			return '';
 		}
 
-		let result: string = this.getNumberFormat().format(this.formatDecimalNumber(value));
+		let result: string = this.getNumberFormat().format(
+			formatDecimalNumber(value, this.decimalSeparator)
+		);
 
 		const currencySymbol = this.getCurrencySymbol(
 			this.props.userInfo.userLocale,
@@ -122,32 +126,6 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 	}
 
 	abstract getNumberFormat(): Intl.NumberFormat;
-
-	/**
-	 * Creates a number from a localised string.
-	 * @param num - a localised string or a number.
-	 */
-	formatDecimalNumber = (num: string | number): number => {
-		if (num === '') {
-			return undefined;
-		}
-
-		if (typeof num !== 'string') {
-			return num;
-		}
-
-		let replaced: string;
-		if (this.decimalSeparator === ',') {
-			// remove periods;
-			replaced = num.replace(/[\s.]+/g, '');
-			// replace remaining comma with a period;
-			replaced = replaced.replace(/\,/, '.');
-		} else {
-			replaced = num.replace(/[\s,]+/g, '');
-		}
-
-		return parseFloat(replaced);
-	};
 
 	private handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
 		const inputVal: string = event.target.value;
@@ -199,15 +177,6 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 		}
 
 		this.setState({ value });
-	};
-
-	private getSeparator = (locale: string, separatorType: string): string => {
-		const numberWithGroupAndDecimalSeparator = 1000.1;
-
-		return getIntl(locale)
-			.NumberFormat(locale)
-			.formatToParts(numberWithGroupAndDecimalSeparator)
-			.find(part => part.type === separatorType).value;
 	};
 
 	/**

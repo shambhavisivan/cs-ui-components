@@ -35,6 +35,8 @@ import {
 	OrderBy
 } from '../interfaces/cs-grid-data-source-api';
 import { CSGridDefaultComparator } from '../utils/cs-grid-default-comparator';
+import { CSGridNumberComparator } from '../utils/cs-grid-number-comparator';
+import { getSeparator } from '../utils/cs-grid-number-formatting-helper';
 import { SearchUtils } from '../utils/search-utils';
 import { CSGridBooleanRenderer } from './cs-grid-boolean-renderer';
 import { CSGridClientSidePagination } from './cs-grid-client-side-pagination';
@@ -781,6 +783,16 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			if (columnDef.cellType === 'Currency') {
 				agGridColDef.cellEditor = 'currencyEditor';
 				agGridColDef.cellRenderer = 'currencyRenderer';
+			}
+
+			if (['Integer', 'Decimal', 'Currency'].includes(columnDef.cellType)) {
+				const decimalSeparator = getSeparator(cellParams.userInfo.userLocale, 'decimal');
+				const defaultSettings = {
+					comparator: (a: CellData<string | number>, b: CellData<string | number>) =>
+						CSGridNumberComparator(a, b, decimalSeparator)
+				};
+
+				agGridColDef = { ...defaultSettings, ...agGridColDef };
 			}
 
 			if (columnDef.cellType === 'Boolean') {

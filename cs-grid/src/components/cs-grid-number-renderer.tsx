@@ -2,7 +2,7 @@ import React from 'react';
 
 import { CSGridCellRendererState } from '../interfaces/cs-grid-base-interfaces';
 import { CSGridCellRendererProps } from '../interfaces/cs-grid-cell-props';
-import { getIntl } from '../polyfill/cs-grid-intl';
+import { getSeparator } from '../utils/cs-grid-number-formatting-helper';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
 import { CSGridCellError } from './cs-grid-cell-error';
 
@@ -70,7 +70,7 @@ export abstract class CSGridNumberRenderer<
 
 		if (typeof value === 'string') {
 			let replaced: string;
-			const decimalSeparator = this.getSeparator(this.props.userInfo.userLocale, 'decimal');
+			const decimalSeparator = getSeparator(this.props.userInfo.userLocale, 'decimal');
 			if (decimalSeparator === ',') {
 				// remove periods;
 				replaced = value.replace(/[\s.]+/g, '');
@@ -92,14 +92,5 @@ export abstract class CSGridNumberRenderer<
 		}
 
 		return result;
-	};
-
-	private getSeparator = (locale: string, separatorType: string): string => {
-		const numberWithGroupAndDecimalSeparator = 1000.1;
-
-		return getIntl(locale)
-			.NumberFormat(locale)
-			.formatToParts(numberWithGroupAndDecimalSeparator)
-			.find(part => part.type === separatorType).value;
 	};
 }
