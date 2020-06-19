@@ -640,28 +640,28 @@ class CSButtonPreview extends React.Component {
 								<CSButton iconName="activity" label="default initial"/>
 							</span>
 							<span className="cs-default-brand">
-								<CSButton iconName="activity" btnStyle="brand" label="default initial"/>
+								<CSButton iconName="activity" btnStyle="brand" label="default brand"/>
 							</span>
 							<span className="cs-default-outline">
-								<CSButton iconName="activity" btnStyle="outline" label="default initial"/>
+								<CSButton iconName="activity" btnStyle="outline" label="default outline"/>
 							</span>
 							<span className="cs-error-initial">
 								<CSButton iconName="activity" btnType="error" label="error initial"/>
 							</span>
 							<span className="cs-error-brand">
-								<CSButton iconName="activity" btnType="error" btnStyle="brand" label="error initial"/>
+								<CSButton iconName="activity" btnType="error" btnStyle="brand" label="error brand"/>
 							</span>
 							<span className="cs-error-outline">
-								<CSButton iconName="activity" btnType="error" btnStyle="outline" label="error initial"/>
+								<CSButton iconName="activity" btnType="error" btnStyle="outline" label="error outline"/>
 							</span>
 							<span className="cs-success-initial">
 								<CSButton iconName="activity" btnType="success" label="success initial"/>
 							</span>
 							<span className="cs-success-brand">
-								<CSButton iconName="activity" btnType="success" btnStyle="brand" label="success initial"/>
+								<CSButton iconName="activity" btnType="success" btnStyle="brand" label="success brand"/>
 							</span>
 							<span className="cs-success-outline">
-								<CSButton iconName="activity" btnType="success" btnStyle="outline" label="success initial"/>
+								<CSButton iconName="activity" btnType="success" btnStyle="outline" label="success outline"/>
 							</span>
 							<span className="cs-transparent-initial">
 								<span className="cs-transparent-bg">
@@ -669,11 +669,11 @@ class CSButtonPreview extends React.Component {
 								</span>
 							</span>
 							<span className="cs-transparent-brand">
-								<CSButton iconName="activity" btnType="transparent" btnStyle="brand" label="transparent initial"/>
+								<CSButton iconName="activity" btnType="transparent" btnStyle="brand" label="transparent brand"/>
 							</span>
 							<span className="cs-transparent-outline">
 								<span className="cs-transparent-bg">
-									<CSButton iconName="activity" btnType="transparent" btnStyle="outline" label="transparent initial"/>
+									<CSButton iconName="activity" btnType="transparent" btnStyle="outline" label="transparent outline"/>
 								</span>
 							</span>
 						</div>
