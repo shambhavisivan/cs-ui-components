@@ -161,6 +161,29 @@ class CSSpinnerPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'overlay',
+					variations: [
+						{
+							variationName: ['light'],
+							quickLink: 'light',
+							string: '',
+							component:
+								<CSSpinner
+									overlay="light"
+								/>
+						},
+						{
+							variationName: ['dark'],
+							quickLink: 'dark',
+							string: '',
+							component:
+								<CSSpinner
+									overlay="dark"
+								/>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -207,6 +230,14 @@ class CSSpinnerPreview extends React.Component {
 				{
 					propertyName: 'label',
 					description: 'Spinner label'
+				},
+				{
+					propertyName: 'overlay',
+					description: 'Overlay color variant',
+					options: [
+						'light',
+						'dark'
+					]
 				},
 				{
 					propertyName: 'size',

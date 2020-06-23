@@ -231,7 +231,8 @@ $variables: (
 	--cs-main-header-info-c: $cs-white,
 	--cs-main-header-info-icon: $cs-white,
 
-	--cs-spinner-bg: rgba($cs-white, 0.75),
+	--cs-spinner-light-bg: rgba($cs-white, 0.75),
+	--cs-spinner-dark-bg: rgba($cs-gray-dark-1, 0.6),
 	--cs-spinner-neutral-bg: $cs-gray-medium-2,
 	--cs-spinner-brand-bg: $cs-blue-medium-5,
 	--cs-spinner-inverse-bg: $cs-white,

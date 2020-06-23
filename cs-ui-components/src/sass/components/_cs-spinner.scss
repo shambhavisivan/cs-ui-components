@@ -12,7 +12,14 @@
 	opacity: 1;
 	transition: opacity 0.2s ease, visibility 0s;
 	transition-delay: 0s, 0.3s;
-	@include sbg(--cs-spinner-bg);
+
+	&.cs-spinner-overlay-light {
+		@include sbg(--cs-spinner-light-bg);
+	}
+
+	&.cs-spinner-overlay-dark {
+		@include sbg(--cs-spinner-dark-bg);
+	}
 
 	.cs-spinner-wrapper-label {
 		display: flex;

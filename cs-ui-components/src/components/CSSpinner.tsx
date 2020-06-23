@@ -7,6 +7,7 @@ export interface CSSpinnerProps {
 	id?: string;
 	inline?: boolean;
 	label?: string;
+	overlay?: string;
 	size?: string;
 }
 
@@ -14,14 +15,16 @@ class CSSpinner extends React.Component<CSSpinnerProps> {
 
 	public static defaultProps = {
 		color: 'brand',
-		size: 'large'
+		size: 'large',
+		overlay: 'light'
 	};
 	render() {
 		const spinnerClasses = classNames(
 			'cs-spinner-wrapper',
 			{
 				[`${this.props.className}`]: this.props.className,
-				'cs-spinner-inline': this.props.inline
+				'cs-spinner-inline': this.props.inline,
+				[`cs-spinner-overlay-${this.props.overlay}`]: this.props.overlay
 			}
 		);
 		return (
