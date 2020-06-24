@@ -801,10 +801,9 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			}
 
 			if (['Integer', 'Decimal', 'Currency'].includes(columnDef.cellType)) {
-				const decimalSeparator = getSeparator(cellParams.userInfo.userLocale, 'decimal');
 				const defaultSettings = {
 					comparator: (a: CellData<string | number>, b: CellData<string | number>) =>
-						CSGridNumberComparator(a, b, decimalSeparator)
+						CSGridNumberComparator(a, b, cellParams.userInfo)
 				};
 
 				agGridColDef = { ...defaultSettings, ...agGridColDef };

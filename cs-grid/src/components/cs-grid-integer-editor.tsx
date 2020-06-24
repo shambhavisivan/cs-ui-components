@@ -25,7 +25,7 @@ export class CSGridIntegerEditor extends CSGridNumberEditor<
 	 */
 	format(value: number | string): number | string {
 		if (this.props.stepperArrows) {
-			return formatDecimalNumber(value, this.decimalSeparator);
+			return formatDecimalNumber(value, this.props.userInfo);
 		} else {
 			return super.format(value);
 		}

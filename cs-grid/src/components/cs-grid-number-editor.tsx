@@ -69,7 +69,7 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 		this.setState(prevState => {
 			let formattedValue: string | number = formatDecimalNumber(
 				this.state.value.cellValue,
-				this.decimalSeparator
+				this.props.userInfo
 			);
 			formattedValue = Number.isNaN(formattedValue)
 				? this.state.value.cellValue
@@ -109,7 +109,7 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 		}
 
 		let result: string = this.getNumberFormat().format(
-			formatDecimalNumber(value, this.decimalSeparator)
+			formatDecimalNumber(value, this.props.userInfo)
 		);
 
 		const currencySymbol = this.getCurrencySymbol(
