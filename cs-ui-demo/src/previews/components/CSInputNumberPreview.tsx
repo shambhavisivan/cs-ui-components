@@ -218,6 +218,17 @@ class CSInputNumberPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'name',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSInputNumber label="Enter value:" name="Input number" />
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -290,6 +301,10 @@ class CSInputNumberPreview extends React.Component {
 				{
 					propertyName: 'min',
 					description: 'Input number min value'
+				},
+				{
+					propertyName: 'name',
+					description: 'Input number name value'
 				},
 				{
 					propertyName: 'onChange',

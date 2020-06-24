@@ -14,6 +14,7 @@ export interface CSSelectProps {
 	id?: string;
 	label: string;
 	labelHidden?: boolean;
+	name?: string;
 	onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => any;
 	required?: boolean;
 	tooltipPosition?: CSTooltipPosition;
@@ -58,6 +59,7 @@ class CSSelect extends React.Component<CSSelectProps> {
 						disabled={this.props.disabled}
 						aria-invalid={this.props.error}
 						onChange={this.handleOnChange}
+						name={this.props.name}
 					>
 						{this.props.children}
 					</select>

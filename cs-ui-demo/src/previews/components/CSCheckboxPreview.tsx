@@ -238,6 +238,19 @@ class CSCheckboxPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'name',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSCheckbox
+									label="This is a label"
+									name="Checkbox"
+								/>
+						}
+					]
+				},
+				{
 					propName: 'onChange',
 					variations: [
 						{
@@ -325,6 +338,10 @@ class CSCheckboxPreview extends React.Component {
 						'false',
 						'true'
 					]
+				},
+				{
+					propertyName: 'name',
+					description: 'Checkbox name value'
 				},
 				{
 					propertyName: 'onChange',

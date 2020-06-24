@@ -12,6 +12,7 @@ export interface CSInputTextProps {
 	helpText?: string;
 	id?: string;
 	label: string;
+	name?: string;
 	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => any;
 	placeholder?: string;
 	readOnly?: boolean;
@@ -75,6 +76,7 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 						aria-invalid={this.props.error}
 						autoComplete="off"
 						onChange={this.handleOnChange}
+						name={this.props.name}
 					/>
 					{(this.props.error && this.props.errorMessage) &&
 						<span className="cs-input-error-msg">{this.props.errorMessage}</span>

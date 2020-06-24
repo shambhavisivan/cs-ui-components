@@ -15,6 +15,7 @@ export interface CSCheckboxProps {
 	id?: string;
 	label: string;
 	labelHidden?: boolean;
+	name?: string;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => any;
 	onClick?: (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
 	required?: boolean;
@@ -99,6 +100,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 								required={this.props.required}
 								id={this.props.id}
 								onClick={this.handleOnClick}
+								name={this.props.name}
 							/>
 						<span className={checkboxFauxClasses}/>
 					</label>

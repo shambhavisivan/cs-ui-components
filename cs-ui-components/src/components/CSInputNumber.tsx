@@ -15,6 +15,7 @@ export interface CSInputNumberProps {
 	label: string;
 	max?: any;
 	min?: any;
+	name?: string;
 	onChange?: (value: any) => void;
 	placeholder?: string;
 	readOnly?: boolean;
@@ -89,6 +90,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 						placeholder={this.props.placeholder}
 						min={this.props.min}
 						max={this.props.max}
+						name={this.props.name}
 						readOnly={this.props.readOnly}
 						required={this.props.required}
 						disabled={this.props.disabled}

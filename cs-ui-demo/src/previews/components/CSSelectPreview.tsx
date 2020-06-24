@@ -218,6 +218,20 @@ class CSSelectPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'name',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSSelect label="Choose value:" name="Select field">
+									<option>10</option>
+									<option>20</option>
+									<option>30</option>
+								</CSSelect>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -287,6 +301,10 @@ class CSSelectPreview extends React.Component {
 						'false',
 						'true'
 					]
+				},
+				{
+					propertyName: 'name',
+					description: 'Select name value'
 				},
 				{
 					propertyName: 'onChange',

@@ -183,6 +183,17 @@ class CSInputTextPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'name',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSInputText label="Enter value:" name="Input text" />
+						}
+					]
+				},
+				{
 					propName: 'className',
 					customText: '',
 					variations: [
@@ -240,6 +251,10 @@ class CSInputTextPreview extends React.Component {
 				{
 					propertyName: 'label',
 					description: 'Input label text to display'
+				},
+				{
+					propertyName: 'name',
+					description: 'Input name value'
 				},
 				{
 					propertyName: 'onChange',
