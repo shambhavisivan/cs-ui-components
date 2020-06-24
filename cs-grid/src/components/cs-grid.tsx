@@ -684,6 +684,25 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		return cellValue.toString().toLowerCase();
 	};
 
+	/**
+	 * Returns localised dates as strings for column filtering.
+	 * @param value - either the search term as a string or a cell's data.
+	 * @param userInfo - the user info for localisation.
+	 */
+	private formatDateForFiltering = (value: string | CellData<string>, userInfo: UserInfo) => {
+		if (typeof value === 'string' || value instanceof String) {
+			return value;
+		}
+
+		const result = value.cellValue;
+
+		if (!result) {
+			return '';
+		}
+
+		return formatDate(result, userInfo.userLocale);
+	};
+
 	private onColumnStateChange = (event: AgGridEvent): void => {
 		if (this.props.onColumnStateChange) {
 			const columnState = JSON.stringify(event.columnApi.getColumnState());
@@ -819,6 +838,15 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				agGridColDef.cellRenderer = 'dateRenderer';
 
 				dateColumns.set(columnDef.name, columnDef.userInfo);
+
+				const defaultSettings = {
+					filterParams: {
+						textFormatter: (value: string | CellData<string>) =>
+							this.formatDateForFiltering(value, cellParams.userInfo)
+					}
+				};
+
+				agGridColDef = { ...defaultSettings, ...agGridColDef };
 			}
 
 			if (columnDef.cellType === 'Text') {
