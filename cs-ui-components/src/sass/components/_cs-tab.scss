@@ -103,7 +103,6 @@
 		&.cs-tab-active {
 			@include sc(--cs-tab-active-c);
 			cursor: default;
-
 			.cs-tab-wrapper::after {
 				height: 0.1875rem;
 				@include sbg(--cs-tab-active-br);
@@ -127,6 +126,11 @@
 
 		&-normal {
 			height: 2.5rem;
+			&.cs-tab-active {
+				.cs-tab-wrapper {
+					font-weight: $font-weight-bold;
+				}
+			}
 		}
 
 		&-large {
