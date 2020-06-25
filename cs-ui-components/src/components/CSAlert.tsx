@@ -7,7 +7,7 @@ export interface CSAlertProps {
 	closeButton?: boolean;
 	iconName?: string;
 	iconVisibility?: boolean;
-	onClose?: undefined;
+	onClose?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 	styleType?: string;
 	text?: string | Array<string>;
 	textAlign?: string;
