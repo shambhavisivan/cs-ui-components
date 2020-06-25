@@ -7,7 +7,8 @@
 	display: none;
 	flex-direction: column;
 	font-size: 0.75rem;
-	width: max-content;
+	width: var(--cs-tooltip-width, max-content);
+	height: var(--cs-tooltip-height, auto);
 	max-width: 20rem;
 	min-height: 2rem;
 	padding: 0.5rem 0.75rem;
@@ -62,9 +63,9 @@
 		position: absolute;
 		width: 0;
 		height: 0;
-		border-bottom: 1rem solid;
+		border-bottom: 0.75rem solid;
 		@include css4 {
-			border-right: 1rem solid cvar(--cs-transparent);
+			border-right: 0.75rem solid cvar(--cs-transparent);
 		}
 	}
 
@@ -72,8 +73,8 @@
 		&::before {
 			margin-bottom: 0;
 			margin-right: 0;
-			left: 1rem;
-			top: -0.5rem;
+			left: 1.125rem;
+			top: -0.3125rem;
 			transform: rotate(135deg);
 		}
 	}
@@ -81,8 +82,8 @@
 		&::before {
 			margin-bottom: 0;
 			margin-right: 0;
-			top: -0.5rem;
-			right: 1rem;
+			top: -0.3125rem;
+			right: 1.125rem;
 			transform: rotate(135deg);
 		}
 	}
@@ -90,8 +91,8 @@
 		&::before {
 			margin-bottom: 0;
 			margin-right: 0;
-			left: 1rem;
-			top: calc(100% - 0.5rem);
+			left: 1.125rem;
+			top: calc(100% - 0.4375rem);
 			transform: rotate(-45deg);
 		}
 	}
@@ -99,8 +100,8 @@
 		&::before {
 			margin-bottom: 0;
 			margin-right: 0;
-			right: 1rem;
-			top: calc(100% - 0.5rem);
+			right: 1.125rem;
+			top: calc(100% - 0.4375rem);
 			transform: rotate(-45deg);
 		}
 	}
@@ -120,9 +121,11 @@
 			padding: 0.75rem;
 			border-radius: 0;
 			font-size: 0.8125rem;
-			box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .16);
 			word-wrap: break-word;
 			margin-block-start: 0;
+			@include css4 {
+				box-shadow: 0 2px 3px 0 cvar(--cs-shadow-medium);
+			}
 
 			&:last-child {
 				border-radius: 0 0 0.25rem 0.25rem;
@@ -133,12 +136,25 @@
 			}
 		}
 
-		&::before {
-			@include sbg(--cs-tooltip-body-bg);
+		&.cs-tooltip-top-left:before,
+		&.cs-tooltip-top-right:before {
+			border-style: solid;
+			border-width: 8px 8px 0 8px;
+			top: 100%;
+			transform: rotate(0deg);
+			@include sbg(--cs-transparent);
 			@include css4 {
-				box-shadow: 0 2px 4px -4px cvar(--cs-shadow-light);
-				border-bottom-color: cvar(--cs-tooltip-body-bg);
+				border-color: cvar(--cs-tooltip-body-bg) cvar(--cs-transparent) cvar(--cs-transparent) cvar(--cs-transparent);
+				filter: drop-shadow(0px 2px 1px cvar(--cs-shadow-medium));
 			}
+		}
+
+		&.cs-tooltip-top-left:before {
+			right: 1rem;
+		}
+
+		&.cs-tooltip-top-right:before {
+			left: 1rem;
 		}
 
 		&.cs-tooltip-info {

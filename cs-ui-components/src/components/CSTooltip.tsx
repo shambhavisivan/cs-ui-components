@@ -66,8 +66,8 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 
 		const tooltipStyle = {
 			...this.state.computedTooltipStyle,
-			height: this.props.height,
-			width: this.props.width
+			'--cs-tooltip-height': this.props.height,
+			'--cs-tooltip-width': this.props.width
 		};
 
 		return (
