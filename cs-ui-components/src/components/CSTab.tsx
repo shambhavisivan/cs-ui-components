@@ -9,7 +9,7 @@ export interface CSTabProps {
 	parentVariant?: string;
 	status?: string;
 	tabIcon?: string | undefined;
-	title: string;
+	title: string | undefined;
 }
 
 class CSTab extends React.Component<CSTabProps> {
