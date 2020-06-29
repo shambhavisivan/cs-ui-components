@@ -52,6 +52,8 @@ import CSTooltip from './components/CSTooltip';
 
 import './sass/style.scss';
 
+import renderCSToast from './api/CSToastRenderAPI';
+
 export {
 	CSAlert,
 	CSButton,
@@ -103,5 +105,6 @@ export {
 	CSTextarea,
 	CSToast,
 	CSToggle,
-	CSTooltip
+	CSTooltip,
+	renderCSToast
 };

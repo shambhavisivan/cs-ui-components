@@ -76,6 +76,6 @@ module.exports = {
 	},
 	externals: {
 		"react": "react",
-		"react-dom": "ReactDOM"
+		"react-dom": "react-dom"
 	}
 };

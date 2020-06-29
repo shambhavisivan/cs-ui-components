@@ -9,7 +9,7 @@ export interface CSToastProps {
 	iconName?: string;
 	iconVisibility?: boolean;
 	minWidth?: string;
-	onClose?: undefined;
+	onClose?: () => void;
 	text?: string;
 	textAlign?: string;
 	variant: string;

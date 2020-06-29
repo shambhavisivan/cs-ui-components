@@ -384,6 +384,13 @@ body,
 
 					&.toast-preview {
 
+						.cs-toast-buttons-wrapper {
+							display: flex;
+							justify-content: space-evenly;
+							align-items: center;
+							height: 100%;
+						}
+
 						.custom-class {
 							background-color: pink;
 						}

@@ -9,6 +9,7 @@
 		border-radius: 0.25rem;
 		padding: 0.75rem 3rem 0.75rem 1.5rem;
 		min-width: 30rem;
+		font-family: $font-primary;
 
 		> .cs-icon {
 			width: 1.5rem;
@@ -18,7 +19,10 @@
 
 		&.cs-toast-info {
 			@include sbg(--cs-toast-info-bg);
-			@include sc(--cs-toast-info-c);
+
+			.cs-toast-text {
+				@include sc(--cs-toast-info-c);
+			}
 
 			.cs-toast-link {
 				@include sc(--cs-toast-info-c);
@@ -31,7 +35,10 @@
 
 		&.cs-toast-success {
 			@include sbg(--cs-toast-success-bg);
-			@include sc(--cs-toast-success-c);
+
+			.cs-toast-text {
+				@include sc(--cs-toast-success-c);
+			}
 
 			.cs-toast-link {
 				@include sc(--cs-toast-success-c);
@@ -44,7 +51,10 @@
 
 		&.cs-toast-warning {
 			@include sbg(--cs-toast-warning-bg);
-			@include sc(--cs-toast-warning-c);
+
+			.cs-toast-text {
+				@include sc(--cs-toast-warning-c);
+			}
 
 			.cs-toast-link {
 				@include sc(--cs-toast-warning-c);
@@ -57,7 +67,10 @@
 
 		&.cs-toast-error {
 			@include sbg(--cs-toast-error-bg);
-			@include sc(--cs-toast-error-c);
+
+			.cs-toast-text {
+				@include sc(--cs-toast-error-c);
+			}
 
 			.cs-toast-link {
 				@include sc(--cs-toast-error-c);
@@ -155,4 +168,28 @@
 			}
 		}
 	}
+}
+
+/*TOAST NOTIFICATION RENDER API*/
+.cs-toast-notification {
+	display: flex;
+	position: fixed;
+	z-index: $z-index-toast;
+
+	&-fade-leave {
+		animation-name: notificationFadeOut;
+		animation-duration: 0.2s;
+	}
+}
+
+.cs-toast-notice-bottom-right,
+.cs-toast-notice-top-right {
+	animation-name: slideNotificationToLeft;
+	animation-duration: 0.2s;
+}
+
+.cs-toast-notice-bottom-left,
+.cs-toast-notice-top-left {
+	animation-name: slideNotificationToRight;
+	animation-duration: 0.2s;
 }

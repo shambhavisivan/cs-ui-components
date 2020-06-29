@@ -43,6 +43,7 @@
 		"webpack-cli": "^3.3.10"
 	},
 	"dependencies": {
-		"@types/classnames": "^2.2.9"
+		"@types/classnames": "^2.2.9",
+		"rc-notification": "^4.4.0"
 	}
 }

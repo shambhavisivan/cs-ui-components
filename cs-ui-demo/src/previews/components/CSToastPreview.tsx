@@ -5,7 +5,7 @@ import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSToast} from '@cloudsense/cs-ui-components';
+import { CSToast, renderCSToast, CSButton } from '@cloudsense/cs-ui-components';
 
 class CSToastPreview extends React.Component {
 	getDoc() {
@@ -274,6 +274,22 @@ class CSToastPreview extends React.Component {
 								>
 									<span>This custom text includes <b>bold</b> and <i>italic</i> text</span>
 								</CSToast>
+						}
+					]
+				},
+				{
+					propName: 'renderCSToast()',
+					customText: 'renderCSToast({...CSToastProps}, position: CSToastPosition, duration: number(in seconds))',
+					variations: [
+						{
+							string: '',
+							component:
+								<div className="cs-toast-buttons-wrapper">
+									<CSButton label="top-right" onClick={() => renderCSToast({variant: 'success', closeButton: true, text: 'Top right toast'}, 'top-right', 3)} />
+									<CSButton label="top-left" onClick={() => renderCSToast({variant: 'warning', closeButton: true, text: 'Top left toast'}, 'top-left', 4)} />
+									<CSButton label="bottom-right" onClick={() => renderCSToast({variant: 'info', closeButton: true, text: 'Bottom right toast'}, 'bottom-right', 5)} />
+									<CSButton label="bottom-left" onClick={() => renderCSToast({variant: 'error', closeButton: true, text: 'Bottom left toast that won\'t close (duration = null)'}, 'bottom-left', null)} />
+								</div>
 						}
 					]
 				}

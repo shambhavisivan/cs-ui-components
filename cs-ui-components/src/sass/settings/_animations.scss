@@ -6,3 +6,32 @@
 		transform:rotate(360deg);
 	}
 }
+
+@keyframes slideNotificationToLeft {
+	from {
+		left: 100%;
+		opacity: 0;
+	}
+	to {
+		left: 0;
+		opacity: 1;
+	}
+}
+@keyframes slideNotificationToRight {
+	from {
+		left: -100%;
+		opacity: 0;
+	}
+	to {
+		left: 0;
+		opacity: 1;
+	}
+}
+@keyframes notificationFadeOut {
+	from {
+	  opacity: 1;
+	}
+	to {
+	  opacity: 0;
+	}
+}
