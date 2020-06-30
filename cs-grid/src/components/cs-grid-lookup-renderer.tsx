@@ -1,6 +1,11 @@
 import React from 'react';
 
 import { CSGridCellRendererProps, LookupProps } from '../interfaces/cs-grid-cell-props';
+import {
+	formatRows,
+	replaceAll,
+	replacementString
+} from '../utils/cs-grid-lookup-formatting-helper';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
 import { CSGridCellError } from './cs-grid-cell-error';
 
@@ -48,8 +53,10 @@ export class CSGridLookupRenderer extends CSGridBaseRenderer<
 		}
 		if (Array.isArray(value)) {
 			if (value.length > 0) {
+				const rows = formatRows(value, replacementString, '.');
+
 				let displayValue = '';
-				for (const row of value) {
+				for (const row of rows) {
 					displayValue += `${row[this.props.displayColumn]}, `;
 				}
 
@@ -59,6 +66,8 @@ export class CSGridLookupRenderer extends CSGridBaseRenderer<
 			}
 		}
 
-		return value[this.props.displayColumn];
+		const formattedRow = replaceAll(value, replacementString, '.');
+
+		return formattedRow[this.props.displayColumn];
 	};
 }
