@@ -65,6 +65,14 @@ class CSChipPreview extends React.Component {
 							string: '',
 							component:
 								<CSChip text="transparent" variant="transparent" />
+						},
+						{
+							variationName: ['dark'],
+							quickLink: 'dark',
+							variationText: ['variantStyle="fill"'],
+							string: '',
+							component:
+								<CSChip text="dark" variant="dark" />
 						}
 					]
 				},
@@ -90,7 +98,7 @@ class CSChipPreview extends React.Component {
 						{
 							variationName: ['border'],
 							quickLink: 'border neutral',
-							variationText: ['variant="brand"'],
+							variationText: ['variant="neutral"'],
 							string: '',
 							component:
 								<CSChip text="neutral" variant="neutral" variantStyle="border" />
@@ -118,6 +126,14 @@ class CSChipPreview extends React.Component {
 							string: '',
 							component:
 								<CSChip text="transparent" variant="transparent" variantStyle="border" />
+						},
+						{
+							variationName: ['border'],
+							quickLink: 'border dark',
+							variationText: ['variant="dark"'],
+							string: '',
+							component:
+								<CSChip text="dark" variant="dark" variantStyle="border" />
 						}
 					]
 				},
@@ -166,7 +182,8 @@ class CSChipPreview extends React.Component {
 						'neutral',
 						'error',
 						'warning',
-						'transparent'
+						'transparent',
+						'dark'
 					]
 				},
 				{
