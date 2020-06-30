@@ -69,37 +69,6 @@ class CSToastPreview extends React.Component {
 					]
 				},
 				{
-					propName: 'textAlign',
-					variations: [
-						{
-							variationName: ['left'],
-							quickLink: 'left',
-							variationText: ['variant="info"', 'closeButton="true"'],
-							string: '',
-							component:
-								<CSToast
-									variant="info"
-									textAlign="left"
-									closeButton
-									text="This is an example toast with text aligned left"
-								/>
-						},
-						{
-							variationName: ['center'],
-							quickLink: 'center',
-							variationText: ['variant="info"', 'closeButton="true"'],
-							string: '',
-							component:
-								<CSToast
-									variant="info"
-									textAlign="center"
-									closeButton
-									text="This is an example toast with text aligned center"
-								/>
-						}
-					]
-				},
-				{
 					propName: 'minWidth',
 					variations: [
 						{
@@ -357,14 +326,6 @@ class CSToastPreview extends React.Component {
 				{
 					propertyName: 'text',
 					description: 'Text content for main toast message'
-				},
-				{
-					propertyName: 'textAlign',
-					description: 'Alignment of the text inside the toast',
-					options: [
-						'left',
-						'centre'
-					]
 				},
 				{
 					propertyName: 'variant',

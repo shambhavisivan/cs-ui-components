@@ -81,17 +81,11 @@
 			}
 		}
 
-		&.cs-toast-left {
-			text-align: left;
-		}
-
-		&.cs-toast-center {
-			text-align: center;
-		}
-
 		.cs-toast-text {
 			flex: 1;
 			padding-top: 0.125rem;
+			display: flex;
+			flex-direction: column;
 
 			.cs-toast-detail {
 				margin: 0;
@@ -109,20 +103,18 @@
 		}
 
 		.cs-toast-close {
-			display: flex;
-			justify-content: center;
-			align-items: center;
 			position: absolute;
 			width: 1.625rem;
 			height: 1.625rem;
-			top: 0.6875rem;
 			right: 0.75rem;
 			padding: 0;
 			border-radius: 0.25rem;
 			cursor: pointer;
 			-webkit-appearance: none;
 			background: transparent;
-			border: none;
+			@include css4 {
+				border: 1px solid cvar(--cs-transparent);
+			}
 
 			svg {
 				width: 1.5rem;

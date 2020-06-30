@@ -12,7 +12,6 @@ export interface CSToastProps {
 	minWidth?: string;
 	onClose?: () => void;
 	text?: string;
-	textAlign?: string;
 	variant: string;
 }
 
@@ -26,7 +25,6 @@ class CSToast extends React.Component<CSToastProps> {
 		const toastClasses = classNames(
 			'cs-toast',
 			[`cs-toast-${this.props.variant}`],
-			[`cs-toast-${this.props.textAlign}`],
 			{
 				[`${this.props.className}`]: this.props.className
 			}
