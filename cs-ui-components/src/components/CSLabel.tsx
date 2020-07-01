@@ -6,6 +6,7 @@ export interface CSLabelProps {
 	className?: string;
 	for?: string;
 	helpText?: string;
+	id?: string;
 	label: string;
 	required?: boolean;
 	tooltipPosition?: CSTooltipPosition;
@@ -24,7 +25,11 @@ class CSLabel extends React.Component<CSLabelProps> {
 
 		return (
 			<>
-				<label htmlFor={this.props.for} className={labelClasses}>
+				<label
+					htmlFor={this.props.for}
+					className={labelClasses}
+					id={this.props.id}
+				>
 					<span className={this.props.required ? 'cs-label-required-true' : 'cs-label-required-false'}
 						aria-hidden="true">*</span>
 					<span className="cs-label">

@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 export interface CSMainHeaderProps {
 	color?: string;
+	id?: string;
 	maxWidth?: string;
 	sticky?: boolean;
 	className?: string;
@@ -35,7 +36,10 @@ class CSMainHeader extends React.Component<CSMainHeaderProps> {
 		};
 
 		return (
-			<div className={mainHeaderGroupClasses}>
+			<div
+				className={mainHeaderGroupClasses}
+				id={this.props.id}
+			>
 				<div style={style} className="cs-main-header-inner">
 					{this.props.children}
 				</div>

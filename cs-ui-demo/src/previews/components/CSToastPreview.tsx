@@ -209,6 +209,22 @@ class CSToastPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'id',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSToast
+									variant="success"
+									iconName="quote"
+									closeButton
+									text="This is an example alert for overriding the icon with iconName prop"
+									id="id"
+								/>
+						}
+					]
+				},
+				{
 					propName: 'detail',
 					variations: [
 						{
@@ -319,6 +335,10 @@ class CSToastPreview extends React.Component {
 						'true',
 						'false'
 					]
+				},
+				{
+					propertyName: 'id',
+					description: 'Toast id value'
 				},
 				{
 					propertyName: 'minWidth',

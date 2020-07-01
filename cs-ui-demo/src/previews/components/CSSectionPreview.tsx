@@ -34,6 +34,26 @@ class CSSectionPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'id',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSSection
+									collapsed
+									title="Collapsed Section"
+									id="id"
+								>
+									<ul>
+										<li>Item 1</li>
+										<li>Item 2</li>
+										<li>Item 3</li>
+									</ul>
+								</CSSection>
+						}
+					]
+				},
+				{
 					propName: 'collapsed',
 					variations: [
 						{
@@ -92,6 +112,10 @@ class CSSectionPreview extends React.Component {
 						'false',
 						'true'
 					]
+				},
+				{
+					propertyName: 'id',
+					description: 'Section id value'
 				},
 				{
 					propertyName: 'title',

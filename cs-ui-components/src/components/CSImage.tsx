@@ -1,11 +1,12 @@
 import React, { CSSProperties } from 'react';
 
 export interface CSImageProps {
+	color?: string;
+	height?: string;
+	id?: string;
 	type: string;
 	variant?: string;
-	color?: string;
 	width?: string;
-	height?: string;
 }
 
 class CSImage extends React.Component<CSImageProps> {
@@ -19,6 +20,7 @@ class CSImage extends React.Component<CSImageProps> {
 		return(
 			<img
 				className="cs-image"
+				id={this.props.id}
 				style={style}
 				src={require(`../images/cs-${this.props.type}-${this.props.color}-${this.props.variant}.png`)} alt={`${this.props.type}-${this.props.color}-${this.props.variant}`}
 			/>

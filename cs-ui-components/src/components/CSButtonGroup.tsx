@@ -4,6 +4,7 @@ import classNames from 'classnames';
 export interface CSButtonGroupProps {
 	combined: boolean;
 	className?: string;
+	id?: string;
 }
 
 class CSButtonGroup extends React.Component<CSButtonGroupProps> {
@@ -17,7 +18,7 @@ class CSButtonGroup extends React.Component<CSButtonGroupProps> {
 			{[`${this.props.className}`]: this.props.className}
 		);
 		return (
-			<div className={buttonGroupClasses}>
+			<div className={buttonGroupClasses} id={this.props.id}>
 				{this.props.children}
 			</div>
 		);

@@ -77,6 +77,16 @@ class CSTooltipPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'id',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSTooltip iconName="quote" content="Help text example" id="id"/>
+						}
+					]
+				},
+				{
 					propName: 'position',
 					variations: [
 						{
@@ -227,6 +237,14 @@ class CSTooltipPreview extends React.Component {
 					description: 'Tooltip help text content'
 				},
 				{
+					propertyName: 'delayTooltip',
+					description: 'Delay the tooltip appearing in ms'
+				},
+				{
+					propertyName: 'height',
+					description: 'Custom tooltip height'
+				},
+				{
 					propertyName: 'iconName',
 					description: 'Name of icon from icons library which overrides the default icon defined by variant'
 				},
@@ -237,6 +255,10 @@ class CSTooltipPreview extends React.Component {
 						'small',
 						'medium'
 					]
+				},
+				{
+					propertyName: 'id',
+					description: 'Tooltip id value'
 				},
 				{
 					propertyName: 'position',
@@ -260,14 +282,6 @@ class CSTooltipPreview extends React.Component {
 						'warning',
 						'error'
 					]
-				},
-				{
-					propertyName: 'delayTooltip',
-					description: 'Delay the tooltip appearing in ms'
-				},
-				{
-					propertyName: 'height',
-					description: 'Custom tooltip height'
 				},
 				{
 					propertyName: 'width',

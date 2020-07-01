@@ -1,7 +1,11 @@
 import React from 'react';
 import classNames from 'classnames';
 
-class CSCardFooter extends React.Component {
+export interface CSCardFooterProps {
+	id?: string;
+}
+
+class CSCardFooter extends React.Component<CSCardFooterProps> {
 
 	static getDoc() {
 
@@ -17,7 +21,10 @@ class CSCardFooter extends React.Component {
 			'cs-card-footer'
 		);
 		return (
-			<footer className={cardFooterClasses}>
+			<footer
+				className={cardFooterClasses}
+				id={this.props.id}
+			>
 				{this.props.children}
 			</footer>
 		);

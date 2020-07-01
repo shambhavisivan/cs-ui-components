@@ -168,6 +168,21 @@ class CSIconPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'id',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSIcon
+									name="lead"
+									origin="cs"
+									id="id"
+									size="2rem"
+								/>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -208,6 +223,10 @@ class CSIconPreview extends React.Component {
 						'false',
 						'true'
 					]
+				},
+				{
+					propertyName: 'id',
+					description: 'Icon id value'
 				},
 				{
 					propertyName: 'name',

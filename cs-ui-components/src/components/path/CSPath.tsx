@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 export interface CSPathProps {
 	className?: string;
+	id?: string;
 }
 
 class CSPath extends React.Component<CSPathProps> {
@@ -16,7 +17,7 @@ class CSPath extends React.Component<CSPathProps> {
 		);
 
 		return (
-			<div className={pathClasses}>
+			<div className={pathClasses} id={this.props.id}>
 				{this.props.children}
 			</div>
 		);

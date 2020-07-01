@@ -180,6 +180,21 @@ class CSImagePreview extends React.Component {
 					]
 				},
 				{
+					propName: 'id',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSImage
+									type="logomark"
+									color="purple"
+									variant="initial"
+									id="id"
+								/>
+						}
+					]
+				},
+				{
 					propName: 'width',
 					variations: [
 						{
@@ -214,20 +229,35 @@ class CSImagePreview extends React.Component {
 			],
 			properties: [
 				{
-					propertyName: 'type',
-					description: 'Type of the image',
-					options: [
-						'logo',
-						'logomark'
-					]
-				},
-				{
 					propertyName: 'color',
 					description: 'Image color',
 					options: [
 						'white',
 						'black',
 						'purple'
+					]
+				},
+				{
+					propertyName: 'height',
+					description: 'Image height',
+					options: [
+						'e.g.',
+						'20rem',
+						'15px',
+						'50%'
+					]
+				},
+				{
+					propertyName: 'id',
+					description: 'Image id vlaue',
+					options: []
+				},
+				{
+					propertyName: 'type',
+					description: 'Type of the image',
+					options: [
+						'logo',
+						'logomark'
 					]
 				},
 				{
@@ -241,16 +271,6 @@ class CSImagePreview extends React.Component {
 				{
 					propertyName: 'width',
 					description: 'Image width',
-					options: [
-						'e.g.',
-						'20rem',
-						'15px',
-						'50%'
-					]
-				},
-				{
-					propertyName: 'height',
-					description: 'Image height',
 					options: [
 						'e.g.',
 						'20rem',

@@ -2,6 +2,7 @@ import React from 'react';
 
 export interface CSModalFooterProps {
 	align?: string;
+	id?: string;
 }
 
 class CSModalFooter extends React.Component<CSModalFooterProps> {
@@ -11,7 +12,10 @@ class CSModalFooter extends React.Component<CSModalFooterProps> {
 
 	render() {
 		return (
-			<footer className={`cs-modal-footer cs-modal-footer-${this.props.align}`}>
+			<footer
+				className={`cs-modal-footer cs-modal-footer-${this.props.align}`}
+				id={this.props.id}
+			>
 				{this.props.children}
 			</footer>
 		);

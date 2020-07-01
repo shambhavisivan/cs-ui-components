@@ -180,12 +180,12 @@ class CSInputFilePreview extends React.Component {
 					description: 'Error text message'
 				},
 				{
-					propertyName: 'label',
-					description: 'Manually change the label name of the file text'
-				},
-				{
 					propertyName: 'id',
 					description: 'File input id value'
+				},
+				{
+					propertyName: 'label',
+					description: 'Manually change the label name of the file text'
 				}
 			]
 		};

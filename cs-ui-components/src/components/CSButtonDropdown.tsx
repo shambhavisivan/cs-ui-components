@@ -13,6 +13,7 @@ export interface CSButtonDropdownProps {
 	iconOrigin?: string;
 	iconPosition?: string;
 	iconRotate?: string;
+	id?: string;
 	label?: string;
 	onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 	size?: string;
@@ -85,34 +86,38 @@ class CSButtonDropdown extends React.Component<CSButtonDropdownProps, CSButtonDr
 		);
 
 		return (
-			<div className={btnDropdownWrapperClasses} ref={node => this.node = node}>
-					<CSButton
-						btnStyle={this.props.btnStyle}
-						btnType={this.props.btnType}
-						className={btnDropdownClasses}
-						disabled={this.props.disabled}
-						iconDisplay={this.props.label ? 'default' : 'icon-only'}
-						iconName={this.props.iconName}
-						iconOrigin={this.props.iconOrigin}
-						iconPosition={(this.props.label && this.props.iconPosition) ? this.props.iconPosition : undefined}
-						iconRotate={this.props.iconRotate}
-						onClick={!this.props.hover ? this.toggleActive : null}
-						size={this.props.size}
-						label={this.props.label ? this.props.label : 'Toggle dropdown'}
-					/>
-					{this.props.hover ?
-						(<div className={btnDropdownItemClasses}>
-							<div className="cs-btn-dropdown-item-wrapper">
-								{this.props.children}
-							</div>
-						</div>) :
-						(this.state.active &&
-						<div className={btnDropdownItemClasses}>
-							<div className="cs-btn-dropdown-item-wrapper">
-								{this.props.children}
-							</div>
-						</div>)
-					}
+			<div
+				className={btnDropdownWrapperClasses}
+				ref={node => this.node = node}
+				id={this.props.id}
+			>
+				<CSButton
+					btnStyle={this.props.btnStyle}
+					btnType={this.props.btnType}
+					className={btnDropdownClasses}
+					disabled={this.props.disabled}
+					iconDisplay={this.props.label ? 'default' : 'icon-only'}
+					iconName={this.props.iconName}
+					iconOrigin={this.props.iconOrigin}
+					iconPosition={(this.props.label && this.props.iconPosition) ? this.props.iconPosition : undefined}
+					iconRotate={this.props.iconRotate}
+					onClick={!this.props.hover ? this.toggleActive : null}
+					size={this.props.size}
+					label={this.props.label ? this.props.label : 'Toggle dropdown'}
+				/>
+				{this.props.hover ?
+					(<div className={btnDropdownItemClasses}>
+						<div className="cs-btn-dropdown-item-wrapper">
+							{this.props.children}
+						</div>
+					</div>) :
+					(this.state.active &&
+					<div className={btnDropdownItemClasses}>
+						<div className="cs-btn-dropdown-item-wrapper">
+							{this.props.children}
+						</div>
+					</div>)
+				}
 			</div>
 		);
 	}

@@ -1,7 +1,11 @@
 import React from 'react';
 import classNames from 'classnames';
 
-class CSCardBody extends React.Component {
+export interface CSCardBodyProps {
+	id?: string;
+}
+
+class CSCardBody extends React.Component<CSCardBodyProps> {
 
 	static getDoc() {
 
@@ -17,7 +21,10 @@ class CSCardBody extends React.Component {
 			'cs-card-body'
 		);
 		return (
-			<div className={cardBodyClasses}>
+			<div
+				className={cardBodyClasses}
+				id={this.props.id}
+			>
 				{this.props.children}
 			</div>
 		);

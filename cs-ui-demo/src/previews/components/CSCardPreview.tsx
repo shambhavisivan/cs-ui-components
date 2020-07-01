@@ -34,6 +34,25 @@ class CSCardPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'id',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSCard id="id">
+									<CSCardHeader title="Card Header" id="id"/>
+									<CSCardBody id="id">
+										Card Body
+									</CSCardBody>
+									<CSCardFooter id="id">
+										Card Footer
+									</CSCardFooter>
+								</CSCard>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					customText: '',
 					variations: [
@@ -59,6 +78,10 @@ class CSCardPreview extends React.Component {
 				{
 					propertyName: 'className',
 					description: 'For implementing custom class to component'
+				},
+				{
+					propertyName: 'id',
+					description: 'Card id value'
 				}
 			]
 		 };
@@ -78,8 +101,38 @@ class CSCardPreview extends React.Component {
 			name: 'Card Header',
 			properties: [
 				{
+					propertyName: 'id',
+					description: 'Card header id value'
+				},
+				{
 					propertyName: 'title',
 					description: 'Card header title'
+				}
+			]
+		};
+		return json;
+	}
+	getCSCardBodyDoc() {
+
+		const json = {
+			name: 'Card Body',
+			properties: [
+				{
+					propertyName: 'id',
+					description: 'Card body id value'
+				}
+			]
+		};
+		return json;
+	}
+	getCSCardFooterDoc() {
+
+		const json = {
+			name: 'Card Footer',
+			properties: [
+				{
+					propertyName: 'id',
+					description: 'Card footer id value'
 				}
 			]
 		};
@@ -88,13 +141,15 @@ class CSCardPreview extends React.Component {
 	render() {
 		const component = this.getCSCardDoc();
 		const component2 = this.getCSCardHeaderDoc();
+		const component3 = this.getCSCardBodyDoc();
+		const component4 = this.getCSCardFooterDoc();
 
 		return (
 			<>
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} />
 					<PreviewProperties name={component.name} examples={component.examples} />
-					<PreviewTable components={[component, component2]} />
+					<PreviewTable components={[component, component2, component3, component4]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

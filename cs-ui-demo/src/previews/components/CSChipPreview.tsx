@@ -122,6 +122,18 @@ class CSChipPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'id',
+					customText: '',
+					variations: [
+						{
+
+							string: '',
+							component:
+								<CSChip text="brand" id="id" />
+						}
+					]
+				},
+				{
 					propName: 'className',
 					customText: '',
 					variations: [
@@ -140,6 +152,10 @@ class CSChipPreview extends React.Component {
 				{
 					propertyName: 'className',
 					description: 'For implementing custom class to component'
+				},
+				{
+					propertyName: 'id',
+					description: 'Chip id value'
 				},
 				{
 					propertyName: 'variant',

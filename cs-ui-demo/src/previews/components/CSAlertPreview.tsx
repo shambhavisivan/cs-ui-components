@@ -196,6 +196,22 @@ class CSAlertPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'id',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSAlert
+									variant="info"
+									id="id"
+									iconName="quote"
+									closeButton
+									text="This is an example alert for overriding the icon with iconName prop"
+								/>
+						}
+					]
+				},
+				{
 					propName: 'closeButton',
 					variations: [
 						{
@@ -290,6 +306,10 @@ class CSAlertPreview extends React.Component {
 						'true',
 						'false'
 					]
+				},
+				{
+					propertyName: 'id',
+					description: 'Alert id value'
 				},
 				{
 					propertyName: 'onClose',

@@ -6,6 +6,7 @@ export interface CSSectionProps {
 	className?: string;
 	collapsed?: boolean;
 	collapsible?: boolean;
+	id?: string;
 	title: string;
 }
 
@@ -52,7 +53,10 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 			}
 		);
 		return (
-			<section className={sectionClasses}>
+			<section
+				className={sectionClasses}
+				id={this.props.id}
+			>
 				<h3 className={sectionTitleClasses}>
 					{this.props.collapsible ?
 						<button className="cs-section-button" onClick={this.toggle}>

@@ -210,6 +210,29 @@ class CSMainHeaderPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'id',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSMainHeader id="id">
+									<CSMainHeaderIcon id="id">
+										<CSIcon name="emoji"/>
+									</CSMainHeaderIcon>
+									<CSMainHeaderLeft
+										id="id"
+										title="This is a title"
+										subtitle="This is a subtitle"
+									/>
+									<CSMainHeaderRight id="id">
+										<CSButton label="Button 1"/>
+										<CSButton label="Button 2" btnStyle="brand"/>
+									</CSMainHeaderRight>
+								</CSMainHeader>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -278,6 +301,10 @@ class CSMainHeaderPreview extends React.Component {
 					]
 				},
 				{
+					propertyName: 'id',
+					description: 'Main header id value'
+				},
+				{
 					propertyName: 'maxWidth',
 					description: 'Max width of inner wrapper',
 					options: [
@@ -312,6 +339,10 @@ class CSMainHeaderPreview extends React.Component {
 			name: 'MainHeaderLeft',
 			properties: [
 				{
+					propertyName: 'id',
+					description: 'Main header left id value'
+				},
+				{
 					propertyName: 'subtitle',
 					description: 'Secondary text content'
 				},
@@ -324,17 +355,45 @@ class CSMainHeaderPreview extends React.Component {
 
 		return json;
 	}
+	getCSMainHeaderRightDoc() {
+		const json = {
+			name: 'MainHeaderRight',
+			properties: [
+				{
+					propertyName: 'id',
+					description: 'Main header right id value'
+				}
+			]
+		};
+
+		return json;
+	}
+	getCSMainHeaderIconDoc() {
+		const json = {
+			name: 'MainHeaderIcon',
+			properties: [
+				{
+					propertyName: 'id',
+					description: 'Main header icon id value'
+				}
+			]
+		};
+
+		return json;
+	}
 
 	render() {
 		const component = this.getCSMainHeaderDoc();
 		const component2 = this.getCSMainHeaderLeftDoc();
+		const component3 = this.getCSMainHeaderRightDoc();
+		const component4 = this.getCSMainHeaderIconDoc();
 
 		return (
 			<>
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} />
 					<PreviewProperties name={component.name} examples={component.examples} />
-					<PreviewTable components={[component, component2]} />
+					<PreviewTable components={[component, component2, component3, component4]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

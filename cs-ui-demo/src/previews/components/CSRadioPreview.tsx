@@ -48,6 +48,22 @@ class CSRadioPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'id',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSRadio
+									id="id"
+									label="This is a label"
+								>
+									<CSRadioOption name="country" label="England" id="id" />
+									<CSRadioOption name="country" label="Croatia" id="id" />
+								</CSRadio>
+						}
+					]
+				},
+				{
 					propName: 'required',
 					variations: [
 						{
@@ -216,6 +232,11 @@ class CSRadioPreview extends React.Component {
 					options: []
 				},
 				{
+					propertyName: 'id',
+					description: 'Radio id value'
+				},
+
+				{
 					propertyName: 'label',
 					description: 'Radio label to display',
 					options: []
@@ -274,6 +295,10 @@ class CSRadioPreview extends React.Component {
 						'false',
 						'true'
 					]
+				},
+				{
+					propertyName: 'id',
+					description: 'Radio option id value'
 				},
 				{
 					propertyName: 'label',

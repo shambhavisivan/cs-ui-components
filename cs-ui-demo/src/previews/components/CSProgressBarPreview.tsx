@@ -66,6 +66,21 @@ class CSProgressBarPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'id',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSProgressBar
+									progress="50%"
+									label="Progress"
+									id="id"
+								/>
+						}
+					]
+				},
+				{
 					propName: 'progressIndicator',
 					customText: '',
 					variations: [
@@ -213,6 +228,10 @@ class CSProgressBarPreview extends React.Component {
 						'#FFAA00',
 						'rgb(100,100,255)'
 					]
+				},
+				{
+					propertyName: 'id',
+					description: 'Path id value'
 				},
 				{
 					propertyName: 'label',

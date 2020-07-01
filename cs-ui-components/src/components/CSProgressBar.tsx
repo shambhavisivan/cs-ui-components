@@ -5,6 +5,7 @@ import classNames from 'classnames';
 export interface CSProgressBarProps {
 	className?: string;
 	color?: string;
+	id?: string;
 	label: string;
 	progress: string;
 	progressIndicator?: boolean;
@@ -28,7 +29,10 @@ class CSProgressBar extends React.Component<CSProgressBarProps> {
 		};
 
 		return (
-			<div className={progressBarWrapperClasses}>
+			<div
+				className={progressBarWrapperClasses}
+				id={this.props.id}
+			>
 				<div className="cs-progress-bar-text">
 					{this.props.label &&
 						<CSLabel label={this.props.label}/>

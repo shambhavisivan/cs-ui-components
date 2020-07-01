@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 export interface CSChipProps {
 	className?: string;
+	id?: string;
 	text: string;
 	variant?: string;
 	variantStyle?: string;
@@ -24,7 +25,7 @@ class CSChip extends React.Component<CSChipProps> {
 			}
 		);
 		return (
-			<div className={chipClasses}>
+			<div className={chipClasses} id={this.props.id}>
 				{this.props.text}
 			</div>
 		);

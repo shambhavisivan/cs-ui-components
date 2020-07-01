@@ -374,6 +374,29 @@ class CSButtonDropdownPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'id',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component: <CSButtonDropdown
+								iconName="down"
+								label="Label"
+								id="id"
+							>
+								<CSButton
+									iconName="world"
+									label="test label small"
+								/>
+								<CSButton
+									iconName="world"
+									label="test label large large"
+								/>
+							</CSButtonDropdown>
+						}
+					]
+				},
+				{
 					propName: 'label',
 					customText: '',
 					variations: [
@@ -559,6 +582,10 @@ class CSButtonDropdownPreview extends React.Component {
 						'180',
 						'270'
 					]
+				},
+				{
+					propertyName: 'id',
+					description: 'Button dropdown id value'
 				},
 				{
 					propertyName: 'label',

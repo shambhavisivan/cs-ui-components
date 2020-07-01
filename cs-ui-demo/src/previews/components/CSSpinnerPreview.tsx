@@ -131,6 +131,21 @@ class CSSpinnerPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'id',
+					variations: [
+						{
+
+							string: '',
+							component:
+								<CSSpinner
+									size="large"
+									color="neutral"
+									id="id"
+								/>
+						}
+					]
+				},
+				{
 					propName: 'label',
 					variations: [
 						{
@@ -176,6 +191,10 @@ class CSSpinnerPreview extends React.Component {
 						'neutral',
 						'brand'
 					]
+				},
+				{
+					propertyName: 'id',
+					description: 'Spinner id value'
 				},
 				{
 					propertyName: 'inline',

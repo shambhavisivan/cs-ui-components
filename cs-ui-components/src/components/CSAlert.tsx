@@ -7,6 +7,7 @@ export interface CSAlertProps {
 	closeButton?: boolean;
 	iconName?: string;
 	iconVisibility?: boolean;
+	id?: string;
 	onClose?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 	styleType?: string;
 	text?: string | Array<string>;
@@ -34,7 +35,11 @@ class CSAlert extends React.Component<CSAlertProps> {
 		);
 
 		return (
-			<div className={alertClasses} role="alert">
+			<div
+				className={alertClasses}
+				role="alert"
+				id={this.props.id}
+			>
 				<h4 className="cs-alert-text-wrapper">
 					{this.props.iconVisibility ? (this.props.iconName ? (
 						<CSIcon name={this.props.iconName}/>

@@ -72,6 +72,21 @@ class CSDividerPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'id',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSButtonDropdown>
+									<CSButton label="Button 1"/>
+									<CSButton label="Button 2"/>
+									<CSDivider variant="horizontal" id="id"/>
+									<CSButton label="Lonely Button"/>
+								</CSButtonDropdown>
+						}
+					]
+				},
+				{
 					propName: 'label',
 					variations: [
 						{
@@ -107,6 +122,10 @@ class CSDividerPreview extends React.Component {
 				{
 					propertyName: 'className',
 					description: 'For implementing custom class to component'
+				},
+				{
+					propertyName: 'id',
+					description: 'Divider id value'
 				},
 				{
 					propertyName: 'label',

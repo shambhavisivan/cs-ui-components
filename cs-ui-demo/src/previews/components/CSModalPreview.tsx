@@ -181,6 +181,41 @@ class CSModalPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'id',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component: (
+								<CSModal size="small" closeButton id="id">
+									<CSModalHeader
+										id="id"
+										title="This is a test heading"
+										subtitle="This is a test subtitle"
+									/>
+									<CSModalBody id="id">
+										<p>
+											Sit nulla est ex deserunt exercitation anim occaecat.
+											<br/>
+											<br/>
+											Nostrud ullamco deserunt aute id consequat veniam
+											incididunt duis in sint irure nisi. Mollit officia cillum
+											Lorem ullamco minim nostrud elit officia tempor esse quis.
+											Cillum sunt ad dolore quis aute consequat ipsum magna
+											exercitation reprehenderit magna. Tempor cupidatat
+											consequat elit dolor adipisicing.
+										</p>
+									</CSModalBody>
+									<CSModalFooter id="id">
+										<CSButton label="Default Button"/>
+										<CSButton label="Brand Button" btnStyle="brand"/>
+									</CSModalFooter>
+								</CSModal>
+							)
+						}
+					]
+				},
+				{
 					propName: 'style',
 					customText: '',
 					variations: [
@@ -295,6 +330,10 @@ class CSModalPreview extends React.Component {
 					]
 				},
 				{
+					propertyName: 'id',
+					description: 'Modal id value'
+				},
+				{
 					propertyName: 'loading',
 					description: 'Add custom styles as inline css',
 					options: [
@@ -341,6 +380,10 @@ class CSModalPreview extends React.Component {
 			name: 'Modal Header',
 			properties: [
 				{
+					propertyName: 'id',
+					description: 'Modal header id value'
+				},
+				{
 					propertyName: 'subtitle',
 					description: 'Secondary text content',
 					options: []
@@ -360,6 +403,10 @@ class CSModalPreview extends React.Component {
 		const json = {
 			name: 'Modal Body',
 			properties: [
+				{
+					propertyName: 'id',
+					description: 'Modal body id value'
+				},
 				{
 					propertyName: 'padding',
 					description: 'Modal body padding',
@@ -383,6 +430,10 @@ class CSModalPreview extends React.Component {
 						'left',
 						'center'
 					]
+				},
+				{
+					propertyName: 'id',
+					description: 'Modal footer id value'
 				}
 			]
 		};

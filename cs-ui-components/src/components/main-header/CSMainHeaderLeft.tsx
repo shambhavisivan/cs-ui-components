@@ -1,6 +1,7 @@
 import React from 'react';
 
 export interface CSMainHeaderLeftProps {
+	id?: string;
 	title: string;
 	subtitle?: string;
 }
@@ -9,7 +10,7 @@ class CSMainHeaderLeft extends React.Component<CSMainHeaderLeftProps> {
 
 	render() {
 		return (
-			<div className="cs-main-header-left">
+			<div className="cs-main-header-left" id={this.props.id}>
 				<div className="cs-main-header-heading">
 					{this.props.subtitle ? (
 						<h4 className="cs-main-header-subtitle">

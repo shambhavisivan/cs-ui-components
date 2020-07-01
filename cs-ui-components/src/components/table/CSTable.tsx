@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 export interface CSTableProps {
 	className?: string;
+	id?: string;
 }
 
 class CSTable extends React.Component<CSTableProps> {
@@ -17,7 +18,7 @@ class CSTable extends React.Component<CSTableProps> {
 		);
 
 		return (
-			<div className={tableClasses} role="grid">
+			<div className={tableClasses} role="grid" id={this.props.id}>
 				{this.props.children}
 			</div>
 		);

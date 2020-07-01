@@ -322,6 +322,33 @@ class CSTabPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'id',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component:
+							<CSTabGroup
+								variant="normal"
+								id="id"
+							>
+								<CSTab
+									title="Tab One"
+									id="id"
+								/>
+								<CSTab
+									title="Tab Two"
+									id="id"
+								/>
+								<CSTab
+									title="Tab Three"
+									id="id"
+								/>
+							</CSTabGroup>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					customText: '',
 					variations: [
@@ -360,6 +387,14 @@ class CSTabPreview extends React.Component {
 				{
 					propertyName: 'disabled',
 					description: 'Logic for disabled state'
+				},
+				{
+					propertyName: 'id',
+					description: 'Tab and tab group id value'
+				},
+				{
+					propertyName: 'listName',
+					description: 'For overriding \'aria-label\' default value on CSTabGroup'
 				},
 				{
 					propertyName: 'onClick',

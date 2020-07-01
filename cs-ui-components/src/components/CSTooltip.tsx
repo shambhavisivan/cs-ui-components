@@ -7,13 +7,14 @@ export type CSTooltipPosition = 'bottom-right' | 'bottom-left' | 'top-right' | '
 export interface CSTooltipProps {
 	className?: string;
 	content: string | Array<string> | JSX.Element;
+	delayTooltip?: number;
+	height?: string;
 	iconName?: string;
 	iconSize?: string;
+	id?: string;
 	position?: CSTooltipPosition;
 	tooltipHeader?: string;
 	variant?: string;
-	delayTooltip?: number;
-	height?: string;
 	width?: string;
 }
 

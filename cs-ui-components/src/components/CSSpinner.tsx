@@ -4,6 +4,7 @@ import classNames from 'classnames';
 export interface CSSpinnerProps {
 	className?: string;
 	color?: string;
+	id?: string;
 	inline?: boolean;
 	label?: string;
 	size?: string;
@@ -25,7 +26,10 @@ class CSSpinner extends React.Component<CSSpinnerProps> {
 		);
 		return (
 			<>
-				<div className={spinnerClasses}>
+				<div
+					className={spinnerClasses}
+					id={this.props.id}
+				>
 					<div className="cs-spinner-wrapper-label">
 						<div className={'cs-spinner cs-spinner-' + this.props.size + ' cs-spinner-' + this.props.color}>
 							<div className="cs-spinner-dot-a"/>

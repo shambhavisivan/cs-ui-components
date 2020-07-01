@@ -88,6 +88,45 @@ class CSButtonGroupPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'id',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSButtonGroup
+									combined
+									id="id"
+								>
+									<CSButton
+										label="First Button"
+									/>
+									<CSButton
+										label="Middle Button"
+									/>
+									<CSButton
+										btnStyle="brand"
+										label="Last Button"
+									/>
+									<CSButtonDropdown
+										iconName="down"
+										label="button dropdown"
+									>
+										<CSButton
+											label="Dropdown item 1"
+										/>
+										<CSButton
+											label="Dropdown item 2"
+										/>
+										<CSButton
+											label="Dropdown item 3"
+										/>
+									</CSButtonDropdown>
+								</CSButtonGroup>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					customText: '',
 					variations: [
@@ -142,6 +181,10 @@ class CSButtonGroupPreview extends React.Component {
 				{
 					propertyName: 'className',
 					description: 'For implementing custom class to component'
+				},
+				{
+					propertyName: 'id',
+					description: 'Button group id value'
 				}
 			]
 		};

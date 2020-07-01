@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 export interface CSPaginationWrapperProps {
 	className?:  string;
+	id?: string;
 	props?: any;
 }
 

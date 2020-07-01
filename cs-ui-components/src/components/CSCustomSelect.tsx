@@ -4,7 +4,6 @@ import CSLabel from './CSLabel';
 import classNames from 'classnames';
 import { CSTooltipPosition } from './CSTooltip';
 
-// tslint:disable-next-line: no-empty-interface
 export interface CSCustomSelectProps {
 	borderType?: string;
 	className?: string;

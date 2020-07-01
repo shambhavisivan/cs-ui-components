@@ -4,14 +4,15 @@ import CSLabel from '../CSLabel';
 import { CSTooltipPosition } from '../CSTooltip';
 
 export interface CSRadioProps {
-	error?: boolean;
-	required?: boolean;
+	className?: string;
 	disabled?: boolean;
-	label: string;
+	error?: boolean;
 	helpText?: string;
+	id?: string;
+	label: string;
+	required?: boolean;
 	tooltipPosition?: CSTooltipPosition;
 	variant?: string;
-	className?: string;
 }
 
 class CSRadio extends React.Component<CSRadioProps> {
@@ -41,7 +42,7 @@ class CSRadio extends React.Component<CSRadioProps> {
 					<CSLabel label={this.props.label} helpText={this.props.helpText}
 					tooltipPosition={this.props.tooltipPosition} required={this.props.required}/>
 				}
-				<div className={radioWrapperClasses}>
+				<div className={radioWrapperClasses} id={this.props.id}>
 					{this.props.children}
 				</div>
 			</>

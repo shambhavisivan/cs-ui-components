@@ -1,6 +1,7 @@
 import React from 'react';
 
 export interface CSModalHeaderProps {
+	id?: string;
 	title?: string;
 	subtitle?: string;
 }
@@ -9,7 +10,10 @@ class CSModalHeader extends React.Component<CSModalHeaderProps> {
 
 	render() {
 		return (
-			<header className="cs-modal-header">
+			<header
+				className="cs-modal-header"
+				id={this.props.id}
+			>
 				{this.props.title &&
 					<h3 className="cs-modal-header-title">{this.props.title}</h3>
 				}

@@ -1,9 +1,14 @@
 import React from 'react';
 
-class CSTableBody extends React.Component {
+export interface CSTableBodyProps {
+	className?: string;
+	id?: string;
+}
+
+class CSTableBody extends React.Component<CSTableBodyProps> {
 	render() {
 		return (
-			<div className="cs-table-body">
+			<div className="cs-table-body" id={this.props.id}>
 				{this.props.children}
 			</div>
 		);

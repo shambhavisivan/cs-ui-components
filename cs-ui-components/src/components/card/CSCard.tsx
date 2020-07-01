@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 export interface CSCardProps {
 	className?: string;
+	id?: string;
 }
 
 class CSCard extends React.Component<CSCardProps> {
@@ -15,7 +16,10 @@ class CSCard extends React.Component<CSCardProps> {
 			}
 		);
 		return (
-			<div className={cardClasses}>
+			<div
+				className={cardClasses}
+				id={this.props.id}
+			>
 				{this.props.children}
 			</div>
 		);

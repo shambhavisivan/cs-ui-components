@@ -1,9 +1,13 @@
 import React from 'react';
 
-class CSTableHeader extends React.Component {
+export interface CSTableHeaderProps {
+	id?: string;
+}
+
+class CSTableHeader extends React.Component<CSTableHeaderProps> {
 	render() {
 		return (
-			<div className="cs-table-header" role="rowgroup">
+			<div className="cs-table-header" role="rowgroup" id={this.props.id}>
 				{this.props.children}
 			</div>
 		);

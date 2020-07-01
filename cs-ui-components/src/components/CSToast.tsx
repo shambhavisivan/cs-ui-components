@@ -8,6 +8,7 @@ export interface CSToastProps {
 	detail?: string;
 	iconName?: string;
 	iconVisibility?: boolean;
+	id?: string;
 	minWidth?: string;
 	onClose?: () => void;
 	text?: string;
@@ -36,7 +37,10 @@ class CSToast extends React.Component<CSToastProps> {
 		};
 
 		return (
-			<div className="cs-toast-wrapper">
+			<div
+				className="cs-toast-wrapper"
+				id={this.props.id}
+			>
 				<div style={style} className={toastClasses} role="alert">
 					{this.props.iconVisibility ? (this.props.iconName ? (
 						<CSIcon name={this.props.iconName}/>

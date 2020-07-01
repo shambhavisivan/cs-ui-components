@@ -5,6 +5,7 @@ import CSIcon from './CSIcon';
 export interface CSTabProps {
 	active?: boolean;
 	disabled?: boolean;
+	id?: string;
 	onClick?: (value?: any) => any;
 	parentVariant?: string;
 	status?: string;
@@ -49,6 +50,7 @@ class CSTab extends React.Component<CSTabProps> {
 			<li
 				className={tabClasses}
 				onClick={this.onClickHandler}
+				id={this.props.id}
 			>
 				<button
 					className="cs-tab-wrapper"

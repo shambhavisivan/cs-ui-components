@@ -4,13 +4,14 @@ import classNames from 'classnames';
 import CSSpinner from '../CSSpinner';
 
 export interface CSModalProps {
-	closeButton?: boolean;
-	size?: string;
 	className?: string;
-	onClose?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-	style?: object;
+	closeButton?: boolean;
+	id?: string;
 	loading?: boolean;
 	loadingText?: string;
+	onClose?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+	size?: string;
+	style?: object;
 }
 
 class CSModal extends React.Component<CSModalProps> {
@@ -25,7 +26,10 @@ class CSModal extends React.Component<CSModalProps> {
 			}
 		);
 		return (
-			<div className={modalClasses}>
+			<div
+				className={modalClasses}
+				id={this.props.id}
+			>
 				<div
 					className={
 						this.props.closeButton

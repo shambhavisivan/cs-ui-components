@@ -1,8 +1,11 @@
 import React from 'react';
 
-class CSMainHeaderRight extends React.Component {
+export interface CSMainHeaderRightProps {
+	id?: string;
+}
+class CSMainHeaderRight extends React.Component<CSMainHeaderRightProps> {
 	render() {
-		return <div className="cs-main-header-right">
+		return <div className="cs-main-header-right" id={this.props.id}>
 				{this.props.children}
 			</div>;
 	}

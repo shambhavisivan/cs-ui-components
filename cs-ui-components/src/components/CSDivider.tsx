@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 export interface CSDividerProps {
 	className?: string;
+	id?: string;
 	label?: string;
 	size?: string;
 	variant: string;

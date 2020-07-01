@@ -1,10 +1,10 @@
 import React from 'react';
 import classNames from 'classnames';
-import jsxToString from 'jsx-to-string';
 
 export interface CSRadioOptionProps {
 	className?: string;
 	disabled?: boolean;
+	id?: string;
 	label?: string;
 	name?: string;
 	onChange?(): any;
@@ -46,6 +46,7 @@ class CSRadioOption extends React.Component<CSRadioOptionProps> {
 							type="radio"
 							name={this.props.name}
 							disabled={this.props.disabled}
+							id={this.props.id}
 						/>
 						<span className={radioOptionFauxClasses}/>
 						<span>{this.props.label}</span>

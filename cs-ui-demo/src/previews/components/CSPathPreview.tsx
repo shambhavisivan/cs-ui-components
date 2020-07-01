@@ -8,7 +8,7 @@ import PreviewLinks from '../PreviewLinks';
 import {CSPath, CSPathItem, CSPathWrapper} from '@cloudsense/cs-ui-components';
 
 class CSPathPreview extends React.Component {
-	getDoc() {
+	getCSPathDoc() {
 
 		const json = {
 			name: 'Path',
@@ -30,6 +30,32 @@ class CSPathPreview extends React.Component {
 											title="Path Item 2"
 										/>
 										<CSPathItem
+											title="Path Item 3"
+										/>
+									</CSPathWrapper>
+								</CSPath>
+						}
+					]
+				},
+				{
+					propName: 'id',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSPath id="id">
+									<CSPathWrapper id="id">
+										<CSPathItem
+											id="id"
+											title="Path Item 1"
+										/>
+										<CSPathItem
+											id="id"
+											title="Path Item 2"
+										/>
+										<CSPathItem
+											id="id"
 											title="Path Item 3"
 										/>
 									</CSPathWrapper>
@@ -70,6 +96,10 @@ class CSPathPreview extends React.Component {
 					description: 'For implementing custom class to component'
 				},
 				{
+					propertyName: 'id',
+					description: 'Path id value'
+				},
+				{
 					propertyName: 'title',
 					description: 'Text content of path item'
 				}
@@ -84,16 +114,44 @@ class CSPathPreview extends React.Component {
 
 		return json;
 	}
+	getCSPathWrapperDoc() {
+		const json = {
+			name: 'Path Wrapper',
+			properties: [
+				{
+					propertyName: 'id',
+					description: 'Path wrapper id value'
+				}
+			]
+		};
+
+		return json;
+	}
+	getCSPathItemDoc() {
+		const json = {
+			name: 'Path Item',
+			properties: [
+				{
+					propertyName: 'id',
+					description: 'Path item id value'
+				}
+			]
+		};
+
+		return json;
+	}
 
 	render() {
-		const component = this.getDoc();
+		const component = this.getCSPathDoc();
+		const component2 = this.getCSPathWrapperDoc();
+		const component3 = this.getCSPathItemDoc();
 
 		return (
 			<>
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} />
 					<PreviewProperties name={component.name} examples={component.examples} />
-					<PreviewTable components={[component]} />
+					<PreviewTable components={[component, component2, component3]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

@@ -26,6 +26,16 @@ class CSLabelPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'id',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSLabel label="Label" id="id"/>
+						}
+					]
+				},
+				{
 					propName: 'required',
 					variations: [
 						{
@@ -105,6 +115,10 @@ class CSLabelPreview extends React.Component {
 				{
 					propertyName: 'helpText',
 					description: 'Label help text display for tooltip'
+				},
+				{
+					propertyName: 'id',
+					description: 'Label id value'
 				},
 				{
 					propertyName: 'label',
