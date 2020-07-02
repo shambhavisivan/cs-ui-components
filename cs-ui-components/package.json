@@ -1,7 +1,7 @@
 {
 	"name": "@cloudsense/cs-ui-components",
-	"version": "1.0.0-alpha.125",
-	"description": "",
+	"version": "1.0.0-alpha.126",
+	"description": "Reusable React UI components",
 	"main": "./dist/index.js",
 	"types": "./dist/src/index.d.ts",
 	"scripts": {
