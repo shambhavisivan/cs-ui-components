@@ -16,6 +16,7 @@ export interface CSTooltipProps {
 	tooltipHeader?: string;
 	variant?: string;
 	width?: string;
+	stylePosition?: string;
 }
 
 interface CSTooltipState {
@@ -27,7 +28,8 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 	static defaultProps = {
 		iconSize: 'small',
 		position: 'top-right',
-		variant: 'info'
+		variant: 'info',
+		stylePosition: 'fixed'
 	};
 
 	private timeoutRef: NodeJS.Timeout;
@@ -57,6 +59,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			'cs-tw-error': this.props.variant === 'error',
 			'cs-tw-info': this.props.variant === 'info',
 			'cs-tw-warning': this.props.variant === 'warning',
+			[`cs-tooltip-style-position-${this.props.stylePosition}`]: this.props.stylePosition,
 			[`${this.props.className}`]: this.props.className
 		});
 
@@ -73,8 +76,8 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		return (
 			<div
 				className={tooltipWrapperClasses}
-				onMouseEnter={this.handleMouseEnter}
-				onMouseLeave={this.handleMouseLeave}
+				onMouseEnter={this.props.stylePosition !== 'absolute' ? this.handleMouseEnter : null}
+				onMouseLeave={this.props.stylePosition !== 'absolute' ? this.handleMouseLeave : null}
 				tabIndex={0}
 				role="tooltip"
 				ref={this.tooltipRef}
@@ -96,7 +99,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 						)}
 					</>
 				)}
-				{!this.state.hidden && this.state.computedTooltipStyle && (
+				{(this.props.stylePosition === 'absolute' || (!this.state.hidden && this.state.computedTooltipStyle)) && (
 					<div className={tooltipClasses} style={tooltipStyle}>
 						{this.props.tooltipHeader && (
 							<div className="cs-tooltip-header">{this.props.tooltipHeader}</div>

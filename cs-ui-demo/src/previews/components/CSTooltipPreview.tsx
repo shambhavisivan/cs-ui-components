@@ -225,6 +225,27 @@ class CSTooltipPreview extends React.Component {
 							</CSTooltip>
 						}
 					]
+				},
+				{
+					propName: 'stylePosition',
+					quickLink: 'tooltip position style',
+					customText: 'Choose the CSS position value of the tooltip',
+					variations: [
+						{
+							variationName: ['fixed'],
+							quickLink: 'fixed',
+							string: '',
+							component:
+								<CSTooltip content="Tooltip with position fixed" stylePosition="fixed" />
+						},
+						{
+							variationName: ['absolute'],
+							quickLink: 'absolute',
+							string: '',
+							component:
+								<CSTooltip content="Tooltip with position absolute" stylePosition="absolute" />
+						}
+					]
 				}
 			],
 			properties: [
@@ -286,6 +307,10 @@ class CSTooltipPreview extends React.Component {
 				{
 					propertyName: 'width',
 					description: 'Custom tooltip width'
+				},
+				{
+					propertyName: 'stylePosition',
+					description: 'Choose the CSS position value of the tooltip'
 				}
 			]
 		};

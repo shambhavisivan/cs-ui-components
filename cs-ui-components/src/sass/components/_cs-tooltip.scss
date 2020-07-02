@@ -16,6 +16,7 @@
 	transition: 0.25s;
 	z-index: $z-index-tooltip;
 	outline: 0;
+	white-space: normal;
 
 	.cs-tooltip-body {
 		text-align: left;
@@ -266,5 +267,29 @@
 			@include fd(var(--cs-tooltip-error-bg), 0.3);
 		}
 	}
-}
 
+	// Style position absolute
+	&.cs-tooltip-style-position-absolute .cs-tooltip {
+		position: absolute;
+
+		&.cs-tooltip-bottom-right {
+			top: calc(100% + 0.75rem);
+			left: -1rem;
+		}
+
+		&.cs-tooltip-bottom-left {
+			top: calc(100% + 0.75rem);
+			right: calc(100% - 2rem);
+		}
+
+		&.cs-tooltip-top-right {
+			bottom: calc(100% + 0.75rem);
+			left: -1rem;
+		}
+
+		&.cs-tooltip-top-left {
+			bottom: calc(100% + 0.75rem);
+			right: calc(100% - 2rem);
+		}
+	}
+}
