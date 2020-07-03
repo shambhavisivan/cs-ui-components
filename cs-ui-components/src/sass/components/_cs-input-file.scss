@@ -4,6 +4,11 @@
 
 .cs-input-file {
 	display: inline-block;
+	padding: 0.125rem;
+	border-radius: 0.25rem;
+	@include css4 {
+		border: 1px dashed cvar(--cs-input-file-dashed-br);
+	}
 
 	// Label
 	.cs-input-file-label-body {
@@ -120,7 +125,5 @@
 
 // Error message
 .cs-input-file-error-message {
-	font-size: 0.75rem;
-	padding-top: 0.25rem;
-	@include sc(--cs-input-file-error-message-c);
+	@include error-message;
 }

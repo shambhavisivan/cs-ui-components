@@ -9,6 +9,8 @@ import {CSInputFile} from '@cloudsense/cs-ui-components';
 
 class CSInputFilePreview extends React.Component {
 	getDoc() {
+		const handleChange = () => alert('File is uploaded!');
+		const handleDrop = () => alert('File is dropped!');
 		const json = {
 			name: 'Input File',
 			usage: 'Input File component',
@@ -116,6 +118,32 @@ class CSInputFilePreview extends React.Component {
 					]
 				},
 				{
+					propName: 'onChange',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSInputFile
+									label="Upload directory"
+									onChange={handleChange}
+								/>
+						}
+					]
+				},
+				{
+					propName: 'onDrop',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSInputFile
+									label="Upload directory"
+									onDrop={handleDrop}
+								/>
+						}
+					]
+				},
+				{
 					propName: 'id',
 					variations: [
 						{
@@ -186,6 +214,14 @@ class CSInputFilePreview extends React.Component {
 				{
 					propertyName: 'label',
 					description: 'Manually change the label name of the file text'
+				},
+				{
+					propertyName: 'onChange',
+					description: 'Logic for onChange event'
+				},
+				{
+					propertyName: 'onDrop',
+					description: 'Logic for onDrop event'
 				}
 			]
 		};
