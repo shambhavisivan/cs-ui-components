@@ -22,22 +22,14 @@ class CSImagePreview extends React.Component {
 							quickLink: 'logo',
 							string: '',
 							component:
-								<CSImage
-									type="logo"
-									color="purple"
-									variant="initial"
-								/>
+								<CSImage type="logo" />
 						},
 						{
 							variationName: ['logomark'],
 							quickLink: 'logomark',
 							string: '',
 							component:
-								<CSImage
-									type="logomark"
-									color="purple"
-									variant="initial"
-								/>
+								<CSImage type="logomark" />
 						}
 					]
 				},
@@ -225,9 +217,30 @@ class CSImagePreview extends React.Component {
 								/>
 						}
 					]
+				},
+				{
+					propName: 'className',
+					variations: [
+						{
+							variationName: ['custom class'],
+							quickLink: 'custom class',
+							string: '',
+							component:
+								<CSImage
+									type="logomark"
+									color="black"
+									variant="initial"
+									className="custom-class"
+								/>
+						}
+					]
 				}
 			],
 			properties: [
+				{
+					propertyName: 'className',
+					description: 'For implementing custom class to component'
+				},
 				{
 					propertyName: 'color',
 					description: 'Image color',
