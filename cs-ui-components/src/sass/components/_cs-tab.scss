@@ -54,7 +54,7 @@
 			}
 
 			&:active {
-				@include bgd(--cs-tab-active-bg, 0.05);
+				@include bgd(--cs-tab-active-bg, 0.02);
 			}
 
 			&:disabled {
