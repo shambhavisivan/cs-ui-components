@@ -198,10 +198,12 @@
 			min-width: 1rem;
 			height: 1rem;
 			margin-right: 0.5rem;
+			align-self: flex-start;
 		}
 
 		.cs-alert-text {
 			font-size: 0.875rem;
+			max-width: calc(100% - 2rem);
 
 			// Array of alerts
 			+ .cs-alert-text::before {
