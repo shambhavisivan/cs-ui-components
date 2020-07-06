@@ -1,5 +1,6 @@
 import {
 	AgGridEvent,
+	CellClassParams,
 	CellEditingStoppedEvent,
 	CellValueChangedEvent,
 	ColDef as AgGridColDef,
@@ -38,7 +39,6 @@ import { UserInfo } from '../interfaces/user-info';
 import { formatDate } from '../utils/cs-grid-date-formatting-helper';
 import { CSGridDefaultComparator } from '../utils/cs-grid-default-comparator';
 import { CSGridNumberComparator } from '../utils/cs-grid-number-comparator';
-import { getSeparator } from '../utils/cs-grid-number-formatting-helper';
 import { SearchUtils } from '../utils/search-utils';
 import { CSGridBooleanRenderer } from './cs-grid-boolean-renderer';
 import { CSGridClientSidePagination } from './cs-grid-client-side-pagination';
@@ -100,6 +100,7 @@ export interface CSGridProps {
 	onGridReady?(params: GridReadyEvent): void;
 	onCellClicked?(event: CellClickedEvent): void;
 	onRowDoubleClicked?(event: CellClickedEvent): void;
+	getRowClass?(rowGuid: string): string | Array<string>;
 }
 
 class CSGridState {
@@ -176,6 +177,10 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			   needed to undo the row highlighting. */
 			return { background: '#ffffff' };
 		}
+	};
+
+	getRowClass = (params: any) => {
+		return this.props.getRowClass(params.node.id);
 	};
 
 	render() {
@@ -277,6 +282,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 							onCellEditingStopped={this.onCellEditingStopped}
 							onColumnResized={this.onColumnResized}
 							getRowStyle={this.props.rowHighlighting ? this.getRowStyle : undefined}
+							getRowClass={this.props.getRowClass ? this.getRowClass : undefined}
 						/>
 					</div>
 				</div>
@@ -752,6 +758,29 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				'suppressKeyboardEvent',
 				columnDef.suppressKeyboardEvent
 			);
+
+			if (columnDef.cellClass) {
+				const customClass = 'cs-grid_custom-class';
+				const cellClass = columnDef.cellClass;
+
+				if (typeof cellClass === 'function') {
+					agGridColDef.cellClass = (cellClassParams: CellClassParams) => {
+						const result = cellClass(cellClassParams.value, cellClassParams.node.id);
+
+						if (!result) {
+							return '';
+						} else if (typeof result === 'string') {
+							return [result, customClass];
+						} else {
+							return [...result, customClass];
+						}
+					};
+				} else if (typeof cellClass === 'string') {
+					agGridColDef.cellClass = [cellClass, customClass];
+				} else {
+					agGridColDef.cellClass = [...cellClass, customClass];
+				}
+			}
 
 			if (columnDef.visible !== undefined) {
 				agGridColDef.hide = !columnDef.visible;

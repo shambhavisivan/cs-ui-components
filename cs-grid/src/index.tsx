@@ -286,6 +286,13 @@ export class App extends React.Component<object, AppState> {
 				userInfo
 			},
 			{
+				cellClass: (value: CellData<number>, rowGuid: string) => {
+					if (value.cellValue > 5000) {
+						return ['custom-cell-class'];
+					} else {
+						return null;
+					}
+				},
 				cellType: 'Integer',
 				header: {
 					label: 'Integer No Stepper Arrows'
@@ -793,6 +800,22 @@ export class App extends React.Component<object, AppState> {
 			rowData.push(row);
 		}
 
+		// A simple css class for demo purposes, this won't be compiled into the cs-grid build.
+		this.createCSSClass(
+			`.cs-grid_app-wrapper .ag-theme-balham .ag-cell.ag-cell-not-inline-editing.custom-cell-class {
+				background-color: lightgreen;
+			}`
+		);
+
+		this.createCSSClass(
+			`.cs-grid_app-wrapper .ag-theme-balham .ag-row-even.rowClass,
+			.cs-grid_app-wrapper .ag-theme-balham .ag-row-odd.rowClass,
+			.cs-grid_app-wrapper .ag-theme-balham .ag-row-even.ag-row-hover.rowClass,
+			.cs-grid_app-wrapper .ag-theme-balham .ag-row-odd.ag-row-hover.rowClass {
+				background-color: yellow!important;
+			}`
+		);
+
 		this.sortedAndFilteredRows = rowData;
 		this.state = {
 			columnDefs,
@@ -892,6 +915,13 @@ export class App extends React.Component<object, AppState> {
 							[this.state.rowData[0].exampleGuid.cellValue]: 'red',
 							[this.state.rowData[3].exampleGuid.cellValue]: '#73d9d2'
 						}}
+						// tslint:disable-next-line: jsx-no-lambda
+						getRowClass={rowGuid => {
+							if (rowGuid === this.state.rowData[4].exampleGuid.cellValue) {
+								return ['rowClass'];
+							}
+						}}
+						onCellValueChange={this.onCellValueChange}
 					/>
 				)}
 				<>
@@ -1187,6 +1217,32 @@ export class App extends React.Component<object, AppState> {
 
 	private onGridReady = (params: GridReadyEvent) => {
 		this.gridApi = params.api;
+	};
+
+	private createCSSClass = (contents: string) => {
+		const style = document.createElement('style');
+		style.type = 'text/css';
+		style.innerHTML = contents;
+		document.getElementsByTagName('head')[0].appendChild(style);
+	};
+
+	private onCellValueChange = (
+		rowNodeId: string,
+		columnField: string,
+		oldValue: any,
+		newValue: any
+	) => {
+		if (
+			columnField === 'exampleInteger' &&
+			((oldValue.cellValue > 5000 && newValue.cellValue <= 5000) ||
+				(oldValue.cellValue <= 5000 && newValue.cellValue > 5000))
+		) {
+			this.gridApi.redrawRows({
+				rowNodes: [this.gridApi.getRowNode(rowNodeId)]
+			});
+		}
+
+		return Promise.resolve();
 	};
 }
 

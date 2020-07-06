@@ -387,7 +387,11 @@
 			align-items: center;
 			height: 100%;
 			border-radius: 0;
-			@include sbg(--csgrid-transparent);
+
+			background: transparent;
+			&:not(.cs-grid_custom-class) {
+				@include sbg(--csgrid-transparent);
+			}
 
 			.ag-react-container {
 				display: flex;

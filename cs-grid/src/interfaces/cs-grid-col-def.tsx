@@ -160,4 +160,10 @@ interface BaseColDef<T> extends BaseProps<T> {
 
 	/** Allows user to suppress certain keyboard events */
 	suppressKeyboardEvent?: (params: SuppressKeyboardEventParams) => boolean;
+
+	/** Class to use for the cell. Can be string, array of strings, or function. */
+	cellClass?:
+		| string
+		| Array<string>
+		| ((value: CellData<T>, rowGuid: string) => string | Array<string>);
 }
