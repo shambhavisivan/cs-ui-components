@@ -29,6 +29,7 @@ class CSIcon extends React.Component<CSIconProps> {
 
 		const style: CSSProperties = {
 			'--cs-icon-c': this.props.color,
+			'--cs-main-header-neutral-icon': this.props.color,
 			'--cs-icon-size': this.props.size
 		};
 
