@@ -48,7 +48,7 @@ import CSTableRow from './components/table/CSTableRow';
 import CSTextarea from './components/CSTextarea';
 import CSToast from './components/CSToast';
 import CSToggle from './components/CSToggle';
-import CSTooltip from './components/CSTooltip';
+import CSTooltip, { CSTooltipPosition } from './components/CSTooltip';
 
 import './sass/style.scss';
 
@@ -106,5 +106,6 @@ export {
 	CSToast,
 	CSToggle,
 	CSTooltip,
+	CSTooltipPosition,
 	renderCSToast
 };
