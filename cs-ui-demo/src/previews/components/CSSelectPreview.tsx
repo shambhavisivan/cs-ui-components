@@ -248,6 +248,20 @@ class CSSelectPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'value',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSSelect label="Choose value:" name="Select field" value="30">
+									<option>10</option>
+									<option>20</option>
+									<option>30</option>
+								</CSSelect>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -351,6 +365,10 @@ class CSSelectPreview extends React.Component {
 						'bottom-right',
 						'bottom-left'
 					]
+				},
+				{
+					propertyName: 'value',
+					description: 'Display a fixed value'
 				}
 			]
 		};

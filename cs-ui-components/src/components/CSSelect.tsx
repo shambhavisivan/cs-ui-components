@@ -16,22 +16,55 @@ export interface CSSelectProps {
 	label: string;
 	labelHidden?: boolean;
 	name?: string;
-	onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => any;
+	onChange?: (value: any) => void;
 	required?: boolean;
 	tooltipPosition?: CSTooltipPosition;
+	value?: any;
 }
 
-class CSSelect extends React.Component<CSSelectProps> {
+export interface CSSelectState {
+	value: any;
+	prevValue: any;
+}
+
+export function fixControlledValue<T>(value: T) {
+	if (typeof value === 'undefined' || value === null) {
+		return '';
+	}
+	return value;
+}
+
+class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 
 	public static defaultProps = {
 		labelHidden: false
 	};
 
+	static getDerivedStateFromProps(nextProps: CSSelectProps, { prevValue }: CSSelectState) {
+		const newState: Partial<CSSelectState> = { prevValue: nextProps.value };
+		if (prevValue !== nextProps.value) {
+		  newState.value = nextProps.value;
+		  return newState;
+		}
+		return null;
+	}
+
+	constructor(props: CSSelectProps) {
+		super(props);
+		const value = typeof props.value === undefined ? '' : props.value;
+		this.state = {
+			value,
+			prevValue: props.value
+		};
+	}
+
 	handleOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		this.setState({value: e.target.value});
 		if (this.props.onChange) {
-			this.props.onChange(e);
+			this.props.onChange(e.target.value);
 		}
 	}
+
 	render() {
 		const selectClasses = classNames(
 			'cs-select',
@@ -69,6 +102,7 @@ class CSSelect extends React.Component<CSSelectProps> {
 						aria-invalid={this.props.error}
 						onChange={this.handleOnChange}
 						name={this.props.name}
+						value={fixControlledValue(this.state.value)}
 					>
 						{this.props.children}
 					</select>
