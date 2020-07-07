@@ -13,7 +13,8 @@
 		flex-direction: column;
 		justify-content: center;
 		height: 100%;
-		padding: 3rem 3rem 5.5rem;
+		width: 100%;
+		padding: 2rem 2rem 4.5rem;
 		border-radius: 0.25rem;
 		margin: 0 auto;
 
@@ -47,7 +48,7 @@
 		}
 
 		&.cs-modal-no-close-btn {
-			padding: 3rem;
+			padding: 2rem;
 		}
 
 		.cs-modal-close {
@@ -172,30 +173,19 @@
 		}
 
 		&.cs-modal-small {
-			width: 50%;
 			max-width: 40rem;
-			min-width: 30rem;
 		}
 
 		&.cs-modal-medium {
-			width: 70%;
-			max-width: 75rem;
-			min-width: 40rem;
+			max-width: 60rem;
 		}
 
 		&.cs-modal-large {
-			width: 90%;
-			max-width: none;
-			min-width: 40rem;
+			max-width: 80rem;
 		}
 
 		&.cs-modal-xlarge {
-			width: 100%;
-			padding: 0.5rem 3rem 3rem;
-
-			&.cs-modal-no-close-btn {
-				padding: 2rem;
-			}
+			padding: -0.5rem 2rem 2rem;
 
 			.cs-modal-body {
 				flex: 1;
