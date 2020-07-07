@@ -3,14 +3,14 @@ import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
 
 export interface PreviewApisProps {
 	api: any;
+	component?: any;
 }
 
 class PreviewApi extends React.Component<PreviewApisProps> {
 	render() {
 		return (
 			<div className="api-wrapper">
-				<h2 className="api-title">APIs</h2>
-				<h2 className="api-name">{this.props.api.name}</h2>
+				<h2 className="api-name" id={`api-table-${this.props.component.name}`}>{this.props.api.name}</h2>
 					{this.props.api.methods.map((method: any) => (
 						<div className={` ${method.methodName}`} key={method.methodName}>
 							<h3 className="method-name" id={`${this.props.api.name}-${method.methodName}`}>{method.methodName}</h3>

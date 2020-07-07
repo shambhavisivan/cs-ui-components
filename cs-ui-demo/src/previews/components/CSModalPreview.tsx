@@ -4,8 +4,10 @@ import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
 import PreviewLinks from '../PreviewLinks';
+import PreviewApi from '../PreviewApi';
+import PreviewApiTable from '../PreviewApiTable';
 
-import {CSModal, CSModalHeader, CSModalBody, CSModalFooter, CSButton} from '@cloudsense/cs-ui-components';
+import {CSModal, CSModalApi, CSModalHeader, CSModalBody, CSModalFooter, CSButton} from '@cloudsense/cs-ui-components';
 
 class CSModalPreview extends React.Component {
 	getCSModalDoc() {
@@ -363,6 +365,59 @@ class CSModalPreview extends React.Component {
 					propertyName: 'style',
 					description: 'Add custom styles as inline css'
 				}
+			],
+
+			api:
+			{
+				name: 'CSModalApi',
+				methods: [
+					{
+						methodName: 'renderCSModal',
+						definition: ' onClick={() => CSModalApi.renderCSModal(<CSModal>...</CSModal>)}',
+						preview:
+							<CSButton
+								label="Open Modal"
+								onClick={() => CSModalApi.renderCSModal(
+									<CSModal
+										size="small"
+										closeButton
+									>
+										<CSModalHeader
+											title="This is a test heading"
+											subtitle="This is a test subtitle"
+										/>
+										<CSModalBody>
+											<p>
+												Sit nulla est ex deserunt exercitation anim occaecat.
+												<br/>
+												<br/>
+												Nostrud ullamco deserunt aute id consequat veniam
+												incididunt duis in sint irure nisi. Mollit officia cillum
+												Lorem ullamco minim nostrud elit officia tempor esse quis.
+												Cillum sunt ad dolore quis aute consequat ipsum magna
+												exercitation reprehenderit magna. Tempor cupidatat
+												consequat elit dolor adipisicing.
+											</p>
+										</CSModalBody>
+										<CSModalFooter align="left">
+											<CSButton label="Default Button"/>
+											<CSButton label="Brand Button" btnStyle="brand"/>
+										</CSModalFooter>
+									</CSModal>
+								)}
+							/>
+					}
+				]
+			},
+
+			methods: [
+				{
+					name: 'renderCSModal',
+					description: 'For rendering CSModal component in a fixed containter',
+					args: [
+						'<CSModal>...</CSModal>'
+					]
+				}
 			]
 		};
 
@@ -370,6 +425,10 @@ class CSModalPreview extends React.Component {
 			for (const variation of example.variations) {
 				(variation as any).string = jsxToString(variation.component);
 			}
+		}
+
+		for (const method of json.api.methods) {
+			(method as any).string = jsxToString(method.preview);
 		}
 
 		return json;
@@ -454,6 +513,8 @@ class CSModalPreview extends React.Component {
 					<PreviewHeading name={component.name} usage={component.usage} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component, component2, component3, component4]} />
+					<PreviewApi api={component.api} component={component} />
+					<PreviewApiTable components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

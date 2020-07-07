@@ -7,7 +7,7 @@ import PreviewLinks from '../PreviewLinks';
 import PreviewApi from '../PreviewApi';
 import PreviewApiTable from '../PreviewApiTable';
 
-import { CSToast, CSToastApi, CSButton } from '@cloudsense/cs-ui-components';
+import { CSToast, CSToastApi, CSButton, CSButtonGroup } from '@cloudsense/cs-ui-components';
 
 class CSToastPreview extends React.Component {
 	getDoc() {
@@ -331,9 +331,9 @@ class CSToastPreview extends React.Component {
 				methods: [
 					{
 						methodName: 'renderCSToast',
-						definition: ' renderCSToast({...CSToastProps}, position: CSToastPosition, duration: number)',
+						definition: ' onClick={() => CSToastApi.renderCSToast({...CSToastProps}, position: CSToastPosition, duration: number)',
 						preview:
-							<div className="cs-toast-buttons-wrapper">
+							<CSButtonGroup>
 								<CSButton
 									label="top-right"
 									onClick={() => CSToastApi.renderCSToast({variant: 'success', closeButton: true, text: 'Top right toast'}, 'top-right', 3)}
@@ -350,7 +350,7 @@ class CSToastPreview extends React.Component {
 									label="bottom-left"
 									onClick={() => CSToastApi.renderCSToast({variant: 'error', closeButton: true, text: 'Bottom left toast that won\'t close (duration = null)'}, 'bottom-left', null)}
 								/>
-							</div>
+							</CSButtonGroup>
 					}
 				]
 			},
@@ -358,7 +358,7 @@ class CSToastPreview extends React.Component {
 			methods: [
 				{
 					name: 'renderCSToast',
-					description: 'For rendering CSToast component in a fixed containter',
+					description: 'For rendering CSToast component in a fixed container',
 					args: [
 						'props: CSToastProps',
 						'position: CSToastPosition',
@@ -394,7 +394,7 @@ class CSToastPreview extends React.Component {
 					<PreviewHeading name={component.name} usage={component.usage} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
-					<PreviewApi api={component.api} />
+					<PreviewApi api={component.api} component={component} />
 					<PreviewApiTable components={[component]} />
 				</div>
 				<div className="prop-sidebar">
