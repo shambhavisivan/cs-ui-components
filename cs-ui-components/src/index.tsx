@@ -52,7 +52,7 @@ import CSTooltip, { CSTooltipPosition } from './components/CSTooltip';
 
 import './sass/style.scss';
 
-import renderCSToast from './api/CSToastRenderAPI';
+import CSToastApi from './api/CSToastAPI';
 
 export {
 	CSAlert,
@@ -107,5 +107,5 @@ export {
 	CSToggle,
 	CSTooltip,
 	CSTooltipPosition,
-	renderCSToast
+	CSToastApi
 };

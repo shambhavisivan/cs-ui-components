@@ -49,7 +49,7 @@ const getPosition = (position: CSToastPosition, top: number = defaultTop, bottom
 	return style;
 };
 
-const renderCSToast = (props: CSToastProps, position?: CSToastPosition, duration?: number | null): void => {
+export function renderCSToast(props: CSToastProps, position?: CSToastPosition, duration?: number | null): void {
 	const key: string = 'toast' + counter;
 	const newDuration = duration || duration === null ? duration : defaultDuration;
 	const newPosition = position ? position : defaultPosition;
@@ -73,6 +73,10 @@ const renderCSToast = (props: CSToastProps, position?: CSToastPosition, duration
 	});
 	counter++;
 	prevPosition = newPosition;
+}
+
+const CSToastApi = {
+	renderCSToast
 };
 
-export default renderCSToast;
+export default CSToastApi;

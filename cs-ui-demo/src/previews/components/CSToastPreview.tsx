@@ -4,8 +4,10 @@ import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
 import PreviewLinks from '../PreviewLinks';
+import PreviewApi from '../PreviewApi';
+import PreviewApiTable from '../PreviewApiTable';
 
-import { CSToast, renderCSToast, CSButton } from '@cloudsense/cs-ui-components';
+import { CSToast, CSToastApi, CSButton } from '@cloudsense/cs-ui-components';
 
 class CSToastPreview extends React.Component {
 	getDoc() {
@@ -261,22 +263,6 @@ class CSToastPreview extends React.Component {
 								</CSToast>
 						}
 					]
-				},
-				{
-					propName: 'renderCSToast()',
-					customText: 'renderCSToast({...CSToastProps}, position: CSToastPosition, duration: number(in seconds))',
-					variations: [
-						{
-							string: '',
-							component:
-								<div className="cs-toast-buttons-wrapper">
-									<CSButton label="top-right" onClick={() => renderCSToast({variant: 'success', closeButton: true, text: 'Top right toast'}, 'top-right', 3)} />
-									<CSButton label="top-left" onClick={() => renderCSToast({variant: 'warning', closeButton: true, text: 'Top left toast'}, 'top-left', 4)} />
-									<CSButton label="bottom-right" onClick={() => renderCSToast({variant: 'info', closeButton: true, text: 'Bottom right toast'}, 'bottom-right', 5)} />
-									<CSButton label="bottom-left" onClick={() => renderCSToast({variant: 'error', closeButton: true, text: 'Bottom left toast that won\'t close (duration = null)'}, 'bottom-left', null)} />
-								</div>
-						}
-					]
 				}
 			],
 
@@ -337,6 +323,52 @@ class CSToastPreview extends React.Component {
 						'error'
 					]
 				}
+			],
+
+			api:
+			{
+				name: 'CSToastAPI',
+				methods: [
+					{
+						methodName: 'renderCSToast',
+						definition: ' renderCSToast({...CSToastProps}, position: CSToastPosition, duration: number)',
+						preview:
+							<div className="cs-toast-buttons-wrapper">
+								<CSButton
+									label="top-right"
+									onClick={() => CSToastApi.renderCSToast({variant: 'success', closeButton: true, text: 'Top right toast'}, 'top-right', 3)}
+								/>
+								<CSButton
+									label="top-left"
+									onClick={() => CSToastApi.renderCSToast({variant: 'warning', closeButton: true, text: 'Top left toast'}, 'top-left', 4)}
+								/>
+								<CSButton
+									label="bottom-right"
+									onClick={() => CSToastApi.renderCSToast({variant: 'info', closeButton: true, text: 'Bottom right toast'}, 'bottom-right', 5)}
+								/>
+								<CSButton
+									label="bottom-left"
+									onClick={() => CSToastApi.renderCSToast({variant: 'error', closeButton: true, text: 'Bottom left toast that won\'t close (duration = null)'}, 'bottom-left', null)}
+								/>
+							</div>
+					}
+				]
+			},
+
+			methods: [
+				{
+					name: 'renderCSToast',
+					description: 'For rendering CSToast component in a fixed containter',
+					args: [
+						'props: CSToastProps',
+						'position: CSToastPosition',
+						'duration: number'
+					],
+					defaultArgsValues: [
+						'position: \'top-left\'',
+						'duration: 5 (seconds)'
+					]
+				}
 			]
 		};
 
@@ -344,6 +376,10 @@ class CSToastPreview extends React.Component {
 			for (const variation of example.variations) {
 				(variation as any).string = jsxToString(variation.component);
 			}
+		}
+
+		for (const method of json.api.methods) {
+			(method as any).string = jsxToString(method.preview);
 		}
 
 		return json;
@@ -358,6 +394,8 @@ class CSToastPreview extends React.Component {
 					<PreviewHeading name={component.name} usage={component.usage} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
+					<PreviewApi api={component.api} />
+					<PreviewApiTable components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

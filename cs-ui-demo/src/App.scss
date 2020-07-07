@@ -262,21 +262,38 @@ body,
 				}
 			}
 
-			.property-name {
+			.property-name, .api-name {
 				margin: 0 0 0.5rem 0;
 				font-size: 1.375rem;
 			}
 
-			.component-name {
-				margin: 1rem 0 0.5rem;
-				font-size: 1.125rem;
+			.api-wrapper {
+				padding: 2rem 2rem 0;
 
-				&:first-child {
-					margin: 0 0 0.5rem;
+				.api-title {
+					font-size: 1.475rem;
+				}
+
+				.api-name {
+					margin: 1rem 0 0.5rem;
+					font-size: 1.375rem;
+				}
+
+				.method-name {
+					font-size: 1.275rem;
+				}
+
+				.method-definition {
+					margin: 0 0 1rem;
+					padding: 0;
+					font-size: 1rem;
+					width: 100%;
+					max-width: 600px;
+					color: #999;
 				}
 			}
 
-			.component-version {
+			.component-version, .api-version {
 				display: flex;
 				width: 100%;
 				border-radius: 0.25rem;
@@ -383,13 +400,6 @@ body,
 					}
 
 					&.toast-preview {
-
-						.cs-toast-buttons-wrapper {
-							display: flex;
-							justify-content: space-evenly;
-							align-items: center;
-							height: 100%;
-						}
 
 						.custom-class {
 							background-color: pink;
@@ -541,6 +551,14 @@ body,
 							border: 3px solid pink;
 						}
 					}
+					&.rendercstoast-preview {
+						.cs-toast-buttons-wrapper {
+							display: flex;
+							justify-content: space-evenly;
+							align-items: center;
+							height: 100%;
+						}
+					}
 				}
 
 				&:last-child {
@@ -607,7 +625,7 @@ body,
 	}
 
 	/* COMPONENT CODE SNIPPET */
-	.version-description {
+	.version-description, .method-description {
 		border-radius: 0 0.25rem 0.25rem 0;
 		width: 30%;
 		overflow-x: auto;
@@ -648,7 +666,7 @@ body,
 				flex: 0 1 15rem;
 			}
 
-			.prop-option {
+			.prop-option, .api-arg {
 				margin: 0.1rem 0.5rem 0.1rem 0;
 				padding: 0 0.25rem;
 				background: #ecebea;
