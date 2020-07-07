@@ -292,6 +292,14 @@ class CSTooltipPreview extends React.Component {
 					]
 				},
 				{
+					propertyName: 'stylePosition',
+					description: 'Choose the CSS position value of the tooltip',
+					options: [
+						'fixed',
+						'absolute'
+					]
+				},
+				{
 					propertyName: 'tooltipHeader',
 					description: 'Content of the tooltip header'
 				},
@@ -307,10 +315,6 @@ class CSTooltipPreview extends React.Component {
 				{
 					propertyName: 'width',
 					description: 'Custom tooltip width'
-				},
-				{
-					propertyName: 'stylePosition',
-					description: 'Choose the CSS position value of the tooltip'
 				}
 			]
 		};

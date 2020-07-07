@@ -3,6 +3,7 @@ import React, { CSSProperties } from 'react';
 import CSIcon from './CSIcon';
 
 export type CSTooltipPosition = 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left';
+export type CSTooltipStylePosition = 'fixed' | 'absolute';
 
 export interface CSTooltipProps {
 	className?: string;
@@ -16,7 +17,7 @@ export interface CSTooltipProps {
 	tooltipHeader?: string;
 	variant?: string;
 	width?: string;
-	stylePosition?: string;
+	stylePosition?: CSTooltipStylePosition;
 }
 
 interface CSTooltipState {
