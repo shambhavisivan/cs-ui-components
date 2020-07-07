@@ -2,6 +2,7 @@ import React from 'react';
 import CSIcon from '../CSIcon';
 import classNames from 'classnames';
 import CSSpinner from '../CSSpinner';
+import CSModalApi from '../../api/CSModalAPI';
 
 export interface CSModalProps {
 	className?: string;
@@ -16,8 +17,14 @@ export interface CSModalProps {
 
 class CSModal extends React.Component<CSModalProps> {
 
-	render() {
+	handleOnClose = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+		if (this.props.onClose) {
+			this.props.onClose(e);
+		}
+		CSModalApi.removeCSModal();
+	}
 
+	render() {
 		const modalClasses = classNames(
 			'cs-modal-wrapper',
 			'cs-modal-wrapper-open',
@@ -43,7 +50,7 @@ class CSModal extends React.Component<CSModalProps> {
 					{this.props.closeButton &&
 						<button
 							className="cs-modal-close"
-							onClick={this.props.onClose}
+							onClick={this.handleOnClose}
 							aria-label="close"
 						>
 							<CSIcon name="close"/>

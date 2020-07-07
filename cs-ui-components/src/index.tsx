@@ -53,6 +53,7 @@ import CSTooltip, { CSTooltipPosition } from './components/CSTooltip';
 import './sass/style.scss';
 
 import CSToastApi from './api/CSToastAPI';
+import CSModalApi from './api/CSModalAPI';
 
 export {
 	CSAlert,
@@ -107,5 +108,6 @@ export {
 	CSToggle,
 	CSTooltip,
 	CSTooltipPosition,
-	CSToastApi
+	CSToastApi,
+	CSModalApi
 };

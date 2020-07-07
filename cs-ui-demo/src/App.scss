@@ -308,13 +308,8 @@ body,
 					padding: 0.5rem;
 
 					&.modal-preview {
-						min-height: 30rem;
 						flex: 1;
 						transform: translate3d(0, 0, 0);
-
-						.custom-class {
-							background-color: pink;
-						}
 					}
 
 					&.spinner-preview {
@@ -932,6 +927,13 @@ body,
 				grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 			}
 		}
+	}
+}
+
+/*CUSTOM CLASS ON MODAL COMPONENT*/
+.cs-modal-wrapper {
+	&.custom-class {
+		background-color: pink;
 	}
 }
 
