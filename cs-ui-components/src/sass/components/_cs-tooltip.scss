@@ -240,16 +240,31 @@
 		}
 	}
 
-	&.cs-tw-info .cs-icon {
-		@include sf(--cs-tooltip-icon-info);
+	&.cs-tw-info {
+		.cs-icon {
+			@include sf(--cs-tooltip-icon-info);
+		}
+		&:hover .cs-icon, &:focus .cs-icon {
+			@include sf(--cs-tooltip-info-hover-c);
+		}
 	}
 
-	&.cs-tw-warning .cs-icon {
-		@include sf(--cs-tooltip-warning-bg);
+	&.cs-tw-warning {
+		.cs-icon {
+			@include sf(--cs-tooltip-warning-bg);
+		}
+		&:hover .cs-icon, &:focus .cs-icon {
+			@include fd(var(--cs-tooltip-warning-bg), 0.3);
+		}
 	}
 
-	&.cs-tw-error .cs-icon {
-		@include sf(--cs-tooltip-error-bg);
+	&.cs-tw-error {
+		.cs-icon {
+			@include sf(--cs-tooltip-error-bg);
+		}
+		&:hover .cs-icon, &:focus .cs-icon {
+			@include fd(var(--cs-tooltip-error-bg), 0.3);
+		}
 	}
 }
 
