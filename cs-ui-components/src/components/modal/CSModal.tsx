@@ -17,17 +17,9 @@ export interface CSModalProps {
 
 class CSModal extends React.Component<CSModalProps> {
 
-	handleOnClose = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-		if (this.props.onClose) {
-			this.props.onClose(e);
-		}
-		CSModalApi.removeCSModal();
-	}
-
 	render() {
 		const modalClasses = classNames(
 			'cs-modal-wrapper',
-			'cs-modal-wrapper-open',
 			{
 				[`${this.props.className}`]: this.props.className
 			}
@@ -50,7 +42,7 @@ class CSModal extends React.Component<CSModalProps> {
 					{this.props.closeButton &&
 						<button
 							className="cs-modal-close"
-							onClick={this.handleOnClose}
+							onClick={this.props.onClose}
 							aria-label="close"
 						>
 							<CSIcon name="close"/>

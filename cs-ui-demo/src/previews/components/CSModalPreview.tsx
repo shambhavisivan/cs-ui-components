@@ -11,7 +11,36 @@ import {CSModal, CSModalApi, CSModalHeader, CSModalBody, CSModalFooter, CSButton
 
 class CSModalPreview extends React.Component {
 	getCSModalDoc() {
-
+		const componentModal = (
+			<CSModal
+				size="small"
+				closeButton
+				onClose={() => CSModalApi.removeCSModal()}
+			>
+				<CSModalHeader
+					title="This is a test heading"
+					subtitle="This is a test subtitle"
+				/>
+				<CSModalBody>
+					<p>
+						Sit nulla est ex deserunt exercitation anim occaecat.
+						<br/>
+						<br/>
+						Nostrud ullamco deserunt aute id consequat veniam
+						incididunt duis in sint irure nisi. Mollit officia cillum
+						Lorem ullamco minim nostrud elit officia tempor esse quis.
+						Cillum sunt ad dolore quis aute consequat ipsum magna
+						exercitation reprehenderit magna. Tempor cupidatat
+						consequat elit dolor adipisicing.
+					</p>
+				</CSModalBody>
+				<CSModalFooter align="left">
+					<CSButton label="Default Button"/>
+					<CSButton label="Open Modal" btnStyle="brand" onClick={() => CSModalApi.renderCSModal(componentModal)}
+				/>
+				</CSModalFooter>
+			</CSModal>
+		);
 		const json = {
 			name: 'Modal',
 			usage: 'Modals are used to display content in a layer above the app. This paradigm is used in cases such as the creation or editing of a record, as well as various types of messaging and wizards.',
@@ -377,34 +406,7 @@ class CSModalPreview extends React.Component {
 						preview:
 							<CSButton
 								label="Open Modal"
-								onClick={() => CSModalApi.renderCSModal(
-									<CSModal
-										size="small"
-										closeButton
-									>
-										<CSModalHeader
-											title="This is a test heading"
-											subtitle="This is a test subtitle"
-										/>
-										<CSModalBody>
-											<p>
-												Sit nulla est ex deserunt exercitation anim occaecat.
-												<br/>
-												<br/>
-												Nostrud ullamco deserunt aute id consequat veniam
-												incididunt duis in sint irure nisi. Mollit officia cillum
-												Lorem ullamco minim nostrud elit officia tempor esse quis.
-												Cillum sunt ad dolore quis aute consequat ipsum magna
-												exercitation reprehenderit magna. Tempor cupidatat
-												consequat elit dolor adipisicing.
-											</p>
-										</CSModalBody>
-										<CSModalFooter align="left">
-											<CSButton label="Default Button"/>
-											<CSButton label="Brand Button" btnStyle="brand"/>
-										</CSModalFooter>
-									</CSModal>
-								)}
+								onClick={() => CSModalApi.renderCSModal(componentModal)}
 							/>
 					}
 				]
@@ -417,6 +419,10 @@ class CSModalPreview extends React.Component {
 					args: [
 						'<CSModal>...</CSModal>'
 					]
+				},
+				{
+					name: 'removeCSModal',
+					description: 'For removing CSModal from container (if container has no modals it will be removed as well)'
 				}
 			]
 		};
