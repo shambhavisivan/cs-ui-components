@@ -166,6 +166,10 @@
 					font-weight: $font-weight-normal;
 					margin: 0;
 				}
+
+				&.cs-main-header-heading-reversed {
+					flex-direction: column-reverse;
+				}
 			}
 		}
 

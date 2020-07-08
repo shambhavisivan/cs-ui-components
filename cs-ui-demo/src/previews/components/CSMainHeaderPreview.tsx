@@ -233,6 +233,31 @@ class CSMainHeaderPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'reverseOrder',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSMainHeader>
+									<CSMainHeaderIcon>
+										<CSIcon name="emoji"/>
+									</CSMainHeaderIcon>
+									<CSMainHeaderLeft
+										reverseOrder
+										title="This is a title"
+										subtitle="This is a subtitle"
+									/>
+									<CSMainHeaderRight>
+										<CSButton label="Button 1"/>
+										<CSButton label="Button 2" btnStyle="brand"/>
+									</CSMainHeaderRight>
+								</CSMainHeader>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -341,6 +366,14 @@ class CSMainHeaderPreview extends React.Component {
 				{
 					propertyName: 'id',
 					description: 'Main header left id value'
+				},
+				{
+					propertyName: 'reverseOrder',
+					description: 'Logic to reverse the order of subtitle and title',
+					options: [
+						'false',
+						'true'
+					]
 				},
 				{
 					propertyName: 'subtitle',
