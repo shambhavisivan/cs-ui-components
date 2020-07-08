@@ -148,7 +148,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		const wrapperInfo = this.tooltipRef.current.getBoundingClientRect();
 
 		const top = wrapperInfo.top + this.convertRemToPixels(1.5);
-		const right = window.innerWidth - wrapperInfo.right - this.convertRemToPixels(1.5) + (wrapperInfo.width / 2);
+		const right = (window as any).visualViewport.width - wrapperInfo.right - this.convertRemToPixels(1.5) + (wrapperInfo.width / 2);
 		const bottom = window.innerHeight - wrapperInfo.top + this.convertRemToPixels(0.5) + 2;
 		const left = wrapperInfo.left - this.convertRemToPixels(1.5) + (wrapperInfo.width / 2);
 

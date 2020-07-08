@@ -274,22 +274,22 @@
 
 		&.cs-tooltip-bottom-right {
 			top: calc(100% + 0.75rem);
-			left: -1rem;
+			left: calc(50% - 1.5rem);
 		}
 
 		&.cs-tooltip-bottom-left {
 			top: calc(100% + 0.75rem);
-			right: calc(100% - 2rem);
+			right: calc(50% - 1.5rem);
 		}
 
 		&.cs-tooltip-top-right {
 			bottom: calc(100% + 0.75rem);
-			left: -1rem;
+			left: calc(50% - 1.5rem);
 		}
 
 		&.cs-tooltip-top-left {
 			bottom: calc(100% + 0.75rem);
-			right: calc(100% - 2rem);
+			right: calc(50% - 1.5rem);
 		}
 	}
 }
