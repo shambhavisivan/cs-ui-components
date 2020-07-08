@@ -5,13 +5,12 @@ import { NotificationInstance } from '../../node_modules/rc-notification/lib/Not
 
 type CSToastPosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 
-let notification: NotificationInstance = null;
 let counter = 0;
-let prevPosition: CSToastPosition;
 const defaultTop = 24;
 const defaultBottom = 24;
 const defaultDuration = 5;
 const defaultPosition: CSToastPosition = 'top-right';
+const notificationInstancesMap = new Map<CSToastPosition, NotificationInstance>();
 
 const getPosition = (position: CSToastPosition, top: number = defaultTop, bottom: number = defaultBottom) => {
 	let style: CSSProperties;
@@ -49,30 +48,48 @@ const getPosition = (position: CSToastPosition, top: number = defaultTop, bottom
 	return style;
 };
 
+const getNotifInstance = (position: CSToastPosition) => {
+	return notificationInstancesMap.get(position);
+};
+
+const setNotifInstance = (position: CSToastPosition, notifInstace: NotificationInstance) => {
+	notificationInstancesMap.set(position, notifInstace);
+};
+
+const hasNotifInstance = (position: CSToastPosition) => {
+	return notificationInstancesMap.has(position);
+};
+
 export function renderCSToast(props: CSToastProps, position?: CSToastPosition, duration?: number | null): void {
 	const key: string = 'toast' + counter;
 	const newDuration = duration || duration === null ? duration : defaultDuration;
 	const newPosition = position ? position : defaultPosition;
-	if (counter === 0 || prevPosition !== position) {
+
+	const instanceExists = hasNotifInstance(newPosition);
+	let notifInstance: NotificationInstance;
+
+	if (instanceExists) {
+		notifInstance = getNotifInstance(newPosition);
+	} else {
 		Notification.newInstance(
 			{
 				prefixCls: 'cs-toast-notification',
 				style: getPosition(newPosition)
 			},
-			(instance: NotificationInstance) => (notification = instance)
+			(instance: NotificationInstance) => (notifInstance = instance)
 		);
+		setNotifInstance(newPosition, notifInstance);
 	}
-	notification.notice ({
+	notifInstance.notice ({
 		content: <CSToast
 					{...props}
-					onClose={() => notification.removeNotice(key)}
+					onClose={() => notifInstance.removeNotice(key)}
 					className={`cs-toast-notice-${newPosition}`}
 				/>,
 		duration: newDuration,
 		key
 	});
 	counter++;
-	prevPosition = newPosition;
 }
 
 const CSToastApi = {
