@@ -4,6 +4,7 @@ import CSIcon from './CSIcon';
 
 export interface CSTabProps {
 	active?: boolean;
+	className?: string;
 	disabled?: boolean;
 	id?: string;
 	onClick?: (value?: any) => any;
@@ -42,7 +43,8 @@ class CSTab extends React.Component<CSTabProps> {
 			{
 				'cs-tab-active': this.props.active,
 				[`cs-tab-${this.props.status}`]: this.props.status,
-				[`cs-tab-${this.props.parentVariant}`]: this.props.parentVariant
+				[`cs-tab-${this.props.parentVariant}`]: this.props.parentVariant,
+				[`${this.props.className}`]: this.props.className
 			}
 		);
 

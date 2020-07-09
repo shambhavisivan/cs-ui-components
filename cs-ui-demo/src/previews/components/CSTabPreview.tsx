@@ -8,7 +8,7 @@ import PreviewLinks from '../PreviewLinks';
 import {CSTabGroup, CSTab} from '@cloudsense/cs-ui-components';
 
 class CSTabPreview extends React.Component {
-	getCSTabGroupDoc() {
+	getCSTabDoc() {
 
 		const clickHandler = () => alert('Tab is clicked!');
 
@@ -361,6 +361,7 @@ class CSTabPreview extends React.Component {
 							>
 								<CSTab
 									title="Tab One"
+									className="custom-class-2"
 								/>
 								<CSTab
 									title="Tab Two"
@@ -390,11 +391,7 @@ class CSTabPreview extends React.Component {
 				},
 				{
 					propertyName: 'id',
-					description: 'Tab and tab group id value'
-				},
-				{
-					propertyName: 'listName',
-					description: 'For overriding \'aria-label\' default value on CSTabGroup'
+					description: 'Tab id value'
 				},
 				{
 					propertyName: 'onClick',
@@ -417,14 +414,6 @@ class CSTabPreview extends React.Component {
 				{
 					propertyName: 'title',
 					description: 'Text content of tab'
-				},
-				{
-					propertyName: 'variant',
-					description: 'Tab variant',
-					options: [
-						'large',
-						'normal'
-					]
 				}
 			]
 		};
@@ -438,15 +427,46 @@ class CSTabPreview extends React.Component {
 		return json;
 	}
 
+	getCSTabGroupDoc() {
+
+		const json = {
+			name: 'Tab Group',
+			properties: [
+				{
+					propertyName: 'className',
+					description: 'For implementing custom class to component'
+				},
+				{
+					propertyName: 'id',
+					description: 'Tab group id value'
+				},
+				{
+					propertyName: 'listName',
+					description: 'For overriding \'aria-label\' default value on CSTabGroup'
+				},
+				{
+					propertyName: 'variant',
+					description: 'Tab variant',
+					options: [
+						'large',
+						'normal'
+					]
+				}
+			]
+		};
+		return json;
+	}
+
 	render() {
-		const component = this.getCSTabGroupDoc();
+		const component = this.getCSTabDoc();
+		const component2 = this.getCSTabGroupDoc();
 
 		return (
 			<>
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} />
 					<PreviewProperties name={component.name} examples={component.examples} />
-					<PreviewTable components={[component]} />
+					<PreviewTable components={[component, component2]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>
