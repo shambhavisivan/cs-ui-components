@@ -10,13 +10,41 @@ import {CSInputNumber} from '@cloudsense/cs-ui-components';
 class CSInputNumberPreview extends React.Component {
 
 	getDoc() {
+		let count = 0;
 
 		const onChangeHandler = () => alert('Input changed!');
+		const onBlurHandler = () => alert('Focus changed!');
+		const onFocusHandler = () => {
+			if (count === 1) {
+				count = 0;
+				return false;
+			}
+			count++;
+			alert('Input is focused!');
+		};
 
 		const json = {
 			name: 'Input Number',
 			usage: 'Number inputs are used for number entry.',
 			examples: [
+				{
+					propName: 'type',
+					customText: '',
+					variations: [
+						{
+							variationName: ['number'],
+							string: '',
+							component:
+								<CSInputNumber label="Enter value:" type="number" />
+						},
+						{
+							variationName: ['text'],
+							string: '',
+							component:
+								<CSInputNumber label="Enter value:" type="text" />
+						}
+					]
+				},
 				{
 					propName: 'value',
 					customText: '',
@@ -194,6 +222,17 @@ class CSInputNumberPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'maxLength',
+					variations: [
+						{
+							variationText: ['type="text"'],
+							string: '',
+							component:
+								<CSInputNumber label="Enter value:" type="text" maxLength={10} />
+						}
+					]
+				},
+				{
 					propName: 'borderType',
 					variations: [
 						{
@@ -219,6 +258,17 @@ class CSInputNumberPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'onBlur',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSInputNumber label="Enter value:" onBlur={onBlurHandler} />
+						}
+					]
+				},
+				{
 					propName: 'onChange',
 					customText: '',
 					variations: [
@@ -226,6 +276,17 @@ class CSInputNumberPreview extends React.Component {
 							string: '',
 							component:
 								<CSInputNumber label="Enter value:" onChange={onChangeHandler} />
+						}
+					]
+				},
+				{
+					propName: 'onFocus',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSInputNumber label="Enter value:" onFocus={onFocusHandler} />
 						}
 					]
 				},
@@ -319,6 +380,10 @@ class CSInputNumberPreview extends React.Component {
 					description: 'Input number max value'
 				},
 				{
+					propertyName: 'maxLength',
+					description: 'Input max length value (can be used only with type="text")'
+				},
+				{
 					propertyName: 'min',
 					description: 'Input number min value'
 				},
@@ -327,8 +392,16 @@ class CSInputNumberPreview extends React.Component {
 					description: 'Input number name value'
 				},
 				{
+					propertyName: 'onBlur',
+					description: 'Logic for onBlur event'
+				},
+				{
 					propertyName: 'onChange',
 					description: 'Logic for onChange event'
+				},
+				{
+					propertyName: 'onFocus',
+					description: 'Logic for onFocus event'
 				},
 				{
 					propertyName: 'placeholder',
@@ -358,6 +431,14 @@ class CSInputNumberPreview extends React.Component {
 						'top-left',
 						'bottom-right',
 						'bottom-left'
+					]
+				},
+				{
+					propertyName: 'type',
+					description: 'Input field type',
+					options: [
+						'number',
+						'text'
 					]
 				},
 				{
