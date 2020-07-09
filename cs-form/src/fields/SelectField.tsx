@@ -2,6 +2,7 @@ import React from 'react';
 import { FormFieldProps } from './FormField';
 import { SelectOption } from '../types/SelectOption';
 import { FieldType } from '../types/FormDescriptor';
+const { CSSelect } = require('@cloudsense/cs-ui-components');
 
 interface SelectFieldProps extends FormFieldProps {
 	selectOptions: Array<SelectOption>;
@@ -9,16 +10,16 @@ interface SelectFieldProps extends FormFieldProps {
 
 export const SelectField: React.FC<SelectFieldProps> = props => {
 	return (
-		<div className="select-wrapper">
-			<select
-				{...props.wrapper.injectInputProps(props.descriptor.name, props.descriptor.fieldType as FieldType, props.status)}
-				value={props.value || ''}
-				name={props.descriptor.name}
-				onChange={e => props.handleFieldChange(e.target.value)}
-				required={props.status === 'mandatory'}
-				disabled={props.status === 'visible'}>
-				{props.selectOptions && props.selectOptions.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
-			</select>
-		</div>
+		<CSSelect
+			{...props.wrapper.injectInputProps(props.descriptor.name, props.descriptor.fieldType as FieldType, props.status)}
+			label={props.descriptor.name}
+			required={props.status === 'mandatory'}
+			disabled={props.status === 'visible'}
+			name={props.descriptor.name}
+			onChange={(e: React.ChangeEvent<HTMLSelectElement>) => props.handleFieldChange(e.target.value)}
+			value={props.value || ''}
+		>
+			{props.selectOptions && props.selectOptions.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
+		</CSSelect>
 	);
 };

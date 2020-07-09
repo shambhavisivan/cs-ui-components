@@ -1,10 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import ReactTestUtils, { act, SyntheticEventData } from 'react-dom/test-utils';
 import { ElementWrapper, LocaleSettings, FieldDescriptor, SelectOption } from '../..';
 import { SelectField } from '../../fields/SelectField';
+import { mount, shallow, default as Enzyme } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+const { CSSelect } = require('@cloudsense/cs-ui-components');
 
 const locale: LocaleSettings = {} as unknown as LocaleSettings;
+
+Enzyme.configure({ adapter: new Adapter() });
 
 const wrapper: ElementWrapper = {
 	injectInputProps: () => null
@@ -33,58 +36,39 @@ const descriptor: FieldDescriptor = {
 	label: 'Test field'
 };
 
-let container: HTMLDivElement;
-
-beforeEach(() => {
-	container = document.createElement('div');
-	document.body.appendChild(container);
-});
-
-afterEach(() => {
-	document.body.removeChild(container);
-});
-
 it('renders a dropdown box', () => {
-	act(() => {
-		ReactDOM.render(
-			<SelectField
-				value="option1"
-				wrapper={wrapper}
-				descriptor={descriptor}
-				locale={locale}
-				handleFieldChange={nop}
-				selectOptions={selectOptions}
-				fetchPossibleValues={optionFetcher}
-				status="enabled" />,
-			container
-		);
-	});
-
-	const select = container.querySelector('select');
-	expect(select).not.toBeNull();
-	expect(select && select.value).toBe('option1');
-	expect(select && select.name).toBe('testField');
-	expect(container.getElementsByTagName('option')).toHaveLength(selectOptions.length);
+	const uut = mount(
+		<SelectField
+			value="option1"
+			wrapper={wrapper}
+			descriptor={descriptor}
+			locale={locale}
+			handleFieldChange={nop}
+			selectOptions={selectOptions}
+			fetchPossibleValues={optionFetcher}
+			status="enabled"
+		/>
+	);
+	expect(uut.find('select')).toHaveLength(1);
+	expect(uut.find('select').prop('value')).toBe('option1');
+	expect(uut.find('select').prop('name')).toBe('testField');
+	expect(uut.find('select').children()).toHaveLength(selectOptions.length);
 });
 
 it('sets readonly', () => {
-	act(() => {
-		ReactDOM.render(
-			<SelectField
-				value="option1"
-				wrapper={wrapper}
-				descriptor={descriptor}
-				locale={locale}
-				handleFieldChange={nop}
-				selectOptions={selectOptions}
-				fetchPossibleValues={optionFetcher}
-				status="visible" />,
-			container
-		);
-	});
-
-	const select = container.querySelector('select');
-	expect(select && select.disabled).toBe(true);
+	const uut = shallow(
+		<SelectField
+			value="option1"
+			wrapper={wrapper}
+			descriptor={descriptor}
+			locale={locale}
+			handleFieldChange={nop}
+			selectOptions={selectOptions}
+			fetchPossibleValues={optionFetcher}
+			status="visible"
+		/>
+	);
+	expect(uut.find(CSSelect).prop('disabled')).toBeTruthy();
 });
 
 it('calls onChange() on change', done => {
@@ -93,24 +77,17 @@ it('calls onChange() on change', done => {
 		done();
 	};
 
-	act(() => {
-		ReactDOM.render(
-			<SelectField
-				value="option1"
-				wrapper={wrapper}
-				descriptor={descriptor}
-				locale={locale}
-				handleFieldChange={onChange}
-				selectOptions={selectOptions}
-				fetchPossibleValues={optionFetcher}
-				status="enabled"
-			/>,
-			container
-		);
-
-		const select = container.querySelector('select');
-		if (select) {
-			ReactTestUtils.Simulate.change(select, { target: { value: 'option2' } } as any as SyntheticEventData);
-		}
-	});
+	const uut = shallow(
+		<SelectField
+			value="option1"
+			wrapper={wrapper}
+			descriptor={descriptor}
+			locale={locale}
+			handleFieldChange={onChange}
+			selectOptions={selectOptions}
+			fetchPossibleValues={optionFetcher}
+			status="enabled"
+		/>
+	);
+	uut.find(CSSelect).simulate('change',  { target: { value: 'option2' } });
 });
