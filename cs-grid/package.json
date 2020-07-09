@@ -46,7 +46,6 @@
 		"ag-grid"
 	],
 	"dependencies": {
-		"@cloudsense/cs-ui-components": "1.0.0-alpha.124",
 		"@cloudsense/react-datepicker-dynamiclocale": "2.0.1",
 		"@types/jsdom": "^12.2.4",
 		"@types/react": "^16.8.23",
@@ -100,5 +99,8 @@
 		"webpack": "^4.39.3",
 		"webpack-cli": "^3.3.11",
 		"webpack-dev-server": "^3.11.0"
+	},
+	"peerDependencies": {
+		"@cloudsense/cs-ui-components": "^1.0.0-alpha.124"
 	}
 }
