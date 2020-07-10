@@ -12,6 +12,11 @@
 			padding-bottom: 0.125rem;
 		}
 	}
+
+	.cs-toggle-error-msg {
+		padding-top: 0.25rem;
+		@include error-message;
+	}
 }
 
 .cs-toggle-wrapper {

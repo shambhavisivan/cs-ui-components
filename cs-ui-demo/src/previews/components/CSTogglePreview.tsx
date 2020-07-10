@@ -78,6 +78,17 @@ class CSTogglePreview extends React.Component {
 					]
 				},
 				{
+					propName: 'errorMessage',
+					variations: [
+						{
+							variationText: ['error="true"'],
+							string: '',
+							component:
+								<CSToggle label="This is a label" error errorMessage="Error message!"/>
+						}
+					]
+				},
+				{
 					propName: 'helpText',
 					variations: [
 						{
@@ -226,6 +237,10 @@ class CSTogglePreview extends React.Component {
 						'false',
 						'true'
 					]
+				},
+				{
+					propertyName: 'errorMessage',
+					description: 'Error message text'
 				},
 				{
 					propertyName: 'helpText',

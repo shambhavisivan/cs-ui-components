@@ -10,6 +10,7 @@ export interface CSToggleProps {
 	className?: string;
 	disabled?: boolean;
 	error?: boolean;
+	errorMessage?: string;
 	helpText?: string;
 	id?: string;
 	label: string;
@@ -87,6 +88,9 @@ class CSToggle extends React.Component<CSToggleProps, CSToggleState> {
 						/>
 						<span className="cs-toggle-faux"/>
 					</label>
+					{(this.props.error && this.props.errorMessage) &&
+						<span className="cs-toggle-error-msg">{this.props.errorMessage}</span>
+					}
 				</div>
 			</>
 		);
