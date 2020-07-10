@@ -7,7 +7,6 @@ export interface CSCheckboxProps {
 	borderType?: string;
 	checked?: boolean;
 	className?: string;
-	defaultChecked?: boolean;
 	disabled?: boolean;
 	error?: boolean;
 	errorMessage?: string;
@@ -41,7 +40,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 		super(props);
 
 		this.state = {
-			checked: this.props.checked || this.props.defaultChecked
+			checked: this.props.checked
 		};
 	}
 

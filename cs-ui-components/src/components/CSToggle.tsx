@@ -6,7 +6,6 @@ import { CSTooltipPosition } from './CSTooltip';
 export interface CSToggleProps {
 	checked?: boolean;
 	className?: string;
-	defaultChecked?: boolean;
 	disabled?: boolean;
 	error?: boolean;
 	helpText?: string;
@@ -31,7 +30,7 @@ class CSToggle extends React.Component<CSToggleProps, CSToggleState> {
 		super(props);
 
 		this.state = {
-			checked: this.props.checked || this.props.defaultChecked
+			checked: this.props.checked
 		};
 	}
 

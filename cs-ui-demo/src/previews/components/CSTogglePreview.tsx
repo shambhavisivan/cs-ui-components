@@ -212,14 +212,6 @@ class CSTogglePreview extends React.Component {
 					description: 'For implementing custom class to component'
 				},
 				{
-					propertyName: 'defaultChecked',
-					description: 'Default checkbox state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
 					propertyName: 'disabled',
 					description: 'Logic for disabled state',
 					options: [
