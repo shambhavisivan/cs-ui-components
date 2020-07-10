@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import React, { CSSProperties } from 'react';
 import CSIcon from './CSIcon';
+import { Portal } from 'react-portal';
 
 export type CSTooltipPosition = 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left';
 export type CSTooltipStylePosition = 'fixed' | 'absolute';
@@ -74,11 +75,28 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			'--cs-tooltip-width': this.props.width
 		};
 
+		const tooltip = (
+			<div className={tooltipClasses} style={tooltipStyle}>
+				{this.props.tooltipHeader && (
+					<div className="cs-tooltip-header">{this.props.tooltipHeader}</div>
+				)}
+				{content.map((text, index) => (
+					<div className="cs-tooltip-body" key={index}>
+						{text}
+					</div>
+				))}
+			</div>
+		);
+
 		return (
 			<div
 				className={tooltipWrapperClasses}
-				onMouseEnter={this.props.stylePosition !== 'absolute' ? this.handleMouseEnter : null}
-				onMouseLeave={this.props.stylePosition !== 'absolute' ? this.handleMouseLeave : null}
+				onMouseEnter={
+					this.props.stylePosition !== 'absolute' ? this.handleMouseEnter : null
+				}
+				onMouseLeave={
+					this.props.stylePosition !== 'absolute' ? this.handleMouseLeave : null
+				}
 				tabIndex={0}
 				role="tooltip"
 				ref={this.tooltipRef}
@@ -100,17 +118,22 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 						)}
 					</>
 				)}
-				{(this.props.stylePosition === 'absolute' || (!this.state.hidden && this.state.computedTooltipStyle)) && (
-					<div className={tooltipClasses} style={tooltipStyle}>
-						{this.props.tooltipHeader && (
-							<div className="cs-tooltip-header">{this.props.tooltipHeader}</div>
+				{!this.state.hidden && (
+					<>
+						{this.props.stylePosition === 'absolute' ? (
+							tooltip
+						) : (
+							<>
+								{this.state.computedTooltipStyle && (
+									<Portal>
+										<div className="cs-app-wrapper">
+											<div className={tooltipWrapperClasses}>{tooltip}</div>
+										</div>
+									</Portal>
+								)}
+							</>
 						)}
-						{content.map((text, index) => (
-							<div className="cs-tooltip-body" key={index}>
-								{text}
-							</div>
-						))}
-					</div>
+					</>
 				)}
 			</div>
 		);
@@ -148,9 +171,13 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		const wrapperInfo = this.tooltipRef.current.getBoundingClientRect();
 
 		const top = wrapperInfo.top + this.convertRemToPixels(1.5);
-		const right = (window as any).visualViewport.width - wrapperInfo.right - this.convertRemToPixels(1.5) + (wrapperInfo.width / 2);
+		const right =
+			(window as any).visualViewport.width -
+			wrapperInfo.right -
+			this.convertRemToPixels(1.5) +
+			wrapperInfo.width / 2;
 		const bottom = window.innerHeight - wrapperInfo.top + this.convertRemToPixels(0.5) + 2;
-		const left = wrapperInfo.left - this.convertRemToPixels(1.5) + (wrapperInfo.width / 2);
+		const left = wrapperInfo.left - this.convertRemToPixels(1.5) + wrapperInfo.width / 2;
 
 		switch (this.props.position) {
 			case 'bottom-right':

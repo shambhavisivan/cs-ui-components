@@ -44,6 +44,8 @@
 	},
 	"dependencies": {
 		"@types/classnames": "^2.2.9",
-		"rc-notification": "^4.4.0"
+		"@types/react-portal": "^4.0.2",
+		"rc-notification": "^4.4.0",
+		"react-portal": "^4.2.1"
 	}
 }
