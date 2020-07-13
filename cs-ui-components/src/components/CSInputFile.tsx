@@ -83,7 +83,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 						/>
 						<span className="cs-input-file-label-body">
 							<CSIcon className="cs-input-file-icon" name="upload"/>
-							<span>{this.state.label ? this.state.label : this.props.label}</span>
+							<span className="cs-input-file-label">{this.state.label ? this.state.label : this.props.label}</span>
 						</span>
 					</label>
 				</div>
