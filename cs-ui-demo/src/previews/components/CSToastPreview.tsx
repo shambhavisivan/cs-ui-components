@@ -343,8 +343,12 @@ class CSToastPreview extends React.Component {
 									onClick={() => CSToastApi.renderCSToast({variant: 'warning', closeButton: true, text: 'Top left toast'}, 'top-left', 4)}
 								/>
 								<CSButton
+									label="top-center"
+									onClick={() => CSToastApi.renderCSToast({variant: 'success', closeButton: true, text: 'Top center toast'}, 'top-center', 5)}
+								/>
+								<CSButton
 									label="bottom-right"
-									onClick={() => CSToastApi.renderCSToast({variant: 'info', closeButton: true, text: 'Bottom right toast'}, 'bottom-right', 5)}
+									onClick={() => CSToastApi.renderCSToast({variant: 'info', closeButton: true, text: 'Bottom right toast'}, 'bottom-right', 6)}
 								/>
 								<CSButton
 									label="bottom-left"

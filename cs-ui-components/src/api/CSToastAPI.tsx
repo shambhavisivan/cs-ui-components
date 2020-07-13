@@ -3,7 +3,7 @@ import React, { CSSProperties } from 'react';
 import Notification from 'rc-notification';
 import { NotificationInstance } from '../../node_modules/rc-notification/lib/Notification';
 
-type CSToastPosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+type CSToastPosition = 'top-left' | 'top-right' | 'top-center' | 'bottom-left' | 'bottom-right';
 
 let counter = 0;
 const defaultTop = 24;
@@ -35,6 +35,14 @@ const getPosition = (position: CSToastPosition, top: number = defaultTop, bottom
 				top,
 				bottom: 'auto'
 
+			};
+			break;
+		case 'top-center':
+			style = {
+				left: '50%',
+				top,
+				bottom: 'auto',
+				transform: 'translateX(-50%)'
 			};
 			break;
 		default:
