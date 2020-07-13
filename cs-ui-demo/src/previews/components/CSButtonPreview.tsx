@@ -680,7 +680,6 @@ class CSButtonPreview extends React.Component {
 					</div>
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
-					<PreviewBacklogList backlog={component.backlog} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>
