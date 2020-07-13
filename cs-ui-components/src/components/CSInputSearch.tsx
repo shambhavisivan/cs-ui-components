@@ -18,6 +18,7 @@ export interface CSInputSearchProps {
 	label: string;
 	labelHidden?: boolean;
 	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+	onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 	placeholder?: string;
 	required?: boolean;
 	tooltipPosition?: CSTooltipPosition;
@@ -96,6 +97,11 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 		this.setValue(e.target.value);
 		resolveOnChange(this.input, e, this.props.onChange);
 	}
+	handleOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		if (this.props.onKeyDown) {
+			this.props.onKeyDown(e);
+		}
+	}
 
 	render() {
 		const inputSearchWrapperClasses = classNames(
@@ -145,6 +151,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 							type="text"
 							autoComplete="off"
 							ref={this.saveInputSearch}
+							onKeyDown={this.handleOnKeyDown}
 						/>
 						{this.state.value &&
 							<button

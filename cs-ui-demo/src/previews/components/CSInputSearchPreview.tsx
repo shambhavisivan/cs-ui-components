@@ -11,6 +11,7 @@ class CSInputSearchPreview extends React.Component {
 	getDoc() {
 
 		const onChangeHandler = () => alert('Input search changed!');
+		const onKeyDownHandler = () => alert('Key is pressed!');
 
 		const json = {
 			name: 'Input Search',
@@ -216,6 +217,16 @@ class CSInputSearchPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'onKeyDown',
+					variations: [
+						{
+							string: '',
+							component:
+									<CSInputSearch label="Type here:" onKeyDown={onKeyDownHandler} />
+						}
+					]
+				},
+				{
 					propName: 'autoFocus',
 					variations: [
 						{
@@ -321,6 +332,10 @@ class CSInputSearchPreview extends React.Component {
 				{
 					propertyName: 'onChange',
 					description: 'Logic for onChange event'
+				},
+				{
+					propertyName: 'onKeyDown',
+					description: 'Logic for onKeyDown event'
 				},
 				{
 					propertyName: 'placeholder',
