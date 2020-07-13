@@ -547,7 +547,7 @@ class CSModalPreview extends React.Component {
 					<PreviewHeading name={component.name} usage={component.usage} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component, component2, component3, component4]} />
-					<PreviewApi api={component.api} component={component} />
+					<PreviewApi api={component.api} componentName={component.name} />
 					<PreviewApiTable components={[component]} />
 				</div>
 				<div className="prop-sidebar">

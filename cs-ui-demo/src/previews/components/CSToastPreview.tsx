@@ -398,7 +398,7 @@ class CSToastPreview extends React.Component {
 					<PreviewHeading name={component.name} usage={component.usage} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
-					<PreviewApi api={component.api} component={component} />
+					<PreviewApi api={component.api} componentName={component.name} />
 					<PreviewApiTable components={[component]} />
 				</div>
 				<div className="prop-sidebar">
