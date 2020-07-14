@@ -9,8 +9,10 @@ import CSTableRow from './table/CSTableRow';
 import CSTableCell from './table/CSTableCell';
 import { CSTooltipPosition } from './CSTooltip';
 
+export type CSLookupBorderType = 'round' | 'square';
+
 export interface CSLookupFieldProps {
-	borderType?: string;
+	borderType?: CSLookupBorderType;
 	className?: string;
 	disabled?: boolean;
 	error?: boolean;

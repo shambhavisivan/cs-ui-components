@@ -562,8 +562,8 @@ class CSButtonDropdownPreview extends React.Component {
 					propertyName: 'iconOrigin',
 					description: 'SLDS or CloudSense icons',
 					options: [
-						'icon-only',
-						'no-icon'
+						'slds',
+						'cs'
 					]
 				},
 				{

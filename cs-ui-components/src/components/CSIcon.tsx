@@ -4,13 +4,15 @@ import classNames from 'classnames';
 import SldsIconSvg from '../icons/slds-icons.svg';
 import CsIconSvg from '../icons/cs-icons.svg';
 
+export type CSIconOrigin = 'slds' | 'cs';
+
 export interface CSIconProps {
 	className?: string;
 	color?: string;
 	frame?: boolean;
 	id?: string;
 	name: string;
-	origin?: string;
+	origin?: CSIconOrigin;
 	rotate?: string;
 	size?: string;
 }

@@ -122,7 +122,7 @@ class CSButtonPreview extends React.Component {
 							quickLink: 'default initial',
 							string: '',
 							component: <CSButton
-											btnStyle="inital"
+											btnStyle="initial"
 											color="pink"
 											label="custom color button"
 											iconName="activity"

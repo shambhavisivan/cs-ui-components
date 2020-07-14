@@ -1,11 +1,13 @@
 import React from 'react';
 import classNames from 'classnames';
 
+export type CSTabGroupVariant = 'large' | 'normal';
+
 export interface CSTabGroupProps {
 	className?: string;
 	id?: string;
 	listName?: string;
-	variant?: string;
+	variant?: CSTabGroupVariant;
 }
 
 class CSTabGroup extends React.Component<CSTabGroupProps> {

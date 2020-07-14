@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import CSIcon from './CSIcon';
+import { CSTabGroupVariant } from './CSTabGroup';
 
 export interface CSTabProps {
 	active?: boolean;
@@ -8,7 +9,7 @@ export interface CSTabProps {
 	disabled?: boolean;
 	id?: string;
 	onClick?: (value?: any) => any;
-	parentVariant?: string;
+	parentVariant?: CSTabGroupVariant;
 	status?: string;
 	tabIcon?: string | undefined;
 	title: string | undefined;

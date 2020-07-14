@@ -1,8 +1,10 @@
 import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 
+export type CSMainHeaderColor = 'neutral' | 'brand' | 'error' | 'info';
+
 export interface CSMainHeaderProps {
-	color?: string;
+	color?: CSMainHeaderColor;
 	id?: string;
 	maxWidth?: string;
 	sticky?: boolean;

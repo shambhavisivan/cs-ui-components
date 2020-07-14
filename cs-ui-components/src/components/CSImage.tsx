@@ -1,13 +1,17 @@
 import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 
+export type CSImageColor = 'white' | 'black' | 'purple';
+export type CSImageType = 'logo' | 'logomark';
+export type CSImageVariant = 'initial' | 'reversed';
+
 export interface CSImageProps {
 	className?: string;
-	color?: string;
+	color?: CSImageColor;
 	height?: string;
 	id?: string;
-	type: string;
-	variant?: string;
+	type: CSImageType;
+	variant?: CSImageVariant;
 	width?: string;
 }
 

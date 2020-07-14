@@ -1,7 +1,9 @@
 import React from 'react';
 
+export type CSModalFooterAlign = 'right' | 'left' | 'center';
+
 export interface CSModalFooterProps {
-	align?: string;
+	align?: CSModalFooterAlign;
 	id?: string;
 }
 

@@ -4,8 +4,10 @@ import CSLabel from './CSLabel';
 import CSIcon from './CSIcon';
 import { CSTooltipPosition } from './CSTooltip';
 
+export type CSSelectBorderType = 'round' | 'square';
+
 export interface CSSelectProps {
-	borderType?: string;
+	borderType?: CSSelectBorderType;
 	className?: string;
 	disabled?: boolean;
 	error?: boolean;

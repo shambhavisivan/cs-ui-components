@@ -3,6 +3,8 @@ import classNames from 'classnames';
 import CSLabel from '../CSLabel';
 import { CSTooltipPosition } from '../CSTooltip';
 
+export type CSRadioVariant = 'neutral' | 'brand';
+
 export interface CSRadioProps {
 	className?: string;
 	disabled?: boolean;
@@ -12,7 +14,7 @@ export interface CSRadioProps {
 	label: string;
 	required?: boolean;
 	tooltipPosition?: CSTooltipPosition;
-	variant?: string;
+	variant?: CSRadioVariant;
 }
 
 class CSRadio extends React.Component<CSRadioProps> {

@@ -2,6 +2,8 @@ import React, { CSSProperties } from 'react';
 import CSLabel from './CSLabel';
 import classNames from 'classnames';
 
+export type CSProgressBarThickness = 'xsmall' | 'small' | 'medium' | 'large';
+
 export interface CSProgressBarProps {
 	className?: string;
 	color?: string;
@@ -9,7 +11,7 @@ export interface CSProgressBarProps {
 	label: string;
 	progress: string;
 	progressIndicator?: boolean;
-	thickness?: string;
+	thickness?: CSProgressBarThickness;
 }
 
 class CSProgressBar extends React.Component<CSProgressBarProps> {

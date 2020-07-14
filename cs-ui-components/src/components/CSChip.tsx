@@ -1,12 +1,15 @@
 import React from 'react';
 import classNames from 'classnames';
 
+export type CSChipVariant = 'brand' | 'success' | 'neutral' | 'error' |'warning' | 'transparent' | 'dark';
+export type CSChipVariantStyle = 'border' | 'fill';
+
 export interface CSChipProps {
 	className?: string;
 	id?: string;
 	text: string;
-	variant?: string;
-	variantStyle?: string;
+	variant?: CSChipVariant;
+	variantStyle?: CSChipVariantStyle;
 }
 
 class CSChip extends React.Component<CSChipProps> {

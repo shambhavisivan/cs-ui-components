@@ -270,8 +270,7 @@ class CSInputSearchPreview extends React.Component {
 				},
 				{
 					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: ['square']
+					description: 'For implementing custom class to component'
 				},
 				{
 					propertyName: 'disabled',

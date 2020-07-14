@@ -3,8 +3,10 @@ import classNames from 'classnames';
 import CSLabel from './CSLabel';
 import { CSTooltipPosition } from './CSTooltip';
 
+export type CSTextareaBorderType = 'round' | 'square';
+
 export interface CSTextareaProps {
-	borderType?: string;
+	borderType?: CSTextareaBorderType;
 	className?: string;
 	disabled?: boolean;
 	error?: boolean;

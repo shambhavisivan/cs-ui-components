@@ -259,7 +259,7 @@ class CSProgressBarPreview extends React.Component {
 					propertyName: 'thickness',
 					description: 'Thickness of the progress bar',
 					options: [
-						'x-small',
+						'xsmall',
 						'small',
 						'medium',
 						'large'

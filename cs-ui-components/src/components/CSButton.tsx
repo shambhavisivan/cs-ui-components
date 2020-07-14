@@ -1,18 +1,25 @@
 import React, { CSSProperties } from 'react';
-import CSIcon from './CSIcon';
+import CSIcon, { CSIconOrigin } from './CSIcon';
 import classNames from 'classnames';
+
+export type CSButtonIconDisplay = 'default' | 'icon-only' | 'no-icon';
+export type CSButtonIconPosition = 'left' | 'right';
+export type CSButtonSize = 'xsmall' | 'small' | 'normal' | 'large';
+export type CSButtonStyle = 'initial' | 'brand' | 'outline';
+export type CSButtonType = 'default' | 'error' | 'success' | 'transparent';
+export type CSButtonWidth = 'auto' | 'max';
 
 export interface CSButtonProps {
 	btnRound?: boolean;
-	btnStyle?: string;
-	btnType?: string;
+	btnStyle?: CSButtonStyle;
+	btnType?: CSButtonType;
 	className?: string;
 	color?: string;
 	disabled?: boolean;
-	iconDisplay?: string;
+	iconDisplay?: CSButtonIconDisplay;
 	iconName?: string;
-	iconOrigin?: string;
-	iconPosition?: string;
+	iconOrigin?:  CSIconOrigin;
+	iconPosition?: CSButtonIconPosition;
 	iconRotate?: string;
 	id?: string;
 	label: string | undefined;
@@ -20,8 +27,8 @@ export interface CSButtonProps {
 	loading?: boolean;
 	onClick?: (value: any) => any;
 	openInNewTab?: boolean;
-	size?: string;
-	width?: string;
+	size?: CSButtonSize;
+	width?: CSButtonWidth;
 }
 
 class CSButton extends React.Component<CSButtonProps> {
@@ -76,7 +83,6 @@ class CSButton extends React.Component<CSButtonProps> {
 				'cs-btn-error': this.props.btnType === 'error',
 				'cs-btn-success': this.props.btnType === 'success',
 				'cs-btn-transparent': this.props.btnType === 'transparent',
-				'cs-btn-custom': (this.props.btnType) === 'custom' && this.props.color !== undefined,
 
 				'cs-btn-initial': (this.props.btnStyle !== ('brand') && this.props.btnStyle !== ('outline')),
 				'cs-btn-brand': this.props.btnStyle === 'brand',

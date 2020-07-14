@@ -1,22 +1,29 @@
 import React from 'react';
 import CSButton from './CSButton';
 import classNames from 'classnames';
+import { CSIconOrigin } from './CSIcon';
+
+export type CSButtonDropdownAlign = 'left' | 'right';
+export type CSButtonDropdownIconPosition = 'left' | 'right';
+export type CSButtonDropdownSize = 'xsmall' | 'small' | 'normal' | 'large';
+export type CSButtonDropdownStyle = 'initial' | 'brand' | 'outline';
+export type CSButtonDropdownType = 'default' | 'error' | 'success' | 'transparent';
 
 export interface CSButtonDropdownProps {
-	align?: string;
-	btnStyle?: string;
-	btnType?: string;
+	align?: CSButtonDropdownAlign;
+	btnStyle?: CSButtonDropdownStyle;
+	btnType?: CSButtonDropdownType;
 	className?: string;
 	disabled?: boolean;
 	hover?: boolean;
 	iconName?: string;
-	iconOrigin?: string;
-	iconPosition?: string;
+	iconOrigin?: CSIconOrigin;
+	iconPosition?: CSButtonDropdownIconPosition;
 	iconRotate?: string;
 	id?: string;
 	label?: string;
 	onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-	size?: string;
+	size?: CSButtonDropdownSize;
 }
 
 export interface CSButtonDropdownStates {

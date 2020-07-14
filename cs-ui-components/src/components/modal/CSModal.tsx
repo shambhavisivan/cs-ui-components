@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import CSSpinner from '../CSSpinner';
 import CSModalApi from '../../api/CSModalAPI';
 
+export type CSModalSize = 'small' | 'medium' | 'large' | 'xlarge';
+
 export interface CSModalProps {
 	className?: string;
 	closeButton?: boolean;
@@ -11,7 +13,7 @@ export interface CSModalProps {
 	loading?: boolean;
 	loadingText?: string;
 	onClose?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-	size?: string;
+	size?: CSModalSize;
 	style?: object;
 }
 

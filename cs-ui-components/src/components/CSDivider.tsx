@@ -1,12 +1,14 @@
 import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 
+export type CSDividerVariant = 'vertical' | 'horizontal';
+
 export interface CSDividerProps {
 	className?: string;
 	id?: string;
 	label?: string;
 	size?: string;
-	variant: string;
+	variant: CSDividerVariant;
 }
 
 class CSDivider extends React.Component<CSDividerProps> {

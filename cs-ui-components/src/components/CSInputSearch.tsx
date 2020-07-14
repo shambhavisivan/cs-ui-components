@@ -4,9 +4,11 @@ import CSLabel from './CSLabel';
 import CSIcon from './CSIcon';
 import { CSTooltipPosition } from './CSTooltip';
 
+export type CSInputSearchBorderType = 'round' | 'square';
+
 export interface CSInputSearchProps {
 	autoFocus?: boolean;
-	borderType?: string;
+	borderType?: CSInputSearchBorderType;
 	className?: string;
 	disabled?: boolean;
 	error?: boolean;

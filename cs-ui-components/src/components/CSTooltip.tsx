@@ -3,8 +3,10 @@ import React, { CSSProperties } from 'react';
 import CSIcon from './CSIcon';
 import { Portal } from 'react-portal';
 
+export type CSTooltipIconSize = 'small' | 'medium';
 export type CSTooltipPosition = 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left';
 export type CSTooltipStylePosition = 'fixed' | 'absolute';
+export type CSTooltipVariant = 'info' | 'warning' | 'error';
 
 export interface CSTooltipProps {
 	className?: string;
@@ -12,11 +14,11 @@ export interface CSTooltipProps {
 	delayTooltip?: number;
 	height?: string;
 	iconName?: string;
-	iconSize?: string;
+	iconSize?: CSTooltipIconSize;
 	id?: string;
 	position?: CSTooltipPosition;
 	tooltipHeader?: string;
-	variant?: string;
+	variant?: CSTooltipVariant;
 	width?: string;
 	stylePosition?: CSTooltipStylePosition;
 }

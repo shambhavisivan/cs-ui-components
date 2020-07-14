@@ -3,8 +3,10 @@ import classNames from 'classnames';
 import CSLabel from './CSLabel';
 import { CSTooltipPosition } from './CSTooltip';
 
+export type CSInputTextBorderType = 'round' | 'square';
+
 export interface CSInputTextProps {
-	borderType?: string;
+	borderType?: CSInputTextBorderType;
 	className?: string;
 	disabled?: boolean;
 	error?: boolean;

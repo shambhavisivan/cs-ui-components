@@ -2,6 +2,8 @@ import React, { CSSProperties } from 'react';
 import CSIcon from './CSIcon';
 import classNames from 'classnames';
 
+export type CSToastVariant = 'info' | 'success' | 'warning' | 'error';
+
 export interface CSToastProps {
 	className?: string;
 	closeButton?: boolean;
@@ -12,7 +14,7 @@ export interface CSToastProps {
 	minWidth?: string;
 	onClose?: () => void;
 	text?: string;
-	variant: string;
+	variant: CSToastVariant;
 }
 
 class CSToast extends React.Component<CSToastProps> {

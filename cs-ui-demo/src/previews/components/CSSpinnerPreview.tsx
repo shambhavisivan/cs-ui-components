@@ -212,7 +212,8 @@ class CSSpinnerPreview extends React.Component {
 					description: 'Color of spinner icon',
 					options: [
 						'neutral',
-						'brand'
+						'brand',
+						'inverse'
 					]
 				},
 				{

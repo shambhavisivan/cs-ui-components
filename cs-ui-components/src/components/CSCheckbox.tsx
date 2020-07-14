@@ -3,8 +3,11 @@ import classNames from 'classnames';
 import CSLabel from './CSLabel';
 import { CSTooltipPosition } from './CSTooltip';
 
+export type CSCheckboxBorderType = 'square' | 'round';
+export type CSCheckboxVariant = 'neutral' | 'brand';
+
 export interface CSCheckboxProps {
-	borderType?: string;
+	borderType?: CSCheckboxBorderType;
 	checked?: boolean;
 	className?: string;
 	disabled?: boolean;
@@ -19,7 +22,7 @@ export interface CSCheckboxProps {
 	onClick?: (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
 	required?: boolean;
 	tooltipPosition?: CSTooltipPosition;
-	variant?: string;
+	variant?: CSCheckboxVariant;
 }
 
 export interface CSCheckboxState {

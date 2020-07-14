@@ -1,14 +1,17 @@
 import React from 'react';
 import classNames from 'classnames';
 
+export type CSSpinnerColor = 'neutral' | 'brand' | 'inverse';
+export type CSSpinnerSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
+
 export interface CSSpinnerProps {
 	className?: string;
-	color?: string;
+	color?: CSSpinnerColor;
 	id?: string;
 	inline?: boolean;
 	label?: string;
 	overlay?: string;
-	size?: string;
+	size?: CSSpinnerSize;
 }
 
 class CSSpinner extends React.Component<CSSpinnerProps> {
