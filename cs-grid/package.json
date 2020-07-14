@@ -1,6 +1,6 @@
 {
 	"name": "@cloudsense/cs-grid",
-	"version": "1.2.11",
+	"version": "1.2.12",
 	"description": "CloudSense Grid",
 	"main": "./lib/main.js",
 	"author": "CloudSense",
@@ -62,6 +62,7 @@
 		"typescript": "3.9.5"
 	},
 	"devDependencies": {
+		"@cloudsense/cs-ui-components": "^1.0.0-alpha.128",
 		"@babel/core": "7.4.4",
 		"@babel/plugin-proposal-class-properties": "7.4.4",
 		"@babel/plugin-proposal-function-bind": "7.2.0",
@@ -101,6 +102,6 @@
 		"webpack-dev-server": "^3.11.0"
 	},
 	"peerDependencies": {
-		"@cloudsense/cs-ui-components": "^1.0.0-alpha.124"
+		"@cloudsense/cs-ui-components": "^1.0.0-alpha.128"
 	}
 }
