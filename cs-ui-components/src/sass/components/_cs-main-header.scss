@@ -3,7 +3,7 @@
 	position: relative;
 	justify-content: center;
 	padding: 1rem;
-	height: 4rem;
+	height: 4.5rem;
 	z-index: $z-index-main-header;
 
 	&.cs-main-header-sticky {
@@ -159,7 +159,7 @@
 
 				.cs-main-header-title {
 					font-size: 1.25rem;
-					line-height: 1;
+					line-height: 1.25;
 					margin: 0;
 					display: block;
 					@include overflow-ellipsis;
@@ -167,7 +167,7 @@
 
 				.cs-main-header-subtitle {
 					font-size: 0.8125rem;
-					line-height: 1;
+					line-height: 1.25;
 					font-weight: $font-weight-normal;
 					margin: 0;
 					display: block;
