@@ -543,6 +543,14 @@ body,
 						}
 					}
 
+					&.datepicker-preview {
+						overflow: visible;
+
+						.custom-class input{
+							background-color: pink;
+						}
+					}
+
 					&.lookup-field-preview {
 						overflow: visible;
 

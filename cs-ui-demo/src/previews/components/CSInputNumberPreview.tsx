@@ -174,7 +174,7 @@ class CSInputNumberPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-								<CSInputNumber required label="Enter value" id="number" />
+								<CSInputNumber required label="Enter value:" id="number" />
 						}
 					]
 				},
