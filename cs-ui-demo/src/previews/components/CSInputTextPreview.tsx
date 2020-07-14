@@ -9,8 +9,18 @@ import {CSInputText} from '@cloudsense/cs-ui-components';
 
 class CSInputTextPreview extends React.Component {
 	getDoc() {
+		let count = 0;
 
 		const onChangeHandler = () => alert('Input changed!');
+		const onBlurHandler = () => alert('Focus changed!');
+		const onFocusHandler = () => {
+			if (count === 1) {
+				count = 0;
+				return false;
+			}
+			count++;
+			alert('Input is focused!');
+		};
 
 		const json = {
 			name: 'Input Text',
@@ -172,6 +182,16 @@ class CSInputTextPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'maxLength',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSInputText label="Enter value:" maxLength={10} />
+						}
+					]
+				},
+				{
 				propName: 'borderType',
 					variations: [
 						{
@@ -184,6 +204,17 @@ class CSInputTextPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'onBlur',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSInputText label="Enter value:" onBlur={onBlurHandler} />
+						}
+					]
+				},
+				{
 					propName: 'onChange',
 					customText: '',
 					variations: [
@@ -191,6 +222,17 @@ class CSInputTextPreview extends React.Component {
 							string: '',
 							component:
 								<CSInputText label="Enter value:" onChange={onChangeHandler} />
+						}
+					]
+				},
+				{
+					propName: 'onFocus',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSInputText label="Enter value:" onFocus={onFocusHandler} />
 						}
 					]
 				},
@@ -273,12 +315,24 @@ class CSInputTextPreview extends React.Component {
 					description: 'Input label text to display'
 				},
 				{
+					propertyName: 'maxLength',
+					description: 'Input max length value'
+				},
+				{
 					propertyName: 'name',
 					description: 'Input name value'
 				},
 				{
+					propertyName: 'onBlur',
+					description: 'Logic for onBlur event'
+				},
+				{
 					propertyName: 'onChange',
 					description: 'Logic for onChange event'
+				},
+				{
+					propertyName: 'onFocus',
+					description: 'Logic for onFocus event'
 				},
 				{
 					propertyName: 'placeholder',

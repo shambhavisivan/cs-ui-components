@@ -9,9 +9,19 @@ import {CSInputSearch} from '@cloudsense/cs-ui-components';
 
 class CSInputSearchPreview extends React.Component {
 	getDoc() {
+		let count = 0;
 
 		const onChangeHandler = () => alert('Input search changed!');
 		const onKeyDownHandler = () => alert('Key is pressed!');
+		const onBlurHandler = () => alert('Focus changed!');
+		const onFocusHandler = () => {
+			if (count === 1) {
+				count = 0;
+				return false;
+			}
+			count++;
+			alert('Input is focused!');
+		};
 
 		const json = {
 			name: 'Input Search',
@@ -207,6 +217,18 @@ class CSInputSearchPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'onBlur',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSInputSearch label="Type here:" onBlur={onBlurHandler} />
+						}
+					]
+				},
+
+				{
 					propName: 'onChange',
 					variations: [
 						{
@@ -217,12 +239,24 @@ class CSInputSearchPreview extends React.Component {
 					]
 				},
 				{
-					propName: 'onKeyDown',
+					propName: 'onFocus',
+					customText: '',
 					variations: [
 						{
 							string: '',
 							component:
-									<CSInputSearch label="Type here:" onKeyDown={onKeyDownHandler} />
+								<CSInputSearch label="Type here:" onFocus={onFocusHandler} />
+						}
+					]
+				},
+				{
+					propName: 'onKeyDown',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSInputSearch label="Type here:" onKeyDown={onKeyDownHandler} />
 						}
 					]
 				},
@@ -329,8 +363,16 @@ class CSInputSearchPreview extends React.Component {
 					]
 				},
 				{
+					propertyName: 'onBlur',
+					description: 'Logic for onBlur event'
+				},
+				{
 					propertyName: 'onChange',
 					description: 'Logic for onChange event'
+				},
+				{
+					propertyName: 'onFocus',
+					description: 'Logic for onFocus event'
 				},
 				{
 					propertyName: 'onKeyDown',

@@ -15,8 +15,11 @@ export interface CSInputTextProps {
 	hidden?: boolean;
 	id?: string;
 	label: string;
+	maxLength?: number;
 	name?: string;
+	onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => any;
+	onFocus?: (event: React.FocusEvent<HTMLInputElement>) => any;
 	placeholder?: string;
 	readOnly?: boolean;
 	required?: boolean;
@@ -43,6 +46,20 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 		this.state = {
 			value
 		};
+	}
+
+	onFocus: React.FocusEventHandler<HTMLInputElement> = e => {
+		const { onFocus } = this.props;
+		if (onFocus) {
+			onFocus(e);
+		}
+	}
+
+	onBlur: React.FocusEventHandler<HTMLInputElement> = e => {
+		const { onBlur } = this.props;
+		if (onBlur) {
+			onBlur(e);
+		}
 	}
 
 	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -79,6 +96,7 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 						id={this.props.id}
 						placeholder={this.props.placeholder}
 						disabled={this.props.disabled}
+						maxLength={this.props.maxLength}
 						readOnly={this.props.readOnly}
 						required={this.props.required}
 						value={fixControlledValue(this.state.value)}
@@ -87,6 +105,8 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 						autoComplete="off"
 						onChange={this.handleOnChange}
 						name={this.props.name}
+						onBlur={this.onBlur}
+						onFocus={this.onFocus}
 					/>
 					{(this.props.error && this.props.errorMessage) &&
 						<span className="cs-input-error-msg">{this.props.errorMessage}</span>
