@@ -2,9 +2,9 @@ import React from 'react';
 import CSIcon from './CSIcon';
 import classNames from 'classnames';
 
-export type CSToastStyleType = 'default' | 'light';
-export type CSToastTextAlign = 'center' | 'left';
-export type CSToastVariant = 'info' | 'warning' | 'error' | 'offline';
+export type CSAlertStyleType = 'default' | 'light';
+export type CSAlertTextAlign = 'center' | 'left';
+export type CSAlertVariant = 'info' | 'warning' | 'error' | 'offline';
 
 export interface CSAlertProps {
 	className?: string;
@@ -13,10 +13,10 @@ export interface CSAlertProps {
 	iconVisibility?: boolean;
 	id?: string;
 	onClose?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-	styleType?: CSToastStyleType;
+	styleType?: CSAlertStyleType;
 	text?: string | Array<string>;
-	textAlign?: CSToastTextAlign;
-	variant: CSToastVariant;
+	textAlign?: CSAlertTextAlign;
+	variant: CSAlertVariant;
 }
 
 class CSAlert extends React.Component<CSAlertProps> {

@@ -2,7 +2,6 @@ import React from 'react';
 import CSIcon from '../CSIcon';
 import classNames from 'classnames';
 import CSSpinner from '../CSSpinner';
-import CSModalApi from '../../api/CSModalAPI';
 
 export type CSModalSize = 'small' | 'medium' | 'large' | 'xlarge';
 
