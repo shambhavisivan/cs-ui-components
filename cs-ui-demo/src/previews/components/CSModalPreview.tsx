@@ -13,6 +13,35 @@ class CSModalPreview extends React.Component {
 	getCSModalDoc() {
 		const componentModal = (
 			<CSModal
+				size="large"
+				closeButton
+				onClose={() => CSModalApi.removeCSModal()}
+			>
+				<CSModalHeader
+					title="This is a test heading"
+					subtitle="This is a test subtitle"
+				/>
+				<CSModalBody>
+					<p>
+						Sit nulla est ex deserunt exercitation anim occaecat.
+						<br/>
+						<br/>
+						Nostrud ullamco deserunt aute id consequat veniam
+						incididunt duis in sint irure nisi. Mollit officia cillum
+						Lorem ullamco minim nostrud elit officia tempor esse quis.
+						Cillum sunt ad dolore quis aute consequat ipsum magna
+						exercitation reprehenderit magna. Tempor cupidatat
+						consequat elit dolor adipisicing.
+					</p>
+				</CSModalBody>
+				<CSModalFooter align="left">
+					<CSButton label="Default Button"/>
+					<CSButton label="Open Modal" btnStyle="brand" onClick={() => CSModalApi.renderCSModal(componentModal2)} />
+				</CSModalFooter>
+			</CSModal>
+		);
+		const componentModal2 = (
+			<CSModal
 				size="small"
 				closeButton
 				onClose={() => CSModalApi.removeCSModal()}
@@ -36,8 +65,7 @@ class CSModalPreview extends React.Component {
 				</CSModalBody>
 				<CSModalFooter align="left">
 					<CSButton label="Default Button"/>
-					<CSButton label="Open Modal" btnStyle="brand" onClick={() => CSModalApi.renderCSModal(componentModal)}
-				/>
+					<CSButton label="Open Modal" btnStyle="brand"/>
 				</CSModalFooter>
 			</CSModal>
 		);

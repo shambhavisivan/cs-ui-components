@@ -1,10 +1,26 @@
-.cs-modal-wrapper {
+.cs-modal-wrapper, .cs-modal-outer-wrapper {
 	position: fixed;
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
 	font-family: 'SFFont';
+
+	&:not(:last-child) {
+		.cs-modal-content::after  {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: $z-index-modal-overlay;
+			@include sbg(--cs-modal-wrapper-bg);
+		}
+		.cs-modal-close .cs-icon {
+			opacity: 0.4;
+		}
+	}
 
 	.cs-modal {
 		position: relative;
@@ -25,6 +41,9 @@
 			position: relative;
 			display: flex;
 			flex-direction: column;
+			@include css4 {
+				box-shadow: 5px 5px 20px 0 cvar(--cs-modal-box);
+			}
 
 			> :first-child {
 				border-top-right-radius: 0.25rem;
@@ -140,7 +159,6 @@
 			display: flex;
 			@include sbg(--cs-modal-footer-bg);
 			@include css4 {
-				box-shadow: 0 2px 3px 0 cvar(--cs-modal-box);
 				border-top: 1px solid cvar(--cs-modal-br);
 			}
 
@@ -183,6 +201,13 @@
 
 		&.cs-modal-large {
 			max-width: 80rem;
+			width: 90%;
+			max-width: none;
+			min-width: 40rem;
+
+			.cs-modal-body {
+				min-height: 10rem;
+			}
 		}
 
 		&.cs-modal-xlarge {
@@ -190,6 +215,7 @@
 
 			.cs-modal-body {
 				flex: 1;
+				min-height: 10rem;
 			}
 		}
 	}

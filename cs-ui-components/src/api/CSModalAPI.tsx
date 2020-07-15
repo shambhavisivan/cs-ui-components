@@ -12,6 +12,7 @@ export function renderCSModal(element: ReactElement) {
 		isContainerRendered = true;
 	}
 	const newDiv = document.createElement('div');
+	newDiv.classList.add('cs-modal-outer-wrapper');
 	container.appendChild(newDiv);
 	ReactDOM.render(
 		element,
