@@ -29,3 +29,15 @@ echo "Building cs-form"
 npm run build;
 echo "Finished validating cs-form"
 cd ..;
+
+echo "Validating cs-grid"
+cd cs-grid;
+npm ci;
+echo "Running cs-grid Tests"
+npm t;
+echo "Running cs-grid Lint"
+npm run lint;
+echo "Building cs-grid"
+npm run build;
+echo "Finished validating cs-grid"
+cd ..;

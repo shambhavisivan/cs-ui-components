@@ -9,8 +9,9 @@
 		"url": "https://gerrit.cloudsenseltd.com/gerrit/cs-ui-components"
 	},
 	"scripts": {
-		"build": "npm run empty_lib && npm run move_fonts && npm run lint && npm run test && npm run scss && tsc && npm run empty_lib_test",
-		"prepublishOnly": "npm run build",
+		"build": "npm run empty_lib && npm run move_fonts && npm run scss && tsc",
+		"build-full": "npm run empty_lib && npm run move_fonts && npm run lint && npm run test && npm run scss && tsc && npm run empty_lib_test",
+		"prepublishOnly": "npm run build-full",
 		"scss": "node-sass ./src/sass/style.scss ./css/styles.css",
 		"start": "npm run lint && webpack-dev-server --content-base src/ --config config/webpack.development.config.js --mode development --open",
 		"build-demo": "rimraf ./cs-grid-demo && webpack --mode development --config config/webpack.demo.config.js",
