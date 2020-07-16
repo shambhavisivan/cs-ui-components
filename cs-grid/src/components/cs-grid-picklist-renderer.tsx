@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { CSTooltip } from '@cloudsense/cs-ui-components';
 import { CSGridCellRendererProps, PicklistOption } from '../interfaces/cs-grid-cell-props';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
 import { CSGridCellError } from './cs-grid-cell-error';
@@ -19,10 +20,21 @@ export class CSGridPicklistRenderer extends CSGridBaseRenderer<PicklistCellValue
 		}
 
 		const value = this.format(this.state.value.cellValue);
+		const contents = <span title={value}>{value}</span>;
+		let tooltip;
+		if (this.props.getTooltip) {
+			tooltip = this.props.getTooltip(this.props.node.id);
+		}
 
 		return (
 			<span className={`select-wrapper ${this.isReadOnly() ? 'read-only-cell' : ''}`}>
-				<span title={value}>{value}</span>
+				{tooltip ? (
+					<CSTooltip content={tooltip.content} delayTooltip={tooltip.delay}>
+						{contents}
+					</CSTooltip>
+				) : (
+					contents
+				)}
 				<CSGridCellError
 					errorMessage={this.state.value.errorMessage}
 					position={this.state.isLastColumn ? 'top-left' : 'top-right'}

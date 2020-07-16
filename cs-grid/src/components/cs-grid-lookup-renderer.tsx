@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { CSTooltip } from '@cloudsense/cs-ui-components';
 import { CSGridCellRendererProps, LookupProps } from '../interfaces/cs-grid-cell-props';
 import {
 	formatRows,
@@ -31,10 +32,21 @@ export class CSGridLookupRenderer extends CSGridBaseRenderer<
 		}
 
 		const value = this.format(this.state.value.cellValue);
+		const contents = <span title={value}>{value}</span>;
+		let tooltip;
+		if (this.props.getTooltip) {
+			tooltip = this.props.getTooltip(this.props.node.id);
+		}
 
 		return (
 			<span className={`select-wrapper ${this.isReadOnly() ? 'read-only-cell' : ''}`}>
-				<span title={value}>{value}</span>
+				{tooltip ? (
+					<CSTooltip content={tooltip.content} delayTooltip={tooltip.delay}>
+						{contents}
+					</CSTooltip>
+				) : (
+					contents
+				)}
 				<CSGridCellError
 					errorMessage={this.state.value.errorMessage}
 					position={this.state.isLastColumn ? 'top-left' : 'top-right'}

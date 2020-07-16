@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { CSTooltip } from '@cloudsense/cs-ui-components';
 import { CSGridCellRendererState } from '../interfaces/cs-grid-base-interfaces';
 import { CSGridCellRendererProps } from '../interfaces/cs-grid-cell-props';
 import { getSeparator } from '../utils/cs-grid-number-formatting-helper';
@@ -41,10 +42,21 @@ export abstract class CSGridNumberRenderer<
 		}
 
 		const value = this.format(this.state.value.cellValue);
+		const contents = <span title={value}>{value}</span>;
+		let tooltip;
+		if (this.props.getTooltip) {
+			tooltip = this.props.getTooltip(this.props.node.id);
+		}
 
 		return (
 			<span className={this.isReadOnly() ? ' read-only-cell' : ''}>
-				<span title={value}>{value}</span>
+				{tooltip && !this.state.editing ? (
+					<CSTooltip content={tooltip.content} delayTooltip={tooltip.delay}>
+						<div onClick={this.startEditingCell}>{contents}</div>
+					</CSTooltip>
+				) : (
+					contents
+				)}
 				<CSGridCellError
 					errorMessage={this.state.value.errorMessage}
 					position={this.state.isLastColumn ? 'top-left' : 'top-right'}

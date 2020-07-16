@@ -801,6 +801,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			this.addIfDefined(cellParams, 'onChange', columnDef.onChange);
 			this.addIfDefined(cellParams, 'readonly', columnDef.readonly);
 			this.addIfDefined(cellParams, 'userInfo', columnDef.userInfo);
+			this.addIfDefined(cellParams, 'getTooltip', columnDef.getTooltip);
 
 			if (columnDef.cellType === 'Picklist' || columnDef.cellType === 'MultiSelectPicklist') {
 				agGridColDef.cellEditor = 'picklistEditor';

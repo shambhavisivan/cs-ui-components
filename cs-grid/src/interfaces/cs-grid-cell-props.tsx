@@ -99,5 +99,11 @@ export function isStandardIcon(object: any): object is StandardIcon {
 export interface BaseProps<T> {
 	readonly?: boolean | IsColumnFunc;
 	userInfo: UserInfo;
+	getTooltip?(
+		rowNodeId: string
+	): {
+		content: string | Array<string> | JSX.Element;
+		delay: number;
+	};
 	onChange?(rowNodeId: string, oldValue: T, newValue: T): Promise<CellData<T>>;
 }

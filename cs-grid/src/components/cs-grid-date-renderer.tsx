@@ -1,6 +1,7 @@
 import moment from 'moment';
 import React from 'react';
 
+import { CSTooltip } from '@cloudsense/cs-ui-components';
 import { CellData } from '../interfaces/cs-grid-base-interfaces';
 import { CSGridCellRendererProps } from '../interfaces/cs-grid-cell-props';
 import { formatDate } from '../utils/cs-grid-date-formatting-helper';
@@ -26,14 +27,28 @@ export class CSGridDateRenderer extends CSGridBaseRenderer<string> {
 		const readOnly = this.isReadOnly();
 		const value = formatDate(this.state.value.cellValue, this.props.userInfo.userLocale);
 
+		const contents = (
+			<span
+				className={'cs-grid_date-cell-value' + (readOnly ? '-read-only' : '')}
+				title={value}
+			>
+				{value}
+			</span>
+		);
+		let tooltip;
+		if (this.props.getTooltip) {
+			tooltip = this.props.getTooltip(this.props.node.id);
+		}
+
 		return (
 			<span className={readOnly ? 'read-only-cell' : ''}>
-				<span
-					className={'cs-grid_date-cell-value' + (readOnly ? '-read-only' : '')}
-					title={value}
-				>
-					{value}
-				</span>
+				{tooltip ? (
+					<CSTooltip content={tooltip.content} delayTooltip={tooltip.delay}>
+						{contents}
+					</CSTooltip>
+				) : (
+					contents
+				)}
 				<CSGridCellError
 					errorMessage={this.state.value.errorMessage}
 					position={this.state.isLastColumn ? 'top-left' : 'top-right'}

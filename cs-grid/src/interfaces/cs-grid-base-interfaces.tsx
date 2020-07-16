@@ -11,6 +11,7 @@ import { ICellEditorReactComp, ICellRendererReactComp } from 'ag-grid-react';
 export interface CSGridCellRendererState<T> {
 	value: CellData<T>;
 	isLastColumn: boolean;
+	editing?: boolean;
 }
 
 /**

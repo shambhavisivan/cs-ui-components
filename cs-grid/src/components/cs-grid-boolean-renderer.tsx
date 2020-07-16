@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { CSTooltip } from '@cloudsense/cs-ui-components';
 import { IsColumnFuncParams } from 'ag-grid-community/dist/lib/entities/colDef';
 import { CellData, CSGridCellRenderer } from '../interfaces/cs-grid-base-interfaces';
 import { CSGridCellRendererProps } from '../interfaces/cs-grid-cell-props';
@@ -40,19 +41,33 @@ export class CSGridBooleanRenderer extends CSGridBaseRenderer<boolean>
 			editable = this.props.colDef.editable;
 		}
 
+		const contents = (
+			<label className='cs-grid_checkbox-wrapper'>
+				<input
+					className='cs-grid_checkbox'
+					type='checkbox'
+					onClick={editable ? this.onClick : undefined}
+					defaultChecked={this.state.value.cellValue}
+					readOnly={readOnly}
+					disabled={!editable}
+				/>
+				<span className='cs-grid_checkbox-faux' />
+			</label>
+		);
+		let tooltip;
+		if (this.props.getTooltip) {
+			tooltip = this.props.getTooltip(this.props.node.id);
+		}
+
 		return (
 			<span className={readOnly ? 'read-only-cell' : ''}>
-				<label className='cs-grid_checkbox-wrapper'>
-					<input
-						className='cs-grid_checkbox'
-						type='checkbox'
-						onClick={editable ? this.onClick : undefined}
-						defaultChecked={this.state.value.cellValue}
-						readOnly={readOnly}
-						disabled={!editable}
-					/>
-					<span className='cs-grid_checkbox-faux' />
-				</label>
+				{tooltip ? (
+					<CSTooltip content={tooltip.content} delayTooltip={tooltip.delay}>
+						{contents}
+					</CSTooltip>
+				) : (
+					contents
+				)}
 				<CSGridCellError
 					errorMessage={this.state.value.errorMessage}
 					position={this.state.isLastColumn ? 'top-left' : 'top-right'}

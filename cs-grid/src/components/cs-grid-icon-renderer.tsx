@@ -1,4 +1,4 @@
-import { CSIcon } from '@cloudsense/cs-ui-components';
+import { CSIcon, CSTooltip } from '@cloudsense/cs-ui-components';
 import React from 'react';
 
 import {
@@ -42,11 +42,21 @@ export class CSGridIconRenderer extends CSGridBaseRenderer<
 			}
 		}
 
+		const contents = iconComponents.map((icon, index) => <span key={index}>{icon}</span>);
+		let tooltip;
+		if (this.props.getTooltip) {
+			tooltip = this.props.getTooltip(this.props.node.id);
+		}
+
 		return (
 			<span className={this.isReadOnly() ? 'read-only-cell' : ''}>
-				{iconComponents.map((icon, index) => (
-					<span key={index}>{icon}</span>
-				))}
+				{tooltip ? (
+					<CSTooltip content={tooltip.content} delayTooltip={tooltip.delay}>
+						{contents}
+					</CSTooltip>
+				) : (
+					contents
+				)}
 				<CSGridCellError
 					errorMessage={this.state.value.errorMessage}
 					position={this.state.isLastColumn ? 'top-left' : 'top-right'}

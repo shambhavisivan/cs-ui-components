@@ -54,8 +54,10 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 	 */
 	afterGuiAttached() {
 		const eInput = this.inputRef.current;
-		eInput.focus();
-		eInput.select();
+		if (eInput) {
+			eInput.focus();
+			eInput.select();
+		}
 	}
 
 	/**

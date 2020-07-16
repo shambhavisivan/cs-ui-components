@@ -27,10 +27,15 @@ export class CSGridTextEditor
 		return this.state.value;
 	}
 
+	/**
+	 * Focus on the cell when its opened.
+	 */
 	afterGuiAttached() {
 		const eInput = this.inputRef.current;
-		eInput.focus();
-		eInput.select();
+		if (eInput) {
+			eInput.focus();
+			eInput.select();
+		}
 	}
 
 	render() {

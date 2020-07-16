@@ -162,6 +162,12 @@ export class App extends React.Component<object, AppState> {
 			},
 			{
 				cellType: 'Text',
+				getTooltip: (guid: string) => {
+					return {
+						content: ['example tooltip', 'Line two'],
+						delay: 0
+					};
+				},
 				header: {
 					label: 'Text Column'
 				},

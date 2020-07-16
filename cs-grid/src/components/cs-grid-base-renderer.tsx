@@ -71,4 +71,19 @@ export abstract class CSGridBaseRenderer<
 			currentColumns[currentColumns.length - 1].getColId() === this.props.column.getColId()
 		);
 	};
+
+	/**
+	 * Sets an editing flag on the state and then starts editing the cell.
+	 */
+	startEditingCell = () => {
+		this.setState({ editing: true });
+		const startEditingParams = {
+			colKey: this.props.column.getId(),
+			rowIndex: this.props.node.rowIndex
+		};
+		this.props.api.startEditingCell(startEditingParams);
+		setTimeout(() => {
+			this.setState({ editing: false });
+		}, 0);
+	};
 }
