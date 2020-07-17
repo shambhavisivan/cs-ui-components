@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-import { shallow, default as Enzyme } from 'enzyme';
+import { mount, shallow, default as Enzyme } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { FormField } from '../..//fields/FormField';
 import { BooleanField } from '../..//fields/BooleanField';
@@ -59,6 +59,6 @@ it('calls onChange() on change', done => {
 		expect(value).toBe(true);
 		done();
 	};
-	const uut = shallow(<FormField descriptor={descriptor} wrapper={wrapper} locale={locale} value handleFieldChange={onChange} fetchPossibleValues={nop} status="enabled" />);
-	uut.find(BooleanField).dive().find('input').simulate('change', { target: { checked: true } });
+	const uut = mount(<FormField descriptor={descriptor} wrapper={wrapper} locale={locale} value handleFieldChange={onChange} fetchPossibleValues={nop} status="enabled" />);
+	uut.find(BooleanField).find('input').simulate('change', { target: { checked: true } });
 });
