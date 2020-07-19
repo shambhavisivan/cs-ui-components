@@ -21,6 +21,7 @@ export interface CSInputSearchProps {
 	labelHidden?: boolean;
 	onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+	onClearSearch?: () => void;
 	onFocus?: (event: React.FocusEvent<HTMLInputElement>) => any;
 	onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 	placeholder?: string;
@@ -95,6 +96,10 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 	clearSearch = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
 		this.setValue('');
 		resolveOnChange(this.input, e, this.props.onChange);
+
+		if (this.props.onClearSearch) {
+			this.props.onClearSearch();
+		}
 	}
 
 	onFocus: React.FocusEventHandler<HTMLInputElement> = e => {

@@ -22,6 +22,7 @@ class CSInputSearchPreview extends React.Component {
 			count++;
 			alert('Input is focused!');
 		};
+		const onClearSearchHandler = () => alert('Input search cleared!');
 
 		const json = {
 			name: 'Input Search',
@@ -261,6 +262,17 @@ class CSInputSearchPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'onClearSearch',
+					customText: 'Provides option to call a function after search cleared to provide extra functionality',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSInputSearch label="Type here and clear search:" onClearSearch={onClearSearchHandler} />
+						}
+					]
+				},
+				{
 					propName: 'autoFocus',
 					variations: [
 						{
@@ -377,6 +389,10 @@ class CSInputSearchPreview extends React.Component {
 				{
 					propertyName: 'onKeyDown',
 					description: 'Logic for onKeyDown event'
+				},
+				{
+					propertyName: 'onClearSearch',
+					description: 'Logic for onClearSearch event'
 				},
 				{
 					propertyName: 'placeholder',
