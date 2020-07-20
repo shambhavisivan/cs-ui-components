@@ -88,7 +88,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 					</label>
 				</div>
 				{(this.props.error && this.props.errorMessage) &&
-					<div className="cs-input-file-error-message">{this.props.errorMessage}</div>
+					<span className="cs-input-file-error-message">{this.props.errorMessage}</span>
 				}
 			</>
 		);

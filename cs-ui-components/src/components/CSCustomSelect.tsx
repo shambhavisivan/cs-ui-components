@@ -127,7 +127,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 					}
 				</form>
 				{(this.props.error && this.props.errorMessage) &&
-					<div className="cs-custom-select-error-msg">{this.props.errorMessage}</div>
+					<span className="cs-custom-select-error-msg">{this.props.errorMessage}</span>
 				}
 			</div>
 		);
