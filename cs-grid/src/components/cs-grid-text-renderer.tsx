@@ -26,10 +26,13 @@ export class CSGridTextRenderer extends CSGridBaseRenderer<string> {
 		}
 
 		return (
-			<span className={this.isReadOnly() ? 'read-only-cell' : ''}>
+			<span
+				onClick={tooltip ? this.startEditingCell : undefined}
+				className={this.isReadOnly() ? 'read-only-cell' : ''}
+			>
 				{tooltip && !this.state.editing ? (
 					<CSTooltip content={tooltip.content} delayTooltip={tooltip.delay}>
-						<div onClick={this.startEditingCell}>{contents}</div>
+						{contents}
 					</CSTooltip>
 				) : (
 					contents

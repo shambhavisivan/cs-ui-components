@@ -370,7 +370,7 @@
 				width: 100%;
 				display: flex;
 
-				> span {
+				> span, .cs-tooltip-wrapper > span {
 					display: block;
 					overflow: hidden;
 					text-overflow: ellipsis;

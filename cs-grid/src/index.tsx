@@ -165,7 +165,7 @@ export class App extends React.Component<object, AppState> {
 				getTooltip: (guid: string) => {
 					return {
 						content: ['example tooltip', 'Line two'],
-						delay: 0
+						delay: 300
 					};
 				},
 				header: {
