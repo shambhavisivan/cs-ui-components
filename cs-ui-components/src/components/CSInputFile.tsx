@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import CSIcon from './CSIcon';
+import CSTooltip from './CSTooltip';
 
 export interface CSInputFileProps {
 	accept?: Array<string> | string;
@@ -57,6 +58,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 		const newFiles = Array.isArray(acceptFiles) ? acceptFiles.join() : acceptFiles;
 		return newFiles;
 	}
+
 	render() {
 		const fileClasses = classNames(
 			'cs-input-file',
@@ -65,7 +67,8 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 				'cs-input-file-error': this.props.error
 			}
 		);
-		return (
+
+		const input =
 			<>
 				<div
 					className={fileClasses}
@@ -90,6 +93,19 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 				{(this.props.error && this.props.errorMessage) &&
 					<span className="cs-input-file-error-message">{this.props.errorMessage}</span>
 				}
+			</>;
+
+		return (
+			<>
+				{this.state.label ? (
+					<CSTooltip content={this.state.label}>
+						{input}
+					</CSTooltip>
+				) : (
+					<>
+						{input}
+					</>
+				)}
 			</>
 		);
 	}
