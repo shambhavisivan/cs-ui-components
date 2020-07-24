@@ -1,0 +1,163 @@
+@mixin cs-slider-range-track {
+	width: 100%;
+	height: 0.25rem;
+	cursor: pointer;
+	border-radius: 0.25rem;
+	@include sbg(--cs-slider-range-track-bg);
+}
+
+@mixin cs-slider-range-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 1rem;
+	height: 1rem;
+	border-radius: 50%;
+	border: 0;
+	cursor: pointer;
+	@include sbg(--cs-slider-range-thumb-bg);
+	@include css4{
+		box-shadow: 0 2px 3px cvar(--cs-slider-range-thumb-shadow);
+	}
+
+	&:hover {
+		@include sbg(--cs-slider-range-thumb-hover);
+	}
+}
+
+.cs-slider-wrapper {
+	display: flex;
+	flex-direction: column;
+
+	.cs-slide-range {
+		word-wrap: break-word;
+		@include sc(--cs-slider-range-c);
+		font-size: 0.75rem;
+	}
+
+	.cs-slider-group {
+		display: flex;
+		align-items: center;
+
+		&-large {
+			width: 25rem;
+		}
+
+		&-medium {
+			width: 20rem;
+		}
+
+		&-small {
+			width: 15rem;
+		}
+
+		&-xsmall {
+			width: 12rem;
+		}
+
+		.cs-slider {
+			-webkit-appearance: none;
+			appearance: none;
+			@include sbg(--cs-transparent);
+			margin: 0;
+			width: 100%;
+
+			&:focus {
+				outline: 0;
+			}
+
+			// Webkit
+			&::-webkit-slider-runnable-track{
+				@include cs-slider-range-track;
+			}
+
+			&::-webkit-slider-thumb {
+				@include cs-slider-range-thumb;
+				margin-top: calc((0.5rem - 2px) * -1);
+			}
+
+			//Firefox
+			&::-moz-range-track {
+				@include cs-slider-range-track;
+			}
+
+			&::-moz-range-thumb {
+				@include cs-slider-range-thumb;
+			}
+
+			// IE/Edge
+			&::-ms-track {
+				@include cs-slider-range-track;
+				@include css4 {
+					border-color: cvar(--cs-transparent);
+				}
+				@include sc(--cs-transparent);
+				cursor: pointer;
+			}
+			&::-ms-thumb {
+				@include cs-slider-range-thumb;
+			}
+
+			&:focus::-webkit-slider-thumb {
+				@include sbg(--cs-slider-range-thumb-active);
+				@include css4 {
+					box-shadow: 0 0 3px cvar(--cs-slider-range-thumb-active);
+				}
+			}
+
+			&:active::-webkit-slider-thumb {
+				@include sbg(--cs-slider-range-thumb-active);
+			}
+
+			&:focus::-moz-range-thumb {
+				@include sbg(--cs-slider-range-thumb-active);
+				@include css4 {
+					box-shadow: 0 0 3px cvar(--cs-slider-range-thumb-active);
+				}
+			}
+
+			&:active::-moz-range-thumb {
+				@include sbg(--cs-slider-range-thumb-active);
+			}
+
+			&[disabled] {
+				&::-webkit-slider-thumb {
+					@include sbg(--cs-slider-range-thumb-disbled-bg);
+					cursor: default;
+				}
+
+				&::-webkit-slider-runnable-track {
+					@include sbg(--cs-slider-range-thumb-disbled-bg);
+					cursor: default;
+				}
+
+				&::-moz-range-thumb {
+					@include sbg(--cs-slider-range-thumb-disbled-bg);
+					cursor: default;
+				}
+
+				&::-moz-range-track {
+					@include sbg(--cs-slider-range-thumb-disbled-bg);
+				}
+
+				&::-ms-thumb {
+					@include sbg(--cs-slider-range-thumb-disbled-bg);
+					cursor: default;
+				}
+
+				&::-ms-track {
+					@include sbg(--cs-slider-range-thumb-disbled-bg);
+					cursor: default;
+				}
+			}
+		}
+
+		.cs-slider-max-value {
+			font-size: 1rem;
+			margin-left: 0.5rem;
+		}
+	}
+
+	.cs-slider-error-msg {
+		@include error-message;
+	}
+}

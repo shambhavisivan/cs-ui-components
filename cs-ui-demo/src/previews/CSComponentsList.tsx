@@ -32,6 +32,7 @@ import CSButtonDropdownPreview from './components/CSButtonDropdownPreview';
 import CSButtonGroupPreview from './components/CSButtonGroupPreview';
 import CSImagePreview from './components/CSImagePreview';
 import CSLookupFieldPreview from './components/CSLookupFieldPreview';
+import CSSliderPreview from './components/CSSliderPreview';
 
 import SidebarList from './SidebarList';
 
@@ -142,6 +143,10 @@ class CSComponentsList extends React.Component {
 			{
 				name: 'Select',
 				component: CSSelectPreview
+			},
+			{
+				name: 'Slider',
+				component: CSSliderPreview
 			},
 			{
 				name: 'Spinner',

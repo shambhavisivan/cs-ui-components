@@ -560,6 +560,12 @@ body,
 						}
 					}
 
+					&.slider-preview {
+						.custom-class {
+							border: 3px solid pink;
+						}
+					}
+
 					&.rendercstoast-preview {
 						display: flex;
 						justify-content: space-evenly;

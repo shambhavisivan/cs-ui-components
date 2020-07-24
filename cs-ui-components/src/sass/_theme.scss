@@ -377,7 +377,15 @@ $variables: (
 
 	--cs-lookup-field-results-br:  $cs-gray-light-2,
 	--cs-lookup-field-results-header-c: $cs-gray-medium-1,
-	--cs-lookup-field-results-row-c: $cs-gray-dark-1
+	--cs-lookup-field-results-row-c: $cs-gray-dark-1,
+
+	--cs-slider-range-c: $cs-gray-dark-2,
+	--cs-slider-range-track-bg: $cs-gray-light-5,
+	--cs-slider-range-thumb-bg: $cs-blue-sf,
+	--cs-slider-range-thumb-hover: $cs-blue-medium-2,
+	--cs-slider-range-thumb-active: $cs-blue-medium-2,
+	--cs-slider-range-thumb-disbled-bg: $cs-gray-light-5,
+	--cs-slider-range-thumb-shadow: rgba($cs-black, 0.16)
 );
 
 // This will be used later for dark theme support
