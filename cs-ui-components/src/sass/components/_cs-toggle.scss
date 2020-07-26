@@ -2,6 +2,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
+	position: relative;
 
 	&.cs-toggle-label-left {
 		flex-direction: row;

@@ -4,6 +4,7 @@
 .cs-input-number-wrapper {
 	display: flex;
 	flex-direction: column;
+	position: relative;
 
 	.cs-input-number {
 		@include input;

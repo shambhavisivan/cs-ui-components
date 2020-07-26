@@ -86,10 +86,10 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 						locale={this.props.locale}
 					/>
 					<CSIcon name="event" className="cs-datepicker-icon" />
+					{(this.props.error && this.props.errorMessage) &&
+						<span className="cs-datepicker-error-msg">{this.props.errorMessage}</span>
+					}
 				</div>
-				{(this.props.error && this.props.errorMessage) &&
-					<span className="cs-datepicker-error-msg">{this.props.errorMessage}</span>
-				}
 			</>
 		);
 	}

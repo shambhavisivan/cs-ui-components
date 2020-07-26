@@ -182,10 +182,10 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 								<CSIcon name="close"/>
 							</button>
 						}
+						{(this.props.error && this.props.errorMessage) &&
+							<span className="cs-input-error-msg">{this.props.errorMessage}</span>
+						}
 					</div>
-					{(this.props.error && this.props.errorMessage) &&
-						<span className="cs-input-error-msg">{this.props.errorMessage}</span>
-					}
 				</div>
 			</>
 		);

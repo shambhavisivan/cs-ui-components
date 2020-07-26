@@ -4,6 +4,7 @@
 .cs-textarea-wrapper {
 	display: flex;
 	flex-direction: column;
+	position: relative;
 
 	.cs-textarea {
 		@include input;

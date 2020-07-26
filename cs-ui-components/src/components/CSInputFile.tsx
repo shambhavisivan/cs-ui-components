@@ -54,7 +54,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 			label: e.dataTransfer.files[0].name
 		});
 	}
-	handleAcceptFiles(acceptFiles: Array<string>| string) {
+	handleAcceptFiles(acceptFiles: Array<string> | string) {
 		const newFiles = Array.isArray(acceptFiles) ? acceptFiles.join() : acceptFiles;
 		return newFiles;
 	}
@@ -89,10 +89,10 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 							<span className="cs-input-file-label">{this.state.label ? this.state.label : this.props.label}</span>
 						</span>
 					</label>
-				</div>
-				{(this.props.error && this.props.errorMessage) &&
+					{(this.props.error && this.props.errorMessage) &&
 					<span className="cs-input-file-error-message">{this.props.errorMessage}</span>
-				}
+					}
+				</div>
 			</>;
 
 		return (
