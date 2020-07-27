@@ -3,7 +3,6 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
-import PreviewBacklogList from '../PreviewBacklogList';
 import PreviewLinks from '../PreviewLinks';
 
 import {CSButton} from '@cloudsense/cs-ui-components';

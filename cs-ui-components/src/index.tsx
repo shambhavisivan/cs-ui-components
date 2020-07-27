@@ -54,7 +54,6 @@ import CSTooltip, { CSTooltipIconSize, CSTooltipPosition, CSTooltipStylePosition
 import './sass/style.scss';
 
 import CSToastApi from './api/CSToastAPI';
-import CSModalApi from './api/CSModalAPI';
 
 export {
 	CSAlert,
@@ -112,7 +111,6 @@ export {
 	CSMainHeaderLeft,
 	CSMainHeaderRight,
 	CSModal,
-	CSModalApi,
 	CSModalBody,
 	CSModalFooter,
 	CSModalFooterAlign,
