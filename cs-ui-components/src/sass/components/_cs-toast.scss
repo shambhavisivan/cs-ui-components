@@ -165,6 +165,7 @@
 /*TOAST NOTIFICATION RENDER API*/
 .cs-toast-notification {
 	display: flex;
+	font-size: 1rem;
 	position: fixed;
 	z-index: $z-index-toast;
 
