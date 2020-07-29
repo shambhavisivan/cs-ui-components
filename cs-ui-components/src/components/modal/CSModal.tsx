@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import CSSpinner from '../CSSpinner';
 import { Portal } from 'react-portal';
 
-export type CSModalSize = 'small' | 'medium' | 'large' | 'xlarge';
+export type CSModalSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 
 export interface CSModalProps {
 	className?: string;

@@ -36,6 +36,41 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 					customText: '',
 					variations: [
 						{
+							variationName: ['xsmall'],
+							quickLink: 'xsmall',
+							variationText: ['closeButton={true}', 'align="left"'],
+							string: '',
+							component: (
+								<div>
+									<CSButton
+										label="Open Modal"
+										onClick={() => this.setState({ modalOpen: 'xsmall' })}
+									/>
+									{this.state.modalOpen === 'xsmall' && (
+										<CSModal
+											size="xsmall"
+											closeButton
+											onClose={() => this.setState({ modalOpen: undefined })}
+										>
+											<CSModalHeader
+												title="This is a test heading"
+												subtitle="This is a test subtitle"
+											/>
+											<CSModalBody>
+												<p>
+													Example text, most likely a confirmation message.
+												</p>
+											</CSModalBody>
+											<CSModalFooter align="left">
+												<CSButton label="Default Button" />
+												<CSButton label="Brand Button" btnStyle="brand" />
+											</CSModalFooter>
+										</CSModal>
+									)}
+								</div>
+							)
+						},
+						{
 							variationName: ['small'],
 							quickLink: 'small',
 							variationText: ['closeButton={true}', 'align="left"'],
@@ -514,7 +549,7 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 				{
 					propertyName: 'size',
 					description: 'Modal size',
-					options: ['small', 'medium', 'large', 'xlarge']
+					options: ['xsmall', 'small', 'medium', 'large', 'xlarge']
 				},
 				{
 					propertyName: 'style',
