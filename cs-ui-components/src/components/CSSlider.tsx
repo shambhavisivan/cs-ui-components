@@ -93,7 +93,7 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 						type="range"
 						onChange={this.handleOnChange}
 					/>
-					<span className="cs-slider-max-value">{this.props.max}</span>
+					<span className="cs-slider-max-value">{this.state.value}</span>
 				</div>
 				{(this.props.error && this.props.errorMessage) &&
 					<span className="cs-slider-error-msg">{this.props.errorMessage}</span>
