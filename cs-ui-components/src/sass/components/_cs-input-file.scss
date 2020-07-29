@@ -2,6 +2,11 @@
 //
 // CS Input File component.
 
+.cs-input-file-wrapper {
+	width: 100%;
+	position: relative;
+}
+
 .cs-input-file {
 	position: relative;
 	display: inline-block;

@@ -2,6 +2,6 @@
     font-size: 0.6875rem;
     display: block;
     position: absolute;
-    bottom: -1rem;
+    top: calc(100% + 0.25rem);
     @include sc(--cs-input-error-c);
 }

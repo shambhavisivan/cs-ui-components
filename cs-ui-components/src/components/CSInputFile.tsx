@@ -69,7 +69,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 		);
 
 		const input =
-			<>
+			<div className="cs-input-file-wrapper">
 				<div
 					className={fileClasses}
 					onDragOver={!this.props.disabled ? this.handleFileDragEvents : null}
@@ -89,11 +89,11 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 							<span className="cs-input-file-label">{this.state.label ? this.state.label : this.props.label}</span>
 						</span>
 					</label>
-					{(this.props.error && this.props.errorMessage) &&
-					<span className="cs-input-file-error-message">{this.props.errorMessage}</span>
-					}
 				</div>
-			</>;
+				{(this.props.error && this.props.errorMessage) &&
+					<span className="cs-input-file-error-message">{this.props.errorMessage}</span>
+				}
+			</div>;
 
 		return (
 			<>
