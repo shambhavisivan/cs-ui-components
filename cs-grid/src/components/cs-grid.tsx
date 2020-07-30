@@ -792,7 +792,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				agGridColDef.headerComponentParams = {};
 				this.addIfDefined(
 					agGridColDef.headerComponentParams,
-					'header',
+					'className',
 					columnDef.header.class
 				);
 			}
