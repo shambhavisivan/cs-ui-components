@@ -101,6 +101,7 @@ export interface CSGridProps {
 	onCellClicked?(event: CellClickedEvent): void;
 	onRowDoubleClicked?(event: CellClickedEvent): void;
 	getRowClass?(rowGuid: string): string | Array<string>;
+	onColumnResized?(columnField: string, newWidth: number): void;
 }
 
 class CSGridState {
@@ -237,7 +238,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 									const cellValue = params.value.cellValue;
 									let result = cellValue;
 
-									const columnId = params.column.getColId();
+									const columnId = params.column.getColDef().field;
 
 									if (this.dateColumns.has(columnId)) {
 										const value = formatDate(
@@ -551,12 +552,14 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 	};
 
 	private onColumnResized = (event: ColumnResizedEvent) => {
-		if (
-			event.finished &&
-			this.gridApi &&
-			this.rowSelectionColumns.includes(event.column.getColId())
-		) {
-			this.gridApi.refreshCells({ force: true, columns: this.rowSelectionColumns });
+		if (event.finished) {
+			const columnId = event.column.getColDef().field;
+			if (this.gridApi && this.rowSelectionColumns.includes(columnId)) {
+				this.gridApi.refreshCells({ force: true, columns: this.rowSelectionColumns });
+			}
+			if (this.props.onColumnResized) {
+				this.props.onColumnResized(columnId, event.column.getActualWidth());
+			}
 		}
 	};
 
@@ -950,7 +953,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 								(params.event.which === KeyCode.KEY_TAB ||
 									params.event.which === KeyCode.KEY_UP ||
 									params.event.which === KeyCode.KEY_DOWN)) ||
-							(params.column.getColId() === columnDef.name &&
+							(params.column.getColDef().field === columnDef.name &&
 								(params.event.which === KeyCode.KEY_TAB ||
 									params.event.which === KeyCode.KEY_LEFT ||
 									params.event.which === KeyCode.KEY_RIGHT))

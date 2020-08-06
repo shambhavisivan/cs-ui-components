@@ -928,6 +928,7 @@ export class App extends React.Component<object, AppState> {
 							}
 						}}
 						onCellValueChange={this.onCellValueChange}
+						onColumnResized={this.onColumnResized}
 					/>
 				)}
 				<>
@@ -1249,6 +1250,10 @@ export class App extends React.Component<object, AppState> {
 		}
 
 		return Promise.resolve();
+	};
+
+	private onColumnResized = (columnField: string, newWidth: number) => {
+		console.log(`columnField: ${columnField}, newWidth: ${newWidth}`);
 	};
 }
 
