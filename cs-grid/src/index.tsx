@@ -951,7 +951,7 @@ export class App extends React.Component<object, AppState> {
 		return new Promise<any>((resolve, reject) => {
 			setTimeout(() => {
 				return resolve(result);
-			}, 200);
+			}, 1000);
 		});
 	};
 

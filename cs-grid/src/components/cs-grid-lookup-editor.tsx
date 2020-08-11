@@ -228,41 +228,47 @@ export class CSGridLookupEditor
 					}
 				});
 
-				this.columnApi.autoSizeAllColumns();
+				// Without the timeout the grid isn't fully redrawn so the column resize doesn't work.
+				setTimeout(() => {
+					this.columnApi.autoSizeAllColumns();
 
-				const outerGrid = document
-					.querySelectorAll('.cs-grid_app-wrapper')[0]
-					.getBoundingClientRect();
+					const outerGrid = document
+						.querySelectorAll('.cs-grid_app-wrapper')[0]
+						.getBoundingClientRect();
 
-				let gridWidth = this.columnApi
-					.getColumnState()
-					.reduce(
-						(totalWidth, column) =>
-							column.hide ? totalWidth : totalWidth + column.width,
-						0
-					);
-				gridWidth += 4;
-				gridWidth = Math.min(outerGrid.width, gridWidth);
+					let gridWidth = this.columnApi
+						.getColumnState()
+						.reduce(
+							(totalWidth, column) =>
+								column.hide ? totalWidth : totalWidth + column.width,
+							0
+						);
+					gridWidth += 4;
+					gridWidth = Math.min(outerGrid.width, gridWidth);
 
-				// Calculate width to fit contents.
-				const popupWrapper: HTMLElement = document.querySelectorAll<HTMLElement>(
-					'.cs-grid_app-wrapper .cs-grid_main .ag-popup-editor'
-				)[0];
-				popupWrapper.style.width = `${gridWidth}px`;
-				popupWrapper.style.maxWidth = `${gridWidth}px`;
+					// Calculate width to fit contents.
+					const popupWrapper: HTMLElement = document.querySelectorAll<HTMLElement>(
+						'.cs-grid_app-wrapper .cs-grid_main .ag-popup-editor'
+					)[0];
+					popupWrapper.style.width = `${gridWidth}px`;
+					popupWrapper.style.maxWidth = `${gridWidth}px`;
 
-				const popupWrapperInfo = popupWrapper.getBoundingClientRect();
+					const popupWrapperInfo = popupWrapper.getBoundingClientRect();
 
-				// Calculate position to fit within the outer grid.
-				const diff = popupWrapperInfo.left + gridWidth - outerGrid.width + 3;
-				if (diff > 0) {
-					popupWrapper.style.left = `${Math.max(popupWrapperInfo.left - diff, 0)}px`;
-				}
+					// Calculate position to fit within the outer grid.
+					const diff = popupWrapperInfo.left + gridWidth - outerGrid.width + 3;
+					if (diff > 0) {
+						popupWrapper.style.left = `${Math.max(popupWrapperInfo.left - diff, 0)}px`;
+					}
 
-				const visibleGridHeight = outerGrid.height - (popupWrapperInfo.top - outerGrid.top);
-				if (visibleGridHeight - popupWrapperInfo.height + 3 < 0) {
-					popupWrapper.style.top = `${outerGrid.height - popupWrapperInfo.height - 3}px`;
-				}
+					const visibleGridHeight =
+						outerGrid.height - (popupWrapperInfo.top - outerGrid.top);
+					if (visibleGridHeight - popupWrapperInfo.height + 3 < 0) {
+						popupWrapper.style.top = `${outerGrid.height -
+							popupWrapperInfo.height -
+							3}px`;
+					}
+				}, 0);
 			}
 		);
 	};
