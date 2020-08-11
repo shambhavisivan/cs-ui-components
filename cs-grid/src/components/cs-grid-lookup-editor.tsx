@@ -236,15 +236,18 @@ export class CSGridLookupEditor
 						.querySelectorAll('.cs-grid_app-wrapper')[0]
 						.getBoundingClientRect();
 
-					let gridWidth = this.columnApi
-						.getColumnState()
-						.reduce(
-							(totalWidth, column) =>
-								column.hide ? totalWidth : totalWidth + column.width,
-							0
-						);
-					gridWidth += 4;
-					gridWidth = Math.min(outerGrid.width, gridWidth);
+					const innerGridWidth =
+						this.columnApi
+							.getColumnState()
+							.reduce(
+								(totalWidth, column) =>
+									column.hide ? totalWidth : totalWidth + column.width,
+								0
+							) + 4;
+					const outerColumnWidth = this.props.column.getActualWidth();
+
+					let gridWidth = Math.min(outerGrid.width, innerGridWidth);
+					gridWidth = Math.max(gridWidth, outerColumnWidth);
 
 					// Calculate width to fit contents.
 					const popupWrapper: HTMLElement = document.querySelectorAll<HTMLElement>(
@@ -267,6 +270,10 @@ export class CSGridLookupEditor
 						popupWrapper.style.top = `${outerGrid.height -
 							popupWrapperInfo.height -
 							3}px`;
+					}
+
+					if (innerGridWidth < outerColumnWidth) {
+						this.gridApi.sizeColumnsToFit();
 					}
 				}, 0);
 			}

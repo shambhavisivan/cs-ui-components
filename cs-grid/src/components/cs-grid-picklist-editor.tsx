@@ -50,6 +50,21 @@ export class CSGridPicklistEditor
 		};
 	}
 
+	afterGuiAttached() {
+		const outerColumnWidth = this.props.column.getActualWidth();
+		const popupWrapper: HTMLElement = document.querySelectorAll<HTMLElement>(
+			'.cs-grid_app-wrapper .cs-grid_main .ag-popup-editor'
+		)[0];
+
+		if (popupWrapper) {
+			const currentWidth = popupWrapper.getBoundingClientRect().width;
+			const newWidth = Math.max(currentWidth, outerColumnWidth);
+
+			popupWrapper.style.width = `${newWidth}px`;
+			popupWrapper.style.maxWidth = `${newWidth}px`;
+		}
+	}
+
 	isPopup = () => {
 		return true;
 	};
@@ -76,6 +91,7 @@ export class CSGridPicklistEditor
 						className={'picklist-list-item' + (option.isSelected ? ' selected' : '')}
 						key={id}
 						onClick={selectOption}
+						title={option.label}
 					>
 						{option.icon}
 						{option.label}
