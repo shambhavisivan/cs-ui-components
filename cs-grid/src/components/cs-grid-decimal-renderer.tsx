@@ -13,15 +13,21 @@ export class CSGridDecimalRenderer extends CSGridNumberRenderer<
 	}
 
 	getNumberFormat() {
-		const noOfDecimalDigits =
-			this.props.noOfDecimalDigits !== undefined ? this.props.noOfDecimalDigits : 5;
-
-		return getIntl(this.props.userInfo.userLocale).NumberFormat(
-			this.props.userInfo.userLocale,
-			{
-				maximumFractionDigits: noOfDecimalDigits,
-				minimumFractionDigits: noOfDecimalDigits
-			}
-		);
+		if (this.props.noOfDecimalDigits) {
+			return getIntl(this.props.userInfo.userLocale).NumberFormat(
+				this.props.userInfo.userLocale,
+				{
+					maximumFractionDigits: this.props.noOfDecimalDigits,
+					minimumFractionDigits: this.props.noOfDecimalDigits
+				}
+			);
+		} else {
+			return getIntl(this.props.userInfo.userLocale).NumberFormat(
+				this.props.userInfo.userLocale,
+				{
+					maximumFractionDigits: 20 // Largest valid input
+				}
+			);
+		}
 	}
 }
