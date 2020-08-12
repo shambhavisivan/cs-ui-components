@@ -258,10 +258,12 @@ export class CSGridLookupEditor
 
 					const popupWrapperInfo = popupWrapper.getBoundingClientRect();
 
-					// Calculate position to fit within the outer grid.
-					const diff = popupWrapperInfo.left + gridWidth - outerGrid.width + 3;
+					// Check there is enough room left in the outer grid to show the whole lookup grid.
+					const diff =
+						popupWrapperInfo.left - outerGrid.left + gridWidth - outerGrid.width;
 					if (diff > 0) {
-						popupWrapper.style.left = `${Math.max(popupWrapperInfo.left - diff, 0)}px`;
+						// Set left relative to outer grid.
+						popupWrapper.style.left = `${Math.max(outerGrid.width - gridWidth, 0)}px`;
 					}
 
 					const visibleGridHeight =
