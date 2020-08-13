@@ -18,36 +18,28 @@ export class CSGridBooleanRenderer extends CSGridBaseRenderer<boolean>
 		};
 	}
 
+	refresh(params: CSGridCellRendererProps<boolean>): boolean {
+		super.refresh(params);
+		this.forceUpdate();
+
+		return true;
+	}
+
 	render() {
 		if (!this.state.value) {
 			return null;
 		}
+
 		const readOnly = this.isReadOnly();
-
-		let editable: boolean;
-		if (typeof this.props.colDef.editable === 'function') {
-			const params: IsColumnFuncParams = {
-				api: this.props.api,
-				colDef: this.props.colDef,
-				column: this.props.column,
-				columnApi: this.props.columnApi,
-				context: this.props.context,
-				data: this.props.data,
-				node: this.props.node
-			};
-
-			editable = this.props.colDef.editable(params);
-		} else {
-			editable = this.props.colDef.editable;
-		}
+		const editable = this.isEditable();
 
 		const contents = (
 			<label className='cs-grid_checkbox-wrapper'>
 				<input
 					className='cs-grid_checkbox'
 					type='checkbox'
-					onClick={editable ? this.onClick : undefined}
-					defaultChecked={this.state.value.cellValue}
+					onChange={editable ? this.onChange : undefined}
+					checked={this.state.value.cellValue}
 					readOnly={readOnly}
 					disabled={!editable}
 				/>
@@ -76,21 +68,43 @@ export class CSGridBooleanRenderer extends CSGridBaseRenderer<boolean>
 		);
 	}
 
-	private onClick = async () => {
-		let value: CellData<boolean> = {
-			cellValue: !this.state.value.cellValue,
-			errorMessage: this.state.value.errorMessage
-		};
+	private onChange = async () => {
+		if (this.isEditable()) {
+			let value: CellData<boolean> = {
+				cellValue: !this.state.value.cellValue,
+				errorMessage: this.state.value.errorMessage
+			};
 
-		this.props.setValue(value);
-		if (this.props.onChange) {
-			value = await this.props.onChange(
-				this.props.node.id,
-				this.state.value.cellValue,
-				!this.state.value.cellValue
-			);
+			this.props.setValue(value);
+			if (this.props.onChange) {
+				value = await this.props.onChange(
+					this.props.node.id,
+					this.state.value.cellValue,
+					!this.state.value.cellValue
+				);
+			}
+
+			this.props.setValue(value);
+		} else {
+			this.forceUpdate();
 		}
+	};
 
-		this.props.setValue(value);
+	private isEditable = () => {
+		if (typeof this.props.colDef.editable === 'function') {
+			const params: IsColumnFuncParams = {
+				api: this.props.api,
+				colDef: this.props.colDef,
+				column: this.props.column,
+				columnApi: this.props.columnApi,
+				context: this.props.context,
+				data: this.props.data,
+				node: this.props.node
+			};
+
+			return this.props.colDef.editable(params);
+		} else {
+			return this.props.colDef.editable;
+		}
 	};
 }

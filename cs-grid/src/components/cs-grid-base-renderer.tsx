@@ -25,7 +25,7 @@ export abstract class CSGridBaseRenderer<
 	/**
 	 * Used by ag-grid to tell the cell when to refresh.
 	 */
-	refresh = (params: P): boolean => {
+	refresh(params: P): boolean {
 		const isLastColumn = this.isLastColumn();
 
 		if (
@@ -43,7 +43,7 @@ export abstract class CSGridBaseRenderer<
 		}
 
 		return true;
-	};
+	}
 
 	isReadOnly = (): boolean => {
 		const readonly: boolean | IsColumnFunc = this.props.readonly;

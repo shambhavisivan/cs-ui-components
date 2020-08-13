@@ -106,7 +106,7 @@ describe('CS Grid Boolean Renderer', () => {
 		);
 
 		const input = cellRenderer.find('input');
-		input.simulate('click');
+		input.simulate('change');
 		expect(mockOnChange.mock.calls.length).toEqual(1);
 	});
 
@@ -124,7 +124,7 @@ describe('CS Grid Boolean Renderer', () => {
 		);
 
 		const input = cellRenderer.find('input');
-		input.simulate('click');
+		input.simulate('change');
 		expect(mockOnChange.mock.calls.length).toEqual(0);
 	});
 
@@ -146,11 +146,11 @@ describe('CS Grid Boolean Renderer', () => {
 		expect(mockOnChange.mock.calls.length).toEqual(0);
 	});
 
-	test('Tests that the defaultChecked attribute of the input matches the cell value.', () => {
+	test('Tests that the checked attribute of the input matches the cell value.', () => {
 		const cellRenderer = shallow(<CSGridBooleanRenderer {...cSGridCellRendererProps} />);
 		const input = cellRenderer.find('input');
 
-		expect(input.prop('defaultChecked')).toBe(exampleBoolean.cellValue);
+		expect(input.prop('checked')).toBe(exampleBoolean.cellValue);
 		expect(input.prop('disabled')).toBe(!editable);
 	});
 

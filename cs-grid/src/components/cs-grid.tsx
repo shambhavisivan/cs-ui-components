@@ -543,6 +543,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		if (this.props.onSelectionChange) {
 			this.props.onSelectionChange(this.getSelectedRows());
 		}
+		this.gridApi.refreshCells({ force: true });
 	};
 
 	private onCellEditingStopped = (event: CellEditingStoppedEvent) => {
