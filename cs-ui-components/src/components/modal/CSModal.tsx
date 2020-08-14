@@ -18,12 +18,26 @@ export interface CSModalProps {
 }
 
 class CSModal extends React.Component<CSModalProps> {
+	modalId = 'cs-modal-root';
+
+	constructor(props: CSModalProps) {
+		super(props);
+
+		let modalRoot = document.getElementById(this.modalId);
+		if (!modalRoot) {
+			modalRoot = document.createElement('div');
+			modalRoot.className = this.modalId;
+			modalRoot.id = this.modalId;
+			document.body.appendChild(modalRoot);
+		}
+	}
+
 	render() {
 		const modalClasses = classNames('cs-modal-wrapper', {
 			[`${this.props.className}`]: this.props.className
 		});
 		return (
-			<Portal>
+			<Portal node={document && document.getElementById(this.modalId)}>
 				<div className="cs-modal-overlay">
 					<div className={modalClasses} id={this.props.id}>
 						<div

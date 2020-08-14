@@ -1,26 +1,27 @@
-.cs-modal-wrapper, .cs-modal-outer-wrapper {
+.cs-modal-root {
+	display: contents;
+}
+
+.cs-modal-overlay {
+	@include sbg(--transparent);
+	z-index: $z-index-modal;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+
+	&:last-child {
+		@include sbg(--cs-modal-wrapper-bg);
+	}
+}
+
+.cs-modal-wrapper {
 	position: fixed;
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
-	font-family: 'SFFont';
-
-	&:not(:last-child) {
-		.cs-modal-content::after  {
-			content: "";
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			z-index: $z-index-modal-overlay;
-			@include sbg(--cs-modal-wrapper-bg);
-		}
-		.cs-modal-close .cs-icon {
-			opacity: 0.4;
-		}
-	}
 
 	.cs-modal {
 		position: relative;
@@ -204,7 +205,6 @@
 		}
 
 		&.cs-modal-large {
-			max-width: 80rem;
 			width: 90%;
 			max-width: none;
 			min-width: 40rem;
@@ -223,14 +223,4 @@
 			}
 		}
 	}
-}
-
-.cs-modal-overlay {
-	@include sbg(--cs-modal-wrapper-bg);
-	z-index: $z-index-modal;
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	top:0;
-	left:0;
 }

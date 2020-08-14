@@ -15,13 +15,15 @@ import {
 
 interface CSModalPreviewState {
 	modalOpen: string | undefined;
+	secondModalOpen: boolean;
 }
 class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 	constructor(props: any) {
 		super(props);
 
 		this.state = {
-			modalOpen: undefined
+			modalOpen: undefined,
+			secondModalOpen: false
 		};
 	}
 
@@ -104,6 +106,29 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 													sunt ad dolore quis aute consequat ipsum magna
 													exercitation reprehenderit magna. Tempor
 													cupidatat consequat elit dolor adipisicing.
+												</p>
+											</CSModalBody>
+											<CSModalFooter align="left">
+												<CSButton
+													label="Open Modal"
+													onClick={() => this.setState({ secondModalOpen: true })}
+												/>
+											</CSModalFooter>
+										</CSModal>
+									)}
+									{this.state.secondModalOpen && (
+										<CSModal
+											size="xsmall"
+											closeButton
+											onClose={() => this.setState({ secondModalOpen: false })}
+										>
+											<CSModalHeader
+												title="This is a test heading"
+												subtitle="This is a test subtitle"
+											/>
+											<CSModalBody>
+												<p>
+													Example text, most likely a confirmation message.
 												</p>
 											</CSModalBody>
 											<CSModalFooter align="left">
