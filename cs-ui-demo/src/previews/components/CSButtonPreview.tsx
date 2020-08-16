@@ -409,6 +409,30 @@ class CSButtonPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'iconSize',
+					customText: '',
+					variations: [
+						{
+							variationName: ['10px'],
+							quickLink: '10px',
+							string: '',
+							component: <CSButton iconName="activity" iconSize="10px" label="Icon size 10px"/>
+						},
+						{
+							variationName: ['2rem'],
+							quickLink: '2rem',
+							string: '',
+							component: <CSButton iconName="activity" iconSize="2rem" label="Icon size 2rem"/>
+						},
+						{
+							variationName: ['2px'],
+							quickLink: '2px',
+							string: '',
+							component: <CSButton iconName="activity" iconSize="2px" label="Icon size 2px"/>
+						}
+					]
+				},
+				{
 					propName: 'width',
 					customText: '',
 					variations: [
@@ -450,6 +474,16 @@ class CSButtonPreview extends React.Component {
 							variationName: ['true'],
 							string: '',
 							component: <CSButton iconName="activity" label="default" openInNewTab link="https://www.google.com"/>
+						}
+					]
+				},
+				{
+					propName: 'value',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component: <CSButton iconName="activity" label="default initial" value="value"/>
 						}
 					]
 				},
@@ -547,6 +581,15 @@ class CSButtonPreview extends React.Component {
 					]
 				},
 				{
+					propertyName: 'iconSize',
+					description: 'Size of icon',
+					options: [
+						'e.g.',
+						'10px',
+						'2rem'
+					]
+				},
+				{
 					propertyName: 'id',
 					description: 'Button id value'
 				},
@@ -597,6 +640,10 @@ class CSButtonPreview extends React.Component {
 						'auto',
 						'max'
 					]
+				},
+				{
+					propertyName: 'value',
+					description: 'Value attribute to pass to button element'
 				}
 			],
 			backlog: [

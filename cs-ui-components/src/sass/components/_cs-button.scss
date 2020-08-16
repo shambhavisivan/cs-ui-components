@@ -47,8 +47,8 @@
 		z-index: $z-index-button-icon;
 		pointer-events: none;
 		.cs-icon {
-			height: 1rem;
-			width: 1rem;
+			height: var(--cs-icon-size, 1rem);
+			width: var(--cs-icon-size, 1rem);
 			transition: transform ease 100ms;
 			@include sf(--cs-button-c);
 		}

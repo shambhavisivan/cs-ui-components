@@ -21,6 +21,7 @@ export interface CSButtonProps {
 	iconOrigin?:  CSIconOrigin;
 	iconPosition?: CSButtonIconPosition;
 	iconRotate?: string;
+	iconSize?: string;
 	id?: string;
 	label: string | undefined;
 	link?: string;
@@ -29,6 +30,7 @@ export interface CSButtonProps {
 	openInNewTab?: boolean;
 	size?: CSButtonSize;
 	width?: CSButtonWidth;
+	value?: string;
 }
 
 class CSButton extends React.Component<CSButtonProps> {
@@ -50,7 +52,9 @@ class CSButton extends React.Component<CSButtonProps> {
 		if (this.props.loading) {
 			return (
 				<span className="cs-btn-icon cs-btn-icon-loading">
-					<CSIcon name="spinner"/>
+					<CSIcon
+						name="spinner"
+						size={this.props.iconSize}/>
 				</span>
 			);
 		} else if (this.props.iconName) {
@@ -60,6 +64,7 @@ class CSButton extends React.Component<CSButtonProps> {
 						name={this.props.iconName}
 						rotate={this.props.iconRotate}
 						origin={this.props.iconOrigin}
+						size={this.props.iconSize}
 					/>
 				</span>
 			);
@@ -120,7 +125,8 @@ class CSButton extends React.Component<CSButtonProps> {
 			'title': this.props.iconDisplay === 'icon-only' ? this.props.label : undefined,
 			'href': this.props.link && this.props.link,
 			'target': (this.props.openInNewTab && this.props.link) ? '_blank' : undefined,
-			'id': this.props.id
+			'id': this.props.id,
+			'value': this.props.value
 		};
 
 		return (
