@@ -5,14 +5,32 @@
 .cs-input-file-wrapper {
 	width: 100%;
 	position: relative;
+
+	&.cs-input-file-drop-area {
+
+		.cs-input-file {
+			justify-content: center;
+			align-items: center;
+			width: var(--drop-area-width);
+			height: var(--drop-area-height);
+			@include sbg(--cs-input-file-drop-area-bg);
+
+			.cs-tooltip-wrapper {
+				max-width: 100%;
+
+				.cs-input-file-label {
+					max-width: 100%;
+				}
+			}
+		}
+	}
 }
 
 .cs-input-file {
 	position: relative;
-	display: inline-block;
+	display: inline-flex;
 	padding: 0.125rem;
 	border-radius: 0.25rem;
-	max-width: 10rem;
 	@include css4 {
 		border: 1px dashed cvar(--cs-input-file-dashed-br);
 	}

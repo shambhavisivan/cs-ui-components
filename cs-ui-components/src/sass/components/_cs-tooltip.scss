@@ -20,6 +20,7 @@
 
 	.cs-tooltip-body {
 		text-align: left;
+		word-break: break-word;
 
 		&:not(:first-child) {
 			margin-block-start: 0.25rem;

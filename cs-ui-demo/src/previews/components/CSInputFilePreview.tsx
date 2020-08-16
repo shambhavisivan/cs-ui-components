@@ -144,6 +144,78 @@ class CSInputFilePreview extends React.Component {
 					]
 				},
 				{
+					propName: 'dropAreaBackground',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSInputFile
+									label="Upload directory"
+									onDrop={handleDrop}
+									dropAreaBackground
+								/>
+						}
+					]
+				},
+				{
+					propName: 'dropAreaWidth',
+					variations: [
+						{
+							variationName: ['100%'],
+							quickLink: '100%',
+							string: '',
+							component:
+								<CSInputFile
+									label="Upload directory"
+									onDrop={handleDrop}
+									dropAreaBackground
+									dropAreaWidth="100%"
+								/>
+						},
+						{
+							variationName: ['400px'],
+							quickLink: '400px',
+							string: '',
+							component:
+								<CSInputFile
+									label="Upload directory"
+									onDrop={handleDrop}
+									dropAreaBackground
+									dropAreaWidth="400px"
+								/>
+						}
+					]
+				},
+				{
+					propName: 'dropAreaHeight',
+					variations: [
+						{
+							variationName: ['100px'],
+							quickLink: '100px',
+							string: '',
+							component:
+								<CSInputFile
+									label="Upload directory"
+									onDrop={handleDrop}
+									dropAreaBackground
+									dropAreaHeight="100px"
+								/>
+						},
+						{
+							variationName: ['10rem'],
+							quickLink: '10rem',
+							string: '',
+							component:
+								<CSInputFile
+									label="Upload directory"
+									onDrop={handleDrop}
+									dropAreaBackground
+									dropAreaHeight="10rem"
+								/>
+						}
+					]
+				},
+				{
 					propName: 'id',
 					variations: [
 						{
@@ -193,6 +265,33 @@ class CSInputFilePreview extends React.Component {
 					options: [
 						'false',
 						'true'
+					]
+				},
+				{
+					propertyName: 'dropAreaBackground',
+					description: 'Change drop area background to grey',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
+					propertyName: 'dropAreaHeight',
+					description: 'Set height of drop area',
+					options: [
+						'e.g.',
+						'100px',
+						'20rem'
+					]
+				},
+				{
+					propertyName: 'dropAreaWidth',
+					description: 'Set width of drop area',
+					options: [
+						'e.g.',
+						'400px',
+						'20rem',
+						'100%'
 					]
 				},
 				{

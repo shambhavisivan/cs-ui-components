@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 import CSIcon from './CSIcon';
 import CSTooltip from './CSTooltip';
@@ -7,6 +7,9 @@ export interface CSInputFileProps {
 	accept?: Array<string> | string;
 	className?: string;
 	disabled?: boolean;
+	dropAreaBackground?: boolean;
+	dropAreaHeight?: string;
+	dropAreaWidth?: string;
 	error?: boolean;
 	errorMessage?: string;
 	id?: string;
@@ -60,6 +63,13 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 	}
 
 	render() {
+		const wrapperClasses = classNames(
+			'cs-input-file-wrapper',
+			{
+				'cs-input-file-drop-area': this.props.dropAreaBackground
+			}
+		);
+
 		const fileClasses = classNames(
 			'cs-input-file',
 			{
@@ -68,45 +78,51 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 			}
 		);
 
+		const style: CSSProperties = {
+			'--drop-area-width': this.props.dropAreaWidth,
+			'--drop-area-height': this.props.dropAreaHeight
+		};
+
 		const input =
-			<div className="cs-input-file-wrapper">
+			<>
+				<label className="cs-input-file-label">
+					<input
+						accept={this.handleAcceptFiles(this.props.accept)}
+						id={this.props.id}
+						type="file"
+						ref={this.fileInput}
+						onChange={this.handleFileSubmit}
+						disabled={this.props.disabled}
+					/>
+					<span className="cs-input-file-label-body">
+						<CSIcon className="cs-input-file-icon" name="upload"/>
+						<span className="cs-input-file-label">{this.state.label ? this.state.label : this.props.label}</span>
+					</span>
+				</label>
+				{(this.props.error && this.props.errorMessage) &&
+					<span className="cs-input-file-error-message">{this.props.errorMessage}</span>
+				}
+			</>;
+
+		return (
+			<div className={wrapperClasses} style={style}>
 				<div
 					className={fileClasses}
 					onDragOver={!this.props.disabled ? this.handleFileDragEvents : null}
 					onDrop={!this.props.disabled ? this.handleFileDrop : null}
 				>
-					<label className="cs-input-file-label">
-						<input
-							accept={this.handleAcceptFiles(this.props.accept)}
-							id={this.props.id}
-							type="file"
-							ref={this.fileInput}
-							onChange={this.handleFileSubmit}
-							disabled={this.props.disabled}
-						/>
-						<span className="cs-input-file-label-body">
-							<CSIcon className="cs-input-file-icon" name="upload"/>
-							<span className="cs-input-file-label">{this.state.label ? this.state.label : this.props.label}</span>
-						</span>
-					</label>
+					{this.state.label ? (
+						<CSTooltip content={this.state.label}>
+							{input}
+						</CSTooltip>
+					) : (
+						<>
+							{input}
+						</>
+					)}
 				</div>
-				{(this.props.error && this.props.errorMessage) &&
-					<span className="cs-input-file-error-message">{this.props.errorMessage}</span>
-				}
-			</div>;
 
-		return (
-			<>
-				{this.state.label ? (
-					<CSTooltip content={this.state.label}>
-						{input}
-					</CSTooltip>
-				) : (
-					<>
-						{input}
-					</>
-				)}
-			</>
+			</div>
 		);
 	}
 }
