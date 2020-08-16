@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import DatePicker from 'react-datepicker';
 import { addDays, subDays, addYears, subYears } from 'date-fns';
 import CSIcon from './CSIcon';
@@ -28,6 +28,7 @@ export interface CSDatepickerProps {
 	required?: boolean;
 	todayButton?: string;
 	tooltipPosition?: CSTooltipPosition;
+	width?: string;
 }
 
 export interface CSDatePickerState  {
@@ -69,9 +70,13 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 			}
 		);
 
+		const style: CSSProperties = {
+			'--datepicker-width': this.props.width
+		};
+
 		return (
 			<>
-				<div className={datepickerClasses}>
+				<div className={datepickerClasses} style={style}>
 					<CSLabel for={this.props.id} label={this.props.label} helpText={this.props.helpText} tooltipPosition={this.props.tooltipPosition} required={this.props.required} />
 					<DatePicker
 						dateFormat={this.props.dateFormat}

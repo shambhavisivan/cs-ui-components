@@ -233,6 +233,32 @@ class CSDatepickerPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'width',
+					variations: [
+						{
+							variationName: ['100%'],
+							quickLink: '100%',
+							string: '',
+							component:
+								<CSDatepicker label="Enter date:" width="100%"/>
+						},
+						{
+							variationName: ['20rem'],
+							quickLink: '20rem',
+							string: '',
+							component:
+								<CSDatepicker label="Enter date:" width="20rem"/>
+						},
+						{
+							variationName: ['400px'],
+							quickLink: '400px',
+							string: '',
+							component:
+								<CSDatepicker label="Enter date:" width="400px"/>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -364,6 +390,16 @@ class CSDatepickerPreview extends React.Component {
 						'top-left',
 						'bottom-right',
 						'bottom-left'
+					]
+				},
+				{
+					propertyName: 'width',
+					description: 'Datepicker input field width',
+					options: [
+						'e.g.',
+						'100%',
+						'20rem',
+						'400px'
 					]
 				}
 			]
