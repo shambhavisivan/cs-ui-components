@@ -35,7 +35,7 @@ class App extends React.Component {
 										Notes</NavLink>
 								</li>
 							</ul>
-							<CSImage type="logo" height="3rem"/>
+							<CSImage type="logo" height="2.25rem"/>
 						</div>
 						<div className="app-body">
 							<Route path="/components" component={CSComponentsList}/>

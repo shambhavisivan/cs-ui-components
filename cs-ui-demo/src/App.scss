@@ -153,7 +153,8 @@ body,
 			list-style: none;
 
 			.ui-component a {
-				display: block;
+				display: flex;
+				align-items: center;
 				padding: 0.5rem 1rem;
 				cursor: pointer;
 				text-decoration: none;
@@ -167,6 +168,19 @@ body,
 				&.active-component {
 					background: #363a3b;
 				}
+			}
+
+			.ui-component:first-of-type a::after {
+				content: '';
+				display: block;
+				width: 1rem;
+				height: 1rem;
+				-webkit-mask: url('./images/info.svg') no-repeat 50% 50%;
+				mask: url('./images/info.svg') no-repeat 50% 50%;
+				-webkit-mask-size: cover;
+				mask-size: cover;
+				margin-left: auto;
+				background: #fff;
 			}
 		}
 	}

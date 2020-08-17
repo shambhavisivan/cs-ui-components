@@ -33,6 +33,7 @@ import CSButtonGroupPreview from './components/CSButtonGroupPreview';
 import CSImagePreview from './components/CSImagePreview';
 import CSLookupFieldPreview from './components/CSLookupFieldPreview';
 import CSSliderPreview from './components/CSSliderPreview';
+import CSGettingStarted from './CSGettingStarted';
 
 import SidebarList from './SidebarList';
 
@@ -40,6 +41,10 @@ class CSComponentsList extends React.Component {
 
 	render() {
 		const componentsList = [
+			{
+				name: 'Getting Started',
+				component: CSGettingStarted
+			},
 			{
 				name: 'Alert',
 				component: CSAlertPreview
