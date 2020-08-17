@@ -88,6 +88,116 @@ class CSButtonGroupPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'marginPosition',
+					variations: [
+						{
+							variationName: ['left'],
+							quickLink: 'left',
+							string: '',
+							component:
+								<CSButtonGroup
+									combined
+									marginPosition="left"
+								>
+									<CSButton
+										label="First Button"
+									/>
+									<CSButton
+										label="Middle Button"
+									/>
+									<CSButton
+										btnStyle="brand"
+										label="Last Button"
+									/>
+									<CSButtonDropdown
+										iconName="down"
+										label="button dropdown"
+									>
+										<CSButton
+											label="Dropdown item 1"
+										/>
+										<CSButton
+											label="Dropdown item 2"
+										/>
+										<CSButton
+											label="Dropdown item 3"
+										/>
+									</CSButtonDropdown>
+								</CSButtonGroup>
+						},
+						{
+							variationName: ['right'],
+							quickLink: 'right',
+							string: '',
+							component:
+								<CSButtonGroup
+									combined={false}
+									marginPosition="right"
+								>
+									<CSButton
+										label="First Button"
+									/>
+									<CSButton
+										label="Middle Button"
+									/>
+									<CSButton
+										btnStyle="brand"
+										label="Last Button"
+									/>
+									<CSButtonDropdown
+										iconName="down"
+										label="button dropdown"
+									>
+										<CSButton
+											label="Dropdown item 1"
+										/>
+										<CSButton
+											label="Dropdown item 2"
+										/>
+										<CSButton
+											label="Dropdown item 3"
+										/>
+									</CSButtonDropdown>
+								</CSButtonGroup>
+						},
+						{
+							variationName: ['both'],
+							quickLink: 'both',
+							string: '',
+							component:
+								<CSButtonGroup
+									combined
+									marginPosition="both"
+								>
+									<CSButton
+										label="First Button"
+									/>
+									<CSButton
+										label="Middle Button"
+									/>
+									<CSButton
+										btnStyle="brand"
+										label="Last Button"
+									/>
+									<CSButtonDropdown
+										iconName="down"
+										label="button dropdown"
+									>
+										<CSButton
+											label="Dropdown item 1"
+										/>
+										<CSButton
+											label="Dropdown item 2"
+										/>
+										<CSButton
+											label="Dropdown item 3"
+										/>
+									</CSButtonDropdown>
+								</CSButtonGroup>
+						}
+					]
+				},
+				{
 					propName: 'id',
 					customText: '',
 					variations: [
@@ -176,6 +286,15 @@ class CSButtonGroupPreview extends React.Component {
 					options: [
 						'true',
 						'false'
+					]
+				},
+				{
+					propertyName: 'marginPosition',
+					description: 'Location of horizontal margin',
+					options: [
+						'left',
+						'right',
+						'both'
 					]
 				},
 				{

@@ -1,7 +1,7 @@
 .cs-button-group {
 	display: inline-flex;
 
-	&.cs-button-group-false > *:not(last-child) {
+	&.cs-button-group-false > *:not(:last-child) {
 		margin-right: 0.5rem;
 	}
 
@@ -45,5 +45,17 @@
 				border-bottom-right-radius: 0.25rem;
 			}
 		}
+	}
+
+	&.cs-button-group-margin-left {
+		margin-inline-start: 0.5rem;
+	}
+
+	&.cs-button-group-margin-right {
+		margin-inline-end: 0.5rem;
+	}
+
+	&.cs-button-group-margin-both {
+		margin: 0 0.5rem;
 	}
 }
