@@ -1,6 +1,6 @@
 {
 	"name": "@cloudsense/cs-grid",
-	"version": "1.2.24",
+	"version": "1.2.25",
 	"description": "CloudSense Grid",
 	"main": "./lib/main.js",
 	"author": "CloudSense",
@@ -20,7 +20,7 @@
 		"empty_lib": "rimraf ./lib/*",
 		"empty_lib_test": "rimraf ./lib/test && rimraf ./lib/src/index.js && rimraf ./lib/src/index.d.ts",
 		"move_fonts": "ncp ./src/fonts/ ./fonts/",
-		"clearJest": "jest --clearCache",
+		"clearJest": "npx jest --clearCache",
 		"test": "npm run clearJest && cross-env NODE_ICU_DATA=node_modules/full-icu jest --verbose"
 	},
 	"private": false,

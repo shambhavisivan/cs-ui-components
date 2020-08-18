@@ -71,6 +71,7 @@ export interface CSGridProps {
 	pageSizes?: Array<number>;
 	csGridPagination: CSGridControl;
 	csGridQuickFilter: CSGridQuickFilterControl;
+	quickFilterHiddenColumns?: boolean;
 	dataSourceAPI?: DataSourceAPI;
 	editorComponents?: Record<string, any>;
 	rendererComponents?: Record<string, any>;
@@ -235,6 +236,13 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 									textFormatter: this.formatTextForFiltering
 								},
 								getQuickFilterText: (params: GetQuickFilterTextParams) => {
+									if (
+										!this.props.quickFilterHiddenColumns &&
+										!params.column.isVisible()
+									) {
+										return '';
+									}
+
 									const cellValue = params.value.cellValue;
 									let result = cellValue;
 
