@@ -9,6 +9,7 @@ interface SelectFieldProps extends FormFieldProps {
 }
 
 export const SelectField: React.FC<SelectFieldProps> = props => {
+	const value = props.value || '';
 	return (
 		<CSSelect
 			{...props.wrapper.injectInputProps(props.descriptor.name, props.descriptor.fieldType as FieldType, props.status)}
@@ -17,7 +18,8 @@ export const SelectField: React.FC<SelectFieldProps> = props => {
 			disabled={props.status === 'visible'}
 			name={props.descriptor.name}
 			onChange={(e: React.ChangeEvent<HTMLSelectElement>) => props.handleFieldChange(e.target.value)}
-			value={props.value || ''}
+			value={value}
+			title={value}
 		>
 			{props.selectOptions && props.selectOptions.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
 		</CSSelect>

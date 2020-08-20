@@ -17,31 +17,76 @@ const optionsObj: OptionsKnobOptions = {
 	display: 'inline-radio'
 };
 
-const locale: LocaleSettings = {} as unknown as LocaleSettings;
+const locale: LocaleSettings = {
+	dates: {
+		daysInFirstWeek: 7,
+		daysOfWeek: ['Sun', 'Mon', 'Tue', ' Wed', 'Thu', 'Fri', 'Sat'],
+		firstDayOfWeek: 0,
+		format: 'dd/MM/yyyy',
+		monthsOfYear: [
+			'Jan',
+			'Feb',
+			'Mar',
+			'Apr',
+			'May',
+			'Jun',
+			'Jul',
+			'Aug',
+			'Sep',
+			'Oct',
+			'Nov',
+			'Dec'
+		]
+	},
+	number: {
+		decimalSeparator: '.',
+		userLocaleCountry: 'GB',
+		userLocaleLang: 'en'
+	}
+};
 
-const wrapper: ElementWrapper = {
-	injectSaveButtonProps: (): Record<string, any> => ({ className: 'horizontal-form-save-button' }),
-	injectInputProps: (name: string, type: FieldType, status: ComponentStatus): Record<string, any> => ({}),
+const wrapper: ElementWrapper = ({
+	injectSaveButtonProps: (): Record<string, any> => ({
+		className: 'horizontal-form-save-button'
+	}),
+	injectInputProps: (
+		name: string,
+		type: FieldType,
+		status: ComponentStatus
+	): Record<string, any> => ({}),
 
-	wrapForm: (errorPanel: ReactElement, contents: ReactElement, saveButton: ReactElement) => <div>
-		<div className="details-wrapper">
-			{errorPanel}
-			{contents}
-			{saveButton}
+	wrapForm: (errorPanel: ReactElement, contents: ReactElement, saveButton: ReactElement) => (
+		<div>
+			<div className="details-wrapper">
+				{errorPanel}
+				{contents}
+				{saveButton}
+			</div>
 		</div>
-	</div>,
+	),
 
 	wrapPanel: (key: string, title: ReactElement, contents: ReactElement) => <div>{contents}</div>,
 
 	wrapErrorPanel: (key: string, contents: ReactElement) => <div>{contents}</div>,
 
-	wrapField: (name: string, status: ComponentStatus, label: ReactElement, input: ReactElement, errorMessage?: ReactElement) => <div key={name} className="details-row">
-		<div>
-			<label><span >{label}</span>{input}</label>
+	wrapField: (
+		name: string,
+		status: ComponentStatus,
+		label: ReactElement,
+		input: ReactElement,
+		errorMessage?: ReactElement
+	) => (
+		<div key={name} className="details-row">
+			<div>
+				<label>
+					<span>{label}</span>
+					{input}
+				</label>
+			</div>
+			<div>{errorMessage}</div>
 		</div>
-		<div>{errorMessage}</div>
-	</div>
-} as any as ElementWrapper;
+	)
+} as any) as ElementWrapper;
 
 function nop(): any {
 	// dummy function
@@ -50,7 +95,8 @@ function nop(): any {
 const formFieldStories = storiesOf('Form Field', module);
 formFieldStories.addDecorator(withKnobs);
 
-formFieldStories.add('with boolean field',
+formFieldStories.add(
+	'with boolean field',
 	withState({ value: false })(({ store }) => {
 		const descriptor: FieldDescriptor = {
 			fieldType: 'BOOLEAN',
@@ -64,14 +110,17 @@ formFieldStories.add('with boolean field',
 				status={options(statusLabel, statusValuesObj, 'mandatory', optionsObj)}
 				locale={locale}
 				wrapper={wrapper}
-				handleFieldChange={value => { store.set({ value }); }}
+				handleFieldChange={value => {
+					store.set({ value });
+				}}
 				fetchPossibleValues={nop}
 			/>
 		);
 	})
 );
 
-formFieldStories.add('with text field',
+formFieldStories.add(
+	'with text field',
 	withState({ value: 'init text' })(({ store }) => {
 		const descriptor: FieldDescriptor = {
 			fieldType: 'STRING',
@@ -85,7 +134,57 @@ formFieldStories.add('with text field',
 				status={options(statusLabel, statusValuesObj, 'mandatory', optionsObj)}
 				locale={locale}
 				wrapper={wrapper}
-				handleFieldChange={value => { store.set({ value }); }}
+				handleFieldChange={value => {
+					store.set({ value });
+				}}
+				fetchPossibleValues={nop}
+			/>
+		);
+	})
+);
+
+formFieldStories.add(
+	'with number field',
+	withState({ value: 111 })(({ store }) => {
+		const descriptor: FieldDescriptor = {
+			fieldType: 'NUMBER',
+			name: 'numberField',
+			label: 'number field'
+		};
+		return (
+			<FormField
+				value={store.state.value}
+				descriptor={descriptor}
+				status={options(statusLabel, statusValuesObj, 'mandatory', optionsObj)}
+				locale={locale}
+				wrapper={wrapper}
+				handleFieldChange={value => {
+					store.set({ value });
+				}}
+				fetchPossibleValues={nop}
+			/>
+		);
+	})
+);
+
+formFieldStories.add(
+	'with date field',
+	withState({ value: '' })(({ store }) => {
+		const descriptor: FieldDescriptor = {
+			fieldType: 'DATE',
+			name: 'dateField',
+			label: 'date field'
+		};
+		return (
+			<FormField
+				value={store.state.value}
+				descriptor={descriptor}
+				status={options(statusLabel, statusValuesObj, 'mandatory', optionsObj)}
+				locale={locale}
+				wrapper={wrapper}
+				handleFieldChange={value => {
+					store.set({ value });
+				}}
 				fetchPossibleValues={nop}
 			/>
 		);

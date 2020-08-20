@@ -16,7 +16,15 @@ const descriptor: FieldDescriptor = {
 	label: 'Test field'
 };
 
-let locale: LocaleSettings = {};
+let locale: LocaleSettings = {
+	dates: {
+		format: '',
+		daysOfWeek: [],
+		monthsOfYear: [],
+		firstDayOfWeek: 0,
+		daysInFirstWeek: 0
+	}
+};
 
 const wrapper: ElementWrapper = ({
 	injectInputProps: () => null
@@ -50,7 +58,9 @@ it('render number field with default locale (en-US) and display formatted value'
 		/>,
 		container
 	);
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>('#display-field')!;
+	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>(
+		'#display-field'
+	)!;
 
 	expect(textInput.value).toEqual('123,432,423,434.78');
 });
@@ -68,7 +78,9 @@ it('switch to edit mode and verify the unformatted value in edit mode', () => {
 		/>,
 		container
 	);
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>('#display-field')!;
+	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>(
+		'#display-field'
+	)!;
 	expect(textInput.value).toEqual('123,432,423,434.78');
 	ReactTestUtils.Simulate.focus(textInput);
 
@@ -78,6 +90,7 @@ it('switch to edit mode and verify the unformatted value in edit mode', () => {
 
 it('should call handleChange method onblur with non-formatted value', done => {
 	locale = {
+		...locale,
 		number: {
 			userLocaleLang: 'ja',
 			userLocaleCountry: 'JP',
@@ -100,7 +113,9 @@ it('should call handleChange method onblur with non-formatted value', done => {
 			container
 		);
 	});
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>('#display-field')!;
+	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>(
+		'#display-field'
+	)!;
 	ReactTestUtils.Simulate.focus(textInput);
 
 	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
@@ -131,7 +146,9 @@ it('should respect precision and scale if provided.', done => {
 			container
 		);
 	});
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>('#display-field')!;
+	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>(
+		'#display-field'
+	)!;
 	ReactTestUtils.Simulate.focus(textInput);
 
 	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
@@ -166,7 +183,9 @@ it('does not allow data outside precision and scale to be entered in field', don
 			container
 		);
 	});
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>('#display-field')!;
+	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>(
+		'#display-field'
+	)!;
 	ReactTestUtils.Simulate.focus(textInput);
 
 	ReactTestUtils.Simulate.change(textInput, ({
@@ -194,7 +213,9 @@ it('should allow negative numbers', done => {
 			container
 		);
 	});
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>('#display-field')!;
+	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>(
+		'#display-field'
+	)!;
 	ReactTestUtils.Simulate.focus(textInput);
 
 	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
@@ -220,7 +241,9 @@ it('should ignore + and display positive number', done => {
 			container
 		);
 	});
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>('#display-field')!;
+	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>(
+		'#display-field'
+	)!;
 	ReactTestUtils.Simulate.focus(textInput);
 
 	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
@@ -233,6 +256,7 @@ it('should ignore + and display positive number', done => {
 
 it('should render values for {fi-Fi} locale', done => {
 	locale = {
+		...locale,
 		number: {
 			userLocaleLang: 'fi',
 			userLocaleCountry: 'FI',
@@ -254,7 +278,9 @@ it('should render values for {fi-Fi} locale', done => {
 			container
 		);
 	});
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>('#display-field')!;
+	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>(
+		'#display-field'
+	)!;
 	ReactTestUtils.Simulate.focus(textInput);
 
 	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
@@ -293,7 +319,9 @@ it('does not allow invalid numbers when copy pasted', done => {
 			container
 		);
 	});
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>('#display-field')!;
+	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>(
+		'#display-field'
+	)!;
 	ReactTestUtils.Simulate.focus(textInput);
 
 	ReactTestUtils.Simulate.change(textInput, ({
@@ -324,15 +352,17 @@ it('should allow zero and format it in required format', done => {
 			container
 		);
 	});
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>('#display-field')!;
+	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>(
+		'#display-field'
+	)!;
 	ReactTestUtils.Simulate.focus(textInput);
 
 	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
 	ReactTestUtils.Simulate.blur(editTextInput, ({
-			target: { value: '0' }
-		} as any) as SyntheticEventData);
+		target: { value: '0' }
+	} as any) as SyntheticEventData);
 
-	expect(jestHandleChangeMock).toHaveBeenCalledWith(0.00);
+	expect(jestHandleChangeMock).toHaveBeenCalledWith(0.0);
 	expect(editTextInput.value).toEqual('0,00');
 	done();
 });

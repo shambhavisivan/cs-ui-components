@@ -28,8 +28,9 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 		}
 		this.state = {
 			locale: numberLocale,
-			value: this.isNotUndefinedOrNull(this.props.value) ?
-				this.numberFormatter(this.props.value, numberLocale) : '',
+			value: this.isNotUndefinedOrNull(this.props.value)
+				? this.numberFormatter(this.props.value, numberLocale)
+				: '',
 			isFormatterVisible: true
 		};
 	}
@@ -45,40 +46,52 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 	}
 
 	render() {
+		const value = this.state.isFormatterVisible
+			? this.state.value
+			: this.isNotUndefinedOrNull(this.props.value)
+			? this.props.value
+			: '';
+
 		return (
 			<div>
-				{(this.state.isFormatterVisible) ? (<input
-					{...this.props.wrapper.injectInputProps(
-						this.props.descriptor.name,
-						this.props.descriptor.fieldType as FieldType,
-						this.props.status
-					)}
-					id="display-field"
-					type="text"
-					name={this.props.descriptor.name}
-					value={this.state.value}
-					maxLength={20} // formatter does not support values with length > 20
-					min={this.props.descriptor.minVal}
-					max={this.props.descriptor.maxVal}
-					onFocus={() => this.setState({ isFormatterVisible: false })}
-				/>) : (<input
-					{...this.props.wrapper.injectInputProps(
-						this.props.descriptor.name,
-						this.props.descriptor.fieldType as FieldType,
-						this.props.status
-					)}
-					id="edit-field"
-					type="text"
-					name={this.props.descriptor.name}
-					value={this.isNotUndefinedOrNull(this.props.value) ? this.props.value : ''}
-					onChange={e => this.handleBasicValidations(e)}
-					required={this.props.status === 'mandatory'}
-					readOnly={this.props.status === 'visible'}
-					maxLength={20} // intl number formatter does not support values with length > 20
-					onBlur={e => this.handleFormattingOnBlur(e.target.value)}
-					min={this.props.descriptor.minVal}
-					max={this.props.descriptor.maxVal}
-				/>)}
+				{this.state.isFormatterVisible ? (
+					<input
+						{...this.props.wrapper.injectInputProps(
+							this.props.descriptor.name,
+							this.props.descriptor.fieldType as FieldType,
+							this.props.status
+						)}
+						id="display-field"
+						type="text"
+						name={this.props.descriptor.name}
+						value={value}
+						maxLength={20} // formatter does not support values with length > 20
+						min={this.props.descriptor.minVal}
+						max={this.props.descriptor.maxVal}
+						onFocus={() => this.setState({ isFormatterVisible: false })}
+						title={value}
+					/>
+				) : (
+					<input
+						{...this.props.wrapper.injectInputProps(
+							this.props.descriptor.name,
+							this.props.descriptor.fieldType as FieldType,
+							this.props.status
+						)}
+						id="edit-field"
+						type="text"
+						name={this.props.descriptor.name}
+						value={value}
+						onChange={e => this.handleBasicValidations(e)}
+						required={this.props.status === 'mandatory'}
+						readOnly={this.props.status === 'visible'}
+						maxLength={20} // intl number formatter does not support values with length > 20
+						onBlur={e => this.handleFormattingOnBlur(e.target.value)}
+						min={this.props.descriptor.minVal}
+						max={this.props.descriptor.maxVal}
+						title={value}
+					/>
+				)}
 			</div>
 		);
 	}
@@ -95,7 +108,7 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 			return;
 		}
 
-		const splittedvalue: Array<string> = inputVal.split('\.');
+		const splittedvalue: Array<string> = inputVal.split('.');
 		if (splittedvalue.length > 2) {
 			return;
 		} else {
@@ -136,17 +149,11 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 		if (this.props.descriptor.precision && this.props.descriptor.scale) {
 			const intergerPartMaxLength =
 				this.props.descriptor.precision - this.props.descriptor.scale;
-			const stripAllNonSeparator = new RegExp(
-				`[^\\d${localeDecimalSeparator}]`,
-				'g'
-			);
+			const stripAllNonSeparator = new RegExp(`[^\\d${localeDecimalSeparator}]`, 'g');
 			const stripped = inputVal.replace(stripAllNonSeparator, '');
 			if (numberOfSeparatorOccurences === 1) {
-				const separatorIndex = stripped.indexOf(
-					localeDecimalSeparator
-				);
-				const subStrLength = stripped.substring(0, separatorIndex)
-					.length;
+				const separatorIndex = stripped.indexOf(localeDecimalSeparator);
+				const subStrLength = stripped.substring(0, separatorIndex).length;
 				if (subStrLength > intergerPartMaxLength) {
 					return false;
 				}
@@ -159,10 +166,7 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 		return true;
 	}
 
-	numberFormatter(
-		unformattedValue: string,
-		localeInfo: NumberFieldLocale
-	): string {
+	numberFormatter(unformattedValue: string, localeInfo: NumberFieldLocale): string {
 		const numberLocale = `${localeInfo.userLocaleLang}-${localeInfo.userLocaleCountry}`;
 		const localeDecimalSeparator = localeInfo.decimalSeparator;
 		const f = new Intl.NumberFormat(numberLocale, {
@@ -191,7 +195,13 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 				// removes non-numbers but escapes {-}
 				unformatValueArray[0] = unformatValueArray[0].replace(/[^0-9\-]+/g, '');
 
-				this.props.handleFieldChange(parseFloat(parseFloat(unformatValueArray.join('.')).toFixed(this.props.descriptor.scale)));
+				this.props.handleFieldChange(
+					parseFloat(
+						parseFloat(unformatValueArray.join('.')).toFixed(
+							this.props.descriptor.scale
+						)
+					)
+				);
 			} else {
 				this.props.handleFieldChange(value);
 			}

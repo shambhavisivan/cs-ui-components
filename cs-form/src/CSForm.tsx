@@ -18,7 +18,7 @@ export interface LocaleSettings {
 }
 
 /**
- * Arbitrary data that is not part of the form object but is used in visibile/enabled/mandatory calculations.
+ * Arbitrary data that is not part of the form object but is used in visible/enabled/mandatory calculations.
  * For example user profile or external visibility flags coming from JSON data. Can contain functions too.
  */
 export type FormSettings = any;

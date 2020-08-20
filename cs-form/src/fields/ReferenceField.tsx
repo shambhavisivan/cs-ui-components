@@ -50,7 +50,7 @@ export class ReferenceField extends React.Component<FormFieldProps, State> {
 		let optionRowColumnDefs = props.descriptor.referenceOptionColumnDefs;
 		/**
 		 * Default headers for the autosuggest table. The data should
-		 * atleast have  { name:'val'}.
+		 * at least have  { name:'val'}.
 		 *
 		 * TODO: think of a better way to do this.
 		 */

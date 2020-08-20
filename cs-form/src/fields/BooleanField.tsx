@@ -13,6 +13,7 @@ export const BooleanField: React.FC<FormFieldProps> = props => {
 			onChange={(e: React.ChangeEvent<HTMLInputElement>) => (props.handleFieldChange(e.target.checked))}
 			disabled={props.status === 'visible'}
 			hidden={props.status === 'hidden'}
+			title={props.value ? 'True' : 'False'}
 		/>
 	);
 };

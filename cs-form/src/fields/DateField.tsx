@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormFieldProps } from './FormField';
+import { format } from 'date-fns';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import createDynamicLocale from '@cloudsense/react-datepicker-dynamiclocale';
@@ -15,7 +16,6 @@ export interface DateFieldLocale {
 }
 
 export class DateField extends React.Component<FormFieldProps, {}> {
-
 	private static dateToNumber(date: Date | null) {
 		return date ? date.valueOf() : null;
 	}
@@ -25,15 +25,27 @@ export class DateField extends React.Component<FormFieldProps, {}> {
 	}
 
 	render() {
-		return <DatePicker
-			{...this.props.wrapper.injectInputProps(this.props.descriptor.name, this.props.descriptor.fieldType as FieldType, this.props.status)}
-			name={this.props.descriptor.name}
-			dateFormat={this.props.locale.dates.format}
-			locale={this.createLocale()} // createLocale() had to be defined to return "any" because the type bindings for date picker are outdated and wrong
-			selected={DateField.numberToDate(this.props.value)}
-			onChange={value => this.props.handleFieldChange(DateField.dateToNumber(value))}
-			required={this.props.status === 'mandatory'}
-			readOnly={this.props.status === 'visible'} />;
+		const locale = this.createLocale();
+		const date = DateField.numberToDate(this.props.value);
+		const title = date ? format(date, 'PP', {locale}) : '';
+
+		return (
+			<DatePicker
+				{...this.props.wrapper.injectInputProps(
+					this.props.descriptor.name,
+					this.props.descriptor.fieldType as FieldType,
+					this.props.status
+				)}
+				name={this.props.descriptor.name}
+				dateFormat={this.props.locale.dates.format}
+				locale={this.createLocale()} // createLocale() had to be defined to return "any" because the type bindings for date picker are outdated and wrong
+				selected={DateField.numberToDate(this.props.value)}
+				onChange={value => this.props.handleFieldChange(DateField.dateToNumber(value))}
+				required={this.props.status === 'mandatory'}
+				readOnly={this.props.status === 'visible'}
+				title={title}
+			/>
+		);
 	}
 
 	private createLocale(): any {
