@@ -21,4 +21,22 @@ export class CSGridDecimalEditor extends CSGridNumberEditor<
 			}
 		);
 	}
+
+	isCancelAfterEnd() {
+		this.setState(prevState => {
+			let formattedValue = this.formatValue();
+
+			if (this.props.noOfDecimalDigits !== undefined && typeof formattedValue !== 'string') {
+				const factorOfTen = Math.pow(10, this.props.noOfDecimalDigits);
+				formattedValue =
+					Math.round((formattedValue + Number.EPSILON) * factorOfTen) / factorOfTen;
+			}
+
+			prevState.value.cellValue = formattedValue;
+
+			return { value: prevState.value };
+		});
+
+		return false;
+	}
 }

@@ -13,7 +13,7 @@ export class CSGridDecimalRenderer extends CSGridNumberRenderer<
 	}
 
 	getNumberFormat() {
-		if (this.props.noOfDecimalDigits) {
+		if (this.props.noOfDecimalDigits !== undefined) {
 			return getIntl(this.props.userInfo.userLocale).NumberFormat(
 				this.props.userInfo.userLocale,
 				{

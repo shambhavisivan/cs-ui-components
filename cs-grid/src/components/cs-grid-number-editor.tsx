@@ -67,23 +67,26 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 		return this.state.value;
 	}
 
-	isCancelAfterEnd = () => {
+	isCancelAfterEnd() {
 		this.setState(prevState => {
-			let formattedValue: string | number = formatDecimalNumber(
-				this.state.value.cellValue,
-				this.props.userInfo
-			);
-			formattedValue = Number.isNaN(formattedValue)
-				? this.state.value.cellValue
-				: formattedValue;
-
-			prevState.value.cellValue = formattedValue;
+			prevState.value.cellValue = this.formatValue();
 
 			return { value: prevState.value };
 		});
 
 		return false;
-	};
+	}
+
+	formatValue() {
+		let formattedValue: string | number = formatDecimalNumber(
+			this.state.value.cellValue,
+			this.props.userInfo
+		);
+
+		formattedValue = Number.isNaN(formattedValue) ? this.state.value.cellValue : formattedValue;
+
+		return formattedValue;
+	}
 
 	render() {
 		return (
