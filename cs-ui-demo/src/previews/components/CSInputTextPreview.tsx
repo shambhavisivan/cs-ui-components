@@ -166,7 +166,7 @@ class CSInputTextPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-								<CSInputText label="Type here:" readOnly placeholder="This is read only"/>
+								<CSInputText label="Type here:" readOnly value="value" />
 						}
 					]
 				},

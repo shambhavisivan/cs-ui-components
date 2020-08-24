@@ -172,7 +172,7 @@ class CSTextareaPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-								<CSTextarea label="Enter message:" readOnly />
+								<CSTextarea label="Enter message:" readOnly value="value" />
 						}
 					]
 				},

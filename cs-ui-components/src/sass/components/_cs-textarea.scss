@@ -22,6 +22,10 @@
 		&:disabled {
 			resize: none;
 		}
+
+		&:read-only {
+			height: auto;
+		}
 	}
 
 	.cs-input-error-msg {

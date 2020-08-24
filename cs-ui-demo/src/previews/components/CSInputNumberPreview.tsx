@@ -186,7 +186,7 @@ class CSInputNumberPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-								<CSInputNumber label="Enter value:" readOnly placeholder="This is read only"/>
+								<CSInputNumber label="Enter value:" readOnly value={12345} />
 						}
 					]
 				},
