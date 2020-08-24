@@ -204,6 +204,7 @@
 		.cs-alert-text {
 			font-size: 0.875rem;
 			max-width: calc(100% - 2rem);
+			line-height: normal;
 
 			// Array of alerts
 			+ .cs-alert-text::before {
