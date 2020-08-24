@@ -37,6 +37,30 @@ class CSCustomSelectPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'labelHidden',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSCustomSelect label="Choose color" id="color" optionsList={['Red', 'Blue', 'Green']} labelHidden/>
+						}
+					]
+				},
+				{
+					propName: 'labelTitle',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSCustomSelect label="Choose color" id="color" optionsList={['Red', 'Blue', 'Green']} labelTitle/>
+						}
+					]
+				},
+				{
 					propName: 'borderType',
 					variations: [
 						{
@@ -216,6 +240,22 @@ class CSCustomSelectPreview extends React.Component {
 				{
 					propertyName: 'label',
 					description: 'Select label text to display'
+				},
+				{
+					propertyName: 'labelHidden',
+					description: 'Logic for visibility of the label',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
+					propertyName: 'labelTitle',
+					description: 'Logic for label title attribute',
+					options: [
+						'false',
+						'true'
+					]
 				},
 				{
 					propertyName: 'required',

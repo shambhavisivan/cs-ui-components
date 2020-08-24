@@ -15,6 +15,8 @@ export interface CSDatepickerProps {
 	errorMessage?: string;
 	helpText?: string;
 	label: string;
+	labelHidden?: boolean;
+	labelTitle?: boolean;
 	locale?: any;
 	id?: string;
 	maxDate?: number;
@@ -77,7 +79,16 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 		return (
 			<>
 				<div className={datepickerClasses} style={style}>
-					<CSLabel for={this.props.id} label={this.props.label} helpText={this.props.helpText} tooltipPosition={this.props.tooltipPosition} required={this.props.required} />
+					{(this.props.label && !this.props.labelHidden) &&
+						<CSLabel
+							for={this.props.id}
+							label={this.props.label}
+							helpText={this.props.helpText}
+							tooltipPosition={this.props.tooltipPosition}
+							required={this.props.required}
+							title={this.props.labelTitle ? this.props.label : null}
+						/>
+					}
 					<DatePicker
 						dateFormat={this.props.dateFormat}
 						selected={startDate}

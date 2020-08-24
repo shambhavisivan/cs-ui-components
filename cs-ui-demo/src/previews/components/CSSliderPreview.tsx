@@ -45,6 +45,40 @@ class CSSliderPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'labelHidden',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSSlider
+									label="Slider"
+									min="0"
+									max="100"
+									labelHidden
+								/>
+						}
+					]
+				},
+				{
+					propName: 'labelTitle',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSSlider
+									label="Slider"
+									min="0"
+									max="100"
+									labelTitle
+								/>
+						}
+					]
+				},
+				{
 					propName: 'id',
 					variations: [
 						{
@@ -359,6 +393,22 @@ class CSSliderPreview extends React.Component {
 				{
 					propertyName: 'label',
 					description: 'Slider label text to display'
+				},
+				{
+					propertyName: 'labelHidden',
+					description: 'Logic for visibility of the label',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
+					propertyName: 'labelTitle',
+					description: 'Logic for label title attribute',
+					options: [
+						'false',
+						'true'
+					]
 				},
 				{
 					propertyName: 'max',

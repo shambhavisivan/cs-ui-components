@@ -164,6 +164,21 @@ class CSTogglePreview extends React.Component {
 					]
 				},
 				{
+					propName: 'labelHidden',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSToggle
+									label="This is a label"
+									labelHidden
+								/>
+						}
+					]
+				},
+				{
 					propName: 'labelPosition',
 					customText: 'For now we are supporting only default and left variants. We will add more when there will be need',
 					variations: [
@@ -174,6 +189,21 @@ class CSTogglePreview extends React.Component {
 								<CSToggle
 									label="This label is on the left"
 									labelPosition="left"
+								/>
+						}
+					]
+				},
+				{
+					propName: 'labelTitle',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSToggle
+									label="This is a label"
+									labelTitle
 								/>
 						}
 					]
@@ -255,11 +285,27 @@ class CSTogglePreview extends React.Component {
 					description: 'Toggle label to display'
 				},
 				{
+					propertyName: 'labelHidden',
+					description: 'Logic for visibility of the label',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
 					propertyName: 'labelPosition',
 					description: 'Label position, for now only default and left are supported',
 					options: [
 						'default',
 						'left'
+					]
+				},
+				{
+					propertyName: 'labelTitle',
+					description: 'Logic for label title attribute',
+					options: [
+						'false',
+						'true'
 					]
 				},
 				{

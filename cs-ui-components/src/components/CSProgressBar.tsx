@@ -9,6 +9,8 @@ export interface CSProgressBarProps {
 	color?: string;
 	id?: string;
 	label: string;
+	labelHidden?: boolean;
+	labelTitle?: boolean;
 	progress: string;
 	progressIndicator?: boolean;
 	thickness?: CSProgressBarThickness;
@@ -36,8 +38,11 @@ class CSProgressBar extends React.Component<CSProgressBarProps> {
 				id={this.props.id}
 			>
 				<div className="cs-progress-bar-text">
-					{this.props.label &&
-						<CSLabel label={this.props.label}/>
+					{(this.props.label && !this.props.labelHidden) &&
+						<CSLabel
+							label={this.props.label}
+							title={this.props.labelTitle ? this.props.label : null}
+						/>
 					}
 					{this.props.progressIndicator ? (
 						<div className="cs-progress-indicator">

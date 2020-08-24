@@ -26,6 +26,30 @@ class CSDatepickerPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'labelHidden',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSDatepicker label="Enter date:" labelHidden/>
+						}
+					]
+				},
+				{
+					propName: 'labelTitle',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSDatepicker label="Enter date:" labelTitle/>
+						}
+					]
+				},
+				{
 					propName: 'helpText',
 					variations: [
 						{
@@ -325,6 +349,22 @@ class CSDatepickerPreview extends React.Component {
 				{
 					propertyName: 'label',
 					description: 'Datepicker label text to display'
+				},
+				{
+					propertyName: 'labelHidden',
+					description: 'Logic for visibility of the label',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
+					propertyName: 'labelTitle',
+					description: 'Logic for label title attribute',
+					options: [
+						'false',
+						'true'
+					]
 				},
 				{
 					propertyName: 'maxDate',

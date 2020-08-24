@@ -23,6 +23,8 @@ export interface CSLookupFieldProps {
 	hidden?: boolean;
 	id?: string;
 	label: string;
+	labelHidden?: boolean;
+	labelTitle?: boolean;
 	placeholder?: string;
 	required?: boolean;
 	tooltipPosition?: CSTooltipPosition;
@@ -133,13 +135,14 @@ class CSLookupField extends React.Component<CSLookupFieldProps, CSLookupFieldSta
 		);
 		return (
 			<div className={lookupFieldWrapperClasses} ref={this.fieldRef}>
-				{(this.props.label) &&
+				{(this.props.label && !this.props.labelHidden) &&
 					<CSLabel
 						for={this.props.id}
 						label={this.props.label}
 						helpText={this.props.helpText}
 						tooltipPosition={this.props.tooltipPosition}
 						required={this.props.required}
+						title={this.props.labelTitle ? this.props.label : null}
 					/>
 				}
 				<div className={lookupFieldGroupClasses}>

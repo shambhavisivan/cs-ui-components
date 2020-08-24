@@ -30,6 +30,42 @@ class CSRadioPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'labelHidden',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSRadio
+									label="This is a label"
+									labelHidden
+								>
+									<CSRadioOption name="value" label="high" />
+									<CSRadioOption name="value" label="low" />
+								</ CSRadio>
+						}
+					]
+				},
+				{
+					propName: 'labelTitle',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSRadio
+									label="This is a label"
+									labelTitle
+								>
+									<CSRadioOption name="value" label="high" />
+									<CSRadioOption name="value" label="low" />
+								</ CSRadio>
+						}
+					]
+				},
+				{
 					propName: 'error',
 					variations: [
 						{
@@ -240,6 +276,22 @@ class CSRadioPreview extends React.Component {
 					propertyName: 'label',
 					description: 'Radio label to display',
 					options: []
+				},
+				{
+					propertyName: 'labelHidden',
+					description: 'Logic for visibility of the label',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
+					propertyName: 'labelTitle',
+					description: 'Logic for label title attribute',
+					options: [
+						'false',
+						'true'
+					]
 				},
 				{
 					propertyName: 'required',

@@ -91,6 +91,16 @@ class CSLabelPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'title',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSLabel label="Label" helpText="Help text example" title="Label"/>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -131,6 +141,10 @@ class CSLabelPreview extends React.Component {
 						'false',
 						'true'
 					]
+				},
+				{
+					propertyName: 'title',
+					description: 'Title value'
 				},
 				{
 					propertyName: 'tooltipPosition',

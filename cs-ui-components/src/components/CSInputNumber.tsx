@@ -16,6 +16,8 @@ export interface CSInputNumberProps {
 	hideSpinner?: boolean;
 	id?: string;
 	label: string;
+	labelHidden?: boolean;
+	labelTitle?: boolean;
 	max?: any;
 	maxLength?: number;
 	min?: any;
@@ -107,13 +109,14 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 		return (
 			<>
 				<div className={inputNumberWrapperClasses}>
-					{this.props.label &&
+					{(this.props.label && !this.props.labelHidden) &&
 						<CSLabel
 							for={this.props.id}
 							label={this.props.label}
 							helpText={this.props.helpText}
 							tooltipPosition={this.props.tooltipPosition}
 							required={this.props.required}
+							title={this.props.labelTitle ? this.props.label : null}
 						/>
 					}
 					<input className={inputNumberClasses}

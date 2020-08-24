@@ -16,6 +16,8 @@ export interface CSCustomSelectProps {
 	hidden?: boolean;
 	id?: string;
 	label: string;
+	labelHidden?: boolean;
+	labelTitle?: boolean;
 	optionsList?: Array<string>;
 	required?: boolean;
 	tooltipPosition?: CSTooltipPosition;
@@ -90,8 +92,15 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 
 		return (
 			<div className={customSelectWrapperClasses} ref={node => this.node = node}>
-				{this.props.label &&
-					<CSLabel for={this.props.id} label={this.props.label} helpText={this.props.helpText} tooltipPosition={this.props.tooltipPosition} required={this.props.required} />
+				{(this.props.label && !this.props.labelHidden) &&
+					<CSLabel
+						for={this.props.id}
+						label={this.props.label}
+						helpText={this.props.helpText}
+						tooltipPosition={this.props.tooltipPosition}
+						required={this.props.required}
+						title={this.props.labelTitle ? this.props.label : null}
+					/>
 				}
 				<form>
 					<div className={customSelectInputWrapperClasses} >

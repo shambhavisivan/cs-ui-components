@@ -14,7 +14,9 @@ export interface CSToggleProps {
 	helpText?: string;
 	id?: string;
 	label: string;
+	labelHidden?: boolean;
 	labelPosition?: CSToggleLabelPosition;
+	labelTitle?: boolean;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => any;
 	required?: boolean;
 	tooltipPosition?: CSTooltipPosition;
@@ -69,12 +71,14 @@ class CSToggle extends React.Component<CSToggleProps, CSToggleState> {
 		return (
 			<>
 				<div className={toggleElementWrapperClasses}>
-					{this.props.label &&
+					{(this.props.label && !this.props.labelHidden) &&
 						<CSLabel
 							label={this.props.label}
 							helpText={this.props.helpText}
 							tooltipPosition={this.props.tooltipPosition}
-							required={this.props.required}/>
+							required={this.props.required}
+							title={this.props.labelTitle ? this.props.label : null}
+						/>
 					}
 					<label className={toggleWrapperClasses}>
 						<input

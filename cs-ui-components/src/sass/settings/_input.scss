@@ -7,6 +7,7 @@
 	padding: 0 0.75rem;
 	transition: border 0.1s linear, background-color 0.1s linear;
 	width: 100%;
+	@include overflow-ellipsis;
 	@include sbg(--cs-input-bg);
 	@include css4 {
 		border: 1px solid cvar(--cs-input-br);

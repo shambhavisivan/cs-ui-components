@@ -13,6 +13,8 @@ export interface CSSliderProps {
 	helpText?: string;
 	id?: string;
 	label?: string;
+	labelHidden?: boolean;
+	labelTitle?: boolean;
 	max: string;
 	min: string;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -76,8 +78,15 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 
 		return (
 			<div className="cs-slider-wrapper">
-				{this.props.label &&
-					<CSLabel for={this.props.id} label={this.props.label} helpText={this.props.helpText} tooltipPosition={this.props.tooltipPosition} required={this.props.required} />
+				{(this.props.label && !this.props.labelHidden) &&
+					<CSLabel
+						for={this.props.id}
+						label={this.props.label}
+						helpText={this.props.helpText}
+						tooltipPosition={this.props.tooltipPosition}
+						required={this.props.required}
+						title={this.props.labelTitle ? this.props.label : null}
+					/>
 				}
 				<span className="cs-slide-range">{this.props.min}-{this.props.max}</span>
 				<div className={sliderGroupClasses}>

@@ -68,6 +68,30 @@ class CSInputTextPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'labelHidden',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSInputText label="Type here:" id="name" labelHidden/>
+						}
+					]
+				},
+				{
+					propName: 'labelTitle',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+							<CSInputText label="Type here:" id="name" labelTitle/>
+						}
+					]
+				},
+				{
 					propName: 'helpText',
 					variations: [
 						{
@@ -313,6 +337,22 @@ class CSInputTextPreview extends React.Component {
 				{
 					propertyName: 'label',
 					description: 'Input label text to display'
+				},
+				{
+					propertyName: 'labelHidden',
+					description: 'Logic for visibility of the label',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
+					propertyName: 'labelTitle',
+					description: 'Logic for label title attribute',
+					options: [
+						'false',
+						'true'
+					]
 				},
 				{
 					propertyName: 'maxLength',

@@ -66,6 +66,38 @@ class CSProgressBarPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'labelHidden',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSProgressBar
+									progress="50%"
+									label="Progress"
+									labelHidden
+								/>
+						}
+					]
+				},
+				{
+					propName: 'labelTitle',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSProgressBar
+									progress="50%"
+									label="Progress"
+									labelTitle
+								/>
+						}
+					]
+				},
+				{
 					propName: 'id',
 					customText: '',
 					variations: [
@@ -236,6 +268,22 @@ class CSProgressBarPreview extends React.Component {
 				{
 					propertyName: 'label',
 					description: 'Text content of label'
+				},
+				{
+					propertyName: 'labelHidden',
+					description: 'Logic for visibility of the label',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
+					propertyName: 'labelTitle',
+					description: 'Logic for label title attribute',
+					options: [
+						'false',
+						'true'
+					]
 				},
 				{
 					propertyName: 'progress',

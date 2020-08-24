@@ -9,6 +9,7 @@ export interface CSLabelProps {
 	id?: string;
 	label: string;
 	required?: boolean;
+	title?: string;
 	tooltipPosition?: CSTooltipPosition;
 }
 
@@ -32,7 +33,7 @@ class CSLabel extends React.Component<CSLabelProps> {
 				>
 					<span className={this.props.required ? 'cs-label-required-true' : 'cs-label-required-false'}
 						aria-hidden="true">*</span>
-					<span className="cs-label">
+					<span className="cs-label" title={this.props.title}>
 						{this.props.label}
 					</span>
 					<div className="cs-tooltip-group">

@@ -15,6 +15,8 @@ export interface CSInputTextProps {
 	hidden?: boolean;
 	id?: string;
 	label: string;
+	labelHidden?: boolean;
+	labelTitle?: boolean;
 	maxLength?: number;
 	name?: string;
 	onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
@@ -88,9 +90,15 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 		return (
 			<>
 				<div className={inputTextWrapperClasses}>
-					{this.props.label &&
-					<CSLabel for={this.props.id} label={this.props.label} helpText={this.props.helpText}
-						tooltipPosition={this.props.tooltipPosition} required={this.props.required}/>
+					{(this.props.label && !this.props.labelHidden) &&
+						<CSLabel
+							for={this.props.id}
+							label={this.props.label}
+							helpText={this.props.helpText}
+							tooltipPosition={this.props.tooltipPosition}
+							required={this.props.required}
+							title={this.props.labelTitle ? this.props.label : null}
+						/>
 					}
 					<input className={inputTextClasses}
 						id={this.props.id}

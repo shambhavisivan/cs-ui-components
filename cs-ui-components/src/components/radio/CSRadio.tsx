@@ -12,6 +12,8 @@ export interface CSRadioProps {
 	helpText?: string;
 	id?: string;
 	label: string;
+	labelHidden?: boolean;
+	labelTitle?: boolean;
 	required?: boolean;
 	tooltipPosition?: CSTooltipPosition;
 	variant?: CSRadioVariant;
@@ -40,9 +42,14 @@ class CSRadio extends React.Component<CSRadioProps> {
 
 		return (
 			<>
-				{this.props.label &&
-					<CSLabel label={this.props.label} helpText={this.props.helpText}
-					tooltipPosition={this.props.tooltipPosition} required={this.props.required}/>
+				{(this.props.label && !this.props.labelHidden) &&
+					<CSLabel
+						label={this.props.label}
+						helpText={this.props.helpText}
+						tooltipPosition={this.props.tooltipPosition}
+						required={this.props.required}
+						title={this.props.labelTitle ? this.props.label : null}
+					/>
 				}
 				<div className={radioWrapperClasses} id={this.props.id}>
 					{this.props.children}

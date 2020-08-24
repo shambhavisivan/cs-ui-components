@@ -223,6 +223,21 @@ class CSCheckboxPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'labelTitle',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSCheckbox
+									label="This is a label"
+									labelTitle
+								/>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -334,6 +349,14 @@ class CSCheckboxPreview extends React.Component {
 				{
 					propertyName: 'labelHidden',
 					description: 'Logic for visibility of the label',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
+					propertyName: 'labelTitle',
+					description: 'Logic for label title attribute',
 					options: [
 						'false',
 						'true'

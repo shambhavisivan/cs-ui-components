@@ -17,6 +17,7 @@ export interface CSSelectProps {
 	id?: string;
 	label: string;
 	labelHidden?: boolean;
+	labelTitle?: boolean;
 	name?: string;
 	onChange?: (value: any) => void;
 	required?: boolean;
@@ -93,7 +94,14 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 		return (
 			<div className={selectWrapperClasses}>
 				{(this.props.label && !this.props.labelHidden) &&
-					<CSLabel for={this.props.id} label={this.props.label} helpText={this.props.helpText} tooltipPosition={this.props.tooltipPosition} required={this.props.required} />
+					<CSLabel
+						for={this.props.id}
+						label={this.props.label}
+						helpText={this.props.helpText}
+						tooltipPosition={this.props.tooltipPosition}
+						required={this.props.required}
+						title={this.props.labelTitle ? this.props.label : null}
+					/>
 				}
 				<div className={selectGroupClasses}>
 					<select

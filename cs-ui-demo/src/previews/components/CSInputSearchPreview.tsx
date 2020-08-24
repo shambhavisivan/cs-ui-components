@@ -73,9 +73,23 @@ class CSInputSearchPreview extends React.Component {
 					propName: 'labelHidden',
 					variations: [
 						{
+							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
 								<CSInputSearch label="Type here:" labelHidden id="searchName" />
+						}
+					]
+				},
+				{
+					propName: 'labelTitle',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSInputSearch label="Type here:" labelTitle id="searchName" />
 						}
 					]
 				},
@@ -369,6 +383,14 @@ class CSInputSearchPreview extends React.Component {
 				{
 					propertyName: 'labelHidden',
 					description: 'Logic for visibility of the label',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
+					propertyName: 'labelTitle',
+					description: 'Logic for label title attribute',
 					options: [
 						'false',
 						'true'

@@ -71,6 +71,40 @@ class CSLookupFieldPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'labelHidden',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSLookupField
+									label="Account"
+									fetchLookupOptions={testArray}
+									fieldToBeDisplayed="Account"
+									labelHidden
+								/>
+						}
+					]
+				},
+				{
+					propName: 'labelTitle',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSLookupField
+									label="Account"
+									fetchLookupOptions={testArray}
+									fieldToBeDisplayed="Account"
+									labelTitle
+								/>
+						}
+					]
+				},
+				{
 					propName: 'helpText',
 					variations: [
 						{
@@ -374,6 +408,22 @@ class CSLookupFieldPreview extends React.Component {
 				{
 					propertyName: 'label',
 					description: 'Lookup field  text to display'
+				},
+				{
+					propertyName: 'labelHidden',
+					description: 'Logic for visibility of the label',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
+					propertyName: 'labelTitle',
+					description: 'Logic for label title attribute',
+					options: [
+						'false',
+						'true'
+					]
 				},
 				{
 					propertyName: 'placeholder',

@@ -46,6 +46,22 @@ class CSSelectPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'labelTitle',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+							<CSSelect label="Choose color" id="colour" labelTitle>
+								<option>Red</option>
+								<option>Blue</option>
+								<option>Green</option>
+							</CSSelect>
+						}
+					]
+				},
+				{
 					propName: 'labelHidden',
 					variations: [
 						{
@@ -335,6 +351,14 @@ class CSSelectPreview extends React.Component {
 				{
 					propertyName: 'labelHidden',
 					description: 'Logic for visibility of the label',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
+					propertyName: 'labelTitle',
+					description: 'Logic for label title attribute',
 					options: [
 						'false',
 						'true'

@@ -15,6 +15,8 @@ export interface CSTextareaProps {
 	hidden?: boolean;
 	id?: string;
 	label: string;
+	labelHidden?: boolean;
+	labelTitle?: boolean;
 	maxHeight?: string;
 	onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => any;
 	placeholder?: string;
@@ -76,13 +78,14 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 		return (
 			<>
 				<div className={textareaWrapperClasses}>
-					{this.props.label &&
+					{(this.props.label && !this.props.labelHidden) &&
 						<CSLabel
 							for={this.props.id}
 							label={this.props.label}
 							helpText={this.props.helpText}
 							tooltipPosition={this.props.tooltipPosition}
 							required={this.props.required}
+							title={this.props.labelTitle ? this.props.label : null}
 						/>
 					}
 					<textarea

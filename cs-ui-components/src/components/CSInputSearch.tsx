@@ -19,6 +19,7 @@ export interface CSInputSearchProps {
 	id?: string;
 	label: string;
 	labelHidden?: boolean;
+	labelTitle?: boolean;
 	onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	onClearSearch?: () => void;
@@ -159,7 +160,14 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 			<>
 				<div className={inputSearchWrapperClasses}>
 					{(this.props.label && !this.props.labelHidden) &&
-						<CSLabel for={this.props.id} label={this.props.label} helpText={this.props.helpText} tooltipPosition={this.props.tooltipPosition} required={this.props.required} />
+						<CSLabel
+							for={this.props.id}
+							label={this.props.label}
+							helpText={this.props.helpText}
+							tooltipPosition={this.props.tooltipPosition}
+							required={this.props.required}
+							title={this.props.labelTitle ? this.props.label : null}
+						/>
 					}
 					<div className={inputSearchGroupClasses} style={style}>
 						<CSIcon name="search" className="cs-input-search-icon" />
