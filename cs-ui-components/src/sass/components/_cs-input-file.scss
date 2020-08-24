@@ -15,6 +15,10 @@
 			height: var(--drop-area-height);
 			@include sbg(--cs-input-file-drop-area-bg);
 
+			&.cs-input-file-dragged-over {
+				@include sbg(--cs-input-file-dragged-over-bg);
+			}
+
 			.cs-tooltip-wrapper {
 				max-width: 100%;
 

@@ -21,14 +21,17 @@ export interface CSInputFileProps {
 
 export interface CSInputFileState {
 	label?: string;
+	isDraggedOver: boolean;
 }
 
 class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 	private fileInput: React.RefObject<HTMLInputElement>;
+	private dragEventCounter = 0;
 	constructor(props: any) {
 		super(props);
 		this.state = {
-			label: ''
+			label: '',
+			isDraggedOver: false
 		};
 
 		this.handleFileSubmit = this.handleFileSubmit.bind(this);
@@ -36,6 +39,8 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 		this.handleFileDrop = this.handleFileDrop.bind(this);
 		this.handleAcceptFiles = this.handleAcceptFiles.bind(this);
 		this.fileInput = React.createRef();
+		this.handleDragEnter = this.handleDragEnter.bind(this);
+		this.handleDragLeave = this.handleDragLeave.bind(this);
 	}
 	handleFileDragEvents(e: React.DragEvent<HTMLDivElement>) {
 		e.preventDefault();
@@ -55,14 +60,28 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 			this.props.onDrop(e.dataTransfer.files);
 		}
 		this.setState({
-			label: e.dataTransfer.files[0].name
+			label: e.dataTransfer.files[0].name,
+			isDraggedOver: false
 		});
+		this.dragEventCounter = 0;
 	}
 	handleAcceptFiles(acceptFiles: Array<string> | string) {
 		const newFiles = Array.isArray(acceptFiles) ? acceptFiles.join() : acceptFiles;
 		return newFiles;
 	}
+	handleDragEnter(e: React.DragEvent<HTMLDivElement>) {
+		this.handleFileDragEvents(e);
+		this.dragEventCounter++;
+		this.setState({isDraggedOver: true});
+	}
+	handleDragLeave(e: React.DragEvent<HTMLDivElement>) {
+		this.handleFileDragEvents(e);
+		this.dragEventCounter--;
 
+		if (this.dragEventCounter === 0) {
+			this.setState({isDraggedOver: false});
+		}
+	}
 	render() {
 		const wrapperClasses = classNames(
 			'cs-input-file-wrapper',
@@ -75,7 +94,8 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 			'cs-input-file',
 			{
 				[`${this.props.className}`]: this.props.className,
-				'cs-input-file-error': this.props.error
+				'cs-input-file-error': this.props.error,
+				'cs-input-file-dragged-over': this.props.dropAreaBackground && this.state.isDraggedOver
 			}
 		);
 
@@ -110,6 +130,8 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 				<div
 					className={fileClasses}
 					onDragOver={!this.props.disabled ? this.handleFileDragEvents : null}
+					onDragEnter={!this.props.disabled ? this.handleDragEnter : null}
+					onDragLeave={!this.props.disabled ? this.handleDragLeave : null}
 					onDrop={!this.props.disabled ? this.handleFileDrop : null}
 				>
 					{this.state.label ? (
