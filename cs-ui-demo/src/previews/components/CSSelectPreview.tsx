@@ -278,6 +278,20 @@ class CSSelectPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'title',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSSelect label="Choose amount" title="This is a title">
+									<option>10</option>
+									<option>20</option>
+									<option>30</option>
+								</CSSelect>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{

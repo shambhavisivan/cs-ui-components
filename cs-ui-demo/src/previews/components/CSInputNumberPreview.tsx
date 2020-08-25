@@ -326,6 +326,16 @@ class CSInputNumberPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'title',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSInputNumber label="Enter value:" title="This is a title"/>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -462,6 +472,10 @@ class CSInputNumberPreview extends React.Component {
 						'false',
 						'true'
 					]
+				},
+				{
+					propertyName: 'title',
+					description: 'Title to display'
 				},
 				{
 					propertyName: 'tooltipPosition',

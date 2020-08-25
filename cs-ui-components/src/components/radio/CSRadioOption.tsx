@@ -7,6 +7,7 @@ export interface CSRadioOptionProps {
 	id?: string;
 	label?: string;
 	name?: string;
+	title?: string;
 	onChange?(): any;
 }
 
@@ -39,7 +40,7 @@ class CSRadioOption extends React.Component<CSRadioOptionProps> {
 		return (
 			<>
 				<div>
-					<label className={radioOptionWrapperClasses}>
+					<label className={radioOptionWrapperClasses} title={this.props.title}>
 						<input
 							onChange={this.toggleRadio}
 							className={radioOptionClasses}

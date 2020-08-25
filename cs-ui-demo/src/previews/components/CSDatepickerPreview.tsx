@@ -283,6 +283,17 @@ class CSDatepickerPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'title',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSDatepicker label="Enter date:" title="This is a title"/>
+
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -413,6 +424,10 @@ class CSDatepickerPreview extends React.Component {
 						'false',
 						'true'
 					]
+				},
+				{
+					propertyName: 'title',
+					description: 'Title to display'
 				},
 				{
 					propertyName: 'todayButton',

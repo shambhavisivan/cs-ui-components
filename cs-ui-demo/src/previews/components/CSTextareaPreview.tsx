@@ -253,6 +253,16 @@ class CSTextareaPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'title',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSTextarea label="Enter message:" title="This is a title"/>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -370,6 +380,10 @@ class CSTextareaPreview extends React.Component {
 				{
 					propertyName: 'rows',
 					description: 'Textarea rows value'
+				},
+				{
+					propertyName: 'title',
+					description: 'Title to display'
 				},
 				{
 					propertyName: 'tooltipPosition',

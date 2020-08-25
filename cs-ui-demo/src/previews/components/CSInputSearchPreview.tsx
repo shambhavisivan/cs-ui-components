@@ -299,6 +299,16 @@ class CSInputSearchPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'title',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSInputSearch label="Type here:" title="This is a title" />
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -427,6 +437,10 @@ class CSInputSearchPreview extends React.Component {
 						'false',
 						'true'
 					]
+				},
+				{
+					propertyName: 'title',
+					description: 'Title to display'
 				},
 				{
 					propertyName: 'tooltipPosition',

@@ -339,6 +339,21 @@ class CSSliderPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'title',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSSlider
+									label="Select value"
+									min="0"
+									max="100"
+									title="This is a title"
+								/>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -444,6 +459,10 @@ class CSSliderPreview extends React.Component {
 				{
 					propertyName: 'step',
 					description: 'Slader range granularity'
+				},
+				{
+					propertyName: 'title',
+					description: 'Title to display'
 				},
 				{
 					propertyName: 'tooltipPosition',

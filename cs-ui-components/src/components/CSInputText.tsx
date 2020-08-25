@@ -25,6 +25,7 @@ export interface CSInputTextProps {
 	placeholder?: string;
 	readOnly?: boolean;
 	required?: boolean;
+	title?: string;
 	tooltipPosition?: CSTooltipPosition;
 	value?: string;
 }
@@ -115,6 +116,7 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 						name={this.props.name}
 						onBlur={this.onBlur}
 						onFocus={this.onFocus}
+						title={this.props.title}
 					/>
 					{(this.props.error && this.props.errorMessage) &&
 						<span className="cs-input-error-msg">{this.props.errorMessage}</span>

@@ -28,6 +28,7 @@ export interface CSDatepickerProps {
 	placeholder?: string;
 	readOnly?: boolean;
 	required?: boolean;
+	title?: string;
 	todayButton?: string;
 	tooltipPosition?: CSTooltipPosition;
 	width?: string;
@@ -89,18 +90,20 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 							title={this.props.labelTitle ? this.props.label : null}
 						/>
 					}
-					<DatePicker
-						dateFormat={this.props.dateFormat}
-						selected={startDate}
-						onChange={this.handleChange}
-						placeholderText={this.props.placeholder}
-						todayButton={this.props.todayButton}
-						disabled={this.props.disabled}
-						maxDate={this.props.maxDateYear ? addYears(new Date(), maxDateValue) : addDays(new Date(), maxDateValue)}
-						minDate={this.props.minDateYear ? subYears(new Date(), minDateValue) : subDays(new Date(), minDateValue)}
-						name={this.props.name}
-						locale={this.props.locale}
-					/>
+					<div className="cs-datepicker-wrapper" title={this.props.title}>
+						<DatePicker
+							dateFormat={this.props.dateFormat}
+							selected={startDate}
+							onChange={this.handleChange}
+							placeholderText={this.props.placeholder}
+							todayButton={this.props.todayButton}
+							disabled={this.props.disabled}
+							maxDate={this.props.maxDateYear ? addYears(new Date(), maxDateValue) : addDays(new Date(), maxDateValue)}
+							minDate={this.props.minDateYear ? subYears(new Date(), minDateValue) : subDays(new Date(), minDateValue)}
+							name={this.props.name}
+							locale={this.props.locale}
+						/>
+					</div>
 					<CSIcon name="event" className="cs-datepicker-icon" />
 					{(this.props.error && this.props.errorMessage) &&
 						<span className="cs-datepicker-error-msg">{this.props.errorMessage}</span>

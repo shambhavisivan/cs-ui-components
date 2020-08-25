@@ -21,6 +21,7 @@ export interface CSSelectProps {
 	name?: string;
 	onChange?: (value: any) => void;
 	required?: boolean;
+	title?: string;
 	tooltipPosition?: CSTooltipPosition;
 	value?: any;
 }
@@ -113,6 +114,7 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 						onChange={this.handleOnChange}
 						name={this.props.name}
 						value={fixControlledValue(this.state.value)}
+						title={this.props.title}
 					>
 						{this.props.children}
 					</select>

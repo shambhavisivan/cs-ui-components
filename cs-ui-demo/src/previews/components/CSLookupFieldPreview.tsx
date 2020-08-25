@@ -331,6 +331,22 @@ class CSLookupFieldPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'title',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSLookupField
+									label="Account"
+									className="custom-class"
+									fetchLookupOptions={testArray}
+									fieldToBeDisplayed="Account"
+									title="This is a title"
+								/>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -436,6 +452,10 @@ class CSLookupFieldPreview extends React.Component {
 						'false',
 						'true'
 					]
+				},
+				{
+					propertyName: 'title',
+					description: 'Title to display'
 				},
 				{
 					propertyName: 'tooltipPosition',

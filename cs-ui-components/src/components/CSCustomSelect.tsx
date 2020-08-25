@@ -20,6 +20,7 @@ export interface CSCustomSelectProps {
 	labelTitle?: boolean;
 	optionsList?: Array<string>;
 	required?: boolean;
+	title?: string;
 	tooltipPosition?: CSTooltipPosition;
 }
 
@@ -117,6 +118,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 								aria-invalid={this.props.error}
 								aria-expanded={this.state.toggle}
 								onMouseDown={this.toggle}
+								title={this.props.title}
 							/>
 						</div>
 					</div>

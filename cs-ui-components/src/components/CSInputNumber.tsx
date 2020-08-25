@@ -28,6 +28,7 @@ export interface CSInputNumberProps {
 	placeholder?: string;
 	readOnly?: boolean;
 	required?: boolean;
+	title?: string;
 	tooltipPosition?: CSTooltipPosition;
 	type: string;
 	value?: any;
@@ -120,7 +121,6 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 						/>
 					}
 					<input className={inputNumberClasses}
-
 						id={this.props.id}
 						placeholder={this.props.placeholder}
 						min={this.props.min}
@@ -140,6 +140,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 						onBlur={this.onBlur}
 						onFocus={this.onFocus}
 						onChange={this.handleOnChange}
+						title={this.props.title}
 					/>
 					{(this.props.error && this.props.errorMessage) &&
 						<span className="cs-input-error-msg">{this.props.errorMessage}</span>

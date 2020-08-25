@@ -19,6 +19,7 @@ export interface CSToggleProps {
 	labelTitle?: boolean;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => any;
 	required?: boolean;
+	title?: string;
 	tooltipPosition?: CSTooltipPosition;
 }
 
@@ -90,7 +91,7 @@ class CSToggle extends React.Component<CSToggleProps, CSToggleState> {
 							required={this.props.required}
 							id={this.props.id}
 						/>
-						<span className="cs-toggle-faux"/>
+						<span className="cs-toggle-faux" title={this.props.title}/>
 					</label>
 					{(this.props.error && this.props.errorMessage) &&
 						<span className="cs-toggle-error-msg">{this.props.errorMessage}</span>

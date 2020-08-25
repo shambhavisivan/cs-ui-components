@@ -14,6 +14,7 @@ export interface CSProgressBarProps {
 	progress: string;
 	progressIndicator?: boolean;
 	thickness?: CSProgressBarThickness;
+	title?: string;
 }
 
 class CSProgressBar extends React.Component<CSProgressBarProps> {
@@ -50,7 +51,7 @@ class CSProgressBar extends React.Component<CSProgressBarProps> {
 						</div>
 					) : ('')}
 				</div>
-				<div className={`cs-progress-bar cs-progress-bar-${this.props.thickness}`}>
+				<div className={`cs-progress-bar cs-progress-bar-${this.props.thickness}`} title={this.props.title}>
 					<div className="cs-progress-bar-value" style={style}/>
 				</div>
 			</div>

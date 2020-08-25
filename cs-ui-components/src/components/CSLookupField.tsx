@@ -27,6 +27,7 @@ export interface CSLookupFieldProps {
 	labelTitle?: boolean;
 	placeholder?: string;
 	required?: boolean;
+	title?: string;
 	tooltipPosition?: CSTooltipPosition;
 	value?: object | null;
 }
@@ -155,6 +156,7 @@ class CSLookupField extends React.Component<CSLookupFieldProps, CSLookupFieldSta
 						required={this.props.required}
 						value={this.state.searchTerm}
 						onChange={e => this.handleSearch(e)}
+						title={this.props.title}
 					/>
 					{this.state.searchTerm &&
 						<button

@@ -21,6 +21,7 @@ export interface CSSliderProps {
 	required?: boolean;
 	size?: CSSliderSize;
 	step?: string;
+	title?: string;
 	tooltipPosition?: CSTooltipPosition;
 	value?: string;
 }
@@ -101,6 +102,7 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 						value={fixControlledValue(this.state.value)}
 						type="range"
 						onChange={this.handleOnChange}
+						title={this.props.title}
 					/>
 					<span className="cs-slider-max-value">{this.state.value}</span>
 				</div>

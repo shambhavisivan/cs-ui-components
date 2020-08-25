@@ -4,7 +4,12 @@
 	position: relative;
 	width: var(--datepicker-width, 242px);
 
+	.cs-datepicker-wrapper {
+		width: 100%;
+	}
+
 	.react-datepicker-wrapper {
+		width: 100%;
 
 		input {
 			border-radius: 0.25rem;

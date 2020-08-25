@@ -22,6 +22,7 @@ export interface CSCheckboxProps {
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => any;
 	onClick?: (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
 	required?: boolean;
+	title?: string;
 	tooltipPosition?: CSTooltipPosition;
 	variant?: CSCheckboxVariant;
 }
@@ -107,7 +108,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 								onClick={this.handleOnClick}
 								name={this.props.name}
 							/>
-						<span className={checkboxFauxClasses}/>
+						<span className={checkboxFauxClasses} title={this.props.title} />
 					</label>
 					{(this.props.error && this.props.errorMessage) &&
 						<span className="cs-checkbox-error-msg">{this.props.errorMessage}</span>

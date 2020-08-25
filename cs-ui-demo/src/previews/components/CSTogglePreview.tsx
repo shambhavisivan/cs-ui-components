@@ -222,6 +222,19 @@ class CSTogglePreview extends React.Component {
 					]
 				},
 				{
+					propName: 'title',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSToggle
+									label="This is a label"
+									title="This is a title"
+								/>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -319,6 +332,10 @@ class CSTogglePreview extends React.Component {
 						'false',
 						'true'
 					]
+				},
+				{
+					propertyName: 'title',
+					description: 'Title to display'
 				},
 				{
 					propertyName: 'tooltipPosition',

@@ -227,6 +227,20 @@ class CSProgressBarPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'title',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSProgressBar
+									progress="50%"
+									label="Progress"
+									title="This is a title"
+								/>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					customText: '',
 					variations: [
@@ -312,6 +326,10 @@ class CSProgressBarPreview extends React.Component {
 						'medium',
 						'large'
 					]
+				},
+				{
+					propertyName: 'title',
+					description: 'Title to display'
 				}
 			]
 		};

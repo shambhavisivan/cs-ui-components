@@ -23,6 +23,7 @@ export interface CSTextareaProps {
 	readOnly?: boolean;
 	required?: boolean;
 	rows?: number;
+	title?: string;
 	tooltipPosition?: CSTooltipPosition;
 	value?: string;
 }
@@ -100,6 +101,7 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 						value={fixControlledValue(this.state.value)}
 						style={style}
 						onChange={this.handleOnChange}
+						title={this.props.title}
 					/>
 					{(this.props.error && this.props.errorMessage) &&
 						<span className="cs-input-error-msg">{this.props.errorMessage}</span>

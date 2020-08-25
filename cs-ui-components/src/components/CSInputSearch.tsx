@@ -27,6 +27,7 @@ export interface CSInputSearchProps {
 	onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 	placeholder?: string;
 	required?: boolean;
+	title?: string;
 	tooltipPosition?: CSTooltipPosition;
 	value?: string;
 	width?: string;
@@ -185,6 +186,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 							onKeyDown={this.handleOnKeyDown}
 							onBlur={this.onBlur}
 							onFocus={this.onFocus}
+							title={this.props.title}
 						/>
 						{this.state.value &&
 							<button

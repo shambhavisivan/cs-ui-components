@@ -290,6 +290,19 @@ class CSCheckboxPreview extends React.Component {
 								/>
 						}
 					]
+				},
+				{
+					propName: 'title',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSCheckbox
+									label="This is a label"
+									title="This is a title"
+								/>
+						}
+					]
 				}
 			],
 
@@ -381,6 +394,10 @@ class CSCheckboxPreview extends React.Component {
 						'false',
 						'true'
 					]
+				},
+				{
+					propertyName: 'title',
+					description: 'Title to display'
 				},
 				{
 					propertyName: 'tooltipPosition',

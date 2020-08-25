@@ -175,6 +175,16 @@ class CSCustomSelectPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'title',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSCustomSelect label="Choose letter" optionsList={['A', 'B', 'C']} title="This is a title"/>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -264,6 +274,10 @@ class CSCustomSelectPreview extends React.Component {
 						'false',
 						'true'
 					]
+				},
+				{
+					propertyName: 'title',
+					description: 'Title to display'
 				},
 				{
 					propertyName: 'tooltipPosition',

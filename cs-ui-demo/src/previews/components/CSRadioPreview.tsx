@@ -225,6 +225,19 @@ class CSRadioPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'title',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSRadio label="This is a label">
+									<CSRadioOption name="year" label="2020" title="This is a title"/>
+									<CSRadioOption name="year" label="2021" title="This is a different title"/>
+								</CSRadio>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -363,6 +376,10 @@ class CSRadioPreview extends React.Component {
 				{
 					propertyName: 'onChange',
 					description: 'Logic for onChange event'
+				},
+				{
+					propertyName: 'title',
+					description: 'Title to display'
 				}
 			]
 		};
