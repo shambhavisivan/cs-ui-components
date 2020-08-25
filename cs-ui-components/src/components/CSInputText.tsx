@@ -72,6 +72,12 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 		}
 	}
 
+	componentDidUpdate(prevProps: CSInputTextProps) {
+		if (prevProps.value !== this.props.value) {
+		this.setState({value: this.props.value});
+		}
+   }
+
 	render() {
 
 		const inputTextWrapperClasses = classNames(

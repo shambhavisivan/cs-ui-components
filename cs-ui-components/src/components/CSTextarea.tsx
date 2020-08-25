@@ -56,6 +56,12 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 		}
 	}
 
+	componentDidUpdate(prevProps: CSTextareaProps) {
+		if (prevProps.value !== this.props.value) {
+		this.setState({value: this.props.value});
+		}
+   }
+
 	render() {
 
 		const textareaClasses = classNames(
