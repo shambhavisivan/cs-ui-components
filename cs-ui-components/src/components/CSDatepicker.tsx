@@ -45,7 +45,6 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 	public static defaultProps = {
 		dateFormat: 'dd-MM-yyyy'
 	};
-
 	constructor(props: CSDatepickerProps) {
 		super(props);
 		this.state = {
@@ -102,6 +101,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 							minDate={this.props.minDateYear ? subYears(new Date(), minDateValue) : subDays(new Date(), minDateValue)}
 							name={this.props.name}
 							locale={this.props.locale}
+							autoComplete="off"
 						/>
 					</div>
 					<CSIcon name="event" className="cs-datepicker-icon" />

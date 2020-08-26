@@ -201,6 +201,17 @@
 					}
 				}
 
+				.react-datepicker__today-button {
+					border-bottom-left-radius: 0.3rem;
+					border-bottom-right-radius: 0.3rem;
+					&:hover {
+						@include sbg(--cs-datepicker-today-hover);
+					}
+					&:active {
+						@include sbg(--cs-datepicker-today-active);
+					}
+				}
+
 				&:disabled {
 					cursor: default;
 					user-select: none;
