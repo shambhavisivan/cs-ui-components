@@ -4,20 +4,28 @@ import 'moment/min/locales';
 import React from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { CSGridCellEditorProps } from '../interfaces/cs-grid-cell-props';
+import { CSGridCellEditorProps, DateTimeProps } from '../interfaces/cs-grid-cell-props';
 
 import {
 	CellData,
 	CSGridCellEditor,
 	CSGridCellEditorState
 } from '../interfaces/cs-grid-base-interfaces';
-import { createLocale, dateFormat, formatLocale } from '../utils/cs-grid-date-helper';
+import {
+	createLocale,
+	dateTimeFormat,
+	formatLocale,
+	timeFormat
+} from '../utils/cs-grid-date-helper';
 
 /**
- * A cell editor that displays a date picker.
+ * A cell editor that displays a date time picker.
  */
-export class CSGridDateEditor
-	extends React.Component<CSGridCellEditorProps<string>, CSGridCellEditorState<string>>
+export class CSGridDateTimeEditor
+	extends React.Component<
+		CSGridCellEditorProps<string> & DateTimeProps,
+		CSGridCellEditorState<string>
+	>
 	implements CSGridCellEditor {
 	constructor(props: CSGridCellEditorProps<string>) {
 		super(props);
@@ -37,11 +45,11 @@ export class CSGridDateEditor
 		return true;
 	};
 
-	onChange = async (date: Date): Promise<void> => {
-		const formattedDate = date ? moment(date).format(dateFormat) : '';
+	onChange = async (date: Date, event: React.SyntheticEvent<any, Event>): Promise<void> => {
+		const formattedDateTime = date ? moment(date).format(dateTimeFormat) : '';
 
 		let value: CellData<string> = {
-			cellValue: formattedDate,
+			cellValue: formattedDateTime,
 			errorMessage: this.state.value.errorMessage
 		};
 
@@ -50,21 +58,24 @@ export class CSGridDateEditor
 			value = await this.props.onChange(
 				this.props.node.id,
 				this.getValue().cellValue,
-				formattedDate
+				formattedDateTime
 			);
 		}
 
 		this.setState({ value }, () => {
-			this.props.stopEditing();
+			// The event is only present for date selection, not for time selection.
+			if (!event) {
+				this.props.stopEditing();
+			}
 		});
 	};
 
 	render() {
 		let date: Date = null;
 		if (this.state.value.cellValue) {
-			date = moment(this.state.value.cellValue, dateFormat).toDate();
+			date = moment(this.state.value.cellValue, dateTimeFormat).toDate();
 		}
-		const formattedDate = formatLocale(date, 'Date');
+		const formattedDate = formatLocale(date, 'DateTime');
 		const placeholderText = 'Click to select a date';
 
 		return (
@@ -80,6 +91,11 @@ export class CSGridDateEditor
 					inline={true}
 					value={formattedDate}
 					locale={createLocale(this.props.userInfo.dateLocale)}
+					showTimeSelect={true}
+					timeFormat={timeFormat}
+					timeIntervals={this.props.timeInterval || 5}
+					timeCaption={this.props.userInfo.dateLocale?.timeCaption ?? 'Time'}
+					dateFormat={dateTimeFormat}
 				/>
 			</div>
 		);

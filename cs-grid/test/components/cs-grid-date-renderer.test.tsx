@@ -6,7 +6,7 @@ import { CSGridDateRenderer } from '../../src/components/cs-grid-date-renderer';
 import { CellData } from '../../src/interfaces/cs-grid-base-interfaces';
 import { CSGridCellRendererProps } from '../../src/interfaces/cs-grid-cell-props';
 import { UserInfo } from '../../src/interfaces/user-info';
-import { formatDate } from '../../src/utils/cs-grid-date-formatting-helper';
+import { formatDate } from '../../src/utils/cs-grid-date-helper';
 
 describe('CS Grid Date Renderer', () => {
 	let exampleDate: CellData<string>;
@@ -68,7 +68,8 @@ describe('CS Grid Date Renderer', () => {
 		const instance = cellRenderer.instance() as CSGridDateRenderer;
 		const value = formatDate(
 			instance.state.value.cellValue,
-			instance.props.userInfo.userLocale
+			instance.props.userInfo.userLocale,
+			'Date'
 		);
 
 		expect(
@@ -92,7 +93,8 @@ describe('CS Grid Date Renderer', () => {
 		const instance = cellRenderer.instance() as CSGridDateRenderer;
 		const value = formatDate(
 			instance.state.value.cellValue,
-			instance.props.userInfo.userLocale
+			instance.props.userInfo.userLocale,
+			'Date'
 		);
 
 		expect(
@@ -121,7 +123,8 @@ describe('CS Grid Date Renderer', () => {
 		const instance = cellRenderer.instance() as CSGridDateRenderer;
 		const value = formatDate(
 			instance.state.value.cellValue,
-			instance.props.userInfo.userLocale
+			instance.props.userInfo.userLocale,
+			'Date'
 		);
 
 		expect(

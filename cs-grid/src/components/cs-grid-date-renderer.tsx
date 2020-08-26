@@ -4,7 +4,7 @@ import React from 'react';
 import { CSTooltip } from '@cloudsense/cs-ui-components';
 import { CellData } from '../interfaces/cs-grid-base-interfaces';
 import { CSGridCellRendererProps } from '../interfaces/cs-grid-cell-props';
-import { formatDate } from '../utils/cs-grid-date-formatting-helper';
+import { formatDate } from '../utils/cs-grid-date-helper';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
 import { CSGridCellError } from './cs-grid-cell-error';
 
@@ -25,7 +25,11 @@ export class CSGridDateRenderer extends CSGridBaseRenderer<string> {
 		}
 
 		const readOnly = this.isReadOnly();
-		const value = formatDate(this.state.value.cellValue, this.props.userInfo.userLocale);
+		const value = formatDate(
+			this.state.value.cellValue,
+			this.props.userInfo.userLocale,
+			this.props.cellType as 'Date' | 'DateTime'
+		);
 
 		const contents = (
 			<span

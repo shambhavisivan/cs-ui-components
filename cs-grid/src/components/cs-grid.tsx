@@ -36,7 +36,7 @@ import {
 	OrderBy
 } from '../interfaces/cs-grid-data-source-api';
 import { UserInfo } from '../interfaces/user-info';
-import { formatDate } from '../utils/cs-grid-date-formatting-helper';
+import { formatDate } from '../utils/cs-grid-date-helper';
 import { CSGridDefaultComparator } from '../utils/cs-grid-default-comparator';
 import { CSGridNumberComparator } from '../utils/cs-grid-number-comparator';
 import { SearchUtils } from '../utils/search-utils';
@@ -47,6 +47,7 @@ import { CSGridCurrencyRenderer } from './cs-grid-currency-renderer';
 import { CSGridDataSourcePagination } from './cs-grid-data-source-pagination';
 import { CSGridDateEditor } from './cs-grid-date-editor';
 import { CSGridDateRenderer } from './cs-grid-date-renderer';
+import { CSGridDateTimeEditor } from './cs-grid-date-time-editor';
 import { CSGridDecimalEditor } from './cs-grid-decimal-editor';
 import { CSGridDecimalRenderer } from './cs-grid-decimal-renderer';
 import { CSGridHeader } from './cs-grid-header';
@@ -112,6 +113,8 @@ class CSGridState {
 		currencyRenderer: CSGridCurrencyRenderer,
 		dateEditor: CSGridDateEditor,
 		dateRenderer: CSGridDateRenderer,
+		dateTimeEditor: CSGridDateTimeEditor,
+		dateTimeRenderer: CSGridDateRenderer,
 		decimalEditor: CSGridDecimalEditor,
 		decimalRenderer: CSGridDecimalRenderer,
 		iconRenderer: CSGridIconRenderer,
@@ -152,6 +155,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 	private defaultPageSizes: Array<number> = [10, 20, 50, 100];
 	private rowSelectionColumns: Array<string> = [];
 	private dateColumns: Map<string, UserInfo> = new Map();
+	private dateTimeColumns: Map<string, UserInfo> = new Map();
 
 	constructor(props: CSGridProps) {
 		super(props);
@@ -251,7 +255,18 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 									if (this.dateColumns.has(columnId)) {
 										const value = formatDate(
 											cellValue,
-											this.dateColumns.get(columnId).userLocale
+											this.dateColumns.get(columnId).userLocale,
+											'Date'
+										);
+
+										result += ' ' + value;
+									}
+
+									if (this.dateTimeColumns.has(columnId)) {
+										const value = formatDate(
+											cellValue,
+											this.dateTimeColumns.get(columnId).userLocale,
+											'DateTime'
 										);
 
 										result += ' ' + value;
@@ -706,8 +721,13 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 	 * Returns localised dates as strings for column filtering.
 	 * @param value - either the search term as a string or a cell's data.
 	 * @param userInfo - the user info for localisation.
+	 * @param type - Date or DateTime.
 	 */
-	private formatDateForFiltering = (value: string | CellData<string>, userInfo: UserInfo) => {
+	private formatDateForFiltering = (
+		value: string | CellData<string>,
+		userInfo: UserInfo,
+		type: 'Date' | 'DateTime'
+	) => {
 		if (typeof value === 'string' || value instanceof String) {
 			return value;
 		}
@@ -718,7 +738,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			return '';
 		}
 
-		return formatDate(result, userInfo.userLocale);
+		return formatDate(result, userInfo.userLocale, type);
 	};
 
 	private onColumnStateChange = (event: AgGridEvent): void => {
@@ -739,6 +759,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 
 		const rowSelectionColumns: Array<string> = [];
 		const dateColumns: Map<string, UserInfo> = new Map();
+		const dateTimeColumns: Map<string, UserInfo> = new Map();
 
 		for (const columnDef of columnDefs) {
 			let agGridColDef: AgGridColDef = {};
@@ -814,6 +835,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			this.addIfDefined(cellParams, 'readonly', columnDef.readonly);
 			this.addIfDefined(cellParams, 'userInfo', columnDef.userInfo);
 			this.addIfDefined(cellParams, 'getTooltip', columnDef.getTooltip);
+			this.addIfDefined(cellParams, 'cellType', columnDef.cellType);
 
 			if (columnDef.cellType === 'Picklist' || columnDef.cellType === 'MultiSelectPicklist') {
 				agGridColDef.cellEditor = 'picklistEditor';
@@ -884,7 +906,24 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				const defaultSettings = {
 					filterParams: {
 						textFormatter: (value: string | CellData<string>) =>
-							this.formatDateForFiltering(value, cellParams.userInfo)
+							this.formatDateForFiltering(value, cellParams.userInfo, 'Date')
+					}
+				};
+
+				agGridColDef = { ...defaultSettings, ...agGridColDef };
+			}
+
+			if (columnDef.cellType === 'DateTime') {
+				agGridColDef.cellEditor = 'dateTimeEditor';
+				agGridColDef.cellRenderer = 'dateTimeRenderer';
+
+				dateTimeColumns.set(columnDef.name, columnDef.userInfo);
+				this.addIfDefined(cellParams, 'timeInterval', columnDef.timeInterval);
+
+				const defaultSettings = {
+					filterParams: {
+						textFormatter: (value: string | CellData<string>) =>
+							this.formatDateForFiltering(value, cellParams.userInfo, 'DateTime')
 					}
 				};
 
@@ -1003,6 +1042,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 
 		this.rowSelectionColumns = rowSelectionColumns;
 		this.dateColumns = dateColumns;
+		this.dateTimeColumns = dateTimeColumns;
 
 		return agGridColDefs;
 	};

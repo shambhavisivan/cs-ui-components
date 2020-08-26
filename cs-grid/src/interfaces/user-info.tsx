@@ -9,4 +9,5 @@ export interface DateLocale {
 	monthsOfYear: Array<string>;
 	firstDayOfWeek: number;
 	daysInFirstWeek: number;
+	timeCaption?: string;
 }

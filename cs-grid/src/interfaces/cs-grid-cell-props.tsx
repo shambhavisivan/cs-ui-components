@@ -24,6 +24,7 @@ export interface CSGridCellProps<T> extends BaseProps<T> {
 	colDef: ColDef;
 	data: any;
 	context: any;
+	cellType?: string;
 }
 
 /**
@@ -94,6 +95,13 @@ export interface StandardIcon {
 
 export function isStandardIcon(object: any): object is StandardIcon {
 	return 'iconName' in object && 'color' in object;
+}
+
+/**
+ * timeInterval - The time interval used when selecting the time.
+ */
+export interface DateTimeProps {
+	timeInterval?: number;
 }
 
 export interface BaseProps<T> {

@@ -38,6 +38,10 @@
 
 		.react-datepicker__navigation--next {
 			right: 0.25rem;
+
+			&.react-datepicker__navigation--next--with-time {
+				right: calc(0.25rem + 80px);
+			}
 		}
 
 		.react-datepicker__month-container {
@@ -112,6 +116,21 @@
 						@include sc(--csgrid-datepicker-selected-c);
 					}
 				}
+			}
+		}
+
+		.react-datepicker__time-container {
+			border-left: none;
+
+			.react-datepicker__header {
+				border-bottom: none;
+				border-radius: 0.25rem;
+				padding-top: 1rem;
+				@include sbg(--csgrid-datepicker-bg);
+			}
+
+			.react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
+				height: calc(195px + (2.1rem));
 			}
 		}
 	}

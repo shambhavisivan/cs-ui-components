@@ -61,7 +61,8 @@ export class App extends React.Component<object, AppState> {
 					'Oktober',
 					'November',
 					'Dezember'
-				]
+				],
+				timeCaption: 'Zeit'
 			},
 			userLocale: 'fr-FR'
 		};
@@ -208,6 +209,15 @@ export class App extends React.Component<object, AppState> {
 					label: 'Date Column'
 				},
 				name: 'exampleDate',
+				userInfo
+			},
+			{
+				cellType: 'DateTime',
+				header: {
+					label: 'Date Time Column'
+				},
+				name: 'exampleDateTime',
+				timeInterval: 10,
 				userInfo
 			},
 			{
@@ -507,6 +517,9 @@ export class App extends React.Component<object, AppState> {
 				exampleDate: {
 					cellValue: '1992-01-27'
 				},
+				exampleDateTime: {
+					cellValue: '1992-01-27 11:22'
+				},
 				exampleDecimal: {
 					cellValue: 35000.567567
 				},
@@ -578,6 +591,10 @@ export class App extends React.Component<object, AppState> {
 				},
 				exampleDate: {
 					cellValue: '1992-01-28',
+					errorMessage: 'An error message'
+				},
+				exampleDateTime: {
+					cellValue: '1992-01-28 14:45',
 					errorMessage: 'An error message'
 				},
 				exampleDecimal: {
@@ -657,6 +674,9 @@ export class App extends React.Component<object, AppState> {
 				exampleDate: {
 					cellValue: '1992-01-29'
 				},
+				exampleDateTime: {
+					cellValue: '1992-01-29 15:25'
+				},
 				exampleDecimal: {
 					cellValue: 72000.67878
 				},
@@ -726,6 +746,10 @@ export class App extends React.Component<object, AppState> {
 				},
 				exampleDate: {
 					cellValue: '1986-11-15',
+					errorMessage: ''
+				},
+				exampleDateTime: {
+					cellValue: '1986-11-15 05:55',
 					errorMessage: ''
 				},
 				exampleDecimal: {
