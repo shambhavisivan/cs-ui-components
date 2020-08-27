@@ -5,6 +5,10 @@
 .cs-input-search {
 	@include input;
 }
+.cs-input-search-wrapper {
+	display: flex;
+	flex-direction: column;
+}
 
 // Group
 .cs-input-search-group {
