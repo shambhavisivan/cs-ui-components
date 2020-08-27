@@ -10,6 +10,7 @@ import { SelectFieldContainer } from './SelectFieldContainer';
 import { NumberField } from './NumberField';
 import { ReferenceField } from './ReferenceField';
 import { SelectOption } from '../types/SelectOption';
+import { DateTimeField } from './DateTimeField';
 
 export interface FormFieldProps {
 	value: any;
@@ -33,6 +34,7 @@ export class FormField extends React.Component<FormFieldProps, {}> {
 			case 'REFERENCE': return <ReferenceField {...this.props} />;
 			case 'PICKLIST': return <SelectFieldContainer {...this.props} />;
 			case 'DATE': return <DateField {...this.props} />;
+			case 'DATETIME': return <DateTimeField {...this.props} />;
 			case 'BOOLEAN': return <BooleanField {...this.props} />;
 			case 'NUMBER': return <NumberField {...this.props} />;
 			default: return <SimpleField {...this.props} />;

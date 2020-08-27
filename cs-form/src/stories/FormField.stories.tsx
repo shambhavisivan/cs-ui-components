@@ -36,7 +36,10 @@ const locale: LocaleSettings = {
 			'Oct',
 			'Nov',
 			'Dec'
-		]
+		],
+		timeCaption: 'time',
+		timeFormat: 'HH:mm',
+		timeInterval: 15
 	},
 	number: {
 		decimalSeparator: '.',
@@ -175,6 +178,31 @@ formFieldStories.add(
 			name: 'dateField',
 			label: 'date field'
 		};
+		return (
+			<FormField
+				value={store.state.value}
+				descriptor={descriptor}
+				status={options(statusLabel, statusValuesObj, 'mandatory', optionsObj)}
+				locale={locale}
+				wrapper={wrapper}
+				handleFieldChange={value => {
+					store.set({ value });
+				}}
+				fetchPossibleValues={nop}
+			/>
+		);
+	})
+);
+
+formFieldStories.add(
+	'with date time field',
+	withState({ value: '' })(({ store }) => {
+		const descriptor: FieldDescriptor = {
+			fieldType: 'DATETIME',
+			name: 'dateField',
+			label: 'date field'
+		};
+
 		return (
 			<FormField
 				value={store.state.value}

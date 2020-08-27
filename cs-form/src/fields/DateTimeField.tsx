@@ -7,22 +7,17 @@ import DatePicker from 'react-datepicker';
 import { FieldType } from '..';
 import { createLocale, numberToDate, dateToNumber } from '../utils/DateUtil';
 
-export interface DateFieldLocale {
-	format: string;
-	timeFormat?: string;
-	daysOfWeek: Array<string>;
-	monthsOfYear: Array<string>;
-	firstDayOfWeek: number;
-	daysInFirstWeek: number;
-	timeCaption?: string;
-	timeInterval?: number;
-}
-
-export class DateField extends React.Component<FormFieldProps, {}> {
+export class DateTimeField extends React.Component<FormFieldProps, {}> {
 	render() {
 		const locale = createLocale(this.props.locale.dates);
 		const date = numberToDate(this.props.value);
-		const title = date ? format(date, 'PP', {locale}) : '';
+		const title = date ? format(date, 'PP HH:mm', { locale }) : '';
+
+		const dateTimeFormat = `${this.props.locale.dates.format} ${this.props.locale.dates.timeFormat}`;
+		const timeCaption =
+			this.props.locale.dates.timeCaption !== undefined
+				? this.props.locale.dates.timeCaption
+				: 'Time';
 
 		return (
 			<DatePicker
@@ -32,13 +27,17 @@ export class DateField extends React.Component<FormFieldProps, {}> {
 					this.props.status
 				)}
 				name={this.props.descriptor.name}
-				dateFormat={this.props.locale.dates.format}
+				dateFormat={dateTimeFormat}
 				locale={locale}
 				selected={date}
 				onChange={value => this.props.handleFieldChange(dateToNumber(value))}
 				required={this.props.status === 'mandatory'}
 				readOnly={this.props.status === 'visible'}
 				title={title}
+				showTimeSelect
+				timeFormat={this.props.locale.dates.timeFormat}
+				timeIntervals={this.props.locale.dates.timeInterval || 5}
+				timeCaption={timeCaption}
 			/>
 		);
 	}

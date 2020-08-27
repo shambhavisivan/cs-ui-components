@@ -82,4 +82,5 @@ export type FieldType =
 	| 'NUMBER'
 	| 'PICKLIST'
 	| 'DATE'
+	| 'DATETIME'
 	| 'ID';
