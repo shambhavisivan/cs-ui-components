@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import CSButton from './CSButton';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSLabel from './CSLabel';
 import CSIcon from './CSIcon';
@@ -160,13 +161,16 @@ class CSLookupField extends React.Component<CSLookupFieldProps, CSLookupFieldSta
 						title={this.props.title}
 					/>
 					{this.state.searchTerm &&
-						<button
+						<CSButton
+							btnType="transparent"
 							className="cs-lookup-field-clear"
+							color="var(--cs-input-clear)"
+							iconName="close"
+							iconDisplay="icon-only"
+							label="clear"
 							onClick={this.clearSearch}
-							aria-label="close"
-						>
-							<CSIcon name="close"/>
-						</button>
+							size="small"
+						/>
 					}
 					{(this.props.error && this.props.errorMessage) &&
 						<CSFieldErrorMsg message={this.props.errorMessage} />
