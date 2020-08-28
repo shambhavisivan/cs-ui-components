@@ -35,3 +35,13 @@
 	  opacity: 0;
 	}
 }
+@keyframes slideNotificationDown {
+	from {
+		top: -1.5rem;
+		opacity: 0;
+	}
+	to {
+		top: 0;
+		opacity: 1;
+	}
+}
