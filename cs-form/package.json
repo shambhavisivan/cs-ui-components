@@ -27,13 +27,13 @@
 		"typescript": "3.6.2"
 	},
 	"peerDependencies": {
-		"@cloudsense/cs-ui-components": "1.0.0-alpha.134",
+		"@cloudsense/cs-ui-components": "1.0.0-alpha.137",
 		"react": "16.12.0",
 		"react-dom": "16.12.0"
 	},
 	"devDependencies": {
 		"@babel/core": "7.5.5",
-		"@cloudsense/cs-ui-components": "1.0.0-alpha.134",
+		"@cloudsense/cs-ui-components": "1.0.0-alpha.137",
 		"@dump247/storybook-state": "1.6.1",
 		"@storybook/addon-knobs": "6.0.17",
 		"@storybook/addons": "6.0.17",

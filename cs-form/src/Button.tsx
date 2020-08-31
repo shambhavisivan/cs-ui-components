@@ -1,5 +1,5 @@
 import React from 'react';
-import { CSButton } from '@cloudsense/cs-ui-components';
+const { CSButton } = require('@cloudsense/cs-ui-components');
 
 export interface ButtonProps {
 	enabled: boolean;

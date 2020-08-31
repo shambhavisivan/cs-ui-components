@@ -1,6 +1,7 @@
 import React from 'react';
 import { FormFieldProps } from './FormField';
 import { FieldType } from '../types/FormDescriptor';
+const { CSInputNumber } = require('@cloudsense/cs-ui-components');
 
 export interface NumberFieldLocale {
 	userLocaleLang: string;
@@ -55,7 +56,7 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 		return (
 			<div>
 				{this.state.isFormatterVisible ? (
-					<input
+					<CSInputNumber
 						{...this.props.wrapper.injectInputProps(
 							this.props.descriptor.name,
 							this.props.descriptor.fieldType as FieldType,
@@ -68,11 +69,13 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 						maxLength={20} // formatter does not support values with length > 20
 						min={this.props.descriptor.minVal}
 						max={this.props.descriptor.maxVal}
+						required={this.props.status === 'mandatory'}
+						readOnly={this.props.status === 'visible'}
 						onFocus={() => this.setState({ isFormatterVisible: false })}
 						title={value}
 					/>
 				) : (
-					<input
+					<CSInputNumber
 						{...this.props.wrapper.injectInputProps(
 							this.props.descriptor.name,
 							this.props.descriptor.fieldType as FieldType,
@@ -82,11 +85,11 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 						type="text"
 						name={this.props.descriptor.name}
 						value={value}
-						onChange={e => this.handleBasicValidations(e)}
+						onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.handleBasicValidations(e)}
 						required={this.props.status === 'mandatory'}
 						readOnly={this.props.status === 'visible'}
 						maxLength={20} // intl number formatter does not support values with length > 20
-						onBlur={e => this.handleFormattingOnBlur(e.target.value)}
+						onBlur={(e: React.ChangeEvent<HTMLInputElement>) => this.handleFormattingOnBlur(e.target.value)}
 						min={this.props.descriptor.minVal}
 						max={this.props.descriptor.maxVal}
 						title={value}
@@ -100,8 +103,9 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 		return value !== undefined && value !== null;
 	}
 
-	handleBasicValidations(e: any) {
-		const inputVal = e.target.value;
+	handleBasicValidations(value: any) {
+		const inputVal = value;
+
 		const onlyNumberCommasSpaces = /^(-{0,1}?\+{0,1}?)[0-9,.{0,1}\s]*$/;
 
 		if (!onlyNumberCommasSpaces.test(inputVal)) {
@@ -113,12 +117,13 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 			return;
 		} else {
 			if (splittedvalue.length === 2 && splittedvalue[1].split(',').length > 1) {
-				return;
+				return false;
 			}
 		}
+
 		const isValid = this.validateByLocale(inputVal);
 		if (!isValid) {
-			return;
+			return false;
 		}
 
 		this.props.handleFieldChange(inputVal);
