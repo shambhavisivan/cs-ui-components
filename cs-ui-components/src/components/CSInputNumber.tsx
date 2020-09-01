@@ -85,9 +85,17 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 	}
 
 	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		this.setState({ value: e.target.value });
+		/* changeState variable will determine wheather or not setState will be called.
+			setState won't be called if the function passed to onChange prop returns false.
+			This can be useful in certain scenarios where we don't want to update state (for example
+			in cs-form's NumberField - when formatting is incorrect state won't be changed)
+		*/
+		let changeState = true;
 		if (this.props.onChange) {
-			this.props.onChange(e.target.value);
+			changeState = this.props.onChange(e.target.value);
+		}
+		if (changeState || changeState === undefined) {
+			this.setState({ value: e.target.value });
 		}
 	}
 
