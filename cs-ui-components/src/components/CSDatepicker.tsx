@@ -1,6 +1,7 @@
 import React, { CSSProperties } from 'react';
 import DatePicker from 'react-datepicker';
 import { addDays, subDays, addYears, subYears } from 'date-fns';
+import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSIcon from './CSIcon';
 import CSLabel from './CSLabel';
 import classNames from 'classnames';
@@ -12,7 +13,7 @@ export interface CSDatepickerProps {
 	dateFormat?: string;
 	disabled?: boolean;
 	error?: boolean;
-	errorMessage?: string;
+	errorMessage?: CSFieldErrorMsgType;
 	helpText?: string;
 	label: string;
 	labelHidden?: boolean;
@@ -106,7 +107,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 					</div>
 					<CSIcon name="event" className="cs-datepicker-icon" />
 					{(this.props.error && this.props.errorMessage) &&
-						<span className="cs-datepicker-error-msg">{this.props.errorMessage}</span>
+						<CSFieldErrorMsg message={this.props.errorMessage} />
 					}
 				</div>
 			</>

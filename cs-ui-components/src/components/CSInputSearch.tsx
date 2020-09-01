@@ -1,5 +1,6 @@
 import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
+import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSLabel from './CSLabel';
 import CSIcon from './CSIcon';
 import { CSTooltipPosition } from './CSTooltip';
@@ -12,7 +13,7 @@ export interface CSInputSearchProps {
 	className?: string;
 	disabled?: boolean;
 	error?: boolean;
-	errorMessage?: string;
+	errorMessage?: CSFieldErrorMsgType;
 	helpText?: string;
 	hidden?: boolean;
 	iconPosition?: string;
@@ -199,7 +200,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 							</button>
 						}
 						{(this.props.error && this.props.errorMessage) &&
-							<span className="cs-input-error-msg">{this.props.errorMessage}</span>
+							<CSFieldErrorMsg message={this.props.errorMessage} />
 						}
 					</div>
 				</div>

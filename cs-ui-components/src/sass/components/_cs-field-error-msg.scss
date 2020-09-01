@@ -1,5 +1,5 @@
-@mixin error-message {
-    font-size: 0.6875rem;
+.cs-field-error-msg {
+	font-size: 0.6875rem;
     display: block;
     position: absolute;
     top: calc(100% + 0.25rem);

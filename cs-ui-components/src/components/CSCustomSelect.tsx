@@ -1,4 +1,5 @@
 import React from 'react';
+import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSIcon from './CSIcon';
 import CSLabel from './CSLabel';
 import classNames from 'classnames';
@@ -11,7 +12,7 @@ export interface CSCustomSelectProps {
 	className?: string;
 	disabled?: boolean;
 	error?: boolean;
-	errorMessage?: string;
+	errorMessage?: CSFieldErrorMsgType;
 	helpText?: string;
 	hidden?: boolean;
 	id?: string;
@@ -138,7 +139,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 					}
 				</form>
 				{(this.props.error && this.props.errorMessage) &&
-					<span className="cs-custom-select-error-msg">{this.props.errorMessage}</span>
+					<CSFieldErrorMsg message={this.props.errorMessage} />
 				}
 			</div>
 		);

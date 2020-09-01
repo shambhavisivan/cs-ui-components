@@ -1,4 +1,5 @@
 import React from 'react';
+import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSLabel from './CSLabel';
 import classNames from 'classnames';
 import { CSTooltipPosition } from './CSTooltip';
@@ -10,7 +11,7 @@ export interface CSToggleProps {
 	className?: string;
 	disabled?: boolean;
 	error?: boolean;
-	errorMessage?: string;
+	errorMessage?: CSFieldErrorMsgType;
 	helpText?: string;
 	id?: string;
 	label: string;
@@ -94,7 +95,7 @@ class CSToggle extends React.Component<CSToggleProps, CSToggleState> {
 						<span className="cs-toggle-faux" title={this.props.title}/>
 					</label>
 					{(this.props.error && this.props.errorMessage) &&
-						<span className="cs-toggle-error-msg">{this.props.errorMessage}</span>
+						<CSFieldErrorMsg message={this.props.errorMessage} />
 					}
 				</div>
 			</>

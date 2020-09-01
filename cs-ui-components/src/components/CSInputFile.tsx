@@ -1,5 +1,6 @@
 import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
+import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSIcon from './CSIcon';
 import CSTooltip from './CSTooltip';
 
@@ -11,7 +12,7 @@ export interface CSInputFileProps {
 	dropAreaHeight?: string;
 	dropAreaWidth?: string;
 	error?: boolean;
-	errorMessage?: string;
+	errorMessage?: CSFieldErrorMsgType;
 	id?: string;
 	label: string;
 	onDrop?: (values: any) => any;
@@ -100,7 +101,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 					</span>
 				</label>
 				{(this.props.error && this.props.errorMessage) &&
-					<span className="cs-input-file-error-message">{this.props.errorMessage}</span>
+					<CSFieldErrorMsg message={this.props.errorMessage} />
 				}
 			</>;
 

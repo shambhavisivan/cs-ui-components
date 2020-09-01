@@ -137,11 +137,4 @@
 			}
 		}
 	}
-
-	.cs-checkbox-error-msg {
-		position: absolute;
-		top: calc(100% + 0.25rem);
-		font-size: 0.6875rem;
-		@include sc(--cs-checkbox-error-c);
-	}
 }

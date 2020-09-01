@@ -33,6 +33,7 @@ import CSButtonGroupPreview from './components/CSButtonGroupPreview';
 import CSImagePreview from './components/CSImagePreview';
 import CSLookupFieldPreview from './components/CSLookupFieldPreview';
 import CSSliderPreview from './components/CSSliderPreview';
+import CSFieldErrorMsgPreview from './components/CSFieldErrorMsgPreview';
 import CSGettingStarted from './CSGettingStarted';
 
 import SidebarList from './SidebarList';
@@ -84,6 +85,10 @@ class CSComponentsList extends React.Component {
 			{
 				name: 'Divider',
 				component: CSDividerPreview
+			},
+			{
+				name: 'Field Error Message',
+				component: CSFieldErrorMsgPreview
 			},
 			{
 				name: 'Icon',

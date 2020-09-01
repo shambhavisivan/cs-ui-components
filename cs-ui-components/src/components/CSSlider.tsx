@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import CSLabel from './CSLabel';
 import { CSTooltipPosition } from './CSTooltip';
+import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 
 export type CSSliderSize = 'xsmall' | 'small' | 'medium' | 'large';
 
@@ -9,7 +10,7 @@ export interface CSSliderProps {
 	className?: string;
 	disabled?: boolean;
 	error?: boolean;
-	errorMessage?: string;
+	errorMessage?: CSFieldErrorMsgType;
 	helpText?: string;
 	id?: string;
 	label?: string;
@@ -107,7 +108,7 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 					<span className="cs-slider-max-value">{this.state.value}</span>
 				</div>
 				{(this.props.error && this.props.errorMessage) &&
-					<span className="cs-slider-error-msg">{this.props.errorMessage}</span>
+					<CSFieldErrorMsg message={this.props.errorMessage} />
 				}
 			</div>
 		);

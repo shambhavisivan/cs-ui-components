@@ -592,6 +592,13 @@ body,
 						justify-content: center;
 						align-items: center;
 					}
+
+					&.field-error-message-preview {
+						position: relative;
+						.cs-field-error-msg {
+							top: 0.5rem;
+						}
+					}
 				}
 
 				&:last-child {

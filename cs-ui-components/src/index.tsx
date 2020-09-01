@@ -11,6 +11,7 @@ import CSChip, { CSChipVariant, CSChipVariantStyle } from './components/CSChip';
 import CSCustomSelect, { CSCustomSelectBorderType } from './components/CSCustomSelect';
 import CSDatepicker from './components/CSDatepicker';
 import CSDivider, { CSDividerVariant } from './components/CSDivider';
+import CSFieldErrorMsg, { CSFieldErrorMsgType } from './components/CSFieldErrorMsg';
 import CSIcon, { CSIconOrigin } from './components/CSIcon';
 import CSImage, { CSImageColor, CSImageType, CSImageVariant } from './components/CSImage';
 import CSInputFile from './components/CSInputFile';
@@ -89,6 +90,8 @@ export {
 	CSDatepicker,
 	CSDivider,
 	CSDividerVariant,
+	CSFieldErrorMsg,
+	CSFieldErrorMsgType,
 	CSIcon,
 	CSIconOrigin,
 	CSImage,

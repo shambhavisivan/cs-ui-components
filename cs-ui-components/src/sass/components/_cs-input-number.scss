@@ -29,8 +29,4 @@
 	.component-version-input .version-preview {
 		overflow: visible;
 	}
-
-	.cs-input-error-msg {
-		@include error-message;
-	}
 }

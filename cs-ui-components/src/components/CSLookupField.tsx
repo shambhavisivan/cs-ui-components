@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSLabel from './CSLabel';
 import CSIcon from './CSIcon';
 import CSTable from './table/CSTable';
@@ -16,7 +17,7 @@ export interface CSLookupFieldProps {
 	className?: string;
 	disabled?: boolean;
 	error?: boolean;
-	errorMessage?: string;
+	errorMessage?: CSFieldErrorMsgType;
 	fetchLookupOptions: () => Array<object>;
 	fieldToBeDisplayed: string;
 	helpText?: string;
@@ -168,7 +169,7 @@ class CSLookupField extends React.Component<CSLookupFieldProps, CSLookupFieldSta
 						</button>
 					}
 					{(this.props.error && this.props.errorMessage) &&
-						<span className="cs-lookup-field-error-msg">{this.props.errorMessage}</span>
+						<CSFieldErrorMsg message={this.props.errorMessage} />
 					}
 				</div>
 				{this.state.dropdownValues.length > 0 && (

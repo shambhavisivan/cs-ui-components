@@ -153,11 +153,6 @@
 	}
 }
 
-// Error message
-.cs-input-file-error-message {
-	@include error-message;
-}
-
 // Override icon fill when file selected
 .cs-tooltip-wrapper.cs-tw-info .cs-icon.cs-input-file-icon {
 	@include css4 {

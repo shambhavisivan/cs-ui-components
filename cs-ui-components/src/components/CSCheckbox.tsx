@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import CSLabel from './CSLabel';
 import { CSTooltipPosition } from './CSTooltip';
+import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 
 export type CSCheckboxBorderType = 'square' | 'round';
 export type CSCheckboxVariant = 'neutral' | 'brand';
@@ -12,7 +13,7 @@ export interface CSCheckboxProps {
 	className?: string;
 	disabled?: boolean;
 	error?: boolean;
-	errorMessage?: string;
+	errorMessage?: CSFieldErrorMsgType;
 	helpText?: string;
 	id?: string;
 	label: string;
@@ -111,7 +112,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 						<span className={checkboxFauxClasses} title={this.props.title} />
 					</label>
 					{(this.props.error && this.props.errorMessage) &&
-						<span className="cs-checkbox-error-msg">{this.props.errorMessage}</span>
+						<CSFieldErrorMsg message={this.props.errorMessage} />
 					}
 				</div>
 			</>

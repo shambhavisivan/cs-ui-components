@@ -73,10 +73,6 @@
 			top: 0.6125rem;
 			pointer-events: none;
 		}
-
-		.cs-input-error-msg {
-			@include error-message;
-		}
 	}
 }
 
