@@ -20,8 +20,8 @@ export function noOfVisibleButtons(
 
 	if (firstIcon) {
 		const width = firstIcon.getBoundingClientRect().width;
-		// The checkbox, left and right padding takes up width 40, but 36 looks better.
-		const columnWidth = column.getActualWidth() - 36;
+		const columnWidth =
+			column.getRight() - firstIcon.parentElement.getBoundingClientRect().left;
 
 		const dropDownVisible = totalNoOfButtons > noOfInlineIcons;
 		const noOfButtons = dropDownVisible ? noOfInlineIcons + 1 : noOfInlineIcons;
