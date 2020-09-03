@@ -1,4 +1,5 @@
 import React, { CSSProperties } from 'react';
+import CSButton from './CSButton';
 import classNames from 'classnames';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSLabel from './CSLabel';
@@ -191,13 +192,16 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 							title={this.props.title}
 						/>
 						{this.state.value &&
-							<button
+							<CSButton
+								btnType="transparent"
 								className="cs-input-search-clear"
+								color="var(--cs-input-clear)"
+								iconName="close"
+								iconDisplay="icon-only"
+								label="clear"
 								onClick={this.clearSearch}
-								aria-label="close"
-							>
-								<CSIcon name="close"/>
-							</button>
+								size="small"
+							/>
 						}
 						{(this.props.error && this.props.errorMessage) &&
 							<CSFieldErrorMsg message={this.props.errorMessage} />

@@ -32,24 +32,8 @@
 	}
 
 	.cs-input-search-clear {
-		background: 0;
-		border: 0;
-		cursor: pointer;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		padding: 0;
-		height: 1.25rem;
-		width: 1.25rem;
 		position: absolute;
-
-		&:focus,
-		&:active {
-			outline: none;
-			@include css4 {
-				box-shadow: 0 0 3px cvar(--cs-button-box);
-			}
-		}
+		top: 0.25rem;
 
 		.cs-icon {
 			transform: none;
@@ -65,8 +49,7 @@
 			left: 0.5rem;
 		}
 		.cs-input-search-clear {
-			right: 0.5rem;
-			top: 0.375rem;
+			right: 0.25rem;
 		}
 	}
 
@@ -75,8 +58,7 @@
 			right: 0.5rem;
 		}
 		.cs-input-search-clear {
-			right: 1.75rem;
-			top: 0.375rem;
+			right: 1.625rem;
 		}
 		.cs-input-search {
 			padding: 0 3rem 0 0.75rem;
