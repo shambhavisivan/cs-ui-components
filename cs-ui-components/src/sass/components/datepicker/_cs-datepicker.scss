@@ -228,6 +228,39 @@
 						}
 					}
 				}
+
+				.react-datepicker__year-dropdown-container {
+					.react-datepicker__year-read-view--down-arrow {
+						top: 6px;
+					}
+					.react-datepicker__navigation--years {
+						top: 0;
+						&-upcoming::after, &-previous::after {
+							content: '';
+							display: block;
+							position: absolute;
+							top: 3px;
+							right: 3px;
+							width: 0.75rem;
+							height: 0.75rem;
+							-webkit-mask: url('./../icons/lightning/chevronright.svg') no-repeat 50% 50%;
+							mask: url('./../icons/lightning/chevronright.svg') no-repeat 50% 50%;
+							-webkit-mask-size: cover;
+							mask-size: cover;
+							@include sbg(--cs-icon-c);
+							transform: rotate(-90deg);
+						}
+						&-previous::after {
+							transform: rotate(90deg);
+							top: 5px;
+						}
+					}
+				}
+				.react-datepicker__month-dropdown-container {
+					.react-datepicker__month-read-view--down-arrow {
+						top: 6px;
+					}
+				}
 			}
 		}
 	}
@@ -301,5 +334,8 @@
 		-webkit-mask-size: cover;
 		mask-size: cover;
 		@include sbg(--cs-input-icon-fill);
+	}
+	&:hover::after {
+		@include bgd(--cs-input-icon-fill, 0.25);
 	}
 }

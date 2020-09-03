@@ -33,7 +33,7 @@ class CSDatepickerPreview extends React.Component {
 						{
 							string: '',
 							component:
-								<CSDatepicker label="Enter date:"/>
+								<CSDatepicker label="Enter date:" />
 						}
 					]
 				},
@@ -145,7 +145,7 @@ class CSDatepickerPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-								<CSDatepicker label="Enter date:" readOnly/>
+								<CSDatepicker label="Enter date:" value={this.value} readOnly/>
 						}
 					]
 				},
@@ -185,6 +185,75 @@ class CSDatepickerPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'showYearDropdown',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSDatepicker label="Enter date:" showYearDropdown />
+						}
+					]
+				},
+				{
+					propName: 'showMonthDropdown',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSDatepicker label="Enter date:"  showMonthDropdown/>
+						}
+					]
+				},
+				{
+					propName: 'scrollableYearDropdown',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSDatepicker label="Enter date:" scrollableYearDropdown showYearDropdown/>
+						}
+					]
+				},
+				{
+					propName: 'dropdownMode',
+					variations: [
+						{
+							variationName: ['scroll'],
+							quickLink: 'scroll',
+							string: '',
+							component:
+								<CSDatepicker
+									label="Enter date:"
+									showYearDropdown
+									showMonthDropdown
+									dropdownMode="scroll"
+								/>
+						},
+						{
+							variationName: ['select'],
+							quickLink: 'select',
+							string: '',
+							component:
+								<CSDatepicker
+									label="Enter date:"
+									showYearDropdown
+									showMonthDropdown
+									dropdownMode="select"
+								/>
+						}
+					]
+				},
+				{
+					propName: 'yearDropdownItemNumber',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSDatepicker label="Enter date:" showYearDropdown yearDropdownItemNumber={4}/>
+						}
+					]
+				},
+				{
 					propName: 'minDate',
 					variations: [
 						{
@@ -212,7 +281,7 @@ class CSDatepickerPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-								<CSDatepicker label="Enter date:" minDate={18} minDateYear/>
+								<CSDatepicker label="Enter date:" minDate={1} minDateYear/>
 						}
 					]
 				},
@@ -224,7 +293,7 @@ class CSDatepickerPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-								<CSDatepicker label="Enter date:" maxDate={18} maxDateYear/>
+								<CSDatepicker label="Enter date:" maxDate={1} maxDateYear/>
 						}
 					]
 				},
@@ -362,6 +431,14 @@ class CSDatepickerPreview extends React.Component {
 					]
 				},
 				{
+					propertyName: 'dropdownMode',
+					description: 'Defines type of year and month dropdown',
+					options: [
+						'scroll',
+						'select'
+					]
+				},
+				{
 					propertyName: 'error',
 					description: 'Error state',
 					options: [
@@ -454,6 +531,30 @@ class CSDatepickerPreview extends React.Component {
 					]
 				},
 				{
+					propertyName: 'scrollableYearDropdown',
+					description: 'Sets year dropdown to fixed height and adds scrollbar',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
+					propertyName: 'showMonthDropdown',
+					description: 'Shows months dropdown list',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
+					propertyName: 'showYearDropdown',
+					description: 'Shows years dropdown list',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
 					propertyName: 'title',
 					description: 'Title to display'
 				},
@@ -488,6 +589,10 @@ class CSDatepickerPreview extends React.Component {
 						'20rem',
 						'400px'
 					]
+				},
+				{
+					propertyName: 'yearDropdownItemNumber',
+					description: 'Displays defined number of years before and after the current year in year dropdown'
 				}
 			]
 		};

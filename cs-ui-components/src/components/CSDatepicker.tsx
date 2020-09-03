@@ -7,54 +7,58 @@ import CSLabel from './CSLabel';
 import classNames from 'classnames';
 import { CSTooltipPosition } from './CSTooltip';
 
+export type CSDatepickerDropdownMode = 'select' | 'scroll';
+
 export interface CSDatepickerProps {
 	borderType?: string;
 	className?: string;
 	dateFormat?: string;
 	disabled?: boolean;
+	dropdownMode?: CSDatepickerDropdownMode;
 	error?: boolean;
 	errorMessage?: CSFieldErrorMsgType;
 	helpText?: string;
+	id?: string;
+	isClearable?: boolean;
 	label: string;
 	labelHidden?: boolean;
 	labelTitle?: boolean;
 	locale?: any;
-	id?: string;
-	isClearable?: boolean;
 	maxDate?: number;
-	minDateYear?: boolean;
-	minDate?: number;
 	maxDateYear?: boolean;
+	minDate?: number;
+	minDateYear?: boolean;
 	name?: string;
 	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => any;
 	placeholder?: string;
 	readOnly?: boolean;
 	required?: boolean;
+	scrollableYearDropdown?: boolean;
+	showMonthDropdown?: boolean;
+	showYearDropdown?: boolean;
 	title?: string;
 	todayButton?: boolean;
 	tooltipPosition?: CSTooltipPosition;
 	value?: any;
 	width?: string;
+	yearDropdownItemNumber?: number;
 }
 
 export interface CSDatePickerState  {
 	startDate: Date;
-	maxDateValue: number;
-	minDateValue: number;
 }
 
 class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState> {
 
 	public static defaultProps = {
-		dateFormat: 'dd-MM-yyyy'
+		dateFormat: 'dd-MM-yyyy',
+		dropdownMode: 'scroll'
 	};
 	constructor(props: CSDatepickerProps) {
 		super(props);
 		const value = typeof props.value === undefined ? '' : props.value;
 		this.state = {
-			startDate: value,
-			maxDateValue: this.props.maxDate,
-			minDateValue: this.props.minDate
+			startDate: value
 		};
 	}
 
@@ -73,7 +77,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 	}
 
 	public render() {
-		const { maxDateValue, minDateValue } = this.state;
+		const { maxDate, minDate, maxDateYear, minDateYear } = this.props;
 
 		const datepickerClasses = classNames(
 			'cs-datepicker', {
@@ -86,6 +90,22 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 
 		const style: CSSProperties = {
 			'--datepicker-width': this.props.width
+		};
+
+		const calcMaxDate = () => {
+			if (maxDateYear) {
+				return addYears(new Date(), maxDate);
+			} else {
+				return addDays(new Date(), maxDate);
+			}
+		};
+
+		const calcMinDate = () => {
+			if (minDateYear) {
+				return subYears(new Date(), minDate);
+			} else {
+				return subDays(new Date(), minDate);
+			}
 		};
 
 		return (
@@ -108,12 +128,17 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 							placeholderText={this.props.placeholder}
 							todayButton={this.props.todayButton ? 'Today' : null}
 							disabled={this.props.disabled}
-							maxDate={this.props.maxDateYear ? addYears(new Date(), maxDateValue) : addDays(new Date(), maxDateValue)}
-							minDate={this.props.minDateYear ? subYears(new Date(), minDateValue) : subDays(new Date(), minDateValue)}
+							maxDate={maxDateYear || maxDate ? calcMaxDate() : null}
+							minDate={minDateYear || minDate ? calcMinDate() : null}
 							name={this.props.name}
 							locale={this.props.locale}
 							selected={this.state.startDate}
 							onChange={this.handleChange}
+							showYearDropdown={this.props.showYearDropdown}
+							showMonthDropdown={this.props.showMonthDropdown}
+							scrollableYearDropdown={this.props.scrollableYearDropdown}
+							dropdownMode={this.props.dropdownMode}
+							yearDropdownItemNumber={this.props.yearDropdownItemNumber}
 							autoComplete="off"
 							required={this.props.required}
 						/>
