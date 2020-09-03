@@ -20,6 +20,7 @@ export interface CSDatepickerProps {
 	labelTitle?: boolean;
 	locale?: any;
 	id?: string;
+	isClearable?: boolean;
 	maxDate?: number;
 	minDateYear?: boolean;
 	minDate?: number;
@@ -30,8 +31,9 @@ export interface CSDatepickerProps {
 	readOnly?: boolean;
 	required?: boolean;
 	title?: string;
-	todayButton?: string;
+	todayButton?: boolean;
 	tooltipPosition?: CSTooltipPosition;
+	value?: any;
 	width?: string;
 }
 
@@ -48,8 +50,9 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 	};
 	constructor(props: CSDatepickerProps) {
 		super(props);
+		const value = typeof props.value === undefined ? '' : props.value;
 		this.state = {
-			startDate: null,
+			startDate: value,
 			maxDateValue: this.props.maxDate,
 			minDateValue: this.props.minDate
 		};
@@ -59,10 +62,13 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 		this.setState({
 			startDate: date
 		});
+		if (this.props.onChange) {
+			this.props.onChange(date);
+		}
 	}
 
 	public render() {
-		const { startDate, maxDateValue, minDateValue } = this.state;
+		const { maxDateValue, minDateValue } = this.state;
 
 		const datepickerClasses = classNames(
 			'cs-datepicker', {
@@ -93,15 +99,16 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 					<div className="cs-datepicker-wrapper" title={this.props.title}>
 						<DatePicker
 							dateFormat={this.props.dateFormat}
-							selected={startDate}
-							onChange={this.handleChange}
+							isClearable={this.props.isClearable}
 							placeholderText={this.props.placeholder}
-							todayButton={this.props.todayButton}
+							todayButton={this.props.todayButton ? 'Today' : null}
 							disabled={this.props.disabled}
 							maxDate={this.props.maxDateYear ? addYears(new Date(), maxDateValue) : addDays(new Date(), maxDateValue)}
 							minDate={this.props.minDateYear ? subYears(new Date(), minDateValue) : subDays(new Date(), minDateValue)}
 							name={this.props.name}
 							locale={this.props.locale}
+							selected={this.state.startDate}
+							onChange={this.handleChange}
 							autoComplete="off"
 						/>
 					</div>

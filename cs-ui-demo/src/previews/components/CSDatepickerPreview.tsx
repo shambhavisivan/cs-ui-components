@@ -4,17 +4,29 @@ import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
 import PreviewLinks from '../PreviewLinks';
+import moment from 'moment';
 
 import {CSDatepicker} from '@cloudsense/cs-ui-components';
 
 class CSDatepickerPreview extends React.Component {
-
+	value = moment('1.1.2020').toDate();
 	getDoc() {
 
 		const json = {
 			name: 'Datepicker',
 			usage: 'A datepicker is a text input to capture a date. You can select a single date, date range or date and time.',
 			examples: [
+				{
+					propName: 'value',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSDatepicker label="Enter date:" value={this.value} />
+						}
+					]
+				},
 				{
 					propName: 'label',
 					variations: [
@@ -55,7 +67,7 @@ class CSDatepickerPreview extends React.Component {
 						{
 							string: '',
 							component:
-								<CSDatepicker label="Enter date:" helpText="Help text example" />
+								<CSDatepicker label="Enter date:" helpText="Help text example"/>
 						}
 					]
 				},
@@ -80,6 +92,18 @@ class CSDatepickerPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'isClearable',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSDatepicker label="Enter date:" isClearable/>
+						}
+					]
+				},
+				{
 					propName: 'name',
 					variations: [
 						{
@@ -93,11 +117,11 @@ class CSDatepickerPreview extends React.Component {
 					propName: 'todayButton',
 					variations: [
 						{
-							variationName: ['Today'],
-							quickLink: 'Today',
+							variationName: ['true'],
+							quickLink: 'true',
 							string: '',
 							component:
-								<CSDatepicker label="Enter date:" todayButton="Today"/>
+								<CSDatepicker label="Enter date:" todayButton/>
 						}
 					]
 				},
@@ -109,7 +133,7 @@ class CSDatepickerPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-								<CSDatepicker label="Enter date:" disabled />
+								<CSDatepicker label="Enter date:" disabled/>
 						}
 					]
 				},
@@ -121,7 +145,7 @@ class CSDatepickerPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-								<CSDatepicker label="Enter date:" readOnly />
+								<CSDatepicker label="Enter date:" readOnly/>
 						}
 					]
 				},
@@ -145,7 +169,7 @@ class CSDatepickerPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-								<CSDatepicker label="Enter date:" error />
+								<CSDatepicker label="Enter date:" error/>
 						}
 					]
 				},
@@ -358,6 +382,10 @@ class CSDatepickerPreview extends React.Component {
 					description: 'Datepicker number id value'
 				},
 				{
+					propertyName: 'isClearable',
+					description: 'Logic for clear button visibility'
+				},
+				{
 					propertyName: 'label',
 					description: 'Datepicker label text to display'
 				},
@@ -431,7 +459,7 @@ class CSDatepickerPreview extends React.Component {
 				},
 				{
 					propertyName: 'todayButton',
-					description: 'Required state',
+					description: 'Logic for today button',
 					options: [
 						'false',
 						'true'
@@ -446,6 +474,10 @@ class CSDatepickerPreview extends React.Component {
 						'bottom-right',
 						'bottom-left'
 					]
+				},
+				{
+					propertyName: 'value',
+					description: 'Datepicker value to display'
 				},
 				{
 					propertyName: 'width',
@@ -468,19 +500,20 @@ class CSDatepickerPreview extends React.Component {
 
 		return json;
 	}
+
 	render() {
 		const component = this.getDoc();
 
 		return (
 			<>
 				<div className="preview-section-wrapper datepicker-preview">
-					<PreviewHeading name={component.name} usage={component.usage} />
-					<PreviewProperties name={component.name} examples={component.examples} />
-					<PreviewTable components={[component]} />
+					<PreviewHeading name={component.name} usage={component.usage}/>
+					<PreviewProperties name={component.name} examples={component.examples}/>
+					<PreviewTable components={[component]}/>
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>
-					<PreviewLinks component={component} />
+					<PreviewLinks component={component}/>
 				</div>
 			</>
 		);

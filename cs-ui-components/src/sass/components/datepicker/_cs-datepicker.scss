@@ -278,3 +278,28 @@
 		border-radius: 0;
 	}
 }
+
+.react-datepicker__close-icon {
+	width: 1rem;
+	height: 1rem;
+	right: 1.75rem;
+	top: 0.5rem;
+	border-radius: 0.25rem;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	&::after {
+		width: 0.625rem;
+		height: 0.625rem;
+		border-radius: 0;
+		content: '';
+		display: block;
+		-webkit-mask: url('./../icons/lightning/close.svg') no-repeat 50% 50%;
+		mask: url('./../icons/lightning/close.svg') no-repeat 50% 50%;
+		-webkit-mask-size: cover;
+		mask-size: cover;
+		@include sbg(--cs-input-icon-fill);
+	}
+}
