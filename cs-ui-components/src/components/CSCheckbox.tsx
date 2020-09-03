@@ -64,6 +64,12 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 		}
 	}
 
+	componentDidUpdate(prevProps: CSCheckboxProps) {
+		if (prevProps.checked !== this.props.checked) {
+		this.setState({ checked: this.props.checked });
+		}
+	}
+
 	render() {
 
 		const checkboxClasses = classNames(
@@ -103,7 +109,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 								className={checkboxClasses}
 								type="checkbox"
 								disabled={this.props.disabled}
-								checked={this.props.checked}
+								checked={this.state.checked}
 								required={this.props.required}
 								id={this.props.id}
 								onClick={this.handleOnClick}

@@ -66,6 +66,11 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 			this.props.onChange(date);
 		}
 	}
+	componentDidUpdate(prevProps: CSDatepickerProps) {
+		if (prevProps.value !== this.props.value) {
+		this.setState({ startDate: this.props.value });
+		}
+	}
 
 	public render() {
 		const { maxDateValue, minDateValue } = this.state;
