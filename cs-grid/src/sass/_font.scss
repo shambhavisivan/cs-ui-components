@@ -185,25 +185,6 @@
 		@include sc(--csgrid-container-after-c);
 	}
 
-	.react-datepicker {
-
-		.react-datepicker__navigation--previous::before {
-			content: "c";
-			font-family: "cs-grid";
-		}
-
-		.react-datepicker__navigation--next::before {
-			content: "d";
-			font-family: "cs-grid";
-		}
-
-		.react-datepicker__month-dropdown-container--select::before,
-		.react-datepicker__year-dropdown-container--select::before {
-			content: "g";
-			font-family: "cs-grid";
-		}
-	}
-
 	.ag-checkbox-checked:after,
 	.ag-icon.ag-icon-checkbox-checked:after,
 	.cs-grid_checkbox:checked + .cs-grid_checkbox-faux:before {

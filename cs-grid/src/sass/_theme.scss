@@ -55,9 +55,15 @@ $variables: (
 	--csgrid-main: $cs-blue-sf !important,
 	--csgrid-secondary: $cs-white !important,
 	--csgrid-tertiary: $cs-gray-dark-1 !important,
+	--csgrid-icon-c: $cs-gray-dark-5,
 
 	--csgrid-theme-c: $cs-black,
 	--csgrid-theme-bg: $cs-white,
+
+	--csgrid-shadow-focus: $cs-blue-sf,
+	--csgrid-shadow-light: rgba($cs-black, 0.1),
+	--csgrid-shadow-medium: rgba($cs-black, 0.22),
+	--csgrid-shadow-dark: rgba($cs-black, 0.5),
 
 	--csgrid-row-bg: $cs-white,
 	--csgrid-row-hover-bg: $cs-blue-light-4,
@@ -87,13 +93,16 @@ $variables: (
 	--csgrid-row-selection-bg: $cs-white,
 	--csgrid-row-selection-icon-hover-c: $cs-gray-dark-3,
 
-	--csgrid-datepicker-c: $cs-black,
+	--csgrid-datepicker-c: $cs-gray-dark-2,
 	--csgrid-datepicker-bg: $cs-white,
 	--csgrid-datepicker-arrow-c: $cs-gray-dark-5,
 	--csgrid-datepicker-br: $cs-gray-light-2,
-	--csgrid-datepicker-hover-bg: $cs-gray-light-7,
-	--csgrid-datepicker-selected-bg: $cs-blue-sf,
+	--csgrid-datepicker-hover-bg: $cs-blue-light-1,
+	--csgrid-datepicker-selected-bg: $cs-gray-light-5,
 	--csgrid-datepicker-selected-c: $cs-white,
+	--csgrid-datepicker-icon-hover: $cs-gray-medium-2,
+	--csgrid-datepicker-shadow: $cs-blue-sf,
+	--csgrid-datepicker-keyboard-bg: $cs-blue-sf,
 
 	--csgrid-input-bg: $cs-white,
 	--csgrid-input-br: $cs-gray-light-2,
