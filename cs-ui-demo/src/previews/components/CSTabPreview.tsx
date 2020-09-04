@@ -67,9 +67,7 @@ class CSTabPreview extends React.Component {
 							quickLink: 'inital large',
 							string: '',
 							component:
-							<CSTabGroup
-								variant="large"
-							>
+							<CSTabGroup variant="large">
 								<CSTab
 									title="Tab One"
 									status="initial"
@@ -90,9 +88,7 @@ class CSTabPreview extends React.Component {
 							quickLink: 'error large',
 							string: '',
 							component:
-							<CSTabGroup
-								variant="large"
-							>
+							<CSTabGroup variant="large">
 								<CSTab
 									title="Tab One"
 									status="error"
@@ -113,9 +109,7 @@ class CSTabPreview extends React.Component {
 							quickLink: 'warning large',
 							string: '',
 							component:
-							<CSTabGroup
-								variant="large"
-							>
+							<CSTabGroup variant="large">
 								<CSTab
 									title="Tab One"
 									status="warning"
@@ -136,9 +130,7 @@ class CSTabPreview extends React.Component {
 							quickLink: 'success large',
 							string: '',
 							component:
-							<CSTabGroup
-								variant="large"
-							>
+							<CSTabGroup variant="large">
 								<CSTab
 									title="Tab One"
 									status="success"
@@ -184,7 +176,7 @@ class CSTabPreview extends React.Component {
 							quickLink: 'true normal',
 							string: '',
 							component:
-							<CSTabGroup variant="normal">
+							<CSTabGroup>
 								<CSTab
 									title="Tab One"
 									active
@@ -208,9 +200,7 @@ class CSTabPreview extends React.Component {
 							quickLink: 'disabled large',
 							string: '',
 							component:
-							<CSTabGroup
-								variant="large"
-							>
+							<CSTabGroup variant="large">
 								<CSTab
 									title="Tab One"
 									disabled
@@ -230,9 +220,7 @@ class CSTabPreview extends React.Component {
 							quickLink: 'disabled normal',
 							string: '',
 							component:
-							<CSTabGroup
-								variant="normal"
-							>
+							<CSTabGroup>
 								<CSTab
 									title="Tab One"
 									tabIcon="activity"
@@ -283,7 +271,7 @@ class CSTabPreview extends React.Component {
 						{
 							string: '',
 							component:
-							<CSTabGroup variant="normal">
+							<CSTabGroup>
 								<CSTab
 									title="Tab One"
 								/>
@@ -306,7 +294,7 @@ class CSTabPreview extends React.Component {
 							quickLink: ['activity'],
 							string: '',
 							component:
-							<CSTabGroup variant="normal">
+							<CSTabGroup>
 								<CSTab
 									title="Tab One"
 									tabIcon="activity"
@@ -328,10 +316,7 @@ class CSTabPreview extends React.Component {
 						{
 							string: '',
 							component:
-							<CSTabGroup
-								variant="normal"
-								id="id"
-							>
+							<CSTabGroup id="id">
 								<CSTab
 									title="Tab One"
 									id="id"
@@ -355,10 +340,7 @@ class CSTabPreview extends React.Component {
 						{
 							string: '',
 							component:
-							<CSTabGroup
-								variant="normal"
-								className="custom-class"
-							>
+							<CSTabGroup className="custom-class">
 								<CSTab
 									title="Tab One"
 									className="custom-class-2"

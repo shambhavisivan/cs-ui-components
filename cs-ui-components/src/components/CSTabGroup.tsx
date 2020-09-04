@@ -12,6 +12,10 @@ export interface CSTabGroupProps {
 
 class CSTabGroup extends React.Component<CSTabGroupProps> {
 
+	public static defaultProps = {
+		variant: 'normal'
+	};
+
 	renderChildrenWithTabsAsProps() {
 		return React.Children.map(this.props.children, (child, index) => {
 			return React.cloneElement(child as React.ReactElement<any>, {
