@@ -16,6 +16,7 @@ export interface CSButtonProps {
 	className?: string;
 	color?: string;
 	disabled?: boolean;
+	iconColor?: string;
 	iconDisplay?: CSButtonIconDisplay;
 	iconName?: string;
 	iconOrigin?:  CSIconOrigin;
@@ -113,7 +114,8 @@ class CSButton extends React.Component<CSButtonProps> {
 		);
 
 		const style: CSSProperties = {
-			'--cs-btn-custom-c': this.props.color
+			'--cs-btn-custom-c': this.props.color,
+			'--cs-btn-custom-icon-c': this.props.iconColor
 		};
 
 		const componentProps = {

@@ -253,6 +253,24 @@ class CSButtonPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'iconColor',
+					variations: [
+						{
+							variationName: ['red'],
+							quickLink: 'red',
+							string: '',
+							component: <CSButton label="default with id" iconColor="red" iconName="activity" />
+						},
+						{
+							variationName: ['green'],
+							variationText: ['color="red"'],
+							quickLink: 'green',
+							string: '',
+							component: <CSButton label="default with id" iconColor="green" color="red" iconName="activity" />
+						}
+					]
+				},
+				{
 					propName: 'iconDisplay',
 					customText: '',
 					variations: [
@@ -541,6 +559,10 @@ class CSButtonPreview extends React.Component {
 					propertyName: 'disabled',
 					description: 'Logic for disabled state',
 					options: ['condition']
+				},
+				{
+					propertyName: 'iconColor',
+					description: 'For changing only icon color inside button'
 				},
 				{
 					propertyName: 'iconDisplay',

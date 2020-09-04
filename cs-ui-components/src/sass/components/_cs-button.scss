@@ -18,6 +18,7 @@
 	--cs-button-bg: var(--cs-button-default-bg);
 	--cs-button-br: var(--cs-button-default-br);
 	--cs-button-box: var(--cs-btn-custom-c, var(--cs-button-default-box));
+	--cs-button-icon-c: var(--cs-btn-custom-icon-c, var(--cs-button-c));
 	&::before, &::after { // Background and border
 		content: "";
 		position: absolute;
@@ -50,7 +51,7 @@
 			height: var(--cs-icon-size, 1rem);
 			width: var(--cs-icon-size, 1rem);
 			transition: transform ease 100ms;
-			@include sf(--cs-button-c);
+			@include sf(--cs-button-icon-c);
 		}
 	}
 	.cs-btn-label {
