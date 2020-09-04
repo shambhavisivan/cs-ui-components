@@ -39,6 +39,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 	private timeoutRef: NodeJS.Timeout;
 	private popupTriggered = false;
 	private tooltipRef: React.RefObject<HTMLDivElement>;
+	private tooltipId = 'cs-tooltip-root';
 
 	constructor(props: CSTooltipProps) {
 		super(props);
@@ -48,6 +49,14 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		this.state = {
 			hidden: props.delayTooltip && props.delayTooltip > 0
 		};
+
+		let tooltipRoot = document.getElementById(this.tooltipId);
+		if (!tooltipRoot) {
+			tooltipRoot = document.createElement('div');
+			tooltipRoot.className = this.tooltipId;
+			tooltipRoot.id = this.tooltipId;
+			document.body.appendChild(tooltipRoot);
+		}
 	}
 
 	render() {
@@ -127,10 +136,8 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 						) : (
 							<>
 								{this.state.computedTooltipStyle && (
-									<Portal>
-										<div className="cs-app-wrapper">
-											<div className={tooltipWrapperClasses}>{tooltip}</div>
-										</div>
+									<Portal node={document && document.getElementById(this.tooltipId)} >
+										<div className={tooltipWrapperClasses}>{tooltip}</div>
 									</Portal>
 								)}
 							</>

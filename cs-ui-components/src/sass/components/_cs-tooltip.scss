@@ -1,7 +1,9 @@
 // CS Tooltip
 //
 // CS tooltip component.
-
+.cs-tooltip-root {
+	display: contents;
+}
 .cs-tooltip {
 	border-radius: 0.25rem;
 	display: none;
@@ -220,7 +222,7 @@
 
 .cs-tooltip-wrapper {
 	align-items: center;
-	display: inline-flex;
+	display: flex;
 	position: relative;
 	outline: 0;
 
