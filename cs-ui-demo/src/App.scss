@@ -599,6 +599,10 @@ body,
 							top: 0.5rem;
 						}
 					}
+
+					&.datetimepicker-preview {
+						overflow: visible;
+					}
 				}
 
 				&:last-child {

@@ -10,6 +10,7 @@ import CSCheckbox, { CSCheckboxBorderType, CSCheckboxVariant } from './component
 import CSChip, { CSChipVariant, CSChipVariantStyle } from './components/CSChip';
 import CSCustomSelect, { CSCustomSelectBorderType } from './components/CSCustomSelect';
 import CSDatepicker, { CSDatepickerDropdownMode } from './components/CSDatepicker';
+import CSDateTimePicker from './components/CSDateTimePicker';
 import CSDivider, { CSDividerVariant } from './components/CSDivider';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './components/CSFieldErrorMsg';
 import CSIcon, { CSIconOrigin } from './components/CSIcon';
@@ -89,6 +90,7 @@ export {
 	CSCustomSelectBorderType,
 	CSDatepicker,
 	CSDatepickerDropdownMode,
+	CSDateTimePicker,
 	CSDivider,
 	CSDividerVariant,
 	CSFieldErrorMsg,

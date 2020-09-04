@@ -8,6 +8,18 @@
 		width: 100%;
 	}
 
+	&.cs-datepicker-today-btn {
+		.react-datepicker__tab-loop {
+			.react-datepicker-popper[data-placement^="top"] {
+				.react-datepicker .react-datepicker__triangle {
+					@include css4 {
+						border-top-color: cvar(--cs-datepicker-today-bg);
+					}
+				}
+			}
+		}
+	}
+
 	.react-datepicker-wrapper {
 		width: 100%;
 
@@ -56,6 +68,7 @@
 	.react-datepicker__tab-loop {
 
 		.react-datepicker-popper {
+			min-width: 22rem;
 
 			.react-datepicker {
 				@include css4 {
@@ -64,6 +77,7 @@
 				}
 
 				.react-datepicker__triangle {
+					left: 2rem !important;
 					@include css4 {
 						border-bottom-color: cvar(--cs-datepicker-bg);
 					}
@@ -204,6 +218,7 @@
 				.react-datepicker__today-button {
 					border-bottom-left-radius: 0.3rem;
 					border-bottom-right-radius: 0.3rem;
+					@include sbg(--cs-datepicker-today-bg);
 					&:hover {
 						@include sbg(--cs-datepicker-today-hover);
 					}
@@ -309,6 +324,57 @@
 
 	&.cs-datepicker-square .react-datepicker-wrapper input {
 		border-radius: 0;
+	}
+
+	// datetimepicker
+	&.cs-datetimepicker {
+		width: var(--datetimepicker-width, auto);
+
+		.react-datepicker__header,
+		.react-datepicker__time-container {
+			@include css4 {
+				border-color: cvar(--cs-datepicker-br);
+			}
+		}
+
+		.react-datepicker__header {
+			border-top-left-radius: 0;
+
+			.react-datepicker-time__header {
+				font-size: 0.8125rem;
+			}
+		}
+
+		.react-datepicker__time-container,
+		.react-datepicker__time-box {
+			width: 95px;
+		}
+
+		.react-datepicker__tab-loop .react-datepicker-popper .react-datepicker .react-datepicker__navigation.react-datepicker__navigation--next {
+			right: 105px;
+
+			&.react-datepicker__navigation--next--with-today-button {
+				right: 0.5rem;
+
+				+ .react-datepicker__month-container > .react-datepicker__header {
+					border-top-left-radius: 0.3rem;
+					border-top-right-radius: 0;
+				}
+			}
+		}
+
+		.react-datepicker__time-container--with-today-button {
+			border-top-left-radius: 0;
+			right: -95px;
+
+			.react-datepicker {
+				position: static;
+			}
+		}
+
+		.react-datepicker__navigation--next--with-time ~ .react-datepicker__time-container > .react-datepicker__time {
+			border-bottom-right-radius: 0.3rem;
+		}
 	}
 }
 
