@@ -2,23 +2,28 @@
 
 Generic configurable React form component.
 
+### 1.0.0-alpha.110:
+* Replaced standard buttons, SimpleField, BooleanField SelectField and NumberField with cs-ui-components.
+* All attribute types now have titles.
+* Added a date time field type.
+
 ### 1.0.0-alpha.109:
-* added fixes for numberfield to display 0.
+* Added fixes for numberfield to display 0.
 
 ### 1.0.0-alpha.108:
-* added simple fixes for numberfield and simplefield.
-* added fix for handleclickoutside overriding other fields' click.
+* Added simple fixes for numberfield and simplefield.
+* Added fix for handleclickoutside overriding other fields' click.
 
 ### 1.0.0-alpha.107:
-* added styles for referenceField, numberField and selectField
+* Added styles for referenceField, numberField and selectField
 
 ### 1.0.0-alpha.106:
 * Made fetchReferenceOptions an optional prop to CSForm.
-* minor bug fixes.
+* Minor bug fixes.
 
 ### 1.0.0-alpha.105:
 * Added support to ReferenceField.
-* bumped react to 16.12.
+* Bumped react to 16.12.
 
 ### 1.0.0-alpha.104:
 * Added support to NumberField.
