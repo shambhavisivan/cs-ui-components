@@ -64,6 +64,10 @@ export interface FieldDescriptor extends ComponentStatusConfiguration {
 	/* Columns to be displayed in reference field options.When absent 'Name' column is displayed
 	 */
 	referenceOptionColumnDefs?: Array<ReferenceOptionColumn>;
+	/**
+	 * The time interval to be applied to time selection, relevant for DATETIME fieldType.
+	 */
+	timeInterval?: number;
 }
 
 /**

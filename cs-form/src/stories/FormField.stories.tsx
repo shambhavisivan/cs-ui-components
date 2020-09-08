@@ -38,8 +38,7 @@ const locale: LocaleSettings = {
 			'Dec'
 		],
 		timeCaption: 'time',
-		timeFormat: 'HH:mm',
-		timeInterval: 15
+		timeFormat: 'HH:mm'
 	},
 	number: {
 		decimalSeparator: '.',
@@ -200,7 +199,8 @@ formFieldStories.add(
 		const descriptor: FieldDescriptor = {
 			fieldType: 'DATETIME',
 			name: 'dateField',
-			label: 'date field'
+			label: 'date field',
+			timeInterval: 15
 		};
 
 		return (

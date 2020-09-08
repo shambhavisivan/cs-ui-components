@@ -36,7 +36,7 @@ export class DateTimeField extends React.Component<FormFieldProps, {}> {
 				title={title}
 				showTimeSelect
 				timeFormat={this.props.locale.dates.timeFormat}
-				timeIntervals={this.props.locale.dates.timeInterval || 5}
+				timeIntervals={this.props.descriptor.timeInterval || 1}
 				timeCaption={timeCaption}
 			/>
 		);

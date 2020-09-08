@@ -15,7 +15,6 @@ export interface DateFieldLocale {
 	firstDayOfWeek: number;
 	daysInFirstWeek: number;
 	timeCaption?: string;
-	timeInterval?: number;
 }
 
 export class DateField extends React.Component<FormFieldProps, {}> {
