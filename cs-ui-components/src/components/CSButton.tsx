@@ -31,7 +31,7 @@ export interface CSButtonProps {
 	openInNewTab?: boolean;
 	size?: CSButtonSize;
 	width?: CSButtonWidth;
-	value?: string;
+	value?: any;
 }
 
 class CSButton extends React.Component<CSButtonProps> {
