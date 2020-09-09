@@ -17,7 +17,7 @@ class ReleaseNotes extends React.Component<any, CSReleaseNotesState> {
 		};
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		const releaseNotesPath = require('../ReleaseNotes.md');
 		// Get the contents from the Markdown file and put them in the React state, so we can reference it in render() below.
 		fetch(releaseNotesPath)
