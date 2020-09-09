@@ -20,6 +20,7 @@ export const SelectField: React.FC<SelectFieldProps> = props => {
 			onChange={(e: React.ChangeEvent<HTMLSelectElement>) => props.handleFieldChange(e.target.value)}
 			value={value}
 			title={value}
+			labelHidden
 		>
 			{props.selectOptions && props.selectOptions.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
 		</CSSelect>

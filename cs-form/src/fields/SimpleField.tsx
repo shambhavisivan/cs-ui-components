@@ -16,6 +16,7 @@ export const SimpleField: React.FC<FormFieldProps> = props => {
 			readOnly={props.status === 'visible'}
 			hidden={props.status === 'hidden'}
 			title={value}
+			labelHidden
 		/>
 	);
 };

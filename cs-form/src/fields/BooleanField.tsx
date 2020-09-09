@@ -14,6 +14,7 @@ export const BooleanField: React.FC<FormFieldProps> = props => {
 			disabled={props.status === 'visible'}
 			hidden={props.status === 'hidden'}
 			title={props.value ? 'True' : 'False'}
+			labelHidden
 		/>
 	);
 };
