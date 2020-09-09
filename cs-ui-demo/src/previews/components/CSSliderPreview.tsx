@@ -5,7 +5,7 @@ import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSSlider} from '@cloudsense/cs-ui-components';
+import {CSSlider, CSAlert} from '@cloudsense/cs-ui-components';
 
 class CSSliderPreview extends React.Component {
 
@@ -203,7 +203,52 @@ class CSSliderPreview extends React.Component {
 									label="Select value"
 									min="0"
 									max="100"
-									step="25"
+									step="20"
+								/>
+						},
+						{
+							string: '',
+							component:
+								<CSSlider
+									label="Select value"
+									min="20"
+									max="100"
+									step="20"
+								/>
+						},
+						{
+							string: '',
+							component:
+								<CSSlider
+									label="Select value"
+									min="20"
+									max="80"
+									step="20"
+								/>
+						},
+						{
+							string: '',
+							component:
+								<CSSlider
+									label="Select value"
+									min="-60"
+									max="40"
+									step="20"
+								/>
+						}
+					]
+				},
+				{
+					propName: 'stepValues',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSSlider
+									label="Select value"
+									min="0"
+									max="100"
+									stepValues={['max', '0', '1', '2', '3']}
 								/>
 						}
 					]
@@ -458,7 +503,11 @@ class CSSliderPreview extends React.Component {
 				},
 				{
 					propertyName: 'step',
-					description: 'Slader range granularity'
+					description: 'Slider range granularity'
+				},
+				{
+					propertyName: 'stepValues',
+					description: 'Custom array for slider range granularity'
 				},
 				{
 					propertyName: 'title',
@@ -497,6 +546,7 @@ class CSSliderPreview extends React.Component {
 			<>
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} />
+					<CSAlert variant="info" text="Props min and max are required for all instances of CSSlider besides those that use the prop stepValues. stepValues creates it's own values for min and max based on the number of items in it's array."/>
 					<PreviewProperties name={component.name} examples={component.examples}/>
 					<PreviewTable components={[component]} />
 				</div>

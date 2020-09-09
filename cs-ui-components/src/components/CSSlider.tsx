@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 import CSLabel from './CSLabel';
 import { CSTooltipPosition } from './CSTooltip';
@@ -16,13 +16,14 @@ export interface CSSliderProps {
 	label?: string;
 	labelHidden?: boolean;
 	labelTitle?: boolean;
-	max: string;
-	min: string;
+	max?: string;
+	min?: string;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	required?: boolean;
 	size?: CSSliderSize;
 	step?: string;
 	title?: string;
+	stepValues?: Array<any>;
 	tooltipPosition?: CSTooltipPosition;
 	value?: string;
 }
@@ -30,6 +31,10 @@ export interface CSSliderProps {
 export interface CSSliderState {
 	value?: string;
 	prevValue?: any;
+	steps?: Array<number>;
+	step?: any;
+	min?: string;
+	max?: string;
 }
 
 export function fixControlledValue<T>(value: T) {
@@ -44,8 +49,8 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 	static getDerivedStateFromProps(nextProps: CSSliderProps, { prevValue }: CSSliderState) {
 		const newState: Partial<CSSliderState> = { prevValue: nextProps.value };
 		if (prevValue !== nextProps.value) {
-		  newState.value = nextProps.value;
-		  return newState;
+			newState.value = nextProps.value;
+			return newState;
 		}
 		return null;
 	}
@@ -55,8 +60,13 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 		const value = typeof props.value === undefined ? '' : props.value;
 		this.state = {
 			value,
-			prevValue: props.value
+			prevValue: props.value,
+			steps: [],
+			step: props.step,
+			min: props.min,
+			max: props.max
 		};
+		this.stepsIcons = this.stepsIcons.bind(this);
 	}
 
 	handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,6 +79,36 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 		});
 	}
 
+	componentDidMount() {
+		this.stepsIcons();
+		this.stepValuesIcons();
+		this.setState({});
+	}
+
+	stepsIcons() {
+		const initialStep = Number(this.props.min);
+		const numberOfSteps = (Number(this.props.max) - Number(this.props.min)) / Number(this.props.step);
+		let stepInterval = initialStep;
+
+		this.state.steps.push(stepInterval);
+
+		for (let step = 0; step < numberOfSteps; step++) {
+			stepInterval = stepInterval + Number(this.props.step);
+			this.state.steps.push(stepInterval);
+		}
+	}
+
+	stepValuesIcons() {
+		const stepValues = this.props.stepValues;
+		if (stepValues !== undefined) {
+			const numberOfStepValues = stepValues.length;
+			const newMax = String(numberOfStepValues - 1);
+			this.setState({max : newMax});
+			this.setState({min : '0'});
+			this.setState({step : 1});
+		}
+	}
+
 	render() {
 		const sliderGroupClasses = classNames(
 			'cs-slider-group',
@@ -76,6 +116,21 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 				[`${this.props.className}`]: this.props.className,
 				[`cs-slider-group-${this.props.size}`]: this.props.size
 			}
+		);
+
+		const exportedValue = `${this.props.stepValues !== undefined ? this.props.stepValues[Number(this.state.value)] : this.state.value}`;
+
+		const allSteps = this.state.steps;
+		const percentageRange = ((Number(this.state.value) - Number(this.props.min)) / (Number(this.props.max) - Number(this.props.min))) * 100;
+
+		const valueStyle: CSSProperties = {
+			'--cs-slider-value-position': percentageRange + '%'
+		};
+
+		const valueClasses = classNames(
+			'cs-slider-max-value',
+			percentageRange === 0 ? 'start' : null,
+			percentageRange === 100 ? 'end' : null
 		);
 
 		return (
@@ -96,26 +151,51 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 						className="cs-slider"
 						disabled={this.props.disabled}
 						id={this.props.id}
-						max={this.props.max}
-						min={this.props.min}
+						max={this.state.max}
+						min={this.state.min}
 						required={this.props.required}
-						step={this.props.step}
+						step={this.state.step}
 						value={fixControlledValue(this.state.value)}
 						type="range"
 						onChange={this.handleOnChange}
 						title={this.props.title}
 						aria-required={this.props.required}
 					/>
-					<span className="cs-slider-max-value">{this.state.value}</span>
+					{this.props.step ? (
+						<div className="cs-slider-steps-wrapper">
+							{allSteps.map(step => (
+								<span key={step} className="cs-slider-step">
+									<span className="cs-slider-step-circle"/>
+									<span className="cs-slider-step-number">{step}</span>
+								</span>
+							))}
+						</div>
+					) : null}
+					{this.props.stepValues ? (
+						<div className="cs-slider-steps-wrapper">
+							{this.props.stepValues.map(stepValue => (
+								<span key={stepValue} className="cs-slider-step">
+									<span className="cs-slider-step-circle"/>
+									<span className="cs-slider-step-number">{stepValue}</span>
+								</span>
+							))}
+						</div>
+					) : null}
+					{!this.props.step && !this.props.stepValues ? (
+						<div className="cs-slider-max-value-wrapper">
+							<span className={valueClasses} style={valueStyle}>{this.state.value}</span>
+						</div>
+					) : null}
+					<div>{exportedValue}</div>
 				</div>
 				{(this.props.error && this.props.errorMessage) &&
 					<CSFieldErrorMsg message={this.props.errorMessage} />
 				}
 			</div>
 		);
-
 	}
-
 }
+
+// export const exportedValue: any;
 
 export default CSSlider;
