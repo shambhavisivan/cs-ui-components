@@ -174,7 +174,11 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 						/>
 					}
 					<div className={inputSearchGroupClasses} style={style}>
-						<CSIcon name="search" className="cs-input-search-icon" />
+						<CSIcon
+							name="search"
+							className="cs-input-search-icon"
+							color="var(--cs-input-icon-fill)"
+						/>
 						<input className={inputSearchClasses}
 							autoFocus={this.props.autoFocus}
 							onChange={this.handleOnChange}
@@ -195,8 +199,9 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 						{this.state.value &&
 							<CSButton
 								btnType="transparent"
+								btnStyle="brand"
 								className="cs-input-search-clear"
-								color="var(--cs-input-clear)"
+								iconColor="var(--cs-input-clear)"
 								iconName="close"
 								iconDisplay="icon-only"
 								label="clear"

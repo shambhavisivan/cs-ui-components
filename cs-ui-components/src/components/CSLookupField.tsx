@@ -149,7 +149,11 @@ class CSLookupField extends React.Component<CSLookupFieldProps, CSLookupFieldSta
 					/>
 				}
 				<div className={lookupFieldGroupClasses}>
-					<CSIcon name="search" className="cs-lookup-field-icon"/>
+					<CSIcon
+						name="search"
+						className="cs-lookup-field-icon"
+						color="var(--cs-input-icon-fill)"
+					/>
 					<input
 						className={lookupFieldClasses}
 						type="text"
@@ -165,8 +169,9 @@ class CSLookupField extends React.Component<CSLookupFieldProps, CSLookupFieldSta
 					{this.state.searchTerm &&
 						<CSButton
 							btnType="transparent"
+							btnStyle="brand"
 							className="cs-lookup-field-clear"
-							color="var(--cs-input-clear)"
+							iconColor="var(--cs-input-clear)"
 							iconName="close"
 							iconDisplay="icon-only"
 							label="clear"

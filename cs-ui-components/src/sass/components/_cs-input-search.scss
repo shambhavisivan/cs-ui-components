@@ -17,28 +17,19 @@
 	position: relative;
 	width: var(--search-width, 100%);
 
-	.cs-icon {
+	.cs-input-search-icon {
 		width: 0.875rem;
 		height: 0.875rem;
 		transform: translateY(60%);
 		display: block;
 		position: absolute;
 		cursor: pointer;
-		@include sf(--cs-input-icon-fill);
-	}
-
-	.cs-input-search-icon {
 		pointer-events: none;
 	}
 
 	.cs-input-search-clear {
 		position: absolute;
 		top: 0.25rem;
-
-		.cs-icon {
-			transform: none;
-			position: relative;
-		}
 	}
 
 	&.cs-icon-left {

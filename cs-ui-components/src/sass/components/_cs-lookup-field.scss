@@ -16,17 +16,13 @@
 	flex-direction: column;
 	position: relative;
 
-	.cs-icon {
+	.cs-lookup-field-icon {
 		width: 0.875rem;
 		height: 0.875rem;
 		transform: translateY(60%);
 		display: block;
 		position: absolute;
 		cursor: pointer;
-		@include sf(--cs-input-icon-fill);
-	}
-
-	.cs-lookup-field-icon {
 		pointer-events: none;
 		left: 0.5rem;
 	}
@@ -35,10 +31,6 @@
 		position: absolute;
 		top: 0.25rem;
 		right: 0.25rem;
-		.cs-icon {
-			transform: none;
-			position: relative;
-		}
 	}
 }
 
