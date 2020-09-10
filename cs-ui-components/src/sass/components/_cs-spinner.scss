@@ -7,7 +7,7 @@
 	right: 0;
 	bottom: 0;
 	left: 0;
-	z-index: $z-index-spinner-wrapper;
+	z-index: var(--z-index-spinner-wrapper);
 	visibility: visible;
 	opacity: 1;
 	transition: opacity 0.2s ease, visibility 0s;
@@ -57,7 +57,7 @@
 
 .cs-spinner {
 	position: relative;
-	z-index: $z-index-spinner;
+	z-index: var(--z-index-spinner);
 	transform: rotate(90deg);
 }
 

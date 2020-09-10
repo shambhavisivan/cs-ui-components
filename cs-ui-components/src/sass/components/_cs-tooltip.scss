@@ -16,7 +16,7 @@
 	padding: 0.5rem 0.75rem;
 	position: fixed;
 	transition: 0.25s;
-	z-index: $z-index-tooltip;
+	z-index: var(--z-index-tooltip);
 	outline: 0;
 	white-space: normal;
 

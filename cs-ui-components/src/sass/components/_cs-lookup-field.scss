@@ -52,7 +52,7 @@
 	max-height: 20rem;
 	overflow: auto;
 	border-radius: 0 0 0.25rem 0.25rem;
-	z-index: $z-index-lookup-dropdown;
+	z-index: var(--z-index-lookup-dropdown);
 	@include css4 {
 		border: 1px solid cvar(--cs-lookup-field-results-br);
 	}

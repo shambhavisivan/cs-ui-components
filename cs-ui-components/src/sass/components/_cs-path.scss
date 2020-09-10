@@ -14,7 +14,7 @@
 		height: 2rem;
 		overflow: hidden;
 		margin-right: 0.5rem;
-		z-index: $z-index-path;
+		z-index: var(--z-index-path);
 
 		.cs-path-item {
 			position: relative;
@@ -39,7 +39,7 @@
 				position: absolute;
 				left: 0.5rem;
 				right: 0.5rem;
-				z-index: $z-index-path-psuedo;
+				z-index: var(--z-index-path-psuedo);
 				@include sbg(--cs-path-tab);
 			}
 

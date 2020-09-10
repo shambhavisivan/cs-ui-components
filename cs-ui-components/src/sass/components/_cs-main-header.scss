@@ -4,7 +4,7 @@
 	justify-content: center;
 	padding: 1rem;
 	height: 4.5rem;
-	z-index: $z-index-main-header;
+	z-index: var(--z-index-main-header);
 
 	&.cs-main-header-sticky {
 		position: sticky;

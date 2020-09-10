@@ -1,18 +1,18 @@
-$z-index-path-psuedo: -1;
-$z-index-button: 1;
-$z-index-custom-select-dropdown: 1;
-$z-index-button-focus: 2;
-$z-index-button-icon: 2;
-$z-index-button-label: 2;
-$z-index-main-header: 3;
-$z-index-btn-dropdown-items-wrapper: 5;
-$z-index-path: 10;
-$z-index-modal-overlay: 10;
-$z-index-tooltip: 20;
-$z-index-reset-zen-more-tabs-ul: 99;
-$z-index-visibility-menu-dropdown: 1000;
-$z-index-toast: 1000;
-$z-index-modal: 9000;
-$z-index-spinner-wrapper: 9050;
-$z-index-spinner: 9051;
-$z-index-lookup-dropdown: 100;
+:root {
+	--z-index-path-psuedo: -1;
+	--z-index-divider-label: 1;
+	--z-index-custom-select-dropdown: 1;
+	--z-index-button-focus: 2;
+	--z-index-button-icon: 2;
+	--z-index-button-label: 2;
+	--z-index-main-header: 3;
+	--z-index-btn-dropdown-items-wrapper: 5;
+	--z-index-path: 10;
+	--z-index-tooltip: 20;
+	--z-index-reset-zen-more-tabs-ul: 99;
+	--z-index-lookup-dropdown: 100;
+	--z-index-toast: 1000;
+	--z-index-modal: 9000;
+	--z-index-spinner-wrapper: 9050;
+	--z-index-spinner: 9051;
+}

@@ -45,7 +45,7 @@
 		height: calc(2rem - 2px);
 		min-width: 2rem; // IE11 Support
 		width: 2rem;
-		z-index: $z-index-button-icon;
+		z-index: var(--z-index-button-icon);
 		pointer-events: none;
 		.cs-icon {
 			height: var(--cs-icon-size, 1rem);
@@ -61,7 +61,7 @@
 		height: calc(2rem - 2px);
 		font-size: 0.8125rem;
 		white-space: nowrap;
-		z-index: $z-index-button-label;
+		z-index: var(--z-index-button-label);
 		@include sc(--cs-button-c);
 		pointer-events: none;
 	}
@@ -71,7 +71,7 @@
 	&:focus {
 		outline: none;
 		position: relative;
-		z-index: $z-index-button-focus;
+		z-index: var(--z-index-button-focus);
 		&::after {
 			@include css4 {
 				box-shadow: 0 0 3px cvar(--cs-button-box);
@@ -570,7 +570,7 @@
 		position: absolute;
 		top: 100%;
 		padding: 0.25rem 0 0 0;
-		z-index: $z-index-btn-dropdown-items-wrapper;
+		z-index: var(--z-index-btn-dropdown-items-wrapper);
 
 		.cs-btn-dropdown-item-wrapper {
 			width: auto;

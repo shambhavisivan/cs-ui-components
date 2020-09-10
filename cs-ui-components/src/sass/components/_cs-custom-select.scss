@@ -39,7 +39,7 @@
 	padding: 0.25rem 0;
 	position: absolute;
 	width: 100%;
-	z-index: $z-index-custom-select-dropdown;
+	z-index: var(--z-index-custom-select-dropdown);
 	@include sbg(--cs-custom-select-dropdown-bg);
 	@include css4 {
 		border: 1px solid cvar(--cs-custom-select-dropdown-br);
