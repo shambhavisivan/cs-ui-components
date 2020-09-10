@@ -169,6 +169,10 @@
 			padding: 0;
 			width: 1.5rem;
 			min-width: 1.5rem;
+			.cs-btn-icon {
+				width: inherit;
+				min-width: inherit;
+			}
 		}
 		&.cs-btn-no-icon {
 			padding: 0 1rem;
