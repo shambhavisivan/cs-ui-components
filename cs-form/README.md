@@ -2,6 +2,10 @@
 
 Generic configurable React form component.
 
+### 1.0.0-alpha.111:
+* Moved timeInterval from DateTime prop to descriptor. The descriptor can be different for every attribute where as the props are passed in to the whole cs-form.
+* Fixed duplicated labelling on fields.
+
 ### 1.0.0-alpha.110:
 * Replaced standard buttons, SimpleField, BooleanField SelectField and NumberField with cs-ui-components.
 * All attribute types now have titles.
