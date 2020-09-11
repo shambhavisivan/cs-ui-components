@@ -13,6 +13,7 @@ export interface CSModalProps {
 	loading?: boolean;
 	loadingText?: string;
 	onClose?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+	outerClickClose?: boolean;
 	size?: CSModalSize;
 	style?: object;
 }
@@ -20,8 +21,12 @@ export interface CSModalProps {
 class CSModal extends React.Component<CSModalProps> {
 	modalId = 'cs-modal-root';
 
+	node: HTMLDivElement;
+
 	constructor(props: CSModalProps) {
 		super(props);
+
+		this.handleOuterClick = this.handleOuterClick.bind(this);
 
 		let modalRoot = document.getElementById(this.modalId);
 		if (!modalRoot) {
@@ -30,6 +35,26 @@ class CSModal extends React.Component<CSModalProps> {
 			modalRoot.id = this.modalId;
 			document.body.appendChild(modalRoot);
 		}
+	}
+
+	componentDidMount() {
+		if (!this.props.outerClickClose) {
+			return;
+		}
+		document.addEventListener('click', this.handleOuterClick);
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener('click', this.handleOuterClick);
+	}
+
+	handleOuterClick(e: any) {
+		// ignore clicks on the component itself
+		if (this.node && this.node.contains(e.target)) {
+			return;
+		}
+
+		this.props.onClose(e);
 	}
 
 	render() {
@@ -61,6 +86,7 @@ class CSModal extends React.Component<CSModalProps> {
 								</button>
 							)}
 							<div
+								ref={node => this.node = node}
 								className={
 									this.props.loading
 										? 'cs-modal-content cs-modal-loading'

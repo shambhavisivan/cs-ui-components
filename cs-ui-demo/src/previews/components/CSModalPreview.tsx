@@ -18,6 +18,7 @@ interface CSModalPreviewState {
 	modalOpen: string | undefined;
 	secondModalOpen: boolean;
 }
+
 class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 	constructor(props: any) {
 		super(props);
@@ -541,6 +542,56 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 							)
 						}
 					]
+				},
+				{
+					propName: 'outerClickClose',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component: (
+								<div>
+									<CSButton
+										label="Open Modal"
+										onClick={() => this.setState({ modalOpen: 'clickOutside' })}
+									/>
+									{this.state.modalOpen === 'clickOutside' && (
+										<CSModal
+											size="small"
+											closeButton
+											id="id"
+											onClose={() => this.setState({ modalOpen: undefined })}
+											outerClickClose
+										>
+											<CSModalHeader
+												title="This is a test heading"
+												subtitle="This is a test subtitle"
+											/>
+											<CSModalBody>
+												<p>
+													Sit nulla est ex deserunt exercitation anim
+													occaecat.
+													<br />
+													<br />
+													Nostrud ullamco deserunt aute id consequat
+													veniam incididunt duis in sint irure nisi.
+													Mollit officia cillum Lorem ullamco minim
+													nostrud elit officia tempor esse quis. Cillum
+													sunt ad dolore quis aute consequat ipsum magna
+													exercitation reprehenderit magna. Tempor
+													cupidatat consequat elit dolor adipisicing.
+												</p>
+											</CSModalBody>
+											<CSModalFooter>
+												<CSButton label="Default Button" />
+												<CSButton label="Brand Button" btnStyle="brand" />
+											</CSModalFooter>
+										</CSModal>
+									)}
+								</div>
+							)
+						}
+					]
 				}
 			],
 
@@ -571,6 +622,10 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 				{
 					propertyName: 'onClose',
 					description: 'Logic for onClick event'
+				},
+				{
+					propertyName: 'outerClickClose',
+					description: 'Option to close modal on click outside'
 				},
 				{
 					propertyName: 'size',
