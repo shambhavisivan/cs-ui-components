@@ -38,7 +38,7 @@ class CSImagePreview extends React.Component {
 					variations: [
 						{
 							variationName: ['white'],
-							variationText: 'type="logo"',
+							variationText: ['type="logo"', 'longDescription="white cloudsense logo on black background"'],
 							quickLink: 'white logo',
 							string: '',
 							component:
@@ -47,6 +47,7 @@ class CSImagePreview extends React.Component {
 										type="logo"
 										color="white"
 										variant="initial"
+										longDescription="white cloudsense logo on black background"
 									/>
 								</div>
 						},
@@ -262,8 +263,7 @@ class CSImagePreview extends React.Component {
 				},
 				{
 					propertyName: 'id',
-					description: 'Image id vlaue',
-					options: []
+					description: 'Image id vlaue'
 				},
 				{
 					propertyName: 'type',
@@ -290,6 +290,10 @@ class CSImagePreview extends React.Component {
 						'15px',
 						'50%'
 					]
+				},
+				{
+					propertyName: 'longDescription',
+					description: 'Expanded description of the image'
 				}
 			]
 		};

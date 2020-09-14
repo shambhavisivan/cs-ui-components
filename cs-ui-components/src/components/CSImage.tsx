@@ -13,6 +13,7 @@ export interface CSImageProps {
 	type: CSImageType;
 	variant?: CSImageVariant;
 	width?: string;
+	longDescription?: string;
 }
 
 class CSImage extends React.Component<CSImageProps> {
@@ -40,6 +41,7 @@ class CSImage extends React.Component<CSImageProps> {
 				id={this.props.id}
 				style={style}
 				src={require(`../images/cs-${this.props.type}-${this.props.color}-${this.props.variant}.png`)} alt={`${this.props.type}-${this.props.color}-${this.props.variant}`}
+				aria-describedby={this.props.longDescription}
 			/>
 		);
 	}
