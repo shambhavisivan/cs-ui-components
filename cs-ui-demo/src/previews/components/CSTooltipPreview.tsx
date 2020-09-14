@@ -105,6 +105,13 @@ class CSTooltipPreview extends React.Component {
 								<CSTooltip  content="Lorem ipsum dolor sit amet, consectetur adipisicing elit." position="top-left"/>
 						},
 						{
+							variationName: ['top-center'],
+							quickLink: 'top-center',
+							string: '',
+							component:
+								<CSTooltip  content="Lorem ipsum dolor sit amet, consectetur adipisicing elit.." position="top-center"/>
+						},
+						{
 							variationName: ['bottom-right'],
 							quickLink: 'bottom-right',
 							string: '',
@@ -117,6 +124,13 @@ class CSTooltipPreview extends React.Component {
 							string: '',
 							component:
 								<CSTooltip  content="Lorem ipsum dolor sit amet, consectetur adipisicing elit.." position="bottom-left"/>
+						},
+						{
+							variationName: ['bottom-center'],
+							quickLink: 'bottom-center',
+							string: '',
+							component:
+								<CSTooltip  content="Lorem ipsum dolor sit amet, consectetur adipisicing elit.." position="bottom-center"/>
 						}
 					]
 				},
@@ -243,7 +257,7 @@ class CSTooltipPreview extends React.Component {
 							quickLink: 'absolute',
 							string: '',
 							component:
-								<CSTooltip content="Tooltip with position absolute" stylePosition="absolute" />
+								<CSTooltip content="Tooltip with position absolute" position="bottom-center" stylePosition="absolute" />
 						}
 					]
 				}
@@ -287,8 +301,10 @@ class CSTooltipPreview extends React.Component {
 					options: [
 						'top-right',
 						'top-left',
+						'top-center',
 						'bottom-right',
-						'bottom-left'
+						'bottom-left',
+						'bottom-center'
 					]
 				},
 				{

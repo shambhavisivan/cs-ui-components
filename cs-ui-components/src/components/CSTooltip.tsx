@@ -4,7 +4,7 @@ import CSIcon from './CSIcon';
 import { Portal } from 'react-portal';
 
 export type CSTooltipIconSize = 'small' | 'medium';
-export type CSTooltipPosition = 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left';
+export type CSTooltipPosition = 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left' | 'top-center' | 'bottom-center';
 export type CSTooltipStylePosition = 'fixed' | 'absolute';
 export type CSTooltipVariant = 'info' | 'warning' | 'error';
 
@@ -134,7 +134,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 						) : (
 							<>
 								{this.state.computedTooltipStyle && (
-									<Portal node={document && document.getElementById(this.tooltipId)} >
+									<Portal node={document && document.getElementById(this.tooltipId)}>
 										<div className={tooltipWrapperClasses}>{tooltip}</div>
 									</Portal>
 								)}
@@ -185,6 +185,10 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			wrapperInfo.width / 2;
 		const bottom = window.innerHeight - wrapperInfo.top + this.convertRemToPixels(0.5) + 2;
 		const left = wrapperInfo.left - this.convertRemToPixels(1.5) + wrapperInfo.width / 2;
+		const center = {
+			left: wrapperInfo.left + wrapperInfo.width / 2,
+			transform: 'translateX(-50%)'
+		};
 
 		switch (this.props.position) {
 			case 'bottom-right':
@@ -203,11 +207,27 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 					}
 				});
 				break;
+			case 'bottom-center':
+				this.setState({
+					computedTooltipStyle: {
+						top,
+						...center
+					}
+				});
+				break;
 			case 'top-left':
 				this.setState({
 					computedTooltipStyle: {
 						bottom,
 						right
+					}
+				});
+				break;
+			case 'top-center':
+				this.setState({
+					computedTooltipStyle: {
+						bottom,
+						...center
 					}
 				});
 				break;
