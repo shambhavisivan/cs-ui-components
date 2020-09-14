@@ -51,13 +51,13 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 			label: this.fileInput.current.files[0].name
 		});
 		if (this.props.onChange) {
-			this.props.onChange(this.fileInput.current.files);
+			this.props.onChange(this.fileInput.current.files[0]);
 		}
 	}
 	handleFileDrop(e: React.DragEvent<HTMLDivElement>) {
 		this.handleFileDragEvents(e);
 		if (this.props.onDrop) {
-			this.props.onDrop(e.dataTransfer.files);
+			this.props.onDrop(e.dataTransfer.files[0]);
 		}
 		this.setState({
 			label: e.dataTransfer.files[0].name,
