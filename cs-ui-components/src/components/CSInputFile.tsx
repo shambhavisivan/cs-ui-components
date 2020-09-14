@@ -136,7 +136,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 					aria-invalid={this.props.error}
 				>
 					{this.state.label ? (
-						<CSTooltip content={this.state.label}>
+						<CSTooltip content={this.state.label} position="top-center">
 							{input}
 						</CSTooltip>
 					) : (
