@@ -8,11 +8,13 @@
 
 	.cs-textarea {
 		@include input;
+		overflow: auto;
 		padding: 0.5rem 0.75rem;
 		line-height: 1.5;
 		resize: vertical;
 		height: 5rem;
 		max-height: var(--max-height, 100%);
+		white-space: normal;
 
 		//Square
 		&.cs-textarea-square {
