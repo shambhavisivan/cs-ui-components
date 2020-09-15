@@ -37,6 +37,8 @@ class CSProgressBar extends React.Component<CSProgressBarProps> {
 			<div
 				className={progressBarWrapperClasses}
 				id={this.props.id}
+				role="progressbar"
+				aria-valuenow={parseInt(this.props.progress, 10)}
 			>
 				<div className="cs-progress-bar-text">
 					{(this.props.label && !this.props.labelHidden) &&
