@@ -38,14 +38,14 @@ class CSMainHeader extends React.Component<CSMainHeaderProps> {
 		};
 
 		return (
-			<div
+			<header
 				className={mainHeaderGroupClasses}
 				id={this.props.id}
 			>
 				<div style={style} className="cs-main-header-inner">
 					{this.props.children}
 				</div>
-			</div>
+			</header>
 
 		);
 	}
