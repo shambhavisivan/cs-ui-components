@@ -17,7 +17,7 @@ class CSCardHeader extends React.Component<CSCardHeaderProps> {
 				className={cardHeaderClasses}
 				id={this.props.id}
 			>
-				{this.props.title}
+				<h2>{this.props.title}</h2>
 			</header>
 		);
 	}
