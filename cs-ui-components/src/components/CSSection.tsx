@@ -59,7 +59,11 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 			>
 				<h3 className={sectionTitleClasses}>
 					{this.props.collapsible ?
-						<button className="cs-section-button" onClick={this.toggle}>
+						<button
+							className="cs-section-button"
+							onClick={this.toggle}
+							aria-expanded={!this.state.collapsed}
+						>
 							{this.state.collapsed ?
 								<CSIcon name="chevronright"/>
 								:
@@ -75,7 +79,7 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 				{this.state.collapsed ?
 					null
 				:
-					<div className="cs-section-title">
+					<div className="cs-section-title" role="region">
 						{this.props.children}
 					</div>
 				}
