@@ -133,6 +133,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 					onDragEnter={!this.props.disabled ? this.handleDragEnter : null}
 					onDragLeave={!this.props.disabled ? this.handleDragLeave : null}
 					onDrop={!this.props.disabled ? this.handleFileDrop : null}
+					aria-invalid={this.props.error}
 				>
 					{this.state.label ? (
 						<CSTooltip content={this.state.label}>

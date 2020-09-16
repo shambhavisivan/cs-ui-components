@@ -97,6 +97,7 @@ class CSToggle extends React.Component<CSToggleProps, CSToggleState> {
 							checked={this.state.checked}
 							required={this.props.required}
 							id={this.props.id}
+							aria-invalid={this.props.error}
 						/>
 						<span className="cs-toggle-faux" title={this.props.title}/>
 					</label>

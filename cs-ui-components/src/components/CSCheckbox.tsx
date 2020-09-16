@@ -114,6 +114,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 								id={this.props.id}
 								onClick={this.handleOnClick}
 								name={this.props.name}
+								aria-invalid={this.props.error}
 							/>
 						<span className={checkboxFauxClasses} title={this.props.title} />
 					</label>

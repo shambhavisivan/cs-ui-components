@@ -159,6 +159,7 @@ class CSLookupField extends React.Component<CSLookupFieldProps, CSLookupFieldSta
 						value={this.state.searchTerm}
 						onChange={e => this.handleSearch(e)}
 						title={this.props.title}
+						aria-invalid={this.props.error}
 					/>
 					{this.state.searchTerm &&
 						<CSButton
