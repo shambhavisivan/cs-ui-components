@@ -4,7 +4,7 @@ import 'moment/min/locales';
 import React from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { CSGridCellEditorProps } from '../interfaces/cs-grid-cell-props';
+import { CSGridCellEditorProps, DateProps } from '../interfaces/cs-grid-cell-props';
 
 import {
 	CellData,
@@ -17,7 +17,10 @@ import { createLocale, dateFormat, formatLocale } from '../utils/cs-grid-date-he
  * A cell editor that displays a date picker.
  */
 export class CSGridDateEditor
-	extends React.Component<CSGridCellEditorProps<string>, CSGridCellEditorState<string>>
+	extends React.Component<
+		CSGridCellEditorProps<string> & DateProps,
+		CSGridCellEditorState<string>
+	>
 	implements CSGridCellEditor {
 	constructor(props: CSGridCellEditorProps<string>) {
 		super(props);
@@ -67,6 +70,11 @@ export class CSGridDateEditor
 		const formattedDate = formatLocale(date, 'Date');
 		const placeholderText = 'Click to select a date';
 
+		let openToDate: Date;
+		if (this.props.getOpenToDate && !this.state.value.cellValue) {
+			openToDate = moment(this.props.getOpenToDate(this.props.node.id), dateFormat).toDate();
+		}
+
 		return (
 			<div className='date-attribute'>
 				<DatePicker
@@ -80,6 +88,7 @@ export class CSGridDateEditor
 					inline={true}
 					value={formattedDate}
 					locale={createLocale(this.props.userInfo.dateLocale)}
+					openToDate={openToDate}
 				/>
 			</div>
 		);

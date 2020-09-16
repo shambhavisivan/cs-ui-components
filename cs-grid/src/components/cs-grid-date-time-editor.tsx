@@ -13,6 +13,7 @@ import {
 } from '../interfaces/cs-grid-base-interfaces';
 import {
 	createLocale,
+	dateFormat,
 	dateTimeFormat,
 	formatLocale,
 	timeFormat
@@ -78,6 +79,11 @@ export class CSGridDateTimeEditor
 		const formattedDate = formatLocale(date, 'DateTime');
 		const placeholderText = 'Click to select a date';
 
+		let openToDate: Date;
+		if (this.props.getOpenToDate && !this.state.value.cellValue) {
+			openToDate = moment(this.props.getOpenToDate(this.props.node.id), dateFormat).toDate();
+		}
+
 		return (
 			<div className='date-attribute'>
 				<DatePicker
@@ -96,6 +102,7 @@ export class CSGridDateTimeEditor
 					timeIntervals={this.props.timeInterval || 5}
 					timeCaption={this.props.userInfo.dateLocale?.timeCaption ?? 'Time'}
 					dateFormat={dateTimeFormat}
+					openToDate={openToDate}
 				/>
 			</div>
 		);

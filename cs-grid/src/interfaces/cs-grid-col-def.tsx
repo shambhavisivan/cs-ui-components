@@ -5,6 +5,7 @@ import {
 import { CellData, IsColumnFunc, SuppressKeyboardEventParams } from './cs-grid-base-interfaces';
 import {
 	BaseProps,
+	DateProps,
 	DateTimeProps,
 	DecimalProps,
 	IconProps,
@@ -56,7 +57,7 @@ interface BooleanColDef extends BaseColDef<boolean> {
 	cellType: 'Boolean';
 }
 
-interface DateColDef extends BaseColDef<string> {
+interface DateColDef extends BaseColDef<string>, DateProps {
 	cellType: 'Date';
 }
 

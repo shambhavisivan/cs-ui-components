@@ -205,6 +205,7 @@ export class App extends React.Component<object, AppState> {
 			},
 			{
 				cellType: 'Date',
+				getOpenToDate: (guid: string) => '1999-09-23',
 				header: {
 					label: 'Date Column'
 				},
@@ -213,6 +214,7 @@ export class App extends React.Component<object, AppState> {
 			},
 			{
 				cellType: 'DateTime',
+				getOpenToDate: (guid: string) => '2004-02-22',
 				header: {
 					label: 'Date Time Column'
 				},

@@ -98,9 +98,16 @@ export function isStandardIcon(object: any): object is StandardIcon {
 }
 
 /**
+ * getOpenToDate - Opens to this date if no date is currently selected.
+ */
+export interface DateProps {
+	getOpenToDate?: (guid: string) => string;
+}
+
+/**
  * timeInterval - The time interval used when selecting the time.
  */
-export interface DateTimeProps {
+export interface DateTimeProps extends DateProps {
 	timeInterval?: number;
 }
 

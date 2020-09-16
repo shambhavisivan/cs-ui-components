@@ -907,6 +907,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				agGridColDef.cellRenderer = 'dateRenderer';
 
 				dateColumns.set(columnDef.name, columnDef.userInfo);
+				this.addIfDefined(cellParams, 'getOpenToDate', columnDef.getOpenToDate);
 
 				const defaultSettings = {
 					filterParams: {
@@ -923,6 +924,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				agGridColDef.cellRenderer = 'dateTimeRenderer';
 
 				dateTimeColumns.set(columnDef.name, columnDef.userInfo);
+				this.addIfDefined(cellParams, 'getOpenToDate', columnDef.getOpenToDate);
 				this.addIfDefined(cellParams, 'timeInterval', columnDef.timeInterval);
 
 				const defaultSettings = {

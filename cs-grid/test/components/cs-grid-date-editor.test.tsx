@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import { CSGridDateEditor } from '../../src/components/cs-grid-date-editor';
 import { CellData } from '../../src/interfaces/cs-grid-base-interfaces';
-import { CSGridCellEditorProps } from '../../src/interfaces/cs-grid-cell-props';
+import { CSGridCellEditorProps, DateProps } from '../../src/interfaces/cs-grid-cell-props';
 import { UserInfo } from '../../src/interfaces/user-info';
 
 describe('CS Grid Date Editor', () => {
@@ -15,7 +15,7 @@ describe('CS Grid Date Editor', () => {
 	let colDef: ColDef;
 	let column: Column;
 	let columnApi: ColumnApi;
-	let cSGridCellEditorProps: CSGridCellEditorProps<string>;
+	let cSGridCellEditorProps: CSGridCellEditorProps<string> & DateProps;
 
 	let stopEditingMock: jest.Mock<any, any>;
 
@@ -47,6 +47,7 @@ describe('CS Grid Date Editor', () => {
 			context: {},
 			data: {},
 			eGridCell: { className: 'className' } as any,
+			getOpenToDate: (guid: string) => '2004-02-22',
 			node: new RowNode(),
 			rowIndex: 0,
 			stopEditing: stopEditingMock,
@@ -153,5 +154,10 @@ describe('CS Grid Date Editor', () => {
 		instance.onChange(new Date(testDate));
 
 		expect(mockOnChange.mock.calls.length).toEqual(1);
+	});
+
+	test('Renders a date editor that has no getOpenToDate, this should not cause errors.', () => {
+		cSGridCellEditorProps.getOpenToDate = undefined;
+		expect(() => shallow(<CSGridDateEditor {...cSGridCellEditorProps} />)).not.toThrow();
 	});
 });
