@@ -14,6 +14,7 @@ export interface CSInputFileProps {
 	dropAreaWidth?: string;
 	error?: boolean;
 	errorMessage?: CSFieldErrorMsgType;
+	fileSize?: boolean;
 	id?: string;
 	label: string;
 	onDrop?: (values: any) => any;
@@ -35,6 +36,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 			isDraggedOver: false
 		};
 
+		this.fileSizeDisplay = this.fileSizeDisplay.bind(this);
 		this.handleFileSubmit = this.handleFileSubmit.bind(this);
 		this.handleFileDragEvents = this.handleFileDragEvents.bind(this);
 		this.handleFileDrop = this.handleFileDrop.bind(this);
@@ -47,25 +49,50 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 		e.preventDefault();
 		e.stopPropagation();
 	}
+
 	handleFileSubmit() {
+		const file = this.fileInput.current.files[0];
+
 		this.setState({
-			label: this.fileInput.current.files[0].name
+			label: this.props.fileSize ? file.name + this.fileSizeDisplay(file) : file.name
 		});
+
 		if (this.props.onChange) {
-			this.props.onChange(this.fileInput.current.files[0]);
+			this.props.onChange(file);
 		}
 	}
+
 	handleFileDrop(e: React.DragEvent<HTMLDivElement>) {
+		const file = e.dataTransfer.files[0];
+
 		this.handleFileDragEvents(e);
 		if (this.props.onDrop) {
-			this.props.onDrop(e.dataTransfer.files[0]);
+			this.props.onDrop(file);
 		}
 		this.setState({
-			label: e.dataTransfer.files[0].name,
+			label: this.props.fileSize ? file.name + this.fileSizeDisplay(file) : file.name,
 			isDraggedOver: false
 		});
 		this.dragEventCounter = 0;
 	}
+
+	fileSizeDisplay(file: File) {
+		if (this.props.fileSize) {
+			let fileSizeDisplay;
+			if (file.size < 1000) {
+				// bytes
+				fileSizeDisplay = ' (' + Math.round(file.size) + 'B)';
+			} else if (file.size < 1000000) {
+				// kb
+				fileSizeDisplay = ' (' + Math.round(file.size / 1000) + 'KB)';
+			} else {
+				// mb
+				fileSizeDisplay = ' (' + Math.round(file.size / 1000000) + 'MB)';
+			}
+			return fileSizeDisplay;
+		}
+	}
+
 	handleAcceptFiles(acceptFiles: Array<string> | string) {
 		const newFiles = Array.isArray(acceptFiles) ? acceptFiles.join() : acceptFiles;
 		return newFiles;
@@ -83,6 +110,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 			this.setState({ isDraggedOver: false });
 		}
 	}
+
 	render() {
 		const {
 			accept,

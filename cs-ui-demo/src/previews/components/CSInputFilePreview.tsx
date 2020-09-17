@@ -117,6 +117,21 @@ class CSInputFilePreview extends React.Component {
 					]
 				},
 				{
+					propName: 'fileSize',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSInputFile
+									label="Upload directory"
+									fileSize
+								/>
+						}
+					]
+				},
+				{
 					propName: 'onChange',
 					variations: [
 						{
@@ -308,6 +323,14 @@ class CSInputFilePreview extends React.Component {
 				{
 					propertyName: 'errorMessage',
 					description: 'Error text message'
+				},
+				{
+					propertyName: 'fileSize',
+					description: 'Logic for file size visibility',
+					options: [
+						'false',
+						'true'
+					]
 				},
 				{
 					propertyName: 'id',
