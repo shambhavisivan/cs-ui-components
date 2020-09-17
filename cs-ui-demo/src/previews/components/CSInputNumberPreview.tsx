@@ -261,6 +261,36 @@ class CSInputNumberPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'step',
+					quickLink: 'step',
+					variations: [
+						{
+							variationName: ['1'],
+							string: '',
+							component:
+								<CSInputNumber label="Enter value:" type="number" step="1" />
+						},
+						{
+							variationName: ['0.01'],
+							string: '',
+							component:
+								<CSInputNumber label="Enter value:" type="number" step="0.01" />
+						},
+						{
+							variationName: ['0.001'],
+							string: '',
+							component:
+								<CSInputNumber label="Enter value:" type="number" step="0.001" />
+						},
+						{
+							variationName: ['any'],
+							string: '',
+							component:
+								<CSInputNumber label="Enter value:" type="number" step="any" />
+						}
+					]
+				},
+				{
 					propName: 'borderType',
 					variations: [
 						{
@@ -458,6 +488,10 @@ class CSInputNumberPreview extends React.Component {
 				{
 					propertyName: 'maxLength',
 					description: 'Input max length value (can be used only with type="text")'
+				},
+				{
+					propertyName: 'step',
+					description: 'A stepping interval to use when using up and down arrows to adjust the value'
 				},
 				{
 					propertyName: 'min',

@@ -31,6 +31,7 @@ export interface CSInputNumberProps {
 	placeholder?: string;
 	readOnly?: boolean;
 	required?: boolean;
+	step?: string;
 	title?: string;
 	tooltipPosition?: CSTooltipPosition;
 	type: string;
@@ -167,6 +168,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 						onKeyDown={this.handleOnKeyDown}
 						onPaste={this.handleOnPaste}
 						title={this.props.title}
+						step={this.props.step}
 					/>
 					{(this.props.error && this.props.errorMessage) &&
 						<CSFieldErrorMsg message={this.props.errorMessage} />
