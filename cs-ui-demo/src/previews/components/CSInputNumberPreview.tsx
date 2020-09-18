@@ -22,6 +22,10 @@ class CSInputNumberPreview extends React.Component {
 			count++;
 			alert('Input is focused!');
 		};
+		const onKeyDownHandler = (event: any) => {
+			alert(event.key + ' was pressed');
+		};
+		const onPasteHandler = () => alert('Value was pasted!');
 
 		const json = {
 			name: 'Input Number',
@@ -315,6 +319,28 @@ class CSInputNumberPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'onKeyDown',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSInputNumber label="Enter value:" onKeyDown={onKeyDownHandler} />
+						}
+					]
+				},
+				{
+					propName: 'onPaste',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSInputNumber label="Enter value:" onPaste={onPasteHandler} />
+						}
+					]
+				},
+				{
 					propName: 'name',
 					customText: '',
 					variations: [
@@ -452,6 +478,14 @@ class CSInputNumberPreview extends React.Component {
 				{
 					propertyName: 'onFocus',
 					description: 'Logic for onFocus event'
+				},
+				{
+					propertyName: 'onKeyDown',
+					description: 'Logic for onKeyDown event'
+				},
+				{
+					propertyName: 'onPaste',
+					description: 'Logic for onPaste event'
 				},
 				{
 					propertyName: 'placeholder',

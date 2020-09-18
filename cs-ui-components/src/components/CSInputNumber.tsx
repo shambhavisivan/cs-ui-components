@@ -26,6 +26,8 @@ export interface CSInputNumberProps {
 	onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 	onChange?: (value?: any) => any;
 	onFocus?: (event: React.FocusEvent<HTMLInputElement>) => any;
+	onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+	onPaste?: (event: React.ClipboardEvent<HTMLInputElement>) => void;
 	placeholder?: string;
 	readOnly?: boolean;
 	required?: boolean;
@@ -100,6 +102,18 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 		}
 	}
 
+	handleOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		if (this.props.onKeyDown) {
+			this.props.onKeyDown(e);
+		}
+	}
+
+	handleOnPaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+		if (this.props.onPaste) {
+			this.props.onPaste(e);
+		}
+	}
+
 	render() {
 		const inputNumberWrapperClasses = classNames(
 			'cs-input-number-wrapper',
@@ -150,6 +164,8 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 						onBlur={this.onBlur}
 						onFocus={this.onFocus}
 						onChange={this.handleOnChange}
+						onKeyDown={this.handleOnKeyDown}
+						onPaste={this.handleOnPaste}
 						title={this.props.title}
 					/>
 					{(this.props.error && this.props.errorMessage) &&
