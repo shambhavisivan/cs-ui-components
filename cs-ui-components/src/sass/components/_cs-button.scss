@@ -584,31 +584,38 @@
 			@include css4 {
 				border: 1px solid cvar(--cs-button-default-br);
 			}
-			.cs-btn {
+
+			li {
 				display: flex;
-				flex-direction: row;
-				border-radius: 0;
+				list-style-type: none;
 
-				.cs-btn-label {
-					font-size: 0.75rem;
-				}
-
-				&::after {
+				.cs-btn {
+					flex: 1;
+					display: flex;
+					flex-direction: row;
 					border-radius: 0;
-					@include css4 {
-						border: 1px solid cvar(--cs-transparent);
-					}
-				}
 
-				&:active:after {
-					@include css4 {
-						border: 1px solid cvar(--cs-button-active-br);
+					.cs-btn-label {
+						font-size: 0.75rem;
 					}
-				}
 
-				&:disabled::after {
-					@include css4 {
-						border: 1px solid cvar(--cs-transparent);
+					&::after {
+						border-radius: 0;
+						@include css4 {
+							border: 1px solid cvar(--cs-transparent);
+						}
+					}
+
+					&:active:after {
+						@include css4 {
+							border: 1px solid cvar(--cs-button-active-br);
+						}
+					}
+
+					&:disabled::after {
+						@include css4 {
+							border: 1px solid cvar(--cs-transparent);
+						}
 					}
 				}
 			}

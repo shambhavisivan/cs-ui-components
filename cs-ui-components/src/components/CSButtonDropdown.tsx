@@ -92,6 +92,17 @@ class CSButtonDropdown extends React.Component<CSButtonDropdownProps, CSButtonDr
 			}
 		);
 
+		const childrenWithWrapper =  React.Children.map(this.props.children, child => {
+			return (
+				<li role="none">
+					{React.cloneElement(
+						child as React.ReactElement<any>,
+						{ role: 'menuitem' }
+					)}
+				</li>
+			);
+		});
+
 		return (
 			<div
 				className={btnDropdownWrapperClasses}
@@ -111,18 +122,20 @@ class CSButtonDropdown extends React.Component<CSButtonDropdownProps, CSButtonDr
 					onClick={!this.props.hover ? this.toggleActive : null}
 					size={this.props.size}
 					label={this.props.label ? this.props.label : 'Toggle dropdown'}
+					ariaExpanded={this.state.active}
+					ariaHaspopup={!!Object(this.props.children).length}
 				/>
 				{this.props.hover ?
 					(<div className={btnDropdownItemClasses}>
-						<div className="cs-btn-dropdown-item-wrapper">
-							{this.props.children}
-						</div>
+						<ul className="cs-btn-dropdown-item-wrapper" role="menu">
+							{childrenWithWrapper}
+						</ul>
 					</div>) :
 					(this.state.active &&
 					<div className={btnDropdownItemClasses}>
-						<div className="cs-btn-dropdown-item-wrapper">
-							{this.props.children}
-						</div>
+						<ul className="cs-btn-dropdown-item-wrapper" role="menu">
+							{childrenWithWrapper}
+						</ul>
 					</div>)
 				}
 			</div>

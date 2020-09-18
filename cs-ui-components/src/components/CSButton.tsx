@@ -8,8 +8,11 @@ export type CSButtonSize = 'xsmall' | 'small' | 'normal' | 'large';
 export type CSButtonStyle = 'initial' | 'brand' | 'outline';
 export type CSButtonType = 'default' | 'error' | 'success' | 'transparent';
 export type CSButtonWidth = 'auto' | 'max';
+export type CSButtonRole = 'menuitem';
 
 export interface CSButtonProps {
+	ariaExpanded?: boolean;
+	ariaHaspopup?: boolean;
 	btnRound?: boolean;
 	btnStyle?: CSButtonStyle;
 	btnType?: CSButtonType;
@@ -29,9 +32,10 @@ export interface CSButtonProps {
 	loading?: boolean;
 	onClick?: (value: any) => any;
 	openInNewTab?: boolean;
+	role?: CSButtonRole;
 	size?: CSButtonSize;
-	width?: CSButtonWidth;
 	value?: any;
+	width?: CSButtonWidth;
 }
 
 class CSButton extends React.Component<CSButtonProps> {
@@ -128,7 +132,10 @@ class CSButton extends React.Component<CSButtonProps> {
 			'href': this.props.link && this.props.link,
 			'target': (this.props.openInNewTab && this.props.link) ? '_blank' : undefined,
 			'id': this.props.id,
-			'value': this.props.value
+			'value': this.props.value,
+			'aria-expanded': this.props.ariaExpanded,
+			'aria-haspopup': this.props.ariaHaspopup,
+			'role': this.props.role
 		};
 
 		return (
