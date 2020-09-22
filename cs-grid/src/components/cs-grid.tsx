@@ -90,6 +90,10 @@ export interface CSGridProps {
 	 */
 	deltaRowDataMode?: boolean;
 	suppressRowTransform?: boolean;
+	/**
+	 * Set to true/false to enable/disable Single Click Editing for cells, default: true
+	 */
+	singleClickEdit?: boolean;
 	onColumnStateChange?(columnState: string): void;
 	onSelectionChange?(selectedRows: Array<Row>): void;
 	onCellValueChange?(
@@ -204,6 +208,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		const quickFilterLocation = this.props.csGridQuickFilter.location;
 		const quickFilter = this.getQuickFilter();
 		const quickFilterPortals = this.getReactPortals(this.props.csGridQuickFilter, quickFilter);
+		const singleClickEdit = 'singleClickEdit' in this.props ? this.props.singleClickEdit : true;
 
 		return (
 			<>
@@ -231,7 +236,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 							onPaginationChanged={
 								paginationLocation !== 'None' ? this.onPaginationChanged : undefined
 							}
-							singleClickEdit={true}
+							singleClickEdit={singleClickEdit}
 							defaultColDef={{
 								comparator: CSGridDefaultComparator,
 								editable: true,
