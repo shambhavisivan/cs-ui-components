@@ -102,12 +102,10 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		return (
 			<div
 				className={tooltipWrapperClasses}
-				onMouseEnter={
-					this.props.stylePosition !== 'absolute' ? this.handleMouseEnter : null
-				}
-				onMouseLeave={
-					this.props.stylePosition !== 'absolute' ? this.handleMouseLeave : null
-				}
+				onMouseEnter={this.props.stylePosition !== 'absolute' ? this.openTooltip : null}
+				onMouseLeave={this.props.stylePosition !== 'absolute' ? this.closeTooltip : null}
+				onFocus={this.props.stylePosition !== 'absolute' ? this.openTooltip : null}
+				onBlur={this.props.stylePosition !== 'absolute' ? this.closeTooltip : null}
 				tabIndex={0}
 				role="tooltip"
 				ref={this.tooltipRef}
@@ -148,7 +146,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		);
 	}
 
-	private handleMouseEnter = () => {
+	private openTooltip = () => {
 		this.setTooltipPosition();
 
 		if (this.props.delayTooltip && this.props.delayTooltip > 0) {
@@ -162,7 +160,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		}
 	}
 
-	private handleMouseLeave = () => {
+	private closeTooltip = () => {
 		this.setState({ computedTooltipStyle: undefined });
 
 		if (this.props.delayTooltip && this.props.delayTooltip > 0) {
