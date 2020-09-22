@@ -15,6 +15,7 @@ export interface CSIconProps {
 	origin?: CSIconOrigin;
 	rotate?: string;
 	size?: string;
+	title?: string;
 }
 
 class CSIcon extends React.Component<CSIconProps> {
@@ -48,6 +49,7 @@ class CSIcon extends React.Component<CSIconProps> {
 						className="cs-icon-frame"
 						style={style}
 						id={this.props.id}
+						title={this.props.title}
 					>
 						<svg
 							className={styleClass}

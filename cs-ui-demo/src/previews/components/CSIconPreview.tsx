@@ -183,6 +183,20 @@ class CSIconPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'title',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSIcon
+									name="gift"
+									origin="cs"
+									title="gift"
+								/>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -258,6 +272,10 @@ class CSIconPreview extends React.Component {
 						'2rem',
 						'100px'
 					]
+				},
+				{
+					propertyName: 'title',
+					description: 'Icon title'
 				}
 			]
 		};
