@@ -132,8 +132,8 @@ class CSDateTimePicker extends React.Component<CSDateTimePickerProps, CSDateTime
 							placeholderText={this.props.placeholder}
 							todayButton={this.props.todayButton ? 'Today' : null}
 							disabled={this.props.disabled}
-							maxDate={maxDateYear || maxDate ? calcMaxDate() : null}
-							minDate={minDateYear || minDate ? calcMinDate() : null}
+							maxDate={maxDateYear || maxDate ? calcMaxDate() : undefined}
+							minDate={minDateYear || minDate ? calcMinDate() : undefined}
 							name={this.props.name}
 							locale={this.props.locale}
 							selected={this.state.startDate}
