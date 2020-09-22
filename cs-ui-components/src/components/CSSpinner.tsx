@@ -35,6 +35,10 @@ class CSSpinner extends React.Component<CSSpinnerProps> {
 				<div
 					className={spinnerClasses}
 					id={this.props.id}
+					role="progressbar"
+					aria-live="polite"
+					aria-busy
+					aria-valuetext={this.props.label}
 				>
 					<div className="cs-spinner-wrapper-label">
 						<div className={'cs-spinner cs-spinner-' + this.props.size + ' cs-spinner-' + this.props.color}>
