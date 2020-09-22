@@ -38,10 +38,12 @@ class CSAlert extends React.Component<CSAlertProps> {
 			}
 		);
 
+		const alertRole = this.props.variant === 'info' ? 'status' : 'alert';
+
 		return (
 			<div
 				className={alertClasses}
-				role="alert"
+				role={alertRole}
 				id={this.props.id}
 			>
 				<h4 className="cs-alert-text-wrapper">

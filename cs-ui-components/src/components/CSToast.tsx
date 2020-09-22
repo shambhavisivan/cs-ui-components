@@ -36,12 +36,14 @@ class CSToast extends React.Component<CSToastProps> {
 			minWidth: this.props.minWidth
 		};
 
+		const toastRole = (this.props.variant === 'info' || this.props.variant === 'success') ? 'status' : 'alert';
+
 		return (
 			<div
 				className="cs-toast-wrapper"
 				id={this.props.id}
 			>
-				<div style={style} className={toastClasses} role="alert">
+				<div style={style} className={toastClasses} role={toastRole}>
 					{this.props.iconVisibility ? (this.props.iconName ? (
 						<CSIcon name={this.props.iconName}/>
 					) : (
