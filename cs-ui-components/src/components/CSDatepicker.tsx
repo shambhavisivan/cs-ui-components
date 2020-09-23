@@ -115,6 +115,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 							selected={this.state.startDate}
 							onChange={this.handleChange}
 							autoComplete="off"
+							required={this.props.required}
 						/>
 					</div>
 					<CSIcon name="event" className="cs-datepicker-icon" />

@@ -182,6 +182,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 							placeholder={this.props.placeholder}
 							disabled={this.props.disabled}
 							required={this.props.required}
+							aria-required={this.props.required}
 							value={fixControlledValue(this.state.value)}
 							type="text"
 							autoComplete="off"

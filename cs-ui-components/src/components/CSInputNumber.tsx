@@ -141,6 +141,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 						disabled={this.props.disabled}
 						value={fixControlledValue(this.state.value)}
 						type={this.props.type}
+						aria-required={this.props.required}
 						aria-valuemin={this.props.min}
 						aria-valuemax={this.props.max}
 						aria-valuenow={this.props.value}

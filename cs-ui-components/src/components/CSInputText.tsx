@@ -117,6 +117,7 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 						required={this.props.required}
 						value={fixControlledValue(this.state.value)}
 						type="text"
+						aria-required={this.props.required}
 						aria-invalid={this.props.error}
 						autoComplete="off"
 						onChange={this.handleOnChange}

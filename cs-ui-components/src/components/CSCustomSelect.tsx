@@ -116,6 +116,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 								id={this.props.id}
 								required={this.props.required}
 								disabled={this.props.disabled}
+								aria-required={this.props.required}
 								aria-invalid={this.props.error}
 								aria-expanded={this.state.toggle}
 								onMouseDown={this.toggle}

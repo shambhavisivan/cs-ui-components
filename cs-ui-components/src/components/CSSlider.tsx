@@ -104,6 +104,7 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 						type="range"
 						onChange={this.handleOnChange}
 						title={this.props.title}
+						aria-required={this.props.required}
 					/>
 					<span className="cs-slider-max-value">{this.state.value}</span>
 				</div>

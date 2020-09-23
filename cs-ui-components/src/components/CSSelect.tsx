@@ -111,6 +111,7 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 						id={this.props.id}
 						required={this.props.required}
 						disabled={this.props.disabled}
+						aria-required={this.props.required}
 						aria-invalid={this.props.error}
 						onChange={this.handleOnChange}
 						name={this.props.name}
