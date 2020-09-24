@@ -186,6 +186,10 @@ export class CSGridLookupEditor
 				agGridColDef.hide = !columnDef.visible;
 			}
 
+			if (columnDef.hasFilter !== undefined) {
+				agGridColDef.filter = columnDef.hasFilter;
+			}
+
 			agGridColDefs.push(agGridColDef);
 		}
 

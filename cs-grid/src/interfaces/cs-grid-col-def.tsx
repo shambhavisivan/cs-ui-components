@@ -108,6 +108,9 @@ export interface LookupSearchColDef {
 
 	/** Set to true for this column to be hidden. */
 	visible?: boolean;
+
+	/** Set to false to disable column level filter, default is true */
+	hasFilter?: boolean;
 }
 
 interface BaseColDef<T> extends BaseProps<T> {
