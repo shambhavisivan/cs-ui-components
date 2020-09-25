@@ -38,14 +38,21 @@ class CSModal extends React.Component<CSModalProps> {
 	}
 
 	componentDidMount() {
-		if (!this.props.outerClickClose) {
-			return;
+		if (this.props.outerClickClose) {
+			document.addEventListener('click', this.handleOuterClick);
 		}
-		document.addEventListener('click', this.handleOuterClick);
+		document.body.style.overflow = 'hidden';
+		document.documentElement.style.overflow = 'hidden';
 	}
 
 	componentWillUnmount() {
 		document.removeEventListener('click', this.handleOuterClick);
+		const modalRoot = document.getElementById(this.modalId);
+		if (modalRoot.childElementCount === 1) {
+			document.body.style.overflow = '';
+			document.documentElement.style.overflow = '';
+		}
+
 	}
 
 	handleOuterClick(e: any) {
@@ -53,7 +60,6 @@ class CSModal extends React.Component<CSModalProps> {
 		if (this.node && this.node.contains(e.target)) {
 			return;
 		}
-
 		this.props.onClose(e);
 	}
 
