@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import React, { CSSProperties } from 'react';
 import CSIcon from './CSIcon';
 import { Portal } from 'react-portal';
+import { v4 as uuidv4 } from 'uuid';
 
 export type CSTooltipIconSize = 'small' | 'medium';
 export type CSTooltipPosition = 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left' | 'top-center' | 'bottom-center';
@@ -89,8 +90,14 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			'--cs-tooltip-width': this.props.width
 		};
 
+		const uniqueAutoId = uuidv4();
+
 		const tooltip = (
-			<div className={tooltipClasses} style={tooltipStyle}>
+			<div
+				className={tooltipClasses}
+				style={tooltipStyle}
+				id={uniqueAutoId}
+			>
 				{this.props.tooltipHeader && (
 					<div className="cs-tooltip-header">{this.props.tooltipHeader}</div>
 				)}
@@ -112,25 +119,16 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 				tabIndex={0}
 				role="tooltip"
 				ref={this.tooltipRef}
+				aria-labelledby={uniqueAutoId}
 			>
 				{this.props.children ? (
 					this.props.children
 				) : (
-					<>
-						{this.props.iconName ? (
-							<CSIcon
-								color={this.props.iconColor}
-								name={this.props.iconName}
-								className={'cs-icon-' + this.props.iconSize}
-							/>
-						) : (
-							<CSIcon
-								color={this.props.iconColor}
-								name={this.props.variant}
-								className={'cs-icon-' + this.props.iconSize}
-							/>
-						)}
-					</>
+					<CSIcon
+						color={this.props.iconColor}
+						name={this.props.iconName ? this.props.iconName : this.props.variant}
+						className={'cs-icon-' + this.props.iconSize}
+					/>
 				)}
 				{!this.state.hidden && (
 					<>
