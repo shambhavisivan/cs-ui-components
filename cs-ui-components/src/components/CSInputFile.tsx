@@ -114,6 +114,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 						ref={this.fileInput}
 						onChange={this.handleFileSubmit}
 						disabled={this.props.disabled}
+						title={this.props.label}
 					/>
 					<span className="cs-input-file-label-body">
 						<CSIcon className="cs-input-file-icon" name="upload"/>
