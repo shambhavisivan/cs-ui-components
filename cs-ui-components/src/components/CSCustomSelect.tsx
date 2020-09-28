@@ -4,6 +4,7 @@ import CSIcon from './CSIcon';
 import CSLabel from './CSLabel';
 import classNames from 'classnames';
 import { CSTooltipPosition } from './CSTooltip';
+import { v4 as uuidv4 } from 'uuid';
 
 export type CSCustomSelectBorderType = 'square' | 'round';
 
@@ -92,11 +93,13 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 			}
 		);
 
+		const uniqueAutoId = uuidv4();
+
 		return (
 			<div className={customSelectWrapperClasses} ref={node => this.node = node}>
 				{(this.props.label && !this.props.labelHidden) &&
 					<CSLabel
-						for={this.props.id}
+						for={this.props.id ? this.props.id : uniqueAutoId}
 						label={this.props.label}
 						helpText={this.props.helpText}
 						tooltipPosition={this.props.tooltipPosition}
@@ -113,7 +116,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 								value={this.state.term}
 								type="text"
 								onChange={this.search}
-								id={this.props.id}
+								id={this.props.id ? this.props.id : uniqueAutoId}
 								required={this.props.required}
 								disabled={this.props.disabled}
 								aria-required={this.props.required}

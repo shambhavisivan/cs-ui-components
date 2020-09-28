@@ -3,6 +3,7 @@ import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSLabel from './CSLabel';
 import classNames from 'classnames';
 import { CSTooltipPosition } from './CSTooltip';
+import { v4 as uuidv4 } from 'uuid';
 
 export type CSToggleLabelPosition = 'default' | 'left';
 
@@ -76,11 +77,15 @@ class CSToggle extends React.Component<CSToggleProps, CSToggleState> {
 				[`cs-toggle-label-${this.props.labelPosition}`]: this.props.labelPosition
 			}
 		);
+
+		const uniqueAutoId = uuidv4();
+
 		return (
 			<>
 				<div className={toggleElementWrapperClasses}>
 					{(this.props.label && !this.props.labelHidden) &&
 						<CSLabel
+							for={this.props.id ? this.props.id : uniqueAutoId}
 							label={this.props.label}
 							helpText={this.props.helpText}
 							tooltipPosition={this.props.tooltipPosition}
@@ -96,7 +101,7 @@ class CSToggle extends React.Component<CSToggleProps, CSToggleState> {
 							disabled={this.props.disabled}
 							checked={this.state.checked}
 							required={this.props.required}
-							id={this.props.id}
+							id={this.props.id ? this.props.id : uniqueAutoId}
 							aria-required={this.props.required}
 							aria-invalid={this.props.error}
 						/>

@@ -10,6 +10,7 @@ import CSTableBody from './table/CSTableBody';
 import CSTableRow from './table/CSTableRow';
 import CSTableCell from './table/CSTableCell';
 import { CSTooltipPosition } from './CSTooltip';
+import { v4 as uuidv4 } from 'uuid';
 
 export type CSLookupBorderType = 'round' | 'square';
 
@@ -136,11 +137,14 @@ class CSLookupField extends React.Component<CSLookupFieldProps, CSLookupFieldSta
 				'cs-lookup-field-error': this.props.error
 			}
 		);
+
+		const uniqueAutoId = uuidv4();
+
 		return (
 			<div className={lookupFieldWrapperClasses} ref={this.fieldRef}>
 				{(this.props.label && !this.props.labelHidden) &&
 					<CSLabel
-						for={this.props.id}
+						for={this.props.id ? this.props.id : uniqueAutoId}
 						label={this.props.label}
 						helpText={this.props.helpText}
 						tooltipPosition={this.props.tooltipPosition}
@@ -163,6 +167,7 @@ class CSLookupField extends React.Component<CSLookupFieldProps, CSLookupFieldSta
 						value={this.state.searchTerm}
 						onChange={e => this.handleSearch(e)}
 						title={this.props.title}
+						id={this.props.id ? this.props.id : uniqueAutoId}
 						aria-required={this.props.required}
 						aria-invalid={this.props.error}
 					/>

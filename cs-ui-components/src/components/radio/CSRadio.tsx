@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import CSLabel from '../CSLabel';
 import { CSTooltipPosition } from '../CSTooltip';
+import { v4 as uuidv4 } from 'uuid';
 
 export type CSRadioVariant = 'neutral' | 'brand';
 
@@ -40,10 +41,13 @@ class CSRadio extends React.Component<CSRadioProps> {
 			}
 		);
 
+		const uniqueAutoId = uuidv4();
+
 		return (
 			<>
 				{(this.props.label && !this.props.labelHidden) &&
 					<CSLabel
+						for={this.props.id ? this.props.id : uniqueAutoId}
 						label={this.props.label}
 						helpText={this.props.helpText}
 						tooltipPosition={this.props.tooltipPosition}
@@ -51,7 +55,7 @@ class CSRadio extends React.Component<CSRadioProps> {
 						title={this.props.labelTitle ? this.props.label : null}
 					/>
 				}
-				<div className={radioWrapperClasses} id={this.props.id}>
+				<div className={radioWrapperClasses} id={this.props.id ? this.props.id : uniqueAutoId}>
 					{this.props.children}
 				</div>
 			</>

@@ -5,6 +5,7 @@ import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSLabel from './CSLabel';
 import CSIcon from './CSIcon';
 import { CSTooltipPosition } from './CSTooltip';
+import { v4 as uuidv4 } from 'uuid';
 
 export type CSInputSearchBorderType = 'round' | 'square';
 
@@ -160,12 +161,14 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 			'--search-width': this.props.width
 		};
 
+		const uniqueAutoId = uuidv4();
+
 		return (
 			<>
 				<div className={inputSearchWrapperClasses}>
 					{(this.props.label && !this.props.labelHidden) &&
 						<CSLabel
-							for={this.props.id}
+							for={this.props.id ? this.props.id : uniqueAutoId}
 							label={this.props.label}
 							helpText={this.props.helpText}
 							tooltipPosition={this.props.tooltipPosition}
@@ -182,7 +185,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 						<input className={inputSearchClasses}
 							autoFocus={this.props.autoFocus}
 							onChange={this.handleOnChange}
-							id={this.props.id}
+							id={this.props.id ? this.props.id : uniqueAutoId}
 							placeholder={this.props.placeholder}
 							disabled={this.props.disabled}
 							required={this.props.required}

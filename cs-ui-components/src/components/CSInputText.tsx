@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSLabel from './CSLabel';
 import { CSTooltipPosition } from './CSTooltip';
+import { v4 as uuidv4 } from 'uuid';
 
 export type CSInputTextBorderType = 'round' | 'square';
 
@@ -87,6 +88,7 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 				'cs-element-hidden': this.props.hidden
 			}
 		);
+
 		const inputTextClasses = classNames(
 			'cs-input-text',
 			{
@@ -95,12 +97,15 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 				[`${this.props.className}`]: this.props.className
 			}
 		);
+
+		const uniqueAutoId = uuidv4();
+
 		return (
 			<>
 				<div className={inputTextWrapperClasses}>
 					{(this.props.label && !this.props.labelHidden) &&
 						<CSLabel
-							for={this.props.id}
+							for={this.props.id ? this.props.id : uniqueAutoId}
 							label={this.props.label}
 							helpText={this.props.helpText}
 							tooltipPosition={this.props.tooltipPosition}
@@ -109,7 +114,7 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 						/>
 					}
 					<input className={inputTextClasses}
-						id={this.props.id}
+						id={this.props.id ? this.props.id : uniqueAutoId}
 						placeholder={this.props.placeholder}
 						disabled={this.props.disabled}
 						maxLength={this.props.maxLength}

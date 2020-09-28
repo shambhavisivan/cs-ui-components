@@ -6,6 +6,7 @@ import CSIcon from './CSIcon';
 import CSLabel from './CSLabel';
 import classNames from 'classnames';
 import { CSTooltipPosition } from './CSTooltip';
+import { v4 as uuidv4 } from 'uuid';
 
 export type CSDatepickerDropdownMode = 'select' | 'scroll';
 
@@ -108,12 +109,14 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 			}
 		};
 
+		const uniqueAutoId = uuidv4();
+
 		return (
 			<>
 				<div className={datepickerClasses} style={style}>
 					{(this.props.label && !this.props.labelHidden) &&
 						<CSLabel
-							for={this.props.id}
+							for={this.props.id ? this.props.id : uniqueAutoId}
 							label={this.props.label}
 							helpText={this.props.helpText}
 							tooltipPosition={this.props.tooltipPosition}
@@ -141,6 +144,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 							yearDropdownItemNumber={this.props.yearDropdownItemNumber}
 							autoComplete="off"
 							required={this.props.required}
+							id={this.props.id ? this.props.id : uniqueAutoId}
 						/>
 					</div>
 					<CSIcon name="event" className="cs-datepicker-icon" />

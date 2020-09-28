@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import CSLabel from './CSLabel';
 import { CSTooltipPosition } from './CSTooltip';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
+import { v4 as uuidv4 } from 'uuid';
 
 export type CSCheckboxBorderType = 'square' | 'round';
 export type CSCheckboxVariant = 'neutral' | 'brand';
@@ -78,12 +79,14 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 				'cs-checkbox-error': this.props.error === true
 			}
 		);
+
 		const checkboxGroupClasses = classNames(
 			'cs-checkbox-group',
 			{
 				[`${this.props.className}`]: this.props.className
 			}
 		);
+
 		const checkboxFauxClasses = classNames(
 			'cs-checkbox-faux',
 			{
@@ -91,11 +94,15 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 				[`cs-checkbox-${this.props.variant}`]: this.props.variant
 			}
 		);
+
+		const uniqueAutoId = uuidv4();
+
 		return (
 			<>
 				<div className="cs-checkbox-wrapper">
 					{(this.props.label && !this.props.labelHidden) &&
 						<CSLabel
+							for={this.props.id ? this.props.id : uniqueAutoId}
 							label={this.props.label}
 							helpText={this.props.helpText}
 							tooltipPosition={this.props.tooltipPosition}
@@ -111,7 +118,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 								disabled={this.props.disabled}
 								checked={this.state.checked}
 								required={this.props.required}
-								id={this.props.id}
+								id={this.props.id ? this.props.id : uniqueAutoId}
 								onClick={this.handleOnClick}
 								name={this.props.name}
 								aria-required={this.props.required}

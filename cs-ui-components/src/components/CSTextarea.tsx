@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSLabel from './CSLabel';
 import { CSTooltipPosition } from './CSTooltip';
+import { v4 as uuidv4 } from 'uuid';
 
 export type CSTextareaBorderType = 'round' | 'square';
 
@@ -76,6 +77,7 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 		const style: CSSProperties = {
 			'--max-height': this.props.maxHeight
 		};
+
 		const textareaWrapperClasses = classNames(
 			'cs-textarea-wrapper',
 			{
@@ -83,12 +85,14 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 			}
 		);
 
+		const uniqueAutoId = uuidv4();
+
 		return (
 			<>
 				<div className={textareaWrapperClasses}>
 					{(this.props.label && !this.props.labelHidden) &&
 						<CSLabel
-							for={this.props.id}
+							for={this.props.id ? this.props.id : uniqueAutoId}
 							label={this.props.label}
 							helpText={this.props.helpText}
 							tooltipPosition={this.props.tooltipPosition}
@@ -98,7 +102,7 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 					}
 					<textarea
 						className={textareaClasses}
-						id={this.props.id}
+						id={this.props.id ? this.props.id : uniqueAutoId}
 						placeholder={this.props.placeholder}
 						disabled={this.props.disabled}
 						readOnly={this.props.readOnly}

@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSLabel from './CSLabel';
 import { CSTooltipPosition } from './CSTooltip';
+import { v4 as uuidv4 } from 'uuid';
 
 export type CSInputNumberBorderType = 'round' | 'square';
 
@@ -122,6 +123,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 				'cs-element-hidden': this.props.hidden
 			}
 		);
+
 		const inputNumberClasses = classNames(
 			'cs-input-number',
 			{
@@ -131,12 +133,15 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 				[`cs-input-number-hide-spinner-${this.props.hideSpinner}`]: this.props.hideSpinner
 			}
 		);
+
+		const uniqueAutoId = uuidv4();
+
 		return (
 			<>
 				<div className={inputNumberWrapperClasses}>
 					{(this.props.label && !this.props.labelHidden) &&
 						<CSLabel
-							for={this.props.id}
+							for={this.props.id ? this.props.id : uniqueAutoId}
 							label={this.props.label}
 							helpText={this.props.helpText}
 							tooltipPosition={this.props.tooltipPosition}
@@ -145,7 +150,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 						/>
 					}
 					<input className={inputNumberClasses}
-						id={this.props.id}
+						id={this.props.id ? this.props.id : uniqueAutoId}
 						placeholder={this.props.placeholder}
 						min={this.props.min}
 						max={this.props.max}
