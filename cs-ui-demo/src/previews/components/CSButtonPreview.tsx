@@ -666,6 +666,28 @@ class CSButtonPreview extends React.Component {
 				{
 					propertyName: 'value',
 					description: 'Value attribute to pass to button element'
+				},
+				{
+					propertyName: 'ariaExpanded',
+					description: 'Accessible attribute to indicate whether an object controlled by button is expanded or not',
+					helperPropInComponents: [
+						'ButtonDropdown'
+					],
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
+					propertyName: 'ariaHaspopup',
+					description: 'Accessible attribute to indicate whether an object controlled by button is a popup',
+					helperPropInComponents: [
+						'ButtonDropdown'
+					],
+					options: [
+						'false',
+						'true'
+					]
 				}
 			],
 			backlog: [

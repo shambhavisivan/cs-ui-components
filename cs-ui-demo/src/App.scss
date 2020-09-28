@@ -721,6 +721,15 @@ body,
 				display: inline-table;
 			}
 		}
+
+		&.helper-prop-row {
+			background: #f2f3f3;
+
+			.cs-tooltip-wrapper {
+				height: 21px; // CSTooltip bug, remove after it is fixed
+				margin-right: 0.25rem;
+			}
+		}
 	}
 
 	.table-header .table-row {

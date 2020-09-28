@@ -1,4 +1,5 @@
 import React from 'react';
+import {CSTooltip} from '@cloudsense/cs-ui-components';
 
 export interface PreviewTableProps {
 	alt?: boolean;
@@ -23,8 +24,17 @@ class PreviewTable extends React.Component<PreviewTableProps> {
 							</div>
 							<div className="table-body">
 								{component.properties.map((prop: any, j: any) => (
-									<div className="table-row" key={j}>
-										<div className="table-cell">{prop.propertyName}</div>
+									<div className={prop.helperPropInComponents ? 'table-row helper-prop-row' : 'table-row'} key={j}>
+										<div className="table-cell">
+											{prop.helperPropInComponents && prop.helperPropInComponents.map((option: any) => (
+												<CSTooltip
+													key={option}
+													tooltipHeader="Helper prop"
+													content={'Prop supported to be used in another component: ' + option}
+												/>
+											))}
+											{prop.propertyName}
+										</div>
 										<div className="table-cell">{prop.description}</div>
 										<div className="table-cell">
 											{prop.options && prop.options.map((option: any) => (
