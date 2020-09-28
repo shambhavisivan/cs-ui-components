@@ -178,19 +178,22 @@
 
 							&.react-datepicker__day--today {
 								font-weight: $font-weight-normal;
+								@include sbg(--cs-datepicker-today-indicator-bg);
 							}
 
 							&.react-datepicker__day--selected {
-								@include sc(--cs-datepicker-c);
+								@include sc(--cs-datepicker-selected-c);
 								@include sbg(--cs-datepicker-selected-bg);
 
 								&:hover {
+									@include sc(--cs-datepicker-selected-c);
 									@include sbg(--cs-datepicker-selected-bg);
 								}
 							}
 
 							&.react-datepicker__day--keyboard-selected {
 								@include sbg(--cs-datepicker-keyboard-bg);
+								@include sc(--cs-datepicker-keyboard-c);
 							}
 
 							&:hover {
@@ -342,6 +345,15 @@
 
 			.react-datepicker-time__header {
 				font-size: 0.8125rem;
+			}
+		}
+
+		.react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list .react-datepicker__time-list-item--selected {
+			@include sbg(--cs-datepicker-selected-bg);
+
+			&:hover {
+				opacity: 0.9;
+				@include sbg(--cs-datepicker-selected-bg);
 			}
 		}
 
