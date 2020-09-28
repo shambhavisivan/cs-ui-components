@@ -328,7 +328,7 @@
 
 	// datetimepicker
 	&.cs-datetimepicker {
-		width: var(--datetimepicker-width, auto);
+		width: var(--datetimepicker-width, 242px);
 
 		.react-datepicker__header,
 		.react-datepicker__time-container {
