@@ -214,6 +214,10 @@
 								pointer-events: none;
 								cursor: default;
 							}
+
+							&.react-datepicker__day--outside-month {
+								@include sc(--cs-datepicker-day-outside-c);
+							}
 						}
 					}
 				}
