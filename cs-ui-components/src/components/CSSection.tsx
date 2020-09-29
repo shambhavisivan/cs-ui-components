@@ -39,6 +39,12 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 		}
 	}
 
+	componentDidUpdate(prevProps: CSSectionProps) {
+		if (prevProps.collapsed !== this.props.collapsed) {
+			this.setState({ collapsed: this.props.collapsed});
+		}
+	}
+
 	render() {
 
 		const sectionClasses = classNames(
