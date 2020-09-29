@@ -1,6 +1,10 @@
 .cs-button-group {
 	display: inline-flex;
 
+	.cs-aria-description {
+		@include screen-reader-hidden;
+	}
+
 	&.cs-button-group-false > *:not(:last-child) {
 		margin-right: 0.5rem;
 	}
@@ -22,8 +26,9 @@
 			}
 		}
 
-		> .cs-btn:first-child,
-		> .cs-btn-dropdown-wrapper:first-child > .cs-btn {
+		> :first-child:not(.cs-aria-description),
+		> .cs-aria-description + .cs-btn,
+		> .cs-aria-description + .cs-btn-dropdown-wrapper > .cs-btn {
 			border-top-left-radius: 0.25rem;
 			border-bottom-left-radius: 0.25rem;
 

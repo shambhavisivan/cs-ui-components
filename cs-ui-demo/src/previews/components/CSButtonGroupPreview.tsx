@@ -207,6 +207,7 @@ class CSButtonGroupPreview extends React.Component {
 								<CSButtonGroup
 									combined
 									id="id"
+									ariaDescription="grouping of related buttons sharing similar actions"
 								>
 									<CSButton
 										label="First Button"
@@ -248,7 +249,7 @@ class CSButtonGroupPreview extends React.Component {
 								<CSButtonGroup
 									combined
 									className="custom-class"
-									>
+								>
 									<CSButton
 										label="First Button"
 									/>
@@ -273,6 +274,31 @@ class CSButtonGroupPreview extends React.Component {
 											label="Dropdown item 3"
 										/>
 									</CSButtonDropdown>
+								</CSButtonGroup>
+						}
+					]
+				},
+				{
+					propName: 'ariaDescription',
+					customText: 'Hidden span will be added with description for screen readers',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSButtonGroup
+									combined
+									ariaDescription="grouping of related buttons sharing similar actions"
+								>
+									<CSButton
+										label="First Button"
+									/>
+									<CSButton
+										label="Second Button"
+									/>
+									<CSButton
+										btnStyle="brand"
+										label="Third Button"
+									/>
 								</CSButtonGroup>
 						}
 					]
@@ -304,6 +330,10 @@ class CSButtonGroupPreview extends React.Component {
 				{
 					propertyName: 'id',
 					description: 'Button group id value'
+				},
+				{
+					propertyName: 'ariaDescription',
+					description: 'Accessible semantic description of button group. This allows users to understand the relationship of the buttons and to use them more effectively'
 				}
 			]
 		};
