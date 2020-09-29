@@ -17,7 +17,14 @@ class CSTableCell extends React.Component<CSTableCellProps> {
 
 		return (
 			<div className="cs-table-cell" style={style} id={this.props.id}>
-				<span className="cs-table-cell-text" title={this.props.title}>{this.props.title}</span>
+				{this.props.title &&
+					<span
+						className="cs-table-cell-text"
+						title={this.props.title}
+					>
+						{this.props.title}
+					</span>
+				}
 				{this.props.children}
 			</div>
 		);
