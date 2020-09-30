@@ -147,12 +147,26 @@ class CSInputFilePreview extends React.Component {
 					propName: 'dropAreaBackground',
 					variations: [
 						{
+							variationName: ['true'],
 							string: '',
 							component:
 								<CSInputFile
 									label="Upload directory"
 									onDrop={handleDrop}
 									dropAreaBackground
+									dropAreaWidth="25rem"
+									dropAreaHeight="3rem"
+								/>
+						},
+						{
+							variationName: ['false'],
+							string: '',
+							component:
+								<CSInputFile
+									label="Upload directory"
+									onDrop={handleDrop}
+									dropAreaWidth="25rem"
+									dropAreaHeight="3rem"
 								/>
 						}
 					]

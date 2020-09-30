@@ -3,48 +3,40 @@
 // CS Input File component.
 
 .cs-input-file-wrapper {
-	width: 100%;
-	position: relative;
-
-	&.cs-input-file-drop-area {
-
-		.cs-input-file {
-			justify-content: center;
-			align-items: center;
-			width: var(--drop-area-width);
-			height: var(--drop-area-height);
-			@include sbg(--cs-input-file-drop-area-bg);
-
-			&.cs-input-file-dragged-over {
-				@include sbg(--cs-input-file-dragged-over-bg);
-			}
-
-			.cs-tooltip-wrapper {
-				max-width: 100%;
-
-				.cs-input-file-label {
-					max-width: 100%;
-				}
-			}
-		}
-	}
-}
-
-.cs-input-file {
 	position: relative;
 	display: inline-flex;
-	padding: 0.125rem;
 	border-radius: 0.25rem;
+	width: var(--drop-area-width);
+	height: var(--drop-area-height);
+	max-width: 100%;
 	@include css4 {
 		border: 1px dashed cvar(--cs-input-file-dashed-br);
 	}
 
+	.cs-input-file-drop-area {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		padding: 0.125rem;
+		cursor: pointer;
+		@include sbg(--cs-input-file-drop-area-bg);
+
+		&:hover {
+			@include sbg(--cs-input-file-drop-area-hover-bg);
+		}
+
+		.cs-field-error-msg {
+			left: 0;
+			pointer-events: none;
+		}
+	}
+
 	// Label
-	.cs-input-file-label-body {
+	.cs-input-file-btn {
 		align-items: center;
 		appearance: none;
 		border-radius: 0.25rem;
-		cursor: pointer;
 		display: inline-flex;
 		font-size: 0.8125rem;
 		line-height: 1.875rem;
@@ -52,28 +44,28 @@
 		padding-right: 0.75rem;
 		text-align: center;
 		max-width: 100%;
-		@include sc(--cs-input-file-label-c);
-		@include sbg(--cs-input-file-label-bg);
+		@include sc(--cs-input-file-btn-c);
+		@include sbg(--cs-input-file-btn-bg);
 		@include css4 {
-			border: 1px solid cvar(--cs-input-file-label-br);
+			border: 1px solid cvar(--cs-input-file-btn-br);
 		}
 
 		&:hover {
-			@include sbg(--cs-input-file-label-hover-bg);
+			@include sbg(--cs-input-file-btn-hover-bg);
 		}
 
 		.cs-input-file-label {
 			@include overflow-ellipsis;
 		}
-	}
 
-	// Icon
-	.cs-input-file-icon {
-		height: 0.875rem;
-		margin-right: 0.5rem;
-		width: 0.875rem;
-		@include css4 {
-			fill: cvar(--cs-input-file-icon-fill);
+		// Icon
+		.cs-input-file-icon {
+			height: 0.875rem;
+			margin-right: 0.5rem;
+			width: 0.875rem;
+			@include css4 {
+				fill: cvar(--cs-input-file-icon-fill);
+			}
 		}
 	}
 
@@ -91,13 +83,14 @@
 		white-space: nowrap;
 
 		// Active/focus
-		&:active + .cs-input-file-label-body {
+		&:active + .cs-input-file-btn {
 			@include css4 {
 				border: 1px solid cvar(--cs-input-file-active-br);
+				box-shadow: 0 0 3px cvar(--cs-input-file-shadow);
 			}
 		}
 
-		&:focus + .cs-input-file-label-body {
+		&:focus + .cs-input-file-btn {
 			outline: 0;
 			@include css4 {
 				box-shadow: 0 0 3px cvar(--cs-input-file-shadow);
@@ -106,24 +99,25 @@
 
 		// Disabled
 		&:disabled {
-			+ .cs-input-file-label-body {
+			+ .cs-input-file-btn {
 				cursor: default;
 				user-select: none;
-				@include sbg(--cs-input-file-label-disabled-bg);
-				@include sc(--cs-input-file-label-disabled-c);
+				@include sbg(--cs-input-file-btn-disabled-bg);
+				@include sc(--cs-input-file-btn-disabled-c);
 
 				> .cs-input-file-icon {
 					@include sf(--cs-input-file-disabled-icon-fill);
 				}
 			}
 
-			&:active + .cs-input-file-label-body {
+			&:active + .cs-input-file-btn {
 				@include css4 {
-					border: 1px solid cvar(--cs-input-file-label-br);
+					border: 1px solid cvar(--cs-input-file-btn-br);
+					box-shadow: none;
 				}
 			}
 
-			&:focus + .cs-input-file-label-body {
+			&:focus + .cs-input-file-btn {
 				@include css4 {
 					box-shadow: none;
 				}
@@ -131,10 +125,48 @@
 		}
 	}
 
+	&.cs-input-file-drop-area-highlighted {
+
+		.cs-input-file-drop-area {
+			@include sbg(--cs-input-file-drop-area-highlighted-bg);
+
+			&:hover {
+				@include sbg(--cs-input-file-drop-area-highlighted-hover-bg);
+			}
+		}
+
+		&.cs-input-file-dragged-over {
+			@include sbg(--cs-input-file-dragged-over-bg);
+		}
+
+		.cs-tooltip-wrapper {
+			max-width: 100%;
+
+			.cs-input-file-label {
+				max-width: 100%;
+			}
+		}
+	}
+
+	&.cs-input-file-dragged-over {
+		@include sbg(--cs-input-file-dragged-over-bg);
+		@include css4 {
+			border: 1px dashed cvar(--cs-input-file-drop-area-hover-br);
+		}
+	}
+
 	// Error
 	&.cs-input-file-error {
+
+		&.cs-input-file-dragged-over {
+			@include sbg(--cs-input-file-dragged-over-bg);
+			@include css4 {
+				border: 1px dashed cvar(--cs-input-file-error-drop-area-hover-br);
+			}
+		}
+
 		input[type='file'] {
-			+ .cs-input-file-label-body {
+			+ .cs-input-file-btn {
 				@include sc(--cs-input-file-error-c);
 
 				> svg {
@@ -142,15 +174,16 @@
 				}
 			}
 
-			&:focus + .cs-input-file-label-body {
+			&:focus + .cs-input-file-btn {
 				@include css4 {
 					box-shadow: 0 0 3px cvar(--cs-input-file-error-shadow);
 				}
 			}
 
-			&:active + .cs-input-file-label-body {
+			&:active + .cs-input-file-btn {
 				@include css4 {
 					border: 1px solid cvar(--cs-input-file-error-br);
+					box-shadow: 0 0 3px cvar(--cs-input-file-error-shadow);
 				}
 			}
 		}

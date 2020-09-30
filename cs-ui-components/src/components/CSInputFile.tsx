@@ -86,16 +86,11 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 		const wrapperClasses = classNames(
 			'cs-input-file-wrapper',
 			{
-				'cs-input-file-drop-area': this.props.dropAreaBackground
-			}
-		);
-
-		const fileClasses = classNames(
-			'cs-input-file',
-			{
+				'cs-input-file-drop-area-highlighted': this.props.dropAreaBackground,
 				[`${this.props.className}`]: this.props.className,
+				'cs-input-file-disabled': this.props.disabled,
 				'cs-input-file-error': this.props.error,
-				'cs-input-file-dragged-over': this.props.dropAreaBackground && this.state.isDraggedOver
+				'cs-input-file-dragged-over': this.state.isDraggedOver
 			}
 		);
 
@@ -106,36 +101,33 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 
 		const input =
 			<>
-				<label className="cs-input-file-label">
-					<input
-						accept={this.handleAcceptFiles(this.props.accept)}
-						id={this.props.id}
-						type="file"
-						ref={this.fileInput}
-						onChange={this.handleFileSubmit}
-						disabled={this.props.disabled}
-						title={this.props.label}
-					/>
-					<span className="cs-input-file-label-body">
-						<CSIcon className="cs-input-file-icon" name="upload"/>
-						<span className="cs-input-file-label">{this.state.label ? this.state.label : this.props.label}</span>
-					</span>
-				</label>
+				<input
+					accept={this.handleAcceptFiles(this.props.accept)}
+					id={this.props.id}
+					type="file"
+					ref={this.fileInput}
+					onChange={this.handleFileSubmit}
+					disabled={this.props.disabled}
+					title={this.props.label}
+				/>
+				<span className="cs-input-file-btn">
+					<CSIcon className="cs-input-file-icon" name="upload"/>
+					<span className="cs-input-file-label">{this.state.label ? this.state.label : this.props.label}</span>
+				</span>
 				{(this.props.error && this.props.errorMessage) &&
 					<CSFieldErrorMsg message={this.props.errorMessage} />
 				}
 			</>;
 
 		return (
-			<div className={wrapperClasses} style={style}>
-				<div
-					className={fileClasses}
-					onDragOver={!this.props.disabled ? this.handleFileDragEvents : null}
-					onDragEnter={!this.props.disabled ? this.handleDragEnter : null}
-					onDragLeave={!this.props.disabled ? this.handleDragLeave : null}
-					onDrop={!this.props.disabled ? this.handleFileDrop : null}
-					aria-invalid={this.props.error}
-				>
+			<div
+				className={wrapperClasses} style={style}
+				onDragOver={!this.props.disabled ? this.handleFileDragEvents : null}
+				onDragEnter={!this.props.disabled ? this.handleDragEnter : null}
+				onDragLeave={!this.props.disabled ? this.handleDragLeave : null}
+				onDrop={!this.props.disabled ? this.handleFileDrop : null}
+			>
+				<label className="cs-input-file-drop-area">
 					{this.state.label ? (
 						<CSTooltip content={this.state.label} position="top-center">
 							{input}
@@ -145,8 +137,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 							{input}
 						</>
 					)}
-				</div>
-
+				</label>
 			</div>
 		);
 	}
