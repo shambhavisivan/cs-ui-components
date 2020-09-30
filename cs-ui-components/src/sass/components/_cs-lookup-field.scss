@@ -16,21 +16,50 @@
 	flex-direction: column;
 	position: relative;
 
-	.cs-lookup-field-icon {
+	.cs-icon {
 		width: 0.875rem;
 		height: 0.875rem;
 		transform: translateY(60%);
 		display: block;
 		position: absolute;
 		cursor: pointer;
+		@include sf(--cs-input-icon-fill);
+	}
+
+	.cs-lookup-field-search {
 		pointer-events: none;
 		left: 0.5rem;
+	}
+
+	.cs-lookup-field-dropdown, .cs-lookup-field-spinner {
+		pointer-events: none;
+		right: 0.5rem;
+	}
+
+	.cs-lookup-field-spinner {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 0.875rem;
+		width: 0.875rem;
+		position: absolute;
+		top: 0.5rem;
+		.cs-icon {
+			animation-name: spin;
+			animation-duration: 4000ms;
+			animation-iteration-count: infinite;
+			animation-timing-function: linear;
+		}
 	}
 
 	.cs-lookup-field-clear {
 		position: absolute;
 		top: 0.25rem;
-		right: 0.25rem;
+		right: 1.5rem;
+		.cs-icon {
+			transform: none;
+			position: relative;
+		}
 	}
 }
 

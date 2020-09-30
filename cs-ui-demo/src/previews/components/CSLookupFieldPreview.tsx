@@ -105,6 +105,23 @@ class CSLookupFieldPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'loading',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSLookupField
+									label="Account"
+									fetchLookupOptions={testArray}
+									fieldToBeDisplayed="Account"
+									loading
+								/>
+						}
+					]
+				},
+				{
 					propName: 'helpText',
 					variations: [
 						{
@@ -436,6 +453,14 @@ class CSLookupFieldPreview extends React.Component {
 				{
 					propertyName: 'labelTitle',
 					description: 'Logic for label title attribute',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
+					propertyName: 'loading',
+					description: 'Renders spinner with animation instead of dropdown arrow. Used for loading fetched data.',
 					options: [
 						'false',
 						'true'

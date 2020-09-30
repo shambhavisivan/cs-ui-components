@@ -28,6 +28,7 @@ export interface CSLookupFieldProps {
 	label: string;
 	labelHidden?: boolean;
 	labelTitle?: boolean;
+	loading?: boolean;
 	placeholder?: string;
 	required?: boolean;
 	title?: string;
@@ -155,8 +156,7 @@ class CSLookupField extends React.Component<CSLookupFieldProps, CSLookupFieldSta
 				<div className={lookupFieldGroupClasses}>
 					<CSIcon
 						name="search"
-						className="cs-lookup-field-icon"
-						color="var(--cs-input-icon-fill)"
+						className="cs-lookup-field-search"
 					/>
 					<input
 						className={lookupFieldClasses}
@@ -183,6 +183,13 @@ class CSLookupField extends React.Component<CSLookupFieldProps, CSLookupFieldSta
 							onClick={this.clearSearch}
 							size="small"
 						/>
+					}
+					{this.props.loading ?
+						<span className="cs-lookup-field-spinner">
+							<CSIcon name="spinner" />
+						</span>
+						 :
+						<CSIcon name="chevrondown" className="cs-lookup-field-dropdown"/>
 					}
 					{(this.props.error && this.props.errorMessage) &&
 						<CSFieldErrorMsg message={this.props.errorMessage} />
