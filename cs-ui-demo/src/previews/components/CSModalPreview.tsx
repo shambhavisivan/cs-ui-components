@@ -332,6 +332,105 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 					]
 				},
 				{
+					propName: 'closeButton',
+					customText: '',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component: (
+								<div>
+									<CSButton
+										label="Open Modal"
+										onClick={() => this.setState({ modalOpen: 'closeButton' })}
+									/>
+									{this.state.modalOpen === 'closeButton' && (
+										<CSModal
+											size="small"
+											closeButton
+											onClose={() => this.setState({ modalOpen: undefined })}
+										>
+											<CSModalHeader
+												title="This is a test heading"
+												subtitle="This is a test subtitle"
+											/>
+											<CSModalBody padding="0">
+												<p>
+													Sit nulla est ex deserunt exercitation anim
+													occaecat.
+													<br />
+													<br />
+													Nostrud ullamco deserunt aute id consequat
+													veniam incididunt duis in sint irure nisi.
+													Mollit officia cillum Lorem ullamco minim
+													nostrud elit officia tempor esse quis. Cillum
+													sunt ad dolore quis aute consequat ipsum magna
+													exercitation reprehenderit magna. Tempor
+													cupidatat consequat elit dolor adipisicing.
+												</p>
+											</CSModalBody>
+											<CSModalFooter>
+												<CSButton label="Default Button" />
+												<CSButton label="Brand Button" btnStyle="brand" />
+											</CSModalFooter>
+										</CSModal>
+									)}
+								</div>
+							)
+						}
+					]
+				},
+				{
+					propName: 'onClose',
+					customText: '',
+					variations: [
+						{
+							variationText: ['closeButton={true}'],
+							string: '',
+							component: (
+								<div>
+									<CSButton
+										label="Open Modal"
+										onClick={() => this.setState({ modalOpen: 'onClose' })}
+									/>
+									{this.state.modalOpen === 'onClose' && (
+										<CSModal
+											size="small"
+											closeButton
+											onClose={() => this.setState({ modalOpen: undefined })}
+										>
+											<CSModalHeader
+												title="This is a test heading"
+												subtitle="This is a test subtitle"
+											/>
+											<CSModalBody padding="0">
+												<p>
+													Sit nulla est ex deserunt exercitation anim
+													occaecat.
+													<br />
+													<br />
+													Nostrud ullamco deserunt aute id consequat
+													veniam incididunt duis in sint irure nisi.
+													Mollit officia cillum Lorem ullamco minim
+													nostrud elit officia tempor esse quis. Cillum
+													sunt ad dolore quis aute consequat ipsum magna
+													exercitation reprehenderit magna. Tempor
+													cupidatat consequat elit dolor adipisicing.
+												</p>
+											</CSModalBody>
+											<CSModalFooter>
+												<CSButton label="Default Button" />
+												<CSButton label="Brand Button" btnStyle="brand" />
+											</CSModalFooter>
+										</CSModal>
+									)}
+								</div>
+							)
+						}
+					]
+				},
+				{
 					propName: 'id',
 					customText: '',
 					variations: [
