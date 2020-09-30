@@ -42,6 +42,33 @@ class CSTooltipPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'iconColor',
+					customText: '',
+					variations: [
+						{
+							variationName: ['pink'],
+							quickLink: 'pink',
+							string: '',
+							component:
+								<CSTooltip iconColor="pink" content="Help text example"/>
+						},
+						{
+							variationName: ['#ff0000'],
+							quickLink: '#ff0000',
+							string: '',
+							component:
+								<CSTooltip iconColor="#ff0000" content="Help text example"/>
+						},
+						{
+							variationName: ['rgba(100,100,255,1.00)'],
+							quickLink: 'rgba(100,100,255,1.00)',
+							string: '',
+							component:
+								<CSTooltip iconColor="rgba(100,100,255,1.00)" content="Help text example"/>
+						}
+					]
+				},
+				{
 					propName: 'iconName',
 					customText: 'This is used for overriding default icon defined by variant',
 					variations: [
@@ -278,6 +305,16 @@ class CSTooltipPreview extends React.Component {
 				{
 					propertyName: 'height',
 					description: 'Custom tooltip height'
+				},
+				{
+					propertyName: 'iconColor',
+					description: 'Color of tooltip icon',
+					options: [
+						'e.g.',
+						'pink',
+						'#ff0000',
+						'rgba(100,100,255,1.00)'
+					]
 				},
 				{
 					propertyName: 'iconName',

@@ -11,7 +11,7 @@
 	font-size: 0.75rem;
 	width: var(--cs-tooltip-width, max-content);
 	height: var(--cs-tooltip-height, auto);
-	max-width: 20rem;
+	max-width: var(--cs-tooltip-width, 20rem);
 	min-height: 2rem;
 	padding: 0.5rem 0.75rem;
 	position: fixed;
@@ -235,9 +235,16 @@
 	display: flex;
 	position: relative;
 	outline: 0;
+	width: 0.875rem;
+	height: 0.875rem;
 
 	&:hover .cs-tooltip, &:focus .cs-tooltip {
 		display: flex;
+	}
+
+	&.cs-tw-medium {
+		width: 1rem;
+		height: 1rem;
 	}
 
 	.cs-icon {
@@ -278,6 +285,15 @@
 		}
 		&:hover .cs-icon, &:focus .cs-icon {
 			@include fd(var(--cs-tooltip-error-bg), 0.3);
+		}
+	}
+
+	&.cs-tw-icon-c {
+		.cs-icon {
+			@include sf(--cs-icon-c);
+		}
+		&:hover .cs-icon, &:focus .cs-icon {
+			@include fd((--cs-icon-c), 0.3);
 		}
 	}
 

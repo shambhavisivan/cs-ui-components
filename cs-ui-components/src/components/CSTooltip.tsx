@@ -13,6 +13,7 @@ export interface CSTooltipProps {
 	content: string | Array<string> | JSX.Element;
 	delayTooltip?: number;
 	height?: string;
+	iconColor?: string;
 	iconName?: string;
 	iconSize?: CSTooltipIconSize;
 	id?: string;
@@ -69,6 +70,8 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		});
 
 		const tooltipWrapperClasses = classNames('cs-tooltip-wrapper', {
+			'cs-tw-medium': this.props.iconSize === 'medium',
+			'cs-tw-icon-c': this.props.iconColor,
 			'cs-tw-error': this.props.variant === 'error',
 			'cs-tw-info': this.props.variant === 'info',
 			'cs-tw-warning': this.props.variant === 'warning',
@@ -116,11 +119,13 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 					<>
 						{this.props.iconName ? (
 							<CSIcon
+								color={this.props.iconColor}
 								name={this.props.iconName}
 								className={'cs-icon-' + this.props.iconSize}
 							/>
 						) : (
 							<CSIcon
+								color={this.props.iconColor}
 								name={this.props.variant}
 								className={'cs-icon-' + this.props.iconSize}
 							/>
