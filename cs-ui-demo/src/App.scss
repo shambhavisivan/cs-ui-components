@@ -41,13 +41,13 @@ body,
 				border-bottom: 5px solid transparent;
 
 				&:hover {
-					border-bottom: 5px solid #00abd2;
+					border-bottom: 5px solid #4a26ab;
 				}
 
 				&.active-main-header-tab {
 					color: rgba(#3e3e3c, 0.9);
 					background: #f2f3f3;
-					border-bottom: 5px solid #00abd2;
+					border-bottom: 5px solid #4a26ab;
 				}
 			}
 
@@ -77,6 +77,7 @@ body,
 		transition: width 0.4s;
 
 		&.sidebar-open {
+			min-width: 15rem;
 			width: 15rem;
 		}
 
@@ -162,25 +163,37 @@ body,
 				color: #fff;
 
 				&:hover {
-					background: #00abd3;
+					background: #3cdbc0;
+					color: #363a3b;
 				}
 
 				&.active-component {
 					background: #363a3b;
+
+					&:hover {
+						color: #fff;
+					}
 				}
 			}
 
-			.ui-component:first-of-type a::after {
-				content: '';
-				display: block;
-				width: 1rem;
-				height: 1rem;
-				-webkit-mask: url('./images/info.svg') no-repeat 50% 50%;
-				mask: url('./images/info.svg') no-repeat 50% 50%;
-				-webkit-mask-size: cover;
-				mask-size: cover;
-				margin-left: auto;
-				background: #fff;
+			.ui-component:first-of-type a {
+
+				&::after {
+					content: '';
+					display: block;
+					width: 1rem;
+					height: 1rem;
+					-webkit-mask: url('./images/info.svg') no-repeat 50% 50%;
+					mask: url('./images/info.svg') no-repeat 50% 50%;
+					-webkit-mask-size: cover;
+					mask-size: cover;
+					margin-left: auto;
+					background: #fff;
+				}
+
+				&:hover::after {
+					background: #363a3b;
+				}
 			}
 		}
 	}
@@ -205,7 +218,7 @@ body,
 			z-index: 10;
 			cursor: pointer;
 			transition: transform 0.2s;
-			background: #00abd3;
+			background: #4a26ab;
 
 			&:hover {
 				transform: scale(1.1);
@@ -733,7 +746,7 @@ body,
 	}
 
 	.table-header .table-row {
-		background: #00abd3;
+		background: #4a26ab;
 		color: #fff;
 
 		.table-cell {
@@ -998,7 +1011,7 @@ body,
 		position: relative;
 
 		h1{
-			color: #00abd3;
+			color: #4a26ab;
 			margin-bottom: 1rem;
 		}
 
