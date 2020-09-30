@@ -37,7 +37,7 @@ class CSSelectPreview extends React.Component {
 						{
 							string: '',
 							component:
-								<CSSelect label="Choose color" id="colour">
+								<CSSelect label="Choose color">
 									<option>Red</option>
 									<option>Blue</option>
 									<option>Green</option>
@@ -53,7 +53,7 @@ class CSSelectPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-							<CSSelect label="Choose color" id="colour" labelTitle>
+							<CSSelect label="Choose color" labelTitle>
 								<option>Red</option>
 								<option>Blue</option>
 								<option>Green</option>
@@ -69,7 +69,7 @@ class CSSelectPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-								<CSSelect label="Choose color" labelHidden id="colour">
+								<CSSelect label="Choose color" labelHidden>
 									<option>Red</option>
 									<option>Blue</option>
 									<option>Green</option>
@@ -196,7 +196,7 @@ class CSSelectPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-								<CSSelect label="Choose amount" id="amount" required>
+								<CSSelect label="Choose amount" required>
 									<option>10</option>
 									<option>20</option>
 									<option>30</option>

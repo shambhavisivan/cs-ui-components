@@ -32,7 +32,7 @@ class CSCustomSelectPreview extends React.Component {
 						{
 							string: '',
 							component:
-								<CSCustomSelect label="Choose color" id="color" optionsList={['Red', 'Blue', 'Green']} />
+								<CSCustomSelect label="Choose color" optionsList={['Red', 'Blue', 'Green']} />
 						}
 					]
 				},
@@ -44,7 +44,7 @@ class CSCustomSelectPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-								<CSCustomSelect label="Choose color" id="color" optionsList={['Red', 'Blue', 'Green']} labelHidden/>
+								<CSCustomSelect label="Choose color" optionsList={['Red', 'Blue', 'Green']} labelHidden/>
 						}
 					]
 				},
@@ -56,7 +56,7 @@ class CSCustomSelectPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-								<CSCustomSelect label="Choose color" id="color" optionsList={['Red', 'Blue', 'Green']} labelTitle/>
+								<CSCustomSelect label="Choose color" optionsList={['Red', 'Blue', 'Green']} labelTitle/>
 						}
 					]
 				},
@@ -147,7 +147,7 @@ class CSCustomSelectPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-								<CSCustomSelect label="Choose letter" id="number" required optionsList={['A', 'B', 'C']} />
+								<CSCustomSelect label="Choose letter" required optionsList={['A', 'B', 'C']} />
 						}
 					]
 				},

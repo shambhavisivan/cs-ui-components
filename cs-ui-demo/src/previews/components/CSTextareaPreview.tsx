@@ -24,7 +24,7 @@ class CSTextareaPreview extends React.Component {
 						{
 							string: '',
 							component:
-								<CSTextarea label="Enter message:" value="Message" id="message" />
+								<CSTextarea label="Enter message:" value="Message" />
 						}
 					]
 				},
@@ -35,7 +35,7 @@ class CSTextareaPreview extends React.Component {
 						{
 							string: '',
 							component:
-								<CSTextarea label="Enter message:" placeholder="Message" id="message" />
+								<CSTextarea label="Enter message:" placeholder="Message" />
 						}
 					]
 				},
@@ -56,7 +56,7 @@ class CSTextareaPreview extends React.Component {
 						{
 							string: '',
 							component:
-								<CSTextarea label="Enter message:" id="messageBody" />
+								<CSTextarea label="Enter message:" />
 						}
 					]
 				},
@@ -68,7 +68,7 @@ class CSTextareaPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-								<CSTextarea label="Enter message:" id="messageBody" labelHidden/>
+								<CSTextarea label="Enter message:" labelHidden/>
 
 						}
 					]
@@ -81,7 +81,7 @@ class CSTextareaPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-								<CSTextarea label="Enter message:" id="messageBody" labelTitle/>
+								<CSTextarea label="Enter message:" labelTitle/>
 						}
 					]
 				},
@@ -184,7 +184,7 @@ class CSTextareaPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-								<CSTextarea required label="Enter message:" id="messageContent" />
+								<CSTextarea required label="Enter message:" />
 						}
 					]
 				},

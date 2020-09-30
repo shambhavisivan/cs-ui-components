@@ -87,7 +87,7 @@ class CSInputNumberPreview extends React.Component {
 						{
 							string: '',
 							component:
-								<CSInputNumber label="Enter value:" id="value" />
+								<CSInputNumber label="Enter value:" />
 						}
 					]
 				},
@@ -99,7 +99,7 @@ class CSInputNumberPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-								<CSInputNumber label="Enter value:" id="value" labelHidden/>
+								<CSInputNumber label="Enter value:" labelHidden/>
 						}
 					]
 				},
@@ -111,7 +111,7 @@ class CSInputNumberPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-								<CSInputNumber label="Enter value:" id="value" labelTitle/>
+								<CSInputNumber label="Enter value:" labelTitle/>
 						}
 					]
 				},
@@ -202,7 +202,7 @@ class CSInputNumberPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-								<CSInputNumber required label="Enter value:" id="number" />
+								<CSInputNumber required label="Enter value:" />
 						}
 					]
 				},

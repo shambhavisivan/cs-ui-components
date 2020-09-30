@@ -63,7 +63,7 @@ class CSInputTextPreview extends React.Component {
 						{
 							string: '',
 							component:
-								<CSInputText label="Type here:" id="name"/>
+								<CSInputText label="Type here:"/>
 						}
 					]
 				},
@@ -75,7 +75,7 @@ class CSInputTextPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-								<CSInputText label="Type here:" id="name" labelHidden/>
+								<CSInputText label="Type here:" labelHidden/>
 						}
 					]
 				},
@@ -87,7 +87,7 @@ class CSInputTextPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-							<CSInputText label="Type here:" id="name" labelTitle/>
+							<CSInputText label="Type here:" labelTitle/>
 						}
 					]
 				},
@@ -178,7 +178,7 @@ class CSInputTextPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-								<CSInputText required label="Enter job role" id="jobRole" helpText="Help text example" tooltipPosition="top-left"/>
+								<CSInputText required label="Enter job role" helpText="Help text example" tooltipPosition="top-left"/>
 						}
 					]
 				},

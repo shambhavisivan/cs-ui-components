@@ -65,7 +65,7 @@ class CSInputSearchPreview extends React.Component {
 						{
 							string: '',
 							component:
-									<CSInputSearch label="Type here:"  id="searchName" />
+									<CSInputSearch label="Type here:"  />
 						}
 					]
 				},
@@ -77,7 +77,7 @@ class CSInputSearchPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-								<CSInputSearch label="Type here:" labelHidden id="searchName" />
+								<CSInputSearch label="Type here:" labelHidden />
 						}
 					]
 				},
@@ -89,7 +89,7 @@ class CSInputSearchPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-								<CSInputSearch label="Type here:" labelTitle id="searchName" />
+								<CSInputSearch label="Type here:" labelTitle />
 						}
 					]
 				},
@@ -168,7 +168,7 @@ class CSInputSearchPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-									<CSInputSearch label="Type here:" required id="searchItem" />
+									<CSInputSearch label="Type here:" required />
 						}
 					]
 				},
