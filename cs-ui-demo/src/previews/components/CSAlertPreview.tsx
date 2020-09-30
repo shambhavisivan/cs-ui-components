@@ -9,6 +9,7 @@ import {CSAlert} from '@cloudsense/cs-ui-components';
 
 class CSAlertPreview extends React.Component {
 	getDoc() {
+		const clickHandler = () => alert('You clicked the close button!');
 
 		const json = {
 			name: 'Alert',
@@ -233,6 +234,21 @@ class CSAlertPreview extends React.Component {
 								<CSAlert
 									variant="info"
 									text="This is an example alert without a close button"
+								/>
+						}
+					]
+				},
+				{
+					propName: 'onClose',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSAlert
+									variant="info"
+									closeButton
+									onClose={clickHandler}
+									text="This is an example alert with a close button"
 								/>
 						}
 					]
