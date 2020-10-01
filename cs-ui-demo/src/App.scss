@@ -264,17 +264,38 @@ body,
 				padding: 2rem 0;
 				border-bottom: 1px solid #ccc;
 
-				h1 {
-					margin: 0.5rem 0;
-					font-size: 3rem;
+				.preview-heading-row {
+					display: flex;
+					margin-top: 1rem;
+
+					h1 {
+						margin: 0.5rem 0;
+						font-size: 3rem;
+					}
+
+					.preview-accessibility-status-wrapper {
+						margin-left: auto;
+						padding-left: 1rem;
+						display: flex;
+						align-items: center;
+
+						svg {
+							margin-right: 0.25rem;
+						}
+
+						span {
+							font-size: 1rem;
+						}
+					}
 				}
 
 				h2 {
-					margin-top: 1rem;
+					flex: 1;
 					font-size: 1.25rem;
 					font-weight: 400;
 					color: #999;
 				}
+
 			}
 
 			.property-section {

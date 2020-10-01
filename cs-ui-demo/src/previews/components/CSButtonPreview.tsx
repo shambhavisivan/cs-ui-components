@@ -16,6 +16,7 @@ class CSButtonPreview extends React.Component {
 		const json = {
 			name: 'Button',
 			usage: 'Button provides a base UI for button actions',
+			accessible: 'yes',
 			examples: [
 				{
 					propName: 'btnType',
@@ -761,7 +762,7 @@ class CSButtonPreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<div className="cs-btn-type-preview-wrapper">
 						<div className="cs-btn-type-preview">
 							<span className="cs-btnStyle-header">btnStyle</span>
