@@ -108,6 +108,10 @@ const colors = [
 		"colorValue": "#54698d"
 	},
 	{
+		"colorName": "cs-blue-dark-4",
+		"colorValue": "#164a85"
+	},
+	{
 		"colorName": "cs-blue-medium-1",
 		"colorValue": "#295497"
 	},
@@ -133,15 +137,27 @@ const colors = [
 	},
 	{
 		"colorName": "cs-blue-light-1",
-		"colorValue": "#e3f3ff"
+		"colorValue": "#d8edff"
 	},
 	{
 		"colorName": "cs-blue-light-2",
-		"colorValue": "#f0f8fc"
+		"colorValue": "#e3f3ff"
 	},
 	{
 		"colorName": "cs-blue-light-3",
+		"colorValue": "#f0f8fc"
+	},
+	{
+		"colorName": "cs-blue-light-4",
 		"colorValue": "#e4ebf6"
+	},
+	{
+		"colorName": "cs-blue-light-5",
+		"colorValue": "#f5f9fd"
+	},
+	{
+		"colorName": "cs-blue-light-6",
+		"colorValue": "#eef1f6"
 	},
 	{
 		"colorName": "cs-green-dark-1",

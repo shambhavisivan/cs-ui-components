@@ -27,25 +27,34 @@ $cs-blue: #00abd3;
 $cs-blue-dark-1: #16325c;
 $cs-blue-dark-2: #1b3d71;
 $cs-blue-dark-3: #54698d;
+$cs-blue-dark-4: #164A85;
 $cs-blue-medium-1: #295497;
 $cs-blue-medium-2: #005fb2;
 $cs-blue-medium-3: #0062b8;
 $cs-blue-medium-4: #016fc0;
 $cs-blue-medium-5: #1589ee;
-$cs-blue-light-1: #e3f3ff;
-$cs-blue-light-2: #f0f8fc;
-$cs-blue-light-3: #e4ebf6;
-$cs-blue-light-4: #f5f9fd;
+$cs-blue-medium-6: #5eb4ff;
+$cs-blue-light-1: #d8edff;
+$cs-blue-light-2: #e3f3ff;
+$cs-blue-light-3: #f0f8fc;
+$cs-blue-light-4: #e4ebf6;
+$cs-blue-light-5: #f5f9fd;
+$cs-blue-light-6: #eef1f6;
 $cs-green-dark-1: #1f7245;
 $cs-green-dark-2: #04844b;
 $cs-green-medium-1: #009540;
 $cs-green-medium-2: #5bb85c;
 $cs-green-light-1: #4bca81;
+$cs-mint: #3cdbc0;
+$cs-purple: #4a26ab;
+$cs-purple-medium-1: #7f8de1;
 $cs-orange-medium-1: #ffa429;
 $cs-orange-medium-2: #ffb75d;
-$cs-red-medium-1: #f91e0b;
+$cs-orange-light-1: #fff2e2;
+$cs-red-medium-1: #d81c2a;
 $cs-red-medium-2: #c23934;
 $cs-red-medium-3: #d9675d;
+$cs-red-light-1: #fcedee;
 $cs-white: #ffffff;
 
 $css4: true;
@@ -66,7 +75,7 @@ $variables: (
 	--csgrid-shadow-dark: rgba($cs-black, 0.5),
 
 	--csgrid-row-bg: $cs-white,
-	--csgrid-row-hover-bg: $cs-blue-light-4,
+	--csgrid-row-hover-bg: $cs-blue-light-5,
 	--csgrid-row-br: $cs-gray-light-2,
 	--csgrid-row-selected-bg: $cs-gray-light-7,
 
@@ -97,7 +106,7 @@ $variables: (
 	--csgrid-datepicker-bg: $cs-white,
 	--csgrid-datepicker-arrow-c: $cs-gray-dark-5,
 	--csgrid-datepicker-br: $cs-gray-light-2,
-	--csgrid-datepicker-hover-bg: $cs-blue-light-1,
+	--csgrid-datepicker-hover-bg: $cs-blue-light-2,
 	--csgrid-datepicker-selected-bg: $cs-gray-light-5,
 	--csgrid-datepicker-selected-c: $cs-white,
 	--csgrid-datepicker-icon-hover: $cs-gray-medium-2,
