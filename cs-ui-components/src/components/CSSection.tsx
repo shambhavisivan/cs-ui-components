@@ -55,7 +55,7 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 		);
 		const sectionTitleClasses = classNames(
 			'cs-section-wrapper', {
-				'cs-section-wrapper-padding': this.props.collapsed === true
+				'cs-section-wrapper-padding': this.props.collapsed === true && this.props.collapsible !== true
 			}
 		);
 		return (
