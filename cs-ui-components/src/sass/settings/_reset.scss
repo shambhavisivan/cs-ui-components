@@ -60,4 +60,10 @@
 	::-ms-input-placeholder {
 		@include sc(--cs-input-placeholder-c);
 	}
+	/* SELECTION */
+	::selection {
+		text-shadow: none;
+		@include sbg(--cs-selection-bg);
+		@include sc(--cs-selection-c);
+	}
 }
