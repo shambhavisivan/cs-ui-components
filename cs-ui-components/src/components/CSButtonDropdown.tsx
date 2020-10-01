@@ -93,14 +93,16 @@ class CSButtonDropdown extends React.Component<CSButtonDropdownProps, CSButtonDr
 		);
 
 		const childrenWithWrapper =  React.Children.map(this.props.children, child => {
-			return (
-				<li role="none">
-					{React.cloneElement(
-						child as React.ReactElement<any>,
-						{ role: 'menuitem' }
-					)}
-				</li>
-			);
+			if (child) {
+				return (
+					<li role="none">
+						{React.cloneElement(
+							child as any,
+							{ role: 'menuitem' }
+						)}
+					</li>
+				);
+			}
 		});
 
 		return (
