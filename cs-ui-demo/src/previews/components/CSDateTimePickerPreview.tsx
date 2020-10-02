@@ -419,11 +419,11 @@ class CSDateTimePickerPreview extends React.Component {
 								<CSDateTimePicker label="Enter date:" width="100%"/>
 						},
 						{
-							variationName: ['20rem'],
-							quickLink: '20rem',
+							variationName: ['30rem'],
+							quickLink: '30rem',
 							string: '',
 							component:
-								<CSDateTimePicker label="Enter date:" width="20rem"/>
+								<CSDateTimePicker label="Enter date:" width="30rem"/>
 						},
 						{
 							variationName: ['400px'],

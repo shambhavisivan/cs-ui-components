@@ -68,8 +68,6 @@
 	.react-datepicker__tab-loop {
 
 		.react-datepicker-popper {
-			min-width: 22rem;
-
 			.react-datepicker {
 				@include css4 {
 					box-shadow: 0 2px 8px var(--cs-shadow-light);
@@ -335,7 +333,8 @@
 
 	// datetimepicker
 	&.cs-datetimepicker {
-		width: var(--datetimepicker-width, 242px);
+		min-width: 22rem;
+		width: var(--datetimepicker-width, 22rem);
 
 		.react-datepicker__header,
 		.react-datepicker__time-container {
