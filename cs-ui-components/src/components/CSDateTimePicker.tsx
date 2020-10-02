@@ -6,6 +6,7 @@ import CSIcon from './CSIcon';
 import CSLabel from './CSLabel';
 import classNames from 'classnames';
 import { CSTooltipPosition } from './CSTooltip';
+import { v4 as uuidv4 } from 'uuid';
 
 export type CSDateTimePickerDropdownMode = 'select' | 'scroll';
 
@@ -112,12 +113,14 @@ class CSDateTimePicker extends React.Component<CSDateTimePickerProps, CSDateTime
 			}
 		};
 
+		const uniqueAutoId = uuidv4();
+
 		return (
 			<>
 				<div className={dateTimePickerClasses} style={style}>
 					{(this.props.label && !this.props.labelHidden) &&
 						<CSLabel
-							for={this.props.id}
+							for={this.props.id ? this.props.id : uniqueAutoId}
 							label={this.props.label}
 							helpText={this.props.helpText}
 							tooltipPosition={this.props.tooltipPosition}
@@ -143,6 +146,8 @@ class CSDateTimePicker extends React.Component<CSDateTimePickerProps, CSDateTime
 							scrollableYearDropdown={this.props.scrollableYearDropdown}
 							dropdownMode={this.props.dropdownMode}
 							yearDropdownItemNumber={this.props.yearDropdownItemNumber}
+							required={this.props.required}
+							id={this.props.id ? this.props.id : uniqueAutoId}
 							autoComplete="off"
 							showTimeSelect
 							timeFormat={this.props.timeFormat}
