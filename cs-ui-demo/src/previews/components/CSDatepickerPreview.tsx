@@ -249,7 +249,7 @@ class CSDatepickerPreview extends React.Component {
 						{
 							string: '',
 							component:
-								<CSDatepicker label="Enter date:" showYearDropdown yearDropdownItemNumber={4}/>
+								<CSDatepicker label="Enter date:" showYearDropdown scrollableYearDropdown yearDropdownItemNumber={15} />
 						}
 					]
 				},

@@ -142,6 +142,7 @@ class CSDateTimePicker extends React.Component<CSDateTimePickerProps, CSDateTime
 							showMonthDropdown={this.props.showMonthDropdown}
 							scrollableYearDropdown={this.props.scrollableYearDropdown}
 							dropdownMode={this.props.dropdownMode}
+							yearDropdownItemNumber={this.props.yearDropdownItemNumber}
 							autoComplete="off"
 							showTimeSelect
 							timeFormat={this.props.timeFormat}
