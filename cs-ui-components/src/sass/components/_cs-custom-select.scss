@@ -2,10 +2,10 @@
 //
 // CS custom select component.
 
-.cs-custom-select {
+.cs-custom-select-wrapper {
 	position: relative;
 
-	.cs-custom-select-input {
+	.cs-custom-select-group {
 		position: relative;
 
 		.cs-custom-select-search-icon {
@@ -15,15 +15,95 @@
 			right: 1rem;
 			transform: translateY(50%);
 		}
-	}
 
-	// Input
-	.cs-input-text {
-		@include input;
+		.cs-custom-select-input-wrapper {
+			border-radius: 0.25rem;
+			display: flex;
+			font-size: 0.75rem;
+			line-height: 1.875rem;
+			min-height: 2rem;
+			transition: border 0.1s linear, background-color 0.1s linear;
+			width: 100%;
+			@include overflow-ellipsis;
+			@include sbg(--cs-input-bg);
+			@include css4 {
+				border: 1px solid cvar(--cs-input-br);
+			}
 
-		// Square
-		&.cs-input-text-square {
-			border-radius: 0;
+			&:focus-within {
+				outline: 0;
+				@include css4 {
+					border-color: cvar(--cs-input-active-br);
+					box-shadow: 0 0 0.1875rem cvar(--cs-input-shadow);
+				}
+			}
+
+			&-disabled {
+				cursor: default;
+				user-select: none;
+				@include sbg(--cs-input-disabled-bg);
+				@include css4 {
+					border-color: cvar(--cs-input-disabled-br);
+				}
+			}
+			&-error {
+				@include css4 {
+					border: 1px solid cvar(--cs-input-error-br);
+				}
+
+				&:focus-within {
+					@include css4 {
+						border-color: cvar(--cs-input-error-c);
+						box-shadow: 0 0 3px cvar(--cs-input-error-shadow);
+					}
+				}
+			}
+
+			.cs-custom-select-input {
+				border: none;
+				outline: none;
+				width: 100%;
+				padding: 0 0.75rem;
+			}
+
+			&-square {
+				border-radius: 0;
+			}
+
+			.cs-custom-select-items {
+				display: flex;
+				align-items: center;
+
+				.cs-selected-item {
+					display: inline-flex;
+					align-items: center;
+					justify-content: space-between;
+					line-height: 1.5;
+					max-width: 100%;
+					min-width: 2.25rem;
+					min-height: 1.625rem;
+					border-radius: 0.25rem;
+					padding:  0.125rem;
+					margin: 0 0.25rem;
+					position: relative;
+					@include sbg(--cs-custom-select-selected-item-bg);
+					@include css4 {
+						border: 1px solid cvar(--cs-custom-select-selected-item-br);
+					}
+
+					&:hover {
+						@include sbg(--cs-custom-selected-hover);
+					}
+
+					&:focus-within {
+						outline: 0;
+						@include css4 {
+							border: 1px solid cvar(--cs-custom-select-selected-item-focus);
+							box-shadow: 0 0 3px cvar(--cs-custom-select-selected-item-shadow);
+						}
+					}
+				}
+ 			}
 		}
 	}
 }
@@ -46,17 +126,41 @@
 		box-shadow: 0 2px 3px 0 cvar(--cs-custom-select-dropdown-shadow);
 	}
 
-	> li {
+	.cs-list-item {
 		cursor: pointer;
 		padding: 0.5rem 0.75rem;
 		outline: 0;
+		display: flex;
 
 		> svg {
 			margin-right: 0.5rem;
 		}
 
-		&:hover, &:focus {
+		&:hover, &.cs-active-item {
 			@include sbg(--cs-custom-select-dropdown-hover-bg);
+		}
+
+		&:first-child {
+			border-top-left-radius: 0.25rem;
+			border-top-right-radius: 0.25rem;
+		}
+
+		&:last-child {
+			border-bottom-left-radius: 0.25rem;
+			border-bottom-right-radius: 0.25rem;
+		}
+
+		.cs-list-item-value {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		.cs-select-check-icon {
+			display: flex;
+			justify-content: center;
+			width: 1.5rem;
+			margin-right: 0.25rem;
 		}
 	}
 }

@@ -4,13 +4,13 @@ import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
 import PreviewLinks from '../PreviewLinks';
-import PreviewBacklogList from '../PreviewBacklogList';
 
 import {CSCustomSelect} from '@cloudsense/cs-ui-components';
 
 class CSCustomSelectPreview extends React.Component {
 	getDoc() {
-
+		const handleSelectChange = (e: any) => alert('Selected items: ' + e);
+		const handleOnChange = () => alert('Change triggered!');
 		const json = {
 			name: 'Custom Select',
 			usage: 'Select element presents a menu of options.',
@@ -185,6 +185,36 @@ class CSCustomSelectPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'onChange',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSCustomSelect label="Choose letter" optionsList={['A', 'B', 'C']} onChange={handleOnChange}/>
+						}
+					]
+				},
+				{
+					propName: 'multiselect',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSCustomSelect label="Choose letter" optionsList={['A', 'B', 'C']} multiselect />
+						}
+					]
+				},
+				{
+					propName: 'onSelectChange',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSCustomSelect label="Choose letter" optionsList={['A', 'B', 'C']} multiselect onSelectChange={e => handleSelectChange(e)}/>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -268,6 +298,14 @@ class CSCustomSelectPreview extends React.Component {
 					]
 				},
 				{
+					propertyName: 'onChange',
+					description: 'Logic for input field onChange event'
+				},
+				{
+					propertyName: 'onSelectChange',
+					description: 'Logic for event triggered when one of the multiple items is selected or unselected'
+				},
+				{
 					propertyName: 'required',
 					description: 'Required state',
 					options: [
@@ -288,34 +326,6 @@ class CSCustomSelectPreview extends React.Component {
 						'bottom-right',
 						'bottom-left'
 					]
-				}
-			],
-			backlog: [
-				{
-					backlogName: 'Open dropdown on focus',
-					description: 'When focus is moved to input element ul should open with first list item focused',
-					obstacles: 'Tried to implement using refs and this will work but the problem is that this will happen on onClick event also. Input loses focus which prevents user from searching'
-
-				},
-				{
-					backlogName: 'Close dropdown on click outside components',
-					description: 'Dropdown should close if user clicks outside of the component',
-					obstacles: 'For some reason using refs will not work here.'
-				},
-				{
-					backlogName: 'Navigation through list items using arrow keys',
-					description: 'All items should be accessible with up/down arrow keys',
-					obstacles: 'Created the list of refs of all list items, but for some reason focus is not changing'
-				},
-				{
-					backlogName: 'Change focus/hover on list items',
-					description: 'Color setting for icons is doubled in all places with both sc and sf mixins',
-					obstacles: 'This needs a new design'
-				},
-				{
-					backlogName: 'Close dropdown on Esc keypress',
-					description: 'Dropdown should close on Esc keypress',
-					obstacles: ''
 				}
 			]
 		};
@@ -338,7 +348,6 @@ class CSCustomSelectPreview extends React.Component {
 					<PreviewHeading name={component.name} usage={component.usage} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
-					<PreviewBacklogList backlog={component.backlog} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>
