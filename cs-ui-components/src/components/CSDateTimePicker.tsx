@@ -141,6 +141,8 @@ class CSDateTimePicker extends React.Component<CSDateTimePickerProps, CSDateTime
 							locale={this.props.locale}
 							selected={this.state.startDate}
 							onChange={this.handleChange}
+							readOnly={this.props.readOnly}
+							tabIndex={this.props.readOnly ? -1 : null}
 							showYearDropdown={this.props.showYearDropdown}
 							showMonthDropdown={this.props.showMonthDropdown}
 							scrollableYearDropdown={this.props.scrollableYearDropdown}
