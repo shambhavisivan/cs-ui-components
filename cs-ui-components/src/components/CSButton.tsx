@@ -52,7 +52,7 @@ class CSButton extends React.Component<CSButtonProps> {
 	handleClick = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
 		const { onClick } = this.props;
 		if (onClick) {
-		  onClick(e);
+			onClick(e);
 		}
 	}
 

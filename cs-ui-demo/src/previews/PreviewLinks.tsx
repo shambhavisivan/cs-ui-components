@@ -33,6 +33,15 @@ class PreviewLinks extends React.Component<PreviewLinksProps> {
 						</a>
 					</h4>
 				</div>
+				{this.props.component.accessibility && (
+					<div className="prop-group">
+						<h4>
+							<a href={`#accessibility-table-${this.props.component.name}`}>
+								Accessibility
+							</a>
+						</h4>
+					</div>
+				)}
 				{this.props.component.api && (
 					<div className="prop-group">
 						<h4>

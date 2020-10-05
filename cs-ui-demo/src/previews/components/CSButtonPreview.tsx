@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
 import {CSButton} from '@cloudsense/cs-ui-components';
@@ -738,11 +739,39 @@ class CSButtonPreview extends React.Component {
 					]
 				}
 			],
-			backlog: [
+			accessibility: [
 				{
-					backlogName: 'Add colorOverride prop',
-					description: 'Allows to pass custom hex colour.',
-					obstacles: 'Button state colors need to depend on the main hex colour and use darken and lighten mixins'
+					criterionList: [
+						'1.4.1',
+						'1.4.3',
+						'1.4.4',
+						'2.1.1',
+						'2.3.1',
+						'2.4.7',
+						'4.1.1',
+						'4.1.2'
+					],
+					requirements: [
+						{
+							structure: [
+								'HTML <button> element used',
+								'Icon as a child element with attribute aria-hidden'
+							],
+							properties: [
+								'aria-expanded (when button controls display of another object)',
+								'aria-haspopup (when button controls display of a popup such as menu)',
+								'aria-label',
+								'role (to change role button to a more accurate one such as menu item)'
+							],
+							styling: [
+								'Color contrast ratio > 4.5',
+								'Distinct hover, active and focus state styles'
+							],
+							keyboardOperability: [
+								'HTML <button> is focusable and supports keyboard click for keys space and enter'
+							]
+						}
+					]
 				}
 			]
 		};
@@ -818,6 +847,7 @@ class CSButtonPreview extends React.Component {
 					</div>
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

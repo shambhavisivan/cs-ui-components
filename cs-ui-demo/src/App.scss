@@ -730,6 +730,65 @@ body,
 		}
 	}
 
+	/* ACCESSIBILITY CONFORMANCE SECTION */
+	.accessibility-conformance-section {
+		padding: 0 2rem 2rem 2rem;
+
+		h3 {
+			margin-bottom: 0.25rem;
+		}
+
+		.accessibility-criterions-list {
+			.criterion {
+				display: inline-flex;
+				position: relative;
+				margin: 0.1rem 0.5rem 0.1rem 0;
+				padding: 0 0.25rem;
+				background: #ddd;
+
+				&::after {
+					position: absolute;
+					content: ",";
+					right: -0.25rem;
+				}
+
+				&:last-child::after {
+					content: "";
+				}
+			}
+		}
+
+		.requirements-table-wrapper {
+			margin-top: 1rem;
+
+			.table-body {
+				.table-row {
+					.table-cell:first-child {
+						background: #00abd3;
+						color: #fff;
+					}
+				}
+			}
+
+			.table-cell {
+				flex-direction: column;
+
+				.conformance-item {
+					position: relative;
+					margin-left: 0.5rem;
+
+					&::before {
+						content: "\2022";
+						color: #080707;
+						position: absolute;
+						left: -0.75rem;
+					}
+				}
+			}
+		}
+	}
+
+
 	/* COMPONENT PROPERTIES TABLE */
 	.table-wrapper {
 		padding: 2rem;
