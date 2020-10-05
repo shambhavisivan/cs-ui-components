@@ -218,3 +218,27 @@ formFieldStories.add(
 		);
 	})
 );
+
+formFieldStories.add(
+	'with ID field',
+	withState({ value: 0 })(({ store }) => {
+		const descriptor: FieldDescriptor = {
+			fieldType: 'ID',
+			name: 'IDField',
+			label: 'ID field'
+		};
+		return (
+			<FormField
+				value={store.state.value}
+				descriptor={descriptor}
+				status={options(statusLabel, statusValuesObj, 'mandatory', optionsObj)}
+				locale={locale}
+				wrapper={wrapper}
+				handleFieldChange={value => {
+					store.set({ value });
+				}}
+				fetchPossibleValues={nop}
+			/>
+		);
+	})
+);
