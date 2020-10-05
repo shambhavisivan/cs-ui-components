@@ -39,6 +39,7 @@ import CSRadio, { CSRadioVariant } from './components/radio/CSRadio';
 import CSRadioOption from './components/radio/CSRadioOption';
 import CSSection from './components/CSSection';
 import CSSelect, { CSSelectBorderType } from './components/CSSelect';
+import CSSkipLink from './components/CSSkipLink';
 import CSSlider from './components/CSSlider';
 import CSSpinner, { CSSpinnerColor,	CSSpinnerSize } from './components/CSSpinner';
 import CSTab from './components/CSTab';
@@ -135,6 +136,7 @@ export {
 	CSSection,
 	CSSelect,
 	CSSelectBorderType,
+	CSSkipLink,
 	CSSlider,
 	CSSpinner,
 	CSSpinnerColor,

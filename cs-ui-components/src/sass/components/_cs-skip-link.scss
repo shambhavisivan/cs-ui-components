@@ -1,0 +1,19 @@
+.cs-skip-link {
+	font-size: 0.8125rem;
+	--cs-skip-link-c: var(--cs-skip-link-custom-c, var(--cs-main-c));
+	&:not(:focus) {
+		display: block;
+		@include screen-reader-hidden;
+	}
+
+	&:focus {
+		border-radius: 0.25rem;
+		padding: 0.2rem 0.3rem;
+		outline: none;
+		@include sc(--cs-skip-link-c);
+		@include sbg(--cs-skip-link-bg);
+		@include css4 {
+			box-shadow: 0 0 3px cvar(--cs-skip-link-c);
+		}
+	}
+}
