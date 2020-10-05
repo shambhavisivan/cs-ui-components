@@ -34,6 +34,7 @@ import CSButtonGroupPreview from './components/CSButtonGroupPreview';
 import CSImagePreview from './components/CSImagePreview';
 import CSLookupFieldPreview from './components/CSLookupFieldPreview';
 import CSSliderPreview from './components/CSSliderPreview';
+import CSSidebarListPreview from './components/CSSidebarListPreview';
 import CSFieldErrorMsgPreview from './components/CSFieldErrorMsgPreview';
 import CSSkipLinkPreview from './components/CSSkipLinkPreview';
 import CSGettingStarted from './CSGettingStarted';
@@ -159,6 +160,10 @@ class CSComponentsList extends React.Component {
 			{
 				name: 'Select',
 				component: CSSelectPreview
+			},
+			{
+				name: 'Sidebar List',
+				component: CSSidebarListPreview
 			},
 			{
 				name: 'Skip Link',

@@ -479,6 +479,13 @@ body,
 						}
 					}
 
+					&.sidebar-list-preview {
+
+						.custom-class {
+							background-color: pink;
+						}
+					}
+
 					&.button-preview,
 					&.button-dropdown-preview {
 						.blue-background {

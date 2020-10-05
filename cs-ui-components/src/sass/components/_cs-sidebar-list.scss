@@ -1,0 +1,63 @@
+.cs-sidebar-list {
+	height: var(--cs-sidebar-list-height, 100vh);
+	overflow: auto;
+	position: relative;
+	width: var(--cs-sidebar-list-width, 18rem);
+	@include sbg(--cs-sidebar-list-bg);
+	@include css4 {
+		box-shadow: 0 2px 4px cvar(--cs-sidebar-list-shadow);
+	}
+
+	&.closed {
+		width: 3rem;
+	}
+
+	// Top
+	.cs-sidebar-list-item-top {
+		display: flex;
+		justify-content: flex-end;
+		padding: 0.75rem;
+	}
+
+	// Icon
+	> .cs-sidebar-list-close {
+		position: absolute;
+		right: 0.75rem;
+		top: 0.75rem;
+		z-index: var(--z-index-sidebar-list-close);
+	}
+
+	// List item
+	ul > li {
+		cursor: pointer;
+		font-size: 0.875rem;
+		padding: 0.5rem 1rem;
+		position: relative;
+		user-select: none;
+		@include sc(--cs-sidebar-list-item-c);
+
+		&:hover, {
+			@include sbg(--cs-sidebar-list-item-hover-bg);
+		}
+
+		&:focus {
+			outline: 0;
+			@include sbg(--cs-sidebar-list-item-focus-bg);
+		}
+
+		&.active {
+			font-weight: $font-weight-bold;
+			@include sbg(--cs-sidebar-list-item-active-bg);
+
+			&::after {
+				content: "";
+				height: 100%;
+				left: 0;
+				position: absolute;
+				top: 0;
+				width: 4px;
+				@include sbg(--cs-sidebar-list-item-active-br);
+			}
+		}
+	}
+}
