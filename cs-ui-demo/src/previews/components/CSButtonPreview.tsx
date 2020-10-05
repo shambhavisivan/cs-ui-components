@@ -10,6 +10,7 @@ import {CSButton} from '@cloudsense/cs-ui-components';
 class CSButtonPreview extends React.Component {
 	getDoc() {
 		const clickHandler = () => alert('Button is clicked!');
+		const mouseDownHandler = () => alert('Mouse down is triggered!');
 
 		const json = {
 			name: 'Button',
@@ -239,6 +240,16 @@ class CSButtonPreview extends React.Component {
 						{
 							string: '',
 							component: <CSButton onClick={clickHandler} iconName="activity" label="default round"/>
+						}
+					]
+				},
+				{
+					propName: 'onMouseDown',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component: <CSButton onMouseDown={mouseDownHandler} iconName="activity" label="default round"/>
 						}
 					]
 				},
@@ -636,6 +647,10 @@ class CSButtonPreview extends React.Component {
 				{
 					propertyName: 'onClick',
 					description: 'Logic for onClick event'
+				},
+				{
+					propertyName: 'onMouseDown',
+					description: 'Logic for onMouseDown event'
 				},
 				{
 					propertyName: 'openInNewTab',
