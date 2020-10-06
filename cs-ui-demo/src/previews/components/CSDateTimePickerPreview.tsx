@@ -10,7 +10,7 @@ import moment from 'moment';
 import {CSDateTimePicker} from '@cloudsense/cs-ui-components';
 
 class CSDateTimePickerPreview extends React.Component {
-	value = moment('1.1.2020').toDate();
+	value = moment('1.1.2020', 'DD-MM-YYYY').toDate();
 	getDoc() {
 
 		const json = {
