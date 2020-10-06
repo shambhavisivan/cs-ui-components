@@ -2,6 +2,9 @@
 
 Generic configurable React form component.
 
+### 1.0.0-alpha.112:
+* 0 is now a valid value for the simple field type.
+
 ### 1.0.0-alpha.111:
 * Moved timeInterval from DateTime prop to descriptor. The descriptor can be different for every attribute where as the props are passed in to the whole cs-form.
 * Fixed duplicated labelling on fields.
