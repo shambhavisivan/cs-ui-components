@@ -176,7 +176,7 @@ body,
 				}
 			}
 
-			.ui-component:first-of-type a {
+			.ui-component.info:first-of-type a {
 
 				&::after {
 					content: '';
@@ -193,6 +193,10 @@ body,
 
 				&:hover::after {
 					background: #363a3b;
+				}
+
+				&.active-component:hover::after {
+					background: #fff;
 				}
 			}
 		}

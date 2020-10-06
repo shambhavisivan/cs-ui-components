@@ -87,7 +87,7 @@ class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
 									const term = this.state.term.toLowerCase();
 									return component.name.toLowerCase().includes(term) || !term;
 								}).map(component => (
-									<li className="ui-component" key={component.name.split(' ').join('')}>
+									<li className={component.name.includes('Getting Started') ? 'ui-component info' : 'ui-component'} key={component.name.split(' ').join('')}>
 										<NavLink to={`${this.props.path}${component.name.split(' ').join('')}`}
 											activeClassName="active-component">{component.name}</NavLink>
 									</li>)
