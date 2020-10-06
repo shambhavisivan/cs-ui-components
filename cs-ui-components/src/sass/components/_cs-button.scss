@@ -83,6 +83,7 @@
 	}
 	&[disabled] {
 		cursor: default;
+		pointer-events: none;
 	}
 	/* ALL BUTTONS PROPERTIES */
 	&.cs-btn-round {
