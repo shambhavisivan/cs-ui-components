@@ -54,14 +54,14 @@ class CSAlertPreview extends React.Component {
 								/>
 						},
 						{
-							variationName: ['offline'],
-							quickLink: 'offline',
+							variationName: ['base'],
+							quickLink: 'base',
 							string: '',
 							component:
 								<CSAlert
-									variant="offline"
+									variant="base"
 									closeButton
-									text="This is an example offline alert"
+									text="This is an example base alert"
 								/>
 						}
 					]
@@ -107,6 +107,19 @@ class CSAlertPreview extends React.Component {
 									closeButton
 									text="This is an example light warning alert"
 								/>
+						},
+						{
+							variationName: ['light'],
+							quickLink: 'light base',
+							variationText: ['variant="base"'],
+							string: '',
+							component:
+								<CSAlert
+									variant="base"
+									styleType="light"
+									closeButton
+									text="This is an example light base alert"
+								/>
 						}
 					]
 				},
@@ -148,6 +161,19 @@ class CSAlertPreview extends React.Component {
 									textAlign="center"
 									closeButton
 									text="This is an example alert with text aligned center"
+								/>
+						},
+						{
+							variationName: ['center'],
+							quickLink: 'center with array',
+							variationText: ['array'],
+							string: '',
+							component:
+								<CSAlert
+									variant="info"
+									textAlign="center"
+									closeButton
+									text={['This is an example alert with text aligned left', 'One more alert', 'Another alert to display']}
 								/>
 						}
 					]
@@ -194,6 +220,34 @@ class CSAlertPreview extends React.Component {
 									iconVisibility={false}
 									closeButton
 									text="This is an example alert without an icon"
+								/>
+						}
+					]
+				},
+				{
+					propName: 'styleFormat',
+					variations: [
+						{
+							variationName: ['default'],
+							quickLink: 'default',
+							string: '',
+							component:
+								<CSAlert
+									variant="info"
+									text="This is an example of default alert"
+									closeButton
+								/>
+						},
+						{
+							variationName: ['scoped'],
+							quickLink: 'scoped',
+							string: '',
+							component:
+								<CSAlert
+									variant="info"
+									styleFormat="scoped"
+									closeButton
+									text="This is an example of scoped alert"
 								/>
 						}
 					]
@@ -334,6 +388,14 @@ class CSAlertPreview extends React.Component {
 					description: 'Close Alert'
 				},
 				{
+					propertyName: 'styleFormat',
+					description: 'Determines size of alert and icons',
+					options: [
+						'default',
+						'scoped'
+					]
+				},
+				{
 					propertyName: 'styleType',
 					description: 'Determines styling of text and background',
 					options: [
@@ -349,8 +411,8 @@ class CSAlertPreview extends React.Component {
 					propertyName: 'textAlign',
 					description: 'Alignment of the text inside the alert',
 					options: [
-						'centre',
-						'left'
+						'left',
+						'center'
 					]
 				},
 				{
@@ -360,7 +422,7 @@ class CSAlertPreview extends React.Component {
 						'info',
 						'warning',
 						'error',
-						'offline'
+						'base'
 					]
 				}
 			],

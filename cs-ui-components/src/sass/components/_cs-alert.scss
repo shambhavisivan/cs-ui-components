@@ -7,6 +7,24 @@
 	padding: 0.5rem 2rem 0.5rem 1rem;
 	width: 100%;
 
+	&.cs-alert-scoped {
+		display: flex;
+		padding: 0.75rem 2rem 0.75rem 1rem;
+
+		.cs-alert-text-wrapper {
+			.cs-alert-text {
+				align-self: center;
+			}
+			.cs-icon {
+				margin-top: 0;
+			}
+		}
+
+		.cs-alert-close {
+			top: 0.75rem;
+		}
+	}
+
 	&.cs-alert-info {
 		@include sbg(--cs-alert-info-bg);
 
@@ -166,72 +184,95 @@
 		}
 	}
 
-	&.cs-alert-offline {
-		@include sbg(--cs-alert-offline-bg);
+	&.cs-alert-base {
+		@include sbg(--cs-alert-base-bg);
 
 		.cs-alert-link {
-			@include sc(--cs-alert-offline-c);
+			@include sc(--cs-alert-base-c);
 		}
 
 		.cs-alert-text-wrapper {
 
 			.cs-alert-text {
-				@include sc(--cs-alert-offline-c);
+				@include sc(--cs-alert-base-c);
 			}
 
 			.cs-icon {
-				@include sf(--cs-alert-offline-fill);
+				@include sf(--cs-alert-base-fill);
 			}
+		}
+
+		&.cs-alert-type-light {
+			@include sbg(--cs-alert-base-light-bg);
+
+			.cs-alert-text {
+				font-weight: $font-weight-bold;
+				@include sc(--cs-alert-base-light-c);
+			}
+
+			.cs-icon {
+				@include sf(--cs-alert-base-light-fill);
+			}
+
+			.cs-alert-close {
+
+				&:active {
+					@include css4 {
+						border: 1px solid cvar(--cs-alert-base-br);
+					}
+				}
+
+				&:focus {
+					@include css4 {
+						box-shadow: 0 0 3px cvar(--cs-alert-base-box);
+					}
+				}
+			}
+
 		}
 	}
 
 	.cs-alert-text-wrapper {
 		flex: 1;
 		display: flex;
-		align-items: center;
-		justify-content: center;
+		align-items: flex-start;
+		justify-content: flex-start;
 		flex-wrap: wrap;
 		min-height: 1.125rem;
+		padding-right: 0.5rem;
 
 		.cs-icon {
-			width: 1rem;
-			min-width: 1rem;
-			height: 1rem;
+			margin-top: 0.15rem;
 			margin-right: 0.5rem;
-			align-self: flex-start;
 		}
 
 		.cs-alert-text {
 			font-size: 0.875rem;
 			max-width: calc(100% - 2rem);
 			line-height: normal;
-
-			// Array of alerts
-			+ .cs-alert-text::before {
-				padding: 0 0.5rem;
-				content: "\2022";
-			}
-		}
-	}
-
-	&.cs-alert-left .cs-alert-text-wrapper {
-		display: block;
-		padding: 0 1.5rem;
-		position: relative;
-
-		.cs-icon {
-			position: absolute;
-			left: 0;
-			top: 0.0625rem;
-			margin: 0;
-		}
-
-		.cs-alert-text {
-			display: block;
 			text-align: left;
 
-			+ .cs-alert-text::before {
-				content: none;
+			// Array of alerts
+			+ .cs-alert-text {
+				text-align: left;
+    			padding-left: 1.5rem;
+    			width: 100%;
+			}
+		}
+
+		&.cs-alert-center {
+			justify-content: center;
+
+			// Array of alerts
+			.cs-alert-text + .cs-alert-text {
+				width: auto;
+				text-align: unset;
+				padding-left: unset;
+
+				&::before {
+					padding: 0 0.5rem;
+					content: "\2022";
+				}
 			}
 		}
 	}
@@ -265,8 +306,6 @@
 		}
 
 		svg {
-			width: 0.875rem;
-			height: 0.875rem;
 			@include sf(--cs-alert-close-fill);
 		}
 
