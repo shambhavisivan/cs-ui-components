@@ -36,6 +36,10 @@
 		margin: 0 auto;
 		box-sizing: border-box;
 
+		&:focus {
+			outline: none;
+		}
+
 		.cs-modal-content {
 			max-height: 100%;
 			overflow: hidden;

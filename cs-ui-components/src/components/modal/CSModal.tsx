@@ -19,9 +19,15 @@ export interface CSModalProps {
 }
 
 class CSModal extends React.Component<CSModalProps> {
-	modalId = 'cs-modal-root';
-
-	node: HTMLDivElement;
+	private modalId = 'cs-modal-root';
+	private modalFooterClass = 'cs-modal-footer';
+	private modalCloseClass = 'cs-modal-close';
+	private modalRef: HTMLDivElement;
+	private modalCloseBtnRef: HTMLButtonElement;
+	private firstElement: HTMLElement;
+	private lastElement: HTMLElement;
+	private modalContentNode: HTMLDivElement;
+	private tabKey = 'Tab';
 
 	constructor(props: CSModalProps) {
 		super(props);
@@ -37,30 +43,66 @@ class CSModal extends React.Component<CSModalProps> {
 		}
 	}
 
+	handleFocusChange = (event: any) => {
+		if (event.key === this.tabKey) {
+			const { activeElement } = document;
+			if (event.shiftKey) {
+				if (activeElement === this.firstElement) {
+					this.lastElement.focus();
+					event.preventDefault();
+				}
+			} else if (activeElement === this.lastElement) {
+				this.firstElement.focus();
+				event.preventDefault();
+			}
+		}
+	}
+
+	handleOuterClick(e: any) {
+		// ignore clicks on the component itself
+		if (this.modalContentNode && this.modalContentNode.contains(e.target)) {
+			return;
+		}
+		this.props.onClose(e);
+	}
+
+	getFirstLastModalElement() {
+		this.firstElement = this.props.closeButton ? this.modalCloseBtnRef : this.modalRef;
+		const allFooters = document.querySelectorAll('.' + this.modalFooterClass);
+		this.lastElement = allFooters[allFooters.length - 1].lastElementChild as HTMLElement;
+	}
+
+	switchFocusOnClose = () => {
+		const modalRoot = document.getElementById(this.modalId);
+		const modalCloseBtn: HTMLElement = document.querySelector(`.${this.modalCloseClass}`);
+		if (modalRoot.contains(modalCloseBtn)) {
+			modalCloseBtn.focus();
+		}
+	}
+
 	componentDidMount() {
+		this.getFirstLastModalElement();
+		this.firstElement.focus();
+		document.addEventListener('keydown', this.handleFocusChange);
+
 		if (this.props.outerClickClose) {
 			document.addEventListener('click', this.handleOuterClick);
 		}
+
 		document.body.style.overflow = 'hidden';
 		document.documentElement.style.overflow = 'hidden';
 	}
 
 	componentWillUnmount() {
 		document.removeEventListener('click', this.handleOuterClick);
+		document.removeEventListener('keydown', this.handleFocusChange);
+		this.switchFocusOnClose();
+
 		const modalRoot = document.getElementById(this.modalId);
 		if (modalRoot.childElementCount === 1) {
 			document.body.style.overflow = '';
 			document.documentElement.style.overflow = '';
 		}
-
-	}
-
-	handleOuterClick(e: any) {
-		// ignore clicks on the component itself
-		if (this.node && this.node.contains(e.target)) {
-			return;
-		}
-		this.props.onClose(e);
 	}
 
 	render() {
@@ -72,6 +114,8 @@ class CSModal extends React.Component<CSModalProps> {
 				<div className="cs-modal-overlay">
 					<div className={modalClasses} id={this.props.id}>
 						<div
+							ref={modal => this.modalRef = modal}
+							tabIndex={0}
 							className={
 								this.props.closeButton
 									? 'cs-modal cs-modal-' + this.props.size
@@ -87,12 +131,13 @@ class CSModal extends React.Component<CSModalProps> {
 									className="cs-modal-close"
 									onClick={this.props.onClose}
 									aria-label="close"
+									ref={closeBtn => this.modalCloseBtnRef = closeBtn}
 								>
 									<CSIcon name="close" />
 								</button>
 							)}
 							<div
-								ref={node => this.node = node}
+								ref={node => this.modalContentNode = node}
 								className={
 									this.props.loading
 										? 'cs-modal-content cs-modal-loading'
