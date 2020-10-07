@@ -57,6 +57,11 @@
 		}
 	}
 
+	// Removes input number arrows on Mozilla if read-only
+	&[type="number"]:-moz-read-only {
+		-moz-appearance: textfield;
+	}
+
 	// Error
 	&-error {
 		@include css4 {
