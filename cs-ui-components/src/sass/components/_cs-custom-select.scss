@@ -64,6 +64,7 @@
 				outline: none;
 				width: 100%;
 				padding: 0 0.75rem;
+				@include sbg(--cs-transparent);
 			}
 
 			&-square {

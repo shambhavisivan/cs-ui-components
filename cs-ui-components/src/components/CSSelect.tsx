@@ -106,6 +106,7 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 						tooltipPosition={this.props.tooltipPosition}
 						required={this.props.required}
 						title={this.props.labelTitle ? this.props.label : null}
+						className={this.props.disabled ? 'cs-label-disabled' : ''}
 					/>
 				}
 				<div className={selectGroupClasses}>

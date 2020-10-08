@@ -24,4 +24,8 @@
 		font-size: 0.75rem;
 		@include sc(--cs-label-c);
 	}
+
+	&.cs-label-disabled {
+		pointer-events: none;
+	}
 }

@@ -23,23 +23,6 @@
 		}
 	}
 
-	&:disabled {
-		cursor: default;
-		user-select: none;
-		@include sbg(--cs-input-disabled-bg);
-		@include css4 {
-			border-color: cvar(--cs-input-disabled-br);
-		}
-
-		&:active,
-		&:focus {
-			box-shadow: none;
-			@include css4 {
-				border-color: cvar(--cs-input-disabled-br);
-			}
-		}
-	}
-
 	&:read-only {
 		cursor: default;
 		font-size: 0.875rem;
@@ -54,6 +37,24 @@
 		&:focus {
 			@include css4 {
 				box-shadow: none;
+			}
+		}
+	}
+
+	&:disabled {
+		cursor: default;
+		user-select: none;
+		pointer-events: none;
+		@include sbg(--cs-input-disabled-bg);
+		@include css4 {
+			border-color: cvar(--cs-input-disabled-br);
+		}
+
+		&:active,
+		&:focus {
+			box-shadow: none;
+			@include css4 {
+				border-color: cvar(--cs-input-disabled-br);
 			}
 		}
 	}
