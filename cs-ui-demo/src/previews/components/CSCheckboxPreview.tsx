@@ -10,7 +10,7 @@ import {CSCheckbox} from '@cloudsense/cs-ui-components';
 class CSCheckboxPreview extends React.Component {
 	getDoc() {
 
-		const onChangeHandler = () => alert('Checbox changed!');
+		const onChangeHandler = () => alert('Checkbox changed!');
 		const onClickHandler = () => alert('Checkbox was clicked!');
 
 		const json = {
