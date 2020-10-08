@@ -104,11 +104,14 @@ class CSSpinnerPreview extends React.Component {
 						},
 						{
 							variationName: ['inverse'],
+							quickLink: 'inverse',
+							variationText: ['size="large"'],
 							string: '',
 							component:
 								<CSSpinner
 									size="large"
 									color="inverse"
+									className="black-background"
 								/>
 						}
 
