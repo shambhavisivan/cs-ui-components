@@ -59,10 +59,13 @@ class CSButton extends React.Component<CSButtonProps> {
 	iconComponent() {
 		if (this.props.loading) {
 			return (
-				<span className="cs-btn-icon cs-btn-icon-loading">
+				<span className="cs-btn-icon">
 					<CSIcon
 						name="spinner"
-						size={this.props.iconSize}/>
+						size={this.props.iconSize}
+						spin
+					/>
+
 				</span>
 			);
 		} else if (this.props.iconName) {
@@ -113,8 +116,6 @@ class CSButton extends React.Component<CSButtonProps> {
 				'cs-btn-size-xsmall': this.props.size === 'xsmall',
 				'cs-btn-size-small': this.props.size === 'small',
 				'cs-btn-size-large': this.props.size === 'large',
-
-				'cs-btn-loading': this.props.loading,
 
 				[`${this.props.className}`]: this.props.className
 			}

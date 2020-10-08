@@ -186,7 +186,7 @@ class CSLookupField extends React.Component<CSLookupFieldProps, CSLookupFieldSta
 					}
 					{this.props.loading ?
 						<span className="cs-lookup-field-spinner">
-							<CSIcon name="spinner" />
+							<CSIcon name="spinner" spin/>
 						</span>
 						 :
 						<CSIcon name="chevrondown" className="cs-lookup-field-dropdown"/>

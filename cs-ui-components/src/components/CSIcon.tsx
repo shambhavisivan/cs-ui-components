@@ -15,6 +15,7 @@ export interface CSIconProps {
 	origin?: CSIconOrigin;
 	rotate?: string;
 	size?: string;
+	spin?: boolean;
 	title?: string;
 }
 
@@ -26,7 +27,8 @@ class CSIcon extends React.Component<CSIconProps> {
 			'cs-icon',
 			{
 				[`${this.props.className}`] : this.props.className,
-				[`cs-icon-rotate-${this.props.rotate}`] : this.props.rotate
+				[`cs-icon-rotate-${this.props.rotate}`] : this.props.rotate,
+				'cs-icon-spin': this.props.spin
 			}
 		);
 

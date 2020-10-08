@@ -199,6 +199,22 @@ class CSIconPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'spin',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSIcon
+									name="spinner"
+									origin="slds"
+									spin
+								/>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -273,6 +289,14 @@ class CSIconPreview extends React.Component {
 						'e.g.',
 						'2rem',
 						'100px'
+					]
+				},
+				{
+					propertyName: 'spin',
+					description: 'Adds spinning animation to icon',
+					options: [
+						'false',
+						'true'
 					]
 				},
 				{

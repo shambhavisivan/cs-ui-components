@@ -132,18 +132,6 @@
 			border-radius: 1rem;
 		}
 	}
-	/* BUTTON LOADING SPINNER */
-	&.cs-btn-loading {
-		.cs-btn-icon.cs-btn-icon-loading {
-			display: flex;
-			.cs-icon {
-				animation-name: spin;
-				animation-duration: 4000ms;
-				animation-iteration-count: infinite;
-				animation-timing-function: linear;
-			}
-		}
-	}
 
 	/* WIDTH */
 	&.cs-btn-max-width {
