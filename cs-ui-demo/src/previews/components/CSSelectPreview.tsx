@@ -395,6 +395,10 @@ class CSSelectPreview extends React.Component {
 					]
 				},
 				{
+					propertyName: 'title',
+					description: 'Select title value'
+				},
+				{
 					propertyName: 'tooltipPosition',
 					description: 'Select tooltip position',
 					options: [

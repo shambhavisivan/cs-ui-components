@@ -174,6 +174,10 @@ class CSChipPreview extends React.Component {
 					description: 'Chip id value'
 				},
 				{
+					propertyName: 'text',
+					description: 'Chip text'
+				},
+				{
 					propertyName: 'variant',
 					description: 'Chip variant',
 					options: [

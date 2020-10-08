@@ -490,6 +490,10 @@ class CSLookupFieldPreview extends React.Component {
 						'bottom-right',
 						'bottom-left'
 					]
+				},
+				{
+					propertyName: 'value',
+					description: 'Search term value'
 				}
 			]
 		};

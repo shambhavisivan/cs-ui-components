@@ -298,12 +298,24 @@ class CSCustomSelectPreview extends React.Component {
 					]
 				},
 				{
+					propertyName: 'multiselect',
+					description: 'Allows multiple option selection',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
 					propertyName: 'onChange',
 					description: 'Logic for input field onChange event'
 				},
 				{
 					propertyName: 'onSelectChange',
 					description: 'Logic for event triggered when one of the multiple items is selected or unselected'
+				},
+				{
+					propertyName: 'optionsList',
+					description: 'Options in the select dropdown'
 				},
 				{
 					propertyName: 'required',

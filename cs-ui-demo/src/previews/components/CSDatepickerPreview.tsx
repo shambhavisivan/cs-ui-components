@@ -413,14 +413,6 @@ class CSDatepickerPreview extends React.Component {
 					description: 'For implementing custom class to component'
 				},
 				{
-					propertyName: 'disabled',
-					description: 'Logic for disabled state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
 					propertyName: 'dateFormat',
 					description: 'Format of datepicker for various countries',
 					options: [
@@ -428,6 +420,14 @@ class CSDatepickerPreview extends React.Component {
 						'MM-dd-yyyy',
 						'yyyy-MM-dd',
 						'yyyy-dd-MM'
+					]
+				},
+				{
+					propertyName: 'disabled',
+					description: 'Logic for disabled state',
+					options: [
+						'false',
+						'true'
 					]
 				},
 				{
@@ -483,6 +483,10 @@ class CSDatepickerPreview extends React.Component {
 					]
 				},
 				{
+					propertyName: 'locale',
+					description: 'Datepicker locale'
+				},
+				{
 					propertyName: 'maxDate',
 					description: 'Datepicker number maximum date in days from today'
 				},
@@ -505,6 +509,10 @@ class CSDatepickerPreview extends React.Component {
 						'false',
 						'true'
 					]
+				},
+				{
+					propertyName: 'name',
+					description: 'Input name. In a HTML form, only form elements with a name attribute will have their values passed when submitting a form.'
 				},
 				{
 					propertyName: 'onChange',

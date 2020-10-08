@@ -309,6 +309,10 @@ class CSTablePreview extends React.Component {
 			name: 'Table Body',
 			properties: [
 				{
+					propertyName: 'className',
+					description: 'For implementing custom class to component'
+				},
+				{
 					propertyName: 'id',
 					description: 'Table body id value'
 				}

@@ -592,6 +592,10 @@ class CSButtonDropdownPreview extends React.Component {
 					description: 'Dropdown button label'
 				},
 				{
+					propertyName: 'onClick',
+					description: 'Logic for onClick event'
+				},
+				{
 					propertyName: 'size',
 					description: 'Button size',
 					options: [

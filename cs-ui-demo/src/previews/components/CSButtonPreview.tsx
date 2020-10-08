@@ -698,6 +698,16 @@ class CSButtonPreview extends React.Component {
 					description: 'Value attribute to pass to button element'
 				},
 				{
+					propertyName: 'role',
+					description: 'Override implicit native button role when button is used in a certain context',
+					helperPropInComponents: [
+						'ButtonDropdown'
+					],
+					options: [
+						'menuitem'
+					]
+				},
+				{
 					propertyName: 'ariaExpanded',
 					description: 'Accessible attribute to indicate whether an object controlled by button is expanded or not',
 					helperPropInComponents: [

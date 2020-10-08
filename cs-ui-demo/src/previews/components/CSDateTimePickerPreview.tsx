@@ -559,6 +559,10 @@ class CSDateTimePickerPreview extends React.Component {
 					]
 				},
 				{
+					propertyName: 'locale',
+					description: 'Datepicker locale'
+				},
+				{
 					propertyName: 'maxDate',
 					description: 'Datepicker number maximum date in days from today'
 				},
@@ -581,6 +585,10 @@ class CSDateTimePickerPreview extends React.Component {
 						'false',
 						'true'
 					]
+				},
+				{
+					propertyName: 'name',
+					description: 'Input name. In a HTML form, only form elements with a name attribute will have their values passed when submitting a form.'
 				},
 				{
 					propertyName: 'onChange',
