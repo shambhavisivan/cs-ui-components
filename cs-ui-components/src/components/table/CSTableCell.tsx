@@ -4,7 +4,7 @@ export interface CSTableCellProps {
 	grow?: number;
 	id?: string;
 	maxWidth?: string;
-	title?: string;
+	text?: string;
 }
 
 class CSTableCell extends React.Component<CSTableCellProps> {
@@ -17,12 +17,12 @@ class CSTableCell extends React.Component<CSTableCellProps> {
 
 		return (
 			<div className="cs-table-cell" style={style} id={this.props.id}>
-				{this.props.title &&
+				{this.props.text &&
 					<span
 						className="cs-table-cell-text"
-						title={this.props.title}
+						title={this.props.text}
 					>
-						{this.props.title}
+						{this.props.text}
 					</span>
 				}
 				{this.props.children}

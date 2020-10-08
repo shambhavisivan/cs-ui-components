@@ -201,7 +201,7 @@ class CSLookupField extends React.Component<CSLookupFieldProps, CSLookupFieldSta
 							<CSTableHeader>
 								{this.state.dropdownValues.slice(0, 1).map((item, i) => (
 										Object.keys(item).map((key: any, j) => (
-										<CSTableCell title={key} key={'header-cell' + j} />
+										<CSTableCell text={key} key={'header-cell' + j} />
 								))))}
 							</CSTableHeader>
 							<CSTableBody>
@@ -211,7 +211,7 @@ class CSLookupField extends React.Component<CSLookupFieldProps, CSLookupFieldSta
 										onClick={() => this.onRowClickHandler(item)}
 									>
 										{Object.keys(item).map((key: any, j: any) => (
-											<CSTableCell title={item[key]} key={'row-cell' + j} />
+											<CSTableCell text={item[key]} key={'row-cell' + j} />
 										))}
 									</CSTableRow>
 								))}

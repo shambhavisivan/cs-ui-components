@@ -26,22 +26,22 @@ class CSTablePreview extends React.Component {
 								<CSTable id="id">
 									<CSTableHeader id="id">
 										<CSTableCell
-											title="Header Item 1"
+											text="Header Item 1"
 											grow={2}
 											id="id"
 										/>
 										<CSTableCell
-											title="Header Item 2"
+											text="Header Item 2"
 											grow={1}
 											id="id"
 										/>
 										<CSTableCell
-											title="Header Item 3"
+											text="Header Item 3"
 											grow={1}
 											id="id"
 										/>
 										<CSTableCell
-											title="Button Column"
+											text="Button Column"
 											maxWidth="100px"
 											id="id"
 										/>
@@ -49,17 +49,17 @@ class CSTablePreview extends React.Component {
 									<CSTableBody id="id">
 										<CSTableRow id="id">
 											<CSTableCell
-												title="Body Item 1"
+												text="Body Item 1"
 												grow={2}
 												id="id"
 											/>
 											<CSTableCell
-												title="Body Item 2"
+												text="Body Item 2"
 												grow={1}
 												id="id"
 											/>
 											<CSTableCell
-												title="Body Item 3"
+												text="Body Item 3"
 												grow={1}
 												id="id"
 											/>
@@ -77,17 +77,17 @@ class CSTablePreview extends React.Component {
 										</CSTableRow>
 										<CSTableRow id="id">
 											<CSTableCell
-												title="Second Row Item 1"
+												text="Second Row Item 1"
 												grow={2}
 												id="id"
 											/>
 											<CSTableCell
-												title="Second Row Item 2"
+												text="Second Row Item 2"
 												grow={1}
 												id="id"
 											/>
 											<CSTableCell
-												title="Second Row Item 3"
+												text="Second Row Item 3"
 												grow={1}
 												id="id"
 											/>
@@ -118,34 +118,34 @@ class CSTablePreview extends React.Component {
 								<CSTable>
 									<CSTableHeader>
 										<CSTableCell
-											title="Header Item 1"
+											text="Header Item 1"
 											grow={2}
 										/>
 										<CSTableCell
-											title="Header Item 2"
+											text="Header Item 2"
 											grow={1}
 										/>
 										<CSTableCell
-											title="Header Item 3"
+											text="Header Item 3"
 											grow={1}
 										/>
 										<CSTableCell
-											title="Button Column"
+											text="Button Column"
 											maxWidth="100px"
 										/>
 									</CSTableHeader>
 									<CSTableBody>
 										<CSTableRow onClick={onClickHandler}>
 											<CSTableCell
-												title="Body Item 1"
+												text="Body Item 1"
 												grow={2}
 											/>
 											<CSTableCell
-												title="Body Item 2"
+												text="Body Item 2"
 												grow={1}
 											/>
 											<CSTableCell
-												title="Body Item 3"
+												text="Body Item 3"
 												grow={1}
 											/>
 											<CSTableCell
@@ -161,15 +161,15 @@ class CSTablePreview extends React.Component {
 										</CSTableRow>
 										<CSTableRow onClick={onClickHandler}>
 											<CSTableCell
-												title="Second Row Item 1"
+												text="Second Row Item 1"
 												grow={2}
 											/>
 											<CSTableCell
-												title="Second Row Item 2"
+												text="Second Row Item 2"
 												grow={1}
 											/>
 											<CSTableCell
-												title="Second Row Item 3"
+												text="Second Row Item 3"
 												grow={1}
 											/>
 											<CSTableCell
@@ -200,34 +200,34 @@ class CSTablePreview extends React.Component {
 								<CSTable className="custom-class">
 									<CSTableHeader>
 										<CSTableCell
-											title="Header Item 1"
+											text="Header Item 1"
 											grow={2}
 										/>
 										<CSTableCell
-											title="Header Item 2"
+											text="Header Item 2"
 											grow={1}
 										/>
 										<CSTableCell
-											title="Header Item 3"
+											text="Header Item 3"
 											grow={1}
 										/>
 										<CSTableCell
-											title="Button Column"
+											text="Button Column"
 											maxWidth="100px"
 										/>
 									</CSTableHeader>
 									<CSTableBody>
 										<CSTableRow>
 											<CSTableCell
-												title="Body Item 1"
+												text="Body Item 1"
 												grow={2}
 											/>
 											<CSTableCell
-												title="Body Item 2"
+												text="Body Item 2"
 												grow={1}
 											/>
 											<CSTableCell
-												title="Body Item 3"
+												text="Body Item 3"
 												grow={1}
 											/>
 											<CSTableCell
@@ -243,15 +243,15 @@ class CSTablePreview extends React.Component {
 										</CSTableRow>
 										<CSTableRow>
 											<CSTableCell
-												title="Second Row Item 1"
+												text="Second Row Item 1"
 												grow={2}
 											/>
 											<CSTableCell
-												title="Second Row Item 2"
+												text="Second Row Item 2"
 												grow={1}
 											/>
 											<CSTableCell
-												title="Second Row Item 3"
+												text="Second Row Item 3"
 												grow={1}
 											/>
 											<CSTableCell
@@ -389,7 +389,7 @@ class CSTablePreview extends React.Component {
 					]
 				},
 				{
-					propertyName: 'title',
+					propertyName: 'text',
 					description: 'Text content of cell'
 				}
 			]
