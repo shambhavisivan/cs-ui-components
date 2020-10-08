@@ -311,7 +311,7 @@ class CSInputNumberPreview extends React.Component {
 							quickLink: 'true',
 							string: '',
 							component:
-								<CSInputNumber label="hideSpinner true" hideSpinner />
+								<CSInputNumber label="Enter value:" hideSpinner />
 						}
 					]
 				},
