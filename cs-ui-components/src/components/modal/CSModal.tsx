@@ -25,6 +25,7 @@ class CSModal extends React.Component<CSModalProps> {
 	private modalCloseClass = 'cs-modal-close';
 	private modalRef: HTMLDivElement;
 	private modalCloseBtnRef: HTMLButtonElement;
+	private modalOverlay: HTMLDivElement;
 	private firstElement: HTMLElement;
 	private lastElement: HTMLElement;
 	private modalContentNode: HTMLDivElement;
@@ -86,9 +87,14 @@ class CSModal extends React.Component<CSModalProps> {
 		this.getFirstLastModalElement();
 		this.firstElement.focus();
 		document.addEventListener('keydown', this.handleFocusChange);
+		const modalRoot = document.getElementById(this.modalId);
 
 		if (this.props.outerClickClose) {
-			document.addEventListener('click', this.handleOuterClick);
+			if (this.modalOverlay === modalRoot.lastElementChild &&
+				modalRoot.childElementCount === 2) {
+				modalRoot.firstElementChild.removeEventListener('click', this.handleOuterClick);
+			}
+			this.modalOverlay.addEventListener('click', this.handleOuterClick);
 		}
 
 		document.body.style.overflow = 'hidden';
@@ -96,11 +102,10 @@ class CSModal extends React.Component<CSModalProps> {
 	}
 
 	componentWillUnmount() {
-		document.removeEventListener('click', this.handleOuterClick);
+		const modalRoot = document.getElementById(this.modalId);
 		document.removeEventListener('keydown', this.handleFocusChange);
 		this.switchFocusOnClose();
 
-		const modalRoot = document.getElementById(this.modalId);
 		if (modalRoot.childElementCount === 1) {
 			document.body.style.overflow = '';
 			document.documentElement.style.overflow = '';
@@ -122,7 +127,10 @@ class CSModal extends React.Component<CSModalProps> {
 
 		return (
 			<Portal node={document && document.getElementById(this.modalId)}>
-				<div className="cs-modal-overlay">
+				<div
+					className="cs-modal-overlay"
+					ref={modalOverlayNode => this.modalOverlay = modalOverlayNode}
+				>
 					<div className={modalClasses} id={this.props.id}>
 						<div
 							ref={modal => this.modalRef = modal}
