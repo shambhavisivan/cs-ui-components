@@ -6,15 +6,11 @@
 	padding-bottom: 0.25rem;
 	align-items: flex-end;
 
-	.cs-label-required-true {
+	.cs-label-required {
 		display: inline-block;
 		padding-right: 0.25rem;
 		font-size: 0.875rem;
 		@include sc(--cs-label-required-c);
-	}
-
-	.cs-label-required-false {
-		display: none;
 	}
 
 	.cs-tooltip-group {

@@ -31,18 +31,23 @@ class CSLabel extends React.Component<CSLabelProps> {
 					className={labelClasses}
 					id={this.props.id}
 				>
-					<span className={this.props.required ? 'cs-label-required-true' : 'cs-label-required-false'}
-						aria-hidden="true">*</span>
+					{this.props.required &&
+						<span
+							className="cs-label-required"
+							aria-hidden="true"
+						>*</span>
+					}
 					<span className="cs-label" title={this.props.title}>
 						{this.props.label}
 					</span>
-					<div className="cs-tooltip-group">
-						{this.props.helpText ?
-						<CSTooltip
-							content={this.props.helpText}
-							position={this.props.tooltipPosition}
-						/> : null}
-					</div>
+					{this.props.helpText &&
+						<div className="cs-tooltip-group">
+							<CSTooltip
+								content={this.props.helpText}
+								position={this.props.tooltipPosition}
+							/>
+						</div>
+					}
 				</label>
 			</>
 		);
