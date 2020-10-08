@@ -355,7 +355,6 @@ class CSLookupFieldPreview extends React.Component {
 							component:
 								<CSLookupField
 									label="Account"
-									className="custom-class"
 									fetchLookupOptions={testArray}
 									fieldToBeDisplayed="Account"
 									title="This is a title"
