@@ -82,7 +82,7 @@ class CSSectionPreview extends React.Component {
 							variationText: ['collapsible="true"'],
 							string: '',
 							component:
-								<CSSection collapsible title="Collapsed Section" className="custom-class">
+								<CSSection collapsible title="Collapsible Section" className="custom-class">
 									<ul>
 										<li>Item 1</li>
 										<li>Item 2</li>
