@@ -236,16 +236,11 @@
 	display: flex;
 	position: relative;
 	outline: 0;
-	width: 0.875rem;
-	height: 0.875rem;
+	width: max-content;
+	height: max-content;
 
 	&:hover .cs-tooltip, &:focus .cs-tooltip {
 		display: flex;
-	}
-
-	&.cs-tw-medium {
-		width: 1rem;
-		height: 1rem;
 	}
 
 	.cs-icon {

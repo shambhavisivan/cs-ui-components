@@ -73,7 +73,6 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		});
 
 		const tooltipWrapperClasses = classNames('cs-tooltip-wrapper', {
-			'cs-tw-medium': this.props.iconSize === 'medium',
 			'cs-tw-icon-c': this.props.iconColor,
 			'cs-tw-error': this.props.variant === 'error',
 			'cs-tw-info': this.props.variant === 'info',

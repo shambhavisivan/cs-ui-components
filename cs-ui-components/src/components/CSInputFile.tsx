@@ -88,9 +88,15 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 			{
 				'cs-input-file-drop-area-highlighted': this.props.dropAreaBackground,
 				[`${this.props.className}`]: this.props.className,
-				'cs-input-file-disabled': this.props.disabled,
 				'cs-input-file-error': this.props.error,
 				'cs-input-file-dragged-over': this.state.isDraggedOver
+			}
+		);
+
+		const dropAreaClasses = classNames(
+			'cs-input-file-drop-area',
+			{
+				'cs-input-file-disabled': this.props.disabled
 			}
 		);
 
@@ -127,7 +133,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 				onDragLeave={!this.props.disabled ? this.handleDragLeave : null}
 				onDrop={!this.props.disabled ? this.handleFileDrop : null}
 			>
-				<label className="cs-input-file-drop-area">
+				<label className={dropAreaClasses}>
 					{this.state.label ? (
 						<CSTooltip content={this.state.label} position="top-center">
 							{input}
