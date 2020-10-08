@@ -115,32 +115,42 @@
 			}
 		}
 
-		&.cs-toggle-error + .cs-toggle-faux {
-			box-shadow: none;
-			@include css4 {
-				border: 2px solid cvar(--cs-toggle-error-br);
+		&.cs-toggle-error {
+
+			+ .cs-toggle-faux {
+				box-shadow: none;
+				@include css4 {
+					border: 2px solid cvar(--cs-toggle-error-br);
+				}
+
+				&::after {
+					top: 0;
+					left: 0;
+				}
 			}
 
-			&::after {
-				top: 0;
-				left: 0;
-			}
-		}
+			&:checked + .cs-toggle-faux {
+				box-shadow: none;
+				@include css4 {
+					border: 2px solid cvar(--cs-toggle-error-br);
+				}
 
-		&.cs-toggle-error:checked + .cs-toggle-faux {
-			box-shadow: none;
-			@include css4 {
-				border: 2px solid cvar(--cs-toggle-error-br);
+				&::before {
+					top: 0;
+					right: 0;
+				}
+
+				&::after {
+					top: 0.1875rem;
+					left: 0.5625rem;
+				}
 			}
 
-			&::before {
-				top: 0;
-				right: 0;
-			}
-
-			&::after {
-				top: 0.1875rem;
-				left: 0.5625rem;
+			&:focus + .cs-toggle-faux {
+				@include css4 {
+					border: 2px solid cvar(--cs-toggle-error-br);
+					box-shadow: 0 0 3px cvar(--cs-toggle-error-box);
+				}
 			}
 		}
 	}
