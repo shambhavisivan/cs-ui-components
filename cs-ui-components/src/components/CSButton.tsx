@@ -31,6 +31,7 @@ export interface CSButtonProps {
 	link?: string;
 	loading?: boolean;
 	onClick?: (value: any) => any;
+	onKeyDown?: (e: React.KeyboardEvent<HTMLLIElement | HTMLButtonElement>) => any;
 	onMouseDown?: (e: React.MouseEvent<HTMLLIElement | HTMLButtonElement>) => any;
 	openInNewTab?: boolean;
 	role?: CSButtonRole;
@@ -137,7 +138,8 @@ class CSButton extends React.Component<CSButtonProps> {
 			'aria-expanded': this.props.ariaExpanded,
 			'aria-haspopup': this.props.ariaHaspopup,
 			'role': this.props.role,
-			'onMouseDown': this.props.onMouseDown
+			'onMouseDown': this.props.onMouseDown,
+			'onKeyDown': this.props.onKeyDown
 		};
 
 		return (

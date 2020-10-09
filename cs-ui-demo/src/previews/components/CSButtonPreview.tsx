@@ -11,6 +11,7 @@ class CSButtonPreview extends React.Component {
 	getDoc() {
 		const clickHandler = () => alert('Button is clicked!');
 		const mouseDownHandler = () => alert('Mouse down is triggered!');
+		const keyDownHandler = (e: any) => alert('Key is pressed');
 
 		const json = {
 			name: 'Button',
@@ -250,6 +251,16 @@ class CSButtonPreview extends React.Component {
 						{
 							string: '',
 							component: <CSButton onMouseDown={mouseDownHandler} iconName="activity" label="default round"/>
+						}
+					]
+				},
+				{
+					propName: 'onKeyDown',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component: <CSButton onKeyDown={keyDownHandler} iconName="activity" label="default round"/>
 						}
 					]
 				},
@@ -647,6 +658,10 @@ class CSButtonPreview extends React.Component {
 				{
 					propertyName: 'onClick',
 					description: 'Logic for onClick event'
+				},
+				{
+					propertyName: 'onKeyDown',
+					description: 'Logic for onKeyDown event'
 				},
 				{
 					propertyName: 'onMouseDown',
