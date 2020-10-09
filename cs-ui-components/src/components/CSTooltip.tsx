@@ -41,6 +41,8 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 	private timeoutRef: NodeJS.Timeout;
 	private popupTriggered = false;
 	private tooltipRef: React.RefObject<HTMLDivElement>;
+
+	private uniqueAutoId = uuidv4();
 	private tooltipId = 'cs-tooltip-root';
 
 	constructor(props: CSTooltipProps) {
@@ -90,13 +92,11 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			'--cs-tooltip-width': this.props.width
 		};
 
-		const uniqueAutoId = uuidv4();
-
 		const tooltip = (
 			<div
 				className={tooltipClasses}
 				style={tooltipStyle}
-				id={uniqueAutoId}
+				id={this.uniqueAutoId}
 			>
 				{this.props.tooltipHeader && (
 					<div className="cs-tooltip-header">{this.props.tooltipHeader}</div>
@@ -119,7 +119,8 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 				tabIndex={0}
 				role="tooltip"
 				ref={this.tooltipRef}
-				aria-labelledby={uniqueAutoId}
+				aria-labelledby={this.uniqueAutoId}
+				id={this.props.id}
 			>
 				{this.props.children ? (
 					this.props.children
