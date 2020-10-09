@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
 import {CSSlider, CSAlert} from '@cloudsense/cs-ui-components';
@@ -14,6 +15,7 @@ class CSSliderPreview extends React.Component {
 		const json = {
 			name: 'Slider',
 			usage: 'A range slider lets the user specify a numeric value which must be between two specified values.',
+			accessible: 'no',
 			examples: [
 				{
 					propName: 'value',
@@ -416,7 +418,6 @@ class CSSliderPreview extends React.Component {
 					]
 				}
 			],
-
 			properties: [
 				{
 					propertyName: 'className',
@@ -527,6 +528,37 @@ class CSSliderPreview extends React.Component {
 					propertyName: 'value',
 					description: 'Slider initial value'
 				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'1.4.4',
+						'2.1.1',
+						'2.1.2',
+						'2.4.7',
+						'2.5.3',
+						'3.2.1',
+						'3.3.1',
+						'3.3.2',
+						'4.1.2'
+					],
+					requirements: [
+						{
+							structure: [
+								''
+							],
+							properties: [
+								''
+							],
+							visual: [
+								''
+							],
+							keyboardOperability: [
+								''
+							]
+						}
+					]
+				}
 			]
 		};
 
@@ -549,6 +581,7 @@ class CSSliderPreview extends React.Component {
 					<CSAlert variant="info" text="Props min and max are required for all instances of CSSlider besides those that use the prop stepValues. stepValues creates it's own values for min and max based on the number of items in it's array."/>
 					<PreviewProperties name={component.name} examples={component.examples}/>
 					<PreviewTable components={[component]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

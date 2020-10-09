@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
 import {CSSelect} from '@cloudsense/cs-ui-components';
@@ -15,6 +16,7 @@ class CSSelectPreview extends React.Component {
 		const json = {
 			name: 'Select',
 			usage: 'Select element presents a menu of options.',
+			accessible: 'yes',
 			examples: [
 				{
 					propName: 'id',
@@ -308,7 +310,6 @@ class CSSelectPreview extends React.Component {
 					]
 				}
 			],
-
 			properties: [
 				{
 					propertyName: 'borderType',
@@ -412,6 +413,39 @@ class CSSelectPreview extends React.Component {
 					propertyName: 'value',
 					description: 'Display a fixed value'
 				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'1.3.1',
+						'1.4.1',
+						'1.4.4',
+						'2.1.1',
+						'2.1.2',
+						'2.4.7',
+						'2.5.3',
+						'3.2.1',
+						'3.2.2',
+						'3.3.1',
+						'3.3.2',
+						'4.1.2'
+					],
+					requirements: [
+						{
+							properties: [
+								'aria-labelledby - associate field with label',
+								'aria-invalid',
+								'aria-required'
+							],
+							styling: [
+								'Focus state styles'
+							],
+							keyboardOperability: [
+								'HTML <input>" ensures focus'
+							]
+						}
+					]
+				}
 			]
 		};
 
@@ -430,9 +464,10 @@ class CSSelectPreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

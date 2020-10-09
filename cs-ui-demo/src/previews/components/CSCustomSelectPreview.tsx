@@ -4,7 +4,7 @@ import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
 import PreviewLinks from '../PreviewLinks';
-
+import PreviewAccessibility from '../PreviewAccessibility';
 import {CSCustomSelect} from '@cloudsense/cs-ui-components';
 
 class CSCustomSelectPreview extends React.Component {
@@ -14,6 +14,7 @@ class CSCustomSelectPreview extends React.Component {
 		const json = {
 			name: 'Custom Select',
 			usage: 'Select element presents a menu of options.',
+			accessible: 'no',
 			examples: [
 				{
 					propName: 'id',
@@ -339,6 +340,41 @@ class CSCustomSelectPreview extends React.Component {
 						'bottom-left'
 					]
 				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'1.3.1',
+						'1.4.1',
+						'2.1.1',
+						'2.1.2',
+						'2.4.7',
+						'2.5.3',
+						'3.2.1',
+						'3.2.2',
+						'3.3.1',
+						'3.3.2',
+						'4.1.2'
+					],
+					requirements: [
+						{
+							structure: [
+								'HTML <input type="text">'
+							],
+							properties: [
+								'aria-labelledby - associate field with label',
+								'aria-expanded'
+							],
+							styling: [
+								'Focus state styles'
+							],
+							keyboardOperability: [
+								'Enter opens dropdown.',
+								'Escape closes dropdown'
+							]
+						}
+					]
+				}
 			]
 		};
 
@@ -357,9 +393,10 @@ class CSCustomSelectPreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

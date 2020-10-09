@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
 import {CSAlert} from '@cloudsense/cs-ui-components';
@@ -14,6 +15,7 @@ class CSAlertPreview extends React.Component {
 		const json = {
 			name: 'Alert',
 			usage: 'Alert banners communicate a state that affects the entire system, not just a feature or page. They persist over a session and appear without the user initiating an action.',
+			accessible: 'yes',
 			examples: [
 				{
 					propName: 'variant',
@@ -361,6 +363,32 @@ class CSAlertPreview extends React.Component {
 						'offline'
 					]
 				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'1.4.4',
+						'2.1.1',
+						'2.1.2',
+						'4.1.2'
+					],
+					requirements: [
+						{
+							structure: [
+								'<h4> - allows screen reader navigation by heading search'
+							],
+							properties: [
+								'role="alert/status" - depending on alert variant'
+							],
+							styling: [
+								'Color contrast ratio > 4.5'
+							],
+							keyboardOperability: [
+								'Close button is <button> and a child - allows keyboard focus'
+							]
+						}
+					]
+				}
 			]
 		};
 
@@ -379,9 +407,10 @@ class CSAlertPreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples}/>
 					<PreviewTable components={[component]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

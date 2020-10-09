@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
 import {CSDivider, CSButtonGroup, CSButtonDropdown, CSMainHeader, CSMainHeaderLeft, CSMainHeaderRight, CSMainHeaderIcon, CSButton, CSIcon} from '@cloudsense/cs-ui-components';
@@ -13,6 +14,7 @@ class CSDividerPreview extends React.Component {
 		const json = {
 			name: 'Divider',
 			usage: 'Divides things, simple.',
+			accessible: 'yes',
 			examples: [
 				{
 					propName: 'variant',
@@ -149,6 +151,21 @@ class CSDividerPreview extends React.Component {
 						'horizontal'
 					]
 				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'4.1.2'
+					],
+					requirements: [
+						{
+							properties: [
+								'role="separator"',
+								'aria-orientation'
+							]
+						}
+					]
+				}
 			]
 		};
 
@@ -167,9 +184,10 @@ class CSDividerPreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper divider-preview">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties  name={component.name} examples={component.examples}/>
 					<PreviewTable components={[component]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

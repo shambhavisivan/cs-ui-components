@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 import moment from 'moment';
 
@@ -15,6 +16,7 @@ class CSDateTimePickerPreview extends React.Component {
 		const json = {
 			name: 'DateTimePicker',
 			usage: 'A datetimepicker is a text input to capture a date. You can select a single date, date range or date and time.',
+			accessible: 'partially',
 			examples: [
 				{
 					propName: 'value',
@@ -678,6 +680,42 @@ class CSDateTimePickerPreview extends React.Component {
 					propertyName: 'yearDropdownItemNumber',
 					description: 'Displays defined number of years before and after the current year in year dropdown'
 				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'1.3.1',
+						'1.4.1',
+						'1.4.4',
+						'2.1.1',
+						'2.1.2',
+						'2.4.7',
+						'2.5.3',
+						'3.2.1',
+						'3.2.2',
+						'3.3.1',
+						'3.3.2',
+						'4.1.2'
+					],
+					requirements: [
+						{
+							structure: [
+								'HTML <input type="date">',
+								'Icon as a child element with aria-hidden'
+							],
+							properties: [
+								'aria-labelledby - associate field with label'
+							],
+							styling: [
+								'Focus state styles'
+							],
+							keyboardOperability: [
+								'Logic for keyboard operability inside date picker',
+								'Providing to type date in field is sufficient, without making the datepicker body accessible. In that case provide date format in title attribute'
+							]
+						}
+					]
+				}
 			]
 		};
 
@@ -696,9 +734,10 @@ class CSDateTimePickerPreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper datepicker-preview">
-					<PreviewHeading name={component.name} usage={component.usage}/>
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples}/>
 					<PreviewTable components={[component]}/>
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

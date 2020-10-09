@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
 import { CSFieldErrorMsg } from '@cloudsense/cs-ui-components';
@@ -12,6 +13,7 @@ class CSFieldErrorMsgPreview extends React.Component {
 		const json = {
 			name: 'Field Error Message',
 			usage: 'Field Error Message renders error message on form elements.',
+			accessible: 'yes',
 			examples: [
 				{
 					propName: 'message',
@@ -39,6 +41,20 @@ class CSFieldErrorMsgPreview extends React.Component {
 					propertyName: 'message',
 					description: 'Error message text'
 				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'1.4.4'
+					],
+					requirements: [
+						{
+							visual: [
+								'Color contrast ratio > 4.5'
+							]
+						}
+					]
+				}
 			]
 		};
 		for (const example of json.examples) {
@@ -56,9 +72,10 @@ class CSFieldErrorMsgPreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper divider-preview">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties  name={component.name} examples={component.examples}/>
 					<PreviewTable components={[component]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

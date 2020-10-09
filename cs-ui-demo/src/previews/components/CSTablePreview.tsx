@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
 import {CSTable, CSTableHeader, CSTableBody, CSTableRow, CSTableCell, CSButton} from '@cloudsense/cs-ui-components';
@@ -13,6 +14,7 @@ class CSTablePreview extends React.Component {
 		const json = {
 			name: 'Table',
 			usage: 'Tables are an enhanced version of an HTML table and are used to display tabular data.',
+			accessible: 'no',
 			examples: [
 				{
 					propName: 'id',
@@ -269,7 +271,6 @@ class CSTablePreview extends React.Component {
 					]
 				}
 			],
-
 			properties: [
 				{
 					propertyName: 'className',
@@ -278,6 +279,32 @@ class CSTablePreview extends React.Component {
 				{
 					propertyName: 'id',
 					description: 'Table id value'
+				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'1.4.4',
+						'2.1.1',
+						'2.1.2',
+						'4.1.2'
+					],
+					requirements: [
+						{
+							structure: [
+								''
+							],
+							properties: [
+								''
+							],
+							visual: [
+								''
+							],
+							keyboardOperability: [
+								''
+							]
+						}
+					]
 				}
 			]
 		};
@@ -381,9 +408,10 @@ class CSTablePreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component, component2, component3, component4, component5]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

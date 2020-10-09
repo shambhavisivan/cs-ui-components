@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
 import {CSTextarea} from '@cloudsense/cs-ui-components';
@@ -16,6 +17,7 @@ class CSTextareaPreview extends React.Component {
 		const json = {
 			name: 'Textarea',
 			usage: 'Textarea inputs are used for freeform data entry.',
+			accessible: 'yes',
 			examples: [
 				{
 					propName: 'value',
@@ -399,6 +401,38 @@ class CSTextareaPreview extends React.Component {
 					propertyName: 'value',
 					description: 'Textarea value to display'
 				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'1.3.1',
+						'1.4.1',
+						'1.4.4',
+						'2.1.1',
+						'2.1.2',
+						'2.4.7',
+						'2.5.3',
+						'3.2.1',
+						'3.3.1',
+						'3.3.2',
+						'4.1.2'
+					],
+					requirements: [
+						{
+							properties: [
+								'aria-labelledby - associate field with label',
+								'aria-invalid',
+								'aria-required'
+							],
+							styling: [
+								'Focus state styles'
+							],
+							keyboardOperability: [
+								'HTML <textarea> ensured focus and implicit role="textarea", aria-multiline="true" and attribute contenteditable'
+							]
+						}
+					]
+				}
 			]
 		};
 
@@ -417,9 +451,10 @@ class CSTextareaPreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

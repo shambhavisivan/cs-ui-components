@@ -71,6 +71,27 @@ class CSSkipLinkPreview extends React.Component {
 					propertyName: 'jumpDestination',
 					description: 'Skip link destination text'
 				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'1.4.1',
+						'2.4.1',
+						'3.2.1',
+						'4.1.1'
+					],
+					requirements: [
+						{
+							structure: [
+								'HTML <a> element'
+							],
+							styling: [
+								'Focus state styles',
+								'Text color contrast ratio > 4.5'
+							]
+						}
+					]
+				}
 			]
 		};
 

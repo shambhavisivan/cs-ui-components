@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
 import {CSLabel} from '@cloudsense/cs-ui-components';
@@ -13,6 +14,7 @@ class CSLabelPreview extends React.Component {
 		const json = {
 			name: 'Label',
 			usage: 'This is used to associate value with form field.',
+			accessible: 'yes',
 			examples: [
 				{
 					propName: 'for',
@@ -156,6 +158,21 @@ class CSLabelPreview extends React.Component {
 						'bottom-left'
 					]
 				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'1.4.1',
+						'1.4.4'
+					],
+					requirements: [
+						{
+							structure: [
+								'HTML <label> element'
+							]
+						}
+					]
+				}
 			]
 		};
 
@@ -174,9 +191,10 @@ class CSLabelPreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

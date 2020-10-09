@@ -23,38 +23,46 @@ class PreviewAccessibility extends React.Component<PreviewAccessibilityProps> {
 									<div className="requirements-table-wrapper" key={i}>
 										<h3>Performed and supported:</h3>
 										<div className="table-body">
-											<div className="table-row">
-												<div className="table-cell">HTML structure</div>
-												<div className="table-cell">
-													{item.structure && item.structure.map((option: any) => (
-														<span className="conformance-item" key={option}>{option}</span>
-													))}
+											{item.structure &&
+												<div className="table-row">
+													<div className="table-cell">HTML structure</div>
+													<div className="table-cell">
+														{item.structure.map((option: any) => (
+															<span className="conformance-item" key={option}>{option}</span>
+														))}
+													</div>
 												</div>
-											</div>
-											<div className="table-row">
-												<div className="table-cell">Supported properties</div>
-												<div className="table-cell">
-													{item.properties && item.properties.map((option: any) => (
-														<span className="conformance-item" key={option}>{option}</span>
-													))}
+											}
+											{item.properties &&
+												<div className="table-row">
+													<div className="table-cell">Supported properties & attributes</div>
+													<div className="table-cell">
+														{item.properties.map((option: any) => (
+															<span className="conformance-item" key={option}>{option}</span>
+														))}
+													</div>
 												</div>
-											</div>
-											<div className="table-row">
-												<div className="table-cell">Keyboard Operability</div>
-												<div className="table-cell">
-													{item.keyboardOperability && item.keyboardOperability.map((option: any) => (
-														<span className="conformance-item" key={option}>{option}</span>
-													))}
+											}
+											{item.keyboardOperability &&
+												<div className="table-row">
+													<div className="table-cell">Keyboard Operability</div>
+													<div className="table-cell">
+														{ item.keyboardOperability.map((option: any) => (
+															<span className="conformance-item" key={option}>{option}</span>
+														))}
+													</div>
 												</div>
-											</div>
-											<div className="table-row">
-												<div className="table-cell">Styling</div>
-												<div className="table-cell">
-													{item.styling && item.styling.map((option: any) => (
-														<span className="conformance-item" key={option}>{option}</span>
-													))}
+											}
+											{item.styling &&
+												<div className="table-row">
+													<div className="table-cell">Styling</div>
+													<div className="table-cell">
+														{item.styling.map((option: any) => (
+															<span className="conformance-item" key={option}>{option}</span>
+														))}
+													</div>
 												</div>
-											</div>
+											}
 										</div>
 									</div>
 								))}

@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
 import {CSIcon} from '@cloudsense/cs-ui-components';
@@ -13,6 +14,7 @@ class CSIconPreview extends React.Component {
 		const json = {
 			name: 'Icon',
 			usage: 'Support for both Lightening and CloudSense Icons',
+			accessible: 'yes',
 			examples: [
 				{
 					propName: 'name',
@@ -277,6 +279,21 @@ class CSIconPreview extends React.Component {
 					propertyName: 'title',
 					description: 'Icon title'
 				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'',
+						''
+					],
+					requirements: [
+						{
+							properties: [
+								'aria-hidden'
+							]
+						}
+					]
+				}
 			]
 		};
 
@@ -295,9 +312,10 @@ class CSIconPreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

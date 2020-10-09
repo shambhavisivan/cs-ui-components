@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
 import {
@@ -34,6 +35,7 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 			name: 'Modal',
 			usage:
 				'Modals are used to display content in a layer above the app. This paradigm is used in cases such as the creation or editing of a record, as well as various types of messaging and wizards.',
+			accessible: 'partially',
 			examples: [
 				{
 					propName: 'size',
@@ -693,8 +695,6 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 					]
 				}
 			],
-
-			/* CSModal Properties Table */
 			properties: [
 				{
 					propertyName: 'className',
@@ -734,6 +734,38 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 				{
 					propertyName: 'style',
 					description: 'Add custom styles as inline css'
+				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'1.4.4',
+						'2.1.1',
+						'2.1.2',
+						'3.2.1',
+						'4.1.2'
+					],
+					requirements: [
+						{
+							structure: [
+								'HTML <header> and <footer>',
+								'Modal title is HTML <h3>',
+								'Modal subtitle is HTML <h4>'
+							],
+							properties: [
+								'aria-modal',
+								'role="dialog"'
+							],
+							styling: [
+								'Color contrast ratio > 4.5'
+							],
+							keyboardOperability: [
+								'Logic for focus management to move on modal when it is opened and to cycle within it until closed',
+								'Close button is <button> and a first child - allows keyboard focus',
+								'(missing aria-labelledby)'
+							]
+						}
+					]
 				}
 			]
 		};
@@ -818,10 +850,11 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<CSAlert variant="info" text="When using the CSModal component a div will be created with an id and class of cs-modal-root as a sibling of cs-app-wrapper. If you don't want the modal to render here you can manually add a div with the same id and class wherever you want and all modals will render there. Inspect an example modal for more information." />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component, component2, component3, component4]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

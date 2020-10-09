@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
 import {CSChip} from '@cloudsense/cs-ui-components';
@@ -13,6 +14,7 @@ class CSChipPreview extends React.Component {
 		const json = {
 			name: 'Chip',
 			usage: 'Chips are labels which hold small amounts of information',
+			accessible: 'yes',
 			examples: [
 				{
 					propName: 'variant',
@@ -198,6 +200,24 @@ class CSChipPreview extends React.Component {
 						'fill'
 					]
 				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'1.4.4',
+						''
+					],
+					requirements: [
+						{
+							structure: [
+								'Basic <div> with text - visible to screen reader'
+							],
+							styling: [
+								'Color contrast ratio > 4.5'
+							]
+						}
+					]
+				}
 			]
 		};
 
@@ -216,9 +236,10 @@ class CSChipPreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

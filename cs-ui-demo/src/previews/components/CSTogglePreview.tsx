@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
 import {CSToggle} from '@cloudsense/cs-ui-components';
@@ -15,6 +16,7 @@ class CSTogglePreview extends React.Component {
 		const json = {
 			name: 'Toggle',
 			usage: 'A checkable input that communicates if an option is true, false or indeterminate.',
+			accessible: 'yes',
 			examples: [
 				{
 					propName: 'checked',
@@ -251,7 +253,6 @@ class CSTogglePreview extends React.Component {
 					]
 				}
 			],
-
 			properties: [
 				{
 					propertyName: 'checked',
@@ -347,6 +348,40 @@ class CSTogglePreview extends React.Component {
 						'bottom-left'
 					]
 				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'1.3.1',
+						'1.4.1',
+						'2.1.1',
+						'2.1.2',
+						'2.4.7',
+						'3.2.1',
+						'3.2.2',
+						'3.3.1',
+						'3.3.2',
+						'4.1.2'
+					],
+					requirements: [
+						{
+							structure: [
+								'HTML <input type="checkbox"> - hidden',
+								'<span> imitating checkbox with custom style',
+								'<input> and <span> wrapped in <label>'
+							],
+							properties: [
+								'aria-labelledby - associate field with label'
+							],
+							styling: [
+								'Focus state styles'
+							],
+							keyboardOperability: [
+								'HTML <input> with type="checkbox" ensured focus and implicit role="checkbox"'
+							]
+						}
+					]
+				}
 			]
 		};
 
@@ -364,9 +399,10 @@ class CSTogglePreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

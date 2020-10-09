@@ -4,6 +4,7 @@ import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
 import PreviewLinks from '../PreviewLinks';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewApi from '../PreviewApi';
 import PreviewApiTable from '../PreviewApiTable';
 
@@ -15,6 +16,7 @@ class CSToastPreview extends React.Component {
 		const json = {
 			name: 'Toast',
 			usage: 'Toast serves as a feedback & confirmation mechanism after the user takes an action.',
+			accessible: 'partially',
 			examples: [
 				{
 					propName: 'variant',
@@ -265,7 +267,6 @@ class CSToastPreview extends React.Component {
 					]
 				}
 			],
-
 			properties: [
 				{
 					propertyName: 'className',
@@ -324,7 +325,6 @@ class CSToastPreview extends React.Component {
 					]
 				}
 			],
-
 			api:
 			{
 				name: 'CSToastAPI',
@@ -358,7 +358,6 @@ class CSToastPreview extends React.Component {
 					}
 				]
 			},
-
 			methods: [
 				{
 					name: 'renderCSToast',
@@ -371,6 +370,38 @@ class CSToastPreview extends React.Component {
 					defaultArgsValues: [
 						'position: \'top-left\'',
 						'duration: 5 (seconds)'
+					]
+				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'1.4.4',
+						'2.1.1',
+						'2.1.2',
+						'2.2.1 - check',
+						'2.4.7',
+						'3.2.1',
+						'3.3.1',
+						'4.1.3',
+						'4.1.2'
+					],
+					requirements: [
+						{
+							structure: [
+								'Heading is HTML <h4> - allows screen reader heading search'
+							],
+							properties: [
+								'role="alert/status" - depending on toast variant',
+								'duration - allowing setting large enough time'
+							],
+							visual: [
+								'Color contrast ratio > 4.5'
+							],
+							keyboardOperability: [
+								'Close button is <button> and a child - allows keyboard focus'
+							]
+						}
 					]
 				}
 			]
@@ -395,11 +426,12 @@ class CSToastPreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
 					<PreviewApi api={component.api} componentName={component.name} />
 					<PreviewApiTable components={[component]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

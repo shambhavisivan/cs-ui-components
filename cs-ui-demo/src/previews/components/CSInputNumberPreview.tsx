@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
 import {CSInputNumber} from '@cloudsense/cs-ui-components';
@@ -30,6 +31,7 @@ class CSInputNumberPreview extends React.Component {
 		const json = {
 			name: 'Input Number',
 			usage: 'Number inputs are used for number entry.',
+			accessible: 'partially',
 			examples: [
 				{
 					propName: 'type',
@@ -567,6 +569,41 @@ class CSInputNumberPreview extends React.Component {
 					propertyName: 'value',
 					description: 'Default value to display'
 				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'1.3.1',
+						'1.4.1',
+						'1.4.4',
+						'2.1.1',
+						'2.1.2',
+						'2.4.7',
+						'2.5.3',
+						'3.2.1',
+						'3.2.2',
+						'3.3.1',
+						'3.3.2'
+					],
+					requirements: [
+						{
+							structure: [
+								'HTML <input type="number">'
+							],
+							properties: [
+								'aria-invalid',
+								'aria-required',
+								'aria-labelledby - associate field with label',
+								'aria-valuemin',
+								'aria-valuemax',
+								'aria-valuenow'
+							],
+							styling: [
+								'Focus state styles'
+							]
+						}
+					]
+				}
 			]
 		};
 
@@ -584,9 +621,10 @@ class CSInputNumberPreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

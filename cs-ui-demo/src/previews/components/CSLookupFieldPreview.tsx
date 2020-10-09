@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
 import {CSLookupField} from '@cloudsense/cs-ui-components';
@@ -23,6 +24,7 @@ class CSLookupFieldPreview extends React.Component {
 		const json = {
 			name: 'Lookup Field',
 			usage: 'Lookup is an autocomplete combobox that will search against a database object',
+			accessible: 'no',
 			examples: [
 				{
 					propName: 'id',
@@ -495,6 +497,42 @@ class CSLookupFieldPreview extends React.Component {
 					propertyName: 'value',
 					description: 'Search term value'
 				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'1.3.1',
+						'1.4.1',
+						'1.4.4',
+						'2.1.1',
+						'2.1.2',
+						'2.4.7',
+						'2.5.3',
+						'3.2.1',
+						'3.2.2',
+						'3.3.1',
+						'3.3.2',
+						'4.1.2'
+					],
+					requirements: [
+						{
+							properties: [
+								'aria-invalid',
+								'aria-required',
+								'aria-labelledby - associate field with label',
+								'results role="grid"',
+								'child role="rowgroup"'
+							],
+							styling: [
+								'Focus state styles'
+							],
+							keyboardOperability: [
+								'Should be or hiyaaa',
+								'(missing role="cell, keyboard operable")'
+							]
+						}
+					]
+				}
 			]
 		};
 
@@ -513,9 +551,10 @@ class CSLookupFieldPreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

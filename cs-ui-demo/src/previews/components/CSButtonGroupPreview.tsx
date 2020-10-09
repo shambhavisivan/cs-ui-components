@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
 import {CSButtonGroup, CSButton, CSButtonDropdown} from '@cloudsense/cs-ui-components';
@@ -13,6 +14,7 @@ class CSButtonGroupPreview extends React.Component {
 		const json = {
 			name: 'Button Group',
 			usage: 'Button groups are used to bunch together buttons with similar actions',
+			accessible: 'yes',
 			examples: [
 				{
 					propName: 'combined',
@@ -335,6 +337,34 @@ class CSButtonGroupPreview extends React.Component {
 					propertyName: 'ariaDescription',
 					description: 'Accessible semantic description of button group. This allows users to understand the relationship of the buttons and to use them more effectively'
 				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'2.1.1',
+						'2.1.2',
+						'2.5.3',
+						'3.2.1',
+						'3.3.1'
+					],
+					requirements: [
+						{
+							structure: [
+								'<CSButton> used'
+							],
+							properties: [
+								'aria-labelledby - associate group description hidden span with group wrapper',
+								'role="group"'
+							],
+							styling: [
+								'Distinct hover, active and focus state styles'
+							],
+							keyboardOperability: [
+								'Proper focus management and keyboard operability ensured by structure and <CSButton>'
+							]
+						}
+					]
+				}
 			]
 		};
 
@@ -353,9 +383,10 @@ class CSButtonGroupPreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
 import {CSProgressBar} from '@cloudsense/cs-ui-components';
@@ -13,6 +14,7 @@ class CSProgressBarPreview extends React.Component {
 		const json = {
 			name: 'Progress Bar',
 			usage: 'A progress bar component communicates to the user the progress of a particular process.',
+			accessible: 'no',
 			examples: [
 				{
 					propName: 'progress',
@@ -331,6 +333,24 @@ class CSProgressBarPreview extends React.Component {
 					propertyName: 'title',
 					description: 'Title to display'
 				}
+			],
+
+			accessibility: [
+				{
+					criterionList: [
+						'2.5.3',
+						'3.3.1',
+						'4.1.2'
+					],
+					requirements: [
+						{
+							properties: [
+								'aria-valuenow',
+								'role="progressbar"'
+							]
+						}
+					]
+				}
 			]
 		};
 
@@ -349,9 +369,10 @@ class CSProgressBarPreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

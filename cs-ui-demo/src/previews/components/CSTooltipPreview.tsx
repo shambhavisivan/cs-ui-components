@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
 import { CSTooltip, CSChip } from '@cloudsense/cs-ui-components';
@@ -13,6 +14,7 @@ class CSTooltipPreview extends React.Component {
 		const json = {
 			name: 'Tooltip',
 			usage: 'A Tooltip is a small piece of contextual information about an element on the screen, which is displayed when a user hovers or focuses on the element it is describing. It is not focusable and cannot contain focusable content.',
+			accessible: 'partially',
 			examples: [
 				{
 					propName: 'variant',
@@ -369,6 +371,39 @@ class CSTooltipPreview extends React.Component {
 					propertyName: 'width',
 					description: 'Custom tooltip width'
 				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'1.4.4',
+						'1.4.13',
+						'2.1.1',
+						'2.1.2',
+						'2.4.7',
+						'2.5.3',
+						'3.2.1',
+						'3.3.1',
+						'4.1.2'
+					],
+					requirements: [
+						{
+							structure: [
+								'Icon as a child element with aria-hidden'
+							],
+							properties: [
+								'aria-labelledby - associate tooltip icon with tooltip body',
+								'role="tooltip"'
+							],
+							styling: [
+								'Focus state styles',
+								'Text color contrast ratio > 4.5'
+							],
+							keyboardOperability: [
+								'Logic for focus to open tooltip'
+							]
+						}
+					]
+				}
 			]
 		};
 
@@ -386,9 +421,10 @@ class CSTooltipPreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

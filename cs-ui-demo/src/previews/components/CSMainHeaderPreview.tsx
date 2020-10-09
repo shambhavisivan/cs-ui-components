@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
 import {CSMainHeader, CSMainHeaderLeft, CSMainHeaderRight, CSMainHeaderIcon, CSButton, CSIcon} from '@cloudsense/cs-ui-components';
@@ -13,6 +14,7 @@ class CSMainHeaderPreview extends React.Component {
 		const json = {
 			name: 'Main Header',
 			usage: 'Main Headers are used at the top of several page types. They are comprised of multiple components.',
+			accessible: 'yes',
 			examples: [
 				{
 					propName: 'color',
@@ -347,6 +349,25 @@ class CSMainHeaderPreview extends React.Component {
 						'false'
 					]
 				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'1.4.4',
+						'2.1.1',
+						'2.1.2',
+						'4.1.2'
+					],
+					requirements: [
+						{
+							structure: [
+								'HTML <header>',
+								'Title is HTML <h1>',
+								'Subttle is HTML <h4>'
+							]
+						}
+					]
+				}
 			]
 		};
 
@@ -424,9 +445,10 @@ class CSMainHeaderPreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component, component2, component3, component4]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
 import {CSCard, CSCardHeader, CSCardBody, CSCardFooter} from '@cloudsense/cs-ui-components';
@@ -13,6 +14,7 @@ class CSCardPreview extends React.Component {
 		const json = {
 			name: 'Card',
 			usage: 'Cards are used to apply a container around a related grouping of information.',
+			accessible: 'yes',
 			examples: [
 				{
 					propName: 'Default View',
@@ -83,6 +85,21 @@ class CSCardPreview extends React.Component {
 					propertyName: 'id',
 					description: 'Card id value'
 				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'1.4.4'
+					],
+					requirements: [
+						{
+							structure: [
+								'HTML <Header> and <Footer>',
+								'Heading is HTML <h2> - allows screen reader heading search'
+							]
+						}
+					]
+				}
 			]
 		 };
 
@@ -147,9 +164,10 @@ class CSCardPreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component, component2, component3, component4]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

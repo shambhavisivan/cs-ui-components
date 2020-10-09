@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
 import {CSSpinner} from '@cloudsense/cs-ui-components';
@@ -13,6 +14,7 @@ class CSSpinnerPreview extends React.Component {
 		const json = {
 			name: 'Spinner',
 			usage: 'Spinners are CSS loading indicators that should be shown when retrieving data or performing slow computations. In some cases, the first time a parent component loads, a stencil is preferred to indicate network activity.',
+			accessible: 'yes',
 			examples: [
 				{
 					propName: 'size',
@@ -201,7 +203,6 @@ class CSSpinnerPreview extends React.Component {
 					]
 				}
 			],
-
 			properties: [
 				{
 					propertyName: 'className',
@@ -251,6 +252,24 @@ class CSSpinnerPreview extends React.Component {
 						'xlarge'
 					]
 				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'1.4.4',
+						'4.1.2'
+					],
+					requirements: [
+						{
+							properties: [
+								'aria-label',
+								'aria-busy - indicates to screen reader that content is loading' ,
+								'aria-live="polite" - it will indicate busy status update only after current content is read',
+								'role="progressbar"'
+							]
+						}
+					]
+				}
 			]
 		};
 
@@ -269,9 +288,10 @@ class CSSpinnerPreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
 import {CSInputFile} from '@cloudsense/cs-ui-components';
@@ -14,6 +15,7 @@ class CSInputFilePreview extends React.Component {
 		const json = {
 			name: 'Input File',
 			usage: 'Input File component',
+			accessible: 'partially',
 			examples: [
 				{
 					propName: 'label',
@@ -336,6 +338,39 @@ class CSInputFilePreview extends React.Component {
 					propertyName: 'onDrop',
 					description: 'Logic for onDrop event'
 				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'1.4.1',
+						'1.4.4',
+						'2.1.1',
+						'2.1.2',
+						'2.4.7',
+						'2.5.3',
+						'3.2.1',
+						'3.2.2',
+						'3.3.1',
+						'3.3.2',
+						'4.1.2'
+					],
+					requirements: [
+						{
+							structure: [
+								'HTML <input type="file">'
+							],
+							properties: [
+								'aria-labelledby - associate field with label',
+								'aria-invalid',
+								'aria-required',
+								'title'
+							],
+							styling: [
+								'Focus state styles'
+							]
+						}
+					]
+				}
 			]
 		};
 
@@ -354,9 +389,10 @@ class CSInputFilePreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
 import {CSImage} from '@cloudsense/cs-ui-components';
@@ -13,6 +14,7 @@ class CSImagePreview extends React.Component {
 		const json = {
 			name: 'Image',
 			usage: 'Image is used for rendering logos and logomarks',
+			accessible: 'yes',
 			examples: [
 				{
 					propName: 'type',
@@ -295,6 +297,24 @@ class CSImagePreview extends React.Component {
 					propertyName: 'longDescription',
 					description: 'Expanded description of the image'
 				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'4.1.2',
+						''
+					],
+					requirements: [
+						{
+							structure: [
+								'HTML <image> element'
+							],
+							properties: [
+								'alt'
+							]
+						}
+					]
+				}
 			]
 		};
 
@@ -313,9 +333,10 @@ class CSImagePreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]}/>
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
 import {CSInputSearch} from '@cloudsense/cs-ui-components';
@@ -27,6 +28,7 @@ class CSInputSearchPreview extends React.Component {
 		const json = {
 			name: 'Input Search',
 			usage: 'Search input is used for search value entry.',
+			accessible: 'partially',
 			examples: [
 				{
 					propName: 'value',
@@ -466,6 +468,43 @@ class CSInputSearchPreview extends React.Component {
 						'25px'
 					]
 				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'1.3.1',
+						'1.4.1',
+						'1.4.4',
+						'2.1.1',
+						'2.1.2',
+						'2.4.7',
+						'2.5.3',
+						'3.2.1',
+						'3.2.2',
+						'3.3.1',
+						'3.3.2',
+						'4.1.2'
+					],
+					requirements: [
+						{
+							structure: [
+								'HTML5 <Button> Element used',
+								'Icon as a child element'
+							],
+							properties: [
+								'aria-label',
+								'aria-labelledby - associate field with label',
+								'role'
+							],
+							styling: [
+								'Focus state styles'
+							],
+							keyboardOperability: [
+								'Should be or hiyaaa'
+							]
+						}
+					]
+				}
 			]
 		};
 
@@ -484,9 +523,10 @@ class CSInputSearchPreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

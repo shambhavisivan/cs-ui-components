@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
 import {CSTabGroup, CSTab} from '@cloudsense/cs-ui-components';
@@ -15,7 +16,7 @@ class CSTabPreview extends React.Component {
 		const json = {
 			name: 'Tab',
 			usage: 'Tabs keeps related content in a single container that is shown and hidden through navigation.',
-
+			accessible: 'yes',
 			examples: [
 				{
 					propName: 'variant',
@@ -356,8 +357,6 @@ class CSTabPreview extends React.Component {
 					]
 				}
 			],
-
-		/* CSTab Properties Table */
 			properties: [
 				{
 					propertyName: 'active',
@@ -396,6 +395,41 @@ class CSTabPreview extends React.Component {
 				{
 					propertyName: 'title',
 					description: 'Text content of tab'
+				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'1.4.4',
+						'2.1.1',
+						'2.1.2',
+						'2.4.7',
+						'3.2.1',
+						'3.3.1',
+						'4.1.2'
+					],
+					requirements: [
+						{
+							structure: [
+								'HTML <nav> is a top wrapper - allows screen reader navigation search',
+								'HTML <ol> is items wrapper - allows screen reader list search',
+								'Buttons wrapped in HTML <li> - allows screen reader list navigation while preserving keyboard operability',
+								'Icon as a child element with aria-hidden'
+							],
+							properties: [
+								'aria-label',
+								'aria-invalid',
+								'aria-current'
+							],
+							visual: [
+								'colours in defined contrast',
+								'Distinct hover, active and focus state styles'
+							],
+							keyboardOperability: [
+								'<button> used to ensure focus and keyboard operability'
+							]
+						}
+					]
 				}
 			]
 		};
@@ -446,9 +480,10 @@ class CSTabPreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component, component2]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

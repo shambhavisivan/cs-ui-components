@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
 import { CSRadio, CSRadioOption } from '@cloudsense/cs-ui-components';
@@ -13,6 +14,7 @@ class CSRadioPreview extends React.Component {
 		const json = {
 			name: 'Radio',
 			usage: 'A checkable input that communicates if an option is true, false or indeterminate.',
+			accessible: 'partially',
 			examples: [
 				{
 					propName: 'label',
@@ -332,6 +334,44 @@ class CSRadioPreview extends React.Component {
 						'brand'
 					]
 				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'1.3.1',
+						'1.4.1',
+						'1.4.4',
+						'2.1.1',
+						'2.1.2',
+						'2.4.7',
+						'2.5.3',
+						'3.2.1',
+						'3.2.2',
+						'3.3.1',
+						'3.3.2',
+						'4.1.2'
+					],
+					requirements: [
+						{
+							structure: [
+								'HTML <input type="radio"> - hidden',
+								'<span> imitating radio with custom style',
+								'<input> and <span> wrapped in <label>'
+							],
+							properties: [
+								'aria-required',
+								'aria-invalid',
+								'aria-labelledby - associate radio with label'
+							],
+							styling: [
+								'Focus state styles'
+							],
+							keyboardOperability: [
+								'HTML <input> with type="radio" ensured focus and implicit role="radio"'
+							]
+						}
+					]
+				}
 			]
 		};
 
@@ -394,9 +434,10 @@ class CSRadioPreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component, component2]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>
