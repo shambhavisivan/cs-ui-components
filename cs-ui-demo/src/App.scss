@@ -445,7 +445,6 @@ body,
 
 					&.button-preview,
 					&.button-dropdown-preview {
-
 						.blue-background {
 							background-color: #16325c;
 							padding: 0.5rem;
@@ -1049,6 +1048,7 @@ body,
 		border-radius: 0.25rem;
 		box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 		padding: 2rem;
+		overflow-x: auto;
 		display: grid;
 		grid-template-columns: 5rem 7rem 1fr 1fr 1fr;
 		grid-template-rows: 2rem 2rem 2.5rem 2.5rem 2.5rem 2.5rem 2.5rem;
