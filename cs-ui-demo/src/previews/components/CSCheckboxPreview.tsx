@@ -120,6 +120,10 @@ class CSCheckboxPreview extends React.Component {
 				},
 				{
 					propName: 'error',
+					alert: {
+						variant: 'info',
+						text: 'Component in error state should always contain associated error message to satisfy accessibility best practices!'
+					},
 					variations: [
 						{
 							variationName: ['true'],

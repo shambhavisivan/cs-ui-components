@@ -301,8 +301,12 @@ body,
 			.property-section {
 				padding: 2rem 2rem 0;
 
+				.cs-alert {
+					margin-bottom: 0.5rem;
+				}
+
 				.info-text {
-					margin: 0 0 1rem;
+					margin: 0 0 0.5rem;
 					padding: 0;
 					font-size: 1rem;
 					width: 100%;

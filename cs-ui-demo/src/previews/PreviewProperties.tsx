@@ -1,5 +1,6 @@
 import React from 'react';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
+import {CSAlert} from '@cloudsense/cs-ui-components';
 
 export interface PreviewPropertiesProps {
 	examples: any;
@@ -15,6 +16,13 @@ class PreviewProperties extends React.Component<PreviewPropertiesProps> {
 						<h2 className="property-name" id={`${this.props.name}-${example.propName}`}>{example.propName}</h2>
 						<div key={example.customText}>
 							{example.customText ? <p className="info-text">{example.customText}</p> : null}
+							{example.alert &&
+								<CSAlert
+									variant={example.alert.variant}
+									text={example.alert.text}
+									styleFormat="scoped"
+								/>
+							}
 							{example.variations.map((variation: any, i: any) => (
 								<React.Fragment key={i}>
 									{variation.variationName &&
