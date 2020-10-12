@@ -66,7 +66,6 @@ body,
 	display: flex;
 	justify-content: flex-end;
 	flex: 1;
-	overflow: auto;
 	background: #ecebea;
 
 	.components-list-wrapper {
@@ -78,7 +77,12 @@ body,
 
 		&.sidebar-open {
 			min-width: 15rem;
+			overflow: auto;
 			width: 15rem;
+			position: sticky;
+			position: -webkit-sticky;
+			top: 0;
+			height: calc(100vh - 54px);
 		}
 
 		.components-list-search {
@@ -205,7 +209,10 @@ body,
 	.components-preview-wrapper {
 		display: flex;
 		flex: 1;
-		position: relative;
+		position: sticky;
+		position: -webkit-sticky;
+		top: 0;
+		height: calc(100vh - 54px);
 		background: transparent;
 		width: calc(100% - 15rem);
 
