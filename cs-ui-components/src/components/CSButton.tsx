@@ -13,6 +13,7 @@ export type CSButtonRole = 'menuitem';
 export interface CSButtonProps {
 	ariaExpanded?: boolean;
 	ariaHaspopup?: boolean;
+	ariaLabel?: string;
 	btnRound?: boolean;
 	btnStyle?: CSButtonStyle;
 	btnType?: CSButtonType;
@@ -128,7 +129,7 @@ class CSButton extends React.Component<CSButtonProps> {
 			'className': btnGroupClasses,
 			'onClick': this.handleClick,
 			'disabled': this.props.disabled || this.props.loading,
-			'aria-label': this.props.label,
+			'aria-label': this.props.ariaLabel ? this.props.ariaLabel : this.props.label,
 			'style': style,
 			'title': this.props.iconDisplay === 'icon-only' ? this.props.label : undefined,
 			'href': this.props.link && this.props.link,

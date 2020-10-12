@@ -718,6 +718,13 @@ class CSButtonPreview extends React.Component {
 						'false',
 						'true'
 					]
+				},
+				{
+					propertyName: 'ariaLabel',
+					description: 'Accessible attribute which labels the current element. It overrides the \'aria-label\' attribute which is by default set by label prop',
+					helperPropInComponents: [
+						'CSCustomSelect'
+					]
 				}
 			],
 			backlog: [
