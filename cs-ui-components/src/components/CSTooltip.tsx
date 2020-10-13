@@ -190,7 +190,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		const left = wrapperInfo.left - this.convertRemToPixels(1.5) + wrapperInfo.width / 2;
 		const center = {
 			left: wrapperInfo.left + wrapperInfo.width / 2,
-			transform: 'translateX(-50%)'
+			transform: 'translateX(-50%) translate3d(0, 0, 0)'
 		};
 
 		switch (this.props.position) {
