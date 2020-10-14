@@ -687,6 +687,8 @@ body,
 		&.colors {
 			flex-direction: column;
 			box-shadow: none;
+			height: calc(100vh - 54px);
+			overflow: auto;
 		}
 
 	}
@@ -1015,6 +1017,7 @@ body,
 	}
 
 	.release-notes {
+		height: calc(100vh - 54px);
 		overflow: auto;
 		padding: 2rem;
 		width: 100%;
