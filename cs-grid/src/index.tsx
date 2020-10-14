@@ -170,6 +170,7 @@ export class App extends React.Component<object, AppState> {
 			},
 			{
 				cellType: 'Text',
+				flashOnCellValueChange: true,
 				getTooltip: (guid: string) => {
 					return {
 						content: ['example tooltip', 'Line two'],

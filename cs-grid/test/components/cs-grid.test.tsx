@@ -1,35 +1,172 @@
 import { AgGridReact } from 'ag-grid-react/lib/agGridReact';
 import { shallow } from 'enzyme';
 import React from 'react';
-import {CSGridProps, CSGrid, RowData, Row} from '../../main';
+import { CSGridProps, CSGrid, RowData, Row, UserInfo} from '../../main';
+import { CellValueChangedEvent } from "ag-grid-community";
 
-describe('singleClickEdit', () => {
+describe('csgrid', () => {
+	const userInfo: UserInfo = {
+		currencyCode: 'GBP',
+		userLocale: 'en-GB'
+	};
+
 	const baseProps: CSGridProps = {
 		csGridPagination: {
-			location: 'Footer'
+			location: 'None',
 		},
 		csGridQuickFilter: {
-			location: 'Header'
+			location: 'None',
 		},
 		multiSelect: false,
 		uniqueIdentifierColumnName: 'Id',
-		columnDefs: []
+		columnDefs: [{
+			cellType: 'Text',
+			name: 'exampleText',
+			visible: true,
+			flashOnCellValueChange: true,
+			userInfo,
+		},
+			{
+				cellType: 'Text',
+				name: 'exampleDecimal',
+				visible: true,
+				userInfo,
+			},
+		],
+		rowData: [
+			{
+				exampleText: {
+					cellValue: 'ABC'
+				},
+				Id: {
+					cellValue: '123'
+				},
+			},
+			{
+				exampleDecimal: {
+					cellValue: 567
+				},
+				Id: {
+					cellValue: '456'
+				},
+			}
+		],
 	};
 
-	test('singleClickEdit should be true when not defined in props', () => {
-		const csGridShallow = shallow(<CSGrid {...baseProps} />);
+	describe('singleClickEdit', () => {
+		test('singleClickEdit should be true when not defined in props', () => {
+			const csGridShallow = shallow(<CSGrid {...baseProps} />);
 
-		expect(csGridShallow.find(AgGridReact).props().singleClickEdit).toBeTruthy();
+			expect(csGridShallow.find(AgGridReact).props().singleClickEdit).toBeTruthy();
+		});
+
+		test('singleClickEdit from props should be used when defined', () => {
+			const gridProps = {
+				...baseProps,
+				singleClickEdit: false,
+			};
+			const csGridShallow = shallow(<CSGrid {...gridProps} />);
+
+			expect(csGridShallow.find(AgGridReact).props().singleClickEdit).toBeFalsy();
+		});
 	});
 
-	test('singleClickEdit from props should be used when defined', () => {
-		const gridProps = {
-			...baseProps,
-			singleClickEdit: false
-		};
-		const csGridShallow = shallow(<CSGrid {...gridProps} />);
+	describe('onCellValueChanged', () => {
+		const csgrid:any = shallow(<CSGrid {...baseProps} />).instance();
 
-		expect(csGridShallow.find(AgGridReact).props().singleClickEdit).toBeFalsy();
+		const oldValue = {
+			cellValue: 'ABC'
+		};
+		const newValue = {
+			cellValue: 'DEF'
+		}
+		const baseCellValueChangedEvent = {
+			data: {
+				exampleText: {
+					cellValue: 'ABC'
+				},
+				Id: {
+					cellValue: '123'
+				},
+			},
+			colDef: {
+				field: 'exampleText',
+			},
+			oldValue,
+			newValue,
+		} as CellValueChangedEvent;
+
+		const mockFlashCells = jest.fn();
+		csgrid.gridApi = {
+			flashCells: mockFlashCells,
+			getRowNode: jest.fn()
+		}
+
+		beforeEach(() => {
+			mockFlashCells.mockClear();
+		});
+
+		it('calls flashCells on successful update', () => {
+			csgrid.onCellValueChanged(baseCellValueChangedEvent);
+
+			expect(mockFlashCells).toBeCalledWith({
+				rowNodes: expect.any(Array),
+				columns: ['exampleText'],
+				fadeDelay: 1000,
+				flashDelay: 500
+			});
+		});
+
+		it('does not call flashCells on successful update if csgrid colDef.flashOnCellValueChange is not true', () => {
+			const mockCellValueChangedEvent = {
+				data: {
+					exampleDecimal: {
+						cellValue: 999
+					},
+					Id: {
+						cellValue: '456'
+					},
+				},
+				colDef: {
+					field: 'exampleDecimal',
+				},
+				oldValue: {
+					cellValue: 567
+				},
+				newValue: {
+					cellValue: 888
+				}
+			} as CellValueChangedEvent;
+
+			csgrid.onCellValueChanged(mockCellValueChangedEvent);
+
+			expect(mockFlashCells).toBeCalledTimes(0);
+		});
+
+		it('does not call flashCells when there is errorMessage', () => {
+			const mockCellValueChangedEventWithError = {
+				...baseCellValueChangedEvent
+			};
+
+			mockCellValueChangedEventWithError.data.exampleText.errorMessage = 'An error occured';
+
+			csgrid.onCellValueChanged(mockCellValueChangedEventWithError);
+
+			expect(mockFlashCells).toBeCalledTimes(0);
+		});
+
+		it('does not call flashCells when oldValue and newValue are the same', () => {
+			const mockCellValueChangedEvent = {
+				...baseCellValueChangedEvent
+			};
+			mockCellValueChangedEvent.newValue = mockCellValueChangedEvent.oldValue;
+
+			mockCellValueChangedEvent.data.exampleText.errorMessage = 'An error occured';
+
+			csgrid.onCellValueChanged(mockCellValueChangedEvent);
+
+			expect(mockFlashCells).toBeCalledTimes(0);
+		});
 	});
 });
 

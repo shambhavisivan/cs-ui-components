@@ -68,8 +68,11 @@ import { CSGridRowValidationRenderer } from './cs-grid-row-validation-renderer';
 import { CSGridTextEditor } from './cs-grid-text-editor';
 import { CSGridTextRenderer } from './cs-grid-text-renderer';
 
+import { isEqual } from 'lodash';
+
 const LEGACY_ROW_DATA_MODEL_DEPRECATION_WARN =
 	"CSGrid: Using legacy type 'Row' is deprecated for row data. look into 'RowData' for more details.";
+
 export interface CSGridProps {
 	pageSizes?: Array<number>;
 	csGridPagination: CSGridControl;
@@ -650,6 +653,10 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		this.gridApi.refreshCells(params);
 	};
 
+	private getCsGridColDef(fieldKey: string): ColDef {
+		return this.props.columnDefs.find(colDef => colDef.name === fieldKey);
+	}
+
 	private onCellValueChanged = (event: CellValueChangedEvent) => {
 		if (this.props.onCellValueChange) {
 			let oldValue = event.oldValue;
@@ -670,6 +677,25 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				newValue
 			);
 		}
+
+		if (
+			this.getCsGridColDef(event.colDef.field).flashOnCellValueChange &&
+			!isEqual(event.oldValue.cellValue, event.newValue.cellValue) &&
+			!event.data[event.colDef.field].errorMessage
+		) {
+			this.gridApi.flashCells({
+				columns: [event.colDef.field],
+				fadeDelay: 1000,
+				flashDelay: 500,
+				rowNodes: [this.gridApi.getRowNode(this.getRowNodeId(event.data))]
+			});
+		}
+	};
+
+	private onCellEditingStopped = (event: CellEditingStoppedEvent) => {
+		if (this.props.onCellEditingStopped) {
+			this.props.onCellEditingStopped(this.getRowNodeId(event.data), event.colDef.field);
+		}
 	};
 
 	private onSelectionChanged = (): void => {
@@ -677,12 +703,6 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			this.props.onSelectionChange(this.getSelectedRows());
 		}
 		this.gridApi.refreshCells({ force: true });
-	};
-
-	private onCellEditingStopped = (event: CellEditingStoppedEvent) => {
-		if (this.props.onCellEditingStopped) {
-			this.props.onCellEditingStopped(this.getRowNodeId(event.data), event.colDef.field);
-		}
 	};
 
 	private onColumnResized = (event: ColumnResizedEvent) => {

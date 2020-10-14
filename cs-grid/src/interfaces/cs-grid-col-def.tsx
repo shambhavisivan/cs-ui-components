@@ -176,4 +176,7 @@ interface BaseColDef<T> extends BaseProps<T> {
 		| string
 		| Array<string>
 		| ((value: CellData<T>, rowGuid: string) => string | Array<string>);
+
+	/** Set to true if you want to flash cells on successful cell value change */
+	flashOnCellValueChange?: boolean;
 }
