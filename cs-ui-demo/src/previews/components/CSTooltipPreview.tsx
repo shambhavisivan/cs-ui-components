@@ -241,7 +241,6 @@ class CSTooltipPreview extends React.Component {
 				},
 				{
 					propName: 'width',
-					customText: '',
 					variations: [
 						{
 							variationName: ['5rem'],
@@ -293,13 +292,13 @@ class CSTooltipPreview extends React.Component {
 							variationName: ['fixed'],
 							quickLink: 'fixed',
 							component:
-								<CSTooltip content="Tooltip with position fixed" stylePosition="fixed" />
+								<CSTooltip content="Tooltip with position fixed. Tooltip with position fixed. Tooltip with position fixed." stylePosition="fixed" />
 						},
 						{
 							variationName: ['absolute'],
 							quickLink: 'absolute',
 							component:
-								<CSTooltip content="Tooltip with position absolute" position="bottom-center" stylePosition="absolute" />
+								<CSTooltip content="Tooltip with position absolute. Tooltip with position absolute. Tooltip with position absolute." stylePosition="absolute" />
 						}
 					]
 				},

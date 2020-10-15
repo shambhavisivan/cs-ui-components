@@ -9,7 +9,7 @@
 	display: none;
 	flex-direction: column;
 	font-size: 0.75rem;
-	width: var(--cs-tooltip-width, max-content);
+	width: var(--cs-tooltip-width, max-content, auto); // auto fallback for safari
 	height: var(--cs-tooltip-height, auto);
 	max-width: var(--cs-tooltip-width, 20rem);
 	min-height: 2rem;
@@ -380,6 +380,7 @@
 	// Style position absolute
 	&.cs-tooltip-style-position-absolute .cs-tooltip {
 		position: absolute;
+		width: var(--cs-tooltip-width, max-content);
 
 		&.cs-tooltip-bottom-right {
 			top: calc(100% + 0.75rem);
