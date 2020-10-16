@@ -31,7 +31,7 @@ class CSInputNumberPreview extends React.Component {
 		const json = {
 			name: 'Input Number',
 			usage: 'Number inputs are used for number entry.',
-			accessible: 'partially',
+			accessible: 'yes',
 			examples: [
 				{
 					propName: 'type',
@@ -600,10 +600,14 @@ class CSInputNumberPreview extends React.Component {
 								'aria-labelledby - associate field with label',
 								'aria-valuemin',
 								'aria-valuemax',
-								'aria-valuenow'
+								'aria-valuenow',
+								'role="spintbutton" - implicit by input'
 							],
 							styling: [
 								'Focus state styles'
+							],
+							keyboardOperability: [
+								'OOTB focusable and arrows up or down increase or decrease the number'
 							]
 						}
 					]

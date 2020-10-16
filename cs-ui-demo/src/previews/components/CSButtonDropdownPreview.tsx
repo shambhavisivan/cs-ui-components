@@ -14,7 +14,7 @@ class CSButtonDropdownPreview extends React.Component {
 		const json = {
 			name: 'Button Dropdown',
 			usage: 'Like a regular button, just with a dropdown',
-			accessible: 'partially',
+			accessible: 'yes',
 			examples: [
 				{
 					propName: 'btnType',

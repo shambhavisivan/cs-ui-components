@@ -375,13 +375,14 @@ class CSTogglePreview extends React.Component {
 								'<input> and <span> wrapped in <label>'
 							],
 							properties: [
-								'aria-labelledby - associate field with label'
+								'aria-labelledby - associate field with label',
+								'role="textbox" - implicit with input'
 							],
 							styling: [
 								'Focus state styles'
 							],
 							keyboardOperability: [
-								'HTML <input> with type="checkbox" ensured focus and implicit role="checkbox"'
+								'OOTB focusable'
 							]
 						}
 					]

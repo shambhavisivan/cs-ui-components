@@ -15,7 +15,7 @@ class CSSliderPreview extends React.Component {
 		const json = {
 			name: 'Slider',
 			usage: 'A range slider lets the user specify a numeric value which must be between two specified values.',
-			accessible: 'no',
+			accessible: 'yes',
 			examples: [
 				{
 					propName: 'value',
@@ -545,16 +545,19 @@ class CSSliderPreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								''
+								'HTML <input type="range">'
 							],
 							properties: [
-								''
+								'aria-invalid',
+								'aria-required',
+								'aria-labelledby - associate field with label',
+								'aria-valuemin',
+								'aria-valuemax',
+								'aria-valuenow',
+								'role="slider" - implicit with input'
 							],
-							visual: [
-								''
-							],
-							keyboardOperability: [
-								''
+							styling: [
+								'Focus state styles'
 							]
 						}
 					]

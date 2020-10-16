@@ -361,7 +361,9 @@ class CSInputFilePreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'HTML <input type="file">'
+								'HTML <input type="file"> - hidden',
+								'<span> imitating button with custom style',
+								'<input> and <span> wrapped in <label>'
 							],
 							properties: [
 								'aria-labelledby - associate field with label',
@@ -370,7 +372,11 @@ class CSInputFilePreview extends React.Component {
 								'title'
 							],
 							styling: [
-								'Focus state styles'
+								'Focus state styles',
+								'<label> styled as drop zone area'
+							],
+							keyboardOperability: [
+								'OOTB focusable'
 							]
 						}
 					]

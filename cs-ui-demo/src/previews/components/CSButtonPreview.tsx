@@ -762,7 +762,7 @@ class CSButtonPreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'HTML <button> element used',
+								'HTML <button>',
 								'Icon as a child element with attribute aria-hidden'
 							],
 							properties: [
@@ -776,7 +776,7 @@ class CSButtonPreview extends React.Component {
 								'Distinct hover, active and focus state styles'
 							],
 							keyboardOperability: [
-								'HTML <button> is focusable and supports keyboard click for keys space and enter'
+								'OOTB focusable and supports clicks with enter and space keys'
 							]
 						}
 					]

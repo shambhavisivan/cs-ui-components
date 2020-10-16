@@ -28,7 +28,7 @@ class CSInputSearchPreview extends React.Component {
 		const json = {
 			name: 'Input Search',
 			usage: 'Search input is used for search value entry.',
-			accessible: 'partially',
+			accessible: 'yes',
 			examples: [
 				{
 					propName: 'value',
@@ -492,19 +492,20 @@ class CSInputSearchPreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'HTML5 <Button> Element used',
-								'Icon as a child element'
+								'HTML <input type="number">',
+								'Icon as a child element with aria-hidden',
+								'Clear button as a child element'
 							],
 							properties: [
-								'aria-label',
-								'aria-labelledby - associate field with label',
-								'role'
+								'aria-invalid',
+								'aria-required',
+								'aria-labelledby - associate field with label'
 							],
 							styling: [
 								'Focus state styles'
 							],
 							keyboardOperability: [
-								'Should be or hiyaaa'
+								'OOTB focusable'
 							]
 						}
 					]

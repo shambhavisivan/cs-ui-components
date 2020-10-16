@@ -387,13 +387,14 @@ class CSRadioPreview extends React.Component {
 							properties: [
 								'aria-required',
 								'aria-invalid',
-								'aria-labelledby - associate radio with label'
+								'aria-labelledby - associate radio with label',
+								'role="radio" - implicit with input type'
 							],
 							styling: [
 								'Focus state styles'
 							],
 							keyboardOperability: [
-								'HTML <input> with type="radio" ensured focus and implicit role="radio"'
+								'OOTB focusable'
 							]
 						}
 					]

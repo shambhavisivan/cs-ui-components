@@ -449,13 +449,14 @@ class CSCheckboxPreview extends React.Component {
 							properties: [
 								'aria-required',
 								'aria-invalid',
-								'aria-labelledby - associate checkbox with label'
+								'aria-labelledby - associate checkbox with label',
+								'role="checkbox" - implicit by input'
 							],
 							styling: [
 								'Focus state styles'
 							],
 							keyboardOperability: [
-								'HTML <input> with type="checkbox" ensured focus and implicit role="checkbox"'
+								'OOTB focusable'
 							]
 						}
 					]

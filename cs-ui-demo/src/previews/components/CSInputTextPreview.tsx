@@ -454,10 +454,14 @@ class CSInputTextPreview extends React.Component {
 							properties: [
 								'aria-invalid',
 								'aria-required',
-								'aria-labelledby - associate field with label'
+								'aria-labelledby - associate field with label',
+								'role="textbox" - implicit with input'
 							],
 							styling: [
 								'Focus state styles'
+							],
+							keyboardOperability: [
+								'OOTB focusable'
 							]
 						}
 					]

@@ -87,7 +87,11 @@ class CSSkipLinkPreview extends React.Component {
 							],
 							styling: [
 								'Focus state styles',
+								'Hidden for non-keyboard users',
 								'Text color contrast ratio > 4.5'
+							],
+							keyboardOperability: [
+								'OOTB focusable'
 							]
 						}
 					]
