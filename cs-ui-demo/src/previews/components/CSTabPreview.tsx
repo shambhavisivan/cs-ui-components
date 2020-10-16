@@ -395,6 +395,17 @@ class CSTabPreview extends React.Component {
 				{
 					propertyName: 'title',
 					description: 'Text content of tab'
+				},
+				{
+					propertyName: 'parentVariant',
+					description: 'Tab variant',
+					helperPropInComponents: [
+						'TabGroup'
+					],
+					options: [
+						'large',
+						'normal'
+					]
 				}
 			],
 			accessibility: [
