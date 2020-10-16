@@ -500,11 +500,15 @@ class CSButtonPreview extends React.Component {
 				},
 				{
 					propName: 'link',
+					alert: {
+						variant: 'info',
+						text: 'Link button should always have distinctive icon to distinguish from regular buttons. Alternative is to add text-decoration: underline'
+					},
 					customText: '',
 					variations: [
 						{
 							string: '',
-							component: <CSButton iconName="activity" label="default" link="https://www.google.com"/>
+							component: <CSButton iconName="link" label="default" link="https://www.google.com"/>
 						}
 					]
 				},
