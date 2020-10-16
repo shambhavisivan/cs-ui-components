@@ -14,7 +14,7 @@ class CSProgressBarPreview extends React.Component {
 		const json = {
 			name: 'Progress Bar',
 			usage: 'A progress bar component communicates to the user the progress of a particular process.',
-			accessible: 'no',
+			accessible: 'partially',
 			examples: [
 				{
 					propName: 'progress',
@@ -346,6 +346,8 @@ class CSProgressBarPreview extends React.Component {
 						{
 							properties: [
 								'aria-valuenow',
+								'aria-valuemin',
+								'aria-valuemax',
 								'role="progressbar"'
 							]
 						}

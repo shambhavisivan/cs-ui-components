@@ -38,6 +38,8 @@ class CSProgressBar extends React.Component<CSProgressBarProps> {
 				className={progressBarWrapperClasses}
 				id={this.props.id}
 				role="progressbar"
+				aria-valuemin={0}
+				aria-valuemax={100}
 				aria-valuenow={parseInt(this.props.progress, 10)}
 			>
 				<div className="cs-progress-bar-text">
