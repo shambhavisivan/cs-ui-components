@@ -3,6 +3,7 @@ import CSIcon from '../CSIcon';
 import classNames from 'classnames';
 import CSSpinner from '../CSSpinner';
 import { Portal } from 'react-portal';
+import { v4 as uuidv4 } from 'uuid';
 
 export type CSModalSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 
@@ -28,6 +29,7 @@ class CSModal extends React.Component<CSModalProps> {
 	private lastElement: HTMLElement;
 	private modalContentNode: HTMLDivElement;
 	private tabKey = 'Tab';
+	private uniqueAutoId = uuidv4();
 
 	constructor(props: CSModalProps) {
 		super(props);
@@ -109,6 +111,15 @@ class CSModal extends React.Component<CSModalProps> {
 		const modalClasses = classNames('cs-modal-wrapper', {
 			[`${this.props.className}`]: this.props.className
 		});
+
+		const renderChildren = () => {
+			return React.Children.map(this.props.children, (child, index) => {
+				return React.cloneElement(child as React.ReactElement<any>, {
+					titleId: this.uniqueAutoId
+				});
+			});
+		};
+
 		return (
 			<Portal node={document && document.getElementById(this.modalId)}>
 				<div className="cs-modal-overlay">
@@ -124,7 +135,7 @@ class CSModal extends React.Component<CSModalProps> {
 							style={this.props.style}
 							role="dialog"
 							aria-modal="true"
-							aria-labelledby=""
+							aria-describedby={this.uniqueAutoId}
 						>
 							{this.props.closeButton && (
 								<button
@@ -144,7 +155,7 @@ class CSModal extends React.Component<CSModalProps> {
 										: 'cs-modal-content'
 								}
 							>
-								{this.props.children}
+								{renderChildren()}
 								{this.props.loading && <CSSpinner label={this.props.loadingText} />}
 							</div>
 						</div>

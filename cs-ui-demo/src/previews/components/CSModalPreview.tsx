@@ -796,6 +796,13 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 					propertyName: 'title',
 					description: 'Main header title',
 					options: []
+				},
+				{
+					propertyName: 'titleId',
+					description: 'Used to establish relationship between modal title and \'dialog\' wrapper',
+					helperPropInComponents: [
+						'CSModal'
+					]
 				}
 			]
 		};
