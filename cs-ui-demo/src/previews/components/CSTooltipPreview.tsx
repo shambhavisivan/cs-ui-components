@@ -289,6 +289,18 @@ class CSTooltipPreview extends React.Component {
 								<CSTooltip content="Tooltip with position absolute" position="bottom-center" stylePosition="absolute" />
 						}
 					]
+				},
+				{
+					propName: 'focusable',
+					customText: '',
+					variations: [
+						{
+							variationName: ['false'],
+							string: '',
+							component:
+							<CSTooltip focusable={false} content="Help text example"/>
+						}
+					]
 				}
 			],
 			properties: [
@@ -303,6 +315,14 @@ class CSTooltipPreview extends React.Component {
 				{
 					propertyName: 'delayTooltip',
 					description: 'Delay the tooltip appearing in ms'
+				},
+				{
+					propertyName: 'focusable',
+					description: 'Determines whether tooltip is keyboard focusable',
+					options: [
+						'true',
+						'false'
+					]
 				},
 				{
 					propertyName: 'height',

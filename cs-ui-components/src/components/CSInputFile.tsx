@@ -135,7 +135,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 			>
 				<label className={dropAreaClasses}>
 					{this.state.label ? (
-						<CSTooltip content={this.state.label} position="top-center">
+						<CSTooltip content={this.state.label} position="top-center" focusable={false}>
 							{input}
 						</CSTooltip>
 					) : (

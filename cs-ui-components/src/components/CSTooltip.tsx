@@ -13,16 +13,17 @@ export interface CSTooltipProps {
 	className?: string;
 	content: string | Array<string> | JSX.Element;
 	delayTooltip?: number;
+	focusable?: boolean;
 	height?: string;
 	iconColor?: string;
 	iconName?: string;
 	iconSize?: CSTooltipIconSize;
 	id?: string;
 	position?: CSTooltipPosition;
+	stylePosition?: CSTooltipStylePosition;
 	tooltipHeader?: string;
 	variant?: CSTooltipVariant;
 	width?: string;
-	stylePosition?: CSTooltipStylePosition;
 }
 
 interface CSTooltipState {
@@ -35,7 +36,8 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		iconSize: 'small',
 		position: 'top-right',
 		variant: 'info',
-		stylePosition: 'fixed'
+		stylePosition: 'fixed',
+		focusable: true
 	};
 
 	private timeoutRef: NodeJS.Timeout;
@@ -115,7 +117,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 				onMouseLeave={this.props.stylePosition !== 'absolute' ? this.closeTooltip : null}
 				onFocus={this.props.stylePosition !== 'absolute' ? this.openTooltip : null}
 				onBlur={this.props.stylePosition !== 'absolute' ? this.closeTooltip : null}
-				tabIndex={0}
+				tabIndex={this.props.focusable ? 0 : -1}
 				role="tooltip"
 				ref={this.tooltipRef}
 				aria-labelledby={this.uniqueAutoId}
