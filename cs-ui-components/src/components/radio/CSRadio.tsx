@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import CSLabel from '../CSLabel';
 import { CSTooltipPosition } from '../CSTooltip';
+import CSFieldErrorMsg, { CSFieldErrorMsgType } from '../CSFieldErrorMsg';
 import { v4 as uuidv4 } from 'uuid';
 
 export type CSRadioVariant = 'neutral' | 'brand';
@@ -10,6 +11,7 @@ export interface CSRadioProps {
 	className?: string;
 	disabled?: boolean;
 	error?: boolean;
+	errorMessage?: CSFieldErrorMsgType;
 	helpText?: string;
 	id?: string;
 	label: string;
@@ -31,8 +33,8 @@ class CSRadio extends React.Component<CSRadioProps> {
 	}
 
 	render() {
-		const radioWrapperClasses = classNames(
-			'cs-radio-wrapper',
+		const radioGroupClasses = classNames(
+			'cs-radio-group',
 			{
 				'cs-radio-error': this.props.error === true,
 				[`${this.props.className}`]: this.props.className,
@@ -44,7 +46,7 @@ class CSRadio extends React.Component<CSRadioProps> {
 		const uniqueAutoId = uuidv4();
 
 		return (
-			<>
+			<div className="cs-radio-wrapper">
 				{(this.props.label && !this.props.labelHidden) &&
 					<CSLabel
 						for={this.props.id ? this.props.id : uniqueAutoId}
@@ -55,10 +57,13 @@ class CSRadio extends React.Component<CSRadioProps> {
 						title={this.props.labelTitle ? this.props.label : null}
 					/>
 				}
-				<div className={radioWrapperClasses} id={this.props.id ? this.props.id : uniqueAutoId}>
+				<div className={radioGroupClasses} id={this.props.id ? this.props.id : uniqueAutoId}>
 					{this.props.children}
 				</div>
-			</>
+				{(this.props.error && this.props.errorMessage) &&
+					<CSFieldErrorMsg message={this.props.errorMessage} />
+				}
+			</div>
 		);
 	}
 }

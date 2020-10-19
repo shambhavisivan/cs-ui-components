@@ -90,6 +90,24 @@ class CSRadioPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'errorMessage',
+					variations: [
+						{
+							variationText: ['error="true"'],
+							string: '',
+							component:
+								<CSRadio
+									error
+									errorMessage="Error message!"
+									label="This is a label"
+								>
+									<CSRadioOption name="gender" label="male" />
+									<CSRadioOption name="gender" label="female" />
+								</ CSRadio>
+						}
+					]
+				},
+				{
 					propName: 'id',
 					variations: [
 						{
@@ -280,6 +298,10 @@ class CSRadioPreview extends React.Component {
 						'false',
 						'true'
 					]
+				},
+				{
+					propertyName: 'errorMessage',
+					description: 'Error message text'
 				},
 				{
 					propertyName: 'helptext',

@@ -38,22 +38,19 @@ class CSRadioOption extends React.Component<CSRadioOptionProps> {
 		);
 
 		return (
-			<>
-				<div>
-					<label className={radioOptionWrapperClasses} title={this.props.title}>
-						<input
-							onChange={this.toggleRadio}
-							className={radioOptionClasses}
-							type="radio"
-							name={this.props.name}
-							disabled={this.props.disabled}
-							id={this.props.id}
-						/>
-						<span className={radioOptionFauxClasses}/>
-						<span>{this.props.label}</span>
-					</label>
-				</div>
-			</>
+			<label className={radioOptionWrapperClasses} title={this.props.title}>
+				<input
+					onChange={this.toggleRadio}
+					className={radioOptionClasses}
+					type="radio"
+					name={this.props.name}
+					disabled={this.props.disabled}
+					id={this.props.id}
+				/>
+				<span className={radioOptionFauxClasses}/>
+				<span>{this.props.label}</span>
+			</label>
+
 		);
 	}
 }
