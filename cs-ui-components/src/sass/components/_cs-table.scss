@@ -4,6 +4,10 @@
 		border-bottom: 1px solid cvar(--cs-table-br);
 	}
 
+	.cs-table-description {
+		@include screen-reader-hidden;
+	}
+
 	.cs-table-header {
 		display: flex;
 		justify-content: space-between;

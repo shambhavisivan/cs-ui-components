@@ -14,7 +14,7 @@ class CSTablePreview extends React.Component {
 		const json = {
 			name: 'Table',
 			usage: 'Tables are an enhanced version of an HTML table and are used to display tabular data.',
-			accessible: 'no',
+			accessible: 'partially',
 			examples: [
 				{
 					propName: 'id',
@@ -183,6 +183,30 @@ class CSTablePreview extends React.Component {
 												/>
 											</CSTableCell>
 										</CSTableRow>
+										<CSTableRow onClick={onClickHandler}>
+											<CSTableCell
+												text="Second Row Item 1"
+												grow={2}
+											/>
+											<CSTableCell
+												text="Second Row Item 2"
+												grow={1}
+											/>
+											<CSTableCell
+												text="Second Row Item 3"
+												grow={1}
+											/>
+											<CSTableCell
+												maxWidth="100px"
+											>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
 									</CSTableBody>
 								</CSTable>
 						}
@@ -269,6 +293,136 @@ class CSTablePreview extends React.Component {
 								</CSTable>
 						}
 					]
+				},
+				{
+					propName: 'tableDescription',
+					customText: '',
+					variations: [
+						{
+							variationName: ['tableDescription'],
+							quickLink: 'tableDescription',
+							string: '',
+							component:
+								<CSTable tableDescription="last, but best table">
+									<CSTableHeader>
+										<CSTableCell
+											text="Header Item 1"
+											grow={2}
+										/>
+										<CSTableCell
+											text="Header Item 2"
+											grow={1}
+										/>
+										<CSTableCell
+											text="Header Item 3"
+											grow={1}
+										/>
+										<CSTableCell
+											text="Button Column"
+											maxWidth="100px"
+										/>
+									</CSTableHeader>
+									<CSTableBody>
+										<CSTableRow>
+											<CSTableCell
+												text="Body Item 1"
+												grow={2}
+											/>
+											<CSTableCell
+												text="Body Item 2"
+												grow={1}
+											/>
+											<CSTableCell
+												text="Body Item 3"
+												grow={1}
+											/>
+											<CSTableCell
+												maxWidth="100px"
+											>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow>
+											<CSTableCell
+												text="Second Row Item 1"
+												grow={2}
+											/>
+											<CSTableCell
+												text="Second Row Item 2"
+												grow={1}
+											/>
+											<CSTableCell
+												text="Second Row Item 3"
+												grow={1}
+											/>
+											<CSTableCell
+												maxWidth="100px"
+											>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow>
+											<CSTableCell
+												text="Second Row Item 1"
+												grow={2}
+											/>
+											<CSTableCell
+												text="Second Row Item 2"
+												grow={1}
+											/>
+											<CSTableCell
+												text="Second Row Item 3"
+												grow={1}
+											/>
+											<CSTableCell
+												maxWidth="100px"
+											>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow>
+											<CSTableCell
+												text="Second Row Item 1"
+												grow={2}
+											/>
+											<CSTableCell
+												text="Second Row Item 2"
+												grow={1}
+											/>
+											<CSTableCell
+												text="Second Row Item 3"
+												grow={1}
+											/>
+											<CSTableCell
+												maxWidth="100px"
+											>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>
+						}
+					]
 				}
 			],
 			properties: [
@@ -279,6 +433,10 @@ class CSTablePreview extends React.Component {
 				{
 					propertyName: 'id',
 					description: 'Table id value'
+				},
+				{
+					propertyName: 'tableDescription',
+					description: 'Table description'
 				}
 			],
 			accessibility: [
@@ -391,6 +549,13 @@ class CSTablePreview extends React.Component {
 				{
 					propertyName: 'text',
 					description: 'Text content of cell'
+				},
+				{
+					propertyName: 'role',
+					description: 'Text content of cell',
+					helperPropInComponents: [
+						'CSTableHeader'
+					]
 				}
 			]
 		};

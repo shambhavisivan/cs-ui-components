@@ -8,7 +8,7 @@ export interface CSTableBodyProps {
 class CSTableBody extends React.Component<CSTableBodyProps> {
 	render() {
 		return (
-			<div className="cs-table-body" id={this.props.id}>
+			<div className="cs-table-body" role="rowgroup" id={this.props.id}>
 				{this.props.children}
 			</div>
 		);
