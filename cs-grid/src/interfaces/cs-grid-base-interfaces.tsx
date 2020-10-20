@@ -27,7 +27,19 @@ export interface CellData<T> {
 	errorMessage?: string;
 }
 
+/**
+ * @deprecated Legacy type 'Row' is deprecated and only exists for backward compatibility.
+ * Please use 'RowData' instead..
+ */
 export type Row = Record<string, CellData<any>>;
+export interface CellNotification {
+	type: 'error' | 'success' | 'info' | 'warning';
+	message: string;
+}
+export interface RowData {
+	[key: string]: any;
+	row_cell_notifications: Record<string, CellNotification>;
+}
 
 export type CustomCellType = 'Custom';
 

@@ -1,4 +1,4 @@
-import { Row } from './cs-grid-base-interfaces';
+import { Row, RowData } from './cs-grid-base-interfaces';
 
 /**
  * Defines all functions required to use the data source pagination and the data source quick filtering, eg from a server.
@@ -12,12 +12,12 @@ export interface DataSourceAPI {
 	/**
 	 * Return row data for the next page.
 	 */
-	onBtNext: () => Promise<Array<Row>>;
+	onBtNext: () => Promise<Array<Row>> | Promise<Array<RowData>>;
 
 	/**
 	 * Return row data for the previous page.
 	 */
-	onBtPrevious: () => Promise<Array<Row>>;
+	onBtPrevious: () => Promise<Array<Row>> | Promise<Array<RowData>>;
 
 	/**
 	 * Return row data for the first page.
@@ -29,7 +29,7 @@ export interface DataSourceAPI {
 		pageSize: number,
 		sortModel: Array<OrderBy>,
 		filterModel: FilterModel
-	) => Promise<Array<Row>>;
+	) => Promise<Array<Row>> | Promise<Array<RowData>>;
 }
 
 export type CSGridSortDirection = 'SORT_ASC' | 'SORT_DESC';

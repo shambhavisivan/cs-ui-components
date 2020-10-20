@@ -18,12 +18,12 @@ import * as KeyCode from 'keycode-js';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import {
 	CellClickedEvent,
 	CellData,
 	CSGridControl,
 	Row,
+	RowData,
 	RowStyleParams,
 	SuppressKeyboardEventParams
 } from '../interfaces/cs-grid-base-interfaces';
@@ -68,6 +68,8 @@ import { CSGridRowValidationRenderer } from './cs-grid-row-validation-renderer';
 import { CSGridTextEditor } from './cs-grid-text-editor';
 import { CSGridTextRenderer } from './cs-grid-text-renderer';
 
+const LEGACY_ROW_DATA_MODEL_DEPRECATION_WARN =
+	"CSGrid: Using legacy type 'Row' is deprecated for row data. look into 'RowData' for more details.";
 export interface CSGridProps {
 	pageSizes?: Array<number>;
 	csGridPagination: CSGridControl;
@@ -78,7 +80,7 @@ export interface CSGridProps {
 	rendererComponents?: Record<string, any>;
 	multiSelect: boolean;
 	uniqueIdentifierColumnName: string;
-	rowData?: Array<Row>;
+	rowData?: Array<Row> | Array<RowData>;
 	rowHighlighting?: Record<string, string>;
 	columnState?: string;
 	columnDefs?: Array<ColDef>;
@@ -151,6 +153,8 @@ class CSGridState {
 	currentPage: number = 0;
 	totalPages: number;
 	currentPageSize: number;
+	rowData: Array<Row>;
+	isUsingLegacyRowDataModel: boolean;
 }
 
 export class CSGrid extends React.Component<CSGridProps, CSGridState> {
@@ -172,10 +176,63 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			...editorComponents,
 			...rendererComponents
 		};
+		this.handleLegacyRowData();
 	}
 
-	getSelectedRows = (): Array<Row> => {
-		return this.gridApi.getSelectedRows();
+	componentDidUpdate(prevProps: Readonly<CSGridProps>, prevState: Readonly<CSGridState>) {
+		if (prevProps.rowData !== this.props.rowData) {
+			if (this.state.isUsingLegacyRowDataModel) {
+				this.setState({ rowData: this.props.rowData });
+			} else {
+				const rows: Array<Row> = this.convertRowDataToLegacyRow(
+					this.props.rowData as Array<RowData>
+				);
+				this.setState({ rowData: rows });
+			}
+		}
+	}
+
+	convertRowDataToLegacyRow = (records: Array<RowData>): Array<Row> => {
+		return records.map((record, rowNumber) => {
+			const newRecord: Row = {};
+			for (const fieldKey in record) {
+				if (fieldKey === 'row_cell_notifications') {
+					continue;
+				}
+				const notifications = record.row_cell_notifications[fieldKey];
+				let errorMessage = '';
+				if (notifications && notifications.type === 'error') {
+					errorMessage = notifications.message;
+				}
+				newRecord[fieldKey] = { cellValue: record[fieldKey], errorMessage };
+			}
+
+			return newRecord;
+		});
+	};
+
+	convertLegacyRowToRowData = (
+		rows: Array<Row>
+	): Array<Omit<RowData, 'row_cell_notifications'>> => {
+		return rows.map(row => {
+			const record: RowData = {} as RowData;
+			for (const fieldKey in row) {
+				record[fieldKey] = row[fieldKey].cellValue;
+				if (row.row_cell_notifications) {
+					record.row_cell_notifications = row.row_cell_notifications.cellValue;
+				}
+			}
+
+			return record;
+		});
+	};
+
+	getSelectedRows = (): Array<Row> | Array<RowData> => {
+		if (this.state.isUsingLegacyRowDataModel) {
+			return this.gridApi.getSelectedRows();
+		}
+
+		return this.convertLegacyRowToRowData(this.gridApi.getSelectedRows());
 	};
 
 	getRowStyle = (params: RowStyleParams) => {
@@ -228,7 +285,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 							maxConcurrentDatasourceRequests={isDataSourceRowModel ? 1 : undefined}
 							rowModelType={isDataSourceRowModel ? 'infinite' : undefined}
 							columnDefs={columnDefs}
-							rowData={this.props.rowData}
+							rowData={this.state.rowData}
 							pagination={paginationLocation !== 'None'}
 							paginationPageSize={pageSizes[0]}
 							suppressPaginationPanel={true}
@@ -323,6 +380,25 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				{quickFilterPortals}
 			</>
 		);
+	}
+
+	private handleLegacyRowData() {
+		const { rowData } = this.props;
+		/**
+		 * we check if the record's value has a cellValue property. if yes, that means it is using
+		 * old rowDataModel, so we go ahead and set it in state. if not, then we transform it to
+		 * old datamodel. This is a workaround until the renderers start using new model
+		 */
+		if (rowData && rowData.length !== 0) {
+			if (this.isUsingLegacyRowDataModel(rowData)) {
+				this.state.rowData = [...rowData];
+				this.state.isUsingLegacyRowDataModel = true;
+				console.warn(LEGACY_ROW_DATA_MODEL_DEPRECATION_WARN);
+			} else {
+				this.state.rowData = this.convertRowDataToLegacyRow(rowData as Array<RowData>);
+				this.state.isUsingLegacyRowDataModel = false;
+			}
+		}
 	}
 
 	private onFilterText = (filterText: string) => {
@@ -538,7 +614,17 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 					this.setState({
 						currentPage: this.gridApi.paginationGetCurrentPage()
 					});
-					getRowsParams.successCallback(rows, lastRow);
+					if (this.isUsingLegacyRowDataModel(rows)) {
+						this.setState({ isUsingLegacyRowDataModel: true });
+						console.warn(LEGACY_ROW_DATA_MODEL_DEPRECATION_WARN);
+						getRowsParams.successCallback(rows, lastRow);
+					} else {
+						this.setState({ isUsingLegacyRowDataModel: false });
+						getRowsParams.successCallback(
+							this.convertRowDataToLegacyRow(rows as Array<RowData>),
+							lastRow
+						);
+					}
 				}
 			};
 			params.api.setDatasource(dataSource);
@@ -549,6 +635,14 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		}
 	};
 
+	private isUsingLegacyRowDataModel(rows: any) {
+		return (
+			rows &&
+			rows.length !== 0 &&
+			rows[0][this.props.uniqueIdentifierColumnName].hasOwnProperty('cellValue')
+		);
+	}
+
 	private onColumnMoved = () => {
 		const params = {
 			force: true
@@ -558,11 +652,22 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 
 	private onCellValueChanged = (event: CellValueChangedEvent) => {
 		if (this.props.onCellValueChange) {
+			let oldValue = event.oldValue;
+			let newValue = event.newValue;
+
+			if (!this.state.isUsingLegacyRowDataModel) {
+				oldValue = this.convertLegacyRowToRowData([
+					{ [event.colDef.field]: event.oldValue }
+				])[0];
+				newValue = this.convertLegacyRowToRowData([
+					{ [event.colDef.field]: event.newValue }
+				])[0];
+			}
 			this.props.onCellValueChange(
 				this.getRowNodeId(event.data),
 				event.colDef.field,
-				event.oldValue,
-				event.newValue
+				oldValue,
+				newValue
 			);
 		}
 	};
