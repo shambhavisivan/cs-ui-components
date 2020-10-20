@@ -38,10 +38,8 @@ class CSIcon extends React.Component<CSIconProps> {
 			'--cs-icon-size': this.props.size
 		};
 
-		let origin = SldsIconSvg;
 		let prefix = 'cssfi-';
 		if (this.props.origin === 'cs') {
-			origin = CsIconSvg;
 			prefix = 'csi-';
 		}
 		return (
@@ -57,7 +55,7 @@ class CSIcon extends React.Component<CSIconProps> {
 							className={styleClass}
 							aria-hidden="true"
 						>
-							<use href={`${origin}#${prefix}${this.props.name}`}/>
+							<use href={`#${prefix}${this.props.name}`}/>
 						</svg>
 					</div>
 				) : (
@@ -67,7 +65,7 @@ class CSIcon extends React.Component<CSIconProps> {
 						aria-hidden="true"
 						id={this.props.id}
 					>
-						<use href={`${origin}#${prefix}${this.props.name}`}/>
+						<use href={`#${prefix}${this.props.name}`}/>
 					</svg>
 				)}
 			</>
