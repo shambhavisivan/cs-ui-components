@@ -208,7 +208,6 @@ body,
 
 	.components-preview-wrapper {
 		display: flex;
-		flex: 1;
 		position: sticky;
 		position: -webkit-sticky;
 		top: 0;
@@ -247,6 +246,7 @@ body,
 
 	.components-preview {
 		width: 100%;
+		max-width: -moz-available; // Fix firefox columns width responsively
 		position: relative;
 		flex: 1;
 		display: flex;
