@@ -2,6 +2,18 @@
 
 Reusable React UI components.
 
+## Starting UI Components demo app:
+
+1. After repository is cloned pull master branch in git to get the latest changes
+2. Open command line in the project root and navigate to the sub cs-ui-components folder 'cd cs-ui-components'
+3. Install latest npm packages 'npm install'
+4. Run 'npm run build' to run webpack and build app
+5. Open command line in the project root and navigate to the cs-ui-demo folder 'cd cs-ui-demo'
+6. Install latest npm packages 'npm install'
+7. Run 'npm start' to boot up demo app
+
+## NOTE: (If making local changes 'npm run watch' can be used instead of 'npm run build' to build + live reloading on demo app when changes are saved)
+
 ## Scripts:
 
 * `npm run lint`: check code for lint errors
