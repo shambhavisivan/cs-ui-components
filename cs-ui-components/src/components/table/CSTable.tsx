@@ -6,8 +6,11 @@ export interface CSTableProps {
 	[key: string]: any;
 	className?: string;
 	id?: string;
+	selectableRows?: boolean;
 	tableDescription?: string;
 }
+
+export const CSTableContext = React.createContext<CSTableProps>({});
 
 class CSTable extends React.Component<CSTableProps> {
 
@@ -19,28 +22,33 @@ class CSTable extends React.Component<CSTableProps> {
 			className,
 			id,
 			tableDescription,
+			selectableRows,
 			...rest
 		} = this.props;
 
 		const tableClasses = classNames(
 			'cs-table', {
-			[`${className}`]: className
-		}
+				[`${className}`]: className
+			}
 		);
 
 		return (
-			<div
-				className={tableClasses}
-				role="table"
-				id={id}
-				aria-labelledby={this.uniqueAutoId}
-				{...rest}
-			>
-				{tableDescription &&
-					<span className="cs-table-description" id={this.uniqueAutoId}>{tableDescription}</span>
-				}
-				{children}
-			</div>
+			<CSTableContext.Provider value={{
+				selectableRows
+			}}>
+				<div
+					className={tableClasses}
+					role="table"
+					id={id}
+					aria-labelledby={this.uniqueAutoId}
+					{...rest}
+				>
+					{tableDescription &&
+						<span className="cs-table-description" id={this.uniqueAutoId}>{tableDescription}</span>
+					}
+					{children}
+				</div>
+			</CSTableContext.Provider>
 		);
 	}
 }
