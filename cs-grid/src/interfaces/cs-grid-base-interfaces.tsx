@@ -38,7 +38,7 @@ export interface CellNotification {
 }
 export interface RowData {
 	[key: string]: any;
-	row_cell_notifications: Record<string, CellNotification>;
+	row_cell_notifications?: Record<string, CellNotification>;
 }
 
 export type CustomCellType = 'Custom';

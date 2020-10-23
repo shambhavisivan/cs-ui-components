@@ -202,12 +202,12 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				if (fieldKey === 'row_cell_notifications') {
 					continue;
 				}
-				const notifications = record.row_cell_notifications[fieldKey];
-				let errorMessage = '';
+				const notifications =
+					record.row_cell_notifications && record.row_cell_notifications[fieldKey];
+				newRecord[fieldKey] = { cellValue: record[fieldKey] };
 				if (notifications && notifications.type === 'error') {
-					errorMessage = notifications.message;
+					newRecord[fieldKey].errorMessage = notifications.message;
 				}
-				newRecord[fieldKey] = { cellValue: record[fieldKey], errorMessage };
 			}
 
 			return newRecord;

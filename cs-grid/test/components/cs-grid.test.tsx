@@ -1,8 +1,8 @@
 import { AgGridReact } from 'ag-grid-react/lib/agGridReact';
 import { shallow } from 'enzyme';
 import React from 'react';
-import { CSGridProps, CSGrid, RowData, Row, UserInfo} from '../../main';
-import { CellValueChangedEvent } from "ag-grid-community";
+import { CSGridProps, CSGrid, RowData, Row, UserInfo } from '../../main';
+import { CellValueChangedEvent } from 'ag-grid-community';
 
 describe('csgrid', () => {
 	const userInfo: UserInfo = {
@@ -12,26 +12,27 @@ describe('csgrid', () => {
 
 	const baseProps: CSGridProps = {
 		csGridPagination: {
-			location: 'None',
+			location: 'None'
 		},
 		csGridQuickFilter: {
-			location: 'None',
+			location: 'None'
 		},
 		multiSelect: false,
 		uniqueIdentifierColumnName: 'Id',
-		columnDefs: [{
-			cellType: 'Text',
-			name: 'exampleText',
-			visible: true,
-			flashOnCellValueChange: true,
-			userInfo,
-		},
+		columnDefs: [
+			{
+				cellType: 'Text',
+				name: 'exampleText',
+				visible: true,
+				flashOnCellValueChange: true,
+				userInfo
+			},
 			{
 				cellType: 'Text',
 				name: 'exampleDecimal',
 				visible: true,
-				userInfo,
-			},
+				userInfo
+			}
 		],
 		rowData: [
 			{
@@ -40,7 +41,7 @@ describe('csgrid', () => {
 				},
 				Id: {
 					cellValue: '123'
-				},
+				}
 			},
 			{
 				exampleDecimal: {
@@ -48,9 +49,9 @@ describe('csgrid', () => {
 				},
 				Id: {
 					cellValue: '456'
-				},
+				}
 			}
-		],
+		]
 	};
 
 	describe('singleClickEdit', () => {
@@ -63,7 +64,7 @@ describe('csgrid', () => {
 		test('singleClickEdit from props should be used when defined', () => {
 			const gridProps = {
 				...baseProps,
-				singleClickEdit: false,
+				singleClickEdit: false
 			};
 			const csGridShallow = shallow(<CSGrid {...gridProps} />);
 
@@ -72,14 +73,14 @@ describe('csgrid', () => {
 	});
 
 	describe('onCellValueChanged', () => {
-		const csgrid:any = shallow(<CSGrid {...baseProps} />).instance();
+		const csgrid: any = shallow(<CSGrid {...baseProps} />).instance();
 
 		const oldValue = {
 			cellValue: 'ABC'
 		};
 		const newValue = {
 			cellValue: 'DEF'
-		}
+		};
 		const baseCellValueChangedEvent = {
 			data: {
 				exampleText: {
@@ -87,20 +88,20 @@ describe('csgrid', () => {
 				},
 				Id: {
 					cellValue: '123'
-				},
+				}
 			},
 			colDef: {
-				field: 'exampleText',
+				field: 'exampleText'
 			},
 			oldValue,
-			newValue,
+			newValue
 		} as CellValueChangedEvent;
 
 		const mockFlashCells = jest.fn();
 		csgrid.gridApi = {
 			flashCells: mockFlashCells,
 			getRowNode: jest.fn()
-		}
+		};
 
 		beforeEach(() => {
 			mockFlashCells.mockClear();
@@ -125,10 +126,10 @@ describe('csgrid', () => {
 					},
 					Id: {
 						cellValue: '456'
-					},
+					}
 				},
 				colDef: {
-					field: 'exampleDecimal',
+					field: 'exampleDecimal'
 				},
 				oldValue: {
 					cellValue: 567
@@ -686,80 +687,71 @@ describe('rowdata Related', () => {
 		const result = component.instance().convertRowDataToLegacyRow(rowData);
 		const expected = [
 			{
-				exampleBoolean: { cellValue: false, errorMessage: '' },
-				exampleCurrency: { cellValue: 'undefined as number', errorMessage: '' },
-				exampleDate: { cellValue: '1986-11-15', errorMessage: '' },
-				exampleDateTime: { cellValue: '1986-11-15 05:55', errorMessage: '' },
-				exampleDecimal: { cellValue: 99000.67878, errorMessage: '' },
+				exampleBoolean: { cellValue: false },
+				exampleCurrency: { cellValue: 'undefined as number' },
+				exampleDate: { cellValue: '1986-11-15' },
+				exampleDateTime: { cellValue: '1986-11-15 05:55' },
+				exampleDecimal: { cellValue: 99000.67878 },
 				exampleGuid: {
-					cellValue: '980c2b1c-4542-57aa-bb39-161471d8256e',
-					errorMessage: ''
+					cellValue: '980c2b1c-4542-57aa-bb39-161471d8256e'
 				},
-				exampleInteger: { cellValue: 99000, errorMessage: '' },
-				exampleIntegerStep: { cellValue: 99000, errorMessage: '' },
+				exampleInteger: { cellValue: 99000 },
+				exampleIntegerStep: { cellValue: 99000 },
 				exampleLookup: {
-					cellValue: { text1: 'Sue', 'text2.name.thirdPart': '123456' },
-					errorMessage: ''
+					cellValue: { text1: 'Sue', 'text2.name.thirdPart': '123456' }
 				},
 				exampleMultiSelectLookup: {
 					cellValue: [
 						{ text1: 'Sue', 'text2.name.thirdPart': '123456' },
 						{ text1: 'Sean', 'text2.name.thirdPart': '987654' }
-					],
-					errorMessage: ''
+					]
 				},
-				exampleMultiSelectPicklist: { cellValue: ['Sean', 'Sue'], errorMessage: '' },
+				exampleMultiSelectPicklist: { cellValue: ['Sean', 'Sue'] },
 				exampleMultiSelectPicklistWithLabels: {
 					cellValue: [
 						{ id: '7', label: 'Sue' },
 						{ id: '11', label: 'Fred' }
-					],
-					errorMessage: ''
+					]
 				},
-				examplePicklist: { cellValue: 'Sean', errorMessage: '' },
+				examplePicklist: { cellValue: 'Sean' },
 				examplePicklistWithLabels: {
-					cellValue: { id: '7', label: 'Sue' },
-					errorMessage: ''
+					cellValue: { id: '7', label: 'Sue' }
 				},
 				exampleRowValidation: {
 					cellValue: { icons: ['medium', 'video'], status: 'Error' },
 					errorMessage: 'Error 1Error 2'
 				},
-				exampleText: { cellValue: 'Ford', errorMessage: '' },
-				status: { cellValue: ['yellow', 'breadcrumbs'], errorMessage: '' }
+				exampleText: { cellValue: 'Ford' },
+				status: { cellValue: ['yellow', 'breadcrumbs'] }
 			},
 			{
-				exampleBoolean: { cellValue: false, errorMessage: '' },
-				exampleCurrency: { cellValue: 73000.98, errorMessage: '' },
-				exampleDate: { cellValue: '1992-01-29', errorMessage: '' },
-				exampleDateTime: { cellValue: '1992-01-29 15:25', errorMessage: '' },
-				exampleDecimal: { cellValue: 72000.67878, errorMessage: '' },
+				exampleBoolean: { cellValue: false },
+				exampleCurrency: { cellValue: 73000.98 },
+				exampleDate: { cellValue: '1992-01-29' },
+				exampleDateTime: { cellValue: '1992-01-29 15:25' },
+				exampleDecimal: { cellValue: 72000.67878 },
 				exampleGuid: {
-					cellValue: '1d0ec757-41cd-cda6-76da-d54b1fb06382',
-					errorMessage: ''
+					cellValue: '1d0ec757-41cd-cda6-76da-d54b1fb06382'
 				},
-				exampleInteger: { cellValue: 72000, errorMessage: '' },
-				exampleIntegerStep: { cellValue: 72000, errorMessage: '' },
+				exampleInteger: { cellValue: 72000 },
+				exampleIntegerStep: { cellValue: 72000 },
 				exampleLookup: {
-					cellValue: { text1: 'Sally', 'text2.name.thirdPart': '079845' },
-					errorMessage: ''
+					cellValue: { text1: 'Sally', 'text2.name.thirdPart': '079845' }
 				},
 				exampleMultiSelectLookup: {
 					cellValue: [
 						{ text1: 'Sally', 'text2.name.thirdPart': '079845' },
 						{ text1: 'Bob', 'text2.name.thirdPart': '645612' }
-					],
-					errorMessage: ''
+					]
 				},
-				exampleMultiSelectPicklist: { cellValue: ['Bob', 'Harry'], errorMessage: '' },
+				exampleMultiSelectPicklist: { cellValue: ['Bob', 'Harry'] },
 				exampleMultiSelectPicklistWithLabels: {
 					cellValue: [
 						{ id: '5', label: 'John' },
 						{ id: '11', label: 'Fred' }
-					],
-					errorMessage: ''
+					]
 				},
-				examplePicklist: { cellValue: 'Sally', errorMessage: '' },
+				examplePicklist: { cellValue: 'Sally' },
 				examplePicklistWithLabels: {
 					cellValue: { id: '11', label: 'Fred' },
 					errorMessage: 'An error message'
@@ -768,85 +760,76 @@ describe('rowdata Related', () => {
 					cellValue: { icons: ['medium'], status: 'Info' },
 					errorMessage: 'Info 1 Info 2'
 				},
-				exampleText: { cellValue: 'Toyota', errorMessage: '' },
-				status: { cellValue: ['yellow'], errorMessage: '' }
+				exampleText: { cellValue: 'Toyota' },
+				status: { cellValue: ['yellow'] }
 			},
 			{
-				exampleBoolean: { cellValue: false, errorMessage: '' },
-				exampleCurrency: { cellValue: 34000.67, errorMessage: '' },
-				exampleDate: { cellValue: '1992-01-27', errorMessage: '' },
-				exampleDateTime: { cellValue: '1992-01-27 11:22', errorMessage: '' },
-				exampleDecimal: { cellValue: 35000.567567, errorMessage: '' },
+				exampleBoolean: { cellValue: false },
+				exampleCurrency: { cellValue: 34000.67 },
+				exampleDate: { cellValue: '1992-01-27' },
+				exampleDateTime: { cellValue: '1992-01-27 11:22' },
+				exampleDecimal: { cellValue: 35000.567567 },
 				exampleGuid: {
-					cellValue: 'db24526d-931c-3f4f-87e8-a286addead3d',
-					errorMessage: ''
+					cellValue: 'db24526d-931c-3f4f-87e8-a286addead3d'
 				},
-				exampleInteger: { cellValue: 35000, errorMessage: '' },
-				exampleIntegerStep: { cellValue: 3500, errorMessage: '' },
+				exampleInteger: { cellValue: 35000 },
+				exampleIntegerStep: { cellValue: 3500 },
 				exampleLookup: {
 					cellValue: {
 						hidden: '11111111111',
 						text1: 'Bob',
 						'text2.name.thirdPart': '645612'
-					},
-					errorMessage: ''
+					}
 				},
 				exampleMultiSelectLookup: {
 					cellValue: [
 						{ hidden: '11111111111', text1: 'Bob', 'text2.name.thirdPart': '645612' },
 						{ hidden: '11111111111', text1: 'Harry', 'text2.name.thirdPart': '564768' }
-					],
-					errorMessage: ''
+					]
 				},
-				exampleMultiSelectPicklist: { cellValue: ['Harry', 'Sally'], errorMessage: '' },
+				exampleMultiSelectPicklist: { cellValue: ['Harry', 'Sally'] },
 				exampleMultiSelectPicklistWithLabels: {
 					cellValue: [
 						{ id: '2', label: 'Harry' },
 						{ id: '3', label: 'Sally' }
-					],
-					errorMessage: ''
+					]
 				},
-				examplePicklist: { cellValue: 'Bob', errorMessage: '' },
+				examplePicklist: { cellValue: 'Bob' },
 				examplePicklistWithLabels: {
-					cellValue: { id: '2', label: 'Harry' },
-					errorMessage: ''
+					cellValue: { id: '2', label: 'Harry' }
 				},
-				exampleRowValidation: { cellValue: { status: 'None' }, errorMessage: '' },
-				exampleText: { cellValue: 'Toy&o|:;ta', errorMessage: '' },
-				status: { cellValue: ['red'], errorMessage: '' }
+				exampleRowValidation: { cellValue: { status: 'None' } },
+				exampleText: { cellValue: 'Toy&o|:;ta' },
+				status: { cellValue: ['red'] }
 			},
 			{
-				exampleBoolean: { cellValue: false, errorMessage: '' },
-				exampleCurrency: { cellValue: 73000.98, errorMessage: '' },
-				exampleDate: { cellValue: '1992-01-29', errorMessage: '' },
-				exampleDateTime: { cellValue: '1992-01-29 15:25', errorMessage: '' },
-				exampleDecimal: { cellValue: 72000.67878, errorMessage: '' },
+				exampleBoolean: { cellValue: false },
+				exampleCurrency: { cellValue: 73000.98 },
+				exampleDate: { cellValue: '1992-01-29' },
+				exampleDateTime: { cellValue: '1992-01-29 15:25' },
+				exampleDecimal: { cellValue: 72000.67878 },
 				exampleGuid: {
-					cellValue: '7cfe3d51-1e73-799f-1d5d-e77276a2d316',
-					errorMessage: ''
+					cellValue: '7cfe3d51-1e73-799f-1d5d-e77276a2d316'
 				},
-				exampleInteger: { cellValue: 72000, errorMessage: '' },
-				exampleIntegerStep: { cellValue: 72000, errorMessage: '' },
+				exampleInteger: { cellValue: 72000 },
+				exampleIntegerStep: { cellValue: 72000 },
 				exampleLookup: {
-					cellValue: { text1: 'Sally', 'text2.name.thirdPart': '079845' },
-					errorMessage: ''
+					cellValue: { text1: 'Sally', 'text2.name.thirdPart': '079845' }
 				},
 				exampleMultiSelectLookup: {
 					cellValue: [
 						{ text1: 'Sally', 'text2.name.thirdPart': '079845' },
 						{ text1: 'Bob', 'text2.name.thirdPart': '645612' }
-					],
-					errorMessage: ''
+					]
 				},
-				exampleMultiSelectPicklist: { cellValue: ['Bob', 'Harry'], errorMessage: '' },
+				exampleMultiSelectPicklist: { cellValue: ['Bob', 'Harry'] },
 				exampleMultiSelectPicklistWithLabels: {
 					cellValue: [
 						{ id: '5', label: 'John' },
 						{ id: '11', label: 'Fred' }
-					],
-					errorMessage: ''
+					]
 				},
-				examplePicklist: { cellValue: 'Sally', errorMessage: '' },
+				examplePicklist: { cellValue: 'Sally' },
 				examplePicklistWithLabels: {
 					cellValue: { id: '11', label: 'Fred' },
 					errorMessage: 'An error message'
@@ -855,41 +838,37 @@ describe('rowdata Related', () => {
 					cellValue: { icons: ['medium'], status: 'Info' },
 					errorMessage: 'Info 1 Info 2'
 				},
-				exampleText: { cellValue: 'Toyota', errorMessage: '' },
-				status: { cellValue: ['yellow'], errorMessage: '' }
+				exampleText: { cellValue: 'Toyota' },
+				status: { cellValue: ['yellow'] }
 			},
 			{
-				exampleBoolean: { cellValue: false, errorMessage: '' },
-				exampleCurrency: { cellValue: 73000.98, errorMessage: '' },
-				exampleDate: { cellValue: '1992-01-29', errorMessage: '' },
-				exampleDateTime: { cellValue: '1992-01-29 15:25', errorMessage: '' },
-				exampleDecimal: { cellValue: 72000.67878, errorMessage: '' },
+				exampleBoolean: { cellValue: false },
+				exampleCurrency: { cellValue: 73000.98 },
+				exampleDate: { cellValue: '1992-01-29' },
+				exampleDateTime: { cellValue: '1992-01-29 15:25' },
+				exampleDecimal: { cellValue: 72000.67878 },
 				exampleGuid: {
-					cellValue: '6c495e38-4d72-a198-884d-b2762e47bede',
-					errorMessage: ''
+					cellValue: '6c495e38-4d72-a198-884d-b2762e47bede'
 				},
-				exampleInteger: { cellValue: 72000, errorMessage: '' },
-				exampleIntegerStep: { cellValue: 72000, errorMessage: '' },
+				exampleInteger: { cellValue: 72000 },
+				exampleIntegerStep: { cellValue: 72000 },
 				exampleLookup: {
-					cellValue: { text1: 'Sally', 'text2.name.thirdPart': '079845' },
-					errorMessage: ''
+					cellValue: { text1: 'Sally', 'text2.name.thirdPart': '079845' }
 				},
 				exampleMultiSelectLookup: {
 					cellValue: [
 						{ text1: 'Sally', 'text2.name.thirdPart': '079845' },
 						{ text1: 'Bob', 'text2.name.thirdPart': '645612' }
-					],
-					errorMessage: ''
+					]
 				},
-				exampleMultiSelectPicklist: { cellValue: ['Bob', 'Harry'], errorMessage: '' },
+				exampleMultiSelectPicklist: { cellValue: ['Bob', 'Harry'] },
 				exampleMultiSelectPicklistWithLabels: {
 					cellValue: [
 						{ id: '5', label: 'John' },
 						{ id: '11', label: 'Fred' }
-					],
-					errorMessage: ''
+					]
 				},
-				examplePicklist: { cellValue: 'Sally', errorMessage: '' },
+				examplePicklist: { cellValue: 'Sally' },
 				examplePicklistWithLabels: {
 					cellValue: { id: '11', label: 'Fred' },
 					errorMessage: 'An error message'
@@ -898,8 +877,8 @@ describe('rowdata Related', () => {
 					cellValue: { icons: ['medium'], status: 'Info' },
 					errorMessage: 'Info 1 Info 2'
 				},
-				exampleText: { cellValue: 'Toyota', errorMessage: '' },
-				status: { cellValue: ['yellow'], errorMessage: '' }
+				exampleText: { cellValue: 'Toyota' },
+				status: { cellValue: ['yellow'] }
 			}
 		];
 
