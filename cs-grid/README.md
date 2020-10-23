@@ -14,9 +14,15 @@ Besides the standard set of features you'd expect from any grid cs-grid includes
 * Row Selection
 * Cell renderers for simple data types of Text, Integer, Decimal, Date, Boolean, Currency and for reference data selection of Lookup, Multi-select lookup, picklist & multi-select picklist selection.
 
+Release Notes
+------------------
+
+####1.2.32
+ * `Row` has been deprecated in favour of `RowData`.
+ * Lookup fields can now disable the filter on their grid by passing `hasFilter` to `LookupSearchColDef`
+
 Usage Overview
 --------------
-
 #### Install dependencies
 
     $ npm install @cloudsense/cs-grid
