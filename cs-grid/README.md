@@ -17,9 +17,13 @@ Besides the standard set of features you'd expect from any grid cs-grid includes
 Release Notes
 ------------------
 
+####1.2.33
+ * Enable cell flashing on success using `flashOnCellValueChange` property in coldefs.
+ * `RowData.row_cell_notifications` is now an optional property.
+ 
 ####1.2.32
- * `Row` has been deprecated in favour of `RowData`.
- * Lookup fields can now disable the filter on their grid by passing `hasFilter` to `LookupSearchColDef`
+  * `Row` has been deprecated in favour of `RowData`.
+  * Lookup fields can now disable the filter on their grid by passing `hasFilter` to `LookupSearchColDef`
 
 Usage Overview
 --------------
