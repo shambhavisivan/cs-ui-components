@@ -76,6 +76,7 @@ class CSTab extends React.Component<CSTabProps> {
 							)
 					}
 					{this.props.title}
+					{this.props.children}
 				</button>
 			</li>
 		);
