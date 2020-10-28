@@ -42,7 +42,7 @@ class CSGettingStarted extends React.Component {
 
 		return (
 			<div className="preview-section-wrapper">
-				<PreviewHeading name={component.name} usage={component.usage} />
+				<PreviewHeading name={component.name} usage={component.usage} accessible="hide" />
 				<PreviewProperties name={component.name} examples={component.examples}/>
 			</div>
 		);

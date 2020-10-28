@@ -33,10 +33,12 @@ class PreviewHeading extends React.Component<PreviewHeadingProps> {
 			<div className="preview-heading">
 				<div className="preview-heading-row">
 					<h1>{this.props.name}</h1>
-					<div className="preview-accessibility-status-wrapper" >
-						<CSIcon name={accessibilityStatus.icon} color={accessibilityStatus.color} size="1.25rem" />
-						<span style={{color: accessibilityStatus.color}}>{accessibilityStatus.description}</span>
-					</div>
+					{this.props.accessible !== 'hide' &&
+						<div className="preview-accessibility-status-wrapper" >
+							<CSIcon name={accessibilityStatus.icon} color={accessibilityStatus.color} size="1.25rem" />
+							<span style={{color: accessibilityStatus.color}}>{accessibilityStatus.description}</span>
+						</div>
+					}
 				</div>
 				{this.props.usage ? <h2>{this.props.usage}</h2> : null}
 			</div>
