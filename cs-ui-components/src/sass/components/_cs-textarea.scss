@@ -12,9 +12,8 @@
 		padding: 0.5rem 0.75rem;
 		line-height: 1.5;
 		resize: vertical;
-		height: 5rem;
 		max-height: var(--max-height, 100%);
-		white-space: normal;
+		white-space: break-spaces;
 
 		//Square
 		&.cs-textarea-square {

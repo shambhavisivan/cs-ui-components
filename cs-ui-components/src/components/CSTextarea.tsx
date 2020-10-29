@@ -43,6 +43,10 @@ export function fixControlledValue<T>(value: T) {
 
 class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 
+	public static defaultProps = {
+		rows: '3'
+	};
+
 	constructor(props: CSTextareaProps) {
 		super(props);
 		const value = typeof props.value === undefined ? '' : props.value;
