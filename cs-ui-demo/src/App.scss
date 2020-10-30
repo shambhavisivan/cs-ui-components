@@ -769,12 +769,27 @@ body,
 		}
 
 		.accessibility-criterions-list {
-			.criterion {
+			a.criterion {
 				display: inline-flex;
 				position: relative;
 				margin: 0.1rem 0.5rem 0.1rem 0;
-				padding: 0 0.25rem;
+				padding: 0 2px;
 				background: #ddd;
+				color: #0070d2;
+				border-radius: 0.25rem;
+
+				&:hover {
+					color: #4a26ab;
+				}
+
+				&:focus {
+					outline: none;
+					box-shadow: 0 0 3px #0070d2;
+				}
+
+				&:active {
+					color: darken(#4a26ab, 15);
+				}
 
 				&::after {
 					position: absolute;

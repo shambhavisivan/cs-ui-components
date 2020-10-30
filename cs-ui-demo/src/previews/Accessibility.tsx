@@ -26,6 +26,16 @@ class ReleaseNotes extends React.Component<any, CSReleaseNotesState> {
 		fetch(releaseNotesPath)
 			.then(res => res.text())
 			.then(text => this.setState({ markdown: text }));
+
+		/* If hash provided, ensure scroll after the component loads */
+		if (document.location.hash) { // Return the anchor part of a URL
+			setTimeout(() => {
+				const element = document.getElementById(document.location.hash.substring(1));
+				if (element) {
+					element.scrollIntoView({behavior: 'smooth'});
+				}
+			}, 500);
+		}
 	}
 
 	render() {
@@ -37,6 +47,7 @@ class ReleaseNotes extends React.Component<any, CSReleaseNotesState> {
 					source={markdown}
 					escapeHtml={false}
 					className="accessibility"
+					linkTarget="_blank"
 				/>
 			</>
 		);
