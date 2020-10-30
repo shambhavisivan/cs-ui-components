@@ -63,6 +63,17 @@
 		}
 	}
 
+	&.cs-tooltip-success {
+		@include sbg(--cs-tooltip-success-bg);
+		@include sc(--cs-tooltip-success-c);
+
+		&::before {
+			@include css4 {
+				border-bottom-color: cvar(--cs-tooltip-success-bg);
+			}
+		}
+	}
+
 	&::before {
 		content: "";
 		position: absolute;
@@ -134,6 +145,8 @@
 			font-size: 0.8125rem;
 			word-wrap: break-word;
 			margin-block-start: 0;
+			@include sbg(--cs-tooltip-body-bg);
+			@include sc(--cs-tooltip-body-c);
 			@include css4 {
 				box-shadow: 0 2px 3px 0 cvar(--cs-shadow-medium);
 			}
@@ -173,14 +186,9 @@
 		}
 
 		&.cs-tooltip-info {
-
 			.cs-tooltip-header {
 				@include sbg(--cs-tooltip-info-bg);
 				@include sc(--cs-tooltip-info-c);
-			}
-			.cs-tooltip-body {
-				@include sbg(--cs-tooltip-body-bg);
-				@include sc(--cs-tooltip-body-c);
 			}
 			&.cs-tooltip-bottom-left:before,
 			&.cs-tooltip-bottom-right:before {
@@ -192,14 +200,9 @@
 		}
 
 		&.cs-tooltip-warning {
-
 			.cs-tooltip-header {
 				@include sbg(--cs-tooltip-warning-bg);
 				@include sc(--cs-tooltip-warning-c);
-			}
-			.cs-tooltip-body {
-				@include sbg(--cs-tooltip-body-bg);
-				@include sc(--cs-tooltip-body-c);
 			}
 			&.cs-tooltip-bottom-left:before,
 			&.cs-tooltip-bottom-right:before {
@@ -211,20 +214,29 @@
 		}
 
 		&.cs-tooltip-error {
-
 			.cs-tooltip-header {
 				@include sbg(--cs-tooltip-error-bg);
 				@include sc(--cs-tooltip-error-c);
-			}
-			.cs-tooltip-body {
-				@include sbg(--cs-tooltip-body-bg);
-				@include sc(--cs-tooltip-body-c);
 			}
 			&.cs-tooltip-bottom-left:before,
 			&.cs-tooltip-bottom-right:before {
 				@include sbg(--cs-tooltip-error-bg);
 				@include css4 {
 					border-bottom-color: cvar(--cs-tooltip-error-bg);
+				}
+			}
+		}
+
+		&.cs-tooltip-success {
+			.cs-tooltip-header {
+				@include sbg(--cs-tooltip-success-bg);
+				@include sc(--cs-tooltip-success-c);
+			}
+			&.cs-tooltip-bottom-left:before,
+			&.cs-tooltip-bottom-right:before {
+				@include sbg(--cs-tooltip-success-bg);
+				@include css4 {
+					border-bottom-color: cvar(--cs-tooltip-success-bg);
 				}
 			}
 		}
@@ -281,6 +293,14 @@
 		}
 		&:hover .cs-icon, &:focus .cs-icon {
 			@include fd(var(--cs-tooltip-error-bg), 0.3);
+		}
+	}
+	&.cs-tw-success {
+		.cs-icon {
+			@include sf(--cs-tooltip-success-bg);
+		}
+		&:hover .cs-icon, &:focus .cs-icon {
+			@include fd(var(--cs-tooltip-sucess-bg), 0.3);
 		}
 	}
 

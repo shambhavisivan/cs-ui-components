@@ -33,8 +33,8 @@
 			outline: none;
 			@include sc(--cs-tab-c);
 
-			.cs-icon {
-				margin: 0 0.5rem 0 0;
+			.cs-tab-title:not(:first-child) {
+				margin-left: 0.5rem;
 			}
 
 			&::after {
@@ -115,12 +115,6 @@
 			}
 			.cs-icon {
 				@include sf(--cs-tab-active-br)
-			}
-		}
-
-		&-initial {
-			.cs-icon {
-				@include sf(--cs-tab-default-fill)
 			}
 		}
 

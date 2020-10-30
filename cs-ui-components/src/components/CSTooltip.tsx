@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 export type CSTooltipIconSize = 'small' | 'medium';
 export type CSTooltipPosition = 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left' | 'top-center' | 'bottom-center';
 export type CSTooltipStylePosition = 'fixed' | 'absolute';
-export type CSTooltipVariant = 'info' | 'warning' | 'error';
+export type CSTooltipVariant = 'info' | 'warning' | 'error' | 'success';
 
 export interface CSTooltipProps {
 	className?: string;
@@ -68,17 +68,13 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 	render() {
 		const tooltipClasses = classNames('cs-tooltip', {
 			[`cs-tooltip-${this.props.position}`]: this.props.position,
-			'cs-tooltip-error': this.props.variant === 'error',
-			'cs-tooltip-info': this.props.variant === 'info',
-			'cs-tooltip-warning': this.props.variant === 'warning',
+			[`cs-tooltip-${this.props.variant}`]: this.props.variant,
 			'cs-tooltip-with-header': this.props.tooltipHeader
 		});
 
 		const tooltipWrapperClasses = classNames('cs-tooltip-wrapper', {
 			'cs-tw-icon-c': this.props.iconColor,
-			'cs-tw-error': this.props.variant === 'error',
-			'cs-tw-info': this.props.variant === 'info',
-			'cs-tw-warning': this.props.variant === 'warning',
+			[`cs-tw-${this.props.variant}`]: this.props.variant,
 			[`cs-tooltip-style-position-${this.props.stylePosition}`]: this.props.stylePosition,
 			[`${this.props.className}`]: this.props.className
 		});

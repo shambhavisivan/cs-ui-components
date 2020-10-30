@@ -40,6 +40,13 @@ class CSTooltipPreview extends React.Component {
 							string: '',
 							component:
 								<CSTooltip variant="error" content="Help text example"/>
+						},
+						{
+							variationName: ['success'],
+							quickLink: 'success',
+							string: '',
+							component:
+								<CSTooltip variant="success" content="Help text example"/>
 						}
 					]
 				},
@@ -189,6 +196,13 @@ class CSTooltipPreview extends React.Component {
 							string: '',
 							component:
 								<CSTooltip  variant="error" tooltipHeader="Error" content="Help text example" />
+						},
+						{
+							variationName: ['success'],
+							quickLink: 'success',
+							string: '',
+							component:
+								<CSTooltip  variant="success" tooltipHeader="Success" content="Help text example" />
 						}
 					]
 				},
@@ -384,7 +398,8 @@ class CSTooltipPreview extends React.Component {
 					options: [
 						'info',
 						'warning',
-						'error'
+						'error',
+						'success'
 					]
 				},
 				{

@@ -2,7 +2,9 @@ import React from 'react';
 import classNames from 'classnames';
 import CSIcon from './CSIcon';
 import { CSTabGroupVariant } from './CSTabGroup';
+import CSTooltip from './CSTooltip';
 
+export type CSTabStatus = 'initial' | 'error' | 'warning' | 'success';
 export interface CSTabProps {
 	active?: boolean;
 	className?: string;
@@ -10,9 +12,10 @@ export interface CSTabProps {
 	id?: string;
 	onClick?: (value?: any) => any;
 	parentVariant?: CSTabGroupVariant;
-	status?: string;
+	status?: CSTabStatus;
 	tabIcon?: string | undefined;
 	title: string | undefined;
+	tooltipContent?: string;
 }
 
 class CSTab extends React.Component<CSTabProps> {
@@ -20,16 +23,6 @@ class CSTab extends React.Component<CSTabProps> {
 	public static defaultProps = {
 		status: 'initial'
 	};
-
-	statusIcons = () => {
-		if (this.props.status === 'error' || this.props.status === 'warning') {
-			return 'warning';
-		} else if (this.props.status === 'success') {
-			return 'check';
-		} else if (this.props.status === 'initial' || this.props.status === 'disabled') {
-			return 'routing_offline';
-		}
-	}
 
 	onClickHandler = (event: React.MouseEvent<HTMLLIElement,  MouseEvent>) => {
 		event.preventDefault();
@@ -39,43 +32,56 @@ class CSTab extends React.Component<CSTabProps> {
 	}
 
 	render() {
+		const { active, className, disabled, id, parentVariant, status, tabIcon, title, tooltipContent } = this.props;
 		const tabClasses = classNames (
 			'cs-tab',
 			{
-				'cs-tab-active': this.props.active,
-				[`cs-tab-${this.props.status}`]: this.props.status,
-				[`cs-tab-${this.props.parentVariant}`]: this.props.parentVariant,
-				[`${this.props.className}`]: this.props.className
+				'cs-tab-active': active,
+				[`cs-tab-${status}`]: status,
+				[`cs-tab-${parentVariant}`]: parentVariant,
+				[`${className}`]: className
 			}
 		);
 
+		const getStatusIcon = () => {
+			switch (true) {
+				case (active):
+					return 'record';
+				case (!!tabIcon):
+					return tabIcon;
+				case (!!tooltipContent):
+					return; // If tooltipContent is provided, icon will come OOTB from CSTooltip
+				case (status === 'error' || status === 'warning'):
+					return 'warning';
+				case (status === 'success'):
+					return 'check';
+				default:
+					return 'routing_offline';
+			}
+		};
+
+		const renderTabIcon = () => {
+			return tabIcon || !(parentVariant === 'normal' && status === 'initial');
+		};
+
 		return (
-			<li
-				className={tabClasses}
-				onClick={this.onClickHandler}
-				id={this.props.id}
-			>
+			<li className={tabClasses} onClick={this.onClickHandler} id={id}>
 				<button
 					className="cs-tab-wrapper"
-					aria-current={this.props.active}
-					aria-invalid={this.props.status === 'error'}
-					disabled={this.props.disabled}
+					aria-current={active}
+					aria-invalid={status === 'error'}
+					disabled={disabled}
 				>
-					{(this.props.active && this.props.parentVariant === 'large') ?
-						<CSIcon name="record" /> :
-							(this.props.tabIcon ||
-							(this.props.status && this.props.parentVariant !== 'normal') ?
-								<CSIcon
-									name={
-										this.props.tabIcon ?
-										this.props.tabIcon :
-										this.statusIcons()
-									}
-								/> :
-								null
-							)
+					{tooltipContent ?
+						<CSTooltip
+							content={tooltipContent}
+							iconName={getStatusIcon()}
+							variant={status === 'initial' ? 'info' : status}
+							iconSize={'medium'}
+						/>
+						: renderTabIcon() ? <CSIcon name={getStatusIcon()}/> : null
 					}
-					{this.props.title}
+					<span className="cs-tab-title">{title}</span>
 					{this.props.children}
 				</button>
 			</li>

@@ -200,6 +200,8 @@ $variables: (
 	--cs-tooltip-error-c: $cs-white,
 	--cs-tooltip-warning-bg: $cs-orange-medium-2,
 	--cs-tooltip-warning-c: $cs-gray-dark-1,
+	--cs-tooltip-success-bg: $cs-green-dark-2,
+	--cs-tooltip-success-c: $cs-white,
 	--cs-tooltip-body-bg: $cs-white,
 	--cs-tooltip-body-c: $cs-gray-dark-1,
 	--cs-tooltip-body-border: $cs-gray-light-2,
@@ -314,7 +316,6 @@ $variables: (
 	--cs-tab-warning-fill: $cs-orange-medium-2,
 	--cs-tab-success-fill: $cs-green-medium-1,
 	--cs-tab-disabled-c: $cs-gray-light-2,
-	--cs-tab-default-fill: $cs-blue-sf,
 
 	--cs-custom-select-dropdown-bg: $cs-white,
 	--cs-custom-select-dropdown-br: $cs-gray-light-3,
