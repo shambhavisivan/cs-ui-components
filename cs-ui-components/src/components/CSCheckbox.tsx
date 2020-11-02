@@ -43,6 +43,8 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 		checked: false
 	};
 
+	private uniqueAutoId = uuidv4();
+
 	constructor(props: CSCheckboxProps) {
 		super(props);
 
@@ -95,14 +97,12 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 			}
 		);
 
-		const uniqueAutoId = uuidv4();
-
 		return (
 			<>
 				<div className="cs-checkbox-wrapper">
 					{(this.props.label && !this.props.labelHidden) &&
 						<CSLabel
-							for={this.props.id ? this.props.id : uniqueAutoId}
+							for={this.props.id ? this.props.id : this.uniqueAutoId}
 							label={this.props.label}
 							helpText={this.props.helpText}
 							tooltipPosition={this.props.tooltipPosition}
@@ -118,7 +118,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 								disabled={this.props.disabled}
 								checked={this.state.checked}
 								required={this.props.required}
-								id={this.props.id ? this.props.id : uniqueAutoId}
+								id={this.props.id ? this.props.id : this.uniqueAutoId}
 								onClick={this.handleOnClick}
 								name={this.props.name}
 								aria-required={this.props.required}
