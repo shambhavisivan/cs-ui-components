@@ -6,15 +6,42 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSProgressBar} from '@cloudsense/cs-ui-components';
+import {CSProgressBar, CSButton} from '@cloudsense/cs-ui-components';
 
-class CSProgressBarPreview extends React.Component {
+export interface CSProgressBarPreviewState {
+	progress: string;
+}
+
+class CSProgressBarPreview extends React.Component<CSProgressBarPreviewState> {
+
+	state = {
+		progress: 0
+	};
+
+	restartProgress = () => {
+		this.setState({progress: 0});
+	}
+
+	renderProgressDelayed = () => {
+		for (let i = 0; i <= 100; i++) {
+			setTimeout(() => {
+				this.setState({progress: i});
+			}, 0);
+		}
+	}
+
+	renderProgressInstant = () => {
+		for (let i = 0; i <= 100; i++) {
+			this.setState({progress: i});
+		}
+	}
+
 	getDoc() {
 
 		const json = {
 			name: 'Progress Bar',
 			usage: 'A progress bar component communicates to the user the progress of a particular process.',
-			accessible: 'partially',
+			accessible: 'yes',
 			examples: [
 				{
 					propName: 'progress',
@@ -257,6 +284,16 @@ class CSProgressBarPreview extends React.Component {
 									label="Progress"
 									className="custom-class"
 								/>
+						},
+						{
+							variationName: ['Simulate progress'],
+							quickLink: 'Simulate progress',
+							string: '',
+							component:
+								<CSProgressBar
+									progress={`${this.state.progress}%`}
+									label="Simulate progress"
+								/>
 						}
 					]
 				}
@@ -373,6 +410,11 @@ class CSProgressBarPreview extends React.Component {
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples} />
+					<div className="simulation-action-buttons">
+						<CSButton onClick={this.restartProgress} label="Reset progress" className="simulate-btn" />
+						<CSButton onClick={this.renderProgressDelayed} label="Start delayed progress" className="simulate-btn" />
+						<CSButton onClick={this.renderProgressInstant} label="Start instant progress" className="simulate-btn" />
+					</div>
 					<PreviewTable components={[component]} />
 					<PreviewAccessibility components={[component]} />
 				</div>

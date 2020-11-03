@@ -1450,3 +1450,13 @@ body,
 		}
 	}
 }
+
+/* PROGRESS BAR BUTTON */
+.simulation-action-buttons {
+	display: flex;
+	margin: 1rem 2rem;
+	.simulate-btn {
+		margin: 0 1rem 0 0;
+		width: min-content;
+	}
+}
