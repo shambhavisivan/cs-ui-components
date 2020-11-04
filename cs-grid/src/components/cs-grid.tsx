@@ -21,6 +21,7 @@ import ReactDOM from 'react-dom';
 import {
 	CellClickedEvent,
 	CellData,
+	CSGridApi,
 	CSGridControl,
 	Row,
 	RowData,
@@ -108,7 +109,7 @@ export interface CSGridProps {
 		newValue: any
 	): Promise<void>;
 	onCellEditingStopped?(rowNodeId: string, columnField: string): void;
-	onGridReady?(params: GridReadyEvent): void;
+	onGridReady?(params: GridReadyEvent, csGridApi: CSGridApi): void;
 	onCellClicked?(event: CellClickedEvent): void;
 	onRowDoubleClicked?(event: CellClickedEvent): void;
 	getRowClass?(rowGuid: string): string | Array<string>;
@@ -523,8 +524,11 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 	};
 
 	/* Grid Events we're listening to */
-	private onGridReady = (params: GridReadyEvent) => {
+	onGridReady = (params: GridReadyEvent) => {
 		this.gridApi = params.api;
+		const csGridApi: CSGridApi = {
+			updateDataSource: this.updateDataSource.bind(this)
+		};
 		this.onPaginationChanged();
 
 		if (this.props.columnState) {
@@ -533,110 +537,112 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 
 		const dataSourceAPI = this.props.dataSourceAPI;
 		if (dataSourceAPI) {
-			const dataSource: IDatasource = {
-				getRows: async (getRowsParams: IGetRowsParams) => {
-					const pageSize = getRowsParams.endRow - getRowsParams.startRow;
-
-					let rows;
-					if (getRowsParams.startRow === 0) {
-						const orderByList: Array<OrderBy> = [];
-						for (const sortElement of getRowsParams.sortModel) {
-							orderByList.push({
-								columnId: sortElement.colId,
-								sortDirection:
-									sortElement.sort.toLowerCase() === 'asc'
-										? 'SORT_ASC'
-										: 'SORT_DESC'
-							});
-						}
-
-						const columnFilters = new Map(
-							this.state.qualifiedSearchFilter.columnFilters
-						);
-
-						const makeCondition = (agColumnCondition: any): Condition => {
-							if (agColumnCondition) {
-								return {
-									filterText: agColumnCondition.filter,
-									type: agColumnCondition.type
-								};
-							}
-						};
-
-						for (const columnId in getRowsParams.filterModel) {
-							if (!getRowsParams.filterModel.hasOwnProperty(columnId)) {
-								continue;
-							}
-
-							const agColumnCondition = getRowsParams.filterModel[columnId];
-							const columnCondition: ColumnFilterCondition = {
-								condition1: makeCondition(
-									agColumnCondition.condition1 || agColumnCondition
-								),
-								condition2: makeCondition(agColumnCondition.condition2),
-								operator: agColumnCondition.operator
-							};
-
-							const columnConditions = columnFilters.get(columnId) || [];
-							columnConditions.push(columnCondition);
-
-							columnFilters.set(columnId, columnConditions);
-						}
-
-						const unqualifiedSearchTerms = this.props.csGridQuickFilter.nonIncremental
-							? [...this.state.qualifiedSearchFilter.unqualifiedSearchTerms]
-							: [this.state.filterText];
-
-						const filterModel: FilterModel = {
-							columnFilters,
-							unqualifiedSearchTerms
-						};
-						rows = await dataSourceAPI.onContextChange(
-							pageSize,
-							orderByList,
-							filterModel
-						);
-					} else {
-						const firstRowOnCurrentPage = this.state.currentPage * pageSize;
-						rows =
-							firstRowOnCurrentPage < getRowsParams.startRow
-								? await dataSourceAPI.onBtNext()
-								: await dataSourceAPI.onBtPrevious();
-					}
-
-					let lastRow = -1;
-					const lastRowOnPage = getRowsParams.startRow + rows.length - 1;
-					if (lastRowOnPage !== getRowsParams.endRow - 1) {
-						lastRow = lastRowOnPage;
-
-						if (lastRow <= 0) {
-							lastRow = 0;
-						}
-					}
-
-					this.setState({
-						currentPage: this.gridApi.paginationGetCurrentPage()
-					});
-					if (this.isUsingLegacyRowDataModel(rows)) {
-						this.setState({ isUsingLegacyRowDataModel: true });
-						console.warn(LEGACY_ROW_DATA_MODEL_DEPRECATION_WARN);
-						getRowsParams.successCallback(rows, lastRow);
-					} else {
-						this.setState({ isUsingLegacyRowDataModel: false });
-						getRowsParams.successCallback(
-							this.convertRowDataToLegacyRow(rows as Array<RowData>),
-							lastRow
-						);
-					}
-				}
-			};
-			params.api.setDatasource(dataSource);
+			this.updateDataSource();
 		}
 
 		if (this.props.onGridReady) {
-			this.props.onGridReady(params);
+			this.props.onGridReady(params, csGridApi);
 		}
 	};
+
+	updateDataSource() {
+		const { dataSourceAPI } = this.props;
+		if (!dataSourceAPI) {
+			throw new Error(
+				'CSGrid::UpdateDataSource: Cannot call updateDataSource when dataSourceAPI is null'
+			);
+		}
+		const dataSource: IDatasource = {
+			getRows: async (getRowsParams: IGetRowsParams) => {
+				const pageSize = getRowsParams.endRow - getRowsParams.startRow;
+
+				let rows;
+				if (getRowsParams.startRow === 0) {
+					const orderByList: Array<OrderBy> = [];
+					for (const sortElement of getRowsParams.sortModel) {
+						orderByList.push({
+							columnId: sortElement.colId,
+							sortDirection:
+								sortElement.sort.toLowerCase() === 'asc' ? 'SORT_ASC' : 'SORT_DESC'
+						});
+					}
+
+					const columnFilters = new Map(this.state.qualifiedSearchFilter.columnFilters);
+
+					const makeCondition = (agColumnCondition: any): Condition => {
+						if (agColumnCondition) {
+							return {
+								filterText: agColumnCondition.filter,
+								type: agColumnCondition.type
+							};
+						}
+					};
+
+					for (const columnId in getRowsParams.filterModel) {
+						if (!getRowsParams.filterModel.hasOwnProperty(columnId)) {
+							continue;
+						}
+
+						const agColumnCondition = getRowsParams.filterModel[columnId];
+						const columnCondition: ColumnFilterCondition = {
+							condition1: makeCondition(
+								agColumnCondition.condition1 || agColumnCondition
+							),
+							condition2: makeCondition(agColumnCondition.condition2),
+							operator: agColumnCondition.operator
+						};
+
+						const columnConditions = columnFilters.get(columnId) || [];
+						columnConditions.push(columnCondition);
+
+						columnFilters.set(columnId, columnConditions);
+					}
+
+					const unqualifiedSearchTerms = this.props.csGridQuickFilter.nonIncremental
+						? [...this.state.qualifiedSearchFilter.unqualifiedSearchTerms]
+						: [this.state.filterText];
+
+					const filterModel: FilterModel = {
+						columnFilters,
+						unqualifiedSearchTerms
+					};
+					rows = await dataSourceAPI.onContextChange(pageSize, orderByList, filterModel);
+				} else {
+					const firstRowOnCurrentPage = this.state.currentPage * pageSize;
+					rows =
+						firstRowOnCurrentPage < getRowsParams.startRow
+							? await dataSourceAPI.onBtNext()
+							: await dataSourceAPI.onBtPrevious();
+				}
+
+				let lastRow = -1;
+				const lastRowOnPage = getRowsParams.startRow + rows.length - 1;
+				if (lastRowOnPage !== getRowsParams.endRow - 1) {
+					lastRow = lastRowOnPage;
+
+					if (lastRow <= 0) {
+						lastRow = 0;
+					}
+				}
+
+				this.setState({
+					currentPage: this.gridApi.paginationGetCurrentPage()
+				});
+				if (this.isUsingLegacyRowDataModel(rows)) {
+					this.setState({ isUsingLegacyRowDataModel: true });
+					console.warn(LEGACY_ROW_DATA_MODEL_DEPRECATION_WARN);
+					getRowsParams.successCallback(rows, lastRow);
+				} else {
+					this.setState({ isUsingLegacyRowDataModel: false });
+					getRowsParams.successCallback(
+						this.convertRowDataToLegacyRow(rows as Array<RowData>),
+						lastRow
+					);
+				}
+			}
+		};
+		this.gridApi.setDatasource(dataSource);
+	}
 
 	private isUsingLegacyRowDataModel(rows: any) {
 		return (

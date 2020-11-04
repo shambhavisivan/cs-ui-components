@@ -1,8 +1,8 @@
 import { AgGridReact } from 'ag-grid-react/lib/agGridReact';
 import { shallow } from 'enzyme';
 import React from 'react';
-import { CSGridProps, CSGrid, RowData, Row, UserInfo } from '../../main';
-import { CellValueChangedEvent } from 'ag-grid-community';
+import {CSGridProps, CSGrid, RowData, Row, UserInfo, DataSourceAPI} from '../../main';
+import {CellValueChangedEvent, GridReadyEvent} from 'ag-grid-community';
 
 describe('csgrid', () => {
 	const userInfo: UserInfo = {
@@ -883,5 +883,49 @@ describe('rowdata Related', () => {
 		];
 
 		expect(result).toEqual(expected);
+	});
+
+	test('updateDataSource is called when OnGridReady is called', ()=> {
+		const dataSourceAPI: DataSourceAPI = {
+			isLastPage: jest.fn(),
+			onBtNext: jest.fn(),
+			onBtPrevious: jest.fn(),
+			onContextChange:jest.fn(),
+		}
+		const gridProps = {
+			...baseProps,
+			dataSourceAPI,
+			singleClickEdit: false,
+		};
+		const event = {
+			api: {
+				setDatasource: jest.fn(),
+			} as any,
+		} as GridReadyEvent;
+		const csGridShallow = shallow<CSGrid>(<CSGrid {...gridProps} />);
+		const spyUpdateDataSource = jest.spyOn(csGridShallow.instance(), 'updateDataSource');
+		csGridShallow.instance().onGridReady(event);
+		expect(spyUpdateDataSource).toHaveBeenCalledTimes(1);
+
+	});
+
+	test('updateDataSource should throw error when no datasourceAPI is given', ()=> {
+		const gridProps = {
+			...baseProps,
+			singleClickEdit: false,
+		};
+		const event = {
+			api: {
+				setDatasource: jest.fn(),
+			} as any,
+		} as GridReadyEvent;
+		try {
+			const csGridShallow = shallow<CSGrid>(<CSGrid {...gridProps} />);
+			csGridShallow.instance().updateDataSource();
+			expect(true).toBe(false);
+		}
+		catch(e) {
+			expect(e.message).toBe('CSGrid::UpdateDataSource: Cannot call updateDataSource when dataSourceAPI is null');
+		}
 	});
 });

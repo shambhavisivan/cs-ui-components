@@ -82,3 +82,7 @@ export interface CSGridCellRenderer extends ICellRendererReactComp {}
 export interface GridReadyEvent extends _GridReadyEvent {}
 export interface CellClickedEvent extends _CellClickedEvent {}
 export interface GridApi extends _GridApi {}
+/*apis that are specific to CSgrid specific functionalities*/
+export interface CSGridApi {
+	updateDataSource: () => void;
+}
