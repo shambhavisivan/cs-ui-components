@@ -760,6 +760,7 @@ body,
 		background: #f5f2f0;
 	}
 	.code-snippet {
+		height: 100%;
 		margin: 0 !important;
 		border-radius: 0 0.25rem 0.25rem 0;
 
@@ -1012,9 +1013,6 @@ body,
 		.icons-search-wrapper {
 			position: relative;
 			width: 100%;
-			display: flex;
-			justify-content: flex-start;
-			align-items: center;
 			background: #fff;
 			box-shadow: 0 1px 2px rgba(0, 0, 0, 0.22);
 
