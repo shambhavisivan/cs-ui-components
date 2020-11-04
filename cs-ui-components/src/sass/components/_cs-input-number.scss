@@ -18,6 +18,14 @@
 				margin: 0;
 			}
 		}
+
+		&:disabled,
+		&:read-only {
+			&::-webkit-outer-spin-button,
+			&::-webkit-inner-spin-button {
+				-webkit-appearance: none;
+			}
+		}
 	}
 
 	// Square

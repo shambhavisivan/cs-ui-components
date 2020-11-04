@@ -5,6 +5,7 @@
 	line-height: 1.875rem;
 	min-height: 2rem;
 	padding: 0 0.75rem;
+	margin: 0;
 	transition: border 0.1s linear, background-color 0.1s linear;
 	width: 100%;
 	@include overflow-ellipsis;
