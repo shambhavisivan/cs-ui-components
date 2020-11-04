@@ -32,11 +32,11 @@ class App extends React.Component {
 									<NavLink to={'/colors'} activeClassName="active-main-header-tab">Colors</NavLink>
 								</li>
 								<li className="main-header-tab">
-									<NavLink to={'/release-notes'} activeClassName="active-main-header-tab">Release
-										Notes</NavLink>
+									<NavLink to={'/accessibility'} activeClassName="active-main-header-tab">Accessibility</NavLink>
 								</li>
 								<li className="main-header-tab">
-									<NavLink to={'/accessibility'} activeClassName="active-main-header-tab">Accessibility</NavLink>
+									<NavLink to={'/release-notes'} activeClassName="active-main-header-tab">Release
+										Notes</NavLink>
 								</li>
 							</ul>
 							<CSImage type="logo" height="2.25rem"/>
