@@ -32,7 +32,7 @@ export interface DataSourceAPI {
 	) => Promise<Array<Row>> | Promise<Array<RowData>>;
 }
 
-export type CSGridSortDirection = 'SORT_ASC' | 'SORT_DESC';
+export type CSGridSortDirection = 'SORT_ASC' | 'SORT_DESC' | 'NONE';
 
 export interface OrderBy {
 	columnId: string;

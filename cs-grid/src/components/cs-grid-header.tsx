@@ -1,12 +1,15 @@
 import React from 'react';
 
 import { IHeaderParams } from 'ag-grid-community';
+import { CSGridSortDirection } from '../interfaces/cs-grid-data-source-api';
 
 /**
  * className? - An optional class added to span surrounding the header title.
+ * customSort? - If implemented all sorting will be deferred to the caller.
  */
-interface CSGridHeaderProps extends IHeaderParams {
+export interface CSGridHeaderProps extends IHeaderParams {
 	className?: string;
+	customSort?: (columnId: string, sortDirection: CSGridSortDirection) => Promise<void>;
 }
 
 /**
@@ -106,14 +109,36 @@ export class CSGridHeader extends React.Component<CSGridHeaderProps, CSGridHeade
 	/**
 	 * Calls ag-grid to order the table using this column to order.
 	 */
-	onSortRequested = (event: { shiftKey: boolean }) => {
-		let newOrder = '';
-		if (this.state.sorted === '') {
-			newOrder = 'asc';
-		} else if (this.state.sorted === 'asc') {
-			newOrder = 'desc';
+	onSortRequested = async (event: { shiftKey: boolean }) => {
+		if (this.props.customSort) {
+			await this.props.customSort(
+				this.props.column.getColId(),
+				this.state.sorted === ''
+					? 'SORT_ASC'
+					: this.state.sorted === 'asc'
+					? 'SORT_DESC'
+					: 'NONE'
+			);
+
+			if (this.state.sorted === '') {
+				this.setState({
+					sorted: 'asc'
+				});
+			} else if (this.state.sorted === 'asc') {
+				this.setState({
+					sorted: 'desc'
+				});
+			} else {
+				this.setState({
+					sorted: ''
+				});
+			}
+		} else {
+			this.props.setSort(
+				this.state.sorted === '' ? 'asc' : this.state.sorted === 'asc' ? 'desc' : '',
+				event.shiftKey
+			);
 		}
-		this.props.setSort(newOrder, event.shiftKey);
 	};
 
 	/**

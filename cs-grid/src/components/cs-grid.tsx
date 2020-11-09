@@ -32,6 +32,7 @@ import { ColDef } from '../interfaces/cs-grid-col-def';
 import {
 	ColumnFilterCondition,
 	Condition,
+	CSGridSortDirection,
 	DataSourceAPI,
 	FilterModel,
 	OrderBy
@@ -100,6 +101,7 @@ export interface CSGridProps {
 	 * Set to true/false to enable/disable Single Click Editing for cells, default: true
 	 */
 	singleClickEdit?: boolean;
+	customSort?: (columnId: string, sortDirection: CSGridSortDirection) => void;
 	onColumnStateChange?(columnState: string): void;
 	onSelectionChange?(selectedRows: Array<Row>): void;
 	onCellValueChange?(
@@ -349,6 +351,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 									return result;
 								},
 								headerComponentFramework: CSGridHeader,
+								headerComponentParams: { customSort: this.props.customSort },
 								lockPinned: true,
 								resizable: true,
 								sortable: true
@@ -384,6 +387,127 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				{quickFilterPortals}
 			</>
 		);
+	}
+
+	/* Grid Events we're listening to */
+	onGridReady = (params: GridReadyEvent) => {
+		this.gridApi = params.api;
+		const csGridApi: CSGridApi = {
+			updateDataSource: this.updateDataSource.bind(this)
+		};
+		this.onPaginationChanged();
+
+		if (this.props.columnState) {
+			params.columnApi.setColumnState(JSON.parse(this.props.columnState));
+		}
+
+		const dataSourceAPI = this.props.dataSourceAPI;
+		if (dataSourceAPI) {
+			this.updateDataSource();
+		}
+
+		if (this.props.onGridReady) {
+			this.props.onGridReady(params, csGridApi);
+		}
+	};
+
+	updateDataSource() {
+		const { dataSourceAPI } = this.props;
+		if (!dataSourceAPI) {
+			throw new Error(
+				'CSGrid::UpdateDataSource: Cannot call updateDataSource when dataSourceAPI is null'
+			);
+		}
+		const dataSource: IDatasource = {
+			getRows: async (getRowsParams: IGetRowsParams) => {
+				const pageSize = getRowsParams.endRow - getRowsParams.startRow;
+
+				let rows;
+				if (getRowsParams.startRow === 0) {
+					const orderByList: Array<OrderBy> = [];
+					for (const sortElement of getRowsParams.sortModel) {
+						orderByList.push({
+							columnId: sortElement.colId,
+							sortDirection:
+								sortElement.sort.toLowerCase() === 'asc' ? 'SORT_ASC' : 'SORT_DESC'
+						});
+					}
+
+					const columnFilters = new Map(this.state.qualifiedSearchFilter.columnFilters);
+
+					const makeCondition = (agColumnCondition: any): Condition => {
+						if (agColumnCondition) {
+							return {
+								filterText: agColumnCondition.filter,
+								type: agColumnCondition.type
+							};
+						}
+					};
+
+					for (const columnId in getRowsParams.filterModel) {
+						if (!getRowsParams.filterModel.hasOwnProperty(columnId)) {
+							continue;
+						}
+
+						const agColumnCondition = getRowsParams.filterModel[columnId];
+						const columnCondition: ColumnFilterCondition = {
+							condition1: makeCondition(
+								agColumnCondition.condition1 || agColumnCondition
+							),
+							condition2: makeCondition(agColumnCondition.condition2),
+							operator: agColumnCondition.operator
+						};
+
+						const columnConditions = columnFilters.get(columnId) || [];
+						columnConditions.push(columnCondition);
+
+						columnFilters.set(columnId, columnConditions);
+					}
+
+					const unqualifiedSearchTerms = this.props.csGridQuickFilter.nonIncremental
+						? [...this.state.qualifiedSearchFilter.unqualifiedSearchTerms]
+						: [this.state.filterText];
+
+					const filterModel: FilterModel = {
+						columnFilters,
+						unqualifiedSearchTerms
+					};
+					rows = await dataSourceAPI.onContextChange(pageSize, orderByList, filterModel);
+				} else {
+					const firstRowOnCurrentPage = this.state.currentPage * pageSize;
+					rows =
+						firstRowOnCurrentPage < getRowsParams.startRow
+							? await dataSourceAPI.onBtNext()
+							: await dataSourceAPI.onBtPrevious();
+				}
+
+				let lastRow = -1;
+				const lastRowOnPage = getRowsParams.startRow + rows.length - 1;
+				if (lastRowOnPage !== getRowsParams.endRow - 1) {
+					lastRow = lastRowOnPage;
+
+					if (lastRow <= 0) {
+						lastRow = 0;
+					}
+				}
+
+				this.setState({
+					currentPage: this.gridApi.paginationGetCurrentPage()
+				});
+				if (this.isUsingLegacyRowDataModel(rows)) {
+					this.setState({ isUsingLegacyRowDataModel: true });
+					console.warn(LEGACY_ROW_DATA_MODEL_DEPRECATION_WARN);
+					getRowsParams.successCallback(rows, lastRow);
+				} else {
+					this.setState({ isUsingLegacyRowDataModel: false });
+					getRowsParams.successCallback(
+						this.convertRowDataToLegacyRow(rows as Array<RowData>),
+						lastRow
+					);
+				}
+			}
+		};
+		this.gridApi.setDatasource(dataSource);
 	}
 
 	private handleLegacyRowData() {
@@ -522,127 +646,6 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			}
 		}
 	};
-
-	/* Grid Events we're listening to */
-	onGridReady = (params: GridReadyEvent) => {
-		this.gridApi = params.api;
-		const csGridApi: CSGridApi = {
-			updateDataSource: this.updateDataSource.bind(this)
-		};
-		this.onPaginationChanged();
-
-		if (this.props.columnState) {
-			params.columnApi.setColumnState(JSON.parse(this.props.columnState));
-		}
-
-		const dataSourceAPI = this.props.dataSourceAPI;
-		if (dataSourceAPI) {
-			this.updateDataSource();
-		}
-
-		if (this.props.onGridReady) {
-			this.props.onGridReady(params, csGridApi);
-		}
-	};
-
-	updateDataSource() {
-		const { dataSourceAPI } = this.props;
-		if (!dataSourceAPI) {
-			throw new Error(
-				'CSGrid::UpdateDataSource: Cannot call updateDataSource when dataSourceAPI is null'
-			);
-		}
-		const dataSource: IDatasource = {
-			getRows: async (getRowsParams: IGetRowsParams) => {
-				const pageSize = getRowsParams.endRow - getRowsParams.startRow;
-
-				let rows;
-				if (getRowsParams.startRow === 0) {
-					const orderByList: Array<OrderBy> = [];
-					for (const sortElement of getRowsParams.sortModel) {
-						orderByList.push({
-							columnId: sortElement.colId,
-							sortDirection:
-								sortElement.sort.toLowerCase() === 'asc' ? 'SORT_ASC' : 'SORT_DESC'
-						});
-					}
-
-					const columnFilters = new Map(this.state.qualifiedSearchFilter.columnFilters);
-
-					const makeCondition = (agColumnCondition: any): Condition => {
-						if (agColumnCondition) {
-							return {
-								filterText: agColumnCondition.filter,
-								type: agColumnCondition.type
-							};
-						}
-					};
-
-					for (const columnId in getRowsParams.filterModel) {
-						if (!getRowsParams.filterModel.hasOwnProperty(columnId)) {
-							continue;
-						}
-
-						const agColumnCondition = getRowsParams.filterModel[columnId];
-						const columnCondition: ColumnFilterCondition = {
-							condition1: makeCondition(
-								agColumnCondition.condition1 || agColumnCondition
-							),
-							condition2: makeCondition(agColumnCondition.condition2),
-							operator: agColumnCondition.operator
-						};
-
-						const columnConditions = columnFilters.get(columnId) || [];
-						columnConditions.push(columnCondition);
-
-						columnFilters.set(columnId, columnConditions);
-					}
-
-					const unqualifiedSearchTerms = this.props.csGridQuickFilter.nonIncremental
-						? [...this.state.qualifiedSearchFilter.unqualifiedSearchTerms]
-						: [this.state.filterText];
-
-					const filterModel: FilterModel = {
-						columnFilters,
-						unqualifiedSearchTerms
-					};
-					rows = await dataSourceAPI.onContextChange(pageSize, orderByList, filterModel);
-				} else {
-					const firstRowOnCurrentPage = this.state.currentPage * pageSize;
-					rows =
-						firstRowOnCurrentPage < getRowsParams.startRow
-							? await dataSourceAPI.onBtNext()
-							: await dataSourceAPI.onBtPrevious();
-				}
-
-				let lastRow = -1;
-				const lastRowOnPage = getRowsParams.startRow + rows.length - 1;
-				if (lastRowOnPage !== getRowsParams.endRow - 1) {
-					lastRow = lastRowOnPage;
-
-					if (lastRow <= 0) {
-						lastRow = 0;
-					}
-				}
-
-				this.setState({
-					currentPage: this.gridApi.paginationGetCurrentPage()
-				});
-				if (this.isUsingLegacyRowDataModel(rows)) {
-					this.setState({ isUsingLegacyRowDataModel: true });
-					console.warn(LEGACY_ROW_DATA_MODEL_DEPRECATION_WARN);
-					getRowsParams.successCallback(rows, lastRow);
-				} else {
-					this.setState({ isUsingLegacyRowDataModel: false });
-					getRowsParams.successCallback(
-						this.convertRowDataToLegacyRow(rows as Array<RowData>),
-						lastRow
-					);
-				}
-			}
-		};
-		this.gridApi.setDatasource(dataSource);
-	}
 
 	private isUsingLegacyRowDataModel(rows: any) {
 		return (
@@ -920,6 +923,15 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			this.addIfDefined(agGridColDef, 'minWidth', columnDef.minWidth);
 			this.addIfDefined(agGridColDef, 'resizable', columnDef.resizable);
 			this.addIfDefined(agGridColDef, 'sortable', columnDef.sortable);
+			if (columnDef.sort !== undefined) {
+				agGridColDef.sort =
+					columnDef.sort === 'SORT_ASC'
+						? 'asc'
+						: columnDef.sort === 'SORT_DESC'
+						? 'desc'
+						: '';
+			}
+
 			this.addIfDefined(agGridColDef, 'width', columnDef.width);
 			this.addIfDefined(agGridColDef, 'pinned', columnDef.pinned);
 			this.addIfDefined(
@@ -958,7 +970,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			if (columnDef.header !== undefined) {
 				this.addIfDefined(agGridColDef, 'headerName', columnDef.header.label);
 
-				agGridColDef.headerComponentParams = {};
+				agGridColDef.headerComponentParams = { customSort: this.props.customSort };
 				this.addIfDefined(
 					agGridColDef.headerComponentParams,
 					'className',

@@ -182,6 +182,7 @@ export class App extends React.Component<object, AppState> {
 				},
 				name: 'exampleText',
 				pinned: 'left',
+				sort: 'SORT_ASC',
 				userInfo
 			},
 			{

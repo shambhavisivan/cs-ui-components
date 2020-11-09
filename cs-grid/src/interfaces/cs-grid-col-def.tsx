@@ -15,6 +15,7 @@ import {
 	RowSelectionProps,
 	RowValidationProps
 } from './cs-grid-cell-props';
+import { CSGridSortDirection } from './cs-grid-data-source-api';
 
 export type ColDef =
 	| DecimalColDef
@@ -179,4 +180,7 @@ interface BaseColDef<T> extends BaseProps<T> {
 
 	/** Set to true if you want to flash cells on successful cell value change */
 	flashOnCellValueChange?: boolean;
+
+	/** If sorting by default, set it here. */
+	sort?: CSGridSortDirection;
 }
