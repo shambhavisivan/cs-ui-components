@@ -301,8 +301,7 @@ class CSImagePreview extends React.Component {
 			accessibility: [
 				{
 					criterionList: [
-						'4.1.2',
-						''
+						'4.1.2'
 					],
 					requirements: [
 						{
