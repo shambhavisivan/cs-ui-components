@@ -209,7 +209,6 @@ class CSButtonGroupPreview extends React.Component {
 								<CSButtonGroup
 									combined
 									id="id"
-									ariaDescription="grouping of related buttons sharing similar actions"
 								>
 									<CSButton
 										label="First Button"
@@ -285,10 +284,32 @@ class CSButtonGroupPreview extends React.Component {
 					customText: 'Hidden span will be added with description for screen readers',
 					variations: [
 						{
+							variationName: ['aria description'],
 							string: '',
 							component:
 								<CSButtonGroup
 									combined
+									ariaDescription="grouping of related buttons sharing similar actions"
+								>
+									<CSButton
+										label="First Button"
+									/>
+									<CSButton
+										label="Second Button"
+									/>
+									<CSButton
+										btnStyle="brand"
+										label="Third Button"
+									/>
+								</CSButtonGroup>
+						},
+						{
+							variationName: ['aria description and custom id'],
+							string: '',
+							component:
+								<CSButtonGroup
+									combined
+									id="id"
 									ariaDescription="grouping of related buttons sharing similar actions"
 								>
 									<CSButton

@@ -58,6 +58,9 @@ class CSDateTimePicker extends React.Component<CSDateTimePickerProps, CSDateTime
 		dateFormat: 'MMMM d, yyyy h:mm aa',
 		dropdownMode: 'scroll'
 	};
+
+	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
+
 	constructor(props: CSDateTimePickerProps) {
 		super(props);
 		const value = typeof props.value === undefined ? '' : props.value;
@@ -113,14 +116,12 @@ class CSDateTimePicker extends React.Component<CSDateTimePickerProps, CSDateTime
 			}
 		};
 
-		const uniqueAutoId = uuidv4();
-
 		return (
 			<>
 				<div className={dateTimePickerClasses} style={style}>
 					{(this.props.label && !this.props.labelHidden) &&
 						<CSLabel
-							for={this.props.id ? this.props.id : uniqueAutoId}
+							for={this.uniqueAutoId}
 							label={this.props.label}
 							helpText={this.props.helpText}
 							tooltipPosition={this.props.tooltipPosition}
@@ -149,7 +150,7 @@ class CSDateTimePicker extends React.Component<CSDateTimePickerProps, CSDateTime
 							dropdownMode={this.props.dropdownMode}
 							yearDropdownItemNumber={this.props.yearDropdownItemNumber}
 							required={this.props.required}
-							id={this.props.id ? this.props.id : uniqueAutoId}
+							id={this.uniqueAutoId}
 							autoComplete="off"
 							showTimeSelect
 							timeFormat={this.props.timeFormat}

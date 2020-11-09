@@ -47,6 +47,8 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 		rows: '3'
 	};
 
+	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
+
 	constructor(props: CSTextareaProps) {
 		super(props);
 		const value = typeof props.value === undefined ? '' : props.value;
@@ -89,14 +91,12 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 			}
 		);
 
-		const uniqueAutoId = uuidv4();
-
 		return (
 			<>
 				<div className={textareaWrapperClasses}>
 					{(this.props.label && !this.props.labelHidden) &&
 						<CSLabel
-							for={this.props.id ? this.props.id : uniqueAutoId}
+							for={this.uniqueAutoId}
 							label={this.props.label}
 							helpText={this.props.helpText}
 							tooltipPosition={this.props.tooltipPosition}
@@ -106,7 +106,7 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 					}
 					<textarea
 						className={textareaClasses}
-						id={this.props.id ? this.props.id : uniqueAutoId}
+						id={this.uniqueAutoId}
 						placeholder={this.props.placeholder}
 						disabled={this.props.disabled}
 						readOnly={this.props.readOnly}

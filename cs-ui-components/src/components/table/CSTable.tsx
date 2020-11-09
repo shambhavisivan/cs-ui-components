@@ -10,6 +10,8 @@ export interface CSTableProps {
 
 class CSTable extends React.Component<CSTableProps> {
 
+	private uniqueAutoId = this.props.tableDescription ? uuidv4() : null;
+
 	render() {
 
 		const tableClasses = classNames(
@@ -19,17 +21,15 @@ class CSTable extends React.Component<CSTableProps> {
 			}
 		);
 
-		const uniqueAutoId = uuidv4();
-
 		return (
 			<div
 				className={tableClasses}
 				role="table"
 				id={this.props.id}
-				aria-labelledby={this.props.tableDescription ? uniqueAutoId : null}
+				aria-labelledby={this.uniqueAutoId}
 			>
 				{this.props.tableDescription &&
-					<span className="cs-table-description" id={uniqueAutoId}>{this.props.tableDescription}</span>
+					<span className="cs-table-description" id={this.uniqueAutoId}>{this.props.tableDescription}</span>
 				}
 				{this.props.children}
 			</div>

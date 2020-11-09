@@ -46,6 +46,8 @@ class CSLookupField extends React.Component<CSLookupFieldProps, CSLookupFieldSta
 
 	fieldRef: React.RefObject<any>;
 
+	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
+
 	constructor(props: CSLookupFieldProps) {
 		super(props);
 		this.fieldRef = React.createRef();
@@ -139,13 +141,11 @@ class CSLookupField extends React.Component<CSLookupFieldProps, CSLookupFieldSta
 			}
 		);
 
-		const uniqueAutoId = uuidv4();
-
 		return (
 			<div className={lookupFieldWrapperClasses} ref={this.fieldRef}>
 				{(this.props.label && !this.props.labelHidden) &&
 					<CSLabel
-						for={this.props.id ? this.props.id : uniqueAutoId}
+						for={this.uniqueAutoId}
 						label={this.props.label}
 						helpText={this.props.helpText}
 						tooltipPosition={this.props.tooltipPosition}
@@ -167,7 +167,7 @@ class CSLookupField extends React.Component<CSLookupFieldProps, CSLookupFieldSta
 						value={this.state.searchTerm}
 						onChange={e => this.handleSearch(e)}
 						title={this.props.title}
-						id={this.props.id ? this.props.id : uniqueAutoId}
+						id={this.uniqueAutoId}
 						aria-required={this.props.required}
 						aria-invalid={this.props.error}
 					/>

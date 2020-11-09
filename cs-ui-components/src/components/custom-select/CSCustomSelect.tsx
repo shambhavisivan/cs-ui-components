@@ -46,6 +46,8 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 	private keyUpKey = 'ArrowUp';
 	private enterKey = 'Enter';
 
+	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
+
 	constructor(props: CSCustomSelectProps) {
 		super(props);
 
@@ -228,13 +230,11 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 			}
 		);
 
-		const uniqueAutoId = uuidv4();
-
 		return (
 			<div className={customSelectWrapperClasses}>
 				{(this.props.label && !this.props.labelHidden) &&
 					<CSLabel
-						for={this.props.id ? this.props.id : uniqueAutoId}
+						for={this.uniqueAutoId}
 						label={this.props.label}
 						helpText={this.props.helpText}
 						tooltipPosition={this.props.tooltipPosition}
@@ -268,7 +268,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 							value={term}
 							type="text"
 							onChange={this.search}
-							id={this.props.id ? this.props.id : uniqueAutoId}
+							id={this.uniqueAutoId}
 							required={this.props.required}
 							disabled={this.props.disabled}
 							aria-invalid={this.props.error}

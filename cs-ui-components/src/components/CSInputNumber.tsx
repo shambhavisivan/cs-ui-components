@@ -66,6 +66,8 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 		return null;
 	}
 
+	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
+
 	constructor(props: CSInputNumberProps) {
 		super(props);
 		const value = typeof props.value === undefined ? '' : props.value;
@@ -134,14 +136,12 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 			}
 		);
 
-		const uniqueAutoId = uuidv4();
-
 		return (
 			<>
 				<div className={inputNumberWrapperClasses}>
 					{(this.props.label && !this.props.labelHidden) &&
 						<CSLabel
-							for={this.props.id ? this.props.id : uniqueAutoId}
+							for={this.uniqueAutoId}
 							label={this.props.label}
 							helpText={this.props.helpText}
 							tooltipPosition={this.props.tooltipPosition}
@@ -150,7 +150,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 						/>
 					}
 					<input className={inputNumberClasses}
-						id={this.props.id ? this.props.id : uniqueAutoId}
+						id={this.uniqueAutoId}
 						placeholder={this.props.placeholder}
 						min={this.props.min}
 						max={this.props.max}

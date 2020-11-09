@@ -296,14 +296,13 @@ class CSTablePreview extends React.Component {
 				},
 				{
 					propName: 'tableDescription',
-					customText: '',
+					customText: 'Hidden span will be added with description for screen readers',
 					variations: [
 						{
 							variationName: ['tableDescription'],
 							quickLink: 'tableDescription',
-							string: '',
 							component:
-								<CSTable tableDescription="last, but best table">
+								<CSTable tableDescription="almost last and almost best table">
 									<CSTableHeader>
 										<CSTableCell
 											text="Header Item 1"
@@ -371,17 +370,45 @@ class CSTablePreview extends React.Component {
 												/>
 											</CSTableCell>
 										</CSTableRow>
+									</CSTableBody>
+								</CSTable>
+						},
+						{
+							variationName: ['tableDescription and custom id'],
+							quickLink: 'tableDescription and custom id',
+							string: '',
+							component:
+								<CSTable tableDescription="last, but best table" id="id">
+									<CSTableHeader>
+										<CSTableCell
+											text="Header Item 1"
+											grow={2}
+										/>
+										<CSTableCell
+											text="Header Item 2"
+											grow={1}
+										/>
+										<CSTableCell
+											text="Header Item 3"
+											grow={1}
+										/>
+										<CSTableCell
+											text="Button Column"
+											maxWidth="100px"
+										/>
+									</CSTableHeader>
+									<CSTableBody>
 										<CSTableRow>
 											<CSTableCell
-												text="Second Row Item 1"
+												text="Body Item 1"
 												grow={2}
 											/>
 											<CSTableCell
-												text="Second Row Item 2"
+												text="Body Item 2"
 												grow={1}
 											/>
 											<CSTableCell
-												text="Second Row Item 3"
+												text="Body Item 3"
 												grow={1}
 											/>
 											<CSTableCell

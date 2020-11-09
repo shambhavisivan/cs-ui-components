@@ -56,7 +56,7 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 		return null;
 	}
 
-	private uniqueAutoId = uuidv4();
+	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
 
 	constructor(props: CSSliderProps) {
 		super(props);
@@ -140,7 +140,7 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 			<div className="cs-slider-wrapper">
 				{(this.props.label && !this.props.labelHidden) &&
 					<CSLabel
-						for={this.props.id ? this.props.id : this.uniqueAutoId}
+						for={this.uniqueAutoId}
 						label={this.props.label}
 						helpText={this.props.helpText}
 						tooltipPosition={this.props.tooltipPosition}
@@ -153,7 +153,7 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 					<input
 						className="cs-slider"
 						disabled={this.props.disabled}
-						id={this.props.id ? this.props.id : this.uniqueAutoId}
+						id={this.uniqueAutoId}
 						max={this.state.max}
 						min={this.state.min}
 						required={this.props.required}

@@ -55,6 +55,9 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 		dateFormat: 'dd-MM-yyyy',
 		dropdownMode: 'scroll'
 	};
+
+	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
+
 	constructor(props: CSDatepickerProps) {
 		super(props);
 		const value = typeof props.value === undefined ? '' : props.value;
@@ -109,14 +112,12 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 			}
 		};
 
-		const uniqueAutoId = uuidv4();
-
 		return (
 			<>
 				<div className={datepickerClasses} style={style}>
 					{(this.props.label && !this.props.labelHidden) &&
 						<CSLabel
-							for={this.props.id ? this.props.id : uniqueAutoId}
+							for={this.uniqueAutoId}
 							label={this.props.label}
 							helpText={this.props.helpText}
 							tooltipPosition={this.props.tooltipPosition}
@@ -146,7 +147,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 							yearDropdownItemNumber={this.props.yearDropdownItemNumber}
 							autoComplete="off"
 							required={this.props.required}
-							id={this.props.id ? this.props.id : uniqueAutoId}
+							id={this.uniqueAutoId}
 						/>
 					</div>
 					<CSIcon name="event" className="cs-datepicker-icon" />

@@ -55,6 +55,8 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 		return null;
 	}
 
+	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
+
 	constructor(props: CSSelectProps) {
 		super(props);
 		const value = typeof props.value === undefined ? '' : props.value;
@@ -94,13 +96,11 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 			}
 		);
 
-		const uniqueAutoId = uuidv4();
-
 		return (
 			<div className={selectWrapperClasses}>
 				{(this.props.label && !this.props.labelHidden) &&
 					<CSLabel
-						for={this.props.id ? this.props.id : uniqueAutoId}
+						for={this.uniqueAutoId}
 						label={this.props.label}
 						helpText={this.props.helpText}
 						tooltipPosition={this.props.tooltipPosition}
@@ -111,7 +111,7 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 				<div className={selectGroupClasses}>
 					<select
 						className={selectClasses}
-						id={this.props.id ? this.props.id : uniqueAutoId}
+						id={this.uniqueAutoId}
 						required={this.props.required}
 						disabled={this.props.disabled}
 						aria-required={this.props.required}

@@ -17,6 +17,8 @@ class CSButtonGroup extends React.Component<CSButtonGroupProps> {
 		combined: true
 	};
 
+	private uniqueAutoId = this.props.ariaDescription ? uuidv4() : null;
+
 	render() {
 		const buttonGroupClasses = classNames(
 			[`cs-button-group cs-button-group-${this.props.combined}`],
@@ -24,17 +26,15 @@ class CSButtonGroup extends React.Component<CSButtonGroupProps> {
 			[`cs-button-group-margin-${this.props.marginPosition}`]
 		);
 
-		const uniqueAutoId = uuidv4();
-
 		return (
 			<div
 				className={buttonGroupClasses}
 				id={this.props.id}
 				role="group"
-				aria-labelledby={this.props.id ? this.props.id : uniqueAutoId}
+				aria-labelledby={this.uniqueAutoId}
 			>
 				{this.props.ariaDescription &&
-					<span className="cs-aria-description" id={this.props.id ? this.props.id : uniqueAutoId}>{this.props.ariaDescription}</span>
+					<span className="cs-aria-description" id={this.uniqueAutoId}>{this.props.ariaDescription}</span>
 				}
 				{this.props.children}
 			</div>

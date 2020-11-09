@@ -82,6 +82,8 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 
 	private input: HTMLInputElement;
 
+	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
+
 	constructor(props: CSInputSearchProps) {
 		super(props);
 	 const value = typeof props.value === undefined ? '' : props.value;
@@ -161,14 +163,12 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 			'--search-width': this.props.width
 		};
 
-		const uniqueAutoId = uuidv4();
-
 		return (
 			<>
 				<div className={inputSearchWrapperClasses}>
 					{(this.props.label && !this.props.labelHidden) &&
 						<CSLabel
-							for={this.props.id ? this.props.id : uniqueAutoId}
+							for={this.uniqueAutoId}
 							label={this.props.label}
 							helpText={this.props.helpText}
 							tooltipPosition={this.props.tooltipPosition}
@@ -185,7 +185,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 						<input className={inputSearchClasses}
 							autoFocus={this.props.autoFocus}
 							onChange={this.handleOnChange}
-							id={this.props.id ? this.props.id : uniqueAutoId}
+							id={this.uniqueAutoId}
 							placeholder={this.props.placeholder}
 							disabled={this.props.disabled}
 							required={this.props.required}

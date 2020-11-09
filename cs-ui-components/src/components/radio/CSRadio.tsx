@@ -43,13 +43,13 @@ class CSRadio extends React.Component<CSRadioProps> {
 			}
 		);
 
-		const uniqueAutoId = uuidv4();
+		const uniqueAutoId = this.props.id ? this.props.id : uuidv4();
 
 		return (
 			<div className="cs-radio-wrapper">
 				{(this.props.label && !this.props.labelHidden) &&
 					<CSLabel
-						for={this.props.id ? this.props.id : uniqueAutoId}
+						for={uniqueAutoId}
 						label={this.props.label}
 						helpText={this.props.helpText}
 						tooltipPosition={this.props.tooltipPosition}
@@ -57,7 +57,7 @@ class CSRadio extends React.Component<CSRadioProps> {
 						title={this.props.labelTitle ? this.props.label : null}
 					/>
 				}
-				<div className={radioGroupClasses} id={this.props.id ? this.props.id : uniqueAutoId}>
+				<div className={radioGroupClasses} id={uniqueAutoId}>
 					{this.props.children}
 				</div>
 				{(this.props.error && this.props.errorMessage) &&
