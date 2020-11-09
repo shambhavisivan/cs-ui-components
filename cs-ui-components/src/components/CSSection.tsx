@@ -71,7 +71,7 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 							aria-expanded={!this.state.collapsed}
 							aria-roledescription="section"
 						>
-							<CSIcon name="chevronright" rotate={this.state.collapsed ? '90' : null} />
+							<CSIcon name="chevronright" rotate={this.state.collapsed ? null : '90'} />
 							<span className="cs-section-title">{this.props.title}</span>
 						</button>
 					:
