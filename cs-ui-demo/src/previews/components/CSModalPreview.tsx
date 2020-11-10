@@ -18,6 +18,7 @@ import {
 interface CSModalPreviewState {
 	modalOpen: string | undefined;
 	secondModalOpen: boolean;
+	thirdModalOpen: boolean;
 }
 
 class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
@@ -26,7 +27,8 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 
 		this.state = {
 			modalOpen: undefined,
-			secondModalOpen: false
+			secondModalOpen: false,
+			thirdModalOpen: false
 		};
 	}
 
@@ -67,10 +69,6 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 													Example text, most likely a confirmation message.
 												</p>
 											</CSModalBody>
-											<CSModalFooter align="left">
-												<CSButton label="Default Button" />
-												<CSButton label="Brand Button" btnStyle="brand" />
-											</CSModalFooter>
 										</CSModal>
 									)}
 								</div>
@@ -90,8 +88,6 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 									{this.state.modalOpen === 'small' && (
 										<CSModal
 											size="small"
-											closeButton
-											onClose={() => this.setState({ modalOpen: undefined })}
 										>
 											<CSModalHeader
 												title="This is a test heading"
@@ -116,6 +112,11 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 												<CSButton
 													label="Open Modal"
 													onClick={() => this.setState({ secondModalOpen: true })}
+													btnStyle="brand"
+												/>
+												<CSButton
+													label="Close"
+													onClick={() => this.setState({ modalOpen: undefined })}
 												/>
 											</CSModalFooter>
 										</CSModal>
@@ -123,8 +124,34 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 									{this.state.secondModalOpen && (
 										<CSModal
 											size="xsmall"
+										>
+											<CSModalHeader
+												title="This is a test heading"
+												subtitle="This is a test subtitle"
+											/>
+											<CSModalBody>
+												<p>
+													Example text, most likely a confirmation message.
+												</p>
+											</CSModalBody>
+											<CSModalFooter align="left">
+												<CSButton
+													label="Open Modal"
+													onClick={() => this.setState({ thirdModalOpen: true })}
+													btnStyle="brand"
+												/>
+												<CSButton
+													label="Close"
+													onClick={() => this.setState({ secondModalOpen: false })}
+												/>
+											</CSModalFooter>
+										</CSModal>
+									)}
+									{this.state.thirdModalOpen && (
+										<CSModal
+											size="xsmall"
 											closeButton
-											onClose={() => this.setState({ secondModalOpen: false })}
+											onClose={() => this.setState({ thirdModalOpen: false })}
 										>
 											<CSModalHeader
 												title="This is a test heading"

@@ -21,7 +21,6 @@ export interface CSModalProps {
 
 class CSModal extends React.Component<CSModalProps> {
 	private modalId = 'cs-modal-root';
-	private modalFooterClass = 'cs-modal-footer';
 	private modalCloseClass = 'cs-modal-close';
 	private modalRef: HTMLDivElement;
 	private modalCloseBtnRef: HTMLButtonElement;
@@ -49,14 +48,18 @@ class CSModal extends React.Component<CSModalProps> {
 	handleFocusChange = (event: any) => {
 		if (event.key === this.tabKey) {
 			const { activeElement } = document;
-			if (event.shiftKey) {
-				if (activeElement === this.firstElement) {
-					this.lastElement.focus();
+			if (this.props.loading) {
+				event.preventDefault();
+			} else {
+				if (event.shiftKey) {
+					if (activeElement === this.firstElement) {
+						this.lastElement.focus();
+						event.preventDefault();
+					}
+				} else if (activeElement === this.lastElement) {
+					this.firstElement.focus();
 					event.preventDefault();
 				}
-			} else if (activeElement === this.lastElement) {
-				this.firstElement.focus();
-				event.preventDefault();
 			}
 		}
 	}
@@ -69,10 +72,15 @@ class CSModal extends React.Component<CSModalProps> {
 		this.props.onClose(e);
 	}
 
-	getFirstLastModalElement() {
-		this.firstElement = this.props.closeButton ? this.modalCloseBtnRef : this.modalRef;
-		const allFooters = document.querySelectorAll('.' + this.modalFooterClass);
-		this.lastElement = allFooters[allFooters.length - 1].lastElementChild as HTMLElement;
+	getFirstLastModalElement(focusable: any) {
+		if (focusable.length > 0) {
+			const lastFocusable = focusable[focusable.length - 1];
+			this.firstElement = this.props.closeButton ? this.modalCloseBtnRef : focusable[0] as HTMLElement;
+			this.lastElement = lastFocusable as HTMLElement;
+		} else {
+			this.firstElement = this.modalRef;
+			this.lastElement = this.modalRef;
+		}
 	}
 
 	switchFocusOnClose = () => {
@@ -84,8 +92,13 @@ class CSModal extends React.Component<CSModalProps> {
 	}
 
 	componentDidMount() {
-		this.getFirstLastModalElement();
+		const focusable = this.modalRef.querySelectorAll('button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+		this.getFirstLastModalElement(focusable);
+		if (this.props.loading && !this.props.closeButton && focusable.length > 0) {
+			this.firstElement = this.modalRef;
+		}
 		this.firstElement.focus();
+
 		document.addEventListener('keydown', this.handleFocusChange);
 		const modalRoot = document.getElementById(this.modalId);
 
@@ -109,6 +122,13 @@ class CSModal extends React.Component<CSModalProps> {
 		if (modalRoot.childElementCount === 1) {
 			document.body.style.overflow = '';
 			document.documentElement.style.overflow = '';
+		} else {
+			const focusableModalsLength = modalRoot.getElementsByClassName('cs-modal-overlay').length;
+			const focusableModal = modalRoot.getElementsByClassName('cs-modal-overlay')[focusableModalsLength - 2];
+			const focusable = focusableModal.querySelectorAll('button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+
+			this.firstElement = focusable[1] as HTMLElement;
+			this.firstElement.focus();
 		}
 	}
 
