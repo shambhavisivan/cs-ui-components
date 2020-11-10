@@ -135,6 +135,7 @@ class CSTabPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
+							variationName: ['true'],
 							variationText: ['variant="large"'],
 							quickLink: 'disabled large',
 							string: '',
@@ -146,6 +147,7 @@ class CSTabPreview extends React.Component {
 							</CSTabGroup>
 						},
 						{
+							variationName: ['true'],
 							variationText: ['variant="normal"'],
 							quickLink: 'disabled normal',
 							string: '',
