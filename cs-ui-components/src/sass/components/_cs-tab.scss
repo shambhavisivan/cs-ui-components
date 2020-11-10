@@ -11,7 +11,7 @@
 		flex-wrap: wrap;
 	}
 
-	.cs-tab {
+	.cs-tab-wrapper {
 		display:flex;
 		align-items: center;
 		line-height: 2.5rem;
@@ -19,7 +19,7 @@
 		font-size: 0.8125rem;
 		@include overflow-ellipsis;
 
-		.cs-tab-wrapper {
+		.cs-tab {
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
@@ -35,6 +35,7 @@
 
 			.cs-tab-title {
 				line-height: 1;
+				font-size: 0.8125rem;
 
 				&:not(:first-child) {
 					margin-left: 0.5rem;
@@ -75,7 +76,7 @@
 			.cs-icon {
 				@include sf(--cs-tab-error-fill);
 			}
-			.cs-tab-wrapper {
+			.cs-tab {
 				&:hover::after, &:focus:after {
 					@include sbg(--cs-tab-error-br);
 				}
@@ -86,7 +87,7 @@
 			.cs-icon {
 				@include sf(--cs-tab-warning-fill);
 			}
-			.cs-tab-wrapper {
+			.cs-tab {
 				&:hover::after, &:focus:after {
 					@include sbg(--cs-tab-warning-br);
 				}
@@ -97,7 +98,7 @@
 			.cs-icon {
 				@include sf(--cs-tab-success-fill);
 			}
-			.cs-tab-wrapper {
+			.cs-tab {
 				&:hover::after, &:focus:after {
 					@include sbg(--cs-tab-success-br);
 				}
@@ -107,14 +108,14 @@
 		&.cs-tab-active {
 			@include sc(--cs-tab-active-c);
 			cursor: default;
-			.cs-tab-wrapper::after {
+			.cs-tab::after {
 				height: 0.1875rem;
 				@include sbg(--cs-tab-active-br);
 			}
-			.cs-tab-wrapper:disabled::after {
+			.cs-tab:disabled::after {
 				@include sbg(--cs-tab-disabled-c);
 			}
-			.cs-tab-wrapper:hover::after {
+			.cs-tab:hover::after {
 				@include sbg(--cs-tab-active-br);
 			}
 			.cs-icon {
@@ -122,10 +123,16 @@
 			}
 		}
 
+		&-initial:not(.cs-tab-active) {
+			svg {
+				height: 0.875rem;
+			}
+		}
+
 		&-normal {
 			height: 2.5rem;
 			&.cs-tab-active {
-				.cs-tab-wrapper {
+				.cs-tab {
 					font-weight: $font-weight-bold;
 				}
 			}
@@ -145,7 +152,7 @@
 				}
 			}
 
-			.cs-tab-wrapper {
+			.cs-tab {
 				height: 2.875rem;
 
 				&::after {
@@ -158,7 +165,7 @@
 			}
 
 			&.cs-tab-active {
-				.cs-tab-wrapper {
+				.cs-tab {
 					@include sbg(--cs-tab-active-bg);
 				}
 			}

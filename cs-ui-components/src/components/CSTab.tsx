@@ -34,11 +34,11 @@ class CSTab extends React.Component<CSTabProps> {
 	render() {
 		const { active, className, disabled, id, parentVariant, status, tabIcon, title, tooltipContent } = this.props;
 		const tabClasses = classNames (
-			'cs-tab',
+			'cs-tab-wrapper',
 			{
 				'cs-tab-active': active,
-				[`cs-tab-${status}`]: status,
-				[`cs-tab-${parentVariant}`]: parentVariant,
+				[`cs-tab-wrapper-${status}`]: status,
+				[`cs-tab-wrapper-${parentVariant}`]: parentVariant,
 				[`${className}`]: className
 			}
 		);
@@ -67,7 +67,7 @@ class CSTab extends React.Component<CSTabProps> {
 		return (
 			<li className={tabClasses} onClick={this.onClickHandler} id={id}>
 				<button
-					className="cs-tab-wrapper"
+					className="cs-tab"
 					aria-current={active}
 					aria-invalid={status === 'error'}
 					disabled={disabled}
