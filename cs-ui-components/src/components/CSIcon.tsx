@@ -65,7 +65,11 @@ class CSIcon extends React.Component<CSIconProps> {
 						aria-hidden="true"
 						id={this.props.id}
 					>
-						<use href={`#${prefix}${this.props.name}`}/>
+						<use href={`#${prefix}${this.props.name}`}>
+							{this.props.title &&
+								<title>{this.props.title}</title>
+							}
+						</use>
 					</svg>
 				)}
 			</>
