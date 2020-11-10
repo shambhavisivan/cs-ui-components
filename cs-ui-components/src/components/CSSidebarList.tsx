@@ -46,15 +46,16 @@ class CSSidebarList extends React.Component<CSSidebarListProps, CSSidebarListSta
 			closed: !this.state.closed
 		});
 	}
-	renderChildrenWithTabsAsProps() {
-		return React.Children.map(this.props.children, (child, index) => {
-			return React.cloneElement(child as React.ReactElement<any>, {
-				toggleActive: this.toggleActive,
-				active: this.state.active
-			});
-		});
-	}
 	render() {
+		const renderChildrenWithTabsAsProps = React.Children.map(this.props.children, (child, index) => {
+			if (child) {
+				return React.cloneElement(child as React.ReactElement<any>, {
+					toggleActive: this.toggleActive,
+					active: this.state.active
+				});
+			}
+		});
+
 		const style: CSSProperties = {
 			'--cs-sidebar-list-width': this.props.width,
 			'--cs-sidebar-list-height': this.props.height
@@ -84,7 +85,7 @@ class CSSidebarList extends React.Component<CSSidebarListProps, CSSidebarListSta
 				</div>
 				{!this.state.closed &&
 					<ul>
-						{this.renderChildrenWithTabsAsProps()}
+						{renderChildrenWithTabsAsProps}
 					</ul>
 				}
 			</div>

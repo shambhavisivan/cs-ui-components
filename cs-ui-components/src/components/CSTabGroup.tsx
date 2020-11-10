@@ -16,15 +16,14 @@ class CSTabGroup extends React.Component<CSTabGroupProps> {
 		variant: 'normal'
 	};
 
-	renderChildrenWithTabsAsProps() {
-		return React.Children.map(this.props.children, (child, index) => {
-			return React.cloneElement(child as React.ReactElement<any>, {
-				parentVariant: this.props.variant
-			});
-		});
-	}
-
 	render() {
+		const renderChildrenWithTabsAsProps =  React.Children.map(this.props.children, (child, index) => {
+			if (child) {
+				return React.cloneElement(child as React.ReactElement<any>, {
+					parentVariant: this.props.variant
+				});
+			}
+		});
 		const tabGroupClasses = classNames(
 			'cs-tab-group',
 			{
@@ -40,7 +39,7 @@ class CSTabGroup extends React.Component<CSTabGroupProps> {
 					aria-label={this.props.listName ? this.props.listName : 'breadcrumbs'}
 				>
 					<ol>
-						{this.renderChildrenWithTabsAsProps()}
+						{renderChildrenWithTabsAsProps}
 					</ol>
 				</nav>
 			</div>

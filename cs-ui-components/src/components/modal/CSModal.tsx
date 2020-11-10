@@ -137,13 +137,13 @@ class CSModal extends React.Component<CSModalProps> {
 			[`${this.props.className}`]: this.props.className
 		});
 
-		const renderChildren = () => {
-			return React.Children.map(this.props.children, (child, index) => {
+		const renderChildren = React.Children.map(this.props.children, (child, index) => {
+			if (child) {
 				return React.cloneElement(child as React.ReactElement<any>, {
 					titleId: this.uniqueAutoId
 				});
-			});
-		};
+			}
+		});
 
 		return (
 			<Portal node={document && document.getElementById(this.modalId)}>
@@ -183,7 +183,7 @@ class CSModal extends React.Component<CSModalProps> {
 										: 'cs-modal-content'
 								}
 							>
-								{renderChildren()}
+								{renderChildren}
 								{this.props.loading && <CSSpinner label={this.props.loadingText} />}
 							</div>
 						</div>
