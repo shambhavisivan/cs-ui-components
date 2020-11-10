@@ -33,8 +33,12 @@
 			outline: none;
 			@include sc(--cs-tab-c);
 
-			.cs-tab-title:not(:first-child) {
-				margin-left: 0.5rem;
+			.cs-tab-title {
+				line-height: 1;
+
+				&:not(:first-child) {
+					margin-left: 0.5rem;
+				}
 			}
 
 			&::after {
