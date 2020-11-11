@@ -101,6 +101,12 @@ export interface CSGridProps {
 	 * Set to true/false to enable/disable Single Click Editing for cells, default: true
 	 */
 	singleClickEdit?: boolean;
+	/**
+	 * If true, then dots in field names (e.g. address.firstLine) are not treated as deep references.
+	 * Allows you to use dots in your field name if you prefer.
+	 * default: true
+	 */
+	suppressFieldDotNotation?: boolean;
 	customSort?: (columnId: string, sortDirection: CSGridSortDirection) => void;
 	onColumnStateChange?(columnState: string): void;
 	onSelectionChange?(selectedRows: Array<Row>): void;
@@ -376,6 +382,10 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 							onColumnResized={this.onColumnResized}
 							getRowStyle={this.props.rowHighlighting ? this.getRowStyle : undefined}
 							getRowClass={this.props.getRowClass ? this.getRowClass : undefined}
+							suppressFieldDotNotation={
+								this.props.suppressFieldDotNotation === undefined ||
+								this.props.suppressFieldDotNotation
+							}
 						/>
 					</div>
 				</div>

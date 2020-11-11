@@ -1,8 +1,8 @@
-import { AgGridReact } from 'ag-grid-react/lib/agGridReact';
+import { CellValueChangedEvent, GridReadyEvent } from 'ag-grid-community';
+import { AgGridReact } from 'ag-grid-react';
 import { shallow } from 'enzyme';
 import React from 'react';
-import {CSGridProps, CSGrid, RowData, Row, UserInfo, DataSourceAPI} from '../../main';
-import {CellValueChangedEvent, GridReadyEvent} from 'ag-grid-community';
+import { CSGrid, CSGridProps, DataSourceAPI, Row, RowData, UserInfo } from '../../main';
 
 describe('csgrid', () => {
 	const userInfo: UserInfo = {
@@ -11,6 +11,21 @@ describe('csgrid', () => {
 	};
 
 	const baseProps: CSGridProps = {
+		columnDefs: [
+			{
+				cellType: 'Text',
+				flashOnCellValueChange: true,
+				name: 'exampleText',
+				userInfo,
+				visible: true
+			},
+			{
+				cellType: 'Text',
+				name: 'exampleDecimal',
+				userInfo,
+				visible: true
+			}
+		],
 		csGridPagination: {
 			location: 'None'
 		},
@@ -18,40 +33,25 @@ describe('csgrid', () => {
 			location: 'None'
 		},
 		multiSelect: false,
-		uniqueIdentifierColumnName: 'Id',
-		columnDefs: [
-			{
-				cellType: 'Text',
-				name: 'exampleText',
-				visible: true,
-				flashOnCellValueChange: true,
-				userInfo
-			},
-			{
-				cellType: 'Text',
-				name: 'exampleDecimal',
-				visible: true,
-				userInfo
-			}
-		],
 		rowData: [
 			{
-				exampleText: {
-					cellValue: 'ABC'
-				},
 				Id: {
 					cellValue: '123'
+				},
+				exampleText: {
+					cellValue: 'ABC'
 				}
 			},
 			{
-				exampleDecimal: {
-					cellValue: 567
-				},
 				Id: {
 					cellValue: '456'
+				},
+				exampleDecimal: {
+					cellValue: 567
 				}
 			}
-		]
+		],
+		uniqueIdentifierColumnName: 'Id'
 	};
 
 	describe('singleClickEdit', () => {
@@ -81,21 +81,32 @@ describe('csgrid', () => {
 		const newValue = {
 			cellValue: 'DEF'
 		};
-		const baseCellValueChangedEvent = {
-			data: {
-				exampleText: {
-					cellValue: 'ABC'
-				},
-				Id: {
-					cellValue: '123'
-				}
-			},
+		const baseCellValueChangedEvent: CellValueChangedEvent = {
 			colDef: {
 				field: 'exampleText'
 			},
+			data: {
+				Id: {
+					cellValue: '123'
+				},
+				exampleText: {
+					cellValue: 'ABC'
+				}
+			},
+			newValue,
 			oldValue,
-			newValue
-		} as CellValueChangedEvent;
+
+			api: undefined,
+			column: undefined,
+			columnApi: undefined,
+			context: undefined,
+			node: undefined,
+			rowIndex: undefined,
+			rowPinned: undefined,
+			source: undefined,
+			type: undefined,
+			value: undefined
+		};
 
 		const mockFlashCells = jest.fn();
 		csgrid.gridApi = {
@@ -111,33 +122,44 @@ describe('csgrid', () => {
 			csgrid.onCellValueChanged(baseCellValueChangedEvent);
 
 			expect(mockFlashCells).toBeCalledWith({
-				rowNodes: expect.any(Array),
 				columns: ['exampleText'],
 				fadeDelay: 1000,
-				flashDelay: 500
+				flashDelay: 500,
+				rowNodes: expect.any(Array)
 			});
 		});
 
 		it('does not call flashCells on successful update if csgrid colDef.flashOnCellValueChange is not true', () => {
-			const mockCellValueChangedEvent = {
-				data: {
-					exampleDecimal: {
-						cellValue: 999
-					},
-					Id: {
-						cellValue: '456'
-					}
-				},
+			const mockCellValueChangedEvent: CellValueChangedEvent = {
 				colDef: {
 					field: 'exampleDecimal'
+				},
+				data: {
+					Id: {
+						cellValue: '456'
+					},
+					exampleDecimal: {
+						cellValue: 999
+					}
+				},
+				newValue: {
+					cellValue: 888
 				},
 				oldValue: {
 					cellValue: 567
 				},
-				newValue: {
-					cellValue: 888
-				}
-			} as CellValueChangedEvent;
+
+				api: undefined,
+				column: undefined,
+				columnApi: undefined,
+				context: undefined,
+				node: undefined,
+				rowIndex: undefined,
+				rowPinned: undefined,
+				source: undefined,
+				type: undefined,
+				value: undefined
+			};
 
 			csgrid.onCellValueChanged(mockCellValueChangedEvent);
 
@@ -169,10 +191,28 @@ describe('csgrid', () => {
 			expect(mockFlashCells).toBeCalledTimes(0);
 		});
 	});
+
+	describe('suppressFieldDotNotation', () => {
+		test('suppressFieldDotNotation should be true when not defined in props', () => {
+			const csGridShallow = shallow(<CSGrid {...baseProps} />);
+
+			expect(csGridShallow.find(AgGridReact).props().suppressFieldDotNotation).toBeTruthy();
+		});
+
+		test('suppressFieldDotNotation from props should be used when defined', () => {
+			const gridProps = {
+				...baseProps,
+				suppressFieldDotNotation: false
+			};
+			const csGridShallow = shallow(<CSGrid {...gridProps} />);
+
+			expect(csGridShallow.find(AgGridReact).props().suppressFieldDotNotation).toBeFalsy();
+		});
+	});
 });
 
 describe('rowdata Related', () => {
-	const rowData: RowData[] = [
+	const rowData: Array<RowData> = [
 		{
 			exampleBoolean: false,
 			exampleCurrency: 'undefined as number',
@@ -196,10 +236,10 @@ describe('rowdata Related', () => {
 			examplePicklistWithLabels: { id: '7', label: 'Sue' },
 			exampleRowValidation: { status: 'Error', icons: ['medium', 'video'] },
 			exampleText: 'Ford',
-			status: ['yellow', 'breadcrumbs'],
 			row_cell_notifications: {
 				exampleRowValidation: { message: 'Error 1Error 2', type: 'error' }
-			}
+			},
+			status: ['yellow', 'breadcrumbs']
 		},
 		{
 			exampleBoolean: false,
@@ -224,11 +264,11 @@ describe('rowdata Related', () => {
 			examplePicklistWithLabels: { id: '11', label: 'Fred' },
 			exampleRowValidation: { status: 'Info', icons: ['medium'] },
 			exampleText: 'Toyota',
-			status: ['yellow'],
 			row_cell_notifications: {
 				examplePicklistWithLabels: { message: 'An error message', type: 'error' },
 				exampleRowValidation: { message: 'Info 1 Info 2', type: 'error' }
-			}
+			},
+			status: ['yellow']
 		},
 		{
 			exampleBoolean: false,
@@ -257,8 +297,8 @@ describe('rowdata Related', () => {
 			examplePicklistWithLabels: { id: '2', label: 'Harry' },
 			exampleRowValidation: { status: 'None' },
 			exampleText: 'Toy&o|:;ta',
-			status: ['red'],
-			row_cell_notifications: {}
+			row_cell_notifications: {},
+			status: ['red']
 		},
 		{
 			exampleBoolean: false,
@@ -283,11 +323,11 @@ describe('rowdata Related', () => {
 			examplePicklistWithLabels: { id: '11', label: 'Fred' },
 			exampleRowValidation: { status: 'Info', icons: ['medium'] },
 			exampleText: 'Toyota',
-			status: ['yellow'],
 			row_cell_notifications: {
 				examplePicklistWithLabels: { message: 'An error message', type: 'error' },
 				exampleRowValidation: { message: 'Info 1 Info 2', type: 'error' }
-			}
+			},
+			status: ['yellow']
 		},
 		{
 			exampleBoolean: false,
@@ -312,15 +352,15 @@ describe('rowdata Related', () => {
 			examplePicklistWithLabels: { id: '11', label: 'Fred' },
 			exampleRowValidation: { status: 'Info', icons: ['medium'] },
 			exampleText: 'Toyota',
-			status: ['yellow'],
 			row_cell_notifications: {
 				examplePicklistWithLabels: { message: 'An error message', type: 'error' },
 				exampleRowValidation: { message: 'Info 1 Info 2', type: 'error' }
-			}
+			},
+			status: ['yellow']
 		}
 	];
 
-	const legacyData: Row[] = [
+	const legacyData: Array<Row> = [
 		{
 			exampleBoolean: { cellValue: false },
 			exampleCurrency: { cellValue: 34000.67 },
@@ -503,7 +543,8 @@ describe('rowdata Related', () => {
 		}
 	];
 
-	const baseProps: CSGridProps = {
+	const csGridBaseProps: CSGridProps = {
+		columnDefs: [],
 		csGridPagination: {
 			location: 'Footer'
 		},
@@ -511,12 +552,11 @@ describe('rowdata Related', () => {
 			location: 'Header'
 		},
 		multiSelect: false,
-		uniqueIdentifierColumnName: 'exampleText',
-		columnDefs: [],
-		rowData: rowData
+		rowData,
+		uniqueIdentifierColumnName: 'exampleText'
 	};
 
-	const component = shallow<CSGrid>(<CSGrid {...baseProps} />);
+	const component = shallow<CSGrid>(<CSGrid {...csGridBaseProps} />);
 
 	test('new row data', () => {
 		expect(component.instance().state.isUsingLegacyRowDataModel).toBe(false);
@@ -527,6 +567,7 @@ describe('rowdata Related', () => {
 
 	test('new row data', () => {
 		const baseProps: CSGridProps = {
+			columnDefs: [],
 			csGridPagination: {
 				location: 'Footer'
 			},
@@ -534,9 +575,8 @@ describe('rowdata Related', () => {
 				location: 'Header'
 			},
 			multiSelect: false,
-			uniqueIdentifierColumnName: 'exampleText',
-			columnDefs: [],
-			rowData: legacyData
+			rowData: legacyData,
+			uniqueIdentifierColumnName: 'exampleText'
 		};
 		const csgridcomp = shallow<CSGrid>(<CSGrid {...baseProps} />);
 		expect(csgridcomp.instance().state.isUsingLegacyRowDataModel).toBe(true);
@@ -545,7 +585,7 @@ describe('rowdata Related', () => {
 
 	test('convertLegacyRowToRowData', () => {
 		const result = component.instance().convertLegacyRowToRowData(legacyData);
-		const expected: Omit<RowData, 'row_cell_notifications'>[] = [
+		const expected: Array<Omit<RowData, 'row_cell_notifications'>> = [
 			{
 				exampleBoolean: false,
 				exampleCurrency: 34000.67,
@@ -885,47 +925,51 @@ describe('rowdata Related', () => {
 		expect(result).toEqual(expected);
 	});
 
-	test('updateDataSource is called when OnGridReady is called', ()=> {
+	test('updateDataSource is called when OnGridReady is called', () => {
 		const dataSourceAPI: DataSourceAPI = {
 			isLastPage: jest.fn(),
 			onBtNext: jest.fn(),
 			onBtPrevious: jest.fn(),
-			onContextChange:jest.fn(),
-		}
-		const gridProps = {
-			...baseProps,
-			dataSourceAPI,
-			singleClickEdit: false,
+			onContextChange: jest.fn()
 		};
-		const event = {
+		const gridProps = {
+			...csGridBaseProps,
+			dataSourceAPI,
+			singleClickEdit: false
+		};
+		const event: GridReadyEvent = {
 			api: {
-				setDatasource: jest.fn(),
+				setDatasource: jest.fn()
 			} as any,
-		} as GridReadyEvent;
+			columnApi: undefined,
+			type: undefined
+		};
 		const csGridShallow = shallow<CSGrid>(<CSGrid {...gridProps} />);
 		const spyUpdateDataSource = jest.spyOn(csGridShallow.instance(), 'updateDataSource');
 		csGridShallow.instance().onGridReady(event);
 		expect(spyUpdateDataSource).toHaveBeenCalledTimes(1);
-
 	});
 
-	test('updateDataSource should throw error when no datasourceAPI is given', ()=> {
+	test('updateDataSource should throw error when no datasourceAPI is given', () => {
 		const gridProps = {
-			...baseProps,
-			singleClickEdit: false,
+			...csGridBaseProps,
+			singleClickEdit: false
 		};
-		const event = {
+		const event: GridReadyEvent = {
 			api: {
-				setDatasource: jest.fn(),
+				setDatasource: jest.fn()
 			} as any,
-		} as GridReadyEvent;
+			columnApi: undefined,
+			type: undefined
+		};
 		try {
 			const csGridShallow = shallow<CSGrid>(<CSGrid {...gridProps} />);
 			csGridShallow.instance().updateDataSource();
 			expect(true).toBe(false);
-		}
-		catch(e) {
-			expect(e.message).toBe('CSGrid::UpdateDataSource: Cannot call updateDataSource when dataSourceAPI is null');
+		} catch (e) {
+			expect(e.message).toBe(
+				'CSGrid::UpdateDataSource: Cannot call updateDataSource when dataSourceAPI is null'
+			);
 		}
 	});
 });
