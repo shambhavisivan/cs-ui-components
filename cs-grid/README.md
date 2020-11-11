@@ -17,6 +17,8 @@ Besides the standard set of features you'd expect from any grid cs-grid includes
 Release Notes
 ------------------
 
+####1.2.36
+ * Included `customSort` as a new prop to achieve sorting.
 ####1.2.35
  * Enable cell flashing on success using `flashOnCellValueChange` property in coldefs.
  * `RowData.row_cell_notifications` is now an optional property.
