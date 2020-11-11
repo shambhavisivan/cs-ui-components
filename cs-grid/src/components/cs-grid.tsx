@@ -221,8 +221,8 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		rows: Array<Row>
 	): Array<Omit<RowData, 'row_cell_notifications'>> => {
 		return rows.map(row => {
-			const record: RowData = {} as RowData;
-			for (const fieldKey in row) {
+			const record: RowData = {};
+			for (const fieldKey of Object.keys(row)) {
 				record[fieldKey] = row[fieldKey].cellValue;
 				if (row.row_cell_notifications) {
 					record.row_cell_notifications = row.row_cell_notifications.cellValue;

@@ -57,7 +57,7 @@ export class CSGridDateRenderer extends CSGridBaseRenderer<string> {
 					errorMessage={this.state.value.errorMessage}
 					position={this.state.isLastColumn ? 'top-left' : 'top-right'}
 				/>
-				{this.state.value.cellValue && !readOnly && (
+				{this.state.value.cellValue && !readOnly && this.props.colDef.editable && (
 					<button
 						title='Clear Date'
 						className='cs-grid_clear-button'

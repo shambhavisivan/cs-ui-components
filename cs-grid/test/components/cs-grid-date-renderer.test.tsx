@@ -198,4 +198,29 @@ describe('CS Grid Date Renderer', () => {
 
 		expect(mockOnChange.mock.calls.length).toEqual(1);
 	});
+
+	test('Renders a date renderer that is not editable so should have should not have a remove date button.', () => {
+		colDef.editable = false;
+
+		const cellRenderer = shallow(
+			<CSGridDateRenderer {...cSGridCellRendererProps} colDef={colDef} />
+		);
+		const instance = cellRenderer.instance() as CSGridDateRenderer;
+		const value = formatDate(
+			instance.state.value.cellValue,
+			instance.props.userInfo.userLocale,
+			'Date'
+		);
+
+		expect(
+			cellRenderer.equals(
+				<span className=''>
+					<span className='cs-grid_date-cell-value' title={value}>
+						{value}
+					</span>
+					<CSGridCellError errorMessage={exampleDate.errorMessage} position='top-left' />
+				</span>
+			)
+		).toBeTruthy();
+	});
 });
