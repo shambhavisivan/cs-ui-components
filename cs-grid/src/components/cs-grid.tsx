@@ -918,16 +918,22 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			this.addIfDefined(agGridColDef, 'editable', columnDef.editable);
 			this.addIfDefined(agGridColDef, 'field', columnDef.name);
 			this.addIfDefined(agGridColDef, 'filter', columnDef.hasFilter);
-			this.addIfDefined(
-				agGridColDef,
-				'headerCheckboxSelection',
-				columnDef.headerCheckboxSelection
-			);
-			this.addIfDefined(
-				agGridColDef,
-				'headerCheckboxSelectionFilteredOnly',
-				columnDef.selectFilteredOnly
-			);
+
+			if (this.props.multiSelect) {
+				this.addIfDefined(
+					agGridColDef,
+					'headerCheckboxSelection',
+					columnDef.headerCheckboxSelection
+				);
+				this.addIfDefined(
+					agGridColDef,
+					'headerCheckboxSelectionFilteredOnly',
+					columnDef.selectFilteredOnly
+				);
+			} else {
+				agGridColDef.headerCheckboxSelection = false;
+			}
+
 			this.addIfDefined(agGridColDef, 'lockVisible', columnDef.lockVisible);
 			this.addIfDefined(agGridColDef, 'maxWidth', columnDef.maxWidth);
 			this.addIfDefined(agGridColDef, 'minWidth', columnDef.minWidth);

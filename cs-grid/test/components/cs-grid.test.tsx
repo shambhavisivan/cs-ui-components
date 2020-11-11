@@ -1,4 +1,4 @@
-import { CellValueChangedEvent, GridReadyEvent } from 'ag-grid-community';
+import { CellValueChangedEvent, ColDef, GridReadyEvent } from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react';
 import { shallow } from 'enzyme';
 import React from 'react';
@@ -207,6 +207,44 @@ describe('csgrid', () => {
 			const csGridShallow = shallow(<CSGrid {...gridProps} />);
 
 			expect(csGridShallow.find(AgGridReact).props().suppressFieldDotNotation).toBeFalsy();
+		});
+	});
+
+	describe('multiSelect', () => {
+		test('If multiSelect is false then headerCheckboxSelection should be false for all column definitions', () => {
+			baseProps.multiSelect = false;
+
+			baseProps.columnDefs = baseProps.columnDefs.map(colDef => ({
+				...colDef,
+				headerCheckboxSelection: true
+			}));
+
+			const csGridShallow = shallow(<CSGrid {...baseProps} />);
+
+			expect(
+				csGridShallow
+					.find(AgGridReact)
+					.props()
+					.columnDefs.some((columnDef: ColDef) => columnDef.headerCheckboxSelection)
+			).toBeFalsy();
+		});
+
+		test('headerCheckboxSelection should be used if multiSelect is true', () => {
+			baseProps.multiSelect = true;
+
+			baseProps.columnDefs = baseProps.columnDefs.map(colDef => ({
+				...colDef,
+				headerCheckboxSelection: true
+			}));
+
+			const csGridShallow = shallow(<CSGrid {...baseProps} />);
+
+			expect(
+				csGridShallow
+					.find(AgGridReact)
+					.props()
+					.columnDefs.every((columnDef: ColDef) => columnDef.headerCheckboxSelection)
+			).toBeTruthy();
 		});
 	});
 });
