@@ -54,7 +54,7 @@ import CSSidebarListItem from './components/CSSidebarListItem';
 import CSSkipLink from './components/CSSkipLink';
 import CSSlider from './components/CSSlider';
 import CSSpinner, { CSSpinnerColor,	CSSpinnerSize } from './components/CSSpinner';
-import CSTab from './components/CSTab';
+import CSTab, { CSTabStatus } from './components/CSTab';
 import CSTabGroup, { CSTabGroupVariant } from './components/CSTabGroup';
 import CSTable from './components/table/CSTable';
 import CSTableBody from './components/table/CSTableBody';
@@ -160,6 +160,7 @@ export {
 	CSTab,
 	CSTabGroup,
 	CSTabGroupVariant,
+	CSTabStatus,
 	CSTable,
 	CSTableBody,
 	CSTableCell,
