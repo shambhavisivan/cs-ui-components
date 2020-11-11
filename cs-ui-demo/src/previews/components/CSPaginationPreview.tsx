@@ -5,7 +5,7 @@ import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSPaginationWrapper, CSSelect} from '@cloudsense/cs-ui-components';
+import {CSPaginationWrapper, CSSelect, CSAlert} from '@cloudsense/cs-ui-components';
 
 class CSPaginationPreview extends React.Component {
 	getDoc() {
@@ -57,6 +57,7 @@ class CSPaginationPreview extends React.Component {
 			<>
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} />
+					<CSAlert variant="warning" text="This component is under construction." />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
 				</div>

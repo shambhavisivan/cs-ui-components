@@ -5,7 +5,7 @@ import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSSidebarList, CSSidebarListItem} from '@cloudsense/cs-ui-components';
+import {CSSidebarList, CSSidebarListItem, CSAlert} from '@cloudsense/cs-ui-components';
 
 class CSSidebarListPreview extends React.Component {
 	getDoc() {
@@ -226,6 +226,7 @@ class CSSidebarListPreview extends React.Component {
 			<>
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} />
+					<CSAlert variant="warning" text="This component is under construction." />
 					<PreviewProperties name={component.name} examples={component.examples}/>
 					<PreviewTable components={[component]} />
 				</div>

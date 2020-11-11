@@ -5,7 +5,7 @@ import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSPath, CSPathItem, CSPathWrapper} from '@cloudsense/cs-ui-components';
+import {CSPath, CSPathItem, CSPathWrapper, CSAlert} from '@cloudsense/cs-ui-components';
 
 class CSPathPreview extends React.Component {
 	getCSPathDoc() {
@@ -150,6 +150,7 @@ class CSPathPreview extends React.Component {
 			<>
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} />
+					<CSAlert variant="warning" text="This component is under construction." />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component, component2, component3]} />
 				</div>

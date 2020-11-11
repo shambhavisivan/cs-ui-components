@@ -5,7 +5,8 @@ import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
 import PreviewLinks from '../PreviewLinks';
 import PreviewAccessibility from '../PreviewAccessibility';
-import {CSCustomSelect} from '@cloudsense/cs-ui-components';
+
+import {CSCustomSelect, CSAlert} from '@cloudsense/cs-ui-components';
 
 class CSCustomSelectPreview extends React.Component {
 	getDoc() {
@@ -398,6 +399,7 @@ class CSCustomSelectPreview extends React.Component {
 			<>
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
+					<CSAlert variant="warning" text="This component is under construction." />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
 					<PreviewAccessibility components={[component]} />
