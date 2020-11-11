@@ -2,10 +2,23 @@
 import SldsIconSvg from './icons/slds-icons.svg';
 import CsIconSvg from './icons//cs-icons.svg';
 
-// Append sprites inside opening body tag - Alternative to external sprite URL which causes CORS issues in Safari
-const spriteContainer = document.createElement('div');
-spriteContainer.innerHTML = SldsIconSvg + CsIconSvg;
-document.body.insertBefore(spriteContainer, document.body.childNodes[0]);
+// Alternative to external sprite URL which causes CORS issues in Safari
+if (document.readyState !== 'loading') {
+	// document is already ready
+	getSpriteIcons();
+} else {
+	document.addEventListener('DOMContentLoaded', () => {
+		// document was not ready
+		getSpriteIcons();
+	});
+}
+
+// Append sprites inside opening body tag
+function getSpriteIcons() {
+	const spriteContainer = document.createElement('div');
+	spriteContainer.innerHTML = SldsIconSvg + CsIconSvg;
+	document.body.insertBefore(spriteContainer, document.body.firstChild);
+}
 
 import CSAlert, { CSAlertStyleType, CSAlertTextAlign, CSAlertVariant } from './components/CSAlert';
 import CSButton, { CSButtonIconDisplay, CSButtonIconPosition, CSButtonSize,	CSButtonStyle,	CSButtonType, CSButtonWidth } from './components/CSButton';
