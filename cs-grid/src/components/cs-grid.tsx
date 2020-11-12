@@ -109,7 +109,7 @@ export interface CSGridProps {
 	suppressFieldDotNotation?: boolean;
 	customSort?: (columnId: string, sortDirection: CSGridSortDirection) => void;
 	onColumnStateChange?(columnState: string): void;
-	onSelectionChange?(selectedRows: Array<Row>): void;
+	onSelectionChange?(selectedRows: Array<Row> | Array<RowData>): void;
 	onCellValueChange?(
 		rowNodeId: string,
 		columnField: string,
