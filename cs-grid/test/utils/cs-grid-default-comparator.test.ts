@@ -101,4 +101,23 @@ describe('CS Grid Default Comparator', () => {
 		const check: number = CSGridDefaultComparator(cellData1, cellData2);
 		expect(check).toBe(0);
 	});
+
+	test('Compare number cells with undefined first cell data', () => {
+		const cellData1: CellData<number> = undefined;
+		const cellData2: CellData<number> = {
+			cellValue: -1,
+			errorMessage: 'Bar'
+		};
+
+		const check: number = CSGridDefaultComparator(cellData1, cellData2);
+		expect(check).toBe(-1);
+	});
+
+	test('Compare number cells with null first cell data and undefined second cell data', () => {
+		const cellData1: CellData<number> = null;
+		const cellData2: CellData<number> = undefined;
+
+		const check: number = CSGridDefaultComparator(cellData1, cellData2);
+		expect(check).toBe(0);
+	});
 });

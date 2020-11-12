@@ -55,4 +55,13 @@ describe('CS Grid Currency Editor', () => {
 		const instance = cellEditor.instance() as CSGridCurrencyEditor;
 		expect(instance.numberFormatType).toEqual('Currency');
 	});
+
+	test('Renders a currency editor that has no cell data so should render an empty cell.', () => {
+		cSGridCellEditorProps.value = undefined;
+
+		const cellEditor = shallow(<CSGridCurrencyEditor {...cSGridCellEditorProps} />);
+		const input = cellEditor.find('input');
+
+		expect(input.prop('value')).toBe('');
+	});
 });

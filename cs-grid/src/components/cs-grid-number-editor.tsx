@@ -32,7 +32,7 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 		this.state = {
 			value: {
 				cellValue: '',
-				errorMessage: props.value.errorMessage
+				errorMessage: props.value?.errorMessage
 			}
 		};
 
@@ -40,6 +40,15 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 	}
 
 	async componentDidMount() {
+		if (!this.props.value) {
+			this.setState({
+				value: {
+					cellValue: undefined,
+					errorMessage: undefined
+				}
+			});
+		}
+
 		const cellValue = this.format(this.props.value.cellValue);
 		this.setState({
 			value: {
@@ -94,12 +103,12 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 				<input
 					type={this.inputType}
 					ref={this.inputRef}
-					value={this.state.value.cellValue || ''}
+					value={this.state.value?.cellValue || ''}
 					onChange={this.handleChange}
 					placeholder=''
 					className='cs-grid_number-inner'
 				/>
-				<CSGridCellError errorMessage={this.state.value.errorMessage} />
+				<CSGridCellError errorMessage={this.state.value?.errorMessage} />
 			</>
 		);
 	}

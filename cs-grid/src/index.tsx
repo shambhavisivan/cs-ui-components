@@ -314,7 +314,7 @@ export class App extends React.Component<object, AppState> {
 			},
 			{
 				cellClass: (value: CellData<number>, rowGuid: string) => {
-					if (value.cellValue > 5000) {
+					if (value && value.cellValue > 5000) {
 						return ['custom-cell-class'];
 					} else {
 						return null;

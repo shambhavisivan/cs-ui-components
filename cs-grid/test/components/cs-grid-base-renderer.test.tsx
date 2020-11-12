@@ -126,6 +126,15 @@ describe('CS Grid Base Renderer', () => {
 		expect(() => instance.refresh(cSGridCellRendererProps)).not.toThrow();
 	});
 
+	test('Tests that calling refresh does not cause an error when no value state is set.', () => {
+		cSGridCellRendererProps.value = undefined;
+
+		const cellRenderer = shallow(<CSGridTestBaseRenderer {...cSGridCellRendererProps} />);
+		const instance = cellRenderer.instance() as CSGridTestBaseRenderer;
+
+		expect(() => instance.refresh(cSGridCellRendererProps)).not.toThrow();
+	});
+
 	test('Tests that calling refresh with no params does not cause an error.', () => {
 		const cellRenderer = shallow(<CSGridTestBaseRenderer {...cSGridCellRendererProps} />);
 		const instance = cellRenderer.instance() as CSGridTestBaseRenderer;

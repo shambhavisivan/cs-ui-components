@@ -54,4 +54,13 @@ describe('CS Grid Decimal Editor', () => {
 		const instance = cellEditor.instance() as CSGridDecimalEditor;
 		expect(instance.numberFormatType).toEqual('Decimal');
 	});
+
+	test('Renders a decimal editor that has no cell data so should render an empty cell.', () => {
+		cSGridCellEditorProps.value = undefined;
+
+		const cellEditor = shallow(<CSGridDecimalEditor {...cSGridCellEditorProps} />);
+		const input = cellEditor.find('input');
+
+		expect(input.prop('value')).toBe('');
+	});
 });

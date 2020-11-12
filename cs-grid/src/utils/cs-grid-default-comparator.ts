@@ -1,8 +1,8 @@
 import { CellData } from '../interfaces/cs-grid-base-interfaces';
 
 export function CSGridDefaultComparator<T>(a: CellData<T>, b: CellData<T>) {
-	let aValue: T = a.cellValue;
-	let bValue: T = b.cellValue;
+	let aValue: T = a?.cellValue;
+	let bValue: T = b?.cellValue;
 
 	if (Array.isArray(aValue) && Array.isArray(bValue)) {
 		aValue = aValue[0];

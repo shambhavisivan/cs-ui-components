@@ -315,8 +315,9 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 								},
 								getQuickFilterText: (params: GetQuickFilterTextParams) => {
 									if (
-										!this.props.quickFilterHiddenColumns &&
-										!params.column.isVisible()
+										(!this.props.quickFilterHiddenColumns &&
+											!params.column.isVisible()) ||
+										!params.value
 									) {
 										return '';
 									}
@@ -725,7 +726,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 	};
 
 	private onColumnResized = (event: ColumnResizedEvent) => {
-		if (event.finished) {
+		if (event.finished && event.column) {
 			const columnId = event.column.getColDef().field;
 			if (this.gridApi && this.rowSelectionColumns.includes(columnId)) {
 				this.gridApi.refreshCells({ force: true, columns: this.rowSelectionColumns });

@@ -127,4 +127,13 @@ describe('CS Grid Text Editor', () => {
 		expect(focus.mock.calls.length).toEqual(1);
 		expect(select.mock.calls.length).toEqual(1);
 	});
+
+	test('Renders a text editor that has no cell data so should render an empty text.', () => {
+		cSGridCellEditorProps.value = undefined;
+		const cellEditor = shallow(<CSGridTextEditor {...cSGridCellEditorProps} />);
+		const input = cellEditor.find('input');
+
+		expect(input.prop('value')).toBe('');
+		expect(input.prop('title')).toBe('');
+	});
 });

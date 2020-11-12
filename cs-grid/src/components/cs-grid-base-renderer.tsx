@@ -32,6 +32,7 @@ export abstract class CSGridBaseRenderer<
 			params &&
 			params.value &&
 			(!this.state ||
+				!this.state.value ||
 				params.value.cellValue !== this.state.value.cellValue ||
 				params.value.errorMessage !== this.state.value.errorMessage ||
 				isLastColumn !== this.state.isLastColumn)

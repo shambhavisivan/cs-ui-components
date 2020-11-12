@@ -39,7 +39,7 @@ export class CSGridTextEditor
 	}
 
 	render() {
-		const value = this.state.value.cellValue || '';
+		const value = this.state.value?.cellValue || '';
 
 		return (
 			<>
@@ -52,7 +52,7 @@ export class CSGridTextEditor
 					className='cs-grid_text-inner'
 					title={value}
 				/>
-				<CSGridCellError errorMessage={this.state.value.errorMessage} />
+				<CSGridCellError errorMessage={this.state.value?.errorMessage} />
 			</>
 		);
 	}
@@ -62,7 +62,7 @@ export class CSGridTextEditor
 
 		let value: CellData<string> = {
 			cellValue: newValue,
-			errorMessage: this.state.value.errorMessage
+			errorMessage: this.state.value?.errorMessage
 		};
 
 		this.setState({ value });

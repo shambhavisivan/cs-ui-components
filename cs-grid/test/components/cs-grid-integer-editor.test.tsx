@@ -90,4 +90,13 @@ describe('CS Grid Integer Editor', () => {
 		expect(formattedString).toEqual('99.000');
 		expect(formattedInteger).toEqual('99.000');
 	});
+
+	test('Renders an integer editor that has no cell data so should render an empty cell.', () => {
+		cSGridCellEditorProps.value = undefined;
+
+		const cellEditor = shallow(<CSGridIntegerEditor {...cSGridCellEditorProps} />);
+		const input = cellEditor.find('input');
+
+		expect(input.prop('value')).toBe('');
+	});
 });

@@ -176,4 +176,9 @@ describe('CS Grid Date Time Editor', () => {
 		cSGridCellEditorProps.getOpenToDate = undefined;
 		expect(() => shallow(<CSGridDateTimeEditor {...cSGridCellEditorProps} />)).not.toThrow();
 	});
+
+	test('Renders a date time editor that has no cell data, this should not cause errors.', () => {
+		cSGridCellEditorProps.value = undefined;
+		expect(() => shallow(<CSGridDateTimeEditor {...cSGridCellEditorProps} />)).not.toThrow();
+	});
 });

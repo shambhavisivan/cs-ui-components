@@ -51,7 +51,7 @@ export class CSGridDateTimeEditor
 
 		let value: CellData<string> = {
 			cellValue: formattedDateTime,
-			errorMessage: this.state.value.errorMessage
+			errorMessage: this.state.value?.errorMessage
 		};
 
 		this.setState({ value });
@@ -73,14 +73,14 @@ export class CSGridDateTimeEditor
 
 	render() {
 		let date: Date = null;
-		if (this.state.value.cellValue) {
+		if (this.state.value?.cellValue) {
 			date = moment(this.state.value.cellValue, dateTimeFormat).toDate();
 		}
 		const formattedDate = formatLocale(date, 'DateTime');
 		const placeholderText = 'Click to select a date';
 
 		let openToDate: Date;
-		if (this.props.getOpenToDate && !this.state.value.cellValue) {
+		if (this.props.getOpenToDate && (!this.state.value || !this.state.value.cellValue)) {
 			openToDate = moment(this.props.getOpenToDate(this.props.node.id), dateFormat).toDate();
 		}
 

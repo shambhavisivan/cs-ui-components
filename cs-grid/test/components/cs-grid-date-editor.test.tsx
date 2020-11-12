@@ -160,4 +160,9 @@ describe('CS Grid Date Editor', () => {
 		cSGridCellEditorProps.getOpenToDate = undefined;
 		expect(() => shallow(<CSGridDateEditor {...cSGridCellEditorProps} />)).not.toThrow();
 	});
+
+	test('Renders a date editor that has no cell data, this should not cause errors.', () => {
+		cSGridCellEditorProps.value = undefined;
+		expect(() => shallow(<CSGridDateEditor {...cSGridCellEditorProps} />)).not.toThrow();
+	});
 });
