@@ -30,7 +30,10 @@ export interface CSDatepickerProps {
 	minDate?: number;
 	minDateYear?: boolean;
 	name?: string;
+	onCalendarClose?: () => void;
 	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => any;
+	onChangeRaw?: (event: React.FocusEvent<HTMLInputElement>) => any;
+	openToDate?: any;
 	placeholder?: string;
 	readOnly?: boolean;
 	required?: boolean;
@@ -137,7 +140,10 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 							name={this.props.name}
 							locale={this.props.locale}
 							selected={this.state.startDate}
+							onCalendarClose={this.props.onCalendarClose}
 							onChange={this.handleChange}
+							onChangeRaw={this.props.onChangeRaw}
+							openToDate={this.props.openToDate}
 							showYearDropdown={this.props.showYearDropdown}
 							showMonthDropdown={this.props.showMonthDropdown}
 							scrollableYearDropdown={this.props.scrollableYearDropdown}

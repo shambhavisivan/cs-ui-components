@@ -11,6 +11,19 @@ import { CSDatepicker } from '@cloudsense/cs-ui-components';
 
 class CSDatepickerPreview extends React.Component {
 	value = moment('1.1.2020', 'DD-MM-YYYY').toDate();
+
+	handleCloseCalendar() {
+		alert('Calendar closed!');
+	}
+
+	handleChange() {
+		alert('Date changed!');
+	}
+
+	handleChangeRaw() {
+		alert('Raw!!!');
+	}
+
 	getDoc() {
 
 		const json = {
@@ -358,6 +371,44 @@ class CSDatepickerPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'openToDate',
+					variations: [
+						{
+							component:
+								<CSDatepicker label="Enter date:" openToDate={new Date('12-20-1992')}/>
+
+						}
+					]
+				},
+				{
+					propName: 'onChange',
+					variations: [
+						{
+							component:
+								<CSDatepicker label="Enter date:" onChange={this.handleChange}/>
+
+						}
+					]
+				},
+				{
+					propName: 'onChangeRaw',
+					variations: [
+						{
+							component:
+								<CSDatepicker label="Enter date:" onChangeRaw={this.handleChangeRaw}/>
+						}
+					]
+				},
+				{
+					propName: 'onCalendarClose',
+					variations: [
+						{
+							component:
+								<CSDatepicker label="Enter date:" onCalendarClose={this.handleCloseCalendar}/>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -485,8 +536,24 @@ class CSDatepickerPreview extends React.Component {
 					description: 'Input name. In a HTML form, only form elements with a name attribute will have their values passed when submitting a form.'
 				},
 				{
+					propertyName: 'onCalendarClose',
+					description: 'Logic for onCalendarClose event'
+				},
+				{
 					propertyName: 'onChange',
 					description: 'Logic for onChange event'
+				},
+				{
+					propertyName: 'onChangeRaw',
+					description: 'Logic for onChangeRaw event'
+				},
+				{
+					propertyName: 'openToDate',
+					description: 'Select a date to open the datepicker to',
+					options: [
+						'e.g.',
+						'new Date("12-20-1992")'
+					]
 				},
 				{
 					propertyName: 'placeholder',
