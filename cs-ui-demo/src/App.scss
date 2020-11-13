@@ -704,8 +704,9 @@ body,
 				margin-block-end: 1rem;
 
 				h4 {
-					margin-block-end: 0.25rem;
 					font-size: 1.125rem;
+					margin-block-end: 0.25rem;
+					word-break: break-all;
 
 					a {
 						color: #0070d2 !important;
