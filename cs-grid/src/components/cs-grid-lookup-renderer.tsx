@@ -3,15 +3,19 @@ import React from 'react';
 import { CSTooltip } from '@cloudsense/cs-ui-components';
 import { CSGridCellRendererProps, LookupProps } from '../interfaces/cs-grid-cell-props';
 import { formatLookupValue } from '../utils/cs-grid-lookup-formatting-helper';
-import { CSGridBaseRenderer } from './cs-grid-base-renderer';
+import {
+	CSGridBaseActionsRenderer,
+	CSGridBaseActionsRendererProps
+} from './cs-grid-base-actions-renderer';
 import { CSGridCellError } from './cs-grid-cell-error';
 
 /**
  * A cell renderer for displaying the currently selected lookup values.
  */
-export class CSGridLookupRenderer extends CSGridBaseRenderer<
+export class CSGridLookupRenderer extends CSGridBaseActionsRenderer<
 	Array<Record<string, string>> | Record<string, string>,
-	CSGridCellRendererProps<Array<Record<string, string>> | Record<string, string>> & LookupProps
+	CSGridBaseActionsRendererProps<Array<Record<string, string>> | Record<string, string>> &
+		LookupProps
 > {
 	constructor(
 		props: CSGridCellRendererProps<Array<Record<string, string>> | Record<string, string>> &
@@ -19,7 +23,15 @@ export class CSGridLookupRenderer extends CSGridBaseRenderer<
 	) {
 		super(props);
 
-		this.state = { value: this.props.value, isLastColumn: this.isLastColumn() };
+		const actions = this.props.getActions ? this.props.getActions(this.props.node.id) : [];
+
+		this.state = {
+			actions,
+			isLastColumn: this.isLastColumn(),
+			noOfInlineIcons: this.props.noOfInlineIcons,
+			useDropdown: false,
+			value: this.props.value
+		};
 	}
 
 	render() {
@@ -28,7 +40,15 @@ export class CSGridLookupRenderer extends CSGridBaseRenderer<
 		}
 
 		const value = formatLookupValue(this.state.value.cellValue, this.props.displayColumn);
-		const contents = <span title={value}>{value}</span>;
+		const contents = (
+			<>
+				<span ref={this.contentsRef} title={value}>
+					{value}
+				</span>
+				<this.Actions />
+			</>
+		);
+
 		let tooltip;
 		if (this.props.getTooltip) {
 			tooltip = this.props.getTooltip(this.props.node.id);

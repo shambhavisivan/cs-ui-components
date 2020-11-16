@@ -1,12 +1,9 @@
 import { ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
 import { shallow } from 'enzyme';
 import React from 'react';
+import { CSGridBaseActionsRendererProps } from '../../src/components/cs-grid-base-actions-renderer';
 import { CSGridRowSelectionRenderer } from '../../src/components/cs-grid-row-selection-renderer';
 import { CellData } from '../../src/interfaces/cs-grid-base-interfaces';
-import {
-	CSGridCellRendererProps,
-	RowSelectionProps
-} from '../../src/interfaces/cs-grid-cell-props';
 import { UserInfo } from '../../src/interfaces/user-info';
 
 describe('CS Grid RowSelection Renderer', () => {
@@ -17,15 +14,7 @@ describe('CS Grid RowSelection Renderer', () => {
 	let colDef: ColDef;
 	let column: Column;
 	let columnApi: ColumnApi;
-	let cSGridCellRendererProps: CSGridCellRendererProps<boolean> & RowSelectionProps;
-	const exampleIcon = (
-		<span
-			className='cs-grid_clear-button'
-			aria-hidden='true'
-			style={{ margin: 0, padding: 0 }}
-		/>
-	);
-	const exampleAction = () => console.error('Delete option called');
+	let cSGridCellRendererProps: CSGridBaseActionsRendererProps<boolean>;
 	const nodeId = 'nodeId';
 
 	beforeEach(() => {
@@ -70,137 +59,10 @@ describe('CS Grid RowSelection Renderer', () => {
 		};
 	});
 
-	test('The row selection renderer should always render nothing if the getActions prop is not provided.', () => {
-		const cellRenderer = shallow(<CSGridRowSelectionRenderer {...cSGridCellRendererProps} />);
-		expect(cellRenderer.equals(null)).toBeTruthy();
-	});
-
-	test('Renders the vertical ellipsis when the getActions prop is provided and the noOfInlineIcons props is not.', () => {
-		cSGridCellRendererProps.getActions = (guid: string) => {
-			return [
-				{
-					action: () => console.error('no inline icon option called'),
-					name: 'no inline icon'
-				}
-			];
-		};
-		const cellRenderer = shallow(<CSGridRowSelectionRenderer {...cSGridCellRendererProps} />);
-
-		const instance = cellRenderer.instance() as CSGridRowSelectionRenderer;
-
-		expect(
-			cellRenderer.equals(
-				<>
-					<button
-						className='row-selection-icons-item row-selection-icons-item-menu'
-						title='Row Actions'
-						onClick={instance.startEditing}
-						id={`icon-item-${nodeId}-dropdown`}
-					>
-						<span id={`icon-menu-${nodeId}`} className='icon-menu' />
-					</button>
-				</>
-			)
-		).toBeTruthy();
-	});
-
-	test('Checks that clicking the start editing button starts editing the cell.', () => {
-		cSGridCellRendererProps.getActions = (guid: string) => {
-			return [
-				{
-					action: () => console.error('no inline icon option called'),
-					name: 'no inline icon'
-				}
-			];
-		};
-		const startEditingCellMock = jest.fn();
-		cSGridCellRendererProps.api.startEditingCell = startEditingCellMock;
-
-		const cellRenderer = shallow(<CSGridRowSelectionRenderer {...cSGridCellRendererProps} />);
-
-		const button = cellRenderer.find('button');
-		button.simulate('click');
-
-		expect(startEditingCellMock.mock.calls.length).toEqual(1);
-	});
-
-	test('The refresh function should do nothing and then always return true.', () => {
-		const cellRenderer = shallow(<CSGridRowSelectionRenderer {...cSGridCellRendererProps} />);
-		const instance = cellRenderer.instance() as CSGridRowSelectionRenderer;
-		expect(instance.refresh()).toBeTruthy();
-	});
-
-	test('Renders the vertical ellipsis and an inline icon when the getActions prop returns 2 actions and the noOfInlineIcons is set to 1.', () => {
-		cSGridCellRendererProps.getActions = (guid: string) => {
-			return [
-				{
-					action: exampleAction,
-					icon: exampleIcon,
-					name: 'Delete'
-				},
-				{
-					action: () => console.error('no inline icon option called'),
-					name: 'no inline icon'
-				}
-			];
-		};
-		cSGridCellRendererProps.noOfInlineIcons = 1;
-
+	test('The row selection renderer should always pass the render over to the actions function.', () => {
 		const cellRenderer = shallow(<CSGridRowSelectionRenderer {...cSGridCellRendererProps} />);
 		const instance = cellRenderer.instance() as CSGridRowSelectionRenderer;
 
-		expect(
-			cellRenderer.equals(
-				<>
-					<button
-						className='row-selection-icons-item'
-						title='Delete'
-						onClick={exampleAction}
-						id={`icon-item-${nodeId}-0`}
-					>
-						<div className='cs-btn-icon'>{exampleIcon}</div>
-					</button>
-
-					<button
-						className='row-selection-icons-item row-selection-icons-item-menu'
-						title='Row Actions'
-						onClick={instance.startEditing}
-						id={`icon-item-${nodeId}-dropdown`}
-					>
-						<span id={`icon-menu-${nodeId}`} className='icon-menu' />
-					</button>
-				</>
-			)
-		).toBeTruthy();
-	});
-
-	test('Renders just the inline icon when the getActions prop returns 1 action and the noOfInlineIcons is set to 1.', () => {
-		cSGridCellRendererProps.getActions = (guid: string) => {
-			return [
-				{
-					action: exampleAction,
-					icon: exampleIcon,
-					name: 'Delete'
-				}
-			];
-		};
-		cSGridCellRendererProps.noOfInlineIcons = 1;
-
-		const cellRenderer = shallow(<CSGridRowSelectionRenderer {...cSGridCellRendererProps} />);
-
-		expect(
-			cellRenderer.equals(
-				<>
-					<button
-						className='row-selection-icons-item'
-						title='Delete'
-						onClick={exampleAction}
-						id={`icon-item-${nodeId}-0`}
-					>
-						<div className='cs-btn-icon'>{exampleIcon}</div>
-					</button>
-				</>
-			)
-		).toBeTruthy();
+		expect(cellRenderer.equals(<instance.Actions />)).toBeTruthy();
 	});
 });

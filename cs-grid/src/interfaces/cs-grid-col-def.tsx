@@ -4,6 +4,7 @@ import {
 } from '../components/cs-grid-row-validation-renderer';
 import { CellData, IsColumnFunc, SuppressKeyboardEventParams } from './cs-grid-base-interfaces';
 import {
+	ActionProps,
 	BaseProps,
 	DateProps,
 	DateTimeProps,
@@ -12,7 +13,6 @@ import {
 	IntegerProps,
 	LookupProps,
 	PicklistProps,
-	RowSelectionProps,
 	RowValidationProps
 } from './cs-grid-cell-props';
 import { CSGridSortDirection } from './cs-grid-data-source-api';
@@ -42,7 +42,8 @@ interface IntegerColDef extends BaseColDef<string | number>, IntegerProps {
 
 interface LookupColDef
 	extends BaseColDef<Array<Record<string, string>> | Record<string, string>>,
-		LookupProps {
+		LookupProps,
+		ActionProps<Array<Record<string, string>> | Record<string, string>> {
 	cellType: 'Lookup' | 'MultiSelectLookup';
 }
 
@@ -80,7 +81,7 @@ interface RowValidationColDef
 	cellType: 'RowValidation';
 }
 
-interface RowSelectionColDef extends BaseColDef<boolean>, RowSelectionProps {
+interface RowSelectionColDef extends BaseColDef<boolean>, ActionProps<boolean> {
 	cellType: 'RowSelection';
 }
 

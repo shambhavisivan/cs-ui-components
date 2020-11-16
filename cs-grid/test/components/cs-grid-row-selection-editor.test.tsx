@@ -4,9 +4,9 @@ import React from 'react';
 import { CSGridRowSelectionEditor } from '../../src/components/cs-grid-row-selection-editor';
 import { CellData } from '../../src/interfaces/cs-grid-base-interfaces';
 import {
-	CSGridCellEditorProps,
-	RowSelectionAction,
-	RowSelectionProps
+	ActionProps,
+	CSGridAction,
+	CSGridCellEditorProps
 } from '../../src/interfaces/cs-grid-cell-props';
 import { UserInfo } from '../../src/interfaces/user-info';
 import { DefaultIcon } from '../../src/utils/cs-grid-row-selection-helper';
@@ -21,7 +21,7 @@ describe('CS Grid Row Selection Editor', () => {
 	let colDef: ColDef;
 	let column: Column;
 	let columnApi: ColumnApi;
-	let cSGridCellEditorProps: CSGridCellEditorProps<boolean> & RowSelectionProps;
+	let cSGridCellEditorProps: CSGridCellEditorProps<boolean> & ActionProps<boolean>;
 
 	let stopEditingMock: jest.Mock<any, any>;
 
@@ -51,7 +51,7 @@ describe('CS Grid Row Selection Editor', () => {
 			context: {},
 			data: {},
 			eGridCell: { className: 'className' } as any,
-			getActions: () => [],
+			getActions: (guid: string) => [],
 			node: new RowNode(),
 			rowIndex: 0,
 			stopEditing: stopEditingMock,
@@ -98,11 +98,11 @@ describe('CS Grid Row Selection Editor', () => {
 			</span>
 		);
 
-		const action1: RowSelectionAction = {
+		const action1: CSGridAction<boolean> = {
 			action: undefined,
 			name: 'NoIcon'
 		};
-		const action2: RowSelectionAction = {
+		const action2: CSGridAction<boolean> = {
 			action: () => console.error('edit option called'),
 			icon,
 			name: 'Edit'

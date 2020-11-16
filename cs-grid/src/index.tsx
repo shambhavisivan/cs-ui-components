@@ -236,6 +236,20 @@ export class App extends React.Component<object, AppState> {
 				comparator: (a: CellData<any>, b: CellData<any>) =>
 					CSGridLookupComparator(a, b, this.lookupDisplayColumn),
 				displayColumn: this.lookupDisplayColumn,
+				getActions: (guid: string) => {
+					return [
+						{
+							action: (rowGUID: string, currentValue: any) =>
+								console.log(
+									`Edit option called with rowGUID=${rowGUID} currentValue= ${JSON.stringify(
+										currentValue
+									)}`
+								),
+							icon: <span className='icon-error' aria-hidden='true' />,
+							name: 'Edit'
+						}
+					];
+				},
 				getLookupValues,
 				guidColumn: 'text2.name.thirdPart',
 				header: {

@@ -104,156 +104,156 @@
 
 			+ .ag-cell-value .ag-react-container {
 				display: inline-flex;
+			}
+		}
 
-				.row-selection-icons-item {
-					display: inline-flex;
-					justify-content: center;
-					align-items: center;
-					position: relative;
-					padding: 0;
-					margin: 0;
-					min-width: 2rem; // IE11 Support
-					height: 2rem;
-					cursor: pointer;
-					border-radius: 0;
-					user-select: none;
-					border: none;
-					background: none;
-					text-decoration: none;
+		.row-selection-icons-item {
+			display: inline-flex;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+			padding: 0;
+			margin: 0;
+			min-width: 2rem; // IE11 Support
+			height: 2rem;
+			cursor: pointer;
+			border-radius: 0;
+			user-select: none;
+			border: none;
+			background: none;
+			text-decoration: none;
 
-					&::before, &::after { // Background and border
-						content: "";
-						position: absolute;
-						top: 0;
-						right: 0;
-						left: 0;
-						bottom: 0;
-						border-radius: 0;
-						pointer-events: none;
-					}
+			&::before, &::after { // Background and border
+				content: "";
+				position: absolute;
+				top: 0;
+				right: 0;
+				left: 0;
+				bottom: 0;
+				border-radius: 0;
+				pointer-events: none;
+			}
 
-					&::before {
-						@include sbg(--csgrid-button-bg);
-						clip-path: inset(1px 1px 1px 1px); // Fix for background overflowing borders
-					}
+			&::before {
+				@include sbg(--csgrid-button-bg);
+				clip-path: inset(1px 1px 1px 1px); // Fix for background overflowing borders
+			}
 
-					&::after {
-						@include css4 {
-							border: 1px solid cvar(--csgrid-button-br);
-						}
-					}
-
-					.icon-menu,
-					.cs-btn-icon {
-						display: inline-flex;
-						align-items: center;
-						justify-content: center;
-						height: calc(2rem - 2px);
-						min-width: calc(2rem - 2px);
-						width: calc(2rem - 2px);
-						z-index: 2;
-						pointer-events: none;
-						border-radius: 0;
-						border: none;
-						background: none;
-
-						span {
-							display: flex;
-							align-items: center;
-							justify-content: center;
-							height: 1rem;
-							width: 1rem;
-							transition: transform ease 100ms;
-							padding-top: 1px;
-
-							&::before {
-								@include sc(--csgrid-button-c);
-							}
-						}
-					}
-
-					.icon-menu {
-						pointer-events: all;
-					}
-
-					&:hover::before {
-						@include sbg(--csgrid-button-hover-bg);
-					}
-
-					&:focus-within,
-					&:focus {
-						outline: none;
-						position: relative;
-						z-index: 1;
-						&::after {
-							@include css4 {
-								box-shadow: 0 0 3px cvar(--csgrid-button-box);
-							}
-						}
-					}
-
-					&:active::after {
-						@include css4 {
-							border: 1px solid cvar(--csgrid-button-active-br);
-						}
-					}
-
-					&:hover .cs-btn-icon {
-						@include sf(--csgrid-button-icon-hover-c);
-					}
-
-					&[disabled] {
-						cursor: default;
-
-						&:hover::before {
-							@include sbg(--csgrid-button-bg);
-						}
-
-						.cs-btn-icon span::before {
-							@include sc(--csgrid-button-disabled-c);
-						}
-					}
-
-					&-menu:only-child {
-						&::before {
-							background: none;
-						}
-						&::after {
-							border: none;
-						}
-					}
-				}
-
-				.row-selection-icons-item:not(:first-child) {
-					margin-left: -1px;
-				}
-
-				.row-selection-icons-item:first-child {
-					border-top-left-radius: 0.25rem;
-					border-bottom-left-radius: 0.25rem;
-
-					&::before,
-					&::after {
-						border-top-left-radius: 0.25rem;
-						border-bottom-left-radius: 0.25rem;
-					}
-				}
-
-				.row-selection-icons-item:last-child {
-					border-top-right-radius: 0.25rem;
-					border-bottom-right-radius: 0.25rem;
-
-					&::before,
-					&::after {
-						border-top-right-radius: 0.25rem;
-						border-bottom-right-radius: 0.25rem;
-					}
-				}
-
-				.row-selection-icons-item:only-child {
-					border-radius: 0.25rem;
+			&::after {
+				@include css4 {
+					border: 1px solid cvar(--csgrid-button-br);
 				}
 			}
+
+			.icon-menu,
+			.cs-btn-icon {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				height: calc(2rem - 2px);
+				min-width: calc(2rem - 2px);
+				width: calc(2rem - 2px);
+				z-index: 2;
+				pointer-events: none;
+				border-radius: 0;
+				border: none;
+				background: none;
+
+				span {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					height: 1rem;
+					width: 1rem;
+					transition: transform ease 100ms;
+					padding-top: 1px;
+
+					&::before {
+						@include sc(--csgrid-button-c);
+					}
+				}
+			}
+
+			.icon-menu {
+				pointer-events: all;
+			}
+
+			&:hover::before {
+				@include sbg(--csgrid-button-hover-bg);
+			}
+
+			&:focus-within,
+			&:focus {
+				outline: none;
+				position: relative;
+				z-index: 1;
+				&::after {
+					@include css4 {
+						box-shadow: 0 0 3px cvar(--csgrid-button-box);
+					}
+				}
+			}
+
+			&:active::after {
+				@include css4 {
+					border: 1px solid cvar(--csgrid-button-active-br);
+				}
+			}
+
+			&:hover .cs-btn-icon {
+				@include sf(--csgrid-button-icon-hover-c);
+			}
+
+			&[disabled] {
+				cursor: default;
+
+				&:hover::before {
+					@include sbg(--csgrid-button-bg);
+				}
+
+				.cs-btn-icon span::before {
+					@include sc(--csgrid-button-disabled-c);
+				}
+			}
+
+			&-menu:only-child {
+				&::before {
+					background: none;
+				}
+				&::after {
+					border: none;
+				}
+			}
+		}
+
+		.row-selection-icons-item:not(:first-child) {
+			margin-left: -1px;
+		}
+
+		.row-selection-icons-item:first-child {
+			border-top-left-radius: 0.25rem;
+			border-bottom-left-radius: 0.25rem;
+
+			&::before,
+			&::after {
+				border-top-left-radius: 0.25rem;
+				border-bottom-left-radius: 0.25rem;
+			}
+		}
+
+		.row-selection-icons-item:last-child {
+			border-top-right-radius: 0.25rem;
+			border-bottom-right-radius: 0.25rem;
+
+			&::before,
+			&::after {
+				border-top-right-radius: 0.25rem;
+				border-bottom-right-radius: 0.25rem;
+			}
+		}
+
+		.row-selection-icons-item:only-child {
+			border-radius: 0.25rem;
 		}
 
 		.ag-checkbox-checked,

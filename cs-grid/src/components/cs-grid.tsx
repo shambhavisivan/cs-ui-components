@@ -174,6 +174,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 	private gridApi: GridApi;
 	private defaultPageSizes: Array<number> = [10, 20, 50, 100];
 	private rowSelectionColumns: Array<string> = [];
+	private lookupColumns: Array<string> = [];
 	private dateColumns: Map<string, UserInfo> = new Map();
 	private dateTimeColumns: Map<string, UserInfo> = new Map();
 
@@ -728,8 +729,13 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 	private onColumnResized = (event: ColumnResizedEvent) => {
 		if (event.finished && event.column) {
 			const columnId = event.column.getColDef().field;
-			if (this.gridApi && this.rowSelectionColumns.includes(columnId)) {
-				this.gridApi.refreshCells({ force: true, columns: this.rowSelectionColumns });
+			if (this.gridApi) {
+				if (
+					this.rowSelectionColumns.includes(columnId) ||
+					this.lookupColumns.includes(columnId)
+				) {
+					this.gridApi.refreshCells({ force: true, columns: [columnId] });
+				}
 			}
 			if (this.props.onColumnResized) {
 				this.props.onColumnResized(columnId, event.column.getActualWidth());
@@ -908,6 +914,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		const agGridColDefs: Array<AgGridColDef> = [];
 
 		const rowSelectionColumns: Array<string> = [];
+		const lookupColumns: Array<string> = [];
 		const dateColumns: Map<string, UserInfo> = new Map();
 		const dateTimeColumns: Map<string, UserInfo> = new Map();
 
@@ -1003,6 +1010,39 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			this.addIfDefined(cellParams, 'getTooltip', columnDef.getTooltip);
 			this.addIfDefined(cellParams, 'cellType', columnDef.cellType);
 
+			if (
+				columnDef.cellType === 'RowSelection' ||
+				columnDef.cellType === 'Lookup' ||
+				columnDef.cellType === 'MultiSelectLookup'
+			) {
+				if (columnDef.getActions !== undefined) {
+					const settings: AgGridColDef = {};
+					settings.suppressKeyboardEvent = (params: SuppressKeyboardEventParams) => {
+						return (
+							params.event.which === KeyCode.KEY_ENTER ||
+							params.event.which === KeyCode.KEY_RETURN ||
+							(params.editing &&
+								(params.event.which === KeyCode.KEY_TAB ||
+									params.event.which === KeyCode.KEY_UP ||
+									params.event.which === KeyCode.KEY_DOWN)) ||
+							(params.column.getColDef().field === columnDef.name &&
+								(params.event.which === KeyCode.KEY_TAB ||
+									params.event.which === KeyCode.KEY_LEFT ||
+									params.event.which === KeyCode.KEY_RIGHT))
+						);
+					};
+
+					agGridColDef = { ...settings, ...agGridColDef };
+				}
+
+				// Lookup button are all inline.
+				if (columnDef.cellType === 'Lookup' || columnDef.cellType === 'MultiSelectLookup') {
+					cellParams.noOfInlineIcons = 100;
+				}
+
+				this.addIfDefined(cellParams, 'getActions', columnDef.getActions);
+			}
+
 			if (columnDef.cellType === 'Picklist' || columnDef.cellType === 'MultiSelectPicklist') {
 				agGridColDef.cellEditor = 'picklistEditor';
 				agGridColDef.cellRenderer = 'picklistRenderer';
@@ -1028,6 +1068,8 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				this.addIfDefined(cellParams, 'displayColumn', columnDef.displayColumn);
 				this.addIfDefined(cellParams, 'guidColumn', columnDef.guidColumn);
 				this.addIfDefined(cellParams, 'getLookupValues', columnDef.getLookupValues);
+
+				lookupColumns.push(columnDef.name);
 			}
 
 			if (columnDef.cellType === 'Integer') {
@@ -1153,36 +1195,14 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 					minWidth: 40,
 					resizable: false,
 					sortable: false,
-					width: 40
+					width: columnDef.getActions !== undefined ? 40 : 80
 				};
-
-				if (columnDef.getActions !== undefined) {
-					defaultSettings.width = 80;
-
-					defaultSettings.suppressKeyboardEvent = (
-						params: SuppressKeyboardEventParams
-					) => {
-						return (
-							params.event.which === KeyCode.KEY_ENTER ||
-							params.event.which === KeyCode.KEY_RETURN ||
-							(params.editing &&
-								(params.event.which === KeyCode.KEY_TAB ||
-									params.event.which === KeyCode.KEY_UP ||
-									params.event.which === KeyCode.KEY_DOWN)) ||
-							(params.column.getColDef().field === columnDef.name &&
-								(params.event.which === KeyCode.KEY_TAB ||
-									params.event.which === KeyCode.KEY_LEFT ||
-									params.event.which === KeyCode.KEY_RIGHT))
-						);
-					};
-				}
-
-				this.addIfDefined(cellParams, 'getActions', columnDef.getActions);
-				this.addIfDefined(cellParams, 'noOfInlineIcons', columnDef.noOfInlineIcons);
 
 				agGridColDef = { ...defaultSettings, ...agGridColDef };
 
 				rowSelectionColumns.push(columnDef.name);
+
+				this.addIfDefined(cellParams, 'noOfInlineIcons', columnDef.noOfInlineIcons);
 			}
 
 			if (columnDef.cellType === 'Custom') {
@@ -1209,6 +1229,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		}
 
 		this.rowSelectionColumns = rowSelectionColumns;
+		this.lookupColumns = lookupColumns;
 		this.dateColumns = dateColumns;
 		this.dateTimeColumns = dateTimeColumns;
 

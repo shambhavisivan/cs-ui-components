@@ -3,32 +3,35 @@ import React from 'react';
 import { Column } from 'ag-grid-community';
 
 export function noOfVisibleButtons(
-	rowId: string,
+	id: string,
 	column: Column,
 	noOfInlineIcons: number,
-	totalNoOfButtons: number
+	totalNoOfButtons: number,
+	useDropdown: boolean,
+	contentsWidth: number
 ) {
 	let firstIcon: HTMLElement = document.querySelectorAll<HTMLElement>(
-		`.cs-grid_app-wrapper .cs-grid_main .ag-react-container #icon-item-${rowId}-0`
+		`.cs-grid_app-wrapper .cs-grid_main .ag-react-container #icon-item-${id}-0`
 	)[0];
 
 	if (!firstIcon) {
 		firstIcon = document.querySelectorAll<HTMLElement>(
-			`.cs-grid_app-wrapper .cs-grid_main .ag-react-container #icon-item-${rowId}-dropdown`
+			`.cs-grid_app-wrapper .cs-grid_main .ag-react-container #icon-item-${id}-dropdown`
 		)[0];
 	}
 
 	if (firstIcon) {
 		const width = firstIcon.getBoundingClientRect().width;
-		const columnWidth =
-			column.getRight() - firstIcon.parentElement.getBoundingClientRect().left;
+		const columnWidth = column.getRight() - column.getLeft() - contentsWidth;
 
 		const dropDownVisible = totalNoOfButtons > noOfInlineIcons;
-		const noOfButtons = dropDownVisible ? noOfInlineIcons + 1 : noOfInlineIcons;
+		const noOfButtons = dropDownVisible && useDropdown ? noOfInlineIcons + 1 : noOfInlineIcons;
 		if (width * noOfButtons < columnWidth) {
 			return noOfInlineIcons;
 		} else {
-			let ableToFit = Math.floor(columnWidth / width) - 1;
+			let ableToFit = Math.floor(columnWidth / width);
+			ableToFit = useDropdown ? ableToFit - 1 : ableToFit;
+
 			if (ableToFit < 0) {
 				ableToFit = 0;
 			}

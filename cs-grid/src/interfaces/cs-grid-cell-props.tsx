@@ -42,27 +42,27 @@ export interface IntegerProps {
 }
 
 /**
- * minSearchTermLength - The minimum number of characters needed before the lookup will trigger, 0 by default.
  * displayColumn - The column to display in the renderer.
  * guidColumn - A unique ID for the row, this value will not be shown in the grid.
+ * minSearchTermLength - The minimum number of characters needed before the lookup will trigger, 0 by default.
  * getLookupValues - Returns the latest lookup values depending on the search term input.
  */
 export interface LookupProps {
-	minSearchTermLength?: number;
 	displayColumn: string;
 	guidColumn: string;
+	minSearchTermLength?: number;
 	getLookupValues(searchTerm: string, guid: string): Promise<CSGridLookupSearchResult>;
 }
 
-export interface RowSelectionProps {
+export interface ActionProps<T> {
 	noOfInlineIcons?: number;
-	getActions?(guid: string): Array<RowSelectionAction>;
+	getActions?(guid: string): Array<CSGridAction<T>>;
 }
 
-export interface RowSelectionAction {
+export interface CSGridAction<T> {
 	name: string;
 	icon?: Icon;
-	action: () => void;
+	action: (guid: string, currentValue: T) => void;
 	disabled?: boolean;
 }
 

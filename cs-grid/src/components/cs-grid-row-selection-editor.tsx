@@ -3,28 +3,28 @@ import React from 'react';
 import { CSIcon } from '@cloudsense/cs-ui-components';
 import { CSGridCellEditor, CSGridCellEditorState } from '../interfaces/cs-grid-base-interfaces';
 import {
+	ActionProps,
+	CSGridAction,
 	CSGridCellEditorProps,
-	isStandardIcon,
-	RowSelectionAction,
-	RowSelectionProps
+	isStandardIcon
 } from '../interfaces/cs-grid-cell-props';
 import { onKeyPressInAList } from '../utils/cs-grid-on-key-press';
 import { DefaultIcon, noOfVisibleButtons } from '../utils/cs-grid-row-selection-helper';
 
 interface CSGridRowSelectionEditorState extends CSGridCellEditorState<boolean> {
-	actions: Array<RowSelectionAction>;
+	actions: Array<CSGridAction<boolean>>;
 }
 
 export class CSGridRowSelectionEditor
 	extends React.Component<
-		CSGridCellEditorProps<boolean> & RowSelectionProps,
+		CSGridCellEditorProps<boolean> & ActionProps<boolean>,
 		CSGridRowSelectionEditorState
 	>
 	implements CSGridCellEditor {
 	dropDownRefs: Array<HTMLButtonElement> = [];
 	focusedIndex = 0;
 
-	constructor(props: CSGridCellEditorProps<boolean> & RowSelectionProps) {
+	constructor(props: CSGridCellEditorProps<boolean> & ActionProps<boolean>) {
 		super(props);
 
 		const actions = this.props.getActions(this.props.node.id);
@@ -37,7 +37,9 @@ export class CSGridRowSelectionEditor
 				this.props.node.id,
 				this.props.column,
 				maxNoOfInlineIcons,
-				actions.length
+				actions.length,
+				true,
+				0
 			);
 		}
 
@@ -151,8 +153,8 @@ export class CSGridRowSelectionEditor
 		);
 	}
 
-	private actionSelected = (action: () => void) => {
-		action();
+	private actionSelected = (action: (guid: string, currentValue: any) => void) => {
+		action(this.props.node.id, this.state.value?.cellValue);
 		this.props.stopEditing();
 	};
 
