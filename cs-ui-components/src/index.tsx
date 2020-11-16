@@ -1,6 +1,6 @@
 // Import SVG sprites
-import SldsIconSvg from './icons/slds-icons.svg';
-import CsIconSvg from './icons//cs-icons.svg';
+import SldsIconSvg from '!raw-loader!./icons/slds-icons.svg';
+import CsIconSvg from '!raw-loader!./icons//cs-icons.svg';
 
 // Alternative to external sprite URL which causes CORS issues in Safari
 if (document.readyState !== 'loading') {

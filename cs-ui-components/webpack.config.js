@@ -44,7 +44,7 @@ module.exports = {
 			},
 			{
 				test: /\.svg$/,
-				loader: 'raw-loader'
+				loader: 'svg-url-loader'
 			},
 			{
 				test: /\.(woff|woff2|eot|ttf|otf)$/,
