@@ -4,11 +4,11 @@ import classNames from 'classnames';
 
 export type CSButtonIconDisplay = 'default' | 'icon-only' | 'no-icon';
 export type CSButtonIconPosition = 'left' | 'right';
+export type CSButtonRole = 'menuitem';
 export type CSButtonSize = 'xsmall' | 'small' | 'normal' | 'large';
 export type CSButtonStyle = 'initial' | 'brand' | 'outline';
 export type CSButtonType = 'default' | 'error' | 'success' | 'transparent';
 export type CSButtonWidth = 'auto' | 'max';
-export type CSButtonRole = 'menuitem';
 
 export interface CSButtonProps {
 	ariaExpanded?: boolean;

@@ -20,10 +20,10 @@ function getSpriteIcons() {
 	document.body.insertBefore(spriteContainer, document.body.firstChild);
 }
 
-import CSAlert, { CSAlertStyleType, CSAlertTextAlign, CSAlertVariant } from './components/CSAlert';
-import CSButton, { CSButtonIconDisplay, CSButtonIconPosition, CSButtonSize,	CSButtonStyle,	CSButtonType, CSButtonWidth } from './components/CSButton';
+import CSAlert, { CSAlertStyleFormat, CSAlertStyleType, CSAlertTextAlign, CSAlertVariant } from './components/CSAlert';
+import CSButton, { CSButtonIconDisplay, CSButtonIconPosition, CSButtonSize, CSButtonStyle, CSButtonType, CSButtonWidth, CSButtonRole } from './components/CSButton';
 import CSButtonDropdown, { CSButtonDropdownAlign, CSButtonDropdownIconPosition, CSButtonDropdownSize, CSButtonDropdownStyle, CSButtonDropdownType } from './components/CSButtonDropdown';
-import CSButtonGroup from './components/CSButtonGroup';
+import CSButtonGroup, { CSButtonGroupMargin } from './components/CSButtonGroup';
 import CSCard from './components/card/CSCard';
 import CSCardBody from './components/card/CSCardBody';
 import CSCardFooter from './components/card/CSCardFooter';
@@ -32,7 +32,7 @@ import CSCheckbox, { CSCheckboxBorderType, CSCheckboxVariant } from './component
 import CSChip, { CSChipVariant, CSChipVariantStyle } from './components/CSChip';
 import CSCustomSelect, { CSCustomSelectBorderType } from './components/custom-select/CSCustomSelect';
 import CSDatepicker, { CSDatepickerDropdownMode } from './components/CSDatepicker';
-import CSDateTimePicker from './components/CSDateTimePicker';
+import CSDateTimePicker, { CSDateTimePickerDropdownMode } from './components/CSDateTimePicker';
 import CSDivider, { CSDividerVariant } from './components/CSDivider';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './components/CSFieldErrorMsg';
 import CSIcon, { CSIconOrigin } from './components/CSIcon';
@@ -65,7 +65,7 @@ import CSSelect, { CSSelectBorderType } from './components/CSSelect';
 import CSSidebarList from './components/CSSidebarList';
 import CSSidebarListItem from './components/CSSidebarListItem';
 import CSSkipLink from './components/CSSkipLink';
-import CSSlider from './components/CSSlider';
+import CSSlider, { CSSliderSize } from './components/CSSlider';
 import CSSpinner, { CSSpinnerColor,	CSSpinnerSize } from './components/CSSpinner';
 import CSTab, { CSTabStatus } from './components/CSTab';
 import CSTabGroup, { CSTabGroupVariant } from './components/CSTabGroup';
@@ -85,6 +85,7 @@ import CSToastApi from './api/CSToastAPI';
 
 export {
 	CSAlert,
+	CSAlertStyleFormat,
 	CSAlertStyleType,
 	CSAlertTextAlign,
 	CSAlertVariant,
@@ -96,8 +97,10 @@ export {
 	CSButtonDropdownStyle,
 	CSButtonDropdownType,
 	CSButtonGroup,
+	CSButtonGroupMargin,
 	CSButtonIconDisplay,
 	CSButtonIconPosition,
+	CSButtonRole,
 	CSButtonSize,
 	CSButtonStyle,
 	CSButtonType,
@@ -117,6 +120,7 @@ export {
 	CSDatepicker,
 	CSDatepickerDropdownMode,
 	CSDateTimePicker,
+	CSDateTimePickerDropdownMode,
 	CSDivider,
 	CSDividerVariant,
 	CSFieldErrorMsg,
@@ -167,6 +171,7 @@ export {
 	CSSidebarListItem,
 	CSSkipLink,
 	CSSlider,
+	CSSliderSize,
 	CSSpinner,
 	CSSpinnerColor,
 	CSSpinnerSize,

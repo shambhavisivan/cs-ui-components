@@ -1,9 +1,6 @@
 import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 
-import SldsIconSvg from '../icons/slds-icons.svg';
-import CsIconSvg from '../icons/cs-icons.svg';
-
 export type CSIconOrigin = 'slds' | 'cs';
 
 export interface CSIconProps {
