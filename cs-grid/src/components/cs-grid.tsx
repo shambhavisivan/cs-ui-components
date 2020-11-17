@@ -918,6 +918,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			this.addIfDefined(agGridColDef, 'comparator', columnDef.comparator);
 			this.addIfDefined(agGridColDef, 'editable', columnDef.editable);
 			this.addIfDefined(agGridColDef, 'field', columnDef.name);
+			this.addIfDefined(agGridColDef, 'colId', columnDef.name);
 			this.addIfDefined(agGridColDef, 'filter', columnDef.hasFilter);
 
 			if (this.props.multiSelect) {

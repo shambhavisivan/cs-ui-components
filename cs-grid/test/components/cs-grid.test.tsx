@@ -1010,4 +1010,15 @@ describe('rowdata Related', () => {
 			);
 		}
 	});
+
+	test('ColId should be present on all column definitions', () => {
+		const csGridShallow = shallow<CSGrid>(<CSGrid {...csGridBaseProps} />);
+
+		expect(
+			csGridShallow
+				.find(AgGridReact)
+				.props()
+				.columnDefs.every((columnDef: ColDef) => ( columnDef.colId && columnDef.colId == columnDef.field ))
+		).toBeTruthy();
+	});
 });
