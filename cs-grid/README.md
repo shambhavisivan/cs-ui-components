@@ -16,7 +16,13 @@ Besides the standard set of features you'd expect from any grid cs-grid includes
 
 Release Notes
 ------------------
-
+####1.2.37
+ * Add colId to all column definitions to fix problems with aggrid column state caching
+ * onSelectionChange interface corrected.
+ * add extra undefined checks for props value.
+ * select all checkbox hidden if multi select set to false.
+ * dot notation is now valid in column names.
+ * non-editable dates no longer show remove button.
 ####1.2.36
  * Included `customSort` as a new prop to achieve sorting.
 ####1.2.35
