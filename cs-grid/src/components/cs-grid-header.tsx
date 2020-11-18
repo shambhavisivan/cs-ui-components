@@ -40,7 +40,7 @@ export class CSGridHeader extends React.Component<CSGridHeaderProps, CSGridHeade
 		this.props.column.addEventListener('sortChanged', this.onSortChanged);
 		this.props.column.addEventListener('filterChanged', this.onFilterChanged);
 
-		const sort: string = props.column.getSort();
+		const sort: string = props.column.getColDef().sort;
 		const sorted: SortOrder = sort ? (sort as SortOrder) : '';
 		this.state = {
 			filtered: this.props.column.isFilterActive(),
