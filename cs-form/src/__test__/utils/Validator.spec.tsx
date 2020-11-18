@@ -1,7 +1,7 @@
 import { Validator } from '../../utils/Validator';
 import { FormDescriptor } from '../../types/FormDescriptor';
 import { FormSettings } from '../../CSForm';
-import { applyDefaults } from '../../utils/FormDescriptorUtils';
+import { applyDefaults, findFieldInFormDescriptor } from '../../utils/FormDescriptorUtils';
 import { FormLabels } from '../..';
 
 const formDescriptor: FormDescriptor = {
@@ -24,7 +24,8 @@ const formDescriptor: FormDescriptor = {
 				},
 				{
 					name: 'SimpleString',
-					fieldType: 'STRING'
+					fieldType: 'STRING',
+					label: 'SimpleString'
 				},
 				{
 					name: 'RestrictedString',
@@ -114,4 +115,22 @@ describe('STRING validations', () => {
 
 		expect(validator.validate({ MultiRegexValidationString: 'FailAllValidations' })).toEqual(expected);
 	});
+});
+
+describe('setDescriptor', () => {
+	it('should pickup changes in the descriptor before running validation', () => {
+		expect(validator.validate({ SimpleString: '123.45' })).toEqual({});
+
+		const field = findFieldInFormDescriptor(formDescriptor, 'SimpleString');
+		if (field) {
+			field.mandatory = 'true';
+		}
+
+		validator.setDescriptor(formDescriptor);
+
+		const result: Record<string, Array<string>> = validator.validate({ SimpleString: '' });
+
+		expect(result.SimpleString).toEqual(['Field "SimpleString" is mandatory']);
+	});
+
 });

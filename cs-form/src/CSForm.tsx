@@ -199,6 +199,9 @@ export class CSForm extends React.Component<FormProps, {}> {
 	}
 
 	render() {
+		const descriptor: FormDescriptor = applyDefaults(this.props.descriptor);
+		this.validator.setDescriptor(descriptor);
+
 		return this.props.wrapper.wrapForm(
 			<>
 				<ErrorPanel
@@ -206,7 +209,7 @@ export class CSForm extends React.Component<FormProps, {}> {
 					errors={this.props.externalValidationErrors ? this.props.externalValidationErrors.formErrors : []}
 				/>
 			</>,
-			<>{applyDefaults(this.props.descriptor).panels.map(this.createFormPanel)}</>,
+			<>{descriptor.panels.map(this.createFormPanel)}</>,
 			<>
 				<Button
 					enabled label={this.props.labels.button_save}

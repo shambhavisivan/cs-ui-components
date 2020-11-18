@@ -17,6 +17,10 @@ export class Validator {
 		private formLabels: FormLabels
 	) { }
 
+	setDescriptor(value: FormDescriptor) {
+		this.descriptor = value;
+	}
+
 	validate = (data: Record<string, any>): Record<string, Array<string>> => {
 		return Object.keys(data)
 			.map(name => this.validateField(data, name, data[name]))
