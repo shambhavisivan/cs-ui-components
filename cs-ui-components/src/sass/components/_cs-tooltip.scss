@@ -11,9 +11,9 @@
 	font-size: 0.75rem;
 	width: var(--cs-tooltip-width, max-content);
 	height: var(--cs-tooltip-height, auto);
-	max-width: var(--cs-tooltip-width, 20rem);
+	max-width: var(--cs-tooltip-width, max-content);
 	min-height: 2rem;
-	padding: 0.5rem 0.75rem;
+	padding: var(--cs-tooltip-padding, 0.5rem 0.75rem);
 	position: fixed;
 	transform: translate3d(0, 0, 0); // Fix safari text blur
 	transition: 0.25s;
@@ -70,6 +70,41 @@
 		&::before {
 			@include css4 {
 				border-bottom-color: cvar(--cs-tooltip-success-bg);
+			}
+		}
+	}
+
+	&.cs-tooltip-basic {
+		@include sbg(--cs-tooltip-basic-bg);
+		&::before {
+			border-style: solid;
+			border-width: 7px 7px 0 7px;
+			@include sbg(--cs-transparent);
+			@include css4 {
+				border-color: cvar(--cs-tooltip-body-bg) cvar(--cs-transparent) cvar(--cs-transparent) cvar(--cs-transparent);
+				filter: drop-shadow(0px 2px 1px cvar(--cs-shadow-medium));
+			}
+		}
+		&.cs-tooltip-top-right,
+		&.cs-tooltip-top-left,
+		&.cs-tooltip-top-center {
+			@include css4 {
+				box-shadow: 0 2px 3px 0 cvar(--cs-shadow-medium);
+			}
+			&::before {
+				top: 100%;
+				transform: rotate(0deg);
+			}
+		}
+		&.cs-tooltip-bottom-right,
+		&.cs-tooltip-bottom-left,
+		&.cs-tooltip-bottom-center {
+			@include css4 {
+				box-shadow: 0 -2px 3px 0 cvar(--cs-shadow-medium);
+			}
+			&::before {
+				bottom: 100%;
+				transform: rotate(180deg);
 			}
 		}
 	}
@@ -160,9 +195,9 @@
 			}
 		}
 
-		&.cs-tooltip-top-left:before,
-		&.cs-tooltip-top-right:before,
-		&.cs-tooltip-top-center:before {
+		&.cs-tooltip-top-left::before,
+		&.cs-tooltip-top-right::before,
+		&.cs-tooltip-top-center::before {
 			border-style: solid;
 			border-width: 8px 8px 0 8px;
 			top: 100%;
@@ -173,15 +208,15 @@
 				filter: drop-shadow(0px 2px 1px cvar(--cs-shadow-medium));
 			}
 		}
-		&.cs-tooltip-top-center:before {
+		&.cs-tooltip-top-center::before {
 			transform: translate(-50%) rotate(0deg);
 		}
 
-		&.cs-tooltip-top-left:before {
+		&.cs-tooltip-top-left::before {
 			right: 1rem;
 		}
 
-		&.cs-tooltip-top-right:before {
+		&.cs-tooltip-top-right::before {
 			left: 1rem;
 		}
 
@@ -190,8 +225,8 @@
 				@include sbg(--cs-tooltip-info-bg);
 				@include sc(--cs-tooltip-info-c);
 			}
-			&.cs-tooltip-bottom-left:before,
-			&.cs-tooltip-bottom-right:before {
+			&.cs-tooltip-bottom-left::before,
+			&.cs-tooltip-bottom-right::before {
 				@include sbg(--cs-tooltip-info-bg);
 				@include css4 {
 					border-bottom-color: cvar(--cs-tooltip-info-bg);
@@ -204,8 +239,8 @@
 				@include sbg(--cs-tooltip-warning-bg);
 				@include sc(--cs-tooltip-warning-c);
 			}
-			&.cs-tooltip-bottom-left:before,
-			&.cs-tooltip-bottom-right:before {
+			&.cs-tooltip-bottom-left::before,
+			&.cs-tooltip-bottom-right::before {
 				@include sbg(--cs-tooltip-warning-bg);
 				@include css4 {
 					border-bottom-color: cvar(--cs-tooltip-warning-bg);
@@ -218,8 +253,8 @@
 				@include sbg(--cs-tooltip-error-bg);
 				@include sc(--cs-tooltip-error-c);
 			}
-			&.cs-tooltip-bottom-left:before,
-			&.cs-tooltip-bottom-right:before {
+			&.cs-tooltip-bottom-left::before,
+			&.cs-tooltip-bottom-right::before {
 				@include sbg(--cs-tooltip-error-bg);
 				@include css4 {
 					border-bottom-color: cvar(--cs-tooltip-error-bg);
@@ -232,11 +267,19 @@
 				@include sbg(--cs-tooltip-success-bg);
 				@include sc(--cs-tooltip-success-c);
 			}
-			&.cs-tooltip-bottom-left:before,
-			&.cs-tooltip-bottom-right:before {
+			&.cs-tooltip-bottom-left::before,
+			&.cs-tooltip-bottom-right::before {
 				@include sbg(--cs-tooltip-success-bg);
 				@include css4 {
 					border-bottom-color: cvar(--cs-tooltip-success-bg);
+				}
+			}
+		}
+
+		&.cs-tooltip-basic {
+			.cs-tooltip-header {
+				@include css4 {
+					border-bottom: 1px solid cvar(--cs-tooltip-basic-br);
 				}
 			}
 		}
@@ -251,7 +294,8 @@
 	width: max-content;
 	height: max-content;
 
-	&:hover .cs-tooltip, &:focus .cs-tooltip {
+	&:hover .cs-tooltip,
+	&:focus .cs-tooltip {
 		display: flex;
 	}
 
@@ -273,7 +317,8 @@
 		.cs-icon {
 			@include sf(--cs-tooltip-icon-info);
 		}
-		&:hover .cs-icon, &:focus .cs-icon {
+		&:hover .cs-icon,
+		&:focus .cs-icon {
 			@include sf(--cs-tooltip-info-hover-c);
 		}
 	}
@@ -282,7 +327,8 @@
 		.cs-icon {
 			@include sf(--cs-tooltip-warning-bg);
 		}
-		&:hover .cs-icon, &:focus .cs-icon {
+		&:hover .cs-icon,
+		&:focus .cs-icon {
 			@include fd(var(--cs-tooltip-warning-bg), 0.3);
 		}
 	}
@@ -291,7 +337,8 @@
 		.cs-icon {
 			@include sf(--cs-tooltip-error-bg);
 		}
-		&:hover .cs-icon, &:focus .cs-icon {
+		&:hover .cs-icon,
+		&:focus .cs-icon {
 			@include fd(var(--cs-tooltip-error-bg), 0.3);
 		}
 	}
@@ -299,8 +346,18 @@
 		.cs-icon {
 			@include sf(--cs-tooltip-success-bg);
 		}
-		&:hover .cs-icon, &:focus .cs-icon {
+		&:hover .cs-icon,
+		&:focus .cs-icon {
 			@include fd(var(--cs-tooltip-sucess-bg), 0.3);
+		}
+	}
+	&.cs-tw-basic {
+		.cs-icon {
+			@include sf(--cs-tooltip-basic-fill);
+		}
+		&:hover .cs-icon,
+		&:focus .cs-icon {
+			@include fd(--cs-tooltip-basic-fill, 0.5);
 		}
 	}
 
@@ -308,7 +365,8 @@
 		.cs-icon {
 			@include sf(--cs-icon-c);
 		}
-		&:hover .cs-icon, &:focus .cs-icon {
+		&:hover .cs-icon,
+		&:focus .cs-icon {
 			@include fd((--cs-icon-c), 0.3);
 		}
 	}

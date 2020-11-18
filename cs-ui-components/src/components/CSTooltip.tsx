@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 export type CSTooltipIconSize = 'small' | 'medium';
 export type CSTooltipPosition = 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left' | 'top-center' | 'bottom-center';
 export type CSTooltipStylePosition = 'fixed' | 'absolute';
-export type CSTooltipVariant = 'info' | 'warning' | 'error' | 'success';
+export type CSTooltipVariant = 'info' | 'warning' | 'error' | 'success' | 'basic';
 
 export interface CSTooltipProps {
 	className?: string;
@@ -19,6 +19,7 @@ export interface CSTooltipProps {
 	iconName?: string;
 	iconSize?: CSTooltipIconSize;
 	id?: string;
+	padding?: string;
 	position?: CSTooltipPosition;
 	stylePosition?: CSTooltipStylePosition;
 	tooltipHeader?: string;
@@ -86,7 +87,8 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		const tooltipStyle = {
 			...this.state.computedTooltipStyle,
 			'--cs-tooltip-height': this.props.height,
-			'--cs-tooltip-width': this.props.width
+			'--cs-tooltip-width': this.props.width,
+			'--cs-tooltip-padding': this.props.padding
 		};
 
 		const tooltip = (
@@ -106,6 +108,16 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			</div>
 		);
 
+		const iconName = () => {
+			switch (true) {
+				case !!this.props.iconName:
+					return this.props.iconName;
+				case this.props.variant === 'basic':
+					return 'info';
+				default:
+					return this.props.variant;
+			}
+		};
 		return (
 			<div
 				className={tooltipWrapperClasses}
@@ -122,25 +134,25 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 				{this.props.children ? (
 					this.props.children
 				) : (
-					<CSIcon
-						color={this.props.iconColor}
-						name={this.props.iconName ? this.props.iconName : this.props.variant}
-						className={'cs-icon-' + this.props.iconSize}
-					/>
-				)}
+						<CSIcon
+							color={this.props.iconColor}
+							name={iconName()}
+							className={'cs-icon-' + this.props.iconSize}
+						/>
+					)}
 				{!this.state.hidden && (
 					<>
 						{this.props.stylePosition === 'absolute' ? (
 							tooltip
 						) : (
-							<>
-								{this.state.computedTooltipStyle && (
-									<Portal node={document && document.getElementById(this.tooltipId)}>
-										<div className={tooltipWrapperClasses}>{tooltip}</div>
-									</Portal>
-								)}
-							</>
-						)}
+								<>
+									{this.state.computedTooltipStyle && (
+										<Portal node={document && document.getElementById(this.tooltipId)}>
+											<div className={tooltipWrapperClasses}>{tooltip}</div>
+										</Portal>
+									)}
+								</>
+							)}
 					</>
 				)}
 			</div>
