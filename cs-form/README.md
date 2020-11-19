@@ -2,6 +2,9 @@
 
 Generic configurable React form component.
 
+### 1.0.0-alpha.113:
+* Fixed validator to pick up runtime changes in descriptor.
+
 ### 1.0.0-alpha.112:
 * 0 is now a valid value for the simple field type.
 
