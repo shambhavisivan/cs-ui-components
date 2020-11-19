@@ -24,3 +24,33 @@ export function replaceAll(record: Record<string, string>, original: string, rep
 
 	return formattedRecord;
 }
+
+/**
+ * Formats the provided lookup values.
+ */
+export function formatLookupValue(
+	value: Array<Record<string, string>> | Record<string, string>,
+	displayColumn: string
+) {
+	if (!value) {
+		return '';
+	}
+	if (Array.isArray(value)) {
+		if (value.length > 0) {
+			const rows = formatRows(value, replacementString, '.');
+
+			let displayValue = '';
+			for (const row of rows) {
+				displayValue += `${row[displayColumn]}, `;
+			}
+
+			return displayValue.substring(0, displayValue.length - 2);
+		} else {
+			return '';
+		}
+	}
+
+	const formattedRow = replaceAll(value, replacementString, '.');
+
+	return formattedRow[displayColumn];
+}

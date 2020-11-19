@@ -10,6 +10,7 @@ import {
 import { CSGridCellEditorProps, LookupProps } from '../interfaces/cs-grid-cell-props';
 import { LookupSearchColDef } from '../interfaces/cs-grid-col-def';
 import {
+	formatLookupValue,
 	formatRows,
 	replaceAll,
 	replacementString
@@ -60,6 +61,7 @@ export class CSGridLookupEditor
 	gridApi: GridApi;
 	columnApi: ColumnApi;
 	multiSelect: boolean = false;
+	private clearingValues = false;
 
 	constructor(
 		props: CSGridCellEditorProps<Array<Record<string, string>> | Record<string, string>> &
@@ -115,6 +117,11 @@ export class CSGridLookupEditor
 			'Search...' +
 			(this.props.minSearchTermLength ? ` (min ${this.props.minSearchTermLength} char)` : '');
 
+		let currentValue = '';
+		if (!this.multiSelect && this.state.showGrid && this.state.value?.cellValue) {
+			currentValue = formatLookupValue(this.state.value.cellValue, this.props.displayColumn);
+		}
+
 		return (
 			<div className='ag-theme-balham'>
 				<div className='cs-grid_search-wrapper'>
@@ -123,20 +130,22 @@ export class CSGridLookupEditor
 						<input
 							className='cs-grid_search-input'
 							type='text'
-							value={this.state.searchTerm}
+							value={currentValue || this.state.searchTerm}
 							onChange={this.updateSearch}
 							placeholder={placeholder}
 							title={
-								this.state.searchTerm
+								currentValue
+									? currentValue
+									: this.state.searchTerm
 									? `Search value ${this.state.searchTerm}`
 									: placeholder
 							}
 						/>
-						{this.state.searchTerm && (
+						{(currentValue || this.state.searchTerm) && (
 							<button
 								className='cs-grid_clear-button'
-								onClick={this.clearFilter}
-								title='Clear filter'
+								onClick={currentValue ? this.clearValue : this.clearFilter}
+								title={currentValue ? 'Clear value' : 'Clear filter'}
 							/>
 						)}
 					</div>
@@ -323,9 +332,11 @@ export class CSGridLookupEditor
 		}
 
 		this.setState({ value }, () => {
-			if (!this.multiSelect) {
+			if (!this.clearingValues && !this.multiSelect) {
 				this.props.stopEditing();
 			}
+
+			this.clearingValues = false;
 		});
 	};
 
@@ -341,6 +352,14 @@ export class CSGridLookupEditor
 	 */
 	private clearFilter = () => {
 		this.search('');
+	};
+
+	/**
+	 * Clears the currently selected value.
+	 */
+	private clearValue = async () => {
+		this.clearingValues = true;
+		this.gridApi.deselectAll();
 	};
 
 	/**
