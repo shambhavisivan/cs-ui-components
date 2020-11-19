@@ -38,6 +38,8 @@ export function noOfVisibleButtons(
 
 			return ableToFit;
 		}
+	} else {
+		return 1;
 	}
 }
 

@@ -114,7 +114,7 @@ describe('CS Grid Base Actions Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<>
+				<div className='select-wrapper-actions'>
 					<button
 						className='row-selection-icons-item row-selection-icons-item-menu'
 						title='Row Actions'
@@ -123,7 +123,7 @@ describe('CS Grid Base Actions Renderer', () => {
 					>
 						<span id={`icon-menu-${nodeId}-${column.getId()}`} className='icon-menu' />
 					</button>
-				</>
+				</div>
 			)
 		).toBeTruthy();
 	});
@@ -184,7 +184,7 @@ describe('CS Grid Base Actions Renderer', () => {
 
 		expect(
 			cellRenderer.containsMatchingElement(
-				<>
+				<div className='select-wrapper-actions'>
 					<button
 						className='row-selection-icons-item'
 						title='Delete'
@@ -202,7 +202,7 @@ describe('CS Grid Base Actions Renderer', () => {
 					>
 						<span id={`icon-menu-${nodeId}-${column.getId()}`} className='icon-menu' />
 					</button>
-				</>
+				</div>
 			)
 		).toBeTruthy();
 	});
@@ -228,7 +228,7 @@ describe('CS Grid Base Actions Renderer', () => {
 
 		expect(
 			cellRenderer.containsMatchingElement(
-				<>
+				<div className='select-wrapper-actions'>
 					<button
 						className='row-selection-icons-item'
 						title='Delete'
@@ -237,7 +237,7 @@ describe('CS Grid Base Actions Renderer', () => {
 					>
 						<div className='cs-btn-icon'>{exampleIcon}</div>
 					</button>
-				</>
+				</div>
 			)
 		).toBeTruthy();
 	});

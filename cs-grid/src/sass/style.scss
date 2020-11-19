@@ -53,6 +53,7 @@
 
 					.ag-header-cell {
 						border: none;
+						@include sbg(--csgrid-header-cell-bg);
 
 						.cs-grid_header-inner {
 							width: 100%;
@@ -387,10 +388,10 @@
 			align-items: center;
 			height: 100%;
 			border-radius: 0;
-
 			background: transparent;
 			&:not(.cs-grid_custom-class):not(.ag-cell-data-changed)  {
-				@include sbg(--csgrid-transparent);
+				z-index: 10;
+				@include sbg(--csgrid-row-cell-bg);
 			}
 
 			.ag-react-container {

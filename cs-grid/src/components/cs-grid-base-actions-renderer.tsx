@@ -105,7 +105,7 @@ export abstract class CSGridBaseActionsRenderer<
 		}
 
 		return (
-			<>
+			<div className='select-wrapper-actions'>
 				{icons.length > 0 && icons}
 				{this.state.useDropdown && this.state.actions.length > icons.length && (
 					<button
@@ -121,7 +121,7 @@ export abstract class CSGridBaseActionsRenderer<
 						/>
 					</button>
 				)}
-			</>
+			</div>
 		);
 	};
 
