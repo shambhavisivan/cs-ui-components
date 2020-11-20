@@ -16,6 +16,10 @@ Besides the standard set of features you'd expect from any grid cs-grid includes
 
 Release Notes
 ------------------
+####1.2.40
+ * Fixed border and focusing for date input field.
+####1.2.39
+ * Added optional `textInputFormat` prop to date colDef and implemented input for typing in dates if prop is present.
 ####1.2.38
  * Used colDef sort instead of column sort.
 ####1.2.37

@@ -101,9 +101,11 @@ export function isStandardIcon(object: any): object is StandardIcon {
 
 /**
  * getOpenToDate - Opens to this date if no date is currently selected.
+ * textInputFormat - optional (moment-style) date format for typing in date directly
  */
 export interface DateProps {
 	getOpenToDate?: (guid: string) => string;
+	textInputFormat?: string;
 }
 
 /**

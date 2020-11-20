@@ -451,6 +451,7 @@ export class App extends React.Component<object, AppState> {
 					label: 'Date Column'
 				},
 				name: 'exampleDate',
+				textInputFormat: 'DD/MM/YYYY',
 				userInfo
 			},
 			{

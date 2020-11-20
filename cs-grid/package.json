@@ -1,6 +1,6 @@
 {
 	"name": "@cloudsense/cs-grid",
-	"version": "1.2.38",
+	"version": "1.2.40",
 	"description": "CloudSense Grid",
 	"main": "./lib/main.js",
 	"author": "CloudSense",

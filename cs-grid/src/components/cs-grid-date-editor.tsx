@@ -1,7 +1,8 @@
+import classNames from 'classnames';
 import moment from 'moment';
 // tslint:disable-next-line: no-submodule-imports
 import 'moment/min/locales';
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { CSGridCellEditorProps, DateProps } from '../interfaces/cs-grid-cell-props';
@@ -19,14 +20,17 @@ import { createLocale, dateFormat, formatLocale } from '../utils/cs-grid-date-he
 export class CSGridDateEditor
 	extends React.Component<
 		CSGridCellEditorProps<string> & DateProps,
-		CSGridCellEditorState<string>
+		CSGridCellEditorState<string> & { inputValue?: string }
 	>
 	implements CSGridCellEditor {
 	constructor(props: CSGridCellEditorProps<string>) {
 		super(props);
 
 		moment.locale(this.props.userInfo.userLocale);
-		this.state = { value: this.props.value };
+		this.state = {
+			inputValue: this.convertToInputValue(this.props.value?.cellValue),
+			value: this.props.value
+		};
 	}
 
 	/**
@@ -48,28 +52,61 @@ export class CSGridDateEditor
 			errorMessage: this.state.value?.errorMessage
 		};
 
-		this.setState({ value });
+		this.setState({ value, inputValue: this.convertToInputValue(formattedDate) });
 		if (this.props.onChange) {
 			value = await this.props.onChange(
 				this.props.node.id,
 				this.getValue().cellValue,
 				formattedDate
 			);
+			this.setState({ value, inputValue: this.convertToInputValue(value?.cellValue) });
 		}
+	};
 
-		this.setState({ value }, () => {
+	onCalendarClose = () => {
+		this.setState({ value: this.state.value }, () => {
 			this.props.stopEditing();
 		});
 	};
 
-	render() {
-		let date: Date = null;
-		if (this.state.value?.cellValue) {
-			date = moment(this.state.value.cellValue, dateFormat).toDate();
+	convertToInputValue = (date?: string) => {
+		if (date) {
+			return moment(date, dateFormat).format(this.props.textInputFormat);
 		}
-		const formattedDate = formatLocale(date, 'Date');
+
+		return '';
+	};
+
+	convertInputValueToMoment = (value: string) => {
+		return value ? moment(value, this.props.textInputFormat, true) : null;
+	};
+	onTextInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+		const newValue = event.target.value;
+		const date = this.convertInputValueToMoment(newValue);
+		if (date?.isValid()) {
+			this.setState({
+				inputValue: newValue,
+				value: {
+					cellValue: date.format(dateFormat),
+					errorMessage: this.state.value?.errorMessage
+				}
+			});
+		} else {
+			this.setState({ inputValue: newValue });
+		}
+	};
+
+	render() {
+		const selectedDate: Date = this.state.value?.cellValue
+			? moment(this.state.value.cellValue, dateFormat).toDate()
+			: null;
 		const placeholderText = 'Click to select a date';
 
+		const dateInputClasses = classNames('date-attribute-input', {
+			'date-attribute-input-invalid': !this.convertInputValueToMoment(
+				this.state.inputValue
+			)?.isValid()
+		});
 		let openToDate: Date;
 		if (this.props.getOpenToDate && (!this.state.value || !this.state.value.cellValue)) {
 			openToDate = moment(this.props.getOpenToDate(this.props.node.id), dateFormat).toDate();
@@ -77,16 +114,29 @@ export class CSGridDateEditor
 
 		return (
 			<div className='date-attribute'>
+				{this.props.textInputFormat && (
+					<input
+						ref={ref => {
+							if (ref) {
+								setTimeout(() => ref.focus(), 0);
+							}
+						}}
+						type='text'
+						value={this.state.inputValue}
+						className={dateInputClasses}
+						onChange={this.onTextInputChange}
+					/>
+				)}
 				<DatePicker
-					selected={date}
+					selected={selectedDate}
 					onChange={this.onChange}
 					isClearable={true}
 					placeholderText={placeholderText}
 					showMonthDropdown={true}
 					showYearDropdown={true}
-					dropdownMode='select'
 					inline={true}
-					value={formattedDate}
+					dropdownMode='select'
+					onCalendarClose={this.onCalendarClose}
 					locale={createLocale(this.props.userInfo.dateLocale)}
 					openToDate={openToDate}
 				/>

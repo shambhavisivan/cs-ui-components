@@ -1141,6 +1141,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 
 				dateColumns.set(columnDef.name, columnDef.userInfo);
 				this.addIfDefined(cellParams, 'getOpenToDate', columnDef.getOpenToDate);
+				this.addIfDefined(cellParams, 'textInputFormat', columnDef.textInputFormat);
 
 				const defaultSettings = {
 					filterParams: {
