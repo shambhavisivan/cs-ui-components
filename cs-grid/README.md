@@ -16,6 +16,8 @@ Besides the standard set of features you'd expect from any grid cs-grid includes
 
 Release Notes
 ------------------
+####1.2.38
+ * Used colDef sort instead of column sort.
 ####1.2.37
  * Add colId to all column definitions to fix problems with aggrid column state caching
  * onSelectionChange interface corrected.
