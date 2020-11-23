@@ -19,6 +19,7 @@ import { ColDef } from './interfaces/cs-grid-col-def';
 import {
 	ColumnFilterCondition,
 	Condition,
+	CSGridSortDirection,
 	FilterModel,
 	OrderBy
 } from './interfaces/cs-grid-data-source-api';
@@ -45,6 +46,238 @@ export class App extends React.Component<object, AppState> {
 
 	private columnState: string =
 		'[{"colId":"exampleRowSelection","hide":false,"aggFunc":null,"width":80,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleGuid","hide":true,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleDecimal","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleText","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleCurrency","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleDate","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleLookup","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleMultiSelectLookup","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleBoolean","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleIntegerStep","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleInteger","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"examplePicklist","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"examplePicklistWithLabels","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleMultiSelectPicklist","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleMultiSelectPicklistWithLabels","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleRowValidation","hide":false,"aggFunc":null,"width":40,"pivotIndex":null,"pinned":null,"rowGroupIndex":null}]';
+
+	private rowDataSeeds: Record<string, any> = [
+		{
+			exampleBoolean: false,
+			exampleCurrency: 34000.67,
+			exampleDate: '1992-01-27',
+			exampleDateTime: '1992-01-27 11:22',
+			exampleDecimal: 35000.567567,
+			exampleGuid: '1',
+			exampleInteger: 35000,
+			exampleIntegerStep: 3500,
+			exampleLookup: {
+				hidden: '11111111111',
+				text1: 'Bob',
+				'text2.name.thirdPart': '645612'
+			},
+			exampleMultiSelectLookup: [
+				{
+					hidden: '11111111111',
+					text1: 'Bob',
+					'text2.name.thirdPart': '645612'
+				},
+				{
+					hidden: '11111111111',
+					text1: 'Harry',
+					'text2.name.thirdPart': '564768'
+				}
+			],
+			exampleMultiSelectPicklist: ['Harry', 'Sally'],
+			exampleMultiSelectPicklistWithLabels: [
+				{
+					id: '2',
+					label: 'Harry'
+				},
+				{
+					id: '3',
+					label: 'Sally'
+				}
+			],
+			examplePicklist: 'Bob',
+			examplePicklistWithLabels: {
+				id: '2',
+				label: 'Harry'
+			},
+			exampleRowValidation: {
+				status: 'None'
+			},
+			exampleText: 'Toy&o|:;ta',
+			status: ['red']
+		},
+		{
+			exampleBoolean: true,
+			exampleCurrency: 33000.77,
+			exampleDate: '1992-01-28',
+			exampleDateTime: '1992-01-28 14:45',
+			exampleDecimal: 32000.56756,
+			exampleGuid: '2',
+			exampleInteger: 32000,
+			exampleIntegerStep: 32000,
+			exampleLookup: {
+				text1: 'Harry',
+				'text2.name.thirdPart': '564768'
+			},
+			exampleMultiSelectLookup: [
+				{
+					text1: 'Harry',
+					'text2.name.thirdPart': '564768'
+				},
+				{
+					text1: 'Sally',
+					'text2.name.thirdPart': '079845'
+				}
+			],
+			exampleMultiSelectPicklist: ['Sally', 'Bob'],
+			exampleMultiSelectPicklistWithLabels: [
+				{
+					id: '5',
+					label: 'John'
+				},
+				{
+					id: '3',
+					label: 'Sally'
+				}
+			],
+			examplePicklist: 'Harry',
+			examplePicklistWithLabels: {
+				id: '5',
+				label: 'John'
+			},
+			exampleRowValidation: {
+				status: 'Error'
+			},
+			exampleText: 'Ford',
+			status: ['red', 'yellow', 'breadcrumbs']
+		},
+		{
+			exampleBoolean: false,
+			exampleCurrency: 73000.98,
+			exampleDate: '1992-01-29',
+			exampleDateTime: '1992-01-29 15:25',
+			exampleDecimal: 72000.67878,
+			exampleGuid: '3',
+			exampleInteger: 72000,
+			exampleIntegerStep: 72000,
+			exampleLookup: {
+				text1: 'Sally',
+				'text2.name.thirdPart': '079845'
+			},
+			exampleMultiSelectLookup: [
+				{
+					text1: 'Sally',
+					'text2.name.thirdPart': '079845'
+				},
+				{
+					text1: 'Bob',
+					'text2.name.thirdPart': '645612'
+				}
+			],
+			exampleMultiSelectPicklist: ['Bob', 'Harry'],
+			exampleMultiSelectPicklistWithLabels: [
+				{
+					id: '5',
+					label: 'John'
+				},
+				{
+					id: '11',
+					label: 'Fred'
+				}
+			],
+			examplePicklist: 'Sally',
+			examplePicklistWithLabels: {
+				id: '11',
+				label: 'Fred'
+			},
+			exampleRowValidation: {
+				status: 'Info',
+				icons: ['medium']
+			},
+			exampleText: 'Toyota',
+			status: ['yellow']
+		},
+		{
+			exampleBoolean: false,
+			exampleCurrency: 'undefined as number',
+			exampleDate: '1986-11-15',
+			exampleDateTime: '1986-11-15 05:55',
+			exampleDecimal: 99000.67878,
+			exampleGuid: '4',
+			exampleInteger: 99000,
+			exampleIntegerStep: 99000,
+			exampleLookup: {
+				text1: 'Sue',
+				'text2.name.thirdPart': '123456'
+			},
+			exampleMultiSelectLookup: [
+				{
+					text1: 'Sue',
+					'text2.name.thirdPart': '123456'
+				},
+				{
+					text1: 'Sean',
+					'text2.name.thirdPart': '987654'
+				}
+			],
+			exampleMultiSelectPicklist: ['Sean', 'Sue'],
+			exampleMultiSelectPicklistWithLabels: [
+				{
+					id: '7',
+					label: 'Sue'
+				},
+				{
+					id: '11',
+					label: 'Fred'
+				}
+			],
+			examplePicklist: 'Sean',
+			examplePicklistWithLabels: {
+				id: '7',
+				label: 'Sue'
+			},
+			exampleRowValidation: {
+				status: 'Error',
+				icons: ['medium', 'video']
+			},
+			exampleText: 'Ford',
+			status: ['yellow', 'breadcrumbs']
+		}
+	];
+
+	private errorMessagesSeed: Record<string, any> = [
+		{},
+		{
+			exampleBoolean:
+				'This is a really long error message so that we can test various sizes. It is so very very looooonnnnngggg.',
+			exampleCurrency: 'An error message',
+			exampleDate: 'An error message',
+			exampleDateTime: 'An error message',
+			exampleDecimal: 'An error message',
+			exampleGuid: 'An error message',
+			exampleInteger: 'An error message',
+			exampleIntegerStep: 'An error message',
+			exampleLookup: 'An error message',
+			exampleMultiSelectLookup: 'An error message',
+			exampleMultiSelectPicklist: 'An error message',
+			examplePicklist: 'An error message',
+			examplePicklistWithLabels: 'An error message',
+			exampleRowValidation: 'Error 1\nError 2',
+			exampleText: 'An error message'
+		},
+		{
+			examplePicklistWithLabels: 'An error message',
+			exampleRowValidation: 'Info 1\nInfo 2'
+		},
+		{
+			exampleBoolean: '',
+			exampleCurrency: '',
+			exampleDate: '',
+			exampleDateTime: '',
+			exampleDecimal: '',
+			exampleGuid: '',
+			exampleInteger: '',
+			exampleIntegerStep: '',
+			exampleLookup: '',
+			exampleMultiSelectLookup: '',
+			exampleMultiSelectPicklist: '',
+			exampleMultiSelectPicklistWithLabels: '',
+			examplePicklist: '',
+			examplePicklistWithLabels: '',
+			exampleRowValidation: 'Error 1Error 2',
+			exampleText: ''
+		}
+	];
 
 	constructor(props: object) {
 		super(props);
@@ -182,7 +415,6 @@ export class App extends React.Component<object, AppState> {
 				},
 				name: 'exampleText',
 				pinned: 'left',
-				sort: 'SORT_ASC',
 				userInfo
 			},
 			{
@@ -847,239 +1079,7 @@ export class App extends React.Component<object, AppState> {
 			}
 		];
 
-		const rowDataSeeds: Record<string, any> = [
-			{
-				exampleBoolean: false,
-				exampleCurrency: 34000.67,
-				exampleDate: '1992-01-27',
-				exampleDateTime: '1992-01-27 11:22',
-				exampleDecimal: 35000.567567,
-				exampleGuid: '1',
-				exampleInteger: 35000,
-				exampleIntegerStep: 3500,
-				exampleLookup: {
-					hidden: '11111111111',
-					text1: 'Bob',
-					'text2.name.thirdPart': '645612'
-				},
-				exampleMultiSelectLookup: [
-					{
-						hidden: '11111111111',
-						text1: 'Bob',
-						'text2.name.thirdPart': '645612'
-					},
-					{
-						hidden: '11111111111',
-						text1: 'Harry',
-						'text2.name.thirdPart': '564768'
-					}
-				],
-				exampleMultiSelectPicklist: ['Harry', 'Sally'],
-				exampleMultiSelectPicklistWithLabels: [
-					{
-						id: '2',
-						label: 'Harry'
-					},
-					{
-						id: '3',
-						label: 'Sally'
-					}
-				],
-				examplePicklist: 'Bob',
-				examplePicklistWithLabels: {
-					id: '2',
-					label: 'Harry'
-				},
-				exampleRowValidation: {
-					status: 'None'
-				},
-				exampleText: 'Toy&o|:;ta',
-				status: ['red']
-			},
-			{
-				exampleBoolean: true,
-				exampleCurrency: 33000.77,
-				exampleDate: '1992-01-28',
-				exampleDateTime: '1992-01-28 14:45',
-				exampleDecimal: 32000.56756,
-				exampleGuid: '2',
-				exampleInteger: 32000,
-				exampleIntegerStep: 32000,
-				exampleLookup: {
-					text1: 'Harry',
-					'text2.name.thirdPart': '564768'
-				},
-				exampleMultiSelectLookup: [
-					{
-						text1: 'Harry',
-						'text2.name.thirdPart': '564768'
-					},
-					{
-						text1: 'Sally',
-						'text2.name.thirdPart': '079845'
-					}
-				],
-				exampleMultiSelectPicklist: ['Sally', 'Bob'],
-				exampleMultiSelectPicklistWithLabels: [
-					{
-						id: '5',
-						label: 'John'
-					},
-					{
-						id: '3',
-						label: 'Sally'
-					}
-				],
-				examplePicklist: 'Harry',
-				examplePicklistWithLabels: {
-					id: '5',
-					label: 'John'
-				},
-				exampleRowValidation: {
-					status: 'Error'
-				},
-				exampleText: 'Ford',
-				status: ['red', 'yellow', 'breadcrumbs']
-			},
-			{
-				exampleBoolean: false,
-				exampleCurrency: 73000.98,
-				exampleDate: '1992-01-29',
-				exampleDateTime: '1992-01-29 15:25',
-				exampleDecimal: 72000.67878,
-				exampleGuid: '3',
-				exampleInteger: 72000,
-				exampleIntegerStep: 72000,
-				exampleLookup: {
-					text1: 'Sally',
-					'text2.name.thirdPart': '079845'
-				},
-				exampleMultiSelectLookup: [
-					{
-						text1: 'Sally',
-						'text2.name.thirdPart': '079845'
-					},
-					{
-						text1: 'Bob',
-						'text2.name.thirdPart': '645612'
-					}
-				],
-				exampleMultiSelectPicklist: ['Bob', 'Harry'],
-				exampleMultiSelectPicklistWithLabels: [
-					{
-						id: '5',
-						label: 'John'
-					},
-					{
-						id: '11',
-						label: 'Fred'
-					}
-				],
-				examplePicklist: 'Sally',
-				examplePicklistWithLabels: {
-					id: '11',
-					label: 'Fred'
-				},
-				exampleRowValidation: {
-					status: 'Info',
-					icons: ['medium']
-				},
-				exampleText: 'Toyota',
-				status: ['yellow']
-			},
-			{
-				exampleBoolean: false,
-				exampleCurrency: 'undefined as number',
-				exampleDate: '1986-11-15',
-				exampleDateTime: '1986-11-15 05:55',
-				exampleDecimal: 99000.67878,
-				exampleGuid: '4',
-				exampleInteger: 99000,
-				exampleIntegerStep: 99000,
-				exampleLookup: {
-					text1: 'Sue',
-					'text2.name.thirdPart': '123456'
-				},
-				exampleMultiSelectLookup: [
-					{
-						text1: 'Sue',
-						'text2.name.thirdPart': '123456'
-					},
-					{
-						text1: 'Sean',
-						'text2.name.thirdPart': '987654'
-					}
-				],
-				exampleMultiSelectPicklist: ['Sean', 'Sue'],
-				exampleMultiSelectPicklistWithLabels: [
-					{
-						id: '7',
-						label: 'Sue'
-					},
-					{
-						id: '11',
-						label: 'Fred'
-					}
-				],
-				examplePicklist: 'Sean',
-				examplePicklistWithLabels: {
-					id: '7',
-					label: 'Sue'
-				},
-				exampleRowValidation: {
-					status: 'Error',
-					icons: ['medium', 'video']
-				},
-				exampleText: 'Ford',
-				status: ['yellow', 'breadcrumbs']
-			}
-		];
-
-		const errorMessagesSeed: Record<string, any> = [
-			{},
-			{
-				exampleBoolean:
-					'This is a really long error message so that we can test various sizes. It is so very very looooonnnnngggg.',
-				exampleCurrency: 'An error message',
-				exampleDate: 'An error message',
-				exampleDateTime: 'An error message',
-				exampleDecimal: 'An error message',
-				exampleGuid: 'An error message',
-				exampleInteger: 'An error message',
-				exampleIntegerStep: 'An error message',
-				exampleLookup: 'An error message',
-				exampleMultiSelectLookup: 'An error message',
-				exampleMultiSelectPicklist: 'An error message',
-				examplePicklist: 'An error message',
-				examplePicklistWithLabels: 'An error message',
-				exampleRowValidation: 'Error 1\nError 2',
-				exampleText: 'An error message'
-			},
-			{
-				examplePicklistWithLabels: 'An error message',
-				exampleRowValidation: 'Info 1\nInfo 2'
-			},
-			{
-				exampleBoolean: '',
-				exampleCurrency: '',
-				exampleDate: '',
-				exampleDateTime: '',
-				exampleDecimal: '',
-				exampleGuid: '',
-				exampleInteger: '',
-				exampleIntegerStep: '',
-				exampleLookup: '',
-				exampleMultiSelectLookup: '',
-				exampleMultiSelectPicklist: '',
-				exampleMultiSelectPicklistWithLabels: '',
-				examplePicklist: '',
-				examplePicklistWithLabels: '',
-				exampleRowValidation: 'Error 1Error 2',
-				exampleText: ''
-			}
-		];
-
-		const rowData: Array<any> = this.getRowData(rowDataSeeds, errorMessagesSeed);
+		const rowData: Array<any> = this.getRowData(this.rowDataSeeds, this.errorMessagesSeed);
 		// const rowData = this.getLegacyRowData(rowDataSeedsLegacy);
 
 		// A simple css class for demo purposes, this won't be compiled into the cs-grid build.
@@ -1210,6 +1210,15 @@ export class App extends React.Component<object, AppState> {
 						}}
 						onCellValueChange={this.onCellValueChange}
 						onColumnResized={this.onColumnResized}
+						// Uncomment to demo custom sort and custom pagination.
+						// customSort={this.randomizeRows}
+						// customPaginationAPI={{
+						// 	currentPage: this.currentPage + 1,
+						// 	isLastPage: () => false,
+						// 	onBtNext: this.customPaginationOnBtNext,
+						// 	onBtPrevious: this.customPaginationOnBtPrevious,
+						// 	onPageSizeChange: this.customPaginationOnPageSizeChanged
+						// }}
 					/>
 				)}
 				<>
@@ -1227,6 +1236,29 @@ export class App extends React.Component<object, AppState> {
 			</>
 		);
 	}
+
+	customPaginationOnPageSizeChanged = async () => {
+		this.currentPage = 0;
+		await this.randomizeRows();
+	};
+
+	customPaginationOnBtPrevious = async () => {
+		this.currentPage = this.currentPage - 1;
+		await this.randomizeRows();
+	};
+
+	customPaginationOnBtNext = async () => {
+		this.currentPage = this.currentPage + 1;
+		await this.randomizeRows();
+	};
+
+	randomizeRows = () => {
+		this.setState({
+			rowData: this.getRowData(this.rowDataSeeds, this.errorMessagesSeed)
+		});
+
+		return Promise.resolve();
+	};
 
 	delayResponse = (result: any) => {
 		return new Promise<any>((resolve, reject) => {

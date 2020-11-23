@@ -1,7 +1,7 @@
 module.exports = {
     setupFiles: ["<rootDir>/test-setup.ts"],
     transform: {'.(ts|tsx)': 'ts-jest'},
-    testEnvironment: 'jsdom',
+    testEnvironment: 'jest-environment-jsdom-sixteen',
     testRegex: '/test/.*\\.test?\\.(ts|tsx)$',
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
     transformIgnorePatterns: [

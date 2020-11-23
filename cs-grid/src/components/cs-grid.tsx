@@ -71,6 +71,7 @@ import { CSGridTextEditor } from './cs-grid-text-editor';
 import { CSGridTextRenderer } from './cs-grid-text-renderer';
 
 import { isEqual } from 'lodash';
+import { CustomPaginationAPI } from '../interfaces/cs-grid-custom-pagination-api';
 
 const LEGACY_ROW_DATA_MODEL_DEPRECATION_WARN =
 	"CSGrid: Using legacy type 'Row' is deprecated for row data. look into 'RowData' for more details.";
@@ -107,7 +108,9 @@ export interface CSGridProps {
 	 * default: true
 	 */
 	suppressFieldDotNotation?: boolean;
-	customSort?: (columnId: string, sortDirection: CSGridSortDirection) => void;
+	customPaginationAPI?: CustomPaginationAPI;
+
+	customSort?: (columnId: string, sortDirection: CSGridSortDirection) => Promise<void>;
 	onColumnStateChange?(columnState: string): void;
 	onSelectionChange?(selectedRows: Array<Row> | Array<RowData>): void;
 	onCellValueChange?(
@@ -746,19 +749,26 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 	private onPageSizeChanged = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		const pageSize = Number(event.target.value);
 
-		if (this.props.dataSourceAPI) {
-			// Force new cache block size by resetting internal cache
-			(this.gridApi as any).gridOptionsWrapper.setProperty('cacheBlockSize', pageSize);
-			(this.gridApi as any).infinitePageRowModel.resetCache();
+		if (this.props.customPaginationAPI) {
+			this.props.customPaginationAPI.onPageSizeChange(pageSize);
+			this.setState({
+				currentPageSize: pageSize
+			});
+		} else {
+			if (this.props.dataSourceAPI) {
+				// Force new cache block size by resetting internal cache
+				(this.gridApi as any).gridOptionsWrapper.setProperty('cacheBlockSize', pageSize);
+				(this.gridApi as any).infinitePageRowModel.resetCache();
+			}
+
+			this.gridApi.paginationSetPageSize(pageSize);
+			this.gridApi.paginationGoToPage(0);
+
+			this.setState({
+				currentPage: 0,
+				currentPageSize: this.gridApi.paginationGetPageSize()
+			});
 		}
-
-		this.gridApi.paginationSetPageSize(pageSize);
-		this.gridApi.paginationGoToPage(0);
-
-		this.setState({
-			currentPage: 0,
-			currentPageSize: this.gridApi.paginationGetPageSize()
-		});
 	};
 
 	private onPaginationChanged = () => {
@@ -792,28 +802,44 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		if (this.props.csGridPagination.location !== 'None') {
 			const pageSizes = this.props.pageSizes || this.defaultPageSizes;
 
-			paginationElement = this.props.dataSourceAPI ? (
-				<CSGridDataSourcePagination
-					currentPage={this.state.currentPage}
-					pageSizes={pageSizes}
-					onPageSizeChanged={this.onPageSizeChanged}
-					currentPageSize={this.state.currentPageSize}
-					isLastPage={this.props.dataSourceAPI.isLastPage}
-					onBtNext={this.onBtNext}
-					onBtPrevious={this.onBtPrevious}
-				/>
-			) : (
-				<CSGridClientSidePagination
-					currentPage={this.state.currentPage}
-					pageSizes={pageSizes}
-					onPageSizeChanged={this.onPageSizeChanged}
-					currentPageSize={this.state.currentPageSize}
-					onBtNext={this.onBtNext}
-					onBtPrevious={this.onBtPrevious}
-					totalPages={this.state.totalPages}
-					goToPage={this.goToPage}
-				/>
-			);
+			if (this.props.customPaginationAPI) {
+				paginationElement = (
+					<CSGridDataSourcePagination
+						currentPage={this.props.customPaginationAPI.currentPage - 1}
+						pageSizes={pageSizes}
+						onPageSizeChanged={this.onPageSizeChanged}
+						currentPageSize={this.state.currentPageSize}
+						isLastPage={this.props.customPaginationAPI.isLastPage}
+						onBtNext={this.props.customPaginationAPI.onBtNext}
+						onBtPrevious={this.props.customPaginationAPI.onBtPrevious}
+					/>
+				);
+			} else if (this.props.dataSourceAPI) {
+				paginationElement = (
+					<CSGridDataSourcePagination
+						currentPage={this.state.currentPage}
+						pageSizes={pageSizes}
+						onPageSizeChanged={this.onPageSizeChanged}
+						currentPageSize={this.state.currentPageSize}
+						isLastPage={this.props.dataSourceAPI.isLastPage}
+						onBtNext={this.onBtNext}
+						onBtPrevious={this.onBtPrevious}
+					/>
+				);
+			} else {
+				paginationElement = (
+					<CSGridClientSidePagination
+						currentPage={this.state.currentPage}
+						pageSizes={pageSizes}
+						onPageSizeChanged={this.onPageSizeChanged}
+						currentPageSize={this.state.currentPageSize}
+						onBtNext={this.onBtNext}
+						onBtPrevious={this.onBtPrevious}
+						totalPages={this.state.totalPages}
+						goToPage={this.goToPage}
+					/>
+				);
+			}
 		}
 
 		return paginationElement;

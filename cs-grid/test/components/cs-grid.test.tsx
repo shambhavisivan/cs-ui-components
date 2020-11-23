@@ -1,6 +1,6 @@
 import { CellValueChangedEvent, ColDef, GridReadyEvent } from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import React from 'react';
 import { CSGrid, CSGridProps, DataSourceAPI, Row, RowData, UserInfo } from '../../main';
 
@@ -27,7 +27,7 @@ describe('csgrid', () => {
 			}
 		],
 		csGridPagination: {
-			location: 'None'
+			location: 'Header'
 		},
 		csGridQuickFilter: {
 			location: 'None'
@@ -184,7 +184,7 @@ describe('csgrid', () => {
 			};
 			mockCellValueChangedEvent.newValue = mockCellValueChangedEvent.oldValue;
 
-			mockCellValueChangedEvent.data.exampleText.errorMessage = 'An error occured';
+			mockCellValueChangedEvent.data.exampleText.errorMessage = 'An error occurred';
 
 			csgrid.onCellValueChanged(mockCellValueChangedEvent);
 
@@ -246,6 +246,24 @@ describe('csgrid', () => {
 					.columnDefs.every((columnDef: ColDef) => columnDef.headerCheckboxSelection)
 			).toBeTruthy();
 		});
+	});
+
+	test('Testing if customPaginationAPI is used then the api is passed to pagination and called when clicked.', () => {
+		const customOnBtPreviousMock = jest.fn();
+
+		baseProps.customPaginationAPI = {
+			currentPage: 1,
+			isLastPage: jest.fn(),
+			onBtNext: jest.fn(),
+			onBtPrevious: customOnBtPreviousMock,
+			onPageSizeChange: jest.fn()
+		};
+
+		const csGridMount = mount(<CSGrid {...baseProps} />);
+
+		const input = csGridMount.find('.cs-grid_pagination-icon-left');
+		input.simulate('click');
+		expect(customOnBtPreviousMock.mock.calls.length).toEqual(1);
 	});
 });
 
@@ -1018,7 +1036,9 @@ describe('rowdata Related', () => {
 			csGridShallow
 				.find(AgGridReact)
 				.props()
-				.columnDefs.every((columnDef: ColDef) => ( columnDef.colId && columnDef.colId == columnDef.field ))
+				.columnDefs.every(
+					(columnDef: ColDef) => columnDef.colId && columnDef.colId == columnDef.field
+				)
 		).toBeTruthy();
 	});
 });
