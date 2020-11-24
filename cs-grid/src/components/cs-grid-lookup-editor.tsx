@@ -1,4 +1,10 @@
-import { ColDef as AgGridColDef, ColumnApi, GridApi, GridReadyEvent } from 'ag-grid-community';
+import {
+	ColDef as AgGridColDef,
+	ColumnApi,
+	GridApi,
+	GridReadyEvent,
+	RowSelectedEvent
+} from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react';
 import React from 'react';
 
@@ -307,6 +313,12 @@ export class CSGridLookupEditor
 		} else {
 			if (selectedRows[0]) {
 				selected = replaceAll(selectedRows[0], replacementString, '.');
+			} else if (
+				!this.clearingValues &&
+				this.props.rowDeselection !== undefined &&
+				!this.props.rowDeselection
+			) {
+				selected = this.getValue().cellValue;
 			}
 		}
 

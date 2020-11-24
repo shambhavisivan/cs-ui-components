@@ -45,12 +45,14 @@ export interface IntegerProps {
  * displayColumn - The column to display in the renderer.
  * guidColumn - A unique ID for the row, this value will not be shown in the grid.
  * minSearchTermLength - The minimum number of characters needed before the lookup will trigger, 0 by default.
+ * rowDeselection - If true selecting a currently selected row will deselect the value, true by default.
  * getLookupValues - Returns the latest lookup values depending on the search term input.
  */
 export interface LookupProps {
 	displayColumn: string;
 	guidColumn: string;
 	minSearchTermLength?: number;
+	rowDeselection?: boolean;
 	getLookupValues(searchTerm: string, guid: string): Promise<CSGridLookupSearchResult>;
 }
 

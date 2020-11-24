@@ -159,4 +159,46 @@ describe('CS Grid Lookup Editor', () => {
 			cellEditor.containsMatchingElement(<button className='cs-grid_clear-button' />)
 		).toBeFalsy();
 	});
+
+	test('onSelectionChanged should not change the value if rowDeselection is set to false.', async () => {
+		cSGridCellEditorProps.rowDeselection = false;
+
+		const expectedValue = {
+			cellValue: { Name: 'Foo', bar: '123456' }
+		};
+		cSGridCellEditorProps.value = expectedValue;
+
+		const cellEditor = shallow(<CSGridLookupEditor {...cSGridCellEditorProps} />);
+		const instance = cellEditor.instance() as CSGridLookupEditor;
+
+		// Get ag-grid to return no selected rows.
+		instance.gridApi = {} as any;
+		instance.gridApi.getSelectedRows = jest.fn().mockReturnValue([]);
+
+		(instance as any).onSelectionChanged();
+
+		expect((cellEditor.instance() as CSGridLookupEditor).state.value).toEqual(expectedValue);
+	});
+
+	test('onSelectionChanged should change the value if rowDeselection is set to true.', async () => {
+		cSGridCellEditorProps.rowDeselection = true;
+
+		const expectedValue = {
+			cellValue: { Name: 'Foo', bar: '123456' }
+		};
+		cSGridCellEditorProps.value = expectedValue;
+
+		const cellEditor = shallow(<CSGridLookupEditor {...cSGridCellEditorProps} />);
+		const instance = cellEditor.instance() as CSGridLookupEditor;
+
+		// Get ag-grid to return no selected rows.
+		instance.gridApi = {} as any;
+		instance.gridApi.getSelectedRows = jest.fn().mockReturnValue([]);
+
+		(instance as any).onSelectionChanged();
+
+		expect((cellEditor.instance() as CSGridLookupEditor).state.value).not.toEqual(
+			expectedValue
+		);
+	});
 });

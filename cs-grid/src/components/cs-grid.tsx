@@ -1098,6 +1098,10 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				lookupColumns.push(columnDef.name);
 			}
 
+			if (columnDef.cellType === 'Lookup') {
+				this.addIfDefined(cellParams, 'rowDeselection', columnDef.rowDeselection);
+			}
+
 			if (columnDef.cellType === 'Integer') {
 				agGridColDef.cellEditor = 'integerEditor';
 				agGridColDef.cellRenderer = 'integerRenderer';
