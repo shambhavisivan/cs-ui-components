@@ -12,6 +12,9 @@
 		display: flex;
 		justify-content: space-between;
 		@include sbg(--cs-table-header-bg);
+		@include css4 {
+			border-bottom: 1px solid cvar(--cs-table-br);
+		}
 
 		.cs-table-cell {
 			font-size: 0.75rem;
@@ -45,6 +48,10 @@
 		.cs-table-row {
 			display: flex;
 			@include sbg(--cs-table-row-bg);
+
+			&:first-child .cs-table-cell {
+				border-top: none;
+			}
 
 			.cs-table-cell {
 				display: flex;
