@@ -14,7 +14,7 @@ class CSRadioPreview extends React.Component {
 		const json = {
 			name: 'Radio',
 			usage: 'A checkable input that communicates if an option is true, false or indeterminate.',
-			accessible: 'partially',
+			accessible: 'yes',
 			examples: [
 				{
 					propName: 'label',
@@ -380,9 +380,9 @@ class CSRadioPreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'HTML <input type="radio"> - hidden',
+								'HTML <input type="radio"> - visually hidden',
 								'<span> imitating radio with custom style',
-								'<input> and <span> wrapped in <label>'
+								'<input> and <span> wrapped in <label> - allowing click on span to change input'
 							],
 							properties: [
 								'aria-required',
@@ -447,6 +447,20 @@ class CSRadioPreview extends React.Component {
 				{
 					propertyName: 'title',
 					description: 'Title to display'
+				},
+				{
+					propertyName: 'ariaInvalid',
+					description: 'Accessible attribute to indicate whether an element has an error',
+					helperPropInComponents: [
+						'Radio'
+					]
+				},
+				{
+					propertyName: 'ariaRequired',
+					description: 'Accessible attribute to indicate whether an element is required',
+					helperPropInComponents: [
+						'Radio'
+					]
 				}
 			]
 		};

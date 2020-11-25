@@ -16,6 +16,7 @@
 			align-items: center;
 			cursor: pointer;
 			display: inline-flex;
+			width: fit-content;
 			font-size: 0.875rem;
 			margin-bottom: 0.25rem;
 			@include sc(--cs-radio-label-c);

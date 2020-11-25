@@ -2,6 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 
 export interface CSRadioOptionProps {
+	ariaInvalid?: boolean;
+	ariaRequired?: boolean;
 	className?: string;
 	disabled?: boolean;
 	id?: string;
@@ -46,11 +48,12 @@ class CSRadioOption extends React.Component<CSRadioOptionProps> {
 					name={this.props.name}
 					disabled={this.props.disabled}
 					id={this.props.id}
+					aria-invalid={this.props.ariaInvalid}
+					aria-required={this.props.ariaRequired}
 				/>
 				<span className={radioOptionFauxClasses}/>
 				<span>{this.props.label}</span>
 			</label>
-
 		);
 	}
 }

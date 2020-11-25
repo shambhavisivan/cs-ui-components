@@ -45,6 +45,20 @@ class CSRadio extends React.Component<CSRadioProps> {
 
 		const uniqueAutoId = this.props.id ? this.props.id : uuidv4();
 
+		const childrenWithProps = React.Children.map(this.props.children, child => {
+			if (child) {
+				return (
+					React.cloneElement(
+						child as any,
+						{
+							ariaInvalid: (this.props.error),
+							ariaRequired: (this.props.required)
+						}
+					)
+				);
+			}
+		});
+
 		return (
 			<div className="cs-radio-wrapper">
 				{(this.props.label && !this.props.labelHidden) &&
@@ -58,7 +72,7 @@ class CSRadio extends React.Component<CSRadioProps> {
 					/>
 				}
 				<div className={radioGroupClasses} id={uniqueAutoId}>
-					{this.props.children}
+					{childrenWithProps}
 				</div>
 				{(this.props.error && this.props.errorMessage) &&
 					<CSFieldErrorMsg message={this.props.errorMessage} />
