@@ -6,14 +6,14 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSButtonDropdown, CSButton} from '@cloudsense/cs-ui-components';
+import {CSDropdown, CSButton} from '@cloudsense/cs-ui-components';
 
-class CSButtonDropdownPreview extends React.Component {
+class CSDropdownPreview extends React.Component {
 	getDoc() {
 
 		const json = {
-			name: 'Button Dropdown',
-			usage: 'Like a regular button, just with a dropdown',
+			name: 'Dropdown',
+			usage: 'Offers a list of actions or functions that a user can access.',
 			accessible: 'yes',
 			examples: [
 				{
@@ -25,7 +25,7 @@ class CSButtonDropdownPreview extends React.Component {
 							quickLink: 'default initial',
 							variationText: ['btnStyle="initial"'],
 							string: '',
-							component: <CSButtonDropdown
+							component: <CSDropdown
 								iconName="down"
 							>
 								<CSButton
@@ -42,14 +42,14 @@ class CSButtonDropdownPreview extends React.Component {
 									label="test label large large"
 									disabled
 								/>
-							</CSButtonDropdown>
+							</CSDropdown>
 						},
 						{
 							variationName: ['default'],
 							quickLink: 'default brand',
 							variationText: ['btnStyle="brand"'],
 							string: '',
-							component: <CSButtonDropdown
+							component: <CSDropdown
 								btnStyle="brand"
 								iconName="down"
 							>
@@ -61,14 +61,14 @@ class CSButtonDropdownPreview extends React.Component {
 									iconName="world"
 									label="test label large large"
 								/>
-							</CSButtonDropdown>
+							</CSDropdown>
 						},
 						{
 							variationName: ['default'],
 							quickLink: 'default outline',
 							variationText: ['btnStyle="outline"'],
 							string: '',
-							component: <CSButtonDropdown
+							component: <CSDropdown
 								btnStyle="outline"
 								iconName="down"
 							>
@@ -80,7 +80,7 @@ class CSButtonDropdownPreview extends React.Component {
 									iconName="world"
 									label="test label large large"
 								/>
-							</CSButtonDropdown>
+							</CSDropdown>
 						},
 						{
 							variationName: ['transparent'],
@@ -89,7 +89,7 @@ class CSButtonDropdownPreview extends React.Component {
 							string: '',
 							customClass: 'inverse-background',
 							component: <div className="blue-background">
-								<CSButtonDropdown
+								<CSDropdown
 									btnType="transparent"
 									iconName="down"
 								>
@@ -101,7 +101,7 @@ class CSButtonDropdownPreview extends React.Component {
 										iconName="world"
 										label="test label large large"
 									/>
-								</CSButtonDropdown>
+								</CSDropdown>
 							</div>
 						},
 						{
@@ -109,7 +109,7 @@ class CSButtonDropdownPreview extends React.Component {
 							quickLink: 'transparent brand',
 							variationText: ['btnStyle="brand"'],
 							string: '',
-							component: <CSButtonDropdown
+							component: <CSDropdown
 								btnType="transparent"
 								btnStyle="brand"
 								iconName="down"
@@ -122,7 +122,7 @@ class CSButtonDropdownPreview extends React.Component {
 									iconName="world"
 									label="test label large large"
 								/>
-							</CSButtonDropdown>
+							</CSDropdown>
 						},
 						{
 							variationName: ['transparent'],
@@ -131,7 +131,7 @@ class CSButtonDropdownPreview extends React.Component {
 							string: '',
 							customClass: 'inverse-background',
 							component: <div className="blue-background">
-								<CSButtonDropdown
+								<CSDropdown
 									btnType="transparent"
 									btnStyle="outline"
 									iconName="down"
@@ -144,7 +144,7 @@ class CSButtonDropdownPreview extends React.Component {
 										iconName="world"
 										label="test label large large"
 									/>
-								</CSButtonDropdown>
+								</CSDropdown>
 							</div>
 						}
 					]
@@ -157,7 +157,7 @@ class CSButtonDropdownPreview extends React.Component {
 							variationName: ['large'],
 							quickLink: 'large',
 							string: '',
-							component: <CSButtonDropdown
+							component: <CSDropdown
 								size="large"
 								iconName="down"
 							>
@@ -169,13 +169,13 @@ class CSButtonDropdownPreview extends React.Component {
 									iconName="world"
 									label="test label large large"
 								/>
-							</CSButtonDropdown>
+							</CSDropdown>
 						},
 						{
 							variationName: ['small'],
 							quickLink: 'small',
 							string: '',
-							component: <CSButtonDropdown
+							component: <CSDropdown
 								size="small"
 								iconName="down"
 							>
@@ -187,13 +187,13 @@ class CSButtonDropdownPreview extends React.Component {
 									iconName="world"
 									label="test label large large"
 								/>
-							</CSButtonDropdown>
+							</CSDropdown>
 						},
 						{
 							variationName: ['xsmall'],
 							quickLink: 'xsmall',
 							string: '',
-							component: <CSButtonDropdown
+							component: <CSDropdown
 								size="xsmall"
 								iconName="down"
 							>
@@ -205,7 +205,7 @@ class CSButtonDropdownPreview extends React.Component {
 									iconName="world"
 									label="test label large large"
 								/>
-							</CSButtonDropdown>
+							</CSDropdown>
 						}
 					]
 				},
@@ -217,7 +217,7 @@ class CSButtonDropdownPreview extends React.Component {
 							variationName: ['down'],
 							quickLink: 'down',
 							string: '',
-							component: <CSButtonDropdown
+							component: <CSDropdown
 								iconName="down"
 							>
 								<CSButton
@@ -228,13 +228,13 @@ class CSButtonDropdownPreview extends React.Component {
 									iconName="world"
 									label="test label large large"
 								/>
-							</CSButtonDropdown>
+							</CSDropdown>
 						},
 						{
 							variationName: ['threedots_vertical'],
 							quickLink: 'threedots_vertical',
 							string: '',
-							component: <CSButtonDropdown
+							component: <CSDropdown
 								iconName="threedots_vertical"
 							>
 								<CSButton
@@ -245,7 +245,7 @@ class CSButtonDropdownPreview extends React.Component {
 									iconName="world"
 									label="test label large large"
 								/>
-							</CSButtonDropdown>
+							</CSDropdown>
 						}
 					]
 				},
@@ -257,7 +257,7 @@ class CSButtonDropdownPreview extends React.Component {
 							variationName: ['true'],
 							quickLink: 'true',
 							string: '',
-							component: <CSButtonDropdown
+							component: <CSDropdown
 								iconName="down"
 								disabled
 							>
@@ -269,7 +269,7 @@ class CSButtonDropdownPreview extends React.Component {
 									iconName="world"
 									label="test label large large"
 								/>
-							</CSButtonDropdown>
+							</CSDropdown>
 						}
 					]
 				},
@@ -281,7 +281,7 @@ class CSButtonDropdownPreview extends React.Component {
 							variationName: ['left'],
 							quickLink: 'left',
 							string: '',
-							component: <CSButtonDropdown
+							component: <CSDropdown
 								iconName="down"
 								align="left"
 							>
@@ -293,13 +293,13 @@ class CSButtonDropdownPreview extends React.Component {
 									iconName="world"
 									label="test label large large"
 								/>
-							</CSButtonDropdown>
+							</CSDropdown>
 						},
 						{
 							variationName: ['right'],
 							quickLink: 'right',
 							string: '',
-							component: <CSButtonDropdown
+							component: <CSDropdown
 								iconName="down"
 								align="right"
 							>
@@ -311,7 +311,48 @@ class CSButtonDropdownPreview extends React.Component {
 									iconName="world"
 									label="test label large large"
 								/>
-							</CSButtonDropdown>
+							</CSDropdown>
+						}
+					]
+				},
+				{
+					propName: 'position',
+					customText: '',
+					variations: [
+						{
+							variationName: ['bottom'],
+							quickLink: 'bottom',
+							string: '',
+							component: <CSDropdown
+								iconName="down"
+							>
+								<CSButton
+									iconName="world"
+									label="test label small"
+								/>
+								<CSButton
+									iconName="world"
+									label="test label large large"
+								/>
+							</CSDropdown>
+						},
+						{
+							variationName: ['top'],
+							quickLink: 'top',
+							string: '',
+							component: <CSDropdown
+								iconName="down"
+								position="top"
+							>
+								<CSButton
+									iconName="world"
+									label="test label small"
+								/>
+								<CSButton
+									iconName="world"
+									label="test label large large"
+								/>
+							</CSDropdown>
 						}
 					]
 				},
@@ -323,7 +364,7 @@ class CSButtonDropdownPreview extends React.Component {
 							variationName: ['90'],
 							quickLink: '90',
 							string: '',
-							component: <CSButtonDropdown
+							component: <CSDropdown
 								iconName="down"
 								iconRotate="90"
 							>
@@ -335,13 +376,13 @@ class CSButtonDropdownPreview extends React.Component {
 									iconName="world"
 									label="test label large large"
 								/>
-							</CSButtonDropdown>
+							</CSDropdown>
 						},
 						{
 							variationName: ['180'],
 							quickLink: '180',
 							string: '',
-							component: <CSButtonDropdown
+							component: <CSDropdown
 								iconName="down"
 								iconRotate="180"
 							>
@@ -353,13 +394,13 @@ class CSButtonDropdownPreview extends React.Component {
 									iconName="world"
 									label="test label large large"
 								/>
-							</CSButtonDropdown>
+							</CSDropdown>
 						},
 						{
 							variationName: ['270'],
 							quickLink: '270',
 							string: '',
-							component: <CSButtonDropdown
+							component: <CSDropdown
 								iconName="down"
 								iconRotate="270"
 							>
@@ -371,7 +412,7 @@ class CSButtonDropdownPreview extends React.Component {
 									iconName="world"
 									label="test label large large"
 								/>
-							</CSButtonDropdown>
+							</CSDropdown>
 						}
 					]
 				},
@@ -381,7 +422,7 @@ class CSButtonDropdownPreview extends React.Component {
 					variations: [
 						{
 							string: '',
-							component: <CSButtonDropdown
+							component: <CSDropdown
 								iconName="down"
 								label="Label"
 								id="id"
@@ -394,7 +435,7 @@ class CSButtonDropdownPreview extends React.Component {
 									iconName="world"
 									label="test label large large"
 								/>
-							</CSButtonDropdown>
+							</CSDropdown>
 						}
 					]
 				},
@@ -404,7 +445,7 @@ class CSButtonDropdownPreview extends React.Component {
 					variations: [
 						{
 							string: '',
-							component: <CSButtonDropdown
+							component: <CSDropdown
 								iconName="down"
 								label="Label"
 							>
@@ -416,7 +457,7 @@ class CSButtonDropdownPreview extends React.Component {
 									iconName="world"
 									label="test label large large"
 								/>
-							</CSButtonDropdown>
+							</CSDropdown>
 						}
 					]
 				},
@@ -427,7 +468,7 @@ class CSButtonDropdownPreview extends React.Component {
 						{
 							variationName: ['left'],
 							string: '',
-							component: <CSButtonDropdown
+							component: <CSDropdown
 								iconName="down"
 								label="Label"
 								iconPosition="left"
@@ -440,12 +481,12 @@ class CSButtonDropdownPreview extends React.Component {
 									iconName="world"
 									label="test label large large"
 								/>
-							</CSButtonDropdown>
+							</CSDropdown>
 						},
 						{
 							variationName: ['right'],
 							string: '',
-							component: <CSButtonDropdown
+							component: <CSDropdown
 								iconName="down"
 								label="Label"
 								iconPosition="right"
@@ -458,7 +499,7 @@ class CSButtonDropdownPreview extends React.Component {
 									iconName="world"
 									label="test label large large"
 								/>
-							</CSButtonDropdown>
+							</CSDropdown>
 						}
 					]
 				},
@@ -470,7 +511,7 @@ class CSButtonDropdownPreview extends React.Component {
 							variationName: ['true'],
 							quickLink: 'true',
 							string: '',
-							component: <CSButtonDropdown
+							component: <CSDropdown
 								iconName="down"
 								hover
 							>
@@ -482,7 +523,55 @@ class CSButtonDropdownPreview extends React.Component {
 									iconName="world"
 									label="test label large large"
 								/>
-							</CSButtonDropdown>
+							</CSDropdown>
+						}
+					]
+				},
+				{
+					propName: 'maxHeight',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component: <CSDropdown
+								iconName="down"
+								maxHeight="3rem"
+							>
+								<CSButton
+									iconName="world"
+									label="test label small"
+								/>
+								<CSButton
+									iconName="world"
+									label="test label large large"
+								/>
+								<CSButton
+									iconName="world"
+									label="test label large large"
+								/>
+							</CSDropdown>
+						}
+					]
+				},
+				{
+					propName: 'maxWidth',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component: <CSDropdown
+								iconName="down"
+								maxWidth="2rem"
+							>
+								<CSButton
+									iconName="world"
+									label="test label small"
+								/>
+								<CSButton
+									iconName="world"
+									label="test label large large"
+								/>
+							</CSDropdown>
 						}
 					]
 				},
@@ -494,7 +583,7 @@ class CSButtonDropdownPreview extends React.Component {
 							variationName: ['custom class'],
 							quickLink: 'custom class',
 							string: '',
-							component: <CSButtonDropdown
+							component: <CSDropdown
 								iconName="down"
 								className="custom-class"
 							>
@@ -506,7 +595,7 @@ class CSButtonDropdownPreview extends React.Component {
 									iconName="world"
 									label="test label large large"
 								/>
-							</CSButtonDropdown>
+							</CSDropdown>
 						}
 					]
 				}
@@ -594,8 +683,24 @@ class CSButtonDropdownPreview extends React.Component {
 					description: 'Dropdown button label'
 				},
 				{
+					propertyName: 'maxHeight',
+					description: 'Dropdown max height'
+				},
+				{
+					propertyName: 'maxWidth',
+					description: 'Dropdown max width'
+				},
+				{
 					propertyName: 'onClick',
 					description: 'Logic for onClick event'
+				},
+				{
+					propertyName: 'position',
+					description: 'Vertical position of dropdown',
+					options: [
+						'bottom',
+						'top'
+					]
 				},
 				{
 					propertyName: 'size',
@@ -671,4 +776,4 @@ class CSButtonDropdownPreview extends React.Component {
 	}
 }
 
-export default CSButtonDropdownPreview;
+export default CSDropdownPreview;

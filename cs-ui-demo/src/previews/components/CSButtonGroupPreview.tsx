@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSButtonGroup, CSButton, CSButtonDropdown} from '@cloudsense/cs-ui-components';
+import {CSButtonGroup, CSButton, CSDropdown} from '@cloudsense/cs-ui-components';
 
 class CSButtonGroupPreview extends React.Component {
 	getDoc() {
@@ -37,7 +37,7 @@ class CSButtonGroupPreview extends React.Component {
 										btnStyle="brand"
 										label="Last Button"
 									/>
-									<CSButtonDropdown
+									<CSDropdown
 										iconName="down"
 										label="button dropdown"
 									>
@@ -50,7 +50,7 @@ class CSButtonGroupPreview extends React.Component {
 										<CSButton
 											label="Dropdown item 3"
 										/>
-									</CSButtonDropdown>
+									</CSDropdown>
 								</CSButtonGroup>
 						},
 						{
@@ -71,7 +71,7 @@ class CSButtonGroupPreview extends React.Component {
 										btnStyle="brand"
 										label="Last Button"
 									/>
-									<CSButtonDropdown
+									<CSDropdown
 										iconName="down"
 										label="button dropdown"
 									>
@@ -84,7 +84,7 @@ class CSButtonGroupPreview extends React.Component {
 										<CSButton
 											label="Dropdown item 3"
 										/>
-									</CSButtonDropdown>
+									</CSDropdown>
 								</CSButtonGroup>
 						}
 					]
@@ -111,7 +111,7 @@ class CSButtonGroupPreview extends React.Component {
 										btnStyle="brand"
 										label="Last Button"
 									/>
-									<CSButtonDropdown
+									<CSDropdown
 										iconName="down"
 										label="button dropdown"
 									>
@@ -124,7 +124,7 @@ class CSButtonGroupPreview extends React.Component {
 										<CSButton
 											label="Dropdown item 3"
 										/>
-									</CSButtonDropdown>
+									</CSDropdown>
 								</CSButtonGroup>
 						},
 						{
@@ -146,7 +146,7 @@ class CSButtonGroupPreview extends React.Component {
 										btnStyle="brand"
 										label="Last Button"
 									/>
-									<CSButtonDropdown
+									<CSDropdown
 										iconName="down"
 										label="button dropdown"
 									>
@@ -159,7 +159,7 @@ class CSButtonGroupPreview extends React.Component {
 										<CSButton
 											label="Dropdown item 3"
 										/>
-									</CSButtonDropdown>
+									</CSDropdown>
 								</CSButtonGroup>
 						},
 						{
@@ -181,7 +181,7 @@ class CSButtonGroupPreview extends React.Component {
 										btnStyle="brand"
 										label="Last Button"
 									/>
-									<CSButtonDropdown
+									<CSDropdown
 										iconName="down"
 										label="button dropdown"
 									>
@@ -194,7 +194,7 @@ class CSButtonGroupPreview extends React.Component {
 										<CSButton
 											label="Dropdown item 3"
 										/>
-									</CSButtonDropdown>
+									</CSDropdown>
 								</CSButtonGroup>
 						}
 					]
@@ -220,7 +220,7 @@ class CSButtonGroupPreview extends React.Component {
 										btnStyle="brand"
 										label="Last Button"
 									/>
-									<CSButtonDropdown
+									<CSDropdown
 										iconName="down"
 										label="button dropdown"
 									>
@@ -233,7 +233,7 @@ class CSButtonGroupPreview extends React.Component {
 										<CSButton
 											label="Dropdown item 3"
 										/>
-									</CSButtonDropdown>
+									</CSDropdown>
 								</CSButtonGroup>
 						}
 					]
@@ -261,7 +261,7 @@ class CSButtonGroupPreview extends React.Component {
 										btnStyle="brand"
 										label="Last Button"
 									/>
-									<CSButtonDropdown
+									<CSDropdown
 										iconName="down"
 										label="button dropdown"
 									>
@@ -274,7 +274,7 @@ class CSButtonGroupPreview extends React.Component {
 										<CSButton
 											label="Dropdown item 3"
 										/>
-									</CSButtonDropdown>
+									</CSDropdown>
 								</CSButtonGroup>
 						}
 					]

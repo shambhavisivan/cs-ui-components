@@ -1,44 +1,49 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import CSButton from './CSButton';
 import classNames from 'classnames';
 import { CSIconOrigin } from './CSIcon';
 
-export type CSButtonDropdownAlign = 'left' | 'right';
-export type CSButtonDropdownIconPosition = 'left' | 'right';
-export type CSButtonDropdownSize = 'xsmall' | 'small' | 'normal' | 'large';
-export type CSButtonDropdownStyle = 'initial' | 'brand' | 'outline';
-export type CSButtonDropdownType = 'default' | 'error' | 'success' | 'transparent';
+export type CSDropdownAlign = 'left' | 'right';
+export type CSDropdownIconPosition = 'left' | 'right';
+export type CSDropdownPosition = 'top' | 'bottom';
+export type CSDropdownSize = 'xsmall' | 'small' | 'normal' | 'large';
+export type CSDropdownStyle = 'initial' | 'brand' | 'outline';
+export type CSDropdownType = 'default' | 'error' | 'success' | 'transparent';
 
-export interface CSButtonDropdownProps {
-	align?: CSButtonDropdownAlign;
-	btnStyle?: CSButtonDropdownStyle;
-	btnType?: CSButtonDropdownType;
+export interface CSDropdownProps {
+	align?: CSDropdownAlign;
+	btnStyle?: CSDropdownStyle;
+	btnType?: CSDropdownType;
 	className?: string;
 	disabled?: boolean;
 	hover?: boolean;
 	iconName?: string;
 	iconOrigin?: CSIconOrigin;
-	iconPosition?: CSButtonDropdownIconPosition;
+	iconPosition?: CSDropdownIconPosition;
 	iconRotate?: string;
 	id?: string;
 	label?: string;
+	maxHeight?: string;
+	maxWidth?: string;
 	onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-	size?: CSButtonDropdownSize;
+	position?: CSDropdownPosition;
+	size?: CSDropdownSize;
 }
 
-export interface CSButtonDropdownStates {
+export interface CSDropdownStates {
 	active?: boolean;
 	toggleActive?: any;
 }
 
-class CSButtonDropdown extends React.Component<CSButtonDropdownProps, CSButtonDropdownStates> {
+class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 
 	public static defaultProps = {
 		btnType: 'default',
 		btnStyle: 'initial',
 		align: 'left',
 		iconName: 'down',
-		hover: false
+		hover: false,
+		position: 'bottom'
 	};
 	node: HTMLDivElement;
 
@@ -73,35 +78,42 @@ class CSButtonDropdown extends React.Component<CSButtonDropdownProps, CSButtonDr
 
 	render() {
 		const btnDropdownWrapperClasses = classNames(
-			'cs-btn-dropdown-wrapper',
+			'cs-dropdown-wrapper',
 			{
-				'cs-btn-dropdown-hover': (this.props.hover === true),
+				'cs-dropdown-hover': (this.props.hover === true),
 				[`${this.props.className}`]: this.props.className
 			}
 		);
 		const btnDropdownClasses = classNames(
 			{
-				'cs-btn-dropdown-active': (this.state.active === true)
+				'cs-dropdown-active': (this.state.active === true)
 			}
 		);
-
 		const btnDropdownItemClasses = classNames(
-			'cs-btn-dropdown-outer-item-wrapper',
+			'cs-dropdown-outer-item-wrapper',
 			{
-				[`cs-btn-dropdown-${this.props.align}`]: this.props.align
+				[`cs-dropdown-${this.props.align}`]: this.props.align,
+				[`cs-dropdown-${this.props.position}`]: this.props.position
 			}
 		);
-
-		const childrenWithWrapper =  React.Children.map(this.props.children, child => {
+		const style: CSSProperties = {
+			'--cs-dropdown-max-height': this.props.maxHeight,
+			'--cs-dropdown-max-width': this.props.maxWidth
+		};
+		const childrenWithWrapper =  React.Children.map(this.props.children, (child: any) => {
 			if (child) {
-				return (
-					<li role="none">
-						{React.cloneElement(
-							child as any,
-							{ role: 'menuitem' }
-						)}
-					</li>
-				);
+				if (child.type === CSButton) {
+					return (
+						<li role="none">
+							{React.cloneElement(
+								child,
+								{ role: 'menuitem' }
+							)}
+						</li>
+					);
+				} else {
+					return child;
+				}
 			}
 		});
 
@@ -129,13 +141,13 @@ class CSButtonDropdown extends React.Component<CSButtonDropdownProps, CSButtonDr
 				/>
 				{this.props.hover ?
 					(<div className={btnDropdownItemClasses}>
-						<ul className="cs-btn-dropdown-item-wrapper" role="menu">
+						<ul className="cs-dropdown-item-wrapper" role="menu" style={style}>
 							{childrenWithWrapper}
 						</ul>
 					</div>) :
 					(this.state.active &&
 					<div className={btnDropdownItemClasses}>
-						<ul className="cs-btn-dropdown-item-wrapper" role="menu">
+						<ul className="cs-dropdown-item-wrapper" role="menu" style={style}>
 							{childrenWithWrapper}
 						</ul>
 					</div>)
@@ -145,4 +157,4 @@ class CSButtonDropdown extends React.Component<CSButtonDropdownProps, CSButtonDr
 	}
 }
 
-export default CSButtonDropdown;
+export default CSDropdown;

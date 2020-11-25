@@ -22,7 +22,6 @@ function getSpriteIcons() {
 
 import CSAlert, { CSAlertStyleFormat, CSAlertStyleType, CSAlertTextAlign, CSAlertVariant } from './components/CSAlert';
 import CSButton, { CSButtonIconDisplay, CSButtonIconPosition, CSButtonSize, CSButtonStyle, CSButtonType, CSButtonWidth, CSButtonRole } from './components/CSButton';
-import CSButtonDropdown, { CSButtonDropdownAlign, CSButtonDropdownIconPosition, CSButtonDropdownSize, CSButtonDropdownStyle, CSButtonDropdownType } from './components/CSButtonDropdown';
 import CSButtonGroup, { CSButtonGroupMargin } from './components/CSButtonGroup';
 import CSCard from './components/card/CSCard';
 import CSCardBody from './components/card/CSCardBody';
@@ -34,6 +33,7 @@ import CSCustomSelect, { CSCustomSelectBorderType } from './components/custom-se
 import CSDatepicker, { CSDatepickerDropdownMode } from './components/CSDatepicker';
 import CSDateTimePicker, { CSDateTimePickerDropdownMode } from './components/CSDateTimePicker';
 import CSDivider, { CSDividerVariant } from './components/CSDivider';
+import CSDropdown, { CSDropdownAlign, CSDropdownIconPosition, CSDropdownPosition, CSDropdownSize, CSDropdownStyle, CSDropdownType } from './components/CSDropdown';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './components/CSFieldErrorMsg';
 import CSIcon, { CSIconOrigin } from './components/CSIcon';
 import CSImage, { CSImageColor, CSImageType, CSImageVariant } from './components/CSImage';
@@ -90,12 +90,6 @@ export {
 	CSAlertTextAlign,
 	CSAlertVariant,
 	CSButton,
-	CSButtonDropdown,
-	CSButtonDropdownAlign,
-	CSButtonDropdownIconPosition,
-	CSButtonDropdownSize,
-	CSButtonDropdownStyle,
-	CSButtonDropdownType,
 	CSButtonGroup,
 	CSButtonGroupMargin,
 	CSButtonIconDisplay,
@@ -123,6 +117,13 @@ export {
 	CSDateTimePickerDropdownMode,
 	CSDivider,
 	CSDividerVariant,
+	CSDropdown,
+	CSDropdownAlign,
+	CSDropdownIconPosition,
+	CSDropdownPosition,
+	CSDropdownSize,
+	CSDropdownStyle,
+	CSDropdownType,
 	CSFieldErrorMsg,
 	CSFieldErrorMsgType,
 	CSIcon,

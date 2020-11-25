@@ -29,7 +29,7 @@ import CSAlertPreview from './components/CSAlertPreview';
 import CSButtonPreview from './components/CSButtonPreview';
 import CSLabelPreview from './components/CSLabelPreview';
 import CSProgressBarPreview from './components/CSProgressBarPreview';
-import CSButtonDropdownPreview from './components/CSButtonDropdownPreview';
+import CSDropdownPreview from './components/CSDropdownPreview';
 import CSButtonGroupPreview from './components/CSButtonGroupPreview';
 import CSImagePreview from './components/CSImagePreview';
 import CSLookupFieldPreview from './components/CSLookupFieldPreview';
@@ -56,10 +56,6 @@ class CSComponentsList extends React.Component {
 			{
 				name: 'Button',
 				component: CSButtonPreview
-			},
-			{
-				name: 'Button Dropdown',
-				component: CSButtonDropdownPreview
 			},
 			{
 				name: 'Button Group',
@@ -92,6 +88,10 @@ class CSComponentsList extends React.Component {
 			{
 				name: 'Divider',
 				component: CSDividerPreview
+			},
+			{
+				name: 'Dropdown',
+				component: CSDropdownPreview
 			},
 			{
 				name: 'Field Error Message',

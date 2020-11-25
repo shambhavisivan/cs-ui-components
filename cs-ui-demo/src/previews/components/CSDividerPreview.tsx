@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSDivider, CSButtonGroup, CSButtonDropdown, CSMainHeader, CSMainHeaderLeft, CSMainHeaderRight, CSMainHeaderIcon, CSButton, CSIcon} from '@cloudsense/cs-ui-components';
+import {CSDivider, CSButtonGroup, CSDropdown, CSMainHeader, CSMainHeaderLeft, CSMainHeaderRight, CSMainHeaderIcon, CSButton, CSIcon} from '@cloudsense/cs-ui-components';
 
 class CSDividerPreview extends React.Component {
 	getDoc() {
@@ -47,12 +47,12 @@ class CSDividerPreview extends React.Component {
 							quickLink: 'horizontal',
 							string: '',
 							component:
-								<CSButtonDropdown>
+								<CSDropdown>
 									<CSButton label="Button 1"/>
 									<CSButton label="Button 2"/>
 									<CSDivider variant="horizontal"/>
 									<CSButton label="Lonely Button"/>
-								</CSButtonDropdown>
+								</CSDropdown>
 						}
 					]
 				},
@@ -79,12 +79,12 @@ class CSDividerPreview extends React.Component {
 						{
 							string: '',
 							component:
-								<CSButtonDropdown>
+								<CSDropdown>
 									<CSButton label="Button 1"/>
 									<CSButton label="Button 2"/>
 									<CSDivider variant="horizontal" id="id"/>
 									<CSButton label="Lonely Button"/>
-								</CSButtonDropdown>
+								</CSDropdown>
 						}
 					]
 				},

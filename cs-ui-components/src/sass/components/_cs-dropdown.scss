@@ -1,0 +1,120 @@
+/* CSDROPDOWN COMPONENT */
+
+.cs-dropdown-wrapper {
+	position: relative;
+	display: inline-flex;
+
+	.cs-dropdown-outer-item-wrapper {
+		position: absolute;
+		z-index: var(--z-index-dropdown-items-wrapper);
+
+		.cs-dropdown-item-wrapper {
+			width: auto;
+			min-width: 6rem;
+			height: auto;
+			display: flex;
+			flex-direction: column;
+			border-radius: 0.25rem;
+			padding: 0.25rem 0;
+			overflow: auto;
+			max-height: var(--cs-dropdown-max-height, unset);
+			max-width: var(--cs-dropdown-max-width, unset);
+			@include sbg(--cs-button-default-bg);
+			@include css4 {
+				border: 1px solid cvar(--cs-button-default-br);
+			}
+
+			li {
+				display: flex;
+				list-style-type: none;
+
+				.cs-btn {
+					flex: 1;
+					display: flex;
+					flex-direction: row;
+					border-radius: 0;
+
+					.cs-btn-label {
+						font-size: 0.75rem;
+					}
+
+					&::after {
+						border-radius: 0;
+						@include css4 {
+							border: 1px solid cvar(--cs-transparent);
+						}
+					}
+
+					&:active::after {
+						@include css4 {
+							border: 1px solid cvar(--cs-button-active-br);
+						}
+					}
+
+					&:disabled::after {
+						@include css4 {
+							border: 1px solid cvar(--cs-transparent);
+						}
+					}
+				}
+			}
+		}
+		&.cs-dropdown-left {
+			left: 0;
+		}
+
+		&.cs-dropdown-right {
+			right: 0;
+		}
+		&.cs-dropdown-top {
+			bottom: 100%;
+			padding-bottom: 0.25rem;
+		}
+		&.cs-dropdown-bottom {
+			top: 100%;
+			padding-top: 0.25rem;
+		}
+	}
+
+	.cs-dropdown-active::after {
+		@include css4 {
+			border: 1px solid cvar(--cs-button-active-br);
+		}
+	}
+
+	.cs-btn-transparent {
+		&.cs-dropdown-active::after {
+			@include css4 {
+				border: 1px solid cvar(--cs-button-white-br);
+			}
+		}
+
+		&.cs-btn-brand.cs-dropdown-active::after {
+			@include css4 {
+				border: 1px solid cvar(--cs-button-active-br);
+			}
+		}
+	}
+
+	/* FOR HOVER PROP ONLY */
+	&.cs-dropdown-hover {
+		.cs-dropdown-outer-item-wrapper {
+			.cs-dropdown-item-wrapper {
+				display: none;
+			}
+		}
+
+		&:hover,
+		.cs-dropdown-outer-item-wrapper:hover {
+			.cs-dropdown-item-wrapper {
+				display: flex;
+			}
+		}
+
+		.cs-btn:focus ~ .cs-dropdown-outer-item-wrapper {
+			.cs-dropdown-item-wrapper {
+				display: flex;
+			}
+		}
+	}
+}
