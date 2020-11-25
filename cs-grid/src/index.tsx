@@ -1,5 +1,5 @@
 'use strict';
-
+import { CSButton, CSButtonGroup } from '@cloudsense/cs-ui-components';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -1124,29 +1124,19 @@ export class App extends React.Component<object, AppState> {
 	render() {
 		return (
 			<>
-				<div className='cs-grid_pagination-wrapper'>
-					<div className='cs-grid_pagination'>
-						<div
-							className={
-								'cs-btn icon-only toggle-table-button' +
-								(this.state.isDataSourceRowModel ? '' : ' active')
-							}
-							style={{ width: '5rem', marginBottom: '0.5rem' }}
+				<div style={{ marginBottom: '0.5rem', display: 'flex', justifyContent: 'flex-end' }}>
+					<CSButtonGroup>
+						<CSButton
 							onClick={this.clientDemo}
-						>
-							Client Demo
-						</div>
-						<div
-							className={
-								'cs-btn icon-only toggle-grid-button' +
-								(this.state.isDataSourceRowModel ? ' active' : '')
-							}
-							style={{ width: '5rem' }}
+							label='Client Demo'
+							btnStyle={this.state.isDataSourceRowModel ? 'initial' : 'brand'}
+						/>
+						<CSButton
 							onClick={this.serverDemo}
-						>
-							Server Demo
-						</div>
-					</div>
+							label='Server Demo'
+							btnStyle={this.state.isDataSourceRowModel ? 'brand' : 'initial'}
+						/>
+					</CSButtonGroup>
 				</div>
 				{this.state.isDataSourceRowModel ? (
 					<CSGrid
