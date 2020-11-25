@@ -26,13 +26,16 @@ class CSSidebarListItem extends React.Component<CSSidebarListItemProps> {
 			}
 		);
 		return (
-			<li
-				className={sidebarListClasses}
-				onClick={this.onClickHandler}
-				id={this.props.id}
-				tabIndex={0}
-			>
-				{this.props.text}
+			<li role="none">
+				<button
+					className={sidebarListClasses}
+					onClick={this.onClickHandler}
+					id={this.props.id}
+					role="menuitemradio"
+					aria-selected={this.props.active === this.props.text}
+				>
+					{this.props.text}
+				</button>
 			</li>
 		);
 	}

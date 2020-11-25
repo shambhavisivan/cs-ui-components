@@ -70,25 +70,26 @@ class CSSidebarList extends React.Component<CSSidebarListProps, CSSidebarListSta
 		);
 
 		return (
-			<div className={sidebarListClasses} style={style} id={this.props.id}>
+			<nav className={sidebarListClasses} style={style} id={this.props.id}>
 				<div className="cs-sidebar-list-item-top">
 					{!this.props.static &&
 						<CSButton
 							className="cs-sidebar-list-close"
 							onClick={this.onClose}
-							label="alignment icon button"
+							label="toggle sidebar"
 							iconName="assignment"
 							iconDisplay="icon-only"
 							size="small"
+							ariaExpanded={!this.state.closed}
 						/>
 					}
 				</div>
 				{!this.state.closed &&
-					<ul>
+					<ul role="menu">
 						{renderChildrenWithTabsAsProps}
 					</ul>
 				}
-			</div>
+			</nav>
 		);
 	}
 }

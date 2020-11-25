@@ -3,6 +3,7 @@ import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
+import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
 import {CSSidebarList, CSSidebarListItem, CSAlert} from '@cloudsense/cs-ui-components';
@@ -13,6 +14,7 @@ class CSSidebarListPreview extends React.Component {
 		const json = {
 			name: 'Sidebar List',
 			usage: 'Sidebar list provides a unlimited list of items with the option to toggle between open and closed',
+			accessible: 'yes',
 			examples: [
 				{
 					propName: 'className',
@@ -207,6 +209,38 @@ class CSSidebarListPreview extends React.Component {
 					propertyName: 'width',
 					description: 'Sidebar list width'
 				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'2.1.1',
+						'2.1.2',
+						'3.2.1',
+						'3.3.1',
+						'4.1.2'
+					],
+					requirements: [
+						{
+							structure: [
+								'Sidebar is HTML <ul> element - allows screen reader list navigation and counts <li> items',
+								'Buttons wrapped in HTML <li> - allows screen reader list navigation while preserving keyboard operability',
+								'<button> used'
+							],
+							properties: [
+								'aria-expanded',
+								'aria-selected',
+								'<ul> wrapper role="menu"',
+								'button role="menuitemradio"'
+							],
+							styling: [
+								'Distinct hover, active and focus state styles'
+							],
+							keyboardOperability: [
+								'Proper focus management and keyboard operability ensured by structure and <button>'
+							]
+						}
+					]
+				}
 			]
 		};
 
@@ -225,10 +259,11 @@ class CSSidebarListPreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<CSAlert variant="warning" text="This component is under construction." />
-					<PreviewProperties name={component.name} examples={component.examples}/>
+					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>
