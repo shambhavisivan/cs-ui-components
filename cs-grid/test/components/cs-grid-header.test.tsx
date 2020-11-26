@@ -132,4 +132,24 @@ describe('CS Grid header', () => {
 
 		expect(customSortMock.mock.calls.length).toEqual(1);
 	});
+
+	test('Testing onSortRequested calls eventService.dispatchEvent for all other columns and not the main column.', async () => {
+		const cellHeader = shallow(<CSGridHeader {...cSGridHeaderProps} />);
+		const instance = cellHeader.instance() as CSGridHeader;
+
+		const secondColumn = new Column(colDef, null, 'colId2', true);
+		const firstColumnDispatchEventMock = jest.fn();
+		const secondColumnDispatchEventMock = jest.fn();
+
+		(column as any).eventService.dispatchEvent = firstColumnDispatchEventMock;
+		(secondColumn as any).eventService.dispatchEvent = secondColumnDispatchEventMock;
+
+		// Get ag-grid to return two columns.
+		instance.props.columnApi.getAllColumns = jest.fn().mockReturnValue([column, secondColumn]);
+
+		await instance.onSortRequested({ shiftKey: false });
+
+		expect(firstColumnDispatchEventMock.mock.calls.length).toEqual(0);
+		expect(secondColumnDispatchEventMock.mock.calls.length).toEqual(1);
+	});
 });

@@ -120,6 +120,21 @@ export class CSGridHeader extends React.Component<CSGridHeaderProps, CSGridHeade
 					: 'NONE'
 			);
 
+			const columns = this.props.columnApi.getAllColumns();
+			// clear sort on all columns except this one
+			for (const column of columns) {
+				if (this.props.column.getColId() !== column.getColId()) {
+					(column as any).eventService.dispatchEvent({
+						api: this.props.api,
+						column,
+						columnApi: this.props.columnApi,
+						columns: [column],
+						source: 'api',
+						type: 'sortChanged'
+					});
+				}
+			}
+
 			if (this.state.sorted === '') {
 				this.setState({
 					sorted: 'asc'
@@ -145,18 +160,24 @@ export class CSGridHeader extends React.Component<CSGridHeaderProps, CSGridHeade
 	 * Is called after the grid has been ordered to update the state.
 	 */
 	onSortChanged = () => {
-		if (this.props.column.isSortAscending()) {
-			this.setState({
-				sorted: 'asc'
-			});
-		} else if (this.props.column.isSortDescending()) {
-			this.setState({
-				sorted: 'desc'
-			});
-		} else {
+		if (this.props.customSort) {
 			this.setState({
 				sorted: ''
 			});
+		} else {
+			if (this.props.column.isSortAscending()) {
+				this.setState({
+					sorted: 'asc'
+				});
+			} else if (this.props.column.isSortDescending()) {
+				this.setState({
+					sorted: 'desc'
+				});
+			} else {
+				this.setState({
+					sorted: ''
+				});
+			}
 		}
 	};
 
