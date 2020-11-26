@@ -92,6 +92,12 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 		};
 	}
 
+	componentDidUpdate(prevProps: CSInputSearchProps) {
+		if (prevProps.value !== this.props.value) {
+			this.setValue(this.props.value);
+		}
+	}
+
 	saveInputSearch = (node: HTMLInputElement) => {
 		this.input = node;
 	}
