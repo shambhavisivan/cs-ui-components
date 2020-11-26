@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import CSIcon from './CSIcon';
 import { CSTabGroupVariant } from './CSTabGroup';
 import CSTooltip from './CSTooltip';
+import {BrowserRouter as Router, NavLink} from 'react-router-dom';
 
 export type CSTabStatus = 'initial' | 'error' | 'warning' | 'success';
 export interface CSTabProps {
@@ -10,6 +11,8 @@ export interface CSTabProps {
 	className?: string;
 	disabled?: boolean;
 	id?: string;
+	navLink?: any;
+	navLinkClass?: string;
 	onClick?: (value?: any) => any;
 	parentVariant?: CSTabGroupVariant;
 	status?: CSTabStatus;
@@ -64,26 +67,54 @@ class CSTab extends React.Component<CSTabProps> {
 			return tabIcon || !(parentVariant === 'normal' && status === 'initial');
 		};
 
-		return (
-			<li className={tabClasses} onClick={this.onClickHandler} id={id}>
-				<button
-					className="cs-tab"
-					aria-current={active}
-					aria-invalid={status === 'error'}
-					disabled={disabled}
-				>
+		const tooltip = () => {
+			return (
+				<CSTooltip
+					content={tooltipContent}
+					iconName={getStatusIcon()}
+					variant={status === 'initial' ? 'info' : status}
+					iconSize={'medium'}
+				/>
+			);
+		};
+
+		const tabContent = () => {
+			return (
+				<>
 					{tooltipContent ?
-						<CSTooltip
-							content={tooltipContent}
-							iconName={getStatusIcon()}
-							variant={status === 'initial' ? 'info' : status}
-							iconSize={'medium'}
-						/>
-						: renderTabIcon() ? <CSIcon name={getStatusIcon()}/> : null
+						tooltip()
+						: renderTabIcon() ?? <CSIcon name={getStatusIcon()}/>
 					}
 					<span className="cs-tab-title">{title}</span>
 					{this.props.children}
-				</button>
+				</>
+			);
+		};
+
+		return (
+			<li className={tabClasses} onClick={this.onClickHandler} id={id}>
+				{this.props.navLink ? (
+					<Router>
+						<NavLink
+							to={this.props.navLink}
+							className="cs-tab"
+							activeClassName={this.props.navLinkClass}
+							aria-current={active}
+							aria-invalid={status === 'error'}
+						>
+							{tabContent()}
+						</NavLink>
+					</Router>
+				) : (
+					<button
+						className="cs-tab"
+						aria-current={active}
+						aria-invalid={status === 'error'}
+						disabled={disabled}
+					>
+						{tabContent()}
+					</button>
+				)}
 			</li>
 		);
 	}

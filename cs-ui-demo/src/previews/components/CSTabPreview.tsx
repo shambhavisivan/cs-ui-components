@@ -273,6 +273,36 @@ class CSTabPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'navLink',
+					customText: 'Replaces the default button element structure of CSTab with a React Router NavLink component. Value of navLink prop is the "to" attribute value. https://reactrouter.com/web/api/NavLink',
+					variations: [
+						{
+							string: '',
+							component:
+							<CSTabGroup>
+								<CSTab title="Tab One" navLink={'/icons'}/>
+								<CSTab title="Tab Two" navLink={'/colors'}/>
+								<CSTab title="Tab Three" navLink={'/accessibility'}/>
+							</CSTabGroup>
+						}
+					]
+				},
+				{
+					propName: 'navLinkClass',
+					customText: 'Adds a className which will only be added to the component if NavLink is currently active',
+					variations: [
+						{
+							string: '',
+							component:
+							<CSTabGroup>
+								<CSTab title="Tab One" navLink={'/icons'} navLinkClass="active"/>
+								<CSTab title="Tab Two" navLink={'/colors'} navLinkClass="active"/>
+								<CSTab title="Tab Three" navLink={'/accessibility'} navLinkClass="active"/>
+							</CSTabGroup>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					customText: '',
 					variations: [
@@ -304,6 +334,14 @@ class CSTabPreview extends React.Component {
 				{
 					propertyName: 'id',
 					description: 'Tab id value'
+				},
+				{
+					propertyName: 'navLink',
+					description: 'Nav link "to" attribute value'
+				},
+				{
+					propertyName: 'navLinkClass',
+					description: 'Class name when nav link is active'
 				},
 				{
 					propertyName: 'onClick',
