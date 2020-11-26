@@ -57,6 +57,17 @@ body,
 		}
 	}
 
+	&-right {
+		display: flex;
+		align-items: center;
+
+		.cs-chip {
+			background: #3cdbc0;
+			color: #363a3b;
+			font-size: 0.675rem;
+		}
+	}
+
 	img {
 		padding: 0 1rem;
 	}
