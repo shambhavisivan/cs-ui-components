@@ -9,7 +9,7 @@ import PreviewLinks from '../PreviewLinks';
 import {CSSidebarList, CSSidebarListItem, CSAlert} from '@cloudsense/cs-ui-components';
 
 class CSSidebarListPreview extends React.Component {
-	getDoc() {
+	getSidebarListDoc() {
 
 		const json = {
 			name: 'Sidebar List',
@@ -253,8 +253,46 @@ class CSSidebarListPreview extends React.Component {
 		return json;
 	}
 
+	getSidebarListItemDoc() {
+		const json = {
+			name: 'Sidebar List Item',
+			properties: [
+				{
+					propertyName: 'active',
+					description: 'Active state'
+				},
+				{
+					propertyName: 'className',
+					description: 'For implementing custom class to component'
+				},
+				{
+					propertyName: 'id',
+					description: 'Sidebar list item id value'
+				},
+				{
+					propertyName: 'onClick',
+					description: 'Logic for onClick event'
+				},
+				{
+					propertyName: 'text',
+					description: 'Text content for main toast message'
+				},
+				{
+					propertyName: 'toggleActive',
+					description: 'Toggle active state',
+					helperPropInComponents: [
+						'SidebarList'
+					]
+				}
+			]
+		};
+
+		return json;
+	}
+
 	render() {
-		const component = this.getDoc();
+		const component = this.getSidebarListDoc();
+		const component2 = this.getSidebarListItemDoc();
 
 		return (
 			<>
@@ -262,7 +300,7 @@ class CSSidebarListPreview extends React.Component {
 					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<CSAlert variant="warning" text="This component is under construction." />
 					<PreviewProperties name={component.name} examples={component.examples} />
-					<PreviewTable components={[component]} />
+					<PreviewTable components={[component, component2]} />
 					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
