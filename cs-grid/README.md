@@ -16,6 +16,8 @@ Besides the standard set of features you'd expect from any grid cs-grid includes
 
 Release Notes
 ------------------
+####1.2.41
+ * Added event to clear sort on custom sort.
 ####1.2.40
  * Fixed border and focusing for date input field.
 ####1.2.39
