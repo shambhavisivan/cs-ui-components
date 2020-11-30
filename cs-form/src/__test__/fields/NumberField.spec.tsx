@@ -358,11 +358,62 @@ it('should allow zero and format it in required format', done => {
 	ReactTestUtils.Simulate.focus(textInput);
 
 	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
+
 	ReactTestUtils.Simulate.blur(editTextInput, ({
 		target: { value: '0' }
 	} as any) as SyntheticEventData);
 
 	expect(jestHandleChangeMock).toHaveBeenCalledWith(0.0);
 	expect(editTextInput.value).toEqual('0,00');
+	done();
+});
+
+it('sets readonly', done => {
+	act(() => {
+		ReactDOM.render(
+			<NumberField
+				value="0"
+				wrapper={wrapper}
+				descriptor={descriptor}
+				locale={locale}
+				handleFieldChange={jestHandleChangeMock}
+				fetchPossibleValues={jestFetchPossibleValuesMock}
+				status="visible"
+			/>,
+			container
+		);
+	});
+
+	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>(
+		'#display-field'
+	)!;
+
+	expect(textInput.readOnly).toBe(true);
+	done();
+});
+
+it('sets readonly even when mandatory', done => {
+	descriptor.enabled = 'false';
+
+	act(() => {
+		ReactDOM.render(
+			<NumberField
+				value="0"
+				wrapper={wrapper}
+				descriptor={descriptor}
+				locale={locale}
+				handleFieldChange={jestHandleChangeMock}
+				fetchPossibleValues={jestFetchPossibleValuesMock}
+				status="mandatory"
+			/>,
+			container
+		);
+	});
+
+	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>(
+		'#display-field'
+	)!;
+
+	expect(textInput.readOnly).toBe(true);
 	done();
 });

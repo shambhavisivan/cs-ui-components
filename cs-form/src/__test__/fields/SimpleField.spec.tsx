@@ -37,6 +37,13 @@ it('sets readonly', () => {
 	expect(uut.find(CSInputText).prop('readOnly')).toBe(true);
 });
 
+it('sets readonly even when mandatory', () => {
+	descriptor.enabled = 'false';
+
+	const uut = shallow(<SimpleField locale={locale} wrapper={wrapper} descriptor={descriptor} handleFieldChange={nop} fetchPossibleValues={nop} value="test" status="mandatory" />);
+	expect(uut.find(CSInputText).prop('readOnly')).toBe(true);
+});
+
 it('calls onChange() on change', done => {
 	const onChange = (value: any) => {
 		expect(value).toBe('new value');

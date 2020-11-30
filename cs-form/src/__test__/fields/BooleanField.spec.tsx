@@ -38,6 +38,13 @@ it('sets readonly', () => {
 	expect(uut.find(CSCheckbox).prop('disabled')).toBe(true);
 });
 
+it('sets readonly even when mandatory', () => {
+	descriptor.enabled = 'false';
+
+	const uut = shallow(<BooleanField value locale={locale} wrapper={wrapper} descriptor={descriptor} handleFieldChange={nop} fetchPossibleValues={nop} status="mandatory" />);
+	expect(uut.find(CSCheckbox).prop('disabled')).toBe(true);
+});
+
 it('calls handleFieldChange() on change', done => {
 	const onChange = (value: any) => {
 		expect(value).toBe(true);

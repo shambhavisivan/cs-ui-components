@@ -36,7 +36,7 @@ export class DateField extends React.Component<FormFieldProps, {}> {
 				selected={date}
 				onChange={value => this.props.handleFieldChange(dateToNumber(value))}
 				required={this.props.status === 'mandatory'}
-				readOnly={this.props.status === 'visible'}
+				readOnly={this.props.status === 'visible' || this.props.descriptor.enabled === 'false'}
 				title={title}
 			/>
 		);

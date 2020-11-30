@@ -20,7 +20,7 @@ export const SimpleField: React.FC<FormFieldProps> = props => {
 				props.handleFieldChange(e.target.value)
 			}
 			required={props.status === 'mandatory'}
-			readOnly={props.status === 'visible'}
+			readOnly={props.status === 'visible' || props.descriptor.enabled === 'false'}
 			hidden={props.status === 'hidden'}
 			title={value}
 			labelHidden

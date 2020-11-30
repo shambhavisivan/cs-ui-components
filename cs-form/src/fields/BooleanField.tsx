@@ -11,7 +11,7 @@ export const BooleanField: React.FC<FormFieldProps> = props => {
 			name={props.descriptor.name}
 			checked={props.value}
 			onChange={(e: React.ChangeEvent<HTMLInputElement>) => (props.handleFieldChange(e.target.checked))}
-			disabled={props.status === 'visible'}
+			disabled={props.status === 'visible' || props.descriptor.enabled === 'false'}
 			hidden={props.status === 'hidden'}
 			title={props.value ? 'True' : 'False'}
 			labelHidden

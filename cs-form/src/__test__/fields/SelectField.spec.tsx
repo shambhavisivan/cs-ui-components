@@ -71,6 +71,24 @@ it('sets readonly', () => {
 	expect(uut.find(CSSelect).prop('disabled')).toBeTruthy();
 });
 
+it('sets readonly even when mandatory', () => {
+	descriptor.enabled = 'false';
+
+	const uut = shallow(
+		<SelectField
+			value="option1"
+			wrapper={wrapper}
+			descriptor={descriptor}
+			locale={locale}
+			handleFieldChange={nop}
+			selectOptions={selectOptions}
+			fetchPossibleValues={optionFetcher}
+			status="mandatory"
+		/>
+	);
+	expect(uut.find(CSSelect).prop('disabled')).toBeTruthy();
+});
+
 it('calls onChange() on change', done => {
 	const onChange = (value: any) => {
 		expect(value).toBe('option2');

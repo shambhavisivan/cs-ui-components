@@ -46,6 +46,13 @@ it('sets readonly', () => {
 	expect(uut.find(DatePicker).prop('readOnly')).toBe(true);
 });
 
+it('sets readonly even when mandatory', () => {
+	descriptor.enabled = 'false';
+
+	const uut = shallow(<DateField locale={locale} wrapper={wrapper} descriptor={descriptor} value={Date.UTC(1970, 1, 2)} handleFieldChange={nop} fetchPossibleValues={nop} status="mandatory" />);
+	expect(uut.find(DatePicker).prop('readOnly')).toBe(true);
+});
+
 it('calls onChange() on change', done => {
 	const onChange = (value: any) => {
 		expect(value).toStrictEqual(Date.UTC(2010, 1, 1));
