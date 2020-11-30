@@ -173,8 +173,13 @@ describe('CS Grid Date Editor', () => {
 	});
 
 	test('Updates selected date on valid text input', () => {
+		const onChange = jest.fn();
 		const cellEditor = shallow(
-			<CSGridDateEditor {...cSGridCellEditorProps} textInputFormat='DD/MM/YYYY' />
+			<CSGridDateEditor
+				{...cSGridCellEditorProps}
+				textInputFormat='DD/MM/YYYY'
+				onChange={onChange}
+			/>
 		);
 
 		cellEditor.find('div > input').simulate('change', { target: { value: '24/12/2014' } });
@@ -183,6 +188,7 @@ describe('CS Grid Date Editor', () => {
 
 		expect(instance.state.inputValue).toEqual('24/12/2014');
 		expect(instance.state.value.cellValue).toEqual('2014-12-24');
+		expect(onChange).toHaveBeenCalledWith(undefined, '2014-12-24', '2014-12-24');
 	});
 
 	test("Doesn't update date on invalid text input", () => {

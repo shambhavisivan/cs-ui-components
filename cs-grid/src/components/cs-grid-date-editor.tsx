@@ -80,7 +80,7 @@ export class CSGridDateEditor
 	convertInputValueToMoment = (value: string) => {
 		return value ? moment(value, this.props.textInputFormat, true) : null;
 	};
-	onTextInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+	onTextInputChange = async (event: ChangeEvent<HTMLInputElement>) => {
 		const newValue = event.target.value;
 		const date = this.convertInputValueToMoment(newValue);
 		if (date?.isValid()) {
@@ -91,6 +91,14 @@ export class CSGridDateEditor
 					errorMessage: this.state.value?.errorMessage
 				}
 			});
+			if (this.props.onChange) {
+				const value = await this.props.onChange(
+					this.props.node.id,
+					this.getValue().cellValue,
+					date.format(dateFormat)
+				);
+				this.setState({ value, inputValue: this.convertToInputValue(value?.cellValue) });
+			}
 		} else {
 			this.setState({ inputValue: newValue });
 		}
