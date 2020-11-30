@@ -26,7 +26,11 @@ export class CSGridDecimalEditor extends CSGridNumberEditor<
 		this.setState(prevState => {
 			let formattedValue = this.formatValue();
 
-			if (this.props.noOfDecimalDigits !== undefined && typeof formattedValue !== 'string') {
+			if (
+				this.props.noOfDecimalDigits !== undefined &&
+				typeof formattedValue !== 'string' &&
+				formattedValue !== undefined
+			) {
 				const factorOfTen = Math.pow(10, this.props.noOfDecimalDigits);
 				formattedValue =
 					Math.round((formattedValue + Number.EPSILON) * factorOfTen) / factorOfTen;

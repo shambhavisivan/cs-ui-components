@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import { CSGridDecimalEditor } from '../../src/components/cs-grid-decimal-editor';
 import { CellData } from '../../src/interfaces/cs-grid-base-interfaces';
-import { CSGridCellEditorProps } from '../../src/interfaces/cs-grid-cell-props';
+import { CSGridCellEditorProps, DecimalProps } from '../../src/interfaces/cs-grid-cell-props';
 import { UserInfo } from '../../src/interfaces/user-info';
 
 describe('CS Grid Decimal Editor', () => {
@@ -20,7 +20,7 @@ describe('CS Grid Decimal Editor', () => {
 	const column: Column = new Column(colDef, null, 'colId', true);
 	const rowNode: RowNode = new RowNode();
 
-	const cSGridCellEditorProps: CSGridCellEditorProps<number> = {
+	const cSGridCellEditorProps: CSGridCellEditorProps<string | number> & DecimalProps = {
 		api: new GridApi(),
 		colDef,
 		column,
@@ -57,6 +57,18 @@ describe('CS Grid Decimal Editor', () => {
 
 	test('Renders a decimal editor that has no cell data so should render an empty cell.', () => {
 		cSGridCellEditorProps.value = undefined;
+
+		const cellEditor = shallow(<CSGridDecimalEditor {...cSGridCellEditorProps} />);
+		const input = cellEditor.find('input');
+
+		expect(input.prop('value')).toBe('');
+	});
+
+	test('Renders a decimal editor that has an empty cell value and the prop noOfDecimalDigits defined so should render an empty cell.', () => {
+		cSGridCellEditorProps.value = {
+			cellValue: ''
+		};
+		cSGridCellEditorProps.noOfDecimalDigits = 4;
 
 		const cellEditor = shallow(<CSGridDecimalEditor {...cSGridCellEditorProps} />);
 		const input = cellEditor.find('input');
