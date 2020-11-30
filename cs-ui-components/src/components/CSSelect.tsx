@@ -49,8 +49,8 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 	static getDerivedStateFromProps(nextProps: CSSelectProps, { prevValue }: CSSelectState) {
 		const newState: Partial<CSSelectState> = { prevValue: nextProps.value };
 		if (prevValue !== nextProps.value) {
-		  newState.value = nextProps.value;
-		  return newState;
+			newState.value = nextProps.value;
+			return newState;
 		}
 		return null;
 	}
@@ -67,7 +67,7 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 	}
 
 	handleOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-		this.setState({value: e.target.value});
+		this.setState({ value: e.target.value });
 		if (this.props.onChange) {
 			this.props.onChange(e.target.value);
 		}
@@ -124,7 +124,7 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 					>
 						{this.props.children}
 					</select>
-					<CSIcon name="down"/>
+					<CSIcon name="down" />
 				</div>
 				{(this.props.error && this.props.errorMessage) &&
 					<CSFieldErrorMsg message={this.props.errorMessage} />

@@ -35,6 +35,7 @@
 				cursor: default;
 				user-select: none;
 				pointer-events: none;
+				font-size: 0;
 				@include sbg(--cs-input-disabled-bg);
 				@include css4 {
 					border-color: cvar(--cs-input-disabled-br);
