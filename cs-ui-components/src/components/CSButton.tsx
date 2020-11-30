@@ -1,5 +1,6 @@
 import React, { CSSProperties } from 'react';
 import CSIcon, { CSIconOrigin } from './CSIcon';
+import { BrowserRouter as Router, NavLink, Switch } from 'react-router-dom';
 import classNames from 'classnames';
 
 export type CSButtonIconDisplay = 'default' | 'icon-only' | 'no-icon';
@@ -23,7 +24,7 @@ export interface CSButtonProps {
 	iconColor?: string;
 	iconDisplay?: CSButtonIconDisplay;
 	iconName?: string;
-	iconOrigin?:  CSIconOrigin;
+	iconOrigin?: CSIconOrigin;
 	iconPosition?: CSButtonIconPosition;
 	iconRotate?: string;
 	iconSize?: string;
@@ -31,6 +32,7 @@ export interface CSButtonProps {
 	label: string | undefined;
 	link?: string;
 	loading?: boolean;
+	navLink?: string;
 	onClick?: (value: any) => any;
 	onKeyDown?: (e: React.KeyboardEvent<HTMLLIElement | HTMLButtonElement>) => any;
 	onMouseDown?: (e: React.MouseEvent<HTMLLIElement | HTMLButtonElement>) => any;
@@ -145,13 +147,23 @@ class CSButton extends React.Component<CSButtonProps> {
 		};
 
 		return (
-			React.createElement(
-				this.props.link ? 'a' : 'button',
-				componentProps,
-				this.iconComponent(),
-				this.label(),
-				this.props.children
-			)
+			this.props.navLink ?
+				<Router>
+					{React.cloneElement(
+						<NavLink to={this.props.navLink} />,
+						componentProps,
+						this.iconComponent(),
+						this.label(),
+						this.props.children
+					)}
+				</Router> :
+				React.createElement(
+					this.props.link ? 'a' : 'button',
+					componentProps,
+					this.iconComponent(),
+					this.label(),
+					this.props.children
+				)
 		);
 	}
 }
