@@ -67,23 +67,17 @@ class CSTab extends React.Component<CSTabProps> {
 			return tabIcon || !(parentVariant === 'normal' && status === 'initial');
 		};
 
-		const tooltip = () => {
-			return (
-				<CSTooltip
-					content={tooltipContent}
-					iconName={getStatusIcon()}
-					variant={status === 'initial' ? 'info' : status}
-					iconSize={'medium'}
-				/>
-			);
-		};
-
 		const tabContent = () => {
 			return (
 				<>
 					{tooltipContent ?
-						tooltip()
-						: renderTabIcon() ?? <CSIcon name={getStatusIcon()}/>
+						<CSTooltip
+							content={tooltipContent}
+							iconName={getStatusIcon()}
+							variant={status === 'initial' ? 'info' : status}
+							iconSize={'medium'}
+						/>
+						: renderTabIcon() ? <CSIcon name={getStatusIcon()}/> : null
 					}
 					<span className="cs-tab-title">{title}</span>
 					{this.props.children}
