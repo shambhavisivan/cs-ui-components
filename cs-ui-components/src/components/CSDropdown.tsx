@@ -100,20 +100,16 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 			'--cs-dropdown-max-height': this.props.maxHeight,
 			'--cs-dropdown-max-width': this.props.maxWidth
 		};
-		const childrenWithWrapper =  React.Children.map(this.props.children, (child: any) => {
+		const childrenWithWrapper = React.Children.map(this.props.children, (child: any) => {
 			if (child) {
-				if (child.type === CSButton) {
-					return (
-						<li role="none">
-							{React.cloneElement(
-								child,
-								{ role: 'menuitem' }
-							)}
-						</li>
-					);
-				} else {
-					return child;
-				}
+				return (
+					<li role="none">
+						{React.cloneElement(
+							child,
+							{ role: 'menuitem' }
+						)}
+					</li>
+				);
 			}
 		});
 
@@ -146,11 +142,11 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 						</ul>
 					</div>) :
 					(this.state.active &&
-					<div className={btnDropdownItemClasses}>
-						<ul className="cs-dropdown-item-wrapper" role="menu" style={style}>
-							{childrenWithWrapper}
-						</ul>
-					</div>)
+						<div className={btnDropdownItemClasses}>
+							<ul className="cs-dropdown-item-wrapper" role="menu" style={style}>
+								{childrenWithWrapper}
+							</ul>
+						</div>)
 				}
 			</div>
 		);
