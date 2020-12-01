@@ -184,4 +184,6 @@ interface BaseColDef<T> extends BaseProps<T> {
 
 	/** If sorting by default, set it here. */
 	sort?: CSGridSortDirection;
+	/** If you don't want a particular column to be included in the auto resize */
+	suppressSizeToFit?: boolean;
 }

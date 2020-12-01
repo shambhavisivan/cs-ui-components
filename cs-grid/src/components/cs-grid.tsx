@@ -111,6 +111,13 @@ export interface CSGridProps {
 	customPaginationAPI?: CustomPaginationAPI;
 
 	customSort?: (columnId: string, sortDirection: CSGridSortDirection) => Promise<void>;
+	/**
+	 * If true, make the currently visible columns fit the screen. If you don't want a
+	 * particular column to be included in the auto resize, then set the column definition
+	 * suppressSizeToFit=true. This is helpful if, for example, you want the first column to
+	 * remain fixed width, but all other columns to fill the width of the table.
+	 */
+	sizeColumnsToFit?: boolean;
 	onColumnStateChange?(columnState: string): void;
 	onSelectionChange?(selectedRows: Array<Row> | Array<RowData>): void;
 	onCellValueChange?(
@@ -204,6 +211,11 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 					this.props.rowData as Array<RowData>
 				);
 				this.setState({ rowData: rows });
+			}
+		}
+		if (this.props.sizeColumnsToFit) {
+			if (this.gridApi) {
+				this.gridApi.sizeColumnsToFit();
 			}
 		}
 	}
@@ -420,7 +432,9 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		if (dataSourceAPI) {
 			this.updateDataSource();
 		}
-
+		if (this.props.sizeColumnsToFit) {
+			params.api.sizeColumnsToFit();
+		}
 		if (this.props.onGridReady) {
 			this.props.onGridReady(params, csGridApi);
 		}
@@ -953,6 +967,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			this.addIfDefined(agGridColDef, 'field', columnDef.name);
 			this.addIfDefined(agGridColDef, 'colId', columnDef.name);
 			this.addIfDefined(agGridColDef, 'filter', columnDef.hasFilter);
+			this.addIfDefined(agGridColDef, 'suppressSizeToFit', columnDef.suppressSizeToFit);
 
 			if (this.props.multiSelect) {
 				this.addIfDefined(

@@ -991,11 +991,12 @@ describe('rowdata Related', () => {
 		const gridProps = {
 			...csGridBaseProps,
 			dataSourceAPI,
-			singleClickEdit: false
+			singleClickEdit: false,
 		};
 		const event: GridReadyEvent = {
 			api: {
-				setDatasource: jest.fn()
+				setDatasource: jest.fn(),
+				sizeColumnsToFit: jest.fn(),
 			} as any,
 			columnApi: undefined,
 			type: undefined
@@ -1004,6 +1005,60 @@ describe('rowdata Related', () => {
 		const spyUpdateDataSource = jest.spyOn(csGridShallow.instance(), 'updateDataSource');
 		csGridShallow.instance().onGridReady(event);
 		expect(spyUpdateDataSource).toHaveBeenCalledTimes(1);
+	});
+
+	test('sizeColumnsToFit is called when OnGridReady and componentDidUpdate are called', () => {
+		const dataSourceAPI: DataSourceAPI = {
+			isLastPage: jest.fn(),
+			onBtNext: jest.fn(),
+			onBtPrevious: jest.fn(),
+			onContextChange: jest.fn()
+		};
+		const gridProps = {
+			...csGridBaseProps,
+			dataSourceAPI,
+			singleClickEdit: false,
+			sizeColumnsToFit: true,
+		};
+		const event: GridReadyEvent = {
+			api: {
+				setDatasource: jest.fn(),
+				sizeColumnsToFit: jest.fn(),
+			} as any,
+			columnApi: undefined,
+			type: undefined
+		};
+		const csGridShallow = shallow<CSGrid>(<CSGrid {...gridProps} />);
+		csGridShallow.instance().onGridReady(event);
+		expect(event.api.sizeColumnsToFit).toHaveBeenCalledTimes(1);
+		csGridShallow.instance().componentDidUpdate({} as any, {} as any);
+		/**
+		 * sizeColumnsToFit is expected to be called thrice at this point. Once for onGridReady,
+		 * and twice for componentDidUpdate because componentDidUpdate is called twice. Once for shallow(),
+		 * and once when we called manually above.
+		 */
+		expect(event.api.sizeColumnsToFit).toHaveBeenCalledTimes(3);
+	});
+
+	test('suppressSizeToFit when assigned to columndefs should mapped to aggridcolumnDef', () => {
+		const dataSourceAPI: DataSourceAPI = {
+			isLastPage: jest.fn(),
+			onBtNext: jest.fn(),
+			onBtPrevious: jest.fn(),
+			onContextChange: jest.fn()
+		};
+		const baseProps = {...csGridBaseProps};
+		baseProps.columnDefs = [{suppressSizeToFit: true} as any,...baseProps.columnDefs]
+
+		const gridProps = {
+			...baseProps,
+			dataSourceAPI,
+			singleClickEdit: false,
+			sizeColumnsToFit: true,
+		};
+		const csGridShallow = shallow<CSGrid>(<CSGrid {...gridProps} />);
+		const agGridColDef:any = csGridShallow.find(AgGridReact).props().columnDefs;
+		expect(agGridColDef[0]['suppressSizeToFit']).toEqual(true);
 	});
 
 	test('updateDataSource should throw error when no datasourceAPI is given', () => {
