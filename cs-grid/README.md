@@ -16,6 +16,8 @@ Besides the standard set of features you'd expect from any grid cs-grid includes
 
 Release Notes
 ------------------
+####1.2.44
+ * Fixed call to onChange when date is typed into input field.
 ####1.2.43
  * Updated the main.ts file to include missing file cs-grid-base-actions-renderer.
 ####1.2.42
