@@ -1,6 +1,6 @@
 {
 	"name": "@cloudsense/cs-form",
-	"version": "1.0.0-alpha.113",
+	"version": "1.0.0-alpha.114",
 	"description": "",
 	"scripts": {
 		"test": "cross-env NODE_ICU_DATA=node_modules/full-icu jest",

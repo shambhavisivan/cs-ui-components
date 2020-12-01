@@ -2,6 +2,9 @@
 
 Generic configurable React form component.
 
+### 1.0.0-alpha.114:
+* Enabled false now sets all field types to readonly.
+
 ### 1.0.0-alpha.113:
 * Fixed validator to pick up runtime changes in descriptor.
 
