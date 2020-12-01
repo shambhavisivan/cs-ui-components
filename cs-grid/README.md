@@ -16,6 +16,8 @@ Besides the standard set of features you'd expect from any grid cs-grid includes
 
 Release Notes
 ------------------
+####1.2.43
+ * Updated the main.ts file to include missing file cs-grid-base-actions-renderer.
 ####1.2.42
  * Blank decimals no longer become NaN.
 ####1.2.41

@@ -29,6 +29,7 @@ export * from './src/components/cs-grid-row-validation-renderer';
 export * from './src/components/cs-grid-text-editor';
 export * from './src/components/cs-grid-text-renderer';
 export * from './src/components/cs-grid-base-renderer';
+export * from './src/components/cs-grid-base-actions-renderer';
 export * from './src/components/cs-grid-icon-renderer';
 export * from './src/interfaces/cs-grid-base-interfaces';
 export * from './src/interfaces/cs-grid-data-source-api';
