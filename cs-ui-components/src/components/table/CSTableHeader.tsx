@@ -1,11 +1,20 @@
 import React from 'react';
+import classNames from 'classnames';
 
 export interface CSTableHeaderProps {
+	className?: string;
 	id?: string;
 }
 
 class CSTableHeader extends React.Component<CSTableHeaderProps> {
 	render() {
+
+		const tableHeaderClasses = classNames(
+			'cs-table-header',
+			{
+				[`${this.props.className}`]: this.props.className
+			}
+		);
 
 		const childrenWithProp =  React.Children.map(this.props.children, child => {
 			if (child) {
@@ -19,7 +28,7 @@ class CSTableHeader extends React.Component<CSTableHeaderProps> {
 		});
 
 		return (
-			<div className="cs-table-header" role="row" id={this.props.id}>
+			<div className={tableHeaderClasses} role="row" id={this.props.id}>
 				{childrenWithProp}
 			</div>
 		);

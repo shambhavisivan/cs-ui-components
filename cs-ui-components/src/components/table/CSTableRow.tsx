@@ -1,6 +1,8 @@
 import React from 'react';
+import classNames from 'classnames';
 
 export interface CSTableRowProps {
+	className?: string;
 	id?: string;
 	onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
@@ -15,9 +17,17 @@ class CSTableRow extends React.Component<CSTableRowProps> {
 	}
 
 	render() {
+
+		const tableRowClasses = classNames(
+			'cs-table-header',
+			{
+				[`${this.props.className}`]: this.props.className
+			}
+		);
+
 		return (
 			<div
-				className="cs-table-row"
+				className={tableRowClasses}
 				role="row"
 				onClick={this.handleClick}
 				id={this.props.id}

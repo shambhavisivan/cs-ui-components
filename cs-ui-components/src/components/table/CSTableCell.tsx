@@ -1,6 +1,8 @@
 import React, { CSSProperties } from 'react';
+import classNames from 'classnames';
 
 export interface CSTableCellProps {
+	className?: string;
 	grow?: number;
 	id?: string;
 	maxWidth?: string;
@@ -16,9 +18,16 @@ class CSTableCell extends React.Component<CSTableCellProps> {
 			maxWidth: this.props.maxWidth
 		};
 
+		const tableCellClasses = classNames(
+			'cs-table-cell',
+			{
+				[`${this.props.className}`]: this.props.className
+			}
+		);
+
 		return (
 			<div
-				className="cs-table-cell"
+				className={tableCellClasses}
 				style={style}
 				id={this.props.id}
 				role={this.props.role ? this.props.role : 'cell'}

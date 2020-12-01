@@ -222,8 +222,9 @@ class CSTablePreview extends React.Component {
 							string: '',
 							component:
 								<CSTable className="custom-class">
-									<CSTableHeader>
+									<CSTableHeader className="custom-class">
 										<CSTableCell
+											className="custom-class"
 											text="Header Item 1"
 											grow={2}
 										/>
@@ -240,8 +241,8 @@ class CSTablePreview extends React.Component {
 											maxWidth="100px"
 										/>
 									</CSTableHeader>
-									<CSTableBody>
-										<CSTableRow>
+									<CSTableBody className="custom-class">
+										<CSTableRow className="custom-class">
 											<CSTableCell
 												text="Body Item 1"
 												grow={2}
@@ -508,6 +509,10 @@ class CSTablePreview extends React.Component {
 			name: 'Table Header',
 			properties: [
 				{
+					propertyName: 'className',
+					description: 'For implementing custom class to component'
+				},
+				{
 					propertyName: 'id',
 					description: 'Table header id value'
 				}
@@ -538,6 +543,10 @@ class CSTablePreview extends React.Component {
 			name: 'Table Row',
 			properties: [
 				{
+					propertyName: 'className',
+					description: 'For implementing custom class to component'
+				},
+				{
 					propertyName: 'id',
 					description: 'Table row id value'
 				},
@@ -555,7 +564,10 @@ class CSTablePreview extends React.Component {
 		const json = {
 			name: 'Table Cell',
 			properties: [
-
+				{
+					propertyName: 'className',
+					description: 'For implementing custom class to component'
+				},
 				{
 					propertyName: 'grow',
 					description: 'Flex grow value for cell'

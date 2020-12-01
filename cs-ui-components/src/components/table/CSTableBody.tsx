@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 
 export interface CSTableBodyProps {
 	className?: string;
@@ -7,8 +8,16 @@ export interface CSTableBodyProps {
 
 class CSTableBody extends React.Component<CSTableBodyProps> {
 	render() {
+
+		const tableBodyClasses = classNames(
+			'cs-table-body',
+			{
+				[`${this.props.className}`]: this.props.className
+			}
+		);
+
 		return (
-			<div className="cs-table-body" role="rowgroup" id={this.props.id}>
+			<div className={tableBodyClasses} role="rowgroup" id={this.props.id}>
 				{this.props.children}
 			</div>
 		);
