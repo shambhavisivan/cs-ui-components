@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSDropdown, CSButton} from '@cloudsense/cs-ui-components';
+import { CSDropdown, CSButton } from '@cloudsense/cs-ui-components';
 
 class CSDropdownPreview extends React.Component {
 	getDoc() {
@@ -24,7 +24,6 @@ class CSDropdownPreview extends React.Component {
 							variationName: ['default'],
 							quickLink: 'default initial',
 							variationText: ['btnStyle="initial"'],
-							string: '',
 							component: <CSDropdown
 								iconName="down"
 							>
@@ -48,7 +47,6 @@ class CSDropdownPreview extends React.Component {
 							variationName: ['default'],
 							quickLink: 'default brand',
 							variationText: ['btnStyle="brand"'],
-							string: '',
 							component: <CSDropdown
 								btnStyle="brand"
 								iconName="down"
@@ -67,7 +65,6 @@ class CSDropdownPreview extends React.Component {
 							variationName: ['default'],
 							quickLink: 'default outline',
 							variationText: ['btnStyle="outline"'],
-							string: '',
 							component: <CSDropdown
 								btnStyle="outline"
 								iconName="down"
@@ -86,7 +83,6 @@ class CSDropdownPreview extends React.Component {
 							variationName: ['transparent'],
 							quickLink: 'transparent initial',
 							variationText: ['btnStyle="initial"'],
-							string: '',
 							customClass: 'inverse-background',
 							component: <div className="blue-background">
 								<CSDropdown
@@ -108,7 +104,6 @@ class CSDropdownPreview extends React.Component {
 							variationName: ['transparent'],
 							quickLink: 'transparent brand',
 							variationText: ['btnStyle="brand"'],
-							string: '',
 							component: <CSDropdown
 								btnType="transparent"
 								btnStyle="brand"
@@ -128,7 +123,6 @@ class CSDropdownPreview extends React.Component {
 							variationName: ['transparent'],
 							quickLink: 'transparent outline',
 							variationText: ['btnStyle="outline"'],
-							string: '',
 							customClass: 'inverse-background',
 							component: <div className="blue-background">
 								<CSDropdown
@@ -156,7 +150,6 @@ class CSDropdownPreview extends React.Component {
 						{
 							variationName: ['large'],
 							quickLink: 'large',
-							string: '',
 							component: <CSDropdown
 								size="large"
 								iconName="down"
@@ -174,7 +167,6 @@ class CSDropdownPreview extends React.Component {
 						{
 							variationName: ['small'],
 							quickLink: 'small',
-							string: '',
 							component: <CSDropdown
 								size="small"
 								iconName="down"
@@ -192,7 +184,6 @@ class CSDropdownPreview extends React.Component {
 						{
 							variationName: ['xsmall'],
 							quickLink: 'xsmall',
-							string: '',
 							component: <CSDropdown
 								size="xsmall"
 								iconName="down"
@@ -216,7 +207,6 @@ class CSDropdownPreview extends React.Component {
 						{
 							variationName: ['down'],
 							quickLink: 'down',
-							string: '',
 							component: <CSDropdown
 								iconName="down"
 							>
@@ -233,7 +223,6 @@ class CSDropdownPreview extends React.Component {
 						{
 							variationName: ['threedots_vertical'],
 							quickLink: 'threedots_vertical',
-							string: '',
 							component: <CSDropdown
 								iconName="threedots_vertical"
 							>
@@ -256,7 +245,6 @@ class CSDropdownPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component: <CSDropdown
 								iconName="down"
 								disabled
@@ -280,7 +268,6 @@ class CSDropdownPreview extends React.Component {
 						{
 							variationName: ['left'],
 							quickLink: 'left',
-							string: '',
 							component: <CSDropdown
 								iconName="down"
 								align="left"
@@ -298,7 +285,6 @@ class CSDropdownPreview extends React.Component {
 						{
 							variationName: ['right'],
 							quickLink: 'right',
-							string: '',
 							component: <CSDropdown
 								iconName="down"
 								align="right"
@@ -322,7 +308,6 @@ class CSDropdownPreview extends React.Component {
 						{
 							variationName: ['bottom'],
 							quickLink: 'bottom',
-							string: '',
 							component: <CSDropdown
 								iconName="down"
 							>
@@ -339,7 +324,6 @@ class CSDropdownPreview extends React.Component {
 						{
 							variationName: ['top'],
 							quickLink: 'top',
-							string: '',
 							component: <CSDropdown
 								iconName="down"
 								position="top"
@@ -363,7 +347,6 @@ class CSDropdownPreview extends React.Component {
 						{
 							variationName: ['90'],
 							quickLink: '90',
-							string: '',
 							component: <CSDropdown
 								iconName="down"
 								iconRotate="90"
@@ -381,7 +364,6 @@ class CSDropdownPreview extends React.Component {
 						{
 							variationName: ['180'],
 							quickLink: '180',
-							string: '',
 							component: <CSDropdown
 								iconName="down"
 								iconRotate="180"
@@ -399,7 +381,6 @@ class CSDropdownPreview extends React.Component {
 						{
 							variationName: ['270'],
 							quickLink: '270',
-							string: '',
 							component: <CSDropdown
 								iconName="down"
 								iconRotate="270"
@@ -421,7 +402,6 @@ class CSDropdownPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component: <CSDropdown
 								iconName="down"
 								label="Label"
@@ -444,7 +424,6 @@ class CSDropdownPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component: <CSDropdown
 								iconName="down"
 								label="Label"
@@ -467,7 +446,6 @@ class CSDropdownPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['left'],
-							string: '',
 							component: <CSDropdown
 								iconName="down"
 								label="Label"
@@ -485,7 +463,6 @@ class CSDropdownPreview extends React.Component {
 						},
 						{
 							variationName: ['right'],
-							string: '',
 							component: <CSDropdown
 								iconName="down"
 								label="Label"
@@ -510,7 +487,6 @@ class CSDropdownPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component: <CSDropdown
 								iconName="down"
 								hover
@@ -532,7 +508,6 @@ class CSDropdownPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component: <CSDropdown
 								iconName="down"
 								maxHeight="3rem"
@@ -558,7 +533,6 @@ class CSDropdownPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component: <CSDropdown
 								iconName="down"
 								maxWidth="2rem"
@@ -582,7 +556,6 @@ class CSDropdownPreview extends React.Component {
 						{
 							variationName: ['custom class'],
 							quickLink: 'custom class',
-							string: '',
 							component: <CSDropdown
 								iconName="down"
 								className="custom-class"
@@ -763,13 +736,13 @@ class CSDropdownPreview extends React.Component {
 			<>
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties name={component.name} examples={component.examples}/>
-					<PreviewTable components={[component]}/>
+					<PreviewProperties name={component.name} examples={component.examples} />
+					<PreviewTable components={[component]} />
 					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>
-					<PreviewLinks component={component}/>
+					<PreviewLinks component={component} />
 				</div>
 			</>
 		);

@@ -5,7 +5,7 @@ import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSPaginationWrapper, CSSelect, CSAlert} from '@cloudsense/cs-ui-components';
+import { CSPaginationWrapper, CSSelect, CSAlert } from '@cloudsense/cs-ui-components';
 
 class CSPaginationPreview extends React.Component {
 	getDoc() {
@@ -19,15 +19,14 @@ class CSPaginationPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
-							<CSPaginationWrapper>
-								<CSSelect label="hidden label" labelHidden>
-									<option>10</option>
-									<option>20</option>
-									<option>50</option>
-								</CSSelect>
-							</CSPaginationWrapper>
+								<CSPaginationWrapper>
+									<CSSelect label="hidden label" labelHidden>
+										<option>10</option>
+										<option>20</option>
+										<option>50</option>
+									</CSSelect>
+								</CSPaginationWrapper>
 						}
 					]
 				}

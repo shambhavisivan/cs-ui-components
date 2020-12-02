@@ -5,7 +5,7 @@ import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSPath, CSPathItem, CSPathWrapper, CSAlert} from '@cloudsense/cs-ui-components';
+import { CSPath, CSPathItem, CSPathWrapper, CSAlert } from '@cloudsense/cs-ui-components';
 
 class CSPathPreview extends React.Component {
 	getCSPathDoc() {
@@ -19,7 +19,6 @@ class CSPathPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSPath>
 									<CSPathWrapper>
@@ -42,7 +41,6 @@ class CSPathPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSPath id="id">
 									<CSPathWrapper id="id">
@@ -70,7 +68,6 @@ class CSPathPreview extends React.Component {
 						{
 							variationName: ['custom class'],
 							quickLink: 'custom class',
-							string: '',
 							component:
 								<CSPath className="custom-class">
 									<CSPathWrapper>

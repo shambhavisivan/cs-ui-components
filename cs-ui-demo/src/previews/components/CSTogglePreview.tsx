@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSToggle} from '@cloudsense/cs-ui-components';
+import { CSToggle } from '@cloudsense/cs-ui-components';
 
 class CSTogglePreview extends React.Component {
 	getDoc() {
@@ -25,7 +25,6 @@ class CSTogglePreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSToggle
 									checked
@@ -40,7 +39,6 @@ class CSTogglePreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSToggle
 									disabled
@@ -55,7 +53,6 @@ class CSTogglePreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSToggle
 									required
@@ -74,7 +71,6 @@ class CSTogglePreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSToggle
 									error
@@ -88,9 +84,8 @@ class CSTogglePreview extends React.Component {
 					variations: [
 						{
 							variationText: ['error="true"'],
-							string: '',
 							component:
-								<CSToggle label="This is a label" error errorMessage="Error message!"/>
+								<CSToggle label="This is a label" error errorMessage="Error message!" />
 						}
 					]
 				},
@@ -98,7 +93,6 @@ class CSTogglePreview extends React.Component {
 					propName: 'helpText',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSToggle
 									label="This is a label"
@@ -111,7 +105,6 @@ class CSTogglePreview extends React.Component {
 					propName: 'id',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSToggle
 									label="This is a label"
@@ -126,7 +119,6 @@ class CSTogglePreview extends React.Component {
 						{
 							variationName: ['top-right'],
 							quickLink: 'top-right',
-							string: '',
 							component:
 								<CSToggle
 									label="This is a label"
@@ -137,7 +129,6 @@ class CSTogglePreview extends React.Component {
 						{
 							variationName: ['top-left'],
 							quickLink: 'top-left',
-							string: '',
 							component:
 								<CSToggle
 									label="This is a label"
@@ -148,7 +139,6 @@ class CSTogglePreview extends React.Component {
 						{
 							variationName: ['bottom-right'],
 							quickLink: 'bottom-right',
-							string: '',
 							component:
 								<CSToggle
 									label="This is a label"
@@ -159,7 +149,6 @@ class CSTogglePreview extends React.Component {
 						{
 							variationName: ['bottom-left'],
 							quickLink: 'bottom-left',
-							string: '',
 							component:
 								<CSToggle
 									label="This is a label"
@@ -175,7 +164,6 @@ class CSTogglePreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSToggle
 									label="This is a label"
@@ -190,7 +178,6 @@ class CSTogglePreview extends React.Component {
 					variations: [
 						{
 							variationName: ['left'],
-							string: '',
 							component:
 								<CSToggle
 									label="This label is on the left"
@@ -205,7 +192,6 @@ class CSTogglePreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSToggle
 									label="This is a label"
@@ -218,7 +204,6 @@ class CSTogglePreview extends React.Component {
 					propName: 'onChange',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSToggle
 									label="This is a label"
@@ -231,7 +216,6 @@ class CSTogglePreview extends React.Component {
 					propName: 'title',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSToggle
 									label="This is a label"
@@ -246,7 +230,6 @@ class CSTogglePreview extends React.Component {
 						{
 							variationName: ['custom class'],
 							quickLink: 'custom class',
-							string: '',
 							component:
 								<CSToggle
 									label="This is a label"

@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSMainHeader, CSMainHeaderLeft, CSMainHeaderRight, CSMainHeaderIcon, CSButton, CSIcon} from '@cloudsense/cs-ui-components';
+import { CSMainHeader, CSMainHeaderLeft, CSMainHeaderRight, CSMainHeaderIcon, CSButton, CSIcon } from '@cloudsense/cs-ui-components';
 
 class CSMainHeaderPreview extends React.Component {
 	getCSMainHeaderDoc() {
@@ -23,80 +23,76 @@ class CSMainHeaderPreview extends React.Component {
 						{
 							variationName: ['neutral'],
 							quickLink: 'neutral',
-							string: '',
 							component:
 								<CSMainHeader>
 									<CSMainHeaderIcon>
-										<CSIcon name="emoji"/>
+										<CSIcon name="emoji" />
 									</CSMainHeaderIcon>
 									<CSMainHeaderLeft
 										title="This is a white header"
 										subtitle="This is a subtitle"
 									/>
 									<CSMainHeaderRight>
-										<CSButton label="Button 1"/>
-										<CSButton label="Button 2" btnStyle="brand"/>
+										<CSButton label="Button 1" />
+										<CSButton label="Button 2" btnStyle="brand" />
 									</CSMainHeaderRight>
 								</CSMainHeader>
 						},
 						{
 							variationName: ['brand'],
 							quickLink: 'brand',
-							string: '',
 							component:
 								<CSMainHeader color="brand">
 									<CSMainHeaderIcon>
-										<CSIcon name="emoji"/>
+										<CSIcon name="emoji" />
 									</CSMainHeaderIcon>
 									<CSMainHeaderLeft
 										title="This is a blue header"
 										subtitle="This is a subtitle"
 									/>
 									<CSMainHeaderRight>
-										<CSButton label="Button 1"/>
-										<CSButton label="Button 2" btnType="transparent" btnStyle="outline"/>
+										<CSButton label="Button 1" />
+										<CSButton label="Button 2" btnType="transparent" btnStyle="outline" />
 									</CSMainHeaderRight>
 								</CSMainHeader>
 						},
 						{
 							variationName: ['error'],
 							quickLink: 'error',
-							string: '',
 							component:
 								<CSMainHeader
 									color="error"
 								>
 									<CSMainHeaderIcon>
-										<CSIcon name="emoji"/>
+										<CSIcon name="emoji" />
 									</CSMainHeaderIcon>
 									<CSMainHeaderLeft
 										title="This is a red header"
 										subtitle="This is a subtitle"
 									/>
 									<CSMainHeaderRight>
-										<CSButton label="Button 1"/>
-										<CSButton label="Button 2" btnType="transparent" btnStyle="outline"/>
+										<CSButton label="Button 1" />
+										<CSButton label="Button 2" btnType="transparent" btnStyle="outline" />
 									</CSMainHeaderRight>
 								</CSMainHeader>
 						},
 						{
 							variationName: ['info'],
 							quickLink: 'info',
-							string: '',
 							component:
 								<CSMainHeader
 									color="info"
 								>
 									<CSMainHeaderIcon>
-										<CSIcon name="emoji"/>
+										<CSIcon name="emoji" />
 									</CSMainHeaderIcon>
 									<CSMainHeaderLeft
 										title="This is a grey header"
 										subtitle="This is a subtitle"
 									/>
 									<CSMainHeaderRight>
-										<CSButton label="Button 1"/>
-										<CSButton label="Button 2" btnType="transparent" btnStyle="outline"/>
+										<CSButton label="Button 1" />
+										<CSButton label="Button 2" btnType="transparent" btnStyle="outline" />
 									</CSMainHeaderRight>
 								</CSMainHeader>
 						}
@@ -108,57 +104,54 @@ class CSMainHeaderPreview extends React.Component {
 						{
 							variationName: ['720px'],
 							quickLink: '720px',
-							string: '',
 							component:
 								<CSMainHeader maxWidth="720px">
 									<CSMainHeaderIcon>
-										<CSIcon name="emoji"/>
+										<CSIcon name="emoji" />
 									</CSMainHeaderIcon>
 									<CSMainHeaderLeft
 										title="This header has max width 720px"
 										subtitle="This is a subtitle"
 									/>
 									<CSMainHeaderRight>
-										<CSButton label="Button 1"/>
-										<CSButton label="Button 2" btnStyle="brand"/>
+										<CSButton label="Button 1" />
+										<CSButton label="Button 2" btnStyle="brand" />
 									</CSMainHeaderRight>
 								</CSMainHeader>
 						},
 						{
 							variationName: ['80rem'],
 							quickLink: '80rem',
-							string: '',
 							component:
 								<CSMainHeader maxWidth="80rem">
 									<CSMainHeaderIcon>
-										<CSIcon name="emoji"/>
+										<CSIcon name="emoji" />
 									</CSMainHeaderIcon>
 									<CSMainHeaderLeft
 										title="This header has max width 80rem"
 										subtitle="This is a subtitle"
 									/>
 									<CSMainHeaderRight>
-										<CSButton label="Button 1"/>
-										<CSButton label="Button 2" btnStyle="brand"/>
+										<CSButton label="Button 1" />
+										<CSButton label="Button 2" btnStyle="brand" />
 									</CSMainHeaderRight>
 								</CSMainHeader>
 						},
 						{
 							variationName: ['100%'],
 							quickLink: '100%',
-							string: '',
 							component:
 								<CSMainHeader maxWidth="100%">
 									<CSMainHeaderIcon>
-										<CSIcon name="emoji"/>
+										<CSIcon name="emoji" />
 									</CSMainHeaderIcon>
 									<CSMainHeaderLeft
 										title="This header has max width 100%"
 										subtitle="This is a subtitle"
 									/>
 									<CSMainHeaderRight>
-										<CSButton label="Button 1"/>
-										<CSButton label="Button 2" btnStyle="brand"/>
+										<CSButton label="Button 1" />
+										<CSButton label="Button 2" btnStyle="brand" />
 									</CSMainHeaderRight>
 								</CSMainHeader>
 						}
@@ -171,41 +164,39 @@ class CSMainHeaderPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSMainHeader>
 									<CSMainHeaderIcon>
-										<CSIcon name="emoji"/>
+										<CSIcon name="emoji" />
 									</CSMainHeaderIcon>
 									<CSMainHeaderLeft
 										title="This is a sticky header"
 										subtitle="This is a subtitle"
 									/>
 									<CSMainHeaderRight>
-										<CSButton label="Button 1"/>
-										<CSButton label="Button 2" btnStyle="brand"/>
+										<CSButton label="Button 1" />
+										<CSButton label="Button 2" btnStyle="brand" />
 									</CSMainHeaderRight>
 								</CSMainHeader>
 						},
 						{
 							variationName: ['false'],
 							quickLink: 'false',
-							string: '',
 							component:
 								<CSMainHeader
 									color="neutral"
 									sticky={false}
 								>
 									<CSMainHeaderIcon>
-										<CSIcon name="emoji"/>
+										<CSIcon name="emoji" />
 									</CSMainHeaderIcon>
 									<CSMainHeaderLeft
 										title="This is not a sticky header"
 										subtitle="This is a subtitle"
 									/>
 									<CSMainHeaderRight>
-										<CSButton label="Button 1"/>
-										<CSButton label="Button 2" btnStyle="brand"/>
+										<CSButton label="Button 1" />
+										<CSButton label="Button 2" btnStyle="brand" />
 									</CSMainHeaderRight>
 								</CSMainHeader>
 						}
@@ -215,11 +206,10 @@ class CSMainHeaderPreview extends React.Component {
 					propName: 'id',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSMainHeader id="id">
 									<CSMainHeaderIcon id="id">
-										<CSIcon name="emoji"/>
+										<CSIcon name="emoji" />
 									</CSMainHeaderIcon>
 									<CSMainHeaderLeft
 										id="id"
@@ -227,8 +217,8 @@ class CSMainHeaderPreview extends React.Component {
 										subtitle="This is a subtitle"
 									/>
 									<CSMainHeaderRight id="id">
-										<CSButton label="Button 1"/>
-										<CSButton label="Button 2" btnStyle="brand"/>
+										<CSButton label="Button 1" />
+										<CSButton label="Button 2" btnStyle="brand" />
 									</CSMainHeaderRight>
 								</CSMainHeader>
 						}
@@ -240,11 +230,10 @@ class CSMainHeaderPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSMainHeader>
 									<CSMainHeaderIcon>
-										<CSIcon name="emoji"/>
+										<CSIcon name="emoji" />
 									</CSMainHeaderIcon>
 									<CSMainHeaderLeft
 										reverseOrder
@@ -252,8 +241,8 @@ class CSMainHeaderPreview extends React.Component {
 										subtitle="This is a subtitle"
 									/>
 									<CSMainHeaderRight>
-										<CSButton label="Button 1"/>
-										<CSButton label="Button 2" btnStyle="brand"/>
+										<CSButton label="Button 1" />
+										<CSButton label="Button 2" btnStyle="brand" />
 									</CSMainHeaderRight>
 								</CSMainHeader>
 						}
@@ -265,19 +254,18 @@ class CSMainHeaderPreview extends React.Component {
 						{
 							variationName: ['custom class'],
 							quickLink: 'custom class',
-							string: '',
 							component:
 								<CSMainHeader className="custom-class">
 									<CSMainHeaderIcon>
-										<CSIcon name="emoji"/>
+										<CSIcon name="emoji" />
 									</CSMainHeaderIcon>
 									<CSMainHeaderLeft
 										title="This is a title"
 										subtitle="This is a subtitle"
 									/>
 									<CSMainHeaderRight>
-										<CSButton label="Button 1"/>
-										<CSButton label="Button 2" btnStyle="brand"/>
+										<CSButton label="Button 1" />
+										<CSButton label="Button 2" btnStyle="brand" />
 									</CSMainHeaderRight>
 								</CSMainHeader>
 						}
@@ -290,21 +278,20 @@ class CSMainHeaderPreview extends React.Component {
 						{
 							variationName: ['Add custom buttons'],
 							quickLink: 'Add custom buttons',
-							string: '',
 							component:
 								<CSMainHeader maxWidth="100%">
 									<CSMainHeaderIcon>
-										<CSButton label="back" btnType="transparent" btnStyle="brand" iconName="back" iconDisplay="icon-only"/>
+										<CSButton label="back" btnType="transparent" btnStyle="brand" iconName="back" iconDisplay="icon-only" />
 									</CSMainHeaderIcon>
 									<CSMainHeaderLeft
 										title="This is a custom header"
 										subtitle="This is a subtitle"
 									>
-										<CSButton label="Back to basket" iconName="reply"/>
+										<CSButton label="Back to basket" iconName="reply" />
 									</CSMainHeaderLeft>
 									<CSMainHeaderRight>
-										<CSButton label="Button 1"/>
-										<CSButton label="Button 2" btnStyle="brand"/>
+										<CSButton label="Button 1" />
+										<CSButton label="Button 2" btnStyle="brand" />
 									</CSMainHeaderRight>
 								</CSMainHeader>
 						}

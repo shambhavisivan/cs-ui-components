@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSLabel} from '@cloudsense/cs-ui-components';
+import { CSLabel } from '@cloudsense/cs-ui-components';
 
 class CSLabelPreview extends React.Component {
 	getDoc() {
@@ -21,9 +21,8 @@ class CSLabelPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
-								<CSLabel label="Label" for="Name"/>
+								<CSLabel label="Label" for="Name" />
 						}
 					]
 				},
@@ -31,9 +30,8 @@ class CSLabelPreview extends React.Component {
 					propName: 'id',
 					variations: [
 						{
-							string: '',
 							component:
-								<CSLabel label="Label" id="id"/>
+								<CSLabel label="Label" id="id" />
 						}
 					]
 				},
@@ -43,9 +41,8 @@ class CSLabelPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
-								<CSLabel label="Label" required/>
+								<CSLabel label="Label" required />
 						}
 					]
 				},
@@ -53,9 +50,8 @@ class CSLabelPreview extends React.Component {
 					propName: 'helpText',
 					variations: [
 						{
-							string: '',
 							component:
-								<CSLabel label="Label" helpText="Help text example"/>
+								<CSLabel label="Label" helpText="Help text example" />
 						}
 					]
 				},
@@ -65,30 +61,26 @@ class CSLabelPreview extends React.Component {
 						{
 							variationName: ['top-right'],
 							quickLink: 'top-right',
-							string: '',
 							component:
-									<CSLabel label="Label" helpText="Help text example" tooltipPosition="top-right" />
+								<CSLabel label="Label" helpText="Help text example" tooltipPosition="top-right" />
 						},
 						{
 							variationName: ['top-left'],
 							quickLink: 'top-left',
-							string: '',
 							component:
-									<CSLabel label="Label" helpText="Help text example" tooltipPosition="top-left" />
+								<CSLabel label="Label" helpText="Help text example" tooltipPosition="top-left" />
 						},
 						{
 							variationName: ['bottom-right'],
 							quickLink: 'bottom-right',
-							string: '',
 							component:
-									<CSLabel label="Label" helpText="Help text example" tooltipPosition="bottom-right" />
+								<CSLabel label="Label" helpText="Help text example" tooltipPosition="bottom-right" />
 						},
 						{
 							variationName: ['bottom-left'],
 							quickLink: 'bottom-left',
-							string: '',
 							component:
-									<CSLabel label="Label" helpText="Help text example" tooltipPosition="bottom-left" />
+								<CSLabel label="Label" helpText="Help text example" tooltipPosition="bottom-left" />
 						}
 					]
 				},
@@ -96,9 +88,8 @@ class CSLabelPreview extends React.Component {
 					propName: 'title',
 					variations: [
 						{
-							string: '',
 							component:
-								<CSLabel label="Label" helpText="Help text example" title="Label"/>
+								<CSLabel label="Label" helpText="Help text example" title="Label" />
 						}
 					]
 				},
@@ -108,9 +99,8 @@ class CSLabelPreview extends React.Component {
 						{
 							variationName: ['custom class'],
 							quickLink: 'custom class',
-							string: '',
 							component:
-								<CSLabel label="Label" helpText="Help text example" className="custom-class"/>
+								<CSLabel label="Label" helpText="Help text example" className="custom-class" />
 						}
 					]
 				}

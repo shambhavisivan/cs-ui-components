@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSDivider, CSButtonGroup, CSDropdown, CSMainHeader, CSMainHeaderLeft, CSMainHeaderRight, CSMainHeaderIcon, CSButton, CSIcon} from '@cloudsense/cs-ui-components';
+import { CSDivider, CSButtonGroup, CSDropdown, CSMainHeader, CSMainHeaderLeft, CSMainHeaderRight, CSMainHeaderIcon, CSButton, CSIcon } from '@cloudsense/cs-ui-components';
 
 class CSDividerPreview extends React.Component {
 	getDoc() {
@@ -22,11 +22,10 @@ class CSDividerPreview extends React.Component {
 						{
 							variationName: ['vertical'],
 							quickLink: 'vertical',
-							string: '',
 							component:
 								<CSMainHeader>
 									<CSMainHeaderIcon>
-										<CSIcon name="emoji"/>
+										<CSIcon name="emoji" />
 									</CSMainHeaderIcon>
 									<CSMainHeaderLeft
 										title="This is a white header"
@@ -34,24 +33,23 @@ class CSDividerPreview extends React.Component {
 									/>
 									<CSMainHeaderRight>
 										<CSButtonGroup>
-											<CSButton label="Button 1"/>
-											<CSButton label="Button 2"/>
+											<CSButton label="Button 1" />
+											<CSButton label="Button 2" />
 										</CSButtonGroup>
-										<CSDivider variant="vertical" size="2rem"/>
-										<CSButton label="Button 2"/>
+										<CSDivider variant="vertical" size="2rem" />
+										<CSButton label="Button 2" />
 									</CSMainHeaderRight>
 								</CSMainHeader>
 						},
 						{
 							variationName: ['horizontal'],
 							quickLink: 'horizontal',
-							string: '',
 							component:
 								<CSDropdown>
-									<CSButton label="Button 1"/>
-									<CSButton label="Button 2"/>
-									<CSDivider variant="horizontal"/>
-									<CSButton label="Lonely Button"/>
+									<CSButton label="Button 1" />
+									<CSButton label="Button 2" />
+									<CSDivider variant="horizontal" />
+									<CSButton label="Lonely Button" />
 								</CSDropdown>
 						}
 					]
@@ -62,13 +60,12 @@ class CSDividerPreview extends React.Component {
 						{
 							variationName: ['custom class'],
 							quickLink: 'custom class',
-							string: '',
 							component:
 								<CSButtonGroup>
-									<CSButton label="Button 1"/>
-									<CSButton label="Button 2"/>
-									<CSDivider variant="vertical" size="2rem" className="custom-class"/>
-									<CSButton label="Button 3"/>
+									<CSButton label="Button 1" />
+									<CSButton label="Button 2" />
+									<CSDivider variant="vertical" size="2rem" className="custom-class" />
+									<CSButton label="Button 3" />
 								</CSButtonGroup>
 						}
 					]
@@ -77,13 +74,12 @@ class CSDividerPreview extends React.Component {
 					propName: 'id',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSDropdown>
-									<CSButton label="Button 1"/>
-									<CSButton label="Button 2"/>
-									<CSDivider variant="horizontal" id="id"/>
-									<CSButton label="Lonely Button"/>
+									<CSButton label="Button 1" />
+									<CSButton label="Button 2" />
+									<CSDivider variant="horizontal" id="id" />
+									<CSButton label="Lonely Button" />
 								</CSDropdown>
 						}
 					]
@@ -92,7 +88,6 @@ class CSDividerPreview extends React.Component {
 					propName: 'label',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSDivider
 									variant="horizontal"
@@ -107,13 +102,12 @@ class CSDividerPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['100px'],
-							string: '',
 							component:
 								<CSButtonGroup>
-									<CSButton label="Button 1"/>
-									<CSButton label="Button 2"/>
-									<CSDivider variant="vertical" size="100px"/>
-									<CSButton label="Button 3"/>
+									<CSButton label="Button 1" />
+									<CSButton label="Button 2" />
+									<CSDivider variant="vertical" size="100px" />
+									<CSButton label="Button 3" />
 								</CSButtonGroup>
 						}
 					]
@@ -185,7 +179,7 @@ class CSDividerPreview extends React.Component {
 			<>
 				<div className="preview-section-wrapper divider-preview">
 					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties  name={component.name} examples={component.examples}/>
+					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
 					<PreviewAccessibility components={[component]} />
 				</div>

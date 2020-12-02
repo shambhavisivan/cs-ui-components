@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSLookupField, CSAlert} from '@cloudsense/cs-ui-components';
+import { CSLookupField, CSAlert } from '@cloudsense/cs-ui-components';
 
 class CSLookupFieldPreview extends React.Component {
 
@@ -14,10 +14,10 @@ class CSLookupFieldPreview extends React.Component {
 
 		const testArray = () => {
 			return ([
-				{Id: 1, Account: 'Acme', Industry: 'Manufacturing'},
-				{Id: 2, Account: 'Global Media', Industry: 'Media'},
-				{Id: 3, Account: 'Salesforce', Industry: 'Technology'},
-				{Id: 4, Account: 'Elisa', Industry: 'Telecommunications'}
+				{ Id: 1, Account: 'Acme', Industry: 'Manufacturing' },
+				{ Id: 2, Account: 'Global Media', Industry: 'Media' },
+				{ Id: 3, Account: 'Salesforce', Industry: 'Technology' },
+				{ Id: 4, Account: 'Elisa', Industry: 'Telecommunications' }
 			]);
 		};
 
@@ -31,14 +31,13 @@ class CSLookupFieldPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
-							<CSLookupField
-								label="Account"
-								id="Accounts"
-								fetchLookupOptions={testArray}
-								fieldToBeDisplayed="Account"
-							/>
+								<CSLookupField
+									label="Account"
+									id="Accounts"
+									fetchLookupOptions={testArray}
+									fieldToBeDisplayed="Account"
+								/>
 						}
 					]
 				},
@@ -47,14 +46,13 @@ class CSLookupFieldPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
-							<CSLookupField
-								label="Account"
-								fetchLookupOptions={testArray}
-								fieldToBeDisplayed="Account"
-								placeholder="Search..."
-							/>
+								<CSLookupField
+									label="Account"
+									fetchLookupOptions={testArray}
+									fieldToBeDisplayed="Account"
+									placeholder="Search..."
+								/>
 						}
 					]
 				},
@@ -62,7 +60,6 @@ class CSLookupFieldPreview extends React.Component {
 					propName: 'label',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSLookupField
 									label="Account"
@@ -78,7 +75,6 @@ class CSLookupFieldPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSLookupField
 									label="Account"
@@ -95,7 +91,6 @@ class CSLookupFieldPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSLookupField
 									label="Account"
@@ -112,7 +107,6 @@ class CSLookupFieldPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSLookupField
 									label="Account"
@@ -127,7 +121,6 @@ class CSLookupFieldPreview extends React.Component {
 					propName: 'helpText',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSLookupField
 									label="Account"
@@ -144,7 +137,6 @@ class CSLookupFieldPreview extends React.Component {
 						{
 							variationName: ['top-right'],
 							quickLink: 'top-right',
-							string: '',
 							component:
 								<CSLookupField
 									label="Account"
@@ -157,7 +149,6 @@ class CSLookupFieldPreview extends React.Component {
 						{
 							variationName: ['top-left'],
 							quickLink: 'top-left',
-							string: '',
 							component:
 								<CSLookupField
 									label="Account"
@@ -170,7 +161,6 @@ class CSLookupFieldPreview extends React.Component {
 						{
 							variationName: ['bottom-right'],
 							quickLink: 'bottom-right',
-							string: '',
 							component:
 								<CSLookupField
 									label="Account"
@@ -183,7 +173,6 @@ class CSLookupFieldPreview extends React.Component {
 						{
 							variationName: ['bottom-left'],
 							quickLink: 'bottom-left',
-							string: '',
 							component:
 								<CSLookupField
 									label="Account"
@@ -201,7 +190,6 @@ class CSLookupFieldPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSLookupField
 									label="Account"
@@ -218,7 +206,6 @@ class CSLookupFieldPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSLookupField
 									label="Account"
@@ -235,7 +222,6 @@ class CSLookupFieldPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSLookupField
 									required
@@ -250,7 +236,6 @@ class CSLookupFieldPreview extends React.Component {
 					propName: 'fetchLookupOptions',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSLookupField
 									label="Account"
@@ -266,7 +251,6 @@ class CSLookupFieldPreview extends React.Component {
 						{
 							variationName: ['Account'],
 							quickLink: 'Account',
-							string: '',
 							component:
 								<CSLookupField
 									label="Account"
@@ -277,7 +261,6 @@ class CSLookupFieldPreview extends React.Component {
 						{
 							variationName: ['Industry'],
 							quickLink: 'Industry',
-							string: '',
 							component:
 								<CSLookupField
 									label="Industry"
@@ -288,7 +271,6 @@ class CSLookupFieldPreview extends React.Component {
 						{
 							variationName: ['Id'],
 							quickLink: 'Id',
-							string: '',
 							component:
 								<CSLookupField
 									label="Id"
@@ -308,7 +290,6 @@ class CSLookupFieldPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSLookupField
 									fetchLookupOptions={testArray}
@@ -324,7 +305,6 @@ class CSLookupFieldPreview extends React.Component {
 					variations: [
 						{
 							variationText: ['error="true"'],
-							string: '',
 							component:
 								<CSLookupField
 									label="Account"
@@ -342,7 +322,6 @@ class CSLookupFieldPreview extends React.Component {
 						{
 							variationName: ['square'],
 							quickLink: 'square',
-							string: '',
 							component:
 								<CSLookupField
 									label="Account"
@@ -357,7 +336,6 @@ class CSLookupFieldPreview extends React.Component {
 					propName: 'title',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSLookupField
 									label="Account"
@@ -374,7 +352,6 @@ class CSLookupFieldPreview extends React.Component {
 						{
 							variationName: ['custom class'],
 							quickLink: 'custom class',
-							string: '',
 							component:
 								<CSLookupField
 									label="Account"

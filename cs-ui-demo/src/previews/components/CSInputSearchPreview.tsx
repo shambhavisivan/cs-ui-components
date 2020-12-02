@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSInputSearch} from '@cloudsense/cs-ui-components';
+import { CSInputSearch } from '@cloudsense/cs-ui-components';
 
 class CSInputSearchPreview extends React.Component {
 	getDoc() {
@@ -35,9 +35,8 @@ class CSInputSearchPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
-									<CSInputSearch label="Type here:" value="Value" />
+								<CSInputSearch label="Type here:" value="Value" />
 						}
 					]
 				},
@@ -45,9 +44,8 @@ class CSInputSearchPreview extends React.Component {
 					propName: 'placeholder',
 					variations: [
 						{
-							string: '',
 							component:
-									<CSInputSearch label="Type here:" placeholder="Search name" />
+								<CSInputSearch label="Type here:" placeholder="Search name" />
 						}
 					]
 				},
@@ -55,9 +53,8 @@ class CSInputSearchPreview extends React.Component {
 					propName: 'id',
 					variations: [
 						{
-							string: '',
 							component:
-									<CSInputSearch label="Type here:" id="search" />
+								<CSInputSearch label="Type here:" id="search" />
 						}
 					]
 				},
@@ -65,9 +62,8 @@ class CSInputSearchPreview extends React.Component {
 					propName: 'label',
 					variations: [
 						{
-							string: '',
 							component:
-									<CSInputSearch label="Type here:"  />
+								<CSInputSearch label="Type here:" />
 						}
 					]
 				},
@@ -77,7 +73,6 @@ class CSInputSearchPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSInputSearch label="Type here:" labelHidden />
 						}
@@ -89,7 +84,6 @@ class CSInputSearchPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSInputSearch label="Type here:" labelTitle />
 						}
@@ -99,9 +93,8 @@ class CSInputSearchPreview extends React.Component {
 					propName: 'helpText',
 					variations: [
 						{
-							string: '',
 							component:
-									<CSInputSearch label="Type here:" helpText="Help text example" />
+								<CSInputSearch label="Type here:" helpText="Help text example" />
 						}
 					]
 				},
@@ -111,30 +104,26 @@ class CSInputSearchPreview extends React.Component {
 						{
 							variationName: ['top-right'],
 							quickLink: 'top-right',
-							string: '',
 							component:
-									<CSInputSearch label="Type here:" helpText="Help text example" tooltipPosition="top-right" />
+								<CSInputSearch label="Type here:" helpText="Help text example" tooltipPosition="top-right" />
 						},
 						{
 							variationName: ['top-left'],
 							quickLink: 'top-left',
-							string: '',
 							component:
-									<CSInputSearch label="Type here:" helpText="Help text example" tooltipPosition="top-left" />
+								<CSInputSearch label="Type here:" helpText="Help text example" tooltipPosition="top-left" />
 						},
 						{
 							variationName: ['bottom-right'],
 							quickLink: 'bottom-right',
-							string: '',
 							component:
-									<CSInputSearch label="Type here:" helpText="Help text example" tooltipPosition="bottom-right" />
+								<CSInputSearch label="Type here:" helpText="Help text example" tooltipPosition="bottom-right" />
 						},
 						{
 							variationName: ['bottom-left'],
 							quickLink: 'bottom-left',
-							string: '',
 							component:
-									<CSInputSearch label="Type here:" helpText="Help text example" tooltipPosition="bottom-left" />
+								<CSInputSearch label="Type here:" helpText="Help text example" tooltipPosition="bottom-left" />
 						}
 					]
 				},
@@ -144,9 +133,8 @@ class CSInputSearchPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
-									<CSInputSearch label="Type here:" disabled />
+								<CSInputSearch label="Type here:" disabled />
 						}
 					]
 				},
@@ -156,9 +144,8 @@ class CSInputSearchPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
-									<CSInputSearch label="Type here:" hidden />
+								<CSInputSearch label="Type here:" hidden />
 						}
 					]
 				},
@@ -168,9 +155,8 @@ class CSInputSearchPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
-									<CSInputSearch label="Type here:" required />
+								<CSInputSearch label="Type here:" required />
 						}
 					]
 				},
@@ -184,9 +170,8 @@ class CSInputSearchPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
-									<CSInputSearch label="Type here:" error />
+								<CSInputSearch label="Type here:" error />
 						}
 					]
 				},
@@ -195,9 +180,8 @@ class CSInputSearchPreview extends React.Component {
 					variations: [
 						{
 							variationText: ['error="true"'],
-							string: '',
 							component:
-								<CSInputSearch label="Enter value:" error errorMessage="Error message!"/>
+								<CSInputSearch label="Enter value:" error errorMessage="Error message!" />
 						}
 					]
 				},
@@ -207,7 +191,6 @@ class CSInputSearchPreview extends React.Component {
 						{
 							variationName: ['right'],
 							quickLink: 'right',
-							string: '',
 							component:
 								<CSInputSearch label="Type here:" iconPosition="right" />
 						}
@@ -219,9 +202,8 @@ class CSInputSearchPreview extends React.Component {
 						{
 							variationName: ['square'],
 							quickLink: 'square',
-							string: '',
 							component:
-									<CSInputSearch label="Type here:" borderType="square" />
+								<CSInputSearch label="Type here:" borderType="square" />
 						}
 					]
 				},
@@ -231,9 +213,8 @@ class CSInputSearchPreview extends React.Component {
 						{
 							variationName: ['50%'],
 							quickLink: '50%',
-							string: '',
 							component:
-									<CSInputSearch label="Type here:" width="50%" />
+								<CSInputSearch label="Type here:" width="50%" />
 						}
 					]
 				},
@@ -242,7 +223,6 @@ class CSInputSearchPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSInputSearch label="Type here:" onBlur={onBlurHandler} />
 						}
@@ -253,9 +233,8 @@ class CSInputSearchPreview extends React.Component {
 					propName: 'onChange',
 					variations: [
 						{
-							string: '',
 							component:
-									<CSInputSearch label="Type here:" onChange={onChangeHandler} />
+								<CSInputSearch label="Type here:" onChange={onChangeHandler} />
 						}
 					]
 				},
@@ -264,7 +243,6 @@ class CSInputSearchPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSInputSearch label="Type here:" onFocus={onFocusHandler} />
 						}
@@ -275,7 +253,6 @@ class CSInputSearchPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSInputSearch label="Type here:" onKeyDown={onKeyDownHandler} />
 						}
@@ -286,7 +263,6 @@ class CSInputSearchPreview extends React.Component {
 					customText: 'Provides option to call a function after search cleared to provide extra functionality',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSInputSearch label="Type here and clear search:" onClearSearch={onClearSearchHandler} />
 						}
@@ -298,9 +274,8 @@ class CSInputSearchPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
-									<CSInputSearch label="Type here:" autoFocus />
+								<CSInputSearch label="Type here:" autoFocus />
 						}
 					]
 				},
@@ -308,7 +283,6 @@ class CSInputSearchPreview extends React.Component {
 					propName: 'title',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSInputSearch label="Type here:" title="This is a title" />
 						}
@@ -320,9 +294,8 @@ class CSInputSearchPreview extends React.Component {
 						{
 							variationName: ['custom class'],
 							quickLink: 'custom class',
-							string: '',
 							component:
-									<CSInputSearch label="Type here:" className="custom-class" />
+								<CSInputSearch label="Type here:" className="custom-class" />
 						}
 					]
 				}

@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSProgressBar, CSButton} from '@cloudsense/cs-ui-components';
+import { CSProgressBar, CSButton } from '@cloudsense/cs-ui-components';
 
 export interface CSProgressBarPreviewState {
 	progress: string;
@@ -19,20 +19,20 @@ class CSProgressBarPreview extends React.Component<CSProgressBarPreviewState> {
 	};
 
 	restartProgress = () => {
-		this.setState({progress: 0});
+		this.setState({ progress: 0 });
 	}
 
 	renderProgressDelayed = () => {
 		for (let i = 0; i <= 100; i++) {
 			setTimeout(() => {
-				this.setState({progress: i});
+				this.setState({ progress: i });
 			}, 0);
 		}
 	}
 
 	renderProgressInstant = () => {
 		for (let i = 0; i <= 100; i++) {
-			this.setState({progress: i});
+			this.setState({ progress: i });
 		}
 	}
 
@@ -50,7 +50,6 @@ class CSProgressBarPreview extends React.Component<CSProgressBarPreviewState> {
 						{
 							variationName: ['0%'],
 							quickLink: '0%',
-							string: '',
 							component:
 								<CSProgressBar
 									label="Progress"
@@ -60,7 +59,6 @@ class CSProgressBarPreview extends React.Component<CSProgressBarPreviewState> {
 						{
 							variationName: ['50%'],
 							quickLink: '50%',
-							string: '',
 							component:
 								<CSProgressBar
 									label="Progress"
@@ -70,7 +68,6 @@ class CSProgressBarPreview extends React.Component<CSProgressBarPreviewState> {
 						{
 							variationName: ['100%'],
 							quickLink: '100%',
-							string: '',
 							component:
 								<CSProgressBar
 									label="Progress"
@@ -85,7 +82,6 @@ class CSProgressBarPreview extends React.Component<CSProgressBarPreviewState> {
 					variations: [
 						{
 							variationText: ['progress="50%"'],
-							string: '',
 							component:
 								<CSProgressBar
 									progress="50%"
@@ -100,7 +96,6 @@ class CSProgressBarPreview extends React.Component<CSProgressBarPreviewState> {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSProgressBar
 									progress="50%"
@@ -116,7 +111,6 @@ class CSProgressBarPreview extends React.Component<CSProgressBarPreviewState> {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSProgressBar
 									progress="50%"
@@ -131,7 +125,6 @@ class CSProgressBarPreview extends React.Component<CSProgressBarPreviewState> {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSProgressBar
 									progress="50%"
@@ -149,7 +142,6 @@ class CSProgressBarPreview extends React.Component<CSProgressBarPreviewState> {
 							variationName: ['true'],
 							quickLink: 'true',
 							variationText: ['progress="70%"'],
-							string: '',
 							component:
 								<CSProgressBar
 									progress="70%"
@@ -167,7 +159,6 @@ class CSProgressBarPreview extends React.Component<CSProgressBarPreviewState> {
 							variationName: ['green'],
 							quickLink: 'green',
 							variationText: ['progress="30%"'],
-							string: '',
 							component:
 								<CSProgressBar
 									progress="30%"
@@ -179,7 +170,6 @@ class CSProgressBarPreview extends React.Component<CSProgressBarPreviewState> {
 							variationName: ['#FFAA00'],
 							quickLink: '#FFAA00',
 							variationText: ['progress="50%"'],
-							string: '',
 							component:
 								<CSProgressBar
 									progress="50%"
@@ -191,7 +181,6 @@ class CSProgressBarPreview extends React.Component<CSProgressBarPreviewState> {
 							variationName: ['rgb(100,100,255)'],
 							quickLink: 'rgb(100,100,255)',
 							variationText: ['progress="70%"'],
-							string: '',
 							component:
 								<CSProgressBar
 									progress="70%"
@@ -209,7 +198,6 @@ class CSProgressBarPreview extends React.Component<CSProgressBarPreviewState> {
 							variationName: ['xsmall'],
 							quickLink: 'xsmall',
 							variationText: ['progress="50%"'],
-							string: '',
 							component:
 								<CSProgressBar
 									progress="50%"
@@ -221,7 +209,6 @@ class CSProgressBarPreview extends React.Component<CSProgressBarPreviewState> {
 							variationName: ['small'],
 							quickLink: 'small',
 							variationText: ['progress="50%"'],
-							string: '',
 							component:
 								<CSProgressBar
 									progress="50%"
@@ -233,7 +220,6 @@ class CSProgressBarPreview extends React.Component<CSProgressBarPreviewState> {
 							variationName: ['medium'],
 							quickLink: 'medium',
 							variationText: ['progress="50%"'],
-							string: '',
 							component:
 								<CSProgressBar
 									progress="50%"
@@ -245,7 +231,6 @@ class CSProgressBarPreview extends React.Component<CSProgressBarPreviewState> {
 							variationName: ['large'],
 							quickLink: 'large',
 							variationText: ['progress="50%"'],
-							string: '',
 							component:
 								<CSProgressBar
 									progress="50%"
@@ -259,7 +244,6 @@ class CSProgressBarPreview extends React.Component<CSProgressBarPreviewState> {
 					propName: 'title',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSProgressBar
 									progress="50%"
@@ -277,7 +261,6 @@ class CSProgressBarPreview extends React.Component<CSProgressBarPreviewState> {
 							variationName: ['custom class'],
 							quickLink: 'custom class',
 							variationText: ['progress="50%"'],
-							string: '',
 							component:
 								<CSProgressBar
 									progress="50%"
@@ -288,7 +271,6 @@ class CSProgressBarPreview extends React.Component<CSProgressBarPreviewState> {
 						{
 							variationName: ['Simulate progress'],
 							quickLink: 'Simulate progress',
-							string: '',
 							component:
 								<CSProgressBar
 									progress={`${this.state.progress}%`}

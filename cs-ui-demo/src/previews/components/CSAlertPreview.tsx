@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSAlert} from '@cloudsense/cs-ui-components';
+import { CSAlert } from '@cloudsense/cs-ui-components';
 
 class CSAlertPreview extends React.Component {
 	getDoc() {
@@ -23,7 +23,6 @@ class CSAlertPreview extends React.Component {
 						{
 							variationName: ['info'],
 							quickLink: 'info',
-							string: '',
 							component:
 								<CSAlert
 									variant="info"
@@ -34,7 +33,6 @@ class CSAlertPreview extends React.Component {
 						{
 							variationName: ['warning'],
 							quickLink: 'warning',
-							string: '',
 							component:
 								<CSAlert
 									variant="warning"
@@ -45,7 +43,6 @@ class CSAlertPreview extends React.Component {
 						{
 							variationName: ['error'],
 							quickLink: 'error',
-							string: '',
 							component:
 								<CSAlert
 									variant="error"
@@ -56,7 +53,6 @@ class CSAlertPreview extends React.Component {
 						{
 							variationName: ['base'],
 							quickLink: 'base',
-							string: '',
 							component:
 								<CSAlert
 									variant="base"
@@ -73,7 +69,6 @@ class CSAlertPreview extends React.Component {
 							variationName: ['light'],
 							quickLink: 'light info',
 							variationText: ['variant="info"'],
-							string: '',
 							component:
 								<CSAlert
 									variant="info"
@@ -86,7 +81,6 @@ class CSAlertPreview extends React.Component {
 							variationName: ['light'],
 							quickLink: 'light error',
 							variationText: ['variant="error"'],
-							string: '',
 							component:
 								<CSAlert
 									variant="error"
@@ -99,7 +93,6 @@ class CSAlertPreview extends React.Component {
 							variationName: ['light'],
 							quickLink: 'light warning',
 							variationText: ['variant="warning"'],
-							string: '',
 							component:
 								<CSAlert
 									variant="warning"
@@ -112,7 +105,6 @@ class CSAlertPreview extends React.Component {
 							variationName: ['light'],
 							quickLink: 'light base',
 							variationText: ['variant="base"'],
-							string: '',
 							component:
 								<CSAlert
 									variant="base"
@@ -129,7 +121,6 @@ class CSAlertPreview extends React.Component {
 						{
 							variationName: ['left'],
 							quickLink: 'left',
-							string: '',
 							component:
 								<CSAlert
 									variant="info"
@@ -142,7 +133,6 @@ class CSAlertPreview extends React.Component {
 							variationName: ['left'],
 							quickLink: 'left with array',
 							variationText: ['array'],
-							string: '',
 							component:
 								<CSAlert
 									variant="info"
@@ -154,7 +144,6 @@ class CSAlertPreview extends React.Component {
 						{
 							variationName: ['center'],
 							quickLink: 'center',
-							string: '',
 							component:
 								<CSAlert
 									variant="info"
@@ -167,7 +156,6 @@ class CSAlertPreview extends React.Component {
 							variationName: ['center'],
 							quickLink: 'center with array',
 							variationText: ['array'],
-							string: '',
 							component:
 								<CSAlert
 									variant="info"
@@ -185,7 +173,6 @@ class CSAlertPreview extends React.Component {
 						{
 							variationName: ['quote'],
 							quickLink: 'quote',
-							string: '',
 							component:
 								<CSAlert
 									variant="warning"
@@ -202,7 +189,6 @@ class CSAlertPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSAlert
 									variant="info"
@@ -213,7 +199,6 @@ class CSAlertPreview extends React.Component {
 						{
 							variationName: ['false'],
 							quickLink: 'false',
-							string: '',
 							component:
 								<CSAlert
 									variant="info"
@@ -230,7 +215,6 @@ class CSAlertPreview extends React.Component {
 						{
 							variationName: ['default'],
 							quickLink: 'default',
-							string: '',
 							component:
 								<CSAlert
 									variant="info"
@@ -241,7 +225,6 @@ class CSAlertPreview extends React.Component {
 						{
 							variationName: ['scoped'],
 							quickLink: 'scoped',
-							string: '',
 							component:
 								<CSAlert
 									variant="info"
@@ -256,7 +239,6 @@ class CSAlertPreview extends React.Component {
 					propName: 'id',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSAlert
 									variant="info"
@@ -274,7 +256,6 @@ class CSAlertPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSAlert
 									variant="info"
@@ -285,7 +266,6 @@ class CSAlertPreview extends React.Component {
 						{
 							variationName: ['false'],
 							quickLink: 'false',
-							string: '',
 							component:
 								<CSAlert
 									variant="info"
@@ -298,7 +278,6 @@ class CSAlertPreview extends React.Component {
 					propName: 'onClose',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSAlert
 									variant="info"
@@ -315,7 +294,6 @@ class CSAlertPreview extends React.Component {
 						{
 							variationName: ['className'],
 							quickLink: 'custom class',
-							string: '',
 							component:
 								<CSAlert
 									variant="info"
@@ -333,7 +311,6 @@ class CSAlertPreview extends React.Component {
 						{
 							variationName: ['custom link'],
 							quickLink: 'custom link',
-							string: '',
 							component:
 								<CSAlert
 									variant="info"
@@ -345,7 +322,6 @@ class CSAlertPreview extends React.Component {
 						{
 							variationName: ['custom text'],
 							quickLink: 'custom text',
-							string: '',
 							component:
 								<CSAlert
 									variant="info"
@@ -470,7 +446,7 @@ class CSAlertPreview extends React.Component {
 			<>
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties name={component.name} examples={component.examples}/>
+					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
 					<PreviewAccessibility components={[component]} />
 				</div>

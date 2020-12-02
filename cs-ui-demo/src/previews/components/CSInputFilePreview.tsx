@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSInputFile} from '@cloudsense/cs-ui-components';
+import { CSInputFile } from '@cloudsense/cs-ui-components';
 
 class CSInputFilePreview extends React.Component {
 	getDoc() {
@@ -21,7 +21,6 @@ class CSInputFilePreview extends React.Component {
 					propName: 'label',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSInputFile
 									label="Upload directory"
@@ -35,7 +34,6 @@ class CSInputFilePreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSInputFile
 									label="Upload directory"
@@ -50,7 +48,6 @@ class CSInputFilePreview extends React.Component {
 						{
 							variationName: ['file extension'],
 							quickLink: 'file extension',
-							string: '',
 							component:
 								<CSInputFile
 									label="Upload a file"
@@ -60,7 +57,6 @@ class CSInputFilePreview extends React.Component {
 						{
 							variationName: ['audio/*'],
 							quickLink: 'audio/*',
-							string: '',
 							component:
 								<CSInputFile
 									label="Upload an audio file"
@@ -70,7 +66,6 @@ class CSInputFilePreview extends React.Component {
 						{
 							variationName: ['video/*'],
 							quickLink: 'video/*',
-							string: '',
 							component:
 								<CSInputFile
 									label="Upload a video file"
@@ -80,7 +75,6 @@ class CSInputFilePreview extends React.Component {
 						{
 							variationName: ['image/*'],
 							quickLink: 'image/*',
-							string: '',
 							component:
 								<CSInputFile
 									label="Upload an image file"
@@ -99,7 +93,6 @@ class CSInputFilePreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSInputFile
 									label="Upload directory"
@@ -113,7 +106,6 @@ class CSInputFilePreview extends React.Component {
 					variations: [
 						{
 							variationText: ['error="true"'],
-							string: '',
 							component:
 								<CSInputFile
 									label="Upload directory"
@@ -127,7 +119,6 @@ class CSInputFilePreview extends React.Component {
 					propName: 'onChange',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSInputFile
 									label="Upload directory"
@@ -140,7 +131,6 @@ class CSInputFilePreview extends React.Component {
 					propName: 'onDrop',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSInputFile
 									label="Upload directory"
@@ -154,7 +144,6 @@ class CSInputFilePreview extends React.Component {
 					variations: [
 						{
 							variationName: ['true'],
-							string: '',
 							component:
 								<CSInputFile
 									label="Upload directory"
@@ -166,7 +155,6 @@ class CSInputFilePreview extends React.Component {
 						},
 						{
 							variationName: ['false'],
-							string: '',
 							component:
 								<CSInputFile
 									label="Upload directory"
@@ -183,7 +171,6 @@ class CSInputFilePreview extends React.Component {
 						{
 							variationName: ['100%'],
 							quickLink: '100%',
-							string: '',
 							component:
 								<CSInputFile
 									label="Upload directory"
@@ -195,7 +182,6 @@ class CSInputFilePreview extends React.Component {
 						{
 							variationName: ['400px'],
 							quickLink: '400px',
-							string: '',
 							component:
 								<CSInputFile
 									label="Upload directory"
@@ -212,7 +198,6 @@ class CSInputFilePreview extends React.Component {
 						{
 							variationName: ['100px'],
 							quickLink: '100px',
-							string: '',
 							component:
 								<CSInputFile
 									label="Upload directory"
@@ -224,7 +209,6 @@ class CSInputFilePreview extends React.Component {
 						{
 							variationName: ['10rem'],
 							quickLink: '10rem',
-							string: '',
 							component:
 								<CSInputFile
 									label="Upload directory"
@@ -239,7 +223,6 @@ class CSInputFilePreview extends React.Component {
 					propName: 'id',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSInputFile
 									label="Upload directory"
@@ -254,7 +237,6 @@ class CSInputFilePreview extends React.Component {
 						{
 							variationName: ['custom class'],
 							quickLink: 'custom class',
-							string: '',
 							component:
 								<CSInputFile
 									label="Upload directory"

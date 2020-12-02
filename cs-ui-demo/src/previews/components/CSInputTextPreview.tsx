@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSInputText} from '@cloudsense/cs-ui-components';
+import { CSInputText } from '@cloudsense/cs-ui-components';
 
 class CSInputTextPreview extends React.Component {
 	getDoc() {
@@ -33,9 +33,8 @@ class CSInputTextPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
-								<CSInputText label="Type here:" value="Enter name"/>
+								<CSInputText label="Type here:" value="Enter name" />
 						}
 					]
 				},
@@ -43,9 +42,8 @@ class CSInputTextPreview extends React.Component {
 					propName: 'placeholder',
 					variations: [
 						{
-							string: '',
 							component:
-								<CSInputText label="Type here:" placeholder="Enter name"/>
+								<CSInputText label="Type here:" placeholder="Enter name" />
 						}
 					]
 				},
@@ -53,9 +51,8 @@ class CSInputTextPreview extends React.Component {
 					propName: 'id',
 					variations: [
 						{
-							string: '',
 							component:
-								<CSInputText label="Type here:" id="name"/>
+								<CSInputText label="Type here:" id="name" />
 						}
 					]
 				},
@@ -63,9 +60,8 @@ class CSInputTextPreview extends React.Component {
 					propName: 'label',
 					variations: [
 						{
-							string: '',
 							component:
-								<CSInputText label="Type here:"/>
+								<CSInputText label="Type here:" />
 						}
 					]
 				},
@@ -75,9 +71,8 @@ class CSInputTextPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
-								<CSInputText label="Type here:" labelHidden/>
+								<CSInputText label="Type here:" labelHidden />
 						}
 					]
 				},
@@ -87,9 +82,8 @@ class CSInputTextPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
-							<CSInputText label="Type here:" labelTitle/>
+								<CSInputText label="Type here:" labelTitle />
 						}
 					]
 				},
@@ -97,9 +91,8 @@ class CSInputTextPreview extends React.Component {
 					propName: 'helpText',
 					variations: [
 						{
-							string: '',
 							component:
-								<CSInputText label="Type here:" helpText="Help text example"/>
+								<CSInputText label="Type here:" helpText="Help text example" />
 						}
 					]
 				},
@@ -109,30 +102,26 @@ class CSInputTextPreview extends React.Component {
 						{
 							variationName: ['top-right'],
 							quickLink: 'top-right',
-							string: '',
 							component:
-								<CSInputText label="Type here:" helpText="Help text example" tooltipPosition="top-right"/>
+								<CSInputText label="Type here:" helpText="Help text example" tooltipPosition="top-right" />
 						},
 						{
 							variationName: ['top-left'],
 							quickLink: 'top-left',
-							string: '',
 							component:
-								<CSInputText label="Type here:" helpText="Help text example" tooltipPosition="top-left"/>
+								<CSInputText label="Type here:" helpText="Help text example" tooltipPosition="top-left" />
 						},
 						{
 							variationName: ['bottom-right'],
 							quickLink: 'bottom-right',
-							string: '',
 							component:
-								<CSInputText label="Type here:" helpText="Help text example" tooltipPosition="bottom-right"/>
+								<CSInputText label="Type here:" helpText="Help text example" tooltipPosition="bottom-right" />
 						},
 						{
 							variationName: ['bottom-left'],
 							quickLink: 'bottom-left',
-							string: '',
 							component:
-								<CSInputText label="Type here:" helpText="Help text example" tooltipPosition="bottom-left"/>
+								<CSInputText label="Type here:" helpText="Help text example" tooltipPosition="bottom-left" />
 						}
 					]
 				},
@@ -142,9 +131,8 @@ class CSInputTextPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
-								<CSInputText label="Type here:" disabled/>
+								<CSInputText label="Type here:" disabled />
 						}
 					]
 				},
@@ -154,9 +142,8 @@ class CSInputTextPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
-								<CSInputText label="Type here:" hidden/>
+								<CSInputText label="Type here:" hidden />
 						}
 					]
 				},
@@ -166,7 +153,6 @@ class CSInputTextPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSInputText label="Type here:" readOnly value="value" />
 						}
@@ -178,9 +164,8 @@ class CSInputTextPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
-								<CSInputText required label="Enter job role" helpText="Help text example" tooltipPosition="top-left"/>
+								<CSInputText required label="Enter job role" helpText="Help text example" tooltipPosition="top-left" />
 						}
 					]
 				},
@@ -194,9 +179,8 @@ class CSInputTextPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
-								<CSInputText label="Type here:" error/>
+								<CSInputText label="Type here:" error />
 						}
 					]
 				},
@@ -205,9 +189,8 @@ class CSInputTextPreview extends React.Component {
 					variations: [
 						{
 							variationText: ['error="true"'],
-							string: '',
 							component:
-								<CSInputText label="Enter value:" error errorMessage="Error message!"/>
+								<CSInputText label="Enter value:" error errorMessage="Error message!" />
 						}
 					]
 				},
@@ -215,19 +198,17 @@ class CSInputTextPreview extends React.Component {
 					propName: 'maxLength',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSInputText label="Enter value:" maxLength={10} />
 						}
 					]
 				},
 				{
-				propName: 'borderType',
+					propName: 'borderType',
 					variations: [
 						{
 							variationName: ['square'],
 							quickLink: 'square',
-							string: '',
 							component:
 								<CSInputText label="Enter value:" borderType="square" />
 						}
@@ -238,7 +219,6 @@ class CSInputTextPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSInputText label="Enter value:" onBlur={onBlurHandler} />
 						}
@@ -249,7 +229,6 @@ class CSInputTextPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSInputText label="Enter value:" onChange={onChangeHandler} />
 						}
@@ -260,7 +239,6 @@ class CSInputTextPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSInputText label="Enter value:" onFocus={onFocusHandler} />
 						}
@@ -271,7 +249,6 @@ class CSInputTextPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSInputText label="Enter value:" name="Input text" />
 						}
@@ -282,7 +259,6 @@ class CSInputTextPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSInputText label="Enter value:" name="Input text" title="Example title" />
 						}
@@ -295,9 +271,8 @@ class CSInputTextPreview extends React.Component {
 						{
 							variationName: ['custom class'],
 							quickLink: 'custom class',
-							string: '',
 							component:
-								<CSInputText label="Type here:" className="custom-class"/>
+								<CSInputText label="Type here:" className="custom-class" />
 						}
 					]
 				}

@@ -23,35 +23,30 @@ class CSTooltipPreview extends React.Component {
 						{
 							variationName: ['info'],
 							quickLink: 'info',
-							string: '',
 							component:
 								<CSTooltip variant="info" content="Help text example" />
 						},
 						{
 							variationName: ['warning'],
 							quickLink: 'warning',
-							string: '',
 							component:
 								<CSTooltip variant="warning" content="Help text example" />
 						},
 						{
 							variationName: ['error'],
 							quickLink: 'error',
-							string: '',
 							component:
 								<CSTooltip variant="error" content="Help text example" />
 						},
 						{
 							variationName: ['success'],
 							quickLink: 'success',
-							string: '',
 							component:
 								<CSTooltip variant="success" content="Help text example" />
 						},
 						{
 							variationName: ['basic'],
 							quickLink: 'basic',
-							string: '',
 							component:
 								<CSTooltip variant="basic" content="Help text example" />
 						}
@@ -64,21 +59,18 @@ class CSTooltipPreview extends React.Component {
 						{
 							variationName: ['pink'],
 							quickLink: 'pink',
-							string: '',
 							component:
 								<CSTooltip iconColor="pink" content="Help text example" />
 						},
 						{
 							variationName: ['#ff0000'],
 							quickLink: '#ff0000',
-							string: '',
 							component:
 								<CSTooltip iconColor="#ff0000" content="Help text example" />
 						},
 						{
 							variationName: ['rgba(100,100,255,1.00)'],
 							quickLink: 'rgba(100,100,255,1.00)',
-							string: '',
 							component:
 								<CSTooltip iconColor="rgba(100,100,255,1.00)" content="Help text example" />
 						}
@@ -91,7 +83,6 @@ class CSTooltipPreview extends React.Component {
 						{
 							variationName: ['quote'],
 							quickLink: 'quote',
-							string: '',
 							component:
 								<CSTooltip iconName="quote" content="Help text example" />
 						}
@@ -105,7 +96,6 @@ class CSTooltipPreview extends React.Component {
 							variationName: ['small'],
 							quickLink: 'small',
 							variationText: ['iconName="info"'],
-							string: '',
 							component:
 								<CSTooltip iconName="info" content="Help text example" />
 						},
@@ -113,7 +103,6 @@ class CSTooltipPreview extends React.Component {
 							variationName: ['medium'],
 							quickLink: 'medium',
 							variationText: ['iconName="info"'],
-							string: '',
 							component:
 								<CSTooltip iconName="info" iconSize="medium" content="Help text example" />
 						}
@@ -123,7 +112,6 @@ class CSTooltipPreview extends React.Component {
 					propName: 'id',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSTooltip iconName="quote" content="Help text example" id="id" />
 						}
@@ -136,42 +124,36 @@ class CSTooltipPreview extends React.Component {
 							variationName: ['top-right'],
 							quickLink: 'top-right with array',
 							variationText: ['array'],
-							string: '',
 							component:
 								<CSTooltip content={['This is an example tooltip', 'One more tooltip', 'Another tooltip to display']} position="top-right" />
 						},
 						{
 							variationName: ['top-left'],
 							quickLink: 'top-left',
-							string: '',
 							component:
 								<CSTooltip content="Lorem ipsum dolor sit amet, consectetur adipisicing elit." position="top-left" />
 						},
 						{
 							variationName: ['top-center'],
 							quickLink: 'top-center',
-							string: '',
 							component:
 								<CSTooltip content="Lorem ipsum dolor sit amet, consectetur adipisicing elit.." position="top-center" />
 						},
 						{
 							variationName: ['bottom-right'],
 							quickLink: 'bottom-right',
-							string: '',
 							component:
 								<CSTooltip content="Lorem ipsum dolor sit amet, consectetur adipisicing elit." position="bottom-right" />
 						},
 						{
 							variationName: ['bottom-left'],
 							quickLink: 'bottom-left',
-							string: '',
 							component:
 								<CSTooltip content="Lorem ipsum dolor sit amet, consectetur adipisicing elit.." position="bottom-left" />
 						},
 						{
 							variationName: ['bottom-center'],
 							quickLink: 'bottom-center',
-							string: '',
 							component:
 								<CSTooltip content="Lorem ipsum dolor sit amet, consectetur adipisicing elit.." position="bottom-center" />
 						}
@@ -185,7 +167,6 @@ class CSTooltipPreview extends React.Component {
 							variationName: ['info'],
 							quickLink: 'info with array',
 							variationText: ['array'],
-							string: '',
 							component:
 								<CSTooltip tooltipHeader="Info" content={['This is an example tooltip', 'One more tooltip', 'Another tooltip to display']} />
 						},
@@ -193,28 +174,24 @@ class CSTooltipPreview extends React.Component {
 							variationName: ['warning'],
 							quickLink: 'warning',
 							variationText: ['position="bottom-left"'],
-							string: '',
 							component:
 								<CSTooltip variant="warning" tooltipHeader="Warning" position="bottom-left" content="Help text example" />
 						},
 						{
 							variationName: ['error'],
 							quickLink: 'error',
-							string: '',
 							component:
 								<CSTooltip variant="error" tooltipHeader="Error" content="Help text example" />
 						},
 						{
 							variationName: ['success'],
 							quickLink: 'success',
-							string: '',
 							component:
 								<CSTooltip variant="success" tooltipHeader="Success" content="Help text example" />
 						},
 						{
 							variationName: ['basic'],
 							quickLink: 'basic',
-							string: '',
 							component:
 								<CSTooltip variant="basic" tooltipHeader="Basic" content="Help text example" />
 						}
@@ -228,7 +205,6 @@ class CSTooltipPreview extends React.Component {
 							variationName: ['custom class'],
 							quickLink: 'custom class',
 							variationText: ['iconName="quote"'],
-							string: '',
 							component:
 								<CSTooltip iconName="quote" content="Help text example" className="custom-class" />
 						}
@@ -240,7 +216,6 @@ class CSTooltipPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['500'],
-							string: '',
 							component:
 								<CSTooltip delayTooltip={500} content="Help text example" />
 						}
@@ -251,7 +226,6 @@ class CSTooltipPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSTooltip height="200px" content="Help text example" />
 						}
@@ -262,7 +236,6 @@ class CSTooltipPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSTooltip width="10rem" content="Help text example" />
 						}
@@ -274,7 +247,6 @@ class CSTooltipPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['child'],
-							string: '',
 							component:
 								<CSTooltip variant="info" content="Help text example">
 									<CSChip text="brand" />
@@ -288,7 +260,6 @@ class CSTooltipPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['custom element'],
-							string: '',
 							variationText: ['children={<CSChip text="brand" />}'],
 							component:
 								<CSTooltip variant="info" content={<CSChip text="brand" />}>
@@ -305,14 +276,12 @@ class CSTooltipPreview extends React.Component {
 						{
 							variationName: ['fixed'],
 							quickLink: 'fixed',
-							string: '',
 							component:
 								<CSTooltip content="Tooltip with position fixed" stylePosition="fixed" />
 						},
 						{
 							variationName: ['absolute'],
 							quickLink: 'absolute',
-							string: '',
 							component:
 								<CSTooltip content="Tooltip with position absolute" position="bottom-center" stylePosition="absolute" />
 						}
@@ -324,7 +293,6 @@ class CSTooltipPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['false'],
-							string: '',
 							component:
 								<CSTooltip focusable={false} content="Help text example" />
 						}
@@ -336,7 +304,6 @@ class CSTooltipPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['0'],
-							string: '',
 							component:
 								<CSTooltip padding="0" content="Help text example" />
 						}

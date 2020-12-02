@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSSkipLink, CSAlert} from '@cloudsense/cs-ui-components';
+import { CSSkipLink, CSAlert } from '@cloudsense/cs-ui-components';
 
 class CSSkipLinkPreview extends React.Component {
 
@@ -21,9 +21,8 @@ class CSSkipLinkPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
-								<CSSkipLink jumpDestination="href"  href="#Skip Link-href" />
+								<CSSkipLink jumpDestination="href" href="#Skip Link-href" />
 						}
 					]
 				},
@@ -32,9 +31,8 @@ class CSSkipLinkPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
-								<CSSkipLink jumpDestination="color"  href="#Skip Link-color" />
+								<CSSkipLink jumpDestination="color" href="#Skip Link-color" />
 						}
 					]
 				},
@@ -45,16 +43,14 @@ class CSSkipLinkPreview extends React.Component {
 						{
 							variationName: ['#50c878'],
 							quickLink: '#50c878',
-							string: '',
 							component:
-								<CSSkipLink jumpDestination="properties"  href="#properties-table-Skip Link" color="#50c878"/>
+								<CSSkipLink jumpDestination="properties" href="#properties-table-Skip Link" color="#50c878" />
 						},
 						{
 							variationName: ['red'],
 							quickLink: 'red',
-							string: '',
 							component:
-								<CSSkipLink jumpDestination="properties"  href="#properties-table-Skip Link" color="red"/>
+								<CSSkipLink jumpDestination="properties" href="#properties-table-Skip Link" color="red" />
 						}
 					]
 				}

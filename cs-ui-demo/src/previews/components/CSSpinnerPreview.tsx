@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSSpinner} from '@cloudsense/cs-ui-components';
+import { CSSpinner } from '@cloudsense/cs-ui-components';
 
 class CSSpinnerPreview extends React.Component {
 	getDoc() {
@@ -24,7 +24,6 @@ class CSSpinnerPreview extends React.Component {
 							variationName: ['xsmall'],
 							quickLink: 'xsmall',
 							variationText: ['color="neutral"'],
-							string: '',
 							component:
 								<CSSpinner
 									size="xsmall"
@@ -35,7 +34,6 @@ class CSSpinnerPreview extends React.Component {
 							variationName: ['small'],
 							quickLink: 'small',
 							variationText: ['color="neutral"'],
-							string: '',
 							component:
 								<CSSpinner
 									size="small"
@@ -46,7 +44,6 @@ class CSSpinnerPreview extends React.Component {
 							variationName: ['medium'],
 							quickLink: 'medium',
 							variationText: ['color="neutral"'],
-							string: '',
 							component:
 								<CSSpinner
 									size="medium"
@@ -57,7 +54,6 @@ class CSSpinnerPreview extends React.Component {
 							variationName: ['large'],
 							quickLink: 'large',
 							variationText: ['color="neutral"'],
-							string: '',
 							component:
 								<CSSpinner
 									size="large"
@@ -68,7 +64,6 @@ class CSSpinnerPreview extends React.Component {
 							variationName: ['xlarge'],
 							quickLink: 'xlarge',
 							variationText: ['color="neutral"'],
-							string: '',
 							component:
 								<CSSpinner
 									size="xlarge"
@@ -84,7 +79,6 @@ class CSSpinnerPreview extends React.Component {
 							variationName: ['neutral'],
 							quickLink: 'neutral',
 							variationText: ['size="large"'],
-							string: '',
 							component:
 								<CSSpinner
 									size="large"
@@ -95,7 +89,6 @@ class CSSpinnerPreview extends React.Component {
 							variationName: ['brand'],
 							quickLink: 'brand',
 							variationText: ['size="large"'],
-							string: '',
 							component:
 								<CSSpinner
 									size="large"
@@ -106,7 +99,6 @@ class CSSpinnerPreview extends React.Component {
 							variationName: ['inverse'],
 							quickLink: 'inverse',
 							variationText: ['size="large"'],
-							string: '',
 							component:
 								<CSSpinner
 									size="large"
@@ -124,7 +116,6 @@ class CSSpinnerPreview extends React.Component {
 							variationName: ['true'],
 							quickLink: 'true',
 							variationText: ['size="large"', 'color="neutral"'],
-							string: '',
 							component:
 								<CSSpinner
 									size="large"
@@ -140,7 +131,6 @@ class CSSpinnerPreview extends React.Component {
 					variations: [
 						{
 
-							string: '',
 							component:
 								<CSSpinner
 									size="large"
@@ -155,7 +145,6 @@ class CSSpinnerPreview extends React.Component {
 					variations: [
 						{
 							variationText: ['size="medium"', 'color="neutral"'],
-							string: '',
 							component:
 								<CSSpinner
 									size="medium"
@@ -171,7 +160,6 @@ class CSSpinnerPreview extends React.Component {
 						{
 							variationName: ['light'],
 							quickLink: 'light',
-							string: '',
 							component:
 								<CSSpinner
 									overlay="light"
@@ -180,7 +168,6 @@ class CSSpinnerPreview extends React.Component {
 						{
 							variationName: ['dark'],
 							quickLink: 'dark',
-							string: '',
 							component:
 								<CSSpinner
 									overlay="dark"
@@ -195,7 +182,6 @@ class CSSpinnerPreview extends React.Component {
 							variationName: ['custom class'],
 							quickLink: 'custom class',
 							variationText: ['size="large"', 'color="neutral"'],
-							string: '',
 							component:
 								<CSSpinner
 									size="large"
@@ -266,7 +252,7 @@ class CSSpinnerPreview extends React.Component {
 						{
 							properties: [
 								'aria-label',
-								'aria-busy - indicates to screen reader that content is loading' ,
+								'aria-busy - indicates to screen reader that content is loading',
 								'aria-live="polite" - it will indicate busy status update only after current content is read',
 								'role="progressbar"'
 							]

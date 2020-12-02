@@ -20,7 +20,6 @@ class CSRadioPreview extends React.Component {
 					propName: 'label',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSRadio
 									label="This is a label"
@@ -37,7 +36,6 @@ class CSRadioPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSRadio
 									label="This is a label"
@@ -55,7 +53,6 @@ class CSRadioPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSRadio
 									label="This is a label"
@@ -77,7 +74,6 @@ class CSRadioPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSRadio
 									error
@@ -94,7 +90,6 @@ class CSRadioPreview extends React.Component {
 					variations: [
 						{
 							variationText: ['error="true"'],
-							string: '',
 							component:
 								<CSRadio
 									error
@@ -111,7 +106,6 @@ class CSRadioPreview extends React.Component {
 					propName: 'id',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSRadio
 									id="id"
@@ -129,7 +123,6 @@ class CSRadioPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSRadio
 									required
@@ -147,7 +140,6 @@ class CSRadioPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSRadio
 									disabled
@@ -165,7 +157,6 @@ class CSRadioPreview extends React.Component {
 						{
 							variationName: ['brand'],
 							quickLink: 'brand',
-							string: '',
 							component:
 								<CSRadio
 									variant="brand"
@@ -181,7 +172,6 @@ class CSRadioPreview extends React.Component {
 					propName: 'helpText',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSRadio label="This is a label" helpText="Help text example" tooltipPosition="bottom-right">
 									<CSRadioOption name="colour" label="red" />
@@ -196,7 +186,6 @@ class CSRadioPreview extends React.Component {
 						{
 							variationName: ['top-right'],
 							quickLink: 'top-right',
-							string: '',
 							component:
 								<CSRadio label="This is a label" helpText="Help text example" tooltipPosition="top-right">
 									<CSRadioOption name="direction" label="left" />
@@ -206,7 +195,6 @@ class CSRadioPreview extends React.Component {
 						{
 							variationName: ['top-left'],
 							quickLink: 'top-left',
-							string: '',
 							component:
 								<CSRadio label="This is a label" helpText="Help text example" tooltipPosition="top-left">
 									<CSRadioOption name="direction" label="left" />
@@ -216,7 +204,6 @@ class CSRadioPreview extends React.Component {
 						{
 							variationName: ['bottom-right'],
 							quickLink: 'bottom-right',
-							string: '',
 							component:
 								<CSRadio label="This is a label" helpText="Help text example" tooltipPosition="bottom-right">
 									<CSRadioOption name="direction" label="left" />
@@ -226,7 +213,6 @@ class CSRadioPreview extends React.Component {
 						{
 							variationName: ['bottom-left'],
 							quickLink: 'bottom-left',
-							string: '',
 							component:
 								<CSRadio label="This is a label" helpText="Help text example" tooltipPosition="bottom-left">
 									<CSRadioOption name="direction" label="left" />
@@ -239,7 +225,6 @@ class CSRadioPreview extends React.Component {
 					propName: 'onChange',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSRadio label="This is a label">
 									<CSRadioOption name="year" label="2020" onChange={onChangeHandler} />
@@ -252,11 +237,10 @@ class CSRadioPreview extends React.Component {
 					propName: 'title',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSRadio label="This is a label">
-									<CSRadioOption name="year" label="2020" title="This is a title"/>
-									<CSRadioOption name="year" label="2021" title="This is a different title"/>
+									<CSRadioOption name="year" label="2020" title="This is a title" />
+									<CSRadioOption name="year" label="2021" title="This is a different title" />
 								</CSRadio>
 						}
 					]
@@ -267,7 +251,6 @@ class CSRadioPreview extends React.Component {
 						{
 							variationName: ['custom class'],
 							quickLink: 'custom class',
-							string: '',
 							component:
 								<CSRadio label="This is a label" className="custom-class">
 									<CSRadioOption name="year" label="2020" />

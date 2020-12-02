@@ -7,7 +7,7 @@ import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 import moment from 'moment';
 
-import {CSDatepicker} from '@cloudsense/cs-ui-components';
+import { CSDatepicker } from '@cloudsense/cs-ui-components';
 
 class CSDatepickerPreview extends React.Component {
 	value = moment('1.1.2020', 'DD-MM-YYYY').toDate();
@@ -23,7 +23,6 @@ class CSDatepickerPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSDatepicker label="Enter date:" value={this.value} />
 						}
@@ -33,7 +32,6 @@ class CSDatepickerPreview extends React.Component {
 					propName: 'label',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSDatepicker label="Enter date:" />
 						}
@@ -45,9 +43,8 @@ class CSDatepickerPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:" labelHidden/>
+								<CSDatepicker label="Enter date:" labelHidden />
 						}
 					]
 				},
@@ -57,9 +54,8 @@ class CSDatepickerPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:" labelTitle/>
+								<CSDatepicker label="Enter date:" labelTitle />
 						}
 					]
 				},
@@ -67,9 +63,8 @@ class CSDatepickerPreview extends React.Component {
 					propName: 'helpText',
 					variations: [
 						{
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:" helpText="Help text example"/>
+								<CSDatepicker label="Enter date:" helpText="Help text example" />
 						}
 					]
 				},
@@ -77,9 +72,8 @@ class CSDatepickerPreview extends React.Component {
 					propName: 'placeholder',
 					variations: [
 						{
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:" placeholder="Placeholder text"/>
+								<CSDatepicker label="Enter date:" placeholder="Placeholder text" />
 						}
 					]
 				},
@@ -87,9 +81,8 @@ class CSDatepickerPreview extends React.Component {
 					propName: 'id',
 					variations: [
 						{
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:" id="value"/>
+								<CSDatepicker label="Enter date:" id="value" />
 						}
 					]
 				},
@@ -99,9 +92,8 @@ class CSDatepickerPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:" isClearable/>
+								<CSDatepicker label="Enter date:" isClearable />
 						}
 					]
 				},
@@ -109,9 +101,8 @@ class CSDatepickerPreview extends React.Component {
 					propName: 'name',
 					variations: [
 						{
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:" name="datepicker"/>
+								<CSDatepicker label="Enter date:" name="datepicker" />
 						}
 					]
 				},
@@ -121,9 +112,8 @@ class CSDatepickerPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:" todayButton/>
+								<CSDatepicker label="Enter date:" todayButton />
 						}
 					]
 				},
@@ -133,9 +123,8 @@ class CSDatepickerPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:" disabled/>
+								<CSDatepicker label="Enter date:" disabled />
 						}
 					]
 				},
@@ -145,9 +134,8 @@ class CSDatepickerPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:" value={this.value} readOnly/>
+								<CSDatepicker label="Enter date:" value={this.value} readOnly />
 						}
 					]
 				},
@@ -157,9 +145,8 @@ class CSDatepickerPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
-								<CSDatepicker required label="Enter date:"/>
+								<CSDatepicker required label="Enter date:" />
 						}
 					]
 				},
@@ -173,9 +160,8 @@ class CSDatepickerPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:" error/>
+								<CSDatepicker label="Enter date:" error />
 						}
 					]
 				},
@@ -184,9 +170,8 @@ class CSDatepickerPreview extends React.Component {
 					variations: [
 						{
 							variationText: ['error="true"'],
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:" error errorMessage="Error message!"/>
+								<CSDatepicker label="Enter date:" error errorMessage="Error message!" />
 						}
 					]
 				},
@@ -194,7 +179,6 @@ class CSDatepickerPreview extends React.Component {
 					propName: 'showYearDropdown',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSDatepicker label="Enter date:" showYearDropdown />
 						}
@@ -204,9 +188,8 @@ class CSDatepickerPreview extends React.Component {
 					propName: 'showMonthDropdown',
 					variations: [
 						{
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:"  showMonthDropdown/>
+								<CSDatepicker label="Enter date:" showMonthDropdown />
 						}
 					]
 				},
@@ -214,9 +197,8 @@ class CSDatepickerPreview extends React.Component {
 					propName: 'scrollableYearDropdown',
 					variations: [
 						{
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:" scrollableYearDropdown showYearDropdown/>
+								<CSDatepicker label="Enter date:" scrollableYearDropdown showYearDropdown />
 						}
 					]
 				},
@@ -226,7 +208,6 @@ class CSDatepickerPreview extends React.Component {
 						{
 							variationName: ['scroll'],
 							quickLink: 'scroll',
-							string: '',
 							component:
 								<CSDatepicker
 									label="Enter date:"
@@ -238,7 +219,6 @@ class CSDatepickerPreview extends React.Component {
 						{
 							variationName: ['select'],
 							quickLink: 'select',
-							string: '',
 							component:
 								<CSDatepicker
 									label="Enter date:"
@@ -253,7 +233,6 @@ class CSDatepickerPreview extends React.Component {
 					propName: 'yearDropdownItemNumber',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSDatepicker label="Enter date:" showYearDropdown scrollableYearDropdown yearDropdownItemNumber={15} />
 						}
@@ -263,9 +242,8 @@ class CSDatepickerPreview extends React.Component {
 					propName: 'minDate',
 					variations: [
 						{
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:" minDate={10}/>
+								<CSDatepicker label="Enter date:" minDate={10} />
 						}
 					]
 				},
@@ -273,9 +251,8 @@ class CSDatepickerPreview extends React.Component {
 					propName: 'maxDate',
 					variations: [
 						{
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:" maxDate={5}/>
+								<CSDatepicker label="Enter date:" maxDate={5} />
 						}
 					]
 				},
@@ -285,9 +262,8 @@ class CSDatepickerPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:" minDate={1} minDateYear/>
+								<CSDatepicker label="Enter date:" minDate={1} minDateYear />
 						}
 					]
 				},
@@ -297,9 +273,8 @@ class CSDatepickerPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:" maxDate={1} maxDateYear/>
+								<CSDatepicker label="Enter date:" maxDate={1} maxDateYear />
 						}
 					]
 				},
@@ -309,16 +284,14 @@ class CSDatepickerPreview extends React.Component {
 						{
 							variationName: ['round'],
 							quickLink: 'round',
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:" borderType="round"/>
+								<CSDatepicker label="Enter date:" borderType="round" />
 						},
 						{
 							variationName: ['square'],
 							quickLink: 'square',
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:" borderType="square"/>
+								<CSDatepicker label="Enter date:" borderType="square" />
 						}
 					]
 				},
@@ -328,30 +301,26 @@ class CSDatepickerPreview extends React.Component {
 						{
 							variationName: ['dd-MM-yyyy'],
 							quickLink: 'dd-MM-yyyy',
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:" dateFormat="dd-MM-yyyy"/>
+								<CSDatepicker label="Enter date:" dateFormat="dd-MM-yyyy" />
 						},
 						{
 							variationName: ['MM-dd-yyyy'],
 							quickLink: 'MM-dd-yyyy',
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:" dateFormat="MM-dd-yyyy"/>
+								<CSDatepicker label="Enter date:" dateFormat="MM-dd-yyyy" />
 						},
 						{
 							variationName: ['yyyy-MM-dd'],
 							quickLink: 'yyyy-MM-dd',
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:" dateFormat="yyyy-MM-dd"/>
+								<CSDatepicker label="Enter date:" dateFormat="yyyy-MM-dd" />
 						},
 						{
 							variationName: ['yyyy-dd-MM'],
 							quickLink: 'yyyy-dd-MM',
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:" dateFormat="yyyy-dd-MM"/>
+								<CSDatepicker label="Enter date:" dateFormat="yyyy-dd-MM" />
 						}
 					]
 				},
@@ -361,23 +330,20 @@ class CSDatepickerPreview extends React.Component {
 						{
 							variationName: ['100%'],
 							quickLink: '100%',
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:" width="100%"/>
+								<CSDatepicker label="Enter date:" width="100%" />
 						},
 						{
 							variationName: ['20rem'],
 							quickLink: '20rem',
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:" width="20rem"/>
+								<CSDatepicker label="Enter date:" width="20rem" />
 						},
 						{
 							variationName: ['400px'],
 							quickLink: '400px',
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:" width="400px"/>
+								<CSDatepicker label="Enter date:" width="400px" />
 						}
 					]
 				},
@@ -385,9 +351,8 @@ class CSDatepickerPreview extends React.Component {
 					propName: 'title',
 					variations: [
 						{
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:" title="This is a title"/>
+								<CSDatepicker label="Enter date:" title="This is a title" />
 
 						}
 					]
@@ -398,9 +363,8 @@ class CSDatepickerPreview extends React.Component {
 						{
 							variationName: ['custom class'],
 							quickLink: 'custom class',
-							string: '',
 							component:
-								<CSDatepicker label="Enter date:" className="custom-class"/>
+								<CSDatepicker label="Enter date:" className="custom-class" />
 						}
 					]
 				}
@@ -663,13 +627,13 @@ class CSDatepickerPreview extends React.Component {
 			<>
 				<div className="preview-section-wrapper datepicker-preview">
 					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties name={component.name} examples={component.examples}/>
-					<PreviewTable components={[component]}/>
+					<PreviewProperties name={component.name} examples={component.examples} />
+					<PreviewTable components={[component]} />
 					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>
-					<PreviewLinks component={component}/>
+					<PreviewLinks component={component} />
 				</div>
 			</>
 		);

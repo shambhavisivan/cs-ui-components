@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSTable, CSTableHeader, CSTableBody, CSTableRow, CSTableCell, CSButton} from '@cloudsense/cs-ui-components';
+import { CSTable, CSTableHeader, CSTableBody, CSTableRow, CSTableCell, CSButton } from '@cloudsense/cs-ui-components';
 
 class CSTablePreview extends React.Component {
 	getCSTableDoc() {
@@ -21,7 +21,6 @@ class CSTablePreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSTable id="id">
 									<CSTableHeader id="id">
@@ -113,7 +112,6 @@ class CSTablePreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSTable>
 									<CSTableHeader>
@@ -219,7 +217,6 @@ class CSTablePreview extends React.Component {
 						{
 							variationName: ['custom class'],
 							quickLink: 'custom class',
-							string: '',
 							component:
 								<CSTable className="custom-class">
 									<CSTableHeader className="custom-class">
@@ -377,7 +374,6 @@ class CSTablePreview extends React.Component {
 						{
 							variationName: ['tableDescription and custom id'],
 							quickLink: 'tableDescription and custom id',
-							string: '',
 							component:
 								<CSTable tableDescription="last, but best table" id="id">
 									<CSTableHeader>

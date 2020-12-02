@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSSelect} from '@cloudsense/cs-ui-components';
+import { CSSelect } from '@cloudsense/cs-ui-components';
 
 class CSSelectPreview extends React.Component {
 	getDoc() {
@@ -23,7 +23,6 @@ class CSSelectPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSSelect label="Choose number" id="option">
 									<option>1</option>
@@ -37,7 +36,6 @@ class CSSelectPreview extends React.Component {
 					propName: 'label',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSSelect label="Choose color">
 									<option>Red</option>
@@ -53,13 +51,12 @@ class CSSelectPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
-							<CSSelect label="Choose color" labelTitle>
-								<option>Red</option>
-								<option>Blue</option>
-								<option>Green</option>
-							</CSSelect>
+								<CSSelect label="Choose color" labelTitle>
+									<option>Red</option>
+									<option>Blue</option>
+									<option>Green</option>
+								</CSSelect>
 						}
 					]
 				},
@@ -69,7 +66,6 @@ class CSSelectPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSSelect label="Choose color" labelHidden>
 									<option>Red</option>
@@ -85,7 +81,6 @@ class CSSelectPreview extends React.Component {
 						{
 							variationName: ['square'],
 							quickLink: 'square',
-							string: '',
 							component:
 								<CSSelect label="Choose:" borderType="square">
 									<option>1</option>
@@ -99,7 +94,6 @@ class CSSelectPreview extends React.Component {
 					propName: 'helpText',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSSelect label="Choose number" helpText="Help text example">
 									<option>1</option>
@@ -115,7 +109,6 @@ class CSSelectPreview extends React.Component {
 						{
 							variationName: ['top-right'],
 							quickLink: 'top-right',
-							string: '',
 							component:
 								<CSSelect label="Choose number" helpText="Help text example" tooltipPosition="top-right">
 									<option>1</option>
@@ -126,7 +119,6 @@ class CSSelectPreview extends React.Component {
 						{
 							variationName: ['top-left'],
 							quickLink: 'top-left',
-							string: '',
 							component:
 								<CSSelect label="Choose number" helpText="Help text example" tooltipPosition="top-left">
 									<option>1</option>
@@ -137,7 +129,6 @@ class CSSelectPreview extends React.Component {
 						{
 							variationName: ['bottom-right'],
 							quickLink: 'bottom-right',
-							string: '',
 							component:
 								<CSSelect label="Choose number" helpText="Help text example" tooltipPosition="bottom-right">
 									<option>1</option>
@@ -148,7 +139,6 @@ class CSSelectPreview extends React.Component {
 						{
 							variationName: ['bottom-left'],
 							quickLink: 'bottom-left',
-							string: '',
 							component:
 								<CSSelect label="Choose number" helpText="Help text example" tooltipPosition="bottom-left">
 									<option>1</option>
@@ -164,7 +154,6 @@ class CSSelectPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSSelect label="Choose number" disabled>
 									<option>1</option>
@@ -180,7 +169,6 @@ class CSSelectPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSSelect label="Choose number" hidden>
 									<option>1</option>
@@ -196,7 +184,6 @@ class CSSelectPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSSelect label="Choose amount" required>
 									<option>10</option>
@@ -216,7 +203,6 @@ class CSSelectPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSSelect label="Choose amount" error>
 									<option>10</option>
@@ -231,7 +217,6 @@ class CSSelectPreview extends React.Component {
 					variations: [
 						{
 							variationText: ['error="true"'],
-							string: '',
 							component:
 								<CSSelect label="Choose value:" error errorMessage="Error message!">
 									<option>10</option>
@@ -245,7 +230,6 @@ class CSSelectPreview extends React.Component {
 					propName: 'onChange',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSSelect label="Choose value:" onChange={onChangeHandler}>
 									<option>10</option>
@@ -259,7 +243,6 @@ class CSSelectPreview extends React.Component {
 					propName: 'name',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSSelect label="Choose value:" name="Select field">
 									<option>10</option>
@@ -273,7 +256,6 @@ class CSSelectPreview extends React.Component {
 					propName: 'value',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSSelect label="Choose value:" name="Select field" value="30">
 									<option>10</option>
@@ -287,7 +269,6 @@ class CSSelectPreview extends React.Component {
 					propName: 'title',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSSelect label="Choose amount" title="This is a title">
 									<option>10</option>
@@ -303,7 +284,6 @@ class CSSelectPreview extends React.Component {
 						{
 							variationName: ['custom class'],
 							quickLink: 'custom class',
-							string: '',
 							component:
 								<CSSelect label="Choose amount" className="custom-class">
 									<option>10</option>

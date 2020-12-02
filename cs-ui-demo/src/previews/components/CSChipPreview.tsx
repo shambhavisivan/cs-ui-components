@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSChip} from '@cloudsense/cs-ui-components';
+import { CSChip } from '@cloudsense/cs-ui-components';
 
 class CSChipPreview extends React.Component {
 	getDoc() {
@@ -24,7 +24,6 @@ class CSChipPreview extends React.Component {
 							variationName: ['brand'],
 							quickLink: 'brand',
 							variationText: ['variantStyle="fill"'],
-							string: '',
 							component:
 								<CSChip text="brand" variant="brand" />
 						},
@@ -32,7 +31,6 @@ class CSChipPreview extends React.Component {
 							variationName: ['success'],
 							quickLink: 'success',
 							variationText: ['variantStyle="fill"'],
-							string: '',
 							component:
 								<CSChip text="success" variant="success" />
 						},
@@ -40,15 +38,13 @@ class CSChipPreview extends React.Component {
 							variationName: ['neutral'],
 							quickLink: 'neutral',
 							variationText: ['variantStyle="fill"'],
-							string: '',
 							component:
-								<CSChip text="neutral" variant="neutral"/>
+								<CSChip text="neutral" variant="neutral" />
 						},
 						{
 							variationName: ['error'],
 							quickLink: 'error',
 							variationText: ['variantStyle="fill"'],
-							string: '',
 							component:
 								<CSChip text="error" variant="error" />
 						},
@@ -56,7 +52,6 @@ class CSChipPreview extends React.Component {
 							variationName: ['warning'],
 							quickLink: 'warning',
 							variationText: ['variantStyle="fill"'],
-							string: '',
 							component:
 								<CSChip text="warning" variant="warning" />
 						},
@@ -64,7 +59,6 @@ class CSChipPreview extends React.Component {
 							variationName: ['transparent'],
 							quickLink: 'transparent',
 							variationText: ['variantStyle="fill"'],
-							string: '',
 							component:
 								<CSChip text="transparent" variant="transparent" />
 						},
@@ -72,7 +66,6 @@ class CSChipPreview extends React.Component {
 							variationName: ['dark'],
 							quickLink: 'dark',
 							variationText: ['variantStyle="fill"'],
-							string: '',
 							component:
 								<CSChip text="dark" variant="dark" />
 						}
@@ -85,7 +78,6 @@ class CSChipPreview extends React.Component {
 							variationName: ['border'],
 							quickLink: 'border brand',
 							variationText: ['variant="brand"'],
-							string: '',
 							component:
 								<CSChip text="brand" variantStyle="border" />
 						},
@@ -93,7 +85,6 @@ class CSChipPreview extends React.Component {
 							variationName: ['border'],
 							quickLink: 'border success',
 							variationText: ['variant="success"'],
-							string: '',
 							component:
 								<CSChip text="success" variant="success" variantStyle="border" />
 						},
@@ -101,7 +92,6 @@ class CSChipPreview extends React.Component {
 							variationName: ['border'],
 							quickLink: 'border neutral',
 							variationText: ['variant="neutral"'],
-							string: '',
 							component:
 								<CSChip text="neutral" variant="neutral" variantStyle="border" />
 						},
@@ -109,7 +99,6 @@ class CSChipPreview extends React.Component {
 							variationName: ['border'],
 							quickLink: 'border error',
 							variationText: ['variant="error"'],
-							string: '',
 							component:
 								<CSChip text="error" variant="error" variantStyle="border" />
 						},
@@ -117,7 +106,6 @@ class CSChipPreview extends React.Component {
 							variationName: ['border'],
 							quickLink: 'border warning',
 							variationText: ['variant="warning"'],
-							string: '',
 							component:
 								<CSChip text="warning" variant="warning" variantStyle="border" />
 						},
@@ -125,7 +113,6 @@ class CSChipPreview extends React.Component {
 							variationName: ['border'],
 							quickLink: 'border transparent',
 							variationText: ['variant="transparent"'],
-							string: '',
 							component:
 								<CSChip text="transparent" variant="transparent" variantStyle="border" />
 						},
@@ -133,7 +120,6 @@ class CSChipPreview extends React.Component {
 							variationName: ['border'],
 							quickLink: 'border dark',
 							variationText: ['variant="dark"'],
-							string: '',
 							component:
 								<CSChip text="dark" variant="dark" variantStyle="border" />
 						}
@@ -145,7 +131,6 @@ class CSChipPreview extends React.Component {
 					variations: [
 						{
 
-							string: '',
 							component:
 								<CSChip text="brand" id="id" />
 						}
@@ -158,7 +143,6 @@ class CSChipPreview extends React.Component {
 						{
 							variationName: ['className'],
 							quickLink: 'custom class',
-							string: '',
 							component:
 								<CSChip text="brand" className="custom-class" />
 						}

@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSCard, CSCardHeader, CSCardBody, CSCardFooter} from '@cloudsense/cs-ui-components';
+import { CSCard, CSCardHeader, CSCardBody, CSCardFooter } from '@cloudsense/cs-ui-components';
 
 class CSCardPreview extends React.Component {
 	getCSCardDoc() {
@@ -21,10 +21,9 @@ class CSCardPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSCard>
-									<CSCardHeader title="Card Header"/>
+									<CSCardHeader title="Card Header" />
 									<CSCardBody>
 										Card Body
 									</CSCardBody>
@@ -40,10 +39,9 @@ class CSCardPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSCard id="id">
-									<CSCardHeader title="Card Header" id="id"/>
+									<CSCardHeader title="Card Header" id="id" />
 									<CSCardBody id="id">
 										Card Body
 									</CSCardBody>
@@ -61,10 +59,9 @@ class CSCardPreview extends React.Component {
 						{
 							variationName: ['className'],
 							quickLink: 'custom class',
-							string: '',
 							component:
 								<CSCard className="custom-class">
-									<CSCardHeader title="Card Header"/>
+									<CSCardHeader title="Card Header" />
 									<CSCardBody>
 										Card Body
 									</CSCardBody>
@@ -101,7 +98,7 @@ class CSCardPreview extends React.Component {
 					]
 				}
 			]
-		 };
+		};
 
 		for (const example of json.examples) {
 			for (const variation of example.variations) {

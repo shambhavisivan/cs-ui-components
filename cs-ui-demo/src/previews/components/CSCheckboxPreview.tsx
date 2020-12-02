@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSCheckbox} from '@cloudsense/cs-ui-components';
+import { CSCheckbox } from '@cloudsense/cs-ui-components';
 
 class CSCheckboxPreview extends React.Component {
 	getDoc() {
@@ -26,7 +26,6 @@ class CSCheckboxPreview extends React.Component {
 						{
 							variationName: ['square'],
 							quickLink: 'square',
-							string: '',
 							component:
 								<CSCheckbox
 									borderType="square"
@@ -36,7 +35,6 @@ class CSCheckboxPreview extends React.Component {
 						{
 							variationName: ['round'],
 							quickLink: 'round',
-							string: '',
 							component:
 								<CSCheckbox
 									borderType="round"
@@ -51,7 +49,6 @@ class CSCheckboxPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSCheckbox
 									checked
@@ -64,7 +61,6 @@ class CSCheckboxPreview extends React.Component {
 					propName: 'id',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSCheckbox
 									label="This is a label"
@@ -79,7 +75,6 @@ class CSCheckboxPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSCheckbox
 									disabled
@@ -94,7 +89,6 @@ class CSCheckboxPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSCheckbox
 									required
@@ -109,7 +103,6 @@ class CSCheckboxPreview extends React.Component {
 						{
 							variationName: ['brand'],
 							quickLink: 'brand',
-							string: '',
 							component:
 								<CSCheckbox
 									label="This is a label"
@@ -128,7 +121,6 @@ class CSCheckboxPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSCheckbox
 									error
@@ -141,7 +133,6 @@ class CSCheckboxPreview extends React.Component {
 					propName: 'errorMessage',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSCheckbox
 									label="Enter value:"
@@ -155,7 +146,6 @@ class CSCheckboxPreview extends React.Component {
 					propName: 'helpText',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSCheckbox
 									label="This is a label"
@@ -170,7 +160,6 @@ class CSCheckboxPreview extends React.Component {
 						{
 							variationName: ['top-right'],
 							quickLink: 'top-right',
-							string: '',
 							component:
 								<CSCheckbox
 									label="This is a label"
@@ -181,7 +170,6 @@ class CSCheckboxPreview extends React.Component {
 						{
 							variationName: ['top-left'],
 							quickLink: 'top-left',
-							string: '',
 							component:
 								<CSCheckbox
 									label="This is a label"
@@ -192,7 +180,6 @@ class CSCheckboxPreview extends React.Component {
 						{
 							variationName: ['bottom-right'],
 							quickLink: 'bottom-right',
-							string: '',
 							component:
 								<CSCheckbox
 									label="This is a label"
@@ -203,7 +190,6 @@ class CSCheckboxPreview extends React.Component {
 						{
 							variationName: ['bottom-left'],
 							quickLink: 'bottom-left',
-							string: '',
 							component:
 								<CSCheckbox
 									label="This is a label"
@@ -219,7 +205,6 @@ class CSCheckboxPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSCheckbox
 									label="This is a label"
@@ -234,7 +219,6 @@ class CSCheckboxPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSCheckbox
 									label="This is a label"
@@ -249,7 +233,6 @@ class CSCheckboxPreview extends React.Component {
 						{
 							variationName: ['className'],
 							quickLink: 'custom class',
-							string: '',
 							component:
 								<CSCheckbox
 									label="This is a label"
@@ -262,7 +245,6 @@ class CSCheckboxPreview extends React.Component {
 					propName: 'name',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSCheckbox
 									label="This is a label"
@@ -275,7 +257,6 @@ class CSCheckboxPreview extends React.Component {
 					propName: 'onChange',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSCheckbox
 									label="This is a label"
@@ -288,7 +269,6 @@ class CSCheckboxPreview extends React.Component {
 					propName: 'onClick',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSCheckbox
 									label="This is a label"
@@ -301,7 +281,6 @@ class CSCheckboxPreview extends React.Component {
 					propName: 'title',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSCheckbox
 									label="This is a label"

@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSSlider, CSAlert} from '@cloudsense/cs-ui-components';
+import { CSSlider, CSAlert } from '@cloudsense/cs-ui-components';
 
 class CSSliderPreview extends React.Component {
 
@@ -21,7 +21,6 @@ class CSSliderPreview extends React.Component {
 					propName: 'value',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSSlider
 									label="Select value"
@@ -36,7 +35,6 @@ class CSSliderPreview extends React.Component {
 					propName: 'label',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSSlider
 									label="Slider"
@@ -52,7 +50,6 @@ class CSSliderPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSSlider
 									label="Slider"
@@ -69,7 +66,6 @@ class CSSliderPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSSlider
 									label="Slider"
@@ -84,7 +80,6 @@ class CSSliderPreview extends React.Component {
 					propName: 'id',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSSlider
 									label="Select value"
@@ -99,7 +94,6 @@ class CSSliderPreview extends React.Component {
 					propName: 'helpText',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSSlider
 									label="Select value"
@@ -116,7 +110,6 @@ class CSSliderPreview extends React.Component {
 						{
 							variationName: ['top-right'],
 							quickLink: 'top-right',
-							string: '',
 							component:
 								<CSSlider
 									label="Select value"
@@ -129,7 +122,6 @@ class CSSliderPreview extends React.Component {
 						{
 							variationName: ['top-left'],
 							quickLink: 'top-left',
-							string: '',
 							component:
 								<CSSlider
 									label="Select value"
@@ -142,7 +134,6 @@ class CSSliderPreview extends React.Component {
 						{
 							variationName: ['bottom-right'],
 							quickLink: 'bottom-right',
-							string: '',
 							component:
 								<CSSlider
 									label="Select value"
@@ -155,7 +146,6 @@ class CSSliderPreview extends React.Component {
 						{
 							variationName: ['bottom-left'],
 							quickLink: 'bottom-left',
-							string: '',
 							component:
 								<CSSlider
 									label="Select value"
@@ -171,7 +161,6 @@ class CSSliderPreview extends React.Component {
 					propName: 'min',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSSlider
 									label="Select value"
@@ -185,7 +174,6 @@ class CSSliderPreview extends React.Component {
 					propName: 'max',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSSlider
 									label="Select value"
@@ -199,7 +187,6 @@ class CSSliderPreview extends React.Component {
 					propName: 'step',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSSlider
 									label="Select value"
@@ -209,7 +196,6 @@ class CSSliderPreview extends React.Component {
 								/>
 						},
 						{
-							string: '',
 							component:
 								<CSSlider
 									label="Select value"
@@ -219,7 +205,6 @@ class CSSliderPreview extends React.Component {
 								/>
 						},
 						{
-							string: '',
 							component:
 								<CSSlider
 									label="Select value"
@@ -229,7 +214,6 @@ class CSSliderPreview extends React.Component {
 								/>
 						},
 						{
-							string: '',
 							component:
 								<CSSlider
 									label="Select value"
@@ -244,7 +228,6 @@ class CSSliderPreview extends React.Component {
 					propName: 'stepValues',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSSlider
 									label="Select value"
@@ -261,7 +244,6 @@ class CSSliderPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSSlider
 									label="Select value"
@@ -278,7 +260,6 @@ class CSSliderPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSSlider
 									label="Select value"
@@ -294,7 +275,6 @@ class CSSliderPreview extends React.Component {
 					variations: [
 						{
 							variationText: ['error="true"'],
-							string: '',
 							component:
 								<CSSlider
 									label="Select value"
@@ -310,7 +290,6 @@ class CSSliderPreview extends React.Component {
 					propName: 'onChange',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSSlider
 									label="Select value"
@@ -327,7 +306,6 @@ class CSSliderPreview extends React.Component {
 						{
 							variationName: ['default'],
 							quickLink: 'default',
-							string: '',
 							component:
 								<CSSlider
 									label="Select value"
@@ -338,7 +316,6 @@ class CSSliderPreview extends React.Component {
 						{
 							variationName: ['xsmall'],
 							quickLink: 'xsmall',
-							string: '',
 							component:
 								<CSSlider
 									label="Select value"
@@ -350,7 +327,6 @@ class CSSliderPreview extends React.Component {
 						{
 							variationName: ['small'],
 							quickLink: 'small',
-							string: '',
 							component:
 								<CSSlider
 									label="Select value"
@@ -362,7 +338,6 @@ class CSSliderPreview extends React.Component {
 						{
 							variationName: ['medium'],
 							quickLink: 'medium',
-							string: '',
 							component:
 								<CSSlider
 									label="Select value"
@@ -374,7 +349,6 @@ class CSSliderPreview extends React.Component {
 						{
 							variationName: ['large'],
 							quickLink: 'large',
-							string: '',
 							component:
 								<CSSlider
 									label="Select value"
@@ -389,7 +363,6 @@ class CSSliderPreview extends React.Component {
 					propName: 'title',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSSlider
 									label="Select value"
@@ -406,7 +379,6 @@ class CSSliderPreview extends React.Component {
 						{
 							variationName: ['custom-class'],
 							quickLink: 'custom-class',
-							string: '',
 							component:
 								<CSSlider
 									label="Select value"
@@ -581,8 +553,8 @@ class CSSliderPreview extends React.Component {
 			<>
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} />
-					<CSAlert variant="info" text="Props min and max are required for all instances of CSSlider besides those that use the prop stepValues. stepValues creates it's own values for min and max based on the number of items in it's array."/>
-					<PreviewProperties name={component.name} examples={component.examples}/>
+					<CSAlert variant="info" text="Props min and max are required for all instances of CSSlider besides those that use the prop stepValues. stepValues creates it's own values for min and max based on the number of items in it's array." />
+					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
 					<PreviewAccessibility components={[component]} />
 				</div>

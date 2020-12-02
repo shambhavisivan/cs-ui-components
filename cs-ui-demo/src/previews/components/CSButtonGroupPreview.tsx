@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSButtonGroup, CSButton, CSDropdown} from '@cloudsense/cs-ui-components';
+import { CSButtonGroup, CSButton, CSDropdown } from '@cloudsense/cs-ui-components';
 
 class CSButtonGroupPreview extends React.Component {
 	getDoc() {
@@ -22,7 +22,6 @@ class CSButtonGroupPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSButtonGroup
 									combined
@@ -56,7 +55,6 @@ class CSButtonGroupPreview extends React.Component {
 						{
 							variationName: ['false'],
 							quickLink: 'false',
-							string: '',
 							component:
 								<CSButtonGroup
 									combined={false}
@@ -95,7 +93,6 @@ class CSButtonGroupPreview extends React.Component {
 						{
 							variationName: ['left'],
 							quickLink: 'left',
-							string: '',
 							component:
 								<CSButtonGroup
 									combined
@@ -130,7 +127,6 @@ class CSButtonGroupPreview extends React.Component {
 						{
 							variationName: ['right'],
 							quickLink: 'right',
-							string: '',
 							component:
 								<CSButtonGroup
 									combined={false}
@@ -165,7 +161,6 @@ class CSButtonGroupPreview extends React.Component {
 						{
 							variationName: ['both'],
 							quickLink: 'both',
-							string: '',
 							component:
 								<CSButtonGroup
 									combined
@@ -204,7 +199,6 @@ class CSButtonGroupPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSButtonGroup
 									combined
@@ -245,7 +239,6 @@ class CSButtonGroupPreview extends React.Component {
 						{
 							variationName: ['custom class'],
 							quickLink: 'custom class',
-							string: '',
 							component:
 								<CSButtonGroup
 									combined
@@ -285,7 +278,6 @@ class CSButtonGroupPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['aria description'],
-							string: '',
 							component:
 								<CSButtonGroup
 									combined
@@ -305,7 +297,6 @@ class CSButtonGroupPreview extends React.Component {
 						},
 						{
 							variationName: ['aria description and custom id'],
-							string: '',
 							component:
 								<CSButtonGroup
 									combined

@@ -26,7 +26,6 @@ class CSToastPreview extends React.Component {
 							variationName: ['info'],
 							quickLink: 'info',
 							variationText: ['closeButton="true"'],
-							string: '',
 							component:
 								<CSToast
 									variant="info"
@@ -38,7 +37,6 @@ class CSToastPreview extends React.Component {
 							variationName: ['success'],
 							quickLink: 'success',
 							variationText: ['closeButton="true"'],
-							string: '',
 							component:
 								<CSToast
 									variant="success"
@@ -50,7 +48,6 @@ class CSToastPreview extends React.Component {
 							variationName: ['warning'],
 							quickLink: 'warning',
 							variationText: ['closeButton="true"'],
-							string: '',
 							component:
 								<CSToast
 									variant="warning"
@@ -62,7 +59,6 @@ class CSToastPreview extends React.Component {
 							variationName: ['error'],
 							quickLink: 'error',
 							variationText: ['closeButton="true"'],
-							string: '',
 							component:
 								<CSToast
 									variant="error"
@@ -79,7 +75,6 @@ class CSToastPreview extends React.Component {
 							variationName: ['100%'],
 							quickLink: '100%',
 							variationText: ['variant="info"', 'closeButton="true"'],
-							string: '',
 							component:
 								<CSToast
 									variant="info"
@@ -92,7 +87,6 @@ class CSToastPreview extends React.Component {
 							variationName: ['400px'],
 							quickLink: '400px',
 							variationText: ['variant="info"', 'closeButton="true"'],
-							string: '',
 							component:
 								<CSToast
 									variant="info"
@@ -110,7 +104,6 @@ class CSToastPreview extends React.Component {
 							variationName: ['true'],
 							quickLink: 'true',
 							variationText: ['variant="info"'],
-							string: '',
 							component:
 								<CSToast
 									variant="info"
@@ -122,7 +115,6 @@ class CSToastPreview extends React.Component {
 							variationName: ['false'],
 							quickLink: 'false',
 							variationText: ['variant="info"'],
-							string: '',
 							component:
 								<CSToast
 									variant="info"
@@ -140,7 +132,6 @@ class CSToastPreview extends React.Component {
 							variationName: ['quote'],
 							quickLink: 'quote',
 							variationText: ['variant="warning"', 'closeButton="true"'],
-							string: '',
 							component:
 								<CSToast
 									variant="warning"
@@ -158,7 +149,6 @@ class CSToastPreview extends React.Component {
 							variationName: ['true'],
 							quickLink: 'true',
 							variationText: ['variant="info"', 'closeButton="true"'],
-							string: '',
 							component:
 								<CSToast
 									variant="info"
@@ -170,7 +160,6 @@ class CSToastPreview extends React.Component {
 							variationName: ['false'],
 							quickLink: 'false',
 							variationText: ['variant="success"', 'closeButton="true"'],
-							string: '',
 							component:
 								<CSToast
 									variant="success"
@@ -185,7 +174,6 @@ class CSToastPreview extends React.Component {
 					propName: 'id',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSToast
 									variant="success"
@@ -202,7 +190,6 @@ class CSToastPreview extends React.Component {
 					variations: [
 						{
 							variationText: ['variant="info"', 'closeButton="true"', 'iconVisibility="true"'],
-							string: '',
 							component:
 								<CSToast
 									variant="info"
@@ -221,7 +208,6 @@ class CSToastPreview extends React.Component {
 							variationName: ['custom class'],
 							quickLink: 'custom class',
 							variationText: ['variant="info"', 'closeButton="true"'],
-							string: '',
 							component:
 								<CSToast
 									variant="info"
@@ -240,7 +226,6 @@ class CSToastPreview extends React.Component {
 							variationName: ['Add a custom link'],
 							quickLink: 'Add a custom link',
 							variationText: ['variant="warning"', 'closeButton="true"', 'iconVisibility="true"'],
-							string: '',
 							component:
 								<CSToast
 									variant="warning"
@@ -254,7 +239,6 @@ class CSToastPreview extends React.Component {
 							variationName: ['Bold and italic text'],
 							quickLink: 'Bold and italic text',
 							variationText: ['variant="success"', 'closeButton="true"', 'iconVisibility="true"'],
-							string: '',
 							component:
 								<CSToast
 									variant="success"
@@ -368,23 +352,23 @@ class CSToastPreview extends React.Component {
 							<CSButtonGroup>
 								<CSButton
 									label="top-right"
-									onClick={() => CSToastApi.renderCSToast({variant: 'success', closeButton: true, text: 'Top right toast'}, 'top-right', 3)}
+									onClick={() => CSToastApi.renderCSToast({ variant: 'success', closeButton: true, text: 'Top right toast' }, 'top-right', 3)}
 								/>
 								<CSButton
 									label="top-left"
-									onClick={() => CSToastApi.renderCSToast({variant: 'warning', closeButton: true, text: 'Top left toast'}, 'top-left', 4)}
+									onClick={() => CSToastApi.renderCSToast({ variant: 'warning', closeButton: true, text: 'Top left toast' }, 'top-left', 4)}
 								/>
 								<CSButton
 									label="top-center"
-									onClick={() => CSToastApi.renderCSToast({variant: 'success', closeButton: true, text: 'Top center toast'}, 'top-center', 5)}
+									onClick={() => CSToastApi.renderCSToast({ variant: 'success', closeButton: true, text: 'Top center toast' }, 'top-center', 5)}
 								/>
 								<CSButton
 									label="bottom-right"
-									onClick={() => CSToastApi.renderCSToast({variant: 'info', closeButton: true, text: 'Bottom right toast'}, 'bottom-right', 6)}
+									onClick={() => CSToastApi.renderCSToast({ variant: 'info', closeButton: true, text: 'Bottom right toast' }, 'bottom-right', 6)}
 								/>
 								<CSButton
 									label="bottom-left"
-									onClick={() => CSToastApi.renderCSToast({variant: 'error', closeButton: true, text: 'Bottom left toast that won\'t close (duration = null)'}, 'bottom-left', null)}
+									onClick={() => CSToastApi.renderCSToast({ variant: 'error', closeButton: true, text: 'Bottom left toast that won\'t close (duration = null)' }, 'bottom-left', null)}
 								/>
 							</CSButtonGroup>
 					}

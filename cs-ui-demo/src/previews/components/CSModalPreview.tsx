@@ -47,7 +47,6 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 							variationName: ['xsmall'],
 							quickLink: 'xsmall',
 							variationText: ['closeButton={true}', 'align="left"'],
-							string: '',
 							component: (
 								<div>
 									<CSButton
@@ -78,7 +77,6 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 							variationName: ['small'],
 							quickLink: 'small',
 							variationText: ['closeButton={true}', 'align="left"'],
-							string: '',
 							component: (
 								<div>
 									<CSButton
@@ -175,7 +173,6 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 							variationName: ['medium'],
 							quickLink: 'medium',
 							variationText: ['closeButton={false}', 'align="right"'],
-							string: '',
 							component: (
 								<div>
 									<CSButton
@@ -222,7 +219,6 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 							variationName: ['large'],
 							quickLink: 'large',
 							variationText: ['closeButton={true}', 'align="center"'],
-							string: '',
 							component: (
 								<div>
 									<CSButton
@@ -266,7 +262,6 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 							variationName: ['xlarge'],
 							quickLink: 'xlarge',
 							variationText: ['closeButton={true}', 'align="right"'],
-							string: '',
 							component: (
 								<div>
 									<CSButton
@@ -317,7 +312,6 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 						{
 							variationName: ['0'],
 							quickLink: '0',
-							string: '',
 							component: (
 								<div>
 									<CSButton
@@ -367,7 +361,6 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component: (
 								<div>
 									<CSButton
@@ -416,7 +409,6 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 					variations: [
 						{
 							variationText: ['closeButton={true}'],
-							string: '',
 							component: (
 								<div>
 									<CSButton
@@ -464,7 +456,6 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component: (
 								<div>
 									<CSButton
@@ -514,7 +505,6 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component: (
 								<div>
 									<CSButton
@@ -552,7 +542,6 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component: (
 								<div>
 									<CSButton
@@ -588,7 +577,6 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component: (
 								<div>
 									<CSButton
@@ -627,7 +615,6 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 						{
 							variationName: ['custom class'],
 							quickLink: 'custom class',
-							string: '',
 							component: (
 								<div>
 									<CSButton
@@ -676,7 +663,6 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component: (
 								<div>
 									<CSButton

@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSImage} from '@cloudsense/cs-ui-components';
+import { CSImage } from '@cloudsense/cs-ui-components';
 
 class CSImagePreview extends React.Component {
 
@@ -22,14 +22,12 @@ class CSImagePreview extends React.Component {
 						{
 							variationName: ['logo'],
 							quickLink: 'logo',
-							string: '',
 							component:
 								<CSImage type="logo" />
 						},
 						{
 							variationName: ['logomark'],
 							quickLink: 'logomark',
-							string: '',
 							component:
 								<CSImage type="logomark" />
 						}
@@ -42,7 +40,6 @@ class CSImagePreview extends React.Component {
 							variationName: ['white'],
 							variationText: ['type="logo"', 'longDescription="white cloudsense logo on black background"'],
 							quickLink: 'white logo',
-							string: '',
 							component:
 								<div className="black-background">
 									<CSImage
@@ -57,7 +54,6 @@ class CSImagePreview extends React.Component {
 							variationName: ['purple'],
 							variationText: 'type="logo"',
 							quickLink: 'purple logo',
-							string: '',
 							component:
 								<CSImage
 									type="logo"
@@ -69,21 +65,19 @@ class CSImagePreview extends React.Component {
 							variationName: ['white'],
 							variationText: 'type="logomark"',
 							quickLink: 'white logomark',
-							string: '',
 							component:
-							<div className="black-background">
-								<CSImage
-									type="logomark"
-									color="white"
-									variant="initial"
-								/>
-							</div>
+								<div className="black-background">
+									<CSImage
+										type="logomark"
+										color="white"
+										variant="initial"
+									/>
+								</div>
 						},
 						{
 							variationName: ['black'],
 							variationText: 'type="logomark"',
 							quickLink: 'black logomark',
-							string: '',
 							component:
 								<CSImage
 									type="logomark"
@@ -95,7 +89,6 @@ class CSImagePreview extends React.Component {
 							variationName: ['purple'],
 							variationText: 'type="logomark"',
 							quickLink: 'purple logomark',
-							string: '',
 							component:
 								<CSImage
 									type="logomark"
@@ -112,21 +105,19 @@ class CSImagePreview extends React.Component {
 							variationName: ['initial'],
 							variationText: ['type="logo"', 'color="white"'],
 							quickLink: 'initial white logo',
-							string: '',
 							component:
-							<div className="black-background">
-								<CSImage
-									type="logo"
-									color="white"
-									variant="initial"
-								/>
-							</div>
+								<div className="black-background">
+									<CSImage
+										type="logo"
+										color="white"
+										variant="initial"
+									/>
+								</div>
 						},
 						{
 							variationName: ['initial'],
 							variationText: ['type="logo"', 'color="purple"'],
 							quickLink: 'initial purple logo',
-							string: '',
 							component:
 								<CSImage
 									type="logo"
@@ -138,21 +129,19 @@ class CSImagePreview extends React.Component {
 							variationName: ['initial'],
 							variationText: ['type="logomark"', 'color="white"'],
 							quickLink: 'initial white logomark',
-							string: '',
 							component:
-							<div className="black-background">
-								<CSImage
-									type="logomark"
-									color="white"
-									variant="initial"
-								/>
-							</div>
+								<div className="black-background">
+									<CSImage
+										type="logomark"
+										color="white"
+										variant="initial"
+									/>
+								</div>
 						},
 						{
 							variationName: ['reversed'],
 							variationText: ['type="logomark"', 'color="black"'],
 							quickLink: 'reversed black logomark',
-							string: '',
 							component:
 								<CSImage
 									type="logomark"
@@ -164,7 +153,6 @@ class CSImagePreview extends React.Component {
 							variationName: ['reversed'],
 							variationText: ['type="logomark"', 'color="purple"'],
 							quickLink: 'reversed purple logomark',
-							string: '',
 							component:
 								<CSImage
 									type="logomark"
@@ -178,7 +166,6 @@ class CSImagePreview extends React.Component {
 					propName: 'id',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSImage
 									type="logomark"
@@ -194,7 +181,6 @@ class CSImagePreview extends React.Component {
 					variations: [
 						{
 							variationName: ['30rem'],
-							string: '',
 							component:
 								<CSImage
 									type="logomark"
@@ -210,7 +196,6 @@ class CSImagePreview extends React.Component {
 					variations: [
 						{
 							variationName: ['15px'],
-							string: '',
 							component:
 								<CSImage
 									type="logomark"
@@ -227,7 +212,6 @@ class CSImagePreview extends React.Component {
 						{
 							variationName: ['custom class'],
 							quickLink: 'custom class',
-							string: '',
 							component:
 								<CSImage
 									type="logomark"
@@ -334,7 +318,7 @@ class CSImagePreview extends React.Component {
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples} />
-					<PreviewTable components={[component]}/>
+					<PreviewTable components={[component]} />
 					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">

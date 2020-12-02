@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSSection} from '@cloudsense/cs-ui-components';
+import { CSSection } from '@cloudsense/cs-ui-components';
 
 class CSSectionPreview extends React.Component {
 	getDoc() {
@@ -23,7 +23,6 @@ class CSSectionPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSSection collapsible title="Collapsible Section">
 									<ul>
@@ -39,7 +38,6 @@ class CSSectionPreview extends React.Component {
 					propName: 'id',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSSection
 									collapsed
@@ -61,7 +59,6 @@ class CSSectionPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSSection collapsed title="Collapsed Section">
 									<ul>
@@ -80,7 +77,6 @@ class CSSectionPreview extends React.Component {
 							variationName: ['custom class'],
 							quickLink: 'custom class',
 							variationText: ['collapsible="true"'],
-							string: '',
 							component:
 								<CSSection collapsible title="Collapsible Section" className="custom-class">
 									<ul>

@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSTextarea} from '@cloudsense/cs-ui-components';
+import { CSTextarea } from '@cloudsense/cs-ui-components';
 
 class CSTextareaPreview extends React.Component {
 
@@ -24,7 +24,6 @@ class CSTextareaPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSTextarea label="Enter message:" value="Message" />
 						}
@@ -35,7 +34,6 @@ class CSTextareaPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSTextarea label="Enter message:" placeholder="Message" />
 						}
@@ -46,7 +44,6 @@ class CSTextareaPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSTextarea label="Enter message:" id="message" />
 						}
@@ -56,7 +53,6 @@ class CSTextareaPreview extends React.Component {
 					propName: 'label',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSTextarea label="Enter message:" />
 						}
@@ -68,9 +64,8 @@ class CSTextareaPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
-								<CSTextarea label="Enter message:" labelHidden/>
+								<CSTextarea label="Enter message:" labelHidden />
 
 						}
 					]
@@ -81,9 +76,8 @@ class CSTextareaPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
-								<CSTextarea label="Enter message:" labelTitle/>
+								<CSTextarea label="Enter message:" labelTitle />
 						}
 					]
 				},
@@ -93,7 +87,6 @@ class CSTextareaPreview extends React.Component {
 						{
 							variationName: ['square'],
 							quickLink: 'square',
-							string: '',
 							component:
 								<CSTextarea label="Enter message:" borderType="square" />
 						}
@@ -103,9 +96,8 @@ class CSTextareaPreview extends React.Component {
 					propName: 'helpText',
 					variations: [
 						{
-							string: '',
 							component:
-									<CSTextarea label="Enter message:" helpText="Help text example" />
+								<CSTextarea label="Enter message:" helpText="Help text example" />
 						}
 					]
 				},
@@ -115,30 +107,26 @@ class CSTextareaPreview extends React.Component {
 						{
 							variationName: ['top-right'],
 							quickLink: 'top-right',
-							string: '',
 							component:
-									<CSTextarea label="Enter message:" helpText="Help text example" tooltipPosition="top-right" />
+								<CSTextarea label="Enter message:" helpText="Help text example" tooltipPosition="top-right" />
 						},
 						{
 							variationName: ['top-left'],
 							quickLink: 'top-left',
-							string: '',
 							component:
-									<CSTextarea label="Enter message:" helpText="Help text example" tooltipPosition="top-left" />
+								<CSTextarea label="Enter message:" helpText="Help text example" tooltipPosition="top-left" />
 						},
 						{
 							variationName: ['bottom-right'],
 							quickLink: 'bottom-right',
-							string: '',
 							component:
-									<CSTextarea label="Enter message:" helpText="Help text example" tooltipPosition="bottom-right" />
+								<CSTextarea label="Enter message:" helpText="Help text example" tooltipPosition="bottom-right" />
 						},
 						{
 							variationName: ['bottom-left'],
 							quickLink: 'bottom-left',
-							string: '',
 							component:
-									<CSTextarea label="Enter message:" helpText="Help text example" tooltipPosition="bottom-left" />
+								<CSTextarea label="Enter message:" helpText="Help text example" tooltipPosition="bottom-left" />
 						}
 					]
 				},
@@ -148,7 +136,6 @@ class CSTextareaPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSTextarea label="Enter message:" disabled />
 						}
@@ -160,7 +147,6 @@ class CSTextareaPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSTextarea label="Enter message:" hidden />
 						}
@@ -172,7 +158,6 @@ class CSTextareaPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSTextarea label="Enter message:" readOnly value="value" />
 						}
@@ -184,7 +169,6 @@ class CSTextareaPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSTextarea required label="Enter message:" />
 						}
@@ -200,7 +184,6 @@ class CSTextareaPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSTextarea label="Enter message:" error />
 						}
@@ -211,9 +194,8 @@ class CSTextareaPreview extends React.Component {
 					variations: [
 						{
 							variationText: ['error="true"'],
-							string: '',
 							component:
-								<CSTextarea label="Enter value:" error errorMessage="Error message!"/>
+								<CSTextarea label="Enter value:" error errorMessage="Error message!" />
 						}
 					]
 				},
@@ -223,7 +205,6 @@ class CSTextareaPreview extends React.Component {
 						{
 							variationName: ['10'],
 							quickLink: '10',
-							string: '',
 							component:
 								<CSTextarea label="Enter message:" rows={10} />
 						}
@@ -235,16 +216,14 @@ class CSTextareaPreview extends React.Component {
 						{
 							variationName: ['160px'],
 							quickLink: '160px',
-							string: '',
 							component:
-								<CSTextarea label="Enter message:" maxHeight="200px"/>
+								<CSTextarea label="Enter message:" maxHeight="200px" />
 						},
 						{
 							variationName: ['5rem'],
 							quickLink: '5rem',
-							string: '',
 							component:
-								<CSTextarea label="Enter message:" maxHeight="5rem"/>
+								<CSTextarea label="Enter message:" maxHeight="5rem" />
 						}
 					]
 				},
@@ -252,9 +231,8 @@ class CSTextareaPreview extends React.Component {
 					propName: 'onChange',
 					variations: [
 						{
-							string: '',
 							component:
-								<CSTextarea label="Enter message:" onChange={onChangeHandler}/>
+								<CSTextarea label="Enter message:" onChange={onChangeHandler} />
 						}
 					]
 				},
@@ -262,9 +240,8 @@ class CSTextareaPreview extends React.Component {
 					propName: 'title',
 					variations: [
 						{
-							string: '',
 							component:
-								<CSTextarea label="Enter message:" title="This is a title"/>
+								<CSTextarea label="Enter message:" title="This is a title" />
 						}
 					]
 				},
@@ -274,9 +251,8 @@ class CSTextareaPreview extends React.Component {
 						{
 							variationName: ['custom class'],
 							quickLink: 'custom class',
-							string: '',
 							component:
-								<CSTextarea label="Enter message:" className="custom-class"/>
+								<CSTextarea label="Enter message:" className="custom-class" />
 						}
 					]
 				}

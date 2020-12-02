@@ -22,16 +22,14 @@ class CSFieldErrorMsgPreview extends React.Component {
 						{
 							variationName: ['string'],
 							quickLink: 'string',
-							string: '',
 							component:
-							<CSFieldErrorMsg message="Error message!" />
+								<CSFieldErrorMsg message="Error message!" />
 						},
 						{
 							variationName: ['Array<string>'],
 							quickLink: 'Array<string>',
-							string: '',
 							component:
-							<CSFieldErrorMsg  message={['Error message 1!', 'Error message 2!', 'Error message 3!']}/>
+								<CSFieldErrorMsg message={['Error message 1!', 'Error message 2!', 'Error message 3!']} />
 						}
 					]
 				}
@@ -73,7 +71,7 @@ class CSFieldErrorMsgPreview extends React.Component {
 			<>
 				<div className="preview-section-wrapper divider-preview">
 					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties  name={component.name} examples={component.examples}/>
+					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
 					<PreviewAccessibility components={[component]} />
 				</div>
@@ -84,6 +82,6 @@ class CSFieldErrorMsgPreview extends React.Component {
 			</>
 		);
 	}
- }
+}
 
 export default CSFieldErrorMsgPreview;

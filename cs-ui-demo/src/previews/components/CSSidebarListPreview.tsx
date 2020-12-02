@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import {CSSidebarList, CSSidebarListItem, CSAlert} from '@cloudsense/cs-ui-components';
+import { CSSidebarList, CSSidebarListItem, CSAlert } from '@cloudsense/cs-ui-components';
 
 class CSSidebarListPreview extends React.Component {
 	getSidebarListDoc() {
@@ -22,12 +22,11 @@ class CSSidebarListPreview extends React.Component {
 						{
 							variationName: ['custom class'],
 							quickLink: 'custom class',
-							string: '',
 							component:
 								<CSSidebarList className="custom-class">
-									<CSSidebarListItem className="custom-class" text="Product A"/>
-									<CSSidebarListItem className="custom-class" text="Product B"/>
-									<CSSidebarListItem className="custom-class" text="Product C"/>
+									<CSSidebarListItem className="custom-class" text="Product A" />
+									<CSSidebarListItem className="custom-class" text="Product B" />
+									<CSSidebarListItem className="custom-class" text="Product C" />
 								</CSSidebarList>
 						}
 					]
@@ -36,12 +35,11 @@ class CSSidebarListPreview extends React.Component {
 					propName: 'closed',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSSidebarList closed>
-									<CSSidebarListItem text="Product A"/>
-									<CSSidebarListItem text="Product B"/>
-									<CSSidebarListItem text="Product C"/>
+									<CSSidebarListItem text="Product A" />
+									<CSSidebarListItem text="Product B" />
+									<CSSidebarListItem text="Product C" />
 								</CSSidebarList>
 						}
 					]
@@ -52,34 +50,31 @@ class CSSidebarListPreview extends React.Component {
 						{
 							variationName: ['100vh'],
 							quickLink: '100vh',
-							string: '',
 							component:
 								<CSSidebarList height="100vh">
-									<CSSidebarListItem text="Product A"/>
-									<CSSidebarListItem text="Product B"/>
-									<CSSidebarListItem text="Product C"/>
+									<CSSidebarListItem text="Product A" />
+									<CSSidebarListItem text="Product B" />
+									<CSSidebarListItem text="Product C" />
 								</CSSidebarList>
 						},
 						{
 							variationName: ['50%'],
 							quickLink: '50%',
-							string: '',
 							component:
 								<CSSidebarList height="50%">
-									<CSSidebarListItem text="Product A"/>
-									<CSSidebarListItem text="Product B"/>
-									<CSSidebarListItem text="Product C"/>
+									<CSSidebarListItem text="Product A" />
+									<CSSidebarListItem text="Product B" />
+									<CSSidebarListItem text="Product C" />
 								</CSSidebarList>
 						},
 						{
 							variationName: ['20rem'],
 							quickLink: '20rem',
-							string: '',
 							component:
 								<CSSidebarList height="20rem">
-									<CSSidebarListItem text="Product A"/>
-									<CSSidebarListItem text="Product B"/>
-									<CSSidebarListItem text="Product C"/>
+									<CSSidebarListItem text="Product A" />
+									<CSSidebarListItem text="Product B" />
+									<CSSidebarListItem text="Product C" />
 								</CSSidebarList>
 						}
 					]
@@ -88,12 +83,11 @@ class CSSidebarListPreview extends React.Component {
 					propName: 'id',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSSidebarList id="products">
-									<CSSidebarListItem id="products" text="Product A"/>
-									<CSSidebarListItem text="Product B"/>
-									<CSSidebarListItem text="Product C"/>
+									<CSSidebarListItem id="products" text="Product A" />
+									<CSSidebarListItem text="Product B" />
+									<CSSidebarListItem text="Product C" />
 								</CSSidebarList>
 						}
 					]
@@ -102,12 +96,11 @@ class CSSidebarListPreview extends React.Component {
 					propName: 'onClick',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSSidebarList>
-									<CSSidebarListItem text="Product A"/>
-									<CSSidebarListItem text="Product B" onClick={() => alert('clicked!')}/>
-									<CSSidebarListItem text="Product C"/>
+									<CSSidebarListItem text="Product A" />
+									<CSSidebarListItem text="Product B" onClick={() => alert('clicked!')} />
+									<CSSidebarListItem text="Product C" />
 								</CSSidebarList>
 						}
 					]
@@ -116,12 +109,11 @@ class CSSidebarListPreview extends React.Component {
 					propName: 'static',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSSidebarList static>
-									<CSSidebarListItem text="Product A"/>
-									<CSSidebarListItem text="Product B"/>
-									<CSSidebarListItem text="Product C"/>
+									<CSSidebarListItem text="Product A" />
+									<CSSidebarListItem text="Product B" />
+									<CSSidebarListItem text="Product C" />
 								</CSSidebarList>
 						}
 					]
@@ -130,12 +122,11 @@ class CSSidebarListPreview extends React.Component {
 					propName: 'text',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSSidebarList>
-									<CSSidebarListItem text="Text A"/>
-									<CSSidebarListItem text="Text B"/>
-									<CSSidebarListItem text="Text C"/>
+									<CSSidebarListItem text="Text A" />
+									<CSSidebarListItem text="Text B" />
+									<CSSidebarListItem text="Text C" />
 								</CSSidebarList>
 						}
 					]
@@ -146,34 +137,31 @@ class CSSidebarListPreview extends React.Component {
 						{
 							variationName: ['20rem'],
 							quickLink: '20rem',
-							string: '',
 							component:
 								<CSSidebarList width="20rem">
-									<CSSidebarListItem text="Product A"/>
-									<CSSidebarListItem text="Product B"/>
-									<CSSidebarListItem text="Product C"/>
+									<CSSidebarListItem text="Product A" />
+									<CSSidebarListItem text="Product B" />
+									<CSSidebarListItem text="Product C" />
 								</CSSidebarList>
 						},
 						{
 							variationName: ['30rem'],
 							quickLink: '30rem',
-							string: '',
 							component:
 								<CSSidebarList width="30rem">
-									<CSSidebarListItem text="Product A"/>
-									<CSSidebarListItem text="Product B"/>
-									<CSSidebarListItem text="Product C"/>
+									<CSSidebarListItem text="Product A" />
+									<CSSidebarListItem text="Product B" />
+									<CSSidebarListItem text="Product C" />
 								</CSSidebarList>
 						},
 						{
 							variationName: ['100%'],
 							quickLink: '100%',
-							string: '',
 							component:
 								<CSSidebarList width="100%">
-									<CSSidebarListItem text="Product A"/>
-									<CSSidebarListItem text="Product B"/>
-									<CSSidebarListItem text="Product C"/>
+									<CSSidebarListItem text="Product A" />
+									<CSSidebarListItem text="Product B" />
+									<CSSidebarListItem text="Product C" />
 								</CSSidebarList>
 						}
 					]

@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewLinks from '../PreviewLinks';
 import PreviewAccessibility from '../PreviewAccessibility';
 
-import {CSCustomSelect, CSAlert} from '@cloudsense/cs-ui-components';
+import { CSCustomSelect, CSAlert } from '@cloudsense/cs-ui-components';
 
 class CSCustomSelectPreview extends React.Component {
 	getDoc() {
@@ -22,7 +22,6 @@ class CSCustomSelectPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSCustomSelect label="Choose letter" id="letter" optionsList={['A', 'B', 'C']} />
 						}
@@ -32,7 +31,6 @@ class CSCustomSelectPreview extends React.Component {
 					propName: 'label',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSCustomSelect label="Choose color" optionsList={['Red', 'Blue', 'Green']} />
 						}
@@ -44,9 +42,8 @@ class CSCustomSelectPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
-								<CSCustomSelect label="Choose color" optionsList={['Red', 'Blue', 'Green']} labelHidden/>
+								<CSCustomSelect label="Choose color" optionsList={['Red', 'Blue', 'Green']} labelHidden />
 						}
 					]
 				},
@@ -56,9 +53,8 @@ class CSCustomSelectPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
-								<CSCustomSelect label="Choose color" optionsList={['Red', 'Blue', 'Green']} labelTitle/>
+								<CSCustomSelect label="Choose color" optionsList={['Red', 'Blue', 'Green']} labelTitle />
 						}
 					]
 				},
@@ -68,7 +64,6 @@ class CSCustomSelectPreview extends React.Component {
 						{
 							variationName: ['square'],
 							quickLink: 'square',
-							string: '',
 							component:
 								<CSCustomSelect label="Choose letter" borderType="square" optionsList={['A', 'B', 'C']} />
 						}
@@ -78,7 +73,6 @@ class CSCustomSelectPreview extends React.Component {
 					propName: 'helpText',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSCustomSelect label="Choose letter" helpText="Help text example" tooltipPosition="bottom-right" optionsList={['A', 'B', 'C']} />
 						}
@@ -90,28 +84,24 @@ class CSCustomSelectPreview extends React.Component {
 						{
 							variationName: ['top-right'],
 							quickLink: 'top-right',
-							string: '',
 							component:
 								<CSCustomSelect label="Choose letter" helpText="Help text example" tooltipPosition="top-right" optionsList={['A', 'B', 'C']} />
 						},
 						{
 							variationName: ['top-left'],
 							quickLink: 'top-left',
-							string: '',
 							component:
 								<CSCustomSelect label="Choose letter" helpText="Help text example" tooltipPosition="top-left" optionsList={['A', 'B', 'C']} />
 						},
 						{
 							variationName: ['bottom-right'],
 							quickLink: 'bottom-right',
-							string: '',
 							component:
 								<CSCustomSelect label="Choose letter" helpText="Help text example" tooltipPosition="bottom-right" optionsList={['A', 'B', 'C']} />
 						},
 						{
 							variationName: ['bottom-left'],
 							quickLink: 'bottom-left',
-							string: '',
 							component:
 								<CSCustomSelect label="Choose letter" helpText="Help text example" tooltipPosition="bottom-left" optionsList={['A', 'B', 'C']} />
 						}
@@ -123,7 +113,6 @@ class CSCustomSelectPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSCustomSelect label="Choose letter" disabled optionsList={['A', 'B', 'C']} />
 						}
@@ -135,7 +124,6 @@ class CSCustomSelectPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSCustomSelect label="Choose letter" hidden optionsList={['A', 'B', 'C']} />
 						}
@@ -147,7 +135,6 @@ class CSCustomSelectPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSCustomSelect label="Choose letter" required optionsList={['A', 'B', 'C']} />
 						}
@@ -163,7 +150,6 @@ class CSCustomSelectPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							string: '',
 							component:
 								<CSCustomSelect label="Choose letter" error optionsList={['A', 'B', 'C']} />
 						}
@@ -174,7 +160,6 @@ class CSCustomSelectPreview extends React.Component {
 					variations: [
 						{
 							variationText: ['error="true"'],
-							string: '',
 							component:
 								<CSCustomSelect label="Choose letter" error errorMessage="Term not found" optionsList={['A', 'B', 'C']} />
 						}
@@ -184,9 +169,8 @@ class CSCustomSelectPreview extends React.Component {
 					propName: 'title',
 					variations: [
 						{
-							string: '',
 							component:
-								<CSCustomSelect label="Choose letter" optionsList={['A', 'B', 'C']} title="This is a title"/>
+								<CSCustomSelect label="Choose letter" optionsList={['A', 'B', 'C']} title="This is a title" />
 						}
 					]
 				},
@@ -194,9 +178,8 @@ class CSCustomSelectPreview extends React.Component {
 					propName: 'onChange',
 					variations: [
 						{
-							string: '',
 							component:
-								<CSCustomSelect label="Choose letter" optionsList={['A', 'B', 'C']} onChange={handleOnChange}/>
+								<CSCustomSelect label="Choose letter" optionsList={['A', 'B', 'C']} onChange={handleOnChange} />
 						}
 					]
 				},
@@ -204,7 +187,6 @@ class CSCustomSelectPreview extends React.Component {
 					propName: 'multiselect',
 					variations: [
 						{
-							string: '',
 							component:
 								<CSCustomSelect label="Choose letter" optionsList={['A', 'B', 'C']} multiselect />
 						}
@@ -214,9 +196,8 @@ class CSCustomSelectPreview extends React.Component {
 					propName: 'onSelectChange',
 					variations: [
 						{
-							string: '',
 							component:
-								<CSCustomSelect label="Choose letter" optionsList={['A', 'B', 'C']} multiselect onSelectChange={e => handleSelectChange(e)}/>
+								<CSCustomSelect label="Choose letter" optionsList={['A', 'B', 'C']} multiselect onSelectChange={e => handleSelectChange(e)} />
 						}
 					]
 				},
@@ -226,7 +207,6 @@ class CSCustomSelectPreview extends React.Component {
 						{
 							variationName: ['custom class'],
 							quickLink: 'custom class',
-							string: '',
 							component:
 								<CSCustomSelect label="Choose letter" className="custom-class" optionsList={['A', 'B', 'C']} />
 						}
