@@ -15,7 +15,7 @@
 			display: flex;
 			flex-direction: column;
 			border-radius: 0.25rem;
-			padding: 0.25rem 0;
+			padding: var(--cs-dropdown-padding, 0.25rem 0);
 			overflow: auto;
 			max-height: var(--cs-dropdown-max-height, unset);
 			max-width: var(--cs-dropdown-max-width, unset);
@@ -55,6 +55,21 @@
 						@include css4 {
 							border: 1px solid cvar(--cs-transparent);
 						}
+					}
+				}
+			}
+
+			&-no-padding {
+				li:first-child {
+					.cs-btn::after {
+						border-top-left-radius: 0.25rem;
+						border-top-right-radius: 0.25rem;
+					}
+				}
+				li:last-child {
+					.cs-btn::after {
+						border-bottom-left-radius: 0.25rem;
+						border-bottom-right-radius: 0.25rem;
 					}
 				}
 			}

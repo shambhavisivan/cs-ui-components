@@ -26,6 +26,7 @@ export interface CSDropdownProps {
 	maxHeight?: string;
 	maxWidth?: string;
 	onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+	padding?: string;
 	position?: CSDropdownPosition;
 	size?: CSDropdownSize;
 }
@@ -89,16 +90,21 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 				'cs-dropdown-active': (this.state.active === true)
 			}
 		);
-		const btnDropdownItemClasses = classNames(
+		const btnDropdownOuterItemWrapperClasses = classNames(
 			'cs-dropdown-outer-item-wrapper',
 			{
 				[`cs-dropdown-${this.props.align}`]: this.props.align,
 				[`cs-dropdown-${this.props.position}`]: this.props.position
 			}
 		);
+		const btnDropdownItemWrapperClasses = classNames(
+			'cs-dropdown-item-wrapper', {
+			'cs-dropdown-item-wrapper-no-padding': this.props.padding === '0'
+		});
 		const style: CSSProperties = {
 			'--cs-dropdown-max-height': this.props.maxHeight,
-			'--cs-dropdown-max-width': this.props.maxWidth
+			'--cs-dropdown-max-width': this.props.maxWidth,
+			'--cs-dropdown-padding': this.props.padding
 		};
 		const childrenWithWrapper = React.Children.map(this.props.children, (child: any) => {
 			if (child) {
@@ -136,14 +142,14 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 					ariaHaspopup={!!Object(this.props.children).length}
 				/>
 				{this.props.hover ?
-					(<div className={btnDropdownItemClasses}>
-						<ul className="cs-dropdown-item-wrapper" role="menu" style={style}>
+					(<div className={btnDropdownOuterItemWrapperClasses}>
+						<ul className={btnDropdownItemWrapperClasses} role="menu" style={style}>
 							{childrenWithWrapper}
 						</ul>
 					</div>) :
 					(this.state.active &&
-						<div className={btnDropdownItemClasses}>
-							<ul className="cs-dropdown-item-wrapper" role="menu" style={style}>
+						<div className={btnDropdownOuterItemWrapperClasses}>
+							<ul className={btnDropdownItemWrapperClasses} role="menu" style={style}>
 								{childrenWithWrapper}
 							</ul>
 						</div>)

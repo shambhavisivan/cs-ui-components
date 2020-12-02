@@ -550,6 +550,27 @@ class CSDropdownPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'padding',
+					customText: '',
+					variations: [
+						{
+							component: <CSDropdown
+								iconName="down"
+								padding="0"
+							>
+								<CSButton
+									iconName="world"
+									label="test label small"
+								/>
+								<CSButton
+									iconName="world"
+									label="test label large large"
+								/>
+							</CSDropdown>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					customText: '',
 					variations: [
@@ -666,6 +687,10 @@ class CSDropdownPreview extends React.Component {
 				{
 					propertyName: 'onClick',
 					description: 'Logic for onClick event'
+				},
+				{
+					propertyName: 'padding',
+					description: 'Dropdown padding'
 				},
 				{
 					propertyName: 'position',
