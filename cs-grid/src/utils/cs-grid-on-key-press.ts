@@ -1,8 +1,9 @@
+import { CSButton } from '@cloudsense/cs-ui-components';
 import * as KeyCode from 'keycode-js';
 
 export function onKeyPressInAList(
 	event: KeyboardEvent,
-	refs: Array<HTMLElement>,
+	refs: Array<HTMLButtonElement>,
 	currentFocusedIndex: number,
 	loop: boolean,
 	horizontal: boolean,

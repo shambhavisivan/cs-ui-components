@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CSIcon } from '@cloudsense/cs-ui-components';
+import { CSButton, CSDropdown, CSIcon } from '@cloudsense/cs-ui-components';
 import { CSGridCellEditor, CSGridCellEditorState } from '../interfaces/cs-grid-base-interfaces';
 import {
 	ActionProps,
@@ -9,7 +9,7 @@ import {
 	isStandardIcon
 } from '../interfaces/cs-grid-cell-props';
 import { onKeyPressInAList } from '../utils/cs-grid-on-key-press';
-import { DefaultIcon, noOfVisibleButtons } from '../utils/cs-grid-row-selection-helper';
+import { noOfVisibleButtons } from '../utils/cs-grid-row-selection-helper';
 
 interface CSGridRowSelectionEditorState extends CSGridCellEditorState<boolean> {
 	actions: Array<CSGridAction<boolean>>;
@@ -73,14 +73,6 @@ export class CSGridRowSelectionEditor
 					12}px`;
 			}
 
-			const rowSelectionList: HTMLElement = document.querySelectorAll<HTMLElement>(
-				'.cs-grid_app-wrapper .cs-grid_main .ag-popup-editor .row-selection-list'
-			)[0];
-
-			if (rowSelectionList) {
-				rowSelectionList.style.display = 'flex';
-			}
-
 			const dropDownRefs = this.dropDownRefs.filter(
 				ref => ref !== null && ref !== undefined && !ref.disabled
 			);
@@ -120,38 +112,52 @@ export class CSGridRowSelectionEditor
 			HTMLButtonElement
 		>> = [];
 
-		const showIcons = this.state.actions.some(action => action.icon);
-
 		for (const [index, action] of this.state.actions.entries()) {
 			const selectAction = () => this.actionSelected(action.action);
 
-			let icon = action.icon;
-			if (icon && isStandardIcon(icon)) {
-				icon = <CSIcon name={icon.iconName} color={icon.color} />;
-			} else if (!icon && showIcons) {
-				icon = <DefaultIcon />;
+			if (action.icon) {
+				if (isStandardIcon(action.icon)) {
+					dropDownValues.push(
+						<CSButton
+							label={action.name}
+							key={action.name}
+							onClick={selectAction}
+							disabled={action.disabled}
+							iconName={action.icon.iconName}
+							iconColor={action.icon.color ? action.icon.color : null}
+							ref={(ref: HTMLButtonElement) => (this.dropDownRefs[index] = ref)}
+							id={`row-selection-list-item-${action.name}`}
+						/>
+					);
+				} else {
+					dropDownValues.push(
+						<CSButton
+							label={action.name} // labelHidden prop needs to be added here after it's available in csui
+							key={action.name}
+							onClick={selectAction}
+							disabled={action.disabled}
+							ref={(ref: HTMLButtonElement) => (this.dropDownRefs[index] = ref)}
+							id={`row-selection-list-item-${action.name}`}
+						>
+							{action.icon}
+						</CSButton>
+					);
+				}
+			} else {
+				dropDownValues.push(
+					<CSButton
+						label={action.name}
+						key={action.name}
+						onClick={selectAction}
+						ref={(ref: HTMLButtonElement) => (this.dropDownRefs[index] = ref)}
+						disabled={action.disabled}
+						id={`row-selection-list-item-${action.name}`}
+					/>
+				);
 			}
-
-			dropDownValues.push(
-				<button
-					className='row-selection-list-item'
-					key={action.name}
-					id={`row-selection-list-item-${action.name}`}
-					onClick={selectAction}
-					ref={ref => (this.dropDownRefs[index] = ref)}
-					disabled={action.disabled}
-				>
-					{showIcons && <div className='row-selection-icon-wrapper'>{icon}</div>}
-					<div className='row-selection-name-wrapper'>{action.name}</div>
-				</button>
-			);
 		}
 
-		return (
-			<div className='cs-grid_popup-wrapper'>
-				<div className='row-selection-list'>{dropDownValues}</div>
-			</div>
-		);
+		return <CSDropdown defaultOpen={true}>{dropDownValues}</CSDropdown>;
 	}
 
 	private actionSelected = (action: (guid: string, currentValue: any) => void) => {

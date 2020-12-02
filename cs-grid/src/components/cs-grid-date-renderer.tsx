@@ -1,7 +1,7 @@
 import moment from 'moment';
 import React from 'react';
 
-import { CSTooltip } from '@cloudsense/cs-ui-components';
+import { CSButton, CSTooltip } from '@cloudsense/cs-ui-components';
 import { CellData } from '../interfaces/cs-grid-base-interfaces';
 import { CSGridCellRendererProps } from '../interfaces/cs-grid-cell-props';
 import { formatDate } from '../utils/cs-grid-date-helper';
@@ -55,7 +55,13 @@ export class CSGridDateRenderer extends CSGridBaseRenderer<string> {
 						className='cs-grid_cell-tooltip'
 						content={tooltip.content}
 						delayTooltip={tooltip.delay}
-						variant={tooltip.variant ? tooltip.variant : this.state.value.errorMessage ? 'error' : 'info'}
+						variant={
+							tooltip.variant
+								? tooltip.variant
+								: this.state.value.errorMessage
+								? 'error'
+								: 'info'
+						}
 						position={tooltip.position}
 						height={tooltip.height}
 						width={tooltip.width}
@@ -71,9 +77,16 @@ export class CSGridDateRenderer extends CSGridBaseRenderer<string> {
 					position={this.state.isLastColumn ? 'top-left' : 'top-right'}
 				/>
 				{this.state.value.cellValue && !readOnly && this.props.colDef.editable && (
-					<button
-						title='Clear Date'
+					<CSButton
 						className='cs-grid_clear-button'
+						label='Clear Date'
+						size='xsmall'
+						btnStyle='brand'
+						btnType='transparent'
+						iconName='close'
+						iconDisplay='icon-only'
+						iconColor='#b0adab'
+						iconSize='1rem'
 						onClick={this.clearDate}
 					/>
 				)}

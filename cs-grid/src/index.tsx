@@ -1,5 +1,5 @@
 'use strict';
-import {CSButton, CSButtonGroup, CSChip} from '@cloudsense/cs-ui-components';
+import { CSButton, CSButtonGroup, CSChip } from '@cloudsense/cs-ui-components';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -364,26 +364,31 @@ export class App extends React.Component<object, AppState> {
 						{
 							action: () => console.error('Edit option called'),
 							icon: <span className='icon-error' aria-hidden='true' />,
-							name: 'Edit'
+							name: 'Custom content'
 						},
 						{
 							action: () => console.error('disabled icons should not get called!'),
 							disabled: true,
-							name: 'disabled icon'
+							name: 'disabled'
 						},
 						{
 							action: () => console.error('Delete option called'),
 							icon: { iconName: 'close', color: 'red' },
-							name: 'Delete'
+							name: 'Delete with icon and color'
+						},
+						{
+							action: () => console.error('Delete option called'),
+							icon: { iconName: 'close' },
+							name: 'Delete with no color'
 						},
 						{
 							action: () => console.error('No Icon 1 option called'),
-							name: 'No Icon 1'
+							name: 'No Icon'
 						},
 						{
 							action: () => console.error('disabled icons should not get called!'),
 							disabled: true,
-							name: 'disabled icon 2'
+							name: 'No icon disabled'
 						}
 					];
 				},
@@ -408,12 +413,14 @@ export class App extends React.Component<object, AppState> {
 				flashOnCellValueChange: true,
 				getTooltip: (guid: string) => {
 					return {
-						content: <CSChip text="Long text example to demonstrate auto height and width of tooltip "/>,
+						content: (
+							<CSChip text='Long text example to demonstrate auto height and width of tooltip ' />
+						),
 						delay: 300,
 						variant: 'basic',
 						height: 'auto',
 						width: 'auto',
-						position: 'bottom-left',
+						position: 'bottom-left'
 					};
 				},
 				header: {

@@ -153,12 +153,6 @@
 		}
 	}
 
-	.cs-grid_clear-button::before {
-		content: "f";
-		font-family: "cs-grid";
-		@include sc(--csgrid-input-icon-fill);
-	}
-
 	.cs-grid_search-icon::before {
 		content: "p";
 		font-size: 0.75rem;
@@ -198,9 +192,5 @@
 	.cs-grid_checkbox:checked + .cs-grid_checkbox-faux:before {
 		content: "n";
 		font-family: "cs-grid";
-	}
-
-	.icon-bolt::before {
-		content: "s";
 	}
 }

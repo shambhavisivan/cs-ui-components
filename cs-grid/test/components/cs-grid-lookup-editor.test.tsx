@@ -2,6 +2,7 @@ import { ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react';
 import { shallow } from 'enzyme';
 import React from 'react';
+import { CSButton } from '@cloudsense/cs-ui-components';
 import {
 	CellData,
 	CSGridCellEditorProps,
@@ -127,7 +128,10 @@ describe('CS Grid Lookup Editor', () => {
 						value={expectedValue}
 						title={expectedValue}
 					/>
-					<button className='cs-grid_clear-button' title={'Clear value'} />
+					<CSButton
+						label='Clear value'
+						className='cs-grid_clear-button'
+					/>
 				</div>
 			)
 		).toBeTruthy();

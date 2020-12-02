@@ -1,4 +1,4 @@
-import { CSIcon } from '@cloudsense/cs-ui-components';
+import { CSButton, CSButtonGroup, CSIcon } from '@cloudsense/cs-ui-components';
 import * as KeyCode from 'keycode-js';
 import React from 'react';
 
@@ -11,7 +11,7 @@ import {
 	isStandardIcon
 } from '../interfaces/cs-grid-cell-props';
 import { onKeyPressInAList } from '../utils/cs-grid-on-key-press';
-import { DefaultIcon, noOfVisibleButtons } from '../utils/cs-grid-row-selection-helper';
+import { noOfVisibleButtons } from '../utils/cs-grid-row-selection-helper';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
 
 export interface CSGridBaseActionsRendererState<T> extends CSGridCellRendererState<T> {
@@ -81,46 +81,69 @@ export abstract class CSGridBaseActionsRenderer<
 					action.action(this.props.node.id, this.state.value?.cellValue);
 				};
 
-				let icon = action.icon;
-				if (!icon) {
-					icon = <DefaultIcon />;
-				} else if (isStandardIcon(icon)) {
-					icon = <CSIcon name={icon.iconName} color={icon.color} />;
+				if (action.icon) {
+					if (isStandardIcon(action.icon)) {
+						icons.push(
+							<CSButton
+								label={action.name}
+								key={action.name}
+								onClick={onClick}
+								disabled={action.disabled}
+								iconName={action.icon.iconName}
+								iconColor={action.icon.color}
+								iconDisplay='icon-only'
+								ref={(ref: HTMLButtonElement) => (this.buttonRefs[index] = ref)}
+								id={`icon-item-${this.props.node.id}-${colId}-${index}`}
+							/>
+						);
+					} else {
+						icons.push(
+							<CSButton
+								label=''
+								title={action.name}
+								key={action.name}
+								onClick={onClick}
+								disabled={action.disabled}
+								iconDisplay='icon-only'
+								ref={(ref: HTMLButtonElement) => (this.buttonRefs[index] = ref)}
+								id={`icon-item-${this.props.node.id}-${colId}-${index}`}
+							>
+								{action.icon}
+							</CSButton>
+						);
+					}
+				} else {
+					icons.push(
+						<CSButton
+							label={action.name}
+							key={action.name}
+							onClick={onClick}
+							disabled={action.disabled}
+							iconName='connected_apps'
+							iconDisplay='icon-only'
+							ref={(ref: HTMLButtonElement) => (this.buttonRefs[index] = ref)}
+							id={`icon-item-${this.props.node.id}-${colId}-${index}`}
+						/>
+					);
 				}
-
-				icons.push(
-					<button
-						className='row-selection-icons-item'
-						key={action.name}
-						onClick={onClick}
-						ref={ref => (this.buttonRefs[index] = ref)}
-						title={action.name}
-						disabled={action.disabled}
-						id={`icon-item-${this.props.node.id}-${colId}-${index}`}
-					>
-						<div className='cs-btn-icon'>{icon}</div>
-					</button>
-				);
 			}
 		}
 
 		return (
 			<div className='select-wrapper-actions'>
-				{icons.length > 0 && icons}
-				{this.state.useDropdown && this.state.actions.length > icons.length && (
-					<button
-						className='row-selection-icons-item row-selection-icons-item-menu'
-						title='Row Actions'
-						onClick={this.startEditing}
-						ref={ref => (this.dropdownRef = ref)}
-						id={`icon-item-${this.props.node.id}-${colId}-dropdown`}
-					>
-						<span
-							id={`icon-menu-${this.props.node.id}-${colId}`}
-							className='icon-menu'
+				<CSButtonGroup>
+					{icons.length > 0 && icons}
+					{this.state.useDropdown && this.state.actions.length > icons.length && (
+						<CSButton
+							label='Row Actions'
+							id={`icon-item-${this.props.node.id}-${colId}-dropdown`}
+							onClick={this.startEditing}
+							ref={(ref: HTMLButtonElement) => (this.dropdownRef = ref)}
+							iconName='threedots_vertical'
+							iconDisplay='icon-only'
 						/>
-					</button>
-				)}
+					)}
+				</CSButtonGroup>
 			</div>
 		);
 	};
@@ -134,6 +157,7 @@ export abstract class CSGridBaseActionsRenderer<
 			colKey: this.props.column.getId(),
 			rowIndex: this.props.node.rowIndex
 		};
+
 		this.props.api.startEditingCell(startEditingParams);
 	};
 
@@ -171,7 +195,7 @@ export abstract class CSGridBaseActionsRenderer<
 					this.focusOnNextColumn();
 				}
 			}
-		} else if (event.target === this.dropdownRef) {
+		} else if ((event.target as HTMLButtonElement) === this.dropdownRef) {
 			event.preventDefault();
 			if (event.keyCode === KeyCode.KEY_ENTER || event.keyCode === KeyCode.KEY_RETURN) {
 				this.startEditing();

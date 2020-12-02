@@ -7,6 +7,7 @@ import { CellData } from '../../src/interfaces/cs-grid-base-interfaces';
 import { CSGridCellRendererProps } from '../../src/interfaces/cs-grid-cell-props';
 import { UserInfo } from '../../src/interfaces/user-info';
 import { formatDate } from '../../src/utils/cs-grid-date-helper';
+import { CSButton } from '@cloudsense/cs-ui-components';
 
 describe('CS Grid Date Renderer', () => {
 	let exampleDate: CellData<string>;
@@ -104,9 +105,16 @@ describe('CS Grid Date Renderer', () => {
 						{value}
 					</span>
 					<CSGridCellError errorMessage={exampleDate.errorMessage} position='top-left' />
-					<button
-						title='Clear Date'
+					<CSButton
 						className='cs-grid_clear-button'
+						label='Clear Date'
+						size="xsmall"
+						btnStyle="brand"
+						btnType="transparent"
+						iconName='close'
+						iconDisplay='icon-only'
+						iconColor='#b0adab'
+						iconSize="1rem"
 						onClick={instance.clearDate}
 					/>
 				</span>
@@ -134,9 +142,16 @@ describe('CS Grid Date Renderer', () => {
 						{value}
 					</span>
 					<CSGridCellError errorMessage={exampleDate.errorMessage} position='top-right' />
-					<button
-						title='Clear Date'
+					<CSButton
 						className='cs-grid_clear-button'
+						label='Clear Date'
+						size="xsmall"
+						btnStyle="brand"
+						btnType="transparent"
+						iconName='close'
+						iconDisplay='icon-only'
+						iconColor='#b0adab'
+						iconSize="1rem"
 						onClick={instance.clearDate}
 					/>
 				</span>

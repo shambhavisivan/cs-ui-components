@@ -266,28 +266,11 @@
 		margin-right: auto;
 	}
 
-	.ag-react-container .cs-grid_clear-button {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		background: none;
-		border: none;
+	.ag-react-container .cs-grid_clear-btn {
 		margin-left: 0.5rem;
-		cursor: pointer;
-		padding: 0;
-
-		&:active,
-		&:focus {
-			border: none;
-			box-shadow: none;
-			outline: none;
-		}
-
-		&::before {
-			@include css4 {
-				fill: cvar(--csgrid-input-icon-fill);
-			}
-		}
+		position: relative;
+		right: unset;
+		transform: none;
 
 		&-hidden {
 			display: none;

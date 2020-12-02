@@ -1,8 +1,12 @@
+import {
+	CSTooltipIconSize,
+	CSTooltipPosition,
+	CSTooltipVariant
+} from '@cloudsense/cs-ui-components';
 import { ColDef, Column, ColumnApi, RowNode } from 'ag-grid-community';
 import { CSGridLookupSearchResult } from '../components/cs-grid-lookup-editor';
 import { CellData, GridApi, IsColumnFunc } from './cs-grid-base-interfaces';
 import { UserInfo } from './user-info';
-import {CSTooltipIconSize, CSTooltipPosition, CSTooltipVariant} from "@cloudsense/cs-ui-components";
 
 export interface CSGridCellEditorProps<T> extends CSGridCellProps<T> {
 	value: CellData<T>;
@@ -93,11 +97,11 @@ export type Icon = JSX.Element | StandardIcon;
 
 export interface StandardIcon {
 	iconName: string;
-	color: string;
+	color?: string;
 }
 
 export function isStandardIcon(object: any): object is StandardIcon {
-	return 'iconName' in object && 'color' in object;
+	return 'iconName' in object;
 }
 
 /**

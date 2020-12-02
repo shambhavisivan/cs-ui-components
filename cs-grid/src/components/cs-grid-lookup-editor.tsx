@@ -1,3 +1,4 @@
+import { CSButton } from '@cloudsense/cs-ui-components';
 import {
 	ColDef as AgGridColDef,
 	ColumnApi,
@@ -148,10 +149,17 @@ export class CSGridLookupEditor
 							}
 						/>
 						{(currentValue || this.state.searchTerm) && (
-							<button
+							<CSButton
 								className='cs-grid_clear-button'
+								label={currentValue ? 'Clear value' : 'Clear filter'}
+								size='xsmall'
+								btnStyle='brand'
+								btnType='transparent'
+								iconName='close'
+								iconDisplay='icon-only'
+								iconColor='#b0adab'
+								iconSize='1rem'
 								onClick={currentValue ? this.clearValue : this.clearFilter}
-								title={currentValue ? 'Clear value' : 'Clear filter'}
 							/>
 						)}
 					</div>

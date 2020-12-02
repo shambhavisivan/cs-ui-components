@@ -1,6 +1,7 @@
 import { ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
 import { shallow } from 'enzyme';
 import React from 'react';
+import {CSButton, CSButtonGroup} from '@cloudsense/cs-ui-components';
 import {
 	CSGridBaseActionsRenderer,
 	CSGridBaseActionsRendererProps
@@ -113,17 +114,14 @@ describe('CS Grid Base Actions Renderer', () => {
 		const instance = cellRenderer.instance() as CSGridTestBaseActionsRenderer;
 
 		expect(
-			cellRenderer.equals(
-				<div className='select-wrapper-actions'>
-					<button
-						className='row-selection-icons-item row-selection-icons-item-menu'
-						title='Row Actions'
-						onClick={instance.startEditing}
-						id={`icon-item-${nodeId}-${column.getId()}-dropdown`}
-					>
-						<span id={`icon-menu-${nodeId}-${column.getId()}`} className='icon-menu' />
-					</button>
-				</div>
+			cellRenderer.containsMatchingElement(
+				<CSButton
+					label='Row Actions'
+					id={`icon-item-${nodeId}-${column.getId()}-dropdown`}
+					onClick={instance.startEditing}
+					iconName='threedots_vertical'
+					iconDisplay='icon-only'
+				/>
 			)
 		).toBeTruthy();
 	});
@@ -144,7 +142,7 @@ describe('CS Grid Base Actions Renderer', () => {
 			<CSGridTestBaseActionsRenderer {...cSGridCellRendererProps} />
 		);
 
-		const button = cellRenderer.find('button');
+		const button = cellRenderer.find(CSButton).at(0);
 		button.simulate('click');
 
 		expect(startEditingCellMock.mock.calls.length).toEqual(1);
@@ -184,25 +182,26 @@ describe('CS Grid Base Actions Renderer', () => {
 
 		expect(
 			cellRenderer.containsMatchingElement(
-				<div className='select-wrapper-actions'>
-					<button
-						className='row-selection-icons-item'
+				<CSButtonGroup>
+					<CSButton
+						label=''
 						title='Delete'
+						iconDisplay='icon-only'
 						id={`icon-item-${nodeId}-${column.getId()}-0`}
-						disabled={disabled}
 					>
-						<div className='cs-btn-icon'>{exampleIcon}</div>
-					</button>
-
-					<button
-						className='row-selection-icons-item row-selection-icons-item-menu'
-						title='Row Actions'
-						onClick={instance.startEditing}
+						<span
+							className='cs-grid_clear-button'
+							aria-hidden='true'
+							style={{ margin: 0, padding: 0 }}
+						/>
+					</CSButton>
+					<CSButton
+						label='Row Actions'
 						id={`icon-item-${nodeId}-${column.getId()}-dropdown`}
-					>
-						<span id={`icon-menu-${nodeId}-${column.getId()}`} className='icon-menu' />
-					</button>
-				</div>
+						iconName='threedots_vertical'
+						iconDisplay='icon-only'
+					/>
+				</CSButtonGroup>
 			)
 		).toBeTruthy();
 	});
@@ -228,16 +227,19 @@ describe('CS Grid Base Actions Renderer', () => {
 
 		expect(
 			cellRenderer.containsMatchingElement(
-				<div className='select-wrapper-actions'>
-					<button
-						className='row-selection-icons-item'
-						title='Delete'
-						disabled={disabled}
-						id={`icon-item-${nodeId}-${column.getId()}-0`}
-					>
-						<div className='cs-btn-icon'>{exampleIcon}</div>
-					</button>
-				</div>
+				<CSButton
+					label=''
+					title='Delete'
+					disabled={true}
+					iconDisplay='icon-only'
+					id={`icon-item-${nodeId}-${column.getId()}-0`}
+				>
+					<span
+						className='cs-grid_clear-button'
+						aria-hidden='true'
+						style={{ margin: 0, padding: 0 }}
+					/>
+				</CSButton>
 			)
 		).toBeTruthy();
 	});

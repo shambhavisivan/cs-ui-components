@@ -42,7 +42,3 @@ export function noOfVisibleButtons(
 		return 1;
 	}
 }
-
-export function DefaultIcon() {
-	return <span className='icon-bolt' aria-hidden='true' />;
-}

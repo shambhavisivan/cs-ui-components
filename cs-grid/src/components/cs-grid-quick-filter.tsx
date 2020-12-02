@@ -1,4 +1,4 @@
-import { CSTooltip } from '@cloudsense/cs-ui-components';
+import { CSButton, CSTooltip } from '@cloudsense/cs-ui-components';
 import React from 'react';
 import { CSGridControl } from '../interfaces/cs-grid-base-interfaces';
 
@@ -45,9 +45,16 @@ export function CSGridQuickFilter(props: CSGridQuickFilterProps) {
 					placeholder={placeholder}
 				/>
 				{props.filterText && (
-					<button
-						title='Clear filter'
+					<CSButton
 						className='cs-grid_clear-button'
+						label='Clear Filter'
+						size='xsmall'
+						btnStyle='brand'
+						btnType='transparent'
+						iconName='close'
+						iconDisplay='icon-only'
+						iconColor='#b0adab'
+						iconSize='1rem'
 						onClick={clearFilter}
 					/>
 				)}

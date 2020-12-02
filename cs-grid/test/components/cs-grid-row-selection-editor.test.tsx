@@ -1,3 +1,4 @@
+import { CSButton, CSDropdown } from '@cloudsense/cs-ui-components';
 import { ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
 import { mount, shallow } from 'enzyme';
 import React from 'react';
@@ -9,7 +10,6 @@ import {
 	CSGridCellEditorProps
 } from '../../src/interfaces/cs-grid-cell-props';
 import { UserInfo } from '../../src/interfaces/user-info';
-import { DefaultIcon } from '../../src/utils/cs-grid-row-selection-helper';
 
 jest.useFakeTimers();
 
@@ -73,16 +73,12 @@ describe('CS Grid Row Selection Editor', () => {
 
 		expect(
 			cellEditor.containsMatchingElement(
-				<div className='cs-grid_popup-wrapper'>
-					<div className='row-selection-list'>
-						<button
-							className='row-selection-list-item'
-							id={`row-selection-list-item-${action.name}`}
-						>
-							<div className='row-selection-name-wrapper'>{action.name}</div>
-						</button>
-					</div>
-				</div>
+				<CSDropdown defaultOpen={true}>
+					<CSButton
+						label={action.name}
+						id={`row-selection-list-item-${action.name}`}
+					/>
+				</CSDropdown>
 			)
 		).toBeTruthy();
 
@@ -116,26 +112,18 @@ describe('CS Grid Row Selection Editor', () => {
 
 		expect(
 			cellEditor.containsMatchingElement(
-				<div className='cs-grid_popup-wrapper'>
-					<div className='row-selection-list'>
-						<button
-							className='row-selection-list-item'
-							id={`row-selection-list-item-${action1.name}`}
-						>
-							<div className='row-selection-icon-wrapper'>
-								<DefaultIcon />
-							</div>
-							<div className='row-selection-name-wrapper'>{action1.name}</div>
-						</button>
-						<button
-							className='row-selection-list-item'
-							id={`row-selection-list-item-${action2.name}`}
-						>
-							<div className='row-selection-icon-wrapper'>{icon}</div>
-							<div className='row-selection-name-wrapper'>{action2.name}</div>
-						</button>
-					</div>
-				</div>
+				<CSDropdown defaultOpen={true}>
+					<CSButton
+						label={action1.name}
+						id={`row-selection-list-item-${action1.name}`}
+					/>
+					<CSButton
+						label={action2.name}
+						id={`row-selection-list-item-${action2.name}`}
+					>
+						{icon}
+					</CSButton>
+				</CSDropdown>
 			)
 		).toBeTruthy();
 	});
@@ -173,7 +161,7 @@ describe('CS Grid Row Selection Editor', () => {
 
 		const cellEditor = shallow(<CSGridRowSelectionEditor {...cSGridCellEditorProps} />);
 
-		const chosenActionLi = cellEditor.find(`#row-selection-list-item-${chosenAction.name}`);
+		const chosenActionLi = cellEditor.find(`#row-selection-list-item-${chosenAction.name}`).at(0);
 		chosenActionLi.simulate('click');
 		expect(mockAction.mock.calls.length).toEqual(1);
 		expect(anotherMockAction.mock.calls.length).toEqual(0);
@@ -210,7 +198,7 @@ describe('CS Grid Row Selection Editor', () => {
 		)[0];
 
 		const rowSelectionList: HTMLElement = document.querySelectorAll<HTMLElement>(
-			'.cs-grid_app-wrapper .cs-grid_main .ag-popup-editor .row-selection-list'
+			'.cs-grid_app-wrapper .cs-grid_main .ag-popup-editor .cs-dropdown-wrapper'
 		)[0];
 
 		expect(setTimeout).toHaveBeenCalled();
@@ -240,7 +228,7 @@ describe('CS Grid Row Selection Editor', () => {
 		)[0];
 
 		const rowSelectionList: HTMLElement = document.querySelectorAll<HTMLElement>(
-			'.cs-grid_app-wrapper .cs-grid_main .ag-popup-editor .row-selection-list'
+			'.cs-grid_app-wrapper .cs-grid_main .ag-popup-editor .cs-dropdown-wrapper'
 		)[0];
 
 		expect(setTimeout).toHaveBeenCalled();
