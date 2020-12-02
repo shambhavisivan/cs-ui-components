@@ -19,6 +19,7 @@ export interface SidebarListProps {
 
 export interface SidebarListState {
 	sidebarOpen: boolean;
+	sidebarHover: boolean;
 	term: string;
 }
 
@@ -32,6 +33,7 @@ class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
 
 		this.state = {
 			sidebarOpen: true,
+			sidebarHover: false,
 			term: ''
 		};
 	}
@@ -63,8 +65,8 @@ class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
 
 		return (
 			<>
-				<div className={'components-list-wrapper' + (this.state.sidebarOpen ? ' sidebar-open' : '')}>
-					{this.props.search && this.state.sidebarOpen ?
+				<div className={'components-list-wrapper' + (this.state.sidebarOpen ? ' sidebar-open' : ' sidebar-closed')}>
+					{this.props.search ?
 						<div className="components-list-search">
 							<CSIcon name="search"/>
 							<input placeholder="Search..." onChange={this.searchHandler} value={this.state.term}/>
@@ -80,28 +82,24 @@ class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
 						</div>
 						: null
 					}
-					{this.state.sidebarOpen ?
-						<div className="components-list-inner">
-							<ul className="components-list">
-								{this.props.sidebarList.filter(component => {
-									const term = this.state.term.toLowerCase();
-									return component.name.toLowerCase().includes(term) || !term;
-								}).map(component => (
-									<li className={component.name.includes('Getting Started') ? 'ui-component info' : 'ui-component'} key={component.name.split(' ').join('')}>
-										<NavLink to={`${this.props.path}${component.name.split(' ').join('')}`}
-											activeClassName="active-component">{component.name}</NavLink>
-									</li>)
-								)}
-							</ul>
-						</div>
-						:
-						null
-					}
+					<div className="components-list-inner">
+						<ul className="components-list">
+							{this.props.sidebarList.filter(component => {
+								const term = this.state.term.toLowerCase();
+								return component.name.toLowerCase().includes(term) || !term;
+							}).map(component => (
+								<li className={component.name.includes('Getting Started') ? 'ui-component info' : 'ui-component'} title={component.name} key={component.name.split(' ').join('')}>
+									<NavLink to={`${this.props.path}${component.name.split(' ').join('')}`}
+										activeClassName="active-component">{component.name}</NavLink>
+								</li>)
+							)}
+						</ul>
+					</div>
 				</div>
 				<div className="components-preview-wrapper">
 					{this.props.toggle ?
-						<div className="sidebar-toggle" onClick={this.toggleSidebar}>
-							<CSIcon name={this.state.sidebarOpen ? 'close' : 'rows'}/>
+						<div className={'sidebar-toggle' + (this.state.sidebarOpen ? '' : ' sidebar-toggle-closed')} onClick={this.toggleSidebar}>
+							<CSIcon name="chevronleft" />
 						</div>
 						:
 						null
