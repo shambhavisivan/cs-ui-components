@@ -175,4 +175,21 @@ describe('CS Grid Boolean Renderer', () => {
 
 		expect(() => input.simulate('click')).not.toThrow();
 	});
+
+	test("Tests that OnChange calls props.setValue once", () => {
+		colDef = { editable: true };
+		column = new Column(colDef, null, 'colId', true);
+
+		cSGridCellRendererProps.colDef = colDef;
+		cSGridCellRendererProps.column = column;
+		cSGridCellRendererProps.setValue = jest.fn();
+
+		const cellRenderer = shallow(<CSGridBooleanRenderer {...cSGridCellRendererProps} />);
+		const input = cellRenderer.find('input');
+
+		input.simulate('change')
+
+		expect(cSGridCellRendererProps.setValue).toBeCalledTimes(1);
+		expect(cSGridCellRendererProps.setValue).toBeCalledWith({ "cellValue": true, "errorMessage": "errorMessage" });
+	});
 });
