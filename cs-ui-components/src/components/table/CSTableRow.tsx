@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 export interface CSTableRowProps {
+	[key: string]: any;
 	className?: string;
 	id?: string;
 	onClick?: React.MouseEventHandler<HTMLDivElement>;
@@ -12,27 +13,26 @@ class CSTableRow extends React.Component<CSTableRowProps> {
 	handleClick: React.MouseEventHandler<HTMLDivElement> = e => {
 		const { onClick } = this.props;
 		if (onClick) {
-		  onClick(e);
+			onClick(e);
 		}
 	}
 
 	render() {
-
+		const { children, className, id, ...rest } = this.props;
 		const tableRowClasses = classNames(
-			'cs-table-row',
-			{
-				[`${this.props.className}`]: this.props.className
-			}
-		);
+			'cs-table-row', {
+			[`${className}`]: className
+		});
 
 		return (
 			<div
 				className={tableRowClasses}
 				role="row"
 				onClick={this.handleClick}
-				id={this.props.id}
+				id={id}
+				{...rest}
 			>
-				{this.props.children}
+				{children}
 			</div>
 		);
 	}

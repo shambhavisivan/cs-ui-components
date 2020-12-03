@@ -5,6 +5,7 @@ import CSIcon from './CSIcon';
 import CSTooltip from './CSTooltip';
 
 export interface CSInputFileProps {
+	[key: string]: any;
 	accept?: Array<string> | string;
 	className?: string;
 	disabled?: boolean;
@@ -83,12 +84,25 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 		}
 	}
 	render() {
+		const {
+			accept,
+			className,
+			disabled, dropAreaBackground,
+			dropAreaHeight,
+			dropAreaWidth,
+			error,
+			errorMessage,
+			id,
+			label,
+			...rest
+		} = this.props;
+
 		const wrapperClasses = classNames(
 			'cs-input-file-wrapper',
 			{
-				'cs-input-file-drop-area-highlighted': this.props.dropAreaBackground,
-				[`${this.props.className}`]: this.props.className,
-				'cs-input-file-error': this.props.error,
+				'cs-input-file-drop-area-highlighted': dropAreaBackground,
+				[`${className}`]: className,
+				'cs-input-file-error': error,
 				'cs-input-file-dragged-over': this.state.isDraggedOver
 			}
 		);
@@ -96,42 +110,43 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 		const dropAreaClasses = classNames(
 			'cs-input-file-drop-area',
 			{
-				'cs-input-file-disabled': this.props.disabled
+				'cs-input-file-disabled': disabled
 			}
 		);
 
 		const style: CSSProperties = {
-			'--drop-area-width': this.props.dropAreaWidth,
-			'--drop-area-height': this.props.dropAreaHeight
+			'--drop-area-width': dropAreaWidth,
+			'--drop-area-height': dropAreaHeight
 		};
 
 		const input =
 			<>
 				<input
-					accept={this.handleAcceptFiles(this.props.accept)}
-					id={this.props.id}
+					accept={this.handleAcceptFiles(accept)}
+					id={id}
 					type="file"
 					ref={this.fileInput}
 					onChange={this.handleFileSubmit}
-					disabled={this.props.disabled}
-					title={this.props.label}
+					disabled={disabled}
+					title={label}
+					{...rest}
 				/>
 				<span className="cs-input-file-btn">
 					<CSIcon className="cs-input-file-icon" name="upload"/>
-					<span className="cs-input-file-label">{this.state.label ? this.state.label : this.props.label}</span>
+					<span className="cs-input-file-label">{this.state.label ? this.state.label : label}</span>
 				</span>
-				{(this.props.error && this.props.errorMessage) &&
-					<CSFieldErrorMsg message={this.props.errorMessage} />
+				{(error && errorMessage) &&
+					<CSFieldErrorMsg message={errorMessage} />
 				}
 			</>;
 
 		return (
 			<div
 				className={wrapperClasses} style={style}
-				onDragOver={!this.props.disabled ? this.handleFileDragEvents : null}
-				onDragEnter={!this.props.disabled ? this.handleDragEnter : null}
-				onDragLeave={!this.props.disabled ? this.handleDragLeave : null}
-				onDrop={!this.props.disabled ? this.handleFileDrop : null}
+				onDragOver={!disabled ? this.handleFileDragEvents : null}
+				onDragEnter={!disabled ? this.handleDragEnter : null}
+				onDragLeave={!disabled ? this.handleDragLeave : null}
+				onDrop={!disabled ? this.handleFileDrop : null}
 			>
 				<label className={dropAreaClasses}>
 					{this.state.label ? (

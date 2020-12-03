@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 export type CSInputTextBorderType = 'round' | 'square';
 
 export interface CSInputTextProps {
+	[key: string]: any;
 	borderType?: CSInputTextBorderType;
 	className?: string;
 	disabled?: boolean;
@@ -70,7 +71,7 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 	}
 
 	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		this.setState({value: e.target.value});
+		this.setState({ value: e.target.value });
 		if (this.props.onChange) {
 			this.props.onChange(e);
 		}
@@ -78,61 +79,85 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 
 	componentDidUpdate(prevProps: CSInputTextProps) {
 		if (prevProps.value !== this.props.value) {
-		this.setState({value: this.props.value});
+			this.setState({ value: this.props.value });
 		}
-   }
+	}
 
 	render() {
+
+		const {
+			borderType,
+			className,
+			disabled,
+			error,
+			errorMessage,
+			helpText,
+			hidden,
+			id,
+			label,
+			labelHidden,
+			labelTitle,
+			maxLength,
+			placeholder,
+			readOnly,
+			required,
+			title,
+			tooltipPosition,
+			type,
+			value,
+			...rest
+		} = this.props;
 
 		const inputTextWrapperClasses = classNames(
 			'cs-input-text-wrapper',
 			{
-				'cs-element-hidden': this.props.hidden
+				'cs-element-hidden': hidden
 			}
 		);
 
 		const inputTextClasses = classNames(
 			'cs-input-text',
 			{
-				[`cs-input-text-${this.props.borderType}`]: this.props.borderType,
-				'cs-input-text-error': this.props.error,
-				[`${this.props.className}`]: this.props.className
+				[`cs-input-text-${borderType}`]: borderType,
+				'cs-input-text-error': error,
+				[`${className}`]: className
 			}
 		);
 
 		return (
 			<>
 				<div className={inputTextWrapperClasses}>
-					{(this.props.label && !this.props.labelHidden) &&
+					{(label && !labelHidden) &&
 						<CSLabel
-							for={this.uniqueAutoId}
-							label={this.props.label}
-							helpText={this.props.helpText}
-							tooltipPosition={this.props.tooltipPosition}
-							required={this.props.required}
-							title={this.props.labelTitle ? this.props.label : null}
+							htmlFor={this.uniqueAutoId}
+							label={label}
+							helpText={helpText}
+							tooltipPosition={tooltipPosition}
+							required={required}
+							title={labelTitle ? label : null}
 						/>
 					}
 					<input className={inputTextClasses}
 						id={this.uniqueAutoId}
-						placeholder={this.props.placeholder}
-						disabled={this.props.disabled}
-						maxLength={this.props.maxLength}
-						readOnly={this.props.readOnly}
-						required={this.props.required}
+						placeholder={placeholder}
+						disabled={disabled}
+						maxLength={maxLength}
+						readOnly={readOnly}
+						required={required}
 						value={fixControlledValue(this.state.value)}
 						type="text"
-						aria-required={this.props.required}
-						aria-invalid={this.props.error}
+						aria-required={required}
+						aria-invalid={error}
 						autoComplete="off"
 						onChange={this.handleOnChange}
-						name={this.props.name}
+						name={name}
 						onBlur={this.onBlur}
 						onFocus={this.onFocus}
-						title={this.props.title}
+						title={title}
+						{...rest}
 					/>
-					{(this.props.error && this.props.errorMessage) &&
-						<CSFieldErrorMsg message={this.props.errorMessage} />
+					{(error && errorMessage) &&
+						<CSFieldErrorMsg message={errorMessage} />
 					}
 				</div>
 			</>

@@ -1,7 +1,7 @@
 import React from 'react';
-import classNames from 'classnames';
 
 export interface CSRadioOptionProps {
+	[key: string]: any;
 	ariaInvalid?: boolean;
 	ariaRequired?: boolean;
 	className?: string;
@@ -27,32 +27,33 @@ class CSRadioOption extends React.Component<CSRadioOptionProps> {
 	}
 
 	render() {
-		const radioOptionWrapperClasses = classNames(
-			'cs-radio-label'
-		);
-
-		const radioOptionClasses = classNames(
-			'cs-radio'
-		);
-
-		const radioOptionFauxClasses = classNames(
-			'cs-radio-faux'
-		);
+		const {
+			ariaInvalid,
+			ariaRequired,
+			className,
+			disabled,
+			id,
+			label,
+			name,
+			title,
+			...rest
+		} = this.props;
 
 		return (
-			<label className={radioOptionWrapperClasses} title={this.props.title}>
+			<label className="cs-radio-label" title={title}>
 				<input
 					onChange={this.toggleRadio}
-					className={radioOptionClasses}
+					className="cs-radio"
 					type="radio"
-					name={this.props.name}
-					disabled={this.props.disabled}
-					id={this.props.id}
-					aria-invalid={this.props.ariaInvalid}
-					aria-required={this.props.ariaRequired}
+					name={name}
+					disabled={disabled}
+					id={id}
+					aria-invalid={ariaInvalid}
+					aria-required={ariaRequired}
+					{...rest}
 				/>
-				<span className={radioOptionFauxClasses}/>
-				<span>{this.props.label}</span>
+				<span className="cs-radio-faux" />
+				<span>{label}</span>
 			</label>
 		);
 	}

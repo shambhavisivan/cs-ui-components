@@ -10,6 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 export type CSCustomSelectBorderType = 'square' | 'round';
 
 export interface CSCustomSelectProps {
+	[key: string]: any;
 	borderType?: CSCustomSelectBorderType;
 	className?: string;
 	disabled?: boolean;
@@ -93,22 +94,22 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		const { multiselect, onChange } = this.props;
 		const listItems = this.dropdownNode.childNodes;
 		const _value = (value || value === 0) ?
-						listItems[value].textContent :
-						e.currentTarget.textContent;
+			listItems[value].textContent :
+			e.currentTarget.textContent;
 		if (multiselect) {
 			if (selectedOptions.includes(_value)) {
 				const _selectedOptions = selectedOptions.filter(option => option !== _value);
 				this.setState(
-					{selectedOptions: _selectedOptions},
+					{ selectedOptions: _selectedOptions },
 					this.handleSelectChange
 				);
 			} else {
 				this.setState(
-					{selectedOptions: [...selectedOptions, _value]},
+					{ selectedOptions: [...selectedOptions, _value] },
 					this.handleSelectChange
 				);
 			}
-			this.setState({term: ''});
+			this.setState({ term: '' });
 		} else {
 			if (onChange) {
 				onChange(e);
@@ -162,7 +163,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		if (event.key === this.backspaceKey && !term) {
 			this.deleteLastItem();
 		} else if (event.key === this.escapeKey && toggle) {
-			this.setState({ toggle: !toggle});
+			this.setState({ toggle: !toggle });
 		} else if (event.key === this.keyDownKey) {
 			event.preventDefault();
 			if (activeListItem === null) {
@@ -196,7 +197,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 			{
 				toggle: true,
 				activeListItem: 0
-		});
+			});
 	}
 
 	highlightListItem = (index: number) => {
@@ -211,35 +212,55 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 
 	render() {
 		const { term, activeListItem, toggle } = this.state;
-		const { disabled } = this.props;
+
+		const {
+			borderType,
+			className,
+			disabled,
+			error,
+			errorMessage,
+			helpText,
+			hidden,
+			id,
+			label,
+			labelHidden,
+			labelTitle,
+			multiselect,
+			onSelectChange,
+			optionsList,
+			required,
+			title,
+			tooltipPosition,
+			...rest
+		} = this.props;
 
 		const customSelectWrapperClasses = classNames(
 			'cs-custom-select-wrapper',
 			{
-				[`${this.props.className}`]: this.props.className,
-				'cs-element-hidden': this.props.hidden
+				[`${className}`]: className,
+				'cs-element-hidden': hidden
 			}
 		);
 
 		const customSelectInputWrapperClasses = classNames(
 			'cs-custom-select-input-wrapper',
 			{
-				'cs-custom-select-input-wrapper-disabled': this.props.disabled,
-				'cs-custom-select-input-wrapper-error': this.props.error,
-				[`cs-custom-select-input-wrapper-${this.props.borderType}`]: this.props.borderType
+				'cs-custom-select-input-wrapper-disabled': disabled,
+				'cs-custom-select-input-wrapper-error': error,
+				[`cs-custom-select-input-wrapper-${borderType}`]: borderType
 			}
 		);
 
 		return (
 			<div className={customSelectWrapperClasses}>
-				{(this.props.label && !this.props.labelHidden) &&
+				{(label && !labelHidden) &&
 					<CSLabel
-						for={this.uniqueAutoId}
-						label={this.props.label}
-						helpText={this.props.helpText}
-						tooltipPosition={this.props.tooltipPosition}
-						required={this.props.required}
-						title={this.props.labelTitle ? this.props.label : null}
+						htmlFor={this.uniqueAutoId}
+						label={label}
+						helpText={helpText}
+						tooltipPosition={tooltipPosition}
+						required={required}
+						title={labelTitle ? label : null}
 					/>
 				}
 				<div className="cs-custom-select-group">
@@ -247,8 +268,8 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 					<div
 						className={customSelectInputWrapperClasses}
 					>
-						{(this.props.multiselect &&
-						this.state.selectedOptions.length > 0) &&
+						{(multiselect &&
+							this.state.selectedOptions.length > 0) &&
 							<ul className="cs-custom-select-items">
 								{this.state.selectedOptions.map((selectedOption, i) => (
 									<CSOption
@@ -269,16 +290,17 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 							type="text"
 							onChange={this.search}
 							id={this.uniqueAutoId}
-							required={this.props.required}
-							disabled={this.props.disabled}
-							aria-invalid={this.props.error}
+							required={required}
+							disabled={disabled}
+							aria-invalid={error}
 							aria-expanded={this.state.toggle}
-							aria-required={this.props.required}
-							title={this.props.title}
+							aria-required={required}
+							title={title}
 							autoComplete="off"
 							onKeyDown={this.handleOnKeyDown}
 							onFocus={this.handleOnFocus}
-							onBlur={() => this.setState({ toggle: false})}
+							onBlur={() => this.setState({ toggle: false })}
+							{...rest}
 						/>
 					</div>
 				</div>
@@ -287,7 +309,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 						className="cs-custom-select-dropdown"
 						ref={node => this.dropdownNode = node}
 					>
-						{this.props.optionsList.filter(this.searchingFor(term)).map((option, i) => (
+						{optionsList.filter(this.searchingFor(term)).map((option, i) => (
 							<CSOption
 								value={option}
 								type="list-item"
@@ -297,7 +319,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 								}}
 								key={'list-item' + i}
 								selected={this.state.selectedOptions.includes(option)}
-								isMultiSelectItem={this.props.multiselect}
+								isMultiSelectItem={multiselect}
 								active={i === activeListItem}
 								onMouseOver={() => this.highlightListItem(i)}
 								onMouseOut={() => this.setState({ activeListItem: null })}
@@ -305,8 +327,8 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 						))}
 					</ul>
 				}
-				{(this.props.error && this.props.errorMessage) &&
-					<CSFieldErrorMsg message={this.props.errorMessage} />
+				{(error && errorMessage) &&
+					<CSFieldErrorMsg message={errorMessage} />
 				}
 			</div>
 		);

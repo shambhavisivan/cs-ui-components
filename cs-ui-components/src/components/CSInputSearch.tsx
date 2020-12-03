@@ -10,6 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 export type CSInputSearchBorderType = 'round' | 'square';
 
 export interface CSInputSearchProps {
+	[key: string]: any;
 	autoFocus?: boolean;
 	borderType?: CSInputSearchBorderType;
 	className?: string;
@@ -86,7 +87,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 
 	constructor(props: CSInputSearchProps) {
 		super(props);
-	 const value = typeof props.value === undefined ? '' : props.value;
+		const value = typeof props.value === undefined ? '' : props.value;
 		this.state = {
 			value
 		};
@@ -103,7 +104,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 	}
 
 	setValue(value: string, callback?: () => void) {
-		this.setState({value}, callback);
+		this.setState({ value }, callback);
 	}
 
 	clearSearch = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
@@ -140,10 +141,35 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 	}
 
 	render() {
+		const {
+			autoFocus,
+			borderType,
+			className,
+			disabled,
+			error,
+			errorMessage,
+			helpText,
+			hidden,
+			iconPosition,
+			id,
+			label,
+			labelHidden,
+			labelTitle,
+			onClearSearch,
+			placeholder,
+			required,
+			title,
+			tooltipPosition,
+			type,
+			value,
+			width,
+			...rest
+		} = this.props;
+
 		const inputSearchWrapperClasses = classNames(
 			'cs-input-search-wrapper',
 			{
-				'cs-element-hidden': this.props.hidden
+				'cs-element-hidden': hidden
 			}
 		);
 
@@ -151,35 +177,35 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 			'cs-input-search-group',
 			{
 				'cs-clear': this.state.value,
-				'cs-icon-left': this.props.iconPosition === 'left',
-				'cs-icon-right': this.props.iconPosition === 'right',
-				[`${this.props.className}`]: this.props.className
+				'cs-icon-left': iconPosition === 'left',
+				'cs-icon-right': iconPosition === 'right',
+				[`${className}`]: className
 			}
 		);
 
 		const inputSearchClasses = classNames(
 			'cs-input-search',
 			{
-				[`cs-input-search-${this.props.borderType}`]: this.props.borderType,
-				'cs-input-search-error': this.props.error
+				[`cs-input-search-${borderType}`]: borderType,
+				'cs-input-search-error': error
 			}
 		);
 
 		const style: CSSProperties = {
-			'--search-width': this.props.width
+			'--search-width': width
 		};
 
 		return (
 			<>
 				<div className={inputSearchWrapperClasses}>
-					{(this.props.label && !this.props.labelHidden) &&
+					{(label && !labelHidden) &&
 						<CSLabel
-							for={this.uniqueAutoId}
-							label={this.props.label}
-							helpText={this.props.helpText}
-							tooltipPosition={this.props.tooltipPosition}
-							required={this.props.required}
-							title={this.props.labelTitle ? this.props.label : null}
+							htmlFor={this.uniqueAutoId}
+							label={label}
+							helpText={helpText}
+							tooltipPosition={tooltipPosition}
+							required={required}
+							title={labelTitle ? label : null}
 						/>
 					}
 					<div className={inputSearchGroupClasses} style={style}>
@@ -189,14 +215,14 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 							color="var(--cs-input-icon-fill)"
 						/>
 						<input className={inputSearchClasses}
-							autoFocus={this.props.autoFocus}
+							autoFocus={autoFocus}
 							onChange={this.handleOnChange}
 							id={this.uniqueAutoId}
-							placeholder={this.props.placeholder}
-							disabled={this.props.disabled}
-							required={this.props.required}
-							aria-invalid={this.props.error}
-							aria-required={this.props.required}
+							placeholder={placeholder}
+							disabled={disabled}
+							required={required}
+							aria-invalid={error}
+							aria-required={required}
 							value={fixControlledValue(this.state.value)}
 							type="text"
 							autoComplete="off"
@@ -204,7 +230,8 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 							onKeyDown={this.handleOnKeyDown}
 							onBlur={this.onBlur}
 							onFocus={this.onFocus}
-							title={this.props.title}
+							title={title}
+							{...rest}
 						/>
 						{this.state.value &&
 							<CSButton
@@ -219,8 +246,8 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 								size="small"
 							/>
 						}
-						{(this.props.error && this.props.errorMessage) &&
-							<CSFieldErrorMsg message={this.props.errorMessage} />
+						{(error && errorMessage) &&
+							<CSFieldErrorMsg message={errorMessage} />
 						}
 					</div>
 				</div>

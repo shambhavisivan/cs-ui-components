@@ -11,6 +11,7 @@ import { v4 as uuidv4 } from 'uuid';
 export type CSDateTimePickerDropdownMode = 'select' | 'scroll';
 
 export interface CSDateTimePickerProps {
+	[key: string]: any;
 	borderType?: string;
 	className?: string;
 	dateFormat?: string;
@@ -48,7 +49,7 @@ export interface CSDateTimePickerProps {
 	yearDropdownItemNumber?: number;
 }
 
-export interface CSDateTimePickerState  {
+export interface CSDateTimePickerState {
 	startDate: Date;
 }
 
@@ -79,25 +80,62 @@ class CSDateTimePicker extends React.Component<CSDateTimePickerProps, CSDateTime
 	}
 	componentDidUpdate(prevProps: CSDateTimePickerProps) {
 		if (prevProps.value !== this.props.value) {
-		this.setState({ startDate: this.props.value });
+			this.setState({ startDate: this.props.value });
 		}
 	}
 
 	public render() {
-		const { maxDate, minDate, maxDateYear, minDateYear } = this.props;
+		const {
+			borderType,
+			className,
+			dateFormat,
+			disabled,
+			dropdownMode,
+			error,
+			errorMessage,
+			helpText,
+			id,
+			isClearable,
+			label,
+			labelHidden,
+			labelTitle,
+			locale,
+			maxDate,
+			maxDateYear,
+			minDate,
+			minDateYear,
+			name,
+			onChange,
+			placeholder,
+			readOnly,
+			required,
+			scrollableYearDropdown,
+			showMonthDropdown,
+			showYearDropdown,
+			title,
+			todayButton,
+			tooltipPosition,
+			value,
+			width,
+			yearDropdownItemNumber,
+			timeFormat,
+			timeIntervals,
+			timeCaption,
+			...rest
+		} = this.props;
 
 		const dateTimePickerClasses = classNames(
 			'cs-datepicker cs-datetimepicker', {
-				[`${this.props.className}`]: this.props.className,
-				[`cs-datepicker-${this.props.borderType}`]: this.props.borderType,
-				'cs-datepicker-error': this.props.error,
-				'cs-datepicker-read-only': this.props.readOnly,
-				'cs-datepicker-today-btn': this.props.todayButton
-			}
+			[`${className}`]: className,
+			[`cs-datepicker-${borderType}`]: borderType,
+			'cs-datepicker-error': error,
+			'cs-datepicker-read-only': readOnly,
+			'cs-datepicker-today-btn': todayButton
+		}
 		);
 
 		const style: CSSProperties = {
-			'--datetimepicker-width': this.props.width
+			'--datetimepicker-width': width
 		};
 
 		const calcMaxDate = () => {
@@ -119,48 +157,49 @@ class CSDateTimePicker extends React.Component<CSDateTimePickerProps, CSDateTime
 		return (
 			<>
 				<div className={dateTimePickerClasses} style={style}>
-					{(this.props.label && !this.props.labelHidden) &&
+					{(label && !labelHidden) &&
 						<CSLabel
-							for={this.uniqueAutoId}
-							label={this.props.label}
-							helpText={this.props.helpText}
-							tooltipPosition={this.props.tooltipPosition}
-							required={this.props.required}
-							title={this.props.labelTitle ? this.props.label : null}
+							htmlFor={this.uniqueAutoId}
+							label={label}
+							helpText={helpText}
+							tooltipPosition={tooltipPosition}
+							required={required}
+							title={labelTitle ? label : null}
 						/>
 					}
-					<div className="cs-datepicker-wrapper" title={this.props.title}>
+					<div className="cs-datepicker-wrapper" title={title}>
 						<DatePicker
-							dateFormat={this.props.dateFormat}
-							isClearable={this.props.isClearable}
-							placeholderText={this.props.placeholder}
-							todayButton={this.props.todayButton ? 'Today' : null}
-							disabled={this.props.disabled}
+							dateFormat={dateFormat}
+							isClearable={isClearable}
+							placeholderText={placeholder}
+							todayButton={todayButton ? 'Today' : null}
+							disabled={disabled}
 							maxDate={maxDateYear || maxDate ? calcMaxDate() : undefined}
 							minDate={minDateYear || minDate ? calcMinDate() : undefined}
-							name={this.props.name}
-							locale={this.props.locale}
+							name={name}
+							locale={locale}
 							selected={this.state.startDate}
 							onChange={this.handleChange}
-							readOnly={this.props.readOnly}
-							tabIndex={this.props.readOnly ? -1 : null}
-							showYearDropdown={this.props.showYearDropdown}
-							showMonthDropdown={this.props.showMonthDropdown}
-							scrollableYearDropdown={this.props.scrollableYearDropdown}
-							dropdownMode={this.props.dropdownMode}
-							yearDropdownItemNumber={this.props.yearDropdownItemNumber}
-							required={this.props.required}
+							readOnly={readOnly}
+							tabIndex={readOnly ? -1 : null}
+							showYearDropdown={showYearDropdown}
+							showMonthDropdown={showMonthDropdown}
+							scrollableYearDropdown={scrollableYearDropdown}
+							dropdownMode={dropdownMode}
+							yearDropdownItemNumber={yearDropdownItemNumber}
+							required={required}
 							id={this.uniqueAutoId}
 							autoComplete="off"
 							showTimeSelect
-							timeFormat={this.props.timeFormat}
-							timeIntervals={this.props.timeIntervals}
-							timeCaption={this.props.timeCaption}
+							timeFormat={timeFormat}
+							timeIntervals={timeIntervals}
+							timeCaption={timeCaption}
+							{...rest}
 						/>
 					</div>
 					<CSIcon name="event" className="cs-datepicker-icon" />
-					{(this.props.error && this.props.errorMessage) &&
-						<CSFieldErrorMsg message={this.props.errorMessage} />
+					{(error && errorMessage) &&
+						<CSFieldErrorMsg message={errorMessage} />
 					}
 				</div>
 			</>

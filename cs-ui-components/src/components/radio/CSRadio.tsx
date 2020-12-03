@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 export type CSRadioVariant = 'neutral' | 'brand';
 
 export interface CSRadioProps {
+	[key: string]: any;
 	className?: string;
 	disabled?: boolean;
 	error?: boolean;
@@ -33,13 +34,30 @@ class CSRadio extends React.Component<CSRadioProps> {
 	}
 
 	render() {
+		const {
+			children,
+			className,
+			disabled,
+			error,
+			errorMessage,
+			helpText,
+			id,
+			label,
+			labelHidden,
+			labelTitle,
+			required,
+			tooltipPosition,
+			variant,
+			...rest
+		} = this.props;
+
 		const radioGroupClasses = classNames(
 			'cs-radio-group',
 			{
-				'cs-radio-error': this.props.error === true,
-				[`${this.props.className}`]: this.props.className,
-				[`cs-radio-${this.props.variant}`]: this.props.variant,
-				'cs-radio-disabled': this.props.disabled
+				'cs-radio-error': error === true,
+				[`${className}`]: className,
+				[`cs-radio-${variant}`]: variant,
+				'cs-radio-disabled': disabled
 			}
 		);
 
@@ -60,22 +78,22 @@ class CSRadio extends React.Component<CSRadioProps> {
 		});
 
 		return (
-			<div className="cs-radio-wrapper">
-				{(this.props.label && !this.props.labelHidden) &&
+			<div className="cs-radio-wrapper" {...rest}>
+				{(label && !labelHidden) &&
 					<CSLabel
-						for={uniqueAutoId}
-						label={this.props.label}
-						helpText={this.props.helpText}
-						tooltipPosition={this.props.tooltipPosition}
-						required={this.props.required}
-						title={this.props.labelTitle ? this.props.label : null}
+						htmlFor={uniqueAutoId}
+						label={label}
+						helpText={helpText}
+						tooltipPosition={tooltipPosition}
+						required={required}
+						title={labelTitle ? label : null}
 					/>
 				}
 				<div className={radioGroupClasses} id={uniqueAutoId}>
 					{childrenWithProps}
 				</div>
-				{(this.props.error && this.props.errorMessage) &&
-					<CSFieldErrorMsg message={this.props.errorMessage} />
+				{(error && errorMessage) &&
+					<CSFieldErrorMsg message={errorMessage} />
 				}
 			</div>
 		);

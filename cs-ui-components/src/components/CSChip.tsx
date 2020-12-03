@@ -5,6 +5,7 @@ export type CSChipVariant = 'brand' | 'success' | 'neutral' | 'error' |'warning'
 export type CSChipVariantStyle = 'border' | 'fill';
 
 export interface CSChipProps {
+	[key: string]: any;
 	className?: string;
 	id?: string;
 	text: string;
@@ -20,16 +21,25 @@ class CSChip extends React.Component<CSChipProps> {
 	};
 
 	render() {
+		const {
+			className,
+			id,
+			text,
+			variant,
+			variantStyle,
+			...rest
+		} = this.props;
+
 		const chipClasses = classNames(
 			'cs-chip', {
-				[`cs-chip-${this.props.variant}`]: this.props.variantStyle === 'fill',
-				[`cs-chip-${this.props.variant}-border`]: this.props.variantStyle === 'border',
-				[`${this.props.className}`]: this.props.className
+				[`cs-chip-${variant}`]: variantStyle === 'fill',
+				[`cs-chip-${variant}-border`]: variantStyle === 'border',
+				[`${className}`]: className
 			}
 		);
 		return (
-			<div className={chipClasses} id={this.props.id}>
-				{this.props.text}
+			<div className={chipClasses} id={id} {...rest}>
+				{text}
 			</div>
 		);
 	}

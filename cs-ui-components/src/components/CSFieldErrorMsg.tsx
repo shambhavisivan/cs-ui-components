@@ -3,6 +3,7 @@ import React from 'react';
 export type CSFieldErrorMsgType = string | Array<string>;
 
 export interface CSFieldErrorMsgProps {
+	[key: string]: any;
 	message: CSFieldErrorMsgType;
 }
 
@@ -17,8 +18,9 @@ class CSFieldErrorMsg extends React.Component<CSFieldErrorMsgProps> {
 	}
 
 	render() {
+		const { message, ...rest } = this.props;
 		return (
-			<span className="cs-field-error-msg">{this.getErrorMessage()}</span>
+			<span className="cs-field-error-msg" {...rest}>{this.getErrorMessage()}</span>
 		);
 	}
 }

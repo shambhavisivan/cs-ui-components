@@ -4,6 +4,7 @@ import classNames from 'classnames';
 export type CSIconOrigin = 'slds' | 'cs';
 
 export interface CSIconProps {
+	[key: string]: any;
 	className?: string;
 	color?: string;
 	frame?: boolean;
@@ -19,56 +20,69 @@ export interface CSIconProps {
 class CSIcon extends React.Component<CSIconProps> {
 
 	render() {
+		const {
+			className,
+			color,
+			frame,
+			id,
+			name,
+			origin,
+			rotate,
+			size,
+			spin,
+			title,
+			...rest
+		} = this.props;
 
 		const styleClass = classNames(
 			'cs-icon',
 			{
-				[`${this.props.className}`] : this.props.className,
-				[`cs-icon-rotate-${this.props.rotate}`] : this.props.rotate,
-				'cs-icon-spin': this.props.spin
+				[`${className}`]: className,
+				[`cs-icon-rotate-${rotate}`]: rotate,
+				'cs-icon-spin': spin
 			}
 		);
-
 		const style: CSSProperties = {
-			'--cs-icon-c': this.props.color,
-			'--cs-main-header-neutral-icon': this.props.color,
-			'--cs-icon-size': this.props.size
+			'--cs-icon-c': color,
+			'--cs-main-header-neutral-icon': color,
+			'--cs-icon-size': size
 		};
 
 		let prefix = 'cssfi-';
-		if (this.props.origin === 'cs') {
+		if (origin === 'cs') {
 			prefix = 'csi-';
 		}
 		return (
 			<>
-				{this.props.frame ? (
+				{frame ? (
 					<div
 						className="cs-icon-frame"
 						style={style}
-						id={this.props.id}
-						title={this.props.title}
+						id={id}
+						title={title}
+						{...rest}
 					>
 						<svg
 							className={styleClass}
 							aria-hidden="true"
 						>
-							<use href={`#${prefix}${this.props.name}`}/>
+							<use href={`#${prefix}${name}`} />
 						</svg>
 					</div>
 				) : (
-					<svg
-						className={styleClass}
-						style={style}
-						aria-hidden="true"
-						id={this.props.id}
-					>
-						<use href={`#${prefix}${this.props.name}`}>
-							{this.props.title &&
-								<title>{this.props.title}</title>
-							}
-						</use>
-					</svg>
-				)}
+						<svg
+							className={styleClass}
+							style={style}
+							aria-hidden="true"
+							id={id}
+						>
+							<use href={`#${prefix}${name}`}>
+								{title &&
+									<title>{title}</title>
+								}
+							</use>
+						</svg>
+					)}
 			</>
 		);
 	}

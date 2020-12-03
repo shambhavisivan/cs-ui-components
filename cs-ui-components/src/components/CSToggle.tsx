@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 export type CSToggleLabelPosition = 'default' | 'left';
 
 export interface CSToggleProps {
+	[key: string]: any;
 	checked?: boolean;
 	className?: string;
 	disabled?: boolean;
@@ -30,9 +31,6 @@ export interface CSToggleState {
 }
 
 class CSToggle extends React.Component<CSToggleProps, CSToggleState> {
-	public static defaultProps = {
-		defaultChecked: false
-	};
 
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
 
@@ -45,7 +43,7 @@ class CSToggle extends React.Component<CSToggleProps, CSToggleState> {
 	}
 
 	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		this.setState({checked: !this.state.checked});
+		this.setState({ checked: !this.state.checked });
 		if (this.props.onChange) {
 			this.props.onChange(e);
 		}
@@ -53,44 +51,63 @@ class CSToggle extends React.Component<CSToggleProps, CSToggleState> {
 
 	componentDidUpdate(prevProps: CSToggleProps) {
 		if (prevProps.checked !== this.props.checked) {
-		this.setState({ checked: this.props.checked });
+			this.setState({ checked: this.props.checked });
 		}
 	}
 
 	render() {
 
+		const {
+			checked,
+			className,
+			disabled,
+			error,
+			errorMessage,
+			helpText,
+			id,
+			label,
+			labelHidden,
+			labelPosition,
+			labelTitle,
+			onChange,
+			required,
+			title,
+			tooltipPosition,
+			...rest
+		} = this.props;
+
 		const toggleClasses = classNames(
 			'cs-toggle',
 			{
-				'cs-toggle-error': this.props.error === true
+				'cs-toggle-error': error === true
 			}
 		);
 
 		const toggleWrapperClasses = classNames(
 			'cs-toggle-wrapper',
 			{
-				[`${this.props.className}`]: this.props.className
+				[`${className}`]: className
 			}
 		);
 
 		const toggleElementWrapperClasses = classNames(
 			'cs-toggle-element',
 			{
-				[`cs-toggle-label-${this.props.labelPosition}`]: this.props.labelPosition
+				[`cs-toggle-label-${labelPosition}`]: labelPosition
 			}
 		);
 
 		return (
 			<>
 				<div className={toggleElementWrapperClasses}>
-					{(this.props.label && !this.props.labelHidden) &&
+					{(label && !labelHidden) &&
 						<CSLabel
-							for={this.uniqueAutoId}
-							label={this.props.label}
-							helpText={this.props.helpText}
-							tooltipPosition={this.props.tooltipPosition}
-							required={this.props.required}
-							title={this.props.labelTitle ? this.props.label : null}
+							htmlFor={this.uniqueAutoId}
+							label={label}
+							helpText={helpText}
+							tooltipPosition={tooltipPosition}
+							required={required}
+							title={labelTitle ? label : null}
 						/>
 					}
 					<label className={toggleWrapperClasses}>
@@ -98,17 +115,18 @@ class CSToggle extends React.Component<CSToggleProps, CSToggleState> {
 							onChange={this.handleOnChange}
 							className={toggleClasses}
 							type="checkbox"
-							disabled={this.props.disabled}
+							disabled={disabled}
 							checked={this.state.checked}
-							required={this.props.required}
+							required={required}
 							id={this.uniqueAutoId}
-							aria-required={this.props.required}
-							aria-invalid={this.props.error}
+							aria-required={required}
+							aria-invalid={error}
+							{...rest}
 						/>
-						<span className="cs-toggle-faux" title={this.props.title}/>
+						<span className="cs-toggle-faux" title={title} />
 					</label>
-					{(this.props.error && this.props.errorMessage) &&
-						<CSFieldErrorMsg message={this.props.errorMessage} />
+					{(error && errorMessage) &&
+						<CSFieldErrorMsg message={errorMessage} />
 					}
 				</div>
 			</>

@@ -1,13 +1,15 @@
 import React from 'react';
 
 export interface CSMainHeaderIconProps {
+	[key: string]: any;
 	id?: string;
 }
 
 class CSMainHeaderIcon extends React.Component<CSMainHeaderIconProps> {
 	render() {
-		return <div className="cs-main-header-icon" id={this.props.id}>
-				{this.props.children}
+		const { children, id, ...rest } = this.props;
+		return <div className="cs-main-header-icon" id={id} {...rest}>
+				{children}
 			</div>;
 	}
 }

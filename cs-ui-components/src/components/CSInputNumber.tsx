@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 export type CSInputNumberBorderType = 'round' | 'square';
 
 export interface CSInputNumberProps {
+	[key: string]: any;
 	borderType?: CSInputNumberBorderType;
 	className?: string;
 	disabled?: boolean;
@@ -35,7 +36,7 @@ export interface CSInputNumberProps {
 	step?: string;
 	title?: string;
 	tooltipPosition?: CSTooltipPosition;
-	type: string;
+	type?: string;
 	value?: any;
 }
 
@@ -119,64 +120,93 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 	}
 
 	render() {
+		const {
+			borderType,
+			className,
+			disabled,
+			error,
+			errorMessage,
+			helpText,
+			hidden,
+			hideSpinner,
+			id,
+			label,
+			labelHidden,
+			labelTitle,
+			max,
+			maxLength,
+			min,
+			name,
+			placeholder,
+			readOnly,
+			required,
+			step,
+			title,
+			tooltipPosition,
+			type,
+			value,
+			...rest
+		} = this.props;
+
 		const inputNumberWrapperClasses = classNames(
 			'cs-input-number-wrapper',
 			{
-				'cs-element-hidden': this.props.hidden
+				'cs-element-hidden': hidden
 			}
 		);
 
 		const inputNumberClasses = classNames(
 			'cs-input-number',
 			{
-				[`cs-input-number-${this.props.borderType}`]: this.props.borderType,
-				'cs-input-number-error': this.props.error,
-				[`${this.props.className}`]: this.props.className,
-				[`cs-input-number-hide-spinner-${this.props.hideSpinner}`]: this.props.hideSpinner
+				[`cs-input-number-${borderType}`]: borderType,
+				'cs-input-number-error': error,
+				[`${className}`]: className,
+				[`cs-input-number-hide-spinner-${hideSpinner}`]: hideSpinner
 			}
 		);
 
 		return (
 			<>
 				<div className={inputNumberWrapperClasses}>
-					{(this.props.label && !this.props.labelHidden) &&
+					{(label && !labelHidden) &&
 						<CSLabel
-							for={this.uniqueAutoId}
-							label={this.props.label}
-							helpText={this.props.helpText}
-							tooltipPosition={this.props.tooltipPosition}
-							required={this.props.required}
-							title={this.props.labelTitle ? this.props.label : null}
+							htmlFor={this.uniqueAutoId}
+							label={label}
+							helpText={helpText}
+							tooltipPosition={tooltipPosition}
+							required={required}
+							title={labelTitle ? label : null}
 						/>
 					}
 					<input className={inputNumberClasses}
 						id={this.uniqueAutoId}
-						placeholder={this.props.placeholder}
-						min={this.props.min}
-						max={this.props.max}
-						name={this.props.name}
-						maxLength={this.props.type === 'text' ? this.props.maxLength : undefined}
-						readOnly={this.props.readOnly}
-						required={this.props.required}
-						disabled={this.props.disabled}
+						placeholder={placeholder}
+						min={min}
+						max={max}
+						name={name}
+						maxLength={type === 'text' ? maxLength : undefined}
+						readOnly={readOnly}
+						required={required}
+						disabled={disabled}
 						value={fixControlledValue(this.state.value)}
-						type={this.props.type}
-						aria-required={this.props.required}
-						aria-valuemin={this.props.min}
-						aria-valuemax={this.props.max}
-						aria-valuenow={this.props.value}
-						aria-invalid={this.props.error}
+						type={type}
+						aria-required={required}
+						aria-valuemin={min}
+						aria-valuemax={max}
+						aria-valuenow={value}
+						aria-invalid={error}
 						autoComplete="off"
 						onBlur={this.onBlur}
 						onFocus={this.onFocus}
 						onChange={this.handleOnChange}
 						onKeyDown={this.handleOnKeyDown}
 						onPaste={this.handleOnPaste}
-						title={this.props.title}
-						step={this.props.step}
+						title={title}
+						step={step}
+						{...rest}
 					/>
-					{(this.props.error && this.props.errorMessage) &&
-						<CSFieldErrorMsg message={this.props.errorMessage} />
+					{(error && errorMessage) &&
+						<CSFieldErrorMsg message={errorMessage} />
 					}
 				</div>
 			</>

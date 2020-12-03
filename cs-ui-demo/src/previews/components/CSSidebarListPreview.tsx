@@ -106,7 +106,7 @@ class CSSidebarListPreview extends React.Component {
 					]
 				},
 				{
-					propName: 'static',
+					propName: 'fixed',
 					variations: [
 						{
 							component:
@@ -178,16 +178,16 @@ class CSSidebarListPreview extends React.Component {
 					description: 'Enable sidebar to be closed by default'
 				},
 				{
+					propertyName: 'fixed',
+					description: 'Show sidebar by default without option to close'
+				},
+				{
 					propertyName: 'height',
 					description: 'Sidebar list height'
 				},
 				{
 					propertyName: 'onClick',
 					description: 'Logic for onClick event'
-				},
-				{
-					propertyName: 'static',
-					description: 'Show sidebar by default without option to close'
 				},
 				{
 					propertyName: 'text',

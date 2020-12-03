@@ -17,7 +17,7 @@ class CSLabelPreview extends React.Component {
 			accessible: 'yes',
 			examples: [
 				{
-					propName: 'for',
+					propName: 'htmlFor',
 					customText: '',
 					variations: [
 						{
@@ -111,12 +111,12 @@ class CSLabelPreview extends React.Component {
 					description: 'For implementing custom class to component'
 				},
 				{
-					propertyName: 'for',
-					description: 'Label id'
-				},
-				{
 					propertyName: 'helpText',
 					description: 'Label help text display for tooltip'
+				},
+				{
+					propertyName: 'htmlFor',
+					description: 'Label id'
 				},
 				{
 					propertyName: 'id',

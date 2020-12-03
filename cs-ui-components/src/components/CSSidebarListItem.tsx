@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 export interface CSSidebarListItemProps {
+	[key: string]: any;
 	active?: string;
 	className?: string;
 	id?: string;
@@ -18,11 +19,20 @@ class CSSidebarListItem extends React.Component<CSSidebarListItemProps> {
 		}
 	}
 	render() {
+		const {
+			active,
+			className,
+			id,
+			text,
+			toggleActive,
+			...rest
+		} = this.props;
+
 		const sidebarListClasses = classNames(
 			'cs-sidebar-list-item',
 			{
-				[`${this.props.className}`]: this.props.className,
-				active: this.props.active === this.props.text
+				[`${className}`]: className,
+				active: active === text
 			}
 		);
 		return (
@@ -30,11 +40,11 @@ class CSSidebarListItem extends React.Component<CSSidebarListItemProps> {
 				<button
 					className={sidebarListClasses}
 					onClick={this.onClickHandler}
-					id={this.props.id}
+					id={id}
 					role="menuitemradio"
-					aria-selected={this.props.active === this.props.text}
+					aria-selected={active === text}
 				>
-					{this.props.text}
+					{text}
 				</button>
 			</li>
 		);

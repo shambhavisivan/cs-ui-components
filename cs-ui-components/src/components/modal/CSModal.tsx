@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 export type CSModalSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 
 export interface CSModalProps {
+	[key: string]: any;
 	className?: string;
 	closeButton?: boolean;
 	id?: string;
@@ -133,11 +134,25 @@ class CSModal extends React.Component<CSModalProps> {
 	}
 
 	render() {
+		const {
+			children,
+			className,
+			closeButton,
+			id,
+			loading,
+			loadingText,
+			onClose,
+			outerClickClose,
+			size,
+			style,
+			...rest
+		} = this.props;
+
 		const modalClasses = classNames('cs-modal-wrapper', {
-			[`${this.props.className}`]: this.props.className
+			[`${className}`]: className
 		});
 
-		const renderChildren = React.Children.map(this.props.children, (child, index) => {
+		const renderChildren = React.Children.map(children, (child, index) => {
 			if (child) {
 				return React.cloneElement(child as React.ReactElement<any>, {
 					titleId: this.uniqueAutoId
@@ -150,25 +165,26 @@ class CSModal extends React.Component<CSModalProps> {
 				<div
 					className="cs-modal-overlay"
 					ref={modalOverlayNode => this.modalOverlay = modalOverlayNode}
+					{...rest}
 				>
-					<div className={modalClasses} id={this.props.id}>
+					<div className={modalClasses} id={id}>
 						<div
 							ref={modal => this.modalRef = modal}
 							tabIndex={0}
 							className={
-								this.props.closeButton
-									? 'cs-modal cs-modal-' + this.props.size
-									: 'cs-modal-no-close-btn cs-modal cs-modal-' + this.props.size
+								closeButton
+									? 'cs-modal cs-modal-' + size
+									: 'cs-modal-no-close-btn cs-modal cs-modal-' + size
 							}
-							style={this.props.style}
+							style={style}
 							role="dialog"
 							aria-modal="true"
 							aria-describedby={this.uniqueAutoId}
 						>
-							{this.props.closeButton && (
+							{closeButton && (
 								<button
 									className="cs-modal-close"
-									onClick={this.props.onClose}
+									onClick={onClose}
 									aria-label="close"
 									ref={closeBtn => this.modalCloseBtnRef = closeBtn}
 								>
@@ -178,13 +194,13 @@ class CSModal extends React.Component<CSModalProps> {
 							<div
 								ref={node => this.modalContentNode = node}
 								className={
-									this.props.loading
+									loading
 										? 'cs-modal-content cs-modal-loading'
 										: 'cs-modal-content'
 								}
 							>
 								{renderChildren}
-								{this.props.loading && <CSSpinner label={this.props.loadingText} />}
+								{loading && <CSSpinner label={loadingText} />}
 							</div>
 						</div>
 					</div>

@@ -4,6 +4,7 @@ import classNames from 'classnames';
 export type CSTabGroupVariant = 'large' | 'normal';
 
 export interface CSTabGroupProps {
+	[key: string]: any;
 	className?: string;
 	id?: string;
 	listName?: string;
@@ -17,26 +18,36 @@ class CSTabGroup extends React.Component<CSTabGroupProps> {
 	};
 
 	render() {
-		const renderChildrenWithTabsAsProps =  React.Children.map(this.props.children, (child, index) => {
+		const {
+			children,
+			className,
+			id,
+			listName,
+			variant,
+			...rest
+		} = this.props;
+
+		const renderChildrenWithTabsAsProps =  React.Children.map(children, (child, index) => {
 			if (child) {
 				return React.cloneElement(child as React.ReactElement<any>, {
-					parentVariant: this.props.variant
+					parentVariant: variant
 				});
 			}
 		});
+
 		const tabGroupClasses = classNames(
-			'cs-tab-group',
-			{
-				[`${this.props.className}`]: this.props.className
+			'cs-tab-group',	{
+				[`${className}`]: className
 			}
 		);
 		return (
 			<div
 				className={tabGroupClasses}
-				id={this.props.id}
+				id={id}
+				{...rest}
 			>
 				<nav
-					aria-label={this.props.listName ? this.props.listName : 'breadcrumbs'}
+					aria-label={listName ? listName : 'breadcrumbs'}
 				>
 					<ol>
 						{renderChildrenWithTabsAsProps}

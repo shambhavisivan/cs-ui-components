@@ -349,7 +349,7 @@ class CSToastPreview extends React.Component {
 						methodName: 'renderCSToast',
 						definition: ' onClick={() => CSToastApi.renderCSToast({...CSToastProps}, position: CSToastPosition, duration: number)',
 						preview:
-							<CSButtonGroup>
+							<CSButtonGroup combined>
 								<CSButton
 									label="top-right"
 									onClick={() => CSToastApi.renderCSToast({ variant: 'success', closeButton: true, text: 'Top right toast' }, 'top-right', 3)}

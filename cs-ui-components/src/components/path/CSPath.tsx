@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 export interface CSPathProps {
+	[key: string]: any;
 	className?: string;
 	id?: string;
 }
@@ -9,16 +10,18 @@ export interface CSPathProps {
 class CSPath extends React.Component<CSPathProps> {
 
 	render() {
+		const { children, className, id, ...rest } = this.props;
+
 		const pathClasses = classNames(
 			'cs-path',
 			{
-				[`${this.props.className}`]: this.props.className
+				[`${className}`]: className
 			}
 		);
 
 		return (
-			<div className={pathClasses} id={this.props.id}>
-				{this.props.children}
+			<div className={pathClasses} id={id} {...rest}>
+				{children}
 			</div>
 		);
 	}

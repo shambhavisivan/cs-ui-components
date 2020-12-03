@@ -10,6 +10,7 @@ export type CSTooltipStylePosition = 'fixed' | 'absolute';
 export type CSTooltipVariant = 'info' | 'warning' | 'error' | 'success' | 'basic';
 
 export interface CSTooltipProps {
+	[key: string]: any;
 	className?: string;
 	content: string | Array<string> | JSX.Element;
 	delayTooltip?: number;
@@ -67,28 +68,47 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 	}
 
 	render() {
+		const {
+			children,
+			className,
+			content,
+			focusable,
+			height,
+			iconColor,
+			iconName,
+			iconSize,
+			id,
+			padding,
+			position,
+			stylePosition,
+			tooltipHeader,
+			variant,
+			width,
+			...rest
+		} = this.props;
+
 		const tooltipClasses = classNames('cs-tooltip', {
-			[`cs-tooltip-${this.props.position}`]: this.props.position,
-			[`cs-tooltip-${this.props.variant}`]: this.props.variant,
-			'cs-tooltip-with-header': this.props.tooltipHeader
+			[`cs-tooltip-${position}`]: position,
+			[`cs-tooltip-${variant}`]: variant,
+			'cs-tooltip-with-header': tooltipHeader
 		});
 
 		const tooltipWrapperClasses = classNames('cs-tooltip-wrapper', {
-			'cs-tw-icon-c': this.props.iconColor,
-			[`cs-tw-${this.props.variant}`]: this.props.variant,
-			[`cs-tooltip-style-position-${this.props.stylePosition}`]: this.props.stylePosition,
-			[`${this.props.className}`]: this.props.className
+			'cs-tw-icon-c': iconColor,
+			[`cs-tw-${variant}`]: variant,
+			[`cs-tooltip-style-position-${stylePosition}`]: stylePosition,
+			[`${className}`]: className
 		});
 
-		const content = Array.isArray(this.props.content)
-			? this.props.content
-			: [this.props.content];
+		const tooltipContent = Array.isArray(content)
+			? content
+			: [content];
 
 		const tooltipStyle = {
 			...this.state.computedTooltipStyle,
-			'--cs-tooltip-height': this.props.height,
-			'--cs-tooltip-width': this.props.width,
-			'--cs-tooltip-padding': this.props.padding
+			'--cs-tooltip-height': height,
+			'--cs-tooltip-width': width,
+			'--cs-tooltip-padding': padding
 		};
 
 		const tooltip = (
@@ -96,11 +116,12 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 				className={tooltipClasses}
 				style={tooltipStyle}
 				id={this.uniqueAutoId}
+				{...rest}
 			>
-				{this.props.tooltipHeader && (
-					<div className="cs-tooltip-header">{this.props.tooltipHeader}</div>
+				{tooltipHeader && (
+					<div className="cs-tooltip-header">{tooltipHeader}</div>
 				)}
-				{content.map((text, index) => (
+				{tooltipContent.map((text, index) => (
 					<div className="cs-tooltip-body" key={index}>
 						{text}
 					</div>
@@ -108,41 +129,41 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			</div>
 		);
 
-		const iconName = () => {
+		const tooltipIconName = () => {
 			switch (true) {
-				case !!this.props.iconName:
-					return this.props.iconName;
-				case this.props.variant === 'basic':
+				case !!iconName:
+					return iconName;
+				case variant === 'basic':
 					return 'info';
 				default:
-					return this.props.variant;
+					return variant;
 			}
 		};
 		return (
 			<div
 				className={tooltipWrapperClasses}
-				onMouseEnter={this.props.stylePosition !== 'absolute' ? this.openTooltip : null}
-				onMouseLeave={this.props.stylePosition !== 'absolute' ? this.closeTooltip : null}
-				onFocus={this.props.stylePosition !== 'absolute' ? this.openTooltip : null}
-				onBlur={this.props.stylePosition !== 'absolute' ? this.closeTooltip : null}
-				tabIndex={this.props.focusable ? 0 : -1}
+				onMouseEnter={stylePosition !== 'absolute' ? this.openTooltip : null}
+				onMouseLeave={stylePosition !== 'absolute' ? this.closeTooltip : null}
+				onFocus={stylePosition !== 'absolute' ? this.openTooltip : null}
+				onBlur={stylePosition !== 'absolute' ? this.closeTooltip : null}
+				tabIndex={focusable ? 0 : -1}
 				role="tooltip"
 				ref={this.tooltipRef}
 				aria-labelledby={this.uniqueAutoId}
-				id={this.props.id}
+				id={id}
 			>
-				{this.props.children ? (
-					this.props.children
+				{children ? (
+					children
 				) : (
 						<CSIcon
-							color={this.props.iconColor}
-							name={iconName()}
-							className={'cs-icon-' + this.props.iconSize}
+							color={iconColor}
+							name={tooltipIconName()}
+							className={'cs-icon-' + iconSize}
 						/>
 					)}
 				{!this.state.hidden && (
 					<>
-						{this.props.stylePosition === 'absolute' ? (
+						{stylePosition === 'absolute' ? (
 							tooltip
 						) : (
 								<>

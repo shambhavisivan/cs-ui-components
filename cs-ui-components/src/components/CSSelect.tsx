@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 export type CSSelectBorderType = 'round' | 'square';
 
 export interface CSSelectProps {
+	[key: string]: any;
 	borderType?: CSSelectBorderType;
 	className?: string;
 	disabled?: boolean;
@@ -74,60 +75,81 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 	}
 
 	render() {
+		const {
+			borderType,
+			children,
+			className,
+			disabled,
+			error,
+			errorMessage,
+			helpText,
+			hidden,
+			id,
+			label,
+			labelHidden,
+			labelTitle,
+			required,
+			title,
+			tooltipPosition,
+			value,
+			...rest
+		} = this.props;
+
 		const selectClasses = classNames(
 			'cs-select',
 			{
-				'cs-select-error': this.props.error,
-				[`cs-select-${this.props.borderType}`]: this.props.borderType
+				'cs-select-error': error,
+				[`cs-select-${borderType}`]: borderType
 			}
 		);
 
 		const selectGroupClasses = classNames(
 			'cs-select-group',
 			{
-				[`${this.props.className}`]: this.props.className
+				[`${className}`]: className
 			}
 		);
 
 		const selectWrapperClasses = classNames(
 			'cs-select-wrapper',
 			{
-				'cs-element-hidden': this.props.hidden
+				'cs-element-hidden': hidden
 			}
 		);
 
 		return (
 			<div className={selectWrapperClasses}>
-				{(this.props.label && !this.props.labelHidden) &&
+				{(label && !labelHidden) &&
 					<CSLabel
-						for={this.uniqueAutoId}
-						label={this.props.label}
-						helpText={this.props.helpText}
-						tooltipPosition={this.props.tooltipPosition}
-						required={this.props.required}
-						title={this.props.labelTitle ? this.props.label : null}
-						className={this.props.disabled ? 'cs-label-disabled' : ''}
+						htmlFor={this.uniqueAutoId}
+						label={label}
+						helpText={helpText}
+						tooltipPosition={tooltipPosition}
+						required={required}
+						title={labelTitle ? label : null}
+						className={disabled ? 'cs-label-disabled' : ''}
 					/>
 				}
 				<div className={selectGroupClasses}>
 					<select
 						className={selectClasses}
 						id={this.uniqueAutoId}
-						required={this.props.required}
-						disabled={this.props.disabled}
-						aria-required={this.props.required}
-						aria-invalid={this.props.error}
+						required={required}
+						disabled={disabled}
+						aria-required={required}
+						aria-invalid={error}
 						onChange={this.handleOnChange}
-						name={this.props.name}
+						name={name}
 						value={fixControlledValue(this.state.value)}
-						title={this.props.title}
+						title={title}
+						{...rest}
 					>
-						{this.props.children}
+						{children}
 					</select>
 					<CSIcon name="down" />
 				</div>
-				{(this.props.error && this.props.errorMessage) &&
-					<CSFieldErrorMsg message={this.props.errorMessage} />
+				{(error && errorMessage) &&
+					<CSFieldErrorMsg message={errorMessage} />
 				}
 			</div>
 		);

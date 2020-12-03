@@ -5,6 +5,7 @@ export type CSSpinnerColor = 'neutral' | 'brand' | 'inverse';
 export type CSSpinnerSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 
 export interface CSSpinnerProps {
+	[key: string]: any;
 	className?: string;
 	color?: CSSpinnerColor;
 	id?: string;
@@ -22,32 +23,44 @@ class CSSpinner extends React.Component<CSSpinnerProps> {
 		overlay: 'light'
 	};
 	render() {
+		const {
+			className,
+			color,
+			id,
+			inline,
+			label,
+			overlay,
+			size,
+			...rest
+		} = this.props;
+
 		const spinnerClasses = classNames(
 			'cs-spinner-wrapper',
 			{
-				[`${this.props.className}`]: this.props.className,
-				'cs-spinner-inline': this.props.inline,
-				[`cs-spinner-overlay-${this.props.overlay}`]: this.props.overlay
+				[`${className}`]: className,
+				'cs-spinner-inline': inline,
+				[`cs-spinner-overlay-${overlay}`]: overlay
 			}
 		);
 		return (
 			<>
 				<div
 					className={spinnerClasses}
-					id={this.props.id}
+					id={id}
 					role="progressbar"
 					aria-live="polite"
 					aria-busy
-					aria-valuetext={this.props.label}
+					aria-valuetext={label}
+					{...rest}
 				>
 					<div className="cs-spinner-wrapper-label">
-						<div className={'cs-spinner cs-spinner-' + this.props.size + ' cs-spinner-' + this.props.color}>
+						<div className={'cs-spinner cs-spinner-' + size + ' cs-spinner-' + color}>
 							<div className="cs-spinner-dot-a"/>
 							<div className="cs-spinner-dot-b"/>
 						</div>
-						{(this.props.label && !this.props.inline) &&
+						{(label && !inline) &&
 							<div className="cs-spinner-label">
-								<span>{this.props.label}</span>
+								<span>{label}</span>
 							</div>
 						}
 					</div>

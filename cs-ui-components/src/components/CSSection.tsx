@@ -3,6 +3,7 @@ import CSIcon from './CSIcon';
 import classNames from 'classnames';
 
 export interface CSSectionProps {
+	[key: string]: any;
 	className?: string;
 	collapsed?: boolean;
 	collapsible?: boolean;
@@ -47,6 +48,15 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 
 	render() {
 
+		const {
+			className,
+			collapsed,
+			collapsible,
+			id,
+			title,
+			...rest
+		} = this.props;
+
 		const sectionClasses = classNames(
 			'cs-section',
 			{
@@ -62,6 +72,7 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 			<section
 				className={sectionClasses}
 				id={this.props.id}
+				{...rest}
 			>
 				<h3 className={sectionTitleClasses}>
 					{this.props.collapsible ?

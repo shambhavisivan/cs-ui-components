@@ -9,6 +9,7 @@ export type CSCheckboxBorderType = 'square' | 'round';
 export type CSCheckboxVariant = 'neutral' | 'brand';
 
 export interface CSCheckboxProps {
+	[key: string]: any;
 	borderType?: CSCheckboxBorderType;
 	checked?: boolean;
 	className?: string;
@@ -38,9 +39,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 	public static defaultProps = {
 		variant: 'neutral',
 		labelHidden: false,
-		borderType: 'square',
-		defaultChecked: false,
-		checked: false
+		borderType: 'square'
 	};
 
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
@@ -49,19 +48,19 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 		super(props);
 
 		this.state = {
-			checked: this.props.checked
+			checked: !!this.props.checked
 		};
 	}
 
 	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		this.setState({checked: !this.state.checked});
+		this.setState({ checked: !this.state.checked });
 		if (this.props.onChange) {
 			this.props.onChange(e);
 		}
 	}
 
 	handleOnClick = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
-		this.setState({checked: !this.state.checked});
+		this.setState({ checked: !this.state.checked });
 		if (this.props.onClick) {
 			this.props.onClick(e);
 		}
@@ -69,65 +68,81 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 
 	componentDidUpdate(prevProps: CSCheckboxProps) {
 		if (prevProps.checked !== this.props.checked) {
-		this.setState({ checked: this.props.checked });
+			this.setState({ checked: this.props.checked });
 		}
 	}
 
 	render() {
+		const {
+			borderType,
+			className,
+			disabled,
+			error,
+			errorMessage,
+			helpText,
+			id,
+			label,
+			labelHidden,
+			labelTitle,
+			name,
+			required,
+			title,
+			tooltipPosition,
+			variant,
+			...rest
+		} = this.props;
 
 		const checkboxClasses = classNames(
 			'cs-checkbox',
 			{
-				'cs-checkbox-error': this.props.error === true
+				'cs-checkbox-error': error === true
 			}
 		);
-
 		const checkboxGroupClasses = classNames(
 			'cs-checkbox-group',
 			{
-				[`${this.props.className}`]: this.props.className
+				[`${className}`]: className
 			}
 		);
-
 		const checkboxFauxClasses = classNames(
 			'cs-checkbox-faux',
 			{
-				[`cs-checkbox-faux-${this.props.borderType}`]: this.props.borderType,
-				[`cs-checkbox-${this.props.variant}`]: this.props.variant
+				[`cs-checkbox-faux-${borderType}`]: borderType,
+				[`cs-checkbox-${variant}`]: variant
 			}
 		);
-
 		return (
 			<>
-				<div className="cs-checkbox-wrapper">
-					{(this.props.label && !this.props.labelHidden) &&
+				<div className="cs-checkbox-wrapper" >
+					{(label && !labelHidden) &&
 						<CSLabel
-							for={this.uniqueAutoId}
-							label={this.props.label}
-							helpText={this.props.helpText}
-							tooltipPosition={this.props.tooltipPosition}
-							required={this.props.required}
-							title={this.props.labelTitle ? this.props.label : null}
+							htmlFor={this.uniqueAutoId}
+							label={label}
+							helpText={helpText}
+							tooltipPosition={tooltipPosition}
+							required={required}
+							title={labelTitle ? label : null}
 						/>
 					}
 					<label className={checkboxGroupClasses}>
-							<input
-								onChange={this.handleOnChange}
-								className={checkboxClasses}
-								type="checkbox"
-								disabled={this.props.disabled}
-								checked={this.state.checked}
-								required={this.props.required}
-								id={this.uniqueAutoId}
-								onClick={this.handleOnClick}
-								name={this.props.name}
-								aria-required={this.props.required}
-								aria-invalid={this.props.error}
-							/>
-						<span className={checkboxFauxClasses} title={this.props.title} />
+						<input
+							onChange={this.handleOnChange}
+							className={checkboxClasses}
+							type="checkbox"
+							disabled={disabled}
+							checked={this.state.checked}
+							id={this.uniqueAutoId}
+							required={required}
+							onClick={this.handleOnClick}
+							name={name}
+							aria-required={required}
+							aria-invalid={error}
+							{...rest}
+						/>
+						<span className={checkboxFauxClasses} title={title} />
 					</label>
-					{(this.props.error && this.props.errorMessage) &&
-						<CSFieldErrorMsg message={this.props.errorMessage} />
+					{(error && errorMessage) &&
+						<CSFieldErrorMsg message={errorMessage} />
 					}
 				</div>
 			</>

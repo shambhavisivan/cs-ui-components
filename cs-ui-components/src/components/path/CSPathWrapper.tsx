@@ -1,14 +1,15 @@
 import React from 'react';
 
 export interface CSPathWrapperProps {
+	[key: string]: any;
 	id?: string;
 }
 
 class CSPathWrapper extends React.Component<CSPathWrapperProps> {
 	render() {
-		const children = this.props.children;
+		const { children, id, ...rest } = this.props;
 		return (
-			<div className="cs-path-wrapper" role="listbox" id={this.props.id}>
+			<div className="cs-path-wrapper" role="listbox" id={id} {...rest}>
 				{children}
 			</div>
 		);

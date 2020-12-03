@@ -5,6 +5,7 @@ import classNames from 'classnames';
 export type CSToastVariant = 'info' | 'success' | 'warning' | 'error';
 
 export interface CSToastProps {
+	[key: string]: any;
 	className?: string;
 	closeButton?: boolean;
 	detail?: string;
@@ -23,41 +24,56 @@ class CSToast extends React.Component<CSToastProps> {
 	};
 
 	render() {
+		const {
+			children,
+			className,
+			closeButton,
+			detail,
+			iconName,
+			iconVisibility,
+			id,
+			minWidth,
+			onClose,
+			text,
+			variant,
+			...rest
+		} = this.props;
 
 		const toastClasses = classNames(
 			'cs-toast',
-			[`cs-toast-${this.props.variant}`],
+			[`cs-toast-${variant}`],
 			{
-				[`${this.props.className}`]: this.props.className
+				[`${className}`]: className
 			}
 		);
 
 		const style: CSSProperties = {
-			minWidth: this.props.minWidth
+			minWidth
 		};
 
-		const toastRole = (this.props.variant === 'info' || this.props.variant === 'success') ? 'status' : 'alert';
+		const toastRole = (variant === 'info' || variant === 'success') ? 'status' : 'alert';
 
 		return (
 			<div
 				className="cs-toast-wrapper"
-				id={this.props.id}
+				id={id}
+				{...rest}
 			>
 				<div style={style} className={toastClasses} role={toastRole}>
-					{this.props.iconVisibility ? (this.props.iconName ? (
-						<CSIcon name={this.props.iconName}/>
+					{iconVisibility ? (iconName ? (
+						<CSIcon name={iconName}/>
 					) : (
-						<CSIcon name={this.props.variant}/>
+						<CSIcon name={variant}/>
 					)) : null}
 					<h4 className="cs-toast-text">
-						{this.props.text}
-						{this.props.detail ? (
-							<div className="cs-toast-detail">{this.props.detail}</div>
+						{text}
+						{detail ? (
+							<div className="cs-toast-detail">{detail}</div>
 						) : null}
-						{this.props.children}
+						{children}
 					</h4>
-					{this.props.closeButton ? (
-						<button className="cs-toast-close" onClick={this.props.onClose} aria-label="close">
+					{closeButton ? (
+						<button className="cs-toast-close" onClick={onClose} aria-label="close">
 								<CSIcon name="close"/>
 						</button>
 					) : null}

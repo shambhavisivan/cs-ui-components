@@ -1,7 +1,7 @@
 import React from 'react';
-import classNames from 'classnames';
 
 export interface CSCardHeaderProps {
+	[key: string]: any;
 	id?: string;
 	title: string;
 }
@@ -9,15 +9,14 @@ export interface CSCardHeaderProps {
 class CSCardHeader extends React.Component<CSCardHeaderProps> {
 
 	render() {
-		const cardHeaderClasses = classNames(
-			'cs-card-header'
-		);
+		const { id, title, ...rest } = this.props;
 		return (
 			<header
-				className={cardHeaderClasses}
-				id={this.props.id}
+				className="cs-card-header"
+				id={id}
+				{...rest}
 			>
-				<h2>{this.props.title}</h2>
+				<h2>{title}</h2>
 			</header>
 		);
 	}

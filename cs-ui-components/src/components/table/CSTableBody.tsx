@@ -2,23 +2,23 @@ import React from 'react';
 import classNames from 'classnames';
 
 export interface CSTableBodyProps {
+	[key: string]: any;
 	className?: string;
 	id?: string;
 }
 
 class CSTableBody extends React.Component<CSTableBodyProps> {
 	render() {
+		const { children, className, id, ...rest } = this.props;
 
 		const tableBodyClasses = classNames(
-			'cs-table-body',
-			{
-				[`${this.props.className}`]: this.props.className
-			}
-		);
+			'cs-table-body', {
+			[`${className}`]: className
+		});
 
 		return (
-			<div className={tableBodyClasses} role="rowgroup" id={this.props.id}>
-				{this.props.children}
+			<div className={tableBodyClasses} role="rowgroup" id={id} {...rest}>
+				{children}
 			</div>
 		);
 	}

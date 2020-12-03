@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 export interface CSCardProps {
+	[key: string]: any;
 	className?: string;
 	id?: string;
 }
@@ -9,18 +10,19 @@ export interface CSCardProps {
 class CSCard extends React.Component<CSCardProps> {
 
 	render() {
+		const { children, className, id, ...rest} = this.props;
 		const cardClasses = classNames(
-			'cs-card',
-			{
-				[`${this.props.className}`]: this.props.className
+			'cs-card', {
+				[`${className}`]: className
 			}
 		);
 		return (
 			<div
 				className={cardClasses}
-				id={this.props.id}
+				id={id}
+				{...rest}
 			>
-				{this.props.children}
+				{children}
 			</div>
 		);
 	}

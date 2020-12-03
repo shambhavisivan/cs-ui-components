@@ -12,6 +12,7 @@ export type CSButtonType = 'default' | 'error' | 'success' | 'transparent';
 export type CSButtonWidth = 'auto' | 'max';
 
 export interface CSButtonProps {
+	[key: string]: any;
 	ariaExpanded?: boolean;
 	ariaHaspopup?: boolean;
 	ariaLabel?: string;
@@ -93,77 +94,114 @@ class CSButton extends React.Component<CSButtonProps> {
 	}
 
 	render() {
+		const {
+			ariaExpanded,
+			ariaHaspopup,
+			ariaLabel,
+			btnRound,
+			btnStyle,
+			btnType,
+			children,
+			className,
+			color,
+			disabled,
+			iconColor,
+			iconDisplay,
+			iconName,
+			iconOrigin,
+			iconPosition,
+			iconRotate,
+			iconSize,
+			id,
+			label,
+			link,
+			loading,
+			navLink,
+			onKeyDown,
+			onMouseDown,
+			openInNewTab,
+			role,
+			size,
+			value,
+			width,
+			...rest
+		} = this.props;
+
 		const btnGroupClasses = classNames(
 			'cs-btn',
 			{
-				'cs-btn-default': (this.props.btnType !== ('error') && this.props.btnType !== ('success') && this.props.btnType !== ('transparent')),
+				'cs-btn-default': (btnType !== ('error') && btnType !== ('success') && btnType !== ('transparent')),
 
-				'cs-btn-error': this.props.btnType === 'error',
-				'cs-btn-success': this.props.btnType === 'success',
-				'cs-btn-transparent': this.props.btnType === 'transparent',
+				'cs-btn-error': btnType === 'error',
+				'cs-btn-success': btnType === 'success',
+				'cs-btn-transparent': btnType === 'transparent',
 
-				'cs-btn-initial': (this.props.btnStyle !== ('brand') && this.props.btnStyle !== ('outline')),
-				'cs-btn-brand': this.props.btnStyle === 'brand',
-				'cs-btn-outline': this.props.btnStyle === 'outline',
+				'cs-btn-initial': (btnStyle !== ('brand') && btnStyle !== ('outline')),
+				'cs-btn-brand': btnStyle === 'brand',
+				'cs-btn-outline': btnStyle === 'outline',
 
-				'cs-btn-round': this.props.btnRound === true,
+				'cs-btn-round': btnRound === true,
 
-				'cs-btn-icon-only': this.props.iconDisplay === 'icon-only',
-				'cs-btn-no-icon': (!this.props.iconName || this.props.iconDisplay === 'no-icon') && !this.props.loading,
+				'cs-btn-icon-only': iconDisplay === 'icon-only',
+				'cs-btn-no-icon': (!iconName || iconDisplay === 'no-icon') && !loading,
 
-				'cs-btn-icon-right': this.props.iconPosition === 'right',
+				'cs-btn-icon-right': iconPosition === 'right',
 
-				'cs-btn-max-width': this.props.width === 'max',
+				'cs-btn-max-width': width === 'max',
 
-				'cs-btn-size-xsmall': this.props.size === 'xsmall',
-				'cs-btn-size-small': this.props.size === 'small',
-				'cs-btn-size-large': this.props.size === 'large',
+				'cs-btn-size-xsmall': size === 'xsmall',
+				'cs-btn-size-small': size === 'small',
+				'cs-btn-size-large': size === 'large',
 
-				[`${this.props.className}`]: this.props.className
+				[`${className}`]: className
 			}
 		);
 
 		const style: CSSProperties = {
-			'--cs-btn-custom-c': this.props.color,
-			'--cs-btn-custom-icon-c': this.props.iconColor
+			'--cs-btn-custom-c': color,
+			'--cs-btn-custom-icon-c': iconColor
 		};
 
 		const componentProps = {
 			'className': btnGroupClasses,
 			'onClick': this.handleClick,
-			'disabled': this.props.disabled || this.props.loading,
-			'aria-label': this.props.ariaLabel ? this.props.ariaLabel : this.props.label,
+			'disabled': disabled || loading,
+			'aria-label': ariaLabel ? ariaLabel : label,
 			'style': style,
-			'title': this.props.iconDisplay === 'icon-only' ? this.props.label : undefined,
-			'href': this.props.link && this.props.link,
-			'target': (this.props.openInNewTab && this.props.link) ? '_blank' : undefined,
-			'id': this.props.id,
-			'value': this.props.value,
-			'aria-expanded': this.props.ariaExpanded,
-			'aria-haspopup': this.props.ariaHaspopup,
-			'role': this.props.role,
-			'onMouseDown': this.props.onMouseDown,
-			'onKeyDown': this.props.onKeyDown
+			'title': iconDisplay === 'icon-only' ? label : undefined,
+			'href': link && link,
+			'target': (openInNewTab && link) ? '_blank' : undefined,
+			'id': id,
+			'value': value,
+			'aria-expanded': ariaExpanded,
+			'aria-haspopup': ariaHaspopup,
+			'role': role,
+			'onMouseDown': onMouseDown,
+			'onKeyDown': onKeyDown,
+			...rest
 		};
 
 		return (
-			this.props.navLink ?
-				<Router>
-					{React.cloneElement(
-						<NavLink to={this.props.navLink} />,
+			<>
+				{navLink ?
+					<Router>
+						{React.cloneElement(
+							<NavLink to={navLink} />,
+							componentProps,
+							this.iconComponent(),
+							this.label(),
+							this.props.children
+						)}
+					</Router> :
+					React.createElement(
+						link ? 'a' : 'button',
 						componentProps,
 						this.iconComponent(),
 						this.label(),
 						this.props.children
-					)}
-				</Router> :
-				React.createElement(
-					this.props.link ? 'a' : 'button',
-					componentProps,
-					this.iconComponent(),
-					this.label(),
-					this.props.children
-				)
+					)
+				}
+			</>
 		);
 	}
 }

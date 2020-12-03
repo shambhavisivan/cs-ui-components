@@ -1,31 +1,21 @@
 import React from 'react';
-import classNames from 'classnames';
 
 export interface CSCardFooterProps {
+	[key: string]: any;
 	id?: string;
 }
 
 class CSCardFooter extends React.Component<CSCardFooterProps> {
 
-	static getDoc() {
-
-		const json = {
-			name: 'Card Footer'
-		};
-
-		return json;
-	}
-
 	render() {
-		const cardFooterClasses = classNames(
-			'cs-card-footer'
-		);
+		const { children, id, ...rest } = this.props;
 		return (
 			<footer
-				className={cardFooterClasses}
-				id={this.props.id}
+				className="cs-card-footer"
+				id={id}
+				{...rest}
 			>
-				{this.props.children}
+				{children}
 			</footer>
 		);
 	}

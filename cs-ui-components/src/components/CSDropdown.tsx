@@ -11,6 +11,7 @@ export type CSDropdownStyle = 'initial' | 'brand' | 'outline';
 export type CSDropdownType = 'default' | 'error' | 'success' | 'transparent';
 
 export interface CSDropdownProps {
+	[key: string]: any;
 	align?: CSDropdownAlign;
 	btnStyle?: CSDropdownStyle;
 	btnType?: CSDropdownType;
@@ -78,11 +79,34 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 	}
 
 	render() {
+		const {
+			align,
+			btnStyle,
+			btnType,
+			children,
+			className,
+			disabled,
+			hover,
+			iconName,
+			iconOrigin,
+			iconPosition,
+			iconRotate,
+			id,
+			label,
+			maxHeight,
+			maxWidth,
+			onClick,
+			padding,
+			position,
+			size,
+			...rest
+		} = this.props;
+
 		const btnDropdownWrapperClasses = classNames(
 			'cs-dropdown-wrapper',
 			{
-				'cs-dropdown-hover': (this.props.hover === true),
-				[`${this.props.className}`]: this.props.className
+				'cs-dropdown-hover': hover === true,
+				[`${className}`]: className
 			}
 		);
 		const btnDropdownClasses = classNames(
@@ -93,8 +117,8 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 		const btnDropdownOuterItemWrapperClasses = classNames(
 			'cs-dropdown-outer-item-wrapper',
 			{
-				[`cs-dropdown-${this.props.align}`]: this.props.align,
-				[`cs-dropdown-${this.props.position}`]: this.props.position
+				[`cs-dropdown-${this.props.align}`]: align,
+				[`cs-dropdown-${this.props.position}`]: position
 			}
 		);
 		const btnDropdownItemWrapperClasses = classNames(
@@ -102,11 +126,11 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 			'cs-dropdown-item-wrapper-no-padding': this.props.padding === '0'
 		});
 		const style: CSSProperties = {
-			'--cs-dropdown-max-height': this.props.maxHeight,
-			'--cs-dropdown-max-width': this.props.maxWidth,
-			'--cs-dropdown-padding': this.props.padding
+			'--cs-dropdown-max-height': maxHeight,
+			'--cs-dropdown-max-width': maxWidth,
+			'--cs-dropdown-padding': padding
 		};
-		const childrenWithWrapper = React.Children.map(this.props.children, (child: any) => {
+		const childrenWithWrapper = React.Children.map(children, (child: any) => {
 			if (child) {
 				return (
 					<li role="none">
@@ -123,25 +147,26 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 			<div
 				className={btnDropdownWrapperClasses}
 				ref={node => this.node = node}
-				id={this.props.id}
+				id={id}
+				{...rest}
 			>
 				<CSButton
-					btnStyle={this.props.btnStyle}
-					btnType={this.props.btnType}
+					btnStyle={btnStyle}
+					btnType={btnType}
 					className={btnDropdownClasses}
-					disabled={this.props.disabled}
-					iconDisplay={this.props.label ? 'default' : 'icon-only'}
-					iconName={this.props.iconName}
-					iconOrigin={this.props.iconOrigin}
-					iconPosition={(this.props.label && this.props.iconPosition) ? this.props.iconPosition : undefined}
-					iconRotate={this.props.iconRotate}
-					onClick={!this.props.hover ? this.toggleActive : null}
-					size={this.props.size}
-					label={this.props.label ? this.props.label : 'Toggle dropdown'}
+					disabled={disabled}
+					iconDisplay={label ? 'default' : 'icon-only'}
+					iconName={iconName}
+					iconOrigin={iconOrigin}
+					iconPosition={(label && iconPosition) ? iconPosition : undefined}
+					iconRotate={iconRotate}
+					onClick={!hover ? this.toggleActive : null}
+					size={size}
+					label={label ? label : 'Toggle dropdown'}
 					ariaExpanded={this.state.active}
-					ariaHaspopup={!!Object(this.props.children).length}
+					ariaHaspopup={!!Object(children).length}
 				/>
-				{this.props.hover ?
+				{hover ?
 					(<div className={btnDropdownOuterItemWrapperClasses}>
 						<ul className={btnDropdownItemWrapperClasses} role="menu" style={style}>
 							{childrenWithWrapper}

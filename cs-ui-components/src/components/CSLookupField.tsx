@@ -15,6 +15,7 @@ import { v4 as uuidv4 } from 'uuid';
 export type CSLookupBorderType = 'round' | 'square';
 
 export interface CSLookupFieldProps {
+	[key: string]: any;
 	borderType?: CSLookupBorderType;
 	className?: string;
 	disabled?: boolean;
@@ -76,7 +77,7 @@ class CSLookupField extends React.Component<CSLookupFieldProps, CSLookupFieldSta
 
 	handleClickOutside = (event: MouseEvent) => {
 		if (this.fieldRef && !this.fieldRef.current.contains(event.target)) {
-			this.setState({dropdownValues: []});
+			this.setState({ dropdownValues: [] });
 		}
 	}
 
@@ -88,7 +89,7 @@ class CSLookupField extends React.Component<CSLookupFieldProps, CSLookupFieldSta
 	}
 
 	executeSearch = (searchTerm: string) => {
-		this.setState({dropdownValues: [], selectedOption: null }, () => {
+		this.setState({ dropdownValues: [], selectedOption: null }, () => {
 			const fetchedOptions = this.props.fetchLookupOptions();
 			const results = fetchedOptions.filter((item: any) => {
 				return Object.keys(item).some((key: any) => item[key].toString().toLowerCase().includes(searchTerm.toString().toLowerCase()));
@@ -119,38 +120,61 @@ class CSLookupField extends React.Component<CSLookupFieldProps, CSLookupFieldSta
 
 	render() {
 
+		const {
+			borderType,
+			className,
+			disabled,
+			error,
+			errorMessage,
+			fetchLookupOptions,
+			fieldToBeDisplayed,
+			helpText,
+			hidden,
+			id,
+			label,
+			labelHidden,
+			labelTitle,
+			loading,
+			placeholder,
+			required,
+			title,
+			tooltipPosition,
+			value,
+			...rest
+		} = this.props;
+
 		const lookupFieldWrapperClasses = classNames(
 			'cs-lookup-field-wrapper',
 			{
-				'cs-lookup-field-hidden': this.props.hidden
+				'cs-lookup-field-hidden': hidden
 			}
 		);
 
 		const lookupFieldGroupClasses = classNames(
 			'cs-lookup-field-group',
 			{
-				[`${this.props.className}`]: this.props.className
+				[`${className}`]: className
 			}
 		);
 
 		const lookupFieldClasses = classNames(
 			'cs-lookup-field',
 			{
-				[`cs-lookup-field-${this.props.borderType}`]: this.props.borderType,
-				'cs-lookup-field-error': this.props.error
+				[`cs-lookup-field-${borderType}`]: borderType,
+				'cs-lookup-field-error': error
 			}
 		);
 
 		return (
 			<div className={lookupFieldWrapperClasses} ref={this.fieldRef}>
-				{(this.props.label && !this.props.labelHidden) &&
+				{(label && !labelHidden) &&
 					<CSLabel
-						for={this.uniqueAutoId}
-						label={this.props.label}
-						helpText={this.props.helpText}
-						tooltipPosition={this.props.tooltipPosition}
-						required={this.props.required}
-						title={this.props.labelTitle ? this.props.label : null}
+						htmlFor={this.uniqueAutoId}
+						label={label}
+						helpText={helpText}
+						tooltipPosition={tooltipPosition}
+						required={required}
+						title={labelTitle ? label : null}
 					/>
 				}
 				<div className={lookupFieldGroupClasses}>
@@ -161,15 +185,16 @@ class CSLookupField extends React.Component<CSLookupFieldProps, CSLookupFieldSta
 					<input
 						className={lookupFieldClasses}
 						type="text"
-						placeholder={this.props.placeholder}
-						disabled={this.props.disabled}
-						required={this.props.required}
+						placeholder={placeholder}
+						disabled={disabled}
+						required={required}
 						value={this.state.searchTerm}
 						onChange={e => this.handleSearch(e)}
-						title={this.props.title}
+						title={title}
 						id={this.uniqueAutoId}
-						aria-required={this.props.required}
-						aria-invalid={this.props.error}
+						aria-required={required}
+						aria-invalid={error}
+						{...rest}
 					/>
 					{this.state.searchTerm &&
 						<CSButton
@@ -184,15 +209,15 @@ class CSLookupField extends React.Component<CSLookupFieldProps, CSLookupFieldSta
 							size="small"
 						/>
 					}
-					{this.props.loading ?
+					{loading ?
 						<span className="cs-lookup-field-spinner">
-							<CSIcon name="spinner" spin/>
+							<CSIcon name="spinner" spin />
 						</span>
-						 :
-						<CSIcon name="chevrondown" className="cs-lookup-field-dropdown"/>
+						:
+						<CSIcon name="chevrondown" className="cs-lookup-field-dropdown" />
 					}
-					{(this.props.error && this.props.errorMessage) &&
-						<CSFieldErrorMsg message={this.props.errorMessage} />
+					{(error && errorMessage) &&
+						<CSFieldErrorMsg message={errorMessage} />
 					}
 				</div>
 				{this.state.dropdownValues.length > 0 && (
@@ -200,13 +225,13 @@ class CSLookupField extends React.Component<CSLookupFieldProps, CSLookupFieldSta
 						<CSTable>
 							<CSTableHeader>
 								{this.state.dropdownValues.slice(0, 1).map((item, i) => (
-										Object.keys(item).map((key: any, j) => (
+									Object.keys(item).map((key: any, j) => (
 										<CSTableCell text={key} key={'header-cell' + j} />
-								))))}
+									))))}
 							</CSTableHeader>
 							<CSTableBody>
 								{this.state.dropdownValues.map((item: any, i) => (
-										<CSTableRow
+									<CSTableRow
 										key={'table-row' + i}
 										onClick={() => this.onRowClickHandler(item)}
 									>

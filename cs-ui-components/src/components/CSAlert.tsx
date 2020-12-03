@@ -8,6 +8,7 @@ export type CSAlertTextAlign = 'center' | 'left';
 export type CSAlertVariant = 'info' | 'warning' | 'error' | 'base';
 
 export interface CSAlertProps {
+	[key: string]: any;
 	className?: string;
 	closeButton?: boolean;
 	iconName?: string;
@@ -30,34 +31,51 @@ class CSAlert extends React.Component<CSAlertProps> {
 	};
 
 	render() {
+		const {
+			children,
+			className,
+			closeButton,
+			iconName,
+			iconVisibility,
+			id,
+			onClose,
+			styleFormat,
+			styleType,
+			text,
+			textAlign,
+			variant,
+			...rest
+		} = this.props;
+
 		const alertClasses = classNames(
 			'cs-alert',
-			[`cs-alert-${this.props.variant}`],
-			[`cs-alert-type-${this.props.styleType}`],
+			[`cs-alert-${variant}`],
+			[`cs-alert-type-${styleType}`],
 			{
-				[`${this.props.className}`]: this.props.className,
-				'cs-alert-scoped': this.props.styleFormat === 'scoped'
+				[`${className}`]: className,
+				'cs-alert-scoped': styleFormat === 'scoped'
 			}
 		);
 
 		const alertTextWrapperClasses = classNames(
 			'cs-alert-text-wrapper',
-			[`cs-alert-${this.props.textAlign}`]
+			[`cs-alert-${textAlign}`]
 		);
 
-		const alertRole = this.props.variant === 'info' ? 'status' : 'alert';
-		const alertIconSize = this.props.styleFormat === 'scoped' ? '1.5rem' : '0.875rem';
-		const alertIconName = this.props.variant === 'base' ? 'info' : this.props.variant;
+		const alertRole = variant === 'info' ? 'status' : 'alert';
+		const alertIconSize = styleFormat === 'scoped' ? '1.5rem' : '0.875rem';
+		const alertIconName = variant === 'base' ? 'info' : variant;
 		return (
 			<div
 				className={alertClasses}
 				role={alertRole}
-				id={this.props.id}
+				id={id}
+				{...rest}
 			>
 				<h4 className={alertTextWrapperClasses}>
-					{this.props.iconVisibility ? (this.props.iconName ? (
+					{iconVisibility ? (iconName ? (
 						<CSIcon
-							name={this.props.iconName}
+							name={iconName}
 							size={alertIconSize}
 						/>
 					) : (
@@ -66,19 +84,19 @@ class CSAlert extends React.Component<CSAlertProps> {
 							size={alertIconSize}
 						/>
 					)) : null}
-					{this.props.text ? (
-						Array.isArray(this.props.text) ?
-							this.props.text.map((t, index) =>
+					{text ? (
+						Array.isArray(text) ?
+							text.map((t, index) =>
 								<span className="cs-alert-text" key={index}>{t}</span>
 							)
-							: <span className="cs-alert-text">{this.props.text}</span>
+							: <span className="cs-alert-text">{text}</span>
 						) : null}
-					{this.props.children ? (
-						<span className="cs-alert-text">{this.props.children}</span>
+					{children ? (
+						<span className="cs-alert-text">{children}</span>
 					) : null}
 				</h4>
-				{this.props.closeButton ? (
-					<button className="cs-alert-close" onClick={this.props.onClose} aria-label="close">
+				{closeButton ? (
+					<button className="cs-alert-close" onClick={onClose} aria-label="close">
 						<CSIcon name="close" size={alertIconSize} />
 					</button>
 				) : null}

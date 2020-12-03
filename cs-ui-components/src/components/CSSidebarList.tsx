@@ -3,12 +3,13 @@ import CSButton from './CSButton';
 import classNames from 'classnames';
 
 export interface CSSidebarListProps {
+	[key: string]: any;
 	className?: string;
 	closed?: boolean;
+	fixed?: boolean;
 	height?: string;
 	id?: string;
 	onClose?: boolean;
-	static?: boolean;
 	width?: string;
 }
 
@@ -47,7 +48,19 @@ class CSSidebarList extends React.Component<CSSidebarListProps, CSSidebarListSta
 		});
 	}
 	render() {
-		const renderChildrenWithTabsAsProps = React.Children.map(this.props.children, (child, index) => {
+		const {
+			children,
+			className,
+			closed,
+			fixed,
+			height,
+			id,
+			onClose,
+			width,
+			...rest
+		} = this.props;
+
+		const renderChildrenWithTabsAsProps = React.Children.map(children, (child, index) => {
 			if (child) {
 				return React.cloneElement(child as React.ReactElement<any>, {
 					toggleActive: this.toggleActive,
@@ -57,22 +70,22 @@ class CSSidebarList extends React.Component<CSSidebarListProps, CSSidebarListSta
 		});
 
 		const style: CSSProperties = {
-			'--cs-sidebar-list-width': this.props.width,
-			'--cs-sidebar-list-height': this.props.height
+			'--cs-sidebar-list-width': width,
+			'--cs-sidebar-list-height': height
 		};
 
 		const sidebarListClasses = classNames(
 			'cs-sidebar-list',
 			{
-				[`${this.props.className}`]: this.props.className,
+				[`${className}`]: className,
 				closed: this.state.closed
 			}
 		);
 
 		return (
-			<nav className={sidebarListClasses} style={style} id={this.props.id}>
+			<nav className={sidebarListClasses} style={style} id={id} {...rest}>
 				<div className="cs-sidebar-list-item-top">
-					{!this.props.static &&
+					{!fixed &&
 						<CSButton
 							className="cs-sidebar-list-close"
 							onClick={this.onClose}

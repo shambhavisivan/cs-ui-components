@@ -2,21 +2,21 @@ import React from 'react';
 import classNames from 'classnames';
 
 export interface CSTableHeaderProps {
+	[key: string]: any;
 	className?: string;
 	id?: string;
 }
 
 class CSTableHeader extends React.Component<CSTableHeaderProps> {
 	render() {
+		const { children, className, id, ...rest } = this.props;
 
 		const tableHeaderClasses = classNames(
-			'cs-table-header',
-			{
-				[`${this.props.className}`]: this.props.className
-			}
-		);
+			'cs-table-header', {
+			[`${className}`]: className
+		});
 
-		const childrenWithProp =  React.Children.map(this.props.children, child => {
+		const childrenWithProp = React.Children.map(children, child => {
 			if (child) {
 				return (
 					React.cloneElement(
@@ -28,7 +28,7 @@ class CSTableHeader extends React.Component<CSTableHeaderProps> {
 		});
 
 		return (
-			<div className={tableHeaderClasses} role="row" id={this.props.id}>
+			<div className={tableHeaderClasses} role="row" id={id} {...rest}>
 				{childrenWithProp}
 			</div>
 		);

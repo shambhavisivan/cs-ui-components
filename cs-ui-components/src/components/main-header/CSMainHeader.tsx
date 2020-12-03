@@ -4,11 +4,12 @@ import classNames from 'classnames';
 export type CSMainHeaderColor = 'neutral' | 'brand' | 'error' | 'info';
 
 export interface CSMainHeaderProps {
+	[key: string]: any;
+	className?: string;
 	color?: CSMainHeaderColor;
 	id?: string;
 	maxWidth?: string;
 	sticky?: boolean;
-	className?: string;
 }
 
 class CSMainHeader extends React.Component<CSMainHeaderProps> {
@@ -20,30 +21,37 @@ class CSMainHeader extends React.Component<CSMainHeaderProps> {
 	};
 
 	render() {
+		const {
+			children,
+			className,
+			color,
+			id,
+			maxWidth,
+			sticky,
+			...rest
+		} = this.props;
 
 		const mainHeaderGroupClasses = classNames(
 			'cs-main-header',
 			{
-				'cs-main-header-sticky': this.props.sticky === true,
-				'cs-main-header-neutral': this.props.color === 'neutral',
-				'cs-main-header-brand': this.props.color === 'brand',
-				'cs-main-header-info': this.props.color === 'info',
-				'cs-main-header-error': this.props.color === 'error',
-				[`${this.props.className}`]: this.props.className
+				'cs-main-header-sticky': sticky === true,
+				[`cs-main-header-${color}`]: color,
+				[`${className}`]: className
 			}
 		);
 
 		const style: CSSProperties = {
-			maxWidth: this.props.maxWidth
+			maxWidth
 		};
 
 		return (
 			<header
 				className={mainHeaderGroupClasses}
-				id={this.props.id}
+				id={id}
+				{...rest}
 			>
 				<div style={style} className="cs-main-header-inner">
-					{this.props.children}
+					{children}
 				</div>
 			</header>
 

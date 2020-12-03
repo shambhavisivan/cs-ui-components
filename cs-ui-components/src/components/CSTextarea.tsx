@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 export type CSTextareaBorderType = 'round' | 'square';
 
 export interface CSTextareaProps {
+	[key: string]: any;
 	borderType?: CSTextareaBorderType;
 	className?: string;
 	disabled?: boolean;
@@ -58,7 +59,7 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 	}
 
 	handleOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-		this.setState({value: e.target.value});
+		this.setState({ value: e.target.value });
 		if (this.props.onChange) {
 			this.props.onChange(e);
 		}
@@ -66,61 +67,85 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 
 	componentDidUpdate(prevProps: CSTextareaProps) {
 		if (prevProps.value !== this.props.value) {
-		this.setState({value: this.props.value});
+			this.setState({ value: this.props.value });
 		}
-   	}
+	}
 
 	render() {
+		const {
+			borderType,
+			className,
+			disabled,
+			error,
+			errorMessage,
+			helpText,
+			hidden,
+			id,
+			label,
+			labelHidden,
+			labelTitle,
+			maxHeight,
+			onChange,
+			placeholder,
+			readOnly,
+			required,
+			rows,
+			title,
+			tooltipPosition,
+			value,
+			...rest
+		} = this.props;
 
 		const textareaClasses = classNames(
 			'cs-textarea', {
-				'cs-textarea-error': this.props.error,
-				[`${this.props.className}`]: this.props.className,
-				[`cs-textarea-${this.props.borderType}`]: this.props.borderType
-			}
+			'cs-textarea-error': error,
+			[`${className}`]: className,
+			[`cs-textarea-${borderType}`]: borderType
+		}
 		);
 
 		const style: CSSProperties = {
-			'--max-height': this.props.maxHeight
+			'--max-height': maxHeight
 		};
 
 		const textareaWrapperClasses = classNames(
 			'cs-textarea-wrapper',
 			{
-				'cs-element-hidden': this.props.hidden
+				'cs-element-hidden': hidden
 			}
 		);
 
 		return (
 			<>
 				<div className={textareaWrapperClasses}>
-					{(this.props.label && !this.props.labelHidden) &&
+					{(label && !labelHidden) &&
 						<CSLabel
-							for={this.uniqueAutoId}
-							label={this.props.label}
-							helpText={this.props.helpText}
-							tooltipPosition={this.props.tooltipPosition}
-							required={this.props.required}
-							title={this.props.labelTitle ? this.props.label : null}
+							htmlFor={this.uniqueAutoId}
+							label={label}
+							helpText={helpText}
+							tooltipPosition={tooltipPosition}
+							required={required}
+							title={labelTitle ? label : null}
 						/>
 					}
 					<textarea
 						className={textareaClasses}
 						id={this.uniqueAutoId}
-						placeholder={this.props.placeholder}
-						disabled={this.props.disabled}
-						readOnly={this.props.readOnly}
-						required={this.props.required}
-						rows={this.props.rows}
-						aria-required={this.props.required}
-						aria-invalid={this.props.error}
+						placeholder={placeholder}
+						disabled={disabled}
+						readOnly={readOnly}
+						required={required}
+						rows={rows}
+						aria-required={required}
+						aria-invalid={error}
 						value={fixControlledValue(this.state.value)}
 						style={style}
 						onChange={this.handleOnChange}
-						title={this.props.title}
+						title={title}
+						{...rest}
 					/>
-					{(this.props.error && this.props.errorMessage) &&
-						<CSFieldErrorMsg message={this.props.errorMessage} />
+					{(error && errorMessage) &&
+						<CSFieldErrorMsg message={errorMessage} />
 					}
 				</div>
 			</>

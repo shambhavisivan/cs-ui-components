@@ -3,6 +3,7 @@ import React from 'react';
 export type CSModalFooterAlign = 'right' | 'left' | 'center';
 
 export interface CSModalFooterProps {
+	[key: string]: any;
 	align?: CSModalFooterAlign;
 	id?: string;
 }
@@ -13,12 +14,14 @@ class CSModalFooter extends React.Component<CSModalFooterProps> {
 	};
 
 	render() {
+		const { align, children, id, ...rest } = this.props;
 		return (
 			<footer
-				className={`cs-modal-footer cs-modal-footer-${this.props.align}`}
-				id={this.props.id}
+				className={`cs-modal-footer cs-modal-footer-${align}`}
+				id={id}
+				{...rest}
 			>
-				{this.props.children}
+				{children}
 			</footer>
 		);
 	}
