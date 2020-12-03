@@ -5,6 +5,7 @@ import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
+import { NavLink } from 'react-router-dom';
 
 import { CSButton } from '@cloudsense/cs-ui-components';
 
@@ -478,11 +479,11 @@ class CSButtonPreview extends React.Component {
 					]
 				},
 				{
-					propName: 'navLink',
-					customText: 'Renders React Router\'s NavLink component',
+					propName: 'routerLink',
+					customText: 'Can render React Router\'s NavLink or Link component',
 					variations: [
 						{
-							component: <CSButton iconName="activity" label="default initial" navLink="/icons/LightningIcons" />
+							component: <CSButton iconName="activity" label="default initial" routerLink={<NavLink to="/icons/LightningIcons" />} />
 						}
 					]
 				},
@@ -614,8 +615,8 @@ class CSButtonPreview extends React.Component {
 					]
 				},
 				{
-					propertyName: 'navLink',
-					description: 'Nav link "to" attribute value'
+					propertyName: 'routerLink',
+					description: 'Accepts React Router\'s NavLink or Link component which will be rendered instead of button element'
 				},
 				{
 					propertyName: 'onClick',

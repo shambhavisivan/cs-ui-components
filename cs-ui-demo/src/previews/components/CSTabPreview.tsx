@@ -5,6 +5,7 @@ import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
+import { NavLink } from 'react-router-dom';
 
 import { CSTabGroup, CSTab } from '@cloudsense/cs-ui-components';
 
@@ -255,32 +256,17 @@ class CSTabPreview extends React.Component {
 					]
 				},
 				{
-					propName: 'navLink',
-					customText: 'Replaces the default button element structure of CSTab with a React Router NavLink component. Value of navLink prop is the "to" attribute value. https://reactrouter.com/web/api/NavLink',
+					propName: 'routerLink',
+					customText: 'Can render React Router\'s NavLink or Link component.',
 					variations: [
 						{
 							string: '',
 							component:
-							<CSTabGroup>
-								<CSTab title="Tab One" navLink={'/icons'}/>
-								<CSTab title="Tab Two" navLink={'/colors'}/>
-								<CSTab title="Tab Three" navLink={'/accessibility'}/>
-							</CSTabGroup>
-						}
-					]
-				},
-				{
-					propName: 'navLinkClass',
-					customText: 'Adds a className which will only be added to the component if NavLink is currently active',
-					variations: [
-						{
-							string: '',
-							component:
-							<CSTabGroup>
-								<CSTab title="Tab One" navLink={'/icons'} navLinkClass="active"/>
-								<CSTab title="Tab Two" navLink={'/colors'} navLinkClass="active"/>
-								<CSTab title="Tab Three" navLink={'/accessibility'} navLinkClass="active"/>
-							</CSTabGroup>
+								<CSTabGroup>
+									<CSTab title="Tab One" routerLink={<NavLink to="/icons" />} />
+									<CSTab title="Tab Two" routerLink={<NavLink to="/colors" />} />
+									<CSTab title="Tab Three" routerLink={<NavLink to="/accessibility" />} />
+								</CSTabGroup>
 						}
 					]
 				},
@@ -317,16 +303,12 @@ class CSTabPreview extends React.Component {
 					description: 'Tab id value'
 				},
 				{
-					propertyName: 'navLink',
-					description: 'Nav link "to" attribute value'
-				},
-				{
-					propertyName: 'navLinkClass',
-					description: 'Class name when nav link is active'
-				},
-				{
 					propertyName: 'onClick',
 					description: 'Logic for onClick event'
+				},
+				{
+					propertyName: 'routerLink',
+					description: 'Accepts React Router\'s NavLink or Link component which will be rendered instead of button element'
 				},
 				{
 					propertyName: 'status',
