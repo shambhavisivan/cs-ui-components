@@ -191,8 +191,8 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 						title={title}
 						aria-required={required}
 						aria-invalid={error}
-						aria-minvalue={Number(this.state.min)}
-						aria-maxvalue={Number(this.state.max)}
+						aria-valuemin={Number(this.state.min)}
+						aria-valuemax={Number(this.state.max)}
 						{...rest}
 					/>
 					{step ? (
