@@ -22,7 +22,7 @@ class CSLabelPreview extends React.Component {
 					variations: [
 						{
 							component:
-								<CSLabel label="Label" for="Name" />
+								<CSLabel label="Label" htmlFor="Name" />
 						}
 					]
 				},
