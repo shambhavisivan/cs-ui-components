@@ -83,6 +83,7 @@ export interface CSGridProps {
 	quickFilterHiddenColumns?: boolean;
 	dataSourceAPI?: DataSourceAPI;
 	editorComponents?: Record<string, any>;
+	rowHeight?: number;
 	rendererComponents?: Record<string, any>;
 	multiSelect: boolean;
 	uniqueIdentifierColumnName: string;
@@ -385,7 +386,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 							rowSelection={this.props.multiSelect ? 'multiple' : 'single'}
 							suppressRowClickSelection={true}
 							enableBrowserTooltips={true}
-							rowHeight={42}
+							rowHeight={this.props.rowHeight ? this.props.rowHeight : 42}
 							onCellValueChanged={this.onCellValueChanged}
 							getRowNodeId={this.getRowNodeId}
 							onColumnMoved={this.onColumnMoved}
