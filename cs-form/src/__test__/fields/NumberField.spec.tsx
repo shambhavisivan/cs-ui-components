@@ -417,3 +417,59 @@ it('sets readonly even when mandatory', done => {
 	expect(textInput.readOnly).toBe(true);
 	done();
 });
+
+test('Test NumberField goes into edit mode on focus when it is enabled.', () => {
+	descriptor.enabled = 'true';
+
+	ReactDOM.render(
+		<NumberField
+			value="123432423434.78"
+			wrapper={wrapper}
+			descriptor={descriptor}
+			locale={locale}
+			handleFieldChange={jestHandleChangeMock}
+			fetchPossibleValues={jestFetchPossibleValuesMock}
+			status="enabled"
+		/>,
+		container
+	);
+	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>(
+		'#display-field'
+	)!;
+	expect(textInput).not.toBeUndefined();
+	expect(textInput).not.toBeNull();
+
+	ReactTestUtils.Simulate.focus(textInput);
+
+	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
+	expect(editTextInput).not.toBeUndefined();
+	expect(editTextInput).not.toBeNull();
+
+});
+
+test('Test NumberField does not go into edit mode on focus when it is read only.', () => {
+	descriptor.enabled = 'false';
+
+	ReactDOM.render(
+		<NumberField
+			value="12"
+			wrapper={wrapper}
+			descriptor={descriptor}
+			locale={locale}
+			handleFieldChange={jestHandleChangeMock}
+			fetchPossibleValues={jestFetchPossibleValuesMock}
+			status="enabled"
+		/>,
+		container
+	);
+	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>(
+		'#display-field'
+	)!;
+	expect(textInput).not.toBeUndefined();
+	expect(textInput).not.toBeNull();
+
+	ReactTestUtils.Simulate.focus(textInput);
+
+	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
+	expect(editTextInput).toBeNull();
+});

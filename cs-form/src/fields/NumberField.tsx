@@ -53,6 +53,9 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 			? this.props.value
 			: '';
 
+		const isReadOnly =
+			this.props.status === 'visible' || this.props.descriptor.enabled === 'false';
+
 		return (
 			<div>
 				{this.state.isFormatterVisible ? (
@@ -70,8 +73,12 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 						min={this.props.descriptor.minVal}
 						max={this.props.descriptor.maxVal}
 						required={this.props.status === 'mandatory'}
-						readOnly={this.props.status === 'visible' || this.props.descriptor.enabled === 'false'}
-						onFocus={() => this.setState({ isFormatterVisible: false })}
+						readOnly={isReadOnly}
+						onFocus={() => {
+							if (!isReadOnly) {
+								this.setState({ isFormatterVisible: false });
+							}
+						}}
 						title={value}
 						labelHidden
 					/>
@@ -86,11 +93,17 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 						type="text"
 						name={this.props.descriptor.name}
 						value={value}
-						onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.handleBasicValidations(e)}
+						onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+							this.handleBasicValidations(e)
+						}
 						required={this.props.status === 'mandatory'}
-						readOnly={this.props.status === 'visible' || this.props.descriptor.enabled === 'false'}
+						readOnly={isReadOnly}
 						maxLength={20} // intl number formatter does not support values with length > 20
-						onBlur={(e: React.ChangeEvent<HTMLInputElement>) => this.handleFormattingOnBlur(e.target.value)}
+						onBlur={(e: React.ChangeEvent<HTMLInputElement>) => {
+							if (!isReadOnly) {
+								this.handleFormattingOnBlur(e.target.value);
+							}
+						}}
 						min={this.props.descriptor.minVal}
 						max={this.props.descriptor.maxVal}
 						title={value}
