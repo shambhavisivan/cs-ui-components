@@ -27,7 +27,11 @@ export class CSGridPicklistRenderer extends CSGridBaseRenderer<PicklistCellValue
 		}
 
 		return (
-			<span className={`select-wrapper ${this.isReadOnly() ? 'read-only-cell' : ''}`}>
+			<span
+				className={`cs-grid_cell-content cs-grid_cell-content-picklist select-wrapper ${
+					this.isReadOnly() ? 'read-only-cell' : ''
+				}`}
+			>
 				{tooltip ? (
 					<CSTooltip content={tooltip.content} delayTooltip={tooltip.delay}>
 						{contents}

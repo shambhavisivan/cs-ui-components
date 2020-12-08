@@ -9,7 +9,7 @@ describe('CS Grid Cell Error', () => {
 	test('renders a basic tooltip with an error message.', () => {
 		const tooltip = shallow(<CSGridCellError errorMessage={errorMessage} />);
 
-		expect(tooltip.equals(<CSTooltip content={errorMessage} variant='error' />)).toBeTruthy();
+		expect(tooltip.equals(<CSTooltip content={errorMessage} variant='error' iconName='warning' />)).toBeTruthy();
 	});
 
 	test('renders nothing if no error message is provided', () => {

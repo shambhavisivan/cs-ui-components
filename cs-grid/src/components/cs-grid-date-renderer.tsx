@@ -45,7 +45,11 @@ export class CSGridDateRenderer extends CSGridBaseRenderer<string> {
 		}
 
 		return (
-			<span className={readOnly ? 'read-only-cell' : ''}>
+			<span
+				className={`cs-grid_cell-content cs-grid_cell-content-date ${
+					readOnly ? 'read-only-cell' : ''
+				}`}
+			>
 				{tooltip ? (
 					<CSTooltip content={tooltip.content} delayTooltip={tooltip.delay}>
 						{contents}

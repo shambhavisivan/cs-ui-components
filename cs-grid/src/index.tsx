@@ -358,6 +358,7 @@ export class App extends React.Component<object, AppState> {
 		const columnDefs: Array<ColDef> = [
 			{
 				cellType: 'RowSelection',
+				flashOnCellValueChange: true,
 				getActions: (guid: string) => {
 					return [
 						{
@@ -397,6 +398,7 @@ export class App extends React.Component<object, AppState> {
 			},
 			{
 				cellType: 'Text',
+				flashOnCellValueChange: true,
 				name: 'exampleGuid',
 				userInfo,
 				visible: false
@@ -419,6 +421,7 @@ export class App extends React.Component<object, AppState> {
 			},
 			{
 				cellType: 'Decimal',
+				flashOnCellValueChange: true,
 				header: {
 					label: 'Decimal Column'
 				},
@@ -428,6 +431,7 @@ export class App extends React.Component<object, AppState> {
 			},
 			{
 				cellType: 'Currency',
+				flashOnCellValueChange: true,
 				header: {
 					label: 'Currency Column'
 				},
@@ -436,6 +440,7 @@ export class App extends React.Component<object, AppState> {
 			},
 			{
 				cellType: 'Boolean',
+				flashOnCellValueChange: true,
 				editable: () => false,
 				header: {
 					label: 'Boolean Column'
@@ -446,6 +451,7 @@ export class App extends React.Component<object, AppState> {
 			},
 			{
 				cellType: 'Date',
+				flashOnCellValueChange: true,
 				getOpenToDate: (guid: string) => '1999-09-23',
 				header: {
 					label: 'Date Column'
@@ -456,6 +462,7 @@ export class App extends React.Component<object, AppState> {
 			},
 			{
 				cellType: 'DateTime',
+				flashOnCellValueChange: true,
 				getOpenToDate: (guid: string) => '2004-02-22',
 				header: {
 					label: 'Date Time Column'
@@ -466,6 +473,7 @@ export class App extends React.Component<object, AppState> {
 			},
 			{
 				cellType: 'Lookup',
+				flashOnCellValueChange: true,
 				comparator: (a: CellData<any>, b: CellData<any>) =>
 					CSGridLookupComparator(a, b, this.lookupDisplayColumn),
 				displayColumn: this.lookupDisplayColumn,
@@ -478,7 +486,7 @@ export class App extends React.Component<object, AppState> {
 										currentValue
 									)}`
 								),
-							icon: <span className='icon-error' aria-hidden='true' />,
+							icon: <span className='icon-new-window' aria-hidden='true' />,
 							name: 'Edit'
 						}
 					];
@@ -493,6 +501,7 @@ export class App extends React.Component<object, AppState> {
 			},
 			{
 				cellType: 'MultiSelectLookup',
+				flashOnCellValueChange: true,
 				comparator: (a: CellData<any>, b: CellData<any>) =>
 					CSGridLookupComparator(a, b, this.lookupDisplayColumn),
 				displayColumn: this.lookupDisplayColumn,
@@ -507,6 +516,7 @@ export class App extends React.Component<object, AppState> {
 			},
 			{
 				cellType: 'Integer',
+				flashOnCellValueChange: true,
 				header: {
 					label: 'Integer With Stepper Arrows'
 				},
@@ -568,6 +578,7 @@ export class App extends React.Component<object, AppState> {
 					}
 				},
 				cellType: 'Integer',
+				flashOnCellValueChange: true,
 				header: {
 					label: 'Integer No Stepper Arrows'
 				},
@@ -577,6 +588,7 @@ export class App extends React.Component<object, AppState> {
 			},
 			{
 				cellType: 'Picklist',
+				flashOnCellValueChange: true,
 				filterAboveSize: 5,
 				getOptions: () => {
 					return [
@@ -605,6 +617,7 @@ export class App extends React.Component<object, AppState> {
 			},
 			{
 				cellType: 'Picklist',
+				flashOnCellValueChange: true,
 				filterAboveSize: 5,
 				getOptions: () => {
 					return [
@@ -637,6 +650,7 @@ export class App extends React.Component<object, AppState> {
 			},
 			{
 				cellType: 'MultiSelectPicklist',
+				flashOnCellValueChange: true,
 				getOptions: () => {
 					return [
 						'Bob',
@@ -662,6 +676,7 @@ export class App extends React.Component<object, AppState> {
 			},
 			{
 				cellType: 'MultiSelectPicklist',
+				flashOnCellValueChange: true,
 				filterAboveSize: 5,
 				getOptions: () => {
 					return [
@@ -688,6 +703,7 @@ export class App extends React.Component<object, AppState> {
 			},
 			{
 				cellType: 'Icon',
+				flashOnCellValueChange: true,
 				getIcons: (guid: string) => {
 					return {
 						breadcrumbs: { iconName: 'breadcrumbs', color: 'pink' },
@@ -736,6 +752,7 @@ export class App extends React.Component<object, AppState> {
 			},
 			{
 				cellType: 'RowValidation',
+				flashOnCellValueChange: true,
 				getIcons: (guid: string) => {
 					return {
 						large: (
@@ -1124,7 +1141,9 @@ export class App extends React.Component<object, AppState> {
 	render() {
 		return (
 			<>
-				<div style={{ marginBottom: '0.5rem', display: 'flex', justifyContent: 'flex-end' }}>
+				<div
+					style={{ marginBottom: '0.5rem', display: 'flex', justifyContent: 'flex-end' }}
+				>
 					<CSButtonGroup>
 						<CSButton
 							onClick={this.clientDemo}

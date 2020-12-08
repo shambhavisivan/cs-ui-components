@@ -74,7 +74,7 @@ describe('CS Grid Date Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className='read-only-cell'>
+				<span className='cs-grid_cell-content cs-grid_cell-content-date read-only-cell'>
 					<span className='cs-grid_date-cell-value-read-only' title={value}>
 						{value}
 					</span>
@@ -99,7 +99,7 @@ describe('CS Grid Date Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className=''>
+				<span className='cs-grid_cell-content cs-grid_cell-content-date '>
 					<span className='cs-grid_date-cell-value' title={value}>
 						{value}
 					</span>
@@ -129,7 +129,7 @@ describe('CS Grid Date Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className=''>
+				<span className='cs-grid_cell-content cs-grid_cell-content-date '>
 					<span className='cs-grid_date-cell-value' title={value}>
 						{value}
 					</span>
@@ -151,7 +151,7 @@ describe('CS Grid Date Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className=''>
+				<span className='cs-grid_cell-content cs-grid_cell-content-date '>
 					<span className='cs-grid_date-cell-value' title=''>
 						{''}
 					</span>
@@ -214,7 +214,7 @@ describe('CS Grid Date Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className=''>
+				<span className='cs-grid_cell-content cs-grid_cell-content-date '>
 					<span className='cs-grid_date-cell-value' title={value}>
 						{value}
 					</span>

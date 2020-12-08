@@ -1,0 +1,57 @@
+/* GRID CELL STATES */
+
+/* ANIMATIONS */
+@keyframes success-pseudo {
+	0% {
+		opacity: 0;
+	}
+	33% {
+		opacity: 1;
+	}
+	66% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+.cs-grid_app-wrapper {
+	.ag-cell-data-changed {
+		.cs-grid_cell-content {			
+			/* SUCCESS ICON ANIMATION */
+			&::before {
+				animation: success-pseudo 1.25s;
+				content: "\74";
+				font-family: 'cs-grid';
+				font-size: 0.9rem;
+				position: absolute;
+				right: 0.5625rem;
+				align-self: center;
+				opacity: 0;
+				@include sc(--csgrid-row-cell-success-icon-bg);
+			}
+
+			/* CELL TEXT CONTENT SPACING */
+			> span,
+			.cs-tooltip-wrapper > span {
+				padding-right: 0.75rem;
+			}
+		}
+
+		/* HIDE ACTION BUTTONS ON LOOKUP SUCCESS */
+		.cs-grid_cell-content-lookup.select-wrapper {
+			.select-wrapper-actions {
+				display: none;
+			}
+		}
+
+		/* DATE/LOOKUP/PICKLIST FIELDS */
+		.cs-grid_cell-content-date::before,
+		.cs-grid_cell-content-lookup::before,
+		.cs-grid_cell-content-lookup::before,
+		.cs-grid_cell-content-picklist::before {
+			right: 1.75rem;
+		}
+	}
+}

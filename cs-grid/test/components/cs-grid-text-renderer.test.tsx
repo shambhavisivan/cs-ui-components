@@ -67,7 +67,7 @@ describe('CS Grid Text Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className='read-only-cell'>
+				<span className='cs-grid_cell-content cs-grid_cell-content-text read-only-cell'>
 					<span title={exampleText.cellValue}>{exampleText.cellValue}</span>
 					<CSGridCellError errorMessage={exampleText.errorMessage} position='top-left' />
 				</span>
@@ -84,7 +84,7 @@ describe('CS Grid Text Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className=''>
+				<span className='cs-grid_cell-content cs-grid_cell-content-text '>
 					<span title={exampleText.cellValue}>{exampleText.cellValue}</span>
 					<CSGridCellError errorMessage={exampleText.errorMessage} position='top-left' />
 				</span>
@@ -101,7 +101,7 @@ describe('CS Grid Text Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className=''>
+				<span className='cs-grid_cell-content cs-grid_cell-content-text '>
 					<span title={exampleText.cellValue}>{exampleText.cellValue}</span>
 					<CSGridCellError errorMessage={exampleText.errorMessage} position='top-right' />
 				</span>
@@ -116,7 +116,7 @@ describe('CS Grid Text Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className=''>
+				<span className='cs-grid_cell-content cs-grid_cell-content-text '>
 					<span title=''>{''}</span>
 					<CSGridCellError errorMessage={exampleText.errorMessage} position='top-left' />
 				</span>

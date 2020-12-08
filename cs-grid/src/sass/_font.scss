@@ -125,6 +125,14 @@
 		cursor: pointer;
 	}
 
+	.icon-success::before {
+		content: "t";
+	}
+
+	.icon-new-window::before {
+		content: "x";
+	}
+
 	.icon-new-lead::before {
 		content: "\6d";
 	}

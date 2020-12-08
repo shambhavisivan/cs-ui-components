@@ -51,7 +51,9 @@ export abstract class CSGridNumberRenderer<
 		return (
 			<span
 				onClick={tooltip ? this.startEditingCell : undefined}
-				className={this.isReadOnly() ? ' read-only-cell' : ''}
+				className={`cs-grid_cell-content cs-grid_cell-content-number ${
+					this.isReadOnly() ? 'read-only-cell' : ''
+				}`}
 			>
 				{tooltip && !this.state.editing ? (
 					<CSTooltip content={tooltip.content} delayTooltip={tooltip.delay}>

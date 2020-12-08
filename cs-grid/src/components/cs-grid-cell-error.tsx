@@ -18,5 +18,12 @@ export function CSGridCellError(props: CSGridCellErrorProps) {
 		return null;
 	}
 
-	return <CSTooltip content={props.errorMessage} position={props.position} variant='error' />;
+	return (
+		<CSTooltip
+			content={props.errorMessage}
+			position={props.position}
+			variant='error'
+			iconName='warning'
+		/>
+	);
 }

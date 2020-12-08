@@ -104,3 +104,9 @@
 .icon-bolt:before {
   content: "\73";
 }
+.icon-success:before {
+  content: "\74";
+}
+.icon-new-window:before {
+  content: "\78";
+}

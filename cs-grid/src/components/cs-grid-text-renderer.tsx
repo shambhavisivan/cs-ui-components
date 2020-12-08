@@ -28,7 +28,9 @@ export class CSGridTextRenderer extends CSGridBaseRenderer<string> {
 		return (
 			<span
 				onClick={tooltip ? this.startEditingCell : undefined}
-				className={this.isReadOnly() ? 'read-only-cell' : ''}
+				className={`cs-grid_cell-content cs-grid_cell-content-text ${
+					this.isReadOnly() ? 'read-only-cell' : ''
+				}`}
 			>
 				{tooltip && !this.state.editing ? (
 					<CSTooltip content={tooltip.content} delayTooltip={tooltip.delay}>
