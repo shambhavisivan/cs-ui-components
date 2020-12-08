@@ -31,6 +31,7 @@ export interface CSTooltipProps {
 interface CSTooltipState {
 	hidden: boolean;
 	computedTooltipStyle?: CSSProperties;
+	computedPosition?: CSTooltipPosition;
 }
 
 class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
@@ -55,7 +56,8 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		this.tooltipRef = React.createRef();
 
 		this.state = {
-			hidden: props.delayTooltip && props.delayTooltip > 0
+			hidden: props.delayTooltip && props.delayTooltip > 0,
+			computedPosition: this.props.position
 		};
 
 		let tooltipRoot = document.getElementById(this.tooltipId);
@@ -88,7 +90,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		} = this.props;
 
 		const tooltipClasses = classNames('cs-tooltip', {
-			[`cs-tooltip-${position}`]: position,
+			[`cs-tooltip-${this.state.computedPosition}`]: this.state.computedPosition,
 			[`cs-tooltip-${variant}`]: variant,
 			'cs-tooltip-with-header': tooltipHeader
 		});
@@ -116,6 +118,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 				className={tooltipClasses}
 				style={tooltipStyle}
 				id={this.uniqueAutoId}
+				ref={this.props.stylePosition === 'fixed' ? this.tooltipRefCallback : null}
 				{...rest}
 			>
 				{tooltipHeader && (
@@ -195,7 +198,10 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 	}
 
 	private closeTooltip = () => {
-		this.setState({ computedTooltipStyle: undefined });
+		this.setState({
+			computedTooltipStyle: undefined,
+			computedPosition: this.props.position
+		});
 
 		if (this.props.delayTooltip && this.props.delayTooltip > 0) {
 			if (this.popupTriggered) {
@@ -208,9 +214,47 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		}
 	}
 
+	private autoTooltipPosition = (tooltipRect: DOMRect) => {
+		const { computedPosition } = this.state;
+		let [vertical, horizontal] = computedPosition.split('-');
+
+		// check top position of tooltip
+		if (vertical === 'top' && tooltipRect.top <= 0) {
+			vertical = 'bottom';
+		}
+		// check bottom position of tooltip
+		if (vertical === 'bottom' &&
+			tooltipRect.bottom >= (window.innerHeight || document.documentElement.clientHeight)) {
+			vertical = 'top';
+		}
+		// check right and center position of tooltip
+		if ((horizontal === 'right' || horizontal === 'center') &&
+			tooltipRect.right >= (window.innerWidth || document.documentElement.clientWidth)) {
+			horizontal = 'left';
+		}
+		// check left and center position of tooltip
+		if ((horizontal === 'left' || horizontal === 'center') &&
+			tooltipRect.left <= 0) {
+			horizontal = 'right';
+		}
+
+		const position = (vertical + '-' + horizontal) as CSTooltipPosition;
+		if (position !== computedPosition) {
+			this.setState({
+				computedPosition: position
+			}, this.setTooltipPosition);
+		}
+	}
+
+	private tooltipRefCallback = (element: HTMLElement) => {
+		if (element) {
+			const tooltipRect = element.getBoundingClientRect();
+			this.autoTooltipPosition(tooltipRect);
+		}
+	}
+
 	private setTooltipPosition = () => {
 		const wrapperInfo = this.tooltipRef.current.getBoundingClientRect();
-
 		const top = wrapperInfo.top + this.convertRemToPixels(1.5);
 		const right =
 			window.innerWidth -
@@ -224,7 +268,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			transform: 'translateX(-50%) translate3d(0, 0, 0)'
 		};
 
-		switch (this.props.position) {
+		switch (this.state.computedPosition) {
 			case 'bottom-right':
 				this.setState({
 					computedTooltipStyle: {

@@ -16,7 +16,6 @@
 	padding: var(--cs-tooltip-padding, 0.5rem 0.75rem);
 	position: fixed;
 	transform: translate3d(0, 0, 0); // Fix safari text blur
-	transition: 0.25s;
 	z-index: var(--z-index-tooltip);
 	outline: 0;
 	white-space: normal;
