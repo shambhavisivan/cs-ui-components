@@ -216,6 +216,7 @@ class CSTooltipPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['500'],
+							quickLink: '500',
 							component:
 								<CSTooltip delayTooltip={500} content="Help text example" />
 						}
@@ -226,8 +227,16 @@ class CSTooltipPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
+							variationName: ['200px'],
+							quickLink: '200px',
 							component:
 								<CSTooltip height="200px" content="Help text example" />
+						},
+						{
+							variationName: ['auto'],
+							quickLink: 'auto',
+							component:
+								<CSTooltip height="auto" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat porttitor enim ornare porta. Duis nibh orci, imperdiet in lectus consequat, tincidunt fringilla ante. Nullam varius eleifend sodales. Morbi at rhoncus mi." />
 						}
 					]
 				},
@@ -236,8 +245,16 @@ class CSTooltipPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
+							variationName: ['5rem'],
+							quickLink: '5rem',
 							component:
-								<CSTooltip width="10rem" content="Help text example" />
+								<CSTooltip width="5rem" content="Help text example" />
+						},
+						{
+							variationName: ['auto'],
+							quickLink: 'auto',
+							component:
+								<CSTooltip width="auto" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat porttitor enim ornare porta. Duis nibh orci, imperdiet in lectus consequat, tincidunt fringilla ante. Nullam varius eleifend sodales. Morbi at rhoncus mi." />
 						}
 					]
 				},

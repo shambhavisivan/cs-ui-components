@@ -11,7 +11,7 @@
 	font-size: 0.75rem;
 	width: var(--cs-tooltip-width, max-content);
 	height: var(--cs-tooltip-height, auto);
-	max-width: var(--cs-tooltip-width, max-content);
+	max-width: var(--cs-tooltip-width, 20rem);
 	min-height: 2rem;
 	padding: var(--cs-tooltip-padding, 0.5rem 0.75rem);
 	position: fixed;
@@ -22,7 +22,6 @@
 
 	.cs-tooltip-body {
 		text-align: left;
-		word-break: break-word;
 
 		&:not(:first-child) {
 			margin-block-start: 0.25rem;
@@ -80,7 +79,8 @@
 			border-width: 7px 7px 0 7px;
 			@include sbg(--cs-transparent);
 			@include css4 {
-				border-color: cvar(--cs-tooltip-body-bg) cvar(--cs-transparent) cvar(--cs-transparent) cvar(--cs-transparent);
+				border-color: cvar(--cs-tooltip-body-bg) cvar(--cs-transparent)
+					cvar(--cs-transparent) cvar(--cs-transparent);
 				filter: drop-shadow(0px 2px 1px cvar(--cs-shadow-medium));
 			}
 		}
@@ -203,7 +203,8 @@
 			transform: rotate(0deg);
 			@include sbg(--cs-transparent);
 			@include css4 {
-				border-color: cvar(--cs-tooltip-body-bg) cvar(--cs-transparent) cvar(--cs-transparent) cvar(--cs-transparent);
+				border-color: cvar(--cs-tooltip-body-bg) cvar(--cs-transparent)
+					cvar(--cs-transparent) cvar(--cs-transparent);
 				filter: drop-shadow(0px 2px 1px cvar(--cs-shadow-medium));
 			}
 		}
