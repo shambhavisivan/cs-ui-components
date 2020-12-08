@@ -35,21 +35,21 @@ class CSOption extends React.Component<CSOptionProps, CSOptionState> {
 		if (prevProps.selected !== this.props.selected) {
 			this.setState({ selected: this.props.selected });
 		}
-   	}
+	}
 
 	render() {
+		const { type, isMultiSelectItem } = this.props;
+		const { selected } = this.state;
+
 		const optionClasses = classNames(
 			'cs-list-item',
 			{
 				'cs-selected': this.props.selected,
 				'cs-selected-item': this.props.type === 'selected-item',
+				'cs-selected-list-item': this.props.type === 'list-item' && !isMultiSelectItem && selected,
 				'cs-active-item': this.props.active
 			}
-
 		);
-
-		const { type, isMultiSelectItem } = this.props;
-		const { selected } = this.state;
 
 		return (
 			<li
@@ -80,7 +80,9 @@ class CSOption extends React.Component<CSOptionProps, CSOptionState> {
 						iconName="close"
 						label="delete selected item"
 						onMouseDown={this.props.onItemDelete}
+						onKeyDown={this.props.onItemDelete}
 						size="xsmall"
+						ariaLabel={`option ${this.props.value}`}
 					/>
 				}
 			</li>
