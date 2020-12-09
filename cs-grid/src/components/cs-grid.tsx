@@ -989,7 +989,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			this.addIfDefined(agGridColDef, 'minWidth', columnDef.minWidth);
 			this.addIfDefined(agGridColDef, 'resizable', columnDef.resizable);
 			this.addIfDefined(agGridColDef, 'sortable', columnDef.sortable);
-			if(columnDef.header) {
+			if (columnDef.header) {
 				this.addIfDefined(agGridColDef, 'headerClass', columnDef.header.class);
 			}
 
