@@ -28,7 +28,7 @@
 
 		> :first-child:not(.cs-aria-description),
 		> .cs-aria-description + .cs-btn,
-		> .cs-aria-description + .cs-btn-dropdown-wrapper > .cs-btn {
+		> .cs-aria-description + .cs-dropdown-wrapper > .cs-btn {
 			border-top-left-radius: 0.25rem;
 			border-bottom-left-radius: 0.25rem;
 
@@ -40,7 +40,7 @@
 		}
 
 		> .cs-btn:last-child,
-		> .cs-btn-dropdown-wrapper:last-child > .cs-btn {
+		> .cs-dropdown-wrapper:last-child > .cs-btn {
 			border-top-right-radius: 0.25rem;
 			border-bottom-right-radius: 0.25rem;
 
