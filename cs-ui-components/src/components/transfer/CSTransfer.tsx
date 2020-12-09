@@ -13,6 +13,7 @@ export interface CSTransferItemsType {
 export type CSTransferVariant = 'simple-list' | 'check-list';
 
 export interface CSTransferProps {
+	[key: string]: any;
 	className?: string;
 	dataSource?: Array<CSTransferItemsType>;
 	onChange?: (value?: any) => any;
@@ -224,7 +225,21 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 
 	render() {
 		const { sourceData, targetData, sourceSelected, targetSelected } = this.state;
-		const { selectAll, variant, searchable, sourceLabel, targetLabel, oneWay, sourceHelpText, targetHelpText } = this.props;
+		const {
+			className,
+			dataSource,
+			onChange,
+			oneWay,
+			searchable,
+			selectAll,
+			sourceHelpText,
+			sourceLabel,
+			targetHelpText,
+			targetKeys,
+			targetLabel,
+			variant,
+			...rest
+		} = this.props;
 		const context = {
 			selectItem: this.selectItem,
 			moveToSource: this.moveToSource,
@@ -235,12 +250,12 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 		const transferWrapperClasses = classNames(
 			'cs-transfer-wrapper',
 			{
-				[`${this.props.className}`]: this.props.className
+				[`${className}`]: className
 			}
 		);
 		return (
 			<CSTransferContext.Provider value={context}>
-				<div className={transferWrapperClasses}>
+				<div className={transferWrapperClasses} {...rest}>
 					<CSTransferList
 						listRef={this.sourceListRef}
 						listType="source"
