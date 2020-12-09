@@ -12,12 +12,12 @@
 	&.cs-button-group-true {
 
 		> .cs-btn:not(:first-child),
-		> .cs-btn-dropdown-wrapper:not(:first-child) > .cs-btn {
+		> .cs-dropdown-wrapper:not(:first-child) > .cs-btn {
 			margin-left: -1px;
 		}
 
 		> .cs-btn,
-		> .cs-btn-dropdown-wrapper > .cs-btn {
+		> .cs-dropdown-wrapper > .cs-btn {
 			border-radius: 0;
 
 			&::before,
