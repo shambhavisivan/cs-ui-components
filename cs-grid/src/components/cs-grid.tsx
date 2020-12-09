@@ -989,6 +989,10 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			this.addIfDefined(agGridColDef, 'minWidth', columnDef.minWidth);
 			this.addIfDefined(agGridColDef, 'resizable', columnDef.resizable);
 			this.addIfDefined(agGridColDef, 'sortable', columnDef.sortable);
+			if(columnDef.header) {
+				this.addIfDefined(agGridColDef, 'headerClass', columnDef.header.class);
+			}
+
 			if (columnDef.sort !== undefined) {
 				agGridColDef.sort =
 					columnDef.sort === 'SORT_ASC'
@@ -1037,11 +1041,6 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				this.addIfDefined(agGridColDef, 'headerName', columnDef.header.label);
 
 				agGridColDef.headerComponentParams = { customSort: this.props.customSort };
-				this.addIfDefined(
-					agGridColDef.headerComponentParams,
-					'className',
-					columnDef.header.class
-				);
 			}
 
 			const cellParams: any = {};
