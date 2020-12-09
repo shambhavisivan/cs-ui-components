@@ -126,16 +126,13 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 			labelTitle,
 			max,
 			min,
-			name,
-			placeholder,
-			readOnly,
+			onChange,
 			required,
 			size,
 			step,
 			stepValues,
 			title,
 			tooltipPosition,
-			type,
 			value,
 			...rest
 		} = this.props;

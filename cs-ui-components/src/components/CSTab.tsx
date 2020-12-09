@@ -40,6 +40,7 @@ class CSTab extends React.Component<CSTabProps> {
 			className,
 			disabled,
 			id,
+			onClick,
 			parentVariant,
 			routerLink,
 			status,

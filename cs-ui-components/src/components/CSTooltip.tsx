@@ -74,6 +74,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			children,
 			className,
 			content,
+			delayTooltip,
 			focusable,
 			height,
 			iconColor,

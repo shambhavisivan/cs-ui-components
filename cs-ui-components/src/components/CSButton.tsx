@@ -115,6 +115,7 @@ class CSButton extends React.Component<CSButtonProps> {
 			label,
 			link,
 			loading,
+			onClick,
 			onKeyDown,
 			onMouseDown,
 			openInNewTab,

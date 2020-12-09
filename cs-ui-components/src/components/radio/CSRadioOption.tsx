@@ -35,6 +35,7 @@ class CSRadioOption extends React.Component<CSRadioOptionProps> {
 			id,
 			label,
 			name,
+			onChange,
 			title,
 			...rest
 		} = this.props;

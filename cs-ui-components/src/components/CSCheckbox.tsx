@@ -75,6 +75,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 	render() {
 		const {
 			borderType,
+			checked,
 			className,
 			disabled,
 			error,
@@ -85,6 +86,8 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 			labelHidden,
 			labelTitle,
 			name,
+			onChange,
+			onClick,
 			required,
 			title,
 			tooltipPosition,

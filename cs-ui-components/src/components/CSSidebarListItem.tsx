@@ -23,6 +23,7 @@ class CSSidebarListItem extends React.Component<CSSidebarListItemProps> {
 			active,
 			className,
 			id,
+			onClick,
 			text,
 			toggleActive,
 			...rest
@@ -36,7 +37,7 @@ class CSSidebarListItem extends React.Component<CSSidebarListItemProps> {
 			}
 		);
 		return (
-			<li role="none">
+			<li role="none" {...rest}>
 				<button
 					className={sidebarListClasses}
 					onClick={this.onClickHandler}

@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import CSSpinner from '../CSSpinner';
 import { Portal } from 'react-portal';
 import { v4 as uuidv4 } from 'uuid';
+import { CSModalHeader } from '../../index';
 
 export type CSModalSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 
@@ -152,11 +153,15 @@ class CSModal extends React.Component<CSModalProps> {
 			[`${className}`]: className
 		});
 
-		const renderChildren = React.Children.map(children, (child, index) => {
+		const renderChildren = React.Children.map(children, (child: any, index) => {
 			if (child) {
-				return React.cloneElement(child as React.ReactElement<any>, {
-					titleId: this.uniqueAutoId
-				});
+				if (child.type === CSModalHeader) {
+					return React.cloneElement(child as React.ReactElement<any>, {
+						titleId: this.uniqueAutoId
+					});
+				} else {
+					return child;
+				}
 			}
 		});
 

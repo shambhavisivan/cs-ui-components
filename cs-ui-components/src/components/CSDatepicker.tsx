@@ -105,6 +105,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 			minDate,
 			minDateYear,
 			name,
+			onCalendarClose,
 			onChange,
 			onChangeRaw,
 			openToDate,

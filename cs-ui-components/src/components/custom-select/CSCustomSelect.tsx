@@ -226,6 +226,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 			labelHidden,
 			labelTitle,
 			multiselect,
+			onChange,
 			onSelectChange,
 			optionsList,
 			required,

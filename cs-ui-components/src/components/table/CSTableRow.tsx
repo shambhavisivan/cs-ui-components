@@ -18,7 +18,7 @@ class CSTableRow extends React.Component<CSTableRowProps> {
 	}
 
 	render() {
-		const { children, className, id, ...rest } = this.props;
+		const { children, className, id, onClick, ...rest } = this.props;
 		const tableRowClasses = classNames(
 			'cs-table-row', {
 			[`${className}`]: className
