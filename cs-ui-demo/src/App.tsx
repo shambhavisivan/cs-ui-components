@@ -38,7 +38,7 @@ class App extends React.Component {
 								</li>
 							</ul>
 							<div className="app-main-header-right">
-								<CSChip text="latest published version: 1.0.0-alpha.153" />
+								<CSChip text="latest published version: 1.0.0-alpha.154" />
 								<CSImage type="logo" height="2.25rem" />
 							</div>
 						</div>
