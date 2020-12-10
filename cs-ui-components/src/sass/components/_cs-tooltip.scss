@@ -106,6 +106,38 @@
 				transform: rotate(180deg);
 			}
 		}
+		&.cs-tooltip-right-top,
+		&.cs-tooltip-right-center,
+		&.cs-tooltip-right-bottom,
+		&.cs-tooltip-left-top,
+		&.cs-tooltip-left-center,
+		&.cs-tooltip-left-bottom {
+			@include css4 {
+				box-shadow: 0 2px 3px 0 cvar(--cs-shadow-medium);
+			}
+			&::before {
+				@include css4 {
+					filter: drop-shadow(0px 1.5px 1px cvar(--cs-shadow-medium));
+				}
+			}
+		}
+
+		&.cs-tooltip-right-top::before,
+		&.cs-tooltip-right-center::before,
+		&.cs-tooltip-right-bottom::before {
+			transform: rotate(90deg);
+			left: -0.65rem;
+			@include css4 {
+				filter: drop-shadow(0px 1.5px 1px cvar(--cs-shadow-medium));
+			}
+		}
+
+		&.cs-tooltip-left-top::before,
+		&.cs-tooltip-left-center::before,
+		&.cs-tooltip-left-bottom::before {
+			transform: rotate(-90deg);
+			right: -0.65rem;
+		}
 	}
 
 	&::before {
@@ -159,6 +191,48 @@
 			left: calc(50%);
 			top: calc(100% - 0.4375rem);
 			transform: translateX(-50%) rotate(-45deg);
+		}
+	}
+	&.cs-tooltip-right-top {
+		&::before {
+			left: -0.375rem;
+			top: calc(100% - 1.25rem);
+			transform: rotate(45deg);
+		}
+	}
+	&.cs-tooltip-right-bottom {
+		&::before {
+			left: -0.375rem;
+			top: 0.5rem;
+			transform: rotate(45deg);
+		}
+	}
+	&.cs-tooltip-right-center {
+		&::before {
+			left: -0.375rem;
+			top: 50%;
+			transform: translateY(-50%) rotate(45deg);
+		}
+	}
+	&.cs-tooltip-left-top {
+		&::before {
+			right: -0.375rem;
+			top: calc(100% - 1.25rem);
+			transform: rotate(-135deg);
+		}
+	}
+	&.cs-tooltip-left-bottom {
+		&::before {
+			right: -0.375rem;
+			top: 0.5rem;
+			transform: rotate(-135deg);
+		}
+	}
+	&.cs-tooltip-left-center {
+		&::before {
+			right: -0.375rem;
+			top: 50%;
+			transform: translateY(-50%) rotate(-135deg);
 		}
 	}
 
@@ -227,7 +301,9 @@
 				@include sc(--cs-tooltip-info-c);
 			}
 			&.cs-tooltip-bottom-left::before,
-			&.cs-tooltip-bottom-right::before {
+			&.cs-tooltip-bottom-right::before,
+			&.cs-tooltip-right-bottom::before,
+			&.cs-tooltip-left-bottom::before {
 				@include sbg(--cs-tooltip-info-bg);
 				@include css4 {
 					border-bottom-color: cvar(--cs-tooltip-info-bg);
@@ -241,7 +317,9 @@
 				@include sc(--cs-tooltip-warning-c);
 			}
 			&.cs-tooltip-bottom-left::before,
-			&.cs-tooltip-bottom-right::before {
+			&.cs-tooltip-bottom-right::before,
+			&.cs-tooltip-right-bottom::before,
+			&.cs-tooltip-left-bottom::before {
 				@include sbg(--cs-tooltip-warning-bg);
 				@include css4 {
 					border-bottom-color: cvar(--cs-tooltip-warning-bg);
@@ -255,7 +333,9 @@
 				@include sc(--cs-tooltip-error-c);
 			}
 			&.cs-tooltip-bottom-left::before,
-			&.cs-tooltip-bottom-right::before {
+			&.cs-tooltip-bottom-right::before,
+			&.cs-tooltip-right-bottom::before,
+			&.cs-tooltip-left-bottom::before {
 				@include sbg(--cs-tooltip-error-bg);
 				@include css4 {
 					border-bottom-color: cvar(--cs-tooltip-error-bg);
@@ -269,7 +349,9 @@
 				@include sc(--cs-tooltip-success-c);
 			}
 			&.cs-tooltip-bottom-left::before,
-			&.cs-tooltip-bottom-right::before {
+			&.cs-tooltip-bottom-right::before,
+			&.cs-tooltip-right-bottom::before,
+			&.cs-tooltip-left-bottom::before {
 				@include sbg(--cs-tooltip-success-bg);
 				@include css4 {
 					border-bottom-color: cvar(--cs-tooltip-success-bg);
@@ -282,6 +364,20 @@
 				@include css4 {
 					border-bottom: 1px solid cvar(--cs-tooltip-basic-br);
 				}
+			}
+		}
+		&.cs-tooltip-right-center::before,
+		&.cs-tooltip-right-top::before {
+			@include css4 {
+				border-bottom-color: cvar(--cs-tooltip-header-bg);
+				filter: drop-shadow(0px 2px 1px cvar(--cs-shadow-medium));
+			}
+		}
+		&.cs-tooltip-left-center::before,
+		&.cs-tooltip-left-top::before {
+			@include css4 {
+				border-bottom-color: cvar(--cs-tooltip-header-bg);
+				filter: drop-shadow(-2px 1px 1px cvar(--cs-shadow-medium));
 			}
 		}
 	}
@@ -385,17 +481,14 @@
 			top: calc(100% + 0.75rem);
 			left: calc(50% - 1.5rem);
 		}
-
 		&.cs-tooltip-bottom-left {
 			top: calc(100% + 0.75rem);
 			right: calc(50% - 1.5rem);
 		}
-
 		&.cs-tooltip-top-right {
 			bottom: calc(100% + 0.75rem);
 			left: calc(50% - 1.5rem);
 		}
-
 		&.cs-tooltip-top-left {
 			bottom: calc(100% + 0.75rem);
 			right: calc(50% - 1.5rem);
@@ -405,11 +498,36 @@
 			left: 50%;
 			transform: translateX(-50%);
 		}
-
 		&.cs-tooltip-bottom-center {
 			top: calc(100% + 0.75rem);
 			left: 50%;
 			transform: translateX(-50%);
+		}
+		&.cs-tooltip-right-top {
+			bottom: -0.45rem;
+			left: calc(100% + 0.75rem);
+		}
+		&.cs-tooltip-right-center {
+			top: 50%;
+			transform: translateY(-50%);
+			left: calc(100% + 0.75rem);
+		}
+		&.cs-tooltip-right-bottom {
+			top: -0.35rem;
+			left: calc(100% + 0.75rem);
+		}
+		&.cs-tooltip-left-top {
+			bottom: -0.35rem;
+			right: calc(100% + 0.75rem);
+		}
+		&.cs-tooltip-left-center {
+			top: 50%;
+			transform: translateY(-50%);
+			right: calc(100% + 0.75rem);
+		}
+		&.cs-tooltip-left-bottom {
+			top: -0.45rem;
+			right: calc(100% + 0.75rem);
 		}
 	}
 }
