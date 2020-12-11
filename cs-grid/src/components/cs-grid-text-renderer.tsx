@@ -33,7 +33,12 @@ export class CSGridTextRenderer extends CSGridBaseRenderer<string> {
 				}`}
 			>
 				{tooltip && !this.state.editing ? (
-					<CSTooltip content={tooltip.content} delayTooltip={tooltip.delay}>
+					<CSTooltip
+						className='cs-grid_cell-tooltip'
+						variant={this.state.value.errorMessage ? 'error' : 'info'}
+						content={tooltip.content}
+						delayTooltip={tooltip.delay}
+					>
 						{contents}
 					</CSTooltip>
 				) : (

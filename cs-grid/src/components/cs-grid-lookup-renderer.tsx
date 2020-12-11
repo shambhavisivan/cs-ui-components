@@ -61,7 +61,12 @@ export class CSGridLookupRenderer extends CSGridBaseActionsRenderer<
 				}`}
 			>
 				{tooltip ? (
-					<CSTooltip content={tooltip.content} delayTooltip={tooltip.delay}>
+					<CSTooltip
+						className='cs-grid_cell-tooltip'
+						content={tooltip.content}
+						delayTooltip={tooltip.delay}
+						variant={this.state.value.errorMessage ? 'error' : 'info'}
+					>
 						{contents}
 					</CSTooltip>
 				) : (

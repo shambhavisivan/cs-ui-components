@@ -422,6 +422,12 @@ export class App extends React.Component<object, AppState> {
 			{
 				cellType: 'Decimal',
 				flashOnCellValueChange: true,
+				getTooltip: (guid: string) => {
+					return {
+						content: ['example tooltip', 'Line two'],
+						delay: 300
+					};
+				},
 				header: {
 					label: 'Decimal Column'
 				},
@@ -432,6 +438,12 @@ export class App extends React.Component<object, AppState> {
 			{
 				cellType: 'Currency',
 				flashOnCellValueChange: true,
+				getTooltip: (guid: string) => {
+					return {
+						content: ['example tooltip', 'Line two'],
+						delay: 300
+					};
+				},
 				header: {
 					label: 'Currency Column'
 				},
@@ -441,6 +453,12 @@ export class App extends React.Component<object, AppState> {
 			{
 				cellType: 'Boolean',
 				flashOnCellValueChange: true,
+				getTooltip: (guid: string) => {
+					return {
+						content: ['example tooltip', 'Line two'],
+						delay: 300
+					};
+				},
 				editable: () => false,
 				header: {
 					label: 'Boolean Column'
@@ -452,6 +470,12 @@ export class App extends React.Component<object, AppState> {
 			{
 				cellType: 'Date',
 				flashOnCellValueChange: true,
+				getTooltip: (guid: string) => {
+					return {
+						content: ['example tooltip', 'Line two'],
+						delay: 300
+					};
+				},
 				getOpenToDate: (guid: string) => '1999-09-23',
 				header: {
 					label: 'Date Column'
@@ -463,6 +487,12 @@ export class App extends React.Component<object, AppState> {
 			{
 				cellType: 'DateTime',
 				flashOnCellValueChange: true,
+				getTooltip: (guid: string) => {
+					return {
+						content: ['example tooltip', 'Line two'],
+						delay: 300
+					};
+				},
 				getOpenToDate: (guid: string) => '2004-02-22',
 				header: {
 					label: 'Date Time Column'
@@ -474,6 +504,12 @@ export class App extends React.Component<object, AppState> {
 			{
 				cellType: 'Lookup',
 				flashOnCellValueChange: true,
+				getTooltip: (guid: string) => {
+					return {
+						content: ['example tooltip', 'Line two'],
+						delay: 300
+					};
+				},
 				comparator: (a: CellData<any>, b: CellData<any>) =>
 					CSGridLookupComparator(a, b, this.lookupDisplayColumn),
 				displayColumn: this.lookupDisplayColumn,
@@ -502,6 +538,12 @@ export class App extends React.Component<object, AppState> {
 			{
 				cellType: 'MultiSelectLookup',
 				flashOnCellValueChange: true,
+				getTooltip: (guid: string) => {
+					return {
+						content: ['example tooltip', 'Line two'],
+						delay: 300
+					};
+				},
 				comparator: (a: CellData<any>, b: CellData<any>) =>
 					CSGridLookupComparator(a, b, this.lookupDisplayColumn),
 				displayColumn: this.lookupDisplayColumn,
@@ -517,6 +559,12 @@ export class App extends React.Component<object, AppState> {
 			{
 				cellType: 'Integer',
 				flashOnCellValueChange: true,
+				getTooltip: (guid: string) => {
+					return {
+						content: ['example tooltip', 'Line two'],
+						delay: 300
+					};
+				},
 				header: {
 					label: 'Integer With Stepper Arrows'
 				},
@@ -579,6 +627,12 @@ export class App extends React.Component<object, AppState> {
 				},
 				cellType: 'Integer',
 				flashOnCellValueChange: true,
+				getTooltip: (guid: string) => {
+					return {
+						content: ['example tooltip', 'Line two'],
+						delay: 300
+					};
+				},
 				header: {
 					label: 'Integer No Stepper Arrows'
 				},
@@ -589,6 +643,12 @@ export class App extends React.Component<object, AppState> {
 			{
 				cellType: 'Picklist',
 				flashOnCellValueChange: true,
+				getTooltip: (guid: string) => {
+					return {
+						content: ['example tooltip', 'Line two'],
+						delay: 300
+					};
+				},
 				filterAboveSize: 5,
 				getOptions: () => {
 					return [
@@ -618,6 +678,12 @@ export class App extends React.Component<object, AppState> {
 			{
 				cellType: 'Picklist',
 				flashOnCellValueChange: true,
+				getTooltip: (guid: string) => {
+					return {
+						content: ['example tooltip', 'Line two'],
+						delay: 300
+					};
+				},
 				filterAboveSize: 5,
 				getOptions: () => {
 					return [
@@ -651,6 +717,12 @@ export class App extends React.Component<object, AppState> {
 			{
 				cellType: 'MultiSelectPicklist',
 				flashOnCellValueChange: true,
+				getTooltip: (guid: string) => {
+					return {
+						content: ['example tooltip', 'Line two'],
+						delay: 300
+					};
+				},
 				getOptions: () => {
 					return [
 						'Bob',
@@ -677,6 +749,12 @@ export class App extends React.Component<object, AppState> {
 			{
 				cellType: 'MultiSelectPicklist',
 				flashOnCellValueChange: true,
+				getTooltip: (guid: string) => {
+					return {
+						content: ['example tooltip', 'Line two'],
+						delay: 300
+					};
+				},
 				filterAboveSize: 5,
 				getOptions: () => {
 					return [
