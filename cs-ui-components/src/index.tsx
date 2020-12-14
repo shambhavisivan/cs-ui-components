@@ -42,6 +42,7 @@ import CSInputNumber, { CSInputNumberBorderType } from './components/CSInputNumb
 import CSInputSearch, { CSInputSearchBorderType } from './components/CSInputSearch';
 import CSInputText, { CSInputTextBorderType } from './components/CSInputText';
 import CSLabel from './components/CSLabel';
+import CSListItem from './components/CSListItem';
 import CSLookupField, { CSLookupBorderType } from './components/CSLookupField';
 import CSMainHeader, { CSMainHeaderColor } from './components/main-header/CSMainHeader';
 import CSMainHeaderIcon from './components/main-header/CSMainHeaderIcon';
@@ -62,8 +63,7 @@ import CSRadio, { CSRadioVariant } from './components/radio/CSRadio';
 import CSRadioOption from './components/radio/CSRadioOption';
 import CSSection from './components/CSSection';
 import CSSelect, { CSSelectBorderType } from './components/CSSelect';
-import CSSidebarList from './components/CSSidebarList';
-import CSSidebarListItem from './components/CSSidebarListItem';
+import CSSidebar from './components/CSSidebar';
 import CSSkipLink from './components/CSSkipLink';
 import CSSlider, { CSSliderSize } from './components/CSSlider';
 import CSSpinner, { CSSpinnerColor,	CSSpinnerSize } from './components/CSSpinner';
@@ -140,6 +140,7 @@ export {
 	CSInputText,
 	CSInputTextBorderType,
 	CSLabel,
+	CSListItem,
 	CSLookupBorderType,
 	CSLookupField,
 	CSMainHeader,
@@ -168,8 +169,7 @@ export {
 	CSSection,
 	CSSelect,
 	CSSelectBorderType,
-	CSSidebarList,
-	CSSidebarListItem,
+	CSSidebar,
 	CSSkipLink,
 	CSSlider,
 	CSSliderSize,

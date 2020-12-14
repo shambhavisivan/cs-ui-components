@@ -6,14 +6,14 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import { CSSidebarList, CSSidebarListItem, CSAlert } from '@cloudsense/cs-ui-components';
+import { CSSidebar, CSListItem, CSAlert } from '@cloudsense/cs-ui-components';
 
-class CSSidebarListPreview extends React.Component {
-	getSidebarListDoc() {
+class CSSidebarPreview extends React.Component {
+	getDoc() {
 
 		const json = {
-			name: 'Sidebar List',
-			usage: 'Sidebar list provides a unlimited list of items with the option to toggle between open and closed',
+			name: 'Sidebar',
+			usage: 'Sidebar provides a unlimited list of items with the option to toggle between open and closed',
 			accessible: 'yes',
 			examples: [
 				{
@@ -23,11 +23,11 @@ class CSSidebarListPreview extends React.Component {
 							variationName: ['custom class'],
 							quickLink: 'custom class',
 							component:
-								<CSSidebarList className="custom-class">
-									<CSSidebarListItem className="custom-class" text="Product A" />
-									<CSSidebarListItem className="custom-class" text="Product B" />
-									<CSSidebarListItem className="custom-class" text="Product C" />
-								</CSSidebarList>
+								<CSSidebar className="custom-class">
+									<CSListItem className="custom-class" text="Product A" />
+									<CSListItem className="custom-class" text="Product B" />
+									<CSListItem className="custom-class" text="Product C" />
+								</CSSidebar>
 						}
 					]
 				},
@@ -36,11 +36,11 @@ class CSSidebarListPreview extends React.Component {
 					variations: [
 						{
 							component:
-								<CSSidebarList closed>
-									<CSSidebarListItem text="Product A" />
-									<CSSidebarListItem text="Product B" />
-									<CSSidebarListItem text="Product C" />
-								</CSSidebarList>
+								<CSSidebar closed>
+									<CSListItem text="Product A" />
+									<CSListItem text="Product B" />
+									<CSListItem text="Product C" />
+								</CSSidebar>
 						}
 					]
 				},
@@ -51,31 +51,31 @@ class CSSidebarListPreview extends React.Component {
 							variationName: ['100vh'],
 							quickLink: '100vh',
 							component:
-								<CSSidebarList height="100vh">
-									<CSSidebarListItem text="Product A" />
-									<CSSidebarListItem text="Product B" />
-									<CSSidebarListItem text="Product C" />
-								</CSSidebarList>
+								<CSSidebar height="100vh">
+									<CSListItem text="Product A" />
+									<CSListItem text="Product B" />
+									<CSListItem text="Product C" />
+								</CSSidebar>
 						},
 						{
 							variationName: ['50%'],
 							quickLink: '50%',
 							component:
-								<CSSidebarList height="50%">
-									<CSSidebarListItem text="Product A" />
-									<CSSidebarListItem text="Product B" />
-									<CSSidebarListItem text="Product C" />
-								</CSSidebarList>
+								<CSSidebar height="50%">
+									<CSListItem text="Product A" />
+									<CSListItem text="Product B" />
+									<CSListItem text="Product C" />
+								</CSSidebar>
 						},
 						{
 							variationName: ['20rem'],
 							quickLink: '20rem',
 							component:
-								<CSSidebarList height="20rem">
-									<CSSidebarListItem text="Product A" />
-									<CSSidebarListItem text="Product B" />
-									<CSSidebarListItem text="Product C" />
-								</CSSidebarList>
+								<CSSidebar height="20rem">
+									<CSListItem text="Product A" />
+									<CSListItem text="Product B" />
+									<CSListItem text="Product C" />
+								</CSSidebar>
 						}
 					]
 				},
@@ -84,11 +84,11 @@ class CSSidebarListPreview extends React.Component {
 					variations: [
 						{
 							component:
-								<CSSidebarList id="products">
-									<CSSidebarListItem id="products" text="Product A" />
-									<CSSidebarListItem text="Product B" />
-									<CSSidebarListItem text="Product C" />
-								</CSSidebarList>
+								<CSSidebar id="products">
+									<CSListItem id="products" text="Product A" />
+									<CSListItem text="Product B" />
+									<CSListItem text="Product C" />
+								</CSSidebar>
 						}
 					]
 				},
@@ -97,11 +97,11 @@ class CSSidebarListPreview extends React.Component {
 					variations: [
 						{
 							component:
-								<CSSidebarList>
-									<CSSidebarListItem text="Product A" />
-									<CSSidebarListItem text="Product B" onClick={() => alert('clicked!')} />
-									<CSSidebarListItem text="Product C" />
-								</CSSidebarList>
+								<CSSidebar>
+									<CSListItem text="Product A" />
+									<CSListItem text="Product B" onClick={() => alert('clicked!')} />
+									<CSListItem text="Product C" />
+								</CSSidebar>
 						}
 					]
 				},
@@ -110,11 +110,11 @@ class CSSidebarListPreview extends React.Component {
 					variations: [
 						{
 							component:
-								<CSSidebarList static>
-									<CSSidebarListItem text="Product A" />
-									<CSSidebarListItem text="Product B" />
-									<CSSidebarListItem text="Product C" />
-								</CSSidebarList>
+								<CSSidebar static>
+									<CSListItem text="Product A" />
+									<CSListItem text="Product B" />
+									<CSListItem text="Product C" />
+								</CSSidebar>
 						}
 					]
 				},
@@ -123,11 +123,11 @@ class CSSidebarListPreview extends React.Component {
 					variations: [
 						{
 							component:
-								<CSSidebarList>
-									<CSSidebarListItem text="Text A" />
-									<CSSidebarListItem text="Text B" />
-									<CSSidebarListItem text="Text C" />
-								</CSSidebarList>
+								<CSSidebar>
+									<CSListItem text="Text A" />
+									<CSListItem text="Text B" />
+									<CSListItem text="Text C" />
+								</CSSidebar>
 						}
 					]
 				},
@@ -138,31 +138,31 @@ class CSSidebarListPreview extends React.Component {
 							variationName: ['20rem'],
 							quickLink: '20rem',
 							component:
-								<CSSidebarList width="20rem">
-									<CSSidebarListItem text="Product A" />
-									<CSSidebarListItem text="Product B" />
-									<CSSidebarListItem text="Product C" />
-								</CSSidebarList>
+								<CSSidebar width="20rem">
+									<CSListItem text="Product A" />
+									<CSListItem text="Product B" />
+									<CSListItem text="Product C" />
+								</CSSidebar>
 						},
 						{
 							variationName: ['30rem'],
 							quickLink: '30rem',
 							component:
-								<CSSidebarList width="30rem">
-									<CSSidebarListItem text="Product A" />
-									<CSSidebarListItem text="Product B" />
-									<CSSidebarListItem text="Product C" />
-								</CSSidebarList>
+								<CSSidebar width="30rem">
+									<CSListItem text="Product A" />
+									<CSListItem text="Product B" />
+									<CSListItem text="Product C" />
+								</CSSidebar>
 						},
 						{
 							variationName: ['100%'],
 							quickLink: '100%',
 							component:
-								<CSSidebarList width="100%">
-									<CSSidebarListItem text="Product A" />
-									<CSSidebarListItem text="Product B" />
-									<CSSidebarListItem text="Product C" />
-								</CSSidebarList>
+								<CSSidebar width="100%">
+									<CSListItem text="Product A" />
+									<CSListItem text="Product B" />
+									<CSListItem text="Product C" />
+								</CSSidebar>
 						}
 					]
 				}
@@ -183,7 +183,7 @@ class CSSidebarListPreview extends React.Component {
 				},
 				{
 					propertyName: 'height',
-					description: 'Sidebar list height'
+					description: 'Sidebar height'
 				},
 				{
 					propertyName: 'onClick',
@@ -195,7 +195,7 @@ class CSSidebarListPreview extends React.Component {
 				},
 				{
 					propertyName: 'width',
-					description: 'Sidebar list width'
+					description: 'Sidebar width'
 				}
 			],
 			accessibility: [
@@ -241,46 +241,8 @@ class CSSidebarListPreview extends React.Component {
 		return json;
 	}
 
-	getSidebarListItemDoc() {
-		const json = {
-			name: 'Sidebar List Item',
-			properties: [
-				{
-					propertyName: 'active',
-					description: 'Active state'
-				},
-				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'id',
-					description: 'Sidebar list item id value'
-				},
-				{
-					propertyName: 'onClick',
-					description: 'Logic for onClick event'
-				},
-				{
-					propertyName: 'text',
-					description: 'Text content for main toast message'
-				},
-				{
-					propertyName: 'toggleActive',
-					description: 'Toggle active state',
-					helperPropInComponents: [
-						'SidebarList'
-					]
-				}
-			]
-		};
-
-		return json;
-	}
-
 	render() {
-		const component = this.getSidebarListDoc();
-		const component2 = this.getSidebarListItemDoc();
+		const component = this.getDoc();
 
 		return (
 			<>
@@ -288,7 +250,7 @@ class CSSidebarListPreview extends React.Component {
 					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<CSAlert variant="warning" text="This component is under construction." />
 					<PreviewProperties name={component.name} examples={component.examples} />
-					<PreviewTable components={[component, component2]} />
+					<PreviewTable components={[component]} />
 					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
@@ -300,4 +262,4 @@ class CSSidebarListPreview extends React.Component {
 	}
 }
 
-export default CSSidebarListPreview;
+export default CSSidebarPreview;

@@ -2,7 +2,7 @@ import React, { CSSProperties } from 'react';
 import CSButton from './CSButton';
 import classNames from 'classnames';
 
-export interface CSSidebarListProps {
+export interface CSSidebarProps {
 	[key: string]: any;
 	className?: string;
 	closed?: boolean;
@@ -13,12 +13,12 @@ export interface CSSidebarListProps {
 	width?: string;
 }
 
-export interface CSSidebarListState {
+export interface CSSidebarState {
 	active: string;
 	closed: boolean;
 }
 
-class CSSidebarList extends React.Component<CSSidebarListProps, CSSidebarListState> {
+class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 	constructor(props: any) {
 		super(props);
 
@@ -70,12 +70,12 @@ class CSSidebarList extends React.Component<CSSidebarListProps, CSSidebarListSta
 		});
 
 		const style: CSSProperties = {
-			'--cs-sidebar-list-width': width,
-			'--cs-sidebar-list-height': height
+			'--cs-sidebar-width': width,
+			'--cs-sidebar-height': height
 		};
 
-		const sidebarListClasses = classNames(
-			'cs-sidebar-list',
+		const sidebarClasses = classNames(
+			'cs-sidebar',
 			{
 				[`${className}`]: className,
 				closed: this.state.closed
@@ -83,11 +83,11 @@ class CSSidebarList extends React.Component<CSSidebarListProps, CSSidebarListSta
 		);
 
 		return (
-			<nav className={sidebarListClasses} style={style} id={id} {...rest}>
-				<div className="cs-sidebar-list-item-top">
+			<nav className={sidebarClasses} style={style} id={id} {...rest}>
+				<div className="cs-sidebar-item-top">
 					{!fixed &&
 						<CSButton
-							className="cs-sidebar-list-close"
+							className="cs-sidebar-close"
 							onClick={this.onClose}
 							label="toggle sidebar"
 							iconName="assignment"
@@ -107,4 +107,4 @@ class CSSidebarList extends React.Component<CSSidebarListProps, CSSidebarListSta
 	}
 }
 
-export default CSSidebarList;
+export default CSSidebar;

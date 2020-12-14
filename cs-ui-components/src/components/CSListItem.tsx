@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-export interface CSSidebarListItemProps {
+export interface CSListItemProps {
 	[key: string]: any;
 	active?: string;
 	className?: string;
@@ -11,7 +11,7 @@ export interface CSSidebarListItemProps {
 	toggleActive?: (e: any) => void;
 }
 
-class CSSidebarListItem extends React.Component<CSSidebarListItemProps> {
+class CSListItem extends React.Component<CSListItemProps> {
 	onClickHandler = () => {
 		this.props.toggleActive(this.props.text);
 		if (this.props.onClick) {
@@ -52,4 +52,4 @@ class CSSidebarListItem extends React.Component<CSSidebarListItemProps> {
 	}
 }
 
-export default CSSidebarListItem;
+export default CSListItem;

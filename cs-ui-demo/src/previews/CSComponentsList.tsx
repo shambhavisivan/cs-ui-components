@@ -34,7 +34,8 @@ import CSButtonGroupPreview from './components/CSButtonGroupPreview';
 import CSImagePreview from './components/CSImagePreview';
 import CSLookupFieldPreview from './components/CSLookupFieldPreview';
 import CSSliderPreview from './components/CSSliderPreview';
-import CSSidebarListPreview from './components/CSSidebarListPreview';
+import CSSidebarPreview from './components/CSSidebarPreview';
+import CSListItemPreview from './components/CSListItemPreview';
 import CSFieldErrorMsgPreview from './components/CSFieldErrorMsgPreview';
 import CSSkipLinkPreview from './components/CSSkipLinkPreview';
 import CSGettingStarted from './CSGettingStarted';
@@ -126,6 +127,10 @@ class CSComponentsList extends React.Component {
 				component: CSLabelPreview
 			},
 			{
+				name: 'List Item',
+				component: CSListItemPreview
+			},
+			{
 				name: 'Lookup Field',
 				component: CSLookupFieldPreview
 			},
@@ -162,8 +167,8 @@ class CSComponentsList extends React.Component {
 				component: CSSelectPreview
 			},
 			{
-				name: 'Sidebar List',
-				component: CSSidebarListPreview
+				name: 'Sidebar',
+				component: CSSidebarPreview
 			},
 			{
 				name: 'Skip Link',

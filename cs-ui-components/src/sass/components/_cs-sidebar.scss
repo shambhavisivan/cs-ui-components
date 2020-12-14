@@ -1,11 +1,11 @@
-.cs-sidebar-list {
-	height: var(--cs-sidebar-list-height, 100vh);
+.cs-sidebar {
+	height: var(--cs-sidebar-height, 100vh);
 	overflow: auto;
 	position: relative;
-	width: var(--cs-sidebar-list-width, 18rem);
-	@include sbg(--cs-sidebar-list-bg);
+	width: var(--cs-sidebar-width, 18rem);
+	@include sbg(--cs-sidebar-bg);
 	@include css4 {
-		box-shadow: 0 2px 4px cvar(--cs-sidebar-list-shadow);
+		box-shadow: 0 2px 4px cvar(--cs-sidebar-shadow);
 	}
 
 	&.closed {
@@ -13,21 +13,22 @@
 	}
 
 	// Top
-	.cs-sidebar-list-item-top {
+	.cs-sidebar-item-top {
 		display: flex;
 		justify-content: flex-end;
 		padding: 0.75rem;
 	}
 
 	// Icon
-	> .cs-sidebar-list-close {
+	> .cs-sidebar-close {
 		position: absolute;
 		right: 0.75rem;
 		top: 0.75rem;
-		z-index: var(--z-index-sidebar-list-close);
+		z-index: var(--z-index-sidebar-close);
 	}
 
 	// List item
+	// CHECK after rework
 	ul > li {
 		padding: 0;
 		> button {
