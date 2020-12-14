@@ -62,7 +62,7 @@ class CSTab extends React.Component<CSTabProps> {
 
 		const getStatusIcon = () => {
 			switch (true) {
-				case (active):
+				case (active && !tooltipContent):
 					return 'record';
 				case (!!tabIcon):
 					return tabIcon;

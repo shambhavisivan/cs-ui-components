@@ -109,18 +109,20 @@
 		&.cs-tab-active {
 			@include sc(--cs-tab-active-c);
 			cursor: default;
-			.cs-tab::after {
-				height: 0.1875rem;
-				@include sbg(--cs-tab-active-br);
-			}
-			.cs-tab:disabled::after {
-				@include sbg(--cs-tab-disabled-c);
-			}
-			.cs-tab:hover::after {
-				@include sbg(--cs-tab-active-br);
-			}
-			.cs-icon {
-				@include sf(--cs-tab-active-br)
+			.cs-tab {
+				&::after {
+					height: 0.1875rem;
+					@include sbg(--cs-tab-active-br);
+				}
+				&:disabled::after {
+					@include sbg(--cs-tab-disabled-c);
+				}
+				&:hover::after {
+					@include sbg(--cs-tab-active-br);
+				}
+				> .cs-icon {
+					@include sf(--cs-tab-active-br)
+				}
 			}
 		}
 
