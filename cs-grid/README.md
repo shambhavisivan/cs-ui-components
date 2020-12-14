@@ -16,14 +16,13 @@ Besides the standard set of features you'd expect from any grid cs-grid includes
 
 Release Notes
 ------------------
+####1.2.47
+ * Update font icons & success/error icon ui
+ * Added props for grid row height
+ * Fix client and server buttons and change to CSButton component
 ####1.2.46
  * Exposed `headerClass` props of AgGrid's columnDefinition.
 ####1.2.45
-
-
-
-
-
  * Exposed `sizeColumnsToFit` props of AgGrid. Specific columns can be overridden by passing `suppressSizeToFit` to columnDefs.
 ####1.2.44
  * Fixed call to onChange when date is typed into input field.
