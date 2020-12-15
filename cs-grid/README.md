@@ -16,6 +16,8 @@ Besides the standard set of features you'd expect from any grid cs-grid includes
 
 Release Notes
 ------------------
+####1.2.48
+ * Exposed `cellClassRules` props of AgGrid's columnDefinition.
 ####1.2.47
  * Update font icons & success/error icon ui
  * Added props for grid row height
