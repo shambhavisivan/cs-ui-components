@@ -44,6 +44,7 @@
 	.cs-table-body {
 		overflow-y: auto;
 		flex: 1;
+		max-height: var(--cs-table-body-max-height, unset);
 
 		.cs-table-row {
 			display: flex;

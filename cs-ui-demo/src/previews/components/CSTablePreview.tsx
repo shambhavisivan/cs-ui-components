@@ -291,6 +291,78 @@ class CSTablePreview extends React.Component {
 					]
 				},
 				{
+					propName: 'maxHeight',
+					customText: '',
+					variations: [
+						{
+							variationName: ['10rem'],
+							component:
+								<CSTable>
+									<CSTableHeader>
+										<CSTableCell text="Header Item 1" />
+										<CSTableCell text="Header Item 2" />
+										<CSTableCell text="Header Item 3" />
+										<CSTableCell text="Button Column" />
+									</CSTableHeader>
+									<CSTableBody maxHeight="10rem">
+										<CSTableRow>
+											<CSTableCell text="Body Item 1" />
+											<CSTableCell text="Body Item 2" />
+											<CSTableCell text="Body Item 3" />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow >
+											<CSTableCell text="Second Row Item 1" />
+											<CSTableCell text="Second Row Item 2" />
+											<CSTableCell text="Second Row Item 3" />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow>
+											<CSTableCell text="Second Row Item 1" />
+											<CSTableCell text="Second Row Item 2" />
+											<CSTableCell text="Second Row Item 3" />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow>
+											<CSTableCell text="Second Row Item 1" />
+											<CSTableCell text="Second Row Item 2" />
+											<CSTableCell text="Second Row Item 3" />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					customText: '',
 					variations: [
@@ -612,6 +684,10 @@ class CSTablePreview extends React.Component {
 				{
 					propertyName: 'id',
 					description: 'Table body id value'
+				},
+				{
+					propertyName: 'maxHeight',
+					description: 'Table body max height'
 				}
 			]
 		};
