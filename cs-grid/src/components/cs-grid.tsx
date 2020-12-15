@@ -969,6 +969,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			this.addIfDefined(agGridColDef, 'colId', columnDef.name);
 			this.addIfDefined(agGridColDef, 'filter', columnDef.hasFilter);
 			this.addIfDefined(agGridColDef, 'suppressSizeToFit', columnDef.suppressSizeToFit);
+			this.addIfDefined(agGridColDef, 'cellClassRules', columnDef.cellClassRules);
 
 			if (this.props.multiSelect) {
 				this.addIfDefined(

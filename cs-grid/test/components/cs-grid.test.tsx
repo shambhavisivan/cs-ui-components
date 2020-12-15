@@ -1061,6 +1061,31 @@ describe('rowdata Related', () => {
 		expect(agGridColDef[0]['suppressSizeToFit']).toEqual(true);
 	});
 
+	test('cellClassRules when assigned to columndefs should mapped to aggridcolumnDef', () => {
+		const dataSourceAPI: DataSourceAPI = {
+			isLastPage: jest.fn(),
+			onBtNext: jest.fn(),
+			onBtPrevious: jest.fn(),
+			onContextChange: jest.fn()
+		};
+		const baseProps = {...csGridBaseProps};
+
+		const cellClassRules = {
+			'my-custom-class': jest.fn(),
+		};
+
+		baseProps.columnDefs = [{ cellClassRules } as any,...baseProps.columnDefs]
+
+		const gridProps = {
+			...baseProps,
+			dataSourceAPI,
+			singleClickEdit: false,
+		};
+		const csGridShallow = shallow<CSGrid>(<CSGrid {...gridProps} />);
+		const agGridColDef:any = csGridShallow.find(AgGridReact).props().columnDefs;
+		expect(agGridColDef[0].cellClassRules).toEqual(cellClassRules);
+	});
+
 	test('updateDataSource should throw error when no datasourceAPI is given', () => {
 		const gridProps = {
 			...csGridBaseProps,

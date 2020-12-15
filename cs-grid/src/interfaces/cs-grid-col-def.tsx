@@ -1,3 +1,4 @@
+import { CellClassParams } from 'ag-grid-community';
 import {
 	RowValidationValues,
 	ValidationStatus
@@ -144,6 +145,11 @@ interface BaseColDef<T> extends BaseProps<T> {
 
 		/** The name to render in the column header */
 		label?: string;
+	};
+
+	/** Rules for applying css classes */
+	cellClassRules?: {
+		[cssClassName: string]: (params: CellClassParams) => boolean | string;
 	};
 
 	/** If true, the header checkbox selection will work on filtered items */
