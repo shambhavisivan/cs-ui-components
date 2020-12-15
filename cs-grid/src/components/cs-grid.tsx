@@ -971,6 +971,12 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			this.addIfDefined(agGridColDef, 'suppressSizeToFit', columnDef.suppressSizeToFit);
 			this.addIfDefined(agGridColDef, 'cellClassRules', columnDef.cellClassRules);
 
+			if (columnDef.getQuickFilterText) {
+				agGridColDef.getQuickFilterText = ({ value }) => {
+					return columnDef.getQuickFilterText(value);
+				};
+			}
+
 			if (this.props.multiSelect) {
 				this.addIfDefined(
 					agGridColDef,

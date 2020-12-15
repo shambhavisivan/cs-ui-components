@@ -72,6 +72,47 @@ describe('csgrid', () => {
 		});
 	});
 
+	describe('getQuickFilterText', () => {
+		test('getQuickFilterText should be empty when not present in column definition', () => {
+			const csGridShallow = shallow(<CSGrid {...baseProps} />);
+
+			expect(
+				csGridShallow
+					.find(AgGridReact)
+					.props()
+					.columnDefs.map((d: any) => d.getQuickFilterText !== undefined)
+			).toEqual([false, false]);
+		});
+
+		test('getQuickFilterText should be set when not present in column definition', () => {
+			const customProps: CSGridProps = JSON.parse(JSON.stringify(baseProps));
+			const testFn = jest.fn(() => 'test');
+			customProps.columnDefs[0].getQuickFilterText = testFn;
+
+			const csGridShallow = shallow(<CSGrid {...customProps} />);
+
+			expect(
+				csGridShallow
+					.find(AgGridReact)
+					.props()
+					.columnDefs.map((d: any) => d.getQuickFilterText !== undefined)
+			).toEqual([true, false]);
+		});
+
+		test('getQuickFilterText should pass value to function in column definition', () => {
+			const customProps: CSGridProps = JSON.parse(JSON.stringify(baseProps));
+			const testFn = jest.fn(() => 'test');
+			customProps.columnDefs[0].getQuickFilterText = testFn;
+
+			const csGridShallow = shallow(<CSGrid {...customProps} />);
+			const agGridFn = (csGridShallow.find(AgGridReact).props().columnDefs[0] as any)
+				.getQuickFilterText;
+			const result = agGridFn({ value: 'testinput' });
+			expect(result).toBe('test');
+			expect(testFn).toHaveBeenCalledWith('testinput');
+		});
+	});
+
 	describe('onCellValueChanged', () => {
 		const csgrid: any = shallow(<CSGrid {...baseProps} />).instance();
 
@@ -991,12 +1032,12 @@ describe('rowdata Related', () => {
 		const gridProps = {
 			...csGridBaseProps,
 			dataSourceAPI,
-			singleClickEdit: false,
+			singleClickEdit: false
 		};
 		const event: GridReadyEvent = {
 			api: {
 				setDatasource: jest.fn(),
-				sizeColumnsToFit: jest.fn(),
+				sizeColumnsToFit: jest.fn()
 			} as any,
 			columnApi: undefined,
 			type: undefined
@@ -1018,12 +1059,12 @@ describe('rowdata Related', () => {
 			...csGridBaseProps,
 			dataSourceAPI,
 			singleClickEdit: false,
-			sizeColumnsToFit: true,
+			sizeColumnsToFit: true
 		};
 		const event: GridReadyEvent = {
 			api: {
 				setDatasource: jest.fn(),
-				sizeColumnsToFit: jest.fn(),
+				sizeColumnsToFit: jest.fn()
 			} as any,
 			columnApi: undefined,
 			type: undefined
@@ -1047,18 +1088,18 @@ describe('rowdata Related', () => {
 			onBtPrevious: jest.fn(),
 			onContextChange: jest.fn()
 		};
-		const baseProps = {...csGridBaseProps};
-		baseProps.columnDefs = [{suppressSizeToFit: true} as any,...baseProps.columnDefs]
+		const baseProps = { ...csGridBaseProps };
+		baseProps.columnDefs = [{ suppressSizeToFit: true } as any, ...baseProps.columnDefs];
 
 		const gridProps = {
 			...baseProps,
 			dataSourceAPI,
 			singleClickEdit: false,
-			sizeColumnsToFit: true,
+			sizeColumnsToFit: true
 		};
 		const csGridShallow = shallow<CSGrid>(<CSGrid {...gridProps} />);
-		const agGridColDef:any = csGridShallow.find(AgGridReact).props().columnDefs;
-		expect(agGridColDef[0]['suppressSizeToFit']).toEqual(true);
+		const agGridColDef: any = csGridShallow.find(AgGridReact).props().columnDefs;
+		expect(agGridColDef[0].suppressSizeToFit).toEqual(true);
 	});
 
 	test('cellClassRules when assigned to columndefs should mapped to aggridcolumnDef', () => {
@@ -1068,21 +1109,21 @@ describe('rowdata Related', () => {
 			onBtPrevious: jest.fn(),
 			onContextChange: jest.fn()
 		};
-		const baseProps = {...csGridBaseProps};
+		const baseProps = { ...csGridBaseProps };
 
 		const cellClassRules = {
-			'my-custom-class': jest.fn(),
+			'my-custom-class': jest.fn()
 		};
 
-		baseProps.columnDefs = [{ cellClassRules } as any,...baseProps.columnDefs]
+		baseProps.columnDefs = [{ cellClassRules } as any, ...baseProps.columnDefs];
 
 		const gridProps = {
 			...baseProps,
 			dataSourceAPI,
-			singleClickEdit: false,
+			singleClickEdit: false
 		};
 		const csGridShallow = shallow<CSGrid>(<CSGrid {...gridProps} />);
-		const agGridColDef:any = csGridShallow.find(AgGridReact).props().columnDefs;
+		const agGridColDef: any = csGridShallow.find(AgGridReact).props().columnDefs;
 		expect(agGridColDef[0].cellClassRules).toEqual(cellClassRules);
 	});
 

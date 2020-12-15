@@ -192,4 +192,6 @@ interface BaseColDef<T> extends BaseProps<T> {
 	sort?: CSGridSortDirection;
 	/** If you don't want a particular column to be included in the auto resize */
 	suppressSizeToFit?: boolean;
+	/** If quick filter text needs to be overridden */
+	getQuickFilterText?: (value: any) => string;
 }
