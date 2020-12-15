@@ -118,6 +118,10 @@ class CSTooltipPreview extends React.Component {
 				},
 				{
 					propName: 'position',
+					alert: {
+						variant: 'info',
+						text: 'The provided position will be overridden if the tooltip is outside of viewport. This auto-position functionality is only working with stylePosition fixed for now!'
+					},
 					variations: [
 						{
 							variationName: ['top-right'],
