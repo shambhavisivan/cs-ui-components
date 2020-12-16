@@ -463,12 +463,12 @@ export class App extends React.Component<object, AppState> {
 						delay: 300
 					};
 				},
-				editable: () => false,
+				editable: () => true,
 				header: {
 					label: 'Boolean Column'
 				},
 				name: 'exampleBoolean',
-				readonly: () => true,
+				readonly: () => false,
 				userInfo
 			},
 			{

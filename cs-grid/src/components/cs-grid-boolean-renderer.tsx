@@ -92,6 +92,7 @@ export class CSGridBooleanRenderer extends CSGridBaseRenderer<boolean>
 			}
 
 			this.props.setValue(value);
+			this.setState({ value });
 		} else {
 			this.forceUpdate();
 		}
