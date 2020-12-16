@@ -35,7 +35,7 @@ import CSImagePreview from './components/CSImagePreview';
 import CSLookupFieldPreview from './components/CSLookupFieldPreview';
 import CSSliderPreview from './components/CSSliderPreview';
 import CSSidebarPreview from './components/CSSidebarPreview';
-import CSListItemPreview from './components/CSListItemPreview';
+import CSListPreview from './components/CSListPreview';
 import CSFieldErrorMsgPreview from './components/CSFieldErrorMsgPreview';
 import CSSkipLinkPreview from './components/CSSkipLinkPreview';
 import CSGettingStarted from './CSGettingStarted';
@@ -127,8 +127,8 @@ class CSComponentsList extends React.Component {
 				component: CSLabelPreview
 			},
 			{
-				name: 'List Item',
-				component: CSListItemPreview
+				name: 'List',
+				component: CSListPreview
 			},
 			{
 				name: 'Lookup Field',

@@ -1,4 +1,8 @@
-li {
+/* CS LIST */
+
+/* LIST ITEM */
+li.cs-list-item-wrapper {
+	padding: 0;
 	list-style-type: none;
 	button {
 		background: none;
@@ -10,20 +14,20 @@ li {
 		padding: 0.5rem 1rem;
 		position: relative;
 		user-select: none;
-		@include sc(--cs-sidebar-list-item-c);
+		@include sc(--cs-list-item-c);
 
 		&:hover, {
-			@include sbg(--cs-sidebar-list-item-hover-bg);
+			@include sbg(--cs-list-item-hover-bg);
 		}
 
 		&:focus {
 			outline: 0;
-			@include sbg(--cs-sidebar-list-item-focus-bg);
+			@include sbg(--cs-list-item-focus-bg);
 		}
 
 		&.active {
 			font-weight: $font-weight-bold;
-			@include sbg(--cs-sidebar-list-item-active-bg);
+			@include sbg(--cs-list-item-active-bg);
 
 			&::after {
 				content: "";
@@ -32,7 +36,7 @@ li {
 				position: absolute;
 				top: 0;
 				width: 4px;
-				@include sbg(--cs-sidebar-list-item-active-br);
+				@include sbg(--cs-list-item-active-br);
 			}
 		}
 	}

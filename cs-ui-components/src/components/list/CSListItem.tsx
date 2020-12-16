@@ -29,17 +29,18 @@ class CSListItem extends React.Component<CSListItemProps> {
 			...rest
 		} = this.props;
 
-		const sidebarListClasses = classNames(
-			'cs-sidebar-list-item',
+		const listItemClasses = classNames(
+			'cs-list-item',
 			{
 				[`${className}`]: className,
 				active: active === text
 			}
 		);
+
 		return (
-			<li role="none" {...rest}>
+			<li className="cs-list-item-wrapper" role="none" {...rest}>
 				<button
-					className={sidebarListClasses}
+					className={listItemClasses}
 					onClick={this.onClickHandler}
 					id={id}
 					role="menuitemradio"

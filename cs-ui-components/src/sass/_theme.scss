@@ -427,11 +427,11 @@ $variables: (
 	--cs-sidebar-shadow: rgba(000, 000, 000, 0.2),
 	--cs-sidebar-bg: $cs-white,
 
-	--cs-sidebar-list-item-c: $cs-gray-dark-2,
-	--cs-sidebar-list-item-hover-bg: $cs-gray-light-7,
-	--cs-sidebar-list-item-focus-bg: $cs-gray-light-5,
-	--cs-sidebar-list-item-active-bg: $cs-blue-light-1,
-	--cs-sidebar-list-item-active-br: $cs-blue-sf,
+	--cs-list-item-c: $cs-gray-dark-2,
+	--cs-list-item-hover-bg: $cs-gray-light-7,
+	--cs-list-item-focus-bg: $cs-gray-light-5,
+	--cs-list-item-active-bg: $cs-blue-light-1,
+	--cs-list-item-active-br: $cs-blue-sf,
 );
 
 // This will be used later for dark theme support
