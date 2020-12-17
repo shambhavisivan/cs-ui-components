@@ -523,7 +523,6 @@
 }
 
 .ag-popup-editor .ag-row-selected {
-	@include sbg(--csgrid-main);
 	@include sc(--csgrid-secondary);
 }
 

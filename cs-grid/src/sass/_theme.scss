@@ -81,6 +81,10 @@ $variables: (
 	--csgrid-row-cell-bg: $cs-white,
 	--csgrid-row-cell-success-icon-bg: $cs-green-medium-1,
 
+	--csgrid-row-lookup-cell-hover-bg: $cs-gray-light-7 !important,
+	--csgrid-row-lookup-cell-hover-c: $cs-black !important,
+	--csgrid-row-lookup-selected-bg: $cs-blue-light-1 !important,
+
 	--csgrid-header-row-c: $cs-gray-dark-4,
 	--csgrid-header-row-bg: $cs-gray-light-7,
 	--csgrid-header-cell-bg: $cs-gray-light-7,

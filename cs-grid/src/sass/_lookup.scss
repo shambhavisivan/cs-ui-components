@@ -72,12 +72,28 @@
 		border: none;
 		border-top: 1px solid cvar(--csgrid-row-br);
 
-		.ag-row .ag-cell {
-			display: block;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			white-space: nowrap;
-			max-width: 100%;
+		.ag-row {
+			&:hover {
+				@include sbg(--csgrid-row-lookup-cell-hover-bg);
+
+				.ag-cell {
+					background: transparent !important;
+				}
+			}
+
+			&.ag-row-selected .ag-cell {
+				@include sc(--csgrid-row-lookup-cell-hover-c);
+				@include sbg(--csgrid-row-lookup-selected-bg);
+			}
+
+			/* CELL */
+			.ag-cell {
+				display: block;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				max-width: 100%;
+			}
 		}
 	}
 }
