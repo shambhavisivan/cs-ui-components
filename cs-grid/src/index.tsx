@@ -788,8 +788,12 @@ export class App extends React.Component<object, AppState> {
 				flashOnCellValueChange: true,
 				getIcons: (guid: string) => {
 					return {
+						warning: { iconName: 'warning', color: 'orange' },
+						green: { iconName: 'close', color: 'green' },
+						red: { iconName: 'close', color: 'red' },
+						yellow: { iconName: 'close', color: 'yellow' },
 						breadcrumbs: { iconName: 'breadcrumbs', color: 'pink' },
-						green: (
+						green2: (
 							<span
 								style={{
 									backgroundColor: '#5bb85c',
@@ -800,7 +804,7 @@ export class App extends React.Component<object, AppState> {
 								}}
 							/>
 						),
-						red: (
+						red2: (
 							<span
 								style={{
 									backgroundColor: '#c23934',
@@ -811,7 +815,7 @@ export class App extends React.Component<object, AppState> {
 								}}
 							/>
 						),
-						yellow: (
+						yellow2: (
 							<span
 								style={{
 									backgroundColor: '#ffb75d',
@@ -822,6 +826,12 @@ export class App extends React.Component<object, AppState> {
 								}}
 							/>
 						)
+					};
+				},
+				getTooltip: (guid: string) => {
+					return {
+						content: ['example tooltip', 'Line two'],
+						delay: 300
 					};
 				},
 				header: {
