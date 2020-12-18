@@ -51,7 +51,15 @@ export class CSGridIconRenderer extends CSGridBaseRenderer<
 		return (
 			<span className={this.isReadOnly() ? 'read-only-cell' : ''}>
 				{tooltip ? (
-					<CSTooltip content={tooltip.content} delayTooltip={tooltip.delay}>
+					<CSTooltip
+						content={tooltip.content}
+						delayTooltip={tooltip.delay}
+						variant={tooltip.variant ? tooltip.variant : this.state.value.errorMessage ? 'error' : 'info'}
+						position={tooltip.position}
+						height={tooltip.height}
+						width={tooltip.width}
+						padding={tooltip.padding}
+					>
 						{contents}
 					</CSTooltip>
 				) : (

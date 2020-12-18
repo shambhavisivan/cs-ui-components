@@ -54,7 +54,15 @@ export class CSGridBooleanRenderer extends CSGridBaseRenderer<boolean>
 		return (
 			<span className={readOnly ? 'read-only-cell' : ''}>
 				{tooltip ? (
-					<CSTooltip content={tooltip.content} delayTooltip={tooltip.delay}>
+					<CSTooltip
+						content={tooltip.content}
+						delayTooltip={tooltip.delay}
+						variant={tooltip.variant ? tooltip.variant : this.state.value.errorMessage ? 'error' : 'info'}
+						position={tooltip.position}
+						height={tooltip.height}
+						width={tooltip.width}
+						padding={tooltip.padding}
+					>
 						{contents}
 					</CSTooltip>
 				) : (

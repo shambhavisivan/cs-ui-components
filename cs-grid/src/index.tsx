@@ -1,5 +1,5 @@
 'use strict';
-import { CSButton, CSButtonGroup } from '@cloudsense/cs-ui-components';
+import {CSButton, CSButtonGroup, CSChip} from '@cloudsense/cs-ui-components';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -408,8 +408,12 @@ export class App extends React.Component<object, AppState> {
 				flashOnCellValueChange: true,
 				getTooltip: (guid: string) => {
 					return {
-						content: ['example tooltip', 'Line two'],
-						delay: 300
+						content: <CSChip text="Long text example to demonstrate auto height and width of tooltip "/>,
+						delay: 300,
+						variant: 'basic',
+						height: 'auto',
+						width: 'auto',
+						position: 'bottom-left',
 					};
 				},
 				header: {

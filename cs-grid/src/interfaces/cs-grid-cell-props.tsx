@@ -2,6 +2,7 @@ import { ColDef, Column, ColumnApi, RowNode } from 'ag-grid-community';
 import { CSGridLookupSearchResult } from '../components/cs-grid-lookup-editor';
 import { CellData, GridApi, IsColumnFunc } from './cs-grid-base-interfaces';
 import { UserInfo } from './user-info';
+import {CSTooltipIconSize, CSTooltipPosition, CSTooltipVariant} from "@cloudsense/cs-ui-components";
 
 export interface CSGridCellEditorProps<T> extends CSGridCellProps<T> {
 	value: CellData<T>;
@@ -123,6 +124,11 @@ export interface BaseProps<T> {
 	): {
 		content: string | Array<string> | JSX.Element;
 		delay: number;
+		variant?: CSTooltipVariant;
+		position?: CSTooltipPosition;
+		height?: string;
+		width?: string;
+		padding?: string;
 	};
 	onChange?(rowNodeId: string, oldValue: T, newValue: T): Promise<CellData<T>>;
 }
