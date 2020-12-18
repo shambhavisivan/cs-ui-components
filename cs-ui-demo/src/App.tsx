@@ -10,6 +10,7 @@ import ReleaseNotes from './previews/ReleaseNotes';
 import Accessibility from './previews/Accessibility';
 
 import { CSImage, CSChip } from '@cloudsense/cs-ui-components';
+import { version } from '../node_modules/@cloudsense/cs-ui-components/package.json';
 
 class App extends React.Component {
 
@@ -38,7 +39,7 @@ class App extends React.Component {
 								</li>
 							</ul>
 							<div className="app-main-header-right">
-								<CSChip text="latest published version: 1.0.0-alpha.156" />
+								<CSChip text={'latest published version: ' + version} />
 								<CSImage type="logo" height="2.25rem" />
 							</div>
 						</div>
