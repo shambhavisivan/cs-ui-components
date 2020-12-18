@@ -299,7 +299,7 @@
 		display: flex;
 	}
 
-	.cs-icon {
+	.cs-tooltip-icon {
 		cursor: pointer;
 
 		&.cs-icon-small {
@@ -314,59 +314,59 @@
 	}
 
 	&.cs-tw-info {
-		.cs-icon {
+		.cs-tooltip-icon {
 			@include sf(--cs-tooltip-icon-info);
 		}
-		&:hover .cs-icon,
-		&:focus .cs-icon {
+		&:hover .cs-tooltip-icon,
+		&:focus .cs-tooltip-icon {
 			@include sf(--cs-tooltip-info-hover-c);
 		}
 	}
 
 	&.cs-tw-warning {
-		.cs-icon {
+		.cs-tooltip-icon {
 			@include sf(--cs-tooltip-warning-bg);
 		}
-		&:hover .cs-icon,
-		&:focus .cs-icon {
+		&:hover .cs-tooltip-icon,
+		&:focus .cs-tooltip-icon {
 			@include fd(var(--cs-tooltip-warning-bg), 0.3);
 		}
 	}
 
 	&.cs-tw-error {
-		.cs-icon {
+		.cs-tooltip-icon {
 			@include sf(--cs-tooltip-error-bg);
 		}
-		&:hover .cs-icon,
-		&:focus .cs-icon {
+		&:hover .cs-tooltip-icon,
+		&:focus .cs-tooltip-icon {
 			@include fd(var(--cs-tooltip-error-bg), 0.3);
 		}
 	}
 	&.cs-tw-success {
-		.cs-icon {
+		.cs-tooltip-icon {
 			@include sf(--cs-tooltip-success-bg);
 		}
-		&:hover .cs-icon,
-		&:focus .cs-icon {
+		&:hover .cs-tooltip-icon,
+		&:focus .cs-tooltip-icon {
 			@include fd(var(--cs-tooltip-sucess-bg), 0.3);
 		}
 	}
 	&.cs-tw-basic {
-		.cs-icon {
+		.cs-tooltip-icon {
 			@include sf(--cs-tooltip-basic-fill);
 		}
-		&:hover .cs-icon,
-		&:focus .cs-icon {
+		&:hover .cs-tooltip-icon,
+		&:focus .cs-tooltip-icon {
 			@include fd(--cs-tooltip-basic-fill, 0.5);
 		}
 	}
 
 	&.cs-tw-icon-c {
-		.cs-icon {
+		.cs-tooltip-icon {
 			@include sf(--cs-icon-c);
 		}
-		&:hover .cs-icon,
-		&:focus .cs-icon {
+		&:hover .cs-tooltip-icon,
+		&:focus .cs-tooltip-icon {
 			@include fd((--cs-icon-c), 0.3);
 		}
 	}

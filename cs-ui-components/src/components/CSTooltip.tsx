@@ -162,7 +162,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 						<CSIcon
 							color={iconColor}
 							name={tooltipIconName()}
-							className={'cs-icon-' + iconSize}
+							className={'cs-tooltip-icon ' + 'cs-icon-' + iconSize}
 						/>
 					)}
 				{!this.state.hidden && (
