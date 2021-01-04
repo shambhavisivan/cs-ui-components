@@ -392,7 +392,7 @@
 			background: transparent;
 			&:not(.cs-grid_custom-class):not(.ag-cell-data-changed)  {
 				z-index: 10;
-				@include sbg(--csgrid-row-cell-bg);
+				@include sbg(--csgrid-transparent);
 			}
 
 			.ag-react-container {
