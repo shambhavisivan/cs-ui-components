@@ -49,6 +49,7 @@ class CSModal extends React.Component<CSModalProps> {
 
 	handleFocusChange = (event: any) => {
 		if (event.key === this.tabKey) {
+			this.getFirstLastModalElement();
 			const { activeElement } = document;
 			if (this.props.loading) {
 				event.preventDefault();
@@ -74,9 +75,16 @@ class CSModal extends React.Component<CSModalProps> {
 		this.props.onClose(e);
 	}
 
-	getFirstLastModalElement(focusable: any) {
+	getFocusableElements() {
+		return this.modalRef.querySelectorAll('button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+	}
+
+	getFirstLastModalElement() {
+		const focusable = this.getFocusableElements();
 		if (focusable.length > 0) {
-			const lastFocusable = focusable[focusable.length - 1];
+			const lastFocusable = (focusable[focusable.length - 1] as HTMLElement).hasAttribute('disabled') ?
+				focusable[focusable.length - 2] :
+				focusable[focusable.length - 1];
 			this.firstElement = this.props.closeButton ? this.modalCloseBtnRef : focusable[0] as HTMLElement;
 			this.lastElement = lastFocusable as HTMLElement;
 		} else {
@@ -94,8 +102,8 @@ class CSModal extends React.Component<CSModalProps> {
 	}
 
 	componentDidMount() {
-		const focusable = this.modalRef.querySelectorAll('button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-		this.getFirstLastModalElement(focusable);
+		const focusable = this.getFocusableElements();
+		this.getFirstLastModalElement();
 		if (this.props.loading && !this.props.closeButton && focusable.length > 0) {
 			this.firstElement = this.modalRef;
 		}
