@@ -20,6 +20,10 @@
 			font-size: 0.875rem;
 			margin-bottom: 0.25rem;
 			@include sc(--cs-radio-label-c);
+
+			&-read-only {
+				cursor: default;
+			}
 		}
 
 		&.cs-radio-disabled .cs-radio-label {
@@ -96,6 +100,23 @@
 					box-shadow: none;
 				}
 			}
+
+			// Read-only
+			&-read-only {
+				+ .cs-radio-faux {
+					cursor: default;
+					@include sbg(--cs-radio-disabled-bg);
+				}
+				&:hover + .cs-radio-faux,
+				&:focus + .cs-radio-faux {
+					box-shadow: none;
+				}
+				&:active + .cs-radio-faux {
+					@include css4 {
+						border: 1px solid cvar(--cs-radio-br);
+					}
+				}
+			}
 		}
 
 		// Error
@@ -130,11 +151,17 @@
 		}
 
 		// Brand
-		&.cs-radio-brand .cs-radio:checked + .cs-radio-faux {
-			@include sbg(--cs-radio-bg-brand);
+		&.cs-radio-brand .cs-radio {
+			&:checked + .cs-radio-faux {
+				@include sbg(--cs-radio-bg-brand);
 
-			&::after {
-				@include sbg(--cs-radio-bg-inner-brand);
+				&::after {
+					@include sbg(--cs-radio-bg-inner-brand);
+				}
+			}
+			// Read-only + brand
+			&-read-only:checked + .cs-radio-faux::after {
+				@include sbg(--cs-radio-disabled-bg);
 			}
 		}
 	}

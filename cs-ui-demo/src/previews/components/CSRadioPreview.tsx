@@ -119,6 +119,24 @@ class CSRadioPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'checked',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSRadio
+									required
+									label="This is a label"
+								>
+									<CSRadioOption name="country" label="England" checked />
+									<CSRadioOption name="country" label="Croatia" />
+								</CSRadio>
+						}
+					]
+				},
+				{
 					propName: 'required',
 					variations: [
 						{
@@ -148,6 +166,21 @@ class CSRadioPreview extends React.Component {
 								>
 									<CSRadioOption name="drink" label="Cola" disabled />
 									<CSRadioOption name="drink" label="Pepsi" disabled />
+								</CSRadio>
+						}
+					]
+				},
+				{
+					propName: 'readOnly',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSRadio label="This is a label">
+									<CSRadioOption name="drink" label="Cola" readOnly checked />
+									<CSRadioOption name="drink" label="Pepsi" readOnly />
 								</CSRadio>
 						}
 					]
@@ -264,8 +297,7 @@ class CSRadioPreview extends React.Component {
 			properties: [
 				{
 					propertyName: 'className',
-					description: 'For implementing custom class to component',
-					options: []
+					description: 'For implementing custom class to component'
 				},
 				{
 					propertyName: 'disabled',
@@ -289,8 +321,7 @@ class CSRadioPreview extends React.Component {
 				},
 				{
 					propertyName: 'helptext',
-					description: 'Radio help text for tooltip display',
-					options: []
+					description: 'Radio help text for tooltip display'
 				},
 				{
 					propertyName: 'id',
@@ -299,8 +330,7 @@ class CSRadioPreview extends React.Component {
 
 				{
 					propertyName: 'label',
-					description: 'Radio label to display',
-					options: []
+					description: 'Radio label to display'
 				},
 				{
 					propertyName: 'labelHidden',
@@ -401,6 +431,14 @@ class CSRadioPreview extends React.Component {
 			usage: 'Individual radio options.',
 			properties: [
 				{
+					propertyName: 'checked',
+					description: 'Logic for checked state',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
 					propertyName: 'className',
 					description: 'For implementing custom class to component'
 				},
@@ -427,6 +465,14 @@ class CSRadioPreview extends React.Component {
 				{
 					propertyName: 'onChange',
 					description: 'Logic for onChange event'
+				},
+				{
+					propertyName: 'readOnly',
+					description: 'Logic for readOnly state',
+					options: [
+						'false',
+						'true'
+					]
 				},
 				{
 					propertyName: 'title',
