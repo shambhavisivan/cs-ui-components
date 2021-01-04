@@ -435,6 +435,13 @@ $variables: (
 	--cs-list-item-focus-bg: $cs-gray-light-5,
 	--cs-list-item-active-bg: $cs-blue-light-1,
 	--cs-list-item-active-br: $cs-blue-sf,
+
+	--cs-transfer-list-br: $cs-gray-medium-3,
+	--cs-transfer-list-header-br: $cs-gray-light-2,
+	--cs-tranfer-li-selected-bg: $cs-blue-light-1,
+	--cs-tranfer-li-box: $cs-blue-sf,
+	--cs-tranfer-li-disabled-c: $cs-gray-medium-3,
+	--cs-transfer-list-no-data-c: $cs-gray-medium-2
 );
 
 // This will be used later for dark theme support

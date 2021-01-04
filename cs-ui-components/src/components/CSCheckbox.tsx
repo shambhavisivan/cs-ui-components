@@ -24,6 +24,7 @@ export interface CSCheckboxProps {
 	name?: string;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => any;
 	onClick?: (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
+	onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => any;
 	required?: boolean;
 	title?: string;
 	tooltipPosition?: CSTooltipPosition;
@@ -88,6 +89,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 			name,
 			onChange,
 			onClick,
+			onKeyDown,
 			required,
 			title,
 			tooltipPosition,
@@ -140,6 +142,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 							name={name}
 							aria-required={required}
 							aria-invalid={error}
+							onKeyDown={onKeyDown}
 							{...rest}
 						/>
 						<span className={checkboxFauxClasses} title={title} />

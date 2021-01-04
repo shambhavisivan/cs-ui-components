@@ -11,6 +11,7 @@ import { CSCheckbox } from '@cloudsense/cs-ui-components';
 class CSCheckboxPreview extends React.Component {
 	handleChange = () => alert('Checkbox has been toggled.');
 	handleClick = () => alert('Checkbox has been clicked.');
+	handleOnKeyDown = () => alert('Key has been pressed.');
 
 	getDoc() {
 		const json = {
@@ -277,6 +278,18 @@ class CSCheckboxPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'onKeyDown',
+					variations: [
+						{
+							component:
+								<CSCheckbox
+									label="This is a label"
+									onClick={this.handleOnKeyDown}
+								/>
+						}
+					]
+				},
+				{
 					propName: 'title',
 					variations: [
 						{
@@ -370,6 +383,10 @@ class CSCheckboxPreview extends React.Component {
 				{
 					propertyName: 'onClick',
 					description: 'Logic for onClick event'
+				},
+				{
+					propertyName: 'onKeyDown',
+					description: 'Logic for onKeyDown event'
 				},
 				{
 					propertyName: 'required',

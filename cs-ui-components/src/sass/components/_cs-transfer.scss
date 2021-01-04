@@ -1,0 +1,106 @@
+.cs-transfer-wrapper {
+	display: flex;
+	align-items: center;
+	.cs-transfer-list-wrapper {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		.cs-transfer-list-group {
+			display: flex;
+			flex-direction: column;
+			min-width: 10rem;
+			height: 15rem;
+			border-radius: 0.25rem;
+			@include css4 {
+				border: 1px solid cvar(--cs-transfer-list-br);
+			}
+			.cs-transfer-list-header {
+				display: flex;
+				align-items: center;
+				padding: 0.5rem;
+				@include css4 {
+					border-bottom: 1px solid cvar(--cs-transfer-list-header-br);
+				}
+				.cs-input-search-wrapper {
+					flex: 1;
+					&:not(:only-child) {
+						margin-left: 0.5rem;
+					}
+				}
+			}
+			.cs-transfer-list {
+				display: flex;
+				flex-direction: column;
+				overflow: auto;
+				height: 100%;
+				padding: 0.25rem 0;
+				.cs-transfer-li {
+					display: flex;
+					align-items: center;
+					padding: 0.25rem 0.5rem;
+					border: none;
+					width: 100%;
+					@include sbg(--cs-white);
+					&-title {
+						font-size: 0.875rem;
+						&:not(:only-child) {
+							margin-left: 0.5rem;
+						}
+					}
+					&-selected {
+						@include sbg(--cs-tranfer-li-selected-bg);
+					}
+					&-simple {
+						cursor: pointer;
+					}
+					&-disabled {
+						@include sc(--cs-tranfer-li-disabled-c);
+						pointer-events: none;
+					}
+					&:focus {
+						outline: none;
+						@include css4 {
+							box-shadow: 0 0 3px cvar(--cs-tranfer-li-box);
+						}
+					}
+					&.cs-transfer-li-one-way {
+						justify-content: space-between;
+						cursor: default;
+						.cs-transfer-li-title {
+							margin-left: 0;
+						}
+					}
+					&-check-list {
+						padding: 0;
+						.cs-transfer-li-label {
+							display: flex;
+							align-items: center;
+							flex: 1;
+							cursor: pointer;
+							padding: 0.25rem 0.5rem;
+						}
+					}
+				}
+				.cs-transfer-list-no-data {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+					height: 100%;
+				}
+				.cs-transfer-list-no-data-text {
+					@include sc(--cs-transfer-list-no-data-c);
+					margin-top: 0.5rem
+				}
+			}
+		}
+	}
+	.cs-transfer-actions {
+		display: flex;
+		flex-direction: column;
+		margin: 0 0.75rem;
+		.cs-btn:last-child:not(:only-child) {
+			margin-top: 0.25rem;
+		}
+	}
+}

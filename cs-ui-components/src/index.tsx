@@ -79,6 +79,9 @@ import CSTextarea, { CSTextareaBorderType } from './components/CSTextarea';
 import CSToast, { CSToastVariant } from './components/CSToast';
 import CSToggle, { CSToggleLabelPosition } from './components/CSToggle';
 import CSTooltip, { CSTooltipIconSize, CSTooltipPosition, CSTooltipStylePosition, CSTooltipVariant } from './components/CSTooltip';
+import CSTransfer, { CSTransferVariant } from './components/transfer/CSTransfer';
+import CSTransferItem from './components/transfer/CSTransferItem';
+import CSTransferList, { CSTransferListType } from './components/transfer/CSTransferList';
 
 import './sass/style.scss';
 
@@ -198,5 +201,10 @@ export {
 	CSTooltipIconSize,
 	CSTooltipPosition,
 	CSTooltipStylePosition,
-	CSTooltipVariant
+	CSTooltipVariant,
+	CSTransfer,
+	CSTransferVariant,
+	CSTransferItem,
+	CSTransferList,
+	CSTransferListType
 };

@@ -39,6 +39,7 @@ import CSListPreview from './components/CSListPreview';
 import CSFieldErrorMsgPreview from './components/CSFieldErrorMsgPreview';
 import CSSkipLinkPreview from './components/CSSkipLinkPreview';
 import CSGettingStarted from './CSGettingStarted';
+import CSTransferPreview from './components/CSTransferPreview';
 
 import SidebarList from './SidebarList';
 
@@ -205,7 +206,12 @@ class CSComponentsList extends React.Component {
 			{
 				name: 'Tooltip',
 				component: CSTooltipPreview
+			},
+			{
+				name: 'Transfer',
+				component: CSTransferPreview
 			}
+
 		];
 
 		return (
