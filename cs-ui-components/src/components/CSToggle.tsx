@@ -38,7 +38,7 @@ class CSToggle extends React.Component<CSToggleProps, CSToggleState> {
 		super(props);
 
 		this.state = {
-			checked: this.props.checked
+			checked: !!this.props.checked
 		};
 	}
 
