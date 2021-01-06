@@ -6,7 +6,7 @@ import { Portal } from 'react-portal';
 import { v4 as uuidv4 } from 'uuid';
 import { CSModalHeader } from '../../index';
 
-export type CSModalSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
+export type CSModalSize = 'auto' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 
 export interface CSModalProps {
 	[key: string]: any;
@@ -22,6 +22,10 @@ export interface CSModalProps {
 }
 
 class CSModal extends React.Component<CSModalProps> {
+	public static defaultProps = {
+		size: 'auto'
+	};
+
 	private modalId = 'cs-modal-root';
 	private modalCloseClass = 'cs-modal-close';
 	private modalRef: HTMLDivElement;

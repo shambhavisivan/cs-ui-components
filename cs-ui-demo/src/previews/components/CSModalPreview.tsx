@@ -40,9 +40,49 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 					customText: '',
 					variations: [
 						{
+							variationName: ['auto'],
+							quickLink: 'auto',
+							variationText: ['closeButton={true}'],
+							component: (
+								<div>
+									<CSButton
+										label="Open Modal"
+										onClick={() => this.setState({ visibleModal: 'auto' })}
+									/>
+									{this.state.visibleModal === 'auto' && (
+										<CSModal
+											size="auto"
+											closeButton
+											onClose={() => this.setState({ visibleModal: undefined })}
+										>
+											<CSModalHeader
+												title="This is a test heading"
+												subtitle="This is a test subtitle"
+											/>
+											<CSModalBody>
+												<p>
+													Sit nulla est ex deserunt exercitation anim
+													occaecat.
+													<br />
+													<br />
+													Nostrud ullamco deserunt aute id consequat
+													veniam incididunt duis in sint irure nisi.
+													Mollit officia cillum Lorem ullamco minim
+													nostrud elit officia tempor esse quis. Cillum
+													sunt ad dolore quis aute consequat ipsum magna
+													exercitation reprehenderit magna. Tempor
+													cupidatat consequat elit dolor adipisicing.
+												</p>
+											</CSModalBody>
+										</CSModal>
+									)}
+								</div>
+							)
+						},
+						{
 							variationName: ['xsmall'],
 							quickLink: 'xsmall',
-							variationText: ['closeButton={true}', 'align="left"'],
+							variationText: ['closeButton={true}'],
 							component: (
 								<div>
 									<CSButton
@@ -738,7 +778,7 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 				{
 					propertyName: 'size',
 					description: 'Modal size',
-					options: ['xsmall', 'small', 'medium', 'large', 'xlarge']
+					options: ['auto', 'xsmall', 'small', 'medium', 'large', 'xlarge']
 				},
 				{
 					propertyName: 'style',

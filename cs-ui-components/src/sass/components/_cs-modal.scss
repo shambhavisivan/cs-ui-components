@@ -196,6 +196,12 @@
 			}
 		}
 
+		&.cs-modal-auto {
+			min-width: 30rem;
+			width: fit-content;
+			max-width: 100%;
+		}
+
 		&.cs-modal-xsmall {
 			max-width: 30rem;
 		}
