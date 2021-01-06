@@ -10,7 +10,6 @@ import { CSCard, CSCardHeader, CSCardBody, CSCardFooter } from '@cloudsense/cs-u
 
 class CSCardPreview extends React.Component {
 	getCSCardDoc() {
-
 		const json = {
 			name: 'Card',
 			usage: 'Cards are used to apply a container around a related grouping of information.',
@@ -110,7 +109,6 @@ class CSCardPreview extends React.Component {
 	}
 
 	getCSCardHeaderDoc() {
-
 		const json = {
 			name: 'Card Header',
 			properties: [
@@ -126,8 +124,8 @@ class CSCardPreview extends React.Component {
 		};
 		return json;
 	}
-	getCSCardBodyDoc() {
 
+	getCSCardBodyDoc() {
 		const json = {
 			name: 'Card Body',
 			properties: [
@@ -139,8 +137,8 @@ class CSCardPreview extends React.Component {
 		};
 		return json;
 	}
-	getCSCardFooterDoc() {
 
+	getCSCardFooterDoc() {
 		const json = {
 			name: 'Card Footer',
 			properties: [
@@ -152,6 +150,7 @@ class CSCardPreview extends React.Component {
 		};
 		return json;
 	}
+
 	render() {
 		const component = this.getCSCardDoc();
 		const component2 = this.getCSCardHeaderDoc();

@@ -10,7 +10,6 @@ import { CSDropdown, CSButton } from '@cloudsense/cs-ui-components';
 
 class CSDropdownPreview extends React.Component {
 	getDoc() {
-
 		const json = {
 			name: 'Dropdown',
 			usage: 'Offers a list of actions or functions that a user can access.',

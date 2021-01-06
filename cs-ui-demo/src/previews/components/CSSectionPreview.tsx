@@ -10,7 +10,6 @@ import { CSSection } from '@cloudsense/cs-ui-components';
 
 class CSSectionPreview extends React.Component {
 	getDoc() {
-
 		const json = {
 			name: 'Section',
 			usage: 'This is used as a toggle visibility of section content.',

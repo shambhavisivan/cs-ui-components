@@ -9,8 +9,9 @@ import PreviewLinks from '../PreviewLinks';
 import { CSTable, CSTableHeader, CSTableBody, CSTableRow, CSTableCell, CSButton } from '@cloudsense/cs-ui-components';
 
 class CSTablePreview extends React.Component {
+	handleClick = () => alert('Table row has been clicked.');
+
 	getCSTableDoc() {
-		const onClickHandler = () => alert('Table row was clicked!');
 		const json = {
 			name: 'Table',
 			usage: 'Tables are an enhanced version of an HTML table and are used to display tabular data.',
@@ -133,7 +134,7 @@ class CSTablePreview extends React.Component {
 										/>
 									</CSTableHeader>
 									<CSTableBody>
-										<CSTableRow onClick={onClickHandler}>
+										<CSTableRow onClick={this.handleClick}>
 											<CSTableCell
 												text="Body Item 1"
 												grow={2}
@@ -157,7 +158,7 @@ class CSTablePreview extends React.Component {
 												/>
 											</CSTableCell>
 										</CSTableRow>
-										<CSTableRow onClick={onClickHandler}>
+										<CSTableRow onClick={this.handleClick}>
 											<CSTableCell
 												text="Second Row Item 1"
 												grow={2}
@@ -181,7 +182,7 @@ class CSTablePreview extends React.Component {
 												/>
 											</CSTableCell>
 										</CSTableRow>
-										<CSTableRow onClick={onClickHandler}>
+										<CSTableRow onClick={this.handleClick}>
 											<CSTableCell
 												text="Second Row Item 1"
 												grow={2}

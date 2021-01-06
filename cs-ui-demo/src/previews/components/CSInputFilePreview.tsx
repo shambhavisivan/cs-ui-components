@@ -9,9 +9,10 @@ import PreviewLinks from '../PreviewLinks';
 import { CSInputFile } from '@cloudsense/cs-ui-components';
 
 class CSInputFilePreview extends React.Component {
+	handleChange = () => alert('File has been uploaded.');
+	handleDrop = () => alert('File has been dropped.');
+
 	getDoc() {
-		const handleChange = () => alert('File is uploaded!');
-		const handleDrop = () => alert('File is dropped!');
 		const json = {
 			name: 'Input File',
 			usage: 'Input File component',
@@ -122,7 +123,7 @@ class CSInputFilePreview extends React.Component {
 							component:
 								<CSInputFile
 									label="Upload directory"
-									onChange={handleChange}
+									onChange={this.handleChange}
 								/>
 						}
 					]
@@ -134,7 +135,7 @@ class CSInputFilePreview extends React.Component {
 							component:
 								<CSInputFile
 									label="Upload directory"
-									onDrop={handleDrop}
+									onDrop={this.handleDrop}
 								/>
 						}
 					]
@@ -147,7 +148,7 @@ class CSInputFilePreview extends React.Component {
 							component:
 								<CSInputFile
 									label="Upload directory"
-									onDrop={handleDrop}
+									onDrop={this.handleDrop}
 									dropAreaBackground
 									dropAreaWidth="25rem"
 									dropAreaHeight="3rem"
@@ -158,7 +159,7 @@ class CSInputFilePreview extends React.Component {
 							component:
 								<CSInputFile
 									label="Upload directory"
-									onDrop={handleDrop}
+									onDrop={this.handleDrop}
 									dropAreaWidth="25rem"
 									dropAreaHeight="3rem"
 								/>
@@ -174,7 +175,7 @@ class CSInputFilePreview extends React.Component {
 							component:
 								<CSInputFile
 									label="Upload directory"
-									onDrop={handleDrop}
+									onDrop={this.handleDrop}
 									dropAreaBackground
 									dropAreaWidth="100%"
 								/>
@@ -185,7 +186,7 @@ class CSInputFilePreview extends React.Component {
 							component:
 								<CSInputFile
 									label="Upload directory"
-									onDrop={handleDrop}
+									onDrop={this.handleDrop}
 									dropAreaBackground
 									dropAreaWidth="400px"
 								/>
@@ -201,7 +202,7 @@ class CSInputFilePreview extends React.Component {
 							component:
 								<CSInputFile
 									label="Upload directory"
-									onDrop={handleDrop}
+									onDrop={this.handleDrop}
 									dropAreaBackground
 									dropAreaHeight="100px"
 								/>
@@ -212,7 +213,7 @@ class CSInputFilePreview extends React.Component {
 							component:
 								<CSInputFile
 									label="Upload directory"
-									onDrop={handleDrop}
+									onDrop={this.handleDrop}
 									dropAreaBackground
 									dropAreaHeight="10rem"
 								/>

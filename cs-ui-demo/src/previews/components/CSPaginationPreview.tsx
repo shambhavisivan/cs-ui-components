@@ -9,7 +9,6 @@ import { CSPaginationWrapper, CSSelect, CSAlert } from '@cloudsense/cs-ui-compon
 
 class CSPaginationPreview extends React.Component {
 	getDoc() {
-
 		const json = {
 			name: 'Pagination',
 			usage: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',

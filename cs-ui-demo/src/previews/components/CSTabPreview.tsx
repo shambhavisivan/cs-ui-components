@@ -10,10 +10,9 @@ import { NavLink } from 'react-router-dom';
 import { CSTabGroup, CSTab } from '@cloudsense/cs-ui-components';
 
 class CSTabPreview extends React.Component {
+	handleClick = () => alert('Tab has been clicked.');
+
 	getCSTabDoc() {
-
-		const clickHandler = () => alert('Tab is clicked!');
-
 		const json = {
 			name: 'Tab',
 			usage: 'Tabs keeps related content in a single container that is shown and hidden through navigation.',
@@ -158,9 +157,9 @@ class CSTabPreview extends React.Component {
 						{
 							component:
 								<CSTabGroup variant="large">
-									<CSTab title="Tab One" onClick={clickHandler} />
-									<CSTab title="Tab Two" onClick={clickHandler} />
-									<CSTab title="Tab Three" onClick={clickHandler} />
+									<CSTab title="Tab One" onClick={this.handleClick} />
+									<CSTab title="Tab Two" onClick={this.handleClick} />
+									<CSTab title="Tab Three" onClick={this.handleClick} />
 								</CSTabGroup>
 						}
 					]

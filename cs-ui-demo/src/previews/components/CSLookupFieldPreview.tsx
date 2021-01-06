@@ -9,18 +9,14 @@ import PreviewLinks from '../PreviewLinks';
 import { CSLookupField, CSAlert } from '@cloudsense/cs-ui-components';
 
 class CSLookupFieldPreview extends React.Component {
+	handleFetch = () => [
+		{ Id: 1, Account: 'Acme', Industry: 'Manufacturing' },
+		{ Id: 2, Account: 'Global Media', Industry: 'Media' },
+		{ Id: 3, Account: 'Salesforce', Industry: 'Technology' },
+		{ Id: 4, Account: 'Elisa', Industry: 'Telecommunications' }
+	]
 
 	getDoc() {
-
-		const testArray = () => {
-			return ([
-				{ Id: 1, Account: 'Acme', Industry: 'Manufacturing' },
-				{ Id: 2, Account: 'Global Media', Industry: 'Media' },
-				{ Id: 3, Account: 'Salesforce', Industry: 'Technology' },
-				{ Id: 4, Account: 'Elisa', Industry: 'Telecommunications' }
-			]);
-		};
-
 		const json = {
 			name: 'Lookup Field',
 			usage: 'Lookup is an autocomplete combobox that will search against a database object',
@@ -35,7 +31,7 @@ class CSLookupFieldPreview extends React.Component {
 								<CSLookupField
 									label="Account"
 									id="Accounts"
-									fetchLookupOptions={testArray}
+									fetchLookupOptions={this.handleFetch}
 									fieldToBeDisplayed="Account"
 								/>
 						}
@@ -49,7 +45,7 @@ class CSLookupFieldPreview extends React.Component {
 							component:
 								<CSLookupField
 									label="Account"
-									fetchLookupOptions={testArray}
+									fetchLookupOptions={this.handleFetch}
 									fieldToBeDisplayed="Account"
 									placeholder="Search..."
 								/>
@@ -63,7 +59,7 @@ class CSLookupFieldPreview extends React.Component {
 							component:
 								<CSLookupField
 									label="Account"
-									fetchLookupOptions={testArray}
+									fetchLookupOptions={this.handleFetch}
 									fieldToBeDisplayed="Account"
 								/>
 						}
@@ -78,7 +74,7 @@ class CSLookupFieldPreview extends React.Component {
 							component:
 								<CSLookupField
 									label="Account"
-									fetchLookupOptions={testArray}
+									fetchLookupOptions={this.handleFetch}
 									fieldToBeDisplayed="Account"
 									labelHidden
 								/>
@@ -94,7 +90,7 @@ class CSLookupFieldPreview extends React.Component {
 							component:
 								<CSLookupField
 									label="Account"
-									fetchLookupOptions={testArray}
+									fetchLookupOptions={this.handleFetch}
 									fieldToBeDisplayed="Account"
 									labelTitle
 								/>
@@ -110,7 +106,7 @@ class CSLookupFieldPreview extends React.Component {
 							component:
 								<CSLookupField
 									label="Account"
-									fetchLookupOptions={testArray}
+									fetchLookupOptions={this.handleFetch}
 									fieldToBeDisplayed="Account"
 									loading
 								/>
@@ -125,7 +121,7 @@ class CSLookupFieldPreview extends React.Component {
 								<CSLookupField
 									label="Account"
 									helpText="Help text example"
-									fetchLookupOptions={testArray}
+									fetchLookupOptions={this.handleFetch}
 									fieldToBeDisplayed="Account"
 								/>
 						}
@@ -142,7 +138,7 @@ class CSLookupFieldPreview extends React.Component {
 									label="Account"
 									helpText="Help text example"
 									tooltipPosition="top-right"
-									fetchLookupOptions={testArray}
+									fetchLookupOptions={this.handleFetch}
 									fieldToBeDisplayed="Account"
 								/>
 						},
@@ -154,7 +150,7 @@ class CSLookupFieldPreview extends React.Component {
 									label="Account"
 									helpText="Help text example"
 									tooltipPosition="top-left"
-									fetchLookupOptions={testArray}
+									fetchLookupOptions={this.handleFetch}
 									fieldToBeDisplayed="Account"
 								/>
 						},
@@ -166,7 +162,7 @@ class CSLookupFieldPreview extends React.Component {
 									label="Account"
 									helpText="Help text example"
 									tooltipPosition="bottom-right"
-									fetchLookupOptions={testArray}
+									fetchLookupOptions={this.handleFetch}
 									fieldToBeDisplayed="Account"
 								/>
 						},
@@ -178,7 +174,7 @@ class CSLookupFieldPreview extends React.Component {
 									label="Account"
 									helpText="Help text example"
 									tooltipPosition="bottom-left"
-									fetchLookupOptions={testArray}
+									fetchLookupOptions={this.handleFetch}
 									fieldToBeDisplayed="Account"
 								/>
 						}
@@ -193,7 +189,7 @@ class CSLookupFieldPreview extends React.Component {
 							component:
 								<CSLookupField
 									label="Account"
-									fetchLookupOptions={testArray}
+									fetchLookupOptions={this.handleFetch}
 									fieldToBeDisplayed="Account"
 									disabled
 								/>
@@ -209,7 +205,7 @@ class CSLookupFieldPreview extends React.Component {
 							component:
 								<CSLookupField
 									label="Account"
-									fetchLookupOptions={testArray}
+									fetchLookupOptions={this.handleFetch}
 									fieldToBeDisplayed="Account"
 									hidden
 								/>
@@ -226,7 +222,7 @@ class CSLookupFieldPreview extends React.Component {
 								<CSLookupField
 									required
 									label="Account"
-									fetchLookupOptions={testArray}
+									fetchLookupOptions={this.handleFetch}
 									fieldToBeDisplayed="Account"
 								/>
 						}
@@ -239,7 +235,7 @@ class CSLookupFieldPreview extends React.Component {
 							component:
 								<CSLookupField
 									label="Account"
-									fetchLookupOptions={testArray}
+									fetchLookupOptions={this.handleFetch}
 									fieldToBeDisplayed="Account"
 								/>
 						}
@@ -254,7 +250,7 @@ class CSLookupFieldPreview extends React.Component {
 							component:
 								<CSLookupField
 									label="Account"
-									fetchLookupOptions={testArray}
+									fetchLookupOptions={this.handleFetch}
 									fieldToBeDisplayed="Account"
 								/>
 						},
@@ -264,7 +260,7 @@ class CSLookupFieldPreview extends React.Component {
 							component:
 								<CSLookupField
 									label="Industry"
-									fetchLookupOptions={testArray}
+									fetchLookupOptions={this.handleFetch}
 									fieldToBeDisplayed="Industry"
 								/>
 						},
@@ -274,7 +270,7 @@ class CSLookupFieldPreview extends React.Component {
 							component:
 								<CSLookupField
 									label="Id"
-									fetchLookupOptions={testArray}
+									fetchLookupOptions={this.handleFetch}
 									fieldToBeDisplayed="Id"
 								/>
 						}
@@ -292,7 +288,7 @@ class CSLookupFieldPreview extends React.Component {
 							quickLink: 'true',
 							component:
 								<CSLookupField
-									fetchLookupOptions={testArray}
+									fetchLookupOptions={this.handleFetch}
 									fieldToBeDisplayed="Account"
 									label="Account"
 									error
@@ -308,7 +304,7 @@ class CSLookupFieldPreview extends React.Component {
 							component:
 								<CSLookupField
 									label="Account"
-									fetchLookupOptions={testArray}
+									fetchLookupOptions={this.handleFetch}
 									fieldToBeDisplayed="Account"
 									error
 									errorMessage="Error message!"
@@ -326,7 +322,7 @@ class CSLookupFieldPreview extends React.Component {
 								<CSLookupField
 									label="Account"
 									borderType="square"
-									fetchLookupOptions={testArray}
+									fetchLookupOptions={this.handleFetch}
 									fieldToBeDisplayed="Account"
 								/>
 						}
@@ -339,7 +335,7 @@ class CSLookupFieldPreview extends React.Component {
 							component:
 								<CSLookupField
 									label="Account"
-									fetchLookupOptions={testArray}
+									fetchLookupOptions={this.handleFetch}
 									fieldToBeDisplayed="Account"
 									title="This is a title"
 								/>
@@ -356,7 +352,7 @@ class CSLookupFieldPreview extends React.Component {
 								<CSLookupField
 									label="Account"
 									className="custom-class"
-									fetchLookupOptions={testArray}
+									fetchLookupOptions={this.handleFetch}
 									fieldToBeDisplayed="Account"
 								/>
 						}

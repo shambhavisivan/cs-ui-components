@@ -9,7 +9,6 @@ import PreviewLinks from '../PreviewLinks';
 import { CSImage } from '@cloudsense/cs-ui-components';
 
 class CSImagePreview extends React.Component {
-
 	getDoc() {
 		const json = {
 			name: 'Image',

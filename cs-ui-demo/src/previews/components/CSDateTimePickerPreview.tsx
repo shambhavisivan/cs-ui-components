@@ -11,8 +11,8 @@ import { CSDateTimePicker } from '@cloudsense/cs-ui-components';
 
 class CSDateTimePickerPreview extends React.Component {
 	value = moment('1.1.2020', 'DD-MM-YYYY').toDate();
-	getDoc() {
 
+	getDoc() {
 		const json = {
 			name: 'DateTimePicker',
 			usage: 'A datetimepicker is a text input to capture a date. You can select a single date, date range or date and time.',

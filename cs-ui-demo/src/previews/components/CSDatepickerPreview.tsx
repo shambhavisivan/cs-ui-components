@@ -12,20 +12,11 @@ import { CSDatepicker } from '@cloudsense/cs-ui-components';
 class CSDatepickerPreview extends React.Component {
 	value = moment('1.1.2020', 'DD-MM-YYYY').toDate();
 
-	handleCloseCalendar() {
-		alert('Calendar closed!');
-	}
-
-	handleChange() {
-		alert('Date changed!');
-	}
-
-	handleChangeRaw() {
-		alert('Raw!!!');
-	}
+	handleCloseCalendar = () =>	alert('Calendar has been closed.');
+	handleChange = () => alert('Date has changed.');
+	handleChangeRaw = () =>	alert('Date has changed from raw value.');
 
 	getDoc() {
-
 		const json = {
 			name: 'Datepicker',
 			usage: 'A datepicker is a text input to capture a date. You can select a single date, date range or date and time.',

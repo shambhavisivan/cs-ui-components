@@ -8,26 +8,27 @@ import PreviewLinks from '../PreviewLinks';
 
 import { CSInputNumber } from '@cloudsense/cs-ui-components';
 
-class CSInputNumberPreview extends React.Component {
+interface CSInputNumberPreviewState {
+	focused: boolean;
+}
+
+class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState> {
+	state = { focused: false };
+
+	handleChange = () => alert('Value has changed.');
+	handleBlur = () => alert('Input has lost focus.');
+	handleKeyDown = (event: any) => alert(`Key ${event.key} has been pressed.`);
+	handlePaste = () => alert('Value has been pasted.');
+	handleFocus = () => {
+		this.setState(prevState => {
+			if (!prevState.focused) {
+				alert('Input has gained focus.');
+			}
+			return { focused: !prevState.focused };
+		});
+	}
 
 	getDoc() {
-		let count = 0;
-
-		const onChangeHandler = () => alert('Input changed!');
-		const onBlurHandler = () => alert('Focus changed!');
-		const onFocusHandler = () => {
-			if (count === 1) {
-				count = 0;
-				return false;
-			}
-			count++;
-			alert('Input is focused!');
-		};
-		const onKeyDownHandler = (event: any) => {
-			alert(event.key + ' was pressed');
-		};
-		const onPasteHandler = () => alert('Value was pasted!');
-
 		const json = {
 			name: 'Input Number',
 			usage: 'Number inputs are used for number entry.',
@@ -299,7 +300,7 @@ class CSInputNumberPreview extends React.Component {
 					variations: [
 						{
 							component:
-								<CSInputNumber label="Enter value:" onBlur={onBlurHandler} />
+								<CSInputNumber label="Enter value:" onBlur={this.handleBlur} />
 						}
 					]
 				},
@@ -309,7 +310,7 @@ class CSInputNumberPreview extends React.Component {
 					variations: [
 						{
 							component:
-								<CSInputNumber label="Enter value:" onChange={onChangeHandler} />
+								<CSInputNumber label="Enter value:" onChange={this.handleChange} />
 						}
 					]
 				},
@@ -319,7 +320,7 @@ class CSInputNumberPreview extends React.Component {
 					variations: [
 						{
 							component:
-								<CSInputNumber label="Enter value:" onFocus={onFocusHandler} />
+								<CSInputNumber label="Enter value:" onFocus={this.handleFocus} />
 						}
 					]
 				},
@@ -329,7 +330,7 @@ class CSInputNumberPreview extends React.Component {
 					variations: [
 						{
 							component:
-								<CSInputNumber label="Enter value:" onKeyDown={onKeyDownHandler} />
+								<CSInputNumber label="Enter value:" onKeyDown={this.handleKeyDown} />
 						}
 					]
 				},
@@ -339,7 +340,7 @@ class CSInputNumberPreview extends React.Component {
 					variations: [
 						{
 							component:
-								<CSInputNumber label="Enter value:" onPaste={onPasteHandler} />
+								<CSInputNumber label="Enter value:" onPaste={this.handlePaste} />
 						}
 					]
 				},

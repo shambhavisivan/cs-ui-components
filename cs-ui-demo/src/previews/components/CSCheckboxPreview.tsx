@@ -9,11 +9,10 @@ import PreviewLinks from '../PreviewLinks';
 import { CSCheckbox } from '@cloudsense/cs-ui-components';
 
 class CSCheckboxPreview extends React.Component {
+	handleChange = () => alert('Checkbox has been toggled.');
+	handleClick = () => alert('Checkbox has been clicked.');
+
 	getDoc() {
-
-		const onChangeHandler = () => alert('Checkbox changed!');
-		const onClickHandler = () => alert('Checkbox was clicked!');
-
 		const json = {
 			name: 'Checkbox',
 			usage: 'A checkable input that communicates if an option is true, false or indeterminate.',
@@ -260,7 +259,7 @@ class CSCheckboxPreview extends React.Component {
 							component:
 								<CSCheckbox
 									label="This is a label"
-									onChange={onChangeHandler}
+									onChange={this.handleChange}
 								/>
 						}
 					]
@@ -272,7 +271,7 @@ class CSCheckboxPreview extends React.Component {
 							component:
 								<CSCheckbox
 									label="This is a label"
-									onClick={onClickHandler}
+									onClick={this.handleClick}
 								/>
 						}
 					]

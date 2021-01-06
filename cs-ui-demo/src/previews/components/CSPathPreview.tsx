@@ -9,7 +9,6 @@ import { CSPath, CSPathItem, CSPathWrapper, CSAlert } from '@cloudsense/cs-ui-co
 
 class CSPathPreview extends React.Component {
 	getCSPathDoc() {
-
 		const json = {
 			name: 'Path',
 			usage: 'A process component communicates to the user the progress of a particular process.',

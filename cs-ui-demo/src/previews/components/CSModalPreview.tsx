@@ -16,21 +16,17 @@ import {
 } from '@cloudsense/cs-ui-components';
 
 interface CSModalPreviewState {
-	modalOpen: string | undefined;
-	secondModalOpen: boolean;
-	thirdModalOpen: boolean;
+	visibleModal: string | undefined;
+	secondModalVisible: boolean;
+	thirdModalVisible: boolean;
 }
 
 class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
-	constructor(props: any) {
-		super(props);
-
-		this.state = {
-			modalOpen: undefined,
-			secondModalOpen: false,
-			thirdModalOpen: false
-		};
-	}
+	state = {
+		visibleModal: undefined,
+		secondModalVisible: false,
+		thirdModalVisible: false
+	};
 
 	getCSModalDoc() {
 		const json = {
@@ -51,13 +47,13 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 								<div>
 									<CSButton
 										label="Open Modal"
-										onClick={() => this.setState({ modalOpen: 'xsmall' })}
+										onClick={() => this.setState({ visibleModal: 'xsmall' })}
 									/>
-									{this.state.modalOpen === 'xsmall' && (
+									{this.state.visibleModal === 'xsmall' && (
 										<CSModal
 											size="xsmall"
 											closeButton
-											onClose={() => this.setState({ modalOpen: undefined })}
+											onClose={() => this.setState({ visibleModal: undefined })}
 										>
 											<CSModalHeader
 												title="This is a test heading"
@@ -81,9 +77,9 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 								<div>
 									<CSButton
 										label="Open Modal"
-										onClick={() => this.setState({ modalOpen: 'small' })}
+										onClick={() => this.setState({ visibleModal: 'small' })}
 									/>
-									{this.state.modalOpen === 'small' && (
+									{this.state.visibleModal === 'small' && (
 										<CSModal
 											size="small"
 										>
@@ -109,17 +105,17 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 											<CSModalFooter align="left">
 												<CSButton
 													label="Open Modal"
-													onClick={() => this.setState({ secondModalOpen: true })}
+													onClick={() => this.setState({ secondModalVisible: true })}
 													btnStyle="brand"
 												/>
 												<CSButton
 													label="Close"
-													onClick={() => this.setState({ modalOpen: undefined })}
+													onClick={() => this.setState({ visibleModal: undefined })}
 												/>
 											</CSModalFooter>
 										</CSModal>
 									)}
-									{this.state.secondModalOpen && (
+									{this.state.secondModalVisible && (
 										<CSModal
 											size="xsmall"
 										>
@@ -135,21 +131,21 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 											<CSModalFooter align="left">
 												<CSButton
 													label="Open Modal"
-													onClick={() => this.setState({ thirdModalOpen: true })}
+													onClick={() => this.setState({ thirdModalVisible: true })}
 													btnStyle="brand"
 												/>
 												<CSButton
 													label="Close"
-													onClick={() => this.setState({ secondModalOpen: false })}
+													onClick={() => this.setState({ secondModalVisible: false })}
 												/>
 											</CSModalFooter>
 										</CSModal>
 									)}
-									{this.state.thirdModalOpen && (
+									{this.state.thirdModalVisible && (
 										<CSModal
 											size="xsmall"
 											closeButton
-											onClose={() => this.setState({ thirdModalOpen: false })}
+											onClose={() => this.setState({ thirdModalVisible: false })}
 										>
 											<CSModalHeader
 												title="This is a test heading"
@@ -177,9 +173,9 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 								<div>
 									<CSButton
 										label="Open Modal"
-										onClick={() => this.setState({ modalOpen: 'medium' })}
+										onClick={() => this.setState({ visibleModal: 'medium' })}
 									/>
-									{this.state.modalOpen === 'medium' && (
+									{this.state.visibleModal === 'medium' && (
 										<CSModal size="medium" closeButton={false}>
 											<CSModalHeader
 												title="This is a test heading"
@@ -206,7 +202,7 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 													label="Close"
 													btnStyle="brand"
 													onClick={() =>
-														this.setState({ modalOpen: undefined })
+														this.setState({ visibleModal: undefined })
 													}
 												/>
 											</CSModalFooter>
@@ -223,13 +219,13 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 								<div>
 									<CSButton
 										label="Open Modal"
-										onClick={() => this.setState({ modalOpen: 'large' })}
+										onClick={() => this.setState({ visibleModal: 'large' })}
 									/>
-									{this.state.modalOpen === 'large' && (
+									{this.state.visibleModal === 'large' && (
 										<CSModal
 											size="large"
 											closeButton
-											onClose={() => this.setState({ modalOpen: undefined })}
+											onClose={() => this.setState({ visibleModal: undefined })}
 										>
 											<CSModalHeader
 												title="This is a test heading"
@@ -266,13 +262,13 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 								<div>
 									<CSButton
 										label="Open Modal"
-										onClick={() => this.setState({ modalOpen: 'xlarge' })}
+										onClick={() => this.setState({ visibleModal: 'xlarge' })}
 									/>
-									{this.state.modalOpen === 'xlarge' && (
+									{this.state.visibleModal === 'xlarge' && (
 										<CSModal
 											size="xlarge"
 											closeButton
-											onClose={() => this.setState({ modalOpen: undefined })}
+											onClose={() => this.setState({ visibleModal: undefined })}
 										>
 											<CSModalHeader
 												title="This is a test heading"
@@ -316,13 +312,13 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 								<div>
 									<CSButton
 										label="Open Modal"
-										onClick={() => this.setState({ modalOpen: 'padding' })}
+										onClick={() => this.setState({ visibleModal: 'padding' })}
 									/>
-									{this.state.modalOpen === 'padding' && (
+									{this.state.visibleModal === 'padding' && (
 										<CSModal
 											size="small"
 											closeButton
-											onClose={() => this.setState({ modalOpen: undefined })}
+											onClose={() => this.setState({ visibleModal: undefined })}
 										>
 											<CSModalHeader
 												title="This is a test heading"
@@ -365,13 +361,13 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 								<div>
 									<CSButton
 										label="Open Modal"
-										onClick={() => this.setState({ modalOpen: 'closeButton' })}
+										onClick={() => this.setState({ visibleModal: 'closeButton' })}
 									/>
-									{this.state.modalOpen === 'closeButton' && (
+									{this.state.visibleModal === 'closeButton' && (
 										<CSModal
 											size="small"
 											closeButton
-											onClose={() => this.setState({ modalOpen: undefined })}
+											onClose={() => this.setState({ visibleModal: undefined })}
 										>
 											<CSModalHeader
 												title="This is a test heading"
@@ -413,13 +409,13 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 								<div>
 									<CSButton
 										label="Open Modal"
-										onClick={() => this.setState({ modalOpen: 'onClose' })}
+										onClick={() => this.setState({ visibleModal: 'onClose' })}
 									/>
-									{this.state.modalOpen === 'onClose' && (
+									{this.state.visibleModal === 'onClose' && (
 										<CSModal
 											size="small"
 											closeButton
-											onClose={() => this.setState({ modalOpen: undefined })}
+											onClose={() => this.setState({ visibleModal: undefined })}
 										>
 											<CSModalHeader
 												title="This is a test heading"
@@ -460,14 +456,14 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 								<div>
 									<CSButton
 										label="Open Modal"
-										onClick={() => this.setState({ modalOpen: 'id' })}
+										onClick={() => this.setState({ visibleModal: 'id' })}
 									/>
-									{this.state.modalOpen === 'id' && (
+									{this.state.visibleModal === 'id' && (
 										<CSModal
 											size="small"
 											closeButton
 											id="id"
-											onClose={() => this.setState({ modalOpen: undefined })}
+											onClose={() => this.setState({ visibleModal: undefined })}
 										>
 											<CSModalHeader
 												id="id"
@@ -509,14 +505,14 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 								<div>
 									<CSButton
 										label="Open Modal"
-										onClick={() => this.setState({ modalOpen: 'style' })}
+										onClick={() => this.setState({ visibleModal: 'style' })}
 									/>
-									{this.state.modalOpen === 'style' && (
+									{this.state.visibleModal === 'style' && (
 										<CSModal
 											size="small"
 											style={{ border: '2px solid hotpink' }}
 											closeButton
-											onClose={() => this.setState({ modalOpen: undefined })}
+											onClose={() => this.setState({ visibleModal: undefined })}
 										>
 											<CSModalHeader title="Style example" />
 											<CSModalBody>
@@ -546,14 +542,14 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 								<div>
 									<CSButton
 										label="Open Modal"
-										onClick={() => this.setState({ modalOpen: 'loading' })}
+										onClick={() => this.setState({ visibleModal: 'loading' })}
 									/>
-									{this.state.modalOpen === 'loading' && (
+									{this.state.visibleModal === 'loading' && (
 										<CSModal
 											size="medium"
 											loading
 											closeButton
-											onClose={() => this.setState({ modalOpen: undefined })}
+											onClose={() => this.setState({ visibleModal: undefined })}
 										>
 											<CSModalHeader title="Style example" />
 											<CSModalBody>
@@ -581,15 +577,15 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 								<div>
 									<CSButton
 										label="Open Modal"
-										onClick={() => this.setState({ modalOpen: 'loadingText' })}
+										onClick={() => this.setState({ visibleModal: 'loadingText' })}
 									/>
-									{this.state.modalOpen === 'loadingText' && (
+									{this.state.visibleModal === 'loadingText' && (
 										<CSModal
 											size="medium"
 											loading
 											loadingText="Cloning configurations..."
 											closeButton
-											onClose={() => this.setState({ modalOpen: undefined })}
+											onClose={() => this.setState({ visibleModal: undefined })}
 										>
 											<CSModalHeader title="Style example" />
 											<CSModalBody>
@@ -619,14 +615,14 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 								<div>
 									<CSButton
 										label="Open Modal"
-										onClick={() => this.setState({ modalOpen: 'className' })}
+										onClick={() => this.setState({ visibleModal: 'className' })}
 									/>
-									{this.state.modalOpen === 'className' && (
+									{this.state.visibleModal === 'className' && (
 										<CSModal
 											size="small"
 											closeButton
 											className="custom-class"
-											onClose={() => this.setState({ modalOpen: undefined })}
+											onClose={() => this.setState({ visibleModal: undefined })}
 										>
 											<CSModalHeader
 												title="This is a test heading"
@@ -667,14 +663,14 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 								<div>
 									<CSButton
 										label="Open Modal"
-										onClick={() => this.setState({ modalOpen: 'clickOutside' })}
+										onClick={() => this.setState({ visibleModal: 'clickOutside' })}
 									/>
-									{this.state.modalOpen === 'clickOutside' && (
+									{this.state.visibleModal === 'clickOutside' && (
 										<CSModal
 											size="small"
 											closeButton
 											id="id"
-											onClose={() => this.setState({ modalOpen: undefined })}
+											onClose={() => this.setState({ visibleModal: undefined })}
 											outerClickClose
 										>
 											<CSModalHeader

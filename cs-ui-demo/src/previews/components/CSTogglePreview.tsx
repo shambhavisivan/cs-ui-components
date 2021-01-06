@@ -9,10 +9,9 @@ import PreviewLinks from '../PreviewLinks';
 import { CSToggle } from '@cloudsense/cs-ui-components';
 
 class CSTogglePreview extends React.Component {
+	handleChange = () => alert('Value has been toggled.');
+
 	getDoc() {
-
-		const onChangeHandler = () => alert('Toggle changed!');
-
 		const json = {
 			name: 'Toggle',
 			usage: 'A checkable input that communicates if an option is true, false or indeterminate.',
@@ -207,7 +206,7 @@ class CSTogglePreview extends React.Component {
 							component:
 								<CSToggle
 									label="This is a label"
-									onChange={onChangeHandler}
+									onChange={this.handleChange}
 								/>
 						}
 					]

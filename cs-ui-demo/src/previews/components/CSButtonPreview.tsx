@@ -10,11 +10,11 @@ import { NavLink } from 'react-router-dom';
 import { CSButton } from '@cloudsense/cs-ui-components';
 
 class CSButtonPreview extends React.Component {
-	getDoc() {
-		const clickHandler = () => alert('Button is clicked!');
-		const mouseDownHandler = () => alert('Mouse down is triggered!');
-		const keyDownHandler = (e: any) => alert('Key is pressed');
+	handleClick = () => alert('Button has been clicked.');
+	handleMouseDown = () => alert('Mouse down has been registered.');
+	handleKeyDown = (event: any) => alert(`Key ${event.key} has been pressed.`);
 
+	getDoc() {
 		const json = {
 			name: 'Button',
 			usage: 'Button provides a base UI for button actions',
@@ -220,7 +220,7 @@ class CSButtonPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							component: <CSButton onClick={clickHandler} iconName="activity" label="default round" />
+							component: <CSButton onClick={this.handleClick} iconName="activity" label="default round" />
 						}
 					]
 				},
@@ -229,7 +229,7 @@ class CSButtonPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							component: <CSButton onMouseDown={mouseDownHandler} iconName="activity" label="default round" />
+							component: <CSButton onMouseDown={this.handleMouseDown} iconName="activity" label="default round" />
 						}
 					]
 				},
@@ -238,7 +238,7 @@ class CSButtonPreview extends React.Component {
 					customText: '',
 					variations: [
 						{
-							component: <CSButton onKeyDown={keyDownHandler} iconName="activity" label="default round" />
+							component: <CSButton onKeyDown={this.handleKeyDown} iconName="activity" label="default round" />
 						}
 					]
 				},

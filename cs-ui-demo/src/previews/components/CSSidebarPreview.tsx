@@ -10,7 +10,6 @@ import { CSSidebar, CSListItem, CSAlert } from '@cloudsense/cs-ui-components';
 
 class CSSidebarPreview extends React.Component {
 	getDoc() {
-
 		const json = {
 			name: 'Sidebar',
 			usage: 'Sidebar provides a unlimited list of items with the option to toggle between open and closed',

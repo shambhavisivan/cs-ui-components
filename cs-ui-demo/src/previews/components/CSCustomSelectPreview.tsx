@@ -9,9 +9,10 @@ import PreviewAccessibility from '../PreviewAccessibility';
 import { CSCustomSelect, CSAlert } from '@cloudsense/cs-ui-components';
 
 class CSCustomSelectPreview extends React.Component {
+	handleSelectChange = (event: any) => alert(`Selected items: ${event}`);
+	handleChange = () => alert('Value has changed.');
+
 	getDoc() {
-		const handleSelectChange = (e: any) => alert('Selected items: ' + e);
-		const handleOnChange = () => alert('Change triggered!');
 		const json = {
 			name: 'Custom Select',
 			usage: 'Select element presents a menu of options.',
@@ -179,7 +180,7 @@ class CSCustomSelectPreview extends React.Component {
 					variations: [
 						{
 							component:
-								<CSCustomSelect label="Choose letter" optionsList={['A', 'B', 'C']} onChange={handleOnChange} />
+								<CSCustomSelect label="Choose letter" optionsList={['A', 'B', 'C']} onChange={this.handleChange} />
 						}
 					]
 				},
@@ -197,7 +198,7 @@ class CSCustomSelectPreview extends React.Component {
 					variations: [
 						{
 							component:
-								<CSCustomSelect label="Choose letter" optionsList={['A', 'B', 'C']} multiselect onSelectChange={e => handleSelectChange(e)} />
+								<CSCustomSelect label="Choose letter" optionsList={['A', 'B', 'C']} multiselect onSelectChange={this.handleSelectChange} />
 						}
 					]
 				},

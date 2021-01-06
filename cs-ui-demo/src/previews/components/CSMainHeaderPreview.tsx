@@ -10,7 +10,6 @@ import { CSMainHeader, CSMainHeaderLeft, CSMainHeaderRight, CSMainHeaderIcon, CS
 
 class CSMainHeaderPreview extends React.Component {
 	getCSMainHeaderDoc() {
-
 		const json = {
 			name: 'Main Header',
 			usage: 'Main Headers are used at the top of several page types. They are comprised of multiple components.',

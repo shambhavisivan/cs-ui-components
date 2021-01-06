@@ -10,7 +10,6 @@ import { CSIcon } from '@cloudsense/cs-ui-components';
 
 class CSIconPreview extends React.Component {
 	getDoc() {
-
 		const json = {
 			name: 'Icon',
 			usage: 'Support for both Lightening and CloudSense Icons',

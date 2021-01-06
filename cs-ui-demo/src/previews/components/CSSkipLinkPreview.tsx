@@ -9,9 +9,7 @@ import PreviewLinks from '../PreviewLinks';
 import { CSSkipLink, CSAlert } from '@cloudsense/cs-ui-components';
 
 class CSSkipLinkPreview extends React.Component {
-
 	getDoc() {
-
 		const json = {
 			name: 'Skip Link',
 			usage: 'Creates link to specific part of the page',

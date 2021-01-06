@@ -10,7 +10,6 @@ import { CSButtonGroup, CSButton, CSDropdown } from '@cloudsense/cs-ui-component
 
 class CSButtonGroupPreview extends React.Component {
 	getDoc() {
-
 		const json = {
 			name: 'Button Group',
 			usage: 'Button groups are used to bunch together buttons with similar actions',

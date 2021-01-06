@@ -10,7 +10,6 @@ import { CSTooltip, CSChip } from '@cloudsense/cs-ui-components';
 
 class CSTooltipPreview extends React.Component {
 	getDoc() {
-
 		const json = {
 			name: 'Tooltip',
 			usage: 'A Tooltip is a small piece of contextual information about an element on the screen, which is displayed when a user hovers or focuses on the element it is describing. It is not focusable and cannot contain focusable content.',

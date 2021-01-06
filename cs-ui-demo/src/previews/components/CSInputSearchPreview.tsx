@@ -8,23 +8,27 @@ import PreviewLinks from '../PreviewLinks';
 
 import { CSInputSearch } from '@cloudsense/cs-ui-components';
 
-class CSInputSearchPreview extends React.Component {
-	getDoc() {
-		let count = 0;
+interface CSInputSearchPreviewState {
+	focused: boolean;
+}
 
-		const onChangeHandler = () => alert('Input search changed!');
-		const onKeyDownHandler = () => alert('Key is pressed!');
-		const onBlurHandler = () => alert('Focus changed!');
-		const onFocusHandler = () => {
-			if (count === 1) {
-				count = 0;
-				return false;
+class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState> {
+	state = { focused: false };
+
+	handleChange = () => alert('Value has changed.');
+	handleBlur = () => alert('Input has lost focus.');
+	handleKeyDown = (event: any) => alert(`Key ${event.key} has been pressed.`);
+	handleClearSearch = () => alert('Value has been cleared.');
+	handleFocus = () => {
+		this.setState(prevState => {
+			if (!prevState.focused) {
+				alert('Input has gained focus.');
 			}
-			count++;
-			alert('Input is focused!');
-		};
-		const onClearSearchHandler = () => alert('Input search cleared!');
+			return { focused: !prevState.focused };
+		});
+	}
 
+	getDoc() {
 		const json = {
 			name: 'Input Search',
 			usage: 'Search input is used for search value entry.',
@@ -224,7 +228,7 @@ class CSInputSearchPreview extends React.Component {
 					variations: [
 						{
 							component:
-								<CSInputSearch label="Type here:" onBlur={onBlurHandler} />
+								<CSInputSearch label="Type here:" onBlur={this.handleBlur} />
 						}
 					]
 				},
@@ -234,7 +238,7 @@ class CSInputSearchPreview extends React.Component {
 					variations: [
 						{
 							component:
-								<CSInputSearch label="Type here:" onChange={onChangeHandler} />
+								<CSInputSearch label="Type here:" onChange={this.handleChange} />
 						}
 					]
 				},
@@ -244,7 +248,7 @@ class CSInputSearchPreview extends React.Component {
 					variations: [
 						{
 							component:
-								<CSInputSearch label="Type here:" onFocus={onFocusHandler} />
+								<CSInputSearch label="Type here:" onFocus={this.handleFocus} />
 						}
 					]
 				},
@@ -254,7 +258,7 @@ class CSInputSearchPreview extends React.Component {
 					variations: [
 						{
 							component:
-								<CSInputSearch label="Type here:" onKeyDown={onKeyDownHandler} />
+								<CSInputSearch label="Type here:" onKeyDown={this.handleKeyDown} />
 						}
 					]
 				},
@@ -264,7 +268,7 @@ class CSInputSearchPreview extends React.Component {
 					variations: [
 						{
 							component:
-								<CSInputSearch label="Type here and clear search:" onClearSearch={onClearSearchHandler} />
+								<CSInputSearch label="Type here and clear search:" onClearSearch={this.handleClearSearch} />
 						}
 					]
 				},

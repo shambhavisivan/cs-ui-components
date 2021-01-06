@@ -9,9 +9,9 @@ import PreviewLinks from '../PreviewLinks';
 import { CSAlert } from '@cloudsense/cs-ui-components';
 
 class CSAlertPreview extends React.Component {
-	getDoc() {
-		const clickHandler = () => alert('You clicked the close button!');
+	handleClose = () => alert('Alert has been closed.');
 
+	getDoc() {
 		const json = {
 			name: 'Alert',
 			usage: 'Alert banners communicate a state that affects the entire system, not just a feature or page. They persist over a session and appear without the user initiating an action.',
@@ -282,7 +282,7 @@ class CSAlertPreview extends React.Component {
 								<CSAlert
 									variant="info"
 									closeButton
-									onClose={clickHandler}
+									onClose={this.handleClose}
 									text="This is an example alert with a close button"
 								/>
 						}

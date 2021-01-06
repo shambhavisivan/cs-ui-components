@@ -9,35 +9,28 @@ import PreviewLinks from '../PreviewLinks';
 import { CSProgressBar, CSButton } from '@cloudsense/cs-ui-components';
 
 export interface CSProgressBarPreviewState {
-	progress: string;
+	progress: number;
 }
 
-class CSProgressBarPreview extends React.Component<CSProgressBarPreviewState> {
-
+class CSProgressBarPreview extends React.Component<{}, CSProgressBarPreviewState> {
 	state = {
 		progress: 0
 	};
 
-	restartProgress = () => {
-		this.setState({ progress: 0 });
-	}
-
+	restartProgress = () => this.setState({ progress: 0 });
+	renderProgressFull = () => this.setState({ progress: 100 });
 	renderProgressDelayed = () => {
-		for (let i = 0; i <= 100; i++) {
-			setTimeout(() => {
-				this.setState({ progress: i });
-			}, 0);
-		}
-	}
-
-	renderProgressInstant = () => {
-		for (let i = 0; i <= 100; i++) {
-			this.setState({ progress: i });
-		}
+		const interval = setInterval(() => {
+			this.setState(prevState => {
+				if (prevState.progress === 90) {
+					clearInterval(interval);
+				}
+				return { progress: prevState.progress + 10 };
+			});
+		}, 500);
 	}
 
 	getDoc() {
-
 		const json = {
 			name: 'Progress Bar',
 			usage: 'A progress bar component communicates to the user the progress of a particular process.',
@@ -395,7 +388,7 @@ class CSProgressBarPreview extends React.Component<CSProgressBarPreviewState> {
 					<div className="simulation-action-buttons">
 						<CSButton onClick={this.restartProgress} label="Reset progress" className="simulate-btn" />
 						<CSButton onClick={this.renderProgressDelayed} label="Start delayed progress" className="simulate-btn" />
-						<CSButton onClick={this.renderProgressInstant} label="Start instant progress" className="simulate-btn" />
+						<CSButton onClick={this.renderProgressFull} label="Start full progress" className="simulate-btn" />
 					</div>
 					<PreviewTable components={[component]} />
 					<PreviewAccessibility components={[component]} />

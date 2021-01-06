@@ -12,7 +12,6 @@ import { CSToast, CSToastApi, CSButton, CSButtonGroup } from '@cloudsense/cs-ui-
 
 class CSToastPreview extends React.Component {
 	getDoc() {
-
 		const json = {
 			name: 'Toast',
 			usage: 'Toast serves as a feedback & confirmation mechanism after the user takes an action.',

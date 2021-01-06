@@ -10,7 +10,6 @@ import { CSLabel } from '@cloudsense/cs-ui-components';
 
 class CSLabelPreview extends React.Component {
 	getDoc() {
-
 		const json = {
 			name: 'Label',
 			usage: 'This is used to associate value with form field.',

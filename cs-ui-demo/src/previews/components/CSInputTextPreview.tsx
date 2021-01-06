@@ -8,21 +8,25 @@ import PreviewLinks from '../PreviewLinks';
 
 import { CSInputText } from '@cloudsense/cs-ui-components';
 
-class CSInputTextPreview extends React.Component {
-	getDoc() {
-		let count = 0;
+interface CSInputTextPreviewState {
+	focused: boolean;
+}
 
-		const onChangeHandler = () => alert('Input changed!');
-		const onBlurHandler = () => alert('Focus changed!');
-		const onFocusHandler = () => {
-			if (count === 1) {
-				count = 0;
-				return false;
+class CSInputTextPreview extends React.Component<{}, CSInputTextPreviewState> {
+	state = { focused: false };
+
+	handleChange = () => alert('Value has changed.');
+	handleBlur = () => alert('Input has lost focus.');
+	handleFocus = () => {
+		this.setState(prevState => {
+			if (!prevState.focused) {
+				alert('Input has gained focus.');
 			}
-			count++;
-			alert('Input is focused!');
-		};
+			return { focused: !prevState.focused };
+		});
+	}
 
+	getDoc() {
 		const json = {
 			name: 'Input Text',
 			usage: 'Text inputs are used for freeform data entry.',
@@ -220,7 +224,7 @@ class CSInputTextPreview extends React.Component {
 					variations: [
 						{
 							component:
-								<CSInputText label="Enter value:" onBlur={onBlurHandler} />
+								<CSInputText label="Enter value:" onBlur={this.handleBlur} />
 						}
 					]
 				},
@@ -230,7 +234,7 @@ class CSInputTextPreview extends React.Component {
 					variations: [
 						{
 							component:
-								<CSInputText label="Enter value:" onChange={onChangeHandler} />
+								<CSInputText label="Enter value:" onChange={this.handleChange} />
 						}
 					]
 				},
@@ -240,7 +244,7 @@ class CSInputTextPreview extends React.Component {
 					variations: [
 						{
 							component:
-								<CSInputText label="Enter value:" onFocus={onFocusHandler} />
+								<CSInputText label="Enter value:" onFocus={this.handleFocus} />
 						}
 					]
 				},

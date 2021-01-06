@@ -9,9 +9,9 @@ import PreviewLinks from '../PreviewLinks';
 import { CSSlider, CSAlert } from '@cloudsense/cs-ui-components';
 
 class CSSliderPreview extends React.Component {
+	handleOnChange = () => alert('Value had changed.');
 
 	getDoc() {
-		const handleOnChange = () => alert('Value changed');
 		const json = {
 			name: 'Slider',
 			usage: 'A range slider lets the user specify a numeric value which must be between two specified values.',
@@ -295,7 +295,7 @@ class CSSliderPreview extends React.Component {
 									label="Select value"
 									min="0"
 									max="100"
-									onChange={handleOnChange}
+									onChange={this.handleOnChange}
 								/>
 						}
 					]

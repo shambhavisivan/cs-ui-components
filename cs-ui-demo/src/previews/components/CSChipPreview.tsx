@@ -10,7 +10,6 @@ import { CSChip } from '@cloudsense/cs-ui-components';
 
 class CSChipPreview extends React.Component {
 	getDoc() {
-
 		const json = {
 			name: 'Chip',
 			usage: 'Chips are labels which hold small amounts of information',

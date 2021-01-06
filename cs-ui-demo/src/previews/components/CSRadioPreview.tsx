@@ -9,8 +9,9 @@ import PreviewLinks from '../PreviewLinks';
 import { CSRadio, CSRadioOption } from '@cloudsense/cs-ui-components';
 
 class CSRadioPreview extends React.Component {
+	handleChange = () => alert('Selection has changed.');
+
 	getCSRadioDoc() {
-		const onChangeHandler = () => alert('Radio changed!');
 		const json = {
 			name: 'Radio',
 			usage: 'A checkable input that communicates if an option is true, false or indeterminate.',
@@ -227,8 +228,8 @@ class CSRadioPreview extends React.Component {
 						{
 							component:
 								<CSRadio label="This is a label">
-									<CSRadioOption name="year" label="2020" onChange={onChangeHandler} />
-									<CSRadioOption name="year" label="2021" onChange={onChangeHandler} />
+									<CSRadioOption name="year" label="2020" onChange={this.handleChange} />
+									<CSRadioOption name="year" label="2021" onChange={this.handleChange} />
 								</CSRadio>
 						}
 					]

@@ -10,7 +10,6 @@ import { CSDivider, CSButtonGroup, CSDropdown, CSMainHeader, CSMainHeaderLeft, C
 
 class CSDividerPreview extends React.Component {
 	getDoc() {
-
 		const json = {
 			name: 'Divider',
 			usage: 'Divides things, simple.',
