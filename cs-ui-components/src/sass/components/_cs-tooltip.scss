@@ -80,16 +80,15 @@
 			border-width: 7px 7px 0 7px;
 			@include sbg(--cs-transparent);
 			@include css4 {
-				border-color: cvar(--cs-tooltip-body-bg) cvar(--cs-transparent)
-					cvar(--cs-transparent) cvar(--cs-transparent);
-				filter: drop-shadow(0px 2px 1px cvar(--cs-shadow-medium));
+				border-color: cvar(--cs-tooltip-body-bg) cvar(--cs-transparent) cvar(--cs-transparent) cvar(--cs-transparent);
+				filter: drop-shadow(0 1px 1px cvar(--cs-shadow-medium));
 			}
 		}
 		&.cs-tooltip-top-right,
 		&.cs-tooltip-top-left,
 		&.cs-tooltip-top-center {
 			@include css4 {
-				box-shadow: 0 2px 3px 0 cvar(--cs-shadow-medium);
+				box-shadow: 0 1px 3px 0 cvar(--cs-shadow-medium);
 			}
 			&::before {
 				top: 100%;
@@ -100,7 +99,7 @@
 		&.cs-tooltip-bottom-left,
 		&.cs-tooltip-bottom-center {
 			@include css4 {
-				box-shadow: 0 -2px 3px 0 cvar(--cs-shadow-medium);
+				box-shadow: 0 -1px 3px 0 cvar(--cs-shadow-medium);
 			}
 			&::before {
 				bottom: 100%;
