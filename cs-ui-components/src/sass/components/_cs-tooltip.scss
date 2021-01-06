@@ -22,6 +22,7 @@
 
 	.cs-tooltip-body {
 		text-align: left;
+		word-break: break-word;
 
 		&:not(:first-child) {
 			margin-block-start: 0.25rem;
@@ -171,6 +172,7 @@
 			border-radius: 0.25rem 0.25rem 0 0;
 			font-size: 1.0625rem;
 			text-align: left;
+			word-break: break-word;
 		}
 
 		.cs-tooltip-body {
