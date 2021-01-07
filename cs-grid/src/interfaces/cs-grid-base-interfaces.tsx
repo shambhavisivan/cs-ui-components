@@ -79,10 +79,15 @@ export type IsColumnFunc = (params: IsColumnFuncParams) => boolean;
 // Ag-grid interfaces have been extended so they are not exposed in the cs-grid package.
 export interface CSGridCellEditor extends ICellEditorReactComp {}
 export interface CSGridCellRenderer extends ICellRendererReactComp {}
-export interface GridReadyEvent extends _GridReadyEvent {}
+export interface GridReadyEvent extends _GridReadyEvent {
+	api: GridApi;
+}
 export interface CellClickedEvent extends _CellClickedEvent {}
-export interface GridApi extends _GridApi {}
-/*apis that are specific to CSgrid specific functionalities*/
+
+export interface GridApi extends _GridApi {
+	scrollGridToColumn: (columnName: string, position: 'LEFT' | 'RIGHT') => void;
+}
+
 export interface CSGridApi {
 	updateDataSource: () => void;
 }

@@ -1,8 +1,17 @@
-import { CellValueChangedEvent, ColDef, GridReadyEvent } from 'ag-grid-community';
+import { CellValueChangedEvent, ColDef, ColumnApi, GridApi as agGridApi } from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react';
 import { mount, shallow } from 'enzyme';
 import React from 'react';
-import { CSGrid, CSGridProps, DataSourceAPI, Row, RowData, UserInfo } from '../../main';
+import {
+	CSGrid,
+	CSGridProps,
+	DataSourceAPI,
+	GridApi,
+	GridReadyEvent,
+	Row,
+	RowData,
+	UserInfo
+} from '../../main';
 
 describe('csgrid', () => {
 	const userInfo: UserInfo = {
@@ -286,6 +295,150 @@ describe('csgrid', () => {
 					.props()
 					.columnDefs.every((columnDef: ColDef) => columnDef.headerCheckboxSelection)
 			).toBeTruthy();
+		});
+	});
+
+	describe('scrollGridToColumn', () => {
+		const mockConsoleWarn = jest.fn();
+		console.warn = mockConsoleWarn;
+		let api: agGridApi;
+		let gridProps: any;
+
+		beforeEach(() => {
+			mockConsoleWarn.mockClear();
+
+			api = new agGridApi();
+			api.paginationGetCurrentPage = jest.fn();
+			api.paginationGetTotalPages = jest.fn();
+
+			gridProps = {
+				...baseProps
+			};
+		});
+
+		test('scrollGridToColumn should be in the grid api in the onGridReady event', () => {
+			let exposedGridAPi: GridApi;
+			const onGridReadyProp = (params: GridReadyEvent) => {
+				console.log(params.api.scrollGridToColumn);
+				exposedGridAPi = params.api;
+			};
+
+			gridProps.onGridReady = onGridReadyProp;
+
+			const event = {
+				api,
+				columnApi: undefined as ColumnApi,
+				type: undefined as string
+			};
+			const csGridShallow = shallow<CSGrid>(<CSGrid {...gridProps} />);
+			(csGridShallow.instance() as any).onGridReady(event);
+
+			expect(
+				exposedGridAPi && typeof exposedGridAPi.scrollGridToColumn === 'function'
+			).toBeTruthy();
+		});
+
+		test('An invalid column name passed into scrollGridToColumn should cause a warning.', () => {
+			const columnApi = new ColumnApi();
+			columnApi.getColumn = jest.fn(() => undefined);
+
+			const event = {
+				api,
+				columnApi,
+				type: undefined as string
+			};
+			const csGridShallow = shallow<CSGrid>(<CSGrid {...gridProps} />);
+			(csGridShallow.instance() as any).onGridReady(event);
+			mockConsoleWarn.mockClear();
+
+			(csGridShallow.instance() as any).scrollGridToColumn('INVALID_COLUMN_NAME', 'LEFT');
+
+			expect(mockConsoleWarn).toHaveBeenCalledTimes(1);
+		});
+
+		test('A pinned column passed into scrollGridToColumn should cause a warning.', () => {
+			const column: any = {
+				getColId: () => '',
+				getPinned: () => true,
+				isPinned: jest.fn(() => true)
+			};
+
+			const columnApi = new ColumnApi();
+			columnApi.getColumn = jest.fn(() => column);
+
+			const event = {
+				api,
+				columnApi,
+				type: undefined as string
+			};
+			const csGridShallow = shallow<CSGrid>(<CSGrid {...gridProps} />);
+			(csGridShallow.instance() as any).onGridReady(event);
+			mockConsoleWarn.mockClear();
+
+			(csGridShallow.instance() as any).scrollGridToColumn('VALID_COLUMN_NAME', 'LEFT');
+
+			expect(column.isPinned).toHaveBeenCalledTimes(1);
+			expect(mockConsoleWarn).toHaveBeenCalledTimes(1);
+		});
+
+		test('A hidden column passed into scrollGridToColumn should cause a warning.', () => {
+			const column: any = {
+				getPinned: jest.fn(),
+				isPinned: () => false,
+				isVisible: false
+			};
+
+			const columnApi = new ColumnApi();
+			columnApi.getColumn = jest.fn(() => column);
+
+			const event = {
+				api,
+				columnApi,
+				type: undefined as string
+			};
+			const csGridShallow = shallow<CSGrid>(<CSGrid {...gridProps} />);
+			(csGridShallow.instance() as any).onGridReady(event);
+			mockConsoleWarn.mockClear();
+
+			(csGridShallow.instance() as any).scrollGridToColumn('VALID_COLUMN_NAME', 'LEFT');
+
+			expect(column.getPinned).toHaveBeenCalledTimes(0);
+			expect(mockConsoleWarn).toHaveBeenCalledTimes(1);
+		});
+
+		test('Given valid inputs to scrollGridToColumn the scroll function is called on the grid html element.', () => {
+			const column: any = {
+				getActualWidth: () => 0,
+				getLeft: jest.fn(() => 0),
+				isPinned: () => false,
+				isVisible: true
+			};
+
+			const mockedHTMLElement: any = {
+				clientWidth: 1,
+				scroll: jest.fn()
+			};
+			document.querySelectorAll = jest.fn(() => [mockedHTMLElement]) as any;
+
+			const columnApi = new ColumnApi();
+			columnApi.getColumn = jest.fn(() => column);
+
+			const event = {
+				api,
+				columnApi,
+				type: undefined as string
+			};
+			const csGridShallow = shallow<CSGrid>(<CSGrid {...gridProps} />);
+			(csGridShallow.instance() as any).onGridReady(event);
+			mockConsoleWarn.mockClear();
+
+			(csGridShallow.instance() as any).scrollGridToColumn('VALID_COLUMN_NAME', 'LEFT');
+
+			expect(column.getLeft).toHaveBeenCalledTimes(1);
+			expect(mockConsoleWarn).toHaveBeenCalledTimes(0);
+
+			// Confirm scrolling is called given valid inputs.
+			expect(mockedHTMLElement.scroll).toHaveBeenCalledTimes(1);
 		});
 	});
 
@@ -1158,7 +1311,7 @@ describe('rowdata Related', () => {
 				.find(AgGridReact)
 				.props()
 				.columnDefs.every(
-					(columnDef: ColDef) => columnDef.colId && columnDef.colId == columnDef.field
+					(columnDef: ColDef) => columnDef.colId && columnDef.colId === columnDef.field
 				)
 		).toBeTruthy();
 	});

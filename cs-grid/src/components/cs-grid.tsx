@@ -4,10 +4,10 @@ import {
 	CellEditingStoppedEvent,
 	CellValueChangedEvent,
 	ColDef as AgGridColDef,
+	ColumnApi,
 	ColumnResizedEvent,
 	GetQuickFilterTextParams,
-	GridApi,
-	GridReadyEvent,
+	GridReadyEvent as _GridReadyEvent,
 	IDatasource,
 	IGetRowsParams
 } from 'ag-grid-community';
@@ -23,6 +23,8 @@ import {
 	CellData,
 	CSGridApi,
 	CSGridControl,
+	GridApi,
+	GridReadyEvent,
 	Row,
 	RowData,
 	RowStyleParams,
@@ -190,6 +192,7 @@ class CSGridState {
 export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 	state: CSGridState = new CSGridState();
 	private gridApi: GridApi;
+	private columnApi: ColumnApi;
 	private defaultPageSizes: Array<number> = [10, 20, 50, 100];
 	private rowSelectionColumns: Array<string> = [];
 	private lookupColumns: Array<string> = [];
@@ -439,7 +442,11 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 
 	/* Grid Events we're listening to */
 	onGridReady = (params: GridReadyEvent) => {
-		this.gridApi = params.api;
+		this.gridApi = params.api as GridApi;
+		this.gridApi.scrollGridToColumn = this.scrollGridToColumn;
+
+		this.columnApi = params.columnApi;
+
 		const csGridApi: CSGridApi = {
 			updateDataSource: this.updateDataSource.bind(this)
 		};
@@ -964,6 +971,45 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		if (value !== undefined) {
 			target[key] = value;
 		}
+	};
+
+	private scrollGridToColumn = (columnName: string, position: 'LEFT' | 'RIGHT') => {
+		const column = this.columnApi.getColumn(columnName);
+		if (!column) {
+			console.warn(`A column with key ${columnName} doesn't exist in this grid.`);
+
+			return;
+		}
+		if (column.isPinned()) {
+			console.warn(
+				`calling ensureColumnPosition on a ${column.getPinned()} pinned column doesn't make sense for column ${column.getColId()}`
+			);
+
+			return;
+		}
+		if (!column.isVisible) {
+			console.warn('column is not currently visible');
+
+			return;
+		}
+
+		// The grid is split into three parts left|center|right only the center has scrolling.
+		const centerGridWrapper = document.querySelectorAll<HTMLElement>(
+			'.cs-grid_app-wrapper .cs-grid_main .ag-center-cols-viewport'
+		)[0];
+
+		const colLeftPixel = column.getLeft();
+		const colRightPixel = colLeftPixel + column.getActualWidth();
+
+		const viewportWidth = centerGridWrapper.clientWidth;
+
+		const newScrollPosition =
+			position === 'LEFT' ? colLeftPixel : colRightPixel - viewportWidth;
+
+		centerGridWrapper.scroll({
+			behavior: 'smooth',
+			left: newScrollPosition
+		});
 	};
 
 	private convertColumnDefs = (columnDefs: Array<ColDef>): Array<AgGridColDef> => {

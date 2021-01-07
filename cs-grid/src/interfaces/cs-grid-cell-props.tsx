@@ -3,12 +3,11 @@ import {
 	CSButtonStyle,
 	CSButtonType,
 	CSIconOrigin,
-	CSTooltipIconSize,
 	CSTooltipPosition,
 	CSTooltipVariant
 } from '@cloudsense/cs-ui-components';
-import { ColDef, Column, ColumnApi, RowNode } from 'ag-grid-community';
-import { CellData, GridApi, IsColumnFunc } from './cs-grid-base-interfaces';
+import { ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
+import { CellData, IsColumnFunc } from './cs-grid-base-interfaces';
 import { LookupSearchColDef } from './cs-grid-col-def';
 import { UserInfo } from './user-info';
 
