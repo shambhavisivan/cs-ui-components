@@ -16,6 +16,8 @@ Besides the standard set of features you'd expect from any grid cs-grid includes
 
 Release Notes
 ------------------
+####1.2.51
+ * Fix row highlighting
 ####1.2.50
  * Fix boolean update logic
  * Update cs-ui-components dependency
