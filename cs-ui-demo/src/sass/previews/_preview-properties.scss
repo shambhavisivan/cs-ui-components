@@ -11,16 +11,16 @@
 		font-size: 1rem;
 		width: 100%;
 		max-width: 600px;
-		color: $cs-gray-dark-6;
+		color: var(--prop-info-c);
 	}
 
 	&.custom {
 		padding: 2rem 2rem 2rem 3rem;
 		margin-top: 2rem;
-		background: $cs-gray-light-4;
+		background: var(--prop-custom-bg);
 
 		.info-text {
-			color: $cs-gray-dark-6;
+			color: var(--prop-custom-c);
 		}
 	}
 

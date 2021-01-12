@@ -57,8 +57,123 @@ $cs-red-light-1: #fcedee;
 $cs-white: #ffffff;
 
 :root {
-	// Semantic names should go here
-	--box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	--access-chip-c: #{$cs-white};
+	--access-chip-bg: #{$cs-blue-sf};
+	--access-chip-br: #{$cs-blue-sf};
+	--access-chip-strong-em-br: #{$cs-orange-medium-2};
+	--access-chip-strong-em-bg: #{$cs-orange-medium-2};
+	--access-chip-strong-br: #{$cs-gray-dark-5};
+	--access-chip-strong-bg: #{$cs-gray-dark-5};
+	--access-link-c: #{$cs-blue-sf};
+	--access-link-hover-c: #{$cs-purple};
+	--access-link-active-c: #{$cs-purple-medium-1};
+	--access-subtitle-c: #{$cs-purple};
+
+	--app-body-bg: #{$cs-gray-light-7};
+	--app-header-c: #{$cs-gray-dark-1};
+	--app-header-bg: #{$cs-white};
+
+	--criteria-list-link-bg: #{$cs-gray-light-3};
+	--criteria-list-link-c: #{$cs-blue-sf};
+	--criteria-list-link-hover-c: #{$cs-purple};
+	--criteria-list-link-focus-shadow: #{$cs-blue-sf};
+	--criteria-list-link-active-c: #{$cs-purple-medium-1};
+
+	--colors-grid-focus-shadow: #{$cs-blue-sf};
+	--colors-grid-bg: #{$cs-white};
+	--colors-grid-c: #{$cs-gray-medium-1};
+	--colors-grid-name-c: #{$cs-gray-dark-2};
+
+	--components-list-wrapper-bg: #{$cs-gray-dark-3};
+	--components-search-field-br: #{$cs-gray-dark-6};
+	--components-api-bg: #{$cs-white};
+	--components-modal-bg: #{$cs-white};
+	--components-sidebar-bg: #{$cs-purple};
+	--components-link-c: #{$cs-gray-dark-3};
+	--components-link-hover-bg: #{$cs-purple};
+	--components-link-hover-c: #{$cs-white};
+
+	--cs-chip-bg: #{$cs-mint};
+	--cs-chip-demo-c: #{$cs-gray-dark-1};
+	--cs-icon-sidebar-fill: #{$cs-white};
+	--cs-icon-fill: #{$cs-gray-dark-5};
+	--cs-btn-icon-fill: #{$cs-white};
+	--cs-btn-bg: #{$cs-white};
+	--cs-transparent-bg: #{$cs-blue-dark-2};
+	--cs-shadow-light: rgba($cs-black, 0.12);
+	--cs-shadow-medium: rgba($cs-black, 0.24);
+
+	--custom-bg: #{$cs-mint};
+	--custom-br: #{$cs-mint};
+	--custom-alt-bg: #{$cs-blue-medium-6};
+
+	--header-tab-c: #{$cs-gray-dark-3};
+	--header-tab-active-c: #{$cs-purple};
+	--header-tab-active-alt-c: #{$cs-gray-dark-1};
+	--header-tab-active-bg: #{$cs-gray-light-6};
+
+	--icons-search-field-bg: #{$cs-white};
+	--icons-container-bg: #{$cs-white};
+	--icons-paragraph-c: #{$cs-gray-dark-2};
+	--icons-custom-fill: #{$cs-mint};
+
+	--important-chip-bg: #{$cs-mint};
+	--important-chip-c: #{$cs-gray-dark-1};
+
+	--prop-link-c: #{$cs-blue-sf};
+	--prop-inline-container-fill: #{$cs-mint};
+	--prop-info-c: #{$cs-gray-dark-6};
+	--prop-custom-bg: #{$cs-gray-light-4};
+	--prop-custom-c: #{$cs-gray-dark-6};
+	--prop-table-cell-br: #{$cs-gray-light-2};
+	--prop-table-row-stripes-bg-light: #{$cs-white};
+	--prop-table-row-stripes-bg-dark: #{$cs-gray-light-7};
+	--prop-code-c: #{$cs-black};
+	--prop-code-bg: #{$cs-gray-light-5};
+	--prop-code-br: #{$cs-gray-light-1};
+	--prop-code-custom-bg: #{$cs-white};
+
+	--preview-chip-c: #{$cs-white};
+	--preview-chip-br: #{$cs-blue-sf};
+	--preview-chip-bg: #{$cs-blue-sf};
+	--preview-chip-second-c: #{$cs-gray-medium-1};
+	--preview-chip-second-bg: #{$cs-gray-light-11};
+	--preview-chip-second-br: #{$cs-gray-medium-1};
+	--preview-heading-subtitle-c: #{$cs-gray-dark-6};
+
+	--release-notes-code-snippet-bg: #{$cs-white};
+	--release-notes-code-snippet-br: #{$cs-mint};
+
+	--req-table-bg: #{$cs-purple};
+	--req-table-c: #{$cs-white};
+	--req-table-before-c: #{$cs-gray-dark-1};
+
+	--sidebar-search-field-c: #{$cs-white};
+	--sidebar-search-field-bg: #{$cs-gray-dark-4};
+	--sidebar-search-field-placeholder-c: #{$cs-gray-light-4};
+	--sidebar-link-c: #{$cs-white};
+	--sidebar-link-hover-bg: #{$cs-purple};
+	--sidebar-link-hover-c: #{$cs-white};
+	--sidebar-link-active-bg: #{$cs-gray-dark-4};
+	--sidebar-info-bg: #{$cs-white};
+	--sidebar-info-hover-bg: #{$cs-white};
+	--sidebar-toggle-graphic-fill: #{$cs-white};
+
+	--table-row-bg: #{$cs-white};
+	--table-row-br: #{$cs-gray-light-3};
+	--table-prop-api-bg: #{$cs-gray-light-5};
+	--table-helper-bg: #{$cs-gray-light-6};
+	--table-head-row-bg: #{$cs-purple};
+	--table-head-row-c: #{$cs-white};
+	--table-backlog-bg: #{$cs-gray-medium-1};
+
+	--dropdown-blue-bg: #{$cs-blue-dark-1};
+	--spinner-black-bg: #{$cs-black};
+	--image-black-bg: #{$cs-black};
+	--api-method-c: #{$cs-gray-medium-1};
+	--version-desc-bg: #{$cs-gray-light-8};
+	--snippet-bg: #{$cs-gray-light-8};
+	--divider-br: #{$cs-gray-light-3};
 }
 
 /* Dark theme support

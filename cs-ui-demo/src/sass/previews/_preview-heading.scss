@@ -1,7 +1,7 @@
 .preview-heading {
 	margin: 0 2rem 0 3rem;
 	padding: 2rem 0;
-	border-bottom: 1px solid $cs-gray-light-3;
+	border-bottom: 1px solid var(--divider-br);
 
 	.preview-heading-row {
 		display: flex;
@@ -32,6 +32,6 @@
 		flex: 1;
 		font-size: 1.25rem;
 		font-weight: 400;
-		color: $cs-gray-dark-6;
+		color: var(--preview-heading-subtitle-c);
 	}
 }

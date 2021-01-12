@@ -15,8 +15,8 @@
 
 .table-row {
 	display: flex;
-	background: $cs-white;
-	border-bottom: 1px solid $cs-gray-light-3;
+	background: var(--table-row-bg);
+	border-bottom: 1px solid var(--table-row-br);
 
 	.table-cell {
 		display: flex;
@@ -34,13 +34,13 @@
 		.api-arg {
 			margin: 0.1rem 0.5rem 0.1rem 0;
 			padding: 0 0.25rem;
-			background: $cs-gray-light-5;
+			background: var(--table-prop-api-bg);
 			display: inline-table;
 		}
 	}
 
 	&.helper-prop-row {
-		background: $cs-gray-light-6;
+		background: var(--table-helper-bg);
 
 		.cs-tooltip-wrapper {
 			height: 21px; // CSTooltip bug, remove after it is fixed
@@ -50,8 +50,8 @@
 }
 
 .table-header .table-row {
-	background: $cs-purple;
-	color: $cs-white;
+	background: var(--table-head-row-bg);
+	color: var(--table-head-row-c);
 
 	.table-cell {
 		padding: 0.25rem 1rem;
@@ -59,7 +59,7 @@
 }
 
 .backlog-table-wrapper .table-header .table-row {
-	background: $cs-gray-medium-1;
+	background: var(--table-backlog-bg);
 }
 
 // END LEGACY PROP TABLE
@@ -77,7 +77,7 @@
 		display: block;
 		width: 100%;
 		max-width: 100%;
-		box-shadow: var(--box-shadow);
+		box-shadow: 0 1px 3px var(--cs-shadow-light), 0 1px 2px var(--cs-shadow-medium);
 		border: none;
 		border-radius: 0.25rem;
 
@@ -85,7 +85,7 @@
 			border-radius: 0.25rem 0.25rem 0 0;
 
 			.properties-table-cell {
-				border-bottom: 1px solid $cs-gray-light-2;
+				border-bottom: 1px solid var(--prop-table-cell-br);
 
 				&:first-child {
 					border-top-left-radius: 0.25rem;
@@ -106,7 +106,9 @@
 			display: table-row;
 
 			&.properties-table-row-inherited {
-				background: repeating-linear-gradient(45deg, $cs-white, $cs-white 10px, $cs-gray-light-7 10px, $cs-gray-light-7 20px);
+				background: repeating-linear-gradient(45deg,
+				var(--prop-table-row-stripes-bg-light), var(--prop-table-row-stripes-bg-light) 10px,
+				var(--prop-table-row-stripes-bg-dark) 10px, var(--prop-table-row-stripes-bg-dark) 20px);
 			}
 
 			.properties-table-cell {
@@ -136,19 +138,19 @@
 
 .properties-code {
 	display: inline-block;
-	background-color: $cs-gray-light-5;
-	border: 1px solid $cs-gray-light-1;
+	background-color: var(--prop-code-bg);
+	border: 1px solid var(--prop-code-br);
 	font-size: 0.8125rem;
 	border-radius: 0.25rem;
 	padding: 0 0.4rem;
 	line-height: 1.25rem;
 	font-family: "Courier New", monospace !important;
 	margin-right: 0.5rem;
-	color: $cs-black;
+	color: var(--prop-code-c);
 	cursor: default;
 
 	&.properties-code-custom {
-		background-color: $cs-white;
+		background-color: var(--prop-code-custom-bg);
 		display: flex;
 
 		.cs-icon {

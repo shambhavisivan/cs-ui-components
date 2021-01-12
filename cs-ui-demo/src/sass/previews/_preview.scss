@@ -4,7 +4,7 @@
 	position: relative;
 	flex: 1;
 	display: flex;
-	box-shadow: var(--box-shadow);
+	box-shadow: 0 1px 3px var(--cs-shadow-light), 0 1px 2px var(--cs-shadow-medium);
 
 	&.icons {
 		padding: 0;
@@ -20,13 +20,13 @@
 
 	.getting-started-list {
 		background: transparent;
-		border-left: 1px solid $cs-gray-medium-3;
+		border-left: 1px solid var(--divider-br);
 
 		.ui-component a {
-			color: $cs-gray-dark-3;
+			color: var(--components-link-c);
 			&:hover {
-				background: $cs-purple;
-				color: $cs-white;
+				background: var(--components-link-hover-bg);
+				color: var(--components-link-hover-c);
 			}
 		}
 	}
@@ -37,7 +37,7 @@
 		flex-direction: column;
 		flex: 1;
 		overflow-y: auto;
-		border-right: 1px solid $cs-gray-light-3;
+		border-right: 1px solid var(--divider-br);
 
 		.chip-label {
 			display: inline-block;
@@ -47,14 +47,14 @@
 			font-size: 0.8rem;
 			line-height: 1;
 			margin-right: 0.3rem;
-			color: $cs-white;
-			border: 1px solid $cs-blue-sf;
-			background: $cs-blue-sf;
+			color: var(--preview-chip-c);
+			border: 1px solid var(--preview-chip-br);
+			background: var(--preview-chip-bg);
 
 			&-secondary {
-				color: $cs-gray-medium-1;
-				background: $cs-gray-light-11;
-				border: 1px solid $cs-gray-medium-1;
+				color: var(--preview-chip-second-c);
+				background: var(--preview-chip-second-bg);
+				border: 1px solid var(--preview-chip-second-br);
 			}
 		}
 
@@ -64,8 +64,8 @@
 			width: 100%;
 			border-radius: 0.25rem;
 			margin-bottom: 1rem;
-			background: $cs-white;
-			box-shadow: var(--box-shadow);
+			background: var(--components-api-bg);
+			box-shadow: 0 1px 3px var(--cs-shadow-light), 0 1px 2px var(--cs-shadow-medium);
 
 			.version-preview {
 				width: 70%;
@@ -80,7 +80,7 @@
 				&.modal-preview {
 					flex: 1;
 					transform: translate3d(0, 0, 0);
-					background: $cs-white;
+					background: var(--components-modal-bg);
 
 					~ .version-description {
 						max-height: unset;
@@ -110,7 +110,7 @@
 		z-index: 10;
 		border-radius: 50%;
 		cursor: pointer;
-		background: $cs-purple;
+		background: var(--components-sidebar-bg);
 		transition: 0.4s;
 
 		&.sidebar-toggle-closed {
@@ -129,7 +129,7 @@
 			width: 1rem;
 			height: 1rem;
 			margin: 0;
-			fill: $cs-white;
+			fill: var(--sidebar-toggle-graphic-fill);
 		}
 	}
 }

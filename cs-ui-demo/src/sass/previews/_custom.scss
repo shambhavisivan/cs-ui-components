@@ -3,11 +3,11 @@
 		position: relative;
 
 		.black-background {
-			background-color: $cs-black;
+			background-color: var(--spinner-black-bg);
 		}
 
 		.custom-class {
-			background-color: $cs-mint;
+			background-color: var(---custom-bg);
 		}
 	}
 
@@ -16,7 +16,7 @@
 		padding: 0;
 
 		.custom-class {
-			background-color: $cs-mint;
+			background-color: var(---custom-bg);
 		}
 	}
 
@@ -25,7 +25,7 @@
 		padding: 1rem;
 
 		.custom-class {
-			background-color: $cs-mint;
+			background-color: var(---custom-bg);
 		}
 	}
 
@@ -33,7 +33,7 @@
 		height: auto;
 
 		.custom-class {
-			border-top: 1px solid $cs-mint;
+			border-top: 1px solid var(--custom-br);
 		}
 	}
 
@@ -45,7 +45,7 @@
 		padding: 1rem;
 
 		.custom-class {
-			border: 2px solid $cs-mint;
+			border: 2px solid var(--custom-br);
 		}
 	}
 
@@ -54,7 +54,7 @@
 		overflow: visible;
 
 		.custom-class {
-			border: 3px solid $cs-mint;
+			border: 3px solid var(--custom-br);
 		}
 	}
 
@@ -63,7 +63,7 @@
 		overflow: visible;
 
 		.custom-class {
-			border: 2px solid $cs-mint;
+			border: 2px solid var(--custom-br);
 		}
 	}
 
@@ -74,47 +74,47 @@
 		overflow: visible;
 
 		.custom-class {
-			background-color: $cs-mint;
+			background-color: var(--custom-bg);
 		}
 	}
 
 	&.alert-preview {
 		.custom-class {
-			background-color: $cs-mint;
+			background-color: var(--custom-bg);
 		}
 	}
 
 	&.toast-preview {
 		.custom-class {
-			background-color: $cs-mint;
+			background-color: var(--custom-bg);
 		}
 	}
 
 	&.tab-preview {
 		.custom-class {
-			background-color: $cs-mint;
+			background-color: var(--custom-bg);
 		}
 
 		.custom-class-2 {
-			background-color: $cs-blue-medium-6;
+			background-color: var(--custom-alt-bg);
 		}
 	}
 
 	&.sidebar-list-preview {
 		.custom-class {
-			background-color: $cs-mint;
+			background-color: var(--custom-bg);
 		}
 	}
 
 	&.button-preview,
 	&.dropdown-preview {
 		.blue-background {
-			background-color: $cs-blue-dark-1;
+			background-color: var(--dropdown-blue-bg);
 			padding: 0.5rem;
 		}
 
 		.custom-class {
-			border: 3px solid $cs-mint;
+			border: 3px solid var(--custom-br);
 		}
 	}
 
@@ -126,7 +126,7 @@
 		overflow: visible;
 
 		.custom-class {
-			border: 3px solid $cs-mint;
+			border: 3px solid var(--custom-br);
 		}
 	}
 
@@ -134,7 +134,7 @@
 		overflow: visible;
 
 		.custom-class {
-			border: 3px solid $cs-mint;
+			border: 3px solid var(--custom-br);
 		}
 	}
 
@@ -142,7 +142,7 @@
 		overflow: visible;
 
 		.custom-class {
-			border: 3px solid $cs-mint;
+			border: 3px solid var(--custom-br);
 		}
 	}
 
@@ -150,7 +150,7 @@
 		overflow: visible;
 
 		.custom-class {
-			border: 3px solid $cs-mint;
+			border: 3px solid var(--custom-br);
 		}
 	}
 
@@ -158,7 +158,7 @@
 		overflow: visible;
 
 		.custom-class {
-			background-color: $cs-mint;
+			background-color: var(--custom-bg);
 		}
 	}
 
@@ -167,7 +167,7 @@
 		padding: 0.5rem 0.5rem 1.5rem;
 
 		.custom-class {
-			border: 3px solid $cs-mint;
+			border: 3px solid var(--custom-br);
 		}
 	}
 
@@ -175,7 +175,7 @@
 		overflow: visible;
 
 		.custom-class {
-			border: 3px solid $cs-mint;
+			border: 3px solid var(--custom-br);
 		}
 	}
 
@@ -183,61 +183,61 @@
 		overflow: visible;
 
 		.custom-class {
-			border: 3px solid $cs-mint;
+			border: 3px solid var(--custom-br);
 		}
 	}
 
 	&.chip-preview {
 
 		.custom-class {
-			background-color: $cs-mint;
+			background-color: var(--custom-bg);
 		}
 	}
 
 	&.card-preview {
 		.custom-class {
-			background-color: $cs-mint;
+			background-color: var(--custom-bg);
 		}
 	}
 
 	&.section-preview {
 
 		.custom-class {
-			background-color: $cs-mint;
+			background-color: var(--custom-bg);
 		}
 	}
 
 	&.progress-bar-preview {
 		.custom-class {
-			background-color: $cs-mint;
+			background-color: var(--custom-bg);
 		}
 	}
 
 	&.icon-preview {
 		.custom-class {
-			fill: $cs-mint;
+			fill: var(--icons-custom-fill);
 		}
 	}
 
 	&.image-preview {
 		.black-background {
-			background-color: $cs-black;
+			background-color: var(--image-black-bg);
 		}
 
 		.custom-class {
-			border: 3px solid $cs-mint;
+			border: 3px solid var(--custom-br);
 		}
 	}
 
 	&.button-group-preview {
 		.custom-class {
-			border: 3px solid $cs-mint;
+			border: 3px solid var(--custom-br);
 		}
 	}
 
 	&.divider-preview {
 		.custom-class {
-			border-color: $cs-mint;
+			border-color: var(--custom-br);
 		}
 	}
 
@@ -245,7 +245,7 @@
 		overflow: visible;
 
 		.custom-class input {
-			background-color: $cs-mint;
+			background-color: var(--custom-bg);
 		}
 	}
 
@@ -253,13 +253,13 @@
 		overflow: visible;
 
 		.custom-class {
-			border: 3px solid $cs-mint;
+			border: 3px solid var(--custom-br);
 		}
 	}
 
 	&.slider-preview {
 		.custom-class {
-			border: 3px solid $cs-mint;
+			border: 3px solid var(--custom-br);
 		}
 	}
 
@@ -287,7 +287,7 @@
 		overflow: visible;
 
 		.custom-class input {
-			background-color: $cs-mint;
+			background-color: var(--custom-bg);
 		}
 	}
 }
@@ -296,9 +296,9 @@
 	padding: 2rem 2rem 0 3rem;
 
 	.cs-btn-type-preview {
-		background: $cs-white;
+		background: var(--cs-btn-bg);
 		border-radius: 0.25rem;
-		box-shadow: var(--box-shadow);
+		box-shadow: 0 1px 3px var(--cs-shadow-light), 0 1px 2px var(--cs-shadow-medium);
 		padding: 2rem;
 		overflow-x: auto;
 		display: grid;
@@ -436,7 +436,7 @@
 		}
 
 		.cs-transparent-bg {
-			background: $cs-blue-dark-2;
+			background: var(--cs-transparent-bg);
 			padding: 0.25rem;
 		}
 	}
@@ -453,6 +453,6 @@
 
 .cs-modal-wrapper {
 	&.custom-class {
-		background-color: $cs-mint;
+		background-color: var(--custom-bg);
 	}
 }

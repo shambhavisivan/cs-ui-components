@@ -10,21 +10,21 @@
 		position: relative;
 		margin: 0.1rem 0.5rem 0.1rem 0;
 		padding: 0 2px;
-		background: $cs-gray-light-3;
-		color: $cs-blue-sf;
+		background: var(--criteria-list-link-bg);
+		color: var(--criteria-list-link-c);
 		border-radius: 0.25rem;
 
 		&:hover {
-			color: $cs-purple;
+			color: var(--criteria-list-link-hover-c);
 		}
 
 		&:focus {
 			outline: none;
-			box-shadow: 0 0 3px $cs-blue-sf;
+			box-shadow: 0 0 3px var(--criteria-list-link-focus-shadow);
 		}
 
 		&:active {
-			color: $cs-purple-medium-1;
+			color: var(--criteria-list-link-active-c);
 		}
 
 		&::after {
@@ -42,8 +42,8 @@
 		margin-top: 1rem;
 
 		.table-body .table-row .table-cell:first-child {
-			background: $cs-purple;
-			color: $cs-white;
+			background: var(--req-table-bg);
+			color: var(--req-table-c);
 		}
 
 		.table-cell {
@@ -55,7 +55,7 @@
 
 				&::before {
 					content: "\2022";
-					color: $cs-gray-dark-1;
+					color: var(--req-table-before-c);
 					position: absolute;
 					left: -0.75rem;
 				}
