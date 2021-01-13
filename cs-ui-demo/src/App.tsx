@@ -12,54 +12,62 @@ import Accessibility from './previews/Accessibility';
 import { CSImage, CSChip } from '@cloudsense/cs-ui-components';
 import { version } from '../node_modules/@cloudsense/cs-ui-components/package.json';
 
-class App extends React.Component {
+import { ThemeProvider } from './context/ThemeContext';
+import ToggleTheme from './previews/ToggleTheme';
 
-	render() {
-
-		return (
-			<>
-				<Router>
-					<div className="cs-app-wrapper">
-						<div className="app-main-header">
-							<ul>
-								<li className="main-header-tab">
-									<NavLink to={'/components'} activeClassName="active-main-header-tab">CS UI Components</NavLink>
-								</li>
-								<li className="main-header-tab">
-									<NavLink to={'/icons'} activeClassName="active-main-header-tab">Icons</NavLink>
-								</li>
-								<li className="main-header-tab">
-									<NavLink to={'/colors'} activeClassName="active-main-header-tab">Colors</NavLink>
-								</li>
-								<li className="main-header-tab">
-									<NavLink to={'/accessibility'} activeClassName="active-main-header-tab">Accessibility</NavLink>
-								</li>
-								<li className="main-header-tab">
-									<NavLink to={'/release-notes'} activeClassName="active-main-header-tab">Release Notes</NavLink>
-								</li>
-							</ul>
-							<div className="app-main-header-right">
-								<CSChip text={'latest published version: ' + version} />
-								<CSImage type="logo" height="2.25rem" />
-							</div>
-						</div>
-						<div className="app-body">
-							<Route path="/components" component={CSComponentsList} />
-							<Route path="/icons" component={CSIconsList} />
-							<Route path="/colors" component={CSColorsPreview} />
-							<Route path="/release-notes" component={ReleaseNotes} />
-							<Route path="/accessibility" component={Accessibility} />
-							<Switch>
-								<Redirect exact from="/" to="/components/CSGettingStarted" />
-								<Redirect exact from="/components" to="/components/CSGettingStarted" />
-								<Redirect exact from="/icons/" to="/icons/LightningIcons" />
-							</Switch>
-						</div>
+const App: React.FC = () => (
+	<ThemeProvider>
+		<Router>
+			<div className="cs-app-wrapper">
+				<div className="app-main-header">
+					<ul>
+						<li className="main-header-tab">
+							<NavLink to="/components" activeClassName="active-main-header-tab">
+								CS UI Components
+							</NavLink>
+						</li>
+						<li className="main-header-tab">
+							<NavLink to="/icons" activeClassName="active-main-header-tab">
+								Icons
+							</NavLink>
+						</li>
+						<li className="main-header-tab">
+							<NavLink to="/colors" activeClassName="active-main-header-tab">
+								Colors
+							</NavLink>
+						</li>
+						<li className="main-header-tab">
+							<NavLink to="/accessibility" activeClassName="active-main-header-tab">
+								Accessibility
+							</NavLink>
+						</li>
+						<li className="main-header-tab">
+							<NavLink to="/release-notes" activeClassName="active-main-header-tab">
+								Release Notes
+							</NavLink>
+						</li>
+					</ul>
+					<div className="app-main-header-right">
+						<CSChip text={`latest published version: ${version}`} />
+						<ToggleTheme />
+						<CSImage type="logo" height="2.25rem" />
 					</div>
-				</Router>
-			</>
-		);
-	}
-}
+				</div>
+				<div className="app-body">
+					<Route path="/components" component={CSComponentsList} />
+					<Route path="/icons" component={CSIconsList} />
+					<Route path="/colors" component={CSColorsPreview} />
+					<Route path="/release-notes" component={ReleaseNotes} />
+					<Route path="/accessibility" component={Accessibility} />
+					<Switch>
+						<Redirect exact from="/" to="/components/CSGettingStarted" />
+						<Redirect exact from="/components" to="/components/CSGettingStarted" />
+						<Redirect exact from="/icons/" to="/icons/LightningIcons" />
+					</Switch>
+				</div>
+			</div>
+		</Router>
+	</ThemeProvider>
+);
 
 export default App;
