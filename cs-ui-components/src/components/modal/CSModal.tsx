@@ -5,20 +5,25 @@ import CSSpinner from '../CSSpinner';
 import { Portal } from 'react-portal';
 import { v4 as uuidv4 } from 'uuid';
 import { CSModalHeader } from '../../index';
+import withCSUnmountDelay from '../../helpers/CSUnmountDelay';
 
 export type CSModalSize = 'auto' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 
 export interface CSModalProps {
 	[key: string]: any;
+	animated: boolean;
 	className?: string;
 	closeButton?: boolean;
 	id?: string;
 	loading?: boolean;
 	loadingText?: string;
+	mounted: boolean;
 	onClose?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 	outerClickClose?: boolean;
+	setMounted: () => void;
 	size?: CSModalSize;
 	style?: object;
+	visible: boolean;
 }
 
 class CSModal extends React.Component<CSModalProps> {
@@ -126,6 +131,7 @@ class CSModal extends React.Component<CSModalProps> {
 
 		document.body.style.overflow = 'hidden';
 		document.documentElement.style.overflow = 'hidden';
+		this.props.setMounted();
 	}
 
 	componentWillUnmount() {
@@ -148,22 +154,45 @@ class CSModal extends React.Component<CSModalProps> {
 
 	render() {
 		const {
+			animated,
 			children,
 			className,
 			closeButton,
 			id,
 			loading,
 			loadingText,
+			mounted,
 			onClose,
 			outerClickClose,
+			setMounted,
 			size,
 			style,
+			visible,
 			...rest
 		} = this.props;
 
-		const modalClasses = classNames('cs-modal-wrapper', {
-			[`${className}`]: className
-		});
+		const modalWrapperClasses = classNames(
+			'cs-modal-wrapper',
+			{
+				[`${className}`]: className
+			}
+		);
+
+		const modalOverlayClasses = classNames(
+			'cs-modal-overlay',
+			{
+				'cs-modal-overlay-hidden': !(visible && mounted) && animated
+			}
+		);
+
+		const modalClasses = classNames(
+			'cs-modal',
+			`cs-modal-${size}`,
+			{
+				'cs-modal-no-close-btn': closeButton,
+				'cs-modal-hidden': !(visible && mounted) && animated
+			}
+		);
 
 		const renderChildren = React.Children.map(children, (child: any, index) => {
 			if (child) {
@@ -180,19 +209,15 @@ class CSModal extends React.Component<CSModalProps> {
 		return (
 			<Portal node={document && document.getElementById(this.modalId)}>
 				<div
-					className="cs-modal-overlay"
+					className={modalOverlayClasses}
 					ref={modalOverlayNode => this.modalOverlay = modalOverlayNode}
 					{...rest}
 				>
-					<div className={modalClasses} id={id}>
+					<div className={modalWrapperClasses} id={id}>
 						<div
 							ref={modal => this.modalRef = modal}
 							tabIndex={0}
-							className={
-								closeButton
-									? 'cs-modal cs-modal-' + size
-									: 'cs-modal-no-close-btn cs-modal cs-modal-' + size
-							}
+							className={modalClasses}
 							style={style}
 							role="dialog"
 							aria-modal="true"
@@ -227,4 +252,4 @@ class CSModal extends React.Component<CSModalProps> {
 	}
 }
 
-export default CSModal;
+export default withCSUnmountDelay(CSModal);

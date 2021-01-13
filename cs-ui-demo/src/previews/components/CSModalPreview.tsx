@@ -49,33 +49,33 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 										label="Open Modal"
 										onClick={() => this.setState({ visibleModal: 'auto' })}
 									/>
-									{this.state.visibleModal === 'auto' && (
-										<CSModal
-											size="auto"
-											closeButton
-											onClose={() => this.setState({ visibleModal: undefined })}
-										>
-											<CSModalHeader
-												title="This is a test heading"
-												subtitle="This is a test subtitle"
-											/>
-											<CSModalBody>
-												<p>
-													Sit nulla est ex deserunt exercitation anim
-													occaecat.
-													<br />
-													<br />
-													Nostrud ullamco deserunt aute id consequat
-													veniam incididunt duis in sint irure nisi.
-													Mollit officia cillum Lorem ullamco minim
-													nostrud elit officia tempor esse quis. Cillum
-													sunt ad dolore quis aute consequat ipsum magna
-													exercitation reprehenderit magna. Tempor
-													cupidatat consequat elit dolor adipisicing.
-												</p>
-											</CSModalBody>
-										</CSModal>
-									)}
+									<CSModal
+										visible={this.state.visibleModal === 'auto'}
+										size="auto"
+										animated
+										closeButton
+										onClose={() => this.setState({ visibleModal: undefined })}
+									>
+										<CSModalHeader
+											title="This is a test heading"
+											subtitle="This is a test subtitle"
+										/>
+										<CSModalBody>
+											<p>
+												Sit nulla est ex deserunt exercitation anim
+												occaecat.
+												<br />
+												<br />
+												Nostrud ullamco deserunt aute id consequat
+												veniam incididunt duis in sint irure nisi.
+												Mollit officia cillum Lorem ullamco minim
+												nostrud elit officia tempor esse quis. Cillum
+												sunt ad dolore quis aute consequat ipsum magna
+												exercitation reprehenderit magna. Tempor
+												cupidatat consequat elit dolor adipisicing.
+											</p>
+										</CSModalBody>
+									</CSModal>
 								</div>
 							)
 						},
@@ -89,23 +89,23 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 										label="Open Modal"
 										onClick={() => this.setState({ visibleModal: 'xsmall' })}
 									/>
-									{this.state.visibleModal === 'xsmall' && (
-										<CSModal
-											size="xsmall"
-											closeButton
-											onClose={() => this.setState({ visibleModal: undefined })}
-										>
-											<CSModalHeader
-												title="This is a test heading"
-												subtitle="This is a test subtitle"
-											/>
-											<CSModalBody>
-												<p>
-													Example text, most likely a confirmation message.
-												</p>
-											</CSModalBody>
-										</CSModal>
-									)}
+									<CSModal
+										size="xsmall"
+										visible={this.state.visibleModal === 'xsmall'}
+										animated
+										closeButton
+										onClose={() => this.setState({ visibleModal: undefined })}
+									>
+										<CSModalHeader
+											title="This is a test heading"
+											subtitle="This is a test subtitle"
+										/>
+										<CSModalBody>
+											<p>
+												Example text, most likely a confirmation message.
+											</p>
+										</CSModalBody>
+									</CSModal>
 								</div>
 							)
 						},
@@ -119,89 +119,89 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 										label="Open Modal"
 										onClick={() => this.setState({ visibleModal: 'small' })}
 									/>
-									{this.state.visibleModal === 'small' && (
-										<CSModal
-											size="small"
-										>
-											<CSModalHeader
-												title="This is a test heading"
-												subtitle="This is a test subtitle"
+									<CSModal
+										visible={this.state.visibleModal === 'small'}
+										size="small"
+										animated
+									>
+										<CSModalHeader
+											title="This is a test heading"
+											subtitle="This is a test subtitle"
+										/>
+										<CSModalBody>
+											<p>
+												Sit nulla est ex deserunt exercitation anim
+												occaecat.
+												<br />
+												<br />
+												Nostrud ullamco deserunt aute id consequat
+												veniam incididunt duis in sint irure nisi.
+												Mollit officia cillum Lorem ullamco minim
+												nostrud elit officia tempor esse quis. Cillum
+												sunt ad dolore quis aute consequat ipsum magna
+												exercitation reprehenderit magna. Tempor
+												cupidatat consequat elit dolor adipisicing.
+											</p>
+										</CSModalBody>
+										<CSModalFooter align="left">
+											<CSButton
+												label="Open Modal"
+												onClick={() => this.setState({ secondModalVisible: true })}
+												btnStyle="brand"
 											/>
-											<CSModalBody>
-												<p>
-													Sit nulla est ex deserunt exercitation anim
-													occaecat.
-													<br />
-													<br />
-													Nostrud ullamco deserunt aute id consequat
-													veniam incididunt duis in sint irure nisi.
-													Mollit officia cillum Lorem ullamco minim
-													nostrud elit officia tempor esse quis. Cillum
-													sunt ad dolore quis aute consequat ipsum magna
-													exercitation reprehenderit magna. Tempor
-													cupidatat consequat elit dolor adipisicing.
-												</p>
-											</CSModalBody>
-											<CSModalFooter align="left">
-												<CSButton
-													label="Open Modal"
-													onClick={() => this.setState({ secondModalVisible: true })}
-													btnStyle="brand"
-												/>
-												<CSButton
-													label="Close"
-													onClick={() => this.setState({ visibleModal: undefined })}
-												/>
-											</CSModalFooter>
-										</CSModal>
-									)}
-									{this.state.secondModalVisible && (
-										<CSModal
-											size="xsmall"
-										>
-											<CSModalHeader
-												title="This is a test heading"
-												subtitle="This is a test subtitle"
+											<CSButton
+												label="Close"
+												onClick={() => this.setState({ visibleModal: undefined })}
 											/>
-											<CSModalBody>
-												<p>
-													Example text, most likely a confirmation message.
-												</p>
-											</CSModalBody>
-											<CSModalFooter align="left">
-												<CSButton
-													label="Open Modal"
-													onClick={() => this.setState({ thirdModalVisible: true })}
-													btnStyle="brand"
-												/>
-												<CSButton
-													label="Close"
-													onClick={() => this.setState({ secondModalVisible: false })}
-												/>
-											</CSModalFooter>
-										</CSModal>
-									)}
-									{this.state.thirdModalVisible && (
-										<CSModal
-											size="xsmall"
-											closeButton
-											onClose={() => this.setState({ thirdModalVisible: false })}
-										>
-											<CSModalHeader
-												title="This is a test heading"
-												subtitle="This is a test subtitle"
+										</CSModalFooter>
+									</CSModal>
+									<CSModal
+										visible={this.state.secondModalVisible}
+										size="xsmall"
+										animated
+									>
+										<CSModalHeader
+											title="This is a test heading"
+											subtitle="This is a test subtitle"
+										/>
+										<CSModalBody>
+											<p>
+												Example text, most likely a confirmation message.
+											</p>
+										</CSModalBody>
+										<CSModalFooter align="left">
+											<CSButton
+												label="Open Modal"
+												onClick={() => this.setState({ thirdModalVisible: true })}
+												btnStyle="brand"
 											/>
-											<CSModalBody>
-												<p>
-													Example text, most likely a confirmation message.
-												</p>
-											</CSModalBody>
-											<CSModalFooter align="left">
-												<CSButton label="Default Button" />
-												<CSButton label="Brand Button" btnStyle="brand" />
-											</CSModalFooter>
-										</CSModal>
-									)}
+											<CSButton
+												label="Close"
+												onClick={() => this.setState({ secondModalVisible: false })}
+											/>
+										</CSModalFooter>
+									</CSModal>
+									<CSModal
+										size="xsmall"
+										visible={this.state.thirdModalVisible}
+										animated
+										closeButton
+										onClose={() => this.setState({ thirdModalVisible: false })}
+									>
+										<CSModalHeader
+											title="This is a test heading"
+											subtitle="This is a test subtitle"
+										/>
+										<CSModalBody>
+											<p>
+												Example text, most likely a confirmation message.
+											</p>
+										</CSModalBody>
+										<CSModalFooter align="left">
+											<CSButton label="Default Button" />
+											<CSButton label="Brand Button" btnStyle="brand" />
+										</CSModalFooter>
+									</CSModal>
 								</div>
 							)
 						},
@@ -215,39 +215,42 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 										label="Open Modal"
 										onClick={() => this.setState({ visibleModal: 'medium' })}
 									/>
-									{this.state.visibleModal === 'medium' && (
-										<CSModal size="medium" closeButton={false}>
-											<CSModalHeader
-												title="This is a test heading"
-												subtitle="This is a test subtitle"
+									<CSModal
+										visible={this.state.visibleModal === 'medium'}
+										animated
+										size="medium"
+										closeButton={false}
+									>
+										<CSModalHeader
+											title="This is a test heading"
+											subtitle="This is a test subtitle"
+										/>
+										<CSModalBody>
+											<p>
+												Sit nulla est ex deserunt exercitation anim
+												occaecat.
+												<br />
+												<br />
+												Nostrud ullamco deserunt aute id consequat
+												veniam incididunt duis in sint irure nisi.
+												Mollit officia cillum Lorem ullamco minim
+												nostrud elit officia tempor esse quis. Cillum
+												sunt ad dolore quis aute consequat ipsum magna
+												exercitation reprehenderit magna. Tempor
+												cupidatat consequat elit dolor adipisicing.
+											</p>
+										</CSModalBody>
+										<CSModalFooter align="right">
+											<CSButton label="Default Button" />
+											<CSButton
+												label="Close"
+												btnStyle="brand"
+												onClick={() =>
+													this.setState({ visibleModal: undefined })
+												}
 											/>
-											<CSModalBody>
-												<p>
-													Sit nulla est ex deserunt exercitation anim
-													occaecat.
-													<br />
-													<br />
-													Nostrud ullamco deserunt aute id consequat
-													veniam incididunt duis in sint irure nisi.
-													Mollit officia cillum Lorem ullamco minim
-													nostrud elit officia tempor esse quis. Cillum
-													sunt ad dolore quis aute consequat ipsum magna
-													exercitation reprehenderit magna. Tempor
-													cupidatat consequat elit dolor adipisicing.
-												</p>
-											</CSModalBody>
-											<CSModalFooter align="right">
-												<CSButton label="Default Button" />
-												<CSButton
-													label="Close"
-													btnStyle="brand"
-													onClick={() =>
-														this.setState({ visibleModal: undefined })
-													}
-												/>
-											</CSModalFooter>
-										</CSModal>
-									)}
+										</CSModalFooter>
+									</CSModal>
 								</div>
 							)
 						},
@@ -261,36 +264,36 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 										label="Open Modal"
 										onClick={() => this.setState({ visibleModal: 'large' })}
 									/>
-									{this.state.visibleModal === 'large' && (
-										<CSModal
-											size="large"
-											closeButton
-											onClose={() => this.setState({ visibleModal: undefined })}
-										>
-											<CSModalHeader
-												title="This is a test heading"
-												subtitle="This is a test subtitle"
-											/>
-											<CSModalBody>
-												<p>
-													Sit nulla est ex deserunt exercitation anim
-													occaecat.
-													<br />
-													<br />
-													Nostrud ullamco deserunt aute id consequat
-													veniam incididunt duis in sint irure nisi.
-													Mollit officia cillum Lorem ullamco minim
-													nostrud elit officia tempor esse quis. Cillum
-													sunt ad dolore quis aute consequat ipsum magna
-													exercitation reprehenderit magna. Tempor
-													cupidatat consequat elit dolor adipisicing.
-												</p>
-											</CSModalBody>
-											<CSModalFooter align="center">
-												<CSButton label="Brand Button" btnStyle="brand" />
-											</CSModalFooter>
-										</CSModal>
-									)}
+									<CSModal
+										visible={this.state.visibleModal === 'large'}
+										animated
+										size="large"
+										closeButton
+										onClose={() => this.setState({ visibleModal: undefined })}
+									>
+										<CSModalHeader
+											title="This is a test heading"
+											subtitle="This is a test subtitle"
+										/>
+										<CSModalBody>
+											<p>
+												Sit nulla est ex deserunt exercitation anim
+												occaecat.
+												<br />
+												<br />
+												Nostrud ullamco deserunt aute id consequat
+												veniam incididunt duis in sint irure nisi.
+												Mollit officia cillum Lorem ullamco minim
+												nostrud elit officia tempor esse quis. Cillum
+												sunt ad dolore quis aute consequat ipsum magna
+												exercitation reprehenderit magna. Tempor
+												cupidatat consequat elit dolor adipisicing.
+											</p>
+										</CSModalBody>
+										<CSModalFooter align="center">
+											<CSButton label="Brand Button" btnStyle="brand" />
+										</CSModalFooter>
+									</CSModal>
 								</div>
 							)
 						},
@@ -304,38 +307,38 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 										label="Open Modal"
 										onClick={() => this.setState({ visibleModal: 'xlarge' })}
 									/>
-									{this.state.visibleModal === 'xlarge' && (
-										<CSModal
-											size="xlarge"
-											closeButton
-											onClose={() => this.setState({ visibleModal: undefined })}
-										>
-											<CSModalHeader
-												title="This is a test heading"
-												subtitle="This is a test subtitle"
-											/>
-											<CSModalBody>
-												<p>
-													Sit nulla est ex deserunt exercitation anim
-													occaecat.
-													<br />
-													<br />
-													Nostrud ullamco deserunt aute id consequat
-													veniam incididunt duis in sint irure nisi.
-													Mollit officia cillum Lorem ullamco minim
-													nostrud elit officia tempor esse quis. Cillum
-													sunt ad dolore quis aute consequat ipsum magna
-													exercitation reprehenderit magna. Tempor
-													cupidatat consequat elit dolor adipisicing.
-												</p>
-											</CSModalBody>
-											<CSModalFooter align="right">
-												<CSButton label="Default Button" />
-												<CSButton label="Default Button" />
-												<CSButton label="Brand Button" btnStyle="brand" />
-											</CSModalFooter>
-										</CSModal>
-									)}
+									<CSModal
+										visible={this.state.visibleModal === 'xlarge'}
+										animated
+										size="xlarge"
+										closeButton
+										onClose={() => this.setState({ visibleModal: undefined })}
+									>
+										<CSModalHeader
+											title="This is a test heading"
+											subtitle="This is a test subtitle"
+										/>
+										<CSModalBody>
+											<p>
+												Sit nulla est ex deserunt exercitation anim
+												occaecat.
+												<br />
+												<br />
+												Nostrud ullamco deserunt aute id consequat
+												veniam incididunt duis in sint irure nisi.
+												Mollit officia cillum Lorem ullamco minim
+												nostrud elit officia tempor esse quis. Cillum
+												sunt ad dolore quis aute consequat ipsum magna
+												exercitation reprehenderit magna. Tempor
+												cupidatat consequat elit dolor adipisicing.
+											</p>
+										</CSModalBody>
+										<CSModalFooter align="right">
+											<CSButton label="Default Button" />
+											<CSButton label="Default Button" />
+											<CSButton label="Brand Button" btnStyle="brand" />
+										</CSModalFooter>
+									</CSModal>
 								</div>
 							)
 						}
@@ -354,37 +357,37 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 										label="Open Modal"
 										onClick={() => this.setState({ visibleModal: 'padding' })}
 									/>
-									{this.state.visibleModal === 'padding' && (
-										<CSModal
-											size="small"
-											closeButton
-											onClose={() => this.setState({ visibleModal: undefined })}
-										>
-											<CSModalHeader
-												title="This is a test heading"
-												subtitle="This is a test subtitle"
-											/>
-											<CSModalBody padding="0">
-												<p>
-													Sit nulla est ex deserunt exercitation anim
-													occaecat.
-													<br />
-													<br />
-													Nostrud ullamco deserunt aute id consequat
-													veniam incididunt duis in sint irure nisi.
-													Mollit officia cillum Lorem ullamco minim
-													nostrud elit officia tempor esse quis. Cillum
-													sunt ad dolore quis aute consequat ipsum magna
-													exercitation reprehenderit magna. Tempor
-													cupidatat consequat elit dolor adipisicing.
-												</p>
-											</CSModalBody>
-											<CSModalFooter>
-												<CSButton label="Default Button" />
-												<CSButton label="Brand Button" btnStyle="brand" />
-											</CSModalFooter>
-										</CSModal>
-									)}
+									<CSModal
+										visible={this.state.visibleModal === 'padding'}
+										animated
+										size="small"
+										closeButton
+										onClose={() => this.setState({ visibleModal: undefined })}
+									>
+										<CSModalHeader
+											title="This is a test heading"
+											subtitle="This is a test subtitle"
+										/>
+										<CSModalBody padding="0">
+											<p>
+												Sit nulla est ex deserunt exercitation anim
+												occaecat.
+												<br />
+												<br />
+												Nostrud ullamco deserunt aute id consequat
+												veniam incididunt duis in sint irure nisi.
+												Mollit officia cillum Lorem ullamco minim
+												nostrud elit officia tempor esse quis. Cillum
+												sunt ad dolore quis aute consequat ipsum magna
+												exercitation reprehenderit magna. Tempor
+												cupidatat consequat elit dolor adipisicing.
+											</p>
+										</CSModalBody>
+										<CSModalFooter>
+											<CSButton label="Default Button" />
+											<CSButton label="Brand Button" btnStyle="brand" />
+										</CSModalFooter>
+									</CSModal>
 								</div>
 							)
 						}
@@ -403,37 +406,37 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 										label="Open Modal"
 										onClick={() => this.setState({ visibleModal: 'closeButton' })}
 									/>
-									{this.state.visibleModal === 'closeButton' && (
-										<CSModal
-											size="small"
-											closeButton
-											onClose={() => this.setState({ visibleModal: undefined })}
-										>
-											<CSModalHeader
-												title="This is a test heading"
-												subtitle="This is a test subtitle"
-											/>
-											<CSModalBody padding="0">
-												<p>
-													Sit nulla est ex deserunt exercitation anim
-													occaecat.
-													<br />
-													<br />
-													Nostrud ullamco deserunt aute id consequat
-													veniam incididunt duis in sint irure nisi.
-													Mollit officia cillum Lorem ullamco minim
-													nostrud elit officia tempor esse quis. Cillum
-													sunt ad dolore quis aute consequat ipsum magna
-													exercitation reprehenderit magna. Tempor
-													cupidatat consequat elit dolor adipisicing.
-												</p>
-											</CSModalBody>
-											<CSModalFooter>
-												<CSButton label="Default Button" />
-												<CSButton label="Brand Button" btnStyle="brand" />
-											</CSModalFooter>
-										</CSModal>
-									)}
+									<CSModal
+										visible={this.state.visibleModal === 'closeButton'}
+										animated
+										size="small"
+										closeButton
+										onClose={() => this.setState({ visibleModal: undefined })}
+									>
+										<CSModalHeader
+											title="This is a test heading"
+											subtitle="This is a test subtitle"
+										/>
+										<CSModalBody padding="0">
+											<p>
+												Sit nulla est ex deserunt exercitation anim
+												occaecat.
+												<br />
+												<br />
+												Nostrud ullamco deserunt aute id consequat
+												veniam incididunt duis in sint irure nisi.
+												Mollit officia cillum Lorem ullamco minim
+												nostrud elit officia tempor esse quis. Cillum
+												sunt ad dolore quis aute consequat ipsum magna
+												exercitation reprehenderit magna. Tempor
+												cupidatat consequat elit dolor adipisicing.
+											</p>
+										</CSModalBody>
+										<CSModalFooter>
+											<CSButton label="Default Button" />
+											<CSButton label="Brand Button" btnStyle="brand" />
+										</CSModalFooter>
+									</CSModal>
 								</div>
 							)
 						}
@@ -451,37 +454,37 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 										label="Open Modal"
 										onClick={() => this.setState({ visibleModal: 'onClose' })}
 									/>
-									{this.state.visibleModal === 'onClose' && (
-										<CSModal
-											size="small"
-											closeButton
-											onClose={() => this.setState({ visibleModal: undefined })}
-										>
-											<CSModalHeader
-												title="This is a test heading"
-												subtitle="This is a test subtitle"
-											/>
-											<CSModalBody padding="0">
-												<p>
-													Sit nulla est ex deserunt exercitation anim
-													occaecat.
-													<br />
-													<br />
-													Nostrud ullamco deserunt aute id consequat
-													veniam incididunt duis in sint irure nisi.
-													Mollit officia cillum Lorem ullamco minim
-													nostrud elit officia tempor esse quis. Cillum
-													sunt ad dolore quis aute consequat ipsum magna
-													exercitation reprehenderit magna. Tempor
-													cupidatat consequat elit dolor adipisicing.
-												</p>
-											</CSModalBody>
-											<CSModalFooter>
-												<CSButton label="Default Button" />
-												<CSButton label="Brand Button" btnStyle="brand" />
-											</CSModalFooter>
-										</CSModal>
-									)}
+									<CSModal
+										visible={this.state.visibleModal === 'onClose'}
+										animated
+										size="small"
+										closeButton
+										onClose={() => this.setState({ visibleModal: undefined })}
+									>
+										<CSModalHeader
+											title="This is a test heading"
+											subtitle="This is a test subtitle"
+										/>
+										<CSModalBody padding="0">
+											<p>
+												Sit nulla est ex deserunt exercitation anim
+												occaecat.
+												<br />
+												<br />
+												Nostrud ullamco deserunt aute id consequat
+												veniam incididunt duis in sint irure nisi.
+												Mollit officia cillum Lorem ullamco minim
+												nostrud elit officia tempor esse quis. Cillum
+												sunt ad dolore quis aute consequat ipsum magna
+												exercitation reprehenderit magna. Tempor
+												cupidatat consequat elit dolor adipisicing.
+											</p>
+										</CSModalBody>
+										<CSModalFooter>
+											<CSButton label="Default Button" />
+											<CSButton label="Brand Button" btnStyle="brand" />
+										</CSModalFooter>
+									</CSModal>
 								</div>
 							)
 						}
@@ -498,39 +501,39 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 										label="Open Modal"
 										onClick={() => this.setState({ visibleModal: 'id' })}
 									/>
-									{this.state.visibleModal === 'id' && (
-										<CSModal
-											size="small"
-											closeButton
+									<CSModal
+										visible={this.state.visibleModal === 'id'}
+										animated
+										size="small"
+										closeButton
+										id="id"
+										onClose={() => this.setState({ visibleModal: undefined })}
+									>
+										<CSModalHeader
 											id="id"
-											onClose={() => this.setState({ visibleModal: undefined })}
-										>
-											<CSModalHeader
-												id="id"
-												title="This is a test heading"
-												subtitle="This is a test subtitle"
-											/>
-											<CSModalBody id="id">
-												<p>
-													Sit nulla est ex deserunt exercitation anim
-													occaecat.
-													<br />
-													<br />
-													Nostrud ullamco deserunt aute id consequat
-													veniam incididunt duis in sint irure nisi.
-													Mollit officia cillum Lorem ullamco minim
-													nostrud elit officia tempor esse quis. Cillum
-													sunt ad dolore quis aute consequat ipsum magna
-													exercitation reprehenderit magna. Tempor
-													cupidatat consequat elit dolor adipisicing.
-												</p>
-											</CSModalBody>
-											<CSModalFooter id="id">
-												<CSButton label="Default Button" />
-												<CSButton label="Brand Button" btnStyle="brand" />
-											</CSModalFooter>
-										</CSModal>
-									)}
+											title="This is a test heading"
+											subtitle="This is a test subtitle"
+										/>
+										<CSModalBody id="id">
+											<p>
+												Sit nulla est ex deserunt exercitation anim
+												occaecat.
+												<br />
+												<br />
+												Nostrud ullamco deserunt aute id consequat
+												veniam incididunt duis in sint irure nisi.
+												Mollit officia cillum Lorem ullamco minim
+												nostrud elit officia tempor esse quis. Cillum
+												sunt ad dolore quis aute consequat ipsum magna
+												exercitation reprehenderit magna. Tempor
+												cupidatat consequat elit dolor adipisicing.
+											</p>
+										</CSModalBody>
+										<CSModalFooter id="id">
+											<CSButton label="Default Button" />
+											<CSButton label="Brand Button" btnStyle="brand" />
+										</CSModalFooter>
+									</CSModal>
 								</div>
 							)
 						}
@@ -547,25 +550,25 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 										label="Open Modal"
 										onClick={() => this.setState({ visibleModal: 'style' })}
 									/>
-									{this.state.visibleModal === 'style' && (
-										<CSModal
-											size="small"
-											style={{ border: '2px solid hotpink' }}
-											closeButton
-											onClose={() => this.setState({ visibleModal: undefined })}
-										>
-											<CSModalHeader title="Style example" />
-											<CSModalBody>
-												<p>
-													Sit nulla est ex deserunt exercitation anim
-													occaecat.
-												</p>
-											</CSModalBody>
-											<CSModalFooter>
-												<CSButton label="Default Button" />
-											</CSModalFooter>
-										</CSModal>
-									)}
+									<CSModal
+										visible={this.state.visibleModal === 'style'}
+										animated
+										size="small"
+										style={{ border: '2px solid hotpink' }}
+										closeButton
+										onClose={() => this.setState({ visibleModal: undefined })}
+									>
+										<CSModalHeader title="Style example" />
+										<CSModalBody>
+											<p>
+												Sit nulla est ex deserunt exercitation anim
+												occaecat.
+											</p>
+										</CSModalBody>
+										<CSModalFooter>
+											<CSButton label="Default Button" />
+										</CSModalFooter>
+									</CSModal>
 								</div>
 							)
 						}
@@ -584,25 +587,25 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 										label="Open Modal"
 										onClick={() => this.setState({ visibleModal: 'loading' })}
 									/>
-									{this.state.visibleModal === 'loading' && (
-										<CSModal
-											size="medium"
-											loading
-											closeButton
-											onClose={() => this.setState({ visibleModal: undefined })}
-										>
-											<CSModalHeader title="Style example" />
-											<CSModalBody>
-												<p>
-													Sit nulla est ex deserunt exercitation anim
-													occaecat.
-												</p>
-											</CSModalBody>
-											<CSModalFooter>
-												<CSButton label="Default Button" />
-											</CSModalFooter>
-										</CSModal>
-									)}
+									<CSModal
+										visible={this.state.visibleModal === 'loading'}
+										animated
+										size="medium"
+										loading
+										closeButton
+										onClose={() => this.setState({ visibleModal: undefined })}
+									>
+										<CSModalHeader title="Style example" />
+										<CSModalBody>
+											<p>
+												Sit nulla est ex deserunt exercitation anim
+												occaecat.
+											</p>
+										</CSModalBody>
+										<CSModalFooter>
+											<CSButton label="Default Button" />
+										</CSModalFooter>
+									</CSModal>
 								</div>
 							)
 						}
@@ -619,26 +622,128 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 										label="Open Modal"
 										onClick={() => this.setState({ visibleModal: 'loadingText' })}
 									/>
-									{this.state.visibleModal === 'loadingText' && (
-										<CSModal
-											size="medium"
-											loading
-											loadingText="Cloning configurations..."
-											closeButton
-											onClose={() => this.setState({ visibleModal: undefined })}
-										>
-											<CSModalHeader title="Style example" />
-											<CSModalBody>
-												<p>
-													Sit nulla est ex deserunt exercitation anim
-													occaecat.
-												</p>
-											</CSModalBody>
-											<CSModalFooter>
-												<CSButton label="Default Button" />
-											</CSModalFooter>
-										</CSModal>
-									)}
+									<CSModal
+										visible={this.state.visibleModal === 'loadingText'}
+										animated
+										size="medium"
+										loading
+										loadingText="Cloning configurations..."
+										closeButton
+										onClose={() => this.setState({ visibleModal: undefined })}
+									>
+										<CSModalHeader title="Style example" />
+										<CSModalBody>
+											<p>
+												Sit nulla est ex deserunt exercitation anim
+												occaecat.
+											</p>
+										</CSModalBody>
+										<CSModalFooter>
+											<CSButton label="Default Button" />
+										</CSModalFooter>
+									</CSModal>
+								</div>
+							)
+						}
+					]
+				},
+				{
+					propName: 'outerClickClose',
+					customText: '',
+					variations: [
+						{
+							component: (
+								<div>
+									<CSButton
+										label="Open Modal"
+										onClick={() => this.setState({ visibleModal: 'clickOutside' })}
+									/>
+									<CSModal
+										visible={this.state.visibleModal === 'clickOutside'}
+										animated
+										size="small"
+										closeButton
+										id="id"
+										onClose={() => this.setState({ visibleModal: undefined })}
+										outerClickClose
+									>
+										<CSModalHeader
+											title="This is a test heading"
+											subtitle="This is a test subtitle"
+										/>
+										<CSModalBody>
+											<p>
+												Sit nulla est ex deserunt exercitation anim
+												occaecat.
+												<br />
+												<br />
+												Nostrud ullamco deserunt aute id consequat
+												veniam incididunt duis in sint irure nisi.
+												Mollit officia cillum Lorem ullamco minim
+												nostrud elit officia tempor esse quis. Cillum
+												sunt ad dolore quis aute consequat ipsum magna
+												exercitation reprehenderit magna. Tempor
+												cupidatat consequat elit dolor adipisicing.
+											</p>
+										</CSModalBody>
+										<CSModalFooter>
+											<CSButton label="Default Button" />
+											<CSButton label="Brand Button" btnStyle="brand" />
+										</CSModalFooter>
+									</CSModal>
+								</div>
+							)
+						}
+					]
+				},
+				{
+					propName: 'animated',
+					customText: '',
+					alert: {
+						variant: 'warning',
+						text: 'Right now, the animated prop defaults to false. However, the expected behaviour is for it to default to true. Due to backwards compatibility, that cannot be implement until changes are made on all products. Because of that, it is strongly recommended to leave this prop out until backwards compatibility is dropped.'
+					},
+					variations: [
+						{
+							variationName: ['false'],
+							quickLink: 'false',
+							component: (
+								<div>
+									<CSButton
+										label="Open Modal"
+										onClick={() => this.setState({ visibleModal: 'animated' })}
+									/>
+									<CSModal
+										visible={this.state.visibleModal === 'animated'}
+										animated={false}
+										size="small"
+										closeButton
+										onClose={() => this.setState({ visibleModal: undefined })}
+									>
+										<CSModalHeader
+											title="This is a test heading"
+											subtitle="This is a test subtitle"
+										/>
+										<CSModalBody>
+											<p>
+												Sit nulla est ex deserunt exercitation anim
+												occaecat.
+												<br />
+												<br />
+												Nostrud ullamco deserunt aute id consequat
+												veniam incididunt duis in sint irure nisi.
+												Mollit officia cillum Lorem ullamco minim
+												nostrud elit officia tempor esse quis. Cillum
+												sunt ad dolore quis aute consequat ipsum magna
+												exercitation reprehenderit magna. Tempor
+												cupidatat consequat elit dolor adipisicing.
+											</p>
+										</CSModalBody>
+										<CSModalFooter>
+											<CSButton label="Default Button" />
+											<CSButton label="Brand Button" btnStyle="brand" />
+										</CSModalFooter>
+									</CSModal>
 								</div>
 							)
 						}
@@ -657,87 +762,38 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 										label="Open Modal"
 										onClick={() => this.setState({ visibleModal: 'className' })}
 									/>
-									{this.state.visibleModal === 'className' && (
-										<CSModal
-											size="small"
-											closeButton
-											className="custom-class"
-											onClose={() => this.setState({ visibleModal: undefined })}
-										>
-											<CSModalHeader
-												title="This is a test heading"
-												subtitle="This is a test subtitle"
-											/>
-											<CSModalBody>
-												<p>
-													Sit nulla est ex deserunt exercitation anim
-													occaecat.
-													<br />
-													<br />
-													Nostrud ullamco deserunt aute id consequat
-													veniam incididunt duis in sint irure nisi.
-													Mollit officia cillum Lorem ullamco minim
-													nostrud elit officia tempor esse quis. Cillum
-													sunt ad dolore quis aute consequat ipsum magna
-													exercitation reprehenderit magna. Tempor
-													cupidatat consequat elit dolor adipisicing.
-												</p>
-											</CSModalBody>
-											<CSModalFooter>
-												<CSButton label="Default Button" />
-												<CSButton label="Brand Button" btnStyle="brand" />
-											</CSModalFooter>
-										</CSModal>
-									)}
-								</div>
-							)
-						}
-					]
-				},
-				{
-					propName: 'outerClickClose',
-					customText: '',
-					variations: [
-						{
-							component: (
-								<div>
-									<CSButton
-										label="Open Modal"
-										onClick={() => this.setState({ visibleModal: 'clickOutside' })}
-									/>
-									{this.state.visibleModal === 'clickOutside' && (
-										<CSModal
-											size="small"
-											closeButton
-											id="id"
-											onClose={() => this.setState({ visibleModal: undefined })}
-											outerClickClose
-										>
-											<CSModalHeader
-												title="This is a test heading"
-												subtitle="This is a test subtitle"
-											/>
-											<CSModalBody>
-												<p>
-													Sit nulla est ex deserunt exercitation anim
-													occaecat.
-													<br />
-													<br />
-													Nostrud ullamco deserunt aute id consequat
-													veniam incididunt duis in sint irure nisi.
-													Mollit officia cillum Lorem ullamco minim
-													nostrud elit officia tempor esse quis. Cillum
-													sunt ad dolore quis aute consequat ipsum magna
-													exercitation reprehenderit magna. Tempor
-													cupidatat consequat elit dolor adipisicing.
-												</p>
-											</CSModalBody>
-											<CSModalFooter>
-												<CSButton label="Default Button" />
-												<CSButton label="Brand Button" btnStyle="brand" />
-											</CSModalFooter>
-										</CSModal>
-									)}
+									<CSModal
+										visible={this.state.visibleModal === 'className'}
+										animated
+										size="small"
+										closeButton
+										className="custom-class"
+										onClose={() => this.setState({ visibleModal: undefined })}
+									>
+										<CSModalHeader
+											title="This is a test heading"
+											subtitle="This is a test subtitle"
+										/>
+										<CSModalBody>
+											<p>
+												Sit nulla est ex deserunt exercitation anim
+												occaecat.
+												<br />
+												<br />
+												Nostrud ullamco deserunt aute id consequat
+												veniam incididunt duis in sint irure nisi.
+												Mollit officia cillum Lorem ullamco minim
+												nostrud elit officia tempor esse quis. Cillum
+												sunt ad dolore quis aute consequat ipsum magna
+												exercitation reprehenderit magna. Tempor
+												cupidatat consequat elit dolor adipisicing.
+											</p>
+										</CSModalBody>
+										<CSModalFooter>
+											<CSButton label="Default Button" />
+											<CSButton label="Brand Button" btnStyle="brand" />
+										</CSModalFooter>
+									</CSModal>
 								</div>
 							)
 						}
@@ -745,6 +801,11 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 				}
 			],
 			properties: [
+				{
+					propertyName: 'animated',
+					description: 'Set false to disable animations on mount/unmout. This defaults to false, but it will default to true after the component drops support for conditional rendering.',
+					options: ['false', 'true']
+				},
 				{
 					propertyName: 'className',
 					description: 'For implementing custom class to component'
@@ -783,6 +844,25 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 				{
 					propertyName: 'style',
 					description: 'Add custom styles as inline css'
+				},
+				{
+					propertyName: 'visible',
+					description: 'Controls whether or not to render the modal. This defaults to true, but it will be a required prop after the component drops support for conditional rendering.',
+					options: ['true', 'false']
+				},
+				{
+					propertyName: 'mounted',
+					description: 'Used to rerender the modal after it has been mounted and apply animation classes',
+					helperPropInComponents: [
+						'CSAnimation'
+					]
+				},
+				{
+					propertyName: 'setMounted',
+					description: 'Triggered on componentDidMount to set mounted to true',
+					helperPropInComponents: [
+						'CSAnimation'
+					]
 				}
 			],
 			accessibility: [
