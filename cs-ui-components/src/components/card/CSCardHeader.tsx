@@ -1,22 +1,57 @@
 import React from 'react';
+import CSIcon, { CSIconOrigin } from '../CSIcon';
+import classNames from 'classnames';
 
 export interface CSCardHeaderProps {
 	[key: string]: any;
+	iconColor?: string;
+	iconFrame?: boolean;
+	iconName?: string;
+	iconOrigin?: CSIconOrigin;
 	id?: string;
+	showBorder?: boolean;
 	title: string;
 }
 
 class CSCardHeader extends React.Component<CSCardHeaderProps> {
 
+	public static defaultProps = {
+		showBorder: true
+	};
+
 	render() {
-		const { id, title, ...rest } = this.props;
+		const {
+			iconColor,
+			iconFrame,
+			iconName,
+			iconOrigin,
+			id,
+			showBorder,
+			title,
+			...rest
+		} = this.props;
+		const cardHeaderClasses = classNames(
+			'cs-card-header', {
+			'cs-card-header-with-border': showBorder
+		});
 		return (
 			<header
-				className="cs-card-header"
+				className={cardHeaderClasses}
 				id={id}
 				{...rest}
 			>
-				<h2>{title}</h2>
+				{iconName &&
+					<span className="cs-card-header-icon">
+						<CSIcon
+							name={iconName}
+							size="1.5rem"
+							color={iconColor}
+							frame={iconFrame}
+							origin={iconOrigin}
+						/>
+					</span>
+				}
+				<h2 className="cs-card-header-title">{title}</h2>
 			</header>
 		);
 	}
