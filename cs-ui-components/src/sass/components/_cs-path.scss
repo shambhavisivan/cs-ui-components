@@ -1,123 +1,209 @@
 .cs-path {
 	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	flex: 1;
 	height: 2rem;
 	overflow: hidden;
-
 	.cs-path-wrapper {
 		display: flex;
-		align-items: center;
-		justify-content: flex-start;
 		flex: 1;
-		height: 2rem;
 		overflow: hidden;
-		margin-right: 0.5rem;
 		z-index: var(--z-index-path);
-
 		.cs-path-item {
 			position: relative;
 			flex: 1;
-			height: inherit;
-			font-size: 0.8125rem;
-			border-radius: 0;
-			padding: 0.5rem 2rem;
-			overflow: hidden;
-			margin-left: -0.75rem;
-			text-align: center;
-			cursor: pointer;
-
-			div {
-				@include overflow-ellipsis;
-			}
-
-			&::before,
-			&::after {
-				content: "";
-				display: block;
-				position: absolute;
-				left: 0.5rem;
-				right: 0.5rem;
-				z-index: var(--z-index-path-psuedo);
-				@include sbg(--cs-path-tab);
-			}
-
-			&::before {
-				top: 50%;
-				bottom: 0;
-				transform: skewX(-28deg);
-			}
-
-			&::after {
-				top: 0;
-				bottom: 50%;
-				transform: skewX(28deg);
-			}
-
-			&:first-of-type {
-				padding: 0.5rem 2rem 0.5rem 1.5rem;
-				border-radius: 1rem 0 0 1rem;
-				margin-left: 0;
-
+			margin-left: 0.375rem;
+			margin-right: 0.4375rem;
+			min-width: 5rem;
+			.cs-path-item-wrapper {
+				position: relative;
+				display: inline-flex;
+				justify-content: center;
+				align-items: center;
+				border: none;
+				width: 100%;
+				height: 100%;
+				padding: 0.5rem 0.25rem 0.5rem 0.5rem;
+				cursor: pointer;
+				outline: none;
+				@include sbg(--cs-path-item-initial-bg);
+				.cs-path-item-title {
+					font-size: 0.8125rem;
+					@include overflow-ellipsis;
+					@include sc(--cs-path-item-inital-c);
+				}
+				.cs-path-item-icon {
+					display: flex;
+					align-items: center;
+					margin-right: 1rem;
+				}
 				&::before,
 				&::after {
-					left: -1rem;
+					content: "";
+					position: absolute;
+					left: -0.25rem;
+					right: -0.3125rem;
+					cursor: pointer;
+					z-index: var(--z-index-path-psuedo);
+					@include sbg(--cs-path-item-initial-bg);
 				}
-			}
-
-			&:last-of-type {
-				padding: 0.5rem 1.5rem 0.5rem 2rem;
-				border-radius: 0 1rem 1rem 0;
-
-				&::before,
+				&::before {
+					top: 0;
+					bottom: 50%;
+					transform: skewX(28deg);
+				}
 				&::after {
-					right: -1rem;
+					top: 50%;
+					bottom: 0;
+					transform: skewX(-28deg);
 				}
-
-				&.breadcrumbs-tab-active {
-					@include sbg(--transparent);
-				}
-			}
-
-			&:only-of-type {
-				padding: 0.5rem 1.5rem;
-				border-radius: 1rem;
-				@include sbg(--cs-path-tab-active);
-
-				&:hover {
-					@include sbg(--cs-path-tab-active-hover);
-				}
-			}
-
-			&:hover {
-
-				&::before,
-				&::after {
-					@include sbg(--cs-path-tab-hover);
-				}
-			}
-
-			&.cs-path-item-active {
-				@include sc(--cs-path-tab-active-c);
-
-				&::before,
-				&::after {
-					@include sbg(--cs-path-tab-active);
-				}
-
-				&:hover {
-
+				&:hover,
+				&:focus {
+					@include sbg(--cs-path-item-initial-hover);
 					&::before,
 					&::after {
-						@include sbg(--cs-path-tab-active-hover);
+						@include sbg(--cs-path-item-initial-hover);
+					}
+				}
+				&:active {
+					@include sbg(--cs-path-item-initial-active);
+					&::before,
+					&::after {
+						@include sbg(--cs-path-item-initial-active);
+					}
+				}
+				&:disabled {
+					pointer-events: none;
+					cursor: default;
+					@include sbg(--cs-path-item-disabled-bg);
+					.cs-path-item-title {
+						@include sc(--cs-path-item-disabled-c);
+					}
+					&:before,
+					&:after {
+						@include sbg(--cs-path-item-disabled-bg);
+					}
+				}
+			}
+			&:first-of-type {
+				margin-left: 0;
+				.cs-path-item-wrapper {
+					border-radius: 2rem;
+					border-bottom-left-radius: 2rem;
+					padding-left: 0.625rem;
+					&:before,
+					&:after {
+						left: 1.125rem;
+					}
+				}
+			}
+			&:last-of-type {
+				margin-right: 0;
+				.cs-path-item-wrapper {
+					border-top-right-radius: 2rem;
+					border-bottom-right-radius: 2rem;
+					padding-right: 0.625rem;
+					&:before,
+					&:after {
+						right: 0.625rem;
+					}
+				}
+			}
+			&:only-of-type {
+				.cs-path-item-wrapper {
+					border-radius: 1rem;
+					@include sbg(--cs-path-item-active);
+					.cs-path-item-title {
+						@include sc(--cs-path-item-active-c);
+					}
+					&:hover {
+						@include sbg(--cs-path-item-active-hover);
+						&:before,
+						&:after {
+							@include sbg(--cs-path-item-active-hover);
+						}
+					}
+				}
+			}
+			&-success {
+				.cs-path-item-wrapper {
+					@include sbg(--cs-path-item-success-bg);
+					.cs-path-item-title {
+						@include sc(--cs-path-item-status-c);
+					}
+					&::before,
+					&::after {
+						@include sbg(--cs-path-item-success-bg);
+					}
+					&:hover,
+					&:focus {
+						@include sbg(--cs-path-item-success-hover);
+						&::before,
+						&::after {
+							@include sbg(--cs-path-item-success-hover);
+						}
+					}
+					&:active {
+						@include sbg(--cs-path-item-success-active);
+						&::before,
+						&::after {
+							@include sbg(--cs-path-item-success-active);
+						}
+					}
+				}
+			}
+			&-error {
+				.cs-path-item-wrapper {
+					@include sbg(--cs-path-item-error-bg);
+					.cs-path-item-title {
+						@include sc(--cs-path-item-status-c);
+					}
+					&::before,
+					&::after {
+						@include sbg(--cs-path-item-error-bg);
+					}
+					&:hover,
+					&:focus {
+						@include sbg(--cs-path-item-error-hover);
+						&::before,
+						&::after {
+							@include sbg(--cs-path-item-error-hover);
+						}
+					}
+					&:active {
+						@include sbg(--cs-path-item-error-active);
+						&::before,
+						&::after {
+							@include sbg(--cs-path-item-error-active);
+						}
+					}
+				}
+			}
+			&-active {
+				.cs-path-item-wrapper {
+					@include sbg(--cs-path-item-active-bg);
+					.cs-path-item-title {
+						@include sc(--cs-path-item-active-c);
+					}
+					&::before,
+					&::after {
+						@include sbg(--cs-path-item-active-bg);
+					}
+					&:hover,
+					&:focus {
+						@include sbg(--cs-path-item-active-hover);
+						&::before,
+						&::after {
+							@include sbg(--cs-path-item-active-hover);
+						}
+					}
+					&:active {
+						@include sbg(--cs-path-item-active);
+						&::before,
+						&::after {
+							@include sbg(--cs-path-item-active);
+						}
 					}
 				}
 			}
 		}
-	}
-
-	.cs-btn {
-		margin-left: 0.5rem;
 	}
 }

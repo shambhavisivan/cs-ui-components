@@ -20,9 +20,11 @@ class CSPath extends React.Component<CSPathProps> {
 		);
 
 		return (
-			<div className={pathClasses} id={id} {...rest}>
-				{children}
-			</div>
+			<nav className={pathClasses} id={id} {...rest}>
+				<ol className="cs-path-wrapper">
+					{children}
+				</ol>
+			</nav>
 		);
 	}
 }

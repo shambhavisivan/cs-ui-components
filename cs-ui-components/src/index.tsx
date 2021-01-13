@@ -57,8 +57,7 @@ import CSOption, { CSOptionType } from './components/custom-select/CSOption';
 import CSPagination from './components/CSPagination';
 import CSPaginationWrapper from './components/CSPaginationWrapper';
 import CSPath from './components/path/CSPath';
-import CSPathItem from './components/path/CSPathItem';
-import CSPathWrapper from './components/path/CSPathWrapper';
+import CSPathItem, { CSPathItemStatus } from './components/path/CSPathItem';
 import CSProgressBar, { CSProgressBarThickness } from './components/CSProgressBar';
 import CSRadio, { CSRadioVariant } from './components/radio/CSRadio';
 import CSRadioOption from './components/radio/CSRadioOption';
@@ -67,7 +66,7 @@ import CSSelect, { CSSelectBorderType } from './components/CSSelect';
 import CSSidebar from './components/CSSidebar';
 import CSSkipLink from './components/CSSkipLink';
 import CSSlider, { CSSliderSize } from './components/CSSlider';
-import CSSpinner, { CSSpinnerColor,	CSSpinnerSize } from './components/CSSpinner';
+import CSSpinner, { CSSpinnerColor, CSSpinnerSize } from './components/CSSpinner';
 import CSTab, { CSTabStatus } from './components/CSTab';
 import CSTabGroup, { CSTabGroupVariant } from './components/CSTabGroup';
 import CSTable from './components/table/CSTable';
@@ -165,7 +164,7 @@ export {
 	CSPaginationWrapper,
 	CSPath,
 	CSPathItem,
-	CSPathWrapper,
+	CSPathItemStatus,
 	CSProgressBar,
 	CSProgressBarThickness,
 	CSRadio,

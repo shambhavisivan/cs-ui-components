@@ -5,9 +5,10 @@ import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
 import PreviewLinks from '../PreviewLinks';
 
-import { CSPath, CSPathItem, CSPathWrapper, CSAlert } from '@cloudsense/cs-ui-components';
+import { CSPath, CSPathItem, CSAlert } from '@cloudsense/cs-ui-components';
 
 class CSPathPreview extends React.Component {
+	handleOnClick = () => alert('Path item is clicked!');
 	getCSPathDoc() {
 		const json = {
 			name: 'Path',
@@ -20,17 +21,111 @@ class CSPathPreview extends React.Component {
 						{
 							component:
 								<CSPath>
-									<CSPathWrapper>
-										<CSPathItem
-											title="Path Item 1"
-										/>
-										<CSPathItem
-											title="Path Item 2"
-										/>
-										<CSPathItem
-											title="Path Item 3"
-										/>
-									</CSPathWrapper>
+									<CSPathItem
+										title="Path Item 1"
+									/>
+									<CSPathItem
+										title="Path Item 2"
+									/>
+									<CSPathItem
+										title="Path Item 3"
+									/>
+								</CSPath>
+						}
+					]
+				},
+				{
+					propName: 'status',
+					customText: '',
+					variations: [
+						{
+							variationName: ['success'],
+							quickLink: 'success',
+							string: '',
+							component:
+								<CSPath>
+									<CSPathItem
+										status="success"
+										title="Path Item 1"
+									/>
+									<CSPathItem
+										status="success"
+										title="Path Item 2"
+									/>
+									<CSPathItem
+										status="success"
+										title="Path Item 3"
+									/>
+								</CSPath>
+						},
+						{
+							variationName: ['error'],
+							quickLink: 'error',
+							string: '',
+							component:
+								<CSPath>
+									<CSPathItem
+										status="error"
+										title="Path Item 1"
+									/>
+									<CSPathItem
+										status="error"
+										title="Path Item 2"
+									/>
+									<CSPathItem
+										status="error"
+										title="Path Item 3"
+									/>
+								</CSPath>
+						}
+					]
+				},
+				{
+					propName: 'active',
+					customText: '',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSPath>
+									<CSPathItem
+										title="Path Item 1"
+										active
+									/>
+									<CSPathItem
+										title="Path Item 2"
+									/>
+									<CSPathItem
+										title="Path Item 3"
+									/>
+								</CSPath>
+						}
+					]
+				},
+				{
+					propName: 'disabled',
+					customText: '',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSPath>
+									<CSPathItem
+										title="Path Item 1"
+										disabled
+									/>
+									<CSPathItem
+										title="Path Item 2"
+										disabled
+									/>
+									<CSPathItem
+										title="Path Item 3"
+										disabled
+									/>
 								</CSPath>
 						}
 					]
@@ -42,20 +137,43 @@ class CSPathPreview extends React.Component {
 						{
 							component:
 								<CSPath id="id">
-									<CSPathWrapper id="id">
-										<CSPathItem
-											id="id"
-											title="Path Item 1"
-										/>
-										<CSPathItem
-											id="id"
-											title="Path Item 2"
-										/>
-										<CSPathItem
-											id="id"
-											title="Path Item 3"
-										/>
-									</CSPathWrapper>
+									<CSPathItem
+										id="id"
+										title="Path Item 1"
+									/>
+									<CSPathItem
+										id="id"
+										title="Path Item 2"
+									/>
+									<CSPathItem
+										id="id"
+										title="Path Item 3"
+									/>
+								</CSPath>
+						}
+					]
+				},
+				{
+					propName: 'onClick',
+					customText: '',
+					variations: [
+						{
+							string: '',
+							component:
+								<CSPath>
+
+									<CSPathItem
+										onClick={this.handleOnClick}
+										title="Path Item 1"
+									/>
+									<CSPathItem
+										onClick={this.handleOnClick}
+										title="Path Item 2"
+									/>
+									<CSPathItem
+										onClick={this.handleOnClick}
+										title="Path Item 3"
+									/>
 								</CSPath>
 						}
 					]
@@ -69,17 +187,15 @@ class CSPathPreview extends React.Component {
 							quickLink: 'custom class',
 							component:
 								<CSPath className="custom-class">
-									<CSPathWrapper>
-										<CSPathItem
-											title="Path Item 1"
-										/>
-										<CSPathItem
-											title="Path Item 2"
-										/>
-										<CSPathItem
-											title="Path Item 3"
-										/>
-									</CSPathWrapper>
+									<CSPathItem
+										title="Path Item 1"
+									/>
+									<CSPathItem
+										title="Path Item 2"
+									/>
+									<CSPathItem
+										title="Path Item 3"
+									/>
 								</CSPath>
 						}
 					]
@@ -94,10 +210,6 @@ class CSPathPreview extends React.Component {
 				{
 					propertyName: 'id',
 					description: 'Path id value'
-				},
-				{
-					propertyName: 'title',
-					description: 'Text content of path item'
 				}
 			]
 		};
@@ -110,26 +222,46 @@ class CSPathPreview extends React.Component {
 
 		return json;
 	}
-	getCSPathWrapperDoc() {
-		const json = {
-			name: 'Path Wrapper',
-			properties: [
-				{
-					propertyName: 'id',
-					description: 'Path wrapper id value'
-				}
-			]
-		};
 
-		return json;
-	}
 	getCSPathItemDoc() {
 		const json = {
 			name: 'Path Item',
 			properties: [
 				{
+					propertyName: 'active',
+					description: 'Path item active state',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
+					propertyName: 'disabled',
+					description: 'Logic for disabled state',
+					options: [
+						'false',
+						'true'
+					]
+				},
+				{
 					propertyName: 'id',
 					description: 'Path item id value'
+				},
+				{
+					propertyName: 'onClick',
+					description: 'Logic for onClick event'
+				},
+				{
+					propertyName: 'status',
+					description: 'Color and icon variant depending on status',
+					options: [
+						'error',
+						'success'
+					]
+				},
+				{
+					propertyName: 'title',
+					description: 'Path item title'
 				}
 			]
 		};
@@ -139,8 +271,7 @@ class CSPathPreview extends React.Component {
 
 	render() {
 		const component = this.getCSPathDoc();
-		const component2 = this.getCSPathWrapperDoc();
-		const component3 = this.getCSPathItemDoc();
+		const component2 = this.getCSPathItemDoc();
 
 		return (
 			<>
@@ -148,7 +279,7 @@ class CSPathPreview extends React.Component {
 					<PreviewHeading name={component.name} usage={component.usage} />
 					<CSAlert variant="warning" text="This component is under construction." />
 					<PreviewProperties name={component.name} examples={component.examples} />
-					<PreviewTable components={[component, component2, component3]} />
+					<PreviewTable components={[component, component2]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>
