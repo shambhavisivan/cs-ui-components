@@ -1,0 +1,73 @@
+.prop-sidebar {
+	flex: 1;
+	padding-top: 1rem;
+	max-width: 16rem;
+	display: flex;
+	flex-direction: column;
+
+	.prop-sidebar-wrapper {
+		overflow-y: auto;
+		padding: 0.75rem 1rem;
+		border-top: 1px solid $cs-gray-light-3;
+	}
+
+	.prop-sidebar-bottom-group {
+		margin-top: auto;
+		border-top: 1px solid $cs-gray-light-3;
+		padding: 0.5rem 1rem;
+	}
+
+	h3 {
+		display: block;
+		padding-left: 1rem;
+		margin-block-end: 0.5rem;
+		font-size: 1.375rem;
+	}
+
+	.cs-input-search-wrapper {
+		display: block;
+		padding: 0.5rem;
+	}
+
+	.prop-group {
+		margin-block-end: 1rem;
+
+		h4 {
+			font-size: 1.125rem;
+			margin-block-end: 0.25rem;
+			word-break: break-all;
+
+			a {
+				color: $cs-blue-sf !important;
+				text-decoration: none;
+				font-weight: 700;
+
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+
+		span {
+			display: block;
+			padding: 0.25rem 0 0 1rem;
+
+			.custom-class {
+				fill: $cs-mint;
+			}
+
+			a {
+				color: $cs-blue-sf !important;
+				text-decoration: none;
+
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}

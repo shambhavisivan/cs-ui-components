@@ -1,0 +1,458 @@
+.components-preview .preview-section-wrapper .component-version .version-preview {
+	&.spinner-preview {
+		position: relative;
+
+		.black-background {
+			background-color: $cs-black;
+		}
+
+		.custom-class {
+			background-color: $cs-mint;
+		}
+	}
+
+	&.main-header-preview {
+		min-height: 10rem;
+		padding: 0;
+
+		.custom-class {
+			background-color: $cs-mint;
+		}
+	}
+
+	&.path-preview {
+		min-height: 10rem;
+		padding: 1rem;
+
+		.custom-class {
+			background-color: $cs-mint;
+		}
+	}
+
+	&.table-preview {
+		height: auto;
+
+		.custom-class {
+			border-top: 1px solid $cs-mint;
+		}
+	}
+
+	&.pagination-preview {
+		padding: 1rem;
+	}
+
+	&.checkbox-preview {
+		padding: 1rem;
+
+		.custom-class {
+			border: 2px solid $cs-mint;
+		}
+	}
+
+	&.toggle-preview {
+		padding: 1rem;
+		overflow: visible;
+
+		.custom-class {
+			border: 2px solid $cs-mint;
+		}
+	}
+
+	&.radio-preview {
+		padding: 1rem;
+		overflow: visible;
+
+		.custom-class {
+			border: 2px solid $cs-mint;
+		}
+	}
+
+	&.tooltip-preview {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		overflow: visible;
+
+		.custom-class {
+			background-color: $cs-mint;
+		}
+	}
+
+	&.alert-preview {
+		.custom-class {
+			background-color: $cs-mint;
+		}
+	}
+
+	&.toast-preview {
+		.custom-class {
+			background-color: $cs-mint;
+		}
+	}
+
+	&.tab-preview {
+		.custom-class {
+			background-color: $cs-mint;
+		}
+
+		.custom-class-2 {
+			background-color: $cs-blue-medium-6;
+		}
+	}
+
+	&.sidebar-list-preview {
+		.custom-class {
+			background-color: $cs-mint;
+		}
+	}
+
+	&.button-preview,
+	&.dropdown-preview {
+		.blue-background {
+			background-color: $cs-blue-dark-1;
+			padding: 0.5rem;
+		}
+
+		.custom-class {
+			border: 3px solid $cs-mint;
+		}
+	}
+
+	&.dropdown-preview {
+		overflow: visible;
+	}
+
+	&.input-text-preview {
+		overflow: visible;
+
+		.custom-class {
+			background-color: $cs-mint;
+		}
+	}
+
+	&.input-number-preview {
+		overflow: visible;
+
+		.custom-class {
+			background-color: $cs-mint;
+		}
+	}
+
+	&.input-search-preview {
+		overflow: visible;
+
+		.custom-class {
+			border: 3px solid $cs-mint;
+		}
+	}
+
+	&.input-file-preview {
+		overflow: visible;
+
+		.custom-class {
+			border: 3px solid $cs-mint;
+		}
+	}
+
+	&.label-preview {
+		overflow: visible;
+
+		.custom-class {
+			background-color: $cs-mint;
+		}
+	}
+
+	&.textarea-preview {
+		overflow: visible;
+		padding: 0.5rem 0.5rem 1.5rem;
+
+		.custom-class {
+			background-color: $cs-mint;
+		}
+	}
+
+	&.select-preview {
+		overflow: visible;
+
+		.custom-class {
+			border: 3px solid $cs-mint;
+		}
+	}
+
+	&.custom-select-preview {
+		overflow: visible;
+
+		.custom-class {
+			border: 3px solid $cs-mint;
+		}
+	}
+
+	&.chip-preview {
+
+		.custom-class {
+			background-color: $cs-mint;
+		}
+	}
+
+	&.card-preview {
+		.custom-class {
+			background-color: $cs-mint;
+		}
+	}
+
+	&.section-preview {
+
+		.custom-class {
+			background-color: $cs-mint;
+		}
+	}
+
+	&.progress-bar-preview {
+		.custom-class {
+			background-color: $cs-mint;
+		}
+	}
+
+	&.icon-preview {
+		.custom-class {
+			fill: $cs-mint;
+		}
+	}
+
+	&.image-preview {
+		.black-background {
+			background-color: $cs-black;
+		}
+
+		.custom-class {
+			border: 3px solid $cs-mint;
+		}
+	}
+
+	&.button-group-preview {
+		.custom-class {
+			border: 3px solid $cs-mint;
+		}
+	}
+
+	&.divider-preview {
+		.custom-class {
+			border-color: $cs-mint;
+		}
+	}
+
+	&.datepicker-preview {
+		overflow: visible;
+
+		.custom-class input {
+			background-color: $cs-mint;
+		}
+	}
+
+	&.lookup-field-preview {
+		overflow: visible;
+
+		.custom-class {
+			border: 3px solid $cs-mint;
+		}
+	}
+
+	&.slider-preview {
+		.custom-class {
+			border: 3px solid $cs-mint;
+		}
+	}
+
+	&.rendercstoast-preview {
+		display: flex;
+		justify-content: space-evenly;
+		align-items: center;
+	}
+
+	&.rendercsmodal-preview {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&.field-error-message-preview {
+		position: relative;
+
+		.cs-field-error-msg {
+			top: 0.5rem;
+		}
+	}
+
+	&.datetimepicker-preview {
+		overflow: visible;
+
+		.custom-class input {
+			background-color: $cs-mint;
+		}
+	}
+}
+
+.cs-btn-type-preview-wrapper {
+	padding: 2rem 2rem 0;
+
+	.cs-btn-type-preview {
+		background: $cs-white;
+		border-radius: 0.25rem;
+		box-shadow: var(--box-shadow);
+		padding: 2rem;
+		overflow-x: auto;
+		display: grid;
+		grid-template-columns: 5rem 7rem 1fr 1fr 1fr;
+		grid-template-rows: 2rem 2rem 2.5rem 2.5rem 2.5rem 2.5rem 2.5rem;
+		grid-column-gap: 0.5rem;
+		grid-row-gap: 0.5rem;
+		grid-template-areas: ". . btnStyle-header btnStyle-header btnStyle-header"
+			". . btnStyle-initial btnStyle-brand btnStyle-outline"
+			"btnType-header btnType-default default-initial default-brand default-outline"
+			"btnType-header btnType-error error-initial error-brand error-outline"
+			"btnType-header btnType-success success-initial success-brand success-outline"
+			"btnType-header btnType-transparent transparent-initial transparent-brand transparent-outline"
+			"btnType-header btnType-custom custom-initial custom-brand custom-outline";
+
+
+		> * {
+			display: flex;
+			align-items: center;
+			align-self: stretch;
+			justify-content: center;
+		}
+
+		.cs-btnStyle-header {
+			grid-area: btnStyle-header;
+			font-weight: bold;
+		}
+
+		.cs-btnType-header {
+			grid-area: btnType-header;
+			align-self: center;
+			justify-content: flex-start;
+			font-weight: bold;
+		}
+
+		.cs-btnStyle-initial {
+			grid-area: btnStyle-initial;
+		}
+
+		.cs-btnStyle-brand {
+			grid-area: btnStyle-brand;
+		}
+
+		.cs-btnStyle-outline {
+			grid-area: btnStyle-outline;
+		}
+
+		.cs-btnType-default {
+			grid-area: btnType-default;
+			justify-content: flex-end;
+			padding-inline-end: 1rem;
+		}
+
+		.cs-btnType-error {
+			grid-area: btnType-error;
+			justify-content: flex-end;
+			padding-inline-end: 1rem;
+		}
+
+		.cs-btnType-success {
+			grid-area: btnType-success;
+			justify-content: flex-end;
+			padding-inline-end: 1rem;
+		}
+		.cs-btnType-transparent {
+			grid-area: btnType-transparent;
+			justify-content: flex-end;
+			padding-inline-end: 1rem;
+		}
+
+		.cs-btnType-custom {
+			grid-area: btnType-custom;
+			justify-content: flex-end;
+			padding-inline-end: 1rem;
+		}
+
+		.cs-default-initial {
+			grid-area: default-initial;
+		}
+
+		.cs-default-brand {
+			grid-area: default-brand;
+		}
+
+		.cs-default-outline {
+			grid-area: default-outline;
+		}
+
+		.cs-error-initial {
+			grid-area: error-initial;
+		}
+
+		.cs-error-brand {
+			grid-area: error-brand;
+		}
+
+		.cs-error-outline {
+			grid-area: error-outline;
+		}
+
+		.cs-success-initial {
+			grid-area: success-initial;
+		}
+
+		.cs-success-brand {
+			grid-area: success-brand;
+		}
+
+		.cs-success-outline {
+			grid-area: success-outline;
+		}
+
+		.cs-transparent-initial {
+			grid-area: transparent-initial;
+		}
+
+		.cs-transparent-brand {
+			grid-area: transparent-brand;
+		}
+
+		.cs-transparent-outline {
+			grid-area: transparent-outline;
+		}
+
+		.cs-custom-initial {
+			grid-area: custom-initial;
+		}
+
+		.cs-custom-brand {
+			grid-area: custom-brand;
+		}
+
+		.cs-custom-outline {
+			grid-area: custom-outline;
+		}
+
+		.cs-transparent-bg {
+			background: $cs-blue-dark-2;
+			padding: 0.25rem;
+		}
+	}
+}
+
+.simulation-action-buttons {
+	display: flex;
+	margin: 1rem 2rem;
+	.simulate-btn {
+		margin: 0 1rem 0 0;
+		width: min-content;
+	}
+}
+
+.cs-modal-wrapper {
+	&.custom-class {
+		background-color: $cs-mint;
+	}
+}

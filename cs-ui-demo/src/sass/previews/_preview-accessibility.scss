@@ -1,0 +1,65 @@
+.accessibility-conformance-section {
+	padding: 0 2rem 2rem 2rem;
+
+	h3 {
+		margin-bottom: 0.25rem;
+	}
+
+	.accessibility-criterions-list a.criterion {
+		display: inline-flex;
+		position: relative;
+		margin: 0.1rem 0.5rem 0.1rem 0;
+		padding: 0 2px;
+		background: $cs-gray-light-3;
+		color: $cs-blue-sf;
+		border-radius: 0.25rem;
+
+		&:hover {
+			color: $cs-purple;
+		}
+
+		&:focus {
+			outline: none;
+			box-shadow: 0 0 3px $cs-blue-sf;
+		}
+
+		&:active {
+			color: $cs-purple-medium-1;
+		}
+
+		&::after {
+			position: absolute;
+			content: ",";
+			right: -0.25rem;
+		}
+
+		&:last-child::after {
+			content: "";
+		}
+	}
+
+	.requirements-table-wrapper {
+		margin-top: 1rem;
+
+		.table-body .table-row .table-cell:first-child {
+			background: $cs-purple;
+			color: $cs-white;
+		}
+
+		.table-cell {
+			flex-direction: column;
+
+			.conformance-item {
+				position: relative;
+				margin-left: 0.5rem;
+
+				&::before {
+					content: "\2022";
+					color: $cs-gray-dark-1;
+					position: absolute;
+					left: -0.75rem;
+				}
+			}
+		}
+	}
+}

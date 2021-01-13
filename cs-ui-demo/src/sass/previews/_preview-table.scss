@@ -1,0 +1,60 @@
+.table-wrapper {
+	padding: 2rem;
+
+	.component-name {
+		margin: 0.5rem 0 0.25rem;
+	}
+}
+
+.table-wrapper-alt {
+	padding-top: 0;
+}
+
+.table-row {
+	display: flex;
+	background: $cs-white;
+	border-bottom: 1px solid $cs-gray-light-3;
+
+	.table-cell {
+		display: flex;
+		flex: 1;
+		flex-wrap: wrap;
+		padding: 0.5rem 1rem;
+		overflow: hidden;
+		white-space: normal;
+
+		&:first-child {
+			flex: 0 1 15rem;
+		}
+
+		.prop-option,
+		.api-arg {
+			margin: 0.1rem 0.5rem 0.1rem 0;
+			padding: 0 0.25rem;
+			background: $cs-gray-light-5;
+			display: inline-table;
+		}
+	}
+
+	&.helper-prop-row {
+		background: $cs-gray-light-6;
+
+		.cs-tooltip-wrapper {
+			height: 21px; // CSTooltip bug, remove after it is fixed
+			margin-right: 0.25rem;
+		}
+	}
+}
+
+.table-header .table-row {
+	background: $cs-purple;
+	color: $cs-white;
+
+	.table-cell {
+		padding: 0.25rem 1rem;
+	}
+}
+
+.backlog-table-wrapper .table-header .table-row {
+	background: $cs-gray-medium-1;
+}

@@ -1,0 +1,20 @@
+.version-description,
+.method-description {
+	border-radius: 0 0.25rem 0.25rem 0;
+	width: 30%;
+	max-height: 20rem;
+	overflow: auto;
+	background: $cs-gray-light-8;
+}
+
+.code-snippet {
+	width: 100%;
+	height: 100%;
+	margin: 0 !important;
+	border-radius: 0 0.25rem 0.25rem 0;
+	background: $cs-gray-light-8;
+
+	code {
+		font-family: monospace;
+	}
+}
