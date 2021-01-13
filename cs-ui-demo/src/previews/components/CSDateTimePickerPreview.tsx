@@ -12,6 +12,10 @@ import { CSDateTimePicker } from '@cloudsense/cs-ui-components';
 class CSDateTimePickerPreview extends React.Component {
 	value = moment('1.1.2020', 'DD-MM-YYYY').toDate();
 
+	handleChange() {
+		alert('Date changed!');
+	}
+
 	getDoc() {
 		const json = {
 			name: 'DateTimePicker',
@@ -400,6 +404,16 @@ class CSDateTimePickerPreview extends React.Component {
 						{
 							component:
 								<CSDateTimePicker label="Enter date:" title="This is a title" />
+
+						}
+					]
+				},
+				{
+					propName: 'onChange',
+					variations: [
+						{
+							component:
+								<CSDateTimePicker label="Enter date:" onChange={this.handleChange} />
 
 						}
 					]
