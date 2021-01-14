@@ -4,15 +4,17 @@ import classNames from 'classnames';
 export interface CSTableHeaderProps {
 	[key: string]: any;
 	className?: string;
+	headerSticky?: boolean;
 	id?: string;
 }
 
 class CSTableHeader extends React.Component<CSTableHeaderProps> {
 	render() {
-		const { children, className, id, ...rest } = this.props;
+		const { children, className, headerSticky, id, ...rest } = this.props;
 
 		const tableHeaderClasses = classNames(
 			'cs-table-header', {
+			'cs-table-header-sticky': headerSticky,
 			[`${className}`]: className
 		});
 

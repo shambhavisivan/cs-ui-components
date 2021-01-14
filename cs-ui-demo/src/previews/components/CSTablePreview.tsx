@@ -363,6 +363,159 @@ class CSTablePreview extends React.Component {
 					]
 				},
 				{
+					propName: 'headerSticky',
+					customText: '',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							component:
+								<CSTable>
+									<CSTableHeader headerSticky>
+										<CSTableCell
+											text="Header Item 1"
+											grow={2}
+										/>
+										<CSTableCell
+											text="Header Item 2"
+											grow={1}
+										/>
+										<CSTableCell
+											text="Header Item 3"
+											grow={1}
+										/>
+										<CSTableCell
+											text="Button Column"
+											maxWidth="100px"
+										/>
+									</CSTableHeader>
+									<CSTableBody maxHeight="10rem">
+										<CSTableRow>
+											<CSTableCell
+												text="Body Item 1"
+												grow={2}
+											/>
+											<CSTableCell
+												text="Body Item 2"
+												grow={1}
+											/>
+											<CSTableCell
+												text="Body Item 3"
+												grow={1}
+											/>
+											<CSTableCell
+												maxWidth="100px"
+											>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow>
+											<CSTableCell
+												text="Second Row Item 1"
+												grow={2}
+											/>
+											<CSTableCell
+												text="Second Row Item 2"
+												grow={1}
+											/>
+											<CSTableCell
+												text="Second Row Item 3"
+												grow={1}
+											/>
+											<CSTableCell
+												maxWidth="100px"
+											>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow>
+											<CSTableCell
+												text="Second Row Item 1"
+												grow={2}
+											/>
+											<CSTableCell
+												text="Second Row Item 2"
+												grow={1}
+											/>
+											<CSTableCell
+												text="Second Row Item 3"
+												grow={1}
+											/>
+											<CSTableCell
+												maxWidth="100px"
+											>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow>
+											<CSTableCell
+												text="Second Row Item 1"
+												grow={2}
+											/>
+											<CSTableCell
+												text="Second Row Item 2"
+												grow={1}
+											/>
+											<CSTableCell
+												text="Second Row Item 3"
+												grow={1}
+											/>
+											<CSTableCell
+												maxWidth="100px"
+											>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow>
+											<CSTableCell
+												text="Second Row Item 1"
+												grow={2}
+											/>
+											<CSTableCell
+												text="Second Row Item 2"
+												grow={1}
+											/>
+											<CSTableCell
+												text="Second Row Item 3"
+												grow={1}
+											/>
+											<CSTableCell
+												maxWidth="100px"
+											>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					customText: '',
 					variations: [
@@ -663,6 +816,14 @@ class CSTablePreview extends React.Component {
 				{
 					propertyName: 'className',
 					description: 'For implementing custom class to component'
+				},
+				{
+					propertyName: 'headerSticky',
+					description: 'Logic for changing header to sticky position',
+					options: [
+						'false',
+						'true'
+					]
 				},
 				{
 					propertyName: 'id',

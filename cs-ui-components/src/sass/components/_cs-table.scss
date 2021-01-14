@@ -1,4 +1,5 @@
 .cs-table {
+	overflow-y: auto;
 	@include css4 {
 		border-top: 1px solid cvar(--cs-table-br);
 		border-bottom: 1px solid cvar(--cs-table-br);
@@ -11,9 +12,15 @@
 	.cs-table-header {
 		display: flex;
 		justify-content: space-between;
+		z-index: var(--z-index-table-header);
 		@include sbg(--cs-table-header-bg);
 		@include css4 {
 			border-bottom: 1px solid cvar(--cs-table-br);
+		}
+
+		&-sticky {
+			position: sticky;
+			top: 0;
 		}
 
 		.cs-table-cell {
@@ -42,7 +49,6 @@
 	}
 
 	.cs-table-body {
-		overflow-y: auto;
 		flex: 1;
 		max-height: var(--cs-table-body-max-height, unset);
 
