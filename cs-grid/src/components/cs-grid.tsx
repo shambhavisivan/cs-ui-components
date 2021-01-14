@@ -223,20 +223,25 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 
 	convertRowDataToLegacyRow = (records: Array<RowData>): Array<Row> => {
 		return records.map((record, rowNumber) => {
-			const newRecord: Row = {};
-			for (const fieldKey in record) {
-				if (fieldKey === 'row_cell_notifications') {
-					continue;
+			const isAlreadyLegacy = Object.values(record).some(s => s.cellValue !== undefined);
+			if (isAlreadyLegacy) {
+				return record;
+			} else {
+				const newRecord: Row = {};
+				for (const fieldKey in record) {
+					if (fieldKey === 'row_cell_notifications') {
+						continue;
+					}
+					const notifications =
+						record.row_cell_notifications && record.row_cell_notifications[fieldKey];
+					newRecord[fieldKey] = { cellValue: record[fieldKey] };
+					if (notifications && notifications.type === 'error') {
+						newRecord[fieldKey].errorMessage = notifications.message;
+					}
 				}
-				const notifications =
-					record.row_cell_notifications && record.row_cell_notifications[fieldKey];
-				newRecord[fieldKey] = { cellValue: record[fieldKey] };
-				if (notifications && notifications.type === 'error') {
-					newRecord[fieldKey].errorMessage = notifications.message;
-				}
-			}
 
-			return newRecord;
+				return newRecord;
+			}
 		});
 	};
 
