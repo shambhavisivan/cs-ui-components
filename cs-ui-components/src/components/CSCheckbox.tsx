@@ -25,6 +25,7 @@ export interface CSCheckboxProps {
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => any;
 	onClick?: (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
 	onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => any;
+	readOnly?: boolean;
 	required?: boolean;
 	title?: string;
 	tooltipPosition?: CSTooltipPosition;
@@ -54,6 +55,10 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 	}
 
 	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if (this.props.readOnly) {
+			return;
+		}
+
 		this.setState({ checked: !this.state.checked });
 		if (this.props.onChange) {
 			this.props.onChange(e);
@@ -61,6 +66,10 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 	}
 
 	handleOnClick = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+		if (this.props.readOnly) {
+			return;
+		}
+
 		this.setState({ checked: !this.state.checked });
 		if (this.props.onClick) {
 			this.props.onClick(e);
@@ -90,6 +99,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 			onChange,
 			onClick,
 			onKeyDown,
+			readOnly,
 			required,
 			title,
 			tooltipPosition,
@@ -100,7 +110,8 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 		const checkboxClasses = classNames(
 			'cs-checkbox',
 			{
-				'cs-checkbox-error': error === true
+				'cs-checkbox-error': error === true,
+				'cs-checkbox-read-only': readOnly
 			}
 		);
 		const checkboxGroupClasses = classNames(
@@ -136,16 +147,17 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 							type="checkbox"
 							disabled={disabled}
 							checked={this.state.checked}
-							id={this.uniqueAutoId}
 							required={required}
+							id={this.uniqueAutoId}
 							onClick={this.handleOnClick}
 							name={name}
+							aria-readonly={readOnly}
 							aria-required={required}
 							aria-invalid={error}
 							onKeyDown={onKeyDown}
 							{...rest}
 						/>
-						<span className={checkboxFauxClasses} title={title} />
+						<span className={checkboxFauxClasses} title={this.props.title} />
 					</label>
 					{(error && errorMessage) &&
 						<CSFieldErrorMsg message={errorMessage} />

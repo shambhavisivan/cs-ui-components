@@ -79,12 +79,13 @@
 				}
 			}
 
-			&:disabled:hover + .cs-checkbox-faux {
+			&:disabled:hover + .cs-checkbox-faux,
+			&-read-only:hover + .cs-checkbox-faux,
+			&-read-only:focus + .cs-checkbox-faux {
 				box-shadow: none;
 			}
 
 			&:disabled:checked + .cs-checkbox-faux {
-
 				&::after {
 					@include css4 {
 						border-bottom: 2px solid cvar(--cs-checkbox-disabled-checked-br);
@@ -93,8 +94,42 @@
 				}
 			}
 
-			&.cs-checkbox-error {
+			&-read-only {
+				+ .cs-checkbox-faux {
+					cursor: default;
+					@include sbg(--cs-checkbox-disabled-bg);
+					@include css4 {
+						border: 1px solid cvar(--cs-checkbox-disabled-br);
+					}
+				}
+				&:focus + .cs-checkbox-faux {
+					@include css4 {
+						box-shadow: 0 0 3px cvar(--cs-checkbox-focus-box);
+					}
+				}
+				&:active + .cs-checkbox-faux {
+					@include css4 {
+						border: 1px solid cvar(--cs-checkbox-disabled-br);
+					}
+				}
+				&:checked + .cs-checkbox-faux {
+					&.cs-checkbox-brand {
+						@include sbg(--cs-checkbox-disabled-bg);
+						@include css4 {
+							border: 1px solid cvar(--cs-checkbox-disabled-br);
+						}
 
+						&::after {
+							@include css4 {
+								border-bottom: 2px solid cvar(--cs-checkbox-neutral-checked-br);
+								border-left: 2px solid cvar(--cs-checkbox-neutral-checked-br);
+							}
+						}
+					}
+				}
+			}
+
+			&.cs-checkbox-error {
 				+ .cs-checkbox-faux {
 					@include css4 {
 						border: 1px solid cvar(--cs-checkbox-error-br);

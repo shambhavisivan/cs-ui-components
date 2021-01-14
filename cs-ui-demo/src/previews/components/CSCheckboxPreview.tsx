@@ -84,6 +84,22 @@ class CSCheckboxPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'readOnly',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							string: '',
+							component:
+								<CSCheckbox
+									readOnly
+									label="This is a label"
+									checked
+								/>
+						}
+					]
+				},
+				{
 					propName: 'required',
 					variations: [
 						{
@@ -387,6 +403,15 @@ class CSCheckboxPreview extends React.Component {
 				{
 					propertyName: 'onKeyDown',
 					description: 'Logic for onKeyDown event'
+
+				},
+				{
+					propertyName: 'readOnly',
+					description: 'Logic for readOnly state',
+					options: [
+						'false',
+						'true'
+					]
 				},
 				{
 					propertyName: 'required',
