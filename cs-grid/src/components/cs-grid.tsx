@@ -547,7 +547,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		 * old rowDataModel, so we go ahead and set it in state. if not, then we transform it to
 		 * old datamodel. This is a workaround until the renderers start using new model
 		 */
-		if (rowData && rowData.length !== 0) {
+		if (rowData !== null && rowData !== undefined) {
 			if (this.isUsingLegacyRowDataModel(rowData)) {
 				this.state.rowData = [...rowData];
 				this.state.isUsingLegacyRowDataModel = true;
