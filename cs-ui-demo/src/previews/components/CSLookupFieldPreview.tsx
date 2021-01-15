@@ -529,7 +529,7 @@ class CSLookupFieldPreview extends React.Component {
 			<>
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<CSAlert variant="warning" text="This component is under construction." />
+					<CSAlert variant="warning" text="This component is under construction and should not be used." />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
 					<PreviewAccessibility components={[component]} />
