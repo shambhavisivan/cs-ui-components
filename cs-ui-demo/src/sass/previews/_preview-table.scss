@@ -1,3 +1,5 @@
+// START LEGACY PROP TABLE
+
 .table-wrapper {
 	padding: 2rem 2rem 2rem 3rem;
 
@@ -57,4 +59,104 @@
 
 .backlog-table-wrapper .table-header .table-row {
 	background: $cs-gray-medium-1;
+}
+
+// END LEGACY PROP TABLE
+// START NEW PROP TABLE
+
+.cs-app-wrapper .properties-table-wrapper {
+	padding: 2rem;
+
+	.properties-component-name {
+		margin-bottom: 0.5rem;
+		font-size: 1.375rem;
+	}
+
+	.properties-table {
+		display: block;
+		width: 100%;
+		max-width: 100%;
+		box-shadow: var(--box-shadow);
+		border: none;
+		border-radius: 0.25rem;
+
+		&-header {
+			border-radius: 0.25rem 0.25rem 0 0;
+
+			.properties-table-cell {
+				border-bottom: 1px solid $cs-gray-light-2;
+
+				&:first-child {
+					border-top-left-radius: 0.25rem;
+				}
+
+				&:last-child {
+					border-top-right-radius: 0.25rem;
+				}
+			}
+		}
+
+		&-body {
+			display: table-row-group;
+		}
+
+		.properties-table-header,
+		.properties-table-row {
+			display: table-row;
+
+			&.properties-table-row-inherited {
+				background: repeating-linear-gradient(45deg, $cs-white, $cs-white 10px, $cs-gray-light-7 10px, $cs-gray-light-7 20px);
+			}
+
+			.properties-table-cell {
+				display: table-cell;
+
+				&:last-child {
+					width: 100%;
+					max-width: 100%;
+				}
+
+				&:nth-child(2) .cs-tooltip-wrapper {
+					margin: 0 auto;
+				}
+			}
+		}
+	}
+}
+
+.properties-code-tooltip .cs-tooltip {
+	padding-top: 0;
+	max-width: 30rem;
+
+	.properties-code {
+		margin-top: 0.5rem;
+	}
+}
+
+.properties-code {
+	display: inline-block;
+	background-color: $cs-gray-light-5;
+	border: 1px solid $cs-gray-light-1;
+	font-size: 0.8125rem;
+	border-radius: 0.25rem;
+	padding: 0 0.4rem;
+	line-height: 1.25rem;
+	font-family: "Courier New", monospace !important;
+	margin-right: 0.5rem;
+	color: $cs-black;
+	cursor: default;
+
+	&.properties-code-custom {
+		background-color: $cs-white;
+		display: flex;
+
+		.cs-icon {
+			align-self: center;
+			margin-left: 0.4rem;
+		}
+	}
+
+	&:last-child {
+		margin-right: 0;
+	}
 }

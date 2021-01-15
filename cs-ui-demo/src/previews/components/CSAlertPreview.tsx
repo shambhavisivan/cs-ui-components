@@ -333,73 +333,72 @@ class CSAlertPreview extends React.Component {
 					]
 				}
 			],
-
 			properties: [
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'closeButton',
-					description: 'Show Close button'
-				},
-				{
-					propertyName: 'iconName',
-					description: 'Name of icon from icons library which overrides the default icon defined by variant'
-				},
-				{
-					propertyName: 'iconVisibility',
-					description: 'Logic for icon visibility state',
-					options: [
-						'true',
-						'false'
-					]
-				},
-				{
-					propertyName: 'id',
-					description: 'Alert id value'
-				},
-				{
-					propertyName: 'onClose',
-					description: 'Close Alert'
-				},
-				{
-					propertyName: 'styleFormat',
-					description: 'Determines size of alert and icons',
-					options: [
-						'default',
-						'scoped'
-					]
-				},
-				{
-					propertyName: 'styleType',
-					description: 'Determines styling of text and background',
-					options: [
-						'default',
-						'light'
-					]
-				},
-				{
-					propertyName: 'text',
-					description: 'Text content of alert'
-				},
-				{
-					propertyName: 'textAlign',
-					description: 'Alignment of the text inside the alert',
-					options: [
-						'left',
-						'center'
-					]
-				},
-				{
-					propertyName: 'variant',
-					description: 'Color and icon variant of alert',
-					options: [
-						'info',
-						'warning',
-						'error',
-						'base'
-					]
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the alert.'
+				}, {
+					name: 'closeButton',
+					types: ['boolean'],
+					description: 'Show the close button.'
+				}, {
+					name: 'iconName',
+					types: ['string'],
+					description: 'Override the default icon defined by the variant.'
+				}, {
+					name: 'iconVisibility',
+					types: ['boolean'],
+					default: 'true',
+					description: 'Show or hide the icon.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the alert.'
+				}, {
+					name: 'onClose',
+					types: ['(event) => void'],
+					description: 'Handler method for closing the alert.'
+				}, {
+					name: 'styleFormat',
+					customTypes: [{
+						name: 'CSAlertStyleFormat',
+						types: ['\'default\'', '\'scoped\'']
+					}],
+					default: '\'default\'',
+					description: 'Determine size of alert and icons.'
+				}, {
+					name: 'styleType',
+					customTypes: [{
+						name: 'CSAlertStyleType',
+						types: ['\'default\'', '\'light\'']
+					}],
+					default: '\'default\'',
+					description: 'Determine style of text and background.'
+				}, {
+					name: 'text',
+					types: ['string', 'Array<string>'],
+					description: 'Set textual content of the alert.'
+				}, {
+					name: 'textAlign',
+					customTypes: [{
+						name: 'CSAlertTextAlign',
+						types: ['\'center\'', '\'left\'']
+					}],
+					default: '\'left\'',
+					description: 'Align text inside the alert.'
+				}, {
+					name: 'variant',
+					required: true,
+					customTypes: [{
+						name: 'CSAlertVariant',
+						types: ['\'info\'', '\'warning\'', '\'error\'', '\'base\'']
+					}],
+					description: 'Set the colour and icon variant of the alert.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the alert div.'
 				}
 			],
 			accessibility: [
