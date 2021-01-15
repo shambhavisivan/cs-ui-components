@@ -1,5 +1,5 @@
 .property-section {
-	padding: 2rem 2rem 0;
+	padding: 2rem 2rem 0 3rem;
 
 	.cs-alert {
 		margin-bottom: 0.5rem;
@@ -15,7 +15,7 @@
 	}
 
 	&.custom {
-		padding: 2rem;
+		padding: 2rem 2rem 2rem 3rem;
 		margin-top: 2rem;
 		background: $cs-gray-light-4;
 
