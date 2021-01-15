@@ -16,7 +16,9 @@ Besides the standard set of features you'd expect from any grid cs-grid includes
 
 Release Notes
 ------------------
-####1.2.51
+####1.2.52
+ * Fix conversion logic to legacy row format
+ ####1.2.51
  * Fix row highlighting
 ####1.2.50
  * Fix boolean update logic
