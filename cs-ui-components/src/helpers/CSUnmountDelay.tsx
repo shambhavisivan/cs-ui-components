@@ -34,7 +34,7 @@ const withCSUnmountDelay = (Component: any, timeout: number = 200) => (
 
 		setMounted() {
 			if (this.props.animated) {
-				this.setState({ mounted: true });
+				setTimeout(() => this.setState({ mounted: true }), 0);
 			}
 		}
 

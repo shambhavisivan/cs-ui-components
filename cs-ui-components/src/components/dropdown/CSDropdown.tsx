@@ -1,7 +1,8 @@
-import React, { CSSProperties } from 'react';
-import CSButton from './CSButton';
+import React from 'react';
+import CSButton from '../CSButton';
 import classNames from 'classnames';
-import { CSIconOrigin } from './CSIcon';
+import { CSIconOrigin } from '../CSIcon';
+import CSDropdownItemWrapper from './CSDropdownItemWrapper';
 
 export type CSDropdownAlign = 'left' | 'right';
 export type CSDropdownIconPosition = 'left' | 'right';
@@ -38,7 +39,6 @@ export interface CSDropdownStates {
 }
 
 class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
-
 	public static defaultProps = {
 		btnType: 'default',
 		btnStyle: 'initial',
@@ -57,6 +57,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 		};
 		this.handleOutsideClick = this.handleOutsideClick.bind(this);
 	}
+
 	toggleActive() {
 		const currentState = this.state.active;
 		if (!this.state.active) {
@@ -70,6 +71,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 	componentWillUnmount() {
 		document.removeEventListener('click', this.handleOutsideClick, false);
 	}
+
 	handleOutsideClick(e: any) {
 		// ignore clicks on the component itself
 		if (this.node && this.node.contains(e.target)) {
@@ -109,39 +111,12 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 				[`${className}`]: className
 			}
 		);
+
 		const btnDropdownClasses = classNames(
 			{
 				'cs-dropdown-active': (this.state.active === true)
 			}
 		);
-		const btnDropdownOuterItemWrapperClasses = classNames(
-			'cs-dropdown-outer-item-wrapper',
-			{
-				[`cs-dropdown-${this.props.align}`]: align,
-				[`cs-dropdown-${this.props.position}`]: position
-			}
-		);
-		const btnDropdownItemWrapperClasses = classNames(
-			'cs-dropdown-item-wrapper', {
-			'cs-dropdown-item-wrapper-no-padding': this.props.padding === '0'
-		});
-		const style: CSSProperties = {
-			'--cs-dropdown-max-height': maxHeight,
-			'--cs-dropdown-max-width': maxWidth,
-			'--cs-dropdown-padding': padding
-		};
-		const childrenWithWrapper = React.Children.map(children, (child: any) => {
-			if (child) {
-				return (
-					<li role="none">
-						{React.cloneElement(
-							child,
-							{ role: 'menuitem' }
-						)}
-					</li>
-				);
-			}
-		});
 
 		return (
 			<div
@@ -166,19 +141,19 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 					ariaExpanded={this.state.active}
 					ariaHaspopup={!!Object(children).length}
 				/>
-				{hover ?
-					(<div className={btnDropdownOuterItemWrapperClasses}>
-						<ul className={btnDropdownItemWrapperClasses} role="menu" style={style}>
-							{childrenWithWrapper}
-						</ul>
-					</div>) :
-					(this.state.active &&
-						<div className={btnDropdownOuterItemWrapperClasses}>
-							<ul className={btnDropdownItemWrapperClasses} role="menu" style={style}>
-								{childrenWithWrapper}
-							</ul>
-						</div>)
-				}
+				<CSDropdownItemWrapper
+					align={align}
+					maxHeight={maxHeight}
+					maxWidth={maxWidth}
+					hover={hover}
+					padding={padding}
+					position={position}
+					size={size}
+					animated={!hover}
+					visible={this.state.active || hover}
+				>
+					{children}
+				</CSDropdownItemWrapper>
 			</div>
 		);
 	}

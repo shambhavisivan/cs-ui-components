@@ -7,6 +7,12 @@
 	.cs-dropdown-outer-item-wrapper {
 		position: absolute;
 		z-index: var(--z-index-dropdown-items-wrapper);
+		opacity: 1;
+		transition: opacity 200ms ease-in-out;
+
+		&.cs-dropdown-hidden {
+			opacity: 0;
+		}
 
 		.cs-dropdown-item-wrapper {
 			width: auto;

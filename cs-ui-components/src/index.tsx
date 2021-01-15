@@ -33,7 +33,7 @@ import CSCustomSelect, { CSCustomSelectBorderType } from './components/custom-se
 import CSDatepicker, { CSDatepickerDropdownMode } from './components/CSDatepicker';
 import CSDateTimePicker, { CSDateTimePickerDropdownMode } from './components/CSDateTimePicker';
 import CSDivider, { CSDividerVariant } from './components/CSDivider';
-import CSDropdown, { CSDropdownAlign, CSDropdownIconPosition, CSDropdownPosition, CSDropdownSize, CSDropdownStyle, CSDropdownType } from './components/CSDropdown';
+import CSDropdown, { CSDropdownAlign, CSDropdownIconPosition, CSDropdownPosition, CSDropdownSize, CSDropdownStyle, CSDropdownType } from './components/dropdown/CSDropdown';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './components/CSFieldErrorMsg';
 import CSIcon, { CSIconOrigin } from './components/CSIcon';
 import CSImage, { CSImageColor, CSImageType, CSImageVariant } from './components/CSImage';
