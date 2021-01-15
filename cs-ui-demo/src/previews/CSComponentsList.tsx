@@ -40,6 +40,7 @@ import CSFieldErrorMsgPreview from './components/CSFieldErrorMsgPreview';
 import CSSkipLinkPreview from './components/CSSkipLinkPreview';
 import CSGettingStarted from './CSGettingStarted';
 import CSTransferPreview from './components/CSTransferPreview';
+import CSProgressIndicatorPreview from './components/CSProgressIndicatorPreview';
 
 import SidebarList from './SidebarList';
 
@@ -154,6 +155,10 @@ class CSComponentsList extends React.Component {
 			{
 				name: 'Progress Bar',
 				component: CSProgressBarPreview
+			},
+			{
+				name: 'Progress Indicator',
+				component: CSProgressIndicatorPreview
 			},
 			{
 				name: 'Radio',
