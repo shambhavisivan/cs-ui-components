@@ -204,6 +204,10 @@ const colors = [
 		"colorValue": "#fff2e2"
 	},
 	{
+		"colorName": "cs-orange-dark-1",
+		"colorValue": "#9a6319"
+	},
+	{
 		"colorName": "cs-red-medium-1",
 		"colorValue": "#f91e0b"
 	},

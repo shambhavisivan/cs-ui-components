@@ -51,6 +51,7 @@ $cs-purple-medium-1: #7f8de1;
 $cs-orange-medium-1: #ffa429;
 $cs-orange-medium-2: #ffb75d;
 $cs-orange-light-1: #fff2e2;
+$cs-orange-dark-1: #9a6319;
 $cs-red-medium-1: #d81c2a;
 $cs-red-medium-2: #c23934;
 $cs-red-medium-3: #d9675d;
@@ -357,15 +358,15 @@ $variables: (
 	--cs-chip-brand-bg: $cs-blue-sf,
 	--cs-chip-brand-c: $cs-blue-sf,
 	--cs-chip-brand-br: $cs-blue-sf,
-	--cs-chip-warning-bg: $cs-orange-medium-2,
-	--cs-chip-warning-c: $cs-orange-medium-2,
-	--cs-chip-warning-br: $cs-orange-medium-2,
+	--cs-chip-warning-bg: $cs-orange-dark-1,
+	--cs-chip-warning-c: $cs-orange-dark-1,
+	--cs-chip-warning-br: $cs-orange-dark-1,
 	--cs-chip-error-bg: $cs-red-medium-2,
 	--cs-chip-error-c: $cs-red-medium-2,
 	--cs-chip-error-br: $cs-red-medium-2,
-	--cs-chip-success-bg: $cs-green-light-1,
-	--cs-chip-success-c: $cs-green-light-1,
-	--cs-chip-success-br: $cs-green-light-1,
+	--cs-chip-success-bg: $cs-green-dark-2,
+	--cs-chip-success-c: $cs-green-dark-2,
+	--cs-chip-success-br: $cs-green-dark-2,
 	--cs-chip-dark-bg: $cs-gray-dark-5,
 	--cs-chip-dark-c: $cs-gray-dark-5,
 	--cs-chip-dark-br: $cs-gray-dark-5,
