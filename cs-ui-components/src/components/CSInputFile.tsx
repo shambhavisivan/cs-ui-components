@@ -65,6 +65,10 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 	handleFileDrop(e: React.DragEvent<HTMLDivElement>) {
 		const file = e.dataTransfer.files[0];
 
+		if (typeof (file) !== 'object') {
+			return;
+		}
+
 		this.handleFileDragEvents(e);
 		if (this.props.onDrop) {
 			this.props.onDrop(file);
@@ -121,6 +125,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 			dropAreaWidth,
 			error,
 			errorMessage,
+			fileSize,
 			id,
 			label,
 			onChange,
