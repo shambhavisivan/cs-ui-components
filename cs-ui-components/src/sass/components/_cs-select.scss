@@ -46,6 +46,12 @@
 				}
 			}
 
+			&-read-only {
+				cursor: default;
+				pointer-events: none;
+				border: none;
+			}
+
 			// Error
 			&-error {
 				@include css4 {

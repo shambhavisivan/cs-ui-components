@@ -178,6 +178,21 @@ class CSSelectPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'readOnly',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							component:
+								<CSSelect label="Choose amount" readOnly>
+									<option>10</option>
+									<option>20</option>
+									<option>30</option>
+								</CSSelect>
+						}
+					]
+				},
+				{
 					propName: 'required',
 					variations: [
 						{
@@ -369,6 +384,14 @@ class CSSelectPreview extends React.Component {
 				{
 					propertyName: 'onChange',
 					description: 'Logic for onChange event'
+				},
+				{
+					propertyName: 'readOnly',
+					description: 'Read only state',
+					options: [
+						'false',
+						'true'
+					]
 				},
 				{
 					propertyName: 'required',

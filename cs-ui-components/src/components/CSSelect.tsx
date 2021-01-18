@@ -5,6 +5,7 @@ import CSLabel from './CSLabel';
 import CSIcon from './CSIcon';
 import { CSTooltipPosition } from './CSTooltip';
 import { v4 as uuidv4 } from 'uuid';
+import KeyCode from '../util/KeyCode';
 
 export type CSSelectBorderType = 'round' | 'square';
 
@@ -23,6 +24,7 @@ export interface CSSelectProps {
 	labelTitle?: boolean;
 	name?: string;
 	onChange?: (value: any) => void;
+	readOnly?: boolean;
 	required?: boolean;
 	title?: string;
 	tooltipPosition?: CSTooltipPosition;
@@ -74,6 +76,12 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 		}
 	}
 
+	handleOnKeyDown = (e: React.KeyboardEvent<HTMLSelectElement>) => {
+		if (e.key !== KeyCode.Tab) {
+			e.preventDefault();
+		}
+	}
+
 	render() {
 		const {
 			borderType,
@@ -89,6 +97,7 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 			labelHidden,
 			labelTitle,
 			onChange,
+			readOnly,
 			required,
 			title,
 			tooltipPosition,
@@ -100,7 +109,8 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 			'cs-select',
 			{
 				'cs-select-error': error,
-				[`cs-select-${borderType}`]: borderType
+				[`cs-select-${borderType}`]: borderType,
+				'cs-select-read-only': readOnly
 			}
 		);
 
@@ -139,7 +149,9 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 						disabled={disabled}
 						aria-required={required}
 						aria-invalid={error}
+						aria-readonly={readOnly}
 						onChange={this.handleOnChange}
+						onKeyDown={readOnly ? this.handleOnKeyDown : undefined}
 						name={name}
 						value={fixControlledValue(this.state.value)}
 						title={title}
@@ -147,7 +159,9 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 					>
 						{children}
 					</select>
-					<CSIcon name="down" />
+					{!readOnly &&
+						<CSIcon name="down" />
+					}
 				</div>
 				{(error && errorMessage) &&
 					<CSFieldErrorMsg message={errorMessage} />
