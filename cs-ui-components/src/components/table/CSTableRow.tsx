@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { CSTableContext } from './CSTable';
+import KeyCode from '../../util/KeyCode';
 
 export interface CSTableRowProps {
 	[key: string]: any;
@@ -10,8 +11,6 @@ export interface CSTableRowProps {
 }
 
 class CSTableRow extends React.Component<CSTableRowProps> {
-	private keyArrowDown = 'ArrowDown';
-	private keyArrowUp = 'ArrowUp';
 
 	handleClick: React.MouseEventHandler<HTMLDivElement> = e => {
 		const { onClick } = this.props;
@@ -24,12 +23,12 @@ class CSTableRow extends React.Component<CSTableRowProps> {
 		if (context.selectableRows) {
 			const currentActive = document.activeElement;
 
-			if (event.key === this.keyArrowDown) {
+			if (event.key === KeyCode.ArrowDown) {
 				event.preventDefault();
 				(currentActive.nextElementSibling as HTMLElement)?.focus();
 			}
 
-			if (event.key === this.keyArrowUp) {
+			if (event.key === KeyCode.ArrowUp) {
 				event.preventDefault();
 				(currentActive.previousElementSibling as HTMLElement)?.focus();
 			}

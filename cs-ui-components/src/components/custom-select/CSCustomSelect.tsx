@@ -2,11 +2,12 @@ import React from 'react';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from '../CSFieldErrorMsg';
 import CSIcon from '../CSIcon';
 import CSLabel from '../CSLabel';
-import classNames from 'classnames';
-import { CSTooltipPosition } from '../CSTooltip';
 import CSOption from './CSOption';
-import { v4 as uuidv4 } from 'uuid';
 import CSButton from '../CSButton';
+import { CSTooltipPosition } from '../CSTooltip';
+import { v4 as uuidv4 } from 'uuid';
+import classNames from 'classnames';
+import KeyCode from '../../util/KeyCode';
 
 export type CSCustomSelectBorderType = 'square' | 'round';
 
@@ -44,12 +45,6 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 	private dropdownNode: HTMLUListElement;
 	private input: HTMLInputElement;
 	private filteredItems: boolean = true;
-
-	private backspaceKey = 'Backspace';
-	private escapeKey = 'Escape';
-	private keyDownKey = 'ArrowDown';
-	private keyUpKey = 'ArrowUp';
-	private enterKey = 'Enter';
 
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
 
@@ -164,13 +159,13 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		const lastListElement = this.props.optionsList.length - 1;
 
 		switch (true) {
-			case event.key === this.backspaceKey && !searchTerm && multiselect:
+			case event.key === KeyCode.Backspace && !searchTerm && multiselect:
 				this.deleteLastItem();
 				break;
-			case event.key === this.escapeKey && toggle:
+			case event.key === KeyCode.Escape && toggle:
 				this.setState({ toggle: !toggle });
 				break;
-			case event.key === this.keyDownKey:
+			case event.key === KeyCode.ArrowDown:
 				event.preventDefault();
 				switch (true) {
 					case activeListItem === null:
@@ -185,7 +180,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 						break;
 				}
 				break;
-			case event.key === this.keyUpKey:
+			case event.key === KeyCode.ArrowUp:
 				event.preventDefault();
 				switch (true) {
 					case activeListItem === firstListElement:
@@ -197,7 +192,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 						break;
 				}
 				break;
-			case event.key === this.enterKey:
+			case event.key === KeyCode.Enter:
 				event.preventDefault();
 				switch (true) {
 					case toggle && activeListItem !== null && this.filteredItems:
@@ -230,7 +225,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		if (e.type === 'mousedown') {
 			e.preventDefault();
 			this.onDelete(index);
-		} else if (e.type === 'keydown' && e.key === this.enterKey) {
+		} else if (e.type === 'keydown' && e.key === KeyCode.Enter) {
 			this.onDelete(index);
 			this.input.focus();
 		}

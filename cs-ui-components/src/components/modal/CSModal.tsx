@@ -6,6 +6,7 @@ import { Portal } from 'react-portal';
 import { v4 as uuidv4 } from 'uuid';
 import { CSModalHeader } from '../../index';
 import withCSUnmountDelay from '../../helpers/CSUnmountDelay';
+import KeyCode from '../../util/KeyCode';
 
 export type CSModalSize = 'auto' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 
@@ -39,7 +40,6 @@ class CSModal extends React.Component<CSModalProps> {
 	private firstElement: HTMLElement;
 	private lastElement: HTMLElement;
 	private modalContentNode: HTMLDivElement;
-	private tabKey = 'Tab';
 	private uniqueAutoId = uuidv4();
 
 	constructor(props: CSModalProps) {
@@ -57,7 +57,7 @@ class CSModal extends React.Component<CSModalProps> {
 	}
 
 	handleFocusChange = (event: any) => {
-		if (event.key === this.tabKey) {
+		if (event.key === KeyCode.Tab) {
 			this.getFirstLastModalElement();
 			const { activeElement } = document;
 			if (this.props.loading) {

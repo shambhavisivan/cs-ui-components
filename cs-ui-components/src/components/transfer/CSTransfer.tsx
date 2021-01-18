@@ -3,6 +3,7 @@ import CSButton from '../CSButton';
 import CSTransferList, { CSTransferListType } from './CSTransferList';
 import CSTransferContext from './CSTransferContext';
 import classNames from 'classnames';
+import KeyCode from '../../util/KeyCode';
 
 export interface CSTransferItemsType {
 	disabled?: boolean;
@@ -45,10 +46,6 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 	private sourceListRef: React.RefObject<HTMLUListElement>;
 	private targetListRef: React.RefObject<HTMLUListElement>;
 	private element: string;
-	private arrowDownKey = 'ArrowDown';
-	private arrowUpKey = 'ArrowUp';
-	private arrowLeftKey = 'ArrowLeft';
-	private arrowRightKey = 'ArrowRight';
 
 	constructor(props: CSTransferProps) {
 		super(props);
@@ -190,13 +187,13 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 
 	handleActionsKeyDown = (event: React.KeyboardEvent<any>) => {
 		switch (event.key) {
-			case this.arrowRightKey:
+			case KeyCode.ArrowRight:
 				(this.targetListRef.current.querySelector(this.element) as HTMLElement).focus();
 				break;
-			case this.arrowLeftKey:
+			case KeyCode.ArrowLeft:
 				(this.sourceListRef.current.querySelector(this.element) as HTMLElement).focus();
 				break;
-			case this.arrowDownKey:
+			case KeyCode.ArrowDown:
 				event.preventDefault();
 				switch (true) {
 					case document.activeElement === this.actionButtonsNode.lastChild:
@@ -207,7 +204,7 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 						break;
 				}
 				break;
-			case this.arrowUpKey:
+			case KeyCode.ArrowUp:
 				event.preventDefault();
 				switch (true) {
 					case document.activeElement === this.actionButtonsNode.firstChild:

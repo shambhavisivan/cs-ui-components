@@ -6,6 +6,7 @@ import CSInputSearch from '../CSInputSearch';
 import CSTransferItem from './CSTransferItem';
 import CSTransferContext from './CSTransferContext';
 import { CSTransferVariant, CSTransferItemsType } from './CSTransfer';
+import KeyCode from '../../util/KeyCode';
 
 export type CSTransferListType = 'source' | 'target';
 
@@ -28,8 +29,6 @@ export interface CSTransferListState {
 class CSTransferList extends React.Component<CSTransferListProps, CSTransferListState> {
 
 	static contextType = CSTransferContext;
-	private arrowLeftKey = 'ArrowLeft';
-	private arrowRightKey = 'ArrowRight';
 
 	constructor(props: CSTransferListProps) {
 		super(props);
@@ -49,10 +48,10 @@ class CSTransferList extends React.Component<CSTransferListProps, CSTransferList
 		const { listType } = this.props;
 		const { actionButtonsNode } = this.context;
 		switch (true) {
-			case event.key === this.arrowRightKey && listType === 'source':
+			case event.key === KeyCode.ArrowRight && listType === 'source':
 				(actionButtonsNode.firstChild as HTMLElement).focus();
 				break;
-			case event.key === this.arrowLeftKey && listType === 'target':
+			case event.key === KeyCode.ArrowLeft && listType === 'target':
 				(actionButtonsNode.lastChild as HTMLElement).focus();
 				break;
 			default:

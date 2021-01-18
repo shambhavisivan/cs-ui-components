@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { CSTransferVariant } from './CSTransfer';
 import CSTransferContext from './CSTransferContext';
 import { CSTransferListType } from './CSTransferList';
+import KeyCode from '../../util/KeyCode';
 
 export interface CSTransferItemProps {
 	disabled?: boolean;
@@ -22,10 +23,6 @@ class CSTransferItem extends React.Component<CSTransferItemProps> {
 	private listItemNode: HTMLLIElement;
 	private listNodes: any;
 	private actionButtons: HTMLUListElement;
-	private arrowDownKey = 'ArrowDown';
-	private arrowUpKey = 'ArrowUp';
-	private arrowLeftKey = 'ArrowLeft';
-	private arrowRightKey = 'ArrowRight';
 
 	componentDidMount() {
 		this.actionButtons = this.context.actionButtonsNode;
@@ -41,7 +38,7 @@ class CSTransferItem extends React.Component<CSTransferItemProps> {
 			? 'button' :
 			'input[type=checkbox]';
 		switch (true) {
-			case event.key === this.arrowDownKey:
+			case event.key === KeyCode.ArrowDown:
 				event.preventDefault();
 				switch (true) {
 					case document.activeElement === this.listNodes[lastElementIndex].querySelector(element):
@@ -52,7 +49,7 @@ class CSTransferItem extends React.Component<CSTransferItemProps> {
 						break;
 				}
 				break;
-			case event.key === this.arrowUpKey:
+			case event.key === KeyCode.ArrowUp:
 				event.preventDefault();
 				switch (true) {
 					case document.activeElement === this.listNodes[0].querySelector(element):
@@ -63,10 +60,10 @@ class CSTransferItem extends React.Component<CSTransferItemProps> {
 						break;
 				}
 				break;
-			case event.key === this.arrowRightKey && listType === 'source':
+			case event.key === KeyCode.ArrowRight && listType === 'source':
 				(this.actionButtons.firstChild as HTMLElement).focus();
 				break;
-			case event.key === this.arrowLeftKey && listType === 'target':
+			case event.key === KeyCode.ArrowLeft && listType === 'target':
 				(this.actionButtons.lastChild as HTMLElement).focus();
 				break;
 			default:
