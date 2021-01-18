@@ -42,7 +42,7 @@ class CSFieldErrorMsgPreview extends React.Component {
 			],
 			accessibility: [
 				{
-					criterionList: [
+					criteriaList: [
 						'1.4.4'
 					],
 					requirements: [

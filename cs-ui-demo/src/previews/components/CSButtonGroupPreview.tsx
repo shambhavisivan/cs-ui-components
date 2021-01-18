@@ -351,7 +351,7 @@ class CSButtonGroupPreview extends React.Component {
 			],
 			accessibility: [
 				{
-					criterionList: [
+					criteriaList: [
 						'2.1.1',
 						'2.1.2',
 						'2.5.3',

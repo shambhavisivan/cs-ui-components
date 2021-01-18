@@ -310,7 +310,7 @@ class CSToastPreview extends React.Component {
 			],
 			accessibility: [
 				{
-					criterionList: [
+					criteriaList: [
 						'1.4.4',
 						'2.1.1',
 						'2.1.2',

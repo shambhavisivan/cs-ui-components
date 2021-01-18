@@ -229,7 +229,7 @@ class CSCardPreview extends React.Component {
 			],
 			accessibility: [
 				{
-					criterionList: [
+					criteriaList: [
 						'1.4.4'
 					],
 					requirements: [

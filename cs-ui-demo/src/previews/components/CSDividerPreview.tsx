@@ -147,7 +147,7 @@ class CSDividerPreview extends React.Component {
 			],
 			accessibility: [
 				{
-					criterionList: [
+					criteriaList: [
 						'4.1.2'
 					],
 					requirements: [

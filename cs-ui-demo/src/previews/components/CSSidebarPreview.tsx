@@ -199,7 +199,7 @@ class CSSidebarPreview extends React.Component {
 			],
 			accessibility: [
 				{
-					criterionList: [
+					criteriaList: [
 						'2.1.1',
 						'2.1.2',
 						'3.2.1',

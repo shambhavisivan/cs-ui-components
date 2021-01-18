@@ -349,7 +349,7 @@ class CSProgressBarPreview extends React.Component<{}, CSProgressBarPreviewState
 
 			accessibility: [
 				{
-					criterionList: [
+					criteriaList: [
 						'2.5.3',
 						'3.3.1',
 						'4.1.2'
