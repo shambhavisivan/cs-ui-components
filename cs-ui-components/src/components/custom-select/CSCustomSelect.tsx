@@ -44,7 +44,7 @@ export interface CSCustomSelectState {
 class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelectState> {
 	private dropdownNode: HTMLUListElement;
 	private input: HTMLInputElement;
-	private filteredItems: boolean = true;
+	private filteredList: Array<string>;
 
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
 
@@ -62,6 +62,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 
 	componentDidMount() {
 		document.addEventListener('click', this.handleOutsideClick);
+		this.filteredList = this.props.optionsList;
 	}
 
 	componentWillUnmount() {
@@ -74,7 +75,11 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 
 	search = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { onChange } = this.props;
-		this.setState({ searchTerm: e.target.value, toggle: true });
+		this.setState({
+			searchTerm: e.target.value,
+			toggle: true,
+			activeListItem: 0
+		});
 		if (onChange) {
 			onChange(e);
 		}
@@ -156,7 +161,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		const { multiselect } = this.props;
 
 		const firstListElement = 0;
-		const lastListElement = this.props.optionsList.length - 1;
+		const lastListElement = this.filteredList.length - 1;
 
 		switch (true) {
 			case event.key === KeyCode.Backspace && !searchTerm && multiselect:
@@ -195,7 +200,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 			case event.key === KeyCode.Enter:
 				event.preventDefault();
 				switch (true) {
-					case toggle && activeListItem !== null && this.filteredItems:
+					case toggle && activeListItem !== null && !!this.filteredList.length:
 						this.onSelect(event, activeListItem);
 						break;
 					default:
@@ -319,11 +324,9 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		);
 
 		const renderDropdownOptions = () => {
-			const _optionsList = optionsList.filter(this.searchingFor(searchTerm));
-
-			if (_optionsList.length > 0) {
-				this.filteredItems = true;
-				return _optionsList.map((option, i) => (
+			this.filteredList = optionsList.filter(this.searchingFor(searchTerm));
+			if (this.filteredList.length > 0) {
+				return this.filteredList.map((option, i) => (
 					<CSOption
 						value={option}
 						type="list-item"
@@ -339,7 +342,6 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 						onMouseOut={() => this.setState({ activeListItem: null })}
 					/>));
 			} else {
-				this.filteredItems = false;
 				return <li className="cs-custom-select-no-data">
 					<CSIcon
 						name="error"
