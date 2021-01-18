@@ -151,37 +151,46 @@ class CSChipPreview extends React.Component {
 
 			properties: [
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'id',
-					description: 'Chip id value'
-				},
-				{
-					propertyName: 'text',
-					description: 'Chip text'
-				},
-				{
-					propertyName: 'variant',
-					description: 'Chip variant',
-					options: [
-						'brand',
-						'success',
-						'neutral',
-						'error',
-						'warning',
-						'transparent',
-						'dark'
-					]
-				},
-				{
-					propertyName: 'variantStyle',
-					description: 'Chip border variant',
-					options: [
-						'border',
-						'fill'
-					]
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the chip.'
+				}, {
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the chip.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the chip div.'
+				}, {
+					name: 'text',
+					required: true,
+					types: ['string'],
+					description: 'Set the text inside of the chip.'
+				}, {
+					name: 'variant',
+					customTypes: [{
+						name: 'CSChipVariant',
+						types: [
+							'\'brand\'',
+							'\'success\'',
+							'\'neutral\'',
+							'\'error\'',
+							'\'warning\'',
+							'\'transparent\'',
+							'\'dark\''
+						]
+					}],
+					default: '\'brand\'',
+					description: 'Set the chip variant.'
+				}, {
+					name: 'variantStyle',
+					customTypes: [{
+						name: 'CSChipVariantStyle',
+						types: ['\'fill\'', '\'border\'']
+					}],
+					default: '\'fill\'',
+					description: 'Set the border variant for the chip.'
 				}
 			],
 			accessibility: [

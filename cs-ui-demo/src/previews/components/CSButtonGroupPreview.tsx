@@ -320,33 +320,33 @@ class CSButtonGroupPreview extends React.Component {
 
 			properties: [
 				{
-					propertyName: 'combined',
-					description: 'Logic for combined button styling',
-					options: [
-						'true',
-						'false'
-					]
-				},
-				{
-					propertyName: 'marginPosition',
-					description: 'Location of horizontal margin',
-					options: [
-						'left',
-						'right',
-						'both'
-					]
-				},
-				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'id',
-					description: 'Button group id value'
-				},
-				{
-					propertyName: 'ariaDescription',
-					description: 'Accessible semantic description of button group. This allows users to understand the relationship of the buttons and to use them more effectively'
+					name: 'combined',
+					types: ['boolean'],
+					default: 'true',
+					description: 'Set whether the button group styling should be combined.'
+				}, {
+					name: 'marginPosition',
+					description: 'Set horizontal margin location.',
+					customTypes: [{
+						name: 'CSButtonGroupMargin',
+						types: ['\'left\'', '\'right\'', '\'both\'']
+					}]
+				}, {
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the button group.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the button group.'
+				}, {
+					name: 'ariaDescription',
+					types: ['string'],
+					description: 'Set an accessible semantic description of the button group.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the button group div.'
 				}
 			],
 			accessibility: [

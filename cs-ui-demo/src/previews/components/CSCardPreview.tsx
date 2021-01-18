@@ -219,12 +219,17 @@ class CSCardPreview extends React.Component {
 			],
 			properties: [
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'id',
-					description: 'Card id value'
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the card.'
+				}, {
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the card.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the card div.'
 				}
 			],
 			accessibility: [
@@ -258,44 +263,44 @@ class CSCardPreview extends React.Component {
 			name: 'Card Header',
 			properties: [
 				{
-					propertyName: 'iconColor',
-					description: 'Card header icon color'
-				},
-				{
-					propertyName: 'iconFrame',
-					description: 'Card header icon frame logic',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'iconName',
-					description: 'Card header icon name'
-				},
-				{
-					propertyName: 'iconOrigin',
-					description: 'Card header icon origin',
-					options: [
-						'slds',
-						'cs'
-					]
-				},
-				{
-					propertyName: 'id',
-					description: 'Card header id value'
-				},
-				{
-					propertyName: 'showBorder',
-					description: 'Card header border display',
-					options: [
-						'true',
-						'false'
-					]
-				},
-				{
-					propertyName: 'title',
-					description: 'Card header title'
+					name: 'iconColor',
+					types: ['string'],
+					description: 'Set a custom colour for the icon inside of the card header.'
+				}, {
+					name: 'iconFrame',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Show a frame behind the card header icon.'
+				}, {
+					name: 'iconName',
+					types: ['string'],
+					description: 'Name of the icon from icons library.'
+				}, {
+					name: 'iconOrigin',
+					customTypes: [{
+						name: 'CSIconOrigin',
+						types: ['\'slds\'', '\'cs\'']
+					}],
+					default: '\'slds\'',
+					description: 'Select whether a SalesForce or a CloudSense icon should be used.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the card header.'
+				}, {
+					name: 'showBorder',
+					types: ['boolean'],
+					default: 'true',
+					description: 'Hide the border beneath the card header.'
+				}, {
+					name: 'title',
+					required: true,
+					type: ['string'],
+					description: 'Set a title for the card header.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the card header tag.'
 				}
 			]
 		};
@@ -307,16 +312,21 @@ class CSCardPreview extends React.Component {
 			name: 'Card Body',
 			properties: [
 				{
-					propertyName: 'id',
-					description: 'Card body id value'
-				},
-				{
-					propertyName: 'maxHeight',
-					description: 'Card body max height value'
-				},
-				{
-					propertyName: 'padding',
-					description: 'Card body padding'
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the card body.'
+				}, {
+					name: 'maxHeight',
+					types: ['string'],
+					description: 'Set the max-height attribute for the card body.'
+				}, {
+					name: 'padding',
+					types: ['string'],
+					description: 'Set custom padding for the card body.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the card body div.'
 				}
 			]
 		};
@@ -328,8 +338,13 @@ class CSCardPreview extends React.Component {
 			name: 'Card Footer',
 			properties: [
 				{
-					propertyName: 'id',
-					description: 'Card footer id value'
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the card footer.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the footer tag.'
 				}
 			]
 		};

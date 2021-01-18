@@ -321,127 +321,117 @@ class CSCheckboxPreview extends React.Component {
 
 			properties: [
 				{
-					propertyName: 'borderType',
-					description: 'Checkbox style',
-					options: [
-						'square',
-						'round'
-					]
-				},
-				{
-					propertyName: 'checked',
-					description: 'Logic for checked state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'disabled',
-					description: 'Logic for disabled state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'error',
-					description: 'Logic for error state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'errorMessage',
-					description: 'Error message text'
-				},
-				{
-					propertyName: 'helpText',
-					description: 'Checkbox help text for tooltip display'
-				},
-				{
-					propertyName: 'id',
-					description: 'Checkbox id value'
-				},
-				{
-					propertyName: 'label',
-					description: 'Checkbox label to display'
-				},
-				{
-					propertyName: 'labelHidden',
-					description: 'Logic for visibility of the label',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'labelTitle',
-					description: 'Logic for label title attribute',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'name',
-					description: 'Checkbox name value'
-				},
-				{
-					propertyName: 'onChange',
-					description: 'Logic for onChange event'
-				},
-				{
-					propertyName: 'onClick',
-					description: 'Logic for onClick event'
-				},
-				{
-					propertyName: 'onKeyDown',
-					description: 'Logic for onKeyDown event'
-
-				},
-				{
-					propertyName: 'readOnly',
-					description: 'Logic for readOnly state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'required',
-					description: 'Logic for required state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'title',
-					description: 'Title to display'
-				},
-				{
-					propertyName: 'tooltipPosition',
-					description: 'Checkbox tooltip position',
-					options: [
-						'top-right',
-						'top-left',
-						'bottom-right',
-						'bottom-left'
-					]
-				},
-				{
-					propertyName: 'variant',
-					description: 'Checkbox variant',
-					options: [
-						'neutral',
-						'brand'
-					]
+					name: 'borderType',
+					customTypes: [{
+						name: 'CSCheckboxBorderType',
+						types: ['\'square\'', '\'round\'']
+					}],
+					default: '\'square\'',
+					description: 'Set a checkbox style/'
+				}, {
+					name: 'checked',
+					types: ['boolean'],
+					description: 'Control the checked state of the checkbox.'
+				}, {
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the checkbox.'
+				}, {
+					name: 'disabled',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Disable the checkbox.'
+				}, {
+					name: 'error',
+					types: ['boolean'],
+					description: 'Toggle the error state.'
+				}, {
+					name: 'errorMessage',
+					customTypes: [{
+						name: 'CSFieldErrorMsgType',
+						types: ['string', 'Array<string>']
+					}],
+					description: 'Set the error message or messages for the checkbox.'
+				}, {
+					name: 'helpText',
+					types: ['string'],
+					description: 'Set the text to be displayed in the tooltip.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the checkbox.'
+				}, {
+					name: 'label',
+					required: true,
+					types: ['string'],
+					description: 'Set the checkbox label.'
+				}, {
+					name: 'labelHidden',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Hide the checkbox label.'
+				}, {
+					name: 'labelTitle',
+					types: ['boolean'],
+					description: 'Control whether to show the title attribute.'
+				}, {
+					name: 'name',
+					types: ['string'],
+					description: 'Set the checkbox name attribute.'
+				}, {
+					name: 'onChange',
+					types: ['(event) => void'],
+					description: 'Handler method for the change event.'
+				}, {
+					name: 'onClick',
+					types: ['(event) => void'],
+					description: 'Handler method for the click event.'
+				}, {
+					name: 'onKeyDown',
+					types: ['(event) => void'],
+					description: 'Handler method for the keydown event.'
+				}, {
+					name: 'readOnly',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Control whether to apply the readonly attribute.'
+				}, {
+					name: 'required',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Set the checkbox to required.'
+				}, {
+					name: 'title',
+					types: ['string'],
+					description: 'Set the checkbox title.'
+				}, {
+					name: 'tooltipPosition',
+					customTypes: [{
+						name: 'CSTooltipPosition',
+						types: [
+							'\'bottom-right\'',
+							'\'bottom-left\'',
+							'\'top-right\'',
+							'\'top-left\'',
+							'\'top-center\'',
+							'\'bottom-center\'',
+							'\'right-top\'',
+							'\'right-center\'',
+							'\'right-bottom\'',
+							'\'left-top\'',
+							'\'left-center\'',
+							'\'left-bottom\''
+						]
+					}],
+					description: 'Set the tooltip position for the checkbox.'
+				}, {
+					name: 'variant',
+					customTypes: [{
+						name: 'CSCheckboxVariant',
+						types: ['\'neutral\'', '\'brand\'']
+					}],
+					default: '\'neutral\'',
+					description: 'Set the checkbox variant.'
 				}
 			],
 			accessibility: [
