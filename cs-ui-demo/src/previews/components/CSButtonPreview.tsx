@@ -702,7 +702,7 @@ class CSButtonPreview extends React.Component {
 			],
 			accessibility: [
 				{
-					criteriaList: [
+					criterionList: [
 						'1.4.1',
 						'1.4.3',
 						'1.4.4',

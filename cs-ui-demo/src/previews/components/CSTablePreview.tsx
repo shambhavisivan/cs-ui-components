@@ -774,7 +774,7 @@ class CSTablePreview extends React.Component {
 			],
 			accessibility: [
 				{
-					criteriaList: [
+					criterionList: [
 						'1.4.4',
 						'2.1.1',
 						'2.1.2',

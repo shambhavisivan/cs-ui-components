@@ -290,7 +290,7 @@ class CSIconPreview extends React.Component {
 			],
 			accessibility: [
 				{
-					criteriaList: [
+					criterionList: [
 						'4.1.2'
 					],
 					requirements: [

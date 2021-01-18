@@ -69,7 +69,7 @@ class CSSkipLinkPreview extends React.Component {
 			],
 			accessibility: [
 				{
-					criteriaList: [
+					criterionList: [
 						'1.4.1',
 						'2.4.1',
 						'3.2.1',

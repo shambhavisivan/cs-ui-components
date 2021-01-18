@@ -337,7 +337,7 @@ class CSTogglePreview extends React.Component {
 			],
 			accessibility: [
 				{
-					criteriaList: [
+					criterionList: [
 						'1.3.1',
 						'1.4.1',
 						'2.1.1',

@@ -186,7 +186,7 @@ class CSChipPreview extends React.Component {
 			],
 			accessibility: [
 				{
-					criteriaList: [
+					criterionList: [
 						'1.4.4'
 					],
 					requirements: [

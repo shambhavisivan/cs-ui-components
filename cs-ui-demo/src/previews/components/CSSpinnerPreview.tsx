@@ -243,7 +243,7 @@ class CSSpinnerPreview extends React.Component {
 			],
 			accessibility: [
 				{
-					criteriaList: [
+					criterionList: [
 						'1.4.4',
 						'4.1.2'
 					],

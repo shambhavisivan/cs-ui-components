@@ -422,7 +422,7 @@ class CSSelectPreview extends React.Component {
 			],
 			accessibility: [
 				{
-					criteriaList: [
+					criterionList: [
 						'1.3.1',
 						'1.4.1',
 						'1.4.4',

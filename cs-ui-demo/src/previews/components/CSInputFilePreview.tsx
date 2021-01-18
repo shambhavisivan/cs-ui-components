@@ -351,7 +351,7 @@ class CSInputFilePreview extends React.Component {
 			],
 			accessibility: [
 				{
-					criteriaList: [
+					criterionList: [
 						'1.4.1',
 						'1.4.4',
 						'2.1.1',

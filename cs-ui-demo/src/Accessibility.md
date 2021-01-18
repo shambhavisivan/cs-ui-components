@@ -14,9 +14,9 @@
 * Salesforce and Cloudsense are aiming to meet conformance level of AA
 
 * There are:
-  * 30 Level A Success Criterias
-  * 20 Level AA Success Criterias
-  * 28 Level AAA Success Criterias
+  * 30 Level A Success Criteria
+  * 20 Level AA Success Criteria
+  * 28 Level AAA Success Criteria
 
 
 ## Official Documentation<a name="Offical Documentation">
@@ -30,8 +30,8 @@
 
 * WCAG 2.2 is scheduled to be published in 2021. There are 9 additional success criteria proposed and currently in working draft status.
 
-## Criterias<a name="Criterias"></a>
-* List of all criterias:
+## Criteria<a name="Criteria"></a>
+* List of all criteria:
 
 ### Perceivable
 > #### Text alternatives
