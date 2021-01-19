@@ -1,6 +1,7 @@
 .cs-datepicker {
 	display: flex;
 	flex-direction: column;
+	max-width: 100%;
 	position: relative;
 	width: var(--datepicker-width, 242px);
 
