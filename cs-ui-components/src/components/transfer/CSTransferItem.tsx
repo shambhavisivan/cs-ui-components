@@ -96,6 +96,7 @@ class CSTransferItem extends React.Component<CSTransferItemProps> {
 				className={transferLIClasses}
 				onClick={onSelect}
 				onKeyDown={this.handleKeyDown}
+				disabled={disabled}
 			>
 				{transferListTitle}
 			</button> :

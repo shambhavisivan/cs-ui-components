@@ -92,6 +92,10 @@ class CSTransferPreview extends React.Component {
 				},
 				{
 					propName: 'variant',
+					alert: {
+						variant: 'info',
+						text: 'For selecting multiple items in simple-list transfer variant hold CTRL key!'
+					},
 					variations: [
 						{
 							variationName: ['simple-list'],

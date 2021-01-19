@@ -24,17 +24,33 @@ export interface CSTransferListProps {
 
 export interface CSTransferListState {
 	term: string;
+	validItemsKeys: Array<string>;
 }
 
 class CSTransferList extends React.Component<CSTransferListProps, CSTransferListState> {
 
 	static contextType = CSTransferContext;
 
+	static getDerivedStateFromProps(nextProps: CSTransferListProps) {
+		const { listData } = nextProps;
+		const _validItemsKeys: Array<string> = [];
+
+		listData.forEach(item => {
+			if (!item.disabled) {
+				_validItemsKeys.push(item.key);
+			}
+		});
+		return {
+			validItemsKeys: _validItemsKeys
+		};
+	}
+
 	constructor(props: CSTransferListProps) {
 		super(props);
 
 		this.state = {
-			term: ''
+			term: '',
+			validItemsKeys: []
 		};
 	}
 
@@ -60,8 +76,17 @@ class CSTransferList extends React.Component<CSTransferListProps, CSTransferList
 	}
 
 	render() {
-		const { label, variant, selectAll, searchable, listData, selectList, listType, helpText } = this.props;
-		const { term } = this.state;
+		const {
+			helpText,
+			label,
+			listData,
+			listType,
+			searchable,
+			selectAll,
+			selectList,
+			variant
+		} = this.props;
+		const { term, validItemsKeys } = this.state;
 		const { selectItem, selectAllItems } = this.context;
 		return (
 			<div className="cs-transfer-list-wrapper">
@@ -79,7 +104,7 @@ class CSTransferList extends React.Component<CSTransferListProps, CSTransferList
 									labelHidden
 									variant="brand"
 									onChange={() => selectAllItems(listData, selectList, listType)}
-									checked={listData.length === selectList.length && !!selectList.length}
+									checked={validItemsKeys.length === selectList.length && !!selectList.length}
 									disabled={!listData.length}
 									onKeyDown={this.handleKeyDown}
 								/>

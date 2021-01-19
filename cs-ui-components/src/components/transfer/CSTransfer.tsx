@@ -155,7 +155,11 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 
 	selectAll = (dataList: Array<CSTransferItemsType>, selectList: Array<string>, listType: CSTransferListType) => {
 		const _dataKeys: Array<string> = [];
-		dataList.forEach(item => _dataKeys.push(item.key));
+		dataList.forEach(item => {
+			if (!item.disabled) {
+				_dataKeys.push(item.key);
+			}
+		});
 		const newState: any = {};
 		const stateArrayName = `${listType}Selected`;
 
@@ -174,12 +178,15 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 	}
 
 	handleSelection = (direction: CSTransferListType) => {
+		let listItems: any = [];
 		switch (direction) {
 			case 'target':
-				(this.targetListRef.current.querySelector(this.element) as HTMLElement).focus();
+				listItems = this.targetListRef.current.querySelectorAll(this.element);
+				(listItems[listItems.length - 1] as HTMLElement).focus();
 				break;
 			default:
-				(this.sourceListRef.current.querySelector(this.element) as HTMLElement).focus();
+				listItems = this.sourceListRef.current.querySelectorAll(this.element);
+				(listItems[listItems.length - 1] as HTMLElement).focus();
 				break;
 		}
 		this.handleOnChange();
