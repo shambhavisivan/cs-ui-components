@@ -219,73 +219,57 @@ class CSIconPreview extends React.Component {
 
 			properties: [
 				{
-					propertyName: 'className',
-					description: 'Icon class'
-				},
-				{
-					propertyName: 'color',
-					description: 'Color value of icon',
-					options: [
-						'e.g.',
-						'pink',
-						'#ff0000',
-						'rgba(100,100,255,1.00)'
-					]
-				},
-				{
-					propertyName: 'frame',
-					description: 'Logic for icon frame',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'id',
-					description: 'Icon id value'
-				},
-				{
-					propertyName: 'name',
-					description: 'Name prop of Icon',
-					options: ['See icons tab for a full list of icons']
-				},
-				{
-					propertyName: 'origin',
-					description: 'Origin prop of Icon',
-					options: [
-						'slds',
-						'cs'
-					]
-				},
-				{
-					propertyName: 'rotate',
-					description: 'Degree value for clockwise icon rotation',
-					options: [
-						'90',
-						'180',
-						'270'
-					]
-				},
-				{
-					propertyName: 'size',
-					description: 'Icon size',
-					options: [
-						'e.g.',
-						'2rem',
-						'100px'
-					]
-				},
-				{
-					propertyName: 'spin',
-					description: 'Adds spinning animation to icon',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'title',
-					description: 'Icon title'
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the icon.'
+				}, {
+					name: 'color',
+					types: ['string'],
+					description: 'Set a custom colour value for the icon. (eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
+				}, {
+					name: 'frame',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Show a frame behind the icon.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the icon.'
+				}, {
+					name: 'name',
+					required: true,
+					types: ['string'],
+					description: 'Select which icon to display (see the icons tab).'
+				}, {
+					name: 'origin',
+					customTypes: [{
+						name: 'CSIconOrigin',
+						types: ['\'slds\'', '\'cs\'']
+					}],
+					default: '\'slds\'',
+					description: 'Select whether a SalesForce or a CloudSense icon should be used.'
+				}, {
+					name: 'rotate',
+					types: ['string'],
+					default: '\'0\'',
+					description: 'Set by how many degrees the icon should be rotated clockwise. (eg. 90, 180, etc.)'
+				}, {
+					name: 'size',
+					types: ['string'],
+					description: 'Set the icon size. (eg. 12px, 1.5rem, etc.)'
+				}, {
+					name: 'spin',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Add a spinning animation to the icon.'
+				}, {
+					name: 'title',
+					types: ['string'],
+					description: 'Set the icon title.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the icon frame div if it exists.'
 				}
 			],
 			accessibility: [

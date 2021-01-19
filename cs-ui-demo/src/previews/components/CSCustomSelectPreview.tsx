@@ -217,114 +217,110 @@ class CSCustomSelectPreview extends React.Component {
 
 			properties: [
 				{
-					propertyName: 'borderType',
-					description: 'Select border type',
-					options: [
-						'round',
-						'square'
-					]
-				},
-				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'disabled',
-					description: 'Logic for disabled state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'error',
-					description: 'Error state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'errorMessage',
-					description: 'Error text message'
-				},
-				{
-					propertyName: 'helpText',
-					description: 'Select help text for tooltip display'
-				},
-				{
-					propertyName: 'hidden',
-					description: 'Hidden state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'id',
-					description: 'Select id value'
-				},
-				{
-					propertyName: 'label',
-					description: 'Select label text to display'
-				},
-				{
-					propertyName: 'labelHidden',
-					description: 'Logic for visibility of the label',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'labelTitle',
-					description: 'Logic for label title attribute',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'multiselect',
-					description: 'Allows multiple option selection',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'onChange',
-					description: 'Logic for input field onChange event'
-				},
-				{
-					propertyName: 'onSelectChange',
-					description: 'Logic for event triggered when one of the multiple items is selected or unselected'
-				},
-				{
-					propertyName: 'optionsList',
-					description: 'Options in the select dropdown'
-				},
-				{
-					propertyName: 'required',
-					description: 'Required state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'title',
-					description: 'Title to display'
-				},
-				{
-					propertyName: 'tooltipPosition',
-					description: 'Select tooltip position',
-					options: [
-						'top-right',
-						'top-left',
-						'bottom-right',
-						'bottom-left'
-					]
+					name: 'borderType',
+					customTypes: [{
+						name: 'CSCustomSelectBorderType',
+						types: ['\'round\'', '\'square\'']
+					}],
+					default: '\'round\'',
+					description: 'Set the border type.'
+				}, {
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the custom select.'
+				}, {
+					name: 'disabled',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Disable the custom select.'
+				}, {
+					name: 'error',
+					types: ['boolean'],
+					description: 'Toggle the error state.'
+				}, {
+					name: 'errorMessage',
+					customTypes: [{
+						name: 'CSFieldErrorMsgType',
+						types: ['string', 'Array<string>']
+					}],
+					description: 'Set the error message or messages for the custom select.'
+				}, {
+					name: 'helpText',
+					types: ['string'],
+					description: 'Set the help text to be displayed for the custom select.'
+				}, {
+					name: 'hidden',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Control the hidden attribute.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the custom select.'
+				}, {
+					name: 'label',
+					required: true,
+					types: ['string'],
+					description: 'Set the custom select label.'
+				}, {
+					name: 'labelHidden',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Hide the custom select label.'
+				}, {
+					name: 'labelTitle',
+					types: ['boolean'],
+					description: 'Control whether to show the title attribute.'
+				}, {
+					name: 'multiselect',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Allow selection of multiple options.'
+				}, {
+					name: 'onChange',
+					types: ['(event) => void'],
+					description: 'Handler method for the change event.'
+				}, {
+					name: 'onSelectChange',
+					types: ['(event) => void'],
+					description: 'Handler method for when the selection is changed (works with multiselect only).'
+				}, {
+					name: 'optionsList',
+					types: ['Array<any>'],
+					description: 'Define the options in the custom select dropdown.'
+				}, {
+					name: 'required',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Set the custom select to required.'
+				}, {
+					name: 'title',
+					types: ['string'],
+					description: 'Set the custom select title.'
+				}, {
+					name: 'tooltipPosition',
+					customTypes: [{
+						name: 'CSTooltipPosition',
+						types: [
+							'\'bottom-right\'',
+							'\'bottom-left\'',
+							'\'top-right\'',
+							'\'top-left\'',
+							'\'top-center\'',
+							'\'bottom-center\'',
+							'\'right-top\'',
+							'\'right-center\'',
+							'\'right-bottom\'',
+							'\'left-top\'',
+							'\'left-center\'',
+							'\'left-bottom\''
+						]
+					}],
+					description: 'Set the tooltip position for the custom select.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the custom select input.'
 				}
 			],
 			accessibility: [

@@ -549,7 +549,7 @@ class CSButtonPreview extends React.Component {
 				}, {
 					name: 'iconName',
 					types: ['string'],
-					description: 'Name of the icon from icons library.'
+					description: 'Name of the icon from the icons library.'
 				}, {
 					name: 'iconOrigin',
 					customTypes: [{

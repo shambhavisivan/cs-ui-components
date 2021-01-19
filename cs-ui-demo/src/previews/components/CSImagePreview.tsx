@@ -224,61 +224,53 @@ class CSImagePreview extends React.Component {
 			],
 			properties: [
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'color',
-					description: 'Image color',
-					options: [
-						'white',
-						'black',
-						'purple'
-					]
-				},
-				{
-					propertyName: 'height',
-					description: 'Image height',
-					options: [
-						'e.g.',
-						'20rem',
-						'15px',
-						'50%'
-					]
-				},
-				{
-					propertyName: 'id',
-					description: 'Image id vlaue'
-				},
-				{
-					propertyName: 'type',
-					description: 'Type of the image',
-					options: [
-						'logo',
-						'logomark'
-					]
-				},
-				{
-					propertyName: 'variant',
-					description: 'Image variant',
-					options: [
-						'initial',
-						'reversed'
-					]
-				},
-				{
-					propertyName: 'width',
-					description: 'Image width',
-					options: [
-						'e.g.',
-						'20rem',
-						'15px',
-						'50%'
-					]
-				},
-				{
-					propertyName: 'longDescription',
-					description: 'Expanded description of the image'
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the image.'
+				}, {
+					name: 'color',
+					customTypes: [{
+						name: 'CSImageColor',
+						types: ['\'white\'', '\'black\'', '\'purple\'']
+					}],
+					default: '\'purple\'',
+					description: 'Set the image color.'
+				}, {
+					name: 'height',
+					types: ['string'],
+					description: 'Set the image height. (eg. 200px, 20rem, 50%, etc.)'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the image.'
+				}, {
+					name: 'type',
+					required: true,
+					customTypes: [{
+						name: 'CSImageType',
+						types: ['\'logo\'', '\'logomark\'']
+					}],
+					description: 'Set the image type.'
+				}, {
+					name: 'variant',
+					customTypes: [{
+						name: 'CSImageVariant',
+						types: ['\'initial\'', '\'reversed\'']
+					}],
+					default: '\'initial\'',
+					description: 'Set the image variant.'
+				}, {
+					name: 'width',
+					types: ['string'],
+					description: 'Set the image width. (eg. 200px, 20rem, 50%, etc.)'
+				}, {
+					name: 'longDescription',
+					types: ['string'],
+					description: 'Set the expanded description of the image.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the image tag.'
 				}
 			],
 			accessibility: [

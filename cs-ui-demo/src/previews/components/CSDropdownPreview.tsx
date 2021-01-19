@@ -595,119 +595,123 @@ class CSDropdownPreview extends React.Component {
 			],
 			properties: [
 				{
-					propertyName: 'align',
-					description: 'Align the dropdown either left or right',
-					options: [
-						'left',
-						'right'
-					]
-				},
-				{
-					propertyName: 'btnStyle',
-					description: 'Button Group style',
-					options: [
-						'initial',
-						'brand',
-						'outline'
-					]
-				},
-				{
-					propertyName: 'btnType',
-					description: 'Button Group type',
-					options: [
-						'default',
-						'error',
-						'success',
-						'transparent'
-					]
-				},
-				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'disabled',
-					description: 'Logic for disabled state',
-					options: ['<condition>']
-				},
-				{
-					propertyName: 'hover',
-					description: 'Logic for displaying dropdown buttons on hover',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'iconName',
-					description: 'Name of icon from icons library'
-				},
-				{
-					propertyName: 'iconOrigin',
-					description: 'SLDS or CloudSense icons',
-					options: [
-						'slds',
-						'cs'
-					]
-				},
-				{
-					propertyName: 'iconPosition',
-					description: 'Position of the icon if both icon and label are set',
-					options: [
-						'left',
-						'right'
-					]
-				},
-				{
-					propertyName: 'iconRotate',
-					description: 'Degree value for clockwise icon',
-					options: [
-						'90',
-						'180',
-						'270'
-					]
-				},
-				{
-					propertyName: 'id',
-					description: 'Button dropdown id value'
-				},
-				{
-					propertyName: 'label',
-					description: 'Dropdown button label'
-				},
-				{
-					propertyName: 'maxHeight',
-					description: 'Dropdown max height'
-				},
-				{
-					propertyName: 'maxWidth',
-					description: 'Dropdown max width'
-				},
-				{
-					propertyName: 'onClick',
-					description: 'Logic for onClick event'
-				},
-				{
-					propertyName: 'padding',
-					description: 'Dropdown padding'
-				},
-				{
-					propertyName: 'position',
-					description: 'Vertical position of dropdown',
-					options: [
-						'bottom',
-						'top'
-					]
-				},
-				{
-					propertyName: 'size',
-					description: 'Button size',
-					options: [
-						'normal',
-						'small',
-						'xsmall',
-						'large'
-					]
+					name: 'align',
+					customTypes: [{
+						name: 'CSDropdownAlign',
+						types: ['\'left\'', '\'right\'']
+					}],
+					default: '\'left\'',
+					description: 'Align the dropdown.'
+				}, {
+					name: 'btnStyle',
+					customTypes: [{
+						name: 'CSDropdownStyle',
+						types: ['\'initial\'', '\'brand\'', '\'outline\'']
+					}],
+					default: '\'initial\'',
+					description: 'Set the button group style.'
+				}, {
+					name: 'btnType',
+					customTypes: [{
+						name: 'CSDropdownType',
+						types: [
+							'\'default\'',
+							'\'error\'',
+							'\'success\'',
+							'\'transparent\''
+						]
+					}],
+					default: '\'default\'',
+					description: 'Set the button group type.'
+				}, {
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the dropdown.'
+				}, {
+					name: 'disabled',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Disable the dropdown.'
+				}, {
+					name: 'hover',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Set whether the dropdown should open on hover.'
+				}, {
+					name: 'iconName',
+					types: ['string'],
+					default: '\'down\'',
+					description: 'Name of the icon from the icons library.'
+				}, {
+					name: 'iconOrigin',
+					customTypes: [{
+						name: 'CSIconOrigin',
+						types: ['\'slds\'', '\'cs\'']
+					}],
+					default: '\'slds\'',
+					description: 'Select whether a SalesForce or a CloudSense icon should be used.'
+				}, {
+					name: 'iconPosition',
+					customTypes: [{
+						name: 'CSDropdownIconPosition',
+						types: ['\'left\'', '\'right\'']
+					}],
+					default: '\'left\'',
+					description: 'Set the position of the icon if both icon and label are set.'
+				}, {
+					name: 'iconRotate',
+					types: ['string'],
+					default: '\'0\'',
+					description: 'Set by how many degrees the icon should be rotated clockwise. (eg. 90, 180, etc.)'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the dropdown.'
+				}, {
+					name: 'label',
+					types: ['string'],
+					description: 'Set which text, if any, should appear as the dropdown label.'
+				}, {
+					name: 'maxHeight',
+					types: ['string'],
+					description: 'Set the max-height of the dropdown content. (eg. 200px, 20rem, etc.)'
+				}, {
+					name: 'maxWidth',
+					types: ['string'],
+					description: 'Set the max-width of the dropdown content. (eg. 200px, 20rem, etc.)'
+				}, {
+					name: 'onChange',
+					types: ['(event) => void'],
+					description: 'Handler method for the click event.'
+				}, {
+					name: 'padding',
+					types: ['string'],
+					description: 'Set custom padding for the dropdown content.'
+				}, {
+					name: 'position',
+					customTypes: [{
+						name: 'CSDropdownPosition',
+						types: ['\'bottom\'', '\'top\'']
+					}],
+					default: '\'bottom\'',
+					description: 'Determine the vertical position of the dropdown content.'
+				}, {
+					name: 'size',
+					customTypes: [{
+						name: 'CSDropdownSize',
+						types: [
+							'\'xsmall\'',
+							'\'small\'',
+							'\'normal\'',
+							'\'large\''
+						]
+					}],
+					default: '\'normal\'',
+					description: 'Set the size of the dropdown button.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the dropdown wrapper div.'
 				}
 			],
 			accessibility: [
