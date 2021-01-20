@@ -7,6 +7,7 @@ import CSLabel from './CSLabel';
 import classNames from 'classnames';
 import { CSTooltipPosition } from './CSTooltip';
 import { v4 as uuidv4 } from 'uuid';
+import KeyCode from '../util/KeyCode';
 
 export type CSDatepickerDropdownMode = 'select' | 'scroll';
 
@@ -61,9 +62,14 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 	};
 
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
+	private datepicker: React.RefObject<DatePicker>;
 
 	constructor(props: CSDatepickerProps) {
 		super(props);
+
+		this.datepicker = React.createRef();
+		this.closeOnFocusOutside = this.closeOnFocusOutside.bind(this);
+
 		const value = typeof props.value === undefined ? '' : props.value;
 		this.state = {
 			startDate: value
@@ -78,6 +84,14 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 			this.props.onChange(date);
 		}
 	}
+
+	closeOnFocusOutside(event: any) {
+		// If shift key and tab pressed together close datepicker
+		if (event.shiftKey && event.key === KeyCode.Tab) {
+			this.datepicker.current.setOpen(false);
+		}
+	}
+
 	componentDidUpdate(prevProps: CSDatepickerProps) {
 		if (prevProps.value !== this.props.value) {
 			this.setState({ startDate: this.props.value });
@@ -181,12 +195,14 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 							onCalendarClose={this.props.onCalendarClose}
 							onChange={this.handleChange}
 							onChangeRaw={onChangeRaw}
+							onKeyDown={this.closeOnFocusOutside}
 							openToDate={openToDate}
 							showYearDropdown={showYearDropdown}
 							showMonthDropdown={showMonthDropdown}
 							scrollableYearDropdown={scrollableYearDropdown}
 							dropdownMode={dropdownMode}
 							readOnly={readOnly}
+							ref={this.datepicker}
 							tabIndex={readOnly ? -1 : null}
 							yearDropdownItemNumber={yearDropdownItemNumber}
 							autoComplete="off"
