@@ -327,7 +327,7 @@ class CSCheckboxPreview extends React.Component {
 						types: ['\'square\'', '\'round\'']
 					}],
 					default: '\'square\'',
-					description: 'Set a checkbox style/'
+					description: 'Set a checkbox style.'
 				}, {
 					name: 'checked',
 					types: ['boolean'],
@@ -373,14 +373,14 @@ class CSCheckboxPreview extends React.Component {
 				}, {
 					name: 'labelTitle',
 					types: ['boolean'],
-					description: 'Control whether to show the title attribute.'
+					description: 'Control whether to set the title attribute.'
 				}, {
 					name: 'name',
 					types: ['string'],
 					description: 'Set the checkbox name attribute.'
 				}, {
 					name: 'onChange',
-					types: ['(event) => void'],
+					types: ['(event) => any'],
 					description: 'Handler method for the change event.'
 				}, {
 					name: 'onClick',
@@ -388,7 +388,7 @@ class CSCheckboxPreview extends React.Component {
 					description: 'Handler method for the click event.'
 				}, {
 					name: 'onKeyDown',
-					types: ['(event) => void'],
+					types: ['(event) => any'],
 					description: 'Handler method for the keydown event.'
 				}, {
 					name: 'readOnly',

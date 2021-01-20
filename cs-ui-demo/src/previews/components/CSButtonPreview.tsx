@@ -598,15 +598,15 @@ class CSButtonPreview extends React.Component {
 					description: 'Define a React Router NavLink or Link component to be rendered instead of the button.'
 				}, {
 					name: 'onClick',
-					types: ['(event) => void'],
+					types: ['(value) => any'],
 					description: 'Handler method for the click event.'
 				}, {
 					name: 'onKeyDown',
-					types: ['(event) => void'],
+					types: ['(event) => any'],
 					description: 'Handler method for the keydown event.'
 				}, {
 					name: 'onMouseDown',
-					types: ['(event) => void'],
+					types: ['(event) => any'],
 					description: 'Handler method for the mousedown event.'
 				}, {
 					name: 'openInNewTab',

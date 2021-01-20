@@ -270,7 +270,7 @@ class CSCustomSelectPreview extends React.Component {
 				}, {
 					name: 'labelTitle',
 					types: ['boolean'],
-					description: 'Control whether to show the title attribute.'
+					description: 'Control whether to set the title attribute.'
 				}, {
 					name: 'multiselect',
 					types: ['boolean'],
@@ -278,7 +278,7 @@ class CSCustomSelectPreview extends React.Component {
 					description: 'Allow selection of multiple options.'
 				}, {
 					name: 'onChange',
-					types: ['(event) => void'],
+					types: ['(event) => any'],
 					description: 'Handler method for the change event.'
 				}, {
 					name: 'onSelectChange',
@@ -292,7 +292,7 @@ class CSCustomSelectPreview extends React.Component {
 					name: 'required',
 					types: ['boolean'],
 					default: 'false',
-					description: 'Set the custom select to required.'
+					description: 'Make the custom select required.'
 				}, {
 					name: 'title',
 					types: ['string'],

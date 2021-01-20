@@ -42,12 +42,17 @@ class CSListPreview extends React.Component {
 
 			properties: [
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'id',
-					description: 'List id value'
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the list.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the list.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Not yet operational.'
 				}
 			],
 			accessibility: [
@@ -98,31 +103,33 @@ class CSListPreview extends React.Component {
 			usage: 'List item inside CSList',
 			properties: [
 				{
-					propertyName: 'active',
-					description: 'Active state'
-				},
-				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'id',
-					description: 'List item id value'
-				},
-				{
-					propertyName: 'onClick',
-					description: 'Logic for onClick event'
-				},
-				{
-					propertyName: 'text',
-					description: 'Text content for main toast message'
-				},
-				{
-					propertyName: 'toggleActive',
-					description: 'Toggle active state',
-					helperPropInComponents: [
-						'Sidebar'
-					]
+					name: 'active',
+					types: ['string'],
+					description: 'Control the active state.'
+				}, {
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the list item.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the list item.'
+				}, {
+					name: 'onClick',
+					types: ['(value) => any'],
+					description: 'Handler method for when the click event.'
+				}, {
+					name: 'text',
+					types: ['string'],
+					description: 'Set textual content of the list item.'
+				}, {
+					name: 'toggleActive',
+					types: ['(event) => void'],
+					description: 'Handler method for when managing the active state.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the list item tag.'
 				}
 			]
 		};

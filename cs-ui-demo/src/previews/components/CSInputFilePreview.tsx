@@ -264,89 +264,68 @@ class CSInputFilePreview extends React.Component {
 			],
 			properties: [
 				{
-					propertyName: 'accept',
-					description: 'Type of file to accept. Multiple values can be accepted separated by a comma',
-					options: [
-						'file extension e.g. ".jpg" ".mp3" ".doc"',
-						'audio/*',
-						'video/*',
-						'image/*'
-					]
-				},
-				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'disabled',
-					description: 'Logic for disabled state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'dropAreaBackground',
-					description: 'Change drop area background to grey',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'dropAreaHeight',
-					description: 'Set height of drop area',
-					options: [
-						'e.g.',
-						'100px',
-						'20rem'
-					]
-				},
-				{
-					propertyName: 'dropAreaWidth',
-					description: 'Set width of drop area',
-					options: [
-						'e.g.',
-						'400px',
-						'20rem',
-						'100%'
-					]
-				},
-				{
-					propertyName: 'error',
-					description: 'Error state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'errorMessage',
-					description: 'Error text message'
-				},
-				{
-					propertyName: 'fileSize',
-					description: 'Logic for file size visibility',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'id',
-					description: 'File input id value'
-				},
-				{
-					propertyName: 'label',
-					description: 'Manually change the label name of the file text'
-				},
-				{
-					propertyName: 'onChange',
-					description: 'Logic for onChange event'
-				},
-				{
-					propertyName: 'onDrop',
-					description: 'Logic for onDrop event'
+					name: 'accept',
+					types: ['string', 'Array<string>'],
+					description: 'Set which file types should be accepted. (eg. .jpg, .mp3, audio/*, image/*, etc.)'
+				}, {
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the file input wrapper.'
+				}, {
+					name: 'disabled',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Disable the file input.'
+				}, {
+					name: 'dropAreaBackground',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Set whether the background area should be gray.'
+				}, {
+					name: 'dropAreaHeight',
+					types: ['string'],
+					description: 'Set the height of the drop area. (eg. 200px, 20rem, etc.)'
+				}, {
+					name: 'dropAreaWidth',
+					types: ['string'],
+					description: 'Set the height of the drop area. (eg. 200px, 20rem, 100%, etc.)'
+				}, {
+					name: 'error',
+					types: ['boolean'],
+					description: 'Toggle the error state.'
+				}, {
+					name: 'errorMessage',
+					customTypes: [{
+						name: 'CSFieldErrorMsgType',
+						types: ['string', 'Array<string>']
+					}],
+					description: 'Set the error message or messages for the file input.'
+				}, {
+					name: 'fileSize',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Display the file size.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the file input.'
+				}, {
+					name: 'label',
+					required: true,
+					types: ['string'],
+					description: 'Set the file input label.'
+				}, {
+					name: 'onChange',
+					types: ['(value) => any'],
+					description: 'Handler method for the change event.'
+				}, {
+					name: 'onDrop',
+					types: ['(value) => any'],
+					description: 'Handler method for the drop event.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the file input.'
 				}
 			],
 			accessibility: [

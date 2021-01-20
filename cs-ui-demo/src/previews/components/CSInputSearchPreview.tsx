@@ -306,148 +306,134 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 			],
 			properties: [
 				{
-					propertyName: 'autoFocus',
-					description: 'Auto focus input',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'borderType',
-					description: 'Input border type',
-					options: [
-						'round',
-						'square'
-					]
-				},
-				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'disabled',
-					description: 'Logic for disabled state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'error',
-					description: 'Error state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'errorMessage',
-					description: 'Error message text'
-				},
-				{
-					propertyName: 'helpText',
-					description: 'Input help text for tooltip display'
-				},
-				{
-					propertyName: 'hidden',
-					description: 'Hidden state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'iconPosition',
-					description: 'Input search icon position',
-					options: [
-						'left',
-						'right'
-					]
-				},
-				{
-					propertyName: 'id',
-					description: 'Input search id value'
-				},
-				{
-					propertyName: 'label',
-					description: 'Input label text to display'
-				},
-				{
-					propertyName: 'labelHidden',
-					description: 'Logic for visibility of the label',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'labelTitle',
-					description: 'Logic for label title attribute',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'onBlur',
-					description: 'Logic for onBlur event'
-				},
-				{
-					propertyName: 'onChange',
-					description: 'Logic for onChange event'
-				},
-				{
-					propertyName: 'onFocus',
-					description: 'Logic for onFocus event'
-				},
-				{
-					propertyName: 'onKeyDown',
-					description: 'Logic for onKeyDown event'
-				},
-				{
-					propertyName: 'onClearSearch',
-					description: 'Logic for onClearSearch event'
-				},
-				{
-					propertyName: 'placeholder',
-					description: 'Input search placeholder to display'
-				},
-				{
-					propertyName: 'required',
-					description: 'Required state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'title',
-					description: 'Title to display'
-				},
-				{
-					propertyName: 'tooltipPosition',
-					description: 'Input tooltip position',
-					options: [
-						'top-right',
-						'top-left',
-						'bottom-right',
-						'bottom-left'
-					]
-				},
-				{
-					propertyName: 'value',
-					description: 'Input search value to display'
-				},
-				{
-					propertyName: 'width',
-					description: 'Width of the input search',
-					options: [
-						'e.g.',
-						'50%',
-						'30rem',
-						'25px'
-					]
+					name: 'autoFocus',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Set whether the search input should be autofocused.'
+				}, {
+					name: 'borderType',
+					customTypes: [{
+						name: 'CSInputSearchBorderType',
+						types: ['\'round\'', '\'square\'']
+					}],
+					default: '\'round\'',
+					description: 'Set a border style for the search input.'
+				}, {
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the search input.'
+				}, {
+					name: 'disabled',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Disable the search input.'
+				}, {
+					name: 'error',
+					types: ['boolean'],
+					description: 'Toggle the error state.'
+				}, {
+					name: 'errorMessage',
+					customTypes: [{
+						name: 'CSFieldErrorMsgType',
+						types: ['string', 'Array<string>']
+					}],
+					description: 'Set the error message or messages for the number input.'
+				}, {
+					name: 'helpText',
+					types: ['string'],
+					description: 'Set the text to be displayed in the tooltip.'
+				}, {
+					name: 'hidden',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Control the hidden attribute.'
+				}, {
+					name: 'iconPosition',
+					types: ['string'],
+					description: 'Set where the icon should be positioned.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the search input.'
+				}, {
+					name: 'label',
+					required: true,
+					types: ['string'],
+					description: 'Set the search input label.'
+				}, {
+					name: 'labelHidden',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Hide the search input label.'
+				}, {
+					name: 'labelTitle',
+					types: ['boolean'],
+					description: 'Control whether to set the title attribute.'
+				}, {
+					name: 'onBlur',
+					types: ['(event) => void'],
+					description: 'Handler method for the blur event.'
+				}, {
+					name: 'onChange',
+					types: ['(event) => void'],
+					description: 'Handler method for the change event.'
+				}, {
+					name: 'onFocus',
+					types: ['(event) => any'],
+					description: 'Handler method for the focus event.'
+				}, {
+					name: 'onKeyDown',
+					types: ['(event) => void'],
+					description: 'Handler method for the keydown event.'
+				}, {
+					name: 'onClearSearch',
+					types: ['() => void'],
+					description: 'Handler method for when the input is cleared.'
+				}, {
+					name: 'placeholder',
+					types: ['string'],
+					description: 'Set a search input placeholder.'
+				}, {
+					name: 'required',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Make the search input required.'
+				}, {
+					name: 'title',
+					types: ['string'],
+					description: 'Set the search input title.'
+				}, {
+					name: 'tooltipPosition',
+					customTypes: [{
+						name: 'CSTooltipPosition',
+						types: [
+							'\'bottom-right\'',
+							'\'bottom-left\'',
+							'\'top-right\'',
+							'\'top-left\'',
+							'\'top-center\'',
+							'\'bottom-center\'',
+							'\'right-top\'',
+							'\'right-center\'',
+							'\'right-bottom\'',
+							'\'left-top\'',
+							'\'left-center\'',
+							'\'left-bottom\''
+						]
+					}],
+					description: 'Set the tooltip position for the search input.'
+				}, {
+					name: 'value',
+					types: ['string'],
+					description: 'Set the search input value.'
+				}, {
+					name: 'width',
+					types: ['string'],
+					description: 'Set the search input field width. (eg. 100%, 20rem, 400px, etc.)'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the search input.'
 				}
 			],
 			accessibility: [

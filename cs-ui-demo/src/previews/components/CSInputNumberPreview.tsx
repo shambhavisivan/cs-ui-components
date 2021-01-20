@@ -377,166 +377,156 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 			],
 			properties: [
 				{
-					propertyName: 'borderType',
-					description: 'Input border type',
-					options: [
-						'round',
-						'square'
-					]
-				},
-				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'disabled',
-					description: 'Logic for disabled state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'error',
-					description: 'Error state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'errorMessage',
-					description: 'Error message text'
-				},
-				{
-					propertyName: 'hidden',
-					description: 'Hidden state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'helpText',
-					description: 'Input help text for tooltip display'
-				},
-				{
-					propertyName: 'hideSpinner',
-					description: 'Logic for spinner visibility',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'id',
-					description: 'Input number id value'
-				},
-				{
-					propertyName: 'label',
-					description: 'Input label text to display'
-				},
-				{
-					propertyName: 'labelHidden',
-					description: 'Logic for visibility of the label',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'labelTitle',
-					description: 'Logic for label title attribute',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'max',
-					description: 'Input number max value'
-				},
-				{
-					propertyName: 'maxLength',
-					description: 'Input max length value (can be used only with type="text")'
-				},
-				{
-					propertyName: 'step',
-					description: 'A stepping interval to use when using up and down arrows to adjust the value'
-				},
-				{
-					propertyName: 'min',
-					description: 'Input number min value'
-				},
-				{
-					propertyName: 'name',
-					description: 'Input number name value'
-				},
-				{
-					propertyName: 'onBlur',
-					description: 'Logic for onBlur event'
-				},
-				{
-					propertyName: 'onChange',
-					description: 'Logic for onChange event'
-				},
-				{
-					propertyName: 'onFocus',
-					description: 'Logic for onFocus event'
-				},
-				{
-					propertyName: 'onKeyDown',
-					description: 'Logic for onKeyDown event'
-				},
-				{
-					propertyName: 'onPaste',
-					description: 'Logic for onPaste event'
-				},
-				{
-					propertyName: 'placeholder',
-					description: 'Input number placeholder to display'
-				},
-				{
-					propertyName: 'readOnly',
-					description: 'Read only description',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'required',
-					description: 'Required state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'title',
-					description: 'Title to display'
-				},
-				{
-					propertyName: 'tooltipPosition',
-					description: 'Input tooltip position',
-					options: [
-						'top-right',
-						'top-left',
-						'bottom-right',
-						'bottom-left'
-					]
-				},
-				{
-					propertyName: 'type',
-					description: 'Input field type',
-					options: [
-						'number',
-						'text'
-					]
-				},
-				{
-					propertyName: 'value',
-					description: 'Default value to display'
+					name: 'borderType',
+					customTypes: [{
+						name: 'CSInputNumberBorderType',
+						types: ['\'round\'', '\'square\'']
+					}],
+					default: '\'round\'',
+					description: 'Set a border style for the number input.'
+				}, {
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the number input.'
+				}, {
+					name: 'disabled',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Disable the number input.'
+				}, {
+					name: 'error',
+					types: ['boolean'],
+					description: 'Toggle the error state.'
+				}, {
+					name: 'errorMessage',
+					customTypes: [{
+						name: 'CSFieldErrorMsgType',
+						types: ['string', 'Array<string>']
+					}],
+					description: 'Set the error message or messages for the number input.'
+				}, {
+					name: 'hidden',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Control the hidden attribute.'
+				}, {
+					name: 'helpText',
+					types: ['string'],
+					description: 'Set the text to be displayed in the tooltip.'
+				}, {
+					name: 'hideSpinner',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Determine whether the spinner should appear.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the number input.'
+				}, {
+					name: 'label',
+					required: true,
+					types: ['string'],
+					description: 'Set the file input label.'
+				}, {
+					name: 'labelHidden',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Hide the file input label.'
+				}, {
+					name: 'labelTitle',
+					types: ['boolean'],
+					description: 'Control whether to set the title attribute.'
+				}, {
+					name: 'max',
+					types: ['any'],
+					description: 'Set a max value for the number input.'
+				}, {
+					name: 'maxLength',
+					types: ['number'],
+					description: 'Set the maximum length of the value (can be used only with type="text").'
+				}, {
+					name: 'step',
+					types: ['string'],
+					description: 'Set which interval to use when using up and down arrows to adjust the value.'
+				}, {
+					name: 'min',
+					types: ['any'],
+					description: 'Set a min value for the number input.'
+				}, {
+					name: 'name',
+					types: ['string'],
+					description: 'Set the number input name attribute.'
+				}, {
+					name: 'onBlur',
+					types: ['(event) => void'],
+					description: 'Handler method for the blur event.'
+				}, {
+					name: 'onChange',
+					types: ['(value) => any'],
+					description: 'Handler method for the change event.'
+				}, {
+					name: 'onFocus',
+					types: ['(event) => any'],
+					description: 'Handler method for the focus event.'
+				}, {
+					name: 'onKeyDown',
+					types: ['(event) => void'],
+					description: 'Handler method for the keydown event.'
+				}, {
+					name: 'onPaste',
+					types: ['(event) => void'],
+					description: 'Handler method for the paste event.'
+				}, {
+					name: 'placeholder',
+					types: ['string'],
+					description: 'Set a number input placeholder.'
+				}, {
+					name: 'readOnly',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Control whether to apply the readonly attribute.'
+				}, {
+					name: 'required',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Make the number input required.'
+				}, {
+					name: 'title',
+					types: ['string'],
+					description: 'Set the number input title.'
+				}, {
+					name: 'tooltipPosition',
+					customTypes: [{
+						name: 'CSTooltipPosition',
+						types: [
+							'\'bottom-right\'',
+							'\'bottom-left\'',
+							'\'top-right\'',
+							'\'top-left\'',
+							'\'top-center\'',
+							'\'bottom-center\'',
+							'\'right-top\'',
+							'\'right-center\'',
+							'\'right-bottom\'',
+							'\'left-top\'',
+							'\'left-center\'',
+							'\'left-bottom\''
+						]
+					}],
+					description: 'Set the tooltip position for the number input.'
+				}, {
+					name: 'type',
+					types: ['string'],
+					default: '\'number\'',
+					description: 'Set the number input field type.'
+				}, {
+					name: 'value',
+					types: ['any'],
+					description: 'Set the number input default value.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the number input.'
 				}
 			],
 			accessibility: [

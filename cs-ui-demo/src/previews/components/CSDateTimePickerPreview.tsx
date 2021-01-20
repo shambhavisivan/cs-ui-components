@@ -534,7 +534,7 @@ class CSDateTimePickerPreview extends React.Component {
 					description: 'Set the input name.'
 				}, {
 					name: 'onChange',
-					types: ['(event) => void'],
+					types: ['(event) => any'],
 					description: 'Handler method for the change event.'
 				}, {
 					name: 'placeholder',
@@ -549,7 +549,7 @@ class CSDateTimePickerPreview extends React.Component {
 					name: 'required',
 					types: ['boolean'],
 					default: 'false',
-					description: 'Make the datetimepicker to required.'
+					description: 'Make the datetimepicker required.'
 				}, {
 					name: 'scrollableYearDropdown',
 					types: ['boolean'],

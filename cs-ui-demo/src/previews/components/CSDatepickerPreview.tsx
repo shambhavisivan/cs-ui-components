@@ -503,15 +503,15 @@ class CSDatepickerPreview extends React.Component {
 					description: 'Set the input name.'
 				}, {
 					name: 'onCalendarClose',
-					types: ['(event) => void'],
+					types: ['() => void'],
 					description: 'Handler method for closing the calendar.'
 				}, {
 					name: 'onChange',
-					types: ['(event) => void'],
+					types: ['(event) => any'],
 					description: 'Handler method for the change event.'
 				}, {
 					name: 'onChangeRaw',
-					types: ['(event) => void'],
+					types: ['(event) => any'],
 					description: 'Handler method for the change event from raw data.'
 				}, {
 					name: 'openToDate',
@@ -530,7 +530,7 @@ class CSDatepickerPreview extends React.Component {
 					name: 'required',
 					types: ['boolean'],
 					default: 'false',
-					description: 'Make the datepicker to required.'
+					description: 'Make the datepicker required.'
 				}, {
 					name: 'scrollableYearDropdown',
 					types: ['boolean'],

@@ -283,130 +283,126 @@ class CSInputTextPreview extends React.Component<{}, CSInputTextPreviewState> {
 			],
 			properties: [
 				{
-					propertyName: 'borderType',
-					description: 'Input style',
-					options: [
-						'round',
-						'square'
-					]
-				},
-				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'disabled',
-					description: 'Logic for disabled state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'error',
-					description: 'Error state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'errorMessage',
-					description: 'Error message text'
-				},
-				{
-					propertyName: 'helpText',
-					description: 'Input help text for tooltip display'
-				},
-				{
-					propertyName: 'hidden',
-					description: 'Hidden state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'id',
-					description: 'Input id value'
-				},
-				{
-					propertyName: 'label',
-					description: 'Input label text to display'
-				},
-				{
-					propertyName: 'labelHidden',
-					description: 'Logic for visibility of the label',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'labelTitle',
-					description: 'Logic for label title attribute',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'maxLength',
-					description: 'Input max length value'
-				},
-				{
-					propertyName: 'name',
-					description: 'Input name value'
-				},
-				{
-					propertyName: 'onBlur',
-					description: 'Logic for onBlur event'
-				},
-				{
-					propertyName: 'onChange',
-					description: 'Logic for onChange event'
-				},
-				{
-					propertyName: 'onFocus',
-					description: 'Logic for onFocus event'
-				},
-				{
-					propertyName: 'placeholder',
-					description: 'Input placeholder to display'
-				},
-				{
-					propertyName: 'readOnly',
-					description: 'Read only description',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'required',
-					description: 'Required state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'tooltipPosition',
-					description: 'Input tooltip position',
-					options: [
-						'top-right',
-						'top-left',
-						'bottom-right',
-						'bottom-left'
-					]
-				},
-				{
-					propertyName: 'value',
-					description: 'Input value to display'
-				},
-				{
-					propertyName: 'title',
-					description: 'Title to display'
+					name: 'borderType',
+					customTypes: [{
+						name: 'CSInputTextBorderType',
+						types: ['\'round\'', '\'square\'']
+					}],
+					default: '\'round\'',
+					description: 'Set a border style for the text input.'
+				}, {
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the text input.'
+				}, {
+					name: 'disabled',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Disable the text input.'
+				}, {
+					name: 'error',
+					types: ['boolean'],
+					description: 'Toggle the error state.'
+				}, {
+					name: 'errorMessage',
+					customTypes: [{
+						name: 'CSFieldErrorMsgType',
+						types: ['string', 'Array<string>']
+					}],
+					description: 'Set the error message or messages for the text input.'
+				}, {
+					name: 'helpText',
+					types: ['string'],
+					description: 'Set the text to be displayed in the tooltip.'
+				}, {
+					name: 'hidden',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Control the hidden attribute.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the text input.'
+				}, {
+					name: 'label',
+					required: true,
+					types: ['string'],
+					description: 'Set the text input label.'
+				}, {
+					name: 'labelHidden',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Hide the text input label.'
+				}, {
+					name: 'labelTitle',
+					types: ['boolean'],
+					description: 'Control whether to set the title attribute.'
+				}, {
+					name: 'maxLength',
+					types: ['number'],
+					description: 'Set the maximum length of the value.'
+				}, {
+					name: 'name',
+					types: ['string'],
+					description: 'Set the text input name attribute.'
+				}, {
+					name: 'onBlur',
+					types: ['(event) => void'],
+					description: 'Handler method for the blur event.'
+				}, {
+					name: 'onChange',
+					types: ['(event) => any'],
+					description: 'Handler method for the change event.'
+				}, {
+					name: 'onFocus',
+					types: ['(event) => any'],
+					description: 'Handler method for the focus event.'
+				}, {
+					name: 'placeholder',
+					types: ['string'],
+					description: 'Set a text input placeholder.'
+				}, {
+					name: 'readOnly',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Control whether to apply the readonly attribute.'
+				}, {
+					name: 'required',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Make the text input required.'
+				}, {
+					name: 'tooltipPosition',
+					customTypes: [{
+						name: 'CSTooltipPosition',
+						types: [
+							'\'bottom-right\'',
+							'\'bottom-left\'',
+							'\'top-right\'',
+							'\'top-left\'',
+							'\'top-center\'',
+							'\'bottom-center\'',
+							'\'right-top\'',
+							'\'right-center\'',
+							'\'right-bottom\'',
+							'\'left-top\'',
+							'\'left-center\'',
+							'\'left-bottom\''
+						]
+					}],
+					description: 'Set the tooltip position for the text input.'
+				}, {
+					name: 'value',
+					types: ['string'],
+					description: 'Set the text input value.'
+				}, {
+					name: 'title',
+					types: ['string'],
+					description: 'Set the text input title.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the text input.'
 				}
 			],
 			accessibility: [
