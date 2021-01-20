@@ -1,7 +1,9 @@
+import classNames from 'classnames';
 import React, { CSSProperties } from 'react';
 
 export interface CSCardBodyProps {
 	[key: string]: any;
+	className?: string;
 	id?: string;
 	maxHeight?: string;
 	padding?: string;
@@ -10,7 +12,12 @@ export interface CSCardBodyProps {
 class CSCardBody extends React.Component<CSCardBodyProps> {
 
 	render() {
-		const { children, id, maxHeight, padding, ...rest } = this.props;
+		const { className, children, id, maxHeight, padding, ...rest } = this.props;
+		const cardBodyClasses = classNames(
+			'cs-card-body', {
+				[`${className}`]: className
+			}
+		);
 
 		const cardBodyStyles: CSSProperties = {
 			'--cs-card-body-padding': padding,
@@ -18,7 +25,7 @@ class CSCardBody extends React.Component<CSCardBodyProps> {
 		};
 		return (
 			<div
-				className="cs-card-body"
+				className={cardBodyClasses}
 				id={id}
 				style={cardBodyStyles}
 				{...rest}

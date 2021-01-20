@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 export interface CSCardHeaderProps {
 	[key: string]: any;
+	className?: string;
 	iconColor?: string;
 	iconFrame?: boolean;
 	iconName?: string;
@@ -21,6 +22,7 @@ class CSCardHeader extends React.Component<CSCardHeaderProps> {
 
 	render() {
 		const {
+			className,
 			iconColor,
 			iconFrame,
 			iconName,
@@ -30,6 +32,7 @@ class CSCardHeader extends React.Component<CSCardHeaderProps> {
 			title,
 			...rest
 		} = this.props;
+
 		const cardHeaderClasses = classNames(
 			'cs-card-header', {
 			'cs-card-header-with-border': showBorder

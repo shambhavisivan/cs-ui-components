@@ -263,6 +263,11 @@ class CSCardPreview extends React.Component {
 			name: 'Card Header',
 			properties: [
 				{
+					name: 'className',
+					types: ['string'],
+					description: 'For implementing custom class to component'
+				},
+				{
 					name: 'iconColor',
 					types: ['string'],
 					description: 'Set a custom colour for the icon inside of the card header.'
@@ -312,6 +317,11 @@ class CSCardPreview extends React.Component {
 			name: 'Card Body',
 			properties: [
 				{
+					name: 'className',
+					types: ['string'],
+					description: 'For implementing custom class to component'
+				},
+				{
 					name: 'id',
 					types: ['string'],
 					description: 'Set the ID for the card body.'
@@ -337,6 +347,11 @@ class CSCardPreview extends React.Component {
 		const json = {
 			name: 'Card Footer',
 			properties: [
+				{
+					name: 'className',
+					types: ['string'],
+					description: 'For implementing custom class to component'
+				},
 				{
 					name: 'id',
 					types: ['string'],
