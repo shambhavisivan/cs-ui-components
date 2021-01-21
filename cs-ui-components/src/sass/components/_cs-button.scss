@@ -84,6 +84,10 @@
 	&[disabled] {
 		cursor: default;
 		pointer-events: none;
+
+		&.cs-btn-with-title {
+			pointer-events: unset;
+		}
 	}
 	/* ALL BUTTONS PROPERTIES */
 	&.cs-btn-round {

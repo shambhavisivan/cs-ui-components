@@ -252,6 +252,17 @@ class CSButtonPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'title',
+					variations: [
+						{
+							component: <CSButton iconName="activity" label="default round" title="this is a title" />
+						},
+						{
+							component: <CSButton iconName="activity" label="default round" disabled title="this is a title" />
+						}
+					]
+				},
+				{
 					propName: 'iconColor',
 					variations: [
 						{
@@ -621,6 +632,10 @@ class CSButtonPreview extends React.Component {
 					}],
 					default: '\'normal\'',
 					description: 'Set button size.'
+				}, {
+					name: 'title',
+					types: ['string'],
+					description: 'Set the value of the title attribute'
 				}, {
 					name: 'width',
 					customTypes: [{

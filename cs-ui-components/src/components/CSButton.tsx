@@ -39,6 +39,7 @@ export interface CSButtonProps {
 	role?: CSButtonRole;
 	routerLink?: JSX.Element;
 	size?: CSButtonSize;
+	title?: string;
 	value?: any;
 	width?: CSButtonWidth;
 }
@@ -122,6 +123,7 @@ class CSButton extends React.Component<CSButtonProps> {
 			role,
 			routerLink,
 			size,
+			title,
 			value,
 			width,
 			...rest
@@ -153,6 +155,8 @@ class CSButton extends React.Component<CSButtonProps> {
 				'cs-btn-size-small': size === 'small',
 				'cs-btn-size-large': size === 'large',
 
+				'cs-btn-with-title': title,
+
 				[`${className}`]: className
 			}
 		);
@@ -168,7 +172,7 @@ class CSButton extends React.Component<CSButtonProps> {
 			'disabled': disabled || loading,
 			'aria-label': ariaLabel ? ariaLabel : label,
 			'style': style,
-			'title': iconDisplay === 'icon-only' ? label : undefined,
+			'title': title ? title : iconDisplay === 'icon-only' ? label : null,
 			'href': link && link,
 			'target': (openInNewTab && link) ? '_blank' : undefined,
 			'id': id,
