@@ -128,14 +128,14 @@ class CSIconPreview extends React.Component {
 					propName: 'size',
 					variations: [
 						{
-							variationName: ['2rem'],
-							quickLink: '2rem',
+							variationName: ['3rem'],
+							quickLink: '3rem',
 							variationText: ['origin="cs"', 'name="tag"'],
 							component:
 								<CSIcon
 									origin="cs"
 									name="tag"
-									size="2rem"
+									size="3rem"
 								/>
 						}
 					]
@@ -146,7 +146,7 @@ class CSIconPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
-							variationText: ['origin="cs"', 'name="video"', 'color="pink"'],
+							variationText: ['origin="cs"', 'name="video"', 'size="2rem"'],
 							component:
 								<CSIcon
 									name="lead"
@@ -161,12 +161,12 @@ class CSIconPreview extends React.Component {
 					propName: 'id',
 					variations: [
 						{
+							variationText: ['origin="cs"', 'name="lead"'],
 							component:
 								<CSIcon
-									name="lead"
 									origin="cs"
+									name="lead"
 									id="id"
-									size="2rem"
 								/>
 						}
 					]
@@ -175,10 +175,11 @@ class CSIconPreview extends React.Component {
 					propName: 'title',
 					variations: [
 						{
+							variationText: ['origin="cs"', 'name="gift"'],
 							component:
 								<CSIcon
-									name="gift"
 									origin="cs"
+									name="gift"
 									title="gift"
 								/>
 						}
@@ -190,10 +191,10 @@ class CSIconPreview extends React.Component {
 						{
 							variationName: ['true'],
 							quickLink: 'true',
+							variationText: ['name="spinner"'],
 							component:
 								<CSIcon
 									name="spinner"
-									origin="slds"
 									spin
 								/>
 						}

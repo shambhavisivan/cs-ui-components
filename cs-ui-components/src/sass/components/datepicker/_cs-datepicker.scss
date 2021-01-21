@@ -292,6 +292,7 @@
 		bottom: 0.5625rem;
 		width: 0.875rem;
 		height: 0.875rem;
+		pointer-events: none;
 	}
 
 	&-error .react-datepicker-wrapper input {

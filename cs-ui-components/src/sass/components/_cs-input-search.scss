@@ -23,7 +23,7 @@
 		transform: translateY(60%);
 		display: block;
 		position: absolute;
-		cursor: pointer;
+		pointer-events: none;
 	}
 
 	.cs-input-search-clear {
