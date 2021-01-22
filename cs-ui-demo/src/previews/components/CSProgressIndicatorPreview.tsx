@@ -130,12 +130,17 @@ class CSProgressIndicatorPreview extends React.Component {
 
 			properties: [
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'id',
-					description: 'Progress Indicator id value'
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the progress indicator.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the progress indicator.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the progress indicator ordered list tag.'
 				}
 			]
 		};
@@ -154,26 +159,35 @@ class CSProgressIndicatorPreview extends React.Component {
 			name: 'Progress Indicator Item',
 			properties: [
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'id',
-					description: 'Progress Indicator Item id value'
-				},
-				{
-					propertyName: 'status',
-					description: 'Current status style',
-					options: [
-						'incomplete',
-						'complete',
-						'active',
-						'error'
-					]
-				},
-				{
-					propertyName: 'text',
-					description: 'Value of text inside component to display'
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the progress indicator item.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the progress indicator item.'
+				}, {
+					name: 'status',
+					customTypes: [{
+						name: 'CSProgressIndicatorItemStatus',
+						types: [
+							'\'incomplete\'',
+							'\'complete\'',
+							'\'active\'',
+							'\'error\''
+						]
+					}],
+					default: '\'incomplete\'',
+					description: 'Style the progress indicator item based on the status.'
+				}, {
+					name: 'text',
+					required: true,
+					types: ['string'],
+					description: 'Set the text inside of the progress indicator item.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the progress indicator item list item tag.'
 				}
 			]
 		};

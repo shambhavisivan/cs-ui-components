@@ -169,32 +169,38 @@ class CSSidebarPreview extends React.Component {
 
 			properties: [
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'closed',
-					description: 'Enable sidebar to be closed by default'
-				},
-				{
-					propertyName: 'fixed',
-					description: 'Show sidebar by default without option to close'
-				},
-				{
-					propertyName: 'height',
-					description: 'Sidebar height'
-				},
-				{
-					propertyName: 'onClick',
-					description: 'Logic for onClick event'
-				},
-				{
-					propertyName: 'text',
-					description: 'Sidebar item text'
-				},
-				{
-					propertyName: 'width',
-					description: 'Sidebar width'
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the sidebar.'
+				}, {
+					name: 'closed',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Close the sidebar by default.'
+				}, {
+					name: 'fixed',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Disable the option to hide the sidebar.'
+				}, {
+					name: 'height',
+					types: ['string'],
+					description: 'Set the sidebar height. (eg. 200px, 20rem, 100vw, etc.)'
+				}, {
+					name: 'onClose',
+					types: ['boolean']
+				}, {
+					name: 'width',
+					types: ['string'],
+					description: 'Set the sidebar width. (eg. 20%, 20rem, 400px, etc.)'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the sidebar.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the sidebar nav tag.'
 				}
 			],
 			accessibility: [

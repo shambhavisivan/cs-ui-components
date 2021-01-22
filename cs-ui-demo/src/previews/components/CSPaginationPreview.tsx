@@ -32,9 +32,9 @@ class CSPaginationPreview extends React.Component {
 			],
 			properties: [
 				{
-					propertyName: 'n/a',
-					description: 'n/a',
-					options: ['test']
+					name: 'n/a',
+					types: ['n/a'],
+					description: 'n/a'
 				}
 			]
 		};

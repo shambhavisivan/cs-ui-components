@@ -296,83 +296,84 @@ class CSRadioPreview extends React.Component {
 			],
 			properties: [
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'disabled',
-					description: 'Logic for disabled state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'error',
-					description: 'Logic for error state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'errorMessage',
-					description: 'Error message text'
-				},
-				{
-					propertyName: 'helptext',
-					description: 'Radio help text for tooltip display'
-				},
-				{
-					propertyName: 'id',
-					description: 'Radio id value'
-				},
-
-				{
-					propertyName: 'label',
-					description: 'Radio label to display'
-				},
-				{
-					propertyName: 'labelHidden',
-					description: 'Logic for visibility of the label',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'labelTitle',
-					description: 'Logic for label title attribute',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'required',
-					description: 'Logic for required state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'tooltipPosition',
-					description: 'Radio tooltip position',
-					options: [
-						'top-right',
-						'top-left',
-						'bottom-right',
-						'bottom-left'
-					]
-				},
-				{
-					propertyName: 'variant',
-					description: 'Radio Option variant',
-					options: [
-						'neutral',
-						'brand'
-					]
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the radio.'
+				}, {
+					name: 'disabled',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Disable the radio.'
+				}, {
+					name: 'error',
+					types: ['boolean'],
+					description: 'Toggle the error state.'
+				}, {
+					name: 'errorMessage',
+					customTypes: [{
+						name: 'CSFieldErrorMsgType',
+						types: ['string', 'Array<string>']
+					}],
+					description: 'Set the error message or messages for the radio.'
+				}, {
+					name: 'helpText',
+					types: ['string'],
+					description: 'Set the text to be displayed in the tooltip.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the radio.'
+				}, {
+					name: 'label',
+					required: true,
+					types: ['string'],
+					description: 'Set the radio label.'
+				}, {
+					name: 'labelHidden',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Hide the radio label.'
+				}, {
+					name: 'labelTitle',
+					types: ['boolean'],
+					description: 'Control whether to set the title attribute.'
+				}, {
+					name: 'required',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Set the radio to required.'
+				}, {
+					name: 'tooltipPosition',
+					customTypes: [{
+						name: 'CSTooltipPosition',
+						types: [
+							'\'bottom-right\'',
+							'\'bottom-left\'',
+							'\'top-right\'',
+							'\'top-left\'',
+							'\'top-center\'',
+							'\'bottom-center\'',
+							'\'right-top\'',
+							'\'right-center\'',
+							'\'right-bottom\'',
+							'\'left-top\'',
+							'\'left-center\'',
+							'\'left-bottom\''
+						]
+					}],
+					description: 'Set the tooltip position for the radio.'
+				}, {
+					name: 'variant',
+					customTypes: [{
+						name: 'CSRadioVariant',
+						types: ['\'neutral\'', '\'brand\'']
+					}],
+					default: '\'neutral\'',
+					description: 'Set the radio variant.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the radio wrapper div.'
 				}
 			],
 			accessibility: [
@@ -431,66 +432,59 @@ class CSRadioPreview extends React.Component {
 			usage: 'Individual radio options.',
 			properties: [
 				{
-					propertyName: 'checked',
-					description: 'Logic for checked state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'disabled',
-					description: 'Logic for disabled state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'id',
-					description: 'Radio option id value'
-				},
-				{
-					propertyName: 'label',
-					description: 'Radio Option label'
-				},
-				{
-					propertyName: 'name',
-					description: 'Radio Option name'
-				},
-				{
-					propertyName: 'onChange',
-					description: 'Logic for onChange event'
-				},
-				{
-					propertyName: 'readOnly',
-					description: 'Logic for readOnly state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'title',
-					description: 'Title to display'
-				},
-				{
-					propertyName: 'ariaInvalid',
-					description: 'Accessible attribute to indicate whether an element has an error',
-					helperPropInComponents: [
-						'Radio'
-					]
-				},
-				{
-					propertyName: 'ariaRequired',
-					description: 'Accessible attribute to indicate whether an element is required',
-					helperPropInComponents: [
-						'Radio'
-					]
+					name: 'checked',
+					types: ['boolean'],
+					description: 'Control the checked state of the radio option.'
+				}, {
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the radio option.'
+				}, {
+					name: 'disabled',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Disable the radio option.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the radio option.'
+				}, {
+					name: 'label',
+					types: ['string'],
+					description: 'Set the radio option label.'
+				}, {
+					name: 'name',
+					types: ['string'],
+					description: 'Set the radio option name attribute.'
+				}, {
+					name: 'onChange',
+					types: ['(event) => any'],
+					description: 'Handler method for the change event.'
+				}, {
+					name: 'readOnly',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Control whether to apply the readonly attribute.'
+				}, {
+					name: 'title',
+					types: ['string'],
+					description: 'Set the radio option title.'
+				}, {
+					name: 'ariaInvalid',
+					required: 'CSRadio',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Indicate whether an element has an error.'
+				}, {
+					name: 'ariaRequired',
+					required: 'CSRadio',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Indicate whether an element is required.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the radio wrapper div.'
 				}
 			]
 		};

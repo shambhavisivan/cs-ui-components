@@ -276,74 +276,61 @@ class CSProgressBarPreview extends React.Component<{}, CSProgressBarPreviewState
 
 			properties: [
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'color',
-					description: 'CSS color value of the progress bar',
-					options: [
-						'e.g.',
-						'green',
-						'#FFAA00',
-						'rgb(100,100,255)'
-					]
-				},
-				{
-					propertyName: 'id',
-					description: 'Path id value'
-				},
-				{
-					propertyName: 'label',
-					description: 'Text content of label'
-				},
-				{
-					propertyName: 'labelHidden',
-					description: 'Logic for visibility of the label',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'labelTitle',
-					description: 'Logic for label title attribute',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'progress',
-					description: 'Percentage value to represent progress',
-					options: [
-						'e.g.',
-						'0%',
-						'50%',
-						'100%'
-					]
-				},
-				{
-					propertyName: 'progressIndicator',
-					description: 'Boolean state of percentage indicator',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'thickness',
-					description: 'Thickness of the progress bar',
-					options: [
-						'xsmall',
-						'small',
-						'medium',
-						'large'
-					]
-				},
-				{
-					propertyName: 'title',
-					description: 'Title to display'
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the progress bar.'
+				}, {
+					name: 'color',
+					types: ['string'],
+					description: 'Set a custom colour for the progress bar path. (eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the progress bar.'
+				}, {
+					name: 'label',
+					required: true,
+					types: ['string'],
+					description: 'Set the progress bar label.'
+				}, {
+					name: 'labelHidden',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Hide the progress bar label.'
+				}, {
+					name: 'labelTitle',
+					types: ['boolean'],
+					description: 'Control whether to set the title attribute.'
+				}, {
+					name: 'progress',
+					required: true,
+					types: ['string'],
+					description: 'Set the percentage value of the progress. (eg. 0%, 50%, 100%, etc.)'
+				}, {
+					name: 'progressIndicator',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Show a textual progress indicator.'
+				}, {
+					name: 'thickness',
+					customTypes: [{
+						name: 'CSProgressBarThickness',
+						types: [
+							'\'xsmall\'',
+							'\'small\'',
+							'\'medium\'',
+							'\'large\''
+						]
+					}],
+					description: 'Set the thickness of the progress bar.'
+				}, {
+					name: 'title',
+					types: ['string'],
+					description: 'Set the title attribute.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the progress bar wrapper div.'
 				}
 			],
 

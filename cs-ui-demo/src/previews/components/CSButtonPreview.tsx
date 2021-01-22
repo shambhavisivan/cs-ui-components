@@ -528,7 +528,7 @@ class CSButtonPreview extends React.Component {
 				}, {
 					name: 'color',
 					types: ['string'],
-					description: 'Set a custom colour for the button.'
+					description: 'Set a custom colour for the button. (eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
 				}, {
 					name: 'disabled',
 					types: ['boolean'],
@@ -537,7 +537,7 @@ class CSButtonPreview extends React.Component {
 				}, {
 					name: 'iconColor',
 					types: ['string'],
-					description: 'Set a custom colour for the icon inside of the button.'
+					description: 'Set a custom colour for the icon inside of the button. (eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
 				}, {
 					name: 'iconDisplay',
 					customTypes: [{

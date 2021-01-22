@@ -204,12 +204,17 @@ class CSPathPreview extends React.Component {
 
 			properties: [
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'id',
-					description: 'Path id value'
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the path.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the path.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the path nav tag.'
 				}
 			]
 		};
@@ -228,40 +233,39 @@ class CSPathPreview extends React.Component {
 			name: 'Path Item',
 			properties: [
 				{
-					propertyName: 'active',
-					description: 'Path item active state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'disabled',
-					description: 'Logic for disabled state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'id',
-					description: 'Path item id value'
-				},
-				{
-					propertyName: 'onClick',
-					description: 'Logic for onClick event'
-				},
-				{
-					propertyName: 'status',
-					description: 'Color and icon variant depending on status',
-					options: [
-						'error',
-						'success'
-					]
-				},
-				{
-					propertyName: 'title',
-					description: 'Path item title'
+					name: 'active',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Control the active state.'
+				}, {
+					name: 'disabled',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Disable the path item.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the path item.'
+				}, {
+					name: 'onClick',
+					types: ['(event) => any'],
+					description: 'Handler method for the click event.'
+				}, {
+					name: 'status',
+					customTypes: [{
+						name: 'CSPathItemStatus',
+						types: ['\'success\'', '\'error\'']
+					}],
+					description: 'Set the colour and the icon variant depending on status.'
+				}, {
+					name: 'title',
+					required: true,
+					types: ['string'],
+					description: 'Set the path item title.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the path item list item tag.'
 				}
 			]
 		};

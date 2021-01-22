@@ -802,67 +802,79 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 			],
 			properties: [
 				{
-					propertyName: 'animated',
-					description: 'Set false to disable animations on mount/unmout. This defaults to false, but it will default to true after the component drops support for conditional rendering.',
-					options: ['false', 'true']
-				},
-				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'closeButton',
-					description: 'Logic for close button visibility',
-					options: ['false', 'true']
-				},
-				{
-					propertyName: 'id',
-					description: 'Modal id value'
-				},
-				{
-					propertyName: 'loading',
-					description: 'Add custom styles as inline css',
-					options: ['false', 'true']
-				},
-				{
-					propertyName: 'loadingText',
-					description: 'Label to show while loading spinner is visible'
-				},
-				{
-					propertyName: 'onClose',
-					description: 'Logic for onClick event'
-				},
-				{
-					propertyName: 'outerClickClose',
-					description: 'Option to close modal on click outside'
-				},
-				{
-					propertyName: 'size',
-					description: 'Modal size',
-					options: ['auto', 'xsmall', 'small', 'medium', 'large', 'xlarge']
-				},
-				{
-					propertyName: 'style',
-					description: 'Add custom styles as inline css'
-				},
-				{
-					propertyName: 'visible',
-					description: 'Controls whether or not to render the modal. This defaults to true, but it will be a required prop after the component drops support for conditional rendering.',
-					options: ['true', 'false']
-				},
-				{
-					propertyName: 'mounted',
-					description: 'Used to rerender the modal after it has been mounted and apply animation classes',
-					helperPropInComponents: [
-						'CSAnimation'
-					]
-				},
-				{
-					propertyName: 'setMounted',
-					description: 'Triggered on componentDidMount to set mounted to true',
-					helperPropInComponents: [
-						'CSAnimation'
-					]
+					name: 'animated',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Disable animations/transitions. This prop is obsolete and will soon be removed. Do not use it.'
+				}, {
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the modal wrapper.'
+				}, {
+					name: 'closeButton',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Show the close button.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the modal.'
+				}, {
+					name: 'loading',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Show the loading spinner and mute the content.'
+				}, {
+					name: 'loadingText',
+					types: ['string'],
+					description: 'Set which text to show while the loading state is on.'
+				}, {
+					name: 'onClose',
+					types: ['(event) => void'],
+					description: 'Handler method for closing the modal.'
+				}, {
+					name: 'outerClickClose',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Control whether the modal should be closed on outside clicks.'
+				}, {
+					name: 'size',
+					customTypes: [{
+						name: 'CSModalSize',
+						types: [
+							'\'auto\'',
+							'\'xsmall\'',
+							'\'small\'',
+							'\'medium\'',
+							'\'large\'',
+							'\'xlarge\''
+						]
+					}],
+					default: '\'auto\'',
+					description: 'Set the modal size.'
+				}, {
+					name: 'style',
+					types: ['object'],
+					description: 'Add custom styles as inline css.'
+				}, {
+					name: 'visible',
+					types: ['boolean'],
+					default: 'true',
+					description: 'Control whether or not to render the modal. This prop will soon change its behaviour. Please treat it as required.'
+				}, {
+					name: 'mounted',
+					required: 'CSUnmountDelay',
+					types: ['boolean'],
+					description: 'Enforces transition logic.'
+				}, {
+					name: 'setMounted',
+					required: 'CSUnmountDelay',
+					types: ['() => void'],
+					description: 'Manages the mounted prop.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the modal overlay div.'
 				}
 			],
 			accessibility: [
@@ -913,25 +925,26 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 			name: 'Modal Header',
 			properties: [
 				{
-					propertyName: 'id',
-					description: 'Modal header id value'
-				},
-				{
-					propertyName: 'subtitle',
-					description: 'Secondary text content',
-					options: []
-				},
-				{
-					propertyName: 'title',
-					description: 'Main header title',
-					options: []
-				},
-				{
-					propertyName: 'titleId',
-					description: 'Used to establish relationship between modal title and \'dialog\' wrapper',
-					helperPropInComponents: [
-						'CSModal'
-					]
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the modal header.'
+				}, {
+					name: 'subtitle',
+					types: ['string'],
+					description: 'Set a subtitle for the modal header.'
+				}, {
+					name: 'title',
+					types: ['string'],
+					description: 'Set a title for the modal header.'
+				}, {
+					name: 'titleId',
+					required: 'CSModal',
+					types: ['string'],
+					description: 'Establish a relationship between modal title and the dialog wrapper.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the header tag.'
 				}
 			]
 		};
@@ -944,13 +957,17 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 			name: 'Modal Body',
 			properties: [
 				{
-					propertyName: 'id',
-					description: 'Modal body id value'
-				},
-				{
-					propertyName: 'padding',
-					description: 'Modal body padding',
-					options: []
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the modal body.'
+				}, {
+					name: 'padding',
+					types: ['string'],
+					description: 'Set custom padding for the modal body.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the modal body div.'
 				}
 			]
 		};
@@ -963,13 +980,21 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 			name: 'ModalFooter',
 			properties: [
 				{
-					propertyName: 'align',
-					description: 'Alignment of buttons',
-					options: ['right', 'left', 'center']
-				},
-				{
-					propertyName: 'id',
-					description: 'Modal footer id value'
+					name: 'align',
+					customTypes: [{
+						name: 'CSModalFooterAlign',
+						types: ['\'right\'', '\'left\'', '\'center\'']
+					}],
+					default: '\'right\'',
+					description: 'Align the modal footer buttons.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the modal footer.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the footer tag.'
 				}
 			]
 		};

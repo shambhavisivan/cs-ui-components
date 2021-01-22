@@ -310,114 +310,110 @@ class CSSelectPreview extends React.Component {
 			],
 			properties: [
 				{
-					propertyName: 'borderType',
-					description: 'Select border type',
-					options: [
-						'round',
-						'square'
-					]
-				},
-				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'disabled',
-					description: 'Logic for disabled state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'error',
-					description: 'Error state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'errorMessage',
-					description: 'Error message text'
-				},
-				{
-					propertyName: 'helpText',
-					description: 'Select help text for tooltip display'
-				},
-				{
-					propertyName: 'hidden',
-					description: 'Hidden state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'id',
-					description: 'Select id value'
-				},
-				{
-					propertyName: 'label',
-					description: 'Select label text to display'
-				},
-				{
-					propertyName: 'labelHidden',
-					description: 'Logic for visibility of the label',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'labelTitle',
-					description: 'Logic for label title attribute',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'name',
-					description: 'Select name value'
-				},
-				{
-					propertyName: 'onChange',
-					description: 'Logic for onChange event'
-				},
-				{
-					propertyName: 'readOnly',
-					description: 'Read only state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'required',
-					description: 'Required state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'title',
-					description: 'Select title value'
-				},
-				{
-					propertyName: 'tooltipPosition',
-					description: 'Select tooltip position',
-					options: [
-						'top-right',
-						'top-left',
-						'bottom-right',
-						'bottom-left'
-					]
-				},
-				{
-					propertyName: 'value',
-					description: 'Display a fixed value'
+					name: 'borderType',
+					customTypes: [{
+						name: 'CSSelectBorderType',
+						types: ['\'round\'', '\'square\'']
+					}],
+					default: '\'round\'',
+					description: 'Set the border type.'
+				}, {
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the select.'
+				}, {
+					name: 'disabled',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Disable the select.'
+				}, {
+					name: 'error',
+					types: ['boolean'],
+					description: 'Toggle the error state.'
+				}, {
+					name: 'errorMessage',
+					customTypes: [{
+						name: 'CSFieldErrorMsgType',
+						types: ['string', 'Array<string>']
+					}],
+					description: 'Set the error message or messages for the select.'
+				}, {
+					name: 'helpText',
+					types: ['string'],
+					description: 'Set the help text to be displayed for the select.'
+				}, {
+					name: 'hidden',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Control the hidden attribute.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the select.'
+				}, {
+					name: 'label',
+					required: true,
+					types: ['string'],
+					description: 'Set the select label.'
+				}, {
+					name: 'labelHidden',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Hide the select label.'
+				}, {
+					name: 'labelTitle',
+					types: ['boolean'],
+					description: 'Control whether to set the title attribute.'
+				}, {
+					name: 'name',
+					types: ['string'],
+					description: 'Set the checkbox name attribute.'
+				}, {
+					name: 'onChange',
+					types: ['(event) => any'],
+					description: 'Handler method for the change event.'
+				}, {
+					name: 'readOnly',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Control whether to apply the readonly attribute.'
+				}, {
+					name: 'required',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Make the select required.'
+				}, {
+					name: 'title',
+					types: ['string'],
+					description: 'Set the select title.'
+				}, {
+					name: 'tooltipPosition',
+					customTypes: [{
+						name: 'CSTooltipPosition',
+						types: [
+							'\'bottom-right\'',
+							'\'bottom-left\'',
+							'\'top-right\'',
+							'\'top-left\'',
+							'\'top-center\'',
+							'\'bottom-center\'',
+							'\'right-top\'',
+							'\'right-center\'',
+							'\'right-bottom\'',
+							'\'left-top\'',
+							'\'left-center\'',
+							'\'left-bottom\''
+						]
+					}],
+					description: 'Set the tooltip position for the select.'
+				}, {
+					name: 'value',
+					types: ['any'],
+					description: 'Pass a value to the select.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the select tag.'
 				}
 			],
 			accessibility: [

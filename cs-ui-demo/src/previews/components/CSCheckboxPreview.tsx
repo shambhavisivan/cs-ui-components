@@ -432,6 +432,10 @@ class CSCheckboxPreview extends React.Component {
 					}],
 					default: '\'neutral\'',
 					description: 'Set the checkbox variant.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the checkbox input.'
 				}
 			],
 			accessibility: [

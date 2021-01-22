@@ -341,6 +341,7 @@ class CSAlertPreview extends React.Component {
 				}, {
 					name: 'closeButton',
 					types: ['boolean'],
+					default: 'false',
 					description: 'Show the close button.'
 				}, {
 					name: 'iconName',

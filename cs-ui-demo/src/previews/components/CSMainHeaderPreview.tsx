@@ -300,40 +300,40 @@ class CSMainHeaderPreview extends React.Component {
 
 			properties: [
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'color',
-					description: 'Background color',
-					options: [
-						'neutral',
-						'brand',
-						'error',
-						'info'
-					]
-				},
-				{
-					propertyName: 'id',
-					description: 'Main header id value'
-				},
-				{
-					propertyName: 'maxWidth',
-					description: 'Max width of inner wrapper',
-					options: [
-						'Examples',
-						'720px',
-						'80rem',
-						'100%'
-					]
-				},
-				{
-					propertyName: 'sticky',
-					description: 'Logic for sticky position',
-					options: [
-						'true',
-						'false'
-					]
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the list.'
+				}, {
+					name: 'color',
+					customTypes: [{
+						name: 'CSMainHeaderColor',
+						types: [
+							'\'neutral\'',
+							'\'brand\'',
+							'\'error\'',
+							'\'info\''
+						]
+					}],
+					default: '\'neutral\'',
+					description: 'Set the main header background colour.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the main header.'
+				}, {
+					name: 'maxWidth',
+					types: ['string'],
+					default: '\'100%\'',
+					description: 'Set the max-width of the dropdown content. (eg. 720px, 80rem, 100%, etc.)'
+				}, {
+					name: 'sticky',
+					types: ['boolean'],
+					default: 'true',
+					description: 'Set whether the main header should be sticky.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the header tag.'
 				}
 			],
 			accessibility: [
@@ -371,24 +371,27 @@ class CSMainHeaderPreview extends React.Component {
 			name: 'MainHeaderLeft',
 			properties: [
 				{
-					propertyName: 'id',
-					description: 'Main header left id value'
-				},
-				{
-					propertyName: 'reverseOrder',
-					description: 'Logic to reverse the order of subtitle and title',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'subtitle',
-					description: 'Secondary text content'
-				},
-				{
-					propertyName: 'title',
-					description: 'Main header title'
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the main header left.'
+				}, {
+					name: 'reverseOrder',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Reverse the order of the title and subtitle.'
+				}, {
+					name: 'subtitle',
+					types: ['string'],
+					description: 'Set a subtitle for the main header left.'
+				}, {
+					name: 'title',
+					required: true,
+					types: ['string'],
+					description: 'Set a title for the main header left.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the main header left div wrapper.'
 				}
 			]
 		};
@@ -400,8 +403,13 @@ class CSMainHeaderPreview extends React.Component {
 			name: 'MainHeaderRight',
 			properties: [
 				{
-					propertyName: 'id',
-					description: 'Main header right id value'
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the main header right.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the main header right div wrapper.'
 				}
 			]
 		};
@@ -413,8 +421,13 @@ class CSMainHeaderPreview extends React.Component {
 			name: 'MainHeaderIcon',
 			properties: [
 				{
-					propertyName: 'id',
-					description: 'Main header icon id value'
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the main header icon.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the main header icon div wrapper.'
 				}
 			]
 		};
