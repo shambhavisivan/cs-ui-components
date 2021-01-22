@@ -414,7 +414,11 @@ class CSDatepickerPreview extends React.Component {
 			properties: [
 				{
 					name: 'borderType',
-					types: ['string'],
+					customTypes: [{
+						name: 'CSDatepickerBorderType',
+						types: ['\'round\'', '\'square\'']
+					}],
+					default: '\'round\'',
 					description: 'Set the border type.'
 				}, {
 					name: 'className',

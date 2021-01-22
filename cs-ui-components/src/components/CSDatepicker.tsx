@@ -9,11 +9,12 @@ import { CSTooltipPosition } from './CSTooltip';
 import { v4 as uuidv4 } from 'uuid';
 import KeyCode from '../util/KeyCode';
 
+export type CSDatepickerBorderType = 'round' | 'square';
 export type CSDatepickerDropdownMode = 'select' | 'scroll';
 
 export interface CSDatepickerProps {
 	[key: string]: any;
-	borderType?: string;
+	borderType?: CSDatepickerBorderType;
 	className?: string;
 	dateFormat?: string;
 	disabled?: boolean;
