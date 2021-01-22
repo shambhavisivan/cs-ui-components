@@ -95,4 +95,4 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 	}
 }
 
-export default  withCSUnmountDelay(CSDropdownItemWrapper);
+export default  withCSUnmountDelay(CSDropdownItemWrapper, 100);

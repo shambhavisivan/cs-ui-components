@@ -8,7 +8,7 @@
 		position: absolute;
 		z-index: var(--z-index-dropdown-items-wrapper);
 		opacity: 1;
-		transition: opacity 200ms ease-in-out;
+		transition: opacity 100ms ease-in-out;
 
 		&.cs-dropdown-hidden {
 			opacity: 0;
