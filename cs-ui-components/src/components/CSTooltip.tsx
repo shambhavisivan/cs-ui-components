@@ -245,16 +245,16 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			(window.innerHeight || document.documentElement.clientHeight)) {
 			if (openOn === 'bottom') {
 				openOn = 'top';
-			} else if (expandTo === 'bottom' || 'center') {
+			} else if (expandTo === 'bottom' || expandTo === 'center') {
 				expandTo = 'top';
 			}
 		}
 		// check right and center position of tooltip
 		if (tooltipRect.right >=
 			(window.innerWidth || document.documentElement.clientWidth)) {
-			if (openOn === 'right' || openOn === 'center') {
+			if (openOn === 'right') {
 				openOn = 'left';
-			} else if (expandTo === 'right') {
+			} else if (expandTo === 'right' || expandTo === 'center') {
 				expandTo = 'left';
 			}
 		}
@@ -262,7 +262,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		if (tooltipRect.left <= 0) {
 			if (openOn === 'left') {
 				openOn = 'right';
-			} else if (expandTo === 'left') {
+			} else if (expandTo === 'left' || expandTo === 'center') {
 				expandTo = 'right';
 			}
 		}
