@@ -126,6 +126,7 @@ class CSButton extends React.Component<CSButtonProps> {
 			title,
 			value,
 			width,
+			forwardRef,
 			...rest
 		} = this.props;
 
@@ -182,6 +183,7 @@ class CSButton extends React.Component<CSButtonProps> {
 			'role': role,
 			'onMouseDown': onMouseDown,
 			'onKeyDown': onKeyDown,
+			'ref': forwardRef,
 			...rest
 		};
 
@@ -208,4 +210,4 @@ class CSButton extends React.Component<CSButtonProps> {
 	}
 }
 
-export default CSButton;
+export default React.forwardRef<HTMLButtonElement, CSButtonProps>((props: CSButtonProps, ref) => <CSButton {...props} forwardRef={ref} />);
