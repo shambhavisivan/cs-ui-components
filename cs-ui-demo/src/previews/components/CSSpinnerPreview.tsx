@@ -193,52 +193,53 @@ class CSSpinnerPreview extends React.Component {
 			],
 			properties: [
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'color',
-					description: 'Color of spinner icon',
-					options: [
-						'neutral',
-						'brand',
-						'inverse'
-					]
-				},
-				{
-					propertyName: 'id',
-					description: 'Spinner id value'
-				},
-				{
-					propertyName: 'inline',
-					description: 'Logic for display property',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'label',
-					description: 'Spinner label'
-				},
-				{
-					propertyName: 'overlay',
-					description: 'Overlay color variant',
-					options: [
-						'light',
-						'dark'
-					]
-				},
-				{
-					propertyName: 'size',
-					description: 'Size of spinner icon',
-					options: [
-						'large',
-						'xsmall',
-						'small',
-						'medium',
-						'xlarge'
-					]
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the spinner.'
+				}, {
+					name: 'color',
+					customTypes: [{
+						name: 'CSSpinnerColor',
+						types: ['\'neutral\'', '\'brand\'', '\'inverse\'']
+					}],
+					default: '\'brand\'',
+					description: 'Set a custom colour for the spinner icon. (eg. pink, #ff0000, rgba(0, 0, 0, 0.75), etc.)'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the spinner.'
+				}, {
+					name: 'inline',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Position the spinner inline.'
+				}, {
+					name: 'label',
+					types: ['string'],
+					description: 'Set the spinner label.'
+				}, {
+					name: 'overlay',
+					types: ['string'],
+					default: '\'light\'',
+					description: 'Set the overlay color variant. (eg. light or dark)'
+				}, {
+					name: 'size',
+					customTypes: [{
+						name: 'CSSpinnerSize',
+						types: [
+							'\'xsmall\'',
+							'\'small\'',
+							'\'medium\'',
+							'\'large\'',
+							'\'xlarge\''
+						]
+					}],
+					default: '\'large\'',
+					description: 'Set the spinner size.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the spinner wrapper div.'
 				}
 			],
 			accessibility: [

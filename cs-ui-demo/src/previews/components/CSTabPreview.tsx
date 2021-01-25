@@ -286,61 +286,68 @@ class CSTabPreview extends React.Component {
 			],
 			properties: [
 				{
-					propertyName: 'active',
-					description: 'Tab styling when the tab is active/selected'
-				},
-				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'disabled',
-					description: 'Logic for disabled state'
-				},
-				{
-					propertyName: 'id',
-					description: 'Tab id value'
-				},
-				{
-					propertyName: 'onClick',
-					description: 'Logic for onClick event'
-				},
-				{
-					propertyName: 'routerLink',
-					description: 'Accepts React Router\'s NavLink or Link component which will be rendered instead of button element'
-				},
-				{
-					propertyName: 'status',
-					description: 'Color and icon variant depending on status',
-					options: [
-						'initial',
-						'error',
-						'warning',
-						'success'
-					]
-				},
-				{
-					propertyName: 'tabIcon',
-					description: 'Name of icon from icons library which will be visible in tab'
-				},
-				{
-					propertyName: 'title',
-					description: 'Text content of tab'
-				},
-				{
-					propertyName: 'tooltipConent',
-					description: 'Renders tooltip with content instead of tab icon. Tooltip icons will match tab status icons.'
-				},
-				{
-					propertyName: 'parentVariant',
-					description: 'Tab variant',
-					helperPropInComponents: [
-						'TabGroup'
-					],
-					options: [
-						'large',
-						'normal'
-					]
+					name: 'active',
+					types: ['string'],
+					description: 'Control the active state.'
+				}, {
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the tab.'
+				}, {
+					name: 'disabled',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Disable the tab.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the tab.'
+				}, {
+					name: 'onClick',
+					types: ['(value) => any'],
+					description: 'Handler method for the click event.'
+				}, {
+					name: 'routerLink',
+					types: ['Element'],
+					description: 'Define a React Router NavLink or Link component to be rendered instead of the tab.'
+				}, {
+					name: 'status',
+					customTypes: [{
+						name: 'CSPathItemStatus',
+						types: [
+							'\'initial\'',
+							'\'error\'',
+							'\'warning\'',
+							'\'success\''
+						]
+					}],
+					default: '\'initial\'',
+					description: 'Set the colour and the icon variant depending on status.'
+				}, {
+					name: 'tabIcon',
+					types: ['string'],
+					description: 'Override the default icon defined by the variant.'
+				}, {
+					name: 'title',
+					types: ['string'],
+					description: 'Set the tab title.'
+				}, {
+					name: 'tooltipContent',
+					types: ['string'],
+					description: 'Set the tooltip content and replace the icon with a tooltip. Tooltip icons will match tab status icons.'
+				}, {
+					name: 'parentVariant',
+					required: 'CSTabGroup',
+					customTypes: [{
+						name: 'CSTabGroupVariant',
+						types: ['\'normal\'', '\'large\'']
+					}],
+					default: '\'normal\'',
+					description: 'Set the tab variant.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the tab button or router link.'
 				}
 			],
 			accessibility: [
@@ -395,24 +402,29 @@ class CSTabPreview extends React.Component {
 			name: 'Tab Group',
 			properties: [
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'id',
-					description: 'Tab group id value'
-				},
-				{
-					propertyName: 'listName',
-					description: 'For overriding \'aria-label\' default value on CSTabGroup'
-				},
-				{
-					propertyName: 'variant',
-					description: 'Tab variant',
-					options: [
-						'large',
-						'normal'
-					]
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the tab group.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the tab group.'
+				}, {
+					name: 'listName',
+					types: ['string'],
+					description: 'Override the default aria-label value.'
+				}, {
+					name: 'variant',
+					customTypes: [{
+						name: 'CSTabGroupVariant',
+						types: ['\'normal\'', '\'large\'']
+					}],
+					default: '\'normal\'',
+					description: 'Set the tab group variant.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the tab group div wrapper.'
 				}
 			]
 		};
@@ -428,7 +440,7 @@ class CSTabPreview extends React.Component {
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples} />
-					<PreviewTable components={[component, component2]} />
+					<PreviewTable components={[component2, component]} />
 					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">

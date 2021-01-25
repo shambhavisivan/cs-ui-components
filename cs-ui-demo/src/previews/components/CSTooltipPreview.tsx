@@ -367,109 +367,106 @@ class CSTooltipPreview extends React.Component {
 			],
 			properties: [
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'content',
-					description: 'Tooltip help text content'
-				},
-				{
-					propertyName: 'delayTooltip',
-					description: 'Delay the tooltip appearing in ms'
-				},
-				{
-					propertyName: 'focusable',
-					description: 'Determines whether tooltip is keyboard focusable',
-					options: [
-						'true',
-						'false'
-					]
-				},
-				{
-					propertyName: 'height',
-					description: 'Custom tooltip height'
-				},
-				{
-					propertyName: 'iconColor',
-					description: 'Color of tooltip icon',
-					options: [
-						'e.g.',
-						'pink',
-						'#ff0000',
-						'rgba(100,100,255,1.00)'
-					]
-				},
-				{
-					propertyName: 'iconName',
-					description: 'Name of icon from icons library which overrides the default icon defined by variant'
-				},
-				{
-					propertyName: 'iconSize',
-					description: 'Size of the tooltip icon.',
-					options: [
-						'small',
-						'medium'
-					]
-				},
-				{
-					propertyName: 'id',
-					description: 'Tooltip id value'
-				},
-				{
-					propertyName: 'padding',
-					description: 'Tooltip padding',
-					options: [
-						'e.g.',
-						'0',
-						'1rem',
-						'15px 0'
-					]
-				},
-				{
-					propertyName: 'position',
-					description: 'Tooltip position',
-					options: [
-						'top-right',
-						'top-left',
-						'top-center',
-						'bottom-right',
-						'bottom-left',
-						'bottom-center',
-						'right-top',
-						'right-center',
-						'right-bottom',
-						'left-top',
-						'left-center',
-						'left-bottom'
-					]
-				},
-				{
-					propertyName: 'stylePosition',
-					description: 'Choose the CSS position value of the tooltip',
-					options: [
-						'fixed',
-						'absolute'
-					]
-				},
-				{
-					propertyName: 'tooltipHeader',
-					description: 'Content of the tooltip header'
-				},
-				{
-					propertyName: 'variant',
-					description: 'Color variant of tooltip',
-					options: [
-						'info',
-						'warning',
-						'error',
-						'success',
-						'basic'
-					]
-				},
-				{
-					propertyName: 'width',
-					description: 'Custom tooltip width'
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the tooltip.'
+				}, {
+					name: 'content',
+					required: true,
+					types: ['string', 'Array<string>', 'Element'],
+					description: 'Set the content of the tooltip.'
+				}, {
+					name: 'delayTooltip',
+					types: ['number'],
+					default: '0',
+					description: 'Delay the tooltip becoming visible in ms.'
+				}, {
+					name: 'focusable',
+					types: ['boolean'],
+					default: 'true',
+					description: 'Determines whether the tooltip is keyboard focusable'
+				}, {
+					name: 'height',
+					types: ['string'],
+					description: 'Set the tooltip height. (eg. 100px, 10rem, etc.)'
+				}, {
+					name: 'iconColor',
+					types: ['string'],
+					description: 'Set a custom colour for the tooltip icon. (eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
+				}, {
+					name: 'iconName',
+					types: ['string'],
+					description: 'Override the default icon defined by the variant.'
+				}, {
+					name: 'iconSize',
+					customTypes: [{
+						name: 'CSTooltipIconSize',
+						types: ['\'small\'', '\'medium\'']
+					}],
+					default: '\'small\'',
+					description: 'Set a size of the tooltip icon.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the tooltip.'
+				}, {
+					name: 'padding',
+					types: ['string'],
+					description: 'Set custom padding for the tooltip.'
+				}, {
+					name: 'position',
+					customTypes: [{
+						name: 'CSTooltipPosition',
+						types: [
+							'\'bottom-right\'',
+							'\'bottom-left\'',
+							'\'top-right\'',
+							'\'top-left\'',
+							'\'top-center\'',
+							'\'bottom-center\'',
+							'\'right-top\'',
+							'\'right-center\'',
+							'\'right-bottom\'',
+							'\'left-top\'',
+							'\'left-center\'',
+							'\'left-bottom\''
+						]
+					}],
+					default: '\'top-right\'',
+					description: 'Set the tooltip position.'
+				}, {
+					name: 'stylePosition',
+					customTypes: [{
+						name: 'CSTooltipStylePosition',
+						types: ['\'fixed\'', '\'absolute\'']
+					}],
+					default: '\'fixed\'',
+					description: 'Choose the CSS position value for the tooltip.'
+				}, {
+					name: 'tooltipHeader',
+					types: ['string'],
+					description: 'Set the text content of the tooltip header.'
+				}, {
+					name: 'variant',
+					customTypes: [{
+						name: 'CSTooltipVariant',
+						types: [
+							'\'info\'',
+							'\'warning\'',
+							'\'error\'',
+							'\'success\'',
+							'\'basic\''
+						]
+					}],
+					description: 'Set the tooltip color variant.'
+				}, {
+					name: 'width',
+					types: ['string'],
+					description: 'Set the tooltip width. (eg. 200px, 20rem, 50%, etc.)'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the tooltip div wrapper.'
 				}
 			],
 			accessibility: [

@@ -275,68 +275,69 @@ class CSTransferPreview extends React.Component {
 			],
 			properties: [
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'dataSource',
-					description: 'Tooltip help text content'
-				},
-				{
-					propertyName: 'onChange',
-					description: 'Logic for onChange event'
-				},
-				{
-					propertyName: 'oneWay',
-					description: 'Display as single direction style',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'searchable',
-					description: 'Renders search box for both lists',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'selectAll',
-					description: 'Renders checkbox which will select all items of one list. It can be only used with check-list variant',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'sourceHelpText',
-					description: 'Source list help text for tooltip display'
-				},
-				{
-					propertyName: 'sourceLabel',
-					description: 'Label of the source list'
-				},
-				{
-					propertyName: 'targetHelpText',
-					description: 'Target list help text for tooltip display'
-				},
-				{
-					propertyName: 'targetKeys',
-					description: 'A set of keys of elements that are listed in the target column'
-				},
-				{
-					propertyName: 'targetLabel',
-					description: 'Label of the target list'
-				},
-				{
-					propertyName: 'variant',
-					description: 'Transfer list variant',
-					options: [
-						'simple-list',
-						'check-list'
-					]
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the transfer.'
+				}, {
+					name: 'dataSource',
+					customTypes: [{
+						name: 'Array<CSTransferItemsType>',
+						types: ['object']
+					}],
+					description: 'Define an array of objects to be used as a data source. The object accepts disabled, key and name attributes. In case the key is within targetKeys, that item will be displayed in the target list.'
+				}, {
+					name: 'onChange',
+					types: ['(value) => any'],
+					description: 'Handler method for the change event.'
+				}, {
+					name: 'oneWay',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Only allow left-to-right transfers.'
+				}, {
+					name: 'searchable',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Render a search bar for both lists.'
+				}, {
+					name: 'selectAll',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Render a checkbox to select all items in a list. It can be only used with the check-list variant.'
+				}, {
+					name: 'sourceHelpText',
+					types: ['string'],
+					description: 'Set the text to be displayed in the source list tooltip.'
+				}, {
+					name: 'sourceLabel',
+					required: true,
+					types: ['string'],
+					description: 'Set the source list label.'
+				}, {
+					name: 'targetHelpText',
+					types: ['string'],
+					description: 'Set the text to be displayed in the target list tooltip.'
+				}, {
+					name: 'targetKeys',
+					types: ['Array<string>'],
+					description: 'A set of keys for the elements listed in the target list.'
+				}, {
+					name: 'targetLabel',
+					required: true,
+					types: ['string'],
+					description: 'Set the target list label.'
+				}, {
+					name: 'variant',
+					customTypes: [{
+						name: 'CSTransferVariant',
+						types: ['\'simple-list\'', '\'check-list\'']
+					}],
+					default: '\'simple-list\'',
+					description: 'Set a transfer list variant.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the transfer wrapper div.'
 				}
 			]
 		};
@@ -349,37 +350,15 @@ class CSTransferPreview extends React.Component {
 		return json;
 	}
 
-	getCSTransferItemDoc() {
-		const json = {
-			name: 'Transfer Item',
-			properties: [
-				{
-					propertyName: 'disabled',
-					description: 'Logic for disabled state',
-					helperPropInComponents: [
-						'Transfer Item'
-					],
-					options: [
-						'false',
-						'true'
-					]
-				}
-			]
-		};
-
-		return json;
-	}
-
 	render() {
 		const component = this.getDoc();
-		const component2 = this.getCSTransferItemDoc();
 
 		return (
 			<>
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples} />
-					<PreviewTable components={[component, component2]} />
+					<PreviewTable components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

@@ -252,60 +252,56 @@ class CSToastPreview extends React.Component {
 			],
 			properties: [
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'closeButton',
-					description: 'Logic for close button state'
-				},
-				{
-					propertyName: 'detail',
-					description: 'Text content for toast detail'
-				},
-				{
-					propertyName: 'iconName',
-					description: 'Name of icon from icons library which overrides the default icon defined by variant'
-				},
-				{
-					propertyName: 'iconVisibility',
-					description: 'Logic for icon visibility state',
-					options: [
-						'true',
-						'false'
-					]
-				},
-				{
-					propertyName: 'id',
-					description: 'Toast id value'
-				},
-				{
-					propertyName: 'minWidth',
-					description: 'Minimum width of toast (default is 30rem)',
-					options: [
-						'e.g.',
-						'100%',
-						'300px',
-						'20rem'
-					]
-				},
-				{
-					propertyName: 'onClose',
-					description: 'Close Alert'
-				},
-				{
-					propertyName: 'text',
-					description: 'Text content for main toast message'
-				},
-				{
-					propertyName: 'variant',
-					description: 'Color variant of toast',
-					options: [
-						'info',
-						'success',
-						'warning',
-						'error'
-					]
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the toast.'
+				}, {
+					name: 'closeButton',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Show the close button.'
+				}, {
+					name: 'detail',
+					types: ['string'],
+					description: 'Set the text content for the toast detail.'
+				}, {
+					name: 'iconName',
+					types: ['string'],
+					description: 'Override the default icon defined by the variant.'
+				}, {
+					name: 'iconVisibility',
+					types: ['boolean'],
+					default: 'true',
+					description: 'Show or hide the icon.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the toast.'
+				}, {
+					name: 'minWidth',
+					types: ['string'],
+					default: '30rem',
+					description: 'Set the toast minimum width. (eg. 200px, 20rem, 50%, etc.)'
+				}, {
+					name: 'onClose',
+					types: ['(event) => void'],
+					description: 'Handler method for closing the toast.'
+				}, {
+					name: 'text',
+					types: ['string'],
+					description: 'Set textual content for the toast.'
+				}, {
+					name: 'variant',
+					required: true,
+					customTypes: [{
+						name: 'CSToastVariant',
+						types: ['\'info\'', '\'success\'', '\'warning\'', '\'error\'']
+					}],
+					description: 'Set the colour and icon variant of the toast.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the toast wrapper div.'
 				}
 			],
 			accessibility: [

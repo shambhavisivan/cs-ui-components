@@ -257,127 +257,118 @@ class CSTextareaPreview extends React.Component {
 			],
 			properties: [
 				{
-					propertyName: 'borderType',
-					description: 'Input border type',
-					options: [
-						'round',
-						'square'
-					]
-				},
-				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'disabled',
-					description: 'Logic for disabled state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'error',
-					description: 'Error state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'errorMessage',
-					description: 'Error message text'
-				},
-				{
-					propertyName: 'helpText',
-					description: 'Textarea help text for tooltip display'
-				},
-				{
-					propertyName: 'hidden',
-					description: 'Hidden state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'id',
-					description: 'Textarea id value'
-				},
-				{
-					propertyName: 'label',
-					description: 'Textarea label text to display'
-				},
-				{
-					propertyName: 'labelHidden',
-					description: 'Logic for visibility of the label',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'labelTitle',
-					description: 'Logic for label title attribute',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'maxHeight',
-					description: 'Max height value for textarea',
-					options: [
-						'e.g.',
-						'160px',
-						'5rem'
-					]
-				},
-				{
-					propertyName: 'onChange',
-					description: 'Logic for onChange event'
-				},
-				{
-					propertyName: 'placeholder',
-					description: 'Textarea placeholder to display'
-				},
-				{
-					propertyName: 'readOnly',
-					description: 'Read only description',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'required',
-					description: 'Required state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'rows',
-					description: 'Textarea rows value'
-				},
-				{
-					propertyName: 'title',
-					description: 'Title to display'
-				},
-				{
-					propertyName: 'tooltipPosition',
-					description: 'Textarea tooltip position',
-					options: [
-						'top-right',
-						'top-left',
-						'bottom-right',
-						'bottom-left'
-					]
-				},
-				{
-					propertyName: 'value',
-					description: 'Textarea value to display'
+					name: 'borderType',
+					customTypes: [{
+						name: 'CSTextareaBorderType',
+						types: ['\'round\'', '\'square\'']
+					}],
+					default: '\'round\'',
+					description: 'Set a border style for the textarea.'
+				}, {
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the textarea.'
+				}, {
+					name: 'disabled',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Disable the textarea.'
+				}, {
+					name: 'error',
+					types: ['boolean'],
+					description: 'Toggle the error state.'
+				}, {
+					name: 'errorMessage',
+					customTypes: [{
+						name: 'CSFieldErrorMsgType',
+						types: ['string', 'Array<string>']
+					}],
+					description: 'Set the error message or messages for the textarea.'
+				}, {
+					name: 'helpText',
+					types: ['string'],
+					description: 'Set the text to be displayed in the tooltip.'
+				}, {
+					name: 'hidden',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Control the hidden attribute.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the textarea.'
+				}, {
+					name: 'label',
+					required: true,
+					types: ['string'],
+					description: 'Set the textarea label.'
+				}, {
+					name: 'labelHidden',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Hide the textarea label.'
+				}, {
+					name: 'labelTitle',
+					types: ['boolean'],
+					description: 'Control whether to set the title attribute.'
+				}, {
+					name: 'maxHeight',
+					types: ['string'],
+					description: 'Set the max-height for the textarea. (eg. 200px, 20rem, etc.)'
+				}, {
+					name: 'onChange',
+					types: ['(event) => any'],
+					description: 'Handler method for the change event.'
+				}, {
+					name: 'placeholder',
+					types: ['string'],
+					description: 'Set a textarea placeholder.'
+				}, {
+					name: 'readOnly',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Control whether to apply the readonly attribute.'
+				}, {
+					name: 'required',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Make the textarea required.'
+				}, {
+					name: 'rows',
+					types: ['number'],
+					description: 'Set how many rows the textarea defaults to.'
+				}, {
+					name: 'tooltipPosition',
+					customTypes: [{
+						name: 'CSTooltipPosition',
+						types: [
+							'\'bottom-right\'',
+							'\'bottom-left\'',
+							'\'top-right\'',
+							'\'top-left\'',
+							'\'top-center\'',
+							'\'bottom-center\'',
+							'\'right-top\'',
+							'\'right-center\'',
+							'\'right-bottom\'',
+							'\'left-top\'',
+							'\'left-center\'',
+							'\'left-bottom\''
+						]
+					}],
+					description: 'Set the tooltip position for the textarea.'
+				}, {
+					name: 'value',
+					types: ['string'],
+					description: 'Set the textarea value.'
+				}, {
+					name: 'title',
+					types: ['string'],
+					description: 'Set the textarea title.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the textarea.'
 				}
 			],
 			accessibility: [

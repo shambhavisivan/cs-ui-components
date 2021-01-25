@@ -487,7 +487,7 @@ class CSDateTimePickerPreview extends React.Component {
 				}, {
 					name: 'helpText',
 					types: ['string'],
-					description: 'Set the help text to be displayed for the datetimepicker.'
+					description: 'Set the text to be displayed in the tooltip.'
 				}, {
 					name: 'id',
 					types: ['string'],

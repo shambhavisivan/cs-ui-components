@@ -340,7 +340,7 @@ class CSSelectPreview extends React.Component {
 				}, {
 					name: 'helpText',
 					types: ['string'],
-					description: 'Set the help text to be displayed for the select.'
+					description: 'Set the text to be displayed in the tooltip.'
 				}, {
 					name: 'hidden',
 					types: ['boolean'],

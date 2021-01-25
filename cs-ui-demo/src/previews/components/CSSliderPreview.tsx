@@ -392,113 +392,116 @@ class CSSliderPreview extends React.Component {
 			],
 			properties: [
 				{
-					propertyName: 'className',
-					description: 'For implementing custom class to component'
-				},
-				{
-					propertyName: 'disabled',
-					description: 'Logic for disabled state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'error',
-					description: 'Error state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'errorMessage',
-					description: 'Error message text'
-				},
-				{
-					propertyName: 'helpText',
-					description: 'Slider help text for tooltip display'
-				},
-				{
-					propertyName: 'id',
-					description: 'Slider id value'
-				},
-				{
-					propertyName: 'label',
-					description: 'Slider label text to display'
-				},
-				{
-					propertyName: 'labelHidden',
-					description: 'Logic for visibility of the label',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'labelTitle',
-					description: 'Logic for label title attribute',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'max',
-					description: 'Slider range max value'
-				},
-				{
-					propertyName: 'min',
-					description: 'Slider range max value'
-				},
-				{
-					propertyName: 'onChange',
-					description: 'Logic for onChange event'
-				},
-				{
-					propertyName: 'required',
-					description: 'Required state',
-					options: [
-						'false',
-						'true'
-					]
-				},
-				{
-					propertyName: 'size',
-					description: 'Slider size',
-					options: [
-						'default',
-						'large',
-						'medium',
-						'small',
-						'xsmall'
-					]
-				},
-				{
-					propertyName: 'step',
-					description: 'Slider range granularity'
-				},
-				{
-					propertyName: 'stepValues',
-					description: 'Custom array for slider range granularity'
-				},
-				{
-					propertyName: 'title',
-					description: 'Title to display'
-				},
-				{
-					propertyName: 'tooltipPosition',
-					description: 'Slider tooltip position',
-					options: [
-						'top-right',
-						'top-left',
-						'bottom-right',
-						'bottom-left'
-					]
-				},
-				{
-					propertyName: 'value',
-					description: 'Slider initial value'
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the slider.'
+				}, {
+					name: 'disabled',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Disable the slider.'
+				}, {
+					name: 'error',
+					types: ['boolean'],
+					description: 'Toggle the error state.'
+				}, {
+					name: 'errorMessage',
+					customTypes: [{
+						name: 'CSFieldErrorMsgType',
+						types: ['string', 'Array<string>']
+					}],
+					description: 'Set the error message or messages for the slider.'
+				}, {
+					name: 'helpText',
+					types: ['string'],
+					description: 'Set the text to be displayed in the tooltip.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the slider.'
+				}, {
+					name: 'label',
+					required: true,
+					types: ['string'],
+					description: 'Set the slider label.'
+				}, {
+					name: 'labelHidden',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Hide the slider label.'
+				}, {
+					name: 'labelTitle',
+					types: ['boolean'],
+					description: 'Control whether to set the title attribute.'
+				}, {
+					name: 'max',
+					types: ['string'],
+					description: 'Set the slider range max value.'
+				}, {
+					name: 'min',
+					types: ['string'],
+					description: 'Set the slider range min value.'
+				}, {
+					name: 'onChange',
+					types: ['(event) => void'],
+					description: 'Handler method for the change event.'
+				}, {
+					name: 'required',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Make the slider required.'
+				}, {
+					name: 'size',
+					customTypes: [{
+						name: 'CSSliderSize',
+						types: [
+							'\'xsmall\'',
+							'\'small\'',
+							'\'medium\'',
+							'\'large\''
+						]
+					}],
+					description: 'Set the slider size.'
+				}, {
+					name: 'step',
+					types: ['any'],
+					description: 'Set the slider range granularity.'
+				}, {
+					name: 'stepValues',
+					types: ['Array<number>'],
+					description: 'Set a custom array for slider range granularity.'
+				}, {
+					name: 'title',
+					types: ['string'],
+					description: 'Set the slider title.'
+				}, {
+					name: 'tooltipPosition',
+					customTypes: [{
+						name: 'CSTooltipPosition',
+						types: [
+							'\'bottom-right\'',
+							'\'bottom-left\'',
+							'\'top-right\'',
+							'\'top-left\'',
+							'\'top-center\'',
+							'\'bottom-center\'',
+							'\'right-top\'',
+							'\'right-center\'',
+							'\'right-bottom\'',
+							'\'left-top\'',
+							'\'left-center\'',
+							'\'left-bottom\''
+						]
+					}],
+					description: 'Set the tooltip position for the slider.'
+				}, {
+					name: 'value',
+					types: ['string'],
+					description: 'Set the slider default value.'
+				}, {
+					name: '[key: string]',
+					types: ['any'],
+					description: 'Spreads the rest of the props to the slider input.'
 				}
 			],
 			accessibility: [
