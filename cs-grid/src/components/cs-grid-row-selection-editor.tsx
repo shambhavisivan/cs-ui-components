@@ -23,6 +23,7 @@ export class CSGridRowSelectionEditor
 	implements CSGridCellEditor {
 	dropDownRefs: Array<HTMLButtonElement> = [];
 	focusedIndex = 0;
+	contentsRef: React.RefObject<HTMLSpanElement>;
 
 	constructor(props: CSGridCellEditorProps<boolean> & ActionProps<boolean>) {
 		super(props);
@@ -34,12 +35,12 @@ export class CSGridRowSelectionEditor
 
 		if (this.props.noOfInlineIcons !== undefined) {
 			start = noOfVisibleButtons(
-				this.props.node.id,
+				`${this.props.node.id}-${this.props.column.getId()}`,
 				this.props.column,
 				maxNoOfInlineIcons,
 				actions.length,
 				true,
-				0
+				this.contentsRef?.current?.offsetWidth
 			);
 		}
 
@@ -87,7 +88,7 @@ export class CSGridRowSelectionEditor
 			if (dropDownRefs[0]) {
 				dropDownRefs[0].focus();
 			}
-		});
+		}, 50);
 
 		document.addEventListener('keydown', this.onKeyPress);
 	}
