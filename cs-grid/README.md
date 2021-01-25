@@ -16,6 +16,8 @@ Besides the standard set of features you'd expect from any grid cs-grid includes
 
 Release Notes
 ------------------
+####1.2.53
+ * Fix problem with action dropdown not displaying/displaying fewer actions than available
 ####1.2.52
  * Fix conversion logic to legacy row format
  ####1.2.51
