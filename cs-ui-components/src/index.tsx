@@ -42,7 +42,8 @@ import CSInputNumber, { CSInputNumberBorderType } from './components/CSInputNumb
 import CSInputSearch, { CSInputSearchBorderType } from './components/CSInputSearch';
 import CSInputText, { CSInputTextBorderType } from './components/CSInputText';
 import CSLabel from './components/CSLabel';
-import CSList from './components/list/CSList';
+import CSList, { CSListSize, CSListVariant } from './components/list/CSList';
+import CSListGroup, { CSListGroupCheckboxOption } from './components/list/CSListGroup';
 import CSListItem from './components/list/CSListItem';
 import CSLookupField, { CSLookupBorderType } from './components/CSLookupField';
 import CSMainHeader, { CSMainHeaderColor } from './components/main-header/CSMainHeader';
@@ -146,7 +147,11 @@ export {
 	CSInputTextBorderType,
 	CSLabel,
 	CSList,
+	CSListGroup,
+	CSListGroupCheckboxOption,
 	CSListItem,
+	CSListSize,
+	CSListVariant,
 	CSLookupBorderType,
 	CSLookupField,
 	CSMainHeader,

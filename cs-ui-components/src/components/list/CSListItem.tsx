@@ -1,53 +1,106 @@
 import React from 'react';
 import classNames from 'classnames';
+import CSCheckbox from '../CSCheckbox';
+import KeyCode from '../../util/KeyCode';
 
 export interface CSListItemProps {
 	[key: string]: any;
-	active?: string;
 	className?: string;
+	customContent?: React.ReactNode;
+	disabled?: boolean;
 	id?: string;
-	onClick?: (value?: any) => any;
+	onSelect?: (value?: any) => any;
+	selected?: boolean;
 	text?: string;
-	toggleActive?: (e: any) => void;
 }
 
 class CSListItem extends React.Component<CSListItemProps> {
-	onClickHandler = () => {
-		this.props.toggleActive(this.props.text);
-		if (this.props.onClick) {
-			this.props.onClick();
+
+	componentDidUpdate(prevProps: CSListItemProps) {
+		if (prevProps.disabled !== this.props.disabled) {
+			this.props.checkValidItems();
 		}
 	}
+
+	handleSelect = () => {
+		const { itemKey, onSelect, selectHandler } = this.props;
+		if (selectHandler) {
+			selectHandler(itemKey);
+		}
+		if (onSelect) {
+			onSelect();
+		}
+	}
+
+	handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+		const { onSelect } = this.props;
+		if (e.key === KeyCode.Enter || e.key === KeyCode.Space) {
+			if (onSelect) {
+				onSelect();
+			}
+			e.preventDefault();
+		}
+	}
+
 	render() {
 		const {
-			active,
+			checkValidItems,
 			className,
+			customContent,
+			disabled,
 			id,
-			onClick,
+			itemKey,
+			listSize,
+			listVariant,
+			onSelect,
+			selectHandler,
+			selected,
 			text,
-			toggleActive,
 			...rest
 		} = this.props;
 
 		const listItemClasses = classNames(
-			'cs-list-item',
-			{
-				[`${className}`]: className,
-				active: active === text
-			}
-		);
+			'cs-list-item', {
+			'cs-list-item-selected': selected && listVariant === 'simple-list',
+			'cs-list-item-disabled': disabled,
+			[`cs-list-item-${listSize}`]: listSize,
+			[`cs-list-item-${listVariant}`]: listVariant,
+			[`${className}`]: className
+		});
+
+		const listItemText = <span className="cs-list-item-text">{text}</span>;
+		const listItemContent = customContent &&
+			<div className="cs-list-item-custom-content">{customContent}</div>;
 
 		return (
-			<li className="cs-list-item-wrapper" role="none" {...rest}>
-				<button
-					className={listItemClasses}
-					onClick={this.onClickHandler}
-					id={id}
-					role="menuitemradio"
-					aria-selected={active === text}
-				>
-					{text}
-				</button>
+			<li className="cs-list-item-wrapper" role="none" id={id} {...rest}>
+				{listVariant === 'simple-list' ?
+					<div
+						className={listItemClasses}
+						onClick={onSelect}
+						aria-selected={selected}
+						role="button"
+						tabIndex={disabled ? -1 : 0}
+						onKeyDown={this.handleKeyDown}
+					>
+						{listItemText}
+						{listItemContent}
+					</div> :
+					<div className={listItemClasses}>
+						<label className="cs-list-item-check-list-group">
+							<CSCheckbox
+								label="list item"
+								labelHidden
+								variant="brand"
+								onChange={this.handleSelect}
+								checked={selected}
+								disabled={disabled}
+							/>
+							{listItemText}
+						</label>
+						{listItemContent}
+					</div>
+				}
 			</li>
 		);
 	}

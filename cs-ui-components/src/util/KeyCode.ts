@@ -8,6 +8,7 @@ const KeyCode = {
 	Backspace: 'Backspace',
 	Enter: 'Enter',
 	Escape: 'Escape',
+	Space: ' ',
 	Tab: 'Tab'
 };
 

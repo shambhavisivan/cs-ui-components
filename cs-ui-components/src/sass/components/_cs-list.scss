@@ -1,42 +1,195 @@
 /* CS LIST */
+.cs-list-wrapper {
+	display: flex;
+	flex-direction: column;
 
-/* LIST ITEM */
-li.cs-list-item-wrapper {
-	padding: 0;
-	list-style-type: none;
-	button {
-		background: none;
-		border: none;
-		width: 100%;
-		cursor: pointer;
-		text-align: left;
-		font-size: 0.875rem;
-		padding: 0.5rem 1rem;
-		position: relative;
-		user-select: none;
-		@include sc(--cs-list-item-c);
-
-		&:hover, {
-			@include sbg(--cs-list-item-hover-bg);
+	/* CS LIST GROUP HEADER */
+	.cs-list-group-header {
+		display: flex;
+		align-items: stretch;
+		border-radius: 0.25rem;
+		&-inner-wrapper {
+			flex: 1;
+			display: flex;
+			align-items: center;
+			cursor: pointer;
+			padding: 0 0.5rem;
+			background-color: inherit;
+			text-align: left;
+			border-radius: inherit;
+			border: transparent;
+			.cs-icon {
+				transition: transform 0.2s;
+				pointer-events: none;
+			}
+			.cs-checkbox-wrapper {
+				margin-right: 0.5rem;
+			}
 		}
-
-		&:focus {
-			outline: 0;
-			@include sbg(--cs-list-item-focus-bg);
+		&-simple-list, &-check-list {
+			.cs-list-group-header-inner-wrapper {
+				@include css4 {
+					border: 1px solid cvar(--cs-list-item-header-br);
+				}
+				&:hover {
+					@include sbg(--cs-list-item-header-hover);
+				}
+				&:focus, &:active {
+					outline: 0;
+					@include css4 {
+						box-shadow: 0 0 3px cvar(--cs-list-item-header-box);
+					}
+				}
+			}
 		}
+		&-simple-list {
+			@include sbg(--cs-white);
+		}
+		&-check-list {
+			@include sbg(--cs-list-item-header-bg);
+			.cs-list-group-header-title {
+				@include sc(--cs-list-item-header-c);
+				@include overflow-ellipsis;
+				letter-spacing: 0.0625rem;
+				text-transform: uppercase;
+			}
+		}
+		&-custom-content {
+			display: flex;
+			align-items: center;
+			flex: 1;
+			margin-left: 0.5rem;
+		}
+		&-small {
+			min-height: 1.75rem;
+			.cs-list-group-header-title {
+				font-size: 0.8125rem;
+			}
+		}
+		&-medium {
+			min-height: 2rem;
+			.cs-list-group-header-title {
+				font-size: 0.875rem;
+			}
+		}
+		&-large {
+			min-height: 2.5rem;
+			.cs-list-group-header-title {
+				font-size: 1rem;
+			}
+		}
+		&-title {
+			pointer-events: none;
+			&:not(:only-child) {
+				margin-left: 0.5rem;
+			}
+		}
+		&-noncollapsible
+		.cs-list-group-header-inner-wrapper {
+			cursor: default;
+			pointer-events: none;
+		}
+	}
 
-		&.active {
-			font-weight: $font-weight-bold;
-			@include sbg(--cs-list-item-active-bg);
+	/* CS LIST ITEM */
+	.cs-list-item-wrapper {
+		display: flex;
+		align-items: center;
+		.cs-list-item {
+			display: flex;
+			align-items: center;
+			flex: 1;
+			@include sbg(--cs-white);
+			&-simple-list {
+				position: relative;
+				border: none;
+				cursor: pointer;
+				&:hover {
+					@include sbg(--cs-list-item-hover-bg);
+				}
+				&:focus {
+					outline: 0;
+					@include sbg(--cs-list-item-focus-bg);
+				}
+			}
+			&-check-list-group {
+				display: flex;
+				align-items: center;
+				cursor: pointer;
+			}
+			&-selected {
+				font-weight: $font-weight-bold;
+				@include sbg(--cs-list-item-active-bg);
+				&::after {
+					content: "";
+					height: 100%;
+					left: 0;
+					position: absolute;
+					top: 0;
+					width: 4px;
+					@include sbg(--cs-list-item-active-br);
+				}
+			}
+			&-small {
+				min-height: 1.75rem;
+				padding: 0 0.5rem;
+				.cs-list-item-text {
+					font-size: 0.8125rem;
+				}
+			}
+			&-medium {
+				min-height: 2rem;
+				padding: 0 1rem;
+				&.cs-list-item-check-list {
+					padding: 0 0.75rem;
+				}
+				.cs-list-item-text {
+					font-size: 0.875rem;
+				}
+			}
+			&-large {
+				min-height: 2.5rem;
+				padding: 0 1.25rem;
+				&.cs-list-item-check-list {
+					padding: 0 1rem;
+				}
+				.cs-list-item-text {
+					font-size: 1rem;
+				}
+			}
+			&-text:not(:only-child):not(:first-child) {
+				margin-left: 0.5rem;
+			}
+			&-custom-content {
+				display: flex;
+				align-items: center;
+				margin-left: 0.5rem;
+				flex: 1;
+			}
+			&-disabled {
+				pointer-events: none;
+				cursor: default;
+				.cs-list-item-text {
+					@include sc(--cs-list-item-disabled-c);
+					user-select: text;
+				}
+			}
+		}
+	}
 
-			&::after {
-				content: "";
-				height: 100%;
-				left: 0;
-				position: absolute;
-				top: 0;
-				width: 4px;
-				@include sbg(--cs-list-item-active-br);
+	/* CS LIST GROUP */
+	.cs-list-group {
+		display: flex;
+		flex-direction: column;
+		.cs-list-item-wrapper .cs-list-item {
+			&-small {
+				padding-left: 1.75rem;
+			}
+			&-medium {
+				padding-left: 2.125rem;
+			}
+			&-large {
+				padding-left: 2.175rem;
 			}
 		}
 	}
