@@ -99,7 +99,6 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 		const textareaClasses = classNames(
 			'cs-textarea', {
 			'cs-textarea-error': error,
-			[`${className}`]: className,
 			[`cs-textarea-${borderType}`]: borderType
 		}
 		);
@@ -111,6 +110,7 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 		const textareaWrapperClasses = classNames(
 			'cs-textarea-wrapper',
 			{
+				[`${className}`]: className,
 				'cs-element-hidden': hidden
 			}
 		);

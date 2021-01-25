@@ -39,12 +39,16 @@ class CSToast extends React.Component<CSToastProps> {
 			...rest
 		} = this.props;
 
-		const toastClasses = classNames(
-			'cs-toast',
-			[`cs-toast-${variant}`],
+		const toastWrapperClasses = classNames(
+			'cs-toast-wrapper',
 			{
 				[`${className}`]: className
 			}
+		);
+
+		const toastClasses = classNames(
+			'cs-toast',
+			[`cs-toast-${variant}`]
 		);
 
 		const style: CSSProperties = {
@@ -55,7 +59,7 @@ class CSToast extends React.Component<CSToastProps> {
 
 		return (
 			<div
-				className="cs-toast-wrapper"
+				className={toastWrapperClasses}
 				id={id}
 				{...rest}
 			>

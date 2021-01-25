@@ -114,8 +114,8 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 				'cs-checkbox-read-only': readOnly
 			}
 		);
-		const checkboxGroupClasses = classNames(
-			'cs-checkbox-group',
+		const checkboxWrapperClasses = classNames(
+			'cs-checkbox-wrapper',
 			{
 				[`${className}`]: className
 			}
@@ -129,7 +129,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 		);
 		return (
 			<>
-				<div className="cs-checkbox-wrapper" >
+				<div className={checkboxWrapperClasses}>
 					{(label && !labelHidden) &&
 						<CSLabel
 							htmlFor={this.uniqueAutoId}
@@ -140,7 +140,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 							title={labelTitle ? label : null}
 						/>
 					}
-					<label className={checkboxGroupClasses}>
+					<label className="cs-checkbox-group">
 						<input
 							onChange={this.handleOnChange}
 							className={checkboxClasses}

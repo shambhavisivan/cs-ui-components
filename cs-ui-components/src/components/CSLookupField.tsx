@@ -146,17 +146,10 @@ class CSLookupField extends React.Component<CSLookupFieldProps, CSLookupFieldSta
 		const lookupFieldWrapperClasses = classNames(
 			'cs-lookup-field-wrapper',
 			{
+				[`${className}`]: className,
 				'cs-lookup-field-hidden': hidden
 			}
 		);
-
-		const lookupFieldGroupClasses = classNames(
-			'cs-lookup-field-group',
-			{
-				[`${className}`]: className
-			}
-		);
-
 		const lookupFieldClasses = classNames(
 			'cs-lookup-field',
 			{
@@ -177,7 +170,7 @@ class CSLookupField extends React.Component<CSLookupFieldProps, CSLookupFieldSta
 						title={labelTitle ? label : null}
 					/>
 				}
-				<div className={lookupFieldGroupClasses}>
+				<div className="cs-lookup-field-group">
 					<CSIcon
 						name="search"
 						className="cs-lookup-field-search"

@@ -114,16 +114,10 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 			}
 		);
 
-		const selectGroupClasses = classNames(
-			'cs-select-group',
-			{
-				[`${className}`]: className
-			}
-		);
-
 		const selectWrapperClasses = classNames(
 			'cs-select-wrapper',
 			{
+				[`${className}`]: className,
 				'cs-element-hidden': hidden
 			}
 		);
@@ -141,7 +135,7 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 						className={disabled ? 'cs-label-disabled' : ''}
 					/>
 				}
-				<div className={selectGroupClasses}>
+				<div className="cs-select-group">
 					<select
 						className={selectClasses}
 						id={this.uniqueAutoId}

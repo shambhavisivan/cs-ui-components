@@ -156,6 +156,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 		const inputNumberWrapperClasses = classNames(
 			'cs-input-number-wrapper',
 			{
+				[`${className}`]: className,
 				'cs-element-hidden': hidden
 			}
 		);
@@ -165,7 +166,6 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 			{
 				[`cs-input-number-${borderType}`]: borderType,
 				'cs-input-number-error': error,
-				[`${className}`]: className,
 				[`cs-input-number-hide-spinner-${hideSpinner}`]: hideSpinner
 			}
 		);

@@ -51,11 +51,17 @@ class CSRadio extends React.Component<CSRadioProps> {
 			...rest
 		} = this.props;
 
+		const radioWrapperClasses = classNames(
+			'cs-radio-wrapper',
+			{
+				[`${className}`]: className
+			}
+		);
+
 		const radioGroupClasses = classNames(
 			'cs-radio-group',
 			{
 				'cs-radio-error': error === true,
-				[`${className}`]: className,
 				[`cs-radio-${variant}`]: variant,
 				'cs-radio-disabled': disabled
 			}
@@ -78,7 +84,7 @@ class CSRadio extends React.Component<CSRadioProps> {
 		});
 
 		return (
-			<div className="cs-radio-wrapper" {...rest}>
+			<div className={radioWrapperClasses} {...rest}>
 				{(label && !labelHidden) &&
 					<CSLabel
 						htmlFor={uniqueAutoId}

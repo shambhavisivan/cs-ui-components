@@ -60,18 +60,18 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 		const sectionClasses = classNames(
 			'cs-section',
 			{
-				[`${this.props.className}`]: this.props.className
+				[`${className}`]: className
 			}
 		);
 		const sectionTitleClasses = classNames(
 			'cs-section-wrapper', {
-				'cs-section-wrapper-padding': this.props.collapsed === true && this.props.collapsible !== true
+				'cs-section-wrapper-padding': collapsed === true && collapsible !== true
 			}
 		);
 		return (
 			<section
 				className={sectionClasses}
-				id={this.props.id}
+				id={id}
 				{...rest}
 			>
 				<h3 className={sectionTitleClasses}>
@@ -83,10 +83,10 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 							aria-roledescription="section"
 						>
 							<CSIcon name="chevronright" rotate={this.state.collapsed ? null : '90'} />
-							<span className="cs-section-title">{this.props.title}</span>
+							<span className="cs-section-title">{title}</span>
 						</button>
 					:
-						<span className="cs-section-title">{this.props.title}</span>
+						<span className="cs-section-title">{title}</span>
 
 					}
 				</h3>

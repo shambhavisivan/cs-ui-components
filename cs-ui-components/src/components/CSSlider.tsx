@@ -137,10 +137,16 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 			...rest
 		} = this.props;
 
+		const sliderWrapperClasses = classNames(
+			'cs-slider-wrapper',
+			{
+				[`${className}`]: className
+			}
+		);
+
 		const sliderGroupClasses = classNames(
 			'cs-slider-group',
 			{
-				[`${className}`]: className,
 				[`cs-slider-group-${size}`]: size
 			}
 		);
@@ -161,7 +167,7 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 		);
 
 		return (
-			<div className="cs-slider-wrapper">
+			<div className={sliderWrapperClasses}>
 				{(label && !labelHidden) &&
 					<CSLabel
 						htmlFor={this.uniqueAutoId}

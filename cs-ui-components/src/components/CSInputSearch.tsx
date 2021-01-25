@@ -172,6 +172,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 		const inputSearchWrapperClasses = classNames(
 			'cs-input-search-wrapper',
 			{
+				[`${className}`]: className,
 				'cs-element-hidden': hidden
 			}
 		);
@@ -181,8 +182,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 			{
 				'cs-clear': this.state.value,
 				'cs-icon-left': iconPosition === 'left',
-				'cs-icon-right': iconPosition === 'right',
-				[`${className}`]: className
+				'cs-icon-right': iconPosition === 'right'
 			}
 		);
 

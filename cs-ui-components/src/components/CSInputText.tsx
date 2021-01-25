@@ -114,6 +114,7 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 		const inputTextWrapperClasses = classNames(
 			'cs-input-text-wrapper',
 			{
+				[`${className}`]: className,
 				'cs-element-hidden': hidden
 			}
 		);
@@ -122,8 +123,7 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 			'cs-input-text',
 			{
 				[`cs-input-text-${borderType}`]: borderType,
-				'cs-input-text-error': error,
-				[`${className}`]: className
+				'cs-input-text-error': error
 			}
 		);
 

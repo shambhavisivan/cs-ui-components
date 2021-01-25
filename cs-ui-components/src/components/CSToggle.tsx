@@ -83,16 +83,10 @@ class CSToggle extends React.Component<CSToggleProps, CSToggleState> {
 			}
 		);
 
-		const toggleWrapperClasses = classNames(
-			'cs-toggle-wrapper',
-			{
-				[`${className}`]: className
-			}
-		);
-
 		const toggleElementWrapperClasses = classNames(
 			'cs-toggle-element',
 			{
+				[`${className}`]: className,
 				[`cs-toggle-label-${labelPosition}`]: labelPosition
 			}
 		);
@@ -110,7 +104,7 @@ class CSToggle extends React.Component<CSToggleProps, CSToggleState> {
 							title={labelTitle ? label : null}
 						/>
 					}
-					<label className={toggleWrapperClasses}>
+					<label className="cs-toggle-wrapper">
 						<input
 							onChange={this.handleOnChange}
 							className={toggleClasses}
