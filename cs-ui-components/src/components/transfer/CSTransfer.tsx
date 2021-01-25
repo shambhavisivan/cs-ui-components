@@ -278,7 +278,7 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 							iconDisplay="icon-only"
 							disabled={!sourceSelected.length}
 							onClick={() => this.moveItemsTo('target')}
-							onKeyDown={event => this.handleActionsKeyDown(event)}
+							onKeyDown={(event: React.KeyboardEvent<any>) => this.handleActionsKeyDown(event)}
 						/>
 						{!oneWay &&
 							<CSButton
@@ -287,7 +287,7 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 								iconDisplay="icon-only"
 								disabled={!targetSelected.length}
 								onClick={() => this.moveItemsTo('source')}
-								onKeyDown={event => this.handleActionsKeyDown(event)}
+								onKeyDown={(event: React.KeyboardEvent<any>) => this.handleActionsKeyDown(event)}
 							/>
 						}
 					</div>
