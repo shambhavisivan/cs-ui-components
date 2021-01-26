@@ -37,6 +37,7 @@ export interface CSSliderState {
 	step?: any;
 	min?: string;
 	max?: string;
+	exportedValue?: string;
 }
 
 export function fixControlledValue<T>(value: T) {
@@ -68,7 +69,8 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 			steps: [],
 			step: props.step,
 			min: props.min,
-			max: props.max
+			max: props.max,
+			exportedValue: ''
 		};
 		this.stepsIcons = this.stepsIcons.bind(this);
 	}
@@ -151,7 +153,12 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 			}
 		);
 
-		const exportedValue = `${stepValues !== undefined ? stepValues[Number(this.state.value)] : this.state.value}`;
+		const handleValue = () => {
+			const valueToExport = `${stepValues !== undefined ? stepValues[Number(this.state.value)] : this.state.value}`;
+			this.setState({
+				exportedValue: valueToExport
+			});
+		};
 
 		const allSteps = this.state.steps;
 		const percentageRange = ((Number(this.state.value) - Number(min)) / (Number(max) - Number(min))) * 100;
@@ -191,6 +198,8 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 						value={fixControlledValue(this.state.value)}
 						type="range"
 						onChange={this.handleOnChange}
+						onMouseUp={handleValue}
+						onKeyUp={handleValue}
 						title={title}
 						aria-required={required}
 						aria-invalid={error}
@@ -223,7 +232,6 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 							<span className={valueClasses} style={valueStyle}>{this.state.value}</span>
 						</div>
 					) : null}
-					<div>{exportedValue}</div>
 				</div>
 				{(error && errorMessage) &&
 					<CSFieldErrorMsg message={errorMessage} />
@@ -232,7 +240,5 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 		);
 	}
 }
-
-// export const exportedValue: any;
 
 export default CSSlider;
