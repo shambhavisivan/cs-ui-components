@@ -52,7 +52,7 @@
 			bottom: 0;
 			left: 0.6875rem;
 			right: 0;
-			&.cs-custom-mutiselect-input {
+			&.cs-custom-ms-input {
 				position: relative;
 				top: unset;
 				bottom: unset;
@@ -67,14 +67,15 @@
 				padding-right: 3rem;
 				overflow: hidden;
 				text-overflow: ellipsis;
+				background: inherit;
 			}
 		}
-		.cs-selected-input-item {
+		.cs-selected-input-option {
 			position: relative;
 			user-select: none;
 			left: 0.125rem;
 			&.cs-custom-select-dropdown-open {
-				@include sc(--cs-custom-selected-li-c);
+				@include sc(--cs-selected-input-option-c);
 			}
 		}
 		&-square {
@@ -99,7 +100,7 @@
 			flex-wrap: wrap;
 			max-width: 100%;
 			width: auto;
-			.cs-selected-item {
+			.cs-option-ms-item-selected {
 				display: inline-flex;
 				align-items: center;
 				justify-content: space-between;
@@ -110,21 +111,21 @@
 				padding: 0.125rem 0.25rem 0.125rem 0.5rem;
 				margin: 0 0.25rem;
 				position: relative;
-				@include sbg(--cs-custom-select-selected-item-bg);
+				@include sbg(--cs-option-ms-item-selected-bg);
 				@include css4 {
-					border: 1px solid cvar(--cs-custom-select-selected-item-br);
+					border: 1px solid cvar(--cs-option-ms-item-selected-br);
 				}
 				&:hover {
-					@include sbg(--cs-custom-selected-hover);
+					@include sbg(--cs-option-ms-item-selected-hover);
 				}
 				&:focus-within {
 					outline: 0;
 					@include css4 {
-						border: 1px solid cvar(--cs-custom-select-selected-item-focus);
-						box-shadow: 0 0 3px cvar(--cs-custom-select-selected-item-shadow);
+						border: 1px solid cvar(--cs-option-ms-item-selected-focus);
+						box-shadow: 0 0 3px cvar(--cs-option-ms-item-selected-shadow);
 					}
 				}
-				.cs-list-item-value {
+				.cs-option-value {
 					@include overflow-ellipsis;
 				}
 			}
@@ -160,7 +161,7 @@
 			margin-left: 0.5rem;
 		}
 	}
-	.cs-list-item {
+	.cs-option {
 		cursor: pointer;
 		padding: 0.5rem 0.75rem;
 		outline: 0;
@@ -176,19 +177,19 @@
 			border-bottom-left-radius: 0.25rem;
 			border-bottom-right-radius: 0.25rem;
 		}
-		.cs-list-item-value {
+		.cs-option-value {
 			@include overflow-ellipsis;
 		}
-		.cs-select-check-icon {
+		.cs-option-check-icon {
 			display: flex;
 			justify-content: center;
 			width: 1.5rem;
 			margin-right: 0.25rem;
 		}
-		&.cs-selected-list-item {
-			@include sbg(--cs-custom-selected-li-bg);
+		&.cs-option-list-item-selected {
+			@include sbg(--cs-option-list-item-selected-bg);
 		}
-		&:hover, &.cs-active-item {
+		&:hover, &.cs-option-active {
 			@include sbg(--cs-custom-select-dropdown-hover-bg);
 		}
 	}

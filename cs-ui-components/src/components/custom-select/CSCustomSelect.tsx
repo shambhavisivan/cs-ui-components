@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactChildren, ReactElement, MutableRefObject, ReactComponentElement } from 'react';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from '../CSFieldErrorMsg';
 import CSIcon from '../CSIcon';
 import CSLabel from '../CSLabel';
@@ -10,6 +10,12 @@ import classNames from 'classnames';
 import KeyCode from '../../util/KeyCode';
 
 export type CSCustomSelectBorderType = 'square' | 'round';
+export type CSCustomSelectExportValueType = 'itemKey' | 'value';
+
+export interface CSOptionItem {
+	value: string;
+	itemKey: string;
+}
 
 export interface CSCustomSelectProps {
 	[key: string]: any;
@@ -18,6 +24,7 @@ export interface CSCustomSelectProps {
 	disabled?: boolean;
 	error?: boolean;
 	errorMessage?: CSFieldErrorMsgType;
+	exportValue?: CSCustomSelectExportValueType;
 	helpText?: string;
 	hidden?: boolean;
 	id?: string;
@@ -27,24 +34,24 @@ export interface CSCustomSelectProps {
 	multiselect?: boolean;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => any;
 	onSelectChange?: (value?: any) => any;
-	optionsList?: Array<any>;
 	required?: boolean;
 	title?: string;
 	tooltipPosition?: CSTooltipPosition;
+	value?: string | Array<string>;
 }
 
 export interface CSCustomSelectState {
 	activeListItem: number;
 	searchTerm: string;
-	selectedItem: string;
-	selectedOptions: Array<string>;
+	selectedItem: CSOptionItem;
+	selectedOptions: Array<CSOptionItem>;
 	toggle: boolean;
 }
 
 class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelectState> {
-	private dropdownNode: HTMLUListElement;
+	private dropdownNode: React.RefObject<HTMLUListElement>;
 	private input: HTMLInputElement;
-	private filteredList: Array<string>;
+	private filteredList: Array<any>;
 
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
 
@@ -55,24 +62,56 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 			toggle: false,
 			searchTerm: '',
 			selectedOptions: [],
-			selectedItem: '',
+			selectedItem: {
+				itemKey: '',
+				value: ''
+			},
 			activeListItem: null
 		};
+
+		this.dropdownNode = React.createRef();
 	}
 
 	componentDidMount() {
 		document.addEventListener('click', this.handleOutsideClick);
-		this.filteredList = this.props.optionsList;
+		if (this.props.value) {
+			this.setDefaultOptions();
+		}
 	}
 
 	componentWillUnmount() {
 		document.removeEventListener('click', this.handleOutsideClick);
 	}
 
-	toggle = () => {
-		this.setState({ toggle: !this.state.toggle });
+	// Sets default options if value prop is set based on type of value
+	setDefaultOptions = () => {
+		const { children, multiselect, value } = this.props;
+		if (typeof value === 'string') {
+			let option: any;
+			option = React.Children.toArray(children).find(
+				(child: React.ReactElement) =>
+					child.props.itemKey === value
+			);
+
+			this.setState({ selectedItem: this.getOptionData(option) });
+		} else if (Array.isArray(value) && multiselect) {
+			const options: Array<CSOptionItem> = [];
+			React.Children.forEach(children, (child: React.ReactElement) => {
+				const optionData = this.getOptionData(child as unknown as CSOption);
+				if (value.includes(optionData.itemKey)) {
+					options.push(optionData);
+				}
+			});
+
+			this.setState({ selectedOptions: options });
+		}
 	}
 
+	/*
+		Sets searchTerm state to value typed in input field.
+		By populating input field dropdown is opened and the first item that matches
+		searchTerm value is highlighted.
+	*/
 	search = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { onChange } = this.props;
 		this.setState({
@@ -85,76 +124,34 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		}
 	}
 
-	onSelect = (e: any, value?: any) => {
-		const { selectedOptions } = this.state;
-		const { multiselect, onChange } = this.props;
-		const listItems = this.dropdownNode.childNodes;
-		const _value = (value || value === 0) ?
-			listItems[value].textContent :
-			e.currentTarget.textContent;
-		if (multiselect) {
-			if (selectedOptions.includes(_value)) {
-				const _selectedOptions = selectedOptions.filter(option => option !== _value);
-				this.setState(
-					{ selectedOptions: _selectedOptions },
-					this.handleSelectChange
-				);
-			} else {
-				this.setState(
-					{ selectedOptions: [...selectedOptions, _value] },
-					this.handleSelectChange
-				);
-			}
-			this.setState({ searchTerm: '' });
-		} else {
-			if (onChange) {
-				onChange(e);
-			}
-			this.setState({
-				selectedItem: _value,
-				searchTerm: '',
-				activeListItem: null
+	handleOnFocus = () => {
+		this.setState(
+			{
+				toggle: true,
+				activeListItem: 0
 			});
-			this.toggle();
+	}
+
+	handleOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+		e.stopPropagation();
+		this.setState({
+			toggle: false
+		});
+	}
+
+	handleOutsideClick = (e: any) => {
+		if (this.input && !this.input.contains(e.target)) {
+			this.setState({ searchTerm: '' });
 		}
 	}
 
-	handleSelectChange = () => {
-		const { onSelectChange, multiselect } = this.props;
-		if (onSelectChange && multiselect) {
-			onSelectChange(this.state.selectedOptions);
-		}
-	}
-
-	onDelete = (index: number) => {
-		const _selectedOptions = this.state.selectedOptions;
-		_selectedOptions.splice(index, 1);
-		this.setState(
-			{
-				selectedOptions: _selectedOptions,
-				activeListItem: null
-			},
-			this.handleSelectChange
-		);
-	}
-
-	handleDeleteOnKeyDown = (index: number) => {
-		this.onDelete(index);
-		this.input.focus();
-	}
-
-	deleteLastItem = () => {
-		const _selectedOptions = this.state.selectedOptions;
-		_selectedOptions.pop();
-		this.setState(
-			{
-				selectedOptions: _selectedOptions,
-				activeListItem: null
-			},
-			this.handleSelectChange
-		);
-	}
-
+	/*
+		Enables keyboard navigation, selection and deletion of the dropdown items.
+		activeListItem is increased or decreased each time arrow keys are pressed.
+		On enter keypress item is selected by firing onSelect method.
+		On backspace keypress last item in selectedOptions state gets deleted.
+		Escape keypress closes dropdown.
+	*/
 	handleOnKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
 		const { searchTerm, toggle } = this.state;
 		let { activeListItem } = this.state;
@@ -201,7 +198,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 				event.preventDefault();
 				switch (true) {
 					case toggle && activeListItem !== null && !!this.filteredList.length:
-						this.onSelect(event, activeListItem);
+						this.onSelect(this.getOptionData(this.filteredList[activeListItem]));
 						break;
 					default:
 						this.toggle();
@@ -213,19 +210,89 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		}
 	}
 
-	handleOnFocus = () => {
+	// Sets selectedItem or selectedOptions if multiselect is set to true.
+	onSelect = (optionItem?: CSOptionItem) => {
+		const { selectedOptions } = this.state;
+		const { multiselect } = this.props;
+
+		if (multiselect) {
+			if (selectedOptions.find(option => optionItem.itemKey === option.itemKey)) {
+				const _selectedOptions = selectedOptions.filter(option => option.itemKey !== optionItem.itemKey);
+				this.setState(
+					{ selectedOptions: _selectedOptions },
+					this.handleSelectChange
+				);
+			} else {
+				this.setState(
+					{ selectedOptions: [...selectedOptions, optionItem] },
+					this.handleSelectChange
+				);
+			}
+			this.setState({ searchTerm: '' });
+		} else {
+			this.setState(
+				{
+					selectedItem: optionItem,
+					searchTerm: '',
+					activeListItem: null
+				},
+				this.handleSelectChange
+			);
+			this.toggle();
+		}
+	}
+
+	// Fires on each selection change and returns option items based on defined exportValue prop
+	handleSelectChange = () => {
+		const { exportValue, onSelectChange, multiselect } = this.props;
+		const { selectedItem, selectedOptions } = this.state;
+
+		let stateToExport: Array<CSOptionItem> | CSOptionItem;
+
+		if (onSelectChange) {
+			// Set correct state to export according to mutliselect prop status
+			// If selectedItem object contains empty strings, return null
+			stateToExport = multiselect ?
+				selectedOptions :
+				selectedItem.itemKey === '' ?
+					null :
+					selectedItem;
+			if (exportValue) {
+				onSelectChange(this.getItemsByExportValue(stateToExport));
+			} else {
+				onSelectChange(stateToExport);
+			}
+		}
+	}
+
+	// Deletes item from the multiselect list based on its index
+	onDelete = (index: number) => {
+		const _selectedOptions = [...this.state.selectedOptions];
+		_selectedOptions.splice(index, 1);
+
 		this.setState(
 			{
-				toggle: true,
-				activeListItem: 0
-			});
+				selectedOptions: _selectedOptions,
+				activeListItem: null
+			},
+			this.handleSelectChange
+		);
 	}
 
-	handleClearOnKeyDown = () => {
-		this.clearSearch();
-		this.input.focus();
+	deleteLastItem = () => {
+		const _selectedOptions = [...this.state.selectedOptions];
+		_selectedOptions.pop();
+
+		this.setState(
+			{
+				selectedOptions: _selectedOptions,
+				activeListItem: null
+			},
+			this.handleSelectChange
+		);
 	}
 
+	// Deletes the item from the mulitselect list
 	handleItemDelete = (e: any, index: number) => {
 		if (e.type === 'mousedown') {
 			e.preventDefault();
@@ -236,45 +303,79 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		}
 	}
 
-	highlightListItem = (index: number) => {
-		this.setState({ activeListItem: index });
-	}
-
-	searchingFor = (term: any) => {
-		return (option: any) => {
-			return option.toLowerCase().includes(term.toLowerCase());
-		};
+	handleClear = () => {
+		this.clearSearch();
+		this.input.focus();
 	}
 
 	clearSearch = () => {
 		this.setState({
 			selectedOptions: [],
 			searchTerm: '',
-			selectedItem: ''
-		});
+			selectedItem: {
+				itemKey: '',
+				value: ''
+			}
+		}, this.handleSelectChange);
 	}
 
-	handleOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-		e.stopPropagation();
-		this.setState({
-			toggle: false
-		});
-	}
+	// Filters children based on filterBy prop
+	filterChildrenBy = (child: React.ReactElement) => {
+		const { searchTerm } = this.state;
 
-	handleOutsideClick = (e: any) => {
-		if (this.input && !this.input.contains(e.target)) {
-			this.setState({ searchTerm: '' });
+		const includesSearchTerm = (value: string) => {
+			return value.toLowerCase().includes(searchTerm.toLowerCase());
+		};
+
+		if (child.props.filterBy) {
+			return includesSearchTerm(child.props[child.props.filterBy]);
+		} else {
+			return includesSearchTerm(child.props.itemKey) || includesSearchTerm(child.props.value);
 		}
 	}
 
+	toggle = () => {
+		this.setState({ toggle: !this.state.toggle });
+	}
+
+	// Accepts child as CSOption and returns only object of itemKey and value
+	getOptionData = (option: CSOption) => {
+		return {
+			itemKey: option.props.itemKey,
+			value: option.props.value
+		};
+	}
+
+	// Returns data defined at exportValue prop from selectedOptions state
+	getItemsByExportValue = (stateToExport: Array<CSOptionItem> | CSOptionItem) => {
+		if (Array.isArray(stateToExport)) {
+			return stateToExport.map((option: CSOptionItem) => option[this.props.exportValue]);
+		} else {
+			return stateToExport[this.props.exportValue];
+		}
+	}
+
+	// Highlights current hovered or focused item by setting activeListItem state
+	highlightListItem = (index: number) => {
+		this.setState({ activeListItem: index });
+	}
+
 	render() {
-		const { activeListItem, searchTerm, selectedOptions, selectedItem, toggle } = this.state;
+		const {
+			activeListItem,
+			searchTerm,
+			selectedItem,
+			selectedOptions,
+			toggle
+		} = this.state;
 		const {
 			borderType,
+			children,
 			className,
 			disabled,
 			error,
 			errorMessage,
+			exportValue,
 			helpText,
 			hidden,
 			id,
@@ -284,76 +385,84 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 			multiselect,
 			onChange,
 			onSelectChange,
-			optionsList,
 			required,
 			title,
 			tooltipPosition,
+			value,
 			...rest
 		} = this.props;
 
 		const customSelectWrapperClasses = classNames(
-			'cs-custom-select-wrapper',
-			{
-				[`${className}`]: className,
-				'cs-element-hidden': hidden
-			}
-		);
+			'cs-custom-select-wrapper', {
+			[`${className}`]: className,
+			'cs-element-hidden': hidden
+		});
 
 		const customSelectInputWrapperClasses = classNames(
-			'cs-custom-select-input-wrapper',
-			{
-				'cs-custom-select-input-wrapper-disabled': this.props.disabled,
-				'cs-custom-select-input-wrapper-error': this.props.error,
-				[`cs-custom-select-input-wrapper-${this.props.borderType}`]: this.props.borderType,
-				'cs-custom-select-input-wrapper-multiselect': !!this.state.selectedOptions.length
-			}
-		);
+			'cs-custom-select-input-wrapper', {
+			'cs-custom-select-input-wrapper-disabled': disabled,
+			'cs-custom-select-input-wrapper-error': error,
+			[`cs-custom-select-input-wrapper-${borderType}`]: borderType,
+			'cs-custom-select-input-wrapper-multiselect': !!selectedOptions.length
+		});
 
 		const customSelectInputClasses = classNames(
-			'cs-custom-select-input',
-			{
-				'cs-custom-mutiselect-input': this.props.multiselect
-			}
-		);
+			'cs-custom-select-input', {
+			'cs-custom-ms-input': multiselect
+		});
 
 		const selectedListItemClasses = classNames(
-			'cs-selected-input-item',
-			{
-				'cs-custom-select-dropdown-open': this.state.toggle
-			}
-		);
+			'cs-selected-input-option', {
+			'cs-custom-select-dropdown-open': toggle
+		});
 
-		const renderDropdownOptions = () => {
-			this.filteredList = optionsList.filter(this.searchingFor(searchTerm));
-			if (this.filteredList.length > 0) {
-				return this.filteredList.map((option, i) => (
-					<CSOption
-						value={option}
-						type="list-item"
-						onMouseDown={(event: any) => {
-							event.preventDefault();
-							this.onSelect(event);
-						}}
-						key={'list-item' + i}
-						selected={selectedOptions.includes(option) || option === selectedItem}
-						isMultiSelectItem={multiselect}
-						active={i === activeListItem}
-						onMouseOver={() => this.highlightListItem(i)}
-						onMouseOut={() => this.setState({ activeListItem: null })}
-					/>));
-			} else {
-				return <li className="cs-custom-select-no-data">
-					<CSIcon
-						name="error"
-						color="var(--cs-custom-select-no-data-c)"
-					/>
-					<span className="cs-custom-select-no-data-text">No data found</span>
-				</li>;
+		/*
+			Filters this.props.children based on searchTerm state, clones each of CSOption passed as children
+			and forwards handler methods for selecting and highlighting each of the items, as well as
+			props which define CSOption active, selected and multiselect states which change styles and behavior of
+			the component.
+
+			If neither of the child components matches the searchTerm value appropriate list item will be returned indicating
+			that no data is found.
+		*/
+		const renderDropdownOptionsAsChildren = () => {
+			if (children) {
+				this.filteredList = React.Children.toArray(children).filter((child: React.ReactElement) =>
+					child.type === CSOption && this.filterChildrenBy(child)
+				);
+
+				if (!!this.filteredList.length) {
+					return this.filteredList.map((child: React.ReactElement, index) => {
+						return React.cloneElement(child, {
+							type: 'list-item',
+							active: index === activeListItem,
+							onMouseDown: (event: React.MouseEvent<HTMLLIElement>) => {
+								event.preventDefault();
+								this.onSelect(this.getOptionData(child as unknown as CSOption));
+							},
+							onMouseOver: () => this.highlightListItem(index),
+							onMouseOut: () => this.setState({ activeListItem: null }),
+							isMultiSelectItem: multiselect,
+							selected: selectedOptions.find(option => this.getOptionData(child as unknown as CSOption).itemKey === option.itemKey)
+								|| this.getOptionData(child as unknown as CSOption).itemKey === selectedItem.itemKey
+						});
+					});
+				} else {
+					return (
+						<li className="cs-custom-select-no-data">
+							<CSIcon
+								name="error"
+								color="var(--cs-custom-select-no-data-c)"
+							/>
+							<span className="cs-custom-select-no-data-text">No data found</span>
+						</li>
+					);
+				}
 			}
 		};
 
 		return (
-			<div className={customSelectWrapperClasses}>
+			<div className={customSelectWrapperClasses} >
 				{(label && !labelHidden) &&
 					<CSLabel
 						htmlFor={this.uniqueAutoId}
@@ -374,9 +483,10 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 							{this.state.selectedOptions.map((selectedOption, i) => (
 								<CSOption
 									type="selected-item"
-									value={selectedOption}
-									key={'selected-item' + i}
-									onItemDelete={event => {
+									value={selectedOption.value}
+									itemKey={selectedOption.itemKey}
+									key={selectedOption.itemKey}
+									onItemDelete={(event: any) => {
 										this.handleItemDelete(event, i);
 									}}
 								/>
@@ -404,12 +514,12 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 							{...rest}
 						/>
 					</span>
-					{(selectedItem && !searchTerm) &&
+					{(selectedItem.itemKey !== '' && !searchTerm) &&
 						<span className={selectedListItemClasses}>
-							{selectedItem}
+							{selectedItem.value}
 						</span>
 					}
-					{(searchTerm || selectedOptions.length > 0 || selectedItem) &&
+					{(searchTerm || selectedOptions.length > 0 || selectedItem.itemKey !== '') &&
 						<CSButton
 							btnType="transparent"
 							btnStyle="brand"
@@ -418,7 +528,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 							iconName="close"
 							iconDisplay="icon-only"
 							label="clear"
-							onClick={this.handleClearOnKeyDown}
+							onClick={this.handleClear}
 							size="small"
 						/>
 					}
@@ -428,18 +538,20 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 						className="cs-custom-select-icon"
 					/>
 				</div>
-				{(toggle && !disabled) &&
+				{
+					(toggle && !disabled) &&
 					<ul
 						className="cs-custom-select-dropdown"
-						ref={node => this.dropdownNode = node}
+						ref={this.dropdownNode}
 					>
-						{renderDropdownOptions()}
+						{renderDropdownOptionsAsChildren()}
 					</ul>
 				}
-				{(error && errorMessage) &&
+				{
+					(error && errorMessage) &&
 					<CSFieldErrorMsg message={errorMessage} />
 				}
-			</div>
+			</div >
 		);
 	}
 }

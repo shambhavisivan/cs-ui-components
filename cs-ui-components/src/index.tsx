@@ -29,7 +29,7 @@ import CSCardFooter from './components/card/CSCardFooter';
 import CSCardHeader from './components/card/CSCardHeader';
 import CSCheckbox, { CSCheckboxBorderType, CSCheckboxVariant } from './components/CSCheckbox';
 import CSChip, { CSChipVariant, CSChipVariantStyle } from './components/CSChip';
-import CSCustomSelect, { CSCustomSelectBorderType } from './components/custom-select/CSCustomSelect';
+import CSCustomSelect, { CSCustomSelectBorderType, CSCustomSelectExportValueType } from './components/custom-select/CSCustomSelect';
 import CSDatepicker, { CSDatepickerDropdownMode } from './components/CSDatepicker';
 import CSDateTimePicker, { CSDateTimePickerDropdownMode } from './components/CSDateTimePicker';
 import CSDivider, { CSDividerVariant } from './components/CSDivider';
@@ -54,7 +54,7 @@ import CSModal, { CSModalSize } from './components/modal/CSModal';
 import CSModalBody from './components/modal/CSModalBody';
 import CSModalFooter, { CSModalFooterAlign } from './components/modal/CSModalFooter';
 import CSModalHeader from './components/modal/CSModalHeader';
-import CSOption, { CSOptionType } from './components/custom-select/CSOption';
+import CSOption, { CSOptionType, CSOptionFilterByType } from './components/custom-select/CSOption';
 import CSPagination from './components/CSPagination';
 import CSPaginationWrapper from './components/CSPaginationWrapper';
 import CSPath from './components/path/CSPath';
@@ -117,6 +117,7 @@ export {
 	CSChipVariantStyle,
 	CSCustomSelect,
 	CSCustomSelectBorderType,
+	CSCustomSelectExportValueType,
 	CSDatepicker,
 	CSDatepickerDropdownMode,
 	CSDateTimePicker,
@@ -166,6 +167,7 @@ export {
 	CSModalHeader,
 	CSModalSize,
 	CSOption,
+	CSOptionFilterByType,
 	CSOptionType,
 	CSPagination,
 	CSPaginationWrapper,

@@ -4,85 +4,80 @@ import CSButton from '../CSButton';
 import classNames from 'classnames';
 
 export type CSOptionType = 'list-item' | 'selected-item';
+export type CSOptionFilterByType = 'itemKey' | 'value';
 
 export interface CSOptionProps {
-	active?: boolean;
-	isMultiSelectItem ?: boolean;
-	onItemDelete?: (event: any) => any;
-	onKeyDown?: (e: React.KeyboardEvent<HTMLLIElement>) => any;
-	onMouseDown?: (e: React.MouseEvent<HTMLLIElement>) => any;
-	onMouseOut?: (e: React.MouseEvent<HTMLLIElement>) => any;
-	onMouseOver?: (e: React.MouseEvent<HTMLLIElement>) => any;
-	selected?: boolean;
-	type: CSOptionType;
+	[key: string]: any;
+	className?: string;
+	filterBy?: CSOptionFilterByType;
+	id?: string;
+	itemKey: string;
 	value: string;
 }
 
-export interface CSOptionState {
-	selected: boolean;
-}
-
-class CSOption extends React.Component<CSOptionProps, CSOptionState> {
-
-	constructor(props: CSOptionProps) {
-		super(props);
-		this.state = {
-			selected: this.props.selected
-		};
-	}
-
-	componentDidUpdate(prevProps: CSOptionProps) {
-		if (prevProps.selected !== this.props.selected) {
-			this.setState({ selected: this.props.selected });
-		}
-	}
+class CSOption extends React.Component<CSOptionProps> {
 
 	render() {
-		const { type, isMultiSelectItem } = this.props;
-		const { selected } = this.state;
+		const {
+			active,
+			className,
+			filterBy,
+			id,
+			isMultiSelectItem,
+			itemKey,
+			onItemDelete,
+			onMouseDown,
+			onMouseOut,
+			onMouseOver,
+			selected,
+			type,
+			value,
+			...rest
+		} = this.props;
 
 		const optionClasses = classNames(
-			'cs-list-item',
+			'cs-option',
 			{
-				'cs-selected': this.props.selected,
-				'cs-selected-item': this.props.type === 'selected-item',
-				'cs-selected-list-item': this.props.type === 'list-item' && !isMultiSelectItem && selected,
-				'cs-active-item': this.props.active
+				'cs-option-ms-item-selected': type === 'selected-item',
+				'cs-option-list-item-selected': type === 'list-item' && !isMultiSelectItem && selected,
+				'cs-option-active': active,
+				[`${className}`]: className
 			}
 		);
 
 		return (
 			<li
 				className={optionClasses}
-				onMouseDown={this.props.onMouseDown}
-				onKeyDown={this.props.onKeyDown}
-				onMouseOver={this.props.onMouseOver}
-				onMouseOut={this.props.onMouseOut}
+				onMouseDown={onMouseDown}
+				onMouseOver={onMouseOver}
+				onMouseOut={onMouseOut}
+				{...rest}
+				id={id}
 			>
 				{(type === 'list-item' && isMultiSelectItem) &&
-					<span className="cs-select-check-icon">
+					<span className="cs-option-check-icon">
 						{selected &&
 							<CSIcon
 								name="check"
-								color="var(--cs-custom-select-list-item-fill)"
+								color="var(--cs-option-list-item-fill)"
 							/>
 						}
 					</span>
 				}
-				<span className="cs-list-item-value">
-					{this.props.value}
+				<span className="cs-option-value">
+					{value}
 				</span>
 				{type === 'selected-item' &&
 					<CSButton
 						btnType="transparent"
-						iconColor="var(--cs-custom-select-selected-item-delete)"
+						iconColor="var(--cs-option-ms-item-selected-delete)"
 						iconDisplay="icon-only"
 						iconName="close"
 						label="delete selected item"
-						onMouseDown={this.props.onItemDelete}
-						onKeyDown={this.props.onItemDelete}
+						onMouseDown={onItemDelete}
+						onKeyDown={onItemDelete}
 						size="xsmall"
-						ariaLabel={`option ${this.props.value}`}
+						ariaLabel={`option ${value}`}
 					/>
 				}
 			</li>
