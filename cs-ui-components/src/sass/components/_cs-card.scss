@@ -27,6 +27,19 @@
 				border-bottom: 1px solid cvar(--cs-card-header-br);
 			}
 		}
+
+		&.cs-card-header-collapsible {
+			padding-left: 0.75rem;
+		}
+
+		&.cs-card-header-collapsed ~ .cs-card-body,
+		&.cs-card-header-collapsed ~ .cs-card-footer {
+			display: none;
+		}
+
+		.cs-card-button {
+			margin-right: 0.25rem;
+		}
 	}
 
 	// Body

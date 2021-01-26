@@ -198,6 +198,24 @@ class CSCardPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'collapsible',
+					variations: [
+						{
+							variationName: ['true'],
+							component:
+								<CSCard>
+									<CSCardHeader title="Card Header" collapsible />
+									<CSCardBody>
+										Card Body
+									</CSCardBody>
+									<CSCardFooter>
+										Card Footer
+									</CSCardFooter>
+								</CSCard>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -266,6 +284,11 @@ class CSCardPreview extends React.Component {
 					name: 'className',
 					types: ['string'],
 					description: 'Apply custom CSS classes to the card header.'
+				}, {
+					name: 'collapsible',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Set whether the card is collapsible on click.'
 				}, {
 					name: 'iconColor',
 					types: ['string'],
