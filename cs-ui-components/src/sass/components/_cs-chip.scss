@@ -20,7 +20,7 @@
 
 	&-warning {
 		@include sbg(--cs-chip-warning-bg);
-		@include sc(--cs-chip-c);
+		@include sc(--cs-chip-warning-c);
 	}
 
 	&-error {
@@ -62,7 +62,7 @@
 	}
 
 	&-warning-border {
-		@include sc(--cs-chip-warning-c);
+		@include sc(--cs-chip-warning-alt-c);
 		@include css4 {
 			border: 1px solid cvar(--cs-chip-warning-br);
 		}
