@@ -55,7 +55,11 @@ class CSPaginationPreview extends React.Component {
 			<>
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} />
-					<CSAlert variant="warning" text="This component is under construction and should not be used." />
+					<CSAlert
+						variant="warning"
+						text="This component is under construction and should not be used."
+						styleFormat="scoped"
+					/>
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
 				</div>

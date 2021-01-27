@@ -113,7 +113,11 @@ class CSSkipLinkPreview extends React.Component {
 			<>
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} />
-					<CSAlert variant="info" text="Skip Link is accessible only by focusing it via keyboard!" />
+					<CSAlert
+						variant="info"
+						text="Skip Link is accessible only by focusing it via keyboard!"
+						styleFormat="scoped"
+					/>
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
 					<PreviewAccessibility components={[component]} />

@@ -39,6 +39,12 @@
 		overflow-y: auto;
 		border-right: 1px solid var(--divider-br);
 
+		> .cs-alert {
+			margin: 3rem 3rem 0;
+			width: unset;
+			display: unset; //Flex not working on Safari
+		}
+
 		.chip-label {
 			display: inline-block;
 			margin-bottom: 0.25rem;

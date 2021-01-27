@@ -487,7 +487,11 @@ class CSListPreview extends React.Component {
 			<>
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<CSAlert variant="warning" text="This component is under construction and should not be used." />
+					<CSAlert
+						variant="warning"
+						text="This component is under construction and should not be used."
+						styleFormat="scoped"
+					/>
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component, component2, component3]} />
 				</div>
