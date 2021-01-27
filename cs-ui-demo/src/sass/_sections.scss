@@ -99,7 +99,7 @@
 	.getting-started {
 		height: calc(100vh - 54px);
 		overflow: auto;
-		padding: 2rem;
+		padding: 2rem 3rem 3rem;
 		width: 100%;
 		position: relative;
 
@@ -167,10 +167,6 @@
 			}
 		}
 	}
-
-	.getting-started {
-		padding: 2rem 2rem 2rem 3rem;
-	}
 }
 
 // =========
@@ -180,17 +176,21 @@
 .cs-colors {
 	width: 100%;
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
 	grid-column-gap: 1rem;
 	grid-row-gap: 1rem;
 	align-items: start;
 	padding: 1rem;
 
-	@media only screen and (min-width: 1100px) {
+	@media only screen and (min-width: 1000px) {
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	}
+
+	@media only screen and (min-width: 1200px) {
 		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 	}
 
-	@media only screen and (min-width: 1350px) {
+	@media only screen and (min-width: 1400px) {
 		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 	}
 
@@ -198,11 +198,11 @@
 		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 	}
 
-	@media only screen and (min-width: 1750px) {
+	@media only screen and (min-width: 1800px) {
 		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 	}
 
-	@media only screen and (min-width: 1900px) {
+	@media only screen and (min-width: 2000px) {
 		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 	}
 

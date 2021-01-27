@@ -1,5 +1,5 @@
-.property-section {
-	padding: 2rem 2rem 0 3rem;
+.preview-section-wrapper .property-section {
+	padding: 2rem 3rem 0;
 
 	.cs-alert {
 		margin-bottom: 0.5rem;
@@ -15,12 +15,16 @@
 	}
 
 	&.custom {
-		padding: 2rem 2rem 2rem 3rem;
+		padding: 3rem;
 		margin-top: 2rem;
 		background: var(--prop-custom-bg);
 
 		.info-text {
 			color: var(--prop-custom-c);
+		}
+
+		+ .properties-table-wrapper {
+			padding-block-start: 3rem;
 		}
 	}
 

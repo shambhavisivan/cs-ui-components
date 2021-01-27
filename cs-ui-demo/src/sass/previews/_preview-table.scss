@@ -65,8 +65,12 @@
 // END LEGACY PROP TABLE
 // START NEW PROP TABLE
 
-.cs-app-wrapper .properties-table-wrapper {
-	padding: 2rem 2rem 2rem 3rem;
+.cs-app-wrapper .preview-section-wrapper .properties-table-wrapper {
+	padding: 2rem 3rem 3rem;
+
+	~ .properties-table-wrapper  {
+		padding-block-start: 0;
+	}
 
 	.properties-component-name {
 		margin-bottom: 0.5rem;

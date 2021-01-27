@@ -1,6 +1,6 @@
-.preview-heading {
-	margin: 0 2rem 0 3rem;
-	padding: 2rem 0;
+.preview-section-wrapper .preview-heading {
+	margin: 0 3rem 0;
+	padding: 2rem 0 3rem;
 	border-bottom: 1px solid var(--divider-br);
 
 	.preview-heading-row {
@@ -33,5 +33,11 @@
 		font-size: 1.25rem;
 		font-weight: 400;
 		color: var(--preview-heading-subtitle-c);
+	}
+
+	+ .cs-btn-type-preview-wrapper + .property-section,
+	+ .cs-alert + .property-section,
+	+ .property-section {
+		padding-block-start: 3rem;
 	}
 }

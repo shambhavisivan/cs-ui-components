@@ -86,6 +86,10 @@
 						max-height: unset;
 					}
 				}
+
+				&.sidebar-preview ~ .version-description {
+					max-height: unset;
+				}
 			}
 		}
 	}
