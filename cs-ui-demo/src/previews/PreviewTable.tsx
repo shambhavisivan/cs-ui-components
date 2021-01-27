@@ -67,7 +67,6 @@ const PreviewTable: React.FC<PreviewTableProps | PreviewTableLegacyProps> = ({ c
 		}
 		return propCustomTypes.map((customType: PreviewTableCustomType) => (
 			<CSTooltip
-				variant="basic"
 				position="top-center"
 				key={customType.name}
 				width="auto"
