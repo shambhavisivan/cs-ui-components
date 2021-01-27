@@ -1,5 +1,5 @@
 import React from 'react';
-import CSIcon from './CSIcon';
+import CSIcon, { CSIconOrigin } from './CSIcon';
 import classNames from 'classnames';
 
 export type CSAlertStyleFormat = 'default' | 'scoped';
@@ -12,6 +12,7 @@ export interface CSAlertProps {
 	className?: string;
 	closeButton?: boolean;
 	iconName?: string;
+	iconOrigin?: CSIconOrigin;
 	iconVisibility?: boolean;
 	id?: string;
 	onClose?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -36,6 +37,7 @@ class CSAlert extends React.Component<CSAlertProps> {
 			className,
 			closeButton,
 			iconName,
+			iconOrigin,
 			iconVisibility,
 			id,
 			onClose,
@@ -77,11 +79,13 @@ class CSAlert extends React.Component<CSAlertProps> {
 						<CSIcon
 							name={iconName}
 							size={alertIconSize}
+							origin={iconOrigin}
 						/>
 					) : (
 						<CSIcon
 							name={alertIconName}
 							size={alertIconSize}
+							origin={iconOrigin}
 						/>
 					)) : null}
 					{text ? (

@@ -142,6 +142,37 @@ class CSToastPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'iconOrigin',
+					variations: [
+						{
+							variationName: ['slds'],
+							quickLink: 'slds',
+							variationText: ['variant="info"', 'closeButton="true"'],
+							component:
+								<CSToast
+									variant="info"
+									iconName="quote"
+									iconOrigin="slds"
+									closeButton
+									text="This is an example toast with an icon with origin 'slds'"
+								/>
+						},
+						{
+							variationName: ['cs'],
+							quickLink: 'cs',
+							variationText: ['variant="info"', 'closeButton="true"'],
+							component:
+								<CSToast
+									variant="info"
+									iconName="big_shot"
+									iconOrigin="cs"
+									closeButton
+									text="This is an example toast with an icon with origin 'cs'"
+								/>
+						}
+					]
+				},
+				{
 					propName: 'iconVisibility',
 					variations: [
 						{
@@ -268,6 +299,14 @@ class CSToastPreview extends React.Component {
 					name: 'iconName',
 					types: ['string'],
 					description: 'Override the default icon defined by the variant.'
+				}, {
+					name: 'iconOrigin',
+					customTypes: [{
+						name: 'CSToastIconOrigin',
+						types: ['\'slds\'', '\'cs\'']
+					}],
+					default: '\'slds\'',
+					description: 'Select whether a SalesForce or a CloudSense icon should be used..'
 				}, {
 					name: 'iconVisibility',
 					types: ['boolean'],

@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React, { CSSProperties } from 'react';
-import CSIcon from './CSIcon';
+import CSIcon, { CSIconOrigin } from './CSIcon';
 import { Portal } from 'react-portal';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -31,6 +31,7 @@ export interface CSTooltipProps {
 	height?: string;
 	iconColor?: string;
 	iconName?: string;
+	iconOrigin?: CSIconOrigin;
 	iconSize?: CSTooltipIconSize;
 	id?: string;
 	padding?: string;
@@ -92,6 +93,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			height,
 			iconColor,
 			iconName,
+			iconOrigin,
 			iconSize,
 			id,
 			padding,
@@ -176,6 +178,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 							color={iconColor}
 							name={tooltipIconName()}
 							className={'cs-tooltip-icon ' + 'cs-icon-' + iconSize}
+							origin={iconOrigin}
 						/>
 					)}
 				{!this.state.hidden && (

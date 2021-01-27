@@ -88,6 +88,23 @@ class CSTooltipPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'iconOrigin',
+					variations: [
+						{
+							variationName: ['slds'],
+							quickLink: 'slds',
+							component:
+								<CSTooltip iconName="quote" content="Help text example" iconOrigin="slds"/>
+						},
+						{
+							variationName: ['cs'],
+							quickLink: 'cs',
+							component:
+								<CSTooltip iconName="big_shot" content="Help text example" iconOrigin="cs"/>
+						}
+					]
+				},
+				{
 					propName: 'iconSize',
 					customText: 'Size of the tooltip icon',
 					variations: [
@@ -397,6 +414,14 @@ class CSTooltipPreview extends React.Component {
 					name: 'iconName',
 					types: ['string'],
 					description: 'Override the default icon defined by the variant.'
+				}, {
+					name: 'iconOrigin',
+					customTypes: [{
+						name: 'CSTooltipIconOrigin',
+						types: ['\'slds\'', '\'cs\'']
+					}],
+					default: '\'slds\'',
+					description: 'Select whether a SalesForce or a CloudSense icon should be used..'
 				}, {
 					name: 'iconSize',
 					customTypes: [{

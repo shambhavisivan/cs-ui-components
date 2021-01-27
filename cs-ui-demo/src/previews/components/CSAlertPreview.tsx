@@ -184,6 +184,35 @@ class CSAlertPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'iconOrigin',
+					variations: [
+						{
+							variationName: ['slds'],
+							quickLink: 'slds',
+							component:
+								<CSAlert
+									variant="info"
+									iconName="quote"
+									iconOrigin="slds"
+									closeButton
+									text="This is an example alert with an icon with origin 'slds'"
+								/>
+						},
+						{
+							variationName: ['cs'],
+							quickLink: 'cs',
+							component:
+								<CSAlert
+									variant="info"
+									iconName="big_shot"
+									iconOrigin="cs"
+									closeButton
+									text="This is an example alert with an icon with origin 'cs'"
+								/>
+						}
+					]
+				},
+				{
 					propName: 'iconVisibility',
 					variations: [
 						{
@@ -347,6 +376,14 @@ class CSAlertPreview extends React.Component {
 					name: 'iconName',
 					types: ['string'],
 					description: 'Override the default icon defined by the variant.'
+				}, {
+					name: 'iconOrigin',
+					customTypes: [{
+						name: 'CSAlertIconOrigin',
+						types: ['\'slds\'', '\'cs\'']
+					}],
+					default: '\'slds\'',
+					description: 'Select whether a SalesForce or a CloudSense icon should be used..'
 				}, {
 					name: 'iconVisibility',
 					types: ['boolean'],

@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import CSIcon from './CSIcon';
+import CSIcon, { CSIconOrigin } from './CSIcon';
 import classNames from 'classnames';
 
 export type CSToastVariant = 'info' | 'success' | 'warning' | 'error';
@@ -10,6 +10,7 @@ export interface CSToastProps {
 	closeButton?: boolean;
 	detail?: string;
 	iconName?: string;
+	iconOrigin?: CSIconOrigin;
 	iconVisibility?: boolean;
 	id?: string;
 	minWidth?: string;
@@ -30,6 +31,7 @@ class CSToast extends React.Component<CSToastProps> {
 			closeButton,
 			detail,
 			iconName,
+			iconOrigin,
 			iconVisibility,
 			id,
 			minWidth,
@@ -65,9 +67,9 @@ class CSToast extends React.Component<CSToastProps> {
 			>
 				<div style={style} className={toastClasses} role={toastRole}>
 					{iconVisibility ? (iconName ? (
-						<CSIcon name={iconName}/>
+						<CSIcon name={iconName} origin={iconOrigin}/>
 					) : (
-						<CSIcon name={variant}/>
+						<CSIcon name={variant} />
 					)) : null}
 					<h4 className="cs-toast-text">
 						{text}
