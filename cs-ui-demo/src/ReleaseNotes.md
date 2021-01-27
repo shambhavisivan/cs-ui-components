@@ -1,88 +1,69 @@
 # Release Notes
 
-## 1.100<a name="1.100"></a>
-* CSInputSearch
-  * magnifying glass and clear icons are invisible
-  * borderType?: string;
-  * Props 'label' and 'tooltipPosition' missing from the props table
-* CSMainHeader
-  * header title and subtitle aren't centered
+## 1.1.0<a name="1.1.0"></a>
 * CSAlert
-  * CSIcon inside alert shouldn't shrink on smaller screens
-  * <i>important</i> Add min height to alert's css to avoid broken layout when alert text is empty
-  * Add text color to the .cs-alert-text instead of the.cs-alert
-  * fix undefined for textAlign
-* All Components
-  * Label prop needs to be mandatory (not optional)
-* Demo
-  * Fix component names displayed as <e> in the component previews
-  * Add all components that are missing from index.tsx
-  * colors names not centred
-  * <i>important</i> getDoc2 which is used for CSMainHeaderLeft needs to be inside CSMainHeaderLeft component, and then inside CSMainHeaderPreview we need to load 'const component2 = CSMainHeaderLeft.getDoc2();'
+  * light variants colors changed to match accessibility requirements
 * CSButton
-  * <i>important</i> add className prop to button component to support custom css classes
-  * wrong focus styles
-* CSTooltip
-  * in tooltipHeader example, padding-left on popup header need to be the same as for popup-body to align the text
-* CSSelect
-  * dropdown arrow is too big and it's not clickable
+  * `title` prop added
+  * functionality for ref forwarding added
+* CSCard
+  * added icon support to header, styling props to body, minor styling fixes
+  * `className` support added to CardHeader, CardBody and CardFooter components
+* CSCheckbox
+  * <i>important</i> `className` moved to `.cs-checkbox-wrapper` from `.cs-checkbox-group`
+  * `onKeyDown` support added
+  * `readOnly` prop added
+* CSChip
+  * success and warning variant colors changed to match accessibility requirements
+* CSCustomSelect
+  * fixed keyboard navigation bug which breaks the app
+* CSDatepicker and CSDateTimePicker
+  * max-width added to fix overflow issue when there's not enough space for default datepicker width
+  * fix closing datepicker on tab
+* CSDropdown
+  * open/close transition added
+* CSIcon
+  * title attribute fixed
+* CSInputFile
+  * label overflow fixed
+  * dragging text to input file will no longer break the app
 * CSInputNumber
-  * remove default arrow sliders
-
-## 1.101<a name="1.101"></a>
+  * <i>important</i> `className` moved to `.cs-input-number-wrapper` from `.cs-input-number`
 * CSInputSearch
-  * magnifying glass and clear icons are invisible
-  * borderType?: string;
-  * Props 'label' and 'tooltipPosition' missing from the props table
-* CSMainHeader
-  * header title and subtitle aren't centered
-* CSAlert
-  * CSIcon inside alert shouldn't shrink on smaller screens
-  * <i>important</i> Add min height to alert's css to avoid broken layout when alert text is empty
-  * Add text color to the .cs-alert-text instead of the.cs-alert
-  * fix undefined for textAlign
-* All Components
-  * Label prop needs to be mandatory (not optional)
-* Demo
-  * Fix component names displayed as <e> in the component previews
-  * Add all components that are missing from index.tsx
-  * colors names not centred
-  * <i>important</i> getDoc2 which is used for CSMainHeaderLeft needs to be inside CSMainHeaderLeft component, and then inside CSMainHeaderPreview we need to load 'const component2 = CSMainHeaderLeft.getDoc2();'
-* CSButton
-  * <i>important</i> add className prop to button component to support custom css classes
-  * wrong focus styles
-* CSTooltip
-  * in tooltipHeader example, padding-left on popup header need to be the same as for popup-body to align the text
+  * <i>important</i> `className` moved to `.cs-input-search-wrapper` from `.cs-input-search-group`
+* CSInputText
+  * <i>important</i> `className` moved to `.cs-input-text-wrapper` from `.cs-input-text`
+* CSModal
+  * <i>important</i> Modals now have `visible` prop with which they manage their own visibility. All modals should now use `visible` prop.
+  * transition on open/close modal added
+* CSPath
+  * CSPath and CSPathWrapper component are now combined into one
+  * props and styles for success/error/active states added  
+* CSProgressIndicator
+  * <i>new</i> new Progress Indicator component added
+* CSRadio
+  * <i>important</i> `className` moved to `.cs-radio-wrapper` from `.cs-radio-group`
+  * `readOnly` prop added
 * CSSelect
-  * dropdown arrow is too big and it's not clickable
-* CSInputNumber
-  * remove default arrow sliders
-
-## 1.102<a name="1.102"></a>
-* CSInputSearch
-  * magnifying glass and clear icons are invisible
-  * borderType?: string;
-  * Props 'label' and 'tooltipPosition' missing from the props table
-* CSMainHeader
-  * header title and subtitle aren't centered
-* CSAlert
-  * CSIcon inside alert shouldn't shrink on smaller screens
-  * <i>important</i> Add min height to alert's css to avoid broken layout when alert text is empty
-  * Add text color to the .cs-alert-text instead of the.cs-alert
-  * fix undefined for textAlign
-* All Components
-  * Label prop needs to be mandatory (not optional)
-* Demo
-  * Fix component names displayed as <e> in the component previews
-  * Add all components that are missing from index.tsx
-  * colors names not centred
-  * <i>important</i> getDoc2 which is used for CSMainHeaderLeft needs to be inside CSMainHeaderLeft component, and then inside CSMainHeaderPreview we need to load 'const component2 = CSMainHeaderLeft.getDoc2();'
-* CSButton
-  * <i>important</i> add className prop to button component to support custom css classes
-  * wrong focus styles
+  * <i>important</i> `className` moved to `.cs-select-wrapper` from `.cs-select-group`
+  * `readOnly` prop added
+* CSTab
+  * <i>important</i> `className` moved to `.cs-toast-wrapper` from `.cs-toast`
+* CSTableHeader
+  * `headerSticky` prop support added
+* CSTextarea
+  * <i>important</i> `className` moved to `.cs-textarea-wrapper` from `.cs-textarea`
+* CSToggle
+  * <i>important</i> `className` moved to `.cs-toggle-element` from `.cs-toggle-wrapper`
 * CSTooltip
-  * in tooltipHeader example, padding-left on popup header need to be the same as for popup-body to align the text
-* CSSelect
-  * dropdown arrow is too big and it's not clickable
-* CSInputNumber
-  * remove default arrow sliders
+  * new positions added: `left-top`, `left-bottom`, `left-center`, `right-top`, `right-bottom`, `right-center`
+* CSTransfer
+  * <i>new</i> new Transfer component added
+* KeyCode util
+  * new file created which holds all used keycodes in the cs-ui-components lib to be imported as a module in components when needed
+* Demo App changes
+  * <i>Important</i> prop documentation restructure and rework
+  * moved styles into separate files
+  * theme file with color variables added
+  * various minor styling fixes
+  

@@ -8,7 +8,7 @@ export interface CSReleaseNotesState {
 
 class ReleaseNotes extends React.Component<any, CSReleaseNotesState> {
 
-	private anchorList = ['1.100', '1.101', '1.102'];
+	private anchorList = ['1.1.0'];
 
 	constructor(props: any) {
 		super(props);

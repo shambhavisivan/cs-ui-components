@@ -1,9 +1,16 @@
 .cs-app-wrapper {
 
-	.release-notes > ul {
-		font-weight: 700;
-	}
+	.release-notes {
+		> ul {
+			font-weight: 700;
+		}
 
+		code {
+			font-family: monospace;
+			background: var(--release-notes-inline-code-bg);
+			padding: 0 0.2rem;
+		}
+	}
 
 	/* IMPORTANT CHIP */
 	.release-notes,
