@@ -156,8 +156,6 @@ class CSButton extends React.Component<CSButtonProps> {
 				'cs-btn-size-small': size === 'small',
 				'cs-btn-size-large': size === 'large',
 
-				'cs-btn-with-title': title,
-
 				[`${className}`]: className
 			}
 		);

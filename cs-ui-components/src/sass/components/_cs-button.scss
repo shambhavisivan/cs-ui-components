@@ -83,10 +83,8 @@
 	}
 	&[disabled] {
 		cursor: default;
-		pointer-events: none;
-
-		&.cs-btn-with-title {
-			pointer-events: unset;
+		&:active::after {
+			--cs-button-br: var(--cs-button-default-br);
 		}
 	}
 	/* ALL BUTTONS PROPERTIES */
@@ -384,7 +382,7 @@
 		/* STYLE - INITIAL */
 		&.cs-btn-initial {
 			background: none;
-			&:hover {
+			&:not(:disabled):hover {
 				.cs-btn-label,
 				.cs-btn-icon .cs-icon {
 					@include cd(--cs-button-c, 0.15);
@@ -404,7 +402,7 @@
 			&:focus::after {
 				--cs-button-box: var(--cs-btn-custom-c, var(--cs-button-default-c));
 			}
-			&:hover {
+			&:not(:disabled):hover {
 				.cs-btn-label,
 				.cs-btn-icon .cs-icon {
 					@include cd(--cs-button-c, 0.15);
@@ -428,7 +426,7 @@
 			&::after {
 				--cs-button-br: var(--cs-btn-custom-c, var(--cs-button-inverse-c));
 			}
-			&:hover {
+			&:not(:disabled):hover {
 				.cs-btn-label,
 				.cs-btn-icon .cs-icon {
 					@include cd(--cs-button-c, 0.15);
