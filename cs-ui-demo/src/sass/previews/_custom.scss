@@ -213,6 +213,12 @@
 		}
 	}
 
+	&.progress-indicator-preview {
+		.custom-class {
+			background-color: var(--custom-bg);
+		}
+	}
+
 	&.icon-preview {
 		.custom-class {
 			fill: var(--icons-custom-fill);
