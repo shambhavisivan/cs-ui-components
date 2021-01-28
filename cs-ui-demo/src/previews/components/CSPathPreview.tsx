@@ -4,6 +4,7 @@ import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
 import PreviewLinks from '../PreviewLinks';
+import PreviewAccessibility from '../PreviewAccessibility';
 
 import { CSPath, CSPathItem, CSAlert } from '@cloudsense/cs-ui-components';
 
@@ -13,6 +14,7 @@ class CSPathPreview extends React.Component {
 		const json = {
 			name: 'Path',
 			usage: 'A process component communicates to the user the progress of a particular process.',
+			accessible: 'yes',
 			examples: [
 				{
 					propName: 'title',
@@ -216,6 +218,40 @@ class CSPathPreview extends React.Component {
 					types: ['any'],
 					description: 'Spreads the rest of the props to the path nav tag.'
 				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'1.1.1',
+						'2.1.1',
+						'2.1.2',
+						'2.4.7',
+						'3.2.1',
+						'3.3.1',
+						'4.1.2'
+					],
+					requirements: [
+						{
+							structure: [
+								'HTML <ol>',
+								'HTML <li>',
+								'HTML <button>',
+								'Icon as a child element with attribute aria-hidden'
+							],
+							properties: [
+								'aria-current',
+								'aria-invalid'
+							],
+							styling: [
+								'Color contrast ratio > 4.5',
+								'Distinct hover, active and focus state styles'
+							],
+							keyboardOperability: [
+								'Proper focus management and keyboard operability ensured by structure and <button>'
+							]
+						}
+					]
+				}
 			]
 		};
 
@@ -280,10 +316,11 @@ class CSPathPreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<CSAlert variant="warning" text="This component is under construction and should not be used." />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component, component2]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>
