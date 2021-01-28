@@ -7,6 +7,7 @@ import CSTransferItem from './CSTransferItem';
 import CSTransferContext from './CSTransferContext';
 import { CSTransferVariant, CSTransferItemsType } from './CSTransfer';
 import KeyCode from '../../util/KeyCode';
+import { v4 as uuidv4 } from 'uuid';
 
 export type CSTransferListType = 'source' | 'target';
 
@@ -44,6 +45,8 @@ class CSTransferList extends React.Component<CSTransferListProps, CSTransferList
 			validItemsKeys: _validItemsKeys
 		};
 	}
+
+	private uniqueAutoId = uuidv4();
 
 	constructor(props: CSTransferListProps) {
 		super(props);
@@ -93,6 +96,7 @@ class CSTransferList extends React.Component<CSTransferListProps, CSTransferList
 				<CSLabel
 					label={label}
 					helpText={helpText}
+					id={this.uniqueAutoId}
 				/>
 				<div className="cs-transfer-list-group">
 					{((selectAll && variant === 'check-list') ||
@@ -118,7 +122,12 @@ class CSTransferList extends React.Component<CSTransferListProps, CSTransferList
 							}
 						</div>
 					}
-					<ul className="cs-transfer-list" ref={this.props.listRef}>
+					<ul
+						className="cs-transfer-list"
+						ref={this.props.listRef}
+						role="listbox"
+						aria-describedby={this.uniqueAutoId}
+					>
 						{!!listData.length ?
 							listData.filter(this.searchingFor(term)).map(item => {
 								return (

@@ -4,6 +4,7 @@ import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
 import PreviewLinks from '../PreviewLinks';
+import PreviewAccessibility from '../PreviewAccessibility';
 
 import { CSTransfer } from '@cloudsense/cs-ui-components';
 
@@ -75,7 +76,7 @@ class CSTransferPreview extends React.Component {
 		const json = {
 			name: 'Transfer',
 			usage: 'Transfer is a double column choice box for selecting multiple items.',
-			accessible: 'no',
+			accessible: 'partially',
 			examples: [
 				{
 					propName: 'dataSource',
@@ -358,8 +359,46 @@ class CSTransferPreview extends React.Component {
 					types: ['any'],
 					description: 'Spreads the rest of the props to the transfer wrapper div.'
 				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'1.1.1',
+						'2.1.1',
+						'2.1.2',
+						'2.4.3',
+						'2.4.7',
+						'3.2.1',
+						'3.3.1',
+						'4.1.2'
+					],
+					requirements: [
+						{
+							structure: [
+								'HTML <ul>',
+								'HTML <li>',
+								'HTML <button>'
+							],
+							properties: [
+								'aria-describedby - list is associated with belonging label',
+								'aria-selected',
+								'role="listbox"',
+								'role="option"'
+							],
+							styling: [
+								'Color contrast ratio > 4.5',
+								'Distinct hover, active and focus state styles'
+							],
+							keyboardOperability: [
+								'Proper focus management and keyboard operability ensured by structure and <button>',
+								'Additional logic provided for arrow navigation in all directions'
+							]
+						}
+					]
+				}
 			]
 		};
+
 		for (const example of json.examples) {
 			for (const variation of example.variations) {
 				(variation as any).string = jsxToString(variation.component);
@@ -378,6 +417,7 @@ class CSTransferPreview extends React.Component {
 					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>

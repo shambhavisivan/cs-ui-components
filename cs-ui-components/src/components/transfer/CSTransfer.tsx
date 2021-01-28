@@ -275,7 +275,7 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 					/>
 					<div className="cs-transfer-actions" ref={node => this.actionButtonsNode = node}>
 						<CSButton
-							label="select items"
+							label={`Move selection to ${targetLabel}`}
 							iconName="chevronright"
 							iconDisplay="icon-only"
 							disabled={!sourceSelected.length}
@@ -284,7 +284,7 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 						/>
 						{!oneWay &&
 							<CSButton
-								label="remove items"
+								label={`Move selection to ${sourceLabel}`}
 								iconName="chevronleft"
 								iconDisplay="icon-only"
 								disabled={!targetSelected.length}
