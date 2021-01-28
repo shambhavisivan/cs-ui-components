@@ -48,7 +48,7 @@ const App: React.FC = () => (
 						</li>
 					</ul>
 					<div className="app-main-header-right">
-						<CSChip text={`latest published version: ${version}`} />
+						<CSChip text={`v${version}`} />
 						<ToggleTheme />
 						<CSImage type="logo" height="2.25rem" />
 					</div>
