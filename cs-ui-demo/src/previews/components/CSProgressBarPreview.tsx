@@ -20,12 +20,16 @@ class CSProgressBarPreview extends React.Component<{}, CSProgressBarPreviewState
 	restartProgress = () => this.setState({ progress: 0 });
 	renderProgressFull = () => this.setState({ progress: 100 });
 	renderProgressDelayed = () => {
+		if (this.state.progress !== 0) {
+			return;
+		}
 		const interval = setInterval(() => {
 			this.setState(prevState => {
-				if (prevState.progress === 90) {
+				if (prevState.progress >= 100) {
 					clearInterval(interval);
+				} else {
+					return { progress: prevState.progress + 10 };
 				}
-				return { progress: prevState.progress + 10 };
 			});
 		}, 500);
 	}
