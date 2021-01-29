@@ -34,6 +34,8 @@ export interface CSTooltipProps {
 	iconOrigin?: CSIconOrigin;
 	iconSize?: CSTooltipIconSize;
 	id?: string;
+	maxHeight?: string;
+	maxWidth?: string;
 	padding?: string;
 	position?: CSTooltipPosition;
 	stylePosition?: CSTooltipStylePosition;
@@ -96,6 +98,8 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			iconOrigin,
 			iconSize,
 			id,
+			maxHeight,
+			maxWidth,
 			padding,
 			position,
 			stylePosition,
@@ -108,7 +112,8 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		const tooltipClasses = classNames('cs-tooltip', {
 			[`cs-tooltip-${this.state.computedPosition}`]: this.state.computedPosition,
 			[`cs-tooltip-${variant}`]: variant,
-			'cs-tooltip-with-header': tooltipHeader
+			'cs-tooltip-with-header': tooltipHeader,
+			'cs-tooltip-overflow-auto': maxHeight || maxWidth || height || width
 		});
 
 		const tooltipWrapperClasses = classNames('cs-tooltip-wrapper', {
@@ -126,6 +131,8 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			...this.state.computedTooltipStyle,
 			'--cs-tooltip-height': height,
 			'--cs-tooltip-width': width,
+			'--cs-tooltip-max-height': maxHeight,
+			'--cs-tooltip-max-width': maxWidth,
 			'--cs-tooltip-padding': padding
 		};
 

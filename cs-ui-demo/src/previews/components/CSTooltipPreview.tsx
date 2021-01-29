@@ -314,6 +314,44 @@ class CSTooltipPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'maxHeight',
+					customText: '',
+					variations: [
+						{
+							variationName: ['200px'],
+							quickLink: '200px',
+							variationText: ['maxWidth="200px"'],
+							component:
+								<CSTooltip maxHeight="200px" maxWidth="200px" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat porttitor enim ornare porta. Duis nibh orci, imperdiet in lectus consequat, tincidunt fringilla ante. Nullam varius eleifend sodales. Morbi at rhoncus mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat porttitor enim ornare porta. Duis nibh orci, imperdiet in lectus consequat, tincidunt fringilla ante. Nullam varius eleifend sodales. Morbi at rhoncus mi." />
+						},
+						{
+							variationName: ['4rem'],
+							quickLink: '4rem',
+							variationText: ['maxWidth="200px"'],
+							component:
+								<CSTooltip maxHeight="4rem" maxWidth="200px" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat porttitor enim ornare porta. Duis nibh orci, imperdiet in lectus consequat, tincidunt fringilla ante. Nullam varius eleifend sodales. Morbi at rhoncus mi." />
+						}
+					]
+				},
+				{
+					propName: 'maxWidth',
+					customText: '',
+					variations: [
+						{
+							variationName: ['300px'],
+							quickLink: '300px',
+							component:
+								<CSTooltip maxWidth="300px" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+						},
+						{
+							variationName: ['10rem'],
+							quickLink: '10rem',
+							component:
+								<CSTooltip maxWidth="10rem" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat porttitor enim ornare porta. Duis nibh orci, imperdiet in lectus consequat, tincidunt fringilla ante. Nullam varius eleifend sodales. Morbi at rhoncus mi." />
+						}
+					]
+				},
+				{
 					propName: 'children',
 					customText: '',
 					variations: [
