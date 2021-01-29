@@ -38,6 +38,7 @@ export interface CSTooltipProps {
 	maxWidth?: string;
 	padding?: string;
 	position?: CSTooltipPosition;
+	stickyOnClick?: boolean;
 	stylePosition?: CSTooltipStylePosition;
 	tooltipHeader?: string;
 	variant?: CSTooltipVariant;
@@ -48,6 +49,7 @@ interface CSTooltipState {
 	hidden: boolean;
 	computedTooltipStyle?: CSSProperties;
 	computedPosition?: CSTooltipPosition;
+	stickyActive?: boolean;
 }
 
 class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
@@ -73,7 +75,8 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 
 		this.state = {
 			hidden: props.delayTooltip && props.delayTooltip > 0,
-			computedPosition: this.props.position
+			computedPosition: this.props.position,
+			stickyActive: false
 		};
 
 		let tooltipRoot = document.getElementById(this.tooltipId);
@@ -83,6 +86,12 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			tooltipRoot.id = this.tooltipId;
 			document.body.appendChild(tooltipRoot);
 		}
+	}
+
+	setSticky = (value: boolean) => {
+		this.setState({
+			stickyActive: value
+		});
 	}
 
 	render() {
@@ -102,6 +111,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			maxWidth,
 			padding,
 			position,
+			stickyOnClick,
 			stylePosition,
 			tooltipHeader,
 			variant,
@@ -168,10 +178,11 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		return (
 			<div
 				className={tooltipWrapperClasses}
-				onMouseEnter={stylePosition !== 'absolute' ? this.openTooltip : null}
-				onMouseLeave={stylePosition !== 'absolute' ? this.closeTooltip : null}
-				onFocus={stylePosition !== 'absolute' ? this.openTooltip : null}
-				onBlur={stylePosition !== 'absolute' ? this.closeTooltip : null}
+				onClick={stylePosition === 'fixed' && stickyOnClick ? () => this.setSticky(true) : null}
+				onMouseEnter={stylePosition === 'fixed' ? this.openTooltip : null}
+				onMouseLeave={stylePosition === 'fixed' && !this.state.stickyActive ? this.closeTooltip : null}
+				onFocus={stylePosition === 'fixed' ? this.openTooltip : null}
+				onBlur={stylePosition === 'fixed' && !this.state.stickyActive ? this.closeTooltip : null}
 				tabIndex={focusable ? 0 : -1}
 				role="tooltip"
 				ref={this.tooltipRef}
@@ -196,7 +207,9 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 								<>
 									{this.state.computedTooltipStyle && (
 										<Portal node={document && document.getElementById(this.tooltipId)}>
-											<div className={tooltipWrapperClasses}>{tooltip}</div>
+											<div className={tooltipWrapperClasses}>
+												{tooltip}
+											</div>
 										</Portal>
 									)}
 								</>
@@ -205,6 +218,25 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 				)}
 			</div>
 		);
+	}
+
+	componentDidMount() {
+		if (this.props.stickyOnClick) {
+			document.addEventListener('click', e => this.handleOutsideClick(e, this.tooltipRef.current));
+		}
+	}
+	componentWillUnmount() {
+		document.removeEventListener('click', e => this.handleOutsideClick(e, this.tooltipRef.current));
+	}
+
+	handleOutsideClick = (e: any, element: any) => {
+		e.stopPropagation();
+		if (element &&
+			element.contains(e.target)) {
+			return;
+		}
+		this.setSticky(false);
+		this.closeTooltip();
 	}
 
 	private openTooltip = () => {
@@ -285,10 +317,14 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		}
 	}
 
-	private tooltipRefCallback = (element: HTMLElement) => {
+	private tooltipRefCallback = (element: HTMLDivElement) => {
 		if (element) {
 			const tooltipRect = element.getBoundingClientRect();
 			this.autoTooltipPosition(tooltipRect);
+
+			if (this.props.stickyOnClick) {
+				element.addEventListener('click', e => this.handleOutsideClick(e, element));
+			}
 		}
 	}
 

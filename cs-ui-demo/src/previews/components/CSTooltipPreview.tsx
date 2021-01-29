@@ -216,6 +216,16 @@ class CSTooltipPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'stickyOnClick',
+					variations: [
+						{
+							variationName: ['true'],
+							component:
+								<CSTooltip stickyOnClick content="Lorem ipsum dolor sit amet, consectetur adipisicing elit.." />
+						}
+					]
+				},
+				{
 					propName: 'tooltipHeader',
 					customText: 'This is used for defining tooltip header.Its color will be defined by variant prop',
 					variations: [
@@ -497,6 +507,12 @@ class CSTooltipPreview extends React.Component {
 					}],
 					default: '\'top-right\'',
 					description: 'Set the tooltip position.'
+				}, {
+					name: 'stickyOnClick',
+					types: ['boolean'],
+
+					default: '\'false\'',
+					description: 'Set whether the tooltip stays open on click.'
 				}, {
 					name: 'stylePosition',
 					customTypes: [{
