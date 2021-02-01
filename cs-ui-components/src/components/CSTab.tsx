@@ -85,8 +85,7 @@ class CSTab extends React.Component<CSTabProps> {
 			'className': 'cs-tab',
 			'aria-current': active,
 			'aria-invalid': status === 'error',
-			'disabled': disabled,
-			...rest
+			'disabled': disabled
 		};
 
 		const tabContent = () => {
@@ -108,7 +107,7 @@ class CSTab extends React.Component<CSTabProps> {
 		};
 
 		return (
-			<li className={tabClasses} onClick={this.onClickHandler} id={id}>
+			<li className={tabClasses} onClick={this.onClickHandler} id={id} {...rest}>
 				<>
 					{routerLink ?
 						React.cloneElement(

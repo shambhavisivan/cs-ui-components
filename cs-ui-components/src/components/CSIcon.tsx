@@ -70,19 +70,20 @@ class CSIcon extends React.Component<CSIconProps> {
 						</svg>
 					</div>
 				) : (
-					<svg
-						className={styleClass}
-						style={style}
-						aria-hidden="true"
-						id={id}
-					>
-						<use href={`#${prefix}${name}`}>
-							{title &&
-								<title>{title}</title>
-							}
-						</use>
-					</svg>
-				)}
+						<svg
+							className={styleClass}
+							style={style}
+							aria-hidden="true"
+							id={id}
+							{...rest}
+						>
+							<use href={`#${prefix}${name}`}>
+								{title &&
+									<title>{title}</title>
+								}
+							</use>
+						</svg>
+					)}
 			</>
 		);
 	}
