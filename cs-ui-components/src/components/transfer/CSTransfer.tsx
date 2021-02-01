@@ -17,6 +17,7 @@ export interface CSTransferProps {
 	[key: string]: any;
 	className?: string;
 	dataSource?: Array<CSTransferItemsType>;
+	id?: string;
 	onChange?: (value?: any) => any;
 	oneWay?: boolean;
 	searchable?: boolean;
@@ -232,6 +233,7 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 		const {
 			className,
 			dataSource,
+			id,
 			onChange,
 			oneWay,
 			searchable,
@@ -259,7 +261,7 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 		);
 		return (
 			<CSTransferContext.Provider value={context}>
-				<div className={transferWrapperClasses} {...rest}>
+				<div className={transferWrapperClasses} id={id} {...rest}>
 					<CSTransferList
 						listRef={this.sourceListRef}
 						listType="source"

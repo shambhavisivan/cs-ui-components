@@ -211,9 +211,10 @@ class CSModal extends React.Component<CSModalProps> {
 				<div
 					className={modalOverlayClasses}
 					ref={modalOverlayNode => this.modalOverlay = modalOverlayNode}
+					id={id}
 					{...rest}
 				>
-					<div className={modalWrapperClasses} id={id}>
+					<div className={modalWrapperClasses}>
 						<div
 							ref={modal => this.modalRef = modal}
 							tabIndex={0}

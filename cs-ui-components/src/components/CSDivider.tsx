@@ -43,7 +43,7 @@ class CSDivider extends React.Component<CSDividerProps> {
 				style={style}
 				role="separator"
 				aria-orientation={variant}
-				id={this.props.id}
+				id={id}
 				{...rest}
 			>
 				{(label && variant === 'horizontal') &&

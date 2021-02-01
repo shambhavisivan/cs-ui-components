@@ -121,6 +121,20 @@ class CSTransferPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'id',
+					variations: [
+						{
+							component:
+								<CSTransfer
+									dataSource={colorsDataSource}
+									sourceLabel="Source"
+									targetLabel="Target"
+									id="id"
+								/>
+						}
+					]
+				},
+				{
 					propName: 'oneWay',
 					variations: [
 						{
@@ -285,6 +299,10 @@ class CSTransferPreview extends React.Component {
 						types: ['object']
 					}],
 					description: 'Define an array of objects to be used as a data source. The object accepts disabled, key and name attributes. In case the key is within targetKeys, that item will be displayed in the target list.'
+				}, {
+					name: 'id',
+					types: ['string'],
+					description: 'Set the ID for the transfer.'
 				}, {
 					name: 'onChange',
 					types: ['(value) => any'],
