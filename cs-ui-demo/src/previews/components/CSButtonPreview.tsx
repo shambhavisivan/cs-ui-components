@@ -593,7 +593,8 @@ class CSButtonPreview extends React.Component {
 				}, {
 					name: 'label',
 					types: ['string'],
-					description: 'Set which text, if any, should appear as the button label.'
+					required: true,
+					description: 'Set which text should appear as the button label.'
 				}, {
 					name: 'link',
 					types: ['string'],
