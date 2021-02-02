@@ -131,13 +131,8 @@
 	}
 }
 
-.properties-code-tooltip .cs-tooltip {
-	padding-top: 0;
-	max-width: 30rem;
-
-	.properties-code {
-		margin-top: 0.5rem;
-	}
+.properties-code-tooltip .cs-tooltip .properties-code {
+	margin-top: 0.5rem;
 }
 
 .properties-code {
