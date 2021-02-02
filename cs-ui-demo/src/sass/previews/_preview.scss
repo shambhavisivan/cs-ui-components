@@ -90,6 +90,12 @@
 				&.sidebar-preview ~ .version-description {
 					max-height: unset;
 				}
+
+				&.rendercstoast-preview {
+					display: flex;
+					justify-content: space-evenly;
+					align-items: center;
+				}
 			}
 		}
 	}
