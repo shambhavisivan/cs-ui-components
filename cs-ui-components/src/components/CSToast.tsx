@@ -13,10 +13,10 @@ export interface CSToastProps {
 	iconOrigin?: CSIconOrigin;
 	iconVisibility?: boolean;
 	id?: string;
-	minWidth?: string;
 	onClose?: () => void;
 	text?: string;
 	variant: CSToastVariant;
+	width?: string;
 }
 
 class CSToast extends React.Component<CSToastProps> {
@@ -34,19 +34,17 @@ class CSToast extends React.Component<CSToastProps> {
 			iconOrigin,
 			iconVisibility,
 			id,
-			minWidth,
 			onClose,
 			text,
 			variant,
+			width,
 			...rest
 		} = this.props;
 
 		const toastWrapperClasses = classNames(
-			'cs-toast-wrapper',
-			{
-				[`${className}`]: className
-			}
-		);
+			'cs-toast-wrapper', {
+			[`${className}`]: className
+		});
 
 		const toastClasses = classNames(
 			'cs-toast',
@@ -54,7 +52,7 @@ class CSToast extends React.Component<CSToastProps> {
 		);
 
 		const style: CSSProperties = {
-			minWidth
+			'--cs-toast-width': width
 		};
 
 		const toastRole = (variant === 'info' || variant === 'success') ? 'status' : 'alert';
@@ -65,24 +63,24 @@ class CSToast extends React.Component<CSToastProps> {
 				id={id}
 				{...rest}
 			>
-				<div style={style} className={toastClasses} role={toastRole}>
-					{iconVisibility ? (iconName ? (
-						<CSIcon name={iconName} origin={iconOrigin}/>
-					) : (
-						<CSIcon name={variant} />
-					)) : null}
+				<div className={toastClasses} role={toastRole} style={style}>
+					{iconVisibility ?
+						(iconName ?
+							<CSIcon name={iconName} origin={iconOrigin} /> :
+							<CSIcon name={variant} />) :
+						null}
 					<h4 className="cs-toast-text">
 						{text}
-						{detail ? (
-							<div className="cs-toast-detail">{detail}</div>
-						) : null}
+						{detail ?
+							<div className="cs-toast-detail">{detail}</div> :
+							null}
 						{children}
 					</h4>
-					{closeButton ? (
+					{closeButton ?
 						<button className="cs-toast-close" onClick={onClose} aria-label="close">
-								<CSIcon name="close"/>
+							<CSIcon name="close" />
 						</button>
-					) : null}
+						: null}
 				</div>
 			</div>
 

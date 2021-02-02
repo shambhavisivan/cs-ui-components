@@ -68,7 +68,7 @@ class CSToastPreview extends React.Component {
 					]
 				},
 				{
-					propName: 'minWidth',
+					propName: 'width',
 					variations: [
 						{
 							variationName: ['100%'],
@@ -78,20 +78,20 @@ class CSToastPreview extends React.Component {
 								<CSToast
 									variant="info"
 									closeButton
-									minWidth="100%"
-									text="This is an example toast with min width 100%"
+									width="100%"
+									text="This is an example toast with width 100%"
 								/>
 						},
 						{
-							variationName: ['400px'],
-							quickLink: '400px',
+							variationName: ['800px'],
+							quickLink: '800px',
 							variationText: ['variant="info"', 'closeButton="true"'],
 							component:
 								<CSToast
 									variant="info"
 									closeButton
-									minWidth="400px"
-									text="This is an example toast with min width 400px"
+									width="800px"
+									text="This is an example toast with width 800px"
 								/>
 						}
 					]
@@ -317,11 +317,6 @@ class CSToastPreview extends React.Component {
 					types: ['string'],
 					description: 'Set the ID for the toast.'
 				}, {
-					name: 'minWidth',
-					types: ['string'],
-					default: '30rem',
-					description: 'Set the toast minimum width. (eg. 200px, 20rem, 50%, etc.)'
-				}, {
 					name: 'onClose',
 					types: ['(event) => void'],
 					description: 'Handler method for closing the toast.'
@@ -337,6 +332,10 @@ class CSToastPreview extends React.Component {
 						types: ['\'info\'', '\'success\'', '\'warning\'', '\'error\'']
 					}],
 					description: 'Set the colour and icon variant of the toast.'
+				}, {
+					name: 'width',
+					types: ['string'],
+					description: 'Set the toast width. (eg. 200px, 20rem, 50%, etc.)'
 				}, {
 					name: '[key: string]',
 					types: ['any'],

@@ -1,15 +1,17 @@
 .cs-toast-wrapper {
-	display: inline-flex;
+	display: flex;
 	padding: 0.5rem;
 
 	.cs-toast {
-		display: inline-flex;
+		display: flex;
 		justify-content: flex-start;
 		align-items: flex-start;
 		position: relative;
 		border-radius: 0.25rem;
 		padding: 0.75rem 3rem 0.75rem 1.5rem;
+		width: var(--cs-toast-width);
 		min-width: 15rem;
+		max-width: Min(var(--cs-toast-width, 30rem), 100%);
 
 		> .cs-icon {
 			width: 1.5rem;
