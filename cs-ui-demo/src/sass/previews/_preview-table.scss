@@ -87,10 +87,10 @@
 
 		&-header {
 			border-radius: 0.25rem 0.25rem 0 0;
+			color: var(--prop-table-header-c);
+			background-color: var(--prop-table-header-bg);
 
 			.properties-table-cell {
-				border-bottom: 1px solid var(--prop-table-cell-br);
-
 				&:first-child {
 					border-top-left-radius: 0.25rem;
 				}
