@@ -110,11 +110,11 @@ const PreviewTable: React.FC<PreviewTableProps | PreviewTableLegacyProps> = ({ c
 				</h2>
 				<CSTable className="properties-table">
 					<CSTableHeader className="properties-table-header">
-						<CSTableCell className="properties-table-cell">Prop</CSTableCell>
-						<CSTableCell className="properties-table-cell">Required</CSTableCell>
-						<CSTableCell className="properties-table-cell">Type</CSTableCell>
-						<CSTableCell className="properties-table-cell">Default</CSTableCell>
-						<CSTableCell className="properties-table-cell">Description</CSTableCell>
+						<CSTableCell className="properties-table-cell" text="Prop" />
+						<CSTableCell className="properties-table-cell" text="Required" />
+						<CSTableCell className="properties-table-cell" text="Type" />
+						<CSTableCell className="properties-table-cell" text="Default" />
+						<CSTableCell className="properties-table-cell" text="Description" />
 					</CSTableHeader>
 					<CSTableBody className="properties-table-body">
 						{sortedProps.map((property: PreviewTableComponentProperty) => {
