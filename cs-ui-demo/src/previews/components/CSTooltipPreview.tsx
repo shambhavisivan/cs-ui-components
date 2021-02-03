@@ -94,13 +94,13 @@ class CSTooltipPreview extends React.Component {
 							variationName: ['slds'],
 							quickLink: 'slds',
 							component:
-								<CSTooltip iconName="quote" content="Help text example" iconOrigin="slds"/>
+								<CSTooltip iconName="quote" content="Help text example" iconOrigin="slds" />
 						},
 						{
 							variationName: ['cs'],
 							quickLink: 'cs',
 							component:
-								<CSTooltip iconName="big_shot" content="Help text example" iconOrigin="cs"/>
+								<CSTooltip iconName="big_shot" content="Help text example" iconOrigin="cs" />
 						}
 					]
 				},

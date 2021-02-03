@@ -332,23 +332,23 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		const position = this.state.computedPosition.split('-');
 		const wrapperInfo = this.tooltipRef.current.getBoundingClientRect();
 		const top = position[1] === 'bottom' ?
-			wrapperInfo.top + this.convertRemToPixels(-0.5) :
-			wrapperInfo.top + this.convertRemToPixels(1.5);
+			wrapperInfo.bottom - wrapperInfo.height / 2 - this.convertRemToPixels(0.8125) :
+			wrapperInfo.bottom + this.convertRemToPixels(0.75);
 		const right = position[0] === 'left' ?
-			window.innerWidth - wrapperInfo.right - this.convertRemToPixels(-1.25) + wrapperInfo.width / 2 :
+			window.innerWidth - wrapperInfo.right + wrapperInfo.width + this.convertRemToPixels(0.75) :
 			window.innerWidth - wrapperInfo.right - this.convertRemToPixels(1.5) + wrapperInfo.width / 2;
 		const bottom = position[1] === 'top' ?
 			window.innerHeight - wrapperInfo.top + this.convertRemToPixels(-1.5) + 2 :
 			window.innerHeight - wrapperInfo.top + this.convertRemToPixels(0.5) + 2;
 		const left = position[0] === 'right' ?
-			wrapperInfo.left - this.convertRemToPixels(-1.25) + wrapperInfo.width / 2 :
+			wrapperInfo.right + this.convertRemToPixels(0.75) :
 			wrapperInfo.left - this.convertRemToPixels(1.5) + wrapperInfo.width / 2;
 		const centerX = {
 			left: wrapperInfo.left + wrapperInfo.width / 2,
 			transform: 'translateX(-50%) translate3d(0, 0, 0)'
 		};
 		const centerY = {
-			top: wrapperInfo.top + wrapperInfo.width / 2,
+			top: wrapperInfo.top + wrapperInfo.height / 2,
 			transform: 'translateY(-50%) translate3d(0, 0, 0)'
 		};
 
