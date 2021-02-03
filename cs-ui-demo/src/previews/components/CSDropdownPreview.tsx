@@ -200,6 +200,33 @@ class CSDropdownPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'defaultOpen',
+					alert: {
+						variant: 'info',
+						text: 'This prop shouldn\'t be used with hover prop.'
+					},
+					customText: '',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							component: <CSDropdown
+								iconName="down"
+								defaultOpen
+							>
+								<CSButton
+									iconName="world"
+									label="test label small"
+								/>
+								<CSButton
+									iconName="world"
+									label="test label large large"
+								/>
+							</CSDropdown>
+						}
+					]
+				},
+				{
 					propName: 'iconName',
 					customText: '',
 					variations: [
@@ -632,6 +659,11 @@ class CSDropdownPreview extends React.Component {
 					types: ['boolean'],
 					default: 'false',
 					description: 'Disable the dropdown.'
+				}, {
+					name: 'defaultOpen',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Set whether the dropdown should be open or not by default. It will also remove dropdown toggle button.'
 				}, {
 					name: 'hover',
 					types: ['boolean'],

@@ -18,6 +18,7 @@ export interface CSDropdownProps {
 	btnType?: CSDropdownType;
 	className?: string;
 	disabled?: boolean;
+	defaultOpen?: boolean;
 	hover?: boolean;
 	iconName?: string;
 	iconOrigin?: CSIconOrigin;
@@ -68,6 +69,16 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 		this.setState({ active: !currentState });
 	}
 
+	componentDidMount() {
+		// defaultOpen prop is used for cs-grid to stop dropdown toggle button from rendering within cell editor
+		// just dropdown will be rendered which will be open by default
+		if (this.props.defaultOpen) {
+			this.setState({
+				active: true
+			});
+		}
+	}
+
 	componentWillUnmount() {
 		document.removeEventListener('click', this.handleOutsideClick, false);
 	}
@@ -88,6 +99,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 			children,
 			className,
 			disabled,
+			defaultOpen,
 			hover,
 			iconName,
 			iconOrigin,
@@ -125,22 +137,24 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 				id={id}
 				{...rest}
 			>
-				<CSButton
-					btnStyle={btnStyle}
-					btnType={btnType}
-					className={btnDropdownClasses}
-					disabled={disabled}
-					iconDisplay={label ? 'default' : 'icon-only'}
-					iconName={iconName}
-					iconOrigin={iconOrigin}
-					iconPosition={(label && iconPosition) ? iconPosition : undefined}
-					iconRotate={iconRotate}
-					onClick={!hover ? this.toggleActive : null}
-					size={size}
-					label={label ? label : 'Toggle dropdown'}
-					ariaExpanded={this.state.active}
-					ariaHaspopup={!!Object(children).length}
-				/>
+				{!defaultOpen && (
+					<CSButton
+						btnStyle={btnStyle}
+						btnType={btnType}
+						className={btnDropdownClasses}
+						disabled={disabled}
+						iconDisplay={label ? 'default' : 'icon-only'}
+						iconName={iconName}
+						iconOrigin={iconOrigin}
+						iconPosition={(label && iconPosition) ? iconPosition : undefined}
+						iconRotate={iconRotate}
+						onClick={!hover ? this.toggleActive : null}
+						size={size}
+						label={label ? label : 'Toggle dropdown'}
+						ariaExpanded={this.state.active}
+						ariaHaspopup={!!Object(children).length}
+					/>
+				)}
 				<CSDropdownItemWrapper
 					align={align}
 					maxHeight={maxHeight}
