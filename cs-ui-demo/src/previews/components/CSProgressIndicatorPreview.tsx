@@ -23,48 +23,50 @@ class CSProgressIndicatorPreview extends React.Component {
 							variationName: ['incomplete'],
 							quickLink: 'incomplete',
 							component:
-								<CSProgressIndicator
-									id="id"
-								>
-									<CSProgressIndicatorItem text="Item 1" status="incomplete"/>
-									<CSProgressIndicatorItem text="Item 2" status="incomplete"/>
-									<CSProgressIndicatorItem text="Item 3" status="incomplete"/>
+								<CSProgressIndicator>
+									<CSProgressIndicatorItem text="Item 1" status="incomplete" />
+									<CSProgressIndicatorItem text="Item 2" status="incomplete" />
+									<CSProgressIndicatorItem text="Item 3" status="incomplete" />
 								</CSProgressIndicator>
 						},
 						{
 							variationName: ['active'],
 							quickLink: 'active',
 							component:
-								<CSProgressIndicator
-									id="id"
-								>
-									<CSProgressIndicatorItem text="Item 1" status="active"/>
-									<CSProgressIndicatorItem text="Item 2" status="active"/>
-									<CSProgressIndicatorItem text="Item 3" status="active"/>
+								<CSProgressIndicator>
+									<CSProgressIndicatorItem text="Item 1" status="active" />
+									<CSProgressIndicatorItem text="Item 2" status="active" />
+									<CSProgressIndicatorItem text="Item 3" status="active" />
 								</CSProgressIndicator>
 						},
 						{
 							variationName: ['complete'],
 							quickLink: 'complete',
 							component:
-								<CSProgressIndicator
-									id="id"
-								>
-									<CSProgressIndicatorItem text="Item 1" status="complete"/>
-									<CSProgressIndicatorItem text="Item 2" status="complete"/>
-									<CSProgressIndicatorItem text="Item 3" status="complete"/>
+								<CSProgressIndicator>
+									<CSProgressIndicatorItem text="Item 1" status="complete" />
+									<CSProgressIndicatorItem text="Item 2" status="complete" />
+									<CSProgressIndicatorItem text="Item 3" status="complete" />
 								</CSProgressIndicator>
 						},
 						{
 							variationName: ['error'],
 							quickLink: 'error',
 							component:
-								<CSProgressIndicator
-									id="id"
-								>
-									<CSProgressIndicatorItem text="Item 1" status="error"/>
-									<CSProgressIndicatorItem text="Item 2" status="error"/>
-									<CSProgressIndicatorItem text="Item 3" status="error"/>
+								<CSProgressIndicator>
+									<CSProgressIndicatorItem text="Item 1" status="error" />
+									<CSProgressIndicatorItem text="Item 2" status="error" />
+									<CSProgressIndicatorItem text="Item 3" status="error" />
+								</CSProgressIndicator>
+						},
+						{
+							variationName: ['loading'],
+							quickLink: 'loading',
+							component:
+								<CSProgressIndicator>
+									<CSProgressIndicatorItem text="Item 1" status="loading" />
+									<CSProgressIndicatorItem text="Item 2" status="loading" />
+									<CSProgressIndicatorItem text="Item 3" status="loading" />
 								</CSProgressIndicator>
 						}
 					]
@@ -75,13 +77,11 @@ class CSProgressIndicatorPreview extends React.Component {
 					variations: [
 						{
 							component:
-								<CSProgressIndicator
-									id="id"
-								>
-									<CSProgressIndicatorItem text="Item 1" status="complete"/>
-									<CSProgressIndicatorItem text="Item 2" status="error"/>
-									<CSProgressIndicatorItem text="Item 3" status="active"/>
-									<CSProgressIndicatorItem text="Item 4" status="incomplete"/>
+								<CSProgressIndicator>
+									<CSProgressIndicatorItem text="Item 1" status="complete" />
+									<CSProgressIndicatorItem text="Item 2" status="error" />
+									<CSProgressIndicatorItem text="Item 3" status="active" />
+									<CSProgressIndicatorItem text="Item 4" status="incomplete" />
 								</CSProgressIndicator>
 						}
 					]
@@ -92,15 +92,13 @@ class CSProgressIndicatorPreview extends React.Component {
 					variations: [
 						{
 							component:
-								<CSProgressIndicator
-									id="id"
-								>
-									<CSProgressIndicatorItem text="Item 1" status="complete"/>
-									<CSProgressIndicatorItem text="Item 2" status="error"/>
-									<CSProgressIndicatorItem text="Item 3" status="complete"/>
-									<CSProgressIndicatorItem text="Item 4" status="active"/>
-									<CSProgressIndicatorItem text="Item 5" status="incomplete"/>
-									<CSProgressIndicatorItem text="Item 6" status="incomplete"/>
+								<CSProgressIndicator id="id">
+									<CSProgressIndicatorItem text="Item 1" status="complete" />
+									<CSProgressIndicatorItem text="Item 2" status="error" />
+									<CSProgressIndicatorItem text="Item 3" status="complete" />
+									<CSProgressIndicatorItem text="Item 4" status="active" />
+									<CSProgressIndicatorItem text="Item 5" status="incomplete" />
+									<CSProgressIndicatorItem text="Item 6" status="incomplete" />
 								</CSProgressIndicator>
 						}
 					]
@@ -113,15 +111,13 @@ class CSProgressIndicatorPreview extends React.Component {
 							variationName: ['custom class'],
 							quickLink: 'custom class',
 							component:
-								<CSProgressIndicator
-									className="custom-class"
-								>
-									<CSProgressIndicatorItem text="Item 1" status="complete"/>
-									<CSProgressIndicatorItem text="Item 2" status="error"/>
-									<CSProgressIndicatorItem text="Item 3" status="complete"/>
-									<CSProgressIndicatorItem text="Item 4" status="active"/>
-									<CSProgressIndicatorItem text="Item 5" status="incomplete"/>
-									<CSProgressIndicatorItem text="Item 6" status="incomplete"/>
+								<CSProgressIndicator className="custom-class">
+									<CSProgressIndicatorItem text="Item 1" status="complete" />
+									<CSProgressIndicatorItem text="Item 2" status="error" />
+									<CSProgressIndicatorItem text="Item 3" status="complete" />
+									<CSProgressIndicatorItem text="Item 4" status="active" />
+									<CSProgressIndicatorItem text="Item 5" status="incomplete" />
+									<CSProgressIndicatorItem text="Item 6" status="incomplete" />
 								</CSProgressIndicator>
 						}
 					]
@@ -174,7 +170,8 @@ class CSProgressIndicatorPreview extends React.Component {
 							'\'incomplete\'',
 							'\'complete\'',
 							'\'active\'',
-							'\'error\''
+							'\'error\'',
+							'\'loading\''
 						]
 					}],
 					default: '\'incomplete\'',
