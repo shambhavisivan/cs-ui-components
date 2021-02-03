@@ -15,7 +15,7 @@
 	/* IMPORTANT CHIP */
 	.release-notes,
 	.getting-started {
-		i {
+		i, em {
 			display: inline-flex;
 			align-items: center;
 			vertical-align: middle;
@@ -26,9 +26,18 @@
 			font-size: 0.5625rem;
 			letter-spacing: 0.1rem;
 			text-transform: uppercase;
+			font-style: normal;
+		}
+
+		i {
 			background: var(--important-chip-bg);
 			color: var(--important-chip-c);
-			font-style: normal;
+		}
+
+		em {
+			background: var(--neutral-chip-bg);
+			color: var(--neutral-chip-c);
+			border: 1px solid var(--neutral-chip-c);
 		}
 
 		pre {

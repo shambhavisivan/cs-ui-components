@@ -1,5 +1,43 @@
 # Release Notes
 
+## 1.1.1<a name="1.1.1"></a>
+* CSAlert
+  * `iconOrigin` prop added
+* CSButton
+  * fixed validation of component prop types
+  * `pointer-events: none` removed from disabled button
+* CSCard
+  * `collapsible` prop added
+* CSChip
+  * warning variant color adjustment
+* CSIcon
+  * arbitrary props fixed
+* CSList
+  * <i>new</i> new List component added
+* CSPath
+  * <em>preview</em> accessibility section added
+* CSSlider
+  * exported value changed to a state
+* CSProgressIndicator
+  * arbitrary props support added
+  * <em>preview</em> className example fix
+* CSProgressBar
+  * <em>preview</em> simulate progress section - start delayed progress functionality fixed
+* CSTab
+  * arbitrary props fixed
+* CSToast
+  * `iconOrigin` prop added
+* CSTooltip
+  * `maxHeight` and `maxWidth` props added
+  * `iconOrigin` prop added
+  * overflow auto added for tooltips with fixed height/width
+  * fixed auto-positioning for top-center and bottom-center positions
+  * basic variant position and shadow styling fixes
+* Demo App changes
+  * long label removed from version tag
+  * dark mode button now has a WIP explanatory tooltip
+  * various minor styling fixes
+
 ## 1.1.0<a name="1.1.0"></a>
 * CSAlert
   * light variants colors changed to match accessibility requirements
@@ -34,11 +72,11 @@
 * CSInputText
   * <i>important</i> `className` moved to `.cs-input-text-wrapper` from `.cs-input-text`
 * CSModal
-  * <i>important</i> Modals now have `visible` prop with which they manage their own visibility. All modals should now use `visible` prop.
+  * <i>important</i> Modals now have a `visible` prop which manages their own visibility. All modals should now use `visible` prop.
   * transition on open/close modal added
 * CSPath
   * CSPath and CSPathWrapper component are now combined into one
-  * props and styles for success/error/active states added  
+  * props and styles for success/error/active states added
 * CSProgressIndicator
   * <i>new</i> new Progress Indicator component added
 * CSRadio
@@ -66,4 +104,3 @@
   * moved styles into separate files
   * theme file with color variables added
   * various minor styling fixes
-  
