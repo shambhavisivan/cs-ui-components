@@ -42,7 +42,7 @@
 					left: -0.25rem;
 					right: -0.3125rem;
 					cursor: pointer;
-					z-index: var(--z-index-path-psuedo);
+					z-index: var(--z-index-path-pseudo);
 					@include sbg(--cs-path-item-initial-bg);
 				}
 				&::before {
