@@ -33,8 +33,8 @@ export interface CSButtonProps {
 	link?: string;
 	loading?: boolean;
 	onClick?: (value: any) => any;
-	onKeyDown?: (e: React.KeyboardEvent<HTMLLIElement | HTMLButtonElement>) => any;
-	onMouseDown?: (e: React.MouseEvent<HTMLLIElement | HTMLButtonElement>) => any;
+	onKeyDown?: (e: React.KeyboardEvent<HTMLButtonElement | HTMLAnchorElement>) => any;
+	onMouseDown?: (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => any;
 	openInNewTab?: boolean;
 	role?: CSButtonRole;
 	routerLink?: JSX.Element;
@@ -208,6 +208,8 @@ class CSButton extends React.Component<CSButtonProps> {
 	}
 }
 
-const CSButtonWithRefs: React.ForwardRefExoticComponent<CSButtonProps & React.RefAttributes<HTMLButtonElement>> = React.forwardRef<HTMLButtonElement, CSButtonProps>((props: CSButtonProps, ref) => <CSButton {...props} forwardRef={ref} />);
+const CSButtonWithRefs: React.ForwardRefExoticComponent<CSButtonProps & React.RefAttributes<HTMLButtonElement>> =
+	React.forwardRef<HTMLButtonElement, CSButtonProps>((props: CSButtonProps, ref) =>
+		<CSButton {...props} forwardRef={ref} />);
 
 export default CSButtonWithRefs;
