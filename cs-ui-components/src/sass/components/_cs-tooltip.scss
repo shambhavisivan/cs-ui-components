@@ -85,73 +85,14 @@
 
 	&.cs-tooltip-basic {
 		@include sbg(--cs-tooltip-basic-bg);
-
+		@include css4 {
+			box-shadow: 0 1px 3px 0 cvar(--cs-shadow-medium);
+		}
 		&::before {
-			border-style: solid;
-			border-width: 7px 7px 0 7px;
-			@include sbg(--cs-transparent);
 			@include css4 {
-				border-color: cvar(--cs-tooltip-body-bg) cvar(--cs-transparent) cvar(--cs-transparent) cvar(--cs-transparent);
-				filter: drop-shadow(0 2px 1px cvar(--cs-shadow-light));
+				border-bottom-color: cvar(--cs-tooltip-basic-bg);
+				box-shadow: -2px 2px 3px -1px var(--cs-shadow-light);
 			}
-		}
-
-		&.cs-tooltip-top-right,
-		&.cs-tooltip-top-left,
-		&.cs-tooltip-top-center {
-			@include css4 {
-				box-shadow: 0 1px 3px 0 cvar(--cs-shadow-medium);
-			}
-
-			&::before {
-				top: 100%;
-				transform: rotate(0deg);
-			}
-		}
-
-		&.cs-tooltip-bottom-right,
-		&.cs-tooltip-bottom-left,
-		&.cs-tooltip-bottom-center {
-			@include css4 {
-				box-shadow: 0 -1px 3px 0 cvar(--cs-shadow-medium);
-			}
-			&::before {
-				bottom: 100%;
-				transform: rotate(180deg);
-			}
-		}
-		&.cs-tooltip-right-top,
-		&.cs-tooltip-right-center,
-		&.cs-tooltip-right-bottom,
-		&.cs-tooltip-left-top,
-		&.cs-tooltip-left-center,
-		&.cs-tooltip-left-bottom {
-			@include css4 {
-				box-shadow: 0 2px 3px 0 cvar(--cs-shadow-medium);
-			}
-
-			&::before {
-				@include css4 {
-					filter: drop-shadow(0px 2px 1px cvar(--cs-shadow-light));
-				}
-			}
-		}
-
-		&.cs-tooltip-right-top::before,
-		&.cs-tooltip-right-center::before,
-		&.cs-tooltip-right-bottom::before {
-			transform: rotate(90deg);
-			left: -0.6125rem;
-			@include css4 {
-				filter: drop-shadow(0px 2px 1px cvar(--cs-shadow-light));
-			}
-		}
-
-		&.cs-tooltip-left-top::before,
-		&.cs-tooltip-left-center::before,
-		&.cs-tooltip-left-bottom::before {
-			transform: rotate(-90deg);
-			right: -0.6125rem;
 		}
 	}
 
@@ -172,10 +113,6 @@
 			top: -0.3125rem;
 			transform: rotate(135deg);
 		}
-
-		&.cs-tooltip-basic::before {
-			left: 1.06125rem;
-		}
 	}
 
 	&.cs-tooltip-bottom-left {
@@ -183,10 +120,6 @@
 			top: -0.3125rem;
 			right: 1.125rem;
 			transform: rotate(135deg);
-		}
-
-		&.cs-tooltip-basic::before {
-			right: 1.06125rem;
 		}
 	}
 
@@ -196,10 +129,6 @@
 			top: -0.3125rem;
 			transform: translateX(-50%) rotate(135deg);
 		}
-
-		&.cs-tooltip-basic::before {
-			left: calc(50% - 0.4375rem);
-		}
 	}
 
 	&.cs-tooltip-top-right {
@@ -207,10 +136,6 @@
 			left: 1.125rem;
 			top: calc(100% - 0.4375rem);
 			transform: rotate(-45deg);
-		}
-
-		&.cs-tooltip-basic::before {
-			left: 1.06125rem;
 		}
 	}
 
@@ -220,10 +145,6 @@
 			top: calc(100% - 0.4375rem);
 			transform: rotate(-45deg);
 		}
-
-		&.cs-tooltip-basic::before {
-			right: 1.06125rem;
-		}
 	}
 
 	&.cs-tooltip-top-center {
@@ -231,10 +152,6 @@
 			left: calc(50%);
 			top: calc(100% - 0.4375rem);
 			transform: translateX(-50%) rotate(-45deg);
-		}
-
-		&.cs-tooltip-basic::before {
-			left: calc(50% - 0.4375rem);
 		}
 	}
 
@@ -244,10 +161,6 @@
 			top: calc(100% - 1.25rem);
 			transform: rotate(45deg);
 		}
-
-		&.cs-tooltip-basic::before {
-			top: calc(100% - 1.125rem);
-		}
 	}
 
 	&.cs-tooltip-right-bottom {
@@ -255,10 +168,6 @@
 			left: -0.375rem;
 			top: 0.5rem;
 			transform: rotate(45deg);
-		}
-
-		&.cs-tooltip-basic::before {
-			top: 0.6875rem;
 		}
 	}
 
@@ -268,10 +177,6 @@
 			top: 50%;
 			transform: translateY(-50%) rotate(45deg);
 		}
-
-		&.cs-tooltip-basic::before {
-			top: calc(50% - 0.25rem);
-		}
 	}
 
 	&.cs-tooltip-left-top {
@@ -279,10 +184,6 @@
 			right: -0.375rem;
 			top: calc(100% - 1.25rem);
 			transform: rotate(-135deg);
-		}
-
-		&.cs-tooltip-basic::before {
-			top: calc(100% - 1.125rem);
 		}
 	}
 
@@ -292,10 +193,6 @@
 			top: 0.5rem;
 			transform: rotate(-135deg);
 		}
-
-		&.cs-tooltip-basic::before {
-			top: 0.6875rem;
-		}
 	}
 
 	&.cs-tooltip-left-center {
@@ -303,10 +200,6 @@
 			right: -0.375rem;
 			top: 50%;
 			transform: translateY(-50%) rotate(-135deg);
-		}
-
-		&.cs-tooltip-basic::before {
-			top: calc(50% - 0.25rem);
 		}
 	}
 
