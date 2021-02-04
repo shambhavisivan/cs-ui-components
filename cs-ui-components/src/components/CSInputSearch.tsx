@@ -8,6 +8,7 @@ import { CSTooltipPosition } from './CSTooltip';
 import { v4 as uuidv4 } from 'uuid';
 
 export type CSInputSearchBorderType = 'round' | 'square';
+export type CSInputSearchIconPosition = 'left' | 'right';
 
 export interface CSInputSearchProps {
 	[key: string]: any;
@@ -19,7 +20,7 @@ export interface CSInputSearchProps {
 	errorMessage?: CSFieldErrorMsgType;
 	helpText?: string;
 	hidden?: boolean;
-	iconPosition?: string;
+	iconPosition?: CSInputSearchIconPosition;
 	id?: string;
 	label: string;
 	labelHidden?: boolean;
@@ -99,10 +100,6 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 		}
 	}
 
-	saveInputSearch = (node: HTMLInputElement) => {
-		this.input = node;
-	}
-
 	setValue(value: string, callback?: () => void) {
 		this.setState({ value }, callback);
 	}
@@ -114,6 +111,8 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 		if (this.props.onClearSearch) {
 			this.props.onClearSearch();
 		}
+
+		this.input.focus();
 	}
 
 	onFocus: React.FocusEventHandler<HTMLInputElement> = e => {
@@ -229,7 +228,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 							value={fixControlledValue(this.state.value)}
 							type="text"
 							autoComplete="off"
-							ref={this.saveInputSearch}
+							ref={node => this.input = node}
 							onKeyDown={this.handleOnKeyDown}
 							onBlur={this.onBlur}
 							onFocus={this.onFocus}

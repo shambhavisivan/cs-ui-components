@@ -349,7 +349,11 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 					description: 'Control the hidden attribute.'
 				}, {
 					name: 'iconPosition',
-					types: ['string'],
+					customTypes: [{
+						name: 'CSInputSearchIconPosition',
+						types: ['\'left\'', '\'right\'']
+					}],
+					default: '\'left\'',
 					description: 'Set where the icon should be positioned.'
 				}, {
 					name: 'id',
