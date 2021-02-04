@@ -66,6 +66,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 		const file = e.dataTransfer.files[0];
 
 		if (typeof (file) !== 'object') {
+			this.setState({ isDraggedOver: false });
 			return;
 		}
 
