@@ -67,8 +67,7 @@ class CSCardHeader extends React.Component<CSCardHeaderProps, CSCardHeaderState>
 			>
 				{this.props.collapsible ? (
 					<CSButton
-						label="Collapse"
-						labelHidden
+						label={this.state.collapsed ? 'expand' : 'collapse'}
 						btnType="transparent"
 						btnStyle="brand"
 						size="small"
