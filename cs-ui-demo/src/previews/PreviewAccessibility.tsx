@@ -12,7 +12,7 @@ class PreviewAccessibility extends React.Component<PreviewAccessibilityProps> {
 				<div className="accessibility-conformance-section" key={c}>
 					{component.accessibility.map((prop: any, j: any) => (
 						<React.Fragment key={j}>
-							<h2 className="property-name" id={`accessibility-table-${this.props.components[0].name}`}>Accessibility conformance requirements</h2>
+							<h2 className="accessibility-table-name" id={`accessibility-table-${this.props.components[0].name}`}>Accessibility conformance requirements</h2>
 							<div className="accessibility-criteria-list">
 								<h3>Related criteria:</h3>
 								{prop.criterionList && prop.criterionList.map((criterion: any) => (
