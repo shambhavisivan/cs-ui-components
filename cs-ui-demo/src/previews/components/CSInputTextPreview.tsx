@@ -169,7 +169,7 @@ class CSInputTextPreview extends React.Component<{}, CSInputTextPreviewState> {
 							variationName: ['true'],
 							quickLink: 'true',
 							component:
-								<CSInputText required label="Enter job role" helpText="Help text example" tooltipPosition="top-left" />
+								<CSInputText required label="Enter job role" />
 						}
 					]
 				},
