@@ -40,6 +40,7 @@
 					padding: 0.25rem 0.5rem;
 					border: none;
 					width: 100%;
+					position: relative;
 					@include sbg(--cs-white);
 					&-title {
 						font-size: 0.875rem;
@@ -57,8 +58,12 @@
 						@include sc(--cs-transfer-list-item-disabled-c);
 						pointer-events: none;
 					}
+					&:hover {
+						@include sbg(--cs-transfer-list-item-hover);
+					}
 					&:focus {
 						outline: none;
+						z-index: var(--z-index-transfer-list-item-focus);
 						@include css4 {
 							box-shadow: 0 0 3px cvar(--cs-transfer-list-item-box);
 						}

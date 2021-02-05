@@ -16,7 +16,7 @@ export type CSTransferVariant = 'simple-list' | 'check-list';
 export interface CSTransferProps {
 	[key: string]: any;
 	className?: string;
-	dataSource?: Array<CSTransferItemsType>;
+	dataSource: Array<CSTransferItemsType>;
 	id?: string;
 	onChange?: (value?: any) => any;
 	oneWay?: boolean;

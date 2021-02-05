@@ -298,6 +298,7 @@ class CSTransferPreview extends React.Component {
 						name: 'Array<CSTransferItemsType>',
 						types: ['object']
 					}],
+					required: true,
 					description: 'Define an array of objects to be used as a data source. The object accepts disabled, key and name attributes. In case the key is within targetKeys, that item will be displayed in the target list.'
 				}, {
 					name: 'id',

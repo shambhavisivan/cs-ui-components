@@ -23,10 +23,13 @@ element. Variables should be self-explanatory and sorted in ascending order.
   * --z-index-path-psuedo: -1;
   * --z-index-divider-label: 1;
   * --z-index-custom-select-dropdown: 1;
+  * --z-index-progress-indicator: 1;
+  * --z-index-transfer-list-item-focus: 1;
   * --z-index-button-focus: 2;
   * --z-index-button-icon: 2;
   * --z-index-button-label: 2;
   * --z-index-main-header: 3;
+  * --z-index-table-header: 3;
   * --z-index-dropdown-items-wrapper: 5;
   * --z-index-sidebar-list-close: 10;
   * --z-index-path: 10;
