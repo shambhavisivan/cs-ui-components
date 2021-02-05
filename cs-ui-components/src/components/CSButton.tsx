@@ -29,7 +29,7 @@ export interface CSButtonProps {
 	iconRotate?: string;
 	iconSize?: string;
 	id?: string;
-	label: string | undefined;
+	label: string;
 	link?: string;
 	loading?: boolean;
 	onClick?: (value: any) => any;
