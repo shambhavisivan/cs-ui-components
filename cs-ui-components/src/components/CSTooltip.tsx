@@ -49,6 +49,7 @@ interface CSTooltipState {
 	hidden: boolean;
 	computedTooltipStyle?: CSSProperties;
 	computedPosition?: CSTooltipPosition;
+	tooltipWrapperDimension?: number;
 	stickyActive?: boolean;
 }
 
@@ -143,7 +144,8 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			'--cs-tooltip-width': width,
 			'--cs-tooltip-max-height': maxHeight,
 			'--cs-tooltip-max-width': maxWidth,
-			'--cs-tooltip-padding': padding
+			'--cs-tooltip-padding': padding,
+			'--cs-tw-dimension': this.state.tooltipWrapperDimension ? this.state.tooltipWrapperDimension + 'px' : ''
 		};
 
 		const tooltip = (
@@ -245,18 +247,18 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		if (this.props.delayTooltip && this.props.delayTooltip > 0) {
 			const delay = this.props.delayTooltip;
 
-			const ref = setTimeout(() => {
+			this.timeoutRef = setTimeout(() => {
 				this.popupTriggered = true;
 				this.setState({ hidden: false });
 			}, delay);
-			this.timeoutRef = ref;
 		}
 	}
 
 	private closeTooltip = () => {
 		this.setState({
 			computedTooltipStyle: undefined,
-			computedPosition: this.props.position
+			computedPosition: this.props.position,
+			tooltipWrapperDimension: undefined
 		});
 
 		if (this.props.delayTooltip && this.props.delayTooltip > 0) {
@@ -328,21 +330,34 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		}
 	}
 
+	private getTop = (wrapperInfo: DOMRect, openOn?: string) => {
+		if (openOn === 'bottom') {
+			return wrapperInfo.bottom + this.convertRemToPixels(0.5) + 1;
+		}
+		return wrapperInfo.top + wrapperInfo.height / 2 - this.convertRemToPixels(1) + 2;
+	}
+	private getBottom = (wrapperInfo: DOMRect, openOn?: string) => {
+		if (openOn === 'top') {
+			return window.innerHeight - wrapperInfo.top + this.convertRemToPixels(0.5) + 1;
+		}
+		return window.innerHeight - wrapperInfo.top - wrapperInfo.height / 2 - this.convertRemToPixels(1) + 2;
+	}
+	private getLeft = (wrapperInfo: DOMRect, openOn?: string) => {
+		if (openOn === 'right') {
+			return wrapperInfo.right + this.convertRemToPixels(0.5) + 1;
+		}
+		return wrapperInfo.left + wrapperInfo.width / 2 - this.convertRemToPixels(1.5);
+	}
+	private getRight = (wrapperInfo: DOMRect, openOn?: string) => {
+		if (openOn === 'left') {
+			return window.innerWidth - wrapperInfo.left + this.convertRemToPixels(0.5) + 1;
+		}
+		return window.innerWidth - wrapperInfo.right + wrapperInfo.width / 2 - this.convertRemToPixels(1.5);
+	}
+
 	private setTooltipPosition = () => {
-		const position = this.state.computedPosition.split('-');
 		const wrapperInfo = this.tooltipRef.current.getBoundingClientRect();
-		const top = position[1] === 'bottom' ?
-			wrapperInfo.bottom - wrapperInfo.height / 2 - this.convertRemToPixels(0.8125) :
-			wrapperInfo.bottom + this.convertRemToPixels(0.75);
-		const right = position[0] === 'left' ?
-			window.innerWidth - wrapperInfo.right + wrapperInfo.width + this.convertRemToPixels(0.75) :
-			window.innerWidth - wrapperInfo.right - this.convertRemToPixels(1.5) + wrapperInfo.width / 2;
-		const bottom = position[1] === 'top' ?
-			window.innerHeight - wrapperInfo.top + this.convertRemToPixels(-1.5) + 2 :
-			window.innerHeight - wrapperInfo.top + this.convertRemToPixels(0.5) + 2;
-		const left = position[0] === 'right' ?
-			wrapperInfo.right + this.convertRemToPixels(0.75) :
-			wrapperInfo.left - this.convertRemToPixels(1.5) + wrapperInfo.width / 2;
+
 		const centerX = {
 			left: wrapperInfo.left + wrapperInfo.width / 2,
 			transform: 'translateX(-50%) translate3d(0, 0, 0)'
@@ -356,98 +371,110 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			case 'bottom-right':
 				this.setState({
 					computedTooltipStyle: {
-						top,
-						left
-					}
+						top: this.getTop(wrapperInfo, 'bottom'),
+						left: this.getLeft(wrapperInfo)
+					},
+					tooltipWrapperDimension: wrapperInfo.width
 				});
 				break;
 			case 'bottom-left':
 				this.setState({
 					computedTooltipStyle: {
-						top,
-						right
-					}
+						top: this.getTop(wrapperInfo, 'bottom'),
+						right: this.getRight(wrapperInfo)
+					},
+					tooltipWrapperDimension: wrapperInfo.width
 				});
 				break;
 			case 'bottom-center':
 				this.setState({
 					computedTooltipStyle: {
-						top,
+						top: this.getTop(wrapperInfo, 'bottom'),
 						...centerX
-					}
+					},
+					tooltipWrapperDimension: wrapperInfo.width
 				});
 				break;
 			case 'top-left':
 				this.setState({
 					computedTooltipStyle: {
-						bottom,
-						right
-					}
+						bottom: this.getBottom(wrapperInfo, 'top'),
+						right: this.getRight(wrapperInfo)
+					},
+					tooltipWrapperDimension: wrapperInfo.width
 				});
 				break;
 			case 'top-center':
 				this.setState({
 					computedTooltipStyle: {
-						bottom,
+						bottom: this.getBottom(wrapperInfo, 'top'),
 						...centerX
-					}
+					},
+					tooltipWrapperDimension: wrapperInfo.width
 				});
 				break;
 			case 'right-top':
 				this.setState({
 					computedTooltipStyle: {
-						left,
-						bottom
-					}
+						left: this.getLeft(wrapperInfo, 'right'),
+						bottom: this.getBottom(wrapperInfo)
+					},
+					tooltipWrapperDimension: wrapperInfo.height
 				});
 				break;
 			case 'right-bottom':
 				this.setState({
 					computedTooltipStyle: {
-						left,
-						top
-					}
+						left: this.getLeft(wrapperInfo, 'right'),
+						top: this.getTop(wrapperInfo)
+					},
+					tooltipWrapperDimension: wrapperInfo.height
 				});
 				break;
 			case 'right-center':
 				this.setState({
 					computedTooltipStyle: {
-						left,
+						left: this.getLeft(wrapperInfo, 'right'),
 						...centerY
-					}
+					},
+					tooltipWrapperDimension: wrapperInfo.height
 				});
 				break;
 			case 'left-top':
 				this.setState({
 					computedTooltipStyle: {
-						right,
-						bottom
-					}
+						right: this.getRight(wrapperInfo, 'left'),
+						bottom: this.getBottom(wrapperInfo)
+					},
+					tooltipWrapperDimension: wrapperInfo.height
 				});
 				break;
 			case 'left-bottom':
 				this.setState({
 					computedTooltipStyle: {
-						right,
-						top
-					}
+						right: this.getRight(wrapperInfo, 'left'),
+						top: this.getTop(wrapperInfo)
+					},
+					tooltipWrapperDimension: wrapperInfo.height
 				});
 				break;
 			case 'left-center':
 				this.setState({
 					computedTooltipStyle: {
-						right,
+						right: this.getRight(wrapperInfo, 'left'),
 						...centerY
-					}
+					},
+					tooltipWrapperDimension: wrapperInfo.height
 				});
 				break;
 			case 'top-right':
 			default:
 				this.setState({
 					computedTooltipStyle: {
-						bottom,
-						left
-					}
+						bottom: this.getBottom(wrapperInfo, 'top'),
+						left: this.getLeft(wrapperInfo)
+					},
+					tooltipWrapperDimension: wrapperInfo.width
 				});
 				break;
 		}

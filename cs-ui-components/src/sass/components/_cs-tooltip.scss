@@ -1,6 +1,4 @@
-// CS Tooltip
-//
-// CS tooltip component.
+/* CS Tooltip */
 .cs-tooltip-root {
 	display: contents;
 }
@@ -11,9 +9,9 @@
 	flex-direction: column;
 	font-size: 0.75rem;
 	width: var(--cs-tooltip-width, max-content, auto); // auto fallback for safari
+	max-width: var(--cs-tooltip-max-width, var(--cs-tooltip-width, 20rem));
 	height: var(--cs-tooltip-height, auto);
 	max-height: var(--cs-tooltip-max-height);
-	max-width: var(--cs-tooltip-max-width, --cs-tooltip-width, 20rem);
 	min-height: 2rem;
 	position: fixed;
 	transform: translate3d(0, 0, 0); // Fix safari text blur
@@ -107,11 +105,26 @@
 		}
 	}
 
+	// After is used as a space between tooltip wrapper and popup so that popup can be hovered
+	// Each position variant has a different top/bottom/left/right position and calculation for height / width
+	// Calculation is conditioned on height / width of tooltip wrapper and offset of popup that is set in setTooltipPosition() function
+	&::after {
+		content: "";
+		position: absolute;
+	}
+
 	&.cs-tooltip-bottom-right {
 		&::before {
 			left: 1.125rem;
 			top: -0.3125rem;
 			transform: rotate(135deg);
+		}
+
+		&::after {
+			left: 0;
+			top: calc(-0.5rem - 1px);
+			height: calc(0.5rem + 1px);
+			width: Min(calc(var(--cs-tw-dimension) / 2 + 1.5rem), 100%);
 		}
 	}
 
@@ -121,6 +134,13 @@
 			right: 1.125rem;
 			transform: rotate(135deg);
 		}
+
+		&::after {
+			right: 0;
+			top: calc(-0.5rem - 1px);
+			height: calc(0.5rem + 1px);
+			width: Min(calc(var(--cs-tw-dimension) / 2 + 1.5rem), 100%);
+		}
 	}
 
 	&.cs-tooltip-bottom-center {
@@ -129,77 +149,151 @@
 			top: -0.3125rem;
 			transform: translateX(-50%) rotate(135deg);
 		}
+
+		&::after {
+			left: 50%;
+			transform: translateX(-50%);
+			top: calc(-0.5rem - 1px);
+			height: calc(0.5rem + 1px);
+			width: Min(var(--cs-tw-dimension), 100%);
+		}
 	}
 
 	&.cs-tooltip-top-right {
 		&::before {
 			left: 1.125rem;
-			top: calc(100% - 0.4375rem);
+			bottom: -0.3125rem;
 			transform: rotate(-45deg);
+		}
+
+		&::after {
+			left: 0;
+			bottom: calc(-0.5rem - 1px);
+			height: calc(0.5rem + 1px);
+			width: Min(calc(var(--cs-tw-dimension) / 2 + 1.5rem), 100%);
 		}
 	}
 
 	&.cs-tooltip-top-left {
 		&::before {
 			right: 1.125rem;
-			top: calc(100% - 0.4375rem);
+			bottom: -0.3125rem;
 			transform: rotate(-45deg);
+		}
+
+		&::after {
+			right: 0;
+			bottom: calc(-0.5rem - 1px);
+			height: calc(0.5rem + 1px);
+			width: Min(calc(var(--cs-tw-dimension) / 2 + 1.5rem), 100%);
 		}
 	}
 
 	&.cs-tooltip-top-center {
 		&::before {
 			left: calc(50%);
-			top: calc(100% - 0.4375rem);
+			bottom: -0.3125rem;
 			transform: translateX(-50%) rotate(-45deg);
+		}
+
+		&::after {
+			left: 50%;
+			transform: translateX(-50%);
+			bottom: calc(-0.5rem - 1px);
+			height: calc(0.5rem + 1px);
+			width: Min(var(--cs-tw-dimension), 100%);
 		}
 	}
 
 	&.cs-tooltip-right-top {
 		&::before {
-			left: -0.375rem;
-			top: calc(100% - 1.25rem);
+			left: -0.3125rem;
+			bottom: 0.5rem;
 			transform: rotate(45deg);
+		}
+
+		&::after {
+			left: calc(-0.5rem - 1px);
+			bottom: 0;
+			width: calc(0.5rem + 1px);
+			height: Min(calc(var(--cs-tw-dimension) / 2 + 1rem - 2px), 100%);
 		}
 	}
 
 	&.cs-tooltip-right-bottom {
 		&::before {
-			left: -0.375rem;
+			left: -0.3125rem;
 			top: 0.5rem;
 			transform: rotate(45deg);
+		}
+
+		&::after {
+			left: calc(-0.5rem - 1px);
+			top: 0;
+			width: calc(0.5rem + 1px);
+			height: Min(calc(var(--cs-tw-dimension) / 2 + 1rem - 2px), 100%);
 		}
 	}
 
 	&.cs-tooltip-right-center {
 		&::before {
-			left: -0.375rem;
+			left: -0.3125rem;
 			top: 50%;
 			transform: translateY(-50%) rotate(45deg);
+		}
+
+		&::after {
+			bottom: 50%;
+			transform: translateY(50%);
+			left: calc(-0.5rem - 1px);
+			width: calc(0.5rem + 1px);
+			height: Min(var(--cs-tw-dimension), 100%);
 		}
 	}
 
 	&.cs-tooltip-left-top {
 		&::before {
-			right: -0.375rem;
-			top: calc(100% - 1.25rem);
+			right: -0.3125rem;
+			bottom: 0.5rem;
 			transform: rotate(-135deg);
+		}
+
+		&::after {
+			right: calc(-0.5rem - 1px);
+			bottom: 0;
+			width: calc(0.5rem + 1px);
+			height: Min(calc(var(--cs-tw-dimension) / 2 + 1rem - 2px), 100%);
 		}
 	}
 
 	&.cs-tooltip-left-bottom {
 		&::before {
-			right: -0.375rem;
+			right: -0.3125rem;
 			top: 0.5rem;
 			transform: rotate(-135deg);
+		}
+
+		&::after {
+			right: calc(-0.5rem - 1px);
+			top: 0;
+			width: calc(0.5rem + 1px);
+			height: Min(calc(var(--cs-tw-dimension) / 2 + 1rem - 2px), 100%);
 		}
 	}
 
 	&.cs-tooltip-left-center {
 		&::before {
-			right: -0.375rem;
+			right: -0.3125rem;
 			top: 50%;
 			transform: translateY(-50%) rotate(-135deg);
+		}
+
+		&::after {
+			bottom: 50%;
+			transform: translateY(50%);
+			right: calc(-0.5rem - 1px);
+			width: calc(0.5rem + 1px);
+			height: Min(var(--cs-tw-dimension), 100%);
 		}
 	}
 
@@ -451,72 +545,75 @@
 	}
 
 	// Style position absolute
-	&.cs-tooltip-style-position-absolute .cs-tooltip {
-		position: absolute;
-		width: var(--cs-tooltip-width, max-content);
+	&.cs-tooltip-style-position-absolute {
+		.cs-tooltip {
+			--cs-tw-dimension: 100%; // Workaround for space on ::after absolute position. It's not perfect but good enough.
+			position: absolute;
+			width: var(--cs-tooltip-width, max-content);
 
-		&.cs-tooltip-bottom-right {
-			top: calc(100% + 0.75rem);
-			left: calc(50% - 1.5rem);
-		}
+			&.cs-tooltip-bottom-right {
+				top: calc(100% + 0.5rem);
+				left: calc(50% - 1.5rem);
+			}
 
-		&.cs-tooltip-bottom-left {
-			top: calc(100% + 0.75rem);
-			right: calc(50% - 1.5rem);
-		}
+			&.cs-tooltip-bottom-left {
+				top: calc(100% + 0.5rem);
+				right: calc(50% - 1.5rem);
+			}
 
-		&.cs-tooltip-top-right {
-			bottom: calc(100% + 0.75rem);
-			left: calc(50% - 1.5rem);
-		}
+			&.cs-tooltip-bottom-center {
+				top: calc(100% + 0.5rem);
+				left: 50%;
+				transform: translateX(-50%);
+			}
 
-		&.cs-tooltip-top-left {
-			bottom: calc(100% + 0.75rem);
-			right: calc(50% - 1.5rem);
-		}
+			&.cs-tooltip-top-right {
+				bottom: calc(100% + 0.5rem);
+				left: calc(50% - 1.5rem);
+			}
 
-		&.cs-tooltip-top-center {
-			bottom: calc(100% + 0.75rem);
-			left: 50%;
-			transform: translateX(-50%);
-		}
+			&.cs-tooltip-top-left {
+				bottom: calc(100% + 0.5rem);
+				right: calc(50% - 1.5rem);
+			}
 
-		&.cs-tooltip-bottom-center {
-			top: calc(100% + 0.75rem);
-			left: 50%;
-			transform: translateX(-50%);
-		}
+			&.cs-tooltip-top-center {
+				bottom: calc(100% + 0.5rem);
+				left: 50%;
+				transform: translateX(-50%);
+			}
 
-		&.cs-tooltip-right-top {
-			bottom: -0.45rem;
-			left: calc(100% + 0.75rem);
-		}
+			&.cs-tooltip-right-top {
+				bottom: calc(50% - 1rem);
+				left: calc(100% + 0.5rem);
+			}
 
-		&.cs-tooltip-right-center {
-			top: 50%;
-			transform: translateY(-50%);
-			left: calc(100% + 0.75rem);
-		}
+			&.cs-tooltip-right-bottom {
+				top: calc(50% - 1rem);
+				left: calc(100% + 0.5rem);
+			}
 
-		&.cs-tooltip-right-bottom {
-			top: -0.35rem;
-			left: calc(100% + 0.75rem);
-		}
+			&.cs-tooltip-right-center {
+				top: 50%;
+				transform: translateY(-50%);
+				left: calc(100% + 0.5rem);
+			}
 
-		&.cs-tooltip-left-top {
-			bottom: -0.35rem;
-			right: calc(100% + 0.75rem);
-		}
+			&.cs-tooltip-left-top {
+				bottom: calc(50% - 1rem);
+				right: calc(100% + 0.5rem);
+			}
 
-		&.cs-tooltip-left-center {
-			top: 50%;
-			transform: translateY(-50%);
-			right: calc(100% + 0.75rem);
-		}
+			&.cs-tooltip-left-bottom {
+				top: calc(50% - 1rem);
+				right: calc(100% + 0.5rem);
+			}
 
-		&.cs-tooltip-left-bottom {
-			top: -0.45rem;
-			right: calc(100% + 0.75rem);
+			&.cs-tooltip-left-center {
+				top: 50%;
+				transform: translateY(-50%);
+				right: calc(100% + 0.5rem);
+			}
 		}
 	}
 }

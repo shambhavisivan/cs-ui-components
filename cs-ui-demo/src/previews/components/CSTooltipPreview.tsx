@@ -184,16 +184,16 @@ class CSTooltipPreview extends React.Component {
 								<CSTooltip height="400px" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit." position="right-top" />
 						},
 						{
-							variationName: ['right-center'],
-							quickLink: 'right-center',
-							component:
-								<CSTooltip content="Lorem ipsum dolor sit amet, consectetur adipisicing elit.." position="right-center" />
-						},
-						{
 							variationName: ['right-bottom'],
 							quickLink: 'right-bottom',
 							component:
 								<CSTooltip content="Lorem ipsum dolor sit amet, consectetur adipisicing elit.." position="right-bottom" />
+						},
+						{
+							variationName: ['right-center'],
+							quickLink: 'right-center',
+							component:
+								<CSTooltip content="Lorem ipsum dolor sit amet, consectetur adipisicing elit.." position="right-center" />
 						},
 						{
 							variationName: ['left-top'],
@@ -202,16 +202,16 @@ class CSTooltipPreview extends React.Component {
 								<CSTooltip content="Lorem ipsum dolor sit amet, consectetur adipisicing elit.." position="left-top" />
 						},
 						{
-							variationName: ['left-center'],
-							quickLink: 'left-center',
-							component:
-								<CSTooltip content="Lorem ipsum dolor sit amet, consectetur adipisicing elit." position="left-center" />
-						},
-						{
 							variationName: ['left-bottom'],
 							quickLink: 'left-bottom',
 							component:
 								<CSTooltip content="Lorem ipsum dolor sit amet, consectetur adipisicing elit.." position="left-bottom" />
+						},
+						{
+							variationName: ['left-center'],
+							quickLink: 'left-center',
+							component:
+								<CSTooltip content="Lorem ipsum dolor sit amet, consectetur adipisicing elit." position="left-center" />
 						}
 					]
 				},
