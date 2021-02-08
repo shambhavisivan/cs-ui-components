@@ -65,26 +65,36 @@ const PreviewTable: React.FC<PreviewTableProps | PreviewTableLegacyProps> = ({ c
 		if (!propCustomTypes) {
 			return null;
 		}
-		return propCustomTypes.map((customType: PreviewTableCustomType) => (
-			<CSTooltip
-				position="top-center"
-				padding="0 0.75rem 0.5rem"
-				key={customType.name}
-				width="auto"
-				maxWidth="30rem"
-				className="inline-code-tooltip"
-				content={
-					<>
-						{customType.types.map((type: string) => (
-							<code key={type} className="inline-code">{type}</code>
-						))}
-					</>
-				}>
-				<code className="inline-code inline-code-custom">
-					{customType.name}<CSIcon name="info_alt" />
-				</code>
-			</CSTooltip>
-		));
+		return propCustomTypes.map((customType: PreviewTableCustomType) => {
+			const tooltipClasses = classNames(
+				'inline-code-tooltip',
+				{
+					'col-2': customType.types.length === 2 || customType.types.length === 4,
+					'col-1': customType.types.length === 1
+				}
+			);
+			return (
+				<CSTooltip
+					position="top-center"
+					stickyOnClick
+					tooltipHeader={customType.name}
+					key={customType.name}
+					width="auto"
+					maxWidth="30rem"
+					className={tooltipClasses}
+					content={
+						<>
+							{customType.types.map((type: string) => (
+								<code key={type} className="inline-code">{type}</code>
+							))}
+						</>
+					}>
+					<code className="inline-code inline-code-custom">
+						{customType.name}<CSIcon name="info_alt" />
+					</code>
+				</CSTooltip>
+			);
+		});
 	};
 
 	const getTypes = (propTypes?: Array<string>) => {

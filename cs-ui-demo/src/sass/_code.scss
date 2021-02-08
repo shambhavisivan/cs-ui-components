@@ -11,10 +11,6 @@ code.inline-code {
 	color: var(--prop-code-c);
 	cursor: default;
 
-	.inline-code-tooltip .cs-tooltip & {
-		margin-top: 0.5rem;
-	}
-
 	&.inline-code-custom {
 		background-color: var(--prop-code-custom-bg);
 		display: flex;
@@ -27,5 +23,26 @@ code.inline-code {
 
 	&:last-child {
 		margin-right: 0;
+	}
+}
+
+.inline-code-tooltip {
+	&.col-2 .cs-tooltip .cs-tooltip-body {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	&.col-1 .cs-tooltip .cs-tooltip-body {
+		grid-template-columns: 1fr;
+	}
+
+	.cs-tooltip .cs-tooltip-body {
+		display: grid;
+		grid-gap: 0.5rem;
+		grid-template-columns: repeat(3, 1fr);
+
+		code.inline-code {
+			margin: 0;
+			text-align: center;
+		}
 	}
 }
