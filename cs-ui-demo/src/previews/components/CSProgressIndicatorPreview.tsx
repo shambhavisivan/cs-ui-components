@@ -4,6 +4,7 @@ import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
 import PreviewLinks from '../PreviewLinks';
+import PreviewAccessibility from '../PreviewAccessibility';
 
 import { CSProgressIndicator, CSProgressIndicatorItem } from '@cloudsense/cs-ui-components';
 
@@ -13,7 +14,7 @@ class CSProgressIndicatorPreview extends React.Component {
 		const json = {
 			name: 'Progress Indicator',
 			usage: 'Progress Indicator is a component that communicates to the user the progress of a particular process.',
-			accessible: 'no',
+			accessible: 'yes',
 			examples: [
 				{
 					propName: 'status',
@@ -138,6 +139,43 @@ class CSProgressIndicatorPreview extends React.Component {
 					types: ['any'],
 					description: 'Spreads the rest of the props to the progress indicator ordered list tag.'
 				}
+			],
+			accessibility: [
+				{
+					criterionList: [
+						'1.3.1',
+						'1.3.2',
+						'1.4.1',
+						'1.4.3',
+						'2.1.1',
+						'2.1.2',
+						'2.4.3',
+						'3.3.1',
+						'4.1.1',
+						'4.1.2'
+					],
+					requirements: [
+						{
+							structure: [
+								'HTML <ol>',
+								'HTML <li>',
+								'HTML <button>',
+								'Icon as a child of button with attribute aria-hidden'
+							],
+							properties: [
+								'aria-label',
+								'title with status'
+							],
+							styling: [
+								'Color contrast ratio > 4.5',
+								'Distinct hover, active and focus state styles'
+							],
+							keyboardOperability: [
+								'OOTB focusable and supports clicks with enter and space keys'
+							]
+						}
+					]
+				}
 			]
 		};
 
@@ -202,6 +240,7 @@ class CSProgressIndicatorPreview extends React.Component {
 					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component, component2]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<div className="prop-sidebar">
 					<h3>Quick Links</h3>
