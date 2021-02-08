@@ -27,6 +27,7 @@
 		text-align: left;
 		word-break: break-word;
 		padding: var(--cs-tooltip-padding, 0 0.75rem 0.5rem);
+		flex: 1;
 
 		&:only-child {
 			padding: var(--cs-tooltip-padding, 0.5rem 0.75rem);
