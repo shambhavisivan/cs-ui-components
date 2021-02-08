@@ -1,5 +1,35 @@
 # Release Notes
 
+## 1.1.2<a name="1.1.2"></a>
+* CSButton
+  * <i>important</i> `label` prop set as default
+  * fixed event type on onKeyDown and onMouseDown events
+* CSCustomSelect
+  * <i>new</i> component redesign
+* CSDropdown
+  * `defaultOpen` prop added
+* CSTooltip
+  * `stickyOnClick` prop added
+  * positioning of tooltips with custom children fixed
+  * simplify code for basic variant tooltips
+* CSInputFile
+  * max-width added to limit width of files with long names
+  * highlight styles prevented when dragged item isn't file
+* CSInputSearch
+  * added named type for iconPosition prop
+  * prevented losing focus after clear button is clicked
+* CSModal
+  * <i>important</i> `id` moved to .modal-overlay div
+* CSProgressIndicator
+  * `loading` status added
+  * <em>preview</em> Accessibility requirements added
+* CSTransfer
+  * `id` prop added
+  * `dataSource` prop set as required
+  * hover and focus styles fixed
+  * <em>preview</em> Accessibility requirements added
+  * <em>preview</em> Preview file cleanup
+
 ## 1.1.1<a name="1.1.1"></a>
 * CSAlert
   * `iconOrigin` prop added
