@@ -1327,6 +1327,7 @@ export class App extends React.Component<object, AppState> {
 						onColumnStateChange={this.onColumnStateChange}
 						columnState={this.columnState}
 						onGridReady={this.onGridReady}
+						featureFlags={{ useExtendedActionFormat: false }}
 					/>
 				) : (
 					<CSGrid
@@ -1346,6 +1347,7 @@ export class App extends React.Component<object, AppState> {
 						onSelectionChange={this.onSelectionChange}
 						uniqueIdentifierColumnName={'exampleGuid'}
 						onCellEditingStopped={this.onCellEditingStopped}
+						featureFlags={{ useExtendedActionFormat: false }}
 						onGridReady={this.onGridReady}
 						// rowHighlighting={{
 						// 	[this.state.rowData[0].exampleGuid]: 'red',

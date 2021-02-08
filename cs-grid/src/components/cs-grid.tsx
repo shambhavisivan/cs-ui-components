@@ -70,6 +70,8 @@ import { CSGridTextRenderer } from './cs-grid-text-renderer';
 
 import { isEqual } from 'lodash';
 import { CustomPaginationAPI } from '../interfaces/cs-grid-custom-pagination-api';
+import { CS_GRID_FEATURE_FLAGS, CSGridFeatureFlag } from '../interfaces/cs-grid-feature-flags';
+import { CSGridFeatureFlagHelper } from '../utils/cs-grid-feature-flag-helper';
 
 const LEGACY_ROW_DATA_MODEL_DEPRECATION_WARN =
 	"CSGrid: Using legacy type 'Row' is deprecated for row data. look into 'RowData' for more details.";
@@ -81,6 +83,7 @@ export interface CSGridProps {
 	quickFilterHiddenColumns?: boolean;
 	dataSourceAPI?: DataSourceAPI;
 	editorComponents?: Record<string, any>;
+	featureFlags?: Partial<Record<CSGridFeatureFlag, boolean>>;
 	rowHeight?: number;
 	rendererComponents?: Record<string, any>;
 	multiSelect: boolean;
@@ -957,6 +960,10 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 	};
 
 	private convertColumnDefs = (columnDefs: Array<ColDef>): Array<AgGridColDef> => {
+		const featureFlags = new CSGridFeatureFlagHelper<CSGridFeatureFlag>(
+			CS_GRID_FEATURE_FLAGS,
+			this.props.featureFlags
+		);
 		const agGridColDefs: Array<AgGridColDef> = [];
 
 		const rowSelectionColumns: Array<string> = [];
@@ -1149,6 +1156,10 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 					cellParams.noOfInlineIcons = 100;
 				}
 
+				if (!featureFlags.flags.useExtendedActionFormat) {
+					// ... wrap columnDef.getActions() into function that converts results
+					this.addIfDefined(cellParams, 'getActions', columnDef.getActions);
+				}
 				this.addIfDefined(cellParams, 'getActions', columnDef.getActions);
 			}
 
