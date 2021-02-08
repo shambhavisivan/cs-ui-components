@@ -21,6 +21,18 @@ class CSButtonPreview extends React.Component {
 			accessible: 'yes',
 			examples: [
 				{
+					propName: 'label',
+					alert: {
+						variant: 'info',
+						text: 'Label is a required prop because of accessibility. You need to provide an explanatory label for a button but if you want to hide the label from displaying you can use iconDisplay="icon-only"'
+					},
+					variations: [
+						{
+							component: <CSButton iconName="activity" label="label" />
+						}
+					]
+				},
+				{
 					propName: 'btnType',
 					variations: [
 						{
