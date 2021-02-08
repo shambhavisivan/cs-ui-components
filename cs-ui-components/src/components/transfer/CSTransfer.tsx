@@ -97,13 +97,13 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 		const stateArrayName = `${listType}Selected`;
 
 		if (array.includes(itemKey)) {
-			if (!event.ctrlKey && variant === 'simple-list') {
+			if (!(event.ctrlKey || event.metaKey) && variant === 'simple-list') {
 				newState[stateArrayName] = [itemKey];
 			} else {
 				const _newArray: Array<string> = array.filter(key => key !== itemKey);
 				newState[stateArrayName] = _newArray;
 			}
-		} else if (variant === 'check-list' || (event.ctrlKey && variant === 'simple-list')) {
+		} else if (variant === 'check-list' || ((event.ctrlKey || event.metaKey) && variant === 'simple-list')) {
 			newState[stateArrayName] = [...array, itemKey];
 		} else if (this.props.variant === 'simple-list') {
 			newState[stateArrayName] = [itemKey];
