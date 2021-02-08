@@ -193,14 +193,14 @@ class CSButton extends React.Component<CSButtonProps> {
 						componentProps,
 						this.iconComponent(),
 						this.label(),
-						children
+						this.props.children ? <span className="cs-btn-custom-content">{children}</span> : null
 					) :
 					React.createElement(
 						link ? 'a' : 'button',
 						componentProps,
 						this.iconComponent(),
 						this.label(),
-						children
+						this.props.children ? <span className="cs-btn-custom-content">{children}</span> : null
 					)
 				}
 			</>

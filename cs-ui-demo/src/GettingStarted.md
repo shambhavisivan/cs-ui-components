@@ -28,6 +28,7 @@ element. Variables should be self-explanatory and sorted in ascending order.
   * --z-index-button-focus: 2;
   * --z-index-button-icon: 2;
   * --z-index-button-label: 2;
+  * --z-index-button-custom-content: 2;
   * --z-index-main-header: 3;
   * --z-index-table-header: 3;
   * --z-index-dropdown-items-wrapper: 5;

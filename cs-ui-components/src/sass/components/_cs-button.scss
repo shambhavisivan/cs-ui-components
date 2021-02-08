@@ -529,6 +529,11 @@
 			opacity: 0.75; // Revise design
 		}
 	}
+
+	/* CUSTOM CONTENT */
+	.cs-btn-custom-content {
+		z-index: var(--z-index-button-custom-content);
+	}
 }
 
 /* CSBUTTONGROUP COMPONENT */
