@@ -22,7 +22,6 @@ class CSButtonPreview extends React.Component {
 			examples: [
 				{
 					propName: 'btnType',
-					customText: '',
 					variations: [
 						{
 							variationName: ['default'],
@@ -106,7 +105,6 @@ class CSButtonPreview extends React.Component {
 				},
 				{
 					propName: 'color',
-					customText: '',
 					variations: [
 						{
 							variationName: ['pink'],
@@ -185,7 +183,6 @@ class CSButtonPreview extends React.Component {
 				},
 				{
 					propName: 'size',
-					customText: '',
 					variations: [
 						{
 							variationName: ['large'],
@@ -205,40 +202,46 @@ class CSButtonPreview extends React.Component {
 					]
 				},
 				{
-					propName: 'btnRound',
-					customText: '',
+					propName: 'borderRadius',
 					variations: [
 						{
-							variationName: ['true'],
-							quickLink: 'true',
-							component: <CSButton btnRound iconName="activity" label="default round" />
+							variationName: ['1rem'],
+							quickLink: '1rem',
+							component: <CSButton iconName="world" label="default round" borderRadius="1rem"/>
+						},
+						{
+							variationName: ['0'],
+							quickLink: '0',
+							component: <CSButton iconName="apps" label="default sharp" borderRadius="0"/>
+						},
+						{
+							variationName: ['1rem icon only'],
+							quickLink: '1rem icon only',
+							component: <CSButton iconName="emoji" iconDisplay="icon-only" label="round icon only button" borderRadius="1rem"/>
 						}
 					]
 				},
 				{
 					propName: 'onClick',
-					customText: '',
 					variations: [
 						{
-							component: <CSButton onClick={this.handleClick} iconName="activity" label="default round" />
+							component: <CSButton onClick={this.handleClick} iconName="touch_action" label="default" />
 						}
 					]
 				},
 				{
 					propName: 'onMouseDown',
-					customText: '',
 					variations: [
 						{
-							component: <CSButton onMouseDown={this.handleMouseDown} iconName="activity" label="default round" />
+							component: <CSButton onMouseDown={this.handleMouseDown} iconName="activity" label="default" />
 						}
 					]
 				},
 				{
 					propName: 'onKeyDown',
-					customText: '',
 					variations: [
 						{
-							component: <CSButton onKeyDown={this.handleKeyDown} iconName="activity" label="default round" />
+							component: <CSButton onKeyDown={this.handleKeyDown} iconName="activity" label="default" />
 						}
 					]
 				},
@@ -255,10 +258,10 @@ class CSButtonPreview extends React.Component {
 					propName: 'title',
 					variations: [
 						{
-							component: <CSButton iconName="activity" label="default round" title="this is a title" />
+							component: <CSButton iconName="activity" label="default" title="this is a title" />
 						},
 						{
-							component: <CSButton iconName="activity" label="default round" disabled title="this is a title" />
+							component: <CSButton iconName="activity" label="default" disabled title="this is a title" />
 						}
 					]
 				},
@@ -280,7 +283,6 @@ class CSButtonPreview extends React.Component {
 				},
 				{
 					propName: 'iconDisplay',
-					customText: '',
 					variations: [
 						{
 							variationName: ['default'],
@@ -332,7 +334,6 @@ class CSButtonPreview extends React.Component {
 				},
 				{
 					propName: 'iconName',
-					customText: '',
 					variations: [
 						{
 							component: <CSButton iconName="activity" label="iconName activity" />
@@ -341,7 +342,6 @@ class CSButtonPreview extends React.Component {
 				},
 				{
 					propName: 'iconPosition',
-					customText: '',
 					variations: [
 						{
 							variationName: ['left'],
@@ -357,23 +357,21 @@ class CSButtonPreview extends React.Component {
 				},
 				{
 					propName: 'iconOrigin',
-					customText: '',
 					variations: [
 						{
 							variationName: ['slds'],
 							quickLink: 'slds',
-							component: <CSButton iconOrigin="slds" iconName="activity" iconDisplay="icon-only" label="default icon-only round" />
+							component: <CSButton iconOrigin="slds" iconName="activity" iconDisplay="icon-only" label="default icon-only" />
 						},
 						{
 							variationName: ['cs'],
 							quickLink: 'cs',
-							component: <CSButton iconOrigin="cs" iconName="tag" iconDisplay="icon-only" label="default icon-only round" />
+							component: <CSButton iconOrigin="cs" iconName="tag" iconDisplay="icon-only" label="default icon-only" />
 						}
 					]
 				},
 				{
 					propName: 'loading',
-					customText: '',
 					variations: [
 						{
 							variationName: ['true', 'no icon'],
@@ -395,7 +393,6 @@ class CSButtonPreview extends React.Component {
 				},
 				{
 					propName: 'iconRotate',
-					customText: '',
 					variations: [
 						{
 							variationName: ['90'],
@@ -416,7 +413,6 @@ class CSButtonPreview extends React.Component {
 				},
 				{
 					propName: 'iconSize',
-					customText: '',
 					variations: [
 						{
 							variationName: ['10px'],
@@ -437,7 +433,6 @@ class CSButtonPreview extends React.Component {
 				},
 				{
 					propName: 'width',
-					customText: '',
 					variations: [
 						{
 							variationName: ['max'],
@@ -448,7 +443,6 @@ class CSButtonPreview extends React.Component {
 				},
 				{
 					propName: 'disabled',
-					customText: '',
 					variations: [
 						{
 							variationName: ['true'],
@@ -463,7 +457,6 @@ class CSButtonPreview extends React.Component {
 						variant: 'info',
 						text: 'Link button should always have distinctive icon to distinguish from regular buttons. Alternative is to add text-decoration: underline'
 					},
-					customText: '',
 					variations: [
 						{
 							component: <CSButton iconName="link" label="default" link="https://www.google.com" />
@@ -472,7 +465,6 @@ class CSButtonPreview extends React.Component {
 				},
 				{
 					propName: 'openInNewTab',
-					customText: '',
 					variations: [
 						{
 							variationName: ['true'],
@@ -482,7 +474,6 @@ class CSButtonPreview extends React.Component {
 				},
 				{
 					propName: 'value',
-					customText: '',
 					variations: [
 						{
 							component: <CSButton iconName="activity" label="default initial" value="value" />
@@ -509,7 +500,6 @@ class CSButtonPreview extends React.Component {
 				},
 				{
 					propName: 'className',
-					customText: '',
 					variations: [
 						{
 							variationName: ['custom class'],
@@ -521,10 +511,10 @@ class CSButtonPreview extends React.Component {
 			],
 			properties: [
 				{
-					name: 'btnRound',
-					types: ['boolean'],
-					default: 'false',
-					description: 'Set whether the button should be rounded.'
+					name: 'borderRadius',
+					types: ['string'],
+					default: '0.25rem',
+					description: 'Sets custom border radius on the button.'
 				}, {
 					name: 'btnStyle',
 					customTypes: [{

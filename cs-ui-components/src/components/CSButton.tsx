@@ -15,7 +15,7 @@ export interface CSButtonProps {
 	ariaExpanded?: boolean;
 	ariaHaspopup?: boolean;
 	ariaLabel?: string;
-	btnRound?: boolean;
+	borderRadius?: string;
 	btnStyle?: CSButtonStyle;
 	btnType?: CSButtonType;
 	className?: string;
@@ -98,7 +98,7 @@ class CSButton extends React.Component<CSButtonProps> {
 			ariaExpanded,
 			ariaHaspopup,
 			ariaLabel,
-			btnRound,
+			borderRadius,
 			btnStyle,
 			btnType,
 			children,
@@ -143,8 +143,6 @@ class CSButton extends React.Component<CSButtonProps> {
 				'cs-btn-brand': btnStyle === 'brand',
 				'cs-btn-outline': btnStyle === 'outline',
 
-				'cs-btn-round': btnRound === true,
-
 				'cs-btn-icon-only': iconDisplay === 'icon-only',
 				'cs-btn-no-icon': (!iconName || iconDisplay === 'no-icon') && !loading,
 
@@ -162,7 +160,8 @@ class CSButton extends React.Component<CSButtonProps> {
 
 		const style: CSSProperties = {
 			'--cs-btn-custom-c': color,
-			'--cs-btn-custom-icon-c': iconColor
+			'--cs-btn-custom-icon-c': iconColor,
+			'--cs-btn-border-radius': borderRadius
 		};
 
 		const componentProps = {

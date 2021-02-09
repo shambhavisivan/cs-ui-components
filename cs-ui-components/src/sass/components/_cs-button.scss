@@ -8,7 +8,7 @@
 	height: 2rem;
 	font-weight: $font-weight-normal;
 	cursor: pointer;
-	border-radius: 0.25rem;
+	border-radius: var(--cs-btn-border-radius, 0.25rem);
 	user-select: none;
 	border: none;
 	background: none;
@@ -26,7 +26,7 @@
 		right: 0;
 		left: 0;
 		bottom: 0;
-		border-radius: 0.25rem;
+		border-radius: var(--cs-btn-border-radius, 0.25rem);
 		pointer-events: none;
 	}
 	&::before {
@@ -88,19 +88,6 @@
 		}
 	}
 	/* ALL BUTTONS PROPERTIES */
-	&.cs-btn-round {
-		border-radius: 1rem;
-		padding: 0 1rem 0 0.5rem; // Padding left needs to be 1rem or icon is cut off unless icon itself having border-radius
-		&::before, &::after {
-			border-radius: 1rem;
-		}
-		.cs-btn-icon { // Default left side icon
-			border-radius: 1rem 0 0 1rem;
-		}
-		&.cs-btn-icon-right .cs-btn-icon {
-			border-radius: 0 1rem 1rem 0;
-		}
-	}
 	/* ICON POSITION */
 	&.cs-btn-icon-right {
 		padding: 0 0.25rem 0 1rem;
@@ -129,9 +116,6 @@
 		}
 		&:hover .cs-btn-icon {
 			@include sf(--cs-button-icon-hover-c);
-		}
-		&.cs-btn-round .cs-btn-icon {
-			border-radius: 1rem;
 		}
 	}
 
