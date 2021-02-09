@@ -1,5 +1,15 @@
 # Release Notes
 
+## 1.1.3<a name="1.1.3"></a>
+* CSButton
+  * <i>important</i> added span wrapper around custom content passed through component children
+* CSToast
+  * <i>important</i> `minWidth` prop removed and replaced with `width` prop
+* CSTooltip
+  * hovering over tooltip fixed
+  * default max-width fixed
+  * fixed styling inconsistencies between different positions and stylePositions
+
 ## 1.1.2<a name="1.1.2"></a>
 * CSButton
   * <i>important</i> `label` prop set as default
@@ -22,13 +32,13 @@
   * <i>important</i> `id` moved to .modal-overlay div
 * CSProgressIndicator
   * `loading` status added
-  * <em>preview</em> Accessibility requirements added
+  * <em>preview</em> accessibility requirements added
 * CSTransfer
   * `id` prop added
   * `dataSource` prop set as required
   * hover and focus styles fixed
-  * <em>preview</em> Accessibility requirements added
-  * <em>preview</em> Preview file cleanup
+  * <em>preview</em> accessibility requirements added
+  * <em>preview</em> preview file cleanup
 
 ## 1.1.1<a name="1.1.1"></a>
 * CSAlert
@@ -102,7 +112,7 @@
 * CSInputText
   * <i>important</i> `className` moved to `.cs-input-text-wrapper` from `.cs-input-text`
 * CSModal
-  * <i>important</i> Modals now have a `visible` prop which manages their own visibility. All modals should now use `visible` prop.
+  * <i>important</i> modals now have a `visible` prop which manages their own visibility. All modals should now use `visible` prop.
   * transition on open/close modal added
 * CSPath
   * CSPath and CSPathWrapper component are now combined into one
