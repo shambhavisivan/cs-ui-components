@@ -10,7 +10,7 @@ class ReleaseNotes extends React.Component<any, CSReleaseNotesState> {
 
 	private anchorList =
 		[
-			'General', 'Offical Documentation', 'Criteria', 'FAQ', 'App General'
+			'General', 'Offical Documentation', 'Criteria',  'Literature', 'App General', 'FAQ'
 		];
 
 	constructor(props: any) {

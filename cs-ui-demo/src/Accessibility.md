@@ -122,11 +122,24 @@
 >> * <span id="4.1.2">4.1.2:</span> [Name, Role, Value](https://www.w3.org/WAI/WCAG22/Understanding/name-role-value) **A**
 >> * <span id="4.1.3">4.1.3:</span> [Status Messages](https://www.w3.org/WAI/WCAG22/Understanding/status-messages) **AA** **WCAG 2.1**
 
-## Frequently Asked Questions<a name="FAQ"></a>
+## Literature<a name="Literature"></a>
+* [Inclusive Components by Heydon Pickering](https://drive.google.com/drive/folders/1W9DmASckOI10LXzw2LO0nWGhD2iSxX7j).
+
+## App general<a name="App General"></a>
+
+* Follow these general rules
+  * Never have more than one h1
+  * Never skip any header levels (e.g. h1, h3, h4...)
+  * Provide unique page title
+  * Text resizing via relative units (em or rem)
+  * Define language via attribute
+  * Add hidden skip links to jump over repetitive content such as navigation tabs, interactive tables etc., e.g. jump to main content, jump to footer
+  * Never use tabindex value different than -1 or 0.
+
+  ## Frequently Asked Questions<a name="FAQ"></a>
 * Which Cloudsense products are currently considered accessible?
   * Sales Console
-  * Solution Console
-  * CS UI Components
+  * Configurator
 
 * What assistive technologies are used for web browsing?
   * Screen reader software
@@ -145,17 +158,3 @@
 > Usability and user experience design is about designing products to be effective, efficient, and satisfying. Specifically, ISO defines usability as the “extent to which a product can be used by specified users to achieve specified goals effectively, efficiently and with satisfaction in a specified context of use" (in ISO 9241-11).
 
 > Inclusive design, universal design, and design for all involves designing products, such as websites, to be usable by everyone to the greatest extent possible, without the need for adaptation. Inclusion addresses a broad range of issues including access to and quality of: hardware, software, and Internet connectivity; computer literacy and skills, economic situation, education;, geographic location, and language; as well as age and disability.
-
-## LITERATURE
-* [Inclusive Components by Heydon Pickering](https://drive.google.com/drive/folders/1W9DmASckOI10LXzw2LO0nWGhD2iSxX7j). CloudSense has license.
-
-## App general<a name="App General"></a>
-
-* Follow these general rules
-  * Never have more than one h1
-  * Never skip any header levels (e.g. h1, h3, h4...)
-  * Provide unique page title
-  * Text resizing via relative units (em or rem)
-  * Define language via attribute
-  * Add hidden skip links to jump over repetitive content such as navigation tabs, interactive tables etc., e.g. jump to main content, jump to footer
-  * Never use tabindex value different than -1 or 0.
