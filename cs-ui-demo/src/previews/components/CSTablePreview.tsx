@@ -214,9 +214,14 @@ class CSTablePreview extends React.Component {
 				{
 					propName: 'selectableRows',
 					customText: '',
+					alert: {
+						variant: 'warning',
+						text: 'This prop needs to be reviewed and updated. Do not use.'
+					},
 					variations: [
 						{
 							component:
+
 								<CSTable selectableRows>
 									<CSTableHeader>
 										<CSTableCell
@@ -238,6 +243,133 @@ class CSTablePreview extends React.Component {
 									</CSTableHeader>
 									<CSTableBody>
 										<CSTableRow>
+											<CSTableCell
+												text="Second Row Item 1"
+												grow={2}
+											/>
+											<CSTableCell
+												text="Second Row Item 2"
+												grow={1}
+											/>
+											<CSTableCell
+												text="Second Row Item 3"
+												grow={1}
+											/>
+											<CSTableCell
+												maxWidth="100px"
+											>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow>
+											<CSTableCell
+												text="Body Item 1"
+												grow={2}
+											/>
+											<CSTableCell
+												text="Body Item 2"
+												grow={1}
+											/>
+											<CSTableCell
+												text="Body Item 3"
+												grow={1}
+											/>
+											<CSTableCell
+												maxWidth="100px"
+											>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow>
+											<CSTableCell
+												text="Second Row Item 1"
+												grow={2}
+											/>
+											<CSTableCell
+												text="Second Row Item 2"
+												grow={1}
+											/>
+											<CSTableCell
+												text="Second Row Item 3"
+												grow={1}
+											/>
+											<CSTableCell
+												maxWidth="100px"
+											>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>
+						}
+					]
+				},
+				{
+					propName: 'rowSelected',
+					variations: [
+						{
+							component:
+
+								<CSTable>
+									<CSTableHeader>
+										<CSTableCell
+											text="Header Item 1"
+											grow={2}
+										/>
+										<CSTableCell
+											text="Header Item 2"
+											grow={1}
+										/>
+										<CSTableCell
+											text="Header Item 3"
+											grow={1}
+										/>
+										<CSTableCell
+											text="Button Column"
+											maxWidth="100px"
+										/>
+									</CSTableHeader>
+									<CSTableBody>
+										<CSTableRow>
+											<CSTableCell
+												text="Second Row Item 1"
+												grow={2}
+											/>
+											<CSTableCell
+												text="Second Row Item 2"
+												grow={1}
+											/>
+											<CSTableCell
+												text="Second Row Item 3"
+												grow={1}
+											/>
+											<CSTableCell
+												maxWidth="100px"
+											>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow rowSelected>
 											<CSTableCell
 												text="Body Item 1"
 												grow={2}
@@ -882,6 +1014,10 @@ class CSTablePreview extends React.Component {
 					name: 'onClick',
 					types: ['(event) => void'],
 					description: 'Handler method for the click event.'
+				}, {
+					name: 'rowSelected',
+					types: ['bolean'],
+					description: 'Marks selected row, which works only if table has selectableRows true'
 				}, {
 					name: '[key: string]',
 					types: ['any'],

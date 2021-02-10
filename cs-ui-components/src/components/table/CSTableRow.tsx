@@ -8,6 +8,7 @@ export interface CSTableRowProps {
 	className?: string;
 	id?: string;
 	onClick?: React.MouseEventHandler<HTMLDivElement>;
+	rowSelected?: boolean;
 }
 
 class CSTableRow extends React.Component<CSTableRowProps> {
@@ -36,11 +37,22 @@ class CSTableRow extends React.Component<CSTableRowProps> {
 	}
 
 	render() {
-		const { children, className, id, onClick, ...rest } = this.props;
+		const {
+			children,
+			className,
+			id,
+			onClick,
+			rowSelected,
+			...rest
+		} = this.props;
+
 		const tableRowClasses = classNames(
-			'cs-table-row', {
-			[`${className}`]: className
-		});
+			'cs-table-row',
+			{
+				[`${className}`]: className,
+				'cs-row-selected': rowSelected
+			}
+		);
 
 		return (
 			<CSTableContext.Consumer>

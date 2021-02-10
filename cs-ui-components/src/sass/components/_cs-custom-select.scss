@@ -186,11 +186,17 @@
 			width: 1.5rem;
 			margin-right: 0.25rem;
 		}
+		&.cs-option-active {
+			@include sbg(--cs-custom-select-dropdown-hover-bg);
+		}
 		&.cs-option-list-item-selected {
 			@include sbg(--cs-option-list-item-selected-bg);
-		}
-		&:hover, &.cs-option-active {
-			@include sbg(--cs-custom-select-dropdown-hover-bg);
+
+			&:focus,
+			&:hover,
+			&.cs-option-active {
+				@include bgd(--cs-option-list-item-selected-bg, 0.02);
+			}
 		}
 	}
 }

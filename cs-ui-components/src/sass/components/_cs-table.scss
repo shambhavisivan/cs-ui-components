@@ -90,6 +90,15 @@
 				outline: 0;
 				@include sbg(--cs-table-row-hover-bg);
 			}
+
+			&.cs-row-selected {
+				@include sbg(--cs-table-row-selected-bg);
+
+				&:hover,
+				&:focus {
+					@include bgd(--cs-table-row-selected-bg, 0.02);
+				}
+			}
 		}
 	}
 }
