@@ -98,6 +98,14 @@
 			.ag-header-select-all span {
 				margin: 0 !important;
 			}
+
+			/* enable basic browser text selection in grid cells */
+			.ag-cell-focus {
+				-webkit-user-select: text;
+				-moz-user-select: text;
+				-ms-user-select: text;
+				user-select: text;
+			}
 		}
 
 		.ag-selection-checkbox {
