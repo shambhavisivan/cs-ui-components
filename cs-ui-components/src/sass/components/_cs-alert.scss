@@ -283,6 +283,10 @@
 		}
 	}
 
+	&.cs-alert-no-close-btn {
+		padding: 0.5rem 1rem;
+	}
+
 	.cs-alert-close {
 		display: flex;
 		justify-content: center;
