@@ -36,11 +36,11 @@ class CSProgressIndicatorItem extends React.Component<CSProgressIndicatorItemPro
 		const getIconByStatus = () => {
 			switch (status) {
 				case 'complete':
-					return <CSIcon name="check" size="0.5rem" color="#fff" />;
+					return <CSIcon name="check" size="0.5rem" color="var(--cs-progress-indicator-complete-c)" />;
 				case 'error':
-					return <CSIcon name="error" size="0.75rem" color="#c23934" />;
+					return <CSIcon name="error" size="0.75rem" color="var(--cs-progress-indicator-error-c)" />;
 				case 'loading':
-					return <CSIcon name="spinner" color="#dddbda" spin />;
+					return <CSIcon name="spinner" color="var(--cs-progress-indicator-loading-c)" spin />;
 				default:
 					return;
 			}

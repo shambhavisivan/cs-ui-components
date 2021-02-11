@@ -475,8 +475,11 @@ $variables: (
 	--cs-progress-indicator-before-bg: $cs-blue-medium-6,
 	--cs-progress-indicator-before-bg-alt: $cs-gray-light-2,
 	--cs-progress-indicator-complete-bg: $cs-blue-medium-6,
+	--cs-progress-indicator-complete-c: $cs-white,
 	--cs-progress-indicator-error-bg: $cs-white,
+	--cs-progress-indicator-error-c: $cs-red-medium-2,
 	--cs-progress-indicator-loading-bg: $cs-white,
+	--cs-progress-indicator-loading-c: $cs-gray-light-2,
 
 	--cs-list-item-disabled-c: $cs-gray-light-2,
 	--cs-list-item-header-br: $cs-gray-medium-3,
