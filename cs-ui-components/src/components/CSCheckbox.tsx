@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export type CSCheckboxBorderType = 'square' | 'round';
 export type CSCheckboxVariant = 'neutral' | 'brand';
+export type CSCheckboxLabelPosition = 'default' | 'left';
 
 export interface CSCheckboxProps {
 	[key: string]: any;
@@ -20,6 +21,7 @@ export interface CSCheckboxProps {
 	id?: string;
 	label: string;
 	labelHidden?: boolean;
+	labelPosition?: CSCheckboxLabelPosition;
 	labelTitle?: boolean;
 	name?: string;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => any;
@@ -94,6 +96,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 			id,
 			label,
 			labelHidden,
+			labelPosition,
 			labelTitle,
 			name,
 			onChange,
@@ -117,7 +120,8 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 		const checkboxWrapperClasses = classNames(
 			'cs-checkbox-wrapper',
 			{
-				[`${className}`]: className
+				[`${className}`]: className,
+				[`cs-checkbox-label-${labelPosition}`]: labelPosition
 			}
 		);
 		const checkboxFauxClasses = classNames(

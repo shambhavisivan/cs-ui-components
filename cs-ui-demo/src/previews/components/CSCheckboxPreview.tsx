@@ -244,6 +244,20 @@ class CSCheckboxPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'labelPosition',
+					variations: [
+						{
+							variationName: ['left'],
+							quickLink: 'left',
+							component:
+								<CSCheckbox
+									label="This is a label"
+									labelPosition="left"
+								/>
+						}
+					]
+				},
+				{
 					propName: 'className',
 					variations: [
 						{
@@ -370,6 +384,14 @@ class CSCheckboxPreview extends React.Component {
 					types: ['boolean'],
 					default: 'false',
 					description: 'Hide the checkbox label.'
+				}, {
+					name: 'labelPosition',
+					customTypes: [{
+						name: 'CSCheckboxLabelPosition',
+						types: ['\'default\'', '\'left\'']
+					}],
+					default: '\'default\'',
+					description: 'Set the label position.'
 				}, {
 					name: 'labelTitle',
 					types: ['boolean'],

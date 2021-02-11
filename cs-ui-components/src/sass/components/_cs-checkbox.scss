@@ -4,6 +4,16 @@
 	flex-direction: column;
 	position: relative;
 
+	&.cs-checkbox-label-left {
+		flex-direction: row;
+		align-items: center;
+
+		.cs-label-wrapper {
+			margin-right: 0.5rem;
+			padding-bottom: 0;
+		}
+	}
+
 	.cs-checkbox-group {
 		display: inline-flex;
 		width: fit-content;
