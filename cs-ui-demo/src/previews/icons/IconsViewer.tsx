@@ -48,6 +48,7 @@ class IconsViewer extends React.Component<IconsViewerProps, IconsViewerState> {
 						<CSButton
 							label="clear"
 							btnType="transparent"
+							iconColor="var(--cs-icon-fill)"
 							iconName="close"
 							iconDisplay="icon-only"
 							onClick={this.clearSearch}
