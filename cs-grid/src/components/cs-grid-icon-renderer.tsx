@@ -1,4 +1,4 @@
-import { CSIcon, CSTooltip } from '@cloudsense/cs-ui-components';
+import {CSIcon, CSTooltip, CSTooltipPosition, CSTooltipVariant} from '@cloudsense/cs-ui-components';
 import React from 'react';
 
 import {
@@ -35,14 +35,34 @@ export class CSGridIconRenderer extends CSGridBaseRenderer<
 			const icon = icons[iconName];
 			if (icon) {
 				if (isStandardIcon(icon)) {
-					iconComponents.push(<CSIcon name={icon.iconName} color={icon.color} />);
+					if (icon.getTooltip) {
+						const iconTooltip = icon.getTooltip(this.props.node.id);
+						iconComponents.push(
+							<CSTooltip
+								iconName={icon.iconName}
+								iconColor={icon.color}
+								content={iconTooltip.content}
+								delayTooltip={iconTooltip.delay}
+								variant={iconTooltip.variant}
+								position={iconTooltip.position}
+								height={iconTooltip.height}
+								maxHeight={iconTooltip.maxHeight}
+								width={iconTooltip.width}
+								maxWidth={iconTooltip.maxWidth}
+								padding={iconTooltip.padding}
+								stickyOnClick={iconTooltip.stickyOnClick}
+							/>
+						);
+					} else {
+						iconComponents.push(<CSIcon name={icon.iconName} color={icon.color} />);
+					}
 				} else {
 					iconComponents.push(icon);
 				}
 			}
 		}
 
-		const contents = iconComponents.map((icon, index) => <span key={index}>{icon}</span>);
+		const contents = iconComponents.map((icon, index) => <React.Fragment key={index}>{icon}</React.Fragment>);
 		let tooltip;
 		if (this.props.getTooltip) {
 			tooltip = this.props.getTooltip(this.props.node.id);
@@ -63,8 +83,11 @@ export class CSGridIconRenderer extends CSGridBaseRenderer<
 						}
 						position={tooltip.position}
 						height={tooltip.height}
+						maxHeight={tooltip.maxHeight}
 						width={tooltip.width}
+						maxWidth={tooltip.maxWidth}
 						padding={tooltip.padding}
+						stickyOnClick={tooltip.stickyOnClick}
 					>
 						{contents}
 					</CSTooltip>

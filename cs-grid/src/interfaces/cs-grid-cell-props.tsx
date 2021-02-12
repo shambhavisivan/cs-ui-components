@@ -95,7 +95,7 @@ export interface IconProps {
 
 export type Icon = JSX.Element | StandardIcon;
 
-export interface StandardIcon {
+export interface StandardIcon extends Tooltip {
 	iconName: string;
 	color?: string;
 }
@@ -120,9 +120,7 @@ export interface DateTimeProps extends DateProps {
 	timeInterval?: number;
 }
 
-export interface BaseProps<T> {
-	readonly?: boolean | IsColumnFunc;
-	userInfo: UserInfo;
+export interface Tooltip {
 	getTooltip?(
 		rowNodeId: string
 	): {
@@ -131,8 +129,18 @@ export interface BaseProps<T> {
 		variant?: CSTooltipVariant;
 		position?: CSTooltipPosition;
 		height?: string;
+		maxHeight?: string;
 		width?: string;
+		maxWidth?: string;
 		padding?: string;
+		stickyOnClick?: boolean;
+		iconName?: string;
+		iconColor?: string;
 	};
+}
+
+export interface BaseProps<T> extends Tooltip {
+	readonly?: boolean | IsColumnFunc;
+	userInfo: UserInfo;
 	onChange?(rowNodeId: string, oldValue: T, newValue: T): Promise<CellData<T>>;
 }

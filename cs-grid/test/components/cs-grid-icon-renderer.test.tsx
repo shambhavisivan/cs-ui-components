@@ -76,7 +76,7 @@ describe('CS Grid Icon Renderer', () => {
 		expect(
 			cellRenderer.equals(
 				<span className='read-only-cell'>
-					<span key={0}>{icon}</span>
+					<React.Fragment key={0}>{icon}</React.Fragment>
 					<CSGridCellError errorMessage={exampleIcon.errorMessage} position='top-left' />
 				</span>
 			)
@@ -97,7 +97,7 @@ describe('CS Grid Icon Renderer', () => {
 		expect(
 			cellRenderer.equals(
 				<span className=''>
-					<span key={0}>{icon}</span>
+					<React.Fragment key={0}>{icon}</React.Fragment>
 					<CSGridCellError errorMessage={exampleIcon.errorMessage} position='top-left' />
 				</span>
 			)
@@ -116,7 +116,7 @@ describe('CS Grid Icon Renderer', () => {
 		expect(
 			cellRenderer.equals(
 				<span className=''>
-					<span key={0}>{icon}</span>
+					<React.Fragment key={0}>{icon}</React.Fragment>
 					<CSGridCellError errorMessage={exampleIcon.errorMessage} position='top-right' />
 				</span>
 			)

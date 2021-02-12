@@ -1,5 +1,5 @@
 'use strict';
-import { CSButton, CSButtonGroup, CSChip } from '@cloudsense/cs-ui-components';
+import {CSButton, CSButtonGroup, CSChip, CSTooltip} from '@cloudsense/cs-ui-components';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -797,9 +797,32 @@ export class App extends React.Component<object, AppState> {
 					return {
 						warning: { iconName: 'warning', color: 'orange' },
 						green: { iconName: 'close', color: 'green' },
-						red: { iconName: 'close', color: 'red' },
-						yellow: { iconName: 'close', color: 'yellow' },
-						breadcrumbs: { iconName: 'breadcrumbs', color: 'pink' },
+						red: {
+							iconName: 'close',
+							color: 'red',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['status icon red test example'],
+									delay: 300,
+									variant: 'success',
+									stickyOnClick: true
+								};
+							}
+						},
+						yellow: {
+							color: 'yellow',
+							iconName: 'close',
+						},
+						breadcrumbs: {
+							iconName: 'breadcrumbs',
+							color: 'pink',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['status icon pink test example'],
+									delay: 300
+								};
+							}
+						},
 						green2: (
 							<span
 								style={{
@@ -838,7 +861,8 @@ export class App extends React.Component<object, AppState> {
 				getTooltip: (guid: string) => {
 					return {
 						content: ['example tooltip', 'Line two'],
-						delay: 300
+						delay: 300,
+						stickyOnClick: true
 					};
 				},
 				header: {
