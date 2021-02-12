@@ -40,9 +40,12 @@
 		border-right: 1px solid var(--divider-br);
 
 		> .cs-alert {
-			margin: 3rem 3rem 0;
-			width: unset;
-			display: unset; //Flex not working on Safari
+			margin: 2rem 3rem 0;
+			width: auto;
+
+			+ .cs-alert {
+				margin: 0.5rem 3rem 0;
+			}
 		}
 
 		.chip-label {
