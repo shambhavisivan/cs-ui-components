@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import { CSGridCellError } from '../../src/components/cs-grid-cell-error';
 import { CSGridIconRenderer } from '../../src/components/cs-grid-icon-renderer';
+import { CSGridRowSelectionRenderer } from '../../src/components/cs-grid-row-selection-renderer';
 import { CellData } from '../../src/interfaces/cs-grid-base-interfaces';
 import { CSGridCellRendererProps } from '../../src/interfaces/cs-grid-cell-props';
 import { UserInfo } from '../../src/interfaces/user-info';
@@ -73,10 +74,15 @@ describe('CS Grid Icon Renderer', () => {
 			/>
 		);
 
+		const instance = cellRenderer.instance() as CSGridRowSelectionRenderer;
+
 		expect(
 			cellRenderer.equals(
-				<span className='read-only-cell'>
-					<React.Fragment key={0}>{icon}</React.Fragment>
+				<span className='cs-grid_icon-cell read-only-cell'>
+					<>
+						<React.Fragment key={0}>{icon}</React.Fragment>
+						<instance.Actions />
+					</>
 					<CSGridCellError errorMessage={exampleIcon.errorMessage} position='top-left' />
 				</span>
 			)
@@ -94,10 +100,15 @@ describe('CS Grid Icon Renderer', () => {
 			/>
 		);
 
+		const instance = cellRenderer.instance() as CSGridRowSelectionRenderer;
+
 		expect(
 			cellRenderer.equals(
-				<span className=''>
-					<React.Fragment key={0}>{icon}</React.Fragment>
+				<span className='cs-grid_icon-cell'>
+					<>
+						<React.Fragment key={0}>{icon}</React.Fragment>
+						<instance.Actions />
+					</>
 					<CSGridCellError errorMessage={exampleIcon.errorMessage} position='top-left' />
 				</span>
 			)
@@ -113,10 +124,15 @@ describe('CS Grid Icon Renderer', () => {
 			<CSGridIconRenderer {...cSGridCellRendererProps} getIcons={getIcons} />
 		);
 
+		const instance = cellRenderer.instance() as CSGridRowSelectionRenderer;
+
 		expect(
 			cellRenderer.equals(
-				<span className=''>
-					<React.Fragment key={0}>{icon}</React.Fragment>
+				<span className='cs-grid_icon-cell'>
+					<>
+						<React.Fragment key={0}>{icon}</React.Fragment>
+						<instance.Actions />
+					</>
 					<CSGridCellError errorMessage={exampleIcon.errorMessage} position='top-right' />
 				</span>
 			)
@@ -131,9 +147,14 @@ describe('CS Grid Icon Renderer', () => {
 			<CSGridIconRenderer {...cSGridCellRendererProps} getIcons={getIcons} />
 		);
 
+		const instance = cellRenderer.instance() as CSGridRowSelectionRenderer;
+
 		expect(
 			cellRenderer.equals(
-				<span className=''>
+				<span className='cs-grid_icon-cell'>
+					<>
+						<instance.Actions />
+					</>
 					<CSGridCellError errorMessage={exampleIcon.errorMessage} position='top-left' />
 				</span>
 			)

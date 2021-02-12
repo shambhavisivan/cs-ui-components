@@ -1,4 +1,4 @@
-import { CSButton, CSButtonGroup, CSIcon } from '@cloudsense/cs-ui-components';
+import { CSButton, CSButtonGroup, CSIcon, CSTooltip } from '@cloudsense/cs-ui-components';
 import * as KeyCode from 'keycode-js';
 import React from 'react';
 
@@ -70,11 +70,13 @@ export abstract class CSGridBaseActionsRenderer<
 		const colId = this.props.column.getId();
 
 		const icons: Array<Icon> = [];
+
 		if (this.state.noOfInlineIcons) {
 			const noOfInlineIcons = Math.min(this.state.noOfInlineIcons, this.state.actions.length);
 
 			for (let index = 0; index < noOfInlineIcons; index++) {
 				const action = this.state.actions[index];
+				let button: JSX.Element = null;
 
 				const onClick = () => {
 					this.props.api.stopEditing();
@@ -83,27 +85,36 @@ export abstract class CSGridBaseActionsRenderer<
 
 				if (action.icon) {
 					if (isStandardIcon(action.icon)) {
-						icons.push(
+						button = (
 							<CSButton
 								label={action.name}
 								key={action.name}
 								onClick={onClick}
 								disabled={action.disabled}
+								color={action.color}
+								size={action.size}
+								btnType={action.btnType}
+								btnStyle={action.btnStyle}
 								iconName={action.icon.iconName}
 								iconColor={action.icon.color}
+								iconOrigin={action.icon.iconOrigin}
 								iconDisplay='icon-only'
 								ref={(ref: HTMLButtonElement) => (this.buttonRefs[index] = ref)}
 								id={`icon-item-${this.props.node.id}-${colId}-${index}`}
 							/>
 						);
 					} else {
-						icons.push(
+						button = (
 							<CSButton
 								label=''
 								title={action.name}
 								key={action.name}
 								onClick={onClick}
 								disabled={action.disabled}
+								color={action.color}
+								size={action.size}
+								btnType={action.btnType}
+								btnStyle={action.btnStyle}
 								iconDisplay='icon-only'
 								ref={(ref: HTMLButtonElement) => (this.buttonRefs[index] = ref)}
 								id={`icon-item-${this.props.node.id}-${colId}-${index}`}
@@ -113,18 +124,45 @@ export abstract class CSGridBaseActionsRenderer<
 						);
 					}
 				} else {
-					icons.push(
+					button = (
 						<CSButton
 							label={action.name}
 							key={action.name}
 							onClick={onClick}
 							disabled={action.disabled}
+							color={action.color}
+							size={action.size}
+							btnType={action.btnType}
+							btnStyle={action.btnStyle}
 							iconName='connected_apps'
 							iconDisplay='icon-only'
 							ref={(ref: HTMLButtonElement) => (this.buttonRefs[index] = ref)}
 							id={`icon-item-${this.props.node.id}-${colId}-${index}`}
 						/>
 					);
+				}
+
+				if (action.getTooltip) {
+					const actionTooltip = action.getTooltip(this.props.node.id);
+
+					icons.push(
+						<CSTooltip
+							content={actionTooltip.content}
+							delayTooltip={actionTooltip.delay}
+							variant={actionTooltip.variant}
+							position={actionTooltip.position}
+							height={actionTooltip.height}
+							maxHeight={actionTooltip.maxHeight}
+							width={actionTooltip.width}
+							maxWidth={actionTooltip.maxWidth}
+							padding={actionTooltip.padding}
+							stickyOnClick={actionTooltip.stickyOnClick}
+						>
+							{button}
+						</CSTooltip>
+					);
+				} else {
+					icons.push(button);
 				}
 			}
 		}

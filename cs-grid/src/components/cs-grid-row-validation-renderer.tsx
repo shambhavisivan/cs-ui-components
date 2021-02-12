@@ -61,7 +61,13 @@ export class CSGridRowValidationRenderer extends CSGridBaseRenderer<
 				const icon = iconMapping[iconName];
 				if (icon) {
 					if (isStandardIcon(icon)) {
-						icons.push(<CSIcon name={icon.iconName} color={icon.color} />);
+						icons.push(
+							<CSIcon
+								name={icon.iconName}
+								color={icon.color}
+								origin={icon.iconOrigin}
+							/>
+						);
 					} else {
 						icons.push(icon);
 					}
@@ -70,7 +76,11 @@ export class CSGridRowValidationRenderer extends CSGridBaseRenderer<
 		}
 
 		return (
-			<span className={this.isReadOnly() ? 'read-only-cell' : ''}>
+			<span
+				className={
+					this.isReadOnly() ? 'cs-grid_icon-cell read-only-cell' : 'cs-grid_icon-cell'
+				}
+			>
 				{status !== 'None' && (
 					<CSTooltip
 						content={this.state.value.errorMessage}
@@ -79,7 +89,7 @@ export class CSGridRowValidationRenderer extends CSGridBaseRenderer<
 					/>
 				)}
 				{icons.map((icon, index) => (
-					<span key={index}>{icon}</span>
+					<React.Fragment key={index}>{icon}</React.Fragment>
 				))}
 			</span>
 		);

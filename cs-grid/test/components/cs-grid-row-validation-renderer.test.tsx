@@ -68,7 +68,7 @@ describe('CS Grid Row Validation Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className=''>
+				<span className='cs-grid_icon-cell'>
 					<CSTooltip
 						content={exampleRowValidationRenderer.errorMessage}
 						variant={'info'}
@@ -87,7 +87,7 @@ describe('CS Grid Row Validation Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className=''>
+				<span className='cs-grid_icon-cell'>
 					<CSTooltip
 						content={exampleRowValidationRenderer.errorMessage}
 						variant={'error'}
@@ -103,7 +103,7 @@ describe('CS Grid Row Validation Renderer', () => {
 
 		const cellRenderer = shallow(<CSGridRowValidationRenderer {...cSGridCellRendererProps} />);
 
-		expect(cellRenderer.equals(<span className='' />)).toBeTruthy();
+		expect(cellRenderer.equals(<span className='cs-grid_icon-cell' />)).toBeTruthy();
 	});
 
 	test('The row validation renderer should always render nothing if no value is given', () => {
@@ -122,7 +122,7 @@ describe('CS Grid Row Validation Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className=''>
+				<span className='cs-grid_icon-cell'>
 					<CSTooltip content={exampleRowValidationRenderer.errorMessage} variant='info' />
 				</span>
 			)
@@ -138,7 +138,7 @@ describe('CS Grid Row Validation Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className='read-only-cell'>
+				<span className='cs-grid_icon-cell read-only-cell'>
 					<CSTooltip
 						content={exampleRowValidationRenderer.errorMessage}
 						variant='info'
@@ -163,13 +163,13 @@ describe('CS Grid Row Validation Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className=''>
+				<span className='cs-grid_icon-cell'>
 					<CSTooltip
 						content={exampleRowValidationRenderer.errorMessage}
 						variant='info'
 						position='top-left'
 					/>
-					<span key={0}>{redIcon}</span>
+					<React.Fragment key={0}>{redIcon}</React.Fragment>
 				</span>
 			)
 		).toBeTruthy();
@@ -189,7 +189,7 @@ describe('CS Grid Row Validation Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className=''>
+				<span className='cs-grid_icon-cell'>
 					<CSTooltip
 						content={exampleRowValidationRenderer.errorMessage}
 						variant='info'
@@ -214,7 +214,7 @@ describe('CS Grid Row Validation Renderer', () => {
 
 		expect(
 			cellRenderer.equals(
-				<span className=''>
+				<span className='cs-grid_icon-cell'>
 					<CSTooltip
 						content={exampleRowValidationRenderer.errorMessage}
 						variant='info'

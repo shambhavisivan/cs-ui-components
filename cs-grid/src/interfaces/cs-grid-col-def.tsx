@@ -72,7 +72,7 @@ interface TextColDef extends BaseColDef<string> {
 	cellType: 'Text';
 }
 
-interface IconColDef extends BaseColDef<string>, IconProps {
+interface IconColDef extends BaseColDef<string>, IconProps, ActionProps<boolean> {
 	cellType: 'Icon';
 }
 

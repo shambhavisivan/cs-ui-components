@@ -1066,7 +1066,8 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			if (
 				columnDef.cellType === 'RowSelection' ||
 				columnDef.cellType === 'Lookup' ||
-				columnDef.cellType === 'MultiSelectLookup'
+				columnDef.cellType === 'MultiSelectLookup' ||
+				columnDef.cellType === 'Icon'
 			) {
 				if (columnDef.getActions !== undefined) {
 					const settings: AgGridColDef = {};
@@ -1088,8 +1089,12 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 					agGridColDef = { ...settings, ...agGridColDef };
 				}
 
-				// Lookup button are all inline.
-				if (columnDef.cellType === 'Lookup' || columnDef.cellType === 'MultiSelectLookup') {
+				// Lookup button and Icon button are all inline.
+				if (
+					columnDef.cellType === 'Lookup' ||
+					columnDef.cellType === 'MultiSelectLookup' ||
+					columnDef.cellType === 'Icon'
+				) {
 					cellParams.noOfInlineIcons = 100;
 				}
 

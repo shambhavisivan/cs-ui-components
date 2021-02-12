@@ -1,5 +1,5 @@
 'use strict';
-import {CSButton, CSButtonGroup, CSChip, CSTooltip} from '@cloudsense/cs-ui-components';
+import { CSButton, CSButtonGroup, CSChip, CSTooltip } from '@cloudsense/cs-ui-components';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -811,7 +811,7 @@ export class App extends React.Component<object, AppState> {
 						},
 						yellow: {
 							color: 'yellow',
-							iconName: 'close',
+							iconName: 'close'
 						},
 						breadcrumbs: {
 							iconName: 'breadcrumbs',
@@ -858,11 +858,32 @@ export class App extends React.Component<object, AppState> {
 						)
 					};
 				},
+				getActions: (guid: string) => {
+					return [
+						{
+							action: () => console.error('Edit option called'),
+							icon: { iconName: 'warning', color: 'hotpink' },
+							name: 'Edit',
+							btnType: 'error',
+							btnStyle: 'outline',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['status icon pink test example'],
+									delay: 300,
+									stickyOnClick: true,
+									variant: 'warning',
+									height: '100px',
+									padding: '2rem',
+									position: 'bottom-right'
+								};
+							}
+						}
+					];
+				},
 				getTooltip: (guid: string) => {
 					return {
 						content: ['example tooltip', 'Line two'],
-						delay: 300,
-						stickyOnClick: true
+						delay: 300
 					};
 				},
 				header: {

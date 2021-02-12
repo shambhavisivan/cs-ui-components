@@ -1,4 +1,8 @@
 import {
+	CSButtonSize,
+	CSButtonStyle,
+	CSButtonType,
+	CSIconOrigin,
 	CSTooltipIconSize,
 	CSTooltipPosition,
 	CSTooltipVariant
@@ -66,11 +70,15 @@ export interface ActionProps<T> {
 	getActions?(guid: string): Array<CSGridAction<T>>;
 }
 
-export interface CSGridAction<T> {
+export interface CSGridAction<T> extends Tooltip {
 	name: string;
 	icon?: Icon;
 	action: (guid: string, currentValue: T) => void;
 	disabled?: boolean;
+	btnType?: CSButtonType;
+	btnStyle?: CSButtonStyle;
+	size?: CSButtonSize;
+	color?: string;
 }
 
 export interface RowValidationProps extends IconProps {}
@@ -97,6 +105,7 @@ export type Icon = JSX.Element | StandardIcon;
 
 export interface StandardIcon extends Tooltip {
 	iconName: string;
+	iconOrigin?: CSIconOrigin;
 	color?: string;
 }
 
@@ -125,7 +134,7 @@ export interface Tooltip {
 		rowNodeId: string
 	): {
 		content: string | Array<string> | JSX.Element;
-		delay: number;
+		delay?: number;
 		variant?: CSTooltipVariant;
 		position?: CSTooltipPosition;
 		height?: string;

@@ -123,8 +123,13 @@ export class CSGridRowSelectionEditor
 							key={action.name}
 							onClick={selectAction}
 							disabled={action.disabled}
+							color={action.color}
+							size={action.size}
+							btnType={action.btnType}
+							btnStyle={action.btnStyle}
 							iconName={action.icon.iconName}
 							iconColor={action.icon.color ? action.icon.color : null}
+							iconOrigin={action.icon.iconOrigin}
 							ref={(ref: HTMLButtonElement) => (this.dropDownRefs[index] = ref)}
 							id={`row-selection-list-item-${action.name}`}
 						/>
@@ -136,6 +141,10 @@ export class CSGridRowSelectionEditor
 							key={action.name}
 							onClick={selectAction}
 							disabled={action.disabled}
+							color={action.color}
+							size={action.size}
+							btnType={action.btnType}
+							btnStyle={action.btnStyle}
 							ref={(ref: HTMLButtonElement) => (this.dropDownRefs[index] = ref)}
 							id={`row-selection-list-item-${action.name}`}
 						>
@@ -151,6 +160,10 @@ export class CSGridRowSelectionEditor
 						onClick={selectAction}
 						ref={(ref: HTMLButtonElement) => (this.dropDownRefs[index] = ref)}
 						disabled={action.disabled}
+						color={action.color}
+						size={action.size}
+						btnType={action.btnType}
+						btnStyle={action.btnStyle}
 						id={`row-selection-list-item-${action.name}`}
 					/>
 				);

@@ -1,25 +1,51 @@
-import {CSIcon, CSTooltip, CSTooltipPosition, CSTooltipVariant} from '@cloudsense/cs-ui-components';
+import {
+	CSIcon,
+	CSTooltip,
+	CSTooltipPosition,
+	CSTooltipVariant
+} from '@cloudsense/cs-ui-components';
 import React from 'react';
 
+import classNames from 'classnames';
 import {
+	ActionProps,
 	CSGridCellRendererProps,
+	Icon,
 	IconProps,
-	isStandardIcon
+	isStandardIcon,
+	LookupProps
 } from '../interfaces/cs-grid-cell-props';
+import {
+	CSGridBaseActionsRenderer,
+	CSGridBaseActionsRendererProps
+} from './cs-grid-base-actions-renderer';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
 import { CSGridCellError } from './cs-grid-cell-error';
+import { CSGridLookupSearchResult } from './cs-grid-lookup-editor';
 
 /**
  * A cell renderer for displaying icons.
  */
-export class CSGridIconRenderer extends CSGridBaseRenderer<
+
+export class CSGridIconRenderer extends CSGridBaseActionsRenderer<
 	Array<string>,
-	CSGridCellRendererProps<Array<string>> & IconProps
+	CSGridBaseActionsRendererProps<Array<string>> &
+		CSGridCellRendererProps<Array<string>> &
+		IconProps
 > {
-	constructor(props: CSGridCellRendererProps<Array<string>> & IconProps) {
+	constructor(
+		props: CSGridBaseActionsRendererProps<Array<string>> &
+			CSGridCellRendererProps<Array<string>> &
+			IconProps
+	) {
 		super(props);
 
-		this.state = { value: this.props.value, isLastColumn: this.isLastColumn() };
+		this.state = {
+			actions: this.props.getActions ? this.props.getActions(this.props.node.id) : [],
+			noOfInlineIcons: this.props.noOfInlineIcons,
+			value: this.props.value,
+			isLastColumn: this.isLastColumn()
+		};
 	}
 
 	render() {
@@ -27,7 +53,7 @@ export class CSGridIconRenderer extends CSGridBaseRenderer<
 			return null;
 		}
 
-		const values = this.state.value.cellValue || [];
+		const values: boolean | Array<any> = this.state.value.cellValue || [];
 		const icons = this.props.getIcons(this.props.node.id);
 
 		const iconComponents: Array<JSX.Element> = [];
@@ -41,6 +67,7 @@ export class CSGridIconRenderer extends CSGridBaseRenderer<
 							<CSTooltip
 								iconName={icon.iconName}
 								iconColor={icon.color}
+								iconOrigin={icon.iconOrigin}
 								content={iconTooltip.content}
 								delayTooltip={iconTooltip.delay}
 								variant={iconTooltip.variant}
@@ -54,22 +81,40 @@ export class CSGridIconRenderer extends CSGridBaseRenderer<
 							/>
 						);
 					} else {
-						iconComponents.push(<CSIcon name={icon.iconName} color={icon.color} />);
+						iconComponents.push(
+							<CSIcon
+								name={icon.iconName}
+								color={icon.color}
+								origin={icon.iconOrigin}
+							/>
+						);
 					}
 				} else {
 					iconComponents.push(icon);
 				}
 			}
 		}
+		const contents = (
+			<>
+				{iconComponents.map((icon, index) => (
+					<React.Fragment key={index}>{icon}</React.Fragment>
+				))}
+				{this.state.actions ? <this.Actions /> : null}
+			</>
+		);
 
-		const contents = iconComponents.map((icon, index) => <React.Fragment key={index}>{icon}</React.Fragment>);
 		let tooltip;
 		if (this.props.getTooltip) {
 			tooltip = this.props.getTooltip(this.props.node.id);
 		}
 
+		const iconCellClassNames = classNames('cs-grid_icon-cell', {
+			'cs-grid_icon-cell-tooltip': tooltip,
+			'read-only-cell': this.isReadOnly()
+		});
+
 		return (
-			<span className={this.isReadOnly() ? 'read-only-cell' : ''}>
+			<span className={iconCellClassNames}>
 				{tooltip ? (
 					<CSTooltip
 						content={tooltip.content}
