@@ -1,5 +1,30 @@
 # Release Notes
 
+## 1.1.4<a name="1.1.4"></a>
+* CSAlert
+  * padding fixed when no close button
+* CSButton
+  * <i>important</i> `btnRound` prop removed and replaced with `borderRadius` prop
+* CSCustomSelect
+  * icon and hover/focus color fixes
+* CSProgressIndicator
+  * hex colors changed to css variables
+* CSTable
+  * `rowSelected` prop added on CSTableRow component
+* CSToast
+  * padding fixed
+* CSTooltip
+  * higher specificity on tooltip hover added to fix tooltips nested inside other tooltips not to receive inherited styles
+  * `stickyOnClick` prop changed to work in cs-grid
+* CSTransfer
+  * fixed keyboard multiselect on Mac
+* CloudSense icon set
+  * new icons added: package_outline, package_solid, currency_euro, currency_dollar, currency_pound
+* Demo App changes
+  * accessibility page updated
+  * z-index list updated
+  * alerts are now aligned with other content
+
 ## 1.1.3<a name="1.1.3"></a>
 * CSButton
   * <i>important</i> added span wrapper around custom content passed through component children
