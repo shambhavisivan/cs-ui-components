@@ -19,6 +19,7 @@ const ToggleTheme: React.FC = () => {
 				iconName="light_bulb"
 				iconDisplay="icon-only"
 				onClick={toggleTheme}
+				title=""
 			/>
 		</CSTooltip>
 	);
