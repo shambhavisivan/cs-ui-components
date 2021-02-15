@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import CSIcon from './CSIcon';
+import CSIcon, { CSIconOrigin } from './CSIcon';
 import { CSTabGroupVariant } from './CSTabGroup';
 import CSTooltip from './CSTooltip';
 
@@ -10,6 +10,7 @@ export interface CSTabProps {
 	active?: boolean;
 	className?: string;
 	disabled?: boolean;
+	iconOrigin?: CSIconOrigin;
 	id?: string;
 	onClick?: (value?: any) => any;
 	parentVariant?: CSTabGroupVariant;
@@ -39,6 +40,7 @@ class CSTab extends React.Component<CSTabProps> {
 			children,
 			className,
 			disabled,
+			iconOrigin,
 			id,
 			onClick,
 			parentVariant,
@@ -97,8 +99,9 @@ class CSTab extends React.Component<CSTabProps> {
 							iconName={getStatusIcon()}
 							variant={status === 'initial' ? 'info' : status}
 							iconSize={'medium'}
+							iconOrigin={iconOrigin}
 						/>
-						: renderTabIcon() ? <CSIcon name={getStatusIcon()} /> : null
+						: renderTabIcon() ? <CSIcon name={getStatusIcon()} origin={iconOrigin} /> : null
 					}
 					<span className="cs-tab-title">{title}</span>
 					{children}

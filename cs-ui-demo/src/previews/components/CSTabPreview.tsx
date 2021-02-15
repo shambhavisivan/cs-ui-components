@@ -241,6 +241,31 @@ class CSTabPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'iconOrigin',
+					variations: [
+						{
+							variationName: ['slds'],
+							quickLink: 'slds',
+							component:
+								<CSTabGroup id="id">
+									<CSTab title="Tab One" id="id" iconOrigin="slds" tabIcon="activity" />
+									<CSTab title="Tab Two" id="id" iconOrigin="slds" tabIcon="activity" />
+									<CSTab title="Tab Three" id="id" iconOrigin="slds" tabIcon="activity" />
+								</CSTabGroup>
+						},
+						{
+							variationName: ['cs'],
+							quickLink: 'cs',
+							component:
+								<CSTabGroup id="id">
+									<CSTab title="Tab One" id="id" iconOrigin="cs" tabIcon="big_shot" />
+									<CSTab title="Tab Two" id="id" iconOrigin="cs" tabIcon="big_shot" />
+									<CSTab title="Tab Three" id="id" iconOrigin="cs" tabIcon="big_shot" />
+								</CSTabGroup>
+						}
+					]
+				},
+				{
 					propName: 'id',
 					customText: '',
 					variations: [
@@ -298,6 +323,14 @@ class CSTabPreview extends React.Component {
 					types: ['boolean'],
 					default: 'false',
 					description: 'Disable the tab.'
+				}, {
+					name: 'iconOrigin',
+					customTypes: [{
+						name: 'CSIconOrigin',
+						types: ['\'slds\'', '\'cs\'']
+					}],
+					default: '\'slds\'',
+					description: 'Select whether a SalesForce or a CloudSense icon should be used.'
 				}, {
 					name: 'id',
 					types: ['string'],
