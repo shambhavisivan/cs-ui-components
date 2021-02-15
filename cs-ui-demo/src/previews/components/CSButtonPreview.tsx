@@ -746,54 +746,54 @@ class CSButtonPreview extends React.Component {
 			<>
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<div className="cs-btn-type-preview-wrapper">
-						<div className="cs-btn-type-preview">
-							<span className="cs-btnStyle-header">btnStyle</span>
-							<span className="cs-btnType-header">btnType</span>
-							<span className="cs-btnStyle-initial">initial</span>
-							<span className="cs-btnStyle-brand">brand</span>
-							<span className="cs-btnStyle-outline">outline</span>
-							<span className="cs-btnType-default">default</span>
-							<span className="cs-btnType-error">error</span>
-							<span className="cs-btnType-success">success</span>
-							<span className="cs-btnType-transparent">transparent</span>
-							<span className="cs-default-initial">
+					<div className="demo-btn-type-preview-wrapper">
+						<div className="demo-btn-type-preview">
+							<span className="demo-btnStyle-header">btnStyle</span>
+							<span className="demo-btnType-header">btnType</span>
+							<span className="demo-btnStyle-initial">initial</span>
+							<span className="demo-btnStyle-brand">brand</span>
+							<span className="demo-btnStyle-outline">outline</span>
+							<span className="demo-btnType-default">default</span>
+							<span className="demo-btnType-error">error</span>
+							<span className="demo-btnType-success">success</span>
+							<span className="demo-btnType-transparent">transparent</span>
+							<span className="demo-default-initial">
 								<CSButton iconName="activity" label="default initial" />
 							</span>
-							<span className="cs-default-brand">
+							<span className="demo-default-brand">
 								<CSButton iconName="activity" btnStyle="brand" label="default brand" />
 							</span>
-							<span className="cs-default-outline">
+							<span className="demo-default-outline">
 								<CSButton iconName="activity" btnStyle="outline" label="default outline" />
 							</span>
-							<span className="cs-error-initial">
+							<span className="demo-error-initial">
 								<CSButton iconName="activity" btnType="error" label="error initial" />
 							</span>
-							<span className="cs-error-brand">
+							<span className="demo-error-brand">
 								<CSButton iconName="activity" btnType="error" btnStyle="brand" label="error brand" />
 							</span>
-							<span className="cs-error-outline">
+							<span className="demo-error-outline">
 								<CSButton iconName="activity" btnType="error" btnStyle="outline" label="error outline" />
 							</span>
-							<span className="cs-success-initial">
+							<span className="demo-success-initial">
 								<CSButton iconName="activity" btnType="success" label="success initial" />
 							</span>
-							<span className="cs-success-brand">
+							<span className="demo-success-brand">
 								<CSButton iconName="activity" btnType="success" btnStyle="brand" label="success brand" />
 							</span>
-							<span className="cs-success-outline">
+							<span className="demo-success-outline">
 								<CSButton iconName="activity" btnType="success" btnStyle="outline" label="success outline" />
 							</span>
-							<span className="cs-transparent-initial">
-								<span className="cs-transparent-bg">
+							<span className="demo-transparent-initial">
+								<span className="demo-transparent-bg">
 									<CSButton iconName="activity" btnType="transparent" label="transparent initial" />
 								</span>
 							</span>
-							<span className="cs-transparent-brand">
+							<span className="demo-transparent-brand">
 								<CSButton iconName="activity" btnType="transparent" btnStyle="brand" label="transparent brand" />
 							</span>
-							<span className="cs-transparent-outline">
-								<span className="cs-transparent-bg">
+							<span className="demo-transparent-outline">
+								<span className="demo-transparent-bg">
 									<CSButton iconName="activity" btnType="transparent" btnStyle="outline" label="transparent outline" />
 								</span>
 							</span>

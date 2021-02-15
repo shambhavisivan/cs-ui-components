@@ -292,10 +292,10 @@
 	}
 }
 
-.cs-btn-type-preview-wrapper {
+.demo-btn-type-preview-wrapper {
 	padding: 3rem 3rem 0;
 
-	.cs-btn-type-preview {
+	.demo-btn-type-preview {
 		background: var(--cs-btn-bg);
 		border-radius: 0.25rem;
 		box-shadow: 0 1px 3px var(--cs-shadow-light), 0 1px 2px var(--cs-shadow-medium);
@@ -322,120 +322,120 @@
 			justify-content: center;
 		}
 
-		.cs-btnStyle-header {
+		.demo-btnStyle-header {
 			grid-area: btnStyle-header;
 			font-weight: bold;
 		}
 
-		.cs-btnType-header {
+		.demo-btnType-header {
 			grid-area: btnType-header;
 			align-self: center;
 			justify-content: flex-start;
 			font-weight: bold;
 		}
 
-		.cs-btnStyle-initial {
+		.demo-btnStyle-initial {
 			grid-area: btnStyle-initial;
 		}
 
-		.cs-btnStyle-brand {
+		.demo-btnStyle-brand {
 			grid-area: btnStyle-brand;
 		}
 
-		.cs-btnStyle-outline {
+		.demo-btnStyle-outline {
 			grid-area: btnStyle-outline;
 		}
 
-		.cs-btnType-default {
+		.demo-btnType-default {
 			grid-area: btnType-default;
 			justify-content: flex-end;
 			padding-inline-end: 1rem;
 		}
 
-		.cs-btnType-error {
+		.demo-btnType-error {
 			grid-area: btnType-error;
 			justify-content: flex-end;
 			padding-inline-end: 1rem;
 		}
 
-		.cs-btnType-success {
+		.demo-btnType-success {
 			grid-area: btnType-success;
 			justify-content: flex-end;
 			padding-inline-end: 1rem;
 		}
-		.cs-btnType-transparent {
+		.demo-btnType-transparent {
 			grid-area: btnType-transparent;
 			justify-content: flex-end;
 			padding-inline-end: 1rem;
 		}
 
-		.cs-btnType-custom {
+		.demo-btnType-custom {
 			grid-area: btnType-custom;
 			justify-content: flex-end;
 			padding-inline-end: 1rem;
 		}
 
-		.cs-default-initial {
+		.demo-default-initial {
 			grid-area: default-initial;
 		}
 
-		.cs-default-brand {
+		.demo-default-brand {
 			grid-area: default-brand;
 		}
 
-		.cs-default-outline {
+		.demo-default-outline {
 			grid-area: default-outline;
 		}
 
-		.cs-error-initial {
+		.demo-error-initial {
 			grid-area: error-initial;
 		}
 
-		.cs-error-brand {
+		.demo-error-brand {
 			grid-area: error-brand;
 		}
 
-		.cs-error-outline {
+		.demo-error-outline {
 			grid-area: error-outline;
 		}
 
-		.cs-success-initial {
+		.demo-success-initial {
 			grid-area: success-initial;
 		}
 
-		.cs-success-brand {
+		.demo-success-brand {
 			grid-area: success-brand;
 		}
 
-		.cs-success-outline {
+		.demo-success-outline {
 			grid-area: success-outline;
 		}
 
-		.cs-transparent-initial {
+		.demo-transparent-initial {
 			grid-area: transparent-initial;
 		}
 
-		.cs-transparent-brand {
+		.demo-transparent-brand {
 			grid-area: transparent-brand;
 		}
 
-		.cs-transparent-outline {
+		.demo-transparent-outline {
 			grid-area: transparent-outline;
 		}
 
-		.cs-custom-initial {
+		.demo-custom-initial {
 			grid-area: custom-initial;
 		}
 
-		.cs-custom-brand {
+		.demo-custom-brand {
 			grid-area: custom-brand;
 		}
 
-		.cs-custom-outline {
+		.demo-custom-outline {
 			grid-area: custom-outline;
 		}
 
-		.cs-transparent-bg {
+		.demo-transparent-bg {
 			background: var(--cs-transparent-bg);
 			padding: 0.25rem;
 		}
