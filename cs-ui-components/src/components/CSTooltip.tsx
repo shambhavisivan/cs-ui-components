@@ -222,27 +222,30 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		);
 	}
 
-	componentDidMount() {
-		if (this.props.stickyOnClick) {
-			document.addEventListener('click', e => this.handleOutsideClick(e, this.tooltipRef.current));
-		}
-	}
 	componentWillUnmount() {
-		document.removeEventListener('click', e => this.handleOutsideClick(e, this.tooltipRef.current));
+		if (this.state.stickyActive) {
+			document.removeEventListener('click', this.handleOutsideClick);
+		}
 	}
 
-	handleOutsideClick = (e: any, element: any) => {
-		e.stopPropagation();
-		if (element &&
-			element.contains(e.target)) {
-			return;
+	handleOutsideClick = (event: any) => {
+		event.stopPropagation();
+		if (
+			this.tooltipRef.current
+			&& !this.tooltipRef.current.contains(event.target)
+			&& !document.getElementById(this.tooltipId).contains(event.target)
+		) {
+			this.setSticky(false);
+			this.closeTooltip();
 		}
-		this.setSticky(false);
-		this.closeTooltip();
 	}
 
 	private openTooltip = () => {
 		this.setTooltipPosition();
+
+		if (this.props.stickyOnClick) {
+			document.addEventListener('click', this.handleOutsideClick);
+		}
 
 		if (this.props.delayTooltip && this.props.delayTooltip > 0) {
 			const delay = this.props.delayTooltip;
@@ -260,6 +263,10 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			computedPosition: this.props.position,
 			tooltipWrapperDimension: undefined
 		});
+
+		if (this.state.stickyActive) {
+			document.removeEventListener('click', this.handleOutsideClick);
+		}
 
 		if (this.props.delayTooltip && this.props.delayTooltip > 0) {
 			if (this.popupTriggered) {
@@ -323,10 +330,6 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		if (element) {
 			const tooltipRect = element.getBoundingClientRect();
 			this.autoTooltipPosition(tooltipRect);
-
-			if (this.props.stickyOnClick) {
-				element.addEventListener('click', e => this.handleOutsideClick(e, element));
-			}
 		}
 	}
 
