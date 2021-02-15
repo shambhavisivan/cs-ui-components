@@ -114,36 +114,6 @@ class CSSelectPreview extends React.Component {
 									<option>2</option>
 									<option>3</option>
 								</CSSelect>
-						},
-						{
-							variationName: ['top-left'],
-							quickLink: 'top-left',
-							component:
-								<CSSelect label="Choose number" helpText="Help text example" tooltipPosition="top-left">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-								</CSSelect>
-						},
-						{
-							variationName: ['bottom-right'],
-							quickLink: 'bottom-right',
-							component:
-								<CSSelect label="Choose number" helpText="Help text example" tooltipPosition="bottom-right">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-								</CSSelect>
-						},
-						{
-							variationName: ['bottom-left'],
-							quickLink: 'bottom-left',
-							component:
-								<CSSelect label="Choose number" helpText="Help text example" tooltipPosition="bottom-left">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-								</CSSelect>
 						}
 					]
 				},

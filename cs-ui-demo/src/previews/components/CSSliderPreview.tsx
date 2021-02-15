@@ -118,42 +118,6 @@ class CSSliderPreview extends React.Component {
 									helpText="Help text example"
 									tooltipPosition="top-right"
 								/>
-						},
-						{
-							variationName: ['top-left'],
-							quickLink: 'top-left',
-							component:
-								<CSSlider
-									label="Select value"
-									min="0"
-									max="100"
-									helpText="Help text example"
-									tooltipPosition="top-left"
-								/>
-						},
-						{
-							variationName: ['bottom-right'],
-							quickLink: 'bottom-right',
-							component:
-								<CSSlider
-									label="Select value"
-									min="0"
-									max="100"
-									helpText="Help text example"
-									tooltipPosition="bottom-right"
-								/>
-						},
-						{
-							variationName: ['bottom-left'],
-							quickLink: 'bottom-left',
-							component:
-								<CSSlider
-									label="Select value"
-									min="0"
-									max="100"
-									helpText="Help text example"
-									tooltipPosition="bottom-left"
-								/>
 						}
 					]
 				},

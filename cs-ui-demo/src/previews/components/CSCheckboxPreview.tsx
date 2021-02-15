@@ -182,36 +182,6 @@ class CSCheckboxPreview extends React.Component {
 									helpText="Help text example"
 									tooltipPosition="top-right"
 								/>
-						},
-						{
-							variationName: ['top-left'],
-							quickLink: 'top-left',
-							component:
-								<CSCheckbox
-									label="This is a label"
-									helpText="Help text example"
-									tooltipPosition="top-left"
-								/>
-						},
-						{
-							variationName: ['bottom-right'],
-							quickLink: 'bottom-right',
-							component:
-								<CSCheckbox
-									label="This is a label"
-									helpText="Help text example"
-									tooltipPosition="bottom-right"
-								/>
-						},
-						{
-							variationName: ['bottom-left'],
-							quickLink: 'bottom-left',
-							component:
-								<CSCheckbox
-									label="This is a label"
-									helpText="Help text example"
-									tooltipPosition="bottom-left"
-								/>
 						}
 					]
 				},

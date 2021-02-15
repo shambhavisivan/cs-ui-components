@@ -107,24 +107,6 @@ class CSTextareaPreview extends React.Component {
 							quickLink: 'top-right',
 							component:
 								<CSTextarea label="Enter message:" helpText="Help text example" tooltipPosition="top-right" />
-						},
-						{
-							variationName: ['top-left'],
-							quickLink: 'top-left',
-							component:
-								<CSTextarea label="Enter message:" helpText="Help text example" tooltipPosition="top-left" />
-						},
-						{
-							variationName: ['bottom-right'],
-							quickLink: 'bottom-right',
-							component:
-								<CSTextarea label="Enter message:" helpText="Help text example" tooltipPosition="bottom-right" />
-						},
-						{
-							variationName: ['bottom-left'],
-							quickLink: 'bottom-left',
-							component:
-								<CSTextarea label="Enter message:" helpText="Help text example" tooltipPosition="bottom-left" />
 						}
 					]
 				},

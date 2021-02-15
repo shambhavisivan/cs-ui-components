@@ -73,6 +73,17 @@ class CSDateTimePickerPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'tooltipPosition',
+					variations: [
+						{
+							variationName: ['top-right'],
+							quickLink: 'top-right',
+							component:
+								<CSDateTimePicker label="Enter date:" placeholder="Placeholder text" tooltipPosition="top-right" helpText="Help text example" />
+						}
+					]
+				},
+				{
 					propName: 'placeholder',
 					variations: [
 						{

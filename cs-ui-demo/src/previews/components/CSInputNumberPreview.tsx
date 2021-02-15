@@ -127,24 +127,6 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 							quickLink: 'top-right',
 							component:
 								<CSInputNumber label="Enter value:" helpText="Help text example" tooltipPosition="top-right" />
-						},
-						{
-							variationName: ['top-left'],
-							quickLink: 'top-left',
-							component:
-								<CSInputNumber label="Enter value:" helpText="Help text example" tooltipPosition="top-left" />
-						},
-						{
-							variationName: ['bottom-right'],
-							quickLink: 'bottom-right',
-							component:
-								<CSInputNumber label="Enter value:" helpText="Help text example" tooltipPosition="bottom-right" />
-						},
-						{
-							variationName: ['bottom-left'],
-							quickLink: 'bottom-left',
-							component:
-								<CSInputNumber label="Enter value:" helpText="Help text example" tooltipPosition="bottom-left" />
 						}
 					]
 				},

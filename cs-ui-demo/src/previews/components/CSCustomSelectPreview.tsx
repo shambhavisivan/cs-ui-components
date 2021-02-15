@@ -196,42 +196,6 @@ class CSCustomSelectPreview extends React.Component {
 								>
 									{this.optionItems}
 								</CSCustomSelect>
-						},
-						{
-							variationName: ['top-left'],
-							quickLink: 'top-left',
-							component:
-								<CSCustomSelect
-									label="Choose letter"
-									helpText="Help text example"
-									tooltipPosition="top-left"
-								>
-									{this.optionItems}
-								</CSCustomSelect>
-						},
-						{
-							variationName: ['bottom-right'],
-							quickLink: 'bottom-right',
-							component:
-								<CSCustomSelect
-									label="Choose letter"
-									helpText="Help text example"
-									tooltipPosition="bottom-right"
-								>
-									{this.optionItems}
-								</CSCustomSelect>
-						},
-						{
-							variationName: ['bottom-left'],
-							quickLink: 'bottom-left',
-							component:
-								<CSCustomSelect
-									label="Choose letter"
-									helpText="Help text example"
-									tooltipPosition="bottom-left"
-								>
-									{this.optionItems}
-								</CSCustomSelect>
 						}
 					]
 				},

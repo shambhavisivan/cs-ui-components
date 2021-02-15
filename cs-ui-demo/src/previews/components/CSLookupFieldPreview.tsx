@@ -141,42 +141,6 @@ class CSLookupFieldPreview extends React.Component {
 									fetchLookupOptions={this.handleFetch}
 									fieldToBeDisplayed="Account"
 								/>
-						},
-						{
-							variationName: ['top-left'],
-							quickLink: 'top-left',
-							component:
-								<CSLookupField
-									label="Account"
-									helpText="Help text example"
-									tooltipPosition="top-left"
-									fetchLookupOptions={this.handleFetch}
-									fieldToBeDisplayed="Account"
-								/>
-						},
-						{
-							variationName: ['bottom-right'],
-							quickLink: 'bottom-right',
-							component:
-								<CSLookupField
-									label="Account"
-									helpText="Help text example"
-									tooltipPosition="bottom-right"
-									fetchLookupOptions={this.handleFetch}
-									fieldToBeDisplayed="Account"
-								/>
-						},
-						{
-							variationName: ['bottom-left'],
-							quickLink: 'bottom-left',
-							component:
-								<CSLookupField
-									label="Account"
-									helpText="Help text example"
-									tooltipPosition="bottom-left"
-									fetchLookupOptions={this.handleFetch}
-									fieldToBeDisplayed="Account"
-								/>
 						}
 					]
 				},

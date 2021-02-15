@@ -108,24 +108,6 @@ class CSInputTextPreview extends React.Component<{}, CSInputTextPreviewState> {
 							quickLink: 'top-right',
 							component:
 								<CSInputText label="Type here:" helpText="Help text example" tooltipPosition="top-right" />
-						},
-						{
-							variationName: ['top-left'],
-							quickLink: 'top-left',
-							component:
-								<CSInputText label="Type here:" helpText="Help text example" tooltipPosition="top-left" />
-						},
-						{
-							variationName: ['bottom-right'],
-							quickLink: 'bottom-right',
-							component:
-								<CSInputText label="Type here:" helpText="Help text example" tooltipPosition="bottom-right" />
-						},
-						{
-							variationName: ['bottom-left'],
-							quickLink: 'bottom-left',
-							component:
-								<CSInputText label="Type here:" helpText="Help text example" tooltipPosition="bottom-left" />
 						}
 					]
 				},

@@ -225,33 +225,6 @@ class CSRadioPreview extends React.Component {
 									<CSRadioOption name="direction" label="left" />
 									<CSRadioOption name="direction" label="right" />
 								</CSRadio>
-						},
-						{
-							variationName: ['top-left'],
-							quickLink: 'top-left',
-							component:
-								<CSRadio label="This is a label" helpText="Help text example" tooltipPosition="top-left">
-									<CSRadioOption name="direction" label="left" />
-									<CSRadioOption name="direction" label="right" />
-								</CSRadio>
-						},
-						{
-							variationName: ['bottom-right'],
-							quickLink: 'bottom-right',
-							component:
-								<CSRadio label="This is a label" helpText="Help text example" tooltipPosition="bottom-right">
-									<CSRadioOption name="direction" label="left" />
-									<CSRadioOption name="direction" label="right" />
-								</CSRadio>
-						},
-						{
-							variationName: ['bottom-left'],
-							quickLink: 'bottom-left',
-							component:
-								<CSRadio label="This is a label" helpText="Help text example" tooltipPosition="bottom-left">
-									<CSRadioOption name="direction" label="left" />
-									<CSRadioOption name="direction" label="right" />
-								</CSRadio>
 						}
 					]
 				},
