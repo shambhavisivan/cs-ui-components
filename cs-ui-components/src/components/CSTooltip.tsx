@@ -181,10 +181,10 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			<div
 				className={tooltipWrapperClasses}
 				onClick={stylePosition === 'fixed' && stickyOnClick ? () => this.setSticky(true) : null}
-				onMouseEnter={stylePosition === 'fixed' ? this.openTooltip : null}
+				onMouseEnter={stylePosition === 'fixed' && !this.state.stickyActive ? this.openTooltip : null}
 				onMouseLeave={stylePosition === 'fixed' && !this.state.stickyActive ? this.closeTooltip : null}
 				onFocus={stylePosition === 'fixed' ? this.openTooltip : null}
-				onBlur={stylePosition === 'fixed' && !this.state.stickyActive ? this.closeTooltip : null}
+				onBlur={stylePosition === 'fixed' && !stickyOnClick && !this.state.stickyActive ? this.closeTooltip : null}
 				tabIndex={focusable ? 0 : -1}
 				role="tooltip"
 				ref={this.tooltipRef}
