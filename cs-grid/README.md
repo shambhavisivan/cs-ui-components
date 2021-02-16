@@ -16,6 +16,14 @@ Besides the standard set of features you'd expect from any grid cs-grid includes
 
 Release Notes
 ------------------
+####1.2.54
+ * Fixed non-selectable read only cells
+ * Replaced all buttons with CSButtons
+ * Added support for custom buttons inside Icon type cell
+ * Added support for tooltips on individual icons and buttons
+ * New tooltip props support added: maxHeight, maxWidth, stickyOnClick
+ * New button props support added: color, size, btnType, btnStyle
+ * Added support for icons from CloudSense icons list using iconOrigin prop  
 ####1.2.53
  * Fix problem with action dropdown not displaying/displaying fewer actions than available
 ####1.2.52
