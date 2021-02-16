@@ -1,40 +1,25 @@
 import React from 'react';
-import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
+import PreviewCode from './PreviewCode';
+import { PreviewApiProps } from './types';
 
-export interface PreviewApisProps {
-	api: any;
-	componentName?: any;
-}
-
-class PreviewApi extends React.Component<PreviewApisProps> {
-	render() {
-		return (
-			<div className="api-wrapper">
-				<h2 id={`api-table-${this.props.componentName}`}>{this.props.api.name}</h2>
-					{this.props.api.methods.map((method: any) => (
-						<div className={` ${method.methodName}`} key={method.methodName}>
-							<h3 id={`${this.props.api.name}-${method.methodName}`}>{method.methodName}</h3>
-							<div key={method.definition}>
-								{method.definition ? <p className="method-definition">{method.definition}</p> : null}
-								<div className="api-version">
-									<div className={method.methodName ? `${method.methodName.replace(/\s+/g, '-').toLowerCase()}-preview component-preview` : 'component-preview'}>
-										{method.preview}
-									</div>
-									<div className="method-description">
-										<SyntaxHighlighter
-											className="code-snippet"
-											language="jsx"
-										>
-											{method.string}
-										</SyntaxHighlighter>
-									</div>
-								</div>
-							</div>
+const PreviewApi: React.FC<PreviewApiProps> = ({ name, api }) => (
+	<div className="api-preview-wrapper">
+		<div className="api-preview">
+			<h2 id={`api-preview-${name.split(' ').join('-').toLowerCase()}`}>{name} API</h2>
+			{api.map((method: any) => (
+				<div className={`${method.name}`} key={method.name}>
+					<h3>{method.name} Preview</h3>
+					{method.description && <p className="api-info-text">{method.description}</p>}
+					<div className="api-example">
+						<div className={`${method.name.split(' ').join('-').toLowerCase()}-preview api-preview`}>
+							{method.component}
 						</div>
-					))}
-			</div>
-		);
-	}
-}
+						<PreviewCode code={method.code} />
+					</div>
+				</div>
+			))}
+		</div>
+	</div>
+);
 
 export default PreviewApi;

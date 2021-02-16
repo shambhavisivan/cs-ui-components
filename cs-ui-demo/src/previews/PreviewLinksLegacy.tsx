@@ -63,25 +63,25 @@ class PreviewLinks extends React.Component<PreviewLinksProps, PreviewLinksState>
 				<div className="prop-sidebar-bottom-group">
 					<div className="prop-group">
 						<h5>
-							<a href={`#properties-table-${this.props.component.name}`}>
+							<a href={`#properties-table-${this.props.component.name.split(' ').join('-').toLowerCase()}`}>
 								Properties List
 							</a>
 						</h5>
 					</div>
-					{this.props.component.accessibility && (
+					{this.props.component.api && (
 						<div className="prop-group">
 							<h5>
-								<a href={`#accessibility-table-${this.props.component.name}`}>
-									Accessibility
+								<a href={`#api-preview-${this.props.component.name.split(' ').join('-').toLowerCase()}`}>
+									API
 								</a>
 							</h5>
 						</div>
 					)}
-					{this.props.component.api && (
+					{this.props.component.accessibility && (
 						<div className="prop-group">
 							<h5>
-								<a href={`#api-table-${this.props.component.name}`}>
-									API
+								<a href={`#accessibility-table-${this.props.component.name.split(' ').join('-').toLowerCase()}`}>
+									Accessibility
 								</a>
 							</h5>
 						</div>

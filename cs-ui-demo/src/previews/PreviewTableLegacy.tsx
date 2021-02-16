@@ -2,6 +2,7 @@ import React from 'react';
 import { CSTooltip } from '@cloudsense/cs-ui-components';
 
 export interface PreviewTableLegacyProps {
+	api?: boolean;
 	alt?: boolean;
 	components?: any;
 }
@@ -10,8 +11,12 @@ class PreviewTableLegacy extends React.Component<PreviewTableLegacyProps> {
 	render() {
 		return (
 			<div className={this.props.alt ? 'table-wrapper table-wrapper-alt' : 'table-wrapper'}>
-				<h2 className="property-name" id={`properties-table-${this.props.components[0].name}`}>Properties
-					list</h2>
+				<h2
+					className="property-name"
+					id={`properties-table-${this.props.components[0].name.split(' ').join('-').toLowerCase()}`}
+				>
+					Properties list
+				</h2>
 				{this.props.components.map((component: any, i: any) => (
 					<React.Fragment key={i}>
 						<h3 className="component-name">{(component.name)}</h3>

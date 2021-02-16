@@ -68,7 +68,8 @@
 			padding: 2rem 3rem 0;
 		}
 
-		.component-preview {
+		.component-preview,
+		.api-preview {
 			padding: 0 3rem;
 			margin-bottom: 2rem;
 
@@ -76,7 +77,8 @@
 				padding-bottom: 0.5rem;
 			}
 
-			.component-info-text {
+			.component-info-text,
+			.api-info-text {
 				font-size: 0.875rem;
 				margin-top: 0;
 				margin-bottom: 0.5rem;
@@ -89,7 +91,8 @@
 				background: var(--prop-custom-bg);
 			}
 
-			.component-example {
+			.component-example,
+			.api-example {
 				display: flex;
 				flex-direction: column;
 				border-radius: 0.25rem;
@@ -100,7 +103,8 @@
 					0 1px 3px var(--cs-shadow-light),
 					0 1px 2px var(--cs-shadow-medium);
 
-				.component-preview {
+				.component-preview,
+				.api-preview {
 					flex: 1;
 					overflow: visible;
 					padding: 1rem;

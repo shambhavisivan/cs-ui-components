@@ -18,7 +18,7 @@ import {
 } from './types';
 import PreviewTableLegacy, { PreviewTableLegacyProps } from './PreviewTableLegacy';
 
-const PreviewTable: React.FC<PreviewTableProps | PreviewTableLegacyProps> = ({ components }) => {
+const PreviewTable: React.FC<PreviewTableProps | PreviewTableLegacyProps> = ({ api, components }) => {
 	if (!(components as Array<PreviewTableComponent>)[0].properties[0].name) {
 		return <PreviewTableLegacy components={components} />;
 	}
@@ -99,9 +99,16 @@ const PreviewTable: React.FC<PreviewTableProps | PreviewTableLegacyProps> = ({ c
 		const sortedProps = component.properties.sort(sortProps);
 		return (
 			<div key={component.name} className="properties-table-wrapper">
-				<h2 id={`properties-table-${component.name}`}>
-					{component.name} Properties
-				</h2>
+				{api ? (
+						<h3 id={`properties-table-${component.name.split(' ').join('-').toLowerCase()}`}>
+							{component.name} Arguments
+						</h3>
+					) : (
+						<h2 id={`properties-table-${component.name.split(' ').join('-').toLowerCase()}`}>
+							{component.name} Properties
+						</h2>
+					)
+				}
 				<CSTable className="properties-table">
 					<CSTableHeader className="properties-table-header">
 						<CSTableCell className="properties-table-cell" text="Prop" />

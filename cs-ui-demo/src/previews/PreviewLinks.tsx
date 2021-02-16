@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CSInputSearch, CSAlertVariant, CSAlert } from '@cloudsense/cs-ui-components';
+import { CSInputSearch, CSAlert } from '@cloudsense/cs-ui-components';
 import PreviewLinksLegacy from './PreviewLinksLegacy';
 
 import {
@@ -84,25 +84,25 @@ const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
 			<div className="prop-sidebar-bottom-group">
 				<div className="prop-group">
 					<h5>
-						<a href={`#properties-table-${name}`}>
+						<a href={`#properties-table-${name.split(' ').join('-').toLowerCase()}`}>
 							Properties List
 						</a>
 					</h5>
 				</div>
-				{accessibility && (
+				{api && (
 					<div className="prop-group">
 						<h5>
-							<a href={`#accessibility-table-${name}`}>
-								Accessibility
+							<a href={`#api-preview-${name.split(' ').join('-').toLowerCase()}`}>
+								API
 							</a>
 						</h5>
 					</div>
 				)}
-				{api && (
+				{accessibility && (
 					<div className="prop-group">
 						<h5>
-							<a href={`#api-table-${name}`}>
-								API
+							<a href={`#accessibility-table-${name.split(' ').join('-').toLowerCase()}`}>
+								Accessibility
 							</a>
 						</h5>
 					</div>

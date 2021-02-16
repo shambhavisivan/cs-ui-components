@@ -69,5 +69,22 @@ export interface PreviewTableComponent {
 }
 
 export interface PreviewTableProps {
+	api?: boolean;
 	components: Array<PreviewTableComponent>;
+}
+
+// =================
+// API Preview Props
+// =================
+
+export interface PreviewApi {
+	name: string;
+	description?: string;
+	component: JSX.Element | Element;
+	code: string;
+}
+
+export interface PreviewApiProps {
+	name: string;
+	api: Array<PreviewApi>;
 }
