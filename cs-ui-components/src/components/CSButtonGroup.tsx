@@ -33,8 +33,10 @@ class CSButtonGroup extends React.Component<CSButtonGroupProps> {
 
 		const buttonGroupClasses = classNames(
 			[`cs-button-group cs-button-group-${combined}`],
-			{ [`${className}`]: className },
-			[`cs-button-group-margin-${marginPosition}`]
+			{
+				[`cs-button-group-margin-${marginPosition}`]: marginPosition,
+				[`${className}`]: className
+			}
 		);
 
 		return (
