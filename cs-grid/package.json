@@ -48,20 +48,13 @@
 	],
 	"dependencies": {
 		"@cloudsense/react-datepicker-dynamiclocale": "2.0.1",
-		"@types/jsdom": "^12.2.4",
-		"@types/react": "^16.8.23",
-		"@types/react-datepicker": "^2.8.1",
-		"@types/react-dom": "^16.8.4",
 		"ag-grid-community": "23.2.1",
 		"ag-grid-react": "23.2.1",
 		"jsdom": "^16.1.0",
 		"keycode-js": "^2.0.3",
 		"lodash": "4.17.20",
 		"moment": "^2.25.3",
-		"react": "^16.8.6",
-		"react-datepicker": "^2.8.0",
-		"react-dom": "^16.8.6",
-		"typescript": "3.9.5"
+		"react-datepicker": "^2.8.0"
 	},
 	"devDependencies": {
 		"@babel/core": "7.4.4",
@@ -74,7 +67,11 @@
 		"@types/enzyme": "^3.10.3",
 		"@types/enzyme-adapter-react-16": "^1.0.5",
 		"@types/jest": "^24.0.19",
+		"@types/jsdom": "^12.2.4",
 		"@types/lodash": "^4.14.162",
+		"@types/react": "^16.8.23",
+		"@types/react-datepicker": "^2.8.1",
+		"@types/react-dom": "^16.8.4",
 		"@types/webpack-env": "^1.13.9",
 		"awesome-typescript-loader": "^5.2.1",
 		"babel-loader": "^8.0.6",
@@ -103,12 +100,17 @@
 		"tslint-config-prettier": "^1.18.0",
 		"tslint-plugin-prettier": "^2.0.1",
 		"tslint-react": "^4.0.0",
+		"typescript": "3.9.5",
 		"url-loader": "^1.1.2",
 		"webpack": "^4.39.3",
 		"webpack-cli": "^3.3.11",
-		"webpack-dev-server": "^3.11.0"
+		"webpack-dev-server": "^3.11.0",
+		"react": "^16.8.6",
+		"react-dom": "^16.8.6"
 	},
 	"peerDependencies": {
-		"@cloudsense/cs-ui-components": "^1.1.4"
+		"@cloudsense/cs-ui-components": "^1.1.4",
+		"react": "^16.8.6",
+		"react-dom": "^16.8.6"
 	}
 }
