@@ -190,13 +190,13 @@ class CSInputTextPreview extends React.Component<{}, CSInputTextPreviewState> {
 					]
 				},
 				{
-					propName: 'borderType',
+					propName: 'borderRadius',
 					variations: [
 						{
-							variationName: ['square'],
-							quickLink: 'square',
+							variationName: ['0'],
+							quickLink: '0',
 							component:
-								<CSInputText label="Enter value:" borderType="square" />
+								<CSInputText label="Enter value:" borderRadius="0" />
 						}
 					]
 				},
@@ -265,13 +265,10 @@ class CSInputTextPreview extends React.Component<{}, CSInputTextPreviewState> {
 			],
 			properties: [
 				{
-					name: 'borderType',
-					customTypes: [{
-						name: 'CSInputTextBorderType',
-						types: ['\'round\'', '\'square\'']
-					}],
-					default: '\'round\'',
-					description: 'Set a border style for the text input.'
+					name: 'borderRadius',
+					types: ['string'],
+					default: '0.25rem',
+					description: 'Set a border radius style.'
 				}, {
 					name: 'className',
 					types: ['string'],

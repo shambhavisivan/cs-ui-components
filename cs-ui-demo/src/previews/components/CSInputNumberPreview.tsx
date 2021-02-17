@@ -254,13 +254,13 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 					]
 				},
 				{
-					propName: 'borderType',
+					propName: 'borderRadius',
 					variations: [
 						{
-							variationName: ['square'],
-							quickLink: 'square',
+							variationName: ['0'],
+							quickLink: '0',
 							component:
-								<CSInputNumber label="Enter value:" borderType="square" />
+								<CSInputNumber label="Enter value:" borderRadius="0" />
 						}
 					]
 				},
@@ -359,13 +359,10 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 			],
 			properties: [
 				{
-					name: 'borderType',
-					customTypes: [{
-						name: 'CSInputNumberBorderType',
-						types: ['\'round\'', '\'square\'']
-					}],
-					default: '\'round\'',
-					description: 'Set a border style for the number input.'
+					name: 'borderRadius',
+					types: ['string'],
+					default: '0.25rem',
+					description: 'Set a border radius style.'
 				}, {
 					name: 'className',
 					types: ['string'],

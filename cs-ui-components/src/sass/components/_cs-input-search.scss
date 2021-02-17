@@ -4,6 +4,7 @@
 
 .cs-input-search {
 	@include input;
+	border-radius: var(--cs-input-search-border-radius, 0.25rem);
 }
 .cs-input-search-wrapper {
 	display: flex;
@@ -54,9 +55,4 @@
 			padding: 0 3rem 0 0.75rem;
 		}
 	}
-}
-
-// Square
-.cs-input-search-square {
-	border-radius: 0;
 }

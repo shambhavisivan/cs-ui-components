@@ -183,13 +183,13 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 					]
 				},
 				{
-					propName: 'borderType',
+					propName: 'borderRadius',
 					variations: [
 						{
-							variationName: ['square'],
-							quickLink: 'square',
+							variationName: ['0'],
+							quickLink: '0',
 							component:
-								<CSInputSearch label="Type here:" borderType="square" />
+								<CSInputSearch label="Type here:" borderRadius="0" />
 						}
 					]
 				},
@@ -293,13 +293,10 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 					default: 'false',
 					description: 'Set whether the search input should be autofocused.'
 				}, {
-					name: 'borderType',
-					customTypes: [{
-						name: 'CSInputSearchBorderType',
-						types: ['\'round\'', '\'square\'']
-					}],
-					default: '\'round\'',
-					description: 'Set a border style for the search input.'
+					name: 'borderRadius',
+					types: ['string'],
+					default: '0.25rem',
+					description: 'Set a border radius style.'
 				}, {
 					name: 'className',
 					types: ['string'],

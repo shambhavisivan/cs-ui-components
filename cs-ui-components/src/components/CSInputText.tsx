@@ -1,15 +1,13 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSLabel from './CSLabel';
 import { CSTooltipPosition } from './CSTooltip';
 import { v4 as uuidv4 } from 'uuid';
 
-export type CSInputTextBorderType = 'round' | 'square';
-
 export interface CSInputTextProps {
 	[key: string]: any;
-	borderType?: CSInputTextBorderType;
+	borderRadius?: string;
 	className?: string;
 	disabled?: boolean;
 	error?: boolean;
@@ -86,7 +84,7 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 	render() {
 
 		const {
-			borderType,
+			borderRadius,
 			className,
 			disabled,
 			error,
@@ -118,15 +116,15 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 				'cs-element-hidden': hidden
 			}
 		);
-
 		const inputTextClasses = classNames(
 			'cs-input-text',
 			{
-				[`cs-input-text-${borderType}`]: borderType,
 				'cs-input-text-error': error
 			}
 		);
-
+		const style: CSSProperties = {
+			'--cs-input-text-border-radius': borderRadius
+		};
 		return (
 			<>
 				<div className={inputTextWrapperClasses}>
@@ -157,6 +155,7 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 						onBlur={this.onBlur}
 						onFocus={this.onFocus}
 						title={title}
+						style={style}
 						{...rest}
 					/>
 					{(error && errorMessage) &&

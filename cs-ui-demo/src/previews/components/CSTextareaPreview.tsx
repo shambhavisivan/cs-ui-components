@@ -80,13 +80,13 @@ class CSTextareaPreview extends React.Component {
 					]
 				},
 				{
-					propName: 'borderType',
+					propName: 'borderRadius',
 					variations: [
 						{
-							variationName: ['square'],
-							quickLink: 'square',
+							variationName: ['0'],
+							quickLink: '0',
 							component:
-								<CSTextarea label="Enter message:" borderType="square" />
+								<CSTextarea label="Enter message:" borderRadius="0" />
 						}
 					]
 				},
@@ -239,13 +239,10 @@ class CSTextareaPreview extends React.Component {
 			],
 			properties: [
 				{
-					name: 'borderType',
-					customTypes: [{
-						name: 'CSTextareaBorderType',
-						types: ['\'round\'', '\'square\'']
-					}],
-					default: '\'round\'',
-					description: 'Set a border style for the textarea.'
+					name: 'borderRadius',
+					types: ['string'],
+					default: '0.25rem',
+					description: 'Set a border radius style.'
 				}, {
 					name: 'className',
 					types: ['string'],

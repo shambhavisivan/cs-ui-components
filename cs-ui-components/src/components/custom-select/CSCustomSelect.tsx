@@ -1,4 +1,4 @@
-import React, { ReactChildren, ReactElement, MutableRefObject, ReactComponentElement } from 'react';
+import React, { ReactChildren, ReactElement, MutableRefObject, ReactComponentElement, CSSProperties } from 'react';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from '../CSFieldErrorMsg';
 import CSIcon from '../CSIcon';
 import CSLabel from '../CSLabel';
@@ -9,7 +9,6 @@ import { v4 as uuidv4 } from 'uuid';
 import classNames from 'classnames';
 import KeyCode from '../../util/KeyCode';
 
-export type CSCustomSelectBorderType = 'square' | 'round';
 export type CSCustomSelectExportValueType = 'itemKey' | 'value';
 
 export interface CSOptionItem {
@@ -19,7 +18,7 @@ export interface CSOptionItem {
 
 export interface CSCustomSelectProps {
 	[key: string]: any;
-	borderType?: CSCustomSelectBorderType;
+	borderRadius?: string;
 	className?: string;
 	disabled?: boolean;
 	error?: boolean;
@@ -369,7 +368,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 			toggle
 		} = this.state;
 		const {
-			borderType,
+			borderRadius,
 			children,
 			className,
 			disabled,
@@ -397,24 +396,23 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 			[`${className}`]: className,
 			'cs-element-hidden': hidden
 		});
-
 		const customSelectInputWrapperClasses = classNames(
 			'cs-custom-select-input-wrapper', {
 			'cs-custom-select-input-wrapper-disabled': disabled,
 			'cs-custom-select-input-wrapper-error': error,
-			[`cs-custom-select-input-wrapper-${borderType}`]: borderType,
 			'cs-custom-select-input-wrapper-multiselect': !!selectedOptions.length
 		});
-
 		const customSelectInputClasses = classNames(
 			'cs-custom-select-input', {
 			'cs-custom-ms-input': multiselect
 		});
-
 		const selectedListItemClasses = classNames(
 			'cs-selected-input-option', {
 			'cs-custom-select-dropdown-open': toggle
 		});
+		const style: CSSProperties = {
+			'--cs-custom-select-border-radius': borderRadius
+		};
 
 		/*
 			Filters this.props.children based on searchTerm state, clones each of CSOption passed as children
@@ -476,6 +474,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 				<div
 					className={customSelectInputWrapperClasses}
 					onBlur={() => this.setState({ searchTerm: '' })}
+					style={style}
 				>
 					{(this.props.multiselect &&
 						this.state.selectedOptions.length > 0) &&

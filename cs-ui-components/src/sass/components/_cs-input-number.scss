@@ -8,6 +8,7 @@
 
 	.cs-input-number {
 		@include input;
+		border-radius: var(--cs-input-number-border-radius, 0.25rem);
 
 		&.cs-input-number-hide-spinner-true {
 			-moz-appearance:textfield;
@@ -26,11 +27,6 @@
 				-webkit-appearance: none;
 			}
 		}
-	}
-
-	// Square
-	.cs-input-number-square {
-		border-radius: 0;
 	}
 
 	// Version

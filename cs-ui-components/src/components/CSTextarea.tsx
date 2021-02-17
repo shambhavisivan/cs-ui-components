@@ -5,11 +5,9 @@ import CSLabel from './CSLabel';
 import { CSTooltipPosition } from './CSTooltip';
 import { v4 as uuidv4 } from 'uuid';
 
-export type CSTextareaBorderType = 'round' | 'square';
-
 export interface CSTextareaProps {
 	[key: string]: any;
-	borderType?: CSTextareaBorderType;
+	borderRadius?: string;
 	className?: string;
 	disabled?: boolean;
 	error?: boolean;
@@ -73,7 +71,7 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 
 	render() {
 		const {
-			borderType,
+			borderRadius,
 			className,
 			disabled,
 			error,
@@ -97,16 +95,15 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 		} = this.props;
 
 		const textareaClasses = classNames(
-			'cs-textarea', {
-			'cs-textarea-error': error,
-			[`cs-textarea-${borderType}`]: borderType
-		}
+			'cs-textarea',
+			{
+				'cs-textarea-error': error
+			}
 		);
-
 		const style: CSSProperties = {
-			'--max-height': maxHeight
+			'--max-height': maxHeight,
+			'--cs-textarea-border-radius': borderRadius
 		};
-
 		const textareaWrapperClasses = classNames(
 			'cs-textarea-wrapper',
 			{
@@ -114,7 +111,6 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 				'cs-element-hidden': hidden
 			}
 		);
-
 		return (
 			<>
 				<div className={textareaWrapperClasses}>

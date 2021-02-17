@@ -170,16 +170,10 @@
 			position: relative;
 			vertical-align: middle;
 			cursor: pointer;
+			border-radius: var(--cs-checkbox-border-radius, 0.125rem);
 			@include sbg(--cs-checkbox-bg-neutral);
 			@include css4 {
 				border: 1px solid cvar(--cs-checkbox-br);
-			}
-			&.cs-checkbox-faux-square {
-				border-radius: 0.125rem;
-			}
-
-			&.cs-checkbox-faux-round {
-				border-radius: 0.5rem;
 			}
 		}
 	}

@@ -155,13 +155,13 @@ class CSCustomSelectPreview extends React.Component {
 					]
 				},
 				{
-					propName: 'borderType',
+					propName: 'borderRadius',
 					variations: [
 						{
-							variationName: ['square'],
-							quickLink: 'square',
+							variationName: ['0'],
+							quickLink: '0',
 							component:
-								<CSCustomSelect label="Choose letter" borderType="square">
+								<CSCustomSelect label="Choose letter" borderRadius="0">
 									{this.optionItems}
 								</CSCustomSelect>
 						}
@@ -461,13 +461,10 @@ class CSCustomSelectPreview extends React.Component {
 
 			properties: [
 				{
-					name: 'borderType',
-					customTypes: [{
-						name: 'CSCustomSelectBorderType',
-						types: ['\'round\'', '\'square\'']
-					}],
-					default: '\'round\'',
-					description: 'Set the border type.'
+					name: 'borderRadius',
+					types: ['string'],
+					default: '0.25rem',
+					description: 'Set a border radius style.'
 				}, {
 					name: 'className',
 					types: ['string'],

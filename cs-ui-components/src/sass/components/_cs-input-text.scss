@@ -8,10 +8,6 @@
 
 	.cs-input-text {
 		@include input;
-
-		// Square
-		&.cs-input-text-square {
-			border-radius: 0;
-		}
+		border-radius: var(--cs-input-text-border-radius, 0.25rem);
 	}
 }

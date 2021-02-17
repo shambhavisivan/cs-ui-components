@@ -294,19 +294,13 @@ class CSDateTimePickerPreview extends React.Component {
 					]
 				},
 				{
-					propName: 'borderType',
+					propName: 'borderRadius',
 					variations: [
 						{
-							variationName: ['round'],
-							quickLink: 'round',
+							variationName: ['0'],
+							quickLink: '0',
 							component:
-								<CSDateTimePicker label="Enter date:" borderType="round" />
-						},
-						{
-							variationName: ['square'],
-							quickLink: 'square',
-							component:
-								<CSDateTimePicker label="Enter date:" borderType="square" />
+								<CSDateTimePicker label="Enter date:" borderRadius="0" />
 						}
 					]
 				},
@@ -443,13 +437,10 @@ class CSDateTimePickerPreview extends React.Component {
 			],
 			properties: [
 				{
-					name: 'borderType',
-					customTypes: [{
-						name: 'CSDatepickerBorderType',
-						types: ['\'round\'', '\'square\'']
-					}],
-					default: '\'round\'',
-					description: 'Set the border type.'
+					name: 'borderRadius',
+					types: ['string'],
+					default: '0.25rem',
+					description: 'Set a border radius style.'
 				}, {
 					name: 'className',
 					types: ['string'],

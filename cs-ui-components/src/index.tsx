@@ -27,9 +27,9 @@ import CSCard from './components/card/CSCard';
 import CSCardBody from './components/card/CSCardBody';
 import CSCardFooter from './components/card/CSCardFooter';
 import CSCardHeader from './components/card/CSCardHeader';
-import CSCheckbox, { CSCheckboxBorderType, CSCheckboxVariant } from './components/CSCheckbox';
+import CSCheckbox, { CSCheckboxVariant } from './components/CSCheckbox';
 import CSChip, { CSChipVariant, CSChipVariantStyle } from './components/CSChip';
-import CSCustomSelect, { CSCustomSelectBorderType, CSCustomSelectExportValueType } from './components/custom-select/CSCustomSelect';
+import CSCustomSelect, { CSCustomSelectExportValueType } from './components/custom-select/CSCustomSelect';
 import CSDatepicker, { CSDatepickerDropdownMode } from './components/CSDatepicker';
 import CSDateTimePicker, { CSDateTimePickerDropdownMode } from './components/CSDateTimePicker';
 import CSDivider, { CSDividerVariant } from './components/CSDivider';
@@ -38,14 +38,14 @@ import CSFieldErrorMsg, { CSFieldErrorMsgType } from './components/CSFieldErrorM
 import CSIcon, { CSIconOrigin } from './components/CSIcon';
 import CSImage, { CSImageColor, CSImageType, CSImageVariant } from './components/CSImage';
 import CSInputFile from './components/CSInputFile';
-import CSInputNumber, { CSInputNumberBorderType } from './components/CSInputNumber';
-import CSInputSearch, { CSInputSearchBorderType } from './components/CSInputSearch';
-import CSInputText, { CSInputTextBorderType } from './components/CSInputText';
+import CSInputNumber from './components/CSInputNumber';
+import CSInputSearch from './components/CSInputSearch';
+import CSInputText from './components/CSInputText';
 import CSLabel from './components/CSLabel';
 import CSList, { CSListSize, CSListVariant } from './components/list/CSList';
 import CSListGroup, { CSListGroupCheckboxOption } from './components/list/CSListGroup';
 import CSListItem from './components/list/CSListItem';
-import CSLookupField, { CSLookupBorderType } from './components/CSLookupField';
+import CSLookupField from './components/CSLookupField';
 import CSMainHeader, { CSMainHeaderColor } from './components/main-header/CSMainHeader';
 import CSMainHeaderIcon from './components/main-header/CSMainHeaderIcon';
 import CSMainHeaderLeft from './components/main-header/CSMainHeaderLeft';
@@ -65,7 +65,7 @@ import CSProgressIndicatorItem from './components/progress-indicator/CSProgressI
 import CSRadio, { CSRadioVariant } from './components/radio/CSRadio';
 import CSRadioOption from './components/radio/CSRadioOption';
 import CSSection from './components/CSSection';
-import CSSelect, { CSSelectBorderType } from './components/CSSelect';
+import CSSelect from './components/CSSelect';
 import CSSidebar from './components/CSSidebar';
 import CSSkipLink from './components/CSSkipLink';
 import CSSlider, { CSSliderSize } from './components/CSSlider';
@@ -77,7 +77,7 @@ import CSTableBody from './components/table/CSTableBody';
 import CSTableCell from './components/table/CSTableCell';
 import CSTableHeader from './components/table/CSTableHeader';
 import CSTableRow from './components/table/CSTableRow';
-import CSTextarea, { CSTextareaBorderType } from './components/CSTextarea';
+import CSTextarea from './components/CSTextarea';
 import CSToast, { CSToastVariant } from './components/CSToast';
 import CSToggle, { CSToggleLabelPosition } from './components/CSToggle';
 import CSTooltip, { CSTooltipIconSize, CSTooltipPosition, CSTooltipStylePosition, CSTooltipVariant } from './components/CSTooltip';
@@ -110,13 +110,11 @@ export {
 	CSCardFooter,
 	CSCardHeader,
 	CSCheckbox,
-	CSCheckboxBorderType,
 	CSCheckboxVariant,
 	CSChip,
 	CSChipVariant,
 	CSChipVariantStyle,
 	CSCustomSelect,
-	CSCustomSelectBorderType,
 	CSCustomSelectExportValueType,
 	CSDatepicker,
 	CSDatepickerDropdownMode,
@@ -141,11 +139,8 @@ export {
 	CSImageVariant,
 	CSInputFile,
 	CSInputNumber,
-	CSInputNumberBorderType,
 	CSInputSearch,
-	CSInputSearchBorderType,
 	CSInputText,
-	CSInputTextBorderType,
 	CSLabel,
 	CSList,
 	CSListGroup,
@@ -153,7 +148,6 @@ export {
 	CSListItem,
 	CSListSize,
 	CSListVariant,
-	CSLookupBorderType,
 	CSLookupField,
 	CSMainHeader,
 	CSMainHeaderColor,
@@ -183,7 +177,6 @@ export {
 	CSRadioVariant,
 	CSSection,
 	CSSelect,
-	CSSelectBorderType,
 	CSSidebar,
 	CSSkipLink,
 	CSSlider,
@@ -202,7 +195,6 @@ export {
 	CSTableHeader,
 	CSTableRow,
 	CSTextarea,
-	CSTextareaBorderType,
 	CSToast,
 	CSToastApi,
 	CSToastVariant,

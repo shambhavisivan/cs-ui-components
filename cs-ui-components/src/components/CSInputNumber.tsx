@@ -1,15 +1,13 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSLabel from './CSLabel';
 import { CSTooltipPosition } from './CSTooltip';
 import { v4 as uuidv4 } from 'uuid';
 
-export type CSInputNumberBorderType = 'round' | 'square';
-
 export interface CSInputNumberProps {
 	[key: string]: any;
-	borderType?: CSInputNumberBorderType;
+	borderRadius?: string;
 	className?: string;
 	disabled?: boolean;
 	error?: boolean;
@@ -121,7 +119,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 
 	render() {
 		const {
-			borderType,
+			borderRadius,
 			className,
 			disabled,
 			error,
@@ -160,16 +158,16 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 				'cs-element-hidden': hidden
 			}
 		);
-
 		const inputNumberClasses = classNames(
 			'cs-input-number',
 			{
-				[`cs-input-number-${borderType}`]: borderType,
 				'cs-input-number-error': error,
 				[`cs-input-number-hide-spinner-${hideSpinner}`]: hideSpinner
 			}
 		);
-
+		const style: CSSProperties = {
+			'--cs-input-number-border-radius': borderRadius
+		};
 		return (
 			<>
 				<div className={inputNumberWrapperClasses}>
@@ -208,6 +206,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 						onPaste={this.handleOnPaste}
 						title={title}
 						step={step}
+						style={style}
 						{...rest}
 					/>
 					{(error && errorMessage) &&

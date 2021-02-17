@@ -25,12 +25,12 @@
 		width: 100%;
 
 		input {
-			border-radius: 0.25rem;
 			display: inline-block;
 			font-size: 0.75rem;
 			line-height: 1.875rem;
 			min-height: 2rem;
 			padding: 0 0.75rem;
+			border-radius: var(--cs-datepicker-border-radius, 0.25rem);
 			transition: border 0.1s linear, background-color 0.1s linear;
 			width: 100%;
 			@include sbg(--cs-datepicker-bg);
@@ -326,10 +326,6 @@
 				box-shadow: none;
 			}
 		}
-	}
-
-	&.cs-datepicker-square .react-datepicker-wrapper input {
-		border-radius: 0;
 	}
 
 	// datetimepicker

@@ -14,11 +14,7 @@
 		resize: vertical;
 		max-height: var(--max-height, 100%);
 		white-space: break-spaces;
-
-		//Square
-		&.cs-textarea-square {
-			border-radius: 0;
-		}
+		border-radius: var(--cs-textarea-border-radius, 0.25rem);
 
 		&:read-only {
 			height: auto;

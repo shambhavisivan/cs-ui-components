@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSLabel from './CSLabel';
@@ -7,11 +7,9 @@ import { CSTooltipPosition } from './CSTooltip';
 import { v4 as uuidv4 } from 'uuid';
 import KeyCode from '../util/KeyCode';
 
-export type CSSelectBorderType = 'round' | 'square';
-
 export interface CSSelectProps {
 	[key: string]: any;
-	borderType?: CSSelectBorderType;
+	borderRadius?: string;
 	className?: string;
 	disabled?: boolean;
 	error?: boolean;
@@ -84,7 +82,7 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 
 	render() {
 		const {
-			borderType,
+			borderRadius,
 			children,
 			className,
 			disabled,
@@ -109,11 +107,9 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 			'cs-select',
 			{
 				'cs-select-error': error,
-				[`cs-select-${borderType}`]: borderType,
 				'cs-select-read-only': readOnly
 			}
 		);
-
 		const selectWrapperClasses = classNames(
 			'cs-select-wrapper',
 			{
@@ -121,7 +117,9 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 				'cs-element-hidden': hidden
 			}
 		);
-
+		const style: CSSProperties = {
+			'--cs-select-border-radius': borderRadius
+		};
 		return (
 			<div className={selectWrapperClasses}>
 				{(label && !labelHidden) &&
@@ -149,6 +147,7 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 						name={name}
 						value={fixControlledValue(this.state.value)}
 						title={title}
+						style={style}
 						{...rest}
 					>
 						{children}

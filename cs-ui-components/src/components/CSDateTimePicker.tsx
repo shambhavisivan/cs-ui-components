@@ -20,7 +20,7 @@ class CSDateTimePicker extends React.Component<CSDateTimePickerProps> {
 
 	public render() {
 		const {
-			borderType,
+			borderRadius,
 			className,
 			dateFormat,
 			disabled,

@@ -1,17 +1,16 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 import CSLabel from './CSLabel';
 import { CSTooltipPosition } from './CSTooltip';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import { v4 as uuidv4 } from 'uuid';
 
-export type CSCheckboxBorderType = 'square' | 'round';
 export type CSCheckboxVariant = 'neutral' | 'brand';
 export type CSCheckboxLabelPosition = 'default' | 'left';
 
 export interface CSCheckboxProps {
 	[key: string]: any;
-	borderType?: CSCheckboxBorderType;
+	borderRadius?: string;
 	checked?: boolean;
 	className?: string;
 	disabled?: boolean;
@@ -42,8 +41,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 
 	public static defaultProps = {
 		variant: 'neutral',
-		labelHidden: false,
-		borderType: 'square'
+		labelHidden: false
 	};
 
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
@@ -86,7 +84,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 
 	render() {
 		const {
-			borderType,
+			borderRadius,
 			checked,
 			className,
 			disabled,
@@ -127,10 +125,12 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 		const checkboxFauxClasses = classNames(
 			'cs-checkbox-faux',
 			{
-				[`cs-checkbox-faux-${borderType}`]: borderType,
 				[`cs-checkbox-${variant}`]: variant
 			}
 		);
+		const style: CSSProperties = {
+			'--cs-checkbox-border-radius': borderRadius
+		};
 		return (
 			<>
 				<div className={checkboxWrapperClasses}>
@@ -161,7 +161,11 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 							onKeyDown={onKeyDown}
 							{...rest}
 						/>
-						<span className={checkboxFauxClasses} title={this.props.title} />
+						<span
+							className={checkboxFauxClasses}
+							title={this.props.title}
+							style={style}
+						/>
 					</label>
 					{(error && errorMessage) &&
 						<CSFieldErrorMsg message={errorMessage} />

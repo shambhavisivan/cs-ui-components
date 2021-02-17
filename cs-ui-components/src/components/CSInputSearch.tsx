@@ -7,13 +7,12 @@ import CSIcon from './CSIcon';
 import { CSTooltipPosition } from './CSTooltip';
 import { v4 as uuidv4 } from 'uuid';
 
-export type CSInputSearchBorderType = 'round' | 'square';
 export type CSInputSearchIconPosition = 'left' | 'right';
 
 export interface CSInputSearchProps {
 	[key: string]: any;
 	autoFocus?: boolean;
-	borderType?: CSInputSearchBorderType;
+	borderRadius?: string;
 	className?: string;
 	disabled?: boolean;
 	error?: boolean;
@@ -142,7 +141,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 	render() {
 		const {
 			autoFocus,
-			borderType,
+			borderRadius,
 			className,
 			disabled,
 			error,
@@ -188,13 +187,13 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 		const inputSearchClasses = classNames(
 			'cs-input-search',
 			{
-				[`cs-input-search-${borderType}`]: borderType,
 				'cs-input-search-error': error
 			}
 		);
 
 		const style: CSSProperties = {
-			'--search-width': width
+			'--search-width': width,
+			'--cs-input-search-border-radius': borderRadius
 		};
 
 		return (

@@ -20,25 +20,16 @@ class CSCheckboxPreview extends React.Component {
 			accessible: 'yes',
 			examples: [
 				{
-					propName: 'borderType',
+					propName: 'borderRadius',
 					customText: '',
 					variations: [
 						{
-							variationName: ['square'],
-							quickLink: 'square',
+							variationName: ['0.5rem'],
+							quickLink: '0.5rem',
 							component:
 								<CSCheckbox
-									borderType="square"
-									label="This is a label"
-								/>
-						},
-						{
-							variationName: ['round'],
-							quickLink: 'round',
-							component:
-								<CSCheckbox
-									borderType="round"
-									label="This is a label"
+									borderRadius="0.5rem"
+									label="Border radius is 0.5rem"
 								/>
 						}
 					]
@@ -305,13 +296,10 @@ class CSCheckboxPreview extends React.Component {
 
 			properties: [
 				{
-					name: 'borderType',
-					customTypes: [{
-						name: 'CSCheckboxBorderType',
-						types: ['\'square\'', '\'round\'']
-					}],
-					default: '\'square\'',
-					description: 'Set a checkbox style.'
+					name: 'borderRadius',
+					types: ['string'],
+					default: '0.125rem',
+					description: 'Set a border radius style.'
 				}, {
 					name: 'checked',
 					types: ['boolean'],

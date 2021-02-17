@@ -9,12 +9,11 @@ import { CSTooltipPosition } from './CSTooltip';
 import { v4 as uuidv4 } from 'uuid';
 import KeyCode from '../util/KeyCode';
 
-export type CSDatepickerBorderType = 'round' | 'square';
 export type CSDatepickerDropdownMode = 'select' | 'scroll';
 
 export interface CSDatepickerProps {
 	[key: string]: any;
-	borderType?: CSDatepickerBorderType;
+	borderRadius?: string;
 	className?: string;
 	dateFormat?: string;
 	disabled?: boolean;
@@ -101,7 +100,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 
 	public render() {
 		const {
-			borderType,
+			borderRadius,
 			className,
 			dateFormat,
 			disabled,
@@ -142,16 +141,14 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 		const datepickerClasses = classNames(
 			'cs-datepicker', {
 			[`${className}`]: className,
-			[`cs-datepicker-${borderType}`]: borderType,
 			'cs-datepicker-error': error,
 			'cs-datepicker-read-only': readOnly
 		}
 		);
-
 		const style: CSSProperties = {
-			'--datepicker-width': width
+			'--datepicker-width': width,
+			'--cs-datepicker-border-radius': borderRadius
 		};
-
 		const calcMaxDate = () => {
 			if (maxDateYear) {
 				return addYears(new Date(), maxDate);
@@ -159,7 +156,6 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 				return addDays(new Date(), maxDate);
 			}
 		};
-
 		const calcMinDate = () => {
 			if (minDateYear) {
 				return subYears(new Date(), minDate);
@@ -167,7 +163,6 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 				return subDays(new Date(), minDate);
 			}
 		};
-
 		return (
 			<>
 				<div className={datepickerClasses} style={style}>

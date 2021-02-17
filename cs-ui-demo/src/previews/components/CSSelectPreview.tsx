@@ -75,13 +75,13 @@ class CSSelectPreview extends React.Component {
 					]
 				},
 				{
-					propName: 'borderType',
+					propName: 'borderRadius',
 					variations: [
 						{
-							variationName: ['square'],
-							quickLink: 'square',
+							variationName: ['0'],
+							quickLink: '0',
 							component:
-								<CSSelect label="Choose:" borderType="square">
+								<CSSelect label="Choose:" borderRadius="0">
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
@@ -280,13 +280,10 @@ class CSSelectPreview extends React.Component {
 			],
 			properties: [
 				{
-					name: 'borderType',
-					customTypes: [{
-						name: 'CSSelectBorderType',
-						types: ['\'round\'', '\'square\'']
-					}],
-					default: '\'round\'',
-					description: 'Set the border type.'
+					name: 'borderRadius',
+					types: ['string'],
+					default: '0.25rem',
+					description: 'Set a border radius style.'
 				}, {
 					name: 'className',
 					types: ['string'],
