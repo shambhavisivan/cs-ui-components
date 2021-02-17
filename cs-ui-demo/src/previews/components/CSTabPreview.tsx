@@ -313,7 +313,7 @@ class CSTabPreview extends React.Component {
 				}, {
 					name: 'status',
 					customTypes: [{
-						name: 'CSPathItemStatus',
+						name: 'CSTabStatus',
 						types: [
 							'\'initial\'',
 							'\'error\'',
