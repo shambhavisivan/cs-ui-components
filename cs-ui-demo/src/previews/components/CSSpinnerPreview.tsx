@@ -219,9 +219,12 @@ class CSSpinnerPreview extends React.Component {
 					description: 'Set the spinner label.'
 				}, {
 					name: 'overlay',
-					types: ['string'],
+					customTypes: [{
+						name: 'CSSpinnerOverlay',
+						types: ['\'light\'', '\'dark\'']
+					}],
 					default: '\'light\'',
-					description: 'Set the overlay color variant. (eg. light or dark)'
+					description: 'Set the overlay color variant.'
 				}, {
 					name: 'size',
 					customTypes: [{

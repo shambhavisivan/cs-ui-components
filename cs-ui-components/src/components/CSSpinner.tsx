@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 export type CSSpinnerColor = 'neutral' | 'brand' | 'inverse';
 export type CSSpinnerSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
+export type CSSpinnerOverlay = 'light' | 'dark';
 
 export interface CSSpinnerProps {
 	[key: string]: any;
@@ -11,17 +12,17 @@ export interface CSSpinnerProps {
 	id?: string;
 	inline?: boolean;
 	label?: string;
-	overlay?: string;
+	overlay?: CSSpinnerOverlay;
 	size?: CSSpinnerSize;
 }
 
 class CSSpinner extends React.Component<CSSpinnerProps> {
-
 	public static defaultProps = {
 		color: 'brand',
 		size: 'large',
 		overlay: 'light'
 	};
+
 	render() {
 		const {
 			className,
@@ -42,6 +43,7 @@ class CSSpinner extends React.Component<CSSpinnerProps> {
 				[`cs-spinner-overlay-${overlay}`]: overlay
 			}
 		);
+
 		return (
 			<>
 				<div
