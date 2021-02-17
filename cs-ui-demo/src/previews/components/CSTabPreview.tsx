@@ -184,7 +184,7 @@ class CSTabPreview extends React.Component {
 					variations: [
 						{
 							variationName: ['activity'],
-							quickLink: ['activity'],
+							quickLink: 'activity',
 							component:
 								<CSTabGroup>
 									<CSTab title="Tab One" tabIcon="activity" />
@@ -200,7 +200,7 @@ class CSTabPreview extends React.Component {
 					variations: [
 						{
 							variationText: ['status="initial"'],
-							quickLink: ['initial'],
+							quickLink: 'initial',
 							component:
 								<CSTabGroup>
 									<CSTab title="Tab One" tooltipContent="Error message example!" />
@@ -210,7 +210,7 @@ class CSTabPreview extends React.Component {
 						},
 						{
 							variationText: ['status="error"'],
-							quickLink: ['error'],
+							quickLink: 'error',
 							component:
 								<CSTabGroup>
 									<CSTab title="Tab One" tooltipContent="Error message example!" status="error" />
@@ -220,7 +220,7 @@ class CSTabPreview extends React.Component {
 						},
 						{
 							variationText: ['status="warning"'],
-							quickLink: ['warning'],
+							quickLink: 'warning',
 							component:
 								<CSTabGroup>
 									<CSTab title="Tab One" tooltipContent="Warning message example!" status="warning" />
@@ -230,7 +230,7 @@ class CSTabPreview extends React.Component {
 						},
 						{
 							variationText: ['status="success"'],
-							quickLink: ['success'],
+							quickLink: 'success',
 							component:
 								<CSTabGroup>
 									<CSTab title="Tab One" tooltipContent="Warning message example!" status="success" />

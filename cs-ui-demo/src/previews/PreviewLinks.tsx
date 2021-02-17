@@ -25,7 +25,9 @@ class PreviewLinks extends React.Component<PreviewLinksProps, PreviewLinksState>
 
 	searchingForProp = (term: any) => {
 		return (example: any) => {
-			return example.propName.toLowerCase().includes(term.toLowerCase()) || false;
+			return example.propName.toLowerCase().includes(term.toLowerCase()) ||
+			example.variations.find((item: any) => item.quickLink && item.quickLink.toLowerCase().includes(term.toLowerCase()))
+			|| false;
 		};
 	}
 
