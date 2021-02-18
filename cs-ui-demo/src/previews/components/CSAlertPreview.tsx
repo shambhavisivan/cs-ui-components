@@ -450,16 +450,16 @@ class CSAlertPreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'<h4> - allows screen reader navigation by heading search'
+								'HTML `<h4>` - allows screen reader heading search'
 							],
 							properties: [
-								'role="alert/status" - depending on alert variant'
+								'`role="alert/status"` - depending on alert variant'
 							],
 							styling: [
 								'Color contrast ratio > 4.5'
 							],
 							keyboardOperability: [
-								'Close button is <button> and a child - allows keyboard focus'
+								'Close button is a child HTML `<button>` - allows keyboard focus'
 							]
 						}
 					]

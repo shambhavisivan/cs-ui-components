@@ -459,14 +459,14 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 					requirements: [
 						{
 							structure: [
-								'HTML <input type="number">',
-								'Icon as a child element with aria-hidden',
+								'HTML `<input type="number">`',
+								'Icon as a child element with `aria-hidden`',
 								'Clear button as a child element'
 							],
 							properties: [
-								'aria-invalid',
-								'aria-required',
-								'aria-labelledby - associate field with label'
+								'`aria-invalid`',
+								'`aria-required`',
+								'`aria-labelledby` - associate field with label'
 							],
 							styling: [
 								'Focus state styles'

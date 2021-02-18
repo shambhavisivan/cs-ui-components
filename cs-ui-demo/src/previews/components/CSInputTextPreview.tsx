@@ -424,13 +424,13 @@ class CSInputTextPreview extends React.Component<{}, CSInputTextPreviewState> {
 					requirements: [
 						{
 							structure: [
-								'HTML <input type="text">'
+								'HTML `<input type="text">`'
 							],
 							properties: [
-								'aria-invalid',
-								'aria-required',
-								'aria-labelledby - associate field with label',
-								'role="textbox" - implicit with input'
+								'`aria-invalid`',
+								'`aria-required`',
+								'`aria-labelledby` - associate field with label',
+								'`role="textbox"` - implicit with input'
 							],
 							styling: [
 								'Focus state styles'

@@ -215,21 +215,21 @@ class CSSidebarPreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'Sidebar is HTML <ul> element - allows screen reader list navigation and counts <li> items',
-								'Buttons wrapped in HTML <li> - allows screen reader list navigation while preserving keyboard operability',
-								'<button> used'
+								'Sidebar is HTML `<ul>` element - allows screen reader list navigation and counts `<li>` items',
+								'Buttons wrapped in HTML `<li>` - allows screen reader list navigation while preserving keyboard operability',
+								'`<button>` used'
 							],
 							properties: [
-								'aria-expanded',
-								'aria-selected',
-								'<ul> wrapper role="menu"',
-								'button role="menuitemradio"'
+								'`aria-expanded`',
+								'`aria-selected`',
+								'`<ul>` wrapper `role="menu"`',
+								'button `role="menuitemradio"`'
 							],
 							styling: [
 								'Distinct hover, active and focus state styles'
 							],
 							keyboardOperability: [
-								'Proper focus management and keyboard operability ensured by structure and <button>'
+								'Proper focus management and keyboard operability ensured by structure and `<button>`'
 							]
 						}
 					]

@@ -494,18 +494,18 @@ class CSLookupFieldPreview extends React.Component {
 					requirements: [
 						{
 							properties: [
-								'aria-invalid',
-								'aria-required',
-								'aria-labelledby - associate field with label',
-								'results role="grid"',
-								'child role="rowgroup"'
+								'`aria-invalid`',
+								'`aria-required`',
+								'`aria-labelledby` - associate field with label',
+								'results `role="grid"`',
+								'child `role="rowgroup"`'
 							],
 							styling: [
 								'Focus state styles'
 							],
 							keyboardOperability: [
 								'Should be or hiyaaa',
-								'(missing role="cell, keyboard operable")'
+								'(missing `role="cell`, keyboard operable")'
 							]
 						}
 					]

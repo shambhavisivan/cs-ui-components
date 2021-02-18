@@ -170,7 +170,7 @@ class CSLabelPreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'HTML <label> element'
+								'HTML `<label>`'
 							]
 						}
 					]

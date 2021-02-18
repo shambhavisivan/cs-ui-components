@@ -478,15 +478,15 @@ class CSCheckboxPreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'HTML <input type="checkbox"> - hidden',
-								'<span> imitating checkbox with custom style',
-								'<input> and <span> wrapped in <label>'
+								'HTML `<input type="checkbox">` - hidden',
+								'`<span>` imitating checkbox with custom style',
+								'`<input>` and `<span>` wrapped in `<label>`'
 							],
 							properties: [
-								'aria-required',
-								'aria-invalid',
-								'aria-labelledby - associate checkbox with label',
-								'role="checkbox" - implicit by input'
+								'`aria-required`',
+								'`aria-invalid`',
+								'`aria-labelledby` - associate checkbox with label',
+								'`role="checkbox"` - implicit by input'
 							],
 							styling: [
 								'Focus state styles'

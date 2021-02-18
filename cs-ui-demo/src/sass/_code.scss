@@ -1,0 +1,31 @@
+code.inline-code {
+	display: inline-block;
+	background-color: var(--prop-code-bg);
+	border: 1px solid var(--prop-code-br);
+	font-size: 0.8125rem;
+	border-radius: 0.25rem;
+	padding: 0 0.375rem;
+	line-height: 1.25rem;
+	font-family: "Courier New", monospace !important;
+	margin-right: 0.5rem;
+	color: var(--prop-code-c);
+	cursor: default;
+
+	.inline-code-tooltip .cs-tooltip & {
+		margin-top: 0.5rem;
+	}
+
+	&.inline-code-custom {
+		background-color: var(--prop-code-custom-bg);
+		display: flex;
+
+		.cs-icon {
+			align-self: center;
+			margin-left: 0.375rem;
+		}
+	}
+
+	&:last-child {
+		margin-right: 0;
+	}
+}

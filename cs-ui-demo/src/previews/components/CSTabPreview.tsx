@@ -397,22 +397,22 @@ class CSTabPreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'HTML <nav> is a top wrapper - allows screen reader navigation search',
-								'HTML <ol> is items wrapper - allows screen reader list search',
-								'Buttons wrapped in HTML <li> - allows screen reader list navigation while preserving keyboard operability',
-								'Icon as a child element with aria-hidden'
+								'HTML `<nav>` is a top wrapper - allows screen reader navigation search',
+								'HTML `<ol>` is items wrapper - allows screen reader list search',
+								'Buttons wrapped in HTML `<li>` - allows screen reader list navigation while preserving keyboard operability',
+								'Icon as a child element with `aria-hidden`'
 							],
 							properties: [
-								'aria-label',
-								'aria-invalid',
-								'aria-current'
+								'`aria-label`',
+								'`aria-invalid`',
+								'`aria-current`'
 							],
 							visual: [
-								'colours in defined contrast',
+								'Colors contrast ratio > 4.5',
 								'Distinct hover, active and focus state styles'
 							],
 							keyboardOperability: [
-								'<button> used to ensure focus and keyboard operability'
+								'`<button>` used to ensure focus and keyboard operability'
 							]
 						}
 					]

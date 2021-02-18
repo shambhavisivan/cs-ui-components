@@ -361,17 +361,17 @@ class CSButtonGroupPreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'<CSButton> used'
+								'`<CSButton>` used'
 							],
 							properties: [
-								'aria-labelledby - associate group description hidden span with group wrapper',
-								'role="group"'
+								'`aria-labelledby` - associate group description hidden span with group wrapper',
+								'`role="group"`'
 							],
 							styling: [
 								'Distinct hover, active and focus state styles'
 							],
 							keyboardOperability: [
-								'Proper focus management and keyboard operability ensured by structure and <CSButton>'
+								'Proper focus management and keyboard operability ensured by structure and `<CSButton>`'
 							]
 						}
 					]

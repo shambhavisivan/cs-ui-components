@@ -1,83 +1,113 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import {
+	CSButton,
+	CSTable,
+	CSTableRow,
+	CSTableCell,
+	CSTableBody
+} from '@cloudsense/cs-ui-components';
 
 export interface PreviewAccessibilityProps {
 	components?: any;
 }
 
-class PreviewAccessibility extends React.Component<PreviewAccessibilityProps> {
-	render() {
-		return (
-			this.props.components.map((component: any, c: any) => (
-				<div className="accessibility-conformance-section" key={c}>
-					{component.accessibility.map((prop: any, j: any) => (
-						<React.Fragment key={j}>
-							<h2 className="accessibility-table-name" id={`accessibility-table-${this.props.components[0].name}`}>Accessibility conformance requirements</h2>
-							<div className="accessibility-criteria-list">
-								<h3>Related criteria:</h3>
-								{prop.criterionList && prop.criterionList.map((criterion: any) => (
-									<Link
+const PreviewAccessibility: React.FC<PreviewAccessibilityProps> = ({ components }) => {
+	const parseCode = (option: string) => (
+		option.split('`').map((substring: string, substringIndex: number) => (
+			substringIndex % 2
+				? <code key={substringIndex} className="inline-code">{substring}</code>
+				: substring
+		))
+	);
+
+	return (
+		components.map((component: any, componentIndex: number) => (
+			<div className="accessibility-conformance-section" key={componentIndex}>
+				{component.accessibility.map((prop: any, propIndex: any) => (
+					<React.Fragment key={propIndex}>
+						<h2 className="property-name" id={`accessibility-table-${components[0].name}`}>
+							Accessibility Conformance Requirements
+						</h2>
+						<div className="accessibility-criteria-list">
+							<h3>Related Criteria:</h3>
+							{prop.criterionList && prop.criterionList.map((criterion: string, criterionIndex: number) => (
+								<>
+									<CSButton
 										key={criterion}
-										to={`../accessibility#${criterion}`}
+										label={criterion}
 										className="criterion"
-									>
-										<span>{criterion}</span>
-									</Link>
-								))}
-							</div>
-							{prop.requirements.map((item: any, i: any) => (
-								<div className="requirements-table-wrapper" key={i}>
-									<h3>Performed and supported:</h3>
-									<div className="table-body">
-										{item.structure &&
-											<div className="table-row">
-												<div className="table-cell">HTML structure</div>
-												<div className="table-cell">
-													{item.structure.map((option: any) => (
-														<span className="conformance-item" key={option}>{option}</span>
-													))}
-												</div>
-											</div>
-										}
-										{item.properties &&
-											<div className="table-row">
-												<div className="table-cell">Supported properties & attributes</div>
-												<div className="table-cell">
-													{item.properties.map((option: any) => (
-														<span className="conformance-item" key={option}>{option}</span>
-													))}
-												</div>
-											</div>
-										}
-										{item.keyboardOperability &&
-											<div className="table-row">
-												<div className="table-cell">Keyboard Operability</div>
-												<div className="table-cell">
-													{ item.keyboardOperability.map((option: any) => (
-														<span className="conformance-item" key={option}>{option}</span>
-													))}
-												</div>
-											</div>
-										}
-										{item.styling &&
-											<div className="table-row">
-												<div className="table-cell">Styling</div>
-												<div className="table-cell">
-													{item.styling.map((option: any) => (
-														<span className="conformance-item" key={option}>{option}</span>
-													))}
-												</div>
-											</div>
-										}
-									</div>
-								</div>
+										size="xsmall"
+										btnType="transparent"
+										btnStyle="brand"
+										routerLink={<Link to={`../accessibility#${criterion}`} />}
+									/>
+									{criterionIndex !== prop.criterionList.length - 1 && ','}
+								</>
 							))}
-						</React.Fragment>
-					))}
-				</div>
-			))
-		);
-	}
-}
+						</div>
+						{prop.requirements.map((item: any, itemIndex: number) => (
+							<div className="accessibility-table-wrapper" key={itemIndex}>
+								<h3>Implemented &amp; Supported:</h3>
+								<CSTable className="accessibility-table">
+									<CSTableBody className="accessibility-table-body">
+										{item.structure && (
+											<CSTableRow className="accessibility-table-row">
+												<CSTableCell className="accessibility-table-cell" text="HTML Structure" />
+												<CSTableCell className="accessibility-table-cell">
+													<ul>
+														{item.structure.map((option: string) => (
+															<li key={option}>{parseCode(option)}</li>
+														))}
+													</ul>
+												</CSTableCell>
+											</CSTableRow>
+										)}
+										{item.properties && (
+											<CSTableRow className="accessibility-table-row">
+												<CSTableCell className="accessibility-table-cell" text="Properties & Attributes" />
+												<CSTableCell className="accessibility-table-cell">
+													<ul>
+														{item.properties.map((option: string) => (
+															<li key={option}>{parseCode(option)}</li>
+														))}
+													</ul>
+												</CSTableCell>
+											</CSTableRow>
+										)}
+										{item.keyboardOperability && (
+											<CSTableRow className="accessibility-table-row">
+												<CSTableCell className="accessibility-table-cell" text="Keyboard Operability" />
+												<CSTableCell className="accessibility-table-cell">
+													<ul>
+														{item.keyboardOperability.map((option: string) => (
+															<li key={option}>{parseCode(option)}</li>
+														))}
+													</ul>
+												</CSTableCell>
+											</CSTableRow>
+										)}
+										{item.styling && (
+											<CSTableRow className="accessibility-table-row">
+												<CSTableCell className="accessibility-table-cell" text="Styling" />
+												<CSTableCell className="accessibility-table-cell">
+													<ul>
+														{item.styling.map((option: string) => (
+															<li key={option}>{parseCode(option)}</li>
+														))}
+													</ul>
+												</CSTableCell>
+											</CSTableRow>
+										)}
+									</CSTableBody>
+								</CSTable>
+							</div>
+						))}
+					</React.Fragment>
+				))}
+			</div>
+		))
+	);
+};
 
 export default PreviewAccessibility;

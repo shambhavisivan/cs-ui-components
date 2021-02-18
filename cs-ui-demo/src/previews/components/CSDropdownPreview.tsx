@@ -758,21 +758,21 @@ class CSDropdownPreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'Dropdown is HTML <ul> element - allows screen reader list navigation and counts <li> items',
-								'Buttons wrapped in HTML <li> - allows screen reader list navigation while preserving keyboard operability',
-								'<CSButton> used'
+								'Dropdown is HTML `<ul>` - allow screen reader list navigation and counting `<li>` items',
+								'Buttons wrapped in HTML `<li>` - allow screen reader list navigation while preserving keyboard operability',
+								'`<CSButton>` used'
 							],
 							properties: [
-								'aria-expanded',
-								'aria-haspopup',
-								'<ul> wrapper role="menu"',
-								'button role="menuitem"'
+								'`aria-expanded`',
+								'`aria-haspopup`',
+								'`<ul>` wrapper `role="menu"`',
+								'`button role="menuitem"`'
 							],
 							styling: [
 								'Distinct hover, active and focus state styles'
 							],
 							keyboardOperability: [
-								'Proper focus management and keyboard operability ensured by structure and <CSButton>'
+								'Proper focus management and keyboard operability ensured by structure and `<CSButton>`'
 							]
 						}
 					]

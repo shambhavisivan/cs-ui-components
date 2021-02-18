@@ -520,16 +520,16 @@ class CSSliderPreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'HTML <input type="range">'
+								'HTML `<input type="range">`'
 							],
 							properties: [
-								'aria-invalid',
-								'aria-required',
-								'aria-labelledby - associate field with label',
-								'aria-valuemin',
-								'aria-valuemax',
-								'aria-valuenow',
-								'role="slider" - implicit with input'
+								'`aria-invalid`',
+								'`aria-required`',
+								'`aria-labelledby` - associate field with label',
+								'`aria-valuemin`',
+								'`aria-valuemax`',
+								'`aria-valuenow`',
+								'`role="slider"` - implicit with input'
 							],
 							styling: [
 								'Focus state styles'

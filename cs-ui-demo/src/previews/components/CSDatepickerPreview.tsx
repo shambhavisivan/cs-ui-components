@@ -613,18 +613,18 @@ class CSDatepickerPreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'HTML <input type="text">',
-								'Icon as a child element with aria-hidden'
+								'HTML `<input type="text">`',
+								'Icon as a child element with `aria-hidden`'
 							],
 							properties: [
-								'aria-labelledby - associate field with label'
+								'`aria-labelledby` - associate field with label'
 							],
 							styling: [
 								'Focus state styles'
 							],
 							keyboardOperability: [
 								'Logic for keyboard operability inside date picker',
-								'Providing to type date in field is sufficient, without making the datepicker body accessible. In that case provide date format in title attribute'
+								'Providing to type date in field is sufficient, without making the datepicker body accessible. In that case provide date format in `title` attribute'
 							]
 						}
 					]

@@ -348,10 +348,10 @@ class CSProgressBarPreview extends React.Component<{}, CSProgressBarPreviewState
 					requirements: [
 						{
 							properties: [
-								'aria-valuenow',
-								'aria-valuemin',
-								'aria-valuemax',
-								'role="progressbar"'
+								'`aria-valuenow`',
+								'`aria-valuemin`',
+								'`aria-valuemax`',
+								'`role="progressbar"`'
 							]
 						}
 					]

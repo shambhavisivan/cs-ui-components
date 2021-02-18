@@ -435,14 +435,14 @@ class CSSelectPreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'HTML <select>',
-								'Icon as a child element of wrapper with aria-hidden'
+								'HTML `<select>`',
+								'Icon as a child element of wrapper with `aria-hidden`'
 							],
 							properties: [
-								'aria-labelledby - associate field with label',
-								'aria-invalid',
-								'aria-required',
-								'role="combobox" - implicit with select'
+								'`aria-labelledby` - associate field with label',
+								'`aria-invalid`',
+								'`aria-required`',
+								'`role="combobox"` - implicit with select'
 							],
 							styling: [
 								'Focus state styles'

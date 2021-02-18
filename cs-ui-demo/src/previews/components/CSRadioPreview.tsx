@@ -395,15 +395,15 @@ class CSRadioPreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'HTML <input type="radio"> - visually hidden',
-								'<span> imitating radio with custom style',
-								'<input> and <span> wrapped in <label> - allowing click on span to change input'
+								'HTML `<input type="radio">` - visually hidden',
+								'`<span>` imitates radio with custom style',
+								'`<input>` and `<span>` wrapped in `<label>` - allowing click on span to change input'
 							],
 							properties: [
-								'aria-required',
-								'aria-invalid',
-								'aria-labelledby - associate radio with label',
-								'role="radio" - implicit with input type'
+								'`aria-required`',
+								'`aria-invalid`',
+								'`aria-labelledby` - associate radio with label',
+								'`role="radio"` - implicit with input type'
 							],
 							styling: [
 								'Focus state styles'

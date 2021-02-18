@@ -564,11 +564,11 @@ class CSTooltipPreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'Icon as a child element with aria-hidden'
+								'Icon as a child element with `aria-hidden`'
 							],
 							properties: [
-								'aria-labelledby - associate tooltip icon with tooltip body',
-								'role="tooltip"'
+								'`aria-labelledby` - associate tooltip icon with tooltip body',
+								'`role="tooltip"`'
 							],
 							styling: [
 								'Focus state styles',

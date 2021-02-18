@@ -68,16 +68,15 @@ $cs-white: #ffffff;
 	--access-link-hover-c: #{$cs-purple};
 	--access-link-active-c: #{$cs-purple-medium-1};
 	--access-subtitle-c: #{$cs-purple};
+	--access-table-header-c: #{$cs-white};
+	--access-table-header-bg: #{$cs-purple};
+	--access-table-header-br: rgba(255, 255, 255, 0.2);
 
 	--app-body-bg: #{$cs-gray-light-5};
 	--app-header-c: #{$cs-gray-dark-1};
 	--app-header-bg: #{$cs-white};
 
-	--criteria-list-link-bg: #{$cs-gray-light-3};
-	--criteria-list-link-c: #{$cs-blue-sf};
-	--criteria-list-link-hover-c: #{$cs-purple};
-	--criteria-list-link-focus-shadow: #{$cs-blue-sf};
-	--criteria-list-link-active-c: #{$cs-purple-medium-1};
+	--criterion-link-decoration-c: #{$cs-blue-sf};
 
 	--colors-grid-focus-shadow: #{$cs-blue-sf};
 	--colors-grid-bg: #{$cs-white};

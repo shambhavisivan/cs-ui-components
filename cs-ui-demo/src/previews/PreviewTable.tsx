@@ -72,17 +72,17 @@ const PreviewTable: React.FC<PreviewTableProps | PreviewTableLegacyProps> = ({ c
 				key={customType.name}
 				width="auto"
 				maxWidth="30rem"
-				className="properties-code-tooltip"
+				className="inline-code-tooltip"
 				content={
 					<>
 						{customType.types.map((type: string) => (
-							<span key={type} className="properties-code">{type}</span>
+							<code key={type} className="inline-code">{type}</code>
 						))}
 					</>
 				}>
-				<span className="properties-code properties-code-custom">
+				<code className="inline-code inline-code-custom">
 					{customType.name}<CSIcon name="info_alt" />
-				</span>
+				</code>
 			</CSTooltip>
 		));
 	};
@@ -92,7 +92,7 @@ const PreviewTable: React.FC<PreviewTableProps | PreviewTableLegacyProps> = ({ c
 			return null;
 		}
 		return propTypes.map((type: string) => (
-			<span key={type} className="properties-code">{type}</span>
+			<code key={type} className="inline-code">{type}</code>
 		));
 	};
 
@@ -100,7 +100,7 @@ const PreviewTable: React.FC<PreviewTableProps | PreviewTableLegacyProps> = ({ c
 		if (!propDefault) {
 			return <CSTooltip content="Undefined" iconName="dash" />;
 		}
-		return <span className="properties-code">{propDefault}</span>;
+		return <code className="inline-code">{propDefault}</code>;
 	};
 
 	return components.map((component: PreviewTableComponent) => {

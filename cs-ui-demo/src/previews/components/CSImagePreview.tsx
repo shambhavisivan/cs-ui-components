@@ -281,10 +281,10 @@ class CSImagePreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'HTML <image> element'
+								'HTML `<img>`'
 							],
 							properties: [
-								'alt'
+								'`alt`'
 							]
 						}
 					]

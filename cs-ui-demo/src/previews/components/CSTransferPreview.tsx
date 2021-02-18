@@ -375,22 +375,22 @@ class CSTransferPreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'HTML <ul>',
-								'HTML <li>',
-								'HTML <button>'
+								'HTML `<ul>`',
+								'HTML `<li>`',
+								'HTML `<button>`'
 							],
 							properties: [
-								'aria-describedby - list is associated with belonging label',
-								'aria-selected',
-								'role="listbox"',
-								'role="option"'
+								'`aria-describedby` - list is associated with belonging label',
+								'`aria-selected`',
+								'`role="listbox"`',
+								'`role="option"`'
 							],
 							styling: [
 								'Color contrast ratio > 4.5',
 								'Distinct hover, active and focus state styles'
 							],
 							keyboardOperability: [
-								'Proper focus management and keyboard operability ensured by structure and <button>',
+								'Proper focus management and keyboard operability ensured by structure and `<button>`',
 								'Additional logic provided for arrow navigation in all directions'
 							]
 						}

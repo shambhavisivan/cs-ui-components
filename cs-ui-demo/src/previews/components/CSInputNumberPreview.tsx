@@ -547,16 +547,16 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 					requirements: [
 						{
 							structure: [
-								'HTML <input type="number">'
+								'HTML `<input type="number">`'
 							],
 							properties: [
-								'aria-invalid',
-								'aria-required',
-								'aria-labelledby - associate field with label',
-								'aria-valuemin',
-								'aria-valuemax',
-								'aria-valuenow',
-								'role="spintbutton" - implicit by input'
+								'`aria-invalid`',
+								'`aria-required`',
+								'`aria-labelledby` - associate field with label',
+								'`aria-valuemin`',
+								'`aria-valuemax`',
+								'`aria-valuenow`',
+								'`role="spintbutton"` - implicit by input'
 							],
 							styling: [
 								'Focus state styles'

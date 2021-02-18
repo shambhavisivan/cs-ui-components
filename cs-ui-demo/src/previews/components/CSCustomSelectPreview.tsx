@@ -628,17 +628,17 @@ class CSCustomSelectPreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'HTML <input type="text">'
+								'HTML `<input type="text">`'
 							],
 							properties: [
-								'aria-labelledby - associate field with label',
-								'aria-expanded'
+								'`aria-labelledby` - associate field with label',
+								'`aria-expanded`'
 							],
 							styling: [
 								'Focus state styles'
 							],
 							keyboardOperability: [
-								'Enter opens dropdown.',
+								'Enter opens dropdown',
 								'Escape closes dropdown'
 							]
 						}

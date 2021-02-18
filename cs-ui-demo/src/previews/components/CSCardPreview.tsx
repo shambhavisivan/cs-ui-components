@@ -258,8 +258,8 @@ class CSCardPreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'HTML <Header> and <Footer>',
-								'Heading is HTML <h2> - allows screen reader heading search'
+								'HTML `<header>` and `<footer>`',
+								'Heading is HTML `<h2>` - allows screen reader heading search'
 							]
 						}
 					]

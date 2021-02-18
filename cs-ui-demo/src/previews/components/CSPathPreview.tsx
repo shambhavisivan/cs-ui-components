@@ -233,21 +233,21 @@ class CSPathPreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'HTML <ol>',
-								'HTML <li>',
-								'HTML <button>',
-								'Icon as a child element with attribute aria-hidden'
+								'HTML `<ol>`',
+								'HTML `<li>`',
+								'HTML `<button>`',
+								'Icon as a child element with `aria-hidden`'
 							],
 							properties: [
-								'aria-current',
-								'aria-invalid'
+								'`aria-current`',
+								'`aria-invalid`'
 							],
 							styling: [
 								'Color contrast ratio > 4.5',
 								'Distinct hover, active and focus state styles'
 							],
 							keyboardOperability: [
-								'Proper focus management and keyboard operability ensured by structure and <button>'
+								'Proper focus management and keyboard operability ensured by structure and `<button>`'
 							]
 						}
 					]

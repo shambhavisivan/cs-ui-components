@@ -389,15 +389,15 @@ class CSTextareaPreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'HTML <textarea>'
+								'HTML `<textarea>`'
 							],
 							properties: [
-								'aria-labelledby - associate field with label',
-								'aria-invalid',
-								'aria-required',
-								'role="textbox" - implicit with input',
-								'aria-multiline="true" - implicit with input',
-								'contenteditable  - implicit with input'
+								'`aria-labelledby` - associate field with label',
+								'`aria-invalid`',
+								'`aria-required`',
+								'`role="textbox"` - implicit with input',
+								'`aria-multiline="true"` - implicit with input',
+								'`contenteditable`  - implicit with input'
 							],
 							styling: [
 								'Focus state styles'

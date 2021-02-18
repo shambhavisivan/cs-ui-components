@@ -889,21 +889,21 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 					requirements: [
 						{
 							structure: [
-								'HTML <header> and <footer>',
-								'Modal title is HTML <h3>',
-								'Modal subtitle is HTML <h4>'
+								'HTML `<header>` and `<footer>`',
+								'Modal title is HTML `<h3>`',
+								'Modal subtitle is HTML `<h4>`'
 							],
 							properties: [
-								'aria-modal',
-								'role="dialog"'
+								'`aria-modal`',
+								'`role="dialog"`'
 							],
 							styling: [
 								'Color contrast ratio > 4.5'
 							],
 							keyboardOperability: [
 								'Logic for focus management to move on modal when it is opened and to cycle within it until closed',
-								'Close button is <button> and a first child - allows keyboard focus',
-								'(missing aria-labelledby)'
+								'Close button is `<button>` and a first child - allows keyboard focus',
+								'(missing `aria-labelledby`)'
 							]
 						}
 					]

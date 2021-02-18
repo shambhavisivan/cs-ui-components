@@ -281,7 +281,7 @@ class CSIconPreview extends React.Component {
 					requirements: [
 						{
 							properties: [
-								'aria-hidden'
+								'`aria-hidden`'
 							]
 						}
 					]

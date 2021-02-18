@@ -56,7 +56,7 @@ class CSFieldErrorMsgPreview extends React.Component {
 					],
 					requirements: [
 						{
-							visual: [
+							styling: [
 								'Color contrast ratio > 4.5'
 							]
 						}

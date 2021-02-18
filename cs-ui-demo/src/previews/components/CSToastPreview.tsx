@@ -358,17 +358,17 @@ class CSToastPreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'Heading is HTML <h4> - allows screen reader heading search'
+								'Heading is HTML `<h4>` - allows screen reader heading search'
 							],
 							properties: [
-								'role="alert/status" - depending on toast variant',
-								'duration - allowing setting large enough time'
+								'`role="alert/status"` - depending on toast variant',
+								'`duration` - allowing setting large enough time'
 							],
 							visual: [
 								'Color contrast ratio > 4.5'
 							],
 							keyboardOperability: [
-								'Close button is <button> and a child - allows keyboard focus'
+								'Close button is `<button>` and a child - allows keyboard focus'
 							]
 						}
 					]

@@ -157,14 +157,14 @@ class CSProgressIndicatorPreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'HTML <ol>',
-								'HTML <li>',
-								'HTML <button>',
-								'Icon as a child of button with attribute aria-hidden'
+								'HTML `<ol>`',
+								'HTML `<li>`',
+								'HTML `<button>`',
+								'Icon as a child of button with attribute `aria-hidden`'
 							],
 							properties: [
-								'aria-label',
-								'title with status'
+								'`aria-label`',
+								'`title` with status'
 							],
 							styling: [
 								'Color contrast ratio > 4.5',

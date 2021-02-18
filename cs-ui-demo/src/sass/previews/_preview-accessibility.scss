@@ -1,9 +1,9 @@
 .accessibility-conformance-section {
 	padding: 0 3rem 3rem;
 
-	h2.accessibility-table-name {
-		font-size: 1.375rem;
+	.property-name {
 		margin-bottom: 0.5rem;
+		font-size: 1.375rem;
 	}
 
 	h3 {
@@ -11,58 +11,73 @@
 	}
 
 	.accessibility-criteria-list a.criterion {
-		display: inline-flex;
-		position: relative;
-		margin: 0.1rem 0.5rem 0.1rem 0;
-		padding: 0 2px;
-		background: var(--criteria-list-link-bg);
-		color: var(--criteria-list-link-c);
-		border-radius: 0.25rem;
+		margin-bottom: 0.25rem;
+		text-decoration: underline;
+		text-decoration-color: var(--criterion-link-decoration-c);
+		padding: 0;
+		margin-left: 0.5rem;
 
-		&:hover {
-			color: var(--criteria-list-link-hover-c);
+		&:first-of-type {
+			margin-left: 0;
 		}
 
-		&:focus {
-			outline: none;
-			box-shadow: 0 0 3px var(--criteria-list-link-focus-shadow);
-		}
-
-		&:active {
-			color: var(--criteria-list-link-active-c);
-		}
-
-		&::after {
-			position: absolute;
-			content: ",";
-			right: -0.25rem;
-		}
-
-		&:last-child::after {
-			content: "";
+		span {
+			font-size: 0.9375rem;
 		}
 	}
 
-	.requirements-table-wrapper {
+	.accessibility-table-wrapper {
 		margin-top: 1rem;
 
-		.table-body .table-row .table-cell:first-child {
-			background: var(--req-table-bg);
-			color: var(--req-table-c);
-		}
+		.accessibility-table {
+			display: block;
+			width: 100%;
+			max-width: 100%;
+			box-shadow:
+				0 1px 3px var(--cs-shadow-light),
+				0 1px 2px var(--cs-shadow-medium);
+			border: none;
+			border-radius: 0.25rem;
 
-		.table-cell {
-			flex-direction: column;
+			.accessibility-table-body {
+				display: table-row-group;
 
-			.conformance-item {
-				position: relative;
-				margin-left: 0.5rem;
+				.accessibility-table-row {
+					display: table-row;
 
-				&::before {
-					content: "\2022";
-					color: var(--req-table-before-c);
-					position: absolute;
-					left: -0.75rem;
+					.accessibility-table-cell {
+						display: table-cell;
+						padding: 0.75rem;
+
+						&:first-child {
+							vertical-align: top;
+							color: var(--access-table-header-c);
+							background-color: var(--access-table-header-bg);
+							border-top-color: var(--access-table-header-br);
+						}
+
+						&:last-child {
+							width: 100%;
+							max-width: 100%;
+						}
+
+						ul {
+							list-style: unset;
+							margin-left: 1rem;
+
+							li {
+								margin-bottom: 0.5rem;
+
+								&:last-child {
+									margin-bottom: 0;
+								}
+
+								.inline-code {
+									margin-right: 0;
+								}
+							}
+						}
+					}
 				}
 			}
 		}

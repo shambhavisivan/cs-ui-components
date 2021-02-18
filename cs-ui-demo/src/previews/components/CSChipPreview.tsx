@@ -201,7 +201,7 @@ class CSChipPreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'Basic <div> with text - visible to screen reader'
+								'HTML `<div>` with text - visible to screen reader'
 							],
 							styling: [
 								'Color contrast ratio > 4.5'

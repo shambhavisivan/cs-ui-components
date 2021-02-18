@@ -254,10 +254,10 @@ class CSSpinnerPreview extends React.Component {
 					requirements: [
 						{
 							properties: [
-								'aria-label',
-								'aria-busy - indicates to screen reader that content is loading',
-								'aria-live="polite" - it will indicate busy status update only after current content is read',
-								'role="progressbar"'
+								'`aria-label`',
+								'`aria-busy` - indicates to screen reader that content is loading',
+								'`aria-live="polite"` - indicate busy status update only after current content is read',
+								'`role="progressbar"`'
 							]
 						}
 					]

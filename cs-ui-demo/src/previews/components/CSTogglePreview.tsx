@@ -350,13 +350,13 @@ class CSTogglePreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'HTML <input type="checkbox"> - hidden',
-								'<span> imitating checkbox with custom style',
-								'<input> and <span> wrapped in <label>'
+								'HTML `<input type="checkbox">` - hidden',
+								'`<span>` imitates checkbox with custom style',
+								'`<input>` and `<span>` wrapped in `<label>`'
 							],
 							properties: [
-								'aria-labelledby - associate field with label',
-								'role="textbox" - implicit with input'
+								'`aria-labelledby` - associate field with label',
+								'`role="textbox"` - implicit with input'
 							],
 							styling: [
 								'Focus state styles'

@@ -81,7 +81,7 @@ class CSSkipLinkPreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'HTML <a> element'
+								'HTML `<a>` element'
 							],
 							styling: [
 								'Focus state styles',
