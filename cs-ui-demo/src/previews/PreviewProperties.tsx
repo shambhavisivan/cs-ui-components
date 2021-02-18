@@ -1,59 +1,93 @@
 import React from 'react';
-import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
-import {CSAlert} from '@cloudsense/cs-ui-components';
+import { CSAlert } from '@cloudsense/cs-ui-components';
+import PreviewPropertiesLegacy from './PreviewPropertiesLegacy';
+import PreviewCode from './PreviewCode';
 
-export interface PreviewPropertiesProps {
-	examples: any;
-	name: string;
-}
+import {
+	PreviewPropertiesProps,
+	PreviewComponent,
+	PreviewExample,
+	PreviewVariation
+} from './types';
 
-class PreviewProperties extends React.Component<PreviewPropertiesProps> {
-	render() {
-		return (
-			<>
-				{this.props.examples.map((example: any) => (
-					<div className={`property-section ${example.propName}`} key={example.propName}>
-						<h2 className="property-name" id={`${this.props.name}-${example.propName}`}>{example.propName}</h2>
-						<div key={example.customText}>
-							{example.customText ? <p className="info-text">{example.customText}</p> : null}
-							{example.alert &&
-								<CSAlert
-									variant={example.alert.variant}
-									text={example.alert.text}
-									styleFormat="scoped"
-								/>
-							}
-							{example.variations.map((variation: any, i: any) => (
-								<React.Fragment key={i}>
-									{variation.variationName &&
-										variation.variationName.map((chip: any) => (
-											<div key={chip} id={`${this.props.name}-${example.propName}-${variation.quickLink}`} className="chip-label">{chip}</div>
-										))
-									}
-									{variation.variationText ? (
-										Array.isArray(variation.variationText) ?
-											variation.variationText.map((chip2: any) => (
-												<div key={chip2} id={`${this.props.name}-${example.propName}-${variation.quickLink}`} className="chip-label chip-label-secondary">{chip2}</div>)
-											) :
-											<div className="chip-label chip-label-secondary" id={`${this.props.name}-${example.propName}-${variation.quickLink}`}>{variation.variationText}</div>
-									) : null}
-									<div className="component-version">
-										<div className={this.props.name ? `${this.props.name.replace(/\s+/g, '-').toLowerCase()}-preview version-preview` : 'version-preview'}>
-											{variation.component}
-										</div>
-										<div className="version-description">
-											<SyntaxHighlighter className="code-snippet"
-												language="jsx">{variation.string}</SyntaxHighlighter>
-										</div>
+const PreviewProperties: React.FC<PreviewPropertiesProps | any> = props => {
+	if (props.examples) {
+		return <PreviewPropertiesLegacy examples={props.examples} name={props.name} />;
+	}
+
+	const parseCode = (option: string) => (
+		option.split('`').map((substring: string, substringIndex: number) => (
+			substringIndex % 2
+				? <code key={substringIndex} className="inline-code">{substring}</code>
+				: substring
+		))
+	);
+
+	const { previews } = props;
+
+	return <>
+		{previews.map((preview: PreviewComponent) => (
+			<div key={preview.name} className="component-preview-wrapper">
+				<h2 id={`component-preview-wrapper-${preview.name.split(' ').join('-').toLowerCase()}`}>
+					{preview.name} Previews
+				</h2>
+				{preview.examples.map((example: PreviewExample) => (
+					<div key={example.propName} className={`component-preview ${example.propName}`}>
+						<h3 id={`component-preview-${example.propName.split(' ').join('-').toLowerCase()}`}>
+							{example.propName}
+						</h3>
+						{example.description && (
+							<p className="component-info-text">
+								{parseCode(example.description)}
+							</p>
+						)}
+						{example.alert && (
+							<CSAlert
+								variant={example.alert.variant}
+								text={example.alert.text}
+								styleFormat="scoped"
+							/>
+						)}
+						{example.variations.map((variation: PreviewVariation, variationIndex: number) => (
+							<React.Fragment key={variationIndex}>
+								{variation.quickLink && (
+									<div id={`component-variation-${variation.quickLink.split(' ').join('-').toLowerCase()}`} />
+								)}
+								{(variation.primaryVariants || variation.secondaryVariants) && (
+									<div className="component-variants">
+										{variation.primaryVariants && (
+											Array.isArray(variation.primaryVariants)
+												? variation.primaryVariants
+												: [variation.primaryVariants]
+										).map((variant: string) => (
+											<code key={variant} className="inline-code inline-code-basic">
+												{variant}
+											</code>
+										))}
+										{variation.secondaryVariants && (
+											Array.isArray(variation.secondaryVariants)
+												? variation.secondaryVariants
+												: [variation.secondaryVariants]
+										).map((variant: string) => (
+											<code key={variant} className="inline-code">
+												{variant}
+											</code>
+										))}
 									</div>
-								</React.Fragment>
-							))}
-						</div>
+								)}
+								<div className="component-example">
+									<div className={`${preview.name.split(' ').join('-').toLowerCase()}-preview component-preview`}>
+										{variation.component}
+									</div>
+									<PreviewCode code={variation.code} />
+								</div>
+							</React.Fragment>
+						))}
 					</div>
 				))}
-			</>
-		);
-	}
-}
+			</div>
+		))}
+	</>;
+};
 
 export default PreviewProperties;

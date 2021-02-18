@@ -4,7 +4,23 @@
 	position: relative;
 	flex: 1;
 	display: flex;
-	box-shadow: 0 1px 3px var(--cs-shadow-light), 0 1px 2px var(--cs-shadow-medium);
+
+	.preview-section-wrapper {
+		h2 {
+			font-size: 1.5rem;
+			margin: 1rem 0 0.5rem;
+			font-weight: 700;
+		}
+
+		h3 {
+			font-size: 1.25rem;
+			margin: 1rem 0 0.5rem;
+		}
+
+		.cs-alert {
+			margin-bottom: 0.5rem;
+		}
+	}
 
 	&.icons {
 		padding: 0;
@@ -40,70 +56,90 @@
 		border-right: 1px solid var(--divider-br);
 
 		> .cs-alert {
-			margin: 2rem 3rem 0;
+			margin: 3rem 3rem 1rem;
 			width: auto;
 
 			+ .cs-alert {
-				margin: 0.5rem 3rem 0;
+				margin-top: 0;
 			}
 		}
 
-		.chip-label {
-			display: inline-block;
-			margin-bottom: 0.25rem;
-			padding: 0.25rem 0.5rem;
-			border-radius: 15rem;
-			font-size: 0.8125rem;
-			line-height: 1;
-			margin-right: 0.3125rem;
-			color: var(--preview-chip-c);
-			border: 1px solid var(--preview-chip-br);
-			background: var(--preview-chip-bg);
-
-			&-secondary {
-				color: var(--preview-chip-second-c);
-				background: var(--preview-chip-second-bg);
-				border: 1px solid var(--preview-chip-second-br);
-			}
+		.component-preview-wrapper > h2 {
+			padding: 2rem 3rem 0;
 		}
 
-		.component-version,
-		.api-version {
-			display: flex;
-			width: 100%;
-			border-radius: 0.25rem;
-			margin-bottom: 1rem;
-			background: var(--components-api-bg);
-			box-shadow: 0 1px 3px var(--cs-shadow-light), 0 1px 2px var(--cs-shadow-medium);
+		.component-preview {
+			padding: 0 3rem;
+			margin-bottom: 2rem;
 
-			.version-preview {
-				width: 70%;
-				flex: 1;
-				overflow: auto;
-				padding: 0.5rem;
+			.component-variants {
+				padding-bottom: 0.5rem;
+			}
 
-				&:last-child {
-					margin-block-end: 0;
-				}
+			.component-info-text {
+				font-size: 0.875rem;
+				margin-top: 0;
+				margin-bottom: 0.5rem;
+			}
 
-				&.modal-preview {
+			&.custom {
+				padding: 2rem 3rem;
+				margin-top: 3rem;
+				margin-bottom: 0;
+				background: var(--prop-custom-bg);
+			}
+
+			.component-example {
+				display: flex;
+				flex-direction: column;
+				border-radius: 0.25rem;
+				margin-bottom: 1.5rem;
+				overflow: hidden;
+				background-color: var(--components-api-bg);
+				box-shadow:
+					0 1px 3px var(--cs-shadow-light),
+					0 1px 2px var(--cs-shadow-medium);
+
+				.component-preview {
 					flex: 1;
-					transform: translate3d(0, 0, 0);
-					background: var(--components-modal-bg);
+					overflow: visible;
+					padding: 1rem;
+					margin-bottom: 0;
 
-					~ .version-description {
-						max-height: unset;
+					&:last-child {
+						margin-block-end: 0;
+					}
+
+					&.modal-preview {
+						flex: 1;
+						transform: translate3d(0, 0, 0);
+						background: var(--components-modal-bg);
+					}
+
+					&.rendercstoast-preview {
+						display: flex;
+						justify-content: space-evenly;
+						align-items: center;
 					}
 				}
 
-				&.sidebar-preview ~ .version-description {
-					max-height: unset;
-				}
-
-				&.rendercstoast-preview {
+				.component-code {
 					display: flex;
-					justify-content: space-evenly;
-					align-items: center;
+					max-height: 31.75rem;
+
+					code {
+						padding: 1rem;
+						height: 100%;
+
+						&:first-child {
+							border-right: 1px solid var(--divider-br);
+						}
+					}
+
+					* {
+						font-family: inherit;
+						color: unset;
+					}
 				}
 			}
 		}

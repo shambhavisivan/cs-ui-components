@@ -1,18 +1,6 @@
 .api-wrapper {
 	padding: 0 2rem 0 3rem;
 
-	.api-title {
-		font-size: 1.5rem;
-	}
-
-	.api-name {
-		font-size: 1.375rem;
-	}
-
-	.method-name {
-		font-size: 1.25rem;
-	}
-
 	.method-definition {
 		margin: 0 0 1rem;
 		padding: 0;
@@ -20,9 +8,4 @@
 		width: 70%;
 		color: var(--api-method-c);
 	}
-}
-
-.api-name {
-	margin: 0 0 0.5rem 0;
-	font-size: 1.375rem;
 }

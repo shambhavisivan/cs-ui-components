@@ -11,6 +11,10 @@ code.inline-code {
 	color: var(--prop-code-c);
 	cursor: default;
 
+	&.inline-code-basic {
+		background-color: var(--prop-code-custom-bg);
+	}
+
 	&.inline-code-custom {
 		background-color: var(--prop-code-custom-bg);
 		display: flex;

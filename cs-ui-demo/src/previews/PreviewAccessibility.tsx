@@ -32,7 +32,7 @@ const PreviewAccessibility: React.FC<PreviewAccessibilityProps> = ({ components 
 						<div className="accessibility-criteria-list">
 							<h3>Related Criteria:</h3>
 							{prop.criterionList && prop.criterionList.map((criterion: string, criterionIndex: number) => (
-								<>
+								<React.Fragment key={criterion}>
 									<CSButton
 										key={criterion}
 										label={criterion}
@@ -43,7 +43,7 @@ const PreviewAccessibility: React.FC<PreviewAccessibilityProps> = ({ components 
 										routerLink={<Link to={`../accessibility#${criterion}`} />}
 									/>
 									{criterionIndex !== prop.criterionList.length - 1 && ','}
-								</>
+								</React.Fragment>
 							))}
 						</div>
 						{prop.requirements.map((item: any, itemIndex: number) => (

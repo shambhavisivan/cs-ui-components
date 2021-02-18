@@ -9,7 +9,7 @@ class PreviewTable extends React.Component<PreviewTableProps> {
 	render() {
 		return (
 			<div className={this.props.alt ? 'table-wrapper table-wrapper-alt' : 'table-wrapper'}>
-				<h2 className="api-name" id={`api-table-${this.props.components[0].name}`}>API list</h2>
+				<h2 id={`api-table-${this.props.components[0].name}`}>API list</h2>
 				{this.props.components.map((component: any, i: any) => (
 					<React.Fragment key={i}>
 						<div className="api-table">

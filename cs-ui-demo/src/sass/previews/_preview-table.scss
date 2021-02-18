@@ -72,9 +72,8 @@
 		padding-block-start: 0;
 	}
 
-	.properties-component-name {
-		margin-bottom: 0.5rem;
-		font-size: 1.375rem;
+	+ .accessibility-conformance-section > .property-name {
+		margin-block-start: 0;
 	}
 
 	.properties-table {

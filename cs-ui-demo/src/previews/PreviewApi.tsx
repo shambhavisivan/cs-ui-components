@@ -10,14 +10,14 @@ class PreviewApi extends React.Component<PreviewApisProps> {
 	render() {
 		return (
 			<div className="api-wrapper">
-				<h2 className="api-name" id={`api-table-${this.props.componentName}`}>{this.props.api.name}</h2>
+				<h2 id={`api-table-${this.props.componentName}`}>{this.props.api.name}</h2>
 					{this.props.api.methods.map((method: any) => (
 						<div className={` ${method.methodName}`} key={method.methodName}>
-							<h3 className="method-name" id={`${this.props.api.name}-${method.methodName}`}>{method.methodName}</h3>
+							<h3 id={`${this.props.api.name}-${method.methodName}`}>{method.methodName}</h3>
 							<div key={method.definition}>
 								{method.definition ? <p className="method-definition">{method.definition}</p> : null}
 								<div className="api-version">
-									<div className={method.methodName ? `${method.methodName.replace(/\s+/g, '-').toLowerCase()}-preview version-preview` : 'version-preview'}>
+									<div className={method.methodName ? `${method.methodName.replace(/\s+/g, '-').toLowerCase()}-preview component-preview` : 'component-preview'}>
 										{method.preview}
 									</div>
 									<div className="method-description">

@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import {
 	CSTooltip,
 	CSTableBody,
@@ -8,33 +9,14 @@ import {
 	CSTable,
 	CSIcon
 } from '@cloudsense/cs-ui-components';
+
+import {
+	PreviewTableProps,
+	PreviewTableComponent,
+	PreviewTableComponentProperty,
+	PreviewTableCustomType
+} from './types';
 import PreviewTableLegacy, { PreviewTableLegacyProps } from './PreviewTableLegacy';
-import classNames from 'classnames';
-
-interface PreviewTableCustomType {
-	name: string;
-	types: Array<string>;
-}
-
-interface PreviewTableComponentProperty {
-	[key: string]: any;
-	name: string;
-	required?: true | string;
-	types?: Array<string>;
-	customTypes?: Array<PreviewTableCustomType>;
-	default?: string;
-	description?: string;
-}
-
-interface PreviewTableComponent {
-	[key: string]: any;
-	name: string;
-	properties: Array<PreviewTableComponentProperty>;
-}
-
-interface PreviewTableProps {
-	components: Array<PreviewTableComponent>;
-}
 
 const PreviewTable: React.FC<PreviewTableProps | PreviewTableLegacyProps> = ({ components }) => {
 	if (!(components as Array<PreviewTableComponent>)[0].properties[0].name) {
@@ -117,7 +99,7 @@ const PreviewTable: React.FC<PreviewTableProps | PreviewTableLegacyProps> = ({ c
 		const sortedProps = component.properties.sort(sortProps);
 		return (
 			<div key={component.name} className="properties-table-wrapper">
-				<h2 className="properties-component-name" id={`properties-table-${component.name}`}>
+				<h2 id={`properties-table-${component.name}`}>
 					{component.name} Properties
 				</h2>
 				<CSTable className="properties-table">

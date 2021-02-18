@@ -76,7 +76,7 @@ $cs-white: #ffffff;
 	--app-header-c: #{$cs-gray-dark-1};
 	--app-header-bg: #{$cs-white};
 
-	--criterion-link-decoration-c: #{$cs-blue-sf};
+	--code-preview-bg: #{$cs-gray-light-7};
 
 	--colors-grid-focus-shadow: #{$cs-blue-sf};
 	--colors-grid-bg: #{$cs-white};
@@ -91,6 +91,8 @@ $cs-white: #ffffff;
 	--components-link-c: #{$cs-gray-dark-3};
 	--components-link-hover-bg: #{$cs-purple};
 	--components-link-hover-c: #{$cs-white};
+
+	--criterion-link-decoration-c: #{$cs-blue-sf};
 
 	--cs-chip-bg: #{$cs-mint};
 	--cs-chip-demo-c: #{$cs-gray-dark-1};
@@ -111,6 +113,8 @@ $cs-white: #ffffff;
 	--header-tab-active-bg: #{$cs-gray-light-6};
 
 	--icons-search-field-bg: #{$cs-white};
+	--icons-search-field-c: #{$cs-gray-dark-4};
+	--icons-search-field-placeholder-c: #{$cs-gray-medium-1};
 	--icons-container-bg: #{$cs-white};
 	--icons-paragraph-c: #{$cs-gray-dark-2};
 	--icons-custom-fill: #{$cs-mint};
