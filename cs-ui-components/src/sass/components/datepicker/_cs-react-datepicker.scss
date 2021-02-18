@@ -29,11 +29,11 @@
 	}
 
 	.react-datepicker__time {
-		border-radius: 0.3rem;
+		border-radius: 0.3125rem;
 	}
 
 	.react-datepicker__time-box {
-		border-radius: 0.3rem;
+		border-radius: 0.3125rem;
 	}
 }
 
@@ -271,7 +271,7 @@
 	&--with-today-button {
 		display: inline;
 		border: 1px solid #aeaeae;
-		border-radius: 0.3rem;
+		border-radius: 0.3125rem;
 		position: absolute;
 		right: -72px;
 		top: 0;
@@ -338,7 +338,7 @@
 	line-height: $datepicker__item-size;
 	text-align: center;
 	margin: $datepicker__day-margin;
-	
+
 	&.react-datepicker__week-number--clickable {
 		cursor: pointer;
 

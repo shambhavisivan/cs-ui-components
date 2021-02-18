@@ -84,7 +84,7 @@
 		&:not(:first-child):before {
 			content: "";
 			position: absolute;
-			left: calc(0.6125rem - 1px);
+			left: calc(0.625rem - 1px);
 			width: 2px;
 			top: 0;
 			bottom: 50%;
@@ -94,7 +94,7 @@
 		&:not(:last-child):after {
 			content: "";
 			position: absolute;
-			left: calc(0.6125rem - 1px);
+			left: calc(0.625rem - 1px);
 			width: 2px;
 			top: 50%;
 			bottom: 0;
