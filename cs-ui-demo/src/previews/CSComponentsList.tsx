@@ -7,6 +7,7 @@ import CSTogglePreview from './components/CSTogglePreview';
 import CSTextareaPreview from './components/CSTextareaPreview';
 import CSIconPreview from './components/CSIconPreview';
 import CSInputSearchPreview from './components/CSInputSearchPreview';
+import CSCurrencyPreview from './components/CSCurrencyPreview';
 import CSCustomSelectPreview from './components/CSCustomSelectPreview';
 import CSDatepickerPreview from './components/CSDatepickerPreview';
 import CSDateTimePickerPreview from './components/CSDateTimePickerPreview';
@@ -75,6 +76,10 @@ class CSComponentsList extends React.Component {
 			{
 				name: 'Chip',
 				component: CSChipPreview
+			},
+			{
+				name: 'Currency',
+				component: CSCurrencyPreview
 			},
 			{
 				name: 'Custom Select',

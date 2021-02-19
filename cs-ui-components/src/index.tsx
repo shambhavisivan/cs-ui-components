@@ -29,6 +29,7 @@ import CSCardFooter from './components/card/CSCardFooter';
 import CSCardHeader from './components/card/CSCardHeader';
 import CSCheckbox, { CSCheckboxLabelPosition, CSCheckboxVariant } from './components/CSCheckbox';
 import CSChip, { CSChipVariant, CSChipVariantStyle } from './components/CSChip';
+import CSCurrency, { CSCurrencyDisplay, CSNotation, CSSignDisplay, CSCurrencySign } from './components/CSCurrency';
 import CSCustomSelect, { CSCustomSelectExportValueType } from './components/custom-select/CSCustomSelect';
 import CSDatepicker, { CSDatepickerDropdownMode } from './components/CSDatepicker';
 import CSDateTimePicker, { CSDateTimePickerDropdownMode } from './components/CSDateTimePicker';
@@ -115,6 +116,11 @@ export {
 	CSChip,
 	CSChipVariant,
 	CSChipVariantStyle,
+	CSCurrency,
+	CSCurrencyDisplay,
+	CSNotation,
+	CSSignDisplay,
+	CSCurrencySign,
 	CSCustomSelect,
 	CSCustomSelectExportValueType,
 	CSDatepicker,
