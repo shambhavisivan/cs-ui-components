@@ -1,15 +1,7 @@
 .cs-app-wrapper {
 
-	.release-notes {
-		> ul {
-			font-weight: 700;
-		}
-
-		code {
-			font-family: monospace;
-			background: var(--release-notes-inline-code-bg);
-			padding: 0 0.1875rem;
-		}
+	.release-notes > ul {
+		font-weight: 700;
 	}
 
 	/* IMPORTANT CHIP */
@@ -21,7 +13,6 @@
 			vertical-align: middle;
 			height: 1.375rem;
 			padding: 0 0.5rem;
-			margin-right: 0.25rem;
 			border-radius: 0.75rem;
 			font-size: 0.5625rem;
 			letter-spacing: 0.125rem;
