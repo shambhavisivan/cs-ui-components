@@ -7,7 +7,7 @@ import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 import { NavLink } from 'react-router-dom';
 
-import { CSTabGroup, CSTab } from '@cloudsense/cs-ui-components';
+import { CSTabGroup, CSTab, CSButton } from '@cloudsense/cs-ui-components';
 
 class CSTabPreview extends React.Component {
 	handleClick = () => alert('Tab has been clicked.');
@@ -307,6 +307,22 @@ class CSTabPreview extends React.Component {
 								</CSTabGroup>
 						}
 					]
+				},
+				{
+					propName: 'children',
+					customText: 'CSTab supports custom content provided as a child',
+					variations: [
+						{
+							component:
+								<CSTabGroup>
+									<CSTab title="Tab One" />
+									<CSTab title="Tab Two" />
+									<CSTab title="Tab Three">
+										<CSButton label="Custom Button" />
+									</CSTab>
+								</CSTabGroup>
+						}
+					]
 				}
 			],
 			properties: [
@@ -314,6 +330,10 @@ class CSTabPreview extends React.Component {
 					name: 'active',
 					types: ['string'],
 					description: 'Control the active state.'
+				}, {
+					name: 'children',
+					types: ['any'],
+					description: 'This component supports custom content passed as children.'
 				}, {
 					name: 'className',
 					types: ['string'],
@@ -435,6 +455,13 @@ class CSTabPreview extends React.Component {
 			name: 'Tab Group',
 			properties: [
 				{
+					name: 'children',
+					customTypes: [{
+						name: 'CSTabGroupChildren',
+						types: ['<CSTab />', '\'any\'']
+					}],
+					description: 'This component is designed to support CSTab as a child.'
+				}, {
 					name: 'className',
 					types: ['string'],
 					description: 'Apply custom CSS classes to the tab group.'

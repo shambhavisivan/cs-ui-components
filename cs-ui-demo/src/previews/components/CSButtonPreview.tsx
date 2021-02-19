@@ -502,21 +502,22 @@ class CSButtonPreview extends React.Component {
 					]
 				},
 				{
-					propName: 'children',
-					customText: 'Custom content can be provided as a child',
-					variations: [
-						{
-							component: <CSButton iconName="activity" label="default initial" ><span>custom content</span></CSButton>
-						}
-					]
-				},
-				{
 					propName: 'className',
+					customText: '',
 					variations: [
 						{
 							variationName: ['custom class'],
 							quickLink: 'custom class',
 							component: <CSButton iconName="activity" label="default initial" className="custom-class" />
+						}
+					]
+				},
+				{
+					propName: 'children',
+					customText: 'CSButton supports custom content provided as a child',
+					variations: [
+						{
+							component: <CSButton iconName="activity" label="default initial" ><span>custom content</span></CSButton>
 						}
 					]
 				}
@@ -543,6 +544,10 @@ class CSButtonPreview extends React.Component {
 					}],
 					default: '\'default\'',
 					description: 'Set the button type.'
+				}, {
+					name: 'children',
+					types: ['any'],
+					description: 'This component supports custom content passed as children.'
 				}, {
 					name: 'className',
 					types: ['string'],

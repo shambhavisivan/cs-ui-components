@@ -320,21 +320,28 @@ class CSButtonGroupPreview extends React.Component {
 
 			properties: [
 				{
+					name: 'children',
+					customTypes: [{
+						name: 'CSButtonGroupChildren',
+						types: ['<CSButton />', '<CSDropdown />', '\'any\'']
+					}],
+					description: 'This component is designed to support CSButton and CSDropdown as children.'
+				}, {
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the button group.'
+				}, {
 					name: 'combined',
 					types: ['boolean'],
 					default: 'true',
 					description: 'Set whether the button group styling should be combined.'
 				}, {
 					name: 'marginPosition',
-					description: 'Set horizontal margin location.',
 					customTypes: [{
 						name: 'CSButtonGroupMargin',
 						types: ['\'left\'', '\'right\'', '\'both\'']
-					}]
-				}, {
-					name: 'className',
-					types: ['string'],
-					description: 'Apply custom CSS classes to the button group.'
+					}],
+					description: 'Set horizontal margin location.'
 				}, {
 					name: 'id',
 					types: ['string'],

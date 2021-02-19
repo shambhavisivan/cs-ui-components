@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import { CSSection } from '@cloudsense/cs-ui-components';
+import { CSButton, CSSection } from '@cloudsense/cs-ui-components';
 
 class CSSectionPreview extends React.Component {
 	getDoc() {
@@ -86,10 +86,29 @@ class CSSectionPreview extends React.Component {
 								</CSSection>
 						}
 					]
+				},
+				{
+					propName: 'children',
+					customText: 'CSSection supports custom content provided as a child',
+					variations: [
+						{
+							variationName: ['custom component'],
+							quickLink: 'custom component',
+							variationText: ['collapsible="true"'],
+							component:
+								<CSSection collapsible title="Collapsible Section" className="custom-class">
+									<CSButton label="Custom Button" />
+								</CSSection>
+						}
+					]
 				}
 			],
 			properties: [
 				{
+					name: 'children',
+					types: ['any'],
+					description: 'This component supports custom content passed as children.'
+				}, {
 					name: 'className',
 					types: ['string'],
 					description: 'Apply custom CSS classes to the section.'

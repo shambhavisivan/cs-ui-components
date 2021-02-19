@@ -122,7 +122,8 @@ const PreviewTable: React.FC<PreviewTableProps | PreviewTableLegacyProps> = ({ a
 							const propertiesTableRowClasses = classNames(
 								'properties-table-row',
 								{
-									'properties-table-row-inherited': typeof property.required === 'string'
+									'properties-table-row-inherited': typeof property.required === 'string',
+									'properties-table-row-children': property.name === 'children'
 								}
 							);
 							return (

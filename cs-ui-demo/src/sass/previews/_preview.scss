@@ -146,6 +146,20 @@
 					}
 				}
 			}
+
+			&.children {
+				padding: 2rem 3rem;
+				margin-top: 3rem;
+				background: var(--prop-custom-bg);
+
+				.info-text {
+					color: var(--prop-custom-c);
+				}
+
+				+ .properties-table-wrapper {
+					padding-block-start: 3rem;
+				}
+			}
 		}
 	}
 }

@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import { CSCard, CSCardHeader, CSCardBody, CSCardFooter } from '@cloudsense/cs-ui-components';
+import { CSCard, CSCardHeader, CSCardBody, CSCardFooter, CSButton } from '@cloudsense/cs-ui-components';
 
 class CSCardPreview extends React.Component {
 	getCSCardDoc() {
@@ -233,6 +233,26 @@ class CSCardPreview extends React.Component {
 								</CSCard>
 						}
 					]
+				},
+				{
+					propName: 'children',
+					customText: 'CSCardBody and CSCardFooter support custom content provided as children',
+					variations: [
+						{
+							component:
+							<CSCard>
+								<CSCardHeader title="Card Header" />
+								<CSCardBody>
+									Card Body
+									<CSButton label="Custom Button" />
+								</CSCardBody>
+								<CSCardFooter>
+									Card Footer
+									<CSButton label="Custom Button" />
+								</CSCardFooter>
+							</CSCard>
+						}
+					]
 				}
 			],
 			properties: [
@@ -240,6 +260,13 @@ class CSCardPreview extends React.Component {
 					name: 'id',
 					types: ['string'],
 					description: 'Set the ID for the card.'
+				}, {
+					name: 'children',
+					customTypes: [{
+						name: 'CSCardChildren',
+						types: ['<CSCardHeader />', '<CSCardBody />', '<CSCardFooter />', '\'any\'']
+					}],
+					description: 'This component is designed to support CSCardHeader, CSCardBody and CSCardFooter as children.'
 				}, {
 					name: 'className',
 					types: ['string'],
@@ -339,6 +366,10 @@ class CSCardPreview extends React.Component {
 			name: 'Card Body',
 			properties: [
 				{
+					name: 'children',
+					types: ['any'],
+					description: 'This component supports custom content passed as children.'
+				}, {
 					name: 'className',
 					types: ['string'],
 					description: 'Apply custom CSS classes to the card body.'
@@ -369,6 +400,10 @@ class CSCardPreview extends React.Component {
 			name: 'Card Footer',
 			properties: [
 				{
+					name: 'children',
+					types: ['any'],
+					description: 'This component supports custom content passed as children.'
+				}, {
 					name: 'className',
 					types: ['string'],
 					description: 'Apply custom CSS classes to the card footer.'

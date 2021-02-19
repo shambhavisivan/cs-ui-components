@@ -271,12 +271,10 @@ class CSMainHeaderPreview extends React.Component {
 					]
 				},
 				{
-					propName: 'custom',
-					customText: 'Want to add buttons or other features to the header? Just add them as child components.',
+					propName: 'children',
+					customText: 'CSMainHeader only supports CSMainHeaderIcon, CSMainHeaderLeft and CSMainHeaderRight as children. They all support custom children.',
 					variations: [
 						{
-							variationName: ['Add custom buttons'],
-							quickLink: 'Add custom buttons',
 							component:
 								<CSMainHeader maxWidth="100%">
 									<CSMainHeaderIcon>
@@ -300,6 +298,13 @@ class CSMainHeaderPreview extends React.Component {
 
 			properties: [
 				{
+					name: 'children',
+					customTypes: [{
+						name: 'CSMainHeaderChildren',
+						types: ['<CSMainHeaderIcon />', '<CSMainHeaderLeft />', '<CSMainHeaderRight />', '\'any\'']
+					}],
+					description: 'This component is designed to support CSMainHeaderIcon, CSMainHeaderLeft and CSMainHeaderRight as children.'
+				}, {
 					name: 'className',
 					types: ['string'],
 					description: 'Apply custom CSS classes to the list.'
@@ -371,6 +376,10 @@ class CSMainHeaderPreview extends React.Component {
 			name: 'MainHeaderLeft',
 			properties: [
 				{
+					name: 'children',
+					types: ['any'],
+					description: 'This component supports custom content passed as children.'
+				}, {
 					name: 'id',
 					types: ['string'],
 					description: 'Set the ID for the main header left.'
@@ -403,6 +412,10 @@ class CSMainHeaderPreview extends React.Component {
 			name: 'MainHeaderRight',
 			properties: [
 				{
+					name: 'children',
+					types: ['any'],
+					description: 'This component supports custom content passed as children.'
+				}, {
 					name: 'id',
 					types: ['string'],
 					description: 'Set the ID for the main header right.'
@@ -421,6 +434,10 @@ class CSMainHeaderPreview extends React.Component {
 			name: 'MainHeaderIcon',
 			properties: [
 				{
+					name: 'children',
+					types: ['any'],
+					description: 'This component supports custom content passed as children.'
+				}, {
 					name: 'id',
 					types: ['string'],
 					description: 'Set the ID for the main header icon.'

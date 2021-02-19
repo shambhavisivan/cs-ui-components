@@ -466,6 +466,10 @@ class CSCustomSelectPreview extends React.Component {
 					default: '0.25rem',
 					description: 'Set a border radius style.'
 				}, {
+					name: 'children',
+					types: ['<CSOption />'],
+					description: 'This component is designed to support CSOption as a child.'
+				}, {
 					name: 'className',
 					types: ['string'],
 					description: 'Apply custom CSS classes to the custom select.'

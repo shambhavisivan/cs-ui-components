@@ -358,6 +358,13 @@ class CSListPreview extends React.Component {
 
 			properties: [
 				{
+					name: 'children',
+					customTypes: [{
+						name: 'CSListChildren',
+						types: ['<CSListGroup />', '<CSListItem />', '\'any\'']
+					}],
+					description: 'This component is designed to support CSListGroup and CSListItem as children.'
+				}, {
 					name: 'className',
 					types: ['string'],
 					description: 'Apply custom CSS classes to the ul tag.'
@@ -440,6 +447,13 @@ class CSListPreview extends React.Component {
 			name: 'List Group',
 			properties: [
 				{
+					name: 'children',
+					customTypes: [{
+						name: 'CSListChildren',
+						types: ['<CSListItem />', '\'any\'']
+					}],
+					description: 'This component is designed to support CSListItem as a child.'
+				}, {
 					name: 'className',
 					types: ['string'],
 					description: 'Apply custom CSS classes to the heading tag (h3).'

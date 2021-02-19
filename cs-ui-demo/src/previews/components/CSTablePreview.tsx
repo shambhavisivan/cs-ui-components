@@ -888,6 +888,13 @@ class CSTablePreview extends React.Component {
 			],
 			properties: [
 				{
+					name: 'children',
+					customTypes: [{
+						name: 'CSTableChildren',
+						types: ['<CSTableHeader />', '<CSTableBody />', '\'any\'']
+					}],
+					description: 'This component is designed to support CSTableHeader and CSTableBody as children.'
+				}, {
 					name: 'selectableRows',
 					types: ['boolean'],
 					description: 'Implement keyboard support for table rows.'
@@ -951,6 +958,13 @@ class CSTablePreview extends React.Component {
 			name: 'Table Header',
 			properties: [
 				{
+					name: 'children',
+					customTypes: [{
+						name: 'CSTableHeaderChildren',
+						types: ['<CSTableCell />', '\'any\'']
+					}],
+					description: 'This component is designed to support CSTableCell as a child.'
+				}, {
 					name: 'className',
 					types: ['string'],
 					description: 'Apply custom CSS classes to the table header.'
@@ -977,6 +991,13 @@ class CSTablePreview extends React.Component {
 			name: 'Table Body',
 			properties: [
 				{
+					name: 'children',
+					customTypes: [{
+						name: 'CSTableBodyChildren',
+						types: ['<CSTableRow />', '\'any\'']
+					}],
+					description: 'This component is designed to support CSTableRow as a child.'
+				}, {
 					name: 'className',
 					types: ['string'],
 					description: 'Apply custom CSS classes to the table body.'
@@ -1003,6 +1024,13 @@ class CSTablePreview extends React.Component {
 			name: 'Table Row',
 			properties: [
 				{
+					name: 'children',
+					customTypes: [{
+						name: 'CSTableRowChildren',
+						types: ['<CSTableCell />', '\'any\'']
+					}],
+					description: 'This component is designed to support CSTableCell as a child.'
+				}, {
 					name: 'className',
 					types: ['string'],
 					description: 'Apply custom CSS classes to the table row.'
@@ -1034,6 +1062,10 @@ class CSTablePreview extends React.Component {
 			name: 'Table Cell',
 			properties: [
 				{
+					name: 'children',
+					types: ['any'],
+					description: 'This component supports custom content passed as children.'
+				}, {
 					name: 'className',
 					types: ['string'],
 					description: 'Apply custom CSS classes to the table cell.'

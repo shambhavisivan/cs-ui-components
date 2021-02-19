@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import { CSSidebar, CSListItem, CSAlert } from '@cloudsense/cs-ui-components';
+import { CSSidebar, CSListItem, CSAlert, CSButton } from '@cloudsense/cs-ui-components';
 
 class CSSidebarPreview extends React.Component {
 	getDoc() {
@@ -164,11 +164,28 @@ class CSSidebarPreview extends React.Component {
 								</CSSidebar>
 						}
 					]
+				},
+				{
+					propName: 'children',
+					customText: 'CSSidebar supports custom content provided as a child',
+					variations: [
+						{
+							component:
+								<CSSidebar>
+									<div>Custom content</div>
+									<CSButton label="Custom Button" />
+								</CSSidebar>
+						}
+					]
 				}
 			],
 
 			properties: [
 				{
+					name: 'children',
+					types: ['any'],
+					description: 'This component supports custom content passed as children.'
+				}, {
 					name: 'className',
 					types: ['string'],
 					description: 'Apply custom CSS classes to the sidebar.'

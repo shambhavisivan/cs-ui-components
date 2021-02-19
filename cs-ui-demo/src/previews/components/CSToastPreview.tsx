@@ -248,8 +248,8 @@ class CSToastPreview extends React.Component {
 					]
 				},
 				{
-					propName: 'custom',
-					customText: 'Want to add custom styling or features? Just write the code inside the component tags as shown below. If you need to add a link there is already a .cs-toast-link class to make it easy. Inspect the example below for a better look.',
+					propName: 'children',
+					customText: 'CSToast supports custom content provided as children. There is a .cs-toast-link class by default for adding links',
 					variations: [
 						{
 							variationName: ['Add a custom link'],
@@ -282,6 +282,10 @@ class CSToastPreview extends React.Component {
 			],
 			properties: [
 				{
+					name: 'children',
+					types: ['any'],
+					description: 'This component supports custom content passed as children.'
+				}, {
 					name: 'className',
 					types: ['string'],
 					description: 'Apply custom CSS classes to the toast.'

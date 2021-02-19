@@ -802,6 +802,13 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 			],
 			properties: [
 				{
+					name: 'children',
+					customTypes: [{
+						name: 'CSModalChildren',
+						types: ['<CSModalHeader />', '<CSModalBody />', '<CSModalFooter />', '\'any\'']
+					}],
+					description: 'This component is designed to support CSModalHeader, CSModalBody and CSModalFooter as children.'
+				}, {
 					name: 'animated',
 					types: ['boolean'],
 					default: 'false',
@@ -925,6 +932,10 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 			name: 'Modal Header',
 			properties: [
 				{
+					name: 'children',
+					types: ['any'],
+					description: 'This component supports custom content passed as children.'
+				}, {
 					name: 'id',
 					types: ['string'],
 					description: 'Set the ID for the modal header.'
@@ -957,6 +968,10 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 			name: 'Modal Body',
 			properties: [
 				{
+					name: 'children',
+					types: ['any'],
+					description: 'This component supports custom content passed as children.'
+				}, {
 					name: 'id',
 					types: ['string'],
 					description: 'Set the ID for the modal body.'
@@ -980,6 +995,10 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 			name: 'ModalFooter',
 			properties: [
 				{
+					name: 'children',
+					types: ['any'],
+					description: 'This component supports custom content passed as children.'
+				}, {
 					name: 'align',
 					customTypes: [{
 						name: 'CSModalFooterAlign',

@@ -269,6 +269,13 @@ class CSRadioPreview extends React.Component {
 			],
 			properties: [
 				{
+					name: 'children',
+					customTypes: [{
+						name: 'CSRadioOptionChildren',
+						types: ['<CSRadioOption />', '\'any\'']
+					}],
+					description: 'This component is designed to support CSRadioOption as a child.'
+				}, {
 					name: 'className',
 					types: ['string'],
 					description: 'Apply custom CSS classes to the radio.'

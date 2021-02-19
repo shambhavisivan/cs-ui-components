@@ -362,19 +362,6 @@ class CSTooltipPreview extends React.Component {
 					]
 				},
 				{
-					propName: 'children',
-					customText: '',
-					variations: [
-						{
-							variationName: ['child'],
-							component:
-								<CSTooltip variant="info" content="Help text example">
-									<CSChip text="brand" />
-								</CSTooltip>
-						}
-					]
-				},
-				{
 					propName: 'content',
 					customText: '',
 					variations: [
@@ -428,10 +415,26 @@ class CSTooltipPreview extends React.Component {
 								<CSTooltip padding="0" content="Help text example" />
 						}
 					]
+				},
+				{
+					propName: 'children',
+					customText: 'CSTooltip supports custom content provided as children. Children of CSTooltip override the default icon styling and the tooltip is applied directly to the child on hover',
+					variations: [
+						{
+							component:
+								<CSTooltip variant="info" content="Help text example">
+									<CSChip text="brand" />
+								</CSTooltip>
+						}
+					]
 				}
 			],
 			properties: [
 				{
+					name: 'children',
+					types: ['any'],
+					description: 'This component supports custom content passed as children.'
+				}, {
 					name: 'className',
 					types: ['string'],
 					description: 'Apply custom CSS classes to the tooltip.'

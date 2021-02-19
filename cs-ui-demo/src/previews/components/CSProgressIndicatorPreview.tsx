@@ -127,6 +127,13 @@ class CSProgressIndicatorPreview extends React.Component {
 
 			properties: [
 				{
+					name: 'children',
+					customTypes: [{
+						name: 'CSProgressIndicatorChildren',
+						types: ['<CSProgressIndicatorItem />', '\'any\'']
+					}],
+					description: 'This component is designed to support CSProgressIndicatorItem as a child.'
+				}, {
 					name: 'className',
 					types: ['string'],
 					description: 'Apply custom CSS classes to the progress indicator.'

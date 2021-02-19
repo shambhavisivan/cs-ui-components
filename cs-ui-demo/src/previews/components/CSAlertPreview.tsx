@@ -5,7 +5,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import { CSAlert } from '@cloudsense/cs-ui-components';
+import { CSAlert, CSButton } from '@cloudsense/cs-ui-components';
 
 class CSAlertPreview extends React.Component {
 	handleClose = () => alert('Alert has been closed.');
@@ -392,30 +392,49 @@ class CSAlertPreview extends React.Component {
 							}
 						]
 					}, {
-						propName: 'custom',
-						description: 'Want to add custom styling or features? Just write the code inside the component tags as shown below. If you need to add a link there is already a `.cs-alert-link` class to make it easy. Inspect the example below for a better look.',
+						propName: 'children',
+						customText: 'CSAlert supports custom content provided as children',
 						variations: [
 							{
-								primaryVariants: 'custom link',
+								primaryVariants: ['custom link'],
 								quickLink: 'custom link',
-								component: <CSAlert variant="info" iconName="info">
-									<span>
-										This custom text includes a <a href="./CSAlert" className="cs-alert-link">link</a>
-									</span>
-								</CSAlert>,
+								component:
+									<CSAlert
+										variant="info"
+										iconName="info"
+									>
+										<span>This custom text includes a <a href="./CSAlert" className="cs-alert-link">link</a></span>
+									</CSAlert>,
 								code: `<CSAlert variant="info" iconName="info">
-									<span>
-										This custom text includes a <a href="./CSAlert" className="cs-alert-link">link</a>
-									</span>
+									<span>This custom text includes a <a href="./CSAlert" className="cs-alert-link">link</a></span>
 								</CSAlert>`
-							}, {
-								primaryVariants: 'custom text',
+							},
+							{
+								primaryVariants: ['custom text'],
 								quickLink: 'custom text',
-								component: <CSAlert variant="info">
+								component:
+									<CSAlert
+										variant="info"
+										iconName="info"
+									>
+										<span>This custom text includes <b>bold</b> and <i>italic</i> text</span>
+									</CSAlert>,
+								code: `<CSAlert variant="info" iconName="info">
 									<span>This custom text includes <b>bold</b> and <i>italic</i> text</span>
-								</CSAlert>,
-								code: `<CSAlert variant="info">
-									<span>This custom text includes <b>bold</b> and <i>italic</i> text</span>
+								</CSAlert>`
+							},
+							{
+								primaryVariants: ['custom component'],
+								quickLink: 'custom component',
+								component:
+									<CSAlert
+										variant="info"
+										iconName="info"
+									>
+										<CSButton btnType="transparent" label="Custom Button"/>
+									</CSAlert>,
+								code: `<CSAlert variant="info" iconName="info">
+									<CSButton btnType="transparent" label="Custom Button"/>
 								</CSAlert>`
 							}
 						]
@@ -425,6 +444,10 @@ class CSAlertPreview extends React.Component {
 		],
 		properties: [
 			{
+				name: 'children',
+				types: ['any'],
+				description: 'This component supports custom content passed as children.'
+			}, {
 				name: 'className',
 				types: ['string'],
 				description: 'Apply custom CSS classes to the alert.'

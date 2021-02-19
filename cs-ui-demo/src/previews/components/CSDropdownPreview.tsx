@@ -651,6 +651,13 @@ class CSDropdownPreview extends React.Component {
 					default: '\'default\'',
 					description: 'Set the button group type.'
 				}, {
+					name: 'children',
+					customTypes: [{
+						name: 'CSDropdownChildren',
+						types: ['<CSButton />', '\'any\'']
+					}],
+					description: 'This component is designed to support CSButton as a child.'
+				}, {
 					name: 'className',
 					types: ['string'],
 					description: 'Apply custom CSS classes to the dropdown.'
