@@ -1,5 +1,4 @@
 import React from 'react';
-import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
@@ -9,215 +8,181 @@ import PreviewLinks from '../PreviewLinks';
 import { CSIcon } from '@cloudsense/cs-ui-components';
 
 class CSIconPreview extends React.Component {
-	getDoc() {
-		const json = {
+	getIconDoc = () => ({
 			name: 'Icon',
 			usage: 'Support for both Lightening and CloudSense Icons',
 			accessible: 'yes',
-			examples: [
+			previews: [
 				{
-					propName: 'name',
-					variations: [
+					name: 'Icon',
+					examples: [
 						{
-							variationName: ['video'],
-							quickLink: 'video',
-							component:
-								<CSIcon
-									name="video"
-								/>
-						}
-					],
-					customText: 'Icons require a name prop which correlates to the icon you would like to use.'
-				},
-				{
-					propName: 'origin',
-					variations: [
-						{
-							variationName: ['slds'],
-							quickLink: 'slds',
-							variationText: ['name="video"'],
-							component:
-								<CSIcon
-									name="video"
-									origin="slds"
-								/>
-						},
-						{
-							variationName: ['cs'],
-							quickLink: 'cs',
-							variationText: ['name="table"'],
-							component:
-								<CSIcon
-									origin="cs"
-									name="table"
-								/>
-						}
-					]
-				},
-				{
-					propName: 'rotate',
-					variations: [
-						{
-							variationName: ['90'],
-							quickLink: '90',
-							variationText: ['name="breadcrumbs"'],
-							component:
-								<CSIcon
-									name="breadcrumbs"
-									rotate="90"
-								/>
-						},
-						{
-							variationName: ['180'],
-							quickLink: '180',
-							variationText: ['name="breadcrumbs"'],
-							component:
-								<CSIcon
-									name="breadcrumbs"
-									rotate="180"
-								/>
-						},
-						{
-							variationName: ['270'],
-							quickLink: '270',
-							variationText: ['name="breadcrumbs"'],
-							component:
-								<CSIcon
-									name="breadcrumbs"
-									rotate="270"
-								/>
-						}
-					]
-				},
-				{
-					propName: 'color',
-					variations: [
-						{
-							variationName: ['pink'],
-							quickLink: 'pink',
-							variationText: ['name="breadcrumbs"'],
-							component:
-								<CSIcon
-									name="breadcrumbs"
-									color="pink"
-								/>
-						},
-						{
-							variationName: ['#ff0000'],
-							quickLink: '#ff0000',
-							variationText: ['name="breadcrumbs"'],
-							component:
-								<CSIcon
-									name="breadcrumbs"
-									color="#ff0000"
-								/>
-						},
-						{
-							variationName: ['rgba(100,100,255)'],
-							quickLink: 'rgba(100,100,255)',
-							variationText: ['name="breadcrumbs"'],
-							component:
-								<CSIcon
-									name="breadcrumbs"
-									color="rgba(100,100,255,1.00)"
-								/>
-						}
-					]
-				},
-				{
-					propName: 'size',
-					variations: [
-						{
-							variationName: ['3rem'],
-							quickLink: '3rem',
-							variationText: ['origin="cs"', 'name="tag"'],
-							component:
-								<CSIcon
-									origin="cs"
-									name="tag"
-									size="3rem"
-								/>
-						}
-					]
-				},
-				{
-					propName: 'frame',
-					variations: [
-						{
-							variationName: ['true'],
-							quickLink: 'true',
-							variationText: ['origin="cs"', 'name="video"', 'size="2rem"'],
-							component:
-								<CSIcon
-									name="lead"
-									origin="cs"
-									frame
-									size="2rem"
-								/>
-						}
-					]
-				},
-				{
-					propName: 'id',
-					variations: [
-						{
-							variationText: ['origin="cs"', 'name="lead"'],
-							component:
-								<CSIcon
-									origin="cs"
-									name="lead"
-									id="id"
-								/>
-						}
-					]
-				},
-				{
-					propName: 'title',
-					variations: [
-						{
-							variationText: ['origin="cs"', 'name="gift"'],
-							component:
-								<CSIcon
-									origin="cs"
-									name="gift"
-									title="gift"
-								/>
-						}
-					]
-				},
-				{
-					propName: 'spin',
-					variations: [
-						{
-							variationName: ['true'],
-							quickLink: 'true',
-							variationText: ['name="spinner"'],
-							component:
-								<CSIcon
-									name="spinner"
-									spin
-								/>
-						}
-					]
-				},
-				{
-					propName: 'className',
-					variations: [
-						{
-							variationName: ['custom class'],
-							quickLink: 'custom class',
-							variationText: ['origin="cs"', 'name="tag"'],
-							component:
-								<CSIcon
-									origin="cs"
-									name="tag"
-									className="custom-class"
-								/>
+							propName: 'name',
+							description: 'Icons require a name prop which correlates to the icon you would like to use.',
+							variations: [
+								{
+									primaryVariants: 'name="video"',
+									component: <CSIcon name="video" />,
+									code: '<CSIcon name="video" />'
+								}
+							]
+						}, {
+							propName: 'color',
+							variations: [
+								{
+									primaryVariants: 'color="rgb(74, 38, 171)"',
+									secondaryVariants: 'name="breadcrumbs"',
+									quickLink: 'rgb',
+									component: <CSIcon name="breadcrumbs" color="rgb(74, 38, 171)" />,
+									code: '<CSIcon name="breadcrumbs" color="rgb(74, 38, 171)" />'
+								}, {
+									primaryVariants: 'color="#3cdbc0"',
+									secondaryVariants: 'name="breadcrumbs"',
+									quickLink: 'hex',
+									component: <CSIcon name="breadcrumbs" color="#3cdbc0" />,
+									code: '<CSIcon name="breadcrumbs" color="#3cdbc0" />'
+								}
+							]
+						}, {
+							propName: 'frame',
+							variations: [
+								{
+									primaryVariants: 'frame={true}',
+									secondaryVariants: [
+										'origin="cs"',
+										'name="video"',
+										'size="2rem"'
+									],
+									component: <CSIcon
+										name="lead"
+										origin="cs"
+										frame
+										size="2rem"
+									/>,
+									code: `<CSIcon
+										name="lead"
+										origin="cs"
+										frame
+										size="2rem"
+									/>`
+								}
+							]
+						}, {
+							propName: 'origin',
+							variations: [
+								{
+									primaryVariants: 'origin="slds"',
+									secondaryVariants: 'name="video"',
+									quickLink: 'slds',
+									component: <CSIcon name="video" origin="slds" />,
+									code: '<CSIcon name="video" origin="slds" />'
+								}, {
+									primaryVariants: 'origin="cs"',
+									secondaryVariants: 'name="table"',
+									quickLink: 'cs',
+									component: <CSIcon origin="cs" name="table" />,
+									code: '<CSIcon origin="cs" name="table" />'
+								}
+							]
+						}, {
+							propName: 'rotate',
+							variations: [
+								{
+									primaryVariants: 'rotate="90"',
+									secondaryVariants: 'name="breadcrumbs"',
+									quickLink: '90',
+									component: <CSIcon name="breadcrumbs" rotate="90" />,
+									code: '<CSIcon name="breadcrumbs" rotate="90" />'
+								}, {
+									primaryVariants: 'rotate="180"',
+									secondaryVariants: 'name="breadcrumbs"',
+									quickLink: '180',
+									component: <CSIcon name="breadcrumbs" rotate="180" />,
+									code: '<CSIcon name="breadcrumbs" rotate="180" />'
+								}, {
+									primaryVariants: 'rotate="270"',
+									secondaryVariants: 'name="breadcrumbs"',
+									quickLink: '270',
+									component: <CSIcon name="breadcrumbs" rotate="270" />,
+									code: '<CSIcon name="breadcrumbs" rotate="270" />'
+								}
+							]
+						}, {
+							propName: 'size',
+							variations: [
+								{
+									primaryVariants: 'size="3rem"',
+									secondaryVariants: [
+										'origin="cs"',
+										'name="tag"'
+									],
+									component: <CSIcon
+										origin="cs"
+										name="tag"
+										size="3rem"
+									/>,
+									code: `<CSIcon
+										origin="cs"
+										name="tag"
+										size="3rem"
+									/>`
+								}
+							]
+						}, {
+							propName: 'spin',
+							variations: [
+								{
+									primaryVariants: 'spin={true}',
+									secondaryVariants: 'name="spinner"',
+									component: <CSIcon name="spinner" spin />,
+									code: '<CSIcon name="spinner" spin />'
+								}
+							]
+						}, {
+							propName: 'title',
+							variations: [
+								{
+									secondaryVariants: [
+										'origin="cs"',
+										'name="gift"'
+									],
+									component: <CSIcon
+										origin="cs"
+										name="gift"
+										title="gift"
+									/>,
+									code: `<CSIcon
+										origin="cs"
+										name="gift"
+										title="gift"
+									/>`
+								}
+							]
+						}, {
+							propName: 'id | class',
+							variations: [
+								{
+									primaryVariants: [
+										'id="custom-id"',
+										'className="custom-class"'
+									],
+									secondaryVariants: 'name="connected_apps"',
+									component: <CSIcon
+										name="connected_apps"
+										id="custom-id"
+										className="custom-class"
+									/>,
+									code: `<CSIcon
+										name="connected_apps"
+										id="custom-id"
+										className="custom-class"
+									/>`
+								}
+							]
 						}
 					]
 				}
 			],
-
 			properties: [
 				{
 					name: 'className',
@@ -248,7 +213,7 @@ class CSIconPreview extends React.Component {
 						types: ['\'slds\'', '\'cs\'']
 					}],
 					default: '\'slds\'',
-					description: 'Select whether a SalesForce or a CloudSense icon should be used.'
+					description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
 				}, {
 					name: 'rotate',
 					types: ['string'],
@@ -287,32 +252,20 @@ class CSIconPreview extends React.Component {
 					]
 				}
 			]
-		};
-
-		for (const example of json.examples) {
-			for (const variation of example.variations) {
-				(variation as any).string = jsxToString(variation.component);
-			}
-		}
-
-		return json;
-	}
+		})
 
 	render() {
-		const component = this.getDoc();
+		const component = this.getIconDoc();
 
 		return (
 			<>
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties name={component.name} examples={component.examples} />
+					<PreviewProperties {...component} />
 					<PreviewTable components={[component]} />
 					<PreviewAccessibility components={[component]} />
 				</div>
-				<div className="prop-sidebar">
-					<h3>Quick Links</h3>
-					<PreviewLinks component={component} />
-				</div>
+				<PreviewLinks {...component} />
 			</>
 		);
 	}
