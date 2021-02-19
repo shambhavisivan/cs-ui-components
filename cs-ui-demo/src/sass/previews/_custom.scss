@@ -42,12 +42,8 @@
 		padding: 1rem;
 	}
 
-	&.checkbox-preview {
-		padding: 1rem;
-
-		.custom-class {
-			border: 2px solid var(--custom-br);
-		}
+	&.checkbox-preview .custom-class {
+		border: 2px solid var(--custom-br);
 	}
 
 	&.toggle-preview {

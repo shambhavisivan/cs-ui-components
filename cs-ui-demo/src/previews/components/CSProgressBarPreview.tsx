@@ -261,7 +261,7 @@ class CSProgressBarPreview extends React.Component<{}, CSProgressBarPreviewState
 										<CSButton label="Start full progress" onClick={this.renderProgressFull} />
 									</CSButtonGroup>
 								</>,
-								code: `<CSProgressBar label="Simulate progress" progress={` + '${this.state.progress}%' + `} />
+								code: `<CSProgressBar label="Simulate progress" progress={\`\${this.state.progress}%\`} />
 								<CSButtonGroup className="simulation-action-buttons">
 									<CSButton label="Reset progress" onClick={this.restartProgress} />
 									<CSButton label="Start delayed progress" onClick={this.renderProgressDelayed} />
