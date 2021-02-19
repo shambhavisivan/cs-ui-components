@@ -124,12 +124,6 @@
 			}
 		}
 
-		&-initial:not(.cs-tab-active) {
-			svg {
-				height: 0.875rem;
-			}
-		}
-
 		&-normal {
 			height: 2.5rem;
 			&.cs-tab-active {

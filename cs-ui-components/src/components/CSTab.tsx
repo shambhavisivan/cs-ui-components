@@ -101,7 +101,7 @@ class CSTab extends React.Component<CSTabProps> {
 							iconSize={'medium'}
 							iconOrigin={iconOrigin}
 						/>
-						: renderTabIcon() ? <CSIcon name={getStatusIcon()} origin={iconOrigin} /> : null
+						: renderTabIcon() ? <CSIcon name={getStatusIcon()} origin={iconOrigin} size="0.875rem" /> : null
 					}
 					<span className="cs-tab-name">{name}</span>
 					{children}

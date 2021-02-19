@@ -14,8 +14,6 @@
 		max-width: Min(var(--cs-toast-width, 30rem), 100%);
 
 		> .cs-icon {
-			width: 1.5rem;
-			height: 1.5rem;
 			margin-right: 0.5rem;
 		}
 
@@ -125,8 +123,6 @@
 			}
 
 			svg {
-				width: 1.5rem;
-				height: 1.5rem;
 				@include sf(--cs-toast-close-fill);
 			}
 

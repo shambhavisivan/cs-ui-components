@@ -154,7 +154,7 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 						{children}
 					</select>
 					{!readOnly &&
-						<CSIcon name="down" />
+						<CSIcon name="down" size="0.8125rem" />
 					}
 				</div>
 				{(error && errorMessage) &&

@@ -235,7 +235,7 @@ class CSModal extends React.Component<CSModalProps> {
 									aria-label="close"
 									ref={closeBtn => this.modalCloseBtnRef = closeBtn}
 								>
-									<CSIcon name="close" />
+									<CSIcon name="close" size="1.5rem" />
 								</button>
 							)}
 							<div

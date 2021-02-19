@@ -203,6 +203,15 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 					return variant;
 			}
 		};
+
+		const setIconSize = () => {
+			if (iconSize === 'medium') {
+				return '1rem';
+			} else {
+				return '0.875rem';
+			}
+		};
+
 		const handleOnMouseEnter = () => {
 			if (stylePosition === 'fixed' && !this.state.stickyActive) {
 				this.openTooltip();
@@ -233,7 +242,8 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 						<CSIcon
 							color={iconColor}
 							name={tooltipIconName()}
-							className={'cs-tooltip-icon ' + 'cs-icon-' + iconSize}
+							className={'cs-tooltip-icon'}
+							size={setIconSize()}
 							origin={iconOrigin}
 						/>
 					)}

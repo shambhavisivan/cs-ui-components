@@ -206,7 +206,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 							{...rest}
 						/>
 					</div>
-					{!this.props.readOnly && <CSIcon name="event" className="cs-datepicker-icon" />}
+					{!this.props.readOnly && <CSIcon name="event" className="cs-datepicker-icon" size="0.875rem" />}
 					{(error && errorMessage) &&
 						<CSFieldErrorMsg message={errorMessage} />
 					}

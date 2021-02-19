@@ -214,6 +214,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 							name="search"
 							className="cs-input-search-icon"
 							color="var(--cs-input-icon-fill)"
+							size="0.875rem"
 						/>
 						<input className={inputSearchClasses}
 							autoFocus={autoFocus}

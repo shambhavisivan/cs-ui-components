@@ -174,6 +174,7 @@ class CSLookupField extends React.Component<CSLookupFieldProps, CSLookupFieldSta
 					<CSIcon
 						name="search"
 						className="cs-lookup-field-search"
+						size="0.875rem"
 					/>
 					<input
 						className={lookupFieldClasses}
@@ -204,10 +205,10 @@ class CSLookupField extends React.Component<CSLookupFieldProps, CSLookupFieldSta
 					}
 					{loading ?
 						<span className="cs-lookup-field-spinner">
-							<CSIcon name="spinner" spin />
+							<CSIcon name="spinner" size="0.875rem" spin />
 						</span>
 						:
-						<CSIcon name="chevrondown" className="cs-lookup-field-dropdown" />
+						<CSIcon name="chevrondown" className="cs-lookup-field-dropdown" size="0.875rem" />
 					}
 					{(error && errorMessage) &&
 						<CSFieldErrorMsg message={errorMessage} />
