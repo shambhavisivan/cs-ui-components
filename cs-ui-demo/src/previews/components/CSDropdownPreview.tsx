@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import { CSDropdown, CSButton } from '@cloudsense/cs-ui-components';
+import { CSDropdown, CSButton, CSList, CSListItem, CSListGroup } from '@cloudsense/cs-ui-components';
 
 class CSDropdownPreview extends React.Component {
 	getDoc() {
@@ -17,7 +17,6 @@ class CSDropdownPreview extends React.Component {
 			examples: [
 				{
 					propName: 'btnType',
-					customText: '',
 					variations: [
 						{
 							variationName: ['default'],
@@ -144,7 +143,6 @@ class CSDropdownPreview extends React.Component {
 				},
 				{
 					propName: 'size',
-					customText: '',
 					variations: [
 						{
 							variationName: ['large'],
@@ -205,7 +203,6 @@ class CSDropdownPreview extends React.Component {
 						variant: 'info',
 						text: 'This prop shouldn\'t be used with hover prop.'
 					},
-					customText: '',
 					variations: [
 						{
 							variationName: ['true'],
@@ -228,7 +225,6 @@ class CSDropdownPreview extends React.Component {
 				},
 				{
 					propName: 'iconName',
-					customText: '',
 					variations: [
 						{
 							variationName: ['down'],
@@ -266,7 +262,6 @@ class CSDropdownPreview extends React.Component {
 				},
 				{
 					propName: 'disabled',
-					customText: '',
 					variations: [
 						{
 							variationName: ['true'],
@@ -289,7 +284,6 @@ class CSDropdownPreview extends React.Component {
 				},
 				{
 					propName: 'align',
-					customText: '',
 					variations: [
 						{
 							variationName: ['left'],
@@ -329,7 +323,6 @@ class CSDropdownPreview extends React.Component {
 				},
 				{
 					propName: 'position',
-					customText: '',
 					variations: [
 						{
 							variationName: ['bottom'],
@@ -368,7 +361,6 @@ class CSDropdownPreview extends React.Component {
 				},
 				{
 					propName: 'iconRotate',
-					customText: '',
 					variations: [
 						{
 							variationName: ['90'],
@@ -425,7 +417,6 @@ class CSDropdownPreview extends React.Component {
 				},
 				{
 					propName: 'id',
-					customText: '',
 					variations: [
 						{
 							component: <CSDropdown
@@ -447,7 +438,6 @@ class CSDropdownPreview extends React.Component {
 				},
 				{
 					propName: 'label',
-					customText: '',
 					variations: [
 						{
 							component: <CSDropdown
@@ -468,7 +458,6 @@ class CSDropdownPreview extends React.Component {
 				},
 				{
 					propName: 'iconPosition',
-					customText: '',
 					variations: [
 						{
 							variationName: ['left'],
@@ -508,7 +497,6 @@ class CSDropdownPreview extends React.Component {
 				},
 				{
 					propName: 'hover',
-					customText: '',
 					variations: [
 						{
 							variationName: ['true'],
@@ -531,7 +519,6 @@ class CSDropdownPreview extends React.Component {
 				},
 				{
 					propName: 'maxHeight',
-					customText: '',
 					variations: [
 						{
 							component: <CSDropdown
@@ -556,7 +543,6 @@ class CSDropdownPreview extends React.Component {
 				},
 				{
 					propName: 'maxWidth',
-					customText: '',
 					variations: [
 						{
 							component: <CSDropdown
@@ -577,7 +563,6 @@ class CSDropdownPreview extends React.Component {
 				},
 				{
 					propName: 'padding',
-					customText: '',
 					variations: [
 						{
 							component: <CSDropdown
@@ -598,7 +583,6 @@ class CSDropdownPreview extends React.Component {
 				},
 				{
 					propName: 'className',
-					customText: '',
 					variations: [
 						{
 							variationName: ['custom class'],
@@ -615,6 +599,31 @@ class CSDropdownPreview extends React.Component {
 									iconName="world"
 									label="test label large large"
 								/>
+							</CSDropdown>
+						}
+					]
+				},
+				{
+					propName: 'children',
+					variations: [
+						{
+							variationName: ['CSList'],
+							quickLink: 'CSList',
+							component: <CSDropdown padding="0">
+								<CSList variant="check-list" className="dropdown-list" >
+									<CSListGroup title="List Group">
+										<CSListItem text="First list item" />
+										<CSListItem text="List item with a very long name" />
+										<CSListItem text="List item" />
+										<CSListItem text="Last list item" />
+									</CSListGroup>
+									<CSListGroup title="List Group">
+										<CSListItem text="First list item" />
+										<CSListItem text="List item with a very long name" />
+										<CSListItem text="List item" />
+										<CSListItem text="Last list item" />
+									</CSListGroup>
+								</CSList>
 							</CSDropdown>
 						}
 					]

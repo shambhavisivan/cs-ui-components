@@ -33,7 +33,7 @@ const PreviewProperties: React.FC<PreviewPropertiesProps | any> = props => {
 				</h2>
 				{preview.examples.map((example: PreviewExample) => (
 					<div key={example.propName} className={`component-preview ${example.propName}`}>
-						<h3 id={`component-preview-${example.propName.split(' ').join('-').toLowerCase()}`}>
+						<h3 className="prop-heading" id={`component-preview-${example.propName.split(' ').join('-').toLowerCase()}`}>
 							{example.propName}
 						</h3>
 						{example.description && (
