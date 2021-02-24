@@ -12,8 +12,8 @@
 		}
 	}
 
-	&.main-header-preview {
-		min-height: 10rem;
+	&.main-header-preview,
+	&.main-header-left-preview {
 		padding: 0;
 
 		.custom-class {
