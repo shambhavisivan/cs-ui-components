@@ -1,5 +1,4 @@
 import React from 'react';
-import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
@@ -28,550 +27,531 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 		});
 	}
 
-	getDoc() {
-		const json = {
-			name: 'Input Number',
-			usage: 'Number inputs are used for number entry.',
-			accessible: 'yes',
-			examples: [
-				{
-					propName: 'type',
-					customText: '',
-					variations: [
-						{
-							variationName: ['number'],
-							component:
-								<CSInputNumber label="Enter value:" type="number" />
+	getInputNumberDoc = () => ({
+		name: 'Input Number',
+		usage: 'Number inputs are used for number entry.',
+		accessible: 'yes',
+		previews: [
+			{
+				name: 'Input Number',
+				examples: [
+					{
+						propName: 'label',
+						alert: {
+							variant: 'info',
+							text: 'Label is a required prop because of accessibility. You need to provide an explanatory label for a number input. If you want to hide the label visually, you can use the labelHidden prop.'
 						},
-						{
-							variationName: ['text'],
-							component:
-								<CSInputNumber label="Enter value:" type="text" />
-						}
-					]
-				},
-				{
-					propName: 'value',
-					customText: '',
-					variations: [
-						{
-							component:
-								<CSInputNumber label="Enter value:" value="1" />
-						}
-					]
-				},
-				{
-					propName: 'placeholder',
-					customText: '',
-					variations: [
-						{
-							component:
-								<CSInputNumber label="Enter value:" placeholder="Placeholder text" />
-						}
-					]
-				},
-				{
-					propName: 'id',
-					variations: [
-						{
-							component:
-								<CSInputNumber label="Enter value:" id="quantity" />
-						}
-					]
-				},
-				{
-					propName: 'label',
-					variations: [
-						{
-							component:
-								<CSInputNumber label="Enter value:" />
-						}
-					]
-				},
-				{
-					propName: 'labelHidden',
-					variations: [
-						{
-							variationName: ['true'],
-							quickLink: 'true',
-							component:
-								<CSInputNumber label="Enter value:" labelHidden />
-						}
-					]
-				},
-				{
-					propName: 'labelTitle',
-					variations: [
-						{
-							variationName: ['true'],
-							quickLink: 'true',
-							component:
-								<CSInputNumber label="Enter value:" labelTitle />
-						}
-					]
-				},
-				{
-					propName: 'helpText',
-					variations: [
-						{
-							component:
-								<CSInputNumber label="Enter value:" helpText="Help text example" />
-						}
-					]
-				},
-				{
-					propName: 'tooltipPosition',
-					variations: [
-						{
-							variationName: ['top-right'],
-							quickLink: 'top-right',
-							component:
-								<CSInputNumber label="Enter value:" helpText="Help text example" tooltipPosition="top-right" />
-						}
-					]
-				},
-				{
-					propName: 'disabled',
-					variations: [
-						{
-							variationName: ['true'],
-							quickLink: 'true',
-							component:
-								<CSInputNumber label="Enter value:" disabled />
-						}
-					]
-				},
-				{
-					propName: 'hidden',
-					variations: [
-						{
-							variationName: ['true'],
-							quickLink: 'true',
-							component:
-								<CSInputNumber label="Enter value:" hidden />
-						}
-					]
-				},
-				{
-					propName: 'readOnly',
-					variations: [
-						{
-							variationName: ['true'],
-							quickLink: 'true',
-							component:
-								<CSInputNumber label="Enter value:" readOnly value={12345} />
-						}
-					]
-				},
-				{
-					propName: 'required',
-					variations: [
-						{
-							variationName: ['true'],
-							quickLink: 'true',
-							component:
-								<CSInputNumber required label="Enter value:" />
-						}
-					]
-				},
-				{
-					propName: 'error',
-					alert: {
-						variant: 'info',
-						text: 'Component in error state should always contain associated error message to satisfy accessibility best practices!'
-					},
-					variations: [
-						{
-							variationName: ['true'],
-							quickLink: 'true',
-							component:
-								<CSInputNumber label="Enter value:" error />
-						}
-					]
-				},
-				{
-					propName: 'errorMessage',
-					variations: [
-						{
-							variationText: ['error="true"'],
-							component:
-								<CSInputNumber label="Enter value:" error errorMessage="Error message!" />
-						}
-					]
-				},
-				{
-					propName: 'min',
-					variations: [
-						{
-							component:
-								<CSInputNumber label="Enter value:" min="1" />
-						}
-					]
-				},
-				{
-					propName: 'max',
-					variations: [
-						{
-							component:
-								<CSInputNumber label="Enter value:" max="5" />
-						}
-					]
-				},
-				{
-					propName: 'maxLength',
-					variations: [
-						{
-							variationText: ['type="text"'],
-							component:
-								<CSInputNumber label="Enter value:" type="text" maxLength={10} />
-						}
-					]
-				},
-				{
-					propName: 'step',
-					quickLink: 'step',
-					variations: [
-						{
-							variationName: ['1'],
-							component:
-								<CSInputNumber label="Enter value:" type="number" step="1" />
-						},
-						{
-							variationName: ['0.01'],
-							component:
-								<CSInputNumber label="Enter value:" type="number" step="0.01" />
-						},
-						{
-							variationName: ['0.001'],
-							component:
-								<CSInputNumber label="Enter value:" type="number" step="0.001" />
-						},
-						{
-							variationName: ['any'],
-							component:
-								<CSInputNumber label="Enter value:" type="number" step="any" />
-						}
-					]
-				},
-				{
-					propName: 'borderRadius',
-					variations: [
-						{
-							variationName: ['0'],
-							quickLink: '0',
-							component:
-								<CSInputNumber label="Enter value:" borderRadius="0" />
-						}
-					]
-				},
-				{
-					propName: 'hideSpinner',
-					customText: '',
-					variations: [
-						{
-							variationName: ['true'],
-							quickLink: 'true',
-							component:
-								<CSInputNumber label="Enter value:" hideSpinner />
-						}
-					]
-				},
-				{
-					propName: 'onBlur',
-					customText: '',
-					variations: [
-						{
-							component:
-								<CSInputNumber label="Enter value:" onBlur={this.handleBlur} />
-						}
-					]
-				},
-				{
-					propName: 'onChange',
-					customText: '',
-					variations: [
-						{
-							component:
-								<CSInputNumber label="Enter value:" onChange={this.handleChange} />
-						}
-					]
-				},
-				{
-					propName: 'onFocus',
-					customText: '',
-					variations: [
-						{
-							component:
-								<CSInputNumber label="Enter value:" onFocus={this.handleFocus} />
-						}
-					]
-				},
-				{
-					propName: 'onKeyDown',
-					customText: '',
-					variations: [
-						{
-							component:
-								<CSInputNumber label="Enter value:" onKeyDown={this.handleKeyDown} />
-						}
-					]
-				},
-				{
-					propName: 'onPaste',
-					customText: '',
-					variations: [
-						{
-							component:
-								<CSInputNumber label="Enter value:" onPaste={this.handlePaste} />
-						}
-					]
-				},
-				{
-					propName: 'name',
-					customText: '',
-					variations: [
-						{
-							component:
-								<CSInputNumber label="Enter value:" name="Input number" />
-						}
-					]
-				},
-				{
-					propName: 'title',
-					variations: [
-						{
-							component:
-								<CSInputNumber label="Enter value:" title="This is a title" />
-						}
-					]
-				},
-				{
-					propName: 'className',
-					variations: [
-						{
-							variationName: ['custom class'],
-							quickLink: 'custom class',
-							component:
-								<CSInputNumber label="Enter value:" className="custom-class" />
-						}
-					]
-				}
-			],
-			properties: [
-				{
-					name: 'borderRadius',
-					types: ['string'],
-					default: '0.25rem',
-					description: 'Set a border radius style.'
-				}, {
-					name: 'className',
-					types: ['string'],
-					description: 'Apply custom CSS classes to the number input.'
-				}, {
-					name: 'disabled',
-					types: ['boolean'],
-					default: 'false',
-					description: 'Disable the number input.'
-				}, {
-					name: 'error',
-					types: ['boolean'],
-					description: 'Toggle the error state.'
-				}, {
-					name: 'errorMessage',
-					customTypes: [{
-						name: 'CSFieldErrorMsgType',
-						types: ['string', 'Array<string>']
-					}],
-					description: 'Set the error message or messages for the number input.'
-				}, {
-					name: 'hidden',
-					types: ['boolean'],
-					default: 'false',
-					description: 'Control the hidden attribute.'
-				}, {
-					name: 'helpText',
-					types: ['string'],
-					description: 'Set the text to be displayed in the tooltip.'
-				}, {
-					name: 'hideSpinner',
-					types: ['boolean'],
-					default: 'false',
-					description: 'Determine whether the spinner should appear.'
-				}, {
-					name: 'id',
-					types: ['string'],
-					description: 'Set the ID for the number input.'
-				}, {
-					name: 'label',
-					required: true,
-					types: ['string'],
-					description: 'Set the file input label.'
-				}, {
-					name: 'labelHidden',
-					types: ['boolean'],
-					default: 'false',
-					description: 'Hide the file input label.'
-				}, {
-					name: 'labelTitle',
-					types: ['boolean'],
-					description: 'Control whether to set the title attribute.'
-				}, {
-					name: 'max',
-					types: ['any'],
-					description: 'Set a max value for the number input.'
-				}, {
-					name: 'maxLength',
-					types: ['number'],
-					description: 'Set the maximum length of the value (can be used only with type="text").'
-				}, {
-					name: 'step',
-					types: ['string'],
-					description: 'Set which interval to use when using up and down arrows to adjust the value.'
-				}, {
-					name: 'min',
-					types: ['any'],
-					description: 'Set a min value for the number input.'
-				}, {
-					name: 'name',
-					types: ['string'],
-					description: 'Set the number input name attribute.'
-				}, {
-					name: 'onBlur',
-					types: ['(event) => void'],
-					description: 'Handler method for the blur event.'
-				}, {
-					name: 'onChange',
-					types: ['(value) => any'],
-					description: 'Handler method for the change event.'
-				}, {
-					name: 'onFocus',
-					types: ['(event) => any'],
-					description: 'Handler method for the focus event.'
-				}, {
-					name: 'onKeyDown',
-					types: ['(event) => void'],
-					description: 'Handler method for the keydown event.'
-				}, {
-					name: 'onPaste',
-					types: ['(event) => void'],
-					description: 'Handler method for the paste event.'
-				}, {
-					name: 'placeholder',
-					types: ['string'],
-					description: 'Set a number input placeholder.'
-				}, {
-					name: 'readOnly',
-					types: ['boolean'],
-					default: 'false',
-					description: 'Control whether to apply the readonly attribute.'
-				}, {
-					name: 'required',
-					types: ['boolean'],
-					default: 'false',
-					description: 'Make the number input required.'
-				}, {
-					name: 'title',
-					types: ['string'],
-					description: 'Set the number input title.'
-				}, {
-					name: 'tooltipPosition',
-					customTypes: [{
-						name: 'CSTooltipPosition',
-						types: [
-							'\'bottom-right\'',
-							'\'bottom-left\'',
-							'\'top-right\'',
-							'\'top-left\'',
-							'\'top-center\'',
-							'\'bottom-center\'',
-							'\'right-top\'',
-							'\'right-center\'',
-							'\'right-bottom\'',
-							'\'left-top\'',
-							'\'left-center\'',
-							'\'left-bottom\''
+						variations: [
+							{
+								component: <CSInputNumber label="Enter value" />,
+								code: '<CSInputNumber label="Enter value" />'
+							}
 						]
-					}],
-					description: 'Set the tooltip position for the number input.'
-				}, {
-					name: 'type',
-					types: ['string'],
-					default: '\'number\'',
-					description: 'Set the number input field type.'
-				}, {
-					name: 'value',
-					types: ['any'],
-					description: 'Set the number input default value.'
-				}, {
-					name: '[key: string]',
-					types: ['any'],
-					description: 'Spreads the rest of the props to the number input.'
-				}
-			],
-			accessibility: [
-				{
-					criterionList: [
-						'1.3.1',
-						'1.4.1',
-						'1.4.4',
-						'2.1.1',
-						'2.1.2',
-						'2.4.7',
-						'2.5.3',
-						'3.2.1',
-						'3.2.2',
-						'3.3.1',
-						'3.3.2'
-					],
-					requirements: [
-						{
-							structure: [
-								'HTML `<input type="number">`'
-							],
-							properties: [
-								'`aria-invalid`',
-								'`aria-required`',
-								'`aria-labelledby` - associate field with label',
-								'`aria-valuemin`',
-								'`aria-valuemax`',
-								'`aria-valuenow`',
-								'`role="spintbutton"` - implicit by input'
-							],
-							styling: [
-								'Focus state styles'
-							],
-							keyboardOperability: [
-								'OOTB focusable and arrows up or down increase or decrease the number'
-							]
-						}
-					]
-				}
-			]
-		};
-
-		for (const example of json.examples) {
-			for (const variation of example.variations) {
-				(variation as any).string = jsxToString(variation.component);
+					}, {
+						propName: 'borderRadius',
+						variations: [
+							{
+								primaryVariants: 'borderRadius="0"',
+								component: <CSInputNumber label="Enter value" borderRadius="0" />,
+								code: '<CSInputNumber label="Enter value" borderRadius="0" />'
+							}
+						]
+					}, {
+						propName: 'disabled',
+						variations: [
+							{
+								primaryVariants: 'disabled={true}',
+								component: <CSInputNumber label="Enter value" disabled />,
+								code: '<CSInputNumber label="Enter value" disabled />'
+							}
+						]
+					}, {
+						propName: 'error',
+						alert: {
+							variant: 'info',
+							text: 'Component in error state should always contain associated error message to satisfy accessibility best practices!'
+						},
+						variations: [
+							{
+								primaryVariants: 'error={true}',
+								component: <CSInputNumber label="Enter value" error />,
+								code: '<CSInputNumber label="Enter value" error />'
+							}
+						]
+					}, {
+						propName: 'errorMessage',
+						variations: [
+							{
+								secondaryVariant: 'error={true}',
+								component: <CSInputNumber
+									label="Enter value"
+									error
+									errorMessage="Error message!"
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									error
+									errorMessage="Error message!"
+								/>`
+							}
+						]
+					}, {
+						propName: 'helpText',
+						variations: [
+							{
+								component: <CSInputNumber label="Enter value" helpText="Help text example" />,
+								code: '<CSInputNumber label="Enter value" helpText="Help text example" />'
+							}
+						]
+					}, {
+						propName: 'hidden',
+						variations: [
+							{
+								primaryVariants: 'hidden={true}',
+								component: <CSInputNumber label="Enter value" hidden />,
+								code: '<CSInputNumber label="Enter value" hidden />'
+							}
+						]
+					}, {
+						propName: 'hideSpinner',
+						variations: [
+							{
+								primaryVariants: 'hideSpinner={true}',
+								component: <CSInputNumber label="Enter value" hideSpinner />,
+								code: '<CSInputNumber label="Enter value" hideSpinner />'
+							}
+						]
+					}, {
+						propName: 'labelHidden',
+						variations: [
+							{
+								primaryVariants: 'labelHidden={true}',
+								component: <CSInputNumber label="Enter value" labelHidden />,
+								code: '<CSInputNumber label="Enter value" labelHidden />'
+							}
+						]
+					}, {
+						propName: 'labelTitle',
+						variations: [
+							{
+								primaryVariants: 'labelTitle={true}',
+								component: <CSInputNumber label="Enter value" labelTitle />,
+								code: '<CSInputNumber label="Enter value" labelTitle />'
+							}
+						]
+					}, {
+						propName: 'max',
+						variations: [
+							{
+								component: <CSInputNumber label="Enter value" max="5" />,
+								code: '<CSInputNumber label="Enter value" max="5" />'
+							}
+						]
+					}, {
+						propName: 'maxLength',
+						alert: {
+							variation: 'info',
+							text: 'This prop is only supported when the input type is set to text.'
+						},
+						variations: [
+							{
+								secondaryVariant: 'type="text"',
+								component: <CSInputNumber label="Enter value" type="text" maxLength={10} />,
+								code: '<CSInputNumber label="Enter value" type="text" maxLength={10} />'
+							}
+						]
+					}, {
+						propName: 'min',
+						variations: [
+							{
+								component: <CSInputNumber label="Enter value" min="1" />,
+								code: '<CSInputNumber label="Enter value" min="1" />'
+							}
+						]
+					}, {
+						propName: 'name',
+						variations: [
+							{
+								component: <CSInputNumber label="Enter value" name="Input number" />,
+								code: '<CSInputNumber label="Enter value" name="Input number" />'
+							}
+						]
+					}, {
+						propName: 'onBlur',
+						variations: [
+							{
+								component: <CSInputNumber label="Enter value" onBlur={this.handleBlur} />,
+								code: '<CSInputNumber label="Enter value" onBlur={this.handleBlur} />'
+							}
+						]
+					}, {
+						propName: 'onChange',
+						variations: [
+							{
+								component: <CSInputNumber label="Enter value" onChange={this.handleChange} />,
+								code: '<CSInputNumber label="Enter value" onChange={this.handleChange} />'
+							}
+						]
+					}, {
+						propName: 'onFocus',
+						variations: [
+							{
+								component: <CSInputNumber label="Enter value" onFocus={this.handleFocus} />,
+								code: '<CSInputNumber label="Enter value" onFocus={this.handleFocus} />'
+							}
+						]
+					}, {
+						propName: 'onKeyDown',
+						variations: [
+							{
+								component: <CSInputNumber label="Enter value" onKeyDown={this.handleKeyDown} />,
+								code: '<CSInputNumber label="Enter value" onKeyDown={this.handleKeyDown} />'
+							}
+						]
+					}, {
+						propName: 'onPaste',
+						variations: [
+							{
+								component: <CSInputNumber label="Enter value" onPaste={this.handlePaste} />,
+								code: '<CSInputNumber label="Enter value" onPaste={this.handlePaste} />'
+							}
+						]
+					}, {
+						propName: 'placeholder',
+						variations: [
+							{
+								component: <CSInputNumber label="Enter value" placeholder="Placeholder text" />,
+								code: '<CSInputNumber label="Enter value" placeholder="Placeholder text" />'
+							}
+						]
+					}, {
+						propName: 'readOnly',
+						variations: [
+							{
+								primaryVariants: 'readOnly={true}',
+								component: <CSInputNumber
+									label="Enter value"
+									readOnly
+									value={12345}
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									readOnly
+									value={12345}
+								/>`
+							}
+						]
+					}, {
+						propName: 'required',
+						variations: [
+							{
+								primaryVariants: 'required={true}',
+								component: <CSInputNumber label="Enter value" required />,
+								code: '<CSInputNumber label="Enter value" required />'
+							}
+						]
+					}, {
+						propName: 'step',
+						variations: [
+							{
+								primaryVariants: 'step="1"',
+								quickLink: 'integer',
+								component: <CSInputNumber label="Enter value" step="1" />,
+								code: `<CSInputNumber label="Enter value" step="1" />`
+							}, {
+								primaryVariants: 'step="0.001"',
+								quickLink: 'decimal',
+								component: <CSInputNumber label="Enter value" step="0.01" />,
+								code: `<CSInputNumber label="Enter value" step="0.01" />`
+							}, {
+								primaryVariants: 'step="any"',
+								quickLink: 'any',
+								component: <CSInputNumber label="Enter value" step="any" />,
+								code: `<CSInputNumber label="Enter value" step="any" />`
+							}
+						]
+					}, {
+						propName: 'title',
+						variations: [
+							{
+								component: <CSInputNumber label="Enter value" title="This is a title" />,
+								code: '<CSInputNumber label="Enter value" title="This is a title" />'
+							}
+						]
+					}, {
+						propName: 'tooltipPosition',
+						alert: {
+							variant: 'info',
+							text: 'This prop can only be used when helpText is set.'
+						},
+						variations: [
+							{
+								primaryVariants: 'tooltipPosition="top-left"',
+								secondaryVariant: 'helpText="text"',
+								component: <CSInputNumber
+									label="Enter value"
+									helpText="Help text example"
+									tooltipPosition="top-left"
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									helpText="Help text example"
+									tooltipPosition="top-left"
+								/>`
+							}
+						]
+					}, {
+						propName: 'type',
+						variations: [
+							{
+								primaryVariants: 'type="number"',
+								quickLink: 'number',
+								component: <CSInputNumber label="Enter value" />,
+								code: '<CSInputNumber label="Enter value" />'
+							}, {
+								primaryVariants: 'type="text"',
+								quickLink: 'text',
+								component: <CSInputNumber label="Enter value" type="text" />,
+								code: '<CSInputNumber label="Enter value" type="text" />'
+							}
+						]
+					}, {
+						propName: 'value',
+						variations: [
+							{
+								component: <CSInputNumber label="Enter value" value={1} />,
+								code: '<CSInputNumber label="Enter value" value={1} />'
+							}
+						]
+					}, {
+						propName: 'id | class',
+						variations: [
+							{
+								primaryVariants: [
+									'id="custom-id"',
+									'className="custom-class"'
+								],
+								component: <CSInputNumber
+									label="Enter value"
+									id="custom-id"
+									className="custom-class"
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									id="custom-id"
+									className="custom-class"
+								/>`
+							}
+						]
+					}
+				]
 			}
-		}
+		],
+		properties: [
+			{
+				name: 'borderRadius',
+				types: ['string'],
+				default: '0.25rem',
+				description: 'Set a border radius style.'
+			}, {
+				name: 'className',
+				types: ['string'],
+				description: 'Apply custom CSS classes to the number input.'
+			}, {
+				name: 'disabled',
+				types: ['boolean'],
+				default: 'false',
+				description: 'Disable the number input.'
+			}, {
+				name: 'error',
+				types: ['boolean'],
+				description: 'Toggle the error state.'
+			}, {
+				name: 'errorMessage',
+				customTypes: [{
+					name: 'CSFieldErrorMsgType',
+					types: ['string', 'Array<string>']
+				}],
+				description: 'Set the error message or messages for the number input.'
+			}, {
+				name: 'hidden',
+				types: ['boolean'],
+				default: 'false',
+				description: 'Control the hidden attribute.'
+			}, {
+				name: 'helpText',
+				types: ['string'],
+				description: 'Set the text to be displayed in the tooltip.'
+			}, {
+				name: 'hideSpinner',
+				types: ['boolean'],
+				default: 'false',
+				description: 'Determine whether the spinner should appear.'
+			}, {
+				name: 'id',
+				types: ['string'],
+				description: 'Set the ID for the number input.'
+			}, {
+				name: 'label',
+				required: true,
+				types: ['string'],
+				description: 'Set the file input label.'
+			}, {
+				name: 'labelHidden',
+				types: ['boolean'],
+				default: 'false',
+				description: 'Hide the file input label.'
+			}, {
+				name: 'labelTitle',
+				types: ['boolean'],
+				description: 'Control whether to set the title attribute.'
+			}, {
+				name: 'max',
+				types: ['any'],
+				description: 'Set a max value for the number input.'
+			}, {
+				name: 'maxLength',
+				types: ['number'],
+				description: 'Set the maximum length of the value (can be used only with type="text").'
+			}, {
+				name: 'step',
+				types: ['string'],
+				description: 'Set which interval to use when using up and down arrows to adjust the value.'
+			}, {
+				name: 'min',
+				types: ['any'],
+				description: 'Set a min value for the number input.'
+			}, {
+				name: 'name',
+				types: ['string'],
+				description: 'Set the number input name attribute.'
+			}, {
+				name: 'onBlur',
+				types: ['(event) => void'],
+				description: 'Handler method for the blur event.'
+			}, {
+				name: 'onChange',
+				types: ['(value) => any'],
+				description: 'Handler method for the change event.'
+			}, {
+				name: 'onFocus',
+				types: ['(event) => any'],
+				description: 'Handler method for the focus event.'
+			}, {
+				name: 'onKeyDown',
+				types: ['(event) => void'],
+				description: 'Handler method for the keydown event.'
+			}, {
+				name: 'onPaste',
+				types: ['(event) => void'],
+				description: 'Handler method for the paste event.'
+			}, {
+				name: 'placeholder',
+				types: ['string'],
+				description: 'Set a number input placeholder.'
+			}, {
+				name: 'readOnly',
+				types: ['boolean'],
+				default: 'false',
+				description: 'Control whether to apply the readonly attribute.'
+			}, {
+				name: 'required',
+				types: ['boolean'],
+				default: 'false',
+				description: 'Make the number input required.'
+			}, {
+				name: 'title',
+				types: ['string'],
+				description: 'Set the number input title.'
+			}, {
+				name: 'tooltipPosition',
+				customTypes: [{
+					name: 'CSTooltipPosition',
+					types: [
+						'\'bottom-right\'',
+						'\'bottom-left\'',
+						'\'top-right\'',
+						'\'top-left\'',
+						'\'top-center\'',
+						'\'bottom-center\'',
+						'\'right-top\'',
+						'\'right-center\'',
+						'\'right-bottom\'',
+						'\'left-top\'',
+						'\'left-center\'',
+						'\'left-bottom\''
+					]
+				}],
+				default: '\'top-right\'',
+				description: 'Set the tooltip position for the number input.'
+			}, {
+				name: 'type',
+				types: ['string'],
+				default: '\'number\'',
+				description: 'Set the number input field type.'
+			}, {
+				name: 'value',
+				types: ['any'],
+				description: 'Set the number input default value.'
+			}, {
+				name: '[key: string]',
+				types: ['any'],
+				description: 'Spreads the rest of the props to the number input.'
+			}
+		],
+		accessibility: [
+			{
+				criterionList: [
+					'1.3.1',
+					'1.4.1',
+					'1.4.4',
+					'2.1.1',
+					'2.1.2',
+					'2.4.7',
+					'2.5.3',
+					'3.2.1',
+					'3.2.2',
+					'3.3.1',
+					'3.3.2'
+				],
+				requirements: [
+					{
+						structure: [
+							'HTML `<input type="number">`'
+						],
+						properties: [
+							'`aria-invalid`',
+							'`aria-required`',
+							'`aria-labelledby` - associate field with label',
+							'`aria-valuemin`',
+							'`aria-valuemax`',
+							'`aria-valuenow`',
+							'`role="spintbutton"` - implicit by input'
+						],
+						styling: [
+							'Focus state styles'
+						],
+						keyboardOperability: [
+							'OOTB focusable and arrows up or down increase or decrease the number'
+						]
+					}
+				]
+			}
+		]
+	})
 
-		return json;
-	}
 	render() {
-		const component = this.getDoc();
+		const component = this.getInputNumberDoc();
 
 		return (
 			<>
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties name={component.name} examples={component.examples} />
+					<PreviewProperties {...component} />
 					<PreviewTable components={[component]} />
 					<PreviewAccessibility components={[component]} />
 				</div>
-				<div className="prop-sidebar">
-					<h3>Quick Links</h3>
-					<PreviewLinks component={component} />
-				</div>
+				<PreviewLinks {...component} />
 			</>
 		);
 	}

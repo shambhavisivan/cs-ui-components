@@ -379,6 +379,7 @@ class CSDateTimePickerPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'tooltipPosition="top-left"',
+								secondaryVariant: 'helpText="text"',
 								component: <CSDateTimePicker
 									label="Enter date"
 									tooltipPosition="top-left"

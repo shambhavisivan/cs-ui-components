@@ -360,6 +360,7 @@ class CSDatepickerPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'tooltipPosition="top-left"',
+								secondaryVariant: 'helpText="text"',
 								component: <CSDatepicker
 									label="Enter date"
 									tooltipPosition="top-left"
