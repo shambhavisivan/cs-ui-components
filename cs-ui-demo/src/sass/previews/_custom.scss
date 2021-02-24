@@ -20,13 +20,8 @@
 		}
 	}
 
-	&.path-preview {
-		min-height: 10rem;
-		padding: 1rem;
-
-		.custom-class {
-			background-color: var(---custom-bg);
-		}
+	&.path-preview .custom-class {
+		background-color: var(--custom-bg);
 	}
 
 	&.table-preview {
