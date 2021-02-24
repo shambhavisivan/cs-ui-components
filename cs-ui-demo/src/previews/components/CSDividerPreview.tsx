@@ -1,5 +1,4 @@
 import React from 'react';
-import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
@@ -9,20 +8,35 @@ import PreviewLinks from '../PreviewLinks';
 import { CSDivider, CSButtonGroup, CSDropdown, CSMainHeader, CSMainHeaderLeft, CSMainHeaderRight, CSMainHeaderIcon, CSButton, CSIcon } from '@cloudsense/cs-ui-components';
 
 class CSDividerPreview extends React.Component {
-	getDoc() {
-		const json = {
-			name: 'Divider',
-			usage: 'Divides things, simple.',
-			accessible: 'yes',
-			examples: [
-				{
-					propName: 'variant',
-					variations: [
-						{
-							variationName: ['vertical'],
-							quickLink: 'vertical',
-							component:
-								<CSMainHeader>
+	getDividerDoc = () => ({
+		name: 'Divider',
+		usage: 'Divides things, simple.',
+		accessible: 'yes',
+		previews: [
+			{
+				name: 'Divider',
+				examples: [
+					{
+						propName: 'variant',
+						variations: [
+							{
+								primaryVariants: 'variant="vertical"',
+								quickLink: 'vertical',
+								component: <CSMainHeader>
+									<CSMainHeaderIcon>
+										<CSIcon name="emoji" />
+									</CSMainHeaderIcon>
+									<CSMainHeaderLeft title="This is a white header" subtitle="This is a subtitle" />
+									<CSMainHeaderRight>
+										<CSButtonGroup>
+											<CSButton label="Button 1" />
+											<CSButton label="Button 2" />
+										</CSButtonGroup>
+										<CSDivider variant="vertical" size="2rem" />
+										<CSButton label="Button 2" />
+									</CSMainHeaderRight>
+								</CSMainHeader>,
+								code: `<CSMainHeader>
 									<CSMainHeaderIcon>
 										<CSIcon name="emoji" />
 									</CSMainHeaderIcon>
@@ -38,153 +52,176 @@ class CSDividerPreview extends React.Component {
 										<CSDivider variant="vertical" size="2rem" />
 										<CSButton label="Button 2" />
 									</CSMainHeaderRight>
-								</CSMainHeader>
-						},
-						{
-							variationName: ['horizontal'],
-							quickLink: 'horizontal',
-							component:
-								<CSDropdown>
+								</CSMainHeader>`
+							}, {
+								primaryVariants: 'variant="horizontal"',
+								quickLink: 'horizontal',
+								component: <CSDropdown>
 									<CSButton label="Button 1" />
 									<CSButton label="Button 2" />
 									<CSDivider variant="horizontal" />
 									<CSButton label="Lonely Button" />
-								</CSDropdown>
-						}
-					]
-				},
-				{
-					propName: 'className',
-					variations: [
-						{
-							variationName: ['custom class'],
-							quickLink: 'custom class',
-							component:
-								<CSButtonGroup>
+								</CSDropdown>,
+								code: `<CSDropdown>
 									<CSButton label="Button 1" />
 									<CSButton label="Button 2" />
-									<CSDivider variant="vertical" size="2rem" className="custom-class" />
-									<CSButton label="Button 3" />
-								</CSButtonGroup>
-						}
-					]
-				},
-				{
-					propName: 'id',
-					variations: [
-						{
-							component:
-								<CSDropdown>
-									<CSButton label="Button 1" />
-									<CSButton label="Button 2" />
-									<CSDivider variant="horizontal" id="id" />
+									<CSDivider variant="horizontal" />
 									<CSButton label="Lonely Button" />
-								</CSDropdown>
-						}
-					]
-				},
-				{
-					propName: 'label',
-					variations: [
-						{
-							component:
-								<CSDivider
+								</CSDropdown>`
+							}
+						]
+					}, {
+						propName: 'label',
+						alert: {
+							variant: 'info',
+							text: 'This prop can only be used with the horizontal variant.'
+						},
+						variations: [
+							{
+								secondaryVariants: 'variant="horizontal"',
+								component: <CSDivider
 									variant="horizontal"
 									label="Some label"
 									size="25rem"
-								/>
-						}
-					]
-				},
-				{
-					propName: 'size',
-					variations: [
-						{
-							variationName: ['100px'],
-							component:
-								<CSButtonGroup>
+								/>,
+								code: `<CSDivider
+									variant="horizontal"
+									label="Some label"
+									size="25rem"
+								/>`
+							}
+						]
+					}, {
+						propName: 'size',
+						description: 'The size property affects height for vertical variants and it affects width for horizontal variants.',
+						variations: [
+							{
+								primaryVariants: 'size="100px"',
+								secondaryVariants: 'variant="vertical"',
+								quickLink: '100px vertical',
+								component: <CSButtonGroup>
 									<CSButton label="Button 1" />
 									<CSButton label="Button 2" />
 									<CSDivider variant="vertical" size="100px" />
 									<CSButton label="Button 3" />
-								</CSButtonGroup>
-						}
-					]
-				}
-			],
+								</CSButtonGroup>,
+								code: `<CSButtonGroup>
+									<CSButton label="Button 1" />
+									<CSButton label="Button 2" />
+									<CSDivider variant="vertical" size="100px" />
+									<CSButton label="Button 3" />
+								</CSButtonGroup>`
+							}, {
+								primaryVariants: 'size="50%"',
+								secondaryVariants: 'variant="horizontal"',
+								quickLink: '50% horizontal',
+								component: <>
+									<CSButton label="Button 1" />
+									<CSDivider variant="horizontal" size="50%" />
+									<CSButton label="Button 2" />
+								</>,
+								code: `<CSButton label="Button 1" />
+								<CSDivider variant="horizontal" size="50%" />
+								<CSButton label="Button 2" />`
+							}
+						]
+					}, {
+						propName: 'id | class',
+						variations: [
+							{
+								primaryVariants: [
+									'id="custom-id"',
+									'className="custom-class"'
+								],
+								component: <CSButtonGroup>
+									<CSButton label="Button 1" />
+									<CSButton label="Button 2" />
+									<CSDivider
+										variant="vertical"
+										id="custom-id"
+										className="custom-class"
+										size="2rem"
+									/>
+									<CSButton label="Button 3" />
+								</CSButtonGroup>,
+								code: `<CSButtonGroup>
+									<CSButton label="Button 1" />
+									<CSButton label="Button 2" />
+									<CSDivider
+										variant="vertical"
+										id="custom-id"
+										className="custom-class"
+										size="2rem"
+									/>
+									<CSButton label="Button 3" />
+								</CSButtonGroup>`
+							}
+						]
+					}
+				]
 
-			properties: [
-				{
-					name: 'className',
-					types: ['string'],
-					description: 'Apply custom CSS classes to the divider.'
-				}, {
-					name: 'id',
-					types: ['string'],
-					description: 'Set the ID for the divider.'
-				}, {
-					name: 'label',
-					types: ['string'],
-					description: 'Set the divider label, available for horizontal only.'
-				}, {
-					name: 'size',
-					types: ['string'],
-					description: 'Set the width for the horizontal or the height for the vertical divider. (eg. 20px, 10rem, 100%, etc.)'
-				}, {
-					name: 'variant',
-					required: true,
-					customTypes: [{
-						name: 'CSDividerVariant',
-						types: ['\'horizontal\'', '\'vertical\'']
-					}],
-					description: 'Set the divider variant.'
-				}, {
-					name: '[key: string]',
-					types: ['any'],
-					description: 'Spreads the rest of the props to the divider div.'
-				}
-			],
-			accessibility: [
-				{
-					criterionList: [
-						'4.1.2'
-					],
-					requirements: [
-						{
-							properties: [
-								'`role="separator"`',
-								'`aria-orientation`'
-							]
-						}
-					]
-				}
-			]
-		};
-
-		for (const example of json.examples) {
-			for (const variation of example.variations) {
-				(variation as any).string = jsxToString(variation.component);
 			}
-		}
-
-		return json;
-	}
+		],
+		properties: [
+			{
+				name: 'className',
+				types: ['string'],
+				description: 'Apply custom CSS classes to the divider.'
+			}, {
+				name: 'id',
+				types: ['string'],
+				description: 'Set the ID for the divider.'
+			}, {
+				name: 'label',
+				types: ['string'],
+				description: 'Set the divider label, available for horizontal only.'
+			}, {
+				name: 'size',
+				types: ['string'],
+				description: 'Set the width for the horizontal or the height for the vertical divider. (eg. 20px, 10rem, 100%, etc.)'
+			}, {
+				name: 'variant',
+				required: true,
+				customTypes: [{
+					name: 'CSDividerVariant',
+					types: ['\'horizontal\'', '\'vertical\'']
+				}],
+				description: 'Set the divider variant.'
+			}, {
+				name: '[key: string]',
+				types: ['any'],
+				description: 'Spreads the rest of the props to the divider div.'
+			}
+		],
+		accessibility: [
+			{
+				criterionList: [
+					'4.1.2'
+				],
+				requirements: [
+					{
+						properties: [
+							'`role="separator"`',
+							'`aria-orientation`'
+						]
+					}
+				]
+			}
+		]
+	})
 
 	render() {
-		const component = this.getDoc();
+		const component = this.getDividerDoc();
 
 		return (
 			<>
 				<div className="preview-section-wrapper divider-preview">
 					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties name={component.name} examples={component.examples} />
+					<PreviewProperties {...component} />
 					<PreviewTable components={[component]} />
 					<PreviewAccessibility components={[component]} />
 				</div>
-				<div className="prop-sidebar">
-					<h3>Quick Links</h3>
-					<PreviewLinks component={component} />
-				</div>
+				<PreviewLinks {...component} />
 			</>
 		);
 	}
