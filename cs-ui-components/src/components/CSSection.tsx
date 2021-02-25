@@ -5,14 +5,14 @@ import classNames from 'classnames';
 export interface CSSectionProps {
 	[key: string]: any;
 	className?: string;
-	collapsed?: boolean;
 	collapsible?: boolean;
+	defaultClosed?: boolean;
 	id?: string;
 	title: string;
 }
 
 export interface CSSectionState {
-	collapsed?: boolean;
+	defaultClosed?: boolean;
 	collapsible?: boolean;
 }
 
@@ -21,28 +21,28 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 		super(props);
 
 		this.state = {
-			collapsed: false
+			defaultClosed: false
 		};
 
 		this.toggle = this.toggle.bind(this);
 	}
 	toggle() {
 		this.setState({
-			collapsed: !this.state.collapsed
+			defaultClosed: !this.state.defaultClosed
 		});
 	}
-	// When component mounts if collapsed equals true hide content initially
+	// When component mounts if defaultClosed equals true hide content initially
 	componentDidMount() {
-		if (this.props.collapsed) {
+		if (this.props.defaultClosed) {
 			this.setState({
-				collapsed: true
+				defaultClosed: true
 			});
 		}
 	}
 
 	componentDidUpdate(prevProps: CSSectionProps) {
-		if (prevProps.collapsed !== this.props.collapsed) {
-			this.setState({ collapsed: this.props.collapsed});
+		if (prevProps.defaultClosed !== this.props.defaultClosed) {
+			this.setState({ defaultClosed: this.props.defaultClosed});
 		}
 	}
 
@@ -50,7 +50,7 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 
 		const {
 			className,
-			collapsed,
+			defaultClosed,
 			collapsible,
 			id,
 			title,
@@ -65,7 +65,7 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 		);
 		const sectionTitleClasses = classNames(
 			'cs-section-wrapper', {
-				'cs-section-wrapper-padding': collapsed === true && collapsible !== true
+				'cs-section-wrapper-padding': defaultClosed === true && collapsible !== true
 			}
 		);
 		return (
@@ -79,10 +79,10 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 						<button
 							className="cs-section-button"
 							onClick={this.toggle}
-							aria-expanded={!this.state.collapsed}
+							aria-expanded={!this.state.defaultClosed}
 							aria-roledescription="section"
 						>
-							<CSIcon name="chevronright" rotate={this.state.collapsed ? null : '90'} />
+							<CSIcon name="chevronright" rotate={this.state.defaultClosed ? null : '90'} />
 							<span className="cs-section-title">{title}</span>
 						</button>
 					:
@@ -90,7 +90,7 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 
 					}
 				</h3>
-				{this.state.collapsed ?
+				{this.state.defaultClosed ?
 					null
 				:
 					<div className="cs-section-title" role="region">

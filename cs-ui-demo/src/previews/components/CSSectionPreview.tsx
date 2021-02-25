@@ -39,8 +39,7 @@ class CSSectionPreview extends React.Component {
 						{
 							component:
 								<CSSection
-									collapsed
-									title="Collapsed Section"
+									title="Section is closed by default"
 									id="id"
 								>
 									<ul>
@@ -53,13 +52,13 @@ class CSSectionPreview extends React.Component {
 					]
 				},
 				{
-					propName: 'collapsed',
+					propName: 'defaultClosed',
 					variations: [
 						{
 							variationName: ['true'],
 							quickLink: 'true',
 							component:
-								<CSSection collapsed title="Collapsed Section">
+								<CSSection defaultClosed collapsible title="Section is closed by default">
 									<ul>
 										<li>Item 1</li>
 										<li>Item 2</li>
@@ -112,16 +111,16 @@ class CSSectionPreview extends React.Component {
 					name: 'className',
 					types: ['string'],
 					description: 'Apply custom CSS classes to the section.'
-				}, {
-					name: 'collapsed',
-					types: ['boolean'],
-					default: 'false',
-					description: 'Control whether the section is collapsed.'
-				}, {
+				},  {
 					name: 'collapsible',
 					types: ['boolean'],
 					default: 'false',
 					description: 'Control whether the section should be collapsible.'
+				}, {
+					name: 'defaultClosed',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Control whether the section is closed by default. It is designed to be used with collapsible prop.'
 				}, {
 					name: 'id',
 					types: ['string'],
