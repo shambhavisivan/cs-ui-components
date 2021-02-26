@@ -6,15 +6,19 @@
 	display: flex;
 
 	.preview-section-wrapper {
-		h2 {
+
+		.demo-heading {
+			margin: 1rem 0 0.5rem
+		}
+
+		h2.demo-heading {
 			font-size: 1.5rem;
-			margin: 1rem 0 0.5rem;
 			font-weight: 700;
 		}
 
-		h3.prop-heading {
+		h3.demo-heading,
+		h4.demo-heading {
 			font-size: 1.25rem;
-			margin: 1rem 0 0.5rem;
 		}
 
 		.cs-alert {

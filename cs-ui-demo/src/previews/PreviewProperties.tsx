@@ -28,12 +28,15 @@ const PreviewProperties: React.FC<PreviewPropertiesProps | any> = props => {
 	return <>
 		{previews.map((preview: PreviewComponent) => (
 			<div key={preview.name} className="component-preview-wrapper">
-				<h2 id={`component-preview-wrapper-${preview.name.split(' ').join('-').toLowerCase()}`}>
+				<h2
+					className="demo-heading"
+					id={`component-preview-wrapper-${preview.name.split(' ').join('-').toLowerCase()}`}
+				>
 					{preview.name} Previews
 				</h2>
 				{preview.examples.map((example: PreviewExample) => (
 					<div key={example.propName} className={`component-preview ${example.propName}`}>
-						<h3 className="prop-heading" id={`component-preview-${example.propName.split(' ').join('-').toLowerCase()}`}>
+						<h3 className="demo-heading" id={`component-preview-${example.propName.split(' ').join('-').toLowerCase()}`}>
 							{example.propName}
 						</h3>
 						{example.description && (

@@ -28,12 +28,12 @@ const PreviewAccessibility: React.FC<PreviewAccessibilityProps> = ({ components 
 					{component.accessibility.map((prop: any, propIndex: any) => (
 						<React.Fragment key={propIndex}>
 							<h2
-								className="property-name"
+								className="demo-heading"
 								id={`accessibility-table-${components[0].name.split(' ').join('-').toLowerCase()}`}>
 								{components[0].name} Accessibility Conformance Requirements
 							</h2>
 							<div className="accessibility-criteria-list">
-								<h3>Related Criteria:</h3>
+								<h3 className="demo-heading">Related Criteria:</h3>
 								{prop.criterionList && prop.criterionList.map((criterion: string, criterionIndex: number) => (
 									<React.Fragment key={criterion}>
 										<CSButton
@@ -51,7 +51,7 @@ const PreviewAccessibility: React.FC<PreviewAccessibilityProps> = ({ components 
 							</div>
 							{prop.requirements.map((item: any, itemIndex: number) => (
 								<div className="accessibility-table-wrapper" key={itemIndex}>
-									<h3>Implemented &amp; Supported:</h3>
+									<h3 className="demo-heading">Implemented &amp; Supported:</h3>
 									<CSTable className="accessibility-table">
 										<CSTableBody className="accessibility-table-body">
 											{item.structure && (

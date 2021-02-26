@@ -30,8 +30,8 @@ class PreviewHeading extends React.Component<PreviewHeadingProps> {
 		}
 
 		return (
-			<div className="preview-heading">
-				<div className="preview-heading-row">
+			<div className="preview-main-heading-wrapper">
+				<div className="preview-main-heading-row">
 					<h1>{this.props.name}</h1>
 					{this.props.accessible !== 'hide' &&
 						<div className="preview-accessibility-status-wrapper" >
@@ -40,7 +40,7 @@ class PreviewHeading extends React.Component<PreviewHeadingProps> {
 						</div>
 					}
 				</div>
-				{this.props.usage ? <h2>{this.props.usage}</h2> : null}
+				{this.props.usage ? <h2 className="preview-main-heading-subtitle">{this.props.usage}</h2> : null}
 			</div>
 		);
 	}

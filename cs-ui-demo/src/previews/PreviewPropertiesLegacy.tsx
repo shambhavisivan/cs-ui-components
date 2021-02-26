@@ -38,7 +38,7 @@ const PreviewProperties: React.FC<{examples: Array<{propName?: any; customText?:
 		}) => (
 			<div key={propName}  className="component-preview-wrapper">
 				<div className={`component-preview ${propName}`}>
-					<h3 className="prop-heading" id={`${name}-${propName}`}>{propName}</h3>
+					<h3 className="demo-heading" id={`${name}-${propName}`}>{propName}</h3>
 					<div key={customText}>
 						{customText && <p className="component-info-text">{customText}</p>}
 						{alert && (

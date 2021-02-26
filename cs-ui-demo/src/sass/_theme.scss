@@ -145,7 +145,9 @@ $cs-white: #ffffff;
 	--preview-chip-second-c: #{$cs-gray-medium-1};
 	--preview-chip-second-bg: #{$cs-gray-light-11};
 	--preview-chip-second-br: #{$cs-gray-medium-1};
-	--preview-heading-subtitle-c: #{$cs-gray-dark-6};
+
+	--preview-main-heading-title-c: #{$cs-black};
+	--preview-main-heading-subtitle-c: #{$cs-gray-dark-6};
 
 	--release-notes-code-snippet-bg: #{$cs-white};
 	--release-notes-code-snippet-br: #{$cs-mint};

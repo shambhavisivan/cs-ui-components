@@ -100,11 +100,17 @@ const PreviewTable: React.FC<PreviewTableProps | PreviewTableLegacyProps> = ({ a
 		return (
 			<div key={component.name} className="properties-table-wrapper">
 				{api ? (
-						<h3 id={`properties-table-${component.name.split(' ').join('-').toLowerCase()}`}>
+						<h4
+							className="demo-heading"
+							id={`properties-table-${component.name.split(' ').join('-').toLowerCase()}`}
+						>
 							{component.name} Arguments
-						</h3>
+						</h4>
 					) : (
-						<h2 id={`properties-table-${component.name.split(' ').join('-').toLowerCase()}`}>
+						<h2
+							className="demo-heading"
+							id={`properties-table-${component.name.split(' ').join('-').toLowerCase()}`}
+						>
 							{component.name} Properties
 						</h2>
 					)
