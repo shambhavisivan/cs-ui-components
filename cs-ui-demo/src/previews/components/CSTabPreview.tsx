@@ -1,5 +1,4 @@
 import React from 'react';
-import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
@@ -12,315 +11,414 @@ import { CSTabGroup, CSTab, CSButton } from '@cloudsense/cs-ui-components';
 class CSTabPreview extends React.Component {
 	handleClick = () => alert('Tab has been clicked.');
 
-	getCSTabDoc() {
-		const json = {
-			name: 'Tab',
-			usage: 'Tabs keeps related content in a single container that is shown and hidden through navigation.',
-			accessible: 'yes',
-			examples: [
-				{
-					propName: 'variant',
-					customText: '',
-					variations: [
-						{
-							variationName: ['large'],
-							quickLink: 'large',
-							component:
-								<CSTabGroup variant="large">
+	getTabDoc = () => ({
+		name: 'Tab',
+		usage: 'Tabs keeps related content in a single container that is shown and hidden through navigation.',
+		accessible: 'yes',
+		previews: [
+			{
+				name: 'Tab Group',
+				examples: [
+					{
+						propName: 'variant',
+						variations: [
+							{
+								primaryVariants: 'variant="normal"',
+								quickLink: 'normal',
+								component: <CSTabGroup>
 									<CSTab title="Tab One" />
 									<CSTab title="Tab Two" />
 									<CSTab title="Tab Three" />
-								</CSTabGroup>
-						},
-						{
-							variationName: ['normal'],
-							quickLink: 'normal',
-							component:
-								<CSTabGroup variant="normal">
+								</CSTabGroup>,
+								code: `<CSTabGroup>
 									<CSTab title="Tab One" />
 									<CSTab title="Tab Two" />
 									<CSTab title="Tab Three" />
-								</CSTabGroup>
-						}
-					]
-				},
-				{
-					propName: 'status',
-					customText: '',
-					variations: [
-						{
-							variationName: ['initial'],
-							variationText: ['variant="large"'],
-							quickLink: 'initial large',
-							component:
-								<CSTabGroup variant="large">
-									<CSTab title="Tab One" status="initial" />
-									<CSTab title="Tab Two" status="initial" />
-									<CSTab title="Tab Three" status="initial" />
-								</CSTabGroup>
-						},
-						{
-							variationName: ['error'],
-							variationText: ['variant="large"'],
-							quickLink: 'error large',
-							component:
-								<CSTabGroup variant="large">
-									<CSTab title="Tab One" status="error" />
-									<CSTab title="Tab Two" status="error" />
-									<CSTab title="Tab Three" status="error" />
-								</CSTabGroup>
-						},
-						{
-							variationName: ['warning'],
-							variationText: ['variant="large"'],
-							quickLink: 'warning large',
-							component:
-								<CSTabGroup variant="large">
-									<CSTab title="Tab One" status="warning" />
-									<CSTab title="Tab Two" status="warning" />
-									<CSTab title="Tab Three" status="warning" />
-								</CSTabGroup>
-						},
-						{
-							variationName: ['success'],
-							variationText: ['variant="large"'],
-							quickLink: 'success large',
-							component:
-								<CSTabGroup variant="large">
-									<CSTab title="Tab One" status="success" />
-									<CSTab title="Tab Two" status="success" />
-									<CSTab title="Tab Three" status="success" />
-								</CSTabGroup>
-						}
-					]
-				},
-				{
-					propName: 'active',
-					customText: '',
-					variations: [
-						{
-							variationName: ['true'],
-							variationText: ['variant="large"'],
+								</CSTabGroup>`
+							}, {
+								primaryVariants: 'variant="large"',
+								quickLink: 'large',
+								component: <CSTabGroup variant="large">
+									<CSTab title="Tab One" />
+									<CSTab title="Tab Two" />
+									<CSTab title="Tab Three" />
+								</CSTabGroup>,
+								code: `<CSTabGroup variant="large">
+									<CSTab title="Tab One" />
+									<CSTab title="Tab Two" />
+									<CSTab title="Tab Three" />
+								</CSTabGroup>`
+							}
+						]
+					}, {
+						propName: 'id | class',
+						variations: [
+							{
+								primaryVariants: [
+									'id="custom-id"',
+									'className="custom-class"'
+								],
+								component: <CSTabGroup id="custom-id" className="custom-class">
+									<CSTab
+										title="Tab One"
+										id="custom-id-2"
+										className="custom-class-2"
+									/>
+									<CSTab title="Tab Two" />
+									<CSTab title="Tab Three" />
+								</CSTabGroup>,
+								code: `<CSTabGroup id="custom-id" className="custom-class">
+									<CSTab
+										title="Tab One"
+										id="custom-id-2"
+										className="custom-class-2"
+									/>
+									<CSTab title="Tab Two" />
+									<CSTab title="Tab Three" />
+								</CSTabGroup>`
+							}
+						]
+					}
+				]
+			}, {
+				name: 'Tab',
+				examples: [
+					{
+						propName: 'active',
+						variations: [
+							{
+								primaryVariants: 'active={true}',
+								secondaryVariants: 'variant="normal"',
+								quickLink: 'true normal',
+								component: <CSTabGroup variant="normal">
+									<CSTab title="Tab One" active />
+									<CSTab title="Tab Two" />
+									<CSTab title="Tab Three" />
+								</CSTabGroup>,
+								code: `<CSTabGroup variant="normal">
+									<CSTab title="Tab One" active />
+									<CSTab title="Tab Two" />
+									<CSTab title="Tab Three" />
+								</CSTabGroup>`
+						}, {
+							primaryVariants: 'active={true}',
+							secondaryVariants: 'variant="large"',
 							quickLink: 'true large',
-							component:
-								<CSTabGroup variant="large">
-									<CSTab title="Tab One" active />
-									<CSTab title="Tab Two" />
-									<CSTab title="Tab Three" />
-								</CSTabGroup>
-						},
-						{
-							variationName: ['true'],
-							variationText: ['variant="normal"'],
-							quickLink: 'true normal',
-							component:
-								<CSTabGroup>
-									<CSTab title="Tab One" active />
-									<CSTab title="Tab Two" />
-									<CSTab title="Tab Three" />
-								</CSTabGroup>
-						}
-					]
-				},
-				{
-					propName: 'disabled',
-					customText: '',
-					variations: [
-						{
-							variationName: ['true'],
-							variationText: ['variant="large"'],
-							quickLink: 'disabled large',
-							component:
-								<CSTabGroup variant="large">
+							component: <CSTabGroup>
+								<CSTab title="Tab One" active />
+								<CSTab title="Tab Two" />
+								<CSTab title="Tab Three" />
+							</CSTabGroup>,
+							code: `<CSTabGroup>
+								<CSTab title="Tab One" active />
+								<CSTab title="Tab Two" />
+								<CSTab title="Tab Three" />
+							</CSTabGroup>`
+							}
+						]
+					}, {
+						propName: 'disabled',
+						variations: [
+							{
+								primaryVariants: 'disabled={true}',
+								secondaryVariants: 'variant="normal"',
+								quickLink: 'disabled normal',
+								component: <CSTabGroup variant="normal">
 									<CSTab title="Tab One" disabled />
-									<CSTab title="Tab Two" disabled />
-									<CSTab title="Tab Three" disabled />
-								</CSTabGroup>
-						},
-						{
-							variationName: ['true'],
-							variationText: ['variant="normal"'],
-							quickLink: 'disabled normal',
-							component:
-								<CSTabGroup>
-									<CSTab title="Tab One" tabIcon="activity" disabled />
-									<CSTab title="Tab Two" disabled />
-									<CSTab title="Tab Three" disabled />
-								</CSTabGroup>
-						}
-					]
-				},
-				{
-					propName: 'onClick',
-					customText: '',
-					variations: [
-						{
-							component:
-								<CSTabGroup variant="large">
-									<CSTab title="Tab One" onClick={this.handleClick} />
-									<CSTab title="Tab Two" onClick={this.handleClick} />
-									<CSTab title="Tab Three" onClick={this.handleClick} />
-								</CSTabGroup>
-						}
-					]
-				},
-				{
-					propName: 'title',
-					customText: '',
-					variations: [
-						{
-							component:
-								<CSTabGroup>
-									<CSTab title="Tab One" />
 									<CSTab title="Tab Two" />
 									<CSTab title="Tab Three" />
-								</CSTabGroup>
-						}
-					]
-				},
-				{
-					propName: 'tabIcon',
-					customText: '',
-					variations: [
-						{
-							variationName: ['activity'],
-							quickLink: 'activity',
-							component:
-								<CSTabGroup>
+								</CSTabGroup>,
+								code: `<CSTabGroup variant="normal">
+									<CSTab title="Tab One" disabled />
+									<CSTab title="Tab Two" />
+									<CSTab title="Tab Three" />
+								</CSTabGroup>`
+							}, {
+								primaryVariants: 'disabled={true}',
+								secondaryVariants: 'variant="large"',
+								quickLink: 'disabled large',
+								component: <CSTabGroup>
+									<CSTab title="Tab One" disabled />
+									<CSTab title="Tab Two" />
+									<CSTab title="Tab Three" />
+								</CSTabGroup>,
+								code: `<CSTabGroup>
+									<CSTab title="Tab One" disabled />
+									<CSTab title="Tab Two" />
+									<CSTab title="Tab Three" />
+								</CSTabGroup>`
+							}
+						]
+					}, {
+							propName: 'iconOrigin',
+							variations: [
+								{
+									primaryVariants: 'iconOrigin="slds"',
+									secondaryVariants: 'iconName="activity"',
+									quickLink: 'slds',
+									component: <CSTabGroup>
+										<CSTab title="Tab One" tabIcon="activity" />
+										<CSTab title="Tab Two" />
+										<CSTab title="Tab Three" />
+									</CSTabGroup>,
+									code: `<CSTabGroup>
+										<CSTab title="Tab One" tabIcon="activity" />
+										<CSTab title="Tab Two" />
+										<CSTab title="Tab Three" />
+									</CSTabGroup>`
+								}, {
+									primaryVariants: 'iconOrigin="cs"',
+									secondaryVariants: 'iconName="big_shot"',
+									quickLink: 'cs',
+									component: <CSTabGroup>
+										<CSTab
+											title="Tab One"
+											iconOrigin="cs"
+											tabIcon="big_shot"
+										/>
+										<CSTab title="Tab Two" />
+										<CSTab title="Tab Three" />
+									</CSTabGroup>,
+									code: `<CSTabGroup>
+										<CSTab
+											title="Tab One"
+											iconOrigin="cs"
+											tabIcon="big_shot"
+										/>
+										<CSTab title="Tab Two" />
+										<CSTab title="Tab Three" />
+									</CSTabGroup>`
+								}
+							]
+						}, {
+							propName: 'onClick',
+							variations: [
+								{
+									component: <CSTabGroup variant="large">
+										<CSTab title="Tab One" onClick={this.handleClick} />
+										<CSTab title="Tab Two" onClick={this.handleClick} />
+										<CSTab title="Tab Three" onClick={this.handleClick} />
+									</CSTabGroup>,
+									code: `<CSTabGroup variant="large">
+										<CSTab title="Tab One" onClick={this.handleClick} />
+										<CSTab title="Tab Two" onClick={this.handleClick} />
+										<CSTab title="Tab Three" onClick={this.handleClick} />
+									</CSTabGroup>`
+								}
+							]
+						}, {
+							propName: 'routerLink',
+							description: 'Can render React Router\'s NavLink or Link component.',
+							variations: [
+								{
+									component: <CSTabGroup>
+										<CSTab title="Tab One" routerLink={<NavLink to="/icons" />} />
+										<CSTab title="Tab Two" routerLink={<NavLink to="/colors" />} />
+										<CSTab title="Tab Three" routerLink={<NavLink to="/accessibility" />} />
+									</CSTabGroup>,
+									code: `<CSTabGroup>
+										<CSTab title="Tab One" routerLink={<NavLink to="/icons" />} />
+										<CSTab title="Tab Two" routerLink={<NavLink to="/colors" />} />
+										<CSTab title="Tab Three" routerLink={<NavLink to="/accessibility" />} />
+									</CSTabGroup>`
+								}
+							]
+						}, {
+							propName: 'status',
+							variations: [
+								{
+									primaryVariants: 'status="initial"',
+									secondaryVariants: 'variant="large"',
+									quickLink: 'initial large',
+									component: <CSTabGroup variant="large">
+										<CSTab title="Tab One" />
+										<CSTab title="Tab Two" />
+										<CSTab title="Tab Three" />
+									</CSTabGroup>,
+									code: `<CSTabGroup variant="large">
+										<CSTab title="Tab One" />
+										<CSTab title="Tab Two" />
+										<CSTab title="Tab Three" />
+									</CSTabGroup>`
+								}, {
+									primaryVariants: 'status="error"',
+									secondaryVariants: 'variant="large"',
+									quickLink: 'error large',
+									component: <CSTabGroup variant="large">
+										<CSTab title="Tab One" status="error" />
+										<CSTab title="Tab Two" />
+										<CSTab title="Tab Three" />
+									</CSTabGroup>,
+									code: `<CSTabGroup variant="large">
+										<CSTab title="Tab One" status="error" />
+										<CSTab title="Tab Two" />
+										<CSTab title="Tab Three" />
+									</CSTabGroup>`
+								}, {
+									primaryVariants: 'status="warning"',
+									secondaryVariants: 'variant="large"',
+									quickLink: 'warning large',
+									component: <CSTabGroup variant="large">
+										<CSTab title="Tab One" status="warning" />
+										<CSTab title="Tab Two" />
+										<CSTab title="Tab Three" />
+									</CSTabGroup>,
+									code: `<CSTabGroup variant="large">
+										<CSTab title="Tab One" status="warning" />
+										<CSTab title="Tab Two" />
+										<CSTab title="Tab Three" />
+									</CSTabGroup>`
+								}, {
+									primaryVariants: 'status="success"',
+									secondaryVariants: 'variant="large"',
+									quickLink: 'success large',
+									component: <CSTabGroup variant="large">
+										<CSTab title="Tab One" status="success" />
+										<CSTab title="Tab Two" />
+										<CSTab title="Tab Three" />
+									</CSTabGroup>,
+									code: `<CSTabGroup variant="large">
+										<CSTab title="Tab One" status="success" />
+										<CSTab title="Tab Two" />
+										<CSTab title="Tab Three" />
+									</CSTabGroup>`
+								}
+							]
+						}, {
+							propName: 'tabIcon',
+							variations: [
+								{
+									primaryVariants: 'tabIcon="activity"',
+									component: <CSTabGroup>
+										<CSTab title="Tab One" tabIcon="activity" />
+										<CSTab title="Tab Two" />
+										<CSTab title="Tab Three" />
+									</CSTabGroup>,
+									code: `<CSTabGroup>
 									<CSTab title="Tab One" tabIcon="activity" />
 									<CSTab title="Tab Two" />
 									<CSTab title="Tab Three" />
-								</CSTabGroup>
-						}
-					]
-				},
-				{
-					propName: 'tooltipContent',
-					customText: '',
-					variations: [
-						{
-							variationText: ['status="initial"'],
-							quickLink: 'initial',
-							component:
-								<CSTabGroup>
-									<CSTab title="Tab One" tooltipContent="Error message example!" />
-									<CSTab title="Tab Two" />
-									<CSTab title="Tab Three" />
-								</CSTabGroup>
-						},
-						{
-							variationText: ['status="error"'],
-							quickLink: 'error',
-							component:
-								<CSTabGroup>
-									<CSTab title="Tab One" tooltipContent="Error message example!" status="error" />
-									<CSTab title="Tab Two" status="error" />
-									<CSTab title="Tab Three" status="error" />
-								</CSTabGroup>
-						},
-						{
-							variationText: ['status="warning"'],
-							quickLink: 'warning',
-							component:
-								<CSTabGroup>
-									<CSTab title="Tab One" tooltipContent="Warning message example!" status="warning" />
-									<CSTab title="Tab Two" status="warning" />
-									<CSTab title="Tab Three" status="warning" />
-								</CSTabGroup>
-						},
-						{
-							variationText: ['status="success"'],
-							quickLink: 'success',
-							component:
-								<CSTabGroup>
-									<CSTab title="Tab One" tooltipContent="Warning message example!" status="success" />
-									<CSTab title="Tab Two" status="success" />
-									<CSTab title="Tab Three" status="success" />
-								</CSTabGroup>
-						}
-					]
-				},
-				{
-					propName: 'iconOrigin',
-					variations: [
-						{
-							variationName: ['slds'],
-							quickLink: 'slds',
-							component:
-								<CSTabGroup id="id">
-									<CSTab title="Tab One" id="id" iconOrigin="slds" tabIcon="activity" />
-									<CSTab title="Tab Two" id="id" iconOrigin="slds" tabIcon="activity" />
-									<CSTab title="Tab Three" id="id" iconOrigin="slds" tabIcon="activity" />
-								</CSTabGroup>
-						},
-						{
-							variationName: ['cs'],
-							quickLink: 'cs',
-							component:
-								<CSTabGroup id="id">
-									<CSTab title="Tab One" id="id" iconOrigin="cs" tabIcon="big_shot" />
-									<CSTab title="Tab Two" id="id" iconOrigin="cs" tabIcon="big_shot" />
-									<CSTab title="Tab Three" id="id" iconOrigin="cs" tabIcon="big_shot" />
-								</CSTabGroup>
-						}
-					]
-				},
-				{
-					propName: 'id',
-					customText: '',
-					variations: [
-						{
-							component:
-								<CSTabGroup id="id">
-									<CSTab title="Tab One" id="id" />
-									<CSTab title="Tab Two" id="id" />
-									<CSTab title="Tab Three" id="id" />
-								</CSTabGroup>
-						}
-					]
-				},
-				{
-					propName: 'routerLink',
-					customText: 'Can render React Router\'s NavLink or Link component.',
-					variations: [
-						{
-							string: '',
-							component:
-								<CSTabGroup>
-									<CSTab title="Tab One" routerLink={<NavLink to="/icons" />} />
-									<CSTab title="Tab Two" routerLink={<NavLink to="/colors" />} />
-									<CSTab title="Tab Three" routerLink={<NavLink to="/accessibility" />} />
-								</CSTabGroup>
-						}
-					]
-				},
-				{
-					propName: 'className',
-					customText: '',
-					variations: [
-						{
-							component:
-								<CSTabGroup className="custom-class">
-									<CSTab title="Tab One" className="custom-class-2" />
-									<CSTab title="Tab Two" />
-									<CSTab title="Tab Three" />
-								</CSTabGroup>
-						}
-					]
-				},
-				{
-					propName: 'children',
-					customText: 'CSTab supports custom content provided as a child',
-					variations: [
-						{
-							component:
-								<CSTabGroup>
-									<CSTab title="Tab One" />
-									<CSTab title="Tab Two" />
-									<CSTab title="Tab Three">
-										<CSButton label="Custom Button" />
-									</CSTab>
-								</CSTabGroup>
+								</CSTabGroup>`
+								}
+							]
+						}, {
+							propName: 'title',
+							variations: [
+								{
+									component: <CSTabGroup>
+										<CSTab title="Tab One" />
+										<CSTab title="Tab Two" />
+										<CSTab title="Tab Three" />
+									</CSTabGroup>,
+									code: `<CSTabGroup>
+										<CSTab title="Tab One" />
+										<CSTab title="Tab Two" />
+										<CSTab title="Tab Three" />
+									</CSTabGroup>`
+								}
+							]
+						}, {
+							propName: 'tooltipContent',
+							variations: [
+								{
+									secondaryVariants: 'status="initial"',
+									quickLink: 'initial',
+									component: <CSTabGroup>
+										<CSTab title="Tab One" tooltipContent="Error message example!" />
+										<CSTab title="Tab Two" />
+										<CSTab title="Tab Three" />
+									</CSTabGroup>,
+									code: `<CSTabGroup>
+										<CSTab title="Tab One" tooltipContent="Error message example!" />
+										<CSTab title="Tab Two" />
+										<CSTab title="Tab Three" />
+									</CSTabGroup>`
+								}, {
+									secondaryVariants: 'status="error"',
+									quickLink: 'error',
+									component: <CSTabGroup>
+										<CSTab
+											title="Tab One"
+											tooltipContent="Error message example!"
+											status="error"
+										/>
+										<CSTab title="Tab Two" status="error" />
+										<CSTab title="Tab Three" />
+									</CSTabGroup>,
+									code: `<CSTabGroup>
+										<CSTab
+											title="Tab One"
+											tooltipContent="Error message example!"
+											status="error"
+										/>
+										<CSTab title="Tab Two" status="error" />
+										<CSTab title="Tab Three" />
+									</CSTabGroup>`
+								}, {
+									secondaryVariants: 'status="warning"',
+									quickLink: 'warning',
+									component: <CSTabGroup>
+										<CSTab
+											title="Tab One"
+											tooltipContent="Warning message example!"
+											status="warning"
+										/>
+										<CSTab title="Tab Two" status="warning" />
+										<CSTab title="Tab Three" />
+									</CSTabGroup>,
+									code: `<CSTabGroup>
+										<CSTab
+											title="Tab One"
+											tooltipContent="Warning message example!"
+											status="warning"
+										/>
+										<CSTab title="Tab Two" status="warning" />
+										<CSTab title="Tab Three" />
+									</CSTabGroup>`
+								}, {
+									secondaryVariants: 'status="success"',
+									quickLink: 'success',
+									component: <CSTabGroup>
+										<CSTab
+											title="Tab One"
+											tooltipContent="Warning message example!"
+											status="success"
+										/>
+										<CSTab title="Tab Two" status="success" />
+										<CSTab title="Tab Three" />
+									</CSTabGroup>,
+									code: `<CSTabGroup>
+										<CSTab
+											title="Tab One"
+											tooltipContent="Warning message example!"
+											status="success"
+										/>
+										<CSTab title="Tab Two" status="success" />
+										<CSTab title="Tab Three" />
+									</CSTabGroup>`
+								}
+							]
+						}, {
+							propName: 'children',
+							description: 'CSTab supports custom content provided as a child',
+							variations: [
+								{
+									component: <CSTabGroup>
+										<CSTab title="Tab One" />
+										<CSTab title="Tab Two" />
+										<CSTab title="Tab Three">
+											<CSButton label="Custom Button" />
+										</CSTab>
+									</CSTabGroup>,
+									code: `<CSTabGroup>
+										<CSTab title="Tab One" />
+										<CSTab title="Tab Two" />
+										<CSTab title="Tab Three">
+											<CSButton label="Custom Button" />
+										</CSTab>
+									</CSTabGroup>`
+								}
+							]
 						}
 					]
 				}
@@ -350,7 +448,7 @@ class CSTabPreview extends React.Component {
 						types: ['\'slds\'', '\'cs\'']
 					}],
 					default: '\'slds\'',
-					description: 'Select whether a SalesForce or a CloudSense icon should be used.'
+					description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
 				}, {
 					name: 'id',
 					types: ['string'],
@@ -438,20 +536,9 @@ class CSTabPreview extends React.Component {
 					]
 				}
 			]
-		};
+		})
 
-		for (const example of json.examples) {
-			for (const variation of example.variations) {
-				(variation as any).string = jsxToString(variation.component);
-			}
-		}
-
-		return json;
-	}
-
-	getCSTabGroupDoc() {
-
-		const json = {
+	getTabGroupDoc = () => ({
 			name: 'Tab Group',
 			properties: [
 				{
@@ -487,26 +574,21 @@ class CSTabPreview extends React.Component {
 					description: 'Spreads the rest of the props to the tab group div wrapper.'
 				}
 			]
-		};
-		return json;
-	}
+		})
 
 	render() {
-		const component = this.getCSTabDoc();
-		const component2 = this.getCSTabGroupDoc();
+		const component = this.getTabDoc();
+		const component2 = this.getTabGroupDoc();
 
 		return (
 			<>
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties name={component.name} examples={component.examples} />
+					<PreviewProperties {...component} />
 					<PreviewTable components={[component2, component]} />
 					<PreviewAccessibility components={[component]} />
 				</div>
-				<div className="prop-sidebar">
-					<h3>Quick Links</h3>
-					<PreviewLinks component={component} />
-				</div>
+				<PreviewLinks {...component} />
 			</>
 		);
 	}
