@@ -102,7 +102,10 @@
 			display: none;
 		}
 	}
-	&.cs-btn-icon-only {
+	/* TO BE REMOVED */
+	&.cs-btn-icon-only,
+	/* HIDE LABEL */
+	&.cs-btn-label-hidden {
 		justify-content: center;
 		min-width: 2rem; // IE11 Support
 		padding: 0;
@@ -118,7 +121,6 @@
 			@include sf(--cs-button-icon-hover-c);
 		}
 	}
-
 	/* WIDTH */
 	&.cs-btn-max-width {
 		display: flex;
@@ -140,7 +142,8 @@
 	&.cs-btn-size-small {
 		height: 1.5rem;
 		padding: 0 0.75rem 0 0.0625rem;
-		&.cs-btn-icon-only {
+		&.cs-btn-icon-only,
+		&.cs-btn-label-hidden {
 			padding: 0;
 			width: 1.5rem;
 			min-width: 1.5rem;
@@ -151,6 +154,10 @@
 		}
 		&.cs-btn-no-icon {
 			padding: 0 1rem;
+
+			&.cs-btn-label-hidden {
+				padding: 0 0.75rem;
+			}
 		}
 		.cs-btn-label, .cs-btn-icon {
 			height: calc(1.5rem - 0.125rem);
@@ -168,7 +175,8 @@
 				width: 0.875rem;
 			}
 		}
-		&.cs-btn-icon-only {
+		&.cs-btn-icon-only,
+		&.cs-btn-label-hidden {
 			padding: 0;
 		}
 		.cs-btn-label, .cs-btn-icon {
@@ -181,7 +189,8 @@
 	&.cs-btn-size-large {
 		height: 3rem;
 		padding: 0 1rem 0 0.5rem;
-		&.cs-btn-icon-only {
+		&.cs-btn-icon-only,
+		&.cs-btn-label-hidden {
 			padding: 0 0.5rem;
 			.cs-btn-icon {
 				margin: 0;
@@ -189,6 +198,9 @@
 		}
 		&.cs-btn-no-icon {
 			padding: 0 2rem;
+			&.cs-btn-label-hidden {
+				padding: 0 1.5rem;
+			}
 		}
 		&.cs-btn-icon-right {
 			padding: 0 0.5rem 0 2rem;

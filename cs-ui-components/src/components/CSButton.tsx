@@ -30,6 +30,7 @@ export interface CSButtonProps {
 	iconSize?: string;
 	id?: string;
 	label: string;
+	labelHidden?: boolean;
 	link?: string;
 	loading?: boolean;
 	onClick?: (value: any) => any;
@@ -114,6 +115,7 @@ class CSButton extends React.Component<CSButtonProps> {
 			iconSize,
 			id,
 			label,
+			labelHidden,
 			link,
 			loading,
 			onClick,
@@ -143,6 +145,7 @@ class CSButton extends React.Component<CSButtonProps> {
 				'cs-btn-brand': btnStyle === 'brand',
 				'cs-btn-outline': btnStyle === 'outline',
 
+				'cs-btn-label-hidden': labelHidden,
 				'cs-btn-icon-only': iconDisplay === 'icon-only',
 				'cs-btn-no-icon': (!iconName || iconDisplay === 'no-icon') && !loading,
 
@@ -170,7 +173,7 @@ class CSButton extends React.Component<CSButtonProps> {
 			'disabled': disabled || loading,
 			'aria-label': ariaLabel ? ariaLabel : label,
 			'style': style,
-			'title': title ? title : iconDisplay === 'icon-only' ? label : null,
+			'title': title ? title : labelHidden === true ? label : null,
 			'href': link && link,
 			'target': (openInNewTab && link) ? '_blank' : undefined,
 			'id': id,
@@ -191,14 +194,14 @@ class CSButton extends React.Component<CSButtonProps> {
 						routerLink,
 						componentProps,
 						this.iconComponent(),
-						this.label(),
+						!this.props.labelHidden ? this.label() : null,
 						this.props.children ? <span className="cs-btn-custom-content">{children}</span> : null
 					) :
 					React.createElement(
 						link ? 'a' : 'button',
 						componentProps,
 						this.iconComponent(),
-						this.label(),
+						!this.props.labelHidden ? this.label() : null,
 						this.props.children ? <span className="cs-btn-custom-content">{children}</span> : null
 					)
 				}
