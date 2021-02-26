@@ -19,6 +19,7 @@
 	--cs-button-br: var(--cs-button-default-br);
 	--cs-button-box: var(--cs-btn-custom-c, var(--cs-button-default-box));
 	--cs-button-icon-c: var(--cs-btn-custom-icon-c, var(--cs-button-c));
+	--cs-button-icon-brand-c: var(--cs-btn-custom-icon-c, var(--cs-button-inverse-c));
 	&::before, &::after { // Background and border
 		content: "";
 		position: absolute;
@@ -65,8 +66,18 @@
 		@include sc(--cs-button-c);
 		pointer-events: none;
 	}
-	&:hover::before {
-		@include sbg(--cs-button-hover-bg);
+	&:hover {
+		&::before {
+			@include sbg(--cs-button-hover-bg);
+		}
+		&:not(:disabled) {
+			.cs-btn-label {
+				@include cd(--cs-button-c, 0.15);
+			}
+			.cs-btn-icon .cs-icon {
+				@include cd(--cs-button-icon-c, 0.15);
+			}
+		}
 	}
 	&:focus {
 		outline: none;
@@ -222,8 +233,18 @@
 			&:focus::after {
 				border: 1px solid var(--cs-btn-custom-c, var(--cs-button-brand-br));
 			}
-			&:hover::before {
-				@include bgd(--cs-button-bg, 0.15, var(--cs-main-c));
+			&:hover {
+				&::before {
+					@include bgd(--cs-button-bg, 0.15, var(--cs-main-c));
+				}
+				&:not(:disabled) {
+					.cs-btn-label {
+						@include cd(--cs-button-inverse-c, 0.15);
+					}
+					.cs-btn-icon .cs-icon {
+						@include cd(--cs-button-icon-brand-c, 0.15);
+					}
+				}
 			}
 			&:active::before {
 				@include bgd(--cs-button-bg, 0.25, var(--cs-main-c));
@@ -247,14 +268,15 @@
 		}
 	}
 
-	/* TYPE - SUCESS */
+	/* TYPE - SUCCESS */
 	&.cs-btn-success {
 		/* STYLE - INITIAL & ALL OTHER */
+		--cs-button-icon-c: var(--cs-btn-custom-icon-c, var(--cs-button-success-c));
 		.cs-btn-label {
 			@include sc(--cs-button-success-c);
 		}
 		.cs-btn-icon .cs-icon {
-			@include sf(--cs-button-success-c);
+			@include sf(--cs-button-icon-c)
 		}
 		&:focus::after {
 			@include css4 {
@@ -266,6 +288,14 @@
 				border: 1px solid cvar(--cs-button-success-br);
 			}
 		}
+		&:not(:disabled):hover {
+			.cs-btn-label {
+				@include cd(--cs-button-success-c, 0.15);
+			}
+			.cs-btn-icon .cs-icon {
+				@include cd(--cs-button-icon-c, 0.15);
+			}
+		}
 		/* STYLE - BRAND */
 		&.cs-btn-brand {
 			&::before {
@@ -275,10 +305,20 @@
 				@include sc(--cs-button-inverse-c);
 			}
 			.cs-btn-icon .cs-icon {
-				@include sf(--cs-button-inverse-c);
+				@include sf(--cs-button-icon-brand-c)
 			}
-			&:hover::before {
-				@include bgd(--cs-button-success-brand-bg, 0.15);
+			&:hover {
+				&::before {
+					@include bgd(--cs-button-success-brand-bg, 0.15);
+				}
+				&:not(:disabled) {
+					.cs-btn-label {
+						@include cd(--cs-button-inverse-c, 0.15);
+					}
+					.cs-btn-icon .cs-icon {
+						@include cd(--cs-button-icon-brand-c, 0.15);
+					}
+				}
 			}
 			&:focus::after {
 				@include css4 {
@@ -306,11 +346,12 @@
 	/* TYPE - ERROR */
 	&.cs-btn-error {
 		/* STYLE - INITIAL & ALL OTHER */
+		--cs-button-icon-c: var(--cs-btn-custom-icon-c, var(--cs-button-error-c));
 		.cs-btn-label {
 			@include sc(--cs-button-error-c);
 		}
 		.cs-btn-icon .cs-icon {
-			@include sf(--cs-button-error-c);
+			@include sf(--cs-button-icon-c);
 		}
 		&:focus::after {
 			@include css4 {
@@ -322,6 +363,14 @@
 				border: 1px solid cvar(--cs-button-error-br);
 			}
 		}
+		&:not(:disabled):hover {
+			.cs-btn-label {
+				@include cd(--cs-button-error-c, 0.15);
+			}
+			.cs-btn-icon .cs-icon {
+				@include cd(--cs-button-icon-c, 0.15);
+			}
+		}
 		/* STYLE - BRAND */
 		&.cs-btn-brand {
 			&::before {
@@ -331,10 +380,20 @@
 				@include sc(--cs-button-inverse-c);
 			}
 			.cs-btn-icon .cs-icon {
-				@include sf(--cs-button-inverse-c);
+				@include sf(--cs-button-icon-brand-c)
 			}
-			&:hover::before {
-				@include bgd(--cs-button-error-bg, 0.15);
+			&:hover {
+				&::before {
+					@include bgd(--cs-button-error-bg, 0.15);
+				}
+				&:not(:disabled) {
+					.cs-btn-label {
+						@include cd(--cs-button-inverse-c, 0.15);
+					}
+					.cs-btn-icon .cs-icon {
+						@include cd(--cs-button-icon-brand-c, 0.15);
+					}
+				}
 			}
 			&:focus::after {
 				@include css4 {
@@ -363,6 +422,7 @@
 			}
 		}
 	}
+
 	/* TYPE - TRANSPARENT */
 	&.cs-btn-transparent {
 		--cs-button-c: var(--cs-btn-custom-c, var(--cs-button-inverse-c));
@@ -440,6 +500,9 @@
 		.cs-btn-label {
 			@include sc(--cs-button-inverse-c);
 		}
+		.cs-btn-icon .cs-icon {
+			@include sf(--cs-button-inverse-c);
+		}
 		&::before {
 			filter: brightness(1);
 			@include sbg(--cs-button-disabled-bg);
@@ -470,7 +533,7 @@
 		}
 		&::after {
 			@include css4 {
-				border-color: cvar(--cs-button-br);
+				border-color: cvar(--cs-button-default-br);
 			}
 		}
 	}
