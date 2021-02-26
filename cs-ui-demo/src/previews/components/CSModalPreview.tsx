@@ -123,6 +123,8 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 										visible={this.state.visibleModal === 'small'}
 										size="small"
 										animated
+										closeButton
+										onClose={() => this.setState({ visibleModal: undefined })}
 									>
 										<CSModalHeader
 											title="This is a test heading"
@@ -219,7 +221,6 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 										visible={this.state.visibleModal === 'medium'}
 										animated
 										size="medium"
-										closeButton={false}
 									>
 										<CSModalHeader
 											title="This is a test heading"

@@ -46,6 +46,7 @@ class CSModal extends React.Component<CSModalProps> {
 		super(props);
 
 		this.handleOuterClick = this.handleOuterClick.bind(this);
+		this.handleEsc = this.handleEsc.bind(this);
 
 		let modalRoot = document.getElementById(this.modalId);
 		if (!modalRoot) {
@@ -53,6 +54,14 @@ class CSModal extends React.Component<CSModalProps> {
 			modalRoot.className = this.modalId;
 			modalRoot.id = this.modalId;
 			document.body.appendChild(modalRoot);
+		}
+	}
+
+	handleEsc(e: any) {
+		if (this.props.onClose) {
+			if (e.key === KeyCode.Escape) {
+				this.props.onClose(e);
+			}
 		}
 	}
 
@@ -81,7 +90,9 @@ class CSModal extends React.Component<CSModalProps> {
 		if (this.modalContentNode && this.modalContentNode.contains(e.target)) {
 			return;
 		}
-		this.props.onClose(e);
+		if (this.props.onClose) {
+			this.props.onClose(e);
+		}
 	}
 
 	getFocusableElements() {
@@ -121,6 +132,8 @@ class CSModal extends React.Component<CSModalProps> {
 		document.addEventListener('keydown', this.handleFocusChange);
 		const modalRoot = document.getElementById(this.modalId);
 
+		document.addEventListener('keydown', this.handleEsc, false);
+
 		if (this.props.outerClickClose) {
 			if (this.modalOverlay === modalRoot.lastElementChild &&
 				modalRoot.childElementCount === 2) {
@@ -138,6 +151,8 @@ class CSModal extends React.Component<CSModalProps> {
 		const modalRoot = document.getElementById(this.modalId);
 		document.removeEventListener('keydown', this.handleFocusChange);
 		this.switchFocusOnClose();
+
+		document.removeEventListener('keydown', this.handleEsc, false);
 
 		if (modalRoot.childElementCount === 1) {
 			document.body.style.overflow = '';
