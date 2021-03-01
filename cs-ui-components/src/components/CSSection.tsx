@@ -64,8 +64,8 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 			}
 		);
 		const sectionTitleClasses = classNames(
-			'cs-section-wrapper', {
-				'cs-section-wrapper-padding': defaultClosed === true && collapsible !== true
+			'cs-section-header', {
+				'cs-section-header-padding': defaultClosed === true && collapsible !== true
 			}
 		);
 		return (
@@ -93,7 +93,7 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 				{this.state.defaultClosed ?
 					null
 				:
-					<div className="cs-section-title" role="region">
+					<div className="cs-section-body" role="region">
 						{this.props.children}
 					</div>
 				}

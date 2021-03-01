@@ -11,7 +11,7 @@
 		padding: 0;
 	}
 
-	.cs-section-wrapper {
+	.cs-section-header {
 		align-items: center;
 		border-radius: 0.25rem;
 		height: 1.75rem;
@@ -75,7 +75,7 @@
 			}
 		}
 
-		&.cs-section-wrapper-padding {
+		&.cs-section-header-padding {
 			padding: 0 0.75rem;
 		}
 	}
