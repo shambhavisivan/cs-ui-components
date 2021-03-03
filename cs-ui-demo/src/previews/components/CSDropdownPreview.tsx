@@ -82,7 +82,7 @@ class CSDropdownPreview extends React.Component {
 							quickLink: 'transparent initial',
 							variationText: ['btnStyle="initial"'],
 							customClass: 'inverse-background',
-							component: <div className="blue-background">
+							component: <div className="purple-background">
 								<CSDropdown
 									btnType="transparent"
 									iconName="down"
@@ -122,7 +122,7 @@ class CSDropdownPreview extends React.Component {
 							quickLink: 'transparent outline',
 							variationText: ['btnStyle="outline"'],
 							customClass: 'inverse-background',
-							component: <div className="blue-background">
+							component: <div className="purple-background">
 								<CSDropdown
 									btnType="transparent"
 									btnStyle="outline"

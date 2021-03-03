@@ -7,7 +7,7 @@ import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 import { NavLink } from 'react-router-dom';
 
-import { CSButton, CSTooltip } from '@cloudsense/cs-ui-components';
+import { CSButton, CSTable, CSTableCell, CSTableHeader, CSTableBody, CSTableRow, CSTooltip } from '@cloudsense/cs-ui-components';
 
 class CSButtonPreview extends React.Component {
 	handleClick = () => alert('Button has been clicked.');
@@ -58,7 +58,7 @@ class CSButtonPreview extends React.Component {
 							quickLink: 'transparent initial',
 							variationText: ['btnStyle="initial"'],
 							customClass: 'inverse-background',
-							component: <div className="blue-background">
+							component: <div className="purple-background">
 								<CSButton btnType="transparent" label="transparent initial" />
 							</div>
 						},
@@ -73,7 +73,7 @@ class CSButtonPreview extends React.Component {
 							quickLink: 'transparent outline',
 							variationText: ['btnStyle="outline"'],
 							customClass: 'inverse-background',
-							component: <div className="blue-background">
+							component: <div className="purple-background">
 								<CSButton btnType="transparent" btnStyle="outline" label="transparent outline" />
 							</div>
 						},
@@ -119,68 +119,68 @@ class CSButtonPreview extends React.Component {
 					propName: 'color',
 					variations: [
 						{
-							variationName: ['pink'],
+							variationName: ['#4a26ab'],
 							variationText: ['btnType="default"', 'btnStyle="initial"'],
 							quickLink: 'default initial',
 							component: <CSButton
 								btnStyle="initial"
-								color="pink"
+								color="#4a26ab"
 								label="custom color button"
 							/>
 						},
 						{
-							variationName: ['pink'],
+							variationName: ['#4a26ab'],
 							variationText: ['btnType="default"', 'btnStyle="brand"'],
 							quickLink: 'default brand',
 							component: <CSButton
 								btnStyle="brand"
-								color="pink"
+								color="#4a26ab"
 								label="custom color button"
 							/>
 						},
 						{
-							variationName: ['pink'],
+							variationName: ['#4a26ab'],
 							variationText: ['btnType="default"', 'btnStyle="outline"'],
 							quickLink: 'default outline',
 							component: <CSButton
 								btnStyle="outline"
-								color="pink"
+								color="#4a26ab"
 								label="custom color button"
 							/>
 						},
 						{
-							variationName: ['pink'],
+							variationName: ['#3cdbc0'],
 							variationText: ['btnType="transparent"', 'btnStyle="inital"'],
 							quickLink: 'transparent inital',
-							component: <div className="blue-background">
+							component: <div className="purple-background">
 								<CSButton
 									btnType="transparent"
 									btnStyle="initial"
-									color="pink"
+									color="#3cdbc0"
 									label="custom color button"
 								/>
 							</div>
 						},
 						{
-							variationName: ['pink'],
+							variationName: ['#4a26ab'],
 							variationText: ['btnType="transparent"', 'btnStyle="brand"'],
 							quickLink: 'transparent brand',
 							component: <CSButton
 								btnType="transparent"
 								btnStyle="brand"
-								color="pink"
+								color="#4a26ab"
 								label="custom color button"
 							/>
 						},
 						{
-							variationName: ['pink'],
+							variationName: ['#3cdbc0'],
 							variationText: ['btnType="transparent"', 'btnStyle="outline"'],
 							quickLink: 'transparent outline',
-							component: <div className="blue-background">
+							component: <div className="purple-background">
 								<CSButton
 									btnType="transparent"
 									btnStyle="outline"
-									color="pink"
+									color="#3cdbc0"
 									label="custom color button"
 								/>
 							</div>
@@ -213,7 +213,7 @@ class CSButtonPreview extends React.Component {
 						{
 							variationName: ['1rem'],
 							quickLink: '1rem',
-							component: <CSButton iconName="world" label="default round" borderRadius="1rem"/>
+							component: <CSButton iconName="list" label="default round" borderRadius="1rem"/>
 						},
 						{
 							variationName: ['0'],
@@ -223,7 +223,7 @@ class CSButtonPreview extends React.Component {
 						{
 							variationName: ['1rem icon only'],
 							quickLink: '1rem icon only',
-							component: <CSButton iconName="emoji" label="round icon only button" labelHidden borderRadius="1rem"/>
+							component: <CSButton iconName="list" label="round icon only button" labelHidden borderRadius="1rem"/>
 						}
 					]
 				},
@@ -275,7 +275,7 @@ class CSButtonPreview extends React.Component {
 					propName: 'labelHidden',
 					variations: [
 						{
-							component: <CSButton label="Label is hidden" iconName="activity" labelHidden />
+							component: <CSButton label="Label is hidden" iconName="list" labelHidden />
 						}
 					]
 				},
@@ -283,17 +283,9 @@ class CSButtonPreview extends React.Component {
 					propName: 'iconColor',
 					variations: [
 						{
-							variationName: ['red'],
-							variationText: ['iconName="activity"'],
-
-							quickLink: 'red',
-							component: <CSButton label="default with id" iconColor="red" iconName="activity" />
-						},
-						{
-							variationName: ['green'],
-							variationText: ['color="red"', 'iconName="activity"'],
-							quickLink: 'green',
-							component: <CSButton label="default with id" iconColor="green" color="red" iconName="activity" />
+							variationName: ['#4a26ab'],
+							quickLink: '#4a26ab',
+							component: <CSButton label="default with id" iconColor="#4a26ab" iconName="list" />
 						}
 					]
 				},
@@ -308,49 +300,49 @@ class CSButtonPreview extends React.Component {
 							variationName: ['default'],
 							variationText: ['iconName="activity"'],
 							quickLink: 'default',
-							component: <CSButton label="activity icon button" iconName="activity" iconDisplay="default" />
+							component: <CSButton label="activity icon button" iconName="list" iconDisplay="default" />
 						},
 						{
 							variationName: ['icon-only'],
 							variationText: ['iconName="activity"'],
 							quickLink: 'icon-only',
-							component: <CSButton label="activity icon button" iconName="activity" iconDisplay="icon-only" />
+							component: <CSButton label="activity icon button" iconName="list" iconDisplay="icon-only" />
 						},
 						{
 							variationName: ['icon-only'],
-							variationText: ['size="large"', 'iconName="activity"'],
+							variationText: ['size="large"'],
 							quickLink: 'icon-only large',
-							component: <CSButton label="activity icon button" iconName="activity" iconDisplay="icon-only" size="large" />
+							component: <CSButton label="activity icon button" iconName="list" iconDisplay="icon-only" size="large" />
 						},
 						{
 							variationName: ['icon-only'],
-							variationText: ['size="small"', 'iconName="activity"'],
+							variationText: ['size="small"'],
 							quickLink: 'icon-only small',
-							component: <CSButton label="activity icon button" iconName="activity" iconDisplay="icon-only" size="small" />
+							component: <CSButton label="activity icon button" iconName="list" iconDisplay="icon-only" size="small" />
 						},
 						{
 							variationName: ['icon-only'],
-							variationText: ['size="xsmall"', 'iconName="activity"'],
+							variationText: ['size="xsmall"'],
 							quickLink: 'icon-only xsmall',
-							component: <CSButton label="activity icon button" iconName="activity" iconDisplay="icon-only" size="xsmall" />
+							component: <CSButton label="activity icon button" iconName="list" iconDisplay="icon-only" size="xsmall" />
 						},
 						{
 							variationName: ['no-icon'],
-							variationText: ['size="large"', 'iconName="activity"'],
+							variationText: ['size="large"'],
 							quickLink: 'no-icon large',
-							component: <CSButton label="no-icon button" iconName="activity" iconDisplay="no-icon" size="large" />
+							component: <CSButton label="no-icon button" iconName="list" iconDisplay="no-icon" size="large" />
 						},
 						{
 							variationName: ['no-icon'],
-							variationText: ['size="small"', 'iconName="activity"'],
+							variationText: ['size="small"'],
 							quickLink: 'no-icon small',
-							component: <CSButton label="no-icon button" iconName="activity" iconDisplay="no-icon" size="small" />
+							component: <CSButton label="no-icon button" iconName="list" iconDisplay="no-icon" size="small" />
 						},
 						{
 							variationName: ['no-icon'],
-							variationText: ['size="xsmall"', 'iconName="activity"'],
+							variationText: ['size="xsmall"'],
 							quickLink: 'no-icon xsmall',
-							component: <CSButton label="no-icon button" iconName="activity" iconDisplay="no-icon" size="xsmall" />
+							component: <CSButton label="no-icon button" iconName="list" iconDisplay="no-icon" size="xsmall" />
 						}
 					]
 				},
@@ -358,7 +350,7 @@ class CSButtonPreview extends React.Component {
 					propName: 'iconName',
 					variations: [
 						{
-							component: <CSButton iconName="activity" label="iconName activity" />
+							component: <CSButton iconName="list" label="iconName list" />
 						}
 					]
 				},
@@ -369,13 +361,13 @@ class CSButtonPreview extends React.Component {
 							variationName: ['left'],
 							variationText: ['iconName="activity"'],
 							quickLink: 'left',
-							component: <CSButton iconName="activity" iconPosition="left" label="Icon Left" />
+							component: <CSButton iconName="list" iconPosition="left" label="Icon Left" />
 						},
 						{
 							variationName: ['right'],
 							variationText: ['iconName="activity"'],
 							quickLink: 'right',
-							component: <CSButton iconName="activity" iconPosition="right" label="Icon Right" />
+							component: <CSButton iconName="list" iconPosition="right" label="Icon Right" />
 						}
 					]
 				},
@@ -386,7 +378,7 @@ class CSButtonPreview extends React.Component {
 							variationName: ['slds'],
 							variationText: ['iconName="activity"', 'labelHidden={true}'],
 							quickLink: 'slds',
-							component: <CSButton iconOrigin="slds" iconName="activity" labelHidden label="default icon-only" />
+							component: <CSButton iconOrigin="slds" iconName="list" labelHidden label="default icon-only" />
 						},
 						{
 							variationName: ['cs'],
@@ -431,19 +423,19 @@ class CSButtonPreview extends React.Component {
 							variationName: ['90'],
 							variationText: ['iconName="activity"'],
 							quickLink: '90',
-							component: <CSButton iconName="activity" iconRotate="90" label="Icon rotated 90 degrees" />
+							component: <CSButton iconName="list" iconRotate="90" label="Icon rotated 90 degrees" />
 						},
 						{
 							variationName: ['180'],
 							variationText: ['iconName="activity"'],
 							quickLink: '180',
-							component: <CSButton iconName="activity" iconRotate="180" label="Icon rotated 180 degrees" />
+							component: <CSButton iconName="list" iconRotate="180" label="Icon rotated 180 degrees" />
 						},
 						{
 							variationName: ['270'],
 							variationText: ['iconName="activity"'],
 							quickLink: '270',
-							component: <CSButton iconName="activity" iconRotate="270" label="Icon rotated 270 degrees" />
+							component: <CSButton iconName="list" iconRotate="270" label="Icon rotated 270 degrees" />
 						}
 					]
 				},
@@ -454,19 +446,19 @@ class CSButtonPreview extends React.Component {
 							variationName: ['10px'],
 							variationText: ['iconName="activity"'],
 							quickLink: '10px',
-							component: <CSButton iconName="activity" iconSize="10px" label="Icon size 10px" />
+							component: <CSButton iconName="list" iconSize="10px" label="Icon size 10px" />
 						},
 						{
 							variationName: ['2rem'],
 							variationText: ['iconName="activity"'],
 							quickLink: '2rem',
-							component: <CSButton iconName="activity" iconSize="2rem" label="Icon size 2rem" />
+							component: <CSButton iconName="list" iconSize="2rem" label="Icon size 2rem" />
 						},
 						{
 							variationName: ['2px'],
 							variationText: ['iconName="activity"'],
 							quickLink: '2px',
-							component: <CSButton iconName="activity" iconSize="2px" label="Icon size 2px" />
+							component: <CSButton iconName="list" iconSize="2px" label="Icon size 2px" />
 						}
 					]
 				},
@@ -786,59 +778,80 @@ class CSButtonPreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<div className="cs-btn-type-preview-wrapper">
-						<div className="cs-btn-type-preview">
-							<span className="cs-btnStyle-header">btnStyle</span>
-							<span className="cs-btnType-header">btnType</span>
-							<span className="cs-btnStyle-initial">initial</span>
-							<span className="cs-btnStyle-brand">brand</span>
-							<span className="cs-btnStyle-outline">outline</span>
-							<span className="cs-btnType-default">default</span>
-							<span className="cs-btnType-error">error</span>
-							<span className="cs-btnType-success">success</span>
-							<span className="cs-btnType-transparent">transparent</span>
-							<span className="cs-default-initial">
-								<CSButton label="default initial" />
-							</span>
-							<span className="cs-default-brand">
-								<CSButton btnStyle="brand" label="default brand" />
-							</span>
-							<span className="cs-default-outline">
-								<CSButton btnStyle="outline" label="default outline" />
-							</span>
-							<span className="cs-error-initial">
-								<CSButton btnType="error" label="error initial" />
-							</span>
-							<span className="cs-error-brand">
-								<CSButton btnType="error" btnStyle="brand" label="error brand" />
-							</span>
-							<span className="cs-error-outline">
-								<CSButton btnType="error" btnStyle="outline" label="error outline" />
-							</span>
-							<span className="cs-success-initial">
-								<CSButton btnType="success" label="success initial" />
-							</span>
-							<span className="cs-success-brand">
-								<CSButton btnType="success" btnStyle="brand" label="success brand" />
-							</span>
-							<span className="cs-success-outline">
-								<CSButton btnType="success" btnStyle="outline" label="success outline" />
-							</span>
-							<span className="cs-transparent-initial">
-								<span className="cs-transparent-bg">
-									<CSButton btnType="transparent" label="transparent initial" />
-								</span>
-							</span>
-							<span className="cs-transparent-brand">
-								<CSButton btnType="transparent" btnStyle="brand" label="transparent brand" />
-							</span>
-							<span className="cs-transparent-outline">
-								<span className="cs-transparent-bg">
-									<CSButton btnType="transparent" btnStyle="outline" label="transparent outline" />
-								</span>
-							</span>
-						</div>
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} className="no-border" />
+					<div className="cs-btn-type-preview">
+						<CSTable>
+							<CSTableHeader>
+								<CSTableCell/>
+								<CSTableCell>
+									btnStyle="initial"
+								</CSTableCell>
+								<CSTableCell>
+									btnStyle="brand"
+								</CSTableCell>
+								<CSTableCell>
+									btnStyle="outline"
+								</CSTableCell>
+							</CSTableHeader>
+							<CSTableBody>
+								<CSTableRow>
+									<CSTableCell>
+										btnType="default"
+									</CSTableCell>
+									<CSTableCell>
+										<CSButton label="default initial" />
+									</CSTableCell>
+									<CSTableCell>
+										<CSButton btnStyle="brand" label="default brand" />
+									</CSTableCell>
+									<CSTableCell>
+										<CSButton btnStyle="outline" label="default outline" />
+									</CSTableCell>
+								</CSTableRow>
+								<CSTableRow>
+									<CSTableCell>
+										btnType="error"
+									</CSTableCell>
+									<CSTableCell>
+										<CSButton btnType="error" label="error initial" />
+									</CSTableCell>
+									<CSTableCell>
+										<CSButton btnType="error" btnStyle="brand" label="error brand" />
+									</CSTableCell>
+									<CSTableCell>
+										<CSButton btnType="error" btnStyle="outline" label="error outline" />
+									</CSTableCell>
+								</CSTableRow>
+								<CSTableRow>
+									<CSTableCell>
+										btnType="success"
+									</CSTableCell>
+									<CSTableCell>
+										<CSButton btnType="success" label="success initial" />
+									</CSTableCell>
+									<CSTableCell>
+										<CSButton btnType="success" btnStyle="brand" label="success brand" />
+									</CSTableCell>
+									<CSTableCell>
+										<CSButton btnType="success" btnStyle="outline" label="success outline" />
+									</CSTableCell>
+								</CSTableRow>
+								<CSTableRow>
+									<CSTableCell>
+										btnType="transparent"
+									</CSTableCell>
+									<CSTableCell>
+										<CSButton btnType="transparent" label="transparent initial" />
+									</CSTableCell>
+									<CSTableCell>
+										<CSButton btnType="transparent" btnStyle="brand" label="transparent brand" />
+									</CSTableCell>
+									<CSTableCell>
+										<CSButton btnType="transparent" btnStyle="outline" label="transparent outline" />
+									</CSTableCell>
+								</CSTableRow>
+							</CSTableBody>
+						</CSTable>
 					</div>
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component]} />

@@ -41,4 +41,8 @@
 	+ .property-section {
 		padding-block-start: 3rem;
 	}
+
+	&.no-border {
+		border-bottom: none;
+	}
 }

@@ -76,6 +76,9 @@ $cs-white: #ffffff;
 	--app-header-c: #{$cs-gray-dark-1};
 	--app-header-bg: #{$cs-white};
 
+	--button-preview-table-bg: #{$cs-white};
+	--button-preview-cell-bg: #{$cs-purple};
+
 	--code-preview-bg: #{$cs-gray-light-7};
 
 	--colors-grid-focus-shadow: #{$cs-blue-sf};
@@ -175,7 +178,7 @@ $cs-white: #ffffff;
 	--table-head-row-c: #{$cs-white};
 	--table-backlog-bg: #{$cs-gray-medium-1};
 
-	--dropdown-blue-bg: #{$cs-blue-dark-1};
+	--dropdown-purple-bg: #{$cs-purple};
 	--spinner-black-bg: #{$cs-black};
 	--image-black-bg: #{$cs-black};
 	--api-method-c: #{$cs-gray-medium-1};

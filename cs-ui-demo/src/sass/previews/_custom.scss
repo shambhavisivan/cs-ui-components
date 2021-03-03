@@ -108,8 +108,8 @@
 
 	&.button-preview,
 	&.dropdown-preview {
-		.blue-background {
-			background-color: var(--dropdown-blue-bg);
+		.purple-background {
+			background-color: var(--dropdown-purple-bg);
 			padding: 0.5rem;
 		}
 
@@ -292,152 +292,49 @@
 	}
 }
 
-.demo-btn-type-preview-wrapper {
-	padding: 3rem 3rem 0;
+.cs-btn-type-preview {
+	margin-block-end: 1rem;
+	overflow-x: auto;
+	min-height: 300px;
 
-	.demo-btn-type-preview {
-		background: var(--cs-btn-bg);
-		border-radius: 0.25rem;
-		box-shadow: 0 1px 3px var(--cs-shadow-light), 0 1px 2px var(--cs-shadow-medium);
-		padding: 2rem;
-		overflow-x: auto;
-		display: grid;
-		grid-template-columns: 5rem 7rem 1fr 1fr 1fr;
-		grid-template-rows: 2rem 2rem 2.5rem 2.5rem 2.5rem 2.5rem 2.5rem;
-		grid-column-gap: 0.5rem;
-		grid-row-gap: 0.5rem;
-		grid-template-areas: ". . btnStyle-header btnStyle-header btnStyle-header"
-			". . btnStyle-initial btnStyle-brand btnStyle-outline"
-			"btnType-header btnType-default default-initial default-brand default-outline"
-			"btnType-header btnType-error error-initial error-brand error-outline"
-			"btnType-header btnType-success success-initial success-brand success-outline"
-			"btnType-header btnType-transparent transparent-initial transparent-brand transparent-outline"
-			"btnType-header btnType-custom custom-initial custom-brand custom-outline";
+	.cs-table {
+		min-width: fit-content;
 
+		.cs-table-header {
+			background-color: var(--button-preview-table-bg);
+			height: 56px;
 
-		> * {
-			display: flex;
-			align-items: center;
-			align-self: stretch;
-			justify-content: center;
+			.cs-table-cell {
+				font-weight: 700;
+				display: flex;
+				align-items: center;
+				padding: 0.75rem 0.5rem;
+				font-size: 0.8125rem;
+			}
+
+			.cs-table-cell:first-child {
+				padding-inline-start: 3rem;
+				min-width: 220px;
+			}
 		}
 
-		.demo-btnStyle-header {
-			grid-area: btnStyle-header;
-			font-weight: bold;
+		.cs-table-body {
+			.cs-table-row {
+				.cs-table-cell:first-child {
+					padding-inline-start: 3rem;
+					min-width: 220px;
+				}
+
+				&:last-child {
+					.cs-table-cell:nth-child(2n+2) {
+						background-color: var(--button-preview-cell-bg);
+					}
+				}
+			}
 		}
 
-		.demo-btnType-header {
-			grid-area: btnType-header;
-			align-self: center;
-			justify-content: flex-start;
-			font-weight: bold;
-		}
-
-		.demo-btnStyle-initial {
-			grid-area: btnStyle-initial;
-		}
-
-		.demo-btnStyle-brand {
-			grid-area: btnStyle-brand;
-		}
-
-		.demo-btnStyle-outline {
-			grid-area: btnStyle-outline;
-		}
-
-		.demo-btnType-default {
-			grid-area: btnType-default;
-			justify-content: flex-end;
-			padding-inline-end: 1rem;
-		}
-
-		.demo-btnType-error {
-			grid-area: btnType-error;
-			justify-content: flex-end;
-			padding-inline-end: 1rem;
-		}
-
-		.demo-btnType-success {
-			grid-area: btnType-success;
-			justify-content: flex-end;
-			padding-inline-end: 1rem;
-		}
-		.demo-btnType-transparent {
-			grid-area: btnType-transparent;
-			justify-content: flex-end;
-			padding-inline-end: 1rem;
-		}
-
-		.demo-btnType-custom {
-			grid-area: btnType-custom;
-			justify-content: flex-end;
-			padding-inline-end: 1rem;
-		}
-
-		.demo-default-initial {
-			grid-area: default-initial;
-		}
-
-		.demo-default-brand {
-			grid-area: default-brand;
-		}
-
-		.demo-default-outline {
-			grid-area: default-outline;
-		}
-
-		.demo-error-initial {
-			grid-area: error-initial;
-		}
-
-		.demo-error-brand {
-			grid-area: error-brand;
-		}
-
-		.demo-error-outline {
-			grid-area: error-outline;
-		}
-
-		.demo-success-initial {
-			grid-area: success-initial;
-		}
-
-		.demo-success-brand {
-			grid-area: success-brand;
-		}
-
-		.demo-success-outline {
-			grid-area: success-outline;
-		}
-
-		.demo-transparent-initial {
-			grid-area: transparent-initial;
-		}
-
-		.demo-transparent-brand {
-			grid-area: transparent-brand;
-		}
-
-		.demo-transparent-outline {
-			grid-area: transparent-outline;
-		}
-
-		.demo-custom-initial {
-			grid-area: custom-initial;
-		}
-
-		.demo-custom-brand {
-			grid-area: custom-brand;
-		}
-
-		.demo-custom-outline {
-			grid-area: custom-outline;
-		}
-
-		.demo-transparent-bg {
-			background: var(--cs-transparent-bg);
-			padding: 0.25rem;
+		.cs-table-cell {
+			min-width: 160px;
 		}
 	}
 }
