@@ -14,7 +14,12 @@ class CSCustomSelectPreview extends React.Component {
 		{ itemKey: '1', value: 'A' },
 		{ itemKey: '2', value: 'B' },
 		{ itemKey: '3', value: 'C' },
-		{ itemKey: '4', value: 'D' }
+		{ itemKey: '4', value: 'D' },
+		{ itemKey: '5', value: 'E' },
+		{ itemKey: '6', value: 'F' },
+		{ itemKey: '7', value: 'G' },
+		{ itemKey: '8', value: 'H' },
+		{ itemKey: '9', value: 'I' }
 	];
 
 	optionItems = this.itemsArray.map(item => (
@@ -673,7 +678,7 @@ class CSCustomSelectPreview extends React.Component {
 						variant="warning"
 						text="This component is under construction and should not be used."
 						styleFormat="scoped"
-					 />
+					/>
 					<PreviewProperties name={component.name} examples={component.examples} />
 					<PreviewTable components={[component, component2]} />
 					<PreviewAccessibility components={[component]} />

@@ -16,6 +16,37 @@ export interface CSOptionProps {
 }
 
 class CSOption extends React.Component<CSOptionProps> {
+	private optionNode: React.RefObject<HTMLLIElement>;
+	constructor(props: CSOptionProps) {
+		super(props);
+
+		this.optionNode = React.createRef();
+	}
+
+	checkInView = () => {
+		const dropdownNode = document.getElementById('cs-custom-select-dropdown');
+
+		// CSCustomSelect dropdown top and bottom
+		const dropdownTop = dropdownNode.scrollTop;
+		const dropdownBottom = dropdownTop + dropdownNode.clientHeight;
+
+		// CSOption top and bottom
+		const optionTop = this.optionNode.current.offsetTop;
+		const optionBottom = optionTop + this.optionNode.current.clientHeight;
+
+		// Change dropdown scroll top if option is not completely visible
+		if (optionTop < dropdownTop) {
+			dropdownNode.scrollTop = optionTop;
+		} else if (optionBottom > dropdownBottom) {
+			dropdownNode.scrollTop += (optionBottom - dropdownBottom);
+		}
+	}
+
+	componentDidUpdate(prevProps: CSOptionProps) {
+		if (prevProps.active !== this.props.active && this.props.active) {
+			this.checkInView();
+		}
+	}
 
 	render() {
 		const {
@@ -51,8 +82,10 @@ class CSOption extends React.Component<CSOptionProps> {
 				onMouseDown={onMouseDown}
 				onMouseOver={onMouseOver}
 				onMouseOut={onMouseOut}
-				{...rest}
 				id={id}
+				ref={this.optionNode}
+				{...rest}
+
 			>
 				{(type === 'list-item' && isMultiSelectItem) &&
 					<span className="cs-option-check-icon">

@@ -542,6 +542,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 					(toggle && !disabled) &&
 					<ul
 						className="cs-custom-select-dropdown"
+						id="cs-custom-select-dropdown"
 						ref={this.dropdownNode}
 					>
 						{renderDropdownOptionsAsChildren()}
