@@ -1,5 +1,53 @@
 # Release Notes
 
+## 1.1.5<a name="1.1.5"></a>
+* CSButton
+  * <i>important</i> `labelHidden` prop added to eventually replace `iconDisplay` prop
+* CSButtonGroup
+  * fix undefined class added when marginPosition prop isn't passed
+* CSCheckbox
+  * `labelPosition` prop added
+  * <i>important</i> `borderType` prop removed and replaced with `borderRadius` prop
+* CSCustomSelect
+  * <i>important</i> `borderType` prop removed and replaced with `borderRadius` prop
+* CSDatepicker
+  * <i>important</i> `borderType` prop removed and replaced with `borderRadius` prop
+* CSDateTimePicker
+  * <i>important</i> `borderType` prop removed and replaced with `borderRadius` prop
+  * width fix when not enough space
+* CSInputNumber
+  * <i>important</i> `borderType` prop removed and replaced with `borderRadius` prop
+* CSInputSearch
+  * <i>important</i> `borderType` prop removed and replaced with `borderRadius` prop
+* CSInputText
+  * <i>important</i> `borderType` prop removed and replaced with `borderRadius` prop
+* CSSection
+  * <i>important</i> `collapsed` prop removed and replaced with `defaultClosed` prop
+  * <i>important</i> several classNames changed to better describe what they are
+* CSSelect
+  * <i>important</i> `borderType` prop removed and replaced with `borderRadius` prop
+* CSTextarea
+  * <i>important</i> `borderType` prop removed and replaced with `borderRadius` prop
+* CSTab
+  * `iconOrigin` support added
+* CSTooltip
+  * fix tooltip not closing on blur when `stickyOnClick={true}`
+  * fix eventListener removal when `stickyOnClick={true}`
+  * fix body expanding for tooltip with header
+* Demo App changes
+  * quick links now also filter by prop variant
+  * fix font size inconsistencies across demo app
+  * accessibility table change to CSTable
+  * API table change to CSTable
+  * children props are now properly documented
+  * various minor fixes
+  * restyle of preview files
+* Documentation object restructure
+  * Field Error Message
+  * Pagination
+  * Progress Indicator
+  * Skip Link
+
 ## 1.1.4<a name="1.1.4"></a>
 * CSAlert
   * padding fixed when no close button
