@@ -16,6 +16,9 @@ Besides the standard set of features you'd expect from any grid cs-grid includes
 
 Release Notes
 ------------------
+####1.2.55
+ * Moved dev and peer dependencies to correct place
+ * Removed accidental logging messages
 ####1.2.54
  * Fixed non-selectable read only cells
  * Replaced all buttons with CSButtons
