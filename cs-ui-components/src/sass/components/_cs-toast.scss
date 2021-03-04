@@ -8,7 +8,7 @@
 		align-items: flex-start;
 		position: relative;
 		border-radius: 0.25rem;
-		padding: 0.75rem 3rem 0.75rem 1rem;
+		padding: 0.75rem 1rem;
 		width: var(--cs-toast-width);
 		min-width: 15rem;
 		max-width: Min(var(--cs-toast-width, 30rem), 100%);
@@ -106,7 +106,11 @@
 			}
 		}
 
-		.cs-toast-close {
+		&.cs-toast-close {
+			padding: 0.75rem 3rem 0.75rem 1rem;
+		}
+
+		.cs-toast-close-btn {
 			position: absolute;
 			width: 1.625rem;
 			height: 1.625rem;
@@ -143,7 +147,7 @@
 			}
 		}
 
-		&.cs-toast-warning .cs-toast-close {
+		&.cs-toast-warning .cs-toast-close-btn {
 
 			svg {
 				@include sf(--cs-toast-warning-fill);

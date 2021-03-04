@@ -48,7 +48,8 @@ class CSToast extends React.Component<CSToastProps> {
 
 		const toastClasses = classNames(
 			'cs-toast',
-			[`cs-toast-${variant}`]
+			[`cs-toast-${variant}`],
+			{[`cs-toast-close`]: closeButton}
 		);
 
 		const style: CSSProperties = {
@@ -77,7 +78,7 @@ class CSToast extends React.Component<CSToastProps> {
 						{children}
 					</h4>
 					{closeButton ?
-						<button className="cs-toast-close" onClick={onClose} aria-label="close">
+						<button className="cs-toast-close-btn" onClick={onClose} aria-label="close">
 							<CSIcon name="close" />
 						</button>
 						: null}
