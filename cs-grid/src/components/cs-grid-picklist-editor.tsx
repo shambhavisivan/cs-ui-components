@@ -1,5 +1,5 @@
 import { CSButton } from '@cloudsense/cs-ui-components';
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import {
 	CellData,
@@ -86,18 +86,17 @@ export class CSGridPicklistEditor
 		this.state.options.forEach((option: PickListRow, id: string): void => {
 			const selectOption = () => this.optionSelected(id);
 			dropDownValues.push(
-				<>
+				<Fragment key={id}>
 					{option.horizontalDivider && <div className='divider-horizontal' />}
 					<li
 						className={'picklist-list-item' + (option.isSelected ? ' selected' : '')}
-						key={id}
 						onClick={selectOption}
 						title={option.label}
 					>
 						{option.icon}
 						{option.label}
 					</li>
-				</>
+				</Fragment>
 			);
 		});
 
