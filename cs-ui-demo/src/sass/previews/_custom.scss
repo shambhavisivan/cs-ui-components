@@ -346,3 +346,10 @@
 		background-color: var(--custom-bg);
 	}
 }
+.cs-modal-header,
+.cs-modal-body,
+.cs-modal-footer {
+	&.custom-class {
+		border: 3px solid var(--custom-purple-bg);
+	}
+}

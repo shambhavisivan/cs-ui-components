@@ -774,8 +774,9 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 										<CSModalHeader
 											title="This is a test heading"
 											subtitle="This is a test subtitle"
+											className="custom-class"
 										/>
-										<CSModalBody>
+										<CSModalBody className="custom-class">
 											<p>
 												Sit nulla est ex deserunt exercitation anim
 												occaecat.
@@ -790,7 +791,7 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 												cupidatat consequat elit dolor adipisicing.
 											</p>
 										</CSModalBody>
-										<CSModalFooter>
+										<CSModalFooter className="custom-class">
 											<CSButton label="Default Button" />
 											<CSButton label="Brand Button" btnStyle="brand" />
 										</CSModalFooter>
@@ -937,6 +938,10 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 					types: ['any'],
 					description: 'This component supports custom content passed as children.'
 				}, {
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the modal header.'
+				}, {
 					name: 'id',
 					types: ['string'],
 					description: 'Set the ID for the modal header.'
@@ -973,6 +978,10 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 					types: ['any'],
 					description: 'This component supports custom content passed as children.'
 				}, {
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the modal body wrapper.'
+				}, {
 					name: 'id',
 					types: ['string'],
 					description: 'Set the ID for the modal body.'
@@ -999,6 +1008,10 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 					name: 'children',
 					types: ['any'],
 					description: 'This component supports custom content passed as children.'
+				}, {
+					name: 'className',
+					types: ['string'],
+					description: 'Apply custom CSS classes to the modal footer.'
 				}, {
 					name: 'align',
 					customTypes: [{

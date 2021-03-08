@@ -1,7 +1,9 @@
 import React from 'react';
+import classNames from 'classnames';
 
 export interface CSModalHeaderProps {
 	[key: string]: any;
+	className?: string;
 	id?: string;
 	subtitle?: string;
 	title?: string;
@@ -11,10 +13,24 @@ export interface CSModalHeaderProps {
 class CSModalHeader extends React.Component<CSModalHeaderProps> {
 
 	render() {
-		const { children, id, subtitle, title, titleId, ...rest } = this.props;
+		const {
+			children,
+			className,
+			id,
+			subtitle,
+			title,
+			titleId,
+			...rest
+		} = this.props;
+
+		const modalHeaderClasses = classNames(
+			'cs-modal-header', {
+			[`${className}`]: className
+		});
+
 		return (
 			<header
-				className="cs-modal-header"
+				className={modalHeaderClasses}
 				id={id}
 				{...rest}
 			>
