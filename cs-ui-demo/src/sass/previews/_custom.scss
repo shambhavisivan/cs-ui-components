@@ -275,6 +275,20 @@
 			background-color: var(--custom-bg);
 		}
 	}
+
+	&.list-preview {
+		.custom-class {
+			border: 2px solid var(--custom-br);
+		}
+
+		.custom-group-class {
+			background-color: var(--custom-bg);
+		}
+
+		.custom-item-class {
+			background-color: var(--custom-alt-bg);
+		}
+	}
 }
 
 .cs-btn-type-preview {
