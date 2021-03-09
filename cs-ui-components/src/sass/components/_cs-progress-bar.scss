@@ -27,7 +27,6 @@
 
 	.cs-progress-bar {
 		width: 100%;
-		height: 0.5rem;
 		@include sbg(--cs-progress-bar-bg);
 
 		&.cs-progress-bar-xsmall {

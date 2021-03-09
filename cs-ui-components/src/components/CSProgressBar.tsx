@@ -20,6 +20,10 @@ export interface CSProgressBarProps {
 
 class CSProgressBar extends React.Component<CSProgressBarProps> {
 
+	public static defaultProps = {
+		thickness: 'medium'
+	};
+
 	render() {
 		const {
 			className,
@@ -37,9 +41,8 @@ class CSProgressBar extends React.Component<CSProgressBarProps> {
 
 		const progressBarWrapperClasses = classNames(
 			'cs-progress-bar-wrapper', {
-				[`${className}`]: className
-			}
-		);
+			[`${className}`]: className
+		});
 
 		const style: CSSProperties = {
 			width: progress,
@@ -70,7 +73,7 @@ class CSProgressBar extends React.Component<CSProgressBarProps> {
 					) : ('')}
 				</div>
 				<div className={`cs-progress-bar cs-progress-bar-${thickness}`} title={title}>
-					<div className="cs-progress-bar-value" style={style}/>
+					<div className="cs-progress-bar-value" style={style} />
 				</div>
 			</div>
 		);
