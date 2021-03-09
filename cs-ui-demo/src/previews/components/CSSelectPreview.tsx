@@ -21,8 +21,8 @@ class CSSelectPreview extends React.Component {
 					{
 						propName: 'label',
 						alert: {
-								variant: 'info',
-								text: 'Label is a required prop because of accessibility. You need to provide an explanatory label for select. If you want to hide the label visually, you can use the labelHidden prop.'
+							variant: 'info',
+							text: 'Label is a required prop because of accessibility. You need to provide an explanatory label for select. If you want to hide the label visually, you can use the labelHidden prop.'
 						},
 						variations: [
 							{
@@ -244,7 +244,7 @@ class CSSelectPreview extends React.Component {
 									<option>20</option>
 									<option>30</option>
 								</CSSelect>,
-								code:  `<CSSelect label="Choose amount" required>
+								code: `<CSSelect label="Choose amount" required>
 									<option>10</option>
 									<option>20</option>
 									<option>30</option>
@@ -369,6 +369,7 @@ class CSSelectPreview extends React.Component {
 			}, {
 				name: 'error',
 				types: ['boolean'],
+				default: 'false',
 				description: 'Toggle the error state.'
 			}, {
 				name: 'errorMessage',

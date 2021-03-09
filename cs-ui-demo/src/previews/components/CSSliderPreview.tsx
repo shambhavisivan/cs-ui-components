@@ -490,6 +490,7 @@ class CSSliderPreview extends React.Component {
 			}, {
 				name: 'error',
 				types: ['boolean'],
+				default: 'false',
 				description: 'Toggle the error state.'
 			}, {
 				name: 'errorMessage',

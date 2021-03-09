@@ -135,7 +135,7 @@ class CSDateTimePickerPreview extends React.Component {
 									label="Enter date"
 									error
 									errorMessage="Error message!"
-									/>,
+								/>,
 								code: `<CSDateTimePicker
 									label="Enter date"
 									error
@@ -506,6 +506,7 @@ class CSDateTimePickerPreview extends React.Component {
 			}, {
 				name: 'error',
 				types: ['boolean'],
+				default: 'false',
 				description: 'Toggle the error state.'
 			}, {
 				name: 'errorMessage',
@@ -693,7 +694,7 @@ class CSDateTimePickerPreview extends React.Component {
 					<PreviewTable components={[component]} />
 					<PreviewAccessibility components={[component]} />
 				</div>
-					<PreviewLinks {...component} />
+				<PreviewLinks {...component} />
 			</>
 		);
 	}

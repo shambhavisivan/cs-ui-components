@@ -11,9 +11,9 @@ import { CSDatepicker } from '@cloudsense/cs-ui-components';
 class CSDatepickerPreview extends React.Component {
 	value = moment('1.1.2020', 'DD-MM-YYYY').toDate();
 
-	handleCloseCalendar = () =>	alert('Calendar has been closed.');
+	handleCloseCalendar = () => alert('Calendar has been closed.');
 	handleChange = () => alert('Date has changed.');
-	handleChangeRaw = () =>	alert('Date has changed from raw value.');
+	handleChangeRaw = () => alert('Date has changed from raw value.');
 
 	getDatePickerDoc = () => ({
 		name: 'Datepicker',
@@ -41,7 +41,7 @@ class CSDatepickerPreview extends React.Component {
 							{
 								primaryVariants: 'borderRadius="0"',
 								component: <CSDatepicker label="Enter date" borderRadius="0" />,
-								code:  '<CSDatepicker label="Enter date" borderRadius="0" />'
+								code: '<CSDatepicker label="Enter date" borderRadius="0" />'
 							}
 						]
 					}, {
@@ -194,7 +194,7 @@ class CSDatepickerPreview extends React.Component {
 									label="Enter date"
 									maxDate={1}
 									maxDateYear
-								 />,
+								/>,
 								code: `<CSDatepicker
 									label="Enter date"
 									maxDate={1}
@@ -411,7 +411,7 @@ class CSDatepickerPreview extends React.Component {
 									showYearDropdown
 									scrollableYearDropdown
 									yearDropdownItemNumber={15}
-									/>,
+								/>,
 								code: `<CSDatepicker
 									label="Enter date"
 									showYearDropdown
@@ -475,6 +475,7 @@ class CSDatepickerPreview extends React.Component {
 			}, {
 				name: 'error',
 				types: ['boolean'],
+				default: 'false',
 				description: 'Toggle the error state.'
 			}, {
 				name: 'errorMessage',
@@ -674,7 +675,7 @@ class CSDatepickerPreview extends React.Component {
 					<PreviewTable components={[component]} />
 					<PreviewAccessibility components={[component]} />
 				</div>
-					<PreviewLinks {...component} />
+				<PreviewLinks {...component} />
 			</>
 		);
 	}

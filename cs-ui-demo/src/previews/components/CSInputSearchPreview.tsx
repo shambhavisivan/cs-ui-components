@@ -300,6 +300,7 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 			}, {
 				name: 'error',
 				types: ['boolean'],
+				default: 'false',
 				description: 'Toggle the error state.'
 			}, {
 				name: 'errorMessage',

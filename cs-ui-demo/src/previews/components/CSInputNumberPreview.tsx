@@ -365,6 +365,7 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 			}, {
 				name: 'error',
 				types: ['boolean'],
+				default: 'false',
 				description: 'Toggle the error state.'
 			}, {
 				name: 'errorMessage',
