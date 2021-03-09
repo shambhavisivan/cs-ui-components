@@ -353,7 +353,8 @@ class CSToastPreview extends React.Component {
 						onClick={() => (
 							CSToastApi.renderCSToast({
 								variant: 'success',
-								text: 'Top right toast'
+								text: 'Top right toast',
+								closeButton: true
 							}, 'top-right', 3)
 						)}
 					/>
@@ -362,7 +363,8 @@ class CSToastPreview extends React.Component {
 						onClick={() => (
 							CSToastApi.renderCSToast({
 								variant: 'warning',
-								text: 'Top left toast'
+								text: 'Top left toast',
+								closeButton: true
 							}, 'top-left', 4)
 						)}
 					/>
@@ -371,7 +373,8 @@ class CSToastPreview extends React.Component {
 						onClick={() => (
 							CSToastApi.renderCSToast({
 								variant: 'success',
-								text: 'Top center toast'
+								text: 'Top center toast',
+								closeButton: true
 							}, 'top-center', 5)
 						)}
 					/>
@@ -380,7 +383,8 @@ class CSToastPreview extends React.Component {
 						onClick={() => (
 							CSToastApi.renderCSToast({
 								variant: 'info',
-								text: 'Bottom right toast'
+								text: 'Bottom right toast',
+								closeButton: true
 							}, 'bottom-right', 6)
 						)}
 					/>
@@ -389,7 +393,8 @@ class CSToastPreview extends React.Component {
 						onClick={() => (
 							CSToastApi.renderCSToast({
 								variant: 'error',
-								text: 'Bottom left toast that won\'t close (duration = null)'
+								text: 'Bottom left toast that won\'t close (duration = null)',
+								closeButton: true
 							}, 'bottom-left', null)
 						)}
 					/>
@@ -400,7 +405,8 @@ class CSToastPreview extends React.Component {
 						onClick={() => (
 							CSToastApi.renderCSToast({
 								variant: 'success',
-								text: 'Top right toast'
+								text: 'Top right toast',
+								closeButton: true
 							}, 'top-right', 3)
 						)}
 					/>
@@ -409,7 +415,8 @@ class CSToastPreview extends React.Component {
 						onClick={() => (
 							CSToastApi.renderCSToast({
 								variant: 'warning',
-								text: 'Top left toast'
+								text: 'Top left toast',
+								closeButton: true
 							}, 'top-left', 4)
 						)}
 					/>
@@ -418,7 +425,8 @@ class CSToastPreview extends React.Component {
 						onClick={() => (
 							CSToastApi.renderCSToast({
 								variant: 'success',
-								text: 'Top center toast'
+								text: 'Top center toast',
+								closeButton: true
 							}, 'top-center', 5)
 						)}
 					/>
@@ -427,7 +435,8 @@ class CSToastPreview extends React.Component {
 						onClick={() => (
 							CSToastApi.renderCSToast({
 								variant: 'info',
-								text: 'Bottom right toast'
+								text: 'Bottom right toast',
+								closeButton: true
 							}, 'bottom-right', 6)
 						)}
 					/>
@@ -436,7 +445,8 @@ class CSToastPreview extends React.Component {
 						onClick={() => (
 							CSToastApi.renderCSToast({
 								variant: 'error',
-								text: 'Bottom left toast that won't close (duration = null)'
+								text: 'Bottom left toast that won't close (duration = null)',
+								closeButton: true
 							}, 'bottom-left', null)
 						)}
 					/>
