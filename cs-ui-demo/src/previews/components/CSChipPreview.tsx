@@ -159,6 +159,34 @@ class CSChipPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'color',
+						variations: [
+							{
+								secondaryVariants: 'variantStyle="fill"',
+								component: <CSChip
+									text="color"
+									color="#4a26ab"
+								/>,
+								code: `<CSChip
+									text="color"
+									color="#4a26ab"
+								/>`
+							},
+							{
+								secondaryVariants: 'variantStyle="border"',
+								component: <CSChip
+									text="color"
+									variantStyle="border"
+									color="#4a26ab"
+								/>,
+								code: `<CSChip
+									text="color"
+									variantStyle="border"
+									color="#4a26ab"
+								/>`
+							}
+						]
+					}, {
 						propName: 'id | class',
 						variations: [
 							{
@@ -191,6 +219,10 @@ class CSChipPreview extends React.Component {
 				name: 'className',
 				types: ['string'],
 				description: 'Apply custom CSS classes to the chip.'
+			}, {
+				name: 'color',
+				types: ['string'],
+				description: 'Apply custom color to the chip. Custom color will override variant styles!'
 			}, {
 				name: '[key: string]',
 				types: ['any'],

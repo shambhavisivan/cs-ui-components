@@ -47,6 +47,10 @@
 		@include sc(--cs-chip-c);
 	}
 
+	&-custom-color {
+		@include sbg(--cs-chip-custom-c);
+	}
+
 	&-neutral-border {
 		@include sc(--cs-chip-neutral-c);
 		@include css4 {
@@ -86,6 +90,13 @@
 		@include sc(--cs-chip-dark-c);
 		@include css4 {
 			border: 1px solid cvar(--cs-chip-dark-br);
+		}
+	}
+
+	&-custom-color-border {
+		@include sc(--cs-chip-custom-c);
+		@include css4 {
+			border: 1px solid cvar(--cs-chip-custom-c);
 		}
 	}
 }
