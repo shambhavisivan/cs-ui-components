@@ -112,6 +112,11 @@ class CSCheckboxPreview extends React.Component {
 								primaryVariants: 'labelPosition="left"',
 								component: <CSCheckbox label="Select option" labelPosition="left" />,
 								code: '<CSCheckbox label="Select option" labelPosition="left" />'
+							},
+							{
+								primaryVariants: 'labelPosition="right"',
+								component: <CSCheckbox label="Select option" labelPosition="right" />,
+								code: '<CSCheckbox label="Select option" labelPosition="right" />'
 							}
 						]
 					}, {
@@ -123,7 +128,7 @@ class CSCheckboxPreview extends React.Component {
 								code: '<CSCheckbox label="Select option" labelTitle />'
 							}
 						]
-					},  {
+					}, {
 						propName: 'name',
 						variations: [
 							{
@@ -288,9 +293,8 @@ class CSCheckboxPreview extends React.Component {
 				name: 'labelPosition',
 				customTypes: [{
 					name: 'CSCheckboxLabelPosition',
-					types: ['\'default\'', '\'left\'']
+					types: ['\'left\'', '\'right\'']
 				}],
-				default: '\'default\'',
 				description: 'Set the label position.'
 			}, {
 				name: 'labelTitle',

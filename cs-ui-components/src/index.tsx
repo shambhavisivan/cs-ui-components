@@ -27,7 +27,7 @@ import CSCard from './components/card/CSCard';
 import CSCardBody from './components/card/CSCardBody';
 import CSCardFooter from './components/card/CSCardFooter';
 import CSCardHeader from './components/card/CSCardHeader';
-import CSCheckbox, { CSCheckboxVariant } from './components/CSCheckbox';
+import CSCheckbox, { CSCheckboxLabelPosition, CSCheckboxVariant } from './components/CSCheckbox';
 import CSChip, { CSChipVariant, CSChipVariantStyle } from './components/CSChip';
 import CSCustomSelect, { CSCustomSelectExportValueType } from './components/custom-select/CSCustomSelect';
 import CSDatepicker, { CSDatepickerDropdownMode } from './components/CSDatepicker';
@@ -110,6 +110,7 @@ export {
 	CSCardFooter,
 	CSCardHeader,
 	CSCheckbox,
+	CSCheckboxLabelPosition,
 	CSCheckboxVariant,
 	CSChip,
 	CSChipVariant,

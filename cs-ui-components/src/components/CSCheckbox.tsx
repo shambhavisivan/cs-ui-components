@@ -6,7 +6,7 @@ import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import { v4 as uuidv4 } from 'uuid';
 
 export type CSCheckboxVariant = 'neutral' | 'brand';
-export type CSCheckboxLabelPosition = 'default' | 'left';
+export type CSCheckboxLabelPosition = 'left' | 'right';
 
 export interface CSCheckboxProps {
 	[key: string]: any;

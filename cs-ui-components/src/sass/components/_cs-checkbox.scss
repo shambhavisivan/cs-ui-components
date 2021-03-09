@@ -4,14 +4,23 @@
 	flex-direction: column;
 	position: relative;
 
-	&.cs-checkbox-label-left {
+	&.cs-checkbox-label-left,
+	&.cs-checkbox-label-right {
 		flex-direction: row;
 		align-items: center;
 
 		.cs-label-wrapper {
-			margin-right: 0.5rem;
 			padding-bottom: 0;
 		}
+	}
+
+	&.cs-checkbox-label-left .cs-label-wrapper {
+		margin-right: 0.5rem;
+	}
+
+	&.cs-checkbox-label-right .cs-label-wrapper {
+		margin-left: 0.5rem;
+		order: 1;
 	}
 
 	.cs-checkbox-group {
