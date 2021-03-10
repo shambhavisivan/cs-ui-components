@@ -144,10 +144,11 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 
 		const datepickerClasses = classNames(
 			'cs-datepicker', {
-			[`${className}`]: className,
-			'cs-datepicker-error': error,
-			'cs-datepicker-read-only': readOnly
-		}
+				[`${className}`]: className,
+				'cs-datepicker-error': error,
+				'cs-datepicker-read-only': readOnly,
+				'cs-datepicker-clearable': isClearable
+			}
 		);
 		const style: CSSProperties = {
 			'--datepicker-width': width,

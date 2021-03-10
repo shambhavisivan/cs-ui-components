@@ -29,7 +29,7 @@
 			font-size: 0.75rem;
 			line-height: 1.875rem;
 			min-height: 2rem;
-			padding: 0 0.75rem;
+			padding: 0 1.8125rem 0 0.75rem;
 			border-radius: var(--cs-datepicker-border-radius, 0.25rem);
 			transition: border 0.1s linear, background-color 0.1s linear;
 			width: 100%;
@@ -320,6 +320,10 @@
 				border-color: cvar(--cs-transparent);
 			}
 		}
+	}
+
+	&-clearable .react-datepicker-wrapper input {
+		padding-right: 3rem;
 	}
 
 	// datetimepicker
