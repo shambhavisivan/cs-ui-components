@@ -47,19 +47,11 @@ class CSAlertPreview extends React.Component {
 								quickLink: 'error',
 								component: <CSAlert
 									variant="error"
-									text={[
-										'This is an example error alert',
-										'Second alert',
-										'Third alert'
-									]}
+									text="This is an example error alert"
 								/>,
 								code: `<CSAlert
 									variant="error"
-									text={[
-										'This is an example error alert',
-										'Second alert',
-										'Third alert'
-									]}
+									text="This is an example error alert"
 								/>`
 							}, {
 								primaryVariants: 'variant="base"',
@@ -71,6 +63,157 @@ class CSAlertPreview extends React.Component {
 								code: `<CSAlert
 									variant="base"
 									text="This is an example base alert"
+								/>`
+							}
+						]
+					}, {
+						propName: 'closeButton',
+						alert: {
+							variant: 'info',
+							text: 'This prop should be used together with the onClose prop.'
+						},
+						variations: [
+							{
+								primaryVariants: 'closeButton={true}',
+								component: <CSAlert
+									variant="info"
+									closeButton
+									text="This is an example alert with a close button"
+								/>,
+								code: `<CSAlert
+									variant="info"
+									closeButton
+									text="This is an example alert with a close button"
+								/>`
+							}
+						]
+					}, {
+						propName: 'iconName',
+						description: 'Use to override the default icon defined by the variant.',
+						variations: [
+							{
+								primaryVariants: 'iconName="quote"',
+								component: <CSAlert
+									variant="info"
+									iconName="quote"
+									text="This is an example alert for overriding the icon with iconName prop"
+								/>,
+								code: `<CSAlert
+									variant="info"
+									iconName="quote"
+									text="This is an example alert for overriding the icon with iconName prop"
+								/>`
+							}
+						]
+					}, {
+						propName: 'iconOrigin',
+						variations: [
+							{
+								primaryVariants: 'iconOrigin="slds"',
+								secondaryVariants: 'iconName="quote"',
+								quickLink: 'slds',
+								component: <CSAlert
+									variant="info"
+									iconName="quote"
+									text="This is an example alert with an icon with origin 'slds'"
+								/>,
+								code: `<CSAlert
+									variant="info"
+									iconName="quote"
+									text="This is an example alert with an icon with origin 'slds'"
+								/>`
+							}, {
+								primaryVariants: 'iconOrigin="cs"',
+								secondaryVariants: 'iconName="big_shot"',
+								quickLink: 'cs',
+								component: <CSAlert
+									variant="info"
+									iconName="big_shot"
+									iconOrigin="cs"
+									text="This is an example alert with an icon with origin 'cs'"
+								/>,
+								code: `<CSAlert
+									variant="info"
+									iconName="big_shot"
+									iconOrigin="cs"
+									text="This is an example alert with an icon with origin 'cs'"
+								/>`
+							}
+						]
+					}, {
+						propName: 'iconVisibility',
+						variations: [
+							{
+								primaryVariants: 'iconVisibility={true}',
+								quickLink: 'true',
+								component: <CSAlert
+									variant="info"
+									text="This is an example alert with an icon"
+								/>,
+								code: `<CSAlert
+									variant="info"
+									text="This is an example alert with an icon"
+								/>`
+							}, {
+								primaryVariants: 'iconVisibility={false}',
+								quickLink: 'false',
+								component: <CSAlert
+									variant="info"
+									iconVisibility={false}
+									text="This is an example alert without an icon"
+								/>,
+								code: `<CSAlert
+									variant="info"
+									iconVisibility={false}
+									text="This is an example alert without an icon"
+								/>`
+							}
+						]
+					}, {
+						propName: 'onClose',
+						variations: [
+							{
+								secondaryVariants: 'closeButton={true}',
+								component: <CSAlert
+									variant="info"
+									closeButton
+									onClose={this.handleClose}
+									text="This is an example alert with a close button"
+								/>,
+								code: `<CSAlert
+									variant="info"
+									closeButton
+									onClose={this.handleClose}
+									text="This is an example alert with a close button"
+								/>`
+							}
+						]
+					}, {
+						propName: 'styleFormat',
+						variations: [
+							{
+								primaryVariants: 'styleFormat="default"',
+								quickLink: 'default',
+								component: <CSAlert
+									variant="info"
+									text="This is an example of default alert"
+								/>,
+								code: `<CSAlert
+									variant="info"
+									text="This is an example of default alert"
+								/>`
+							}, {
+								primaryVariants: 'styleFormat="scoped"',
+								quickLink: 'scoped',
+								component: <CSAlert
+									variant="info"
+									styleFormat="scoped"
+									text="This is an example of scoped alert"
+								/>,
+								code: `<CSAlert
+									variant="info"
+									styleFormat="scoped"
+									text="This is an example of scoped alert"
 								/>`
 							}
 						]
@@ -136,6 +279,41 @@ class CSAlertPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'text',
+						variations: [
+							{
+								primaryVariants: 'text="string"',
+								quickLink: 'string',
+								component: <CSAlert
+									variant="info"
+									text="This is an example alert with a single line of text"
+								/>,
+								code: `<CSAlert
+									variant="info"
+									text="This is an example alert with a single line of text"
+								/>`
+							}, {
+								primaryVariants: 'text={[...]}',
+								quickLink: 'array',
+								component: <CSAlert
+									variant="info"
+									text={[
+										'This is alert message no. 1',
+										'This is alert message no. 2',
+										'This is alert message no. 3'
+									]}
+								/>,
+								code: `<CSAlert
+									variant="info"
+									text={[
+										'This is alert message no. 1',
+										'This is alert message no. 2',
+										'This is alert message no. 3'
+									]}
+								/>`
+							}
+						]
+					}, {
 						propName: 'textAlign',
 						variations: [
 							{
@@ -143,12 +321,10 @@ class CSAlertPreview extends React.Component {
 								quickLink: 'left',
 								component: <CSAlert
 									variant="info"
-									textAlign="left"
 									text="This is an example alert with text aligned left"
 								/>,
 								code: `<CSAlert
 									variant="info"
-									textAlign="left"
 									text="This is an example alert with text aligned left"
 								/>`
 							}, {
@@ -157,7 +333,6 @@ class CSAlertPreview extends React.Component {
 								quickLink: 'left with array',
 								component: <CSAlert
 									variant="info"
-									textAlign="left"
 									text={[
 										'This is an example alert with text aligned left',
 										'One more alert',
@@ -166,7 +341,6 @@ class CSAlertPreview extends React.Component {
 								/>,
 								code: `<CSAlert
 									variant="info"
-									textAlign="left"
 									text={[
 										'This is an example alert with text aligned left',
 										'One more alert',
@@ -211,165 +385,6 @@ class CSAlertPreview extends React.Component {
 							}
 						]
 					}, {
-						propName: 'iconName',
-						description: 'Use to override the default icon defined by the variant.',
-						variations: [
-							{
-								primaryVariants: 'iconName="quote"',
-								quickLink: 'quote',
-								component: <CSAlert
-									variant="warning"
-									iconName="quote"
-									text="This is an example alert for overriding the icon with iconName prop"
-								/>,
-								code: `<CSAlert
-									variant="warning"
-									iconName="quote"
-									text="This is an example alert for overriding the icon with iconName prop"
-								/>`
-							}
-						]
-					}, {
-						propName: 'iconOrigin',
-						variations: [
-							{
-								primaryVariants: 'iconOrigin="slds"',
-								quickLink: 'slds',
-								component: <CSAlert
-									variant="info"
-									iconName="quote"
-									iconOrigin="slds"
-									text="This is an example alert with an icon with origin 'slds'"
-								/>,
-								code: `<CSAlert
-									variant="info"
-									iconName="quote"
-									iconOrigin="slds"
-									text="This is an example alert with an icon with origin 'slds'"
-								/>`
-							}, {
-								primaryVariants: 'iconOrigin="cs"',
-								quickLink: 'cs',
-								component: <CSAlert
-									variant="info"
-									iconName="big_shot"
-									iconOrigin="cs"
-									text="This is an example alert with an icon with origin 'cs'"
-								/>,
-								code: `<CSAlert
-									variant="info"
-									iconName="big_shot"
-									iconOrigin="cs"
-									text="This is an example alert with an icon with origin 'cs'"
-								/>`
-							}
-						]
-					}, {
-						propName: 'iconVisibility',
-						variations: [
-							{
-								primaryVariants: 'iconVisibility={true}',
-								quickLink: 'true',
-								component: <CSAlert
-									variant="info"
-									text="This is an example alert with an icon"
-								/>,
-								code: `<CSAlert
-									variant="info"
-									text="This is an example alert with an icon"
-								/>`
-							}, {
-								primaryVariants: 'iconVisibility={false}',
-								quickLink: 'false',
-								component: <CSAlert
-									variant="info"
-									iconVisibility={false}
-									text="This is an example alert without an icon"
-								/>,
-								code: `<CSAlert
-									variant="info"
-									iconVisibility={false}
-									text="This is an example alert without an icon"
-								/>`
-							}
-						]
-					}, {
-						propName: 'styleFormat',
-						variations: [
-							{
-								primaryVariants: 'styleFormat="default"',
-								quickLink: 'default',
-								component: <CSAlert
-									variant="info"
-									text="This is an example of default alert"
-								/>,
-								code: `<CSAlert
-									variant="info"
-									text="This is an example of default alert"
-								/>`
-							}, {
-								primaryVariants: 'styleFormat="scoped"',
-								quickLink: 'scoped',
-								component: <CSAlert
-									variant="info"
-									styleFormat="scoped"
-									text="This is an example of scoped alert"
-								/>,
-								code: `<CSAlert
-									variant="info"
-									styleFormat="scoped"
-									text="This is an example of scoped alert"
-								/>`
-							}
-						]
-					}, {
-						propName: 'closeButton',
-						variations: [
-							{
-								primaryVariants: 'closeButton={true}',
-								quickLink: 'true',
-								component: <CSAlert
-									variant="info"
-									closeButton
-									text="This is an example alert with a close button"
-								/>,
-								code: `<CSAlert
-									variant="info"
-									closeButton
-									text="This is an example alert with a close button"
-								/>`
-							}, {
-								primaryVariants: 'closeButton={false}',
-								quickLink: 'false',
-								component: <CSAlert
-									variant="info"
-									text="This is an example alert without a close button"
-								/>,
-								code: `<CSAlert
-									variant="info"
-									text="This is an example alert without a close button"
-								/>`
-							}
-						]
-					}, {
-						propName: 'onClose',
-						variations: [
-							{
-								component: <CSAlert
-									variant="info"
-									closeButton
-									onClose={this.handleClose}
-									text="This is an example alert with a close button"
-								/>,
-								code: `<CSAlert
-									variant="info"
-									closeButton
-									onClose={this.handleClose}
-									text="This is an example alert with a close button"
-								/>`
-							}
-						]
-					}, {
 						propName: 'id | class',
 						variations: [
 							{
@@ -393,48 +408,44 @@ class CSAlertPreview extends React.Component {
 						]
 					}, {
 						propName: 'children',
-						customText: 'CSAlert supports custom content provided as children',
+						description: 'CSAlert supports custom content provided as children',
 						variations: [
 							{
-								primaryVariants: ['custom link'],
+								primaryVariants: 'custom link',
 								quickLink: 'custom link',
-								component:
-									<CSAlert
-										variant="info"
-										iconName="info"
-									>
-										<span>This custom text includes a <a href="./CSAlert" className="cs-alert-link">link</a></span>
-									</CSAlert>,
-								code: `<CSAlert variant="info" iconName="info">
+								component: <CSAlert variant="info">
+									<span>This custom text includes a <a href="./CSAlert" className="cs-alert-link">link</a></span>
+								</CSAlert>,
+								code: `<CSAlert variant="info">
 									<span>This custom text includes a <a href="./CSAlert" className="cs-alert-link">link</a></span>
 								</CSAlert>`
 							},
 							{
-								primaryVariants: ['custom text'],
+								primaryVariants: 'custom text',
 								quickLink: 'custom text',
-								component:
-									<CSAlert
-										variant="info"
-										iconName="info"
-									>
-										<span>This custom text includes <b>bold</b> and <i>italic</i> text</span>
-									</CSAlert>,
-								code: `<CSAlert variant="info" iconName="info">
+								component: <CSAlert variant="info">
+									<span>This custom text includes <b>bold</b> and <i>italic</i> text</span>
+								</CSAlert>,
+								code: `<CSAlert variant="info">
 									<span>This custom text includes <b>bold</b> and <i>italic</i> text</span>
 								</CSAlert>`
 							},
 							{
-								primaryVariants: ['custom component'],
+								primaryVariants: 'custom component',
 								quickLink: 'custom component',
-								component:
-									<CSAlert
-										variant="info"
-										iconName="info"
-									>
-										<CSButton btnType="transparent" label="Custom Button"/>
-									</CSAlert>,
-								code: `<CSAlert variant="info" iconName="info">
-									<CSButton btnType="transparent" label="Custom Button"/>
+								component: <CSAlert variant="info">
+									<CSButton
+										btnType="transparent"
+										btnStyle="outline"
+										label="Custom Button"
+									/>
+								</CSAlert>,
+								code: `<CSAlert variant="info">
+									<CSButton
+										btnType="transparent"
+										btnStyle="outline"
+										label="Custom Button"
+									/>
 								</CSAlert>`
 							}
 						]
@@ -467,7 +478,7 @@ class CSAlertPreview extends React.Component {
 					types: ['\'slds\'', '\'cs\'']
 				}],
 				default: '\'slds\'',
-				description: 'Select whether a SalesForce or a CloudSense icon should be used..'
+				description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
 			}, {
 				name: 'iconVisibility',
 				types: ['boolean'],
