@@ -877,11 +877,6 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 							? this.state.nonIncrementalFilterText
 							: this.state.filterText
 					}
-					search={
-						this.props.csGridQuickFilter.nonIncremental
-							? this.searchQuickFilter
-							: undefined
-					}
 					errorMessage={this.state.qualifiedSearchError}
 				/>
 			);
