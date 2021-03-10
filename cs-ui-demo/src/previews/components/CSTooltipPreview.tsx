@@ -1,5 +1,4 @@
 import React from 'react';
-import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
@@ -9,606 +8,848 @@ import PreviewLinks from '../PreviewLinks';
 import { CSTooltip, CSChip } from '@cloudsense/cs-ui-components';
 
 class CSTooltipPreview extends React.Component {
-	getDoc() {
-		const json = {
-			name: 'Tooltip',
-			usage: 'A Tooltip is a small piece of contextual information about an element on the screen, which is displayed when a user hovers or focuses on the element it is describing. It is not focusable and cannot contain focusable content.',
-			accessible: 'partially',
-			examples: [
-				{
-					propName: 'variant',
-					customText: '',
-					variations: [
-						{
-							variationName: ['info'],
-							quickLink: 'info',
-							component:
-								<CSTooltip variant="info" content="Help text example" />
-						},
-						{
-							variationName: ['warning'],
-							quickLink: 'warning',
-							component:
-								<CSTooltip variant="warning" content="Help text example" />
-						},
-						{
-							variationName: ['error'],
-							quickLink: 'error',
-							component:
-								<CSTooltip variant="error" content="Help text example" />
-						},
-						{
-							variationName: ['success'],
-							quickLink: 'success',
-							component:
-								<CSTooltip variant="success" content="Help text example" />
-						},
-						{
-							variationName: ['basic'],
-							quickLink: 'basic',
-							component:
-								<CSTooltip variant="basic" content="Help text example" />
-						}
-					]
-				},
-				{
-					propName: 'iconColor',
-					customText: '',
-					variations: [
-						{
-							variationName: ['pink'],
-							quickLink: 'pink',
-							component:
-								<CSTooltip iconColor="pink" content="Help text example" />
-						},
-						{
-							variationName: ['#ff0000'],
-							quickLink: '#ff0000',
-							component:
-								<CSTooltip iconColor="#ff0000" content="Help text example" />
-						},
-						{
-							variationName: ['rgba(100,100,255,1.00)'],
-							quickLink: 'rgba(100,100,255,1.00)',
-							component:
-								<CSTooltip iconColor="rgba(100,100,255,1.00)" content="Help text example" />
-						}
-					]
-				},
-				{
-					propName: 'iconName',
-					customText: 'This is used for overriding default icon defined by variant',
-					variations: [
-						{
-							variationName: ['quote'],
-							quickLink: 'quote',
-							component:
-								<CSTooltip iconName="quote" content="Help text example" />
-						}
-					]
-				},
-				{
-					propName: 'iconOrigin',
-					variations: [
-						{
-							variationName: ['slds'],
-							quickLink: 'slds',
-							component:
-								<CSTooltip iconName="quote" content="Help text example" iconOrigin="slds" />
-						},
-						{
-							variationName: ['cs'],
-							quickLink: 'cs',
-							component:
-								<CSTooltip iconName="big_shot" content="Help text example" iconOrigin="cs" />
-						}
-					]
-				},
-				{
-					propName: 'iconSize',
-					customText: 'Size of the tooltip icon',
-					variations: [
-						{
-							variationName: ['small'],
-							quickLink: 'small',
-							variationText: ['iconName="info"'],
-							component:
-								<CSTooltip iconName="info" content="Help text example" />
-						},
-						{
-							variationName: ['medium'],
-							quickLink: 'medium',
-							variationText: ['iconName="info"'],
-							component:
-								<CSTooltip iconName="info" iconSize="medium" content="Help text example" />
-						}
-					]
-				},
-				{
-					propName: 'id',
-					variations: [
-						{
-							component:
-								<CSTooltip iconName="quote" content="Help text example" id="id" />
-						}
-					]
-				},
-				{
-					propName: 'position',
-					alert: {
-						variant: 'info',
-						text: 'The provided position will be overridden if the tooltip is outside of viewport. This auto-position functionality is only working with stylePosition fixed for now!'
-					},
-					variations: [
-						{
-							variationName: ['top-right'],
-							quickLink: 'top-right with array',
-							variationText: ['array'],
-							component:
-								<CSTooltip content={['This is an example tooltip', 'One more tooltip', 'Another tooltip to display']} position="top-right" />
-						},
-						{
-							variationName: ['top-left'],
-							quickLink: 'top-left',
-							component:
-								<CSTooltip content="Lorem ipsum dolor sit amet, consectetur adipisicing elit." position="top-left" />
-						},
-						{
-							variationName: ['top-center'],
-							quickLink: 'top-center',
-							component:
-								<CSTooltip content="Lorem ipsum dolor sit amet, consectetur adipisicing elit.." position="top-center" />
-						},
-						{
-							variationName: ['bottom-right'],
-							quickLink: 'bottom-right',
-							component:
-								<CSTooltip content="Lorem ipsum dolor sit amet, consectetur adipisicing elit." position="bottom-right" />
-						},
-						{
-							variationName: ['bottom-left'],
-							quickLink: 'bottom-left',
-							component:
-								<CSTooltip content="Lorem ipsum dolor sit amet, consectetur adipisicing elit.." position="bottom-left" />
-						},
-						{
-							variationName: ['bottom-center'],
-							quickLink: 'bottom-center',
-							component:
-								<CSTooltip content="Lorem ipsum dolor sit amet, consectetur adipisicing elit.." position="bottom-center" />
-						},
-						{
-							variationName: ['right-top'],
-							quickLink: 'right-top',
-							component:
-								<CSTooltip height="400px" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit." position="right-top" />
-						},
-						{
-							variationName: ['right-bottom'],
-							quickLink: 'right-bottom',
-							component:
-								<CSTooltip content="Lorem ipsum dolor sit amet, consectetur adipisicing elit.." position="right-bottom" />
-						},
-						{
-							variationName: ['right-center'],
-							quickLink: 'right-center',
-							component:
-								<CSTooltip content="Lorem ipsum dolor sit amet, consectetur adipisicing elit.." position="right-center" />
-						},
-						{
-							variationName: ['left-top'],
-							quickLink: 'left-top',
-							component:
-								<CSTooltip content="Lorem ipsum dolor sit amet, consectetur adipisicing elit.." position="left-top" />
-						},
-						{
-							variationName: ['left-bottom'],
-							quickLink: 'left-bottom',
-							component:
-								<CSTooltip content="Lorem ipsum dolor sit amet, consectetur adipisicing elit.." position="left-bottom" />
-						},
-						{
-							variationName: ['left-center'],
-							quickLink: 'left-center',
-							component:
-								<CSTooltip content="Lorem ipsum dolor sit amet, consectetur adipisicing elit." position="left-center" />
-						}
-					]
-				},
-				{
-					propName: 'stickyOnClick',
-					variations: [
-						{
-							variationName: ['true'],
-							component:
-								<CSTooltip stickyOnClick content="Lorem ipsum dolor sit amet, consectetur adipisicing elit.." />
-						}
-					]
-				},
-				{
-					propName: 'tooltipHeader',
-					customText: 'This is used for defining tooltip header.Its color will be defined by variant prop',
-					variations: [
-						{
-							variationName: ['info'],
-							quickLink: 'info with array',
-							variationText: ['array'],
-							component:
-								<CSTooltip tooltipHeader="Info" content={['This is an example tooltip', 'One more tooltip', 'Another tooltip to display']} />
-						},
-						{
-							variationName: ['warning'],
-							quickLink: 'warning',
-							variationText: ['position="bottom-left"'],
-							component:
-								<CSTooltip variant="warning" tooltipHeader="Warning" position="bottom-left" content="Help text example" />
-						},
-						{
-							variationName: ['error'],
-							quickLink: 'error',
-							component:
-								<CSTooltip variant="error" tooltipHeader="Error" content="Help text example" />
-						},
-						{
-							variationName: ['success'],
-							quickLink: 'success',
-							component:
-								<CSTooltip variant="success" tooltipHeader="Success" content="Help text example" />
-						},
-						{
-							variationName: ['basic'],
-							quickLink: 'basic',
-							component:
-								<CSTooltip variant="basic" tooltipHeader="Basic" content="Help text example" />
-						}
-					]
-				},
-				{
-					propName: 'className',
-					customText: '',
-					variations: [
-						{
-							variationName: ['custom class'],
-							quickLink: 'custom class',
-							variationText: ['iconName="quote"'],
-							component:
-								<CSTooltip iconName="quote" content="Help text example" className="custom-class" />
-						}
-					]
-				},
-				{
-					propName: 'delayTooltip',
-					customText: '',
-					variations: [
-						{
-							variationName: ['500'],
-							quickLink: '500',
-							component:
-								<CSTooltip delayTooltip={500} content="Help text example" />
-						}
-					]
-				},
-				{
-					propName: 'height',
-					customText: '',
-					variations: [
-						{
-							variationName: ['200px'],
-							quickLink: '200px',
-							component:
-								<CSTooltip height="200px" content="Help text example" />
-						},
-						{
-							variationName: ['auto'],
-							quickLink: 'auto',
-							component:
-								<CSTooltip height="auto" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat porttitor enim ornare porta. Duis nibh orci, imperdiet in lectus consequat, tincidunt fringilla ante. Nullam varius eleifend sodales. Morbi at rhoncus mi." />
-						}
-					]
-				},
-				{
-					propName: 'width',
-					variations: [
-						{
-							variationName: ['5rem'],
-							quickLink: '5rem',
-							component:
-								<CSTooltip width="5rem" content="Help text example" />
-						},
-						{
-							variationName: ['auto'],
-							quickLink: 'auto',
-							component:
-								<CSTooltip width="auto" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat porttitor enim ornare porta. Duis nibh orci, imperdiet in lectus consequat, tincidunt fringilla ante. Nullam varius eleifend sodales. Morbi at rhoncus mi." />
-						}
-					]
-				},
-				{
-					propName: 'maxHeight',
-					customText: '',
-					variations: [
-						{
-							variationName: ['200px'],
-							quickLink: '200px',
-							variationText: ['maxWidth="200px"'],
-							component:
-								<CSTooltip maxHeight="200px" maxWidth="200px" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat porttitor enim ornare porta. Duis nibh orci, imperdiet in lectus consequat, tincidunt fringilla ante. Nullam varius eleifend sodales. Morbi at rhoncus mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat porttitor enim ornare porta. Duis nibh orci, imperdiet in lectus consequat, tincidunt fringilla ante. Nullam varius eleifend sodales. Morbi at rhoncus mi." />
-						},
-						{
-							variationName: ['4rem'],
-							quickLink: '4rem',
-							variationText: ['maxWidth="200px"'],
-							component:
-								<CSTooltip maxHeight="4rem" maxWidth="200px" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat porttitor enim ornare porta. Duis nibh orci, imperdiet in lectus consequat, tincidunt fringilla ante. Nullam varius eleifend sodales. Morbi at rhoncus mi." />
-						}
-					]
-				},
-				{
-					propName: 'maxWidth',
-					customText: '',
-					variations: [
-						{
-							variationName: ['300px'],
-							quickLink: '300px',
-							component:
-								<CSTooltip maxWidth="300px" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
-						},
-						{
-							variationName: ['10rem'],
-							quickLink: '10rem',
-							component:
-								<CSTooltip maxWidth="10rem" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat porttitor enim ornare porta. Duis nibh orci, imperdiet in lectus consequat, tincidunt fringilla ante. Nullam varius eleifend sodales. Morbi at rhoncus mi." />
-						}
-					]
-				},
-				{
-					propName: 'content',
-					customText: '',
-					variations: [
-						{
-							variationName: ['custom element'],
-							variationText: ['children={<CSChip text="brand" />}'],
-							component:
-								<CSTooltip variant="info" content={<CSChip text="brand" />}>
-									<CSChip text="brand" />
-								</CSTooltip>
-						}
-					]
-				},
-				{
-					propName: 'stylePosition',
-					quickLink: 'tooltip position style',
-					customText: 'Choose the CSS position value of the tooltip',
-					variations: [
-						{
-							variationName: ['fixed'],
-							quickLink: 'fixed',
-							component:
-								<CSTooltip content="Tooltip with position fixed. Tooltip with position fixed. Tooltip with position fixed." stylePosition="fixed" />
-						},
-						{
-							variationName: ['absolute'],
-							quickLink: 'absolute',
-							component:
-								<CSTooltip content="Tooltip with position absolute. Tooltip with position absolute. Tooltip with position absolute." stylePosition="absolute" />
-						}
-					]
-				},
-				{
-					propName: 'focusable',
-					customText: '',
-					variations: [
-						{
-							variationName: ['false'],
-							component:
-								<CSTooltip focusable={false} content="Help text example" />
-						}
-					]
-				},
-				{
-					propName: 'padding',
-					customText: '',
-					variations: [
-						{
-							variationName: ['0'],
-							component:
-								<CSTooltip padding="0" content="Help text example" />
-						}
-					]
-				},
-				{
-					propName: 'children',
-					customText: 'CSTooltip supports custom content provided as children. Children of CSTooltip override the default icon styling and the tooltip is applied directly to the child on hover',
-					variations: [
-						{
-							component:
-								<CSTooltip variant="info" content="Help text example">
-									<CSChip text="brand" />
-								</CSTooltip>
-						}
-					]
-				}
-			],
-			properties: [
-				{
-					name: 'children',
-					types: ['any'],
-					description: 'This component supports custom content passed as children.'
-				}, {
-					name: 'className',
-					types: ['string'],
-					description: 'Apply custom CSS classes to the tooltip.'
-				}, {
-					name: 'content',
-					required: true,
-					types: ['string', 'Array<string>', 'Element'],
-					description: 'Set the content of the tooltip.'
-				}, {
-					name: 'delayTooltip',
-					types: ['number'],
-					default: '0',
-					description: 'Delay the tooltip becoming visible in ms.'
-				}, {
-					name: 'focusable',
-					types: ['boolean'],
-					default: 'true',
-					description: 'Determines whether the tooltip is keyboard focusable'
-				}, {
-					name: 'height',
-					types: ['string'],
-					description: 'Set the tooltip height. (eg. 100px, 10rem, etc.)'
-				}, {
-					name: 'iconColor',
-					types: ['string'],
-					description: 'Set a custom colour for the tooltip icon. (eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
-				}, {
-					name: 'iconName',
-					types: ['string'],
-					description: 'Override the default icon defined by the variant.'
-				}, {
-					name: 'iconOrigin',
-					customTypes: [{
-						name: 'CSTooltipIconOrigin',
-						types: ['\'slds\'', '\'cs\'']
-					}],
-					default: '\'slds\'',
-					description: 'Select whether a SalesForce or a CloudSense icon should be used..'
-				}, {
-					name: 'iconSize',
-					customTypes: [{
-						name: 'CSTooltipIconSize',
-						types: ['\'small\'', '\'medium\'']
-					}],
-					default: '\'small\'',
-					description: 'Set a size of the tooltip icon.'
-				}, {
-					name: 'id',
-					types: ['string'],
-					description: 'Set the ID for the tooltip.'
-				}, {
-					name: 'padding',
-					types: ['string'],
-					description: 'Set custom padding for the tooltip.'
-				}, {
-					name: 'position',
-					customTypes: [{
-						name: 'CSTooltipPosition',
-						types: [
-							'\'bottom-right\'',
-							'\'bottom-left\'',
-							'\'top-right\'',
-							'\'top-left\'',
-							'\'top-center\'',
-							'\'bottom-center\'',
-							'\'right-top\'',
-							'\'right-center\'',
-							'\'right-bottom\'',
-							'\'left-top\'',
-							'\'left-center\'',
-							'\'left-bottom\''
+	getTooltipDoc = () => ({
+		name: 'Tooltip',
+		usage: 'A Tooltip is a small piece of contextual information about an element on the screen, which is displayed when a user hovers or focuses on the element it is describing. It is not focusable and cannot contain focusable content.',
+		accessible: 'partially',
+		previews: [
+			{
+				name: 'Tooltip',
+				examples: [
+					{
+						propName: 'content',
+						variations: [
+							{
+								primaryVariants: 'content="text"',
+								quickLink: 'string',
+								component: <CSTooltip content="Help text" />,
+								code: '<CSTooltip content="Help text" />'
+							}, {
+								primaryVariants: 'content={[...]}',
+								quickLink: 'array',
+								component: <CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+								/>,
+								code: `<CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+								/>`
+							}, {
+								primaryVariants: 'content={Element}',
+								quickLink: 'element',
+								component: <CSTooltip content={<CSChip text="custom content" />} />,
+								code: '<CSTooltip content={<CSChip text="custom content" />} />'
+							}
 						]
-					}],
-					default: '\'top-right\'',
-					description: 'Set the tooltip position.'
-				}, {
-					name: 'stickyOnClick',
-					types: ['boolean'],
-
-					default: '\'false\'',
-					description: 'Set whether the tooltip stays open on click.'
-				}, {
-					name: 'stylePosition',
-					customTypes: [{
-						name: 'CSTooltipStylePosition',
-						types: ['\'fixed\'', '\'absolute\'']
-					}],
-					default: '\'fixed\'',
-					description: 'Choose the CSS position value for the tooltip.'
-				}, {
-					name: 'tooltipHeader',
-					types: ['string'],
-					description: 'Set the text content of the tooltip header.'
-				}, {
-					name: 'variant',
-					customTypes: [{
-						name: 'CSTooltipVariant',
-						types: [
-							'\'info\'',
-							'\'warning\'',
-							'\'error\'',
-							'\'success\'',
-							'\'basic\''
+					}, {
+						propName: 'delayTooltip',
+						variations: [
+							{
+								primaryVariants: 'delayTooltip={500}',
+								component: <CSTooltip content="Help text" delayTooltip={500} />,
+								code: '<CSTooltip content="Help text" delayTooltip={500} />'
+							}
 						]
-					}],
-					description: 'Set the tooltip color variant.'
-				}, {
-					name: 'width',
-					types: ['string'],
-					description: 'Set the tooltip width. (eg. 200px, 20rem, 50%, etc.)'
-				}, {
-					name: '[key: string]',
-					types: ['any'],
-					description: 'Spreads the rest of the props to the tooltip div wrapper.'
-				}
-			],
-			accessibility: [
-				{
-					criterionList: [
-						'1.4.4',
-						'1.4.13',
-						'2.1.1',
-						'2.1.2',
-						'2.4.7',
-						'2.5.3',
-						'3.2.1',
-						'3.3.1',
-						'4.1.2'
-					],
-					requirements: [
-						{
-							structure: [
-								'Icon as a child element with `aria-hidden`'
-							],
-							properties: [
-								'`aria-labelledby` - associate tooltip icon with tooltip body',
-								'`role="tooltip"`'
-							],
-							styling: [
-								'Focus state styles',
-								'Text color contrast ratio > 4.5'
-							],
-							keyboardOperability: [
-								'Logic for focus to open tooltip'
-							]
-						}
-					]
-				}
-			]
-		};
-
-		for (const example of json.examples) {
-			for (const variation of example.variations) {
-				(variation as any).string = jsxToString(variation.component);
+					}, {
+						propName: 'focusable',
+						variations: [
+							{
+								primaryVariants: 'focusable={false}',
+								component: <CSTooltip content="Help text" focusable={false} />,
+								code: '<CSTooltip content="Help text" focusable={false} />'
+							}
+						]
+					}, {
+						propName: 'height',
+						variations: [
+							{
+								primaryVariants: 'height="100px"',
+								quickLink: '100px',
+								component: <CSTooltip
+									content="Some very long help text that is supposed to span over more than one line"
+									height="100px"
+								/>,
+								code: `<CSTooltip
+									content="Some very long help text that is supposed to span over more than one line"
+									height="100px"
+								/>`
+							}, {
+								primaryVariants: 'height="auto"',
+								quickLink: 'auto',
+								component: <CSTooltip
+									content="Some very long help text that is supposed to span over more than one line"
+									height="auto"
+								/>,
+								code: `<CSTooltip
+									content="Some very long help text that is supposed to span over more than one line"
+									height="auto"
+								/>`
+							}
+						]
+					}, {
+						propName: 'iconColor',
+						variations: [
+							{
+								primaryVariants: 'iconColor="rgb(74, 38, 171)"',
+								quickLink: 'rgb',
+								component: <CSTooltip content="Help text" iconColor="rgb(74, 38, 171)" />,
+								code: '<CSTooltip content="Help text" iconColor="rgb(74, 38, 171)" />'
+							}, {
+								primaryVariants: 'iconColor="#3cdbc0"',
+								quickLink: 'hex',
+								component: <CSTooltip content="Help text" iconColor="#3cdbc0" />,
+								code: '<CSTooltip content="Help text" iconColor="#3cdbc0" />'
+							}
+						]
+					}, {
+						propName: 'iconName',
+						description: 'This is used for overriding default icon defined by the variant.',
+						variations: [
+							{
+								primaryVariants: 'iconName="quote"',
+								component: <CSTooltip content="Help text" iconName="quote" />,
+								code: '<CSTooltip content="Help text" iconName="quote" />'
+							}
+						]
+					}, {
+						propName: 'iconOrigin',
+						variations: [
+							{
+								primaryVariants: 'iconOrigin="slds"',
+								secondaryVariants: 'iconName="quote"',
+								quickLink: 'slds',
+								component: <CSTooltip content="Help text" iconName="quote" />,
+								code: '<CSTooltip content="Help text" iconName="quote" />'
+							}, {
+								primaryVariants: 'iconOrigin="cs"',
+								secondaryVariants: 'iconName="big_shot"',
+								quickLink: 'cs',
+								component: <CSTooltip
+									content="Help text"
+									iconOrigin="cs"
+									iconName="big_shot"
+								/>,
+								code: `<CSTooltip
+									content="Help text"
+									iconOrigin="cs"
+									iconName="big_shot"
+								/>`
+							}
+						]
+					}, {
+						propName: 'iconSize',
+						description: 'Size of the tooltip icon',
+						variations: [
+							{
+								primaryVariants: 'iconSize="small"',
+								quickLink: 'small',
+								component: <CSTooltip content="Help text example" />,
+								code: '<CSTooltip content="Help text example" />'
+							}, {
+								primaryVariants: 'iconSize="medium"',
+								quickLink: 'medium',
+								component: <CSTooltip content="Help text example" iconSize="medium" />,
+								code: '<CSTooltip content="Help text example" iconSize="medium" />'
+							}
+						]
+					}, {
+						propName: 'maxHeight',
+						variations: [
+							{
+								primaryVariants: 'maxHeight="100px"',
+								quickLink: '100px',
+								secondaryVariants: 'maxWidth="100px"',
+								component: <CSTooltip
+									content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat porttitor enim ornare porta. Duis nibh orci, imperdiet in lectus consequat, tincidunt fringilla ante. Nullam varius eleifend sodales. Morbi at rhoncus mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat porttitor enim ornare porta. Duis nibh orci, imperdiet in lectus consequat, tincidunt fringilla ante. Nullam varius eleifend sodales. Morbi at rhoncus mi."
+									maxHeight="100px"
+									maxWidth="100px"
+									stickyOnClick
+								/>,
+								code: `<CSTooltip
+									content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat porttitor enim ornare porta. Duis nibh orci, imperdiet in lectus consequat, tincidunt fringilla ante. Nullam varius eleifend sodales. Morbi at rhoncus mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat porttitor enim ornare porta. Duis nibh orci, imperdiet in lectus consequat, tincidunt fringilla ante. Nullam varius eleifend sodales. Morbi at rhoncus mi."
+									maxHeight="100px"
+									maxWidth="100px"
+								/>`
+							}, {
+								primaryVariants: 'maxHeight="4rem"',
+								quickLink: '4rem',
+								secondaryVariants: 'maxWidth="100px"',
+								component: <CSTooltip
+									content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat porttitor enim ornare porta. Duis nibh orci, imperdiet in lectus consequat, tincidunt fringilla ante. Nullam varius eleifend sodales. Morbi at rhoncus mi."
+									maxHeight="4rem"
+									maxWidth="100px"
+								/>,
+								code: `<CSTooltip
+									content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat porttitor enim ornare porta. Duis nibh orci, imperdiet in lectus consequat, tincidunt fringilla ante. Nullam varius eleifend sodales. Morbi at rhoncus mi."
+									maxHeight="4rem"
+									maxWidth="100px"
+								/>`
+							}
+						]
+					}, {
+						propName: 'maxWidth',
+						variations: [
+							{
+								primaryVariants: 'maxWidth="300px"',
+								quickLink: '300px',
+								component: <CSTooltip
+									content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+									maxWidth="300px"
+								/>,
+								code: `<CSTooltip
+									content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+									maxWidth="300px"
+								/>`
+							}, {
+								primaryVariants: 'maxWidth="10rem"',
+								quickLink: '10rem',
+								component: <CSTooltip
+									maxWidth="10rem"
+									content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat porttitor enim ornare porta. Duis nibh orci, imperdiet in lectus consequat, tincidunt fringilla ante. Nullam varius eleifend sodales. Morbi at rhoncus mi."
+								/>,
+								code: `<CSTooltip
+									maxWidth="10rem"
+									content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat porttitor enim ornare porta. Duis nibh orci, imperdiet in lectus consequat, tincidunt fringilla ante. Nullam varius eleifend sodales. Morbi at rhoncus mi."
+								/>`
+							}
+						]
+					}, {
+						propName: 'padding',
+						variations: [
+							{
+								primaryVariants: 'padding="0"',
+								component: <CSTooltip content="Help text" padding="0" />,
+								code: '<CSTooltip content="Help text" padding="0" />'
+							}
+						]
+					}, {
+						propName: 'position',
+						alert: {
+							variant: 'info',
+							text: 'The provided position will be overridden if the tooltip is outside of viewport. This auto-position functionality is only working with stylePosition fixed for now!'
+						},
+						variations: [
+							{
+								primaryVariants: 'position="top-right"',
+								quickLink: 'top-right',
+								component: <CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+								/>,
+								code: `<CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+								/>`
+							}, {
+								primaryVariants: 'position="top-left"',
+								quickLink: 'top-left',
+								component: <CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+									position="top-left"
+								/>,
+								code: `<CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+									position="top-left"
+								/>`
+							}, {
+								primaryVariants: 'position="top-center"',
+								quickLink: 'top-center',
+								component: <CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+									position="top-center"
+								/>,
+								code: `<CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+									position="top-center"
+								/>`
+							}, {
+								primaryVariants: 'position="bottom-right"',
+								quickLink: 'bottom-right',
+								component: <CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+									position="bottom-right"
+								/>,
+								code: `<CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+									position="bottom-right"
+								/>`
+							}, {
+								primaryVariants: 'position="bottom-left"',
+								quickLink: 'bottom-left',
+								component: <CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+									position="bottom-left"
+								/>,
+								code: `<CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+									position="bottom-left"
+								/>`
+							}, {
+								primaryVariants: 'position="bottom-center"',
+								quickLink: 'bottom-center',
+								component: <CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+									position="bottom-center"
+								/>,
+								code: `<CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+									position="bottom-center"
+								/>`
+							}, {
+								primaryVariants: 'position="right-top"',
+								quickLink: 'right-top',
+								component: <CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+									position="right-top"
+								/>,
+								code: `<CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+									position="right-top"
+								/>`
+							}, {
+								primaryVariants: 'position="right-bottom"',
+								quickLink: 'right-bottom',
+								component: <CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+									position="right-bottom"
+								/>,
+								code: `<CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+									position="right-bottom"
+								/>`
+							}, {
+								primaryVariants: 'position="right-center"',
+								quickLink: 'right-center',
+								component: <CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+									position="right-center"
+								/>,
+								code: `<CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+									position="right-center"
+								/>`
+							}, {
+								primaryVariants: 'position="left-top"',
+								quickLink: 'left-top',
+								component: <CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+									position="left-top"
+								/>,
+								code: `<CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+									position="left-top"
+								/>`
+							}, {
+								primaryVariants: 'position="left-bottom"',
+								quickLink: 'left-bottom',
+								component: <CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+									position="left-bottom"
+								/>,
+								code: `<CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+									position="left-bottom"
+								/>`
+							}, {
+								primaryVariants: 'position="left-center"',
+								quickLink: 'left-center',
+								component: <CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+									position="left-center"
+								/>,
+								code: `<CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+									position="left-center"
+								/>`
+							}
+						]
+					}, {
+						propName: 'stickyOnClick',
+						variations: [
+							{
+								primaryVariants: 'stickyOnClick={true}',
+								component: <CSTooltip content="Help text" stickyOnClick />,
+								code: '<CSTooltip content="Help text" stickyOnClick />'
+							}
+						]
+					}, {
+						propName: 'stylePosition',
+						description: 'Choose the CSS position value of the tooltip.',
+						variations: [
+							{
+								primaryVariants: 'stylePosition="fixed"',
+								quickLink: 'fixed',
+								component: <CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+								/>,
+								code: `<CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+								/>`
+							}, {
+								primaryVariants: 'stylePosition="absolute"',
+								quickLink: 'absolute',
+								component: <CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+									stylePosition="absolute"
+								/>,
+								code: `<CSTooltip
+									content={[
+										'Help text no. 1',
+										'Help text no. 2',
+										'Help text no. 3'
+									]}
+									stylePosition="absolute"
+								/>`
+							}
+						]
+					}, {
+						propName: 'tooltipHeader',
+						description: 'This is used for defining tooltip header. Its color will be defined by the variant prop.',
+						variations: [
+							{
+								secondaryVariants: 'variant="info"',
+								quickLink: 'info',
+								component: <CSTooltip content="Help text" tooltipHeader="Info" />,
+								code: '<CSTooltip content="Help text" tooltipHeader="Info" />'
+							}, {
+								secondaryVariants: 'variant="warning"',
+								quickLink: 'warning',
+								component: <CSTooltip
+									content="Help text"
+									tooltipHeader="Warning"
+									variant="warning"
+								/>,
+								code: `<CSTooltip
+									content="Help text"
+									tooltipHeader="Warning"
+									variant="warning"
+								/>`
+							}, {
+								secondaryVariants: 'variant="error"',
+								quickLink: 'error',
+								component: <CSTooltip
+									content="Help text"
+									tooltipHeader="Error"
+									variant="error"
+								/>,
+								code: `<CSTooltip
+									content="Help text"
+									tooltipHeader="Error"
+									variant="error"
+								/>`
+							}, {
+								secondaryVariants: 'variant="success"',
+								quickLink: 'success',
+								component: <CSTooltip
+									content="Help text"
+									tooltipHeader="Success"
+									variant="success"
+								/>,
+								code: `<CSTooltip
+									content="Help text"
+									tooltipHeader="Success"
+									variant="success"
+								/>`
+							}, {
+								secondaryVariants: 'variant="basic"',
+								quickLink: 'basic',
+								component: <CSTooltip
+									content="Help text"
+									tooltipHeader="Basic"
+									variant="basic"
+								/>,
+								code: `<CSTooltip
+									content="Help text"
+									tooltipHeader="Basic"
+									variant="basic"
+								/>`
+							}
+						]
+					}, {
+						propName: 'variant',
+						variations: [
+							{
+								primaryVariants: 'variant="info"',
+								quickLink: 'info',
+								component: <CSTooltip content="Help text" />,
+								code: '<CSTooltip content="Help text" />'
+							}, {
+								primaryVariants: 'variant="warning"',
+								quickLink: 'warning',
+								component: <CSTooltip content="Help text" variant="warning" />,
+								code: '<CSTooltip content="Help text" variant="warning" />'
+							}, {
+								primaryVariants: 'variant="error"',
+								quickLink: 'error',
+								component: <CSTooltip content="Help text" variant="error" />,
+								code: '<CSTooltip content="Help text" variant="error" />'
+							}, {
+								primaryVariants: 'variant="success"',
+								quickLink: 'success',
+								component: <CSTooltip content="Help text" variant="success" />,
+								code: '<CSTooltip content="Help text" variant="success" />'
+							}, {
+								primaryVariants: 'variant="basic"',
+								quickLink: 'basic',
+								component: <CSTooltip content="Help text" variant="basic" />,
+								code: '<CSTooltip content="Help text" variant="basic" />'
+							}
+						]
+					}, {
+						propName: 'width',
+						variations: [
+							{
+								primaryVariants: 'width="5rem"',
+								quickLink: '5rem',
+								component: <CSTooltip
+									content="Some very long help text that is supposed to span over more than one line"
+									width="5rem"
+								/>,
+								code: `<CSTooltip
+									content="Some very long help text that is supposed to span over more than one line"
+									width="5rem"
+								/>`
+							}, {
+								primaryVariants: 'width="auto"',
+								quickLink: 'auto',
+								component: <CSTooltip
+									content="Some very long help text that is supposed to span over more than one line, but does not because of auto width"
+									width="auto"
+								/>,
+								code: `<CSTooltip
+									content="Some very long help text that is supposed to span over more than one line, but does not because of auto width"
+									width="auto"
+								/>`
+							}
+						]
+					}, {
+						propName: 'id | class',
+						variations: [
+							{
+								primaryVariants: [
+									'id="custom-id"',
+									'className="custom-class"'
+								],
+								component: <CSTooltip
+									content="Help text"
+									id="custom-id"
+									className="custom-class"
+								/>,
+								code: `<CSTooltip
+									content="Help text"
+									id="custom-id"
+									className="custom-class"
+								/>`
+							}
+						]
+					}, {
+						propName: 'children',
+						description: 'CSTooltip supports custom content provided as children. Children of CSTooltip override the default icon styling and the tooltip is applied directly to the child on hover.',
+						variations: [
+							{
+								component: <CSTooltip content="Help text">
+									<CSChip text="custom child" />
+								</CSTooltip>,
+								code: `<CSTooltip content="Help text">
+									<CSChip text="custom child" />
+								</CSTooltip>`
+							}
+						]
+					}
+				]
 			}
-		}
+		],
+		properties: [
+			{
+				name: 'children',
+				types: ['any'],
+				description: 'This component supports custom content passed as children.'
+			}, {
+				name: 'className',
+				types: ['string'],
+				description: 'Apply custom CSS classes to the tooltip.'
+			}, {
+				name: 'content',
+				required: true,
+				types: ['string', 'Array<string>', 'Element'],
+				description: 'Set the content of the tooltip.'
+			}, {
+				name: 'delayTooltip',
+				types: ['number'],
+				default: '0',
+				description: 'Delay the tooltip becoming visible in ms.'
+			}, {
+				name: 'focusable',
+				types: ['boolean'],
+				default: 'true',
+				description: 'Determines whether the tooltip is keyboard focusable.'
+			}, {
+				name: 'height',
+				types: ['string'],
+				description: 'Set the tooltip height. (eg. 100px, 10rem, etc.)'
+			}, {
+				name: 'iconColor',
+				types: ['string'],
+				description: 'Set a custom colour for the tooltip icon. (eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
+			}, {
+				name: 'iconName',
+				types: ['string'],
+				description: 'Override the default icon defined by the variant.'
+			}, {
+				name: 'iconOrigin',
+				customTypes: [{
+					name: 'CSTooltipIconOrigin',
+					types: ['\'slds\'', '\'cs\'']
+				}],
+				default: '\'slds\'',
+				description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
+			}, {
+				name: 'iconSize',
+				customTypes: [{
+					name: 'CSTooltipIconSize',
+					types: ['\'small\'', '\'medium\'']
+				}],
+				default: '\'small\'',
+				description: 'Set a size of the tooltip icon.'
+			}, {
+				name: 'id',
+				types: ['string'],
+				description: 'Set the ID for the tooltip.'
+			}, {
+				name: 'padding',
+				types: ['string'],
+				description: 'Set custom padding for the tooltip.'
+			}, {
+				name: 'position',
+				customTypes: [{
+					name: 'CSTooltipPosition',
+					types: [
+						'\'bottom-right\'',
+						'\'bottom-left\'',
+						'\'top-right\'',
+						'\'top-left\'',
+						'\'top-center\'',
+						'\'bottom-center\'',
+						'\'right-top\'',
+						'\'right-center\'',
+						'\'right-bottom\'',
+						'\'left-top\'',
+						'\'left-center\'',
+						'\'left-bottom\''
+					]
+				}],
+				default: '\'top-right\'',
+				description: 'Set the tooltip position.'
+			}, {
+				name: 'stickyOnClick',
+				types: ['boolean'],
+				default: 'false',
+				description: 'Set whether the tooltip stays open on click.'
+			}, {
+				name: 'stylePosition',
+				customTypes: [{
+					name: 'CSTooltipStylePosition',
+					types: ['\'fixed\'', '\'absolute\'']
+				}],
+				default: '\'fixed\'',
+				description: 'Choose the CSS position value for the tooltip.'
+			}, {
+				name: 'tooltipHeader',
+				types: ['string'],
+				description: 'Set the text content of the tooltip header.'
+			}, {
+				name: 'variant',
+				customTypes: [{
+					name: 'CSTooltipVariant',
+					types: [
+						'\'info\'',
+						'\'warning\'',
+						'\'error\'',
+						'\'success\'',
+						'\'basic\''
+					]
+				}],
+				default: '\'info\'',
+				description: 'Set the tooltip color variant.'
+			}, {
+				name: 'width',
+				types: ['string'],
+				description: 'Set the tooltip width. (eg. 200px, 20rem, 50%, etc.)'
+			},  {
+				name: 'maxHeight',
+				types: ['string'],
+				description: 'Set the tooltip maximum height. (eg. 200px, 20rem, 50%, etc.)'
+			},  {
+				name: 'maxWidth',
+				types: ['string'],
+				default: '\'20rem\'',
+				description: 'Set the tooltip maximum width. (eg. 200px, 20rem, 50%, etc.)'
+			}, {
+				name: '[key: string]',
+				types: ['any'],
+				description: 'Spreads the rest of the props to the tooltip div wrapper.'
+			}
+		],
+		accessibility: [
+			{
+				criterionList: [
+					'1.4.4',
+					'1.4.13',
+					'2.1.1',
+					'2.1.2',
+					'2.4.7',
+					'2.5.3',
+					'3.2.1',
+					'3.3.1',
+					'4.1.2'
+				],
+				requirements: [
+					{
+						structure: [
+							'Icon as a child element with `aria-hidden`'
+						],
+						properties: [
+							'`aria-labelledby` - associate tooltip icon with tooltip body',
+							'`role="tooltip"`'
+						],
+						styling: [
+							'Focus state styles',
+							'Text color contrast ratio > 4.5'
+						],
+						keyboardOperability: [
+							'Logic for focus to open tooltip'
+						]
+					}
+				]
+			}
+		]
+	})
 
-		return json;
-	}
 	render() {
-		const component = this.getDoc();
+		const component = this.getTooltipDoc();
 
 		return (
 			<>
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties name={component.name} examples={component.examples} />
+					<PreviewProperties {...component} />
 					<PreviewTable components={[component]} />
 					<PreviewAccessibility components={[component]} />
 				</div>
-				<div className="prop-sidebar">
-					<h3>Quick Links</h3>
-					<PreviewLinks component={component} />
-				</div>
+				<PreviewLinks {...component} />
 			</>
 		);
 	}

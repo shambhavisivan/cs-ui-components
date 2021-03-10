@@ -64,15 +64,8 @@
 		}
 	}
 
-	&.tooltip-preview {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		overflow: visible;
-
-		.custom-class {
-			background-color: var(--custom-bg);
-		}
+	&.tooltip-preview .custom-class {
+		background-color: var(--custom-bg);
 	}
 
 	&.alert-preview {
