@@ -286,7 +286,7 @@
 
 			&:focus:not(.read-only-cell-wrapper).ag-cell-focus.ag-cell-focus {
 				@include css4 {
-					border: 2px dashed cvar(--csgrid-main);
+					border: 2px dashed cvar(--csgrid-edit-br);
 				}
 			}
 		}
@@ -388,6 +388,6 @@
 
 .ag-theme-balham .ag-ltr .ag-has-focus.ag-has-focus .ag-cell-focus:not(.ag-cell-range-selected) {
 	@include css4 {
-		border: 2px dashed cvar(--csgrid-main);
+		border: 2px dashed cvar(--csgrid-edit-br);
 	}
 }
