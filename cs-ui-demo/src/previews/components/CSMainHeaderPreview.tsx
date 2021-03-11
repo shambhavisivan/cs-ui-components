@@ -86,6 +86,43 @@ class CSMainHeaderPreview extends React.Component {
 									</CSMainHeaderRight>
 								</CSMainHeader>`
 							}, {
+								primaryVariants: 'color="success"',
+								quickLink: 'success',
+								component: <CSMainHeader color="success">
+									<CSMainHeaderIcon>
+										<CSIcon name="emoji" />
+									</CSMainHeaderIcon>
+									<CSMainHeaderLeft
+										title="This is a green header"
+										subtitle="This is a subtitle"
+									/>
+									<CSMainHeaderRight>
+										<CSButton label="Button 1" />
+										<CSButton
+											label="Button 2"
+											btnType="transparent"
+											btnStyle="outline"
+										/>
+									</CSMainHeaderRight>
+								</CSMainHeader>,
+								code: `<CSMainHeader color="success">
+									<CSMainHeaderIcon>
+										<CSIcon name="emoji" />
+									</CSMainHeaderIcon>
+									<CSMainHeaderLeft
+										title="This is a green header"
+										subtitle="This is a subtitle"
+									/>
+									<CSMainHeaderRight>
+										<CSButton label="Button 1" />
+										<CSButton
+											label="Button 2"
+											btnType="transparent"
+											btnStyle="outline"
+										/>
+									</CSMainHeaderRight>
+								</CSMainHeader>`
+							}, {
 								primaryVariants: 'color="error"',
 								quickLink: 'error',
 								component: <CSMainHeader color="error">
@@ -464,6 +501,7 @@ class CSMainHeaderPreview extends React.Component {
 					types: [
 						'\'neutral\'',
 						'\'brand\'',
+						'\'success\'',
 						'\'error\'',
 						'\'info\''
 					]

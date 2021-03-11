@@ -63,6 +63,35 @@
 		}
 	}
 
+	&.cs-main-header-success {
+		@include sbg(--cs-main-header-success-bg);
+		@include css4 {
+			box-shadow: 0 1px 2px 0 cvar(--cs-shadow-dark);
+		}
+
+		.cs-main-header-icon > .cs-icon {
+			@include sf(--cs-main-header-success-icon);
+		}
+
+		.cs-main-header-icon .cs-icon-frame {
+			@include sbg(--cs-main-header-success-icon);
+
+			> .cs-icon {
+				@include sf(--cs-main-header-success-bg);
+			}
+		}
+
+		.cs-main-header-title,
+		.cs-main-header-subtitle {
+			font-weight: $font-weight-normal;
+			@include sc(--cs-main-header-success-c);
+		}
+
+		.cs-main-header-subtitle {
+			opacity: 0.6;
+		}
+	}
+
 	&.cs-main-header-error {
 		@include sbg(--cs-main-header-error-bg);
 		@include css4 {

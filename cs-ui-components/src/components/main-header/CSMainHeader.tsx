@@ -1,7 +1,7 @@
 import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 
-export type CSMainHeaderColor = 'neutral' | 'brand' | 'error' | 'info';
+export type CSMainHeaderColor = 'neutral' | 'brand' | 'success' | 'error' | 'info';
 
 export interface CSMainHeaderProps {
 	[key: string]: any;
