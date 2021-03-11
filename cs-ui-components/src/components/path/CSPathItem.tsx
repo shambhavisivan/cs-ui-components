@@ -2,21 +2,23 @@ import React from 'react';
 import classNames from 'classnames';
 import CSIcon from '../CSIcon';
 
-export type CSPathItemStatus = 'success' | 'error';
+export type CSPathItemStatus = 'success' | 'error' | 'warning';
 
 export interface CSPathItemProps {
 	[key: string]: any;
 	active?: boolean;
+	className?: string;
 	disabled?: boolean;
 	id?: string;
 	onClick?: (e: React.MouseEvent<HTMLLIElement>) => any;
 	status?: CSPathItemStatus;
-	title: string;
+	name: string;
 }
 
 class CSPathItem extends React.Component<CSPathItemProps> {
+
 	render() {
-		const { active, disabled, status, onClick, id, title, ...rest } = this.props;
+		const { active, disabled, status, onClick, id, name, ...rest } = this.props;
 		const CSPathItemClasses = classNames(
 			'cs-path-item',
 			{
@@ -28,7 +30,7 @@ class CSPathItem extends React.Component<CSPathItemProps> {
 			<li
 				onClick={onClick}
 				className={CSPathItemClasses}
-				title={title}
+				title={name}
 				id={id}
 				{...rest}
 			>
@@ -42,11 +44,11 @@ class CSPathItem extends React.Component<CSPathItemProps> {
 						<span className="cs-path-item-icon">
 							<CSIcon
 								name={status === 'success' ? 'check' : 'warning'}
-								color={'var(--cs-path-item-icon)'}
+								color={status === 'warning' ? 'var(--cs-path-item-warning-icon)' : 'var(--cs-path-item-icon)'}
 							/>
 						</span>
 					}
-					<span className="cs-path-item-title">{this.props.title}</span>
+					<span className="cs-path-item-name">{this.props.name}</span>
 				</button>
 			</li>
 		);

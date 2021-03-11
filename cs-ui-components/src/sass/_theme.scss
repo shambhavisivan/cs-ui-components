@@ -263,6 +263,11 @@ $variables: (
 	--cs-path-item-error-bg: $cs-red-medium-1,
 	--cs-path-item-error-hover: darken($cs-red-medium-1, 8%),
 	--cs-path-item-error-active: darken($cs-red-medium-1, 15%),
+	--cs-path-item-warning-bg: $cs-orange-medium-2,
+	--cs-path-item-warning-c: $cs-gray-dark-1,
+	--cs-path-item-warning-hover: darken($cs-orange-medium-1, 8%),
+	--cs-path-item-warning-active: $cs-orange-dark-1,
+	--cs-path-item-warning-icon: $cs-gray-dark-4,
 	--cs-path-item-disabled-c: $cs-gray-medium-1,
 	--cs-path-item-disabled-bg: $cs-gray-light-6,
 

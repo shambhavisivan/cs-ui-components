@@ -27,14 +27,14 @@ class CSPathPreview extends React.Component {
 									'className="custom-class"'
 								],
 								component: <CSPath id="custom-id" className="custom-class">
-									<CSPathItem title="Path Item 1" />
-									<CSPathItem title="Path Item 2" />
-									<CSPathItem title="Path Item 3" />
+									<CSPathItem name="Path Item 1" />
+									<CSPathItem name="Path Item 2" />
+									<CSPathItem name="Path Item 3" />
 								</CSPath>,
 								code: `<CSPath id="custom-id" className="custom-class">
-									<CSPathItem title="Path Item 1" />
-									<CSPathItem title="Path Item 2" />
-									<CSPathItem title="Path Item 3" />
+									<CSPathItem name="Path Item 1" />
+									<CSPathItem name="Path Item 2" />
+									<CSPathItem name="Path Item 3" />
 								</CSPath>`
 							}
 						]
@@ -44,18 +44,18 @@ class CSPathPreview extends React.Component {
 				name: 'Path Item',
 				examples: [
 					{
-						propName: 'title',
+						propName: 'name',
 						variations: [
 							{
 								component: <CSPath>
-									<CSPathItem title="Path Item 1" />
-									<CSPathItem title="Path Item 2" />
-									<CSPathItem title="Path Item 3" />
+									<CSPathItem name="Path Item 1" />
+									<CSPathItem name="Path Item 2" />
+									<CSPathItem name="Path Item 3" />
 								</CSPath>,
 								code: `<CSPath>
-									<CSPathItem title="Path Item 1" />
-									<CSPathItem title="Path Item 2" />
-									<CSPathItem title="Path Item 3" />
+									<CSPathItem name="Path Item 1" />
+									<CSPathItem name="Path Item 2" />
+									<CSPathItem name="Path Item 3" />
 								</CSPath>`
 							}
 						]
@@ -65,14 +65,14 @@ class CSPathPreview extends React.Component {
 							{
 								primaryVariants: 'active={true}',
 								component: <CSPath>
-									<CSPathItem title="Path Item 1" active />
-									<CSPathItem title="Path Item 2" />
-									<CSPathItem title="Path Item 3" />
+									<CSPathItem name="Path Item 1" active />
+									<CSPathItem name="Path Item 2" />
+									<CSPathItem name="Path Item 3" />
 								</CSPath>,
 								code: `<CSPath>
-									<CSPathItem title="Path Item 1" active />
-									<CSPathItem title="Path Item 2" />
-									<CSPathItem title="Path Item 3" />
+									<CSPathItem name="Path Item 1" active />
+									<CSPathItem name="Path Item 2" />
+									<CSPathItem name="Path Item 3" />
 								</CSPath>`
 							}
 						]
@@ -82,14 +82,14 @@ class CSPathPreview extends React.Component {
 							{
 								primaryVariants: 'disabled={true}',
 								component: <CSPath>
-									<CSPathItem title="Path Item 1" disabled />
-									<CSPathItem title="Path Item 2" />
-									<CSPathItem title="Path Item 3" />
+									<CSPathItem name="Path Item 1" disabled />
+									<CSPathItem name="Path Item 2" />
+									<CSPathItem name="Path Item 3" />
 								</CSPath>,
 								code: `<CSPath>
-									<CSPathItem title="Path Item 1" disabled />
-									<CSPathItem title="Path Item 2" />
-									<CSPathItem title="Path Item 3" />
+									<CSPathItem name="Path Item 1" disabled />
+									<CSPathItem name="Path Item 2" />
+									<CSPathItem name="Path Item 3" />
 								</CSPath>`
 							}
 						]
@@ -98,14 +98,14 @@ class CSPathPreview extends React.Component {
 						variations: [
 							{
 								component: <CSPath>
-									<CSPathItem title="Path Item 1" onClick={this.handleClick} />
-									<CSPathItem title="Path Item 2" onClick={this.handleClick} />
-									<CSPathItem title="Path Item 3" onClick={this.handleClick} />
+									<CSPathItem name="Path Item 1" onClick={this.handleClick} />
+									<CSPathItem name="Path Item 2" onClick={this.handleClick} />
+									<CSPathItem name="Path Item 3" onClick={this.handleClick} />
 								</CSPath>,
 								code: `<CSPath>
-									<CSPathItem title="Path Item 1" onClick={this.handleClick} />
-									<CSPathItem title="Path Item 2" onClick={this.handleClick} />
-									<CSPathItem title="Path Item 3" onClick={this.handleClick} />
+									<CSPathItem name="Path Item 1" onClick={this.handleClick} />
+									<CSPathItem name="Path Item 2" onClick={this.handleClick} />
+									<CSPathItem name="Path Item 3" onClick={this.handleClick} />
 								</CSPath>`
 							}
 						]
@@ -116,27 +116,40 @@ class CSPathPreview extends React.Component {
 								primaryVariants: 'status="success"',
 								quickLink: 'success',
 								component: <CSPath>
-									<CSPathItem title="Path Item 1" status="success" />
-									<CSPathItem title="Path Item 2" />
-									<CSPathItem title="Path Item 3" />
+									<CSPathItem name="Path Item 1" status="success" />
+									<CSPathItem name="Path Item 2" />
+									<CSPathItem name="Path Item 3" />
 								</CSPath>,
 								code: `<CSPath>
-									<CSPathItem title="Path Item 1" status="success" />
-									<CSPathItem title="Path Item 2" />
-									<CSPathItem title="Path Item 3" />
+									<CSPathItem name="Path Item 1" status="success" />
+									<CSPathItem name="Path Item 2" />
+									<CSPathItem name="Path Item 3" />
 								</CSPath>`
 							}, {
 								primaryVariants: 'status="error"',
 								quickLink: 'error',
 								component: <CSPath>
-									<CSPathItem title="Path Item 1" status="error" />
-									<CSPathItem title="Path Item 2" />
-									<CSPathItem title="Path Item 3" />
+									<CSPathItem name="Path Item 1" status="error" />
+									<CSPathItem name="Path Item 2" />
+									<CSPathItem name="Path Item 3" />
 								</CSPath>,
 								code: `<CSPath>
-									<CSPathItem title="Path Item 1" status="error" />
-									<CSPathItem title="Path Item 2" />
-									<CSPathItem title="Path Item 3" />
+									<CSPathItem name="Path Item 1" status="error" />
+									<CSPathItem name="Path Item 2" />
+									<CSPathItem name="Path Item 3" />
+								</CSPath>`
+							}, {
+								primaryVariants: 'status="warning"',
+								quickLink: 'warning',
+								component: <CSPath>
+									<CSPathItem name="Path Item 1" status="warning" />
+									<CSPathItem name="Path Item 2" />
+									<CSPathItem name="Path Item 3" />
+								</CSPath>,
+								code: `<CSPath>
+									<CSPathItem name="Path Item 1" status="warning" />
+									<CSPathItem name="Path Item 2" />
+									<CSPathItem name="Path Item 3" />
 								</CSPath>`
 							}
 						]
@@ -211,6 +224,10 @@ class CSPathPreview extends React.Component {
 				default: 'false',
 				description: 'Control the active state.'
 			}, {
+				name: 'className',
+				types: ['string'],
+				description: 'Apply custom CSS classes to the path item.'
+			}, {
 				name: 'disabled',
 				types: ['boolean'],
 				default: 'false',
@@ -231,10 +248,10 @@ class CSPathPreview extends React.Component {
 				}],
 				description: 'Set the colour and the icon variant depending on status.'
 			}, {
-				name: 'title',
+				name: 'name',
 				required: true,
 				types: ['string'],
-				description: 'Set the path item title.'
+				description: 'Set the path item name.'
 			}, {
 				name: '[key: string]',
 				types: ['any'],

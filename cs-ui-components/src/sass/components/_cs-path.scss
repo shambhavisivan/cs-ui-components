@@ -25,7 +25,7 @@
 				cursor: pointer;
 				outline: none;
 				@include sbg(--cs-path-item-initial-bg);
-				.cs-path-item-title {
+				.cs-path-item-name {
 					font-size: 0.8125rem;
 					@include overflow-ellipsis;
 					@include sc(--cs-path-item-inital-c);
@@ -74,7 +74,7 @@
 					pointer-events: none;
 					cursor: default;
 					@include sbg(--cs-path-item-disabled-bg);
-					.cs-path-item-title {
+					.cs-path-item-name {
 						@include sc(--cs-path-item-disabled-c);
 					}
 					&:before,
@@ -111,7 +111,7 @@
 				.cs-path-item-wrapper {
 					border-radius: 1rem;
 					@include sbg(--cs-path-item-active);
-					.cs-path-item-title {
+					.cs-path-item-name {
 						@include sc(--cs-path-item-active-c);
 					}
 					&:hover {
@@ -126,7 +126,7 @@
 			&-success {
 				.cs-path-item-wrapper {
 					@include sbg(--cs-path-item-success-bg);
-					.cs-path-item-title {
+					.cs-path-item-name {
 						@include sc(--cs-path-item-status-c);
 					}
 					&::before,
@@ -153,7 +153,7 @@
 			&-error {
 				.cs-path-item-wrapper {
 					@include sbg(--cs-path-item-error-bg);
-					.cs-path-item-title {
+					.cs-path-item-name {
 						@include sc(--cs-path-item-status-c);
 					}
 					&::before,
@@ -177,10 +177,39 @@
 					}
 				}
 			}
+
+			&-warning {
+				.cs-path-item-wrapper {
+					@include sbg(--cs-path-item-warning-bg);
+					.cs-path-item-name {
+						@include sc(--cs-path-item-warning-c);
+					}
+					&::before,
+					&::after {
+						@include sbg(--cs-path-item-warning-bg);
+					}
+					&:hover,
+					&:focus {
+						@include sbg(--cs-path-item-warning-hover);
+						&::before,
+						&::after {
+							@include sbg(--cs-path-item-warning-hover);
+						}
+					}
+					&:active {
+						@include sbg(--cs-path-item-warning-active);
+						&::before,
+						&::after {
+							@include sbg(--cs-path-item-warning-active);
+						}
+					}
+				}
+			}
+
 			&-active {
 				.cs-path-item-wrapper {
 					@include sbg(--cs-path-item-active-bg);
-					.cs-path-item-title {
+					.cs-path-item-name {
 						@include sc(--cs-path-item-active-c);
 					}
 					&::before,
