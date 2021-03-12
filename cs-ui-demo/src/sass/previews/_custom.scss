@@ -260,12 +260,6 @@
 		}
 	}
 
-	&.rendercsmodal-preview {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-
 	&.field-error-message-preview {
 		position: relative;
 
@@ -337,6 +331,20 @@
 .cs-modal-wrapper {
 	&.custom-class {
 		background-color: var(--custom-bg);
+	}
+
+	.cs-modal {
+		.cs-modal-header.custom-header-class {
+			background-color: var(--custom-purple-bg);
+		}
+
+		.cs-modal-body.custom-body-class {
+			background-color: var(--custom-alt-bg);
+		}
+
+		.cs-modal-footer.custom-footer-class {
+			border: 3px solid var(--custom-purple-bg);
+		}
 	}
 }
 .cs-modal-header,
