@@ -7,6 +7,7 @@ export interface CSCardHeaderProps {
 	[key: string]: any;
 	className?: string;
 	collapsible?: boolean;
+	defaultClosed?: boolean;
 	iconColor?: string;
 	iconFrame?: boolean;
 	iconName?: string;
@@ -33,6 +34,18 @@ class CSCardHeader extends React.Component<CSCardHeaderProps, CSCardHeaderState>
 		};
 	}
 
+	componentDidMount() {
+		if (this.props.defaultClosed && this.props.collapsible) {
+			this.setState({ collapsed: true });
+		}
+	}
+
+	componentDidUpdate(prevProps: CSCardHeaderProps) {
+		if (prevProps.defaultClosed !== this.props.defaultClosed && this.props.collapsible) {
+			this.setState({ collapsed: this.props.defaultClosed });
+		}
+	}
+
 	handleCollapse = () => {
 		this.setState({
 			collapsed: !this.state.collapsed
@@ -43,6 +56,7 @@ class CSCardHeader extends React.Component<CSCardHeaderProps, CSCardHeaderState>
 		const {
 			className,
 			collapsible,
+			defaultClosed,
 			iconColor,
 			iconFrame,
 			iconName,

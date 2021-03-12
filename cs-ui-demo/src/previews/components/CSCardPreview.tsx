@@ -104,6 +104,45 @@ class CSCardPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'defaultClosed',
+						alert: {
+							variant: 'info',
+							text: 'defaultClosed can be used only if collapsible is set to true!'
+						},
+						variations: [
+							{
+								primaryVariants: ['defaultClosed={true}'],
+								secondaryVariants: ['collapsible={true}'],
+								component:
+									<CSCard>
+										<CSCardHeader
+											title="Card Header"
+											collapsible
+											defaultClosed
+										/>
+										<CSCardBody>
+											Card Body
+										</CSCardBody>
+										<CSCardFooter>
+											Card Footer
+										</CSCardFooter>
+									</CSCard>,
+									code: `<CSCard>
+										<CSCardHeader
+											title="Card Header"
+											collapsible
+											defaultClosed
+										/>
+										<CSCardBody>
+											Card Body
+										</CSCardBody>
+										<CSCardFooter>
+											Card Footer
+										</CSCardFooter>
+									</CSCard>`
+							}
+						]
+					}, {
 						propName: 'iconColor',
 						variations: [
 							{
@@ -394,6 +433,11 @@ class CSCardPreview extends React.Component {
 				types: ['boolean'],
 				default: 'false',
 				description: 'Set whether the card is collapsible on click.'
+			}, {
+				name: 'defaultClosed',
+				types: ['boolean'],
+				default: 'false',
+				description: 'Control whether the card is closed by default. It is designed to be used with collapsible prop.'
 			}, {
 				name: 'iconColor',
 				types: ['string'],
