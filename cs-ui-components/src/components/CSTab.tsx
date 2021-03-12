@@ -17,7 +17,7 @@ export interface CSTabProps {
 	routerLink?: JSX.Element;
 	status?: CSTabStatus;
 	tabIcon?: string | undefined;
-	title: string | undefined;
+	name: string | undefined;
 	tooltipContent?: string;
 }
 
@@ -47,7 +47,7 @@ class CSTab extends React.Component<CSTabProps> {
 			routerLink,
 			status,
 			tabIcon,
-			title,
+			name,
 			tooltipContent,
 			...rest
 		} = this.props;
@@ -103,7 +103,7 @@ class CSTab extends React.Component<CSTabProps> {
 						/>
 						: renderTabIcon() ? <CSIcon name={getStatusIcon()} origin={iconOrigin} /> : null
 					}
-					<span className="cs-tab-title">{title}</span>
+					<span className="cs-tab-name">{name}</span>
 					{children}
 				</>
 			);
