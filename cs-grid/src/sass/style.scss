@@ -207,7 +207,8 @@
 		.ag-row-odd {
 			@include sbg(--csgrid-row-bg);
 
-			&.ag-row-hover {
+			&.ag-row-hover,
+			&.ag-row-inline-editing {
 				@include sbg(--csgrid-row-hover-bg);
 			}
 		}
