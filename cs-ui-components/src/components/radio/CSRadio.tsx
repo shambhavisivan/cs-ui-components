@@ -75,8 +75,9 @@ class CSRadio extends React.Component<CSRadioProps> {
 					React.cloneElement(
 						child as any,
 						{
-							ariaInvalid: (this.props.error),
-							ariaRequired: (this.props.required)
+							ariaInvalid: this.props.error,
+							ariaRequired: this.props.required,
+							parentDisabled: this.props.disabled
 						}
 					)
 				);

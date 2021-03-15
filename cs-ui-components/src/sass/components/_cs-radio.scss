@@ -26,8 +26,11 @@
 			}
 		}
 
-		&.cs-radio-disabled .cs-radio-label {
-			cursor: default;
+		// Disabled/Read-only
+		&.cs-radio-disabled .cs-radio-label,
+		.cs-radio-label-disabled,
+		.cs-radio-label-read-only {
+			pointer-events: none;
 		}
 
 		// Radio input

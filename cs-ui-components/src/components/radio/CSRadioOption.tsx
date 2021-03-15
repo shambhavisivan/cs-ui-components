@@ -16,17 +16,9 @@ export interface CSRadioOptionProps {
 	title?: string;
 }
 
-export interface CSRadioOptionState {
-	checked: boolean;
-}
-
-class CSRadioOption extends React.Component<CSRadioOptionProps, CSRadioOptionState> {
+class CSRadioOption extends React.Component<CSRadioOptionProps> {
 	constructor(props: CSRadioOptionProps) {
 		super(props);
-
-		this.state = {
-			checked: !!this.props.checked
-		};
 
 		this.toggleRadio = this.toggleRadio.bind(this);
 	}
@@ -36,15 +28,8 @@ class CSRadioOption extends React.Component<CSRadioOptionProps, CSRadioOptionSta
 			return;
 		}
 
-		this.setState({ checked: !this.state.checked });
 		if (this.props.onChange) {
 			this.props.onChange(e);
-		}
-	}
-
-	componentDidUpdate(prevProps: CSRadioOptionProps) {
-		if (prevProps.checked !== this.props.checked) {
-			this.setState({ checked: this.props.checked });
 		}
 	}
 
@@ -58,6 +43,7 @@ class CSRadioOption extends React.Component<CSRadioOptionProps, CSRadioOptionSta
 			id,
 			label,
 			name,
+			parentDisabled,
 			readOnly,
 			onChange,
 			title,
@@ -66,7 +52,8 @@ class CSRadioOption extends React.Component<CSRadioOptionProps, CSRadioOptionSta
 
 		const radioOptionWrapperClasses = classNames(
 			'cs-radio-label', {
-			'cs-radio-label-read-only': readOnly
+			'cs-radio-label-read-only': readOnly,
+			'cs-radio-label-disabled': disabled
 		});
 
 		const radioOptionClasses = classNames(
@@ -81,11 +68,11 @@ class CSRadioOption extends React.Component<CSRadioOptionProps, CSRadioOptionSta
 					className={radioOptionClasses}
 					type="radio"
 					name={name}
-					disabled={disabled}
+					disabled={disabled || parentDisabled}
 					id={id}
 					aria-invalid={ariaInvalid}
 					aria-required={ariaRequired}
-					checked={this.state.checked}
+					defaultChecked={this.props.checked}
 					{...rest}
 				/>
 				<span className="cs-radio-faux" />
