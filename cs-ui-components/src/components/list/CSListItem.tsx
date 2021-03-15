@@ -9,7 +9,7 @@ export interface CSListItemProps {
 	customContent?: React.ReactNode;
 	disabled?: boolean;
 	id?: string;
-	onSelect?: (value?: any) => any;
+	onSelectChange?: (value?: any) => any;
 	selected?: boolean;
 	text?: string;
 }
@@ -23,20 +23,20 @@ class CSListItem extends React.Component<CSListItemProps> {
 	}
 
 	handleSelect = () => {
-		const { itemKey, onSelect, selectHandler } = this.props;
+		const { itemKey, onSelectChange, selectHandler } = this.props;
 		if (selectHandler) {
 			selectHandler(itemKey);
 		}
-		if (onSelect) {
-			onSelect();
+		if (onSelectChange) {
+			onSelectChange();
 		}
 	}
 
 	handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-		const { onSelect } = this.props;
+		const { onSelectChange } = this.props;
 		if (e.key === KeyCode.Enter || e.key === KeyCode.Space) {
-			if (onSelect) {
-				onSelect();
+			if (onSelectChange) {
+				onSelectChange();
 			}
 			e.preventDefault();
 		}
@@ -52,7 +52,7 @@ class CSListItem extends React.Component<CSListItemProps> {
 			itemKey,
 			listSize,
 			listVariant,
-			onSelect,
+			onSelectChange,
 			selectHandler,
 			selected,
 			text,
@@ -77,7 +77,7 @@ class CSListItem extends React.Component<CSListItemProps> {
 				{listVariant === 'simple-list' ?
 					<div
 						className={listItemClasses}
-						onClick={onSelect}
+						onClick={onSelectChange}
 						aria-selected={selected}
 						role="button"
 						tabIndex={disabled ? -1 : 0}

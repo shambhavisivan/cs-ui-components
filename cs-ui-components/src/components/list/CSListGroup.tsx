@@ -5,7 +5,7 @@ import CSIcon from '../CSIcon';
 import CSListItem from './CSListItem';
 import KeyCode from '../../util/KeyCode';
 
-export type CSListGroupCheckboxOption = 'selectAll' | 'selectSelf';
+export type CSListGroupCheckboxOption = 'select-all' | 'select-self' | 'not-selectable';
 
 export interface CSListGroupProps {
 	[key: string]: any;
@@ -13,7 +13,7 @@ export interface CSListGroupProps {
 	collapsible?: boolean;
 	customContent?: React.ReactNode;
 	id?: string;
-	onSelect?: (value?: any) => any;
+	onSelectChange?: (value?: any) => any;
 	checkboxOption?: CSListGroupCheckboxOption;
 	title: string;
 }
@@ -28,7 +28,7 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 
 	public static defaultProps = {
 		collapsible: true,
-		checkboxOption: 'selectAll'
+		checkboxOption: 'select-all'
 	};
 
 	constructor(props: CSListGroupProps) {
@@ -84,13 +84,13 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 
 	handleSelectAll = () => {
 		const { selectedItems, validItems } = this.state;
-		const { onSelect } = this.props;
+		const { onSelectChange } = this.props;
 		const _selectedItems = selectedItems.length === validItems.length ? [] : validItems;
 
 		this.setState({ selectedItems: _selectedItems });
 
-		if (onSelect) {
-			onSelect();
+		if (onSelectChange) {
+			onSelectChange();
 		}
 	}
 
@@ -111,7 +111,7 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 			listSize,
 			listVariant,
 			id,
-			onSelect,
+			onSelectChange,
 			checkboxOption,
 			title,
 			...rest
@@ -171,14 +171,20 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 							undefined
 						}
 					>
-						{(listVariant === 'check-list' && collapsible) &&
+						{(listVariant === 'check-list' &&
+							collapsible &&
+							checkboxOption !== 'not-selectable') &&
 							<CSCheckbox
 								label="select all"
 								labelHidden
-								onChange={checkboxOption === 'selectAll' ? this.handleSelectAll : onSelect}
+								onChange={
+									checkboxOption === 'select-all' ?
+										this.handleSelectAll :
+										onSelectChange
+								}
 								variant="brand"
 								checked={selectedItems.length === validItems.length &&
-									checkboxOption === 'selectAll'
+									checkboxOption === 'select-all'
 								}
 							/>
 						}

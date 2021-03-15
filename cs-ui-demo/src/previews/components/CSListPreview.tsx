@@ -108,13 +108,13 @@ class CSListPreview extends React.Component {
 					]
 				},
 				{
-					propName: 'onSelect',
+					propName: 'onSelectChange',
 					variations: [
 						{
 							component:
 								<CSList>
-									<CSListItem text="List item" onSelect={this.handleOnSelect} />
-									<CSListItem text="List item" onSelect={this.handleOnSelect} />
+									<CSListItem text="List item" onSelectChange={this.handleOnSelect} />
+									<CSListItem text="List item" onSelectChange={this.handleOnSelect} />
 								</CSList>
 						}
 					]
@@ -289,8 +289,8 @@ class CSListPreview extends React.Component {
 					},
 					variations: [
 						{
-							quickLink: 'selectAll',
-							variationName: ['selectAll'],
+							quickLink: 'select-all',
+							variationName: ['select-all'],
 							variationText: ['variant="check-list"'],
 							component:
 								<CSList variant="check-list">
@@ -301,12 +301,24 @@ class CSListPreview extends React.Component {
 								</CSList >
 						},
 						{
-							quickLink: 'selectSelf',
-							variationName: ['selectSelf'],
+							quickLink: 'select-self',
+							variationName: ['select-self'],
 							variationText: ['variant="check-list"'],
 							component:
 								<CSList variant="check-list">
-									<CSListGroup title="List Group" checkboxOption="selectSelf">
+									<CSListGroup title="List Group" checkboxOption="select-self">
+										<CSListItem text="List item" />
+										<CSListItem text="List item" />
+									</CSListGroup>
+								</CSList >
+						},
+						{
+							quickLink: 'not-selectable',
+							variationName: ['not-selectable'],
+							variationText: ['variant="check-list"'],
+							component:
+								<CSList variant="check-list">
+									<CSListGroup title="List Group" checkboxOption="not-selectable">
 										<CSListItem text="List item" />
 										<CSListItem text="List item" />
 									</CSListGroup>
@@ -315,13 +327,13 @@ class CSListPreview extends React.Component {
 					]
 				},
 				{
-					propName: 'List Group - onSelect',
+					propName: 'List Group - onSelectChange',
 					variations: [
 						{
 							variationText: ['variant="check-list"'],
 							component:
 								<CSList variant="check-list">
-									<CSListGroup title="List Group" onSelect={this.handleOnSelect}>
+									<CSListGroup title="List Group" onSelectChange={this.handleOnSelect}>
 										<CSListItem text="List item" />
 										<CSListItem text="List item" />
 									</CSListGroup>
@@ -424,7 +436,7 @@ class CSListPreview extends React.Component {
 					types: ['string'],
 					description: 'Set the ID for the list item.'
 				}, {
-					name: 'onSelect',
+					name: 'onSelectChange',
 					types: ['(value?: any) => any'],
 					description: 'Callback function which will be executed when selection is changed on list item.'
 				}, {
@@ -471,17 +483,17 @@ class CSListPreview extends React.Component {
 					types: ['string'],
 					description: 'Set the ID for the list group.'
 				}, {
-					name: 'onSelect',
+					name: 'onSelectChange',
 					types: ['(value?: any) => any'],
 					description: 'Callback function which will be executed when list group checkbox is selected. It can only be used if variant is check-list.'
 				}, {
 					name: 'checkboxOption',
 					customTypes: [{
 						name: 'CSListGroupCheckboxOption',
-						types: ['selectAll', 'selectSelf']
+						types: ['select-all', 'select-self', 'not-selectable']
 					}],
-					default: 'selectAll',
-					description: 'Defines how items in group will be selected if list group checkbox is checked. When is set to \'selectAll\' it will select everything in the group, but when set to \'selectSelf\' it will select only the group itself. It can be used only if variant is check-list.'
+					default: 'select-all',
+					description: 'Defines how items in group will be selected if list group checkbox is checked. When is set to \'select-all\' it will select everything in the group, but when set to \'select-self\' it will select only the group itself. It can be used only if variant is check-list.'
 				}, {
 					name: 'title',
 					types: ['string'],
