@@ -1,9 +1,10 @@
-.ag-menu {
+.ag-popup .ag-menu.ag-popup-child {
 	top: 35px !important;
 	margin-left: -13px;
+	border-radius: 0 0 0.25rem 0.25rem;
 	@include css4 {
 		border: 1px solid cvar(--csgrid-popup-br) !important;
-		box-shadow: 0 2px 3px 0 (--csgrid-popup-box) !important;
+		box-shadow: 0 2px 3px 0 cvar(--csgrid-popup-box);
 	}
 }
 
@@ -13,35 +14,21 @@
 	> div .ag-filter-body-wrapper {
 		padding: 0.25rem;
 
-		.ag-filter-select {
-			height: 2rem;
-			border-radius: 0.25rem;
-			margin: 0.25rem;
-			font-size: 0.75rem;
-			padding: 0 0.5rem;
-			-webkit-appearance: none;
-			appearance: none;
-			@include sbg(--csgrid-input-bg);
-			@include css4 {
-				border: 1px solid cvar(--csgrid-input-br);
-			}
-			&:focus {
-				@include css4 {
-					border: 1px solid cvar(--csgrid-main);
-					box-shadow: 0 0 3px cvar(--csgrid-input-box);
-				}
-			}
+		&::before,
+		&::after {
+			display: none;
 		}
 
-		.ag-filter-body {
-			margin: 0;
+		.ag-filter-select {
+			height: auto;
 
-			.ag-input-text-wrapper .ag-filter-filter {
+			.ag-picker-field-wrapper {
 				height: 2rem;
-				border-radius: 0.25rem;
-				margin: 0.25rem;
-				padding: 0 0.5rem;
 				font-size: 0.75rem;
+				padding: 0 0.5rem;
+				-webkit-appearance: none;
+				appearance: none;
+				cursor: pointer;
 				@include sbg(--csgrid-input-bg);
 				@include css4 {
 					border: 1px solid cvar(--csgrid-input-br);
@@ -53,13 +40,45 @@
 						box-shadow: 0 0 3px cvar(--csgrid-input-box);
 					}
 				}
+
+				.ag-picker-field-display {
+					margin: 0;
+				}
+			}
+		}
+
+		.ag-filter-body {
+			margin: 0;
+
+			.ag-filter-filter {
+				overflow: visible;
+
+				.ag-input-wrapper .ag-input-field-input {
+					height: 2rem;
+					border-radius: 0.25rem;
+					padding: 0 0.5rem;
+					font-size: 0.75rem;
+					@include sbg(--csgrid-input-bg);
+					@include css4 {
+						border: 1px solid cvar(--csgrid-input-br);
+					}
+
+					&:focus {
+						@include css4 {
+							border: 1px solid cvar(--csgrid-main);
+							box-shadow: 0 0 3px cvar(--csgrid-input-box);
+						}
+					}
+				}
 			}
 		}
 
 		.ag-filter-condition {
 			display: flex;
 			align-items: center;
+			justify-content: center;
 			padding: 0.4rem 0;
+			margin: 0;
 
 			label {
 				display: flex;
