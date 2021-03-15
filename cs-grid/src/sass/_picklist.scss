@@ -45,9 +45,10 @@
 		display: flex;
 		min-width: 0;
 		max-width: 800px;
-		max-height: 300px;
+		max-height: 340px;
 		border-radius: 0.25rem;
-		overflow: hidden;
+		overflow: hidden !important;
+		border-radius: 0.25rem;
 		@include css4 {
 			border: 1px solid cvar(--csgrid-popup-br);
 			box-shadow: 0 2px 3px 0 cvar(--csgrid-popup-box);
