@@ -1,0 +1,27 @@
+.ag-pinned-left-cols-container {
+    @include css4 {
+        border-right: 1px solid cvar(--csgrid-row-br);
+    }
+}
+
+.ag-pinned-left-header,
+.ag-pinned-left-cols-container {
+    z-index: $z-index-pinned;
+    @include css4 {
+        box-shadow: 1px 0 3px cvar(--csgrid-shadow-medium);
+    }
+}
+
+.ag-pinned-right-cols-container {
+    @include css4 {
+        border-left: 1px solid cvar(--csgrid-row-br);
+    }
+}
+
+.ag-pinned-right-header,
+.ag-pinned-right-cols-container {
+    z-index: $z-index-pinned;
+    @include css4 {
+        box-shadow: -1px 0 3px cvar(--csgrid-shadow-medium);
+    }
+}

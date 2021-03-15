@@ -1,4 +1,5 @@
 @import "settings/overflow-ellipsis";
+@import "settings/z-index";
 
 @import "theme";
 @import "button";
@@ -13,6 +14,7 @@
 @import "tooltip";
 @import "filter";
 @import "row-selection";
+@import "pinned";
 
 @import "~ag-grid-community/dist/styles/ag-grid.css";
 @import "~ag-grid-community/dist/styles/ag-theme-balham.css";
