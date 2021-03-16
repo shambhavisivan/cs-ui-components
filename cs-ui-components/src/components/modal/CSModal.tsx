@@ -58,7 +58,8 @@ class CSModal extends React.Component<CSModalProps> {
 	}
 
 	handleEsc(e: any) {
-		if (this.props.onClose) {
+		const parent = e.target.closest('.cs-modal-overlay');
+		if (this.props.onClose && (parent === this.modalOverlay)) {
 			if (e.key === KeyCode.Escape) {
 				this.props.onClose(e);
 			}
