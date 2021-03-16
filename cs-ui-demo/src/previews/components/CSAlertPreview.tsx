@@ -88,6 +88,35 @@ class CSAlertPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'iconHidden',
+						variations: [
+							{
+								primaryVariants: 'iconHidden={true}',
+								quickLink: 'true',
+								component: <CSAlert
+									variant="info"
+									text="This is an example alert with an icon"
+								/>,
+								code: `<CSAlert
+									variant="info"
+									text="This is an example alert with an icon"
+								/>`
+							}, {
+								primaryVariants: 'iconHidden={false}',
+								quickLink: 'false',
+								component: <CSAlert
+									variant="info"
+									text="This is an example alert without an icon"
+									iconHidden
+								/>,
+								code: `<CSAlert
+									variant="info"
+									text="This is an example alert without an icon"
+									iconHidden
+								/>`
+							}
+						]
+					}, {
 						propName: 'iconName',
 						description: 'Use to override the default icon defined by the variant.',
 						variations: [
@@ -137,35 +166,6 @@ class CSAlertPreview extends React.Component {
 									iconName="big_shot"
 									iconOrigin="cs"
 									text="This is an example alert with an icon with origin 'cs'"
-								/>`
-							}
-						]
-					}, {
-						propName: 'iconVisibility',
-						variations: [
-							{
-								primaryVariants: 'iconVisibility={true}',
-								quickLink: 'true',
-								component: <CSAlert
-									variant="info"
-									text="This is an example alert with an icon"
-								/>,
-								code: `<CSAlert
-									variant="info"
-									text="This is an example alert with an icon"
-								/>`
-							}, {
-								primaryVariants: 'iconVisibility={false}',
-								quickLink: 'false',
-								component: <CSAlert
-									variant="info"
-									iconVisibility={false}
-									text="This is an example alert without an icon"
-								/>,
-								code: `<CSAlert
-									variant="info"
-									iconVisibility={false}
-									text="This is an example alert without an icon"
 								/>`
 							}
 						]
@@ -377,9 +377,9 @@ class CSAlertPreview extends React.Component {
 									variant="info"
 									textAlign="center"
 									text={[
-									    'This is an example alert with text aligned center',
-									    'One more alert',
-									    'Another alert to display'
+										'This is an example alert with text aligned center',
+										'One more alert',
+										'Another alert to display'
 									]}
 								/>`
 							}
@@ -480,9 +480,9 @@ class CSAlertPreview extends React.Component {
 				default: '\'slds\'',
 				description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
 			}, {
-				name: 'iconVisibility',
+				name: 'iconHidden',
 				types: ['boolean'],
-				default: 'true',
+				default: 'false',
 				description: 'Show or hide the icon.'
 			}, {
 				name: 'id',

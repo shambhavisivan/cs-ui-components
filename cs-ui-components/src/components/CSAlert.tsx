@@ -13,7 +13,7 @@ export interface CSAlertProps {
 	closeButton?: boolean;
 	iconName?: string;
 	iconOrigin?: CSIconOrigin;
-	iconVisibility?: boolean;
+	iconHidden?: boolean;
 	id?: string;
 	onClose?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 	styleFormat?: CSAlertStyleFormat;
@@ -25,7 +25,7 @@ export interface CSAlertProps {
 
 class CSAlert extends React.Component<CSAlertProps> {
 	public static defaultProps = {
-		iconVisibility: true,
+		iconHidden: false,
 		styleFormat: 'default',
 		styleType: 'default',
 		textAlign: 'left'
@@ -38,7 +38,7 @@ class CSAlert extends React.Component<CSAlertProps> {
 			closeButton,
 			iconName,
 			iconOrigin,
-			iconVisibility,
+			iconHidden,
 			id,
 			onClose,
 			styleFormat,
@@ -76,19 +76,13 @@ class CSAlert extends React.Component<CSAlertProps> {
 				{...rest}
 			>
 				<h4 className={alertTextWrapperClasses}>
-					{iconVisibility ? (iconName ? (
+					{!iconHidden ? (
 						<CSIcon
-							name={iconName}
+							name={iconName || alertIconName}
 							size={alertIconSize}
 							origin={iconOrigin}
 						/>
-					) : (
-						<CSIcon
-							name={alertIconName}
-							size={alertIconSize}
-							origin={iconOrigin}
-						/>
-					)) : null}
+					)  : null}
 					{text ? (
 						Array.isArray(text) ?
 							text.map((t, index) =>

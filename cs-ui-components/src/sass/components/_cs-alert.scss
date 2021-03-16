@@ -12,6 +12,10 @@
 		.cs-alert-text-wrapper {
 			.cs-alert-text {
 				align-self: center;
+
+				+ .cs-alert-text {
+					padding-left: 2rem;
+				}
 			}
 			.cs-icon {
 				margin-top: 0;
@@ -253,8 +257,8 @@
 			// Array of alerts
 			+ .cs-alert-text {
 				text-align: left;
-    			padding-left: 1.5rem;
-    			width: 100%;
+				padding-left: 1.375rem;
+				width: 100%;
 			}
 		}
 
