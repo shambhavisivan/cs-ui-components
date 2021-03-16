@@ -7,7 +7,6 @@
 	.cs-list-group-header {
 		display: flex;
 		align-items: stretch;
-		border-radius: 0.25rem;
 		&-inner-wrapper {
 			flex: 1;
 			display: flex;
@@ -16,8 +15,6 @@
 			padding: 0 0.5rem;
 			background-color: inherit;
 			text-align: left;
-			border-radius: inherit;
-			border: transparent;
 			.cs-icon {
 				transition: transform 0.2s;
 				pointer-events: none;
@@ -28,12 +25,10 @@
 		}
 		&-simple-list, &-check-list {
 			.cs-list-group-header-inner-wrapper {
-				@include css4 {
-					border: 1px solid cvar(--cs-list-item-header-br);
-				}
 				&:hover {
 					@include sbg(--cs-list-item-header-hover);
 				}
+
 				&:focus, &:active {
 					outline: 0;
 					@include css4 {
@@ -128,6 +123,9 @@
 					top: 0;
 					width: 4px;
 					@include sbg(--cs-list-item-active-br);
+				}
+				&:hover, &:focus {
+					@include bgd(--cs-list-item-active-bg, 0.02);
 				}
 			}
 			&-small {

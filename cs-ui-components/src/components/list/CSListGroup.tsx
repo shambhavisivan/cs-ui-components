@@ -200,11 +200,11 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 						{listHeaderContent}
 					</div>
 				</h3>
-				{(!collapsed && collapsible) &&
+				{!collapsed ? (
 					<ul className="cs-list-group">
 						{listItems}
 					</ul>
-				}
+				) : null}
 			</li>
 		);
 	}
