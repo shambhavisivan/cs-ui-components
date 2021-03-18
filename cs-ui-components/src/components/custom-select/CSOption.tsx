@@ -104,9 +104,9 @@ class CSOption extends React.Component<CSOptionProps> {
 					<CSButton
 						btnType="transparent"
 						iconColor="var(--cs-option-ms-item-selected-delete)"
-						iconDisplay="icon-only"
 						iconName="close"
 						label="delete selected item"
+						labelHidden
 						onMouseDown={onItemDelete}
 						onKeyDown={onItemDelete}
 						size="xsmall"

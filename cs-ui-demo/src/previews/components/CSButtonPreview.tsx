@@ -375,68 +375,6 @@ class CSButtonPreview extends React.Component {
 									iconDisplay="default"
 								/>`
 							}, {
-								primaryVariants: 'iconDisplay="icon-only"',
-								secondaryVariants: 'iconName="list"',
-								quickLink: 'icon-only',
-								component: <CSButton
-									label="Activity icon button"
-									iconName="list"
-									iconDisplay="icon-only"
-								/>,
-								code: `<CSButton
-									label="Activity icon button"
-									iconName="list"
-									iconDisplay="icon-only"
-								/>`
-							}, {
-								primaryVariants: 'iconDisplay="icon-only"',
-								secondaryVariants: 'size="large"',
-								quickLink: 'icon-only large',
-								component: <CSButton
-									label="Activity icon button"
-									iconName="list"
-									iconDisplay="icon-only"
-									size="large"
-								/>,
-								code: `<CSButton
-									label="Activity icon button"
-									iconName="list"
-									iconDisplay="icon-only"
-									size="large"
-								/>`
-							}, {
-								primaryVariants: 'iconDisplay="icon-only"',
-								secondaryVariants: ['size="small"', 'iconName="list"'],
-								quickLink: 'icon-only small',
-								component: <CSButton
-									label="Activity icon button"
-									iconName="list"
-									iconDisplay="icon-only"
-									size="small"
-								/>,
-								code: `<CSButton
-									label="Activity icon button"
-									iconName="list"
-									iconDisplay="icon-only"
-									size="small"
-								/>`
-							}, {
-								primaryVariants: 'iconDisplay="icon-only"',
-								secondaryVariants: ['size="xsmall"', 'iconName="list"'],
-								quickLink: 'icon-only xsmall',
-								component: <CSButton
-									label="Activity icon button"
-									iconName="list"
-									iconDisplay="icon-only"
-									size="xsmall"
-								/>,
-								code: `<CSButton
-									label="Activity icon button"
-									iconName="list"
-									iconDisplay="icon-only"
-									size="xsmall"
-								/>`
-							}, {
 								primaryVariants: 'iconDisplay="no-icon"',
 								secondaryVariants: ['size="large"', 'iconName="list"'],
 								quickLink: 'no-icon large',
@@ -652,6 +590,54 @@ class CSButtonPreview extends React.Component {
 									label="Label is hidden"
 									labelHidden
 									iconName="list"
+								/>`
+							}, {
+								primaryVariants: 'labelHidden={true}',
+								secondaryVariants: ['size="large"', 'iconName="list"'],
+								quickLink: 'large',
+								component: <CSButton
+									label="Activity icon button"
+									iconName="list"
+									labelHidden
+									size="large"
+								/>,
+								code: `<CSButton
+									label="Activity icon button"
+									iconName="list"
+									labelHidden
+									size="large"
+								/>`
+							}, {
+								primaryVariants: 'labelHidden={true}',
+								secondaryVariants: ['size="small"', 'iconName="list"'],
+								quickLink: 'small',
+								component: <CSButton
+									label="Activity icon button"
+									iconName="list"
+									labelHidden
+									size="small"
+								/>,
+								code: `<CSButton
+									label="Activity icon button"
+									iconName="list"
+									labelHidden
+									size="small"
+								/>`
+							}, {
+								primaryVariants: 'labelHidden={true}',
+								secondaryVariants: ['size="xsmall"', 'iconName="list"'],
+								quickLink: 'xsmall',
+								component: <CSButton
+									label="Activity icon button"
+									iconName="list"
+									labelHidden
+									size="xsmall"
+								/>,
+								code: `<CSButton
+									label="Activity icon button"
+									iconName="list"
+									labelHidden
+									size="xsmall"
 								/>`
 							}
 						]
@@ -933,7 +919,7 @@ class CSButtonPreview extends React.Component {
 				name: 'iconDisplay',
 				customTypes: [{
 					name: 'CSButtonIconDisplay',
-					types: ['\'default\'', '\'icon-only\'', '\'no-icon\'']
+					types: ['\'default\'', '\'no-icon\'']
 				}],
 				default: '\'default\'',
 				description: 'Set whether to omit the icon or display the icon only.'

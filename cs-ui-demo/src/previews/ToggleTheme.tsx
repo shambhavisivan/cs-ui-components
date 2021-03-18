@@ -16,8 +16,8 @@ const ToggleTheme: React.FC = () => {
 				className="app-toggle-theme"
 				color={theme === Theme.Dark ? 'black' : 'orange'}
 				label="activity icon button"
+				labelHidden
 				iconName="light_bulb"
-				iconDisplay="icon-only"
 				onClick={toggleTheme}
 				title=""
 			/>

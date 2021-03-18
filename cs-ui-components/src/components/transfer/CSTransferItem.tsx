@@ -127,7 +127,7 @@ class CSTransferItem extends React.Component<CSTransferItemProps> {
 				<CSButton
 					btnStyle="brand"
 					btnType="transparent"
-					iconDisplay="icon-only"
+					labelHidden
 					iconName="delete"
 					label="remove item"
 					size="xsmall"

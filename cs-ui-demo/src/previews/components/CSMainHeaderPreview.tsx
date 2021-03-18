@@ -398,10 +398,10 @@ class CSMainHeaderPreview extends React.Component {
 									<CSMainHeaderIcon>
 										<CSButton
 											label="back"
+											labelHidden
 											btnType="transparent"
 											btnStyle="brand"
 											iconName="back"
-											iconDisplay="icon-only"
 										/>
 									</CSMainHeaderIcon>
 									<CSMainHeaderLeft
@@ -419,10 +419,10 @@ class CSMainHeaderPreview extends React.Component {
 									<CSMainHeaderIcon>
 										<CSButton
 											label="back"
+											labelHidden
 											btnType="transparent"
 											btnStyle="brand"
 											iconName="back"
-											iconDisplay="icon-only"
 										/>
 									</CSMainHeaderIcon>
 									<CSMainHeaderLeft

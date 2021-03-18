@@ -90,8 +90,8 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 							className="cs-sidebar-close"
 							onClick={this.onClose}
 							label="toggle sidebar"
+							labelHidden
 							iconName="assignment"
-							iconDisplay="icon-only"
 							size="small"
 							ariaExpanded={!this.state.closed}
 						/>

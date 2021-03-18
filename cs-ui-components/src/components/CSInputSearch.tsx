@@ -241,7 +241,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 								className="cs-input-search-clear"
 								iconColor="var(--cs-input-clear)"
 								iconName="close"
-								iconDisplay="icon-only"
+								labelHidden
 								label="clear"
 								onClick={this.clearSearch}
 								size="small"

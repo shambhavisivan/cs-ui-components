@@ -196,8 +196,8 @@ class CSLookupField extends React.Component<CSLookupFieldProps, CSLookupFieldSta
 							className="cs-lookup-field-clear"
 							iconColor="var(--cs-input-clear)"
 							iconName="close"
-							iconDisplay="icon-only"
 							label="clear"
+							labelHidden
 							onClick={this.clearSearch}
 							size="small"
 						/>

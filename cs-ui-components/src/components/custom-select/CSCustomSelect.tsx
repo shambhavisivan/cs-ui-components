@@ -525,8 +525,8 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 							className="cs-custom-select-clear"
 							iconColor="var(--cs-input-clear)"
 							iconName="close"
-							iconDisplay="icon-only"
 							label="clear"
+							labelHidden
 							onClick={this.handleClear}
 							size="small"
 						/>

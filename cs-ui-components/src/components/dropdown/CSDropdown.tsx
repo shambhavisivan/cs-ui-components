@@ -143,7 +143,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 						btnType={btnType}
 						className={btnDropdownClasses}
 						disabled={disabled}
-						iconDisplay={label ? 'default' : 'icon-only'}
+						labelHidden={label ? false : true}
 						iconName={iconName}
 						iconOrigin={iconOrigin}
 						iconPosition={(label && iconPosition) ? iconPosition : undefined}

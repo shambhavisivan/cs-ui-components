@@ -75,7 +75,7 @@ class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
 									label="clear"
 									btnType="transparent"
 									iconName="close"
-									iconDisplay="icon-only"
+									labelHidden
 									onClick={this.clearSearch}
 								/>
 							}

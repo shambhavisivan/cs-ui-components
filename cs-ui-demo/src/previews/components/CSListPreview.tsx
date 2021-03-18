@@ -135,7 +135,7 @@ class CSListPreview extends React.Component {
 										customContent={
 											<CSButton
 												label="delete"
-												iconDisplay="icon-only"
+												labelHidden
 												iconName="delete"
 												btnType="transparent"
 												btnStyle="brand"
@@ -151,7 +151,7 @@ class CSListPreview extends React.Component {
 										customContent={
 											<CSButton
 												label="delete"
-												iconDisplay="icon-only"
+												labelHidden
 												iconName="delete"
 												btnType="transparent"
 												btnStyle="brand"
@@ -169,7 +169,7 @@ class CSListPreview extends React.Component {
 										customContent={
 											<CSButton
 												label="delete"
-												iconDisplay="icon-only"
+												labelHidden
 												iconName="delete"
 												btnType="transparent"
 												btnStyle="brand"
@@ -185,7 +185,7 @@ class CSListPreview extends React.Component {
 										customContent={
 											<CSButton
 												label="delete"
-												iconDisplay="icon-only"
+												labelHidden
 												iconName="delete"
 												btnType="transparent"
 												btnStyle="brand"
@@ -372,7 +372,7 @@ class CSListPreview extends React.Component {
 										customContent={
 											<CSButton
 												label="delete"
-												iconDisplay="icon-only"
+												labelHidden
 												iconName="delete"
 												btnType="transparent"
 												btnStyle="brand"
@@ -390,7 +390,7 @@ class CSListPreview extends React.Component {
 										customContent={
 											<CSButton
 												label="delete"
-												iconDisplay="icon-only"
+												labelHidden
 												iconName="delete"
 												btnType="transparent"
 												btnStyle="brand"

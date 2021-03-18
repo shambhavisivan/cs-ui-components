@@ -277,7 +277,7 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 						<CSButton
 							label={`Move selection to ${targetLabel}`}
 							iconName="chevronright"
-							iconDisplay="icon-only"
+							labelHidden
 							disabled={!sourceSelected.length}
 							onClick={() => this.moveItemsTo('target')}
 							onKeyDown={(event: React.KeyboardEvent<any>) => this.handleActionsKeyDown(event)}
@@ -286,7 +286,7 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 							<CSButton
 								label={`Move selection to ${sourceLabel}`}
 								iconName="chevronleft"
-								iconDisplay="icon-only"
+								labelHidden
 								disabled={!targetSelected.length}
 								onClick={() => this.moveItemsTo('source')}
 								onKeyDown={(event: React.KeyboardEvent<any>) => this.handleActionsKeyDown(event)}

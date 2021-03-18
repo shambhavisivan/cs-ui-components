@@ -85,7 +85,7 @@ class CSCardHeader extends React.Component<CSCardHeaderProps, CSCardHeaderState>
 						btnType="transparent"
 						btnStyle="brand"
 						size="small"
-						iconDisplay="icon-only"
+						labelHidden
 						iconName="chevronright"
 						iconRotate={this.state.collapsed ? null : '90'}
 						className="cs-card-button"
