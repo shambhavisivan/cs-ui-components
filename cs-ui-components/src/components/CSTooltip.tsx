@@ -3,6 +3,7 @@ import React, { CSSProperties } from 'react';
 import CSIcon, { CSIconOrigin } from './CSIcon';
 import { Portal } from 'react-portal';
 import { v4 as uuidv4 } from 'uuid';
+import KeyCode from '../util/KeyCode';
 
 export type CSTooltipIconSize = 'small' | 'medium';
 export type CSTooltipPosition =
@@ -241,6 +242,20 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		}
 	}
 
+	onKeyDown(event: any) {
+		if (event.key === KeyCode.Escape) {
+			if (this.props.stickyOnClick) {
+				this.setSticky(false);
+				this.closeTooltip();
+				(document.activeElement as HTMLDivElement).blur();
+			} else {
+				this.closeTooltip();
+			}
+
+			document.removeEventListener('keydown', this.onKeyDown);
+		}
+	}
+
 	private openTooltip = () => {
 		this.setTooltipPosition();
 
@@ -256,6 +271,8 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 				this.setState({ hidden: false });
 			}, delay);
 		}
+
+		document.addEventListener('keydown', this.onKeyDown.bind(this));
 	}
 
 	private closeTooltip = () => {
