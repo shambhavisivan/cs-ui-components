@@ -166,7 +166,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 			case event.key === KeyCode.Escape && toggle:
 				this.setState({ toggle: !toggle });
 				break;
-			case event.key === KeyCode.ArrowDown:
+			case event.key === KeyCode.ArrowDown && toggle:
 				event.preventDefault();
 				switch (true) {
 					case activeListItem === null:
@@ -181,9 +181,12 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 						break;
 				}
 				break;
-			case event.key === KeyCode.ArrowUp:
+			case event.key === KeyCode.ArrowUp && toggle:
 				event.preventDefault();
 				switch (true) {
+					case activeListItem === null:
+						this.setState({ activeListItem: lastListElement });
+						break;
 					case activeListItem === firstListElement:
 						this.setState({ activeListItem: lastListElement });
 						break;
