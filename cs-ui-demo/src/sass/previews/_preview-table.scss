@@ -117,6 +117,7 @@
 				&:last-child {
 					width: 100%;
 					max-width: 100%;
+					white-space: normal;
 				}
 
 				&:nth-child(2) .cs-tooltip-wrapper {
