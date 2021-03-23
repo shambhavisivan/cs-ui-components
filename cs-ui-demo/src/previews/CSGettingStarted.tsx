@@ -7,7 +7,7 @@ export interface CSGettingStartedState {
 }
 
 class CSGettingStarted extends React.Component<any, CSGettingStartedState> {
-	private anchorList = ['cs-app-wrapper', 'cs- prefix', 'z-index', 'Unit tests & UUID'];
+	private anchorList = ['cs-app-wrapper', 'cs- prefix', 'z-index', 'Unit tests & UUID', 'Documenting Components'];
 
 	constructor(props: any) {
 		super(props);
