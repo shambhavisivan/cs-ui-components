@@ -101,8 +101,8 @@
 >> * <span id="3.1.2">3.1.2:</span> [Language of Parts](https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts) **AA**
 
 > #### Predictable
->> * <span id="3.2.1">3.2.1:</span> [On Focus A](https://www.w3.org/WAI/WCAG22/Understanding/on-focus)
->> * <span id="3.2.2">3.2.2:</span> [On Input A](https://www.w3.org/WAI/WCAG22/Understanding/on-input)
+>> * <span id="3.2.1">3.2.1:</span> [On Focus A](https://www.w3.org/WAI/WCAG22/Understanding/on-focus) **A**
+>> * <span id="3.2.2">3.2.2:</span> [On Input A](https://www.w3.org/WAI/WCAG22/Understanding/on-input) **A**
 >> * <span id="3.2.3">3.2.3:</span> [Consistent Navigation](https://www.w3.org/WAI/WCAG22/Understanding/consistent-navigation) **AA**
 >> * <span id="3.2.4">3.2.4:</span> [Consistent Identification](https://www.w3.org/WAI/WCAG22/Understanding/consistent-identification) **AA**
 >> * <span id="3.2.6">3.2.6:</span> [Findable help](https://www.w3.org/WAI/WCAG22/Understanding/findable-help) **A** *WCAG 2.2 DRAFT*
