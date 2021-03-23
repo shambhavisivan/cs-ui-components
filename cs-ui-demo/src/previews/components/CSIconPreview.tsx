@@ -246,7 +246,7 @@ class CSIconPreview extends React.Component {
 					requirements: [
 						{
 							properties: [
-								'`aria-hidden`'
+								'`aria-hidden` - icon is a visual presentation and is semantically hidden which avoids announcing it.'
 							]
 						}
 					]

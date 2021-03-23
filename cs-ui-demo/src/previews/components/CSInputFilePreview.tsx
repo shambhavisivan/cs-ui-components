@@ -13,7 +13,7 @@ class CSInputFilePreview extends React.Component {
 	getInputFileDoc = () => ({
 		name: 'Input File',
 		usage: 'Input File component',
-		accessible: 'partially',
+		accessible: 'yes',
 		previews: [
 			{
 				name: 'Input File',
@@ -299,14 +299,12 @@ class CSInputFilePreview extends React.Component {
 				requirements: [
 					{
 						structure: [
-							'HTML `<input type="file">` - hidden',
+							'`<input type="file">` - hidden',
 							'`<span>` imitates button with custom style',
 							'`<input>` and `<span>` wrapped in `<label>`'
 						],
 						properties: [
-							'`aria-labelledby` - associate field with label',
-							'`aria-invalid`',
-							'`aria-required`',
+							'`aria-invalid` - true when there is an error',
 							'`title`'
 						],
 						styling: [
@@ -314,7 +312,8 @@ class CSInputFilePreview extends React.Component {
 							'`<label>` styled as drop zone area'
 						],
 						keyboardOperability: [
-							'OOTB focusable'
+							'`<input>` OOTB focusable and supports clicks with `enter` and `space` keys',
+							'Logic around tooltip provided in order for tooltip to not break focus pattern when it is shown'
 						]
 					}
 				]

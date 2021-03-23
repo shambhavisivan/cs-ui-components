@@ -166,6 +166,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 					onChange={this.handleFileSubmit}
 					disabled={disabled}
 					title={label}
+					aria-invalid={error}
 					{...rest}
 				/>
 				<span className="cs-input-file-btn">

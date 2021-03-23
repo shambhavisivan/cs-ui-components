@@ -11,6 +11,7 @@ class CSSkipLinkPreview extends React.Component {
 	getSkipLinkDoc = () => ({
 		name: 'Skip Link',
 		usage: 'Creates link to specific part of the page',
+		accessible: 'yes',
 		previews: [
 			{
 				name: 'Skip Link',
@@ -95,15 +96,19 @@ class CSSkipLinkPreview extends React.Component {
 				requirements: [
 					{
 						structure: [
-							'HTML `<a>` element'
+							'`<a>` element'
+						],
+						properties: [
+							'`role="link"` - implicit with `<a>`'
 						],
 						styling: [
 							'Focus state styles',
 							'Hidden for non-keyboard users',
-							'Text color contrast ratio > 4.5'
+							'Text color contrast ratio > 4.5',
+							'Underline to distinct it as a link'
 						],
 						keyboardOperability: [
-							'OOTB focusable'
+							'<a> OOTB focusable and supports `space` key click'
 						]
 					}
 				]
@@ -117,7 +122,7 @@ class CSSkipLinkPreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<CSAlert
 						variant="info"
 						text="Skip Link is accessible only by focusing it via keyboard!"

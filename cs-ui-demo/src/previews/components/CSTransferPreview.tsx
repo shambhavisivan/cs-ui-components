@@ -76,7 +76,7 @@ class CSTransferPreview extends React.Component {
 		const json = {
 			name: 'Transfer',
 			usage: 'Transfer is a double column choice box for selecting multiple items.',
-			accessible: 'partially',
+			accessible: 'yes',
 			examples: [
 				{
 					propName: 'dataSource',
@@ -366,6 +366,7 @@ class CSTransferPreview extends React.Component {
 						'1.1.1',
 						'2.1.1',
 						'2.1.2',
+						'2.1.4',
 						'2.4.3',
 						'2.4.7',
 						'3.2.1',
@@ -375,9 +376,9 @@ class CSTransferPreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'HTML `<ul>`',
-								'HTML `<li>`',
-								'HTML `<button>`'
+								'`<ul>`',
+								'`<li>`',
+								'`<CSButton>` - move selection buttons'
 							],
 							properties: [
 								'`aria-describedby` - list is associated with belonging label',
@@ -390,8 +391,12 @@ class CSTransferPreview extends React.Component {
 								'Distinct hover, active and focus state styles'
 							],
 							keyboardOperability: [
-								'Proper focus management and keyboard operability ensured by structure and `<button>`',
-								'Additional logic provided for arrow navigation in all directions'
+								'Proper focus management and keyboard operability ensured by structure and `<CSButton>`',
+								'`Left` - move left to selection buttons or source list',
+								'`Right` - move right to the selection buttons or target list',
+								'`Up` - move up through the list or selection buttons',
+								'`Down` - move down through the list or selection buttons'
+
 							]
 						}
 					]

@@ -179,21 +179,23 @@ class CSProgressIndicatorPreview extends React.Component {
 				requirements: [
 					{
 						structure: [
-							'HTML `<ol>`',
-							'HTML `<li>`',
-							'HTML `<button>`',
+							'`<ol>`',
+							'`<li>` - allows screen readers to detect number of items in the list',
+							'`<button>` - focusable and follows SLDS',
 							'Icon as a child of button with attribute `aria-hidden`'
 						],
 						properties: [
 							'`aria-label`',
-							'`title` with status'
+							'`title` - shows status on hover, as well as reads out to screen reader along aria-label.',
+							'`aria-current` - true when the step is in active status',
+							'`aria-roledescription` - role set to custom "step" to describe better rather than implicit role button'
 						],
 						styling: [
 							'Color contrast ratio > 4.5',
-							'Distinct hover, active and focus state styles'
+							'Distinct hover and focus state styles'
 						],
 						keyboardOperability: [
-							'OOTB focusable and supports clicks with enter and space keys'
+							'`<button>` OOTB focusable and supports clicks with `enter` and `space` keys'
 						]
 					}
 				]

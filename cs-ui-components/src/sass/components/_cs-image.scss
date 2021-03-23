@@ -3,3 +3,6 @@
 	width: var(--cs-image-width);
 	height: var(--cs-image-height);
 }
+.cs-aria-description {
+	@include screen-reader-hidden;
+}

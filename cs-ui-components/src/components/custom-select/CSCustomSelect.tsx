@@ -510,6 +510,8 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 							onBlur={e => this.handleOnBlur(e)}
 							onFocus={this.handleOnFocus}
 							ref={node => this.input = node}
+							role="listbox"
+							aria-multiselectable="true"
 							{...rest}
 						/>
 					</span>

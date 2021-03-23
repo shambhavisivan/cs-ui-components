@@ -155,6 +155,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 							id={this.uniqueAutoId}
 							onClick={this.handleOnClick}
 							name={name}
+							aria-label={label}
 							aria-readonly={readOnly}
 							aria-required={required}
 							aria-invalid={error}

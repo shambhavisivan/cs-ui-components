@@ -38,7 +38,7 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 	getModalDoc = () => ({
 		name: 'Modal',
 		usage: 'Modals are used to display content in a layer above the app. This paradigm is used in cases such as the creation or editing of a record, as well as various types of messaging and wizards.',
-		accessible: 'partially',
+		accessible: 'yes',
 		previews: [
 			{
 				name: 'Modal',
@@ -1087,21 +1087,23 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 				requirements: [
 					{
 						structure: [
-							'HTML `<header>` and `<footer>`',
-							'Modal title is HTML `<h3>`',
-							'Modal subtitle is HTML `<h4>`'
+							'`<header>`',
+							'`<footer>`',
+							'Modal title is `<h3>`',
+							'Modal subtitle is `<h4>`'
 						],
 						properties: [
 							'`aria-modal`',
-							'`role="dialog"`'
+							'`role="dialog"`',
+							'`aria-describedby` - semantically connects title with parent modal div containing role, which is read once modal is opened'
 						],
 						styling: [
 							'Color contrast ratio > 4.5'
 						],
 						keyboardOperability: [
 							'Logic for focus management to move on modal when it is opened and to cycle within it until closed',
-							'Close button is `<button>` and a first child - allows keyboard focus',
-							'(missing `aria-labelledby`)'
+							'Close button is `<CSButton>` and a first child - allows keyboard focus',
+							'`ESC` - close modal'
 						]
 					}
 				]

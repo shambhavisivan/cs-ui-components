@@ -113,6 +113,7 @@ class CSToggle extends React.Component<CSToggleProps, CSToggleState> {
 							checked={this.state.checked}
 							required={required}
 							id={this.uniqueAutoId}
+							aria-label={label}
 							aria-required={required}
 							aria-invalid={error}
 							{...rest}

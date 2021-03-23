@@ -539,9 +539,9 @@ class CSMainHeaderPreview extends React.Component {
 				requirements: [
 					{
 						structure: [
-							'HTML `<header>`',
-							'Title is HTML `<h1>`',
-							'Subtitle is HTML `<h4>`'
+							'`<header>`',
+							'Title is `<h1>`',
+							'Subtitle is `<h4>`'
 						]
 					}
 				]

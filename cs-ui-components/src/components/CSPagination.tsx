@@ -119,7 +119,7 @@ class CSPagination extends React.Component<CSPaginationProps> {
 		// }
 
 		return (
-			<nav aria-label="pagination navigation">
+			<nav aria-label="pagination">
 				<ul className="cs-pagination">
 					{/*
 					<li className={pager.currentPage === 1 ? 'disabled' : ''} aria-disabled={pager.currentPage === 1}>

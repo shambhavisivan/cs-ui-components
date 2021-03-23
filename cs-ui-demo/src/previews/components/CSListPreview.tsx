@@ -3,6 +3,7 @@ import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
 import PreviewLinks from '../PreviewLinks';
+import PreviewAccessibility from '../PreviewAccessibility';
 
 import { CSAlert, CSButton, CSList, CSListGroup, CSListItem } from '@cloudsense/cs-ui-components';
 
@@ -11,7 +12,7 @@ class CSListPreview extends React.Component {
 	getListDoc = () => ({
 		name: 'List',
 		usage: 'List that contains items',
-		accessible: 'no',
+		accessible: 'partially',
 		previews: [
 			{
 				name: 'List',
@@ -526,6 +527,47 @@ class CSListPreview extends React.Component {
 				default: 'simple-list',
 				description: 'List variant.'
 			}
+		],
+		accessibility: [
+			{
+				criterionList: [
+					'1.3.1',
+					'1.4.1',
+					'2.1.1',
+					'2.1.2',
+					'2.4.3',
+					'2.4.7',
+					'2.5.3',
+					'3.2.1',
+					'3.2.2',
+					'3.3.1',
+					'3.3.2',
+					'4.1.2'
+				],
+				requirements: [
+					{
+						structure: [
+							'`ul` - list, allows screen reader list navigation and counts `<li>` items',
+							'`li` - list item, allows screen reader list navigation',
+							'`button` inside `h3` - group header - allows heading search, as well as focusable'
+						],
+						properties: [
+							'`aria-selected` - true when list item is selected',
+							'`aria-expanded` - true on group header when group is expanded',
+							'`aria-level` - TODO',
+							'`role="group"` - TODO',
+							'`role="treeitem"` - TODO'
+						],
+						styling: [
+							'Focus state styles'
+						],
+						keyboardOperability: [
+							'`Enter` and `Space` - select item',
+							'List items focus enabled by `tabindex="0"`'
+						]
+					}
+				]
+			}
 		]
 	})
 
@@ -629,6 +671,7 @@ class CSListPreview extends React.Component {
 					/>
 					<PreviewProperties {...component} />
 					<PreviewTable components={[component, component2, component3]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<PreviewLinks {...component} />
 			</>

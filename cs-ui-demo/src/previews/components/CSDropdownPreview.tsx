@@ -767,6 +767,7 @@ class CSDropdownPreview extends React.Component {
 					criterionList: [
 						'2.1.1',
 						'2.1.2',
+						'2.1.4',
 						'3.2.1',
 						'3.3.1',
 						'4.1.2'
@@ -774,8 +775,8 @@ class CSDropdownPreview extends React.Component {
 					requirements: [
 						{
 							structure: [
-								'Dropdown is HTML `<ul>` - allow screen reader list navigation and counting `<li>` items',
-								'Buttons wrapped in HTML `<li>` - allow screen reader list navigation while preserving keyboard operability',
+								'Dropdown is `<ul>` - allow screen reader list navigation and counting `<li>` items',
+								'Buttons wrapped in `<li>` - allow screen reader list navigation while preserving keyboard operability',
 								'`<CSButton>` used'
 							],
 							properties: [

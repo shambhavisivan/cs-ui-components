@@ -96,7 +96,7 @@ class CSRadio extends React.Component<CSRadioProps> {
 						title={labelTitle ? label : null}
 					/>
 				}
-				<div className={radioGroupClasses} id={uniqueAutoId}>
+				<div className={radioGroupClasses} id={uniqueAutoId} aria-label={label}>
 					{childrenWithProps}
 				</div>
 				{(error && errorMessage) &&

@@ -317,7 +317,7 @@ class CSToastPreview extends React.Component {
 					'1.4.4',
 					'2.1.1',
 					'2.1.2',
-					'2.2.1 - check',
+					'2.2.1',
 					'2.4.7',
 					'3.2.1',
 					'3.3.1',
@@ -327,7 +327,7 @@ class CSToastPreview extends React.Component {
 				requirements: [
 					{
 						structure: [
-							'Heading is HTML `<h4>` - allows screen reader heading search'
+							'Heading is `<h4>` - allows screen reader heading search'
 						],
 						properties: [
 							'`role="alert/status"` - depending on toast variant',
@@ -337,7 +337,7 @@ class CSToastPreview extends React.Component {
 							'Color contrast ratio > 4.5'
 						],
 						keyboardOperability: [
-							'Close button is `<button>` and a child - allows keyboard focus'
+							'Close button is `<CSButton>` and a child - allows keyboard focus'
 						]
 					}
 				]

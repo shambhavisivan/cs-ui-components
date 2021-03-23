@@ -3,12 +3,14 @@ import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
 import PreviewLinks from '../PreviewLinks';
+import PreviewAccessibility from '../PreviewAccessibility';
 
 import { CSPaginationWrapper, CSSelect, CSAlert } from '@cloudsense/cs-ui-components';
 
 class CSPaginationPreview extends React.Component {
 	getPaginationDoc = () => ({
 		name: 'Pagination',
+		accessible: 'partially',
 		usage: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
 		previews: [
 			{
@@ -44,6 +46,42 @@ class CSPaginationPreview extends React.Component {
 				types: ['n/a'],
 				description: 'n/a'
 			}
+		],
+		accessibility: [
+			{
+				criterionList: [
+					'1.3.1',
+					'1.4.1',
+					'2.1.1',
+					'2.1.2',
+					'2.4.7',
+					'2.5.3',
+					'3.2.1',
+					'3.2.2',
+					'4.1.2'
+				],
+				requirements: [
+					{
+						structure: [
+							'`<nav>`',
+							'`ul` - allows screen reader list navigation and counts `<li>` items',
+							'`li` - allows screen reader list navigation',
+							'`a` inside `li`'
+						],
+						properties: [
+							'`aria-label="pagination"` on top wrapper to announce pagination component',
+							'`aria-current` - true when page button is active (TODO)',
+							'`role="navigation"` - implicit by `nav`'
+						],
+						styling: [
+							'Focus state styles'
+						],
+						keyboardOperability: [
+							'`a` OOTB focusable and supports `space` click'
+						]
+					}
+				]
+			}
 		]
 	})
 
@@ -53,7 +91,7 @@ class CSPaginationPreview extends React.Component {
 		return (
 			<>
 				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} />
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<CSAlert
 						variant="warning"
 						text="This component is under construction and should not be used."
@@ -61,6 +99,7 @@ class CSPaginationPreview extends React.Component {
 					/>
 					<PreviewProperties {...component} />
 					<PreviewTable components={[component]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
 				<PreviewLinks {...component} />
 			</>

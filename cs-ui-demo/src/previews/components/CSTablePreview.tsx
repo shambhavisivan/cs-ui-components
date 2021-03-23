@@ -14,7 +14,7 @@ class CSTablePreview extends React.Component {
 	getCSTableDoc() {
 		const json = {
 			name: 'Table',
-			usage: 'Tables are an enhanced version of an HTML table and are used to display tabular data.',
+			usage: 'Table is used to display tabular data.',
 			accessible: 'partially',
 			examples: [
 				{
@@ -920,21 +920,28 @@ class CSTablePreview extends React.Component {
 						'1.4.4',
 						'2.1.1',
 						'2.1.2',
+						'2.1.4',
 						'4.1.2'
 					],
 					requirements: [
 						{
 							structure: [
-								''
+								'`<div>`\'s with different roles'
 							],
 							properties: [
-								''
+								'`role="table"` - on top wrapper',
+								'`role="columnheader"` - on table header cells',
+								'`role="rowgroup"` - on table body',
+								'`role="row"` - on body rows and header row',
+								'`role="cell"` - on cells',
+								'`tabindex="0"` on rows',
+								'`aria-labelledby` - contains id pointing to hidden span when `tableDescription` is set which associates table with description'
 							],
 							visual: [
-								''
+								'Distinct hover and focus state styles - WIP'
 							],
 							keyboardOperability: [
-								''
+								'WIP'
 							]
 						}
 					]

@@ -170,6 +170,7 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 						onKeyDown={collapsible ? e => this.handleItemKeyDown(e) :
 							undefined
 						}
+						aria-expanded={!collapsed}
 					>
 						{(listVariant === 'check-list' &&
 							collapsible &&

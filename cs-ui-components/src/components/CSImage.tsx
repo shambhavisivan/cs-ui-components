@@ -1,5 +1,6 @@
 import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
+import { v4 as uuidv4 } from 'uuid';
 
 export type CSImageColor = 'white' | 'black' | 'purple';
 export type CSImageType = 'logo' | 'logomark';
@@ -23,6 +24,8 @@ class CSImage extends React.Component<CSImageProps> {
 		color: 'purple',
 		variant: 'initial'
 	};
+
+	private uniqueAutoId = this.props.longDescription ? uuidv4() : null;
 
 	render() {
 		const {
@@ -48,14 +51,20 @@ class CSImage extends React.Component<CSImageProps> {
 			}
 		);
 		return(
-			<img
-				className={imageClasses}
-				id={id}
-				style={style}
-				src={require(`../images/cs-${type}-${color}-${variant}.png`)} alt={`${type}-${color}-${variant}`}
-				aria-describedby={longDescription}
-				{...rest}
-			/>
+			<>
+				<img
+					className={imageClasses}
+					id={id}
+					style={style}
+					src={require(`../images/cs-${type}-${color}-${variant}.png`)}
+					alt={`${type}-${color}-${variant}`}
+					aria-labelledby={this.uniqueAutoId}
+					{...rest}
+				/>
+				{longDescription &&
+					<span className="cs-aria-description" id={this.uniqueAutoId}>{longDescription}</span>
+				}
+			</>
 		);
 	}
 }

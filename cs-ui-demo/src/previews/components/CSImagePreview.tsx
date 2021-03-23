@@ -235,7 +235,7 @@ class CSImagePreview extends React.Component {
 			}, {
 				name: 'longDescription',
 				types: ['string'],
-				description: 'Set the expanded description of the image.'
+				description: 'Set the expanded description of the image. Creates hidden span with custom description when alt is not enough.'
 			}, {
 				name: '[key: string]',
 				types: ['any'],
@@ -250,10 +250,11 @@ class CSImagePreview extends React.Component {
 				requirements: [
 					{
 						structure: [
-							'HTML `<img>`'
+							'`<img>`'
 						],
 						properties: [
-							'`alt`'
+							'`alt` - alternate text for image, constructed as {type}-{color}-{variant}',
+							'`aria-labelledby` - contains id pointing to hidden span when `longDescription` is set which associates image with description'
 						]
 					}
 				]

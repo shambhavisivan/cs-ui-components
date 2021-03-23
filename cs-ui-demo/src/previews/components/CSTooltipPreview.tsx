@@ -11,7 +11,7 @@ class CSTooltipPreview extends React.Component {
 	getTooltipDoc = () => ({
 		name: 'Tooltip',
 		usage: 'A Tooltip is a small piece of contextual information about an element on the screen, which is displayed when a user hovers or focuses on the element it is describing. It is not focusable and cannot contain focusable content.',
-		accessible: 'partially',
+		accessible: 'yes',
 		previews: [
 			{
 				name: 'Tooltip',
@@ -810,6 +810,7 @@ class CSTooltipPreview extends React.Component {
 					'1.4.13',
 					'2.1.1',
 					'2.1.2',
+					'2.1.4',
 					'2.4.7',
 					'2.5.3',
 					'3.2.1',
@@ -822,7 +823,7 @@ class CSTooltipPreview extends React.Component {
 							'Icon as a child element with `aria-hidden`'
 						],
 						properties: [
-							'`aria-labelledby` - associate tooltip icon with tooltip body',
+							'`aria-labelledby` - contains id pointing to tooltip body to associate tooltip icon with tooltip body',
 							'`role="tooltip"`'
 						],
 						styling: [
@@ -830,7 +831,10 @@ class CSTooltipPreview extends React.Component {
 							'Text color contrast ratio > 4.5'
 						],
 						keyboardOperability: [
-							'Logic for focus to open tooltip'
+							'Logic for tooltip to open on icon focus',
+							'Logic for tooltip to to stay opened when hovered over',
+							'Logic for tooltip to stay stickied and opened until clicked outside',
+							'Logic for tooltip to close on escape'
 						]
 					}
 				]

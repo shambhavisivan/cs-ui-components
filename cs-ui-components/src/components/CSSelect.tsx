@@ -139,6 +139,7 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 						id={this.uniqueAutoId}
 						required={required}
 						disabled={disabled}
+						aria-label={label}
 						aria-required={required}
 						aria-invalid={error}
 						aria-readonly={readOnly}

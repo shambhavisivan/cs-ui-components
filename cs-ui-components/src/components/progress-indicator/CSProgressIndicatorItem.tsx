@@ -48,7 +48,13 @@ class CSProgressIndicatorItem extends React.Component<CSProgressIndicatorItemPro
 
 		return (
 			<li className={progressIndicatorItemClasses} id={id} {...rest}>
-				<button className="cs-progress-indicator-marker" title={status} aria-label={text}>
+				<button
+					className="cs-progress-indicator-marker"
+					title={status}
+					aria-label={text}
+					aria-current={status === 'active'}
+					aria-roledescription="step"
+				>
 					{getIconByStatus()}
 				</button>
 				<span className="cs-progress-indicator-text">

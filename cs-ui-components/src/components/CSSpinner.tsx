@@ -52,7 +52,6 @@ class CSSpinner extends React.Component<CSSpinnerProps> {
 					role="progressbar"
 					aria-live="polite"
 					aria-busy
-					aria-valuetext={label}
 					{...rest}
 				>
 					<div className="cs-spinner-wrapper-label">

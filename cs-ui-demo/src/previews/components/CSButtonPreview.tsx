@@ -1068,21 +1068,21 @@ class CSButtonPreview extends React.Component {
 				requirements: [
 					{
 						structure: [
-							'HTML `<button>`',
+							'`<button>`',
 							'Icon is a child element with `aria-hidden`'
 						],
 						properties: [
-							'`aria-expanded` (when button controls display of another object)',
-							'`aria-haspopup` (when button controls display of a popup such as menu)',
-							'`aria-label`',
-							'`role` (change role button to a more accurate one such as menu item)'
+							'`aria-expanded` - support when button controls display of another object',
+							'`aria-haspopup` - support when button controls display of a popup such as menu',
+							'`aria-label` - necessary when label is hidden',
+							'`role` - change role button if needed to a more accurate one such as menu item'
 						],
 						styling: [
 							'Color contrast ratio > 4.5',
 							'Distinct hover, active and focus state styles'
 						],
 						keyboardOperability: [
-							'OOTB focusable and supports clicks with enter and space keys'
+							'`<button>` OOTB focusable and supports clicks with `enter` and `space` keys'
 						]
 					}
 				]

@@ -222,6 +222,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 							placeholder={placeholder}
 							disabled={disabled}
 							required={required}
+							aria-label={label}
 							aria-invalid={error}
 							aria-required={required}
 							value={fixControlledValue(this.state.value)}

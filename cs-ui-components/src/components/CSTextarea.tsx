@@ -132,6 +132,7 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 						readOnly={readOnly}
 						required={required}
 						rows={rows}
+						aria-label={label}
 						aria-required={required}
 						aria-invalid={error}
 						value={fixControlledValue(this.state.value)}
