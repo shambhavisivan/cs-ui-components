@@ -18,6 +18,12 @@ const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
 	const [searchTerm, setSearchTerm] = useState<string>('');
 	const [visibleSections, setVisibleSections] = useState<Array<boolean>>([]);
 
+	const [quickLinksOpen, setQuickLinksOpen] = useState(true);
+
+	const toggleQuickLinks = () => {
+		setQuickLinksOpen(!quickLinksOpen);
+	};
+
 	useEffect(() => {
 		if (previews) {
 			setVisibleSections(previews.map(() => true));
@@ -48,7 +54,10 @@ const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
 	};
 
 	return (
-		<div className="prop-sidebar">
+		<div className={'prop-sidebar' + (quickLinksOpen ? ' quick-links-open' : ' quick-links-closed')}>
+			<div className={'quick-links-toggle' + (quickLinksOpen ? '' : ' quick-links-toggle-closed')} onClick={toggleQuickLinks}>
+				<CSIcon name={quickLinksOpen ? 'close' : 'rows'} />
+			</div>
 			<div className="quick-links-search">
 				<CSIcon name="search" />
 				<input

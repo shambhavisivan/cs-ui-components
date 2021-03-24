@@ -565,13 +565,13 @@ class CSAlertPreview extends React.Component {
 
 		return (
 			<>
+				<PreviewLinks {...component} />
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<PreviewProperties {...component} />
 					<PreviewTable components={[component]} />
 					<PreviewAccessibility components={[component]} />
 				</div>
-				<PreviewLinks {...component} />
 			</>
 		);
 	}

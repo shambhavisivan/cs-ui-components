@@ -99,7 +99,7 @@ class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
 				<div className="components-preview-wrapper">
 					{this.props.toggle ?
 						<div className={'sidebar-toggle' + (this.state.sidebarOpen ? '' : ' sidebar-toggle-closed')} onClick={this.toggleSidebar}>
-							<CSIcon name="chevronleft" />
+							<CSIcon name={this.state.sidebarOpen ? 'close' : 'rows'} />
 						</div>
 						:
 						null

@@ -6,6 +6,8 @@
 	display: flex;
 
 	.preview-section-wrapper {
+		order: -1;
+
 		.demo-heading {
 			margin: 1rem 0 0.5rem
 		}
@@ -195,14 +197,6 @@
 		cursor: pointer;
 		background: var(--components-sidebar-bg);
 		transition: 0.4s;
-
-		&.sidebar-toggle-closed {
-			transform: rotate(180deg);
-
-			&:hover {
-				transform: rotate(180deg) scale(1.1);
-			}
-		}
 
 		&:hover {
 			transform: scale(1.1);
