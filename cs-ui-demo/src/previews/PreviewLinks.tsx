@@ -18,11 +18,11 @@ const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
 	const [searchTerm, setSearchTerm] = useState<string>('');
 	const [visibleSections, setVisibleSections] = useState<Array<boolean>>([]);
 
-	const [quickLinksOpen, setQuickLinksOpen] = useState(true);
+	const [quickLinksOpen, setQuickLinksOpen] = useState(props.quickLinks);
 
-	const toggleQuickLinks = () => {
+	if (quickLinksOpen !== props.quickLinks) {
 		setQuickLinksOpen(!quickLinksOpen);
-	};
+	}
 
 	useEffect(() => {
 		if (previews) {
@@ -55,9 +55,6 @@ const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
 
 	return (
 		<div className={'prop-sidebar' + (quickLinksOpen ? ' quick-links-open' : ' quick-links-closed')}>
-			<div className={'quick-links-toggle' + (quickLinksOpen ? '' : ' quick-links-toggle-closed')} onClick={toggleQuickLinks}>
-				<CSIcon name={quickLinksOpen ? 'close' : 'rows'} />
-			</div>
 			<div className="quick-links-search">
 				<CSIcon name="search" />
 				<input
@@ -84,15 +81,13 @@ const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
 							<h4 className="component-name">
 								<CSButton
 									label={visibleSections[previewIndex] ? 'Collapse' : 'Expand'}
-									iconDisplay="icon-only"
+									labelHidden
 									title={visibleSections[previewIndex] ? 'Collapse' : 'Expand'}
 									btnType="transparent"
-									btnStyle="brand"
 									size="small"
 									iconName="chevrondown"
 									iconRotate={visibleSections[previewIndex] ? '0' : '180'}
 									iconSize="1rem"
-									iconColor="#4a26ab"
 									onClick={() => handleClick(previewIndex)}
 								/>
 								<a href={`#component-${componentLink}`}>

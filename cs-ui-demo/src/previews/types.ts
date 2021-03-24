@@ -41,6 +41,7 @@ export interface PreviewPropertiesProps {
 export interface PreviewLinksProps {
 	previews: Array<any>;
 	name: string;
+	quickLinks: boolean;
 }
 
 // ================

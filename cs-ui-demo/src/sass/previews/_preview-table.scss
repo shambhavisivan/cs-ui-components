@@ -87,6 +87,8 @@
 			background-color: var(--prop-table-header-bg);
 
 			.properties-table-cell {
+				white-space: normal;
+
 				&:first-child {
 					border-top-left-radius: 0.25rem;
 				}
@@ -114,6 +116,7 @@
 
 			.properties-table-cell {
 				display: table-cell;
+				white-space: normal;
 
 				&:last-child {
 					width: 100%;

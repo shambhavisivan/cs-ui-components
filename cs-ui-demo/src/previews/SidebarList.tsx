@@ -96,20 +96,18 @@ class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
 						</ul>
 					</div>
 				</div>
-				<div className="components-preview-wrapper">
-					{this.props.toggle ?
-						<div className={'sidebar-toggle' + (this.state.sidebarOpen ? '' : ' sidebar-toggle-closed')} onClick={this.toggleSidebar}>
-							<CSIcon name={this.state.sidebarOpen ? 'close' : 'rows'} />
-						</div>
-						:
-						null
-					}
-					<div className={componentPreviewClass}>
-						{this.props.sidebarList.map(component => (
-							<Route key={component.name} path={`${this.props.path}${component.name.split(' ').join('')}`} component={component.component}/>
-						))}
-					</div>
+				<div className={componentPreviewClass}>
+					{this.props.sidebarList.map(component => (
+						<Route key={component.name} path={`${this.props.path}${component.name.split(' ').join('')}`} component={component.component}/>
+					))}
 				</div>
+				{this.props.toggle ?
+					<div className={'sidebar-toggle' + (this.state.sidebarOpen ? '' : ' sidebar-toggle-closed')} onClick={this.toggleSidebar}>
+						<CSIcon name={this.state.sidebarOpen ? 'close' : 'rows'} />
+					</div>
+					:
+					null
+				}
 			</>
 		);
 	}

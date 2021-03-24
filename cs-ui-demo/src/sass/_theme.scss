@@ -46,6 +46,7 @@ $cs-green-medium-2: #5bb85c;
 $cs-green-light-1: #4bca81;
 $cs-mint: #3cdbc0;
 $cs-purple: #4a26ab;
+$cs-purple-dark-1: #402294;
 $cs-purple-medium-1: #7f8de1;
 $cs-orange-dark-1: #9a6319;
 $cs-orange-medium-1: #ffa429;
@@ -106,6 +107,7 @@ $cs-white: #ffffff;
 	--cs-transparent-bg: #{$cs-blue-dark-2};
 	--cs-shadow-light: rgba($cs-black, 0.12);
 	--cs-shadow-medium: rgba($cs-black, 0.24);
+	--cs-shadow-dark: rgba($cs-black, 0.5);
 
 	--custom-bg: #{$cs-mint};
 	--custom-br: #{$cs-mint};
@@ -151,6 +153,9 @@ $cs-white: #ffffff;
 	--preview-chip-second-bg: #{$cs-gray-light-11};
 	--preview-chip-second-br: #{$cs-gray-medium-1};
 
+	--prop-sidebar-bg: #{$cs-purple};
+	--prop-sidebar-hover-bg: #{$cs-purple-dark-1};
+
 	--preview-main-heading-title-c: #{$cs-black};
 	--preview-main-heading-subtitle-c: #{$cs-gray-dark-6};
 
@@ -164,12 +169,15 @@ $cs-white: #ffffff;
 	--sidebar-search-field-bg: #{$cs-gray-dark-4};
 	--sidebar-search-field-placeholder-c: #{$cs-gray-light-4};
 	--sidebar-link-c: #{$cs-white};
-	--sidebar-link-hover-bg: #{$cs-purple};
 	--sidebar-link-hover-c: #{$cs-white};
 	--sidebar-link-active-bg: #363a3b;
 	--sidebar-info-bg: #{$cs-white};
 	--sidebar-info-hover-bg: #{$cs-white};
 	--sidebar-toggle-graphic-fill: #{$cs-white};
+	--sidebar-input-bg: rgba(255,255,255, 0.2);
+	--sidebar-scroll-bg: rgba(255,255,255, 0.2);
+	--sidebar-link-hover-bg: rgba(0,0,0, 0.1);
+	--sidebar-link-active-bg: rgba(0,0,0, 0.2);
 
 	--table-row-bg: #{$cs-white};
 	--table-row-br: #{$cs-gray-light-3};
@@ -186,6 +194,8 @@ $cs-white: #ffffff;
 	--version-desc-bg: #{$cs-gray-light-8};
 	--snippet-bg: #{$cs-gray-light-8};
 	--divider-br: #{$cs-gray-medium-3};
+
+	--transparent: transparent;
 }
 
 /* Dark theme support
