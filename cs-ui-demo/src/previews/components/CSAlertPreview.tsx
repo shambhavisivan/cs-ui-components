@@ -15,7 +15,7 @@ class CSAlertPreview extends React.Component {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Alert',
+				name: 'CSAlert',
 				examples: [
 					{
 						propName: 'variant',
@@ -419,8 +419,7 @@ class CSAlertPreview extends React.Component {
 								code: `<CSAlert variant="info">
 									<span>This custom text includes a <a href="./CSAlert" className="cs-alert-link">link</a></span>
 								</CSAlert>`
-							},
-							{
+							}, {
 								primaryVariants: 'custom text',
 								quickLink: 'custom text',
 								component: <CSAlert variant="info">
@@ -429,8 +428,7 @@ class CSAlertPreview extends React.Component {
 								code: `<CSAlert variant="info">
 									<span>This custom text includes <b>bold</b> and <i>italic</i> text</span>
 								</CSAlert>`
-							},
-							{
+							}, {
 								primaryVariants: 'custom component',
 								quickLink: 'custom component',
 								component: <CSAlert variant="info">

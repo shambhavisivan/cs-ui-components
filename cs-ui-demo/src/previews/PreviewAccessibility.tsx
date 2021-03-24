@@ -22,7 +22,7 @@ const PreviewAccessibility: React.FC<PreviewAccessibilityProps> = ({ components 
 	);
 
 	return (
-		<>
+		<div id="accessibility-table">
 			{components.map((component: any, componentIndex: number) => (
 				<div className="accessibility-conformance-section" key={componentIndex}>
 					{component.accessibility.map((prop: any, propIndex: any) => (
@@ -120,7 +120,7 @@ const PreviewAccessibility: React.FC<PreviewAccessibilityProps> = ({ components 
 					))}
 				</div>
 			))}
-		</>
+		</div>
 	);
 };
 

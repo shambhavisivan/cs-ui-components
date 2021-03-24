@@ -1,93 +1,179 @@
 .prop-sidebar {
 	flex: 1;
-	padding-top: 1rem;
-	max-width: 16rem;
 	display: flex;
 	flex-direction: column;
+	max-width: 16rem;
+	background-color: #ffffff;
+	box-shadow:
+		0 1px 3px var(--cs-shadow-light),
+		0 1px 2px var(--cs-shadow-medium);
 
-	.prop-sidebar-wrapper {
-		overflow-y: auto;
-		border-top: 1px solid var(--divider-br);
-		padding-bottom: 1rem;
+	> h3,
+	> .cs-input-search-wrapper {
+		padding: 1rem;
+	}
 
-		h4 a {
-			display: block;
+	> .cs-input-search-wrapper {
+		padding-top: 0;
+		border-bottom: 1px solid var(--divider-br);
+	}
+
+	.quick-links-search {
+		padding: 0;
+		position: relative;
+
+		> .cs-icon {
+			position: absolute;
+			width: 1rem;
+			height: 1rem;
+			top: 1rem;
+			left: 1rem;
+			pointer-events: none;
+			fill: #fff;
+		}
+
+		input {
+			display: inline-block;
+			font-size: 1rem;
+			line-height: 1.875rem;
+			padding: 0 2rem 0 2.75rem;
 			width: 100%;
-			padding: 1rem;
-			color: var(--prop-link-c);
-			font-size: 1.125rem;
-			font-weight: 700;
-			text-decoration: none;
-			border-bottom: 1px solid var(--divider-br);
-			border-top: 1px solid var(--divider-br);
+			height: 3rem;
+			border: none;
+			border-radius: 0;
+			color: #fff;
+			background: #4a26ab;
 
-			&:first-child {
-				border-top: none;
+			&::placeholder {
+				color: #fff;
 			}
 
-			&:hover {
-				text-decoration: underline;
+			&:focus,
+			&:active {
+				outline: none;
+			}
+		}
+
+		.cs-btn {
+			position: absolute;
+			top: 1rem;
+			right: 1rem;
+			width: 1rem;
+			height: 1rem;
+			min-width: 1rem;
+
+			.cs-btn-icon {
+				width: 1rem;
+				height: 1rem;
+				min-width: 1rem;
+			}
+
+			&:active::after,
+			&:focus::after {
+				outline: none;
+				box-shadow: none;
+				border: none;
+			}
+		}
+	}
+
+	.prop-list {
+		flex: 1;
+		overflow-x: auto;
+		background: #fff;
+		padding-bottom: 1rem;
+
+		> div {
+			.component-name {
+				position: sticky;
+				top: 0;
+				z-index: 1;
+				padding: 1rem;
+				display: flex;
+				align-items: center;
+				background: #fff;
+				transition: all 100ms ease-in-out;
+
+				&:hover {
+					background: #f3f2f2;
+				}
+
+				a {
+					font-size: 1.125rem;
+					font-weight: 700;
+					width: 100%;
+					text-decoration: none;
+					color: #4a26ab;
+					padding-inline-start: 0.5rem;
+				}
+			}
+
+			.prop-group {
+				a {
+					font-weight: 400;
+					width: 100%;
+					position: relative;
+					display: flex;
+					align-items: center;
+					cursor: pointer;
+					text-decoration: none;
+					white-space: nowrap;
+					overflow-x: hidden;
+					text-overflow: ellipsis;
+					max-width: 100%;
+					transition: all 100ms ease-in-out;
+
+					&:hover {
+						background: #f3f2f2;
+					}
+				}
+
+				.prop-name {
+					background: #fff;
+
+					a {
+						padding: 0.5rem 1rem;
+						font-size: 1rem;
+						color: #000;
+					}
+				}
+
+				.prop-variant {
+					background: #fff;
+
+					a {
+						padding: 0.5rem 1rem 0.5rem 2rem;
+						font-size: 0.8125rem;
+						color: #706e6b;
+					}
+				}
 			}
 		}
 	}
 
 	.prop-sidebar-bottom-group {
 		margin-top: auto;
-		border-top: 1px solid var(--divider-br);
+		background: #fff;
 
-		.prop-group:last-child h5 a {
-			padding-bottom: 1rem;
-		}
-	}
-
-	h3 {
-		display: block;
-		padding-left: 1rem;
-		font-size: 1.375rem;
-		font-weight: 700;
-	}
-
-	.cs-input-search-wrapper {
-		display: block;
-		padding: 1rem;
-	}
-
-	.prop-group {
-		h5 a {
-			display: block;
-			width: 100%;
-			font-size: 1rem;
+		h5 {
 			word-break: break-all;
-			color: var(--prop-link-c);
-			text-decoration: none;
-			font-weight: 700;
-			padding: 1rem 1rem 0;
-
-			&:hover {
-				text-decoration: underline;
-			}
-		}
-
-		span {
-			.custom-class {
-				fill: var(--prop-inline-container-fill);
-			}
+			border-top: 1px solid var(--divider-br);
 
 			a {
-				display: block;
-				padding: 0 1rem 0.25rem 1.5rem;
-				color: var(--prop-link-c);
+				width: 100%;
+				font-size: 1rem;
+				display: flex;
+				align-items: center;
+				padding: 1rem;
+				color: #000;
+				font-weight: 400;
 				text-decoration: none;
-				font-size: 0.9375rem;
-
-				&:hover {
-					text-decoration: underline;
-				}
+				transition: all 100ms ease-in-out;
 			}
-		}
 
-		&:last-child {
-			margin-bottom: 0;
+			&:hover {
+				background: #f3f2f2;
+			}
 		}
 	}
 }

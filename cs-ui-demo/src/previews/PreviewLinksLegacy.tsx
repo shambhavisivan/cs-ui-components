@@ -9,7 +9,7 @@ export interface PreviewLinksState {
 	term: string;
 }
 
-class PreviewLinks extends React.Component<PreviewLinksProps, PreviewLinksState> {
+class PreviewLinksLegacy extends React.Component<PreviewLinksProps, PreviewLinksState> {
 
 	constructor(props: PreviewLinksProps) {
 		super(props);
@@ -40,30 +40,32 @@ class PreviewLinks extends React.Component<PreviewLinksProps, PreviewLinksState>
 					placeholder="Search props"
 					onChange={this.handleOnChange}
 				/>
-				<div className="prop-sidebar-wrapper">
-					{this.props.component.examples.filter(this.searchingForProp(this.state.term)).map((example: any, i: number) => (
-						<div className="prop-group" key={i}>
-							<h5>
-								<a href={`#${this.props.component.name}-${example.propName}`} key={example.propName}>
-									{example.propName}
-								</a>
-							</h5>
-							{example.variations.map((variation: any, j: any) => (
-								variation.quickLink ? (
-									<span key={j}>
-										<a href={`#${this.props.component.name}-${example.propName}-${variation.quickLink}`}>
-											{variation.quickLink}
-										</a>
-									</span>
-								) : null
-							))}
-						</div>
-					))}
+				<div className="prop-list">
+					<div>
+						{this.props.component.examples.filter(this.searchingForProp(this.state.term)).map((example: any, i: number) => (
+							<div className="prop-group" key={i}>
+								<span className="prop-name">
+									<a href={`#${this.props.component.name}-${example.propName}`} key={example.propName}>
+										{example.propName}
+									</a>
+								</span>
+								{example.variations.map((variation: any, j: any) => (
+									variation.quickLink ? (
+										<span key={j} className="prop-variant">
+											<a href={`#${this.props.component.name}-${example.propName}-${variation.quickLink}`}>
+												{variation.quickLink}
+											</a>
+										</span>
+									) : null
+								))}
+							</div>
+						))}
+					</div>
 				</div>
 				<div className="prop-sidebar-bottom-group">
 					<div className="prop-group">
 						<h5>
-							<a href={`#properties-table-${this.props.component.name.split(' ').join('-').toLowerCase()}`}>
+							<a href="#properties-table">
 								Properties List
 							</a>
 						</h5>
@@ -71,7 +73,7 @@ class PreviewLinks extends React.Component<PreviewLinksProps, PreviewLinksState>
 					{this.props.component.api && (
 						<div className="prop-group">
 							<h5>
-								<a href={`#api-preview-${this.props.component.name.split(' ').join('-').toLowerCase()}`}>
+								<a href="#api-preview">
 									API
 								</a>
 							</h5>
@@ -80,7 +82,7 @@ class PreviewLinks extends React.Component<PreviewLinksProps, PreviewLinksState>
 					{this.props.component.accessibility && (
 						<div className="prop-group">
 							<h5>
-								<a href={`#accessibility-table-${this.props.component.name.split(' ').join('-').toLowerCase()}`}>
+								<a href="#accessibility-table">
 									Accessibility
 								</a>
 							</h5>
@@ -92,4 +94,4 @@ class PreviewLinks extends React.Component<PreviewLinksProps, PreviewLinksState>
 	}
 }
 
-export default PreviewLinks;
+export default PreviewLinksLegacy;

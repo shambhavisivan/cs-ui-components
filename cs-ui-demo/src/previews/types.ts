@@ -39,7 +39,7 @@ export interface PreviewPropertiesProps {
 // =================
 
 export interface PreviewLinksProps {
-	previews: Array<PreviewComponent>;
+	previews: Array<any>;
 	name: string;
 }
 

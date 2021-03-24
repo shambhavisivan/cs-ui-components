@@ -10,7 +10,7 @@ export interface PreviewTableLegacyProps {
 class PreviewTableLegacy extends React.Component<PreviewTableLegacyProps> {
 	render() {
 		return (
-			<div className={this.props.alt ? 'table-wrapper table-wrapper-alt' : 'table-wrapper'}>
+			<div id="properties-table" className={this.props.alt ? 'table-wrapper table-wrapper-alt' : 'table-wrapper'}>
 				<h2
 					className="property-name"
 					id={`properties-table-${this.props.components[0].name.split(' ').join('-').toLowerCase()}`}

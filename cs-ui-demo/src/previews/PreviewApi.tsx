@@ -3,12 +3,12 @@ import PreviewCode from './PreviewCode';
 import { PreviewApiProps } from './types';
 
 const PreviewApi: React.FC<PreviewApiProps> = ({ name, api }) => (
-	<div className="api-preview-wrapper">
+	<div id="api-preview-wrapper" className="api-preview-wrapper">
 		<h2
 			className="demo-heading"
-			id={`api-preview-${name.split(' ').join('-').toLowerCase()}`}
+			id="api-preview"
 		>
-			{name} API
+		{name} API
 		</h2>
 		<div className="api-preview">
 			{api.map((method: any) => (

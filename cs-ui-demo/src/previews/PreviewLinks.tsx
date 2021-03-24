@@ -1,18 +1,30 @@
-import React, { useState } from 'react';
-import { CSInputSearch, CSAlert } from '@cloudsense/cs-ui-components';
+import React, { useState, useEffect } from 'react';
+import { CSButton, CSIcon, CSAlert } from '@cloudsense/cs-ui-components';
 import PreviewLinksLegacy from './PreviewLinksLegacy';
 
 import {
-	PreviewLinksProps,
 	PreviewExample,
-	PreviewComponent,
-	PreviewVariation
+	PreviewVariation,
+	PreviewLinksProps, PreviewComponent
 } from './types';
 
 const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
-	const [searchTerm, setSearchTerm] = useState('');
+	const {
+		previews,
+		api,
+		accessibility
+	} = props;
 
-	if (!props.previews) {
+	const [searchTerm, setSearchTerm] = useState<string>('');
+	const [visibleSections, setVisibleSections] = useState<Array<boolean>>([]);
+
+	useEffect(() => {
+		if (previews) {
+			setVisibleSections(previews.map(() => true));
+		}
+	}, []);
+
+	if (!previews) {
 		return <PreviewLinksLegacy {...props} />;
 	}
 
@@ -20,36 +32,60 @@ const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
 		setSearchTerm(event.target.value);
 	};
 
-	const searchProps = (term: string) => (example: PreviewExample) => (
-		example.propName.toLowerCase().includes(term.toLowerCase())
+	const searchProps = (example: PreviewExample) => (
+		example.propName.toLowerCase().includes(searchTerm.toLowerCase())
 		|| example.variations.find((variation: PreviewVariation) => (
-			variation.quickLink && variation.quickLink.toLowerCase().includes(term.toLowerCase())
+			variation.quickLink && variation.quickLink.toLowerCase().includes(searchTerm.toLowerCase())
 		))
 	);
 
-	const {
-		previews,
-		name,
-		api,
-		accessibility
-	} = props;
+	const handleClick = (index: number) => {
+		setVisibleSections((prevState: Array<boolean>) => {
+			const newState = [...prevState];
+			newState[index] = !newState[index];
+			return newState;
+		});
+	};
 
 	return (
 		<div className="prop-sidebar">
-			<h3>Quick Links</h3>
-			<CSInputSearch
-				label="Search props"
-				labelHidden
-				placeholder="Search props"
-				onChange={handleChange}
-			/>
-			<div className="prop-sidebar-wrapper">
-				{previews.map((preview: PreviewComponent) => {
-					const examples = preview.examples.filter(searchProps(searchTerm));
+			<div className="quick-links-search">
+				<CSIcon name="search" />
+				<input
+					placeholder="Search props..."
+					onChange={handleChange}
+					value={searchTerm}
+				/>
+				{searchTerm && (
+					<CSButton
+						label="clear"
+						btnType="transparent"
+						iconName="close"
+						iconDisplay="icon-only"
+						onClick={() => setSearchTerm('')}
+					/>
+				)}
+			</div>
+			<div className="prop-list">
+				{previews.map((preview: PreviewComponent, previewIndex: number) => {
+					const examples = preview.examples.filter(searchProps);
 					const componentLink = preview.name.split(' ').join('-').toLowerCase();
 					return (
 						<div key={preview.name}>
-							<h4>
+							<h4 className="component-name">
+								<CSButton
+									label={visibleSections[previewIndex] ? 'Collapse' : 'Expand'}
+									iconDisplay="icon-only"
+									title={visibleSections[previewIndex] ? 'Collapse' : 'Expand'}
+									btnType="transparent"
+									btnStyle="brand"
+									size="small"
+									iconName="chevrondown"
+									iconRotate={visibleSections[previewIndex] ? '0' : '180'}
+									iconSize="1rem"
+									iconColor="#4a26ab"
+									onClick={() => handleClick(previewIndex)}
+								/>
 								<a href={`#component-${componentLink}`}>
 									{preview.name}
 								</a>
@@ -60,59 +96,55 @@ const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
 									text={`No results in ${preview.name}.`}
 								/>
 							)}
-							{examples.map((example: PreviewExample) => {
-								const propLink = `${componentLink}-${example.propName.split(' ').join('-').toLowerCase()}`;
-								return (
-									<div className="prop-group" key={example.propName}>
-										<h5>
-											<a href={`#component-preview-${propLink}`}>
-												{example.propName}
-											</a>
-										</h5>
-										{example.variations.map((variation: PreviewVariation, variationIndex: number) => {
-											const variationLink = variation.quickLink && `${propLink}-${variation.quickLink.split(' ').join('-').toLowerCase()}`;
-											return (
-												<span key={variationIndex}>
-													{variation.quickLink && (
-														<a href={`#component-variation-${variationLink}`}>
-															{variation.quickLink}
-														</a>
-													)}
-												</span>
-											);
-										})}
-									</div>
-								);
-							})}
+							{visibleSections[previewIndex] && (
+								examples.map((example: PreviewExample) => {
+									const propLink = `${componentLink}-${example.propName.split(' ').join('-').toLowerCase()}`;
+									return (
+										<div className="prop-group" key={example.propName}>
+											<span className="prop-name">
+												<a href={`#component-preview-${propLink}`}>
+													{example.propName}
+												</a>
+											</span>
+											{example.variations.map((variation: PreviewVariation, variationIndex: number) => {
+												const variationLink = variation.quickLink && `${propLink}-${variation.quickLink.split(' ').join('-').toLowerCase()}`;
+												return (
+													<span className="prop-variant" key={variationIndex}>
+														{variation.quickLink && (
+															<a href={`#component-variation-${variationLink}`}>
+																{variation.quickLink}
+															</a>
+														)}
+													</span>
+												);
+											})}
+										</div>
+									);
+								})
+							)}
 						</div>
 					);
 				})}
 			</div>
 			<div className="prop-sidebar-bottom-group">
-				<div className="prop-group">
+				<h5>
+					<a href="#properties-table">
+						Properties List
+					</a>
+				</h5>
+				{api && (
 					<h5>
-						<a href={`#properties-table-${name.split(' ').join('-').toLowerCase()}`}>
-							Properties List
+						<a href="#api-preview">
+							API
 						</a>
 					</h5>
-				</div>
-				{api && (
-					<div className="prop-group">
-						<h5>
-							<a href={`#api-preview-${name.split(' ').join('-').toLowerCase()}`}>
-								API
-							</a>
-						</h5>
-					</div>
 				)}
 				{accessibility && (
-					<div className="prop-group">
-						<h5>
-							<a href={`#accessibility-table-${name.split(' ').join('-').toLowerCase()}`}>
-								Accessibility
-							</a>
-						</h5>
-					</div>
+					<h5>
+						<a href="#accessibility-table">
+							Accessibility
+						</a>
+					</h5>
 				)}
 			</div>
 		</div>

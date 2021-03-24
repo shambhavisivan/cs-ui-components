@@ -57,15 +57,38 @@
 		flex-direction: column;
 		flex: 1;
 		overflow-y: auto;
-		border-right: 1px solid var(--divider-br);
 
 		> .cs-alert {
-			margin: 3rem 3rem 1rem;
+			margin: 3rem 3rem 0;
 			width: auto;
 
 			+ .cs-alert {
 				margin-top: 0;
 			}
+
+			+ h2 {
+				padding-block-start: 3rem;
+			}
+		}
+
+		> h2 {
+			padding: 2rem 3rem 0;
+			font-size: 1.5rem;
+			font-weight: 700;
+
+			+ .property-section {
+				padding-block-start: 1rem;
+			}
+		}
+
+		.preview-heading + .component-preview-wrapper > h2,
+		.cs-alert + .component-preview-wrapper > h2 {
+			padding-block-start: 3rem;
+		}
+
+		.component-preview-wrapper > h2 {
+			padding: 2rem 3rem 0;
+			margin-block-start: 0;
 		}
 
 		.component-preview,
@@ -74,7 +97,7 @@
 			margin-bottom: 2rem;
 
 			.component-variants {
-				padding-bottom: 0.5rem;
+				padding-top: 0.5rem;
 			}
 
 			.component-info-text,
@@ -96,7 +119,7 @@
 				display: flex;
 				flex-direction: column;
 				border-radius: 0.25rem;
-				margin-bottom: 1.5rem;
+				margin: 0.5rem 0 1rem;
 				background-color: var(--components-api-bg);
 				box-shadow:
 					0 1px 3px var(--cs-shadow-light),
