@@ -5,23 +5,9 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import { CSAlert, CSButton, CSIcon } from '@cloudsense/cs-ui-components';
+import { CSAlert, CSButton } from '@cloudsense/cs-ui-components';
 
 class CSAlertPreview extends React.Component {
-	state = {
-		quickLinksOpen: false
-	};
-
-	handleQuickLinks = () => {
-		this.setState({quickLinksOpen: !this.state.quickLinksOpen});
-	}
-
-	componentDidMount() {
-		setTimeout(() => {
-			this.setState({quickLinksOpen: true});
-		  }, 0);
-	}
-
 	handleClose = () => alert('Alert has been closed.');
 	getAlertDoc = () => ({
 		name: 'Alert',
@@ -579,18 +565,13 @@ class CSAlertPreview extends React.Component {
 
 		return (
 			<>
-				<PreviewLinks {...component} quickLinks={this.state.quickLinksOpen}  />
 				<div className="preview-section-wrapper">
-					<div className="quick-links-toggle" onClick={this.handleQuickLinks}>
-						<CSIcon name={this.state.quickLinksOpen ? 'close' : 'rows'} />
-					</div>
-					<div className="preview-section">
-						<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-						<PreviewProperties {...component} />
-						<PreviewTable components={[component]} />
-						<PreviewAccessibility components={[component]} />
-					</div>
+					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
+					<PreviewProperties {...component} />
+					<PreviewTable components={[component]} />
+					<PreviewAccessibility components={[component]} />
 				</div>
+				<PreviewLinks {...component} />
 			</>
 		);
 	}

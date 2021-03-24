@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { CSButton, CSIcon, CSAlert } from '@cloudsense/cs-ui-components';
 import PreviewLinksLegacy from './PreviewLinksLegacy';
+import { useQuickLinks } from '../context/QuickLinksContext';
 
 import {
 	PreviewExample,
 	PreviewVariation,
-	PreviewLinksProps, PreviewComponent
+	PreviewLinksProps,
+	PreviewComponent
 } from './types';
 
 const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
@@ -18,17 +20,13 @@ const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
 	const [searchTerm, setSearchTerm] = useState<string>('');
 	const [visibleSections, setVisibleSections] = useState<Array<boolean>>([]);
 
-	const [quickLinksOpen, setQuickLinksOpen] = useState(props.quickLinks);
-
-	if (quickLinksOpen !== props.quickLinks) {
-		setQuickLinksOpen(!quickLinksOpen);
-	}
+	const { quickLinks, toggleQuickLinks } = useQuickLinks();
 
 	useEffect(() => {
 		if (previews) {
 			setVisibleSections(previews.map(() => true));
 		}
-	}, []);
+	}, [previews]);
 
 	if (!previews) {
 		return <PreviewLinksLegacy {...props} />;
@@ -54,7 +52,10 @@ const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
 	};
 
 	return (
-		<div className={'prop-sidebar' + (quickLinksOpen ? ' quick-links-open' : ' quick-links-closed')}>
+		<div className={'prop-sidebar' + (quickLinks ? ' quick-links-open' : ' quick-links-closed')}>
+			<div className="quick-links-toggle" onClick={toggleQuickLinks}>
+				<CSIcon name={quickLinks ? 'close' : 'rows'} />
+			</div>
 			<div className="quick-links-search">
 				<CSIcon name="search" />
 				<input
@@ -82,7 +83,6 @@ const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
 								<CSButton
 									label={visibleSections[previewIndex] ? 'Collapse' : 'Expand'}
 									labelHidden
-									title={visibleSections[previewIndex] ? 'Collapse' : 'Expand'}
 									btnType="transparent"
 									size="small"
 									iconName="chevrondown"
@@ -96,59 +96,57 @@ const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
 							</h4>
 							{!examples.length && (
 								<CSAlert
-									variant="warning"
+									variant="info"
 									text={`No results in ${preview.name}.`}
 								/>
 							)}
-							{visibleSections[previewIndex] && (
-								examples.map((example: PreviewExample) => {
-									const propLink = `${componentLink}-${example.propName.split(' ').join('-').toLowerCase()}`;
-									return (
-										<div className="prop-group" key={example.propName}>
-											<span className="prop-name">
-												<a href={`#component-preview-${propLink}`}>
-													{example.propName}
-												</a>
-											</span>
-											{example.variations.map((variation: PreviewVariation, variationIndex: number) => {
-												const variationLink = variation.quickLink && `${propLink}-${variation.quickLink.split(' ').join('-').toLowerCase()}`;
-												return (
-													<span className="prop-variant" key={variationIndex}>
-														{variation.quickLink && (
-															<a href={`#component-variation-${variationLink}`}>
-																{variation.quickLink}
-															</a>
-														)}
-													</span>
-												);
-											})}
-										</div>
-									);
-								})
-							)}
+							{visibleSections[previewIndex] && examples.map((example: PreviewExample) => {
+								const propLink = `${componentLink}-${example.propName.split(' ').join('-').toLowerCase()}`;
+								return (
+									<div className="prop-group" key={example.propName}>
+										<h5 className="prop-name">
+											<a href={`#component-preview-${propLink}`}>
+												{example.propName}
+											</a>
+										</h5>
+										{example.variations.map((variation: PreviewVariation, variationIndex: number) => {
+											const variationLink = variation.quickLink && `${propLink}-${variation.quickLink.split(' ').join('-').toLowerCase()}`;
+											return (
+												<span className="prop-variant" key={variationIndex}>
+													{variation.quickLink && (
+														<a href={`#component-variation-${variationLink}`}>
+															{variation.quickLink}
+														</a>
+													)}
+												</span>
+											);
+										})}
+									</div>
+								);
+							})}
 						</div>
 					);
 				})}
 			</div>
 			<div className="prop-sidebar-bottom-group">
-				<h5>
+				<h4>
 					<a href="#properties-table">
 						Properties List
 					</a>
-				</h5>
+				</h4>
 				{api && (
-					<h5>
+					<h4>
 						<a href="#api-preview">
 							API
 						</a>
-					</h5>
+					</h4>
 				)}
 				{accessibility && (
-					<h5>
+					<h4>
 						<a href="#accessibility-table">
 							Accessibility
 						</a>
-					</h5>
+					</h4>
 				)}
 			</div>
 		</div>

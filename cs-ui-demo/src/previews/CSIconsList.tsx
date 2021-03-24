@@ -18,7 +18,7 @@ class CSIconsList extends React.Component {
 		];
 
 		return (
-			<SidebarList sidebarList={iconsList} toggle path="/icons/" customClass="icons" />
+			<SidebarList sidebarList={iconsList} path="/icons/" customClass="icons" />
 		);
 	}
 }

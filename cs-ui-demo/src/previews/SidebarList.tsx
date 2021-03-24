@@ -66,9 +66,14 @@ class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
 		return (
 			<>
 				<div className={'components-list-wrapper' + (this.state.sidebarOpen ? ' sidebar-open' : ' sidebar-closed')}>
-					{this.props.search ?
+					{this.props.toggle && (
+						<div className="sidebar-toggle" onClick={this.toggleSidebar}>
+							<CSIcon name={this.state.sidebarOpen ? 'close' : 'rows'} />
+						</div>
+					)}
+					{this.props.search && (
 						<div className="components-list-search">
-							<CSIcon name="search"/>
+							<CSIcon name="search" />
 							<input placeholder="Search..." onChange={this.searchHandler} value={this.state.term}/>
 							{this.state.term &&
 								<CSButton
@@ -80,8 +85,7 @@ class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
 								/>
 							}
 						</div>
-						: null
-					}
+					)}
 					<div className="components-list-inner">
 						<ul className="components-list">
 							{this.props.sidebarList.filter(component => {
@@ -98,16 +102,9 @@ class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
 				</div>
 				<div className={componentPreviewClass}>
 					{this.props.sidebarList.map(component => (
-						<Route key={component.name} path={`${this.props.path}${component.name.split(' ').join('')}`} component={component.component}/>
+						<Route key={component.name} path={`${this.props.path}${component.name.split(' ').join('')}`} component={component.component} />
 					))}
 				</div>
-				{this.props.toggle ?
-					<div className={'sidebar-toggle' + (this.state.sidebarOpen ? '' : ' sidebar-toggle-closed')} onClick={this.toggleSidebar}>
-						<CSIcon name={this.state.sidebarOpen ? 'close' : 'rows'} />
-					</div>
-					:
-					null
-				}
 			</>
 		);
 	}

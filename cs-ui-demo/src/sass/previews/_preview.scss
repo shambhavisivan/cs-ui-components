@@ -57,31 +57,28 @@
 		flex-direction: column;
 		flex: 1;
 		overflow: visible;
+		overflow-y: auto;
 
-		.preview-section {
-			overflow-y: auto;
+		> .cs-alert {
+			margin: 2rem 3rem 0;
+			width: auto;
 
-			> .cs-alert {
-				margin: 3rem 3rem 0;
-				width: auto;
-
-				+ .cs-alert {
-					margin-top: 0;
-				}
-
-				+ h2 {
-					padding-block-start: 3rem;
-				}
+			+ .cs-alert {
+				margin-top: 0;
 			}
 
-			> h2 {
-				padding: 2rem 3rem 0;
-				font-size: 1.5rem;
-				font-weight: 700;
+			+ h2 {
+				padding-block-start: 3rem;
+			}
+		}
 
-				+ .property-section {
-					padding-block-start: 1rem;
-				}
+		> h2 {
+			padding: 2rem 3rem 0;
+			font-size: 1.5rem;
+			font-weight: 700;
+
+			+ .property-section {
+				padding-block-start: 1rem;
 			}
 		}
 
