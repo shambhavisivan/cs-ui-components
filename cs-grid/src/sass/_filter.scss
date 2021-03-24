@@ -8,6 +8,10 @@
 	}
 }
 
+.ag-popup .ag-popup-child.ag-popup-editor {
+	z-index: $z-index-popup;
+}
+
 .ag-filter {
 	min-width: 150px;
 

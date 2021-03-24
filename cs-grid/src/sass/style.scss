@@ -216,14 +216,10 @@
 		.ag-cell {
 			padding-right: 0.75rem;
 			padding-left: 0.75rem;
-			overflow: visible;
+			overflow: hidden;
 			@include css4 {
 				border: 2px solid cvar(--csgrid-transparent);
 			}
-		}
-
-		.ag-cell-value {
-			overflow: visible;
 		}
 
 		.ag-cell .ag-react-container {
