@@ -425,13 +425,28 @@
 			}
 		}
 
-		&.cs-tooltip-basic .cs-tooltip-header {
-			@include css4 {
-				border-bottom: 1px solid cvar(--cs-tooltip-basic-br);
+		&.cs-tooltip-basic {
+			&.cs-tooltip-top-left::before,
+			&.cs-tooltip-top-center::before,
+			&.cs-tooltip-top-right::before,
+			&.cs-tooltip-left-top::before,
+			&.cs-tooltip-right-top::before {
+				box-shadow: none;
+			}
+
+			.cs-tooltip-header {
+				@include css4 {
+					border-bottom: 1px solid cvar(--cs-tooltip-basic-br);
+				}
+			}
+
+			.cs-tooltip-body {
+				box-shadow: none;
 			}
 		}
 
 		&.cs-tooltip-right-center::before,
+		&.cs-tooltip-right-bottom::before,
 		&.cs-tooltip-right-top::before {
 			@include css4 {
 				border-bottom-color: cvar(--cs-tooltip-header-bg);
@@ -440,6 +455,7 @@
 		}
 
 		&.cs-tooltip-left-center::before,
+		&.cs-tooltip-left-bottom::before,
 		&.cs-tooltip-left-top::before {
 			@include css4 {
 				border-bottom-color: cvar(--cs-tooltip-header-bg);
@@ -508,6 +524,7 @@
 			@include fd(var(--cs-tooltip-error-bg), 0.3);
 		}
 	}
+
 	&.cs-tw-success {
 		> .cs-tooltip-icon {
 			@include sf(--cs-tooltip-success-bg);
@@ -515,7 +532,7 @@
 
 		&:hover > .cs-tooltip-icon,
 		&:focus > .cs-tooltip-icon {
-			@include fd(var(--cs-tooltip-sucess-bg), 0.3);
+			@include fd(var(--cs-tooltip-success-bg), 0.3);
 		}
 	}
 
