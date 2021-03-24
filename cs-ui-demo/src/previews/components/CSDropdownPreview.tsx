@@ -663,7 +663,7 @@ class CSDropdownPreview extends React.Component {
 					name: 'children',
 					customTypes: [{
 						name: 'CSDropdownChildren',
-						types: ['<CSButton />', '\'any\'']
+						types: ['<CSButton />', 'any']
 					}],
 					description: 'This component is designed to support CSButton as a child.'
 				}, {

@@ -1,303 +1,117 @@
-.components-preview .preview-section-wrapper .component-example .component-preview {
-	&.spinner-preview {
+.components-preview .preview-section-wrapper .component-example .component-demo {
+	&.button-demo,
+	&.button-group-demo,
+	&.checkbox-demo,
+	&.custom-select-demo,
+	&.datepicker-demo,
+	&.datetimepicker-demo,
+	&.dropdown-demo,
+	&.image-demo,
+	&.input-file-demo,
+	&.input-number-demo,
+	&.input-search-demo,
+	&.input-text-demo,
+	&.lookup-field-demo,
+	&.radio-demo,
+	&.select-demo,
+	&.slider-demo,
+	&.table-demo,
+	&.textarea-demo,
+	&.toggle-demo {
+		.custom-class {
+			border: 3px solid var(--custom-br);
+		}
+	}
+
+	&.alert-demo,
+	&.card-demo,
+	&.chip-demo,
+	&.label-demo,
+	&.main-header-demo,
+	&.main-header-left-demo,
+	&.path-demo,
+	&.progress-bar-demo,
+	&.progress-indicator-demo,
+	&.section-demo,
+	&.spinner-demo,
+	&.tab-group-demo,
+	&.toast-demo,
+	&.tooltip-demo {
+		.custom-class {
+			background-color: var(--custom-bg);
+		}
+	}
+
+	&.spinner-demo {
 		position: relative;
 		flex-basis: 10rem;
 
 		.black-background {
 			background-color: var(--spinner-black-bg);
 		}
-
-		.custom-class {
-			background-color: var(--custom-bg);
-		}
 	}
 
-	&.main-header-preview,
-	&.main-header-left-preview {
+	&.main-header-demo,
+	&.main-header-left-demo {
 		padding: 0;
-
-		.custom-class {
-			background-color: var(--custom-bg);
-		}
 	}
 
-	&.path-preview {
-		min-height: 10rem;
-		padding: 1rem;
-
-		.custom-class {
-			background-color: var(--custom-bg);
-		}
-	}
-
-	&.table-preview {
+	&.table-demo {
 		height: auto;
-
-		.custom-class {
-			border-top: 1px solid var(--custom-br);
-		}
 	}
 
-	&.pagination-preview {
-		padding: 1rem;
+	&.tab-group-demo .custom-tab-class {
+		background-color: var(--custom-alt-bg);
 	}
 
-	&.checkbox-preview .custom-class {
-		border: 2px solid var(--custom-br);
-	}
-
-	&.toggle-preview {
-		padding: 1rem;
-		overflow: visible;
-
-		.custom-class {
-			border: 3px solid var(--custom-br);
-		}
-	}
-
-	&.radio-preview {
-		padding: 1rem;
-		overflow: visible;
-
-		.custom-class {
-			border: 2px solid var(--custom-br);
-		}
-	}
-
-	&.tooltip-preview .custom-class {
-		background-color: var(--custom-bg);
-	}
-
-	&.alert-preview {
-		.custom-class {
-			background-color: var(--custom-bg);
-		}
-	}
-
-	&.toast-preview {
-		.custom-class {
-			background-color: var(--custom-bg);
-		}
-	}
-
-	&.tab-preview {
-		.custom-class {
-			background-color: var(--custom-bg);
-		}
-
-		.custom-class-2 {
-			background-color: var(--custom-alt-bg);
-		}
-	}
-
-	&.sidebar-list-preview {
-		.custom-class {
-			background-color: var(--custom-bg);
-		}
-	}
-
-	&.button-preview,
-	&.dropdown-preview {
+	&.button-demo,
+	&.dropdown-demo,
+	&.button-group-demo {
 		.purple-background {
 			background-color: var(--dropdown-purple-bg);
-			padding: 0.5rem;
-		}
-
-		.custom-class {
-			border: 3px solid var(--custom-br);
+			padding: 1rem;
 		}
 	}
 
-	&.dropdown-preview {
-		overflow: visible;
+	&.icon-demo .custom-class {
+		fill: var(--icons-custom-fill);
 	}
 
-	&.input-text-preview {
-		overflow: visible;
-
-		.custom-class {
-			border: 3px solid var(--custom-br);
-		}
+	&.image-demo .black-background {
+		background-color: var(--image-black-bg);
 	}
 
-	&.input-number-preview {
-		overflow: visible;
-
-		.custom-class {
-			border: 3px solid var(--custom-br);
-		}
+	&.divider-demo .custom-class {
+		border-color: var(--custom-br);
 	}
 
-	&.input-search-preview {
-		overflow: visible;
-
-		.custom-class {
-			border: 3px solid var(--custom-br);
-		}
-	}
-
-	&.input-file-preview {
-		overflow: visible;
-
-		.custom-class {
-			border: 3px solid var(--custom-br);
-		}
-	}
-
-	&.label-preview {
-		overflow: visible;
-
-		.custom-class {
-			background-color: var(--custom-bg);
-		}
-	}
-
-	&.textarea-preview {
-		overflow: visible;
-
-		.custom-class {
-			border: 3px solid var(--custom-br);
-		}
-	}
-
-	&.select-preview {
-		overflow: visible;
-
-		.custom-class {
-			border: 3px solid var(--custom-br);
-		}
-	}
-
-	&.custom-select-preview {
-		overflow: visible;
-
-		.custom-class {
-			border: 3px solid var(--custom-br);
-		}
-	}
-
-	&.chip-preview {
-
-		.custom-class {
-			background-color: var(--custom-bg);
-		}
-	}
-
-	&.card-preview {
-		.custom-class {
-			background-color: var(--custom-bg);
-		}
-	}
-
-	&.section-preview {
-
-		.custom-class {
-			background-color: var(--custom-bg);
-		}
-	}
-
-	&.progress-bar-preview {
-		.custom-class {
-			background-color: var(--custom-bg);
-		}
-	}
-
-	&.progress-indicator-preview {
-		.custom-class {
-			background-color: var(--custom-bg);
-		}
-	}
-
-	&.icon-preview {
-		.custom-class {
-			fill: var(--icons-custom-fill);
-		}
-	}
-
-	&.image-preview {
-		.black-background {
-			background-color: var(--image-black-bg);
-		}
-
-		.custom-class {
-			border: 3px solid var(--custom-br);
-		}
-	}
-
-	&.button-group-preview {
-		.custom-class {
-			border: 3px solid var(--custom-br);
-		}
-	}
-
-	&.divider-preview {
-		.custom-class {
-			border-color: var(--custom-br);
-		}
-	}
-
-	&.datepicker-preview {
-		overflow: visible;
-
-		.custom-class input {
-			background-color: var(--custom-bg);
-		}
-	}
-
-	&.lookup-field-preview {
-		overflow: visible;
-
-		.custom-class {
-			border: 3px solid var(--custom-br);
-		}
-	}
-
-	&.slider-preview {
-		margin-bottom: 1rem;
-
-		.custom-class {
-			border: 3px solid var(--custom-br);
-		}
-	}
-
-	&.field-error-message-preview {
+	&.field-error-message-demo {
 		position: relative;
+		padding: 1.4375rem 1rem;
 
 		.cs-field-error-msg {
-			top: 0.5rem;
-		}
-	}
-
-	&.datetimepicker-preview {
-		overflow: visible;
-
-		.custom-class input {
-			background-color: var(--custom-bg);
-		}
-	}
-
-	&.list-preview {
-		.custom-class {
-			border: 2px solid var(--custom-br);
-		}
-
-		.custom-group-class {
-			background-color: var(--custom-bg);
-		}
-
-		.custom-item-class {
-			background-color: var(--custom-alt-bg);
+			top: 1rem;
 		}
 	}
 }
 
-.cs-btn-type-preview {
-	margin-block-end: 1rem;
+.components-preview .component-preview.errorMessage .component-example > .component-demo {
+	padding-bottom: 2rem;
+}
+
+.button-style-preview {
+	margin: 1rem 3rem 2rem;
+	min-height: 315px;
 	overflow-x: auto;
-	min-height: 300px;
+	border-radius: 0.25rem;
+	box-shadow:
+		0 1px 3px var(--cs-shadow-light),
+		0 1px 2px var(--cs-shadow-medium);
 
 	.cs-table {
 		min-width: fit-content;
+		border: none;
+		border-radius: 0.25rem;
 
 		.cs-table-header {
 			background-color: var(--button-preview-table-bg);
@@ -307,27 +121,19 @@
 				font-weight: 700;
 				display: flex;
 				align-items: center;
-				padding: 0.75rem 0.5rem;
+				padding: 1rem;
 				font-size: 0.8125rem;
-			}
-
-			.cs-table-cell:first-child {
-				padding-inline-start: 3rem;
-				min-width: 220px;
 			}
 		}
 
-		.cs-table-body {
-			.cs-table-row {
-				.cs-table-cell:first-child {
-					padding-inline-start: 3rem;
-					min-width: 220px;
-				}
+		.cs-table-body .cs-table-row {
+			.cs-table-cell {
+				padding: 1rem;
+			}
 
-				&:last-child {
-					.cs-table-cell:nth-child(2n+2) {
-						background-color: var(--button-preview-cell-bg);
-					}
+			&:last-child {
+				.cs-table-cell:nth-child(2n+2) {
+					background-color: var(--button-preview-cell-bg);
 				}
 			}
 		}
@@ -359,12 +165,5 @@
 		.cs-modal-footer.custom-footer-class {
 			border: 3px solid var(--custom-purple-bg);
 		}
-	}
-}
-.cs-modal-header,
-.cs-modal-body,
-.cs-modal-footer {
-	&.custom-class {
-		border: 3px solid var(--custom-purple-bg);
 	}
 }

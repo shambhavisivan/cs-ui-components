@@ -46,10 +46,11 @@ const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
 			<div className="prop-sidebar-wrapper">
 				{previews.map((preview: PreviewComponent) => {
 					const examples = preview.examples.filter(searchProps(searchTerm));
+					const componentLink = preview.name.split(' ').join('-').toLowerCase();
 					return (
 						<div key={preview.name}>
 							<h4>
-								<a href={`#component-preview-wrapper-${preview.name.split(' ').join('-').toLowerCase()}`}>
+								<a href={`#component-${componentLink}`}>
 									{preview.name}
 								</a>
 							</h4>
@@ -59,24 +60,30 @@ const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
 									text={`No results in ${preview.name}.`}
 								/>
 							)}
-							{examples.map((example: PreviewExample) => (
-								<div className="prop-group" key={example.propName}>
-									<h5>
-										<a href={`#component-preview-${example.propName.split(' ').join('-').toLowerCase()}`}>
-											{example.propName}
-										</a>
-									</h5>
-									{example.variations.map((variation: PreviewVariation, variationIndex: number) => (
-										<span key={variationIndex}>
-											{variation.quickLink && (
-												<a href={`#component-variation-${variation.quickLink.split(' ').join('-').toLowerCase()}`}>
-													{variation.quickLink}
-												</a>
-											)}
-										</span>
-									))}
-								</div>
-							))}
+							{examples.map((example: PreviewExample) => {
+								const propLink = `${componentLink}-${example.propName.split(' ').join('-').toLowerCase()}`;
+								return (
+									<div className="prop-group" key={example.propName}>
+										<h5>
+											<a href={`#component-preview-${propLink}`}>
+												{example.propName}
+											</a>
+										</h5>
+										{example.variations.map((variation: PreviewVariation, variationIndex: number) => {
+											const variationLink = variation.quickLink && `${propLink}-${variation.quickLink.split(' ').join('-').toLowerCase()}`;
+											return (
+												<span key={variationIndex}>
+													{variation.quickLink && (
+														<a href={`#component-variation-${variationLink}`}>
+															{variation.quickLink}
+														</a>
+													)}
+												</span>
+											);
+										})}
+									</div>
+								);
+							})}
 						</div>
 					);
 				})}

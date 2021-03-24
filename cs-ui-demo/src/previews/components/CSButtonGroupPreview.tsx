@@ -217,7 +217,7 @@ class CSButtonGroupPreview extends React.Component {
 				name: 'children',
 				customTypes: [{
 					name: 'CSButtonGroupChildren',
-					types: ['<CSButton />', '<CSDropdown />', '\'any\'']
+					types: ['<CSButton />', '<CSDropdown />', 'any']
 				}],
 				description: 'This component is designed to support CSButton and CSDropdown as children.'
 			}, {

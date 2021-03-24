@@ -487,7 +487,7 @@ class CSMainHeaderPreview extends React.Component {
 				name: 'children',
 				customTypes: [{
 					name: 'CSMainHeaderChildren',
-					types: ['<CSMainHeaderIcon />', '<CSMainHeaderLeft />', '<CSMainHeaderRight />', '\'any\'']
+					types: ['<CSMainHeaderIcon />', '<CSMainHeaderLeft />', '<CSMainHeaderRight />', 'any']
 				}],
 				description: 'This component is designed to support CSMainHeaderIcon, CSMainHeaderLeft and CSMainHeaderRight as children.'
 			}, {

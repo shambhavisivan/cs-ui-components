@@ -354,7 +354,7 @@ class CSSelectPreview extends React.Component {
 				name: 'children',
 				customTypes: [{
 					name: 'CSSelectChildren',
-					types: ['<option>', '\'any\'']
+					types: ['<option>', 'any']
 				}],
 				description: 'This component is designed to support <option> tags as children.'
 			}, {

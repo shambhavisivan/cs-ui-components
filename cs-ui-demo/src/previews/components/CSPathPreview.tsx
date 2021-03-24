@@ -162,7 +162,7 @@ class CSPathPreview extends React.Component {
 				name: 'children',
 				customTypes: [{
 					name: 'CSPathChildren',
-					types: ['<CSPathItem />', '\'any\'']
+					types: ['<CSPathItem />', 'any']
 				}],
 				description: 'This component is designed to support CSPathItem as a child.'
 			}, {

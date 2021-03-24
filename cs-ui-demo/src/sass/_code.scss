@@ -1,3 +1,4 @@
+.getting-started :not(pre) code,
 .release-notes code,
 code.inline-code {
 	display: inline-block;
@@ -44,6 +45,7 @@ code.inline-code {
 		display: grid;
 		grid-gap: 0.5rem;
 		grid-template-columns: repeat(3, 1fr);
+		white-space: nowrap;
 
 		code.inline-code {
 			margin: 0;
@@ -52,6 +54,7 @@ code.inline-code {
 	}
 }
 
+.getting-started :not(pre) code,
 .release-notes code {
 	margin-right: 0;
 	background-color: var(--prop-code-custom-bg);

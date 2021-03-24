@@ -1,24 +1,29 @@
 .accessibility-conformance-section {
-	padding: 0 3rem 3rem;
+	margin-bottom: 3rem;
 
-	.accessibility-criteria-list a.criterion {
-		margin-bottom: 0.25rem;
-		text-decoration: underline;
-		text-decoration-color: var(--criterion-link-decoration-c);
-		padding: 0;
-		margin-left: 0.5rem;
+	.accessibility-criteria-list {
+		padding: 0 3rem;
 
-		&:first-of-type {
-			margin-left: 0;
-		}
+		a.criterion {
+			margin-bottom: 0.25rem;
+			text-decoration: underline;
+			text-decoration-color: var(--criterion-link-decoration-c);
+			padding: 0;
+			margin-left: 0.5rem;
 
-		span {
-			font-size: 0.9375rem;
+			&:first-of-type {
+				margin-left: 0;
+			}
+
+			span {
+				font-size: 0.9375rem;
+			}
 		}
 	}
 
 	.accessibility-table-wrapper {
 		margin-top: 1rem;
+		margin: 0 3rem;
 
 		.accessibility-table {
 			display: block;

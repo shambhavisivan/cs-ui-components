@@ -889,7 +889,7 @@ class CSTablePreview extends React.Component {
 					name: 'children',
 					customTypes: [{
 						name: 'CSTableChildren',
-						types: ['<CSTableHeader />', '<CSTableBody />', '\'any\'']
+						types: ['<CSTableHeader />', '<CSTableBody />', 'any']
 					}],
 					description: 'This component is designed to support CSTableHeader and CSTableBody as children.'
 				}, {
@@ -966,7 +966,7 @@ class CSTablePreview extends React.Component {
 					name: 'children',
 					customTypes: [{
 						name: 'CSTableHeaderChildren',
-						types: ['<CSTableCell />', '\'any\'']
+						types: ['<CSTableCell />', 'any']
 					}],
 					description: 'This component is designed to support CSTableCell as a child.'
 				}, {
@@ -999,7 +999,7 @@ class CSTablePreview extends React.Component {
 					name: 'children',
 					customTypes: [{
 						name: 'CSTableBodyChildren',
-						types: ['<CSTableRow />', '\'any\'']
+						types: ['<CSTableRow />', 'any']
 					}],
 					description: 'This component is designed to support CSTableRow as a child.'
 				}, {
@@ -1032,7 +1032,7 @@ class CSTablePreview extends React.Component {
 					name: 'children',
 					customTypes: [{
 						name: 'CSTableRowChildren',
-						types: ['<CSTableCell />', '\'any\'']
+						types: ['<CSTableCell />', 'any']
 					}],
 					description: 'This component is designed to support CSTableCell as a child.'
 				}, {

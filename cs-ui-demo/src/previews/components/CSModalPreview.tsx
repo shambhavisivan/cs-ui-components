@@ -996,7 +996,7 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 				name: 'children',
 				customTypes: [{
 					name: 'CSModalChildren',
-					types: ['<CSModalHeader />', '<CSModalBody />', '<CSModalFooter />', '\'any\'']
+					types: ['<CSModalHeader />', '<CSModalBody />', '<CSModalFooter />', 'any']
 				}],
 				description: 'This component is designed to support CSModalHeader, CSModalBody and CSModalFooter as children.'
 			}, {

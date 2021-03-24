@@ -493,7 +493,6 @@ class CSListPreview extends React.Component {
 				]
 			}
 		],
-
 		properties: [
 			{
 				name: 'children',

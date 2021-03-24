@@ -79,7 +79,7 @@ const PreviewProperties: React.FC<{examples: Array<{propName?: any; customText?:
 									</div>
 								)}
 								<div className="component-example">
-									<div className={name ? `${name.replace(/\s+/g, '-').toLowerCase()}-preview component-preview` : 'component-preview'}>
+									<div className={name ? `${name.replace(/\s+/g, '-').toLowerCase()}-demo component-demo` : 'component-demo'}>
 										{variation.component}
 									</div>
 									<PreviewCode code={variation.string} />

@@ -391,7 +391,7 @@ class CSCardPreview extends React.Component {
 				name: 'children',
 				customTypes: [{
 					name: 'CSCardChildren',
-					types: ['<CSCardHeader />', '<CSCardBody />', '<CSCardFooter />', '\'any\'']
+					types: ['<CSCardHeader />', '<CSCardBody />', '<CSCardFooter />', 'any']
 				}],
 				description: 'This component is designed to support CSCardHeader, CSCardBody and CSCardFooter as children.'
 			}, {

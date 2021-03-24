@@ -33,10 +33,14 @@
 
 		pre {
 			width: max-content;
-			padding: 0.75rem 0.75rem 0.75rem 0;
+			padding: 1rem 1.5rem;
 			background: var(--release-notes-code-snippet-bg);
 			border-radius: 0.25rem;
-			border: 2px solid var(--release-notes-code-snippet-br);
+			border: 1px solid var(--prop-code-br);
+
+			* {
+				font-family: monospace;
+			}
 		}
 	}
 
