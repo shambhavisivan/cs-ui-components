@@ -32,7 +32,6 @@
 	}
 	&::before {
 		@include sbg(--cs-button-bg);
-		clip-path: inset(1px 0px 1px 0px); // Fix for background overflowing borders
 	}
 	&::after {
 		@include css4 {
