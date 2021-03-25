@@ -88,8 +88,8 @@
 			}
 		}
 	}
-	&:active::after {
-		--cs-button-br: var(--cs-btn-custom-c, var(--cs-button-active-br));
+	&:active::before {
+		@include bgd(--cs-button-hover-bg, 0.02);
 	}
 	&[disabled] {
 		cursor: default;
@@ -266,7 +266,6 @@
 			}
 		}
 	}
-
 	/* TYPE - SUCCESS */
 	&.cs-btn-success {
 		/* STYLE - INITIAL & ALL OTHER */
@@ -280,11 +279,6 @@
 		&:focus::after {
 			@include css4 {
 				box-shadow: 0 0 3px cvar(--cs-button-success-box);
-			}
-		}
-		&:active::after {
-			@include css4 {
-				border: 1px solid cvar(--cs-button-success-br);
 			}
 		}
 		&:not(:disabled):hover {
@@ -337,7 +331,7 @@
 				}
 			}
 			&:active::before {
-				@include bgd(--cs-button-default-bg, 0.02);
+				@include bgd(--cs-button-hover-bg, 0.02);
 			}
 		}
 	}
@@ -355,11 +349,6 @@
 		&:focus::after {
 			@include css4 {
 				box-shadow: 0 0 3px cvar(--cs-button-error-box);
-			}
-		}
-		&:active::after {
-			@include css4 {
-				border: 1px solid cvar(--cs-button-error-br);
 			}
 		}
 		&:not(:disabled):hover {
@@ -417,7 +406,7 @@
 				}
 			}
 			&:active::before {
-				@include bgd(--cs-button-default-bg, 0.02);
+				@include bgd(--cs-button-hover-bg, 0.02);
 			}
 		}
 	}
