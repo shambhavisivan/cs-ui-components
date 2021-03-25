@@ -13,12 +13,18 @@
 	transition: opacity 0.2s ease, visibility 0s;
 	transition-delay: 0s, 0.3s;
 
-	&.cs-spinner-overlay-light {
-		@include sbg(--cs-spinner-light-bg);
-	}
+	&.cs-spinner-overlay {
+		&-light {
+			@include sbg(--cs-spinner-light-bg);
+		}
 
-	&.cs-spinner-overlay-dark {
-		@include sbg(--cs-spinner-dark-bg);
+		&-dark {
+			@include sbg(--cs-spinner-dark-bg);
+		}
+
+		&-transparent {
+			@include sbg(--cs-transparent);
+		}
 	}
 
 	.cs-spinner-wrapper-label {

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 export type CSSpinnerColor = 'neutral' | 'brand' | 'inverse';
 export type CSSpinnerSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
-export type CSSpinnerOverlay = 'light' | 'dark';
+export type CSSpinnerOverlay = 'light' | 'dark' | 'transparent';
 
 export interface CSSpinnerProps {
 	[key: string]: any;
@@ -56,8 +56,8 @@ class CSSpinner extends React.Component<CSSpinnerProps> {
 				>
 					<div className="cs-spinner-wrapper-label">
 						<div className={'cs-spinner cs-spinner-' + size + ' cs-spinner-' + color}>
-							<div className="cs-spinner-dot-a"/>
-							<div className="cs-spinner-dot-b"/>
+							<div className="cs-spinner-dot-a" />
+							<div className="cs-spinner-dot-b" />
 						</div>
 						{(label && !inline) &&
 							<div className="cs-spinner-label">

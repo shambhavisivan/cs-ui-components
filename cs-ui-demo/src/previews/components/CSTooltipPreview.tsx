@@ -8,6 +8,12 @@ import PreviewLinks from '../PreviewLinks';
 import { CSTooltip, CSChip } from '@cloudsense/cs-ui-components';
 
 class CSTooltipPreview extends React.Component {
+	tooltipContent: Promise<JSX.Element> = new Promise(resolve => {
+		setTimeout(() => {
+			resolve(<CSChip text="brand" variant="brand" />);
+		}, 10000);
+	});
+
 	getTooltipDoc = () => ({
 		name: 'Tooltip',
 		usage: 'A Tooltip is a small piece of contextual information about an element on the screen, which is displayed when a user hovers or focuses on the element it is describing. It is not focusable and cannot contain focusable content.',
@@ -45,6 +51,12 @@ class CSTooltipPreview extends React.Component {
 								primaryVariants: 'content={Element}',
 								quickLink: 'element',
 								component: <CSTooltip content={<CSChip text="custom content" />} />,
+								code: '<CSTooltip content={<CSChip text="custom content" />} />'
+							},
+							{
+								primaryVariants: 'content={Promise<CSTooltipContent>}',
+								quickLink: 'element',
+								component: <CSTooltip height="800px" content={this.tooltipContent} />,
 								code: '<CSTooltip content={<CSChip text="custom content" />} />'
 							}
 						]
@@ -788,11 +800,11 @@ class CSTooltipPreview extends React.Component {
 				name: 'width',
 				types: ['string'],
 				description: 'Set the tooltip width. (eg. 200px, 20rem, 50%, etc.)'
-			},  {
+			}, {
 				name: 'maxHeight',
 				types: ['string'],
 				description: 'Set the tooltip maximum height. (eg. 200px, 20rem, 50%, etc.)'
-			},  {
+			}, {
 				name: 'maxWidth',
 				types: ['string'],
 				default: '\'20rem\'',

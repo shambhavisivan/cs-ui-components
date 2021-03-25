@@ -4,7 +4,9 @@ import CSIcon, { CSIconOrigin } from './CSIcon';
 import { Portal } from 'react-portal';
 import { v4 as uuidv4 } from 'uuid';
 import KeyCode from '../util/KeyCode';
+import CSSpinner from './CSSpinner';
 
+export type CSTooltipContent = string | Array<string> | JSX.Element;
 export type CSTooltipIconSize = 'small' | 'medium';
 export type CSTooltipPosition =
 	'bottom-right' |
@@ -26,7 +28,7 @@ export type CSTooltipVariant = 'info' | 'warning' | 'error' | 'success' | 'basic
 export interface CSTooltipProps {
 	[key: string]: any;
 	className?: string;
-	content: string | Array<string> | JSX.Element;
+	content: CSTooltipContent | Promise<CSTooltipContent>;
 	delayTooltip?: number;
 	focusable?: boolean;
 	height?: string;
@@ -47,6 +49,8 @@ export interface CSTooltipProps {
 }
 
 interface CSTooltipState {
+	content?: any;
+	loading?: boolean;
 	hidden: boolean;
 	computedTooltipStyle?: CSSProperties;
 	computedPosition?: CSTooltipPosition;
@@ -135,17 +139,27 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			[`${className}`]: className
 		});
 
-		const tooltipContent = Array.isArray(content)
-			? content
-			: [content];
+		const getTooltipStyle = () => {
+			if (this.state.loading) {
+				return {
+					'--cs-tooltip-height': '3.5rem',
+					'--cs-tooltip-width': '3.5rem',
+					'--cs-tooltip-padding': '0'
+				};
+			} else {
+				return {
+					'--cs-tooltip-height': height,
+					'--cs-tooltip-width': width,
+					'--cs-tooltip-max-height': maxHeight,
+					'--cs-tooltip-max-width': maxWidth,
+					'--cs-tooltip-padding': padding
+				};
+			}
+		};
 
 		const tooltipStyle = {
 			...this.state.computedTooltipStyle,
-			'--cs-tooltip-height': height,
-			'--cs-tooltip-width': width,
-			'--cs-tooltip-max-height': maxHeight,
-			'--cs-tooltip-max-width': maxWidth,
-			'--cs-tooltip-padding': padding,
+			...getTooltipStyle(),
 			'--cs-tw-dimension': this.state.tooltipWrapperDimension ? this.state.tooltipWrapperDimension + 'px' : ''
 		};
 
@@ -157,14 +171,25 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 				ref={this.props.stylePosition === 'fixed' ? this.tooltipRefCallback : null}
 				{...rest}
 			>
-				{tooltipHeader && (
-					<div className="cs-tooltip-header">{tooltipHeader}</div>
-				)}
-				{tooltipContent.map((text, index) => (
-					<div className="cs-tooltip-body" key={index}>
-						{text}
-					</div>
-				))}
+				{this.state.loading ?
+					<CSSpinner overlay="transparent" />
+					:
+					<>
+						{tooltipHeader && (
+							<div className="cs-tooltip-header">{tooltipHeader}</div>
+						)}
+
+						{this.state.content ?
+							Array.isArray(this.state.content) ?
+								(this.state.content.map((contentItem, index) =>
+									<div className="cs-tooltip-body" key={index}>
+										{contentItem}
+									</div>
+								))
+							: <div className="cs-tooltip-body">{this.state.content}</div>
+						: null}
+					</>
+				}
 			</div>
 		);
 
@@ -178,12 +203,21 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 					return variant;
 			}
 		};
+		const handleOnMouseEnter = () => {
+			if (stylePosition === 'fixed' && !this.state.stickyActive) {
+				this.openTooltip();
+			} else if (stylePosition === 'absolute') {
+				this.setState({
+					content
+				});
+			}
+		};
 
 		return (
 			<div
 				className={tooltipWrapperClasses}
 				onClick={stylePosition === 'fixed' && stickyOnClick ? () => this.setSticky(true) : null}
-				onMouseEnter={stylePosition === 'fixed' && !this.state.stickyActive ? this.openTooltip : null}
+				onMouseEnter={handleOnMouseEnter}
 				onMouseLeave={stylePosition === 'fixed' && !this.state.stickyActive ? this.closeTooltip : null}
 				onFocus={stylePosition === 'fixed' ? this.openTooltip : null}
 				onBlur={stylePosition === 'fixed' && !this.state.stickyActive ? this.closeTooltip : null}
@@ -230,6 +264,19 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		}
 	}
 
+	reslovePromise = () => {
+		Promise.resolve(this.props.content).then(
+			result => this.setState({
+				content: result,
+				loading: false
+			}, () => {
+				const tooltipRect = document.getElementById(this.uniqueAutoId).getBoundingClientRect();
+				this.autoTooltipPosition(tooltipRect);
+			})
+		);
+
+	}
+
 	handleOutsideClick = (event: any) => {
 		event.stopPropagation();
 		if (
@@ -257,6 +304,13 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 	}
 
 	private openTooltip = () => {
+
+		if (this.isPromise(this.props.content)) {
+			this.setState({ loading: true }, () => this.reslovePromise());
+		} else {
+			this.setState({ content: this.props.content });
+		}
+
 		this.setTooltipPosition();
 
 		if (this.props.stickyOnClick) {
@@ -343,6 +397,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			}, this.setTooltipPosition);
 		}
 	}
+	private isPromise = (value: any) => Object(value).constructor === Promise;
 
 	private tooltipRefCallback = (element: HTMLDivElement) => {
 		if (element) {

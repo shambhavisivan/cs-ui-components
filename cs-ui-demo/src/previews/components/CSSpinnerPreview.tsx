@@ -66,6 +66,11 @@ class CSSpinnerPreview extends React.Component {
 								quickLink: 'dark',
 								component: <CSSpinner overlay="dark" />,
 								code: '<CSSpinner overlay="dark" />'
+							}, {
+								primaryVariants: 'overlay="transparent',
+								quickLink: 'transparent',
+								component: <CSSpinner overlay="transparent" />,
+								code: '<CSSpinner overlay="transparent" />'
 							}
 						]
 					}, {
@@ -144,7 +149,7 @@ class CSSpinnerPreview extends React.Component {
 				name: 'overlay',
 				customTypes: [{
 					name: 'CSSpinnerOverlay',
-					types: ['\'light\'', '\'dark\'']
+					types: ['\'light\'', '\'dark\'', '\'transparent\'']
 				}],
 				default: '\'light\'',
 				description: 'Set the overlay color variant.'
