@@ -92,6 +92,7 @@
 				outline: 0;
 				@include css4 {
 					box-shadow: 0 0 3px cvar(--cs-radio-focus-box);
+					border: 1px solid cvar(--cs-radio-focus-br)
 				}
 			}
 
@@ -133,6 +134,7 @@
 			&:focus + .cs-radio-faux {
 				@include css4 {
 					box-shadow: 0 0 3px cvar(--cs-radio-error-focus-shadow);
+					border: 1px solid cvar(--cs-radio-error-br)
 				}
 			}
 
