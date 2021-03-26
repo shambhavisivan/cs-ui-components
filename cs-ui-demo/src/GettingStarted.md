@@ -60,7 +60,7 @@ Object.defineProperty(global, 'crypto', {
 * <i>important</i> When writing unit tests and comparing snapshots make sure to use shallow rendering since the unique id created by the UUID package will be recreated after each rerender, thus increasing the likelihood of failing a test.
 
 ## Documenting Components<a name="Documenting Components"></a>
-Due to the ever-growing and continuously-changing nature of the cs-ui-components library, it is necessary	to to document all components methodically and uniformly. Each component or component family (such as `CSTab` and `CSTabGroup`, which are closely related) should have its own dedicated page for various previews, examples, use cases and code snippets. In code, this is referred to as a preview component or a preview file, following the `CSNamePreview` naming convention.
+Due to the ever-growing and continuously-changing nature of the cs-ui-components library, it is necessary	to document all components methodically and uniformly. Each component or component family (such as `CSTab` and `CSTabGroup`, which are closely related) should have its own dedicated page for various previews, examples, use cases and code snippets. In code, this is referred to as a preview component or a preview file, following the `CSNamePreview` naming convention.
 
 All relevant documentation is placed inside the `getDoc` method of the preview component, which returns an object of type `PreviewProps`. All relevant types can be found in the `types.ts` file.
 
@@ -185,7 +185,7 @@ Because of the way JSX works, it is virtually impossible for us to transpile it 
 
 ```
 code: '<CSComponent />'
-``` 
+```
 ```
 code: `<CSComponent
   prop1
@@ -244,7 +244,7 @@ properties: [
 
 The name attribute contains the name of the prop in question as defined in code.
 
-The types attribute is an array of strings, each containing a single primitive type the property can take on (e.g. `types: ['string', 'number']`) . If the type is not a data type per se, but a literal string, it is important to encompass it in single quotes to indicate that (e.g. `types: ['\'default'\', '\'1rem\']`).
+The types attribute is an array of strings, each containing a single primitive type the property can take on (e.g. `types: ['string', 'number']`) . If the type is not a data type per se, but a literal string, it is important to encompass it in single quotes to indicate that (e.g. `types: ['\'default\'', '\'1rem\'']`).
 
 When a prop is typechecked with a custom type, the custom types attribute should be used. It holds an array containing data about the values the custom type can take on. It holds the name attribute and the types attribute, corresponding to the ones found a level above.
 
@@ -256,7 +256,7 @@ The description is optional, but its use is highly encouraged. It should be a sh
 
 ### Working with Accessibility
 
-Each of the examples, previews and property definitions is tied to a single component. However, accessibility conformance requirements often refer to the entire family of components. That is why they are places as a first-level attribute in the documentation object.
+Each of the examples, previews and property definitions is tied to a single component. However, accessibility conformance requirements often refer to the entire family of components. That is why they are placed as a first-level attribute in the documentation object.
 
 *Expanded after a11y meeting.*
 

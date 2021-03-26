@@ -666,6 +666,7 @@ class CSButtonPreview extends React.Component {
 						]
 					}, {
 						propName: 'loading',
+						description: 'When loading, button is in disabled state',
 						variations: [
 							{
 								primaryVariants: 'loading={true}',
@@ -1104,11 +1105,11 @@ class CSButtonPreview extends React.Component {
 							'`role` - change role button if needed to a more accurate one such as menu item'
 						],
 						styling: [
-							'Color contrast ratio > 4.5',
+							'Color contrast ratio > 4.5 (note: disabled state fails)',
 							'Distinct hover, active and focus state styles'
 						],
 						keyboardOperability: [
-							'`<button>` OOTB focusable and supports clicks with `enter` and `space` keys'
+							'`<button>` OOTB focusable and supports clicks with `Enter` and `Space` keys'
 						]
 					}
 				]

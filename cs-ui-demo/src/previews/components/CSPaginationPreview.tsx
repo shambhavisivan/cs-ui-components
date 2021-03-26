@@ -64,20 +64,20 @@ class CSPaginationPreview extends React.Component {
 					{
 						structure: [
 							'`<nav>`',
-							'`ul` - allows screen reader list navigation and counts `<li>` items',
-							'`li` - allows screen reader list navigation',
-							'`a` inside `li`'
+							'`<ul>` - allows screen reader list navigation and counts `<li>` items',
+							'`<li>` - allows screen reader list navigation',
+							'`<a>` inside `<li>`'
 						],
 						properties: [
 							'`aria-label="pagination"` on top wrapper to announce pagination component',
 							'`aria-current` - true when page button is active (TODO)',
-							'`role="navigation"` - implicit by `nav`'
+							'`role="navigation"` - implicit by `<nav>`'
 						],
 						styling: [
 							'Focus state styles'
 						],
 						keyboardOperability: [
-							'`a` OOTB focusable and supports `space` click'
+							'`<a>` OOTB focusable and supports `Space` click'
 						]
 					}
 				]

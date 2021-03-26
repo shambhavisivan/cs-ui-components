@@ -186,18 +186,19 @@ class CSSectionPreview extends React.Component {
 				requirements: [
 					{
 						structure: [
-							'`<section>` is top wrapper - implicit `role="region"`',
+							'`<section>` is top wrapper',
 							'Heading is `<h3>` - allows screen reader heading search',
 							'Child is `<button>`'
 						],
 						properties: [
-							'`aria-expanded` - reads out whether section is expanded or collapsed, if expandable'
+							'`aria-expanded` - reads out whether section is expanded or collapsed, if expandable',
+							'`role="region"` - implicit by `<section>`'
 						],
 						styling: [
 							'Focus state styles'
 						],
 						keyboardOperability: [
-							'Child is `<button>` - allows focus and supports clicks with `enter` and `space` keys'
+							'Child is `<button>` - allows focus and supports clicks with `Enter` and `Space` keys'
 						]
 					}
 				]

@@ -312,7 +312,7 @@ class CSInputFilePreview extends React.Component {
 							'`<label>` styled as drop zone area'
 						],
 						keyboardOperability: [
-							'`<input>` OOTB focusable and supports clicks with `enter` and `space` keys',
+							'`<input>` OOTB focusable and supports clicks with `Enter` and `Space` keys',
 							'Logic around tooltip provided in order for tooltip to not break focus pattern when it is shown'
 						]
 					}

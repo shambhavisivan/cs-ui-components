@@ -262,7 +262,7 @@ class CSButtonGroupPreview extends React.Component {
 				requirements: [
 					{
 						structure: [
-							'`div` wrapper with role',
+							'`<div>` wrapper with role',
 							'`<CSButton>`',
 							'hidden `<span>` with aria description'
 						],

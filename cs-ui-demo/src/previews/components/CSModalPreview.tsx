@@ -1105,8 +1105,8 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 						],
 						keyboardOperability: [
 							'Logic for focus management to move on modal when it is opened and to cycle within it until closed',
-							'Close button is `<CSButton>` and a first child - allows keyboard focus',
-							'`ESC` - close modal'
+							'Close button is `<button>` and a first child - allows keyboard focus',
+							'`Esc` - close modal'
 						]
 					}
 				]

@@ -782,7 +782,7 @@ class CSDropdownPreview extends React.Component {
 								'`aria-expanded`',
 								'`aria-haspopup`',
 								'`<ul>` wrapper `role="menu"`',
-								'`button role="menuitem"`'
+								'`role="menuitem"` on dropdown buttons'
 							],
 							styling: [
 								'Distinct hover, active and focus state styles'

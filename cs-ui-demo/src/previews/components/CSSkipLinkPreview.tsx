@@ -96,7 +96,7 @@ class CSSkipLinkPreview extends React.Component {
 				requirements: [
 					{
 						structure: [
-							'`<a>` element'
+							'`<a>`'
 						],
 						properties: [
 							'`role="link"` - implicit with `<a>`'
@@ -108,7 +108,7 @@ class CSSkipLinkPreview extends React.Component {
 							'Underline to distinct it as a link'
 						],
 						keyboardOperability: [
-							'<a> OOTB focusable and supports `space` key click'
+							'`<a>` OOTB focusable and supports `Space` key click'
 						]
 					}
 				]

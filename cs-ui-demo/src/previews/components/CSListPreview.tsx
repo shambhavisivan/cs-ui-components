@@ -562,9 +562,9 @@ class CSListPreview extends React.Component {
 				requirements: [
 					{
 						structure: [
-							'`ul` - list, allows screen reader list navigation and counts `<li>` items',
-							'`li` - list item, allows screen reader list navigation',
-							'`button` inside `h3` - group header - allows heading search, as well as focusable'
+							'`<ul>` - list, allows screen reader list navigation and counts `<li>` items',
+							'`<li>` - list item, allows screen reader list navigation',
+							'`<button>` inside `<h3>` - group header - allows heading search, as well as focusable'
 						],
 						properties: [
 							'`aria-selected` - true when list item is selected',
@@ -577,8 +577,8 @@ class CSListPreview extends React.Component {
 							'Focus state styles'
 						],
 						keyboardOperability: [
-							'`Enter` and `Space` - select item',
-							'List items focus enabled by `tabindex="0"`'
+							'List items focus enabled by `tabindex="0"`',
+							'`Enter` and `Space` - select item'
 						]
 					}
 				]

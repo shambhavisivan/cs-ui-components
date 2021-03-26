@@ -207,7 +207,7 @@ class CSPathPreview extends React.Component {
 							'Distinct hover, active and focus state styles'
 						],
 						keyboardOperability: [
-							'`button` OOTB focusable and supports `button` and `space` click'
+							'`<button>` OOTB focusable and supports `Enter` and `Space` click'
 						]
 					}
 				]

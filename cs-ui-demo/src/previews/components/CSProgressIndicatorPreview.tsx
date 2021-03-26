@@ -195,7 +195,7 @@ class CSProgressIndicatorPreview extends React.Component {
 							'Distinct hover and focus state styles'
 						],
 						keyboardOperability: [
-							'`<button>` OOTB focusable and supports clicks with `enter` and `space` keys'
+							'`<button>` OOTB focusable and supports clicks with `Enter` and `Space` keys'
 						]
 					}
 				]

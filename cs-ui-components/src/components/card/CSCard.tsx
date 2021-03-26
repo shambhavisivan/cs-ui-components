@@ -20,6 +20,7 @@ class CSCard extends React.Component<CSCardProps> {
 			<div
 				className={cardClasses}
 				id={id}
+				role="region"
 				{...rest}
 			>
 				{children}

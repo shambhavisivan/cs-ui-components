@@ -859,7 +859,7 @@ class CSTooltipPreview extends React.Component {
 							'Logic for tooltip to open on icon focus',
 							'Logic for tooltip to to stay opened when hovered over',
 							'Logic for tooltip to stay stickied and opened until clicked outside',
-							'Logic for tooltip to close on escape'
+							'`Esc` - close tooltip'
 						]
 					}
 				]

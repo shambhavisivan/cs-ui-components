@@ -415,6 +415,9 @@ class CSCardPreview extends React.Component {
 							'`<header>`',
 							'`<footer>`',
 							'Heading is `<h2>` - allows screen reader heading search'
+						],
+						properties: [
+							'`role="region"` - on a wrapper `<div>`, allows screen reader region search'
 						]
 					}
 				]

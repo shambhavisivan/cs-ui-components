@@ -387,7 +387,7 @@ class CSTransferPreview extends React.Component {
 								'`role="option"`'
 							],
 							styling: [
-								'Color contrast ratio > 4.5',
+								'Color contrast ratio > 4.5 (note: disabled state fails)',
 								'Distinct hover, active and focus state styles'
 							],
 							keyboardOperability: [
