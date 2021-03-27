@@ -94,8 +94,9 @@
 
 		// Active/focus
 		&:active + .cs-input-file-btn {
+			@include bgd(--cs-input-file-btn-hover-bg, 0.02);
+
 			@include css4 {
-				border: 1px solid cvar(--cs-input-file-active-br);
 				box-shadow: 0 0 3px cvar(--cs-input-file-shadow);
 			}
 		}
@@ -121,8 +122,9 @@
 			}
 
 			&:active + .cs-input-file-btn {
+				@include bgd(--cs-input-file-btn-hover-bg, 0.02);
+
 				@include css4 {
-					border: 1px solid cvar(--cs-input-file-btn-br);
 					box-shadow: none;
 				}
 			}
@@ -191,8 +193,9 @@
 			}
 
 			&:active + .cs-input-file-btn {
+				@include bgd(--cs-input-file-btn-hover-bg, 0.02);
+
 				@include css4 {
-					border: 1px solid cvar(--cs-input-file-error-br);
 					box-shadow: 0 0 3px cvar(--cs-input-file-error-shadow);
 				}
 			}
