@@ -31,10 +31,22 @@
 					&:hover {
 						@include sbg(--cs-list-item-header-hover);
 					}
-					&:focus, &:active {
+					&:focus {
 						outline: 0;
+					}
+					&:active {
 						@include css4 {
 							box-shadow: 0 0 3px cvar(--cs-list-item-header-box);
+						}
+					}
+					&:focus-visible {
+						@include css4 {
+							box-shadow: 0 0 3px cvar(--cs-list-item-header-box);
+						}
+					}
+					&:focus-visible:active {
+						@include css4 {
+							box-shadow: 0 0 7px cvar(--cs-list-item-header-box);
 						}
 					}
 				}

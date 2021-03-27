@@ -454,6 +454,12 @@ $variables: (
 	--cs-list-item-focus-bg: $cs-gray-light-5,
 	--cs-list-item-active-bg: $cs-blue-light-1,
 	--cs-list-item-active-br: $cs-blue-sf,
+	--cs-list-item-disabled-c: $cs-gray-light-2,
+	--cs-list-item-header-br: $cs-gray-medium-3,
+	--cs-list-item-header-hover: $cs-blue-light-6,
+	--cs-list-item-header-box: $cs-blue-sf,
+	--cs-list-item-header-c: $cs-gray-medium-1,
+	--cs-list-item-header-bg: $cs-gray-light-8,
 
 	--cs-transfer-list-br: $cs-gray-medium-3,
 	--cs-transfer-list-header-br: $cs-gray-light-2,
@@ -485,14 +491,7 @@ $variables: (
 	--cs-progress-indicator-error-bg: $cs-white,
 	--cs-progress-indicator-error-c: $cs-red-medium-2,
 	--cs-progress-indicator-loading-bg: $cs-white,
-	--cs-progress-indicator-loading-c: $cs-gray-light-2,
-
-	--cs-list-item-disabled-c: $cs-gray-light-2,
-	--cs-list-item-header-br: $cs-gray-medium-3,
-	--cs-list-item-header-hover: $cs-blue-light-6,
-	--cs-list-item-header-box: $cs-blue-sf,
-	--cs-list-item-header-c: $cs-gray-medium-1,
-	--cs-list-item-header-bg: $cs-gray-light-8
+	--cs-progress-indicator-loading-c: $cs-gray-light-2
 );
 
 // $darkVariables: (
