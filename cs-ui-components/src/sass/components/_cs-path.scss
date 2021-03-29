@@ -56,7 +56,7 @@
 					transform: skewX(-28deg);
 				}
 				&:hover,
-				&:focus {
+				&:focus-visible {
 					@include sbg(--cs-path-item-initial-hover);
 					&::before,
 					&::after {
@@ -134,7 +134,7 @@
 						@include sbg(--cs-path-item-success-bg);
 					}
 					&:hover,
-					&:focus {
+					&:focus-visible {
 						@include sbg(--cs-path-item-success-hover);
 						&::before,
 						&::after {
@@ -161,7 +161,7 @@
 						@include sbg(--cs-path-item-error-bg);
 					}
 					&:hover,
-					&:focus {
+					&:focus-visible {
 						@include sbg(--cs-path-item-error-hover);
 						&::before,
 						&::after {
@@ -189,7 +189,7 @@
 						@include sbg(--cs-path-item-warning-bg);
 					}
 					&:hover,
-					&:focus {
+					&:focus-visible {
 						@include sbg(--cs-path-item-warning-hover);
 						&::before,
 						&::after {
@@ -217,7 +217,7 @@
 						@include sbg(--cs-path-item-active-bg);
 					}
 					&:hover,
-					&:focus {
+					&:focus-visible {
 						@include sbg(--cs-path-item-active-hover);
 						&::before,
 						&::after {
