@@ -21,7 +21,7 @@
 					}
 				}
 
-				&:focus {
+				&:focus-visible {
 					@include css4 {
 						box-shadow: 0 0 0 4px cvar(--cs-progress-indicator-shadow),
 							0 0 3px 4px cvar(--cs-progress-indicator-shadow-alt);
@@ -55,7 +55,7 @@
 				margin-inline-start: 0;
 				@include sbg(--cs-progress-indicator-error-bg);
 
-				&:focus {
+				&:focus-visible {
 					@include css4 {
 						box-shadow: 0 0 3px cvar(--cs-progress-indicator-shadow-error);
 					}
@@ -121,6 +121,9 @@
 
 			&:focus {
 				outline: 0;
+			}
+
+			&:focus-visible {
 				@include css4 {
 					box-shadow: 0 0 3px cvar(--cs-progress-indicator-shadow-alt);
 				}
