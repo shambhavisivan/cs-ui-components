@@ -7,6 +7,7 @@ import classNames from 'classnames';
 interface SidebarItem {
 	name: string;
 	component: React.ComponentType<any>;
+	isFormElement?: boolean;
 }
 
 export interface SidebarListProps {
@@ -93,8 +94,16 @@ class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
 								return component.name.toLowerCase().includes(term) || !term;
 							}).map(component => (
 								<li className={component.name.includes('Getting Started') ? 'ui-component info' : 'ui-component'} title={component.name} key={component.name.split(' ').join('')}>
-									<NavLink to={`${this.props.path}${component.name.split(' ').join('')}`}
-										activeClassName="active-component">{component.name}</NavLink>
+									<NavLink
+										to={`${this.props.path}${component.name.split(' ').join('')}`}
+										activeClassName="active-component">
+										<span className="ui-component-name">
+											{component.name}
+										</span>
+										{component.isFormElement &&
+											<CSIcon name="edit_form" color="var(--csd-sidebar-component-form-icon-fill)" />
+										}
+									</NavLink>
 								</li>)
 							)}
 						</ul>

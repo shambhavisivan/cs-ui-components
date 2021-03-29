@@ -71,7 +71,8 @@ class CSComponentsList extends React.Component {
 			},
 			{
 				name: 'Checkbox',
-				component: CSCheckboxPreview
+				component: CSCheckboxPreview,
+				isFormElement: true
 			},
 			{
 				name: 'Chip',
@@ -83,15 +84,18 @@ class CSComponentsList extends React.Component {
 			},
 			{
 				name: 'Custom Select',
-				component: CSCustomSelectPreview
+				component: CSCustomSelectPreview,
+				isFormElement: true
 			},
 			{
 				name: 'Datepicker',
-				component: CSDatepickerPreview
+				component: CSDatepickerPreview,
+				isFormElement: true
 			},
 			{
 				name: 'DateTimePicker',
-				component: CSDateTimePickerPreview
+				component: CSDateTimePickerPreview,
+				isFormElement: true
 			},
 			{
 				name: 'Divider',
@@ -115,19 +119,23 @@ class CSComponentsList extends React.Component {
 			},
 			{
 				name: 'Input File',
-				component: CSInputFilePreview
+				component: CSInputFilePreview,
+				isFormElement: true
 			},
 			{
 				name: 'Input Number',
-				component: CSInputNumberPreview
+				component: CSInputNumberPreview,
+				isFormElement: true
 			},
 			{
 				name: 'Input Search',
-				component: CSInputSearchPreview
+				component: CSInputSearchPreview,
+				isFormElement: true
 			},
 			{
 				name: 'Input Text',
-				component: CSInputTextPreview
+				component: CSInputTextPreview,
+				isFormElement: true
 			},
 			{
 				name: 'Label',
@@ -138,8 +146,9 @@ class CSComponentsList extends React.Component {
 				component: CSListPreview
 			},
 			{
-				name: 'Lookup',
-				component: CSLookupPreview
+				name: 'Lookup Field',
+				component: CSLookupPreview,
+				isFormElement: true
 			},
 			{
 				name: 'Main Header',
@@ -167,7 +176,8 @@ class CSComponentsList extends React.Component {
 			},
 			{
 				name: 'Radio',
-				component: CSRadioPreview
+				component: CSRadioPreview,
+				isFormElement: true
 			},
 			{
 				name: 'Section',
@@ -175,7 +185,8 @@ class CSComponentsList extends React.Component {
 			},
 			{
 				name: 'Select',
-				component: CSSelectPreview
+				component: CSSelectPreview,
+				isFormElement: true
 			},
 			{
 				name: 'Sidebar',
@@ -187,7 +198,8 @@ class CSComponentsList extends React.Component {
 			},
 			{
 				name: 'Slider',
-				component: CSSliderPreview
+				component: CSSliderPreview,
+				isFormElement: true
 			},
 			{
 				name: 'Spinner',
@@ -203,7 +215,8 @@ class CSComponentsList extends React.Component {
 			},
 			{
 				name: 'Textarea',
-				component: CSTextareaPreview
+				component: CSTextareaPreview,
+				isFormElement: true
 			},
 			{
 				name: 'Toast',
@@ -211,7 +224,8 @@ class CSComponentsList extends React.Component {
 			},
 			{
 				name: 'Toggle',
-				component: CSTogglePreview
+				component: CSTogglePreview,
+				isFormElement: true
 			},
 			{
 				name: 'Tooltip',
@@ -219,7 +233,8 @@ class CSComponentsList extends React.Component {
 			},
 			{
 				name: 'Transfer',
-				component: CSTransferPreview
+				component: CSTransferPreview,
+				isFormElement: true
 			}
 
 		];
