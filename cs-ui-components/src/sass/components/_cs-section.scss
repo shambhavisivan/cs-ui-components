@@ -24,6 +24,10 @@
 
 		.cs-section-title {
 			font-size: 0.875rem;
+
+			&:first-child {
+				padding: 0 0.5rem;
+			}
 		}
 
 		.cs-section-button {
@@ -44,27 +48,18 @@
 				outline: 0;
 			}
 
-			&:active {
-				@include css4 {
-					box-shadow: 0 0 3px cvar(--cs-section-button-shadow);
-				}
-			}
-
-			/* focus for keyboard navigation only */
 			&:focus-visible {
 				@include css4 {
 					box-shadow: 0 0 3px cvar(--cs-section-button-shadow);
 				}
 			}
 
-			&:focus-visible:active {
-				@include css4 {
-					box-shadow: 0 0 7px cvar(--cs-section-button-shadow);
-				}
-			}
-
 			&:hover {
 				@include sbg(--cs-section-hover-bg);
+			}
+
+			&:active {
+				@include bgd(--cs-section-hover-bg, 0.02);
 			}
 
 			.cs-icon {
@@ -80,4 +75,3 @@
 		}
 	}
 }
-
