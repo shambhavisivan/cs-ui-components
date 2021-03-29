@@ -118,7 +118,7 @@
 				position: relative;
 			}
 
-			&:focus::-webkit-slider-thumb {
+			&:focus-visible::-webkit-slider-thumb {
 				@include sbg(--cs-slider-range-thumb-active);
 				@include css4 {
 					box-shadow: 0 0 3px cvar(--cs-slider-range-thumb-active);
@@ -129,7 +129,7 @@
 				@include sbg(--cs-slider-range-thumb-active);
 			}
 
-			&:focus::-moz-range-thumb {
+			&:focus-visible::-moz-range-thumb {
 				@include sbg(--cs-slider-range-thumb-active);
 				@include css4 {
 					box-shadow: 0 0 3px cvar(--cs-slider-range-thumb-active);
