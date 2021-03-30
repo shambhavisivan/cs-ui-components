@@ -96,6 +96,12 @@
 		@include sbg(--csd-custom-alt-bg);
 	}
 
+	&.transfer-demo {
+		.custom-class {
+			border: 3px solid var(--csd-custom-br);
+		}
+	}
+
 	&.button-demo,
 	&.dropdown-demo,
 	&.button-group-demo {
