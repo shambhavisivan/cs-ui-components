@@ -66,6 +66,9 @@ export class CSGridDateRenderer extends CSGridBaseRenderer<string> {
 						height={tooltip.height}
 						width={tooltip.width}
 						padding={tooltip.padding}
+						maxHeight={tooltip.maxHeight}
+						maxWidth={tooltip.maxWidth}
+						stickyOnClick={tooltip.stickyOnClick}
 					>
 						{contents}
 					</CSTooltip>
