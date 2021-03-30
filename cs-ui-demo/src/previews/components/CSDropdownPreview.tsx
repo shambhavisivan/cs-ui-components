@@ -36,7 +36,6 @@ class CSDropdownPreview extends React.Component {
 									<CSButton
 										iconName="world"
 										label="test label large large"
-										disabled
 									/>
 								</CSDropdown >
 						},
@@ -289,6 +288,38 @@ class CSDropdownPreview extends React.Component {
 								<CSButton
 									iconName="world"
 									label="test label large large"
+								/>
+							</CSDropdown>
+						}
+					]
+				},
+				{
+					propName: 'mode',
+					customText: '',
+					variations: [
+						{
+							variationName: ['button'],
+							quickLink: 'button',
+							component: <CSDropdown
+								iconName="down"
+								mode="button"
+							>
+								<CSButton
+									iconName="world"
+									label="test label"
+								/>
+								<CSButton
+									iconName="world"
+									label="test label"
+									disabled
+								/>
+								<CSButton
+									iconName="world"
+									label="test label"
+								/>
+								<CSButton
+									iconName="world"
+									label="test label"
 								/>
 							</CSDropdown>
 						}
@@ -582,7 +613,7 @@ class CSDropdownPreview extends React.Component {
 						{
 							variationName: ['CSList'],
 							quickLink: 'CSList',
-							component: <CSDropdown padding="0">
+							component: <CSDropdown padding="0" mode="list">
 								<CSList variant="check-list" className="dropdown-list" >
 									<CSListGroup title="List Group">
 										<CSListItem text="First list item" />
@@ -648,11 +679,6 @@ class CSDropdownPreview extends React.Component {
 					types: ['boolean'],
 					default: 'false',
 					description: 'Disable the dropdown.'
-				}, {
-					name: 'defaultOpen',
-					types: ['boolean'],
-					default: 'false',
-					description: 'Set whether the dropdown should be open or not by default. It will also remove dropdown toggle button.'
 				}, {
 					name: 'hover',
 					types: ['boolean'],
