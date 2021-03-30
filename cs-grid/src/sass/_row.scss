@@ -1,0 +1,191 @@
+.cs-grid_app-wrapper {
+	.ag-row.ag-row {
+		&:not(.ag-row-first) {
+			@include css4 {
+				border-color: #ddd;
+			}
+		}
+
+		&:hover {
+			z-index: 1;
+		}
+
+		&-selected {
+			@include sbg(--csgrid-row-selected-bg);
+		}
+	}
+
+	.ag-theme-balham .ag-root {
+		.ag-header {
+			height: 35px !important;
+			min-height: 35px !important;
+			font-size: 0.75rem;
+			font-weight: 400;
+			@include sbg(--csgrid-header-row-bg);
+			@include sc(--csgrid-header-row-c);
+			@include css4 {
+				border-bottom: 1px solid cvar(--csgrid-row-br);
+			}
+
+			.ag-header-row {
+				height: 35px !important;
+				min-height: 35px !important;
+
+				.ag-header-cell {
+					border: none;
+					@include sbg(--csgrid-header-cell-bg);
+
+					.cs-grid_header-inner {
+						width: 100%;
+					}
+
+					.icon-menu {
+						display: flex;
+					}
+
+					.ag-react-container > div {
+						display: flex;
+						justify-content: flex-start;
+						align-items: center;
+
+						> span:not(.btn-icon):not(.customHeaderMenuButton):not(.ag-filter-icon) {
+							display: block;
+							overflow: hidden;
+							text-overflow: ellipsis;
+							white-space: nowrap;
+							line-height: normal;
+							width: 100%;
+							margin: 0;
+							padding-right: 0.5rem;
+						}
+
+						.customHeaderMenuButton,
+						.ag-filter-icon {
+							margin-right: 0.25rem;
+						}
+
+						.btn-icon {
+							margin: 0;
+							display: block;
+							padding-top: 4px;
+						}
+					}
+				}
+			}
+		}
+
+		.ag-header-select-all,
+		.ag-header-select-all span {
+			margin: 0 !important;
+		}
+
+		/* enable basic browser text selection in grid cells */
+		.ag-cell-focus {
+			-webkit-user-select: text;
+			-moz-user-select: text;
+			-ms-user-select: text;
+			user-select: text;
+		}
+	}
+
+	.ag-selection-checkbox {
+		display: flex;
+		margin-left: -2px;
+
+		+ .ag-cell-value .ag-react-container {
+			display: inline-flex;
+		}
+	}
+
+	.ag-checkbox-checked,
+	.ag-icon.ag-icon-checkbox-checked,
+	.ag-checkbox-unchecked,
+	.ag-icon.ag-icon-checkbox-unchecked,
+	.ag-checkbox-indeterminate,
+	.ag-icon.ag-icon-checkbox-indeterminate {
+		position: relative;
+		width: 1rem;
+		height: 1rem;
+		border-radius: 0.125rem;
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+		vertical-align: middle;
+		cursor: pointer;
+		@include sbg(--csgrid-checkbox-bg);
+		@include css4 {
+			border: 1px solid cvar(--csgrid-checkbox-br);
+		}
+
+		&:before {
+			display: none;
+		}
+
+		&:active,
+		&:focus {
+			outline: 0;
+			@include css4 {
+				border: 1px solid cvar(--csgrid-checkbox-checked-br);
+				box-shadow: 0 0 3px cvar(--csgrid-checkbox-checked-br);
+			}
+		}
+	}
+
+	.ag-checkbox-checked,
+	.ag-icon.ag-icon-checkbox-checked {
+		@include sc(--csgrid-secondary);
+		@include sbg(--csgrid-checkbox-checked-bg);
+		@include css4 {
+			border: 1px solid cvar(--csgrid-checkbox-checked-br);
+		}
+
+		&:after {
+			position: absolute;
+			top: 0;
+			font-size: 0.6125rem;
+			height: 1rem;
+			line-height: 1.5;
+		}
+	}
+
+	.ag-checkbox-indeterminate,
+	.ag-icon.ag-icon-checkbox-indeterminate {
+		@include sc(--csgrid-secondary);
+		@include sbg(--csgrid-checkbox-checked-bg);
+		@include css4 {
+			border: 1px solid cvar(--csgrid-checkbox-checked-br);
+		}
+
+		&:after {
+			display: block;
+			content: "";
+			height: 0.25rem;
+			width: 0.5rem;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate3d(-50%, -65%, 0);
+			box-sizing: border-box;
+			@include css4 {
+				border-bottom: 2px solid cvar(--csgrid-secondary);
+			}
+		}
+	}
+
+	.ag-checkbox-checked > .ag-icon.ag-icon-checkbox-checked,
+	.ag-checkbox-unchecked > .ag-icon.ag-icon-checkbox-unchecked,
+	.ag-checkbox-indeterminate > .ag-icon.ag-icon.ag-icon-checkbox-indeterminate {
+		display: none;
+	}
+
+	.ag-row-even,
+	.ag-row-odd {
+		@include sbg(--csgrid-row-bg);
+
+		&.ag-row-hover,
+		&.ag-row-inline-editing {
+			@include sbg(--csgrid-row-hover-bg);
+		}
+	}
+}

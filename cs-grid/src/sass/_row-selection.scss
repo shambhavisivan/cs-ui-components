@@ -27,6 +27,9 @@
 		.cs-dropdown-wrapper {
 			position: fixed;
 		}
+
+		.ag-row-selected {
+			@include sc(--csgrid-secondary);
+		}
 	}
 }
-

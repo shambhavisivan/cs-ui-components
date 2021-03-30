@@ -54,6 +54,132 @@
 			right: 1.75rem;
 		}
 	}
+
+	.ag-theme-balham {
+		.ag-header-cell::after,
+		.ag-header-group-cell::after {
+			margin-top: 0;
+			top: 0;
+			height: 35px;
+			width: 0;
+			@include css4 {
+				border-right: 1px solid cvar(--csgrid-input-br);
+			}
+		}
+
+		.read-only-cell {
+			@include sc(--csgrid-checkbox-disabled-checked-br);
+		}
+
+		.ag-cell.read-only-cell-wrapper:focus {
+			background: rgba(0,0,0,0.05) !important;
+
+			&.ag-cell-focus {
+				@include css4 {
+					border: 2px solid cvar(--csgrid-transparent) !important;
+				}
+			}
+		}
+
+		.ag-ltr .ag-has-focus.ag-has-focus .ag-cell-focus:not(.ag-cell-range-selected) {
+			@include css4 {
+				border: 2px dashed cvar(--csgrid-edit-br);
+			}
+		}
+
+		.ag-cell {
+			padding-right: 0.75rem;
+			padding-left: 0.75rem;
+			overflow: visible;
+			@include css4 {
+				border: 2px solid cvar(--csgrid-transparent);
+			}
+		}
+
+		.ag-cell-value {
+			overflow: visible;
+		}
+
+		.ag-cell .ag-react-container {
+
+			input[type="number"] {
+				width: 100% !important;
+			}
+
+			> span {
+				width: 100%;
+				display: flex;
+
+				> span, .cs-tooltip-wrapper > span {
+					display: block;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					max-width: 100%;
+				}
+			}
+		}
+
+		.ag-cell,
+		.ag-cell.ag-cell-inline-editing,
+		.ag-cell.ag-cell-not-inline-editing {
+			display: flex;
+			align-items: center;
+			height: 100%;
+			border-radius: 0;
+			background: transparent;
+			&:not(.cs-grid_custom-class):not(.ag-cell-data-changed)  {
+				z-index: 10;
+				@include sbg(--csgrid-transparent);
+			}
+
+			.ag-react-container {
+				display: flex;
+				align-items: center;
+				height: 42px;
+				border: none !important;
+				border-radius: 0 !important;
+				box-shadow: none !important;
+				outline: none !important;
+
+				input:not(.cs-grid_checkbox) {
+					border: none !important;
+					height: 42px;
+					font-size: 0.75rem;
+					line-height: 26px;
+					padding-bottom: 1px;
+					padding: 0 0.75rem 1px;
+					@include sbg(--csgrid-transparent);
+				}
+			}
+
+			.ag-input-text-wrapper input {
+				border: none !important;
+				height: 50px;
+				font-size: 0.75rem;
+				line-height: 26px;
+				padding-bottom: 1px;
+				@include sbg(--csgrid-transparent);
+			}
+
+			&:focus:not(.read-only-cell-wrapper).ag-cell-focus.ag-cell-focus {
+				@include css4 {
+					border: 2px dashed cvar(--csgrid-edit-br);
+				}
+			}
+		}
+
+	}
+
+	.cs-grid_number-inner,
+	.cs-grid_text-inner {
+		width: 90% !important;
+		border: none !important;
+		border-radius: 0 !important;
+		box-shadow: none !important;
+		outline: none !important;
+		padding: 0 !important;
+	}
 }
 
 /* ICON FIELD STYLES */

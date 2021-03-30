@@ -128,5 +128,11 @@
 			}
 		}
 	}
+
+	.cs-grid_popup-wrapper {
+		display: flex !important;
+		flex-direction: column;
+		flex: 1;
+	}
 }
 

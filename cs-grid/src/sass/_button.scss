@@ -4,15 +4,12 @@
 	margin-left: 0.375rem;
 }
 
-.cs-grid_search, .cs-grid_quick-filter {
-	.cs-grid_clear-button.cs-btn.cs-btn-icon-only {
-		bottom: 50%;
-		position: absolute;
-		right: 0.75rem;
-		transform: translateY(50%);
-	}
+.cs-grid_search .cs-grid_clear-button.cs-btn.cs-btn-icon-only {
+	bottom: 50%;
+	position: absolute;
+	right: 0.75rem;
+	transform: translateY(50%);
 }
-
 
 /* CUSTOM CONTENT */
 .cs-btn-custom-content > span[class*="icon"] {
