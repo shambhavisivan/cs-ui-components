@@ -34,8 +34,10 @@ export interface CSButtonProps {
 	link?: string;
 	loading?: boolean;
 	onClick?: (value: any) => any;
-	onKeyDown?: (e: React.KeyboardEvent<HTMLButtonElement | HTMLAnchorElement>) => any;
-	onMouseDown?: (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => any;
+	onKeyDown?: (e: React.KeyboardEvent<HTMLAnchorElement | HTMLButtonElement>) => any;
+	onMouseDown?: (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => any;
+	onMouseEnter?: (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => any;
+	onMouseLeave?: (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => any;
 	openInNewTab?: boolean;
 	role?: CSButtonRole;
 	routerLink?: JSX.Element;
@@ -121,6 +123,8 @@ class CSButton extends React.Component<CSButtonProps> {
 			onClick,
 			onKeyDown,
 			onMouseDown,
+			onMouseEnter,
+			onMouseLeave,
 			openInNewTab,
 			role,
 			routerLink,
@@ -182,6 +186,8 @@ class CSButton extends React.Component<CSButtonProps> {
 			'aria-haspopup': ariaHaspopup,
 			'role': role,
 			'onMouseDown': onMouseDown,
+			'onMouseEnter': onMouseEnter,
+			'onMouseLeave': onMouseLeave,
 			'onKeyDown': onKeyDown,
 			'ref': forwardRef,
 			...rest

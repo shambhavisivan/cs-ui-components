@@ -10,7 +10,7 @@ export interface CSUnmountDelayState {
 	mounted?: boolean;
 }
 
-const withCSUnmountDelay = (Component: any, timeout: number = 200) => (
+const withCSUnmountDelay = (Component: any, timeout: number = 200) => {
 	class CSUnmountDelay extends React.Component<CSUnmountDelayProps, CSUnmountDelayState> {
 		public static defaultProps = {
 			animated: false,
@@ -45,10 +45,15 @@ const withCSUnmountDelay = (Component: any, timeout: number = 200) => (
 			return <Component
 				mounted={this.state.mounted}
 				setMounted={this.setMounted}
+				forwardRef={this.props.forwardRef}
 				{...this.props}
 			/>;
 		}
 	}
-);
+
+	return React.forwardRef((props: CSUnmountDelayProps, ref) => {
+		return <CSUnmountDelay {...props} forwardRef={ref} />;
+	});
+};
 
 export default withCSUnmountDelay;

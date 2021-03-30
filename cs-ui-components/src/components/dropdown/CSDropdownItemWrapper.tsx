@@ -4,22 +4,24 @@ import withCSUnmountDelay from '../../helpers/CSUnmountDelay';
 
 import {
 	CSDropdownAlign,
-	CSDropdownPosition,
-	CSDropdownSize
+	CSDropdownPosition
 } from './CSDropdown';
 
 export interface CSDropdownItemWrapperProps {
-	align?: CSDropdownAlign;
+	align: CSDropdownAlign;
 	animated: boolean;
 	children?: any;
+	forwardRef?: any;
 	hover?: boolean;
 	maxHeight?: string;
 	maxWidth?: string;
-	padding?: string;
-	position?: CSDropdownPosition;
-	size?: CSDropdownSize;
-	setMounted: () => void;
 	mounted: boolean;
+	onMouseEnter?: (e: React.MouseEvent<HTMLDivElement>) => any;
+	onMouseLeave?: (e: React.MouseEvent<HTMLDivElement>) => any;
+	padding?: string;
+	position: CSDropdownPosition;
+	setMounted: () => void;
+	style?: CSSProperties;
 	visible: boolean;
 }
 
@@ -40,33 +42,34 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 	render() {
 		const {
 			align,
+			animated,
 			children,
+			forwardRef,
+			hover,
 			maxHeight,
 			maxWidth,
+			mounted,
+			onMouseEnter,
+			onMouseLeave,
 			padding,
 			position,
-			visible,
-			mounted,
-			animated
+			style,
+			visible
 		} = this.props;
 
 		const btnDropdownOuterItemWrapperClasses = classNames(
-			'cs-dropdown-outer-item-wrapper',
-			{
-				'cs-dropdown-hidden': !(visible && mounted) && animated,
-				[`cs-dropdown-${this.props.align}`]: align,
-				[`cs-dropdown-${this.props.position}`]: position
-			}
-		);
+			'cs-dropdown-outer-item-wrapper', {
+			'cs-dropdown-hidden': !(visible && mounted) && animated,
+			'cs-dropdown-hover': hover,
+			[`cs-dropdown-${position}-${align}`]: position && align && hover
+		});
 
 		const btnDropdownItemWrapperClasses = classNames(
-			'cs-dropdown-item-wrapper',
-			{
-				'cs-dropdown-item-wrapper-no-padding': this.props.padding === '0'
-			}
-		);
+			'cs-dropdown-item-wrapper', {
+			'cs-dropdown-item-wrapper-no-padding': padding === '0'
+		});
 
-		const style: CSSProperties = {
+		const dropdownItemWrapperStyle: CSSProperties = {
 			'--cs-dropdown-max-height': maxHeight,
 			'--cs-dropdown-max-width': maxWidth,
 			'--cs-dropdown-padding': padding
@@ -86,8 +89,14 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 		});
 
 		return (
-			<div className={btnDropdownOuterItemWrapperClasses}>
-				<ul className={btnDropdownItemWrapperClasses} role="menu" style={style}>
+			<div
+				className={btnDropdownOuterItemWrapperClasses}
+				style={style}
+				ref={forwardRef}
+				onMouseEnter={onMouseEnter}
+				onMouseLeave={onMouseLeave}
+			>
+				<ul className={btnDropdownItemWrapperClasses} role="menu" style={dropdownItemWrapperStyle}>
 					{childrenWithWrapper}
 				</ul>
 			</div>
@@ -95,4 +104,4 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 	}
 }
 
-export default  withCSUnmountDelay(CSDropdownItemWrapper, 100);
+export default withCSUnmountDelay(CSDropdownItemWrapper, 100);

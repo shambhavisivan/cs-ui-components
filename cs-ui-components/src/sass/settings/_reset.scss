@@ -30,7 +30,10 @@
 }
 
 /* CSS reset */
-.cs-app-wrapper, .cs-modal-root, .cs-tooltip-root {
+.cs-app-wrapper,
+.cs-modal-root,
+.cs-tooltip-root,
+.cs-dropdown-root {
 	* {
 		font-family: 'SFFont';
 		box-sizing: border-box;

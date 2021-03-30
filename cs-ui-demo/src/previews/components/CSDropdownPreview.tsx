@@ -22,24 +22,23 @@ class CSDropdownPreview extends React.Component {
 							variationName: ['default'],
 							quickLink: 'default initial',
 							variationText: ['btnStyle="initial"'],
-							component: <CSDropdown
-								iconName="down"
-							>
-								<CSButton
-									iconName="world"
-									label="test label small"
-								/>
-								<CSButton
-									iconName="world"
-									label="test label large large"
-									disabled
-								/>
-								<CSButton
-									iconName="world"
-									label="test label large large"
-									disabled
-								/>
-							</CSDropdown>
+							component:
+								<CSDropdown iconName="down">
+									<CSButton
+										iconName="world"
+										label="test label small"
+									/>
+									<CSButton
+										iconName="world"
+										label="test label large large"
+										disabled
+									/>
+									<CSButton
+										iconName="world"
+										label="test label large large"
+										disabled
+									/>
+								</CSDropdown >
 						},
 						{
 							variationName: ['default'],
@@ -184,32 +183,6 @@ class CSDropdownPreview extends React.Component {
 							component: <CSDropdown
 								size="xsmall"
 								iconName="down"
-							>
-								<CSButton
-									iconName="world"
-									label="test label small"
-								/>
-								<CSButton
-									iconName="world"
-									label="test label large large"
-								/>
-							</CSDropdown>
-						}
-					]
-				},
-				{
-					propName: 'defaultOpen',
-					alert: {
-						variant: 'info',
-						text: 'This prop shouldn\'t be used with hover prop.'
-					},
-					variations: [
-						{
-							variationName: ['true'],
-							quickLink: 'true',
-							component: <CSDropdown
-								iconName="down"
-								defaultOpen
 							>
 								<CSButton
 									iconName="world"

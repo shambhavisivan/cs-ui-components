@@ -11,6 +11,8 @@ import { CSButton, CSTable, CSTableCell, CSTableHeader, CSTableBody, CSTableRow,
 class CSButtonPreview extends React.Component {
 	handleClick = () => alert('Button has been clicked.');
 	handleMouseDown = () => alert('Mouse down has been registered.');
+	handleMouseEnter = () => alert('Mouse enter has been registered.');
+	handleMouseLeave = () => alert('Mouse leave has been registered.');
 	handleKeyDown = (event: any) => alert(`Key ${event.key} has been pressed.`);
 
 	getButtonDoc = () => ({
@@ -44,7 +46,7 @@ class CSButtonPreview extends React.Component {
 							}, {
 								primaryVariants: 'borderRadius="0"',
 								quickLink: '0',
-								component: <CSButton label="Sharp border button" borderRadius="0"/>,
+								component: <CSButton label="Sharp border button" borderRadius="0" />,
 								code: '<CSButton label="Sharp border button" borderRadius="0"/>'
 							}, {
 								primaryVariants: 'borderRadius="1rem"',
@@ -741,6 +743,22 @@ class CSButtonPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'onMouseEnter',
+						variations: [
+							{
+								component: <CSButton label="Button with onMouseEnter" onMouseEnter={this.handleMouseEnter} />,
+								code: '<CSButton label="Button with onMouseEnter" onMouseEnter={this.handleMouseEnter} />'
+							}
+						]
+					}, {
+						propName: 'onMouseLeave',
+						variations: [
+							{
+								component: <CSButton label="Button with onMouseLeave" onMouseLeave={this.handleMouseLeave} />,
+								code: '<CSButton label="Button with onMouseLeave" onMouseLeave={this.handleMouseLeave} />'
+							}
+						]
+					}, {
 						propName: 'openInNewTab',
 						alert: {
 							variant: 'info',
@@ -992,6 +1010,14 @@ class CSButtonPreview extends React.Component {
 				types: ['(event) => any'],
 				description: 'Handler method for the mousedown event.'
 			}, {
+				name: 'onMouseEnter',
+				types: ['(event) => any'],
+				description: 'Handler method for the mouseenter event.'
+			}, {
+				name: 'onMouseLeave',
+				types: ['(event) => any'],
+				description: 'Handler method for the mouseleave event.'
+			}, {
 				name: 'openInNewTab',
 				types: ['boolean'],
 				default: 'false',
@@ -1161,7 +1187,7 @@ class CSButtonPreview extends React.Component {
 					<PreviewTable components={[component]} />
 					<PreviewAccessibility components={[component]} />
 				</div>
-					<PreviewLinks {...component} />
+				<PreviewLinks {...component} />
 			</>
 		);
 	}
