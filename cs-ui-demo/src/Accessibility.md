@@ -22,11 +22,11 @@
 ## Official Documentation<a name="Offical Documentation">
 * Web Content Accessibility Guidelines (WCAG) 2.1
 
-* SUPPORTIVE DOCUMENTS
-  * How to Meet WCAG 2.1 (Quick Reference)
-  * Understanding WCAG 2.1
-  * Techniques for WCAG 2.1
-  * WAI-ARIA Authoring Practices 1.1
+* SUPPORTIVE DOCUMENTS <a name="SUPPORTIVE DOCUMENTS"></a>
+  * [How to Meet WCAG 2.1 (Quick Reference)](https://www.w3.org/WAI/WCAG21/quickref/)
+  * [Understanding WCAG 2.2](https://www.w3.org/WAI/WCAG21/Understanding/)
+  * [Techniques for WCAG 2.2](https://www.w3.org/WAI/WCAG21/Techniques/)
+  * [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices-1.1/)
 
 * WCAG 2.2 is scheduled to be published in 2021. There are 9 additional success criteria proposed and currently in working draft status.
 
