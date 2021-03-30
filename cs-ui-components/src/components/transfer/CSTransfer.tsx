@@ -196,9 +196,15 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 	handleActionsKeyDown = (event: React.KeyboardEvent<any>) => {
 		switch (event.key) {
 			case KeyCode.ArrowRight:
+				if (!this.state.targetData.length) {
+					break;
+				}
 				(this.targetListRef.current.querySelector(this.element) as HTMLElement).focus();
 				break;
 			case KeyCode.ArrowLeft:
+				if (!this.state.sourceData.length) {
+					break;
+				}
 				(this.sourceListRef.current.querySelector(this.element) as HTMLElement).focus();
 				break;
 			case KeyCode.ArrowDown:
