@@ -74,7 +74,7 @@
 			}
 		}
 
-		&:focus + .cs-toggle-faux {
+		&:focus-visible + .cs-toggle-faux {
 			@include css4 {
 				border: 1px solid cvar(--cs-toggle-focus-br);
 				box-shadow: 0 0 3px cvar(--cs-toggle-focus-box);
@@ -146,7 +146,7 @@
 				}
 			}
 
-			&:focus + .cs-toggle-faux {
+			&:focus-visible + .cs-toggle-faux {
 				@include css4 {
 					border: 2px solid cvar(--cs-toggle-error-br);
 					box-shadow: 0 0 3px cvar(--cs-toggle-error-box);
