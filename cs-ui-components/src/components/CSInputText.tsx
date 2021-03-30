@@ -31,27 +31,12 @@ export interface CSInputTextProps {
 	value?: string;
 }
 
-export interface CSInputTextState {
-	value: string;
-}
-
-export function fixControlledValue<T>(value: T) {
-	if (typeof value === 'undefined' || value === null) {
-		return '';
-	}
-	return value;
-}
-
-class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
+class CSInputText extends React.Component<CSInputTextProps> {
 
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
 
 	constructor(props: CSInputTextProps) {
 		super(props);
-		const value = typeof props.value === undefined ? '' : props.value;
-		this.state = {
-			value
-		};
 	}
 
 	onFocus: React.FocusEventHandler<HTMLInputElement> = e => {
@@ -69,15 +54,8 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 	}
 
 	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		this.setState({ value: e.target.value });
 		if (this.props.onChange) {
 			this.props.onChange(e);
-		}
-	}
-
-	componentDidUpdate(prevProps: CSInputTextProps) {
-		if (prevProps.value !== this.props.value) {
-			this.setState({ value: this.props.value });
 		}
 	}
 
@@ -145,7 +123,7 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 						maxLength={maxLength}
 						readOnly={readOnly}
 						required={required}
-						value={fixControlledValue(this.state.value)}
+						value={value ?? ''}
 						type="text"
 						aria-label={label}
 						aria-required={required}
