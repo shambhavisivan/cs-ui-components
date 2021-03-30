@@ -199,7 +199,6 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 							dropdownMode={dropdownMode}
 							readOnly={readOnly}
 							ref={this.datepicker}
-							tabIndex={readOnly ? -1 : null}
 							yearDropdownItemNumber={yearDropdownItemNumber}
 							autoComplete="off"
 							required={required}

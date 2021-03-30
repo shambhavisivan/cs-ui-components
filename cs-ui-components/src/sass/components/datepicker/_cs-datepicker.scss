@@ -324,6 +324,7 @@
 		&:focus {
 			@include css4 {
 				box-shadow: none;
+				border-color: cvar(--cs-transparent);
 			}
 		}
 	}
