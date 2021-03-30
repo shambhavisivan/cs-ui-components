@@ -48,25 +48,33 @@
 							margin-left: 0.5rem;
 						}
 					}
+					&:hover {
+						@include sbg(--cs-transfer-list-item-hover);
+					}
 					&-selected {
 						@include sbg(--cs-transfer-list-item-selected-bg);
+
+					}
+					&-selected:hover {
+						@include bgd(--cs-transfer-list-item-selected-bg, 0.02);
 					}
 					&-simple {
 						cursor: pointer;
+
+						&:focus-visible {
+							outline: none;
+							z-index: var(--z-index-transfer-list-item-focus);
+							@include css4 {
+								box-shadow: 0 0 3px cvar(--cs-transfer-list-item-box);
+							}
+						}
 					}
 					&-disabled {
 						@include sc(--cs-transfer-list-item-disabled-c);
 						pointer-events: none;
 					}
-					&:hover {
-						@include sbg(--cs-transfer-list-item-hover);
-					}
 					&:focus {
 						outline: none;
-						z-index: var(--z-index-transfer-list-item-focus);
-						@include css4 {
-							box-shadow: 0 0 3px cvar(--cs-transfer-list-item-box);
-						}
 					}
 					&.cs-transfer-li-one-way {
 						justify-content: space-between;
