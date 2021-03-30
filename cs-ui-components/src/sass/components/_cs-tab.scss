@@ -54,9 +54,13 @@
 				transition: height 0.2s ease;
 			}
 
-			&:hover::after, &:focus:after {
+			&:hover::after {
 				height: 0.125rem;
 				@include sbg(--cs-tab-hover-br);
+			}
+
+			&:focus-visible {
+				text-decoration: underline;
 			}
 
 			&:active {
@@ -77,10 +81,8 @@
 			.cs-icon {
 				@include sf(--cs-tab-error-fill);
 			}
-			.cs-tab {
-				&:hover::after, &:focus:after {
-					@include sbg(--cs-tab-error-br);
-				}
+			.cs-tab:hover::after {
+				@include sbg(--cs-tab-error-br);
 			}
 		}
 
@@ -88,10 +90,8 @@
 			.cs-icon {
 				@include sf(--cs-tab-warning-fill);
 			}
-			.cs-tab {
-				&:hover::after, &:focus:after {
-					@include sbg(--cs-tab-warning-br);
-				}
+			.cs-tab:hover::after {
+				@include sbg(--cs-tab-warning-br);
 			}
 		}
 
@@ -99,10 +99,8 @@
 			.cs-icon {
 				@include sf(--cs-tab-success-fill);
 			}
-			.cs-tab {
-				&:hover::after, &:focus:after {
-					@include sbg(--cs-tab-success-br);
-				}
+			.cs-tab:hover::after {
+				@include sbg(--cs-tab-success-br);
 			}
 		}
 

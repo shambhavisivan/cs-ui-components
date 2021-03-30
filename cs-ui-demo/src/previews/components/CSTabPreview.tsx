@@ -90,12 +90,12 @@ class CSTabPreview extends React.Component {
 								primaryVariants: 'active={true}',
 								secondaryVariants: 'variant="normal"',
 								quickLink: 'true normal',
-								component: <CSTabGroup variant="normal">
+								component: <CSTabGroup>
 									<CSTab name="Tab One" active />
 									<CSTab name="Tab Two" />
 									<CSTab name="Tab Three" />
 								</CSTabGroup>,
-								code: `<CSTabGroup variant="normal">
+								code: `<CSTabGroup>
 									<CSTab name="Tab One" active />
 									<CSTab name="Tab Two" />
 									<CSTab name="Tab Three" />
@@ -104,12 +104,12 @@ class CSTabPreview extends React.Component {
 							primaryVariants: 'active={true}',
 							secondaryVariants: 'variant="large"',
 							quickLink: 'true large',
-							component: <CSTabGroup>
+							component: <CSTabGroup variant="large">
 								<CSTab name="Tab One" active />
 								<CSTab name="Tab Two" />
 								<CSTab name="Tab Three" />
 							</CSTabGroup>,
-							code: `<CSTabGroup>
+							code: `<CSTabGroup variant="large">
 								<CSTab name="Tab One" active />
 								<CSTab name="Tab Two" />
 								<CSTab name="Tab Three" />
@@ -123,12 +123,12 @@ class CSTabPreview extends React.Component {
 								primaryVariants: 'disabled={true}',
 								secondaryVariants: 'variant="normal"',
 								quickLink: 'disabled normal',
-								component: <CSTabGroup variant="normal">
+								component: <CSTabGroup>
 									<CSTab name="Tab One" disabled />
 									<CSTab name="Tab Two" />
 									<CSTab name="Tab Three" />
 								</CSTabGroup>,
-								code: `<CSTabGroup variant="normal">
+								code: `<CSTabGroup>
 									<CSTab name="Tab One" disabled />
 									<CSTab name="Tab Two" />
 									<CSTab name="Tab Three" />
@@ -137,12 +137,12 @@ class CSTabPreview extends React.Component {
 								primaryVariants: 'disabled={true}',
 								secondaryVariants: 'variant="large"',
 								quickLink: 'disabled large',
-								component: <CSTabGroup>
+								component: <CSTabGroup variant="large">
 									<CSTab name="Tab One" disabled />
 									<CSTab name="Tab Two" />
 									<CSTab name="Tab Three" />
 								</CSTabGroup>,
-								code: `<CSTabGroup>
+								code: `<CSTabGroup variant="large">
 									<CSTab name="Tab One" disabled />
 									<CSTab name="Tab Two" />
 									<CSTab name="Tab Three" />
