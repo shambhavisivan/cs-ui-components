@@ -4,85 +4,87 @@
 	flex-direction: column;
 
 	/* CS LIST GROUP HEADER */
-	.cs-list-group-header {
+	.cs-list-group-wrapper {
 		display: flex;
-		align-items: stretch;
-		&-inner-wrapper {
-			flex: 1;
+		flex-direction: column;
+		.cs-list-group-header {
 			display: flex;
-			align-items: center;
-			cursor: pointer;
-			padding: 0 0.5rem;
-			background-color: inherit;
-			text-align: left;
-			.cs-icon {
-				transition: transform 0.2s;
-				pointer-events: none;
-			}
-			.cs-checkbox-wrapper {
-				margin-right: 0.5rem;
-			}
-		}
-		&-simple-list, &-check-list {
-			.cs-list-group-header-inner-wrapper {
-				&:hover {
-					@include sbg(--cs-list-item-header-hover);
+			align-items: stretch;
+			&-inner-wrapper {
+				flex: 1;
+				display: flex;
+				align-items: center;
+				cursor: pointer;
+				padding: 0 0.5rem;
+				background-color: inherit;
+				text-align: left;
+				.cs-icon {
+					transition: transform 0.2s;
+					pointer-events: none;
 				}
-
-				&:focus, &:active {
-					outline: 0;
-					@include css4 {
-						box-shadow: 0 0 3px cvar(--cs-list-item-header-box);
+				.cs-checkbox-wrapper {
+					margin-right: 0.5rem;
+				}
+			}
+			&-simple-list, &-check-list {
+				.cs-list-group-header-inner-wrapper {
+					&:hover {
+						@include sbg(--cs-list-item-header-hover);
+					}
+					&:focus, &:active {
+						outline: 0;
+						@include css4 {
+							box-shadow: 0 0 3px cvar(--cs-list-item-header-box);
+						}
 					}
 				}
 			}
-		}
-		&-simple-list {
-			@include sbg(--cs-white);
-		}
-		&-check-list {
-			@include sbg(--cs-list-item-header-bg);
-			.cs-list-group-header-title {
-				@include sc(--cs-list-item-header-c);
-				@include overflow-ellipsis;
-				letter-spacing: 0.0625rem;
-				text-transform: uppercase;
+			&-simple-list {
+				@include sbg(--cs-white);
 			}
-		}
-		&-custom-content {
-			display: flex;
-			align-items: center;
-			flex: 1;
-			margin-left: 0.5rem;
-		}
-		&-small {
-			min-height: 1.75rem;
-			.cs-list-group-header-title {
-				font-size: 0.8125rem;
+			&-check-list {
+				@include sbg(--cs-list-item-header-bg);
+				.cs-list-group-header-title {
+					@include sc(--cs-list-item-header-c);
+					@include overflow-ellipsis;
+					letter-spacing: 0.0625rem;
+					text-transform: uppercase;
+				}
 			}
-		}
-		&-medium {
-			min-height: 2rem;
-			.cs-list-group-header-title {
-				font-size: 0.875rem;
-			}
-		}
-		&-large {
-			min-height: 2.5rem;
-			.cs-list-group-header-title {
-				font-size: 1rem;
-			}
-		}
-		&-title {
-			pointer-events: none;
-			&:not(:only-child) {
+			&-custom-content {
+				display: flex;
+				align-items: center;
+				flex: 1;
 				margin-left: 0.5rem;
 			}
-		}
-		&-noncollapsible
-		.cs-list-group-header-inner-wrapper {
-			cursor: default;
-			pointer-events: none;
+			&-small {
+				min-height: 1.75rem;
+				.cs-list-group-header-title {
+					font-size: 0.8125rem;
+				}
+			}
+			&-medium {
+				min-height: 2rem;
+				.cs-list-group-header-title {
+					font-size: 0.875rem;
+				}
+			}
+			&-large {
+				min-height: 2.5rem;
+				.cs-list-group-header-title {
+					font-size: 1rem;
+				}
+			}
+			&-title {
+				pointer-events: none;
+				&:not(:only-child) {
+					margin-left: 0.5rem;
+				}
+			}
+			&-noncollapsible .cs-list-group-header-inner-wrapper {
+				cursor: default;
+				pointer-events: none;
+			}
 		}
 	}
 

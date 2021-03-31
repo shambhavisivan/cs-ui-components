@@ -130,6 +130,11 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 			'cs-list-group-header-noncollapsible': !collapsible
 		});
 
+		const listGroupWrapperClasses = classNames(
+			'cs-list-group-wrapper', {
+			[`${className}`]: className
+		});
+
 		const headerIconSize = () => {
 			switch (listSize) {
 				case 'large':
@@ -160,7 +165,7 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 			</div>;
 
 		return (
-			<li role="none" id={id} {...rest}>
+			<li role="none" id={id} {...rest} className={listGroupWrapperClasses}>
 				<h3 className={listGroupHeaderClasses}>
 					<div
 						role="button"
