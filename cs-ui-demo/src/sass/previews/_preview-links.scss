@@ -61,7 +61,7 @@
 	}
 
 	.quick-links-search {
-		padding: 4rem 1rem 1rem;
+		margin: 4rem 1rem 1rem;
 		position: relative;
 		overflow: hidden;
 
@@ -69,8 +69,8 @@
 			position: absolute;
 			width: 1rem;
 			height: 1rem;
-			top: 4.75rem;
-			left: 2rem;
+			top: 0.75rem;
+			left: 1rem;
 			pointer-events: none;
 			fill: var(--cs-icon-sidebar-fill);
 		}
@@ -123,7 +123,8 @@
 
 	.prop-list {
 		flex: 1;
-		overflow: auto;
+		overflow-y: auto;
+		overflow-x: hidden;
 		background: var(--prop-sidebar-bg);
 
 		&::-webkit-scrollbar {
@@ -206,6 +207,7 @@
 	.prop-sidebar-bottom-group {
 		margin-top: auto;
 		background: var(--cs-shadow-light);
+		overflow: hidden;
 
 		h4 {
 			word-break: break-all;
