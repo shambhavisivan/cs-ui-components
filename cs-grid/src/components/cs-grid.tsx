@@ -14,7 +14,6 @@ import {
 
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import { AgGridReact } from 'ag-grid-react';
-import * as KeyCode from 'keycode-js';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -280,6 +279,14 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 
 	getRowClass = (params: any) => {
 		return this.props.getRowClass(params.node.id);
+	};
+
+	getFocusableElements = (node: HTMLElement) => {
+		return Array.from(
+			(node as HTMLElement).querySelectorAll(
+				'button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]:not([disabled])'
+			)
+		);
 	};
 
 	render() {
@@ -1065,18 +1072,69 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				if (columnDef.getActions !== undefined) {
 					const settings: AgGridColDef = {};
 					settings.suppressKeyboardEvent = (params: SuppressKeyboardEventParams) => {
-						return (
-							params.event.which === KeyCode.KEY_ENTER ||
-							params.event.which === KeyCode.KEY_RETURN ||
-							(params.editing &&
-								(params.event.which === KeyCode.KEY_TAB ||
-									params.event.which === KeyCode.KEY_UP ||
-									params.event.which === KeyCode.KEY_DOWN)) ||
-							(params.column.getColDef().field === columnDef.name &&
-								(params.event.which === KeyCode.KEY_TAB ||
-									params.event.which === KeyCode.KEY_LEFT ||
-									params.event.which === KeyCode.KEY_RIGHT))
-						);
+						// Get parent ag-cell which is active
+						const parent =
+							(params.event.target as HTMLDivElement).getElementsByClassName(
+								'ag-cell-focus'
+							)[0] ||
+							(params.event.target as HTMLDivElement).closest('.ag-cell-focus');
+						let focusable;
+
+						// If parent (ag-cell) get focusable children
+						if (parent) {
+							focusable = this.getFocusableElements(parent as HTMLDivElement);
+							focusable.unshift(parent as HTMLElement);
+						}
+
+						let trap;
+						// If focused elements
+						if (focusable.length > 0) {
+							if (params.event.key === 'ArrowRight' || params.event.key === 'Tab') {
+								// If focused element isn't last focused item trap inside cell
+								if (document.activeElement !== focusable[focusable.length - 1]) {
+									trap = true;
+
+									event.preventDefault();
+
+									// Get focused element index and focus next element
+									const index = focusable.indexOf(document.activeElement);
+									(focusable[index + 1] as HTMLElement).focus();
+								}
+							} else if (params.event.key === 'ArrowLeft') {
+								// If focused element isn't first element inside cell trap inside cell
+								if (document.activeElement !== focusable[1]) {
+									trap = true;
+
+									const index = focusable.indexOf(document.activeElement);
+
+									// If ag-cell focused focus last item first
+									if (index === 0) {
+										(focusable[focusable.length - 1] as HTMLElement).focus();
+										// Else focus from last to first
+									} else {
+										(focusable[index - 1] as HTMLElement).focus();
+									}
+								}
+							}
+							// Else don't trap and let grid focus as normal
+						} else {
+							trap = false;
+						}
+
+						// If trapped inside cell disable following events
+						if (trap) {
+							return (
+								params.event.key === 'Enter' ||
+								(params.editing &&
+									(params.event.key === 'Tab' ||
+										params.event.key === 'ArrowUp' ||
+										params.event.key === 'ArrowDown')) ||
+								(params.column.getColDef().field === columnDef.name &&
+									(params.event.key === 'Tab' ||
+										params.event.key === 'ArrowLeft' ||
+										params.event.key === 'ArrowRight'))
+							);
+						}
 					};
 
 					agGridColDef = { ...settings, ...agGridColDef };
