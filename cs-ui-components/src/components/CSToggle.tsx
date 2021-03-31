@@ -26,32 +26,13 @@ export interface CSToggleProps {
 	tooltipPosition?: CSTooltipPosition;
 }
 
-export interface CSToggleState {
-	checked: boolean;
-}
-
-class CSToggle extends React.Component<CSToggleProps, CSToggleState> {
+class CSToggle extends React.Component<CSToggleProps> {
 
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
 
-	constructor(props: CSToggleProps) {
-		super(props);
-
-		this.state = {
-			checked: !!this.props.checked
-		};
-	}
-
 	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		this.setState({ checked: !this.state.checked });
 		if (this.props.onChange) {
 			this.props.onChange(e);
-		}
-	}
-
-	componentDidUpdate(prevProps: CSToggleProps) {
-		if (prevProps.checked !== this.props.checked) {
-			this.setState({ checked: this.props.checked });
 		}
 	}
 
@@ -110,7 +91,7 @@ class CSToggle extends React.Component<CSToggleProps, CSToggleState> {
 							className={toggleClasses}
 							type="checkbox"
 							disabled={disabled}
-							checked={this.state.checked}
+							checked={checked}
 							required={required}
 							id={this.uniqueAutoId}
 							aria-label={label}

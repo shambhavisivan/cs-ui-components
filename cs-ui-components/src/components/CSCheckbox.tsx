@@ -34,11 +34,7 @@ export interface CSCheckboxProps {
 	variant?: CSCheckboxVariant;
 }
 
-export interface CSCheckboxState {
-	checked: boolean;
-}
-
-class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
+class CSCheckbox extends React.Component<CSCheckboxProps> {
 
 	public static defaultProps = {
 		variant: 'neutral',
@@ -47,20 +43,11 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
 
-	constructor(props: CSCheckboxProps) {
-		super(props);
-
-		this.state = {
-			checked: !!this.props.checked
-		};
-	}
-
 	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (this.props.readOnly) {
 			return;
 		}
 
-		this.setState({ checked: !this.state.checked });
 		if (this.props.onChange) {
 			this.props.onChange(e);
 		}
@@ -71,7 +58,6 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 			return;
 		}
 
-		this.setState({ checked: !this.state.checked });
 		if (this.props.onClick) {
 			this.props.onClick(e);
 		}
@@ -153,7 +139,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 							className={checkboxClasses}
 							type="checkbox"
 							disabled={disabled}
-							checked={this.state.checked}
+							checked={checked}
 							required={required}
 							id={this.uniqueAutoId}
 							onClick={this.handleOnClick}

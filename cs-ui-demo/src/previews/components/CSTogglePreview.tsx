@@ -7,9 +7,15 @@ import PreviewLinks from '../PreviewLinks';
 
 import { CSToggle } from '@cloudsense/cs-ui-components';
 
-class CSTogglePreview extends React.Component {
-	handleChange = () => alert('Value has been toggled.');
+interface CSTogglePreviewState {
+	checked: boolean;
+}
 
+class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
+	state = {
+		checked: true
+	};
+	handleChange = () => alert('Value has been toggled.');
 	getToggleDoc = () => ({
 		name: 'Toggle',
 		usage: 'A checkable input that communicates if an option is true, false or indeterminate.',
@@ -35,8 +41,17 @@ class CSTogglePreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'checked={true}',
-								component: <CSToggle label="This is a label" checked />,
-								code: '<CSToggle label="This is a label" checked />'
+								secondaryVariants: ' onChange={() => any}',
+								component: <CSToggle
+									label="This is a label"
+									checked={this.state.checked}
+									onChange={event => this.setState({ checked: event.target.checked })}
+								/>,
+								code: `<CSToggle
+									label="This is a label"
+									checked={this.state.checked}
+									onChange={event => this.setState({ checked: event.target.checked })}
+								/>`
 							}
 						]
 					}, {

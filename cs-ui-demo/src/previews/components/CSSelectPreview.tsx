@@ -7,9 +7,17 @@ import PreviewLinks from '../PreviewLinks';
 
 import { CSSelect } from '@cloudsense/cs-ui-components';
 
-class CSSelectPreview extends React.Component {
-	handleChange = () => alert('Selection has changed.');
+interface CSSelectPreviewState {
+	value: string;
+}
 
+class CSSelectPreview extends React.Component<{}, CSSelectPreviewState> {
+
+	state = {
+		value: '30'
+	};
+
+	handleChange = () => alert('Selection has changed.');
 	getSelectDoc = () => ({
 		name: 'Select',
 		usage: 'Select element presents a menu of options.',
@@ -300,12 +308,20 @@ class CSSelectPreview extends React.Component {
 						propName: 'value',
 						variations: [
 							{
-								component: <CSSelect label="Choose amount" value="30">
+								secondaryVariants: ' onChange={() => any}',
+								component: <CSSelect
+									label="Choose amount"
+									value={this.state.value}
+									onChange={value => this.setState({ value })}>
 									<option>10</option>
 									<option>20</option>
 									<option>30</option>
 								</CSSelect>,
-								code: `<CSSelect label="Choose amount" value="30">
+								code: `<CSSelect
+									label="Choose amount"
+									value={this.state.value}
+									onChange={value => this.setState({ value })}
+								>
 									<option>10</option>
 									<option>20</option>
 									<option>30</option>

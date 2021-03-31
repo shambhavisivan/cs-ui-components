@@ -9,10 +9,14 @@ import { CSInputNumber } from '@cloudsense/cs-ui-components';
 
 interface CSInputNumberPreviewState {
 	focused: boolean;
+	value: number;
 }
 
 class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState> {
-	state = { focused: false };
+	state = {
+		focused: false,
+		value: 1
+	};
 
 	handleChange = () => alert('Value has changed.');
 	handleBlur = () => alert('Input has lost focus.');
@@ -26,7 +30,6 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 			return { focused: !prevState.focused };
 		});
 	}
-
 	getInputNumberDoc = () => ({
 		name: 'Input Number',
 		usage: 'Number inputs are used for number entry.',
@@ -319,8 +322,17 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 						propName: 'value',
 						variations: [
 							{
-								component: <CSInputNumber label="Enter value" value={1} />,
-								code: '<CSInputNumber label="Enter value" value={1} />'
+								secondaryVariants: ' onChange={() => any}',
+								component: <CSInputNumber
+									label="Enter value"
+									value={this.state.value}
+									onChange={value => this.setState({ value })}
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={this.state.value}
+									onChange={value => this.setState({ value })}
+								/>`
 							}
 						]
 					}, {

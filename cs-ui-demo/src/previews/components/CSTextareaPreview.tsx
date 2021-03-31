@@ -7,9 +7,15 @@ import PreviewLinks from '../PreviewLinks';
 
 import { CSTextarea } from '@cloudsense/cs-ui-components';
 
-class CSTextareaPreview extends React.Component {
-	handleChange = () => alert('Value has changed.');
+interface CSTextareaPreviewState {
+	value: string;
+}
 
+class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
+	state = {
+		value: 'Message'
+	};
+	handleChange = () => alert('Value has changed.');
 	getTextareaDoc = () => ({
 		name: 'Textarea',
 		usage: 'Textarea inputs are used for freeform data entry.',
@@ -215,8 +221,17 @@ class CSTextareaPreview extends React.Component {
 						propName: 'value',
 						variations: [
 							{
-								component: <CSTextarea label="Enter message" value="Message" />,
-								code: '<CSTextarea label="Enter message" value="Message" />'
+								secondaryVariants: ' onChange={() => any}',
+								component: <CSTextarea
+									label="Enter message"
+									value={this.state.value}
+									onChange={event => this.setState({ value: event.target.value })}
+								/>,
+								code: `<CSTextarea
+									label="Enter message"
+									value={this.state.value}
+									onChange={event => this.setState({ value: event.target.value })}
+								/>`
 							}
 						]
 					}, {

@@ -29,18 +29,7 @@ export interface CSTextareaProps {
 	value?: string;
 }
 
-export interface CSTextareaState {
-	value: string;
-}
-
-export function fixControlledValue<T>(value: T) {
-	if (typeof value === 'undefined' || value === null) {
-		return '';
-	}
-	return value;
-}
-
-class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
+class CSTextarea extends React.Component<CSTextareaProps> {
 
 	public static defaultProps = {
 		rows: 3
@@ -48,24 +37,9 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
 
-	constructor(props: CSTextareaProps) {
-		super(props);
-		const value = typeof props.value === undefined ? '' : props.value;
-		this.state = {
-			value
-		};
-	}
-
 	handleOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-		this.setState({ value: e.target.value });
 		if (this.props.onChange) {
 			this.props.onChange(e);
-		}
-	}
-
-	componentDidUpdate(prevProps: CSTextareaProps) {
-		if (prevProps.value !== this.props.value) {
-			this.setState({ value: this.props.value });
 		}
 	}
 
@@ -135,7 +109,7 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 						aria-label={label}
 						aria-required={required}
 						aria-invalid={error}
-						value={fixControlledValue(this.state.value)}
+						value={value}
 						style={style}
 						onChange={this.handleOnChange}
 						title={title}

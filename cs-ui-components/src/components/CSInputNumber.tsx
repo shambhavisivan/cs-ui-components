@@ -38,43 +38,13 @@ export interface CSInputNumberProps {
 	value?: any;
 }
 
-export interface CSInputNumberState {
-	value: any;
-	prevValue: any;
-}
-
-export function fixControlledValue<T>(value: T) {
-	if (typeof value === 'undefined' || value === null) {
-		return '';
-	}
-	return value;
-}
-
-class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberState> {
+class CSInputNumber extends React.Component<CSInputNumberProps> {
 
 	public static defaultProps = {
 		type: 'number'
 	};
 
-	static getDerivedStateFromProps(nextProps: CSInputNumberProps, { prevValue }: CSInputNumberState) {
-		const newState: Partial<CSInputNumberState> = { prevValue: nextProps.value };
-		if (prevValue !== nextProps.value) {
-			newState.value = nextProps.value;
-			return newState;
-		}
-		return null;
-	}
-
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
-
-	constructor(props: CSInputNumberProps) {
-		super(props);
-		const value = typeof props.value === undefined ? '' : props.value;
-		this.state = {
-			value,
-			prevValue: props.value
-		};
-	}
 
 	onFocus: React.FocusEventHandler<HTMLInputElement> = e => {
 		const { onFocus } = this.props;
@@ -91,17 +61,8 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 	}
 
 	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		/* changeState variable will determine wheather or not setState will be called.
-			setState won't be called if the function passed to onChange prop returns false.
-			This can be useful in certain scenarios where we don't want to update state (for example
-			in cs-form's NumberField - when formatting is incorrect state won't be changed)
-		*/
-		let changeState = true;
 		if (this.props.onChange) {
-			changeState = this.props.onChange(e.target.value);
-		}
-		if (changeState || changeState === undefined) {
-			this.setState({ value: e.target.value });
+			this.props.onChange(e.target.value);
 		}
 	}
 
@@ -191,7 +152,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 						readOnly={readOnly}
 						required={required}
 						disabled={disabled}
-						value={fixControlledValue(this.state.value)}
+						value={value}
 						type={type}
 						aria-label={label}
 						aria-required={required}

@@ -29,32 +29,11 @@ export interface CSSelectProps {
 	value?: any;
 }
 
-export interface CSSelectState {
-	value: any;
-	prevValue: any;
-}
-
-export function fixControlledValue<T>(value: T) {
-	if (typeof value === 'undefined' || value === null) {
-		return '';
-	}
-	return value;
-}
-
-class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
+class CSSelect extends React.Component<CSSelectProps> {
 
 	public static defaultProps = {
 		labelHidden: false
 	};
-
-	static getDerivedStateFromProps(nextProps: CSSelectProps, { prevValue }: CSSelectState) {
-		const newState: Partial<CSSelectState> = { prevValue: nextProps.value };
-		if (prevValue !== nextProps.value) {
-			newState.value = nextProps.value;
-			return newState;
-		}
-		return null;
-	}
 
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
 
@@ -68,7 +47,6 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 	}
 
 	handleOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-		this.setState({ value: e.target.value });
 		if (this.props.onChange) {
 			this.props.onChange(e.target.value);
 		}
@@ -146,7 +124,7 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 						onChange={this.handleOnChange}
 						onKeyDown={readOnly ? this.handleOnKeyDown : undefined}
 						name={name}
-						value={fixControlledValue(this.state.value)}
+						value={value}
 						title={title}
 						style={style}
 						{...rest}

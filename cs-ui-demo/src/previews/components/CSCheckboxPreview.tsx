@@ -7,7 +7,15 @@ import PreviewLinks from '../PreviewLinks';
 
 import { CSCheckbox } from '@cloudsense/cs-ui-components';
 
-class CSCheckboxPreview extends React.Component {
+interface CSCheckboxPreviewState {
+	checked: boolean;
+}
+
+class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
+
+	state = {
+		checked: true
+	};
 	handleChange = () => alert('Checkbox has been toggled.');
 	handleClick = () => alert('Checkbox has been clicked.');
 	handleOnKeyDown = () => alert('Key has been pressed.');
@@ -45,8 +53,17 @@ class CSCheckboxPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'checked={true}',
-								component: <CSCheckbox label="Select option" checked />,
-								code: '<CSCheckbox label="Select option" checked />'
+								secondaryVariants: ' onChange={() => any}',
+								component: <CSCheckbox
+									label="Select option"
+									checked={this.state.checked}
+									onChange={event => this.setState({ checked: event.target.checked })}
+								/>,
+								code: `<CSCheckbox
+									label="Select option"
+									checked={this.state.checked}
+									onChange={event => this.setState({ checked: event.target.checked })}
+								/>`
 							}
 						]
 					}, {
