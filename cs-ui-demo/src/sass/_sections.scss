@@ -32,11 +32,12 @@
 		}
 
 		pre {
-			width: max-content;
+			max-width: max-content;
 			padding: 1rem 1.5rem;
 			background: var(--release-notes-code-snippet-bg);
 			border-radius: 0.25rem;
 			border: 1px solid var(--prop-code-br);
+			white-space: break-spaces;
 
 			* {
 				font-family: monospace;
