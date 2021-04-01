@@ -68,7 +68,7 @@ const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
 						label="clear"
 						btnType="transparent"
 						iconName="close"
-						iconDisplay="icon-only"
+						labelHidden
 						onClick={() => setSearchTerm('')}
 					/>
 				)}
