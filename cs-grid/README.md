@@ -16,6 +16,11 @@ Besides the standard set of features you'd expect from any grid cs-grid includes
 
 Release Notes
 ------------------
+####1.2.57
+* Added tab/arrow keys keyboard accessibility
+* Replace instances of iconDisplay prop with labelHidden
+* Change search to CSInputSearch inside Lookup cell
+* Minor styling fixes - cell overflow fix, filter padding, icon cell margin fix
 ####1.2.56
 * Remove unnecessary horizontal scroll from lookup popup
 * Fix lookup input field padding
