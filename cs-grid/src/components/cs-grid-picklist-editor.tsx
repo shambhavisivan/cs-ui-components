@@ -1,4 +1,4 @@
-import { CSButton } from '@cloudsense/cs-ui-components';
+import { CSButton, CSInputSearch } from '@cloudsense/cs-ui-components';
 import React, { Fragment } from 'react';
 
 import {
@@ -111,10 +111,9 @@ export class CSGridPicklistEditor
 						{filter && (
 							<div className='cs-grid_search-wrapper cs-grid_picklist-search-wrapper'>
 								<div className='cs-grid_search'>
-									<span className='cs-grid_search-icon' />
-									<input
-										className='cs-grid_search-input'
-										type='text'
+									<CSInputSearch
+										label="Search"
+										labelHidden
 										value={this.state.searchTerm}
 										onChange={this.onFilterText}
 										placeholder={'Search...'}
@@ -124,20 +123,6 @@ export class CSGridPicklistEditor
 												: 'Search...'
 										}
 									/>
-									{this.state.searchTerm && (
-										<CSButton
-											className='cs-grid_clear-button'
-											label='Clear Filter'
-											labelHidden={true}
-											size='xsmall'
-											btnStyle='brand'
-											btnType='transparent'
-											iconName='close'
-											iconColor='#b0adab'
-											iconSize='1rem'
-											onClick={this.clearFilter}
-										/>
-									)}
 								</div>
 							</div>
 						)}
@@ -219,10 +204,6 @@ export class CSGridPicklistEditor
 
 	private onFilterText = (event: React.ChangeEvent<HTMLInputElement>) => {
 		this.filterText(event.target.value);
-	};
-
-	private clearFilter = () => {
-		this.filterText('');
 	};
 
 	private filterText = (searchTerm: string) => {

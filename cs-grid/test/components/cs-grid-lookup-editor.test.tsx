@@ -2,7 +2,7 @@ import { ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react';
 import { shallow } from 'enzyme';
 import React from 'react';
-import { CSButton } from '@cloudsense/cs-ui-components';
+import { CSButton, CSInputSearch } from '@cloudsense/cs-ui-components';
 import {
 	CellData,
 	CSGridCellEditorProps,
@@ -121,16 +121,9 @@ describe('CS Grid Lookup Editor', () => {
 		expect(
 			cellEditor.containsMatchingElement(
 				<div className='cs-grid_search'>
-					<span className='cs-grid_search-icon' />
-					<input
-						className='cs-grid_search-input'
-						type='text'
-						value={expectedValue}
-						title={expectedValue}
-					/>
-					<CSButton
-						label='Clear value'
-						className='cs-grid_clear-button'
+					<CSInputSearch
+						label="Search"
+						labelHidden
 					/>
 				</div>
 			)
@@ -150,9 +143,9 @@ describe('CS Grid Lookup Editor', () => {
 
 		expect(
 			cellEditor.containsMatchingElement(
-				<input
-					className='cs-grid_search-input'
-					type='text'
+				<CSInputSearch
+					label="Search"
+					labelHidden
 					placeholder={expectedPlaceHolder}
 					title={expectedPlaceHolder}
 				/>

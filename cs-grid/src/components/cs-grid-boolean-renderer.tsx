@@ -55,6 +55,7 @@ export class CSGridBooleanRenderer extends CSGridBaseRenderer<boolean>
 			<span className={readOnly ? 'read-only-cell' : ''}>
 				{tooltip ? (
 					<CSTooltip
+						className="cs-grid_cell-tooltip"
 						content={tooltip.content}
 						delayTooltip={tooltip.delay}
 						variant={

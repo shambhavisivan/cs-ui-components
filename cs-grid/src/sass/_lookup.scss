@@ -3,39 +3,6 @@
     min-width: 240px;
 }
 
-.cs-grid_search {
-	position: relative;
-
-	.cs-grid_search-icon {
-		left: 0.75rem;
-		bottom: 47%;
-		position: absolute;
-		transform: translateY(50%);
-	}
-
-	.cs-grid_search-input {
-		width: 100%;
-		padding: 0 2.25rem 0 2rem !important;
-		border-radius: 0.25rem;
-		display: inline-block;
-		font-size: 0.75rem;
-		line-height: 1.875rem;
-		@include sbg(--csgrid-input-bg);
-		@include css4 {
-			border: 1px solid cvar(--csgrid-input-br);
-		}
-
-		&:active,
-		&:focus {
-			outline: none;
-			@include css4 {
-				border-color: cvar(--csgrid-input-active-br);
-				box-shadow: 0 0 3px cvar(--csgrid-input-box);
-			}
-		}
-	}
-}
-
 .cs-grid_lookup-grid {
 	height: 10rem;
 	min-width: 240px;

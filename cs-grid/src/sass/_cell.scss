@@ -90,14 +90,9 @@
 		.ag-cell {
 			padding-right: 0.75rem;
 			padding-left: 0.75rem;
-			overflow: visible;
 			@include css4 {
 				border: 2px solid cvar(--csgrid-transparent);
 			}
-		}
-
-		.ag-cell-value {
-			overflow: visible;
 		}
 
 		.ag-cell .ag-react-container {
@@ -110,7 +105,8 @@
 				width: 100%;
 				display: flex;
 
-				> span, .cs-tooltip-wrapper > span {
+				> span,
+				.cs-tooltip-wrapper > span {
 					display: block;
 					overflow: hidden;
 					text-overflow: ellipsis;

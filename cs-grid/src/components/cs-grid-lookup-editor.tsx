@@ -1,4 +1,4 @@
-import { CSButton } from '@cloudsense/cs-ui-components';
+import { CSInputSearch } from '@cloudsense/cs-ui-components';
 import {
 	ColDef as AgGridColDef,
 	ColumnApi,
@@ -133,10 +133,9 @@ export class CSGridLookupEditor
 			<div className='ag-theme-balham'>
 				<div className='cs-grid_search-wrapper'>
 					<div className='cs-grid_search'>
-						<span className='cs-grid_search-icon' />
-						<input
-							className='cs-grid_search-input'
-							type='text'
+						<CSInputSearch
+							label="Search"
+							labelHidden
 							value={currentValue || this.state.searchTerm}
 							onChange={this.updateSearch}
 							placeholder={placeholder}
@@ -147,21 +146,8 @@ export class CSGridLookupEditor
 									? `Search value ${this.state.searchTerm}`
 									: placeholder
 							}
+							onClearSearch={currentValue ? this.clearValue : this.clearFilter}
 						/>
-						{(currentValue || this.state.searchTerm) && (
-							<CSButton
-								className='cs-grid_clear-button'
-								label={currentValue ? 'Clear value' : 'Clear filter'}
-								labelHidden={true}
-								size='xsmall'
-								btnStyle='brand'
-								btnType='transparent'
-								iconName='close'
-								iconColor='#b0adab'
-								iconSize='1rem'
-								onClick={currentValue ? this.clearValue : this.clearFilter}
-							/>
-						)}
 					</div>
 				</div>
 				{this.state.showGrid && (

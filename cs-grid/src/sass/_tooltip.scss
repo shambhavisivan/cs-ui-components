@@ -2,18 +2,11 @@
 	margin: 0;
 }
 
-.cs-tooltip-wrapper {
-	margin-left: auto;
-	align-items: center;
-	display: inline-flex;
-	position: relative;
+.cs-tooltip-wrapper.cs-grid_cell-tooltip {
+	width: 100%;
 
-	&.cs-grid_cell-tooltip {
-		width: 100%;
-
-		&.cs-tw-error {
-			width: calc(100% - 0.5rem);
-		}
+	&.cs-tw-error {
+		width: calc(100% - 0.5rem);
 	}
 }
 
