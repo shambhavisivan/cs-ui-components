@@ -8,11 +8,11 @@ import PreviewLinks from '../PreviewLinks';
 import { CSTooltip, CSChip } from '@cloudsense/cs-ui-components';
 
 class CSTooltipPreview extends React.Component {
-	tooltipContent: Promise<JSX.Element> = new Promise(resolve => {
+	tooltipContent: () => Promise<JSX.Element> = () => new Promise(resolve => {
 		setTimeout(() => {
 			resolve(<CSChip text="brand" variant="brand" />);
-		}, 10000);
-	});
+		}, 2000);
+	})
 
 	getTooltipDoc = () => ({
 		name: 'Tooltip',
@@ -54,10 +54,10 @@ class CSTooltipPreview extends React.Component {
 								code: '<CSTooltip content={<CSChip text="custom content" />} />'
 							},
 							{
-								primaryVariants: 'content={Promise<CSTooltipContent>}',
+								primaryVariants: 'content={() => Promise<CSTooltipContent>}',
 								quickLink: 'element',
 								component: <CSTooltip height="200px" content={this.tooltipContent} />,
-								code: '<CSTooltip content={<CSChip text="custom content" />} />'
+								code: '<CSTooltip height="200px" content={this.tooltipContent} />,'
 							}
 						]
 					}, {

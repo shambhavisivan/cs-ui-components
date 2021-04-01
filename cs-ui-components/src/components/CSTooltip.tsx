@@ -28,7 +28,7 @@ export type CSTooltipVariant = 'info' | 'warning' | 'error' | 'success' | 'basic
 export interface CSTooltipProps {
 	[key: string]: any;
 	className?: string;
-	content: CSTooltipContent | Promise<CSTooltipContent>;
+	content: CSTooltipContent | (() => Promise<CSTooltipContent>);
 	delayTooltip?: number;
 	focusable?: boolean;
 	height?: string;
@@ -264,20 +264,21 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		}
 	}
 
-	reslovePromise = () => {
-		Promise.resolve(this.props.content).then(
-			result => this.setState({
-				content: result,
-				loading: false
-			}, () => {
-				// To handle Esc key press before promise is resolved
-				if (this.state.computedTooltipStyle) {
-					const tooltipRect = document.getElementById(this.uniqueAutoId).getBoundingClientRect();
-					this.autoTooltipPosition(tooltipRect);
-				}
-			})
-		);
-
+	resolvePromise = () => {
+		if (typeof this.props.content === 'function') {
+			Promise.resolve(this.props.content()).then(
+				result => this.setState({
+					content: result,
+					loading: false
+				}, () => {
+					// To handle Esc key press before promise is resolved
+					if (this.state.computedTooltipStyle) {
+						const tooltipRect = document.getElementById(this.uniqueAutoId).getBoundingClientRect();
+						this.autoTooltipPosition(tooltipRect);
+					}
+				})
+			);
+		}
 	}
 
 	handleOutsideClick = (event: any) => {
@@ -308,8 +309,8 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 
 	private openTooltip = () => {
 
-		if (this.isPromise(this.props.content)) {
-			this.setState({ loading: true }, () => this.reslovePromise());
+		if (typeof this.props.content === 'function') {
+			this.setState({ loading: true }, () => this.resolvePromise());
 		} else {
 			this.setState({ content: this.props.content });
 		}
@@ -400,7 +401,6 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			}, this.setTooltipPosition);
 		}
 	}
-	private isPromise = (value: any) => Object(value).constructor === Promise;
 
 	private tooltipRefCallback = (element: HTMLDivElement) => {
 		if (element) {
