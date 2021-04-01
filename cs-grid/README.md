@@ -16,6 +16,20 @@ Besides the standard set of features you'd expect from any grid cs-grid includes
 
 Release Notes
 ------------------
+####1.2.56
+* Remove unnecessary horizontal scroll from lookup popup
+* Fix lookup input field padding
+* Change editable cell border color
+* Change filter to CSInputSearch
+* Fix text cutting off in table header cells
+* Add border and shadow to pinned left and right cells
+* Fix datepicker popup being cut off by max height
+* Fix styling on column header dropdown menu
+* Add background to row when cell is being edited
+* Fix "unique key in the list" error in the picklist editor component
+* SCSS code cleanup
+* Pass missing props to all cell instances of CSTooltip
+* Implement CSDropdown inside renderer instead of action column editor
 ####1.2.55
  * Moved dev and peer dependencies to correct place
  * Removed accidental logging messages
