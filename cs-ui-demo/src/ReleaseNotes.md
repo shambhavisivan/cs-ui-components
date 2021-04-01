@@ -1,5 +1,11 @@
 # Release Notes
 
+## 1.1.7<a name="1.1.7"></a>
+* CSButtonGroup
+  * fixed border radius when there is only one child
+* CSTooltip
+  * dynamic tooltip fix to accept generator functions
+  * `Esc` keydown breaking the app while promise is used fixed
 ## 1.1.6<a name="1.1.6"></a>
 * CSAlert
   * <i>important</i> `iconVisibility` prop renamed to `iconHidden`
