@@ -64,7 +64,6 @@ import { CSGridNoEditor } from './cs-grid-no-editor';
 import { CSGridPicklistEditor } from './cs-grid-picklist-editor';
 import { CSGridPicklistRenderer } from './cs-grid-picklist-renderer';
 import { CSGridQuickFilter, CSGridQuickFilterControl } from './cs-grid-quick-filter';
-import { CSGridRowSelectionEditor } from './cs-grid-row-selection-editor';
 import { CSGridRowSelectionRenderer } from './cs-grid-row-selection-renderer';
 import { CSGridRowValidationRenderer } from './cs-grid-row-validation-renderer';
 import { CSGridTextEditor } from './cs-grid-text-editor';
@@ -158,7 +157,6 @@ class CSGridState {
 		noEditor: CSGridNoEditor,
 		picklistEditor: CSGridPicklistEditor,
 		picklistRenderer: CSGridPicklistRenderer,
-		rowSelectionEditor: CSGridRowSelectionEditor,
 		rowSelectionRenderer: CSGridRowSelectionRenderer,
 		rowValidationRenderer: CSGridRowValidationRenderer,
 		textEditor: CSGridTextEditor,

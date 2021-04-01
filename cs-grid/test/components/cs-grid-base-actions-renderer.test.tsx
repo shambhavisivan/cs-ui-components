@@ -1,7 +1,7 @@
 import { ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
 import { shallow } from 'enzyme';
 import React from 'react';
-import {CSButton, CSButtonGroup} from '@cloudsense/cs-ui-components';
+import {CSButton, CSButtonGroup, CSDropdown} from '@cloudsense/cs-ui-components';
 import {
 	CSGridBaseActionsRenderer,
 	CSGridBaseActionsRendererProps
@@ -99,14 +99,14 @@ describe('CS Grid Base Actions Renderer', () => {
 	});
 
 	test('Renders the vertical ellipsis when the getActions prop is provided and the noOfInlineIcons props is not.', () => {
-		cSGridCellRendererProps.getActions = (guid: string) => {
-			return [
-				{
-					action: () => console.error('no inline icon option called'),
-					name: 'no inline icon'
-				}
-			];
+		const action = {
+			action: () => console.error('No Icon option called'),
+			name: 'No Icon'
 		};
+		cSGridCellRendererProps.getActions = (guid: string) => {
+			return [action];
+		};
+
 		const cellRenderer = shallow(
 			<CSGridTestBaseActionsRenderer {...cSGridCellRendererProps} />
 		);
@@ -115,37 +115,17 @@ describe('CS Grid Base Actions Renderer', () => {
 
 		expect(
 			cellRenderer.containsMatchingElement(
-				<CSButton
-					label='Row Actions'
-					id={`icon-item-${nodeId}-${column.getId()}-dropdown`}
-					onClick={instance.startEditing}
+				<CSDropdown
+					mode='button'
 					iconName='threedots_vertical'
-					iconDisplay='icon-only'
-				/>
+				>
+					<CSButton
+						label={action.name}
+						id={`row-selection-list-item-${action.name}`}
+					/>
+				</CSDropdown>
 			)
 		).toBeTruthy();
-	});
-
-	test('Checks that clicking the start editing button starts editing the cell.', () => {
-		cSGridCellRendererProps.getActions = (guid: string) => {
-			return [
-				{
-					action: () => console.error('no inline icon option called'),
-					name: 'no inline icon'
-				}
-			];
-		};
-		const startEditingCellMock = jest.fn();
-		cSGridCellRendererProps.api.startEditingCell = startEditingCellMock;
-
-		const cellRenderer = shallow(
-			<CSGridTestBaseActionsRenderer {...cSGridCellRendererProps} />
-		);
-
-		const button = cellRenderer.find(CSButton).at(0);
-		button.simulate('click');
-
-		expect(startEditingCellMock.mock.calls.length).toEqual(1);
 	});
 
 	test('The refresh function should do nothing and then always return true.', () => {
@@ -159,25 +139,31 @@ describe('CS Grid Base Actions Renderer', () => {
 	test('Renders the vertical ellipsis and an inline icon when the getActions prop returns 2 actions and the noOfInlineIcons is set to 1.', () => {
 		const disabled = false;
 
+		const action1 = {
+			action: exampleAction,
+			disabled,
+			icon: exampleIcon,
+			name: 'Delete'
+		};
+
+		const action2 = {
+			action: () => console.error('no inline icon option called'),
+			name: 'no inline icon'
+		};
+
 		cSGridCellRendererProps.getActions = (guid: string) => {
 			return [
-				{
-					action: exampleAction,
-					disabled,
-					icon: exampleIcon,
-					name: 'Delete'
-				},
-				{
-					action: () => console.error('no inline icon option called'),
-					name: 'no inline icon'
-				}
+				action1,
+				action2
 			];
 		};
+
 		cSGridCellRendererProps.noOfInlineIcons = 1;
 
 		const cellRenderer = shallow(
 			<CSGridTestBaseActionsRenderer {...cSGridCellRendererProps} />
 		);
+
 		const instance = cellRenderer.instance() as CSGridTestBaseActionsRenderer;
 
 		expect(
@@ -195,12 +181,27 @@ describe('CS Grid Base Actions Renderer', () => {
 							style={{ margin: 0, padding: 0 }}
 						/>
 					</CSButton>
-					<CSButton
-						label='Row Actions'
-						id={`icon-item-${nodeId}-${column.getId()}-dropdown`}
+					<CSDropdown
+						mode='button'
+
 						iconName='threedots_vertical'
-						iconDisplay='icon-only'
-					/>
+					>
+						<CSButton
+							label={action1.name}
+							id={`row-selection-list-item-${action1.name}`}
+						>
+							 <span
+								className='cs-grid_clear-button'
+								aria-hidden='true'
+								style={{ margin: 0, padding: 0 }}
+							/>
+							Delete
+						</CSButton>
+						<CSButton
+							label={action2.name}
+							id={`row-selection-list-item-${action2.name}`}
+						/>
+					</CSDropdown>
 				</CSButtonGroup>
 			)
 		).toBeTruthy();

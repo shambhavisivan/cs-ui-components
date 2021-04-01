@@ -6,10 +6,6 @@
 			}
 		}
 
-		&:hover {
-			z-index: 1;
-		}
-
 		&-selected {
 			@include sbg(--csgrid-row-selected-bg);
 		}

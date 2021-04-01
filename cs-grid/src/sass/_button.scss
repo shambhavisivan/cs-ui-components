@@ -16,9 +16,16 @@
 	display: flex;
 }
 
-// Temporary fix until labelHidden prop is supported on CSButton
-// Fix to properly align custom icon with OOTB buttons
-.cs-dropdown-wrapper .cs-btn .cs-btn-custom-content {
-	order: -1;
-	padding-right: 0.5rem;
+/* ALIGN CUSTOM CONTENT INSIDE DROPDOWN */
+.cs-dropdown-item-wrapper > li > .cs-btn .cs-btn-custom-content {
+	align-items: center;
+	display: flex;
+	font-size: 0.75rem;
+	padding: 0 1rem;
+	width: 100%;
+	@include sc(--csgrid-button-c);
+
+	> span {
+		margin-right: 0.5rem;
+	}
 }
