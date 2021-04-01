@@ -29,7 +29,7 @@ export function CSGridQuickFilter(props: CSGridQuickFilterProps) {
 					title={props.filterText ? `Search value ${props.filterText}` : placeholder}
 					onChange={onFilter}
 					placeholder={placeholder}
-					error={props.errorMessage ? true : false}
+					error={!!props.errorMessage}
 					errorMessage={props.errorMessage}
 				/>
 			</div>

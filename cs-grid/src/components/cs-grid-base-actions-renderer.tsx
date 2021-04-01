@@ -102,6 +102,7 @@ export abstract class CSGridBaseActionsRenderer<
 						button = (
 							<CSButton
 								label={action.name}
+								labelHidden={true}
 								key={action.name}
 								onClick={onClick}
 								disabled={action.disabled}
@@ -112,7 +113,6 @@ export abstract class CSGridBaseActionsRenderer<
 								iconName={action.icon.iconName}
 								iconColor={action.icon.color}
 								iconOrigin={action.icon.iconOrigin}
-								iconDisplay='icon-only'
 								ref={(ref: HTMLButtonElement) => (this.buttonRefs[index] = ref)}
 								id={`icon-item-${this.props.node.id}-${colId}-${index}`}
 							/>
@@ -140,7 +140,8 @@ export abstract class CSGridBaseActionsRenderer<
 					if (index < noOfInlineIcons) {
 						button = (
 							<CSButton
-								label=''
+								label={action.name}
+								labelHidden={true}
 								title={action.name}
 								key={action.name}
 								onClick={onClick}
@@ -149,7 +150,6 @@ export abstract class CSGridBaseActionsRenderer<
 								size={action.size}
 								btnType={action.btnType}
 								btnStyle={action.btnStyle}
-								iconDisplay='icon-only'
 								ref={(ref: HTMLButtonElement) => (this.buttonRefs[index] = ref)}
 								id={`icon-item-${this.props.node.id}-${colId}-${index}`}
 							>
@@ -182,6 +182,7 @@ export abstract class CSGridBaseActionsRenderer<
 					button = (
 						<CSButton
 							label={action.name}
+							labelHidden={true}
 							key={action.name}
 							onClick={onClick}
 							disabled={action.disabled}
@@ -190,7 +191,6 @@ export abstract class CSGridBaseActionsRenderer<
 							btnType={action.btnType}
 							btnStyle={action.btnStyle}
 							iconName='connected_apps'
-							iconDisplay='icon-only'
 							ref={(ref: HTMLButtonElement) => (this.buttonRefs[index] = ref)}
 							id={`icon-item-${this.props.node.id}-${colId}-${index}`}
 						/>

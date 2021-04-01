@@ -1,4 +1,3 @@
-import { CSButton } from '@cloudsense/cs-ui-components';
 import * as KeyCode from 'keycode-js';
 
 export function onKeyPressInAList(

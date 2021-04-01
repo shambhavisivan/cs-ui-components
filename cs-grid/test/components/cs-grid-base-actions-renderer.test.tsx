@@ -165,14 +165,13 @@ describe('CS Grid Base Actions Renderer', () => {
 		);
 
 		const instance = cellRenderer.instance() as CSGridTestBaseActionsRenderer;
-
 		expect(
 			cellRenderer.containsMatchingElement(
 				<CSButtonGroup>
 					<CSButton
-						label=''
+						label='Delete'
 						title='Delete'
-						iconDisplay='icon-only'
+						labelHidden={true}
 						id={`icon-item-${nodeId}-${column.getId()}-0`}
 					>
 						<span
@@ -183,7 +182,6 @@ describe('CS Grid Base Actions Renderer', () => {
 					</CSButton>
 					<CSDropdown
 						mode='button'
-
 						iconName='threedots_vertical'
 					>
 						<CSButton
@@ -225,14 +223,13 @@ describe('CS Grid Base Actions Renderer', () => {
 		const cellRenderer = shallow(
 			<CSGridTestBaseActionsRenderer {...cSGridCellRendererProps} />
 		);
-
 		expect(
 			cellRenderer.containsMatchingElement(
 				<CSButton
-					label=''
+					label='Delete'
+					labelHidden={true}
 					title='Delete'
 					disabled={true}
-					iconDisplay='icon-only'
 					id={`icon-item-${nodeId}-${column.getId()}-0`}
 				>
 					<span

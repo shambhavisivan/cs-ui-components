@@ -128,11 +128,11 @@ export class CSGridPicklistEditor
 										<CSButton
 											className='cs-grid_clear-button'
 											label='Clear Filter'
+											labelHidden={true}
 											size='xsmall'
 											btnStyle='brand'
 											btnType='transparent'
 											iconName='close'
-											iconDisplay='icon-only'
 											iconColor='#b0adab'
 											iconSize='1rem'
 											onClick={this.clearFilter}
