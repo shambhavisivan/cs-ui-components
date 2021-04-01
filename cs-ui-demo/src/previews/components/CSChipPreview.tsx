@@ -163,6 +163,7 @@ class CSChipPreview extends React.Component {
 						variations: [
 							{
 								secondaryVariants: 'variantStyle="fill"',
+								quickLink: 'fill',
 								component: <CSChip
 									text="color"
 									color="#4a26ab"
@@ -174,6 +175,7 @@ class CSChipPreview extends React.Component {
 							},
 							{
 								secondaryVariants: 'variantStyle="border"',
+								quickLink: 'border',
 								component: <CSChip
 									text="color"
 									variantStyle="border"
