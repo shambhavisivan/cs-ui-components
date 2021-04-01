@@ -56,7 +56,7 @@ class CSTooltipPreview extends React.Component {
 							{
 								primaryVariants: 'content={Promise<CSTooltipContent>}',
 								quickLink: 'element',
-								component: <CSTooltip height="800px" content={this.tooltipContent} />,
+								component: <CSTooltip height="200px" content={this.tooltipContent} />,
 								code: '<CSTooltip content={<CSChip text="custom content" />} />'
 							}
 						]

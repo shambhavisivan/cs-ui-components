@@ -270,8 +270,11 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 				content: result,
 				loading: false
 			}, () => {
-				const tooltipRect = document.getElementById(this.uniqueAutoId).getBoundingClientRect();
-				this.autoTooltipPosition(tooltipRect);
+				// To handle Esc key press before promise is resolved
+				if (this.state.computedTooltipStyle) {
+					const tooltipRect = document.getElementById(this.uniqueAutoId).getBoundingClientRect();
+					this.autoTooltipPosition(tooltipRect);
+				}
 			})
 		);
 
