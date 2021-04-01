@@ -50,6 +50,14 @@
 				border-bottom-right-radius: 0.25rem;
 			}
 		}
+
+		> .cs-btn:only-child,
+		> .cs-dropdown-wrapper:only-child > .cs-btn {
+			&::before,
+			&::after {
+				border-radius: 0.25rem;
+			}
+		}
 	}
 
 	&.cs-button-group-margin-left {
