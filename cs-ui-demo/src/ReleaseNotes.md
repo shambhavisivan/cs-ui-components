@@ -1,5 +1,112 @@
 # Release Notes
 
+## 1.1.6<a name="1.1.6"></a>
+* CSAlert
+  * <i>important</i> `iconVisibility` prop renamed to `iconHidden`
+  * alignment fix when there is more than one message
+* CSButton
+  * fix for `iconColor` not respected when different `btnType` is used
+  * missing hover styles for button with iconColor added
+  * updated buttons across components to use `labelHidden` instead of `iconDisplay`
+  * minor styling fixes
+* CSCard
+  * `defaultClosed` prop added
+* CSCheckbox
+  * `labelPosition="right"` option added
+  * brand border added on :focus
+* CSChip
+  * `color` prop added
+* CSCurrency
+  * <i>new</i> new component added
+* CSCustomSelect
+  * scroll into view when option is not visible after keyboard navigation
+  * fixed keyboard event listener that was breaking the app when no element was focused
+* CSDatepicker
+  * calendar icon removed on readOnly field
+  * readOnly field is now focusable
+* CSDateTimePicker
+  * calendar icon removed on readOnly field
+  * readOnly field is now focusable
+* CSDropdown
+  * autoposition feature added to dropdown popup
+  * keyboard support added to dropdowns with `mode="button"`
+* CSInputText
+  * internal state of CSInputText removed
+* CSList
+  * `checkboxOption="not-selectable"` support added to CSListGroup
+  * `onSelect` renamed to `onSelectChange`
+  * minor styling fixes
+* CSMainHeader
+  * `color="success"` option added
+* CSModal
+  * enable closing modal with `Esc` button
+  * missing `classNames` support added on CSModalHeader, CSModalBody and CSModalFooter components
+* CSPath
+  * <i>important</i> `title` prop renamed to `name`
+  * `warning` status option added
+  * `className` prop added
+  * :focus styles moved to :focus-visible
+* CSProgressBar
+  * `undefined` className fixed when thickness is not explicitly set
+* CSRadio
+  * `disabled` prop now disables all radio options
+  * fix for selecting an option responding only after clicking twice
+  * brand border added on :focus
+* CSSpinner
+  * `overlay="transparent"` option added
+* CSTab
+  * <i>important</i> `title` prop renamed to `name`
+  * increase active border height on large variant
+* CSToast
+  * padding fixed when no close button
+* CSTooltip
+  * add dynamic content support by Promise content type
+  * enable closing tooltip with `Esc` button
+  * fixed box-shadow on basic variants
+* CSTransfer
+  * fixed empty list keyboard event listener that was breaking the app
+* Demo App changes
+  * quickLinks sidebar - complete redesign
+  * accessibility section updated across all components
+  * documentation for preview files added to Getting Started page
+  * various minor fixes
+* Documentation object restructure
+  * Alert
+  * Button
+  * Button Group
+  * Card
+  * Checkbox
+  * Chip
+  * Datepicker
+  * DateTimePicker
+  * Divider
+  * Field Error Message
+  * Icon
+  * Image
+  * Input File
+  * Input Number
+  * Input Search
+  * Input Text
+  * Label
+  * List
+  * Main Header
+  * Modal
+  * Pagination
+  * Path
+  * Progress Bar
+  * Progress Indicator
+  * Radio
+  * Section
+  * Select
+  * Skip Link
+  * Slider
+  * Spinner
+  * Tab
+  * Textarea
+  * Toast
+  * Toggle
+  * Tooltip
+
 ## 1.1.5<a name="1.1.5"></a>
 * CSButton
   * <i>important</i> `labelHidden` prop added to eventually replace `iconDisplay` prop
