@@ -295,8 +295,8 @@ class CSListPreview extends React.Component {
 						},
 						variations: [
 							{
-								quickLink: 'selectAll',
-								primaryVariants: 'checkboxOption="selectAll"',
+								quickLink: 'select-all',
+								primaryVariants: 'checkboxOption="select-all"',
 								secondaryVariants: 'variant="check-list"',
 								component: <CSList variant="check-list">
 									<CSListGroup title="List Group">
@@ -311,8 +311,8 @@ class CSListPreview extends React.Component {
 									</CSListGroup>
 								</CSList>`
 							}, {
-								quickLink: 'selectSelf',
-								primaryVariants: 'checkboxOption="selectSelf"',
+								quickLink: 'select-self',
+								primaryVariants: 'checkboxOption="select-self"',
 								secondaryVariants: 'variant="check-list"',
 								component: <CSList variant="check-list">
 									<CSListGroup title="List Group" checkboxOption="select-self">
@@ -322,6 +322,22 @@ class CSListPreview extends React.Component {
 								</CSList>,
 								code: `<CSList variant="check-list">
 									<CSListGroup title="List Group" checkboxOption="select-self">
+										<CSListItem text="List item" />
+										<CSListItem text="List item" />
+									</CSListGroup>
+								</CSList>`
+							}, {
+								quickLink: 'not-selectable',
+								primaryVariants: 'checkboxOption="not-selectable"',
+								secondaryVariants: 'variant="check-list"',
+								component: <CSList variant="check-list">
+									<CSListGroup title="List Group" checkboxOption="not-selectable">
+										<CSListItem text="List item" />
+										<CSListItem text="List item" />
+									</CSListGroup>
+								</CSList>,
+								code: `<CSList variant="check-list">
+									<CSListGroup title="List Group" checkboxOption="not-selectable">
 										<CSListItem text="List item" />
 										<CSListItem text="List item" />
 									</CSListGroup>
