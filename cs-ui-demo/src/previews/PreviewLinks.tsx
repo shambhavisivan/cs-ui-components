@@ -36,13 +36,6 @@ const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
 		setSearchTerm(event.target.value);
 	};
 
-	const searchProps = (example: PreviewExample) => (
-		example.propName.toLowerCase().includes(searchTerm.toLowerCase())
-		|| example.variations.find((variation: PreviewVariation) => (
-			variation.quickLink && variation.quickLink.toLowerCase().includes(searchTerm.toLowerCase())
-		))
-	);
-
 	const handleClick = (index: number) => {
 		setVisibleSections((prevState: Array<boolean>) => {
 			const newState = [...prevState];
@@ -50,6 +43,20 @@ const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
 			return newState;
 		});
 	};
+
+	const filterVariations = (example: PreviewExample) => {
+		if (example.propName.toLowerCase().includes(searchTerm.toLowerCase())) {
+			return example;
+		}
+		return {
+			...example,
+			variations: example.variations.filter((variation: PreviewVariation) => (
+				variation.quickLink && variation.quickLink.toLowerCase().includes(searchTerm.toLowerCase())
+			))
+		};
+	};
+
+	const filterProps = (example: PreviewExample) => (example.variations.length);
 
 	return (
 		<div className={'prop-sidebar' + (quickLinks ? ' quick-links-open' : ' quick-links-closed')}>
@@ -75,7 +82,9 @@ const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
 			</div>
 			<div className="prop-list">
 				{previews.map((preview: PreviewComponent, previewIndex: number) => {
-					const examples = preview.examples.filter(searchProps);
+					const examples = preview.examples
+						.map(filterVariations)
+						.filter(filterProps);
 					const componentLink = preview.name.split(' ').join('-').toLowerCase();
 					return (
 						<div key={preview.name}>
