@@ -1,0 +1,99 @@
+/* CS LOOKUP */
+
+/* CS LOOKUP INPUT WRAPPER */
+.cs-lookup-wrapper {
+	position: relative;
+	&.cs-lookup-hidden {
+		display: none;
+	}
+	.cs-lookup-input-wrapper {
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		.cs-lookup-search-icon,
+		.cs-lookup-clear {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+		.cs-lookup-clear {
+			right: 1.625rem;
+		}
+		.cs-lookup-search-icon {
+			left: 0.5rem;
+		}
+		.cs-lookup-dropdown-icon,
+		.cs-lookup-spinner {
+			position: absolute;
+			top: 0.4375rem;
+			right: 0.5rem;
+		}
+		.cs-lookup-dropdown-icon {
+			transition: transform 0.2s;
+			top: 0.5rem;
+		}
+		.cs-lookup-input {
+			@include input;
+			padding: 0 2rem 0 2rem;
+			border-radius: var(--cs-lookup-border-radius, 0.25rem);
+		}
+	}
+}
+
+/* CS LOOKUP DROPDOWN */
+.cs-lookup-dropdown-root {
+	display: contents;
+	.cs-lookup-dropdown {
+		position: fixed;
+		min-width: var(--cs-lookup-input-width);
+		width: max-content;
+		border-radius: 0.25rem;
+		z-index: var(--z-index-lookup-dropdown);
+		@include css4 {
+			border: 1px solid cvar(--cs-lookup-results-br);
+		}
+		.cs-table {
+			border: none;
+			border-radius: inherit;
+			.cs-table-header
+			.cs-table-cell
+			.cs-table-cell-text{
+				font-weight: $font-weight-bold;
+				text-transform: uppercase;
+				letter-spacing: 0.0625rem;
+				font-family: $font-primary !important;
+				@include sc(--cs-lookup-results-header-c);
+			}
+			.cs-table-body {
+				.cs-table-row {
+					cursor: pointer;
+					@include sc(--cs-lookup-results-row-c);
+					&.cs-lookup-dropdown-msg-wrapper{
+						align-items: center;
+						padding: 0.5rem;
+						pointer-events: none;
+						.cs-lookup-dropdown-msg-text {
+							font-size: 0.8125rem;
+							margin-left: 0.5rem;
+							@include sc(--cs-lookup-dropdown-msg-c);
+						}
+						&-inverse {
+							@include sbg(--cs-lookup-dropdown-msg-inverse-bg);
+							.cs-lookup-dropdown-msg-text {
+								@include sc(--cs-lookup-dropdown-msg-inverse-c);
+							}
+						}
+					}
+					.cs-table-cell {
+						&:first-child .cs-table-cell-text {
+							font-weight: 400;
+						}
+						.cs-table-cell-text {
+							font-size: 0.75rem;
+						}
+					}
+				}
+			}
+		}
+	}
+}

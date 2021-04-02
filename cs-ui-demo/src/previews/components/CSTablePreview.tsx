@@ -10,6 +10,9 @@ import { CSTable, CSTableHeader, CSTableBody, CSTableRow, CSTableCell, CSButton 
 
 class CSTablePreview extends React.Component {
 	handleClick = () => alert('Table row has been clicked.');
+	handleMouseDown = () => alert('Mouse down has been registered!');
+	handleMouseOut = () => alert('Mouse out has been registered!');
+	handleMouseOver = () => alert('Mouse over has been registered!');
 
 	getCSTableDoc() {
 		const json = {
@@ -203,6 +206,418 @@ class CSTablePreview extends React.Component {
 													labelHidden
 													btnType="default"
 													iconName="emoji"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>
+						}
+					]
+				},
+				{
+					propName: 'onMouseDown',
+					customText: '',
+					variations: [
+						{
+							component:
+								<CSTable>
+									<CSTableHeader>
+										<CSTableCell
+											text="Header Item 1"
+											grow={2}
+										/>
+										<CSTableCell
+											text="Header Item 2"
+											grow={1}
+										/>
+										<CSTableCell
+											text="Header Item 3"
+											grow={1}
+										/>
+										<CSTableCell
+											text="Button Column"
+											maxWidth="100px"
+										/>
+									</CSTableHeader>
+									<CSTableBody>
+										<CSTableRow onMouseDown={this.handleMouseDown}>
+											<CSTableCell
+												text="Body Item 1"
+												grow={2}
+											/>
+											<CSTableCell
+												text="Body Item 2"
+												grow={1}
+											/>
+											<CSTableCell
+												text="Body Item 3"
+												grow={1}
+											/>
+											<CSTableCell
+												maxWidth="100px"
+											>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow onMouseDown={this.handleMouseDown}>
+											<CSTableCell
+												text="Second Row Item 1"
+												grow={2}
+											/>
+											<CSTableCell
+												text="Second Row Item 2"
+												grow={1}
+											/>
+											<CSTableCell
+												text="Second Row Item 3"
+												grow={1}
+											/>
+											<CSTableCell
+												maxWidth="100px"
+											>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow onMouseDown={this.handleMouseDown}>
+											<CSTableCell
+												text="Second Row Item 1"
+												grow={2}
+											/>
+											<CSTableCell
+												text="Second Row Item 2"
+												grow={1}
+											/>
+											<CSTableCell
+												text="Second Row Item 3"
+												grow={1}
+											/>
+											<CSTableCell
+												maxWidth="100px"
+											>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>
+						}
+					]
+				},
+				{
+					propName: 'onMouseOut',
+					customText: '',
+					variations: [
+						{
+							component:
+								<CSTable>
+									<CSTableHeader>
+										<CSTableCell
+											text="Header Item 1"
+											grow={2}
+										/>
+										<CSTableCell
+											text="Header Item 2"
+											grow={1}
+										/>
+										<CSTableCell
+											text="Header Item 3"
+											grow={1}
+										/>
+										<CSTableCell
+											text="Button Column"
+											maxWidth="100px"
+										/>
+									</CSTableHeader>
+									<CSTableBody>
+										<CSTableRow onMouseOut={this.handleMouseOut}>
+											<CSTableCell
+												text="Body Item 1"
+												grow={2}
+											/>
+											<CSTableCell
+												text="Body Item 2"
+												grow={1}
+											/>
+											<CSTableCell
+												text="Body Item 3"
+												grow={1}
+											/>
+											<CSTableCell
+												maxWidth="100px"
+											>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow onMouseOut={this.handleMouseOut}>
+											<CSTableCell
+												text="Second Row Item 1"
+												grow={2}
+											/>
+											<CSTableCell
+												text="Second Row Item 2"
+												grow={1}
+											/>
+											<CSTableCell
+												text="Second Row Item 3"
+												grow={1}
+											/>
+											<CSTableCell
+												maxWidth="100px"
+											>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow onMouseOut={this.handleMouseOut}>
+											<CSTableCell
+												text="Second Row Item 1"
+												grow={2}
+											/>
+											<CSTableCell
+												text="Second Row Item 2"
+												grow={1}
+											/>
+											<CSTableCell
+												text="Second Row Item 3"
+												grow={1}
+											/>
+											<CSTableCell
+												maxWidth="100px"
+											>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>
+						}
+					]
+				},
+				{
+					propName: 'onMouseOver',
+					customText: '',
+					variations: [
+						{
+							component:
+								<CSTable>
+									<CSTableHeader>
+										<CSTableCell
+											text="Header Item 1"
+											grow={2}
+										/>
+										<CSTableCell
+											text="Header Item 2"
+											grow={1}
+										/>
+										<CSTableCell
+											text="Header Item 3"
+											grow={1}
+										/>
+										<CSTableCell
+											text="Button Column"
+											maxWidth="100px"
+										/>
+									</CSTableHeader>
+									<CSTableBody>
+										<CSTableRow onMouseOver={this.handleMouseOver}>
+											<CSTableCell
+												text="Body Item 1"
+												grow={2}
+											/>
+											<CSTableCell
+												text="Body Item 2"
+												grow={1}
+											/>
+											<CSTableCell
+												text="Body Item 3"
+												grow={1}
+											/>
+											<CSTableCell
+												maxWidth="100px"
+											>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow onMouseOver={this.handleMouseOver}>
+											<CSTableCell
+												text="Second Row Item 1"
+												grow={2}
+											/>
+											<CSTableCell
+												text="Second Row Item 2"
+												grow={1}
+											/>
+											<CSTableCell
+												text="Second Row Item 3"
+												grow={1}
+											/>
+											<CSTableCell
+												maxWidth="100px"
+											>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow onMouseOver={this.handleMouseOver}>
+											<CSTableCell
+												text="Second Row Item 1"
+												grow={2}
+											/>
+											<CSTableCell
+												text="Second Row Item 2"
+												grow={1}
+											/>
+											<CSTableCell
+												text="Second Row Item 3"
+												grow={1}
+											/>
+											<CSTableCell
+												maxWidth="100px"
+											>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>
+						}
+					]
+				},
+				{
+					propName: 'rwoHighlighted',
+					customText: '',
+					variations: [
+						{
+							component:
+								<CSTable>
+									<CSTableHeader>
+										<CSTableCell
+											text="Header Item 1"
+											grow={2}
+										/>
+										<CSTableCell
+											text="Header Item 2"
+											grow={1}
+										/>
+										<CSTableCell
+											text="Header Item 3"
+											grow={1}
+										/>
+										<CSTableCell
+											text="Button Column"
+											maxWidth="100px"
+										/>
+									</CSTableHeader>
+									<CSTableBody>
+										<CSTableRow rowHighlighted>
+											<CSTableCell
+												text="Body Item 1"
+												grow={2}
+											/>
+											<CSTableCell
+												text="Body Item 2"
+												grow={1}
+											/>
+											<CSTableCell
+												text="Body Item 3"
+												grow={1}
+											/>
+											<CSTableCell
+												maxWidth="100px"
+											>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow onMouseOver={this.handleMouseOver}>
+											<CSTableCell
+												text="Second Row Item 1"
+												grow={2}
+											/>
+											<CSTableCell
+												text="Second Row Item 2"
+												grow={1}
+											/>
+											<CSTableCell
+												text="Second Row Item 3"
+												grow={1}
+											/>
+											<CSTableCell
+												maxWidth="100px"
+											>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow onMouseOver={this.handleMouseOver}>
+											<CSTableCell
+												text="Second Row Item 1"
+												grow={2}
+											/>
+											<CSTableCell
+												text="Second Row Item 2"
+												grow={1}
+											/>
+											<CSTableCell
+												text="Second Row Item 3"
+												grow={1}
+											/>
+											<CSTableCell
+												maxWidth="100px"
+											>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
 												/>
 											</CSTableCell>
 										</CSTableRow>
@@ -1045,12 +1460,28 @@ class CSTablePreview extends React.Component {
 					description: 'Set the ID for the table row.'
 				}, {
 					name: 'onClick',
-					types: ['(event) => void'],
+					types: ['(event) => any'],
 					description: 'Handler method for the click event.'
+				}, {
+					name: 'onMouseDown',
+					types: ['(event) => any'],
+					description: 'Handler method for the mouse down event.'
+				}, {
+					name: 'onMouseOut',
+					types: ['(event) => any'],
+					description: 'Handler method for the mouse out event.'
+				}, {
+					name: 'onMouseOver',
+					types: ['(event) => any'],
+					description: 'Handler method for the mouse over event.'
+				}, {
+					name: 'rowHighlighted',
+					types: ['bolean'],
+					description: 'Highlights row. Used to simulate hover effect.'
 				}, {
 					name: 'rowSelected',
 					types: ['bolean'],
-					description: 'Marks selected row, which works only if table has selectableRows true'
+					description: 'Marks selected row, which works only if table has selectableRows true.'
 				}, {
 					name: '[key: string]',
 					types: ['any'],

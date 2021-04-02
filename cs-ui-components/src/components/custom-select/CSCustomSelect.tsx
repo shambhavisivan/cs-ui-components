@@ -31,7 +31,7 @@ export interface CSCustomSelectProps {
 	labelHidden?: boolean;
 	labelTitle?: boolean;
 	multiselect?: boolean;
-	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => any;
+	onSearch?: (e: React.ChangeEvent<HTMLInputElement>) => any;
 	onSelectChange?: (value?: any) => any;
 	required?: boolean;
 	title?: string;
@@ -112,14 +112,14 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		searchTerm value is highlighted.
 	*/
 	search = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const { onChange } = this.props;
+		const { onSearch } = this.props;
 		this.setState({
 			searchTerm: e.target.value,
 			toggle: true,
 			activeListItem: 0
 		});
-		if (onChange) {
-			onChange(e);
+		if (onSearch) {
+			onSearch(e);
 		}
 	}
 
@@ -321,7 +321,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		}, this.handleSelectChange);
 	}
 
-	// Filters children based on filterBy prop
+	// Filters children based on searchBy prop
 	filterChildrenBy = (child: React.ReactElement) => {
 		const { searchTerm } = this.state;
 
@@ -329,8 +329,8 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 			return value.toLowerCase().includes(searchTerm.toLowerCase());
 		};
 
-		if (child.props.filterBy) {
-			return includesSearchTerm(child.props[child.props.filterBy]);
+		if (child.props.searchBy) {
+			return includesSearchTerm(child.props[child.props.searchBy]);
 		} else {
 			return includesSearchTerm(child.props.itemKey) || includesSearchTerm(child.props.value);
 		}
@@ -385,7 +385,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 			labelHidden,
 			labelTitle,
 			multiselect,
-			onChange,
+			onSearch,
 			onSelectChange,
 			required,
 			title,

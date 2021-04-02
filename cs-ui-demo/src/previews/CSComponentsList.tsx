@@ -33,7 +33,7 @@ import CSProgressBarPreview from './components/CSProgressBarPreview';
 import CSDropdownPreview from './components/CSDropdownPreview';
 import CSButtonGroupPreview from './components/CSButtonGroupPreview';
 import CSImagePreview from './components/CSImagePreview';
-import CSLookupFieldPreview from './components/CSLookupFieldPreview';
+import CSLookupPreview from './components/CSLookupPreview';
 import CSSliderPreview from './components/CSSliderPreview';
 import CSSidebarPreview from './components/CSSidebarPreview';
 import CSListPreview from './components/CSListPreview';
@@ -138,8 +138,8 @@ class CSComponentsList extends React.Component {
 				component: CSListPreview
 			},
 			{
-				name: 'Lookup Field',
-				component: CSLookupFieldPreview
+				name: 'Lookup',
+				component: CSLookupPreview
 			},
 			{
 				name: 'Main Header',

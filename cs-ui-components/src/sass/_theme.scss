@@ -432,9 +432,12 @@ $variables: (
 
 	--cs-divider-label-bg: $cs-white,
 
-	--cs-lookup-field-results-br:  $cs-gray-light-2,
-	--cs-lookup-field-results-header-c: $cs-gray-medium-1,
-	--cs-lookup-field-results-row-c: $cs-gray-dark-1,
+	--cs-lookup-results-br:  $cs-gray-light-2,
+	--cs-lookup-results-header-c: $cs-gray-medium-1,
+	--cs-lookup-results-row-c: $cs-gray-dark-1,
+	--cs-lookup-dropdown-msg-c: $cs-gray-medium-2,
+	--cs-lookup-dropdown-msg-inverse-bg: $cs-gray-light-1,
+	--cs-lookup-dropdown-msg-inverse-c: $cs-white,
 
 	--cs-slider-range-c: $cs-gray-dark-2,
 	--cs-slider-range-track-bg: $cs-gray-light-5,

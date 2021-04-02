@@ -4,12 +4,12 @@ import CSButton from '../CSButton';
 import classNames from 'classnames';
 
 export type CSOptionType = 'list-item' | 'selected-item';
-export type CSOptionFilterByType = 'itemKey' | 'value';
+export type CSOptionSearchByType = 'itemKey' | 'value';
 
 export interface CSOptionProps {
 	[key: string]: any;
 	className?: string;
-	filterBy?: CSOptionFilterByType;
+	searchBy?: CSOptionSearchByType;
 	id?: string;
 	itemKey: string;
 	value: string;
@@ -52,7 +52,6 @@ class CSOption extends React.Component<CSOptionProps> {
 		const {
 			active,
 			className,
-			filterBy,
 			id,
 			isMultiSelectItem,
 			itemKey,
@@ -60,6 +59,7 @@ class CSOption extends React.Component<CSOptionProps> {
 			onMouseDown,
 			onMouseOut,
 			onMouseOver,
+			searchBy,
 			selected,
 			type,
 			value,

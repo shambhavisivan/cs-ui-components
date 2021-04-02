@@ -46,7 +46,7 @@ import CSLabel from './components/CSLabel';
 import CSList, { CSListSize, CSListVariant } from './components/list/CSList';
 import CSListGroup, { CSListGroupCheckboxOption } from './components/list/CSListGroup';
 import CSListItem from './components/list/CSListItem';
-import CSLookupField from './components/CSLookupField';
+import CSLookup, { CSLookupDropdownAlign, CSLookupDropdownPosition, CSLookupTableColumnType } from './components/CSLookup';
 import CSMainHeader, { CSMainHeaderColor } from './components/main-header/CSMainHeader';
 import CSMainHeaderIcon from './components/main-header/CSMainHeaderIcon';
 import CSMainHeaderLeft from './components/main-header/CSMainHeaderLeft';
@@ -55,7 +55,7 @@ import CSModal, { CSModalSize } from './components/modal/CSModal';
 import CSModalBody from './components/modal/CSModalBody';
 import CSModalFooter, { CSModalFooterAlign } from './components/modal/CSModalFooter';
 import CSModalHeader from './components/modal/CSModalHeader';
-import CSOption, { CSOptionType, CSOptionFilterByType } from './components/custom-select/CSOption';
+import CSOption, { CSOptionType, CSOptionSearchByType } from './components/custom-select/CSOption';
 import CSPagination from './components/CSPagination';
 import CSPaginationWrapper from './components/CSPaginationWrapper';
 import CSPath from './components/path/CSPath';
@@ -156,7 +156,10 @@ export {
 	CSListItem,
 	CSListSize,
 	CSListVariant,
-	CSLookupField,
+	CSLookupTableColumnType,
+	CSLookup,
+	CSLookupDropdownAlign,
+	CSLookupDropdownPosition,
 	CSMainHeader,
 	CSMainHeaderColor,
 	CSMainHeaderIcon,
@@ -169,7 +172,7 @@ export {
 	CSModalHeader,
 	CSModalSize,
 	CSOption,
-	CSOptionFilterByType,
+	CSOptionSearchByType,
 	CSOptionType,
 	CSPagination,
 	CSPaginationWrapper,

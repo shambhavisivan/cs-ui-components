@@ -7,7 +7,11 @@ export interface CSTableRowProps {
 	[key: string]: any;
 	className?: string;
 	id?: string;
-	onClick?: React.MouseEventHandler<HTMLDivElement>;
+	onClick?: (e: React.MouseEvent<HTMLDivElement>) => any;
+	onMouseDown?: (e: React.MouseEvent<HTMLDivElement>) => any;
+	onMouseOut?: (e: React.MouseEvent<HTMLDivElement>) => any;
+	onMouseOver?: (e: React.MouseEvent<HTMLDivElement>) => any;
+	rowHighlighted?: boolean;
 	rowSelected?: boolean;
 }
 
@@ -42,6 +46,10 @@ class CSTableRow extends React.Component<CSTableRowProps> {
 			className,
 			id,
 			onClick,
+			onMouseDown,
+			onMouseOut,
+			onMouseOver,
+			rowHighlighted,
 			rowSelected,
 			...rest
 		} = this.props;
@@ -50,7 +58,8 @@ class CSTableRow extends React.Component<CSTableRowProps> {
 			'cs-table-row',
 			{
 				[`${className}`]: className,
-				'cs-row-selected': rowSelected
+				'cs-table-row-selected': rowSelected,
+				'cs-table-row-highlighted': rowHighlighted
 			}
 		);
 
@@ -64,6 +73,9 @@ class CSTableRow extends React.Component<CSTableRowProps> {
 						id={id}
 						tabIndex={0}
 						onKeyDown={event => this.handleOnKeyDown(event, context)}
+						onMouseDown={onMouseDown}
+						onMouseOut={onMouseOut}
+						onMouseOver={onMouseOver}
 						{...rest}
 					>
 						{children}

@@ -30,21 +30,21 @@ class CSCustomSelectPreview extends React.Component {
 		/>
 	));
 
-	optionItemsFilterByKey = this.itemsArray.map(item => (
+	optionItemsSearchByKey = this.itemsArray.map(item => (
 		<CSOption
 			key={item.itemKey}
 			itemKey={item.itemKey}
 			value={item.value}
-			filterBy="itemKey"
+			searchBy="itemKey"
 		/>
 	));
 
-	optionItemsFilterByValue = this.itemsArray.map(item => (
+	optionItemsSearchByValue = this.itemsArray.map(item => (
 		<CSOption
 			key={item.itemKey}
 			itemKey={item.itemKey}
 			value={item.value}
-			filterBy="value"
+			searchBy="value"
 		/>
 	));
 
@@ -74,7 +74,7 @@ class CSCustomSelectPreview extends React.Component {
 		}
 	}
 
-	handleChange = () => alert('Value has changed.');
+	handleSearch = (e: any) => alert(e.target.value);
 
 	getDoc() {
 		const json = {
@@ -284,11 +284,11 @@ class CSCustomSelectPreview extends React.Component {
 					]
 				},
 				{
-					propName: 'onChange',
+					propName: 'onSearch',
 					variations: [
 						{
 							component:
-								<CSCustomSelect label="Choose letter" onChange={this.handleChange}>
+								<CSCustomSelect label="Choose letter" onSearch={this.handleSearch}>
 									{this.optionItems}
 								</CSCustomSelect>
 						}
@@ -417,7 +417,7 @@ class CSCustomSelectPreview extends React.Component {
 					]
 				},
 				{
-					propName: 'CSOption - filterBy',
+					propName: 'CSOption - searchBy',
 					alert: {
 						variant: 'info',
 						text: 'Option can be filtered by either itemKey or value or both. By default option will be filtered by both itemKey and value!'
@@ -436,7 +436,7 @@ class CSCustomSelectPreview extends React.Component {
 							quickLink: 'itemKey',
 							component:
 								<CSCustomSelect label="Choose letter">
-									{this.optionItemsFilterByKey}
+									{this.optionItemsSearchByKey}
 								</CSCustomSelect>
 						},
 						{
@@ -444,7 +444,7 @@ class CSCustomSelectPreview extends React.Component {
 							quickLink: 'value',
 							component:
 								<CSCustomSelect label="Choose letter">
-									{this.optionItemsFilterByValue}
+									{this.optionItemsSearchByValue}
 								</CSCustomSelect>
 						}
 					]
@@ -486,6 +486,7 @@ class CSCustomSelectPreview extends React.Component {
 				}, {
 					name: 'error',
 					types: ['boolean'],
+					default: 'false',
 					description: 'Toggle the error state.'
 				}, {
 					name: 'errorMessage',
@@ -534,9 +535,9 @@ class CSCustomSelectPreview extends React.Component {
 					default: 'false',
 					description: 'Allow selection of multiple options.'
 				}, {
-					name: 'onChange',
+					name: 'onSearch',
 					types: ['(event) => any'],
-					description: 'Handler method for the change event.'
+					description: 'Handler method when serch term changes.'
 				}, {
 					name: 'onSelectChange',
 					types: ['(event) => void'],

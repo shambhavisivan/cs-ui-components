@@ -86,12 +86,13 @@
 			}
 
 			&:hover,
-			&:focus {
+			&:focus,
+			&.cs-table-row-highlighted {
 				outline: 0;
 				@include sbg(--cs-table-row-hover-bg);
 			}
 
-			&.cs-row-selected {
+			&.cs-table-row-selected {
 				@include sbg(--cs-table-row-selected-bg);
 
 				&:hover,
