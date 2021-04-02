@@ -1,4 +1,4 @@
-import React, { ReactChildren, ReactElement, MutableRefObject, ReactComponentElement, CSSProperties } from 'react';
+import React, { CSSProperties } from 'react';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from '../CSFieldErrorMsg';
 import CSIcon from '../CSIcon';
 import CSLabel from '../CSLabel';
@@ -44,7 +44,7 @@ export interface CSCustomSelectState {
 	searchTerm: string;
 	selectedItem: CSOptionItem;
 	selectedOptions: Array<CSOptionItem>;
-	toggle: boolean;
+	isOpen: boolean;
 }
 
 class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelectState> {
@@ -58,7 +58,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		super(props);
 
 		this.state = {
-			toggle: false,
+			isOpen: false,
 			searchTerm: '',
 			selectedOptions: [],
 			selectedItem: {
@@ -115,7 +115,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		const { onSearch } = this.props;
 		this.setState({
 			searchTerm: e.target.value,
-			toggle: true,
+			isOpen: true,
 			activeListItem: 0
 		});
 		if (onSearch) {
@@ -126,7 +126,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 	handleOnFocus = () => {
 		this.setState(
 			{
-				toggle: true,
+				isOpen: true,
 				activeListItem: 0
 			});
 	}
@@ -134,7 +134,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 	handleOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
 		e.stopPropagation();
 		this.setState({
-			toggle: false
+			isOpen: false
 		});
 	}
 
@@ -152,7 +152,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		Escape keypress closes dropdown.
 	*/
 	handleOnKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-		const { searchTerm, toggle } = this.state;
+		const { searchTerm, isOpen } = this.state;
 		let { activeListItem } = this.state;
 		const { multiselect } = this.props;
 
@@ -163,10 +163,10 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 			case event.key === KeyCode.Backspace && !searchTerm && multiselect:
 				this.deleteLastItem();
 				break;
-			case event.key === KeyCode.Escape && toggle:
-				this.setState({ toggle: !toggle });
+			case event.key === KeyCode.Escape && isOpen:
+				this.setState({ isOpen: !isOpen });
 				break;
-			case event.key === KeyCode.ArrowDown && toggle:
+			case event.key === KeyCode.ArrowDown && isOpen:
 				event.preventDefault();
 				switch (true) {
 					case activeListItem === null:
@@ -181,7 +181,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 						break;
 				}
 				break;
-			case event.key === KeyCode.ArrowUp && toggle:
+			case event.key === KeyCode.ArrowUp && isOpen:
 				event.preventDefault();
 				switch (true) {
 					case activeListItem === null:
@@ -199,11 +199,11 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 			case event.key === KeyCode.Enter:
 				event.preventDefault();
 				switch (true) {
-					case toggle && activeListItem !== null && !!this.filteredList.length:
+					case isOpen && activeListItem !== null && !!this.filteredList.length:
 						this.onSelect(this.getOptionData(this.filteredList[activeListItem]));
 						break;
 					default:
-						this.toggle();
+						this.setOpen();
 						break;
 				}
 				break;
@@ -240,7 +240,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 				},
 				this.handleSelectChange
 			);
-			this.toggle();
+			this.setOpen();
 		}
 	}
 
@@ -336,8 +336,8 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		}
 	}
 
-	toggle = () => {
-		this.setState({ toggle: !this.state.toggle });
+	setOpen = () => {
+		this.setState({ isOpen: !this.state.isOpen });
 	}
 
 	// Accepts child as CSOption and returns only object of itemKey and value
@@ -368,7 +368,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 			searchTerm,
 			selectedItem,
 			selectedOptions,
-			toggle
+			isOpen
 		} = this.state;
 		const {
 			borderRadius,
@@ -411,7 +411,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		});
 		const selectedListItemClasses = classNames(
 			'cs-selected-input-option', {
-			'cs-custom-select-dropdown-open': toggle
+			'cs-custom-select-dropdown-open': isOpen
 		});
 		const style: CSSProperties = {
 			'--cs-custom-select-border-radius': borderRadius
@@ -504,12 +504,12 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 							required={required}
 							disabled={disabled}
 							aria-invalid={error}
-							aria-expanded={this.state.toggle}
+							aria-expanded={isOpen}
 							aria-required={required}
 							title={title}
 							autoComplete="off"
 							onKeyDown={this.handleOnKeyDown}
-							onMouseDown={() => this.setState({ toggle: true })}
+							onMouseDown={() => this.setState({ isOpen: true })}
 							onBlur={e => this.handleOnBlur(e)}
 							onFocus={this.handleOnFocus}
 							ref={node => this.input = node}
@@ -538,13 +538,13 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 					}
 					<CSIcon
 						name="chevrondown"
-						rotate={toggle ? '180' : null}
+						rotate={isOpen ? '180' : null}
 						className="cs-custom-select-icon"
 						color="var(--cs-custom-select-dropdown-icon-c)"
 					/>
 				</div>
 				{
-					(toggle && !disabled) &&
+					(isOpen && !disabled) &&
 					<ul
 						className="cs-custom-select-dropdown"
 						id="cs-custom-select-dropdown"

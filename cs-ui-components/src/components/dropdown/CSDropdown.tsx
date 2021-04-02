@@ -42,7 +42,7 @@ export interface CSDropdownStates {
 	computedDropdownStyle?: CSSProperties;
 	computedPosition: Array<string>;
 	dropdownBtnWidth?: number;
-	isOpened: boolean;
+	isOpen: boolean;
 }
 
 class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
@@ -63,7 +63,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 		super(props);
 		this.state = {
 			computedPosition: [this.props.position, this.props.align],
-			isOpened: false
+			isOpen: false
 		};
 
 		this.btnDropdownRef = React.createRef();
@@ -141,13 +141,13 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 			});
 		}
 
-		this.setState({ isOpened: true });
+		this.setState({ isOpen: true });
 		document.addEventListener('click', this.handleOutsideClick);
 		document.addEventListener('keydown', this.handleOnKeyDown);
 	}
 
 	handleOnKeyDown(event: any) {
-		if (this.state.isOpened) {
+		if (this.state.isOpen) {
 			// If escape key pressed close the dropdown and return focus to dropdown button
 			if (event.key === KeyCode.Escape) {
 				this.closeDropdown();
@@ -168,7 +168,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 
 	// If dropdown is closed && arrow down key pressed open the dropdown
 	openDropdownOnKeyDown(event: any) {
-		if (!this.state.isOpened) {
+		if (!this.state.isOpen) {
 			if (event.key === KeyCode.ArrowDown) {
 				event.preventDefault();
 				this.openDropdown();
@@ -180,14 +180,14 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 		this.setState({
 			computedDropdownStyle: undefined,
 			computedPosition: [this.props.position, this.props.align],
-			isOpened: false
+			isOpen: false
 		});
 		document.removeEventListener('click', this.handleOutsideClick);
 		document.removeEventListener('keydown', this.handleOnKeyDown);
 	}
 
 	toggleDropdown = (focusBtnAfterClose?: boolean) => {
-		if (!this.state.isOpened) {
+		if (!this.state.isOpen) {
 			this.openDropdown();
 		} else {
 			this.closeDropdown();
