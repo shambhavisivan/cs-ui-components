@@ -8,12 +8,6 @@ import PreviewLinks from '../PreviewLinks';
 import { CSTooltip, CSChip } from '@cloudsense/cs-ui-components';
 
 class CSTooltipPreview extends React.Component {
-	tooltipContent: () => Promise<JSX.Element> = () => new Promise(resolve => {
-		setTimeout(() => {
-			resolve(<CSChip text="brand" variant="brand" />);
-		}, 2000);
-	})
-
 	getTooltipDoc = () => ({
 		name: 'Tooltip',
 		usage: 'A Tooltip is a small piece of contextual information about an element on the screen, which is displayed when a user hovers or focuses on the element it is describing. It is not focusable and cannot contain focusable content.',
@@ -52,12 +46,27 @@ class CSTooltipPreview extends React.Component {
 								quickLink: 'element',
 								component: <CSTooltip content={<CSChip text="custom content" />} />,
 								code: '<CSTooltip content={<CSChip text="custom content" />} />'
-							},
-							{
+							}, {
 								primaryVariants: 'content={() => Promise<CSTooltipContent>}',
-								quickLink: 'element',
-								component: <CSTooltip height="200px" content={this.tooltipContent} />,
-								code: '<CSTooltip height="200px" content={this.tooltipContent} />,'
+								quickLink: 'promise',
+								component: <CSTooltip
+									content={() => (
+										new Promise(resolve => {
+											setTimeout(() => {
+												resolve(<CSChip text="resolved" variant="brand" />);
+											}, 2000);
+										})
+									)}
+								/>,
+								code: `<CSTooltip
+									content={() => (
+										new Promise(resolve => {
+											setTimeout(() => {
+												resolve(<CSChip text="resolved" variant="brand" />);
+											}, 2000);
+										})
+									)}
+								/>`
 							}
 						]
 					}, {
@@ -696,7 +705,11 @@ class CSTooltipPreview extends React.Component {
 			}, {
 				name: 'content',
 				required: true,
-				types: ['string', 'Array<string>', 'Element'],
+				customTypes: [{
+					name: 'CSTooltipContent',
+					types: ['string', 'Array<string>', 'Element']
+				}],
+				types: ['() => Promise<CSTooltipContent>'],
 				description: 'Set the content of the tooltip.'
 			}, {
 				name: 'delayTooltip',
