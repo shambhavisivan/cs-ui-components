@@ -454,20 +454,41 @@ class CSCurrencyPreview extends React.Component {
 						]
 					}, {
 						propName: 'title',
+						alert: {
+							variant: 'info',
+							text: 'If title prop is defined as boolean(true) it will render formatted value from the value prop, otherwise it will render whatever string value is passed to it!'
+						},
 						variations: [
 							{
 								primaryVariants: 'title="text"',
+								quickLink: 'text',
 								component: <CSCurrency
 									currency="EUR"
 									locale="en"
 									value={100000}
-									title="custom title"
+									title="text"
 								/>,
 								code: `<CSCurrency
 									currency="EUR"
 									locale="en"
 									value={100000}
-									title="custom title"
+									title="text"
+								/>`
+							},
+							{
+								primaryVariants: 'title=true',
+								quickLink: 'true',
+								component: <CSCurrency
+									value="10000"
+									title
+									currency="EUR"
+									locale="en-GB"
+								/>,
+								code: `<CSCurrency
+									value="10000"
+									title
+									currency="EUR"
+									locale="en-GB"
 								/>`
 							}
 						]
@@ -651,8 +672,8 @@ class CSCurrencyPreview extends React.Component {
 				description: 'Set the sign display. Not supported in Safari, default value will be used.'
 			}, {
 				name: 'title',
-				types: ['string'],
-				description: 'Set the value of the title attribute.'
+				types: ['string', 'boolean'],
+				description: 'Set the value of the title attribute. Boolean will render formatted value from value prop, while string will render the string value passed to this prop.'
 			}, {
 				name: 'useGrouping',
 				types: ['boolean'],

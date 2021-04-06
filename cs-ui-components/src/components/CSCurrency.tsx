@@ -22,7 +22,7 @@ export interface CSCurrencyProps {
 	minimumSignificantDigits?: number;
 	showSymbolOnly?: boolean;
 	signDisplay?: CSSignDisplay;
-	title?: string;
+	title?: string | boolean;
 	useGrouping?: boolean;
 	value?: string | number;
 }
@@ -118,11 +118,21 @@ class CSCurrency extends React.Component<CSCurrencyProps> {
 			}
 		};
 
+		const getTitle = () => {
+			if (title) {
+				if (typeof title === 'boolean') {
+					return formattedValue();
+				} else {
+					return title;
+				}
+			}
+		};
+
 		return (
 			<span
 				className={currencyClasses}
 				id={id}
-				title={title}
+				title={getTitle()}
 				{...rest}
 			>
 				{formattedValue()}
