@@ -83,12 +83,14 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 						variations: [
 							{
 								primaryVariants: 'closeButton={true}',
+								secondaryVariants: 'onClose={() => {}}',
 								component: <>
 									<CSButton label="Open Modal" onClick={() => this.openModal('closeButton')} />
 									<CSModal
 										visible={this.state.visibleModal === 'closeButton'}
 										animated
 										closeButton
+										onClose={this.closeModal}
 									>
 										<CSModalHeader title="Title" subtitle="Subtitle" />
 										<CSModalBody>
@@ -104,6 +106,7 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 									visible={this.state.visibleModal === 'closeButton'}
 									animated
 									closeButton
+									onClose={this.closeModal}
 								>
 									<CSModalHeader title="Title" subtitle="Subtitle" />
 									<CSModalBody>
@@ -213,9 +216,9 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 							{
 								secondaryVariants: 'closeButton={true}',
 								component: <>
-									<CSButton label="Open Modal" onClick={() => this.openModal('closeButton')} />
+									<CSButton label="Open Modal" onClick={() => this.openModal('onClose')} />
 									<CSModal
-										visible={this.state.visibleModal === 'closeButton'}
+										visible={this.state.visibleModal === 'onClose'}
 										animated
 										closeButton
 										onClose={this.closeModal}
@@ -229,9 +232,9 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 										</CSModalFooter>
 									</CSModal>
 								</>,
-								code: `<CSButton label="Open Modal" onClick={() => this.openModal('closeButton')} />
+								code: `<CSButton label="Open Modal" onClick={() => this.openModal('onClose')} />
 								<CSModal
-									visible={this.state.visibleModal === 'closeButton'}
+									visible={this.state.visibleModal === 'onClose'}
 									animated
 									closeButton
 									onClose={this.closeModal}
