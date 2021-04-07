@@ -114,14 +114,6 @@ class CSModal extends React.Component<CSModalProps> {
 		}
 	}
 
-	switchFocusOnClose = () => {
-		const modalRoot = document.getElementById(this.modalId);
-		const modalCloseBtn: HTMLElement = document.querySelector(`.${this.modalCloseClass}`);
-		if (modalRoot.contains(modalCloseBtn)) {
-			modalCloseBtn.focus();
-		}
-	}
-
 	componentDidMount() {
 		const focusable = this.getFocusableElements();
 		this.getFirstLastModalElement();
@@ -151,8 +143,6 @@ class CSModal extends React.Component<CSModalProps> {
 	componentWillUnmount() {
 		const modalRoot = document.getElementById(this.modalId);
 		document.removeEventListener('keydown', this.handleFocusChange);
-		this.switchFocusOnClose();
-
 		document.removeEventListener('keydown', this.handleEsc, false);
 
 		if (modalRoot.childElementCount === 1) {
