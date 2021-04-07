@@ -303,7 +303,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 					ariaExpanded={!!this.state.computedDropdownStyle}
 					ariaHaspopup={!!Object(children).length}
 					ref={this.btnDropdownRef}
-				/>
+				>
 				{this.state.computedDropdownStyle &&
 					<Portal node={document && document.getElementById(this.dropdownId)}>
 						<CSDropdownItemWrapper
@@ -316,8 +316,6 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 							visible={!!this.state.computedDropdownStyle}
 							style={dropdownStyle}
 							toggleDropdown={this.toggleDropdown}
-							onMouseEnter={hover ? this.openDropdown : undefined}
-							onMouseLeave={hover ? this.closeDropdown : undefined}
 							ref={this.dropdownRefCallback}
 							align={this.state.computedPosition[1]}
 							position={this.state.computedPosition[0]}
@@ -326,6 +324,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 						</CSDropdownItemWrapper>
 					</Portal>
 				}
+				</CSButton>
 			</div>
 		);
 	}

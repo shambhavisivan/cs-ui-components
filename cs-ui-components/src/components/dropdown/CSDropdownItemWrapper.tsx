@@ -32,14 +32,6 @@ export interface CSDropdownItemWrapperProps {
 }
 
 class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> {
-	public static defaultProps = {
-		btnType: 'default',
-		btnStyle: 'initial',
-		align: 'left',
-		iconName: 'down',
-		hover: false,
-		position: 'bottom'
-	};
 	private dropdownUListRef: React.RefObject<HTMLUListElement>;
 	private focusableElements: any;
 
@@ -113,8 +105,6 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 			maxHeight,
 			maxWidth,
 			mounted,
-			onMouseEnter,
-			onMouseLeave,
 			mode,
 			padding,
 			position,
@@ -175,8 +165,6 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 				className={btnDropdownOuterItemWrapperClasses}
 				style={style}
 				ref={forwardRef}
-				onMouseEnter={onMouseEnter}
-				onMouseLeave={onMouseLeave}
 			>
 				<ul
 					className={btnDropdownItemWrapperClasses}
