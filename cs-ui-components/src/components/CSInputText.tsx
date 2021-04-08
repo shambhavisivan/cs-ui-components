@@ -123,7 +123,7 @@ class CSInputText extends React.Component<CSInputTextProps> {
 						maxLength={maxLength}
 						readOnly={readOnly}
 						required={required}
-						value={value ?? ''}
+						value={value}
 						type="text"
 						aria-label={label}
 						aria-required={required}

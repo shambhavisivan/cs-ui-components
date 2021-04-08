@@ -9,10 +9,14 @@ import { CSInputText } from '@cloudsense/cs-ui-components';
 
 interface CSInputTextPreviewState {
 	focused: boolean;
+	value: string;
 }
 
 class CSInputTextPreview extends React.Component<{}, CSInputTextPreviewState> {
-	state = { focused: false };
+	state = {
+		focused: false,
+		value: 'Enter name'
+	};
 
 	handleChange = () => alert('Value has changed.');
 	handleBlur = () => alert('Input has lost focus.');
@@ -24,6 +28,8 @@ class CSInputTextPreview extends React.Component<{}, CSInputTextPreviewState> {
 			return { focused: !prevState.focused };
 		});
 	}
+
+	setValue = (e: any) => this.setState({ value: e.target.value });
 
 	getInputTextDoc = () => ({
 		name: 'Input Text',
@@ -244,7 +250,7 @@ class CSInputTextPreview extends React.Component<{}, CSInputTextPreviewState> {
 						propName: 'value',
 						variations: [
 							{
-								component: <CSInputText label="Enter value" value="Enter name" />,
+								component: <CSInputText label="Enter value" value={this.state.value} onChange={this.setValue} />,
 								code: '<CSInputText label="Enter value" value="Enter name" />'
 							}
 						]
