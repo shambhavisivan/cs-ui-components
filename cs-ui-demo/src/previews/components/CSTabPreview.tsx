@@ -6,7 +6,7 @@ import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 import { NavLink } from 'react-router-dom';
 
-import { CSTabGroup, CSTab, CSButton } from '@cloudsense/cs-ui-components';
+import { CSTabGroup, CSTab, CSIcon } from '@cloudsense/cs-ui-components';
 
 class CSTabPreview extends React.Component {
 	handleClick = () => alert('Tab has been clicked.');
@@ -400,21 +400,21 @@ class CSTabPreview extends React.Component {
 						]
 					}, {
 						propName: 'children',
-						description: 'CSTab supports custom content provided as a child',
+						description: 'CSTab supports custom content provided as children, except for button elements.',
 						variations: [
 							{
 								component: <CSTabGroup>
 									<CSTab name="Tab One" />
 									<CSTab name="Tab Two" />
 									<CSTab name="Tab Three">
-										<CSButton label="Custom Button" />
+										<CSIcon name="activity" />
 									</CSTab>
 								</CSTabGroup>,
 								code: `<CSTabGroup>
 									<CSTab name="Tab One" />
 									<CSTab name="Tab Two" />
 									<CSTab name="Tab Three">
-										<CSButton label="Custom Button" />
+										<CSIcon name="activity" />
 									</CSTab>
 								</CSTabGroup>`
 							}
