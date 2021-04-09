@@ -1,11 +1,52 @@
 # Release Notes
 
+## 1.1.8<a name="1.1.8"></a>
+* CSButton
+  * focus and active style update
+* CSCurrency
+  * expand `title` prop to support boolean type which will display formatted value in the tooltip when `true`
+* CSCustomSelect
+  * <i>important</i> `onChange` prop renamed to `onSearch`
+* CSDropdown
+  * autoposition fixed when `hover={true}`
+  * hovering on dropdown fixed when `hover={true}` and dropdown opens on top
+* CSInputFile
+  * focus and active style update
+* CSListGroup
+  * focus and active style update
+* CSLookup
+  * <i>important</i> component renamed from CSLookupField to CSLookup
+  * <i>important</i> complete component refactor
+  * <i>important</i> `mode` prop added with `server` and `client` options
+* CSModal
+  * <i>important</i> custom `className` moved from `.cs-modal-wrapper` to `.cs-modal-overlay`
+  * fix `forwardRef` console error when modal opens
+  * remove obsolete `switchFocusOnClose` code
+* CSSlider
+  * focus and active style update
+* CSTab
+  * focus and active style update
+* CSTableRow
+  * `onMouseDown`, `onMouseOut` and `onMouseOver` props added
+* CSTextarea
+  * default `rows` value fixed
+* CSToggle
+  * focus and active style update
+* Demo App changes
+  * fix for code preview wrapping on small screens
+  * added links to supportive documents in accessibility tab
+  * minor preview file changes
+  * various minor fixes
+* Documentation object restructure
+  * Currency
+
 ## 1.1.7<a name="1.1.7"></a>
 * CSButtonGroup
   * fixed border radius when there is only one child
 * CSTooltip
   * dynamic tooltip fix to accept generator functions
   * `Esc` keydown breaking the app while promise is used fixed
+
 ## 1.1.6<a name="1.1.6"></a>
 * CSAlert
   * <i>important</i> `iconVisibility` prop renamed to `iconHidden`
