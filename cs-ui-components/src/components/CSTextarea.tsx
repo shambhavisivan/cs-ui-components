@@ -43,7 +43,7 @@ export function fixControlledValue<T>(value: T) {
 class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 
 	public static defaultProps = {
-		rows: '3'
+		rows: 3
 	};
 
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
