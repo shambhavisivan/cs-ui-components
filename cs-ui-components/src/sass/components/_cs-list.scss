@@ -35,6 +35,8 @@
 						outline: 0;
 					}
 					&:active {
+						z-index: var(--z-index-list-active);
+
 						@include css4 {
 							box-shadow: 0 0 3px cvar(--cs-list-item-header-box);
 						}
