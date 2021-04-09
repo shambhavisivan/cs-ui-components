@@ -99,8 +99,8 @@
 
 			&::-moz-range-thumb {
 				@include cs-slider-range-thumb;
-				z-index: 1;
 				position: relative;
+				z-index: 1;
 			}
 
 			// IE/Edge
@@ -260,6 +260,13 @@
 						left: 100%;
 						transform: translate(-100%, 0);
 					}
+				}
+			}
+
+			//Firefox
+			@supports (-moz-appearance:none) {
+				& {
+					top: 0.3125rem;
 				}
 			}
 		}
