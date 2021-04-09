@@ -148,8 +148,8 @@
 	margin-top: 1rem;
 }
 
-.cs-modal-wrapper {
-	&.custom-class {
+.cs-modal-overlay {
+	&.custom-class .cs-modal-wrapper {
 		background-color: var(--custom-bg);
 	}
 

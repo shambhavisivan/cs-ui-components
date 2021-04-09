@@ -178,16 +178,14 @@ class CSModal extends React.Component<CSModalProps> {
 		} = this.props;
 
 		const modalWrapperClasses = classNames(
-			'cs-modal-wrapper',
-			{
-				[`${className}`]: className
-			}
+			'cs-modal-wrapper'
 		);
 
 		const modalOverlayClasses = classNames(
 			'cs-modal-overlay',
 			{
-				'cs-modal-overlay-hidden': !(visible && mounted) && animated
+				'cs-modal-overlay-hidden': !(visible && mounted) && animated,
+				[`${className}`]: className
 			}
 		);
 
