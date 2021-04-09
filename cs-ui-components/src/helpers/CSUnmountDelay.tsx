@@ -45,14 +45,16 @@ const withCSUnmountDelay = (Component: any, timeout: number = 200) => {
 			return <Component
 				mounted={this.state.mounted}
 				setMounted={this.setMounted}
-				forwardRef={this.props.forwardRef}
 				{...this.props}
 			/>;
 		}
 	}
 
 	return React.forwardRef((props: CSUnmountDelayProps, ref) => {
-		return <CSUnmountDelay {...props} forwardRef={ref} />;
+		if (ref) {
+			return <CSUnmountDelay {...props} forwardRef={ref} />;
+		}
+		return <CSUnmountDelay {...props} />;
 	});
 };
 
