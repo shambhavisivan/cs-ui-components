@@ -427,20 +427,14 @@ class CSButtonPreview extends React.Component {
 							}
 						]
 					}, {
-						propName: 'iconName',
+						propName: 'iconName | iconOrigin',
 						variations: [
 							{
-								primaryVariants: 'iconName="list"',
-								component: <CSButton label="iconName list" iconName="list" />,
-								code: '<CSButton label="iconName list" iconName="list" />'
-							}
-						]
-					}, {
-						propName: 'iconOrigin',
-						variations: [
-							{
-								primaryVariants: 'iconOrigin="slds"',
-								secondaryVariants: 'iconName="list"',
+								primaryVariants: [
+									'iconName="list"',
+									'iconOrigin="slds"'
+
+								],
 								quickLink: 'slds',
 								component: <CSButton
 									label="slds icon"
@@ -451,8 +445,11 @@ class CSButtonPreview extends React.Component {
 									iconName="list"
 								/>`
 							}, {
-								primaryVariants: 'iconOrigin="cs"',
-								secondaryVariants: 'iconName="tag"',
+								primaryVariants: [
+									'iconName="tag"',
+									'iconOrigin="cs"'
+
+								],
 								quickLink: 'cs',
 								component: <CSButton
 									label="cs icon"

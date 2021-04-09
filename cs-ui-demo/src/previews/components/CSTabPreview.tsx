@@ -150,11 +150,13 @@ class CSTabPreview extends React.Component {
 							}
 						]
 					}, {
-						propName: 'iconOrigin',
+						propName: 'iconName | iconOrigin',
 						variations: [
 							{
-								primaryVariants: 'iconOrigin="slds"',
-								secondaryVariants: 'iconName="activity"',
+								primaryVariants: [
+									'iconName="activity"',
+									'iconOrigin="slds"'
+								],
 								quickLink: 'slds',
 								component: <CSTabGroup>
 									<CSTab name="Tab One" tabIcon="activity" />
@@ -167,8 +169,10 @@ class CSTabPreview extends React.Component {
 									<CSTab name="Tab Three" />
 								</CSTabGroup>`
 							}, {
-								primaryVariants: 'iconOrigin="cs"',
-								secondaryVariants: 'iconName="big_shot"',
+								primaryVariants: [
+									'iconName="big_shot"',
+									'iconOrigin="cs"'
+								],
 								quickLink: 'cs',
 								component: <CSTabGroup>
 									<CSTab

@@ -211,11 +211,20 @@ class CSCardPreview extends React.Component {
 							}
 						]
 					}, {
-						propName: 'iconName',
+						propName: 'iconName | iconOrigin',
 						variations: [
 							{
+								primaryVariants: [
+									'iconName="quote"',
+									'iconOrigin="slds"'
+								],
+								quickLink: 'slds',
 								component: <CSCard>
-									<CSCardHeader title="Card Header" iconName="description" />
+									<CSCardHeader
+										title="Card Header"
+										iconOrigin="slds"
+										iconName="quote"
+									/>
 									<CSCardBody>
 										Card Body
 									</CSCardBody>
@@ -224,7 +233,11 @@ class CSCardPreview extends React.Component {
 									</CSCardFooter>
 								</CSCard>,
 								code: `<CSCard>
-									<CSCardHeader title="Card Header" iconName="description" />
+									<CSCardHeader
+										title="Card Header"
+										iconOrigin="slds"
+										iconName="quote"
+									/>
 									<CSCardBody>
 										Card Body
 									</CSCardBody>
@@ -232,14 +245,12 @@ class CSCardPreview extends React.Component {
 										Card Footer
 									</CSCardFooter>
 								</CSCard>`
-							}
-						]
-					}, {
-						propName: 'iconOrigin',
-						variations: [
-							{
-								primaryVariants: 'iconOrigin="cs"',
-								secondaryVariants: 'iconName="lead"',
+							}, {
+								primaryVariants: [
+									'iconName="lead"',
+									'iconOrigin="cs"'
+								],
+								quickLink: 'cs',
 								component: <CSCard>
 									<CSCardHeader
 										title="Card Header"

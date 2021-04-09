@@ -78,29 +78,13 @@ class CSToastPreview extends React.Component {
 							}
 						]
 					}, {
-						propName: 'iconName',
-						description: 'This is used for overriding default icon defined by variant',
+						propName: 'iconName | iconOrigin',
 						variations: [
 							{
-								primaryVariants: 'iconName="quote"',
-								component: <CSToast
-									variant="warning"
-									iconName="quote"
-									text="This is an example alert for overriding the icon with iconName prop"
-								/>,
-								code: `<CSToast
-									variant="warning"
-									iconName="quote"
-									text="This is an example alert for overriding the icon with iconName prop"
-								/>`
-							}
-						]
-					}, {
-						propName: 'iconOrigin',
-						variations: [
-							{
-								primaryVariants: 'iconOrigin="slds"',
-								secondaryVariants: 'iconName="quote"',
+								primaryVariants: [
+									'iconName="quote"',
+									'iconOrigin="slds"'
+								],
 								quickLink: 'slds',
 								component: <CSToast
 									variant="info"
@@ -113,8 +97,10 @@ class CSToastPreview extends React.Component {
 									text="This is an example toast with an icon with origin 'slds'"
 								/>`
 							}, {
-								primaryVariants: 'iconOrigin="cs"',
-								secondaryVariants: 'iconName="big_shot"',
+								primaryVariants: [
+									'iconName="big_shot"',
+									'iconOrigin="cs"'
+								],
 								quickLink: 'cs',
 								component: <CSToast
 									variant="info"

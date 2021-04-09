@@ -130,27 +130,21 @@ class CSTooltipPreview extends React.Component {
 							}
 						]
 					}, {
-						propName: 'iconName',
-						description: 'This is used for overriding default icon defined by the variant.',
+						propName: 'iconName | iconOrigin',
 						variations: [
 							{
-								primaryVariants: 'iconName="quote"',
-								component: <CSTooltip content="Help text" iconName="quote" />,
-								code: '<CSTooltip content="Help text" iconName="quote" />'
-							}
-						]
-					}, {
-						propName: 'iconOrigin',
-						variations: [
-							{
-								primaryVariants: 'iconOrigin="slds"',
-								secondaryVariants: 'iconName="quote"',
+								primaryVariants: [
+									'iconName="quote"',
+									'iconOrigin="slds"'
+								],
 								quickLink: 'slds',
 								component: <CSTooltip content="Help text" iconName="quote" />,
 								code: '<CSTooltip content="Help text" iconName="quote" />'
 							}, {
-								primaryVariants: 'iconOrigin="cs"',
-								secondaryVariants: 'iconName="big_shot"',
+								primaryVariants: [
+									'iconName="big_shot"',
+									'iconOrigin="cs"'
+								],
 								quickLink: 'cs',
 								component: <CSTooltip
 									content="Help text"

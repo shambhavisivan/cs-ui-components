@@ -117,29 +117,13 @@ class CSAlertPreview extends React.Component {
 							}
 						]
 					}, {
-						propName: 'iconName',
-						description: 'Use to override the default icon defined by the variant.',
+						propName: 'iconName | iconOrigin',
 						variations: [
 							{
-								primaryVariants: 'iconName="quote"',
-								component: <CSAlert
-									variant="info"
-									iconName="quote"
-									text="This is an example alert for overriding the icon with iconName prop"
-								/>,
-								code: `<CSAlert
-									variant="info"
-									iconName="quote"
-									text="This is an example alert for overriding the icon with iconName prop"
-								/>`
-							}
-						]
-					}, {
-						propName: 'iconOrigin',
-						variations: [
-							{
-								primaryVariants: 'iconOrigin="slds"',
-								secondaryVariants: 'iconName="quote"',
+								primaryVariants: [
+									'iconName="quote"',
+									'iconOrigin="slds"'
+								],
 								quickLink: 'slds',
 								component: <CSAlert
 									variant="info"
@@ -152,8 +136,10 @@ class CSAlertPreview extends React.Component {
 									text="This is an example alert with an icon with origin 'slds'"
 								/>`
 							}, {
-								primaryVariants: 'iconOrigin="cs"',
-								secondaryVariants: 'iconName="big_shot"',
+								primaryVariants: [
+									'iconName="big_shot"',
+									'iconOrigin="cs"'
+								],
 								quickLink: 'cs',
 								component: <CSAlert
 									variant="info"
