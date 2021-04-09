@@ -9,7 +9,7 @@ const ToggleTheme: React.FC = () => {
 		<CSTooltip
 			width="10rem"
 			content="WIP: This will be used for dark theme implementation"
-			stylePosition="absolute"
+			stylePosition="fixed"
 			position="bottom-center"
 		>
 			<CSButton
@@ -19,7 +19,6 @@ const ToggleTheme: React.FC = () => {
 				labelHidden
 				iconName="light_bulb"
 				onClick={toggleTheme}
-				title=""
 			/>
 		</CSTooltip>
 	);
