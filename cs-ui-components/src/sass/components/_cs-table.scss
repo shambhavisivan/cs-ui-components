@@ -96,7 +96,8 @@
 				@include sbg(--cs-table-row-selected-bg);
 
 				&:hover,
-				&:focus {
+				&:focus,
+				&.cs-table-row-highlighted {
 					@include bgd(--cs-table-row-selected-bg, 0.02);
 				}
 			}

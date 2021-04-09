@@ -32,9 +32,13 @@
 			transition: transform 0.2s;
 			top: 0.5rem;
 		}
+		.cs-lookup-search-icon,
+		.cs-lookup-dropdown-icon {
+			pointer-events: none;
+		}
 		.cs-lookup-input {
 			@include input;
-			padding: 0 2rem 0 2rem;
+			padding: 0 3rem 0 2rem;
 			border-radius: var(--cs-lookup-border-radius, 0.25rem);
 		}
 	}
@@ -79,6 +83,9 @@
 						}
 						&-inverse {
 							@include sbg(--cs-lookup-dropdown-msg-inverse-bg);
+							@include css4 {
+								border: 1px solid cvar(--cs-lookup-dropdown-msg-inverse-br);
+							}
 							.cs-lookup-dropdown-msg-text {
 								@include sc(--cs-lookup-dropdown-msg-inverse-c);
 							}

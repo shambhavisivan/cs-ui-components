@@ -8,10 +8,24 @@ import PreviewLinks from '../PreviewLinks';
 
 import { CSLookup, CSAlert } from '@cloudsense/cs-ui-components';
 
-class CSLookupPreview extends React.Component {
+interface CSLookupPreviewState {
+	focused: boolean;
+}
+class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
+
+	state = {
+		focused: false
+	};
 
 	handleOnBlur = () => alert('Lookup has lost focus!');
-	handleOnFocus = () => alert('Lookup is focused!');
+	handleOnFocus = () => {
+		this.setState(prevState => {
+			if (!prevState.focused) {
+				alert('Lookup is focused.');
+			}
+			return { focused: !prevState.focused };
+		});
+	}
 	handleOnSearch = (e: any) => alert(e.target.value);
 	handleSelectChange = (item: any) => alert(JSON.stringify(item));
 
@@ -194,8 +208,13 @@ class CSLookupPreview extends React.Component {
 				{
 					propName: 'value',
 					customText: '',
+					alert: {
+						variant: 'info',
+						text: 'If multiselect is set value prop must receive array of records, otherwise single record can be passed to value prop.'
+					},
 					variations: [
 						{
+							variationName: ['Record<string, any>'],
 							component:
 								<CSLookup
 									mode="client"
@@ -204,6 +223,23 @@ class CSLookupPreview extends React.Component {
 									fieldToBeDisplayed="Account"
 									lookupColumns={lookupSimple.columns}
 									value={{ Id: 1, Account: 'Acme', Industry: 'Manufacturing' }}
+								/>
+						},
+						{
+							variationName: ['Array<Record<string, any>>'],
+							component:
+								<CSLookup
+									mode="client"
+									label="Account"
+									lookupOptions={lookupSimple.data}
+									fieldToBeDisplayed="Account"
+									lookupColumns={lookupSimple.columns}
+									multiselect
+									value={[
+										{ Id: 1, Account: 'Acme', Industry: 'Manufacturing' },
+										{ Id: 2, Account: 'Global Media', Industry: 'Industry' },
+										{ Id: 3, Account: 'Salesforce', Industry: 'Software' }
+									]}
 								/>
 						}
 					]
@@ -521,6 +557,22 @@ class CSLookupPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'multiselect',
+					variations: [
+						{
+							component:
+								<CSLookup
+									mode="client"
+									label="Account"
+									lookupOptions={lookupSimple.data}
+									lookupColumns={lookupSimple.columns}
+									fieldToBeDisplayed="Account"
+									multiselect
+								/>
+						}
+					]
+				},
+				{
 					propName: 'onBlur',
 					variations: [
 						{
@@ -582,23 +634,6 @@ class CSLookupPreview extends React.Component {
 									lookupColumns={lookupSimple.columns}
 									fieldToBeDisplayed="Account"
 									onSelectChange={this.handleSelectChange}
-								/>
-						}
-					]
-				},
-				{
-					propName: 'preventUpdate',
-					variations: [
-						{
-							component:
-								<CSLookup
-									mode="client"
-									label="Account"
-									lookupOptions={lookupSimple.data}
-									lookupColumns={lookupSimple.columns}
-									fieldToBeDisplayed="Account"
-									onSelectChange={this.handleSelectChange}
-									preventUpdate
 								/>
 						}
 					]
@@ -757,6 +792,7 @@ class CSLookupPreview extends React.Component {
 									fieldToBeDisplayed="Account"
 									pageSize={7}
 									infiniteScroll
+									multiselect
 								/>
 						}
 					]
@@ -880,6 +916,11 @@ class CSLookupPreview extends React.Component {
 					default: 'client',
 					description: 'Set the mode of component. Server mode enables loading records through lookupOptions prop and filtering takes place from within component, while server mode enables asynchronous fetching of records with fetchLookupOptions API which also enables infinite scroll and setting the minimum search term length.'
 				}, {
+					name: 'multiselect',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Allow selection of multiple options.'
+				}, {
 					name: 'onBlur',
 					types: ['(event) => any'],
 					description: 'Handler method for the blur event.'
@@ -908,11 +949,6 @@ class CSLookupPreview extends React.Component {
 					}],
 					default: '\'bottom\'',
 					description: 'Determine the vertical position of the lookup dropdown content.'
-				}, {
-					name: 'preventUpdate',
-					types: ['boolean'],
-					default: 'false',
-					description: 'Prevents update when selection is changed or selected option is deleted.'
 				}, {
 					name: 'required',
 					types: ['boolean'],
@@ -945,7 +981,7 @@ class CSLookupPreview extends React.Component {
 				},
 				{
 					name: 'value',
-					types: ['Record<string, any>', 'null'],
+					types: ['Record<string, any>', 'Array<Record<string, any>>', 'null'],
 					description: 'Set value to display of the option.'
 				}, {
 					name: '[key: string]',

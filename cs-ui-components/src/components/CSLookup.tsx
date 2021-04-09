@@ -13,7 +13,7 @@ import { CSTooltipPosition } from './CSTooltip';
 import { Portal } from 'react-portal';
 import { v4 as uuidv4 } from 'uuid';
 import KeyCode from '../util/KeyCode';
-import debounce from 'lodash.debounce';
+import { debounce, find, remove } from 'lodash';
 
 export interface CSLookupTableColumnType {
 	key: string;
@@ -40,22 +40,24 @@ interface CSLookupCommmonProps {
 	labelTitle?: boolean;
 	loading?: boolean;
 	lookupColumns: Array<CSLookupTableColumnType>;
+	multiselect?: boolean;
 	onBlur?: (event: React.FocusEvent<HTMLInputElement>) => any;
 	onFocus?: (event: React.FocusEvent<HTMLInputElement>) => any;
 	onSearch?: (event: React.ChangeEvent<HTMLInputElement>) => any;
 	onSelectChange?: (value?: any) => any;
 	placeholder?: string;
 	position?: CSLookupDropdownPosition;
-	preventUpdate?: boolean;
 	required?: boolean;
 	title?: string;
 	tooltipPosition?: CSTooltipPosition;
-	value?: Record<string, any> | null;
+	value?: Record<string, any> | Array<Record<string, any>> | null;
 }
+
 interface CSLookupFetchResult {
 	records: Array<Record<string, any>>;
 	moreRecords: boolean;
 }
+
 interface CSLookupServerProps {
 	fetchLookupOptions: (searchTerm: string, pageSize: number, pageNo: number) => Promise<CSLookupFetchResult>;
 	infiniteScroll?: boolean;
@@ -85,7 +87,8 @@ export interface CSLookupState {
 	moreRecords?: boolean;
 	pageNo?: number;
 	searchTerm?: string;
-	selectedOption?: object | null;
+	selectedOption?: Record<string, any> | null;
+	selectedOptions?: Array<Record<string, any>>;
 }
 
 export function fixControlledValue<T>(value: T) {
@@ -126,7 +129,8 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			pageNo: 0,
 			moreRecords: true,
 			searchTerm: '',
-			selectedOption: props.value
+			selectedOption: undefined,
+			selectedOptions: []
 		};
 
 		let lookupRoot = document.getElementById(this.lookupDropdownId);
@@ -144,6 +148,8 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		if (this.props.mode === 'client') {
 			this.setState({ dropdownValues: this.props.lookupOptions });
 		}
+
+		this.setValue();
 	}
 
 	componentWillUnmount() {
@@ -151,14 +157,24 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	}
 
 	componentDidUpdate(prevProps: CSLookupProps) {
-		if (prevProps.value !== this.props.value && !this.props.preventUpdate) {
-			this.setState({
-				selectedOption: this.props.value
-			});
+		if (prevProps.value !== this.props.value) {
+			this.setValue();
 		}
 		if (prevProps.lookupOptions !== this.props.lookupOptions) {
 			this.setState({
 				dropdownValues: this.props.lookupOptions
+			});
+		}
+	}
+
+	setValue = () => {
+		if (this.props.multiselect && Array.isArray(this.props.value)) {
+			this.setState({
+				selectedOptions: [...this.props.value]
+			});
+		} else {
+			this.setState({
+				selectedOption: this.props.value
 			});
 		}
 	}
@@ -196,20 +212,24 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 	handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { mode, onSearch } = this.props;
+		const { dropdownOpen } = this.state;
 		onSearch?.(e);
 
+		if (!dropdownOpen) {
+			this.openLookupDropdown();
+		}
 		const value = e.target.value ? e.target.value : '';
 		this.setState({
 			searchTerm: value,
 			fetchingMode: mode === 'server' ? 'after-search' : undefined,
 			dropdownValues: [],
 			pageNo: 0
-		}, () => this.executeSearch(this.state.searchTerm));
+		}, this.executeSearch);
 	}
 
-	executeSearch = (searchTerm: string) => {
+	executeSearch = () => {
 		this.props.mode === 'client' ?
-			this.executeClientSearch(searchTerm) :
+			this.executeClientSearch() :
 			this.executeServerSearchDebounced();
 	}
 
@@ -217,8 +237,9 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		If searchBy prop is not set items will be filtered by keys provided in lookupColumns prop.
 		Otherwise they will be filtered by key provided in searchBy prop array.
 	*/
-	executeClientSearch = (searchTerm: string) => {
+	executeClientSearch = () => {
 		const { lookupOptions, lookupColumns, searchBy } = this.props;
+		const { searchTerm } = this.state;
 		const fetchedOptions = [...lookupOptions];
 		let results: Array<any> = [];
 
@@ -257,12 +278,10 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	}
 
 	clearSearch = () => {
-		if (this.props.preventUpdate) {
-			return;
-		}
 		this.setState({
 			searchTerm: '',
 			selectedOption: null,
+			selectedOptions: [],
 			dropdownValues: this.props.mode === 'client' ?
 				this.props.lookupOptions :
 				[]
@@ -274,14 +293,28 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	}
 
 	selectAction(_selectedOption: Record<string, any>) {
-		if (this.props.preventUpdate) {
-			return;
+		const { selectedOptions } = this.state;
+		const { multiselect } = this.props;
+
+		if (multiselect) {
+			if (find(selectedOptions, _selectedOption)) {
+				const _selectedOptions = [...selectedOptions];
+				remove(_selectedOptions, _selectedOption);
+				this.setState({
+					selectedOptions: _selectedOptions
+				}, this.handleSelectChange);
+			} else {
+				this.setState({
+					selectedOptions: [...selectedOptions, _selectedOption]
+				}, this.handleSelectChange);
+			}
+		} else {
+			this.setState({
+				selectedOption: _selectedOption,
+				searchTerm: ''
+			}, this.handleSelectChange);
+			this.closeLookupDropdown();
 		}
-		this.setState(prevState => ({
-			selectedOption: _selectedOption,
-			searchTerm: ''
-		}), this.handleSelectChange);
-		this.closeLookupDropdown();
 	}
 
 	toggleLookupDropdown = () => {
@@ -296,7 +329,11 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 	handleSelectChange = () => {
 		if (this.props.onSelectChange) {
-			this.props.onSelectChange(this.state.selectedOption);
+			if (this.props.multiselect) {
+				this.props.onSelectChange(this.state.selectedOptions);
+			} else {
+				this.props.onSelectChange(this.state.selectedOption);
+			}
 		}
 	}
 
@@ -307,10 +344,26 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		}
 	}
 
+	getMultiselectValues = () => {
+		if (
+			this.props.multiselect &&
+			!!this.state.selectedOptions.length &&
+			!this.state.dropdownOpen
+		) {
+			const multiselectValues = this.state.selectedOptions.map(option => option[this.props.fieldToBeDisplayed]);
+			return multiselectValues.join(',');
+		}
+	}
+
 	setActiveTableRowIndex = (index: number) => {
 		this.setState({
 			activeRowIndex: index
 		});
+	}
+	handleOnClick = () => {
+		if (!this.state.dropdownOpen) {
+			this.openLookupDropdown();
+		}
 	}
 
 	handleOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -328,6 +381,14 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	handleOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
 		if (this.props.onBlur) {
 			this.props.onBlur(e);
+		}
+		if (this.props.multiselect && !!this.state.selectedOptions.length) {
+			this.setState({
+				searchTerm: '',
+				dropdownValues: this.props.mode === 'client' ?
+					this.props.lookupOptions :
+					[]
+			});
 		}
 		this.closeLookupDropdown();
 	}
@@ -373,7 +434,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 					selectedOption: null
 				}, this.handleSelectChange);
 				break;
-			case event.key === KeyCode.ArrowDown:
+			case event.key === KeyCode.ArrowDown && !!dropdownValues.length:
 				event.preventDefault();
 				switch (true) {
 					case activeRowIndex === null:
@@ -388,7 +449,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 						break;
 				}
 				break;
-			case event.key === KeyCode.ArrowUp:
+			case event.key === KeyCode.ArrowUp && !!dropdownValues.length:
 				event.preventDefault();
 				switch (true) {
 					case activeRowIndex === firstListElement:
@@ -566,6 +627,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			lookupColumns,
 			minTermLength,
 			mode,
+			multiselect,
 			onBlur,
 			onFocus,
 			onSearch,
@@ -573,7 +635,6 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			pageSize,
 			placeholder,
 			position,
-			preventUpdate,
 			required,
 			searchBy,
 			title,
@@ -589,7 +650,8 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			fetchingMode,
 			lookupInputWidth,
 			searchTerm,
-			selectedOption
+			selectedOption,
+			selectedOptions
 		} = this.state;
 
 		const lookupFieldWrapperClasses = classNames(
@@ -598,10 +660,17 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			[`${className}`]: className
 		});
 
+		const lookupInputClasses = classNames(
+			'cs-lookup-input',
+			{
+				'cs-lookup-input-error': error
+			}
+		);
+
 		const lookupDropdownMsgClasses = classNames(
 			'cs-lookup-dropdown-msg-wrapper',
 			{
-				'cs-lookup-dropdown-msg-wrapper-inverse': this.state.fetchingMode === 'after-scroll'
+				'cs-lookup-dropdown-msg-wrapper-inverse': fetchingMode === 'after-scroll'
 			});
 
 		const style: CSSProperties = {
@@ -651,14 +720,18 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		const dropdownValuesNode = dropdownValues.map((item, i) => (
 			<CSTableRow
 				key={'lookup-table-row' + i}
-				onMouseDown={e => {
+				onMouseDown={(e: any) => {
 					e.preventDefault();
 					e.stopPropagation();
 					this.selectAction(item);
 				}}
 				onMouseOver={() => this.setActiveTableRowIndex(i)}
 				onMouseOut={() => this.setActiveTableRowIndex(null)}
-				rowSelected={JSON.stringify(selectedOption) === JSON.stringify(item)}
+				rowSelected={
+					multiselect ?
+						find(selectedOptions, item) :
+						JSON.stringify(selectedOption) === JSON.stringify(item)
+				}
 				rowHighlighted={i === activeRowIndex}
 				id={`${this.lookupTableRowId}-${i}`}
 			>
@@ -682,7 +755,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			}
 		};
 		return (
-			<div className={lookupFieldWrapperClasses}>
+			<div className={lookupFieldWrapperClasses} >
 				{(label && !labelHidden) &&
 					<CSLabel
 						htmlFor={this.uniqueAutoId}
@@ -693,23 +766,27 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 						title={labelTitle ? label : null}
 					/>
 				}
-				< div className="cs-lookup-input-wrapper" >
+				<div className="cs-lookup-input-wrapper">
 					<CSIcon
 						name="search"
 						className="cs-lookup-search-icon"
 						color="var(--cs-input-icon-fill)"
 					/>
 					<input
-						className="cs-lookup-input"
+						className={lookupInputClasses}
 						autoComplete="off"
 						type="text"
 						placeholder={placeholder}
 						disabled={disabled}
 						required={required}
-						value={fixControlledValue(searchTerm || this.getValueToDisplay(selectedOption))}
+						value={fixControlledValue(searchTerm ||
+							this.getValueToDisplay(selectedOption) ||
+							this.getMultiselectValues())
+						}
 						onFocus={this.handleOnFocus}
 						onKeyDown={this.handleOnKeyDown}
 						onChange={this.handleSearch}
+						onClick={this.handleOnClick}
 						onBlur={this.handleOnBlur}
 						title={title}
 						id={id ? id : this.uniqueAutoId}
@@ -719,7 +796,11 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 						aria-invalid={error}
 						{...rest}
 					/>
-					{(searchTerm || selectedOption && !disabled) &&
+					{(
+						searchTerm ||
+						selectedOption ||
+						(!!selectedOptions.length && !dropdownOpen)
+						&& !disabled) &&
 						<CSButton
 							btnType="transparent"
 							btnStyle="brand"
@@ -748,7 +829,8 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 						<CSFieldErrorMsg message={errorMessage} />
 					}
 				</div >
-				{dropdownOpen &&
+				{
+					dropdownOpen &&
 					<Portal node={document && document.getElementById(this.lookupDropdownId)}>
 						<div
 							className="cs-lookup-dropdown"
@@ -769,7 +851,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 								}
 								<CSTableBody maxHeight="17rem">
 									{renderDropdownTableBody()}
-									{this.state.fetchingMode === 'after-scroll' &&
+									{fetchingMode === 'after-scroll' &&
 										loadingNode
 									}
 								</CSTableBody>
