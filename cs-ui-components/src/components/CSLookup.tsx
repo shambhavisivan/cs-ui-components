@@ -226,7 +226,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			return value.toString().toLowerCase().includes(searchTerm.toLowerCase());
 		};
 
-		if (!!searchBy.length) {
+		if (searchBy && !!searchBy.length) {
 			const keysToFilter = [...searchBy];
 			results = fetchedOptions.filter((item: any) => {
 				return Object.keys(item).some((key: any) =>
