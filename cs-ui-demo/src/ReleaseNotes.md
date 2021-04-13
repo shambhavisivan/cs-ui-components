@@ -1,5 +1,31 @@
 # Release Notes
 
+## 1.1.9<a name="1.1.9"></a>
+* CSIcon
+  * CSS height and width replaced with `size` prop across components
+    * CSDatepicker
+    * CSInputFile
+    * CSModal
+    * CSSection
+    * CSSelect
+    * CSTab
+    * CSToast
+    * CSTooltip
+* CSLookup
+  * fixed error thrown on lookup search
+  * click on icons not opening dropdown fixed
+  * dropdown not opening on input click fixed
+  * onFocus preview fixed
+  * `preventUpdate` prop removed
+  * lookup error styles fixed
+  * infiniteScroll loading styles changed
+  * selected item focus style fix
+* CSSection
+  * padding fixed on non-collapsible sections
+  * focus and active style update
+* Demo App changes
+  * dark mode button fix
+
 ## 1.1.8<a name="1.1.8"></a>
 * CSButton
   * focus and active style update
