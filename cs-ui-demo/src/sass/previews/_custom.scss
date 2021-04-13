@@ -84,19 +84,6 @@
 	&.divider-demo .custom-class {
 		border-color: var(--custom-br);
 	}
-
-	&.field-error-message-demo {
-		position: relative;
-		padding: 1.4375rem 1rem;
-
-		.cs-field-error-msg {
-			top: 1rem;
-		}
-	}
-}
-
-.components-preview .component-preview.errorMessage .component-example > .component-demo {
-	padding-bottom: 2rem;
 }
 
 .button-style-preview {
