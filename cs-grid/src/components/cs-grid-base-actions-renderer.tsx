@@ -1,11 +1,4 @@
-import {
-	CSButton,
-	CSButtonGroup,
-	CSDropdown,
-	CSIcon,
-	CSTooltip
-} from '@cloudsense/cs-ui-components';
-import * as KeyCode from 'keycode-js';
+import { CSButton, CSButtonGroup, CSDropdown, CSTooltip } from '@cloudsense/cs-ui-components';
 import React from 'react';
 
 import { CSGridCellRendererState } from '../interfaces/cs-grid-base-interfaces';
@@ -16,7 +9,6 @@ import {
 	Icon,
 	isStandardIcon
 } from '../interfaces/cs-grid-cell-props';
-import { onKeyPressInAList } from '../utils/cs-grid-on-key-press';
 import { noOfVisibleButtons } from '../utils/cs-grid-row-selection-helper';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
 
@@ -49,17 +41,11 @@ export abstract class CSGridBaseActionsRenderer<
 	}
 
 	componentDidMount() {
-		document.addEventListener('keydown', this.onKeyPress);
-
 		if (this.state.noOfInlineIcons > 0) {
 			setTimeout(() => {
 				this.onColumnResized();
 			});
 		}
-	}
-
-	componentWillUnmount() {
-		document.removeEventListener('keydown', this.onKeyPress);
 	}
 
 	refresh = (params: P): boolean => {
@@ -249,7 +235,7 @@ export abstract class CSGridBaseActionsRenderer<
 						<CSDropdown
 							mode='button'
 							iconName='threedots_vertical'
-							onDropdownClose={() => this.focusOnNextColumn()}
+							onDropdownTabClose={() => this.focusOnNextColumn()}
 						>
 							{dropDownValues}
 						</CSDropdown>
@@ -270,84 +256,6 @@ export abstract class CSGridBaseActionsRenderer<
 		};
 
 		this.props.api.startEditingCell(startEditingParams);
-	};
-
-	private onKeyPress = (event: KeyboardEvent) => {
-		// const buttonRefs = this.buttonRefs.filter(
-		// 	ref => ref !== null && ref !== undefined && !ref.disabled
-		// );
-		// if (event.target === this.props.eGridCell) {
-		// 	event.preventDefault();
-		// 	if (event.keyCode === KeyCode.KEY_ENTER || event.keyCode === KeyCode.KEY_RETURN) {
-		// 		this.startEditing();
-		// 	} else if (
-		// 		(event.keyCode === KeyCode.KEY_TAB && event.shiftKey) ||
-		// 		event.keyCode === KeyCode.KEY_LEFT
-		// 	) {
-		// 		if (this.dropdownRef) {
-		// 			this.dropdownRef.focus();
-		// 		} else if (buttonRefs.length > 0) {
-		// 			this.focusedIndex = buttonRefs.length - 1;
-		// 			buttonRefs[this.focusedIndex].focus();
-		// 		} else {
-		// 			this.focusOnLastColumn();
-		// 		}
-		// 	} else if (
-		// 		(event.keyCode === KeyCode.KEY_TAB && !event.shiftKey) ||
-		// 		event.keyCode === KeyCode.KEY_RIGHT
-		// 	) {
-		// 		if (buttonRefs.length > 0) {
-		// 			this.focusedIndex = 0;
-		// 			buttonRefs[this.focusedIndex].focus();
-		// 		} else if (this.dropdownRef) {
-		// 			this.dropdownRef.focus();
-		// 		} else {
-		// 			this.focusOnNextColumn();
-		// 		}
-		// 	}
-		// } else if ((event.target as HTMLButtonElement) === this.dropdownRef) {
-		// 	event.preventDefault();
-		// 	if (event.keyCode === KeyCode.KEY_ENTER || event.keyCode === KeyCode.KEY_RETURN) {
-		// 		this.startEditing();
-		// 	} else if (
-		// 		(event.keyCode === KeyCode.KEY_TAB && event.shiftKey) ||
-		// 		event.keyCode === KeyCode.KEY_LEFT
-		// 	) {
-		// 		if (buttonRefs.length > 0) {
-		// 			this.focusedIndex = buttonRefs.length - 1;
-		// 			buttonRefs[this.focusedIndex].focus();
-		// 		} else {
-		// 			this.focusOnLastColumn();
-		// 		}
-		// 	} else if (
-		// 		(event.keyCode === KeyCode.KEY_TAB && !event.shiftKey) ||
-		// 		event.keyCode === KeyCode.KEY_RIGHT
-		// 	) {
-		// 		this.focusOnNextColumn();
-		// 	}
-		// } else if (buttonRefs.includes(event.target as HTMLButtonElement)) {
-		// 	event.preventDefault();
-		// 	this.focusedIndex = onKeyPressInAList(
-		// 		event,
-		// 		buttonRefs,
-		// 		this.focusedIndex,
-		// 		false,
-		// 		true,
-		// 		() =>
-		// 			this.state.actions
-		// 				.filter(action => !action.disabled)
-		// 				[this.focusedIndex].action(this.props.node.id, this.state.value?.cellValue)
-		// 	);
-		// 	if (this.focusedIndex >= buttonRefs.length) {
-		// 		if (this.dropdownRef) {
-		// 			this.dropdownRef.focus();
-		// 		} else {
-		// 			this.focusOnNextColumn();
-		// 		}
-		// 	} else if (this.focusedIndex < 0) {
-		// 		this.focusOnLastColumn();
-		// 	}
-		// }
 	};
 
 	private focusOnLastColumn = () => {

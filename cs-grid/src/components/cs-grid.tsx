@@ -14,6 +14,7 @@ import {
 
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import { AgGridReact } from 'ag-grid-react';
+import KeyCode from '../utils/cs-grid-keycode';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -1096,7 +1097,10 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 						let trap;
 						// If focused elements
 						if (focusable.length > 0) {
-							if (params.event.key === 'ArrowRight' || params.event.key === 'Tab') {
+							if (
+								params.event.key === KeyCode.ArrowRight ||
+								params.event.key === KeyCode.Tab
+							) {
 								// If focused element isn't last focused item trap inside cell
 								if (document.activeElement !== focusable[focusable.length - 1]) {
 									trap = true;
@@ -1107,7 +1111,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 									const index = focusable.indexOf(document.activeElement);
 									(focusable[index + 1] as HTMLElement).focus();
 								}
-							} else if (params.event.key === 'ArrowLeft') {
+							} else if (params.event.key === KeyCode.ArrowLeft) {
 								// If focused element isn't first element inside cell trap inside cell
 								if (document.activeElement !== focusable[1]) {
 									trap = true;
@@ -1131,15 +1135,15 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 						// If trapped inside cell disable following events
 						if (trap) {
 							return (
-								params.event.key === 'Enter' ||
+								params.event.key === KeyCode.Enter ||
 								(params.editing &&
-									(params.event.key === 'Tab' ||
-										params.event.key === 'ArrowUp' ||
-										params.event.key === 'ArrowDown')) ||
+									(params.event.key === KeyCode.Tab ||
+										params.event.key === KeyCode.ArrowUp ||
+										params.event.key === KeyCode.ArrowDown)) ||
 								(params.column.getColDef().field === columnDef.name &&
-									(params.event.key === 'Tab' ||
-										params.event.key === 'ArrowLeft' ||
-										params.event.key === 'ArrowRight'))
+									(params.event.key === KeyCode.Tab ||
+										params.event.key === KeyCode.ArrowLeft ||
+										params.event.key === KeyCode.ArrowRight))
 							);
 						}
 					};
