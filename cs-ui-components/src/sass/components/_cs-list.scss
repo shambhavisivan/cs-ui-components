@@ -28,17 +28,22 @@
 			}
 			&-simple-list, &-check-list {
 				.cs-list-group-header-inner-wrapper {
+					margin-top: 0.125rem;
+
 					&:hover {
 						@include sbg(--cs-list-item-header-hover);
 					}
 					&:focus {
 						outline: 0;
+						@include css4 {
+							box-shadow: 0 0px 3px cvar(--cs-list-item-header-box);
+						}
 					}
 					&:active {
 						z-index: var(--z-index-list-active);
 
 						@include css4 {
-							box-shadow: 0 0 3px cvar(--cs-list-item-header-box);
+							@include bgd(--cs-list-item-header-hover, 0.02);
 						}
 					}
 					&:focus-visible {
