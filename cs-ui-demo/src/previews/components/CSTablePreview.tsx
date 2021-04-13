@@ -1476,11 +1476,11 @@ class CSTablePreview extends React.Component {
 					description: 'Handler method for the mouse over event.'
 				}, {
 					name: 'rowHighlighted',
-					types: ['bolean'],
+					types: ['boolean'],
 					description: 'Highlights row. Used to simulate hover effect.'
 				}, {
 					name: 'rowSelected',
-					types: ['bolean'],
+					types: ['boolean'],
 					description: 'Marks selected row, which works only if table has selectableRows true.'
 				}, {
 					name: '[key: string]',
