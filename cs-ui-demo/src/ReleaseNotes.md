@@ -1,5 +1,11 @@
 # Release Notes
 
+## 1.1.10<a name="1.1.10"></a>
+* CSLookup
+  * implemented ResizeObserver API
+  * fixed logic for clear button when lookup is disabled
+  * fixed lookup dropdown row padding
+
 ## 1.1.9<a name="1.1.9"></a>
 * CSIcon
   * CSS height and width replaced with `size` prop across components
