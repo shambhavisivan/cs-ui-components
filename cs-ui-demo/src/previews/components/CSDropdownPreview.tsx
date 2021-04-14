@@ -327,6 +327,26 @@ class CSDropdownPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'onDropdownKeyboardClose',
+					variations: [
+						{
+							component: <CSDropdown
+								iconName="down"
+								onDropdownKeyboardClose={() => alert('dropdown closed')}
+							>
+								<CSButton
+									iconName="world"
+									label="test label small"
+								/>
+								<CSButton
+									iconName="world"
+									label="test label large large"
+								/>
+							</CSDropdown>
+						}
+					]
+				},
+				{
 					propName: 'position',
 					variations: [
 						{
@@ -787,6 +807,11 @@ class CSDropdownPreview extends React.Component {
 					name: 'onChange',
 					types: ['(event) => void'],
 					description: 'Handler method for the click event.'
+				},
+				{
+					name: 'onDropdownKeyboardClose',
+					types: ['(event) => void'],
+					description: 'Handler method for when the dropdown is closed.'
 				}, {
 					name: 'padding',
 					types: ['string'],

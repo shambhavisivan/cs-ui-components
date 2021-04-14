@@ -31,7 +31,7 @@ export interface CSDropdownProps {
 	mode?: CSDropdownMode;
 	maxHeight?: string;
 	maxWidth?: string;
-	onDropdownClose?: () => void;
+	onDropdownKeyboardClose?: () => void;
 	onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 	padding?: string;
 	position?: CSDropdownPosition;
@@ -229,7 +229,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 			btnType,
 			children,
 			className,
-			onDropdownClose,
+			onDropdownKeyboardClose,
 			disabled,
 			hover,
 			iconName,
@@ -304,7 +304,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 								ref={this.dropdownRefCallback}
 								align={this.state.computedPosition[1]}
 								position={this.state.computedPosition[0]}
-								onDropdownClose={onDropdownClose}
+								onDropdownKeyboardClose={onDropdownKeyboardClose}
 								width={width}
 							>
 								{children}

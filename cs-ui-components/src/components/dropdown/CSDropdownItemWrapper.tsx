@@ -20,7 +20,7 @@ export interface CSDropdownItemWrapperProps {
 	maxHeight?: string;
 	maxWidth?: string;
 	onClick?: (e: React.MouseEvent<HTMLButtonElement>) => any;
-	onDropdownClose?: () => void;
+	onDropdownKeyboardClose?: () => void;
 	onMouseEnter?: (e: React.MouseEvent<HTMLDivElement>) => any;
 	onMouseLeave?: (e: React.MouseEvent<HTMLDivElement>) => any;
 	mode?: CSDropdownMode;
@@ -66,7 +66,7 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 		const focusableElements = Array.from(this.focusableElements);
 		const firstElement = focusableElements[0];
 		const lastElement = focusableElements[focusableElements.length - 1];
-		const { mode, onDropdownClose, toggleDropdown } = this.props;
+		const { mode, onDropdownKeyboardClose, toggleDropdown } = this.props;
 		let index = focusableElements.indexOf(document.activeElement);
 
 		// if mode is button enable arrow keys navigation
@@ -88,10 +88,10 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 						(focusableElements[index] as HTMLElement).focus();
 					}
 					break;
-				case KeyCode.Tab:
+				case KeyCode.Tab: case KeyCode.Escape:
 					toggleDropdown();
-					// onDropdownClose prop - Needed for CSGrid to focus next cell when tab key pressed
-					onDropdownClose?.();
+					// onDropdownKeyboardClose prop - Needed for CSGrid to focus next cell when tab/escape key pressed
+					onDropdownKeyboardClose?.();
 					break;
 			}
 		} else if (// if mode isn't button and last element is focused
