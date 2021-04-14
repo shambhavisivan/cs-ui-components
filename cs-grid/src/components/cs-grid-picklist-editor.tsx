@@ -112,8 +112,8 @@ export class CSGridPicklistEditor
 							<div className='cs-grid_search-wrapper cs-grid_picklist-search-wrapper'>
 								<div className='cs-grid_search'>
 									<CSInputSearch
-										label="Search"
-										labelHidden
+										label='Search'
+										labelHidden={true}
 										value={this.state.searchTerm}
 										onChange={this.onFilterText}
 										placeholder={'Search...'}

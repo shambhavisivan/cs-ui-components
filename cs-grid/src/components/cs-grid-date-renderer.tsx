@@ -83,7 +83,7 @@ export class CSGridDateRenderer extends CSGridBaseRenderer<string> {
 					<CSButton
 						className='cs-grid_clear-button'
 						label='Clear Date'
-						labelHidden
+						labelHidden={true}
 						size='xsmall'
 						btnStyle='brand'
 						btnType='transparent'

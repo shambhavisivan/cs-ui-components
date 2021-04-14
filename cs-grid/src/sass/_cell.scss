@@ -5,10 +5,7 @@
 	0% {
 		opacity: 0;
 	}
-	33% {
-		opacity: 1;
-	}
-	66% {
+	33%, 66% {
 		opacity: 1;
 	}
 	100% {
@@ -16,12 +13,30 @@
 	}
 }
 
+@keyframes success-border {
+	0% {
+		border: 2px dashed transparent;
+	}
+	33%, 66% {
+		@include css4 {
+			border: 2px dashed cvar(--csgrid-row-cell-success-br);
+		}
+	}
+	100% {
+		border: 2px dashed transparent;
+	}
+}
+
 .cs-grid_app-wrapper {
 	.ag-cell-data-changed {
+		animation: success-border 1s;
+		border: 2px dashed transparent;
+		@include sbg(--csgrid-transparent);
+
 		.cs-grid_cell-content {
 			/* SUCCESS ICON ANIMATION */
 			&::before {
-				animation: success-pseudo 1.25s;
+				animation: success-pseudo 1s;
 				content: "\74";
 				font-family: 'cs-grid';
 				font-size: 0.9rem;
@@ -75,9 +90,7 @@
 			background: rgba(0,0,0,0.05) !important;
 
 			&.ag-cell-focus {
-				@include css4 {
-					border: 2px solid cvar(--csgrid-transparent) !important;
-				}
+				border: 2px solid transparent;
 			}
 		}
 
@@ -90,9 +103,7 @@
 		.ag-cell {
 			padding-right: 0.75rem;
 			padding-left: 0.75rem;
-			@include css4 {
-				border: 2px solid cvar(--csgrid-transparent);
-			}
+			border: 2px solid transparent;
 		}
 
 		.ag-cell .ag-react-container {

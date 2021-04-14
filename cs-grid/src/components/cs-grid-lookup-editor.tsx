@@ -134,8 +134,8 @@ export class CSGridLookupEditor
 				<div className='cs-grid_search-wrapper'>
 					<div className='cs-grid_search'>
 						<CSInputSearch
-							label="Search"
-							labelHidden
+							label='Search'
+							labelHidden={true}
 							value={currentValue || this.state.searchTerm}
 							onChange={this.updateSearch}
 							placeholder={placeholder}

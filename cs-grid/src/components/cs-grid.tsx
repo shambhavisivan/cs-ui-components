@@ -737,8 +737,8 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		) {
 			this.gridApi.flashCells({
 				columns: [event.colDef.field],
-				fadeDelay: 1000,
-				flashDelay: 500,
+				fadeDelay: 0,
+				flashDelay: 1000,
 				rowNodes: [this.gridApi.getRowNode(this.getRowNodeId(event.data))]
 			});
 		}

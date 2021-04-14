@@ -164,8 +164,8 @@ describe('csgrid', () => {
 
 			expect(mockFlashCells).toBeCalledWith({
 				columns: ['exampleText'],
-				fadeDelay: 1000,
-				flashDelay: 500,
+				fadeDelay: 0,
+				flashDelay: 1000,
 				rowNodes: expect.any(Array)
 			});
 		});
