@@ -201,6 +201,8 @@
   * <i>important</i> `borderType` prop removed and replaced with `borderRadius` prop
 * CSInputText
   * <i>important</i> `borderType` prop removed and replaced with `borderRadius` prop
+* CSMainHeader
+  * remove fixed height
 * CSSection
   * <i>important</i> `collapsed` prop removed and replaced with `defaultClosed` prop
   * <i>important</i> several classNames changed to better describe what they are
