@@ -13,6 +13,7 @@ import { CSTooltipPosition } from './CSTooltip';
 import { Portal } from 'react-portal';
 import { v4 as uuidv4 } from 'uuid';
 import KeyCode from '../util/KeyCode';
+import ResizeObserver from 'resize-observer-polyfill';
 import { debounce, find, remove } from 'lodash';
 
 export interface CSLookupTableColumnType {
@@ -574,8 +575,12 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 	lookupRefCallback = (element: HTMLDivElement) => {
 		if (element) {
-			const lookupDropdownRect = element.getBoundingClientRect();
-			this.autoDropdownPosition(lookupDropdownRect);
+			const resizer = new ResizeObserver(() => {
+				const lookupDropdownRect = element.getBoundingClientRect();
+				this.autoDropdownPosition(lookupDropdownRect);
+			});
+			resizer.observe(element);
+
 			if (this.props.infiniteScroll) {
 				element.firstElementChild.addEventListener('scroll', event => {
 					const scrollNode = event.target as HTMLDivElement;
@@ -796,10 +801,9 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 						aria-invalid={error}
 						{...rest}
 					/>
-					{(
-						searchTerm ||
+					{((searchTerm ||
 						selectedOption ||
-						(!!selectedOptions.length && !dropdownOpen)
+						(!!selectedOptions.length && !dropdownOpen))
 						&& !disabled) &&
 						<CSButton
 							btnType="transparent"
