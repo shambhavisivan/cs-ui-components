@@ -1,60 +1,24 @@
 import './sass/style.scss';
 import React from 'react';
 
-import { BrowserRouter as Router, Route, NavLink, Redirect, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 
 import CSComponentsList from './previews/CSComponentsList';
 import CSIconsList from './previews/CSIconsList';
 import CSColorsPreview from './previews/colors/CSColorsPreview';
 import ReleaseNotes from './previews/ReleaseNotes';
 import Accessibility from './previews/Accessibility';
-
-import { CSImage, CSChip } from '@cloudsense/cs-ui-components';
-import { version } from '../node_modules/@cloudsense/cs-ui-components/package.json';
+import MainHeader from './previews/MainHeader';
 
 import { ThemeProvider } from './context/ThemeContext';
 import { QuickLinksProvider } from './context/QuickLinksContext';
-import ToggleTheme from './previews/ToggleTheme';
 
 const App: React.FC = () => (
 	<ThemeProvider>
 		<QuickLinksProvider>
 			<Router>
 				<div className="cs-app-wrapper">
-					<div className="app-main-header">
-						<ul>
-							<li className="main-header-tab">
-								<NavLink to="/components" activeClassName="active-main-header-tab">
-									CS UI Components
-								</NavLink>
-							</li>
-							<li className="main-header-tab">
-								<NavLink to="/icons" activeClassName="active-main-header-tab">
-									Icons
-								</NavLink>
-							</li>
-							<li className="main-header-tab">
-								<NavLink to="/colors" activeClassName="active-main-header-tab">
-									Colors
-								</NavLink>
-							</li>
-							<li className="main-header-tab">
-								<NavLink to="/accessibility" activeClassName="active-main-header-tab">
-									Accessibility
-								</NavLink>
-							</li>
-							<li className="main-header-tab">
-								<NavLink to="/release-notes" activeClassName="active-main-header-tab">
-									Release Notes
-								</NavLink>
-							</li>
-						</ul>
-						<div className="app-main-header-right">
-							<CSChip text={`v${version}`} />
-							<ToggleTheme />
-							<CSImage type="logo" height="2.25rem" />
-						</div>
-					</div>
+					<MainHeader />
 					<div className="app-body">
 						<Route path="/components" component={CSComponentsList} />
 						<Route path="/icons" component={CSIconsList} />

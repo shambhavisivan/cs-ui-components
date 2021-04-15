@@ -128,6 +128,7 @@ $cs-white: #ffffff;
 
 	--important-chip-bg: #{$cs-mint};
 	--important-chip-c: #{$cs-gray-dark-1};
+
 	--neutral-chip-bg: rgba(255, 255, 255, 35%);
 	--neutral-chip-c: #{$cs-gray-dark-5};
 
@@ -160,6 +161,7 @@ $cs-white: #ffffff;
 	--preview-main-heading-subtitle-c: #{$cs-gray-dark-6};
 
 	--release-notes-code-snippet-bg: #{$cs-white};
+	--release-notes-code-snippet-br: #{$cs-mint};
 
 	--req-table-bg: #{$cs-purple};
 	--req-table-c: #{$cs-white};
@@ -169,15 +171,16 @@ $cs-white: #ffffff;
 	--sidebar-search-field-bg: #{$cs-gray-dark-4};
 	--sidebar-search-field-placeholder-c: #{$cs-gray-light-4};
 	--sidebar-link-c: #{$cs-white};
+	--sidebar-link-hover-bg: #{$cs-purple};
 	--sidebar-link-hover-c: #{$cs-white};
 	--sidebar-link-active-bg: #363a3b;
 	--sidebar-info-bg: #{$cs-white};
 	--sidebar-info-hover-bg: #{$cs-white};
 	--sidebar-toggle-graphic-fill: #{$cs-white};
-	--sidebar-input-bg: rgba(255,255,255, 0.2);
-	--sidebar-scroll-bg: rgba(255,255,255, 0.2);
-	--sidebar-link-hover-bg: rgba(0,0,0, 0.1);
-	--sidebar-link-active-bg: rgba(0,0,0, 0.2);
+	--sidebar-input-bg: rgba(#{$cs-white}, 0.2);
+	--sidebar-scroll-bg: rgba(#{$cs-white}, 0.2);
+	--sidebar-link-hover-bg: rgba(#{$cs-black}, 0.1);
+	--sidebar-link-active-bg: rgba(#{$cs-black}, 0.1);
 
 	--table-row-bg: #{$cs-white};
 	--table-row-br: #{$cs-gray-light-3};
@@ -198,8 +201,54 @@ $cs-white: #ffffff;
 	--transparent: transparent;
 }
 
-/* Dark theme support
+/* Dark theme support */
 .cs-theme-dark {
+	--app-header-bg: #222222;
+	--app-body-bg: #222222;
 
+	--header-tab-c: #{$cs-white};
+	--header-tab-c: #{$cs-white};
+	--header-tab-active-bg: #{$cs-black};
+	--header-tab-active-alt-c: #{$cs-white};;
+	--header-tab-active-c: #{$cs-blue-sf};
+
+	--components-api-bg: #343333;
+	--components-link-c: #{$cs-white};
+	--components-link-hover-bg: #{$cs-blue-sf};
+
+	--prop-code-c: #{$cs-white};
+	--prop-code-custom-bg: #343333;
+	--prop-custom-bg: #343333;
+	--prop-code-bg: #343333;
+	--prop-sidebar-bg: #{$cs-gray-dark-3};
+	--prop-sidebar-hover-bg: #{$cs-black};
+
+	--colors-grid-bg: #343333;
+	--colors-grid-c: #{$cs-white};
+	--colors-grid-name-c: #{$cs-white};
+
+	--cs-icon-c: #{$cs-white};
+	--cs-shadow-light: rgba(#{$cs-white}, 0.12);
+	--cs-shadow-medium: rgba(#{$cs-white}, 0.24);
+	--cs-table-row-bg: #343333;
+	--cs-card-bg: #343333;
+	--cs-table-c: rgba(#{$cs-white}, 0.12);
+	--cs-table-row-hover-bg: #{$cs-black};
+	--cs-input-bg: #343333;
+	--cs-label-c: #{$cs-white};
+	--cs-icon-fill: #{$cs-white};
+
+	--icons-container-bg: #343333;
+	--icons-paragraph-c: #{$cs-white};
+	--icons-search-field-c: #{$cs-white};
+	--icons-search-field-bg: #343333;
+
+	--code-preview-bg: #343333;
+	--sidebar-link-hover-bg: #{$cs-blue-sf};
+	--access-subtitle-c: #{$cs-blue-sf};
+	--release-notes-code-snippet-bg: #343333;
+	--button-preview-table-bg: #343333;
+	--preview-main-heading-title-c: #{$cs-white};
+	/* This color should be changed in next iteration */
+	color: #{$cs-white};
 }
- */
