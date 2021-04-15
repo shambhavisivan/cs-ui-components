@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CSTooltip } from '@cloudsense/cs-ui-components';
+import { CSCheckbox, CSTooltip } from '@cloudsense/cs-ui-components';
 import { IsColumnFuncParams } from 'ag-grid-community/dist/lib/entities/colDef';
 import { CellData, CSGridCellRenderer } from '../interfaces/cs-grid-base-interfaces';
 import { CSGridCellRendererProps } from '../interfaces/cs-grid-cell-props';
@@ -34,17 +34,15 @@ export class CSGridBooleanRenderer extends CSGridBaseRenderer<boolean>
 		const editable = this.isEditable();
 
 		const contents = (
-			<label className='cs-grid_checkbox-wrapper'>
-				<input
-					className='cs-grid_checkbox'
-					type='checkbox'
-					onChange={editable ? this.onChange : undefined}
-					checked={this.state.value.cellValue}
-					readOnly={readOnly}
-					disabled={!editable}
-				/>
-				<span className='cs-grid_checkbox-faux' />
-			</label>
+			<CSCheckbox
+				label='checkbox'
+				labelHidden={true}
+				variant="brand"
+				onChange={editable ? this.onChange : undefined}
+				checked={this.state.value.cellValue}
+				readOnly={readOnly}
+				disabled={!editable}
+			/>
 		);
 		let tooltip;
 		if (this.props.getTooltip) {

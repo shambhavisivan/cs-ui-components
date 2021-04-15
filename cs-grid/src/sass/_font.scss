@@ -187,11 +187,4 @@
 		font-family: "cs-grid";
 		@include sc(--csgrid-container-after-c);
 	}
-
-	.ag-checkbox-checked:after,
-	.ag-icon.ag-icon-checkbox-checked:after,
-	.cs-grid_checkbox:checked + .cs-grid_checkbox-faux:before {
-		content: "n";
-		font-family: "cs-grid";
-	}
 }

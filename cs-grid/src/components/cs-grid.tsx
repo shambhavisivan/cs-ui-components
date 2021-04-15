@@ -1227,6 +1227,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			if (columnDef.cellType === 'Boolean') {
 				agGridColDef.cellEditor = 'noEditor';
 				agGridColDef.cellRenderer = 'booleanRenderer';
+				agGridColDef.cellClass = 'cs-grid-boolean-cell';
 			}
 
 			if (columnDef.cellType === 'Date') {

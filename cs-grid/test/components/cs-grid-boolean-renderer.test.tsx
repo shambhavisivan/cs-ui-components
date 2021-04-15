@@ -5,6 +5,7 @@ import { CSGridBooleanRenderer } from '../../src/components/cs-grid-boolean-rend
 import { CellData } from '../../src/interfaces/cs-grid-base-interfaces';
 import { CSGridCellRendererProps } from '../../src/interfaces/cs-grid-cell-props';
 import { UserInfo } from '../../src/interfaces/user-info';
+import { CSCheckbox } from '@cloudsense/cs-ui-components';
 
 describe('CS Grid Boolean Renderer', () => {
 	let exampleBoolean: CellData<boolean>;
@@ -70,7 +71,7 @@ describe('CS Grid Boolean Renderer', () => {
 
 		expect(cellRenderer.find(expectedReadOnlyClass).length).toEqual(1);
 
-		const input = cellRenderer.find('input');
+		const input = cellRenderer.find(CSCheckbox);
 		expect(input.prop('readOnly')).toBe(true);
 	});
 
@@ -88,7 +89,7 @@ describe('CS Grid Boolean Renderer', () => {
 
 		expect(cellRenderer.find(expectedReadOnlyClass).length).toEqual(0);
 
-		const input = cellRenderer.find('input');
+		const input = cellRenderer.find(CSCheckbox);
 		expect(input.prop('readOnly')).toBe(false);
 	});
 
@@ -105,7 +106,7 @@ describe('CS Grid Boolean Renderer', () => {
 			<CSGridBooleanRenderer {...cSGridCellRendererProps} onChange={mockOnChange} />
 		);
 
-		const input = cellRenderer.find('input');
+		const input = cellRenderer.find(CSCheckbox);
 		input.simulate('change');
 		expect(mockOnChange.mock.calls.length).toEqual(1);
 	});
@@ -123,7 +124,7 @@ describe('CS Grid Boolean Renderer', () => {
 			<CSGridBooleanRenderer {...cSGridCellRendererProps} onChange={mockOnChange} />
 		);
 
-		const input = cellRenderer.find('input');
+		const input = cellRenderer.find(CSCheckbox);
 		input.simulate('change');
 		expect(mockOnChange.mock.calls.length).toEqual(0);
 	});
@@ -141,14 +142,14 @@ describe('CS Grid Boolean Renderer', () => {
 			<CSGridBooleanRenderer {...cSGridCellRendererProps} onChange={mockOnChange} />
 		);
 
-		const input = cellRenderer.find('input');
+		const input = cellRenderer.find(CSCheckbox);
 		input.simulate('click');
 		expect(mockOnChange.mock.calls.length).toEqual(0);
 	});
 
 	test('Tests that the checked attribute of the input matches the cell value.', () => {
 		const cellRenderer = shallow(<CSGridBooleanRenderer {...cSGridCellRendererProps} />);
-		const input = cellRenderer.find('input');
+		const input = cellRenderer.find(CSCheckbox);
 
 		expect(input.prop('checked')).toBe(exampleBoolean.cellValue);
 		expect(input.prop('disabled')).toBe(!editable);
@@ -171,7 +172,7 @@ describe('CS Grid Boolean Renderer', () => {
 
 		const cellRenderer = shallow(<CSGridBooleanRenderer {...cSGridCellRendererProps} />);
 
-		const input = cellRenderer.find('input');
+		const input = cellRenderer.find(CSCheckbox);
 
 		expect(() => input.simulate('click')).not.toThrow();
 	});
@@ -185,7 +186,7 @@ describe('CS Grid Boolean Renderer', () => {
 		cSGridCellRendererProps.setValue = jest.fn();
 
 		const cellRenderer = shallow(<CSGridBooleanRenderer {...cSGridCellRendererProps} />);
-		const input = cellRenderer.find('input');
+		const input = cellRenderer.find(CSCheckbox);
 
 		input.simulate('change')
 
