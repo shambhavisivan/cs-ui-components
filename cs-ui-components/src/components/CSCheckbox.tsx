@@ -17,6 +17,7 @@ export interface CSCheckboxProps {
 	error?: boolean;
 	errorMessage?: CSFieldErrorMsgType;
 	helpText?: string;
+	hidden?: boolean;
 	id?: string;
 	label: string;
 	labelHidden?: boolean;
@@ -91,6 +92,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 			error,
 			errorMessage,
 			helpText,
+			hidden,
 			id,
 			label,
 			labelHidden,
@@ -119,7 +121,8 @@ class CSCheckbox extends React.Component<CSCheckboxProps, CSCheckboxState> {
 			'cs-checkbox-wrapper',
 			{
 				[`${className}`]: className,
-				[`cs-checkbox-label-${labelPosition}`]: labelPosition
+				[`cs-checkbox-label-${labelPosition}`]: labelPosition,
+				'cs-element-hidden': hidden
 			}
 		);
 		const checkboxFauxClasses = classNames(

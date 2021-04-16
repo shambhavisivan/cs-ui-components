@@ -97,6 +97,15 @@ class CSCheckboxPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'hidden',
+						variations: [
+							{
+								primaryVariants: 'hidden={true}',
+								component: <CSCheckbox label="Select option" hidden />,
+								code: '<CSCheckbox label="Select option" hidden />'
+							}
+						]
+					}, {
 						propName: 'labelHidden',
 						variations: [
 							{
@@ -276,6 +285,11 @@ class CSCheckboxPreview extends React.Component {
 				name: 'helpText',
 				types: ['string'],
 				description: 'Set the text to be displayed in the tooltip.'
+			}, {
+				name: 'hidden',
+				types: ['boolean'],
+				default: 'false',
+				description: 'Control the hidden attribute.'
 			}, {
 				name: 'id',
 				types: ['string'],
