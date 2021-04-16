@@ -49,26 +49,33 @@
 	display: contents;
 	.cs-lookup-dropdown {
 		position: fixed;
-		min-width: var(--cs-lookup-input-width);
 		width: max-content;
 		border-radius: 0.25rem;
 		z-index: var(--z-index-lookup-dropdown);
+		max-width: 46rem;
+		min-width: var(--cs-lookup-input-width);
+		overflow-x: auto;
 		@include css4 {
 			border: 1px solid cvar(--cs-lookup-results-br);
 		}
 		.cs-table {
 			border: none;
 			border-radius: inherit;
-			.cs-table-header
-			.cs-table-cell
-			.cs-table-cell-text{
-				font-weight: $font-weight-bold;
-				text-transform: uppercase;
-				letter-spacing: 0.0625rem;
-				font-family: $font-primary !important;
-				@include sc(--cs-lookup-results-header-c);
+			.cs-table-header {
+				width: 100%;
+				.cs-table-cell {
+					min-width: 5rem;
+					.cs-table-cell-text{
+						font-weight: $font-weight-bold;
+						text-transform: uppercase;
+						letter-spacing: 0.0625rem;
+						font-family: $font-primary !important;
+						@include sc(--cs-lookup-results-header-c);
+					}
+				}
 			}
 			.cs-table-body {
+				width: 100%;
 				.cs-table-row {
 					cursor: pointer;
 					@include sc(--cs-lookup-results-row-c);
@@ -94,11 +101,13 @@
 					.cs-table-cell {
 						padding-top: 0.5rem;
 						padding-bottom: 0.5rem;
+						min-width: 5rem;
 						&:first-child .cs-table-cell-text {
 							font-weight: 400;
 						}
 						.cs-table-cell-text {
 							font-size: 0.75rem;
+							@include overflow-ellipsis;
 						}
 					}
 				}

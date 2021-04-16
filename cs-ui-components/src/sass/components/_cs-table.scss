@@ -13,10 +13,6 @@
 		display: flex;
 		justify-content: space-between;
 		z-index: var(--z-index-table-header);
-		@include sbg(--cs-table-header-bg);
-		@include css4 {
-			border-bottom: 1px solid cvar(--cs-table-br);
-		}
 
 		&-sticky {
 			position: sticky;
@@ -29,7 +25,11 @@
 			padding: 0.5rem;
 			vertical-align: middle;
 			line-height: normal;
+			@include sbg(--cs-table-header-cell-bg);
 			@include overflow-ellipsis;
+			@include css4 {
+				border-bottom: 1px solid cvar(--cs-table-br);
+			}
 
 			&:first-child {
 				padding-inline-start: 1rem;
@@ -54,7 +54,7 @@
 
 		.cs-table-row {
 			display: flex;
-			@include sbg(--cs-table-row-bg);
+			outline: 0;
 
 			&:first-child .cs-table-cell {
 				border-top: none;
@@ -69,6 +69,7 @@
 				text-align: left;
 				flex: 1;
 				align-items: center;
+				@include sbg(--cs-table-cell-bg);
 				@include sc(--cs-table-c);
 				@include overflow-ellipsis;
 				@include css4 {
@@ -88,17 +89,23 @@
 			&:hover,
 			&:focus,
 			&.cs-table-row-highlighted {
-				outline: 0;
-				@include sbg(--cs-table-row-hover-bg);
+				.cs-table-cell {
+					outline: 0;
+					@include sbg(--cs-table-row-hover-cell-bg);
+				}
 			}
 
 			&.cs-table-row-selected {
-				@include sbg(--cs-table-row-selected-bg);
+				.cs-table-cell {
+					@include sbg(--cs-table-row-selected-cell-bg);
+				}
 
 				&:hover,
 				&:focus,
 				&.cs-table-row-highlighted {
-					@include bgd(--cs-table-row-selected-bg, 0.02);
+					.cs-table-cell {
+						@include bgd(--cs-table-row-selected-cell-bg, 0.02);
+					}
 				}
 			}
 		}
