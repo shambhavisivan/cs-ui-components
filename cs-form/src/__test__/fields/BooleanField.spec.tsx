@@ -34,6 +34,7 @@ it('renders a checkbox', () => {
 			wrapper={wrapper}
 			descriptor={descriptor}
 			handleFieldChange={nop}
+			handleFieldBlur={nop}
 			fetchPossibleValues={nop}
 			status="enabled"
 		/>
@@ -51,6 +52,7 @@ it('sets readonly', () => {
 			wrapper={wrapper}
 			descriptor={descriptor}
 			handleFieldChange={nop}
+			handleFieldBlur={nop}
 			fetchPossibleValues={nop}
 			status="visible"
 		/>
@@ -68,6 +70,7 @@ it('sets readonly even when mandatory', () => {
 			wrapper={wrapper}
 			descriptor={descriptor}
 			handleFieldChange={nop}
+			handleFieldBlur={nop}
 			fetchPossibleValues={nop}
 			status="mandatory"
 		/>
@@ -86,7 +89,8 @@ it('calls handleFieldChange() on change', done => {
 			locale={locale}
 			wrapper={wrapper}
 			descriptor={descriptor}
-			handleFieldChange={onChange}
+			handleFieldChange={nop}
+			handleFieldBlur={onChange}
 			fetchPossibleValues={nop}
 			status="enabled"
 		/>

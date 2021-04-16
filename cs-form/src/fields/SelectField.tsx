@@ -22,7 +22,7 @@ export const SelectField: React.FC<SelectFieldProps> = props => {
 			disabled={props.status === 'visible' || props.descriptor.enabled === 'false'}
 			name={props.descriptor.name}
 			onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-				props.handleFieldChange(e.target.value)
+				props.handleFieldBlur(e.target.value)
 			}
 			value={value}
 			title={value}

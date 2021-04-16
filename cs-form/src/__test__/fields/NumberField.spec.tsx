@@ -32,6 +32,7 @@ const wrapper: ElementWrapper = ({
 
 const jestHandleChangeMock = jest.fn();
 const jestFetchPossibleValuesMock = jest.fn();
+const jestHandleFieldBlurMock = jest.fn();
 
 let container: HTMLDivElement;
 
@@ -43,6 +44,7 @@ beforeEach(() => {
 afterEach(() => {
 	document.body.removeChild(container);
 	jestHandleChangeMock.mockClear();
+	jestHandleFieldBlurMock.mockClear();
 });
 
 it('render number field with default locale (en-US) and display formatted value', () => {
@@ -53,6 +55,7 @@ it('render number field with default locale (en-US) and display formatted value'
 			descriptor={descriptor}
 			locale={locale}
 			handleFieldChange={jestHandleChangeMock}
+			handleFieldBlur={jestHandleFieldBlurMock}
 			fetchPossibleValues={jestFetchPossibleValuesMock}
 			status="enabled"
 		/>,
@@ -73,6 +76,7 @@ it('switch to edit mode and verify the unformatted value in edit mode', () => {
 			descriptor={descriptor}
 			locale={locale}
 			handleFieldChange={jestHandleChangeMock}
+			handleFieldBlur={jestHandleFieldBlurMock}
 			fetchPossibleValues={jestFetchPossibleValuesMock}
 			status="enabled"
 		/>,
@@ -88,7 +92,7 @@ it('switch to edit mode and verify the unformatted value in edit mode', () => {
 	expect(editTextInput.value).toEqual('123432423434.78');
 });
 
-it('should call handleChange method onblur with non-formatted value', done => {
+it('should call handleFieldBlur method onblur with non-formatted value', done => {
 	locale = {
 		...locale,
 		number: {
@@ -107,6 +111,7 @@ it('should call handleChange method onblur with non-formatted value', done => {
 				descriptor={descriptor}
 				locale={locale}
 				handleFieldChange={jestHandleChangeMock}
+				handleFieldBlur={jestHandleFieldBlurMock}
 				fetchPossibleValues={jestFetchPossibleValuesMock}
 				status="enabled"
 			/>,
@@ -123,7 +128,7 @@ it('should call handleChange method onblur with non-formatted value', done => {
 	ReactTestUtils.Simulate.blur(editTextInput, ({
 		target: { value: '123456.789' }
 	} as any) as SyntheticEventData);
-	expect(jestHandleChangeMock).toHaveBeenCalledWith(123456.79);
+	expect(jestHandleFieldBlurMock).toHaveBeenCalledWith(123456.79);
 	expect(editTextInput.value).toEqual('123,456.79');
 	done();
 });
@@ -140,6 +145,7 @@ it('should respect precision and scale if provided.', done => {
 				descriptor={descriptor}
 				locale={locale}
 				handleFieldChange={jestHandleChangeMock}
+				handleFieldBlur={jestHandleFieldBlurMock}
 				fetchPossibleValues={jestFetchPossibleValuesMock}
 				status="enabled"
 			/>,
@@ -161,6 +167,7 @@ it('should respect precision and scale if provided.', done => {
 	} as any) as SyntheticEventData);
 
 	expect(jestHandleChangeMock).toHaveBeenCalledWith('12');
+	expect(jestHandleFieldBlurMock).toHaveBeenCalledWith(12);
 	expect(textInput.value).toEqual('12.00');
 	done();
 });
@@ -177,6 +184,7 @@ it('does not allow data outside precision and scale to be entered in field', don
 				descriptor={descriptor}
 				locale={locale}
 				handleFieldChange={jestHandleChangeMock}
+				handleFieldBlur={jestHandleFieldBlurMock}
 				fetchPossibleValues={jestFetchPossibleValuesMock}
 				status="enabled"
 			/>,
@@ -194,6 +202,7 @@ it('does not allow data outside precision and scale to be entered in field', don
 	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
 
 	expect(jestHandleChangeMock).not.toHaveBeenCalled();
+	expect(jestHandleFieldBlurMock).not.toHaveBeenCalled();
 	expect(editTextInput.value).toEqual('');
 	done();
 });
@@ -207,6 +216,7 @@ it('should allow negative numbers', done => {
 				descriptor={descriptor}
 				locale={locale}
 				handleFieldChange={jestHandleChangeMock}
+				handleFieldBlur={jestHandleFieldBlurMock}
 				fetchPossibleValues={jestFetchPossibleValuesMock}
 				status="enabled"
 			/>,
@@ -222,7 +232,7 @@ it('should allow negative numbers', done => {
 	ReactTestUtils.Simulate.blur(editTextInput, ({
 		target: { value: '-12' }
 	} as any) as SyntheticEventData);
-	expect(jestHandleChangeMock).toHaveBeenCalledWith(-12);
+	expect(jestHandleFieldBlurMock).toHaveBeenCalledWith(-12);
 	done();
 });
 
@@ -235,6 +245,7 @@ it('should ignore + and display positive number', done => {
 				descriptor={descriptor}
 				locale={locale}
 				handleFieldChange={jestHandleChangeMock}
+				handleFieldBlur={jestHandleFieldBlurMock}
 				fetchPossibleValues={jestFetchPossibleValuesMock}
 				status="enabled"
 			/>,
@@ -250,7 +261,7 @@ it('should ignore + and display positive number', done => {
 	ReactTestUtils.Simulate.blur(editTextInput, ({
 		target: { value: '+12' }
 	} as any) as SyntheticEventData);
-	expect(jestHandleChangeMock).toHaveBeenCalledWith(12);
+	expect(jestHandleFieldBlurMock).toHaveBeenCalledWith(12);
 	done();
 });
 
@@ -272,6 +283,7 @@ it('should render values for {fi-Fi} locale', done => {
 				descriptor={descriptor}
 				locale={locale}
 				handleFieldChange={jestHandleChangeMock}
+				handleFieldBlur={jestHandleFieldBlurMock}
 				fetchPossibleValues={jestFetchPossibleValuesMock}
 				status="enabled"
 			/>,
@@ -292,7 +304,7 @@ it('should render values for {fi-Fi} locale', done => {
 		target: { value: '123456,89' }
 	} as any) as SyntheticEventData);
 
-	expect(jestHandleChangeMock).toHaveBeenCalledWith(123456.89);
+	expect(jestHandleFieldBlurMock).toHaveBeenCalledWith(123456.89);
 	/**
 	 * Intl.NumberFormat does not use space (ASCII 32) but non-breaking space (ASCII 160)
 	 * jest uses (ASCII 32) spaces so it is converted to (ASCII 160) for comparision.
@@ -313,6 +325,7 @@ it('does not allow invalid numbers when copy pasted', done => {
 				descriptor={descriptor}
 				locale={locale}
 				handleFieldChange={jestHandleChangeMock}
+				handleFieldBlur={jestHandleFieldBlurMock}
 				fetchPossibleValues={jestFetchPossibleValuesMock}
 				status="enabled"
 			/>,
@@ -329,7 +342,7 @@ it('does not allow invalid numbers when copy pasted', done => {
 	} as any) as SyntheticEventData);
 	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
 
-	expect(jestHandleChangeMock).not.toHaveBeenCalled();
+	expect(jestHandleFieldBlurMock).not.toHaveBeenCalled();
 	expect(editTextInput.value).toEqual('');
 	done();
 });
@@ -346,6 +359,7 @@ it('should allow zero and format it in required format', done => {
 				descriptor={descriptor}
 				locale={locale}
 				handleFieldChange={jestHandleChangeMock}
+				handleFieldBlur={jestHandleFieldBlurMock}
 				fetchPossibleValues={jestFetchPossibleValuesMock}
 				status="enabled"
 			/>,
@@ -363,7 +377,7 @@ it('should allow zero and format it in required format', done => {
 		target: { value: '0' }
 	} as any) as SyntheticEventData);
 
-	expect(jestHandleChangeMock).toHaveBeenCalledWith(0.0);
+	expect(jestHandleFieldBlurMock).toHaveBeenCalledWith(0.0);
 	expect(editTextInput.value).toEqual('0,00');
 	done();
 });
@@ -377,6 +391,7 @@ it('sets readonly', done => {
 				descriptor={descriptor}
 				locale={locale}
 				handleFieldChange={jestHandleChangeMock}
+				handleFieldBlur={jestHandleFieldBlurMock}
 				fetchPossibleValues={jestFetchPossibleValuesMock}
 				status="visible"
 			/>,
@@ -403,6 +418,7 @@ it('sets readonly even when mandatory', done => {
 				descriptor={descriptor}
 				locale={locale}
 				handleFieldChange={jestHandleChangeMock}
+				handleFieldBlur={jestHandleFieldBlurMock}
 				fetchPossibleValues={jestFetchPossibleValuesMock}
 				status="mandatory"
 			/>,
@@ -428,6 +444,7 @@ test('Test NumberField goes into edit mode on focus when it is enabled.', () => 
 			descriptor={descriptor}
 			locale={locale}
 			handleFieldChange={jestHandleChangeMock}
+			handleFieldBlur={jestHandleFieldBlurMock}
 			fetchPossibleValues={jestFetchPossibleValuesMock}
 			status="enabled"
 		/>,
@@ -456,6 +473,7 @@ test('Test NumberField does not go into edit mode on focus when it is read only.
 			descriptor={descriptor}
 			locale={locale}
 			handleFieldChange={jestHandleChangeMock}
+			handleFieldBlur={jestHandleFieldBlurMock}
 			fetchPossibleValues={jestFetchPossibleValuesMock}
 			status="enabled"
 		/>,

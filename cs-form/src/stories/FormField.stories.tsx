@@ -105,6 +105,10 @@ formFieldStories.add(
 			name: 'booleanField',
 			label: 'Boolean field'
 		};
+		const setValue = (value: any) => {
+			store.set({ value });
+		};
+
 		return (
 			<FormField
 				value={store.state.value}
@@ -112,8 +116,13 @@ formFieldStories.add(
 				status={options(statusLabel, statusValuesObj, 'mandatory', optionsObj)}
 				locale={locale}
 				wrapper={wrapper}
-				handleFieldChange={value => {
-					store.set({ value });
+				handleFieldChange={(value: any) => {
+					console.info('handleFieldChange called');
+					setValue(value);
+				}}
+				handleFieldBlur={(value: any) => {
+					console.info('handleFieldBlur called');
+					setValue(value);
 				}}
 				fetchPossibleValues={nop}
 			/>
@@ -129,6 +138,10 @@ formFieldStories.add(
 			name: 'stringField',
 			label: 'string field'
 		};
+		const setValue = (value: any) => {
+			store.set({ value });
+		};
+
 		return (
 			<FormField
 				value={store.state.value}
@@ -136,8 +149,13 @@ formFieldStories.add(
 				status={options(statusLabel, statusValuesObj, 'mandatory', optionsObj)}
 				locale={locale}
 				wrapper={wrapper}
-				handleFieldChange={value => {
-					store.set({ value });
+				handleFieldChange={(value: any) => {
+					console.info('handleFieldChange called');
+					setValue(value);
+				}}
+				handleFieldBlur={(value: any) => {
+					console.info('handleFieldBlur called');
+					setValue(value);
 				}}
 				fetchPossibleValues={nop}
 			/>
@@ -153,6 +171,10 @@ formFieldStories.add(
 			name: 'numberField',
 			label: 'number field'
 		};
+		const setValue = (value: any) => {
+			store.set({ value });
+		};
+
 		return (
 			<FormField
 				value={store.state.value}
@@ -160,8 +182,13 @@ formFieldStories.add(
 				status={options(statusLabel, statusValuesObj, 'mandatory', optionsObj)}
 				locale={locale}
 				wrapper={wrapper}
-				handleFieldChange={value => {
-					store.set({ value });
+				handleFieldChange={(value: any) => {
+					console.info('handleFieldChange called');
+					setValue(value);
+				}}
+				handleFieldBlur={(value: any) => {
+					console.info('handleFieldBlur called');
+					setValue(value);
 				}}
 				fetchPossibleValues={nop}
 			/>
@@ -177,6 +204,10 @@ formFieldStories.add(
 			name: 'dateField',
 			label: 'date field'
 		};
+		const setValue = (value: any) => {
+			store.set({ value });
+		};
+
 		return (
 			<FormField
 				value={store.state.value}
@@ -184,8 +215,13 @@ formFieldStories.add(
 				status={options(statusLabel, statusValuesObj, 'mandatory', optionsObj)}
 				locale={locale}
 				wrapper={wrapper}
-				handleFieldChange={value => {
-					store.set({ value });
+				handleFieldChange={(value: any) => {
+					console.info('handleFieldChange called');
+					setValue(value);
+				}}
+				handleFieldBlur={(value: any) => {
+					console.info('handleFieldBlur called');
+					setValue(value);
 				}}
 				fetchPossibleValues={nop}
 			/>
@@ -202,6 +238,9 @@ formFieldStories.add(
 			label: 'date field',
 			timeInterval: 15
 		};
+		const setValue = (value: any) => {
+			store.set({ value });
+		};
 
 		return (
 			<FormField
@@ -210,8 +249,13 @@ formFieldStories.add(
 				status={options(statusLabel, statusValuesObj, 'mandatory', optionsObj)}
 				locale={locale}
 				wrapper={wrapper}
-				handleFieldChange={value => {
-					store.set({ value });
+				handleFieldChange={(value: any) => {
+					console.info('handleFieldChange called');
+					setValue(value);
+				}}
+				handleFieldBlur={(value: any) => {
+					console.info('handleFieldBlur called');
+					setValue(value);
 				}}
 				fetchPossibleValues={nop}
 			/>
@@ -227,6 +271,10 @@ formFieldStories.add(
 			name: 'IDField',
 			label: 'ID field'
 		};
+		const setValue = (value: any) => {
+			store.set({ value });
+		};
+
 		return (
 			<FormField
 				value={store.state.value}
@@ -234,8 +282,13 @@ formFieldStories.add(
 				status={options(statusLabel, statusValuesObj, 'mandatory', optionsObj)}
 				locale={locale}
 				wrapper={wrapper}
-				handleFieldChange={value => {
-					store.set({ value });
+				handleFieldChange={(value: any) => {
+					console.info('handleFieldChange called');
+					setValue(value);
+				}}
+				handleFieldBlur={(value: any) => {
+					console.info('handleFieldBlur called');
+					setValue(value);
 				}}
 				fetchPossibleValues={nop}
 			/>

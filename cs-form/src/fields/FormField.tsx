@@ -20,6 +20,7 @@ export interface FormFieldProps {
 	wrapper: ElementWrapper;
 	errorMessages?: Array<string>;
 	handleFieldChange(newValue: any): void;
+	handleFieldBlur(newValue: any): void;
 	fetchPossibleValues(): Promise<Array<SelectOption>>;
 	fetchReferenceOptions?(
 		field: FieldDescriptor,

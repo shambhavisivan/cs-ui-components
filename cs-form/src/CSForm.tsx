@@ -136,9 +136,9 @@ export interface ValidationErrors {
 }
 
 /**
- * Properties required by the <CSForm> component.
+ * All properties required by the <CSForm> component.
  */
-export interface FormProps {
+export interface AllFormProps {
 	descriptor: FormDescriptor;
 	/**
 	 * The form object that is being edited. Has to be flat.
@@ -159,6 +159,12 @@ export interface FormProps {
 	 * @param errors The currently calculated validation errors
 	 */
 	update(data: Record<string, any>, errors: ValidationErrors): void;
+	/**
+	 * Called whenever the form loses focus.
+	 * @param data New form object.
+	 * @param errors The currently calculated validation errors
+	 */
+	onBlur(data: Record<string, any>, errors: ValidationErrors): void;
 	/**
 	 * Called when the save button is pressed.
 	 * @returns The form object after the save operation. (For example some fields might have been recalculated on save.)
@@ -183,12 +189,18 @@ export interface FormProps {
 	): Promise<Array<ReferenceOption>>;
 }
 
-export class CSForm extends React.Component<FormProps, {}> {
+/**
+ * Properties required by the <CSForm> component.
+ * Either update or onBlur or both is required.
+ */
+export type FormProps = Omit<AllFormProps, 'update'> | Omit<AllFormProps, 'onBlur'>;
 
+export class CSForm extends React.Component<FormProps, {}> {
 	private validator: Validator;
 	constructor(props: FormProps) {
 		super(props);
 		this.handleFieldChange = this.handleFieldChange.bind(this);
+		this.handleFieldBlur = this.handleFieldBlur.bind(this);
 		this.save = this.save.bind(this);
 		this.createFormPanel = this.createFormPanel.bind(this);
 		this.validator = new Validator(
@@ -198,10 +210,32 @@ export class CSForm extends React.Component<FormProps, {}> {
 		);
 	}
 
+	/**
+	 * Called on every keystroke except when handleFieldBlur is called.
+	 * @param name field name
+	 * @param newValue the new value for the field
+	 */
 	handleFieldChange(name: string, newValue: any) {
-		const newData = cloneAndReplaceField(this.props.data, name, newValue);
-		this.props.update(newData, this.validate(newData));
+		if ('update' in this.props) {
+			const newData = cloneAndReplaceField(this.props.data, name, newValue);
+			this.props.update(newData, this.validate(newData));
+		}
 	}
+
+	/**
+	 * Called on loss of focus for input fields and called on change for non-input field types.
+	 * @param name field name
+	 * @param newValue the new value for the field
+	 */
+	handleFieldBlur(name: string, newValue: any) {
+		const newData = cloneAndReplaceField(this.props.data, name, newValue);
+		if ('onBlur' in this.props) {
+			this.props.onBlur(newData, this.validate(newData));
+		} else {
+			this.props.update(newData, this.validate(newData));
+		}
+	}
+
 	async save(): Promise<void> {
 		const errors = this.validate(this.props.data);
 		if (
@@ -210,7 +244,11 @@ export class CSForm extends React.Component<FormProps, {}> {
 		) {
 			try {
 				const newObject: Record<string, any> = await this.props.save();
-				this.props.update(newObject, errors);
+				if ('update' in this.props) {
+					this.props.update(newObject, errors);
+				} else {
+					this.props.onBlur(newObject, errors);
+				}
 			} catch (e) {
 				// TODO: display error message when we've got a UI for it
 				// tslint:disable-next-line: no-console
@@ -284,6 +322,7 @@ export class CSForm extends React.Component<FormProps, {}> {
 				descriptor={panel}
 				data={this.props.data}
 				handleFieldChange={this.handleFieldChange}
+				handleFieldBlur={this.handleFieldBlur}
 				fetchPossibleValues={this.props.fetchPossibleValues}
 				fetchReferenceOptions={this.props.fetchReferenceOptions}
 				wrapper={this.props.wrapper}

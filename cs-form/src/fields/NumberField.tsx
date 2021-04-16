@@ -37,8 +37,8 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 	}
 
 	componentDidUpdate(prevProps: FormFieldProps) {
-		if (this.props.value !== prevProps.value) {
-			if (this.isNotUndefinedOrNull(this.props.value)) {
+		if (this.props.value !== prevProps.value && !Number.isNaN(prevProps.value)) {
+			if (this.isNotUndefinedOrNull(this.props.value) && !Number.isNaN(this.props.value)) {
 				this.setState({ value: this.numberFormatter(this.props.value, this.state.locale) });
 			} else {
 				this.setState({ value: '' });
@@ -127,11 +127,11 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 			return;
 		}
 
-		const splittedvalue: Array<string> = inputVal.split('.');
-		if (splittedvalue.length > 2) {
+		const splittedValue: Array<string> = inputVal.split('.');
+		if (splittedValue.length > 2) {
 			return;
 		} else {
-			if (splittedvalue.length === 2 && splittedvalue[1].split(',').length > 1) {
+			if (splittedValue.length === 2 && splittedValue[1].split(',').length > 1) {
 				return false;
 			}
 		}
@@ -145,17 +145,17 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 	}
 
 	validateByLocale(inputVal: string): boolean {
-		let numberOfSeparatorOccurences;
+		let numberOfSeparatorOccurrences;
 		const localeDecimalSeparator = this.state.locale.decimalSeparator;
 		const regex = new RegExp(`[${localeDecimalSeparator}]`, 'g');
-		numberOfSeparatorOccurences = (inputVal.match(regex) || []).length;
+		numberOfSeparatorOccurrences = (inputVal.match(regex) || []).length;
 
-		if (numberOfSeparatorOccurences > 1) {
+		if (numberOfSeparatorOccurrences > 1) {
 			return false;
 		}
 
 		// Can only have numbers after decimalSeparator
-		if (numberOfSeparatorOccurences === 1) {
+		if (numberOfSeparatorOccurrences === 1) {
 			const decimalPart = inputVal.substring(
 				inputVal.indexOf(localeDecimalSeparator) + 1,
 				inputVal.length
@@ -167,18 +167,18 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 		}
 		// Integer part of number cant be bigger than (precision - scale)
 		if (this.props.descriptor.precision && this.props.descriptor.scale) {
-			const intergerPartMaxLength =
+			const integerPartMaxLength =
 				this.props.descriptor.precision - this.props.descriptor.scale;
 			const stripAllNonSeparator = new RegExp(`[^\\d${localeDecimalSeparator}]`, 'g');
 			const stripped = inputVal.replace(stripAllNonSeparator, '');
-			if (numberOfSeparatorOccurences === 1) {
+			if (numberOfSeparatorOccurrences === 1) {
 				const separatorIndex = stripped.indexOf(localeDecimalSeparator);
 				const subStrLength = stripped.substring(0, separatorIndex).length;
-				if (subStrLength > intergerPartMaxLength) {
+				if (subStrLength > integerPartMaxLength) {
 					return false;
 				}
 			} else {
-				if (stripped.length > intergerPartMaxLength) {
+				if (stripped.length > integerPartMaxLength) {
 					return false;
 				}
 			}
@@ -211,19 +211,19 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 			if (value !== '-' && value !== '+') {
 				const formattedValue = this.numberFormatter(value, this.state.locale);
 				this.setState({ value: formattedValue, isFormatterVisible: true });
-				const unformatValueArray = formattedValue.split(this.state.locale.decimalSeparator);
+				const unformattedValueArray = formattedValue.split(this.state.locale.decimalSeparator);
 				// removes non-numbers but escapes {-}
-				unformatValueArray[0] = unformatValueArray[0].replace(/[^0-9\-]+/g, '');
+				unformattedValueArray[0] = unformattedValueArray[0].replace(/[^0-9\-]+/g, '');
 
-				this.props.handleFieldChange(
+				this.props.handleFieldBlur(
 					parseFloat(
-						parseFloat(unformatValueArray.join('.')).toFixed(
+						parseFloat(unformattedValueArray.join('.')).toFixed(
 							this.props.descriptor.scale
 						)
 					)
 				);
 			} else {
-				this.props.handleFieldChange(value);
+				this.props.handleFieldBlur(value);
 			}
 		}
 	}

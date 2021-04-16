@@ -49,6 +49,7 @@ it('renders nothing if hidden', () => {
 			locale={locale}
 			value
 			handleFieldChange={nop}
+			handleFieldBlur={nop}
 			fetchPossibleValues={nop}
 			status="hidden"
 		/>
@@ -64,6 +65,7 @@ it('renders a checkbox for type BOOLEAN', () => {
 			locale={locale}
 			value
 			handleFieldChange={nop}
+			handleFieldBlur={nop}
 			fetchPossibleValues={nop}
 			status="enabled"
 		/>
@@ -80,6 +82,7 @@ it('renders error message if provided', () => {
 			locale={locale}
 			value
 			handleFieldChange={nop}
+			handleFieldBlur={nop}
 			fetchPossibleValues={nop}
 			status="enabled"
 		/>
@@ -98,7 +101,8 @@ it('calls onChange() on change', done => {
 			wrapper={wrapper}
 			locale={locale}
 			value
-			handleFieldChange={onChange}
+			handleFieldChange={nop}
+			handleFieldBlur={onChange}
 			fetchPossibleValues={nop}
 			status="enabled"
 		/>

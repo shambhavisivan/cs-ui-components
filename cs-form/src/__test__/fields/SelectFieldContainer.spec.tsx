@@ -47,6 +47,7 @@ it('renders SelectField with all props including options from fetchPossibleValue
 				descriptor={descriptor}
 				locale={locale}
 				handleFieldChange={nop}
+				handleFieldBlur={nop}
 				fetchPossibleValues={optionFetcher}
 				status="enabled"
 			/>
@@ -60,5 +61,6 @@ it('renders SelectField with all props including options from fetchPossibleValue
 	expect(renderedSelect.prop('status')).toBe('enabled');
 	expect(renderedSelect.prop('wrapper')).toBe(wrapper);
 	expect(renderedSelect.prop('handleFieldChange')).toBe(nop);
+	expect(renderedSelect.prop('handleFieldBlur')).toBe(nop);
 	expect(renderedSelect.prop('locale')).toBe(locale);
 });

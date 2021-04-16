@@ -19,6 +19,7 @@ export interface FormPanelProps {
 		searchTerm: string
 	): Promise<Array<ReferenceOption>>;
 	handleFieldChange(name: string, newValue: any): void;
+	handleFieldBlur(name: string, newValue: any): void;
 }
 
 export const FormPanel: React.FC<FormPanelProps> = props => {
@@ -35,6 +36,7 @@ export const FormPanel: React.FC<FormPanelProps> = props => {
 				errorMessages={props.errors[field.name]}
 				status={calculateComponentStatus(field, props.formSettings, props.data)}
 				handleFieldChange={value => props.handleFieldChange(field.name, value)}
+				handleFieldBlur={value => props.handleFieldBlur(field.name, value)}
 				fetchPossibleValues={fetch}
 				fetchReferenceOptions={props.fetchReferenceOptions}
 				key={field.name}

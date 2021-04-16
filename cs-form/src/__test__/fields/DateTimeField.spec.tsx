@@ -45,6 +45,7 @@ it('renders a date time picker', () => {
 			descriptor={descriptor}
 			value={dateTime}
 			handleFieldChange={nop}
+			handleFieldBlur={nop}
 			fetchPossibleValues={nop}
 			status="enabled"
 		/>
@@ -62,6 +63,7 @@ it('sets readonly', () => {
 			descriptor={descriptor}
 			value={Date.UTC(1970, 1, 2, 11, 22)}
 			handleFieldChange={nop}
+			handleFieldBlur={nop}
 			fetchPossibleValues={nop}
 			status="visible"
 		/>
@@ -79,6 +81,7 @@ it('sets readonly even when mandatory', () => {
 			descriptor={descriptor}
 			value={Date.UTC(1970, 1, 2, 11, 22)}
 			handleFieldChange={nop}
+			handleFieldBlur={nop}
 			fetchPossibleValues={nop}
 			status="mandatory"
 		/>
@@ -99,7 +102,8 @@ it('calls onChange() on change', done => {
 			wrapper={wrapper}
 			descriptor={descriptor}
 			value={Date.UTC(1970, 1, 2)}
-			handleFieldChange={onChange}
+			handleFieldChange={nop}
+			handleFieldBlur={onChange}
 			fetchPossibleValues={nop}
 			status="enabled"
 		/>

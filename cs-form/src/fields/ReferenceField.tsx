@@ -93,7 +93,7 @@ export class ReferenceField extends React.Component<FormFieldProps, State> {
 				dropdownValues: []
 			},
 			() => {
-				this.props.handleFieldChange(selectedValue); // can be the entire option or just the Id.
+				this.props.handleFieldBlur(selectedValue); // can be the entire option or just the Id.
 			}
 		);
 	}
