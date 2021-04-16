@@ -75,7 +75,6 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 			dropdownRoot.id = this.dropdownId;
 			document.body.appendChild(dropdownRoot);
 		}
-		this.handleOnKeyDown = this.handleOnKeyDown.bind(this);
 		this.openDropdownOnKeyDown = this.openDropdownOnKeyDown.bind(this);
 	}
 
@@ -143,27 +142,6 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 
 		this.setState({ isOpen: true });
 		document.addEventListener('click', this.handleOutsideClick);
-		document.addEventListener('keydown', this.handleOnKeyDown);
-	}
-
-	handleOnKeyDown(event: any) {
-		if (this.state.isOpen) {
-			// If escape key pressed close the dropdown and return focus to dropdown button
-			if (event.key === KeyCode.Escape) {
-				this.closeDropdown();
-				this.btnDropdownRef.current.focus();
-			}
-
-			// If tab key is pressed close dropdown and return focus to dropdown button
-			// TODO: When tab is pressed, focus should move to the next focusable element, not the dropdown button
-			if (event.key === KeyCode.Tab && this.props.mode === 'button') {
-				event.preventDefault();
-				this.closeDropdown();
-				this.btnDropdownRef.current.focus();
-				// onDropdownClose prop - Needed for CSGrid to focus next cell when tab key pressed
-				this.props.onDropdownClose?.();
-			}
-		}
 	}
 
 	// If dropdown is closed && arrow down key pressed open the dropdown
@@ -183,18 +161,23 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 			isOpen: false
 		});
 		document.removeEventListener('click', this.handleOutsideClick);
-		document.removeEventListener('keydown', this.handleOnKeyDown);
 	}
 
-	toggleDropdown = (focusBtnAfterClose?: boolean) => {
+	toggleDropdown = (event?: React.MouseEvent<any>) => {
+		// prevent closing the dropdown if click is invoked on mode that isn't button
+		if (
+			event && event.type === 'click' &&
+			this.props.mode !== 'button' &&
+			event.target !== event.currentTarget
+		) {
+			return;
+		}
+
 		if (!this.state.isOpen) {
 			this.openDropdown();
 		} else {
 			this.closeDropdown();
-			// Return focus to dropdown button after click on a button inside dropdown
-			if (focusBtnAfterClose) {
-				this.btnDropdownRef.current.focus();
-			}
+			this.btnDropdownRef.current.focus();
 		}
 	}
 
@@ -304,26 +287,27 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 					ariaHaspopup={!!Object(children).length}
 					ref={this.btnDropdownRef}
 				>
-				{this.state.computedDropdownStyle &&
-					<Portal node={document && document.getElementById(this.dropdownId)}>
-						<CSDropdownItemWrapper
-							maxHeight={maxHeight}
-							maxWidth={maxWidth}
-							mode={mode}
-							hover={hover}
-							padding={padding}
-							animated={!hover}
-							visible={!!this.state.computedDropdownStyle}
-							style={dropdownStyle}
-							toggleDropdown={this.toggleDropdown}
-							ref={this.dropdownRefCallback}
-							align={this.state.computedPosition[1]}
-							position={this.state.computedPosition[0]}
-						>
-							{children}
-						</CSDropdownItemWrapper>
-					</Portal>
-				}
+					{this.state.computedDropdownStyle &&
+						<Portal node={document && document.getElementById(this.dropdownId)}>
+							<CSDropdownItemWrapper
+								maxHeight={maxHeight}
+								maxWidth={maxWidth}
+								mode={mode}
+								hover={hover}
+								padding={padding}
+								animated={!hover}
+								visible={!!this.state.computedDropdownStyle}
+								style={dropdownStyle}
+								toggleDropdown={this.toggleDropdown}
+								ref={this.dropdownRefCallback}
+								align={this.state.computedPosition[1]}
+								position={this.state.computedPosition[0]}
+								onDropdownClose={onDropdownClose}
+							>
+								{children}
+							</CSDropdownItemWrapper>
+						</Portal>
+					}
 				</CSButton>
 			</div>
 		);

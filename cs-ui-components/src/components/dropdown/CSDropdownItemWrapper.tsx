@@ -19,6 +19,7 @@ export interface CSDropdownItemWrapperProps {
 	maxHeight?: string;
 	maxWidth?: string;
 	onClick?: (e: React.MouseEvent<HTMLButtonElement>) => any;
+	onDropdownClose?: () => void;
 	onMouseEnter?: (e: React.MouseEvent<HTMLDivElement>) => any;
 	onMouseLeave?: (e: React.MouseEvent<HTMLDivElement>) => any;
 	mode?: CSDropdownMode;
@@ -48,13 +49,10 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 
 	componentDidUpdate(prevProps: CSDropdownItemWrapperProps) {
 		if (prevProps.mounted !== this.props.mounted) {
-			if (this.props.mode === 'button') {
-				this.getFocusableElements(this.dropdownUListRef.current);
-				if (this.focusableElements.length) {
-					this.focusableElements[0].focus();
-				}
+			this.getFocusableElements(this.dropdownUListRef.current);
+			if (this.focusableElements.length) {
+				this.focusableElements[0].focus();
 			}
-			// TODO: handle focus for mode='list' and mode='custom'
 		}
 	}
 
@@ -62,36 +60,49 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 		this.focusableElements = element.querySelectorAll('button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]:not([disabled])');
 	}
 
-	handleBtnOnClick(onClick: any) {
-		// If onClick prop passes invoke the function
-		onClick?.();
-		// Close dropdown on click
-		this.props.toggleDropdown?.(true);
-	}
-
-	handleArrowKeys(event: any) {
+	handleKeyDown = (event: React.KeyboardEvent<any>) => {
 		const focusableElements = Array.from(this.focusableElements);
 		const firstElement = focusableElements[0];
 		const lastElement = focusableElements[focusableElements.length - 1];
+		const { mode, onDropdownClose, toggleDropdown } = this.props;
 		let index = focusableElements.indexOf(document.activeElement);
 
-		switch (event.key) {
-			case KeyCode.ArrowUp:
-				if (document.activeElement === firstElement) {
-					(lastElement as HTMLElement).focus();
-				} else {
-					index = --index;
-					(focusableElements[index] as HTMLElement).focus();
-				}
-				break;
-			case KeyCode.ArrowDown:
-				if (document.activeElement === lastElement) {
-					(firstElement as HTMLElement).focus();
-				} else {
-					index = ++index;
-					(focusableElements[index] as HTMLElement).focus();
-				}
-				break;
+		// if mode is button enable arrow keys navigation
+		if (mode === 'button') {
+			switch (event.key) {
+				case KeyCode.ArrowUp:
+					if (document.activeElement === firstElement) {
+						(lastElement as HTMLElement).focus();
+					} else {
+						index = --index;
+						(focusableElements[index] as HTMLElement).focus();
+					}
+					break;
+				case KeyCode.ArrowDown:
+					if (document.activeElement === lastElement) {
+						(firstElement as HTMLElement).focus();
+					} else {
+						index = ++index;
+						(focusableElements[index] as HTMLElement).focus();
+					}
+					break;
+				case KeyCode.Tab:
+					toggleDropdown();
+					// onDropdownClose prop - Needed for CSGrid to focus next cell when tab key pressed
+					onDropdownClose?.();
+					break;
+			}
+		} else if (// if mode isn't button and last element is focused
+			event.key === KeyCode.Tab &&
+			lastElement === document.activeElement
+		) {
+			toggleDropdown();
+		}
+
+		// if escape is pressed close the dropdown (this applies to all modes)
+		if (event.key === KeyCode.Escape) {
+			event.preventDefault();
+			toggleDropdown();
 		}
 	}
 
@@ -132,31 +143,17 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 
 		const childrenWithWrapper = React.Children.map(children, (child: any) => {
 			if (child) {
-				if (child.type === CSButton && mode === 'button') {
-					return (
-						<li role="none">
-							{React.cloneElement(
-								child,
-								{
-									onClick: () => { this.handleBtnOnClick(child.props.onClick ? child.props.onClick : null); },
-									onKeyDown: (event: any) => this.handleArrowKeys(event),
-									role: 'menuitem'
-								}
-							)}
-						</li>
-					);
-				} else {
-					return (
-						<li role="none">
-							{React.cloneElement(
-								child,
-								{
-									role: 'menuitem'
-								}
-							)}
-						</li>
-					);
-				}
+				return (
+					<li role="none">
+						{React.cloneElement(
+							child,
+							{
+								onKeyDown: this.handleKeyDown,
+								role: 'menuitem'
+							}
+						)}
+					</li>
+				);
 			}
 		});
 
