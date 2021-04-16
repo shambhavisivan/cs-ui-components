@@ -1,8 +1,5 @@
 import { findFieldInFormDescriptor } from './FormDescriptorUtils';
-import {
-	calculateComponentStatus,
-	isMandatoryFieldPresent
-} from './ComponentStatusUtil';
+import { calculateComponentStatus, isMandatoryFieldPresent } from './ComponentStatusUtil';
 import { interpolateString } from './Util';
 import { FormDescriptor, FieldDescriptor } from '../types/FormDescriptor';
 import { FormSettings, FormLabels } from '..';
@@ -15,7 +12,7 @@ export class Validator {
 		private descriptor: FormDescriptor,
 		private formSettings: FormSettings,
 		private formLabels: FormLabels
-	) { }
+	) {}
 
 	setDescriptor(value: FormDescriptor) {
 		this.descriptor = value;
@@ -37,9 +34,10 @@ export class Validator {
 		name: string,
 		value: any
 	): { name: string; errors: Array<string> } | null => {
-		const fieldDescriptor:
-			| FieldDescriptor
-			| undefined = findFieldInFormDescriptor(this.descriptor, name);
+		const fieldDescriptor: FieldDescriptor | undefined = findFieldInFormDescriptor(
+			this.descriptor,
+			name
+		);
 
 		if (!fieldDescriptor) {
 			throw new Error(`No descriptor found for field ${name}`);
@@ -94,10 +92,9 @@ export class Validator {
 				return {
 					name,
 					errors: [
-						interpolateString(
-							this.formLabels.validation_message_exceeds_length,
-							{ name: fieldDescriptor.label }
-						)
+						interpolateString(this.formLabels.validation_message_exceeds_length, {
+							name: fieldDescriptor.label
+						})
 					]
 				};
 			}

@@ -16,32 +16,62 @@ const descriptor: FieldDescriptor = {
 	label: 'Test field'
 };
 
-const locale: LocaleSettings = {} as unknown as LocaleSettings;
+const locale: LocaleSettings = ({} as unknown) as LocaleSettings;
 
-const wrapper: ElementWrapper = {
+const wrapper: ElementWrapper = ({
 	injectInputProps: () => null
-} as unknown as ElementWrapper;
+} as unknown) as ElementWrapper;
 
 function nop(): any {
 	// dummy function
 }
 
 it('renders a checkbox', () => {
-	const uut = shallow(<BooleanField value locale={locale} wrapper={wrapper} descriptor={descriptor} handleFieldChange={nop} fetchPossibleValues={nop} status="enabled" />);
+	const uut = shallow(
+		<BooleanField
+			value
+			locale={locale}
+			wrapper={wrapper}
+			descriptor={descriptor}
+			handleFieldChange={nop}
+			fetchPossibleValues={nop}
+			status="enabled"
+		/>
+	);
 	expect(uut.find(CSCheckbox)).toHaveLength(1);
 	expect(uut.find(CSCheckbox).prop('checked')).toBeTruthy();
 	expect(uut.find(CSCheckbox).prop('name')).toBe('testField');
 });
 
 it('sets readonly', () => {
-	const uut = shallow(<BooleanField value locale={locale} wrapper={wrapper} descriptor={descriptor} handleFieldChange={nop} fetchPossibleValues={nop} status="visible" />);
+	const uut = shallow(
+		<BooleanField
+			value
+			locale={locale}
+			wrapper={wrapper}
+			descriptor={descriptor}
+			handleFieldChange={nop}
+			fetchPossibleValues={nop}
+			status="visible"
+		/>
+	);
 	expect(uut.find(CSCheckbox).prop('disabled')).toBe(true);
 });
 
 it('sets readonly even when mandatory', () => {
 	descriptor.enabled = 'false';
 
-	const uut = shallow(<BooleanField value locale={locale} wrapper={wrapper} descriptor={descriptor} handleFieldChange={nop} fetchPossibleValues={nop} status="mandatory" />);
+	const uut = shallow(
+		<BooleanField
+			value
+			locale={locale}
+			wrapper={wrapper}
+			descriptor={descriptor}
+			handleFieldChange={nop}
+			fetchPossibleValues={nop}
+			status="mandatory"
+		/>
+	);
 	expect(uut.find(CSCheckbox).prop('disabled')).toBe(true);
 });
 
@@ -50,6 +80,16 @@ it('calls handleFieldChange() on change', done => {
 		expect(value).toBe(true);
 		done();
 	};
-	const uut = shallow(<BooleanField value={false} locale={locale} wrapper={wrapper} descriptor={descriptor} handleFieldChange={onChange} fetchPossibleValues={nop} status="enabled" />);
+	const uut = shallow(
+		<BooleanField
+			value={false}
+			locale={locale}
+			wrapper={wrapper}
+			descriptor={descriptor}
+			handleFieldChange={onChange}
+			fetchPossibleValues={nop}
+			status="enabled"
+		/>
+	);
 	uut.find(CSCheckbox).simulate('change', { target: { checked: true } });
 });

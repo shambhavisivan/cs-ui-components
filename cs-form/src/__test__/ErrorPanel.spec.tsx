@@ -9,29 +9,48 @@ import { ErrorPanel } from '../ErrorPanel';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const wrapper: ElementWrapper = {
-	injectSaveButtonProps: (): Record<string, any> => ({ className: 'horizontal-form-save-button' }),
-	injectInputProps: (name: string, type: FieldType, status: ComponentStatus): Record<string, any> => ({}),
+const wrapper: ElementWrapper = ({
+	injectSaveButtonProps: (): Record<string, any> => ({
+		className: 'horizontal-form-save-button'
+	}),
+	injectInputProps: (
+		name: string,
+		type: FieldType,
+		status: ComponentStatus
+	): Record<string, any> => ({}),
 
-	wrapForm: (errorPanel: ReactElement, contents: ReactElement, saveButton: ReactElement) => <div>
-		<div className="details-wrapper">
-			{errorPanel}
-			{contents}
-			{saveButton}
+	wrapForm: (errorPanel: ReactElement, contents: ReactElement, saveButton: ReactElement) => (
+		<div>
+			<div className="details-wrapper">
+				{errorPanel}
+				{contents}
+				{saveButton}
+			</div>
 		</div>
-	</div>,
+	),
 
 	wrapPanel: (key: string, title: ReactElement, contents: ReactElement) => <div>{contents}</div>,
 
 	wrapErrorPanel: (key: string, contents: ReactElement) => <h1>{contents}</h1>,
 
-	wrapField: (name: string, status: ComponentStatus, label: ReactElement, input: ReactElement, errorMessage?: ReactElement) => <div key={name} className="details-row">
-		<div>
-			<label><span >{label}</span>{input}</label>
+	wrapField: (
+		name: string,
+		status: ComponentStatus,
+		label: ReactElement,
+		input: ReactElement,
+		errorMessage?: ReactElement
+	) => (
+		<div key={name} className="details-row">
+			<div>
+				<label>
+					<span>{label}</span>
+					{input}
+				</label>
+			</div>
+			<div>{errorMessage}</div>
 		</div>
-		<div>{errorMessage}</div>
-	</div>
-} as any as ElementWrapper;
+	)
+} as any) as ElementWrapper;
 
 it('renders errors using wrapper.wrapErrorPanel', () => {
 	const uut = shallow(<ErrorPanel wrapper={wrapper} errors={['Form error 1', 'Form error 2']} />);

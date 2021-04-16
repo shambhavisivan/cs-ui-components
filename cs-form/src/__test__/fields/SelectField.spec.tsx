@@ -5,13 +5,13 @@ import { mount, shallow, default as Enzyme } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 const { CSSelect } = require('@cloudsense/cs-ui-components');
 
-const locale: LocaleSettings = {} as unknown as LocaleSettings;
+const locale: LocaleSettings = ({} as unknown) as LocaleSettings;
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const wrapper: ElementWrapper = {
+const wrapper: ElementWrapper = ({
 	injectInputProps: () => null
-} as unknown as ElementWrapper;
+} as unknown) as ElementWrapper;
 
 function nop(): any {
 	// dummy function
@@ -107,5 +107,5 @@ it('calls onChange() on change', done => {
 			status="enabled"
 		/>
 	);
-	uut.find(CSSelect).simulate('change',  { target: { value: 'option2' } });
+	uut.find(CSSelect).simulate('change', { target: { value: 'option2' } });
 });

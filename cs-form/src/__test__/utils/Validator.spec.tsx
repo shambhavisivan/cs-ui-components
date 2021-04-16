@@ -36,7 +36,7 @@ const formDescriptor: FormDescriptor = {
 					name: 'MultiRegexValidationString',
 					fieldType: 'STRING',
 					validations: [
-						{ regex: '\S+@\S+\.\S+', errorMessage: '${name} Should be in email format' },
+						{ regex: 'S+@S+.S+', errorMessage: '${name} Should be in email format' },
 						{ regex: 'SpecificMatch', errorMessage: '${name} Should be Specific Match' }
 					]
 				}
@@ -55,34 +55,49 @@ const formLabels: FormLabels = {
 
 const validator = new Validator(
 	applyDefaults(formDescriptor),
-	{} as any as FormSettings,
+	({} as any) as FormSettings,
 	formLabels
 );
 
 describe('NUMBER Validations', () => {
-
 	it('should not error when valid number', () => {
-		const result: Record<string, Array<string>> = validator.validate({ SimpleNumber: '12345.6789' });
+		const result: Record<string, Array<string>> = validator.validate({
+			SimpleNumber: '12345.6789'
+		});
 
 		expect(result).toEqual({});
 	});
 
 	it('errors when value is greater than the  maxvalue', () => {
-		const result: Record<string, Array<string>> = validator.validate({ RestrictedNumber: '52' });
+		const result: Record<string, Array<string>> = validator.validate({
+			RestrictedNumber: '52'
+		});
 
-		expect(result.RestrictedNumber).toEqual(['Field "RestrictedNumber" must be a valid number and within range.']);
+		expect(result.RestrictedNumber).toEqual([
+			'Field "RestrictedNumber" must be a valid number and within range.'
+		]);
 	});
 
 	it('errors when value is lesser than the  minvalue', () => {
-		const result: Record<string, Array<string>> = validator.validate({ RestrictedNumber: '-52' });
+		const result: Record<string, Array<string>> = validator.validate({
+			RestrictedNumber: '-52'
+		});
 
-		expect(result.RestrictedNumber).toEqual(['Field "RestrictedNumber" must be a valid number and within range.']);
+		expect(result.RestrictedNumber).toEqual([
+			'Field "RestrictedNumber" must be a valid number and within range.'
+		]);
 	});
 
 	it('should not error when number confirms to precision and scale', () => {
-		const result1: Record<string, Array<string>> = validator.validate({ RestrictedNumber: '12.45' });
-		const result2: Record<string, Array<string>> = validator.validate({ RestrictedNumber: '12' });
-		const result3: Record<string, Array<string>> = validator.validate({ RestrictedNumber: '1.35' });
+		const result1: Record<string, Array<string>> = validator.validate({
+			RestrictedNumber: '12.45'
+		});
+		const result2: Record<string, Array<string>> = validator.validate({
+			RestrictedNumber: '12'
+		});
+		const result3: Record<string, Array<string>> = validator.validate({
+			RestrictedNumber: '1.35'
+		});
 
 		[result1, result2, result3].map(result => {
 			expect(result).toEqual({});
@@ -100,7 +115,9 @@ describe('STRING validations', () => {
 	});
 
 	it('should error when maxLength validation fails', () => {
-		const expected: Record<string, Array<string>> = { RestrictedString: ['value exceeds maximum length'] };
+		const expected: Record<string, Array<string>> = {
+			RestrictedString: ['value exceeds maximum length']
+		};
 
 		expect(validator.validate({ RestrictedString: '1234567' })).toEqual(expected);
 	});
@@ -113,7 +130,9 @@ describe('STRING validations', () => {
 			]
 		};
 
-		expect(validator.validate({ MultiRegexValidationString: 'FailAllValidations' })).toEqual(expected);
+		expect(validator.validate({ MultiRegexValidationString: 'FailAllValidations' })).toEqual(
+			expected
+		);
 	});
 });
 
@@ -132,5 +151,4 @@ describe('setDescriptor', () => {
 
 		expect(result.SimpleString).toEqual(['Field "SimpleString" is mandatory']);
 	});
-
 });

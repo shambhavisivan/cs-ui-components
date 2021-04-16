@@ -22,10 +22,14 @@ function nop(): any {
 
 const referenceOptionFetcher = (field: FieldDescriptor, searchTerm: string) => {
 	if (searchTerm === 'A') {
-		return Promise.resolve([{ Id: 'OnDemandIdA', Name: 'On Demand NameA' }] as Array<ReferenceOption>);
+		return Promise.resolve([
+			{ Id: 'OnDemandIdA', Name: 'On Demand NameA' }
+		] as Array<ReferenceOption>);
 	}
 
-	return Promise.resolve([{ Id: 'OnDemandIdB', Name: 'On Demand NameB' }] as Array<ReferenceOption>);
+	return Promise.resolve([
+		{ Id: 'OnDemandIdB', Name: 'On Demand NameB' }
+	] as Array<ReferenceOption>);
 };
 
 const descriptor: FieldDescriptor = {
@@ -66,9 +70,7 @@ it('renders name property of field value and start button on load', () => {
 	const searchInput: HTMLInputElement | null = container.querySelector('#search-input');
 	expect(searchInput != null && searchInput.value).toBe('Initial name');
 	const containerButtons = container.querySelector('#startEditButton');
-	expect(
-		containerButtons !== null && containerButtons.id === 'startEditButton'
-	).toBeTruthy();
+	expect(containerButtons !== null && containerButtons.id === 'startEditButton').toBeTruthy();
 });
 
 it('on StartEdit click, renders an input box', () => {

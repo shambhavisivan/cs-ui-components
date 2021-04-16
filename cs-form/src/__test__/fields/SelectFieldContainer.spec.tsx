@@ -27,28 +27,30 @@ const descriptor: FieldDescriptor = {
 	label: 'Test field'
 };
 
-const locale: LocaleSettings = {} as unknown as LocaleSettings;
+const locale: LocaleSettings = ({} as unknown) as LocaleSettings;
 
-const wrapper: ElementWrapper = {
+const wrapper: ElementWrapper = ({
 	injectInputProps: () => null
-} as unknown as ElementWrapper;
+} as unknown) as ElementWrapper;
 
 function nop(): any {
 	// dummy function
 }
 
 it('renders SelectField with all props including options from fetchPossibleValues()', async () => {
-	let uut: ShallowWrapper = null as any as ShallowWrapper;
+	let uut: ShallowWrapper = (null as any) as ShallowWrapper;
 	await act(async () => {
-		uut = shallow(<SelectFieldContainer
-			value="option1"
-			wrapper={wrapper}
-			descriptor={descriptor}
-			locale={locale}
-			handleFieldChange={nop}
-			fetchPossibleValues={optionFetcher}
-			status="enabled"
-		/>);
+		uut = shallow(
+			<SelectFieldContainer
+				value="option1"
+				wrapper={wrapper}
+				descriptor={descriptor}
+				locale={locale}
+				handleFieldChange={nop}
+				fetchPossibleValues={optionFetcher}
+				status="enabled"
+			/>
+		);
 	});
 
 	const renderedSelect = uut.find(SelectField);

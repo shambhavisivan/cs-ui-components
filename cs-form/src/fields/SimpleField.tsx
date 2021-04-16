@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormFieldProps } from './FormField';
 import { FieldType } from '../types/FormDescriptor';
-const { CSInputText } = require('@cloudsense/cs-ui-components');
+import { CSInputText } from '@cloudsense/cs-ui-components';
 
 export const SimpleField: React.FC<FormFieldProps> = props => {
 	const value = props.value !== undefined && props.value !== null ? props.value : '';
@@ -16,9 +16,7 @@ export const SimpleField: React.FC<FormFieldProps> = props => {
 			)}
 			name={props.descriptor.name}
 			value={value}
-			onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-				props.handleFieldChange(e.target.value)
-			}
+			onChange={event => props.handleFieldChange(event.target.value)}
 			required={props.status === 'mandatory'}
 			readOnly={props.status === 'visible' || props.descriptor.enabled === 'false'}
 			hidden={props.status === 'hidden'}

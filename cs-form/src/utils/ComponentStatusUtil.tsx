@@ -1,4 +1,3 @@
-
 import { evaluateCustomExpression } from './ExpressionEvaluator';
 import { ComponentStatusConfiguration, ComponentStatus } from '../types/ComponentStatus';
 import { FormSettings } from '..';
@@ -13,7 +12,11 @@ import { FormSettings } from '..';
  * @param formSettings
  * @param data
  */
-export function calculateComponentStatus(config: ComponentStatusConfiguration, formSettings: FormSettings, data: Record<string, any>): ComponentStatus {
+export function calculateComponentStatus(
+	config: ComponentStatusConfiguration,
+	formSettings: FormSettings,
+	data: Record<string, any>
+): ComponentStatus {
 	if (config.mandatory) {
 		if (evaluateCustomExpression(formSettings, data, config.mandatory)) {
 			return 'mandatory';

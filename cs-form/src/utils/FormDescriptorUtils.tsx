@@ -32,6 +32,10 @@ export function applyDefaults(descriptor: FormDescriptor): FormDescriptor {
 	return ret;
 }
 
-export function findFieldInFormDescriptor(descriptor: FormDescriptor, fieldName: string): FieldDescriptor | undefined {
-	return flatten(descriptor.panels.map(panel => panel.fields)).find(field => field.name === fieldName);
+export function findFieldInFormDescriptor(
+	descriptor: FormDescriptor,
+	fieldName: string
+): FieldDescriptor | undefined {
+	return flatten(descriptor.panels.map(panel => panel.fields)).find(field => field.name === fieldName
+	);
 }

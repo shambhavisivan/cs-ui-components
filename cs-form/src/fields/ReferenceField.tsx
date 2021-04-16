@@ -54,8 +54,13 @@ export class ReferenceField extends React.Component<FormFieldProps, State> {
 		 *
 		 * TODO: think of a better way to do this.
 		 */
-		if (!optionRowColumnDefs || (Array.isArray(optionRowColumnDefs) && !optionRowColumnDefs.length)) {
-			const defaultOptionRowColumnDefs: Array<ReferenceOptionColumn> = [{ key: 'name', label: 'Name' }];
+		if (
+			!optionRowColumnDefs ||
+			(Array.isArray(optionRowColumnDefs) && !optionRowColumnDefs.length)
+		) {
+			const defaultOptionRowColumnDefs: Array<ReferenceOptionColumn> = [
+				{ key: 'name', label: 'Name' }
+			];
 			optionRowColumnDefs = defaultOptionRowColumnDefs;
 		}
 
@@ -68,7 +73,6 @@ export class ReferenceField extends React.Component<FormFieldProps, State> {
 			dropdownValues: []
 		};
 		this.executeSearch = debounce(this.executeSearch, this.intervalBetweenLookups);
-
 	}
 
 	componentDidMount() {
@@ -104,7 +108,8 @@ export class ReferenceField extends React.Component<FormFieldProps, State> {
 		if (this.fieldRef && !this.fieldRef.current.contains(event.target)) {
 			// clear dropDown and come out of edit mode if user has clicked outside reference field while editing it.
 			if (this.state.startedEditing) {
-				if (this.props.value && this.state.searchTerm === '') { // user has cleared entire value
+				if (this.props.value && this.state.searchTerm === '') {
+					// user has cleared entire value
 					this.selectOption(null);
 				} else {
 					this.setState({ startedEditing: false, dropdownValues: [] });
@@ -115,12 +120,9 @@ export class ReferenceField extends React.Component<FormFieldProps, State> {
 
 	executeSearch = (searchTerm: string) => {
 		this.setState({ isQuerying: true, dropdownValues: [] }, () => {
-			this.props.fetchReferenceOptions!(this.props.descriptor, searchTerm)
-				.then(
-					results => {
-						this.setState({ isQuerying: false, dropdownValues: results });
-					}
-				);
+			this.props.fetchReferenceOptions!(this.props.descriptor, searchTerm).then(results => {
+				this.setState({ isQuerying: false, dropdownValues: results });
+			});
 		});
 	}
 
@@ -162,22 +164,23 @@ export class ReferenceField extends React.Component<FormFieldProps, State> {
 						) : null}
 					</div>
 				) : (
-						<div className="input-wrapper"
-							id="startEditButton"
-							onClick={event => {
+					<div
+						className="input-wrapper"
+						id="startEditButton"
+						onClick={event => {
 							event.preventDefault();
 							this.startEdit();
-						}}>
-							<input
-								id="search-input"
-								type="text"
-								value={this.props.value ? this.props.value.name : ''}
-								onChange={e => this.handleSearch(e)}
-							/>
-							<span className="icon-search" aria-hidden="true" />
-						</div>
-					)
-				}
+						}}
+					>
+						<input
+							id="search-input"
+							type="text"
+							value={this.props.value ? this.props.value.name : ''}
+							onChange={e => this.handleSearch(e)}
+						/>
+						<span className="icon-search" aria-hidden="true" />
+					</div>
+				)}
 				{/* Reference options results */}
 				{this.state.dropdownValues.length ? (
 					<div className="lookup-results">

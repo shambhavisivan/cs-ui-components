@@ -11,32 +11,15 @@ const propsMap = {
 };
 
 buttonStories.add('enabled', () => {
-	return (
-		<Button
-			enabled
-			label="Some label"
-			clicked={clickHandler}
-		/>
-	);
+	return <Button enabled label="Some label" clicked={clickHandler} />;
 });
 
 buttonStories.add('onClick', () => {
-	return (
-		<Button
-			enabled
-			label="click me"
-			clicked={clickHandler}
-		/>
-	);
+	return <Button enabled label="click me" clicked={clickHandler} />;
 });
 
 buttonStories.add('additionalProps', () => {
 	return (
-		<Button
-			enabled
-			additionalProps={propsMap}
-			label="Aditional props"
-			clicked={clickHandler}
-		/>
+		<Button enabled additionalProps={propsMap} label="Aditional props" clicked={clickHandler} />
 	);
 });

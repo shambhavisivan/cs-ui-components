@@ -24,7 +24,11 @@ export function interpolateString(template: string, vars: Record<string, any>): 
  * @param name
  * @param value
  */
-export function cloneAndReplaceField<T extends Record<string, any>>(input: T, name: string, value: any): T {
+export function cloneAndReplaceField<T extends Record<string, any>>(
+	input: T,
+	name: string,
+	value: any
+): T {
 	const ret: Record<string, any> = { ...input };
 	if (value === undefined) {
 		delete ret[name];

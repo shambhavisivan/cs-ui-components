@@ -21,7 +21,7 @@ export class DateField extends React.Component<FormFieldProps, {}> {
 	render() {
 		const locale = createLocale(this.props.locale.dates);
 		const date = numberToDate(this.props.value);
-		const title = date ? format(date, 'PP', {locale}) : '';
+		const title = date ? format(date, 'PP', { locale }) : '';
 
 		return (
 			<DatePicker
@@ -36,7 +36,9 @@ export class DateField extends React.Component<FormFieldProps, {}> {
 				selected={date}
 				onChange={value => this.props.handleFieldChange(dateToNumber(value))}
 				required={this.props.status === 'mandatory'}
-				readOnly={this.props.status === 'visible' || this.props.descriptor.enabled === 'false'}
+				readOnly={
+					this.props.status === 'visible' || this.props.descriptor.enabled === 'false'
+				}
 				title={title}
 			/>
 		);

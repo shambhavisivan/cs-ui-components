@@ -1,4 +1,8 @@
-import { fieldNamesInFormDescriptor, applyDefaults, findFieldInFormDescriptor } from '../../utils/FormDescriptorUtils';
+import {
+	fieldNamesInFormDescriptor,
+	applyDefaults,
+	findFieldInFormDescriptor
+} from '../../utils/FormDescriptorUtils';
 
 describe('fieldNamesInFormDescriptor()', () => {
 	it('returns empty array if input is empty', () => {
@@ -7,14 +11,12 @@ describe('fieldNamesInFormDescriptor()', () => {
 	});
 	it('returns fields from single panel', () => {
 		const result = fieldNamesInFormDescriptor({
-			type: 'FORM', panels: [
+			type: 'FORM',
+			panels: [
 				{
 					title: '',
 					isOpenByDefault: false,
-					fields: [
-						{ name: 'field1' },
-						{ name: 'field2' }
-					]
+					fields: [{ name: 'field1' }, { name: 'field2' }]
 				}
 			]
 		});
@@ -22,22 +24,17 @@ describe('fieldNamesInFormDescriptor()', () => {
 	});
 	it('concatenates fields from multiple panels', () => {
 		const result = fieldNamesInFormDescriptor({
-			type: 'FORM', panels: [
+			type: 'FORM',
+			panels: [
 				{
 					title: '',
 					isOpenByDefault: false,
-					fields: [
-						{ name: 'field1' },
-						{ name: 'field2' }
-					]
+					fields: [{ name: 'field1' }, { name: 'field2' }]
 				},
 				{
 					title: '',
 					isOpenByDefault: false,
-					fields: [
-						{ name: 'field3' },
-						{ name: 'field4' }
-					]
+					fields: [{ name: 'field3' }, { name: 'field4' }]
 				}
 			]
 		});
@@ -52,18 +49,18 @@ describe('applyDefaults()', () => {
 	});
 	it('adds missing label and type to single panel', () => {
 		const result = applyDefaults({
-			type: 'FORM', panels: [
+			type: 'FORM',
+			panels: [
 				{
 					title: '',
 					isOpenByDefault: false,
-					fields: [
-						{ name: 'field1' }
-					]
+					fields: [{ name: 'field1' }]
 				}
 			]
 		});
 		expect(result).toStrictEqual({
-			type: 'FORM', panels: [
+			type: 'FORM',
+			panels: [
 				{
 					title: '',
 					isOpenByDefault: false,
@@ -80,25 +77,23 @@ describe('applyDefaults()', () => {
 	});
 	it('adds missing label and type to multiple panels', () => {
 		const result = applyDefaults({
-			type: 'FORM', panels: [
+			type: 'FORM',
+			panels: [
 				{
 					title: '',
 					isOpenByDefault: false,
-					fields: [
-						{ name: 'field1' }
-					]
+					fields: [{ name: 'field1' }]
 				},
 				{
 					title: '',
 					isOpenByDefault: false,
-					fields: [
-						{ name: 'field2' }
-					]
+					fields: [{ name: 'field2' }]
 				}
 			]
 		});
 		expect(result).toStrictEqual({
-			type: 'FORM', panels: [
+			type: 'FORM',
+			panels: [
 				{
 					title: '',
 					isOpenByDefault: false,
@@ -132,41 +127,40 @@ describe('findFieldInFormDescriptor()', () => {
 		expect(result).toBeUndefined();
 	});
 	it('finds fields in single panel', () => {
-		const result = findFieldInFormDescriptor({
-			type: 'FORM', panels: [
-				{
-					title: '',
-					isOpenByDefault: false,
-					fields: [
-						{ name: 'field1' },
-						{ name: 'field2' }
-					]
-				}
-			]
-		}, 'field1');
+		const result = findFieldInFormDescriptor(
+			{
+				type: 'FORM',
+				panels: [
+					{
+						title: '',
+						isOpenByDefault: false,
+						fields: [{ name: 'field1' }, { name: 'field2' }]
+					}
+				]
+			},
+			'field1'
+		);
 		expect(result).toStrictEqual({ name: 'field1' });
 	});
 	it('finds fields in multiple panels', () => {
-		const result = findFieldInFormDescriptor({
-			type: 'FORM', panels: [
-				{
-					title: '',
-					isOpenByDefault: false,
-					fields: [
-						{ name: 'field1' },
-						{ name: 'field2' }
-					]
-				},
-				{
-					title: '',
-					isOpenByDefault: false,
-					fields: [
-						{ name: 'field3' },
-						{ name: 'field4' }
-					]
-				}
-			]
-		}, 'field4');
+		const result = findFieldInFormDescriptor(
+			{
+				type: 'FORM',
+				panels: [
+					{
+						title: '',
+						isOpenByDefault: false,
+						fields: [{ name: 'field1' }, { name: 'field2' }]
+					},
+					{
+						title: '',
+						isOpenByDefault: false,
+						fields: [{ name: 'field3' }, { name: 'field4' }]
+					}
+				]
+			},
+			'field4'
+		);
 		expect(result).toStrictEqual({ name: 'field4' });
 	});
 });

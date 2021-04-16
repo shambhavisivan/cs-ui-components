@@ -17,12 +17,11 @@ const locale: LocaleSettings = {
 		daysInFirstWeek: 4,
 		format: 'yyyy-MM-dd'
 	}
-
 };
 
-const wrapper: ElementWrapper = {
+const wrapper: ElementWrapper = ({
 	injectInputProps: () => null
-} as unknown as ElementWrapper;
+} as unknown) as ElementWrapper;
 
 const descriptor: FieldDescriptor = {
 	fieldType: 'DATE',
@@ -35,21 +34,51 @@ function nop(): any {
 }
 
 it('renders a date picker', () => {
-	const uut = shallow(<DateField locale={locale} wrapper={wrapper} descriptor={descriptor} value={Date.UTC(1970, 1, 2)} handleFieldChange={nop} fetchPossibleValues={nop} status="enabled" />);
+	const uut = shallow(
+		<DateField
+			locale={locale}
+			wrapper={wrapper}
+			descriptor={descriptor}
+			value={Date.UTC(1970, 1, 2)}
+			handleFieldChange={nop}
+			fetchPossibleValues={nop}
+			status="enabled"
+		/>
+	);
 	expect(uut.find(DatePicker)).toHaveLength(1);
 	expect(uut.find(DatePicker).prop('selected')).toStrictEqual(new Date(Date.UTC(1970, 1, 2)));
 	expect(uut.find(DatePicker).prop('name')).toBe('testField');
 });
 
 it('sets readonly', () => {
-	const uut = shallow(<DateField locale={locale} wrapper={wrapper} descriptor={descriptor} value={Date.UTC(1970, 1, 2)} handleFieldChange={nop} fetchPossibleValues={nop} status="visible" />);
+	const uut = shallow(
+		<DateField
+			locale={locale}
+			wrapper={wrapper}
+			descriptor={descriptor}
+			value={Date.UTC(1970, 1, 2)}
+			handleFieldChange={nop}
+			fetchPossibleValues={nop}
+			status="visible"
+		/>
+	);
 	expect(uut.find(DatePicker).prop('readOnly')).toBe(true);
 });
 
 it('sets readonly even when mandatory', () => {
 	descriptor.enabled = 'false';
 
-	const uut = shallow(<DateField locale={locale} wrapper={wrapper} descriptor={descriptor} value={Date.UTC(1970, 1, 2)} handleFieldChange={nop} fetchPossibleValues={nop} status="mandatory" />);
+	const uut = shallow(
+		<DateField
+			locale={locale}
+			wrapper={wrapper}
+			descriptor={descriptor}
+			value={Date.UTC(1970, 1, 2)}
+			handleFieldChange={nop}
+			fetchPossibleValues={nop}
+			status="mandatory"
+		/>
+	);
 	expect(uut.find(DatePicker).prop('readOnly')).toBe(true);
 });
 
@@ -58,6 +87,16 @@ it('calls onChange() on change', done => {
 		expect(value).toStrictEqual(Date.UTC(2010, 1, 1));
 		done();
 	};
-	const uut = shallow(<DateField locale={locale} wrapper={wrapper} descriptor={descriptor} value={Date.UTC(1970, 1, 2)} handleFieldChange={onChange} fetchPossibleValues={nop} status="enabled" />);
+	const uut = shallow(
+		<DateField
+			locale={locale}
+			wrapper={wrapper}
+			descriptor={descriptor}
+			value={Date.UTC(1970, 1, 2)}
+			handleFieldChange={onChange}
+			fetchPossibleValues={nop}
+			status="enabled"
+		/>
+	);
 	uut.simulate('change', new Date(Date.UTC(2010, 1, 1)));
 });

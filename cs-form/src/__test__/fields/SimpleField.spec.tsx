@@ -15,32 +15,62 @@ const descriptor: FieldDescriptor = {
 	label: 'Test field'
 };
 
-const locale: LocaleSettings = {} as unknown as LocaleSettings;
+const locale: LocaleSettings = ({} as unknown) as LocaleSettings;
 
-const wrapper: ElementWrapper = {
+const wrapper: ElementWrapper = ({
 	injectInputProps: () => null
-} as unknown as ElementWrapper;
+} as unknown) as ElementWrapper;
 
 function nop(): any {
 	// dummy function
 }
 
 it('renders a text input', () => {
-	const uut = shallow(<SimpleField locale={locale} wrapper={wrapper} descriptor={descriptor} handleFieldChange={nop} fetchPossibleValues={nop} value="test" status="enabled" />);
+	const uut = shallow(
+		<SimpleField
+			locale={locale}
+			wrapper={wrapper}
+			descriptor={descriptor}
+			handleFieldChange={nop}
+			fetchPossibleValues={nop}
+			value="test"
+			status="enabled"
+		/>
+	);
 	expect(uut.find(CSInputText)).toHaveLength(1);
 	expect(uut.find(CSInputText).prop('value')).toBe('test');
 	expect(uut.find(CSInputText).prop('name')).toBe('testField');
 });
 
 it('sets readonly', () => {
-	const uut = shallow(<SimpleField locale={locale} wrapper={wrapper} descriptor={descriptor} handleFieldChange={nop} fetchPossibleValues={nop} value="test" status="visible" />);
+	const uut = shallow(
+		<SimpleField
+			locale={locale}
+			wrapper={wrapper}
+			descriptor={descriptor}
+			handleFieldChange={nop}
+			fetchPossibleValues={nop}
+			value="test"
+			status="visible"
+		/>
+	);
 	expect(uut.find(CSInputText).prop('readOnly')).toBe(true);
 });
 
 it('sets readonly even when mandatory', () => {
 	descriptor.enabled = 'false';
 
-	const uut = shallow(<SimpleField locale={locale} wrapper={wrapper} descriptor={descriptor} handleFieldChange={nop} fetchPossibleValues={nop} value="test" status="mandatory" />);
+	const uut = shallow(
+		<SimpleField
+			locale={locale}
+			wrapper={wrapper}
+			descriptor={descriptor}
+			handleFieldChange={nop}
+			fetchPossibleValues={nop}
+			value="test"
+			status="mandatory"
+		/>
+	);
 	expect(uut.find(CSInputText).prop('readOnly')).toBe(true);
 });
 
@@ -49,6 +79,16 @@ it('calls onChange() on change', done => {
 		expect(value).toBe('new value');
 		done();
 	};
-	const uut = shallow(<SimpleField locale={locale} wrapper={wrapper} descriptor={descriptor} handleFieldChange={onChange} fetchPossibleValues={nop} value="test" status="enabled" />);
+	const uut = shallow(
+		<SimpleField
+			locale={locale}
+			wrapper={wrapper}
+			descriptor={descriptor}
+			handleFieldChange={onChange}
+			fetchPossibleValues={nop}
+			value="test"
+			status="enabled"
+		/>
+	);
 	uut.simulate('change', { target: { value: 'new value' } });
 });

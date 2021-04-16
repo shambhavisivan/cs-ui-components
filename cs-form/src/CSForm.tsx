@@ -1,5 +1,10 @@
 import React, { ReactElement } from 'react';
-import { FormDescriptor, FormPanelDescriptor, FieldDescriptor, FieldType } from './types/FormDescriptor';
+import {
+	FormDescriptor,
+	FormPanelDescriptor,
+	FieldDescriptor,
+	FieldType
+} from './types/FormDescriptor';
 import { FormPanel } from './FormPanel';
 import { Button } from './Button';
 import { cloneAndReplaceField } from './utils/Util';
@@ -42,7 +47,11 @@ export interface ElementWrapper {
 	 * @param contents All the panels of the form.
 	 * @param saveButton The save button of the form.
 	 */
-	wrapForm(errorPanel: ReactElement, contents: ReactElement, saveButton: ReactElement): ReactElement;
+	wrapForm(
+		errorPanel: ReactElement,
+		contents: ReactElement,
+		saveButton: ReactElement
+	): ReactElement;
 	/**
 	 * Wrap a single panel of the form, combining the title and the fields.
 	 * @param key React key to be set on wrapper component to help React with change detection
@@ -58,7 +67,13 @@ export interface ElementWrapper {
 	 * @param input The input component of the field
 	 * @param errorMessages The error message component of the field, is null if there are no errors
 	 */
-	wrapField(name: string, status: ComponentStatus, label: ReactElement, input: ReactElement, errorMessages: ReactElement | null): ReactElement;
+	wrapField(
+		name: string,
+		status: ComponentStatus,
+		label: ReactElement,
+		input: ReactElement,
+		errorMessages: ReactElement | null
+	): ReactElement;
 	/**
 	 * Create additional properties to be set directly on the input component (i.e. the actual <input>/<select>/etc. HTML tag)
 	 * @param name Name of input field
@@ -162,7 +177,10 @@ export interface FormProps {
 	 * @param field The field for which the options are required
 	 * @returns The list of options, which will be displayed in the order provided.
 	 */
-	fetchReferenceOptions?(field: FieldDescriptor, searchTerm: string): Promise<Array<ReferenceOption>>;
+	fetchReferenceOptions?(
+		field: FieldDescriptor,
+		searchTerm: string
+	): Promise<Array<ReferenceOption>>;
 }
 
 export class CSForm extends React.Component<FormProps, {}> {
@@ -173,7 +191,11 @@ export class CSForm extends React.Component<FormProps, {}> {
 		this.handleFieldChange = this.handleFieldChange.bind(this);
 		this.save = this.save.bind(this);
 		this.createFormPanel = this.createFormPanel.bind(this);
-		this.validator = new Validator(applyDefaults(props.descriptor), props.formSettings, props.labels);
+		this.validator = new Validator(
+			applyDefaults(props.descriptor),
+			props.formSettings,
+			props.labels
+		);
 	}
 
 	handleFieldChange(name: string, newValue: any) {
@@ -182,7 +204,10 @@ export class CSForm extends React.Component<FormProps, {}> {
 	}
 	async save(): Promise<void> {
 		const errors = this.validate(this.props.data);
-		if (errors.formErrors.length === 0 && Object.getOwnPropertyNames(errors.fieldErrors).length === 0) {
+		if (
+			errors.formErrors.length === 0 &&
+			Object.getOwnPropertyNames(errors.fieldErrors).length === 0
+		) {
 			try {
 				const newObject: Record<string, any> = await this.props.save();
 				this.props.update(newObject, errors);
@@ -206,13 +231,18 @@ export class CSForm extends React.Component<FormProps, {}> {
 			<>
 				<ErrorPanel
 					wrapper={this.props.wrapper}
-					errors={this.props.externalValidationErrors ? this.props.externalValidationErrors.formErrors : []}
+					errors={
+						this.props.externalValidationErrors
+							? this.props.externalValidationErrors.formErrors
+							: []
+					}
 				/>
 			</>,
 			<>{descriptor.panels.map(this.createFormPanel)}</>,
 			<>
 				<Button
-					enabled label={this.props.labels.button_save}
+					enabled
+					label={this.props.labels.button_save}
 					clicked={this.save}
 					additionalProps={this.props.wrapper.injectSaveButtonProps()}
 				/>
@@ -220,7 +250,10 @@ export class CSForm extends React.Component<FormProps, {}> {
 		);
 	}
 
-	private mergeErrors: (one: Record<string, Array<string>>, other: Record<string, Array<string>>) => Record<string, Array<string>> = (one, other) => {
+	private mergeErrors: (
+		one: Record<string, Array<string>>,
+		other: Record<string, Array<string>>
+	) => Record<string, Array<string>> = (one, other) => {
 		const keys = new Set<string>([...Object.keys(one), ...Object.keys(other)]);
 		const ret: Record<string, Array<string>> = {};
 		keys.forEach(key => {
@@ -231,7 +264,10 @@ export class CSForm extends React.Component<FormProps, {}> {
 
 	private validate: (data: Record<string, any>) => ValidationErrors = data => {
 		const internalErrors = this.validator.validate(data);
-		const externalErrors: ValidationErrors = this.props.externalValidationErrors || { formErrors: [], fieldErrors: {} };
+		const externalErrors: ValidationErrors = this.props.externalValidationErrors || {
+			formErrors: [],
+			fieldErrors: {}
+		};
 		const formErrors = externalErrors.formErrors;
 		const fieldErrors = this.mergeErrors(internalErrors, externalErrors.fieldErrors);
 		return {
@@ -241,24 +277,30 @@ export class CSForm extends React.Component<FormProps, {}> {
 	}
 
 	private createFormPanel(panel: FormPanelDescriptor) {
-		return (<FormPanel
-			errors={{ ...(this.getFieldErrors()), ...this.validator.validate(this.props.data) }}
-			key={panel.title}
-			descriptor={panel}
-			data={this.props.data}
-			handleFieldChange={this.handleFieldChange}
-			fetchPossibleValues={this.props.fetchPossibleValues}
-			fetchReferenceOptions={this.props.fetchReferenceOptions}
-			wrapper={this.props.wrapper}
-			formSettings={this.props.formSettings}
-			locale={this.props.locale} />);
+		return (
+			<FormPanel
+				errors={{ ...this.getFieldErrors(), ...this.validator.validate(this.props.data) }}
+				key={panel.title}
+				descriptor={panel}
+				data={this.props.data}
+				handleFieldChange={this.handleFieldChange}
+				fetchPossibleValues={this.props.fetchPossibleValues}
+				fetchReferenceOptions={this.props.fetchReferenceOptions}
+				wrapper={this.props.wrapper}
+				formSettings={this.props.formSettings}
+				locale={this.props.locale}
+			/>
+		);
 	}
 
 	private getFieldErrors(): Record<string, Array<string>> {
-		if (this.props.externalValidationErrors && this.props.externalValidationErrors.fieldErrors) {
+		if (
+			this.props.externalValidationErrors &&
+			this.props.externalValidationErrors.fieldErrors
+		) {
 			return this.props.externalValidationErrors.fieldErrors;
 		}
 
-		return {} as unknown as Record<string, Array<string>>;
+		return ({} as unknown) as Record<string, Array<string>>;
 	}
 }

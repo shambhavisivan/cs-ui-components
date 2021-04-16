@@ -56,5 +56,4 @@ describe('isMandatoryFieldPresent()', () => {
 		expect(isMandatoryFieldPresent('mandatory', 'pi')).toBe(true);
 		expect(isMandatoryFieldPresent('mandatory', 0)).toBe(true);
 	});
-
 });

@@ -21,33 +21,46 @@ export interface FormFieldProps {
 	errorMessages?: Array<string>;
 	handleFieldChange(newValue: any): void;
 	fetchPossibleValues(): Promise<Array<SelectOption>>;
-	fetchReferenceOptions?(field: FieldDescriptor, searchTerm: string): Promise<Array<ReferenceOption>>;
+	fetchReferenceOptions?(
+		field: FieldDescriptor,
+		searchTerm: string
+	): Promise<Array<ReferenceOption>>;
 }
 
 /**
  * Wrapper and dispatcher for every possible type of form field.
  */
 export class FormField extends React.Component<FormFieldProps, {}> {
-
 	renderField() {
 		switch (this.props.descriptor.fieldType) {
-			case 'REFERENCE': return <ReferenceField {...this.props} />;
-			case 'PICKLIST': return <SelectFieldContainer {...this.props} />;
-			case 'DATE': return <DateField {...this.props} />;
-			case 'DATETIME': return <DateTimeField {...this.props} />;
-			case 'BOOLEAN': return <BooleanField {...this.props} />;
-			case 'NUMBER': return <NumberField {...this.props} />;
-			default: return <SimpleField {...this.props} />;
+			case 'REFERENCE':
+				return <ReferenceField {...this.props} />;
+			case 'PICKLIST':
+				return <SelectFieldContainer {...this.props} />;
+			case 'DATE':
+				return <DateField {...this.props} />;
+			case 'DATETIME':
+				return <DateTimeField {...this.props} />;
+			case 'BOOLEAN':
+				return <BooleanField {...this.props} />;
+			case 'NUMBER':
+				return <NumberField {...this.props} />;
+			default:
+				return <SimpleField {...this.props} />;
 		}
 	}
 
 	renderErrors(): ReactElement | null {
 		if (this.props.errorMessages && this.props.errorMessages.length > 0) {
-			return <>
-				{this.props.errorMessages.map((error, idx) =>
-					<React.Fragment key={`${this.props.descriptor.name}-error${idx}`}>{error}</React.Fragment>
-				)}
-			</>;
+			return (
+				<>
+					{this.props.errorMessages.map((error, idx) => (
+						<React.Fragment key={`${this.props.descriptor.name}-error${idx}`}>
+							{error}
+						</React.Fragment>
+					))}
+				</>
+			);
 		}
 
 		return null;

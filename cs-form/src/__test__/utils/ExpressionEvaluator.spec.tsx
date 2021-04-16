@@ -23,11 +23,19 @@ it('coerces result to boolean', () => {
 });
 
 it('maps UserInfo', () => {
-	const result = evaluateCustomExpression(formSettings, EMPTY_OBJECT, '$formSettings.locale === \'' + formSettings.locale + '\'');
+	const result = evaluateCustomExpression(
+		formSettings,
+		EMPTY_OBJECT,
+		'$formSettings.locale === \'' + formSettings.locale + '\''
+	);
 	expect(result).toBe(true);
 });
 
 it('maps basket fields', () => {
-	const result = evaluateCustomExpression(formSettings, { name: 'Mr. Basket' }, 'name === \'Mr. Basket\'');
+	const result = evaluateCustomExpression(
+		formSettings,
+		{ name: 'Mr. Basket' },
+		'name === \'Mr. Basket\''
+	);
 	expect(result).toBe(true);
 });

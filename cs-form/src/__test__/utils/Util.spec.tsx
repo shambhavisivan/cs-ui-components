@@ -12,7 +12,9 @@ describe('interpolateString()', () => {
 	});
 
 	it('fails on missing placeholder value', () => {
-		expect(() => interpolateString('string ${x} placeholders', {})).toThrowError('Missing value for key ${x}');
+		expect(() => interpolateString('string ${x} placeholders', {})).toThrowError(
+			'Missing value for key ${x}'
+		);
 	});
 });
 
@@ -61,5 +63,4 @@ describe('cloneAndReplaceField()', () => {
 			name2: 'value2'
 		});
 	});
-
 });

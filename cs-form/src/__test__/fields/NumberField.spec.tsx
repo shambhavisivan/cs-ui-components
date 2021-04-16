@@ -444,7 +444,6 @@ test('Test NumberField goes into edit mode on focus when it is enabled.', () => 
 	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
 	expect(editTextInput).not.toBeUndefined();
 	expect(editTextInput).not.toBeNull();
-
 });
 
 test('Test NumberField does not go into edit mode on focus when it is read only.', () => {

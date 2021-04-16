@@ -17,24 +17,57 @@ const descriptor: FieldDescriptor = {
 	label: 'Test field'
 };
 
-const locale: LocaleSettings = {} as unknown as LocaleSettings;
+const locale: LocaleSettings = ({} as unknown) as LocaleSettings;
 
-const wrapper: ElementWrapper = {
-	wrapField: (name: string, status: ComponentStatus, label: ReactElement, field: ReactElement, error: ReactElement) => <>{name}{label}{field}{error}</>,
+const wrapper: ElementWrapper = ({
+	wrapField: (
+		name: string,
+		status: ComponentStatus,
+		label: ReactElement,
+		field: ReactElement,
+		error: ReactElement
+	) => (
+		<>
+			{name}
+			{label}
+			{field}
+			{error}
+		</>
+	),
 	injectInputProps: () => null
-} as unknown as ElementWrapper;
+} as unknown) as ElementWrapper;
 
 function nop(): any {
 	// dummy function
 }
 
 it('renders nothing if hidden', () => {
-	const uut = shallow(<FormField descriptor={descriptor} wrapper={wrapper} locale={locale} value handleFieldChange={nop} fetchPossibleValues={nop} status="hidden" />);
+	const uut = shallow(
+		<FormField
+			descriptor={descriptor}
+			wrapper={wrapper}
+			locale={locale}
+			value
+			handleFieldChange={nop}
+			fetchPossibleValues={nop}
+			status="hidden"
+		/>
+	);
 	expect(uut.html()).toBeNull();
 });
 
 it('renders a checkbox for type BOOLEAN', () => {
-	const uut = shallow(<FormField descriptor={descriptor} wrapper={wrapper} locale={locale} value handleFieldChange={nop} fetchPossibleValues={nop} status="enabled" />);
+	const uut = shallow(
+		<FormField
+			descriptor={descriptor}
+			wrapper={wrapper}
+			locale={locale}
+			value
+			handleFieldChange={nop}
+			fetchPossibleValues={nop}
+			status="enabled"
+		/>
+	);
 	expect(uut.find(BooleanField)).toHaveLength(1);
 });
 
@@ -59,6 +92,18 @@ it('calls onChange() on change', done => {
 		expect(value).toBe(true);
 		done();
 	};
-	const uut = mount(<FormField descriptor={descriptor} wrapper={wrapper} locale={locale} value handleFieldChange={onChange} fetchPossibleValues={nop} status="enabled" />);
-	uut.find(BooleanField).find('input').simulate('change', { target: { checked: true } });
+	const uut = mount(
+		<FormField
+			descriptor={descriptor}
+			wrapper={wrapper}
+			locale={locale}
+			value
+			handleFieldChange={onChange}
+			fetchPossibleValues={nop}
+			status="enabled"
+		/>
+	);
+	uut.find(BooleanField)
+		.find('input')
+		.simulate('change', { target: { checked: true } });
 });
