@@ -22,6 +22,7 @@ export interface CSDatepickerProps {
 	errorMessage?: CSFieldErrorMsgType;
 	helpText?: string;
 	id?: string;
+	inline?: boolean;
 	isClearable?: boolean;
 	label: string;
 	labelHidden?: boolean;
@@ -109,6 +110,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 			errorMessage,
 			helpText,
 			id,
+			inline,
 			isClearable,
 			label,
 			labelHidden,
@@ -166,7 +168,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 		return (
 			<>
 				<div className={datepickerClasses} style={style}>
-					{(label && !labelHidden) &&
+					{(label && !labelHidden && !inline) &&
 						<CSLabel
 							htmlFor={this.uniqueAutoId}
 							label={label}
@@ -203,10 +205,11 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 							autoComplete="off"
 							required={required}
 							id={this.uniqueAutoId}
+							inline={inline}
 							{...rest}
 						/>
 					</div>
-					{!this.props.readOnly && <CSIcon name="event" className="cs-datepicker-icon" size="0.875rem" />}
+					{(!readOnly && !inline) && <CSIcon name="event" className="cs-datepicker-icon" size="0.875rem" />}
 					{(error && errorMessage) &&
 						<CSFieldErrorMsg message={errorMessage} />
 					}
