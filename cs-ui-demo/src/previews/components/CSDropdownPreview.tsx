@@ -6,7 +6,7 @@ import PreviewTable from '../PreviewTable';
 import PreviewAccessibility from '../PreviewAccessibility';
 import PreviewLinks from '../PreviewLinks';
 
-import { CSDropdown, CSButton, CSList, CSListItem, CSListGroup } from '@cloudsense/cs-ui-components';
+import { CSDropdown, CSButton, CSList, CSListItem, CSListGroup, CSDivider } from '@cloudsense/cs-ui-components';
 
 class CSDropdownPreview extends React.Component {
 	getDoc() {
@@ -317,6 +317,7 @@ class CSDropdownPreview extends React.Component {
 									iconName="world"
 									label="test label"
 								/>
+								<CSDivider variant="horizontal" />
 								<CSButton
 									iconName="world"
 									label="test label"

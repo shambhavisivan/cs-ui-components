@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import withCSUnmountDelay from '../../helpers/CSUnmountDelay';
 import KeyCode from '../../util/KeyCode';
 import CSButton from '../CSButton';
+import CSDivider from '../CSDivider';
 
 import {
 	CSDropdownAlign,
@@ -143,17 +144,25 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 
 		const childrenWithWrapper = React.Children.map(children, (child: any) => {
 			if (child) {
-				return (
-					<li role="none">
-						{React.cloneElement(
-							child,
-							{
-								onKeyDown: this.handleKeyDown,
-								role: 'menuitem'
-							}
-						)}
-					</li>
-				);
+				if (child.type === CSDivider) {
+					return (
+						<>
+							{child}
+						</>
+					);
+				} else {
+					return (
+						<li role="none">
+							{React.cloneElement(
+								child,
+								{
+									onKeyDown: this.handleKeyDown,
+									role: 'menuitem'
+								}
+							)}
+						</li>
+					);
+				}
 			}
 		});
 
