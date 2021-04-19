@@ -17,6 +17,7 @@
 		border-radius: var(--cs-textarea-border-radius, 0.25rem);
 
 		&:read-only {
+			padding: 0;
 			height: auto;
 		}
 	}

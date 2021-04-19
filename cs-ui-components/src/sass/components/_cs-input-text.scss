@@ -9,5 +9,11 @@
 	.cs-input-text {
 		@include input;
 		border-radius: var(--cs-input-text-border-radius, 0.25rem);
+
+		&:read-only:focus-visible {
+			@include css4 {
+				box-shadow: 0 0 0.1875rem cvar(--cs-input-shadow);
+			}
+		}
 	}
 }

@@ -27,6 +27,12 @@
 				-webkit-appearance: none;
 			}
 		}
+
+		&:read-only:focus-visible {
+			@include css4 {
+				box-shadow: 0 0 0.1875rem cvar(--cs-input-shadow);
+			}
+		}
 	}
 
 	// Version
