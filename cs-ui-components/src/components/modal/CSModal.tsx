@@ -33,13 +33,13 @@ class CSModal extends React.Component<CSModalProps> {
 	};
 
 	private modalId = 'cs-modal-root';
-	private modalCloseClass = 'cs-modal-close';
 	private modalRef: HTMLDivElement;
 	private modalCloseBtnRef: HTMLButtonElement;
 	private modalOverlay: HTMLDivElement;
 	private firstElement: HTMLElement;
 	private lastElement: HTMLElement;
 	private modalContentNode: HTMLDivElement;
+	private previouslyFocusedElement: HTMLElement;
 	private uniqueAutoId = uuidv4();
 
 	constructor(props: CSModalProps) {
@@ -86,13 +86,13 @@ class CSModal extends React.Component<CSModalProps> {
 		}
 	}
 
-	handleOuterClick(e: any) {
+	handleOuterClick(event: any) {
 		// ignore clicks on the component itself
-		if (this.modalContentNode && this.modalContentNode.contains(e.target)) {
+		if (this.modalContentNode && this.modalContentNode.contains(event.target)) {
 			return;
 		}
 		if (this.props.onClose) {
-			this.props.onClose(e);
+			this.props.onClose(event);
 		}
 	}
 
@@ -115,6 +115,7 @@ class CSModal extends React.Component<CSModalProps> {
 	}
 
 	componentDidMount() {
+		this.previouslyFocusedElement = document.activeElement as HTMLElement;
 		const focusable = this.getFocusableElements();
 		this.getFirstLastModalElement();
 		if (this.props.loading && !this.props.closeButton && focusable.length > 0) {
@@ -148,14 +149,9 @@ class CSModal extends React.Component<CSModalProps> {
 		if (modalRoot.childElementCount === 1) {
 			document.body.style.overflow = '';
 			document.documentElement.style.overflow = '';
-		} else {
-			const focusableModalsLength = modalRoot.getElementsByClassName('cs-modal-overlay').length;
-			const focusableModal = modalRoot.getElementsByClassName('cs-modal-overlay')[focusableModalsLength - 2];
-			const focusable = focusableModal.querySelectorAll('button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-
-			this.firstElement = focusable[1] as HTMLElement;
-			this.firstElement.focus();
 		}
+
+		this.previouslyFocusedElement.focus();
 	}
 
 	render() {
