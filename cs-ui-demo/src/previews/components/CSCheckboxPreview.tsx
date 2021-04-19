@@ -191,8 +191,16 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 						variations: [
 							{
 								primaryVariants: 'readOnly={true}',
-								component: <CSCheckbox label="Select option" readOnly />,
-								code: '<CSCheckbox label="Select option" readOnly />'
+								component: <CSCheckbox
+									label="Select option"
+									readOnly
+									checked
+								/>,
+								code: `<CSCheckbox
+									label="Select option"
+									readOnly
+									checked
+								/>`
 							}
 						]
 					}, {

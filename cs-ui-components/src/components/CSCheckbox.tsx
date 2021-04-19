@@ -55,6 +55,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 
 	handleOnClick = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
 		if (this.props.readOnly) {
+			e.preventDefault();
 			return;
 		}
 

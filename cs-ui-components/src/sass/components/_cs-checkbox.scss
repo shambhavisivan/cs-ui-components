@@ -39,7 +39,6 @@
 			position: absolute;
 
 			&:checked + .cs-checkbox-faux {
-
 				&::after {
 					display: block;
 					content: "";
@@ -121,13 +120,16 @@
 						border: 1px solid cvar(--cs-checkbox-disabled-br);
 					}
 				}
-				&:hover + .cs-checkbox-faux {
-					box-shadow: none;
-				}
+				&:hover + .cs-checkbox-faux,
 				&:focus + .cs-checkbox-faux {
+					box-shadow: none;
+					@include css4 {
+						border: 1px solid cvar(--cs-checkbox-disabled-br);
+					}
+				}
+				&:focus-visible + .cs-checkbox-faux {
 					@include css4 {
 						box-shadow: 0 0 3px cvar(--cs-checkbox-focus-box);
-						border: 1px solid cvar(--cs-checkbox-focus-br);
 					}
 				}
 				&:active + .cs-checkbox-faux {
