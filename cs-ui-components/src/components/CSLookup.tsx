@@ -39,7 +39,6 @@ interface CSLookupCommmonProps {
 	label: string;
 	labelHidden?: boolean;
 	labelTitle?: boolean;
-	loading?: boolean;
 	lookupColumns: Array<CSLookupTableColumnType>;
 	multiselect?: boolean;
 	onBlur?: (event: React.FocusEvent<HTMLInputElement>) => any;
@@ -48,6 +47,7 @@ interface CSLookupCommmonProps {
 	onSelectChange?: (value?: any) => any;
 	placeholder?: string;
 	position?: CSLookupDropdownPosition;
+	readOnly?: boolean;
 	required?: boolean;
 	title?: string;
 	tooltipPosition?: CSTooltipPosition;
@@ -68,6 +68,7 @@ interface CSLookupServerProps {
 }
 
 interface CSLookupClientProps {
+	loading?: boolean;
 	lookupOptions: Array<Record<string, any>>;
 	mode: 'client';
 	searchBy?: Array<string>;
@@ -640,6 +641,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			pageSize,
 			placeholder,
 			position,
+			readOnly,
 			required,
 			searchBy,
 			title,
@@ -759,6 +761,25 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 				return notFoundNode;
 			}
 		};
+
+		/*
+			If inifiniteScroll is set, calculated value will be returned and set to maxHeight prop on CSTableBody.
+			The value is calculated from the pageSize prop reduced by one and fixed height value of each table row (32px).
+			This ensures visiblity of the scroll bar if the number of returned records is smaller than 9.
+
+			Otherwise fixed height of 17rem will be returned.
+		*/
+		const calcTableBodyMaxHeight = () => {
+			if (
+				this.props.mode === 'server' &&
+				this.props.infiniteScroll &&
+				this.props.pageSize < 9
+			) {
+				return (32 * (this.props.pageSize - 1)) + 'px';
+			} else {
+				return '17rem';
+			}
+		};
 		return (
 			<div className={lookupFieldWrapperClasses} >
 				{(label && !labelHidden) &&
@@ -772,26 +793,29 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 					/>
 				}
 				<div className="cs-lookup-input-wrapper">
-					<CSIcon
-						name="search"
-						className="cs-lookup-search-icon"
-						color="var(--cs-input-icon-fill)"
-					/>
+					{!readOnly &&
+						<CSIcon
+							name="search"
+							className="cs-lookup-search-icon"
+							color="var(--cs-input-icon-fill)"
+						/>
+					}
 					<input
 						className={lookupInputClasses}
 						autoComplete="off"
 						type="text"
 						placeholder={placeholder}
 						disabled={disabled}
+						readOnly={readOnly}
 						required={required}
 						value={fixControlledValue(searchTerm ||
 							this.getValueToDisplay(selectedOption) ||
 							this.getMultiselectValues())
 						}
-						onFocus={this.handleOnFocus}
-						onKeyDown={this.handleOnKeyDown}
+						onFocus={!readOnly ? this.handleOnFocus : undefined}
+						onKeyDown={!readOnly ? this.handleOnKeyDown : undefined}
 						onChange={this.handleSearch}
-						onClick={this.handleOnClick}
+						onClick={!readOnly ? this.handleOnClick : undefined}
 						onBlur={this.handleOnBlur}
 						title={title}
 						id={id ? id : this.uniqueAutoId}
@@ -804,7 +828,8 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 					{((searchTerm ||
 						selectedOption ||
 						(!!selectedOptions.length && !dropdownOpen))
-						&& !disabled) &&
+						&& !disabled
+						&& !readOnly) &&
 						<CSButton
 							btnType="transparent"
 							btnStyle="brand"
@@ -822,12 +847,14 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 							size="xsmall"
 						/>
 					}
-					<CSIcon
-						name="chevrondown"
-						rotate={dropdownOpen ? '180' : null}
-						className="cs-lookup-dropdown-icon"
-						color="var(--cs-input-icon-fill)"
-					/>
+					{!readOnly &&
+						<CSIcon
+							name="chevrondown"
+							rotate={dropdownOpen ? '180' : null}
+							className="cs-lookup-dropdown-icon"
+							color="var(--cs-input-icon-fill)"
+						/>
+					}
 					{
 						(error && errorMessage) &&
 						<CSFieldErrorMsg message={errorMessage} />
@@ -853,7 +880,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 										))}
 									</CSTableHeader>
 								}
-								<CSTableBody maxHeight="17rem">
+								<CSTableBody maxHeight={calcTableBodyMaxHeight()}>
 									{renderDropdownTableBody()}
 									{fetchingMode === 'after-scroll' &&
 										loadingNode

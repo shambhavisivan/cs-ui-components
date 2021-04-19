@@ -64,7 +64,6 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 				{ Id: 25, Account: 'YouTube', Industry: 'Streaming and media' },
 				{ Id: 26, Account: 'O2', Industry: 'Telecommunications' },
 				{ Id: 27, Account: 'Warner Bros. Pictures', Industry: 'Film' }
-
 			]
 		};
 
@@ -415,6 +414,25 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 									lookupColumns={lookupSimple.columns}
 									fieldToBeDisplayed="Account"
 									hidden
+								/>
+						}
+					]
+				},
+				{
+					propName: 'readOnly',
+					variations: [
+						{
+							variationName: ['true'],
+							quickLink: 'true',
+							component:
+								<CSLookup
+									mode="client"
+									label="Account"
+									lookupOptions={lookupSimple.data}
+									lookupColumns={lookupSimple.columns}
+									fieldToBeDisplayed="Account"
+									readOnly
+									value={{ Id: 1, Account: 'Acme', Industry: 'Manufacturing' }}
 								/>
 						}
 					]
@@ -790,7 +808,7 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 									lookupColumns={lookupSimple.columns}
 									fetchLookupOptions={fetchData}
 									fieldToBeDisplayed="Account"
-									pageSize={7}
+									pageSize={8}
 									infiniteScroll
 									multiselect
 								/>
@@ -949,6 +967,11 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 					}],
 					default: '\'bottom\'',
 					description: 'Determine the vertical position of the lookup dropdown content.'
+				}, {
+					name: 'readOnly',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Control whether to apply the readonly attribute.'
 				}, {
 					name: 'required',
 					types: ['boolean'],
