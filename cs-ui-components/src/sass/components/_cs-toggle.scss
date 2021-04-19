@@ -116,7 +116,6 @@
 		}
 
 		&.cs-toggle-error {
-
 			+ .cs-toggle-faux {
 				box-shadow: none;
 				@include css4 {
@@ -151,6 +150,14 @@
 					border: 2px solid cvar(--cs-toggle-error-br);
 					box-shadow: 0 0 3px cvar(--cs-toggle-error-box);
 				}
+			}
+		}
+
+		&.cs-toggle-read-only + .cs-toggle-faux {
+			pointer-events: none;
+
+			&:hover + .cs-toggle-faux {
+				box-shadow: none;
 			}
 		}
 	}

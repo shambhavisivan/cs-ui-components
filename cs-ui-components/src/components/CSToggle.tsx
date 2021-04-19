@@ -21,6 +21,7 @@ export interface CSToggleProps {
 	labelPosition?: CSToggleLabelPosition;
 	labelTitle?: boolean;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => any;
+	readOnly?: boolean;
 	required?: boolean;
 	title?: string;
 	tooltipPosition?: CSTooltipPosition;
@@ -31,13 +32,16 @@ class CSToggle extends React.Component<CSToggleProps> {
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
 
 	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if (this.props.readOnly) {
+			return;
+		}
+
 		if (this.props.onChange) {
 			this.props.onChange(e);
 		}
 	}
 
 	render() {
-
 		const {
 			checked,
 			className,
@@ -51,6 +55,7 @@ class CSToggle extends React.Component<CSToggleProps> {
 			labelPosition,
 			labelTitle,
 			onChange,
+			readOnly,
 			required,
 			title,
 			tooltipPosition,
@@ -60,7 +65,8 @@ class CSToggle extends React.Component<CSToggleProps> {
 		const toggleClasses = classNames(
 			'cs-toggle',
 			{
-				'cs-toggle-error': error === true
+				'cs-toggle-error': error === true,
+				'cs-toggle-read-only': readOnly
 			}
 		);
 
@@ -95,6 +101,7 @@ class CSToggle extends React.Component<CSToggleProps> {
 							required={required}
 							id={this.uniqueAutoId}
 							aria-label={label}
+							aria-readonly={readOnly}
 							aria-required={required}
 							aria-invalid={error}
 							{...rest}
