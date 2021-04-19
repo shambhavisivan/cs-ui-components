@@ -50,6 +50,7 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 
 		const {
 			className,
+			children,
 			defaultClosed,
 			collapsible,
 			id,
@@ -75,7 +76,7 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 				{...rest}
 			>
 				<h3 className={sectionTitleClasses}>
-					{this.props.collapsible ?
+					{collapsible ?
 						<button
 							className="cs-section-button"
 							onClick={this.toggle}
@@ -93,8 +94,8 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 				{this.state.defaultClosed ?
 					null
 				:
-					<div className="cs-section-body" role="region">
-						{this.props.children}
+					<div className="cs-section-body">
+						{children}
 					</div>
 				}
 			</section>
