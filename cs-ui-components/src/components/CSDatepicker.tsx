@@ -13,6 +13,7 @@ export type CSDatepickerDropdownMode = 'select' | 'scroll';
 
 export interface CSDatepickerProps {
 	[key: string]: any;
+	autoFocus?: boolean;
 	borderRadius?: string;
 	className?: string;
 	dateFormat?: string;
@@ -101,6 +102,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 
 	public render() {
 		const {
+			autoFocus,
 			borderRadius,
 			className,
 			dateFormat,
@@ -206,6 +208,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 							required={required}
 							id={this.uniqueAutoId}
 							inline={inline}
+							autoFocus={autoFocus}
 							{...rest}
 						/>
 					</div>

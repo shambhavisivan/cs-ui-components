@@ -36,6 +36,15 @@ class CSDatepickerPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'autoFocus',
+						variations: [
+							{
+								primaryVariants: 'autoFocus={true}',
+								component: <CSDatepicker label="Enter date" autoFocus />,
+								code: '<CSDatepicker label="Enter date" autoFocus />'
+							}
+						]
+					}, {
 						propName: 'borderRadius',
 						variations: [
 							{
@@ -455,6 +464,11 @@ class CSDatepickerPreview extends React.Component {
 		],
 		properties: [
 			{
+				name: 'autoFocus',
+				types: ['boolean'],
+				default: 'false',
+				description: 'Focuses the datepicker by default'
+			}, {
 				name: 'borderRadius',
 				types: ['string'],
 				default: '0.25rem',
