@@ -1,5 +1,20 @@
 # Release Notes
 
+## 1.1.12<a name="1.1.12"></a>
+* CSCheckbox
+  * `readOnly` :focus styles moved to :focus-visible
+* CSDatepicker
+  * `autoFocus` prop added
+* CSFieldErrorMsg
+  * word-wrap to error message added
+* CSLookup
+  * keyboard navigation breaking the app fixed
+  * lookup icons position fixed when `error={true}`
+  * `position='top'` and `align='right'` dropdowns cannot be closed fixed
+* CSSection
+  * background color issue fixed
+  * updated accessibility info
+
 ## 1.1.11<a name="1.1.11"></a>
 * CSCheckbox
   * `hidden` prop added
