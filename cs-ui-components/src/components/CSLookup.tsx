@@ -431,12 +431,16 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			case event.key === KeyCode.Escape && dropdownOpen:
 				this.closeLookupDropdown();
 				break;
-			case event.key === KeyCode.Backspace && searchTerm.length === 1 && !!selectedOption:
+			case event.key === KeyCode.Backspace &&
+				searchTerm.length === 1 &&
+				!!selectedOption:
 				this.setState({
 					selectedOption: null
 				}, this.handleSelectChange);
 				break;
-			case event.key === KeyCode.ArrowDown && !!dropdownValues.length:
+			case event.key === KeyCode.ArrowDown &&
+				!!dropdownValues.length &&
+				dropdownOpen:
 				event.preventDefault();
 				switch (true) {
 					case activeRowIndex === null:
@@ -451,7 +455,9 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 						break;
 				}
 				break;
-			case event.key === KeyCode.ArrowUp && !!dropdownValues.length:
+			case event.key === KeyCode.ArrowUp &&
+				!!dropdownValues.length &&
+				dropdownOpen:
 				event.preventDefault();
 				switch (true) {
 					case activeRowIndex === firstListElement:
@@ -577,8 +583,10 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	lookupRefCallback = (element: HTMLDivElement) => {
 		if (element) {
 			const resizer = new ResizeObserver(() => {
-				const lookupDropdownRect = element.getBoundingClientRect();
-				this.autoDropdownPosition(lookupDropdownRect);
+				if (this.state.dropdownOpen) {
+					const lookupDropdownRect = element.getBoundingClientRect();
+					this.autoDropdownPosition(lookupDropdownRect);
+				}
 			});
 			resizer.observe(element);
 
@@ -855,11 +863,12 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 							color="var(--cs-input-icon-fill)"
 						/>
 					}
-					{
-						(error && errorMessage) &&
-						<CSFieldErrorMsg message={errorMessage} />
-					}
+
 				</div >
+				{
+					(error && errorMessage) &&
+					<CSFieldErrorMsg message={errorMessage} />
+				}
 				{
 					dropdownOpen &&
 					<Portal node={document && document.getElementById(this.lookupDropdownId)}>

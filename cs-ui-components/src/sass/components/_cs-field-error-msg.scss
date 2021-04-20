@@ -2,11 +2,12 @@
 	font-size: 0.6875rem;
 	display: block;
 	margin-block-start: 0.25rem;
-	@include sc(--cs-input-error-c);
 	height: auto;
 	max-height: 0;
 	overflow: hidden;
 	animation: animateHeight 1s forwards;
+	word-break: break-all;
+	@include sc(--cs-input-error-c);
 }
 
 @keyframes animateHeight {
