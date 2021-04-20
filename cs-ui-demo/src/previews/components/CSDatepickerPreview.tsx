@@ -467,7 +467,7 @@ class CSDatepickerPreview extends React.Component {
 				name: 'autoFocus',
 				types: ['boolean'],
 				default: 'false',
-				description: 'Focuses the datepicker by default'
+				description: 'Focuses the datepicker by default.'
 			}, {
 				name: 'borderRadius',
 				types: ['string'],
