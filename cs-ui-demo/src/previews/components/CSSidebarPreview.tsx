@@ -354,11 +354,12 @@ class CSSidebarPreview extends React.Component {
 							}
 						]
 					}, {
-						propName: 'iconName',
+						propName: 'iconName | iconOrigin',
 						variations: [
 							{
-								primaryVariants: 'iconName="standard_objects"',
+								primaryVariants: ['iconName="standard_objects"', 'iconOrigin="slds"'],
 								secondaryVariants: 'defaultClosed={true}',
+								quickLink: 'slds',
 								component: <CSSidebar defaultClosed>
 									<CSSidebarTab title="Tab Title" iconName="standard_objects">
 										<span>This sidebar tab has a specific icon, which is from the default slds origin.</span>
@@ -369,14 +370,9 @@ class CSSidebarPreview extends React.Component {
 										<span>This sidebar tab has a specific icon, which is from the default slds origin.</span>
 									</CSSidebarTab>
 								</CSSidebar>`
-							}
-						]
-					}, {
-						propName: 'iconOrigin',
-						variations: [
-							{
-								primaryVariants: 'iconOrigin="cs"',
-								secondaryVariants: ['iconName="action"', 'defaultClosed={true}'],
+							}, {
+								primaryVariants: ['iconName="action"', 'iconOrigin="cs"'],
+								secondaryVariants: 'defaultClosed={true}',
 								quickLink: 'cs',
 								component: <CSSidebar defaultClosed>
 									<CSSidebarTab
@@ -394,28 +390,6 @@ class CSSidebarPreview extends React.Component {
 										iconOrigin="cs"
 									>
 										<span>This sidebar tab has a specific cloudsense origin icon.</span>
-									</CSSidebarTab>
-								</CSSidebar>`
-							}, {
-								primaryVariants: 'iconOrigin="slds"',
-								secondaryVariants: ['iconName="desktop"', 'defaultClosed={true}'],
-								quickLink: 'slds',
-								component: <CSSidebar defaultClosed>
-									<CSSidebarTab
-										title="Tab Title"
-										iconName="desktop"
-										iconOrigin="slds"
-									>
-										<span>This sidebar tab has a specific slds origin icon.</span>
-									</CSSidebarTab>
-								</CSSidebar>,
-								code: `<CSSidebar defaultClosed>
-									<CSSidebarTab
-										title="Tab Title"
-										iconName="desktop"
-										iconOrigin="slds"
-									>
-										<span>This sidebar tab has a specific slds origin icon.</span>
 									</CSSidebarTab>
 								</CSSidebar>`
 							}
