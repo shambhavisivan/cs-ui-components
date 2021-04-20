@@ -2,6 +2,9 @@
 
 Generic configurable React form component.
 
+### 1.0.0-alpha.115:
+* Added onBlur option to csForm component that is called whenever the form loses focus.
+
 ### 1.0.0-alpha.114:
 * Enabled false now sets all field types to readonly.
 
