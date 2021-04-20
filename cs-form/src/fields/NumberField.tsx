@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormFieldProps } from './FormField';
 import { FieldType } from '../types/FormDescriptor';
-const { CSInputNumber } = require('@cloudsense/cs-ui-components');
+import { CSInputNumber } from '@cloudsense/cs-ui-components';
 
 export interface NumberFieldLocale {
 	userLocaleLang: string;
@@ -65,9 +65,9 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 							this.props.descriptor.fieldType as FieldType,
 							this.props.status
 						)}
-						id="display-field"
 						type="text"
 						name={this.props.descriptor.name}
+						label={this.props.descriptor.label || this.props.descriptor.name}
 						value={value}
 						maxLength={20} // formatter does not support values with length > 20
 						min={this.props.descriptor.minVal}
@@ -89,9 +89,9 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 							this.props.descriptor.fieldType as FieldType,
 							this.props.status
 						)}
-						id="edit-field"
 						type="text"
 						name={this.props.descriptor.name}
+						label={this.props.descriptor.label || this.props.descriptor.name}
 						value={value}
 						onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
 							this.handleBasicValidations(e)

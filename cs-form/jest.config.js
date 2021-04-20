@@ -15,7 +15,8 @@ module.exports = {
 	collectCoverageFrom: ["src/**/*.{js,jsx,ts,tsx}", "!src/**/*.d.ts", "!src/stories/*"],
 	coverageDirectory: "coverage",
 	coverageReporters: ["text", "html", "clover"],
-	transformIgnorePatterns: ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$", "^.+\\.module\\.(css|sass|scss)$"]
+	transformIgnorePatterns: ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$", "^.+\\.module\\.(css|sass|scss)$"],
+	setupFilesAfterEnv: ["<rootDir>/src/__test__/jestSetup.tsx"]
 };
 
 /*

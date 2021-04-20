@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormFieldProps } from './FormField';
-const { CSCheckbox } = require('@cloudsense/cs-ui-components');
+import { CSCheckbox } from '@cloudsense/cs-ui-components';
 import { FieldType } from '../types/FormDescriptor';
 
 export const BooleanField: React.FC<FormFieldProps> = props => {

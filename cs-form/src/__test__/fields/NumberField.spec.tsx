@@ -36,6 +36,12 @@ const jestHandleFieldBlurMock = jest.fn();
 
 let container: HTMLDivElement;
 
+const getNumberField = () => {
+	return container.querySelector<HTMLInputElement>(
+		`[name=${descriptor.name}]`
+	)!;
+};
+
 beforeEach(() => {
 	container = document.createElement('div');
 	document.body.appendChild(container);
@@ -61,9 +67,7 @@ it('render number field with default locale (en-US) and display formatted value'
 		/>,
 		container
 	);
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>(
-		'#display-field'
-	)!;
+	const textInput: HTMLInputElement = getNumberField();
 
 	expect(textInput.value).toEqual('123,432,423,434.78');
 });
@@ -82,13 +86,15 @@ it('switch to edit mode and verify the unformatted value in edit mode', () => {
 		/>,
 		container
 	);
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>(
-		'#display-field'
-	)!;
+
+	const textInput: HTMLInputElement = getNumberField();
+
 	expect(textInput.value).toEqual('123,432,423,434.78');
 	ReactTestUtils.Simulate.focus(textInput);
+	ReactTestUtils.Simulate.click(textInput);
 
-	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
+	const editTextInput = getNumberField();
+
 	expect(editTextInput.value).toEqual('123432423434.78');
 });
 
@@ -118,12 +124,10 @@ it('should call handleFieldBlur method onblur with non-formatted value', done =>
 			container
 		);
 	});
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>(
-		'#display-field'
-	)!;
+	const textInput: HTMLInputElement = getNumberField();
 	ReactTestUtils.Simulate.focus(textInput);
 
-	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
+	const editTextInput = getNumberField();
 
 	ReactTestUtils.Simulate.blur(editTextInput, ({
 		target: { value: '123456.789' }
@@ -152,12 +156,11 @@ it('should respect precision and scale if provided.', done => {
 			container
 		);
 	});
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>(
-		'#display-field'
-	)!;
+	const textInput: HTMLInputElement = getNumberField();
 	ReactTestUtils.Simulate.focus(textInput);
 
-	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
+	const editTextInput = getNumberField();
+
 	ReactTestUtils.Simulate.change(editTextInput, ({
 		target: { value: '12' }
 	} as any) as SyntheticEventData);
@@ -191,15 +194,13 @@ it('does not allow data outside precision and scale to be entered in field', don
 			container
 		);
 	});
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>(
-		'#display-field'
-	)!;
+	const textInput: HTMLInputElement = getNumberField();
 	ReactTestUtils.Simulate.focus(textInput);
 
 	ReactTestUtils.Simulate.change(textInput, ({
 		target: { value: '1234123456789' }
 	} as any) as SyntheticEventData);
-	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
+	const editTextInput = getNumberField();
 
 	expect(jestHandleChangeMock).not.toHaveBeenCalled();
 	expect(jestHandleFieldBlurMock).not.toHaveBeenCalled();
@@ -223,12 +224,11 @@ it('should allow negative numbers', done => {
 			container
 		);
 	});
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>(
-		'#display-field'
-	)!;
+	const textInput: HTMLInputElement = getNumberField();
 	ReactTestUtils.Simulate.focus(textInput);
 
-	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
+	const editTextInput = getNumberField();
+
 	ReactTestUtils.Simulate.blur(editTextInput, ({
 		target: { value: '-12' }
 	} as any) as SyntheticEventData);
@@ -252,12 +252,11 @@ it('should ignore + and display positive number', done => {
 			container
 		);
 	});
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>(
-		'#display-field'
-	)!;
+	const textInput: HTMLInputElement = getNumberField();
 	ReactTestUtils.Simulate.focus(textInput);
 
-	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
+	const editTextInput = getNumberField();
+
 	ReactTestUtils.Simulate.blur(editTextInput, ({
 		target: { value: '+12' }
 	} as any) as SyntheticEventData);
@@ -290,12 +289,11 @@ it('should render values for {fi-Fi} locale', done => {
 			container
 		);
 	});
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>(
-		'#display-field'
-	)!;
+	const textInput: HTMLInputElement = getNumberField();
 	ReactTestUtils.Simulate.focus(textInput);
 
-	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
+	const editTextInput = getNumberField();
+
 	ReactTestUtils.Simulate.change(editTextInput, ({
 		target: { value: '123456,89' }
 	} as any) as SyntheticEventData);
@@ -332,15 +330,13 @@ it('does not allow invalid numbers when copy pasted', done => {
 			container
 		);
 	});
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>(
-		'#display-field'
-	)!;
+	const textInput: HTMLInputElement = getNumberField();
 	ReactTestUtils.Simulate.focus(textInput);
 
 	ReactTestUtils.Simulate.change(textInput, ({
 		target: { value: '12,34,1234.5678,9' }
 	} as any) as SyntheticEventData);
-	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
+	const editTextInput = getNumberField();
 
 	expect(jestHandleFieldBlurMock).not.toHaveBeenCalled();
 	expect(editTextInput.value).toEqual('');
@@ -366,12 +362,10 @@ it('should allow zero and format it in required format', done => {
 			container
 		);
 	});
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>(
-		'#display-field'
-	)!;
+	const textInput: HTMLInputElement = getNumberField();
 	ReactTestUtils.Simulate.focus(textInput);
 
-	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
+	const editTextInput = getNumberField();
 
 	ReactTestUtils.Simulate.blur(editTextInput, ({
 		target: { value: '0' }
@@ -399,9 +393,7 @@ it('sets readonly', done => {
 		);
 	});
 
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>(
-		'#display-field'
-	)!;
+	const textInput: HTMLInputElement = getNumberField();
 
 	expect(textInput.readOnly).toBe(true);
 	done();
@@ -426,9 +418,7 @@ it('sets readonly even when mandatory', done => {
 		);
 	});
 
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>(
-		'#display-field'
-	)!;
+	const textInput: HTMLInputElement = getNumberField();
 
 	expect(textInput.readOnly).toBe(true);
 	done();
@@ -450,15 +440,14 @@ test('Test NumberField goes into edit mode on focus when it is enabled.', () => 
 		/>,
 		container
 	);
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>(
-		'#display-field'
-	)!;
+	const textInput: HTMLInputElement = getNumberField();
 	expect(textInput).not.toBeUndefined();
 	expect(textInput).not.toBeNull();
 
 	ReactTestUtils.Simulate.focus(textInput);
 
-	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
+	const editTextInput = getNumberField();
+
 	expect(editTextInput).not.toBeUndefined();
 	expect(editTextInput).not.toBeNull();
 });
@@ -479,14 +468,13 @@ test('Test NumberField does not go into edit mode on focus when it is read only.
 		/>,
 		container
 	);
-	const textInput: HTMLInputElement = container.querySelector<HTMLInputElement>(
-		'#display-field'
-	)!;
+	const textInput: HTMLInputElement = getNumberField();
 	expect(textInput).not.toBeUndefined();
 	expect(textInput).not.toBeNull();
 
 	ReactTestUtils.Simulate.focus(textInput);
 
-	const editTextInput = container.querySelector<HTMLInputElement>('#edit-field')!;
-	expect(editTextInput).toBeNull();
+	const editTextInput = getNumberField();
+
+	expect(editTextInput.onchange).toBeNull();
 });

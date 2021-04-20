@@ -2,7 +2,7 @@ import React from 'react';
 import { FormFieldProps } from './FormField';
 import { SelectOption } from '../types/SelectOption';
 import { FieldType } from '../types/FormDescriptor';
-const { CSSelect } = require('@cloudsense/cs-ui-components');
+import { CSSelect } from '@cloudsense/cs-ui-components';
 
 interface SelectFieldProps extends FormFieldProps {
 	selectOptions: Array<SelectOption>;

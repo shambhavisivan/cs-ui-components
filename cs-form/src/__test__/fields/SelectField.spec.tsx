@@ -3,7 +3,7 @@ import { ElementWrapper, LocaleSettings, FieldDescriptor, SelectOption } from '.
 import { SelectField } from '../../fields/SelectField';
 import { mount, shallow, default as Enzyme } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-const { CSSelect } = require('@cloudsense/cs-ui-components');
+import { CSSelect } from '@cloudsense/cs-ui-components';
 
 const locale: LocaleSettings = ({} as unknown) as LocaleSettings;
 

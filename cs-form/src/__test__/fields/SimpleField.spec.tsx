@@ -5,7 +5,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import { FieldDescriptor } from '../../types/FormDescriptor';
 import { ElementWrapper } from '../..';
 import { LocaleSettings } from '../../CSForm';
-const { CSInputText } = require('@cloudsense/cs-ui-components');
+import { CSInputText } from '@cloudsense/cs-ui-components';
 
 Enzyme.configure({ adapter: new Adapter() });
 
