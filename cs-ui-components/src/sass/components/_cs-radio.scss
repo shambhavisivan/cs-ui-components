@@ -114,6 +114,14 @@
 				&:hover + .cs-radio-faux,
 				&:focus + .cs-radio-faux {
 					box-shadow: none;
+					@include css4 {
+						border: 1px solid cvar(--cs-radio-br);
+					}
+				}
+				&:focus-visible + .cs-radio-faux {
+					@include css4 {
+						box-shadow: 0 0 3px cvar(--cs-radio-focus-box);
+					}
 				}
 				&:active + .cs-radio-faux {
 					@include css4 {
