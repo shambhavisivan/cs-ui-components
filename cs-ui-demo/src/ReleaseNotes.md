@@ -1,5 +1,38 @@
 # Release Notes
 
+## 1.1.11<a name="1.1.11"></a>
+* CSCheckbox
+  * `hidden` prop added
+* CSDatepicker
+  * `inline` prop added
+* CSDropdown
+  * fixed `CSDivider` being wrapped inside list item
+  * focus handling optimization for `mode="list"` and `mode="custom"`
+  * focus change with tab moves to next focusable element rather than the dropdown button
+* CSFieldErrorMessage
+  * changed position property from `absolute` to `relative`
+  * slide animation added
+* CSLookup
+  * `readOnly` prop added
+  * ensured scrolling on smaller number of records when `infiniteScroll` is set to `true`
+  * added max width to lookup dropdown to ensure horizontal scroll when there is a lot of columns
+* CSModal
+  * when closing modal focus will return to button which opened modal
+* CSProgresIndicator
+  * fixed selected item hover color
+  * :focus styles moved to :focus-visible
+* CSSidebar
+  * <i>new</i> new component added
+* CSTextarea
+  * textarea now takes auto height instead of default `rows` height when `readOnly` is set to `true`
+* CSTransfer
+  * :focus styles moved to :focus-visible
+* Demo App changes
+  * quick links search does not show the entire prop anymore if it matches only one variant
+  * accessibility table updated across components
+  * `iconName` and `iconOrigin` examples merged to one
+  * various minor fixes
+
 ## 1.1.10<a name="1.1.10"></a>
 * CSLookup
   * implemented ResizeObserver API
