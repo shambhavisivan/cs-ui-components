@@ -195,7 +195,15 @@ export interface AllFormProps {
  */
 export type FormProps = Omit<AllFormProps, 'update'> | Omit<AllFormProps, 'onBlur'>;
 
-export class CSForm extends React.Component<FormProps, {}> {
+interface FormState {
+	/**
+	 * The form object that is being edited. Has to be flat.
+	 */
+	data: Record<string, any> | undefined;
+}
+
+export class CSForm extends React.Component<FormProps, FormState> {
+
 	private validator: Validator;
 	constructor(props: FormProps) {
 		super(props);
@@ -208,6 +216,8 @@ export class CSForm extends React.Component<FormProps, {}> {
 			props.formSettings,
 			props.labels
 		);
+
+		this.state = {data: undefined};
 	}
 
 	/**
@@ -216,9 +226,11 @@ export class CSForm extends React.Component<FormProps, {}> {
 	 * @param newValue the new value for the field
 	 */
 	handleFieldChange(name: string, newValue: any) {
+		const newData = cloneAndReplaceField(this.props.data, name, newValue);
 		if ('update' in this.props) {
-			const newData = cloneAndReplaceField(this.props.data, name, newValue);
 			this.props.update(newData, this.validate(newData));
+		} else {
+			this.setState({data: newData});
 		}
 	}
 
@@ -231,6 +243,7 @@ export class CSForm extends React.Component<FormProps, {}> {
 		const newData = cloneAndReplaceField(this.props.data, name, newValue);
 		if ('onBlur' in this.props) {
 			this.props.onBlur(newData, this.validate(newData));
+			this.setState({data: undefined});
 		} else {
 			this.props.update(newData, this.validate(newData));
 		}
@@ -320,7 +333,7 @@ export class CSForm extends React.Component<FormProps, {}> {
 				errors={{ ...this.getFieldErrors(), ...this.validator.validate(this.props.data) }}
 				key={panel.title}
 				descriptor={panel}
-				data={this.props.data}
+				data={this.state.data || this.props.data}
 				handleFieldChange={this.handleFieldChange}
 				handleFieldBlur={this.handleFieldBlur}
 				fetchPossibleValues={this.props.fetchPossibleValues}

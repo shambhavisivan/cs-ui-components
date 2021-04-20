@@ -187,3 +187,48 @@ it('merges internal and external errors for update function', () => {
 		{ formErrors: [], fieldErrors: { Id: ['MISSING', 'EXTERNAL'] } }
 	);
 });
+
+it('returns form data and external errors to update function', () => {
+	const onBlur = jest.fn();
+	const form = shallow<CSForm>(
+		<CSForm
+			descriptor={testFormDescriptor}
+			data={{ Id: '123' }}
+			onBlur={onBlur}
+			save={() => Promise.resolve({})}
+			fetchPossibleValues={() => Promise.resolve([])}
+			labels={
+				({
+					button_save: 'SAVE',
+					validation_message_required: 'MISSING'
+				} as unknown) as FormLabels
+			}
+			locale={locale}
+			formSettings={{}}
+			externalValidationErrors={{ formErrors: [], fieldErrors: { Id: ['EXTERNAL'] } }}
+			wrapper={wrapper}
+		/>
+	);
+
+	expect(form.state().data).toBeUndefined();
+
+	const field1 = form.find(FormPanel).dive().find(FormField).dive().find(SimpleField);
+	field1.prop('handleFieldChange')('4');
+
+	expect(form.state().data).toEqual({ Id: '4' });
+
+	const field2 = form.find(FormPanel).dive().find(FormField).dive().find(SimpleField);
+	field2.prop('handleFieldChange')('42');
+
+	expect(form.state().data).toEqual({ Id: '42' });
+
+	const field3 = form.find(FormPanel).dive().find(FormField).dive().find(SimpleField);
+	field3.prop('handleFieldBlur')('42');
+
+	expect(onBlur).toHaveBeenCalledWith(
+		{ Id: '42' },
+		{ formErrors: [], fieldErrors: { Id: ['EXTERNAL'] } }
+	);
+
+	expect(onBlur).toHaveBeenCalledTimes(1);
+});
