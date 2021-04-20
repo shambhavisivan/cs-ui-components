@@ -67,7 +67,8 @@ import CSRadio, { CSRadioVariant } from './components/radio/CSRadio';
 import CSRadioOption from './components/radio/CSRadioOption';
 import CSSection from './components/CSSection';
 import CSSelect from './components/CSSelect';
-import CSSidebar from './components/CSSidebar';
+import CSSidebar, { CSSidebarOpensTo } from './components/sidebar/CSSidebar';
+import CSSidebarTab from './components/sidebar/CSSidebarTab';
 import CSSkipLink from './components/CSSkipLink';
 import CSSlider, { CSSliderSize } from './components/CSSlider';
 import CSSpinner, { CSSpinnerColor, CSSpinnerOverlay, CSSpinnerSize } from './components/CSSpinner';
@@ -189,6 +190,8 @@ export {
 	CSSection,
 	CSSelect,
 	CSSidebar,
+	CSSidebarOpensTo,
+	CSSidebarTab,
 	CSSkipLink,
 	CSSlider,
 	CSSliderSize,

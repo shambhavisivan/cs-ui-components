@@ -453,6 +453,14 @@ $variables: (
 
 	--cs-skip-link-bg: $cs-white,
 
+	--cs-sidebar-shadow: rgba($cs-black, 0.2),
+	--cs-sidebar-bg: $cs-white,
+	--cs-sidebar-title-c: $cs-gray-dark-1,
+	--cs-sidebar-subtitle-c: $cs-gray-dark-4,
+	--cs-sidebar-toggle-btn-c: $cs-gray-dark-5,
+	--cs-sidebar-tabs-wrapper-bg: $cs-gray-light-11,
+	--cs-sidebar-tab-selected-bg: $cs-gray-light-4,
+
 	--cs-list-item-c: $cs-gray-dark-2,
 	--cs-list-item-hover-bg: $cs-gray-light-7,
 	--cs-list-item-focus-bg: $cs-gray-light-5,

@@ -84,6 +84,22 @@
 	&.divider-demo .custom-class {
 		border-color: var(--custom-br);
 	}
+	&.sidebar-demo,
+	&.sidebar-tab-demo {
+		height: 600px;
+		flex: none; // firefox fix: flex + height -> child with height 100% does not inherit height
+		.sidebar-far-right {
+			margin-left: auto;
+		}
+
+		.custom-sidebar-class {
+			box-shadow: 0 0 3px var(--custom-purple-bg);
+		}
+
+		.custom-sidebar-tab-class {
+			background-color: var(--custom-alt-bg);
+		}
+	}
 }
 
 .button-style-preview {

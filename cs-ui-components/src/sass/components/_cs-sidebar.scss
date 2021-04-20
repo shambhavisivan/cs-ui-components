@@ -1,29 +1,150 @@
 .cs-sidebar {
-	height: var(--cs-sidebar-height, 100vh);
-	overflow: auto;
+	display: flex;
 	position: relative;
-	width: var(--cs-sidebar-width, 18rem);
-	@include sbg(--cs-sidebar-bg);
+	width: var(--cs-sidebar-tab-custom-width, 17rem);
+	transition: 250ms linear;
+	height: var(--cs-sidebar-height, 100%);
 	@include css4 {
 		box-shadow: 0 2px 4px cvar(--cs-sidebar-shadow);
 	}
-
-	&.closed {
-		width: 3rem;
-	}
-
-	// Top
-	.cs-sidebar-item-top {
-		display: flex;
-		justify-content: flex-end;
-		padding: 0.75rem;
-	}
-
-	// Icon
-	> .cs-sidebar-close {
+	.cs-sidebar-toggle {
 		position: absolute;
-		right: 0.75rem;
-		top: 0.75rem;
-		z-index: var(--z-index-sidebar-close);
+		top: 0.25rem;
+		right: 0.25rem;
+		z-index: var(--z-index-sidebar-toggle);
+		transition: 250ms linear;
+	}
+	.cs-sidebar-tab-content-wrapper {
+		position: relative;
+		width: 100%;
+		overflow-x: hidden;
+	}
+	.cs-sidebar-tab {
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+		height: 100%; // Tab always full height of sidebar height
+		@include sbg(--cs-sidebar-bg);
+		.cs-sidebar-tab-header {
+			display: flex;
+			align-items: center;
+			padding: 0 0 0 0.75rem;
+			.cs-sidebar-tab-headings-wrapper {
+				display: flex;
+				flex-direction: column;
+				width: 100%;
+				margin: 0.25rem 0;
+				.cs-sidebar-tab-title-wrapper {
+					padding-right: 2rem;
+					.cs-sidebar-tab-title {
+						display: block;
+						text-transform: uppercase;
+						font-size: 1.125rem;
+						margin: 0;
+						@include overflow-ellipsis;
+						@include sc(--cs-sidebar-title-c);
+					}
+				}
+				.cs-sidebar-tab-subtitle {
+					display: block;
+					font-size: 0.6875rem;
+					@include sc(--cs-sidebar-subtitle-c);
+				}
+			}
+		}
+		.cs-sidebar-tab-body {
+			padding: var(--cs-sidebar-tab-custom-padding,var(--cs-sidebar-tabs-custom-padding, 0 0.75rem));
+			flex: 1 1 0;
+			overflow-y: auto;
+			overflow-x: hidden;
+		}
+	}
+	.cs-sidebar-tab-closed-title {
+		visibility: hidden;
+		position: absolute;
+		top: 4rem;
+		left: 0.75rem;
+		writing-mode: vertical-lr;
+		white-space: nowrap;
+		transform: rotate(-180deg);
+		&.cs-visible {
+			visibility: visible;
+		}
+	}
+
+	&.cs-whole-sidebar-clickable {
+		cursor: pointer;
+	}
+	&.cs-sidebar-closed {
+		width: 3rem;
+		.cs-sidebar-toggle {
+			top: 0.75rem;
+			left: calc(100% - 2.25rem); // animation requirement to be transition from left to left when sidebar is set to open to left
+			transition: 300ms linear;
+		}
+		.cs-sidebar-tab-body {
+			overflow-y: hidden; // To prevent appearing scroll when content is squeezed due to animation
+		}
+	}
+
+	/* MULTITAB STYLES ONLY */
+	&.cs-sidebar-multiple-tabs {
+		width: calc(var(--cs-sidebar-tab-custom-width, 17rem) + 3rem);
+		&:not(.cs-sidebar-wrapper-left) .cs-sidebar-toggle {
+			right: 3.25rem;
+		}
+		.cs-button-tabs-wrapper {
+			display: flex;
+			flex-direction: column;
+			min-width: 3rem;
+			@include sbg(--cs-sidebar-tabs-wrapper-bg);
+			button.cs-sidebar-tab-selected {
+				@include sbg(--cs-sidebar-tab-selected-bg);
+			}
+		}
+		&.cs-sidebar-closed {
+			width: 3rem; // for specificity
+			.cs-sidebar-toggle {
+				left: calc(50% - 1rem);
+				right: auto;
+				transform: translateX(-50%);
+			}
+		}
+		&:not(.cs-sidebar-closed) {
+			min-width: 5rem;
+		}
+		&:not(.cs-sidebar-wrapper-left) {
+			.cs-button-tabs-wrapper {
+				order: 1;
+			}
+		}
+	}
+
+	/* SINGLE TAB STYLES ONLY */
+	&:not(.cs-sidebar-multiple-tabs) {
+		.cs-sidebar-single-tab-title-wrapper {
+			width: 3rem;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			margin-right: auto;
+			overflow: hidden;
+			z-index: var(--z-index-sidebar-hidden-wrapper);
+		}
+		&.cs-sidebar-closed {
+			.cs-sidebar-single-tab-title-wrapper {
+				animation: sidebarCollapseBackgroundEnhance 0.35s; // This is much more noticable when sidebar is on the right, therefore collapse starts from left which is over the content
+				z-index: var(--z-index-sidebar-visible-wrapper);
+				@include sbg(--cs-sidebar-bg);
+			}
+		}
+		&.cs-sidebar-wrapper-left {
+			.cs-sidebar-single-tab-title-wrapper {
+				margin: 0 0 0 auto;
+			}
+		}
 	}
 }

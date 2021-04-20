@@ -21,10 +21,12 @@ element. Variables should be self-explanatory and sorted by index in ascending o
 
 * These are the z-index variables used in the cs-ui-components package:
   * `--z-index-path-pseudo: -1;`
+  * `--z-index-sidebar-hidden-wrapper: -1;`
   * `--z-index-divider-label: 1;`
   * `--z-index-custom-select-dropdown: 1;`
   * `--z-index-progress-indicator: 1;`
   * `--z-index-transfer-list-item-focus: 1;`
+  * `--z-index-sidebar-visible-wrapper: 1;`
   * `--z-index-button-focus: 2;`
   * `--z-index-button-icon: 2;`
   * `--z-index-button-label: 2;`
@@ -32,7 +34,7 @@ element. Variables should be self-explanatory and sorted by index in ascending o
   * `--z-index-main-header: 3;`
   * `--z-index-table-header: 3;`
   * `--z-index-dropdown-items-wrapper: 5;`
-  * `--z-index-sidebar-close: 10;`
+  * `--z-index-sidebar-toggle: 10;`
   * `--z-index-path: 10;`
   * `--z-index-reset-zen-more-tabs-ul: 99;`
   * `--z-index-lookup-dropdown: 100;`

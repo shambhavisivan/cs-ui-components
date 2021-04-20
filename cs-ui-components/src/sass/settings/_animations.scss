@@ -45,3 +45,12 @@
 		opacity: 1;
 	}
 }
+
+@keyframes sidebarCollapseBackgroundEnhance {
+	0% {
+		@include sbg(--cs-transparent);
+	}
+	100% {
+		@include sbg(--cs-sidebar-bg);
+	}
+}
