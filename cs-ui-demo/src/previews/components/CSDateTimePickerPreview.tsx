@@ -161,6 +161,15 @@ class CSDateTimePickerPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'inline',
+						variations: [
+							{
+								primaryVariants: 'inline={true}',
+								component: <CSDateTimePicker label="Enter date" inline />,
+								code: '<CSDateTimePicker label="Enter date" inline />'
+							}
+						]
+					}, {
 						propName: 'isClearable',
 						variations: [
 							{
@@ -537,6 +546,11 @@ class CSDateTimePickerPreview extends React.Component {
 				name: 'id',
 				types: ['string'],
 				description: 'Set the ID for the datetimepicker.'
+			}, {
+				name: 'inline',
+				types: ['boolean'],
+				default: 'false',
+				description: 'Display the popup inline with content'
 			}, {
 				name: 'isClearable',
 				types: ['boolean'],
