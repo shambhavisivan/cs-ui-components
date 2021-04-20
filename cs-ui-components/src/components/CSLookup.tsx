@@ -830,7 +830,9 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 						ref={this.lookupInputRef}
 						style={style}
 						aria-required={required}
+						aria-expanded={dropdownOpen}
 						aria-invalid={error}
+						aria-multiselectable={multiselect}
 						{...rest}
 					/>
 					{((searchTerm ||
