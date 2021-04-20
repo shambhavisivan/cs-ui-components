@@ -60,7 +60,7 @@ import CSPagination from './components/CSPagination';
 import CSPaginationWrapper from './components/CSPaginationWrapper';
 import CSPath from './components/path/CSPath';
 import CSPathItem, { CSPathItemStatus } from './components/path/CSPathItem';
-import CSProgressBar, { CSProgressBarThickness } from './components/CSProgressBar';
+import CSProgressBar, { CSProgressBarStatus, CSProgressBarThickness } from './components/CSProgressBar';
 import CSProgressIndicator from './components/progress-indicator/CSProgressIndicator';
 import CSProgressIndicatorItem from './components/progress-indicator/CSProgressIndicatorItem';
 import CSRadio, { CSRadioVariant } from './components/radio/CSRadio';
@@ -181,6 +181,7 @@ export {
 	CSPathItem,
 	CSPathItemStatus,
 	CSProgressBar,
+	CSProgressBarStatus,
 	CSProgressBarThickness,
 	CSProgressIndicator,
 	CSProgressIndicatorItem,

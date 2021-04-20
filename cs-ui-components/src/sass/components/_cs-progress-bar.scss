@@ -5,28 +5,40 @@
 	.cs-progress-bar-text {
 		width: 100%;
 		display: flex;
-		justify-content: space-between;
+		justify-content: flex-end;
+		padding-bottom: 0.5rem;
+
+		.cs-label-wrapper {
+			padding-bottom: 0;
+			margin-right: auto;
+		}
 
 		.cs-label,
-		.cs-progress-indicator {
-			padding-bottom: 0.5rem;
+		.cs-progress-info-text {
 			font-size: 0.8125rem;
-			padding-bottom: 0.5rem;
-			@include sc(--cs-progress-indicator-c);
+			@include sc(--cs-progress-bar-info-text-c);
 		}
 
 		.cs-label {
 			font-weight: $font-weight-normal;
 		}
 
-		.cs-progress-indicator {
+		.cs-progress-info-text {
 			font-weight: $font-weight-bold;
-			margin-left: auto;
+
+			+ .cs-progress-status {
+				margin-left: 0.5rem;
+			}
+		}
+
+		.cs-progress-status {
+			display: flex;
 		}
 	}
 
 	.cs-progress-bar {
 		width: 100%;
+		border-radius: var(--cs-progress-bar-border-radius, 0);
 		@include sbg(--cs-progress-bar-bg);
 
 		&.cs-progress-bar-xsmall {
@@ -48,7 +60,21 @@
 		.cs-progress-bar-value {
 			height: 100%;
 			transition-duration: 0.5s;
-			@include sbg(--cs-progress-bar-value-bg);
+			width: var(--cs-progress-bar-width);
+			border-radius: var(--cs-progress-bar-border-radius, 0);
+			@include sbg(--cs-progress-bar-neutral-bg);
+
+			&.cs-progress-bar-success {
+				@include sbg(--cs-progress-bar-success-bg);
+			}
+
+			&.cs-progress-bar-error {
+				@include sbg(--cs-progress-bar-error-bg);
+			}
+
+			&.cs-progress-bar-custom {
+				@include sbg(--cs-progress-bar-custom-bg);
+			}
 		}
 	}
 }

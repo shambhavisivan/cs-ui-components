@@ -389,9 +389,11 @@ $variables: (
 	--cs-section-hover-bg: $cs-blue-light-6,
 	--cs-section-button-shadow: $cs-blue-sf,
 
-	--cs-progress-indicator-c: $cs-gray-dark-1,
+	--cs-progress-bar-info-text-c: $cs-gray-dark-1,
 	--cs-progress-bar-bg: $cs-gray-light-2,
-	--cs-progress-bar-value-bg: $cs-blue-medium-6,
+	--cs-progress-bar-neutral-bg: $cs-blue-medium-6,
+	--cs-progress-bar-success-bg: $cs-green-medium-2,
+	--cs-progress-bar-error-bg: $cs-red-medium-3,
 
 	--cs-input-file-btn-bg: $cs-white,
 	--cs-input-file-btn-c: $cs-blue-sf,

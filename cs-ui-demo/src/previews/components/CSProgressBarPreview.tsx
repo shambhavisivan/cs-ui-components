@@ -73,6 +73,24 @@ class CSProgressBarPreview extends React.Component<{}, CSProgressBarPreviewState
 							}
 						]
 					}, {
+						propName: 'borderRadius',
+						variations: [
+							{
+								primaryVariants: 'borderRadius="0.25rem"',
+								secondaryVariants: 'progress="70%"',
+								component: <CSProgressBar
+									label="Progress"
+									progress="70%"
+									borderRadius="0.25rem"
+								/>,
+								code: `<CSProgressBar
+									label="Progress"
+									progress="70%"
+									borderRadius="0.25rem"
+								/>`
+							}
+						]
+					}, {
 						propName: 'color',
 						variations: [
 							{
@@ -85,10 +103,10 @@ class CSProgressBarPreview extends React.Component<{}, CSProgressBarPreviewState
 									color="rgb(74, 38, 171)"
 								/>,
 								code: `<CSProgressBar
-										label="Progress"
-										progress="70%"
-										color="rgb(74, 38, 171)"
-									/>`
+									label="Progress"
+									progress="70%"
+									color="rgb(74, 38, 171)"
+								/>`
 							}, {
 								primaryVariants: 'color="#3cdbc0"',
 								secondaryVariants: 'progress="50%"',
@@ -102,6 +120,24 @@ class CSProgressBarPreview extends React.Component<{}, CSProgressBarPreviewState
 									label="Progress"
 									progress="50%"
 									color="#3cdbc0"
+								/>`
+							}
+						]
+					}, {
+						propName: 'infoText',
+						variations: [
+							{
+								primaryVariants: 'infoText="text"',
+								secondaryVariants: 'progress="70%"',
+								component: <CSProgressBar
+									label="Progress"
+									progress="70%"
+									infoText="7/10 Steps"
+								/>,
+								code: `<CSProgressBar
+									label="Progress"
+									progress="70%"
+									infoText="7/10 Steps"
 								/>`
 							}
 						]
@@ -140,20 +176,55 @@ class CSProgressBarPreview extends React.Component<{}, CSProgressBarPreviewState
 							}
 						]
 					}, {
-						propName: 'progressIndicator',
+						propName: 'status',
 						variations: [
 							{
-								primaryVariants: 'progressIndicator={true}',
+								primaryVariants: 'status="neutral"',
 								secondaryVariants: 'progress="70%"',
+								quickLink: 'neutral',
+								component: <CSProgressBar label="Progress" progress="70%" />,
+								code: `<CSProgressBar label="Progress" progress="70%" />`
+							}, {
+								primaryVariants: 'status="loading"',
+								secondaryVariants: 'progress="70%"',
+								quickLink: 'loading',
 								component: <CSProgressBar
 									label="Progress"
 									progress="70%"
-									progressIndicator
+									status="loading"
 								/>,
 								code: `<CSProgressBar
 									label="Progress"
 									progress="70%"
-									progressIndicator
+									status="loading"
+								/>`
+							}, {
+								primaryVariants: 'status="success"',
+								secondaryVariants: 'progress="70%"',
+								quickLink: 'success',
+								component: <CSProgressBar
+									label="Progress"
+									progress="70%"
+									status="success"
+								/>,
+								code: `<CSProgressBar
+									label="Progress"
+									progress="70%"
+									status="success"
+								/>`
+							}, {
+								primaryVariants: 'status="error"',
+								secondaryVariants: 'progress="70%"',
+								quickLink: 'error',
+								component: <CSProgressBar
+									label="Progress"
+									progress="70%"
+									status="error"
+								/>,
+								code: `<CSProgressBar
+									label="Progress"
+									progress="70%"
+									status="error"
 								/>`
 							}
 						]
@@ -279,6 +350,11 @@ class CSProgressBarPreview extends React.Component<{}, CSProgressBarPreviewState
 				types: ['string'],
 				description: 'Apply custom CSS classes to the progress bar.'
 			}, {
+				name: 'borderRadius',
+				types: ['string'],
+				default: '\'0\'',
+				description: 'Set custom border radius on the progress bar.'
+			}, {
 				name: 'color',
 				types: ['string'],
 				description: 'Set a custom colour for the progress bar path. (eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
@@ -306,10 +382,22 @@ class CSProgressBarPreview extends React.Component<{}, CSProgressBarPreviewState
 				types: ['string'],
 				description: 'Set the percentage value of the progress. (eg. 0%, 50%, 100%, etc.)'
 			}, {
-				name: 'progressIndicator',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Show a textual progress indicator.'
+				name: 'infoText',
+				types: ['string'],
+				description: 'Set some info text indicating progress.'
+			}, {
+				name: 'status',
+				customTypes: [{
+					name: 'CSProgressBarStatus',
+					types: [
+						'\'neutral\'',
+						'\'loading\'',
+						'\'success\'',
+						'\'error\''
+					]
+				}],
+				default: '\'neutral\'',
+				description: 'Set a preset status style and icon.'
 			}, {
 				name: 'thickness',
 				customTypes: [{
