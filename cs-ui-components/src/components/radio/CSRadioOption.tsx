@@ -25,6 +25,8 @@ class CSRadioOption extends React.Component<CSRadioOptionProps> {
 
 	toggleRadio(e: React.ChangeEvent<HTMLInputElement>) {
 		if (this.props.readOnly) {
+			e.target.checked = e.target.defaultChecked;
+			e.preventDefault();
 			return;
 		}
 
@@ -70,6 +72,7 @@ class CSRadioOption extends React.Component<CSRadioOptionProps> {
 					name={name}
 					disabled={disabled || parentDisabled}
 					id={id}
+					aria-readonly={readOnly}
 					aria-invalid={ariaInvalid}
 					aria-required={ariaRequired}
 					defaultChecked={this.props.checked}
