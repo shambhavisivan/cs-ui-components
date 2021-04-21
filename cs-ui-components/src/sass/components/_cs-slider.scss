@@ -170,6 +170,42 @@
 					cursor: default;
 				}
 			}
+
+			&[aria-readonly] {
+				&::-webkit-slider-thumb {
+					cursor: default;
+
+					&:hover {
+						@include sbg(--cs-slider-range-thumb-bg);
+					}
+				}
+
+				&::-webkit-slider-runnable-track {
+					cursor: default;
+				}
+
+				&:active::-moz-range-thumb,
+				&:hover::-moz-range-thumb {
+					cursor: default;
+					@include sbg(--cs-slider-range-thumb-bg);
+				}
+
+				&::-moz-range-track {
+					cursor: default;
+				}
+
+				&::-ms-thumb {
+					cursor: default;
+
+					&:hover {
+						@include sbg(--cs-slider-range-thumb-bg);
+					}
+				}
+
+				&::-ms-track {
+					cursor: default;
+				}
+			}
 		}
 
 		.cs-slider-steps-wrapper {

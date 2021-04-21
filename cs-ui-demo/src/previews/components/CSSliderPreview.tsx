@@ -208,6 +208,25 @@ class CSSliderPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'readOnly',
+						variations: [
+							{
+								primaryVariants: 'readOnly={true}',
+								component: <CSSlider
+									label="Select value"
+									min="0"
+									max="100"
+									readOnly
+								/>,
+								code: `<CSSlider
+									label="Select value"
+									min="0"
+									max="100"
+									readOnly
+								/>`
+							}
+						]
+					}, {
 						propName: 'required',
 						variations: [
 							{
@@ -534,6 +553,11 @@ class CSSliderPreview extends React.Component {
 				types: ['(event) => void'],
 				description: 'Handler method for the change event.'
 			}, {
+				name: 'readOnly',
+				types: ['boolean'],
+				default: 'false',
+				description: 'Control whether to apply the readonly attribute.'
+			}, {
 				name: 'required',
 				types: ['boolean'],
 				default: 'false',
@@ -613,6 +637,7 @@ class CSSliderPreview extends React.Component {
 						],
 						properties: [
 							'`aria-invalid` - true when there is an error',
+							'`aria-readonly` - true when is it readonly, therefore focusable, but not operable',
 							'`aria-required` - true when selecting a value is required',
 							'`aria-valuemin`',
 							'`aria-valuemax`',

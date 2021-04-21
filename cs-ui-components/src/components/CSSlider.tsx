@@ -21,6 +21,7 @@ export interface CSSliderProps {
 	max?: string;
 	min?: string;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	readOnly?: boolean;
 	required?: boolean;
 	size?: CSSliderSize;
 	step?: string;
@@ -77,6 +78,9 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 
 	handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		event.preventDefault();
+		if (this.props.readOnly) {
+			return;
+		}
 		if (this.props.onChange) {
 			this.props.onChange(event);
 		}
@@ -129,6 +133,7 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 			max,
 			min,
 			onChange,
+			readOnly,
 			required,
 			size,
 			step,
@@ -201,6 +206,7 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 						onMouseUp={handleValue}
 						onKeyUp={handleValue}
 						title={title}
+						aria-readonly={readOnly}
 						aria-required={required}
 						aria-invalid={error}
 						aria-valuemin={Number(this.state.min)}
