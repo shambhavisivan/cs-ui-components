@@ -10,7 +10,6 @@ table.cs-table {
 	@include sbg(--dm-table-bg);
 
 	> thead {
-
 		> tr > .cs-table-header {
 			position: sticky;
 			font-size: 0.75rem;
@@ -21,6 +20,7 @@ table.cs-table {
 			vertical-align: middle;
 			line-height: normal;
 			z-index: $z-index-table-header;
+			max-width: 200px;
 			@include sbg(--dm-table-header-bg);
 			@include css4 {
 				border-top: 1px solid cvar(--dm-table-br);
@@ -42,17 +42,57 @@ table.cs-table {
 			}
 
 			.cs-table-header-text {
-				@include overflow-ellipsis;
 				font-weight: $font-weight-semi-bold;
 				text-align: left;
-				max-width: 200px;
+				display: flex;
+				align-items: center;
+				@include overflow-ellipsis;
 				@include sc(--dm-table-header-c);
+				span {
+					@include overflow-ellipsis;
+				}
+			}
+		}
+	}
+
+	&.table-sortable {
+		> thead {
+			> tr > .cs-table-header {
+				.cs-table-header-text {
+					&.column-sortable {
+						cursor: pointer;
+					}
+					.sortArrow {
+						visibility: hidden;
+						padding-left: 0.0625rem;
+						width: 1rem;
+						@include sc(--dm-table-header-icon-hover-c);
+					}
+				}
+				&:not(.sortAscending):not(.sortDescending) {
+					// show sort arrow on header cell hover to indicate it is sortable
+					&:hover {
+						.sortArrow {
+							visibility: visible;
+							&:before {
+								content: '\47';
+								font-family: 'cs-dm';
+							}
+						}
+					}
+				}
+				&.sortAscending,
+				&.sortDescending {
+					.cs-table-header-text .sortArrow {
+						visibility: visible;
+						@include sc(--dm-table-header-header-icon-sorted-c);
+					}
+				}
 			}
 		}
 	}
 
 	.cs-table-body .cs-table-row {
-
 		.cs-table-cell {
 			@include overflow-ellipsis;
 			min-width: 50px;
@@ -111,7 +151,6 @@ table.cs-table {
 		}
 
 		.cs-table-body .cs-table-row {
-
 			.cs-table-cell {
 				border: none;
 				padding: 0.5rem;

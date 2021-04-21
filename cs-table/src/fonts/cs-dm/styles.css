@@ -122,3 +122,18 @@
 .icon-change-record-type:before {
   content: "\42";
 }
+.icon-negotiate:before {
+  content: "\44";
+}
+.icon-save-negotiate:before {
+  content: "\45";
+}
+.icon-approval:before {
+  content: "\43";
+}
+.icon-arrowup:before {
+  content: "\46";
+}
+.icon-arrowdown:before {
+  content: "\47";
+}

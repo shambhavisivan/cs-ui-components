@@ -1,4 +1,6 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState, useEffect } from 'react';
+import classNames from 'classnames';
+import { SortStateValues } from './constants/sortstate-values';
 
 /**
  * Properties for CSTable component.
@@ -17,11 +19,22 @@ export interface CSTableProps {
 	 */
 	classNames?: Array<string>;
 	/**
+	 * Property that specifies if sorting capability is to be added to CSTable.
+	 */
+	isTableSortable?: boolean;
+	/**
 	 * Full width row renderer, only required if row data contains at least one row marked as full width
 	 *
 	 * @param row Row data to render
 	 */
 	renderFullWidth?(row: CSTableData): ReactElement;
+	/**
+	 * sort function takes sortstate (for order of sorting) and sortfield(sort criteria)
+	 *
+	 * @param sortState order of sorting
+	 * @param sortField field based on which sorting happens
+	 */
+	sortFunction?(sortState: SortStateValues, sortField: string): void;
 }
 
 /**
@@ -92,58 +105,154 @@ const DEFAULT_VALUE_CONVERTER = (value: any) => {
 	return value;
 };
 
-const CSTABLE_DEFAULT_RENDERER = (value: any) => <span title={value}>{DEFAULT_VALUE_CONVERTER(value)}</span>;
+const CSTABLE_DEFAULT_RENDERER = (value: any) => (
+	<span title={value}>{DEFAULT_VALUE_CONVERTER(value)}</span>
+);
 
 /**
  * Lightweight table component.
  *
  * @param props
  */
-export const CSTable: React.FC<CSTableProps> = props => {
 
+export const CSTable: React.FC<CSTableProps> = props => {
+	const [sortState, setSortState] = useState<SortStateValues>('default');
+	const [sortField, setSortField] = useState('');
 	const rows: () => Array<CSTableRow> = () => {
 		return typeof props.rows === 'function' ? props.rows() : props.rows;
 	};
+	let csTableClasses = '';
+	useEffect(() => {
+		if (props.sortFunction) {
+			props.sortFunction(sortState, sortField);
+		}
+	}, [sortState, sortField]);
+
+	const handleSortStateChange = (sortBy: string) => {
+		if (sortField !== sortBy) {
+			setSortState('ascending');
+			setSortField(sortBy);
+		} else {
+			switch (sortState) {
+				case 'default': {
+					setSortState('ascending');
+					break;
+				}
+				case 'ascending': {
+					setSortState('descending');
+					break;
+				}
+				case 'descending': {
+					setSortState('default');
+					setSortField('');
+					break;
+				}
+			}
+		}
+	};
 
 	const renderHeaderCell = (col: CSTableColumn) => {
-		return <th className="cs-table-header" key={col.name}>
-			<div className="cs-table-header-text" title={typeof col.label === 'string' ? col.label : ''}>
-				{col.label}
-			</div>
-		</th>;
+		let theaderClasses = 'cs-table-header';
+		let sortArrowStyle = 'icon sortArrow';
+		let columnHeaderText = 'cs-table-header-text';
+		if (col.name === sortField && props.isTableSortable) {
+			theaderClasses = classNames('cs-table-header', {
+				'sortAscending': sortState === 'ascending',
+				'sortDescending': sortState === 'descending',
+				'': sortState === 'default'
+			});
+			sortArrowStyle = classNames('icon sortArrow', {
+				'icon-arrowdown': sortState === 'ascending',
+				'icon-arrowup': sortState === 'descending',
+				'': sortState === 'default'
+			});
+		} else {
+			theaderClasses = 'cs-table-header';
+			sortArrowStyle = 'icon sortArrow';
+		}
+
+		const sortArrow =
+			col.name.toString().length !== 0 && col.name !== '__Actions' ? (
+				<div className={sortArrowStyle} />
+			) : (
+				''
+			);
+		columnHeaderText = classNames('cs-table-header-text', {
+			'column-sortable':
+				props.isTableSortable &&
+				col.name.toString().length !== 0 &&
+				col.name !== '__Actions'
+		});
+		return (
+			<th
+				className={theaderClasses}
+				onClick={() => {
+					if (props.isTableSortable) {
+						handleSortStateChange(col.name);
+					}
+				}}
+				key={col.name}
+			>
+				<div
+					className={columnHeaderText}
+					title={typeof col.label === 'string' ? col.label : ''}
+				>
+					<span>{col.label}</span>
+					{props.isTableSortable ? sortArrow : ''}
+				</div>
+			</th>
+		);
 	};
 
 	const renderCell = (col: CSTableColumn, row: CSTableRow) => {
 		const renderer = col.render || CSTABLE_DEFAULT_RENDERER;
-		return <td className="cs-table-cell" key={col.name}>
-			{renderer(row.data.values[col.name], row.data, col.name)}
-		</td>;
+		return (
+			<td className="cs-table-cell" key={col.name}>
+				{renderer(row.data.values[col.name], row.data, col.name)}
+			</td>
+		);
 	};
 
 	const renderFullWidth = (row: CSTableRow) => {
-		return <td colSpan={props.cols.length}>
-			{props.renderFullWidth && props.renderFullWidth(row.data)}
-		</td>;
+		return (
+			<td colSpan={props.cols.length}>
+				{props.renderFullWidth && props.renderFullWidth(row.data)}
+			</td>
+		);
 	};
 
 	const renderRow = (row: CSTableRow) => {
-		return <tr className={'cs-table-row ' + (row.classNames ? row.classNames.join(' ') : '')} key={row.id}>
-			{row.fullWidth ? renderFullWidth(row) : props.cols.map(col => renderCell(col, row))}
-		</tr>;
+		return (
+			<tr
+				className={
+					'cs-table-row ' + (row.classNames ? row.classNames.join(' ') : '')
+				}
+				key={row.id}
+			>
+				{row.fullWidth
+					? renderFullWidth(row)
+					: props.cols.map(col => renderCell(col, row))}
+			</tr>
+		);
 	};
 
 	if (!props.renderFullWidth && rows().some(row => row.fullWidth)) {
-		throw new Error('You must specify a full width renderer if you have full width rows.');
+		throw new Error(
+			'You must specify a full width renderer if you have full width rows.'
+		);
 	}
 
-	return <table className={props.classNames ? props.classNames.join(' ') : 'cs-table'}>
-		<thead>
-			<tr key="__header">
-				{props.cols.map(renderHeaderCell)}
-			</tr>
-		</thead>
-		<tbody className="cs-table-body">
-			{rows().map(renderRow)}
-		</tbody>
-	</table>;
+	csTableClasses = props.classNames ? props.classNames.join(' ') : 'cs-table';
+	csTableClasses = props.isTableSortable
+		? csTableClasses + ' table-sortable'
+		: csTableClasses;
+
+	return (
+		<table className={csTableClasses}>
+			<thead>
+				<tr key="__header">{props.cols.map(renderHeaderCell)}</tr>
+			</thead>
+			<tbody className="cs-table-body">{rows().map(renderRow)}</tbody>
+		</table>
+	);
 };

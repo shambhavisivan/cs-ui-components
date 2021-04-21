@@ -27,7 +27,7 @@ $cs-blue: #00abd3;
 $cs-blue-dark-1: #16325c;
 $cs-blue-dark-2: #1b3d71;
 $cs-blue-dark-3: #54698d;
-$cs-blue-dark-4: #164A85;
+$cs-blue-dark-4: #164a85;
 $cs-blue-medium-1: #295497;
 $cs-blue-medium-2: #005fb2;
 $cs-blue-medium-3: #0062b8;
@@ -80,6 +80,8 @@ $variables: (
 	--dm-table-br: $cs-gray-light-2,
 	--dm-table-header-bg: $cs-gray-light-11,
 	--dm-table-header-c: $cs-gray-dark-5,
+	--dm-table-header-icon-hover-c: $cs-gray-dark-5,
+	--dm-table-header-header-icon-sorted-c: $cs-blue-sf,
 	--dm-table-cell-c: $cs-gray-dark-2,
 	--dm-table-row-hover-bg: $cs-gray-light-11,
 
