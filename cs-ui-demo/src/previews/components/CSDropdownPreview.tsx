@@ -547,6 +547,62 @@ class CSDropdownPreview extends React.Component {
 					]
 				},
 				{
+					propName: 'width',
+					variations: [
+						{
+							variationName: ['width="100%"'],
+							quickLink: '100%',
+							component: <CSDropdown
+								iconName="down"
+								width="100%"
+							>
+								<CSButton
+									iconName="world"
+									label="test label small"
+								/>
+								<CSButton
+									iconName="world"
+									label="test label large large"
+								/>
+							</CSDropdown>
+						},
+						{
+							variationName: ['width="20rem"'],
+							quickLink: '20rem',
+							component: <CSDropdown
+								iconName="down"
+								width="20rem"
+							>
+								<CSButton
+									iconName="world"
+									label="test label small"
+								/>
+								<CSButton
+									iconName="world"
+									label="test label large large"
+								/>
+							</CSDropdown>
+						},
+						{
+							variationName: ['width="500px"'],
+							quickLink: '500px',
+							component: <CSDropdown
+								iconName="down"
+								width="500px"
+							>
+								<CSButton
+									iconName="world"
+									label="test label small"
+								/>
+								<CSButton
+									iconName="world"
+									label="test label large large"
+								/>
+							</CSDropdown>
+						}
+					]
+				},
+				{
 					propName: 'maxWidth',
 					variations: [
 						{
@@ -756,6 +812,10 @@ class CSDropdownPreview extends React.Component {
 					}],
 					default: '\'normal\'',
 					description: 'Set the size of the dropdown button.'
+				}, {
+					name: 'width',
+					types: ['string'],
+					description: 'Set the width of the dropdown content. (eg. 200px, 20rem, etc.)'
 				}, {
 					name: '[key: string]',
 					types: ['any'],

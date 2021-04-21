@@ -36,6 +36,7 @@ export interface CSDropdownProps {
 	padding?: string;
 	position?: CSDropdownPosition;
 	size?: CSDropdownSize;
+	width?: string;
 }
 
 export interface CSDropdownStates {
@@ -244,6 +245,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 			padding,
 			position,
 			size,
+			width,
 			...rest
 		} = this.props;
 
@@ -303,6 +305,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 								align={this.state.computedPosition[1]}
 								position={this.state.computedPosition[0]}
 								onDropdownClose={onDropdownClose}
+								width={width}
 							>
 								{children}
 							</CSDropdownItemWrapper>

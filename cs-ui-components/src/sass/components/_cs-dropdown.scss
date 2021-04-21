@@ -36,7 +36,7 @@
 		opacity: 0;
 	}
 	.cs-dropdown-item-wrapper {
-		width: auto;
+		width: var(--cs-dropdown-width, auto);
 		min-width: 6rem;
 		height: auto;
 		display: flex;

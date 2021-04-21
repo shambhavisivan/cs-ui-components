@@ -31,6 +31,7 @@ export interface CSDropdownItemWrapperProps {
 	toggleDropdown?: (focusBtnAfterClose?: boolean) => void;
 	mounted: boolean;
 	visible: boolean;
+	width?: string;
 }
 
 class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> {
@@ -121,7 +122,8 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 			padding,
 			position,
 			style,
-			visible
+			visible,
+			width
 		} = this.props;
 
 		const btnDropdownOuterItemWrapperClasses = classNames(
@@ -139,6 +141,7 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 		const dropdownItemWrapperStyle: CSSProperties = {
 			'--cs-dropdown-max-height': maxHeight,
 			'--cs-dropdown-max-width': maxWidth,
+			'--cs-dropdown-width': width,
 			'--cs-dropdown-padding': padding
 		};
 
