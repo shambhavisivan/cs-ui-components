@@ -1,5 +1,23 @@
 # Release Notes
 
+## 1.1.13<a name="1.1.13"></a>
+* CSDropdown
+  * `width` prop added
+* CSLookup
+  * accessibility attributes added
+* CSProgressBar
+  * <i>important</i> `progressIndicator` prop replaced with `infoText` which now accepts any string
+  * `borderRadius` prop added
+  * `status` prop added
+* CSRadio
+  * `readOnly` :focus-visible styles added
+* CSSlider
+  * `readOnly` prop added
+* CSToggle
+  * `readOnly` prop added
+* CSTooltip
+  * updating inner state from props fixed
+
 ## 1.1.12<a name="1.1.12"></a>
 * CSCheckbox
   * `readOnly` :focus styles moved to :focus-visible
