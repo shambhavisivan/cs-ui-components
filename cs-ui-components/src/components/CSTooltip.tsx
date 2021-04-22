@@ -49,7 +49,7 @@ export interface CSTooltipProps {
 }
 
 interface CSTooltipState {
-	content?: any;
+	content: CSTooltipContent | (() => Promise<CSTooltipContent>);
 	loading?: boolean;
 	hidden: boolean;
 	computedTooltipStyle?: CSSProperties;
@@ -67,6 +67,15 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		focusable: true
 	};
 
+	static getDerivedStateFromProps(props: CSTooltipProps, state: CSTooltipState) {
+		if (props.content !== state.content && typeof props.content !== 'function') {
+			return {
+				content: props.content
+			};
+		}
+		return null;
+	}
+
 	private timeoutRef: NodeJS.Timeout;
 	private popupTriggered = false;
 	private tooltipRef: React.RefObject<HTMLDivElement>;
@@ -82,7 +91,8 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		this.state = {
 			hidden: props.delayTooltip && props.delayTooltip > 0,
 			computedPosition: this.props.position,
-			stickyActive: false
+			stickyActive: false,
+			content: this.props.content
 		};
 
 		let tooltipRoot = document.getElementById(this.tooltipId);
@@ -186,8 +196,8 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 										{contentItem}
 									</div>
 								))
-							: <div className="cs-tooltip-body">{this.state.content}</div>
-						: null}
+								: <div className="cs-tooltip-body">{this.state.content}</div>
+							: null}
 					</>
 				}
 			</div>
