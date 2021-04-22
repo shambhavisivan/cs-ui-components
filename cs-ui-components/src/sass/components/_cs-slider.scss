@@ -142,31 +142,31 @@
 
 			&[disabled] {
 				&::-webkit-slider-thumb {
-					@include sbg(--cs-slider-range-thumb-disbled-bg);
+					@include sbg(--cs-slider-range-thumb-disabled-bg);
 					cursor: default;
 				}
 
 				&::-webkit-slider-runnable-track {
-					@include sbg(--cs-slider-range-thumb-disbled-bg);
+					@include sbg(--cs-slider-range-thumb-disabled-bg);
 					cursor: default;
 				}
 
 				&::-moz-range-thumb {
-					@include sbg(--cs-slider-range-thumb-disbled-bg);
+					@include sbg(--cs-slider-range-thumb-disabled-bg);
 					cursor: default;
 				}
 
 				&::-moz-range-track {
-					@include sbg(--cs-slider-range-thumb-disbled-bg);
+					@include sbg(--cs-slider-range-thumb-disabled-bg);
 				}
 
 				&::-ms-thumb {
-					@include sbg(--cs-slider-range-thumb-disbled-bg);
+					@include sbg(--cs-slider-range-thumb-disabled-bg);
 					cursor: default;
 				}
 
 				&::-ms-track {
-					@include sbg(--cs-slider-range-thumb-disbled-bg);
+					@include sbg(--cs-slider-range-thumb-disabled-bg);
 					cursor: default;
 				}
 			}
