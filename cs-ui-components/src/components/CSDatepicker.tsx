@@ -35,7 +35,7 @@ export interface CSDatepickerProps {
 	minDateYear?: boolean;
 	name?: string;
 	onCalendarClose?: () => void;
-	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => any;
+	onChange?: (date: Date) => any;
 	onChangeRaw?: (event: React.FocusEvent<HTMLInputElement>) => any;
 	openToDate?: any;
 	placeholder?: string;
@@ -62,14 +62,14 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 		dateFormat: 'dd-MM-yyyy',
 		dropdownMode: 'scroll'
 	};
+	public datepickerRef: React.RefObject<DatePicker>;
 
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
-	private datepicker: React.RefObject<DatePicker>;
 
 	constructor(props: CSDatepickerProps) {
 		super(props);
 
-		this.datepicker = React.createRef();
+		this.datepickerRef = React.createRef();
 		this.closeOnFocusOutside = this.closeOnFocusOutside.bind(this);
 
 		const value = typeof props.value === undefined ? '' : props.value;
@@ -78,7 +78,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 		};
 	}
 
-	handleChange = (date: any) => {
+	handleChange = (date: Date) => {
 		this.setState({
 			startDate: date
 		});
@@ -90,7 +90,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 	closeOnFocusOutside(event: any) {
 		// If shift key and tab pressed together close datepicker
 		if (event.shiftKey && event.key === KeyCode.Tab) {
-			this.datepicker.current.setOpen(false);
+			this.datepickerRef.current.setOpen(false);
 		}
 	}
 
@@ -203,7 +203,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 							scrollableYearDropdown={scrollableYearDropdown}
 							dropdownMode={dropdownMode}
 							readOnly={readOnly}
-							ref={this.datepicker}
+							ref={this.datepickerRef}
 							yearDropdownItemNumber={yearDropdownItemNumber}
 							autoComplete="off"
 							required={required}
