@@ -35,6 +35,13 @@ export interface CSTableProps {
 	 * @param sortField field based on which sorting happens
 	 */
 	sortFunction?(sortState: SortStateValues, sortField: string): void;
+	/**
+	 * Group row renderer, only required if row data contains at least one row marked as group
+	 *
+	 * @param row Row data to render
+	 */
+	renderGroupingRow?(row: CSTableData): ReactElement;
+
 }
 
 /**
@@ -57,6 +64,10 @@ export interface CSTableRow {
 	 * Does this row consist of cells or just one block, spanning the table width.
 	 */
 	fullWidth?: boolean;
+	/**
+	 * Does this row support grouping or not.
+	 */
+	rowGrouping?: boolean;
 }
 
 /**
@@ -197,11 +208,23 @@ export const CSTable: React.FC<CSTableProps> = props => {
 					className={columnHeaderText}
 					title={typeof col.label === 'string' ? col.label : ''}
 				>
-					<span>{col.label}</span>
+					{col.label}
 					{props.isTableSortable ? sortArrow : ''}
 				</div>
 			</th>
 		);
+	};
+
+	const renderGroupExpansionCell = (col: CSTableColumn, row: CSTableRow) => {
+		if (col.name.length === 0 || col.name === '__selected') {
+			const renderer = col.render || CSTABLE_DEFAULT_RENDERER;
+			return (
+				<td className="cs-table-cell" key={col.name}>
+					{renderer(row.data.values[col.name], row.data, col.name)}
+				</td>
+			);
+		}
+		return '';
 	};
 
 	const renderCell = (col: CSTableColumn, row: CSTableRow) => {
@@ -222,18 +245,34 @@ export const CSTable: React.FC<CSTableProps> = props => {
 	};
 
 	const renderRow = (row: CSTableRow) => {
-		return (
-			<tr
-				className={
-					'cs-table-row ' + (row.classNames ? row.classNames.join(' ') : '')
-				}
-				key={row.id}
-			>
-				{row.fullWidth
-					? renderFullWidth(row)
-					: props.cols.map(col => renderCell(col, row))}
-			</tr>
-		);
+		if (row.rowGrouping) {
+			return (
+				<tr
+					className={
+						'cs-table-row ' + (row.classNames ? row.classNames.join(' ') : '')
+					}
+					key={row.id}
+				>
+				{props.cols.map(col => renderGroupExpansionCell(col, row))}
+				<td colSpan={props.cols.length - 1} className="cs-table-cell">
+					{props.renderGroupingRow ? props.renderGroupingRow(row.data) : row.id}
+				</td>
+			</tr>);
+		}
+		else {
+			return (
+				<tr
+					className={
+						'cs-table-row ' + (row.classNames ? row.classNames.join(' ') : '')
+					}
+					key={row.id}
+				>
+					{row.fullWidth
+						? renderFullWidth(row)
+						: props.cols.map(col => renderCell(col, row))}
+				</tr>
+			);
+		}
 	};
 
 	if (!props.renderFullWidth && rows().some(row => row.fullWidth)) {
