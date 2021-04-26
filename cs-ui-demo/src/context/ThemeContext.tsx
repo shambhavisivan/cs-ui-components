@@ -30,7 +30,7 @@ export const ThemeProvider: React.FC<ThemeContextProviderProps> = ({ children })
 	useEffect(() => {
 		const storageTheme = window.localStorage.getItem('cs-theme');
 		if (storageTheme === Theme.Dark) {
-			setTheme(Theme.Dark);
+			toggleTheme();
 		}
 	}, []);
 
