@@ -27,6 +27,7 @@ export type CSLookupDropdownPosition = 'top' | 'bottom';
 interface CSLookupCommmonProps {
 	[key: string]: any;
 	align?: CSLookupDropdownAlign;
+	autoFocus?: boolean;
 	borderRadius?: string;
 	className?: string;
 	disabled?: boolean;
@@ -109,7 +110,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		minTermLength: 0
 	};
 
-	private lookupInputRef: React.RefObject<HTMLInputElement>;
+	public lookupInputRef: React.RefObject<HTMLInputElement>;
 	private lookupDropdownId = 'cs-lookup-dropdown-root';
 	private lookupTable = 'cs-lookup-table';
 	private lookupTableHeader = 'cs-lookup-table-header';
@@ -373,7 +374,6 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			this.props.onFocus(e);
 		}
 		this.openLookupDropdown();
-		this.setState({ activeRowIndex: 0 });
 
 		if (this.props.mode === 'server' && this.props.minTermLength === 0) {
 			this.setState({ fetchingMode: 'after-search' }, this.fetchData);
@@ -486,6 +486,9 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	}
 
 	openLookupDropdown = () => {
+		if (!this.lookupInputRef.current) {
+			return;
+		}
 		const elementRect = this.lookupInputRef.current.getBoundingClientRect();
 		const top = elementRect.top + elementRect.height + 1;
 		const bottom = window.innerHeight - elementRect.top + 1;
@@ -530,7 +533,8 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		}
 		this.setState({
 			dropdownOpen: true,
-			lookupInputWidth: elementRect.width
+			lookupInputWidth: elementRect.width,
+			activeRowIndex: 0
 		});
 		document.addEventListener('click', this.handleClickOutside, true);
 	}
@@ -622,6 +626,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	render() {
 		const {
 			align,
+			autoFocus,
 			borderRadius,
 			className,
 			disabled,
@@ -812,6 +817,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 					<input
 						className={lookupInputClasses}
 						autoComplete="off"
+						autoFocus={autoFocus}
 						type="text"
 						placeholder={placeholder}
 						disabled={disabled}

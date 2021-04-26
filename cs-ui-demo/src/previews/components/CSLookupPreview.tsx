@@ -244,6 +244,23 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 					]
 				},
 				{
+					propName: 'autoFocus',
+					customText: '',
+					variations: [
+						{
+							component:
+								<CSLookup
+									mode="client"
+									label="Account"
+									autoFocus
+									lookupOptions={lookupSimple.data}
+									fieldToBeDisplayed="Account"
+									lookupColumns={lookupSimple.columns}
+								/>
+						}
+					]
+				},
+				{
 					propName: 'id',
 					customText: '',
 					variations: [
@@ -860,6 +877,11 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 					default: '\'left\'',
 					description: 'Align the lookup dropdown.'
 
+				}, {
+					name: 'autoFocus',
+					types: ['boolean'],
+					default: 'false',
+					description: 'Set whether the lookup input should be autofocused.'
 				}, {
 					name: 'borderRadius',
 					types: ['string'],
