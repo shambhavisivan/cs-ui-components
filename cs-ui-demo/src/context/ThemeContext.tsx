@@ -6,8 +6,8 @@ import React, {
 } from 'react';
 
 export enum Theme {
-	Dark = 'cs-theme-dark',
-	Light = 'cs-theme-light'
+	Dark = 'csd-theme-dark',
+	Light = 'csd-theme-light'
 }
 
 export interface ThemeContextType {
@@ -28,7 +28,7 @@ export const ThemeProvider: React.FC<ThemeContextProviderProps> = ({ children })
 	const [theme, setTheme] = useState<Theme>(Theme.Light);
 
 	useEffect(() => {
-		const storageTheme = window.localStorage.getItem('cs-theme');
+		const storageTheme = window.localStorage.getItem('csd-theme');
 		if (storageTheme === Theme.Dark) {
 			toggleTheme();
 		}
@@ -37,11 +37,14 @@ export const ThemeProvider: React.FC<ThemeContextProviderProps> = ({ children })
 	const toggleTheme = () => {
 		const newTheme = theme === Theme.Dark ? Theme.Light : Theme.Dark;
 		setTheme(newTheme);
-		window.localStorage.setItem('cs-theme', newTheme);
+		window.localStorage.setItem('csd-theme', newTheme);
 		if (newTheme === Theme.Dark) {
-			document.body.classList.add('cs-theme-dark');
+			document.body.classList.add('csd-theme-dark');
+			document.body.classList.remove('csd-theme-light');
+
 		} else {
-			document.body.classList.remove('cs-theme-dark');
+			document.body.classList.add('csd-theme-light');
+			document.body.classList.remove('csd-theme-dark');
 		}
 	};
 

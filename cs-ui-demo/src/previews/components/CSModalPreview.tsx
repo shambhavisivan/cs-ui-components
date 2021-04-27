@@ -570,7 +570,7 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 									<CSModal
 										visible={this.state.visibleModal === 'style'}
 										animated
-										style={{ border: '2px solid var(--custom-br)' }}
+										style={{ border: '2px solid var(--csd-custom-br)' }}
 									>
 										<CSModalHeader title="Title" subtitle="Subtitle" />
 										<CSModalBody>
@@ -585,7 +585,7 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 								<CSModal
 									visible={this.state.visibleModal === 'style'}
 									animated
-									style={{ border: '2px solid var(--custom-br)' }}
+									style={{ border: '2px solid var(--csd-custom-br)' }}
 								>
 									<CSModalHeader title="Title" subtitle="Subtitle" />
 									<CSModalBody>

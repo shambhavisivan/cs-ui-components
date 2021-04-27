@@ -7,7 +7,7 @@
 		a.criterion {
 			margin-bottom: 0.25rem;
 			text-decoration: underline;
-			text-decoration-color: var(--criterion-link-decoration-c);
+			text-decoration-color: var(--csd-criterion-link-decoration-c);
 			padding: 0;
 			margin-left: 0.5rem;
 
@@ -30,8 +30,8 @@
 			width: 100%;
 			max-width: 100%;
 			box-shadow:
-				0 1px 3px var(--cs-shadow-light),
-				0 1px 2px var(--cs-shadow-medium);
+				0 1px 3px var(--csd-shadow-light),
+				0 1px 2px var(--csd-shadow-medium);
 			border: none;
 			border-radius: 0.25rem;
 
@@ -44,12 +44,15 @@
 					.accessibility-table-cell {
 						display: table-cell;
 						padding: 0.75rem;
+						background: var(--csd-prop-table-bg);
+						color: var(--csd-prop-table-c);
+						border-top-color: var(--csd-prop-table-br);
 
 						&:first-child {
 							vertical-align: top;
-							color: var(--access-table-header-c);
-							background-color: var(--access-table-header-bg);
-							border-top-color: var(--access-table-header-br);
+							color: var(--csd-access-table-header-c);
+							background-color: var(--csd-access-table-header-bg);
+							border-top-color: var(--csd-access-table-header-br);
 						}
 
 						&:last-child {

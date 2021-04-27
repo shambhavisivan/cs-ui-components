@@ -58,197 +58,513 @@ $cs-red-medium-3: #d9675d;
 $cs-red-light-1: #fcedee;
 $cs-white: #ffffff;
 
-:root {
-	--access-chip-c: #{$cs-white};
-	--access-chip-bg: #{$cs-blue-sf};
-	--access-chip-br: #{$cs-blue-sf};
-	--access-chip-strong-em-br: #{$cs-orange-medium-2};
-	--access-chip-strong-em-bg: #{$cs-orange-medium-2};
-	--access-chip-strong-br: #{$cs-gray-dark-5};
-	--access-chip-strong-bg: #{$cs-gray-dark-5};
-	--access-link-c: #{$cs-blue-sf};
-	--access-link-hover-c: #{$cs-purple};
-	--access-link-active-c: #{$cs-purple-medium-1};
-	--access-subtitle-c: #{$cs-purple};
-	--access-table-header-c: #{$cs-white};
-	--access-table-header-bg: #{$cs-purple};
-	--access-table-header-br: rgba(255, 255, 255, 0.2);
+// Colors for demo app dark theme
+$cs-dark-theme-bg: #181818;
+$cs-dark-theme-bg-2: #242424;
+$cs-dark-theme-bg-3: #343333;
 
-	--app-body-bg: #{$cs-gray-light-5};
-	--app-header-c: #{$cs-gray-dark-1};
-	--app-header-bg: #{$cs-white};
+$css4: true;
 
-	--button-preview-table-bg: #{$cs-white};
-	--button-preview-cell-bg: #{$cs-purple};
+$lightVariables: (
+	--csd-access-c: $cs-gray-dark-2,
+	--csd-access-h-c: $cs-gray-dark-1,
+	--csd-access-chip-c: $cs-white,
+	--csd-access-chip-bg: $cs-blue-sf,
+	--csd-access-chip-br: $cs-blue-sf,
+	--csd-access-chip-strong-em-c: $cs-white,
+	--csd-access-chip-strong-em-br: $cs-orange-medium-2,
+	--csd-access-chip-strong-em-bg: $cs-orange-medium-2,
+	--csd-access-chip-strong-br: $cs-gray-dark-5,
+	--csd-access-chip-strong-bg: $cs-gray-dark-5,
+	--csd-access-link-c: $cs-blue-sf,
+	--csd-access-link-hover-c: $cs-purple,
+	--csd-access-link-active-c: $cs-purple-medium-1,
+	--csd-access-title-c: $cs-gray-dark-1,
+	--csd-access-subtitle-c: $cs-purple,
+	--csd-access-table-header-c: $cs-white,
+	--csd-access-table-header-bg: $cs-purple,
+	--csd-access-table-header-br: rgba(255, 255, 255, 0.2),
 
-	--code-preview-bg: #{$cs-gray-light-7};
+	--csd-app-body-bg: $cs-gray-light-5,
+	--csd-app-header-bg: $cs-white,
 
-	--colors-grid-focus-shadow: #{$cs-blue-sf};
-	--colors-grid-bg: #{$cs-white};
-	--colors-grid-c: #{$cs-gray-medium-1};
-	--colors-grid-name-c: #{$cs-gray-dark-2};
+	--csd-h2-c: $cs-gray-dark-1,
+	--csd-h3-c: $cs-gray-dark-3,
 
-	--components-list-wrapper-bg: #{$cs-gray-dark-3};
-	--components-search-field-br: #{$cs-gray-dark-6};
-	--components-api-bg: #{$cs-white};
-	--components-modal-bg: #{$cs-white};
-	--components-sidebar-bg: #{$cs-purple};
-	--components-link-c: #{$cs-gray-dark-3};
-	--components-link-hover-bg: #{$cs-purple};
-	--components-link-hover-c: #{$cs-white};
+	--csd-header-tab-c: $cs-gray-dark-3,
+	--csd-header-tab-active-bg: $cs-gray-light-6,
+	--csd-header-tab-active-alt-c: $cs-gray-dark-1,
+	--csd-header-tab-active-c: $cs-purple,
 
-	--criterion-link-decoration-c: #{$cs-blue-sf};
+	--csd-button-preview-table-bg: $cs-white,
+	--csd-button-preview-cell-bg: $cs-purple,
+	--csd-button-preview-br: $cs-gray-light-3,
+	--csd-button-preview-c: $cs-black,
+	--csd-code-preview-bg: $cs-gray-light-7,
+	--csd-code-c: $cs-gray-dark-1,
 
-	--cs-chip-bg: #{$cs-mint};
-	--cs-chip-demo-c: #{$cs-gray-dark-1};
-	--cs-icon-sidebar-fill: #{$cs-white};
-	--cs-icon-fill: #{$cs-gray-dark-5};
-	--cs-btn-bg: #{$cs-white};
-	--cs-transparent-bg: #{$cs-blue-dark-2};
-	--cs-shadow-light: rgba($cs-black, 0.12);
-	--cs-shadow-medium: rgba($cs-black, 0.24);
-	--cs-shadow-dark: rgba($cs-black, 0.5);
+	--csd-colors-grid-focus-shadow: $cs-blue-sf,
+	--csd-colors-grid-bg: $cs-white,
+	--csd-colors-grid-c: $cs-gray-medium-1,
+	--csd-colors-grid-name-c: $cs-gray-dark-2,
 
-	--custom-bg: #{$cs-mint};
-	--custom-br: #{$cs-mint};
-	--custom-alt-bg: #{$cs-blue-medium-6};
-	--custom-purple-bg: #{$cs-purple};
+	--csd-components-list-wrapper-bg: $cs-gray-dark-3,
+	--csd-components-search-field-br: $cs-gray-dark-6,
+	--csd-components-api-bg: $cs-white,
+	--csd-components-modal-bg: $cs-white,
+	--csd-components-sidebar-bg: $cs-purple,
+	--csd-components-link-c: $cs-gray-dark-3,
+	--csd-components-link-hover-bg: $cs-purple,
+	--csd-components-link-hover-c: $cs-white,
 
-	--header-tab-c: #{$cs-gray-dark-3};
-	--header-tab-active-c: #{$cs-purple};
-	--header-tab-active-alt-c: #{$cs-gray-dark-1};
-	--header-tab-active-bg: #{$cs-gray-light-6};
+	--csd-criterion-link-decoration-c: $cs-blue-sf,
 
-	--icons-search-field-bg: #{$cs-white};
-	--icons-search-field-c: #{$cs-gray-dark-4};
-	--icons-search-field-placeholder-c: #{$cs-gray-medium-1};
-	--icons-container-bg: #{$cs-white};
-	--icons-paragraph-c: #{$cs-gray-dark-2};
-	--icons-custom-fill: #{$cs-mint};
+	--csd-chip-bg: $cs-mint,
+	--csd-chip-demo-c: $cs-gray-dark-1,
+	--csd-icon-sidebar-fill: $cs-white,
+	--csd-icon-fill: $cs-gray-dark-5,
+	--csd-btn-bg: $cs-white,
+	--csd-transparent-bg: $cs-blue-dark-2,
+	--csd-shadow-light: rgba($cs-black, 0.12),
+	--csd-shadow-medium: rgba($cs-black, 0.2),
+	--csd-shadow-dark: rgba($cs-black, 0.5),
 
-	--important-chip-bg: #{$cs-mint};
-	--important-chip-c: #{$cs-gray-dark-1};
+	--csd-custom-bg: $cs-mint,
+	--csd-custom-br: $cs-mint,
+	--csd-custom-alt-bg: $cs-blue-medium-6,
+	--csd-custom-purple-bg: $cs-purple,
 
-	--neutral-chip-bg: rgba(255, 255, 255, 35%);
-	--neutral-chip-c: #{$cs-gray-dark-5};
+	--csd-icons-search-field-bg: $cs-white,
+	--csd-icons-search-field-c: $cs-gray-dark-4,
+	--csd-icons-search-field-placeholder-c: $cs-gray-medium-1,
+	--csd-icons-container-bg: $cs-white,
+	--csd-icons-paragraph-c: $cs-gray-dark-2,
+	--csd-icons-custom-fill: $cs-mint,
 
-	--prop-link-c: #{$cs-blue-sf};
-	--prop-inline-container-fill: #{$cs-mint};
-	--prop-info-c: #{$cs-gray-dark-6};
-	--prop-custom-bg: #{$cs-gray-light-3};
-	--prop-custom-c: #{$cs-gray-dark-6};
-	--prop-table-cell-br: #{$cs-gray-light-2};
-	--prop-table-header-bg: #{$cs-purple};
-	--prop-table-header-c: #{$cs-white};
-	--prop-table-row-stripes-bg-light: #{$cs-white};
-	--prop-table-row-stripes-bg-dark: #{$cs-gray-light-7};
-	--prop-code-c: #{$cs-black};
-	--prop-code-bg: #{$cs-gray-light-5};
-	--prop-code-br: #{$cs-gray-light-1};
-	--prop-code-custom-bg: #{$cs-white};
+	--csd-important-chip-bg: $cs-mint,
+	--csd-important-chip-c: $cs-gray-dark-1,
 
-	--preview-chip-c: #{$cs-white};
-	--preview-chip-br: #{$cs-blue-sf};
-	--preview-chip-bg: #{$cs-blue-sf};
-	--preview-chip-second-c: #{$cs-gray-medium-1};
-	--preview-chip-second-bg: #{$cs-gray-light-11};
-	--preview-chip-second-br: #{$cs-gray-medium-1};
+	--csd-neutral-chip-bg: rgba($cs-white, 0.35),
+	--csd-neutral-chip-c: $cs-gray-dark-5,
 
-	--prop-sidebar-bg: #{$cs-purple};
-	--prop-sidebar-hover-bg: #{$cs-purple-dark-1};
+	--csd-prop-custom-bg: $cs-gray-light-3,
+	--csd-prop-custom-c: $cs-gray-dark-6,
+	--csd-prop-table-header-bg: $cs-purple,
+	--csd-prop-table-header-c: $cs-white,
+	--csd-prop-table-bg: $cs-white,
+	--csd-prop-table-c: $cs-gray-dark-2,
+	--csd-prop-table-br: $cs-gray-light-3,
+	--csd-prop-table-row-stripes-bg-light: $cs-white,
+	--csd-prop-table-row-stripes-bg-dark: $cs-gray-light-7,
+	--csd-prop-code-c: $cs-black,
+	--csd-prop-code-bg: $cs-gray-light-5,
+	--csd-prop-code-br: $cs-gray-light-1,
+	--csd-prop-code-custom-bg: $cs-white,
+	--csd-prop-sidebar-bg: $cs-purple,
+	--csd-prop-sidebar-hover-bg: $cs-purple-dark-1,
 
-	--preview-main-heading-title-c: #{$cs-black};
-	--preview-main-heading-subtitle-c: #{$cs-gray-dark-6};
+	--csd-preview-main-heading-title-c: $cs-black,
+	--csd-preview-main-heading-subtitle-c: $cs-gray-dark-6,
 
-	--release-notes-code-snippet-bg: #{$cs-white};
-	--release-notes-code-snippet-br: #{$cs-mint};
+	--csd-release-notes-code-snippet-bg: $cs-white,
 
-	--req-table-bg: #{$cs-purple};
-	--req-table-c: #{$cs-white};
-	--req-table-before-c: #{$cs-gray-dark-1};
+	--csd-sidebar-search-field-c: $cs-white,
+	--csd-sidebar-search-field-bg: $cs-gray-dark-4,
+	--csd-sidebar-search-field-placeholder-c: $cs-gray-light-4,
+	--csd-sidebar-link-c: $cs-white,
+	--csd-sidebar-link-hover-c: $cs-white,
+	--csd-sidebar-info-bg: $cs-white,
+	--csd-sidebar-info-hover-bg: $cs-white,
+	--csd-sidebar-toggle-graphic-fill: $cs-white,
+	--csd-sidebar-input-bg: rgba($cs-white, 0.2),
+	--csd-sidebar-scroll-bg: rgba($cs-white, 0.2),
+	--csd-sidebar-link-hover-bg: rgba($cs-black,0.1),
+	--csd-sidebar-link-active-bg: rgba($cs-black,0.1),
 
-	--sidebar-search-field-c: #{$cs-white};
-	--sidebar-search-field-bg: #{$cs-gray-dark-4};
-	--sidebar-search-field-placeholder-c: #{$cs-gray-light-4};
-	--sidebar-link-c: #{$cs-white};
-	--sidebar-link-hover-bg: #{$cs-purple};
-	--sidebar-link-hover-c: #{$cs-white};
-	--sidebar-link-active-bg: #363a3b;
-	--sidebar-info-bg: #{$cs-white};
-	--sidebar-info-hover-bg: #{$cs-white};
-	--sidebar-toggle-graphic-fill: #{$cs-white};
-	--sidebar-input-bg: rgba(#{$cs-white}, 0.2);
-	--sidebar-scroll-bg: rgba(#{$cs-white}, 0.2);
-	--sidebar-link-hover-bg: rgba(#{$cs-black}, 0.1);
-	--sidebar-link-active-bg: rgba(#{$cs-black}, 0.1);
+	// May need to remove these
+	--csd-table-row-bg: $cs-white,
+	--csd-table-row-br: $cs-gray-light-3,
+	--csd-table-prop-api-bg: $cs-gray-light-5,
+	--csd-table-helper-bg: $cs-gray-light-6,
+	--csd-table-head-row-bg: $cs-purple,
+	--csd-table-head-row-c: $cs-white,
+	--csd-table-backlog-bg: $cs-gray-medium-1,
 
-	--table-row-bg: #{$cs-white};
-	--table-row-br: #{$cs-gray-light-3};
-	--table-prop-api-bg: #{$cs-gray-light-5};
-	--table-helper-bg: #{$cs-gray-light-6};
-	--table-head-row-bg: #{$cs-purple};
-	--table-head-row-c: #{$cs-white};
-	--table-backlog-bg: #{$cs-gray-medium-1};
-
-	--dropdown-purple-bg: #{$cs-purple};
-	--spinner-black-bg: #{$cs-black};
-	--image-black-bg: #{$cs-black};
-	--api-method-c: #{$cs-gray-medium-1};
-	--version-desc-bg: #{$cs-gray-light-8};
-	--snippet-bg: #{$cs-gray-light-8};
-	--divider-br: #{$cs-gray-medium-3};
-
-	--transparent: transparent;
-}
+	--csd-dropdown-purple-bg: $cs-purple,
+	--csd-spinner-black-bg: $cs-black,
+	--csd-image-black-bg: $cs-black,
+	--csd-divider-br: $cs-gray-medium-3,
+	--csd-transparent: transparent
+);
 
 /* Dark theme support */
-.cs-theme-dark {
-	--app-header-bg: #222222;
-	--app-body-bg: #222222;
+$darkVariables: (
+	--csd-access-c: $cs-gray-light-1,
+	--csd-access-h-c: $cs-gray-light-6,
+	--csd-access-chip-c: $cs-white,
+	--csd-access-chip-bg: $cs-blue-sf,
+	--csd-access-chip-br: $cs-blue-sf,
+	--csd-access-chip-strong-em-c: $cs-white,
+	--csd-access-chip-strong-em-br: $cs-purple,
+	--csd-access-chip-strong-em-bg: $cs-purple,
+	--csd-access-chip-strong-br: $cs-gray-dark-5,
+	--csd-access-chip-strong-bg: $cs-gray-dark-5,
+	--csd-access-link-c: $cs-blue-sf,
+	--csd-access-link-hover-c: $cs-mint,
+	--csd-access-link-active-c: $cs-green-light-1,
+	--csd-access-title-c: $cs-white,
+	--csd-access-subtitle-c: $cs-mint,
+	--csd-access-table-header-c: $cs-white,
+	--csd-access-table-header-bg: $cs-purple,
+	--csd-access-table-header-br: rgba(255, 255, 255, 0.2),
 
-	--header-tab-c: #{$cs-white};
-	--header-tab-c: #{$cs-white};
-	--header-tab-active-bg: #{$cs-black};
-	--header-tab-active-alt-c: #{$cs-white};;
-	--header-tab-active-c: #{$cs-blue-sf};
+	--csd-app-body-bg: $cs-dark-theme-bg,
+	--csd-app-header-bg: $cs-dark-theme-bg-2,
 
-	--components-api-bg: #343333;
-	--components-link-c: #{$cs-white};
-	--components-link-hover-bg: #{$cs-blue-sf};
+	--csd-h2-c: $cs-white,
+	--csd-h3-c: $cs-gray-medium-2,
 
-	--prop-code-c: #{$cs-white};
-	--prop-code-custom-bg: #343333;
-	--prop-custom-bg: #343333;
-	--prop-code-bg: #343333;
-	--prop-sidebar-bg: #{$cs-gray-dark-3};
-	--prop-sidebar-hover-bg: #{$cs-black};
+	--csd-header-tab-c: $cs-gray-light-1,
+	--csd-header-tab-active-bg: $cs-dark-theme-bg,
+	--csd-header-tab-active-alt-c: $cs-white,
+	--csd-header-tab-active-c: $cs-purple,
 
-	--colors-grid-bg: #343333;
-	--colors-grid-c: #{$cs-white};
-	--colors-grid-name-c: #{$cs-white};
+	--csd-button-preview-table-bg: $cs-dark-theme-bg-2,
+	--csd-button-preview-cell-bg: $cs-dark-theme-bg-2,
+	--csd-button-preview-br: $cs-gray-dark-5,
+	--csd-button-preview-c: $cs-white,
+	--csd-code-preview-bg: $cs-gray-dark-2,
+	--csd-code-c: $cs-white,
 
-	--cs-icon-c: #{$cs-white};
-	--cs-shadow-light: rgba(#{$cs-white}, 0.12);
-	--cs-shadow-medium: rgba(#{$cs-white}, 0.24);
-	--cs-table-row-bg: #343333;
-	--cs-card-bg: #343333;
-	--cs-table-c: rgba(#{$cs-white}, 0.12);
-	--cs-table-row-hover-bg: #{$cs-black};
-	--cs-input-bg: #343333;
-	--cs-label-c: #{$cs-white};
-	--cs-icon-fill: #{$cs-white};
+	--csd-colors-grid-focus-shadow: $cs-blue-sf,
+	--csd-colors-grid-bg: $cs-dark-theme-bg-3,
+	--csd-colors-grid-c: $cs-white,
+	--csd-colors-grid-name-c: $cs-white,
 
-	--icons-container-bg: #343333;
-	--icons-paragraph-c: #{$cs-white};
-	--icons-search-field-c: #{$cs-white};
-	--icons-search-field-bg: #343333;
+	--csd-components-list-wrapper-bg: $cs-dark-theme-bg-2,
+	--csd-components-search-field-br: $cs-gray-dark-6,
+	--csd-components-api-bg: $cs-dark-theme-bg-3,
+	--csd-components-modal-bg: $cs-white,
+	--csd-components-sidebar-bg: $cs-purple,
+	--csd-components-link-c: $cs-white,
+	--csd-components-link-hover-bg: $cs-purple,
+	--csd-components-link-hover-c: $cs-white,
 
-	--code-preview-bg: #343333;
-	--sidebar-link-hover-bg: #{$cs-blue-sf};
-	--access-subtitle-c: #{$cs-blue-sf};
-	--release-notes-code-snippet-bg: #343333;
-	--button-preview-table-bg: #343333;
-	--preview-main-heading-title-c: #{$cs-white};
-	/* This color should be changed in next iteration */
-	color: #{$cs-white};
+	--csd-criterion-link-decoration-c: $cs-blue-sf,
+
+	--csd-chip-bg: $cs-mint,
+	--csd-chip-demo-c: $cs-gray-dark-1,
+	--csd-icon-sidebar-fill: $cs-white,
+	--csd-icon-fill: $cs-white,
+	--csd-btn-bg: $cs-white,
+	--csd-transparent-bg: $cs-blue-dark-2,
+	--csd-shadow-light: rgba($cs-black, 0.12),
+	--csd-shadow-medium: rgba($cs-black, 0.2),
+	--csd-shadow-dark: rgba($cs-black, 0.5),
+
+	--csd-custom-bg: $cs-mint,
+	--csd-custom-br: $cs-mint,
+	--csd-custom-alt-bg: $cs-blue-medium-6,
+	--csd-custom-purple-bg: $cs-purple,
+
+	--csd-icons-search-field-bg: $cs-dark-theme-bg-3,
+	--csd-icons-search-field-c: $cs-white,
+	--csd-icons-search-field-placeholder-c: $cs-gray-medium-1,
+	--csd-icons-container-bg: $cs-dark-theme-bg-3,
+	--csd-icons-paragraph-c: $cs-white,
+	--csd-icons-custom-fill: $cs-mint,
+
+	--csd-important-chip-bg: $cs-mint,
+	--csd-important-chip-c: $cs-gray-dark-1,
+
+	--csd-neutral-chip-bg: rgba(255, 255, 255,35%),
+	--csd-neutral-chip-c: $cs-gray-dark-5,
+
+	--csd-prop-custom-bg: $cs-dark-theme-bg-2,
+	--csd-prop-custom-c: $cs-white,
+	--csd-prop-table-header-bg: $cs-purple,
+	--csd-prop-table-header-c: $cs-white,
+	--csd-prop-table-bg: $cs-dark-theme-bg-2,
+	--csd-prop-table-c: $cs-white,
+	--csd-prop-table-br: $cs-gray-dark-5,
+	--csd-prop-table-row-stripes-bg-light: $cs-dark-theme-bg-2,
+	--csd-prop-table-row-stripes-bg-dark: $cs-gray-dark-1,
+	--csd-prop-code-c: $cs-white,
+	--csd-prop-code-bg: $cs-dark-theme-bg-3,
+	--csd-prop-code-br: $cs-white,
+	--csd-prop-code-custom-bg: $cs-dark-theme-bg-3,
+	--csd-prop-sidebar-bg: $cs-purple,
+	--csd-prop-sidebar-hover-bg: $cs-purple-dark-1,
+
+	--csd-preview-main-heading-title-c: $cs-white,
+	--csd-preview-main-heading-subtitle-c: $cs-gray-medium-2,
+
+	--csd-release-notes-code-snippet-bg: $cs-dark-theme-bg-3,
+
+	--csd-sidebar-search-field-c: $cs-white,
+	--csd-sidebar-search-field-bg: $cs-gray-dark-4,
+	--csd-sidebar-search-field-placeholder-c: $cs-gray-light-4,
+	--csd-sidebar-link-c: $cs-white,
+	--csd-sidebar-link-hover-c: $cs-white,
+	--csd-sidebar-info-bg: $cs-white,
+	--csd-sidebar-info-hover-bg: $cs-white,
+	--csd-sidebar-toggle-graphic-fill: $cs-white,
+	--csd-sidebar-input-bg: rgba($cs-white, 0.2),
+	--csd-sidebar-scroll-bg: rgba($cs-white, 0.2),
+	--csd-sidebar-link-hover-bg: rgba($cs-black,0.2),
+	--csd-sidebar-link-active-bg: rgba($cs-black,0.5),
+
+	--csd-table-row-bg: $cs-white,
+	--csd-table-row-br: $cs-gray-light-3,
+	--csd-table-prop-api-bg: $cs-gray-light-5,
+	--csd-table-helper-bg: $cs-gray-light-6,
+	--csd-table-head-row-bg: $cs-purple,
+	--csd-table-head-row-c: $cs-white,
+	--csd-table-backlog-bg: $cs-gray-medium-1,
+
+	--csd-dropdown-purple-bg: $cs-purple,
+	--csd-spinner-black-bg: $cs-black,
+	--csd-image-black-bg: $cs-black,
+	--csd-divider-br: $cs-gray-dark-5,
+	--csd-transparent: transparent,
+);
+
+// Every variable that uses main color needs to be set in #root as well
+#root {
+	//--cs-button-c: #{var(--main-c)};
+}
+
+// Here we transfer the variables from the map to the :root element
+@if($css4) {
+	.csd-theme-light {
+		@each $variable, $value in $lightVariables {
+			#{$variable}: $value;
+		}
+	}
+
+	.csd-theme-dark {
+		@each $variable, $value in $darkVariables {
+			#{$variable}: $value;
+		}
+	}
+}
+
+/*** HELPER FUNCTIONS ***/
+
+// change value type to string
+@function to-string($value) {
+	@return inspect($value);
+}
+
+/*** BACKGROUND COLOR MIXINS ***/
+
+/* SET BACKGROUND COLOR */
+// $variable: only CSS variable format
+// ex. @include sbg(--csd-button-bg);
+@mixin sbg($variable) {
+	background: map-get($variables, $variable);
+	@supports(--css: variables) {
+		background: unquote('var(' + $variable + ')');
+	}
+}
+
+/* BACKGROUND DARKEN */
+// $variable: CSS variable or SCSS variable [ex. var(--color), $blue-sf] - background color to be darkened
+// $opacity: opacity percentage of black background [value should be between 0 and 1; higher number means darker background]
+// $ie [optional]: any color format [ex. var(--color), $blue-sf, #000, black] - used to set fallback for IE11 when needed - background color to be darkened
+// ex. @include bgd(--csd-button-bg, 0.4);
+// ex. @include bgd(--csd-button-bg, 0.4, var(--main-c));
+@mixin bgd($variable, $opacity, $ie: $variable) {
+	@if (str-slice(to-string($ie), 1, 4) == 'var(') {
+		$length: str-length($ie) - 1;
+		$helper: str-slice($ie, 5, $length);
+		background: map-get($variables, $helper);
+	} @else if (str-slice(to-string($ie), 1, 2) == '--')  {
+		background: map-get($variables, $ie);
+	} @else {
+		background: $ie;
+	}
+
+	@supports(--css: variables) {
+		background: unquote('var(' + $variable + ')');
+		filter: brightness(1 - $opacity);
+	}
+}
+
+/* BACKGROUND LIGHTEN */
+// $variable: CSS variable or SCSS variable [ex. var(--color), $blue-sf] - background color to be lightened
+// $opacity: opacity percentage of white background [value should be between 0 and 1; higher number means lighter background]
+// $ie [optional]: any color format [ex. var(--color), $blue-sf, #000, black] - used to set fallback for IE11 when needed - background color to be lightened
+// ex. @include bgl(--csd-button-bg, 0.4);
+// ex. @include bgl(--csd-button-bg, 0.4, $blue-sf);
+@mixin bgl($variable, $opacity, $ie: $variable) {
+	@if (str-slice(to-string($ie), 1, 4) == 'var(') {
+		$length: str-length($ie) - 1;
+		$helper: str-slice($ie, 5, $length);
+		background: map-get($variables, $helper);
+	} @else if (str-slice(to-string($ie), 1, 2) == '--')  {
+		background: map-get($variables, $ie);
+	} @else {
+		background: $ie;
+	}
+
+	@supports(--css: variables) {
+		background: unquote('var(' + $variable + ')');
+		filter: brightness(1 + $opacity);
+	}
+}
+
+/*** TEXT COLOR MIXINS ***/
+
+/* SET TEXT COLOR */
+// $variable: only CSS variable format
+// ex. @include sc(--csd-button-c);
+@mixin sc($variable) {
+	color: map-get($variables, $variable);
+	@supports(--css: variables) {
+		color: unquote('var(' + $variable + ')');
+	}
+}
+
+/* COLOR DARKEN */
+// $variable: CSS variable or SCSS variable [ex. var(--color), $blue-sf] - color to be darkened
+// $opacity: opacity percentage of black background [value should be between 0 and 1; higher number means darker background]
+// $ie [optional]: any color format [ex. var(--color), $blue-sf, #000, black] - used to set fallback for IE11 when needed - color to be darkened
+// ex. @include cd(--csd-button-bg, 0.4);
+// ex. @include cd(--csd-button-bg, 0.4, $blue-sf);
+@mixin cd($variable, $opacity, $ie: $variable) {
+	@if (str-slice(to-string($ie), 1, 4) == 'var(') {
+		$length: str-length($ie) - 1;
+		$helper: str-slice($ie, 5, $length);
+		color: map-get($variables, $helper);
+	} @else if (str-slice(to-string($ie), 1, 2) == '--')  {
+		color: map-get($variables, $ie);
+	} @else {
+		color: $ie;
+	}
+
+	@supports(--css: variables) {
+		color: unquote('var(' + $variable + ')');
+		filter: brightness(1 - $opacity);
+	}
+}
+
+/* COLOR LIGHTEN */
+// $variable: CSS variable or SCSS variable [ex. var(--color), $blue-sf] - color to be lightened
+// $opacity: opacity percentage of white background [value should be between 0 and 1; higher number means lighter background]
+// $ie [optional]: any color format [ex. var(--color), $blue-sf, #000, black] - used to set fallback for IE11 when needed - color to be lightened
+// ex. @include cl(--csd-button-bg, 0.4);
+// ex. @include cl(--csd-button-bg, 0.4, $blue-sf);
+@mixin cl($variable, $opacity, $ie: $variable) {
+	@if (str-slice(to-string($ie), 1, 4) == 'var(') {
+		$length: str-length($ie) - 1;
+		$helper: str-slice($ie, 5, $length);
+		color: map-get($variables, $helper);
+	} @else if (str-slice(to-string($ie), 1, 2) == '--')  {
+		color: map-get($variables, $ie);
+	} @else {
+		color: $ie;
+	}
+
+	@supports(--css: variables) {
+		color: unquote('var(' + $variable + ')');
+		filter: brightness(1 + $opacity);
+	}
+}
+
+/*** SVG FILL MIXINS ***/
+/* SET FILL COLOR */
+// $variable: only CSS variable format
+// ex. @include sf(--csd-button-c);
+@mixin sf($variable) {
+	fill: map-get($variables, $variable);
+	@supports(--css: variables) {
+		fill: unquote('var(' + $variable + ')');
+	}
+}
+
+/* SVG FILL DARKEN */
+// $variable: CSS variable or SCSS variable [ex. var(--color), $blue-sf] - color to be darkened
+// $opacity: opacity percentage of black background [value should be between 0 and 1; higher number means darker background]
+// $ie [optional]: any color format [ex. var(--color), $blue-sf, #000, black] - used to set fallback for IE11 when needed - color to be darkened
+// ex. @include cd(var(--csd-button-bg), 0.4);
+// ex. @include cd(var(--csd-button-bg), 0.4, $blue-sf);
+@mixin fd($variable, $opacity, $ie: $variable) {
+	@if (str-slice(to-string($ie), 1, 4) == 'var(') {
+		$length: str-length($ie) - 1;
+		$helper: str-slice($ie, 5, $length);
+		fill: map-get($variables, $helper);
+	} @else if (str-slice(to-string($ie), 1, 2) == '--')  {
+		fill: map-get($variables, $ie);
+	} @else {
+		fill: $ie;
+	}
+
+	@supports(--css: variables) {
+		fill: unquote('var(' + $variable + ')');
+		filter: brightness(1 - $opacity);
+	}
+}
+
+/* SVG FILL LIGHTEN */
+// $variable: CSS variable or SCSS variable [ex. var(--color), $blue-sf] - color to be lightened
+// $opacity: opacity percentage of white background [value should be between 0 and 1; higher number means lighter background]
+// $ie [optional]: any color format [ex. var(--color), $blue-sf, #000, black] - used to set fallback for IE11 when needed - color to be lightened
+// ex. @include cl(var(--csd-button-bg), 0.4);
+// ex. @include cl(var(--csd-button-bg), 0.4, $blue-sf);
+@mixin fl($variable, $opacity, $ie: $variable) {
+	@if (str-slice(to-string($ie), 1, 4) == 'var(') {
+		$length: str-length($ie) - 1;
+		$helper: str-slice($ie, 5, $length);
+		fill: map-get($variables, $helper);
+	} @else if (str-slice(to-string($ie), 1, 2) == '--')  {
+		fill: map-get($variables, $ie);
+	} @else {
+		fill: $ie;
+	}
+
+	@supports(--css: variables) {
+		fill: unquote('var(' + $variable + ')');
+		filter: brightness(1 + $opacity);
+	}
+}
+
+
+/*** OTHER ***/
+
+/* HELPER MIXIN FOR IE FALLBACK */
+// Mixin temporally sets the $css4 variable to false, compiles the IE fallback, then makes the variable true again and compiles the css4 code
+// It should contain properties that use css4 variables (other than background and text color), otherwise there will be unnecessary duplication of properties.
+@mixin css4 {
+	$css4: false !global;
+	@content;
+	$css4: true !global;
+	@supports(--css: variables) {
+		@content;
+	}
+}
+
+/* CUSTOM VAR FUNCTION - borders, box-shadow, gradients... */
+// $variable: only CSS variable format - this color will be returned from function
+// $ie [optional]: any color format [ex. var(--color), $blue-sf, #000, black] - used to set fallback for IE11 when needed - color to be returned from function for IE only
+// to change border variable to new color it is necessary to define it within @css4 mixin [see example]
+// ex.
+// @include css4 {
+//	--border-c: #{var(--main-c)};
+//	border: 1px solid cvar(--border-c, var(--main-c));
+// }
+@function cvar($variable, $ie: $variable) {
+	@if($css4==false) {
+		@if (str-slice(to-string($ie), 1, 4) == 'var(') {
+			$length: str-length($ie) - 1;
+			$helper: str-slice($ie, 5, $length);
+			@return map-get($variables, $helper);
+		} @else if (str-slice(to-string($ie), 1, 2) == '--')  {
+			@return map-get($variables, $ie);
+		} @else {
+			@return $ie;
+		}
+	} @else {
+		@return unquote('var(' + $variable + ')');
+	}
 }

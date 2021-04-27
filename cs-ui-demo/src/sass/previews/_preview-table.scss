@@ -15,8 +15,8 @@
 
 .table-row {
 	display: flex;
-	background: var(--table-row-bg);
-	border-bottom: 1px solid var(--table-row-br);
+	background: var(--csd-table-row-bg);
+	border-bottom: 1px solid var(--csd-table-row-br);
 
 	.table-cell {
 		display: flex;
@@ -34,13 +34,13 @@
 		.api-arg {
 			margin: 0.125rem 0.5rem 0.1rem 0;
 			padding: 0 0.25rem;
-			background: var(--table-prop-api-bg);
+			background: var(--csd-table-prop-api-bg);
 			display: inline-table;
 		}
 	}
 
 	&.helper-prop-row {
-		background: var(--table-helper-bg);
+		background: var(--csd-table-helper-bg);
 
 		.cs-tooltip-wrapper {
 			height: 21px; // CSTooltip bug, remove after it is fixed
@@ -50,8 +50,8 @@
 }
 
 .table-header .table-row {
-	background: var(--table-head-row-bg);
-	color: var(--table-head-row-c);
+	background: var(--csd-table-head-row-bg);
+	color: var(--csd-table-head-row-c);
 
 	.table-cell {
 		padding: 0.25rem 1rem;
@@ -59,7 +59,7 @@
 }
 
 .backlog-table-wrapper .table-header .table-row {
-	background: var(--table-backlog-bg);
+	background: var(--csd-table-backlog-bg);
 }
 
 // END LEGACY PROP TABLE
@@ -77,16 +77,16 @@
 		display: block;
 		width: 100%;
 		max-width: 100%;
-		box-shadow: 0 1px 3px var(--cs-shadow-light), 0 1px 2px var(--cs-shadow-medium);
+		box-shadow: 0 1px 3px var(--csd-shadow-light), 0 1px 2px var(--csd-shadow-medium);
 		border: none;
 		border-radius: 0.25rem;
 
 		&-header {
 			border-radius: 0.25rem 0.25rem 0 0;
-			color: var(--prop-table-header-c);
-			background-color: var(--prop-table-header-bg);
 
 			.properties-table-cell {
+				color: var(--csd-prop-table-header-c) !important;
+				background-color: var(--csd-prop-table-header-bg) !important;
 				white-space: normal;
 
 				&:first-child {
@@ -106,17 +106,20 @@
 		.properties-table-header,
 		.properties-table-row {
 			display: table-row;
+			background: var(--csd-prop-table-bg);
 
 			&.properties-table-row-inherited,
 			&.properties-table-row-children {
 				background: repeating-linear-gradient(45deg,
-				var(--prop-table-row-stripes-bg-light), var(--prop-table-row-stripes-bg-light) 10px,
-				var(--prop-table-row-stripes-bg-dark) 10px, var(--prop-table-row-stripes-bg-dark) 20px);
+				var(--csd-prop-table-row-stripes-bg-light), var(--csd-prop-table-row-stripes-bg-light) 10px,
+				var(--csd-prop-table-row-stripes-bg-dark) 10px, var(--csd-prop-table-row-stripes-bg-dark) 20px);
 			}
 
 			.properties-table-cell {
 				display: table-cell;
 				white-space: normal;
+				background: var(--csd-transparent);
+				color: var(--csd-prop-table-c);
 
 				&:last-child {
 					width: 100%;
@@ -128,6 +131,14 @@
 					margin: 0 auto;
 				}
 			}
+		}
+
+		.properties-table-header .properties-table-cell {
+			border-bottom: 1px solid var(--csd-prop-table-br);
+		}
+
+		.properties-table-row:not(:first-of-type) .properties-table-cell {
+			border-top: 1px solid var(--csd-prop-table-br);
 		}
 	}
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Theme, useTheme } from '../context/ThemeContext';
 import { NavLink } from 'react-router-dom';
-import { CSImage, CSChip, CSTooltip, CSButton } from '@cloudsense/cs-ui-components';
+import { CSImage, CSChip, CSButton } from '@cloudsense/cs-ui-components';
 import { version } from '@cloudsense/cs-ui-components/package.json';
 
 const MainHeader: React.FC = () => {
@@ -37,21 +37,14 @@ const MainHeader: React.FC = () => {
 			</ul>
 			<div className="app-main-header-right">
 				<CSChip text={`v${version}`} />
-				<CSTooltip
-					width="10rem"
-					content="WIP: This will be used for dark theme implementation"
-					stylePosition="absolute"
-					position="bottom-center"
-				>
-					<CSButton
-						className="app-toggle-theme"
-						color={theme === Theme.Dark ? 'black' : 'orange'}
-						label="activity icon button"
-						labelHidden
-						iconName="light_bulb"
-						onClick={toggleTheme}
-					/>
-				</CSTooltip>
+				<CSButton
+					className="app-toggle-theme"
+					color={theme === Theme.Dark ? 'black' : 'orange'}
+					label="activity icon button"
+					labelHidden
+					iconName="light_bulb"
+					onClick={toggleTheme}
+				/>
 				<CSImage
 					type="logo"
 					height="2.25rem"

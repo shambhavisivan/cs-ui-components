@@ -15,7 +15,7 @@ class CSAlertPreview extends React.Component {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'CSAlert',
+				name: 'Alert',
 				examples: [
 					{
 						propName: 'variant',

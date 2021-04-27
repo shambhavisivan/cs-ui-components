@@ -1,7 +1,7 @@
 .preview-section-wrapper .preview-main-heading-wrapper {
 	padding: 2rem 3rem 3rem;
 	margin-bottom: 1rem;
-	border-bottom: 1px solid var(--divider-br);
+	border-bottom: 1px solid var(--csd-divider-br);
 
 	.preview-main-heading-row {
 		display: flex;
@@ -10,7 +10,7 @@
 		h1 {
 			margin: 0.5rem 0;
 			font-size: 3rem;
-			color: var(--preview-main-heading-title-c);
+			color: var(--csd-preview-main-heading-title-c);
 		}
 
 		.preview-accessibility-status-wrapper {
@@ -34,7 +34,7 @@
 		font-size: 1.25rem;
 		margin: unset;
 		font-weight: 400;
-		color: var(--preview-main-heading-subtitle-c);
+		color: var(--csd-preview-main-heading-subtitle-c);
 	}
 
 	+ .cs-btn-type-preview-wrapper + .property-section,

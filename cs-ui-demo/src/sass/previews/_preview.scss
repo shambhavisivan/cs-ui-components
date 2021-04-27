@@ -40,13 +40,14 @@
 
 	.getting-started-list {
 		background: transparent;
-		border-left: 1px solid var(--divider-br);
+		border-left: 1px solid var(--csd-divider-br);
 
 		.ui-component a {
-			color: var(--components-link-c);
+			color: var(--csd-components-link-c);
+
 			&:hover {
-				background: var(--components-link-hover-bg);
-				color: var(--components-link-hover-c);
+				background: var(--csd-components-link-hover-bg);
+				color: var(--csd-components-link-hover-c);
 			}
 		}
 	}
@@ -112,7 +113,7 @@
 				padding: 2rem 3rem;
 				margin-top: 3rem;
 				margin-bottom: 0;
-				background: var(--prop-custom-bg);
+				background: var(--csd-prop-custom-bg);
 			}
 
 			.component-example,
@@ -121,10 +122,10 @@
 				flex-direction: column;
 				border-radius: 0.25rem;
 				margin: 0.5rem 0 1rem;
-				background-color: var(--components-api-bg);
+				background-color: var(--csd-components-api-bg);
 				box-shadow:
-					0 1px 3px var(--cs-shadow-light),
-					0 1px 2px var(--cs-shadow-medium);
+					0 1px 3px var(--csd-shadow-light),
+					0 1px 2px var(--csd-shadow-medium);
 
 				.component-demo,
 				.api-demo {
@@ -151,7 +152,7 @@
 						height: 100%;
 
 						&:first-child {
-							border-right: 1px solid var(--divider-br);
+							border-right: 1px solid var(--csd-divider-br);
 						}
 					}
 
@@ -165,10 +166,10 @@
 			&.children {
 				padding: 2rem 3rem;
 				margin-top: 3rem;
-				background: var(--prop-custom-bg);
+				background: var(--csd-prop-custom-bg);
 
-				.info-text {
-					color: var(--prop-custom-c);
+				.component-info-text {
+					color: var(--csd-prop-custom-c);
 				}
 			}
 		}
