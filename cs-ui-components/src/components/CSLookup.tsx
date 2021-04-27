@@ -806,6 +806,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 							name="search"
 							className="cs-lookup-search-icon"
 							color="var(--cs-input-icon-fill)"
+							size="1rem"
 						/>
 					}
 					<input
@@ -863,6 +864,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 							rotate={dropdownOpen ? '180' : null}
 							className="cs-lookup-dropdown-icon"
 							color="var(--cs-input-icon-fill)"
+							size="1rem"
 						/>
 					}
 
