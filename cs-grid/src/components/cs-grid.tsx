@@ -1018,8 +1018,8 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 					columnDef.sort === 'SORT_ASC'
 						? 'asc'
 						: columnDef.sort === 'SORT_DESC'
-						? 'desc'
-						: '';
+							? 'desc'
+							: '';
 			}
 
 			this.addIfDefined(agGridColDef, 'width', columnDef.width);
@@ -1228,6 +1228,37 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				agGridColDef.cellEditor = 'noEditor';
 				agGridColDef.cellRenderer = 'booleanRenderer';
 				agGridColDef.cellClass = 'cs-grid-boolean-cell';
+
+				/* Suppresses keyboard default events for Tab and Space keys.
+					If grid cell is focused and Tab key is pressed focus will move to the checkbox.
+					From there checkbox checked value can be changed by pressing Space key.
+					If checkbox is already focused, next Tab keypress will focus the following grid cell.
+				*/
+				const settings: AgGridColDef = {};
+				settings.suppressKeyboardEvent = (params: SuppressKeyboardEventParams) => {
+					const event = params.event;
+					const focusedCell = (event.target as HTMLDivElement).closest('.ag-cell-focus');
+					const checkbox = focusedCell.querySelector('input[type=checkbox]');
+					let notFocused = true;
+
+					if (event.key === 'Tab') {
+						if (checkbox === document.activeElement) {
+							notFocused = false;
+						} else {
+							setTimeout(() => (checkbox as HTMLElement)?.focus(), 0);
+						}
+					} else if (event.key === ' ') {
+						// return focus to checkbox when space is pressed
+						setTimeout(() => (checkbox as HTMLElement)?.focus(), 100);
+					}
+
+					// if checkbox is already focused, focus next cell on tab
+					if (notFocused) {
+						return (event.key === 'Tab' || event.key === 'Space');
+					}
+				}
+
+				agGridColDef = { ...settings, ...agGridColDef };
 			}
 
 			if (columnDef.cellType === 'Date') {
