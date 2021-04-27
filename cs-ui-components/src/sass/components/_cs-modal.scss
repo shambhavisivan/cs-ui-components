@@ -154,9 +154,10 @@
 
 		.cs-modal-body {
 			font-size: 0.8125rem;
-			padding: var(--body-padding, 1rem);
+			padding: var(--cs-modal-body-padding, 1rem);
 			overflow: hidden;
 			overflow-y: auto;
+			min-height: var(--cs-modal-body-min-height, 0);
 			@include sbg(--cs-modal-bg);
 			@include sc(--cs-modal-c);
 
@@ -225,19 +226,10 @@
 			width: 90%;
 			max-width: none;
 			min-width: 40rem;
-
-			.cs-modal-body {
-				min-height: 10rem;
-			}
 		}
 
 		&.cs-modal-xlarge {
 			padding: 0.5rem 2rem 2rem;
-
-			.cs-modal-body {
-				flex: 1;
-				min-height: 10rem;
-			}
 		}
 	}
 }

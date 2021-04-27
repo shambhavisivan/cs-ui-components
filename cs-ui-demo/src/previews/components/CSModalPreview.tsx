@@ -883,6 +883,35 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 				name: 'Modal Body',
 				examples: [
 					{
+						propName: 'minHeight',
+						variations: [
+							{
+								primaryVariants: 'minHeight="10rem"',
+								component: <>
+									<CSButton label="Open Modal" onClick={() => this.openModal('minHeight')} />
+									<CSModal visible={this.state.visibleModal === 'minHeight'} animated>
+										<CSModalHeader title="Title" />
+										<CSModalBody minHeight="10rem">
+											Lorem ipsum dolor sit amet.
+										</CSModalBody>
+										<CSModalFooter>
+											<CSButton label="Close Modal" onClick={this.closeModal} />
+										</CSModalFooter>
+									</CSModal>
+								</>,
+								code: `<CSButton label="Open Modal" onClick={() => this.openModal('minHeight')} />
+								<CSModal visible={this.state.visibleModal === 'minHeight'} animated>
+									<CSModalHeader title="Title" />
+									<CSModalBody minHeight="10rem">
+										Lorem ipsum dolor sit amet.
+									</CSModalBody>
+									<CSModalFooter>
+										<CSButton label="Close Modal" onClick={this.closeModal} />
+									</CSModalFooter>
+								</CSModal>`
+							}
+						]
+					}, {
 						propName: 'padding',
 						variations: [
 							{
@@ -1165,6 +1194,11 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 				name: 'id',
 				types: ['string'],
 				description: 'Set the ID for the modal body.'
+			}, {
+				name: 'minHeight',
+				types: ['string'],
+				default: '\'0\'',
+				description: 'Set custom min-height for the modal body. (eg. 100px, 2rem, 50vh, etc.)'
 			}, {
 				name: 'padding',
 				types: ['string'],
