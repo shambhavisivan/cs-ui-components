@@ -84,6 +84,12 @@
 		}
 	}
 
+	.ag-pinned-left-cols-container > .ag-row
+	> .ag-cell:first-child > .ag-cell-wrapper
+	> .ag-cell-value {
+		overflow: visible;
+	}
+
 	.ag-selection-checkbox {
 		display: flex;
 		margin-left: -2px;
