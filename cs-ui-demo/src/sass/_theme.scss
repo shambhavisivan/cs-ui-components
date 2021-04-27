@@ -149,8 +149,8 @@ $lightVariables: (
 
 	--csd-prop-custom-bg: $cs-gray-light-3,
 	--csd-prop-custom-c: $cs-gray-dark-6,
-	--csd-prop-table-header-bg: $cs-purple,
-	--csd-prop-table-header-c: $cs-white,
+	--csd-prop-table-header-bg: $cs-purple !important,
+	--csd-prop-table-header-c: $cs-white !important,
 	--csd-prop-table-bg: $cs-white,
 	--csd-prop-table-c: $cs-gray-dark-2,
 	--csd-prop-table-br: $cs-gray-light-3,
@@ -179,7 +179,7 @@ $lightVariables: (
 	--csd-sidebar-input-bg: rgba($cs-white, 0.2),
 	--csd-sidebar-scroll-bg: rgba($cs-white, 0.2),
 	--csd-sidebar-link-hover-bg: rgba($cs-black,0.1),
-	--csd-sidebar-link-active-bg: rgba($cs-black,0.1),
+	--csd-sidebar-link-active-bg: rgba($cs-black,0.2),
 
 	// May need to remove these
 	--csd-table-row-bg: $cs-white,
@@ -277,13 +277,13 @@ $darkVariables: (
 	--csd-important-chip-bg: $cs-mint,
 	--csd-important-chip-c: $cs-gray-dark-1,
 
-	--csd-neutral-chip-bg: rgba(255, 255, 255,35%),
+	--csd-neutral-chip-bg: rgba($cs-white, 0.35),
 	--csd-neutral-chip-c: $cs-gray-dark-5,
 
 	--csd-prop-custom-bg: $cs-dark-theme-bg-2,
 	--csd-prop-custom-c: $cs-white,
-	--csd-prop-table-header-bg: $cs-purple,
-	--csd-prop-table-header-c: $cs-white,
+	--csd-prop-table-header-bg: $cs-purple !important,
+	--csd-prop-table-header-c: $cs-white !important,
 	--csd-prop-table-bg: $cs-dark-theme-bg-2,
 	--csd-prop-table-c: $cs-white,
 	--csd-prop-table-br: $cs-gray-dark-5,
@@ -326,7 +326,7 @@ $darkVariables: (
 	--csd-spinner-black-bg: $cs-black,
 	--csd-image-black-bg: $cs-black,
 	--csd-divider-br: $cs-gray-dark-5,
-	--csd-transparent: transparent,
+	--csd-transparent: transparent
 );
 
 // Every variable that uses main color needs to be set in #root as well
@@ -362,7 +362,7 @@ $darkVariables: (
 // $variable: only CSS variable format
 // ex. @include sbg(--csd-button-bg);
 @mixin sbg($variable) {
-	background: map-get($variables, $variable);
+	background: map-get($lightVariables, $variable);
 	@supports(--css: variables) {
 		background: unquote('var(' + $variable + ')');
 	}
@@ -378,9 +378,9 @@ $darkVariables: (
 	@if (str-slice(to-string($ie), 1, 4) == 'var(') {
 		$length: str-length($ie) - 1;
 		$helper: str-slice($ie, 5, $length);
-		background: map-get($variables, $helper);
+		background: map-get($lightVariables, $helper);
 	} @else if (str-slice(to-string($ie), 1, 2) == '--')  {
-		background: map-get($variables, $ie);
+		background: map-get($lightVariables, $ie);
 	} @else {
 		background: $ie;
 	}
@@ -401,9 +401,9 @@ $darkVariables: (
 	@if (str-slice(to-string($ie), 1, 4) == 'var(') {
 		$length: str-length($ie) - 1;
 		$helper: str-slice($ie, 5, $length);
-		background: map-get($variables, $helper);
+		background: map-get($lightVariables, $helper);
 	} @else if (str-slice(to-string($ie), 1, 2) == '--')  {
-		background: map-get($variables, $ie);
+		background: map-get($lightVariables, $ie);
 	} @else {
 		background: $ie;
 	}
@@ -420,7 +420,7 @@ $darkVariables: (
 // $variable: only CSS variable format
 // ex. @include sc(--csd-button-c);
 @mixin sc($variable) {
-	color: map-get($variables, $variable);
+	color: map-get($lightVariables, $variable);
 	@supports(--css: variables) {
 		color: unquote('var(' + $variable + ')');
 	}
@@ -436,9 +436,9 @@ $darkVariables: (
 	@if (str-slice(to-string($ie), 1, 4) == 'var(') {
 		$length: str-length($ie) - 1;
 		$helper: str-slice($ie, 5, $length);
-		color: map-get($variables, $helper);
+		color: map-get($lightVariables, $helper);
 	} @else if (str-slice(to-string($ie), 1, 2) == '--')  {
-		color: map-get($variables, $ie);
+		color: map-get($lightVariables, $ie);
 	} @else {
 		color: $ie;
 	}
@@ -459,9 +459,9 @@ $darkVariables: (
 	@if (str-slice(to-string($ie), 1, 4) == 'var(') {
 		$length: str-length($ie) - 1;
 		$helper: str-slice($ie, 5, $length);
-		color: map-get($variables, $helper);
+		color: map-get($lightVariables, $helper);
 	} @else if (str-slice(to-string($ie), 1, 2) == '--')  {
-		color: map-get($variables, $ie);
+		color: map-get($lightVariables, $ie);
 	} @else {
 		color: $ie;
 	}
@@ -477,7 +477,7 @@ $darkVariables: (
 // $variable: only CSS variable format
 // ex. @include sf(--csd-button-c);
 @mixin sf($variable) {
-	fill: map-get($variables, $variable);
+	fill: map-get($lightVariables, $variable);
 	@supports(--css: variables) {
 		fill: unquote('var(' + $variable + ')');
 	}
@@ -493,9 +493,9 @@ $darkVariables: (
 	@if (str-slice(to-string($ie), 1, 4) == 'var(') {
 		$length: str-length($ie) - 1;
 		$helper: str-slice($ie, 5, $length);
-		fill: map-get($variables, $helper);
+		fill: map-get($lightVariables, $helper);
 	} @else if (str-slice(to-string($ie), 1, 2) == '--')  {
-		fill: map-get($variables, $ie);
+		fill: map-get($lightVariables, $ie);
 	} @else {
 		fill: $ie;
 	}
@@ -516,9 +516,9 @@ $darkVariables: (
 	@if (str-slice(to-string($ie), 1, 4) == 'var(') {
 		$length: str-length($ie) - 1;
 		$helper: str-slice($ie, 5, $length);
-		fill: map-get($variables, $helper);
+		fill: map-get($lightVariables, $helper);
 	} @else if (str-slice(to-string($ie), 1, 2) == '--')  {
-		fill: map-get($variables, $ie);
+		fill: map-get($lightVariables, $ie);
 	} @else {
 		fill: $ie;
 	}
@@ -558,9 +558,9 @@ $darkVariables: (
 		@if (str-slice(to-string($ie), 1, 4) == 'var(') {
 			$length: str-length($ie) - 1;
 			$helper: str-slice($ie, 5, $length);
-			@return map-get($variables, $helper);
+			@return map-get($lightVariables, $helper);
 		} @else if (str-slice(to-string($ie), 1, 2) == '--')  {
-			@return map-get($variables, $ie);
+			@return map-get($lightVariables, $ie);
 		} @else {
 			@return $ie;
 		}

@@ -39,15 +39,17 @@
 	}
 
 	.getting-started-list {
-		background: transparent;
-		border-left: 1px solid var(--csd-divider-br);
+		@include sbg(--csd-transparent);
+		@include css4 {
+			border-left: 1px solid cvar(--csd-divider-br);
+		}
 
 		.ui-component a {
-			color: var(--csd-components-link-c);
+			@include sc(--csd-components-link-c);
 
 			&:hover {
-				background: var(--csd-components-link-hover-bg);
-				color: var(--csd-components-link-hover-c);
+				@include sc(--csd-components-link-hover-c);
+				@include sbg(--csd-components-link-hover-bg);
 			}
 		}
 	}
@@ -113,7 +115,7 @@
 				padding: 2rem 3rem;
 				margin-top: 3rem;
 				margin-bottom: 0;
-				background: var(--csd-prop-custom-bg);
+				@include sbg(--csd-prop-custom-bg);
 			}
 
 			.component-example,
@@ -122,10 +124,10 @@
 				flex-direction: column;
 				border-radius: 0.25rem;
 				margin: 0.5rem 0 1rem;
-				background-color: var(--csd-components-api-bg);
-				box-shadow:
-					0 1px 3px var(--csd-shadow-light),
-					0 1px 2px var(--csd-shadow-medium);
+				@include sbg(--csd-components-api-bg);
+				@include css4 {
+					box-shadow: 0 1px 3px cvar(--csd-shadow-light), 0 1px 2px cvar(--csd-shadow-medium);
+				}
 
 				.component-demo,
 				.api-demo {
@@ -152,7 +154,9 @@
 						height: 100%;
 
 						&:first-child {
-							border-right: 1px solid var(--csd-divider-br);
+							@include css4 {
+								border-right: 1px solid cvar(--csd-divider-br);
+							}
 						}
 					}
 
@@ -166,10 +170,10 @@
 			&.children {
 				padding: 2rem 3rem;
 				margin-top: 3rem;
-				background: var(--csd-prop-custom-bg);
+				@include sbg(--csd-prop-custom-bg);
 
 				.component-info-text {
-					color: var(--csd-prop-custom-c);
+					@include sc(--csd-prop-custom-c);
 				}
 			}
 		}

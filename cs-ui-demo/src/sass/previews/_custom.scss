@@ -19,7 +19,9 @@
 	&.textarea-demo,
 	&.toggle-demo {
 		.custom-class {
-			border: 3px solid var(--csd-custom-br);
+			@include css4 {
+				border: 3px solid cvar(--csd-custom-br);
+			}
 		}
 	}
 
@@ -38,7 +40,7 @@
 	&.toast-demo,
 	&.tooltip-demo {
 		.custom-class {
-			background-color: var(--csd-custom-bg);
+			@include sbg(--csd-custom-bg);
 		}
 	}
 
@@ -47,7 +49,7 @@
 		flex-basis: 10rem;
 
 		.black-background {
-			background-color: var(--csd-spinner-black-bg);
+			@include sbg(--csd-spinner-black-bg);
 		}
 	}
 
@@ -61,28 +63,31 @@
 	}
 
 	&.tab-group-demo .custom-tab-class {
-		background-color: var(--csd-custom-alt-bg);
+		@include sbg(--csd-custom-alt-bg);
 	}
 
 	&.button-demo,
 	&.dropdown-demo,
 	&.button-group-demo {
 		.purple-background {
-			background-color: var(--csd-dropdown-purple-bg);
 			padding: 1rem;
+			@include sbg(--csd-dropdown-purple-bg);
 		}
 	}
 
 	&.icon-demo .custom-class {
-		fill: var(--csd-icons-custom-fill);
+		@include sf(--csd-icons-custom-fill);
+
 	}
 
 	&.image-demo .black-background {
-		background-color: var(--csd-image-black-bg);
+		@include sbg(--csd-image-black-bg);
 	}
 
 	&.divider-demo .custom-class {
-		border-color: var(--csd-custom-br);
+		@include css4 {
+			border-color: cvar(--csd-custom-br);
+		}
 	}
 	&.sidebar-demo,
 	&.sidebar-tab-demo {
@@ -93,11 +98,13 @@
 		}
 
 		.custom-sidebar-class {
-			box-shadow: 0 0 3px var(--csd-custom-purple-bg);
+			@include css4 {
+				box-shadow: 0 0 3px cvar(--csd-custom-purple-bg);
+			}
 		}
 
 		.custom-sidebar-tab-class {
-			background-color: var(--csd-custom-alt-bg);
+			@include sbg(--csd-custom-alt-bg);
 		}
 	}
 }
@@ -107,9 +114,9 @@
 	min-height: 315px;
 	overflow-x: auto;
 	border-radius: 0.25rem;
-	box-shadow:
-		0 1px 3px var(--csd-shadow-light),
-		0 1px 2px var(--csd-shadow-medium);
+	@include css4 {
+		box-shadow:	0 1px 3px cvar(--csd-shadow-light), 0 1px 2px cvar(--csd-shadow-medium);
+	}
 
 	.cs-table {
 		min-width: fit-content;
@@ -117,8 +124,8 @@
 		border-radius: 0.25rem;
 
 		.cs-table-header {
-			background-color: var(--csd-button-preview-table-bg);
 			height: 56px;
+			@include sbg(--csd-button-preview-table-bg);
 
 			.cs-table-cell {
 				font-weight: 700;
@@ -126,29 +133,32 @@
 				align-items: center;
 				padding: 1rem;
 				font-size: 0.8125rem;
-				color: var(--csd-button-preview-c);
-				background: var(--csd-button-preview-table-bg);
-				border-bottom-color: var(--csd-button-preview-br);
+				@include sc(--csd-button-preview-c);
+				@include sbg(--csd-button-preview-table-bg);
+				@include css4 {
+					border-bottom-color: var(--csd-button-preview-br);
+				}
 			}
 		}
 
 		.cs-table-body .cs-table-row {
 			.cs-table-cell {
 				padding: 1rem;
-				color: var(--csd-button-preview-c);
-				background: var(--csd-button-preview-table-bg);
-				border-top-color: var(--csd-button-preview-br);
-
+				@include sc(--csd-button-preview-c);
+				@include sbg(--csd-button-preview-table-bg);
+				@include css4 {
+					border-top-color: var(--csd-button-preview-br);
+				}
 			}
 
 			&:hover .cs-table-cell,
 			&:focus .cs-table-cell {
-				background: var(--csd-button-preview-table-bg);
+				@include sbg(--csd-button-preview-table-bg);
 			}
 
 			&:last-child {
 				.cs-table-cell:nth-child(2n+2) {
-					background-color: var(--csd-button-preview-cell-bg);
+					@include sbg(--csd-button-preview-cell-bg);
 				}
 			}
 		}
@@ -165,20 +175,22 @@
 
 .cs-modal-overlay {
 	&.custom-class .cs-modal-wrapper {
-		background-color: var(--csd-custom-bg);
+		@include sbg(--csd-custom-bg);
 	}
 
 	.cs-modal {
 		.cs-modal-header.custom-header-class {
-			background-color: var(--csd-custom-purple-bg);
+			@include sbg(--csd-custom-purple-bg);
 		}
 
 		.cs-modal-body.custom-body-class {
-			background-color: var(--csd-custom-alt-bg);
+			@include sbg(--csd-custom-alt-bg);
 		}
 
 		.cs-modal-footer.custom-footer-class {
-			border: 3px solid var(--csd-custom-purple-bg);
+			@include css4 {
+				border: 3px solid cvar(--csd-custom-purple-bg);
+			}
 		}
 	}
 }

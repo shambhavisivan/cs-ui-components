@@ -18,14 +18,14 @@ body,
 	display: flex;
 	justify-content: flex-end;
 	flex: 1;
-	background: var(--csd-app-body-bg);
 	overflow: hidden;
+	@include sbg(--csd-app-body-bg);
 }
 
 h2 {
-	color: var(--csd-h2-c);
+	@include sc(--csd-h2-c);
 }
 
 h3 {
-	color: var(--csd-h3-c);
+	@include sc(--csd-h3-c);
 }

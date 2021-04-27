@@ -15,8 +15,10 @@
 
 .table-row {
 	display: flex;
-	background: var(--csd-table-row-bg);
-	border-bottom: 1px solid var(--csd-table-row-br);
+	@include sbg(--csd-table-row-bg);
+	@include css4 {
+		border-bottom: 1px solid cvar(--csd-table-row-br);
+	}
 
 	.table-cell {
 		display: flex;
@@ -34,13 +36,13 @@
 		.api-arg {
 			margin: 0.125rem 0.5rem 0.1rem 0;
 			padding: 0 0.25rem;
-			background: var(--csd-table-prop-api-bg);
 			display: inline-table;
+			@include sbg(--csd-table-prop-api-bg);
 		}
 	}
 
 	&.helper-prop-row {
-		background: var(--csd-table-helper-bg);
+		@include sbg(--csd-table-helper-bg);
 
 		.cs-tooltip-wrapper {
 			height: 21px; // CSTooltip bug, remove after it is fixed
@@ -50,8 +52,8 @@
 }
 
 .table-header .table-row {
-	background: var(--csd-table-head-row-bg);
-	color: var(--csd-table-head-row-c);
+	@include sc(--csd-table-head-row-c);
+	@include sbg(--csd-table-head-row-bg);
 
 	.table-cell {
 		padding: 0.25rem 1rem;
@@ -59,7 +61,7 @@
 }
 
 .backlog-table-wrapper .table-header .table-row {
-	background: var(--csd-table-backlog-bg);
+	@include sbg(--csd-table-backlog-bg);
 }
 
 // END LEGACY PROP TABLE
@@ -77,17 +79,19 @@
 		display: block;
 		width: 100%;
 		max-width: 100%;
-		box-shadow: 0 1px 3px var(--csd-shadow-light), 0 1px 2px var(--csd-shadow-medium);
 		border: none;
 		border-radius: 0.25rem;
+		@include css4 {
+			box-shadow: 0 1px 3px cvar(--csd-shadow-light), 0 1px 2px cvar(--csd-shadow-medium);
+		}
 
 		&-header {
 			border-radius: 0.25rem 0.25rem 0 0;
 
 			.properties-table-cell {
-				color: var(--csd-prop-table-header-c) !important;
-				background-color: var(--csd-prop-table-header-bg) !important;
 				white-space: normal;
+				@include sc(--csd-prop-table-header-c);
+				@include sbg(--csd-prop-table-header-bg);
 
 				&:first-child {
 					border-top-left-radius: 0.25rem;
@@ -106,20 +110,22 @@
 		.properties-table-header,
 		.properties-table-row {
 			display: table-row;
-			background: var(--csd-prop-table-bg);
+			@include sbg(--csd-prop-table-bg);
 
 			&.properties-table-row-inherited,
 			&.properties-table-row-children {
-				background: repeating-linear-gradient(45deg,
-				var(--csd-prop-table-row-stripes-bg-light), var(--csd-prop-table-row-stripes-bg-light) 10px,
-				var(--csd-prop-table-row-stripes-bg-dark) 10px, var(--csd-prop-table-row-stripes-bg-dark) 20px);
+				@include css4 {
+					background: repeating-linear-gradient(45deg,
+					cvar(--csd-prop-table-row-stripes-bg-light), var(--csd-prop-table-row-stripes-bg-light) 10px,
+					cvar(--csd-prop-table-row-stripes-bg-dark) 10px, var(--csd-prop-table-row-stripes-bg-dark) 20px);
+				}
 			}
 
 			.properties-table-cell {
 				display: table-cell;
 				white-space: normal;
-				background: var(--csd-transparent);
-				color: var(--csd-prop-table-c);
+				@include sc(--csd-prop-table-c);
+				@include sbg(--csd-transparent);
 
 				&:last-child {
 					width: 100%;
@@ -134,11 +140,15 @@
 		}
 
 		.properties-table-header .properties-table-cell {
-			border-bottom: 1px solid var(--csd-prop-table-br);
+			@include css4 {
+				border-bottom: 1px solid cvar(--csd-prop-table-br);
+			}
 		}
 
 		.properties-table-row:not(:first-of-type) .properties-table-cell {
-			border-top: 1px solid var(--csd-prop-table-br);
+			@include css4 {
+				border-top: 1px solid cvar(--csd-prop-table-br);
+			}
 		}
 	}
 }

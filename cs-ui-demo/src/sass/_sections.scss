@@ -21,24 +21,28 @@
 		}
 
 		i {
-			background: var(--csd-important-chip-bg);
-			color: var(--csd-important-chip-c);
+			@include sc(--csd-important-chip-c);
+			@include sbg(--csd-important-chip-bg);
 		}
 
 		em {
-			background: var(--csd-neutral-chip-bg);
-			color: var(--csd-neutral-chip-c);
-			border: 1px solid var(--csd-neutral-chip-c);
+			@include sc(--csd-neutral-chip-c);
+			@include sbg(--csd-neutral-chip-bg);
+			@include css4 {
+				border: 1px solid cvar(--csd-neutral-chip-c);
+			}
 		}
 
 		pre {
 			max-width: max-content;
 			padding: 1rem 1.5rem;
-			background: var(--csd-release-notes-code-snippet-bg);
-			color: var(--csd-code-c);
 			border-radius: 0.25rem;
-			border: 1px solid var(--csd-prop-code-br);
 			white-space: break-spaces;
+			@include sc(--csd-code-c);
+			@include sbg(--csd-release-notes-code-snippet-bg);
+			@include css4 {
+				border: 1px solid cvar(--csd-prop-code-br);
+			}
 
 			* {
 				font-family: monospace;
@@ -61,42 +65,50 @@
 				border-radius: 15rem;
 				font-size: 0.75rem;
 				line-height: 1;
-				color: var(--csd-access-chip-c);
-				background: var(--csd-access-chip-bg);
-				border: 1px solid var(--csd-access-chip-br);
 				position: relative;
 				bottom: 1px;
+				@include sc(--csd-access-chip-c);
+				@include sbg(--csd-access-chip-bg);
+				@include css4 {
+					border: 1px solid cvar(--csd-access-chip-br);
+				}
 			}
 
 			strong + em {
-				color: var(--csd-access-chip-strong-em-c);
-				border-color: var(--csd-access-chip-strong-em-br);
-				background: var(--csd-access-chip-strong-em-bg);
 				font-style: normal;
+				@include sc(--csd-access-chip-strong-em-c);
+				@include sbg(--csd-access-chip-strong-em-bg);
+				@include css4 {
+					border-color: cvar(--csd-access-chip-strong-em-br);
+				}
 			}
 
 			strong + strong {
-				background: var(--csd-access-chip-strong-bg);
-				border-color: var(--csd-access-chip-strong-br);
+				@include sbg(--csd-access-chip-strong-bg);
+				@include css4 {
+					border-color: cvar(--csd-access-chip-strong-br);
+				}
 			}
 		}
 
 		a {
-			color: var(--csd-access-link-c);
 			padding: 0 2px;
 			border-radius: 0.25rem;
+			@include sc(--csd-access-link-c);
 
 			&:hover {
-				color: var(--csd-access-link-hover-c);
+				@include sc(--csd-access-link-hover-c);
 			}
 
 			&:focus {
 				outline: none;
-				box-shadow: 0 0 3px var(--csd-access-link-c);
+				@include css4 {
+					box-shadow: 0 0 3px cvar(--csd-access-link-c);
+				}
 			}
 
 			&:active {
-				color: var(--csd-access-link-active-c);
+				@include sc(--csd-access-link-active-c);
 			}
 		}
 	}
@@ -114,16 +126,18 @@
 			margin: 1.5rem 0;
 			padding-block-end: 1rem;
 			font-size: 3rem;
-			color: var(--csd-access-title-c);
+			@include sc(--csd-access-title-c);
 		}
 
 		h2 {
 			padding: 0 0 1.5rem;
 			margin: 1.5rem 0;
 			font-size: 1.375rem;
-			border-bottom: 1px solid var(--csd-divider-br);
-			color: var(--csd-access-subtitle-c);
 			font-weight: 700;
+			@include sc(--csd-access-subtitle-c);
+			@include css4 {
+				border-bottom: 1px solid cvar(--csd-divider-br);
+			}
 		}
 
 		h2:not(:first-of-type) {
@@ -133,7 +147,7 @@
 		h3,
 		h4 {
 			margin: 0.5rem 0;
-			color: var(--csd-access-h-c);
+			@include sc(--csd-access-h-c);
 		}
 
 		h3 {
@@ -145,7 +159,7 @@
 		}
 
 		li, p {
-			color: var(--csd-access-c);
+			@include sc(--csd-access-c);
 		}
 
 		> ul {
@@ -225,10 +239,14 @@
 		border-radius: 0.25rem;
 		outline: 0;
 		overflow: hidden;
-		box-shadow: 0 1px 3px var(--csd-shadow-light), 0 1px 2px var(--csd-shadow-medium);
+		@include css4 {
+			box-shadow: 0 1px 3px cvar(--csd-shadow-light), 0 1px 2px cvar(--csd-shadow-medium);
+		}
 
 		&:focus {
-			box-shadow: 0 0 3px var(--csd-colors-grid-focus-shadow);
+			@include css4 {
+				box-shadow: 0 0 3px cvar(--csd-colors-grid-focus-shadow);
+			}
 		}
 	}
 
@@ -242,10 +260,12 @@
 		font-size: 0.875rem;
 		border-radius: 0 0 0.25rem 0.25rem;
 		overflow: hidden;
-		box-shadow: 0 1px 3px var(--csd-shadow-light), 0 1px 2px var(--csd-shadow-medium);
 		text-align: center;
-		background: var(--csd-colors-grid-bg);
-		color: var(--csd-colors-grid-c);
+		@include sc(--csd-colors-grid-c);
+		@include sbg(--csd-colors-grid-bg);
+		@include css4 {
+			box-shadow: 0 1px 3px cvar(--csd-shadow-light), 0 1px 2px cvar(--csd-shadow-medium);
+		}
 
 		h4 {
 			display: block;
@@ -260,7 +280,7 @@
 		margin: 0 0 0.5rem 0;
 		width: 100%;
 		font-weight: normal;
-		color: var(--csd-colors-grid-name-c);
+		@include sc(--csd-colors-grid-name-c);
 	}
 }
 
@@ -274,9 +294,11 @@
 	.icons-search-wrapper {
 		position: relative;
 		width: 100%;
-		background: var(--csd-icons-search-field-bg);
-		box-shadow: 0 1px 3px var(--csd-shadow-light), 0 1px 2px var(--csd-shadow-medium);
 		padding-inline-start: 2rem;
+		@include sbg(--csd-icons-search-field-bg);
+		@include css4 {
+			box-shadow: 0 1px 3px cvar(--csd-shadow-light), 0 1px 2px cvar(--csd-shadow-medium);
+		}
 
 		> .cs-icon {
 			position: absolute;
@@ -285,7 +307,7 @@
 			top: 1rem;
 			left: 3.25rem;
 			pointer-events: none;
-			fill: var(--csd-icon-fill);
+			@include sf(--csd-icon-fill);
 		}
 
 		.icons-search {
@@ -294,11 +316,11 @@
 			height: 3rem;
 			border: none;
 			font-size: 1rem;
-			color: var(--csd-icons-search-field-c);
-			background: transparent;
+			@include sc(--csd-icons-search-field-c);
+			@include sbg(--csd-transparent);
 
 			&::placeholder {
-				color: var(--csd-icons-search-field-placeholder-c);
+				@include sc(--csd-icons-search-field-placeholder-c);
 			}
 
 			&:focus,
@@ -369,8 +391,10 @@
 			height: 128px;
 			padding: 1rem;
 			border-radius: 0.25rem;
-			background: var(--csd-icons-container-bg);
-			box-shadow: 0 1px 3px var(--csd-shadow-light), 0 1px 2px var(--csd-shadow-medium);
+			@include sbg(--csd-icons-container-bg);
+			@include css4 {
+				box-shadow: 0 1px 3px cvar(--csd-shadow-light), 0 1px 2px cvar(--csd-shadow-medium);
+			}
 
 			> div {
 				padding-bottom: 1rem;
@@ -383,7 +407,7 @@
 
 					g,
 					path {
-						fill: var(--csd-icon-fill);
+						@include sf(--csd-icon-fill);
 					}
 				}
 			}
@@ -394,7 +418,7 @@
 				overflow: hidden;
 				word-break: break-all;
 				text-align: center;
-				color: var(--csd-icons-paragraph-c);
+				@include sc(--csd-icons-paragraph-c);
 			}
 		}
 	}

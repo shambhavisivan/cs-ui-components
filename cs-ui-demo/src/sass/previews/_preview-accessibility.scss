@@ -29,11 +29,11 @@
 			display: block;
 			width: 100%;
 			max-width: 100%;
-			box-shadow:
-				0 1px 3px var(--csd-shadow-light),
-				0 1px 2px var(--csd-shadow-medium);
 			border: none;
 			border-radius: 0.25rem;
+			@include css4 {
+				box-shadow:	0 1px 3px cvar(--csd-shadow-light),	0 1px 2px cvar(--csd-shadow-medium);
+			}
 
 			.accessibility-table-body {
 				display: table-row-group;
@@ -44,15 +44,19 @@
 					.accessibility-table-cell {
 						display: table-cell;
 						padding: 0.75rem;
-						background: var(--csd-prop-table-bg);
-						color: var(--csd-prop-table-c);
-						border-top-color: var(--csd-prop-table-br);
+						@include sc(--csd-prop-table-c);
+						@include sbg(--csd-prop-table-bg);
+						@include css4 {
+							border-top-color: cvar(--csd-prop-table-br);
+						}
 
 						&:first-child {
 							vertical-align: top;
-							color: var(--csd-access-table-header-c);
-							background-color: var(--csd-access-table-header-bg);
-							border-top-color: var(--csd-access-table-header-br);
+							@include sc(--csd-access-table-header-c);
+							@include sbg(--csd-access-table-header-bg);
+							@include css4 {
+								border-top-color: cvar(--csd-access-table-header-br);
+							}
 						}
 
 						&:last-child {

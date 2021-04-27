@@ -2,7 +2,6 @@
 .release-notes code,
 code.inline-code {
 	display: inline-block;
-	background-color: var(--csd-prop-code-bg);
 	border: 1px solid var(--csd-prop-code-br);
 	font-size: 0.8125rem;
 	border-radius: 0.25rem;
@@ -10,16 +9,20 @@ code.inline-code {
 	line-height: 1.25rem;
 	font-family: "Courier New", monospace !important;
 	margin-right: 0.5rem;
-	color: var(--csd-prop-code-c);
 	cursor: default;
+	@include sc(--csd-prop-code-c);
+	@include sbg(--csd-prop-code-bg);
+	@include css4 {
+		border: 1px solid cvar(--csd-prop-code-br);
+	}
 
 	&.inline-code-basic {
-		background-color: var(--csd-prop-code-custom-bg);
+		@include sbg(--csd-prop-code-custom-bg);
 	}
 
 	&.inline-code-custom {
-		background-color: var(--csd-prop-code-custom-bg);
 		display: flex;
+		@include sbg(--csd-prop-code-custom-bg);
 
 		.cs-icon {
 			align-self: center;
@@ -57,5 +60,5 @@ code.inline-code {
 .getting-started :not(pre) code,
 .release-notes code {
 	margin-right: 0;
-	background-color: var(--csd-prop-code-custom-bg);
+	@include sbg(--csd-prop-code-custom-bg);
 }
