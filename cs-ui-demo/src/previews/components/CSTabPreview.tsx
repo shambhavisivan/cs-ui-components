@@ -78,80 +78,36 @@ class CSTabPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'active',
-						types: ['string'],
-						description: 'Control the active state.'
-					}, {
 						name: 'children',
-						types: ['any'],
-						description: 'This component supports custom content passed as children.'
+						customTypes: [{
+							name: 'CSTabGroupChildren',
+							types: ['<CSTab />', 'any']
+						}],
+						description: 'This component is designed to support CSTab as a child.'
 					}, {
 						name: 'className',
 						types: ['string'],
-						description: 'Apply custom CSS classes to the tab.'
-					}, {
-						name: 'disabled',
-						types: ['boolean'],
-						default: 'false',
-						description: 'Disable the tab.'
-					}, {
-						name: 'iconOrigin',
-						customTypes: [{
-							name: 'CSIconOrigin',
-							types: ['\'slds\'', '\'cs\'']
-						}],
-						default: '\'slds\'',
-						description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
+						description: 'Apply custom CSS classes to the tab group.'
 					}, {
 						name: 'id',
 						types: ['string'],
-						description: 'Set the ID for the tab.'
+						description: 'Set the ID for the tab group.'
 					}, {
-						name: 'onClick',
-						types: ['(value) => any'],
-						description: 'Handler method for the click event.'
-					}, {
-						name: 'routerLink',
-						types: ['Element'],
-						description: 'Define a React Router NavLink or Link component to be rendered instead of the tab.'
-					}, {
-						name: 'status',
-						customTypes: [{
-							name: 'CSTabStatus',
-							types: [
-								'\'initial\'',
-								'\'error\'',
-								'\'warning\'',
-								'\'success\''
-							]
-						}],
-						default: '\'initial\'',
-						description: 'Set the color and the icon variant depending on status.'
-					}, {
-						name: 'tabIcon',
+						name: 'listName',
 						types: ['string'],
-						description: 'Override the default icon defined by the variant.'
+						description: 'Override the default aria-label value.'
 					}, {
-						name: 'name',
-						types: ['string'],
-						description: 'Set the tab name.'
-					}, {
-						name: 'tooltipContent',
-						types: ['string'],
-						description: 'Set the tooltip content and replace the icon with a tooltip. Tooltip icons will match tab status icons.'
-					}, {
-						name: 'parentVariant',
-						required: 'CSTabGroup',
+						name: 'variant',
 						customTypes: [{
 							name: 'CSTabGroupVariant',
 							types: ['\'normal\'', '\'large\'']
 						}],
 						default: '\'normal\'',
-						description: 'Set the tab variant.'
+						description: 'Set the tab group variant.'
 					}, {
 						name: '[key: string]',
 						types: ['any'],
-						description: 'Spreads the rest of the props to the tab button or router link.'
+						description: 'Spreads the rest of the props to the tab group div wrapper.'
 					}
 				]
 			}, {
@@ -477,6 +433,22 @@ class CSTabPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'width',
+						variations: [
+							{
+								component: <CSTabGroup>
+									<CSTab name="Tab One" width="10rem" />
+									<CSTab name="Tab Two" />
+									<CSTab name="Tab Three" />
+								</CSTabGroup>,
+								code: `<CSTabGroup>
+									<CSTab name="Tab One" />
+									<CSTab name="Tab Two" />
+									<CSTab name="Tab Three" />
+								</CSTabGroup>`
+							}
+						]
+					}, {
 						propName: 'children',
 						description: 'CSTab supports custom content provided as children, except for button elements.',
 						variations: [
@@ -501,36 +473,85 @@ class CSTabPreview extends React.Component {
 				],
 				properties: [
 					{
+						name: 'active',
+						types: ['string'],
+						description: 'Control the active state.'
+					}, {
 						name: 'children',
-						customTypes: [{
-							name: 'CSTabGroupChildren',
-							types: ['<CSTab />', 'any']
-						}],
-						description: 'This component is designed to support CSTab as a child.'
+						types: ['any'],
+						description: 'This component supports custom content passed as children.'
 					}, {
 						name: 'className',
 						types: ['string'],
-						description: 'Apply custom CSS classes to the tab group.'
+						description: 'Apply custom CSS classes to the tab.'
+					}, {
+						name: 'disabled',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Disable the tab.'
+					}, {
+						name: 'iconOrigin',
+						customTypes: [{
+							name: 'CSIconOrigin',
+							types: ['\'slds\'', '\'cs\'']
+						}],
+						default: '\'slds\'',
+						description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
 					}, {
 						name: 'id',
 						types: ['string'],
-						description: 'Set the ID for the tab group.'
+						description: 'Set the ID for the tab.'
 					}, {
-						name: 'listName',
+						name: 'onClick',
+						types: ['(value) => any'],
+						description: 'Handler method for the click event.'
+					}, {
+						name: 'routerLink',
+						types: ['Element'],
+						description: 'Define a React Router NavLink or Link component to be rendered instead of the tab.'
+					}, {
+						name: 'status',
+						customTypes: [{
+							name: 'CSTabStatus',
+							types: [
+								'\'initial\'',
+								'\'error\'',
+								'\'warning\'',
+								'\'success\''
+							]
+						}],
+						default: '\'initial\'',
+						description: 'Set the color and the icon variant depending on status.'
+					}, {
+						name: 'tabIcon',
 						types: ['string'],
-						description: 'Override the default aria-label value.'
+						description: 'Override the default icon defined by the variant.'
 					}, {
-						name: 'variant',
+						name: 'name',
+						types: ['string'],
+						description: 'Set the tab name.'
+					}, {
+						name: 'tooltipContent',
+						types: ['string'],
+						description: 'Set the tooltip content and replace the icon with a tooltip. Tooltip icons will match tab status icons.'
+					}, {
+						name: 'width',
+						types: ['string'],
+						description: 'Set the width of the tab. (eg. 200px, 20rem, etc.)',
+						default: '\'100%\''
+					}, {
+						name: 'parentVariant',
+						required: 'CSTabGroup',
 						customTypes: [{
 							name: 'CSTabGroupVariant',
 							types: ['\'normal\'', '\'large\'']
 						}],
 						default: '\'normal\'',
-						description: 'Set the tab group variant.'
+						description: 'Set the tab variant.'
 					}, {
 						name: '[key: string]',
 						types: ['any'],
-						description: 'Spreads the rest of the props to the tab group div wrapper.'
+						description: 'Spreads the rest of the props to the tab button or router link.'
 					}
 				]
 			}

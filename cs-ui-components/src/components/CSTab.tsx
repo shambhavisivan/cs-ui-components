@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 import CSIcon, { CSIconOrigin } from './CSIcon';
 import { CSTabGroupVariant } from './CSTabGroup';
@@ -19,6 +19,7 @@ export interface CSTabProps {
 	tabIcon?: string | undefined;
 	name: string | undefined;
 	tooltipContent?: string;
+	width?: string;
 }
 
 class CSTab extends React.Component<CSTabProps> {
@@ -49,6 +50,7 @@ class CSTab extends React.Component<CSTabProps> {
 			tabIcon,
 			name,
 			tooltipContent,
+			width,
 			...rest
 		} = this.props;
 
@@ -61,6 +63,10 @@ class CSTab extends React.Component<CSTabProps> {
 				[`${className}`]: className
 			}
 		);
+
+		const style: CSSProperties = {
+			'--cs-tab-width': width
+		};
 
 		const getStatusIcon = () => {
 			switch (true) {
@@ -87,7 +93,8 @@ class CSTab extends React.Component<CSTabProps> {
 			'className': 'cs-tab',
 			'aria-current': active,
 			'aria-invalid': status === 'error',
-			'disabled': disabled
+			'disabled': disabled,
+			'style': style
 		};
 
 		const tabContent = () => {
@@ -110,7 +117,12 @@ class CSTab extends React.Component<CSTabProps> {
 		};
 
 		return (
-			<li className={tabClasses} onClick={this.onClickHandler} id={id} {...rest}>
+			<li
+				id={id}
+				className={tabClasses}
+				onClick={this.onClickHandler}
+				{...rest}
+			>
 				<>
 					{routerLink ?
 						React.cloneElement(
