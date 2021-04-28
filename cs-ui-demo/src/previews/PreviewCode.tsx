@@ -1,12 +1,15 @@
 import React from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { base16AteliersulphurpoolLight as styleLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { base16AteliersulphurpoolLight as styleLight, darcula as styleDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { useTheme, Theme } from '../context/ThemeContext';
 
 interface PreviewCodeProps {
 	code: string;
 }
 
 const PreviewCode: React.FC<PreviewCodeProps> = ({ code }) => {
+	const { theme } = useTheme();
+
 	const formatCode = (plainCode: string) => {
 		const codeLines = plainCode.split('\n');
 		if (codeLines.length === 1) {
@@ -19,7 +22,7 @@ const PreviewCode: React.FC<PreviewCodeProps> = ({ code }) => {
 	};
 
 	return <SyntaxHighlighter
-		style={styleLight}
+		style={theme === Theme.Light ? styleLight : styleDark}
 		customStyle={{
 			border: 'none',
 			margin: '0',
