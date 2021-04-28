@@ -1,10 +1,11 @@
 import { ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import React from 'react';
 import { CSGridDateTimeEditor } from '../../src/components/cs-grid-date-time-editor';
 import { CellData } from '../../src/interfaces/cs-grid-base-interfaces';
 import { CSGridCellEditorProps, DateTimeProps } from '../../src/interfaces/cs-grid-cell-props';
 import { UserInfo } from '../../src/interfaces/user-info';
+import { createDocumentListenersMock } from '../utils/document-listeners-mock';
 
 describe('CS Grid Date Time Editor', () => {
 	// This is defined by the react-dateTimePicker component.
@@ -19,6 +20,9 @@ describe('CS Grid Date Time Editor', () => {
 	let cSGridCellEditorProps: CSGridCellEditorProps<string> & DateTimeProps;
 
 	let stopEditingMock: jest.Mock<any, any>;
+	let containsMock: jest.Mock<any, any>;
+
+	const fireEvent = createDocumentListenersMock();
 
 	beforeEach(() => {
 		exampleDateTime = {
@@ -34,6 +38,7 @@ describe('CS Grid Date Time Editor', () => {
 		};
 
 		stopEditingMock = jest.fn();
+		containsMock = jest.fn();
 
 		colDef = { editable };
 		column = new Column(colDef, null, columnId, true);
@@ -180,5 +185,28 @@ describe('CS Grid Date Time Editor', () => {
 	test('Renders a date time editor that has no cell data, this should not cause errors.', () => {
 		cSGridCellEditorProps.value = undefined;
 		expect(() => shallow(<CSGridDateTimeEditor {...cSGridCellEditorProps} />)).not.toThrow();
+	});
+
+	test('Confirms stopEditing is called when clicking outside the editor.', () => {
+		containsMock.mockReturnValue(false);
+		const cellEditor = mount(<CSGridDateTimeEditor {...cSGridCellEditorProps} />);
+		const instance = cellEditor.instance() as any;
+
+		instance.divRef.current.contains = containsMock;
+
+		fireEvent.click(document.body);
+
+		expect(stopEditingMock).toHaveBeenCalledTimes(1);
+	});
+
+	test('Confirms stopEditing is not called when clicking inside the editor.', () => {
+		containsMock.mockReturnValue(true);
+		const cellEditor = mount(<CSGridDateTimeEditor {...cSGridCellEditorProps} />);
+		const instance = cellEditor.instance() as any;
+
+		instance.divRef.current.contains = containsMock;
+		fireEvent.click(document.body);
+
+		expect(stopEditingMock).toHaveBeenCalledTimes(0);
 	});
 });

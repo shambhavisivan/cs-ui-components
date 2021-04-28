@@ -404,7 +404,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 								sortable: true
 							}}
 							frameworkComponents={this.state.frameworkComponents}
-							stopEditingWhenGridLosesFocus={true}
+							stopEditingWhenGridLosesFocus={false}
 							suppressDragLeaveHidesColumns={true}
 							rowSelection={this.props.multiSelect ? 'multiple' : 'single'}
 							suppressRowClickSelection={true}

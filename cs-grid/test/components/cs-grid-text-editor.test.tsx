@@ -1,11 +1,11 @@
 import { ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import React from 'react';
-import { CSGridCellError } from '../../src/components/cs-grid-cell-error';
 import { CSGridTextEditor } from '../../src/components/cs-grid-text-editor';
 import { CellData } from '../../src/interfaces/cs-grid-base-interfaces';
 import { CSGridCellEditorProps } from '../../src/interfaces/cs-grid-cell-props';
 import { UserInfo } from '../../src/interfaces/user-info';
+import { createDocumentListenersMock } from '../utils/document-listeners-mock';
 
 describe('CS Grid Text Editor', () => {
 	let exampleText: CellData<string>;
@@ -18,6 +18,9 @@ describe('CS Grid Text Editor', () => {
 	let cSGridCellEditorProps: CSGridCellEditorProps<string>;
 
 	let stopEditingMock: jest.Mock<any, any>;
+	let containsMock: jest.Mock<any, any>;
+
+	const fireEvent = createDocumentListenersMock();
 
 	beforeEach(() => {
 		exampleText = {
@@ -33,6 +36,7 @@ describe('CS Grid Text Editor', () => {
 		};
 
 		stopEditingMock = jest.fn();
+		containsMock = jest.fn();
 
 		colDef = { editable };
 		column = new Column(colDef, null, columnId, true);
@@ -46,7 +50,7 @@ describe('CS Grid Text Editor', () => {
 			columnApi,
 			context: {},
 			data: {},
-			eGridCell: { className: 'className' } as any,
+			eGridCell: { className: 'className', contains: containsMock } as any,
 			node: new RowNode(),
 			rowIndex: 0,
 			stopEditing: stopEditingMock,
@@ -135,5 +139,21 @@ describe('CS Grid Text Editor', () => {
 
 		expect(input.prop('value')).toBe('');
 		expect(input.prop('title')).toBe('');
+	});
+
+	test('Confirms stopEditing is called when clicking outside the editor.', () => {
+		containsMock.mockReturnValue(false);
+		mount(<CSGridTextEditor {...cSGridCellEditorProps} />);
+		fireEvent.click(document.body);
+
+		expect(stopEditingMock).toHaveBeenCalledTimes(1);
+	});
+
+	test('Confirms stopEditing is not called when clicking inside the editor.', () => {
+		containsMock.mockReturnValue(true);
+		mount(<CSGridTextEditor {...cSGridCellEditorProps} />);
+		fireEvent.click(document.body);
+
+		expect(stopEditingMock).toHaveBeenCalledTimes(0);
 	});
 });

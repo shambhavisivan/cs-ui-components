@@ -40,6 +40,8 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 	}
 
 	async componentDidMount() {
+		document.addEventListener('click', this.handleOutsideClick);
+
 		if (!this.props.value) {
 			this.setState({
 				value: {
@@ -56,6 +58,10 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 				errorMessage: this.props.value.errorMessage
 			}
 		});
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener('click', this.handleOutsideClick);
 	}
 
 	/**
@@ -203,5 +209,11 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 		});
 
 		return formatter.formatToParts(1).find(part => part.type === 'currency').value;
+	};
+
+	private handleOutsideClick = (event: MouseEvent) => {
+		if (this.props.eGridCell && !this.props.eGridCell.contains(event.target as Node)) {
+			this.props.stopEditing();
+		}
 	};
 }

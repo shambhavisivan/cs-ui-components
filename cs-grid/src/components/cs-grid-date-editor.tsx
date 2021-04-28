@@ -23,14 +23,26 @@ export class CSGridDateEditor
 		CSGridCellEditorState<string> & { inputValue?: string }
 	>
 	implements CSGridCellEditor {
+	private divRef: React.RefObject<HTMLDivElement>;
+
 	constructor(props: CSGridCellEditorProps<string>) {
 		super(props);
+
+		this.divRef = React.createRef();
 
 		moment.locale(this.props.userInfo.userLocale);
 		this.state = {
 			inputValue: this.convertToInputValue(this.props.value?.cellValue),
 			value: this.props.value
 		};
+	}
+
+	componentDidMount() {
+		document.addEventListener('click', this.handleOutsideClick);
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener('click', this.handleOutsideClick);
 	}
 
 	/**
@@ -121,7 +133,7 @@ export class CSGridDateEditor
 		}
 
 		return (
-			<div className='date-attribute'>
+			<div className='date-attribute' ref={this.divRef}>
 				{this.props.textInputFormat && (
 					<input
 						ref={ref => {
@@ -151,4 +163,10 @@ export class CSGridDateEditor
 			</div>
 		);
 	}
+
+	private handleOutsideClick = (event: MouseEvent) => {
+		if (this.divRef.current && !this.divRef.current.contains(event.target as Node)) {
+			this.props.stopEditing();
+		}
+	};
 }

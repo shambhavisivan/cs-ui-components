@@ -1,12 +1,18 @@
 import { ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import React from 'react';
 import { CSGridIntegerEditor } from '../../src/components/cs-grid-integer-editor';
 import { CellData } from '../../src/interfaces/cs-grid-base-interfaces';
 import { CSGridCellEditorProps, IntegerProps } from '../../src/interfaces/cs-grid-cell-props';
 import { UserInfo } from '../../src/interfaces/user-info';
+import { createDocumentListenersMock } from '../utils/document-listeners-mock';
 
 describe('CS Grid Integer Editor', () => {
+	const fireEvent = createDocumentListenersMock();
+
+	let stopEditingMock: jest.Mock<any, any>;
+	let containsMock: jest.Mock<any, any>;
+
 	const exampleInteger: CellData<number> = {
 		cellValue: 10
 	};
@@ -20,22 +26,27 @@ describe('CS Grid Integer Editor', () => {
 	const column: Column = new Column(colDef, null, 'colId', true);
 	const rowNode: RowNode = new RowNode();
 
-	const cSGridCellEditorProps: CSGridCellEditorProps<number> & IntegerProps = {
-		api: new GridApi(),
-		colDef,
-		column,
-		columnApi: new ColumnApi(),
-		context: {},
-		data: {},
-		eGridCell: null,
-		node: rowNode,
-		rowIndex: 0,
-		stopEditing: (suppressNavigateAfterEdit?: boolean) => {
-			return;
-		},
-		userInfo,
-		value: exampleInteger
-	};
+	let cSGridCellEditorProps: CSGridCellEditorProps<number> & IntegerProps;
+
+	beforeEach(() => {
+		stopEditingMock = jest.fn();
+		containsMock = jest.fn();
+
+		cSGridCellEditorProps = {
+			api: new GridApi(),
+			colDef,
+			column,
+			columnApi: new ColumnApi(),
+			context: {},
+			data: {},
+			eGridCell: { className: 'className', contains: containsMock } as any,
+			node: rowNode,
+			rowIndex: 0,
+			stopEditing: stopEditingMock,
+			userInfo,
+			value: exampleInteger
+		};
+	});
 
 	test('The integer editor should return a number formatter for formatting integers in the users local.', () => {
 		const cellEditor = shallow(<CSGridIntegerEditor {...cSGridCellEditorProps} />);
@@ -98,5 +109,21 @@ describe('CS Grid Integer Editor', () => {
 		const input = cellEditor.find('input');
 
 		expect(input.prop('value')).toBe('');
+	});
+
+	test('Confirms stopEditing is called when clicking outside the editor.', () => {
+		containsMock.mockReturnValue(false);
+		mount(<CSGridIntegerEditor {...cSGridCellEditorProps} />);
+		fireEvent.click(document.body);
+
+		expect(stopEditingMock).toHaveBeenCalledTimes(1);
+	});
+
+	test('Confirms stopEditing is not called when clicking inside the editor.', () => {
+		containsMock.mockReturnValue(true);
+		mount(<CSGridIntegerEditor {...cSGridCellEditorProps} />);
+		fireEvent.click(document.body);
+
+		expect(stopEditingMock).toHaveBeenCalledTimes(0);
 	});
 });

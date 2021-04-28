@@ -1,11 +1,12 @@
 import { ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import moment from 'moment';
 import React from 'react';
 import { CSGridDateEditor } from '../../src/components/cs-grid-date-editor';
 import { CellData } from '../../src/interfaces/cs-grid-base-interfaces';
 import { CSGridCellEditorProps, DateProps } from '../../src/interfaces/cs-grid-cell-props';
 import { UserInfo } from '../../src/interfaces/user-info';
+import { createDocumentListenersMock } from '../utils/document-listeners-mock';
 
 describe('CS Grid Date Editor', () => {
 	const datePickerComponentName = 'o';
@@ -19,6 +20,9 @@ describe('CS Grid Date Editor', () => {
 	let cSGridCellEditorProps: CSGridCellEditorProps<string> & DateProps;
 
 	let stopEditingMock: jest.Mock<any, any>;
+	let containsMock: jest.Mock<any, any>;
+
+	const fireEvent = createDocumentListenersMock();
 
 	beforeEach(() => {
 		exampleDate = {
@@ -34,6 +38,7 @@ describe('CS Grid Date Editor', () => {
 		};
 
 		stopEditingMock = jest.fn();
+		containsMock = jest.fn();
 
 		colDef = { editable };
 		column = new Column(colDef, null, columnId, true);
@@ -202,5 +207,28 @@ describe('CS Grid Date Editor', () => {
 
 		expect(instance.state.inputValue).toEqual('24/13/2014');
 		expect(instance.state.value.cellValue).toEqual('2001-11-01');
+	});
+
+	test('Confirms stopEditing is called when clicking outside the editor.', () => {
+		containsMock.mockReturnValue(false);
+		const cellEditor = mount(<CSGridDateEditor {...cSGridCellEditorProps} />);
+		const instance = cellEditor.instance() as any;
+
+		instance.divRef.current.contains = containsMock;
+
+		fireEvent.click(document.body);
+
+		expect(stopEditingMock).toHaveBeenCalledTimes(1);
+	});
+
+	test('Confirms stopEditing is not called when clicking inside the editor.', () => {
+		containsMock.mockReturnValue(true);
+		const cellEditor = mount(<CSGridDateEditor {...cSGridCellEditorProps} />);
+		const instance = cellEditor.instance() as any;
+
+		instance.divRef.current.contains = containsMock;
+		fireEvent.click(document.body);
+
+		expect(stopEditingMock).toHaveBeenCalledTimes(0);
 	});
 });

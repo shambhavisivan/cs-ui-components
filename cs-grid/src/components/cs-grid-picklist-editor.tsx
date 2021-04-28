@@ -1,4 +1,4 @@
-import { CSButton, CSInputSearch } from '@cloudsense/cs-ui-components';
+import { CSInputSearch } from '@cloudsense/cs-ui-components';
 import React, { Fragment } from 'react';
 
 import {
@@ -36,9 +36,13 @@ export class CSGridPicklistEditor
 	implements CSGridCellEditor {
 	multiSelect: boolean = false;
 	private clearAllName = '--None--';
+	private divRef: React.RefObject<HTMLDivElement>;
+	private clearButtonClass = 'cs-input-search-clear';
 
 	constructor(props: CSGridCellEditorProps<PicklistCellValueType> & PicklistProps) {
 		super(props);
+
+		this.divRef = React.createRef();
 
 		const rows = this.props.getOptions(this.props.node.id);
 		const options = this.getOptions(this.props.value.cellValue, rows);
@@ -49,6 +53,14 @@ export class CSGridPicklistEditor
 			searchTerm: '',
 			value: this.props.value
 		};
+	}
+
+	componentDidMount() {
+		document.addEventListener('click', this.handleOutsideClick);
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener('click', this.handleOutsideClick);
 	}
 
 	afterGuiAttached() {
@@ -86,7 +98,7 @@ export class CSGridPicklistEditor
 		this.state.options.forEach((option: PickListRow, id: string): void => {
 			const selectOption = () => this.optionSelected(id);
 			dropDownValues.push(
-				<Fragment key={id}>
+				<Fragment key={`fragment_${id}`}>
 					{option.horizontalDivider && <div className='divider-horizontal' />}
 					<li
 						className={'picklist-list-item' + (option.isSelected ? ' selected' : '')}
@@ -105,7 +117,7 @@ export class CSGridPicklistEditor
 			this.props.filterAboveSize < this.state.rows.length;
 
 		return (
-			<div className='cs-grid_popup-wrapper'>
+			<div className='cs-grid_popup-wrapper' ref={this.divRef}>
 				{dropDownValues.length > 0 || !this.props.getEmptyPicklistContent ? (
 					<>
 						{filter && (
@@ -288,5 +300,17 @@ export class CSGridPicklistEditor
 		const icon = typeof option === 'string' ? undefined : option.icon;
 
 		options.set(id, { isSelected, label, horizontalDivider, icon });
+	};
+
+	private handleOutsideClick = (event: MouseEvent) => {
+		const node = event.target as HTMLElement;
+		if (
+			this.divRef.current &&
+			!this.divRef.current.contains(node) &&
+			// The clear button no longer exists by the time the code gets here so we cannot use a ref.
+			!node.classList.contains(this.clearButtonClass)
+		) {
+			this.props.stopEditing();
+		}
 	};
 }

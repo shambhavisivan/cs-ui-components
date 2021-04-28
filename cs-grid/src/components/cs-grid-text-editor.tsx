@@ -20,6 +20,14 @@ export class CSGridTextEditor
 		this.state = { value: this.props.value };
 	}
 
+	componentDidMount() {
+		document.addEventListener('click', this.handleOutsideClick);
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener('click', this.handleOutsideClick);
+	}
+
 	/**
 	 * Returns the current value - required by ag-grid.
 	 */
@@ -76,5 +84,11 @@ export class CSGridTextEditor
 		}
 
 		this.setState({ value });
+	};
+
+	private handleOutsideClick = (event: MouseEvent) => {
+		if (this.props.eGridCell && !this.props.eGridCell.contains(event.target as Node)) {
+			this.props.stopEditing();
+		}
 	};
 }

@@ -4,6 +4,7 @@
 import enzyme from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import { JSDOM } from "jsdom"
+import crypto from 'crypto';
 
 enzyme.configure({ adapter: new Adapter() });
 
@@ -12,3 +13,9 @@ const globalAny: any = global;
 
 globalAny.document = dom.window.document;
 globalAny.window = dom.window;
+
+Object.defineProperty(global, 'crypto', {
+	value: {
+		getRandomValues: (arr: any) => crypto.randomBytes(arr.length)
+	}
+});

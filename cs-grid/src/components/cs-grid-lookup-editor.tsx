@@ -49,12 +49,16 @@ export class CSGridLookupEditor
 
 	gridApi: GridApi;
 	lookupInputRef: HTMLInputElement;
+	private divRef: React.RefObject<HTMLDivElement>;
+	private clearButtonClass = 'cs-lookup-clear';
 
 	constructor(
 		props: CSGridCellEditorProps<Array<Record<string, string>> | Record<string, string>> &
 			PaginatedLookupProps
 	) {
 		super(props);
+
+		this.divRef = React.createRef();
 
 		const selected = Array.isArray(this.props.value.cellValue)
 			? this.props.value.cellValue
@@ -70,6 +74,14 @@ export class CSGridLookupEditor
 		};
 	}
 
+	async componentDidMount() {
+		document.addEventListener('click', this.handleOutsideClick);
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener('click', this.handleOutsideClick);
+	}
+
 	isPopup = () => {
 		return true;
 	};
@@ -83,7 +95,7 @@ export class CSGridLookupEditor
 
 	render() {
 		return (
-			<div className='ag-theme-balham'>
+			<div className='ag-theme-balham' ref={this.divRef}>
 				<CSLookup
 					gridCustomPopup={true}
 					autoFocus={true}
@@ -99,6 +111,7 @@ export class CSGridLookupEditor
 					infiniteScroll={true}
 					multiselect={this.multiSelect}
 					value={this.state.value.cellValue}
+					minTermLength={this.props.minSearchTermLength}
 					ref={ref => {
 						if (ref) {
 							setTimeout(() => {
@@ -162,5 +175,17 @@ export class CSGridLookupEditor
 		this.setState({ value });
 
 		return true;
+	};
+
+	private handleOutsideClick = (event: MouseEvent) => {
+		const node = event.target as HTMLElement;
+		if (
+			this.divRef.current &&
+			!this.divRef.current.contains(node) &&
+			// The clear button no longer exists by the time the code gets here so we cannot use a ref.
+			!node.classList.contains(this.clearButtonClass)
+		) {
+			this.props.stopEditing();
+		}
 	};
 }
