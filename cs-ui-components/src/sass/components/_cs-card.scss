@@ -5,6 +5,7 @@
 	border-radius: 0.25rem;
 	padding: 0;
 	position: relative;
+	@include sc(--cs-card-c);
 	@include sbg(--cs-card-bg);
 	@include css4 {
 		border: 1px solid cvar(--cs-card-br);
@@ -21,6 +22,7 @@
 		}
 		&-title {
 			font-weight: $font-weight-bold;
+			@include sc(--cs-card-c);
 		}
 		&-with-border {
 			@include css4 {
