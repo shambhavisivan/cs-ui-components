@@ -90,6 +90,7 @@ $lightVariables: (
 
 	--csd-h2-c: $cs-gray-dark-1,
 	--csd-h3-c: $cs-gray-dark-3,
+	--csd-p-c: $cs-gray-dark-3,
 
 	--csd-header-tab-c: $cs-gray-dark-3,
 	--csd-header-tab-active-bg: $cs-gray-light-6,
@@ -223,6 +224,7 @@ $darkVariables: (
 
 	--csd-h2-c: $cs-white,
 	--csd-h3-c: $cs-gray-medium-2,
+	--csd-p-c: $cs-white,
 
 	--csd-header-tab-c: $cs-gray-light-1,
 	--csd-header-tab-active-bg: $cs-dark-theme,
@@ -278,7 +280,7 @@ $darkVariables: (
 	--csd-important-chip-c: $cs-gray-dark-1,
 
 	--csd-neutral-chip-bg: rgba($cs-white, 0.35),
-	--csd-neutral-chip-c: $cs-gray-dark-5,
+	--csd-neutral-chip-c: $cs-white,
 
 	--csd-prop-custom-bg: $cs-dark-theme-2,
 	--csd-prop-custom-c: $cs-white,
