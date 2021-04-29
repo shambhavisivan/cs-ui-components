@@ -115,13 +115,6 @@
 				margin-bottom: 0.5rem;
 			}
 
-			&.custom {
-				padding: 2rem 3rem;
-				margin-top: 3rem;
-				margin-bottom: 0;
-				@include sbg(--csd-prop-custom-bg);
-			}
-
 			.component-example,
 			.api-example {
 				display: flex;

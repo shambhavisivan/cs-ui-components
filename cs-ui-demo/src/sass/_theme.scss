@@ -157,12 +157,17 @@ $lightVariables: (
 	--csd-prop-table-br: $cs-gray-light-3,
 	--csd-prop-table-row-stripes-bg-light: $cs-white,
 	--csd-prop-table-row-stripes-bg-dark: $cs-gray-light-7,
-	--csd-prop-code-c: $cs-black,
-	--csd-prop-code-bg: $cs-gray-light-5,
 	--csd-prop-code-br: $cs-gray-light-1,
-	--csd-prop-code-custom-bg: $cs-white,
 	--csd-prop-sidebar-bg: $cs-purple,
 	--csd-prop-sidebar-hover-bg: $cs-purple-dark-1,
+
+	--csd-primary-variant-c: $cs-black,
+	--csd-primary-variant-bg: $cs-white,
+	--csd-primary-variant-br: $cs-gray-light-1,
+
+	--csd-secondary-variant-c: $cs-black,
+	--csd-secondary-variant-bg: $cs-gray-light-5,
+	--csd-secondary-variant-br: $cs-gray-light-1,
 
 	--csd-preview-main-heading-title-c: $cs-black,
 	--csd-preview-main-heading-subtitle-c: $cs-gray-dark-6,
@@ -291,12 +296,17 @@ $darkVariables: (
 	--csd-prop-table-br: $cs-gray-dark-5,
 	--csd-prop-table-row-stripes-bg-light: $cs-dark-theme-2,
 	--csd-prop-table-row-stripes-bg-dark: $cs-gray-dark-1,
-	--csd-prop-code-c: $cs-white,
-	--csd-prop-code-bg: $cs-dark-theme-3,
 	--csd-prop-code-br: $cs-white,
-	--csd-prop-code-custom-bg: $cs-dark-theme-3,
 	--csd-prop-sidebar-bg: $cs-purple,
 	--csd-prop-sidebar-hover-bg: $cs-purple-dark-1,
+
+	--csd-primary-variant-c: $cs-white,
+	--csd-primary-variant-bg: $cs-gray-dark-3,
+	--csd-primary-variant-br: $cs-white,
+
+	--csd-secondary-variant-c: $cs-white,
+	--csd-secondary-variant-bg: $cs-black,
+	--csd-secondary-variant-br: $cs-white,
 
 	--csd-preview-main-heading-title-c: $cs-white,
 	--csd-preview-main-heading-subtitle-c: $cs-gray-medium-2,

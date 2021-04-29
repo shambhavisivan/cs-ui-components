@@ -2,7 +2,6 @@
 .release-notes code,
 code.inline-code {
 	display: inline-block;
-	border: 1px solid var(--csd-prop-code-br);
 	font-size: 0.8125rem;
 	border-radius: 0.25rem;
 	padding: 0 0.375rem;
@@ -10,19 +9,27 @@ code.inline-code {
 	font-family: "Courier New", monospace !important;
 	margin-right: 0.5rem;
 	cursor: default;
-	@include sc(--csd-prop-code-c);
-	@include sbg(--csd-prop-code-bg);
+	@include sc(--csd-secondary-variant-c);
+	@include sbg(--csd-secondary-variant-bg);
 	@include css4 {
-		border: 1px solid cvar(--csd-prop-code-br);
+		border: 1px solid cvar(--csd-secondary-variant-br);
 	}
 
 	&.inline-code-basic {
-		@include sbg(--csd-prop-code-custom-bg);
+		@include sc(--csd-primary-variant-c);
+		@include sbg(--csd-primary-variant-bg);
+		@include css4 {
+			border: 1px solid cvar(--csd-primary-variant-br);
+		}
 	}
 
 	&.inline-code-custom {
 		display: flex;
-		@include sbg(--csd-prop-code-custom-bg);
+		@include sc(--csd-primary-variant-c);
+		@include sbg(--csd-primary-variant-bg);
+		@include css4 {
+			border: 1px solid cvar(--csd-primary-variant-br);
+		}
 
 		.cs-icon {
 			align-self: center;
@@ -60,5 +67,9 @@ code.inline-code {
 .getting-started :not(pre) code,
 .release-notes code {
 	margin-right: 0;
-	@include sbg(--csd-prop-code-custom-bg);
+	@include sc(--csd-primary-variant-c);
+	@include sbg(--csd-primary-variant-bg);
+	@include css4 {
+		border: 1px solid cvar(--csd-primary-variant-br);
+	}
 }
