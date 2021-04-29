@@ -23,6 +23,10 @@
 				border: 3px solid cvar(--csd-custom-br);
 			}
 		}
+
+		.custom-select-option-class {
+			background-color: var(--csd-custom-bg);
+		}
 	}
 
 	&.alert-demo,
@@ -89,6 +93,7 @@
 			border-color: cvar(--csd-custom-br);
 		}
 	}
+
 	&.sidebar-demo,
 	&.sidebar-tab-demo {
 		height: 600px;
@@ -106,6 +111,10 @@
 		.custom-sidebar-tab-class {
 			@include sbg(--csd-custom-alt-bg);
 		}
+	}
+
+	&.custom-select-preview {
+		overflow: visible;
 	}
 }
 
