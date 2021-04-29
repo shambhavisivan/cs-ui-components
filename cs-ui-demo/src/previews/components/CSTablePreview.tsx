@@ -1,5 +1,4 @@
 import React from 'react';
-import jsxToString from 'jsx-to-string';
 import PreviewHeading from '../PreviewHeading';
 import PreviewProperties from '../PreviewProperties';
 import PreviewTable from '../PreviewTable';
@@ -14,90 +13,35 @@ class CSTablePreview extends React.Component {
 	handleMouseOut = () => alert('Mouse out has been registered!');
 	handleMouseOver = () => alert('Mouse over has been registered!');
 
-	getCSTableDoc() {
-		const json = {
-			name: 'Table',
-			usage: 'Table is used to display tabular data.',
-			accessible: 'partially',
-			examples: [
-				{
-					propName: 'id',
-					customText: '',
-					variations: [
-						{
-							component:
-								<CSTable id="id">
-									<CSTableHeader id="id">
-										<CSTableCell
-											text="Header Item 1"
-											grow={2}
-											id="id"
-										/>
-										<CSTableCell
-											text="Header Item 2"
-											grow={1}
-											id="id"
-										/>
-										<CSTableCell
-											text="Header Item 3"
-											grow={1}
-											id="id"
-										/>
-										<CSTableCell
-											text="Button Column"
-											maxWidth="100px"
-											id="id"
-										/>
+	getTableDoc = () => ({
+		name: 'Table',
+		usage: 'Tables are an enhanced version of an HTML table and are used to display tabular data.',
+		accessible: 'partially',
+		previews: [
+			{
+				name: 'Table',
+				examples: [
+					{
+						propName: 'selectableRows',
+						alert: {
+							variant: 'warning',
+							text: 'This prop needs to be reviewed and updated. Do not use.'
+						},
+						variations: [
+							{
+								component: <CSTable selectableRows>
+									<CSTableHeader>
+										<CSTableCell text="Header Item 1" grow={2} />
+										<CSTableCell text="Header Item 2" grow={1} />
+										<CSTableCell text="Header Item 3" grow={1} />
+										<CSTableCell text="Button Column" />
 									</CSTableHeader>
-									<CSTableBody id="id">
-										<CSTableRow id="id">
-											<CSTableCell
-												text="Body Item 1"
-												grow={2}
-												id="id"
-											/>
-											<CSTableCell
-												text="Body Item 2"
-												grow={1}
-												id="id"
-											/>
-											<CSTableCell
-												text="Body Item 3"
-												grow={1}
-												id="id"
-											/>
-											<CSTableCell
-												maxWidth="100px"
-												id="id"
-											>
-												<CSButton
-													label="label"
-													labelHidden
-													btnType="default"
-													iconName="emoji"
-												/>
-											</CSTableCell>
-										</CSTableRow>
-										<CSTableRow id="id">
-											<CSTableCell
-												text="Second Row Item 1"
-												grow={2}
-												id="id"
-											/>
-											<CSTableCell
-												text="Second Row Item 2"
-												grow={1}
-												id="id"
-											/>
-											<CSTableCell
-												text="Second Row Item 3"
-												grow={1}
-												id="id"
-											/>
-											<CSTableCell
-												maxWidth="100px"
-												id="id"
-											>
+									<CSTableBody>
+										<CSTableRow>
+											<CSTableCell text="First Row Item 1" grow={2} />
+											<CSTableCell text="First Row Item 2" grow={1} />
+											<CSTableCell text="First Row Item 3" grow={1} />
+											<CSTableCell>
 												<CSButton
 													label="label"
 													labelHidden
@@ -107,52 +51,602 @@ class CSTablePreview extends React.Component {
 											</CSTableCell>
 										</CSTableRow>
 									</CSTableBody>
-								</CSTable>
-						}
-					]
-				},
-				{
-					propName: 'onClick',
-					customText: '',
-					variations: [
-						{
-							component:
-								<CSTable>
+								</CSTable>,
+								code: `<CSTable selectableRows>
 									<CSTableHeader>
+										<CSTableCell text="Header Item 1" grow={2} />
+										<CSTableCell text="Header Item 2" grow={1} />
+										<CSTableCell text="Header Item 3" grow={1} />
+										<CSTableCell text="Button Column" />
+									</CSTableHeader>
+									<CSTableBody>
+										<CSTableRow>
+											<CSTableCell text="First Row Item 1" grow={2} />
+											<CSTableCell text="First Row Item 2" grow={1} />
+											<CSTableCell text="First Row Item 3" grow={1} />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													labelHidden
+													btnType="default"
+													iconName="emoji"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>`
+							}
+						]
+					}, {
+						propName: 'tableDescription',
+						description: 'Hidden span will be added with description for screen readers',
+						variations: [
+							{
+								primaryVariants: 'tableDescription="text"',
+								quickLink: 'tableDescription',
+								component: <CSTable tableDescription="almost last and almost best table">
+									<CSTableHeader>
+										<CSTableCell text="Header Item 1" grow={2} />
+										<CSTableCell text="Header Item 2" grow={1} />
+										<CSTableCell text="Header Item 3" grow={1} />
+										<CSTableCell text="Button Column" />
+									</CSTableHeader>
+									<CSTableBody>
+										<CSTableRow>
+											<CSTableCell text="First Row Item 1" grow={2} />
+											<CSTableCell text="First Row Item 2" grow={1} />
+											<CSTableCell text="First Row Item 3" grow={1} />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													labelHidden
+													btnType="default"
+													iconName="emoji"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>,
+								code: `<CSTable tableDescription="almost last and almost best table">
+									<CSTableHeader>
+										<CSTableCell text="Header Item 1" grow={2} />
+										<CSTableCell text="Header Item 2" grow={1} />
+										<CSTableCell text="Header Item 3" grow={1} />
+										<CSTableCell text="Button Column" />
+									</CSTableHeader>
+									<CSTableBody>
+										<CSTableRow>
+											<CSTableCell text="First Row Item 1" grow={2} />
+											<CSTableCell text="First Row Item 2" grow={1} />
+											<CSTableCell text="First Row Item 3" grow={1} />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													labelHidden
+													btnType="default"
+													iconName="emoji"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>`
+							}, {
+								primaryVariants: 'tableDescription="text"',
+								secondaryVariants: 'id="custom-description-id"',
+								quickLink: 'tableDescription and custom id',
+								component: <CSTable tableDescription="last, but best table" id="custom-description-id">
+									<CSTableHeader>
+										<CSTableCell text="Header Item 1" grow={2} />
+										<CSTableCell text="Header Item 2" grow={1} />
+										<CSTableCell text="Header Item 3" grow={1} />
+										<CSTableCell text="Button Column" />
+									</CSTableHeader>
+									<CSTableBody>
+										<CSTableRow>
+											<CSTableCell text="First Row Item 1" grow={2} />
+											<CSTableCell text="First Row Item 2" grow={1} />
+											<CSTableCell text="First Row Item 3" grow={1} />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													labelHidden
+													btnType="default"
+													iconName="emoji"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>,
+								code: `<CSTable tableDescription="last, but best table" id="custom-description-id">
+									<CSTableHeader>
+										<CSTableCell text="Header Item 1" grow={2} />
+										<CSTableCell text="Header Item 2" grow={1} />
+										<CSTableCell text="Header Item 3" grow={1} />
+										<CSTableCell text="Button Column" />
+									</CSTableHeader>
+									<CSTableBody>
+										<CSTableRow>
+											<CSTableCell text="First Row Item 1" grow={2} />
+											<CSTableCell text="First Row Item 2" grow={1} />
+											<CSTableCell text="First Row Item 3" grow={1} />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>`
+							}
+						]
+					}, {
+						propName: 'id | class',
+						variations: [
+							{
+								primaryVariants: [
+									'id="custom-id"',
+									'className="custom-class"'
+								],
+								component: <CSTable id="custom-table-id" className="custom-table-class">
+									<CSTableHeader id="custom-table-header-id" className="custom-table-header-class">
 										<CSTableCell
+											className="custom-table-cell-class"
 											text="Header Item 1"
 											grow={2}
 										/>
+										<CSTableCell text="Header Item 2" grow={1} />
+										<CSTableCell text="Header Item 3" grow={1} />
+										<CSTableCell text="Button Column" />
+									</CSTableHeader>
+									<CSTableBody id="custom-table-body-id" className="custom-table-body-class">
+										<CSTableRow id="custom-table-row-id">
+											<CSTableCell text="First Row Item 1" grow={2} />
+											<CSTableCell text="First Row Item 2" grow={1} />
+											<CSTableCell text="First Row Item 3" grow={1}
+											/>
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow className="custom-table-row-class">
+											<CSTableCell text="Second Row Item 1" grow={2} />
+											<CSTableCell text="Second Row Item 2" grow={1} />
+											<CSTableCell text="Second Row Item 3" grow={1} />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>,
+								code: `<CSTable id="custom-table-id" className="custom-table-class">
+									<CSTableHeader id="custom-table-header-id" className="custom-table-header-class">
 										<CSTableCell
-											text="Header Item 2"
-											grow={1}
+											className="custom-table-cell-class"
+											text="Header Item 1"
+											grow={2}
 										/>
-										<CSTableCell
-											text="Header Item 3"
-											grow={1}
-										/>
-										<CSTableCell
-											text="Button Column"
-											maxWidth="100px"
-										/>
+										<CSTableCell text="Header Item 2" grow={1} />
+										<CSTableCell text="Header Item 3" grow={1} />
+										<CSTableCell text="Button Column" />
+									</CSTableHeader>
+									<CSTableBody id="custom-table-body-id" className="custom-table-body-class">
+										<CSTableRow id="custom-table-row-id">
+											<CSTableCell text="First Row Item 1" grow={2} />
+											<CSTableCell text="First Row Item 2" grow={1} />
+											<CSTableCell text="First Row Item 3" grow={1}
+											/>
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow className="custom-table-row-class">
+											<CSTableCell text="Second Row Item 1" grow={2} />
+											<CSTableCell text="Second Row Item 2" grow={1} />
+											<CSTableCell text="Second Row Item 3" grow={1} />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>`
+							}
+						]
+					}, {
+						propName: 'children',
+						description: 'CSTable is designed to support CSTableHeader and CSTableBody as children. CSTableBody is designed to support CSTableRow. CSTableHeader and CSTableRow are designed to support CSTableCell, which then supports custom content.',
+						variations: [
+							{
+								component: <CSTable>
+									<CSTableHeader>
+										<CSTableCell text="Header Item 1" grow={2} />
+										<CSTableCell text="Header Item 2" grow={1} />
+										<CSTableCell text="Header Item 3" grow={1} />
+										<CSTableCell text="Button Column" />
+									</CSTableHeader>
+									<CSTableBody>
+										<CSTableRow>
+											<CSTableCell text="First Row Item 1" grow={2} />
+											<CSTableCell text="First Row Item 2" grow={1} />
+											<CSTableCell text="First Row Item 3" grow={1} />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>,
+								code: `<CSTable>
+									<CSTableHeader>
+										<CSTableCell text="Header Item 1" grow={2} />
+										<CSTableCell text="Header Item 2" grow={1} />
+										<CSTableCell text="Header Item 3" grow={1} />
+										<CSTableCell text="Button Column" />
+									</CSTableHeader>
+									<CSTableBody>
+										<CSTableRow>
+											<CSTableCell text="First Row Item 1" grow={2} />
+											<CSTableCell text="First Row Item 2" grow={1} />
+											<CSTableCell text="First Row Item 3" grow={1} />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>`
+							}
+						]
+					}
+				]
+			}, {
+				name: 'Table Header',
+				examples: [
+					{
+						propName: 'headerSticky',
+						variations: [
+							{
+								primaryVariants: 'headerSticky={true}',
+								component: <CSTable>
+									<CSTableHeader headerSticky>
+										<CSTableCell text="Header Item 1" grow={2} />
+										<CSTableCell text="Header Item 2" grow={1} />
+										<CSTableCell text="Header Item 3" grow={1} />
+										<CSTableCell text="Button Column" />
+									</CSTableHeader>
+									<CSTableBody maxHeight="10rem">
+										<CSTableRow>
+											<CSTableCell text="First Row Item 1" grow={2} />
+											<CSTableCell text="First Row Item 2" grow={1} />
+											<CSTableCell text="First Row Item 3" grow={1} />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow>
+											<CSTableCell text="Second Row Item 1" grow={2} />
+											<CSTableCell text="Second Row Item 2" grow={1} />
+											<CSTableCell text="Second Row Item 3" grow={1} />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow>
+											<CSTableCell text="Third Row Item 1" grow={2} />
+											<CSTableCell text="Third Row Item 2" grow={1} />
+											<CSTableCell text="Third Row Item 3" grow={1} />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow>
+											<CSTableCell text="Fourth Row Item 1" grow={2} />
+											<CSTableCell text="Fourth Row Item 2" grow={1} />
+											<CSTableCell text="Fourth Row Item 3" grow={1} />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow>
+											<CSTableCell text="Fifth Row Item 1" grow={2} />
+											<CSTableCell text="Fifth Row Item 2" grow={1} />
+											<CSTableCell text="Fifth Row Item 3" grow={1} />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>,
+								code: `<CSTable>
+									<CSTableHeader headerSticky>
+										<CSTableCell text="Header Item 1" grow={2} />
+										<CSTableCell text="Header Item 2" grow={1} />
+										<CSTableCell text="Header Item 3" grow={1} />
+										<CSTableCell text="Button Column" />
+									</CSTableHeader>
+									<CSTableBody maxHeight="10rem">
+										<CSTableRow>
+											<CSTableCell text="First Row Item 1" grow={2} />
+											<CSTableCell text="First Row Item 2" grow={1} />
+											<CSTableCell text="First Row Item 3" grow={1} />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow>
+											<CSTableCell text="Second Row Item 1" grow={2} />
+											<CSTableCell text="Second Row Item 2" grow={1} />
+											<CSTableCell text="Second Row Item 3" grow={1} />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow>
+											<CSTableCell text="Third Row Item 1" grow={2} />
+											<CSTableCell text="Third Row Item 2" grow={1} />
+											<CSTableCell text="Third Row Item 3" grow={1} />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow>
+											<CSTableCell text="Fourth Row Item 1" grow={2} />
+											<CSTableCell text="Fourth Row Item 2" grow={1} />
+											<CSTableCell text="Fourth Row Item 3" grow={1} />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow>
+											<CSTableCell text="Fifth Row Item 1" grow={2} />
+											<CSTableCell text="Fifth Row Item 2" grow={1} />
+											<CSTableCell text="Fifth Row Item 3" grow={1} />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>`
+							}
+						]
+					}
+				]
+			}, {
+				name: 'Table Body',
+				examples: [
+					{
+						propName: 'maxHeight',
+						variations: [
+							{
+								primaryVariants: 'maxHeight="10rem"',
+								component: <CSTable>
+									<CSTableHeader>
+										<CSTableCell text="Header Item 1" />
+										<CSTableCell text="Header Item 2" />
+										<CSTableCell text="Header Item 3" />
+										<CSTableCell text="Button Column" />
+									</CSTableHeader>
+									<CSTableBody maxHeight="10rem">
+										<CSTableRow>
+											<CSTableCell text="First Row Item 1" />
+											<CSTableCell text="First Row Item 2" />
+											<CSTableCell text="First Row Item 3" />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow>
+											<CSTableCell text="Second Row Item 1" />
+											<CSTableCell text="Second Row Item 2" />
+											<CSTableCell text="Second Row Item 3" />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow>
+											<CSTableCell text="Third Row Item 1" />
+											<CSTableCell text="Third Row Item 2" />
+											<CSTableCell text="Third Row Item 3" />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow>
+											<CSTableCell text="Fourth Row Item 1" />
+											<CSTableCell text="Fourth Row Item 2" />
+											<CSTableCell text="Fourth Row Item 3" />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>,
+								code: `<CSTable>
+									<CSTableHeader>
+										<CSTableCell text="Header Item 1" />
+										<CSTableCell text="Header Item 2" />
+										<CSTableCell text="Header Item 3" />
+										<CSTableCell text="Button Column" />
+									</CSTableHeader>
+									<CSTableBody maxHeight="10rem">
+										<CSTableRow>
+											<CSTableCell text="First Row Item 1" />
+											<CSTableCell text="First Row Item 2" />
+											<CSTableCell text="First Row Item 3" />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow>
+											<CSTableCell text="Second Row Item 1" />
+											<CSTableCell text="Second Row Item 2" />
+											<CSTableCell text="Second Row Item 3" />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow>
+											<CSTableCell text="Third Row Item 1" />
+											<CSTableCell text="Third Row Item 2" />
+											<CSTableCell text="Third Row Item 3" />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow>
+											<CSTableCell text="Fourth Row Item 1" />
+											<CSTableCell text="Fourth Row Item 2" />
+											<CSTableCell text="Fourth Row Item 3" />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													btnType="default"
+													iconName="emoji"
+													iconDisplay="icon-only"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>`
+							}
+						]
+					}
+				]
+			}, {
+				name: 'Table Row',
+				examples: [
+					{
+						propName: 'onClick',
+						variations: [
+							{
+								component: <CSTable>
+									<CSTableHeader>
+										<CSTableCell text="Header Item 1" grow={2} />
+										<CSTableCell text="Header Item 2" grow={1} />
+										<CSTableCell text="Header Item 3" grow={1} />
+										<CSTableCell text="Button Column" />
 									</CSTableHeader>
 									<CSTableBody>
 										<CSTableRow onClick={this.handleClick}>
-											<CSTableCell
-												text="Body Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Body Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Body Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
+											<CSTableCell text="First Row Item 1" grow={2} />
+											<CSTableCell text="First Row Item 2" grow={1} />
+											<CSTableCell text="First Row Item 3" grow={1} />
+											<CSTableCell>
 												<CSButton
 													label="label"
 													labelHidden
@@ -161,46 +655,21 @@ class CSTablePreview extends React.Component {
 												/>
 											</CSTableCell>
 										</CSTableRow>
+									</CSTableBody>
+								</CSTable>,
+								code: `<CSTable>
+									<CSTableHeader>
+										<CSTableCell text="Header Item 1" grow={2} />
+										<CSTableCell text="Header Item 2" grow={1} />
+										<CSTableCell text="Header Item 3" grow={1} />
+										<CSTableCell text="Button Column" />
+									</CSTableHeader>
+									<CSTableBody>
 										<CSTableRow onClick={this.handleClick}>
-											<CSTableCell
-												text="Second Row Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Second Row Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Second Row Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
-												<CSButton
-													label="label"
-													labelHidden
-													btnType="default"
-													iconName="emoji"
-												/>
-											</CSTableCell>
-										</CSTableRow>
-										<CSTableRow onClick={this.handleClick}>
-											<CSTableCell
-												text="Second Row Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Second Row Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Second Row Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
+											<CSTableCell text="First Row Item 1" grow={2} />
+											<CSTableCell text="First Row Item 2" grow={1} />
+											<CSTableCell text="First Row Item 3" grow={1} />
+											<CSTableCell>
 												<CSButton
 													label="label"
 													labelHidden
@@ -210,468 +679,183 @@ class CSTablePreview extends React.Component {
 											</CSTableCell>
 										</CSTableRow>
 									</CSTableBody>
-								</CSTable>
-						}
-					]
-				},
-				{
-					propName: 'onMouseDown',
-					customText: '',
-					variations: [
-						{
-							component:
-								<CSTable>
+								</CSTable>`
+							}
+						]
+					}, {
+						propName: 'onMouseDown',
+						variations: [
+							{
+								component: <CSTable>
 									<CSTableHeader>
-										<CSTableCell
-											text="Header Item 1"
-											grow={2}
-										/>
-										<CSTableCell
-											text="Header Item 2"
-											grow={1}
-										/>
-										<CSTableCell
-											text="Header Item 3"
-											grow={1}
-										/>
-										<CSTableCell
-											text="Button Column"
-											maxWidth="100px"
-										/>
+										<CSTableCell text="Header Item 1" grow={2} />
+										<CSTableCell text="Header Item 2" grow={1} />
+										<CSTableCell text="Header Item 3" grow={1} />
+										<CSTableCell text="Button Column" />
 									</CSTableHeader>
 									<CSTableBody>
 										<CSTableRow onMouseDown={this.handleMouseDown}>
-											<CSTableCell
-												text="Body Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Body Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Body Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
+											<CSTableCell text="First Row Item 1" grow={2} />
+											<CSTableCell text="First Row Item 2" grow={1} />
+											<CSTableCell text="First Row Item 3" grow={1} />
+											<CSTableCell>
 												<CSButton
 													label="label"
+													labelHidden
 													btnType="default"
 													iconName="emoji"
-													iconDisplay="icon-only"
-												/>
-											</CSTableCell>
-										</CSTableRow>
-										<CSTableRow onMouseDown={this.handleMouseDown}>
-											<CSTableCell
-												text="Second Row Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Second Row Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Second Row Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
-												<CSButton
-													label="label"
-													btnType="default"
-													iconName="emoji"
-													iconDisplay="icon-only"
-												/>
-											</CSTableCell>
-										</CSTableRow>
-										<CSTableRow onMouseDown={this.handleMouseDown}>
-											<CSTableCell
-												text="Second Row Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Second Row Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Second Row Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
-												<CSButton
-													label="label"
-													btnType="default"
-													iconName="emoji"
-													iconDisplay="icon-only"
 												/>
 											</CSTableCell>
 										</CSTableRow>
 									</CSTableBody>
-								</CSTable>
-						}
-					]
-				},
-				{
-					propName: 'onMouseOut',
-					customText: '',
-					variations: [
-						{
-							component:
-								<CSTable>
+								</CSTable>,
+								code: `<CSTable>
 									<CSTableHeader>
-										<CSTableCell
-											text="Header Item 1"
-											grow={2}
-										/>
-										<CSTableCell
-											text="Header Item 2"
-											grow={1}
-										/>
-										<CSTableCell
-											text="Header Item 3"
-											grow={1}
-										/>
-										<CSTableCell
-											text="Button Column"
-											maxWidth="100px"
-										/>
+										<CSTableCell text="Header Item 1" grow={2} />
+										<CSTableCell text="Header Item 2" grow={1} />
+										<CSTableCell text="Header Item 3" grow={1} />
+										<CSTableCell text="Button Column" />
 									</CSTableHeader>
 									<CSTableBody>
-										<CSTableRow onMouseOut={this.handleMouseOut}>
-											<CSTableCell
-												text="Body Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Body Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Body Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
+										<CSTableRow onMouseDown={this.handleMouseDown}>
+											<CSTableCell text="First Row Item 1" grow={2} />
+											<CSTableCell text="First Row Item 2" grow={1} />
+											<CSTableCell text="First Row Item 3" grow={1} />
+											<CSTableCell>
 												<CSButton
 													label="label"
+													labelHidden
 													btnType="default"
 													iconName="emoji"
-													iconDisplay="icon-only"
-												/>
-											</CSTableCell>
-										</CSTableRow>
-										<CSTableRow onMouseOut={this.handleMouseOut}>
-											<CSTableCell
-												text="Second Row Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Second Row Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Second Row Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
-												<CSButton
-													label="label"
-													btnType="default"
-													iconName="emoji"
-													iconDisplay="icon-only"
-												/>
-											</CSTableCell>
-										</CSTableRow>
-										<CSTableRow onMouseOut={this.handleMouseOut}>
-											<CSTableCell
-												text="Second Row Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Second Row Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Second Row Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
-												<CSButton
-													label="label"
-													btnType="default"
-													iconName="emoji"
-													iconDisplay="icon-only"
 												/>
 											</CSTableCell>
 										</CSTableRow>
 									</CSTableBody>
-								</CSTable>
-						}
-					]
-				},
-				{
-					propName: 'onMouseOver',
-					customText: '',
-					variations: [
-						{
-							component:
-								<CSTable>
+								</CSTable>`
+							}
+						]
+					}, {
+						propName: 'onMouseOut',
+						variations: [
+							{
+								component: <CSTable>
 									<CSTableHeader>
-										<CSTableCell
-											text="Header Item 1"
-											grow={2}
-										/>
-										<CSTableCell
-											text="Header Item 2"
-											grow={1}
-										/>
-										<CSTableCell
-											text="Header Item 3"
-											grow={1}
-										/>
-										<CSTableCell
-											text="Button Column"
-											maxWidth="100px"
-										/>
+										<CSTableCell text="Header Item 1" grow={2} />
+										<CSTableCell text="Header Item 2" grow={1} />
+										<CSTableCell text="Header Item 3" grow={1} />
+										<CSTableCell text="Button Column" />
 									</CSTableHeader>
 									<CSTableBody>
-										<CSTableRow onMouseOver={this.handleMouseOver}>
-											<CSTableCell
-												text="Body Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Body Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Body Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
+										<CSTableRow onMouseOut={this.handleMouseOut}>
+											<CSTableCell text="First Row Item 1" grow={2} />
+											<CSTableCell text="First Row Item 2" grow={1} />
+											<CSTableCell text="First Row Item 3" grow={1} />
+											<CSTableCell>
 												<CSButton
 													label="label"
+													labelHidden
 													btnType="default"
 													iconName="emoji"
-													iconDisplay="icon-only"
-												/>
-											</CSTableCell>
-										</CSTableRow>
-										<CSTableRow onMouseOver={this.handleMouseOver}>
-											<CSTableCell
-												text="Second Row Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Second Row Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Second Row Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
-												<CSButton
-													label="label"
-													btnType="default"
-													iconName="emoji"
-													iconDisplay="icon-only"
-												/>
-											</CSTableCell>
-										</CSTableRow>
-										<CSTableRow onMouseOver={this.handleMouseOver}>
-											<CSTableCell
-												text="Second Row Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Second Row Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Second Row Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
-												<CSButton
-													label="label"
-													btnType="default"
-													iconName="emoji"
-													iconDisplay="icon-only"
 												/>
 											</CSTableCell>
 										</CSTableRow>
 									</CSTableBody>
-								</CSTable>
-						}
-					]
-				},
-				{
-					propName: 'rwoHighlighted',
-					customText: '',
-					variations: [
-						{
-							component:
-								<CSTable>
+								</CSTable>,
+								code: `<CSTable>
 									<CSTableHeader>
-										<CSTableCell
-											text="Header Item 1"
-											grow={2}
-										/>
-										<CSTableCell
-											text="Header Item 2"
-											grow={1}
-										/>
-										<CSTableCell
-											text="Header Item 3"
-											grow={1}
-										/>
-										<CSTableCell
-											text="Button Column"
-											maxWidth="100px"
-										/>
+										<CSTableCell text="Header Item 1" grow={2} />
+										<CSTableCell text="Header Item 2" grow={1} />
+										<CSTableCell text="Header Item 3" grow={1} />
+										<CSTableCell text="Button Column" />
+									</CSTableHeader>
+									<CSTableBody>
+										<CSTableRow onMouseOut={this.handleMouseOut}>
+											<CSTableCell text="First Row Item 1" grow={2} />
+											<CSTableCell text="First Row Item 2" grow={1} />
+											<CSTableCell text="First Row Item 3" grow={1} />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													labelHidden
+													btnType="default"
+													iconName="emoji"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>`
+							}
+						]
+					}, {
+						propName: 'onMouseOver',
+						variations: [
+							{
+								component: <CSTable>
+									<CSTableHeader>
+										<CSTableCell text="Header Item 1" grow={2} />
+										<CSTableCell text="Header Item 2" grow={1} />
+										<CSTableCell text="Header Item 3" grow={1} />
+										<CSTableCell text="Button Column" />
+									</CSTableHeader>
+									<CSTableBody>
+										<CSTableRow onMouseOver={this.handleMouseOver}>
+											<CSTableCell text="First Row Item 1" grow={2} />
+											<CSTableCell text="First Row Item 2" grow={1} />
+											<CSTableCell text="First Row Item 3" grow={1} />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													labelHidden
+													btnType="default"
+													iconName="emoji"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>,
+								code: `<CSTable>
+									<CSTableHeader>
+										<CSTableCell text="Header Item 1" grow={2} />
+										<CSTableCell text="Header Item 2" grow={1} />
+										<CSTableCell text="Header Item 3" grow={1} />
+										<CSTableCell text="Button Column" />
+									</CSTableHeader>
+									<CSTableBody>
+										<CSTableRow onMouseOver={this.handleMouseOver}>
+											<CSTableCell text="First Row Item 1" grow={2} />
+											<CSTableCell text="First Row Item 2" grow={1} />
+											<CSTableCell text="First Row Item 3" grow={1} />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													labelHidden
+													btnType="default"
+													iconName="emoji"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>`
+							}
+						]
+					}, {
+						propName: 'rowHighlighted',
+						variations: [
+							{
+								primaryVariants: 'rowHighlighted={true}',
+								component: <CSTable>
+									<CSTableHeader>
+										<CSTableCell text="Header Item 1" grow={2} />
+										<CSTableCell text="Header Item 2" grow={1} />
+										<CSTableCell text="Header Item 3" grow={1} />
+										<CSTableCell text="Button Column" />
 									</CSTableHeader>
 									<CSTableBody>
 										<CSTableRow rowHighlighted>
-											<CSTableCell
-												text="Body Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Body Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Body Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
-												<CSButton
-													label="label"
-													btnType="default"
-													iconName="emoji"
-													iconDisplay="icon-only"
-												/>
-											</CSTableCell>
-										</CSTableRow>
-										<CSTableRow onMouseOver={this.handleMouseOver}>
-											<CSTableCell
-												text="Second Row Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Second Row Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Second Row Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
-												<CSButton
-													label="label"
-													btnType="default"
-													iconName="emoji"
-													iconDisplay="icon-only"
-												/>
-											</CSTableCell>
-										</CSTableRow>
-										<CSTableRow onMouseOver={this.handleMouseOver}>
-											<CSTableCell
-												text="Second Row Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Second Row Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Second Row Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
-												<CSButton
-													label="label"
-													btnType="default"
-													iconName="emoji"
-													iconDisplay="icon-only"
-												/>
-											</CSTableCell>
-										</CSTableRow>
-									</CSTableBody>
-								</CSTable>
-						}
-					]
-				},
-				{
-					propName: 'selectableRows',
-					customText: '',
-					alert: {
-						variant: 'warning',
-						text: 'This prop needs to be reviewed and updated. Do not use.'
-					},
-					variations: [
-						{
-							component:
-								<CSTable selectableRows>
-									<CSTableHeader>
-										<CSTableCell
-											text="Header Item 1"
-											grow={2}
-										/>
-										<CSTableCell
-											text="Header Item 2"
-											grow={1}
-										/>
-										<CSTableCell
-											text="Header Item 3"
-											grow={1}
-										/>
-										<CSTableCell
-											text="Button Column"
-											maxWidth="100px"
-										/>
-									</CSTableHeader>
-									<CSTableBody>
-										<CSTableRow>
-											<CSTableCell
-												text="Second Row Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Second Row Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Second Row Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
+											<CSTableCell text="First Row Item 1" grow={2} />
+											<CSTableCell text="First Row Item 2" grow={1} />
+											<CSTableCell text="First Row Item 3" grow={1} />
+											<CSTableCell>
 												<CSButton
 													label="label"
 													labelHidden
@@ -681,45 +865,10 @@ class CSTablePreview extends React.Component {
 											</CSTableCell>
 										</CSTableRow>
 										<CSTableRow>
-											<CSTableCell
-												text="Body Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Body Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Body Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
-												<CSButton
-													label="label"
-													labelHidden
-													btnType="default"
-													iconName="emoji"
-												/>
-											</CSTableCell>
-										</CSTableRow>
-										<CSTableRow>
-											<CSTableCell
-												text="Second Row Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Second Row Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Second Row Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
+											<CSTableCell text="Second Row Item 1" grow={2} />
+											<CSTableCell text="Second Row Item 2" grow={1} />
+											<CSTableCell text="Second Row Item 3" grow={1} />
+											<CSTableCell>
 												<CSButton
 													label="label"
 													labelHidden
@@ -729,51 +878,99 @@ class CSTablePreview extends React.Component {
 											</CSTableCell>
 										</CSTableRow>
 									</CSTableBody>
-								</CSTable>
-						}
-					]
-				},
-				{
-					propName: 'rowSelected',
-					variations: [
-						{
-							component:
-								<CSTable>
+								</CSTable>,
+								code: `<CSTable>
 									<CSTableHeader>
-										<CSTableCell
-											text="Header Item 1"
-											grow={2}
-										/>
-										<CSTableCell
-											text="Header Item 2"
-											grow={1}
-										/>
-										<CSTableCell
-											text="Header Item 3"
-											grow={1}
-										/>
-										<CSTableCell
-											text="Button Column"
-											maxWidth="100px"
-										/>
+										<CSTableCell text="Header Item 1" grow={2} />
+										<CSTableCell text="Header Item 2" grow={1} />
+										<CSTableCell text="Header Item 3" grow={1} />
+										<CSTableCell text="Button Column" />
+									</CSTableHeader>
+									<CSTableBody>
+										<CSTableRow rowHighlighted>
+											<CSTableCell text="First Row Item 1" grow={2} />
+											<CSTableCell text="First Row Item 2" grow={1} />
+											<CSTableCell text="First Row Item 3" grow={1} />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													labelHidden
+													btnType="default"
+													iconName="emoji"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow>
+											<CSTableCell text="Second Row Item 1" grow={2} />
+											<CSTableCell text="Second Row Item 2" grow={1} />
+											<CSTableCell text="Second Row Item 3" grow={1} />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													labelHidden
+													btnType="default"
+													iconName="emoji"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>`
+							}
+						]
+					}, {
+						propName: 'rowSelected',
+						variations: [
+							{
+								primaryVariants: 'rowSelected={true}',
+								component: <CSTable>
+									<CSTableHeader>
+										<CSTableCell text="Header Item 1" grow={2} />
+										<CSTableCell text="Header Item 2" grow={1} />
+										<CSTableCell text="Header Item 3" grow={1} />
+										<CSTableCell text="Button Column" />
+									</CSTableHeader>
+									<CSTableBody>
+										<CSTableRow rowSelected>
+											<CSTableCell text="First Row Item 1" grow={2} />
+											<CSTableCell text="First Row Item 2" grow={1} />
+											<CSTableCell text="First Row Item 3" grow={1} />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													labelHidden
+													btnType="default"
+													iconName="emoji"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+										<CSTableRow>
+											<CSTableCell text="Second Row Item 1" grow={2} />
+											<CSTableCell text="Second Row Item 2" grow={1} />
+											<CSTableCell text="Second Row Item 3" grow={1} />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													labelHidden
+													btnType="default"
+													iconName="emoji"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>,
+								code: `<CSTable>
+									<CSTableHeader>
+										<CSTableCell text="Header Item 1" grow={2} />
+										<CSTableCell text="Header Item 2" grow={1} />
+										<CSTableCell text="Header Item 3" grow={1} />
+										<CSTableCell text="Button Column" />
 									</CSTableHeader>
 									<CSTableBody>
 										<CSTableRow>
-											<CSTableCell
-												text="Second Row Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Second Row Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Second Row Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
+											<CSTableCell text="First Row Item 1" grow={2} />
+											<CSTableCell text="First Row Item 2" grow={1} />
+											<CSTableCell text="First Row Item 3" grow={1} />
+											<CSTableCell>
 												<CSButton
 													label="label"
 													labelHidden
@@ -783,45 +980,10 @@ class CSTablePreview extends React.Component {
 											</CSTableCell>
 										</CSTableRow>
 										<CSTableRow rowSelected>
-											<CSTableCell
-												text="Body Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Body Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Body Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
-												<CSButton
-													label="label"
-													labelHidden
-													btnType="default"
-													iconName="emoji"
-												/>
-											</CSTableCell>
-										</CSTableRow>
-										<CSTableRow>
-											<CSTableCell
-												text="Second Row Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Second Row Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Second Row Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
+											<CSTableCell text="Second Row Item 1" grow={2} />
+											<CSTableCell text="Second Row Item 2" grow={1} />
+											<CSTableCell text="Second Row Item 3" grow={1} />
+											<CSTableCell>
 												<CSButton
 													label="label"
 													labelHidden
@@ -831,68 +993,120 @@ class CSTablePreview extends React.Component {
 											</CSTableCell>
 										</CSTableRow>
 									</CSTableBody>
-								</CSTable>
-						}
-					]
-				},
-				{
-					propName: 'maxHeight',
-					customText: '',
-					variations: [
-						{
-							variationName: ['10rem'],
-							component:
-								<CSTable>
+								</CSTable>`
+							}
+						]
+					}
+				]
+			}, {
+				name: 'Table Cell',
+				examples: [
+					{
+						propName: 'grow',
+						variations: [
+							{
+								primaryVariants: 'grow={3}',
+								component: <CSTable>
 									<CSTableHeader>
-										<CSTableCell text="Header Item 1" />
+										<CSTableCell text="Header Item 1" grow={3} />
+										<CSTableCell text="Button Column" />
+									</CSTableHeader>
+									<CSTableBody>
+										<CSTableRow>
+											<CSTableCell text="First Row Item 1" grow={3} />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													labelHidden
+													btnType="default"
+													iconName="emoji"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>,
+								code: `<CSTable>
+									<CSTableHeader>
+										<CSTableCell text="Header Item 1" grow={3} />
+										<CSTableCell text="Button Column" />
+									</CSTableHeader>
+									<CSTableBody>
+										<CSTableRow>
+											<CSTableCell text="First Row Item 1" grow={3} />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													labelHidden
+													btnType="default"
+													iconName="emoji"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>`
+							}
+						]
+					}, {
+						propName: 'maxWidth',
+						variations: [
+							{
+								primaryVariants: 'maxWidth="15rem"',
+								component: <CSTable>
+									<CSTableHeader>
+										<CSTableCell text="Header Item 1" maxWidth="15rem" />
+										<CSTableCell text="Button Column" />
+									</CSTableHeader>
+									<CSTableBody>
+										<CSTableRow>
+											<CSTableCell text="First Row Item 1" maxWidth="15rem" />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													labelHidden
+													btnType="default"
+													iconName="emoji"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>,
+								code: `<CSTable>
+									<CSTableHeader>
+										<CSTableCell text="Header Item 1" maxWidth="15rem" />
+										<CSTableCell text="Button Column" />
+									</CSTableHeader>
+									<CSTableBody>
+										<CSTableRow>
+											<CSTableCell text="First Row Item 1" maxWidth="15rem" />
+											<CSTableCell>
+												<CSButton
+													label="label"
+													labelHidden
+													btnType="default"
+													iconName="emoji"
+												/>
+											</CSTableCell>
+										</CSTableRow>
+									</CSTableBody>
+								</CSTable>`
+							}
+						]
+					}, {
+						propName: 'text',
+						variations: [
+							{
+								component: <CSTable>
+									<CSTableHeader>
+										<CSTableCell text="Header Item 1" grow={2} />
 										<CSTableCell text="Header Item 2" />
 										<CSTableCell text="Header Item 3" />
 										<CSTableCell text="Button Column" />
 									</CSTableHeader>
-									<CSTableBody maxHeight="10rem">
+									<CSTableBody>
 										<CSTableRow>
-											<CSTableCell text="Body Item 1" />
-											<CSTableCell text="Body Item 2" />
-											<CSTableCell text="Body Item 3" />
-											<CSTableCell>
-												<CSButton
-													label="label"
-													labelHidden
-													btnType="default"
-													iconName="emoji"
-												/>
-											</CSTableCell>
-										</CSTableRow>
-										<CSTableRow >
-											<CSTableCell text="Second Row Item 1" />
-											<CSTableCell text="Second Row Item 2" />
-											<CSTableCell text="Second Row Item 3" />
-											<CSTableCell>
-												<CSButton
-													label="label"
-													labelHidden
-													btnType="default"
-													iconName="emoji"
-												/>
-											</CSTableCell>
-										</CSTableRow>
-										<CSTableRow>
-											<CSTableCell text="Second Row Item 1" />
-											<CSTableCell text="Second Row Item 2" />
-											<CSTableCell text="Second Row Item 3" />
-											<CSTableCell>
-												<CSButton
-													label="label"
-													labelHidden
-													btnType="default"
-													iconName="emoji"
-												/>
-											</CSTableCell>
-										</CSTableRow>
-										<CSTableRow>
-											<CSTableCell text="Second Row Item 1" />
-											<CSTableCell text="Second Row Item 2" />
-											<CSTableCell text="Second Row Item 3" />
+											<CSTableCell text="This is text for cell 1" grow={2} />
+											<CSTableCell text="This is text for cell 2" />
+											<CSTableCell text="This is text for cell 3" />
 											<CSTableCell>
 												<CSButton
 													label="label"
@@ -903,313 +1117,20 @@ class CSTablePreview extends React.Component {
 											</CSTableCell>
 										</CSTableRow>
 									</CSTableBody>
-								</CSTable>
-						}
-					]
-				},
-				{
-					propName: 'headerSticky',
-					customText: '',
-					variations: [
-						{
-							variationName: ['true'],
-							quickLink: 'true',
-							component:
-								<CSTable>
-									<CSTableHeader headerSticky>
-										<CSTableCell
-											text="Header Item 1"
-											grow={2}
-										/>
-										<CSTableCell
-											text="Header Item 2"
-											grow={1}
-										/>
-										<CSTableCell
-											text="Header Item 3"
-											grow={1}
-										/>
-										<CSTableCell
-											text="Button Column"
-											maxWidth="100px"
-										/>
-									</CSTableHeader>
-									<CSTableBody maxHeight="10rem">
-										<CSTableRow>
-											<CSTableCell
-												text="Body Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Body Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Body Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
-												<CSButton
-													label="label"
-													labelHidden
-													btnType="default"
-													iconName="emoji"
-												/>
-											</CSTableCell>
-										</CSTableRow>
-										<CSTableRow>
-											<CSTableCell
-												text="Second Row Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Second Row Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Second Row Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
-												<CSButton
-													label="label"
-													labelHidden
-													btnType="default"
-													iconName="emoji"
-												/>
-											</CSTableCell>
-										</CSTableRow>
-										<CSTableRow>
-											<CSTableCell
-												text="Second Row Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Second Row Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Second Row Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
-												<CSButton
-													label="label"
-													labelHidden
-													btnType="default"
-													iconName="emoji"
-												/>
-											</CSTableCell>
-										</CSTableRow>
-										<CSTableRow>
-											<CSTableCell
-												text="Second Row Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Second Row Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Second Row Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
-												<CSButton
-													label="label"
-													labelHidden
-													btnType="default"
-													iconName="emoji"
-												/>
-											</CSTableCell>
-										</CSTableRow>
-										<CSTableRow>
-											<CSTableCell
-												text="Second Row Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Second Row Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Second Row Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
-												<CSButton
-													label="label"
-													labelHidden
-													btnType="default"
-													iconName="emoji"
-												/>
-											</CSTableCell>
-										</CSTableRow>
-									</CSTableBody>
-								</CSTable>
-						}
-					]
-				},
-				{
-					propName: 'className',
-					customText: '',
-					variations: [
-						{
-							variationName: ['custom class'],
-							quickLink: 'custom class',
-							component:
-								<CSTable className="custom-class">
-									<CSTableHeader className="custom-class">
-										<CSTableCell
-											className="custom-class"
-											text="Header Item 1"
-											grow={2}
-										/>
-										<CSTableCell
-											text="Header Item 2"
-											grow={1}
-										/>
-										<CSTableCell
-											text="Header Item 3"
-											grow={1}
-										/>
-										<CSTableCell
-											text="Button Column"
-											maxWidth="100px"
-										/>
-									</CSTableHeader>
-									<CSTableBody className="custom-class">
-										<CSTableRow className="custom-class">
-											<CSTableCell
-												text="Body Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Body Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Body Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
-												<CSButton
-													label="label"
-													labelHidden
-													btnType="default"
-													iconName="emoji"
-												/>
-											</CSTableCell>
-										</CSTableRow>
-										<CSTableRow>
-											<CSTableCell
-												text="Second Row Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Second Row Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Second Row Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
-												<CSButton
-													label="label"
-													labelHidden
-													btnType="default"
-													iconName="emoji"
-												/>
-											</CSTableCell>
-										</CSTableRow>
-									</CSTableBody>
-								</CSTable>
-						}
-					]
-				},
-				{
-					propName: 'tableDescription',
-					customText: 'Hidden span will be added with description for screen readers',
-					variations: [
-						{
-							variationName: ['tableDescription'],
-							quickLink: 'tableDescription',
-							component:
-								<CSTable tableDescription="almost last and almost best table">
+								</CSTable>,
+								code: `<CSTable>
 									<CSTableHeader>
-										<CSTableCell
-											text="Header Item 1"
-											grow={2}
-										/>
-										<CSTableCell
-											text="Header Item 2"
-											grow={1}
-										/>
-										<CSTableCell
-											text="Header Item 3"
-											grow={1}
-										/>
-										<CSTableCell
-											text="Button Column"
-											maxWidth="100px"
-										/>
+										<CSTableCell text="Header Item 1" grow={2} />
+										<CSTableCell text="Header Item 2" />
+										<CSTableCell text="Header Item 3" />
+										<CSTableCell text="Button Column" />
 									</CSTableHeader>
 									<CSTableBody>
 										<CSTableRow>
-											<CSTableCell
-												text="Body Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Body Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Body Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
-												<CSButton
-													label="label"
-													labelHidden
-													btnType="default"
-													iconName="emoji"
-												/>
-											</CSTableCell>
-										</CSTableRow>
-										<CSTableRow>
-											<CSTableCell
-												text="Second Row Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Second Row Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Second Row Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
+											<CSTableCell text="This is text for cell 1" grow={2} />
+											<CSTableCell text="This is text for cell 2" />
+											<CSTableCell text="This is text for cell 3" />
+											<CSTableCell>
 												<CSButton
 													label="label"
 													labelHidden
@@ -1219,344 +1140,238 @@ class CSTablePreview extends React.Component {
 											</CSTableCell>
 										</CSTableRow>
 									</CSTableBody>
-								</CSTable>
-						},
-						{
-							variationName: ['tableDescription and custom id'],
-							quickLink: 'tableDescription and custom id',
-							component:
-								<CSTable tableDescription="last, but best table" id="id">
-									<CSTableHeader>
-										<CSTableCell
-											text="Header Item 1"
-											grow={2}
-										/>
-										<CSTableCell
-											text="Header Item 2"
-											grow={1}
-										/>
-										<CSTableCell
-											text="Header Item 3"
-											grow={1}
-										/>
-										<CSTableCell
-											text="Button Column"
-											maxWidth="100px"
-										/>
-									</CSTableHeader>
-									<CSTableBody>
-										<CSTableRow>
-											<CSTableCell
-												text="Body Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Body Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Body Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
-												<CSButton
-													label="label"
-													labelHidden
-													btnType="default"
-													iconName="emoji"
-												/>
-											</CSTableCell>
-										</CSTableRow>
-										<CSTableRow>
-											<CSTableCell
-												text="Second Row Item 1"
-												grow={2}
-											/>
-											<CSTableCell
-												text="Second Row Item 2"
-												grow={1}
-											/>
-											<CSTableCell
-												text="Second Row Item 3"
-												grow={1}
-											/>
-											<CSTableCell
-												maxWidth="100px"
-											>
-												<CSButton
-													label="label"
-													labelHidden
-													btnType="default"
-													iconName="emoji"
-												/>
-											</CSTableCell>
-										</CSTableRow>
-									</CSTableBody>
-								</CSTable>
-						}
-					]
-				}
-			],
-			properties: [
-				{
-					name: 'children',
-					customTypes: [{
-						name: 'CSTableChildren',
-						types: ['<CSTableHeader />', '<CSTableBody />', 'any']
-					}],
-					description: 'This component is designed to support CSTableHeader and CSTableBody as children.'
-				}, {
-					name: 'selectableRows',
-					types: ['boolean'],
-					description: 'Implement keyboard support for table rows.'
-				}, {
-					name: 'className',
-					types: ['string'],
-					description: 'Apply custom CSS classes to the table.'
-				}, {
-					name: 'id',
-					types: ['string'],
-					description: 'Set the ID for the table.'
-				}, {
-					name: 'tableDescription',
-					types: ['string'],
-					description: 'Set a table description.'
-				}, {
-					name: '[key: string]',
-					types: ['any'],
-					description: 'Spreads the rest of the props to the table div.'
-				}
-			],
-			accessibility: [
-				{
-					criterionList: [
-						'1.4.4',
-						'2.1.1',
-						'2.1.2',
-						'2.1.4',
-						'4.1.2'
-					],
-					requirements: [
-						{
-							structure: [
-								'`<div>`\'s with different roles'
-							],
-							properties: [
-								'`role="table"` - on top wrapper',
-								'`role="columnheader"` - on table header cells',
-								'`role="rowgroup"` - on table body',
-								'`role="row"` - on body rows and header row',
-								'`role="cell"` - on cells',
-								'`tabindex="0"` on rows',
-								'`aria-labelledby` - contains id pointing to hidden span when `tableDescription` is set which associates table with description'
-							],
-							visual: [
-								'Distinct hover and focus state styles - WIP'
-							],
-							keyboardOperability: [
-								'WIP'
-							]
-						}
-					]
-				}
-			]
-		};
-
-		for (const example of json.examples) {
-			for (const variation of example.variations) {
-				(variation as any).string = jsxToString(variation.component);
+								</CSTable>`
+							}
+						]
+					}
+				]
 			}
-		}
+		],
+		properties: [
+			{
+				name: 'children',
+				customTypes: [{
+					name: 'CSTableChildren',
+					types: ['<CSTableHeader />', '<CSTableBody />', 'any']
+				}],
+				description: 'This component is designed to support CSTableHeader and CSTableBody as children.'
+			}, {
+				name: 'selectableRows',
+				types: ['boolean'],
+				description: 'Implement keyboard support for table rows.'
+			}, {
+				name: 'className',
+				types: ['string'],
+				description: 'Apply custom CSS classes to the table.'
+			}, {
+				name: 'id',
+				types: ['string'],
+				description: 'Set the ID for the table.'
+			}, {
+				name: 'tableDescription',
+				types: ['string'],
+				description: 'Set a table description for accessibility screen readers.'
+			}, {
+				name: '[key: string]',
+				types: ['any'],
+				description: 'Spreads the rest of the props to the table div.'
+			}
+		],
+		accessibility: [
+			{
+				criterionList: [
+					'1.4.4',
+					'2.1.1',
+					'2.1.2',
+					'4.1.2'
+				],
+				requirements: [
+					{
+						structure: [
+							''
+						],
+						properties: [
+							''
+						],
+						visual: [
+							''
+						],
+						keyboardOperability: [
+							''
+						]
+					}
+				]
+			}
+		]
+	})
 
-		return json;
-	}
+	getTableHeaderDoc = () => ({
+		name: 'Table Header',
+		properties: [
+			{
+				name: 'children',
+				customTypes: [{
+					name: 'CSTableHeaderChildren',
+					types: ['<CSTableCell />', 'any']
+				}],
+				description: 'This component is designed to support CSTableCell as a child.'
+			}, {
+				name: 'className',
+				types: ['string'],
+				description: 'Apply custom CSS classes to the table header.'
+			}, {
+				name: 'id',
+				types: ['string'],
+				description: 'Set the ID for the table header.'
+			}, {
+				name: 'headerSticky',
+				types: ['boolean'],
+				description: 'Apply sticky positioning to the table header.'
+			}, {
+				name: '[key: string]',
+				types: ['any'],
+				description: 'Spreads the rest of the props to the table header div.'
+			}
+		]
+	})
 
-	getCSTableHeaderDoc() {
-		const json = {
-			name: 'Table Header',
-			properties: [
-				{
-					name: 'children',
-					customTypes: [{
-						name: 'CSTableHeaderChildren',
-						types: ['<CSTableCell />', 'any']
-					}],
-					description: 'This component is designed to support CSTableCell as a child.'
-				}, {
-					name: 'className',
-					types: ['string'],
-					description: 'Apply custom CSS classes to the table header.'
-				}, {
-					name: 'id',
-					types: ['string'],
-					description: 'Set the ID for the table header.'
-				}, {
-					name: 'headerSticky',
-					types: ['boolean'],
-					description: 'Apply sticky positioning to the table header.'
-				}, {
-					name: '[key: string]',
-					types: ['any'],
-					description: 'Spreads the rest of the props to the table header div.'
-				}
-			]
-		};
+	getTableBodyDoc = () => ({
+		name: 'Table Body',
+		properties: [
+			{
+				name: 'children',
+				customTypes: [{
+					name: 'CSTableBodyChildren',
+					types: ['<CSTableRow />', 'any']
+				}],
+				description: 'This component is designed to support CSTableRow as a child.'
+			}, {
+				name: 'className',
+				types: ['string'],
+				description: 'Apply custom CSS classes to the table body.'
+			}, {
+				name: 'id',
+				types: ['string'],
+				description: 'Set the ID for the table body.'
+			}, {
+				name: 'maxHeight',
+				types: ['string'],
+				description: 'Set the max-height attribute for the table body.'
+			}, {
+				name: '[key: string]',
+				types: ['any'],
+				description: 'Spreads the rest of the props to the table body div.'
+			}
+		]
+	})
 
-		return json;
-	}
-	getCSTableBodyDoc() {
-		const json = {
-			name: 'Table Body',
-			properties: [
-				{
-					name: 'children',
-					customTypes: [{
-						name: 'CSTableBodyChildren',
-						types: ['<CSTableRow />', 'any']
-					}],
-					description: 'This component is designed to support CSTableRow as a child.'
-				}, {
-					name: 'className',
-					types: ['string'],
-					description: 'Apply custom CSS classes to the table body.'
-				}, {
-					name: 'id',
-					types: ['string'],
-					description: 'Set the ID for the table body.'
-				}, {
-					name: 'maxHeight',
-					types: ['string'],
-					description: 'Set the max-height attribute for the table body.'
-				}, {
-					name: '[key: string]',
-					types: ['any'],
-					description: 'Spreads the rest of the props to the table body div.'
-				}
-			]
-		};
+	getTableRowDoc = () => ({
+		name: 'Table Row',
+		properties: [
+			{
+				name: 'children',
+				customTypes: [{
+					name: 'CSTableRowChildren',
+					types: ['<CSTableCell />', 'any']
+				}],
+				description: 'This component is designed to support CSTableCell as a child.'
+			}, {
+				name: 'className',
+				types: ['string'],
+				description: 'Apply custom CSS classes to the table row.'
+			}, {
+				name: 'id',
+				types: ['string'],
+				description: 'Set the ID for the table row.'
+			}, {
+				name: 'onClick',
+				types: ['(event) => any'],
+				description: 'Handler method for the click event.'
+			}, {
+				name: 'onMouseDown',
+				types: ['(event) => any'],
+				description: 'Handler method for the mouse down event.'
+			}, {
+				name: 'onMouseOut',
+				types: ['(event) => any'],
+				description: 'Handler method for the mouse out event.'
+			}, {
+				name: 'onMouseOver',
+				types: ['(event) => any'],
+				description: 'Handler method for the mouse over event.'
+			}, {
+				name: 'rowHighlighted',
+				types: ['bolean'],
+				description: 'Highlights row. Used to simulate hover effect.'
+			}, {
+				name: 'rowSelected',
+				types: ['bolean'],
+				description: 'Marks selected row, which works only if table has selectableRows true.'
+			}, {
+				name: '[key: string]',
+				types: ['any'],
+				description: 'Spreads the rest of the props to the table row div.'
+			}
+		]
+	})
 
-		return json;
-	}
-	getCSTableRowDoc() {
-		const json = {
-			name: 'Table Row',
-			properties: [
-				{
-					name: 'children',
-					customTypes: [{
-						name: 'CSTableRowChildren',
-						types: ['<CSTableCell />', 'any']
-					}],
-					description: 'This component is designed to support CSTableCell as a child.'
-				}, {
-					name: 'className',
-					types: ['string'],
-					description: 'Apply custom CSS classes to the table row.'
-				}, {
-					name: 'id',
-					types: ['string'],
-					description: 'Set the ID for the table row.'
-				}, {
-					name: 'onClick',
-					types: ['(event) => any'],
-					description: 'Handler method for the click event.'
-				}, {
-					name: 'onMouseDown',
-					types: ['(event) => any'],
-					description: 'Handler method for the mouse down event.'
-				}, {
-					name: 'onMouseOut',
-					types: ['(event) => any'],
-					description: 'Handler method for the mouse out event.'
-				}, {
-					name: 'onMouseOver',
-					types: ['(event) => any'],
-					description: 'Handler method for the mouse over event.'
-				}, {
-					name: 'rowHighlighted',
-					types: ['boolean'],
-					description: 'Highlights row. Used to simulate hover effect.'
-				}, {
-					name: 'rowSelected',
-					types: ['boolean'],
-					description: 'Marks selected row, which works only if table has selectableRows true.'
-				}, {
-					name: '[key: string]',
-					types: ['any'],
-					description: 'Spreads the rest of the props to the table row div.'
-				}
-			]
-		};
-
-		return json;
-	}
-
-	getCSTableCellDoc() {
-		const json = {
-			name: 'Table Cell',
-			properties: [
-				{
-					name: 'children',
-					types: ['any'],
-					description: 'This component supports custom content passed as children.'
-				}, {
-					name: 'className',
-					types: ['string'],
-					description: 'Apply custom CSS classes to the table cell.'
-				}, {
-					name: 'grow',
-					types: ['number'],
-					description: 'Set the flex-grow attribute for the table cell.'
-				}, {
-					name: 'id',
-					types: ['string'],
-					description: 'Set the ID for the table cell.'
-				}, {
-					name: 'maxWidth',
-					types: ['string'],
-					description: 'Set the max-width attribute for the table cell.'
-				}, {
-					name: 'text',
-					types: ['string'],
-					description: 'Set textual content for the table cell.'
-				}, {
-					name: 'role',
-					required: 'CSTableHeader',
-					types: ['string'],
-					default: '\'cell\'',
-					description: 'The table header sets the role to columnheader.'
-				}, {
-					name: '[key: string]',
-					types: ['any'],
-					description: 'Spreads the rest of the props to the table cell div.'
-				}
-			]
-		};
-
-		return json;
-	}
+	getTableCellDoc = () => ({
+		name: 'Table Cell',
+		properties: [
+			{
+				name: 'children',
+				types: ['any'],
+				description: 'This component supports custom content passed as children.'
+			}, {
+				name: 'className',
+				types: ['string'],
+				description: 'Apply custom CSS classes to the table cell.'
+			}, {
+				name: 'grow',
+				types: ['number'],
+				description: 'Set the flex-grow attribute for the table cell.'
+			}, {
+				name: 'id',
+				types: ['string'],
+				description: 'Set the ID for the table cell.'
+			}, {
+				name: 'maxWidth',
+				types: ['string'],
+				description: 'Set the max-width attribute for the table cell.'
+			}, {
+				name: 'text',
+				types: ['string'],
+				description: 'Set textual content for the table cell.'
+			}, {
+				name: 'role',
+				required: 'CSTableHeader',
+				types: ['string'],
+				default: '\'cell\'',
+				description: 'The table header sets the role to columnheader.'
+			}, {
+				name: '[key: string]',
+				types: ['any'],
+				description: 'Spreads the rest of the props to the table cell div.'
+			}
+		]
+	})
 
 	render() {
-		const component = this.getCSTableDoc();
-		const component2 = this.getCSTableHeaderDoc();
-		const component3 = this.getCSTableBodyDoc();
-		const component4 = this.getCSTableRowDoc();
-		const component5 = this.getCSTableCellDoc();
+		const component = this.getTableDoc();
+		const component2 = this.getTableHeaderDoc();
+		const component3 = this.getTableBodyDoc();
+		const component4 = this.getTableRowDoc();
+		const component5 = this.getTableCellDoc();
 
 		return (
 			<>
 				<div className="preview-section-wrapper">
 					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties name={component.name} examples={component.examples} />
+					<PreviewProperties {...component} />
 					<PreviewTable components={[component, component2, component3, component4, component5]} />
 					<PreviewAccessibility components={[component]} />
 				</div>
-				<div className="prop-sidebar">
-					<h3>Quick Links</h3>
-					<PreviewLinks component={component} />
-				</div>
+				<PreviewLinks {...component} />
 			</>
 		);
 	}

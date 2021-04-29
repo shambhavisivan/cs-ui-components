@@ -64,6 +64,32 @@
 
 	&.table-demo {
 		height: auto;
+
+		.custom-table-class {
+			@include css4 {
+				border: 2px solid var(--csd-custom-alt-br);
+			}
+		}
+
+		.custom-table-header-class {
+			@include sc(--csd-custom-alt-bg);
+		}
+
+		.custom-table-cell-class {
+			@include sbg(--csd-custom-bg)
+		}
+
+		.custom-table-body-class {
+			@include css4 {
+				border: 2px solid var(--csd-custom-br);
+			}
+		}
+
+		.custom-table-row-class {
+			@include css4 {
+				border: 2px solid var(--csd-custom-purple-br);
+			}
+		}
 	}
 
 	&.tab-group-demo .custom-tab-class {
