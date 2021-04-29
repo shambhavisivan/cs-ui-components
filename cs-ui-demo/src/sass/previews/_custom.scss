@@ -57,6 +57,10 @@
 		}
 	}
 
+	&.radio-demo .custom-option-class {
+		background-color: var(--custom-alt-bg);
+	}
+
 	&.main-header-demo,
 	&.main-header-left-demo {
 		padding: 0;

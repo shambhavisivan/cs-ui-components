@@ -55,7 +55,7 @@ class CSRadioPreview extends React.Component {
 						propName: 'error',
 						alert: {
 							variant: 'info',
-							text: 'Component in error state should always contain associated error message to satisfy accessibility best practices!'
+							text: 'Component in error state should always contain associated error message to satisfy accessibility best practices.'
 						},
 						variations: [
 							{
@@ -78,18 +78,18 @@ class CSRadioPreview extends React.Component {
 								component: <CSRadio
 									label="This is a label"
 									error
-									errorMessage="Error message!"
+									errorMessage="Error message."
 								>
-									<CSRadioOption label="male" name="error-message" />
-									<CSRadioOption label="female" name="error-message" />
+									<CSRadioOption label="car" name="vehicle" />
+									<CSRadioOption label="bus" name="vehicle" />
 								</CSRadio>,
 								code: `<CSRadio
 									label="This is a label"
 									error
-									errorMessage="Error message!"
+									errorMessage="Error message."
 								>
-									<CSRadioOption label="male" name="error-message" />
-									<CSRadioOption label="female" name="error-message" />
+									<CSRadioOption label="car" name="vehicle" />
+									<CSRadioOption label="bus" name="vehicle" />
 								</CSRadio>`
 							}
 						]
@@ -102,16 +102,16 @@ class CSRadioPreview extends React.Component {
 									helpText="Help text example"
 									tooltipPosition="bottom-right"
 								>
-									<CSRadioOption label="red" name="help-text" />
-									<CSRadioOption label="blue" name="help-text" />
+									<CSRadioOption label="red" name="color" />
+									<CSRadioOption label="blue" name="color" />
 								</CSRadio>,
 								code: `<CSRadio
 									label="This is a label"
 									helpText="Help text example"
 									tooltipPosition="bottom-right"
 								>
-									<CSRadioOption label="red" name="help-text" />
-									<CSRadioOption label="blue" name="help-text" />
+									<CSRadioOption label="red" name="color" />
+									<CSRadioOption label="blue" name="color" />
 								</CSRadio>`
 							}
 						]
@@ -121,12 +121,12 @@ class CSRadioPreview extends React.Component {
 							{
 								primaryVariants: 'labelHidden={true}',
 								component: <CSRadio label="This is a label" labelHidden>
-									<CSRadioOption label="high" name="label-hidden" />
-									<CSRadioOption name="label-hidden" />
+									<CSRadioOption label="macOS" name="os" />
+									<CSRadioOption label="Windows" name="os" />
 								</CSRadio>,
 								code: `<CSRadio label="This is a label" labelHidden>
-									<CSRadioOption label="high" name="label-hidden" />
-									<CSRadioOption name="label-hidden" />
+									<CSRadioOption label="macOS" name="os" />
+									<CSRadioOption label="Windows" name="os" />
 								</CSRadio>`
 							}
 						]
@@ -136,12 +136,12 @@ class CSRadioPreview extends React.Component {
 							{
 								primaryVariants: 'labelTitle={true}',
 								component: <CSRadio label="This is a label" labelTitle>
-									<CSRadioOption label="high" name="label-title" />
-									<CSRadioOption name="label-title" />
+									<CSRadioOption label="iPhone" name="phone" />
+									<CSRadioOption label="Android" name="phone" />
 								</CSRadio>,
 								code: `<CSRadio label="This is a label" labelTitle>
-									<CSRadioOption label="high" name="label-title" />
-									<CSRadioOption name="label-title" />
+									<CSRadioOption label="iPhone" name="phone" />
+									<CSRadioOption label="Android" name="phone" />
 								</CSRadio>`
 							}
 						]
@@ -151,12 +151,12 @@ class CSRadioPreview extends React.Component {
 							{
 								primaryVariants: 'required={true}',
 								component: <CSRadio label="This is a label" required>
-									<CSRadioOption label="England" name="required" />
-									<CSRadioOption label="Croatia" name="required" />
+									<CSRadioOption label="England" name="country" />
+									<CSRadioOption label="Croatia" name="country" />
 								</CSRadio>,
 								code: `<CSRadio label="This is a label" required>
-									<CSRadioOption label="England" name="required" />
-									<CSRadioOption label="Croatia" name="required" />
+									<CSRadioOption label="England" name="country" />
+									<CSRadioOption label="Croatia" name="country" />
 								</CSRadio>`
 							}
 						]
@@ -174,16 +174,16 @@ class CSRadioPreview extends React.Component {
 									helpText="Help text example"
 									tooltipPosition="top-left"
 								>
-									<CSRadioOption label="left" name="tooltip-position" />
-									<CSRadioOption label="right" name="tooltip-position" />
+									<CSRadioOption label="left" name="direction" />
+									<CSRadioOption label="right" name="direction" />
 								</CSRadio>,
 								code: `<CSRadio
 									label="This is a label"
 									helpText="Help text example"
 									tooltipPosition="top-left"
 								>
-									<CSRadioOption label="left" name="tooltip-position" />
-									<CSRadioOption label="right" name="tooltip-position" />
+									<CSRadioOption label="left" name="direction" />
+									<CSRadioOption label="right" name="direction" />
 								</CSRadio>`
 							}
 						]
@@ -191,14 +191,26 @@ class CSRadioPreview extends React.Component {
 						propName: 'variant',
 						variations: [
 							{
+								primaryVariants: 'variant="neutral"',
+								quickLink: 'neutral',
+								component: <CSRadio label="This is a label">
+									<CSRadioOption label="Atlantic" name="ocean" />
+									<CSRadioOption label="Pacific" name="ocean" />
+								</CSRadio>,
+								code: `<CSRadio label="This is a label">
+									<CSRadioOption label="Atlantic" name="ocean" />
+									<CSRadioOption label="Pacific" name="ocean" />
+								</CSRadio>`
+							}, {
 								primaryVariants: 'variant="brand"',
+								quickLink: 'brand',
 								component: <CSRadio label="This is a label" variant="brand">
-									<CSRadioOption label="Africa" name="variant" />
-									<CSRadioOption label="America" name="variant" />
+									<CSRadioOption label="Africa" name="continent" />
+									<CSRadioOption label="America" name="continent" />
 								</CSRadio>,
 								code: `<CSRadio label="This is a label" variant="brand">
-									<CSRadioOption label="Africa" name="variant" />
-									<CSRadioOption label="America" name="variant" />
+									<CSRadioOption label="Africa" name="continent" />
+									<CSRadioOption label="America" name="continent" />
 								</CSRadio>`
 							}
 						]
@@ -215,16 +227,26 @@ class CSRadioPreview extends React.Component {
 									id="custom-id"
 									className="custom-class"
 								>
-									<CSRadioOption label="2020" name="id-class" />
-									<CSRadioOption label="2021" name="id-class" />
+									<CSRadioOption
+										label="2020"
+										name="year"
+										id="custom-option-id"
+										className="custom-option-class"
+									/>
+									<CSRadioOption label="2021" name="year" />
 								</CSRadio>,
 								code: `<CSRadio
 									label="This is a label"
 									id="custom-id"
 									className="custom-class"
 								>
-									<CSRadioOption label="2020" name="id-class" />
-									<CSRadioOption label="2021" name="id-class" />
+									<CSRadioOption
+										label="2020"
+										name="year"
+										id="custom-option-id"
+										className="custom-option-class"
+									/>
+									<CSRadioOption label="2021" name="year" />
 								</CSRadio>`
 							}
 						]
@@ -238,21 +260,21 @@ class CSRadioPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'checked={true}',
-								component: <CSRadio label="This is a label" required>
+								component: <CSRadio label="This is a label">
 									<CSRadioOption
-										label="England"
-										name="checked"
+										label="English"
+										name="language"
 										checked
 									/>
-									<CSRadioOption name="checked" label="Croatia" />
+									<CSRadioOption label="Croatian" name="language" />
 								</CSRadio>,
-								code: `<CSRadio label="This is a label" required>
+								code: `<CSRadio label="This is a label">
 									<CSRadioOption
-										label="England"
-										name="checked"
+										label="English"
+										name="language"
 										checked
 									/>
-									<CSRadioOption name="checked" label="Croatia" />
+									<CSRadioOption label="Croatian" name="language" />
 								</CSRadio>`
 							}
 						]
@@ -262,22 +284,22 @@ class CSRadioPreview extends React.Component {
 							{
 								primaryVariants: 'disabled={true}',
 								component: <CSRadio label="This is a label">
-									<CSRadioOption label="Cola" name="option-disabled" />
+									<CSRadioOption label="coffee" name="beverage" />
 									<CSRadioOption
-										label="Pepsi"
-										name="option-disabled"
+										label="tea"
+										name="beverage"
 										disabled
 									/>
-									<CSRadioOption label="Fanta" name="option-disabled" />
+									<CSRadioOption label="beer" name="beverage" />
 								</CSRadio>,
 								code: `<CSRadio label="This is a label">
-									<CSRadioOption label="Cola" name="option-disabled" />
+									<CSRadioOption label="coffee" name="beverage" />
 									<CSRadioOption
-										label="Pepsi"
-										name="option-disabled"
+										label="tea"
+										name="beverage"
 										disabled
 									/>
-									<CSRadioOption label="Fanta" name="option-disabled" />
+									<CSRadioOption label="beer" name="beverage" />
 								</CSRadio>`
 							}
 						]
@@ -286,12 +308,12 @@ class CSRadioPreview extends React.Component {
 						variations: [
 							{
 								component: <CSRadio label="This is a label">
-									<CSRadioOption label="Radio option label" name="option-label" />
-									<CSRadioOption label="Radio option label" name="option-label" />
+									<CSRadioOption label="Label 1" name="label" />
+									<CSRadioOption label="Label 2" name="label" />
 								</CSRadio>,
 								code: `<CSRadio label="This is a label">
-									<CSRadioOption label="Radio option label" name="option-label" />
-									<CSRadioOption label="Radio option label" name="option-label" />
+									<CSRadioOption label="Label 1" name="label" />
+									<CSRadioOption label="Label 2" name="label" />
 								</CSRadio>`
 							}
 						]
@@ -301,25 +323,25 @@ class CSRadioPreview extends React.Component {
 							{
 								component: <CSRadio label="This is a label">
 									<CSRadioOption
-										label="2020"
-										name="on-change"
+										label="Adriatic"
+										name="sea"
 										onChange={this.handleChange}
 									/>
 									<CSRadioOption
-										label="2021"
-										name="on-change"
+										label="North"
+										name="sea"
 										onChange={this.handleChange}
 									/>
 								</CSRadio>,
 								code: `<CSRadio label="This is a label">
 									<CSRadioOption
-										label="2020"
-										name="on-change"
+										label="Adriatic"
+										name="sea"
 										onChange={this.handleChange}
 									/>
 									<CSRadioOption
-										label="2021"
-										name="on-change"
+										label="North"
+										name="sea"
 										onChange={this.handleChange}
 									/>
 								</CSRadio>`
@@ -332,27 +354,27 @@ class CSRadioPreview extends React.Component {
 								primaryVariants: 'readOnly={true}',
 								component: <CSRadio label="This is a label">
 									<CSRadioOption
-										label="summer"
-										name="read-only"
+										label="Sava"
+										name="river"
 										readOnly
 										checked
 									/>
 									<CSRadioOption
-										label="winter"
-										name="read-only"
+										label="Aire"
+										name="river"
 										readOnly
 									/>
 								</CSRadio>,
 								code: `<CSRadio label="This is a label">
 									<CSRadioOption
-										label="summer"
-										name="read-only"
+										label="Sava"
+										name="river"
 										readOnly
 										checked
 									/>
 									<CSRadioOption
-										label="winter"
-										name="read-only"
+										label="Aire"
+										name="river"
 										readOnly
 									/>
 								</CSRadio>`
@@ -364,25 +386,25 @@ class CSRadioPreview extends React.Component {
 							{
 								component: <CSRadio label="This is a label">
 									<CSRadioOption
-										label="2020"
-										name="title"
+										label="summer"
+										name="season"
 										title="This is a title"
 									/>
 									<CSRadioOption
-										label="2021"
-										name="title"
+										label="winter"
+										name="season"
 										title="This is a different title"
 									/>
 								</CSRadio>,
 								code: `<CSRadio label="This is a label">
 									<CSRadioOption
-										label="2020"
-										name="title"
+										label="summer"
+										name="season"
 										title="This is a title"
 									/>
 									<CSRadioOption
-										label="2021"
-										name="title"
+										label="winter"
+										name="season"
 										title="This is a different title"
 									/>
 								</CSRadio>`
