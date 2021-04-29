@@ -20,7 +20,7 @@
 		height: 2rem;
 		z-index: 10;
 		cursor: pointer;
-		transition: 0.4s;
+		transition: transform 0.4s;
 		border-radius: 50%;
 		position: absolute;
 		top: 1rem;
@@ -45,7 +45,7 @@
 		max-width: 15rem;
 
 		+ .components-preview {
-			transition: 0.4s;
+			transition: width 0.4s;
 			width: calc(100% - 15rem);
 		}
 	}
@@ -62,7 +62,7 @@
 		}
 
 		+ .components-preview {
-			transition: 0.4s;
+			transition: width 0.4s;
 			width: 100%;
 		}
 	}
@@ -170,6 +170,7 @@
 			overflow-x: hidden;
 			text-overflow: ellipsis;
 			max-width: 100%;
+			transition: background-color 100ms ease-in-out;
 			@include sc(--csd-sidebar-link-c);
 
 			&:hover {

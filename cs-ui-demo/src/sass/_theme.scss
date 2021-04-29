@@ -59,9 +59,9 @@ $cs-red-light-1: #fcedee;
 $cs-white: #ffffff;
 
 // Colors for demo app dark theme
-$cs-dark-theme-bg: #181818;
-$cs-dark-theme-bg-2: #242424;
-$cs-dark-theme-bg-3: #343333;
+$cs-dark-theme: #181818;
+$cs-dark-theme-2: #242424;
+$cs-dark-theme-3: #343333;
 
 $css4: true;
 
@@ -83,7 +83,7 @@ $lightVariables: (
 	--csd-access-subtitle-c: $cs-purple,
 	--csd-access-table-header-c: $cs-white,
 	--csd-access-table-header-bg: $cs-purple,
-	--csd-access-table-header-br: rgba(255, 255, 255, 0.2),
+	--csd-access-table-header-br: rgba($cs-white, 0.2),
 
 	--csd-app-body-bg: $cs-gray-light-5,
 	--csd-app-header-bg: $cs-white,
@@ -108,7 +108,7 @@ $lightVariables: (
 	--csd-colors-grid-c: $cs-gray-medium-1,
 	--csd-colors-grid-name-c: $cs-gray-dark-2,
 
-	--csd-components-list-wrapper-bg: $cs-gray-dark-3,
+	--csd-components-list-wrapper-bg: $cs-dark-theme-2,
 	--csd-components-search-field-br: $cs-gray-dark-6,
 	--csd-components-api-bg: $cs-white,
 	--csd-components-modal-bg: $cs-white,
@@ -178,8 +178,8 @@ $lightVariables: (
 	--csd-sidebar-toggle-graphic-fill: $cs-white,
 	--csd-sidebar-input-bg: rgba($cs-white, 0.2),
 	--csd-sidebar-scroll-bg: rgba($cs-white, 0.2),
-	--csd-sidebar-link-hover-bg: rgba($cs-black,0.1),
-	--csd-sidebar-link-active-bg: rgba($cs-black,0.2),
+	--csd-sidebar-link-hover-bg: rgba($cs-black,0.2),
+	--csd-sidebar-link-active-bg: rgba($cs-black,0.5),
 
 	// May need to remove these
 	--csd-table-row-bg: $cs-white,
@@ -216,34 +216,34 @@ $darkVariables: (
 	--csd-access-subtitle-c: $cs-mint,
 	--csd-access-table-header-c: $cs-white,
 	--csd-access-table-header-bg: $cs-purple,
-	--csd-access-table-header-br: rgba(255, 255, 255, 0.2),
+	--csd-access-table-header-br: rgba($cs-white, 0.2),
 
-	--csd-app-body-bg: $cs-dark-theme-bg,
-	--csd-app-header-bg: $cs-dark-theme-bg-2,
+	--csd-app-body-bg: $cs-dark-theme,
+	--csd-app-header-bg: $cs-dark-theme-2,
 
 	--csd-h2-c: $cs-white,
 	--csd-h3-c: $cs-gray-medium-2,
 
 	--csd-header-tab-c: $cs-gray-light-1,
-	--csd-header-tab-active-bg: $cs-dark-theme-bg,
+	--csd-header-tab-active-bg: $cs-dark-theme,
 	--csd-header-tab-active-alt-c: $cs-white,
 	--csd-header-tab-active-c: $cs-purple,
 
-	--csd-button-preview-table-bg: $cs-dark-theme-bg-2,
-	--csd-button-preview-cell-bg: $cs-dark-theme-bg-2,
+	--csd-button-preview-table-bg: $cs-dark-theme-2,
+	--csd-button-preview-cell-bg: $cs-dark-theme-2,
 	--csd-button-preview-br: $cs-gray-dark-5,
 	--csd-button-preview-c: $cs-white,
 	--csd-code-preview-bg: $cs-gray-dark-2,
 	--csd-code-c: $cs-white,
 
 	--csd-colors-grid-focus-shadow: $cs-blue-sf,
-	--csd-colors-grid-bg: $cs-dark-theme-bg-3,
+	--csd-colors-grid-bg: $cs-dark-theme-3,
 	--csd-colors-grid-c: $cs-white,
 	--csd-colors-grid-name-c: $cs-white,
 
-	--csd-components-list-wrapper-bg: $cs-dark-theme-bg-2,
+	--csd-components-list-wrapper-bg: $cs-dark-theme-2,
 	--csd-components-search-field-br: $cs-gray-dark-6,
-	--csd-components-api-bg: $cs-dark-theme-bg-3,
+	--csd-components-api-bg: $cs-dark-theme-3,
 	--csd-components-modal-bg: $cs-white,
 	--csd-components-sidebar-bg: $cs-purple,
 	--csd-components-link-c: $cs-white,
@@ -267,10 +267,10 @@ $darkVariables: (
 	--csd-custom-alt-bg: $cs-blue-medium-6,
 	--csd-custom-purple-bg: $cs-purple,
 
-	--csd-icons-search-field-bg: $cs-dark-theme-bg-3,
+	--csd-icons-search-field-bg: $cs-dark-theme-3,
 	--csd-icons-search-field-c: $cs-white,
 	--csd-icons-search-field-placeholder-c: $cs-gray-medium-1,
-	--csd-icons-container-bg: $cs-dark-theme-bg-3,
+	--csd-icons-container-bg: $cs-dark-theme-3,
 	--csd-icons-paragraph-c: $cs-white,
 	--csd-icons-custom-fill: $cs-mint,
 
@@ -280,26 +280,26 @@ $darkVariables: (
 	--csd-neutral-chip-bg: rgba($cs-white, 0.35),
 	--csd-neutral-chip-c: $cs-gray-dark-5,
 
-	--csd-prop-custom-bg: $cs-dark-theme-bg-2,
+	--csd-prop-custom-bg: $cs-dark-theme-2,
 	--csd-prop-custom-c: $cs-white,
 	--csd-prop-table-header-bg: $cs-purple !important,
 	--csd-prop-table-header-c: $cs-white !important,
-	--csd-prop-table-bg: $cs-dark-theme-bg-2,
+	--csd-prop-table-bg: $cs-dark-theme-2,
 	--csd-prop-table-c: $cs-white,
 	--csd-prop-table-br: $cs-gray-dark-5,
-	--csd-prop-table-row-stripes-bg-light: $cs-dark-theme-bg-2,
+	--csd-prop-table-row-stripes-bg-light: $cs-dark-theme-2,
 	--csd-prop-table-row-stripes-bg-dark: $cs-gray-dark-1,
 	--csd-prop-code-c: $cs-white,
-	--csd-prop-code-bg: $cs-dark-theme-bg-3,
+	--csd-prop-code-bg: $cs-dark-theme-3,
 	--csd-prop-code-br: $cs-white,
-	--csd-prop-code-custom-bg: $cs-dark-theme-bg-3,
+	--csd-prop-code-custom-bg: $cs-dark-theme-3,
 	--csd-prop-sidebar-bg: $cs-purple,
 	--csd-prop-sidebar-hover-bg: $cs-purple-dark-1,
 
 	--csd-preview-main-heading-title-c: $cs-white,
 	--csd-preview-main-heading-subtitle-c: $cs-gray-medium-2,
 
-	--csd-release-notes-code-snippet-bg: $cs-dark-theme-bg-3,
+	--csd-release-notes-code-snippet-bg: $cs-dark-theme-3,
 
 	--csd-sidebar-search-field-c: $cs-white,
 	--csd-sidebar-search-field-bg: $cs-gray-dark-4,

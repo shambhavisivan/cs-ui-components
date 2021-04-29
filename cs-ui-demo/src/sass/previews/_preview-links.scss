@@ -21,7 +21,7 @@
 		z-index: 9;
 		border-radius: 50%;
 		cursor: pointer;
-		transition: 0.4s;
+		transition: transform 0.4s;
 		position: absolute;
 		top: 1rem;
 		right: 0.5rem;
@@ -44,7 +44,7 @@
 		max-width: 15rem;
 
 		+ .components-preview {
-			transition: 0.4s;
+			transition: width 0.4s;
 			width: calc(100% - 15rem);
 		}
 	}
@@ -57,7 +57,7 @@
 		overflow: visible;
 
 		+ .components-preview {
-			transition: 0.4s;
+			transition: width 0.4s;
 			width: 100%;
 		}
 	}
@@ -152,7 +152,7 @@
 				padding: 0.75rem 1.25rem;
 				display: flex;
 				align-items: center;
-				transition: all 100ms ease-in-out;
+				transition: background-color 100ms ease-in-out;
 				@include sbg(--csd-prop-sidebar-bg);
 
 				&:hover {
@@ -187,7 +187,7 @@
 					overflow-x: hidden;
 					text-overflow: ellipsis;
 					max-width: 100%;
-					transition: all 100ms ease-in-out;
+					transition: background-color 100ms ease-in-out;
 
 					&:hover {
 						@include sbg(--csd-prop-sidebar-hover-bg);
