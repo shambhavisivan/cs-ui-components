@@ -577,3 +577,19 @@ $darkVariables: (
 		@return unquote('var(' + $variable + ')');
 	}
 }
+
+/* CUSTOM SCROLLBAR MIXIN */
+@mixin custom-scrollbar {
+	&::-webkit-scrollbar {
+		width: 1rem;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-clip: padding-box;
+		border-radius: 0.5rem;
+		background-color: rgba(255, 255, 255, 0.2);
+		@include css4 {
+			border: 4px solid cvar(--csd-transparent);
+		}
+	}
+}
