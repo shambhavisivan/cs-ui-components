@@ -222,7 +222,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			}
 		};
 
-		const handleOnMouseEnter = () => {
+		const handleOnMouseOver = () => {
 			if (stylePosition === 'fixed' && !this.state.stickyActive) {
 				this.openTooltip();
 			} else if (stylePosition === 'absolute') {
@@ -236,7 +236,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			<div
 				className={tooltipWrapperClasses}
 				onClick={stylePosition === 'fixed' && stickyOnClick ? () => this.setSticky(true) : null}
-				onMouseEnter={handleOnMouseEnter}
+				onMouseOver={handleOnMouseOver}
 				onMouseLeave={stylePosition === 'fixed' && !this.state.stickyActive ? this.closeTooltip : null}
 				onFocus={stylePosition === 'fixed' ? this.openTooltip : null}
 				onBlur={stylePosition === 'fixed' && !this.state.stickyActive ? this.closeTooltip : null}
