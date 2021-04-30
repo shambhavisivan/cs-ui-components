@@ -280,42 +280,53 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		this.fetchData();
 	}
 
-	clearSearch = () => {
-		this.setState({
-			searchTerm: '',
-			selectedOption: null,
-			selectedOptions: [],
-			dropdownValues: this.props.mode === 'client' ?
-				this.props.lookupOptions :
-				[]
-		}, this.handleSelectChange);
+	clearSearch = async () => {
+		const value: any = this.props.multiselect ? [] : null;
+		const result = await this.handleSelectChange(value);
+
+		if (result) {
+			this.setState({
+				searchTerm: '',
+				selectedOption: null,
+				selectedOptions: [],
+				dropdownValues: this.props.mode === 'client' ?
+					this.props.lookupOptions :
+					[]
+			});
+		}
+
 		this.openLookupDropdown();
 		setTimeout(() => {
 			this.lookupInputRef.current.focus();
 		}, 0);
 	}
 
-	selectAction(_selectedOption: Record<string, any>) {
+	selectAction = async (_selectedOption: Record<string, any>) => {
 		const { selectedOptions } = this.state;
 		const { multiselect } = this.props;
 
 		if (multiselect) {
+			let newSelectedOptions = [];
 			if (find(selectedOptions, _selectedOption)) {
 				const _selectedOptions = [...selectedOptions];
 				remove(_selectedOptions, _selectedOption);
-				this.setState({
-					selectedOptions: _selectedOptions
-				}, this.handleSelectChange);
+				newSelectedOptions = _selectedOptions;
 			} else {
+				newSelectedOptions = [...selectedOptions, _selectedOption];
+			}
+			const result = await this.handleSelectChange(newSelectedOptions);
+			if (result) {
 				this.setState({
-					selectedOptions: [...selectedOptions, _selectedOption]
-				}, this.handleSelectChange);
+					selectedOptions: newSelectedOptions
+				});
 			}
 		} else {
-			this.setState({
-				selectedOption: _selectedOption,
-				searchTerm: ''
-			}, this.handleSelectChange);
+			const result = await this.handleSelectChange(_selectedOption);
+			if (result) {
+				this.setState({
+					selectedOption: _selectedOption
+				});
+			}
 			this.closeLookupDropdown();
 		}
 	}
@@ -330,14 +341,19 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		}
 	}
 
-	handleSelectChange = () => {
+	/*
+		Returns result after onSelectChange is called.
+		This enables preventing the update of inner state if returned result is false.
+		Undefined or null result will be evaluated as true.
+		In most cases onSelectChange will return a promise,
+		therefore function that calles handleSelectChange should be async.
+	*/
+	handleSelectChange = (selectedOptions: any) => {
 		if (this.props.onSelectChange) {
-			if (this.props.multiselect) {
-				this.props.onSelectChange(this.state.selectedOptions);
-			} else {
-				this.props.onSelectChange(this.state.selectedOption);
-			}
+			const result = this.props.onSelectChange(selectedOptions);
+			return result ?? true;
 		}
+		return true;
 	}
 
 	// returns the value of the selected option based on key provided in fieldToBeDisplayed prop
@@ -417,7 +433,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		}
 	}
 
-	handleOnKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+	handleOnKeyDown = async (event: React.KeyboardEvent<HTMLInputElement>) => {
 		const { activeRowIndex, dropdownOpen, dropdownValues, fetchingMode, searchTerm, selectedOption } = this.state;
 		const isLoading = this.props.loading || fetchingMode === 'after-search';
 
@@ -426,17 +442,20 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		let _activeRowIndex = activeRowIndex;
 
 		switch (true) {
+			case event.key === KeyCode.Backspace &&
+				searchTerm.length === 1 &&
+				!!selectedOption:
+				const result = await this.handleSelectChange(null);
+				if (result) {
+					this.setState({
+						selectedOption: null
+					});
+				}
+				break;
 			case isLoading:
 				break;
 			case event.key === KeyCode.Escape && dropdownOpen:
 				this.closeLookupDropdown();
-				break;
-			case event.key === KeyCode.Backspace &&
-				searchTerm.length === 1 &&
-				!!selectedOption:
-				this.setState({
-					selectedOption: null
-				}, this.handleSelectChange);
 				break;
 			case event.key === KeyCode.ArrowDown &&
 				!!dropdownValues.length &&
@@ -546,7 +565,8 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			dropdownOpen: false,
 			pageNo: 0,
 			moreRecords: true,
-			activeRowIndex: null
+			activeRowIndex: null,
+			searchTerm: ''
 		});
 		document.removeEventListener('click', this.handleClickOutside, true);
 	}

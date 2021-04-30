@@ -1109,8 +1109,8 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 				description: 'Handler method for when the search term changes.'
 			}, {
 				name: 'onSelectChange',
-				types: ['(event) => void'],
-				description: 'Handler method for when the selection is changed.'
+				types: ['(event) => any'],
+				description: 'Handler method for when the selection is changed. By returning false from handler method, selected item won\'t be updated. Undefined return value will evaluate as true.'
 			}, {
 				name: 'placeholder',
 				types: ['string'],
