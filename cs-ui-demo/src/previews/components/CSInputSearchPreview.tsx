@@ -33,7 +33,7 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Input Search',
+				name: 'CSInputSearch',
 				examples: [
 					{
 						propName: 'label',
@@ -78,7 +78,7 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 						propName: 'error',
 						alert: {
 							variant: 'info',
-							text: 'Component in error state should always contain associated error message to satisfy accessibility best practices!'
+							text: 'Component in error state should always contain associated error message to satisfy accessibility best practices.'
 						},
 						variations: [
 							{
@@ -95,12 +95,12 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 								component: <CSInputSearch
 									label="Type here"
 									error
-									errorMessage="Error message!"
+									errorMessage="Error message."
 								/>,
 								code: `<CSInputSearch
 									label="Type here"
 									error
-									errorMessage="Error message!"
+									errorMessage="Error message."
 								/>`
 							}
 						]
@@ -286,7 +286,7 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 			}, {
 				name: 'borderRadius',
 				types: ['string'],
-				default: '0.25rem',
+				default: '\'0.25rem\'',
 				description: 'Set a border radius style.'
 			}, {
 				name: 'className',

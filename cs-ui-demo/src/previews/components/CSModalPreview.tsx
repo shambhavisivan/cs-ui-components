@@ -41,7 +41,7 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Modal',
+				name: 'CSModal',
 				examples: [
 					{
 						propName: 'animated',
@@ -819,7 +819,7 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 					}
 				]
 			}, {
-				name: 'Modal Header',
+				name: 'CSModalHeader',
 				examples: [
 					{
 						propName: 'subtitle',
@@ -880,7 +880,7 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 					}
 				]
 			}, {
-				name: 'Modal Body',
+				name: 'CSModalBody',
 				examples: [
 					{
 						propName: 'minHeight',
@@ -943,7 +943,7 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 					}
 				]
 			}, {
-				name: 'Modal Footer',
+				name: 'CSModalFooter',
 				examples: [
 					{
 						propName: 'align',

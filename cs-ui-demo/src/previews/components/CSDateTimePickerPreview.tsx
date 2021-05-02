@@ -11,9 +11,7 @@ import { CSDateTimePicker } from '@cloudsense/cs-ui-components';
 class CSDateTimePickerPreview extends React.Component {
 	value = moment('1.1.2020', 'DD-MM-YYYY').toDate();
 
-	handleChange() {
-		alert('Date changed!');
-	}
+	handleChange = () => alert('The date the has changed.');
 
 	getDateTimePickerDoc = () => ({
 		name: 'DateTimePicker',
@@ -21,7 +19,7 @@ class CSDateTimePickerPreview extends React.Component {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'DateTimePicker',
+				name: 'CSDateTimePicker',
 				examples: [
 					{
 						propName: 'label',
@@ -126,7 +124,7 @@ class CSDateTimePickerPreview extends React.Component {
 						propName: 'error',
 						alert: {
 							variant: 'info',
-							text: 'Component in error state should always contain associated error message to satisfy accessibility best practices!'
+							text: 'Component in error state should always contain associated error message to satisfy accessibility best practices.'
 						},
 						variations: [
 							{
@@ -143,12 +141,12 @@ class CSDateTimePickerPreview extends React.Component {
 								component: <CSDateTimePicker
 									label="Enter date"
 									error
-									errorMessage="Error message!"
+									errorMessage="Error message."
 								/>,
 								code: `<CSDateTimePicker
 									label="Enter date"
 									error
-									errorMessage="Error message!"
+									errorMessage="Error message."
 								/>`
 							}
 						]
@@ -490,7 +488,7 @@ class CSDateTimePickerPreview extends React.Component {
 			}, {
 				name: 'borderRadius',
 				types: ['string'],
-				default: '0.25rem',
+				default: '\'0.25rem\'',
 				description: 'Set a border radius style.'
 			}, {
 				name: 'className',

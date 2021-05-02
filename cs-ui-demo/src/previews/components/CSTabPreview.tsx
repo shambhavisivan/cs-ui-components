@@ -17,7 +17,7 @@ class CSTabPreview extends React.Component {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Tab Group',
+				name: 'CSTabGroup',
 				examples: [
 					{
 						propName: 'variant',
@@ -81,7 +81,7 @@ class CSTabPreview extends React.Component {
 					}
 				]
 			}, {
-				name: 'Tab',
+				name: 'CSTab',
 				examples: [
 					{
 						propName: 'active',
@@ -328,12 +328,12 @@ class CSTabPreview extends React.Component {
 								secondaryVariants: 'status="initial"',
 								quickLink: 'initial',
 								component: <CSTabGroup>
-									<CSTab name="Tab One" tooltipContent="Error message example!" />
+									<CSTab name="Tab One" tooltipContent="Error message example." />
 									<CSTab name="Tab Two" />
 									<CSTab name="Tab Three" />
 								</CSTabGroup>,
 								code: `<CSTabGroup>
-									<CSTab name="Tab One" tooltipContent="Error message example!" />
+									<CSTab name="Tab One" tooltipContent="Error message example." />
 									<CSTab name="Tab Two" />
 									<CSTab name="Tab Three" />
 								</CSTabGroup>`
@@ -343,7 +343,7 @@ class CSTabPreview extends React.Component {
 								component: <CSTabGroup>
 									<CSTab
 										name="Tab One"
-										tooltipContent="Error message example!"
+										tooltipContent="Error message example."
 										status="error"
 									/>
 									<CSTab name="Tab Two" status="error" />
@@ -352,7 +352,7 @@ class CSTabPreview extends React.Component {
 								code: `<CSTabGroup>
 									<CSTab
 										name="Tab One"
-										tooltipContent="Error message example!"
+										tooltipContent="Error message example."
 										status="error"
 									/>
 									<CSTab name="Tab Two" status="error" />
@@ -364,7 +364,7 @@ class CSTabPreview extends React.Component {
 								component: <CSTabGroup>
 									<CSTab
 										name="Tab One"
-										tooltipContent="Warning message example!"
+										tooltipContent="Warning message example."
 										status="warning"
 									/>
 									<CSTab name="Tab Two" status="warning" />
@@ -373,7 +373,7 @@ class CSTabPreview extends React.Component {
 								code: `<CSTabGroup>
 									<CSTab
 										name="Tab One"
-										tooltipContent="Warning message example!"
+										tooltipContent="Warning message example."
 										status="warning"
 									/>
 									<CSTab name="Tab Two" status="warning" />
@@ -385,7 +385,7 @@ class CSTabPreview extends React.Component {
 								component: <CSTabGroup>
 									<CSTab
 										name="Tab One"
-										tooltipContent="Warning message example!"
+										tooltipContent="Warning message example."
 										status="success"
 									/>
 									<CSTab name="Tab Two" status="success" />
@@ -394,7 +394,7 @@ class CSTabPreview extends React.Component {
 								code: `<CSTabGroup>
 									<CSTab
 										name="Tab One"
-										tooltipContent="Warning message example!"
+										tooltipContent="Warning message example."
 										status="success"
 									/>
 									<CSTab name="Tab Two" status="success" />
@@ -477,7 +477,7 @@ class CSTabPreview extends React.Component {
 					]
 				}],
 				default: '\'initial\'',
-				description: 'Set the colour and the icon variant depending on status.'
+				description: 'Set the color and the icon variant depending on status.'
 			}, {
 				name: 'tabIcon',
 				types: ['string'],

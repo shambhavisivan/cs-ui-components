@@ -14,7 +14,7 @@ class CSMainHeaderPreview extends React.Component {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Main Header',
+				name: 'CSMainHeader',
 				examples: [
 					{
 						propName: 'color',
@@ -441,7 +441,7 @@ class CSMainHeaderPreview extends React.Component {
 					}
 				]
 			}, {
-				name: 'Main Header Left',
+				name: 'CSMainHeaderLeft',
 				examples: [
 					{
 						propName: 'reverseOrder',
@@ -507,7 +507,7 @@ class CSMainHeaderPreview extends React.Component {
 					]
 				}],
 				default: '\'neutral\'',
-				description: 'Set the main header background colour.'
+				description: 'Set the main header background color.'
 			}, {
 				name: 'id',
 				types: ['string'],

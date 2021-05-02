@@ -14,7 +14,7 @@ class CSButtonGroupPreview extends React.Component {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Button Group',
+				name: 'CSButtonGroup',
 				examples: [
 					{
 						propName: 'ariaDescription',

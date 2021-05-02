@@ -16,7 +16,7 @@ class CSPathPreview extends React.Component {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Path',
+				name: 'CSPath',
 				examples: [
 					{
 						propName: 'id | class',
@@ -41,7 +41,7 @@ class CSPathPreview extends React.Component {
 					}
 				]
 			}, {
-				name: 'Path Item',
+				name: 'CSPathItem',
 				examples: [
 					{
 						propName: 'name',
@@ -246,7 +246,7 @@ class CSPathPreview extends React.Component {
 					name: 'CSPathItemStatus',
 					types: ['\'success\'', '\'error\'']
 				}],
-				description: 'Set the colour and the icon variant depending on status.'
+				description: 'Set the color and the icon variant depending on status.'
 			}, {
 				name: 'name',
 				required: true,

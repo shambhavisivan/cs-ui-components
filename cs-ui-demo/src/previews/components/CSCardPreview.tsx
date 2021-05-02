@@ -14,7 +14,7 @@ class CSCardPreview extends React.Component {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Card',
+				name: 'CSCard',
 				examples: [
 					{
 						propName: 'id | class',
@@ -107,7 +107,7 @@ class CSCardPreview extends React.Component {
 						propName: 'defaultClosed',
 						alert: {
 							variant: 'info',
-							text: 'defaultClosed can be used only if collapsible is set to true!'
+							text: 'defaultClosed can be used only if collapsible is set to true.'
 						},
 						variations: [
 							{
@@ -329,7 +329,7 @@ class CSCardPreview extends React.Component {
 					}
 				]
 			}, {
-				name: 'Card Body',
+				name: 'CSCardBody',
 				examples: [
 					{
 						propName: 'maxHeight',
@@ -456,7 +456,7 @@ class CSCardPreview extends React.Component {
 			}, {
 				name: 'iconColor',
 				types: ['string'],
-				description: 'Set a custom colour for the icon inside of the card header.'
+				description: 'Set a custom color for the icon inside of the card header.'
 			}, {
 				name: 'iconFrame',
 				types: ['boolean'],

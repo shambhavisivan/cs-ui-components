@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { CSButton, CSIcon, CSAlert } from '@cloudsense/cs-ui-components';
-import PreviewLinksLegacy from './PreviewLinksLegacy';
 import { useQuickLinks } from '../context/QuickLinksContext';
 
 import {
@@ -18,19 +17,9 @@ const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
 	} = props;
 
 	const [searchTerm, setSearchTerm] = useState<string>('');
-	const [visibleSections, setVisibleSections] = useState<Array<boolean>>([]);
+	const [visibleSections, setVisibleSections] = useState<Array<boolean>>(previews.map(() => true));
 
 	const { quickLinks, toggleQuickLinks } = useQuickLinks();
-
-	useEffect(() => {
-		if (previews) {
-			setVisibleSections(previews.map(() => true));
-		}
-	}, [previews]);
-
-	if (!previews) {
-		return <PreviewLinksLegacy {...props} />;
-	}
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchTerm(event.target.value);
@@ -85,7 +74,7 @@ const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
 					const examples = preview.examples
 						.map(filterVariations)
 						.filter(filterProps);
-					const componentLink = preview.name.split(' ').join('-').toLowerCase();
+					const componentLink = preview.name.split(' ').join('-');
 					return (
 						<div key={preview.name}>
 							<h4 className="component-name">
@@ -110,7 +99,7 @@ const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
 								/>
 							)}
 							{visibleSections[previewIndex] && examples.map((example: PreviewExample) => {
-								const propLink = `${componentLink}-${example.propName.split(' ').join('-').toLowerCase()}`;
+								const propLink = `${componentLink}-${example.propName.split(' ').join('-')}`;
 								return (
 									<div className="prop-group" key={example.propName}>
 										<h5 className="prop-name">
@@ -119,7 +108,7 @@ const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
 											</a>
 										</h5>
 										{example.variations.map((variation: PreviewVariation, variationIndex: number) => {
-											const variationLink = variation.quickLink && `${propLink}-${variation.quickLink.split(' ').join('-').toLowerCase()}`;
+											const variationLink = variation.quickLink && `${propLink}-${variation.quickLink.split(' ').join('-')}`;
 											return (
 												<span className="prop-variant" key={variationIndex}>
 													{variation.quickLink && (

@@ -16,7 +16,7 @@ class CSSliderPreview extends React.Component {
 		accessible: 'partially',
 		previews: [
 			{
-				name: 'Slider',
+				name: 'CSSlider',
 				examples: [
 					{
 						propName: 'label',
@@ -86,14 +86,14 @@ class CSSliderPreview extends React.Component {
 									min="0"
 									max="100"
 									error
-									errorMessage="Error message!"
+									errorMessage="Error message."
 								/>,
 								code: `<CSSlider
 									label="Select value"
 									min="0"
 									max="100"
 									error
-									errorMessage="Error message!"
+									errorMessage="Error message."
 								/>`
 							}
 						]

@@ -14,7 +14,7 @@ class CSSidebarPreview extends React.Component {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Sidebar',
+				name: 'CSSidebar',
 				examples: [
 					{
 						propName: 'collapsible',
@@ -334,7 +334,7 @@ class CSSidebarPreview extends React.Component {
 					}
 				]
 			}, {
-				name: 'Sidebar Tab',
+				name: 'CSSidebarTab',
 				examples: [
 					{
 						propName: 'title',

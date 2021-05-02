@@ -24,7 +24,7 @@ class CSSelectPreview extends React.Component<{}, CSSelectPreviewState> {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Select',
+				name: 'CSSelect',
 				examples: [
 					{
 						propName: 'label',
@@ -84,7 +84,7 @@ class CSSelectPreview extends React.Component<{}, CSSelectPreviewState> {
 						propName: 'error',
 						alert: {
 							variant: 'info',
-							text: 'Component in error state should always contain associated error message to satisfy accessibility best practices!'
+							text: 'Component in error state should always contain associated error message to satisfy accessibility best practices.'
 						},
 						variations: [
 							{
@@ -109,7 +109,7 @@ class CSSelectPreview extends React.Component<{}, CSSelectPreviewState> {
 								component: <CSSelect
 									label="Choose amount"
 									error
-									errorMessage="Error message!"
+									errorMessage="Error message."
 								>
 									<option>10</option>
 									<option>20</option>
@@ -118,7 +118,7 @@ class CSSelectPreview extends React.Component<{}, CSSelectPreviewState> {
 								code: `<CSSelect
 									label="Choose amount"
 									error
-									errorMessage="Error message!"
+									errorMessage="Error message."
 								>
 									<option>10</option>
 									<option>20</option>
@@ -364,7 +364,7 @@ class CSSelectPreview extends React.Component<{}, CSSelectPreviewState> {
 			{
 				name: 'borderRadius',
 				types: ['string'],
-				default: '0.25rem',
+				default: '\'0.25rem\'',
 				description: 'Set a border radius style.'
 			}, {
 				name: 'children',

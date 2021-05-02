@@ -14,7 +14,7 @@ class CSChipPreview extends React.Component {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Chip',
+				name: 'CSChip',
 				examples: [
 					{
 						propName: 'variant',
@@ -224,7 +224,7 @@ class CSChipPreview extends React.Component {
 			}, {
 				name: 'color',
 				types: ['string'],
-				description: 'Apply custom color to the chip. Custom color will override variant styles!'
+				description: 'Apply custom color to the chip. Custom color will override variant styles.'
 			}, {
 				name: '[key: string]',
 				types: ['any'],

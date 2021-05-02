@@ -16,7 +16,7 @@ class CSDropdownPreview extends React.Component {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Dropdown',
+				name: 'CSDropdown',
 				examples: [
 					{
 						propName: 'align',

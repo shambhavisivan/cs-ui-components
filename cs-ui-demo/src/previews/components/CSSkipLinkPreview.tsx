@@ -14,7 +14,7 @@ class CSSkipLinkPreview extends React.Component {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Skip Link',
+				name: 'CSSkipLink',
 				examples: [
 					{
 						propName: 'href',
@@ -72,7 +72,7 @@ class CSSkipLinkPreview extends React.Component {
 			{
 				name: 'color',
 				types: ['string'],
-				description: 'Set a custom colour for the skip link. (eg. pink, #ff0000, rgba(0, 0, 0, 0.75), etc.)'
+				description: 'Set a custom color for the skip link. (eg. pink, #ff0000, rgba(0, 0, 0, 0.75), etc.)'
 			}, {
 				name: 'href',
 				required: true,
@@ -125,7 +125,7 @@ class CSSkipLinkPreview extends React.Component {
 					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
 					<CSAlert
 						variant="info"
-						text="Skip Link is accessible only by focusing it via keyboard!"
+						text="Skip Link is accessible only by focusing it via keyboard."
 						styleFormat="scoped"
 					/>
 					<PreviewProperties {...component} />

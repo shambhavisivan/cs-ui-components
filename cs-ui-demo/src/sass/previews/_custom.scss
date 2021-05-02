@@ -1,54 +1,52 @@
 .components-preview .preview-section-wrapper .component-example .component-demo {
-	&.button-demo,
-	&.button-group-demo,
-	&.checkbox-demo,
-	&.custom-select-demo,
-	&.datepicker-demo,
-	&.datetimepicker-demo,
-	&.dropdown-demo,
-	&.image-demo,
-	&.input-file-demo,
-	&.input-number-demo,
-	&.input-search-demo,
-	&.input-text-demo,
-	&.lookup-demo,
-	&.radio-demo,
-	&.select-demo,
-	&.slider-demo,
-	&.table-demo,
-	&.textarea-demo,
-	&.toggle-demo {
+	&.CSButton-demo,
+	&.CSButtonGroup-demo,
+	&.CSCheckbox-demo,
+	&.CSCustomSelect-demo,
+	&.CSDatepicker-demo,
+	&.CSDateTimePicker-demo,
+	&.CSDropdown-demo,
+	&.CSImage-demo,
+	&.CSInputFile-demo,
+	&.CSInputNumber-demo,
+	&.CSInputSearch-demo,
+	&.CSInputText-demo,
+	&.CSList-demo,
+	&.CSLookup-demo,
+	&.CSRadio-demo,
+	&.CSSelect-demo,
+	&.CSSlider-demo,
+	&.CSTable-demo,
+	&.CSTextarea-demo,
+	&.CSToggle-demo,
+	&.CSTransfer-demo {
 		.custom-class {
 			@include css4 {
 				border: 3px solid cvar(--csd-custom-br);
 			}
 		}
-
-		.custom-select-option-class {
-			background-color: var(--csd-custom-bg);
-		}
 	}
 
-	&.alert-demo,
-	&.card-demo,
-	&.chip-demo,
-	&.label-demo,
-	&.main-header-demo,
-	&.main-header-left-demo,
-	&.path-demo,
-	&.progress-bar-demo,
-	&.progress-indicator-demo,
-	&.section-demo,
-	&.spinner-demo,
-	&.tab-group-demo,
-	&.toast-demo,
-	&.tooltip-demo {
+	&.CSAlert-demo,
+	&.CSCard-demo,
+	&.CSChip-demo,
+	&.CSLabel-demo,
+	&.CSMainHeader-demo,
+	&.CSMainHeaderLeft-demo,
+	&.CSPath-demo,
+	&.CSProgressBar-demo,
+	&.CSProgressIndicator-demo,
+	&.CSSection-demo,
+	&.CSSpinner-demo,
+	&.CSTabGroup-demo,
+	&.CSToast-demo,
+	&.CSTooltip-demo {
 		.custom-class {
 			@include sbg(--csd-custom-bg);
 		}
 	}
 
-	&.spinner-demo {
+	&.CSSpinner-demo {
 		position: relative;
 		flex-basis: 10rem;
 
@@ -57,21 +55,37 @@
 		}
 	}
 
-	&.radio-demo .custom-option-class {
-		background-color: var(--custom-alt-bg);
+
+	.CSCustomSelect-demo .custom-select-option-class {
+		@include css4 {
+			border: 3px solid cvar(--csd-custom-br);
+		}
 	}
 
-	&.main-header-demo,
-	&.main-header-left-demo {
-		padding: 0;
+	&.CSRadio-demo .custom-option-class {
+		@include css4 {
+			border: 3px solid cvar(--csd-custom-alt-br);
+		}
 	}
 
-	&.table-demo {
+	&.CSList-demo {
+		.custom-group-class {
+			@include css4 {
+				border: 3px solid cvar(--csd-custom-alt-br);
+			}
+		}
+
+		.custom-item-class {
+			@include sbg(--csd-custom-bg);
+		}
+	}
+
+	&.CSTable-demo {
 		height: auto;
 
 		.custom-table-class {
 			@include css4 {
-				border: 2px solid var(--csd-custom-alt-br);
+				border: 3px solid var(--csd-custom-alt-br);
 			}
 		}
 
@@ -85,53 +99,47 @@
 
 		.custom-table-body-class {
 			@include css4 {
-				border: 2px solid var(--csd-custom-br);
+				border: 3px solid var(--csd-custom-br);
 			}
 		}
 
 		.custom-table-row-class {
 			@include css4 {
-				border: 2px solid var(--csd-custom-purple-br);
+				border: 3px solid var(--csd-custom-purple-br);
 			}
 		}
 	}
 
-	&.tab-group-demo .custom-tab-class {
+	&.CSTabGroup-demo .custom-tab-class {
 		@include sbg(--csd-custom-alt-bg);
 	}
 
-	&.transfer-demo {
-		.custom-class {
-			border: 3px solid var(--csd-custom-br);
-		}
-	}
-
-	&.button-demo,
-	&.dropdown-demo,
-	&.button-group-demo {
+	&.CSButton-demo,
+	&.CSDropdown-demo,
+	&.CSButtonGroup-demo {
 		.purple-background {
 			padding: 1rem;
 			@include sbg(--csd-dropdown-purple-bg);
 		}
 	}
 
-	&.icon-demo .custom-class {
+	&.CSIcon-demo .custom-class {
 		@include sf(--csd-icons-custom-fill);
 
 	}
 
-	&.image-demo .black-background {
+	&.CSImage-demo .black-background {
 		@include sbg(--csd-image-black-bg);
 	}
 
-	&.divider-demo .custom-class {
+	&.CSDivider-demo .custom-class {
 		@include css4 {
 			border-color: cvar(--csd-custom-br);
 		}
 	}
 
-	&.sidebar-demo,
-	&.sidebar-tab-demo {
+	&.CSSidebar-demo,
+	&.CSSidebarTab-demo {
 		height: 600px;
 		flex: none; // firefox fix: flex + height -> child with height 100% does not inherit height
 		.sidebar-far-right {

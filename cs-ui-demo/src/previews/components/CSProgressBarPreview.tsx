@@ -37,7 +37,7 @@ class CSProgressBarPreview extends React.Component<{}, CSProgressBarPreviewState
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Progress Bar',
+				name: 'CSProgressBar',
 				examples: [
 					{
 						propName: 'label',
@@ -357,7 +357,7 @@ class CSProgressBarPreview extends React.Component<{}, CSProgressBarPreviewState
 			}, {
 				name: 'color',
 				types: ['string'],
-				description: 'Set a custom colour for the progress bar path. (eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
+				description: 'Set a custom color for the progress bar path. (eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
 			}, {
 				name: 'id',
 				types: ['string'],

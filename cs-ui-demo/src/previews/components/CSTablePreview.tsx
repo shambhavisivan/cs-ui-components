@@ -9,9 +9,9 @@ import { CSTable, CSTableHeader, CSTableBody, CSTableRow, CSTableCell, CSButton 
 
 class CSTablePreview extends React.Component {
 	handleClick = () => alert('Table row has been clicked.');
-	handleMouseDown = () => alert('Mouse down has been registered!');
-	handleMouseOut = () => alert('Mouse out has been registered!');
-	handleMouseOver = () => alert('Mouse over has been registered!');
+	handleMouseDown = () => alert('Mouse down has been registered.');
+	handleMouseOut = () => alert('Mouse out has been registered.');
+	handleMouseOver = () => alert('Mouse over has been registered.');
 
 	getTableDoc = () => ({
 		name: 'Table',
@@ -19,7 +19,7 @@ class CSTablePreview extends React.Component {
 		accessible: 'partially',
 		previews: [
 			{
-				name: 'Table',
+				name: 'CSTable',
 				examples: [
 					{
 						propName: 'selectableRows',
@@ -330,7 +330,7 @@ class CSTablePreview extends React.Component {
 					}
 				]
 			}, {
-				name: 'Table Header',
+				name: 'CSTableHeader',
 				examples: [
 					{
 						propName: 'headerSticky',
@@ -492,7 +492,7 @@ class CSTablePreview extends React.Component {
 					}
 				]
 			}, {
-				name: 'Table Body',
+				name: 'CSTableBody',
 				examples: [
 					{
 						propName: 'maxHeight',
@@ -628,7 +628,7 @@ class CSTablePreview extends React.Component {
 					}
 				]
 			}, {
-				name: 'Table Row',
+				name: 'CSTableRow',
 				examples: [
 					{
 						propName: 'onClick',
@@ -999,7 +999,7 @@ class CSTablePreview extends React.Component {
 					}
 				]
 			}, {
-				name: 'Table Cell',
+				name: 'CSTableCell',
 				examples: [
 					{
 						propName: 'grow',

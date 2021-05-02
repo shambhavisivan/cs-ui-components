@@ -22,7 +22,7 @@ class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Textarea',
+				name: 'CSTextarea',
 				examples: [
 					{
 						propName: 'label',
@@ -58,7 +58,7 @@ class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
 						propName: 'error',
 						alert: {
 							variant: 'info',
-							text: 'Component in error state should always contain associated error message to satisfy accessibility best practices!'
+							text: 'Component in error state should always contain associated error message to satisfy accessibility best practices.'
 						},
 						variations: [
 							{
@@ -75,12 +75,12 @@ class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
 								component: <CSTextarea
 									label="Enter message"
 									error
-									errorMessage="Error message!"
+									errorMessage="Error message."
 								/>,
 								code: `<CSTextarea
 									label="Enter message"
 									error
-									errorMessage="Error message!"
+									errorMessage="Error message."
 								/>`
 							}
 						]
@@ -262,7 +262,7 @@ class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
 			{
 				name: 'borderRadius',
 				types: ['string'],
-				default: '0.25rem',
+				default: '\'0.25rem\'',
 				description: 'Set a border radius style.'
 			}, {
 				name: 'className',

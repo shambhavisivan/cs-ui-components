@@ -15,7 +15,7 @@ class CSAlertPreview extends React.Component {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Alert',
+				name: 'CSAlert',
 				examples: [
 					{
 						propName: 'variant',
@@ -511,7 +511,7 @@ class CSAlertPreview extends React.Component {
 					name: 'CSAlertVariant',
 					types: ['\'info\'', '\'warning\'', '\'error\'', '\'base\'']
 				}],
-				description: 'Set the colour and icon variant of the alert.'
+				description: 'Set the color and icon variant of the alert.'
 			}, {
 				name: '[key: string]',
 				types: ['any'],

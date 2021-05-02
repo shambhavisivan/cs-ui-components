@@ -17,7 +17,7 @@ class CSToastPreview extends React.Component {
 		accessible: 'partially',
 		previews: [
 			{
-				name: 'Toast',
+				name: 'CSToast',
 				examples: [
 					{
 						propName: 'variant',
@@ -286,7 +286,7 @@ class CSToastPreview extends React.Component {
 					name: 'CSToastVariant',
 					types: ['\'info\'', '\'success\'', '\'warning\'', '\'error\'']
 				}],
-				description: 'Set the colour and icon variant of the toast.'
+				description: 'Set the color and icon variant of the toast.'
 			}, {
 				name: 'width',
 				types: ['string'],

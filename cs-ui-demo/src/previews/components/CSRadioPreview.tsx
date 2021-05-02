@@ -16,7 +16,7 @@ class CSRadioPreview extends React.Component {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Radio',
+				name: 'CSRadio',
 				examples: [
 					{
 						propName: 'label',
@@ -253,7 +253,7 @@ class CSRadioPreview extends React.Component {
 					}
 				]
 			}, {
-				name: 'Radio Option',
+				name: 'CSRadioOption',
 				examples: [
 					{
 						propName: 'checked',

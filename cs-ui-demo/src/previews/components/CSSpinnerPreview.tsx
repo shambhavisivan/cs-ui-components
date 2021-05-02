@@ -14,7 +14,7 @@ class CSSpinnerPreview extends React.Component {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Spinner',
+				name: 'CSSpinner',
 				examples: [
 					{
 						propName: 'color',
@@ -131,7 +131,7 @@ class CSSpinnerPreview extends React.Component {
 					types: ['\'neutral\'', '\'brand\'', '\'inverse\'']
 				}],
 				default: '\'brand\'',
-				description: 'Set the colour variant for the spinner icon.'
+				description: 'Set the color variant for the spinner icon.'
 			}, {
 				name: 'id',
 				types: ['string'],

@@ -14,7 +14,7 @@ class CSTooltipPreview extends React.Component {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Tooltip',
+				name: 'CSTooltip',
 				examples: [
 					{
 						propName: 'content',
@@ -248,7 +248,7 @@ class CSTooltipPreview extends React.Component {
 						propName: 'position',
 						alert: {
 							variant: 'info',
-							text: 'The provided position will be overridden if the tooltip is outside of viewport. This auto-position functionality is only working with stylePosition fixed for now!'
+							text: 'The provided position will be overridden if the tooltip is outside of viewport. This auto-position functionality is only working with stylePosition fixed for now.'
 						},
 						variations: [
 							{
@@ -722,7 +722,7 @@ class CSTooltipPreview extends React.Component {
 			}, {
 				name: 'iconColor',
 				types: ['string'],
-				description: 'Set a custom colour for the tooltip icon. (eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
+				description: 'Set a custom color for the tooltip icon. (eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
 			}, {
 				name: 'iconName',
 				types: ['string'],

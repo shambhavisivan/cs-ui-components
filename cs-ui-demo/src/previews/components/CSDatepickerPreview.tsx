@@ -15,13 +15,13 @@ class CSDatepickerPreview extends React.Component {
 	handleChange = () => alert('Date has changed.');
 	handleChangeRaw = () => alert('Date has changed from raw value.');
 
-	getDatePickerDoc = () => ({
+	getDatepickerDoc = () => ({
 		name: 'Datepicker',
 		usage: 'A datepicker is a text input to capture a date. You can select a single date, date range or date and time.',
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'DatePicker',
+				name: 'CSDatepicker',
 				examples: [
 					{
 						propName: 'label',
@@ -125,7 +125,7 @@ class CSDatepickerPreview extends React.Component {
 						propName: 'error',
 						alert: {
 							variant: 'info',
-							text: 'Component in error state should always contain associated error message to satisfy accessibility best practices!'
+							text: 'Component in error state should always contain associated error message to satisfy accessibility best practices.'
 						},
 						variations: [
 							{
@@ -142,12 +142,12 @@ class CSDatepickerPreview extends React.Component {
 								component: <CSDatepicker
 									label="Enter date"
 									error
-									errorMessage="Error message!"
+									errorMessage="Error message."
 								/>,
 								code: `<CSDatepicker
 									label="Enter date"
 									error
-									errorMessage="Error message!"
+									errorMessage="Error message."
 								/>`
 							}
 						]
@@ -471,7 +471,7 @@ class CSDatepickerPreview extends React.Component {
 			}, {
 				name: 'borderRadius',
 				types: ['string'],
-				default: '0.25rem',
+				default: '\'0.25rem\'',
 				description: 'Set a border radius style.'
 			}, {
 				name: 'className',
@@ -703,7 +703,7 @@ class CSDatepickerPreview extends React.Component {
 	})
 
 	render() {
-		const component = this.getDatePickerDoc();
+		const component = this.getDatepickerDoc();
 
 		return (
 			<>

@@ -14,7 +14,7 @@ class CSImagePreview extends React.Component {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Image',
+				name: 'CSImage',
 				examples: [
 					{
 						propName: 'type',

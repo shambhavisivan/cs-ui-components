@@ -14,7 +14,7 @@ class CSSectionPreview extends React.Component {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Section',
+				name: 'CSSection',
 				examples: [
 					{
 						propName: 'title',

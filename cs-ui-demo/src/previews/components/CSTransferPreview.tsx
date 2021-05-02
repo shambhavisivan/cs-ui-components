@@ -16,7 +16,7 @@ class CSTransferPreview extends React.Component {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Transfer',
+				name: 'CSTransfer',
 				examples: [
 					{
 						propName: 'dataSource',

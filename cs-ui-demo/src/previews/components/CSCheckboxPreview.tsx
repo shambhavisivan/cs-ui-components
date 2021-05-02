@@ -25,7 +25,7 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Checkbox',
+				name: 'CSCheckbox',
 				examples: [
 					{
 						propName: 'label',
@@ -79,7 +79,7 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 						propName: 'error',
 						alert: {
 							variant: 'info',
-							text: 'Component in error state should always contain associated error message to satisfy accessibility best practices!'
+							text: 'Component in error state should always contain associated error message to satisfy accessibility best practices.'
 						},
 						variations: [
 							{
@@ -96,12 +96,12 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 								component: <CSCheckbox
 									label="Select option"
 									error
-									errorMessage="Error message!"
+									errorMessage="Error message."
 								/>,
 								code: `<CSCheckbox
 									label="Select option"
 									error
-									errorMessage="Error message!"
+									errorMessage="Error message."
 								/>`
 							}
 						]
@@ -279,7 +279,7 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 			{
 				name: 'borderRadius',
 				types: ['string'],
-				default: '0.125rem',
+				default: '\'0.125rem\'',
 				description: 'Set a border radius style.'
 			}, {
 				name: 'checked',

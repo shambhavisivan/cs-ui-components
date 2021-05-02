@@ -16,7 +16,7 @@ class CSInputFilePreview extends React.Component {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Input File',
+				name: 'CSInputFile',
 				examples: [
 					{
 						propName: 'label',
@@ -139,7 +139,7 @@ class CSInputFilePreview extends React.Component {
 						propName: 'error',
 						alert: {
 							variant: 'info',
-							text: 'Component in error state should always contain associated error message to satisfy accessibility best practices!'
+							text: 'Component in error state should always contain associated error message to satisfy accessibility best practices.'
 						},
 						variations: [
 							{

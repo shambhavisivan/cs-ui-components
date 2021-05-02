@@ -14,7 +14,7 @@ class CSFieldErrorMsgPreview extends React.Component {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Field Error Message',
+				name: 'CSFieldErrorMsg',
 				examples: [
 					{
 						propName: 'message',
@@ -22,23 +22,23 @@ class CSFieldErrorMsgPreview extends React.Component {
 							{
 								primaryVariants: 'message="text"',
 								quickLink: 'string',
-								component: <CSFieldErrorMsg message="Error message!" />,
-								code: '<CSFieldErrorMsg message="Error message!" />'
+								component: <CSFieldErrorMsg message="Error message." />,
+								code: '<CSFieldErrorMsg message="Error message." />'
 							}, {
 								primaryVariants: 'message={[...]}',
 								quickLink: 'Array<string>',
 								component: <CSFieldErrorMsg
 									message={[
-										'Error message 1!',
-										'Error message 2!',
-										'Error message 3!'
+										'Error message 1.',
+										'Error message 2.',
+										'Error message 3.'
 									]}
 								/>,
 								code: `<CSFieldErrorMsg
 									message={[
-										'Error message 1!',
-										'Error message 2!',
-										'Error message 3!'
+										'Error message 1.',
+										'Error message 2.',
+										'Error message 3.'
 									]}
 								/>`
 							}

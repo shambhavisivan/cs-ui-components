@@ -22,7 +22,7 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Toggle',
+				name: 'CSToggle',
 				examples: [
 					{
 						propName: 'label',
@@ -67,7 +67,7 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 						propName: 'error',
 						alert: {
 							variant: 'info',
-							text: 'Component in error state should always contain associated error message to satisfy accessibility best practices!'
+							text: 'Component in error state should always contain associated error message to satisfy accessibility best practices.'
 						},
 						variations: [
 							{
@@ -84,12 +84,12 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 								component: <CSToggle
 									label="This is a label"
 									error
-									errorMessage="Error message!"
+									errorMessage="Error message."
 								/>,
 								code: `<CSToggle
 									label="This is a label"
 									error
-									errorMessage="Error message!"
+									errorMessage="Error message."
 								/>`
 							}
 						]

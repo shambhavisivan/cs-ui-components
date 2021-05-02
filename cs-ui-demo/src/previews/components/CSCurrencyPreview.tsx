@@ -14,7 +14,7 @@ class CSCurrencyPreview extends React.Component {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Currency',
+				name: 'CSCurrency',
 				examples: [
 					{
 						propName: 'currency',
@@ -456,7 +456,7 @@ class CSCurrencyPreview extends React.Component {
 						propName: 'title',
 						alert: {
 							variant: 'info',
-							text: 'If title prop is defined as boolean(true) it will render formatted value from the value prop, otherwise it will render whatever string value is passed to it!'
+							text: 'If title prop is defined as boolean(true) it will render formatted value from the value prop, otherwise it will render whatever string value is passed to it.'
 						},
 						variations: [
 							{

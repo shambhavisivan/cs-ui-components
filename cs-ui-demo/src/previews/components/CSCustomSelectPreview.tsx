@@ -24,7 +24,7 @@ class CSCustomSelectPreview extends React.Component {
 		accessible: 'no',
 		previews: [
 			{
-				name: 'Custom Select',
+				name: 'CSCustomSelect',
 				examples: [
 					{
 						propName: 'label',
@@ -513,7 +513,7 @@ class CSCustomSelectPreview extends React.Component {
 					}
 				]
 			}, {
-				name: 'Custom Select Option',
+				name: 'CSOption',
 				examples: [
 					{
 						propName: 'itemKey | value',
@@ -596,7 +596,7 @@ class CSCustomSelectPreview extends React.Component {
 			{
 				name: 'borderRadius',
 				types: ['string'],
-				default: '0.25rem',
+				default: '\'0.25rem\'',
 				description: 'Set a border radius style.'
 			}, {
 				name: 'children',

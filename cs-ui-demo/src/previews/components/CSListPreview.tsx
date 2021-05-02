@@ -8,14 +8,15 @@ import PreviewAccessibility from '../PreviewAccessibility';
 import { CSAlert, CSButton, CSList, CSListGroup, CSListItem } from '@cloudsense/cs-ui-components';
 
 class CSListPreview extends React.Component {
-	handleSelect = () => alert('Item is selected!');
+	handleSelect = () => alert('An item has been selected.');
+
 	getListDoc = () => ({
 		name: 'List',
 		usage: 'List that contains items',
 		accessible: 'partially',
 		previews: [
 			{
-				name: 'List',
+				name: 'CSList',
 				examples: [
 					{
 						propName: 'size',
@@ -123,7 +124,7 @@ class CSListPreview extends React.Component {
 					}
 				]
 			}, {
-				name: 'List Item',
+				name: 'CSListItem',
 				examples: [
 					{
 						propName: 'customContent',
@@ -285,13 +286,13 @@ class CSListPreview extends React.Component {
 					}
 				]
 			}, {
-				name: 'List Group',
+				name: 'CSListGroup',
 				examples: [
 					{
 						propName: 'checkboxOption',
 						alert: {
 							variant: 'info',
-							text: 'checkboxOption can only be used if variant is set to check-list!'
+							text: 'checkboxOption can only be used if variant is set to check-list.'
 						},
 						variations: [
 							{

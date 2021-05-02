@@ -15,7 +15,7 @@ class CSProgressIndicatorPreview extends React.Component {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Progress Indicator',
+				name: 'CSProgressIndicator',
 				examples: [
 					{
 						propName: 'id | class',
@@ -46,7 +46,7 @@ class CSProgressIndicatorPreview extends React.Component {
 					}
 				]
 			}, {
-				name: 'Progress Indicator Item',
+				name: 'CSProgressIndicatorItem',
 				examples: [
 					{
 						propName: 'text',

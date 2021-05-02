@@ -1,6 +1,5 @@
 import React from 'react';
 import { CSAlert } from '@cloudsense/cs-ui-components';
-import PreviewPropertiesLegacy from './PreviewPropertiesLegacy';
 import PreviewCode from './PreviewCode';
 
 import {
@@ -11,10 +10,6 @@ import {
 } from './types';
 
 const PreviewProperties: React.FC<PreviewPropertiesProps | any> = props => {
-	if (props.examples) {
-		return <PreviewPropertiesLegacy examples={props.examples} name={props.name} />;
-	}
-
 	const parseCode = (option: string) => (
 		option.split('`').map((substring: string, substringIndex: number) => (
 			substringIndex % 2
@@ -27,7 +22,7 @@ const PreviewProperties: React.FC<PreviewPropertiesProps | any> = props => {
 
 	return <>
 		{previews.map((preview: PreviewComponent) => {
-			const componentLink = preview.name.split(' ').join('-').toLowerCase();
+			const componentLink = preview.name.split(' ').join('-');
 			return (
 				<div key={preview.name} className="component-preview-wrapper">
 					<h2
@@ -37,7 +32,7 @@ const PreviewProperties: React.FC<PreviewPropertiesProps | any> = props => {
 						{preview.name} Previews
 					</h2>
 					{preview.examples.map((example: PreviewExample) => {
-						const propLink = `${componentLink}-${example.propName.split(' ').join('-').toLowerCase()}`;
+						const propLink = `${componentLink}-${example.propName.split(' ').join('-')}`;
 						return (
 							<div key={example.propName} className={`component-preview ${example.propName}`}>
 								<h3 className="demo-heading" id={`component-preview-${propLink}`}>
@@ -56,7 +51,7 @@ const PreviewProperties: React.FC<PreviewPropertiesProps | any> = props => {
 									/>
 								)}
 								{example.variations.map((variation: PreviewVariation, variationIndex: number) => {
-									const variationLink = variation.quickLink && `${propLink}-${variation.quickLink.split(' ').join('-').toLowerCase()}`;
+									const variationLink = variation.quickLink && `${propLink}-${variation.quickLink.split(' ').join('-')}`;
 									return (
 										<React.Fragment key={variationIndex}>
 											{variation.quickLink && (
@@ -85,7 +80,7 @@ const PreviewProperties: React.FC<PreviewPropertiesProps | any> = props => {
 												</div>
 											)}
 											<div className="component-example">
-												<div className={`${preview.name.split(' ').join('-').toLowerCase()}-demo component-demo`}>
+												<div className={`${preview.name.split(' ').join('-')}-demo component-demo`}>
 													{variation.component}
 												</div>
 												<PreviewCode code={variation.code} />

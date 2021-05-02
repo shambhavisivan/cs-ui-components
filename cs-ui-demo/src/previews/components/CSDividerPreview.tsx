@@ -14,7 +14,7 @@ class CSDividerPreview extends React.Component {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Divider',
+				name: 'CSDivider',
 				examples: [
 					{
 						propName: 'variant',

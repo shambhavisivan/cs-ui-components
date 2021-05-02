@@ -16,13 +16,8 @@ import {
 	PreviewTableComponentProperty,
 	PreviewTableCustomType
 } from './types';
-import PreviewTableLegacy, { PreviewTableLegacyProps } from './PreviewTableLegacy';
 
-const PreviewTable: React.FC<PreviewTableProps | PreviewTableLegacyProps> = ({ api, components }) => {
-	if (!(components as Array<PreviewTableComponent>)[0].properties[0].name) {
-		return <PreviewTableLegacy components={components} />;
-	}
-
+const PreviewTable: React.FC<PreviewTableProps | any> = ({ api, components }) => {
 	const sortProps = (prev: PreviewTableComponentProperty, next: PreviewTableComponentProperty) => {
 		const prevRequired = !prev.required ? 1 : (prev.required === true ? 0 : 2);
 		const nextRequired = !next.required ? 1 : (next.required === true ? 0 : 2);

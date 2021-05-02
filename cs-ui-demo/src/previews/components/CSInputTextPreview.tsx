@@ -37,7 +37,7 @@ class CSInputTextPreview extends React.Component<{}, CSInputTextPreviewState> {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Input Text',
+				name: 'CSInputText',
 				examples: [
 					{
 						propName: 'label',
@@ -73,7 +73,7 @@ class CSInputTextPreview extends React.Component<{}, CSInputTextPreviewState> {
 						propName: 'error',
 						alert: {
 							variant: 'info',
-							text: 'Component in error state should always contain associated error message to satisfy accessibility best practices!'
+							text: 'Component in error state should always contain associated error message to satisfy accessibility best practices.'
 						},
 						variations: [
 							{
@@ -90,12 +90,12 @@ class CSInputTextPreview extends React.Component<{}, CSInputTextPreviewState> {
 								component: <CSInputText
 									label="Enter value"
 									error
-									errorMessage="Error message!"
+									errorMessage="Error message."
 								/>,
 								code: `<CSInputText
 									label="Enter value"
 									error
-									errorMessage="Error message!"
+									errorMessage="Error message."
 								/>`
 							}
 						]
@@ -282,7 +282,7 @@ class CSInputTextPreview extends React.Component<{}, CSInputTextPreviewState> {
 			{
 				name: 'borderRadius',
 				types: ['string'],
-				default: '0.25rem',
+				default: '\'0.25rem\'',
 				description: 'Set a border radius style.'
 			}, {
 				name: 'className',

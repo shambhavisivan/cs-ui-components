@@ -21,7 +21,7 @@ class CSButtonPreview extends React.Component {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Button',
+				name: 'CSButton',
 				examples: [
 					{
 						propName: 'label',
@@ -892,7 +892,7 @@ class CSButtonPreview extends React.Component {
 			{
 				name: 'borderRadius',
 				types: ['string'],
-				default: '0.25rem',
+				default: '\'0.25rem\'',
 				description: 'Sets custom border radius on the button.'
 			}, {
 				name: 'btnStyle',
@@ -921,7 +921,7 @@ class CSButtonPreview extends React.Component {
 			}, {
 				name: 'color',
 				types: ['string'],
-				description: 'Set a custom colour for the button. (eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
+				description: 'Set a custom color for the button. (eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
 			}, {
 				name: 'disabled',
 				types: ['boolean'],
@@ -930,7 +930,7 @@ class CSButtonPreview extends React.Component {
 			}, {
 				name: 'iconColor',
 				types: ['string'],
-				description: 'Set a custom colour for the icon inside of the button. (eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
+				description: 'Set a custom color for the icon inside of the button. (eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
 			}, {
 				name: 'iconDisplay',
 				customTypes: [{

@@ -14,7 +14,7 @@ class CSLabelPreview extends React.Component {
 		accessible: 'yes',
 		previews: [
 			{
-				name: 'Label',
+				name: 'CSLabel',
 				examples: [
 					{
 						propName: 'helpText',

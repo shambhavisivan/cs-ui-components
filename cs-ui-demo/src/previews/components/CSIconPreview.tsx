@@ -14,7 +14,7 @@ class CSIconPreview extends React.Component {
 			accessible: 'yes',
 			previews: [
 				{
-					name: 'Icon',
+					name: 'CSIcon',
 					examples: [
 						{
 							propName: 'name',
@@ -191,7 +191,7 @@ class CSIconPreview extends React.Component {
 				}, {
 					name: 'color',
 					types: ['string'],
-					description: 'Set a custom colour value for the icon. (eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
+					description: 'Set a custom color value for the icon. (eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
 				}, {
 					name: 'frame',
 					types: ['boolean'],

@@ -87,7 +87,7 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 		usage: 'Lookup is an autocomplete combobox that will search against a database object',
 		accessible: 'partially',
 		previews: [{
-			name: 'Lookup',
+			name: 'CSLookup',
 			examples: [
 				{
 					propName: 'fieldToBeDisplayed',
@@ -270,7 +270,7 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 					propName: 'error',
 					alert: {
 						variant: 'info',
-						text: 'Component in error state should always contain associated error message to satisfy accessibility best practices!'
+						text: 'Component in error state should always contain associated error message to satisfy accessibility best practices.'
 					},
 					variations: [
 						{
@@ -772,7 +772,7 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 				}
 			]
 		}, {
-			name: 'Client-Side Lookup',
+			name: 'Client-Side CSLookup',
 			examples: [
 				{
 					propName: 'lookupOptions',
@@ -902,7 +902,7 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 				}
 			]
 		}, {
-			name: 'Server-Side Lookup',
+			name: 'Server-Side CSLookup',
 			examples: [
 				{
 					propName: 'fetchLookupOptions',
@@ -1087,7 +1087,7 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 			}, {
 				name: 'mode',
 				required: true,
-				types: ['client', 'server'],
+				types: ['\'client\'', '\'server\''],
 				description: 'Set whether the component should run in client-side or server-side mode. The server-side mode loads records by reading the lookupOptions prop and filtering takes place within the component, while the server-side mode enables asynchronous fetching of records with the fetchLookupOptions prop, which also enables infinite scroll and setting the minimum search term length.'
 			}, {
 				name: 'multiselect',
