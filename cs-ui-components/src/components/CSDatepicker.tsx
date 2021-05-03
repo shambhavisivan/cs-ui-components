@@ -42,21 +42,18 @@ export interface CSDatepickerProps {
 	readOnly?: boolean;
 	required?: boolean;
 	scrollableYearDropdown?: boolean;
+	selected?: Date;
 	showMonthDropdown?: boolean;
 	showYearDropdown?: boolean;
 	title?: string;
 	todayButton?: boolean;
 	tooltipPosition?: CSTooltipPosition;
-	value?: any;
+	value?: string;
 	width?: string;
 	yearDropdownItemNumber?: number;
 }
 
-export interface CSDatePickerState {
-	startDate: Date;
-}
-
-class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState> {
+class CSDatepicker extends React.Component<CSDatepickerProps> {
 
 	public static defaultProps = {
 		dateFormat: 'dd-MM-yyyy',
@@ -71,17 +68,9 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 
 		this.datepickerRef = React.createRef();
 		this.closeOnFocusOutside = this.closeOnFocusOutside.bind(this);
-
-		const value = typeof props.value === undefined ? '' : props.value;
-		this.state = {
-			startDate: value
-		};
 	}
 
 	handleChange = (date: Date) => {
-		this.setState({
-			startDate: date
-		});
 		if (this.props.onChange) {
 			this.props.onChange(date);
 		}
@@ -91,12 +80,6 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 		// If shift key and tab pressed together close datepicker
 		if (event.shiftKey && event.key === KeyCode.Tab) {
 			this.datepickerRef.current.setOpen(false);
-		}
-	}
-
-	componentDidUpdate(prevProps: CSDatepickerProps) {
-		if (prevProps.value !== this.props.value) {
-			this.setState({ startDate: this.props.value });
 		}
 	}
 
@@ -131,6 +114,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 			readOnly,
 			required,
 			scrollableYearDropdown,
+			selected,
 			showMonthDropdown,
 			showYearDropdown,
 			title,
@@ -193,7 +177,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 							minDate={minDateYear || minDate ? calcMinDate() : undefined}
 							name={name}
 							locale={locale}
-							selected={this.state.startDate}
+							selected={selected}
 							onCalendarClose={this.props.onCalendarClose}
 							onChange={this.handleChange}
 							onChangeRaw={onChangeRaw}
@@ -211,6 +195,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatePickerState>
 							id={this.uniqueAutoId}
 							inline={inline}
 							autoFocus={autoFocus}
+							value={value}
 							{...rest}
 						/>
 					</div>

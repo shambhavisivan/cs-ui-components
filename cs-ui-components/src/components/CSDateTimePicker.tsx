@@ -44,6 +44,7 @@ class CSDateTimePicker extends React.Component<CSDateTimePickerProps> {
 			readOnly,
 			required,
 			scrollableYearDropdown,
+			selected,
 			showMonthDropdown,
 			showYearDropdown,
 			title,
