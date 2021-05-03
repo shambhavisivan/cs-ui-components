@@ -1,20 +1,17 @@
 import React from 'react';
-import PreviewHeading from '../PreviewHeading';
-import PreviewProperties from '../PreviewProperties';
-import PreviewTable from '../PreviewTable';
-import PreviewAccessibility from '../PreviewAccessibility';
-import PreviewLinks from '../PreviewLinks';
-
 import { CSInputFile } from '@cloudsense/cs-ui-components';
+
+import Preview from '../Preview';
 
 class CSInputFilePreview extends React.Component {
 	handleChange = () => alert('File has been uploaded.');
 	handleDrop = () => alert('File has been dropped.');
-	getInputFileDoc = () => ({
+
+	getDoc = () => ({
 		name: 'Input File',
-		usage: 'Input File component',
+		usage: 'Input File component.',
 		accessible: 'yes',
-		previews: [
+		components: [
 			{
 				name: 'CSInputFile',
 				examples: [
@@ -211,131 +208,113 @@ class CSInputFilePreview extends React.Component {
 							}
 						]
 					}
-				]
-			}
-		],
-		properties: [
-			{
-				name: 'accept',
-				types: ['string', 'Array<string>'],
-				description: 'Set which file types should be accepted. (eg. .jpg, .mp3, audio/*, image/*, etc.)'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the file input wrapper.'
-			}, {
-				name: 'disabled',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Disable the file input.'
-			}, {
-				name: 'dropAreaBackground',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Set whether the background area should be gray.'
-			}, {
-				name: 'dropAreaHeight',
-				types: ['string'],
-				description: 'Set the height of the drop area. (eg. 200px, 20rem, etc.)'
-			}, {
-				name: 'dropAreaWidth',
-				types: ['string'],
-				description: 'Set the height of the drop area. (eg. 200px, 20rem, 100%, etc.)'
-			}, {
-				name: 'error',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Toggle the error state.'
-			}, {
-				name: 'errorMessage',
-				customTypes: [{
-					name: 'CSFieldErrorMsgType',
-					types: ['string', 'Array<string>']
-				}],
-				description: 'Set the error message or messages for the file input.'
-			}, {
-				name: 'fileSize',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Display the file size.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the file input.'
-			}, {
-				name: 'label',
-				required: true,
-				types: ['string'],
-				description: 'Set the file input label.'
-			}, {
-				name: 'onChange',
-				types: ['(value) => any'],
-				description: 'Handler method for the change event.'
-			}, {
-				name: 'onDrop',
-				types: ['(value) => any'],
-				description: 'Handler method for the drop event.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the file input.'
-			}
-		],
-		accessibility: [
-			{
-				criterionList: [
-					'1.4.1',
-					'1.4.4',
-					'2.1.1',
-					'2.1.2',
-					'2.4.7',
-					'2.5.3',
-					'3.2.1',
-					'3.2.2',
-					'3.3.1',
-					'3.3.2',
-					'4.1.2'
 				],
-				requirements: [
+				properties: [
 					{
-						structure: [
-							'`<input type="file">` - hidden',
-							'`<span>` imitates button with custom style',
-							'`<input>` and `<span>` wrapped in `<label>`'
-						],
-						properties: [
-							'`aria-invalid` - true when there is an error',
-							'`title`'
-						],
-						styling: [
-							'Focus state styles',
-							'`<label>` styled as drop zone area'
-						],
-						keyboardOperability: [
-							'`<input>` OOTB focusable and supports clicks with `Enter` and `Space` keys',
-							'Logic around tooltip provided in order for tooltip to not break focus pattern when it is shown'
-						]
+						name: 'accept',
+						types: ['string', 'Array<string>'],
+						description: 'Set which file types should be accepted. (eg. .jpg, .mp3, audio/*, image/*, etc.)'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the file input wrapper.'
+					}, {
+						name: 'disabled',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Disable the file input.'
+					}, {
+						name: 'dropAreaBackground',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Set whether the background area should be gray.'
+					}, {
+						name: 'dropAreaHeight',
+						types: ['string'],
+						description: 'Set the height of the drop area. (eg. 200px, 20rem, etc.)'
+					}, {
+						name: 'dropAreaWidth',
+						types: ['string'],
+						description: 'Set the height of the drop area. (eg. 200px, 20rem, 100%, etc.)'
+					}, {
+						name: 'error',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Toggle the error state.'
+					}, {
+						name: 'errorMessage',
+						customTypes: [{
+							name: 'CSFieldErrorMsgType',
+							types: ['string', 'Array<string>']
+						}],
+						description: 'Set the error message or messages for the file input.'
+					}, {
+						name: 'fileSize',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Display the file size.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the file input.'
+					}, {
+						name: 'label',
+						required: true,
+						types: ['string'],
+						description: 'Set the file input label.'
+					}, {
+						name: 'onChange',
+						types: ['(value) => any'],
+						description: 'Handler method for the change event.'
+					}, {
+						name: 'onDrop',
+						types: ['(value) => any'],
+						description: 'Handler method for the drop event.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the file input.'
 					}
 				]
 			}
-		]
+		],
+		accessibility: {
+			criterionList: [
+				'1.4.1',
+				'1.4.4',
+				'2.1.1',
+				'2.1.2',
+				'2.4.7',
+				'2.5.3',
+				'3.2.1',
+				'3.2.2',
+				'3.3.1',
+				'3.3.2',
+				'4.1.2'
+			],
+			requirements: {
+				structure: [
+					'`<input type="file">` - hidden',
+					'`<span>` imitates button with custom style',
+					'`<input>` and `<span>` wrapped in `<label>`'
+				],
+				attributes: [
+					'`aria-invalid` - true when there is an error',
+					'`title`'
+				],
+				styling: [
+					'Focus state styles',
+					'`<label>` styled as drop zone area'
+				],
+				keyboardOperability: [
+					'`<input>` OOTB focusable and supports clicks with `Enter` and `Space` keys',
+					'Logic around tooltip provided in order for tooltip to not break focus pattern when it is shown'
+				]
+			}
+		}
 	})
 
-	render() {
-		const component = this.getInputFileDoc();
-
-		return (
-			<>
-				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties {...component} />
-					<PreviewTable components={[component]} />
-					<PreviewAccessibility components={[component]} />
-				</div>
-				<PreviewLinks {...component} />
-			</>
-		);
-	}
+	render = () => <Preview {...this.getDoc()} />;
 }
 
 export default CSInputFilePreview;

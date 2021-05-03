@@ -1,19 +1,14 @@
 import React from 'react';
-import PreviewHeading from '../PreviewHeading';
-import PreviewProperties from '../PreviewProperties';
-import PreviewTable from '../PreviewTable';
-import PreviewLinks from '../PreviewLinks';
-import PreviewAccessibility from '../PreviewAccessibility';
-
 import { CSProgressIndicator, CSProgressIndicatorItem } from '@cloudsense/cs-ui-components';
 
-class CSProgressIndicatorPreview extends React.Component {
+import Preview from '../Preview';
 
-	getProgressIndicatorDoc = () => ({
+class CSProgressIndicatorPreview extends React.Component {
+	getDoc = () => ({
 		name: 'Progress Indicator',
 		usage: 'Progress Indicator is a component that communicates to the user the progress of a particular process.',
 		accessible: 'yes',
-		previews: [
+		components: [
 			{
 				name: 'CSProgressIndicator',
 				examples: [
@@ -43,6 +38,28 @@ class CSProgressIndicatorPreview extends React.Component {
 								</CSProgressIndicator>`
 							}
 						]
+					}
+				],
+				properties: [
+					{
+						name: 'children',
+						customTypes: [{
+							name: 'CSProgressIndicatorChildren',
+							types: ['<CSProgressIndicatorItem />', 'any']
+						}],
+						description: 'This component is designed to support CSProgressIndicatorItem as a child.'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the progress indicator.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the progress indicator.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the progress indicator ordered list tag.'
 					}
 				]
 			}, {
@@ -137,126 +154,81 @@ class CSProgressIndicatorPreview extends React.Component {
 							}
 						]
 					}
-				]
-			}
-		],
-		properties: [
-			{
-				name: 'children',
-				customTypes: [{
-					name: 'CSProgressIndicatorChildren',
-					types: ['<CSProgressIndicatorItem />', 'any']
-				}],
-				description: 'This component is designed to support CSProgressIndicatorItem as a child.'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the progress indicator.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the progress indicator.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the progress indicator ordered list tag.'
-			}
-		],
-		accessibility: [
-			{
-				criterionList: [
-					'1.3.1',
-					'1.3.2',
-					'1.4.1',
-					'1.4.3',
-					'2.1.1',
-					'2.1.2',
-					'2.4.3',
-					'3.3.1',
-					'4.1.1',
-					'4.1.2'
 				],
-				requirements: [
+				properties: [
 					{
-						structure: [
-							'`<ol>`',
-							'`<li>` - allows screen readers to detect number of items in the list',
-							'`<button>` - focusable and follows SLDS',
-							'Icon as a child of button with attribute `aria-hidden`'
-						],
-						properties: [
-							'`aria-label`',
-							'`title` - shows status on hover, as well as reads out to screen reader along aria-label.',
-							'`aria-current` - true when the step is in active status',
-							'`aria-roledescription` - role set to custom "step" to describe better rather than implicit role button'
-						],
-						styling: [
-							'Color contrast ratio > 4.5',
-							'Distinct hover and focus state styles'
-						],
-						keyboardOperability: [
-							'`<button>` OOTB focusable and supports clicks with `Enter` and `Space` keys'
-						]
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the progress indicator item.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the progress indicator item.'
+					}, {
+						name: 'status',
+						customTypes: [{
+							name: 'CSProgressIndicatorItemStatus',
+							types: [
+								'\'incomplete\'',
+								'\'complete\'',
+								'\'active\'',
+								'\'error\'',
+								'\'loading\''
+							]
+						}],
+						default: '\'incomplete\'',
+						description: 'Style the progress indicator item based on the status.'
+					}, {
+						name: 'text',
+						required: true,
+						types: ['string'],
+						description: 'Set the text inside of the progress indicator item.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the progress indicator item list item tag.'
 					}
 				]
 			}
-		]
-	})
-
-	getProgressIndicatorItemDoc = () => ({
-		name: 'Progress Indicator Item',
-		properties: [
-			{
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the progress indicator item.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the progress indicator item.'
-			}, {
-				name: 'status',
-				customTypes: [{
-					name: 'CSProgressIndicatorItemStatus',
-					types: [
-						'\'incomplete\'',
-						'\'complete\'',
-						'\'active\'',
-						'\'error\'',
-						'\'loading\''
-					]
-				}],
-				default: '\'incomplete\'',
-				description: 'Style the progress indicator item based on the status.'
-			}, {
-				name: 'text',
-				required: true,
-				types: ['string'],
-				description: 'Set the text inside of the progress indicator item.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the progress indicator item list item tag.'
+		],
+		accessibility: {
+			criterionList: [
+				'1.3.1',
+				'1.3.2',
+				'1.4.1',
+				'1.4.3',
+				'2.1.1',
+				'2.1.2',
+				'2.4.3',
+				'3.3.1',
+				'4.1.1',
+				'4.1.2'
+			],
+			requirements: {
+				structure: [
+					'`<ol>`',
+					'`<li>` - allows screen readers to detect number of items in the list',
+					'`<button>` - focusable and follows SLDS',
+					'Icon as a child of button with attribute `aria-hidden`'
+				],
+				attributes: [
+					'`aria-label`',
+					'`title` - shows status on hover, as well as reads out to screen reader along aria-label.',
+					'`aria-current` - true when the step is in active status',
+					'`aria-roledescription` - role set to custom "step" to describe better rather than implicit role button'
+				],
+				styling: [
+					'Color contrast ratio > 4.5',
+					'Distinct hover and focus state styles'
+				],
+				keyboardOperability: [
+					'`<button>` OOTB focusable and supports clicks with `Enter` and `Space` keys'
+				]
 			}
-		]
+		}
 	})
 
-	render() {
-		const component = this.getProgressIndicatorDoc();
-		const component2 = this.getProgressIndicatorItemDoc();
-
-		return (
-			<>
-				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties {...component} />
-					<PreviewTable components={[component, component2]} />
-					<PreviewAccessibility components={[component]} />
-				</div>
-				<PreviewLinks {...component} />
-			</>
-		);
-	}
+	render = () => <Preview {...this.getDoc()} />;
 }
 
 export default CSProgressIndicatorPreview;

@@ -1,18 +1,14 @@
 import React from 'react';
-import PreviewHeading from '../PreviewHeading';
-import PreviewProperties from '../PreviewProperties';
-import PreviewTable from '../PreviewTable';
-import PreviewAccessibility from '../PreviewAccessibility';
-import PreviewLinks from '../PreviewLinks';
-
 import { CSCurrency } from '@cloudsense/cs-ui-components';
 
+import Preview from '../Preview';
+
 class CSCurrencyPreview extends React.Component {
-	getCurrencyDoc = () => ({
+	getDoc = () => ({
 		name: 'Currency',
-		usage: 'Currency provides Currency Internationalization (i18n)',
+		usage: 'Currency provides Currency Internationalization (i18n).',
 		accessible: 'yes',
-		previews: [
+		components: [
 			{
 				name: 'CSCurrency',
 				examples: [
@@ -587,139 +583,121 @@ class CSCurrencyPreview extends React.Component {
 							}
 						]
 					}
-				]
-			}
-		],
-		properties: [
-			{
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the wrapper div.'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the wrapper div.'
-			}, {
-				name: 'currency',
-				required: true,
-				types: ['string'],
-				description: 'Set the currency that is displayed next to the value. Currency code consists of a ISO 4217 3-letter code.'
-			}, {
-				name: 'currencyDisplay',
-				customTypes: [{
-					name: 'CSCurrencyDisplay',
-					types: ['\'symbol\'', '\'code\'', '\'name\'', '\'narrowSymbol\'']
-				}],
-				default: '\'symbol\'',
-				description: 'Set the currency display. Value "narrowSymbol" is not supported in Safari and "symbol" value will be used instead.'
-			}, {
-				name: 'currencySign',
-				customTypes: [{
-					name: 'CSCurrencySign',
-					types: ['\'standard\'', '\'accounting\'']
-				}],
-				default: '\'standard\'',
-				description: 'Set the currency sign. Not supported in Safari, default value will be used.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the currency wrapper div.'
-			}, {
-				name: 'locale',
-				required: true,
-				types: ['string'],
-				description: 'Set locale. Locale identifier consists of a language identifier in a form of a string holding a BCP 47 language tag.'
-			}, {
-				name: 'minimumIntegerDigits',
-				types: ['number'],
-				default: '1',
-				description: 'The minimum number of integer digits to use. Possible values 1-21.'
-			}, {
-				name: 'minimumFractionDigits',
-				types: ['number'],
-				default: '0',
-				description: 'The minimum number of fraction digits to use. Possible values 0-20.'
-			}, {
-				name: 'maximumFractionDigits',
-				types: ['number'],
-				default: '3',
-				description: 'The maximum number of fraction digits to use. Possible values 0-20. For Safari maximumFractionDigits must be >= minimumFractionDigits.'
-			}, {
-				name: 'minimumSignificantDigits',
-				types: ['number'],
-				default: '1',
-				description: 'The minimum number of significant digits. Possible values 0-21.'
-			}, {
-				name: 'maximumSignificantDigits',
-				types: ['number'],
-				default: '21',
-				description: 'The maximum number of significant digits. Possible values 0-21.'
-			}, {
-				name: 'notation',
-				customTypes: [{
-					name: 'CSNotation',
-					types: ['\'standard\'', '\'scientific\'', '\'engineering\'', '\'compact\'']
-				}],
-				default: '\'standard\'',
-				description: 'The formatting that should be displayed for the number. Not supported in Safari, default value will be used.'
-			}, {
-				name: 'signDisplay',
-				customTypes: [{
-					name: 'CSSignDisplay',
-					types: ['\'auto\'', '\'never\'', '\'always\'', '\'exceptZero\'']
-				}],
-				default: '\'auto\'',
-				description: 'Set the sign display. Not supported in Safari, default value will be used.'
-			}, {
-				name: 'title',
-				types: ['string', 'boolean'],
-				description: 'Set the value of the title attribute. Boolean will render formatted value from value prop, while string will render the string value passed to this prop.'
-			}, {
-				name: 'useGrouping',
-				types: ['boolean'],
-				default: 'true',
-				description: 'Set whether to use grouping separators, such as thousands separators.'
-			}, {
-				name: 'value',
-				types: ['string', 'number'],
-				description: 'Set the value.'
-			}
-		],
-		accessibility: [
-			{
-				criterionList: [
-					'1.4.1',
-					'1.4.4'
 				],
-				requirements: [
+				properties: [
 					{
-						structure: [
-							'`<span>` with text - visible to screen reader'
-						],
-						styling: [
-							'Color contrast ratio > 4.5'
-						]
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the wrapper div.'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the wrapper div.'
+					}, {
+						name: 'currency',
+						required: true,
+						types: ['string'],
+						description: 'Set the currency that is displayed next to the value. Currency code consists of a ISO 4217 3-letter code.'
+					}, {
+						name: 'currencyDisplay',
+						customTypes: [{
+							name: 'CSCurrencyDisplay',
+							types: ['\'symbol\'', '\'code\'', '\'name\'', '\'narrowSymbol\'']
+						}],
+						default: '\'symbol\'',
+						description: 'Set the currency display. Value "narrowSymbol" is not supported in Safari and "symbol" value will be used instead.'
+					}, {
+						name: 'currencySign',
+						customTypes: [{
+							name: 'CSCurrencySign',
+							types: ['\'standard\'', '\'accounting\'']
+						}],
+						default: '\'standard\'',
+						description: 'Set the currency sign. Not supported in Safari, default value will be used.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the currency wrapper div.'
+					}, {
+						name: 'locale',
+						required: true,
+						types: ['string'],
+						description: 'Set locale. Locale identifier consists of a language identifier in a form of a string holding a BCP 47 language tag.'
+					}, {
+						name: 'minimumIntegerDigits',
+						types: ['number'],
+						default: '1',
+						description: 'The minimum number of integer digits to use. Possible values 1-21.'
+					}, {
+						name: 'minimumFractionDigits',
+						types: ['number'],
+						default: '0',
+						description: 'The minimum number of fraction digits to use. Possible values 0-20.'
+					}, {
+						name: 'maximumFractionDigits',
+						types: ['number'],
+						default: '3',
+						description: 'The maximum number of fraction digits to use. Possible values 0-20. For Safari maximumFractionDigits must be >= minimumFractionDigits.'
+					}, {
+						name: 'minimumSignificantDigits',
+						types: ['number'],
+						default: '1',
+						description: 'The minimum number of significant digits. Possible values 0-21.'
+					}, {
+						name: 'maximumSignificantDigits',
+						types: ['number'],
+						default: '21',
+						description: 'The maximum number of significant digits. Possible values 0-21.'
+					}, {
+						name: 'notation',
+						customTypes: [{
+							name: 'CSNotation',
+							types: ['\'standard\'', '\'scientific\'', '\'engineering\'', '\'compact\'']
+						}],
+						default: '\'standard\'',
+						description: 'The formatting that should be displayed for the number. Not supported in Safari, default value will be used.'
+					}, {
+						name: 'signDisplay',
+						customTypes: [{
+							name: 'CSSignDisplay',
+							types: ['\'auto\'', '\'never\'', '\'always\'', '\'exceptZero\'']
+						}],
+						default: '\'auto\'',
+						description: 'Set the sign display. Not supported in Safari, default value will be used.'
+					}, {
+						name: 'title',
+						types: ['string', 'boolean'],
+						description: 'Set the value of the title attribute. Boolean will render formatted value from value prop, while string will render the string value passed to this prop.'
+					}, {
+						name: 'useGrouping',
+						types: ['boolean'],
+						default: 'true',
+						description: 'Set whether to use grouping separators, such as thousands separators.'
+					}, {
+						name: 'value',
+						types: ['string', 'number'],
+						description: 'Set the value.'
 					}
 				]
 			}
-		]
+		],
+		accessibility: {
+			criterionList: [
+				'1.4.1',
+				'1.4.4'
+			],
+			requirements: {
+				structure: [
+					'`<span>` with text - visible to screen reader'
+				],
+				styling: [
+					'Color contrast ratio > 4.5'
+				]
+			}
+		}
 	})
 
-	render() {
-		const component = this.getCurrencyDoc();
-
-		return (
-			<>
-				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties {...component} />
-					<PreviewTable components={[component]} />
-					<PreviewAccessibility components={[component]} />
-				</div>
-				<PreviewLinks {...component} />
-			</>
-		);
-	}
+	render = () => <Preview {...this.getDoc()} />;
 }
 
 export default CSCurrencyPreview;

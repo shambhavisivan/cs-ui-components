@@ -1,18 +1,14 @@
 import React from 'react';
-import PreviewHeading from '../PreviewHeading';
-import PreviewProperties from '../PreviewProperties';
-import PreviewTable from '../PreviewTable';
-import PreviewAccessibility from '../PreviewAccessibility';
-import PreviewLinks from '../PreviewLinks';
-
 import { CSButtonGroup, CSButton, CSDropdown } from '@cloudsense/cs-ui-components';
 
+import Preview from '../Preview';
+
 class CSButtonGroupPreview extends React.Component {
-	getButtonGroupDoc = () => ({
+	getDoc = () => ({
 		name: 'Button Group',
-		usage: 'Button groups are used to bunch together buttons with similar actions',
+		usage: 'Button groups are used to bunch together buttons with similar actions.',
 		accessible: 'yes',
-		previews: [
+		components: [
 			{
 				name: 'CSButtonGroup',
 				examples: [
@@ -209,94 +205,76 @@ class CSButtonGroupPreview extends React.Component {
 							}
 						]
 					}
-				]
-			}
-		],
-		properties: [
-			{
-				name: 'children',
-				customTypes: [{
-					name: 'CSButtonGroupChildren',
-					types: ['<CSButton />', '<CSDropdown />', 'any']
-				}],
-				description: 'This component is designed to support CSButton and CSDropdown as children.'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the button group.'
-			}, {
-				name: 'combined',
-				types: ['boolean'],
-				default: 'true',
-				description: 'Set whether the button group styling should be combined.'
-			}, {
-				name: 'marginPosition',
-				customTypes: [{
-					name: 'CSButtonGroupMargin',
-					types: ['\'left\'', '\'right\'', '\'both\'']
-				}],
-				description: 'Set horizontal margin location.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the button group.'
-			}, {
-				name: 'ariaDescription',
-				types: ['string'],
-				description: 'Set an accessible semantic description of the button group.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the button group div.'
-			}
-		],
-		accessibility: [
-			{
-				criterionList: [
-					'2.1.1',
-					'2.1.2',
-					'2.5.3',
-					'3.2.1',
-					'3.3.1'
 				],
-				requirements: [
+				properties: [
 					{
-						structure: [
-							'`<div>` wrapper with role',
-							'`<CSButton>`',
-							'hidden `<span>` with aria description'
-						],
-						properties: [
-							'`aria-labelledby` - contains id pointing to hidden span when `ariaDescription` is set which associates group with description',
-							'`role="group"`'
-						],
-						styling: [
-							'Distinct hover, active and focus state styles'
-						],
-						keyboardOperability: [
-							'Proper focus management and keyboard operability ensured by `<CSButton>`'
-						]
+						name: 'children',
+						customTypes: [{
+							name: 'CSButtonGroupChildren',
+							types: ['<CSButton />', '<CSDropdown />', 'any']
+						}],
+						description: 'This component is designed to support CSButton and CSDropdown as children.'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the button group.'
+					}, {
+						name: 'combined',
+						types: ['boolean'],
+						default: 'true',
+						description: 'Set whether the button group styling should be combined.'
+					}, {
+						name: 'marginPosition',
+						customTypes: [{
+							name: 'CSButtonGroupMargin',
+							types: ['\'left\'', '\'right\'', '\'both\'']
+						}],
+						description: 'Set horizontal margin location.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the button group.'
+					}, {
+						name: 'ariaDescription',
+						types: ['string'],
+						description: 'Set an accessible semantic description of the button group.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the button group div.'
 					}
 				]
 			}
-		]
+		],
+		accessibility: {
+			criterionList: [
+				'2.1.1',
+				'2.1.2',
+				'2.5.3',
+				'3.2.1',
+				'3.3.1'
+			],
+			requirements: {
+				structure: [
+					'`<div>` wrapper with role',
+					'`<CSButton>`',
+					'hidden `<span>` with aria description'
+				],
+				attributes: [
+					'`aria-labelledby` - contains id pointing to hidden span when `ariaDescription` is set which associates group with description',
+					'`role="group"`'
+				],
+				styling: [
+					'Distinct hover, active and focus state styles'
+				],
+				keyboardOperability: [
+					'Proper focus management and keyboard operability ensured by `<CSButton>`'
+				]
+			}
+		}
 	})
 
-	render() {
-		const component = this.getButtonGroupDoc();
-
-		return (
-			<>
-				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties {...component} />
-					<PreviewTable components={[component]} />
-					<PreviewAccessibility components={[component]} />
-				</div>
-					<PreviewLinks {...component} />
-			</>
-		);
-	}
+	render = () => <Preview {...this.getDoc()} />;
 }
 
 export default CSButtonGroupPreview;

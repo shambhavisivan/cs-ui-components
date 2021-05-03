@@ -1,23 +1,19 @@
 import React from 'react';
-import PreviewHeading from '../PreviewHeading';
-import PreviewProperties from '../PreviewProperties';
-import PreviewTable from '../PreviewTable';
-import PreviewAccessibility from '../PreviewAccessibility';
-import PreviewLinks from '../PreviewLinks';
 import moment from 'moment';
-
 import { CSDateTimePicker } from '@cloudsense/cs-ui-components';
+
+import Preview from '../Preview';
 
 class CSDateTimePickerPreview extends React.Component {
 	value = moment('1.1.2020', 'DD-MM-YYYY').toDate();
 
 	handleChange = () => alert('The date the has changed.');
 
-	getDateTimePickerDoc = () => ({
+	getDoc = () => ({
 		name: 'DateTimePicker',
 		usage: 'A datetimepicker is a text input to capture a date. You can select a single date, date range or date and time.',
 		accessible: 'yes',
-		previews: [
+		components: [
 			{
 				name: 'CSDateTimePicker',
 				examples: [
@@ -476,264 +472,246 @@ class CSDateTimePickerPreview extends React.Component {
 							}
 						]
 					}
-				]
-			}
-		],
-		properties: [
-			{
-				name: 'autoFocus',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Focuses the datetimepicker by default.'
-			}, {
-				name: 'borderRadius',
-				types: ['string'],
-				default: '\'0.25rem\'',
-				description: 'Set a border radius style.'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the datetimepicker.'
-			}, {
-				name: 'disabled',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Disable the datetimepicker.'
-			}, {
-				name: 'dateFormat',
-				types: ['string'],
-				default: '\'MMMM d, yyyy h:mm aa\'',
-				description: 'Set the date format for various locales. (eg. dd-MM-yyyy, MM-dd-yyyy, yyyy-MM-dd, etc.)'
-			}, {
-				name: 'dropdownMode',
-				customTypes: [{
-					name: 'CSDatepickerDropdownMode',
-					types: ['\'scroll\'', '\'select\'']
-				}],
-				default: '\'scroll\'',
-				description: 'Set the type of year and month dropdown.'
-			}, {
-				name: 'timeFormat',
-				types: ['string'],
-				description: 'Set the date format for various locales. (eg. HH:mm, HH:mm:ss, yyyy-MM, yyyy-MM:dd, etc.)'
-			}, {
-				name: 'timeIntervals',
-				types: ['number'],
-				description: 'Set the interval between each time value. (eg. 15, 20, 30, 60, etc.)'
-			}, {
-				name: 'timeCaption',
-				types: ['string'],
-				description: 'Set the title for the time column.'
-			}, {
-				name: 'error',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Toggle the error state.'
-			}, {
-				name: 'errorMessage',
-				customTypes: [{
-					name: 'CSFieldErrorMsgType',
-					types: ['string', 'Array<string>']
-				}],
-				description: 'Set the error message or messages for the datetimepicker.'
-			}, {
-				name: 'helpText',
-				types: ['string'],
-				description: 'Set the text to be displayed in the tooltip.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the datetimepicker.'
-			}, {
-				name: 'inline',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Display the popup inline with content'
-			}, {
-				name: 'isClearable',
-				types: ['boolean'],
-				description: 'Show or hide the clear button.'
-			}, {
-				name: 'label',
-				required: true,
-				types: ['string'],
-				description: 'Set the datetimepicker label.'
-			}, {
-				name: 'labelHidden',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Hide the datetimepicker label.'
-			}, {
-				name: 'labelTitle',
-				types: ['boolean'],
-				description: 'Control whether to set the title attribute.'
-			}, {
-				name: 'locale',
-				types: ['any'],
-				description: 'Set the datetimepicker locale.'
-			}, {
-				name: 'maxDate',
-				types: ['number'],
-				description: 'Set the maximum date in days relative to today.'
-			}, {
-				name: 'maxDateYear',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Make maxDate observe years instead of days.'
-			}, {
-				name: 'minDate',
-				types: ['number'],
-				description: 'Set the minimum date in days relative to today.'
-			}, {
-				name: 'minDateYear',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Make minDate observe years instead of days.'
-			}, {
-				name: 'name',
-				types: ['string'],
-				description: 'Set the input name.'
-			}, {
-				name: 'onChange',
-				types: ['(event) => any'],
-				description: 'Handler method for the change event.'
-			}, {
-				name: 'placeholder',
-				types: ['string'],
-				description: 'Set a datetimepicker placeholder.'
-			}, {
-				name: 'readOnly',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Control whether to apply the readonly attribute.'
-			}, {
-				name: 'required',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Make the datetimepicker required.'
-			}, {
-				name: 'scrollableYearDropdown',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Set the year dropdown to fixed height and add a scrollbar.'
-			}, {
-				name: 'showMonthDropdown',
-				types: ['boolean'],
-				description: 'Show the month dropdown list.'
-			}, {
-				name: 'showYearDropdown',
-				types: ['boolean'],
-				description: 'Show the year dropdown list.'
-			}, {
-				name: 'title',
-				types: ['string'],
-				description: 'Set the datetimepicker title.'
-			}, {
-				name: 'todayButton',
-				types: ['boolean'],
-				description: 'Show the today button.'
-			}, {
-				name: 'tooltipPosition',
-				customTypes: [{
-					name: 'CSTooltipPosition',
-					types: [
-						'\'bottom-right\'',
-						'\'bottom-left\'',
-						'\'top-right\'',
-						'\'top-left\'',
-						'\'top-center\'',
-						'\'bottom-center\'',
-						'\'right-top\'',
-						'\'right-center\'',
-						'\'right-bottom\'',
-						'\'left-top\'',
-						'\'left-center\'',
-						'\'left-bottom\''
-					]
-				}],
-				default: '\'top-right\'',
-				description: 'Set the tooltip position for the datetimepicker.'
-			}, {
-				name: 'value',
-				types: ['any'],
-				description: 'Pass a value to the datetimepicker.'
-			}, {
-				name: 'width',
-				types: ['string'],
-				description: 'Set the datetimepicker input field width. (eg. 100%, 20rem, 400px, etc.)'
-			}, {
-				name: 'yearDropdownItemNumber',
-				types: ['number'],
-				description: 'Display a number of years before and after the current year in the year dropdown.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the datetimepicker.'
-			}
-		],
-		accessibility: [
-			{
-				criterionList: [
-					'1.3.1',
-					'1.4.1',
-					'1.4.4',
-					'2.1.1',
-					'2.1.2',
-					'2.1.4',
-					'2.4.7',
-					'2.5.3',
-					'3.2.1',
-					'3.2.2',
-					'3.3.1',
-					'3.3.2',
-					'4.1.2'
 				],
-				requirements: [
+				properties: [
 					{
-						structure: [
-							'`<input type="text">` - because type="date" creates browser default datepicker which interferes with custom datepicker',
-							'Icon as a child element with `aria-hidden`'
-						],
-						properties: [
-							'`id` - needed to connect label with form element. If there is no id, autogenerated unique id is set'
-						],
-						styling: [
-							'Focus state styles'
-						],
-						keyboardOperability: [
-							'Support to type date in field',
-							'Dropdown closes when focused out with `Shift + Tab`',
-							'`Left` - Move to the previous day.',
-							'`Right` - Move to the next day.',
-							'`Up` - Move to the previous week.',
-							'`Down` - Move to the next week.',
-							'`PgUp` - Move to the previous month.',
-							'`PgDn` - Move to the next month.',
-							'`Home` - Move to the previous year.',
-							'`End` - Move to the next year.',
-							'`Enter/Esc` - close the calendar'
-						]
+						name: 'autoFocus',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Focuses the datetimepicker by default.'
+					}, {
+						name: 'borderRadius',
+						types: ['string'],
+						default: '\'0.25rem\'',
+						description: 'Set a border radius style.'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the datetimepicker.'
+					}, {
+						name: 'disabled',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Disable the datetimepicker.'
+					}, {
+						name: 'dateFormat',
+						types: ['string'],
+						default: '\'MMMM d, yyyy h:mm aa\'',
+						description: 'Set the date format for various locales. (eg. dd-MM-yyyy, MM-dd-yyyy, yyyy-MM-dd, etc.)'
+					}, {
+						name: 'dropdownMode',
+						customTypes: [{
+							name: 'CSDatepickerDropdownMode',
+							types: ['\'scroll\'', '\'select\'']
+						}],
+						default: '\'scroll\'',
+						description: 'Set the type of year and month dropdown.'
+					}, {
+						name: 'timeFormat',
+						types: ['string'],
+						description: 'Set the date format for various locales. (eg. HH:mm, HH:mm:ss, yyyy-MM, yyyy-MM:dd, etc.)'
+					}, {
+						name: 'timeIntervals',
+						types: ['number'],
+						description: 'Set the interval between each time value. (eg. 15, 20, 30, 60, etc.)'
+					}, {
+						name: 'timeCaption',
+						types: ['string'],
+						description: 'Set the title for the time column.'
+					}, {
+						name: 'error',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Toggle the error state.'
+					}, {
+						name: 'errorMessage',
+						customTypes: [{
+							name: 'CSFieldErrorMsgType',
+							types: ['string', 'Array<string>']
+						}],
+						description: 'Set the error message or messages for the datetimepicker.'
+					}, {
+						name: 'helpText',
+						types: ['string'],
+						description: 'Set the text to be displayed in the tooltip.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the datetimepicker.'
+					}, {
+						name: 'inline',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Display the popup inline with content'
+					}, {
+						name: 'isClearable',
+						types: ['boolean'],
+						description: 'Show or hide the clear button.'
+					}, {
+						name: 'label',
+						required: true,
+						types: ['string'],
+						description: 'Set the datetimepicker label.'
+					}, {
+						name: 'labelHidden',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Hide the datetimepicker label.'
+					}, {
+						name: 'labelTitle',
+						types: ['boolean'],
+						description: 'Control whether to set the title attribute.'
+					}, {
+						name: 'locale',
+						types: ['any'],
+						description: 'Set the datetimepicker locale.'
+					}, {
+						name: 'maxDate',
+						types: ['number'],
+						description: 'Set the maximum date in days relative to today.'
+					}, {
+						name: 'maxDateYear',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Make maxDate observe years instead of days.'
+					}, {
+						name: 'minDate',
+						types: ['number'],
+						description: 'Set the minimum date in days relative to today.'
+					}, {
+						name: 'minDateYear',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Make minDate observe years instead of days.'
+					}, {
+						name: 'name',
+						types: ['string'],
+						description: 'Set the input name.'
+					}, {
+						name: 'onChange',
+						types: ['(event) => any'],
+						description: 'Handler method for the change event.'
+					}, {
+						name: 'placeholder',
+						types: ['string'],
+						description: 'Set a datetimepicker placeholder.'
+					}, {
+						name: 'readOnly',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Control whether to apply the readonly attribute.'
+					}, {
+						name: 'required',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Make the datetimepicker required.'
+					}, {
+						name: 'scrollableYearDropdown',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Set the year dropdown to fixed height and add a scrollbar.'
+					}, {
+						name: 'showMonthDropdown',
+						types: ['boolean'],
+						description: 'Show the month dropdown list.'
+					}, {
+						name: 'showYearDropdown',
+						types: ['boolean'],
+						description: 'Show the year dropdown list.'
+					}, {
+						name: 'title',
+						types: ['string'],
+						description: 'Set the datetimepicker title.'
+					}, {
+						name: 'todayButton',
+						types: ['boolean'],
+						description: 'Show the today button.'
+					}, {
+						name: 'tooltipPosition',
+						customTypes: [{
+							name: 'CSTooltipPosition',
+							types: [
+								'\'bottom-right\'',
+								'\'bottom-left\'',
+								'\'top-right\'',
+								'\'top-left\'',
+								'\'top-center\'',
+								'\'bottom-center\'',
+								'\'right-top\'',
+								'\'right-center\'',
+								'\'right-bottom\'',
+								'\'left-top\'',
+								'\'left-center\'',
+								'\'left-bottom\''
+							]
+						}],
+						default: '\'top-right\'',
+						description: 'Set the tooltip position for the datetimepicker.'
+					}, {
+						name: 'value',
+						types: ['any'],
+						description: 'Pass a value to the datetimepicker.'
+					}, {
+						name: 'width',
+						types: ['string'],
+						description: 'Set the datetimepicker input field width. (eg. 100%, 20rem, 400px, etc.)'
+					}, {
+						name: 'yearDropdownItemNumber',
+						types: ['number'],
+						description: 'Display a number of years before and after the current year in the year dropdown.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the datetimepicker.'
 					}
 				]
 			}
-		]
+		],
+		accessibility: {
+			criterionList: [
+				'1.3.1',
+				'1.4.1',
+				'1.4.4',
+				'2.1.1',
+				'2.1.2',
+				'2.1.4',
+				'2.4.7',
+				'2.5.3',
+				'3.2.1',
+				'3.2.2',
+				'3.3.1',
+				'3.3.2',
+				'4.1.2'
+			],
+			requirements: {
+				structure: [
+					'`<input type="text">` - because type="date" creates browser default datepicker which interferes with custom datepicker',
+					'Icon as a child element with `aria-hidden`'
+				],
+				attributes: [
+					'`id` - needed to connect label with form element. If there is no id, autogenerated unique id is set'
+				],
+				styling: [
+					'Focus state styles'
+				],
+				keyboardOperability: [
+					'Support to type date in field',
+					'Dropdown closes when focused out with `Shift + Tab`',
+					'`Left` - Move to the previous day.',
+					'`Right` - Move to the next day.',
+					'`Up` - Move to the previous week.',
+					'`Down` - Move to the next week.',
+					'`PgUp` - Move to the previous month.',
+					'`PgDn` - Move to the next month.',
+					'`Home` - Move to the previous year.',
+					'`End` - Move to the next year.',
+					'`Enter/Esc` - close the calendar'
+				]
+			}
+		}
 	})
 
-	render() {
-		const component = this.getDateTimePickerDoc();
-
-		return (
-			<>
-				<div className="preview-section-wrapper datepicker-preview">
-					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties {...component} />
-					<PreviewTable components={[component]} />
-					<PreviewAccessibility components={[component]} />
-				</div>
-				<PreviewLinks {...component} />
-			</>
-		);
-	}
+	render = () => <Preview {...this.getDoc()} />;
 }
 
 export default CSDateTimePickerPreview;

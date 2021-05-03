@@ -1,62 +1,51 @@
 import React from 'react';
-import { CSAlert } from '@cloudsense/cs-ui-components';
+import { CSAlert, CSAlertVariant } from '@cloudsense/cs-ui-components';
 import PreviewCode from './PreviewCode';
+import { getSlug, parseCode } from './helpers';
 
 import {
-	PreviewPropertiesProps,
-	PreviewComponent,
-	PreviewExample,
-	PreviewVariation
+	ComponentInterface,
+	ExampleInterface,
+	PreviewInterface,
+	VariationInterface
 } from './types';
 
-const PreviewProperties: React.FC<PreviewPropertiesProps | any> = props => {
-	const parseCode = (option: string) => (
-		option.split('`').map((substring: string, substringIndex: number) => (
-			substringIndex % 2
-				? <code key={substringIndex} className="inline-code">{substring}</code>
-				: substring
-		))
-	);
+const PreviewExamples: React.FC<PreviewInterface> = ({ components }) => (
+	<>
+		{components.map((component: ComponentInterface) => {
+			const componentLink = getSlug(component.name);
 
-	const { previews } = props;
+			if (!component.examples) {
+				return null;
+			}
 
-	return <>
-		{previews.map((preview: PreviewComponent) => {
-			const componentLink = preview.name.split(' ').join('-');
 			return (
-				<div key={preview.name} className="component-preview-wrapper">
-					<h2
-						className="demo-heading"
-						id={`component-${componentLink}`}
-					>
-						{preview.name} Previews
+				<div key={component.name} className="component-preview-wrapper">
+					<h2 id={componentLink} className="demo-heading">
+						{component.name} Previews
 					</h2>
-					{preview.examples.map((example: PreviewExample) => {
-						const propLink = `${componentLink}-${example.propName.split(' ').join('-')}`;
+					{component.examples.map((example: ExampleInterface) => {
+						const propLink = `${componentLink}-${getSlug(example.propName)}`;
 						return (
 							<div key={example.propName} className={`component-preview ${example.propName}`}>
-								<h3 className="demo-heading" id={`component-preview-${propLink}`}>
+								<h3 className="demo-heading" id={propLink}>
 									{example.propName}
 								</h3>
 								{example.description && (
-									<p className="component-info-text">
-										{parseCode(example.description)}
-									</p>
+									<p className="component-info-text">{parseCode(example.description)}</p>
 								)}
 								{example.alert && (
 									<CSAlert
-										variant={example.alert.variant}
+										variant={example.alert.variant as CSAlertVariant}
 										text={example.alert.text}
 										styleFormat="scoped"
 									/>
 								)}
-								{example.variations.map((variation: PreviewVariation, variationIndex: number) => {
-									const variationLink = variation.quickLink && `${propLink}-${variation.quickLink.split(' ').join('-')}`;
+								{example.variations.map((variation: VariationInterface, variationIndex: number) => {
+									const variationLink = variation.quickLink && `${propLink}-${getSlug(variation.quickLink)}`;
 									return (
 										<React.Fragment key={variationIndex}>
-											{variation.quickLink && (
-												<div id={`component-variation-${variationLink}`} />
-											)}
+											{variation.quickLink && <div id={variationLink} />}
 											{(variation.primaryVariants || variation.secondaryVariants) && (
 												<div className="component-variants">
 													{variation.primaryVariants && (
@@ -80,7 +69,7 @@ const PreviewProperties: React.FC<PreviewPropertiesProps | any> = props => {
 												</div>
 											)}
 											<div className="component-example">
-												<div className={`${preview.name.split(' ').join('-')}-demo component-demo`}>
+												<div className={`${getSlug(component.name)}-demo component-demo`}>
 													{variation.component}
 												</div>
 												<PreviewCode code={variation.code} />
@@ -94,7 +83,7 @@ const PreviewProperties: React.FC<PreviewPropertiesProps | any> = props => {
 				</div>
 			);
 		})}
-	</>;
-};
+	</>
+);
 
-export default PreviewProperties;
+export default PreviewExamples;

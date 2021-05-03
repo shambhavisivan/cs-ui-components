@@ -1,18 +1,24 @@
 import React from 'react';
-import PreviewHeading from '../PreviewHeading';
-import PreviewProperties from '../PreviewProperties';
-import PreviewTable from '../PreviewTable';
-import PreviewAccessibility from '../PreviewAccessibility';
-import PreviewLinks from '../PreviewLinks';
+import {
+	CSDivider,
+	CSButtonGroup,
+	CSDropdown,
+	CSMainHeader,
+	CSMainHeaderLeft,
+	CSMainHeaderRight,
+	CSMainHeaderIcon,
+	CSButton,
+	CSIcon
+} from '@cloudsense/cs-ui-components';
 
-import { CSDivider, CSButtonGroup, CSDropdown, CSMainHeader, CSMainHeaderLeft, CSMainHeaderRight, CSMainHeaderIcon, CSButton, CSIcon } from '@cloudsense/cs-ui-components';
+import Preview from '../Preview';
 
 class CSDividerPreview extends React.Component {
-	getDividerDoc = () => ({
+	getDoc = () => ({
 		name: 'Divider',
 		usage: 'Divides things, simple.',
 		accessible: 'yes',
-		previews: [
+		components: [
 			{
 				name: 'CSDivider',
 				examples: [
@@ -158,73 +164,55 @@ class CSDividerPreview extends React.Component {
 							}
 						]
 					}
-				]
-
-			}
-		],
-		properties: [
-			{
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the divider.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the divider.'
-			}, {
-				name: 'label',
-				types: ['string'],
-				description: 'Set the divider label, available for horizontal only.'
-			}, {
-				name: 'size',
-				types: ['string'],
-				description: 'Set the width for the horizontal or the height for the vertical divider. (eg. 20px, 10rem, 100%, etc.)'
-			}, {
-				name: 'variant',
-				required: true,
-				customTypes: [{
-					name: 'CSDividerVariant',
-					types: ['\'horizontal\'', '\'vertical\'']
-				}],
-				description: 'Set the divider variant.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the divider div.'
-			}
-		],
-		accessibility: [
-			{
-				criterionList: [
-					'4.1.2'
 				],
-				requirements: [
+				properties: [
 					{
-						properties: [
-							'`role="separator"`',
-							'`aria-orientation`'
-						]
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the divider.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the divider.'
+					}, {
+						name: 'label',
+						types: ['string'],
+						description: 'Set the divider label, available for horizontal only.'
+					}, {
+						name: 'size',
+						types: ['string'],
+						description: 'Set the width for the horizontal or the height for the vertical divider. (eg. 20px, 10rem, 100%, etc.)'
+					}, {
+						name: 'variant',
+						required: true,
+						customTypes: [{
+							name: 'CSDividerVariant',
+							types: ['\'horizontal\'', '\'vertical\'']
+						}],
+						description: 'Set the divider variant.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the divider div.'
 					}
 				]
+
 			}
-		]
+		],
+		accessibility: {
+			criterionList: [
+				'4.1.2'
+			],
+			requirements: {
+				properties: [
+					'`role="separator"`',
+					'`aria-orientation`'
+				]
+			}
+		}
 	})
 
-	render() {
-		const component = this.getDividerDoc();
-
-		return (
-			<>
-				<div className="preview-section-wrapper divider-preview">
-					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties {...component} />
-					<PreviewTable components={[component]} />
-					<PreviewAccessibility components={[component]} />
-				</div>
-				<PreviewLinks {...component} />
-			</>
-		);
-	}
+	render = () => <Preview {...this.getDoc()} />;
 }
 
 export default CSDividerPreview;

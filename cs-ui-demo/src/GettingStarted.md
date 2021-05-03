@@ -64,7 +64,7 @@ Object.defineProperty(global, 'crypto', {
 ## Documenting Components<a name="Documenting Components"></a>
 Due to the ever-growing and continuously-changing nature of the cs-ui-components library, it is necessary	to document all components methodically and uniformly. Each component or component family (such as `CSTab` and `CSTabGroup`, which are closely related) should have its own dedicated page for various previews, examples, use cases and code snippets. In code, this is referred to as a preview component or a preview file, following the `CSNamePreview` naming convention.
 
-All relevant documentation is placed inside the `getDoc` method of the preview component, which returns an object of type `PreviewProps`. All relevant types can be found in the `types.ts` file.
+All relevant documentation is placed inside the `getDoc` method of the preview component, which returns an object of type `PreviewExamples`. All relevant types can be found in the `types.ts` file.
 
 This is an example of all possible first-level attributes of the documentation object.
 

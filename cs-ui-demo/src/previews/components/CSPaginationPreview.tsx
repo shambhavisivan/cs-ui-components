@@ -1,18 +1,18 @@
 import React from 'react';
-import PreviewHeading from '../PreviewHeading';
-import PreviewProperties from '../PreviewProperties';
-import PreviewTable from '../PreviewTable';
-import PreviewLinks from '../PreviewLinks';
-import PreviewAccessibility from '../PreviewAccessibility';
+import { CSPaginationWrapper, CSSelect } from '@cloudsense/cs-ui-components';
 
-import { CSPaginationWrapper, CSSelect, CSAlert } from '@cloudsense/cs-ui-components';
+import Preview from '../Preview';
 
 class CSPaginationPreview extends React.Component {
-	getPaginationDoc = () => ({
+	getDoc = () => ({
 		name: 'Pagination',
 		accessible: 'partially',
 		usage: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-		previews: [
+		alerts: {
+			variant: 'warning',
+			text: 'This component is under construction and should not be used.'
+		},
+		components: [
 			{
 				name: 'CSPaginationWrapper',
 				examples: [
@@ -37,74 +37,51 @@ class CSPaginationPreview extends React.Component {
 							}
 						]
 					}
-				]
-			}
-		],
-		properties: [
-			{
-				name: 'n/a',
-				types: ['n/a'],
-				description: 'n/a'
-			}
-		],
-		accessibility: [
-			{
-				criterionList: [
-					'1.3.1',
-					'1.4.1',
-					'2.1.1',
-					'2.1.2',
-					'2.4.7',
-					'2.5.3',
-					'3.2.1',
-					'3.2.2',
-					'4.1.2'
 				],
-				requirements: [
+				properties: [
 					{
-						structure: [
-							'`<nav>`',
-							'`<ul>` - allows screen reader list navigation and counts `<li>` items',
-							'`<li>` - allows screen reader list navigation',
-							'`<a>` inside `<li>`'
-						],
-						properties: [
-							'`aria-label="pagination"` on top wrapper to announce pagination component',
-							'`aria-current` - true when page button is active (TODO)',
-							'`role="navigation"` - implicit by `<nav>`'
-						],
-						styling: [
-							'Focus state styles'
-						],
-						keyboardOperability: [
-							'`<a>` OOTB focusable and supports `Space` click'
-						]
+						name: 'n/a',
+						types: ['n/a'],
+						description: 'n/a'
 					}
 				]
 			}
-		]
+		],
+		accessibility: {
+			criterionList: [
+				'1.3.1',
+				'1.4.1',
+				'2.1.1',
+				'2.1.2',
+				'2.4.7',
+				'2.5.3',
+				'3.2.1',
+				'3.2.2',
+				'4.1.2'
+			],
+			requirements: {
+				structure: [
+					'`<nav>`',
+					'`<ul>` - allows screen reader list navigation and counts `<li>` items',
+					'`<li>` - allows screen reader list navigation',
+					'`<a>` inside `<li>`'
+				],
+				attributes: [
+					'`aria-label="pagination"` on top wrapper to announce pagination component',
+					'`aria-current` - true when page button is active (TODO)',
+					'`role="navigation"` - implicit by `<nav>`'
+				],
+				styling: [
+					'Focus state styles'
+				],
+				keyboardOperability: [
+					'`<a>` OOTB focusable and supports `Space` click'
+				]
+			}
+		}
 	})
 
-	render() {
-		const component = this.getPaginationDoc();
-
-		return (
-			<>
-				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<CSAlert
-						variant="warning"
-						text="This component is under construction and should not be used."
-						styleFormat="scoped"
-					/>
-					<PreviewProperties {...component} />
-					<PreviewTable components={[component]} />
-					<PreviewAccessibility components={[component]} />
-				</div>
-				<PreviewLinks {...component} />
-			</>
-		);
-	}
+	render = () => <Preview {...this.getDoc()} />;
 }
 
 export default CSPaginationPreview;

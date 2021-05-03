@@ -4,7 +4,7 @@ import { base16AteliersulphurpoolLight as styleLight, darcula as styleDark } fro
 import { useTheme, Theme } from '../context/ThemeContext';
 
 interface PreviewCodeProps {
-	code: string;
+	code?: string;
 }
 
 const PreviewCode: React.FC<PreviewCodeProps> = ({ code }) => {
@@ -20,6 +20,10 @@ const PreviewCode: React.FC<PreviewCodeProps> = ({ code }) => {
 			.map((line: string) => line.replace(`\t`.repeat(extraTabs), ''))
 			.join('\n');
 	};
+
+	if (!code) {
+		return null;
+	}
 
 	return <SyntaxHighlighter
 		style={theme === Theme.Light ? styleLight : styleDark}

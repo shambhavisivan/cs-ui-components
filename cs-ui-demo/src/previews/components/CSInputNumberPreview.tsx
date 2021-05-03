@@ -1,11 +1,7 @@
 import React from 'react';
-import PreviewHeading from '../PreviewHeading';
-import PreviewProperties from '../PreviewProperties';
-import PreviewTable from '../PreviewTable';
-import PreviewAccessibility from '../PreviewAccessibility';
-import PreviewLinks from '../PreviewLinks';
-
 import { CSInputNumber } from '@cloudsense/cs-ui-components';
+
+import Preview from '../Preview';
 
 interface CSInputNumberPreviewState {
 	focused: boolean;
@@ -30,11 +26,12 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 			return { focused: !prevState.focused };
 		});
 	}
-	getInputNumberDoc = () => ({
+
+	getDoc = () => ({
 		name: 'Input Number',
 		usage: 'Number inputs are used for number entry.',
 		accessible: 'yes',
-		previews: [
+		components: [
 			{
 				name: 'CSInputNumber',
 				examples: [
@@ -153,7 +150,7 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 					}, {
 						propName: 'maxLength',
 						alert: {
-							variation: 'info',
+							variant: 'info',
 							text: 'This prop is only supported when the input type is set to text.'
 						},
 						variations: [
@@ -356,219 +353,201 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 							}
 						]
 					}
-				]
-			}
-		],
-		properties: [
-			{
-				name: 'borderRadius',
-				types: ['string'],
-				default: '\'0.25rem\'',
-				description: 'Set a border radius style.'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the number input.'
-			}, {
-				name: 'disabled',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Disable the number input.'
-			}, {
-				name: 'error',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Toggle the error state.'
-			}, {
-				name: 'errorMessage',
-				customTypes: [{
-					name: 'CSFieldErrorMsgType',
-					types: ['string', 'Array<string>']
-				}],
-				description: 'Set the error message or messages for the number input.'
-			}, {
-				name: 'hidden',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Control the hidden attribute.'
-			}, {
-				name: 'helpText',
-				types: ['string'],
-				description: 'Set the text to be displayed in the tooltip.'
-			}, {
-				name: 'hideSpinner',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Determine whether the spinner should appear.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the number input.'
-			}, {
-				name: 'label',
-				required: true,
-				types: ['string'],
-				description: 'Set the file input label.'
-			}, {
-				name: 'labelHidden',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Hide the file input label.'
-			}, {
-				name: 'labelTitle',
-				types: ['boolean'],
-				description: 'Control whether to set the title attribute.'
-			}, {
-				name: 'max',
-				types: ['any'],
-				description: 'Set a max value for the number input.'
-			}, {
-				name: 'maxLength',
-				types: ['number'],
-				description: 'Set the maximum length of the value (can be used only with type="text").'
-			}, {
-				name: 'step',
-				types: ['string'],
-				description: 'Set which interval to use when using up and down arrows to adjust the value.'
-			}, {
-				name: 'min',
-				types: ['any'],
-				description: 'Set a min value for the number input.'
-			}, {
-				name: 'name',
-				types: ['string'],
-				description: 'Set the number input name attribute.'
-			}, {
-				name: 'onBlur',
-				types: ['(event) => void'],
-				description: 'Handler method for the blur event.'
-			}, {
-				name: 'onChange',
-				types: ['(value) => any'],
-				description: 'Handler method for the change event.'
-			}, {
-				name: 'onFocus',
-				types: ['(event) => any'],
-				description: 'Handler method for the focus event.'
-			}, {
-				name: 'onKeyDown',
-				types: ['(event) => void'],
-				description: 'Handler method for the keydown event.'
-			}, {
-				name: 'onPaste',
-				types: ['(event) => void'],
-				description: 'Handler method for the paste event.'
-			}, {
-				name: 'placeholder',
-				types: ['string'],
-				description: 'Set a number input placeholder.'
-			}, {
-				name: 'readOnly',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Control whether to apply the readonly attribute.'
-			}, {
-				name: 'required',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Make the number input required.'
-			}, {
-				name: 'title',
-				types: ['string'],
-				description: 'Set the number input title.'
-			}, {
-				name: 'tooltipPosition',
-				customTypes: [{
-					name: 'CSTooltipPosition',
-					types: [
-						'\'bottom-right\'',
-						'\'bottom-left\'',
-						'\'top-right\'',
-						'\'top-left\'',
-						'\'top-center\'',
-						'\'bottom-center\'',
-						'\'right-top\'',
-						'\'right-center\'',
-						'\'right-bottom\'',
-						'\'left-top\'',
-						'\'left-center\'',
-						'\'left-bottom\''
-					]
-				}],
-				default: '\'top-right\'',
-				description: 'Set the tooltip position for the number input.'
-			}, {
-				name: 'type',
-				types: ['string'],
-				default: '\'number\'',
-				description: 'Set the number input field type.'
-			}, {
-				name: 'value',
-				types: ['any'],
-				description: 'Set the number input default value.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the number input.'
-			}
-		],
-		accessibility: [
-			{
-				criterionList: [
-					'1.3.1',
-					'1.4.1',
-					'1.4.4',
-					'2.1.1',
-					'2.1.2',
-					'2.4.7',
-					'2.5.3',
-					'3.2.1',
-					'3.2.2',
-					'3.3.1',
-					'3.3.2'
 				],
-				requirements: [
+				properties: [
 					{
-						structure: [
-							'`<input type="number">`'
-						],
-						properties: [
-							'`aria-label` - description when label is hidden',
-							'`aria-invalid` - true when entered value is not valid',
-							'`aria-required` - true when entering a value is required',
-							'`aria-valuemin`',
-							'`aria-valuemax`',
-							'`aria-valuenow`',
-							'`id` - needed to connect label with form element. If there is no id, autogenerated unique id is set',
-							'`role="spinbutton"` - implicit by `<input type="number">`'
-						],
-						styling: [
-							'Focus state styles'
-						],
-						keyboardOperability: [
-							'`<input type="number">` OOTB focusable and supports arrows `Up` and `Down` to increase or decrease the number'
-						]
+						name: 'borderRadius',
+						types: ['string'],
+						default: '\'0.25rem\'',
+						description: 'Set a border radius style.'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the number input.'
+					}, {
+						name: 'disabled',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Disable the number input.'
+					}, {
+						name: 'error',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Toggle the error state.'
+					}, {
+						name: 'errorMessage',
+						customTypes: [{
+							name: 'CSFieldErrorMsgType',
+							types: ['string', 'Array<string>']
+						}],
+						description: 'Set the error message or messages for the number input.'
+					}, {
+						name: 'hidden',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Control the hidden attribute.'
+					}, {
+						name: 'helpText',
+						types: ['string'],
+						description: 'Set the text to be displayed in the tooltip.'
+					}, {
+						name: 'hideSpinner',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Determine whether the spinner should appear.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the number input.'
+					}, {
+						name: 'label',
+						required: true,
+						types: ['string'],
+						description: 'Set the file input label.'
+					}, {
+						name: 'labelHidden',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Hide the file input label.'
+					}, {
+						name: 'labelTitle',
+						types: ['boolean'],
+						description: 'Control whether to set the title attribute.'
+					}, {
+						name: 'max',
+						types: ['any'],
+						description: 'Set a max value for the number input.'
+					}, {
+						name: 'maxLength',
+						types: ['number'],
+						description: 'Set the maximum length of the value (can be used only with type="text").'
+					}, {
+						name: 'step',
+						types: ['string'],
+						description: 'Set which interval to use when using up and down arrows to adjust the value.'
+					}, {
+						name: 'min',
+						types: ['any'],
+						description: 'Set a min value for the number input.'
+					}, {
+						name: 'name',
+						types: ['string'],
+						description: 'Set the number input name attribute.'
+					}, {
+						name: 'onBlur',
+						types: ['(event) => void'],
+						description: 'Handler method for the blur event.'
+					}, {
+						name: 'onChange',
+						types: ['(value) => any'],
+						description: 'Handler method for the change event.'
+					}, {
+						name: 'onFocus',
+						types: ['(event) => any'],
+						description: 'Handler method for the focus event.'
+					}, {
+						name: 'onKeyDown',
+						types: ['(event) => void'],
+						description: 'Handler method for the keydown event.'
+					}, {
+						name: 'onPaste',
+						types: ['(event) => void'],
+						description: 'Handler method for the paste event.'
+					}, {
+						name: 'placeholder',
+						types: ['string'],
+						description: 'Set a number input placeholder.'
+					}, {
+						name: 'readOnly',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Control whether to apply the readonly attribute.'
+					}, {
+						name: 'required',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Make the number input required.'
+					}, {
+						name: 'title',
+						types: ['string'],
+						description: 'Set the number input title.'
+					}, {
+						name: 'tooltipPosition',
+						customTypes: [{
+							name: 'CSTooltipPosition',
+							types: [
+								'\'bottom-right\'',
+								'\'bottom-left\'',
+								'\'top-right\'',
+								'\'top-left\'',
+								'\'top-center\'',
+								'\'bottom-center\'',
+								'\'right-top\'',
+								'\'right-center\'',
+								'\'right-bottom\'',
+								'\'left-top\'',
+								'\'left-center\'',
+								'\'left-bottom\''
+							]
+						}],
+						default: '\'top-right\'',
+						description: 'Set the tooltip position for the number input.'
+					}, {
+						name: 'type',
+						types: ['string'],
+						default: '\'number\'',
+						description: 'Set the number input field type.'
+					}, {
+						name: 'value',
+						types: ['any'],
+						description: 'Set the number input default value.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the number input.'
 					}
 				]
 			}
-		]
+		],
+		accessibility: {
+			criterionList: [
+				'1.3.1',
+				'1.4.1',
+				'1.4.4',
+				'2.1.1',
+				'2.1.2',
+				'2.4.7',
+				'2.5.3',
+				'3.2.1',
+				'3.2.2',
+				'3.3.1',
+				'3.3.2'
+			],
+			requirements: {
+				structure: [
+					'`<input type="number">`'
+				],
+				attributes: [
+					'`aria-label` - description when label is hidden',
+					'`aria-invalid` - true when entered value is not valid',
+					'`aria-required` - true when entering a value is required',
+					'`aria-valuemin`',
+					'`aria-valuemax`',
+					'`aria-valuenow`',
+					'`id` - needed to connect label with form element. If there is no id, autogenerated unique id is set',
+					'`role="spinbutton"` - implicit by `<input type="number">`'
+				],
+				styling: [
+					'Focus state styles'
+				],
+				keyboardOperability: [
+					'`<input type="number">` OOTB focusable and supports arrows `Up` and `Down` to increase or decrease the number'
+				]
+			}
+		}
 	})
 
-	render() {
-		const component = this.getInputNumberDoc();
-
-		return (
-			<>
-				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties {...component} />
-					<PreviewTable components={[component]} />
-					<PreviewAccessibility components={[component]} />
-				</div>
-				<PreviewLinks {...component} />
-			</>
-		);
-	}
+	render = () => <Preview {...this.getDoc()} />;
 }
 
 export default CSInputNumberPreview;

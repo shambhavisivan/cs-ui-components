@@ -1,19 +1,16 @@
 import React from 'react';
-import PreviewHeading from '../PreviewHeading';
-import PreviewProperties from '../PreviewProperties';
-import PreviewTable from '../PreviewTable';
-import PreviewAccessibility from '../PreviewAccessibility';
-import PreviewLinks from '../PreviewLinks';
-
 import { CSAlert, CSButton } from '@cloudsense/cs-ui-components';
+
+import Preview from '../Preview';
 
 class CSAlertPreview extends React.Component {
 	handleClose = () => alert('Alert has been closed.');
-	getAlertDoc = () => ({
+
+	getDoc = () => ({
 		name: 'Alert',
 		usage: 'Alert banners communicate a state that affects the entire system, not just a feature or page. They persist over a session and appear without the user initiating an action.',
 		accessible: 'yes',
-		previews: [
+		components: [
 			{
 				name: 'CSAlert',
 				examples: [
@@ -434,133 +431,115 @@ class CSAlertPreview extends React.Component {
 							}
 						]
 					}
-				]
-			}
-		],
-		properties: [
-			{
-				name: 'children',
-				types: ['any'],
-				description: 'This component supports custom content passed as children.'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the alert.'
-			}, {
-				name: 'closeButton',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Show the close button.'
-			}, {
-				name: 'iconName',
-				types: ['string'],
-				description: 'Override the default icon defined by the variant.'
-			}, {
-				name: 'iconOrigin',
-				customTypes: [{
-					name: 'CSAlertIconOrigin',
-					types: ['\'slds\'', '\'cs\'']
-				}],
-				default: '\'slds\'',
-				description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
-			}, {
-				name: 'iconHidden',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Show or hide the icon.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the alert.'
-			}, {
-				name: 'onClose',
-				types: ['(event) => void'],
-				description: 'Handler method for closing the alert.'
-			}, {
-				name: 'styleFormat',
-				customTypes: [{
-					name: 'CSAlertStyleFormat',
-					types: ['\'default\'', '\'scoped\'']
-				}],
-				default: '\'default\'',
-				description: 'Determine size of alert and icons.'
-			}, {
-				name: 'styleType',
-				customTypes: [{
-					name: 'CSAlertStyleType',
-					types: ['\'default\'', '\'light\'']
-				}],
-				default: '\'default\'',
-				description: 'Determine style of text and background.'
-			}, {
-				name: 'text',
-				types: ['string', 'Array<string>'],
-				description: 'Set textual content of the alert.'
-			}, {
-				name: 'textAlign',
-				customTypes: [{
-					name: 'CSAlertTextAlign',
-					types: ['\'center\'', '\'left\'']
-				}],
-				default: '\'left\'',
-				description: 'Align text inside the alert.'
-			}, {
-				name: 'variant',
-				required: true,
-				customTypes: [{
-					name: 'CSAlertVariant',
-					types: ['\'info\'', '\'warning\'', '\'error\'', '\'base\'']
-				}],
-				description: 'Set the color and icon variant of the alert.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the alert div.'
-			}
-		],
-		accessibility: [
-			{
-				criterionList: [
-					'1.4.4',
-					'2.1.1',
-					'2.1.2',
-					'4.1.2'
 				],
-				requirements: [
+				properties: [
 					{
-						structure: [
-							'`<h4>` - allows screen reader heading search'
-						],
-						properties: [
-							'`role="alert/status"` - depending on alert variant'
-						],
-						styling: [
-							'Color contrast ratio > 4.5'
-						],
-						keyboardOperability: [
-							'Close button is a child `<button>` - allows keyboard focus'
-						]
+						name: 'children',
+						types: ['any'],
+						description: 'This component supports custom content passed as children.'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the alert.'
+					}, {
+						name: 'closeButton',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Show the close button.'
+					}, {
+						name: 'iconName',
+						types: ['string'],
+						description: 'Override the default icon defined by the variant.'
+					}, {
+						name: 'iconOrigin',
+						customTypes: [{
+							name: 'CSAlertIconOrigin',
+							types: ['\'slds\'', '\'cs\'']
+						}],
+						default: '\'slds\'',
+						description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
+					}, {
+						name: 'iconHidden',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Show or hide the icon.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the alert.'
+					}, {
+						name: 'onClose',
+						types: ['(event) => void'],
+						description: 'Handler method for closing the alert.'
+					}, {
+						name: 'styleFormat',
+						customTypes: [{
+							name: 'CSAlertStyleFormat',
+							types: ['\'default\'', '\'scoped\'']
+						}],
+						default: '\'default\'',
+						description: 'Determine size of alert and icons.'
+					}, {
+						name: 'styleType',
+						customTypes: [{
+							name: 'CSAlertStyleType',
+							types: ['\'default\'', '\'light\'']
+						}],
+						default: '\'default\'',
+						description: 'Determine style of text and background.'
+					}, {
+						name: 'text',
+						types: ['string', 'Array<string>'],
+						description: 'Set textual content of the alert.'
+					}, {
+						name: 'textAlign',
+						customTypes: [{
+							name: 'CSAlertTextAlign',
+							types: ['\'center\'', '\'left\'']
+						}],
+						default: '\'left\'',
+						description: 'Align text inside the alert.'
+					}, {
+						name: 'variant',
+						required: true,
+						customTypes: [{
+							name: 'CSAlertVariant',
+							types: ['\'info\'', '\'warning\'', '\'error\'', '\'base\'']
+						}],
+						description: 'Set the color and icon variant of the alert.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the alert div.'
 					}
 				]
 			}
-		]
+		],
+		accessibility: {
+			criterionList: [
+				'1.4.4',
+				'2.1.1',
+				'2.1.2',
+				'4.1.2'
+			],
+			requirements: {
+				structure: [
+					'`<h4>` - allows screen reader heading search'
+				],
+				properties: [
+					'`role="alert/status"` - depending on alert variant'
+				],
+				styling: [
+					'Color contrast ratio > 4.5'
+				],
+				keyboardOperability: [
+					'Close button is a child `<button>` - allows keyboard focus'
+				]
+			}
+		}
 	})
 
-	render() {
-		const component = this.getAlertDoc();
-
-		return (
-			<>
-				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties {...component} />
-					<PreviewTable components={[component]} />
-					<PreviewAccessibility components={[component]} />
-				</div>
-				<PreviewLinks {...component} />
-			</>
-		);
-	}
+	render = () => <Preview {...this.getDoc()} />;
 }
 
 export default CSAlertPreview;

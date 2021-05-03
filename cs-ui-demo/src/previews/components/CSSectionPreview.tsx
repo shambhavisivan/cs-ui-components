@@ -1,18 +1,14 @@
 import React from 'react';
-import PreviewHeading from '../PreviewHeading';
-import PreviewProperties from '../PreviewProperties';
-import PreviewTable from '../PreviewTable';
-import PreviewAccessibility from '../PreviewAccessibility';
-import PreviewLinks from '../PreviewLinks';
-
 import { CSButton, CSSection } from '@cloudsense/cs-ui-components';
 
+import Preview from '../Preview';
+
 class CSSectionPreview extends React.Component {
-	getSectionDoc = () => ({
+	getDoc = () => ({
 		name: 'Section',
 		usage: 'This is used as a toggle visibility of section content.',
 		accessible: 'yes',
-		previews: [
+		components: [
 			{
 				name: 'CSSection',
 				examples: [
@@ -138,90 +134,72 @@ class CSSectionPreview extends React.Component {
 							}
 						]
 					}
-				]
-			}
-		],
-		properties: [
-			{
-				name: 'children',
-				types: ['any'],
-				description: 'This component supports custom content passed as children.'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the section.'
-			}, {
-				name: 'collapsible',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Control whether the section should be collapsible.'
-			}, {
-				name: 'defaultClosed',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Control whether the section is closed by default. It is designed to be used with collapsible prop.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the section.'
-			}, {
-				name: 'title',
-				required: true,
-				types: ['string'],
-				description: 'Set a title for the section.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the section tag.'
-			}
-		],
-		accessibility: [
-			{
-				criterionList: [
-					'1.4.4',
-					'2.1.1',
-					'2.1.2',
-					'4.1.2'
 				],
-				requirements: [
+				properties: [
 					{
-						structure: [
-							'`<section>` is top wrapper',
-							'Heading is `<h3>` - allows screen reader heading search',
-							'Child is `<button>`'
-						],
-						properties: [
-							'`aria-expanded` - true if section is expanded, when expandable',
-							'`role="region"` - implicit by `<section>`',
-							'`aria-roledescription` - role set to custom "section" to describe better rather than implicit role region'
-						],
-						styling: [
-							'Focus state styles'
-						],
-						keyboardOperability: [
-							'`<button>` OOTB focusable and supports clicks with `Enter` and `Space` keys'
-						]
+						name: 'children',
+						types: ['any'],
+						description: 'This component supports custom content passed as children.'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the section.'
+					}, {
+						name: 'collapsible',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Control whether the section should be collapsible.'
+					}, {
+						name: 'defaultClosed',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Control whether the section is closed by default. It is designed to be used with collapsible prop.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the section.'
+					}, {
+						name: 'title',
+						required: true,
+						types: ['string'],
+						description: 'Set a title for the section.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the section tag.'
 					}
 				]
 			}
-		]
+		],
+		accessibility: {
+			criterionList: [
+				'1.4.4',
+				'2.1.1',
+				'2.1.2',
+				'4.1.2'
+			],
+			requirements: {
+				structure: [
+					'`<section>` is top wrapper',
+					'Heading is `<h3>` - allows screen reader heading search',
+					'Child is `<button>`'
+				],
+				attributes: [
+					'`aria-expanded` - true if section is expanded, when expandable',
+					'`role="region"` - implicit by `<section>`',
+					'`aria-roledescription` - role set to custom "section" to describe better rather than implicit role region'
+				],
+				styling: [
+					'Focus state styles'
+				],
+				keyboardOperability: [
+					'`<button>` OOTB focusable and supports clicks with `Enter` and `Space` keys'
+				]
+			}
+		}
 	})
 
-	render() {
-		const component = this.getSectionDoc();
-
-		return (
-			<>
-				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties {...component} />
-					<PreviewTable components={[component]} />
-					<PreviewAccessibility components={[component]} />
-				</div>
-				<PreviewLinks {...component} />
-			</>
-		);
-	}
+	render = () => <Preview {...this.getDoc()} />;
 }
 
 export default CSSectionPreview;

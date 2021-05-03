@@ -1,11 +1,7 @@
 import React from 'react';
-import PreviewHeading from '../PreviewHeading';
-import PreviewProperties from '../PreviewProperties';
-import PreviewTable from '../PreviewTable';
-import PreviewAccessibility from '../PreviewAccessibility';
-import PreviewLinks from '../PreviewLinks';
-
 import { CSInputSearch } from '@cloudsense/cs-ui-components';
+
+import Preview from '../Preview';
 
 interface CSInputSearchPreviewState {
 	focused: boolean;
@@ -27,11 +23,11 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 		});
 	}
 
-	getInputSearchDoc = () => ({
+	getDoc = () => ({
 		name: 'Input Search',
 		usage: 'Search input is used for search value entry.',
 		accessible: 'yes',
-		previews: [
+		components: [
 			{
 				name: 'CSInputSearch',
 				examples: [
@@ -274,201 +270,183 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 							}
 						]
 					}
-				]
-			}
-		],
-		properties: [
-			{
-				name: 'autoFocus',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Set whether the search input should be autofocused.'
-			}, {
-				name: 'borderRadius',
-				types: ['string'],
-				default: '\'0.25rem\'',
-				description: 'Set a border radius style.'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the search input.'
-			}, {
-				name: 'disabled',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Disable the search input.'
-			}, {
-				name: 'error',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Toggle the error state.'
-			}, {
-				name: 'errorMessage',
-				customTypes: [{
-					name: 'CSFieldErrorMsgType',
-					types: ['string', 'Array<string>']
-				}],
-				description: 'Set the error message or messages for the number input.'
-			}, {
-				name: 'helpText',
-				types: ['string'],
-				description: 'Set the text to be displayed in the tooltip.'
-			}, {
-				name: 'hidden',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Control the hidden attribute.'
-			}, {
-				name: 'iconPosition',
-				customTypes: [{
-					name: 'CSInputSearchIconPosition',
-					types: ['\'left\'', '\'right\'']
-				}],
-				default: '\'left\'',
-				description: 'Set where the icon should be positioned.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the search input.'
-			}, {
-				name: 'label',
-				required: true,
-				types: ['string'],
-				description: 'Set the search input label.'
-			}, {
-				name: 'labelHidden',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Hide the search input label.'
-			}, {
-				name: 'labelTitle',
-				types: ['boolean'],
-				description: 'Control whether to set the title attribute.'
-			}, {
-				name: 'onBlur',
-				types: ['(event) => void'],
-				description: 'Handler method for the blur event.'
-			}, {
-				name: 'onChange',
-				types: ['(event) => void'],
-				description: 'Handler method for the change event.'
-			}, {
-				name: 'onFocus',
-				types: ['(event) => any'],
-				description: 'Handler method for the focus event.'
-			}, {
-				name: 'onKeyDown',
-				types: ['(event) => void'],
-				description: 'Handler method for the keydown event.'
-			}, {
-				name: 'onClearSearch',
-				types: ['() => void'],
-				description: 'Handler method for when the input is cleared.'
-			}, {
-				name: 'placeholder',
-				types: ['string'],
-				description: 'Set a search input placeholder.'
-			}, {
-				name: 'required',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Make the search input required.'
-			}, {
-				name: 'title',
-				types: ['string'],
-				description: 'Set the search input title.'
-			}, {
-				name: 'tooltipPosition',
-				customTypes: [{
-					name: 'CSTooltipPosition',
-					types: [
-						'\'bottom-right\'',
-						'\'bottom-left\'',
-						'\'top-right\'',
-						'\'top-left\'',
-						'\'top-center\'',
-						'\'bottom-center\'',
-						'\'right-top\'',
-						'\'right-center\'',
-						'\'right-bottom\'',
-						'\'left-top\'',
-						'\'left-center\'',
-						'\'left-bottom\''
-					]
-				}],
-				default: '\'top-right\'',
-				description: 'Set the tooltip position for the search input.'
-			}, {
-				name: 'value',
-				types: ['string'],
-				description: 'Set the search input value.'
-			}, {
-				name: 'width',
-				types: ['string'],
-				description: 'Set the search input field width. (eg. 100%, 20rem, 400px, etc.)'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the search input.'
-			}
-		],
-		accessibility: [
-			{
-				criterionList: [
-					'1.3.1',
-					'1.4.1',
-					'1.4.4',
-					'2.1.1',
-					'2.1.2',
-					'2.4.7',
-					'2.5.3',
-					'3.2.1',
-					'3.2.2',
-					'3.3.1',
-					'3.3.2',
-					'4.1.2'
 				],
-				requirements: [
+				properties: [
 					{
-						structure: [
-							'`<input>`',
-							'Icon as a child and `<CSIcon>`',
-							'Clear button is `<CSButton>`'
-						],
-						properties: [
-							'`aria-label` - description when label is hidden',
-							'`aria-invalid` - true when entered value is not valid',
-							'`aria-required` - true when entering a value is required',
-							'`id` - needed to connect label with form element. If there is no id, autogenerated unique id is set'
-						],
-						styling: [
-							'Focus state styles'
-						],
-						keyboardOperability: [
-							'`<input>` OOTB focusable and supports click with `Enter`',
-							'`<CSButton>` - focusable and supports clicks with `Enter` and `Space`'
-						]
+						name: 'autoFocus',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Set whether the search input should be autofocused.'
+					}, {
+						name: 'borderRadius',
+						types: ['string'],
+						default: '\'0.25rem\'',
+						description: 'Set a border radius style.'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the search input.'
+					}, {
+						name: 'disabled',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Disable the search input.'
+					}, {
+						name: 'error',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Toggle the error state.'
+					}, {
+						name: 'errorMessage',
+						customTypes: [{
+							name: 'CSFieldErrorMsgType',
+							types: ['string', 'Array<string>']
+						}],
+						description: 'Set the error message or messages for the number input.'
+					}, {
+						name: 'helpText',
+						types: ['string'],
+						description: 'Set the text to be displayed in the tooltip.'
+					}, {
+						name: 'hidden',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Control the hidden attribute.'
+					}, {
+						name: 'iconPosition',
+						customTypes: [{
+							name: 'CSInputSearchIconPosition',
+							types: ['\'left\'', '\'right\'']
+						}],
+						default: '\'left\'',
+						description: 'Set where the icon should be positioned.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the search input.'
+					}, {
+						name: 'label',
+						required: true,
+						types: ['string'],
+						description: 'Set the search input label.'
+					}, {
+						name: 'labelHidden',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Hide the search input label.'
+					}, {
+						name: 'labelTitle',
+						types: ['boolean'],
+						description: 'Control whether to set the title attribute.'
+					}, {
+						name: 'onBlur',
+						types: ['(event) => void'],
+						description: 'Handler method for the blur event.'
+					}, {
+						name: 'onChange',
+						types: ['(event) => void'],
+						description: 'Handler method for the change event.'
+					}, {
+						name: 'onFocus',
+						types: ['(event) => any'],
+						description: 'Handler method for the focus event.'
+					}, {
+						name: 'onKeyDown',
+						types: ['(event) => void'],
+						description: 'Handler method for the keydown event.'
+					}, {
+						name: 'onClearSearch',
+						types: ['() => void'],
+						description: 'Handler method for when the input is cleared.'
+					}, {
+						name: 'placeholder',
+						types: ['string'],
+						description: 'Set a search input placeholder.'
+					}, {
+						name: 'required',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Make the search input required.'
+					}, {
+						name: 'title',
+						types: ['string'],
+						description: 'Set the search input title.'
+					}, {
+						name: 'tooltipPosition',
+						customTypes: [{
+							name: 'CSTooltipPosition',
+							types: [
+								'\'bottom-right\'',
+								'\'bottom-left\'',
+								'\'top-right\'',
+								'\'top-left\'',
+								'\'top-center\'',
+								'\'bottom-center\'',
+								'\'right-top\'',
+								'\'right-center\'',
+								'\'right-bottom\'',
+								'\'left-top\'',
+								'\'left-center\'',
+								'\'left-bottom\''
+							]
+						}],
+						default: '\'top-right\'',
+						description: 'Set the tooltip position for the search input.'
+					}, {
+						name: 'value',
+						types: ['string'],
+						description: 'Set the search input value.'
+					}, {
+						name: 'width',
+						types: ['string'],
+						description: 'Set the search input field width. (eg. 100%, 20rem, 400px, etc.)'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the search input.'
 					}
 				]
 			}
-		]
+		],
+		accessibility: {
+			criterionList: [
+				'1.3.1',
+				'1.4.1',
+				'1.4.4',
+				'2.1.1',
+				'2.1.2',
+				'2.4.7',
+				'2.5.3',
+				'3.2.1',
+				'3.2.2',
+				'3.3.1',
+				'3.3.2',
+				'4.1.2'
+			],
+			requirements: {
+				structure: [
+					'`<input>`',
+					'Icon as a child and `<CSIcon>`',
+					'Clear button is `<CSButton>`'
+				],
+				attributes: [
+					'`aria-label` - description when label is hidden',
+					'`aria-invalid` - true when entered value is not valid',
+					'`aria-required` - true when entering a value is required',
+					'`id` - needed to connect label with form element. If there is no id, autogenerated unique id is set'
+				],
+				styling: [
+					'Focus state styles'
+				],
+				keyboardOperability: [
+					'`<input>` OOTB focusable and supports click with `Enter`',
+					'`<CSButton>` - focusable and supports clicks with `Enter` and `Space`'
+				]
+			}
+		}
 	})
 
-	render() {
-		const component = this.getInputSearchDoc();
-
-		return (
-			<>
-				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties {...component} />
-					<PreviewTable components={[component]} />
-					<PreviewAccessibility components={[component]} />
-				</div>
-				<PreviewLinks {...component} />
-			</>
-		);
-	}
+	render = () => <Preview {...this.getDoc()} />;
 }
 
 export default CSInputSearchPreview;

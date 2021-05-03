@@ -1,18 +1,14 @@
 import React from 'react';
-import PreviewHeading from '../PreviewHeading';
-import PreviewProperties from '../PreviewProperties';
-import PreviewTable from '../PreviewTable';
-import PreviewAccessibility from '../PreviewAccessibility';
-import PreviewLinks from '../PreviewLinks';
-
 import { CSTooltip, CSChip } from '@cloudsense/cs-ui-components';
 
+import Preview from '../Preview';
+
 class CSTooltipPreview extends React.Component {
-	getTooltipDoc = () => ({
+	getDoc = () => ({
 		name: 'Tooltip',
 		usage: 'A Tooltip is a small piece of contextual information about an element on the screen, which is displayed when a user hovers or focuses on the element it is describing. It is not focusable and cannot contain focusable content.',
 		accessible: 'yes',
-		previews: [
+		components: [
 			{
 				name: 'CSTooltip',
 				examples: [
@@ -684,198 +680,180 @@ class CSTooltipPreview extends React.Component {
 							}
 						]
 					}
-				]
-			}
-		],
-		properties: [
-			{
-				name: 'children',
-				types: ['any'],
-				description: 'This component supports custom content passed as children.'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the tooltip.'
-			}, {
-				name: 'content',
-				required: true,
-				customTypes: [{
-					name: 'CSTooltipContent',
-					types: ['string', 'Array<string>', 'Element']
-				}],
-				types: ['() => Promise<CSTooltipContent>'],
-				description: 'Set the content of the tooltip.'
-			}, {
-				name: 'delayTooltip',
-				types: ['number'],
-				default: '0',
-				description: 'Delay the tooltip becoming visible in ms.'
-			}, {
-				name: 'focusable',
-				types: ['boolean'],
-				default: 'true',
-				description: 'Determines whether the tooltip is keyboard focusable.'
-			}, {
-				name: 'height',
-				types: ['string'],
-				description: 'Set the tooltip height. (eg. 100px, 10rem, etc.)'
-			}, {
-				name: 'iconColor',
-				types: ['string'],
-				description: 'Set a custom color for the tooltip icon. (eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
-			}, {
-				name: 'iconName',
-				types: ['string'],
-				description: 'Override the default icon defined by the variant.'
-			}, {
-				name: 'iconOrigin',
-				customTypes: [{
-					name: 'CSTooltipIconOrigin',
-					types: ['\'slds\'', '\'cs\'']
-				}],
-				default: '\'slds\'',
-				description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
-			}, {
-				name: 'iconSize',
-				customTypes: [{
-					name: 'CSTooltipIconSize',
-					types: ['\'small\'', '\'medium\'']
-				}],
-				default: '\'small\'',
-				description: 'Set a size of the tooltip icon.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the tooltip.'
-			}, {
-				name: 'padding',
-				types: ['string'],
-				description: 'Set custom padding for the tooltip.'
-			}, {
-				name: 'position',
-				customTypes: [{
-					name: 'CSTooltipPosition',
-					types: [
-						'\'bottom-right\'',
-						'\'bottom-left\'',
-						'\'top-right\'',
-						'\'top-left\'',
-						'\'top-center\'',
-						'\'bottom-center\'',
-						'\'right-top\'',
-						'\'right-center\'',
-						'\'right-bottom\'',
-						'\'left-top\'',
-						'\'left-center\'',
-						'\'left-bottom\''
-					]
-				}],
-				default: '\'top-right\'',
-				description: 'Set the tooltip position.'
-			}, {
-				name: 'stickyOnClick',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Set whether the tooltip stays open on click.'
-			}, {
-				name: 'stylePosition',
-				customTypes: [{
-					name: 'CSTooltipStylePosition',
-					types: ['\'fixed\'', '\'absolute\'']
-				}],
-				default: '\'fixed\'',
-				description: 'Choose the CSS position value for the tooltip.'
-			}, {
-				name: 'tooltipHeader',
-				types: ['string'],
-				description: 'Set the text content of the tooltip header.'
-			}, {
-				name: 'variant',
-				customTypes: [{
-					name: 'CSTooltipVariant',
-					types: [
-						'\'info\'',
-						'\'warning\'',
-						'\'error\'',
-						'\'success\'',
-						'\'basic\''
-					]
-				}],
-				default: '\'info\'',
-				description: 'Set the tooltip color variant.'
-			}, {
-				name: 'width',
-				types: ['string'],
-				description: 'Set the tooltip width. (eg. 200px, 20rem, 50%, etc.)'
-			}, {
-				name: 'maxHeight',
-				types: ['string'],
-				description: 'Set the tooltip maximum height. (eg. 200px, 20rem, 50%, etc.)'
-			}, {
-				name: 'maxWidth',
-				types: ['string'],
-				default: '\'20rem\'',
-				description: 'Set the tooltip maximum width. (eg. 200px, 20rem, 50%, etc.)'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the tooltip div wrapper.'
-			}
-		],
-		accessibility: [
-			{
-				criterionList: [
-					'1.4.4',
-					'1.4.13',
-					'2.1.1',
-					'2.1.2',
-					'2.1.4',
-					'2.4.7',
-					'2.5.3',
-					'3.2.1',
-					'3.3.1',
-					'4.1.2'
 				],
-				requirements: [
+				properties: [
 					{
-						structure: [
-							'Icon as a child element with `aria-hidden`'
-						],
-						properties: [
-							'`aria-labelledby` - contains id pointing to tooltip body to associate tooltip icon with tooltip body',
-							'`role="tooltip"`'
-						],
-						styling: [
-							'Focus state styles',
-							'Text color contrast ratio > 4.5'
-						],
-						keyboardOperability: [
-							'Logic for tooltip to open on icon focus',
-							'Logic for tooltip to to stay opened when hovered over',
-							'Logic for tooltip to stay stickied and opened until clicked outside',
-							'`Esc` - close tooltip'
-						]
+						name: 'children',
+						types: ['any'],
+						description: 'This component supports custom content passed as children.'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the tooltip.'
+					}, {
+						name: 'content',
+						required: true,
+						customTypes: [{
+							name: 'CSTooltipContent',
+							types: ['string', 'Array<string>', 'Element']
+						}],
+						types: ['() => Promise<CSTooltipContent>'],
+						description: 'Set the content of the tooltip.'
+					}, {
+						name: 'delayTooltip',
+						types: ['number'],
+						default: '0',
+						description: 'Delay the tooltip becoming visible in ms.'
+					}, {
+						name: 'focusable',
+						types: ['boolean'],
+						default: 'true',
+						description: 'Determines whether the tooltip is keyboard focusable.'
+					}, {
+						name: 'height',
+						types: ['string'],
+						description: 'Set the tooltip height. (eg. 100px, 10rem, etc.)'
+					}, {
+						name: 'iconColor',
+						types: ['string'],
+						description: 'Set a custom color for the tooltip icon. (eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
+					}, {
+						name: 'iconName',
+						types: ['string'],
+						description: 'Override the default icon defined by the variant.'
+					}, {
+						name: 'iconOrigin',
+						customTypes: [{
+							name: 'CSTooltipIconOrigin',
+							types: ['\'slds\'', '\'cs\'']
+						}],
+						default: '\'slds\'',
+						description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
+					}, {
+						name: 'iconSize',
+						customTypes: [{
+							name: 'CSTooltipIconSize',
+							types: ['\'small\'', '\'medium\'']
+						}],
+						default: '\'small\'',
+						description: 'Set a size of the tooltip icon.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the tooltip.'
+					}, {
+						name: 'padding',
+						types: ['string'],
+						description: 'Set custom padding for the tooltip.'
+					}, {
+						name: 'position',
+						customTypes: [{
+							name: 'CSTooltipPosition',
+							types: [
+								'\'bottom-right\'',
+								'\'bottom-left\'',
+								'\'top-right\'',
+								'\'top-left\'',
+								'\'top-center\'',
+								'\'bottom-center\'',
+								'\'right-top\'',
+								'\'right-center\'',
+								'\'right-bottom\'',
+								'\'left-top\'',
+								'\'left-center\'',
+								'\'left-bottom\''
+							]
+						}],
+						default: '\'top-right\'',
+						description: 'Set the tooltip position.'
+					}, {
+						name: 'stickyOnClick',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Set whether the tooltip stays open on click.'
+					}, {
+						name: 'stylePosition',
+						customTypes: [{
+							name: 'CSTooltipStylePosition',
+							types: ['\'fixed\'', '\'absolute\'']
+						}],
+						default: '\'fixed\'',
+						description: 'Choose the CSS position value for the tooltip.'
+					}, {
+						name: 'tooltipHeader',
+						types: ['string'],
+						description: 'Set the text content of the tooltip header.'
+					}, {
+						name: 'variant',
+						customTypes: [{
+							name: 'CSTooltipVariant',
+							types: [
+								'\'info\'',
+								'\'warning\'',
+								'\'error\'',
+								'\'success\'',
+								'\'basic\''
+							]
+						}],
+						default: '\'info\'',
+						description: 'Set the tooltip color variant.'
+					}, {
+						name: 'width',
+						types: ['string'],
+						description: 'Set the tooltip width. (eg. 200px, 20rem, 50%, etc.)'
+					}, {
+						name: 'maxHeight',
+						types: ['string'],
+						description: 'Set the tooltip maximum height. (eg. 200px, 20rem, 50%, etc.)'
+					}, {
+						name: 'maxWidth',
+						types: ['string'],
+						default: '\'20rem\'',
+						description: 'Set the tooltip maximum width. (eg. 200px, 20rem, 50%, etc.)'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the tooltip div wrapper.'
 					}
 				]
 			}
-		]
+		],
+		accessibility: {
+			criterionList: [
+				'1.4.4',
+				'1.4.13',
+				'2.1.1',
+				'2.1.2',
+				'2.1.4',
+				'2.4.7',
+				'2.5.3',
+				'3.2.1',
+				'3.3.1',
+				'4.1.2'
+			],
+			requirements: {
+				structure: [
+					'Icon as a child element with `aria-hidden`'
+				],
+				attributes: [
+					'`aria-labelledby` - contains id pointing to tooltip body to associate tooltip icon with tooltip body',
+					'`role="tooltip"`'
+				],
+				styling: [
+					'Focus state styles',
+					'Text color contrast ratio > 4.5'
+				],
+				keyboardOperability: [
+					'Logic for tooltip to open on icon focus',
+					'Logic for tooltip to to stay opened when hovered over',
+					'Logic for tooltip to stay stickied and opened until clicked outside',
+					'`Esc` - close tooltip'
+				]
+			}
+		}
 	})
 
-	render() {
-		const component = this.getTooltipDoc();
-
-		return (
-			<>
-				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties {...component} />
-					<PreviewTable components={[component]} />
-					<PreviewAccessibility components={[component]} />
-				</div>
-				<PreviewLinks {...component} />
-			</>
-		);
-	}
+	render = () => <Preview {...this.getDoc()} />;
 }
 
 export default CSTooltipPreview;

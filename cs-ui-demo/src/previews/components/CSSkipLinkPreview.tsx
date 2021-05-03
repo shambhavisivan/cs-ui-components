@@ -1,18 +1,14 @@
 import React from 'react';
-import PreviewHeading from '../PreviewHeading';
-import PreviewProperties from '../PreviewProperties';
-import PreviewTable from '../PreviewTable';
-import PreviewAccessibility from '../PreviewAccessibility';
-import PreviewLinks from '../PreviewLinks';
+import { CSSkipLink } from '@cloudsense/cs-ui-components';
 
-import { CSSkipLink, CSAlert } from '@cloudsense/cs-ui-components';
+import Preview from '../Preview';
 
 class CSSkipLinkPreview extends React.Component {
-	getSkipLinkDoc = () => ({
+	getDoc = () => ({
 		name: 'Skip Link',
-		usage: 'Creates link to specific part of the page',
+		usage: 'Creates links to specific parts of a page.',
 		accessible: 'yes',
-		previews: [
+		components: [
 			{
 				name: 'CSSkipLink',
 				examples: [
@@ -64,79 +60,55 @@ class CSSkipLinkPreview extends React.Component {
 							}
 						]
 					}
-				]
-
-			}
-		],
-		properties: [
-			{
-				name: 'color',
-				types: ['string'],
-				description: 'Set a custom color for the skip link. (eg. pink, #ff0000, rgba(0, 0, 0, 0.75), etc.)'
-			}, {
-				name: 'href',
-				required: true,
-				types: ['string'],
-				description: 'Set a path for the skip link. (eg. #properties-table)'
-			}, {
-				name: 'jumpDestination',
-				required: true,
-				types: ['string'],
-				description: 'Set the skip link destination.'
-			}
-		],
-		accessibility: [
-			{
-				criterionList: [
-					'1.4.1',
-					'2.4.1',
-					'3.2.1',
-					'4.1.1'
 				],
-				requirements: [
+				properties: [
 					{
-						structure: [
-							'`<a>`'
-						],
-						properties: [
-							'`role="link"` - implicit with `<a>`'
-						],
-						styling: [
-							'Focus state styles',
-							'Hidden for non-keyboard users',
-							'Text color contrast ratio > 4.5',
-							'Underline to distinct it as a link'
-						],
-						keyboardOperability: [
-							'`<a>` OOTB focusable and supports `Space` key click'
-						]
+						name: 'color',
+						types: ['string'],
+						description: 'Set a custom color for the skip link. (eg. pink, #ff0000, rgba(0, 0, 0, 0.75), etc.)'
+					}, {
+						name: 'href',
+						required: true,
+						types: ['string'],
+						description: 'Set a path for the skip link. (eg. #properties-table)'
+					}, {
+						name: 'jumpDestination',
+						required: true,
+						types: ['string'],
+						description: 'Set the skip link destination.'
 					}
 				]
+
 			}
-		]
+		],
+		accessibility: {
+			criterionList: [
+				'1.4.1',
+				'2.4.1',
+				'3.2.1',
+				'4.1.1'
+			],
+			requirements: {
+				structure: [
+					'`<a>`'
+				],
+				attributes: [
+					'`role="link"` - implicit with `<a>`'
+				],
+				styling: [
+					'Focus state styles',
+					'Hidden for non-keyboard users',
+					'Text color contrast ratio > 4.5',
+					'Underline to distinct it as a link'
+				],
+				keyboardOperability: [
+					'`<a>` OOTB focusable and supports `Space` key click'
+				]
+			}
+		}
 	})
 
-	render() {
-		const component = this.getSkipLinkDoc();
-
-		return (
-			<>
-				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<CSAlert
-						variant="info"
-						text="Skip Link is accessible only by focusing it via keyboard."
-						styleFormat="scoped"
-					/>
-					<PreviewProperties {...component} />
-					<PreviewTable components={[component]} />
-					<PreviewAccessibility components={[component]} />
-				</div>
-				<PreviewLinks {...component} />
-			</>
-		);
-	}
-
+	render = () => <Preview {...this.getDoc()} />;
 }
 
 export default CSSkipLinkPreview;

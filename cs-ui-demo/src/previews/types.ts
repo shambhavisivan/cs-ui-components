@@ -1,91 +1,80 @@
-import { CSAlertVariant } from '@cloudsense/cs-ui-components';
-
-// =======================
-// Component Preview Types
-// =======================
-
-export interface PreviewAlert {
-	variant: CSAlertVariant;
-	text: string;
+export interface PreviewInterface {
+	name: string;
+	usage?: string;
+	alerts?: AlertInterface | Array<AlertInterface>;
+	accessible?: string;
+	components: Array<ComponentInterface>;
+	api?: Array<ApiInterface>;
+	accessibility?: AccessibilityInterface;
+	children?: JSX.Element | Element;
 }
 
-export interface PreviewVariation {
-	quickLink: string;
-	component: JSX.Element | Element;
-	code: string;
+export interface ComponentInterface {
+	name: string;
+	examples?: Array<ExampleInterface>;
+	properties: Array<PropInterface>;
+}
+
+export interface ExampleInterface {
+	propName: string;
+	alert?: AlertInterface;
+	description?: string;
+	variations: Array<VariationInterface>;
+}
+
+export interface VariationInterface {
+	quickLink?: string;
 	primaryVariants?: string | Array<string>;
 	secondaryVariants?: string | Array<string>;
+	component: JSX.Element | Element;
+	code?: string;
 }
 
-export interface PreviewExample {
-	propName: string;
-	alert?: PreviewAlert;
-	description?: string;
-	variations: Array<PreviewVariation>;
-}
-
-export interface PreviewComponent {
+export interface PropInterface {
 	name: string;
-	examples: Array<PreviewExample>;
-}
-
-export interface PreviewPropertiesProps {
-	previews: Array<PreviewComponent>;
-	name: string;
-}
-
-// =================
-// Quick Links Props
-// =================
-
-export interface PreviewLinksProps {
-	previews: Array<any>;
-	name: string;
-	quickLinks: boolean;
-}
-
-// ================
-// Prop Table Types
-// ================
-
-export interface PreviewTableCustomType {
-	name: string;
-	types: Array<string>;
-}
-
-export interface PreviewTableComponentProperty {
-	[key: string]: any;
-	name: string;
-	required?: true | string;
-	types?: Array<string>;
-	customTypes?: Array<PreviewTableCustomType>;
+	required?: boolean | string;
+	types?: string | Array<string>;
+	customTypes?: CustomTypeInterface | Array<CustomTypeInterface>;
 	default?: string;
 	description?: string;
 }
 
-export interface PreviewTableComponent {
-	[key: string]: any;
+export interface CustomTypeInterface {
 	name: string;
-	properties: Array<PreviewTableComponentProperty>;
+	types: string | Array<string>;
 }
 
-export interface PreviewTableProps {
-	api?: boolean;
-	components: Array<PreviewTableComponent>;
-}
-
-// =================
-// API Preview Props
-// =================
-
-export interface PreviewApi {
-	name: string;
-	description?: string;
+export interface ApiInterface {
+	quickLink?: string;
+	primaryVariants?: string | Array<string>;
+	secondaryVariants?: string | Array<string>;
 	component: JSX.Element | Element;
-	code: string;
+	code?: string;
+	arguments: Array<ArgumentInterface>;
 }
 
-export interface PreviewApiProps {
+export interface ArgumentInterface {
 	name: string;
-	api: Array<PreviewApi>;
+	required?: boolean | string;
+	types?: string | Array<string>;
+	customTypes?: CustomTypeInterface | Array<CustomTypeInterface>;
+	default?: string;
+	description?: string;
+}
+
+export interface AccessibilityInterface {
+	criterionList?: Array<string>;
+	requirements?: AccessibilityRequirementsInterface;
+}
+
+export interface AccessibilityRequirementsInterface {
+	structure?: Array<string>;
+	attributes?: Array<string>;
+	styling?: Array<string>;
+	keyboardOperability?: Array<string>;
+}
+
+export interface AlertInterface {
+	variant: string;
+	text: string;
 }

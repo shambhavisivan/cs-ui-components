@@ -1,11 +1,7 @@
 import React from 'react';
-import PreviewHeading from '../PreviewHeading';
-import PreviewProperties from '../PreviewProperties';
-import PreviewTable from '../PreviewTable';
-import PreviewAccessibility from '../PreviewAccessibility';
-import PreviewLinks from '../PreviewLinks';
-
 import { CSProgressBar, CSButton, CSButtonGroup } from '@cloudsense/cs-ui-components';
+
+import Preview from '../Preview';
 
 export interface CSProgressBarPreviewState {
 	progress: number;
@@ -31,11 +27,11 @@ class CSProgressBarPreview extends React.Component<{}, CSProgressBarPreviewState
 		}, 500);
 	}
 
-	getProgressBarDoc = () => ({
+	getDoc = () => ({
 		name: 'Progress Bar',
 		usage: 'A progress bar component communicates to the user the progress of a particular process.',
 		accessible: 'yes',
-		previews: [
+		components: [
 			{
 				name: 'CSProgressBar',
 				examples: [
@@ -341,123 +337,104 @@ class CSProgressBarPreview extends React.Component<{}, CSProgressBarPreviewState
 							}
 						]
 					}
-				]
-			}
-		],
-		properties: [
-			{
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the progress bar.'
-			}, {
-				name: 'borderRadius',
-				types: ['string'],
-				default: '\'0\'',
-				description: 'Set custom border radius on the progress bar.'
-			}, {
-				name: 'color',
-				types: ['string'],
-				description: 'Set a custom color for the progress bar path. (eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the progress bar.'
-			}, {
-				name: 'label',
-				required: true,
-				types: ['string'],
-				description: 'Set the progress bar label.'
-			}, {
-				name: 'labelHidden',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Hide the progress bar label.'
-			}, {
-				name: 'labelTitle',
-				types: ['boolean'],
-				description: 'Control whether to set the title attribute.'
-			}, {
-				name: 'progress',
-				required: true,
-				types: ['string'],
-				description: 'Set the percentage value of the progress. (eg. 0%, 50%, 100%, etc.)'
-			}, {
-				name: 'infoText',
-				types: ['string'],
-				description: 'Set some info text indicating progress.'
-			}, {
-				name: 'status',
-				customTypes: [{
-					name: 'CSProgressBarStatus',
-					types: [
-						'\'neutral\'',
-						'\'loading\'',
-						'\'success\'',
-						'\'error\''
-					]
-				}],
-				default: '\'neutral\'',
-				description: 'Set a preset status style and icon.'
-			}, {
-				name: 'thickness',
-				customTypes: [{
-					name: 'CSProgressBarThickness',
-					types: [
-						'\'xsmall\'',
-						'\'small\'',
-						'\'medium\'',
-						'\'large\''
-					]
-				}],
-				default: '\'medium\'',
-				description: 'Set the thickness of the progress bar.'
-			}, {
-				name: 'title',
-				types: ['string'],
-				description: 'Set the title attribute.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the progress bar wrapper div.'
-			}
-		],
-
-		accessibility: [
-			{
-				criterionList: [
-					'2.5.3',
-					'3.3.1',
-					'4.1.2'
 				],
-				requirements: [
+				properties: [
 					{
-						properties: [
-							'`aria-valuenow`',
-							'`aria-valuemin`',
-							'`aria-valuemax`',
-							'`role="progressbar"`'
-						]
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the progress bar.'
+					}, {
+						name: 'borderRadius',
+						types: ['string'],
+						default: '\'0\'',
+						description: 'Set custom border radius on the progress bar.'
+					}, {
+						name: 'color',
+						types: ['string'],
+						description: 'Set a custom color for the progress bar path. (eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the progress bar.'
+					}, {
+						name: 'label',
+						required: true,
+						types: ['string'],
+						description: 'Set the progress bar label.'
+					}, {
+						name: 'labelHidden',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Hide the progress bar label.'
+					}, {
+						name: 'labelTitle',
+						types: ['boolean'],
+						description: 'Control whether to set the title attribute.'
+					}, {
+						name: 'progress',
+						required: true,
+						types: ['string'],
+						description: 'Set the percentage value of the progress. (eg. 0%, 50%, 100%, etc.)'
+					}, {
+						name: 'infoText',
+						types: ['string'],
+						description: 'Set some info text indicating progress.'
+					}, {
+						name: 'status',
+						customTypes: [{
+							name: 'CSProgressBarStatus',
+							types: [
+								'\'neutral\'',
+								'\'loading\'',
+								'\'success\'',
+								'\'error\''
+							]
+						}],
+						default: '\'neutral\'',
+						description: 'Set a preset status style and icon.'
+					}, {
+						name: 'thickness',
+						customTypes: [{
+							name: 'CSProgressBarThickness',
+							types: [
+								'\'xsmall\'',
+								'\'small\'',
+								'\'medium\'',
+								'\'large\''
+							]
+						}],
+						default: '\'medium\'',
+						description: 'Set the thickness of the progress bar.'
+					}, {
+						name: 'title',
+						types: ['string'],
+						description: 'Set the title attribute.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the progress bar wrapper div.'
 					}
 				]
 			}
-		]
+		],
+		accessibility: {
+			criterionList: [
+				'2.5.3',
+				'3.3.1',
+				'4.1.2'
+			],
+			requirements: {
+				attributes: [
+					'`aria-valuenow`',
+					'`aria-valuemin`',
+					'`aria-valuemax`',
+					'`role="progressbar"`'
+				]
+			}
+		}
 	})
 
-	render() {
-		const component = this.getProgressBarDoc();
-
-		return (
-			<>
-				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties {...component} />
-					<PreviewTable components={[component]} />
-					<PreviewAccessibility components={[component]} />
-				</div>
-				<PreviewLinks {...component} />
-			</>
-		);
-	}
+	render = () => <Preview {...this.getDoc()} />;
 }
 
 export default CSProgressBarPreview;

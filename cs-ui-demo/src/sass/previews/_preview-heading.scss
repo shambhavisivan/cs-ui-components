@@ -1,6 +1,7 @@
 .preview-section-wrapper .preview-main-heading-wrapper {
-	padding: 2rem 3rem 3rem;
-	margin-bottom: 1rem;
+	padding-bottom: 2rem;
+	margin: 2rem 3rem 1rem;
+
 	@include css4 {
 		border-bottom: 1px solid cvar(--csd-divider-br);
 	}
@@ -39,8 +40,16 @@
 		@include sc(--csd-preview-main-heading-subtitle-c);
 	}
 
+	> .cs-alert {
+		margin: 2rem 0 0;
+		width: auto;
+
+		+ .cs-alert {
+			margin-top: 1rem;
+		}
+	}
+
 	+ .cs-btn-type-preview-wrapper + .property-section,
-	+ .cs-alert + .property-section,
 	+ .property-section {
 		padding-block-start: 3rem;
 	}

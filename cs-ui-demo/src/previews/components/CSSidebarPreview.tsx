@@ -1,18 +1,19 @@
 import React from 'react';
-import PreviewHeading from '../PreviewHeading';
-import PreviewProperties from '../PreviewProperties';
-import PreviewTable from '../PreviewTable';
-import PreviewAccessibility from '../PreviewAccessibility';
-import PreviewLinks from '../PreviewLinks';
+import {
+	CSSidebar,
+	CSSidebarTab,
+	CSList,
+	CSListItem
+} from '@cloudsense/cs-ui-components';
 
-import { CSSidebar, CSSidebarTab, CSList, CSListItem } from '@cloudsense/cs-ui-components';
+import Preview from '../Preview';
 
 class CSSidebarPreview extends React.Component {
-	getSidebarDoc = () => ({
+	getDoc = () => ({
 		name: 'Sidebar',
-		usage: 'Sidebar provides a generic box for items with functionality to collapse and to switch between tabs',
+		usage: 'Sidebar provides a generic box for related items which can be collapsed and grouped amongst tabs.',
 		accessible: 'yes',
-		previews: [
+		components: [
 			{
 				name: 'CSSidebar',
 				examples: [
@@ -332,6 +333,70 @@ class CSSidebarPreview extends React.Component {
 							}
 						]
 					}
+				],
+				properties: [
+					{
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the sidebar.'
+					}, {
+						name: 'children',
+						customTypes: [{
+							name: 'CSSidebarChildren',
+							types: ['<CSSidebarTab />', 'any']
+						}],
+						description: 'This component is designed to support CSSidebarTab as a child.'
+					}, {
+						name: 'defaultClosed',
+						default: 'false',
+						types: ['boolean'],
+						description: 'Sets the initial display state of sidebar.'
+					}, {
+						name: 'collapsible',
+						default: 'true',
+						types: ['boolean'],
+						description: 'Control whether the sidebar should be collapsible.'
+					}, {
+						name: 'height',
+						types: ['string'],
+						description: 'Set the sidebar height (eg. 200px, 20rem, 100vw, etc.).'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the sidebar.'
+					}, {
+						name: 'multipleTabs',
+						default: 'false',
+						types: ['boolean'],
+						description: 'Set if sidebar will have tabs track.'
+					}, {
+						name: 'opensTo',
+						default: '\'right\'',
+						customTypes: [{
+							name: 'CSSidebarOpensTo',
+							types: ['\'right\'', '\'left\'']
+						}],
+						description: 'Places tabs on left or right side of the sidebar, inversely from the side to which sidebar should open.'
+					}, {
+						name: 'tabsPadding',
+						default: '\'0 0.75rem\'',
+						types: ['string'],
+						description: 'Override default padding of all tabs, if that padding is not specified on tab itself.'
+					}, {
+						name: 'tabsWidth',
+						default: '\'17rem\'',
+						types: ['string'],
+						description: 'Override width of all tabs, if that width is not specified on tab itself (eg. 20%, 20rem, 400px, etc.).'
+					}, {
+						name: 'wholeSidebarClickable',
+						default: 'true',
+						types: ['boolean'],
+						description: 'Control whether the whole sidebar is clickable to expand or just the toggle button.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the sidebar.'
+					}
 				]
 			}, {
 				name: 'CSSidebarTab',
@@ -537,185 +602,97 @@ class CSSidebarPreview extends React.Component {
 							}
 						]
 					}
-				]
-			}
-		],
-		properties: [
-			{
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the sidebar.'
-			}, {
-				name: 'children',
-				customTypes: [{
-					name: 'CSSidebarChildren',
-					types: ['<CSSidebarTab />', 'any']
-				}],
-				description: 'This component is designed to support CSSidebarTab as a child.'
-			}, {
-				name: 'defaultClosed',
-				default: 'false',
-				types: ['boolean'],
-				description: 'Sets the initial display state of sidebar.'
-			}, {
-				name: 'collapsible',
-				default: 'true',
-				types: ['boolean'],
-				description: 'Control whether the sidebar should be collapsible.'
-			}, {
-				name: 'height',
-				types: ['string'],
-				description: 'Set the sidebar height (eg. 200px, 20rem, 100vw, etc.).'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the sidebar.'
-			}, {
-				name: 'multipleTabs',
-				default: 'false',
-				types: ['boolean'],
-				description: 'Set if sidebar will have tabs track.'
-			}, {
-				name: 'opensTo',
-				default: '\'right\'',
-				customTypes: [{
-					name: 'CSSidebarOpensTo',
-					types: ['\'right\'', '\'left\'']
-				}],
-				description: 'Places tabs on left or right side of the sidebar, inversely from the side to which sidebar should open.'
-			}, {
-				name: 'tabsPadding',
-				default: '\'0 0.75rem\'',
-				types: ['string'],
-				description: 'Override default padding of all tabs, if that padding is not specified on tab itself.'
-			}, {
-				name: 'tabsWidth',
-				default: '\'17rem\'',
-				types: ['string'],
-				description: 'Override width of all tabs, if that width is not specified on tab itself (eg. 20%, 20rem, 400px, etc.).'
-			}, {
-				name: 'wholeSidebarClickable',
-				default: 'true',
-				types: ['boolean'],
-				description: 'Control whether the whole sidebar is clickable to expand or just the toggle button.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the sidebar.'
-			}
-		],
-		accessibility: [
-			{
-				criterionList: [
-					'2.1.1',
-					'2.1.2',
-					'3.2.1',
-					'2.4.7',
-					'4.1.2'
 				],
-				requirements: [
+				properties: [
 					{
-						structure: [
-							'`<aside>` as the top element',
-							'Toggle and tab buttons are `<CSButton>`'
-						],
-						properties: [
-							'`aria-expanded` - true when sidebar is expanded',
-							'`role="complementary"` - implicit by `<aside>`, marks tangentially related content to main content of the page'
-						],
-						styling: [
-							'Distinct hover, active and focus state styles'
-						],
-						keyboardOperability: [
-							'Proper focus management and keyboard operability ensured by structure and `<CSButton>`'
-						]
+						name: 'isActiveTab',
+						types: ['boolean'],
+						required: 'CSSidebar',
+						description: 'Displays tab if it is the active one.'
+					}, {
+						name: 'children',
+						types: ['any'],
+						description: 'This component supports custom content passed as children.'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the tab.'
+					}, {
+						name: 'iconName',
+						default: '\'assignment\'',
+						types: ['string'],
+						description: 'Set the icon displayed for tab.'
+					}, {
+						name: 'iconOrigin',
+						default: '\'slds\'',
+						customTypes: [{
+							name: 'CSSidebarTabIconOrigin',
+							types: ['\'slds\'', '\'cs\'']
+						}],
+						description: 'Set the icon origin.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the tab.'
+					}, {
+						name: 'noTabHeader',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Control whether sidebar tab header is displayed.'
+					}, {
+						name: 'tabPadding',
+						default: '\'0 0.75rem\'',
+						types: ['string'],
+						description: 'Override default tab body padding. This will also override tabsPadding if set.'
+					}, {
+						name: 'tabWidth',
+						types: ['string'],
+						description: 'Override default tab body width. This will also override tabsWidth if set.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the sidebar tab div.'
+					}, {
+						name: 'title',
+						required: true,
+						types: ['string'],
+						description: 'Title of the tab.'
+					}, {
+						name: 'subtitle',
+						types: ['string'],
+						description: 'Subtitle of the tab.'
 					}
 				]
 			}
-		]
-	})
-
-	getSidebarTabDoc = () => ({
-		name: 'Sidebar Tab',
-		usage: 'Sidebar tab is a tab within a sidebar.',
-		properties: [
-			{
-				name: 'isActiveTab',
-				types: ['boolean'],
-				required: 'CSSidebar',
-				description: 'Displays tab if it is the active one.'
-			}, {
-				name: 'children',
-				types: ['any'],
-				description: 'This component supports custom content passed as children.'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the tab.'
-			}, {
-				name: 'iconName',
-				default: '\'assignment\'',
-				types: ['string'],
-				description: 'Set the icon displayed for tab.'
-			}, {
-				name: 'iconOrigin',
-				default: '\'slds\'',
-				customTypes: [{
-					name: 'CSSidebarTabIconOrigin',
-					types: ['\'slds\'', '\'cs\'']
-				}],
-				description: 'Set the icon origin.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the tab.'
-			}, {
-				name: 'noTabHeader',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Control whether sidebar tab header is displayed.'
-			}, {
-				name: 'tabPadding',
-				default: '\'0 0.75rem\'',
-				types: ['string'],
-				description: 'Override default tab body padding. This will also override tabsPadding if set.'
-			}, {
-				name: 'tabWidth',
-				types: ['string'],
-				description: 'Override default tab body width. This will also override tabsWidth if set.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the sidebar tab div.'
-			}, {
-				name: 'title',
-				required: true,
-				types: ['string'],
-				description: 'Title of the tab.'
-			}, {
-				name: 'subtitle',
-				types: ['string'],
-				description: 'Subtitle of the tab.'
+		],
+		accessibility: {
+			criterionList: [
+				'2.1.1',
+				'2.1.2',
+				'3.2.1',
+				'2.4.7',
+				'4.1.2'
+			],
+			requirements: {
+				structure: [
+					'`<aside>` as the top element',
+					'Toggle and tab buttons are `<CSButton>`'
+				],
+				attributes: [
+					'`aria-expanded` - true when sidebar is expanded',
+					'`role="complementary"` - implicit by `<aside>`, marks tangentially related content to main content of the page'
+				],
+				styling: [
+					'Distinct hover, active and focus state styles'
+				],
+				keyboardOperability: [
+					'Proper focus management and keyboard operability ensured by structure and `<CSButton>`'
+				]
 			}
-		]
+		}
 	})
 
-	render() {
-		const component = this.getSidebarDoc();
-		const component2 = this.getSidebarTabDoc();
-
-		return (
-			<>
-				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties {...component} />
-					<PreviewTable components={[component, component2]} />
-					<PreviewAccessibility components={[component]} />
-				</div>
-				<PreviewLinks {...component} />
-			</>
-		);
-	}
+	render = () => <Preview {...this.getDoc()} />;
 }
 
 export default CSSidebarPreview;

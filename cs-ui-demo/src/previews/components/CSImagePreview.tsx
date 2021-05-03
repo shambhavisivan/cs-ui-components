@@ -1,18 +1,14 @@
 import React from 'react';
-import PreviewHeading from '../PreviewHeading';
-import PreviewProperties from '../PreviewProperties';
-import PreviewTable from '../PreviewTable';
-import PreviewAccessibility from '../PreviewAccessibility';
-import PreviewLinks from '../PreviewLinks';
-
 import { CSImage } from '@cloudsense/cs-ui-components';
 
+import Preview from '../Preview';
+
 class CSImagePreview extends React.Component {
-	getImagePreviewDoc = () => ({
+	getDoc = () => ({
 		name: 'Image',
-		usage: 'Image is used for rendering logos and logomarks',
+		usage: 'Image is used for rendering logos and logomarks.',
 		accessible: 'yes',
-		previews: [
+		components: [
 			{
 				name: 'CSImage',
 				examples: [
@@ -188,95 +184,77 @@ class CSImagePreview extends React.Component {
 							}
 						]
 					}
-				]
-			}
-		],
-		properties: [
-			{
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the image.'
-			}, {
-				name: 'color',
-				customTypes: [{
-					name: 'CSImageColor',
-					types: ['\'purple\'', '\'white\'', '\'black\'']
-				}],
-				default: '\'purple\'',
-				description: 'Set the image color.'
-			}, {
-				name: 'height',
-				types: ['string'],
-				description: 'Set the image height. (eg. 200px, 20rem, 50%, etc.)'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the image.'
-			}, {
-				name: 'type',
-				required: true,
-				customTypes: [{
-					name: 'CSImageType',
-					types: ['\'logo\'', '\'logomark\'']
-				}],
-				description: 'Set the image type.'
-			}, {
-				name: 'variant',
-				customTypes: [{
-					name: 'CSImageVariant',
-					types: ['\'initial\'', '\'reversed\'']
-				}],
-				default: '\'initial\'',
-				description: 'Set the image variant.'
-			}, {
-				name: 'width',
-				types: ['string'],
-				description: 'Set the image width. (eg. 200px, 20rem, 50%, etc.)'
-			}, {
-				name: 'longDescription',
-				types: ['string'],
-				description: 'Set the expanded description of the image. Creates hidden span with custom description when alt is not enough.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the image tag.'
-			}
-		],
-		accessibility: [
-			{
-				criterionList: [
-					'4.1.2'
 				],
-				requirements: [
+				properties: [
 					{
-						structure: [
-							'`<img>`'
-						],
-						properties: [
-							'`alt` - alternate text for image, constructed as {type}-{color}-{variant}',
-							'`aria-labelledby` - contains id pointing to hidden span when `longDescription` is set which associates image with description'
-						]
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the image.'
+					}, {
+						name: 'color',
+						customTypes: [{
+							name: 'CSImageColor',
+							types: ['\'purple\'', '\'white\'', '\'black\'']
+						}],
+						default: '\'purple\'',
+						description: 'Set the image color.'
+					}, {
+						name: 'height',
+						types: ['string'],
+						description: 'Set the image height. (eg. 200px, 20rem, 50%, etc.)'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the image.'
+					}, {
+						name: 'type',
+						required: true,
+						customTypes: [{
+							name: 'CSImageType',
+							types: ['\'logo\'', '\'logomark\'']
+						}],
+						description: 'Set the image type.'
+					}, {
+						name: 'variant',
+						customTypes: [{
+							name: 'CSImageVariant',
+							types: ['\'initial\'', '\'reversed\'']
+						}],
+						default: '\'initial\'',
+						description: 'Set the image variant.'
+					}, {
+						name: 'width',
+						types: ['string'],
+						description: 'Set the image width. (eg. 200px, 20rem, 50%, etc.)'
+					}, {
+						name: 'longDescription',
+						types: ['string'],
+						description: 'Set the expanded description of the image. Creates hidden span with custom description when alt is not enough.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the image tag.'
 					}
 				]
 			}
-		]
+		],
+		accessibility: {
+			criterionList: [
+				'4.1.2'
+			],
+			requirements: {
+				structure: [
+					'`<img>`'
+				],
+				attributes: [
+					'`alt` - alternate text for image, constructed as {type}-{color}-{variant}',
+					'`aria-labelledby` - contains id pointing to hidden span when `longDescription` is set which associates image with description'
+				]
+			}
+		}
 	})
 
-	render() {
-		const component = this.getImagePreviewDoc();
-
-		return (
-			<>
-				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties {...component} />
-					<PreviewTable components={[component]} />
-					<PreviewAccessibility components={[component]} />
-				</div>
-				<PreviewLinks {...component} />
-			</>
-		);
-	}
+	render = () => <Preview {...this.getDoc()} />;
 }
 
 export default CSImagePreview;

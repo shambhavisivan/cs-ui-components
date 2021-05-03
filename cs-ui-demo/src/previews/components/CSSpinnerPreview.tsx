@@ -1,18 +1,14 @@
 import React from 'react';
-import PreviewHeading from '../PreviewHeading';
-import PreviewProperties from '../PreviewProperties';
-import PreviewTable from '../PreviewTable';
-import PreviewAccessibility from '../PreviewAccessibility';
-import PreviewLinks from '../PreviewLinks';
-
 import { CSSpinner } from '@cloudsense/cs-ui-components';
 
+import Preview from '../Preview';
+
 class CSSpinnerPreview extends React.Component {
-	getSpinnerDoc = () => ({
+	getDoc = () => ({
 		name: 'Spinner',
 		usage: 'Spinners are CSS loading indicators that should be shown when retrieving data or performing slow computations. In some cases, the first time a parent component loads, a stencil is preferred to indicate network activity.',
 		accessible: 'yes',
-		previews: [
+		components: [
 			{
 				name: 'CSSpinner',
 				examples: [
@@ -116,97 +112,79 @@ class CSSpinnerPreview extends React.Component {
 							}
 						]
 					}
-				]
-			}
-		],
-		properties: [
-			{
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the spinner.'
-			}, {
-				name: 'color',
-				customTypes: [{
-					name: 'CSSpinnerColor',
-					types: ['\'neutral\'', '\'brand\'', '\'inverse\'']
-				}],
-				default: '\'brand\'',
-				description: 'Set the color variant for the spinner icon.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the spinner.'
-			}, {
-				name: 'inline',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Position the spinner inline.'
-			}, {
-				name: 'label',
-				types: ['string'],
-				description: 'Set the spinner label.'
-			}, {
-				name: 'overlay',
-				customTypes: [{
-					name: 'CSSpinnerOverlay',
-					types: ['\'light\'', '\'dark\'', '\'transparent\'']
-				}],
-				default: '\'light\'',
-				description: 'Set the overlay color variant.'
-			}, {
-				name: 'size',
-				customTypes: [{
-					name: 'CSSpinnerSize',
-					types: [
-						'\'xsmall\'',
-						'\'small\'',
-						'\'medium\'',
-						'\'large\'',
-						'\'xlarge\''
-					]
-				}],
-				default: '\'large\'',
-				description: 'Set the spinner size.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the spinner wrapper div.'
-			}
-		],
-		accessibility: [
-			{
-				criterionList: [
-					'1.4.4',
-					'4.1.2'
 				],
-				requirements: [
+				properties: [
 					{
-						properties: [
-							'`aria-busy` - indicates to screen reader that content is loading',
-							'`aria-live="polite"` - indicate busy status update only after current content is read',
-							'`role="progressbar"`'
-						]
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the spinner.'
+					}, {
+						name: 'color',
+						customTypes: [{
+							name: 'CSSpinnerColor',
+							types: ['\'neutral\'', '\'brand\'', '\'inverse\'']
+						}],
+						default: '\'brand\'',
+						description: 'Set the color variant for the spinner icon.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the spinner.'
+					}, {
+						name: 'inline',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Position the spinner inline.'
+					}, {
+						name: 'label',
+						types: ['string'],
+						description: 'Set the spinner label.'
+					}, {
+						name: 'overlay',
+						customTypes: [{
+							name: 'CSSpinnerOverlay',
+							types: ['\'light\'', '\'dark\'', '\'transparent\'']
+						}],
+						default: '\'light\'',
+						description: 'Set the overlay color variant.'
+					}, {
+						name: 'size',
+						customTypes: [{
+							name: 'CSSpinnerSize',
+							types: [
+								'\'xsmall\'',
+								'\'small\'',
+								'\'medium\'',
+								'\'large\'',
+								'\'xlarge\''
+							]
+						}],
+						default: '\'large\'',
+						description: 'Set the spinner size.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the spinner wrapper div.'
 					}
 				]
 			}
-		]
+		],
+		accessibility: {
+			criterionList: [
+				'1.4.4',
+				'4.1.2'
+			],
+			requirements: {
+				attributes: [
+					'`aria-busy` - indicates to screen reader that content is loading',
+					'`aria-live="polite"` - indicate busy status update only after current content is read',
+					'`role="progressbar"`'
+				]
+			}
+		}
 	})
 
-	render() {
-		const component = this.getSpinnerDoc();
-
-		return (
-			<>
-				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties {...component} />
-					<PreviewTable components={[component]} />
-					<PreviewAccessibility components={[component]} />
-				</div>
-				<PreviewLinks {...component} />
-			</>
-		);
-	}
+	render = () => <Preview {...this.getDoc()} />;
 }
 
 export default CSSpinnerPreview;

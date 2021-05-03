@@ -1,20 +1,23 @@
 import React from 'react';
-import PreviewHeading from '../PreviewHeading';
-import PreviewProperties from '../PreviewProperties';
-import PreviewTable from '../PreviewTable';
-import PreviewAccessibility from '../PreviewAccessibility';
-import PreviewLinks from '../PreviewLinks';
+import {
+	CSDropdown,
+	CSButton,
+	CSList,
+	CSListItem,
+	CSListGroup,
+	CSAlert
+} from '@cloudsense/cs-ui-components';
 
-import { CSDropdown, CSButton, CSList, CSListItem, CSListGroup, CSAlert } from '@cloudsense/cs-ui-components';
+import Preview from '../Preview';
 
 class CSDropdownPreview extends React.Component {
 	handleClose = () => alert('Dropdown has been closed.');
 
-	getDropdownDoc = () => ({
+	getDoc = () => ({
 		name: 'Dropdown',
 		usage: 'Offers a list of actions or functions that a user can access.',
 		accessible: 'yes',
-		previews: [
+		components: [
 			{
 				name: 'CSDropdown',
 				examples: [
@@ -558,196 +561,178 @@ class CSDropdownPreview extends React.Component {
 							}
 						]
 					}
-				]
-			}
-		],
-		properties: [
-			{
-				name: 'align',
-				customTypes: [{
-					name: 'CSDropdownAlign',
-					types: ['\'left\'', '\'right\'']
-				}],
-				default: '\'left\'',
-				description: 'Align the dropdown.'
-			}, {
-				name: 'btnStyle',
-				customTypes: [{
-					name: 'CSDropdownStyle',
-					types: ['\'initial\'', '\'brand\'', '\'outline\'']
-				}],
-				default: '\'initial\'',
-				description: 'Set the button group style.'
-			}, {
-				name: 'btnType',
-				customTypes: [{
-					name: 'CSDropdownType',
-					types: [
-						'\'default\'',
-						'\'error\'',
-						'\'success\'',
-						'\'transparent\''
-					]
-				}],
-				default: '\'default\'',
-				description: 'Set the button group type.'
-			}, {
-				name: 'children',
-				customTypes: [{
-					name: 'CSDropdownChildren',
-					types: ['<CSButton />', '<CSList />', 'any']
-				}],
-				description: 'This component supports content passed as children depending on the mode prop.'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the dropdown.'
-			}, {
-				name: 'disabled',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Disable the dropdown.'
-			}, {
-				name: 'hover',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Set whether the dropdown should open on hover.'
-			}, {
-				name: 'iconName',
-				types: ['string'],
-				default: '\'down\'',
-				description: 'Name of the icon from the icons library.'
-			}, {
-				name: 'iconOrigin',
-				customTypes: [{
-					name: 'CSIconOrigin',
-					types: ['\'slds\'', '\'cs\'']
-				}],
-				default: '\'slds\'',
-				description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
-			}, {
-				name: 'iconPosition',
-				customTypes: [{
-					name: 'CSDropdownIconPosition',
-					types: ['\'left\'', '\'right\'']
-				}],
-				default: '\'left\'',
-				description: 'Set the position of the icon if both icon and label are set.'
-			}, {
-				name: 'iconRotate',
-				types: ['string'],
-				default: '\'0\'',
-				description: 'Set by how many degrees the icon should be rotated clockwise. (eg. 90, 180, etc.)'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the dropdown.'
-			}, {
-				name: 'label',
-				types: ['string'],
-				default: '\'Toggle dropdown\'',
-				description: 'Set which text should appear as the dropdown label.'
-			}, {
-				name: 'maxHeight',
-				types: ['string'],
-				description: 'Set the max-height of the dropdown content. (eg. 200px, 20rem, etc.)'
-			}, {
-				name: 'maxWidth',
-				types: ['string'],
-				description: 'Set the max-width of the dropdown content. (eg. 200px, 20rem, etc.)'
-			}, {
-				name: 'mode',
-				customTypes: [{
-					name: 'CSDropdownMode',
-					types: ['\'button\'', '\'list\'', '\'custom\'']
-				}],
-				default: '\'button\'',
-				description: 'Set the mode in which dropdown will be displayed.'
-			}, {
-				name: 'onDropdownTabClose',
-				types: ['(event) => void'],
-				description: 'Callback for when the dropdown is closed with a tab key pressed.'
-			}, {
-				name: 'padding',
-				types: ['string'],
-				default: ['\'0.25rem 0\''],
-				description: 'Set custom padding for the dropdown content.'
-			}, {
-				name: 'position',
-				customTypes: [{
-					name: 'CSDropdownPosition',
-					types: ['\'bottom\'', '\'top\'']
-				}],
-				default: '\'bottom\'',
-				description: 'Determine the vertical position of the dropdown content.'
-			}, {
-				name: 'size',
-				customTypes: [{
-					name: 'CSDropdownSize',
-					types: [
-						'\'xsmall\'',
-						'\'small\'',
-						'\'normal\'',
-						'\'large\''
-					]
-				}],
-				default: '\'normal\'',
-				description: 'Set the size of the dropdown button.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the dropdown wrapper div.'
-			}
-		],
-		accessibility: [
-			{
-				criterionList: [
-					'2.1.1',
-					'2.1.2',
-					'3.2.1',
-					'3.3.1',
-					'4.1.2'
 				],
-				requirements: [
+				properties: [
 					{
-						structure: [
-							'Dropdown is HTML `<ul>` - allow screen reader list navigation and counting `<li>` items',
-							'Buttons wrapped in HTML `<li>` - allow screen reader list navigation while preserving keyboard operability',
-							'`<CSButton>` used'
-						],
-						properties: [
-							'`aria-expanded`',
-							'`aria-haspopup`',
-							'`<ul>` wrapper `role="menu"`',
-							'`button role="menuitem"`'
-						],
-						styling: [
-							'Distinct hover, active and focus state styles'
-						],
-						keyboardOperability: [
-							'Proper focus management and keyboard operability ensured by structure and `<CSButton>`'
-						]
+						name: 'align',
+						customTypes: [{
+							name: 'CSDropdownAlign',
+							types: ['\'left\'', '\'right\'']
+						}],
+						default: '\'left\'',
+						description: 'Align the dropdown.'
+					}, {
+						name: 'btnStyle',
+						customTypes: [{
+							name: 'CSDropdownStyle',
+							types: ['\'initial\'', '\'brand\'', '\'outline\'']
+						}],
+						default: '\'initial\'',
+						description: 'Set the button group style.'
+					}, {
+						name: 'btnType',
+						customTypes: [{
+							name: 'CSDropdownType',
+							types: [
+								'\'default\'',
+								'\'error\'',
+								'\'success\'',
+								'\'transparent\''
+							]
+						}],
+						default: '\'default\'',
+						description: 'Set the button group type.'
+					}, {
+						name: 'children',
+						customTypes: [{
+							name: 'CSDropdownChildren',
+							types: ['<CSButton />', '<CSList />', 'any']
+						}],
+						description: 'This component supports content passed as children depending on the mode prop.'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the dropdown.'
+					}, {
+						name: 'disabled',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Disable the dropdown.'
+					}, {
+						name: 'hover',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Set whether the dropdown should open on hover.'
+					}, {
+						name: 'iconName',
+						types: ['string'],
+						default: '\'down\'',
+						description: 'Name of the icon from the icons library.'
+					}, {
+						name: 'iconOrigin',
+						customTypes: [{
+							name: 'CSIconOrigin',
+							types: ['\'slds\'', '\'cs\'']
+						}],
+						default: '\'slds\'',
+						description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
+					}, {
+						name: 'iconPosition',
+						customTypes: [{
+							name: 'CSDropdownIconPosition',
+							types: ['\'left\'', '\'right\'']
+						}],
+						default: '\'left\'',
+						description: 'Set the position of the icon if both icon and label are set.'
+					}, {
+						name: 'iconRotate',
+						types: ['string'],
+						default: '\'0\'',
+						description: 'Set by how many degrees the icon should be rotated clockwise. (eg. 90, 180, etc.)'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the dropdown.'
+					}, {
+						name: 'label',
+						types: ['string'],
+						default: '\'Toggle dropdown\'',
+						description: 'Set which text should appear as the dropdown label.'
+					}, {
+						name: 'maxHeight',
+						types: ['string'],
+						description: 'Set the max-height of the dropdown content. (eg. 200px, 20rem, etc.)'
+					}, {
+						name: 'maxWidth',
+						types: ['string'],
+						description: 'Set the max-width of the dropdown content. (eg. 200px, 20rem, etc.)'
+					}, {
+						name: 'mode',
+						customTypes: [{
+							name: 'CSDropdownMode',
+							types: ['\'button\'', '\'list\'', '\'custom\'']
+						}],
+						default: '\'button\'',
+						description: 'Set the mode in which dropdown will be displayed.'
+					}, {
+						name: 'onDropdownTabClose',
+						types: ['(event) => void'],
+						description: 'Callback for when the dropdown is closed by pressing a tab key.'
+					}, {
+						name: 'padding',
+						types: ['string'],
+						default: '\'0.25rem 0\'',
+						description: 'Set custom padding for the dropdown content.'
+					}, {
+						name: 'position',
+						customTypes: [{
+							name: 'CSDropdownPosition',
+							types: ['\'bottom\'', '\'top\'']
+						}],
+						default: '\'bottom\'',
+						description: 'Determine the vertical position of the dropdown content.'
+					}, {
+						name: 'size',
+						customTypes: [{
+							name: 'CSDropdownSize',
+							types: [
+								'\'xsmall\'',
+								'\'small\'',
+								'\'normal\'',
+								'\'large\''
+							]
+						}],
+						default: '\'normal\'',
+						description: 'Set the size of the dropdown button.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the dropdown wrapper div.'
 					}
 				]
 			}
-		]
+		],
+		accessibility: {
+			criterionList: [
+				'2.1.1',
+				'2.1.2',
+				'3.2.1',
+				'3.3.1',
+				'4.1.2'
+			],
+			requirements: {
+				structure: [
+					'Dropdown is HTML `<ul>` - allow screen reader list navigation and counting `<li>` items',
+					'Buttons wrapped in HTML `<li>` - allow screen reader list navigation while preserving keyboard operability',
+					'`<CSButton>` used'
+				],
+				attributes: [
+					'`aria-expanded`',
+					'`aria-haspopup`',
+					'`<ul>` wrapper `role="menu"`',
+					'`button role="menuitem"`'
+				],
+				styling: [
+					'Distinct hover, active and focus state styles'
+				],
+				keyboardOperability: [
+					'Proper focus management and keyboard operability ensured by structure and `<CSButton>`'
+				]
+			}
+		}
 	})
 
-	render() {
-		const component = this.getDropdownDoc();
-
-		return (
-			<>
-				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties {...component} />
-					<PreviewTable components={[component]} />
-					<PreviewAccessibility components={[component]} />
-				</div>
-				<PreviewLinks {...component} />
-			</>
-		);
-	}
+	render = () => <Preview {...this.getDoc()} />;
 }
 
 export default CSDropdownPreview;

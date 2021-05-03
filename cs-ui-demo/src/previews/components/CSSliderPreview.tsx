@@ -1,20 +1,25 @@
 import React from 'react';
-import PreviewHeading from '../PreviewHeading';
-import PreviewProperties from '../PreviewProperties';
-import PreviewTable from '../PreviewTable';
-import PreviewAccessibility from '../PreviewAccessibility';
-import PreviewLinks from '../PreviewLinks';
+import { CSSlider } from '@cloudsense/cs-ui-components';
 
-import { CSSlider, CSAlert } from '@cloudsense/cs-ui-components';
+import Preview from '../Preview';
 
 class CSSliderPreview extends React.Component {
-	handleOnChange = () => alert('Value had changed.');
+	handleChange = () => alert('Value had changed.');
 
-	getSliderDoc = () => ({
+	getDoc = () => ({
 		name: 'Slider',
 		usage: 'A range slider lets the user specify a numeric value which must be between two specified values.',
+		alerts: [
+			{
+				variant: 'warning',
+				text: 'This component is under construction and should not be used.'
+			}, {
+				variant: 'warning',
+				text: 'Props min and max are required for all instances of CSSlider besides those that use the prop stepValues. stepValues creates its own values for min and max based on the number of items in the array.'
+			}
+		],
 		accessible: 'partially',
-		previews: [
+		components: [
 			{
 				name: 'CSSlider',
 				examples: [
@@ -197,13 +202,13 @@ class CSSliderPreview extends React.Component {
 									label="Select value"
 									min="0"
 									max="100"
-									onChange={this.handleOnChange}
+									onChange={this.handleChange}
 								/>,
 								code: `<CSSlider
 									label="Select value"
 									min="0"
 									max="100"
-									onChange={this.handleOnChange}
+									onChange={this.handleChange}
 								/>`
 							}
 						]
@@ -493,191 +498,167 @@ class CSSliderPreview extends React.Component {
 							}
 						]
 					}
-				]
-			}
-		],
-		properties: [
-			{
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the slider.'
-			}, {
-				name: 'disabled',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Disable the slider.'
-			}, {
-				name: 'error',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Toggle the error state.'
-			}, {
-				name: 'errorMessage',
-				customTypes: [{
-					name: 'CSFieldErrorMsgType',
-					types: ['string', 'Array<string>']
-				}],
-				description: 'Set the error message or messages for the slider.'
-			}, {
-				name: 'helpText',
-				types: ['string'],
-				description: 'Set the text to be displayed in the tooltip.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the slider.'
-			}, {
-				name: 'label',
-				required: true,
-				types: ['string'],
-				description: 'Set the slider label.'
-			}, {
-				name: 'labelHidden',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Hide the slider label.'
-			}, {
-				name: 'labelTitle',
-				types: ['boolean'],
-				description: 'Control whether to set the title attribute.'
-			}, {
-				name: 'max',
-				types: ['string'],
-				description: 'Set the slider range max value.'
-			}, {
-				name: 'min',
-				types: ['string'],
-				description: 'Set the slider range min value.'
-			}, {
-				name: 'onChange',
-				types: ['(event) => void'],
-				description: 'Handler method for the change event.'
-			}, {
-				name: 'readOnly',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Control whether to apply the readonly attribute.'
-			}, {
-				name: 'required',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Make the slider required.'
-			}, {
-				name: 'size',
-				customTypes: [{
-					name: 'CSSliderSize',
-					types: [
-						'\'xsmall\'',
-						'\'small\'',
-						'\'medium\'',
-						'\'large\''
-					]
-				}],
-				description: 'Set the slider size.'
-			}, {
-				name: 'step',
-				types: ['any'],
-				description: 'Set the slider range granularity.'
-			}, {
-				name: 'stepValues',
-				types: ['Array<number>'],
-				description: 'Set a custom array for slider range granularity.'
-			}, {
-				name: 'title',
-				types: ['string'],
-				description: 'Set the slider title.'
-			}, {
-				name: 'tooltipPosition',
-				customTypes: [{
-					name: 'CSTooltipPosition',
-					types: [
-						'\'bottom-right\'',
-						'\'bottom-left\'',
-						'\'top-right\'',
-						'\'top-left\'',
-						'\'top-center\'',
-						'\'bottom-center\'',
-						'\'right-top\'',
-						'\'right-center\'',
-						'\'right-bottom\'',
-						'\'left-top\'',
-						'\'left-center\'',
-						'\'left-bottom\''
-					]
-				}],
-				default: '\'top-right\'',
-				description: 'Set the tooltip position for the slider.'
-			}, {
-				name: 'value',
-				types: ['string'],
-				description: 'Set the slider default value.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the slider input.'
-			}
-		],
-		accessibility: [
-			{
-				criterionList: [
-					'1.4.4',
-					'2.1.1',
-					'2.1.2',
-					'2.4.7',
-					'2.5.3',
-					'3.2.1',
-					'3.3.1',
-					'3.3.2',
-					'4.1.2'
 				],
-				requirements: [
+				properties: [
 					{
-						structure: [
-							'`<input type="range">`'
-						],
-						properties: [
-							'`aria-invalid` - true when there is an error',
-							'`aria-readonly` - true when is it readonly, therefore focusable, but not operable',
-							'`aria-required` - true when selecting a value is required',
-							'`aria-valuemin`',
-							'`aria-valuemax`',
-							'`aria-valuenow`',
-							'`id` - needed to connect label with form element. If there is no id, autogenerated unique id is set',
-							'`role="slider"` - implicit with input'
-						],
-						styling: [
-							'Focus state styles'
-						],
-						keyboardOperability: [
-							'`<input type="range">` OOTB focusable and slider operable with arrows `Left` and `Right`'
-						]
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the slider.'
+					}, {
+						name: 'disabled',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Disable the slider.'
+					}, {
+						name: 'error',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Toggle the error state.'
+					}, {
+						name: 'errorMessage',
+						customTypes: [{
+							name: 'CSFieldErrorMsgType',
+							types: ['string', 'Array<string>']
+						}],
+						description: 'Set the error message or messages for the slider.'
+					}, {
+						name: 'helpText',
+						types: ['string'],
+						description: 'Set the text to be displayed in the tooltip.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the slider.'
+					}, {
+						name: 'label',
+						required: true,
+						types: ['string'],
+						description: 'Set the slider label.'
+					}, {
+						name: 'labelHidden',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Hide the slider label.'
+					}, {
+						name: 'labelTitle',
+						types: ['boolean'],
+						description: 'Control whether to set the title attribute.'
+					}, {
+						name: 'max',
+						types: ['string'],
+						description: 'Set the slider range max value.'
+					}, {
+						name: 'min',
+						types: ['string'],
+						description: 'Set the slider range min value.'
+					}, {
+						name: 'onChange',
+						types: ['(event) => void'],
+						description: 'Handler method for the change event.'
+					}, {
+						name: 'readOnly',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Control whether to apply the readonly attribute.'
+					}, {
+						name: 'required',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Make the slider required.'
+					}, {
+						name: 'size',
+						customTypes: [{
+							name: 'CSSliderSize',
+							types: [
+								'\'xsmall\'',
+								'\'small\'',
+								'\'medium\'',
+								'\'large\''
+							]
+						}],
+						description: 'Set the slider size.'
+					}, {
+						name: 'step',
+						types: ['any'],
+						description: 'Set the slider range granularity.'
+					}, {
+						name: 'stepValues',
+						types: ['Array<number>'],
+						description: 'Set a custom array for slider range granularity.'
+					}, {
+						name: 'title',
+						types: ['string'],
+						description: 'Set the slider title.'
+					}, {
+						name: 'tooltipPosition',
+						customTypes: [{
+							name: 'CSTooltipPosition',
+							types: [
+								'\'bottom-right\'',
+								'\'bottom-left\'',
+								'\'top-right\'',
+								'\'top-left\'',
+								'\'top-center\'',
+								'\'bottom-center\'',
+								'\'right-top\'',
+								'\'right-center\'',
+								'\'right-bottom\'',
+								'\'left-top\'',
+								'\'left-center\'',
+								'\'left-bottom\''
+							]
+						}],
+						default: '\'top-right\'',
+						description: 'Set the tooltip position for the slider.'
+					}, {
+						name: 'value',
+						types: ['string'],
+						description: 'Set the slider default value.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the slider input.'
 					}
 				]
 			}
-		]
+		],
+		accessibility: {
+			criterionList: [
+				'1.4.4',
+				'2.1.1',
+				'2.1.2',
+				'2.4.7',
+				'2.5.3',
+				'3.2.1',
+				'3.3.1',
+				'3.3.2',
+				'4.1.2'
+			],
+			requirements: {
+				structure: [
+					'`<input type="range">`'
+				],
+				attributes: [
+					'`aria-invalid` - true when there is an error',
+					'`aria-readonly` - true when is it readonly, therefore focusable, but not operable',
+					'`aria-required` - true when selecting a value is required',
+					'`aria-valuemin`',
+					'`aria-valuemax`',
+					'`aria-valuenow`',
+					'`id` - needed to connect label with form element. If there is no id, autogenerated unique id is set',
+					'`role="slider"` - implicit with input'
+				],
+				styling: [
+					'Focus state styles'
+				],
+				keyboardOperability: [
+					'`<input type="range">` OOTB focusable and slider operable with arrows `Left` and `Right`'
+				]
+			}
+		}
 	})
 
-	render() {
-		const component = this.getSliderDoc();
-
-		return (
-			<>
-				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<CSAlert variant="warning" text="This component is under construction and should not be used" styleFormat="scoped" />
-					<CSAlert
-						variant="info"
-						text="Props min and max are required for all instances of CSSlider besides those that use the prop stepValues. stepValues creates it's own values for min and max based on the number of items in it's array."
-						styleFormat="scoped"
-					/>
-					<PreviewProperties {...component} />
-					<PreviewTable components={[component]} />
-					<PreviewAccessibility components={[component]} />
-				</div>
-				<PreviewLinks {...component} />
-			</>
-		);
-	}
+	render = () => <Preview {...this.getDoc()} />;
 }
 
 export default CSSliderPreview;

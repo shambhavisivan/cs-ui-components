@@ -1,11 +1,14 @@
 import React from 'react';
-import PreviewHeading from '../PreviewHeading';
-import PreviewProperties from '../PreviewProperties';
-import PreviewTable from '../PreviewTable';
-import PreviewAccessibility from '../PreviewAccessibility';
-import PreviewLinks from '../PreviewLinks';
+import {
+	CSTable,
+	CSTableHeader,
+	CSTableBody,
+	CSTableRow,
+	CSTableCell,
+	CSButton
+} from '@cloudsense/cs-ui-components';
 
-import { CSTable, CSTableHeader, CSTableBody, CSTableRow, CSTableCell, CSButton } from '@cloudsense/cs-ui-components';
+import Preview from '../Preview';
 
 class CSTablePreview extends React.Component {
 	handleClick = () => alert('Table row has been clicked.');
@@ -13,11 +16,11 @@ class CSTablePreview extends React.Component {
 	handleMouseOut = () => alert('Mouse out has been registered.');
 	handleMouseOver = () => alert('Mouse over has been registered.');
 
-	getTableDoc = () => ({
+	getDoc = () => ({
 		name: 'Table',
 		usage: 'Tables are an enhanced version of an HTML table and are used to display tabular data.',
 		accessible: 'partially',
-		previews: [
+		components: [
 			{
 				name: 'CSTable',
 				examples: [
@@ -328,6 +331,36 @@ class CSTablePreview extends React.Component {
 							}
 						]
 					}
+				],
+				properties: [
+					{
+						name: 'children',
+						customTypes: [{
+							name: 'CSTableChildren',
+							types: ['<CSTableHeader />', '<CSTableBody />', 'any']
+						}],
+						description: 'This component is designed to support CSTableHeader and CSTableBody as children.'
+					}, {
+						name: 'selectableRows',
+						types: ['boolean'],
+						description: 'Implement keyboard support for table rows.'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the table.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the table.'
+					}, {
+						name: 'tableDescription',
+						types: ['string'],
+						description: 'Set a table description for accessibility screen readers.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the table div.'
+					}
 				]
 			}, {
 				name: 'CSTableHeader',
@@ -490,6 +523,32 @@ class CSTablePreview extends React.Component {
 							}
 						]
 					}
+				],
+				properties: [
+					{
+						name: 'children',
+						customTypes: [{
+							name: 'CSTableHeaderChildren',
+							types: ['<CSTableCell />', 'any']
+						}],
+						description: 'This component is designed to support CSTableCell as a child.'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the table header.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the table header.'
+					}, {
+						name: 'headerSticky',
+						types: ['boolean'],
+						description: 'Apply sticky positioning to the table header.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the table header div.'
+					}
 				]
 			}, {
 				name: 'CSTableBody',
@@ -625,6 +684,32 @@ class CSTablePreview extends React.Component {
 								</CSTable>`
 							}
 						]
+					}
+				],
+				properties: [
+					{
+						name: 'children',
+						customTypes: [{
+							name: 'CSTableBodyChildren',
+							types: ['<CSTableRow />', 'any']
+						}],
+						description: 'This component is designed to support CSTableRow as a child.'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the table body.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the table body.'
+					}, {
+						name: 'maxHeight',
+						types: ['string'],
+						description: 'Set the max-height attribute for the table body.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the table body div.'
 					}
 				]
 			}, {
@@ -997,6 +1082,52 @@ class CSTablePreview extends React.Component {
 							}
 						]
 					}
+				],
+				properties: [
+					{
+						name: 'children',
+						customTypes: [{
+							name: 'CSTableRowChildren',
+							types: ['<CSTableCell />', 'any']
+						}],
+						description: 'This component is designed to support CSTableCell as a child.'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the table row.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the table row.'
+					}, {
+						name: 'onClick',
+						types: ['(event) => any'],
+						description: 'Handler method for the click event.'
+					}, {
+						name: 'onMouseDown',
+						types: ['(event) => any'],
+						description: 'Handler method for the mouse down event.'
+					}, {
+						name: 'onMouseOut',
+						types: ['(event) => any'],
+						description: 'Handler method for the mouse out event.'
+					}, {
+						name: 'onMouseOver',
+						types: ['(event) => any'],
+						description: 'Handler method for the mouse over event.'
+					}, {
+						name: 'rowHighlighted',
+						types: ['bolean'],
+						description: 'Highlights row. Used to simulate hover effect.'
+					}, {
+						name: 'rowSelected',
+						types: ['bolean'],
+						description: 'Marks selected row, which works only if table has selectableRows true.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the table row div.'
+					}
 				]
 			}, {
 				name: 'CSTableCell',
@@ -1144,237 +1275,57 @@ class CSTablePreview extends React.Component {
 							}
 						]
 					}
-				]
-			}
-		],
-		properties: [
-			{
-				name: 'children',
-				customTypes: [{
-					name: 'CSTableChildren',
-					types: ['<CSTableHeader />', '<CSTableBody />', 'any']
-				}],
-				description: 'This component is designed to support CSTableHeader and CSTableBody as children.'
-			}, {
-				name: 'selectableRows',
-				types: ['boolean'],
-				description: 'Implement keyboard support for table rows.'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the table.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the table.'
-			}, {
-				name: 'tableDescription',
-				types: ['string'],
-				description: 'Set a table description for accessibility screen readers.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the table div.'
-			}
-		],
-		accessibility: [
-			{
-				criterionList: [
-					'1.4.4',
-					'2.1.1',
-					'2.1.2',
-					'4.1.2'
 				],
-				requirements: [
+				properties: [
 					{
-						structure: [
-							''
-						],
-						properties: [
-							''
-						],
-						visual: [
-							''
-						],
-						keyboardOperability: [
-							''
-						]
+						name: 'children',
+						types: ['any'],
+						description: 'This component supports custom content passed as children.'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the table cell.'
+					}, {
+						name: 'grow',
+						types: ['number'],
+						description: 'Set the flex-grow attribute for the table cell.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the table cell.'
+					}, {
+						name: 'maxWidth',
+						types: ['string'],
+						description: 'Set the max-width attribute for the table cell.'
+					}, {
+						name: 'text',
+						types: ['string'],
+						description: 'Set textual content for the table cell.'
+					}, {
+						name: 'role',
+						required: 'CSTableHeader',
+						types: ['string'],
+						default: '\'cell\'',
+						description: 'The table header sets the role to columnheader.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the table cell div.'
 					}
 				]
 			}
-		]
+		],
+		accessibility: {
+			criterionList: [
+				'1.4.4',
+				'2.1.1',
+				'2.1.2',
+				'4.1.2'
+			]
+		}
 	})
 
-	getTableHeaderDoc = () => ({
-		name: 'Table Header',
-		properties: [
-			{
-				name: 'children',
-				customTypes: [{
-					name: 'CSTableHeaderChildren',
-					types: ['<CSTableCell />', 'any']
-				}],
-				description: 'This component is designed to support CSTableCell as a child.'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the table header.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the table header.'
-			}, {
-				name: 'headerSticky',
-				types: ['boolean'],
-				description: 'Apply sticky positioning to the table header.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the table header div.'
-			}
-		]
-	})
-
-	getTableBodyDoc = () => ({
-		name: 'Table Body',
-		properties: [
-			{
-				name: 'children',
-				customTypes: [{
-					name: 'CSTableBodyChildren',
-					types: ['<CSTableRow />', 'any']
-				}],
-				description: 'This component is designed to support CSTableRow as a child.'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the table body.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the table body.'
-			}, {
-				name: 'maxHeight',
-				types: ['string'],
-				description: 'Set the max-height attribute for the table body.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the table body div.'
-			}
-		]
-	})
-
-	getTableRowDoc = () => ({
-		name: 'Table Row',
-		properties: [
-			{
-				name: 'children',
-				customTypes: [{
-					name: 'CSTableRowChildren',
-					types: ['<CSTableCell />', 'any']
-				}],
-				description: 'This component is designed to support CSTableCell as a child.'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the table row.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the table row.'
-			}, {
-				name: 'onClick',
-				types: ['(event) => any'],
-				description: 'Handler method for the click event.'
-			}, {
-				name: 'onMouseDown',
-				types: ['(event) => any'],
-				description: 'Handler method for the mouse down event.'
-			}, {
-				name: 'onMouseOut',
-				types: ['(event) => any'],
-				description: 'Handler method for the mouse out event.'
-			}, {
-				name: 'onMouseOver',
-				types: ['(event) => any'],
-				description: 'Handler method for the mouse over event.'
-			}, {
-				name: 'rowHighlighted',
-				types: ['bolean'],
-				description: 'Highlights row. Used to simulate hover effect.'
-			}, {
-				name: 'rowSelected',
-				types: ['bolean'],
-				description: 'Marks selected row, which works only if table has selectableRows true.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the table row div.'
-			}
-		]
-	})
-
-	getTableCellDoc = () => ({
-		name: 'Table Cell',
-		properties: [
-			{
-				name: 'children',
-				types: ['any'],
-				description: 'This component supports custom content passed as children.'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the table cell.'
-			}, {
-				name: 'grow',
-				types: ['number'],
-				description: 'Set the flex-grow attribute for the table cell.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the table cell.'
-			}, {
-				name: 'maxWidth',
-				types: ['string'],
-				description: 'Set the max-width attribute for the table cell.'
-			}, {
-				name: 'text',
-				types: ['string'],
-				description: 'Set textual content for the table cell.'
-			}, {
-				name: 'role',
-				required: 'CSTableHeader',
-				types: ['string'],
-				default: '\'cell\'',
-				description: 'The table header sets the role to columnheader.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the table cell div.'
-			}
-		]
-	})
-
-	render() {
-		const component = this.getTableDoc();
-		const component2 = this.getTableHeaderDoc();
-		const component3 = this.getTableBodyDoc();
-		const component4 = this.getTableRowDoc();
-		const component5 = this.getTableCellDoc();
-
-		return (
-			<>
-				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties {...component} />
-					<PreviewTable components={[component, component2, component3, component4, component5]} />
-					<PreviewAccessibility components={[component]} />
-				</div>
-				<PreviewLinks {...component} />
-			</>
-		);
-	}
+	render = () => <Preview {...this.getDoc()} />;
 }
 
 export default CSTablePreview;

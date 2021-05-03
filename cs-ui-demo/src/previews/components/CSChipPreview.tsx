@@ -1,18 +1,14 @@
 import React from 'react';
-import PreviewHeading from '../PreviewHeading';
-import PreviewProperties from '../PreviewProperties';
-import PreviewTable from '../PreviewTable';
-import PreviewAccessibility from '../PreviewAccessibility';
-import PreviewLinks from '../PreviewLinks';
-
 import { CSChip } from '@cloudsense/cs-ui-components';
 
+import Preview from '../Preview';
+
 class CSChipPreview extends React.Component {
-	getChipDoc = () => ({
+	getDoc = () => ({
 		name: 'Chip',
-		usage: 'Chips are labels which hold small amounts of information',
+		usage: 'Chips are labels which hold small amounts of information.',
 		accessible: 'yes',
-		previews: [
+		components: [
 			{
 				name: 'CSChip',
 				examples: [
@@ -209,91 +205,73 @@ class CSChipPreview extends React.Component {
 							}
 						]
 					}
-				]
-			}
-		],
-		properties: [
-			{
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the chip.'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the chip.'
-			}, {
-				name: 'color',
-				types: ['string'],
-				description: 'Apply custom color to the chip. Custom color will override variant styles.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the chip div.'
-			}, {
-				name: 'text',
-				required: true,
-				types: ['string'],
-				description: 'Set the text inside of the chip.'
-			}, {
-				name: 'variant',
-				customTypes: [{
-					name: 'CSChipVariant',
-					types: [
-						'\'brand\'',
-						'\'success\'',
-						'\'neutral\'',
-						'\'error\'',
-						'\'warning\'',
-						'\'transparent\'',
-						'\'dark\''
-					]
-				}],
-				default: '\'brand\'',
-				description: 'Set the chip variant.'
-			}, {
-				name: 'variantStyle',
-				customTypes: [{
-					name: 'CSChipVariantStyle',
-					types: ['\'fill\'', '\'border\'']
-				}],
-				default: '\'fill\'',
-				description: 'Set the border variant for the chip.'
-			}
-		],
-		accessibility: [
-			{
-				criterionList: [
-					'1.4.4'
 				],
-				requirements: [
+				properties: [
 					{
-						structure: [
-							'`<div>` with text - visible to screen reader'
-						],
-						styling: [
-							'Color contrast ratio > 4.5'
-						]
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the chip.'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the chip.'
+					}, {
+						name: 'color',
+						types: ['string'],
+						description: 'Apply custom color to the chip. Custom color will override variant styles.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the chip div.'
+					}, {
+						name: 'text',
+						required: true,
+						types: ['string'],
+						description: 'Set the text inside of the chip.'
+					}, {
+						name: 'variant',
+						customTypes: [{
+							name: 'CSChipVariant',
+							types: [
+								'\'brand\'',
+								'\'success\'',
+								'\'neutral\'',
+								'\'error\'',
+								'\'warning\'',
+								'\'transparent\'',
+								'\'dark\''
+							]
+						}],
+						default: '\'brand\'',
+						description: 'Set the chip variant.'
+					}, {
+						name: 'variantStyle',
+						customTypes: [{
+							name: 'CSChipVariantStyle',
+							types: ['\'fill\'', '\'border\'']
+						}],
+						default: '\'fill\'',
+						description: 'Set the border variant for the chip.'
 					}
 				]
 			}
-		]
+		],
+		accessibility: {
+			criterionList: [
+				'1.4.4'
+			],
+			requirements: {
+				structure: [
+					'`<div>` with text - visible to screen reader'
+				],
+				styling: [
+					'Color contrast ratio > 4.5'
+				]
+			}
+		}
 	})
 
-	render() {
-		const component = this.getChipDoc();
-
-		return (
-			<>
-				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties {...component} />
-					<PreviewTable components={[component]} />
-					<PreviewAccessibility components={[component]} />
-				</div>
-				<PreviewLinks {...component} />
-			</>
-		);
-	}
+	render = () => <Preview {...this.getDoc()} />;
 }
 
 export default CSChipPreview;

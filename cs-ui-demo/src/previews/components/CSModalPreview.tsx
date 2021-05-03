@@ -1,18 +1,13 @@
 import React from 'react';
-import PreviewHeading from '../PreviewHeading';
-import PreviewProperties from '../PreviewProperties';
-import PreviewTable from '../PreviewTable';
-import PreviewAccessibility from '../PreviewAccessibility';
-import PreviewLinks from '../PreviewLinks';
-
 import {
 	CSModal,
 	CSModalHeader,
 	CSModalBody,
 	CSModalFooter,
-	CSButton,
-	CSAlert
+	CSButton
 } from '@cloudsense/cs-ui-components';
+
+import Preview from '../Preview';
 
 interface CSModalPreviewState {
 	visibleModal?: string;
@@ -35,11 +30,11 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 		this.setState({ visibleModal: undefined });
 	}
 
-	getModalDoc = () => ({
+	getDoc = () => ({
 		name: 'Modal',
 		usage: 'Modals are used to display content in a layer above the app. This paradigm is used in cases such as the creation or editing of a record, as well as various types of messaging and wizards.',
 		accessible: 'yes',
-		previews: [
+		components: [
 			{
 				name: 'CSModal',
 				examples: [
@@ -817,6 +812,90 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 							}
 						]
 					}
+				],
+				properties: [
+					{
+						name: 'children',
+						customTypes: [{
+							name: 'CSModalChildren',
+							types: ['<CSModalHeader />', '<CSModalBody />', '<CSModalFooter />', 'any']
+						}],
+						description: 'This component is designed to support CSModalHeader, CSModalBody and CSModalFooter as children.'
+					}, {
+						name: 'animated',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Disable animations/transitions. This prop is obsolete and will soon be removed. Do not use it.'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the modal wrapper.'
+					}, {
+						name: 'closeButton',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Show the close button.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the modal.'
+					}, {
+						name: 'loading',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Show the loading spinner and mute the content.'
+					}, {
+						name: 'loadingText',
+						types: ['string'],
+						description: 'Set which text to show while the loading state is on.'
+					}, {
+						name: 'onClose',
+						types: ['(event) => void'],
+						description: 'Handler method for closing the modal.'
+					}, {
+						name: 'outerClickClose',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Control whether the modal should be closed on outside clicks.'
+					}, {
+						name: 'size',
+						customTypes: [{
+							name: 'CSModalSize',
+							types: [
+								'\'auto\'',
+								'\'xsmall\'',
+								'\'small\'',
+								'\'medium\'',
+								'\'large\'',
+								'\'xlarge\''
+							]
+						}],
+						default: '\'auto\'',
+						description: 'Set the modal size.'
+					}, {
+						name: 'style',
+						types: ['object'],
+						description: 'Add custom styles as inline css.'
+					}, {
+						name: 'visible',
+						types: ['boolean'],
+						default: 'true',
+						description: 'Control whether or not to render the modal. This prop will soon change its behaviour. Please treat it as required.'
+					}, {
+						name: 'mounted',
+						required: 'CSUnmountDelay',
+						types: ['boolean'],
+						description: 'Enforces transition logic.'
+					}, {
+						name: 'setMounted',
+						required: 'CSUnmountDelay',
+						types: ['() => void'],
+						description: 'Manages the mounted prop.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the modal overlay div.'
+					}
 				]
 			}, {
 				name: 'CSModalHeader',
@@ -877,6 +956,38 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 								</CSModal>`
 							}
 						]
+					}
+				],
+				properties: [
+					{
+						name: 'children',
+						types: ['any'],
+						description: 'This component supports custom content passed as children.'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the modal header.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the modal header.'
+					}, {
+						name: 'subtitle',
+						types: ['string'],
+						description: 'Set a subtitle for the modal header.'
+					}, {
+						name: 'title',
+						types: ['string'],
+						description: 'Set a title for the modal header.'
+					}, {
+						name: 'titleId',
+						required: 'CSModal',
+						types: ['string'],
+						description: 'Establish a relationship between modal title and the dialog wrapper.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the header tag.'
 					}
 				]
 			}, {
@@ -940,6 +1051,35 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 								</CSModal>`
 							}
 						]
+					}
+				],
+				properties: [
+					{
+						name: 'children',
+						types: ['any'],
+						description: 'This component supports custom content passed as children.'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the modal body wrapper.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the modal body.'
+					}, {
+						name: 'minHeight',
+						types: ['string'],
+						default: '\'0\'',
+						description: 'Set custom min-height for the modal body. (eg. 100px, 2rem, 50vh, etc.)'
+					}, {
+						name: 'padding',
+						types: ['string'],
+						default: '\'1rem\'',
+						description: 'Set custom padding for the modal body. (eg. 0, 10px, 2rem, etc.)'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the modal body div.'
 					}
 				]
 			}, {
@@ -1020,252 +1160,69 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 							}
 						]
 					}
-				]
-			}
-		],
-		properties: [
-			{
-				name: 'children',
-				customTypes: [{
-					name: 'CSModalChildren',
-					types: ['<CSModalHeader />', '<CSModalBody />', '<CSModalFooter />', 'any']
-				}],
-				description: 'This component is designed to support CSModalHeader, CSModalBody and CSModalFooter as children.'
-			}, {
-				name: 'animated',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Disable animations/transitions. This prop is obsolete and will soon be removed. Do not use it.'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the modal wrapper.'
-			}, {
-				name: 'closeButton',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Show the close button.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the modal.'
-			}, {
-				name: 'loading',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Show the loading spinner and mute the content.'
-			}, {
-				name: 'loadingText',
-				types: ['string'],
-				description: 'Set which text to show while the loading state is on.'
-			}, {
-				name: 'onClose',
-				types: ['(event) => void'],
-				description: 'Handler method for closing the modal.'
-			}, {
-				name: 'outerClickClose',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Control whether the modal should be closed on outside clicks.'
-			}, {
-				name: 'size',
-				customTypes: [{
-					name: 'CSModalSize',
-					types: [
-						'\'auto\'',
-						'\'xsmall\'',
-						'\'small\'',
-						'\'medium\'',
-						'\'large\'',
-						'\'xlarge\''
-					]
-				}],
-				default: '\'auto\'',
-				description: 'Set the modal size.'
-			}, {
-				name: 'style',
-				types: ['object'],
-				description: 'Add custom styles as inline css.'
-			}, {
-				name: 'visible',
-				types: ['boolean'],
-				default: 'true',
-				description: 'Control whether or not to render the modal. This prop will soon change its behaviour. Please treat it as required.'
-			}, {
-				name: 'mounted',
-				required: 'CSUnmountDelay',
-				types: ['boolean'],
-				description: 'Enforces transition logic.'
-			}, {
-				name: 'setMounted',
-				required: 'CSUnmountDelay',
-				types: ['() => void'],
-				description: 'Manages the mounted prop.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the modal overlay div.'
-			}
-		],
-		accessibility: [
-			{
-				criterionList: [
-					'1.4.4',
-					'2.1.1',
-					'2.1.2',
-					'3.2.1',
-					'4.1.2'
 				],
-				requirements: [
+				properties: [
 					{
-						structure: [
-							'`<header>`',
-							'`<footer>`',
-							'Modal title is `<h3>`',
-							'Modal subtitle is `<h4>`'
-						],
-						properties: [
-							'`aria-modal`',
-							'`role="dialog"`',
-							'`aria-describedby` - semantically connects title with parent modal div containing role, which is read once modal is opened'
-						],
-						styling: [
-							'Color contrast ratio > 4.5'
-						],
-						keyboardOperability: [
-							'Logic for focus management to move on modal when it is opened and to cycle within it until closed',
-							'Close button is `<button>` and a first child - allows keyboard focus',
-							'`Esc` - close modal'
-						]
+						name: 'children',
+						types: ['any'],
+						description: 'This component supports custom content passed as children.'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the modal footer.'
+					}, {
+						name: 'align',
+						customTypes: [{
+							name: 'CSModalFooterAlign',
+							types: ['\'right\'', '\'center\'', '\'left\'']
+						}],
+						default: '\'right\'',
+						description: 'Align the modal footer buttons.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the modal footer.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the footer tag.'
 					}
 				]
 			}
-		]
-	})
-
-	getModalHeaderDoc = () => ({
-		name: 'Modal Header',
-		properties: [
-			{
-				name: 'children',
-				types: ['any'],
-				description: 'This component supports custom content passed as children.'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the modal header.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the modal header.'
-			}, {
-				name: 'subtitle',
-				types: ['string'],
-				description: 'Set a subtitle for the modal header.'
-			}, {
-				name: 'title',
-				types: ['string'],
-				description: 'Set a title for the modal header.'
-			}, {
-				name: 'titleId',
-				required: 'CSModal',
-				types: ['string'],
-				description: 'Establish a relationship between modal title and the dialog wrapper.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the header tag.'
+		],
+		accessibility: {
+			criterionList: [
+				'1.4.4',
+				'2.1.1',
+				'2.1.2',
+				'3.2.1',
+				'4.1.2'
+			],
+			requirements: {
+				structure: [
+					'`<header>`',
+					'`<footer>`',
+					'Modal title is `<h3>`',
+					'Modal subtitle is `<h4>`'
+				],
+				attributes: [
+					'`aria-modal`',
+					'`role="dialog"`',
+					'`aria-describedby` - semantically connects title with parent modal div containing role, which is read once modal is opened'
+				],
+				styling: [
+					'Color contrast ratio > 4.5'
+				],
+				keyboardOperability: [
+					'Logic for focus management to move on modal when it is opened and to cycle within it until closed',
+					'Close button is `<button>` and a first child - allows keyboard focus',
+					'`Esc` - close modal'
+				]
 			}
-		]
+		}
 	})
 
-	getModalBodyDoc = () => ({
-		name: 'Modal Body',
-		properties: [
-			{
-				name: 'children',
-				types: ['any'],
-				description: 'This component supports custom content passed as children.'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the modal body wrapper.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the modal body.'
-			}, {
-				name: 'minHeight',
-				types: ['string'],
-				default: '\'0\'',
-				description: 'Set custom min-height for the modal body. (eg. 100px, 2rem, 50vh, etc.)'
-			}, {
-				name: 'padding',
-				types: ['string'],
-				default: '\'1rem\'',
-				description: 'Set custom padding for the modal body. (eg. 0, 10px, 2rem, etc.)'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the modal body div.'
-			}
-		]
-	})
-
-	getModalFooterDoc = () => ({
-		name: 'Modal Footer',
-		properties: [
-			{
-				name: 'children',
-				types: ['any'],
-				description: 'This component supports custom content passed as children.'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the modal footer.'
-			}, {
-				name: 'align',
-				customTypes: [{
-					name: 'CSModalFooterAlign',
-					types: ['\'right\'', '\'center\'', '\'left\'']
-				}],
-				default: '\'right\'',
-				description: 'Align the modal footer buttons.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the modal footer.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the footer tag.'
-			}
-		]
-	})
-
-	render() {
-		const component = this.getModalDoc();
-		const component2 = this.getModalHeaderDoc();
-		const component3 = this.getModalBodyDoc();
-		const component4 = this.getModalFooterDoc();
-
-		return (
-			<>
-				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<CSAlert
-						variant="info"
-						text="When using the CSModal component a div will be created with an id and class of cs-modal-root as a sibling of cs-app-wrapper. If you don't want the modal to render here you can manually add a div with the same id and class wherever you want and all modals will render there. Inspect an example modal for more information."
-						styleFormat="scoped"
-					/>
-					<PreviewProperties {...component} />
-					<PreviewTable components={[component, component2, component3, component4]} />
-					<PreviewAccessibility components={[component]} />
-				</div>
-				<PreviewLinks {...component} />
-			</>
-		);
-	}
+	render = () => <Preview {...this.getDoc()} />;
 }
 
 export default CSModalPreview;

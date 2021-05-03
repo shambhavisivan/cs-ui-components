@@ -1,18 +1,14 @@
 import React from 'react';
-import PreviewHeading from '../PreviewHeading';
-import PreviewProperties from '../PreviewProperties';
-import PreviewTable from '../PreviewTable';
-import PreviewAccessibility from '../PreviewAccessibility';
-import PreviewLinks from '../PreviewLinks';
-
 import { CSFieldErrorMsg } from '@cloudsense/cs-ui-components';
 
+import Preview from '../Preview';
+
 class CSFieldErrorMsgPreview extends React.Component {
-	getFieldErrorMessageDoc = () => ({
+	getDoc = () => ({
 		name: 'Field Error Message',
-		usage: 'Field Error Message renders error message on form elements.',
+		usage: 'Field Error Message renders error messages on form elements.',
 		accessible: 'yes',
-		previews: [
+		components: [
 			{
 				name: 'CSFieldErrorMsg',
 				examples: [
@@ -44,55 +40,37 @@ class CSFieldErrorMsgPreview extends React.Component {
 							}
 						]
 					}
-				]
-			}
-		],
-		properties: [
-			{
-				name: 'message',
-				required: true,
-				customTypes: [{
-					name: 'CSFieldErrorMsgType',
-					types: ['string', 'Array<string>']
-				}],
-				description: 'Set the error message text'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the field error message span tag.'
-			}
-		],
-		accessibility: [
-			{
-				criterionList: [
-					'1.4.4'
 				],
-				requirements: [
+				properties: [
 					{
-						styling: [
-							'Color contrast ratio > 4.5'
-						]
+						name: 'message',
+						required: true,
+						customTypes: [{
+							name: 'CSFieldErrorMsgType',
+							types: ['string', 'Array<string>']
+						}],
+						description: 'Set the error message text'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the field error message span tag.'
 					}
 				]
 			}
-		]
+		],
+		accessibility: {
+			criterionList: [
+				'1.4.4'
+			],
+			requirements: {
+				styling: [
+					'Color contrast ratio > 4.5'
+				]
+			}
+		}
 	})
 
-	render() {
-		const component = this.getFieldErrorMessageDoc();
-
-		return (
-			<>
-				<div className="preview-section-wrapper divider-preview">
-					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties {...component} />
-					<PreviewTable components={[component]} />
-					<PreviewAccessibility components={[component]} />
-				</div>
-				<PreviewLinks {...component} />
-			</>
-		);
-	}
+	render = () => <Preview {...this.getDoc()} />;
 }
 
 export default CSFieldErrorMsgPreview;

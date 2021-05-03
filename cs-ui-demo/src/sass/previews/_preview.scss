@@ -62,19 +62,6 @@
 		overflow: visible;
 		overflow-y: auto;
 
-		> .cs-alert {
-			margin: 2rem 3rem 0;
-			width: auto;
-
-			+ .cs-alert {
-				margin-top: 0;
-			}
-
-			+ h2 {
-				padding-block-start: 3rem;
-			}
-		}
-
 		> h2 {
 			padding: 2rem 3rem 0;
 			font-size: 1.5rem;
@@ -173,6 +160,11 @@
 					@include sc(--csd-prop-custom-c);
 				}
 			}
+		}
+
+		.api-preview .properties-table-wrapper {
+			padding: 0;
+			margin-top: 2rem;
 		}
 	}
 }

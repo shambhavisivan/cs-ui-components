@@ -1,20 +1,20 @@
 import React from 'react';
-import PreviewHeading from '../PreviewHeading';
-import PreviewProperties from '../PreviewProperties';
-import PreviewTable from '../PreviewTable';
-import PreviewLinks from '../PreviewLinks';
-import PreviewAccessibility from '../PreviewAccessibility';
+import { CSPath, CSPathItem } from '@cloudsense/cs-ui-components';
 
-import { CSPath, CSPathItem, CSAlert } from '@cloudsense/cs-ui-components';
+import Preview from '../Preview';
 
 class CSPathPreview extends React.Component {
 	handleClick = () => alert('A Path Item has been clicked.');
 
-	getPathDoc = () => ({
+	getDoc = () => ({
 		name: 'Path',
 		usage: 'A process component communicates to the user the progress of a particular process.',
+		alerts: {
+			variant: 'warning',
+			text: 'This component is under construction and should not be used.'
+		},
 		accessible: 'yes',
-		previews: [
+		components: [
 			{
 				name: 'CSPath',
 				examples: [
@@ -38,6 +38,28 @@ class CSPathPreview extends React.Component {
 								</CSPath>`
 							}
 						]
+					}
+				],
+				properties: [
+					{
+						name: 'children',
+						customTypes: [{
+							name: 'CSPathChildren',
+							types: ['<CSPathItem />', 'any']
+						}],
+						description: 'This component is designed to support CSPathItem as a child.'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the path.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the path.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the path nav tag.'
 					}
 				]
 			}, {
@@ -154,133 +176,83 @@ class CSPathPreview extends React.Component {
 							}
 						]
 					}
-				]
-			}
-		],
-		properties: [
-			{
-				name: 'children',
-				customTypes: [{
-					name: 'CSPathChildren',
-					types: ['<CSPathItem />', 'any']
-				}],
-				description: 'This component is designed to support CSPathItem as a child.'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the path.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the path.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the path nav tag.'
-			}
-		],
-		accessibility: [
-			{
-				criterionList: [
-					'1.1.1',
-					'2.1.1',
-					'2.1.2',
-					'2.4.7',
-					'3.2.1',
-					'3.3.1',
-					'4.1.2'
 				],
-				requirements: [
+				properties: [
 					{
-						structure: [
-							'`<ol>`',
-							'`<li>`',
-							'`<button>`',
-							'Icon as a child element with `aria-hidden`'
-						],
-						properties: [
-							'`aria-current` - true when item is active',
-							'`aria-invalid` - true when item in error'
-						],
-						styling: [
-							'Color contrast ratio > 4.5',
-							'Distinct hover, active and focus state styles'
-						],
-						keyboardOperability: [
-							'`<button>` OOTB focusable and supports `Enter` and `Space` click'
-						]
+						name: 'active',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Control the active state.'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the path item.'
+					}, {
+						name: 'disabled',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Disable the path item.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the path item.'
+					}, {
+						name: 'onClick',
+						types: ['(event) => any'],
+						description: 'Handler method for the click event.'
+					}, {
+						name: 'status',
+						customTypes: [{
+							name: 'CSPathItemStatus',
+							types: ['\'success\'', '\'error\'']
+						}],
+						description: 'Set the color and the icon variant depending on status.'
+					}, {
+						name: 'name',
+						required: true,
+						types: ['string'],
+						description: 'Set the path item name.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the path item list item tag.'
 					}
 				]
 			}
-		]
-	})
-
-	getPathItemDoc = () => ({
-		name: 'Path Item',
-		properties: [
-			{
-				name: 'active',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Control the active state.'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the path item.'
-			}, {
-				name: 'disabled',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Disable the path item.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the path item.'
-			}, {
-				name: 'onClick',
-				types: ['(event) => any'],
-				description: 'Handler method for the click event.'
-			}, {
-				name: 'status',
-				customTypes: [{
-					name: 'CSPathItemStatus',
-					types: ['\'success\'', '\'error\'']
-				}],
-				description: 'Set the color and the icon variant depending on status.'
-			}, {
-				name: 'name',
-				required: true,
-				types: ['string'],
-				description: 'Set the path item name.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the path item list item tag.'
+		],
+		accessibility: {
+			criterionList: [
+				'1.1.1',
+				'2.1.1',
+				'2.1.2',
+				'2.4.7',
+				'3.2.1',
+				'3.3.1',
+				'4.1.2'
+			],
+			requirements: {
+				structure: [
+					'`<ol>`',
+					'`<li>`',
+					'`<button>`',
+					'Icon as a child element with `aria-hidden`'
+				],
+				attributes: [
+					'`aria-current` - true when item is active',
+					'`aria-invalid` - true when item in error'
+				],
+				styling: [
+					'Color contrast ratio > 4.5',
+					'Distinct hover, active and focus state styles'
+				],
+				keyboardOperability: [
+					'`<button>` OOTB focusable and supports `Enter` and `Space` click'
+				]
 			}
-		]
+		}
 	})
 
-	render() {
-		const component = this.getPathDoc();
-		const component2 = this.getPathItemDoc();
-
-		return (
-			<>
-				<div className="preview-section-wrapper">
-				<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<CSAlert
-						variant="warning"
-						text="This component is under construction and should not be used."
-						styleFormat="scoped"
-					/>
-					<PreviewProperties {...component} />
-					<PreviewTable components={[component, component2]} />
-					<PreviewAccessibility components={[component]} />
-				</div>
-				<PreviewLinks {...component} />
-			</>
-		);
-	}
+	render = () => <Preview {...this.getDoc()} />;
 }
 
 export default CSPathPreview;

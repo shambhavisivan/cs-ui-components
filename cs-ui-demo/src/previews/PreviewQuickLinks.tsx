@@ -1,23 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { CSButton, CSIcon, CSAlert } from '@cloudsense/cs-ui-components';
+import classNames from 'classnames';
 import { useQuickLinks } from '../context/QuickLinksContext';
-
+import { getSlug } from './helpers';
 import {
-	PreviewExample,
-	PreviewVariation,
-	PreviewLinksProps,
-	PreviewComponent
+	PreviewInterface,
+	ComponentInterface,
+	ExampleInterface,
+	VariationInterface
 } from './types';
 
-const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
-	const {
-		previews,
-		api,
-		accessibility
-	} = props;
-
+const PreviewQuickLinks: React.FC<PreviewInterface> = ({
+	components,
+	api,
+	accessibility
+}) => {
 	const [searchTerm, setSearchTerm] = useState<string>('');
-	const [visibleSections, setVisibleSections] = useState<Array<boolean>>(previews.map(() => true));
+	const [visibleSections, setVisibleSections] = useState<Array<boolean>>(components.map(() => true));
 
 	const { quickLinks, toggleQuickLinks } = useQuickLinks();
 
@@ -33,22 +32,29 @@ const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
 		});
 	};
 
-	const filterVariations = (example: PreviewExample) => {
+	const filterVariations = (example: ExampleInterface) => {
 		if (example.propName.toLowerCase().includes(searchTerm.toLowerCase())) {
 			return example;
 		}
 		return {
 			...example,
-			variations: example.variations.filter((variation: PreviewVariation) => (
+			variations: example.variations.filter((variation: VariationInterface) => (
 				variation.quickLink && variation.quickLink.toLowerCase().includes(searchTerm.toLowerCase())
 			))
 		};
 	};
 
-	const filterProps = (example: PreviewExample) => (example.variations.length);
+	const filterProps = (example: ExampleInterface) => (example.variations.length);
+
+	const sidebarClasses = classNames(
+		'prop-sidebar',
+		{
+			'quick-links-open': quickLinks
+		}
+	);
 
 	return (
-		<div className={'prop-sidebar' + (quickLinks ? ' quick-links-open' : ' quick-links-closed')}>
+		<div className={sidebarClasses}>
 			<div className="quick-links-toggle" onClick={toggleQuickLinks}>
 				<CSIcon name={quickLinks ? 'close' : 'rows'} />
 			</div>
@@ -70,13 +76,11 @@ const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
 				)}
 			</div>
 			<div className="prop-list">
-				{previews.map((preview: PreviewComponent, previewIndex: number) => {
-					const examples = preview.examples
-						.map(filterVariations)
-						.filter(filterProps);
-					const componentLink = preview.name.split(' ').join('-');
-					return (
-						<div key={preview.name}>
+				{components.map((component: ComponentInterface, previewIndex: number) => {
+					const examples = component.examples?.map(filterVariations).filter(filterProps);
+					const componentLink = `#${getSlug(component.name)}`;
+					return examples && (
+						<div key={component.name}>
 							<h4 className="component-name">
 								<CSButton
 									label={visibleSections[previewIndex] ? 'Collapse' : 'Expand'}
@@ -88,33 +92,24 @@ const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
 									iconSize="1rem"
 									onClick={() => handleClick(previewIndex)}
 								/>
-								<a href={`#component-${componentLink}`}>
-									{preview.name}
-								</a>
+								<a href={componentLink}>{component.name}</a>
 							</h4>
 							{!examples.length && (
-								<CSAlert
-									variant="info"
-									text={`No results in ${preview.name}.`}
-								/>
+								<CSAlert variant="info" text={`No results in ${component.name}.`} />
 							)}
-							{visibleSections[previewIndex] && examples.map((example: PreviewExample) => {
-								const propLink = `${componentLink}-${example.propName.split(' ').join('-')}`;
+							{visibleSections[previewIndex] && examples.map((example: ExampleInterface) => {
+								const propLink = `${componentLink}-${getSlug(example.propName)}`;
 								return (
 									<div className="prop-group" key={example.propName}>
 										<h5 className="prop-name">
-											<a href={`#component-preview-${propLink}`}>
-												{example.propName}
-											</a>
+											<a href={propLink}>{example.propName}</a>
 										</h5>
-										{example.variations.map((variation: PreviewVariation, variationIndex: number) => {
-											const variationLink = variation.quickLink && `${propLink}-${variation.quickLink.split(' ').join('-')}`;
+										{example.variations.map((variation: VariationInterface, variationIndex: number) => {
+											const variationLink = variation.quickLink && `${propLink}-${getSlug(variation.quickLink)}`;
 											return (
 												<span className="prop-variant" key={variationIndex}>
 													{variation.quickLink && (
-														<a href={`#component-variation-${variationLink}`}>
-															{variation.quickLink}
-														</a>
+														<a href={variationLink}>{variation.quickLink}</a>
 													)}
 												</span>
 											);
@@ -128,20 +123,20 @@ const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
 			</div>
 			<div className="prop-sidebar-bottom-group">
 				<h4>
-					<a href="#properties-table">
+					<a href="#component-props">
 						Properties List
 					</a>
 				</h4>
 				{api && (
 					<h4>
-						<a href="#api-preview">
+						<a href="#component-api">
 							API
 						</a>
 					</h4>
 				)}
 				{accessibility && (
 					<h4>
-						<a href="#accessibility-table">
+						<a href="#component-accessibility">
 							Accessibility
 						</a>
 					</h4>
@@ -151,4 +146,4 @@ const PreviewLinks: React.FC<PreviewLinksProps | any> = props => {
 	);
 };
 
-export default PreviewLinks;
+export default PreviewQuickLinks;

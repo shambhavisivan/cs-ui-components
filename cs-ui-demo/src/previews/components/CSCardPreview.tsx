@@ -1,18 +1,20 @@
 import React from 'react';
-import PreviewHeading from '../PreviewHeading';
-import PreviewProperties from '../PreviewProperties';
-import PreviewTable from '../PreviewTable';
-import PreviewAccessibility from '../PreviewAccessibility';
-import PreviewLinks from '../PreviewLinks';
+import {
+	CSCard,
+	CSCardHeader,
+	CSCardBody,
+	CSCardFooter,
+	CSButton
+} from '@cloudsense/cs-ui-components';
 
-import { CSCard, CSCardHeader, CSCardBody, CSCardFooter, CSButton } from '@cloudsense/cs-ui-components';
+import Preview from '../Preview';
 
 class CSCardPreview extends React.Component {
-	getCardDoc = () => ({
+	getDoc = () => ({
 		name: 'Card',
 		usage: 'Cards are used to apply a container around a related grouping of information.',
 		accessible: 'yes',
-		previews: [
+		components: [
 			{
 				name: 'CSCard',
 				examples: [
@@ -74,9 +76,31 @@ class CSCardPreview extends React.Component {
 							}
 						]
 					}
+				],
+				properties: [
+					{
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the card.'
+					}, {
+						name: 'children',
+						customTypes: [{
+							name: 'CSCardChildren',
+							types: ['<CSCardHeader />', '<CSCardBody />', '<CSCardFooter />', 'any']
+						}],
+						description: 'This component is designed to support CSCardHeader, CSCardBody and CSCardFooter as children.'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the card.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the card div.'
+					}
 				]
 			}, {
-				name: 'Card Header',
+				name: 'CSCardHeader',
 				examples: [
 					{
 						propName: 'collapsible',
@@ -327,6 +351,62 @@ class CSCardPreview extends React.Component {
 							}
 						]
 					}
+				],
+				properties: [
+					{
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the card header.'
+					}, {
+						name: 'collapsible',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Set whether the card is collapsible on click.'
+					}, {
+						name: 'defaultClosed',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Control whether the card is closed by default. It is designed to be used with collapsible prop.'
+					}, {
+						name: 'iconColor',
+						types: ['string'],
+						description: 'Set a custom color for the icon inside of the card header.'
+					}, {
+						name: 'iconFrame',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Show a frame behind the card header icon.'
+					}, {
+						name: 'iconName',
+						types: ['string'],
+						description: 'Name of the icon from the icons library.'
+					}, {
+						name: 'iconOrigin',
+						customTypes: [{
+							name: 'CSIconOrigin',
+							types: ['\'slds\'', '\'cs\'']
+						}],
+						default: '\'slds\'',
+						description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the card header.'
+					}, {
+						name: 'showBorder',
+						types: ['boolean'],
+						default: 'true',
+						description: 'Hide the border beneath the card header.'
+					}, {
+						name: 'title',
+						required: true,
+						types: ['string'],
+						description: 'Set a title for the card header.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the card header tag.'
+					}
 				]
 			}, {
 				name: 'CSCardBody',
@@ -390,184 +470,75 @@ class CSCardPreview extends React.Component {
 							}
 						]
 					}
-				]
-			}
-		],
-		properties: [
-			{
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the card.'
-			}, {
-				name: 'children',
-				customTypes: [{
-					name: 'CSCardChildren',
-					types: ['<CSCardHeader />', '<CSCardBody />', '<CSCardFooter />', 'any']
-				}],
-				description: 'This component is designed to support CSCardHeader, CSCardBody and CSCardFooter as children.'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the card.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the card div.'
-			}
-		],
-		accessibility: [
-			{
-				criterionList: [
-					'1.4.4'
 				],
-				requirements: [
+				properties: [
 					{
-						structure: [
-							'`<header>`',
-							'`<footer>`',
-							'Heading is `<h2>` - allows screen reader heading search'
-						],
-						properties: [
-							'`role="region"` - on a wrapper `<div>`, allows screen reader region search'
-						]
+						name: 'children',
+						types: ['any'],
+						description: 'This component supports custom content passed as children.'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the card body.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the card body.'
+					}, {
+						name: 'maxHeight',
+						types: ['string'],
+						description: 'Set the max-height attribute for the card body.'
+					}, {
+						name: 'padding',
+						types: ['string'],
+						description: 'Set custom padding for the card body.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the card body div.'
+					}
+				]
+			}, {
+				name: 'CSCardFooter',
+				properties: [
+					{
+						name: 'children',
+						types: ['any'],
+						description: 'This component supports custom content passed as children.'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the card footer.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the card footer.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the footer tag.'
 					}
 				]
 			}
-		]
-	})
-
-	getCardHeaderDoc = () => ({
-		name: 'Card Header',
-		properties: [
-			{
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the card header.'
-			}, {
-				name: 'collapsible',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Set whether the card is collapsible on click.'
-			}, {
-				name: 'defaultClosed',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Control whether the card is closed by default. It is designed to be used with collapsible prop.'
-			}, {
-				name: 'iconColor',
-				types: ['string'],
-				description: 'Set a custom color for the icon inside of the card header.'
-			}, {
-				name: 'iconFrame',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Show a frame behind the card header icon.'
-			}, {
-				name: 'iconName',
-				types: ['string'],
-				description: 'Name of the icon from the icons library.'
-			}, {
-				name: 'iconOrigin',
-				customTypes: [{
-					name: 'CSIconOrigin',
-					types: ['\'slds\'', '\'cs\'']
-				}],
-				default: '\'slds\'',
-				description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the card header.'
-			}, {
-				name: 'showBorder',
-				types: ['boolean'],
-				default: 'true',
-				description: 'Hide the border beneath the card header.'
-			}, {
-				name: 'title',
-				required: true,
-				types: ['string'],
-				description: 'Set a title for the card header.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the card header tag.'
+		],
+		accessibility: {
+			criterionList: [
+				'1.4.4'
+			],
+			requirements: {
+				structure: [
+					'`<header>`',
+					'`<footer>`',
+					'Heading is `<h2>` - allows screen reader heading search'
+				],
+				attributes: [
+					'`role="region"` - on a wrapper `<div>`, allows screen reader region search'
+				]
 			}
-		]
+		}
 	})
 
-	getCardBodyDoc = () => ({
-		name: 'Card Body',
-		properties: [
-			{
-				name: 'children',
-				types: ['any'],
-				description: 'This component supports custom content passed as children.'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the card body.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the card body.'
-			}, {
-				name: 'maxHeight',
-				types: ['string'],
-				description: 'Set the max-height attribute for the card body.'
-			}, {
-				name: 'padding',
-				types: ['string'],
-				description: 'Set custom padding for the card body.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the card body div.'
-			}
-		]
-	})
-
-	getCardFooterDoc = () => ({
-		name: 'Card Footer',
-		properties: [
-			{
-				name: 'children',
-				types: ['any'],
-				description: 'This component supports custom content passed as children.'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the card footer.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the card footer.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the footer tag.'
-			}
-		]
-	})
-
-	render() {
-		const component = this.getCardDoc();
-		const component2 = this.getCardHeaderDoc();
-		const component3 = this.getCardBodyDoc();
-		const component4 = this.getCardFooterDoc();
-
-		return (
-			<>
-				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties {...component} />
-					<PreviewTable components={[component, component2, component3, component4]} />
-					<PreviewAccessibility components={[component]} />
-				</div>
-					<PreviewLinks {...component} />
-			</>
-		);
-	}
+	render = () => <Preview {...this.getDoc()} />;
 }
 
 export default CSCardPreview;

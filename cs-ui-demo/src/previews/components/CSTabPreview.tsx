@@ -1,21 +1,17 @@
 import React from 'react';
-import PreviewHeading from '../PreviewHeading';
-import PreviewProperties from '../PreviewProperties';
-import PreviewTable from '../PreviewTable';
-import PreviewAccessibility from '../PreviewAccessibility';
-import PreviewLinks from '../PreviewLinks';
 import { NavLink } from 'react-router-dom';
-
 import { CSTabGroup, CSTab, CSIcon } from '@cloudsense/cs-ui-components';
+
+import Preview from '../Preview';
 
 class CSTabPreview extends React.Component {
 	handleClick = () => alert('Tab has been clicked.');
 
-	getTabDoc = () => ({
+	getDoc = () => ({
 		name: 'Tab',
 		usage: 'Tabs keeps related content in a single container that is shown and hidden through navigation.',
 		accessible: 'yes',
-		previews: [
+		components: [
 			{
 				name: 'CSTabGroup',
 				examples: [
@@ -78,6 +74,84 @@ class CSTabPreview extends React.Component {
 								</CSTabGroup>`
 							}
 						]
+					}
+				],
+				properties: [
+					{
+						name: 'active',
+						types: ['string'],
+						description: 'Control the active state.'
+					}, {
+						name: 'children',
+						types: ['any'],
+						description: 'This component supports custom content passed as children.'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the tab.'
+					}, {
+						name: 'disabled',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Disable the tab.'
+					}, {
+						name: 'iconOrigin',
+						customTypes: [{
+							name: 'CSIconOrigin',
+							types: ['\'slds\'', '\'cs\'']
+						}],
+						default: '\'slds\'',
+						description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the tab.'
+					}, {
+						name: 'onClick',
+						types: ['(value) => any'],
+						description: 'Handler method for the click event.'
+					}, {
+						name: 'routerLink',
+						types: ['Element'],
+						description: 'Define a React Router NavLink or Link component to be rendered instead of the tab.'
+					}, {
+						name: 'status',
+						customTypes: [{
+							name: 'CSTabStatus',
+							types: [
+								'\'initial\'',
+								'\'error\'',
+								'\'warning\'',
+								'\'success\''
+							]
+						}],
+						default: '\'initial\'',
+						description: 'Set the color and the icon variant depending on status.'
+					}, {
+						name: 'tabIcon',
+						types: ['string'],
+						description: 'Override the default icon defined by the variant.'
+					}, {
+						name: 'name',
+						types: ['string'],
+						description: 'Set the tab name.'
+					}, {
+						name: 'tooltipContent',
+						types: ['string'],
+						description: 'Set the tooltip content and replace the icon with a tooltip. Tooltip icons will match tab status icons.'
+					}, {
+						name: 'parentVariant',
+						required: 'CSTabGroup',
+						customTypes: [{
+							name: 'CSTabGroupVariant',
+							types: ['\'normal\'', '\'large\'']
+						}],
+						default: '\'normal\'',
+						description: 'Set the tab variant.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the tab button or router link.'
 					}
 				]
 			}, {
@@ -424,178 +498,77 @@ class CSTabPreview extends React.Component {
 							}
 						]
 					}
-				]
-			}
-		],
-		properties: [
-			{
-				name: 'active',
-				types: ['string'],
-				description: 'Control the active state.'
-			}, {
-				name: 'children',
-				types: ['any'],
-				description: 'This component supports custom content passed as children.'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the tab.'
-			}, {
-				name: 'disabled',
-				types: ['boolean'],
-				default: 'false',
-				description: 'Disable the tab.'
-			}, {
-				name: 'iconOrigin',
-				customTypes: [{
-					name: 'CSIconOrigin',
-					types: ['\'slds\'', '\'cs\'']
-				}],
-				default: '\'slds\'',
-				description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the tab.'
-			}, {
-				name: 'onClick',
-				types: ['(value) => any'],
-				description: 'Handler method for the click event.'
-			}, {
-				name: 'routerLink',
-				types: ['Element'],
-				description: 'Define a React Router NavLink or Link component to be rendered instead of the tab.'
-			}, {
-				name: 'status',
-				customTypes: [{
-					name: 'CSTabStatus',
-					types: [
-						'\'initial\'',
-						'\'error\'',
-						'\'warning\'',
-						'\'success\''
-					]
-				}],
-				default: '\'initial\'',
-				description: 'Set the color and the icon variant depending on status.'
-			}, {
-				name: 'tabIcon',
-				types: ['string'],
-				description: 'Override the default icon defined by the variant.'
-			}, {
-				name: 'name',
-				types: ['string'],
-				description: 'Set the tab name.'
-			}, {
-				name: 'tooltipContent',
-				types: ['string'],
-				description: 'Set the tooltip content and replace the icon with a tooltip. Tooltip icons will match tab status icons.'
-			}, {
-				name: 'parentVariant',
-				required: 'CSTabGroup',
-				customTypes: [{
-					name: 'CSTabGroupVariant',
-					types: ['\'normal\'', '\'large\'']
-				}],
-				default: '\'normal\'',
-				description: 'Set the tab variant.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the tab button or router link.'
-			}
-		],
-		accessibility: [
-			{
-				criterionList: [
-					'1.4.4',
-					'2.1.1',
-					'2.1.2',
-					'2.4.7',
-					'3.2.1',
-					'3.3.1',
-					'4.1.2'
 				],
-				requirements: [
+				properties: [
 					{
-						structure: [
-							'`<nav>` is a top wrapper - allows screen reader navigation search',
-							'`<ol>` is items wrapper - allows screen reader list search',
-							'`<button>`\'s wrapped in `<li>` - allows screen reader list navigation while preserving keyboard operability',
-							'Icon as a child element with `aria-hidden`'
-						],
-						properties: [
-							'`aria-label`',
-							'`aria-invalid` - true when there is an error',
-							'`aria-current` - true when tab is selected'
-						],
-						visual: [
-							'Colors contrast ratio > 4.5 (note: disabled state fails)',
-							'Distinct hover, active and focus state styles'
-						],
-						keyboardOperability: [
-							'`<button>` OOTB focusable and supports clicks with `Enter` and `Space` keys'
-						]
+						name: 'children',
+						customTypes: [{
+							name: 'CSTabGroupChildren',
+							types: ['<CSTab />', 'any']
+						}],
+						description: 'This component is designed to support CSTab as a child.'
+					}, {
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the tab group.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the tab group.'
+					}, {
+						name: 'listName',
+						types: ['string'],
+						description: 'Override the default aria-label value.'
+					}, {
+						name: 'variant',
+						customTypes: [{
+							name: 'CSTabGroupVariant',
+							types: ['\'normal\'', '\'large\'']
+						}],
+						default: '\'normal\'',
+						description: 'Set the tab group variant.'
+					}, {
+						name: '[key: string]',
+						types: ['any'],
+						description: 'Spreads the rest of the props to the tab group div wrapper.'
 					}
 				]
 			}
-		]
-	})
-
-	getTabGroupDoc = () => ({
-		name: 'Tab Group',
-		properties: [
-			{
-				name: 'children',
-				customTypes: [{
-					name: 'CSTabGroupChildren',
-					types: ['<CSTab />', 'any']
-				}],
-				description: 'This component is designed to support CSTab as a child.'
-			}, {
-				name: 'className',
-				types: ['string'],
-				description: 'Apply custom CSS classes to the tab group.'
-			}, {
-				name: 'id',
-				types: ['string'],
-				description: 'Set the ID for the tab group.'
-			}, {
-				name: 'listName',
-				types: ['string'],
-				description: 'Override the default aria-label value.'
-			}, {
-				name: 'variant',
-				customTypes: [{
-					name: 'CSTabGroupVariant',
-					types: ['\'normal\'', '\'large\'']
-				}],
-				default: '\'normal\'',
-				description: 'Set the tab group variant.'
-			}, {
-				name: '[key: string]',
-				types: ['any'],
-				description: 'Spreads the rest of the props to the tab group div wrapper.'
+		],
+		accessibility: {
+			criterionList: [
+				'1.4.4',
+				'2.1.1',
+				'2.1.2',
+				'2.4.7',
+				'3.2.1',
+				'3.3.1',
+				'4.1.2'
+			],
+			requirements: {
+				structure: [
+					'`<nav>` is a top wrapper - allows screen reader navigation search',
+					'`<ol>` is items wrapper - allows screen reader list search',
+					'`<button>`\'s wrapped in `<li>` - allows screen reader list navigation while preserving keyboard operability',
+					'Icon as a child element with `aria-hidden`'
+				],
+				attributes: [
+					'`aria-label`',
+					'`aria-invalid` - true when there is an error',
+					'`aria-current` - true when tab is selected'
+				],
+				visual: [
+					'Colors contrast ratio > 4.5 (note: disabled state fails)',
+					'Distinct hover, active and focus state styles'
+				],
+				keyboardOperability: [
+					'`<button>` OOTB focusable and supports clicks with `Enter` and `Space` keys'
+				]
 			}
-		]
+		}
 	})
 
-	render() {
-		const component = this.getTabDoc();
-		const component2 = this.getTabGroupDoc();
-
-		return (
-			<>
-				<div className="preview-section-wrapper">
-					<PreviewHeading name={component.name} usage={component.usage} accessible={component.accessible} />
-					<PreviewProperties {...component} />
-					<PreviewTable components={[component2, component]} />
-					<PreviewAccessibility components={[component]} />
-				</div>
-				<PreviewLinks {...component} />
-			</>
-		);
-	}
+	render = () => <Preview {...this.getDoc()} />;
 }
 
 export default CSTabPreview;
