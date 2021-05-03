@@ -41,12 +41,11 @@ interface IntegerColDef extends BaseColDef<string | number>, IntegerProps {
 	cellType: 'Integer';
 }
 
-interface LookupColDef
-	extends BaseColDef<Array<Record<string, string>> | Record<string, string>>,
-		LookupProps,
-		ActionProps<Array<Record<string, string>> | Record<string, string>> {
-	cellType: 'Lookup' | 'MultiSelectLookup';
-}
+type LookupColDef = BaseColDef<Array<Record<string, string>> | Record<string, string>> &
+	LookupProps &
+	ActionProps<Array<Record<string, string>> | Record<string, string>> & {
+		cellType: 'Lookup' | 'MultiSelectLookup';
+	};
 
 interface PicklistColDef extends BaseColDef<string | Array<string>>, PicklistProps {
 	cellType: 'Picklist' | 'MultiSelectPicklist';

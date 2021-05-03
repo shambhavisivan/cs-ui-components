@@ -70,6 +70,12 @@ import { CSGridTextEditor } from './cs-grid-text-editor';
 import { CSGridTextRenderer } from './cs-grid-text-renderer';
 
 import { isEqual } from 'lodash';
+import {
+	CSGridLookupSearchResult,
+	CSGridPaginatedLookupSearchResult,
+	LegacyLookupProps,
+	PaginatedLookupProps
+} from '../interfaces/cs-grid-cell-props';
 import { CustomPaginationAPI } from '../interfaces/cs-grid-custom-pagination-api';
 import { CS_GRID_FEATURE_FLAGS, CSGridFeatureFlag } from '../interfaces/cs-grid-feature-flags';
 import { CSGridFeatureFlagHelper } from '../utils/cs-grid-feature-flag-helper';
@@ -1079,7 +1085,13 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			) {
 				if (columnDef.getActions !== undefined) {
 					const settings: AgGridColDef = {};
+
 					settings.suppressKeyboardEvent = (params: SuppressKeyboardEventParams) => {
+						const lookupDropdownOpen = document.querySelector('.cs-lookup-dropdown');
+						// If lookup dropdown is open suppress all OOTB ag-grid keys
+						if (lookupDropdownOpen) {
+							return true;
+						}
 						// Get parent ag-cell which is active
 						const parent =
 							(params.event.target as HTMLDivElement).getElementsByClassName(
@@ -1188,16 +1200,38 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				agGridColDef.cellEditor = 'lookupEditor';
 				agGridColDef.cellRenderer = 'lookupRenderer';
 
+				const settings: AgGridColDef = {};
+				settings.suppressKeyboardEvent = (params: SuppressKeyboardEventParams) => {
+					const lookupDropdownOpen = document.querySelector('.cs-lookup-dropdown');
+
+					return (
+						params.event.key === 'Enter' ||
+						params.event.key === 'Escape' ||
+						(lookupDropdownOpen && params.event.key === 'Tab')
+					);
+				};
+
 				this.addIfDefined(cellParams, 'minSearchTermLength', columnDef.minSearchTermLength);
 				this.addIfDefined(cellParams, 'displayColumn', columnDef.displayColumn);
 				this.addIfDefined(cellParams, 'guidColumn', columnDef.guidColumn);
-				this.addIfDefined(cellParams, 'getLookupValues', columnDef.getLookupValues);
+				if (featureFlags.flags.usePaginatedLookupSearch) {
+					this.addIfDefined(cellParams, 'getLookupValues', columnDef.getLookupValues);
+				} else {
+					this.addIfDefined(
+						cellParams,
+						'getLookupValues',
+						this.convertLookupValueFn((columnDef as LegacyLookupProps).getLookupValues)
+					);
+				}
 
 				lookupColumns.push(columnDef.name);
+
+				agGridColDef = { ...settings, ...agGridColDef };
 			}
 
 			if (columnDef.cellType === 'Lookup') {
 				this.addIfDefined(cellParams, 'rowDeselection', columnDef.rowDeselection);
+				agGridColDef.cellClass = 'cs-grid-lookup-cell';
 			}
 
 			if (columnDef.cellType === 'Integer') {
@@ -1258,9 +1292,9 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 
 					// if checkbox is already focused, focus next cell on tab
 					if (notFocused) {
-						return (event.key === 'Tab' || event.key === 'Space');
+						return event.key === 'Tab' || event.key === 'Space';
 					}
-				}
+				};
 
 				agGridColDef = { ...settings, ...agGridColDef };
 			}
@@ -1395,5 +1429,29 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		this.dateTimeColumns = dateTimeColumns;
 
 		return agGridColDefs;
+	};
+
+	private convertLookupValueFn = (
+		legacyFn: (searchTerm: string, guid: string) => Promise<CSGridLookupSearchResult>
+	): ((
+		searchTerm: string,
+		guid: string,
+		pageSize: number,
+		pageNo: number
+	) => Promise<CSGridPaginatedLookupSearchResult>) => {
+		return async (searchTerm: string, guid: string, pageSize: number, pageNo) => {
+			const results = await legacyFn(searchTerm, guid);
+
+			return {
+				columnDefs: results.columnDefs
+					.filter(colDef => colDef.visible ?? true)
+					.map(colDef => ({
+						key: colDef.name,
+						label: colDef.header?.label ?? colDef.name
+					})),
+				records: results.rowData,
+				moreRecords: false
+			};
+		};
 	};
 }

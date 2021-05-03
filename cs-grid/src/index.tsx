@@ -5,8 +5,8 @@ import ReactDOM from 'react-dom';
 
 import './sass/style.scss';
 
+import { CSGridLookupSearchResult } from '../main';
 import { CSGrid } from './components/cs-grid';
-import { CSGridLookupSearchResult } from './components/cs-grid-lookup-editor';
 import {
 	CellData,
 	CellNotification,

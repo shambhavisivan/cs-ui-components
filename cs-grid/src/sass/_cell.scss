@@ -150,12 +150,12 @@
 				outline: none !important;
 
 				input {
-					border: none !important;
+					//border: none !important;
 					height: 42px;
 					font-size: 0.75rem;
 					line-height: 26px;
 					padding-bottom: 1px;
-					padding: 0 0.75rem 1px;
+					//padding: 0 0.75rem 1px;
 					@include sbg(--csgrid-transparent);
 				}
 			}

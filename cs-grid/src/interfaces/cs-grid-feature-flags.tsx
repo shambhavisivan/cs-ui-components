@@ -2,7 +2,10 @@ import { CSGridFlagDefinition } from '../utils/cs-grid-feature-flag-helper';
 
 // example feature flags
 
-export type CSGridFeatureFlag = 'forceLegacyRowData' | 'useExtendedActionFormat';
+export type CSGridFeatureFlag =
+	| 'forceLegacyRowData'
+	| 'useExtendedActionFormat'
+	| 'usePaginatedLookupSearch';
 
 // this is the list of all flags currently supported
 export const CS_GRID_FEATURE_FLAGS: Record<CSGridFeatureFlag, CSGridFlagDefinition> = {
@@ -17,5 +20,10 @@ export const CS_GRID_FEATURE_FLAGS: Record<CSGridFeatureFlag, CSGridFlagDefiniti
 		description:
 			'Expect the getActions() function to return a structure that contains CSButton/CSIcon properties',
 		default: true
+	},
+	usePaginatedLookupSearch: {
+		name: 'Use lookup search functions that can handle paged requests',
+		description: `Legacy lookup search only supported searching but the new CSLookup component can handle both searching and dynamic (paginated) loading.`,
+		default: false
 	}
 };

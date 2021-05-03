@@ -1,27 +1,17 @@
-import {
-	CSIcon,
-	CSTooltip,
-	CSTooltipPosition,
-	CSTooltipVariant
-} from '@cloudsense/cs-ui-components';
+import { CSIcon, CSTooltip } from '@cloudsense/cs-ui-components';
 import React from 'react';
 
 import classNames from 'classnames';
 import {
-	ActionProps,
 	CSGridCellRendererProps,
-	Icon,
 	IconProps,
-	isStandardIcon,
-	LookupProps
+	isStandardIcon
 } from '../interfaces/cs-grid-cell-props';
 import {
 	CSGridBaseActionsRenderer,
 	CSGridBaseActionsRendererProps
 } from './cs-grid-base-actions-renderer';
-import { CSGridBaseRenderer } from './cs-grid-base-renderer';
 import { CSGridCellError } from './cs-grid-cell-error';
-import { CSGridLookupSearchResult } from './cs-grid-lookup-editor';
 
 /**
  * A cell renderer for displaying icons.

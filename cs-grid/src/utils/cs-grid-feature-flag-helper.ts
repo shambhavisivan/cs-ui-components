@@ -13,7 +13,9 @@ export class CSGridFeatureFlagHelper<T extends string> {
 		const invalidFlags = Object.keys(flags).filter(
 			(flag: T) => flagDefinitions[flag] === undefined
 		);
-		console.warn(`Feature flags ${invalidFlags} haven't been defined.`);
+		if (invalidFlags) {
+			console.warn(`Feature flags ${invalidFlags} haven't been defined.`);
+		}
 
 		this.flags = Object.keys(flagDefinitions)
 			.map((f: T) => [f, flags[f] ?? flagDefinitions[f].default])

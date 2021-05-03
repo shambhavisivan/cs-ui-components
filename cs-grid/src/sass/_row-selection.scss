@@ -22,12 +22,6 @@
 	.ag-popup-editor.ag-popup-editor {
 		overflow: visible;
 
-		// Temporary fix for last row dropdown not to be hidden because of overflow
-		// To remove once auto positioning is done inside CSDropdown
-		.cs-dropdown-wrapper {
-			position: fixed;
-		}
-
 		.ag-row-selected {
 			@include sc(--csgrid-secondary);
 		}

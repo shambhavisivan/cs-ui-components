@@ -37,7 +37,7 @@ export class CSGridBooleanRenderer extends CSGridBaseRenderer<boolean>
 			<CSCheckbox
 				label='checkbox'
 				labelHidden={true}
-				variant="brand"
+				variant='brand'
 				onChange={editable ? this.onChange : undefined}
 				checked={this.state.value.cellValue}
 				readOnly={readOnly}

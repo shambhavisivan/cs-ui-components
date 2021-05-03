@@ -8,8 +8,8 @@ import {
 	CSTooltipVariant
 } from '@cloudsense/cs-ui-components';
 import { ColDef, Column, ColumnApi, RowNode } from 'ag-grid-community';
-import { CSGridLookupSearchResult } from '../components/cs-grid-lookup-editor';
 import { CellData, GridApi, IsColumnFunc } from './cs-grid-base-interfaces';
+import { LookupSearchColDef } from './cs-grid-col-def';
 import { UserInfo } from './user-info';
 
 export interface CSGridCellEditorProps<T> extends CSGridCellProps<T> {
@@ -57,12 +57,27 @@ export interface IntegerProps {
  * rowDeselection - If true selecting a currently selected row will deselect the value, true by default.
  * getLookupValues - Returns the latest lookup values depending on the search term input.
  */
-export interface LookupProps {
+export interface BaseLookupProps {
 	displayColumn: string;
 	guidColumn: string;
 	minSearchTermLength?: number;
 	rowDeselection?: boolean;
-	getLookupValues(searchTerm: string, guid: string): Promise<CSGridLookupSearchResult>;
+}
+
+export type LookupProps = LegacyLookupProps | PaginatedLookupProps;
+
+export interface LegacyLookupProps extends BaseLookupProps {
+	type?: never;
+	getLookupValues: (searchTerm: string, guid: string) => Promise<CSGridLookupSearchResult>;
+}
+export interface PaginatedLookupProps extends BaseLookupProps {
+	type: 'paginated';
+	getLookupValues: (
+		searchTerm: string,
+		guid: string,
+		pageSize: number,
+		pageNo: number
+	) => Promise<CSGridPaginatedLookupSearchResult>;
 }
 
 export interface ActionProps<T> {
@@ -146,6 +161,27 @@ export interface Tooltip {
 		iconName?: string;
 		iconColor?: string;
 	};
+}
+
+/**
+ * columnDefs - An array of column definitions:
+ * {
+ *     header: {
+ *         label: 'Name'
+ *     },
+ *     name: 'text1'
+ * }
+ * rowData - Maps the field names above to row values.
+ */
+export interface CSGridLookupSearchResult {
+	columnDefs: Array<LookupSearchColDef>;
+	rowData: Array<Record<string, string>>;
+}
+
+export interface CSGridPaginatedLookupSearchResult {
+	columnDefs: Array<{ key: string; label: string }>;
+	records: Array<Record<string, string>>;
+	moreRecords: boolean;
 }
 
 export interface BaseProps<T> extends Tooltip {
