@@ -1,72 +1,3 @@
-// START LEGACY PROP TABLE
-// IMPORTANT: Leave this in until the API Table has been revamped
-
-.table-wrapper {
-	padding: 2rem 2rem 2rem 3rem;
-
-	.component-name {
-		margin: 0.5rem 0 0.25rem;
-	}
-}
-
-.table-wrapper-alt {
-	padding-top: 0;
-}
-
-.table-row {
-	display: flex;
-	@include sbg(--csd-table-row-bg);
-	@include css4 {
-		border-bottom: 1px solid cvar(--csd-table-row-br);
-	}
-
-	.table-cell {
-		display: flex;
-		flex: 1;
-		flex-wrap: wrap;
-		padding: 0.5rem 1rem;
-		overflow: hidden;
-		white-space: normal;
-
-		&:first-child {
-			flex: 0 1 15rem;
-		}
-
-		.prop-option,
-		.api-arg {
-			margin: 0.125rem 0.5rem 0.1rem 0;
-			padding: 0 0.25rem;
-			display: inline-table;
-			@include sbg(--csd-table-prop-api-bg);
-		}
-	}
-
-	&.helper-prop-row {
-		@include sbg(--csd-table-helper-bg);
-
-		.cs-tooltip-wrapper {
-			height: 21px; // CSTooltip bug, remove after it is fixed
-			margin-right: 0.25rem;
-		}
-	}
-}
-
-.table-header .table-row {
-	@include sc(--csd-table-head-row-c);
-	@include sbg(--csd-table-head-row-bg);
-
-	.table-cell {
-		padding: 0.25rem 1rem;
-	}
-}
-
-.backlog-table-wrapper .table-header .table-row {
-	@include sbg(--csd-table-backlog-bg);
-}
-
-// END LEGACY PROP TABLE
-// START NEW PROP TABLE
-
 .cs-app-wrapper .preview-section-wrapper .properties-table-wrapper {
 	padding: 0 3rem 2rem;
 
@@ -89,7 +20,7 @@
 			border-radius: 0.25rem 0.25rem 0 0;
 
 			.properties-table-cell {
-				white-space: normal;
+				white-space: nowrap;
 				@include sc(--csd-prop-table-header-c);
 				@include sbg(--csd-prop-table-header-bg);
 
@@ -99,6 +30,7 @@
 
 				&:last-child {
 					border-top-right-radius: 0.25rem;
+					white-space: normal;
 				}
 			}
 		}
@@ -123,7 +55,7 @@
 
 			.properties-table-cell {
 				display: table-cell;
-				white-space: normal;
+				white-space: nowrap;
 				@include sc(--csd-prop-table-c);
 				@include sbg(--csd-transparent);
 

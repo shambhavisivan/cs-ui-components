@@ -49,7 +49,7 @@ const PreviewQuickLinks: React.FC<PreviewInterface> = ({
 	const sidebarClasses = classNames(
 		'prop-sidebar',
 		{
-			'quick-links-open': quickLinks
+			'quick-links-closed': !quickLinks
 		}
 	);
 

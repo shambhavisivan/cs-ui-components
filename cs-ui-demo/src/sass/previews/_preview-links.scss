@@ -1,15 +1,21 @@
 .prop-sidebar {
-	order: -1;
 	flex: 1;
 	display: flex;
 	flex-direction: column;
 	position: relative;
 	transition: 0.4s;
-	width: 0;
+	min-width: 15rem;
+	width: 15rem;
+	max-width: 15rem;
 	overflow: hidden;
 	@include sbg(--csd-prop-sidebar-bg);
 	@include css4 {
 		box-shadow: 0 1px 5px var(--csd-shadow-dark);
+	}
+
+	+ .components-preview {
+		transition: width 0.4s;
+		width: calc(100% - 15rem);
 	}
 
 	.quick-links-toggle {
@@ -38,26 +44,13 @@
 		}
 	}
 
-	&.quick-links-open {
-		min-width: 15rem;
-		width: 15rem;
-		max-width: 15rem;
-
-		+ .components-preview {
-			transition: width 0.4s;
-			width: calc(100% - 15rem);
-		}
-	}
-
 	&.quick-links-closed {
 		width: 0;
 		min-width: 0;
 		max-width: 0;
-		position: relative;
 		overflow: visible;
 
 		+ .components-preview {
-			transition: width 0.4s;
 			width: 100%;
 		}
 	}

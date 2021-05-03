@@ -31,7 +31,7 @@ const PreviewCode: React.FC<PreviewCodeProps> = ({ code }) => {
 			border: 'none',
 			margin: '0',
 			padding: '0',
-			backgroundColor: 'var(--csd-code-preview-bg)',
+			background: 'var(--csd-code-preview-bg)',
 			borderTop: '1px solid var(--csd-divider-br)',
 			fontSize: '0.875rem',
 			fontFamily: 'monospace'

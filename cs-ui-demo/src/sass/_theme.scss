@@ -240,9 +240,9 @@ $darkVariables: (
 
 	--csd-button-preview-table-bg: $cs-dark-theme-2,
 	--csd-button-preview-cell-bg: $cs-dark-theme-2,
-	--csd-button-preview-br: $cs-gray-dark-5,
+	--csd-button-preview-br: $cs-gray-dark-3,
 	--csd-button-preview-c: $cs-white,
-	--csd-code-preview-bg: $cs-gray-dark-2,
+	--csd-code-preview-bg: $cs-dark-theme-3,
 	--csd-code-c: $cs-white,
 
 	--csd-colors-grid-focus-shadow: $cs-blue-sf,
@@ -252,7 +252,7 @@ $darkVariables: (
 
 	--csd-components-list-wrapper-bg: $cs-dark-theme-2,
 	--csd-components-search-field-br: $cs-gray-dark-6,
-	--csd-components-api-bg: $cs-dark-theme-3,
+	--csd-components-api-bg: $cs-dark-theme-2,
 	--csd-components-modal-bg: $cs-white,
 	--csd-components-sidebar-bg: $cs-purple,
 	--csd-components-link-c: $cs-white,
@@ -290,20 +290,20 @@ $darkVariables: (
 	--csd-prop-table-header-c: $cs-white !important,
 	--csd-prop-table-bg: $cs-dark-theme-2,
 	--csd-prop-table-c: $cs-white,
-	--csd-prop-table-br: $cs-gray-dark-5,
+	--csd-prop-table-br: $cs-gray-dark-3,
 	--csd-prop-table-row-stripes-bg-light: $cs-dark-theme-2,
-	--csd-prop-table-row-stripes-bg-dark: $cs-gray-dark-1,
-	--csd-prop-code-br: $cs-white,
+	--csd-prop-table-row-stripes-bg-dark: $cs-dark-theme,
+	--csd-prop-code-br: $cs-gray-dark-3,
 	--csd-prop-sidebar-bg: $cs-purple,
 	--csd-prop-sidebar-hover-bg: $cs-purple-dark-1,
 
 	--csd-primary-variant-c: $cs-white,
-	--csd-primary-variant-bg: $cs-gray-dark-3,
-	--csd-primary-variant-br: $cs-white,
+	--csd-primary-variant-bg: $cs-gray-dark-2,
+	--csd-primary-variant-br: $cs-gray-dark-3,
 
 	--csd-secondary-variant-c: $cs-white,
-	--csd-secondary-variant-bg: $cs-black,
-	--csd-secondary-variant-br: $cs-white,
+	--csd-secondary-variant-bg: $cs-dark-theme-2,
+	--csd-secondary-variant-br: $cs-gray-dark-3,
 
 	--csd-preview-main-heading-title-c: $cs-white,
 	--csd-preview-main-heading-subtitle-c: $cs-gray-medium-2,
@@ -324,7 +324,7 @@ $darkVariables: (
 	--csd-sidebar-link-active-bg: rgba($cs-black,0.5),
 
 	--csd-table-row-bg: $cs-white,
-	--csd-table-row-br: $cs-gray-light-3,
+	--csd-table-row-br: $cs-gray-light-5,
 	--csd-table-prop-api-bg: $cs-gray-light-5,
 	--csd-table-helper-bg: $cs-gray-light-6,
 	--csd-table-head-row-bg: $cs-purple,
@@ -334,7 +334,7 @@ $darkVariables: (
 	--csd-dropdown-purple-bg: $cs-purple,
 	--csd-spinner-black-bg: $cs-black,
 	--csd-image-black-bg: $cs-black,
-	--csd-divider-br: $cs-gray-dark-5,
+	--csd-divider-br: $cs-gray-dark-3,
 	--csd-transparent: transparent
 );
 
