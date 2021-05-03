@@ -2,7 +2,6 @@ import React, { CSSProperties } from 'react';
 import CSButton from '../CSButton';
 import classNames from 'classnames';
 import { CSIconOrigin } from '../CSIcon';
-import KeyCode from '../../util/KeyCode';
 import CSDropdownItemWrapper from './CSDropdownItemWrapper';
 import { Portal } from 'react-portal';
 
@@ -31,7 +30,7 @@ export interface CSDropdownProps {
 	mode?: CSDropdownMode;
 	maxHeight?: string;
 	maxWidth?: string;
-	onDropdownKeyboardClose?: () => void;
+	onDropdownTabClose?: () => void;
 	onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 	padding?: string;
 	position?: CSDropdownPosition;
@@ -76,7 +75,6 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 			dropdownRoot.id = this.dropdownId;
 			document.body.appendChild(dropdownRoot);
 		}
-		this.openDropdownOnKeyDown = this.openDropdownOnKeyDown.bind(this);
 	}
 
 	handleOutsideClick = (e: any) => {
@@ -143,16 +141,6 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 
 		this.setState({ isOpen: true });
 		document.addEventListener('click', this.handleOutsideClick);
-	}
-
-	// If dropdown is closed && arrow down key pressed open the dropdown
-	openDropdownOnKeyDown(event: any) {
-		if (!this.state.isOpen) {
-			if (event.key === KeyCode.ArrowDown) {
-				event.preventDefault();
-				this.openDropdown();
-			}
-		}
 	}
 
 	closeDropdown = () => {
@@ -229,7 +217,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 			btnType,
 			children,
 			className,
-			onDropdownKeyboardClose,
+			onDropdownTabClose,
 			disabled,
 			hover,
 			iconName,
@@ -280,7 +268,6 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 					iconRotate={iconRotate}
 					labelHidden={!label}
 					onClick={hover ? undefined : this.toggleDropdown}
-					onKeyDown={this.openDropdownOnKeyDown}
 					onMouseEnter={hover ? this.openDropdown : undefined}
 					onMouseLeave={hover ? this.closeDropdown : undefined}
 					size={size}
@@ -304,7 +291,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 								ref={this.dropdownRefCallback}
 								align={this.state.computedPosition[1]}
 								position={this.state.computedPosition[0]}
-								onDropdownKeyboardClose={onDropdownKeyboardClose}
+								onDropdownTabClose={onDropdownTabClose}
 								width={width}
 							>
 								{children}

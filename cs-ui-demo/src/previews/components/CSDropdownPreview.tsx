@@ -392,16 +392,16 @@ class CSDropdownPreview extends React.Component {
 							}
 						]
 					}, {
-						propName: 'onDropdownKeyboardClose',
+						propName: 'onDropdownTabClose',
 						variations: [
 							{
-								component: <CSDropdown  onDropdownKeyboardClose={this.handleClose}>
+								component: <CSDropdown onDropdownTabClose={this.handleClose}>
 									<CSButton label="List item 1" />
 									<CSButton label="List item 2" disabled />
 									<CSButton label="List item 3" />
 									<CSButton label="List item 4" />
 								</CSDropdown>,
-								code: `<CSDropdown  onDropdownKeyboardClose={this.handleClose}>
+								code: `<CSDropdown onDropdownTabClose={this.handleClose}>
 									<CSButton label="List item 1" />
 									<CSButton label="List item 2" disabled />
 									<CSButton label="List item 3" />
@@ -664,9 +664,9 @@ class CSDropdownPreview extends React.Component {
 				default: '\'button\'',
 				description: 'Set the mode in which dropdown will be displayed.'
 			}, {
-				name: 'onDropdownKeyboardClose',
+				name: 'onDropdownTabClose',
 				types: ['(event) => void'],
-				description: 'Callback for when the dropdown is closed with a keyboard event.'
+				description: 'Callback for when the dropdown is closed with a tab key pressed.'
 			}, {
 				name: 'padding',
 				types: ['string'],
