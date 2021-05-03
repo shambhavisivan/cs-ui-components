@@ -48,8 +48,8 @@
 	],
 	"dependencies": {
 		"@cloudsense/react-datepicker-dynamiclocale": "2.0.1",
-		"ag-grid-community": "23.2.1",
-		"ag-grid-react": "23.2.1",
+		"ag-grid-community": "24.1.0",
+		"ag-grid-react": "24.1.0",
 		"jsdom": "^16.1.0",
 		"keycode-js": "^2.0.3",
 		"lodash": "4.17.20",
