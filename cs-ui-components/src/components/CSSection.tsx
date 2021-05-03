@@ -65,7 +65,8 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 			}
 		);
 		const sectionTitleClasses = classNames(
-			'cs-section-header', {
+			'cs-section-header',
+			{
 				'cs-section-header-padding': defaultClosed === true && collapsible !== true
 			}
 		);

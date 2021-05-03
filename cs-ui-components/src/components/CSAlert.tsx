@@ -54,9 +54,9 @@ class CSAlert extends React.Component<CSAlertProps> {
 			[`cs-alert-${variant}`],
 			[`cs-alert-type-${styleType}`],
 			{
-				[`${className}`]: className,
 				'cs-alert-scoped': styleFormat === 'scoped',
-				'cs-alert-no-close-btn': !closeButton
+				'cs-alert-no-close-btn': !closeButton,
+				[`${className}`]: className
 			}
 		);
 

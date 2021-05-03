@@ -97,7 +97,8 @@ class CSCurrency extends React.Component<CSCurrencyProps> {
 		const isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
 
 		const currencyClasses = classNames(
-			'cs-currency', {
+			'cs-currency',
+			{
 				[`${className}`]: className
 			}
 		);

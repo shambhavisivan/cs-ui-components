@@ -695,10 +695,12 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		} = this.state;
 
 		const lookupFieldWrapperClasses = classNames(
-			'cs-lookup-wrapper', {
-			'cs-lookup-hidden': hidden,
-			[`${className}`]: className
-		});
+			'cs-lookup-wrapper',
+			{
+				'cs-lookup-hidden': hidden,
+				[`${className}`]: className
+			}
+		);
 
 		const lookupInputClasses = classNames(
 			'cs-lookup-input',
@@ -711,7 +713,8 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			'cs-lookup-dropdown-msg-wrapper',
 			{
 				'cs-lookup-dropdown-msg-wrapper-inverse': fetchingMode === 'after-scroll'
-			});
+			}
+		);
 
 		const style: CSSProperties = {
 			'--cs-lookup-border-radius': borderRadius

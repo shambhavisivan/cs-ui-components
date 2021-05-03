@@ -200,12 +200,12 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 								component: <CSToggle
 									label="This is a label"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>,
 								code: `<CSToggle
 									label="This is a label"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>`
 							}
 						]

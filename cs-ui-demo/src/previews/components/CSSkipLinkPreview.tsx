@@ -16,16 +16,16 @@ class CSSkipLinkPreview extends React.Component {
 						propName: 'href',
 						variations: [
 							{
-								component: <CSSkipLink jumpDestination="color" href="#component-preview-color" />,
-								code: '<CSSkipLink jumpDestination="color" href="#component-preview-color" />'
+								component: <CSSkipLink jumpDestination="jump destination" href="#CSSkipLink-jumpDestination" />,
+								code: '<CSSkipLink jumpDestination="jump destination" href="#CSSkipLink-jumpDestination" />'
 							}
 						]
 					}, {
 						propName: 'jumpDestination',
 						variations: [
 							{
-								component: <CSSkipLink jumpDestination="href" href="#component-preview-href" />,
-								code: '<CSSkipLink jumpDestination="href" href="#component-preview-href" />'
+								component: <CSSkipLink jumpDestination="color" href="#CSSkipLink-color" />,
+								code: '<CSSkipLink jumpDestination="color" href="#CSSkipLink-color" />'
 							}
 						]
 					}, {
@@ -36,12 +36,12 @@ class CSSkipLinkPreview extends React.Component {
 								quickLink: 'rgb',
 								component: <CSSkipLink
 									jumpDestination="properties"
-									href="#properties-table-skip-link"
+									href="#component-props"
 									color="rgb(74, 38, 171)"
 								/>,
 								code: `<CSSkipLink
 									jumpDestination="properties"
-									href="#properties-table-skip-link"
+									href="#component-props"
 									color="rgb(74, 38, 171)"
 								/>`
 							}, {
@@ -49,13 +49,35 @@ class CSSkipLinkPreview extends React.Component {
 								quickLink: 'hex',
 								component: <CSSkipLink
 									jumpDestination="properties"
-									href="#properties-table-Skip Link"
+									href="#component-props"
 									color="#3cdbc0"
 								/>,
 								code: `<CSSkipLink
 									jumpDestination="properties"
-									href="#properties-table-Skip Link"
+									href="#component-props"
 									color="#3cdbc0"
+								/>`
+							}
+						]
+					}, {
+						propName: 'id | class',
+						variations: [
+							{
+								primaryVariants: [
+									'id="custom-id"',
+									'className="custom-class"'
+								],
+								component: <CSSkipLink
+									jumpDestination="properties"
+									href="#component-props"
+									id="custom-id"
+									className="custom-br-mint"
+								/>,
+								code: `<CSSkipLink
+									jumpDestination="properties"
+									href="#component-props"
+									id="custom-id"
+									className="custom-br-mint"
 								/>`
 							}
 						]
@@ -63,6 +85,10 @@ class CSSkipLinkPreview extends React.Component {
 				],
 				properties: [
 					{
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the skip link.'
+					}, {
 						name: 'color',
 						types: ['string'],
 						description: 'Set a custom color for the skip link. (eg. pink, #ff0000, rgba(0, 0, 0, 0.75), etc.)'
@@ -71,6 +97,10 @@ class CSSkipLinkPreview extends React.Component {
 						required: true,
 						types: ['string'],
 						description: 'Set a path for the skip link. (eg. #properties-table)'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the skip link.'
 					}, {
 						name: 'jumpDestination',
 						required: true,

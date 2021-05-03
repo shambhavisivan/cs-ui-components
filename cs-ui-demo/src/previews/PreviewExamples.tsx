@@ -28,7 +28,7 @@ const PreviewExamples: React.FC<PreviewInterface> = ({ components }) => (
 						const propLink = `${componentLink}-${getSlug(example.propName)}`;
 						return (
 							<div key={example.propName} className={`component-preview ${example.propName}`}>
-								<h3 className="demo-heading" id={propLink}>
+								<h3 className="demo-heading" id={getSlug(propLink)}>
 									{example.propName}
 								</h3>
 								{example.description && (

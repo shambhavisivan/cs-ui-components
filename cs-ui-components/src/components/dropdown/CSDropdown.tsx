@@ -238,9 +238,11 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 		} = this.props;
 
 		const dropdownWrapperClasses = classNames(
-			'cs-dropdown-wrapper', {
-			[`${className}`]: className
-		});
+			'cs-dropdown-wrapper',
+			{
+				[`${className}`]: className
+			}
+		);
 
 		const btnDropdownClasses = classNames({
 			'cs-dropdown-active': this.state.computedDropdownStyle

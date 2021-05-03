@@ -343,12 +343,12 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 								component: <CSInputNumber
 									label="Enter value"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>,
 								code: `<CSInputNumber
 									label="Enter value"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>`
 							}
 						]

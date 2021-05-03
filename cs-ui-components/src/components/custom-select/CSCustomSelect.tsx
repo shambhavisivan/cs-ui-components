@@ -395,24 +395,32 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		} = this.props;
 
 		const customSelectWrapperClasses = classNames(
-			'cs-custom-select-wrapper', {
-			[`${className}`]: className,
-			'cs-element-hidden': hidden
-		});
+			'cs-custom-select-wrapper',
+			{
+				'cs-element-hidden': hidden,
+				[`${className}`]: className
+			}
+		);
 		const customSelectInputWrapperClasses = classNames(
-			'cs-custom-select-input-wrapper', {
-			'cs-custom-select-input-wrapper-disabled': disabled,
-			'cs-custom-select-input-wrapper-error': error,
-			'cs-custom-select-input-wrapper-multiselect': !!selectedOptions.length
-		});
+			'cs-custom-select-input-wrapper',
+			{
+				'cs-custom-select-input-wrapper-disabled': disabled,
+				'cs-custom-select-input-wrapper-error': error,
+				'cs-custom-select-input-wrapper-multiselect': !!selectedOptions.length
+			}
+		);
 		const customSelectInputClasses = classNames(
-			'cs-custom-select-input', {
-			'cs-custom-ms-input': multiselect
-		});
+			'cs-custom-select-input',
+			{
+				'cs-custom-ms-input': multiselect
+			}
+		);
 		const selectedListItemClasses = classNames(
-			'cs-selected-input-option', {
-			'cs-custom-select-dropdown-open': isOpen
-		});
+			'cs-selected-input-option',
+			{
+				'cs-custom-select-dropdown-open': isOpen
+			}
+		);
 		const style: CSSProperties = {
 			'--cs-custom-select-border-radius': borderRadius
 		};

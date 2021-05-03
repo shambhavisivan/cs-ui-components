@@ -33,13 +33,15 @@ class CSChip extends React.Component<CSChipProps> {
 		} = this.props;
 
 		const chipClasses = classNames(
-			'cs-chip', {
-			[`cs-chip-${variant}`]: variantStyle === 'fill',
-			[`cs-chip-${variant}-border`]: variantStyle === 'border',
-			'cs-chip-custom-color': color && variantStyle === 'fill',
-			'cs-chip-custom-color-border': color && variantStyle === 'border',
-			[`${className}`]: className
-		});
+			'cs-chip',
+			{
+				[`cs-chip-${variant}`]: variantStyle === 'fill',
+				[`cs-chip-${variant}-border`]: variantStyle === 'border',
+				'cs-chip-custom-color': color && variantStyle === 'fill',
+				'cs-chip-custom-color-border': color && variantStyle === 'border',
+				[`${className}`]: className
+			}
+		);
 
 		const chipStyle: CSSProperties = {
 			'--cs-chip-custom-c': color

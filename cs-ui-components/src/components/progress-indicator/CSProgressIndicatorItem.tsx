@@ -28,10 +28,12 @@ class CSProgressIndicatorItem extends React.Component<CSProgressIndicatorItemPro
 		} = this.props;
 
 		const progressIndicatorItemClasses = classNames(
-			'cs-progress-indicator-item', {
-			[`cs-progress-indicator-item-${status}`]: status,
-			[`${className}`]: className
-		});
+			'cs-progress-indicator-item',
+			{
+				[`cs-progress-indicator-item-${status}`]: status,
+				[`${className}`]: className
+			}
+		);
 
 		const getIconByStatus = () => {
 			switch (status) {

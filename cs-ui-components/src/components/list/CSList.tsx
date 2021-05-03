@@ -30,9 +30,11 @@ class CSList extends React.Component<CSListProps> {
 		} = this.props;
 
 		const listClasses = classNames(
-			'cs-list-wrapper', {
-			[`${className}`]: className
-		});
+			'cs-list-wrapper',
+			{
+				[`${className}`]: className
+			}
+		);
 
 		const listItems = React.Children.map(this.props.children, (child, index) => {
 			if (child) {

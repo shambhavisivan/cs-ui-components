@@ -173,13 +173,13 @@ class CSImagePreview extends React.Component {
 									type="logomark"
 									color="black"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>,
 								code: `<CSImage
 									type="logomark"
 									color="black"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>`
 							}
 						]

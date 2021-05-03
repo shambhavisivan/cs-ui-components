@@ -27,7 +27,8 @@ class CSTable extends React.Component<CSTableProps> {
 		} = this.props;
 
 		const tableClasses = classNames(
-			'cs-table', {
+			'cs-table',
+			{
 				[`${className}`]: className
 			}
 		);

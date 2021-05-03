@@ -13,10 +13,12 @@ class CSTableHeader extends React.Component<CSTableHeaderProps> {
 		const { children, className, headerSticky, id, ...rest } = this.props;
 
 		const tableHeaderClasses = classNames(
-			'cs-table-header', {
-			'cs-table-header-sticky': headerSticky,
-			[`${className}`]: className
-		});
+			'cs-table-header',
+			{
+				'cs-table-header-sticky': headerSticky,
+				[`${className}`]: className
+			}
+		);
 
 		const childrenWithProp = React.Children.map(children, child => {
 			if (child) {

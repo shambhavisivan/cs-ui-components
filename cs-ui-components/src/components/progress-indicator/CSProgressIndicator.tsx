@@ -17,9 +17,11 @@ class CSProgressIndicator extends React.Component<CSProgressIndicatorProps> {
 		} = this.props;
 
 		const progressIndicatorClasses = classNames(
-			'cs-progress-indicator', {
-			[`${className}`]: className
-		});
+			'cs-progress-indicator',
+			{
+				[`${className}`]: className
+			}
+		);
 
 		return (
 			<ol

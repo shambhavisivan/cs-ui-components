@@ -135,19 +135,25 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			...rest
 		} = this.props;
 
-		const tooltipClasses = classNames('cs-tooltip', {
-			[`cs-tooltip-${this.state.computedPosition}`]: this.state.computedPosition,
-			[`cs-tooltip-${variant}`]: variant,
-			'cs-tooltip-with-header': tooltipHeader,
-			'cs-tooltip-overflow-auto': maxHeight || maxWidth || height || width
-		});
+		const tooltipClasses = classNames(
+			'cs-tooltip',
+			{
+				[`cs-tooltip-${this.state.computedPosition}`]: this.state.computedPosition,
+				[`cs-tooltip-${variant}`]: variant,
+				'cs-tooltip-with-header': tooltipHeader,
+				'cs-tooltip-overflow-auto': maxHeight || maxWidth || height || width
+			}
+		);
 
-		const tooltipWrapperClasses = classNames('cs-tooltip-wrapper', {
-			'cs-tw-icon-c': iconColor,
-			[`cs-tw-${variant}`]: variant,
-			[`cs-tooltip-style-position-${stylePosition}`]: stylePosition,
-			[`${className}`]: className
-		});
+		const tooltipWrapperClasses = classNames(
+			'cs-tooltip-wrapper',
+			{
+				'cs-tw-icon-c': iconColor,
+				[`cs-tw-${variant}`]: variant,
+				[`cs-tooltip-style-position-${stylePosition}`]: stylePosition,
+				[`${className}`]: className
+			}
+		);
 
 		const getTooltipStyle = () => {
 			if (this.state.loading) {

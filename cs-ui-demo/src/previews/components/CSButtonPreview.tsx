@@ -865,12 +865,12 @@ class CSButtonPreview extends React.Component {
 								component: <CSButton
 									label="Custom class"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>,
 								code: `<CSButton
 									label="Custom class"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>`
 							}
 						]

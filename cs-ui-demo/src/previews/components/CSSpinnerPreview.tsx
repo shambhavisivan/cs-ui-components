@@ -107,8 +107,8 @@ class CSSpinnerPreview extends React.Component {
 									'id="custom-id"',
 									'className="custom-class"'
 								],
-								component: <CSSpinner id="custom-id" className="custom-class" />,
-								code: `<CSSpinner id="custom-id" className="custom-class" />`
+								component: <CSSpinner id="custom-id" className="custom-bg-mint" />,
+								code: `<CSSpinner id="custom-id" className="custom-bg-mint" />`
 							}
 						]
 					}

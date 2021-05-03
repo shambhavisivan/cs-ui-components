@@ -267,12 +267,12 @@ class CSInputTextPreview extends React.Component<{}, CSInputTextPreviewState> {
 								component: <CSInputText
 									label="Enter value"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>,
 								code: `<CSInputText
 									label="Enter value"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>`
 							}
 						]

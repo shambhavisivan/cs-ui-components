@@ -91,8 +91,8 @@ class CSSelect extends React.Component<CSSelectProps> {
 		const selectWrapperClasses = classNames(
 			'cs-select-wrapper',
 			{
-				[`${className}`]: className,
-				'cs-element-hidden': hidden
+				'cs-element-hidden': hidden,
+				[`${className}`]: className
 			}
 		);
 		const style: CSSProperties = {

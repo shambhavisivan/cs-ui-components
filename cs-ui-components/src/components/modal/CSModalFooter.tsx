@@ -19,10 +19,12 @@ class CSModalFooter extends React.Component<CSModalFooterProps> {
 		const { align, children, className, id, ...rest } = this.props;
 
 		const modalFooterClasses = classNames(
-			'cs-modal-footer', {
-			[`cs-modal-footer-${align}`]: align,
-			[`${className}`]: className
-		});
+			'cs-modal-footer',
+			{
+				[`cs-modal-footer-${align}`]: align,
+				[`${className}`]: className
+			}
+		);
 
 		return (
 			<footer

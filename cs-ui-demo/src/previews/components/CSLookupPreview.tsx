@@ -890,10 +890,10 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 						default: 'false',
 						description: 'Control whether to apply the readonly attribute.'
 					}, {
-					name: 'required',
-					types: ['boolean'],
-					default: 'false',
-					description: 'Make the lookup required.'
+						name: 'required',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Make the lookup required.'
 					}, {
 						name: 'title',
 						types: ['string'],

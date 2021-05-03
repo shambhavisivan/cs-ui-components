@@ -38,9 +38,9 @@ class CSSpinner extends React.Component<CSSpinnerProps> {
 		const spinnerClasses = classNames(
 			'cs-spinner-wrapper',
 			{
-				[`${className}`]: className,
 				'cs-spinner-inline': inline,
-				[`cs-spinner-overlay-${overlay}`]: overlay
+				[`cs-spinner-overlay-${overlay}`]: overlay,
+				[`${className}`]: className
 			}
 		);
 

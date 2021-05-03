@@ -306,13 +306,13 @@ class CSProgressBarPreview extends React.Component<{}, CSProgressBarPreviewState
 									label="Progress"
 									progress="50%"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>,
 								code: `<CSProgressBar
 									label="Progress"
 									progress="50%"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>`
 							}
 						]

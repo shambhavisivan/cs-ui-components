@@ -26,13 +26,21 @@ class CSPathPreview extends React.Component {
 									'id="custom-id"',
 									'className="custom-class"'
 								],
-								component: <CSPath id="custom-id" className="custom-class">
-									<CSPathItem name="Path Item 1" />
+								component: <CSPath id="custom-id" className="custom-br-purple">
+									<CSPathItem
+										name="Path Item 1"
+										id="custom-item-id"
+										className="custom-bg-mint"
+									/>
 									<CSPathItem name="Path Item 2" />
 									<CSPathItem name="Path Item 3" />
 								</CSPath>,
-								code: `<CSPath id="custom-id" className="custom-class">
-									<CSPathItem name="Path Item 1" />
+								code: `<CSPath id="custom-id" className="custom-br-purple">
+									<CSPathItem
+										name="Path Item 1"
+										id="custom-item-id"
+										className="custom-bg-mint"
+									/>
 									<CSPathItem name="Path Item 2" />
 									<CSPathItem name="Path Item 3" />
 								</CSPath>`

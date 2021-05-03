@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 export interface CSPaginationProps {
 	// id?: string;
+	className?: string;
 	initialPage?: number;
 	items?: any;
 }
@@ -119,7 +120,7 @@ class CSPagination extends React.Component<CSPaginationProps> {
 		// }
 
 		return (
-			<nav aria-label="pagination">
+			<nav aria-label="pagination" className={this.props.className}>
 				<ul className="cs-pagination">
 					{/*
 					<li className={pager.currentPage === 1 ? 'disabled' : ''} aria-disabled={pager.currentPage === 1}>

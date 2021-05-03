@@ -195,12 +195,12 @@ class CSChipPreview extends React.Component {
 								component: <CSChip
 									text="custom"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>,
 								code: `<CSChip
 									text="custom"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>`
 							}
 						]

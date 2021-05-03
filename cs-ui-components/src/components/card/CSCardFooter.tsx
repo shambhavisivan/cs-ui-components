@@ -1,5 +1,5 @@
-import classNames from 'classnames';
 import React from 'react';
+import classNames from 'classnames';
 
 export interface CSCardFooterProps {
 	[key: string]: any;
@@ -8,11 +8,11 @@ export interface CSCardFooterProps {
 }
 
 class CSCardFooter extends React.Component<CSCardFooterProps> {
-
 	render() {
 		const { className, children, id, ...rest } = this.props;
 		const cardFooterClasses = classNames(
-			'cs-card-footer', {
+			'cs-card-footer',
+			{
 				[`${className}`]: className
 			}
 		);

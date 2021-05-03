@@ -54,20 +54,20 @@ class CSTabPreview extends React.Component {
 									'id="custom-id"',
 									'className="custom-class"'
 								],
-								component: <CSTabGroup id="custom-id" className="custom-class">
+								component: <CSTabGroup id="custom-id" className="custom-br-mint">
 									<CSTab
 										name="Tab One"
 										id="custom-tab-id"
-										className="custom-tab-class"
+										className="custom-br-purple"
 									/>
 									<CSTab name="Tab Two" />
 									<CSTab name="Tab Three" />
 								</CSTabGroup>,
-								code: `<CSTabGroup id="custom-id" className="custom-class">
+								code: `<CSTabGroup id="custom-id" className="custom-br-mint">
 									<CSTab
 										name="Tab One"
 										id="custom-tab-id"
-										className="custom-tab-class"
+										className="custom-br-purple"
 									/>
 									<CSTab name="Tab Two" />
 									<CSTab name="Tab Three" />

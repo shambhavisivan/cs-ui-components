@@ -606,18 +606,18 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 										visible={this.state.visibleModal === 'class'}
 										animated
 										id="custom-id"
-										className="custom-class"
+										className="custom-bg-purple"
 									>
 										<CSModalHeader
 											title="Title"
 											subtitle="Subtitle"
 											id="custom-header-id"
-											className="custom-header-class"
+											className="custom-bg-mint"
 										/>
-										<CSModalBody id="custom-boday-id" className="custom-body-class">
+										<CSModalBody id="custom-body-id" className="custom-br-purple">
 											Lorem ipsum dolor sit amet.
 										</CSModalBody>
-										<CSModalFooter id="custom-footer-id" className="custom-footer-class">
+										<CSModalFooter id="custom-footer-id" className="custom-bg-blue">
 											<CSButton label="Close Modal" onClick={this.closeModal} />
 										</CSModalFooter>
 									</CSModal>
@@ -627,18 +627,18 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 									visible={this.state.visibleModal === 'class'}
 									animated
 									id="custom-id"
-									className="custom-class"
+									className="custom-bg-purple"
 								>
 									<CSModalHeader
 										title="Title"
 										subtitle="Subtitle"
 										id="custom-header-id"
-										className="custom-header-class"
+										className="custom-bg-mint"
 									/>
-									<CSModalBody id="custom-boday-id" className="custom-body-class">
+									<CSModalBody id="custom-boday-id" className="custom-br-purple">
 										Lorem ipsum dolor sit amet.
 									</CSModalBody>
-									<CSModalFooter id="custom-footer-id" className="custom-footer-class">
+									<CSModalFooter id="custom-footer-id" className="custom-bg-blue">
 										<CSButton label="Close Modal" onClick={this.closeModal} />
 									</CSModalFooter>
 								</CSModal>`

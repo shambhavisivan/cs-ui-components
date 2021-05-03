@@ -241,12 +241,12 @@ class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
 								component: <CSTextarea
 									label="Enter message"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>,
 								code: `<CSTextarea
 									label="Enter message"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>`
 							}
 						]

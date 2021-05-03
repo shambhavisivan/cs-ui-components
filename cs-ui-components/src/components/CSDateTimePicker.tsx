@@ -59,9 +59,11 @@ class CSDateTimePicker extends React.Component<CSDateTimePickerProps> {
 		} = this.props;
 
 		const dateTimePickerClasses = classNames(
-			'cs-datetimepicker', {
-			[`${className}`]: className
-		});
+			'cs-datetimepicker',
+			{
+				[`${className}`]: className
+			}
+		);
 
 		return (
 			<CSDatepicker

@@ -73,8 +73,8 @@ class CSToggle extends React.Component<CSToggleProps> {
 		const toggleElementWrapperClasses = classNames(
 			'cs-toggle-element',
 			{
-				[`${className}`]: className,
-				[`cs-toggle-label-${labelPosition}`]: labelPosition
+				[`cs-toggle-label-${labelPosition}`]: labelPosition,
+				[`${className}`]: className
 			}
 		);
 

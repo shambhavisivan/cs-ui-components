@@ -193,10 +193,11 @@ class CSTablePreview extends React.Component {
 									'id="custom-id"',
 									'className="custom-class"'
 								],
-								component: <CSTable id="custom-table-id" className="custom-table-class">
+								component: <CSTable id="custom-table-id" className="custom-br-blue">
 									<CSTableHeader id="custom-table-header-id" className="custom-table-header-class">
 										<CSTableCell
-											className="custom-table-cell-class"
+											id="custom-table-cell-id"
+											className="custom-br-mint"
 											text="Header Item 1"
 											grow={2}
 										/>
@@ -204,7 +205,7 @@ class CSTablePreview extends React.Component {
 										<CSTableCell text="Header Item 3" grow={1} />
 										<CSTableCell text="Button Column" />
 									</CSTableHeader>
-									<CSTableBody id="custom-table-body-id" className="custom-table-body-class">
+									<CSTableBody id="custom-table-body-id" className="custom-br-purple">
 										<CSTableRow id="custom-table-row-id">
 											<CSTableCell text="First Row Item 1" grow={2} />
 											<CSTableCell text="First Row Item 2" grow={1} />
@@ -219,7 +220,7 @@ class CSTablePreview extends React.Component {
 												/>
 											</CSTableCell>
 										</CSTableRow>
-										<CSTableRow className="custom-table-row-class">
+										<CSTableRow className="custom-br-mint">
 											<CSTableCell text="Second Row Item 1" grow={2} />
 											<CSTableCell text="Second Row Item 2" grow={1} />
 											<CSTableCell text="Second Row Item 3" grow={1} />
@@ -234,10 +235,11 @@ class CSTablePreview extends React.Component {
 										</CSTableRow>
 									</CSTableBody>
 								</CSTable>,
-								code: `<CSTable id="custom-table-id" className="custom-table-class">
+								code: `<CSTable id="custom-table-id" className="custom-br-blue">
 									<CSTableHeader id="custom-table-header-id" className="custom-table-header-class">
 										<CSTableCell
-											className="custom-table-cell-class"
+											id="custom-table-cell-id"
+											className="custom-br-mint"
 											text="Header Item 1"
 											grow={2}
 										/>
@@ -245,7 +247,7 @@ class CSTablePreview extends React.Component {
 										<CSTableCell text="Header Item 3" grow={1} />
 										<CSTableCell text="Button Column" />
 									</CSTableHeader>
-									<CSTableBody id="custom-table-body-id" className="custom-table-body-class">
+									<CSTableBody id="custom-table-body-id" className="custom-br-purple">
 										<CSTableRow id="custom-table-row-id">
 											<CSTableCell text="First Row Item 1" grow={2} />
 											<CSTableCell text="First Row Item 2" grow={1} />
@@ -260,7 +262,7 @@ class CSTablePreview extends React.Component {
 												/>
 											</CSTableCell>
 										</CSTableRow>
-										<CSTableRow className="custom-table-row-class">
+										<CSTableRow className="custom-br-mint">
 											<CSTableCell text="Second Row Item 1" grow={2} />
 											<CSTableCell text="Second Row Item 2" grow={1} />
 											<CSTableCell text="Second Row Item 3" grow={1} />

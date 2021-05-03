@@ -39,10 +39,38 @@ class CSFieldErrorMsgPreview extends React.Component {
 								/>`
 							}
 						]
+					}, {
+						propName: 'id | class',
+						variations: [
+							{
+								primaryVariants: [
+									'id="custom-id"',
+									'className="custom-class"'
+								],
+								component: <CSFieldErrorMsg
+									message="Error message."
+									id="custom-id"
+									className="custom-br-mint"
+								/>,
+								code: `<CSFieldErrorMsg
+									message="Error message."
+									id="custom-id"
+									className="custom-br-mint"
+								/>`
+							}
+						]
 					}
 				],
 				properties: [
 					{
+						name: 'className',
+						types: ['string'],
+						description: 'Apply custom CSS classes to the error message.'
+					}, {
+						name: 'id',
+						types: ['string'],
+						description: 'Set the ID for the dropdown.'
+					}, {
 						name: 'message',
 						required: true,
 						customTypes: [{

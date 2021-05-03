@@ -182,7 +182,7 @@ class CSButtonGroupPreview extends React.Component {
 									'id="custom-id"',
 									'className="custom-class"'
 								],
-								component: <CSButtonGroup id="custom-id" className="custom-class">
+								component: <CSButtonGroup id="custom-id" className="custom-br-mint">
 									<CSButton label="First Button" />
 									<CSButton label="Middle Button" />
 									<CSButton label="Last Button" btnStyle="brand" />
@@ -192,7 +192,7 @@ class CSButtonGroupPreview extends React.Component {
 										<CSButton label="Dropdown item 3" />
 									</CSDropdown>
 								</CSButtonGroup>,
-								code: `<CSButtonGroup id="custom-id" className="custom-class">
+								code: `<CSButtonGroup id="custom-id" className="custom-br-mint">
 									<CSButton label="First Button" />
 									<CSButton label="Middle Button" />
 									<CSButton label="Last Button" btnStyle="brand" />

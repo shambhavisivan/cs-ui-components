@@ -193,12 +193,12 @@ class CSToastPreview extends React.Component {
 								],
 								component: <CSToast
 									variant="info"
-									className="custom-class"
+									className="custom-br-mint"
 									text="This is an example alert with a close button"
 								/>,
 								code: `<CSToast
 									variant="info"
-									className="custom-class"
+									className="custom-br-mint"
 									text="This is an example alert with a close button"
 								/>`
 							}

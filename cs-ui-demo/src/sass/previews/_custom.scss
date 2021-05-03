@@ -1,48 +1,34 @@
 .components-preview .preview-section-wrapper .component-example .component-demo {
-	&.CSButton-demo,
-	&.CSButtonGroup-demo,
-	&.CSCheckbox-demo,
-	&.CSCustomSelect-demo,
-	&.CSDatepicker-demo,
-	&.CSDateTimePicker-demo,
-	&.CSDropdown-demo,
-	&.CSImage-demo,
-	&.CSInputFile-demo,
-	&.CSInputNumber-demo,
-	&.CSInputSearch-demo,
-	&.CSInputText-demo,
-	&.CSList-demo,
-	&.CSLookup-demo,
-	&.CSRadio-demo,
-	&.CSSelect-demo,
-	&.CSSlider-demo,
-	&.CSTable-demo,
-	&.CSTextarea-demo,
-	&.CSToggle-demo,
-	&.CSTransfer-demo {
-		.custom-class {
+
+	.custom {
+		&-bg-purple {
+			@include sbg(--csd-custom-bg-purple);
+		}
+
+		&-bg-mint {
+			@include sbg(--csd-custom-bg-mint);
+		}
+
+		&-bg-blue {
+			@include sbg(--csd-custom-bg-blue);
+		}
+
+		&-br-purple {
 			@include css4 {
-				border: 3px solid cvar(--csd-custom-br);
+				border: 3px solid cvar(--csd-custom-br-purple);
 			}
 		}
-	}
 
-	&.CSAlert-demo,
-	&.CSCard-demo,
-	&.CSChip-demo,
-	&.CSLabel-demo,
-	&.CSMainHeader-demo,
-	&.CSMainHeaderLeft-demo,
-	&.CSPath-demo,
-	&.CSProgressBar-demo,
-	&.CSProgressIndicator-demo,
-	&.CSSection-demo,
-	&.CSSpinner-demo,
-	&.CSTabGroup-demo,
-	&.CSToast-demo,
-	&.CSTooltip-demo {
-		.custom-class {
-			@include sbg(--csd-custom-bg);
+		&-br-mint {
+			@include css4 {
+				border: 3px solid cvar(--csd-custom-br-mint);
+			}
+		}
+
+		&-br-blue {
+			@include css4 {
+				border: 3px solid cvar(--csd-custom-br-blue);
+			}
 		}
 	}
 
@@ -55,65 +41,6 @@
 		}
 	}
 
-
-	.CSCustomSelect-demo .custom-select-option-class {
-		@include css4 {
-			border: 3px solid cvar(--csd-custom-br);
-		}
-	}
-
-	&.CSRadio-demo .custom-option-class {
-		@include css4 {
-			border: 3px solid cvar(--csd-custom-alt-br);
-		}
-	}
-
-	&.CSList-demo {
-		.custom-group-class {
-			@include css4 {
-				border: 3px solid cvar(--csd-custom-alt-br);
-			}
-		}
-
-		.custom-item-class {
-			@include sbg(--csd-custom-bg);
-		}
-	}
-
-	&.CSTable-demo {
-		height: auto;
-
-		.custom-table-class {
-			@include css4 {
-				border: 3px solid var(--csd-custom-alt-br);
-			}
-		}
-
-		.custom-table-header-class {
-			@include sc(--csd-custom-alt-bg);
-		}
-
-		.custom-table-cell-class {
-			@include sbg(--csd-custom-bg)
-		}
-
-		.custom-table-body-class {
-			@include css4 {
-				border: 3px solid var(--csd-custom-br);
-			}
-		}
-
-		.custom-table-row-class {
-			@include css4 {
-				border: 3px solid var(--csd-custom-purple-br);
-			}
-		}
-	}
-
-	&.CSTabGroup-demo .custom-tab-class {
-		@include sbg(--csd-custom-alt-bg);
-	}
-
 	&.CSButton-demo,
 	&.CSDropdown-demo,
 	&.CSButtonGroup-demo {
@@ -123,37 +50,17 @@
 		}
 	}
 
-	&.CSIcon-demo .custom-class {
-		@include sf(--csd-icons-custom-fill);
-
-	}
-
 	&.CSImage-demo .black-background {
 		@include sbg(--csd-image-black-bg);
-	}
-
-	&.CSDivider-demo .custom-class {
-		@include css4 {
-			border-color: cvar(--csd-custom-br);
-		}
 	}
 
 	&.CSSidebar-demo,
 	&.CSSidebarTab-demo {
 		height: 600px;
 		flex: none; // firefox fix: flex + height -> child with height 100% does not inherit height
+
 		.sidebar-far-right {
 			margin-left: auto;
-		}
-
-		.custom-sidebar-class {
-			@include css4 {
-				box-shadow: 0 0 3px cvar(--csd-custom-purple-bg);
-			}
-		}
-
-		.custom-sidebar-tab-class {
-			@include sbg(--csd-custom-alt-bg);
 		}
 	}
 
@@ -227,23 +134,23 @@
 }
 
 .cs-modal-overlay {
-	&.custom-class .cs-modal-wrapper {
-		@include sbg(--csd-custom-bg);
+	&.custom-bg-purple .cs-modal-wrapper {
+		@include sbg(--csd-custom-bg-purple);
 	}
 
 	.cs-modal {
-		.cs-modal-header.custom-header-class {
-			@include sbg(--csd-custom-purple-bg);
+		.cs-modal-header.custom-bg-mint {
+			@include sbg(--csd-custom-bg-mint);
 		}
 
-		.cs-modal-body.custom-body-class {
-			@include sbg(--csd-custom-alt-bg);
-		}
-
-		.cs-modal-footer.custom-footer-class {
+		.cs-modal-body.custom-br-purple {
 			@include css4 {
-				border: 3px solid cvar(--csd-custom-purple-bg);
+				border: 3px solid cvar(--csd-custom-br-purple);
 			}
+		}
+
+		.cs-modal-footer.custom-bg-blue {
+			@include sbg(--csd-custom-bg-blue);
 		}
 	}
 }

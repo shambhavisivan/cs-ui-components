@@ -486,14 +486,14 @@ class CSSliderPreview extends React.Component {
 									min="0"
 									max="100"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>,
 								code: `<CSSlider
 									label="Select value"
 									min="0"
 									max="100"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>`
 							}
 						]

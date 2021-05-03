@@ -138,9 +138,9 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 			'cs-input-file-wrapper',
 			{
 				'cs-input-file-drop-area-highlighted': dropAreaBackground,
-				[`${className}`]: className,
 				'cs-input-file-error': error,
-				'cs-input-file-dragged-over': this.state.isDraggedOver
+				'cs-input-file-dragged-over': this.state.isDraggedOver,
+				[`${className}`]: className
 			}
 		);
 

@@ -68,11 +68,14 @@ class CSCardHeader extends React.Component<CSCardHeaderProps, CSCardHeaderState>
 		} = this.props;
 
 		const cardHeaderClasses = classNames(
-			'cs-card-header', {
-			'cs-card-header-with-border': showBorder,
-			'cs-card-header-collapsible': this.props.collapsible,
-			'cs-card-header-collapsed': this.state.collapsed
-		});
+			'cs-card-header',
+			{
+				'cs-card-header-with-border': showBorder,
+				'cs-card-header-collapsible': this.props.collapsible,
+				'cs-card-header-collapsed': this.state.collapsed,
+				[`${className}`]: className
+			}
+		);
 		return (
 			<header
 				className={cardHeaderClasses}

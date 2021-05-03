@@ -657,12 +657,12 @@ class CSTooltipPreview extends React.Component {
 								component: <CSTooltip
 									content="Help text"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>,
 								code: `<CSTooltip
 									content="Help text"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>`
 							}
 						]

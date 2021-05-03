@@ -59,21 +59,29 @@ class CSListItem extends React.Component<CSListItemProps> {
 			...rest
 		} = this.props;
 
+		const listItemWrapperClasses = classNames(
+			'cs-list-item-wrapper',
+			{
+				[`${className}`]: className
+			}
+		);
+
 		const listItemClasses = classNames(
-			'cs-list-item', {
-			'cs-list-item-selected': selected && listVariant === 'simple-list',
-			'cs-list-item-disabled': disabled,
-			[`cs-list-item-${listSize}`]: listSize,
-			[`cs-list-item-${listVariant}`]: listVariant,
-			[`${className}`]: className
-		});
+			'cs-list-item',
+			{
+				'cs-list-item-selected': selected && listVariant === 'simple-list',
+				'cs-list-item-disabled': disabled,
+				[`cs-list-item-${listSize}`]: listSize,
+				[`cs-list-item-${listVariant}`]: listVariant
+			}
+		);
 
 		const listItemText = <span className="cs-list-item-text">{text}</span>;
 		const listItemContent = customContent &&
 			<div className="cs-list-item-custom-content">{customContent}</div>;
 
 		return (
-			<li className="cs-list-item-wrapper" role="none" id={id} {...rest}>
+			<li className={listItemWrapperClasses} role="none" id={id} {...rest}>
 				{listVariant === 'simple-list' ?
 					<div
 						className={listItemClasses}

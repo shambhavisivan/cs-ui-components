@@ -83,12 +83,12 @@ class CSLabelPreview extends React.Component {
 								component: <CSLabel
 									label="Label"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>,
 								code: `<CSLabel
 									label="Label"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>`
 							}
 						]

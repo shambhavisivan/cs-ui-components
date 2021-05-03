@@ -444,12 +444,12 @@ class CSDatepickerPreview extends React.Component {
 								component: <CSDatepicker
 									label="Enter date"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>,
 								code: `<CSDatepicker
 									label="Enter date"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>`
 							}
 						]

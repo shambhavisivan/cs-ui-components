@@ -8,11 +8,11 @@ export interface CSCardProps {
 }
 
 class CSCard extends React.Component<CSCardProps> {
-
 	render() {
 		const { children, className, id, ...rest} = this.props;
 		const cardClasses = classNames(
-			'cs-card', {
+			'cs-card',
+			{
 				[`${className}`]: className
 			}
 		);

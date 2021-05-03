@@ -320,13 +320,13 @@ class CSSidebarPreview extends React.Component {
 									'id="custom-id"',
 									'className="custom-class"'
 								],
-								component: <CSSidebar className="custom-sidebar-class" id="custom-sidebar-id">
-									<CSSidebarTab title="Tab Title">
+								component: <CSSidebar className="custom-br-mint" id="custom-sidebar-id">
+									<CSSidebarTab title="Tab Title" className="custom-br-purple">
 										<span>This sidebar has custom class and custom id added, which can serve to apply custom styles.</span>
 									</CSSidebarTab>
 								</CSSidebar>,
-								code: `<CSSidebar className="custom-sidebar-class" id="custom-sidebar-id">
-									<CSSidebarTab title="Tab Title">
+								code: `<CSSidebar className="custom-br-mint" id="custom-sidebar-id">
+									<CSSidebarTab title="Tab Title" className="custom-br-purple">
 										<span>This sidebar has custom class and custom id added, which can serve to apply custom styles.</span>
 									</CSSidebarTab>
 								</CSSidebar>`

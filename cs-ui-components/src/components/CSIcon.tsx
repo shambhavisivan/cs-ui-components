@@ -37,9 +37,9 @@ class CSIcon extends React.Component<CSIconProps> {
 		const styleClass = classNames(
 			'cs-icon',
 			{
-				[`${className}`]: className,
 				[`cs-icon-rotate-${rotate}`]: rotate,
-				'cs-icon-spin': spin
+				'cs-icon-spin': spin,
+				[`${className}`]: className
 			}
 		);
 		const style: CSSProperties = {

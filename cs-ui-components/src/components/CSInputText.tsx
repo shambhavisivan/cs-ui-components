@@ -90,8 +90,8 @@ class CSInputText extends React.Component<CSInputTextProps> {
 		const inputTextWrapperClasses = classNames(
 			'cs-input-text-wrapper',
 			{
-				[`${className}`]: className,
-				'cs-element-hidden': hidden
+				'cs-element-hidden': hidden,
+				[`${className}`]: className
 			}
 		);
 		const inputTextClasses = classNames(

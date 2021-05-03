@@ -42,14 +42,18 @@ class CSToast extends React.Component<CSToastProps> {
 		} = this.props;
 
 		const toastWrapperClasses = classNames(
-			'cs-toast-wrapper', {
-			[`${className}`]: className
-		});
+			'cs-toast-wrapper',
+			{
+				[`${className}`]: className
+			}
+		);
 
 		const toastClasses = classNames(
 			'cs-toast',
 			[`cs-toast-${variant}`],
-			{[`cs-toast-close`]: closeButton}
+			{
+				'cs-toast-close': closeButton
+			}
 		);
 
 		const style: CSSProperties = {

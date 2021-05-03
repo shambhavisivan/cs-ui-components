@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 export interface CSMainHeaderLeftProps {
 	[key: string]: any;
+	className?: string;
 	id?: string;
 	reverseOrder?: boolean;
 	subtitle?: string;
@@ -13,6 +14,7 @@ class CSMainHeaderLeft extends React.Component<CSMainHeaderLeftProps> {
 
 	render() {
 		const {
+			className,
 			children,
 			id,
 			reverseOrder,
@@ -21,7 +23,14 @@ class CSMainHeaderLeft extends React.Component<CSMainHeaderLeftProps> {
 			...rest
 		} = this.props;
 
-		const csMainHeaderHeadingClasses = classNames(
+		const mainHeaderLeftClasses = classNames(
+			'cs-main-header-left',
+			{
+				[`${className}`]: className
+			}
+		);
+
+		const mainHeaderHeadingClasses = classNames(
 			'cs-main-header-heading',
 			{
 				'cs-main-header-heading-reversed': reverseOrder
@@ -29,8 +38,8 @@ class CSMainHeaderLeft extends React.Component<CSMainHeaderLeftProps> {
 		);
 
 		return (
-			<div className="cs-main-header-left" id={id} {...rest}>
-				<div className={csMainHeaderHeadingClasses}>
+			<div className={mainHeaderLeftClasses} id={id} {...rest}>
+				<div className={mainHeaderHeadingClasses}>
 					{subtitle ? (
 						<h4 className="cs-main-header-subtitle">
 							{subtitle}

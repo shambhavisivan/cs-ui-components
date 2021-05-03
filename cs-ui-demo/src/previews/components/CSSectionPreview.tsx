@@ -98,7 +98,7 @@ class CSSectionPreview extends React.Component {
 								component: <CSSection
 									title="Section Title"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								>
 									<ul>
 										<li>Item 1</li>
@@ -109,7 +109,7 @@ class CSSectionPreview extends React.Component {
 								code: `<CSSection
 									title="Section Title"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								>
 									<ul>
 										<li>Item 1</li>

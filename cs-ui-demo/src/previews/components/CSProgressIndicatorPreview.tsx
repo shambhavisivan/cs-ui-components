@@ -20,16 +20,26 @@ class CSProgressIndicatorPreview extends React.Component {
 									'id="custom-id"',
 									'className="custom-class"'
 								],
-								component: <CSProgressIndicator id="custom-id" className="custom-class">
-									<CSProgressIndicatorItem text="Item 1" status="complete" />
+								component: <CSProgressIndicator id="custom-id" className="custom-br-purple">
+									<CSProgressIndicatorItem
+										text="Item 1"
+										status="complete"
+										id="custom-item-id"
+										className="custom-bg-mint"
+									/>
 									<CSProgressIndicatorItem text="Item 2" status="error" />
 									<CSProgressIndicatorItem text="Item 3" status="complete" />
 									<CSProgressIndicatorItem text="Item 4" status="active" />
 									<CSProgressIndicatorItem text="Item 5" />
 									<CSProgressIndicatorItem text="Item 6" />
 								</CSProgressIndicator>,
-								code: `<CSProgressIndicator id="custom-id" className="custom-class">
-									<CSProgressIndicatorItem text="Item 1" status="complete" />
+								code: `<CSProgressIndicator id="custom-id" className="custom-br-purple">
+									<CSProgressIndicatorItem
+										text="Item 1"
+										status="complete"
+										id="custom-item-id"
+										className="custom-bg-mint"
+									/>
 									<CSProgressIndicatorItem text="Item 2" status="error" />
 									<CSProgressIndicatorItem text="Item 3" status="complete" />
 									<CSProgressIndicatorItem text="Item 4" status="active" />

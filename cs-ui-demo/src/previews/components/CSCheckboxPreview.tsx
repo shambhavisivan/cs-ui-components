@@ -257,12 +257,12 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 								component: <CSCheckbox
 									label="Select option"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>,
 								code: `<CSCheckbox
 									label="Select option"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>`
 							}
 						]

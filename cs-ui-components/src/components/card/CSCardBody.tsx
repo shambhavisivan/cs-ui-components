@@ -1,5 +1,5 @@
-import classNames from 'classnames';
 import React, { CSSProperties } from 'react';
+import classNames from 'classnames';
 
 export interface CSCardBodyProps {
 	[key: string]: any;
@@ -10,11 +10,11 @@ export interface CSCardBodyProps {
 }
 
 class CSCardBody extends React.Component<CSCardBodyProps> {
-
 	render() {
 		const { className, children, id, maxHeight, padding, ...rest } = this.props;
 		const cardBodyClasses = classNames(
-			'cs-card-body', {
+			'cs-card-body',
+			{
 				[`${className}`]: className
 			}
 		);

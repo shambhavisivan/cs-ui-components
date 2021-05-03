@@ -145,7 +145,7 @@ class CSDividerPreview extends React.Component {
 									<CSDivider
 										variant="vertical"
 										id="custom-id"
-										className="custom-class"
+										className="custom-br-mint"
 										size="2rem"
 									/>
 									<CSButton label="Button 3" />
@@ -156,7 +156,7 @@ class CSDividerPreview extends React.Component {
 									<CSDivider
 										variant="vertical"
 										id="custom-id"
-										className="custom-class"
+										className="custom-br-mint"
 										size="2rem"
 									/>
 									<CSButton label="Button 3" />

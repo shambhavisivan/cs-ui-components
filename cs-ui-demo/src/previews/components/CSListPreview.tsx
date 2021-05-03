@@ -91,30 +91,30 @@ class CSListPreview extends React.Component {
 									'id="custom-id"',
 									'className="custom-class"'
 								],
-								component: <CSList id="custom-id" className="custom-class">
+								component: <CSList id="custom-id" className="custom-br-blue">
 									<CSListGroup
 										title="List Group"
 										id="group-id"
-										className="custom-group-class"
+										className="custom-bg-mint"
 									>
 										<CSListItem
 											text="List item"
 											id="item-id"
-											className="custom-item-class"
+											className="custom-br-purple"
 										/>
 										<CSListItem text="List item" />
 									</CSListGroup>
 								</CSList>,
-								code: `<CSList id="custom-id" className="custom-class">
+								code: `<CSList id="custom-id" className="custom-br-blue">
 									<CSListGroup
 										title="List Group"
 										id="group-id"
-										className="custom-group-class"
+										className="custom-bg-mint"
 									>
 										<CSListItem
 											text="List item"
-											id="item-id-1"
-											className="custom-item-class"
+											id="item-id"
+											className="custom-br-purple"
 										/>
 										<CSListItem text="List item" />
 									</CSListGroup>

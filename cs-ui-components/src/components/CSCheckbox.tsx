@@ -107,9 +107,9 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 		const checkboxWrapperClasses = classNames(
 			'cs-checkbox-wrapper',
 			{
-				[`${className}`]: className,
 				[`cs-checkbox-label-${labelPosition}`]: labelPosition,
-				'cs-element-hidden': hidden
+				'cs-element-hidden': hidden,
+				[`${className}`]: className
 			}
 		);
 		const checkboxFauxClasses = classNames(

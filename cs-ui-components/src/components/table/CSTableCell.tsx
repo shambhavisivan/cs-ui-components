@@ -30,9 +30,11 @@ class CSTableCell extends React.Component<CSTableCellProps> {
 		};
 
 		const tableCellClasses = classNames(
-			'cs-table-cell', {
-			[`${className}`]: className
-		});
+			'cs-table-cell',
+			{
+				[`${className}`]: className
+			}
+		);
 
 		return (
 			<div

@@ -198,12 +198,12 @@ class CSInputFilePreview extends React.Component {
 								component: <CSInputFile
 									label="Upload directory"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>,
 								code: `<CSInputFile
 									label="Upload directory"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>`
 							}
 						]

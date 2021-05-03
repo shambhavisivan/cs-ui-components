@@ -57,9 +57,9 @@ class CSTableRow extends React.Component<CSTableRowProps> {
 		const tableRowClasses = classNames(
 			'cs-table-row',
 			{
-				[`${className}`]: className,
 				'cs-table-row-selected': rowSelected,
-				'cs-table-row-highlighted': rowHighlighted
+				'cs-table-row-highlighted': rowHighlighted,
+				[`${className}`]: className
 			}
 		);
 

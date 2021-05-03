@@ -124,16 +124,20 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 		} = this.state;
 
 		const listGroupHeaderClasses = classNames(
-			'cs-list-group-header', {
-			[`cs-list-group-header-${listSize}`]: listSize,
-			[`cs-list-group-header-${listVariant}`]: listVariant,
-			'cs-list-group-header-noncollapsible': !collapsible
-		});
+			'cs-list-group-header',
+			{
+				[`cs-list-group-header-${listSize}`]: listSize,
+				[`cs-list-group-header-${listVariant}`]: listVariant,
+				'cs-list-group-header-noncollapsible': !collapsible
+			}
+		);
 
 		const listGroupWrapperClasses = classNames(
-			'cs-list-group-wrapper', {
-			[`${className}`]: className
-		});
+			'cs-list-group-wrapper',
+			{
+				[`${className}`]: className
+			}
+		);
 
 		const headerIconSize = () => {
 			switch (listSize) {

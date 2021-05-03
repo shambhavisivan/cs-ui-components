@@ -77,8 +77,8 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 		const sidebarClasses = classNames(
 			'cs-sidebar',
 			{
-				[`${className}`]: className,
-				closed: this.state.closed
+				closed: this.state.closed,
+				[`${className}`]: className
 			}
 		);
 

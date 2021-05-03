@@ -1,14 +1,29 @@
 import React from 'react';
+import classNames from 'classnames';
 
 export interface CSMainHeaderIconProps {
 	[key: string]: any;
+	className?: string;
 	id?: string;
 }
 
 class CSMainHeaderIcon extends React.Component<CSMainHeaderIconProps> {
 	render() {
-		const { children, id, ...rest } = this.props;
-		return <div className="cs-main-header-icon" id={id} {...rest}>
+		const {
+			className,
+			children,
+			id,
+			...rest
+		} = this.props;
+
+		const mainHeaderIconClasses = classNames(
+			'cs-main-header-icon',
+			{
+				[`${className}`]: className
+			}
+		);
+
+		return <div className={mainHeaderIconClasses} id={id} {...rest}>
 				{children}
 			</div>;
 	}

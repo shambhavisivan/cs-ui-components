@@ -364,28 +364,30 @@ class CSMainHeaderPreview extends React.Component {
 									'id="custom-id"',
 									'className="custom-class"'
 								],
-								component: <CSMainHeader id="custom-id" className="custom-class">
-									<CSMainHeaderIcon>
+								component: <CSMainHeader id="custom-id" className="custom-br-mint">
+									<CSMainHeaderIcon className="custom-br-blue">
 										<CSIcon name="emoji" />
 									</CSMainHeaderIcon>
 									<CSMainHeaderLeft
 										title="This is a title"
 										subtitle="This is a subtitle"
+										className="custom-bg-mint"
 									/>
-									<CSMainHeaderRight>
+									<CSMainHeaderRight className="custom-br-purple">
 										<CSButton label="Button 1" />
 										<CSButton label="Button 2" btnStyle="brand" />
 									</CSMainHeaderRight>
 								</CSMainHeader>,
-								code: `<CSMainHeader id="custom-id" className="custom-class">
-									<CSMainHeaderIcon>
+								code: `<CSMainHeader id="custom-id" className="custom-br-mint">
+									<CSMainHeaderIcon className="custom-br-blue">
 										<CSIcon name="emoji" />
 									</CSMainHeaderIcon>
 									<CSMainHeaderLeft
 										title="This is a title"
 										subtitle="This is a subtitle"
+										className="custom-bg-mint"
 									/>
-									<CSMainHeaderRight>
+									<CSMainHeaderRight className="custom-br-purple">
 										<CSButton label="Button 1" />
 										<CSButton label="Button 2" btnStyle="brand" />
 									</CSMainHeaderRight>

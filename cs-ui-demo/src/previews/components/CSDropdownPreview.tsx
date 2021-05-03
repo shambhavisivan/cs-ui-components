@@ -511,11 +511,11 @@ class CSDropdownPreview extends React.Component {
 									'id="custom-id"',
 									'className="custom-class"'
 								],
-								component: <CSDropdown id="custom-id" className="custom-class">
+								component: <CSDropdown id="custom-id" className="custom-br-mint">
 									<CSButton label="Button 1" />
 									<CSButton label="Button 2 with more content" />
 								</CSDropdown>,
-								code: `<CSDropdown id="custom-id" className="custom-class">
+								code: `<CSDropdown id="custom-id" className="custom-br-mint">
 									<CSButton label="Button 1" />
 									<CSButton label="Button 2 with more content" />
 								</CSDropdown>`

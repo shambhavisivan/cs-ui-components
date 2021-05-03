@@ -480,13 +480,13 @@ class CSCustomSelectPreview extends React.Component {
 								component: <CSCustomSelect
 									label="Choose letter"
 									id="custom-select-id"
-									className="custom-class"
+									className="custom-br-mint"
 								>
 									<CSOption
 										itemKey="1"
 										value="A"
 										id="custom-select-option-id"
-										className="custom-select-option-class"
+										className="custom-bg-mint"
 									/>
 									<CSOption itemKey="2" value="B" />
 									<CSOption itemKey="3" value="C" />
@@ -495,13 +495,13 @@ class CSCustomSelectPreview extends React.Component {
 								code: `<CSCustomSelect
 									label="Choose letter"
 									id="custom-select-id"
-									className="custom-class"
+									className="custom-br-mint"
 								>
 									<CSOption
 										itemKey="1"
 										value="A"
 										id="custom-select-option-id"
-										className="custom-select-option-class"
+										className="custom-bg-mint"
 									/>
 									<CSOption itemKey="2" value="B" />
 									<CSOption itemKey="3" value="C" />

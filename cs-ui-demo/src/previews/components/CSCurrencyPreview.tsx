@@ -570,14 +570,14 @@ class CSCurrencyPreview extends React.Component {
 									currency="USD"
 									locale="en-IN"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 									value={1000}
 								/>,
 								code: `<CSCurrency
 									currency="USD"
 									locale="en-IN"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 									value={1000}
 								/>`
 							}

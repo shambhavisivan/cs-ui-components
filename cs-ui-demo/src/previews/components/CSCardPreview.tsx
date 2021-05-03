@@ -26,23 +26,15 @@ class CSCardPreview extends React.Component {
 									'id="custom-id"',
 									'className="custom-class"'
 								],
-								component: <CSCard id="custom-id" className="custom-class">
-									<CSCardHeader title="Card Header" />
-									<CSCardBody>
-										Card Body
-									</CSCardBody>
-									<CSCardFooter>
-										Card Footer
-									</CSCardFooter>
+								component: <CSCard id="custom-id" className="custom-br-mint">
+									<CSCardHeader title="Card Header" className="custom-br-purple" />
+									<CSCardBody className="custom-bg-mint">Card Body</CSCardBody>
+									<CSCardFooter className="custom-br-blue">Card Footer</CSCardFooter>
 								</CSCard>,
-								code: `<CSCard id="custom-id" className="custom-class">
-									<CSCardHeader title="Card Header" />
-									<CSCardBody>
-										Card Body
-									</CSCardBody>
-									<CSCardFooter>
-										Card Footer
-									</CSCardFooter>
+								code: `<CSCard id="custom-id" className="custom-br-mint">
+									<CSCardHeader title="Card Header" className="custom-br-purple" />
+									<CSCardBody className="custom-bg-mint">Card Body</CSCardBody>
+									<CSCardFooter className="custom-br-blue">Card Footer</CSCardFooter>
 								</CSCard>`
 							}
 						]
@@ -109,21 +101,13 @@ class CSCardPreview extends React.Component {
 								primaryVariants: 'collapsible={true}',
 								component: <CSCard>
 									<CSCardHeader title="Card Header" collapsible />
-									<CSCardBody>
-										Card Body
-									</CSCardBody>
-									<CSCardFooter>
-										Card Footer
-									</CSCardFooter>
+									<CSCardBody>Card Body</CSCardBody>
+									<CSCardFooter>Card Footer</CSCardFooter>
 								</CSCard>,
 								code: `<CSCard>
 									<CSCardHeader title="Card Header" collapsible />
-									<CSCardBody>
-										Card Body
-									</CSCardBody>
-									<CSCardFooter>
-										Card Footer
-									</CSCardFooter>
+									<CSCardBody>Card Body</CSCardBody>
+									<CSCardFooter>Card Footer</CSCardFooter>
 								</CSCard>`
 							}
 						]
@@ -144,12 +128,8 @@ class CSCardPreview extends React.Component {
 											collapsible
 											defaultClosed
 										/>
-										<CSCardBody>
-											Card Body
-										</CSCardBody>
-										<CSCardFooter>
-											Card Footer
-										</CSCardFooter>
+										<CSCardBody>Card Body</CSCardBody>
+										<CSCardFooter>Card Footer</CSCardFooter>
 									</CSCard>,
 									code: `<CSCard>
 										<CSCardHeader
@@ -157,12 +137,8 @@ class CSCardPreview extends React.Component {
 											collapsible
 											defaultClosed
 										/>
-										<CSCardBody>
-											Card Body
-										</CSCardBody>
-										<CSCardFooter>
-											Card Footer
-										</CSCardFooter>
+										<CSCardBody>Card Body</CSCardBody>
+										<CSCardFooter>Card Footer</CSCardFooter>
 									</CSCard>`
 							}
 						]
@@ -178,12 +154,8 @@ class CSCardPreview extends React.Component {
 										iconName="description"
 										iconColor="red"
 									/>
-									<CSCardBody>
-										Card Body
-									</CSCardBody>
-									<CSCardFooter>
-										Card Footer
-									</CSCardFooter>
+									<CSCardBody>Card Body</CSCardBody>
+									<CSCardFooter>Card Footer</CSCardFooter>
 								</CSCard>,
 								code: `<CSCard>
 									<CSCardHeader
@@ -191,12 +163,8 @@ class CSCardPreview extends React.Component {
 										iconName="description"
 										iconColor="red"
 									/>
-									<CSCardBody>
-										Card Body
-									</CSCardBody>
-									<CSCardFooter>
-										Card Footer
-									</CSCardFooter>
+									<CSCardBody>Card Body</CSCardBody>
+									<CSCardFooter>Card Footer</CSCardFooter>
 								</CSCard>`
 							}
 						]
@@ -212,12 +180,8 @@ class CSCardPreview extends React.Component {
 										iconName="description"
 										iconFrame
 									/>
-									<CSCardBody>
-										Card Body
-									</CSCardBody>
-									<CSCardFooter>
-										Card Footer
-									</CSCardFooter>
+									<CSCardBody>Card Body</CSCardBody>
+									<CSCardFooter>Card Footer</CSCardFooter>
 								</CSCard>,
 								code: `<CSCard>
 									<CSCardHeader
@@ -225,12 +189,8 @@ class CSCardPreview extends React.Component {
 										iconName="description"
 										iconFrame
 									/>
-									<CSCardBody>
-										Card Body
-									</CSCardBody>
-									<CSCardFooter>
-										Card Footer
-									</CSCardFooter>
+									<CSCardBody>Card Body</CSCardBody>
+									<CSCardFooter>Card Footer</CSCardFooter>
 								</CSCard>`
 							}
 						]
@@ -249,12 +209,8 @@ class CSCardPreview extends React.Component {
 										iconOrigin="slds"
 										iconName="quote"
 									/>
-									<CSCardBody>
-										Card Body
-									</CSCardBody>
-									<CSCardFooter>
-										Card Footer
-									</CSCardFooter>
+									<CSCardBody>Card Body</CSCardBody>
+									<CSCardFooter>Card Footer</CSCardFooter>
 								</CSCard>,
 								code: `<CSCard>
 									<CSCardHeader
@@ -262,12 +218,8 @@ class CSCardPreview extends React.Component {
 										iconOrigin="slds"
 										iconName="quote"
 									/>
-									<CSCardBody>
-										Card Body
-									</CSCardBody>
-									<CSCardFooter>
-										Card Footer
-									</CSCardFooter>
+									<CSCardBody>Card Body</CSCardBody>
+									<CSCardFooter>Card Footer</CSCardFooter>
 								</CSCard>`
 							}, {
 								primaryVariants: [
@@ -281,12 +233,8 @@ class CSCardPreview extends React.Component {
 										iconOrigin="cs"
 										iconName="lead"
 									/>
-									<CSCardBody>
-										Card Body
-									</CSCardBody>
-									<CSCardFooter>
-										Card Footer
-									</CSCardFooter>
+									<CSCardBody>Card Body</CSCardBody>
+									<CSCardFooter>Card Footer</CSCardFooter>
 								</CSCard>,
 								code: `<CSCard>
 									<CSCardHeader
@@ -294,12 +242,8 @@ class CSCardPreview extends React.Component {
 										iconOrigin="cs"
 										iconName="lead"
 									/>
-									<CSCardBody>
-										Card Body
-									</CSCardBody>
-									<CSCardFooter>
-										Card Footer
-									</CSCardFooter>
+									<CSCardBody>Card Body</CSCardBody>
+									<CSCardFooter>Card Footer</CSCardFooter>
 								</CSCard>`
 							}
 						]
@@ -311,42 +255,26 @@ class CSCardPreview extends React.Component {
 								quickLink: 'true',
 								component: <CSCard>
 									<CSCardHeader title="Card Header" />
-									<CSCardBody>
-										Card Body
-									</CSCardBody>
-									<CSCardFooter>
-										Card Footer
-									</CSCardFooter>
+									<CSCardBody>Card Body</CSCardBody>
+									<CSCardFooter>Card Footer</CSCardFooter>
 								</CSCard>,
 								code: `<CSCard>
 									<CSCardHeader title="Card Header" />
-									<CSCardBody>
-										Card Body
-									</CSCardBody>
-									<CSCardFooter>
-										Card Footer
-									</CSCardFooter>
+									<CSCardBody>Card Body</CSCardBody>
+									<CSCardFooter>Card Footer</CSCardFooter>
 								</CSCard>`
 							}, {
 								primaryVariants: 'showBorder={false}',
 								quickLink: 'false',
 								component: <CSCard>
 									<CSCardHeader title="Card Header" showBorder={false} />
-									<CSCardBody>
-										Card Body
-									</CSCardBody>
-									<CSCardFooter>
-										Card Footer
-									</CSCardFooter>
+									<CSCardBody>Card Body</CSCardBody>
+									<CSCardFooter>Card Footer</CSCardFooter>
 								</CSCard>,
 								code: `<CSCard>
 									<CSCardHeader title="Card Header" showBorder={false} />
-									<CSCardBody>
-										Card Body
-									</CSCardBody>
-									<CSCardFooter>
-										Card Footer
-									</CSCardFooter>
+									<CSCardBody>Card Body</CSCardBody>
+									<CSCardFooter>Card Footer</CSCardFooter>
 								</CSCard>`
 							}
 						]

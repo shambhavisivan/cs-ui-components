@@ -260,12 +260,12 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 								component: <CSInputSearch
 									label="Type here"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>,
 								code: `<CSInputSearch
 									label="Type here"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>`
 							}
 						]

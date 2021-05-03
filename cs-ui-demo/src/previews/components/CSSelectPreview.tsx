@@ -333,7 +333,7 @@ class CSSelectPreview extends React.Component<{}, CSSelectPreviewState> {
 								component: <CSSelect
 									label="Choose amount"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								>
 									<option>10</option>
 									<option>20</option>
@@ -342,7 +342,7 @@ class CSSelectPreview extends React.Component<{}, CSSelectPreviewState> {
 								code: `<CSSelect
 									label="Choose amount"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								>
 									<option>10</option>
 									<option>20</option>

@@ -38,7 +38,7 @@ class CSPaginationWrapper extends React.Component<CSPaginationWrapperProps> {
 			}
 		);
 		return (
-			<div className="cs-pagination-wrapper">
+			<div className={paginationClasses}>
 				<CSPagination
 					// items={this.state.exampleItems}
 					// onChangePage={this.onChangePage}

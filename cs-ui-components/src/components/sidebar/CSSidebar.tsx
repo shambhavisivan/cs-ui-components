@@ -80,11 +80,11 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 		const sidebarClasses = classNames(
 			'cs-sidebar',
 			{
-				[`${className}`]: className,
 				'cs-sidebar-closed': this.state.closed,
 				'cs-sidebar-multiple-tabs': multipleTabs,
 				'cs-whole-sidebar-clickable': (wholeSidebarClickable && this.state.closed && !multipleTabs),
-				'cs-sidebar-wrapper-left': opensTo === 'right'
+				'cs-sidebar-wrapper-left': opensTo === 'right',
+				[`${className}`]: className
 			}
 		);
 

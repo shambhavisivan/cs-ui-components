@@ -603,7 +603,7 @@ class CSTransferPreview extends React.Component {
 									sourceLabel="Source"
 									targetLabel="Target"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>,
 								code: `<CSTransfer
 									dataSource={[
@@ -624,7 +624,7 @@ class CSTransferPreview extends React.Component {
 									sourceLabel="Source"
 									targetLabel="Target"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>`
 							}
 						]

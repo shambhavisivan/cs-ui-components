@@ -81,8 +81,8 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 		const textareaWrapperClasses = classNames(
 			'cs-textarea-wrapper',
 			{
-				[`${className}`]: className,
-				'cs-element-hidden': hidden
+				'cs-element-hidden': hidden,
+				[`${className}`]: className
 			}
 		);
 		return (

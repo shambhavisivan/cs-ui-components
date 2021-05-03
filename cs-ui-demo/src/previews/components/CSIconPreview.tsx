@@ -166,12 +166,12 @@ class CSIconPreview extends React.Component {
 								component: <CSIcon
 									name="connected_apps"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>,
 								code: `<CSIcon
 									name="connected_apps"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								/>`
 							}
 						]

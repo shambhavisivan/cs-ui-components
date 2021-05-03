@@ -170,8 +170,8 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 		const inputSearchWrapperClasses = classNames(
 			'cs-input-search-wrapper',
 			{
-				[`${className}`]: className,
-				'cs-element-hidden': hidden
+				'cs-element-hidden': hidden,
+				[`${className}`]: className
 			}
 		);
 

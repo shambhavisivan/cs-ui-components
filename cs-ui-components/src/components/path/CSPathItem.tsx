@@ -18,14 +18,26 @@ export interface CSPathItemProps {
 class CSPathItem extends React.Component<CSPathItemProps> {
 
 	render() {
-		const { active, disabled, status, onClick, id, name, ...rest } = this.props;
+		const {
+			active,
+			className,
+			disabled,
+			status,
+			onClick,
+			id,
+			name,
+			...rest
+		} = this.props;
+
 		const CSPathItemClasses = classNames(
 			'cs-path-item',
 			{
 				[`cs-path-item-${this.props.status}`]: status,
-				'cs-path-item-active': active
+				'cs-path-item-active': active,
+				[`${className}`]: className
 			}
 		);
+
 		return (
 			<li
 				onClick={onClick}

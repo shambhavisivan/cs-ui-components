@@ -378,13 +378,13 @@ class CSAlertPreview extends React.Component {
 								component: <CSAlert
 									variant="info"
 									id="custom-id"
-									className="custom-class"
+									className="custom-bg-purple"
 									text="This is an example alert with a custom CSS class and a custom ID"
 								/>,
 								code: `<CSAlert
 									variant="info"
 									id="custom-id"
-									className="custom-class"
+									className="custom-bg-purple"
 									text="This is an example alert with a custom CSS class and a custom ID"
 								/>`
 							}

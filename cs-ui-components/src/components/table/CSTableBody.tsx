@@ -13,9 +13,11 @@ class CSTableBody extends React.Component<CSTableBodyProps> {
 		const { children, className, id, maxHeight, ...rest } = this.props;
 
 		const tableBodyClasses = classNames(
-			'cs-table-body', {
-			[`${className}`]: className
-		});
+			'cs-table-body',
+			{
+				[`${className}`]: className
+			}
+		);
 
 		const tableBodyStyles: CSSProperties = {
 			'--cs-table-body-max-height': maxHeight

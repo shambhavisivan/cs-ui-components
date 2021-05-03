@@ -221,26 +221,26 @@ class CSRadioPreview extends React.Component {
 								component: <CSRadio
 									label="This is a label"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								>
 									<CSRadioOption
 										label="2020"
 										name="year"
 										id="custom-option-id"
-										className="custom-option-class"
+										className="custom-br-purple"
 									/>
 									<CSRadioOption label="2021" name="year" />
 								</CSRadio>,
 								code: `<CSRadio
 									label="This is a label"
 									id="custom-id"
-									className="custom-class"
+									className="custom-br-mint"
 								>
 									<CSRadioOption
 										label="2020"
 										name="year"
 										id="custom-option-id"
-										className="custom-option-class"
+										className="custom-br-purple"
 									/>
 									<CSRadioOption label="2021" name="year" />
 								</CSRadio>`

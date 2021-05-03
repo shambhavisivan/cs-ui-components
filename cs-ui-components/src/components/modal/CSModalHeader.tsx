@@ -24,9 +24,11 @@ class CSModalHeader extends React.Component<CSModalHeaderProps> {
 		} = this.props;
 
 		const modalHeaderClasses = classNames(
-			'cs-modal-header', {
-			[`${className}`]: className
-		});
+			'cs-modal-header',
+			{
+				[`${className}`]: className
+			}
+		);
 
 		return (
 			<header
