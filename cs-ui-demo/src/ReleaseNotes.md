@@ -1,5 +1,34 @@
 # Release Notes
 
+## 1.1.14<a name="1.1.14"></a>
+* CSDatepicker and CSDateTimePicker
+  * icon overlapping with text on small screens fixed
+  * input `ref` set to public
+  * onChange type fixed
+* CSList
+  * fixed :hover, :focus and :active styles
+* CSLookup
+  * `autoFocus` prop added
+  * fixed app breaking when `activeRowIndex` is null
+  * input `ref` set to public
+  * holding backspace won't delete selected item fixed
+  * implemented prevent update of inner state if `onSelectChange` returns false
+* CSRadio
+  * fixed changing value with keyboard when `readOnly={true}`
+* CSModalBody
+  * `minHeight` prop added
+* Demo App changes
+  * fix dark mode persisting after refresh
+  * added support for dark theme in code previews
+  * demo app now has theme file with css variables and color mixins
+  * all css variable names now have `--csd-` prefix to avoid conflicts with variables from other theme files
+  * various dark and light mode fixes
+* Documentation object restructure
+  * Custom Select
+  * Table
+  * Transfer
+  * Lookup
+
 ## 1.1.13<a name="1.1.13"></a>
 * CSDropdown
   * `width` prop added

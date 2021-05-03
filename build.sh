@@ -21,7 +21,7 @@ fi
 if changedFiles | grep -q '^cs-ui-demo'; then
     echo "Validating CS UI Demo"
     cd cs-ui-demo;
-    npm ci;
+    npm install --legacy-peer-deps;
     echo "Running CS UI Demo Lint"
     npm run lint;
     echo "Finished validating CS UI Demo"
