@@ -1,10 +1,19 @@
 # Release Notes
 
+## 1.1.15<a name="1.1.15"></a>
+* CSDropdown
+  * <i>important</i> `onDropdownKeyboardClose` prop replaced with `onDropdownTabClose`
+  * opening dropdown on arrow down key removed
+* CSTooltip
+  * `onMouseEnter` event replaced with `onMouseOver`
+* Documentation object restructure
+  * Dropdown
+
 ## 1.1.14<a name="1.1.14"></a>
 * CSDatepicker and CSDateTimePicker
   * icon overlapping with text on small screens fixed
   * input `ref` set to public
-  * onChange type fixed
+  * `onChange` type fixed
 * CSList
   * fixed :hover, :focus and :active styles
 * CSLookup
