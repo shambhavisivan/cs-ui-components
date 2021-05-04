@@ -43,6 +43,7 @@ interface CSLookupCommmonProps {
 	lookupColumns: Array<CSLookupTableColumnType>;
 	multiselect?: boolean;
 	onBlur?: (event: React.FocusEvent<HTMLInputElement>) => any;
+	onLookupDropdownClose?: () => void;
 	onFocus?: (event: React.FocusEvent<HTMLInputElement>) => any;
 	onSearch?: (event: React.ChangeEvent<HTMLInputElement>) => any;
 	onSelectChange?: (value?: any) => any;
@@ -94,13 +95,6 @@ export interface CSLookupState {
 	selectedOptions?: Array<Record<string, any>>;
 }
 
-export function fixControlledValue<T>(value: T) {
-	if (typeof value === 'undefined' || value === null) {
-		return '';
-	}
-	return value;
-}
-
 class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 	public static defaultProps = {
@@ -111,6 +105,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	};
 
 	public lookupInputRef: React.RefObject<HTMLInputElement>;
+	public lookupWrapperRef: React.RefObject<HTMLInputElement>;
 	private lookupDropdownId = 'cs-lookup-dropdown-root';
 	private lookupTable = 'cs-lookup-table';
 	private lookupTableHeader = 'cs-lookup-table-header';
@@ -123,6 +118,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	constructor(props: CSLookupProps) {
 		super(props);
 		this.lookupInputRef = React.createRef();
+		this.lookupWrapperRef = React.createRef();
 
 		this.state = {
 			activeRowIndex: null,
@@ -183,9 +179,8 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	}
 
 	handleClickOutside = (event: any) => {
-		if (
-			this.lookupInputRef.current &&
-			!this.lookupInputRef.current.contains(event.target) &&
+		if (this.lookupWrapperRef.current &&
+			!this.lookupWrapperRef.current.contains(event.target)  &&
 			!document.getElementById(this.lookupDropdownId).contains(event.target)) {
 			this.closeLookupDropdown();
 		}
@@ -289,15 +284,13 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 				searchTerm: '',
 				selectedOption: null,
 				selectedOptions: [],
-				dropdownValues: this.props.mode === 'client' ?
-					this.props.lookupOptions :
-					[]
+				dropdownValues: this.props.mode === 'client' ? this.props.lookupOptions : []
 			});
 		}
 
 		this.openLookupDropdown();
 		setTimeout(() => {
-			this.lookupInputRef.current.focus();
+			this.lookupInputRef?.current.focus();
 		}, 0);
 	}
 
@@ -324,7 +317,9 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			const result = await this.handleSelectChange(_selectedOption);
 			if (result) {
 				this.setState({
-					selectedOption: _selectedOption
+					selectedOption: _selectedOption,
+					dropdownValues: this.props.mode === 'client' ? this.props.lookupOptions : [],
+					searchTerm: ''
 				});
 			}
 			this.closeLookupDropdown();
@@ -391,9 +386,6 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		}
 		this.openLookupDropdown();
 
-		if (this.props.mode === 'server' && this.props.minTermLength === 0) {
-			this.setState({ fetchingMode: 'after-search' }, this.fetchData);
-		}
 	}
 
 	handleOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -404,11 +396,21 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			this.setState({
 				searchTerm: '',
 				dropdownValues: this.props.mode === 'client' ?
-					this.props.lookupOptions :
-					[]
+					this.props.lookupOptions : []
 			});
 		}
-		this.closeLookupDropdown();
+	}
+
+	handleLookupWrapperBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+		const currentTarget = e.currentTarget;
+		// Check the newly focused element in the next tick of the event loop
+		setTimeout(() => {
+			// Check if the new activeElement is a child of the original container
+			if (!currentTarget.contains(document.activeElement)) {
+				// You can invoke a callback or add custom logic here
+				this.closeLookupDropdown();
+			}
+		}, 0);
 	}
 
 	checkInView = (tableRowIndex: number) => {
@@ -442,16 +444,6 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		let _activeRowIndex = activeRowIndex;
 
 		switch (true) {
-			case event.key === KeyCode.Backspace &&
-				searchTerm.length === 1 &&
-				!!selectedOption:
-				const result = await this.handleSelectChange(null);
-				if (result) {
-					this.setState({
-						selectedOption: null
-					});
-				}
-				break;
 			case isLoading:
 				break;
 			case event.key === KeyCode.Escape && dropdownOpen:
@@ -555,6 +547,10 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			lookupInputWidth: elementRect.width,
 			activeRowIndex: 0
 		});
+
+		if (this.props.mode === 'server' && this.props.minTermLength === 0) {
+			this.setState({ fetchingMode: 'after-search' }, this.fetchData);
+		}
 		document.addEventListener('click', this.handleClickOutside, true);
 	}
 
@@ -569,6 +565,10 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			searchTerm: ''
 		});
 		document.removeEventListener('click', this.handleClickOutside, true);
+
+		if (this.props.onLookupDropdownClose) {
+			this.props.onLookupDropdownClose();
+		}
 	}
 
 	autoDropdownPosition = (dropdownRect: DOMRect) => {
@@ -709,6 +709,13 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			}
 		);
 
+		const selectedLookupItemClasses = classNames(
+			'cs-selected-input-option',
+			{
+				'cs-custom-select-dropdown-open': dropdownOpen
+			}
+		);
+
 		const lookupDropdownMsgClasses = classNames(
 			'cs-lookup-dropdown-msg-wrapper',
 			{
@@ -817,7 +824,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			}
 		};
 		return (
-			<div className={lookupFieldWrapperClasses} >
+			<div className={lookupFieldWrapperClasses}>
 				{(label && !labelHidden) &&
 					<CSLabel
 						htmlFor={this.uniqueAutoId}
@@ -828,7 +835,9 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 						title={labelTitle ? label : null}
 					/>
 				}
-				<div className="cs-lookup-input-wrapper">
+				<div className="cs-lookup-input-wrapper"
+					 ref={this.lookupWrapperRef}
+					 onBlur={this.handleLookupWrapperBlur}>
 					{!readOnly &&
 						<CSIcon
 							name="search"
@@ -846,10 +855,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 						disabled={disabled}
 						readOnly={readOnly}
 						required={required}
-						value={fixControlledValue(searchTerm ||
-							this.getValueToDisplay(selectedOption) ||
-							this.getMultiselectValues())
-						}
+						value={searchTerm}
 						onFocus={!readOnly ? this.handleOnFocus : undefined}
 						onKeyDown={!readOnly ? this.handleOnKeyDown : undefined}
 						onChange={this.handleSearch}
@@ -865,6 +871,11 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 						aria-multiselectable={multiselect}
 						{...rest}
 					/>
+					{!searchTerm && (selectedOption || selectedOptions) &&
+						<span className={selectedLookupItemClasses}>
+							{this.getValueToDisplay(selectedOption) || this.getMultiselectValues()}
+						</span>
+					}
 					{((searchTerm ||
 						selectedOption ||
 						(!!selectedOptions.length && !dropdownOpen))
@@ -879,11 +890,6 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 							iconDisplay="icon-only"
 							label="clear"
 							onClick={this.clearSearch}
-							onBlur={() => {
-								if (!!searchTerm.length) {
-									this.setState({ searchTerm: '' });
-								}
-							}}
 							size="xsmall"
 						/>
 					}
@@ -896,8 +902,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 							size="1rem"
 						/>
 					}
-
-				</div >
+				</div>
 				{
 					(error && errorMessage) &&
 					<CSFieldErrorMsg message={errorMessage} />
@@ -932,7 +937,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 						</div>
 					</Portal>
 				}
-			</div >
+			</div>
 
 		);
 	}

@@ -41,6 +41,24 @@
 			padding: 0 3rem 0 2rem;
 			border-radius: var(--cs-lookup-border-radius, 0.25rem);
 		}
+		.cs-selected-input-option {
+			position: absolute;
+			top: 1px;
+			left: 0;
+			width: 100%;
+			padding: 0 3rem 0 2rem;
+			font-size: 0.75rem;
+			line-height: 1.875rem;
+			user-select: none;
+			pointer-events: none;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			height: 1.875rem;
+			white-space: nowrap;
+			&.cs-custom-select-dropdown-open {
+				@include sc(--cs-selected-input-option-c);
+			}
+		}
 	}
 }
 

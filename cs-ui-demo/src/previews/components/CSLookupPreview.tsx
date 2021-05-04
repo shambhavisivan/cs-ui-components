@@ -55,6 +55,7 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 			return { focused: !prevState.focused };
 		});
 	}
+	handleClose = () => alert('Lookup has closed.');
 	handleSearch = (event: any) => alert(event.target.value);
 	handleSelectChange = (item: any) => alert(JSON.stringify(item));
 
@@ -476,6 +477,28 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 							}
 						]
 					}, {
+						propName: 'onLookupDropdownClose',
+						variations: [
+							{
+								component: <CSLookup
+									fieldToBeDisplayed="Account"
+									label="Account"
+									lookupOptions={sampleLookup.data}
+									lookupColumns={sampleLookup.columns}
+									mode="client"
+									onLookupDropdownClose={this.handleClose}
+								/>,
+								code: `<CSLookup
+									fieldToBeDisplayed="Account"
+									label="Account"
+									lookupOptions={sampleLookup.data}
+									lookupColumns={sampleLookup.columns}
+									mode="client"
+									onLookupDropdownClose={this.handleClose}
+								/>`
+							}
+						]
+					}, {
 						propName: 'onSearch',
 						variations: [
 							{
@@ -864,6 +887,10 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 						name: 'onFocus',
 						types: ['(event) => any'],
 						description: 'Handler method for the focus event.'
+					}, {
+						name: 'onLookupDropdownClose',
+						types: ['() => void'],
+						description: 'Handler method for when the lookup is closed.'
 					}, {
 						name: 'onSearch',
 						types: ['(event) => any'],
