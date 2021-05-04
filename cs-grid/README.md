@@ -16,6 +16,15 @@ Besides the standard set of features you'd expect from any grid cs-grid includes
 
 Release Notes
 ------------------
+####1.2.58
+* Implement feature flag utilities and example
+* Remove green background on cell success and add green border instead
+* Replace boolean renderer custom checkbox with CSCheckbox
+* Added accessibility support to boolean renderer
+* Fixed missing box shadow on cell value
+* Updated ag-grid to 24.1.0
+* Refactor keyboard accessibility functionality
+* Replace custom CS Grid lookup with CS UI Components Lookup
 ####1.2.57
 * Added tab/arrow keys keyboard accessibility
 * Replace instances of iconDisplay prop with labelHidden
@@ -45,7 +54,7 @@ Release Notes
  * Added support for tooltips on individual icons and buttons
  * New tooltip props support added: maxHeight, maxWidth, stickyOnClick
  * New button props support added: color, size, btnType, btnStyle
- * Added support for icons from CloudSense icons list using iconOrigin prop  
+ * Added support for icons from CloudSense icons list using iconOrigin prop
 ####1.2.53
  * Fix problem with action dropdown not displaying/displaying fewer actions than available
 ####1.2.52
@@ -56,7 +65,7 @@ Release Notes
  * Fix boolean update logic
  * Update cs-ui-components dependency
  * Add support for cell tooltip props: variant, height, width, position, padding
- * Add hover bg color and selected text color for lookup popup cells	
+ * Add hover bg color and selected text color for lookup popup cells
 ####1.2.49
  * Exposed a simplified version of `getQuickFilterText()` for optional quick filter value override.
 ####1.2.48
