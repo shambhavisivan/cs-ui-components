@@ -1,5 +1,29 @@
 # Release Notes
 
+## 1.1.16<a name="1.1.16"></a>
+* CSDatepicker
+  * fixed calendar icon position when there is an error message
+* CSInputNumber
+  * fixed `readOnly` styling
+* CSInputText
+  * fixed `readOnly` styling
+* CSLookup
+  * fixed `onBlur` events
+  * added `onLookupDropdownClose` prop
+  * separate `searchTerm` from `selectedOptions` in input value attribute
+* CSSelect
+  * fixed `readOnly` styling
+* CSTextarea
+  * fixed `readOnly` styling
+* added missing `id` and `className` props across components
+* Demo App changes
+  * various preview files clean up changes
+  * component quick links renamed to match UI component name
+  * removed legacy components
+    * PreviewLinks
+    * PreviewProperties
+    * PreviewTable
+
 ## 1.1.15<a name="1.1.15"></a>
 * CSDropdown
   * <i>important</i> `onDropdownKeyboardClose` prop replaced with `onDropdownTabClose`
