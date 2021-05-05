@@ -442,7 +442,7 @@ class CSTabPreview extends React.Component {
 									<CSTab name="Tab Three" />
 								</CSTabGroup>,
 								code: `<CSTabGroup>
-									<CSTab name="Tab One" />
+									<CSTab name="Tab One" width="10rem" />
 									<CSTab name="Tab Two" />
 									<CSTab name="Tab Three" />
 								</CSTabGroup>`
@@ -538,7 +538,7 @@ class CSTabPreview extends React.Component {
 						name: 'width',
 						types: ['string'],
 						description: 'Set the width of the tab. (eg. 200px, 20rem, etc.)',
-						default: '\'100%\''
+						default: '\'auto\''
 					}, {
 						name: 'parentVariant',
 						required: 'CSTabGroup',

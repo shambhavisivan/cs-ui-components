@@ -26,7 +26,7 @@
 			position: relative;
 			background: none;
 			border: none;
-			width: var(--cs-tab-width, 100%);
+			width: var(--cs-tab-width, auto);
 			height: 2.5rem;
 			cursor: pointer;
 			padding: 0.75rem 1rem;
@@ -37,6 +37,7 @@
 			.cs-tab-name {
 				line-height: 1;
 				font-size: 0.8125rem;
+				@include overflow-ellipsis;
 
 				&:not(:first-child) {
 					margin-left: 0.5rem;
