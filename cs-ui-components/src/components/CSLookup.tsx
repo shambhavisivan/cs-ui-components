@@ -562,6 +562,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			pageNo: 0,
 			moreRecords: true,
 			activeRowIndex: null,
+			dropdownValues: this.props.mode === 'client' ? this.props.lookupOptions : [],
 			searchTerm: ''
 		});
 		document.removeEventListener('click', this.handleClickOutside, true);
@@ -836,9 +837,11 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 						title={labelTitle ? label : null}
 					/>
 				}
-				<div className="cs-lookup-input-wrapper"
+				<div
+					className="cs-lookup-input-wrapper"
 					ref={this.lookupWrapperRef}
-					onBlur={this.handleLookupWrapperBlur}>
+					onBlur={this.handleLookupWrapperBlur}
+				>
 					{!readOnly &&
 						<CSIcon
 							name="search"
