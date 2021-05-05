@@ -35,14 +35,14 @@ export interface CSDatepickerProps {
 	minDateYear?: boolean;
 	name?: string;
 	onCalendarClose?: () => void;
-	onChange?: (date: Date) => any;
+	onChange: (date: Date) => any;
 	onChangeRaw?: (event: React.FocusEvent<HTMLInputElement>) => any;
 	openToDate?: any;
 	placeholder?: string;
 	readOnly?: boolean;
 	required?: boolean;
 	scrollableYearDropdown?: boolean;
-	selected?: Date;
+	selected: Date;
 	showMonthDropdown?: boolean;
 	showYearDropdown?: boolean;
 	title?: string;
@@ -68,12 +68,6 @@ class CSDatepicker extends React.Component<CSDatepickerProps> {
 
 		this.datepickerRef = React.createRef();
 		this.closeOnFocusOutside = this.closeOnFocusOutside.bind(this);
-	}
-
-	handleChange = (date: Date) => {
-		if (this.props.onChange) {
-			this.props.onChange(date);
-		}
 	}
 
 	closeOnFocusOutside(event: any) {
@@ -179,7 +173,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps> {
 							locale={locale}
 							selected={selected}
 							onCalendarClose={this.props.onCalendarClose}
-							onChange={this.handleChange}
+							onChange={onChange}
 							onChangeRaw={onChangeRaw}
 							onKeyDown={this.closeOnFocusOutside}
 							openToDate={openToDate}

@@ -1,13 +1,31 @@
 import React from 'react';
-import moment from 'moment';
 import { CSDateTimePicker } from '@cloudsense/cs-ui-components';
 
 import Preview from '../Preview';
 
-class CSDateTimePickerPreview extends React.Component {
-	value = '1-1-2020';
+interface CSDateTimePickerPreviewState {
+	[key: string]: Date;
+}
 
-	handleChange = () => alert('The date the has changed.');
+class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPreviewState> {
+	stateSuffix: string = '';
+	state = {
+		[`date${this.stateSuffix}`]: new Date(),
+		dateReadOnly: new Date(),
+		dateSelected: new Date('1-1-2020 11:30:00')
+	};
+
+	handleChange = (date: Date) => {
+		alert('Date has changed.');
+		this.setDate(date, 'OnChange');
+	}
+
+	setDate = (date: Date, stateSuffix: string) => {
+		this.stateSuffix = stateSuffix;
+		this.setState({
+			[`date${this.stateSuffix}`]: date
+		});
+	}
 
 	getDoc = () => ({
 		name: 'DateTimePicker',
@@ -25,8 +43,50 @@ class CSDateTimePickerPreview extends React.Component {
 						},
 						variations: [
 							{
-								component: <CSDateTimePicker label="Enter date" />,
-								code: '<CSDateTimePicker label="Enter date" />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									selected={this.state.dateLabel}
+									onChange={(date: Date) => this.setDate(date, 'Label')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
+							}
+						]
+					}, {
+						propName: 'onChange',
+						variations: [
+							{
+								secondaryVariants: 'selected={this.state.selected}',
+								component: <CSDateTimePicker
+									label="Enter date"
+									selected={this.state.dateOnChange}
+									onChange={this.handleChange}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									selected={this.state.selected}
+									onChange={this.handleChange}
+								/>`
+							}
+						]
+					}, {
+						propName: 'selected',
+						variations: [
+							{
+								secondaryVariants: 'onChange={() => any}',
+								component: <CSDateTimePicker
+									label="Enter date"
+									selected={this.state.dateSelected}
+									onChange={(date: Date) => this.setDate(date, 'Selected')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}
 						]
 					}, {
@@ -34,8 +94,18 @@ class CSDateTimePickerPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'autoFocus={true}',
-								component: <CSDateTimePicker label="Enter date" autoFocus />,
-								code: '<CSDateTimePicker label="Enter date" autoFocus />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									autoFocus
+									selected={this.state.dateAutoFocus}
+									onChange={(date: Date) => this.setDate(date, 'AutoFocus')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									autoFocus
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}
 						]
 					}, {
@@ -43,8 +113,18 @@ class CSDateTimePickerPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'borderRadius="0"',
-								component: <CSDateTimePicker label="Enter date" borderRadius="0" />,
-								code: '<CSDateTimePicker label="Enter date" borderRadius="0" />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									borderRadius="0"
+									selected={this.state.dateBorderRadius}
+									onChange={(date: Date) => this.setDate(date, 'BorderRadius')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									borderRadius="0"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}
 						]
 					}, {
@@ -53,23 +133,63 @@ class CSDateTimePickerPreview extends React.Component {
 							{
 								primaryVariants: 'dateFormat="d MMMM, yyyy h:mm aa"',
 								quickLink: 'd MMMM, yyyy h:mm aa',
-								component: <CSDateTimePicker label="Enter date" dateFormat="d MMMM, yyyy h:mm aa" />,
-								code: '<CSDateTimePicker label="Enter date" dateFormat="d MMMM, yyyy h:mm aa" />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									dateFormat="d MMMM, yyyy h:mm aa"
+									selected={this.state.dateDateFormat1}
+									onChange={(date: Date) => this.setDate(date, 'DateFormat1')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									dateFormat="d MMMM, yyyy h:mm aa"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}, {
 								primaryVariants: 'dateFormat="MMMM d, yyyy h:mm aa"',
 								quickLink: 'MMMM d, yyyy h:mm aa',
-								component: <CSDateTimePicker label="Enter date" dateFormat="MMMM d, yyyy h:mm aa" />,
-								code: '<CSDateTimePicker label="Enter date" dateFormat="MMMM d, yyyy h:mm aa" />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									dateFormat="MMMM d, yyyy h:mm aa"
+									selected={this.state.dateDateFormat2}
+									onChange={(date: Date) => this.setDate(date, 'DateFormat2')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									dateFormat="MMMM d, yyyy h:mm aa"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}, {
 								primaryVariants: 'dateFormat="yyyy MMMM, d h:mm aa"',
 								quickLink: 'yyyy MMMM, d h:mm aa',
-								component: <CSDateTimePicker label="Enter date" dateFormat="yyyy MMMM, d h:mm aa" />,
-								code: '<CSDateTimePicker label="Enter date" dateFormat="yyyy MMMM, d h:mm aa" />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									dateFormat="yyyy MMMM, d h:mm aa"
+									selected={this.state.dateDateFormat3}
+									onChange={(date: Date) => this.setDate(date, 'DateFormat3')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									dateFormat="yyyy MMMM, d h:mm aa"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}, {
-								primaryVariants: ['dateFormat="yyyy d, MMMM h:mm aa"'],
+								primaryVariants: 'dateFormat="yyyy d, MMMM h:mm aa"',
 								quickLink: 'yyyy d, MMMM h:mm aa',
-								component: <CSDateTimePicker label="Enter date" dateFormat="yyyy d, MMMM h:mm aa" />,
-								code: '<CSDateTimePicker label="Enter date" dateFormat="yyyy d, MMMM h:mm aa" />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									dateFormat="yyyy d, MMMM h:mm aa"
+									selected={this.state.dateDateFormat4}
+									onChange={(date: Date) => this.setDate(date, 'DateFormat4')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									dateFormat="yyyy d, MMMM h:mm aa"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}
 						]
 					}, {
@@ -77,8 +197,18 @@ class CSDateTimePickerPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'disabled={true}',
-								component: <CSDateTimePicker label="Enter date" disabled />,
-								code: '<CSDateTimePicker label="Enter date" disabled />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									disabled
+									selected={this.state.dateDisabled}
+									onChange={(date: Date) => this.setDate(date, 'Disabled')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									disabled
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}
 						]
 					}, {
@@ -86,33 +216,40 @@ class CSDateTimePickerPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'dropdownMode="scroll"',
-								quickLink: 'scroll',
 								component: <CSDateTimePicker
 									label="Enter date"
 									showYearDropdown
 									showMonthDropdown
 									dropdownMode="scroll"
+									selected={this.state.dateDropdownMode1}
+									onChange={(date: Date) => this.setDate(date, 'DropdownMode1')}
 								/>,
 								code: `<CSDateTimePicker
 									label="Enter date"
 									showYearDropdown
 									showMonthDropdown
 									dropdownMode="scroll"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
 								/>`
+
 							}, {
 								primaryVariants: 'dropdownMode="select"',
-								quickLink: 'select',
 								component: <CSDateTimePicker
 									label="Enter date"
 									showYearDropdown
 									showMonthDropdown
 									dropdownMode="select"
+									selected={this.state.dateDropdownMode2}
+									onChange={(date: Date) => this.setDate(date, 'DropdownMode2')}
 								/>,
 								code: `<CSDateTimePicker
 									label="Enter date"
 									showYearDropdown
 									showMonthDropdown
 									dropdownMode="select"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
 								/>`
 							}
 						]
@@ -125,8 +262,18 @@ class CSDateTimePickerPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'error={true}',
-								component: <CSDateTimePicker label="Enter date" error />,
-								code: '<CSDateTimePicker label="Enter date" error />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									error
+									selected={this.state.dateError}
+									onChange={(date: Date) => this.setDate(date, 'Error')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									error
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}
 						]
 					}, {
@@ -138,11 +285,15 @@ class CSDateTimePickerPreview extends React.Component {
 									label="Enter date"
 									error
 									errorMessage="Error message."
+									selected={this.state.dateErrorMsg}
+									onChange={(date: Date) => this.setDate(date, 'ErrorMsg')}
 								/>,
 								code: `<CSDateTimePicker
 									label="Enter date"
 									error
 									errorMessage="Error message."
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
 								/>`
 							}
 						]
@@ -150,8 +301,18 @@ class CSDateTimePickerPreview extends React.Component {
 						propName: 'helpText',
 						variations: [
 							{
-								component: <CSDateTimePicker label="Enter date" helpText="Help text example" />,
-								code: '<CSDateTimePicker label="Enter date" helpText="Help text example" />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									helpText="Help text example"
+									selected={this.state.dateHelpText}
+									onChange={(date: Date) => this.setDate(date, 'HelpText')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									helpText="Help text example"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}
 						]
 					}, {
@@ -159,8 +320,18 @@ class CSDateTimePickerPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'inline={true}',
-								component: <CSDateTimePicker label="Enter date" inline />,
-								code: '<CSDateTimePicker label="Enter date" inline />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									inline
+									selected={this.state.dateInline}
+									onChange={(date: Date) => this.setDate(date, 'Inline')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									inline
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}
 						]
 					}, {
@@ -168,8 +339,18 @@ class CSDateTimePickerPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'isClearable={true}',
-								component: <CSDateTimePicker label="Enter date" isClearable />,
-								code: '<CSDateTimePicker label="Enter date" isClearable />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									isClearable
+									selected={this.state.dateIsClearable}
+									onChange={(date: Date) => this.setDate(date, 'IsClearable')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									isClearable
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}
 						]
 					}, {
@@ -177,8 +358,18 @@ class CSDateTimePickerPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'labelHidden={true}',
-								component: <CSDateTimePicker label="Enter date" labelHidden />,
-								code: '<CSDateTimePicker label="Enter date" labelHidden />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									labelHidden
+									selected={this.state.dateLabelHidden}
+									onChange={(date: Date) => this.setDate(date, 'LabelHidden')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									labelHidden
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}
 						]
 					}, {
@@ -186,16 +377,37 @@ class CSDateTimePickerPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'labelTitle={true}',
-								component: <CSDateTimePicker label="Enter date" labelTitle />,
-								code: '<CSDateTimePicker label="Enter date" labelTitle />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									labelTitle
+									selected={this.state.dateLabelTitle}
+									onChange={(date: Date) => this.setDate(date, 'LabelTitle')}
+
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									labelTitle
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}
 						]
 					}, {
 						propName: 'maxDate',
 						variations: [
 							{
-								component: <CSDateTimePicker label="Enter date" maxDate={5} />,
-								code: '<CSDateTimePicker label="Enter date" maxDate={5} />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									maxDate={5}
+									selected={this.state.dateMaxDate}
+									onChange={(date: Date) => this.setDate(date, 'MaxDate')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									maxDate={5}
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}
 						]
 					}, {
@@ -207,11 +419,15 @@ class CSDateTimePickerPreview extends React.Component {
 									label="Enter date"
 									maxDate={1}
 									maxDateYear
+									selected={this.state.dateMaxDateYear}
+									onChange={(date: Date) => this.setDate(date, 'MaxDateYear')}
 								/>,
 								code: `<CSDateTimePicker
 									label="Enter date"
 									maxDate={1}
 									maxDateYear
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
 								/>`
 							}
 						]
@@ -219,8 +435,18 @@ class CSDateTimePickerPreview extends React.Component {
 						propName: 'minDate',
 						variations: [
 							{
-								component: <CSDateTimePicker label="Enter date" minDate={10} />,
-								code: '<CSDateTimePicker label="Enter date" minDate={10} />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									minDate={10}
+									selected={this.state.dateMinDate}
+									onChange={(date: Date) => this.setDate(date, 'MinDate')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									minDate={10}
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}
 						]
 					}, {
@@ -232,11 +458,15 @@ class CSDateTimePickerPreview extends React.Component {
 									label="Enter date"
 									minDate={1}
 									minDateYear
+									selected={this.state.dateMinDateYear}
+									onChange={(date: Date) => this.setDate(date, 'MinDateYear')}
 								/>,
 								code: `<CSDateTimePicker
 									label="Enter date"
 									minDate={1}
 									minDateYear
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
 								/>`
 							}
 						]
@@ -244,25 +474,36 @@ class CSDateTimePickerPreview extends React.Component {
 						propName: 'name',
 						variations: [
 							{
-								component: <CSDateTimePicker label="Enter date" name="datepicker" />,
-								code: '<CSDateTimePicker label="Enter date" name="datepicker" />'
-							}
-						]
-					}, {
-						propName: 'onChange',
-						variations: [
-							{
-								component: <CSDateTimePicker label="Enter date" onChange={this.handleChange} />,
-								code: '<CSDateTimePicker label="Enter date" onChange={this.handleChange} />'
-
+								component: <CSDateTimePicker
+									label="Enter date"
+									name="datepicker"
+									selected={this.state.dateName}
+									onChange={(date: Date) => this.setDate(date, 'Name')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									name="datepicker"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}
 						]
 					}, {
 						propName: 'placeholder',
 						variations: [
 							{
-								component: <CSDateTimePicker label="Enter date" placeholder="Placeholder text" />,
-								code: '<CSDateTimePicker label="Enter date" placeholder="Placeholder text" />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									placeholder="Placeholder text"
+									selected={this.state.datePlaceholder}
+									onChange={(date: Date) => this.setDate(date, 'Placeholder')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									placeholder="Placeholder text"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}
 						]
 					}, {
@@ -272,13 +513,15 @@ class CSDateTimePickerPreview extends React.Component {
 								primaryVariants: 'readOnly={true}',
 								component: <CSDateTimePicker
 									label="Enter date"
-									value={this.value}
 									readOnly
+									selected={this.state.dateReadOnly}
+									onChange={(date: Date) => this.setDate(date, 'ReadOnly')}
 								/>,
 								code: `<CSDateTimePicker
 									label="Enter date"
-									value={this.value}
 									readOnly
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
 								/>`
 							}
 						]
@@ -287,8 +530,18 @@ class CSDateTimePickerPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'required={true}',
-								component: <CSDateTimePicker label="Enter date" required />,
-								code: '<CSDateTimePicker label="Enter date" required />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									required
+									selected={this.state.dateRequired}
+									onChange={(date: Date) => this.setDate(date, 'Required')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									required
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}
 						]
 					}, {
@@ -299,11 +552,15 @@ class CSDateTimePickerPreview extends React.Component {
 									label="Enter date"
 									scrollableYearDropdown
 									showYearDropdown
+									selected={this.state.dateScrollableYearDropdown}
+									onChange={(date: Date) => this.setDate(date, 'ScrollableYearDropdown')}
 								/>,
 								code: `<CSDateTimePicker
 									label="Enter date"
 									scrollableYearDropdown
 									showYearDropdown
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
 								/>`
 							}
 						]
@@ -311,24 +568,54 @@ class CSDateTimePickerPreview extends React.Component {
 						propName: 'showMonthDropdown',
 						variations: [
 							{
-								component: <CSDateTimePicker label="Enter date" showMonthDropdown />,
-								code: '<CSDateTimePicker label="Enter date" showMonthDropdown />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									showMonthDropdown
+									selected={this.state.dateShowMonthDropdown}
+									onChange={(date: Date) => this.setDate(date, 'ShowMonthDropdown')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									showMonthDropdown
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}
 						]
 					}, {
 						propName: 'showYearDropdown',
 						variations: [
 							{
-								component: <CSDateTimePicker label="Enter date" showYearDropdown />,
-								code: '<CSDateTimePicker label="Enter date" showYearDropdown />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									showYearDropdown
+									selected={this.state.dateShowYearDropdown}
+									onChange={(date: Date) => this.setDate(date, 'ShowYearDropdown')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									showYearDropdown
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}
 						]
 					}, {
 						propName: 'timeCaption',
 						variations: [
 							{
-								component: <CSDateTimePicker label="Enter date" timeCaption="Tick Tock" />,
-								code: '<CSDateTimePicker label="Enter date" timeCaption="Tick Tock" />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									timeCaption="Tick Tock"
+									selected={this.state.dateTimeCaption}
+									onChange={(date: Date) => this.setDate(date, 'TimeCaption')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									timeCaption="Tick Tock"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}
 						]
 					}, {
@@ -337,39 +624,99 @@ class CSDateTimePickerPreview extends React.Component {
 							{
 								primaryVariants: 'timeFormat="HH:mm"',
 								quickLink: 'HH:mm',
-								component: <CSDateTimePicker label="Enter date" timeFormat="HH:mm" />,
-								code: '<CSDateTimePicker label="Enter date" timeFormat="HH:mm" />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									timeFormat="HH:mm"
+									selected={this.state.dateTimeFormat1}
+									onChange={(date: Date) => this.setDate(date, 'TimeFormat1')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									timeFormat="HH:mm"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}, {
 								primaryVariants: 'timeFormat="HH:mm:ss"',
 								quickLink: 'HH:mm:ss',
-								component: <CSDateTimePicker label="Enter date" timeFormat="HH:mm:ss" />,
-								code: '<CSDateTimePicker label="Enter date" timeFormat="HH:mm:ss" />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									timeFormat="HH:mm:ss"
+									selected={this.state.dateTimeFormat2}
+									onChange={(date: Date) => this.setDate(date, 'TimeFormat2')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									timeFormat="HH:mm:ss"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}, {
 								primaryVariants: 'timeFormat="yyyy-MM"',
 								quickLink: 'yyyy-MM',
-								component: <CSDateTimePicker label="Enter date" timeFormat="yyyy-MM" />,
-								code: '<CSDateTimePicker label="Enter date" timeFormat="yyyy-MM" />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									timeFormat="yyyy-MM"
+									selected={this.state.dateTimeFormat3}
+									onChange={(date: Date) => this.setDate(date, 'TimeFormat3')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									timeFormat="yyyy-MM"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}, {
 								primaryVariants: 'timeFormat="yyyy-MM-dd"',
 								quickLink: 'yyyy-MM-dd',
-								component: <CSDateTimePicker label="Enter date" timeFormat="yyyy-MM-dd" />,
-								code: '<CSDateTimePicker label="Enter date" timeFormat="yyyy-MM-dd" />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									timeFormat="yyyy-MM-dd"
+									selected={this.state.dateTimeFormat4}
+									onChange={(date: Date) => this.setDate(date, 'TimeFormat4')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									timeFormat="yyyy-MM-dd"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}
 						]
 					}, {
 						propName: 'timeIntervals',
 						variations: [
 							{
-								component: <CSDateTimePicker label="Enter date" timeIntervals={60} />,
-								code: '<CSDateTimePicker label="Enter date" timeIntervals={60} />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									timeIntervals={60}
+									selected={this.state.dateTimeIntervals}
+									onChange={(date: Date) => this.setDate(date, 'TimeIntervals')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									timeIntervals={60}
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}
 						]
 					}, {
 						propName: 'title',
 						variations: [
 							{
-								component: <CSDateTimePicker label="Enter date" title="This is a title" />,
-								code: '<CSDateTimePicker label="Enter date" title="This is a title" />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									title="This is a title"
+									selected={this.state.dateTitle}
+									onChange={(date: Date) => this.setDate(date, 'Title')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									title="This is a title"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 
 							}
 						]
@@ -378,8 +725,18 @@ class CSDateTimePickerPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'todayButton={true}',
-								component: <CSDateTimePicker label="Enter date" todayButton />,
-								code: '<CSDateTimePicker label="Enter date" todayButton />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									todayButton
+									selected={this.state.dateTodayButton}
+									onChange={(date: Date) => this.setDate(date, 'TodayButton')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									todayButton
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}
 						]
 					}, {
@@ -391,16 +748,20 @@ class CSDateTimePickerPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'tooltipPosition="top-left"',
-								secondaryVariant: 'helpText="text"',
+								secondaryVariants: 'helpText="text"',
 								component: <CSDateTimePicker
 									label="Enter date"
 									tooltipPosition="top-left"
 									helpText="Help text example"
+									selected={this.state.dateTooltipPosition}
+									onChange={(date: Date) => this.setDate(date, 'TooltipPosition')}
 								/>,
 								code: `<CSDateTimePicker
 									label="Enter date"
 									tooltipPosition="top-left"
 									helpText="Help text example"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
 								/>`
 							}
 						]
@@ -408,8 +769,18 @@ class CSDateTimePickerPreview extends React.Component {
 						propName: 'value',
 						variations: [
 							{
-								component: <CSDateTimePicker label="Enter date" value={this.value} />,
-								code: '<CSDateTimePicker label="Enter date" value={this.value} />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									value="1-1-2020 11:30:00"
+									selected={this.state.dateValue}
+									onChange={(date: Date) => this.setDate(date, 'Value')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									value="1-1-2020 11:30:00"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}
 						]
 					}, {
@@ -418,18 +789,48 @@ class CSDateTimePickerPreview extends React.Component {
 							{
 								primaryVariants: 'width="100%"',
 								quickLink: '100%',
-								component: <CSDateTimePicker label="Enter date" width="100%" />,
-								code: '<CSDateTimePicker label="Enter date" width="100%" />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									width="100%"
+									selected={this.state.dateWidth1}
+									onChange={(date: Date) => this.setDate(date, 'Width1')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									width="100%"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}, {
 								primaryVariants: 'width="30rem"',
 								quickLink: '30rem',
-								component: <CSDateTimePicker label="Enter date" width="30rem" />,
-								code: '<CSDateTimePicker label="Enter date" width="30rem" />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									width="30rem"
+									selected={this.state.dateWidth2}
+									onChange={(date: Date) => this.setDate(date, 'Width2')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									width="30rem"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}, {
 								primaryVariants: 'width="400px"',
 								quickLink: '400px',
-								component: <CSDateTimePicker label="Enter date" width="400px" />,
-								code: '<CSDateTimePicker label="Enter date" width="400px" />'
+								component: <CSDateTimePicker
+									label="Enter date"
+									width="400px"
+									selected={this.state.dateWidth3}
+									onChange={(date: Date) => this.setDate(date, 'Width3')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									width="400px"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
 							}
 						]
 					}, {
@@ -441,12 +842,16 @@ class CSDateTimePickerPreview extends React.Component {
 									showYearDropdown
 									scrollableYearDropdown
 									yearDropdownItemNumber={15}
+									selected={this.state.dateYearDropdownItemNumber}
+									onChange={(date: Date) => this.setDate(date, 'YearDropdownItemNumber')}
 								/>,
 								code: `<CSDateTimePicker
 									label="Enter date"
 									showYearDropdown
 									scrollableYearDropdown
 									yearDropdownItemNumber={15}
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
 								/>`
 							}
 						]
@@ -456,18 +861,21 @@ class CSDateTimePickerPreview extends React.Component {
 							{
 								primaryVariants: [
 									'id="custom-id"',
-									'class="custom-class"'
+									'className="custom-class"'
 								],
 								component: <CSDateTimePicker
 									label="Enter date"
 									id="custom-id"
 									className="custom-br-mint"
-
+									selected={this.state.dateIdClass}
+									onChange={(date: Date) => this.setDate(date, 'IdClass')}
 								/>,
 								code: `<CSDateTimePicker
 									label="Enter date"
 									id="custom-id"
 									className="custom-br-mint"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
 								/>`
 							}
 						]
@@ -506,18 +914,6 @@ class CSDateTimePickerPreview extends React.Component {
 						}],
 						default: '\'scroll\'',
 						description: 'Set the type of year and month dropdown.'
-					}, {
-						name: 'timeFormat',
-						types: ['string'],
-						description: 'Set the date format for various locales. (eg. HH:mm, HH:mm:ss, yyyy-MM, yyyy-MM:dd, etc.)'
-					}, {
-						name: 'timeIntervals',
-						types: ['number'],
-						description: 'Set the interval between each time value. (eg. 15, 20, 30, 60, etc.)'
-					}, {
-						name: 'timeCaption',
-						types: ['string'],
-						description: 'Set the title for the time column.'
 					}, {
 						name: 'error',
 						types: ['boolean'],
@@ -589,7 +985,8 @@ class CSDateTimePickerPreview extends React.Component {
 						description: 'Set the input name.'
 					}, {
 						name: 'onChange',
-						types: ['(event) => any'],
+						types: ['(Date) => any'],
+						required: true,
 						description: 'Handler method for the change event.'
 					}, {
 						name: 'placeholder',
@@ -613,6 +1010,7 @@ class CSDateTimePickerPreview extends React.Component {
 					}, {
 						name: 'selected',
 						types: ['Date'],
+						required: true,
 						description: 'Set the selected date and time.'
 					}, {
 						name: 'showMonthDropdown',
@@ -622,6 +1020,18 @@ class CSDateTimePickerPreview extends React.Component {
 						name: 'showYearDropdown',
 						types: ['boolean'],
 						description: 'Show the year dropdown list.'
+					}, {
+						name: 'timeCaption',
+						types: ['string'],
+						description: 'Set the title for the time column.'
+					}, {
+						name: 'timeFormat',
+						types: ['string'],
+						description: 'Set the date format for various locales. (eg. HH:mm, HH:mm:ss, yyyy-MM, yyyy-MM:dd, etc.)'
+					}, {
+						name: 'timeIntervals',
+						types: ['number'],
+						description: 'Set the interval between each time value. (eg. 15, 20, 30, 60, etc.)'
 					}, {
 						name: 'title',
 						types: ['string'],
@@ -654,7 +1064,7 @@ class CSDateTimePickerPreview extends React.Component {
 					}, {
 						name: 'value',
 						types: ['string'],
-						description: 'Pass date and time as a string value to the datetimepicker.'
+						description: 'Pass a string value to the datetimepicker.'
 					}, {
 						name: 'width',
 						types: ['string'],

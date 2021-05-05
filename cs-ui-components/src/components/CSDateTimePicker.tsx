@@ -69,6 +69,8 @@ class CSDateTimePicker extends React.Component<CSDateTimePickerProps> {
 		return (
 			<CSDatepicker
 				showTimeSelect
+				onChange={onChange}
+				selected={selected}
 				label={label}
 				{...this.props}
 				{...rest}

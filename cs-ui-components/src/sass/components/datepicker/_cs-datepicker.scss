@@ -221,7 +221,7 @@
 				padding-top: 0.25rem;
 
 				.react-datepicker__month-select, .react-datepicker__year-select {
-					border-radius: var(--cs-datepicker-border-radius, 0.25rem);
+					border-radius: 0.25rem;
 					@include css4 {
 						border: 1px solid var(--cs-datepicker-br);
 					}
