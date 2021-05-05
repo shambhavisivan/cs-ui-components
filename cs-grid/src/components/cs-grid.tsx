@@ -1025,8 +1025,8 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 					columnDef.sort === 'SORT_ASC'
 						? 'asc'
 						: columnDef.sort === 'SORT_DESC'
-							? 'desc'
-							: '';
+						? 'desc'
+						: '';
 			}
 
 			this.addIfDefined(agGridColDef, 'width', columnDef.width);

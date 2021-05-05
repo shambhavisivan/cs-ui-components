@@ -79,6 +79,8 @@ export abstract class CSGridBaseActionsRenderer<
 			let button: JSX.Element = null;
 
 			const onClick = () => {
+				// Prevent lookup opening onclick
+				this.props.api.stopEditing();
 				action.action(this.props.node.id, this.state.value?.cellValue);
 			};
 

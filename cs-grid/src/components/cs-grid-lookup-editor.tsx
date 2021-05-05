@@ -85,6 +85,7 @@ export class CSGridLookupEditor
 		return (
 			<div className='ag-theme-balham'>
 				<CSLookup
+					gridCustomPopup={true}
 					autoFocus={true}
 					mode='server'
 					labelHidden={true}
@@ -159,6 +160,7 @@ export class CSGridLookupEditor
 			}
 		}
 		this.setState({ value });
+
 		return true;
 	};
 }

@@ -62,7 +62,7 @@
 		"@babel/plugin-proposal-function-bind": "7.2.0",
 		"@babel/preset-env": "^7.5.5",
 		"@babel/preset-react": "7.0.0",
-		"@cloudsense/cs-ui-components": "^1.1.18",
+		"@cloudsense/cs-ui-components": "^1.1.19",
 		"@types/classnames": "^2.2.11",
 		"@types/enzyme": "^3.10.3",
 		"@types/enzyme-adapter-react-16": "^1.0.5",
@@ -109,7 +109,7 @@
 		"webpack-dev-server": "^3.11.0"
 	},
 	"peerDependencies": {
-		"@cloudsense/cs-ui-components": "^1.1.18",
+		"@cloudsense/cs-ui-components": "^1.1.19",
 		"react": "^16.8.6",
 		"react-dom": "^16.8.6"
 	}
