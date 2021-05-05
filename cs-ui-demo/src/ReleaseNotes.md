@@ -1,5 +1,17 @@
 # Release Notes
 
+## 1.1.17<a name="1.1.17"></a>
+* CSButton
+  * increased z-index of `--z-index-button-custom-content`
+* CSDatepicker and CSDateTimePicker
+  * `selected` prop added
+  *  removed internal state
+* CSLookup
+  * fixed enter issue on falsy search term
+  * added missing `onLookupDropdownClose` prop to props destructure
+* CSTab
+  * `width` prop added
+
 ## 1.1.16<a name="1.1.16"></a>
 * CSDatepicker
   * fixed calendar icon position when there is an error message
