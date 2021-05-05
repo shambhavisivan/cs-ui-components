@@ -102,7 +102,7 @@
 					display: block;
 					position: absolute;
 					top: 4px;
-					right: 3px;
+					left: 3px;
 					width: 0.75rem;
 					height: 0.75rem;
 					-webkit-mask: url('./../icons/lightning/chevronleft.svg') no-repeat 50% 50%;
@@ -213,6 +213,25 @@
 
 					&.react-datepicker__day--outside-month {
 						@include sc(--cs-datepicker-day-outside-c);
+					}
+				}
+			}
+
+			.react-datepicker__header__dropdown--select {
+				padding-top: 0.25rem;
+
+				.react-datepicker__month-select, .react-datepicker__year-select {
+					border-radius: var(--cs-datepicker-border-radius, 0.25rem);
+					@include css4 {
+						border: 1px solid var(--cs-datepicker-br);
+					}
+
+					&:focus {
+						outline: 0;
+						@include css4 {
+							border-color: cvar(--cs-datepicker-active-br);
+							box-shadow: 0 0 0.1875rem cvar(--cs-datepicker-shadow);
+						}
 					}
 				}
 			}

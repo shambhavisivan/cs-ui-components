@@ -565,7 +565,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 					(error && errorMessage) &&
 					<CSFieldErrorMsg message={errorMessage} />
 				}
-			</div >
+			</div>
 		);
 	}
 }
