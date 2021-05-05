@@ -180,7 +180,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 	handleClickOutside = (event: any) => {
 		if (this.lookupWrapperRef.current &&
-			!this.lookupWrapperRef.current.contains(event.target)  &&
+			!this.lookupWrapperRef.current.contains(event.target) &&
 			!document.getElementById(this.lookupDropdownId).contains(event.target)) {
 			this.closeLookupDropdown();
 		}
@@ -669,6 +669,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			multiselect,
 			onBlur,
 			onFocus,
+			onLookupDropdownClose,
 			onSearch,
 			onSelectChange,
 			pageSize,
@@ -836,8 +837,8 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 					/>
 				}
 				<div className="cs-lookup-input-wrapper"
-					 ref={this.lookupWrapperRef}
-					 onBlur={this.handleLookupWrapperBlur}>
+					ref={this.lookupWrapperRef}
+					onBlur={this.handleLookupWrapperBlur}>
 					{!readOnly &&
 						<CSIcon
 							name="search"
