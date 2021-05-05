@@ -1,11 +1,10 @@
 import React from 'react';
-import moment from 'moment';
 import { CSDatepicker } from '@cloudsense/cs-ui-components';
 
 import Preview from '../Preview';
 
 class CSDatepickerPreview extends React.Component {
-	value = moment('1.1.2020', 'DD-MM-YYYY').toDate();
+	value = '1-1-2020';
 
 	handleCloseCalendar = () => alert('Calendar has been closed.');
 	handleChange = () => alert('Date has changed.');
@@ -593,6 +592,10 @@ class CSDatepickerPreview extends React.Component {
 						default: 'false',
 						description: 'Set the year dropdown to fixed height and add a scrollbar.'
 					}, {
+						name: 'selected',
+						types: ['Date'],
+						description: 'Set the selected date.'
+					}, {
 						name: 'showMonthDropdown',
 						types: ['boolean'],
 						description: 'Show the month dropdown list.'
@@ -631,8 +634,8 @@ class CSDatepickerPreview extends React.Component {
 						description: 'Set the tooltip position for the datepicker.'
 					}, {
 						name: 'value',
-						types: ['any'],
-						description: 'Pass a value to the datepicker.'
+						types: ['string'],
+						description: 'Pass a date as a string value to the datepicker.'
 					}, {
 						name: 'width',
 						types: ['string'],
