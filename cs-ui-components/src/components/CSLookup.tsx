@@ -855,7 +855,9 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 						autoComplete="off"
 						autoFocus={autoFocus}
 						type="text"
-						placeholder={placeholder}
+						placeholder={placeholder &&
+							(selectedOptions.length === 0 && !selectedOption) ?
+							placeholder : undefined}
 						disabled={disabled}
 						readOnly={readOnly}
 						required={required}
