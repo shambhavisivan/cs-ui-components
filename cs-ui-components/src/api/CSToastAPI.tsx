@@ -81,7 +81,7 @@ export function renderCSToast(props: CSToastProps, position?: CSToastPosition, d
 	} else {
 		Notification.newInstance(
 			{
-				prefixCls: 'cs-toast-notification',
+				prefixCls: 'cs-toast-root',
 				style: getPosition(newPosition)
 			},
 			(instance: NotificationInstance) => (notifInstance = instance)

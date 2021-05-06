@@ -75,13 +75,15 @@ class CSToast extends React.Component<CSToastProps> {
 							<CSIcon name={variant} size="1.5rem" />) :
 						null
 					}
-					<h4 className="cs-toast-text">
-						{text}
-						{detail ?
-							<div className="cs-toast-detail">{detail}</div> :
-							null}
+					<div className="cs-toast-text">
+						<h4>
+							{text}
+						</h4>
+						{detail ? (
+							<div className="cs-toast-detail">{detail}</div>
+						) : null}
 						{children}
-					</h4>
+					</div>
 					{closeButton ?
 						<button className="cs-toast-close-btn" onClick={onClose} aria-label="close">
 							<CSIcon name="close" size="1.5rem" />

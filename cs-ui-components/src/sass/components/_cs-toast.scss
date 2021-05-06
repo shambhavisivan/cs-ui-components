@@ -11,7 +11,12 @@
 		padding: 0.75rem 1rem;
 		width: var(--cs-toast-width);
 		min-width: 15rem;
-		max-width: Min(var(--cs-toast-width, 30rem), 100%);
+		/*
+			BUG: issue with parent height when there is a long text
+			TODO: investigate why parent has width of full text width
+		*/
+		//max-width: Min(var(--cs-toast-width, 30rem), 100%);
+		max-width: var(--cs-toast-width, 34rem);
 
 		> .cs-icon {
 			margin-right: 0.5rem;
@@ -20,7 +25,7 @@
 		&.cs-toast-info {
 			@include sbg(--cs-toast-info-bg);
 
-			.cs-toast-text {
+			.cs-toast-text > * {
 				@include sc(--cs-toast-info-c);
 			}
 
@@ -36,7 +41,7 @@
 		&.cs-toast-success {
 			@include sbg(--cs-toast-success-bg);
 
-			.cs-toast-text {
+			.cs-toast-text > * {
 				@include sc(--cs-toast-success-c);
 			}
 
@@ -52,7 +57,7 @@
 		&.cs-toast-warning {
 			@include sbg(--cs-toast-warning-bg);
 
-			.cs-toast-text {
+			.cs-toast-text > * {
 				@include sc(--cs-toast-warning-c);
 			}
 
@@ -68,7 +73,7 @@
 		&.cs-toast-error {
 			@include sbg(--cs-toast-error-bg);
 
-			.cs-toast-text {
+			.cs-toast-text > * {
 				@include sc(--cs-toast-error-c);
 			}
 
@@ -167,7 +172,7 @@
 }
 
 /*TOAST NOTIFICATION RENDER API*/
-.cs-toast-notification {
+.cs-toast-root {
 	display: flex;
 	font-size: 1rem;
 	position: fixed;
