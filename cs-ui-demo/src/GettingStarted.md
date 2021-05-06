@@ -27,12 +27,13 @@ element. Variables should be self-explanatory and sorted by index in ascending o
   * `--z-index-progress-indicator: 1;`
   * `--z-index-transfer-list-item-focus: 1;`
   * `--z-index-sidebar-visible-wrapper: 1;`
+  * `--z-index-list-active: 1;`
   * `--z-index-button-focus: 2;`
   * `--z-index-button-icon: 2;`
   * `--z-index-button-label: 2;`
-  * `--z-index-button-custom-content: 2;`
   * `--z-index-main-header: 3;`
   * `--z-index-table-header: 3;`
+  * `--z-index-button-custom-content: 4;`
   * `--z-index-dropdown-items-wrapper: 5;`
   * `--z-index-sidebar-toggle: 10;`
   * `--z-index-path: 10;`
