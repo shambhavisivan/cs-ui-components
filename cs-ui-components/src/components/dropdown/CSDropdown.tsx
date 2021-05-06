@@ -270,7 +270,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 					iconRotate={iconRotate}
 					labelHidden={!label}
 					onClick={hover ? undefined : this.toggleDropdown}
-					onMouseEnter={hover ? this.openDropdown : undefined}
+					onMouseOver={hover ? this.openDropdown : undefined}
 					onMouseLeave={hover ? this.closeDropdown : undefined}
 					size={size}
 					label={label ? label : 'Toggle dropdown'}
