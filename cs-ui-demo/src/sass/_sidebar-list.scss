@@ -109,24 +109,8 @@
 
 		.cs-btn {
 			position: absolute;
-			top: 0.75rem;
-			right: 1rem;
-			width: 1rem;
-			height: 1rem;
-			min-width: 1rem;
-
-			.cs-btn-icon {
-				width: 1rem;
-				height: 1rem;
-				min-width: 1rem;
-			}
-
-			&:active::after,
-			&:focus::after {
-				outline: none;
-				box-shadow: none;
-				border: none;
-			}
+			top: 0.5rem;
+			right: 0.5rem;
 		}
 
 		~ .components-list-inner .components-list {
@@ -167,6 +151,12 @@
 			&:hover {
 				@include sc(--csd-sidebar-link-hover-c);
 				@include sbg(--csd-sidebar-link-hover-bg);
+			}
+
+			&:focus-visible {
+				outline: 0;
+				text-decoration: underline;
+				text-underline-offset: 2px;
 			}
 
 			&.active-component {

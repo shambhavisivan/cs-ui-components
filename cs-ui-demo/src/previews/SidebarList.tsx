@@ -69,7 +69,13 @@ class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
 				<div className={'components-list-wrapper' + (this.state.sidebarOpen ? ' sidebar-open' : ' sidebar-closed')}>
 					{this.props.toggle && (
 						<div className="sidebar-toggle" onClick={this.toggleSidebar}>
-							<CSIcon name={this.state.sidebarOpen ? 'close' : 'rows'} />
+							<CSButton
+								iconName={this.state.sidebarOpen ? 'close' : 'rows'}
+								label={this.state.sidebarOpen ? 'close' : 'open'}
+								btnType="transparent"
+								size="small"
+								labelHidden
+							/>
 						</div>
 					)}
 					{this.props.search && (
@@ -81,6 +87,7 @@ class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
 									label="clear"
 									btnType="transparent"
 									iconName="close"
+									size="small"
 									labelHidden
 									onClick={this.clearSearch}
 								/>
