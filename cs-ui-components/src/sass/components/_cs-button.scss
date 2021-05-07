@@ -432,8 +432,8 @@
 					@include cd(--cs-button-c, 0.15);
 				}
 			}
-			&:active::after {
-				--cs-button-br: var(--cs-btn-custom-c, var(--cs-button-inverse-c));
+			&:active::before {
+				@include sbg(--cs-button-transparent-inverse-active-bg);
 			}
 			&:disabled::after {
 				--cs-button-br: var(--cs-transparent);
@@ -477,7 +477,7 @@
 				}
 			}
 			&:active::before {
-				@include sbg(--cs-button-transparent-inverse-focus-bg);
+				@include sbg(--cs-button-transparent-inverse-active-bg);
 			}
 		}
 	}
