@@ -1,5 +1,24 @@
 # Release Notes
 
+## 1.1.18<a name="1.1.18"></a>
+* CSDatepicker and CSDateTimePicker
+  * <i>important</i> set `onChange` and `selected` props to required
+  * internal state removed
+  * month and year select elements styling changes
+  * state added to preview files
+* CSDropdown
+  * `onMouseEnter` event replaced with `onMouseOver`
+* CSLookup
+  * fixed placeholder visibility when `selectedOption` is set
+* CSToast
+  * <i>important</i> markup structure changes
+  * <i>important</i> class name `.cs-toast-notification` renamed to `.cs-toast-root` to match standard
+  * fixed toast wrapper not being included in reset file
+  * fixed width issue with long text
+* Demo App changes
+  * z-index list updated
+  * minor preview file fixes
+
 ## 1.1.17<a name="1.1.17"></a>
 * CSButton
   * increased z-index of `--z-index-button-custom-content`
