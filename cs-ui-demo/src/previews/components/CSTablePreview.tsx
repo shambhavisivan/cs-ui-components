@@ -133,56 +133,6 @@ class CSTablePreview extends React.Component {
 										</CSTableRow>
 									</CSTableBody>
 								</CSTable>`
-							}, {
-								primaryVariants: 'tableDescription="text"',
-								secondaryVariants: 'id="custom-description-id"',
-								quickLink: 'tableDescription and custom id',
-								component: <CSTable tableDescription="last, but best table" id="custom-description-id">
-									<CSTableHeader>
-										<CSTableCell text="Header Item 1" grow={2} />
-										<CSTableCell text="Header Item 2" grow={1} />
-										<CSTableCell text="Header Item 3" grow={1} />
-										<CSTableCell text="Button Column" />
-									</CSTableHeader>
-									<CSTableBody>
-										<CSTableRow>
-											<CSTableCell text="First Row Item 1" grow={2} />
-											<CSTableCell text="First Row Item 2" grow={1} />
-											<CSTableCell text="First Row Item 3" grow={1} />
-											<CSTableCell>
-												<CSButton
-													label="label"
-													labelHidden
-													btnType="default"
-													iconName="emoji"
-												/>
-											</CSTableCell>
-										</CSTableRow>
-									</CSTableBody>
-								</CSTable>,
-								code: `<CSTable tableDescription="last, but best table" id="custom-description-id">
-									<CSTableHeader>
-										<CSTableCell text="Header Item 1" grow={2} />
-										<CSTableCell text="Header Item 2" grow={1} />
-										<CSTableCell text="Header Item 3" grow={1} />
-										<CSTableCell text="Button Column" />
-									</CSTableHeader>
-									<CSTableBody>
-										<CSTableRow>
-											<CSTableCell text="First Row Item 1" grow={2} />
-											<CSTableCell text="First Row Item 2" grow={1} />
-											<CSTableCell text="First Row Item 3" grow={1} />
-											<CSTableCell>
-												<CSButton
-													label="label"
-													btnType="default"
-													iconName="emoji"
-													iconDisplay="icon-only"
-												/>
-											</CSTableCell>
-										</CSTableRow>
-									</CSTableBody>
-								</CSTable>`
 							}
 						]
 					}, {
