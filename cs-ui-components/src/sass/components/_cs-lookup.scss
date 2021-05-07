@@ -44,11 +44,11 @@
 		.cs-selected-input-option {
 			position: absolute;
 			top: 1px;
-			left: 0;
-			width: 100%;
+			left: 1px;
+			width: calc(100% - 2px);
 			padding: 0 3rem 0 2rem;
 			font-size: 0.75rem;
-			line-height: 1.875rem;
+			line-height: 2rem;
 			user-select: none;
 			pointer-events: none;
 			overflow: hidden;
