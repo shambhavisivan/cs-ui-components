@@ -319,6 +319,23 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 							}
 						]
 					}, {
+						propName: 'gridCustomPopup',
+						variations: [
+							{
+								variationName: ['true'],
+								quickLink: 'true',
+								component:
+									<CSLookup
+										mode="client"
+										label="Account"
+										lookupOptions={sampleLookup.data}
+										lookupColumns={sampleLookup.columns}
+										fieldToBeDisplayed="Account"
+										gridCustomPopup
+									/>
+							}
+						]
+					}, {
 						propName: 'helpText',
 						variations: [
 							{
@@ -837,6 +854,11 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 						required: true,
 						types: ['string'],
 						description: 'Set which field should be displayed when an option is selected.'
+					}, {
+						name: 'gridCustomPopup',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Provides React Portal support for AG Grid custom popups'
 					}, {
 						name: 'helpText',
 						types: ['string'],

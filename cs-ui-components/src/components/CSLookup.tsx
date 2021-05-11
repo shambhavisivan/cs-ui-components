@@ -34,6 +34,7 @@ interface CSLookupCommmonProps {
 	error?: boolean;
 	errorMessage?: CSFieldErrorMsgType;
 	fieldToBeDisplayed: string;
+	gridCustomPopup?: boolean;
 	helpText?: string;
 	hidden?: boolean;
 	id?: string;
@@ -361,8 +362,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	getMultiselectValues = () => {
 		if (
 			this.props.multiselect &&
-			!!this.state.selectedOptions.length &&
-			!this.state.dropdownOpen
+			!!this.state.selectedOptions.length
 		) {
 			const multiselectValues = this.state.selectedOptions.map(option => option[this.props.fieldToBeDisplayed]);
 			return multiselectValues.join(',');
@@ -656,6 +656,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			lookupOptions,
 			fetchLookupOptions,
 			fieldToBeDisplayed,
+			gridCustomPopup,
 			helpText,
 			hidden,
 			id,
@@ -715,6 +716,13 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			'cs-selected-input-option',
 			{
 				'cs-custom-select-dropdown-open': dropdownOpen
+			}
+		);
+
+		const lookupDropdownClasses = classNames(
+			'cs-lookup-dropdown',
+			{
+				'ag-custom-component-popup': gridCustomPopup
 			}
 		);
 
@@ -882,22 +890,18 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 							{this.getValueToDisplay(selectedOption) || this.getMultiselectValues()}
 						</span>
 					}
-					{((searchTerm ||
-						selectedOption ||
-						(!!selectedOptions.length && !dropdownOpen))
-						&& !disabled
-						&& !readOnly) &&
+					{((searchTerm || selectedOption || selectedOptions.length) && !disabled && !readOnly) ?
 						<CSButton
 							btnType="transparent"
 							btnStyle="brand"
 							className="cs-lookup-clear"
 							iconColor="var(--cs-input-clear)"
 							iconName="close"
-							iconDisplay="icon-only"
+							labelHidden
 							label="clear"
 							onClick={this.clearSearch}
 							size="xsmall"
-						/>
+						/> : null
 					}
 					{!readOnly &&
 						<CSIcon
@@ -917,7 +921,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 					dropdownOpen &&
 					<Portal node={document && document.getElementById(this.lookupDropdownId)}>
 						<div
-							className="cs-lookup-dropdown"
+							className={lookupDropdownClasses}
 							style={lookupDropdownStyle}
 							ref={this.lookupRefCallback}
 							key="dropdown-values"
