@@ -299,6 +299,9 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 				}, () => {
 					// To handle Esc key press before promise is resolved
 					if (this.state.computedTooltipStyle) {
+						if (!document.getElementById(this.uniqueAutoId)) {
+							return;
+						}
 						const tooltipRect = document.getElementById(this.uniqueAutoId).getBoundingClientRect();
 						this.autoTooltipPosition(tooltipRect);
 					}
