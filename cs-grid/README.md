@@ -16,6 +16,9 @@ Besides the standard set of features you'd expect from any grid cs-grid includes
 
 Release Notes
 ------------------
+####1.2.59
+* prevent lookup from opening when action button clicked
+* added gridCustomPopup prop to lookup editor
 ####1.2.58
 * Implement feature flag utilities and example
 * Remove green background on cell success and add green border instead
