@@ -1,5 +1,18 @@
 # Release Notes
 
+## 1.1.19<a name="1.1.19"></a>
+* CSLookup
+  * `gridCustomPopup` prop added
+  * fixed multiselect selected values not displaying when dropdown is open
+  * fixed clear button visibility on multiselect when values are present
+  * lookup dropdown `max-width` increased
+* CSSidebar
+  * `max-height: 100%` added to prevent sidebar overflow on smaller screens
+* CSTooltip
+  * `onMouseOver` event returned to `onMouseEnter`
+* Demo App changes
+  * form indicator added to form element components
+
 ## 1.1.18<a name="1.1.18"></a>
 * CSDatepicker and CSDateTimePicker
   * <i>important</i> set `onChange` and `selected` props to required
