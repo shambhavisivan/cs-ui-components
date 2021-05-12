@@ -146,7 +146,7 @@ class CSComponentsList extends React.Component {
 				component: CSListPreview
 			},
 			{
-				name: 'Lookup Field',
+				name: 'Lookup',
 				component: CSLookupPreview,
 				isFormElement: true
 			},

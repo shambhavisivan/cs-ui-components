@@ -209,15 +209,15 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		}
 	}
 
-	handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+	handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { mode, onSearch } = this.props;
 		const { dropdownOpen } = this.state;
-		onSearch?.(e);
+		onSearch?.(event);
 
 		if (!dropdownOpen) {
 			this.openLookupDropdown();
 		}
-		const value = e.target.value ? e.target.value : '';
+		const value = event.target.value ? event.target.value : '';
 		this.setState({
 			searchTerm: value,
 			fetchingMode: mode === 'server' ? 'after-search' : undefined,
@@ -380,17 +380,17 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		}
 	}
 
-	handleOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+	handleOnFocus = (event: React.FocusEvent<HTMLInputElement>) => {
 		if (this.props.onFocus) {
-			this.props.onFocus(e);
+			this.props.onFocus(event);
 		}
 		this.openLookupDropdown();
 
 	}
 
-	handleOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+	handleOnBlur = (event: React.FocusEvent<HTMLInputElement>) => {
 		if (this.props.onBlur) {
-			this.props.onBlur(e);
+			this.props.onBlur(event);
 		}
 		if (this.props.multiselect && !!this.state.selectedOptions.length) {
 			this.setState({
@@ -401,8 +401,8 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		}
 	}
 
-	handleLookupWrapperBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-		const currentTarget = e.currentTarget;
+	handleLookupWrapperBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+		const currentTarget = event.currentTarget;
 		// Check the newly focused element in the next tick of the event loop
 		setTimeout(() => {
 			// Check if the new activeElement is a child of the original container
@@ -780,9 +780,9 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		const dropdownValuesNode = dropdownValues.map((item, i) => (
 			<CSTableRow
 				key={'lookup-table-row' + i}
-				onMouseDown={(e: any) => {
-					e.preventDefault();
-					e.stopPropagation();
+				onMouseDown={(event: any) => {
+					event.preventDefault();
+					event.stopPropagation();
 					this.selectAction(item);
 				}}
 				onMouseOver={() => this.setActiveTableRowIndex(i)}
@@ -931,7 +931,14 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 									!!dropdownValues.length &&
 									!loading &&
 									fetchingMode !== 'after-search') &&
-									<CSTableHeader headerSticky id={this.lookupTableHeader}>
+									<CSTableHeader
+										headerSticky
+										id={this.lookupTableHeader}
+										onMouseDown={(event: any) => {
+											event.preventDefault();
+											event.stopPropagation();
+										}}
+									>
 										{lookupColumns.map(column => (
 											<CSTableCell text={column.label} key={column.key} />
 										))}
@@ -948,7 +955,6 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 					</Portal>
 				}
 			</div>
-
 		);
 	}
 }

@@ -38,8 +38,8 @@ element. Variables should be self-explanatory and sorted by index in ascending o
   * `--z-index-sidebar-toggle: 10;`
   * `--z-index-path: 10;`
   * `--z-index-reset-zen-more-tabs-ul: 99;`
-  * `--z-index-lookup-dropdown: 100;`
   * `--z-index-modal: 9000;`
+  * `--z-index-lookup-dropdown: 9001;`
   * `--z-index-toast: 9005;`
   * `--z-index-tooltip: 9025;`
   * `--z-index-spinner-wrapper: 9050;`
