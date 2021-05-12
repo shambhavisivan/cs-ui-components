@@ -1258,9 +1258,8 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 					const lookupDropdownOpen = document.querySelector('.cs-lookup-dropdown');
 
 					return (
-						params.event.key === 'Enter' ||
 						params.event.key === 'Escape' ||
-						(lookupDropdownOpen && params.event.key === 'Tab')
+						(lookupDropdownOpen && (params.event.key === KeyCode.Tab || params.event.key === KeyCode.Enter))
 					);
 				};
 
