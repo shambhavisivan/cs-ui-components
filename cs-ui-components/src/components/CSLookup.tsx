@@ -111,6 +111,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	private lookupTable = 'cs-lookup-table';
 	private lookupTableHeader = 'cs-lookup-table-header';
 	private lookupTableRowId = 'cs-lookup-table-row';
+	private timeoutRef: NodeJS.Timeout;
 
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
 
@@ -154,6 +155,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 	componentWillUnmount() {
 		document.removeEventListener('click', this.handleClickOutside, true);
+		clearTimeout(this.timeoutRef);
 	}
 
 	componentDidUpdate(prevProps: CSLookupProps) {
@@ -404,7 +406,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	handleLookupWrapperBlur = (event: React.FocusEvent<HTMLInputElement>) => {
 		const currentTarget = event.currentTarget;
 		// Check the newly focused element in the next tick of the event loop
-		setTimeout(() => {
+		this.timeoutRef = setTimeout(() => {
 			// Check if the new activeElement is a child of the original container
 			if (!currentTarget.contains(document.activeElement)) {
 				// You can invoke a callback or add custom logic here

@@ -82,6 +82,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 
 	private uniqueAutoId = uuidv4();
 	private tooltipId = 'cs-tooltip-root';
+	private _isMounted: boolean;
 
 	constructor(props: CSTooltipProps) {
 		super(props);
@@ -284,10 +285,15 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		);
 	}
 
+	componentDidMount() {
+		this._isMounted = true;
+	}
+
 	componentWillUnmount() {
 		if (this.state.stickyActive) {
 			document.removeEventListener('click', this.handleOutsideClick);
 		}
+		this._isMounted = false;
 	}
 
 	resolvePromise = () => {
@@ -363,11 +369,13 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 	}
 
 	private closeTooltip = () => {
-		this.setState({
-			computedTooltipStyle: undefined,
-			computedPosition: this.props.position,
-			tooltipWrapperDimension: undefined
-		});
+		if (this._isMounted) {
+			this.setState({
+				computedTooltipStyle: undefined,
+				computedPosition: this.props.position,
+				tooltipWrapperDimension: undefined
+			});
+		}
 
 		if (this.state.stickyActive) {
 			document.removeEventListener('click', this.handleOutsideClick);
