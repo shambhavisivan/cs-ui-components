@@ -198,9 +198,15 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 	private lookupColumns: Array<string> = [];
 	private dateColumns: Map<string, UserInfo> = new Map();
 	private dateTimeColumns: Map<string, UserInfo> = new Map();
+	private featureFlags: CSGridFeatureFlagHelper<CSGridFeatureFlag>;
 
 	constructor(props: CSGridProps) {
 		super(props);
+
+		this.featureFlags = new CSGridFeatureFlagHelper<CSGridFeatureFlag>(
+			CS_GRID_FEATURE_FLAGS,
+			props.featureFlags
+		);
 
 		const editorComponents = props.editorComponents || {};
 		const rendererComponents = props.rendererComponents || {};
@@ -404,7 +410,9 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 								sortable: true
 							}}
 							frameworkComponents={this.state.frameworkComponents}
-							stopEditingWhenGridLosesFocus={false}
+							stopEditingWhenGridLosesFocus={
+								!this.featureFlags.flags.useColumnLevelFocus
+							}
 							suppressDragLeaveHidesColumns={true}
 							rowSelection={this.props.multiSelect ? 'multiple' : 'single'}
 							suppressRowClickSelection={true}
@@ -1013,10 +1021,6 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 	};
 
 	private convertColumnDefs = (columnDefs: Array<ColDef>): Array<AgGridColDef> => {
-		const featureFlags = new CSGridFeatureFlagHelper<CSGridFeatureFlag>(
-			CS_GRID_FEATURE_FLAGS,
-			this.props.featureFlags
-		);
 		const agGridColDefs: Array<AgGridColDef> = [];
 
 		const rowSelectionColumns: Array<string> = [];
@@ -1218,7 +1222,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 					cellParams.noOfInlineIcons = 100;
 				}
 
-				if (!featureFlags.flags.useExtendedActionFormat) {
+				if (!this.featureFlags.flags.useExtendedActionFormat) {
 					// ... wrap columnDef.getActions() into function that converts results
 					this.addIfDefined(cellParams, 'getActions', columnDef.getActions);
 				}
@@ -1260,7 +1264,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				this.addIfDefined(cellParams, 'minSearchTermLength', columnDef.minSearchTermLength);
 				this.addIfDefined(cellParams, 'displayColumn', columnDef.displayColumn);
 				this.addIfDefined(cellParams, 'guidColumn', columnDef.guidColumn);
-				if (featureFlags.flags.usePaginatedLookupSearch) {
+				if (this.featureFlags.flags.usePaginatedLookupSearch) {
 					this.addIfDefined(cellParams, 'getLookupValues', columnDef.getLookupValues);
 				} else {
 					this.addIfDefined(
