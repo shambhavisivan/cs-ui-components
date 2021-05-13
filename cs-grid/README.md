@@ -16,6 +16,9 @@ Besides the standard set of features you'd expect from any grid cs-grid includes
 
 Release Notes
 ------------------
+####1.2.60
+* Changed where the editing is stopped when the grid loses focus from a grid level to an attribute level.
+* Added a scroll the Grid to a column option to the grid API.
 ####1.2.59
 * prevent lookup from opening when action button clicked
 * added gridCustomPopup prop to lookup editor
