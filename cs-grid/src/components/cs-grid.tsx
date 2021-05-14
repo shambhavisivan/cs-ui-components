@@ -580,7 +580,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		/**
 		 * we check if the record's value has a cellValue property. if yes, that means it is using
 		 * old rowDataModel, so we go ahead and set it in state. if not, then we transform it to
-		 * old datamodel. This is a workaround until the renderers start using new model
+		 * old data model. This is a workaround until the renderers start using new model
 		 */
 		if (rowData !== null && rowData !== undefined) {
 			if (this.isUsingLegacyRowDataModel(rowData)) {
@@ -714,9 +714,10 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 
 	private isUsingLegacyRowDataModel(rows: any) {
 		return (
-			rows &&
-			rows.length !== 0 &&
-			rows[0][this.props.uniqueIdentifierColumnName].hasOwnProperty('cellValue')
+			this.featureFlags.flags.forceLegacyRowData ||
+			(rows &&
+				rows.length !== 0 &&
+				rows[0][this.props.uniqueIdentifierColumnName].hasOwnProperty('cellValue'))
 		);
 	}
 

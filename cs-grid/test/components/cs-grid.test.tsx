@@ -828,9 +828,21 @@ describe('rowdata Related', () => {
 			rowData: legacyData,
 			uniqueIdentifierColumnName: 'exampleText'
 		};
-		const csgridcomp = shallow<CSGrid>(<CSGrid {...baseProps} />);
-		expect(csgridcomp.instance().state.isUsingLegacyRowDataModel).toBe(true);
-		expect(csgridcomp.instance().state.rowData).toEqual(legacyData);
+		const csGridComp = shallow<CSGrid>(<CSGrid {...baseProps} />);
+		expect(csGridComp.instance().state.isUsingLegacyRowDataModel).toBe(true);
+		expect(csGridComp.instance().state.rowData).toEqual(legacyData);
+	});
+
+	test('new row data', () => {
+		const baseProps: CSGridProps = {
+			...csGridBaseProps,
+			featureFlags: { forceLegacyRowData: true },
+			rowData: []
+		};
+
+		const csGridComp = shallow<CSGrid>(<CSGrid {...baseProps} />);
+		expect(csGridComp.instance().state.isUsingLegacyRowDataModel).toBe(true);
+		expect(csGridComp.instance().state.rowData).toEqual([]);
 	});
 
 	test('convertLegacyRowToRowData', () => {
