@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { CSIconOrigin } from '../CSIcon';
 import CSDropdownItemWrapper from './CSDropdownItemWrapper';
 import { Portal } from 'react-portal';
+import KeyCode from '../../util/KeyCode';
 
 export type CSDropdownAlign = 'left' | 'right';
 export type CSDropdownIconPosition = 'left' | 'right';
@@ -158,6 +159,12 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 		document.removeEventListener('click', this.handleOutsideClick);
 	}
 
+	onKeyDown = (event: { key: string; }) => {
+		if (event.key === KeyCode.Escape && this.state.isOpen) {
+			this.closeDropdown();
+		}
+	}
+
 	toggleDropdown = (event?: React.MouseEvent<any>) => {
 		// prevent closing the dropdown if click is invoked on mode that isn't button
 		if (
@@ -280,6 +287,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 					onClick={hover ? undefined : this.toggleDropdown}
 					onMouseOver={hover ? this.openDropdown : undefined}
 					onMouseLeave={hover ? this.closeDropdown : undefined}
+					onKeyDown={this.onKeyDown}
 					size={size}
 					label={label ? label : 'Toggle dropdown'}
 					ariaExpanded={!!this.state.computedDropdownStyle}
