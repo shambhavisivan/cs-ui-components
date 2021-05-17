@@ -10,14 +10,18 @@ export function noOfVisibleButtons(
 	useDropdown: boolean,
 	contentsWidth: number
 ) {
+	if (!noOfInlineIcons) {
+		return 0;
+	}
+
 	let firstIcon: HTMLElement = document.querySelectorAll<HTMLElement>(
 		`.cs-grid_app-wrapper .cs-grid_main .ag-react-container #icon-item-${id}-0`
 	)[0];
 
 	if (!firstIcon) {
-		firstIcon = document.querySelectorAll<HTMLElement>(
-			`.cs-grid_app-wrapper .cs-grid_main .ag-react-container #icon-item-${id}-dropdown`
-		)[0];
+		firstIcon = document.querySelector<HTMLElement>(
+			'.cs-grid_app-wrapper .cs-grid_main .ag-react-container [title="Toggle dropdown"]'
+		);
 	}
 
 	if (firstIcon) {
