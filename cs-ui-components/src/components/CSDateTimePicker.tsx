@@ -27,6 +27,7 @@ class CSDateTimePicker extends React.Component<CSDateTimePickerProps> {
 			dropdownMode,
 			error,
 			errorMessage,
+			forwardRef,
 			helpText,
 			id,
 			isClearable,
@@ -75,9 +76,14 @@ class CSDateTimePicker extends React.Component<CSDateTimePickerProps> {
 				{...this.props}
 				{...rest}
 				className={dateTimePickerClasses}
+				ref={forwardRef}
 			/>
 		);
 	}
 }
 
-export default CSDateTimePicker;
+const CSDateTimePickerWithRefs: React.ForwardRefExoticComponent<CSDateTimePickerProps & React.RefAttributes<CSDatepicker>> =
+	React.forwardRef<CSDatepicker, CSDateTimePickerProps>((props: CSDateTimePickerProps, ref) =>
+		<CSDateTimePicker {...props} forwardRef={ref} />);
+
+export default CSDateTimePickerWithRefs;
