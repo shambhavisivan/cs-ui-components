@@ -77,7 +77,10 @@ describe('CS Grid Currency Editor', () => {
 
 	test('Confirms stopEditing is called when clicking outside the editor.', () => {
 		containsMock.mockReturnValue(false);
-		mount(<CSGridCurrencyEditor {...cSGridCellEditorProps} />);
+		const cellEditor = mount(<CSGridCurrencyEditor {...cSGridCellEditorProps} />);
+		const instance = cellEditor.instance() as CSGridCurrencyEditor;
+		instance.isCancelBeforeStart();
+
 		fireEvent.click(document.body);
 
 		expect(stopEditingMock).toHaveBeenCalledTimes(1);
@@ -85,7 +88,10 @@ describe('CS Grid Currency Editor', () => {
 
 	test('Confirms stopEditing is not called when clicking inside the editor.', () => {
 		containsMock.mockReturnValue(true);
-		mount(<CSGridCurrencyEditor {...cSGridCellEditorProps} />);
+		const cellEditor = mount(<CSGridCurrencyEditor {...cSGridCellEditorProps} />);
+		const instance = cellEditor.instance() as CSGridCurrencyEditor;
+		instance.isCancelBeforeStart();
+
 		fireEvent.click(document.body);
 
 		expect(stopEditingMock).toHaveBeenCalledTimes(0);

@@ -143,7 +143,10 @@ describe('CS Grid Text Editor', () => {
 
 	test('Confirms stopEditing is called when clicking outside the editor.', () => {
 		containsMock.mockReturnValue(false);
-		mount(<CSGridTextEditor {...cSGridCellEditorProps} />);
+		const cellEditor = mount(<CSGridTextEditor {...cSGridCellEditorProps} />);
+		const instance = cellEditor.instance() as CSGridTextEditor;
+		instance.isCancelBeforeStart();
+
 		fireEvent.click(document.body);
 
 		expect(stopEditingMock).toHaveBeenCalledTimes(1);
@@ -151,7 +154,10 @@ describe('CS Grid Text Editor', () => {
 
 	test('Confirms stopEditing is not called when clicking inside the editor.', () => {
 		containsMock.mockReturnValue(true);
-		mount(<CSGridTextEditor {...cSGridCellEditorProps} />);
+		const cellEditor = mount(<CSGridTextEditor {...cSGridCellEditorProps} />);
+		const instance = cellEditor.instance() as CSGridTextEditor;
+		instance.isCancelBeforeStart();
+
 		fireEvent.click(document.body);
 
 		expect(stopEditingMock).toHaveBeenCalledTimes(0);

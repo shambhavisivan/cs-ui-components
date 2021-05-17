@@ -89,7 +89,10 @@ describe('CS Grid Decimal Editor', () => {
 
 	test('Confirms stopEditing is called when clicking outside the editor.', () => {
 		containsMock.mockReturnValue(false);
-		mount(<CSGridDecimalEditor {...cSGridCellEditorProps} />);
+		const cellEditor = mount(<CSGridDecimalEditor {...cSGridCellEditorProps} />);
+		const instance = cellEditor.instance() as CSGridDecimalEditor;
+		instance.isCancelBeforeStart();
+
 		fireEvent.click(document.body);
 
 		expect(stopEditingMock).toHaveBeenCalledTimes(1);
@@ -97,7 +100,10 @@ describe('CS Grid Decimal Editor', () => {
 
 	test('Confirms stopEditing is not called when clicking inside the editor.', () => {
 		containsMock.mockReturnValue(true);
-		mount(<CSGridDecimalEditor {...cSGridCellEditorProps} />);
+		const cellEditor = mount(<CSGridDecimalEditor {...cSGridCellEditorProps} />);
+		const instance = cellEditor.instance() as CSGridDecimalEditor;
+		instance.isCancelBeforeStart();
+
 		fireEvent.click(document.body);
 
 		expect(stopEditingMock).toHaveBeenCalledTimes(0);

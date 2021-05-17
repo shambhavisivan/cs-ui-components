@@ -55,12 +55,16 @@ export class CSGridPicklistEditor
 		};
 	}
 
-	componentDidMount() {
+	isCancelBeforeStart() {
 		document.addEventListener('click', this.handleOutsideClick);
+
+		return false;
 	}
 
-	componentWillUnmount() {
+	isCancelAfterEnd() {
 		document.removeEventListener('click', this.handleOutsideClick);
+
+		return false;
 	}
 
 	afterGuiAttached() {

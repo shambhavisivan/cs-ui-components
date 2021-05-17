@@ -50,6 +50,7 @@ export class CSGridLookupEditor
 	gridApi: GridApi;
 	lookupInputRef: HTMLInputElement;
 	private divRef: React.RefObject<HTMLDivElement>;
+	private lookupRef: any;
 	private clearButtonClass = 'cs-lookup-clear';
 
 	constructor(
@@ -74,12 +75,16 @@ export class CSGridLookupEditor
 		};
 	}
 
-	async componentDidMount() {
+	isCancelBeforeStart() {
 		document.addEventListener('click', this.handleOutsideClick);
+
+		return false;
 	}
 
-	componentWillUnmount() {
+	isCancelAfterEnd() {
 		document.removeEventListener('click', this.handleOutsideClick);
+
+		return false;
 	}
 
 	isPopup = () => {
@@ -114,6 +119,7 @@ export class CSGridLookupEditor
 					minTermLength={this.props.minSearchTermLength}
 					ref={ref => {
 						if (ref) {
+							this.lookupRef = ref;
 							setTimeout(() => {
 								ref.lookupInputRef.current.focus();
 							}, 0);
@@ -182,6 +188,8 @@ export class CSGridLookupEditor
 		if (
 			this.divRef.current &&
 			!this.divRef.current.contains(node) &&
+			this.lookupRef &&
+			!document.getElementById(this.lookupRef.lookupDropdownId).contains(node) &&
 			// The clear button no longer exists by the time the code gets here so we cannot use a ref.
 			!node.classList.contains(this.clearButtonClass)
 		) {

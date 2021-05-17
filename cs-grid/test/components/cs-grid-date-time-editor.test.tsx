@@ -193,6 +193,7 @@ describe('CS Grid Date Time Editor', () => {
 		const instance = cellEditor.instance() as any;
 
 		instance.divRef.current.contains = containsMock;
+		instance.isCancelBeforeStart();
 
 		fireEvent.click(document.body);
 
@@ -205,6 +206,8 @@ describe('CS Grid Date Time Editor', () => {
 		const instance = cellEditor.instance() as any;
 
 		instance.divRef.current.contains = containsMock;
+		instance.isCancelBeforeStart();
+
 		fireEvent.click(document.body);
 
 		expect(stopEditingMock).toHaveBeenCalledTimes(0);

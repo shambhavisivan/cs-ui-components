@@ -40,8 +40,6 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 	}
 
 	async componentDidMount() {
-		document.addEventListener('click', this.handleOutsideClick);
-
 		if (!this.props.value) {
 			this.setState({
 				value: {
@@ -58,10 +56,6 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 				errorMessage: this.props.value.errorMessage
 			}
 		});
-	}
-
-	componentWillUnmount() {
-		document.removeEventListener('click', this.handleOutsideClick);
 	}
 
 	/**
@@ -83,11 +77,19 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 	}
 
 	isCancelAfterEnd() {
+		document.removeEventListener('click', this.handleOutsideClick);
+
 		this.setState(prevState => {
 			prevState.value.cellValue = this.formatValue();
 
 			return { value: prevState.value };
 		});
+
+		return false;
+	}
+
+	isCancelBeforeStart() {
+		document.addEventListener('click', this.handleOutsideClick);
 
 		return false;
 	}
@@ -144,6 +146,12 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 
 		return result;
 	}
+
+	handleOutsideClick = (event: MouseEvent) => {
+		if (this.props.eGridCell && !this.props.eGridCell.contains(event.target as Node)) {
+			this.props.stopEditing();
+		}
+	};
 
 	abstract getNumberFormat(): Intl.NumberFormat;
 
@@ -209,11 +217,5 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 		});
 
 		return formatter.formatToParts(1).find(part => part.type === 'currency').value;
-	};
-
-	private handleOutsideClick = (event: MouseEvent) => {
-		if (this.props.eGridCell && !this.props.eGridCell.contains(event.target as Node)) {
-			this.props.stopEditing();
-		}
 	};
 }
