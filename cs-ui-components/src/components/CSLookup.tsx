@@ -436,7 +436,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	}
 
 	handleOnKeyDown = async (event: React.KeyboardEvent<HTMLInputElement>) => {
-		const { activeRowIndex, dropdownOpen, dropdownValues, fetchingMode, searchTerm, selectedOption } = this.state;
+		const { activeRowIndex, dropdownOpen, dropdownValues, fetchingMode } = this.state;
 		const isLoading = this.props.loading || fetchingMode === 'after-search';
 
 		const firstListElement = 0;
@@ -890,7 +890,13 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 							{this.getValueToDisplay(selectedOption) || this.getMultiselectValues()}
 						</span>
 					}
-					{((searchTerm || selectedOption || selectedOptions.length) && !disabled && !readOnly) ?
+					{((searchTerm ||
+						selectedOption ||
+						selectedOptions.length) &&
+						!disabled &&
+						!readOnly &&
+						!loading &&
+						!fetchingMode) ?
 						<CSButton
 							btnType="transparent"
 							btnStyle="brand"
