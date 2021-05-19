@@ -27,11 +27,13 @@ export interface CSDropdownProps {
 	iconRotate?: string;
 	id?: string;
 	label?: string;
-	mode?: CSDropdownMode;
 	maxHeight?: string;
 	maxWidth?: string;
-	onDropdownTabClose?: () => void;
+	mode?: CSDropdownMode;
 	onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+	onDropdownClose?: () => void;
+	onDropdownOpen?: () => void;
+	onDropdownTabClose?: () => void;
 	padding?: string;
 	position?: CSDropdownPosition;
 	size?: CSDropdownSize;
@@ -140,6 +142,9 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 		}
 
 		this.setState({ isOpen: true });
+		if (this.props.onDropdownOpen) {
+			this.props.onDropdownOpen();
+		}
 		document.addEventListener('click', this.handleOutsideClick);
 	}
 
@@ -148,7 +153,8 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 			computedDropdownStyle: undefined,
 			computedPosition: [this.props.position, this.props.align],
 			isOpen: false
-		});
+		}, () => this.props.onDropdownClose?.());
+
 		document.removeEventListener('click', this.handleOutsideClick);
 	}
 
@@ -217,7 +223,6 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 			btnType,
 			children,
 			className,
-			onDropdownTabClose,
 			disabled,
 			hover,
 			iconName,
@@ -230,6 +235,9 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 			maxWidth,
 			mode,
 			onClick,
+			onDropdownClose,
+			onDropdownOpen,
+			onDropdownTabClose,
 			padding,
 			position,
 			size,

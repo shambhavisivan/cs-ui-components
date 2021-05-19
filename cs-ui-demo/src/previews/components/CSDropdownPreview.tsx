@@ -12,6 +12,7 @@ import Preview from '../Preview';
 
 class CSDropdownPreview extends React.Component {
 	handleClose = () => alert('Dropdown has been closed.');
+	handleOpen = () => alert('Dropdown has been opened.');
 
 	getDoc = () => ({
 		name: 'Dropdown',
@@ -141,7 +142,7 @@ class CSDropdownPreview extends React.Component {
 										<CSButton label="Button 2 with more content" />
 									</CSDropdown>
 								</div>,
-							code: `<div className="purple-background">
+								code: `<div className="purple-background">
 								<CSDropdown btnType="transparent" btnStyle="outline">
 									<CSButton label="Button 1" />
 									<CSButton label="Button 2 with more content" />
@@ -301,7 +302,7 @@ class CSDropdownPreview extends React.Component {
 								component: <CSDropdown maxHeight="3rem">
 									<CSButton label="Button 1" />
 									<CSButton label="Button 2 with more content" />
-									<CSButton label="Button 3 with more content"/>
+									<CSButton label="Button 3 with more content" />
 								</CSDropdown>,
 								code: `<CSDropdown maxHeight="3rem">
 									<CSButton label="Button 1" />
@@ -391,6 +392,42 @@ class CSDropdownPreview extends React.Component {
 									<CSAlert variant="info">
 										Dropdown with mode="custom" can have any custom content inside it.
 									</CSAlert>
+								</CSDropdown>`
+							}
+						]
+					}, {
+						propName: 'onDropdownClose',
+						variations: [
+							{
+								component: <CSDropdown onDropdownClose={this.handleClose}>
+									<CSButton label="List item 1" />
+									<CSButton label="List item 2" disabled />
+									<CSButton label="List item 3" />
+									<CSButton label="List item 4" />
+								</CSDropdown>,
+								code: `<CSDropdown onDropdownClose={this.handleClose}>
+									<CSButton label="List item 1" />
+									<CSButton label="List item 2" disabled />
+									<CSButton label="List item 3" />
+									<CSButton label="List item 4" />
+								</CSDropdown>`
+							}
+						]
+					}, {
+						propName: 'onDropdownOpen',
+						variations: [
+							{
+								component: <CSDropdown onDropdownOpen={this.handleOpen}>
+									<CSButton label="List item 1" />
+									<CSButton label="List item 2" disabled />
+									<CSButton label="List item 3" />
+									<CSButton label="List item 4" />
+								</CSDropdown>,
+								code: `<CSDropdown onDropdownOpen={this.handleOpen}>
+									<CSButton label="List item 1" />
+									<CSButton label="List item 2" disabled />
+									<CSButton label="List item 3" />
+									<CSButton label="List item 4" />
 								</CSDropdown>`
 							}
 						]
@@ -664,6 +701,14 @@ class CSDropdownPreview extends React.Component {
 						}],
 						default: '\'button\'',
 						description: 'Set the mode in which dropdown will be displayed.'
+					}, {
+						name: 'onDropdownClose',
+						types: ['() => void'],
+						description: 'Callback for when the dropdown is closed.'
+					}, {
+						name: 'onDropdownOpen',
+						types: ['() => void'],
+						description: 'Callback for when the dropdown is opened.'
 					}, {
 						name: 'onDropdownTabClose',
 						types: ['(event) => void'],
