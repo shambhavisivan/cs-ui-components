@@ -16,6 +16,11 @@ Besides the standard set of features you'd expect from any grid cs-grid includes
 
 Release Notes
 ------------------
+####1.2.61
+* When clearing a value on the date renderer then focusing on another cell, focus will no longer return to the date renderer.
+* Multi-select lookup dropdown no longer closes after each selection.
+* Fix noOfInlineIcons check, if the noOfInlineIcons is set to 0 then 0 icons will be shown.
+* Implemented forceLegacyRowData featureFlag.
 ####1.2.60
 * Changed where the editing is stopped when the grid loses focus from a grid level to an attribute level.
 * Added a scroll the Grid to a column option to the grid API.
