@@ -1,6 +1,7 @@
 import React, {
 	createContext,
 	useContext,
+	useCallback,
 	useEffect,
 	useState
 } from 'react';
@@ -12,12 +13,12 @@ export enum Theme {
 
 export interface ThemeContextType {
 	theme: Theme;
-	toggleTheme: (Theme: Theme) => void;
+	toggleTheme: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextType>({
 	theme: Theme.Light,
-	toggleTheme: theme => console.warn('No theme provider.')
+	toggleTheme: () => console.warn('No theme provider.')
 });
 
 export interface ThemeContextProviderProps {
@@ -27,26 +28,31 @@ export interface ThemeContextProviderProps {
 export const ThemeProvider: React.FC<ThemeContextProviderProps> = ({ children }) => {
 	const [theme, setTheme] = useState<Theme>(Theme.Light);
 
+	const toggleTheme = useCallback(() => {
+		setTheme((prevTheme: Theme) => {
+			const newTheme = prevTheme === Theme.Dark ? Theme.Light : Theme.Dark;
+
+			window.localStorage.setItem('csd-theme', newTheme);
+
+			if (newTheme === Theme.Dark) {
+				document.body.classList.add('csd-theme-dark');
+				document.body.classList.remove('csd-theme-light');
+			} else {
+				document.body.classList.add('csd-theme-light');
+				document.body.classList.remove('csd-theme-dark');
+			}
+
+			return newTheme;
+		});
+	}, []);
+
 	useEffect(() => {
 		const storageTheme = window.localStorage.getItem('csd-theme');
+
 		if (storageTheme === Theme.Dark) {
 			toggleTheme();
 		}
-	}, []);
-
-	const toggleTheme = () => {
-		const newTheme = theme === Theme.Dark ? Theme.Light : Theme.Dark;
-		setTheme(newTheme);
-		window.localStorage.setItem('csd-theme', newTheme);
-		if (newTheme === Theme.Dark) {
-			document.body.classList.add('csd-theme-dark');
-			document.body.classList.remove('csd-theme-light');
-
-		} else {
-			document.body.classList.add('csd-theme-light');
-			document.body.classList.remove('csd-theme-dark');
-		}
-	};
+	}, [toggleTheme]);
 
 	return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
 };
