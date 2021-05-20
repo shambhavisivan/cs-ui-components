@@ -20,6 +20,7 @@
   * fixed multiselect selected values not displaying when dropdown is open
   * fixed clear button visibility on multiselect when values are present
   * lookup dropdown `max-width` increased
+  * added `multiselect` feature
 * CSSidebar
   * `max-height: 100%` added to prevent sidebar overflow on smaller screens
 * CSTooltip
