@@ -1,5 +1,19 @@
 # Release Notes
 
+## 1.1.20<a name="1.1.20"></a>
+* CSDateTimePicker
+  * added `ref` forwarding
+* CSDropdown
+  * added `onDropdownClose` prop
+  * added `onDropdownOpen` prop
+* CSLookup
+  * click on table header inside dropdown does not close dropdown anymore
+  * z-index increased to be greater than modal one
+* Demo App changes
+  * fixed field disappearing when tabbed in search field
+  * fixed clear button display
+  * fixed missing dependency 'toggleTheme' error
+
 ## 1.1.19<a name="1.1.19"></a>
 * CSLookup
   * `gridCustomPopup` prop added
