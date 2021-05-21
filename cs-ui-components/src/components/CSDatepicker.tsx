@@ -37,6 +37,8 @@ export interface CSDatepickerProps {
 	onCalendarClose?: () => void;
 	onChange: (date: Date) => any;
 	onChangeRaw?: (event: React.FocusEvent<HTMLInputElement>) => any;
+	onKeyDown?: (event: React.KeyboardEvent<any>) => any;
+	onSelect?: (date: Date) => any;
 	openToDate?: any;
 	placeholder?: string;
 	readOnly?: boolean;
@@ -67,14 +69,14 @@ class CSDatepicker extends React.Component<CSDatepickerProps> {
 		super(props);
 
 		this.datepickerRef = React.createRef();
-		this.closeOnFocusOutside = this.closeOnFocusOutside.bind(this);
 	}
 
-	closeOnFocusOutside(event: any) {
+	handleOnKeyDown = (event: any) => {
 		// If shift key and tab pressed together close datepicker
 		if (event.shiftKey && event.key === KeyCode.Tab) {
 			this.datepickerRef.current.setOpen(false);
 		}
+		this.props.onKeyDown?.(event);
 	}
 
 	public render() {
@@ -103,6 +105,8 @@ class CSDatepicker extends React.Component<CSDatepickerProps> {
 			onCalendarClose,
 			onChange,
 			onChangeRaw,
+			onKeyDown,
+			onSelect,
 			openToDate,
 			placeholder,
 			readOnly,
@@ -175,7 +179,8 @@ class CSDatepicker extends React.Component<CSDatepickerProps> {
 							onCalendarClose={this.props.onCalendarClose}
 							onChange={onChange}
 							onChangeRaw={onChangeRaw}
-							onKeyDown={this.closeOnFocusOutside}
+							onKeyDown={this.handleOnKeyDown}
+							onSelect={onSelect}
 							openToDate={openToDate}
 							showYearDropdown={showYearDropdown}
 							showMonthDropdown={showMonthDropdown}

@@ -41,6 +41,8 @@ class CSDateTimePicker extends React.Component<CSDateTimePickerProps> {
 			minDateYear,
 			name,
 			onChange,
+			onKeyDown,
+			onSelect,
 			placeholder,
 			readOnly,
 			required,

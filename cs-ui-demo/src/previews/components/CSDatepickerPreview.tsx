@@ -21,6 +21,11 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 		this.setDate(date, 'OnChange');
 	}
 	handleChangeRaw = () => alert('Date has changed from raw value.');
+	handleKeyDown = () => alert('Key has been pressed.');
+	handleSelect = (date: Date) => {
+		alert('Date has been selected.');
+		this.setDate(date, 'OnSelect');
+	}
 	setDate = (date: Date, stateSuffix: string) => {
 		this.stateSuffix = stateSuffix;
 		this.setState({
@@ -516,9 +521,45 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 								/>,
 								code: `<CSDatepicker
 									label="Enter date"
-									selected={this.state.dateOnChangeRaw}
+									selected={this.state.selected}
 									onChangeRaw={this.handleChangeRaw}
 									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
+							}
+						]
+					}, {
+						propName: 'onKeyDown',
+						variations: [
+							{
+								component: <CSDatepicker
+									label="Enter date"
+									selected={this.state.dateOnKeyDown}
+									onChange={(date: Date) => this.setDate(date, 'OnKeyDown')}
+									onKeyDown={this.handleKeyDown}
+								/>,
+								code: `<CSDatepicker
+									label="Enter date"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+									onKeyDown={this.handleKeyDown}
+								/>`
+							}
+						]
+					}, {
+						propName: 'onSelect',
+						variations: [
+							{
+								component: <CSDatepicker
+									label="Enter date"
+									selected={this.state.dateOnSelect}
+									onSelect={this.handleSelect}
+									onChange={() => ({})}
+								/>,
+								code: `<CSDatepicker
+									label="Enter date"
+									selected={this.state.selected}
+									onSelect={this.handleSelect}
+									onChange={() => ({})}
 								/>`
 							}
 						]
@@ -943,11 +984,19 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 						name: 'onChange',
 						types: ['(Date) => any'],
 						required: true,
-						description: 'Handler method for the change event.'
+						description: 'Handler method for the change of date via date selection or input value change.'
 					}, {
 						name: 'onChangeRaw',
 						types: ['(event) => any'],
-						description: 'Handler method for the change event from raw data.'
+						description: 'Handler method for the change of input value.'
+					}, {
+						name: 'onKeyDown',
+						types: ['(event) => any'],
+						description: 'Handler method for the keydown event.'
+					}, {
+						name: 'onSelect',
+						types: ['(Date) => any'],
+						description: 'Handler method for the change of date via date selection.'
 					}, {
 						name: 'openToDate',
 						types: ['any'],

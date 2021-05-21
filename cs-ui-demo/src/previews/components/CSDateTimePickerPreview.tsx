@@ -19,6 +19,11 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 		alert('Date has changed.');
 		this.setDate(date, 'OnChange');
 	}
+	handleKeyDown = () => alert('Key has been pressed.');
+	handleSelect = (date: Date) => {
+		alert('Date has been selected.');
+		this.setDate(date, 'OnSelect');
+	}
 
 	setDate = (date: Date, stateSuffix: string) => {
 		this.stateSuffix = stateSuffix;
@@ -485,6 +490,42 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 									name="datepicker"
 									selected={this.state.selected}
 									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
+							}
+						]
+					}, {
+						propName: 'onKeyDown',
+						variations: [
+							{
+								component: <CSDateTimePicker
+									label="Enter date"
+									selected={this.state.dateOnKeyDown}
+									onChange={(date: Date) => this.setDate(date, 'OnKeyDown')}
+									onKeyDown={this.handleKeyDown}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+									onKeyDown={this.handleKeyDown}
+								/>`
+							}
+						]
+					}, {
+						propName: 'onSelect',
+						variations: [
+							{
+								component: <CSDateTimePicker
+									label="Enter date"
+									selected={this.state.dateOnSelect}
+									onSelect={this.handleSelect}
+									onChange={() => ({})}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									selected={this.state.selected}
+									onSelect={this.handleSelect}
+									onChange={() => ({})}
 								/>`
 							}
 						]
@@ -988,6 +1029,14 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 						types: ['(Date) => any'],
 						required: true,
 						description: 'Handler method for the change event.'
+					}, {
+						name: 'onKeyDown',
+						types: ['(event) => any'],
+						description: 'Handler method for the keydown event.'
+					}, {
+						name: 'onSelect',
+						types: ['(Date) => any'],
+						description: 'Handler method for the change of date via date selection.'
 					}, {
 						name: 'placeholder',
 						types: ['string'],
