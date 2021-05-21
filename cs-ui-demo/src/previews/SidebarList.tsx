@@ -101,7 +101,7 @@ class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
 											{component.name}
 										</span>
 										{component.isFormElement &&
-											<CSIcon name="edit_form" color="var(--csd-sidebar-component-form-icon-fill)" />
+											<CSIcon name="edit_form" color="var(--csd-sidebar-component-form-icon-fill)" title="form element" />
 										}
 									</NavLink>
 								</li>)
