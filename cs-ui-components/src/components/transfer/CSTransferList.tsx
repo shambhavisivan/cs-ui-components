@@ -118,6 +118,7 @@ class CSTransferList extends React.Component<CSTransferListProps, CSTransferList
 									label="search list"
 									labelHidden
 									onChange={e => this.setState({ term: e.target.value })}
+									disabled={!listData.length}
 								/>
 							}
 						</div>
