@@ -138,11 +138,9 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 				});
 		}
 
-		if (hover) {
-			this.setState({
-				dropdownBtnWidth: elementRect.width
-			});
-		}
+		this.setState({
+			dropdownBtnWidth: elementRect.width
+		});
 
 		this.setState({ isOpen: true });
 		if (this.props.onDropdownOpen) {

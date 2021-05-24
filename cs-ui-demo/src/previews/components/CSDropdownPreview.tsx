@@ -561,6 +561,44 @@ class CSDropdownPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'width',
+						variations: [
+							{
+								primaryVariants: 'width="auto"',
+								quickLink: 'auto',
+								component: <CSDropdown iconName="down">
+									<CSButton iconName="world" label="test label small" />
+									<CSButton iconName="world" label="test label large large" />
+								</CSDropdown>,
+								code: `<CSDropdown iconName="down">
+									<CSButton iconName="world" label="test label small" />
+									<CSButton iconName="world" label="test label large large" />
+								</CSDropdown>`
+							}, {
+								primaryVariants: 'width="20rem"',
+								quickLink: '20rem',
+								component: <CSDropdown iconName="down" width="20rem">
+									<CSButton iconName="world" label="test label small" />
+									<CSButton iconName="world" label="test label large large" />
+								</CSDropdown>,
+								code: `<CSDropdown iconName="down" width="20rem">
+									<CSButton iconName="world" label="test label small" />
+									<CSButton iconName="world" label="test label large large" />
+								</CSDropdown>`
+							}, {
+								primaryVariants: 'width="500px"',
+								quickLink: '500px',
+								component: <CSDropdown iconName="down" width="500px">
+									<CSButton iconName="world" label="test label small" />
+									<CSButton iconName="world" label="test label large large" />
+								</CSDropdown>,
+								code: `<CSDropdown iconName="down" width="500px">
+									<CSButton iconName="world" label="test label small" />
+									<CSButton iconName="world" label="test label large large" />
+								</CSDropdown>`
+							}
+						]
+					}, {
 						propName: 'id | class',
 						variations: [
 							{
@@ -760,6 +798,11 @@ class CSDropdownPreview extends React.Component {
 						name: 'title',
 						types: 'string',
 						description: 'Set the dropdown title.'
+					}, {
+						name: 'width',
+						types: ['string'],
+						description: 'Set the width of the dropdown content. (eg. 200px, 20rem, etc.)',
+						default: `'auto'`
 					}, {
 						name: 'id',
 						types: 'string',

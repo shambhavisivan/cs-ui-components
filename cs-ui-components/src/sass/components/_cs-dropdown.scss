@@ -37,7 +37,7 @@
 	}
 	.cs-dropdown-item-wrapper {
 		width: var(--cs-dropdown-width, auto);
-		min-width: 6rem;
+		min-width: var(--cs-dropdown-btn-width);
 		height: auto;
 		display: flex;
 		margin: 0;
