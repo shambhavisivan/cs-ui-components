@@ -72,8 +72,8 @@ $lightVariables: (
 	--csd-access-chip-bg: $cs-blue-sf,
 	--csd-access-chip-br: $cs-blue-sf,
 	--csd-access-chip-strong-em-c: $cs-white,
-	--csd-access-chip-strong-em-br: $cs-orange-medium-2,
-	--csd-access-chip-strong-em-bg: $cs-orange-medium-2,
+	--csd-access-chip-strong-em-br: $cs-purple,
+	--csd-access-chip-strong-em-bg: $cs-purple,
 	--csd-access-chip-strong-br: $cs-gray-dark-5,
 	--csd-access-chip-strong-bg: $cs-gray-dark-5,
 	--csd-access-link-c: $cs-blue-sf,
@@ -149,6 +149,7 @@ $lightVariables: (
 
 	--csd-neutral-chip-bg: rgba($cs-white, 0.35),
 	--csd-neutral-chip-c: $cs-gray-dark-5,
+	--csd-neutral-chip-br: $cs-gray-dark-5,
 
 	--csd-prop-custom-bg: $cs-gray-light-3,
 	--csd-prop-custom-c: $cs-gray-dark-6,
@@ -176,7 +177,7 @@ $lightVariables: (
 
 	--csd-release-notes-code-snippet-bg: $cs-white,
 
-	--csd-sidebar-component-form-icon-fill: $cs-white,
+	--csd-sidebar-component-form-icon-fill: $cs-gray-medium-1,
 	--csd-sidebar-search-field-c: $cs-white,
 	--csd-sidebar-search-field-bg: $cs-gray-dark-4,
 	--csd-sidebar-search-field-placeholder-c: $cs-gray-light-4,
@@ -210,15 +211,15 @@ $lightVariables: (
 $darkVariables: (
 	--csd-access-c: $cs-gray-light-1,
 	--csd-access-h-c: $cs-gray-light-6,
-	--csd-access-chip-c: $cs-white,
-	--csd-access-chip-bg: $cs-blue-sf,
-	--csd-access-chip-br: $cs-blue-sf,
-	--csd-access-chip-strong-em-c: $cs-white,
-	--csd-access-chip-strong-em-br: $cs-purple,
-	--csd-access-chip-strong-em-bg: $cs-purple,
-	--csd-access-chip-strong-br: $cs-gray-dark-5,
-	--csd-access-chip-strong-bg: $cs-gray-dark-5,
-	--csd-access-link-c: $cs-blue-sf,
+	--csd-access-chip-c: $cs-black,
+	--csd-access-chip-bg: $cs-blue-medium-6,
+	--csd-access-chip-br: $cs-blue-medium-6,
+	--csd-access-chip-strong-em-c: $cs-black,
+	--csd-access-chip-strong-em-br: $cs-purple-medium-1,
+	--csd-access-chip-strong-em-bg: $cs-purple-medium-1,
+	--csd-access-chip-strong-br: $cs-gray-medium-1,
+	--csd-access-chip-strong-bg: $cs-gray-medium-1,
+	--csd-access-link-c: $cs-blue-medium-6,
 	--csd-access-link-hover-c: $cs-mint,
 	--csd-access-link-active-c: $cs-green-light-1,
 	--csd-access-title-c: $cs-white,
@@ -282,8 +283,9 @@ $darkVariables: (
 	--csd-important-chip-bg: $cs-mint,
 	--csd-important-chip-c: $cs-gray-dark-1,
 
-	--csd-neutral-chip-bg: rgba($cs-white, 0.35),
-	--csd-neutral-chip-c: $cs-white,
+	--csd-neutral-chip-bg: transparent,
+	--csd-neutral-chip-c: $cs-gray-light-1,
+	--csd-neutral-chip-br: $cs-gray-dark-3,
 
 	--csd-prop-custom-bg: $cs-dark-theme-2,
 	--csd-prop-custom-c: $cs-white,
@@ -311,6 +313,7 @@ $darkVariables: (
 
 	--csd-release-notes-code-snippet-bg: $cs-dark-theme-3,
 
+	--csd-sidebar-component-form-icon-fill: $cs-gray-medium-1,
 	--csd-sidebar-search-field-c: $cs-white,
 	--csd-sidebar-search-field-bg: $cs-gray-dark-4,
 	--csd-sidebar-search-field-placeholder-c: $cs-gray-light-4,
