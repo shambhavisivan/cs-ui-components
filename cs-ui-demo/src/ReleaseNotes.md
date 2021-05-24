@@ -1,5 +1,16 @@
 # Release Notes
 
+## 1.1.21<a name="1.1.21"></a>
+* CSLookup
+  * hide clear button when loading
+* CSDropdown
+  * fixed dropdown to close on `esc` when `mode="custom"`
+* CSDatepicker and CSDateTimePicker
+  * added `onKeyDown` prop
+  * added `onSelect` prop
+* DemoApp
+  * added title on form element indicators in sidebar list
+
 ## 1.1.20<a name="1.1.20"></a>
 * CSDateTimePicker
   * added `ref` forwarding
