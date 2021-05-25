@@ -1,4 +1,5 @@
-$z-index-row-hover: 1;
-$z-index-cell-edit: 2;
-$z-index-pinned: 3;
-$z-index-popup: 4;
+:root {
+    --z-index-pinned: 3;
+    --z-index-popup: 4;
+    --z-index-cell: 10;
+}

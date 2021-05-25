@@ -6,7 +6,7 @@
 
 .ag-pinned-left-header,
 .ag-pinned-left-cols-container {
-    z-index: $z-index-pinned;
+    z-index: var(--z-index-pinned);
     @include css4 {
         box-shadow: 1px 0 3px cvar(--csgrid-shadow-medium);
     }
@@ -20,7 +20,7 @@
 
 .ag-pinned-right-header,
 .ag-pinned-right-cols-container {
-    z-index: $z-index-pinned;
+    z-index: var(--z-index-pinned);
     @include css4 {
         box-shadow: -1px 0 3px cvar(--csgrid-shadow-medium);
     }

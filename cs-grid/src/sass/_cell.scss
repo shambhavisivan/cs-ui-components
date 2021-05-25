@@ -136,7 +136,7 @@
 			border-radius: 0;
 			background: transparent;
 			&:not(.cs-grid_custom-class):not(.ag-cell-data-changed)  {
-				z-index: 10;
+				z-index: var(--z-index-cell);
 				@include sbg(--csgrid-transparent);
 			}
 
