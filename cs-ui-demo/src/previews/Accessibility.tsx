@@ -42,7 +42,7 @@ class ReleaseNotes extends React.Component<any, CSReleaseNotesState> {
 		const { markdown } = this.state;
 		return (
 			<>
-				<AnchorSidebarList anchorList={this.anchorList} />
+				<AnchorSidebarList className="accessibility-sidebar" anchorList={this.anchorList} />
 				<ReactMarkdown
 					source={markdown}
 					escapeHtml={false}

@@ -3,8 +3,7 @@
 	flex-direction: column;
 	flex: 1;
 	transition: 0.4s;
-	overflow-y: auto;
-	overflow-x: hidden;
+	overflow: visible;
 	z-index: 2;
 	position: relative;
 	@include sbg(--csd-components-list-wrapper-bg);
@@ -12,30 +11,23 @@
 		box-shadow: 0 1px 5px cvar(--csd-shadow-dark);
 	}
 
-	.sidebar-toggle {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 2rem;
-		height: 2rem;
+	.sidebar-toggle.cs-btn.cs-btn {
 		z-index: 10;
-		cursor: pointer;
-		transition: transform 0.4s;
-		border-radius: 50%;
 		position: absolute;
-		top: 1rem;
-		left: 0.5rem;
-		@include sbg(--csd-components-list-wrapper-bg);
+		top: 1.25rem;
+		left: 0.75rem;
+
+		&:active::before,
+		&::before {
+			@include sbg(--csd-components-list-wrapper-bg);
+		}
 
 		&:hover {
 			transform: scale(1.1);
 		}
 
-		svg {
-			width: 1rem;
-			height: 1rem;
-			margin: 0;
-			@include sf(--csd-sidebar-toggle-graphic-fill);
+		&:focus {
+			position: absolute;
 		}
 	}
 
@@ -55,11 +47,6 @@
 		min-width: 0;
 		max-width: 0;
 		position: relative;
-		overflow: visible;
-
-		.sidebar-toggle {
-			@include sbg(--csd-prop-sidebar-bg);
-		}
 
 		+ .components-preview {
 			transition: width 0.4s;
@@ -192,6 +179,32 @@
 			&.active-component:hover::after {
 				@include sbg(--csd-sidebar-info-hover-bg);
 			}
+		}
+	}
+}
+
+.prop-sidebar.release-notes-sidebar,
+.prop-sidebar.accessibility-sidebar {
+
+	.quick-links-toggle {
+		display: none;
+	}
+
+	.quick-links-search {
+		margin: 1.5rem 1rem 1rem;
+	}
+}
+
+.prop-sidebar.release-notes-sidebar,
+.prop-sidebar.accessibility-sidebar,
+.prop-sidebar.getting-started-sidebar {
+	.prop-list .prop-group .prop-name {
+		padding-inline-start: 0;
+
+		a {
+			border: none;
+			font-weight: 400;
+			padding-inline: 1.25rem
 		}
 	}
 }

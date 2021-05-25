@@ -28,12 +28,12 @@ class CSGettingStarted extends React.Component<any, CSGettingStartedState> {
 		const { markdown } = this.state;
 		return (
 			<>
+				<AnchorSidebarList anchorList={this.anchorList} className="getting-started-sidebar" />
 				<ReactMarkdown
 					source={markdown}
 					escapeHtml={false}
 					className="getting-started"
 				/>
-				<AnchorSidebarList anchorList={this.anchorList} className="getting-started-list" />
 			</>
 		);
 	}

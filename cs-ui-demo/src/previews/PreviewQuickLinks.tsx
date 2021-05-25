@@ -57,15 +57,16 @@ const PreviewQuickLinks: React.FC<PreviewInterface> = ({
 
 	return (
 		<div className={sidebarClasses}>
-			<div className="quick-links-toggle" onClick={toggleQuickLinks}>
-				<CSButton
-					iconName={quickLinks ? 'close' : 'rows'}
-					label={quickLinks ? 'close' : 'open'}
-					btnType="transparent"
-					size="small"
-					labelHidden
-				/>
-			</div>
+			<CSButton
+				iconName={quickLinks ? 'close' : 'rows'}
+				label={quickLinks ? 'close' : 'open'}
+				btnType="transparent"
+				size="small"
+				labelHidden
+				className="quick-links-toggle"
+				onClick={toggleQuickLinks}
+				borderRadius="50%"
+			/>
 			<div className="quick-links-search">
 				<CSIcon name="search" />
 				<input

@@ -7,7 +7,7 @@
 	min-width: 15rem;
 	width: 15rem;
 	max-width: 15rem;
-	overflow: hidden;
+	overflow: visible;
 	@include sbg(--csd-prop-sidebar-bg);
 	@include css4 {
 		box-shadow: 0 1px 5px var(--csd-shadow-dark);
@@ -19,28 +19,17 @@
 	}
 
 	.quick-links-toggle {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 2rem;
-		height: 2rem;
 		z-index: 9;
-		border-radius: 50%;
-		cursor: pointer;
-		transition: transform 0.4s;
 		position: absolute;
-		top: 1rem;
-		right: 0.5rem;
+		top: 1.25rem;
+		right: 0.75rem;
 
 		&:hover {
 			transform: scale(1.1);
 		}
 
-		svg {
-			width: 1rem;
-			height: 1rem;
-			margin: 0;
-			@include sf(--csd-sidebar-toggle-graphic-fill);
+		&:focus {
+			position: absolute;
 		}
 	}
 
@@ -48,7 +37,6 @@
 		width: 0;
 		min-width: 0;
 		max-width: 0;
-		overflow: visible;
 
 		+ .components-preview {
 			width: 100%;
@@ -143,8 +131,7 @@
 					font-weight: 400;
 					width: 100%;
 					position: relative;
-					display: flex;
-					align-items: center;
+					display: block;
 					cursor: pointer;
 					text-decoration: none;
 					white-space: nowrap;

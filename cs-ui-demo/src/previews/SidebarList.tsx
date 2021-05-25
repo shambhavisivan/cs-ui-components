@@ -68,15 +68,16 @@ class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
 			<>
 				<div className={'components-list-wrapper' + (this.state.sidebarOpen ? ' sidebar-open' : ' sidebar-closed')}>
 					{this.props.toggle && (
-						<div className="sidebar-toggle" onClick={this.toggleSidebar}>
-							<CSButton
-								iconName={this.state.sidebarOpen ? 'close' : 'rows'}
-								label={this.state.sidebarOpen ? 'close' : 'open'}
-								btnType="transparent"
-								size="small"
-								labelHidden
-							/>
-						</div>
+						<CSButton
+							iconName={this.state.sidebarOpen ? 'close' : 'rows'}
+							label={this.state.sidebarOpen ? 'close' : 'open'}
+							btnType="transparent"
+							size="small"
+							labelHidden
+							borderRadius="50%"
+							className="sidebar-toggle"
+							onClick={this.toggleSidebar}
+						/>
 					)}
 					{this.props.search && (
 						<div className="components-list-search">
