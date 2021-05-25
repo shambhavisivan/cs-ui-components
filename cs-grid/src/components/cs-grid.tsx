@@ -1179,6 +1179,8 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 								if (document.activeElement !== focusable[1]) {
 									trap = true;
 
+									event.preventDefault();
+
 									const index = focusable.indexOf(document.activeElement);
 
 									// If ag-cell focused focus last item first
