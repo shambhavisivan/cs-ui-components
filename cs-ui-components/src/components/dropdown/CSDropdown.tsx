@@ -38,6 +38,7 @@ export interface CSDropdownProps {
 	padding?: string;
 	position?: CSDropdownPosition;
 	size?: CSDropdownSize;
+	title?: string;
 	width?: string;
 }
 
@@ -248,6 +249,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 			padding,
 			position,
 			size,
+			title,
 			width,
 			...rest
 		} = this.props;
@@ -293,6 +295,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 					ariaExpanded={!!this.state.computedDropdownStyle}
 					ariaHaspopup={!!Object(children).length}
 					ref={this.btnDropdownRef}
+					title={title}
 				>
 					{this.state.computedDropdownStyle &&
 						<Portal node={document && document.getElementById(this.dropdownId)}>
