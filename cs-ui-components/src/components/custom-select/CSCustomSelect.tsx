@@ -545,7 +545,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 						/>
 					}
 					<CSIcon
-						name="chevrondown"
+						name="down"
 						rotate={isOpen ? '180' : null}
 						className="cs-custom-select-icon"
 						color="var(--cs-custom-select-dropdown-icon-c)"

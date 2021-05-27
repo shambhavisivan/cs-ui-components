@@ -911,7 +911,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 					}
 					{!readOnly &&
 						<CSIcon
-							name="chevrondown"
+							name="down"
 							rotate={dropdownOpen ? '180' : null}
 							className="cs-lookup-dropdown-icon"
 							color="var(--cs-input-icon-fill)"
