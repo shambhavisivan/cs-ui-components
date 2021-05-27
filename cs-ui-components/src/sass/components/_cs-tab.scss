@@ -35,7 +35,6 @@
 			@include sc(--cs-tab-c);
 
 			.cs-tab-name {
-				line-height: 1;
 				font-size: 0.8125rem;
 				@include overflow-ellipsis;
 
