@@ -85,7 +85,8 @@
   * fixed `readOnly` styling
 * CSTextarea
   * fixed `readOnly` styling
-* added missing `id` and `className` props across components
+* All Components
+  * added missing `id` and `className` props across components
 * Demo App changes
   * various preview files clean up changes
   * component quick links renamed to match UI component name
