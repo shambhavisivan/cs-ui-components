@@ -215,6 +215,9 @@
 
 					&.react-datepicker__day--outside-month {
 						@include sc(--cs-datepicker-day-outside-c);
+						&.react-datepicker__day--selected {
+							@include sc(--cs-datepicker-selected-c);
+						}
 					}
 				}
 			}
@@ -366,12 +369,21 @@
 			}
 		}
 
-		.react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list .react-datepicker__time-list-item--selected {
-			@include sbg(--cs-datepicker-selected-bg);
+		.react-datepicker__time
+		.react-datepicker__time-box
+		ul.react-datepicker__time-list
+		.react-datepicker__time-list-item {
+			display: flex;
+			justify-content: center;
+			align-items: center;
 
-			&:hover {
-				opacity: 0.9;
-				@include sbg(--cs-datepicker-selected-bg);
+				&--selected {
+					@include sbg(--cs-datepicker-selected-bg);
+
+				&:hover {
+					opacity: 0.9;
+					@include sbg(--cs-datepicker-selected-bg);
+				}
 			}
 		}
 
