@@ -40,7 +40,7 @@ const MainHeader: React.FC = () => {
 				<CSButton
 					className="app-toggle-theme"
 					color={theme === Theme.Dark ? 'black' : 'orange'}
-					label="activity icon button"
+					label={theme === Theme.Dark ? 'Switch to light mode' : 'Switch to dark mode'}
 					labelHidden
 					iconName="light_bulb"
 					onClick={toggleTheme}
