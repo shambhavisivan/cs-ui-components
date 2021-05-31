@@ -2,18 +2,8 @@
 	height: var(--cs-icon-size, 1rem);
 	width: var(--cs-icon-size, 1rem);
 	min-width: var(--cs-icon-size, 1rem);
+	transform: rotate(var(--cs-icon-rotate, 0deg));
 	@include sf(--cs-icon-c);
-	&.cs-icon-rotate-90 {
-		transform: rotate(90deg);
-	}
-
-	&.cs-icon-rotate-180 {
-		transform: rotate(180deg);
-	}
-
-	&.cs-icon-rotate-270 {
-		transform: rotate(270deg);
-	}
 
 	&.cs-icon-spin {
 		animation-name: spin;

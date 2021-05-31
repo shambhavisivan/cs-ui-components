@@ -502,46 +502,32 @@ class CSButtonPreview extends React.Component {
 						propName: 'iconRotate',
 						variations: [
 							{
-								primaryVariants: 'iconRotate="90"',
+								primaryVariants: 'iconRotate={90}',
 								secondaryVariants: 'iconName="list"',
 								quickLink: '90',
 								component: <CSButton
 									label="Icon rotated 90 degrees"
 									iconName="list"
-									iconRotate="90"
+									iconRotate={90}
 								/>,
 								code: `<CSButton
 									label="Icon rotated 90 degrees"
 									iconName="list"
-									iconRotate="90"
+									iconRotate={90}
 								/>`
 							}, {
-								primaryVariants: 'iconRotate="180"',
+								primaryVariants: 'iconRotate={-90}',
 								secondaryVariants: 'iconName="list"',
-								quickLink: '180',
+								quickLink: '-90',
 								component: <CSButton
-									label="Icon rotated 180 degrees"
+									label="Icon rotated -90 degrees"
 									iconName="list"
-									iconRotate="180"
+									iconRotate={-90}
 								/>,
 								code: `<CSButton
-									label="Icon rotated 180 degrees"
+									label="Icon rotated -90 degrees"
 									iconName="list"
-									iconRotate="180"
-								/>`
-							}, {
-								primaryVariants: 'iconRotate="270"',
-								secondaryVariants: 'iconName="list"',
-								quickLink: '270',
-								component: <CSButton
-									label="Icon rotated 270 degrees"
-									iconName="list"
-									iconRotate="270"
-								/>,
-								code: `<CSButton
-									label="Icon rotated 270 degrees"
-									iconName="list"
-									iconRotate="270"
+									iconRotate={-90}
 								/>`
 							}
 						]
@@ -963,9 +949,9 @@ class CSButtonPreview extends React.Component {
 						description: 'Set where the icon should be positioned inside the button.'
 					}, {
 						name: 'iconRotate',
-						types: ['string'],
-						default: '\'0\'',
-						description: 'Set by how many degrees the icon should be rotated. (eg. 90, 180, -90 etc.)'
+						types: ['number', 'string'],
+						default: '0',
+						description: 'Please always use a number value. String values are deprecated and will be removed. Set by how many degrees the icon should be rotated. (eg. 90, 180, -90 etc.)'
 					}, {
 						name: 'iconSize',
 						types: ['string'],

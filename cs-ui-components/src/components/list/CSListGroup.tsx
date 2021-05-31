@@ -201,7 +201,7 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 						{collapsible &&
 							<CSIcon
 								name="chevronright"
-								rotate={collapsed ? null : '90'}
+								rotate={collapsed ? 0 : 90}
 								size={headerIconSize()}
 							/>
 						}

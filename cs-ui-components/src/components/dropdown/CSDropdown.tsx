@@ -25,7 +25,7 @@ export interface CSDropdownProps {
 	iconName?: string;
 	iconOrigin?: CSIconOrigin;
 	iconPosition?: CSDropdownIconPosition;
-	iconRotate?: string;
+	iconRotate?: number | string;
 	id?: string;
 	label?: string;
 	maxHeight?: string;

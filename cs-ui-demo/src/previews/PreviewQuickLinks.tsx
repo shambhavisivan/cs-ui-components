@@ -95,7 +95,7 @@ const PreviewQuickLinks: React.FC<PreviewInterface> = ({
 									btnType="transparent"
 									size="small"
 									iconName="chevrondown"
-									iconRotate={visibleSections[previewIndex] ? '0' : '180'}
+									iconRotate={visibleSections[previewIndex] ? 0 : -90}
 									iconSize="1rem"
 									onClick={() => handleClick(previewIndex)}
 								/>

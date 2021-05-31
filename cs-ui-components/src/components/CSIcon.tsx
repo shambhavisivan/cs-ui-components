@@ -11,7 +11,7 @@ export interface CSIconProps {
 	id?: string;
 	name: string;
 	origin?: CSIconOrigin;
-	rotate?: string;
+	rotate?: number | string;
 	size?: string;
 	spin?: boolean;
 	title?: string;
@@ -37,7 +37,6 @@ class CSIcon extends React.Component<CSIconProps> {
 		const styleClass = classNames(
 			'cs-icon',
 			{
-				[`cs-icon-rotate-${rotate}`]: rotate,
 				'cs-icon-spin': spin,
 				[`${className}`]: className
 			}
@@ -45,7 +44,8 @@ class CSIcon extends React.Component<CSIconProps> {
 		const style: CSSProperties = {
 			'--cs-icon-c': color,
 			'--cs-main-header-neutral-icon': color,
-			'--cs-icon-size': size
+			'--cs-icon-size': size,
+			'--cs-icon-rotate': rotate ? rotate + 'deg' : null
 		};
 
 		let prefix = 'cssfi-';

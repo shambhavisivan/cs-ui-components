@@ -26,7 +26,7 @@ export interface CSButtonProps {
 	iconName?: string;
 	iconOrigin?: CSIconOrigin;
 	iconPosition?: CSButtonIconPosition;
-	iconRotate?: string;
+	iconRotate?: number | string;
 	iconSize?: string;
 	id?: string;
 	label: string;

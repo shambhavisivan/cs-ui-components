@@ -90,7 +90,7 @@ class CSCardHeader extends React.Component<CSCardHeaderProps, CSCardHeaderState>
 						size="small"
 						labelHidden
 						iconName="chevronright"
-						iconRotate={this.state.collapsed ? null : '90'}
+						iconRotate={this.state.collapsed ? 0 : 90}
 						className="cs-card-button"
 						onClick={this.handleCollapse}
 					/>

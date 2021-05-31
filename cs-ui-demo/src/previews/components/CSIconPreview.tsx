@@ -84,23 +84,23 @@ class CSIconPreview extends React.Component {
 						propName: 'rotate',
 						variations: [
 							{
-								primaryVariants: 'rotate="90"',
-								secondaryVariants: 'name="breadcrumbs"',
+								primaryVariants: 'rotate={45}',
+								secondaryVariants: 'name="chevrondown"',
+								quickLink: '45',
+								component: <CSIcon name="chevrondown" rotate={45} />,
+								code: '<CSIcon name="chevrondown" rotate={45} />'
+							}, {
+								primaryVariants: 'rotate={90}',
+								secondaryVariants: 'name="chevrondown"',
 								quickLink: '90',
-								component: <CSIcon name="breadcrumbs" rotate="90" />,
-								code: '<CSIcon name="breadcrumbs" rotate="90" />'
+								component: <CSIcon name="chevrondown" rotate={90} />,
+								code: '<CSIcon name="chevrondown" rotate={90} />'
 							}, {
-								primaryVariants: 'rotate="180"',
-								secondaryVariants: 'name="breadcrumbs"',
-								quickLink: '180',
-								component: <CSIcon name="breadcrumbs" rotate="180" />,
-								code: '<CSIcon name="breadcrumbs" rotate="180" />'
-							}, {
-								primaryVariants: 'rotate="270"',
-								secondaryVariants: 'name="breadcrumbs"',
-								quickLink: '270',
-								component: <CSIcon name="breadcrumbs" rotate="270" />,
-								code: '<CSIcon name="breadcrumbs" rotate="270" />'
+								primaryVariants: 'rotate={-90}',
+								secondaryVariants: 'name="chevrondown"',
+								quickLink: '-90',
+								component: <CSIcon name="chevrondown" rotate={-90} />,
+								code: '<CSIcon name="chevrondown" rotate={-90} />'
 							}
 						]
 					}, {
@@ -210,9 +210,9 @@ class CSIconPreview extends React.Component {
 						description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
 					}, {
 						name: 'rotate',
-						types: ['string'],
-						default: '\'0\'',
-						description: 'Set by how many degrees the icon should be rotated clockwise. (eg. 90, 180, etc.)'
+						types: ['number', 'string'],
+						default: '0',
+						description: 'Please always use a number value. String values are deprecated and will be removed. Set by how many degrees the icon should be rotated clockwise. (eg. 90, 180, -90, etc.)'
 					}, {
 						name: 'size',
 						types: ['string'],

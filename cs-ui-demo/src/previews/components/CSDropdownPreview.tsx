@@ -246,35 +246,24 @@ class CSDropdownPreview extends React.Component {
 						propName: 'iconRotate',
 						variations: [
 							{
-								primaryVariants: 'iconRotate="90"',
+								primaryVariants: 'iconRotate={90}',
 								quickLink: '90',
-								component: <CSDropdown iconRotate="90">
+								component: <CSDropdown iconRotate={90}>
 									<CSButton label="Button 1" />
 									<CSButton label="Button 2 with more content" />
 								</CSDropdown>,
-								code: `<CSDropdown iconRotate="90">
+								code: `<CSDropdown iconRotate={90}>
 									<CSButton label="Button 1" />
 									<CSButton label="Button 2 with more content" />
 								</CSDropdown>`
 							}, {
-								primaryVariants: 'iconRotate="180"',
-								quickLink: '180',
-								component: <CSDropdown iconRotate="180">
+								primaryVariants: 'iconRotate={-90}',
+								quickLink: '-90',
+								component: <CSDropdown iconRotate={-90}>
 									<CSButton label="Button 1" />
 									<CSButton label="Button 2 with more content" />
 								</CSDropdown>,
-								code: `<CSDropdown iconRotate="180">
-									<CSButton label="Button 1" />
-									<CSButton label="Button 2 with more content" />
-								</CSDropdown>`
-							}, {
-								primaryVariants: 'iconRotate="270"',
-								quickLink: '270',
-								component: <CSDropdown iconRotate="270">
-									<CSButton label="Button 1" />
-									<CSButton label="Button 2 with more content" />
-								</CSDropdown>,
-								code: `<CSDropdown iconRotate="270">
+								code: `<CSDropdown iconRotate={-90}>
 									<CSButton label="Button 1" />
 									<CSButton label="Button 2 with more content" />
 								</CSDropdown>`
@@ -688,9 +677,9 @@ class CSDropdownPreview extends React.Component {
 						description: 'Set the position of the icon if both icon and label are set.'
 					}, {
 						name: 'iconRotate',
-						types: ['string'],
-						default: '\'0\'',
-						description: 'Set by how many degrees the icon should be rotated clockwise. (eg. 90, 180, etc.)'
+						types: ['number', 'string'],
+						default: '0',
+						description: 'Please always use a number value. String values are deprecated and will be removed. Set by how many degrees the icon should be rotated clockwise. (eg. 90, 180, -90, etc.)'
 					}, {
 						name: 'id',
 						types: ['string'],
