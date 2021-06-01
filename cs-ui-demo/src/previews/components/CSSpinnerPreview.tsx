@@ -16,20 +16,20 @@ class CSSpinnerPreview extends React.Component {
 						propName: 'color',
 						variations: [
 							{
+								primaryVariants: 'color="brand"',
+								quickLink: 'brand',
+								component: <CSSpinner color="brand" />,
+								code: `<CSSpinner />`
+							}, {
 								primaryVariants: 'color="neutral"',
 								quickLink: 'neutral',
 								component: <CSSpinner color="neutral" />,
 								code: `<CSSpinner color="neutral" />`
 							}, {
-								primaryVariants: 'color="brand"',
-								quickLink: 'brand',
-								component: <CSSpinner color="brand" />,
-								code: `<CSSpinner color="brand" />`
-							}, {
 								primaryVariants: 'color="inverse"',
 								quickLink: 'inverse',
 								component: <CSSpinner color="inverse" className="black-background" />,
-								code: `<CSSpinner color="inverse" className="black-background" />`
+								code: `<CSSpinner color="inverse" />`
 							}
 						]
 					}, {
