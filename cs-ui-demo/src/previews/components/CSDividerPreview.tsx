@@ -204,7 +204,7 @@ class CSDividerPreview extends React.Component {
 				'4.1.2'
 			],
 			requirements: {
-				properties: [
+				attributes: [
 					'`role="separator"`',
 					'`aria-orientation`'
 				]

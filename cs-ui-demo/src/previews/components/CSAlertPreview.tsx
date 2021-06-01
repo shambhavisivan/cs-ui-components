@@ -526,7 +526,7 @@ class CSAlertPreview extends React.Component {
 				structure: [
 					'`<h4>` - allows screen reader heading search'
 				],
-				properties: [
+				attributes: [
 					'`role="alert/status"` - depending on alert variant'
 				],
 				styling: [
