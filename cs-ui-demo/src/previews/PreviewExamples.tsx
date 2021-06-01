@@ -28,7 +28,7 @@ const PreviewExamples: React.FC<PreviewInterface> = ({ components }) => (
 						const propLink = `${componentLink}-${getSlug(example.propName)}`;
 						return (
 							<div key={example.propName} className={`component-preview ${example.propName}`}>
-								<h3 className="demo-heading" id={getSlug(propLink)}>
+								<h3 className="demo-heading scroll-spy" id={getSlug(propLink)}>
 									{example.propName}
 								</h3>
 								{example.description && (
@@ -45,7 +45,7 @@ const PreviewExamples: React.FC<PreviewInterface> = ({ components }) => (
 									const variationLink = variation.quickLink && `${propLink}-${getSlug(variation.quickLink)}`;
 									return (
 										<React.Fragment key={variationIndex}>
-											{variation.quickLink && <div id={variationLink} />}
+											{variation.quickLink && <div id={variationLink} className="scroll-spy" />}
 											{(variation.primaryVariants || variation.secondaryVariants) && (
 												<div className="component-variants">
 													{variation.primaryVariants && (

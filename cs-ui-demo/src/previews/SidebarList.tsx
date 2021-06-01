@@ -103,7 +103,8 @@ class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
 								<li className={component.name.includes('Getting Started') ? 'ui-component info' : 'ui-component'} title={component.name} key={component.name.split(' ').join('')}>
 									<NavLink
 										to={`${this.props.path}${component.name.split(' ').join('')}`}
-										activeClassName="active-component">
+										activeClassName="active-component"
+									>
 										<span className="ui-component-name">
 											{component.name}
 										</span>

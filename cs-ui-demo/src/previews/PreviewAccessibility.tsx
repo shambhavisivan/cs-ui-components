@@ -16,8 +16,8 @@ const PreviewAccessibility: React.FC<PreviewInterface | any> = ({ accessibility,
 	const { criterionList, requirements } = accessibility;
 
 	return (
-		<div className="accessibility-conformance-section" id="component-accessibility">
-			<h2 className="demo-heading">
+		<div className="accessibility-conformance-section">
+			<h2 className="demo-heading scroll-spy" id="component-accessibility">
 				{name} Accessibility Conformance Requirements
 			</h2>
 			<div className="accessibility-criteria-list">

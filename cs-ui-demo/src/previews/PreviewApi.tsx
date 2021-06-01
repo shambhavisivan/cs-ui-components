@@ -22,7 +22,7 @@ const PreviewApi: React.FC<PreviewInterface> = ({ name, api }) => {
 	}
 	return (
 		<div id="api-preview-wrapper" className="api-preview-wrapper">
-			<h2 className="demo-heading" id="component-api">{name} API</h2>
+			<h2 className="demo-heading scroll-spy" id="component-api">{name} API</h2>
 			{api.map((method: any) => (
 				<React.Fragment key={method.name}>
 					<div className="api-preview">

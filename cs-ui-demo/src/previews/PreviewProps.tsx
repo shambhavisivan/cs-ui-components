@@ -21,7 +21,7 @@ const PreviewProps: React.FC<PreviewInterface> = ({ components }) => {
 		<>
 			{components?.map((component: any, componentIndex: number) => (
 				<div key={component.name} className="properties-table-wrapper">
-					<h2 className="demo-heading" id={!componentIndex ? 'component-props' : undefined}>
+					<h2 className="demo-heading scroll-spy" id={!componentIndex ? 'component-props' : undefined}>
 						{component.name} Properties
 					</h2>
 					<CSTable className="properties-table">

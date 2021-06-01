@@ -7,6 +7,7 @@ export interface PreviewInterface {
 	api?: Array<ApiInterface>;
 	accessibility?: AccessibilityInterface;
 	children?: JSX.Element | Element;
+	activeElement?: Element;
 }
 
 export interface ComponentInterface {
