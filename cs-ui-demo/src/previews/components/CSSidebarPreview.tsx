@@ -336,65 +336,65 @@ class CSSidebarPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the sidebar.'
-					}, {
-						name: 'children',
-						customTypes: [{
-							name: 'CSSidebarChildren',
-							types: ['<CSSidebarTab />', 'any']
-						}],
-						description: 'This component is designed to support CSSidebarTab as a child.'
-					}, {
-						name: 'defaultClosed',
-						default: 'false',
-						types: ['boolean'],
-						description: 'Sets the initial display state of sidebar.'
-					}, {
 						name: 'collapsible',
+						types: 'boolean',
 						default: 'true',
-						types: ['boolean'],
 						description: 'Control whether the sidebar should be collapsible.'
 					}, {
+						name: 'defaultClosed',
+						types: 'boolean',
+						default: 'false',
+						description: 'Sets the initial display state of sidebar.'
+					}, {
 						name: 'height',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the sidebar height (eg. 200px, 20rem, 100vw, etc.).'
 					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the sidebar.'
-					}, {
 						name: 'multipleTabs',
+						types: 'boolean',
 						default: 'false',
-						types: ['boolean'],
 						description: 'Set if sidebar will have tabs track.'
 					}, {
 						name: 'opensTo',
-						default: '\'right\'',
-						customTypes: [{
+						customTypes: {
 							name: 'CSSidebarOpensTo',
-							types: ['\'right\'', '\'left\'']
-						}],
+							types: [`'right'`, `'left'`]
+						},
+						default: `'right'`,
 						description: 'Places tabs on left or right side of the sidebar, inversely from the side to which sidebar should open.'
 					}, {
 						name: 'tabsPadding',
-						default: '\'0 0.75rem\'',
-						types: ['string'],
+						types: 'string',
+						default: `'0 0.75rem'`,
 						description: 'Override default padding of all tabs, if that padding is not specified on tab itself.'
 					}, {
 						name: 'tabsWidth',
-						default: '\'17rem\'',
-						types: ['string'],
+						types: 'string',
+						default: `'17rem'`,
 						description: 'Override width of all tabs, if that width is not specified on tab itself (eg. 20%, 20rem, 400px, etc.).'
 					}, {
 						name: 'wholeSidebarClickable',
+						types: 'boolean',
 						default: 'true',
-						types: ['boolean'],
 						description: 'Control whether the whole sidebar is clickable to expand or just the toggle button.'
 					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the sidebar.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the sidebar.'
+					}, {
+						name: 'children',
+						customTypes: {
+							name: 'CSSidebarChildren',
+							types: ['<CSSidebarTab />', 'any']
+						},
+						description: 'This component is designed to support CSSidebarTab as a child.'
+					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the sidebar.'
 					}
 				]
@@ -605,62 +605,62 @@ class CSSidebarPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'isActiveTab',
-						types: ['boolean'],
-						required: 'CSSidebar',
-						description: 'Displays tab if it is the active one.'
-					}, {
-						name: 'children',
-						types: ['any'],
-						description: 'This component supports custom content passed as children.'
-					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the tab.'
+						name: 'title',
+						required: true,
+						types: 'string',
+						description: 'Title of the tab.'
 					}, {
 						name: 'iconName',
-						default: '\'assignment\'',
-						types: ['string'],
+						types: 'string',
+						default: `'assignment'`,
 						description: 'Set the icon displayed for tab.'
 					}, {
 						name: 'iconOrigin',
-						default: '\'slds\'',
-						customTypes: [{
+						customTypes: {
 							name: 'CSSidebarTabIconOrigin',
-							types: ['\'slds\'', '\'cs\'']
-						}],
+							types: [`'slds'`, `'cs'`]
+						},
+						default: `'slds'`,
 						description: 'Set the icon origin.'
 					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the tab.'
-					}, {
 						name: 'noTabHeader',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Control whether sidebar tab header is displayed.'
 					}, {
+						name: 'subtitle',
+						types: 'string',
+						description: 'Subtitle of the tab.'
+					}, {
 						name: 'tabPadding',
-						default: '\'0 0.75rem\'',
-						types: ['string'],
+						types: 'string',
+						default: `'0 0.75rem'`,
 						description: 'Override default tab body padding. This will also override tabsPadding if set.'
 					}, {
 						name: 'tabWidth',
-						types: ['string'],
+						types: 'string',
 						description: 'Override default tab body width. This will also override tabsWidth if set.'
 					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the tab.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the tab.'
+					}, {
+						name: 'children',
+						types: 'any',
+						description: 'This component supports custom content passed as children.'
+					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the sidebar tab div.'
 					}, {
-						name: 'title',
-						required: true,
-						types: ['string'],
-						description: 'Title of the tab.'
-					}, {
-						name: 'subtitle',
-						types: ['string'],
-						description: 'Subtitle of the tab.'
+						name: 'isActiveTab',
+						required: 'CSSidebar',
+						types: 'boolean',
+						description: 'Displays tab if it is the active one.'
 					}
 				]
 			}

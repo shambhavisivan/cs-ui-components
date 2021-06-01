@@ -606,74 +606,67 @@ class CSDropdownPreview extends React.Component {
 				properties: [
 					{
 						name: 'align',
-						customTypes: [{
+						customTypes: {
 							name: 'CSDropdownAlign',
-							types: ['\'left\'', '\'right\'']
-						}],
-						default: '\'left\'',
+							types: [`'left'`, `'right'`]
+						},
+						default: `'left'`,
 						description: 'Align the dropdown.'
 					}, {
 						name: 'btnStyle',
-						customTypes: [{
+						customTypes: {
 							name: 'CSDropdownStyle',
-							types: ['\'initial\'', '\'brand\'', '\'outline\'']
-						}],
-						default: '\'initial\'',
+							types: [
+								`'initial'`,
+								`'brand'`,
+								`'outline'`
+							]
+						},
+						default: `'initial'`,
 						description: 'Set the button group style.'
 					}, {
 						name: 'btnType',
-						customTypes: [{
+						customTypes: {
 							name: 'CSDropdownType',
 							types: [
-								'\'default\'',
-								'\'error\'',
-								'\'success\'',
-								'\'transparent\''
+								`'default'`,
+								`'error'`,
+								`'success'`,
+								`'transparent'`
 							]
-						}],
-						default: '\'default\'',
+						},
+						default: `'default'`,
 						description: 'Set the button group type.'
 					}, {
-						name: 'children',
-						customTypes: [{
-							name: 'CSDropdownChildren',
-							types: ['<CSButton />', '<CSList />', 'any']
-						}],
-						description: 'This component supports content passed as children depending on the mode prop.'
-					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the dropdown.'
-					}, {
 						name: 'disabled',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Disable the dropdown.'
 					}, {
 						name: 'hover',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Set whether the dropdown should open on hover.'
 					}, {
 						name: 'iconName',
-						types: ['string'],
-						default: '\'down\'',
+						types: 'string',
+						default: `'down'`,
 						description: 'Name of the icon from the icons library.'
 					}, {
 						name: 'iconOrigin',
-						customTypes: [{
+						customTypes: {
 							name: 'CSIconOrigin',
-							types: ['\'slds\'', '\'cs\'']
-						}],
-						default: '\'slds\'',
+							types: [`'slds'`, `'cs'`]
+						},
+						default: `'slds'`,
 						description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
 					}, {
 						name: 'iconPosition',
-						customTypes: [{
+						customTypes: {
 							name: 'CSDropdownIconPosition',
-							types: ['\'left\'', '\'right\'']
-						}],
-						default: '\'left\'',
+							types: [`'left'`, `'right'`]
+						},
+						default: `'left'`,
 						description: 'Set the position of the icon if both icon and label are set.'
 					}, {
 						name: 'iconRotate',
@@ -681,29 +674,29 @@ class CSDropdownPreview extends React.Component {
 						default: '0',
 						description: 'Please always use a number value. String values are deprecated and will be removed. Set by how many degrees the icon should be rotated clockwise. (eg. 90, 180, -90, etc.)'
 					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the dropdown.'
-					}, {
 						name: 'label',
-						types: ['string'],
-						default: '\'Toggle dropdown\'',
+						types: 'string',
+						default: `'Toggle dropdown'`,
 						description: 'Set which text should appear as the dropdown label.'
 					}, {
 						name: 'maxHeight',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the max-height of the dropdown content. (eg. 200px, 20rem, etc.)'
 					}, {
 						name: 'maxWidth',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the max-width of the dropdown content. (eg. 200px, 20rem, etc.)'
 					}, {
 						name: 'mode',
-						customTypes: [{
+						customTypes: {
 							name: 'CSDropdownMode',
-							types: ['\'button\'', '\'list\'', '\'custom\'']
-						}],
-						default: '\'button\'',
+							types: [
+								`'button'`,
+								`'list'`,
+								`'custom'`
+							]
+						},
+						default: `'button'`,
 						description: 'Set the mode in which dropdown will be displayed.'
 					}, {
 						name: 'onDropdownClose',
@@ -715,41 +708,60 @@ class CSDropdownPreview extends React.Component {
 						description: 'Callback for when the dropdown is opened.'
 					}, {
 						name: 'onDropdownTabClose',
-						types: ['(event) => void'],
+						types: '(event) => void',
 						description: 'Callback for when the dropdown is closed by pressing a tab key.'
 					}, {
 						name: 'padding',
-						types: ['string'],
-						default: '\'0.25rem 0\'',
+						types: 'string',
+						default: `'0.25rem 0'`,
 						description: 'Set custom padding for the dropdown content.'
 					}, {
 						name: 'position',
-						customTypes: [{
+						customTypes: {
 							name: 'CSDropdownPosition',
-							types: ['\'bottom\'', '\'top\'']
-						}],
-						default: '\'bottom\'',
+							types: [`'bottom'`, `'top'`]
+						},
+						default: `'bottom'`,
 						description: 'Determine the vertical position of the dropdown content.'
 					}, {
 						name: 'size',
-						customTypes: [{
+						customTypes: {
 							name: 'CSDropdownSize',
 							types: [
-								'\'xsmall\'',
-								'\'small\'',
-								'\'normal\'',
-								'\'large\''
+								`'xsmall'`,
+								`'small'`,
+								`'normal'`,
+								`'large'`
 							]
-						}],
-						default: '\'normal\'',
+						},
+						default: `'normal'`,
 						description: 'Set the size of the dropdown button.'
 					}, {
 						name: 'title',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the dropdown title.'
 					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the dropdown.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the dropdown.'
+					}, {
+						name: 'children',
+						customTypes: {
+							name: 'CSDropdownChildren',
+							types: [
+								'<CSButton />',
+								'<CSList />',
+								'any'
+							]
+						},
+						description: 'This component supports content passed as children depending on the mode prop.'
+					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the dropdown wrapper div.'
 					}
 				]

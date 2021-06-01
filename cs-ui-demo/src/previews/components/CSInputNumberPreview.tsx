@@ -356,154 +356,154 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 				],
 				properties: [
 					{
+						name: 'label',
+						required: true,
+						types: 'string',
+						description: 'Set the file input label.'
+					}, {
 						name: 'borderRadius',
-						types: ['string'],
-						default: '\'0.25rem\'',
+						types: 'string',
+						default: `'0.25rem'`,
 						description: 'Set a border radius style.'
 					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the number input.'
-					}, {
 						name: 'disabled',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Disable the number input.'
 					}, {
 						name: 'error',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Toggle the error state.'
 					}, {
 						name: 'errorMessage',
-						customTypes: [{
+						customTypes: {
 							name: 'CSFieldErrorMsgType',
 							types: ['string', 'Array<string>']
-						}],
+						},
 						description: 'Set the error message or messages for the number input.'
 					}, {
+						name: 'helpText',
+						types: 'string',
+						description: 'Set the text to be displayed in the tooltip.'
+					}, {
 						name: 'hidden',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Control the hidden attribute.'
 					}, {
-						name: 'helpText',
-						types: ['string'],
-						description: 'Set the text to be displayed in the tooltip.'
-					}, {
 						name: 'hideSpinner',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Determine whether the spinner should appear.'
 					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the number input.'
-					}, {
-						name: 'label',
-						required: true,
-						types: ['string'],
-						description: 'Set the file input label.'
-					}, {
 						name: 'labelHidden',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Hide the file input label.'
 					}, {
 						name: 'labelTitle',
-						types: ['boolean'],
+						types: 'boolean',
 						description: 'Control whether to set the title attribute.'
 					}, {
 						name: 'max',
-						types: ['any'],
+						types: 'any',
 						description: 'Set a max value for the number input.'
 					}, {
 						name: 'maxLength',
-						types: ['number'],
+						types: 'number',
 						description: 'Set the maximum length of the value (can be used only with type="text").'
 					}, {
-						name: 'step',
-						types: ['string'],
-						description: 'Set which interval to use when using up and down arrows to adjust the value.'
-					}, {
 						name: 'min',
-						types: ['any'],
+						types: 'any',
 						description: 'Set a min value for the number input.'
 					}, {
 						name: 'name',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the number input name attribute.'
 					}, {
 						name: 'onBlur',
-						types: ['(event) => void'],
+						types: '(event) => void',
 						description: 'Handler method for the blur event.'
 					}, {
 						name: 'onChange',
-						types: ['(value) => any'],
+						types: '(value) => any',
 						description: 'Handler method for the change event.'
 					}, {
 						name: 'onFocus',
-						types: ['(event) => any'],
+						types: '(event) => any',
 						description: 'Handler method for the focus event.'
 					}, {
 						name: 'onKeyDown',
-						types: ['(event) => void'],
+						types: '(event) => void',
 						description: 'Handler method for the keydown event.'
 					}, {
 						name: 'onPaste',
-						types: ['(event) => void'],
+						types: '(event) => void',
 						description: 'Handler method for the paste event.'
 					}, {
 						name: 'placeholder',
-						types: ['string'],
+						types: 'string',
 						description: 'Set a number input placeholder.'
 					}, {
 						name: 'readOnly',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Control whether to apply the readonly attribute.'
 					}, {
 						name: 'required',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Make the number input required.'
 					}, {
+						name: 'step',
+						types: 'string',
+						description: 'Set which interval to use when using up and down arrows to adjust the value.'
+					}, {
 						name: 'title',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the number input title.'
 					}, {
 						name: 'tooltipPosition',
-						customTypes: [{
+						customTypes: {
 							name: 'CSTooltipPosition',
 							types: [
-								'\'bottom-right\'',
-								'\'bottom-left\'',
-								'\'top-right\'',
-								'\'top-left\'',
-								'\'top-center\'',
-								'\'bottom-center\'',
-								'\'right-top\'',
-								'\'right-center\'',
-								'\'right-bottom\'',
-								'\'left-top\'',
-								'\'left-center\'',
-								'\'left-bottom\''
+								`'bottom-right'`,
+								`'bottom-left'`,
+								`'top-right'`,
+								`'top-left'`,
+								`'top-center'`,
+								`'bottom-center'`,
+								`'right-top'`,
+								`'right-center'`,
+								`'right-bottom'`,
+								`'left-top'`,
+								`'left-center'`,
+								`'left-bottom'`
 							]
-						}],
-						default: '\'top-right\'',
+						},
+						default: `'top-right'`,
 						description: 'Set the tooltip position for the number input.'
 					}, {
 						name: 'type',
-						types: ['string'],
-						default: '\'number\'',
+						types: 'string',
+						default: `'number'`,
 						description: 'Set the number input field type.'
 					}, {
 						name: 'value',
-						types: ['any'],
+						types: 'any',
 						description: 'Set the number input default value.'
 					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the number input.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the number input.'
+					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the number input.'
 					}
 				]

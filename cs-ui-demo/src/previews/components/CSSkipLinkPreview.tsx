@@ -85,30 +85,29 @@ class CSSkipLinkPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the skip link.'
-					}, {
-						name: 'color',
-						types: ['string'],
-						description: 'Set a custom color for the skip link. (eg. pink, #ff0000, rgba(0, 0, 0, 0.75), etc.)'
-					}, {
 						name: 'href',
 						required: true,
-						types: ['string'],
+						types: 'string',
 						description: 'Set a path for the skip link. (eg. #properties-table)'
-					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the skip link.'
 					}, {
 						name: 'jumpDestination',
 						required: true,
-						types: ['string'],
+						types: 'string',
 						description: 'Set the skip link destination.'
+					}, {
+						name: 'color',
+						types: 'string',
+						description: 'Set a custom color for the skip link. (eg. pink, #ff0000, rgba(0, 0, 0, 0.75), etc.)'
+					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the skip link.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the skip link.'
 					}
 				]
-
 			}
 		],
 		accessibility: {

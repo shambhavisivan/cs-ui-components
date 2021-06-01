@@ -167,36 +167,35 @@ class CSDividerPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the divider.'
-					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the divider.'
+						name: 'variant',
+						required: true,
+						customTypes: {
+							name: 'CSDividerVariant',
+							types: [`'horizontal'`, `'vertical'`]
+						},
+						description: 'Set the divider variant.'
 					}, {
 						name: 'label',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the divider label, available for horizontal only.'
 					}, {
 						name: 'size',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the width for the horizontal or the height for the vertical divider. (eg. 20px, 10rem, 100%, etc.)'
 					}, {
-						name: 'variant',
-						required: true,
-						customTypes: [{
-							name: 'CSDividerVariant',
-							types: ['\'horizontal\'', '\'vertical\'']
-						}],
-						description: 'Set the divider variant.'
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the divider.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the divider.'
 					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the divider div.'
 					}
 				]
-
 			}
 		],
 		accessibility: {

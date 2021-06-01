@@ -208,39 +208,47 @@ class CSButtonGroupPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'children',
-						customTypes: [{
-							name: 'CSButtonGroupChildren',
-							types: ['<CSButton />', '<CSDropdown />', 'any']
-						}],
-						description: 'This component is designed to support CSButton and CSDropdown as children.'
-					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the button group.'
+						name: 'ariaDescription',
+						types: 'string',
+						description: 'Set an accessible semantic description of the button group.'
 					}, {
 						name: 'combined',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'true',
 						description: 'Set whether the button group styling should be combined.'
 					}, {
 						name: 'marginPosition',
-						customTypes: [{
+						customTypes: {
 							name: 'CSButtonGroupMargin',
-							types: ['\'left\'', '\'right\'', '\'both\'']
-						}],
+							types: [
+								`'left'`,
+								`'right'`,
+								`'both'`
+							]
+						},
 						description: 'Set horizontal margin location.'
 					}, {
 						name: 'id',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the ID for the button group.'
 					}, {
-						name: 'ariaDescription',
-						types: ['string'],
-						description: 'Set an accessible semantic description of the button group.'
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the button group.'
+					}, {
+						name: 'children',
+						customTypes: {
+							name: 'CSButtonGroupChildren',
+							types: [
+								'<CSButton />',
+								'<CSDropdown />',
+								'any'
+							]
+						},
+						description: 'This component is designed to support CSButton and CSDropdown as children.'
 					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the button group div.'
 					}
 				]

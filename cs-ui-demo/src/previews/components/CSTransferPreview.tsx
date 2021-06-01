@@ -632,73 +632,73 @@ class CSTransferPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the transfer.'
-					}, {
 						name: 'dataSource',
-						customTypes: [{
-							name: 'Array<CSTransferItemsType>',
-							types: ['object']
-						}],
 						required: true,
+						customTypes: {
+							name: 'Array<CSTransferItemsType>',
+							types: 'object'
+						},
 						description: 'Define an array of objects to be used as a data source. The object accepts disabled, key and name attributes. In case the key is within targetKeys, that item will be displayed in the target list.'
 					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the transfer.'
+						name: 'sourceLabel',
+						required: true,
+						types: 'string',
+						description: 'Set the source list label.'
+					}, {
+						name: 'targetLabel',
+						required: true,
+						types: 'string',
+						description: 'Set the target list label.'
 					}, {
 						name: 'onChange',
-						types: ['(value) => any'],
+						types: '(value) => any',
 						description: 'Handler method for the change event.'
 					}, {
 						name: 'oneWay',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Only allow left-to-right transfers.'
 					}, {
 						name: 'searchable',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Render a search bar for both lists.'
 					}, {
 						name: 'selectAll',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Render a checkbox to select all items in a list. It can be only used with the check-list variant.'
 					}, {
 						name: 'sourceHelpText',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the text to be displayed in the source list tooltip.'
 					}, {
-						name: 'sourceLabel',
-						required: true,
-						types: ['string'],
-						description: 'Set the source list label.'
-					}, {
 						name: 'targetHelpText',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the text to be displayed in the target list tooltip.'
 					}, {
 						name: 'targetKeys',
-						types: ['Array<string>'],
+						types: 'Array<string>',
 						description: 'A set of keys for the elements listed in the target list.'
 					}, {
-						name: 'targetLabel',
-						required: true,
-						types: ['string'],
-						description: 'Set the target list label.'
-					}, {
 						name: 'variant',
-						customTypes: [{
+						customTypes: {
 							name: 'CSTransferVariant',
-							types: ['\'simple-list\'', '\'check-list\'']
-						}],
-						default: '\'simple-list\'',
+							types: [`'simple-list'`, `'check-list'`]
+						},
+						default: `'simple-list'`,
 						description: 'Set a transfer list variant.'
 					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the transfer.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the transfer.'
+					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the transfer wrapper div.'
 					}
 				]

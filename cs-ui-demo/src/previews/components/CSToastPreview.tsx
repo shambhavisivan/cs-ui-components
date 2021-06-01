@@ -232,66 +232,71 @@ class CSToastPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'children',
-						types: ['any'],
-						description: 'This component supports custom content passed as children.'
-					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the toast.'
+						name: 'variant',
+						required: true,
+						customTypes: {
+							name: 'CSToastVariant',
+							types: [
+								`'info'`,
+								`'success'`,
+								`'warning'`,
+								`'error'`
+							]
+						},
+						description: 'Set the color and icon variant of the toast.'
 					}, {
 						name: 'closeButton',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Show the close button.'
 					}, {
 						name: 'detail',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the text content for the toast detail.'
 					}, {
 						name: 'iconName',
-						types: ['string'],
+						types: 'string',
 						description: 'Override the default icon defined by the variant.'
 					}, {
 						name: 'iconOrigin',
-						customTypes: [{
+						customTypes: {
 							name: 'CSToastIconOrigin',
-							types: ['\'slds\'', '\'cs\'']
-						}],
-						default: '\'slds\'',
+							types: [`'slds'`, `'cs'`]
+						},
+						default: `'slds'`,
 						description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
 					}, {
 						name: 'iconVisibility',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'true',
 						description: 'Show or hide the icon.'
 					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the toast.'
-					}, {
 						name: 'onClose',
-						types: ['(event) => void'],
+						types: '(event) => void',
 						description: 'Handler method for closing the toast.'
 					}, {
 						name: 'text',
-						types: ['string'],
+						types: 'string',
 						description: 'Set textual content for the toast.'
 					}, {
-						name: 'variant',
-						required: true,
-						customTypes: [{
-							name: 'CSToastVariant',
-							types: ['\'info\'', '\'success\'', '\'warning\'', '\'error\'']
-						}],
-						description: 'Set the color and icon variant of the toast.'
-					}, {
 						name: 'width',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the toast width. (eg. 200px, 20rem, 50%, etc.)'
 					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the toast.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the toast.'
+					}, {
+						name: 'children',
+						types: 'any',
+						description: 'This component supports custom content passed as children.'
+					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the toast wrapper div.'
 					}
 				]

@@ -812,169 +812,173 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 				],
 				properties: [
 					{
-						name: 'align',
-						customTypes: [{
-							name: 'CSLookupDropdownAlign',
-							types: ['\'left\'', '\'right\'']
-						}],
-						default: '\'left\'',
-						description: 'Horizontally align the lookup dropdown in the case of an overflow.'
-					}, {
-						name: 'autoFocus',
-						types: ['boolean'],
-						default: 'false',
-						description: 'Set whether the lookup should be autofocused.'
-					}, {
-						name: 'borderRadius',
-						types: ['string'],
-						default: '\'0.25rem\'',
-						description: 'Set a border radius style.'
-					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the wrapper div.'
-					}, {
-						name: 'disabled',
-						types: ['boolean'],
-						default: 'false',
-						description: 'Disable the lookup.'
-					}, {
-						name: 'error',
-						types: ['boolean'],
-						description: 'Toggle the error state.'
-					}, {
-						name: 'errorMessage',
-						customTypes: [{
-							name: 'CSFieldErrorMsgType',
-							types: ['string', 'Array<string>']
-						}],
-						description: 'Set the error message or messages for the text input.'
-					}, {
 						name: 'fieldToBeDisplayed',
 						required: true,
-						types: ['string'],
+						types: 'string',
 						description: 'Set which field should be displayed when an option is selected.'
-					}, {
-						name: 'gridCustomPopup',
-						types: ['boolean'],
-						default: 'false',
-						description: 'Provides React Portal support for AG Grid custom popups'
-					}, {
-						name: 'helpText',
-						types: ['string'],
-						description: 'Set the text to be displayed in the tooltip.'
-					}, {
-						name: 'hidden',
-						types: ['boolean'],
-						default: 'false',
-						description: 'Control the hidden attribute.'
-					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the lookup.'
 					}, {
 						name: 'label',
 						required: true,
-						types: ['string'],
+						types: 'string',
 						description: 'Set the lookup label.'
-					}, {
-						name: 'labelHidden',
-						types: ['boolean'],
-						default: 'false',
-						description: 'Hide the lookup label.'
-					}, {
-						name: 'labelTitle',
-						types: ['boolean'],
-						description: 'Control whether to set the title attribute.'
 					}, {
 						name: 'lookupColumns',
 						required: true,
-						types: ['Array<CSLookupTableColumnType>'],
+						types: 'Array<CSLookupTableColumnType>',
 						description: 'Set which columns should be shown in the dropdown.'
 					}, {
 						name: 'mode',
 						required: true,
-						types: ['client', 'server'],
+						types: [`'client'`, `'server'`],
 						description: 'Set whether the component should run in client-side or server-side mode. The server-side mode loads records by reading the lookupOptions prop and filtering takes place within the component, while the server-side mode enables asynchronous fetching of records with the fetchLookupOptions prop, which also enables infinite scroll and setting the minimum search term length.'
 					}, {
+						name: 'align',
+						customTypes: {
+							name: 'CSLookupDropdownAlign',
+							types: [`'left'`, `'right'`]
+						},
+						default: `'left'`,
+						description: 'Horizontally align the lookup dropdown in the case of an overflow.'
+					}, {
+						name: 'autoFocus',
+						types: 'boolean',
+						default: 'false',
+						description: 'Set whether the lookup should be autofocused.'
+					}, {
+						name: 'borderRadius',
+						types: 'string',
+						default: `'0.25rem'`,
+						description: 'Set a border radius style.'
+					}, {
+						name: 'disabled',
+						types: 'boolean',
+						default: 'false',
+						description: 'Disable the lookup.'
+					}, {
+						name: 'error',
+						types: 'boolean',
+						description: 'Toggle the error state.'
+					}, {
+						name: 'errorMessage',
+						customTypes: {
+							name: 'CSFieldErrorMsgType',
+							types: ['string', 'Array<string>']
+						},
+						description: 'Set the error message or messages for the text input.'
+					}, {
+						name: 'gridCustomPopup',
+						types: 'boolean',
+						default: 'false',
+						description: 'Provides React Portal support for AG Grid custom popups'
+					}, {
+						name: 'helpText',
+						types: 'string',
+						description: 'Set the text to be displayed in the tooltip.'
+					}, {
+						name: 'hidden',
+						types: 'boolean',
+						default: 'false',
+						description: 'Control the hidden attribute.'
+					}, {
+						name: 'labelHidden',
+						types: 'boolean',
+						default: 'false',
+						description: 'Hide the lookup label.'
+					}, {
+						name: 'labelTitle',
+						types: 'boolean',
+						description: 'Control whether to set the title attribute.'
+					}, {
 						name: 'multiselect',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Allow selection of multiple options.'
 					}, {
 						name: 'onBlur',
-						types: ['(event) => any'],
+						types: '(event) => any',
 						description: 'Handler method for the blur event.'
 					}, {
 						name: 'onFocus',
-						types: ['(event) => any'],
+						types: '(event) => any',
 						description: 'Handler method for the focus event.'
 					}, {
 						name: 'onLookupDropdownClose',
-						types: ['() => void'],
+						types: '() => void',
 						description: 'Handler method for when the lookup is closed.'
 					}, {
 						name: 'onSearch',
-						types: ['(event) => any'],
+						types: '(event) => any',
 						description: 'Handler method for when the search term changes.'
 					}, {
 						name: 'onSelectChange',
-						types: ['(event) => any'],
-						description: 'Handler method for when the selection is changed. By returning false from handler method, selected item won\'t be updated. Undefined return value will evaluate as true.'
+						types: '(event) => any',
+						description: `Handler method for when the selection is changed. By returning false from handler method, selected item won't be updated. Undefined return value will evaluate as true.`
 					}, {
 						name: 'placeholder',
-						types: ['string'],
+						types: 'string',
 						description: 'Set a lookup placeholder.'
 					}, {
 						name: 'position',
-						customTypes: [{
+						customTypes: {
 							name: 'CSLookupDropdownPosition',
-							types: ['\'bottom\'', '\'top\'']
-						}],
-						default: '\'bottom\'',
+							types: [`'bottom'`, `'top'`]
+						},
+						default: `'bottom'`,
 						description: 'Determine the vertical position of the lookup dropdown content.'
 					}, {
 						name: 'readOnly',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Control whether to apply the readonly attribute.'
 					}, {
 						name: 'required',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Make the lookup required.'
 					}, {
 						name: 'title',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the lookup title.'
 					}, {
 						name: 'tooltipPosition',
-						customTypes: [{
+						customTypes: {
 							name: 'CSTooltipPosition',
 							types: [
-								'\'bottom-right\'',
-								'\'bottom-left\'',
-								'\'top-right\'',
-								'\'top-left\'',
-								'\'top-center\'',
-								'\'bottom-center\'',
-								'\'right-top\'',
-								'\'right-center\'',
-								'\'right-bottom\'',
-								'\'left-top\'',
-								'\'left-center\'',
-								'\'left-bottom\''
+								`'bottom-right'`,
+								`'bottom-left'`,
+								`'top-right'`,
+								`'top-left'`,
+								`'top-center'`,
+								`'bottom-center'`,
+								`'right-top'`,
+								`'right-center'`,
+								`'right-bottom'`,
+								`'left-top'`,
+								`'left-center'`,
+								`'left-bottom'`
 							]
-						}],
-						default: '\'top-right\'',
+						},
+						default: `'top-right'`,
 						description: 'Set the tooltip position for the lookup.'
 					}, {
 						name: 'value',
-						types: ['Record<string, any>', 'Array<Record<string, any>>', 'null'],
+						types: [
+							'Record<string, any>',
+							'Array<Record<string, any>>',
+							'null'
+						],
 						description: 'Set which values should be displayed in the lookup.'
 					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the lookup.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the wrapper div.'
+					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the text input.'
 					}
 				]
@@ -1112,16 +1116,16 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 					{
 						name: 'lookupOptions',
 						required: true,
-						types: ['Array<Record<string, any>>'],
+						types: 'Array<Record<string, any>>',
 						description: 'Set the data that should be shown in the dropdown.'
 					}, {
 						name: 'loading',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Render a spinner in the dropdown instead of options.'
 					}, {
 						name: 'searchBy',
-						types: ['Array<string>'],
+						types: 'Array<string>',
 						description: 'Set the keys by which the options should be filtered. By default, the options are filtered by the key provided in the lookupColumns prop.'
 					}
 				]
@@ -1234,24 +1238,24 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 				properties: [
 					{
 						name: 'fetchLookupOptions',
-						types: ['(searchTerm, pageSize, pageNo) => Promise<CSLookupFetchResult>'],
 						required: true,
+						types: '(searchTerm, pageSize, pageNo) => Promise<CSLookupFetchResult>',
 						description: 'Set a function which will be called on every search or focus change if the minTermLength prop is 0. The function takes the search term, the page size (which determines the number of returned records) and the page number which will automatically increase on every infiniteScroll event. It returns an object with a records property of the same type as lookupOptions and a boolean moreRecords property which indicates whether further records can be fetched.'
 					}, {
+						name: 'pageSize',
+						required: true,
+						types: 'number',
+						description: 'Set the number of records that should be returned after each lookup records fetch.'
+					}, {
 						name: 'infiniteScroll',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Enable fetching additional records when the dropdown scroll hits the bottom.'
 					}, {
 						name: 'minTermLength',
+						types: 'number',
 						default: '0',
-						types: ['number'],
 						description: 'Set the minimum number of characters that need to be entered before fetchLookupOptions is fired.'
-					}, {
-						name: 'pageSize',
-						types: ['number'],
-						required: true,
-						description: 'Set the number of records that should be returned after each lookup records fetch.'
 					}
 				]
 			}

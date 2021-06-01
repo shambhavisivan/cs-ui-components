@@ -187,52 +187,56 @@ class CSImagePreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the image.'
+						name: 'type',
+						required: true,
+						customTypes: {
+							name: 'CSImageType',
+							types: [`'logo'`, `'logomark'`]
+						},
+						description: 'Set the image type.'
 					}, {
 						name: 'color',
-						customTypes: [{
+						customTypes: {
 							name: 'CSImageColor',
-							types: ['\'purple\'', '\'white\'', '\'black\'']
-						}],
-						default: '\'purple\'',
+							types: [
+								`'purple'`,
+								`'white'`,
+								`'black'`
+							]
+						},
+						default: `'purple'`,
 						description: 'Set the image color.'
 					}, {
 						name: 'height',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the image height. (eg. 200px, 20rem, 50%, etc.)'
 					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the image.'
-					}, {
-						name: 'type',
-						required: true,
-						customTypes: [{
-							name: 'CSImageType',
-							types: ['\'logo\'', '\'logomark\'']
-						}],
-						description: 'Set the image type.'
+						name: 'longDescription',
+						types: 'string',
+						description: 'Set the expanded description of the image. Creates hidden span with custom description when alt is not enough.'
 					}, {
 						name: 'variant',
-						customTypes: [{
+						customTypes: {
 							name: 'CSImageVariant',
-							types: ['\'initial\'', '\'reversed\'']
-						}],
-						default: '\'initial\'',
+							types: [`'initial'`, `'reversed'`]
+						},
+						default: `'initial'`,
 						description: 'Set the image variant.'
 					}, {
 						name: 'width',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the image width. (eg. 200px, 20rem, 50%, etc.)'
 					}, {
-						name: 'longDescription',
-						types: ['string'],
-						description: 'Set the expanded description of the image. Creates hidden span with custom description when alt is not enough.'
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the image.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the image.'
 					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the image tag.'
 					}
 				]

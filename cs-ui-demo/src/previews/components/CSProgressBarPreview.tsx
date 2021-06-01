@@ -340,78 +340,78 @@ class CSProgressBarPreview extends React.Component<{}, CSProgressBarPreviewState
 				],
 				properties: [
 					{
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the progress bar.'
+						name: 'label',
+						required: true,
+						types: 'string',
+						description: 'Set the progress bar label.'
+					}, {
+						name: 'progress',
+						required: true,
+						types: 'string',
+						description: 'Set the percentage value of the progress. (eg. 0%, 50%, 100%, etc.)'
 					}, {
 						name: 'borderRadius',
-						types: ['string'],
-						default: '\'0\'',
+						types: 'string',
+						default: `'0'`,
 						description: 'Set custom border radius on the progress bar.'
 					}, {
 						name: 'color',
-						types: ['string'],
+						types: 'string',
 						description: 'Set a custom color for the progress bar path. (eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
 					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the progress bar.'
-					}, {
-						name: 'label',
-						required: true,
-						types: ['string'],
-						description: 'Set the progress bar label.'
+						name: 'infoText',
+						types: 'string',
+						description: 'Set some info text indicating progress.'
 					}, {
 						name: 'labelHidden',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Hide the progress bar label.'
 					}, {
 						name: 'labelTitle',
-						types: ['boolean'],
+						types: 'boolean',
 						description: 'Control whether to set the title attribute.'
 					}, {
-						name: 'progress',
-						required: true,
-						types: ['string'],
-						description: 'Set the percentage value of the progress. (eg. 0%, 50%, 100%, etc.)'
-					}, {
-						name: 'infoText',
-						types: ['string'],
-						description: 'Set some info text indicating progress.'
-					}, {
 						name: 'status',
-						customTypes: [{
+						customTypes: {
 							name: 'CSProgressBarStatus',
 							types: [
-								'\'neutral\'',
-								'\'loading\'',
-								'\'success\'',
-								'\'error\''
+								`'neutral'`,
+								`'loading'`,
+								`'success'`,
+								`'error'`
 							]
-						}],
-						default: '\'neutral\'',
+						},
+						default: `'neutral'`,
 						description: 'Set a preset status style and icon.'
 					}, {
 						name: 'thickness',
-						customTypes: [{
+						customTypes: {
 							name: 'CSProgressBarThickness',
 							types: [
-								'\'xsmall\'',
-								'\'small\'',
-								'\'medium\'',
-								'\'large\''
+								`'xsmall'`,
+								`'small'`,
+								`'medium'`,
+								`'large'`
 							]
-						}],
-						default: '\'medium\'',
+						},
+						default: `'medium'`,
 						description: 'Set the thickness of the progress bar.'
 					}, {
 						name: 'title',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the title attribute.'
 					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the progress bar.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the progress bar.'
+					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the progress bar wrapper div.'
 					}
 				]

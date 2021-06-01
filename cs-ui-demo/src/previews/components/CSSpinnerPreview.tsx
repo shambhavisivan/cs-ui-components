@@ -115,55 +115,63 @@ class CSSpinnerPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the spinner.'
-					}, {
 						name: 'color',
-						customTypes: [{
+						customTypes: {
 							name: 'CSSpinnerColor',
-							types: ['\'neutral\'', '\'brand\'', '\'inverse\'']
-						}],
-						default: '\'brand\'',
+							types: [
+								`'neutral'`,
+								`'brand'`,
+								`'inverse'`
+							]
+						},
+						default: `'brand'`,
 						description: 'Set the color variant for the spinner icon.'
 					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the spinner.'
-					}, {
 						name: 'inline',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Position the spinner inline.'
 					}, {
 						name: 'label',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the spinner label.'
 					}, {
 						name: 'overlay',
-						customTypes: [{
+						customTypes: {
 							name: 'CSSpinnerOverlay',
-							types: ['\'light\'', '\'dark\'', '\'transparent\'']
-						}],
-						default: '\'light\'',
+							types: [
+								`'light'`,
+								`'dark'`,
+								`'transparent'`
+							]
+						},
+						default: `'light'`,
 						description: 'Set the overlay color variant.'
 					}, {
 						name: 'size',
-						customTypes: [{
+						customTypes: {
 							name: 'CSSpinnerSize',
 							types: [
-								'\'xsmall\'',
-								'\'small\'',
-								'\'medium\'',
-								'\'large\'',
-								'\'xlarge\''
+								`'xsmall'`,
+								`'small'`,
+								`'medium'`,
+								`'large'`,
+								`'xlarge'`
 							]
-						}],
-						default: '\'large\'',
+						},
+						default: `'large'`,
 						description: 'Set the spinner size.'
 					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the spinner.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the spinner.'
+					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the spinner wrapper div.'
 					}
 				]

@@ -447,47 +447,52 @@ class CSMainHeaderPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'children',
-						customTypes: [{
-							name: 'CSMainHeaderChildren',
-							types: ['<CSMainHeaderIcon />', '<CSMainHeaderLeft />', '<CSMainHeaderRight />', 'any']
-						}],
-						description: 'This component is designed to support CSMainHeaderIcon, CSMainHeaderLeft and CSMainHeaderRight as children.'
-					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the list.'
-					}, {
 						name: 'color',
-						customTypes: [{
+						customTypes: {
 							name: 'CSMainHeaderColor',
 							types: [
-								'\'neutral\'',
-								'\'brand\'',
-								'\'success\'',
-								'\'error\'',
-								'\'info\''
+								`'neutral'`,
+								`'brand'`,
+								`'success'`,
+								`'error'`,
+								`'info'`
 							]
-						}],
-						default: '\'neutral\'',
+						},
+						default: `'neutral'`,
 						description: 'Set the main header background color.'
 					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the main header.'
-					}, {
 						name: 'maxWidth',
-						types: ['string'],
-						default: '\'100%\'',
+						types: 'string',
+						default: `'100%'`,
 						description: 'Set the max-width of the dropdown content. (eg. 720px, 80rem, 100%, etc.)'
 					}, {
 						name: 'sticky',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'true',
 						description: 'Set whether the main header should be sticky.'
 					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the main header.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the list.'
+					}, {
+						name: 'children',
+						customTypes: {
+							name: 'CSMainHeaderChildren',
+							types: [
+								'<CSMainHeaderIcon />',
+								'<CSMainHeaderLeft />',
+								'<CSMainHeaderRight />',
+								'any'
+							]
+						},
+						description: 'This component is designed to support CSMainHeaderIcon, CSMainHeaderLeft and CSMainHeaderRight as children.'
+					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the header tag.'
 					}
 				]
@@ -533,30 +538,30 @@ class CSMainHeaderPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'children',
-						types: ['any'],
-						description: 'This component supports custom content passed as children.'
-					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the main header left.'
+						name: 'title',
+						required: true,
+						types: 'string',
+						description: 'Set a title for the main header left.'
 					}, {
 						name: 'reverseOrder',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Reverse the order of the title and subtitle.'
 					}, {
 						name: 'subtitle',
-						types: ['string'],
+						types: 'string',
 						description: 'Set a subtitle for the main header left.'
 					}, {
-						name: 'title',
-						required: true,
-						types: ['string'],
-						description: 'Set a title for the main header left.'
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the main header left.'
+					}, {
+						name: 'children',
+						types: 'any',
+						description: 'This component supports custom content passed as children.'
 					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the main header left div wrapper.'
 					}
 				]
@@ -564,16 +569,16 @@ class CSMainHeaderPreview extends React.Component {
 				name: 'CSMainHeaderRight',
 				properties: [
 					{
-						name: 'children',
-						types: ['any'],
-						description: 'This component supports custom content passed as children.'
-					}, {
 						name: 'id',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the ID for the main header right.'
 					}, {
+						name: 'children',
+						types: 'any',
+						description: 'This component supports custom content passed as children.'
+					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the main header right div wrapper.'
 					}
 				]
@@ -581,16 +586,16 @@ class CSMainHeaderPreview extends React.Component {
 				name: 'CSMainHeaderIcon',
 				properties: [
 					{
-						name: 'children',
-						types: ['any'],
-						description: 'This component supports custom content passed as children.'
-					}, {
 						name: 'id',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the ID for the main header icon.'
 					}, {
+						name: 'children',
+						types: 'any',
+						description: 'This component supports custom content passed as children.'
+					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the main header icon div wrapper.'
 					}
 				]

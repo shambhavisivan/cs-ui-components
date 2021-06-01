@@ -354,115 +354,115 @@ class CSSelectPreview extends React.Component<{}, CSSelectPreviewState> {
 				],
 				properties: [
 					{
+						name: 'label',
+						required: true,
+						types: 'string',
+						description: 'Set the select label.'
+					}, {
 						name: 'borderRadius',
-						types: ['string'],
-						default: '\'0.25rem\'',
+						types: 'string',
+						default: `'0.25rem'`,
 						description: 'Set a border radius style.'
 					}, {
-						name: 'children',
-						customTypes: [{
-							name: 'CSSelectChildren',
-							types: ['<option>', 'any']
-						}],
-						description: 'This component is designed to support <option> tags as children.'
-					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the select.'
-					}, {
 						name: 'disabled',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Disable the select.'
 					}, {
 						name: 'error',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Toggle the error state.'
 					}, {
 						name: 'errorMessage',
-						customTypes: [{
+						customTypes: {
 							name: 'CSFieldErrorMsgType',
 							types: ['string', 'Array<string>']
-						}],
+						},
 						description: 'Set the error message or messages for the select.'
 					}, {
 						name: 'helpText',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the text to be displayed in the tooltip.'
 					}, {
 						name: 'hidden',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Control the hidden attribute.'
 					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the select.'
-					}, {
-						name: 'label',
-						required: true,
-						types: ['string'],
-						description: 'Set the select label.'
-					}, {
 						name: 'labelHidden',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Hide the select label.'
 					}, {
 						name: 'labelTitle',
-						types: ['boolean'],
+						types: 'boolean',
 						description: 'Control whether to set the title attribute.'
 					}, {
 						name: 'name',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the checkbox name attribute.'
 					}, {
 						name: 'onChange',
-						types: ['(event) => any'],
+						types: '(event) => any',
 						description: 'Handler method for the change event.'
 					}, {
 						name: 'readOnly',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Control whether to apply the readonly attribute.'
 					}, {
 						name: 'required',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Make the select required.'
 					}, {
 						name: 'title',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the select title.'
 					}, {
 						name: 'tooltipPosition',
-						customTypes: [{
+						customTypes: {
 							name: 'CSTooltipPosition',
 							types: [
-								'\'bottom-right\'',
-								'\'bottom-left\'',
-								'\'top-right\'',
-								'\'top-left\'',
-								'\'top-center\'',
-								'\'bottom-center\'',
-								'\'right-top\'',
-								'\'right-center\'',
-								'\'right-bottom\'',
-								'\'left-top\'',
-								'\'left-center\'',
-								'\'left-bottom\''
+								`'bottom-right'`,
+								`'bottom-left'`,
+								`'top-right'`,
+								`'top-left'`,
+								`'top-center'`,
+								`'bottom-center'`,
+								`'right-top'`,
+								`'right-center'`,
+								`'right-bottom'`,
+								`'left-top'`,
+								`'left-center'`,
+								`'left-bottom'`
 							]
-						}],
-						default: '\'top-right\'',
+						},
+						default: `'top-right'`,
 						description: 'Set the tooltip position for the select.'
 					}, {
 						name: 'value',
-						types: ['any'],
+						types: 'any',
 						description: 'Pass a value to the select.'
 					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the select.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the select.'
+					}, {
+						name: 'children',
+						customTypes: {
+							name: 'CSSelectChildren',
+							types: ['<option>', 'any']
+						},
+						description: 'This component is designed to support <option> tags as children.'
+					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the select tag.'
 					}
 				]

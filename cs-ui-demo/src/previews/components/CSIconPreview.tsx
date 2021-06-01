@@ -179,34 +179,26 @@ class CSIconPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the icon.'
+						name: 'name',
+						required: true,
+						types: 'string',
+						description: 'Select which icon to display (see the icons tab).'
 					}, {
 						name: 'color',
-						types: ['string'],
+						types: 'string',
 						description: 'Set a custom color value for the icon. (eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
 					}, {
 						name: 'frame',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Show a frame behind the icon.'
 					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the icon.'
-					}, {
-						name: 'name',
-						required: true,
-						types: ['string'],
-						description: 'Select which icon to display (see the icons tab).'
-					}, {
 						name: 'origin',
-						customTypes: [{
+						customTypes: {
 							name: 'CSIconOrigin',
-							types: ['\'slds\'', '\'cs\'']
-						}],
-						default: '\'slds\'',
+							types: [`'slds'`, `'cs'`]
+						},
+						default: `'slds'`,
 						description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
 					}, {
 						name: 'rotate',
@@ -215,20 +207,28 @@ class CSIconPreview extends React.Component {
 						description: 'Please always use a number value. String values are deprecated and will be removed. Set by how many degrees the icon should be rotated clockwise. (eg. 90, 180, -90, etc.)'
 					}, {
 						name: 'size',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the icon size. (eg. 12px, 1.5rem, etc.)'
 					}, {
 						name: 'spin',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Add a spinning animation to the icon.'
 					}, {
 						name: 'title',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the icon title.'
 					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the icon.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the icon.'
+					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the icon frame div if it exists.'
 					}
 				]

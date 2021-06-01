@@ -878,74 +878,80 @@ class CSButtonPreview extends React.Component {
 				],
 				properties: [
 					{
+						name: 'label',
+						required: true,
+						types: 'string',
+						description: 'Set which text should appear as the button label.'
+					}, {
 						name: 'borderRadius',
-						types: ['string'],
-						default: '\'0.25rem\'',
+						types: 'string',
+						default: `'0.25rem'`,
 						description: 'Sets custom border radius on the button.'
 					}, {
 						name: 'btnStyle',
-						customTypes: [{
+						customTypes: {
 							name: 'CSButtonStyle',
-							types: ['\'initial\'', '\'brand\'', '\'outline\'']
-						}],
-						default: '\'initial\'',
+							types: [
+								`'initial'`,
+								`'brand'`,
+								`'outline'`
+							]
+						},
+						default: `'initial'`,
 						description: 'Set the button style.'
 					}, {
 						name: 'btnType',
-						customTypes: [{
+						customTypes: {
 							name: 'CSButtonType',
-							types: ['\'default\'', '\'error\'', '\'success\'', '\'transparent\'']
-						}],
-						default: '\'default\'',
+							types: [
+								`'default'`,
+								`'error'`,
+								`'success'`,
+								`'transparent'`
+							]
+						},
+						default: `'default'`,
 						description: 'Set the button type.'
 					}, {
-						name: 'children',
-						types: ['any'],
-						description: 'This component supports custom content passed as children.'
-					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the button.'
-					}, {
 						name: 'color',
-						types: ['string'],
+						types: 'string',
 						description: 'Set a custom color for the button. (eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
 					}, {
 						name: 'disabled',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Disable the button.'
 					}, {
 						name: 'iconColor',
-						types: ['string'],
+						types: 'string',
 						description: 'Set a custom color for the icon inside of the button. (eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
 					}, {
 						name: 'iconDisplay',
-						customTypes: [{
+						customTypes: {
 							name: 'CSButtonIconDisplay',
-							types: ['\'default\'', '\'no-icon\'']
-						}],
-						default: '\'default\'',
+							types: [`'default'`, `'no-icon'`]
+						},
+						default: `'default'`,
 						description: 'Set whether to omit the icon or display the icon only.'
 					}, {
 						name: 'iconName',
-						types: ['string'],
+						types: 'string',
 						description: 'Name of the icon from the icons library.'
 					}, {
 						name: 'iconOrigin',
-						customTypes: [{
+						customTypes: {
 							name: 'CSIconOrigin',
-							types: ['\'slds\'', '\'cs\'']
-						}],
-						default: '\'slds\'',
+							types: [`'slds'`, `'cs'`]
+						},
+						default: `'slds'`,
 						description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
 					}, {
 						name: 'iconPosition',
-						customTypes: [{
+						customTypes: {
 							name: 'CSButtonIconPosition',
-							types: ['\'left\'', '\'right\'']
-						}],
-						default: '\'left\'',
+							types: [`'left'`, `'right'`]
+						},
+						default: `'left'`,
 						description: 'Set where the icon should be positioned inside the button.'
 					}, {
 						name: 'iconRotate',
@@ -954,111 +960,119 @@ class CSButtonPreview extends React.Component {
 						description: 'Please always use a number value. String values are deprecated and will be removed. Set by how many degrees the icon should be rotated. (eg. 90, 180, -90 etc.)'
 					}, {
 						name: 'iconSize',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the size of the icon. (eg. 12px, 1rem, etc.)'
 					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the button.'
-					}, {
-						name: 'label',
-						types: ['string'],
-						required: true,
-						description: 'Set which text should appear as the button label.'
-					}, {
 						name: 'labelHidden',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Logic to hide the label.'
 					}, {
 						name: 'link',
-						types: ['string'],
+						types: 'string',
 						description: 'Set a valid URL path to where the button should link.'
 					}, {
 						name: 'loading',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Change icon to spinner and show spin animation. To be used while a process is in progress.'
 					}, {
-						name: 'routerLink',
-						types: ['Element'],
-						description: 'Define a React Router NavLink or Link component to be rendered instead of the button.'
-					}, {
 						name: 'onClick',
-						types: ['(value) => any'],
+						types: '(value) => any',
 						description: 'Handler method for the click event.'
 					}, {
 						name: 'onKeyDown',
-						types: ['(event) => any'],
+						types: '(event) => any',
 						description: 'Handler method for the keydown event.'
 					}, {
 						name: 'onMouseDown',
-						types: ['(event) => any'],
+						types: '(event) => any',
 						description: 'Handler method for the mousedown event.'
 					}, {
 						name: 'onMouseEnter',
-						types: ['(event) => any'],
+						types: '(event) => any',
 						description: 'Handler method for the mouseenter event.'
 					}, {
 						name: 'onMouseLeave',
-						types: ['(event) => any'],
+						types: '(event) => any',
 						description: 'Handler method for the mouseleave event.'
 					}, {
 						name: 'openInNewTab',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Set whether the link should open in a new tab.'
 					}, {
+						name: 'routerLink',
+						types: 'Element',
+						description: 'Define a React Router NavLink or Link component to be rendered instead of the button.'
+					}, {
 						name: 'size',
-						customTypes: [{
+						customTypes: {
 							name: 'CSButtonSize',
-							types: ['\'normal\'', '\'small\'', '\'xsmall\'', '\'large\'']
-						}],
-						default: '\'normal\'',
+							types: [
+								`'normal'`,
+								`'small'`,
+								`'xsmall'`,
+								`'large'`
+							]
+						},
+						default: `'normal'`,
 						description: 'Set button size.'
 					}, {
 						name: 'title',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the value of the title attribute.'
 					}, {
-						name: 'width',
-						customTypes: [{
-							name: 'CSButtonWidth',
-							types: ['\'auto\'', '\'max\'']
-						}],
-						default: '\'auto\'',
-						description: 'Set button width.'
-					}, {
 						name: 'value',
-						types: ['any'],
+						types: 'any',
 						description: 'Pass a value to the button.'
 					}, {
-						name: 'role',
-						required: 'CSButtonDropdown',
-						customTypes: [{
-							name: 'CSButtonRole',
-							types: ['\'menuitem\'']
-						}],
-						description: 'Override implicit native button role when button is used in a certain context.'
+						name: 'width',
+						customTypes: {
+							name: 'CSButtonWidth',
+							types: [`'auto'`, `'max'`]
+						},
+						default: `'auto'`,
+						description: 'Set button width.'
+					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the button.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the button.'
+					}, {
+						name: 'children',
+						types: 'any',
+						description: 'This component supports custom content passed as children.'
+					}, {
+						name: '[key: string]',
+						types: 'any',
+						description: 'Spreads the rest of the props to the button.'
 					}, {
 						name: 'ariaExpanded',
 						required: 'CSButtonDropdown',
-						types: ['boolean'],
+						types: 'boolean',
 						description: 'Accessible attribute to indicate whether an object controlled by button is expanded or not.'
 					}, {
 						name: 'ariaHaspopup',
 						required: 'CSButtonDropdown',
-						types: ['boolean'],
+						types: 'boolean',
 						description: 'Accessible attribute to indicate whether an object controlled by the button is a popup.'
 					}, {
 						name: 'ariaLabel',
 						required: 'CSCustomSelect',
-						types: ['string'],
+						types: 'string',
 						description: 'Override the aria-label attribute which is by default set by the label prop.'
 					}, {
-						name: '[key: string]',
-						types: ['any'],
-						description: 'Spreads the rest of the props to the button.'
+						name: 'role',
+						required: 'CSButtonDropdown',
+						customTypes: {
+							name: 'CSButtonRole',
+							types: `'menuitem'`
+						},
+						description: 'Override implicit native button role when button is used in a certain context.'
 					}
 				]
 			}

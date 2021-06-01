@@ -63,24 +63,24 @@ class CSFieldErrorMsgPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the error message.'
-					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the dropdown.'
-					}, {
 						name: 'message',
 						required: true,
-						customTypes: [{
+						customTypes: {
 							name: 'CSFieldErrorMsgType',
 							types: ['string', 'Array<string>']
-						}],
+						},
 						description: 'Set the error message text'
 					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the dropdown.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the error message.'
+					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the field error message span tag.'
 					}
 				]

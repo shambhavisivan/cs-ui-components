@@ -69,28 +69,31 @@ class CSCardPreview extends React.Component {
 						]
 					}
 				],
-				properties: [
-					{
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the card.'
-					}, {
-						name: 'children',
-						customTypes: [{
-							name: 'CSCardChildren',
-							types: ['<CSCardHeader />', '<CSCardBody />', '<CSCardFooter />', 'any']
-						}],
-						description: 'This component is designed to support CSCardHeader, CSCardBody and CSCardFooter as children.'
-					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the card.'
-					}, {
-						name: '[key: string]',
-						types: ['any'],
-						description: 'Spreads the rest of the props to the card div.'
-					}
-				]
+				properties: [{
+					name: 'id',
+					types: 'string',
+					description: 'Set the ID for the card.'
+				}, {
+					name: 'className',
+					types: 'string',
+					description: 'Apply custom CSS classes to the card.'
+				}, {
+					name: 'children',
+					customTypes: {
+						name: 'CSCardChildren',
+						types: [
+							'<CSCardHeader />',
+							'<CSCardBody />',
+							'<CSCardFooter />',
+							'any'
+						]
+					},
+					description: 'This component is designed to support CSCardHeader, CSCardBody and CSCardFooter as children.'
+				}, {
+					name: '[key: string]',
+					types: 'any',
+					description: 'Spreads the rest of the props to the card div.'
+				}]
 			}, {
 				name: 'CSCardHeader',
 				examples: [
@@ -282,57 +285,57 @@ class CSCardPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the card header.'
+						name: 'title',
+						required: true,
+						types: 'string',
+						description: 'Set a title for the card header.'
 					}, {
 						name: 'collapsible',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Set whether the card is collapsible on click.'
 					}, {
 						name: 'defaultClosed',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Control whether the card is closed by default. It is designed to be used with collapsible prop.'
 					}, {
 						name: 'iconColor',
-						types: ['string'],
+						types: 'string',
 						description: 'Set a custom color for the icon inside of the card header.'
 					}, {
 						name: 'iconFrame',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Show a frame behind the card header icon.'
 					}, {
 						name: 'iconName',
-						types: ['string'],
+						types: 'string',
 						description: 'Name of the icon from the icons library.'
 					}, {
 						name: 'iconOrigin',
-						customTypes: [{
+						customTypes: {
 							name: 'CSIconOrigin',
-							types: ['\'slds\'', '\'cs\'']
-						}],
-						default: '\'slds\'',
+							types: [`'slds'`, `'cs'`]
+						},
+						default: `'slds'`,
 						description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
 					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the card header.'
-					}, {
 						name: 'showBorder',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'true',
 						description: 'Hide the border beneath the card header.'
 					}, {
-						name: 'title',
-						required: true,
-						types: ['string'],
-						description: 'Set a title for the card header.'
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the card header.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the card header.'
 					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the card header tag.'
 					}
 				]
@@ -401,28 +404,28 @@ class CSCardPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'children',
-						types: ['any'],
-						description: 'This component supports custom content passed as children.'
-					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the card body.'
-					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the card body.'
-					}, {
 						name: 'maxHeight',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the max-height attribute for the card body.'
 					}, {
 						name: 'padding',
-						types: ['string'],
+						types: 'string',
 						description: 'Set custom padding for the card body.'
 					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the card body.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the card body.'
+					}, {
+						name: 'children',
+						types: 'any',
+						description: 'This component supports custom content passed as children.'
+					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the card body div.'
 					}
 				]
@@ -430,20 +433,20 @@ class CSCardPreview extends React.Component {
 				name: 'CSCardFooter',
 				properties: [
 					{
-						name: 'children',
-						types: ['any'],
-						description: 'This component supports custom content passed as children.'
-					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the card footer.'
-					}, {
 						name: 'id',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the ID for the card footer.'
 					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the card footer.'
+					}, {
+						name: 'children',
+						types: 'any',
+						description: 'This component supports custom content passed as children.'
+					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the footer tag.'
 					}
 				]

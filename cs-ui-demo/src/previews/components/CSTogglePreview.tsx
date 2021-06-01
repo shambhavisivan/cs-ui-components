@@ -213,102 +213,102 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 				],
 				properties: [
 					{
+						name: 'label',
+						required: true,
+						types: 'string',
+						description: 'Set the toggle label.'
+					}, {
 						name: 'checked',
-						types: ['boolean'],
+						types: 'boolean',
 						description: 'Control the checked state of the toggle.'
 					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the toggle.'
-					}, {
 						name: 'disabled',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Disable the toggle.'
 					}, {
 						name: 'error',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Toggle the error state.'
 					}, {
 						name: 'errorMessage',
-						customTypes: [{
+						customTypes: {
 							name: 'CSFieldErrorMsgType',
 							types: ['string', 'Array<string>']
-						}],
+						},
 						description: 'Set the error message or messages for the toggle.'
 					}, {
 						name: 'helpText',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the text to be displayed in the tooltip.'
 					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the toggle.'
-					}, {
-						name: 'label',
-						required: true,
-						types: ['string'],
-						description: 'Set the toggle label.'
-					}, {
 						name: 'labelHidden',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Hide the toggle label.'
 					}, {
 						name: 'labelPosition',
-						customTypes: [{
+						customTypes: {
 							name: 'CSToggleLabelPosition',
-							types: ['\'default\'', '\'left\'']
-						}],
-						default: '\'default\'',
+							types: [`'default'`, `'left'`]
+						},
+						default: `'default'`,
 						description: 'Set the label position.'
 					}, {
 						name: 'labelTitle',
-						types: ['boolean'],
+						types: 'boolean',
 						description: 'Control whether to set the title attribute.'
 					}, {
 						name: 'onChange',
-						types: ['(event) => any'],
+						types: '(event) => any',
 						description: 'Handler method for the change event.'
 					}, {
 						name: 'readOnly',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Control whether to apply the readonly attribute.'
 					}, {
 						name: 'required',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Set the toggle to required.'
 					}, {
 						name: 'title',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the toggle title.'
 					}, {
 						name: 'tooltipPosition',
-						customTypes: [{
+						customTypes: {
 							name: 'CSTooltipPosition',
 							types: [
-								'\'bottom-right\'',
-								'\'bottom-left\'',
-								'\'top-right\'',
-								'\'top-left\'',
-								'\'top-center\'',
-								'\'bottom-center\'',
-								'\'right-top\'',
-								'\'right-center\'',
-								'\'right-bottom\'',
-								'\'left-top\'',
-								'\'left-center\'',
-								'\'left-bottom\''
+								`'bottom-right'`,
+								`'bottom-left'`,
+								`'top-right'`,
+								`'top-left'`,
+								`'top-center'`,
+								`'bottom-center'`,
+								`'right-top'`,
+								`'right-center'`,
+								`'right-bottom'`,
+								`'left-top'`,
+								`'left-center'`,
+								`'left-bottom'`
 							]
-						}],
-						default: '\'top-right\'',
+						},
+						default: `'top-right'`,
 						description: 'Set the tooltip position for the toggle.'
 					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the toggle.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the toggle.'
+					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the toggle input.'
 					}
 				]

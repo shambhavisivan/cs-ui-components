@@ -52,23 +52,23 @@ class CSProgressIndicatorPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'children',
-						customTypes: [{
-							name: 'CSProgressIndicatorChildren',
-							types: ['<CSProgressIndicatorItem />', 'any']
-						}],
-						description: 'This component is designed to support CSProgressIndicatorItem as a child.'
-					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the progress indicator.'
-					}, {
 						name: 'id',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the ID for the progress indicator.'
 					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the progress indicator.'
+					}, {
+						name: 'children',
+						customTypes: {
+							name: 'CSProgressIndicatorChildren',
+							types: ['<CSProgressIndicatorItem />', 'any']
+						},
+						description: 'This component is designed to support CSProgressIndicatorItem as a child.'
+					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the progress indicator ordered list tag.'
 					}
 				]
@@ -167,35 +167,35 @@ class CSProgressIndicatorPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the progress indicator item.'
-					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the progress indicator item.'
-					}, {
-						name: 'status',
-						customTypes: [{
-							name: 'CSProgressIndicatorItemStatus',
-							types: [
-								'\'incomplete\'',
-								'\'complete\'',
-								'\'active\'',
-								'\'error\'',
-								'\'loading\''
-							]
-						}],
-						default: '\'incomplete\'',
-						description: 'Style the progress indicator item based on the status.'
-					}, {
 						name: 'text',
 						required: true,
-						types: ['string'],
+						types: 'string',
 						description: 'Set the text inside of the progress indicator item.'
 					}, {
+						name: 'status',
+						customTypes: {
+							name: 'CSProgressIndicatorItemStatus',
+							types: [
+								`'incomplete'`,
+								`'complete'`,
+								`'active'`,
+								`'error'`,
+								`'loading'`
+							]
+						},
+						default: `'incomplete'`,
+						description: 'Style the progress indicator item based on the status.'
+					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the progress indicator item.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the progress indicator item.'
+					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the progress indicator item list item tag.'
 					}
 				]

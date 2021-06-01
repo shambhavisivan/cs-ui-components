@@ -78,35 +78,35 @@ class CSTabPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'children',
-						customTypes: [{
-							name: 'CSTabGroupChildren',
-							types: ['<CSTab />', 'any']
-						}],
-						description: 'This component is designed to support CSTab as a child.'
-					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the tab group.'
-					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the tab group.'
-					}, {
 						name: 'listName',
-						types: ['string'],
+						types: 'string',
 						description: 'Override the default aria-label value.'
 					}, {
 						name: 'variant',
-						customTypes: [{
+						customTypes: {
 							name: 'CSTabGroupVariant',
-							types: ['\'normal\'', '\'large\'']
-						}],
-						default: '\'normal\'',
+							types: [`'normal'`, `'large'`]
+						},
+						default: `'normal'`,
 						description: 'Set the tab group variant.'
 					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the tab group.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the tab group.'
+					}, {
+						name: 'children',
+						customTypes: {
+							name: 'CSTabGroupChildren',
+							types: ['<CSTab />', 'any']
+						},
+						description: 'This component is designed to support CSTab as a child.'
+					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the tab group div wrapper.'
 					}
 				]
@@ -474,84 +474,84 @@ class CSTabPreview extends React.Component {
 				properties: [
 					{
 						name: 'active',
-						types: ['string'],
+						types: 'string',
 						description: 'Control the active state.'
 					}, {
-						name: 'children',
-						types: ['any'],
-						description: 'This component supports custom content passed as children.'
-					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the tab.'
-					}, {
 						name: 'disabled',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Disable the tab.'
 					}, {
 						name: 'iconOrigin',
-						customTypes: [{
+						customTypes: {
 							name: 'CSIconOrigin',
-							types: ['\'slds\'', '\'cs\'']
-						}],
-						default: '\'slds\'',
+							types: [`'slds'`, `'cs'`]
+						},
+						default: `'slds'`,
 						description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
 					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the tab.'
+						name: 'name',
+						types: 'string',
+						description: 'Set the tab name.'
 					}, {
 						name: 'onClick',
-						types: ['(value) => any'],
+						types: '(value) => any',
 						description: 'Handler method for the click event.'
 					}, {
 						name: 'routerLink',
-						types: ['Element'],
+						types: 'Element',
 						description: 'Define a React Router NavLink or Link component to be rendered instead of the tab.'
 					}, {
 						name: 'status',
-						customTypes: [{
+						customTypes: {
 							name: 'CSTabStatus',
 							types: [
-								'\'initial\'',
-								'\'error\'',
-								'\'warning\'',
-								'\'success\''
+								`'initial'`,
+								`'error'`,
+								`'warning'`,
+								`'success'`
 							]
-						}],
-						default: '\'initial\'',
+						},
+						default: `'initial'`,
 						description: 'Set the color and the icon variant depending on status.'
 					}, {
 						name: 'tabIcon',
-						types: ['string'],
+						types: 'string',
 						description: 'Override the default icon defined by the variant.'
 					}, {
-						name: 'name',
-						types: ['string'],
-						description: 'Set the tab name.'
-					}, {
 						name: 'tooltipContent',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the tooltip content and replace the icon with a tooltip. Tooltip icons will match tab status icons.'
 					}, {
 						name: 'width',
-						types: ['string'],
-						description: 'Set the width of the tab. (eg. 200px, 20rem, etc.)',
-						default: '\'auto\''
+						types: 'string',
+						default: `'auto'`,
+						description: 'Set the width of the tab. (eg. 200px, 20rem, etc.)'
+					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the tab.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the tab.'
+					}, {
+						name: 'children',
+						types: 'any',
+						description: 'This component supports custom content passed as children.'
+					}, {
+						name: '[key: string]',
+						types: 'any',
+						description: 'Spreads the rest of the props to the tab button or router link.'
 					}, {
 						name: 'parentVariant',
 						required: 'CSTabGroup',
-						customTypes: [{
+						customTypes: {
 							name: 'CSTabGroupVariant',
-							types: ['\'normal\'', '\'large\'']
-						}],
-						default: '\'normal\'',
+							types: [`'normal'`, `'large'`]
+						},
+						default: `'normal'`,
 						description: 'Set the tab variant.'
-					}, {
-						name: '[key: string]',
-						types: ['any'],
-						description: 'Spreads the rest of the props to the tab button or router link.'
 					}
 				]
 			}

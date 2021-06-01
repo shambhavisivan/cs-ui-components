@@ -137,35 +137,35 @@ class CSSectionPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'children',
-						types: ['any'],
-						description: 'This component supports custom content passed as children.'
-					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the section.'
+						name: 'title',
+						required: true,
+						types: 'string',
+						description: 'Set a title for the section.'
 					}, {
 						name: 'collapsible',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Control whether the section should be collapsible.'
 					}, {
 						name: 'defaultClosed',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Control whether the section is closed by default. It is designed to be used with collapsible prop.'
 					}, {
 						name: 'id',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the ID for the section.'
 					}, {
-						name: 'title',
-						required: true,
-						types: ['string'],
-						description: 'Set a title for the section.'
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the section.'
+					}, {
+						name: 'children',
+						types: 'any',
+						description: 'This component supports custom content passed as children.'
 					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the section tag.'
 					}
 				]

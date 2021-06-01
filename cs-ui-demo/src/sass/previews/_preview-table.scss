@@ -44,13 +44,20 @@
 			display: table-row;
 			@include sbg(--csd-prop-table-bg);
 
-			&.properties-table-row-inherited,
-			&.properties-table-row-children {
+			&.properties-table-row-inherited {
 				@include css4 {
-					background: repeating-linear-gradient(45deg,
-					cvar(--csd-prop-table-row-stripes-bg-light), var(--csd-prop-table-row-stripes-bg-light) 10px,
-					cvar(--csd-prop-table-row-stripes-bg-dark) 10px, var(--csd-prop-table-row-stripes-bg-dark) 20px);
+					background: repeating-linear-gradient(
+						59deg,
+						cvar(--csd-prop-table-row-stripes-bg-light),
+						var(--csd-prop-table-row-stripes-bg-light) 0.75rem,
+						cvar(--csd-prop-table-row-stripes-bg-dark) 0.75rem,
+						var(--csd-prop-table-row-stripes-bg-dark) 1.5rem
+					);
 				}
+			}
+
+			&.properties-table-row-special {
+				@include sbg(--csd-prop-table-row-stripes-bg-dark);
 			}
 
 			.properties-table-cell {

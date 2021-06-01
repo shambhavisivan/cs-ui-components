@@ -815,86 +815,91 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 				],
 				properties: [
 					{
-						name: 'children',
-						customTypes: [{
-							name: 'CSModalChildren',
-							types: ['<CSModalHeader />', '<CSModalBody />', '<CSModalFooter />', 'any']
-						}],
-						description: 'This component is designed to support CSModalHeader, CSModalBody and CSModalFooter as children.'
-					}, {
 						name: 'animated',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Disable animations/transitions. This prop is obsolete and will soon be removed. Do not use it.'
 					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the modal wrapper.'
-					}, {
 						name: 'closeButton',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Show the close button.'
 					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the modal.'
-					}, {
 						name: 'loading',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Show the loading spinner and mute the content.'
 					}, {
 						name: 'loadingText',
-						types: ['string'],
+						types: 'string',
 						description: 'Set which text to show while the loading state is on.'
 					}, {
 						name: 'onClose',
-						types: ['(event) => void'],
+						types: '(event) => void',
 						description: 'Handler method for closing the modal.'
 					}, {
 						name: 'outerClickClose',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Control whether the modal should be closed on outside clicks.'
 					}, {
 						name: 'size',
-						customTypes: [{
+						customTypes: {
 							name: 'CSModalSize',
 							types: [
-								'\'auto\'',
-								'\'xsmall\'',
-								'\'small\'',
-								'\'medium\'',
-								'\'large\'',
-								'\'xlarge\''
+								`'auto'`,
+								`'xsmall'`,
+								`'small'`,
+								`'medium'`,
+								`'large'`,
+								`'xlarge'`
 							]
-						}],
-						default: '\'auto\'',
+						},
+						default: `'auto'`,
 						description: 'Set the modal size.'
 					}, {
 						name: 'style',
-						types: ['object'],
+						types: 'object',
 						description: 'Add custom styles as inline css.'
 					}, {
 						name: 'visible',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'true',
 						description: 'Control whether or not to render the modal. This prop will soon change its behaviour. Please treat it as required.'
 					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the modal.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the modal wrapper.'
+					}, {
+						name: 'children',
+						customTypes: {
+							name: 'CSModalChildren',
+							types: [
+								'<CSModalHeader />',
+								'<CSModalBody />',
+								'<CSModalFooter />',
+								'any'
+							]
+						},
+						description: 'This component is designed to support CSModalHeader, CSModalBody and CSModalFooter as children.'
+					}, {
+						name: '[key: string]',
+						types: 'any',
+						description: 'Spreads the rest of the props to the modal overlay div.'
+					}, {
 						name: 'mounted',
 						required: 'CSUnmountDelay',
-						types: ['boolean'],
+						types: 'boolean',
 						description: 'Enforces transition logic.'
 					}, {
 						name: 'setMounted',
 						required: 'CSUnmountDelay',
-						types: ['() => void'],
+						types: '() => void',
 						description: 'Manages the mounted prop.'
-					}, {
-						name: '[key: string]',
-						types: ['any'],
-						description: 'Spreads the rest of the props to the modal overlay div.'
 					}
 				]
 			}, {
@@ -960,34 +965,34 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 				],
 				properties: [
 					{
-						name: 'children',
-						types: ['any'],
-						description: 'This component supports custom content passed as children.'
-					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the modal header.'
-					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the modal header.'
-					}, {
 						name: 'subtitle',
-						types: ['string'],
+						types: 'string',
 						description: 'Set a subtitle for the modal header.'
 					}, {
 						name: 'title',
-						types: ['string'],
+						types: 'string',
 						description: 'Set a title for the modal header.'
+					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the modal header.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the modal header.'
+					}, {
+						name: 'children',
+						types: 'any',
+						description: 'This component supports custom content passed as children.'
+					}, {
+						name: '[key: string]',
+						types: 'any',
+						description: 'Spreads the rest of the props to the header tag.'
 					}, {
 						name: 'titleId',
 						required: 'CSModal',
-						types: ['string'],
+						types: 'string',
 						description: 'Establish a relationship between modal title and the dialog wrapper.'
-					}, {
-						name: '[key: string]',
-						types: ['any'],
-						description: 'Spreads the rest of the props to the header tag.'
 					}
 				]
 			}, {
@@ -1055,30 +1060,30 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 				],
 				properties: [
 					{
-						name: 'children',
-						types: ['any'],
-						description: 'This component supports custom content passed as children.'
-					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the modal body wrapper.'
-					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the modal body.'
-					}, {
 						name: 'minHeight',
-						types: ['string'],
-						default: '\'0\'',
+						types: 'string',
+						default: `'0'`,
 						description: 'Set custom min-height for the modal body. (eg. 100px, 2rem, 50vh, etc.)'
 					}, {
 						name: 'padding',
-						types: ['string'],
-						default: '\'1rem\'',
+						types: 'string',
+						default: `'1rem'`,
 						description: 'Set custom padding for the modal body. (eg. 0, 10px, 2rem, etc.)'
 					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the modal body.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the modal body wrapper.'
+					}, {
+						name: 'children',
+						types: 'any',
+						description: 'This component supports custom content passed as children.'
+					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the modal body div.'
 					}
 				]
@@ -1163,28 +1168,32 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 				],
 				properties: [
 					{
-						name: 'children',
-						types: ['any'],
-						description: 'This component supports custom content passed as children.'
-					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the modal footer.'
-					}, {
 						name: 'align',
-						customTypes: [{
+						customTypes: {
 							name: 'CSModalFooterAlign',
-							types: ['\'right\'', '\'center\'', '\'left\'']
-						}],
-						default: '\'right\'',
+							types: [
+								`'right'`,
+								`'center'`,
+								`'left'`
+							]
+						},
+						default: `'right'`,
 						description: 'Align the modal footer buttons.'
 					}, {
 						name: 'id',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the ID for the modal footer.'
 					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the modal footer.'
+					}, {
+						name: 'children',
+						types: 'any',
+						description: 'This component supports custom content passed as children.'
+					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the footer tag.'
 					}
 				]

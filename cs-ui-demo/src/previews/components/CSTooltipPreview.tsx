@@ -683,136 +683,140 @@ class CSTooltipPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'children',
-						types: ['any'],
-						description: 'This component supports custom content passed as children.'
-					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the tooltip.'
-					}, {
 						name: 'content',
 						required: true,
-						customTypes: [{
+						customTypes: {
 							name: 'CSTooltipContent',
-							types: ['string', 'Array<string>', 'Element']
-						}],
-						types: ['() => Promise<CSTooltipContent>'],
+							types: [
+								'string',
+								'Array<string>',
+								'Element'
+							]
+						},
+						types: '() => Promise<CSTooltipContent>',
 						description: 'Set the content of the tooltip.'
 					}, {
 						name: 'delayTooltip',
-						types: ['number'],
+						types: 'number',
 						default: '0',
 						description: 'Delay the tooltip becoming visible in ms.'
 					}, {
 						name: 'focusable',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'true',
 						description: 'Determines whether the tooltip is keyboard focusable.'
 					}, {
 						name: 'height',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the tooltip height. (eg. 100px, 10rem, etc.)'
 					}, {
 						name: 'iconColor',
-						types: ['string'],
+						types: 'string',
 						description: 'Set a custom color for the tooltip icon. (eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
 					}, {
 						name: 'iconName',
-						types: ['string'],
+						types: 'string',
 						description: 'Override the default icon defined by the variant.'
 					}, {
 						name: 'iconOrigin',
-						customTypes: [{
+						customTypes: {
 							name: 'CSTooltipIconOrigin',
-							types: ['\'slds\'', '\'cs\'']
-						}],
-						default: '\'slds\'',
+							types: [`'slds'`, `'cs'`]
+						},
+						default: `'slds'`,
 						description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
 					}, {
 						name: 'iconSize',
-						customTypes: [{
+						customTypes: {
 							name: 'CSTooltipIconSize',
-							types: ['\'small\'', '\'medium\'']
-						}],
-						default: '\'small\'',
+							types: [`'small'`, `'medium'`]
+						},
+						default: `'small'`,
 						description: 'Set a size of the tooltip icon.'
 					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the tooltip.'
+						name: 'maxHeight',
+						types: 'string',
+						description: 'Set the tooltip maximum height. (eg. 200px, 20rem, 50%, etc.)'
+					}, {
+						name: 'maxWidth',
+						types: 'string',
+						default: `'20rem'`,
+						description: 'Set the tooltip maximum width. (eg. 200px, 20rem, 50%, etc.)'
 					}, {
 						name: 'padding',
-						types: ['string'],
+						types: 'string',
 						description: 'Set custom padding for the tooltip.'
 					}, {
 						name: 'position',
-						customTypes: [{
+						customTypes: {
 							name: 'CSTooltipPosition',
 							types: [
-								'\'bottom-right\'',
-								'\'bottom-left\'',
-								'\'top-right\'',
-								'\'top-left\'',
-								'\'top-center\'',
-								'\'bottom-center\'',
-								'\'right-top\'',
-								'\'right-center\'',
-								'\'right-bottom\'',
-								'\'left-top\'',
-								'\'left-center\'',
-								'\'left-bottom\''
+								`'bottom-right'`,
+								`'bottom-left'`,
+								`'top-right'`,
+								`'top-left'`,
+								`'top-center'`,
+								`'bottom-center'`,
+								`'right-top'`,
+								`'right-center'`,
+								`'right-bottom'`,
+								`'left-top'`,
+								`'left-center'`,
+								`'left-bottom'`
 							]
-						}],
-						default: '\'top-right\'',
+						},
+						default: `'top-right'`,
 						description: 'Set the tooltip position.'
 					}, {
 						name: 'stickyOnClick',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Set whether the tooltip stays open on click.'
 					}, {
 						name: 'stylePosition',
-						customTypes: [{
+						customTypes: {
 							name: 'CSTooltipStylePosition',
-							types: ['\'fixed\'', '\'absolute\'']
-						}],
-						default: '\'fixed\'',
+							types: [`'fixed'`, `'absolute'`]
+						},
+						default: `'fixed'`,
 						description: 'Choose the CSS position value for the tooltip.'
 					}, {
 						name: 'tooltipHeader',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the text content of the tooltip header.'
 					}, {
 						name: 'variant',
-						customTypes: [{
+						customTypes: {
 							name: 'CSTooltipVariant',
 							types: [
-								'\'info\'',
-								'\'warning\'',
-								'\'error\'',
-								'\'success\'',
-								'\'basic\''
+								`'info'`,
+								`'warning'`,
+								`'error'`,
+								`'success'`,
+								`'basic'`
 							]
-						}],
-						default: '\'info\'',
+						},
+						default: `'info'`,
 						description: 'Set the tooltip color variant.'
 					}, {
 						name: 'width',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the tooltip width. (eg. 200px, 20rem, 50%, etc.)'
 					}, {
-						name: 'maxHeight',
-						types: ['string'],
-						description: 'Set the tooltip maximum height. (eg. 200px, 20rem, 50%, etc.)'
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the tooltip.'
 					}, {
-						name: 'maxWidth',
-						types: ['string'],
-						default: '\'20rem\'',
-						description: 'Set the tooltip maximum width. (eg. 200px, 20rem, 50%, etc.)'
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the tooltip.'
+					}, {
+						name: 'children',
+						types: 'any',
+						description: 'This component supports custom content passed as children.'
 					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the tooltip div wrapper.'
 					}
 				]

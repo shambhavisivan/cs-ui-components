@@ -125,36 +125,44 @@ class CSListPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'children',
-						customTypes: [{
-							name: 'CSListChildren',
-							types: ['<CSListGroup />', '<CSListItem />', 'any']
-						}],
-						description: 'This component is designed to support CSListGroup and CSListItem as children.'
-					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the ul tag.'
-					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the list.'
-					}, {
 						name: 'size',
-						customTypes: [{
+						customTypes: {
 							name: 'CSListSize',
-							types: ['\'large\'', '\'medium\'', '\'small\'']
-						}],
+							types: [
+								`'large'`,
+								`'medium'`,
+								`'small'`
+							]
+						},
 						default: 'medium',
 						description: 'List size.'
 					}, {
 						name: 'variant',
-						customTypes: [{
+						customTypes: {
 							name: 'CSListVariant',
-							types: ['\'simple-list\'', '\'check-list\'']
-						}],
+							types: [`'simple-list'`, `'check-list'`]
+						},
 						default: 'simple-list',
 						description: 'List variant.'
+					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the list.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the ul tag.'
+					}, {
+						name: 'children',
+						customTypes: {
+							name: 'CSListChildren',
+							types: [
+								'<CSListGroup />',
+								'<CSListItem />',
+								'any'
+							]
+						},
+						description: 'This component is designed to support CSListGroup and CSListItem as children.'
 					}
 				]
 			}, {
@@ -321,35 +329,35 @@ class CSListPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the li tag.'
-					}, {
 						name: 'customContent',
-						types: ['ReactNode'],
+						types: 'ReactNode',
 						description: 'Additional content which can be added to list item (buttons, text, etc.).'
 					}, {
 						name: 'disabled',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'List item disabled state.'
 					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the list item.'
-					}, {
 						name: 'onSelectChange',
-						types: ['(value) => any'],
+						types: '(value) => any',
 						description: 'Callback function which will be executed when selection is changed on list item.'
 					}, {
 						name: 'selected',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Selected state.'
 					}, {
 						name: 'text',
-						types: ['string'],
+						types: 'string',
 						description: 'Set list item text.'
+					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the list item.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the li tag.'
 					}
 				]
 			}, {
@@ -577,45 +585,49 @@ class CSListPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'children',
-						customTypes: [{
-							name: 'CSListChildren',
-							types: ['<CSListItem />', 'any']
-						}],
-						description: 'This component is designed to support CSListItem as a child.'
-					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the heading tag (h3).'
+						name: 'checkboxOption',
+						customTypes: {
+							name: 'CSListGroupCheckboxOption',
+							types: [
+								'select-all',
+								'select-self',
+								'not-selectable'
+							]
+						},
+						default: 'select-all',
+						description: `Defines how items in group will be selected if list group checkbox is checked. When is set to 'select-all' it will select everything in the group, but when set to 'select-self' it will select only the group itself. It can be used only if variant is check-list.`
 					}, {
 						name: 'collapsible',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'List group collapsible state.'
 					}, {
 						name: 'customContent',
-						types: ['ReactNode'],
+						types: 'ReactNode',
 						description: 'Additional content which can be added to list group header (buttons, text, etc.).'
 					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the list group.'
-					}, {
 						name: 'onSelectChange',
-						types: ['(value) => any'],
+						types: '(value) => any',
 						description: 'Callback function which will be executed when list group checkbox is selected. It can only be used if variant is check-list.'
 					}, {
-						name: 'checkboxOption',
-						customTypes: [{
-							name: 'CSListGroupCheckboxOption',
-							types: ['select-all', 'select-self', 'not-selectable']
-						}],
-						default: 'select-all',
-						description: 'Defines how items in group will be selected if list group checkbox is checked. When is set to \'select-all\' it will select everything in the group, but when set to \'select-self\' it will select only the group itself. It can be used only if variant is check-list.'
-					}, {
 						name: 'title',
-						types: ['string'],
+						types: 'string',
 						description: 'List group header title.'
+					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the list group.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the heading tag (h3).'
+					}, {
+						name: 'children',
+						customTypes: {
+							name: 'CSListChildren',
+							types: ['<CSListItem />', 'any']
+						},
+						description: 'This component is designed to support CSListItem as a child.'
 					}
 				]
 			}

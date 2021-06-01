@@ -208,50 +208,50 @@ class CSChipPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the chip.'
-					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the chip.'
-					}, {
-						name: 'color',
-						types: ['string'],
-						description: 'Apply custom color to the chip. Custom color will override variant styles.'
-					}, {
-						name: '[key: string]',
-						types: ['any'],
-						description: 'Spreads the rest of the props to the chip div.'
-					}, {
 						name: 'text',
 						required: true,
-						types: ['string'],
+						types: 'string',
 						description: 'Set the text inside of the chip.'
 					}, {
+						name: 'color',
+						types: 'string',
+						description: 'Apply custom color to the chip. Custom color will override variant styles.'
+					}, {
 						name: 'variant',
-						customTypes: [{
+						customTypes: {
 							name: 'CSChipVariant',
 							types: [
-								'\'brand\'',
-								'\'success\'',
-								'\'neutral\'',
-								'\'error\'',
-								'\'warning\'',
-								'\'transparent\'',
-								'\'dark\''
+								`'brand'`,
+								`'success'`,
+								`'neutral'`,
+								`'error'`,
+								`'warning'`,
+								`'transparent'`,
+								`'dark'`
 							]
-						}],
-						default: '\'brand\'',
+						},
+						default: `'brand'`,
 						description: 'Set the chip variant.'
 					}, {
 						name: 'variantStyle',
-						customTypes: [{
+						customTypes: {
 							name: 'CSChipVariantStyle',
-							types: ['\'fill\'', '\'border\'']
-						}],
-						default: '\'fill\'',
+							types: [`'fill'`, `'border'`]
+						},
+						default: `'fill'`,
 						description: 'Set the border variant for the chip.'
+					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the chip.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the chip.'
+					}, {
+						name: '[key: string]',
+						types: 'any',
+						description: 'Spreads the rest of the props to the chip div.'
 					}
 				]
 			}

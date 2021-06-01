@@ -50,23 +50,23 @@ class CSPathPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'children',
-						customTypes: [{
-							name: 'CSPathChildren',
-							types: ['<CSPathItem />', 'any']
-						}],
-						description: 'This component is designed to support CSPathItem as a child.'
-					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the path.'
-					}, {
 						name: 'id',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the ID for the path.'
 					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the path.'
+					}, {
+						name: 'children',
+						customTypes: {
+							name: 'CSPathChildren',
+							types: ['<CSPathItem />', 'any']
+						},
+						description: 'This component is designed to support CSPathItem as a child.'
+					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the path nav tag.'
 					}
 				]
@@ -187,42 +187,42 @@ class CSPathPreview extends React.Component {
 				],
 				properties: [
 					{
+						name: 'name',
+						required: true,
+						types: 'string',
+						description: 'Set the path item name.'
+					}, {
 						name: 'active',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Control the active state.'
 					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the path item.'
-					}, {
 						name: 'disabled',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Disable the path item.'
 					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the path item.'
-					}, {
 						name: 'onClick',
-						types: ['(event) => any'],
+						types: '(event) => any',
 						description: 'Handler method for the click event.'
 					}, {
 						name: 'status',
-						customTypes: [{
+						customTypes: {
 							name: 'CSPathItemStatus',
-							types: ['\'success\'', '\'error\'']
-						}],
+							types: [`'success'`, `'error'`]
+						},
 						description: 'Set the color and the icon variant depending on status.'
 					}, {
-						name: 'name',
-						required: true,
-						types: ['string'],
-						description: 'Set the path item name.'
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the path item.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the path item.'
 					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the path item list item tag.'
 					}
 				]

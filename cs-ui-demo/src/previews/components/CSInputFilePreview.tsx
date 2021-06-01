@@ -211,68 +211,68 @@ class CSInputFilePreview extends React.Component {
 				],
 				properties: [
 					{
+						name: 'label',
+						required: true,
+						types: 'string',
+						description: 'Set the file input label.'
+					}, {
 						name: 'accept',
 						types: ['string', 'Array<string>'],
 						description: 'Set which file types should be accepted. (eg. .jpg, .mp3, audio/*, image/*, etc.)'
 					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the file input wrapper.'
-					}, {
 						name: 'disabled',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Disable the file input.'
 					}, {
 						name: 'dropAreaBackground',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Set whether the background area should be gray.'
 					}, {
 						name: 'dropAreaHeight',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the height of the drop area. (eg. 200px, 20rem, etc.)'
 					}, {
 						name: 'dropAreaWidth',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the height of the drop area. (eg. 200px, 20rem, 100%, etc.)'
 					}, {
 						name: 'error',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Toggle the error state.'
 					}, {
 						name: 'errorMessage',
-						customTypes: [{
+						customTypes: {
 							name: 'CSFieldErrorMsgType',
 							types: ['string', 'Array<string>']
-						}],
+						},
 						description: 'Set the error message or messages for the file input.'
 					}, {
 						name: 'fileSize',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Display the file size.'
 					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the file input.'
-					}, {
-						name: 'label',
-						required: true,
-						types: ['string'],
-						description: 'Set the file input label.'
-					}, {
 						name: 'onChange',
-						types: ['(value) => any'],
+						types: '(value) => any',
 						description: 'Handler method for the change event.'
 					}, {
 						name: 'onDrop',
-						types: ['(value) => any'],
+						types: '(value) => any',
 						description: 'Handler method for the drop event.'
 					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the file input.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the file input wrapper.'
+					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the file input.'
 					}
 				]

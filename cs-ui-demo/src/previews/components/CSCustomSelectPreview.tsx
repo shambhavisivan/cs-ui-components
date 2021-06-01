@@ -513,119 +513,119 @@ class CSCustomSelectPreview extends React.Component {
 				],
 				properties: [
 					{
+						name: 'label',
+						required: true,
+						types: 'string',
+						description: 'Set the custom select label.'
+					}, {
 						name: 'borderRadius',
-						types: ['string'],
-						default: '\'0.25rem\'',
+						types: 'string',
+						default: `'0.25rem'`,
 						description: 'Set a border radius style.'
 					}, {
-						name: 'children',
-						types: ['<CSOption />'],
-						description: 'This component is designed to support CSOption as a child.'
-					}, {
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the custom select.'
-					}, {
 						name: 'disabled',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Disable the custom select.'
 					}, {
 						name: 'error',
-						types: ['boolean'],
+						types: 'boolean',
 						description: 'Toggle the error state.'
 					}, {
 						name: 'errorMessage',
-						customTypes: [{
+						customTypes: {
 							name: 'CSFieldErrorMsgType',
 							types: ['string', 'Array<string>']
-						}],
+						},
 						description: 'Set the error message or messages for the custom select.'
 					}, {
 						name: 'exportValue',
-						customTypes: [{
+						customTypes: {
 							name: 'CSCustomSelectExportValueType',
-							types: ['\'itemKey\'', '\'value\'']
-						}],
+							types: [`'itemKey'`, `'value'`]
+						},
 						description: 'Set key of the value that will be exported when selection is changed. By default object containing itemKey and value will be exported.'
 					}, {
 						name: 'helpText',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the text to be displayed for the tooltip.'
 					}, {
 						name: 'hidden',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Control the hidden attribute.'
 					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the custom select.'
-					}, {
-						name: 'label',
-						required: true,
-						types: ['string'],
-						description: 'Set the custom select label.'
-					}, {
 						name: 'labelHidden',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Hide the custom select label.'
 					}, {
 						name: 'labelTitle',
-						types: ['boolean'],
+						types: 'boolean',
 						description: 'Control whether to set the title attribute on the field label.'
 					}, {
 						name: 'multiselect',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Allow selection of multiple options.'
 					}, {
 						name: 'onSearch',
-						types: ['(event) => any'],
+						types: '(event) => any',
 						description: 'Handler method when serch term changes.'
 					}, {
 						name: 'onSelectChange',
-						types: ['(event) => void'],
+						types: '(event) => void',
 						description: 'Handler method for when the selection is changed.'
 					}, {
 						name: 'required',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Make the custom select required.'
 					}, {
 						name: 'title',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the custom select title.'
 					}, {
 						name: 'tooltipPosition',
-						customTypes: [{
+						customTypes: {
 							name: 'CSTooltipPosition',
 							types: [
-								'\'bottom-right\'',
-								'\'bottom-left\'',
-								'\'top-right\'',
-								'\'top-left\'',
-								'\'top-center\'',
-								'\'bottom-center\'',
-								'\'right-top\'',
-								'\'right-center\'',
-								'\'right-bottom\'',
-								'\'left-top\'',
-								'\'left-center\'',
-								'\'left-bottom\''
+								`'bottom-right'`,
+								`'bottom-left'`,
+								`'top-right'`,
+								`'top-left'`,
+								`'top-center'`,
+								`'bottom-center'`,
+								`'right-top'`,
+								`'right-center'`,
+								`'right-bottom'`,
+								`'left-top'`,
+								`'left-center'`,
+								`'left-bottom'`
 							]
-						}],
-						default: '\'top-right\'',
+						},
+						default: `'top-right'`,
 						description: 'Set the tooltip position for the custom select.'
-					}, {
-						name: '[key: string]',
-						types: ['any'],
-						description: 'Spreads the rest of the props to the custom select input.'
 					}, {
 						name: 'value',
 						types: ['string', 'Array<string>'],
 						description: 'Set the default option/s of Custom Select. If multiselect is set, this prop needs to recieve array of valid itemKeys, otherwise one itemKey is passed to default Custom Select component.'
+					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the custom select.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the custom select.'
+					}, {
+						name: 'children',
+						types: '<CSOption />',
+						description: 'This component is designed to support CSOption as a child.'
+					}, {
+						name: '[key: string]',
+						types: 'any',
+						description: 'Spreads the rest of the props to the custom select input.'
 					}
 				]
 			}, {
@@ -707,34 +707,34 @@ class CSCustomSelectPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the li tag.'
-					}, {
-						name: 'searchBy',
-						customTypes: [{
-							name: 'CSOptionFilterByType',
-							types: ['\'itemKey\'', '\'value\'']
-						}],
-						description: 'Set the attribute against which the options should be searched. The options are filtered by both itemKey and value by default.'
-					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the option.'
-					}, {
 						name: 'itemKey',
-						types: ['string'],
 						required: true,
+						types: 'string',
 						description: 'Set unique identifier of the option.'
 					}, {
 						name: 'value',
-						types: ['string'],
 						required: true,
+						types: 'string',
 						description: 'Set value to display of the option.'
 					}, {
+						name: 'searchBy',
+						customTypes: {
+							name: 'CSOptionFilterByType',
+							types: [`'itemKey'`, `'value'`]
+						},
+						description: 'Set the attribute against which the options should be searched. The options are filtered by both itemKey and value by default.'
+					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the option.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the list item tag.'
+					}, {
 						name: '[key: string]',
-						types: ['any'],
-						description: 'Spreads the rest of the props to the li tag.'
+						types: 'any',
+						description: 'Spreads the rest of the props to the list item tag.'
 					}
 				]
 			}

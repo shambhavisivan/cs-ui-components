@@ -501,122 +501,122 @@ class CSSliderPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'className',
-						types: ['string'],
-						description: 'Apply custom CSS classes to the slider.'
+						name: 'label',
+						required: true,
+						types: 'string',
+						description: 'Set the slider label.'
 					}, {
 						name: 'disabled',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Disable the slider.'
 					}, {
 						name: 'error',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Toggle the error state.'
 					}, {
 						name: 'errorMessage',
-						customTypes: [{
+						customTypes: {
 							name: 'CSFieldErrorMsgType',
 							types: ['string', 'Array<string>']
-						}],
+						},
 						description: 'Set the error message or messages for the slider.'
 					}, {
 						name: 'helpText',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the text to be displayed in the tooltip.'
 					}, {
-						name: 'id',
-						types: ['string'],
-						description: 'Set the ID for the slider.'
-					}, {
-						name: 'label',
-						required: true,
-						types: ['string'],
-						description: 'Set the slider label.'
-					}, {
 						name: 'labelHidden',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Hide the slider label.'
 					}, {
 						name: 'labelTitle',
-						types: ['boolean'],
+						types: 'boolean',
 						description: 'Control whether to set the title attribute.'
 					}, {
 						name: 'max',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the slider range max value.'
 					}, {
 						name: 'min',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the slider range min value.'
 					}, {
 						name: 'onChange',
-						types: ['(event) => void'],
+						types: '(event) => void',
 						description: 'Handler method for the change event.'
 					}, {
 						name: 'readOnly',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Control whether to apply the readonly attribute.'
 					}, {
 						name: 'required',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
 						description: 'Make the slider required.'
 					}, {
 						name: 'size',
-						customTypes: [{
+						customTypes: {
 							name: 'CSSliderSize',
 							types: [
-								'\'xsmall\'',
-								'\'small\'',
-								'\'medium\'',
-								'\'large\''
+								`'xsmall'`,
+								`'small'`,
+								`'medium'`,
+								`'large'`
 							]
-						}],
+						},
 						description: 'Set the slider size.'
 					}, {
 						name: 'step',
-						types: ['any'],
+						types: 'any',
 						description: 'Set the slider range granularity.'
 					}, {
 						name: 'stepValues',
-						types: ['Array<number>'],
+						types: 'Array<number>',
 						description: 'Set a custom array for slider range granularity.'
 					}, {
 						name: 'title',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the slider title.'
 					}, {
 						name: 'tooltipPosition',
-						customTypes: [{
+						customTypes: {
 							name: 'CSTooltipPosition',
 							types: [
-								'\'bottom-right\'',
-								'\'bottom-left\'',
-								'\'top-right\'',
-								'\'top-left\'',
-								'\'top-center\'',
-								'\'bottom-center\'',
-								'\'right-top\'',
-								'\'right-center\'',
-								'\'right-bottom\'',
-								'\'left-top\'',
-								'\'left-center\'',
-								'\'left-bottom\''
+								`'bottom-right'`,
+								`'bottom-left'`,
+								`'top-right'`,
+								`'top-left'`,
+								`'top-center'`,
+								`'bottom-center'`,
+								`'right-top'`,
+								`'right-center'`,
+								`'right-bottom'`,
+								`'left-top'`,
+								`'left-center'`,
+								`'left-bottom'`
 							]
-						}],
-						default: '\'top-right\'',
+						},
+						default: `'top-right'`,
 						description: 'Set the tooltip position for the slider.'
 					}, {
 						name: 'value',
-						types: ['string'],
+						types: 'string',
 						description: 'Set the slider default value.'
 					}, {
+						name: 'id',
+						types: 'string',
+						description: 'Set the ID for the slider.'
+					}, {
+						name: 'className',
+						types: 'string',
+						description: 'Apply custom CSS classes to the slider.'
+					}, {
 						name: '[key: string]',
-						types: ['any'],
+						types: 'any',
 						description: 'Spreads the rest of the props to the slider input.'
 					}
 				]
