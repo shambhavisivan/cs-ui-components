@@ -26,10 +26,6 @@
 			@include sbg(--cs-input-file-drop-area-hover-bg);
 		}
 
-		.cs-field-error-msg {
-			pointer-events: none;
-		}
-
 		&.cs-input-file-disabled {
 			cursor: default;
 			pointer-events: none;

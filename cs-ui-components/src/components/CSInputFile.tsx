@@ -173,31 +173,33 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 					<CSIcon className="cs-input-file-icon" name="upload" size="0.875rem" />
 					<span className="cs-input-file-label">{this.state.label ? this.state.label : label}</span>
 				</span>
-				{(error && errorMessage) &&
-					<CSFieldErrorMsg message={errorMessage} />
-				}
 			</>;
 
 		return (
-			<div
-				className={wrapperClasses} style={style}
-				onDragOver={!disabled ? this.handleFileDragEvents : null}
-				onDragEnter={!disabled ? this.handleDragEnter : null}
-				onDragLeave={!disabled ? this.handleDragLeave : null}
-				onDrop={!disabled ? this.handleFileDrop : null}
-			>
-				<label className={dropAreaClasses}>
-					{this.state.label ? (
-						<CSTooltip content={this.state.label} position="top-center" focusable={false}>
-							{input}
-						</CSTooltip>
-					) : (
-							<>
+			<>
+				<div
+					className={wrapperClasses} style={style}
+					onDragOver={!disabled ? this.handleFileDragEvents : null}
+					onDragEnter={!disabled ? this.handleDragEnter : null}
+					onDragLeave={!disabled ? this.handleDragLeave : null}
+					onDrop={!disabled ? this.handleFileDrop : null}
+				>
+					<label className={dropAreaClasses}>
+						{this.state.label ? (
+							<CSTooltip content={this.state.label} position="top-center" focusable={false}>
 								{input}
-							</>
-						)}
-				</label>
-			</div>
+							</CSTooltip>
+						) : (
+								<>
+									{input}
+								</>
+							)}
+					</label>
+				</div>
+				{(error && errorMessage) &&
+					<CSFieldErrorMsg message={errorMessage} />
+				}
+			</>
 		);
 	}
 }
