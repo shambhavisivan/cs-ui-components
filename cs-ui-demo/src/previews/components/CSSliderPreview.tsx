@@ -14,7 +14,7 @@ class CSSliderPreview extends React.Component {
 				variant: 'warning',
 				text: 'This component is under construction and should not be used.'
 			}, {
-				variant: 'warning',
+				variant: 'info',
 				text: 'Props min and max are required for all instances of CSSlider besides those that use the prop stepValues. stepValues creates its own values for min and max based on the number of items in the array.'
 			}
 		],
