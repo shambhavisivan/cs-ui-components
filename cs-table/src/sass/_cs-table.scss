@@ -52,6 +52,9 @@ table.cs-table {
 					@include overflow-ellipsis;
 				}
 			}
+			&.checkbox-column .cs-table-header-text span {
+				overflow: visible; // needed for advanced selector dropdown
+			}
 		}
 	}
 

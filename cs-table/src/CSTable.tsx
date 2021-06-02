@@ -178,7 +178,9 @@ export const CSTable: React.FC<CSTableProps> = props => {
 				'': sortState === 'default'
 			});
 		} else {
-			theaderClasses = 'cs-table-header';
+			theaderClasses = classNames('cs-table-header', {
+				'checkbox-column': col.name === '__selected'
+			});
 			sortArrowStyle = 'icon sortArrow';
 		}
 
