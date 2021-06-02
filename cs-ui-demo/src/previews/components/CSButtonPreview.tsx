@@ -1119,14 +1119,23 @@ class CSButtonPreview extends React.Component {
 			<div className="button-style-preview">
 				<CSTable>
 					<CSTableHeader>
+						<CSTableCell maxWidth="56px"/>
+						<CSTableCell maxWidth="10rem"/>
 						<CSTableCell />
-						<CSTableCell>btnStyle="initial"</CSTableCell>
-						<CSTableCell>btnStyle="brand"</CSTableCell>
-						<CSTableCell>btnStyle="outline"</CSTableCell>
+						<CSTableCell>btnStyle</CSTableCell>
+						<CSTableCell />
 					</CSTableHeader>
 					<CSTableBody>
 						<CSTableRow>
-							<CSTableCell>btnType="default"</CSTableCell>
+							<CSTableCell maxWidth="56px"/>
+							<CSTableCell maxWidth="10rem"/>
+							<CSTableCell>initial</CSTableCell>
+							<CSTableCell>brand</CSTableCell>
+							<CSTableCell>outline</CSTableCell>
+						</CSTableRow>
+						<CSTableRow>
+							<CSTableCell maxWidth="56px"/>
+							<CSTableCell maxWidth="10rem">default</CSTableCell>
 							<CSTableCell>
 								<CSButton label="Default initial" />
 							</CSTableCell>
@@ -1138,7 +1147,8 @@ class CSButtonPreview extends React.Component {
 							</CSTableCell>
 						</CSTableRow>
 						<CSTableRow>
-							<CSTableCell>btnType="error"</CSTableCell>
+							<CSTableCell maxWidth="56px"/>
+							<CSTableCell maxWidth="10rem">error</CSTableCell>
 							<CSTableCell>
 								<CSButton btnType="error" label="Error initial" />
 							</CSTableCell>
@@ -1150,7 +1160,8 @@ class CSButtonPreview extends React.Component {
 							</CSTableCell>
 						</CSTableRow>
 						<CSTableRow>
-							<CSTableCell>btnType="success"</CSTableCell>
+							<CSTableCell maxWidth="56px"/>
+							<CSTableCell maxWidth="10rem">success</CSTableCell>
 							<CSTableCell>
 								<CSButton btnType="success" label="Success initial" />
 							</CSTableCell>
@@ -1162,7 +1173,8 @@ class CSButtonPreview extends React.Component {
 							</CSTableCell>
 						</CSTableRow>
 						<CSTableRow>
-							<CSTableCell>btnType="transparent"</CSTableCell>
+							<CSTableCell maxWidth="56px"/>
+							<CSTableCell maxWidth="10rem">transparent</CSTableCell>
 							<CSTableCell>
 								<CSButton btnType="transparent" label="Transparent initial" />
 							</CSTableCell>

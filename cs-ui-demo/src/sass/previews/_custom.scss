@@ -71,7 +71,7 @@
 
 .button-style-preview {
 	margin: 2rem 3rem 1rem;
-	min-height: 315px;
+	min-height: 365px;
 	overflow-x: auto;
 	border-radius: 0.25rem;
 	@include css4 {
@@ -82,10 +82,23 @@
 		min-width: fit-content;
 		border: none;
 		border-radius: 0.25rem;
+		position: relative;
+
+		&::before {
+			content: "btnType";
+			display: block;
+			position: absolute;
+			font-size: 0.8125rem;
+    		font-weight: 700;
+    		transform: rotate(-90deg);
+    		top: 230px;
+    		left: 2px;
+    		z-index: 1;
+			@include sc(--csd-button-preview-c);
+		}
 
 		.cs-table-header {
-			height: 56px;
-			@include sbg(--csd-button-preview-table-bg);
+			height: 3.5rem;
 
 			.cs-table-cell {
 				font-weight: 700;
@@ -93,10 +106,42 @@
 				align-items: center;
 				padding: 1rem;
 				font-size: 0.8125rem;
+				border: none;
 				@include sc(--csd-button-preview-c);
-				@include sbg(--csd-button-preview-table-bg);
-				@include css4 {
-					border-bottom-color: var(--csd-button-preview-br);
+
+				&:nth-child(-n+2) {
+					border: none;
+					@include css4 {
+						background: repeating-linear-gradient(45deg,
+						cvar(--csd-prop-table-row-stripes-bg-light), cvar(--csd-prop-table-row-stripes-bg-light) 5px,
+						cvar(--csd-prop-table-row-stripes-bg-dark) 5px, cvar(--csd-prop-table-row-stripes-bg-dark) 10px);
+					}
+				}
+
+				&:nth-child(2) {
+					@include css4 {
+						border-right: 1px solid cvar(--csd-button-preview-br);
+					}
+				}
+
+				&:nth-child(n+4) {
+					position: relative;
+					overflow: visible;
+
+					&::before {
+						content: "";
+						display: block;
+						width: calc(100% + 1px);
+						height: 1px;
+						position: absolute;
+						right: 50%;
+						bottom: 0;
+						@include sbg(--csd-button-preview-table-indicator-bg);
+					}
+				}
+
+				&:nth-child(4) {
+					justify-content: center;
 				}
 			}
 		}
@@ -107,24 +152,106 @@
 				@include sc(--csd-button-preview-c);
 				@include sbg(--csd-button-preview-table-bg);
 				@include css4 {
-					border-top-color: var(--csd-button-preview-br);
+					border-top-color: cvar(--csd-button-preview-br);
+				}
+
+				&:nth-child(2) {
+					font-weight: 700;
+					@include css4 {
+						border-right: 1px solid cvar(--csd-button-preview-br);
+					}
+				}
+
+				&:nth-child(n+3) {
+					justify-content: center;
 				}
 			}
 
-			&:hover .cs-table-cell,
-			&:focus .cs-table-cell {
+			&:hover .cs-table-cell:not(:first-child),
+			&:focus .cs-table-cell:not(:first-child) {
 				@include sbg(--csd-button-preview-table-bg);
 			}
 
+			&:first-child .cs-table-cell {
+				font-weight: 700;
+
+				&:nth-child(n+3) {
+					position: relative;
+					@include css4 {
+						background: cvar(--csd-button-preview-table-header-bg) !important;
+					}
+
+					&::before {
+						content: "";
+						display: block;
+						width: 1px;
+						height: 6px;
+						position: absolute;
+						left: calc(50% - 1px);
+						top: 0;
+						@include sbg(--csd-button-preview-table-indicator-bg);
+					}
+				}
+
+				&:nth-child(-n+2) {
+					@include css4 {
+						background: repeating-linear-gradient(45deg,
+						cvar(--csd-prop-table-row-stripes-bg-dark), cvar(--csd-prop-table-row-stripes-bg-dark) 5px,
+						cvar(--csd-prop-table-row-stripes-bg-light) 5px, cvar(--csd-prop-table-row-stripes-bg-light) 10px);
+					}
+				}
+			}
+
+			&:nth-child(n+2) {
+				.cs-table-cell:nth-child(-n+2) {
+					@include css4 {
+						background: cvar(--csd-button-preview-table-header-bg) !important;
+					}
+				}
+
+				.cs-table-cell:nth-child(2) {
+					position: relative;
+
+					&::before {
+						content: "";
+						display: block;
+						width: 6px;
+						height: 1px;
+						position: absolute;
+						left: 0;
+						top: 33px;
+						@include sbg(--csd-button-preview-table-indicator-bg);
+					}
+				}
+			}
+
+			&:nth-child(n+3) {
+				.cs-table-cell:first-child {
+					position: relative;
+					overflow: visible;
+
+					&::before {
+						content: "";
+						display: block;
+						width: 1px;
+						height: 65px;
+						position: absolute;
+						right: 0;
+						top: -31px;
+						@include sbg(--csd-button-preview-table-indicator-bg);
+					}
+				}
+
+				.cs-table-cell:nth-child(-n+2) {
+					border-top: none;
+				}
+			}
+
 			&:last-child {
-				.cs-table-cell:nth-child(2n+2) {
+				.cs-table-cell:nth-child(2n+3) {
 					@include sbg(--csd-button-preview-cell-bg);
 				}
 			}
-		}
-
-		.cs-table-cell {
-			min-width: 160px;
 		}
 	}
 }

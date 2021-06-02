@@ -97,7 +97,9 @@ $lightVariables: (
 	--csd-header-tab-active-alt-c: $cs-gray-dark-1,
 	--csd-header-tab-active-c: $cs-purple,
 
+	--csd-button-preview-table-header-bg: $cs-gray-light-11,
 	--csd-button-preview-table-bg: $cs-white,
+	--csd-button-preview-table-indicator-bg: $cs-gray-light-3,
 	--csd-button-preview-cell-bg: $cs-purple,
 	--csd-button-preview-br: $cs-gray-light-3,
 	--csd-button-preview-c: $cs-black,
@@ -242,8 +244,10 @@ $darkVariables: (
 	--csd-header-tab-active-alt-c: $cs-white,
 	--csd-header-tab-active-c: $cs-purple,
 
-	--csd-button-preview-table-bg: $cs-dark-theme-2,
-	--csd-button-preview-cell-bg: $cs-dark-theme-2,
+	--csd-button-preview-table-header-bg: $cs-dark-theme-2,
+	--csd-button-preview-table-bg: $cs-dark-theme-3,
+	--csd-button-preview-table-indicator-bg: $cs-gray-dark-3,
+	--csd-button-preview-cell-bg: $cs-dark-theme-3,
 	--csd-button-preview-br: $cs-gray-dark-3,
 	--csd-button-preview-c: $cs-white,
 	--csd-code-preview-bg: $cs-dark-theme-3,
