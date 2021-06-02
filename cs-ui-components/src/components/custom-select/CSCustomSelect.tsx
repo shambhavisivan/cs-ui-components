@@ -350,6 +350,9 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 
 	// Returns data defined at exportValue prop from selectedOptions state
 	getItemsByExportValue = (stateToExport: Array<CSOptionItem> | CSOptionItem) => {
+		if (!stateToExport) {
+			return null;
+		}
 		if (Array.isArray(stateToExport)) {
 			return stateToExport.map((option: CSOptionItem) => option[this.props.exportValue]);
 		} else {
