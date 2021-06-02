@@ -365,7 +365,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			!!this.state.selectedOptions.length
 		) {
 			const multiselectValues = this.state.selectedOptions.map(option => option[this.props.fieldToBeDisplayed]);
-			return multiselectValues.join(',');
+			return multiselectValues.join(', ');
 		}
 	}
 
