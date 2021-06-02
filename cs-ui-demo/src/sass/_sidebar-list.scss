@@ -231,6 +231,22 @@
 				font-weight: 400;
 				padding-inline: 1.25rem
 			}
+
+			&.active {
+				padding: unset;
+
+				a {
+					border: none;
+					font-weight: 700;
+					@include sbg(--csd-sidebar-link-active-bg);
+				}
+			}
 		}
 	}
+
+	&.getting-started-sidebar .prop-list .prop-group .prop-name.active a {
+		font-weight: 400;
+		@include sbg(--csd-sidebar-active-bg);
+	}
 }
+

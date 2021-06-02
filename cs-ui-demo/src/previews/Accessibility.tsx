@@ -1,64 +1,53 @@
-import React from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import AnchorSidebarList from './AnchorSidebarList';
 import { getSlug } from './helpers';
 
-export interface CSReleaseNotesState {
-	markdown: any;
-}
+const anchorList = ['General', 'Official Documentation', 'Criteria',  'Literature', 'App General', 'FAQ'];
 
-class ReleaseNotes extends React.Component<any, CSReleaseNotesState> {
+const Accessibility: React.FC = () => {
+	const [markdown, setMarkdown] = useState<string>('');
 
-	private anchorList =
-		[
-			'General', 'Official Documentation', 'Criteria',  'Literature', 'App General', 'FAQ'
-		];
-
-	constructor(props: any) {
-		super(props);
-		this.state = {
-			markdown: ''
-		};
-	}
-
-	componentDidMount() {
+	useEffect(() => {
 		const releaseNotesPath = require('../Accessibility.md');
-		// Get the contents from the Markdown file and put them in the React state, so we can reference it in render() below.
 		fetch(releaseNotesPath)
 			.then(res => res.text())
-			.then(text => this.setState({ markdown: text }));
+			.then(text => setMarkdown(text));
+	}, []);
 
-		/* If hash provided, ensure scroll after the component loads */
-		if (document.location.hash) { // Return the anchor part of a URL
-			setTimeout(() => {
-				const element = document.getElementById(document.location.hash.substring(1));
-				if (element) {
-					element.scrollIntoView({behavior: 'smooth'});
+	useLayoutEffect(() => {
+		if (markdown) {
+			const scrollId = window.location.hash;
+			if (scrollId) {
+				const scrollToElement = document.getElementById(scrollId.substring(1));
+				if (scrollToElement) {
+					scrollToElement.scrollIntoView({ block: 'start' });
 				}
-			}, 500);
+			}
 		}
-	}
+	}, [markdown]);
 
-	render() {
-		const { markdown } = this.state;
-		return (
-			<>
-				<AnchorSidebarList className="accessibility-sidebar" anchorList={this.anchorList} />
-				<ReactMarkdown
-					source={markdown}
-					escapeHtml={false}
-					className="accessibility"
-					linkTarget="_blank"
-					renderers={{
-						heading: ({ level, children }) => {
-							const Heading = `h${level}` as keyof JSX.IntrinsicElements;
-							return <Heading id={getSlug(children[0].props.value)}>{children[0].props.value}</Heading>;
-						}
-					}}
-				/>
-			</>
-		);
-	}
-}
+	return (
+		<>
+			<AnchorSidebarList
+				className="accessibility-sidebar"
+				anchorList={anchorList}
+				spyOn=".accessibility"
+			/>
+			<ReactMarkdown
+				source={markdown}
+				escapeHtml={false}
+				className="accessibility"
+				linkTarget="_blank"
+				renderers={{
+					heading: ({ level, children }) => {
+						const Heading = `h${level}` as keyof JSX.IntrinsicElements;
+						return <Heading id={getSlug(children[0].props.value)}>{children[0].props.value}</Heading>;
+					}
+				}}
+			/>
+		</>
+	);
+};
 
-export default ReleaseNotes;
+export default Accessibility;
