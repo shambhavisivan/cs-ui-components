@@ -569,13 +569,13 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 							{
 								component: <CSDatepicker
 									label="Enter date"
-									openToDate={new Date('12-20-1992')}
+									openToDate={new Date('1992-12-20')}
 									selected={this.state.dateOpenToDate}
 									onChange={(date: Date) => this.setDate(date, 'OpenToDate')}
 								/>,
 								code: `<CSDatepicker
 									label="Enter date"
-									openToDate={new Date('12-20-1992')}
+									openToDate={new Date('1992-12-20')}
 									selected={this.state.selected}
 									onChange={(date: Date) => this.setState({ selected: date })}
 								/>`
