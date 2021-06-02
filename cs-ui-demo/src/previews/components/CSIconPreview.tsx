@@ -6,7 +6,7 @@ import Preview from '../Preview';
 class CSIconPreview extends React.Component {
 	getDoc = () => ({
 		name: 'Icon',
-		usage: 'Support for both Lightening and CloudSense Icons.',
+		usage: 'Support for both Lightning and CloudSense Icons.',
 		accessible: 'yes',
 		components: [
 			{

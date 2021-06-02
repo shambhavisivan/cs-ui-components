@@ -23,6 +23,7 @@ $font-weight-bold: 700;
 body {
 	* {
 		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
 	}
 	.cs-app-wrapper, .cs-modal-root {
 

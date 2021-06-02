@@ -45,8 +45,8 @@ class CSSpinnerPreview extends React.Component {
 						propName: 'label',
 						variations: [
 							{
-								component: <CSSpinner label="This is some label" />,
-								code: `<CSSpinner label="This is some label" />`
+								component: <CSSpinner label="This is a label" />,
+								code: `<CSSpinner label="This is a label" />`
 							}
 						]
 					}, {

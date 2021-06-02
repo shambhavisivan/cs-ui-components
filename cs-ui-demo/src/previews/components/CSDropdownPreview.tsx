@@ -533,7 +533,6 @@ class CSDropdownPreview extends React.Component {
 						propName: 'title',
 						variations: [
 							{
-								secondaryVariants: 'disabled={true}',
 								component: <CSDropdown  title="This is a title">
 									<CSButton label="Button 1" />
 									<CSButton label="Button 2 with more content" />

@@ -153,7 +153,7 @@ $lightVariables: (
 	--csd-neutral-chip-c: $cs-gray-dark-5,
 	--csd-neutral-chip-br: $cs-gray-dark-5,
 
-	--csd-prop-custom-bg: $cs-gray-light-3,
+	--csd-prop-custom-bg: rgba($cs-black, 0.05),
 	--csd-prop-custom-c: $cs-gray-dark-6,
 	--csd-prop-table-header-bg: $cs-purple !important,
 	--csd-prop-table-header-c: $cs-white !important,
@@ -300,7 +300,7 @@ $darkVariables: (
 	--csd-neutral-chip-c: $cs-gray-light-1,
 	--csd-neutral-chip-br: $cs-gray-dark-3,
 
-	--csd-prop-custom-bg: $cs-dark-theme-2,
+	--csd-prop-custom-bg: rgba($cs-white, 0.05),
 	--csd-prop-custom-c: $cs-white,
 	--csd-prop-table-header-bg: $cs-purple !important,
 	--csd-prop-table-header-c: $cs-white !important,

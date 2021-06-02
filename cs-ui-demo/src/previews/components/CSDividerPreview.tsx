@@ -87,12 +87,12 @@ class CSDividerPreview extends React.Component {
 								secondaryVariants: 'variant="horizontal"',
 								component: <CSDivider
 									variant="horizontal"
-									label="Some label"
+									label="A label"
 									size="25rem"
 								/>,
 								code: `<CSDivider
 									variant="horizontal"
-									label="Some label"
+									label="A label"
 									size="25rem"
 								/>`
 							}

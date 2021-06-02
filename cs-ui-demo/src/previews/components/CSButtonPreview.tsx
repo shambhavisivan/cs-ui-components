@@ -811,7 +811,6 @@ class CSButtonPreview extends React.Component {
 						propName: 'title',
 						variations: [
 							{
-								secondaryVariants: 'disabled={true}',
 								component: <CSButton
 									label="Button with custom title"
 									title="this is a title"
