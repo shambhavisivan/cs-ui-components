@@ -101,65 +101,45 @@ class CSProgressIndicatorPreview extends React.Component {
 								quickLink: 'incomplete',
 								component: <CSProgressIndicator>
 									<CSProgressIndicatorItem text="Item 1" />
-									<CSProgressIndicatorItem text="Item 2" />
-									<CSProgressIndicatorItem text="Item 3"/>
 								</CSProgressIndicator>,
 								code: `<CSProgressIndicator>
 									<CSProgressIndicatorItem text="Item 1" />
-									<CSProgressIndicatorItem text="Item 2" />
-									<CSProgressIndicatorItem text="Item 3" />
 								</CSProgressIndicator>`
 							}, {
 								primaryVariants: 'status="active"',
 								quickLink: 'active',
 								component: <CSProgressIndicator>
 									<CSProgressIndicatorItem text="Item 1" status="active" />
-									<CSProgressIndicatorItem text="Item 2" status="active" />
-									<CSProgressIndicatorItem text="Item 3" status="active" />
 								</CSProgressIndicator>,
 								code: `<CSProgressIndicator>
 									<CSProgressIndicatorItem text="Item 1" status="active" />
-									<CSProgressIndicatorItem text="Item 2" status="active" />
-									<CSProgressIndicatorItem text="Item 3" status="active" />
 								</CSProgressIndicator>`
 							}, {
 								primaryVariants: 'status="complete"',
 								quickLink: 'complete',
 								component: <CSProgressIndicator>
 									<CSProgressIndicatorItem text="Item 1" status="complete" />
-									<CSProgressIndicatorItem text="Item 2" status="complete" />
-									<CSProgressIndicatorItem text="Item 3" status="complete" />
 								</CSProgressIndicator>,
 								code: `<CSProgressIndicator>
 									<CSProgressIndicatorItem text="Item 1" status="complete" />
-									<CSProgressIndicatorItem text="Item 2" status="complete" />
-									<CSProgressIndicatorItem text="Item 3" status="complete" />
 								</CSProgressIndicator>`
 							}, {
 								primaryVariants: 'status="error"',
 								quickLink: 'error',
 								component: <CSProgressIndicator>
 									<CSProgressIndicatorItem text="Item 1" status="error" />
-									<CSProgressIndicatorItem text="Item 2" status="error" />
-									<CSProgressIndicatorItem text="Item 3" status="error" />
 								</CSProgressIndicator>,
 								code: `<CSProgressIndicator>
 									<CSProgressIndicatorItem text="Item 1" status="error" />
-									<CSProgressIndicatorItem text="Item 2" status="error" />
-									<CSProgressIndicatorItem text="Item 3" status="error" />
 								</CSProgressIndicator>`
 							}, {
 								primaryVariants: 'status="loading"',
 								quickLink: 'loading',
 								component: <CSProgressIndicator>
 									<CSProgressIndicatorItem text="Item 1" status="loading" />
-									<CSProgressIndicatorItem text="Item 2" status="loading" />
-									<CSProgressIndicatorItem text="Item 3" status="loading" />
 								</CSProgressIndicator>,
 								code: `<CSProgressIndicator>
 									<CSProgressIndicatorItem text="Item 1" status="loading" />
-									<CSProgressIndicatorItem text="Item 2" status="loading" />
-									<CSProgressIndicatorItem text="Item 3" status="loading" />
 								</CSProgressIndicator>`
 							}
 						]

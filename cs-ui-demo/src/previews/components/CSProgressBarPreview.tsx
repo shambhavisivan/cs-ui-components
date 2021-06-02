@@ -196,30 +196,30 @@ class CSProgressBarPreview extends React.Component<{}, CSProgressBarPreviewState
 								/>`
 							}, {
 								primaryVariants: 'status="success"',
-								secondaryVariants: 'progress="70%"',
+								secondaryVariants: 'progress="100%"',
 								quickLink: 'success',
 								component: <CSProgressBar
 									label="Progress"
-									progress="70%"
+									progress="100%"
 									status="success"
 								/>,
 								code: `<CSProgressBar
 									label="Progress"
-									progress="70%"
+									progress="100%"
 									status="success"
 								/>`
 							}, {
 								primaryVariants: 'status="error"',
-								secondaryVariants: 'progress="70%"',
+								secondaryVariants: 'progress="30%"',
 								quickLink: 'error',
 								component: <CSProgressBar
 									label="Progress"
-									progress="70%"
+									progress="30%"
 									status="error"
 								/>,
 								code: `<CSProgressBar
 									label="Progress"
-									progress="70%"
+									progress="30%"
 									status="error"
 								/>`
 							}
