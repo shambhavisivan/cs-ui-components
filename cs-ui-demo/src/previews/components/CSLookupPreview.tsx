@@ -322,17 +322,24 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 						propName: 'gridCustomPopup',
 						variations: [
 							{
-								variationName: ['true'],
+								primaryVariants: 'gridCustomPopup={true}',
 								quickLink: 'true',
-								component:
-									<CSLookup
-										mode="client"
-										label="Account"
-										lookupOptions={sampleLookup.data}
-										lookupColumns={sampleLookup.columns}
-										fieldToBeDisplayed="Account"
-										gridCustomPopup
-									/>
+								component: <CSLookup
+									mode="client"
+									label="Account"
+									lookupOptions={sampleLookup.data}
+									lookupColumns={sampleLookup.columns}
+									fieldToBeDisplayed="Account"
+									gridCustomPopup
+								/>,
+								code: `<CSLookup
+									mode="client"
+									label="Account"
+									lookupOptions={sampleLookup.data}
+									lookupColumns={sampleLookup.columns}
+									fieldToBeDisplayed="Account"
+									gridCustomPopup
+								/>`
 							}
 						]
 					}, {

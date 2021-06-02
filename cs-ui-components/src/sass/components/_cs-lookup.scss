@@ -40,6 +40,11 @@
 			@include input;
 			padding: 0 3rem 0 2rem;
 			border-radius: var(--cs-lookup-border-radius, 0.25rem);
+			&:read-only:focus-visible {
+				@include css4 {
+					box-shadow: 0 0 0.1875rem cvar(--cs-input-shadow);
+				}
+			}
 		}
 		.cs-selected-input-option {
 			position: absolute;
@@ -57,6 +62,9 @@
 			white-space: nowrap;
 			&.cs-custom-select-dropdown-open {
 				@include sc(--cs-selected-input-option-c);
+			}
+			&:read-only {
+				padding-left: 0;
 			}
 		}
 	}
