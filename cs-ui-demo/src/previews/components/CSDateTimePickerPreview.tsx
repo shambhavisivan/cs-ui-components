@@ -12,7 +12,7 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 	state = {
 		[`date${this.stateSuffix}`]: new Date(),
 		dateReadOnly: new Date(),
-		dateSelected: new Date('1-1-2020 11:30:00')
+		dateSelected: new Date('2020-01-01T11:30:00')
 	};
 
 	handleChange = (date: Date) => {
