@@ -259,7 +259,7 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 								component: <CSInputNumber label="Enter value" step="1" />,
 								code: `<CSInputNumber label="Enter value" step="1" />`
 							}, {
-								primaryVariants: 'step="0.001"',
+								primaryVariants: 'step="0.01"',
 								quickLink: 'decimal',
 								component: <CSInputNumber label="Enter value" step="0.01" />,
 								code: `<CSInputNumber label="Enter value" step="0.01" />`
