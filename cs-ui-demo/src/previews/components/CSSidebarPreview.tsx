@@ -260,10 +260,10 @@ class CSSidebarPreview extends React.Component {
 									</CSSidebarTab>
 								</CSSidebar>`
 							}, {
-								primaryVariants: 'tabsWidth="22rem"',
+								primaryVariants: 'tabsWidth="200px"',
 								secondaryVariants: 'multipleTabs',
-								quickLink: '22rem',
-								component: <CSSidebar tabsWidth="22rem" multipleTabs>
+								quickLink: '200px',
+								component: <CSSidebar tabsWidth="200px" multipleTabs>
 									<CSSidebarTab title="Tab 1 Title">
 										<span>Lorem ipsum.</span>
 									</CSSidebarTab>
@@ -271,7 +271,7 @@ class CSSidebarPreview extends React.Component {
 										<span>Lorem ipsum, ipsum lorem.</span>
 									</CSSidebarTab>
 								</CSSidebar>,
-								code: `<CSSidebar tabsWidth="22rem" multipleTabs>
+								code: `<CSSidebar tabsWidth="200px" multipleTabs>
 									<CSSidebarTab title="Tab 1 Title">
 										<span>Lorem ipsum.</span>
 									</CSSidebarTab>
