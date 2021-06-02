@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import AnchorSidebarList from './AnchorSidebarList';
+import { getSlug } from './helpers';
 
 export interface CSReleaseNotesState {
 	markdown: any;
@@ -10,7 +11,7 @@ class ReleaseNotes extends React.Component<any, CSReleaseNotesState> {
 
 	private anchorList =
 		[
-			'General', 'Offical Documentation', 'Criteria',  'Literature', 'App General', 'FAQ'
+			'General', 'Official Documentation', 'Criteria',  'Literature', 'App General', 'FAQ'
 		];
 
 	constructor(props: any) {
@@ -48,6 +49,12 @@ class ReleaseNotes extends React.Component<any, CSReleaseNotesState> {
 					escapeHtml={false}
 					className="accessibility"
 					linkTarget="_blank"
+					renderers={{
+						heading: ({ level, children }) => {
+							const Heading = `h${level}` as keyof JSX.IntrinsicElements;
+							return <Heading id={getSlug(children[0].props.value)}>{children[0].props.value}</Heading>;
+						}
+					}}
 				/>
 			</>
 		);

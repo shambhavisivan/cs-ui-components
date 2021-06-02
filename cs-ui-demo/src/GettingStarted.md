@@ -1,7 +1,7 @@
 # Getting started
 * Documentation for app setup and resolution of common issues
 
-## .cs-app-wrapper<a name="cs-app-wrapper"></a>
+## cs-app-wrapper
 * All apps that use the cs-ui-components library need to be wrapped in the class `.cs-app-wrapper` as shown here. The wrapper provides default styles and allows us to only target our own components.
 
 ```html
@@ -12,10 +12,10 @@
 </div>
 ```
 
-## cs- prefix<a name="cs- prefix"></a>
+## cs- prefix
 * <i>important</i> All class names from cs-ui-components library have a `cs-` prefix (`cs-modal`, `cs-tooltip`, etc.). The prefix should not be used in other projects in order to avoid bugs and conflicts.
 
-## z-index<a name="z-index"></a>
+## z-index
 * All z-index values across all projects should be declared as global CSS variables in the root element of the document (the `:root` pseudo-class) which represents the `<html>`
 element. Variables should be self-explanatory and sorted by index in ascending order.
 
@@ -47,7 +47,7 @@ element. Variables should be self-explanatory and sorted by index in ascending o
 
 
 
-## Unit tests & UUID<a name="Unit tests & UUID"></a>
+## Unit Tests & UUID
 * This library's form components are using a UUID package for the semantic connection of a component and its label. The UUID package relies on JavaScript Crypto API and it can cause Jenkins test errors across projects.
 * To resolve the error place the code below to tests setup file of your project:
 
@@ -62,7 +62,7 @@ Object.defineProperty(global, 'crypto', {
 
 * <i>important</i> When writing unit tests and comparing snapshots make sure to use shallow rendering since the unique id created by the UUID package will be recreated after each rerender, thus increasing the likelihood of failing a test.
 
-## Documenting Components<a name="Documenting Components"></a>
+## Documenting Components
 Due to the ever-growing and continuously-changing nature of the cs-ui-components library, it is necessary	to document all components methodically and uniformly. Each component or component family (such as `CSTab` and `CSTabGroup`, which are closely related) should have its own dedicated page for various previews, examples, use cases and code snippets. In code, this is referred to as a preview component or a preview file, following the `CSNamePreview` naming convention.
 
 All relevant documentation is placed inside the `getDoc` method of the preview component, which returns an object of type `PreviewExamples`. All relevant types can be found in the `types.ts` file.

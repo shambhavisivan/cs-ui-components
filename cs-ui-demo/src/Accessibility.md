@@ -1,6 +1,6 @@
 # Accessibility
 
-## General<a name="General"></a>
+## General
 * Slogan - Essential for some, useful for all.
   * Accessibility addresses discriminatory aspects related to an equivalent user experience for people with disabilities, including people with age-related impairments. For the web, accessibility means that people with disabilities can perceive, understand, navigate, and interact with websites and tools, and that they can contribute equally without barriers.
   * The UN Convention on the Rights of Persons with Disabilities recognizes access to information and communications technologies, including the Web, as a basic human right. As such, it is our duty to help provide that access.
@@ -11,7 +11,7 @@
   * AA (mid-range)
   * AAA (highest)
 
-* Salesforce and Cloudsense are aiming to meet conformance level of AA
+* Salesforce and CloudSense are aiming to meet conformance level of AA.
 
 * There are:
   * 30 Level A Success Criteria
@@ -19,7 +19,7 @@
   * 28 Level AAA Success Criteria
 
 
-## Official Documentation<a name="Offical Documentation">
+## Official Documentation
 * Web Content Accessibility Guidelines (WCAG) 2.1
 
 * SUPPORTIVE DOCUMENTS <a name="SUPPORTIVE DOCUMENTS"></a>
@@ -28,9 +28,9 @@
   * [Techniques for WCAG 2.2](https://www.w3.org/WAI/WCAG21/Techniques/)
   * [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices-1.1/)
 
-* WCAG 2.2 is scheduled to be published in 2021. There are 9 additional success criteria proposed and currently in working draft status.
+* WCAG 2.2 is scheduled to be published later in 2021. There are 9 additional success criteria proposed and currently in working draft status.
 
-## Criteria<a name="Criteria"></a>
+## Criteria
 * List of all criteria:
 
 ### Perceivable
@@ -122,22 +122,22 @@
 >> * <span id="4.1.2">4.1.2:</span> [Name, Role, Value](https://www.w3.org/WAI/WCAG22/Understanding/name-role-value) **A**
 >> * <span id="4.1.3">4.1.3:</span> [Status Messages](https://www.w3.org/WAI/WCAG22/Understanding/status-messages) **AA** **WCAG 2.1**
 
-## Literature<a name="Literature"></a>
+## Literature
 * [Inclusive Components by Heydon Pickering](https://drive.google.com/drive/folders/1W9DmASckOI10LXzw2LO0nWGhD2iSxX7j).
 
-## App general<a name="App General"></a>
+## App General
 
-* Follow these general rules
-  * Never have more than one h1
-  * Never skip any header levels (e.g. h1, h3, h4...)
-  * Provide unique page title
-  * Text resizing via relative units (em or rem)
-  * Define language via attribute
-  * Add hidden skip links to jump over repetitive content such as navigation tabs, interactive tables etc., e.g. jump to main content, jump to footer
-  * Never use tabindex value different than -1 or 0.
+* These general rules should be followed:
+  * Never have more than one h1.
+  * Never skip any heading levels. (e.g. h1, h3, h4...)
+  * Provide a unique page title.
+  * Implement text sizing using relative units (em or rem).
+  * Make use of the lang attribute to define languages.
+  * Add visually hidden skip links to jump over repetitive content such as navigation tabs, interactive tables etc. (e.g. jump to main content, jump to footer...)
+  * Never use tabindex values other than -1 or 0.
 
-  ## Frequently Asked Questions<a name="FAQ"></a>
-* Which Cloudsense products are currently considered accessible?
+  ## FAQ
+* Which CloudSense products are currently considered accessible?
   * Sales Console
   * Configurator
 

@@ -1,98 +1,89 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import { CSButton, CSIcon } from '@cloudsense/cs-ui-components';
+import { HashLink } from 'react-router-hash-link';
+import { useQuickLinks } from '../context/QuickLinksContext';
+import { getSlug } from './helpers';
 
 export interface AnchorSidebarListProps {
-	anchorList: Array<any>;
+	anchorList: Array<string>;
+	secondary?: boolean;
 	className?: string;
 }
 
-export interface AnchorSidebarListState {
-	sidebar: boolean;
-	searchTerm: string;
-}
+const AnchorSidebarList: React.FC<AnchorSidebarListProps> = ({
+	anchorList,
+	secondary,
+	className
+}) => {
+	const [searchTerm, setSearchTerm] = useState<string>('');
 
-class AnchorSidebarList extends React.Component<AnchorSidebarListProps, AnchorSidebarListState> {
-	constructor(props: AnchorSidebarListProps | Readonly<AnchorSidebarListProps>) {
-		super(props);
-		this.state = {
-			sidebar: true,
-			searchTerm: ''
-		};
-	}
+	const { quickLinks, toggleQuickLinks } = useQuickLinks();
 
-	render() {
-		const toggleSidebar = () => {
-			this.setState({sidebar: !this.state.sidebar});
-		};
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setSearchTerm(event.target.value);
+	};
 
-		const clearSearchTerm = () => {
-			this.setState({searchTerm: ''});
-		};
+	const filterAnchors = (anchor: string) => anchor.toLowerCase().includes(searchTerm.toLowerCase());
 
-		// needs search functionality
+	const sidebarClasses = classNames(
+		'prop-sidebar',
+		{
+			'quick-links-closed': !quickLinks && secondary,
+			[`${className}`]: className
+		}
+	);
 
-		const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-			this.setState({searchTerm: event.target.value});
-		};
+	const nameClasses = classNames(
+		'prop-name'
+		// needs active styling
+	);
 
-		const sidebarClasses = classNames(
-			'prop-sidebar',
-			this.props.className ?? this.props.className,
-			{
-				'quick-links-closed': !this.state.sidebar
-			}
-		);
-
-		const nameClasses = classNames(
-			'prop-name'
-			// needs active styling
-		);
-
-		return (
-			<div className={sidebarClasses}>
+	return (
+		<div className={sidebarClasses}>
+			{secondary && (
 				<CSButton
-					iconName={this.state.sidebar ? 'close' : 'rows'}
-					label={this.state.sidebar ? 'close' : 'open'}
+					iconName={quickLinks ? 'close' : 'rows'}
+					label={quickLinks ? 'close' : 'open'}
 					btnType="transparent"
 					size="small"
 					labelHidden
 					className="quick-links-toggle"
-					onClick={toggleSidebar}
+					onClick={toggleQuickLinks}
 					borderRadius="50%"
 				/>
-				<div className="quick-links-search">
-					<CSIcon name="search" />
-					<input
-						placeholder="Search..."
-						onChange={handleChange}
-						value={this.state.searchTerm}
+			)}
+			<div className="quick-links-search">
+				<CSIcon name="search" />
+				<input
+					placeholder="Search..."
+					onChange={handleChange}
+					value={searchTerm}
+				/>
+				{searchTerm && (
+					<CSButton
+						label="clear"
+						btnType="transparent"
+						iconName="close"
+						size="small"
+						labelHidden
+						onClick={() => setSearchTerm('')}
 					/>
-					{this.state.searchTerm && (
-						<CSButton
-							label="clear"
-							btnType="transparent"
-							iconName="close"
-							size="small"
-							labelHidden
-							onClick={clearSearchTerm}
-						/>
-					)}
-				</div>
-				<div className="prop-list">
-					<div>
-						{this.props.anchorList.map(anchor => (
-							<div className="prop-group" key={anchor}>
-								<h5 className={nameClasses} key={anchor.split(' ').join('')}>
-									<a href={`#${anchor}`}>{anchor}</a>
-								</h5>
-							</div>)
-						)}
-					</div>
+				)}
+			</div>
+			<div className="prop-list">
+				<div>
+					{anchorList.filter(filterAnchors).map((anchor: string) => (
+						<div className="prop-group" key={anchor}>
+							<h5 className={nameClasses}>
+								<HashLink to={`#${getSlug(anchor)}`}>{anchor}</HashLink>
+							</h5>
+						</div>
+					))}
 				</div>
 			</div>
-		);
-	}
-}
+		</div>
+	);
+};
 
 export default AnchorSidebarList;

@@ -1,6 +1,6 @@
 # Release Notes
 
-## 1.1.21<a name="1.1.21"></a>
+## 1.1.21
 * CSLookup
   * hide clear button when loading
 * CSDropdown
@@ -11,7 +11,7 @@
 * DemoApp
   * added title on form element indicators in sidebar list
 
-## 1.1.20<a name="1.1.20"></a>
+## 1.1.20
 * CSDateTimePicker
   * added `ref` forwarding
 * CSDropdown
@@ -25,7 +25,7 @@
   * fixed clear button display
   * fixed missing dependency 'toggleTheme' error
 
-## 1.1.19<a name="1.1.19"></a>
+## 1.1.19
 * CSLookup
   * `gridCustomPopup` prop added
   * fixed multiselect selected values not displaying when dropdown is open
@@ -39,7 +39,7 @@
 * Demo App changes
   * form indicator added to form element components
 
-## 1.1.18<a name="1.1.18"></a>
+## 1.1.18
 * CSDatepicker and CSDateTimePicker
   * <i>important</i> set `onChange` and `selected` props to required
   * internal state removed
@@ -58,7 +58,7 @@
   * z-index list updated
   * minor preview file fixes
 
-## 1.1.17<a name="1.1.17"></a>
+## 1.1.17
 * CSButton
   * increased z-index of `--z-index-button-custom-content`
 * CSDatepicker and CSDateTimePicker
@@ -70,7 +70,7 @@
 * CSTab
   * `width` prop added
 
-## 1.1.16<a name="1.1.16"></a>
+## 1.1.16
 * CSDatepicker
   * fixed calendar icon position when there is an error message
 * CSInputNumber
@@ -95,7 +95,7 @@
     * PreviewProperties
     * PreviewTable
 
-## 1.1.15<a name="1.1.15"></a>
+## 1.1.15
 * CSDropdown
   * <i>important</i> `onDropdownKeyboardClose` prop replaced with `onDropdownTabClose`
   * opening dropdown on arrow down key removed
@@ -104,7 +104,7 @@
 * Documentation object restructure
   * Dropdown
 
-## 1.1.14<a name="1.1.14"></a>
+## 1.1.14
 * CSDatepicker and CSDateTimePicker
   * icon overlapping with text on small screens fixed
   * input `ref` set to public
@@ -133,7 +133,7 @@
   * Transfer
   * Lookup
 
-## 1.1.13<a name="1.1.13"></a>
+## 1.1.13
 * CSDropdown
   * `width` prop added
 * CSLookup
@@ -151,7 +151,7 @@
 * CSTooltip
   * updating inner state from props fixed
 
-## 1.1.12<a name="1.1.12"></a>
+## 1.1.12
 * CSCheckbox
   * `readOnly` :focus styles moved to :focus-visible
 * CSDatepicker
@@ -166,7 +166,7 @@
   * background color issue fixed
   * updated accessibility info
 
-## 1.1.11<a name="1.1.11"></a>
+## 1.1.11
 * CSCheckbox
   * `hidden` prop added
 * CSDatepicker
@@ -199,13 +199,13 @@
   * `iconName` and `iconOrigin` examples merged to one
   * various minor fixes
 
-## 1.1.10<a name="1.1.10"></a>
+## 1.1.10
 * CSLookup
   * implemented ResizeObserver API
   * fixed logic for clear button when lookup is disabled
   * fixed lookup dropdown row padding
 
-## 1.1.9<a name="1.1.9"></a>
+## 1.1.9
 * CSIcon
   * CSS height and width replaced with `size` prop across components
     * CSDatepicker
@@ -231,7 +231,7 @@
 * Demo App changes
   * dark mode button fix
 
-## 1.1.8<a name="1.1.8"></a>
+## 1.1.8
 * CSButton
   * focus and active style update
 * CSCurrency
@@ -271,14 +271,14 @@
 * Documentation object restructure
   * Currency
 
-## 1.1.7<a name="1.1.7"></a>
+## 1.1.7
 * CSButtonGroup
   * fixed border radius when there is only one child
 * CSTooltip
   * dynamic tooltip fix to accept generator functions
   * `Esc` keydown breaking the app while promise is used fixed
 
-## 1.1.6<a name="1.1.6"></a>
+## 1.1.6
 * CSAlert
   * <i>important</i> `iconVisibility` prop renamed to `iconHidden`
   * alignment fix when there is more than one message
@@ -385,7 +385,7 @@
   * Toggle
   * Tooltip
 
-## 1.1.5<a name="1.1.5"></a>
+## 1.1.5
 * CSButton
   * <i>important</i> `labelHidden` prop added to eventually replace `iconDisplay` prop
 * CSButtonGroup
@@ -435,7 +435,7 @@
   * Progress Indicator
   * Skip Link
 
-## 1.1.4<a name="1.1.4"></a>
+## 1.1.4
 * CSAlert
   * padding fixed when no close button
 * CSButton
@@ -460,7 +460,7 @@
   * z-index list updated
   * alerts are now aligned with other content
 
-## 1.1.3<a name="1.1.3"></a>
+## 1.1.3
 * CSButton
   * <i>important</i> added span wrapper around custom content passed through component children
 * CSToast
@@ -470,7 +470,7 @@
   * default max-width fixed
   * fixed styling inconsistencies between different positions and stylePositions
 
-## 1.1.2<a name="1.1.2"></a>
+## 1.1.2
 * CSButton
   * <i>important</i> `label` prop set as default
   * fixed event type on onKeyDown and onMouseDown events
@@ -500,7 +500,7 @@
   * <em>preview</em> accessibility requirements added
   * <em>preview</em> preview file cleanup
 
-## 1.1.1<a name="1.1.1"></a>
+## 1.1.1
 * CSAlert
   * `iconOrigin` prop added
 * CSButton
@@ -538,7 +538,7 @@
   * dark mode button now has a WIP explanatory tooltip
   * various minor styling fixes
 
-## 1.1.0<a name="1.1.0"></a>
+## 1.1.0
 * CSAlert
   * light variants colors changed to match accessibility requirements
 * CSButton
