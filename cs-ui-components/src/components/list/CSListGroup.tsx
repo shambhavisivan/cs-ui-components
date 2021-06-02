@@ -193,8 +193,9 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 										onSelectChange
 								}
 								variant="brand"
-								checked={selectedItems.length === validItems.length &&
-									checkboxOption === 'select-all'
+								checked={checkboxOption === 'select-all' ?
+									selectedItems.length === validItems.length :
+									undefined
 								}
 							/>
 						}
