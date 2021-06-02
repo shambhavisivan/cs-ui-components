@@ -367,12 +367,12 @@ class CSInputTextPreview extends React.Component<{}, CSInputTextPreviewState> {
 						customTypes: {
 							name: 'CSTooltipPosition',
 							types: [
-								`'bottom-right'`,
-								`'bottom-left'`,
 								`'top-right'`,
-								`'top-left'`,
 								`'top-center'`,
+								`'top-left'`,
+								`'bottom-right'`,
 								`'bottom-center'`,
+								`'bottom-left'`,
 								`'right-top'`,
 								`'right-center'`,
 								`'right-bottom'`,

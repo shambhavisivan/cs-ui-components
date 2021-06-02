@@ -119,8 +119,8 @@ class CSSpinnerPreview extends React.Component {
 						customTypes: {
 							name: 'CSSpinnerColor',
 							types: [
-								`'neutral'`,
 								`'brand'`,
+								`'neutral'`,
 								`'inverse'`
 							]
 						},

@@ -496,7 +496,7 @@ class CSAlertPreview extends React.Component {
 						name: 'textAlign',
 						customTypes: {
 							name: 'CSAlertTextAlign',
-							types: [`'center'`, `'left'`]
+							types: [`'left'`, `'center'`]
 						},
 						default: `'left'`,
 						description: 'Align text inside the alert.'

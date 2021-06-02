@@ -46,7 +46,6 @@
 		min-width: 15rem;
 		width: 15rem;
 		max-width: 15rem;
-		overflow: hidden;
 		@include sbg(--csd-prop-sidebar-bg);
 		@include css4 {
 			box-shadow: 0 1px 5px var(--csd-shadow-dark);
@@ -94,27 +93,45 @@
 			}
 		}
 
-		.preview-heading + .component-preview-wrapper > h2,
-		.cs-alert + .component-preview-wrapper > h2 {
-			padding-block-start: 3rem;
-		}
-
 		.component-preview-wrapper > h2 {
 			padding: 2rem 3rem 0;
 			margin-block-start: 0;
 		}
 
+		.component-preview-wrapper + .properties-table-wrapper {
+			padding-block-start: 1rem;
+		}
+
+		.component-preview-wrapper.children-last {
+			+ .component-preview-wrapper > h2 {
+				padding-block-start: 3rem;
+			}
+
+			+ .properties-table-wrapper {
+				padding-block-start: 2rem;
+			}
+		}
+
+		.demo-heading + .component-preview.component-preview,
+		.demo-heading + .api-preview.api-preview {
+			margin-block-start: 1rem;
+		}
+
+		.component-preview.children + .component-preview {
+			margin-block-start: 3rem;
+		}
+
+		.api-preview-wrapper + .accessibility-conformance-section > h2 {
+			margin-block-start: 3rem;
+		}
+
 		.component-preview,
 		.api-preview {
 			padding: 0 3rem;
-			margin-bottom: 2rem;
+			margin-block-start: 2rem;
 
 			> p {
 				@include sc(--csd-p-c);
-			}
-
-			.component-variants {
-				padding-top: 0.5rem;
 			}
 
 			.component-info-text,
@@ -186,7 +203,7 @@
 
 		.api-preview .properties-table-wrapper {
 			padding: 0;
-			margin-top: 2rem;
+			margin-block-start: 2rem;
 		}
 	}
 }

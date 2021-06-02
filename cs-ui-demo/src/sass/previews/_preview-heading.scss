@@ -1,5 +1,5 @@
 .preview-section-wrapper .preview-main-heading-wrapper {
-	padding-bottom: 2rem;
+	padding-bottom: 3rem;
 	margin: 2rem 3rem 1rem;
 
 	@include css4 {
@@ -41,7 +41,7 @@
 	}
 
 	> .cs-alert {
-		margin: 2rem 0 0;
+		margin: 3rem 0 0;
 		width: auto;
 
 		+ .cs-alert {

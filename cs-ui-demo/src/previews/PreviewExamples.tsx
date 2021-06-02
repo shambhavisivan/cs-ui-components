@@ -19,8 +19,10 @@ const PreviewExamples: React.FC<PreviewInterface> = ({ components }) => (
 				return null;
 			}
 
+			const isChildrenLast = (component.examples[component.examples.length - 1].propName === 'children');
+
 			return (
-				<div key={component.name} className="component-preview-wrapper">
+				<div key={component.name} className={`component-preview-wrapper ${isChildrenLast ? 'children-last' : ''}`}>
 					<h2 id={componentLink} className="demo-heading">
 						{component.name} Previews
 					</h2>

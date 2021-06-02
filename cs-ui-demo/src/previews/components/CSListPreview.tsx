@@ -129,9 +129,9 @@ class CSListPreview extends React.Component {
 						customTypes: {
 							name: 'CSListSize',
 							types: [
-								`'large'`,
+								`'small'`,
 								`'medium'`,
-								`'small'`
+								`'large'`
 							]
 						},
 						default: 'medium',

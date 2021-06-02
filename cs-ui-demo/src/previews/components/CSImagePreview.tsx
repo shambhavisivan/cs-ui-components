@@ -43,9 +43,7 @@ class CSImagePreview extends React.Component {
 								component: <div className="black-background">
 									<CSImage type="logo" color="white" />
 								</div>,
-								code: `<div className="black-background">
-									<CSImage type="logo" color="white" />
-								</div>`
+								code: `<CSImage type="logo" color="white" />`
 							}, {
 								primaryVariants: 'color="purple"',
 								secondaryVariants: 'type="logomark"',
@@ -59,9 +57,7 @@ class CSImagePreview extends React.Component {
 								component: <div className="black-background">
 									<CSImage type="logomark" color="white" />
 								</div>,
-								code: `<div className="black-background">
-									<CSImage type="logomark" color="white" />
-								</div>`
+								code: `<CSImage type="logomark" color="white" />`
 							}, {
 								primaryVariants: 'color="black"',
 								secondaryVariants: 'type="logomark"',
@@ -130,9 +126,7 @@ class CSImagePreview extends React.Component {
 								component: <div className="black-background">
 									<CSImage type="logomark" color="white" />
 								</div>,
-								code: `<div className="black-background">
-									<CSImage type="logomark" color="white" />
-								</div>`
+								code: `<CSImage type="logomark" color="white" />`
 							}, {
 								primaryVariants: 'variant="reversed"',
 								secondaryVariants: [
