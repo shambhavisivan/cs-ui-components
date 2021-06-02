@@ -188,9 +188,10 @@ $lightVariables: (
 	--csd-sidebar-info-bg: $cs-white,
 	--csd-sidebar-toggle-graphic-fill: $cs-white,
 	--csd-sidebar-input-bg: rgba($cs-white, 0.2),
-	--csd-sidebar-scroll-bg: rgba($cs-white, 0.2),
-	--csd-sidebar-link-hover-bg: rgba($cs-black,0.4),
-	--csd-sidebar-link-active-bg: rgba($cs-black,0.6),
+	--csd-sidebar-scroll-bg: rgba($cs-black, 0.2),
+	--csd-scroll-thumb-bg: rgba($cs-white, 0.2),
+	--csd-sidebar-link-hover-bg: rgba($cs-black, 0.2),
+	--csd-sidebar-link-active-bg: rgba($cs-black, 0.5),
 
 	// May need to remove these
 	--csd-table-row-bg: $cs-white,
@@ -333,8 +334,9 @@ $darkVariables: (
 	--csd-sidebar-toggle-graphic-fill: $cs-white,
 	--csd-sidebar-input-bg: rgba($cs-white, 0.2),
 	--csd-sidebar-scroll-bg: rgba($cs-white, 0.2),
-	--csd-sidebar-link-hover-bg: rgba($cs-black,0.4),
-	--csd-sidebar-link-active-bg: rgba($cs-black,0.6),
+	--csd-scroll-thumb-bg: rgba($cs-white, 0.2),
+	--csd-sidebar-link-hover-bg: rgba($cs-black,0.2),
+	--csd-sidebar-link-active-bg: rgba($cs-black,0.5),
 
 	--csd-table-row-bg: $cs-white,
 	--csd-table-row-br: $cs-gray-light-5,
@@ -588,21 +590,5 @@ $darkVariables: (
 		}
 	} @else {
 		@return unquote('var(' + $variable + ')');
-	}
-}
-
-/* CUSTOM SCROLLBAR MIXIN */
-@mixin custom-scrollbar {
-	&::-webkit-scrollbar {
-		width: 1rem;
-	}
-
-	&::-webkit-scrollbar-thumb {
-		background-clip: padding-box;
-		border-radius: 0.5rem;
-		background-color: rgba(255, 255, 255, 0.2);
-		@include css4 {
-			border: 4px solid cvar(--csd-transparent);
-		}
 	}
 }

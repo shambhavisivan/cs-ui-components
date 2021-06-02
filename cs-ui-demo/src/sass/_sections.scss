@@ -197,6 +197,7 @@
 				}
 			}
 		}
+		@include scrollbar-color;
 	}
 }
 
@@ -357,6 +358,7 @@
 
 	.icons-preview-wrapper {
 		overflow: auto;
+		@include scrollbar-color;
 	}
 
 	.icons-preview {
