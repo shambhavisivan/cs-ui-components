@@ -9,10 +9,6 @@ class CSPathPreview extends React.Component {
 	getDoc = () => ({
 		name: 'Path',
 		usage: 'A process component communicates to the user the progress of a particular process.',
-		alerts: {
-			variant: 'warning',
-			text: 'This component is under construction and should not be used.'
-		},
 		accessible: 'yes',
 		components: [
 			{
@@ -209,7 +205,7 @@ class CSPathPreview extends React.Component {
 						name: 'status',
 						customTypes: {
 							name: 'CSPathItemStatus',
-							types: [`'success'`, `'error'`]
+							types: [`'success'`, `'error'`, `'warning'`]
 						},
 						description: 'Set the color and the icon variant depending on status.'
 					}, {
