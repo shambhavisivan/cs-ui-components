@@ -43,6 +43,10 @@ code.inline-code {
 }
 
 .inline-code-tooltip {
+	&.col-3 .cs-tooltip .cs-tooltip-body {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
 	&.col-2 .cs-tooltip .cs-tooltip-body {
 		grid-template-columns: repeat(2, 1fr);
 	}
@@ -54,7 +58,6 @@ code.inline-code {
 	.cs-tooltip .cs-tooltip-body {
 		display: grid;
 		grid-gap: 0.5rem;
-		grid-template-columns: repeat(3, 1fr);
 		white-space: nowrap;
 
 		code.inline-code {

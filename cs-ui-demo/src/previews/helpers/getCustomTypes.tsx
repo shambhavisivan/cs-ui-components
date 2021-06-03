@@ -9,6 +9,7 @@ const getCustomTypes = (customTypes?: CustomTypeInterface | Array<CustomTypeInte
 		const tooltipClasses = classNames(
 			'inline-code-tooltip',
 			{
+				'col-3': customType.types.length === 3,
 				'col-2': customType.types.length === 2 || customType.types.length === 4,
 				'col-1': customType.types.length === 1
 			}
