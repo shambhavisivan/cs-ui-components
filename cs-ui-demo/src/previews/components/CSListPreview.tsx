@@ -93,7 +93,7 @@ class CSListPreview extends React.Component {
 								],
 								component: <CSList id="custom-id" className="custom-br-blue">
 									<CSListGroup
-										title="List Group"
+										text="List Group"
 										id="group-id"
 										className="custom-bg-mint"
 									>
@@ -107,7 +107,7 @@ class CSListPreview extends React.Component {
 								</CSList>,
 								code: `<CSList id="custom-id" className="custom-br-blue">
 									<CSListGroup
-										title="List Group"
+										text="List Group"
 										id="group-id"
 										className="custom-bg-mint"
 									>
@@ -375,13 +375,13 @@ class CSListPreview extends React.Component {
 								primaryVariants: 'checkboxOption="select-all"',
 								secondaryVariants: 'variant="check-list"',
 								component: <CSList variant="check-list">
-									<CSListGroup title="List Group">
+									<CSListGroup text="List Group">
 										<CSListItem text="List item" />
 										<CSListItem text="List item" />
 									</CSListGroup>
 								</CSList>,
 								code: `<CSList variant="check-list">
-									<CSListGroup title="List Group">
+									<CSListGroup text="List Group">
 										<CSListItem text="List item" />
 										<CSListItem text="List item" />
 									</CSListGroup>
@@ -391,13 +391,13 @@ class CSListPreview extends React.Component {
 								primaryVariants: 'checkboxOption="select-self"',
 								secondaryVariants: 'variant="check-list"',
 								component: <CSList variant="check-list">
-									<CSListGroup title="List Group" checkboxOption="select-self">
+									<CSListGroup text="List Group" checkboxOption="select-self">
 										<CSListItem text="List item" />
 										<CSListItem text="List item" />
 									</CSListGroup>
 								</CSList>,
 								code: `<CSList variant="check-list">
-									<CSListGroup title="List Group" checkboxOption="select-self">
+									<CSListGroup text="List Group" checkboxOption="select-self">
 										<CSListItem text="List item" />
 										<CSListItem text="List item" />
 									</CSListGroup>
@@ -407,13 +407,13 @@ class CSListPreview extends React.Component {
 								primaryVariants: 'checkboxOption="not-selectable"',
 								secondaryVariants: 'variant="check-list"',
 								component: <CSList variant="check-list">
-									<CSListGroup title="List Group" checkboxOption="not-selectable">
+									<CSListGroup text="List Group" checkboxOption="not-selectable">
 										<CSListItem text="List item" />
 										<CSListItem text="List item" />
 									</CSListGroup>
 								</CSList>,
 								code: `<CSList variant="check-list">
-									<CSListGroup title="List Group" checkboxOption="not-selectable">
+									<CSListGroup text="List Group" checkboxOption="not-selectable">
 										<CSListItem text="List item" />
 										<CSListItem text="List item" />
 									</CSListGroup>
@@ -427,13 +427,13 @@ class CSListPreview extends React.Component {
 								primaryVariants: 'collapsible={true}',
 								quickLink: 'true',
 								component: <CSList>
-									<CSListGroup title="List Group">
+									<CSListGroup text="List Group">
 										<CSListItem text="List item" />
 										<CSListItem text="List item" />
 									</CSListGroup>
 								</CSList>,
 								code: `<CSList>
-									<CSListGroup title="List Group">
+									<CSListGroup text="List Group">
 										<CSListItem text="List item" />
 										<CSListItem text="List item" />
 									</CSListGroup>
@@ -442,13 +442,13 @@ class CSListPreview extends React.Component {
 								primaryVariants: 'collapsible={false}',
 								quickLink: 'false',
 								component: <CSList>
-									<CSListGroup title="List Group" collapsible={false}>
+									<CSListGroup text="List Group" collapsible={false}>
 										<CSListItem text="List item" />
 										<CSListItem text="List item" />
 									</CSListGroup>
 								</CSList>,
 								code: `<CSList>
-									<CSListGroup title="List Group" collapsible={false}>
+									<CSListGroup text="List Group" collapsible={false}>
 										<CSListItem text="List item" />
 										<CSListItem text="List item" />
 									</CSListGroup>
@@ -461,7 +461,7 @@ class CSListPreview extends React.Component {
 							{
 								component: <CSList>
 									<CSListGroup
-										title="List Group"
+										text="List Group"
 										customContent={
 											<CSButton
 												label="delete"
@@ -479,7 +479,7 @@ class CSListPreview extends React.Component {
 								</CSList>,
 								code: `<CSList>
 									<CSListGroup
-										title="List Group"
+										text="List Group"
 										customContent={
 											<CSButton
 												label="delete"
@@ -498,13 +498,13 @@ class CSListPreview extends React.Component {
 							}, {
 								primaryVariants: 'customContent={false}',
 								component: <CSList>
-									<CSListGroup title="List Group" collapsible={false}>
+									<CSListGroup text="List Group" collapsible={false}>
 										<CSListItem text="List item" />
 										<CSListItem text="List item" />
 									</CSListGroup>
 								</CSList>,
 								code: `<CSList>
-									<CSListGroup title="List Group" collapsible={false}>
+									<CSListGroup text="List Group" collapsible={false}>
 										<CSListItem text="List item" />
 										<CSListItem text="List item" />
 									</CSListGroup>
@@ -517,13 +517,13 @@ class CSListPreview extends React.Component {
 							{
 								secondaryVariants: 'variant="simple-list"',
 								component: <CSList>
-									<CSListGroup title="List Group">
+									<CSListGroup text="List Group">
 										<CSListItem text="List item" />
 										<CSListItem text="List item" />
 									</CSListGroup>
 								</CSList>,
 								code: `<CSList>
-									<CSListGroup title="List Group">
+									<CSListGroup text="List Group">
 										<CSListItem text="List item" />
 										<CSListItem text="List item" />
 									</CSListGroup>
@@ -531,13 +531,13 @@ class CSListPreview extends React.Component {
 							}, {
 								secondaryVariants: 'variant="check-list"',
 								component: <CSList variant="check-list">
-									<CSListGroup title="List Group">
+									<CSListGroup text="List Group">
 										<CSListItem text="List item" />
 										<CSListItem text="List item" />
 									</CSListGroup>
 								</CSList>,
 								code: `<CSList variant="check-list">
-									<CSListGroup title="List Group">
+									<CSListGroup text="List Group">
 										<CSListItem text="List item" />
 										<CSListItem text="List item" />
 									</CSListGroup>
@@ -550,13 +550,13 @@ class CSListPreview extends React.Component {
 							{
 								secondaryVariants: 'variant="check-list"',
 								component: <CSList variant="check-list">
-									<CSListGroup title="List Group" onSelectChange={this.handleSelect}>
+									<CSListGroup text="List Group" onSelectChange={this.handleSelect}>
 										<CSListItem text="List item" />
 										<CSListItem text="List item" />
 									</CSListGroup>
 								</CSList>,
 								code: `<CSList variant="check-list">
-									<CSListGroup title="List Group" onSelectChange={this.handleSelect}>
+									<CSListGroup text="List Group" onSelectChange={this.handleSelect}>
 										<CSListItem text="List item" />
 										<CSListItem text="List item" />
 									</CSListGroup>
@@ -564,17 +564,17 @@ class CSListPreview extends React.Component {
 							}
 						]
 					}, {
-						propName: 'title',
+						propName: 'text',
 						variations: [
 							{
 								component: <CSList>
-									<CSListGroup title="List Group">
+									<CSListGroup text="List Group">
 										<CSListItem text="List item" />
 										<CSListItem text="List item" />
 									</CSListGroup>
 								</CSList>,
 								code: `<CSList>
-									<CSListGroup title="List Group">
+									<CSListGroup text="List Group">
 										<CSListItem text="List item" />
 										<CSListItem text="List item" />
 									</CSListGroup>
@@ -610,9 +610,9 @@ class CSListPreview extends React.Component {
 						types: '(value) => any',
 						description: 'Callback function which will be executed when list group checkbox is selected. It can only be used if variant is check-list.'
 					}, {
-						name: 'title',
+						name: 'text',
 						types: 'string',
-						description: 'List group header title.'
+						description: 'List group header text.'
 					}, {
 						name: 'id',
 						types: 'string',

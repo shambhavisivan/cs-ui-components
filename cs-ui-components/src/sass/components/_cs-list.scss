@@ -63,7 +63,7 @@
 			}
 			&-check-list {
 				@include sbg(--cs-list-item-header-bg);
-				.cs-list-group-header-title {
+				.cs-list-group-header-text {
 					@include sc(--cs-list-item-header-c);
 					@include overflow-ellipsis;
 					letter-spacing: 0.0625rem;
@@ -78,23 +78,23 @@
 			}
 			&-small {
 				min-height: 1.75rem;
-				.cs-list-group-header-title {
+				.cs-list-group-header-text {
 					font-size: 0.8125rem;
 				}
 			}
 			&-medium {
 				min-height: 2rem;
-				.cs-list-group-header-title {
+				.cs-list-group-header-text {
 					font-size: 0.875rem;
 				}
 			}
 			&-large {
 				min-height: 2.5rem;
-				.cs-list-group-header-title {
+				.cs-list-group-header-text {
 					font-size: 1rem;
 				}
 			}
-			&-title {
+			&-text {
 				pointer-events: none;
 				&:not(:only-child) {
 					margin-left: 0.5rem;

@@ -339,13 +339,13 @@ class CSDropdownPreview extends React.Component {
 								quickLink: 'list',
 								component: <CSDropdown mode="list">
 									<CSList variant="check-list" className="dropdown-list">
-										<CSListGroup title="List Group">
+										<CSListGroup text="List Group">
 											<CSListItem text="First list item" />
 											<CSListItem text="List item with a very long name" />
 											<CSListItem text="List item" />
 											<CSListItem text="Last list item" />
 										</CSListGroup>
-										<CSListGroup title="List Group">
+										<CSListGroup text="List Group">
 											<CSListItem text="First list item" />
 											<CSListItem text="List item with a very long name" />
 											<CSListItem text="List item" />
@@ -355,13 +355,13 @@ class CSDropdownPreview extends React.Component {
 								</CSDropdown>,
 								code: `<CSDropdown mode="list">
 									<CSList variant="check-list" className="dropdown-list">
-										<CSListGroup title="List Group">
+										<CSListGroup text="List Group">
 											<CSListItem text="First list item" />
 											<CSListItem text="List item with a very long name" />
 											<CSListItem text="List item" />
 											<CSListItem text="Last list item" />
 										</CSListGroup>
-										<CSListGroup title="List Group">
+										<CSListGroup text="List Group">
 											<CSListItem text="First list item" />
 											<CSListItem text="List item with a very long name" />
 											<CSListItem text="List item" />
@@ -533,7 +533,7 @@ class CSDropdownPreview extends React.Component {
 						propName: 'title',
 						variations: [
 							{
-								component: <CSDropdown  title="This is a title">
+								component: <CSDropdown title="This is a title">
 									<CSButton label="Button 1" />
 									<CSButton label="Button 2 with more content" />
 								</CSDropdown>,
@@ -568,13 +568,13 @@ class CSDropdownPreview extends React.Component {
 							{
 								component: <CSDropdown padding="0">
 									<CSList variant="check-list" className="dropdown-list">
-										<CSListGroup title="List Group">
+										<CSListGroup text="List Group">
 											<CSListItem text="First list item" />
 											<CSListItem text="List item with a very long name" />
 											<CSListItem text="List item" />
 											<CSListItem text="Last list item" />
 										</CSListGroup>
-										<CSListGroup title="List Group">
+										<CSListGroup text="List Group">
 											<CSListItem text="First list item" />
 											<CSListItem text="List item with a very long name" />
 											<CSListItem text="List item" />
@@ -584,13 +584,13 @@ class CSDropdownPreview extends React.Component {
 								</CSDropdown>,
 								code: `<CSDropdown padding="0">
 									<CSList variant="check-list" className="dropdown-list">
-										<CSListGroup title="List Group">
+										<CSListGroup text="List Group">
 											<CSListItem text="First list item" />
 											<CSListItem text="List item with a very long name" />
 											<CSListItem text="List item" />
 											<CSListItem text="Last list item" />
 										</CSListGroup>
-										<CSListGroup title="List Group">
+										<CSListGroup text="List Group">
 											<CSListItem text="First list item" />
 											<CSListItem text="List item with a very long name" />
 											<CSListItem text="List item" />

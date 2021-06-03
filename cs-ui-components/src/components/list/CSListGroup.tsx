@@ -15,7 +15,7 @@ export interface CSListGroupProps {
 	id?: string;
 	onSelectChange?: (value?: any) => any;
 	checkboxOption?: CSListGroupCheckboxOption;
-	title: string;
+	text: string;
 }
 
 export interface CSListGroupState {
@@ -113,7 +113,7 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 			id,
 			onSelectChange,
 			checkboxOption,
-			title,
+			text,
 			...rest
 		} = this.props;
 
@@ -206,7 +206,7 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 								size={headerIconSize()}
 							/>
 						}
-						<span className="cs-list-group-header-title">{title}</span>
+						<span className="cs-list-group-header-text">{text}</span>
 						{listHeaderContent}
 					</div>
 				</h3>
