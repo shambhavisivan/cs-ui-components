@@ -320,6 +320,7 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 						]
 					}, {
 						propName: 'gridCustomPopup',
+						description: '.ag-custom-component-popup class added to lookup wrapper to support AG Grid custom components, this prevents lookup from closing on mouse click when inside lookup component.',
 						variations: [
 							{
 								primaryVariants: 'gridCustomPopup={true}',
