@@ -20,7 +20,7 @@
 	}
 
 	&:hover {
-		@include sbg(--cs-slider-range-thumb-hover);
+		@include sbg(--cs-slider-range-thumb-hover-bg);
 	}
 }
 
@@ -28,6 +28,7 @@
 	display: flex;
 	flex-direction: column;
 	position: relative;
+	width: var(--cs-slider-width, 100%);
 
 	.cs-slide-range {
 		word-wrap: break-word;
@@ -40,23 +41,8 @@
 		flex-direction: column;
 		align-items: center;
 		position: relative;
-		margin-top: 0.5rem;
-
-		&-large {
-			width: 25rem;
-		}
-
-		&-medium {
-			width: 20rem;
-		}
-
-		&-small {
-			width: 15rem;
-		}
-
-		&-xsmall {
-			width: 12rem;
-		}
+		padding-block-start: 0.5rem;
+		padding-block-end: 1.5rem;
 
 		.cs-slider {
 			-webkit-appearance: none;
@@ -70,7 +56,7 @@
 			}
 
 			// Webkit
-			&::-webkit-slider-runnable-track{
+			&::-webkit-slider-runnable-track {
 				@include cs-slider-range-track;
 			}
 
@@ -119,25 +105,55 @@
 			}
 
 			&:focus-visible::-webkit-slider-thumb {
-				@include sbg(--cs-slider-range-thumb-active);
+				@include sbg(--cs-slider-range-thumb-active-bg);
 				@include css4 {
-					box-shadow: 0 0 3px cvar(--cs-slider-range-thumb-active);
+					box-shadow: 0 0 3px cvar(--cs-slider-range-thumb-active-bg);
 				}
 			}
 
 			&:active::-webkit-slider-thumb {
-				@include sbg(--cs-slider-range-thumb-active);
+				@include sbg(--cs-slider-range-thumb-active-bg);
 			}
 
 			&:focus-visible::-moz-range-thumb {
-				@include sbg(--cs-slider-range-thumb-active);
+				@include sbg(--cs-slider-range-thumb-active-bg);
 				@include css4 {
-					box-shadow: 0 0 3px cvar(--cs-slider-range-thumb-active);
+					box-shadow: 0 0 3px cvar(--cs-slider-range-thumb-active-bg);
 				}
 			}
 
 			&:active::-moz-range-thumb {
-				@include sbg(--cs-slider-range-thumb-active);
+				@include sbg(--cs-slider-range-thumb-active-bg);
+			}
+
+			&.cs-slider-error {
+				&::-webkit-slider-thumb {
+					@include sbg(--cs-slider-range-thumb-error-bg);
+				}
+
+				&:focus-visible::-webkit-slider-thumb {
+					@include css4 {
+						box-shadow: 0 0 3px cvar(--cs-slider-range-thumb-error-shadow);
+					}
+				}
+
+				&::-moz-range-thumb {
+					@include sbg(--cs-slider-range-thumb-error-bg);
+				}
+
+				&:focus-visible::-moz-range-thumb {
+					@include css4 {
+						box-shadow: 0 0 3px cvar(--cs-slider-range-thumb-error-shadow);
+					}
+				}
+
+				&:active::-moz-range-thumb {
+					@include sbg(--cs-slider-range-thumb-error-bg);
+				}
+
+				&::-ms-thumb {
+					@include sbg(--cs-slider-range-thumb-error-bg);
+				}
 			}
 
 			&[disabled] {

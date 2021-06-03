@@ -5,8 +5,6 @@ import { CSTooltipPosition } from './CSTooltip';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import { v4 as uuidv4 } from 'uuid';
 
-export type CSSliderSize = 'xsmall' | 'small' | 'medium' | 'large';
-
 export interface CSSliderProps {
 	[key: string]: any;
 	className?: string;
@@ -23,12 +21,12 @@ export interface CSSliderProps {
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	readOnly?: boolean;
 	required?: boolean;
-	size?: CSSliderSize;
 	step?: string;
 	stepValues?: Array<any>;
 	title?: string;
 	tooltipPosition?: CSTooltipPosition;
 	value?: string;
+	width?: string;
 }
 
 export interface CSSliderState {
@@ -38,7 +36,6 @@ export interface CSSliderState {
 	step?: any;
 	min?: string;
 	max?: string;
-	exportedValue?: string;
 }
 
 export function fixControlledValue<T>(value: T) {
@@ -70,8 +67,7 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 			steps: [],
 			step: props.step,
 			min: props.min,
-			max: props.max,
-			exportedValue: ''
+			max: props.max
 		};
 		this.stepsIcons = this.stepsIcons.bind(this);
 	}
@@ -113,9 +109,11 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 		if (stepValues !== undefined) {
 			const numberOfStepValues = stepValues.length;
 			const newMax = String(numberOfStepValues - 1);
-			this.setState({ max: newMax });
-			this.setState({ min: '0' });
-			this.setState({ step: 1 });
+			this.setState({
+				max: newMax,
+				min: '0',
+				step: 1
+			});
 		}
 	}
 
@@ -135,12 +133,12 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 			onChange,
 			readOnly,
 			required,
-			size,
 			step,
 			stepValues,
 			title,
 			tooltipPosition,
 			value,
+			width,
 			...rest
 		} = this.props;
 
@@ -152,17 +150,18 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 		);
 
 		const sliderGroupClasses = classNames(
-			'cs-slider-group',
+			'cs-slider-group'
+		);
+
+		const sliderClasses = classNames(
+			'cs-slider',
 			{
-				[`cs-slider-group-${size}`]: size
+				'cs-slider-error': error
 			}
 		);
 
-		const handleValue = () => {
-			const valueToExport = `${stepValues !== undefined ? stepValues[Number(this.state.value)] : this.state.value}`;
-			this.setState({
-				exportedValue: valueToExport
-			});
+		const style: CSSProperties = {
+			'--cs-slider-width': width
 		};
 
 		const allSteps = this.state.steps;
@@ -179,7 +178,7 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 		);
 
 		return (
-			<div className={sliderWrapperClasses}>
+			<div className={sliderWrapperClasses} style={style}>
 				{(label && !labelHidden) &&
 					<CSLabel
 						htmlFor={this.uniqueAutoId}
@@ -190,10 +189,12 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 						title={labelTitle ? label : null}
 					/>
 				}
-				<span className="cs-slide-range">{min}-{max}</span>
+				{min || max ?
+					<span className="cs-slide-range">{min}-{max}</span>
+				: null}
 				<div className={sliderGroupClasses}>
 					<input
-						className="cs-slider"
+						className={sliderClasses}
 						disabled={disabled}
 						id={this.uniqueAutoId}
 						max={this.state.max}
@@ -203,8 +204,6 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 						value={fixControlledValue(this.state.value)}
 						type="range"
 						onChange={this.handleOnChange}
-						onMouseUp={handleValue}
-						onKeyUp={handleValue}
 						title={title}
 						aria-readonly={readOnly}
 						aria-required={required}

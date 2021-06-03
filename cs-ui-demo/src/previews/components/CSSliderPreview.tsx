@@ -251,71 +251,6 @@ class CSSliderPreview extends React.Component {
 							}
 						]
 					}, {
-						propName: 'size',
-						variations: [
-							{
-								primaryVariants: 'size="xsmall"',
-								quickLink: 'xsmall',
-								component: <CSSlider
-									label="Select value"
-									min="0"
-									max="100"
-									size="xsmall"
-								/>,
-								code: `<CSSlider
-									label="Select value"
-									min="0"
-									max="100"
-									size="xsmall"
-								/>`
-							}, {
-								primaryVariants: 'size="small"',
-								quickLink: 'small',
-								component: <CSSlider
-									label="Select value"
-									min="0"
-									max="100"
-									size="small"
-								/>,
-								code: `<CSSlider
-									label="Select value"
-									min="0"
-									max="100"
-									size="small"
-								/>`
-							}, {
-								primaryVariants: 'size="medium"',
-								quickLink: 'medium',
-								component: <CSSlider
-									label="Select value"
-									min="0"
-									max="100"
-									size="medium"
-								/>,
-								code: `<CSSlider
-									label="Select value"
-									min="0"
-									max="100"
-									size="medium"
-								/>`
-							}, {
-								primaryVariants: 'size="large"',
-								quickLink: 'large',
-								component: <CSSlider
-									label="Select value"
-									min="0"
-									max="100"
-									size="large"
-								/>,
-								code: `<CSSlider
-									label="Select value"
-									min="0"
-									max="100"
-									size="large"
-								/>`
-							}
-						]
-					}, {
 						propName: 'step',
 						variations: [
 							{
@@ -394,13 +329,15 @@ class CSSliderPreview extends React.Component {
 						]
 					}, {
 						propName: 'stepValues',
+						alert: {
+							variant: 'info',
+							text: 'This prop should be not be used with the min and max props as it overrides those values based on the length of the provided array. In the example below it would be min="0" and max="4" because there are 5 values in the array.'
+						},
 						variations: [
 							{
 								primaryVariants: 'stepValues=[...]',
 								component: <CSSlider
 									label="Select value"
-									min="0"
-									max="100"
 									stepValues={['max', '0', '1', '2', '3']}
 								/>,
 								code: `<CSSlider
@@ -470,6 +407,56 @@ class CSSliderPreview extends React.Component {
 									min="0"
 									max="100"
 									value="20"
+								/>`
+							}
+						]
+					}, {
+						propName: 'width',
+						variations: [
+							{
+								primaryVariants: '50%',
+								quickLink: '50%',
+								component: <CSSlider
+									label="Select value"
+									min="0"
+									max="100"
+									width="50%"
+								/>,
+								code: `<CSSlider
+									label="Select value"
+									min="0"
+									max="100"
+									width="50%"
+								/>`
+							}, {
+								primaryVariants: '20rem',
+								quickLink: '20rem',
+								component: <CSSlider
+									label="Select value"
+									min="0"
+									max="100"
+									width="20rem"
+								/>,
+								code: `<CSSlider
+									label="Select value"
+									min="0"
+									max="100"
+									width="20rem"
+								/>`
+							}, {
+								primaryVariants: '150px',
+								quickLink: '150px',
+								component: <CSSlider
+									label="Select value"
+									min="0"
+									max="100"
+									width="150px"
+								/>,
+								code: `<CSSlider
+									label="Select value"
+									min="0"
+									max="100"
+									width="150px"
 								/>`
 							}
 						]

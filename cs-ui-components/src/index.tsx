@@ -70,7 +70,7 @@ import CSSelect from './components/CSSelect';
 import CSSidebar, { CSSidebarOpensTo } from './components/sidebar/CSSidebar';
 import CSSidebarTab from './components/sidebar/CSSidebarTab';
 import CSSkipLink from './components/CSSkipLink';
-import CSSlider, { CSSliderSize } from './components/CSSlider';
+import CSSlider from './components/CSSlider';
 import CSSpinner, { CSSpinnerColor, CSSpinnerOverlay, CSSpinnerSize } from './components/CSSpinner';
 import CSTab, { CSTabStatus } from './components/CSTab';
 import CSTabGroup, { CSTabGroupVariant } from './components/CSTabGroup';
@@ -195,7 +195,6 @@ export {
 	CSSidebarTab,
 	CSSkipLink,
 	CSSlider,
-	CSSliderSize,
 	CSSpinner,
 	CSSpinnerColor,
 	CSSpinnerOverlay,
