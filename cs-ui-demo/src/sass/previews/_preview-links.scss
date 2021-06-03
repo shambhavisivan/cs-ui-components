@@ -95,6 +95,9 @@
 		overflow-y: auto;
 		overflow-x: hidden;
 		@include sbg(--csd-prop-sidebar-bg);
+		@include css4 {
+			scrollbar-color: cvar(--csd-scroll-thumb-bg) cvar(--csd-transparent);
+		}
 
 		&::-webkit-scrollbar {
 			width: 1rem;

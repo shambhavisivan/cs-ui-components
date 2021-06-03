@@ -1,4 +1,8 @@
 @mixin scrollbar-color {
+	@include css4 {
+		scrollbar-color: cvar(--csd-sidebar-scroll-bg) cvar(--csd-transparent);
+	}
+
 	&::-webkit-scrollbar {
 		width: 1rem;
 	}

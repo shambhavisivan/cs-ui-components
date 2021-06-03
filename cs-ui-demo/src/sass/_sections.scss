@@ -122,6 +122,7 @@
 		padding: 2rem 3rem 3rem;
 		width: 100%;
 		position: relative;
+		@include scrollbar-color;
 
 		h1 {
 			margin: 1.5rem 0 0.5rem;
@@ -197,7 +198,6 @@
 				}
 			}
 		}
-		@include scrollbar-color;
 	}
 }
 
