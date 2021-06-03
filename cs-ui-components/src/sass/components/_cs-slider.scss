@@ -190,9 +190,10 @@
 			&[aria-readonly] {
 				&::-webkit-slider-thumb {
 					cursor: default;
+					@include sbg(--cs-slider-range-thumb-read-only-bg);
 
 					&:hover {
-						@include sbg(--cs-slider-range-thumb-bg);
+						@include sbg(--cs-slider-range-thumb-read-only-bg);
 					}
 				}
 
@@ -200,10 +201,13 @@
 					cursor: default;
 				}
 
-				&:active::-moz-range-thumb,
-				&:hover::-moz-range-thumb {
+				&::-moz-range-thumb {
 					cursor: default;
-					@include sbg(--cs-slider-range-thumb-bg);
+					@include sbg(--cs-slider-range-thumb-read-only-bg);
+
+					&:hover {
+						@include sbg(--cs-slider-range-thumb-read-only-bg);
+					}
 				}
 
 				&::-moz-range-track {
@@ -212,9 +216,10 @@
 
 				&::-ms-thumb {
 					cursor: default;
+					@include sbg(--cs-slider-range-thumb-read-only-bg);
 
 					&:hover {
-						@include sbg(--cs-slider-range-thumb-bg);
+						@include sbg(--cs-slider-range-thumb-read-only-bg);
 					}
 				}
 

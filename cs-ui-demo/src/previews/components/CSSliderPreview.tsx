@@ -221,12 +221,14 @@ class CSSliderPreview extends React.Component {
 									label="Select value"
 									min="0"
 									max="100"
+									value="20"
 									readOnly
 								/>,
 								code: `<CSSlider
 									label="Select value"
 									min="0"
 									max="100"
+									value="20"
 									readOnly
 								/>`
 							}
