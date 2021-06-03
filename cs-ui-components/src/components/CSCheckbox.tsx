@@ -64,12 +64,6 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 		}
 	}
 
-	componentDidUpdate(prevProps: CSCheckboxProps) {
-		if (prevProps.checked !== this.props.checked) {
-			this.setState({ checked: this.props.checked });
-		}
-	}
-
 	render() {
 		const {
 			borderRadius,
