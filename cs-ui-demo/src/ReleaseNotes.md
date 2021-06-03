@@ -1,5 +1,55 @@
 # Release Notes
 
+## 1.1.22
+* CSButton
+  * fixed initial transparent button styles
+* CSCheckbox
+  * removed unnecessary `componentDidUpdate`
+* CSCustomSelect
+  * fixed `exportValue` causing app to break when clear button is pressed
+  * arrow icon changed to match other dropdown components
+* CSDatePicker and CSDateTimePicker
+  * fixed `openToDate` prop causing app to break on Safari
+  * fixed misaligned clear and calendar icons
+  * updated `react-datepicker` package version to 3.3.0
+* CSDropdown
+  * `title` prop added
+  * set dropdown min-width to the width of the toggle button
+* CSIcon
+  * `rotate` prop now accepts number value
+* CSInputFile
+  * fixed incorrect `errorMessage` styling
+* CSList
+  * <i>important</i> `title` prop renamed to `text` on CSListGroup
+  * fixed `checkboxOption="select-self"` not working
+* CSLookup
+  * fixed `readOnly` styles
+  * space added between `multiselect` options
+  * arrow icon changed to match other dropdown components
+* CSSlider
+  * <i>important</i> `size` prop replace with `width`
+  * fixed `error` prop not working
+  * fixed `readOnly` thumb styles
+  * fixed slider height issue
+* CSTab
+  * increase text line-height to fix letter cutoff
+  * fixed small gap between tabs in Safari
+* CSTextArea
+  * min-height increased
+* CSTransfer
+  * improvement on `searchable` prop - disable input search if there is no list items in corresponding list
+* Demo App changes
+  * added `/cs-ui-demo` route prefix
+  * fixed reloading url with hash to open file on that anchor
+  * scroll spy added to all sidebars within the app
+  * button showcase table redesign
+  * removed 'Under construction' alert message on CSLookup and CSPath
+  * removed unused `ToggleTheme.tsx` and `PreviewBlacklogList.tsx` files
+  * updated `README.md` file in cs-ui-components and cs-ui-demo repository folders
+  * updated `Getting Started` page
+  * fixed attributes accessibility section not rendering
+  * various UI fixes throughout the app
+
 ## 1.1.21
 * CSLookup
   * hide clear button when loading
@@ -8,7 +58,7 @@
 * CSDatepicker and CSDateTimePicker
   * added `onKeyDown` prop
   * added `onSelect` prop
-* DemoApp
+* Demo App changes
   * added title on form element indicators in sidebar list
 
 ## 1.1.20
