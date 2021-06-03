@@ -16,7 +16,7 @@ import { QuickLinksProvider } from './context/QuickLinksContext';
 const App: React.FC = () => (
 	<ThemeProvider>
 		<QuickLinksProvider>
-			<Router>
+			<Router basename="/cs-ui-demo">
 				<div className="cs-app-wrapper">
 					<MainHeader />
 					<div className="app-body">
