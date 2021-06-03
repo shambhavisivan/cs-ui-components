@@ -66,7 +66,7 @@ const AnchorSidebarList: React.FC<AnchorSidebarListProps> = ({
 				});
 			}
 		}
-	}, [sidebarRef]);
+	}, [sidebarRef, spyOn]);
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchTerm(event.target.value);
