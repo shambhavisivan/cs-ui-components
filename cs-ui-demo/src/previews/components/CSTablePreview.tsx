@@ -1266,7 +1266,26 @@ class CSTablePreview extends React.Component {
 				'2.1.1',
 				'2.1.2',
 				'4.1.2'
-			]
+			],
+			requirements: {
+				structure: [
+					'`<div>` - all table parts',
+					'`<span>` - text wrappers inside cells with overflow ellipsis styles because cells have flex which prevents text ellipsis'
+				],
+				attributes: [
+					'`role="table"` - top wrapper',
+					'`role="row"` - div that contains cells which are grouped in a row',
+					'`role="columnheader"` - div that represent table header cell',
+					'`role="rowgroup"` - div that wraps table row, represents `thead` or `tbody`',
+					'`role="cell"` - div that represents table cell'
+				],
+				styling: [
+					'Color contrast ratio > 4.5'
+				],
+				keyboardOperability: [
+					'Selectable table rows are focusable'
+				]
+			}
 		}
 	})
 

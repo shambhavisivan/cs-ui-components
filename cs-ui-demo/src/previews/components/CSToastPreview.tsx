@@ -305,6 +305,8 @@ class CSToastPreview extends React.Component {
 		accessibility: {
 			criterionList: [
 				'1.4.4',
+				'1.4.10',
+				'1.4.13',
 				'2.1.1',
 				'2.1.2',
 				'2.2.1',
@@ -322,7 +324,7 @@ class CSToastPreview extends React.Component {
 					'`role="alert/status"` - depending on toast variant',
 					'`duration` - allowing setting large enough time'
 				],
-				visual: [
+				styling: [
 					'Color contrast ratio > 4.5'
 				],
 				keyboardOperability: [
