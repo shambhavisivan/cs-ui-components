@@ -3,7 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import AnchorSidebarList from './AnchorSidebarList';
 import { getSlug } from './helpers';
 
-const anchorList = ['cs-app-wrapper', 'cs- prefix', 'z-index', 'Unit Tests & UUID', 'Documenting Components'];
+const anchorList = ['HTML App Wrapper', 'CSS Class Prefix', 'z-index', 'Unit Tests & UUID', 'Documenting Components'];
 
 const CSGettingStarted: React.FC = () => {
 	const [markdown, setMarkdown] = useState<string>('');
