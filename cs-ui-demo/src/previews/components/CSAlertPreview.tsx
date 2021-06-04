@@ -88,8 +88,8 @@ class CSAlertPreview extends React.Component {
 						propName: 'iconHidden',
 						variations: [
 							{
-								primaryVariants: 'iconHidden={true}',
-								quickLink: 'true',
+								primaryVariants: 'iconHidden={false}',
+								quickLink: 'false',
 								component: <CSAlert
 									variant="info"
 									text="This is an example alert with an icon"
@@ -99,8 +99,8 @@ class CSAlertPreview extends React.Component {
 									text="This is an example alert with an icon"
 								/>`
 							}, {
-								primaryVariants: 'iconHidden={false}',
-								quickLink: 'false',
+								primaryVariants: 'iconHidden={true}',
+								quickLink: 'true',
 								component: <CSAlert
 									variant="info"
 									text="This is an example alert without an icon"
