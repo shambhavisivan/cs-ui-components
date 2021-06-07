@@ -213,11 +213,11 @@
 	.prop-sidebar-bottom-group {
 		margin-top: auto;
 		overflow: hidden;
-		@include sbg(--csd-shadow-light);
 
 		h4 {
 			word-break: break-all;
 			transition: background-color 100ms ease-in-out;
+			position: relative;
 
 			a {
 				width: 100%;
@@ -232,6 +232,7 @@
 				text-overflow: ellipsis;
 				max-width: 100%;
 				transition: background-color 100ms ease-in-out;
+				z-index: 1;
 				@include sc(--csd-sidebar-link-c);
 
 				&:focus-visible {
@@ -251,16 +252,45 @@
 				}
 			}
 
-			&:hover {
-				@include sbg(--csd-shadow-medium);
+			&:first-child {
+				&::before {
+					@include sbg(--csd-shadow-light);
+				}
+
+				&:hover::before {
+					@include sbg(--csd-shadow-light-hover);
+				}
 			}
 
-			&:last-child {
-				@include sbg(--csd-shadow-light);
-
-				&:hover {
+			&:nth-child(2) {
+				&::before {
 					@include sbg(--csd-shadow-medium);
 				}
+
+				&:hover::before {
+					@include sbg(--csd-shadow-medium-hover);
+				}
+			}
+
+			&:nth-child(3) {
+				&::before {
+					@include sbg(--csd-shadow-medium-dark);
+				}
+
+				&:hover::before {
+					@include sbg(--csd-shadow-medium-dark-hover);
+				}
+			}
+
+			&::before {
+				content: "";
+				display: block;
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				pointer-events: none;
 			}
 		}
 	}
