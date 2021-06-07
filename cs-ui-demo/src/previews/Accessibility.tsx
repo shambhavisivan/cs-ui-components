@@ -1,5 +1,6 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
 import AnchorSidebarList from './AnchorSidebarList';
 import { getSlug } from './helpers';
 
@@ -35,14 +36,28 @@ const Accessibility: React.FC = () => {
 				spyOn=".accessibility"
 			/>
 			<ReactMarkdown
-				source={markdown}
-				escapeHtml={false}
+				children={markdown}
+				rehypePlugins={[rehypeRaw]}
 				className="accessibility"
 				linkTarget="_blank"
-				renderers={{
-					heading: ({ level, children }) => {
-						const Heading = `h${level}` as keyof JSX.IntrinsicElements;
-						return <Heading id={getSlug(children[0].props.value)}>{children[0].props.value}</Heading>;
+				components={{
+					h1: ({ children })  => {
+						return <h1 id={getSlug(children.toString())}>{children}</h1>;
+					},
+					h2: ({ children })  => {
+						return <h2 id={getSlug(children.toString())}>{children}</h2>;
+					},
+					h3: ({ children })  => {
+						return <h3 id={getSlug(children.toString())}>{children}</h3>;
+					},
+					h4: ({ children })  => {
+						return <h4 id={getSlug(children.toString())}>{children}</h4>;
+					},
+					h5: ({ children })  => {
+						return <h5 id={getSlug(children.toString())}>{children}</h5>;
+					},
+					h6: ({ children })  => {
+						return <h6 id={getSlug(children.toString())}>{children}</h6>;
 					}
 				}}
 			/>
