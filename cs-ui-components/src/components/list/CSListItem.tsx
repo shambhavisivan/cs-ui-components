@@ -49,6 +49,7 @@ class CSListItem extends React.Component<CSListItemProps> {
 			customContent,
 			disabled,
 			id,
+			isGrouped,
 			itemKey,
 			listSize,
 			listVariant,
@@ -81,7 +82,12 @@ class CSListItem extends React.Component<CSListItemProps> {
 			<div className="cs-list-item-custom-content">{customContent}</div>;
 
 		return (
-			<li className={listItemWrapperClasses} role="none" id={id} {...rest}>
+			<li
+				className={listItemWrapperClasses}
+				id={id}
+				aria-level={isGrouped ? 2 : 1}
+				{...rest}
+			>
 				{listVariant === 'simple-list' ?
 					<div
 						className={listItemClasses}

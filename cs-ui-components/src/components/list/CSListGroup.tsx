@@ -158,7 +158,8 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 					selected: selectedItems.includes(index),
 					checkValidItems: this.checkValidItems,
 					selectHandler: this.handleSelect,
-					itemKey: index
+					itemKey: index,
+					isGrouped: true
 				});
 			}
 		});
@@ -169,7 +170,14 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 			</div>;
 
 		return (
-			<li role="none" id={id} {...rest} className={listGroupWrapperClasses}>
+			<li
+				id={id}
+				className={listGroupWrapperClasses}
+				role="group"
+				aria-expanded={collapsed}
+				aria-level={1}
+				{...rest}
+			>
 				<h3 className={listGroupHeaderClasses}>
 					<div
 						role="button"

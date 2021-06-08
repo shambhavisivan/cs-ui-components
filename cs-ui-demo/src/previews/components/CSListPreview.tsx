@@ -656,9 +656,10 @@ class CSListPreview extends React.Component {
 				attributes: [
 					'`aria-selected` - true when list item is selected',
 					'`aria-expanded` - true on group header when group is expanded',
-					'`aria-level` - TODO',
-					'`role="group"` - TODO',
-					'`role="treeitem"` - TODO'
+					'`aria-level` - Defines the hierarchical level of an element within a structure. 1 on a group, 2 on a list item if list item is within a group, otherwise value is 1.',
+					'`role="list` - implicit on `ul`',
+					'`role="group"` - added to list group `<li>` to override `role="listitem"`',
+					'`role="listitem"` - implicit on list item `<li>`'
 				],
 				styling: [
 					'Focus state styles'
