@@ -40,11 +40,13 @@ class CSCardPreview extends React.Component {
 						]
 					}, {
 						propName: 'children',
-						description: 'CSCardBody and CSCardFooter support custom content provided as children',
+						description: 'CSCardHeader, CSCardBody and CSCardFooter support custom content provided as children',
 						variations: [
 							{
 								component: <CSCard>
-									<CSCardHeader title="Card Header" />
+									<CSCardHeader title="Card Header">
+										<CSButton label="Custom Button" />
+									</CSCardHeader>
 									<CSCardBody>
 										Card Body
 										<CSButton label="Custom Button" />
@@ -55,7 +57,9 @@ class CSCardPreview extends React.Component {
 									</CSCardFooter>
 								</CSCard>,
 								code: `<CSCard>
-									<CSCardHeader title="Card Header" />
+									<CSCardHeader title="Card Header">
+										<CSButton label="Custom Button" />
+									</CSCardHeader>
 									<CSCardBody>
 										Card Body
 										<CSButton label="Custom Button" />
@@ -333,6 +337,10 @@ class CSCardPreview extends React.Component {
 						name: 'className',
 						types: 'string',
 						description: 'Apply custom CSS classes to the card header.'
+					}, {
+						name: 'children',
+						types: 'any',
+						description: 'This component supports custom content passed as children.'
 					}, {
 						name: '[key: string]',
 						types: 'any',

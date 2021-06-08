@@ -54,6 +54,7 @@ class CSCardHeader extends React.Component<CSCardHeaderProps, CSCardHeaderState>
 
 	render() {
 		const {
+			children,
 			className,
 			collapsible,
 			defaultClosed,
@@ -107,6 +108,7 @@ class CSCardHeader extends React.Component<CSCardHeaderProps, CSCardHeaderState>
 					</span>
 				}
 				<h2 className="cs-card-header-title">{title}</h2>
+				{children}
 			</header>
 		);
 	}
