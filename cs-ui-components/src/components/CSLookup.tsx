@@ -401,6 +401,12 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 					this.props.lookupOptions : []
 			});
 		}
+		if (this.props.mode === 'server') {
+			this.setState({
+				pageNo: 0,
+				moreRecords: true
+			});
+		}
 	}
 
 	handleLookupWrapperBlur = (event: React.FocusEvent<HTMLInputElement>) => {
