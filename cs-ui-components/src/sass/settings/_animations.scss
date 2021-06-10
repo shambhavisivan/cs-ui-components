@@ -48,9 +48,9 @@
 
 @keyframes sidebarCollapseBackgroundEnhance {
 	0% {
-		@include sbg(--cs-transparent);
+		background: var(--cs-transparent);
 	}
 	100% {
-		@include sbg(--cs-sidebar-bg);
+		background: var(--cs-sidebar-bg);
 	}
 }
