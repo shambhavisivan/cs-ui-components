@@ -25,7 +25,7 @@ import CSButton, { CSButtonIconDisplay, CSButtonIconPosition, CSButtonSize, CSBu
 import CSButtonGroup, { CSButtonGroupMargin } from './components/CSButtonGroup';
 import CSCard from './components/card/CSCard';
 import CSCardBody from './components/card/CSCardBody';
-import CSCardFooter from './components/card/CSCardFooter';
+import CSCardFooter, { CSCardFooterAlign } from './components/card/CSCardFooter';
 import CSCardHeader from './components/card/CSCardHeader';
 import CSCheckbox, { CSCheckboxLabelPosition, CSCheckboxVariant } from './components/CSCheckbox';
 import CSChip, { CSChipVariant, CSChipVariantStyle } from './components/CSChip';
@@ -110,6 +110,7 @@ export {
 	CSCard,
 	CSCardBody,
 	CSCardFooter,
+	CSCardFooterAlign,
 	CSCardHeader,
 	CSCheckbox,
 	CSCheckboxLabelPosition,

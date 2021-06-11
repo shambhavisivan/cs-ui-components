@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import CSIcon, { CSIconOrigin } from '../CSIcon';
 import classNames from 'classnames';
 import CSButton from '../CSButton';
@@ -13,6 +13,7 @@ export interface CSCardHeaderProps {
 	iconName?: string;
 	iconOrigin?: CSIconOrigin;
 	id?: string;
+	padding?: string;
 	showBorder?: boolean;
 	title: string;
 }
@@ -63,6 +64,7 @@ class CSCardHeader extends React.Component<CSCardHeaderProps, CSCardHeaderState>
 			iconName,
 			iconOrigin,
 			id,
+			padding,
 			showBorder,
 			title,
 			...rest
@@ -77,10 +79,16 @@ class CSCardHeader extends React.Component<CSCardHeaderProps, CSCardHeaderState>
 				[`${className}`]: className
 			}
 		);
+
+		const cardHeaderStyles: CSSProperties = {
+			'--cs-card-header-padding': padding
+		};
+
 		return (
 			<header
 				className={cardHeaderClasses}
 				id={id}
+				style={cardHeaderStyles}
 				{...rest}
 			>
 				{this.props.collapsible ? (

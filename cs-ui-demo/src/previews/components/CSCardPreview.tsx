@@ -255,6 +255,31 @@ class CSCardPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'padding',
+						variations: [
+							{
+								primaryVariants: 'padding="0"',
+								component: <CSCard>
+									<CSCardHeader title="Card Header" padding="0" />
+									<CSCardBody>
+										Card Body
+									</CSCardBody>
+									<CSCardFooter>
+										Card Footer
+									</CSCardFooter>
+								</CSCard>,
+								code: `<CSCard>
+									<CSCardHeader title="Card Header" padding="0"/>
+									<CSCardBody>
+										Card Body
+									</CSCardBody>
+									<CSCardFooter>
+										Card Footer
+									</CSCardFooter>
+								</CSCard>`
+							}
+						]
+					}, {
 						propName: 'showBorder',
 						variations: [
 							{
@@ -324,6 +349,10 @@ class CSCardPreview extends React.Component {
 						},
 						default: `'slds'`,
 						description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
+					}, {
+						name: 'padding',
+						types: 'string',
+						description: 'Set custom padding for the card header.'
 					}, {
 						name: 'showBorder',
 						types: 'boolean',
@@ -439,8 +468,113 @@ class CSCardPreview extends React.Component {
 				]
 			}, {
 				name: 'CSCardFooter',
+				examples: [
+					{
+						propName: 'align',
+						variations: [
+							{
+								primaryVariants: 'align="left"',
+								component: <CSCard>
+									<CSCardHeader title="Card Header" />
+									<CSCardBody>
+										Card Body
+									</CSCardBody>
+									<CSCardFooter>
+										Card Footer
+									</CSCardFooter>
+								</CSCard>,
+								code: `<CSCard>
+									<CSCardHeader title="Card Header" />
+									<CSCardBody>
+										Card Body
+									</CSCardBody>
+									<CSCardFooter>
+										Card Footer
+									</CSCardFooter>
+								</CSCard>`
+							}, {
+								primaryVariants: 'align="center"',
+								component: <CSCard>
+									<CSCardHeader title="Card Header" />
+									<CSCardBody>
+										Card Body
+									</CSCardBody>
+									<CSCardFooter align="center">
+										Card Footer
+									</CSCardFooter>
+								</CSCard>,
+								code: `<CSCard>
+									<CSCardHeader title="Card Header" />
+									<CSCardBody>
+										Card Body
+									</CSCardBody>
+									<CSCardFooter align="center">
+										Card Footer
+									</CSCardFooter>
+								</CSCard>`
+							}, {
+								primaryVariants: 'align="right"',
+								component: <CSCard>
+									<CSCardHeader title="Card Header" />
+									<CSCardBody>
+										Card Body
+									</CSCardBody>
+									<CSCardFooter align="right">
+										Card Footer
+									</CSCardFooter>
+								</CSCard>,
+								code: `<CSCard>
+									<CSCardHeader title="Card Header" />
+									<CSCardBody>
+										Card Body
+									</CSCardBody>
+									<CSCardFooter align="right">
+										Card Footer
+									</CSCardFooter>
+								</CSCard>`
+							}
+						]
+					}, {
+						propName: 'padding',
+						variations: [
+							{
+								primaryVariants: 'padding="0"',
+								component: <CSCard>
+									<CSCardHeader title="Card Header" />
+									<CSCardBody>
+										Card Body
+									</CSCardBody>
+									<CSCardFooter padding="0">
+										Card Footer
+									</CSCardFooter>
+								</CSCard>,
+								code: `<CSCard>
+									<CSCardHeader title="Card Header" />
+									<CSCardBody>
+										Card Body
+									</CSCardBody>
+									<CSCardFooter padding="0">
+										Card Footer
+									</CSCardFooter>
+								</CSCard>`
+							}
+						]
+					}
+				],
 				properties: [
 					{
+						name: 'align',
+						customTypes: {
+							name: 'CSCardFooterAlign',
+							types: [`'left'`, `'center'`, `'right'`]
+						},
+						default: 'left',
+						description: 'Align the card footer content.'
+					}, {
+						name: 'padding',
+						types: 'string',
+						description: 'Set custom padding for the card footer.'
+					}, {
 						name: 'id',
 						types: 'string',
 						description: 'Set the ID for the card footer.'
