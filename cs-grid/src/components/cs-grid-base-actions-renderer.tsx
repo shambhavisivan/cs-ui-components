@@ -1,4 +1,5 @@
 import { CSButton, CSButtonGroup, CSDropdown, CSTooltip } from '@cloudsense/cs-ui-components';
+import { ICellRendererParams } from 'ag-grid-community';
 import React from 'react';
 
 import { CSGridCellRendererState } from '../interfaces/cs-grid-base-interfaces';
@@ -48,7 +49,7 @@ export abstract class CSGridBaseActionsRenderer<
 		}
 	}
 
-	refresh = (params: P): boolean => {
+	refresh = (params: P | ICellRendererParams): boolean => {
 		super.refresh(params);
 		this.onColumnResized();
 
@@ -207,6 +208,7 @@ export abstract class CSGridBaseActionsRenderer<
 				if (index < noOfInlineIcons) {
 					icons.push(
 						<CSTooltip
+							key={action.name}
 							content={actionTooltip.content}
 							delayTooltip={actionTooltip.delay}
 							variant={actionTooltip.variant}

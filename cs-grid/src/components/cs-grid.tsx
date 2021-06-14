@@ -1173,7 +1173,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 
 						let trap;
 						// If focused elements
-						if (focusable.length > 0) {
+						if (Array.isArray(focusable) && focusable.length > 0) {
 							if (
 								params.event.key === KeyCode.ArrowRight ||
 								params.event.key === KeyCode.Tab

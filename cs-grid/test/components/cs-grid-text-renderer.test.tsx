@@ -1,4 +1,4 @@
-import { ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
+import { Beans, ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
 import { shallow } from 'enzyme';
 import React from 'react';
 import { CSGridTextRenderer } from '../../src/components/cs-grid-text-renderer';
@@ -50,7 +50,7 @@ describe('CS Grid Text Renderer', () => {
 			getValue: () => {
 				// Do nothing
 			},
-			node: new RowNode(),
+			node: new RowNode(new Beans()),
 			rowIndex: 0,
 			setValue: setValueMock,
 			userInfo,

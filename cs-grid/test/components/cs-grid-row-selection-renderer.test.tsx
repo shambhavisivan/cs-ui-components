@@ -1,4 +1,4 @@
-import { ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
+import { Beans, ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
 import { shallow } from 'enzyme';
 import React from 'react';
 import { CSGridBaseActionsRendererProps } from '../../src/components/cs-grid-base-actions-renderer';
@@ -35,7 +35,7 @@ describe('CS Grid RowSelection Renderer', () => {
 		columnApi = new ColumnApi();
 		columnApi.getAllGridColumns = () => [column];
 
-		const node = new RowNode();
+		const node = new RowNode(new Beans());
 		node.id = nodeId;
 
 		cSGridCellRendererProps = {

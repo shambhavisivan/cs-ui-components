@@ -1,3 +1,4 @@
+import { ICellRendererParams } from 'ag-grid-community';
 import React from 'react';
 
 import {
@@ -25,7 +26,7 @@ export abstract class CSGridBaseRenderer<
 	/**
 	 * Used by ag-grid to tell the cell when to refresh.
 	 */
-	refresh(params: P): boolean {
+	refresh(params: P | ICellRendererParams): boolean {
 		const isLastColumn = this.isLastColumn();
 
 		if (

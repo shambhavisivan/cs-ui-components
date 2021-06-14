@@ -14,6 +14,7 @@ describe('CS Grid header', () => {
 	let enableSorting: boolean;
 	let enableMenu: boolean;
 	let className: string;
+	let eGridHeader: HTMLElement;
 
 	let customSortMock: jest.Mock<any, any>;
 
@@ -37,6 +38,7 @@ describe('CS Grid header', () => {
 			context: {},
 			customSort: customSortMock,
 			displayName,
+			eGridHeader,
 			enableMenu,
 			enableSorting,
 			progressSort: (multiSort?: boolean) => {

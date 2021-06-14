@@ -2,7 +2,7 @@
  * Defines the React 16 Adapter for Enzyme.
  */
 import enzyme from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
 import { JSDOM } from "jsdom"
 import crypto from 'crypto';
 

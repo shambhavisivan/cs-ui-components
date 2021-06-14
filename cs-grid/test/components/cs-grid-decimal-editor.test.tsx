@@ -1,4 +1,4 @@
-import { ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
+import { Beans, ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
 import { mount, shallow } from 'enzyme';
 import React from 'react';
 import { CSGridDecimalEditor } from '../../src/components/cs-grid-decimal-editor';
@@ -24,7 +24,7 @@ describe('CS Grid Decimal Editor', () => {
 
 	const colDef: ColDef = {};
 	const column: Column = new Column(colDef, null, 'colId', true);
-	const rowNode: RowNode = new RowNode();
+	const rowNode: RowNode = new RowNode(new Beans());
 
 	let cSGridCellEditorProps: CSGridCellEditorProps<string | number> & DecimalProps;
 

@@ -1,4 +1,4 @@
-import { ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
+import { Beans, ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
 import { mount, shallow } from 'enzyme';
 import React from 'react';
 import { CSGridDateTimeEditor } from '../../src/components/cs-grid-date-time-editor';
@@ -55,7 +55,7 @@ describe('CS Grid Date Time Editor', () => {
 			data: {},
 			eGridCell: { className: 'className' } as any,
 			getOpenToDate: (guid: string) => '2004-02-22',
-			node: new RowNode(),
+			node: new RowNode(new Beans()),
 			rowIndex: 0,
 			stopEditing: stopEditingMock,
 			userInfo,

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { CSCheckbox, CSTooltip } from '@cloudsense/cs-ui-components';
+import { ICellRendererParams } from 'ag-grid-community';
 import { IsColumnFuncParams } from 'ag-grid-community/dist/lib/entities/colDef';
 import { CellData, CSGridCellRenderer } from '../interfaces/cs-grid-base-interfaces';
 import { CSGridCellRendererProps } from '../interfaces/cs-grid-cell-props';
@@ -18,7 +19,7 @@ export class CSGridBooleanRenderer extends CSGridBaseRenderer<boolean>
 		};
 	}
 
-	refresh(params: CSGridCellRendererProps<boolean>): boolean {
+	refresh(params: CSGridCellRendererProps<boolean> | ICellRendererParams): boolean {
 		super.refresh(params);
 		this.forceUpdate();
 
