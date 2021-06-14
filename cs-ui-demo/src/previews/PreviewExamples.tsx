@@ -1,5 +1,5 @@
 import React from 'react';
-import { CSAlert, CSAlertVariant } from '@cloudsense/cs-ui-components';
+import { CSAlert, CSAlertVariant, CSButton } from '@cloudsense/cs-ui-components';
 import PreviewCode from './PreviewCode';
 import { getSlug, parseCode } from './helpers';
 
@@ -9,6 +9,10 @@ import {
 	PreviewInterface,
 	VariationInterface
 } from './types';
+
+const handleCopyButton = (code: string | undefined) => {
+	navigator.clipboard.writeText(code ? code : '');
+};
 
 const PreviewExamples: React.FC<PreviewInterface> = ({ components }) => (
 	<>
@@ -74,7 +78,20 @@ const PreviewExamples: React.FC<PreviewInterface> = ({ components }) => (
 												<div className={`${getSlug(component.name)}-demo component-demo`}>
 													{variation.component}
 												</div>
-												<PreviewCode code={variation.code} />
+												<div className="code-preview-wrapper">
+													<PreviewCode code={variation.code} />
+													<CSButton
+														btnStyle="brand"
+														btnType="transparent"
+														size="xsmall"
+														label="Copy code to clipboard"
+														labelHidden
+														color="var(--csd-code-copy-btn-c)"
+														iconName="copy"
+														className="copy-code-btn"
+														onClick={() => handleCopyButton(variation.code)}
+													/>
+												</div>
 											</div>
 										</React.Fragment>
 									);
