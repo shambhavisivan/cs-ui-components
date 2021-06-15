@@ -887,8 +887,7 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 						description: 'Handler method for the change event.'
 					}, {
 						name: 'selected',
-						required: true,
-						types: 'Date',
+						types: ['Date', 'null', 'undefined'],
 						description: 'Set the selected date.'
 					}, {
 						name: 'autoFocus',

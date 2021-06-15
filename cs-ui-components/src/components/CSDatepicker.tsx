@@ -44,7 +44,7 @@ export interface CSDatepickerProps {
 	readOnly?: boolean;
 	required?: boolean;
 	scrollableYearDropdown?: boolean;
-	selected: Date;
+	selected?: Date | null | undefined;
 	showMonthDropdown?: boolean;
 	showYearDropdown?: boolean;
 	title?: string;
