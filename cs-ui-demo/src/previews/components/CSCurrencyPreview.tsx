@@ -13,51 +13,6 @@ class CSCurrencyPreview extends React.Component {
 				name: 'CSCurrency',
 				examples: [
 					{
-						propName: 'currency',
-						description: 'Currency code consists of a ISO 4217 3-letter code.',
-						variations: [
-							{
-								primaryVariants: 'currency="EUR"',
-								quickLink: 'EUR',
-								component: <CSCurrency
-									currency="eur"
-									locale="en"
-									value={1337}
-								/>,
-								code: `<CSCurrency
-									currency="eur"
-									locale="en"
-									value={1337}
-								/>`
-							}, {
-								primaryVariants: 'currency="INR"',
-								quickLink: 'INR',
-								component: <CSCurrency
-									currency="INR"
-									locale="en"
-									value={1337}
-								/>,
-								code: `<CSCurrency
-									currency="INR"
-									locale="en"
-									value={1337}
-								/>`
-							}, {
-								primaryVariants: 'currency="USD"',
-								quickLink: 'USD',
-								component: <CSCurrency
-									currency="USD"
-									locale="en"
-									value={1337}
-								/>,
-								code: `<CSCurrency
-									currency="USD"
-									locale="en"
-									value={1337}
-								/>`
-							}
-						]
-					}, {
 						propName: 'locale',
 						description: 'Locale identifiers consist of a language identifier in the form of a BCP 47 language tag string where different parts are separated by hyphens.',
 						variations: [
@@ -130,6 +85,62 @@ class CSCurrencyPreview extends React.Component {
 									currency="EUR"
 									locale="sv-SE"
 									value={10000}
+								/>`
+							}
+						]
+					}, {
+						propName: 'currency',
+						description: 'Currency code consists of a ISO 4217 3-letter code.',
+						variations: [
+							{
+								primaryVariants: 'currency="EUR"',
+								quickLink: 'EUR',
+								component: <CSCurrency
+									currency="eur"
+									locale="en"
+									value={1337}
+								/>,
+								code: `<CSCurrency
+									currency="eur"
+									locale="en"
+									value={1337}
+								/>`
+							}, {
+								primaryVariants: 'currency="INR"',
+								quickLink: 'INR',
+								component: <CSCurrency
+									currency="INR"
+									locale="en"
+									value={1337}
+								/>,
+								code: `<CSCurrency
+									currency="INR"
+									locale="en"
+									value={1337}
+								/>`
+							}, {
+								primaryVariants: 'currency="USD"',
+								quickLink: 'USD',
+								component: <CSCurrency
+									currency="USD"
+									locale="en"
+									value={1337}
+								/>,
+								code: `<CSCurrency
+									currency="USD"
+									locale="en"
+									value={1337}
+								/>`
+							}, {
+								primaryVariants: 'currency={undefined}',
+								quickLink: 'undefined',
+								component: <CSCurrency
+									locale="en"
+									value={1337}
+								/>,
+								code: `<CSCurrency
+									locale="en"
+									value={1337}
 								/>`
 							}
 						]
@@ -586,15 +597,14 @@ class CSCurrencyPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'currency',
-						required: true,
-						types: 'string',
-						description: 'Set the currency that is displayed next to the value. Currency code consists of a ISO 4217 3-letter code.'
-					}, {
 						name: 'locale',
 						required: true,
 						types: 'string',
 						description: 'Set locale. Locale identifier consists of a language identifier in a form of a string holding a BCP 47 language tag.'
+					}, {
+						name: 'currency',
+						types: 'string',
+						description: 'Set the currency that is displayed next to the value. Currency code consists of a ISO 4217 3-letter code. Is currency is not set, currency sign will be omitted.'
 					}, {
 						name: 'currencyDisplay',
 						customTypes: {

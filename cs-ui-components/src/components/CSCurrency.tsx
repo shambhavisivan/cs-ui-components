@@ -9,7 +9,7 @@ export type CSCurrencySign = 'standard' | 'accounting';
 export interface CSCurrencyProps {
 	[key: string]: any;
 	className?: string;
-	currency: string;
+	currency?: string;
 	currencyDisplay?: CSCurrencyDisplay;
 	currencySign?: CSCurrencySign;
 	id?: string;
@@ -40,7 +40,7 @@ class CSCurrency extends React.Component<CSCurrencyProps> {
 				localeMatcher: 'best fit',
 				currency: this.props.currency,
 				currencyDisplay: this.props.currencyDisplay,
-				style: 'currency',
+				style: this.props.currency ? 'currency' : undefined,
 				// @ts-ignore
 				currencySign: this.props.currencySign, // Not supported in Safari. Not included in typescript NumberFormatOptions interface
 				notation: this.props.notation, // Not supported in Safari. Not included in typescript NumberFormatOptions interface
@@ -61,7 +61,7 @@ class CSCurrency extends React.Component<CSCurrencyProps> {
 				localeMatcher: 'best fit',
 				currency: this.props.currency,
 				currencyDisplay: this.props.currencyDisplay === 'narrowSymbol' ? 'symbol' : this.props.currencyDisplay, // "narrowSymbol" value not supported in Safari
-				style: 'currency',
+				style: this.props.currency ? 'currency' : undefined,
 				minimumIntegerDigits: this.props.minimumIntegerDigits,
 				minimumFractionDigits: this.props.minimumFractionDigits,
 				maximumFractionDigits: this.props.maximumFractionDigits, // In safari if maximumFractionDigits < minimumFractionDigits it breaks app
