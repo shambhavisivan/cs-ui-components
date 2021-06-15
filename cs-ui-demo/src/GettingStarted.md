@@ -28,9 +28,10 @@ element. Variable names should be self-explanatory and sorted by index in ascend
   * `--z-index-transfer-list-item-focus: 1;`
   * `--z-index-sidebar-visible-wrapper: 1;`
   * `--z-index-list-active: 1;`
-  * `--z-index-button-focus: 2;`
   * `--z-index-button-icon: 2;`
   * `--z-index-button-label: 2;`
+  * `--z-index-dropdown-button: 2;`
+  * `--z-index-button-focus: 3;`
   * `--z-index-main-header: 3;`
   * `--z-index-table-header: 3;`
   * `--z-index-button-custom-content: 4;`
