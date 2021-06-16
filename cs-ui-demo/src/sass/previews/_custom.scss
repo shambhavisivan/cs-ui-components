@@ -121,6 +121,7 @@
 				font-size: 0.8125rem;
 				border: none;
 				@include sc(--csd-button-preview-c);
+				@include sbg(--csd-button-preview-table-header-bg);
 
 				&:nth-child(-n+2) {
 					border: none;
