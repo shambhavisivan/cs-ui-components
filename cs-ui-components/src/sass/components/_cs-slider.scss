@@ -15,7 +15,7 @@
 	border: 0;
 	cursor: pointer;
 	@include sbg(--cs-slider-range-thumb-bg);
-	@include css4{
+	@include css4 {
 		box-shadow: 0 2px 3px cvar(--cs-slider-range-thumb-shadow);
 	}
 
@@ -32,8 +32,8 @@
 
 	.cs-slide-range {
 		word-wrap: break-word;
-		@include sc(--cs-slider-range-c);
 		font-size: 0.75rem;
+		@include sc(--cs-slider-range-c);
 	}
 
 	.cs-slider-group {
@@ -47,9 +47,9 @@
 		.cs-slider {
 			-webkit-appearance: none;
 			appearance: none;
-			@include sbg(--cs-transparent);
 			margin: 0;
 			width: 100%;
+			@include sbg(--cs-transparent);
 
 			&:focus {
 				outline: 0;
@@ -63,7 +63,7 @@
 			&::-webkit-slider-thumb {
 				@include cs-slider-range-thumb;
 				margin-top: calc((0.5rem - 2px) * -1);
-				z-index: 1;
+				z-index: var(--z-index-slider-thumb);
 				position: relative;
 
 				&::after {
@@ -74,7 +74,7 @@
 					right: 0;
 					width: 1rem;
 					height: 1rem;
-					background: pink;
+					background: pink; // check
 				}
 			}
 
@@ -84,24 +84,24 @@
 			}
 
 			&::-moz-range-thumb {
-				@include cs-slider-range-thumb;
 				position: relative;
-				z-index: 1;
+				z-index: var(--z-index-slider-thumb);
+				@include cs-slider-range-thumb;
 			}
 
 			// IE/Edge
 			&::-ms-track {
+				cursor: pointer;
 				@include cs-slider-range-track;
+				@include sc(--cs-transparent);
 				@include css4 {
 					border-color: cvar(--cs-transparent);
 				}
-				@include sc(--cs-transparent);
-				cursor: pointer;
 			}
 			&::-ms-thumb {
-				@include cs-slider-range-thumb;
-				z-index: 1;
+				z-index: var(--z-index-slider-thumb);
 				position: relative;
+				@include cs-slider-range-thumb;
 			}
 
 			&:focus-visible::-webkit-slider-thumb {
@@ -109,10 +109,6 @@
 				@include css4 {
 					box-shadow: 0 0 3px cvar(--cs-slider-range-thumb-active-bg);
 				}
-			}
-
-			&:active::-webkit-slider-thumb {
-				@include sbg(--cs-slider-range-thumb-active-bg);
 			}
 
 			&:focus-visible::-moz-range-thumb {
@@ -158,18 +154,18 @@
 
 			&[disabled] {
 				&::-webkit-slider-thumb {
-					@include sbg(--cs-slider-range-thumb-disabled-bg);
 					cursor: default;
+					@include sbg(--cs-slider-range-thumb-disabled-bg);
 				}
 
 				&::-webkit-slider-runnable-track {
-					@include sbg(--cs-slider-range-thumb-disabled-bg);
 					cursor: default;
+					@include sbg(--cs-slider-range-thumb-disabled-bg);
 				}
 
 				&::-moz-range-thumb {
-					@include sbg(--cs-slider-range-thumb-disabled-bg);
 					cursor: default;
+					@include sbg(--cs-slider-range-thumb-disabled-bg);
 				}
 
 				&::-moz-range-track {
@@ -177,13 +173,13 @@
 				}
 
 				&::-ms-thumb {
-					@include sbg(--cs-slider-range-thumb-disabled-bg);
 					cursor: default;
+					@include sbg(--cs-slider-range-thumb-disabled-bg);
 				}
 
 				&::-ms-track {
-					@include sbg(--cs-slider-range-thumb-disabled-bg);
 					cursor: default;
+					@include sbg(--cs-slider-range-thumb-disabled-bg);
 				}
 			}
 
