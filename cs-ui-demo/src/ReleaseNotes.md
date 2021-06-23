@@ -1,5 +1,34 @@
 # Release Notes
 
+## 1.1.24
+* General
+  * <i>important</i> updated react and npm packages to latest version in cs-ui-components and cs-ui-demo
+  * <i>important</i> switched components and demo to yarn and made use of yarn workspaces
+  * `README` documentation updated
+  * added console warnings for WIP components
+  * removed `@include` inside animation keyframe to fix jsdom parse error when using jest across projects
+* CSCard
+  * added `children` and `padding` props on `CSCardHeader`
+  * changed `title` to be optional prop
+  * style fixes
+* CSDatePicker
+  * changed `selected` prop type from `Date` to `Date | null | undefined`
+  * fixed misplaced arrow icon
+* CSList
+  * added accessibility attributes
+* CSLookup
+  * fixed BUG-07743 by resetting `pageNo` and `moreRecords` state on blur
+  * added `dropdownHeight` and `dropdownWidth` props
+* CSTooltip
+  * fixed warning react `setState` on unmounted component
+* Demo App changes
+  * changed localhost port to 9000
+  * sidebar style updates
+
+## 1.1.23
+
+  * version skipped
+
 ## 1.1.22
 * CSButton
   * fixed initial transparent button styles
