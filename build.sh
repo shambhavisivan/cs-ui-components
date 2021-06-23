@@ -6,14 +6,16 @@ changedFiles () {
 	git diff --name-only HEAD~1
 }
 
+npm install -g yarn;
+
 if changedFiles | grep -q '^cs-ui-components'; then
     echo "Validating CS UI Components"
     cd cs-ui-components;
-    npm ci;
+    yarn;
     echo "Running CS UI Components Lint"
-    npm run lint;
+    yarn lint;
     echo "Building CS UI Components"
-    npm run build;
+    yarn build;
     echo "Finished validating CS UI Components"
     cd ..;
 fi
@@ -21,9 +23,9 @@ fi
 if changedFiles | grep -q '^cs-ui-demo'; then
     echo "Validating CS UI Demo"
     cd cs-ui-demo;
-    npm install --legacy-peer-deps;
+    yarn;
     echo "Running CS UI Demo Lint"
-    npm run lint;
+    yarn lint;
     echo "Finished validating CS UI Demo"
     cd ..;
 fi

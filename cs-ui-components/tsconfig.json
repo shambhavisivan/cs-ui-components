@@ -4,7 +4,7 @@
 		"module": "es6",
 		"declaration": true,
 		"types": [ "node", "webpack-env"],
-		"typeRoots": ["src/typings","../node_modules/@types"],
+		"typeRoots": ["src/typings", "../node_modules/@types"],
 		"outDir": "./dist/",
 		"sourceMap": true,
 		"jsx": "react",

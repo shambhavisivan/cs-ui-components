@@ -3,3 +3,4 @@ declare module 'rc-notification';
 declare module 'date-fns';
 declare module 'uuid';
 declare module 'lodash';
+declare module 'classnames';

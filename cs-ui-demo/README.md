@@ -4,19 +4,11 @@ A showcase and documentation app for the `cs-ui-components` library.
 
 ## Starting the Demo App
 
-1. Make sure you have followed instructions from the `README.md` file in the `cs-ui-components` directory.
-2. Navigate to the current directory (`cs-ui-demo`) in the terminal.
-3. Install or update dependencies by running `npm install`.
-4. Run `npm start` to launch the local version of the Demo App.
-
-If you do not wish to start the Demo App locally, you can access a hosted version of the latest published build [here](https://hvar.cloudsense.com/cs-ui-demo/). Use `cs-ui-demo-rnd` as the username and `c!z4uO&PaRZ2` for the password when prompted.
+See instructions in the `README.md` file in the root directory under the Starting the Demo App section.
 
 ## Available Commands
 
-- `npm start`: Run the app locally.
-- `npm run build`: Compile a static version of the app to the `dist` folder.
-- `npm run lint`: Detect linting errors.
-- `npm run lint -- --fix`: Fix detected linting errors.
+See a list in the `README.md` file in the root directory under the Available Commands / Demo App section.
 
 ## Further Reading
 

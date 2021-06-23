@@ -41,12 +41,12 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 								component: <CSToggle
 									label="This is a label"
 									checked={this.state.checked}
-									onChange={event => this.setState({ checked: event.target.checked })}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
 								/>,
 								code: `<CSToggle
 									label="This is a label"
 									checked={this.state.checked}
-									onChange={event => this.setState({ checked: event.target.checked })}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
 								/>`
 							}
 						]

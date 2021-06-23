@@ -323,12 +323,12 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 								component: <CSInputNumber
 									label="Enter value"
 									value={this.state.value}
-									onChange={value => this.setState({ value })}
+									onChange={(value: any) => this.setState({ value })}
 								/>,
 								code: `<CSInputNumber
 									label="Enter value"
 									value={this.state.value}
-									onChange={value => this.setState({ value })}
+									onChange={(value: any) => this.setState({ value })}
 								/>`
 							}
 						]

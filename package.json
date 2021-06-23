@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "workspaces": [
+    "cs-ui-components",
+    "cs-ui-demo"
+  ],
+  "scripts": {
+    "components": "yarn workspace @cloudsense/cs-ui-components",
+    "demo": "yarn workspace @cloudsense/cs-ui-demo"
+  }
+}

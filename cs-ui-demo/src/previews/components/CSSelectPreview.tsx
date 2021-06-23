@@ -306,7 +306,7 @@ class CSSelectPreview extends React.Component<{}, CSSelectPreviewState> {
 								component: <CSSelect
 									label="Choose amount"
 									value={this.state.value}
-									onChange={value => this.setState({ value })}>
+									onChange={(value: any) => this.setState({ value })}>
 									<option>10</option>
 									<option>20</option>
 									<option>30</option>
@@ -314,7 +314,7 @@ class CSSelectPreview extends React.Component<{}, CSSelectPreviewState> {
 								code: `<CSSelect
 									label="Choose amount"
 									value={this.state.value}
-									onChange={value => this.setState({ value })}
+									onChange={(value: any) => this.setState({ value })}
 								>
 									<option>10</option>
 									<option>20</option>

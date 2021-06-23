@@ -1,7 +1,6 @@
 import CSToast, { CSToastProps } from '../components/CSToast';
-import React, { CSSProperties } from 'react';
+import React from 'react';
 import Notification from 'rc-notification';
-import { NotificationInstance } from '../../node_modules/rc-notification/lib/Notification';
 
 type CSToastPosition = 'top-left' | 'top-right' | 'top-center' | 'bottom-left' | 'bottom-right';
 
@@ -10,61 +9,53 @@ const defaultTop = 24;
 const defaultBottom = 24;
 const defaultDuration = 5;
 const defaultPosition: CSToastPosition = 'top-right';
-const notificationInstancesMap = new Map<CSToastPosition, NotificationInstance>();
+const notificationInstancesMap = new Map<CSToastPosition, typeof Notification>();
 
 const getPosition = (position: CSToastPosition, top: number = defaultTop, bottom: number = defaultBottom) => {
-	let style: CSSProperties;
 	switch (position) {
 		case 'bottom-left':
-			style = {
+			return {
 				left: 0,
 				top: 'auto',
 				bottom
 			};
-			break;
 		case 'bottom-right':
-			style = {
+			return {
 				right: 0,
 				top: 'auto',
 				bottom
 			};
-			break;
 		case 'top-left':
-			style = {
+			return {
 				left: 0,
 				top,
 				bottom: 'auto'
-
 			};
-			break;
 		case 'top-center':
-			style = {
+			return {
 				left: '50%',
 				top,
 				bottom: 'auto',
 				transform: 'translateX(-50%)'
 			};
-			break;
 		default:
-			style = {
+			return {
 				right: 0,
 				top,
 				bottom: 'auto'
 			};
-			break;
 	}
-	return style;
 };
 
-const getNotifInstance = (position: CSToastPosition) => {
+const getNotificationInstance = (position: CSToastPosition) => {
 	return notificationInstancesMap.get(position);
 };
 
-const setNotifInstance = (position: CSToastPosition, notifInstace: NotificationInstance) => {
-	notificationInstancesMap.set(position, notifInstace);
+const setNotificationInstance = (position: CSToastPosition, notificationInstance: typeof Notification) => {
+	notificationInstancesMap.set(position, notificationInstance);
 };
 
-const hasNotifInstance = (position: CSToastPosition) => {
+const hasNotificationInstance = (position: CSToastPosition) => {
 	return notificationInstancesMap.has(position);
 };
 
@@ -73,30 +64,33 @@ export function renderCSToast(props: CSToastProps, position?: CSToastPosition, d
 	const newDuration = duration || duration === null ? duration : defaultDuration;
 	const newPosition = position ? position : defaultPosition;
 
-	const instanceExists = hasNotifInstance(newPosition);
-	let notifInstance: NotificationInstance;
+	const instanceExists = hasNotificationInstance(newPosition);
+	let notificationInstance: typeof Notification;
 
 	if (instanceExists) {
-		notifInstance = getNotifInstance(newPosition);
+		notificationInstance = getNotificationInstance(newPosition);
 	} else {
 		Notification.newInstance(
 			{
 				prefixCls: 'cs-toast-root',
 				style: getPosition(newPosition)
 			},
-			(instance: NotificationInstance) => (notifInstance = instance)
+			(instance: typeof Notification) => (notificationInstance = instance)
 		);
-		setNotifInstance(newPosition, notifInstance);
+		setNotificationInstance(newPosition, notificationInstance);
 	}
-	notifInstance.notice ({
-		content: <CSToast
-					{...props}
-					onClose={() => notifInstance.removeNotice(key)}
-					className={`cs-toast-notice-${newPosition}`}
-				/>,
+	notificationInstance.notice ({
+		content: (
+			<CSToast
+				{...props}
+				onClose={() => notificationInstance.removeNotice(key)}
+				className={`cs-toast-notice-${newPosition}`}
+			/>
+		),
 		duration: newDuration,
 		key
 	});
+
 	counter++;
 }
 

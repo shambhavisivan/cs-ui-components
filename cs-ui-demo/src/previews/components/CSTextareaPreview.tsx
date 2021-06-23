@@ -221,12 +221,12 @@ class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
 								component: <CSTextarea
 									label="Enter message"
 									value={this.state.value}
-									onChange={event => this.setState({ value: event.target.value })}
+									onChange={(event: any) => this.setState({ value: event.target.value })}
 								/>,
 								code: `<CSTextarea
 									label="Enter message"
 									value={this.state.value}
-									onChange={event => this.setState({ value: event.target.value })}
+									onChange={(event: any) => this.setState({ value: event.target.value })}
 								/>`
 							}
 						]
