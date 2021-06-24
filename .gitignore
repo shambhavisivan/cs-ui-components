@@ -38,3 +38,8 @@ yarn-error.log*
 /cs-grid/fonts
 /cs-grid/coverage
 
+# cs-ui-demo
+# CRA generates the .d.ts file redundantly
+# The declaration is already defined in modules.d.ts
+# Should be removed after React addresses this issue
+/cs-ui-demo/src/react-app-env.d.ts
