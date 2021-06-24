@@ -31,6 +31,8 @@ interface CSLookupCommmonProps {
 	borderRadius?: string;
 	className?: string;
 	disabled?: boolean;
+	dropdownHeight?: string;
+	dropdownWidth?: string;
 	error?: boolean;
 	errorMessage?: CSFieldErrorMsgType;
 	fieldToBeDisplayed: string;
@@ -672,6 +674,8 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			label,
 			labelHidden,
 			labelTitle,
+			dropdownHeight,
+			dropdownWidth,
 			loading,
 			lookupColumns,
 			minTermLength,
@@ -747,7 +751,8 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 		const lookupDropdownStyle: CSSProperties = {
 			...this.state.computedDropdownStyle,
-			'--cs-lookup-input-width': lookupInputWidth ? lookupInputWidth + 'px' : ''
+			'--cs-lookup-input-width': lookupInputWidth ? lookupInputWidth + 'px' : '',
+			'--cs-lookup-dropdown-width': dropdownWidth
 		};
 
 		const minTermLengthNode = (
@@ -958,7 +963,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 										))}
 									</CSTableHeader>
 								}
-								<CSTableBody maxHeight={calcTableBodyMaxHeight()}>
+								<CSTableBody maxHeight={dropdownHeight ?? calcTableBodyMaxHeight()}>
 									{renderDropdownTableBody()}
 									{fetchingMode === 'after-scroll' &&
 										loadingNode

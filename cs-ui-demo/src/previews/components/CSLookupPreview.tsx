@@ -263,6 +263,52 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 							}
 						]
 					}, {
+						propName: 'dropdownHeight',
+						variations: [
+							{
+								primaryVariants: 'dropdownHeight="5rem"',
+								component: <CSLookup
+									fieldToBeDisplayed="Account"
+									label="Account"
+									lookupOptions={sampleLookup.data}
+									lookupColumns={sampleLookup.columns}
+									mode="client"
+									dropdownHeight="5rem"
+								/>,
+								code: `<CSLookup
+									fieldToBeDisplayed="Account"
+									label="Account"
+									lookupOptions={sampleLookup.data}
+									lookupColumns={sampleLookup.columns}
+									mode="client"
+									dropdownHeight="5rem"
+								/>`
+							}
+						]
+					}, {
+						propName: 'dropdownWidth',
+						variations: [
+							{
+								primaryVariants: 'dropdownWidth="10rem"',
+								component: <CSLookup
+									fieldToBeDisplayed="Account"
+									label="Account"
+									lookupOptions={sampleLookup.data}
+									lookupColumns={sampleLookup.columns}
+									mode="client"
+									dropdownWidth="10rem"
+								/>,
+								code: `<CSLookup
+									fieldToBeDisplayed="Account"
+									label="Account"
+									lookupOptions={sampleLookup.data}
+									lookupColumns={sampleLookup.columns}
+									mode="client"
+									dropdownWidth="10rem"
+								/>`
+							}
+						]
+					}, {
 						propName: 'error',
 						alert: {
 							variant: 'info',
@@ -858,6 +904,14 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 						types: 'boolean',
 						default: 'false',
 						description: 'Disable the lookup.'
+					}, {
+						name: 'dropdownHeight',
+						types: 'string',
+						description: 'Set height of lookup dropdown.'
+					}, {
+						name: 'dropdownWidth',
+						types: 'string',
+						description: 'Set width of lookup dropdown.'
 					}, {
 						name: 'error',
 						types: 'boolean',
