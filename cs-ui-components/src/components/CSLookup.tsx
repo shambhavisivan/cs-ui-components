@@ -146,7 +146,6 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	}
 
 	componentDidMount() {
-		console.warn('CSLookup is under construction and should not be used.');
 		if (this.props.mode === 'client') {
 			this.setState({ dropdownValues: this.props.lookupOptions });
 		}

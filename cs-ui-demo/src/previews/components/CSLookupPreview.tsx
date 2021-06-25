@@ -80,10 +80,6 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 	getDoc = () => ({
 		name: 'Lookup',
 		usage: 'Lookup is an autocomplete combobox that will search against a database object.',
-		alerts: {
-			variant: 'warning',
-			text: 'This component is under construction and should not be used.'
-		},
 		accessible: 'partially',
 		components: [
 			{
