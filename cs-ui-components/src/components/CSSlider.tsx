@@ -86,6 +86,7 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 	}
 
 	componentDidMount() {
+		console.warn('CSSlider is under construction and should not be used.');
 		this.stepsIcons();
 		this.stepValuesIcons();
 		this.setState({});

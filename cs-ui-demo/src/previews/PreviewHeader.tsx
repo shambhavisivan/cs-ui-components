@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { CSAlert, CSAlertVariant, CSIcon } from '@cloudsense/cs-ui-components';
 import { PreviewInterface, AlertInterface } from './types';
 
@@ -23,12 +23,6 @@ const PreviewHeader: React.FC<PreviewInterface> = ({
 		accessibilityStatus.color = '#ffa429';
 		accessibilityStatus.description = 'Partially accessible';
 	}
-
-	useEffect(() => {
-		if (accessible !== 'yes') {
-			console.warn('This component is under construction and should not be used.');
-		}
-	}, [accessible]);
 
 	const getAlerts = () => {
 		if (!alerts) {

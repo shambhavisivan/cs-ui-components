@@ -13,11 +13,14 @@ export interface CSListProps {
 }
 
 class CSList extends React.Component<CSListProps> {
-
 	public static defaultProps = {
 		variant: 'simple-list',
 		size: 'medium'
 	};
+
+	componentDidMount() {
+		console.warn('CSList is under construction and should not be used.');
+	}
 
 	render() {
 		const {

@@ -72,6 +72,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 	}
 
 	componentDidMount() {
+		console.warn('CSCustomSelect is under construction and should not be used.');
 		document.addEventListener('click', this.handleOutsideClick);
 		if (this.props.value) {
 			this.setDefaultOptions();

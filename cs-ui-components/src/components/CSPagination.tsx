@@ -25,6 +25,9 @@ class CSPagination extends React.Component<CSPaginationProps> {
 		super(props);
 		// this.state = { pager: {} };
 	}
+	componentDidMount() {
+		console.warn('CSPagination is under construction and should not be used.');
+	}
 
 	// componentWillMount() {
 	// 	// set page if items array isn't empty
