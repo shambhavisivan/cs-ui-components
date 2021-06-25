@@ -37,7 +37,7 @@ const PreviewHeader: React.FC<PreviewInterface> = ({
 		if (!Array.isArray(alerts)) {
 			return (
 				<CSAlert
-					variant={alerts.variant as typeof CSAlertVariant}
+					variant={alerts.variant as CSAlertVariant}
 					text={alerts.text}
 					styleFormat="scoped"
 				/>
@@ -46,7 +46,7 @@ const PreviewHeader: React.FC<PreviewInterface> = ({
 		return alerts.map((alert: AlertInterface, alertIndex: number) => (
 			<CSAlert
 				key={alertIndex}
-				variant={alert.variant as typeof CSAlertVariant}
+				variant={alert.variant as CSAlertVariant}
 				text={alert.text}
 				styleFormat="scoped"
 			/>

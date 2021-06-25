@@ -38,7 +38,7 @@ const PreviewExamples: React.FC<PreviewInterface> = ({ components }) => (
 								)}
 								{example.alert && (
 									<CSAlert
-										variant={example.alert.variant as typeof CSAlertVariant}
+										variant={example.alert.variant as CSAlertVariant}
 										text={example.alert.text}
 										styleFormat="scoped"
 									/>
