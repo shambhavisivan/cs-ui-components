@@ -75,6 +75,7 @@
 
 		.react-datepicker__triangle {
 			left: 2rem !important;
+			transform: none !important;
 			@include css4 {
 				border-bottom-color: cvar(--cs-datepicker-bg);
 			}
