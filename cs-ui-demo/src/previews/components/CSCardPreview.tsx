@@ -310,15 +310,26 @@ class CSCardPreview extends React.Component {
 								</CSCard>`
 							}
 						]
+					}, {
+						propName: 'title',
+						variations: [
+							{
+								component: <CSCard>
+									<CSCardHeader title="This is a title" />
+									<CSCardBody>Card Body</CSCardBody>
+									<CSCardFooter>Card Footer</CSCardFooter>
+								</CSCard>,
+								code: `<CSCard>
+									<CSCardHeader title="This is a title" />
+									<CSCardBody>Card Body</CSCardBody>
+									<CSCardFooter>Card Footer</CSCardFooter>
+								</CSCard>`
+							}
+						]
 					}
 				],
 				properties: [
 					{
-						name: 'title',
-						required: true,
-						types: 'string',
-						description: 'Set a title for the card header.'
-					}, {
 						name: 'collapsible',
 						types: 'boolean',
 						default: 'false',
@@ -358,6 +369,10 @@ class CSCardPreview extends React.Component {
 						types: 'boolean',
 						default: 'true',
 						description: 'Hide the border beneath the card header.'
+					}, {
+						name: 'title',
+						types: 'string',
+						description: 'Set a title for the card header.'
 					}, {
 						name: 'id',
 						types: 'string',

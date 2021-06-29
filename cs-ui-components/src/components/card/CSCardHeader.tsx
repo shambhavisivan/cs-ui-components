@@ -15,7 +15,7 @@ export interface CSCardHeaderProps {
 	id?: string;
 	padding?: string;
 	showBorder?: boolean;
-	title: string;
+	title?: string;
 }
 
 export interface CSCardHeaderState {
