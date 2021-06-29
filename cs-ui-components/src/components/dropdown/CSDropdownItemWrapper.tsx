@@ -2,7 +2,6 @@ import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 import withCSUnmountDelay from '../../helpers/CSUnmountDelay';
 import KeyCode from '../../util/KeyCode';
-import CSButton from '../CSButton';
 import CSDivider from '../CSDivider';
 
 import {
@@ -15,6 +14,7 @@ export interface CSDropdownItemWrapperProps {
 	align: CSDropdownAlign;
 	animated: boolean;
 	children?: any;
+	dropdownClassName?: string;
 	forwardRef?: any;
 	hover?: boolean;
 	maxHeight?: string;
@@ -113,6 +113,7 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 			align,
 			animated,
 			children,
+			dropdownClassName,
 			forwardRef,
 			hover,
 			maxHeight,
@@ -129,6 +130,7 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 		const btnDropdownOuterItemWrapperClasses = classNames(
 			'cs-dropdown-outer-item-wrapper',
 			{
+				[`${dropdownClassName}`]: dropdownClassName,
 				'cs-dropdown-hidden': !(visible && mounted) && animated,
 				'cs-dropdown-hover': hover,
 				[`cs-dropdown-${position}-${align}`]: position && align && hover

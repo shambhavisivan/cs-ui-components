@@ -21,6 +21,7 @@ export interface CSDropdownProps {
 	btnType?: CSDropdownType;
 	className?: string;
 	disabled?: boolean;
+	dropdownClassName?: string;
 	hover?: boolean;
 	iconName?: string;
 	iconOrigin?: CSIconOrigin;
@@ -232,6 +233,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 			children,
 			className,
 			disabled,
+			dropdownClassName,
 			hover,
 			iconName,
 			iconOrigin,
@@ -300,6 +302,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 					{this.state.computedDropdownStyle &&
 						<Portal node={document && document.getElementById(this.dropdownId)}>
 							<CSDropdownItemWrapper
+								dropdownClassName={dropdownClassName}
 								maxHeight={maxHeight}
 								maxWidth={maxWidth}
 								mode={mode}

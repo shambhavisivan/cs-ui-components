@@ -166,6 +166,23 @@ class CSDropdownPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'dropdownClassName',
+						variations: [
+							{
+								primaryVariants: [
+									'dropdownClassName="custom-class"'
+								],
+								component: <CSDropdown dropdownClassName="custom-br-mint">
+									<CSButton label="Button 1" />
+									<CSButton label="Button 2 with more content" />
+								</CSDropdown>,
+								code: `<CSDropdown dropdownClassName="custom-br-mint">
+									<CSButton label="Button 1" />
+									<CSButton label="Button 2 with more content" />
+								</CSDropdown>`
+							}
+						]
+					}, {
 						propName: 'hover',
 						variations: [
 							{
@@ -642,6 +659,10 @@ class CSDropdownPreview extends React.Component {
 						default: 'false',
 						description: 'Disable the dropdown.'
 					}, {
+						name: 'dropdownClassName',
+						types: 'string',
+						description: 'Apply custom CSS classes to the dropdown wrapper.'
+					}, {
 						name: 'hover',
 						types: 'boolean',
 						default: 'false',
@@ -746,7 +767,7 @@ class CSDropdownPreview extends React.Component {
 					}, {
 						name: 'className',
 						types: 'string',
-						description: 'Apply custom CSS classes to the dropdown.'
+						description: 'Apply custom CSS classes to the dropdown button wrapper.'
 					}, {
 						name: 'children',
 						customTypes: {
