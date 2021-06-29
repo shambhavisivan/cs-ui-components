@@ -41,7 +41,6 @@ export interface CSTableProps {
 	 * @param row Row data to render
 	 */
 	renderGroupingRow?(row: CSTableData): ReactElement;
-
 }
 
 /**
@@ -185,7 +184,7 @@ export const CSTable: React.FC<CSTableProps> = props => {
 		}
 
 		const sortArrow =
-			col.name.toString().length !== 0 && col.name !== '__Actions' ? (
+			col.name.toString().length !== 0 && !col.name.startsWith('__') ? (
 				<div className={sortArrowStyle} />
 			) : (
 				''
@@ -194,13 +193,13 @@ export const CSTable: React.FC<CSTableProps> = props => {
 			'column-sortable':
 				props.isTableSortable &&
 				col.name.toString().length !== 0 &&
-				col.name !== '__Actions'
+				!col.name.startsWith('__')
 		});
 		return (
 			<th
 				className={theaderClasses}
 				onClick={() => {
-					if (props.isTableSortable) {
+					if (props.isTableSortable && !col.name.startsWith('__')) {
 						handleSortStateChange(col.name);
 					}
 				}}
@@ -255,13 +254,15 @@ export const CSTable: React.FC<CSTableProps> = props => {
 					}
 					key={row.id}
 				>
-				{props.cols.map(col => renderGroupExpansionCell(col, row))}
-				<td colSpan={props.cols.length - 1} className="cs-table-cell">
-					{props.renderGroupingRow ? props.renderGroupingRow(row.data) : row.id}
-				</td>
-			</tr>);
-		}
-		else {
+					{props.cols.map(col => renderGroupExpansionCell(col, row))}
+					<td colSpan={props.cols.length - 1} className="cs-table-cell">
+						{props.renderGroupingRow
+							? props.renderGroupingRow(row.data)
+							: row.id}
+					</td>
+				</tr>
+			);
+		} else {
 			return (
 				<tr
 					className={
