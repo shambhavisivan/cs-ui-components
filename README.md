@@ -29,6 +29,15 @@ If you do not wish to start the Demo App locally, you can access a hosted versio
 
 For instructions on how to use the Demo App once you've started it, you can refer to the `GettingStarted.md` file in the `src` folder or visit the Getting Started tab within the app itself.
 
+## Local Testing in Products
+
+If you need to hook up a local version or a local commit of the components to a product, follow these instructions:
+1. Clone the product repository inside the root directory (here).
+2. Remove `@cloudsense/cs-ui-components` from the dependency list in the product's `package.json` file.
+3. Follow the instructions for running the product locally (this step will almost certainly include running either `npm install` or `yarn` in the product).
+- _Note: This will make use of default Node package resolution by automatically linking any imported components to the local `cs-ui-components` library._
+- _If you need to test another non-yarn package inside this repository, you can skip step 1._
+
 ## Available Commands
 
 Make sure you are running `node v12.x.x` and are using `yarn v1.22.x` as your package manager.
