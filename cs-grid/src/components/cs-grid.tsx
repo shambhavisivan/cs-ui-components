@@ -239,7 +239,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 
 	convertRowDataToLegacyRow = (records: Array<RowData>): Array<Row> => {
 		return records.map((record, rowNumber) => {
-			const isAlreadyLegacy = Object.values(record).some(s => s.cellValue !== undefined);
+			const isAlreadyLegacy = Object.values(record).some(s => s && s.cellValue !== undefined);
 			if (isAlreadyLegacy) {
 				return record;
 			} else {
@@ -1076,8 +1076,8 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 					columnDef.sort === 'SORT_ASC'
 						? 'asc'
 						: columnDef.sort === 'SORT_DESC'
-						? 'desc'
-						: '';
+							? 'desc'
+							: '';
 			}
 
 			this.addIfDefined(agGridColDef, 'width', columnDef.width);
