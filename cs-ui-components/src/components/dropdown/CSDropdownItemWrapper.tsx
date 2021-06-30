@@ -165,7 +165,6 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 							{React.cloneElement(
 								child,
 								{
-									onKeyDown: this.handleKeyDown,
 									role: 'menuitem'
 								}
 							)}
@@ -186,6 +185,7 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 					role="menu"
 					style={dropdownItemWrapperStyle}
 					ref={this.dropdownUListRef}
+					onKeyDown={this.handleKeyDown}
 				>
 					{childrenWithWrapper}
 				</ul>
