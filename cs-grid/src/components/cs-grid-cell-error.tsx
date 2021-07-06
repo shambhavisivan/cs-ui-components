@@ -1,7 +1,4 @@
-import { CSTooltip } from '@cloudsense/cs-ui-components';
-// TODO: needs exposing in cs-ui-components.
-// tslint:disable-next-line: no-submodule-imports
-import { CSTooltipPosition } from '@cloudsense/cs-ui-components/dist/src/components/CSTooltip';
+import { CSTooltip, CSTooltipPosition } from '@cloudsense/cs-ui-components';
 import React from 'react';
 
 export interface CSGridCellErrorProps {

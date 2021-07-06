@@ -1,8 +1,6 @@
 import React from 'react';
 
-import { CSIcon, CSTooltip } from '@cloudsense/cs-ui-components';
-// tslint:disable-next-line: no-submodule-imports
-import { CSTooltipVariant } from '@cloudsense/cs-ui-components/dist/src/components/CSTooltip';
+import { CSIcon, CSTooltip, CSTooltipVariant } from '@cloudsense/cs-ui-components';
 import {
 	CSGridCellRendererProps,
 	Icon,
