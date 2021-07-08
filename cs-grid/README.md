@@ -16,6 +16,12 @@ Besides the standard set of features you'd expect from any grid cs-grid includes
 
 Release Notes
 ------------------
+####1.2.62
+* Removed submodule imports from cs-ui-components
+* Fixed Multiselect Lookup not opening editor mode with keyboard
+* Lookup - prevented horizontal scroll on ArrowLeft key
+* BUG-07826: Added check for null values
+* Changed all sass variables to css variables
 ####1.2.61
 * When clearing a value on the date renderer then focusing on another cell, focus will no longer return to the date renderer.
 * Multi-select lookup dropdown no longer closes after each selection.
