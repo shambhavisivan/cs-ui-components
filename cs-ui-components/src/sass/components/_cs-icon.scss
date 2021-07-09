@@ -4,13 +4,6 @@
 	min-width: var(--cs-icon-size, 1rem);
 	transform: rotate(var(--cs-icon-rotate, 0deg));
 	@include sf(--cs-icon-c);
-
-	&.cs-icon-spin {
-		animation-name: spin;
-		animation-duration: 4000ms;
-		animation-iteration-count: infinite;
-		animation-timing-function: linear;
-	}
 }
 
 .cs-icon-frame {
@@ -29,4 +22,12 @@
 		min-width: 65%;
 		@include sf(--cs-icon-frame-c);
 	}
+}
+
+.cs-icon.cs-icon-spin,
+.cs-icon-frame.cs-icon-spin {
+	animation-name: spin;
+	animation-duration: 4000ms;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
 }

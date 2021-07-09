@@ -35,7 +35,7 @@ class CSIcon extends React.Component<CSIconProps> {
 		} = this.props;
 
 		const styleClass = classNames(
-			'cs-icon',
+			frame ? 'cs-icon-frame' : 'cs-icon',
 			{
 				'cs-icon-spin': spin,
 				[`${className}`]: className
@@ -56,14 +56,14 @@ class CSIcon extends React.Component<CSIconProps> {
 			<>
 				{frame ? (
 					<div
-						className="cs-icon-frame"
+						className={styleClass}
 						style={style}
 						id={id}
 						title={title}
 						{...rest}
 					>
 						<svg
-							className={styleClass}
+							className="cs-icon"
 							aria-hidden="true"
 						>
 							<use href={`#${prefix}${name}`} />
