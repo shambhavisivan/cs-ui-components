@@ -1,33 +1,68 @@
-/* RESET FILE - TEMPLATE TO RE-USE ON OTHER PROJECTS */
+/* RESET & SALESFORCE ORG STYLES OVERRIDES */
 
 /* SF DIFFERENCES */
 
 /* LIGHTNING SF */
 // html classes: ext-strict
-// body classes: sfdcBody brandQuaternaryBgr slds-vf-scope  ext-webkit ext-chrome
-// HTML Structure: body.sfdcBody > div.CScontainer
+// body classes: sfdcBody brandQuaternaryBgr slds-vf-scope ext-webkit ext-chrome
+// HTML Structure: body.sfdcBody > div.CScontainer (or span id="SCEditorReact") > app-root
 
 /* CLASSIC SF */
 // html classes: ext-strict
-// body classes: hasMotif homeTab  sfdcBody brandQuaternaryBgr  ext-webkit ext-chrome
+// body classes: hasMotif homeTab sfdcBody brandQuaternaryBgr ext-webkit ext-chrome
 // HTML Structure: body.sfdcBody > div#contentWrapper > div.bodyDiv > table.outerNoSidebar > tbody > tr > span > app-root
 
+/* LIGHTNING SF (Applies to classic SF as well, but this code is overriden with different classic only styles) */
+html.ext-strict {
+	position: relative;
+	min-height: 100%;
+	background: var(--cs-main-bg);
+	body.sfdcBody {
+		padding: 0;
+		/* Parent div of .cs-app-wrapper should be app root div with id="root" or id="<application_acronym>", that div needs to have height: 100% added in app styles */
+		.cs-app-wrapper {
+			min-height: 100vh; // Needed for lightning SF, app should stretch to at least available screen size
+			height: 100%;
+		}
+	}
+}
+
 /* CLASSIC SF ONLY */
+html.ext-strict body.hasMotif {
+	min-height: 100vh;
+	height: auto; // SF Body has blue gradient background that needs to stretch full height, not only screen height (100% or 100vh)
+	margin: 0;
+	padding: 0 10px;
+	.cs-app-wrapper {
+		min-height: calc(100vh - 110px - 55px - 3px); // screen height - sf header - sf footer - borders. When app does not have enough content it should stretch to at least available screen size
+	}
+}
 #contentWrapper {
 	min-width: 0;
-}
-.outer td.oRight {
-	padding: 0;
+	.bodyDiv {
+		height: 100%;
+		#bodyTable {
+			height: 100%;
+		}
+		.outer td.oRight,
+		.outerNoSidebar,
+		.noSidebarCell,
+		.sidebarCell .fixed {
+			padding: 0;
+		}
+	}
 }
 .sidebarCollapsible.sidebarCollapsed {
 	padding: 9px 0 0 0;
 }
-.noSidebarCell, .sidebarCell .fixed {
+.noSidebarCell,
+.sidebarCell .fixed {
 	padding: 10px;
 }
 .zen .zen-moreTabs ul {
 	z-index: var(--z-index-reset-zen-more-tabs-ul);
 }
+/* END OF CLASSIC SF ONLY */
 
 /* CSS reset */
 .cs-app-wrapper,
@@ -48,7 +83,7 @@
 			margin-left: 0;
 		}
 	}
-	@at-root h1, h2, h3, h4, h5, h6 {
+	h1, h2, h3, h4, h5, h6 {
 		margin: 0;
 		padding: 0;
 		font-weight: $font-weight-normal;

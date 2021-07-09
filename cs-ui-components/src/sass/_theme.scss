@@ -62,6 +62,7 @@ $css4: true;
 // It is necessary to define the variables in sass map instead of :root, for compatibility reasons.
 $variables: (
 	--cs-main-c: $cs-blue-sf,
+	--cs-main-bg: $cs-white,
 
 	--cs-icon-c: $cs-gray-dark-5,
 	--cs-icon-frame-c: $cs-white,
