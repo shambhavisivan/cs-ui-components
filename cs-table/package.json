@@ -1,6 +1,6 @@
 {
 	"name": "@cloudsense/cs-table",
-	"version": "1.0.0-alpha-17",
+	"version": "1.0.0-alpha-18",
 	"scripts": {
 		"test": "cross-env NODE_ICU_DATA=node_modules/full-icu jest",
 		"build": "npm run lint && rollup -c",
