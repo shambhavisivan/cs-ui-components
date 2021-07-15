@@ -2,8 +2,6 @@ import moment from 'moment';
 // tslint:disable-next-line: no-submodule-imports
 import 'moment/min/locales';
 import React from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 import { CSGridCellEditorProps, DateTimeProps } from '../interfaces/cs-grid-cell-props';
 
 import {
@@ -15,20 +13,22 @@ import {
 	createLocale,
 	dateFormat,
 	dateTimeFormat,
-	formatLocale,
 	timeFormat
 } from '../utils/cs-grid-date-helper';
+import { CSDateTimePicker } from '@cloudsense/cs-ui-components';
+import KeyCode from '../utils/cs-grid-keycode';
 
 /**
  * A cell editor that displays a date time picker.
  */
 export class CSGridDateTimeEditor
 	extends React.Component<
-		CSGridCellEditorProps<string> & DateTimeProps,
-		CSGridCellEditorState<string>
+	CSGridCellEditorProps<string> & DateTimeProps,
+	CSGridCellEditorState<string>
 	>
 	implements CSGridCellEditor {
 	private divRef: React.RefObject<HTMLDivElement>;
+	private localeFormat = `${moment.localeData().longDateFormat('L').toLowerCase().replace(new RegExp('m', 'g'), 'M')} ${timeFormat}`;
 
 	constructor(props: CSGridCellEditorProps<string>) {
 		super(props);
@@ -78,7 +78,6 @@ export class CSGridDateTimeEditor
 				formattedDateTime
 			);
 		}
-
 		this.setState({ value }, () => {
 			// The event is only present for date selection, not for time selection.
 			if (!event) {
@@ -87,12 +86,19 @@ export class CSGridDateTimeEditor
 		});
 	};
 
+	onKeyDown = (event: any) => {
+		if (event.key === KeyCode.Enter || event.key === KeyCode.Escape) {
+			setTimeout(() => {
+				this.props.stopEditing();
+			}, 0);
+		}
+	}
+
 	render() {
 		let date: Date = null;
 		if (this.state.value?.cellValue) {
-			date = moment(this.state.value.cellValue, dateTimeFormat).toDate();
+			date = moment(this.state.value.cellValue).toDate();
 		}
-		const formattedDate = formatLocale(date, 'DateTime');
 		const placeholderText = 'Click to select a date';
 
 		let openToDate: Date;
@@ -102,23 +108,30 @@ export class CSGridDateTimeEditor
 
 		return (
 			<div className='date-attribute' ref={this.divRef}>
-				<DatePicker
+				<CSDateTimePicker
 					selected={date}
 					onChange={this.onChange}
 					isClearable={true}
-					placeholderText={placeholderText}
+					placeholder={placeholderText}
 					showMonthDropdown={true}
 					showYearDropdown={true}
 					dropdownMode='select'
-					inline={true}
-					value={formattedDate}
 					locale={createLocale(this.props.userInfo.dateLocale)}
-					showTimeSelect={true}
 					timeFormat={timeFormat}
 					timeIntervals={this.props.timeInterval || 5}
 					timeCaption={this.props.userInfo.dateLocale?.timeCaption ?? 'Time'}
-					dateFormat={dateTimeFormat}
+					dateFormat={this.localeFormat}
 					openToDate={openToDate}
+					onKeyDown={this.onKeyDown}
+					ref={ref => {
+						if (ref) {
+							setTimeout(() => {
+								if (ref.datepickerRef.current) {
+									ref.datepickerRef.current.setFocus();
+								}
+							}, 20);
+						}
+					}}
 				/>
 			</div>
 		);

@@ -1,5 +1,5 @@
 /**
- * Defines the React 16 Adapter for Enzyme. 
+ * Defines the React 16 Adapter for Enzyme.
  */
 import enzyme from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
@@ -14,7 +14,7 @@ const globalAny: any = global;
 globalAny.document = dom.window.document;
 globalAny.window = dom.window;
 
-Object.defineProperty(global, 'crypto', {
+Object.defineProperty(global.self, 'crypto', {
 	value: {
 		getRandomValues: (arr: any) => crypto.randomBytes(arr.length)
 	}

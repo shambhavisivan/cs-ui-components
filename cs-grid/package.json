@@ -53,8 +53,7 @@
 		"jsdom": "^16.1.0",
 		"keycode-js": "^2.0.3",
 		"lodash": "4.17.20",
-		"moment": "^2.25.3",
-		"react-datepicker": "^2.8.0"
+		"moment": "^2.25.3"
 	},
 	"devDependencies": {
 		"@babel/core": "7.4.4",
@@ -62,7 +61,7 @@
 		"@babel/plugin-proposal-function-bind": "7.2.0",
 		"@babel/preset-env": "^7.5.5",
 		"@babel/preset-react": "7.0.0",
-		"@cloudsense/cs-ui-components": "^1.1.19",
+		"@cloudsense/cs-ui-components": "1.1.25",
 		"@types/classnames": "^2.2.11",
 		"@types/enzyme": "^3.10.3",
 		"@types/enzyme-adapter-react-16": "^1.0.5",
@@ -70,7 +69,6 @@
 		"@types/jsdom": "^12.2.4",
 		"@types/lodash": "^4.14.162",
 		"@types/react": "^16.8.23",
-		"@types/react-datepicker": "^2.8.1",
 		"@types/react-dom": "^16.8.4",
 		"@types/webpack-env": "^1.13.9",
 		"awesome-typescript-loader": "^5.2.1",
@@ -110,7 +108,7 @@
 		"webpack-dev-server": "^3.11.0"
 	},
 	"peerDependencies": {
-		"@cloudsense/cs-ui-components": "^1.1.19",
+		"@cloudsense/cs-ui-components": "^1.1.25",
 		"react": "^16.8.6",
 		"react-dom": "^16.8.6"
 	}

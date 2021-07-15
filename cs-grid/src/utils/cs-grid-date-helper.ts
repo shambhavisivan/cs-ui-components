@@ -53,7 +53,7 @@ export function createLocale(dateLocale?: DateLocale): any {
 
 export const dateFormat: string = 'YYYY-MM-DD';
 export const timeFormat: string = 'HH:mm';
-export const dateTimeFormat: string = `${dateFormat} ${timeFormat}`;
+export const dateTimeFormat: string = `yyyy-MM-DD ${timeFormat}`;
 
 export const defaultDateLocale: DateLocale = {
 	daysInFirstWeek: 7,

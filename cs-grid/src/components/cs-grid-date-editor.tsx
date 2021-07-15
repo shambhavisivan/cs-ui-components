@@ -1,26 +1,24 @@
-import classNames from 'classnames';
 import moment from 'moment';
 // tslint:disable-next-line: no-submodule-imports
 import 'moment/min/locales';
 import React, { ChangeEvent } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 import { CSGridCellEditorProps, DateProps } from '../interfaces/cs-grid-cell-props';
-
+import { CSDatepicker } from '@cloudsense/cs-ui-components';
 import {
 	CellData,
 	CSGridCellEditor,
 	CSGridCellEditorState
 } from '../interfaces/cs-grid-base-interfaces';
-import { createLocale, dateFormat, formatLocale } from '../utils/cs-grid-date-helper';
+import { createLocale, dateFormat } from '../utils/cs-grid-date-helper';
+import KeyCode from '../utils/cs-grid-keycode';
 
 /**
  * A cell editor that displays a date picker.
  */
 export class CSGridDateEditor
 	extends React.Component<
-		CSGridCellEditorProps<string> & DateProps,
-		CSGridCellEditorState<string> & { inputValue?: string }
+	CSGridCellEditorProps<string> & DateProps,
+	CSGridCellEditorState<string> & { inputValue?: string }
 	>
 	implements CSGridCellEditor {
 	private divRef: React.RefObject<HTMLDivElement>;
@@ -60,14 +58,13 @@ export class CSGridDateEditor
 		return true;
 	};
 
-	onChange = async (date: Date): Promise<void> => {
+	onSelect = async (date: Date): Promise<void> => {
 		const formattedDate = date ? moment(date).format(dateFormat) : '';
 
 		let value: CellData<string> = {
 			cellValue: formattedDate,
 			errorMessage: this.state.value?.errorMessage
 		};
-
 		this.setState({ value, inputValue: this.convertToInputValue(formattedDate) });
 		if (this.props.onChange) {
 			value = await this.props.onChange(
@@ -79,11 +76,33 @@ export class CSGridDateEditor
 		}
 	};
 
-	onCalendarClose = () => {
-		this.setState({ value: this.state.value }, () => {
-			this.props.stopEditing();
-		});
-	};
+	/*
+		Fires only when date is null.
+		Date will be null when whole input value is cleared or
+		when date is cleared by clicking clear button.
+		Otherwise onSelect will be called when selecting new date,
+		or onTextInputChange when date is changed by changing input value.
+	*/
+	onChange = (date: Date) => {
+		if (!date) {
+			this.onSelect(date);
+		}
+	}
+
+	onKeyDown = (event: any) => {
+		if (event.key === KeyCode.Enter) {
+			setTimeout(() => {
+				this.props.stopEditing();
+			}, 0);
+		}
+	}
+
+	/* causes problems with clearing date by clicking on clear button. */
+	// onCalendarClose = () => {
+	// 	this.setState({ value: this.state.value }, () => {
+	// 		this.props.stopEditing();
+	// 	});
+	// };
 
 	convertToInputValue = (date?: string) => {
 		if (date) {
@@ -126,11 +145,6 @@ export class CSGridDateEditor
 			: null;
 		const placeholderText = 'Click to select a date';
 
-		const dateInputClasses = classNames('date-attribute-input', {
-			'date-attribute-input-invalid': !this.convertInputValueToMoment(
-				this.state.inputValue
-			)?.isValid()
-		});
 		let openToDate: Date;
 		if (this.props.getOpenToDate && (!this.state.value || !this.state.value.cellValue)) {
 			openToDate = moment(this.props.getOpenToDate(this.props.node.id), dateFormat).toDate();
@@ -138,31 +152,35 @@ export class CSGridDateEditor
 
 		return (
 			<div className='date-attribute' ref={this.divRef}>
-				{this.props.textInputFormat && (
-					<input
-						ref={ref => {
-							if (ref) {
-								setTimeout(() => ref.focus(), 0);
-							}
-						}}
-						type='text'
-						value={this.state.inputValue}
-						className={dateInputClasses}
-						onChange={this.onTextInputChange}
-					/>
-				)}
-				<DatePicker
+				<CSDatepicker
+					label='datepicker'
+					labelHidden={true}
 					selected={selectedDate}
+					onSelect={this.onSelect}
 					onChange={this.onChange}
 					isClearable={true}
-					placeholderText={placeholderText}
+					borderRadius="0"
+					placeholder={placeholderText}
 					showMonthDropdown={true}
 					showYearDropdown={true}
-					inline={true}
 					dropdownMode='select'
-					onCalendarClose={this.onCalendarClose}
+					// onCalendarClose={this.props.stopEditing}
+					onKeyDown={this.onKeyDown}
 					locale={createLocale(this.props.userInfo.dateLocale)}
 					openToDate={openToDate}
+					inline={!this.props.textInputFormat ? true : false}
+					ref={(ref: any) => {
+						if (ref) {
+							setTimeout(() => {
+								if (ref.datepickerRef.current) {
+									ref.datepickerRef.current.setFocus();
+								}
+							}, 20);
+						}
+					}}
+					error={!this.convertInputValueToMoment(this.state.inputValue)?.isValid()}
+					onChangeRaw={this.onTextInputChange}
+					value={this.state.inputValue}
 				/>
 			</div>
 		);

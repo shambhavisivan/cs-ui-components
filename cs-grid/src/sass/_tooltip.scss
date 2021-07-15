@@ -27,13 +27,7 @@
 
 // Date field styles
 .cs-grid_cell-content-date .cs-tooltip-wrapper.cs-grid_cell-tooltip {
-	// Accounting for clear icon
-	width: calc(100% - 1rem);
-
-	// Accounting for clear icon + tooltip error icon
-	&.cs-tw-error {
-		width: calc(100% - 2rem);
-	}
+	width: 100%;
 }
 
 // Picklist field styles

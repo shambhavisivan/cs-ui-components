@@ -61,12 +61,15 @@
 			}
 		}
 
-		/* DATE/LOOKUP/PICKLIST FIELDS */
-		.cs-grid_cell-content-date::before,
+		/* LOOKUP/PICKLIST FIELDS */
 		.cs-grid_cell-content-lookup::before,
 		.cs-grid_cell-content-lookup::before,
 		.cs-grid_cell-content-picklist::before {
 			right: 1.75rem;
+		}
+		/* DATE FIELD */
+		.cs-grid_cell-content-date::before {
+			right: 0.75rem;
 		}
 	}
 

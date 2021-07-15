@@ -7,7 +7,6 @@ import { CellData } from '../../src/interfaces/cs-grid-base-interfaces';
 import { CSGridCellRendererProps } from '../../src/interfaces/cs-grid-cell-props';
 import { UserInfo } from '../../src/interfaces/user-info';
 import { formatDate } from '../../src/utils/cs-grid-date-helper';
-import { CSButton } from '@cloudsense/cs-ui-components';
 
 describe('CS Grid Date Renderer', () => {
 	let exampleDate: CellData<string>;
@@ -85,43 +84,6 @@ describe('CS Grid Date Renderer', () => {
 		).toBeTruthy();
 	});
 
-	test('Renders a date renderer that is not readonly so should not have read only flags and should have a remove date button.', () => {
-		const readOnly = false;
-
-		const cellRenderer = shallow(
-			<CSGridDateRenderer {...cSGridCellRendererProps} readonly={readOnly} />
-		);
-		const instance = cellRenderer.instance() as CSGridDateRenderer;
-		const value = formatDate(
-			instance.state.value.cellValue,
-			instance.props.userInfo.userLocale,
-			'Date'
-		);
-
-		expect(
-			cellRenderer.equals(
-				<span className='cs-grid_cell-content cs-grid_cell-content-date '>
-					<span className='cs-grid_date-cell-value' title={value}>
-						{value}
-					</span>
-					<CSGridCellError errorMessage={exampleDate.errorMessage} position='top-left' />
-					<CSButton
-						className='cs-grid_clear-button'
-						label='Clear Date'
-						labelHidden={true}
-						size="xsmall"
-						btnStyle="brand"
-						btnType="transparent"
-						iconName='close'
-						iconColor='#b0adab'
-						iconSize="1rem"
-						onClick={instance.clearDate}
-					/>
-				</span>
-			)
-		).toBeTruthy();
-	});
-
 	test('Renders a basic date renderer that is not the last column so should have error position as top right.', () => {
 		cSGridCellRendererProps.columnApi.getAllGridColumns = () => [
 			new Column(colDef, null, 'NotThisColId', true)
@@ -142,18 +104,6 @@ describe('CS Grid Date Renderer', () => {
 						{value}
 					</span>
 					<CSGridCellError errorMessage={exampleDate.errorMessage} position='top-right' />
-					<CSButton
-						className='cs-grid_clear-button'
-						label='Clear Date'
-						labelHidden={true}
-						size="xsmall"
-						btnStyle="brand"
-						btnType="transparent"
-						iconName='close'
-						iconColor='#b0adab'
-						iconSize="1rem"
-						onClick={instance.clearDate}
-					/>
 				</span>
 			)
 		).toBeTruthy();
@@ -181,37 +131,6 @@ describe('CS Grid Date Renderer', () => {
 
 		const cellRenderer = shallow(<CSGridDateRenderer {...cSGridCellRendererProps} />);
 		expect(cellRenderer.equals(null)).toBeTruthy();
-	});
-
-	test('Checks clear date calls setValue with an empty date.', () => {
-		const stopEditing = jest.fn();
-		cSGridCellRendererProps.api.stopEditing = stopEditing;
-
-		const cellRenderer = shallow(<CSGridDateRenderer {...cSGridCellRendererProps} />);
-		const instance = cellRenderer.instance() as CSGridDateRenderer;
-
-		instance.clearDate();
-		expect(stopEditing).toHaveBeenCalledTimes(1);
-		expect(setValueMock).toHaveBeenCalledTimes(1);
-		expect(setValueMock).toHaveBeenCalledWith({
-			cellValue: '',
-			errorMessage: exampleDate.errorMessage
-		});
-	});
-
-	test('Checks clear date calls the passed in onChange function.', () => {
-		const mockOnChange = jest.fn();
-		const stopEditing = jest.fn();
-		cSGridCellRendererProps.api.stopEditing = stopEditing;
-
-		const cellRenderer = shallow(
-			<CSGridDateRenderer {...cSGridCellRendererProps} onChange={mockOnChange} />
-		);
-		const instance = cellRenderer.instance() as CSGridDateRenderer;
-
-		instance.clearDate();
-
-		expect(mockOnChange.mock.calls.length).toEqual(1);
 	});
 
 	test('Renders a date renderer that is not editable so should have should not have a remove date button.', () => {

@@ -1359,6 +1359,18 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				this.addIfDefined(cellParams, 'getOpenToDate', columnDef.getOpenToDate);
 				this.addIfDefined(cellParams, 'textInputFormat', columnDef.textInputFormat);
 
+
+				const keyboardSettings: AgGridColDef = {};
+				keyboardSettings.suppressKeyboardEvent = (params: SuppressKeyboardEventParams) => {
+					const datepickerPopperOpen = document.querySelector('.react-datepicker-popper');
+					// If datepicker popper isn't open don't suppress OOTB ag-grid keys
+					if (!datepickerPopperOpen) {
+						return false;
+					}
+
+					return params.event.key === KeyCode.Enter;
+				};
+
 				const defaultSettings = {
 					filterParams: {
 						textFormatter: (value: string | CellData<string>) =>
@@ -1366,7 +1378,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 					}
 				};
 
-				agGridColDef = { ...defaultSettings, ...agGridColDef };
+				agGridColDef = { ...keyboardSettings, ...defaultSettings, ...agGridColDef };
 			}
 
 			if (columnDef.cellType === 'DateTime') {
@@ -1377,6 +1389,18 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				this.addIfDefined(cellParams, 'getOpenToDate', columnDef.getOpenToDate);
 				this.addIfDefined(cellParams, 'timeInterval', columnDef.timeInterval);
 
+				const keyboardSettings: AgGridColDef = {};
+				keyboardSettings.suppressKeyboardEvent = (params: SuppressKeyboardEventParams) => {
+					const datepickerPopperOpen = document.querySelector('.react-datepicker-popper');
+					const event = params.event;
+					// If datepicker popper isn't open don't suppress OOTB ag-grid keys
+					if (!datepickerPopperOpen) {
+						return false;
+					}
+
+					return (event.key === KeyCode.Enter || event.key === KeyCode.Escape);
+				};
+
 				const defaultSettings = {
 					filterParams: {
 						textFormatter: (value: string | CellData<string>) =>
@@ -1384,7 +1408,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 					}
 				};
 
-				agGridColDef = { ...defaultSettings, ...agGridColDef };
+				agGridColDef = { ...keyboardSettings, ...defaultSettings, ...agGridColDef };
 			}
 
 			if (columnDef.cellType === 'Text') {

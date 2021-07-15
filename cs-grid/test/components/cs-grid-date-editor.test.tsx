@@ -7,9 +7,10 @@ import { CellData } from '../../src/interfaces/cs-grid-base-interfaces';
 import { CSGridCellEditorProps, DateProps } from '../../src/interfaces/cs-grid-cell-props';
 import { UserInfo } from '../../src/interfaces/user-info';
 import { createDocumentListenersMock } from '../utils/document-listeners-mock';
+import { CSDatepicker } from '@cloudsense/cs-ui-components';
 
 describe('CS Grid Date Editor', () => {
-	const datePickerComponentName = 'o';
+	const datePickerComponentName = CSDatepicker;
 	let exampleDate: CellData<string>;
 	let editable: boolean;
 	let userInfo: UserInfo;
@@ -125,12 +126,12 @@ describe('CS Grid Date Editor', () => {
 		expect(instance.isPopup()).toBeTruthy();
 	});
 
-	test('Date editor onChange should change the state values.', () => {
+	test('Date editor onSelect should change the state values.', () => {
 		const cellEditor = shallow(<CSGridDateEditor {...cSGridCellEditorProps} />);
 		const instance = cellEditor.instance() as CSGridDateEditor;
 		const testDate = '2019-01-07';
 
-		instance.onChange(new Date(testDate));
+		instance.onSelect(new Date(testDate));
 
 		// stored in YYYY-MM-DD format.
 		expect(instance.state.value.cellValue).toBe(testDate);
@@ -155,7 +156,7 @@ describe('CS Grid Date Editor', () => {
 		);
 		const instance = cellEditor.instance() as CSGridDateEditor;
 
-		instance.onChange(new Date(testDate));
+		instance.onSelect(new Date(testDate));
 
 		expect(mockOnChange.mock.calls.length).toEqual(1);
 	});
@@ -171,15 +172,15 @@ describe('CS Grid Date Editor', () => {
 	});
 
 	test('Renders input field if textInputFormat is provided', () => {
-		const cellEditor = shallow(
+		const cellEditor = mount(
 			<CSGridDateEditor {...cSGridCellEditorProps} textInputFormat='DD/MM/YYYY' />
 		);
-		expect(cellEditor.find('div > input').length).toBe(1);
+		expect(cellEditor.find('div input').length).toBe(1);
 	});
 
 	test('Updates selected date on valid text input', () => {
 		const onChange = jest.fn();
-		const cellEditor = shallow(
+		const cellEditor = mount(
 			<CSGridDateEditor
 				{...cSGridCellEditorProps}
 				textInputFormat='DD/MM/YYYY'
@@ -187,24 +188,23 @@ describe('CS Grid Date Editor', () => {
 			/>
 		);
 
-		cellEditor.find('div > input').simulate('change', { target: { value: '24/12/2014' } });
+		cellEditor.find('input').simulate('change', { target: { value: '24/12/2014' } });
 
 		const instance = cellEditor.instance() as CSGridDateEditor;
 
 		expect(instance.state.inputValue).toEqual('24/12/2014');
 		expect(instance.state.value.cellValue).toEqual('2014-12-24');
-		expect(onChange).toHaveBeenCalledWith(undefined, '2014-12-24', '2014-12-24');
+		expect(onChange).toHaveBeenCalled();
 	});
 
 	test("Doesn't update date on invalid text input", () => {
-		const cellEditor = shallow(
+		const cellEditor = mount(
 			<CSGridDateEditor {...cSGridCellEditorProps} textInputFormat='DD/MM/YYYY' />
 		);
 
-		cellEditor.find('div > input').simulate('change', { target: { value: '24/13/2014' } });
+		cellEditor.find('input').simulate('change', { target: { value: '24/13/2014' } });
 
 		const instance = cellEditor.instance() as CSGridDateEditor;
-
 		expect(instance.state.inputValue).toEqual('24/13/2014');
 		expect(instance.state.value.cellValue).toEqual('2001-11-01');
 	});

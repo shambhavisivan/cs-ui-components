@@ -6,10 +6,11 @@ import { CellData } from '../../src/interfaces/cs-grid-base-interfaces';
 import { CSGridCellEditorProps, DateTimeProps } from '../../src/interfaces/cs-grid-cell-props';
 import { UserInfo } from '../../src/interfaces/user-info';
 import { createDocumentListenersMock } from '../utils/document-listeners-mock';
+import { CSDateTimePicker } from '@cloudsense/cs-ui-components';
 
 describe('CS Grid Date Time Editor', () => {
 	// This is defined by the react-dateTimePicker component.
-	const dateTimePickerComponentName = 'o';
+	const dateTimePickerComponentName = CSDateTimePicker;
 	let exampleDateTime: CellData<string>;
 	let editable: boolean;
 	let userInfo: UserInfo;
@@ -68,7 +69,6 @@ describe('CS Grid Date Time Editor', () => {
 
 		const dateTimePicker = cellEditor.find(dateTimePickerComponentName);
 
-		expect(dateTimePicker.prop('value')).toBe('');
 		expect(dateTimePicker.prop('selected')).toBe(null);
 	});
 
@@ -76,12 +76,13 @@ describe('CS Grid Date Time Editor', () => {
 		const testDateTime = '2019-01-07 13:24';
 		const expectedLocalisedDateTime = '07/01/2019 13:24'; // French format.
 		cSGridCellEditorProps.value.cellValue = testDateTime;
-		const cellEditor = shallow(<CSGridDateTimeEditor {...cSGridCellEditorProps} />);
+		const cellEditor = mount(<CSGridDateTimeEditor {...cSGridCellEditorProps} />);
 
 		const dateTimePicker = cellEditor.find(dateTimePickerComponentName);
+		const dateTimePickerInput = cellEditor.find('input');
 
-		expect(dateTimePicker.prop('value')).toBe(expectedLocalisedDateTime);
 		expect(dateTimePicker.prop('selected')).toEqual(new Date(testDateTime));
+		expect((dateTimePickerInput).get(0).props.value).toEqual(expectedLocalisedDateTime);
 	});
 
 	test('Created a new date time editor and checks the getValue function returns the expected value.', () => {
