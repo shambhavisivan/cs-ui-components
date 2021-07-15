@@ -19,6 +19,7 @@ export interface CSCheckboxProps {
 	helpText?: string;
 	hidden?: boolean;
 	id?: string;
+	indeterminate?: boolean;
 	label: string;
 	labelHidden?: boolean;
 	labelPosition?: CSCheckboxLabelPosition;
@@ -42,6 +43,13 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 	};
 
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
+	private checkboxRef: React.RefObject<HTMLInputElement>;
+
+	constructor(props: CSCheckboxProps) {
+		super(props);
+
+		this.checkboxRef = React.createRef();
+	}
 
 	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (this.props.readOnly) {
@@ -64,6 +72,24 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 		}
 	}
 
+	setIndeterminate = (value: boolean) => {
+		if (this.checkboxRef.current) {
+			this.checkboxRef.current.indeterminate = value;
+		}
+	}
+
+	componentDidMount() {
+		if (this.props.indeterminate && !this.props.checked) {
+			this.setIndeterminate(true);
+		}
+	}
+
+	componentDidUpdate(prevProps: CSCheckboxProps) {
+		if (prevProps.indeterminate !== this.props.indeterminate) {
+			this.setIndeterminate(this.props.indeterminate);
+		}
+	}
+
 	render() {
 		const {
 			borderRadius,
@@ -75,6 +101,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 			helpText,
 			hidden,
 			id,
+			indeterminate,
 			label,
 			labelHidden,
 			labelPosition,
@@ -139,6 +166,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 							id={this.uniqueAutoId}
 							onClick={this.handleOnClick}
 							name={name}
+							ref={this.checkboxRef}
 							aria-label={label}
 							aria-readonly={readOnly}
 							aria-required={required}

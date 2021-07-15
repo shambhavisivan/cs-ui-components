@@ -118,6 +118,21 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 							}
 						]
 					}, {
+						propName: 'indeterminate',
+						variations: [
+							{
+								primaryVariants: 'indeterminate={true}',
+								component: <CSCheckbox label="Select option" indeterminate />,
+								code: '<CSCheckbox label="Select option" indeterminate />'
+							},
+							{
+								primaryVariants: 'indeterminate={true}',
+								secondaryVariants: 'variant="brand"',
+								component: <CSCheckbox label="Select option" variant="brand" indeterminate />,
+								code: '<CSCheckbox label="Select option" variant="brand" indeterminate />'
+							}
+						]
+					}, {
 						propName: 'labelHidden',
 						variations: [
 							{
@@ -309,6 +324,11 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 						types: 'boolean',
 						default: 'false',
 						description: 'Control the hidden attribute.'
+					}, {
+						name: 'indeterminate',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Control the indeterminate state of the checkbox.'
 					}, {
 						name: 'labelHidden',
 						types: 'boolean',

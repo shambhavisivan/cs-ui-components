@@ -70,6 +70,36 @@
 				}
 			}
 
+			&:indeterminate + .cs-checkbox-faux {
+
+				&::after {
+					display: block;
+					content: "";
+					width: 0.5rem;
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate3d(-50%, -50%, 0) rotate(0deg);
+					@include css4 {
+						border-bottom: 2px solid cvar(--cs-checkbox-neutral-indeterminate-br);
+					}
+				}
+
+				&.cs-checkbox-brand {
+					@include sbg(--cs-checkbox-bg-brand);
+					@include css4 {
+						border: 1px solid cvar(--cs-checkbox-brand-focus-br);
+					}
+
+					&::after {
+						@include css4 {
+							border-bottom: 2px solid cvar(--cs-checkbox-brand-indeterminate-br);
+
+						}
+					}
+				}
+			}
+
 			&:hover + .cs-checkbox-faux {
 				@include css4 {
 					box-shadow: 0 0 2px cvar(--cs-checkbox-focus-box);
