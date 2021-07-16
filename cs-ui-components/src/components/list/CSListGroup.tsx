@@ -146,7 +146,7 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 				case 'small':
 					return '0.75rem';
 				default:
-					return;
+					
 			}
 		};
 

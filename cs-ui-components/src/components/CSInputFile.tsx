@@ -28,7 +28,9 @@ export interface CSInputFileState {
 
 class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 	private fileInput: React.RefObject<HTMLInputElement>;
+
 	private dragEventCounter = 0;
+
 	constructor(props: any) {
 		super(props);
 		this.state = {
@@ -45,6 +47,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 		this.handleDragEnter = this.handleDragEnter.bind(this);
 		this.handleDragLeave = this.handleDragLeave.bind(this);
 	}
+
 	handleFileDragEvents(e: React.DragEvent<HTMLDivElement>) {
 		e.preventDefault();
 		e.stopPropagation();
@@ -86,13 +89,13 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 			let fileSizeDisplay;
 			if (file.size < 1000) {
 				// bytes
-				fileSizeDisplay = ' (' + Math.round(file.size) + 'B)';
+				fileSizeDisplay = ` (${  Math.round(file.size)  }B)`;
 			} else if (file.size < 1000000) {
 				// kb
-				fileSizeDisplay = ' (' + Math.round(file.size / 1000) + 'KB)';
+				fileSizeDisplay = ` (${  Math.round(file.size / 1000)  }KB)`;
 			} else {
 				// mb
-				fileSizeDisplay = ' (' + Math.round(file.size / 1000000) + 'MB)';
+				fileSizeDisplay = ` (${  Math.round(file.size / 1000000)  }MB)`;
 			}
 			return fileSizeDisplay;
 		}
@@ -102,11 +105,13 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 		const newFiles = Array.isArray(acceptFiles) ? acceptFiles.join() : acceptFiles;
 		return newFiles;
 	}
+
 	handleDragEnter(e: React.DragEvent<HTMLDivElement>) {
 		this.handleFileDragEvents(e);
 		this.dragEventCounter++;
 		this.setState({ isDraggedOver: true });
 	}
+
 	handleDragLeave(e: React.DragEvent<HTMLDivElement>) {
 		this.handleFileDragEvents(e);
 		this.dragEventCounter--;

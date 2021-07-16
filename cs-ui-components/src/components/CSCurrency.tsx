@@ -108,24 +108,24 @@ class CSCurrency extends React.Component<CSCurrencyProps> {
 				if (value) {
 					return this.formatValue(value);
 				}
-				else {
+				
 					// When value is not defined, it is rendered as NaN next to the currency symbol
 					// This part removes NaN so only currency symbol is displayed
 					return this.formatValue(value).replace(/(NaN)/g, '');
-				}
+				
 			}
-			else {
+			
 				return this.formatSafariValue(value);
-			}
+			
 		};
 
 		const getTitle = () => {
 			if (title) {
 				if (typeof title === 'boolean') {
 					return formattedValue();
-				} else {
+				} 
 					return title;
-				}
+				
 			}
 		};
 

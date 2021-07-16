@@ -1,7 +1,7 @@
 import React from 'react';
+import classNames from 'classnames';
 import CSCheckbox from '../CSCheckbox';
 import CSButton from '../CSButton';
-import classNames from 'classnames';
 import { CSTransferVariant } from './CSTransfer';
 import CSTransferContext from './CSTransferContext';
 import { CSTransferListType } from './CSTransferList';
@@ -20,8 +20,11 @@ export interface CSTransferItemProps {
 class CSTransferItem extends React.Component<CSTransferItemProps> {
 
 	static contextType = CSTransferContext;
+
 	private listItemNode: HTMLLIElement;
+
 	private listNodes: any;
+
 	private actionButtons: HTMLUListElement;
 
 	componentDidMount() {
@@ -67,7 +70,7 @@ class CSTransferItem extends React.Component<CSTransferItemProps> {
 				(this.actionButtons.lastChild as HTMLElement).focus();
 				break;
 			default:
-				return;
+				
 		}
 	}
 
@@ -88,7 +91,7 @@ class CSTransferItem extends React.Component<CSTransferItemProps> {
 		);
 
 		// Transfer list title
-		const transferListTitle = <span className="cs-transfer-li-title">{name ? name : itemKey}</span>;
+		const transferListTitle = <span className="cs-transfer-li-title">{name || itemKey}</span>;
 
 		// Renders if list variant is set to simple-list
 		const simpleList = itemVariant === 'simple-list' && !isOneWay ?

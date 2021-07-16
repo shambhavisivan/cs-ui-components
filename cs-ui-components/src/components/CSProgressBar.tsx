@@ -1,7 +1,7 @@
 import React, { CSSProperties } from 'react';
+import classNames from 'classnames';
 import CSLabel from './CSLabel';
 import CSIcon from './CSIcon';
-import classNames from 'classnames';
 
 export type CSProgressBarStatus = 'neutral' | 'loading' | 'success' | 'error';
 export type CSProgressBarThickness = 'xsmall' | 'small' | 'medium' | 'large';

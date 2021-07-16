@@ -41,7 +41,7 @@ class CSTableCell extends React.Component<CSTableCellProps> {
 				className={tableCellClasses}
 				style={style}
 				id={id}
-				role={role ? role : 'cell'}
+				role={role || 'cell'}
 				{...rest}
 			>
 				{text &&

@@ -1,11 +1,11 @@
 import React, { CSSProperties } from 'react';
-import CSButton from './CSButton';
 import classNames from 'classnames';
+import { v4 as uuidv4 } from 'uuid';
+import CSButton from './CSButton';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSLabel from './CSLabel';
 import CSIcon from './CSIcon';
 import { CSTooltipPosition } from './CSTooltip';
-import { v4 as uuidv4 } from 'uuid';
 
 export type CSInputSearchIconPosition = 'left' | 'right';
 
@@ -132,6 +132,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 		this.setValue(e.target.value);
 		resolveOnChange(this.input, e, this.props.onChange);
 	}
+
 	handleOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (this.props.onKeyDown) {
 			this.props.onKeyDown(e);

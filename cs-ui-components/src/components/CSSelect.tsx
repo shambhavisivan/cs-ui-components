@@ -1,10 +1,10 @@
 import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
+import { v4 as uuidv4 } from 'uuid';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSLabel from './CSLabel';
 import CSIcon from './CSIcon';
 import { CSTooltipPosition } from './CSTooltip';
-import { v4 as uuidv4 } from 'uuid';
 import KeyCode from '../util/KeyCode';
 
 export interface CSSelectProps {

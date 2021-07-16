@@ -1,6 +1,6 @@
 import React from 'react';
-import CSIcon, { CSIconOrigin } from './CSIcon';
 import classNames from 'classnames';
+import CSIcon, { CSIconOrigin } from './CSIcon';
 
 export type CSAlertStyleFormat = 'default' | 'scoped';
 export type CSAlertStyleType = 'default' | 'light';

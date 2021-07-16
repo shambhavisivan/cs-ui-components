@@ -1,9 +1,9 @@
 import React, { CSSProperties } from 'react';
-import CSButton from '../CSButton';
 import classNames from 'classnames';
+import { Portal } from 'react-portal';
+import CSButton from '../CSButton';
 import { CSIconOrigin } from '../CSIcon';
 import CSDropdownItemWrapper from './CSDropdownItemWrapper';
-import { Portal } from 'react-portal';
 import KeyCode from '../../util/KeyCode';
 
 export type CSDropdownAlign = 'left' | 'right';
@@ -62,6 +62,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 	};
 
 	private dropdownId = 'cs-dropdown-root';
+
 	private btnDropdownRef: React.RefObject<HTMLButtonElement>;
 
 	constructor(props: CSDropdownProps) {
@@ -98,7 +99,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 		const elementRect = this.btnDropdownRef.current.getBoundingClientRect();
 		const top = elementRect.top + elementRect.height + 5;
 		const bottom = window.innerHeight - elementRect.top + 5;
-		const left = elementRect.left;
+		const {left} = elementRect;
 		const right = window.innerWidth - elementRect.right;
 
 		const dropdownPosition = this.state.computedPosition.join('-');
@@ -267,7 +268,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 
 		const dropdownStyle: CSSProperties = {
 			...this.state.computedDropdownStyle,
-			'--cs-dropdown-btn-width': this.state.dropdownBtnWidth ? this.state.dropdownBtnWidth + 'px' : ''
+			'--cs-dropdown-btn-width': this.state.dropdownBtnWidth ? `${this.state.dropdownBtnWidth  }px` : ''
 		};
 
 		return (
@@ -291,7 +292,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 					onMouseLeave={hover ? this.closeDropdown : undefined}
 					onKeyDown={this.onKeyDown}
 					size={size}
-					label={label ? label : 'Toggle dropdown'}
+					label={label || 'Toggle dropdown'}
 					ariaExpanded={!!this.state.computedDropdownStyle}
 					ariaHaspopup={!!Object(children).length}
 					ref={this.btnDropdownRef}

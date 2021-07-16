@@ -1,8 +1,8 @@
 import React from 'react';
+import classNames from 'classnames';
 import CSButton from '../CSButton';
 import CSTransferList, { CSTransferListType } from './CSTransferList';
 import CSTransferContext from './CSTransferContext';
-import classNames from 'classnames';
 import KeyCode from '../../util/KeyCode';
 
 export interface CSTransferItemsType {
@@ -44,8 +44,11 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 	};
 
 	private actionButtonsNode: HTMLDivElement;
+
 	private sourceListRef: React.RefObject<HTMLUListElement>;
+
 	private targetListRef: React.RefObject<HTMLUListElement>;
+
 	private element: string;
 
 	constructor(props: CSTransferProps) {
@@ -230,7 +233,7 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 				}
 				break;
 			default:
-				return;
+				
 		}
 	}
 

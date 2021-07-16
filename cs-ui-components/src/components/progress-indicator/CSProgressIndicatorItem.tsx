@@ -44,7 +44,7 @@ class CSProgressIndicatorItem extends React.Component<CSProgressIndicatorItemPro
 				case 'loading':
 					return <CSIcon name="spinner" color="var(--cs-progress-indicator-loading-c)" spin />;
 				default:
-					return;
+					
 			}
 		};
 

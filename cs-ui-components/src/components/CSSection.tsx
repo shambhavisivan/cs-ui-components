@@ -1,6 +1,6 @@
 import React from 'react';
-import CSIcon from './CSIcon';
 import classNames from 'classnames';
+import CSIcon from './CSIcon';
 
 export interface CSSectionProps {
 	[key: string]: any;
@@ -26,11 +26,13 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 
 		this.toggle = this.toggle.bind(this);
 	}
+
 	toggle() {
 		this.setState({
 			defaultClosed: !this.state.defaultClosed
 		});
 	}
+
 	// When component mounts if defaultClosed equals true hide content initially
 	componentDidMount() {
 		if (this.props.defaultClosed) {

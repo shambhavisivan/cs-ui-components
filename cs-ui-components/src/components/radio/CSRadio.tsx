@@ -1,9 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
+import { v4 as uuidv4 } from 'uuid';
 import CSLabel from '../CSLabel';
 import { CSTooltipPosition } from '../CSTooltip';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from '../CSFieldErrorMsg';
-import { v4 as uuidv4 } from 'uuid';
 
 export type CSRadioVariant = 'neutral' | 'brand';
 

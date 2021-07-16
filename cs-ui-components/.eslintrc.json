@@ -1,0 +1,73 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "airbnb",
+        "prettier"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint"
+    ],
+    "rules": {
+        // These settings should remain unchanged
+        "react/jsx-props-no-spreading": "off",
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+        // These warnings should be revisited and preferably resolved
+        "consistent-return": ["warn"],
+        "default-case": ["warn"],
+        "prefer-const": ["warn"],
+        "valid-typeof": ["warn"],
+        "class-methods-use-this": ["warn"],
+        "global-require": ["warn"],
+        "no-plusplus": ["warn", { "allowForLoopAfterthoughts": true }],
+        "no-use-before-define": ["warn", { "functions": true, "classes": true }],
+        "no-unused-vars": ["warn"],
+        "no-return-assign": ["warn"],
+        "no-underscore-dangle": ["warn"],
+        "no-useless-constructor": ["warn"],
+        "no-nested-ternary": ["warn"],
+        "no-case-declarations": ["warn"],
+        "no-undef": ["warn"],
+        "no-restricted-globals": ["warn"],
+        "no-lone-blocks": ["warn"],
+        "no-script-url": ["warn"],
+        "no-unused-expressions": ["warn"],
+        "no-param-reassign": ["warn"],
+        "no-useless-escape": ["warn"],
+        "import/no-extraneous-dependencies": ["warn", { "devDependencies": false, "optionalDependencies": false, "peerDependencies": false }],
+        "import/extensions": ["warn"],
+        "import/no-unresolved": ["warn"],
+        "import/no-webpack-loader-syntax": ["warn"],
+        "import/no-dynamic-require": ["warn"],
+        "react/prefer-stateless-function": ["warn"],
+        "react/static-property-placement": ["warn"],
+        "react/button-has-type": ["warn"],
+        "react/destructuring-assignment": ["warn"],
+        "react/no-access-state-in-setstate": ["warn"],
+        "react/sort-comp": ["warn"],
+        "react/no-did-update-set-state": ["warn"],
+        "react/no-unused-state": ["warn"],
+        "react/no-array-index-key": ["warn"],
+        "jsx-a11y/mouse-events-have-key-events": ["warn"],
+        "jsx-a11y/role-has-required-aria-props": ["warn"],
+        "jsx-a11y/label-has-associated-control": ["warn"],
+        "jsx-a11y/role-supports-aria-props": ["warn"],
+        "jsx-a11y/click-events-have-key-events": ["warn"],
+        "jsx-a11y/no-noninteractive-element-interactions": ["warn"],
+        "jsx-a11y/no-noninteractive-tabindex": ["warn"],
+        "jsx-a11y/anchor-is-valid": ["warn"],
+        "jsx-a11y/no-autofocus": ["warn"]
+    }
+}

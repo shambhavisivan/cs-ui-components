@@ -48,7 +48,7 @@ class CSTabGroup extends React.Component<CSTabGroupProps> {
 				{...rest}
 			>
 				<nav
-					aria-label={listName ? listName : 'breadcrumbs'}
+					aria-label={listName || 'breadcrumbs'}
 				>
 					<ol>
 						{renderChildrenWithTabsAsProps}

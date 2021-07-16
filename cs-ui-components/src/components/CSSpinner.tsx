@@ -55,7 +55,7 @@ class CSSpinner extends React.Component<CSSpinnerProps> {
 					{...rest}
 				>
 					<div className="cs-spinner-wrapper-label">
-						<div className={'cs-spinner cs-spinner-' + size + ' cs-spinner-' + color}>
+						<div className={`cs-spinner cs-spinner-${  size  } cs-spinner-${  color}`}>
 							<div className="cs-spinner-dot-a" />
 							<div className="cs-spinner-dot-b" />
 						</div>

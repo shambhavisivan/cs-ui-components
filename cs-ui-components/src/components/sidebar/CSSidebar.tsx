@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
-import CSButton from '.././CSButton';
 import classNames from 'classnames';
+import CSButton from "../CSButton";
 
 export type CSSidebarOpensTo = 'left' | 'right';
 
@@ -88,7 +88,7 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 			}
 		);
 
-		/*** takes child props title, iconName and index to display them through this component when sidebar is collapsed ***/
+		/** * takes child props title, iconName and index to display them through this component when sidebar is collapsed ** */
 		const tabs: Array<any> = React.Children.map(children, (child: React.ReactElement, index) => {
 			if (child) {
 				return (
@@ -103,7 +103,7 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 			}
 		});
 
-		/*** pass isActiveTab status to child if that child is active ***/
+		/** * pass isActiveTab status to child if that child is active ** */
 		const renderChildrenWithProps = React.Children.map(children, (child, index) => {
 			if (child) {
 				return React.cloneElement(child as React.ReactElement<any>, {
@@ -116,23 +116,23 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 			if (!this.state.closed) {
 				return 'close';
 			}
-			else {
+			
 				if (tabs[0].iconName) {
 					return tabs[0].iconName;
 				}
-				else {
+				
 					return 'assignment';
-				}
-			}
+				
+			
 		};
 
 		const getToggleIconOrigin = () => {
 			if (!this.state.closed) {
 				return 'slds';
 			}
-			else {
+			
 				return tabs[0].iconOrigin;
-			}
+			
 		};
 
 		const showToggleBtn =

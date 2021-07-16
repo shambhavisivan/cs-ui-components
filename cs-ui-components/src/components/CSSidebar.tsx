@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
-import CSButton from './CSButton';
 import classNames from 'classnames';
+import CSButton from './CSButton';
 
 export interface CSSidebarProps {
 	[key: string]: any;
@@ -30,6 +30,7 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 			closed: false
 		};
 	}
+
 	componentDidMount() {
 		if (this.props.closed) {
 			this.setState({
@@ -37,16 +38,19 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 			});
 		}
 	}
+
 	toggleActive(text: any) {
 		this.setState({
 			active: text
 		});
 	}
+
 	onClose() {
 		this.setState({
 			closed: !this.state.closed
 		});
 	}
+
 	render() {
 		const {
 			children,

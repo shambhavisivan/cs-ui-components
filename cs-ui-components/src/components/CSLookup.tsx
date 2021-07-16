@@ -1,5 +1,9 @@
 import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
+import { Portal } from 'react-portal';
+import { v4 as uuidv4 } from 'uuid';
+import ResizeObserver from 'resize-observer-polyfill';
+import { debounce, find, remove } from 'lodash';
 import CSButton from './CSButton';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSLabel from './CSLabel';
@@ -10,11 +14,7 @@ import CSTableBody from './table/CSTableBody';
 import CSTableRow from './table/CSTableRow';
 import CSTableCell from './table/CSTableCell';
 import { CSTooltipPosition } from './CSTooltip';
-import { Portal } from 'react-portal';
-import { v4 as uuidv4 } from 'uuid';
 import KeyCode from '../util/KeyCode';
-import ResizeObserver from 'resize-observer-polyfill';
-import { debounce, find, remove } from 'lodash';
 
 export interface CSLookupTableColumnType {
 	key: string;
@@ -108,11 +108,17 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	};
 
 	public lookupInputRef: React.RefObject<HTMLInputElement>;
+
 	public lookupWrapperRef: React.RefObject<HTMLInputElement>;
+
 	private lookupDropdownId = 'cs-lookup-dropdown-root';
+
 	private lookupTable = 'cs-lookup-table';
+
 	private lookupTableHeader = 'cs-lookup-table-header';
+
 	private lookupTableRowId = 'cs-lookup-table-row';
+
 	private timeoutRef: NodeJS.Timeout;
 
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
@@ -246,25 +252,19 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		const fetchedOptions = [...lookupOptions];
 		let results: Array<any> = [];
 
-		const includesSearchTerm = (value: any) => {
-			return value.toString().toLowerCase().includes(searchTerm.toLowerCase());
-		};
+		const includesSearchTerm = (value: any) => value.toString().toLowerCase().includes(searchTerm.toLowerCase());
 
 		if (searchBy && !!searchBy.length) {
 			const keysToFilter = [...searchBy];
-			results = fetchedOptions.filter((item: any) => {
-				return Object.keys(item).some((key: any) =>
+			results = fetchedOptions.filter((item: any) => Object.keys(item).some((key: any) =>
 					keysToFilter.includes(key) &&
 					includesSearchTerm(item[key])
-				);
-			});
+				));
 		} else {
 			const lookupColumnsToFilter = lookupColumns.map(column => column.key);
-			results = fetchedOptions.filter((item: any) => {
-				return Object.keys(item).some((key: any) =>
+			results = fetchedOptions.filter((item: any) => Object.keys(item).some((key: any) =>
 					lookupColumnsToFilter.includes(key) &&
-					includesSearchTerm(item[key]));
-			});
+					includesSearchTerm(item[key])));
 		}
 
 		this.setState({ dropdownValues: results });
@@ -378,6 +378,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			activeRowIndex: index
 		});
 	}
+
 	handleOnClick = () => {
 		if (!this.state.dropdownOpen) {
 			this.openLookupDropdown();
@@ -412,7 +413,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	}
 
 	handleLookupWrapperBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-		const currentTarget = event.currentTarget;
+		const {currentTarget} = event;
 		// Check the newly focused element in the next tick of the event loop
 		this.timeoutRef = setTimeout(() => {
 			// Check if the new activeElement is a child of the original container
@@ -502,7 +503,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 				}
 				break;
 			default:
-				return;
+				
 		}
 	}
 
@@ -513,7 +514,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		const elementRect = this.lookupInputRef.current.getBoundingClientRect();
 		const top = elementRect.top + elementRect.height + 1;
 		const bottom = window.innerHeight - elementRect.top + 1;
-		const left = elementRect.left;
+		const {left} = elementRect;
 		const right = window.innerWidth - elementRect.right;
 
 		const dropdownPosition = this.state.computedPosition.join('-');
@@ -751,7 +752,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 		const lookupDropdownStyle: CSSProperties = {
 			...this.state.computedDropdownStyle,
-			'--cs-lookup-input-width': lookupInputWidth ? lookupInputWidth + 'px' : '',
+			'--cs-lookup-input-width': lookupInputWidth ? `${lookupInputWidth  }px` : '',
 			'--cs-lookup-dropdown-width': dropdownWidth
 		};
 
@@ -792,7 +793,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 		const dropdownValuesNode = dropdownValues.map((item, i) => (
 			<CSTableRow
-				key={'lookup-table-row' + i}
+				key={`lookup-table-row${  i}`}
 				onMouseDown={(event: any) => {
 					event.preventDefault();
 					event.stopPropagation();
@@ -819,11 +820,11 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		const renderDropdownTableBody = () => {
 			if (minTermLength && searchTerm.length < minTermLength) {
 				return minTermLengthNode;
-			} else if (loading || fetchingMode === 'after-search') {
+			} if (loading || fetchingMode === 'after-search') {
 				return loadingNode;
-			} else if (!!dropdownValues?.length) {
+			} if (dropdownValues?.length) {
 				return dropdownValuesNode;
-			} else if (!dropdownValues?.length && searchTerm && fetchingMode === undefined) {
+			} if (!dropdownValues?.length && searchTerm && fetchingMode === undefined) {
 				return notFoundNode;
 			}
 		};
@@ -841,10 +842,10 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 				this.props.infiniteScroll &&
 				this.props.pageSize < 9
 			) {
-				return (32 * (this.props.pageSize - 1)) + 'px';
-			} else {
+				return `${32 * (this.props.pageSize - 1)  }px`;
+			} 
 				return '17rem';
-			}
+			
 		};
 		return (
 			<div className={lookupFieldWrapperClasses}>
@@ -889,7 +890,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 						onClick={!readOnly ? this.handleOnClick : undefined}
 						onBlur={this.handleOnBlur}
 						title={title}
-						id={id ? id : this.uniqueAutoId}
+						id={id || this.uniqueAutoId}
 						ref={this.lookupInputRef}
 						style={style}
 						aria-required={required}

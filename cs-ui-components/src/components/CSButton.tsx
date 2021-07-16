@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
-import CSIcon, { CSIconOrigin } from './CSIcon';
 import classNames from 'classnames';
+import CSIcon, { CSIconOrigin } from './CSIcon';
 
 export type CSButtonIconDisplay = 'default' | 'icon-only' | 'no-icon';
 export type CSButtonIconPosition = 'left' | 'right';
@@ -74,7 +74,7 @@ class CSButton extends React.Component<CSButtonProps> {
 
 				</span>
 			);
-		} else if (this.props.iconName) {
+		} if (this.props.iconName) {
 			return (
 				<span className="cs-btn-icon">
 					<CSIcon
@@ -175,9 +175,9 @@ class CSButton extends React.Component<CSButtonProps> {
 			'className': btnGroupClasses,
 			'onClick': this.handleClick,
 			'disabled': disabled || loading,
-			'aria-label': ariaLabel ? ariaLabel : label,
+			'aria-label': ariaLabel || label,
 			'style': style,
-			'title': title ? title : labelHidden === true ? label : null,
+			'title': title || (labelHidden === true ? label : null),
 			'href': link && link,
 			'target': (openInNewTab && link) ? '_blank' : undefined,
 			'id': id,

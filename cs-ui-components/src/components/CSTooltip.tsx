@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import React, { CSSProperties } from 'react';
-import CSIcon, { CSIconOrigin } from './CSIcon';
 import { Portal } from 'react-portal';
 import { v4 as uuidv4 } from 'uuid';
+import CSIcon, { CSIconOrigin } from './CSIcon';
 import KeyCode from '../util/KeyCode';
 import CSSpinner from './CSSpinner';
 
@@ -77,11 +77,15 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 	}
 
 	private timeoutRef: NodeJS.Timeout;
+
 	private popupTriggered = false;
+
 	private tooltipRef: React.RefObject<HTMLDivElement>;
 
 	private uniqueAutoId = uuidv4();
+
 	private tooltipId = 'cs-tooltip-root';
+
 	private _isMounted: boolean;
 
 	constructor(props: CSTooltipProps) {
@@ -163,7 +167,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 					'--cs-tooltip-width': '3.5rem',
 					'--cs-tooltip-padding': '0'
 				};
-			} else {
+			} 
 				return {
 					'--cs-tooltip-height': height,
 					'--cs-tooltip-width': width,
@@ -171,13 +175,13 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 					'--cs-tooltip-max-width': maxWidth,
 					'--cs-tooltip-padding': padding
 				};
-			}
+			
 		};
 
 		const tooltipStyle = {
 			...this.state.computedTooltipStyle,
 			...getTooltipStyle(),
-			'--cs-tw-dimension': this.state.tooltipWrapperDimension ? this.state.tooltipWrapperDimension + 'px' : ''
+			'--cs-tw-dimension': this.state.tooltipWrapperDimension ? `${this.state.tooltipWrapperDimension  }px` : ''
 		};
 
 		const tooltip = (
@@ -224,9 +228,9 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		const setIconSize = () => {
 			if (iconSize === 'medium') {
 				return '1rem';
-			} else {
+			} 
 				return '0.875rem';
-			}
+			
 		};
 
 		const handleOnMouseEnter = () => {
@@ -253,13 +257,11 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 				aria-labelledby={this.uniqueAutoId}
 				id={id}
 			>
-				{children ? (
-					children
-				) : (
+				{children || (
 						<CSIcon
 							color={iconColor}
 							name={tooltipIconName()}
-							className={'cs-tooltip-icon'}
+							className="cs-tooltip-icon"
 							size={setIconSize()}
 							origin={iconOrigin}
 						/>
@@ -431,7 +433,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			}
 		}
 
-		const position = (openOn + '-' + expandTo) as CSTooltipPosition;
+		const position = (`${openOn  }-${  expandTo}`) as CSTooltipPosition;
 		if (position !== computedPosition) {
 			this.setState({
 				computedPosition: position
@@ -452,18 +454,21 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		}
 		return wrapperInfo.top + wrapperInfo.height / 2 - this.convertRemToPixels(1) + 2;
 	}
+
 	private getBottom = (wrapperInfo: DOMRect, openOn?: string) => {
 		if (openOn === 'top') {
 			return window.innerHeight - wrapperInfo.top + this.convertRemToPixels(0.5) + 1;
 		}
 		return window.innerHeight - wrapperInfo.top - wrapperInfo.height / 2 - this.convertRemToPixels(1) + 2;
 	}
+
 	private getLeft = (wrapperInfo: DOMRect, openOn?: string) => {
 		if (openOn === 'right') {
 			return wrapperInfo.right + this.convertRemToPixels(0.5) + 1;
 		}
 		return wrapperInfo.left + wrapperInfo.width / 2 - this.convertRemToPixels(1.5);
 	}
+
 	private getRight = (wrapperInfo: DOMRect, openOn?: string) => {
 		if (openOn === 'left') {
 			return window.innerWidth - wrapperInfo.left + this.convertRemToPixels(0.5) + 1;
@@ -596,9 +601,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		}
 	}
 
-	private convertRemToPixels = (rem: number) => {
-		return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
-	}
+	private convertRemToPixels = (rem: number) => rem * parseFloat(getComputedStyle(document.documentElement).fontSize)
 }
 
 export default CSTooltip;

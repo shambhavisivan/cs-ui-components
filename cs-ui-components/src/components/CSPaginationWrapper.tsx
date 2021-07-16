@@ -1,6 +1,6 @@
 import React from 'react';
-import CSPagination from './CSPagination';
 import classNames from 'classnames';
+import CSPagination from './CSPagination';
 
 export interface CSPaginationWrapperProps {
 	className?:  string;

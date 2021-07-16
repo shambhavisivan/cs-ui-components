@@ -1,7 +1,7 @@
 import React from 'react';
+import classNames from 'classnames';
 import CSIcon from '../CSIcon';
 import CSButton from '../CSButton';
-import classNames from 'classnames';
 
 export type CSOptionType = 'list-item' | 'selected-item';
 export type CSOptionSearchByType = 'itemKey' | 'value';
@@ -17,6 +17,7 @@ export interface CSOptionProps {
 
 class CSOption extends React.Component<CSOptionProps> {
 	private optionNode: React.RefObject<HTMLLIElement>;
+
 	constructor(props: CSOptionProps) {
 		super(props);
 

@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
-import CSIcon, { CSIconOrigin } from '../CSIcon';
 import classNames from 'classnames';
+import CSIcon, { CSIconOrigin } from '../CSIcon';
 import CSButton from '../CSButton';
 
 export interface CSCardHeaderProps {

@@ -85,9 +85,7 @@ class CSTab extends React.Component<CSTabProps> {
 			}
 		};
 
-		const renderTabIcon = () => {
-			return tabIcon || !(parentVariant === 'normal' && status === 'initial');
-		};
+		const renderTabIcon = () => tabIcon || !(parentVariant === 'normal' && status === 'initial');
 
 		const componentProps = {
 			'className': 'cs-tab',
@@ -97,15 +95,14 @@ class CSTab extends React.Component<CSTabProps> {
 			'style': style
 		};
 
-		const tabContent = () => {
-			return (
+		const tabContent = () => (
 				<>
 					{tooltipContent ?
 						<CSTooltip
 							content={tooltipContent}
 							iconName={getStatusIcon()}
 							variant={status === 'initial' ? 'info' : status}
-							iconSize={'medium'}
+							iconSize="medium"
 							iconOrigin={iconOrigin}
 						/>
 						: renderTabIcon() ? <CSIcon name={getStatusIcon()} origin={iconOrigin} size="0.875rem" /> : null
@@ -114,7 +111,6 @@ class CSTab extends React.Component<CSTabProps> {
 					{children}
 				</>
 			);
-		};
 
 		return (
 			<li

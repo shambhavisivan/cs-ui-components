@@ -1,12 +1,12 @@
 import React, { CSSProperties } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import classNames from 'classnames';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from '../CSFieldErrorMsg';
 import CSIcon from '../CSIcon';
 import CSLabel from '../CSLabel';
 import CSOption from './CSOption';
 import CSButton from '../CSButton';
 import { CSTooltipPosition } from '../CSTooltip';
-import { v4 as uuidv4 } from 'uuid';
-import classNames from 'classnames';
 import KeyCode from '../../util/KeyCode';
 
 export type CSCustomSelectExportValueType = 'itemKey' | 'value';
@@ -49,7 +49,9 @@ export interface CSCustomSelectState {
 
 class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelectState> {
 	private dropdownNode: React.RefObject<HTMLUListElement>;
+
 	private input: HTMLInputElement;
+
 	private filteredList: Array<any>;
 
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
@@ -209,7 +211,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 				}
 				break;
 			default:
-				return;
+				
 		}
 	}
 
@@ -326,15 +328,13 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 	filterChildrenBy = (child: React.ReactElement) => {
 		const { searchTerm } = this.state;
 
-		const includesSearchTerm = (value: string) => {
-			return value.toLowerCase().includes(searchTerm.toLowerCase());
-		};
+		const includesSearchTerm = (value: string) => value.toLowerCase().includes(searchTerm.toLowerCase());
 
 		if (child.props.searchBy) {
 			return includesSearchTerm(child.props[child.props.searchBy]);
-		} else {
+		} 
 			return includesSearchTerm(child.props.itemKey) || includesSearchTerm(child.props.value);
-		}
+		
 	}
 
 	setOpen = () => {
@@ -342,12 +342,10 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 	}
 
 	// Accepts child as CSOption and returns only object of itemKey and value
-	getOptionData = (option: CSOption) => {
-		return {
+	getOptionData = (option: CSOption) => ({
 			itemKey: option.props.itemKey,
 			value: option.props.value
-		};
-	}
+		})
 
 	// Returns data defined at exportValue prop from selectedOptions state
 	getItemsByExportValue = (stateToExport: Array<CSOptionItem> | CSOptionItem) => {
@@ -356,9 +354,9 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		}
 		if (Array.isArray(stateToExport)) {
 			return stateToExport.map((option: CSOptionItem) => option[this.props.exportValue]);
-		} else {
+		} 
 			return stateToExport[this.props.exportValue];
-		}
+		
 	}
 
 	// Highlights current hovered or focused item by setting activeListItem state
@@ -444,9 +442,8 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 					child.type === CSOption && this.filterChildrenBy(child)
 				);
 
-				if (!!this.filteredList.length) {
-					return this.filteredList.map((child: React.ReactElement, index) => {
-						return React.cloneElement(child, {
+				if (this.filteredList.length) {
+					return this.filteredList.map((child: React.ReactElement, index) => React.cloneElement(child, {
 							type: 'list-item',
 							active: index === activeListItem,
 							onMouseDown: (event: React.MouseEvent<HTMLLIElement>) => {
@@ -458,9 +455,8 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 							isMultiSelectItem: multiselect,
 							selected: selectedOptions.find(option => this.getOptionData(child as unknown as CSOption).itemKey === option.itemKey)
 								|| this.getOptionData(child as unknown as CSOption).itemKey === selectedItem.itemKey
-						});
-					});
-				} else {
+						}));
+				} 
 					return (
 						<li className="cs-custom-select-no-data">
 							<CSIcon
@@ -470,7 +466,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 							<span className="cs-custom-select-no-data-text">No data found</span>
 						</li>
 					);
-				}
+				
 			}
 		};
 

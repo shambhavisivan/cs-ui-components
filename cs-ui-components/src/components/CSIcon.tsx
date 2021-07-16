@@ -45,7 +45,7 @@ class CSIcon extends React.Component<CSIconProps> {
 			'--cs-icon-c': color,
 			'--cs-main-header-neutral-icon': color,
 			'--cs-icon-size': size,
-			'--cs-icon-rotate': rotate ? rotate + 'deg' : null
+			'--cs-icon-rotate': rotate ? `${rotate  }deg` : null
 		};
 
 		let prefix = 'cssfi-';

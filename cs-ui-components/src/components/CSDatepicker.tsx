@@ -1,12 +1,12 @@
 import React, { CSSProperties } from 'react';
 import DatePicker from 'react-datepicker';
 import { addDays, subDays, addYears, subYears } from 'date-fns';
+import classNames from 'classnames';
+import { v4 as uuidv4 } from 'uuid';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSIcon from './CSIcon';
 import CSLabel from './CSLabel';
-import classNames from 'classnames';
 import { CSTooltipPosition } from './CSTooltip';
-import { v4 as uuidv4 } from 'uuid';
 import KeyCode from '../util/KeyCode';
 
 export type CSDatepickerDropdownMode = 'select' | 'scroll';
@@ -61,6 +61,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps> {
 		dateFormat: 'dd-MM-yyyy',
 		dropdownMode: 'scroll'
 	};
+
 	public datepickerRef: React.RefObject<DatePicker>;
 
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
@@ -140,16 +141,16 @@ class CSDatepicker extends React.Component<CSDatepickerProps> {
 		const calcMaxDate = () => {
 			if (maxDateYear) {
 				return addYears(new Date(), maxDate);
-			} else {
+			} 
 				return addDays(new Date(), maxDate);
-			}
+			
 		};
 		const calcMinDate = () => {
 			if (minDateYear) {
 				return subYears(new Date(), minDate);
-			} else {
+			} 
 				return subDays(new Date(), minDate);
-			}
+			
 		};
 		return (
 			<>

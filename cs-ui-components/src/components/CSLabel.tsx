@@ -1,6 +1,6 @@
 import React from 'react';
-import CSTooltip, { CSTooltipPosition } from './CSTooltip';
 import classNames from 'classnames';
+import CSTooltip, { CSTooltipPosition } from './CSTooltip';
 
 export interface CSLabelProps {
 	[key: string]: any;

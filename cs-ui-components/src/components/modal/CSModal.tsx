@@ -1,9 +1,9 @@
 import React from 'react';
-import CSIcon from '../CSIcon';
 import classNames from 'classnames';
-import CSSpinner from '../CSSpinner';
 import { Portal } from 'react-portal';
 import { v4 as uuidv4 } from 'uuid';
+import CSSpinner from '../CSSpinner';
+import CSIcon from '../CSIcon';
 import { CSModalHeader } from '../../index';
 import withCSUnmountDelay from '../../helpers/CSUnmountDelay';
 import KeyCode from '../../util/KeyCode';
@@ -33,13 +33,21 @@ class CSModal extends React.Component<CSModalProps> {
 	};
 
 	private modalId = 'cs-modal-root';
+
 	private modalRef: HTMLDivElement;
+
 	private modalCloseBtnRef: HTMLButtonElement;
+
 	private modalOverlay: HTMLDivElement;
+
 	private firstElement: HTMLElement;
+
 	private lastElement: HTMLElement;
+
 	private modalContentNode: HTMLDivElement;
+
 	private previouslyFocusedElement: HTMLElement;
+
 	private uniqueAutoId = uuidv4();
 
 	constructor(props: CSModalProps) {
@@ -72,8 +80,7 @@ class CSModal extends React.Component<CSModalProps> {
 			const { activeElement } = document;
 			if (this.props.loading) {
 				event.preventDefault();
-			} else {
-				if (event.shiftKey) {
+			} else if (event.shiftKey) {
 					if (activeElement === this.firstElement) {
 						this.lastElement.focus();
 						event.preventDefault();
@@ -82,7 +89,6 @@ class CSModal extends React.Component<CSModalProps> {
 					this.firstElement.focus();
 					event.preventDefault();
 				}
-			}
 		}
 	}
 
@@ -200,9 +206,9 @@ class CSModal extends React.Component<CSModalProps> {
 					return React.cloneElement(child as React.ReactElement<any>, {
 						titleId: this.uniqueAutoId
 					});
-				} else {
+				} 
 					return child;
-				}
+				
 			}
 		});
 

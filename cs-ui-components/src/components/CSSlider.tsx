@@ -1,9 +1,9 @@
 import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
+import { v4 as uuidv4 } from 'uuid';
 import CSLabel from './CSLabel';
 import { CSTooltipPosition } from './CSTooltip';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
-import { v4 as uuidv4 } from 'uuid';
 
 export interface CSSliderProps {
 	[key: string]: any;
@@ -100,13 +100,13 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 		this.state.steps.push(stepInterval);
 
 		for (let step = 0; step < numberOfSteps; step++) {
-			stepInterval = stepInterval + Number(this.props.step);
+			stepInterval += Number(this.props.step);
 			this.state.steps.push(stepInterval);
 		}
 	}
 
 	stepValuesIcons() {
-		const stepValues = this.props.stepValues;
+		const {stepValues} = this.props;
 		if (stepValues !== undefined) {
 			const numberOfStepValues = stepValues.length;
 			const newMax = String(numberOfStepValues - 1);
@@ -169,7 +169,7 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 		const percentageRange = ((Number(this.state.value) - Number(min)) / (Number(max) - Number(min))) * 100;
 
 		const valueStyle: CSSProperties = {
-			'--cs-slider-value-position': percentageRange + '%'
+			'--cs-slider-value-position': `${percentageRange  }%`
 		};
 
 		const valueClasses = classNames(

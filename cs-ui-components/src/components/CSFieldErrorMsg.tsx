@@ -14,9 +14,9 @@ class CSFieldErrorMsg extends React.Component<CSFieldErrorMsgProps> {
 	getErrorMessage = () => {
 		if (Array.isArray(this.props.message)) {
 			return this.props.message.join(' ');
-		} else {
+		} 
 			return this.props.message;
-		}
+		
 	}
 
 	render() {

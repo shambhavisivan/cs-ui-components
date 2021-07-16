@@ -16,7 +16,9 @@ const withCSUnmountDelay = (Component: any, timeout: number = 200) => {
 			animated: false,
 			visible: true
 		};
+
 		public timer: number;
+
 		constructor(props: CSUnmountDelayProps) {
 			super(props);
 			this.state = { mounted: false };

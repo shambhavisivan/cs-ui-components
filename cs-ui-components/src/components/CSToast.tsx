@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
-import CSIcon, { CSIconOrigin } from './CSIcon';
 import classNames from 'classnames';
+import CSIcon, { CSIconOrigin } from './CSIcon';
 
 export type CSToastVariant = 'info' | 'success' | 'warning' | 'error';
 

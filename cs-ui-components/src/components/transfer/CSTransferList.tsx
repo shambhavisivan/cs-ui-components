@@ -1,4 +1,5 @@
 import React, { RefObject } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import CSCheckbox from '../CSCheckbox';
 import CSLabel from '../CSLabel';
 import CSIcon from '../CSIcon';
@@ -7,7 +8,6 @@ import CSTransferItem from './CSTransferItem';
 import CSTransferContext from './CSTransferContext';
 import { CSTransferVariant, CSTransferItemsType } from './CSTransfer';
 import KeyCode from '../../util/KeyCode';
-import { v4 as uuidv4 } from 'uuid';
 
 export type CSTransferListType = 'source' | 'target';
 
@@ -57,11 +57,7 @@ class CSTransferList extends React.Component<CSTransferListProps, CSTransferList
 		};
 	}
 
-	searchingFor = (term: any) => {
-		return (item: any) => {
-			return item.name.toLowerCase().includes(term.toLowerCase());
-		};
-	}
+	searchingFor = (term: any) => (item: any) => item.name.toLowerCase().includes(term.toLowerCase())
 
 	handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
 		const { listType } = this.props;
@@ -74,7 +70,7 @@ class CSTransferList extends React.Component<CSTransferListProps, CSTransferList
 				(actionButtonsNode.lastChild as HTMLElement).focus();
 				break;
 			default:
-				return;
+				
 		}
 	}
 
@@ -129,9 +125,8 @@ class CSTransferList extends React.Component<CSTransferListProps, CSTransferList
 						role="listbox"
 						aria-describedby={this.uniqueAutoId}
 					>
-						{!!listData.length ?
-							listData.filter(this.searchingFor(term)).map(item => {
-								return (
+						{listData.length ?
+							listData.filter(this.searchingFor(term)).map(item => (
 									<CSTransferItem
 										key={item.key}
 										itemKey={item.key}
@@ -142,8 +137,7 @@ class CSTransferList extends React.Component<CSTransferListProps, CSTransferList
 										selected={selectList.includes(item.key)}
 										listType={listType}
 									/>
-								);
-							}) :
+								)) :
 							<li className="cs-transfer-list-no-data">
 								<CSIcon
 									name="error"

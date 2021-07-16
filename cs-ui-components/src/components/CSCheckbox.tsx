@@ -1,9 +1,9 @@
 import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
+import { v4 as uuidv4 } from 'uuid';
 import CSLabel from './CSLabel';
 import { CSTooltipPosition } from './CSTooltip';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
-import { v4 as uuidv4 } from 'uuid';
 
 export type CSCheckboxVariant = 'neutral' | 'brand';
 export type CSCheckboxLabelPosition = 'left' | 'right';
@@ -43,7 +43,9 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 	};
 
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
+
 	private checkboxRef: React.RefObject<HTMLInputElement>;
+	
 
 	constructor(props: CSCheckboxProps) {
 		super(props);

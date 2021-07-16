@@ -36,6 +36,7 @@ export interface CSDropdownItemWrapperProps {
 
 class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> {
 	private dropdownUListRef: React.RefObject<HTMLUListElement>;
+
 	private focusableElements: any;
 
 	constructor(props: CSDropdownItemWrapperProps) {
@@ -159,7 +160,7 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 							{child}
 						</>
 					);
-				} else {
+				} 
 					return (
 						<li role="none">
 							{React.cloneElement(
@@ -170,7 +171,7 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 							)}
 						</li>
 					);
-				}
+				
 			}
 		});
 
