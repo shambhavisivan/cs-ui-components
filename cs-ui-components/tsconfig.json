@@ -3,15 +3,16 @@
 		"target": "es5",
 		"module": "es6",
 		"declaration": true,
-		"types": ["node", "webpack-env"],
+		"types": ["jest", "@types/jest", "node", "webpack-env"],
 		"typeRoots": ["src/typings", "node_modules/@types"],
 		"outDir": "dist",
 		"sourceMap": true,
 		"jsx": "react",
 		"allowJs": true,
 		"noImplicitAny": true,
-		"allowSyntheticDefaultImports": true
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true
 	},
-	"include": ["src"],
+	"include": ["src/**/*"],
 	"exclude": ["node_modules", "**/__tests__/*"]
 }

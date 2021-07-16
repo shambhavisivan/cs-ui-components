@@ -72,6 +72,7 @@ class CSInputText extends React.Component<CSInputTextProps> {
 			labelHidden,
 			labelTitle,
 			maxLength,
+			name,
 			onBlur,
 			onChange,
 			onFocus,

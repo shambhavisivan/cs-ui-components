@@ -5,3 +5,4 @@ declare module 'uuid';
 declare module 'lodash';
 declare module 'classnames';
 declare module 'resize-observer-polyfill';
+declare module '@wojtekmaj/enzyme-adapter-react-17';

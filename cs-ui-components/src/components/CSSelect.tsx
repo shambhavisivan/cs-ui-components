@@ -71,6 +71,7 @@ class CSSelect extends React.Component<CSSelectProps> {
 			label,
 			labelHidden,
 			labelTitle,
+			name,
 			onChange,
 			readOnly,
 			required,

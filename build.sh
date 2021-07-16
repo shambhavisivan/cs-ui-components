@@ -11,11 +11,13 @@ npm install -g yarn;
 if changedFiles | grep -q '^cs-ui-components'; then
     echo "Validating CS UI Components"
     cd cs-ui-components;
-    yarn;
+    yarn install --ignore-engines;
     echo "Running CS UI Components Lint"
     yarn lint;
     echo "Building CS UI Components"
     yarn build;
+    echo "Running CS UI Components Tests"
+    yarn test;
     echo "Finished validating CS UI Components"
     cd ..;
 fi

@@ -39,8 +39,8 @@ class CSCurrency extends React.Component<CSCurrencyProps> {
 			currency: this.props.currency,
 			currencyDisplay: this.props.currencyDisplay,
 			style: this.props.currency ? 'currency' : undefined,
-			// @ts-ignore
 			currencySign: this.props.currencySign, // Not supported in Safari. Not included in typescript NumberFormatOptions interface
+				// @ts-ignore
 			notation: this.props.notation, // Not supported in Safari. Not included in typescript NumberFormatOptions interface
 			signDisplay: this.props.signDisplay, // Not supported in Safari. Not included in typescript NumberFormatOptions interface
 			minimumIntegerDigits: this.props.minimumIntegerDigits,
@@ -104,8 +104,8 @@ class CSCurrency extends React.Component<CSCurrencyProps> {
 					return this.formatValue(value);
 				}
 
-				// When value is not defined, it is rendered as NaN next to the currency symbol
-				// This part removes NaN so only currency symbol is displayed
+					// When value is not defined, it is rendered as NaN next to the currency symbol
+					// This part removes NaN so only currency symbol is displayed
 				return this.formatValue(value).replace(/(NaN)/g, '');
 			}
 
