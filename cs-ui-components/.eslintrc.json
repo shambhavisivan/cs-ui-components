@@ -34,7 +34,6 @@
         "default-case": ["warn"],
         "prefer-const": ["warn"],
         "valid-typeof": ["warn"],
-        "class-methods-use-this": ["warn"],
         "global-require": ["warn"],
         "no-plusplus": ["warn", { "allowForLoopAfterthoughts": true }],
         "no-use-before-define": ["warn", { "functions": true, "classes": true }],

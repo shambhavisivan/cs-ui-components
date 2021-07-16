@@ -48,7 +48,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 		this.handleDragLeave = this.handleDragLeave.bind(this);
 	}
 
-	handleFileDragEvents(e: React.DragEvent<HTMLDivElement>) {
+	handleFileDragEvents = (e: React.DragEvent<HTMLDivElement>) => {
 		e.preventDefault();
 		e.stopPropagation();
 	}
@@ -101,7 +101,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 		}
 	}
 
-	handleAcceptFiles(acceptFiles: Array<string> | string) {
+	handleAcceptFiles = (acceptFiles: Array<string> | string) => {
 		const newFiles = Array.isArray(acceptFiles) ? acceptFiles.join() : acceptFiles;
 		return newFiles;
 	}
