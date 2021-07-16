@@ -5,8 +5,7 @@
     },
     "extends": [
         "plugin:react/recommended",
-        "airbnb",
-        "prettier"
+        "airbnb"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -22,8 +21,14 @@
     ],
     "rules": {
         // These settings should remain unchanged
+        "no-tabs": "off",
+        "max-len": "off",
+        "indent": ["error", "tab", { "ignoreComments": true }],
+        "object-curly-newline": ["error", { "consistent": true, "multiline":  true }],
         "react/jsx-props-no-spreading": "off",
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+        "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+        "react/jsx-indent": ["error", "tab", { "checkAttributes": true, "indentLogicalExpressions": true }],
+        "react/jsx-indent-props": ["error", "tab"],
         // These warnings should be revisited and preferably resolved
         "consistent-return": ["warn"],
         "default-case": ["warn"],

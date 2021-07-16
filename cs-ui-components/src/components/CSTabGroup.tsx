@@ -12,9 +12,8 @@ export interface CSTabGroupProps {
 }
 
 class CSTabGroup extends React.Component<CSTabGroupProps> {
-
 	public static defaultProps = {
-		variant: 'normal'
+		variant: 'normal',
 	};
 
 	render() {
@@ -27,10 +26,10 @@ class CSTabGroup extends React.Component<CSTabGroupProps> {
 			...rest
 		} = this.props;
 
-		const renderChildrenWithTabsAsProps =  React.Children.map(children, (child, index) => {
+		const renderChildrenWithTabsAsProps = React.Children.map(children, (child, index) => {
 			if (child) {
 				return React.cloneElement(child as React.ReactElement<any>, {
-					parentVariant: variant
+					parentVariant: variant,
 				});
 			}
 		});
@@ -38,8 +37,8 @@ class CSTabGroup extends React.Component<CSTabGroupProps> {
 		const tabGroupClasses = classNames(
 			'cs-tab-group',
 			{
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 		return (
 			<div

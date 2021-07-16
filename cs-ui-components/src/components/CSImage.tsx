@@ -19,10 +19,9 @@ export interface CSImageProps {
 }
 
 class CSImage extends React.Component<CSImageProps> {
-
 	static defaultProps = {
 		color: 'purple',
-		variant: 'initial'
+		variant: 'initial',
 	};
 
 	private uniqueAutoId = this.props.longDescription ? uuidv4() : null;
@@ -42,15 +41,15 @@ class CSImage extends React.Component<CSImageProps> {
 
 		const style: CSSProperties = {
 			'--cs-image-width': width,
-			'--cs-image-height': height
+			'--cs-image-height': height,
 		};
 		const imageClasses = classNames(
 			'cs-image',
 			{
-				[`${className}`] : className
-			}
+				[`${className}`]: className,
+			},
 		);
-		return(
+		return (
 			<>
 				<img
 					className={imageClasses}
@@ -61,9 +60,8 @@ class CSImage extends React.Component<CSImageProps> {
 					aria-labelledby={this.uniqueAutoId}
 					{...rest}
 				/>
-				{longDescription &&
-					<span className="cs-aria-description" id={this.uniqueAutoId}>{longDescription}</span>
-				}
+				{longDescription
+					&& <span className="cs-aria-description" id={this.uniqueAutoId}>{longDescription}</span>}
 			</>
 		);
 	}

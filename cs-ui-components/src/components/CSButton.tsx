@@ -48,7 +48,6 @@ export interface CSButtonProps {
 }
 
 class CSButton extends React.Component<CSButtonProps> {
-
 	constructor(props: CSButtonProps) {
 		super(props);
 		this.iconComponent = this.iconComponent.bind(this);
@@ -161,63 +160,60 @@ class CSButton extends React.Component<CSButtonProps> {
 				'cs-btn-size-small': size === 'small',
 				'cs-btn-size-large': size === 'large',
 
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		const style: CSSProperties = {
 			'--cs-btn-custom-c': color,
 			'--cs-btn-custom-icon-c': iconColor,
-			'--cs-btn-border-radius': borderRadius
+			'--cs-btn-border-radius': borderRadius,
 		};
 
 		const componentProps = {
-			'className': btnGroupClasses,
-			'onClick': this.handleClick,
-			'disabled': disabled || loading,
+			className: btnGroupClasses,
+			onClick: this.handleClick,
+			disabled: disabled || loading,
 			'aria-label': ariaLabel || label,
-			'style': style,
-			'title': title || (labelHidden === true ? label : null),
-			'href': link && link,
-			'target': (openInNewTab && link) ? '_blank' : undefined,
-			'id': id,
-			'value': value,
+			style,
+			title: title || (labelHidden === true ? label : null),
+			href: link && link,
+			target: (openInNewTab && link) ? '_blank' : undefined,
+			id,
+			value,
 			'aria-expanded': ariaExpanded,
 			'aria-haspopup': ariaHaspopup,
-			'role': role,
-			'onMouseDown': onMouseDown,
-			'onMouseEnter': onMouseEnter,
-			'onMouseLeave': onMouseLeave,
-			'onKeyDown': onKeyDown,
-			'ref': forwardRef,
-			...rest
+			role,
+			onMouseDown,
+			onMouseEnter,
+			onMouseLeave,
+			onKeyDown,
+			ref: forwardRef,
+			...rest,
 		};
 
 		return (
 			<>
-				{routerLink ?
-					React.cloneElement(
+				{routerLink
+					? React.cloneElement(
 						routerLink,
 						componentProps,
 						this.iconComponent(),
 						!this.props.labelHidden ? this.label() : null,
-						this.props.children ? <span className="cs-btn-custom-content">{children}</span> : null
-					) :
-					React.createElement(
+						this.props.children ? <span className="cs-btn-custom-content">{children}</span> : null,
+					)
+					: React.createElement(
 						link ? 'a' : 'button',
 						componentProps,
 						this.iconComponent(),
 						!this.props.labelHidden ? this.label() : null,
-						this.props.children ? <span className="cs-btn-custom-content">{children}</span> : null
-					)
-				}
+						this.props.children ? <span className="cs-btn-custom-content">{children}</span> : null,
+					)}
 			</>
 		);
 	}
 }
 
-const CSButtonWithRefs: React.ForwardRefExoticComponent<CSButtonProps & React.RefAttributes<HTMLButtonElement>> =
-	React.forwardRef<HTMLButtonElement, CSButtonProps>((props: CSButtonProps, ref) =>
-		<CSButton {...props} forwardRef={ref} />);
+const CSButtonWithRefs: React.ForwardRefExoticComponent<CSButtonProps & React.RefAttributes<HTMLButtonElement>> =	React.forwardRef<HTMLButtonElement, CSButtonProps>((props: CSButtonProps, ref) => <CSButton {...props} forwardRef={ref} />);
 
 export default CSButtonWithRefs;

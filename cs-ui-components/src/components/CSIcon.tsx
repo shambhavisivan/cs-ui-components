@@ -18,7 +18,6 @@ export interface CSIconProps {
 }
 
 class CSIcon extends React.Component<CSIconProps> {
-
 	render() {
 		const {
 			className,
@@ -38,14 +37,14 @@ class CSIcon extends React.Component<CSIconProps> {
 			frame ? 'cs-icon-frame' : 'cs-icon',
 			{
 				'cs-icon-spin': spin,
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 		const style: CSSProperties = {
 			'--cs-icon-c': color,
 			'--cs-main-header-neutral-icon': color,
 			'--cs-icon-size': size,
-			'--cs-icon-rotate': rotate ? `${rotate  }deg` : null
+			'--cs-icon-rotate': rotate ? `${rotate}deg` : null,
 		};
 
 		let prefix = 'cssfi-';
@@ -70,20 +69,19 @@ class CSIcon extends React.Component<CSIconProps> {
 						</svg>
 					</div>
 				) : (
-						<svg
-							className={styleClass}
-							style={style}
-							aria-hidden="true"
-							id={id}
-							{...rest}
-						>
-							<use href={`#${prefix}${name}`}>
-								{title &&
-									<title>{title}</title>
-								}
-							</use>
-						</svg>
-					)}
+					<svg
+						className={styleClass}
+						style={style}
+						aria-hidden="true"
+						id={id}
+						{...rest}
+					>
+						<use href={`#${prefix}${name}`}>
+							{title
+									&& <title>{title}</title>}
+						</use>
+					</svg>
+				)}
 			</>
 		);
 	}

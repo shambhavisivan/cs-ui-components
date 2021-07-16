@@ -13,11 +13,10 @@ export interface CSMainHeaderProps {
 }
 
 class CSMainHeader extends React.Component<CSMainHeaderProps> {
-
 	public static defaultProps = {
 		color: 'neutral',
 		maxWidth: '100%',
-		sticky: true
+		sticky: true,
 	};
 
 	render() {
@@ -36,12 +35,12 @@ class CSMainHeader extends React.Component<CSMainHeaderProps> {
 			{
 				'cs-main-header-sticky': sticky === true,
 				[`cs-main-header-${color}`]: color,
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		const style: CSSProperties = {
-			maxWidth
+			maxWidth,
 		};
 
 		return (
@@ -54,7 +53,6 @@ class CSMainHeader extends React.Component<CSMainHeaderProps> {
 					{children}
 				</div>
 			</header>
-
 		);
 	}
 }

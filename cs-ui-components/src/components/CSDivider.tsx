@@ -13,7 +13,6 @@ export interface CSDividerProps {
 }
 
 class CSDivider extends React.Component<CSDividerProps> {
-
 	render() {
 		const {
 			className,
@@ -29,12 +28,12 @@ class CSDivider extends React.Component<CSDividerProps> {
 			[`cs-divider-${variant}`],
 			{
 				'cs-divider-with-label': label,
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		const style: CSSProperties = {
-			'--cs-divider-size': size
+			'--cs-divider-size': size,
 		};
 
 		return (
@@ -46,9 +45,8 @@ class CSDivider extends React.Component<CSDividerProps> {
 				id={id}
 				{...rest}
 			>
-				{(label && variant === 'horizontal') &&
-					<span className="cs-divider-label">{label}</span>
-				}
+				{(label && variant === 'horizontal')
+					&& <span className="cs-divider-label">{label}</span>}
 			</div>
 		);
 	}

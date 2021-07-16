@@ -26,14 +26,14 @@ class CSTableCell extends React.Component<CSTableCellProps> {
 
 		const style: CSSProperties = {
 			flexGrow: grow,
-			maxWidth
+			maxWidth,
 		};
 
 		const tableCellClasses = classNames(
 			'cs-table-cell',
 			{
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		return (
@@ -44,14 +44,15 @@ class CSTableCell extends React.Component<CSTableCellProps> {
 				role={role || 'cell'}
 				{...rest}
 			>
-				{text &&
-					<span
-						className="cs-table-cell-text"
-						title={text}
-					>
-						{text}
-					</span>
-				}
+				{text
+					&& (
+						<span
+							className="cs-table-cell-text"
+							title={text}
+						>
+							{text}
+						</span>
+					)}
 				{children}
 			</div>
 		);

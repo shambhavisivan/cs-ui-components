@@ -10,7 +10,6 @@ export interface CSModalBodyProps {
 }
 
 class CSModalBody extends React.Component<CSModalBodyProps> {
-
 	render() {
 		const {
 			children,
@@ -23,14 +22,14 @@ class CSModalBody extends React.Component<CSModalBodyProps> {
 
 		const style: CSSProperties = {
 			'--cs-modal-body-min-height': minHeight,
-			'--cs-modal-body-padding': padding
+			'--cs-modal-body-padding': padding,
 		};
 
 		const modalBodyClasses = classNames(
 			'cs-modal-body',
 			{
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		return (

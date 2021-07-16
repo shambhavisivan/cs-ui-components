@@ -16,7 +16,6 @@ export interface CSLabelProps {
 
 class CSLabel extends React.Component<CSLabelProps> {
 	render() {
-
 		const {
 			className,
 			helpText,
@@ -32,8 +31,8 @@ class CSLabel extends React.Component<CSLabelProps> {
 		const labelClasses = classNames(
 			'cs-label-wrapper',
 			{
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 
 		);
 
@@ -45,23 +44,27 @@ class CSLabel extends React.Component<CSLabelProps> {
 					id={id}
 					{...rest}
 				>
-					{required &&
-						<span
-							className="cs-label-required"
-							aria-hidden="true"
-						>*</span>
-					}
+					{required
+						&& (
+							<span
+								className="cs-label-required"
+								aria-hidden="true"
+							>
+								*
+							</span>
+						)}
 					<span className="cs-label" title={title}>
 						{label}
 					</span>
-					{helpText &&
-						<div className="cs-tooltip-group">
-							<CSTooltip
-								content={helpText}
-								position={tooltipPosition}
-							/>
-						</div>
-					}
+					{helpText
+						&& (
+							<div className="cs-tooltip-group">
+								<CSTooltip
+									content={helpText}
+									position={tooltipPosition}
+								/>
+							</div>
+						)}
 				</label>
 			</>
 		);

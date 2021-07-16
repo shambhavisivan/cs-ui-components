@@ -16,7 +16,6 @@ export interface CSPathItemProps {
 }
 
 class CSPathItem extends React.Component<CSPathItemProps> {
-
 	render() {
 		const {
 			active,
@@ -34,8 +33,8 @@ class CSPathItem extends React.Component<CSPathItemProps> {
 			{
 				[`cs-path-item-${this.props.status}`]: status,
 				'cs-path-item-active': active,
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		return (
@@ -52,14 +51,15 @@ class CSPathItem extends React.Component<CSPathItemProps> {
 					disabled={disabled}
 					className="cs-path-item-wrapper"
 				>
-					{this.props.status &&
-						<span className="cs-path-item-icon">
-							<CSIcon
-								name={status === 'success' ? 'check' : 'warning'}
-								color={status === 'warning' ? 'var(--cs-path-item-warning-icon)' : 'var(--cs-path-item-icon)'}
-							/>
-						</span>
-					}
+					{this.props.status
+						&& (
+							<span className="cs-path-item-icon">
+								<CSIcon
+									name={status === 'success' ? 'check' : 'warning'}
+									color={status === 'warning' ? 'var(--cs-path-item-warning-icon)' : 'var(--cs-path-item-icon)'}
+								/>
+							</span>
+						)}
 					<span className="cs-path-item-name">{this.props.name}</span>
 				</button>
 			</li>

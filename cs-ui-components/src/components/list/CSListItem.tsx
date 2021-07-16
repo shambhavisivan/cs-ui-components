@@ -15,7 +15,6 @@ export interface CSListItemProps {
 }
 
 class CSListItem extends React.Component<CSListItemProps> {
-
 	componentDidUpdate(prevProps: CSListItemProps) {
 		if (prevProps.disabled !== this.props.disabled) {
 			this.props.checkValidItems();
@@ -63,8 +62,8 @@ class CSListItem extends React.Component<CSListItemProps> {
 		const listItemWrapperClasses = classNames(
 			'cs-list-item-wrapper',
 			{
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		const listItemClasses = classNames(
@@ -73,13 +72,13 @@ class CSListItem extends React.Component<CSListItemProps> {
 				'cs-list-item-selected': selected && listVariant === 'simple-list',
 				'cs-list-item-disabled': disabled,
 				[`cs-list-item-${listSize}`]: listSize,
-				[`cs-list-item-${listVariant}`]: listVariant
-			}
+				[`cs-list-item-${listVariant}`]: listVariant,
+			},
 		);
 
 		const listItemText = <span className="cs-list-item-text">{text}</span>;
-		const listItemContent = customContent &&
-			<div className="cs-list-item-custom-content">{customContent}</div>;
+		const listItemContent = customContent
+			&& <div className="cs-list-item-custom-content">{customContent}</div>;
 
 		return (
 			<li
@@ -88,33 +87,36 @@ class CSListItem extends React.Component<CSListItemProps> {
 				aria-level={isGrouped ? 2 : 1}
 				{...rest}
 			>
-				{listVariant === 'simple-list' ?
-					<div
-						className={listItemClasses}
-						onClick={onSelectChange}
-						aria-selected={selected}
-						role="button"
-						tabIndex={disabled ? -1 : 0}
-						onKeyDown={this.handleKeyDown}
-					>
-						{listItemText}
-						{listItemContent}
-					</div> :
-					<div className={listItemClasses}>
-						<label className="cs-list-item-check-list-group">
-							<CSCheckbox
-								label="list item"
-								labelHidden
-								variant="brand"
-								onChange={this.handleSelect}
-								checked={selected}
-								disabled={disabled}
-							/>
+				{listVariant === 'simple-list'
+					? (
+						<div
+							className={listItemClasses}
+							onClick={onSelectChange}
+							aria-selected={selected}
+							role="button"
+							tabIndex={disabled ? -1 : 0}
+							onKeyDown={this.handleKeyDown}
+						>
 							{listItemText}
-						</label>
-						{listItemContent}
-					</div>
-				}
+							{listItemContent}
+						</div>
+					)
+					: (
+						<div className={listItemClasses}>
+							<label className="cs-list-item-check-list-group">
+								<CSCheckbox
+									label="list item"
+									labelHidden
+									variant="brand"
+									onChange={this.handleSelect}
+									checked={selected}
+									disabled={disabled}
+								/>
+								{listItemText}
+							</label>
+							{listItemContent}
+						</div>
+					)}
 			</li>
 		);
 	}

@@ -1,6 +1,8 @@
 import React, { CSSProperties } from 'react';
 import DatePicker from 'react-datepicker';
-import { addDays, subDays, addYears, subYears } from 'date-fns';
+import {
+	addDays, subDays, addYears, subYears,
+} from 'date-fns';
 import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
@@ -56,10 +58,9 @@ export interface CSDatepickerProps {
 }
 
 class CSDatepicker extends React.Component<CSDatepickerProps> {
-
 	public static defaultProps = {
 		dateFormat: 'dd-MM-yyyy',
-		dropdownMode: 'scroll'
+		dropdownMode: 'scroll',
 	};
 
 	public datepickerRef: React.RefObject<DatePicker>;
@@ -131,40 +132,39 @@ class CSDatepicker extends React.Component<CSDatepickerProps> {
 				'cs-datepicker-error': error,
 				'cs-datepicker-read-only': readOnly,
 				'cs-datepicker-clearable': isClearable,
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 		const style: CSSProperties = {
 			'--datepicker-width': width,
-			'--cs-datepicker-border-radius': borderRadius
+			'--cs-datepicker-border-radius': borderRadius,
 		};
 		const calcMaxDate = () => {
 			if (maxDateYear) {
 				return addYears(new Date(), maxDate);
-			} 
-				return addDays(new Date(), maxDate);
-			
+			}
+			return addDays(new Date(), maxDate);
 		};
 		const calcMinDate = () => {
 			if (minDateYear) {
 				return subYears(new Date(), minDate);
-			} 
-				return subDays(new Date(), minDate);
-			
+			}
+			return subDays(new Date(), minDate);
 		};
 		return (
 			<>
 				<div className={datepickerClasses} style={style}>
-					{(label && !labelHidden && !inline) &&
-						<CSLabel
-							htmlFor={this.uniqueAutoId}
-							label={label}
-							helpText={helpText}
-							tooltipPosition={tooltipPosition}
-							required={required}
-							title={labelTitle ? label : null}
-						/>
-					}
+					{(label && !labelHidden && !inline)
+						&& (
+							<CSLabel
+								htmlFor={this.uniqueAutoId}
+								label={label}
+								helpText={helpText}
+								tooltipPosition={tooltipPosition}
+								required={required}
+								title={labelTitle ? label : null}
+							/>
+						)}
 					<div className="cs-datepicker-wrapper" title={title}>
 						<DatePicker
 							dateFormat={dateFormat}
@@ -201,9 +201,8 @@ class CSDatepicker extends React.Component<CSDatepickerProps> {
 					</div>
 					{(!readOnly && !inline) && <CSIcon name="event" className="cs-datepicker-icon" size="0.875rem" />}
 				</div>
-				{(error && errorMessage) &&
-					<CSFieldErrorMsg message={errorMessage} />
-				}
+				{(error && errorMessage)
+					&& <CSFieldErrorMsg message={errorMessage} />}
 			</>
 		);
 	}

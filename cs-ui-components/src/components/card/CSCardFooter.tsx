@@ -13,22 +13,24 @@ export interface CSCardFooterProps {
 
 class CSCardFooter extends React.Component<CSCardFooterProps> {
 	public static defaultProps = {
-		align: 'left'
+		align: 'left',
 	};
 
 	render() {
-		const {  align, className, children, id, padding, ...rest } = this.props;
+		const {
+			align, className, children, id, padding, ...rest
+		} = this.props;
 
 		const cardFooterClasses = classNames(
 			'cs-card-footer',
 			{
 				[`cs-card-footer-${align}`]: align,
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		const cardFooterStyles: CSSProperties = {
-			'--cs-card-footer-padding': padding
+			'--cs-card-footer-padding': padding,
 		};
 
 		return (

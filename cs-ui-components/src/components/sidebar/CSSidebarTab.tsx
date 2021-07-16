@@ -17,10 +17,9 @@ export interface CSSidebarTabProps {
 }
 
 class CSSidebarTab extends React.Component<CSSidebarTabProps> {
-
 	public static defaultProps = {
 		iconOrigin: 'slds',
-		noTabHeader: false
+		noTabHeader: false,
 	};
 
 	render() {
@@ -40,42 +39,43 @@ class CSSidebarTab extends React.Component<CSSidebarTabProps> {
 		} = this.props;
 
 		const style: CSSProperties = {
-			'--cs-sidebar-tab-custom-padding': tabPadding
+			'--cs-sidebar-tab-custom-padding': tabPadding,
 		};
 
 		const sidebarTabClasses = classNames(
 			'cs-sidebar-tab',
 			{
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		return (
 			<>
-				{isActiveTab &&
-					<div
-						className={sidebarTabClasses}
-						id={id}
-						style={style}
-						{...rest}
-					>
-						{!noTabHeader &&
-							<div className="cs-sidebar-tab-header">
-								<div className="cs-sidebar-tab-headings-wrapper">
-									<span className="cs-sidebar-tab-title-wrapper">
-										<h3 className="cs-sidebar-tab-title" title={title}>{title}</h3>
-									</span>
-									{subtitle &&
-										<h4 className="cs-sidebar-tab-subtitle">{subtitle}</h4>
-									}
+				{isActiveTab
+					&& (
+						<div
+							className={sidebarTabClasses}
+							id={id}
+							style={style}
+							{...rest}
+						>
+							{!noTabHeader
+							&& (
+								<div className="cs-sidebar-tab-header">
+									<div className="cs-sidebar-tab-headings-wrapper">
+										<span className="cs-sidebar-tab-title-wrapper">
+											<h3 className="cs-sidebar-tab-title" title={title}>{title}</h3>
+										</span>
+										{subtitle
+										&& <h4 className="cs-sidebar-tab-subtitle">{subtitle}</h4>}
+									</div>
 								</div>
+							)}
+							<div className="cs-sidebar-tab-body">
+								{children}
 							</div>
-						}
-						<div className="cs-sidebar-tab-body">
-							{children}
 						</div>
-					</div>
-				}
+					)}
 			</>
 		);
 	}

@@ -23,10 +23,9 @@ export interface CSProgressBarProps {
 }
 
 class CSProgressBar extends React.Component<CSProgressBarProps> {
-
 	public static defaultProps = {
 		status: 'neutral',
-		thickness: 'medium'
+		thickness: 'medium',
 	};
 
 	getStatus() {
@@ -77,22 +76,22 @@ class CSProgressBar extends React.Component<CSProgressBarProps> {
 		const progressBarWrapperClasses = classNames(
 			'cs-progress-bar-wrapper',
 			{
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		const progressBarValueClasses = classNames(
 			'cs-progress-bar-value',
 			{
 				[`cs-progress-bar-${status}`]: status !== 'neutral',
-				'cs-progress-bar-custom': color
-			}
+				'cs-progress-bar-custom': color,
+			},
 		);
 
 		const progressBarStyle: CSSProperties = {
 			'--cs-progress-bar-border-radius': borderRadius,
 			'--cs-progress-bar-custom-bg': color,
-			'--cs-progress-bar-width': progress
+			'--cs-progress-bar-width': progress,
 		};
 
 		return (
@@ -106,12 +105,13 @@ class CSProgressBar extends React.Component<CSProgressBarProps> {
 				{...rest}
 			>
 				<div className="cs-progress-bar-text">
-					{(label && !labelHidden) &&
-						<CSLabel
-							label={label}
-							title={labelTitle ? label : null}
-						/>
-					}
+					{(label && !labelHidden)
+						&& (
+							<CSLabel
+								label={label}
+								title={labelTitle ? label : null}
+							/>
+						)}
 					{infoText && (
 						<div className="cs-progress-info-text">
 							{infoText}

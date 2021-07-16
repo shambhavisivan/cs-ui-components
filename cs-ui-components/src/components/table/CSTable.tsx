@@ -13,7 +13,6 @@ export interface CSTableProps {
 export const CSTableContext = React.createContext<CSTableProps>({});
 
 class CSTable extends React.Component<CSTableProps> {
-
 	private uniqueAutoId = this.props.tableDescription ? uuidv4() : null;
 
 	render() {
@@ -29,14 +28,15 @@ class CSTable extends React.Component<CSTableProps> {
 		const tableClasses = classNames(
 			'cs-table',
 			{
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		return (
 			<CSTableContext.Provider value={{
-				selectableRows
-			}}>
+				selectableRows,
+			}}
+			>
 				<div
 					className={tableClasses}
 					role="table"
@@ -44,9 +44,8 @@ class CSTable extends React.Component<CSTableProps> {
 					aria-labelledby={this.uniqueAutoId}
 					{...rest}
 				>
-					{tableDescription &&
-						<span className="cs-table-description" id={this.uniqueAutoId}>{tableDescription}</span>
-					}
+					{tableDescription
+						&& <span className="cs-table-description" id={this.uniqueAutoId}>{tableDescription}</span>}
 					{children}
 				</div>
 			</CSTableContext.Provider>

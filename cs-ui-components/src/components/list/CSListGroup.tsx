@@ -25,10 +25,9 @@ export interface CSListGroupState {
 }
 
 class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
-
 	public static defaultProps = {
 		collapsible: true,
-		checkboxOption: 'select-all'
+		checkboxOption: 'select-all',
 	};
 
 	constructor(props: CSListGroupProps) {
@@ -37,7 +36,7 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 		this.state = {
 			collapsed: false,
 			validItems: [],
-			selectedItems: []
+			selectedItems: [],
 		};
 	}
 
@@ -75,9 +74,9 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 		const { selectedItems } = this.state;
 		let _selectedItems: Array<number> = [];
 
-		_selectedItems = selectedItems.includes(key) ?
-			selectedItems.filter(itemKey => itemKey !== key) :
-			[...selectedItems, key];
+		_selectedItems = selectedItems.includes(key)
+			? selectedItems.filter((itemKey) => itemKey !== key)
+			: [...selectedItems, key];
 
 		this.setState({ selectedItems: _selectedItems });
 	}
@@ -120,7 +119,7 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 		const {
 			collapsed,
 			selectedItems,
-			validItems
+			validItems,
 		} = this.state;
 
 		const listGroupHeaderClasses = classNames(
@@ -128,25 +127,24 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 			{
 				[`cs-list-group-header-${listSize}`]: listSize,
 				[`cs-list-group-header-${listVariant}`]: listVariant,
-				'cs-list-group-header-noncollapsible': !collapsible
-			}
+				'cs-list-group-header-noncollapsible': !collapsible,
+			},
 		);
 
 		const listGroupWrapperClasses = classNames(
 			'cs-list-group-wrapper',
 			{
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		const headerIconSize = () => {
 			switch (listSize) {
-				case 'large':
-					return '1.125rem';
-				case 'small':
-					return '0.75rem';
-				default:
-					
+			case 'large':
+				return '1.125rem';
+			case 'small':
+				return '0.75rem';
+			default:
 			}
 		};
 
@@ -159,15 +157,17 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 					checkValidItems: this.checkValidItems,
 					selectHandler: this.handleSelect,
 					itemKey: index,
-					isGrouped: true
+					isGrouped: true,
 				});
 			}
 		});
 
-		const listHeaderContent = customContent &&
-			<div className="cs-list-group-header-custom-content">
-				{customContent}
-			</div>;
+		const listHeaderContent = customContent
+			&& (
+				<div className="cs-list-group-header-custom-content">
+					{customContent}
+				</div>
+			);
 
 		return (
 			<li
@@ -184,36 +184,36 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 						tabIndex={0}
 						className="cs-list-group-header-inner-wrapper"
 						onClick={collapsible ? this.toggle : undefined}
-						onKeyDown={collapsible ? e => this.handleItemKeyDown(e) :
-							undefined
-						}
+						onKeyDown={collapsible ? (e) => this.handleItemKeyDown(e)
+							: undefined}
 						aria-expanded={!collapsed}
 					>
-						{(listVariant === 'check-list' &&
-							collapsible &&
-							checkboxOption !== 'not-selectable') &&
-							<CSCheckbox
-								label="select all"
-								labelHidden
-								onChange={
-									checkboxOption === 'select-all' ?
-										this.handleSelectAll :
-										onSelectChange
-								}
-								variant="brand"
-								checked={checkboxOption === 'select-all' ?
-									selectedItems.length === validItems.length :
-									undefined
-								}
-							/>
-						}
-						{collapsible &&
-							<CSIcon
-								name="chevronright"
-								rotate={collapsed ? 0 : 90}
-								size={headerIconSize()}
-							/>
-						}
+						{(listVariant === 'check-list'
+							&& collapsible
+							&& checkboxOption !== 'not-selectable')
+							&& (
+								<CSCheckbox
+									label="select all"
+									labelHidden
+									onChange={
+										checkboxOption === 'select-all'
+											? this.handleSelectAll
+											: onSelectChange
+									}
+									variant="brand"
+									checked={checkboxOption === 'select-all'
+										? selectedItems.length === validItems.length
+										: undefined}
+								/>
+							)}
+						{collapsible
+							&& (
+								<CSIcon
+									name="chevronright"
+									rotate={collapsed ? 0 : 90}
+									size={headerIconSize()}
+								/>
+							)}
 						<span className="cs-list-group-header-text">{text}</span>
 						{listHeaderContent}
 					</div>

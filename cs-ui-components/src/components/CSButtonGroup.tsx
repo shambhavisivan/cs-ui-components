@@ -15,7 +15,7 @@ export interface CSButtonGroupProps {
 
 class CSButtonGroup extends React.Component<CSButtonGroupProps> {
 	public static defaultProps = {
-		combined: true
+		combined: true,
 	};
 
 	private uniqueAutoId = this.props.ariaDescription ? uuidv4() : null;
@@ -35,8 +35,8 @@ class CSButtonGroup extends React.Component<CSButtonGroupProps> {
 			[`cs-button-group cs-button-group-${combined}`],
 			{
 				[`cs-button-group-margin-${marginPosition}`]: marginPosition,
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		return (
@@ -47,9 +47,8 @@ class CSButtonGroup extends React.Component<CSButtonGroupProps> {
 				aria-labelledby={this.uniqueAutoId}
 				{...rest}
 			>
-				{ariaDescription &&
-					<span className="cs-aria-description" id={this.uniqueAutoId}>{ariaDescription}</span>
-				}
+				{ariaDescription
+					&& <span className="cs-aria-description" id={this.uniqueAutoId}>{ariaDescription}</span>}
 				{children}
 			</div>
 		);

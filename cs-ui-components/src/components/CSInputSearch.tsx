@@ -49,7 +49,7 @@ export function resolveOnChange(
 	e:
 		React.ChangeEvent<HTMLInputElement> |
 		React.MouseEvent<HTMLElement, MouseEvent>,
-	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void,
 ) {
 	if (onChange) {
 		let event = e;
@@ -75,10 +75,9 @@ export interface CSInputSearchState {
 }
 
 class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchState> {
-
 	public static defaultProps = {
 		iconPosition: 'left',
-		labelHidden: false
+		labelHidden: false,
 	};
 
 	private input: HTMLInputElement;
@@ -89,7 +88,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 		super(props);
 		const value = typeof props.value === undefined ? '' : props.value;
 		this.state = {
-			value
+			value,
 		};
 	}
 
@@ -114,14 +113,14 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 		this.input.focus();
 	}
 
-	onFocus: React.FocusEventHandler<HTMLInputElement> = e => {
+	onFocus: React.FocusEventHandler<HTMLInputElement> = (e) => {
 		const { onFocus } = this.props;
 		if (onFocus) {
 			onFocus(e);
 		}
 	}
 
-	onBlur: React.FocusEventHandler<HTMLInputElement> = e => {
+	onBlur: React.FocusEventHandler<HTMLInputElement> = (e) => {
 		const { onBlur } = this.props;
 		if (onBlur) {
 			onBlur(e);
@@ -172,8 +171,8 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 			'cs-input-search-wrapper',
 			{
 				'cs-element-hidden': hidden,
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		const inputSearchGroupClasses = classNames(
@@ -181,35 +180,36 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 			{
 				'cs-clear': this.state.value,
 				'cs-icon-left': iconPosition === 'left',
-				'cs-icon-right': iconPosition === 'right'
-			}
+				'cs-icon-right': iconPosition === 'right',
+			},
 		);
 
 		const inputSearchClasses = classNames(
 			'cs-input-search',
 			{
-				'cs-input-search-error': error
-			}
+				'cs-input-search-error': error,
+			},
 		);
 
 		const style: CSSProperties = {
 			'--search-width': width,
-			'--cs-input-search-border-radius': borderRadius
+			'--cs-input-search-border-radius': borderRadius,
 		};
 
 		return (
 			<>
 				<div className={inputSearchWrapperClasses}>
-					{(label && !labelHidden) &&
-						<CSLabel
-							htmlFor={this.uniqueAutoId}
-							label={label}
-							helpText={helpText}
-							tooltipPosition={tooltipPosition}
-							required={required}
-							title={labelTitle ? label : null}
-						/>
-					}
+					{(label && !labelHidden)
+						&& (
+							<CSLabel
+								htmlFor={this.uniqueAutoId}
+								label={label}
+								helpText={helpText}
+								tooltipPosition={tooltipPosition}
+								required={required}
+								title={labelTitle ? label : null}
+							/>
+						)}
 					<div className={inputSearchGroupClasses} style={style}>
 						<CSIcon
 							name="search"
@@ -217,7 +217,8 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 							color="var(--cs-input-icon-fill)"
 							size="0.875rem"
 						/>
-						<input className={inputSearchClasses}
+						<input
+							className={inputSearchClasses}
 							autoFocus={autoFocus}
 							onChange={this.handleOnChange}
 							id={this.uniqueAutoId}
@@ -230,29 +231,29 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 							value={fixControlledValue(this.state.value)}
 							type="text"
 							autoComplete="off"
-							ref={node => this.input = node}
+							ref={(node) => this.input = node}
 							onKeyDown={this.handleOnKeyDown}
 							onBlur={this.onBlur}
 							onFocus={this.onFocus}
 							title={title}
 							{...rest}
 						/>
-						{this.state.value &&
-							<CSButton
-								btnType="transparent"
-								btnStyle="brand"
-								className="cs-input-search-clear"
-								iconColor="var(--cs-input-clear)"
-								iconName="close"
-								labelHidden
-								label="clear"
-								onClick={this.clearSearch}
-								size="small"
-							/>
-						}
-						{(error && errorMessage) &&
-							<CSFieldErrorMsg message={errorMessage} />
-						}
+						{this.state.value
+							&& (
+								<CSButton
+									btnType="transparent"
+									btnStyle="brand"
+									className="cs-input-search-clear"
+									iconColor="var(--cs-input-clear)"
+									iconName="close"
+									labelHidden
+									label="clear"
+									onClick={this.clearSearch}
+									size="small"
+								/>
+							)}
+						{(error && errorMessage)
+							&& <CSFieldErrorMsg message={errorMessage} />}
 					</div>
 				</div>
 			</>

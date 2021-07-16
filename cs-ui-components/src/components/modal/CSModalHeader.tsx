@@ -11,7 +11,6 @@ export interface CSModalHeaderProps {
 }
 
 class CSModalHeader extends React.Component<CSModalHeaderProps> {
-
 	render() {
 		const {
 			children,
@@ -26,8 +25,8 @@ class CSModalHeader extends React.Component<CSModalHeaderProps> {
 		const modalHeaderClasses = classNames(
 			'cs-modal-header',
 			{
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		return (
@@ -36,12 +35,10 @@ class CSModalHeader extends React.Component<CSModalHeaderProps> {
 				id={id}
 				{...rest}
 			>
-				{title &&
-					<h3 className="cs-modal-header-title" id={titleId}>{title}</h3>
-				}
-				{subtitle &&
-					<h4 className="cs-modal-header-subtitle">{subtitle}</h4>
-				}
+				{title
+					&& <h3 className="cs-modal-header-title" id={titleId}>{title}</h3>}
+				{subtitle
+					&& <h4 className="cs-modal-header-subtitle">{subtitle}</h4>}
 				{children}
 			</header>
 		);

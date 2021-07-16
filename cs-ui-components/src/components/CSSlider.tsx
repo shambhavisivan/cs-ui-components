@@ -46,7 +46,6 @@ export function fixControlledValue<T>(value: T) {
 }
 
 class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
-
 	static getDerivedStateFromProps(nextProps: CSSliderProps, { prevValue }: CSSliderState) {
 		const newState: Partial<CSSliderState> = { prevValue: nextProps.value };
 		if (prevValue !== nextProps.value) {
@@ -67,7 +66,7 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 			steps: [],
 			step: props.step,
 			min: props.min,
-			max: props.max
+			max: props.max,
 		};
 		this.stepsIcons = this.stepsIcons.bind(this);
 	}
@@ -81,7 +80,7 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 			this.props.onChange(event);
 		}
 		this.setState({
-			value: event.target.value
+			value: event.target.value,
 		});
 	}
 
@@ -106,14 +105,14 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 	}
 
 	stepValuesIcons() {
-		const {stepValues} = this.props;
+		const { stepValues } = this.props;
 		if (stepValues !== undefined) {
 			const numberOfStepValues = stepValues.length;
 			const newMax = String(numberOfStepValues - 1);
 			this.setState({
 				max: newMax,
 				min: '0',
-				step: 1
+				step: 1,
 			});
 		}
 	}
@@ -146,53 +145,60 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 		const sliderWrapperClasses = classNames(
 			'cs-slider-wrapper',
 			{
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		const sliderGroupClasses = classNames(
-			'cs-slider-group'
+			'cs-slider-group',
 		);
 
 		const sliderClasses = classNames(
 			'cs-slider',
 			{
-				'cs-slider-error': error
-			}
+				'cs-slider-error': error,
+			},
 		);
 
 		const style: CSSProperties = {
-			'--cs-slider-width': width
+			'--cs-slider-width': width,
 		};
 
 		const allSteps = this.state.steps;
 		const percentageRange = ((Number(this.state.value) - Number(min)) / (Number(max) - Number(min))) * 100;
 
 		const valueStyle: CSSProperties = {
-			'--cs-slider-value-position': `${percentageRange  }%`
+			'--cs-slider-value-position': `${percentageRange}%`,
 		};
 
 		const valueClasses = classNames(
 			'cs-slider-max-value',
 			percentageRange === 0 ? 'start' : null,
-			percentageRange === 100 ? 'end' : null
+			percentageRange === 100 ? 'end' : null,
 		);
 
 		return (
 			<div className={sliderWrapperClasses} style={style}>
-				{(label && !labelHidden) &&
-					<CSLabel
-						htmlFor={this.uniqueAutoId}
-						label={label}
-						helpText={helpText}
-						tooltipPosition={tooltipPosition}
-						required={required}
-						title={labelTitle ? label : null}
-					/>
-				}
-				{min || max ?
-					<span className="cs-slide-range">{min}-{max}</span>
-				: null}
+				{(label && !labelHidden)
+					&& (
+						<CSLabel
+							htmlFor={this.uniqueAutoId}
+							label={label}
+							helpText={helpText}
+							tooltipPosition={tooltipPosition}
+							required={required}
+							title={labelTitle ? label : null}
+						/>
+					)}
+				{min || max
+					? (
+						<span className="cs-slide-range">
+							{min}
+							-
+							{max}
+						</span>
+					)
+					: null}
 				<div className={sliderGroupClasses}>
 					<input
 						className={sliderClasses}
@@ -215,7 +221,7 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 					/>
 					{step ? (
 						<div className="cs-slider-steps-wrapper">
-							{allSteps.map(stateStep => (
+							{allSteps.map((stateStep) => (
 								<span key={stateStep} className="cs-slider-step">
 									<span className="cs-slider-step-circle" />
 									<span className="cs-slider-step-number">{stateStep}</span>
@@ -225,7 +231,7 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 					) : null}
 					{stepValues ? (
 						<div className="cs-slider-steps-wrapper">
-							{stepValues.map(stepValue => (
+							{stepValues.map((stepValue) => (
 								<span key={stepValue} className="cs-slider-step">
 									<span className="cs-slider-step-circle" />
 									<span className="cs-slider-step-number">{stepValue}</span>
@@ -239,9 +245,8 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 						</div>
 					) : null}
 				</div>
-				{(error && errorMessage) &&
-					<CSFieldErrorMsg message={errorMessage} />
-				}
+				{(error && errorMessage)
+					&& <CSFieldErrorMsg message={errorMessage} />}
 			</div>
 		);
 	}

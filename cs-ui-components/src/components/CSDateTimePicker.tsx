@@ -12,10 +12,9 @@ export interface CSDateTimePickerProps
 }
 
 class CSDateTimePicker extends React.Component<CSDateTimePickerProps> {
-
 	public static defaultProps = {
 		dateFormat: 'MMMM d, yyyy h:mm aa',
-		dropdownMode: 'scroll'
+		dropdownMode: 'scroll',
 	};
 
 	public render() {
@@ -65,8 +64,8 @@ class CSDateTimePicker extends React.Component<CSDateTimePickerProps> {
 		const dateTimePickerClasses = classNames(
 			'cs-datetimepicker',
 			{
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		return (
@@ -84,8 +83,6 @@ class CSDateTimePicker extends React.Component<CSDateTimePickerProps> {
 	}
 }
 
-const CSDateTimePickerWithRefs: React.ForwardRefExoticComponent<CSDateTimePickerProps & React.RefAttributes<CSDatepicker>> =
-	React.forwardRef<CSDatepicker, CSDateTimePickerProps>((props: CSDateTimePickerProps, ref) =>
-		<CSDateTimePicker {...props} forwardRef={ref} />);
+const CSDateTimePickerWithRefs: React.ForwardRefExoticComponent<CSDateTimePickerProps & React.RefAttributes<CSDatepicker>> =	React.forwardRef<CSDatepicker, CSDateTimePickerProps>((props: CSDateTimePickerProps, ref) => <CSDateTimePicker {...props} forwardRef={ref} />);
 
 export default CSDateTimePickerWithRefs;

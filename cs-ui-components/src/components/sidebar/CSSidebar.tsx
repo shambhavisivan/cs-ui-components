@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
-import CSButton from "../CSButton";
+import CSButton from '../CSButton';
 
 export type CSSidebarOpensTo = 'left' | 'right';
 
@@ -24,13 +24,12 @@ export interface CSSidebarState {
 }
 
 class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
-
 	public static defaultProps = {
 		defaultClosed: false,
 		collapsible: true,
 		multipleTabs: false,
 		opensTo: 'right',
-		wholeSidebarClickable: true
+		wholeSidebarClickable: true,
 	};
 
 	constructor(props: CSSidebarProps) {
@@ -38,20 +37,20 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 
 		this.state = {
 			closed: this.props.defaultClosed,
-			activeTabIndex: 0
+			activeTabIndex: 0,
 		};
 	}
 
 	handleTabClick = (index: number) => {
 		this.setState({
 			activeTabIndex: index,
-			closed: index === this.state.activeTabIndex && !this.state.closed && this.props.collapsible
+			closed: index === this.state.activeTabIndex && !this.state.closed && this.props.collapsible,
 		});
 	}
 
 	toggleClose = () => {
 		this.setState({
-			closed: !this.state.closed
+			closed: !this.state.closed,
 		});
 	}
 
@@ -84,8 +83,8 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 				'cs-sidebar-multiple-tabs': multipleTabs,
 				'cs-whole-sidebar-clickable': (wholeSidebarClickable && this.state.closed && !multipleTabs),
 				'cs-sidebar-wrapper-left': opensTo === 'right',
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		/** * takes child props title, iconName and index to display them through this component when sidebar is collapsed ** */
@@ -97,7 +96,7 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 						title: child.props.title,
 						iconName: child.props.iconName,
 						iconOrigin: child.props.iconOrigin,
-						tabWidth: child.props.tabWidth
+						tabWidth: child.props.tabWidth,
 					}
 				);
 			}
@@ -107,7 +106,7 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 		const renderChildrenWithProps = React.Children.map(children, (child, index) => {
 			if (child) {
 				return React.cloneElement(child as React.ReactElement<any>, {
-					isActiveTab: (this.state.activeTabIndex === index && !this.state.closed)
+					isActiveTab: (this.state.activeTabIndex === index && !this.state.closed),
 				});
 			}
 		});
@@ -116,34 +115,30 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 			if (!this.state.closed) {
 				return 'close';
 			}
-			
-				if (tabs[0].iconName) {
-					return tabs[0].iconName;
-				}
-				
-					return 'assignment';
-				
-			
+
+			if (tabs[0].iconName) {
+				return tabs[0].iconName;
+			}
+
+			return 'assignment';
 		};
 
 		const getToggleIconOrigin = () => {
 			if (!this.state.closed) {
 				return 'slds';
 			}
-			
-				return tabs[0].iconOrigin;
-			
+
+			return tabs[0].iconOrigin;
 		};
 
-		const showToggleBtn =
-			collapsible && (
-				(!this.state.closed && multipleTabs) || !multipleTabs
-			);
+		const showToggleBtn = collapsible && (
+			(!this.state.closed && multipleTabs) || !multipleTabs
+		);
 
 		const style: CSSProperties = {
 			'--cs-sidebar-height': height,
 			'--cs-sidebar-tab-custom-width': tabs[this.state.activeTabIndex].tabWidth ? tabs[this.state.activeTabIndex].tabWidth : tabsWidth,
-			'--cs-sidebar-tabs-custom-padding': tabsPadding
+			'--cs-sidebar-tabs-custom-padding': tabsPadding,
 		};
 
 		return (
@@ -155,20 +150,21 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 				aria-expanded={!this.state.closed}
 				{...rest}
 			>
-				{showToggleBtn &&
-					<CSButton
-						btnType="transparent"
-						color="var(--cs-sidebar-toggle-btn-c)"
-						className="cs-sidebar-toggle"
-						label={this.state.closed ? 'expand sidebar' : 'collapse sidebar'}
-						iconName={getToggleIcon()}
-						iconOrigin={getToggleIconOrigin()}
-						labelHidden
-						size="small"
-						onClick={this.toggleClose}
-						ariaExpanded={!this.state.closed}
-					/>
-				}
+				{showToggleBtn
+					&& (
+						<CSButton
+							btnType="transparent"
+							color="var(--cs-sidebar-toggle-btn-c)"
+							className="cs-sidebar-toggle"
+							label={this.state.closed ? 'expand sidebar' : 'collapse sidebar'}
+							iconName={getToggleIcon()}
+							iconOrigin={getToggleIconOrigin()}
+							labelHidden
+							size="small"
+							onClick={this.toggleClose}
+							ariaExpanded={!this.state.closed}
+						/>
+					)}
 				{multipleTabs ? (
 					<div className="cs-button-tabs-wrapper">
 						{tabs.map((tab: any) => (
@@ -181,21 +177,22 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 								iconOrigin={tab.iconOrigin}
 								label={tab.title}
 								key={tab.index}
-								className={this.state.activeTabIndex === tab.index && !this.state.closed ? 'cs-sidebar-tab-selected' : this.state.closed  ? '' : ''}
+								className={this.state.activeTabIndex === tab.index && !this.state.closed ? 'cs-sidebar-tab-selected' : this.state.closed ? '' : ''}
 								aria-current={this.state.activeTabIndex === tab.index}
 								onClick={() => { this.handleTabClick(tab.index); }}
 							/>
 						))}
 					</div>
-				) :
-					<div className="cs-sidebar-single-tab-title-wrapper">
-						<span
-							className={this.state.closed ? 'cs-sidebar-tab-closed-title cs-visible' : 'cs-sidebar-tab-closed-title'}
-						>
-							{tabs[0].title}
-						</span>
-					</div>
-				}
+				)
+					: (
+						<div className="cs-sidebar-single-tab-title-wrapper">
+							<span
+								className={this.state.closed ? 'cs-sidebar-tab-closed-title cs-visible' : 'cs-sidebar-tab-closed-title'}
+							>
+								{tabs[0].title}
+							</span>
+						</div>
+					)}
 				<div className="cs-sidebar-tab-content-wrapper">
 					{renderChildrenWithProps}
 				</div>

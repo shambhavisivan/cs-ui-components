@@ -15,7 +15,7 @@ export interface CSListProps {
 class CSList extends React.Component<CSListProps> {
 	public static defaultProps = {
 		variant: 'simple-list',
-		size: 'medium'
+		size: 'medium',
 	};
 
 	componentDidMount() {
@@ -35,15 +35,15 @@ class CSList extends React.Component<CSListProps> {
 		const listClasses = classNames(
 			'cs-list-wrapper',
 			{
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		const listItems = React.Children.map(this.props.children, (child, index) => {
 			if (child) {
 				return React.cloneElement(child as React.ReactElement<any>, {
 					listSize: size,
-					listVariant: variant
+					listVariant: variant,
 				});
 			}
 		});

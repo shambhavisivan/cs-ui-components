@@ -30,9 +30,8 @@ export interface CSTextareaProps {
 }
 
 class CSTextarea extends React.Component<CSTextareaProps> {
-
 	public static defaultProps = {
-		rows: 3
+		rows: 3,
 	};
 
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
@@ -71,33 +70,34 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 		const textareaClasses = classNames(
 			'cs-textarea',
 			{
-				'cs-textarea-error': error
-			}
+				'cs-textarea-error': error,
+			},
 		);
 		const style: CSSProperties = {
 			'--max-height': maxHeight,
-			'--cs-textarea-border-radius': borderRadius
+			'--cs-textarea-border-radius': borderRadius,
 		};
 		const textareaWrapperClasses = classNames(
 			'cs-textarea-wrapper',
 			{
 				'cs-element-hidden': hidden,
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 		return (
 			<>
 				<div className={textareaWrapperClasses}>
-					{(label && !labelHidden) &&
-						<CSLabel
-							htmlFor={this.uniqueAutoId}
-							label={label}
-							helpText={helpText}
-							tooltipPosition={tooltipPosition}
-							required={required}
-							title={labelTitle ? label : null}
-						/>
-					}
+					{(label && !labelHidden)
+						&& (
+							<CSLabel
+								htmlFor={this.uniqueAutoId}
+								label={label}
+								helpText={helpText}
+								tooltipPosition={tooltipPosition}
+								required={required}
+								title={labelTitle ? label : null}
+							/>
+						)}
 					<textarea
 						className={textareaClasses}
 						id={this.uniqueAutoId}
@@ -115,9 +115,8 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 						title={title}
 						{...rest}
 					/>
-					{(error && errorMessage) &&
-						<CSFieldErrorMsg message={errorMessage} />
-					}
+					{(error && errorMessage)
+						&& <CSFieldErrorMsg message={errorMessage} />}
 				</div>
 			</>
 		);

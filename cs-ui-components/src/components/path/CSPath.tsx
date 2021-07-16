@@ -8,15 +8,16 @@ export interface CSPathProps {
 }
 
 class CSPath extends React.Component<CSPathProps> {
-
 	render() {
-		const { children, className, id, ...rest } = this.props;
+		const {
+			children, className, id, ...rest
+		} = this.props;
 
 		const pathClasses = classNames(
 			'cs-path',
 			{
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		return (

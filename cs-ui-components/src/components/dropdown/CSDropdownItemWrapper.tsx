@@ -7,7 +7,7 @@ import CSDivider from '../CSDivider';
 import {
 	CSDropdownAlign,
 	CSDropdownMode,
-	CSDropdownPosition
+	CSDropdownPosition,
 } from './CSDropdown';
 
 export interface CSDropdownItemWrapperProps {
@@ -73,31 +73,31 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 		// if mode is button enable arrow keys navigation
 		if (mode === 'button') {
 			switch (event.key) {
-				case KeyCode.ArrowUp:
-					if (document.activeElement === firstElement) {
-						(lastElement as HTMLElement).focus();
-					} else {
-						index = --index;
-						(focusableElements[index] as HTMLElement).focus();
-					}
-					break;
-				case KeyCode.ArrowDown:
-					if (document.activeElement === lastElement) {
-						(firstElement as HTMLElement).focus();
-					} else {
-						index = ++index;
-						(focusableElements[index] as HTMLElement).focus();
-					}
-					break;
-				case KeyCode.Tab:
-					toggleDropdown();
+			case KeyCode.ArrowUp:
+				if (document.activeElement === firstElement) {
+					(lastElement as HTMLElement).focus();
+				} else {
+					index = --index;
+					(focusableElements[index] as HTMLElement).focus();
+				}
+				break;
+			case KeyCode.ArrowDown:
+				if (document.activeElement === lastElement) {
+					(firstElement as HTMLElement).focus();
+				} else {
+					index = ++index;
+					(focusableElements[index] as HTMLElement).focus();
+				}
+				break;
+			case KeyCode.Tab:
+				toggleDropdown();
 					// onDropdownTabClose prop - Needed for CSGrid to focus next cell when tab key pressed
-					onDropdownTabClose?.();
-					break;
+				onDropdownTabClose?.();
+				break;
 			}
 		} else if (// if mode isn't button and last element is focused
-			event.key === KeyCode.Tab &&
-			lastElement === document.activeElement
+			event.key === KeyCode.Tab
+			&& lastElement === document.activeElement
 		) {
 			toggleDropdown();
 		}
@@ -125,7 +125,7 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 			position,
 			style,
 			visible,
-			width
+			width,
 		} = this.props;
 
 		const btnDropdownOuterItemWrapperClasses = classNames(
@@ -134,22 +134,22 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 				[`${dropdownClassName}`]: dropdownClassName,
 				'cs-dropdown-hidden': !(visible && mounted) && animated,
 				'cs-dropdown-hover': hover,
-				[`cs-dropdown-${position}-${align}`]: position && align && hover
-			}
+				[`cs-dropdown-${position}-${align}`]: position && align && hover,
+			},
 		);
 
 		const btnDropdownItemWrapperClasses = classNames(
 			'cs-dropdown-item-wrapper',
 			{
-				'cs-dropdown-item-wrapper-no-padding': padding === '0'
-			}
+				'cs-dropdown-item-wrapper-no-padding': padding === '0',
+			},
 		);
 
 		const dropdownItemWrapperStyle: CSSProperties = {
 			'--cs-dropdown-max-height': maxHeight,
 			'--cs-dropdown-max-width': maxWidth,
 			'--cs-dropdown-width': width,
-			'--cs-dropdown-padding': padding
+			'--cs-dropdown-padding': padding,
 		};
 
 		const childrenWithWrapper = React.Children.map(children, (child: any) => {
@@ -160,18 +160,17 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 							{child}
 						</>
 					);
-				} 
-					return (
-						<li role="none">
-							{React.cloneElement(
-								child,
-								{
-									role: 'menuitem'
-								}
-							)}
-						</li>
-					);
-				
+				}
+				return (
+					<li role="none">
+						{React.cloneElement(
+							child,
+							{
+								role: 'menuitem',
+							},
+						)}
+					</li>
+				);
 			}
 		});
 

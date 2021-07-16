@@ -32,21 +32,20 @@ export interface CSInputTextProps {
 }
 
 class CSInputText extends React.Component<CSInputTextProps> {
-
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
 
 	constructor(props: CSInputTextProps) {
 		super(props);
 	}
 
-	onFocus: React.FocusEventHandler<HTMLInputElement> = e => {
+	onFocus: React.FocusEventHandler<HTMLInputElement> = (e) => {
 		const { onFocus } = this.props;
 		if (onFocus) {
 			onFocus(e);
 		}
 	}
 
-	onBlur: React.FocusEventHandler<HTMLInputElement> = e => {
+	onBlur: React.FocusEventHandler<HTMLInputElement> = (e) => {
 		const { onBlur } = this.props;
 		if (onBlur) {
 			onBlur(e);
@@ -60,7 +59,6 @@ class CSInputText extends React.Component<CSInputTextProps> {
 	}
 
 	render() {
-
 		const {
 			borderRadius,
 			className,
@@ -91,32 +89,34 @@ class CSInputText extends React.Component<CSInputTextProps> {
 			'cs-input-text-wrapper',
 			{
 				'cs-element-hidden': hidden,
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 		const inputTextClasses = classNames(
 			'cs-input-text',
 			{
-				'cs-input-text-error': error
-			}
+				'cs-input-text-error': error,
+			},
 		);
 		const style: CSSProperties = {
-			'--cs-input-text-border-radius': borderRadius
+			'--cs-input-text-border-radius': borderRadius,
 		};
 		return (
 			<>
 				<div className={inputTextWrapperClasses}>
-					{(label && !labelHidden) &&
-						<CSLabel
-							htmlFor={this.uniqueAutoId}
-							label={label}
-							helpText={helpText}
-							tooltipPosition={tooltipPosition}
-							required={required}
-							title={labelTitle ? label : null}
-						/>
-					}
-					<input className={inputTextClasses}
+					{(label && !labelHidden)
+						&& (
+							<CSLabel
+								htmlFor={this.uniqueAutoId}
+								label={label}
+								helpText={helpText}
+								tooltipPosition={tooltipPosition}
+								required={required}
+								title={labelTitle ? label : null}
+							/>
+						)}
+					<input
+						className={inputTextClasses}
 						id={this.uniqueAutoId}
 						placeholder={placeholder}
 						disabled={disabled}
@@ -137,9 +137,8 @@ class CSInputText extends React.Component<CSInputTextProps> {
 						style={style}
 						{...rest}
 					/>
-					{(error && errorMessage) &&
-						<CSFieldErrorMsg message={errorMessage} />
-					}
+					{(error && errorMessage)
+						&& <CSFieldErrorMsg message={errorMessage} />}
 				</div>
 			</>
 		);

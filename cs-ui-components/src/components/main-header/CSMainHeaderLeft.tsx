@@ -11,7 +11,6 @@ export interface CSMainHeaderLeftProps {
 }
 
 class CSMainHeaderLeft extends React.Component<CSMainHeaderLeftProps> {
-
 	render() {
 		const {
 			className,
@@ -26,15 +25,15 @@ class CSMainHeaderLeft extends React.Component<CSMainHeaderLeftProps> {
 		const mainHeaderLeftClasses = classNames(
 			'cs-main-header-left',
 			{
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		const mainHeaderHeadingClasses = classNames(
 			'cs-main-header-heading',
 			{
-				'cs-main-header-heading-reversed': reverseOrder
-			}
+				'cs-main-header-heading-reversed': reverseOrder,
+			},
 		);
 
 		return (

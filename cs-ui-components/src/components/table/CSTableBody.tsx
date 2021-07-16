@@ -10,17 +10,19 @@ export interface CSTableBodyProps {
 
 class CSTableBody extends React.Component<CSTableBodyProps> {
 	render() {
-		const { children, className, id, maxHeight, ...rest } = this.props;
+		const {
+			children, className, id, maxHeight, ...rest
+		} = this.props;
 
 		const tableBodyClasses = classNames(
 			'cs-table-body',
 			{
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		const tableBodyStyles: CSSProperties = {
-			'--cs-table-body-max-height': maxHeight
+			'--cs-table-body-max-height': maxHeight,
 		};
 
 		return (

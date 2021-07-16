@@ -36,16 +36,14 @@ export interface CSCheckboxProps {
 }
 
 class CSCheckbox extends React.Component<CSCheckboxProps> {
-
 	public static defaultProps = {
 		variant: 'neutral',
-		labelHidden: false
+		labelHidden: false,
 	};
 
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
 
 	private checkboxRef: React.RefObject<HTMLInputElement>;
-	
 
 	constructor(props: CSCheckboxProps) {
 		super(props);
@@ -124,39 +122,40 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 			'cs-checkbox',
 			{
 				'cs-checkbox-error': error === true,
-				'cs-checkbox-read-only': readOnly
-			}
+				'cs-checkbox-read-only': readOnly,
+			},
 		);
 		const checkboxWrapperClasses = classNames(
 			'cs-checkbox-wrapper',
 			{
 				[`cs-checkbox-label-${labelPosition}`]: labelPosition,
 				'cs-element-hidden': hidden,
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 		const checkboxFauxClasses = classNames(
 			'cs-checkbox-faux',
 			{
-				[`cs-checkbox-${variant}`]: variant
-			}
+				[`cs-checkbox-${variant}`]: variant,
+			},
 		);
 		const style: CSSProperties = {
-			'--cs-checkbox-border-radius': borderRadius
+			'--cs-checkbox-border-radius': borderRadius,
 		};
 		return (
 			<>
 				<div className={checkboxWrapperClasses}>
-					{(label && !labelHidden) &&
-						<CSLabel
-							htmlFor={this.uniqueAutoId}
-							label={label}
-							helpText={helpText}
-							tooltipPosition={tooltipPosition}
-							required={required}
-							title={labelTitle ? label : null}
-						/>
-					}
+					{(label && !labelHidden)
+						&& (
+							<CSLabel
+								htmlFor={this.uniqueAutoId}
+								label={label}
+								helpText={helpText}
+								tooltipPosition={tooltipPosition}
+								required={required}
+								title={labelTitle ? label : null}
+							/>
+						)}
 					<label className="cs-checkbox-group">
 						<input
 							onChange={this.handleOnChange}
@@ -182,9 +181,8 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 							style={style}
 						/>
 					</label>
-					{(error && errorMessage) &&
-						<CSFieldErrorMsg message={errorMessage} />
-					}
+					{(error && errorMessage)
+						&& <CSFieldErrorMsg message={errorMessage} />}
 				</div>
 			</>
 		);

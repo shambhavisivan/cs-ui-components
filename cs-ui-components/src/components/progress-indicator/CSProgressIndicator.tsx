@@ -8,7 +8,6 @@ export interface CSProgressIndicatorProps {
 }
 
 class CSProgressIndicator extends React.Component<CSProgressIndicatorProps> {
-
 	render() {
 		const {
 			className,
@@ -19,8 +18,8 @@ class CSProgressIndicator extends React.Component<CSProgressIndicatorProps> {
 		const progressIndicatorClasses = classNames(
 			'cs-progress-indicator',
 			{
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		return (

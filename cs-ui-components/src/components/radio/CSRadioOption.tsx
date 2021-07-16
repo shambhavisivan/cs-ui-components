@@ -57,15 +57,15 @@ class CSRadioOption extends React.Component<CSRadioOptionProps> {
 			{
 				'cs-radio-label-read-only': readOnly,
 				'cs-radio-label-disabled': disabled,
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		const radioOptionClasses = classNames(
 			'cs-radio',
 			{
-				'cs-radio-read-only': readOnly
-			}
+				'cs-radio-read-only': readOnly,
+			},
 		);
 
 		return (

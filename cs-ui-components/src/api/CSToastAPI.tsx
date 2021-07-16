@@ -13,37 +13,37 @@ const notificationInstancesMap = new Map<CSToastPosition, typeof Notification>()
 
 const getPosition = (position: CSToastPosition, top: number = defaultTop, bottom: number = defaultBottom) => {
 	switch (position) {
-		case 'bottom-left':
-			return {
-				left: 0,
-				top: 'auto',
-				bottom
-			};
-		case 'bottom-right':
-			return {
-				right: 0,
-				top: 'auto',
-				bottom
-			};
-		case 'top-left':
-			return {
-				left: 0,
-				top,
-				bottom: 'auto'
-			};
-		case 'top-center':
-			return {
-				left: '50%',
-				top,
-				bottom: 'auto',
-				transform: 'translateX(-50%)'
-			};
-		default:
-			return {
-				right: 0,
-				top,
-				bottom: 'auto'
-			};
+	case 'bottom-left':
+		return {
+			left: 0,
+			top: 'auto',
+			bottom,
+		};
+	case 'bottom-right':
+		return {
+			right: 0,
+			top: 'auto',
+			bottom,
+		};
+	case 'top-left':
+		return {
+			left: 0,
+			top,
+			bottom: 'auto',
+		};
+	case 'top-center':
+		return {
+			left: '50%',
+			top,
+			bottom: 'auto',
+			transform: 'translateX(-50%)',
+		};
+	default:
+		return {
+			right: 0,
+			top,
+			bottom: 'auto',
+		};
 	}
 };
 
@@ -56,7 +56,7 @@ const setNotificationInstance = (position: CSToastPosition, notificationInstance
 const hasNotificationInstance = (position: CSToastPosition) => notificationInstancesMap.has(position);
 
 export function renderCSToast(props: CSToastProps, position?: CSToastPosition, duration?: number | null): void {
-	const key: string = `toast${  counter}`;
+	const key: string = `toast${counter}`;
 	const newDuration = duration || duration === null ? duration : defaultDuration;
 	const newPosition = position || defaultPosition;
 
@@ -69,13 +69,13 @@ export function renderCSToast(props: CSToastProps, position?: CSToastPosition, d
 		Notification.newInstance(
 			{
 				prefixCls: 'cs-toast-root',
-				style: getPosition(newPosition)
+				style: getPosition(newPosition),
 			},
-			(instance: typeof Notification) => { notificationInstance = instance }
+			(instance: typeof Notification) => { notificationInstance = instance; },
 		);
 		setNotificationInstance(newPosition, notificationInstance);
 	}
-	notificationInstance.notice ({
+	notificationInstance.notice({
 		content: (
 			<CSToast
 				{...props}
@@ -84,14 +84,14 @@ export function renderCSToast(props: CSToastProps, position?: CSToastPosition, d
 			/>
 		),
 		duration: newDuration,
-		key
+		key,
 	});
 
 	counter++;
 }
 
 const CSToastApi = {
-	renderCSToast
+	renderCSToast,
 };
 
 export default CSToastApi;

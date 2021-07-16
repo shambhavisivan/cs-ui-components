@@ -12,12 +12,12 @@ const propTypes = {
 	items: PropTypes.array.isRequired,
 	onChangePage: PropTypes.func.isRequired,
 	initialPage: PropTypes.number,
-	pageSize: PropTypes.number
+	pageSize: PropTypes.number,
 };
 
 const defaultProps = {
 	initialPage: 1,
-	pageSize: 10
+	pageSize: 10,
 };
 
 class CSPagination extends React.Component<CSPaginationProps> {
@@ -150,17 +150,17 @@ class CSPagination extends React.Component<CSPaginationProps> {
 					<li>
 						<a href="javascript:;" aria-label="previous page">
 							<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 52 52">
-								<path fill="#0070d2" d="m38 8.3v35.4c0 1-1.3 1.7-2.2 0.9l-21.2-17.3c-0.8-0.6-0.8-1.9 0-2.5l21.2-17.5c0.9-0.7 2.2-0.1 2.2 1z"/>
+								<path fill="#0070d2" d="m38 8.3v35.4c0 1-1.3 1.7-2.2 0.9l-21.2-17.3c-0.8-0.6-0.8-1.9 0-2.5l21.2-17.5c0.9-0.7 2.2-0.1 2.2 1z" />
 							</svg>
 						</a>
 					</li>
-						<li>
-							<a href="javascript:;">1</a>
-						</li>
+					<li>
+						<a href="javascript:;">1</a>
+					</li>
 					<li>
 						<a href="javascript:;" aria-label="next page">
 							<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 52 52">
-								<path fill="#0070d2" d="m14 43.7v-35.4c0-1 1.3-1.7 2.2-0.9l21.2 17.3c0.8 0.6 0.8 1.9 0 2.5l-21.2 17.5c-0.9 0.7-2.2 0.1-2.2-1z"/>
+								<path fill="#0070d2" d="m14 43.7v-35.4c0-1 1.3-1.7 2.2-0.9l21.2 17.3c0.8 0.6 0.8 1.9 0 2.5l-21.2 17.5c-0.9 0.7-2.2 0.1-2.2-1z" />
 							</svg>
 						</a>
 					</li>

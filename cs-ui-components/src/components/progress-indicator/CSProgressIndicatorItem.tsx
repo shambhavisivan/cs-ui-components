@@ -13,9 +13,8 @@ export interface CSProgressIndicatorItemProps {
 }
 
 class CSProgressIndicatorItem extends React.Component<CSProgressIndicatorItemProps> {
-
 	public static defaultProps = {
-		status: 'incomplete'
+		status: 'incomplete',
 	};
 
 	render() {
@@ -31,20 +30,19 @@ class CSProgressIndicatorItem extends React.Component<CSProgressIndicatorItemPro
 			'cs-progress-indicator-item',
 			{
 				[`cs-progress-indicator-item-${status}`]: status,
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		const getIconByStatus = () => {
 			switch (status) {
-				case 'complete':
-					return <CSIcon name="check" size="0.5rem" color="var(--cs-progress-indicator-complete-c)" />;
-				case 'error':
-					return <CSIcon name="error" size="0.75rem" color="var(--cs-progress-indicator-error-c)" />;
-				case 'loading':
-					return <CSIcon name="spinner" color="var(--cs-progress-indicator-loading-c)" spin />;
-				default:
-					
+			case 'complete':
+				return <CSIcon name="check" size="0.5rem" color="var(--cs-progress-indicator-complete-c)" />;
+			case 'error':
+				return <CSIcon name="error" size="0.75rem" color="var(--cs-progress-indicator-error-c)" />;
+			case 'loading':
+				return <CSIcon name="spinner" color="var(--cs-progress-indicator-loading-c)" spin />;
+			default:
 			}
 		};
 

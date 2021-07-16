@@ -28,7 +28,6 @@ export interface CSToggleProps {
 }
 
 class CSToggle extends React.Component<CSToggleProps> {
-
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
 
 	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,31 +65,32 @@ class CSToggle extends React.Component<CSToggleProps> {
 			'cs-toggle',
 			{
 				'cs-toggle-error': error === true,
-				'cs-toggle-read-only': readOnly
-			}
+				'cs-toggle-read-only': readOnly,
+			},
 		);
 
 		const toggleElementWrapperClasses = classNames(
 			'cs-toggle-element',
 			{
 				[`cs-toggle-label-${labelPosition}`]: labelPosition,
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		return (
 			<>
 				<div className={toggleElementWrapperClasses}>
-					{(label && !labelHidden) &&
-						<CSLabel
-							htmlFor={this.uniqueAutoId}
-							label={label}
-							helpText={helpText}
-							tooltipPosition={tooltipPosition}
-							required={required}
-							title={labelTitle ? label : null}
-						/>
-					}
+					{(label && !labelHidden)
+						&& (
+							<CSLabel
+								htmlFor={this.uniqueAutoId}
+								label={label}
+								helpText={helpText}
+								tooltipPosition={tooltipPosition}
+								required={required}
+								title={labelTitle ? label : null}
+							/>
+						)}
 					<label className="cs-toggle-wrapper">
 						<input
 							onChange={this.handleOnChange}
@@ -108,9 +108,8 @@ class CSToggle extends React.Component<CSToggleProps> {
 						/>
 						<span className="cs-toggle-faux" title={title} />
 					</label>
-					{(error && errorMessage) &&
-						<CSFieldErrorMsg message={errorMessage} />
-					}
+					{(error && errorMessage)
+						&& <CSFieldErrorMsg message={errorMessage} />}
 				</div>
 			</>
 		);

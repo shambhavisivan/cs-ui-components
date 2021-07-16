@@ -21,7 +21,7 @@ export interface CSToastProps {
 
 class CSToast extends React.Component<CSToastProps> {
 	public static defaultProps = {
-		iconVisibility: true
+		iconVisibility: true,
 	};
 
 	render() {
@@ -44,20 +44,20 @@ class CSToast extends React.Component<CSToastProps> {
 		const toastWrapperClasses = classNames(
 			'cs-toast-wrapper',
 			{
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		const toastClasses = classNames(
 			'cs-toast',
 			[`cs-toast-${variant}`],
 			{
-				'cs-toast-close': closeButton
-			}
+				'cs-toast-close': closeButton,
+			},
 		);
 
 		const style: CSSProperties = {
-			'--cs-toast-width': width
+			'--cs-toast-width': width,
 		};
 
 		const toastRole = (variant === 'info' || variant === 'success') ? 'status' : 'alert';
@@ -69,12 +69,11 @@ class CSToast extends React.Component<CSToastProps> {
 				{...rest}
 			>
 				<div className={toastClasses} role={toastRole} style={style}>
-					{iconVisibility ?
-						(iconName ?
-							<CSIcon name={iconName} origin={iconOrigin} size="1.5rem" /> :
-							<CSIcon name={variant} size="1.5rem" />) :
-						null
-					}
+					{iconVisibility
+						? (iconName
+							? <CSIcon name={iconName} origin={iconOrigin} size="1.5rem" />
+							: <CSIcon name={variant} size="1.5rem" />)
+						: null}
 					<div className="cs-toast-text">
 						<h4>
 							{text}
@@ -84,12 +83,13 @@ class CSToast extends React.Component<CSToastProps> {
 						) : null}
 						{children}
 					</div>
-					{closeButton ?
-						<button className="cs-toast-close-btn" onClick={onClose} aria-label="close">
-							<CSIcon name="close" size="1.5rem" />
-						</button>
-						: null
-					}
+					{closeButton
+						? (
+							<button className="cs-toast-close-btn" onClick={onClose} aria-label="close">
+								<CSIcon name="close" size="1.5rem" />
+							</button>
+						)
+						: null}
 				</div>
 			</div>
 

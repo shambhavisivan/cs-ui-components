@@ -64,13 +64,13 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		position: 'top-right',
 		variant: 'info',
 		stylePosition: 'fixed',
-		focusable: true
+		focusable: true,
 	};
 
 	static getDerivedStateFromProps(props: CSTooltipProps, state: CSTooltipState) {
 		if (props.content !== state.content && typeof props.content !== 'function') {
 			return {
-				content: props.content
+				content: props.content,
 			};
 		}
 		return null;
@@ -97,7 +97,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			hidden: props.delayTooltip && props.delayTooltip > 0,
 			computedPosition: this.props.position,
 			stickyActive: false,
-			content: this.props.content
+			content: this.props.content,
 		};
 
 		let tooltipRoot = document.getElementById(this.tooltipId);
@@ -111,7 +111,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 
 	setSticky = (value: boolean) => {
 		this.setState({
-			stickyActive: value
+			stickyActive: value,
 		});
 	}
 
@@ -146,8 +146,8 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 				[`cs-tooltip-${this.state.computedPosition}`]: this.state.computedPosition,
 				[`cs-tooltip-${variant}`]: variant,
 				'cs-tooltip-with-header': tooltipHeader,
-				'cs-tooltip-overflow-auto': maxHeight || maxWidth || height || width
-			}
+				'cs-tooltip-overflow-auto': maxHeight || maxWidth || height || width,
+			},
 		);
 
 		const tooltipWrapperClasses = classNames(
@@ -156,8 +156,8 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 				'cs-tw-icon-c': iconColor,
 				[`cs-tw-${variant}`]: variant,
 				[`cs-tooltip-style-position-${stylePosition}`]: stylePosition,
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		const getTooltipStyle = () => {
@@ -165,23 +165,22 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 				return {
 					'--cs-tooltip-height': '3.5rem',
 					'--cs-tooltip-width': '3.5rem',
-					'--cs-tooltip-padding': '0'
+					'--cs-tooltip-padding': '0',
 				};
-			} 
-				return {
-					'--cs-tooltip-height': height,
-					'--cs-tooltip-width': width,
-					'--cs-tooltip-max-height': maxHeight,
-					'--cs-tooltip-max-width': maxWidth,
-					'--cs-tooltip-padding': padding
-				};
-			
+			}
+			return {
+				'--cs-tooltip-height': height,
+				'--cs-tooltip-width': width,
+				'--cs-tooltip-max-height': maxHeight,
+				'--cs-tooltip-max-width': maxWidth,
+				'--cs-tooltip-padding': padding,
+			};
 		};
 
 		const tooltipStyle = {
 			...this.state.computedTooltipStyle,
 			...getTooltipStyle(),
-			'--cs-tw-dimension': this.state.tooltipWrapperDimension ? `${this.state.tooltipWrapperDimension  }px` : ''
+			'--cs-tw-dimension': this.state.tooltipWrapperDimension ? `${this.state.tooltipWrapperDimension}px` : '',
 		};
 
 		const tooltip = (
@@ -192,45 +191,44 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 				ref={this.props.stylePosition === 'fixed' ? this.tooltipRefCallback : null}
 				{...rest}
 			>
-				{this.state.loading ?
-					<CSSpinner overlay="transparent" />
-					:
-					<>
-						{tooltipHeader && (
-							<div className="cs-tooltip-header">{tooltipHeader}</div>
-						)}
+				{this.state.loading
+					? <CSSpinner overlay="transparent" />
+					: (
+						<>
+							{tooltipHeader && (
+								<div className="cs-tooltip-header">{tooltipHeader}</div>
+							)}
 
-						{this.state.content ?
-							Array.isArray(this.state.content) ?
-								(this.state.content.map((contentItem, index) =>
-									<div className="cs-tooltip-body" key={index}>
-										{contentItem}
-									</div>
-								))
-								: <div className="cs-tooltip-body">{this.state.content}</div>
-							: null}
-					</>
-				}
+							{this.state.content
+								? Array.isArray(this.state.content)
+									? (this.state.content.map((contentItem, index) => (
+										<div className="cs-tooltip-body" key={index}>
+											{contentItem}
+										</div>
+									)))
+									: <div className="cs-tooltip-body">{this.state.content}</div>
+								: null}
+						</>
+					)}
 			</div>
 		);
 
 		const tooltipIconName = () => {
 			switch (true) {
-				case !!iconName:
-					return iconName;
-				case variant === 'basic':
-					return 'info';
-				default:
-					return variant;
+			case !!iconName:
+				return iconName;
+			case variant === 'basic':
+				return 'info';
+			default:
+				return variant;
 			}
 		};
 
 		const setIconSize = () => {
 			if (iconSize === 'medium') {
 				return '1rem';
-			} 
-				return '0.875rem';
-			
+			}
+			return '0.875rem';
 		};
 
 		const handleOnMouseEnter = () => {
@@ -238,7 +236,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 				this.openTooltip();
 			} else if (stylePosition === 'absolute') {
 				this.setState({
-					content
+					content,
 				});
 			}
 		};
@@ -258,29 +256,29 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 				id={id}
 			>
 				{children || (
-						<CSIcon
-							color={iconColor}
-							name={tooltipIconName()}
-							className="cs-tooltip-icon"
-							size={setIconSize()}
-							origin={iconOrigin}
-						/>
-					)}
+					<CSIcon
+						color={iconColor}
+						name={tooltipIconName()}
+						className="cs-tooltip-icon"
+						size={setIconSize()}
+						origin={iconOrigin}
+					/>
+				)}
 				{!this.state.hidden && (
 					<>
 						{stylePosition === 'absolute' ? (
 							tooltip
 						) : (
-								<>
-									{this.state.computedTooltipStyle && (
-										<Portal node={document && document.getElementById(this.tooltipId)}>
-											<div className={tooltipWrapperClasses}>
-												{tooltip}
-											</div>
-										</Portal>
-									)}
-								</>
-							)}
+							<>
+								{this.state.computedTooltipStyle && (
+									<Portal node={document && document.getElementById(this.tooltipId)}>
+										<div className={tooltipWrapperClasses}>
+											{tooltip}
+										</div>
+									</Portal>
+								)}
+							</>
+						)}
 					</>
 				)}
 			</div>
@@ -301,9 +299,9 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 	resolvePromise = () => {
 		if (typeof this.props.content === 'function') {
 			Promise.resolve(this.props.content()).then(
-				result => this.setState({
+				(result) => this.setState({
 					content: result,
-					loading: false
+					loading: false,
 				}, () => {
 					// To handle Esc key press before promise is resolved
 					if (this.state.computedTooltipStyle) {
@@ -313,7 +311,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 						const tooltipRect = document.getElementById(this.uniqueAutoId).getBoundingClientRect();
 						this.autoTooltipPosition(tooltipRect);
 					}
-				})
+				}),
 			);
 		}
 	}
@@ -345,7 +343,6 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 	}
 
 	private openTooltip = () => {
-
 		if (typeof this.props.content === 'function') {
 			this.setState({ loading: true }, () => this.resolvePromise());
 		} else {
@@ -375,7 +372,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			this.setState({
 				computedTooltipStyle: undefined,
 				computedPosition: this.props.position,
-				tooltipWrapperDimension: undefined
+				tooltipWrapperDimension: undefined,
 			});
 		}
 
@@ -407,8 +404,8 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			}
 		}
 		// check bottom position of tooltip
-		if (tooltipRect.bottom >=
-			(window.innerHeight || document.documentElement.clientHeight)) {
+		if (tooltipRect.bottom
+			>= (window.innerHeight || document.documentElement.clientHeight)) {
 			if (openOn === 'bottom') {
 				openOn = 'top';
 			} else if (expandTo === 'bottom' || expandTo === 'center') {
@@ -416,8 +413,8 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			}
 		}
 		// check right and center position of tooltip
-		if (tooltipRect.right >=
-			(window.innerWidth || document.documentElement.clientWidth)) {
+		if (tooltipRect.right
+			>= (window.innerWidth || document.documentElement.clientWidth)) {
 			if (openOn === 'right') {
 				openOn = 'left';
 			} else if (expandTo === 'right' || expandTo === 'center') {
@@ -433,10 +430,10 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			}
 		}
 
-		const position = (`${openOn  }-${  expandTo}`) as CSTooltipPosition;
+		const position = (`${openOn}-${expandTo}`) as CSTooltipPosition;
 		if (position !== computedPosition) {
 			this.setState({
-				computedPosition: position
+				computedPosition: position,
 			}, this.setTooltipPosition);
 		}
 	}
@@ -481,123 +478,123 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 
 		const centerX = {
 			left: wrapperInfo.left + wrapperInfo.width / 2,
-			transform: 'translateX(-50%) translate3d(0, 0, 0)'
+			transform: 'translateX(-50%) translate3d(0, 0, 0)',
 		};
 		const centerY = {
 			top: wrapperInfo.top + wrapperInfo.height / 2,
-			transform: 'translateY(-50%) translate3d(0, 0, 0)'
+			transform: 'translateY(-50%) translate3d(0, 0, 0)',
 		};
 
 		switch (this.state.computedPosition) {
-			case 'bottom-right':
-				this.setState({
-					computedTooltipStyle: {
-						top: this.getTop(wrapperInfo, 'bottom'),
-						left: this.getLeft(wrapperInfo)
-					},
-					tooltipWrapperDimension: wrapperInfo.width
-				});
-				break;
-			case 'bottom-left':
-				this.setState({
-					computedTooltipStyle: {
-						top: this.getTop(wrapperInfo, 'bottom'),
-						right: this.getRight(wrapperInfo)
-					},
-					tooltipWrapperDimension: wrapperInfo.width
-				});
-				break;
-			case 'bottom-center':
-				this.setState({
-					computedTooltipStyle: {
-						top: this.getTop(wrapperInfo, 'bottom'),
-						...centerX
-					},
-					tooltipWrapperDimension: wrapperInfo.width
-				});
-				break;
-			case 'top-left':
-				this.setState({
-					computedTooltipStyle: {
-						bottom: this.getBottom(wrapperInfo, 'top'),
-						right: this.getRight(wrapperInfo)
-					},
-					tooltipWrapperDimension: wrapperInfo.width
-				});
-				break;
-			case 'top-center':
-				this.setState({
-					computedTooltipStyle: {
-						bottom: this.getBottom(wrapperInfo, 'top'),
-						...centerX
-					},
-					tooltipWrapperDimension: wrapperInfo.width
-				});
-				break;
-			case 'right-top':
-				this.setState({
-					computedTooltipStyle: {
-						left: this.getLeft(wrapperInfo, 'right'),
-						bottom: this.getBottom(wrapperInfo)
-					},
-					tooltipWrapperDimension: wrapperInfo.height
-				});
-				break;
-			case 'right-bottom':
-				this.setState({
-					computedTooltipStyle: {
-						left: this.getLeft(wrapperInfo, 'right'),
-						top: this.getTop(wrapperInfo)
-					},
-					tooltipWrapperDimension: wrapperInfo.height
-				});
-				break;
-			case 'right-center':
-				this.setState({
-					computedTooltipStyle: {
-						left: this.getLeft(wrapperInfo, 'right'),
-						...centerY
-					},
-					tooltipWrapperDimension: wrapperInfo.height
-				});
-				break;
-			case 'left-top':
-				this.setState({
-					computedTooltipStyle: {
-						right: this.getRight(wrapperInfo, 'left'),
-						bottom: this.getBottom(wrapperInfo)
-					},
-					tooltipWrapperDimension: wrapperInfo.height
-				});
-				break;
-			case 'left-bottom':
-				this.setState({
-					computedTooltipStyle: {
-						right: this.getRight(wrapperInfo, 'left'),
-						top: this.getTop(wrapperInfo)
-					},
-					tooltipWrapperDimension: wrapperInfo.height
-				});
-				break;
-			case 'left-center':
-				this.setState({
-					computedTooltipStyle: {
-						right: this.getRight(wrapperInfo, 'left'),
-						...centerY
-					},
-					tooltipWrapperDimension: wrapperInfo.height
-				});
-				break;
-			case 'top-right':
-			default:
-				this.setState({
-					computedTooltipStyle: {
-						bottom: this.getBottom(wrapperInfo, 'top'),
-						left: this.getLeft(wrapperInfo)
-					},
-					tooltipWrapperDimension: wrapperInfo.width
-				});
-				break;
+		case 'bottom-right':
+			this.setState({
+				computedTooltipStyle: {
+					top: this.getTop(wrapperInfo, 'bottom'),
+					left: this.getLeft(wrapperInfo),
+				},
+				tooltipWrapperDimension: wrapperInfo.width,
+			});
+			break;
+		case 'bottom-left':
+			this.setState({
+				computedTooltipStyle: {
+					top: this.getTop(wrapperInfo, 'bottom'),
+					right: this.getRight(wrapperInfo),
+				},
+				tooltipWrapperDimension: wrapperInfo.width,
+			});
+			break;
+		case 'bottom-center':
+			this.setState({
+				computedTooltipStyle: {
+					top: this.getTop(wrapperInfo, 'bottom'),
+					...centerX,
+				},
+				tooltipWrapperDimension: wrapperInfo.width,
+			});
+			break;
+		case 'top-left':
+			this.setState({
+				computedTooltipStyle: {
+					bottom: this.getBottom(wrapperInfo, 'top'),
+					right: this.getRight(wrapperInfo),
+				},
+				tooltipWrapperDimension: wrapperInfo.width,
+			});
+			break;
+		case 'top-center':
+			this.setState({
+				computedTooltipStyle: {
+					bottom: this.getBottom(wrapperInfo, 'top'),
+					...centerX,
+				},
+				tooltipWrapperDimension: wrapperInfo.width,
+			});
+			break;
+		case 'right-top':
+			this.setState({
+				computedTooltipStyle: {
+					left: this.getLeft(wrapperInfo, 'right'),
+					bottom: this.getBottom(wrapperInfo),
+				},
+				tooltipWrapperDimension: wrapperInfo.height,
+			});
+			break;
+		case 'right-bottom':
+			this.setState({
+				computedTooltipStyle: {
+					left: this.getLeft(wrapperInfo, 'right'),
+					top: this.getTop(wrapperInfo),
+				},
+				tooltipWrapperDimension: wrapperInfo.height,
+			});
+			break;
+		case 'right-center':
+			this.setState({
+				computedTooltipStyle: {
+					left: this.getLeft(wrapperInfo, 'right'),
+					...centerY,
+				},
+				tooltipWrapperDimension: wrapperInfo.height,
+			});
+			break;
+		case 'left-top':
+			this.setState({
+				computedTooltipStyle: {
+					right: this.getRight(wrapperInfo, 'left'),
+					bottom: this.getBottom(wrapperInfo),
+				},
+				tooltipWrapperDimension: wrapperInfo.height,
+			});
+			break;
+		case 'left-bottom':
+			this.setState({
+				computedTooltipStyle: {
+					right: this.getRight(wrapperInfo, 'left'),
+					top: this.getTop(wrapperInfo),
+				},
+				tooltipWrapperDimension: wrapperInfo.height,
+			});
+			break;
+		case 'left-center':
+			this.setState({
+				computedTooltipStyle: {
+					right: this.getRight(wrapperInfo, 'left'),
+					...centerY,
+				},
+				tooltipWrapperDimension: wrapperInfo.height,
+			});
+			break;
+		case 'top-right':
+		default:
+			this.setState({
+				computedTooltipStyle: {
+					bottom: this.getBottom(wrapperInfo, 'top'),
+					left: this.getLeft(wrapperInfo),
+				},
+				tooltipWrapperDimension: wrapperInfo.width,
+			});
+			break;
 		}
 	}
 

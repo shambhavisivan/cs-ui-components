@@ -24,9 +24,8 @@ export interface CSRadioProps {
 }
 
 class CSRadio extends React.Component<CSRadioProps> {
-
 	public static defaultProps = {
-		variant: 'neutral'
+		variant: 'neutral',
 	};
 
 	constructor(props: CSRadioProps) {
@@ -54,8 +53,8 @@ class CSRadio extends React.Component<CSRadioProps> {
 		const radioWrapperClasses = classNames(
 			'cs-radio-wrapper',
 			{
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		const radioGroupClasses = classNames(
@@ -63,13 +62,13 @@ class CSRadio extends React.Component<CSRadioProps> {
 			{
 				'cs-radio-error': error === true,
 				[`cs-radio-${variant}`]: variant,
-				'cs-radio-disabled': disabled
-			}
+				'cs-radio-disabled': disabled,
+			},
 		);
 
 		const uniqueAutoId = this.props.id ? this.props.id : uuidv4();
 
-		const childrenWithProps = React.Children.map(this.props.children, child => {
+		const childrenWithProps = React.Children.map(this.props.children, (child) => {
 			if (child) {
 				return (
 					React.cloneElement(
@@ -77,8 +76,8 @@ class CSRadio extends React.Component<CSRadioProps> {
 						{
 							ariaInvalid: this.props.error,
 							ariaRequired: this.props.required,
-							parentDisabled: this.props.disabled
-						}
+							parentDisabled: this.props.disabled,
+						},
 					)
 				);
 			}
@@ -86,22 +85,22 @@ class CSRadio extends React.Component<CSRadioProps> {
 
 		return (
 			<div className={radioWrapperClasses} {...rest}>
-				{(label && !labelHidden) &&
-					<CSLabel
-						htmlFor={uniqueAutoId}
-						label={label}
-						helpText={helpText}
-						tooltipPosition={tooltipPosition}
-						required={required}
-						title={labelTitle ? label : null}
-					/>
-				}
+				{(label && !labelHidden)
+					&& (
+						<CSLabel
+							htmlFor={uniqueAutoId}
+							label={label}
+							helpText={helpText}
+							tooltipPosition={tooltipPosition}
+							required={required}
+							title={labelTitle ? label : null}
+						/>
+					)}
 				<div className={radioGroupClasses} id={uniqueAutoId} aria-label={label}>
 					{childrenWithProps}
 				</div>
-				{(error && errorMessage) &&
-					<CSFieldErrorMsg message={errorMessage} />
-				}
+				{(error && errorMessage)
+					&& <CSFieldErrorMsg message={errorMessage} />}
 			</div>
 		);
 	}

@@ -29,20 +29,19 @@ export interface CSTransferListState {
 }
 
 class CSTransferList extends React.Component<CSTransferListProps, CSTransferListState> {
-
 	static contextType = CSTransferContext;
 
 	static getDerivedStateFromProps(nextProps: CSTransferListProps) {
 		const { listData } = nextProps;
 		const _validItemsKeys: Array<string> = [];
 
-		listData.forEach(item => {
+		listData.forEach((item) => {
 			if (!item.disabled) {
 				_validItemsKeys.push(item.key);
 			}
 		});
 		return {
-			validItemsKeys: _validItemsKeys
+			validItemsKeys: _validItemsKeys,
 		};
 	}
 
@@ -53,7 +52,7 @@ class CSTransferList extends React.Component<CSTransferListProps, CSTransferList
 
 		this.state = {
 			term: '',
-			validItemsKeys: []
+			validItemsKeys: [],
 		};
 	}
 
@@ -63,14 +62,13 @@ class CSTransferList extends React.Component<CSTransferListProps, CSTransferList
 		const { listType } = this.props;
 		const { actionButtonsNode } = this.context;
 		switch (true) {
-			case event.key === KeyCode.ArrowRight && listType === 'source':
-				(actionButtonsNode.firstChild as HTMLElement).focus();
-				break;
-			case event.key === KeyCode.ArrowLeft && listType === 'target':
-				(actionButtonsNode.lastChild as HTMLElement).focus();
-				break;
-			default:
-				
+		case event.key === KeyCode.ArrowRight && listType === 'source':
+			(actionButtonsNode.firstChild as HTMLElement).focus();
+			break;
+		case event.key === KeyCode.ArrowLeft && listType === 'target':
+			(actionButtonsNode.lastChild as HTMLElement).focus();
+			break;
+		default:
 		}
 	}
 
@@ -83,7 +81,7 @@ class CSTransferList extends React.Component<CSTransferListProps, CSTransferList
 			searchable,
 			selectAll,
 			selectList,
-			variant
+			variant,
 		} = this.props;
 		const { term, validItemsKeys } = this.state;
 		const { selectItem, selectAllItems } = this.context;
@@ -95,58 +93,63 @@ class CSTransferList extends React.Component<CSTransferListProps, CSTransferList
 					id={this.uniqueAutoId}
 				/>
 				<div className="cs-transfer-list-group">
-					{((selectAll && variant === 'check-list') ||
-						searchable) &&
-						<div className="cs-transfer-list-header">
-							{(selectAll && variant === 'check-list') &&
-								<CSCheckbox
-									label="select all"
-									labelHidden
-									variant="brand"
-									onChange={() => selectAllItems(listData, selectList, listType)}
-									checked={validItemsKeys.length === selectList.length && !!selectList.length}
-									disabled={!listData.length}
-									onKeyDown={this.handleKeyDown}
-								/>
-							}
-							{searchable &&
-								<CSInputSearch
-									label="search list"
-									labelHidden
-									onChange={e => this.setState({ term: e.target.value })}
-									disabled={!listData.length}
-								/>
-							}
-						</div>
-					}
+					{((selectAll && variant === 'check-list')
+						|| searchable)
+						&& (
+							<div className="cs-transfer-list-header">
+								{(selectAll && variant === 'check-list')
+
+								&& (
+									<CSCheckbox
+										label="select all"
+										labelHidden
+										variant="brand"
+										onChange={() => selectAllItems(listData, selectList, listType)}
+										checked={validItemsKeys.length === selectList.length && !!selectList.length}
+										disabled={!listData.length}
+										onKeyDown={this.handleKeyDown}
+									/>
+								)}
+								{searchable
+								&& (
+									<CSInputSearch
+										label="search list"
+										labelHidden
+										onChange={(e) => this.setState({ term: e.target.value })}
+										disabled={!listData.length}
+									/>
+								)}
+							</div>
+						)}
 					<ul
 						className="cs-transfer-list"
 						ref={this.props.listRef}
 						role="listbox"
 						aria-describedby={this.uniqueAutoId}
 					>
-						{listData.length ?
-							listData.filter(this.searchingFor(term)).map(item => (
-									<CSTransferItem
-										key={item.key}
-										itemKey={item.key}
-										name={item.name}
-										disabled={item.disabled}
-										onSelect={(e: any) => selectItem(e, item.key, selectList, listType)}
-										itemVariant={variant}
-										selected={selectList.includes(item.key)}
-										listType={listType}
-									/>
-								)) :
-							<li className="cs-transfer-list-no-data">
-								<CSIcon
-									name="error"
-									color="var(--cs-transfer-list-no-data-c)"
-									size="1.5rem"
+						{listData.length
+							? listData.filter(this.searchingFor(term)).map((item) => (
+								<CSTransferItem
+									key={item.key}
+									itemKey={item.key}
+									name={item.name}
+									disabled={item.disabled}
+									onSelect={(e: any) => selectItem(e, item.key, selectList, listType)}
+									itemVariant={variant}
+									selected={selectList.includes(item.key)}
+									listType={listType}
 								/>
-								<span className="cs-transfer-list-no-data-text">No data</span>
-							</li>
-						}
+							))
+							: (
+								<li className="cs-transfer-list-no-data">
+									<CSIcon
+										name="error"
+										color="var(--cs-transfer-list-no-data-c)"
+										size="1.5rem"
+									/>
+									<span className="cs-transfer-list-no-data-text">No data</span>
+								</li>
+							)}
 					</ul>
 				</div>
 			</div>

@@ -39,21 +39,20 @@ export interface CSInputNumberProps {
 }
 
 class CSInputNumber extends React.Component<CSInputNumberProps> {
-
 	public static defaultProps = {
-		type: 'number'
+		type: 'number',
 	};
 
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
 
-	onFocus: React.FocusEventHandler<HTMLInputElement> = e => {
+	onFocus: React.FocusEventHandler<HTMLInputElement> = (e) => {
 		const { onFocus } = this.props;
 		if (onFocus) {
 			onFocus(e);
 		}
 	}
 
-	onBlur: React.FocusEventHandler<HTMLInputElement> = e => {
+	onBlur: React.FocusEventHandler<HTMLInputElement> = (e) => {
 		const { onBlur } = this.props;
 		if (onBlur) {
 			onBlur(e);
@@ -116,33 +115,35 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 			'cs-input-number-wrapper',
 			{
 				'cs-element-hidden': hidden,
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 		const inputNumberClasses = classNames(
 			'cs-input-number',
 			{
 				'cs-input-number-error': error,
-				[`cs-input-number-hide-spinner-${hideSpinner}`]: hideSpinner
-			}
+				[`cs-input-number-hide-spinner-${hideSpinner}`]: hideSpinner,
+			},
 		);
 		const style: CSSProperties = {
-			'--cs-input-number-border-radius': borderRadius
+			'--cs-input-number-border-radius': borderRadius,
 		};
 		return (
 			<>
 				<div className={inputNumberWrapperClasses}>
-					{(label && !labelHidden) &&
-						<CSLabel
-							htmlFor={this.uniqueAutoId}
-							label={label}
-							helpText={helpText}
-							tooltipPosition={tooltipPosition}
-							required={required}
-							title={labelTitle ? label : null}
-						/>
-					}
-					<input className={inputNumberClasses}
+					{(label && !labelHidden)
+						&& (
+							<CSLabel
+								htmlFor={this.uniqueAutoId}
+								label={label}
+								helpText={helpText}
+								tooltipPosition={tooltipPosition}
+								required={required}
+								title={labelTitle ? label : null}
+							/>
+						)}
+					<input
+						className={inputNumberClasses}
 						id={this.uniqueAutoId}
 						placeholder={placeholder}
 						min={min}
@@ -171,9 +172,8 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 						style={style}
 						{...rest}
 					/>
-					{(error && errorMessage) &&
-						<CSFieldErrorMsg message={errorMessage} />
-					}
+					{(error && errorMessage)
+						&& <CSFieldErrorMsg message={errorMessage} />}
 				</div>
 			</>
 		);

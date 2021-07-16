@@ -20,7 +20,7 @@ class CSSpinner extends React.Component<CSSpinnerProps> {
 	public static defaultProps = {
 		color: 'brand',
 		size: 'large',
-		overlay: 'light'
+		overlay: 'light',
 	};
 
 	render() {
@@ -40,8 +40,8 @@ class CSSpinner extends React.Component<CSSpinnerProps> {
 			{
 				'cs-spinner-inline': inline,
 				[`cs-spinner-overlay-${overlay}`]: overlay,
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		return (
@@ -55,15 +55,16 @@ class CSSpinner extends React.Component<CSSpinnerProps> {
 					{...rest}
 				>
 					<div className="cs-spinner-wrapper-label">
-						<div className={`cs-spinner cs-spinner-${  size  } cs-spinner-${  color}`}>
+						<div className={`cs-spinner cs-spinner-${size} cs-spinner-${color}`}>
 							<div className="cs-spinner-dot-a" />
 							<div className="cs-spinner-dot-b" />
 						</div>
-						{(label && !inline) &&
-							<div className="cs-spinner-label">
-								<span>{label}</span>
-							</div>
-						}
+						{(label && !inline)
+							&& (
+								<div className="cs-spinner-label">
+									<span>{label}</span>
+								</div>
+							)}
 					</div>
 				</div>
 

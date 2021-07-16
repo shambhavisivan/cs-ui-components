@@ -12,18 +12,20 @@ export interface CSModalFooterProps {
 
 class CSModalFooter extends React.Component<CSModalFooterProps> {
 	public static defaultProps = {
-		align: 'right'
+		align: 'right',
 	};
 
 	render() {
-		const { align, children, className, id, ...rest } = this.props;
+		const {
+			align, children, className, id, ...rest
+		} = this.props;
 
 		const modalFooterClasses = classNames(
 			'cs-modal-footer',
 			{
 				[`cs-modal-footer-${align}`]: align,
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		return (

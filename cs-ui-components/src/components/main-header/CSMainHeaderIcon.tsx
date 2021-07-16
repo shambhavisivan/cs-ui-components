@@ -19,13 +19,15 @@ class CSMainHeaderIcon extends React.Component<CSMainHeaderIconProps> {
 		const mainHeaderIconClasses = classNames(
 			'cs-main-header-icon',
 			{
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
-		return <div className={mainHeaderIconClasses} id={id} {...rest}>
+		return (
+			<div className={mainHeaderIconClasses} id={id} {...rest}>
 				{children}
-			</div>;
+			</div>
+		);
 	}
 }
 

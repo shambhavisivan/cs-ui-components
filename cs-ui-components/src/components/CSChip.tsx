@@ -15,10 +15,9 @@ export interface CSChipProps {
 }
 
 class CSChip extends React.Component<CSChipProps> {
-
 	public static defaultProps = {
 		variant: 'brand',
-		variantStyle: 'fill'
+		variantStyle: 'fill',
 	};
 
 	render() {
@@ -39,12 +38,12 @@ class CSChip extends React.Component<CSChipProps> {
 				[`cs-chip-${variant}-border`]: variantStyle === 'border',
 				'cs-chip-custom-color': color && variantStyle === 'fill',
 				'cs-chip-custom-color-border': color && variantStyle === 'border',
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		const chipStyle: CSSProperties = {
-			'--cs-chip-custom-c': color
+			'--cs-chip-custom-c': color,
 		};
 
 		return (

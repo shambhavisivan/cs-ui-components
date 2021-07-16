@@ -24,8 +24,8 @@ class CSSkipLink extends React.Component<CSSkipLinkProps> {
 		const skipLinkClasses = classNames(
 			'cs-skip-link',
 			{
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		return (
@@ -33,7 +33,7 @@ class CSSkipLink extends React.Component<CSSkipLinkProps> {
 				className={skipLinkClasses}
 				href={href}
 				id={id}
-				style={{'--cs-skip-link-custom-c': color}}
+				style={{ '--cs-skip-link-custom-c': color }}
 				target="_self"
 				{...rest}
 			>

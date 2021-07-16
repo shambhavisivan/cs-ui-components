@@ -23,15 +23,14 @@ export interface CSCardHeaderState {
 }
 
 class CSCardHeader extends React.Component<CSCardHeaderProps, CSCardHeaderState> {
-
 	public static defaultProps = {
-		showBorder: true
+		showBorder: true,
 	};
 
 	constructor(props: CSCardHeaderProps) {
 		super(props);
 		this.state = {
-			collapsed: false
+			collapsed: false,
 		};
 	}
 
@@ -49,7 +48,7 @@ class CSCardHeader extends React.Component<CSCardHeaderProps, CSCardHeaderState>
 
 	handleCollapse = () => {
 		this.setState({
-			collapsed: !this.state.collapsed
+			collapsed: !this.state.collapsed,
 		});
 	}
 
@@ -76,12 +75,12 @@ class CSCardHeader extends React.Component<CSCardHeaderProps, CSCardHeaderState>
 				'cs-card-header-with-border': showBorder,
 				'cs-card-header-collapsible': this.props.collapsible,
 				'cs-card-header-collapsed': this.state.collapsed,
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		const cardHeaderStyles: CSSProperties = {
-			'--cs-card-header-padding': padding
+			'--cs-card-header-padding': padding,
 		};
 
 		return (
@@ -104,17 +103,18 @@ class CSCardHeader extends React.Component<CSCardHeaderProps, CSCardHeaderState>
 						onClick={this.handleCollapse}
 					/>
 				) : null}
-				{iconName &&
-					<span className="cs-card-header-icon">
-						<CSIcon
-							name={iconName}
-							size="1.5rem"
-							color={iconColor}
-							frame={iconFrame}
-							origin={iconOrigin}
-						/>
-					</span>
-				}
+				{iconName
+					&& (
+						<span className="cs-card-header-icon">
+							<CSIcon
+								name={iconName}
+								size="1.5rem"
+								color={iconColor}
+								frame={iconFrame}
+								origin={iconOrigin}
+							/>
+						</span>
+					)}
 				<h2 className="cs-card-header-title">{title}</h2>
 				{children}
 			</header>

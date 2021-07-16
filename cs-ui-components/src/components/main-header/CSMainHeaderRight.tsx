@@ -18,8 +18,8 @@ class CSMainHeaderRight extends React.Component<CSMainHeaderRightProps> {
 		const mainHeaderRightClasses = classNames(
 			'cs-main-header-right',
 			{
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		return (

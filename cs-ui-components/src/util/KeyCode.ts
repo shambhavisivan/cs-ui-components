@@ -9,7 +9,7 @@ const KeyCode = {
 	Enter: 'Enter',
 	Escape: 'Escape',
 	Space: ' ',
-	Tab: 'Tab'
+	Tab: 'Tab',
 };
 
 export default KeyCode;

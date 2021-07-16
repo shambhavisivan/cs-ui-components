@@ -16,8 +16,7 @@ export interface CSTableRowProps {
 }
 
 class CSTableRow extends React.Component<CSTableRowProps> {
-
-	handleClick: React.MouseEventHandler<HTMLDivElement> = e => {
+	handleClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
 		const { onClick } = this.props;
 		if (onClick) {
 			onClick(e);
@@ -59,20 +58,20 @@ class CSTableRow extends React.Component<CSTableRowProps> {
 			{
 				'cs-table-row-selected': rowSelected,
 				'cs-table-row-highlighted': rowHighlighted,
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		return (
 			<CSTableContext.Consumer>
-				{context => (
+				{(context) => (
 					<div
 						className={tableRowClasses}
 						role="row"
 						onClick={this.handleClick}
 						id={id}
 						tabIndex={0}
-						onKeyDown={event => this.handleOnKeyDown(event, context)}
+						onKeyDown={(event) => this.handleOnKeyDown(event, context)}
 						onMouseDown={onMouseDown}
 						onMouseOut={onMouseOut}
 						onMouseOver={onMouseOver}

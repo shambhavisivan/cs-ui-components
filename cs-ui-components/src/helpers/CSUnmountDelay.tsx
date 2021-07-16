@@ -14,7 +14,7 @@ const withCSUnmountDelay = (Component: any, timeout: number = 200) => {
 	class CSUnmountDelay extends React.Component<CSUnmountDelayProps, CSUnmountDelayState> {
 		public static defaultProps = {
 			animated: false,
-			visible: true
+			visible: true,
 		};
 
 		public timer: number;
@@ -44,11 +44,13 @@ const withCSUnmountDelay = (Component: any, timeout: number = 200) => {
 			if (!this.state.mounted && !this.props.visible) {
 				return null;
 			}
-			return <Component
-				mounted={this.state.mounted}
-				setMounted={this.setMounted}
-				{...this.props}
-			/>;
+			return (
+				<Component
+					mounted={this.state.mounted}
+					setMounted={this.setMounted}
+					{...this.props}
+				/>
+			);
 		}
 	}
 

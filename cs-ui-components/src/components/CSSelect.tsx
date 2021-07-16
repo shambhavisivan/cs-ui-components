@@ -30,9 +30,8 @@ export interface CSSelectProps {
 }
 
 class CSSelect extends React.Component<CSSelectProps> {
-
 	public static defaultProps = {
-		labelHidden: false
+		labelHidden: false,
 	};
 
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
@@ -42,7 +41,7 @@ class CSSelect extends React.Component<CSSelectProps> {
 		const value = typeof props.value === undefined ? '' : props.value;
 		this.state = {
 			value,
-			prevValue: props.value
+			prevValue: props.value,
 		};
 	}
 
@@ -85,32 +84,33 @@ class CSSelect extends React.Component<CSSelectProps> {
 			'cs-select',
 			{
 				'cs-select-error': error,
-				'cs-select-read-only': readOnly
-			}
+				'cs-select-read-only': readOnly,
+			},
 		);
 		const selectWrapperClasses = classNames(
 			'cs-select-wrapper',
 			{
 				'cs-element-hidden': hidden,
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 		const style: CSSProperties = {
-			'--cs-select-border-radius': borderRadius
+			'--cs-select-border-radius': borderRadius,
 		};
 		return (
 			<div className={selectWrapperClasses}>
-				{(label && !labelHidden) &&
-					<CSLabel
-						htmlFor={this.uniqueAutoId}
-						label={label}
-						helpText={helpText}
-						tooltipPosition={tooltipPosition}
-						required={required}
-						title={labelTitle ? label : null}
-						className={disabled ? 'cs-label-disabled' : ''}
-					/>
-				}
+				{(label && !labelHidden)
+					&& (
+						<CSLabel
+							htmlFor={this.uniqueAutoId}
+							label={label}
+							helpText={helpText}
+							tooltipPosition={tooltipPosition}
+							required={required}
+							title={labelTitle ? label : null}
+							className={disabled ? 'cs-label-disabled' : ''}
+						/>
+					)}
 				<div className="cs-select-group">
 					<select
 						className={selectClasses}
@@ -131,13 +131,11 @@ class CSSelect extends React.Component<CSSelectProps> {
 					>
 						{children}
 					</select>
-					{!readOnly &&
-						<CSIcon name="down" size="0.8125rem" />
-					}
+					{!readOnly
+						&& <CSIcon name="down" size="0.8125rem" />}
 				</div>
-				{(error && errorMessage) &&
-					<CSFieldErrorMsg message={errorMessage} />
-				}
+				{(error && errorMessage)
+					&& <CSFieldErrorMsg message={errorMessage} />}
 			</div>
 		);
 	}

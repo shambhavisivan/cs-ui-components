@@ -28,7 +28,7 @@ class CSAlert extends React.Component<CSAlertProps> {
 		iconHidden: false,
 		styleFormat: 'default',
 		styleType: 'default',
-		textAlign: 'left'
+		textAlign: 'left',
 	};
 
 	render() {
@@ -56,13 +56,13 @@ class CSAlert extends React.Component<CSAlertProps> {
 			{
 				'cs-alert-scoped': styleFormat === 'scoped',
 				'cs-alert-no-close-btn': !closeButton,
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		const alertTextWrapperClasses = classNames(
 			'cs-alert-text-wrapper',
-			[`cs-alert-${textAlign}`]
+			[`cs-alert-${textAlign}`],
 		);
 
 		const alertRole = variant === 'info' ? 'status' : 'alert';
@@ -82,14 +82,12 @@ class CSAlert extends React.Component<CSAlertProps> {
 							size={alertIconSize}
 							origin={iconOrigin}
 						/>
-					)  : null}
+					) : null}
 					{text ? (
-						Array.isArray(text) ?
-							text.map((t, index) =>
-								<span className="cs-alert-text" key={index}>{t}</span>
-							)
+						Array.isArray(text)
+							? text.map((t, index) => <span className="cs-alert-text" key={index}>{t}</span>)
 							: <span className="cs-alert-text">{text}</span>
-						) : null}
+					) : null}
 					{children ? (
 						<span className="cs-alert-text">{children}</span>
 					) : null}

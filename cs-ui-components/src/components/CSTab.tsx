@@ -23,9 +23,8 @@ export interface CSTabProps {
 }
 
 class CSTab extends React.Component<CSTabProps> {
-
 	public static defaultProps = {
-		status: 'initial'
+		status: 'initial',
 	};
 
 	onClickHandler = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
@@ -60,44 +59,45 @@ class CSTab extends React.Component<CSTabProps> {
 				'cs-tab-active': active,
 				[`cs-tab-wrapper-${status}`]: status,
 				[`cs-tab-wrapper-${parentVariant}`]: parentVariant,
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		const style: CSSProperties = {
-			'--cs-tab-width': width
+			'--cs-tab-width': width,
 		};
 
 		const getStatusIcon = () => {
 			switch (true) {
-				case (active && !tooltipContent):
-					return 'record';
-				case (!!tabIcon):
-					return tabIcon;
-				case (!!tooltipContent):
-					return; // If tooltipContent is provided, icon will come OOTB from CSTooltip
-				case (status === 'error' || status === 'warning'):
-					return 'warning';
-				case (status === 'success'):
-					return 'check';
-				default:
-					return 'routing_offline';
+			case (active && !tooltipContent):
+				return 'record';
+			case (!!tabIcon):
+				return tabIcon;
+			case (!!tooltipContent):
+				return; // If tooltipContent is provided, icon will come OOTB from CSTooltip
+			case (status === 'error' || status === 'warning'):
+				return 'warning';
+			case (status === 'success'):
+				return 'check';
+			default:
+				return 'routing_offline';
 			}
 		};
 
 		const renderTabIcon = () => tabIcon || !(parentVariant === 'normal' && status === 'initial');
 
 		const componentProps = {
-			'className': 'cs-tab',
+			className: 'cs-tab',
 			'aria-current': active,
 			'aria-invalid': status === 'error',
-			'disabled': disabled,
-			'style': style
+			disabled,
+			style,
 		};
 
 		const tabContent = () => (
-				<>
-					{tooltipContent ?
+			<>
+				{tooltipContent
+					? (
 						<CSTooltip
 							content={tooltipContent}
 							iconName={getStatusIcon()}
@@ -105,12 +105,12 @@ class CSTab extends React.Component<CSTabProps> {
 							iconSize="medium"
 							iconOrigin={iconOrigin}
 						/>
-						: renderTabIcon() ? <CSIcon name={getStatusIcon()} origin={iconOrigin} size="0.875rem" /> : null
-					}
-					<span className="cs-tab-name">{name}</span>
-					{children}
-				</>
-			);
+					)
+					: renderTabIcon() ? <CSIcon name={getStatusIcon()} origin={iconOrigin} size="0.875rem" /> : null}
+				<span className="cs-tab-name">{name}</span>
+				{children}
+			</>
+		);
 
 		return (
 			<li
@@ -120,18 +120,17 @@ class CSTab extends React.Component<CSTabProps> {
 				{...rest}
 			>
 				<>
-					{routerLink ?
-						React.cloneElement(
+					{routerLink
+						? React.cloneElement(
 							routerLink,
 							componentProps,
-							tabContent()
-						) :
-						React.createElement(
+							tabContent(),
+						)
+						: React.createElement(
 							'button',
 							componentProps,
-							tabContent()
-						)
-					}
+							tabContent(),
+						)}
 				</>
 			</li>
 		);

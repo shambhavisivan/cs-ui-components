@@ -73,8 +73,8 @@ class CSOption extends React.Component<CSOptionProps> {
 				'cs-option-ms-item-selected': type === 'selected-item',
 				'cs-option-list-item-selected': type === 'list-item' && !isMultiSelectItem && selected,
 				'cs-option-active': active,
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		return (
@@ -86,34 +86,36 @@ class CSOption extends React.Component<CSOptionProps> {
 				id={id}
 				ref={this.optionNode}
 				{...rest}
-
 			>
-				{(type === 'list-item' && isMultiSelectItem) &&
-					<span className="cs-option-check-icon">
-						{selected &&
-							<CSIcon
-								name="check"
-								color="var(--cs-option-list-item-fill)"
-							/>
-						}
-					</span>
-				}
+				{(type === 'list-item' && isMultiSelectItem)
+					&& (
+						<span className="cs-option-check-icon">
+							{selected
+							&& (
+								<CSIcon
+									name="check"
+									color="var(--cs-option-list-item-fill)"
+								/>
+							)}
+						</span>
+					)}
 				<span className="cs-option-value">
 					{value}
 				</span>
-				{type === 'selected-item' &&
-					<CSButton
-						btnType="transparent"
-						iconColor="var(--cs-option-ms-item-selected-delete)"
-						iconName="close"
-						label="delete selected item"
-						labelHidden
-						onMouseDown={onItemDelete}
-						onKeyDown={onItemDelete}
-						size="xsmall"
-						ariaLabel={`option ${value}`}
-					/>
-				}
+				{type === 'selected-item'
+					&& (
+						<CSButton
+							btnType="transparent"
+							iconColor="var(--cs-option-ms-item-selected-delete)"
+							iconName="close"
+							label="delete selected item"
+							labelHidden
+							onMouseDown={onItemDelete}
+							onKeyDown={onItemDelete}
+							size="xsmall"
+							ariaLabel={`option ${value}`}
+						/>
+					)}
 			</li>
 		);
 	}

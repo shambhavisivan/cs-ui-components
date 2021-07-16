@@ -27,27 +27,27 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 
 		this.state = {
 			active: '',
-			closed: false
+			closed: false,
 		};
 	}
 
 	componentDidMount() {
 		if (this.props.closed) {
 			this.setState({
-				closed: true
+				closed: true,
 			});
 		}
 	}
 
 	toggleActive(text: any) {
 		this.setState({
-			active: text
+			active: text,
 		});
 	}
 
 	onClose() {
 		this.setState({
-			closed: !this.state.closed
+			closed: !this.state.closed,
 		});
 	}
 
@@ -68,44 +68,46 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 			if (child) {
 				return React.cloneElement(child as React.ReactElement<any>, {
 					toggleActive: this.toggleActive,
-					active: this.state.active
+					active: this.state.active,
 				});
 			}
 		});
 
 		const style: CSSProperties = {
 			'--cs-sidebar-width': width,
-			'--cs-sidebar-height': height
+			'--cs-sidebar-height': height,
 		};
 
 		const sidebarClasses = classNames(
 			'cs-sidebar',
 			{
 				closed: this.state.closed,
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
 		return (
 			<nav className={sidebarClasses} style={style} id={id} {...rest}>
 				<div className="cs-sidebar-item-top">
-					{!fixed &&
-						<CSButton
-							className="cs-sidebar-close"
-							onClick={this.onClose}
-							label="toggle sidebar"
-							labelHidden
-							iconName="assignment"
-							size="small"
-							ariaExpanded={!this.state.closed}
-						/>
-					}
+					{!fixed
+						&& (
+							<CSButton
+								className="cs-sidebar-close"
+								onClick={this.onClose}
+								label="toggle sidebar"
+								labelHidden
+								iconName="assignment"
+								size="small"
+								ariaExpanded={!this.state.closed}
+							/>
+						)}
 				</div>
-				{!this.state.closed &&
-					<ul role="menu">
-						{renderChildrenWithTabsAsProps}
-					</ul>
-				}
+				{!this.state.closed
+					&& (
+						<ul role="menu">
+							{renderChildrenWithTabsAsProps}
+						</ul>
+					)}
 			</nav>
 		);
 	}

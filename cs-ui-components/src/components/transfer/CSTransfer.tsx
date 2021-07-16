@@ -38,9 +38,8 @@ export interface CSTransferState {
 }
 
 class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
-
 	public static defaultProps = {
-		variant: 'simple-list'
+		variant: 'simple-list',
 	};
 
 	private actionButtonsNode: HTMLDivElement;
@@ -58,7 +57,7 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 			sourceData: [],
 			sourceSelected: [],
 			targetData: [],
-			targetSelected: []
+			targetSelected: [],
 		};
 
 		this.sourceListRef = React.createRef();
@@ -76,7 +75,7 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 		const _targetData: any = [];
 
 		if (targetKeys && targetKeys.length > 0) {
-			dataSource.forEach(data => {
+			dataSource.forEach((data) => {
 				if (!targetKeys.includes(data.key)) {
 					_sourceData.push(data);
 				} else {
@@ -85,11 +84,11 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 			});
 			this.setState({
 				sourceData: _sourceData,
-				targetData: _targetData
+				targetData: _targetData,
 			});
 		} else {
 			this.setState({
-				sourceData: dataSource
+				sourceData: dataSource,
 			});
 		}
 	}
@@ -103,7 +102,7 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 			if (!(event.ctrlKey || event.metaKey) && variant === 'simple-list') {
 				newState[stateArrayName] = [itemKey];
 			} else {
-				const _newArray: Array<string> = array.filter(key => key !== itemKey);
+				const _newArray: Array<string> = array.filter((key) => key !== itemKey);
 				newState[stateArrayName] = _newArray;
 			}
 		} else if (variant === 'check-list' || ((event.ctrlKey || event.metaKey) && variant === 'simple-list')) {
@@ -115,7 +114,9 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 	}
 
 	moveItemsTo = (direction: CSTransferListType) => {
-		const { sourceData, targetData, sourceSelected, targetSelected } = this.state;
+		const {
+			sourceData, targetData, sourceSelected, targetSelected,
+		} = this.state;
 		const [fromArray, toArray] = direction === 'target' ? [sourceData, targetData] : [targetData, sourceData];
 		const selectedKeys = direction === 'target' ? sourceSelected : targetSelected;
 		const opposite = direction === 'target' ? 'source' : 'target';
@@ -123,7 +124,7 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 		const _sourceData: any = [];
 		const _targetData: any = [];
 
-		fromArray.forEach(item => {
+		fromArray.forEach((item) => {
 			if (selectedKeys.includes(item.key)) {
 				_targetData.push(item);
 			} else {
@@ -137,13 +138,13 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 
 		this.setState(
 			newState,
-			() => this.handleSelection(direction)
+			() => this.handleSelection(direction),
 		);
 	}
 
 	moveToSource = (itemKey: string) => {
 		const { sourceData, targetData } = this.state;
-		const item = targetData.find(listItem => listItem.key === itemKey);
+		const item = targetData.find((listItem) => listItem.key === itemKey);
 
 		const _sourceData = [...sourceData, item];
 		targetData.splice(targetData.indexOf(item), 1);
@@ -151,15 +152,15 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 		this.setState(
 			{
 				sourceData: _sourceData,
-				targetData
+				targetData,
 			},
-			() => this.handleSelection('source')
+			() => this.handleSelection('source'),
 		);
 	}
 
 	selectAll = (dataList: Array<CSTransferItemsType>, selectList: Array<string>, listType: CSTransferListType) => {
 		const _dataKeys: Array<string> = [];
-		dataList.forEach(item => {
+		dataList.forEach((item) => {
 			if (!item.disabled) {
 				_dataKeys.push(item.key);
 			}
@@ -174,7 +175,7 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 	handleOnChange = () => {
 		if (this.props.onChange) {
 			const targetKeys: Array<string> = [];
-			this.state.targetData.forEach(item => {
+			this.state.targetData.forEach((item) => {
 				targetKeys.push(item.key);
 			});
 			this.props.onChange(targetKeys);
@@ -184,61 +185,62 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 	handleSelection = (direction: CSTransferListType) => {
 		let listItems: any = [];
 		switch (direction) {
-			case 'target':
-				listItems = this.targetListRef.current.querySelectorAll(this.element);
-				(listItems[listItems.length - 1] as HTMLElement).focus();
-				break;
-			default:
-				listItems = this.sourceListRef.current.querySelectorAll(this.element);
-				(listItems[listItems.length - 1] as HTMLElement).focus();
-				break;
+		case 'target':
+			listItems = this.targetListRef.current.querySelectorAll(this.element);
+			(listItems[listItems.length - 1] as HTMLElement).focus();
+			break;
+		default:
+			listItems = this.sourceListRef.current.querySelectorAll(this.element);
+			(listItems[listItems.length - 1] as HTMLElement).focus();
+			break;
 		}
 		this.handleOnChange();
 	}
 
 	handleActionsKeyDown = (event: React.KeyboardEvent<any>) => {
 		switch (event.key) {
-			case KeyCode.ArrowRight:
-				if (!this.state.targetData.length) {
-					break;
-				}
-				(this.targetListRef.current.querySelector(this.element) as HTMLElement).focus();
+		case KeyCode.ArrowRight:
+			if (!this.state.targetData.length) {
 				break;
-			case KeyCode.ArrowLeft:
-				if (!this.state.sourceData.length) {
-					break;
-				}
-				(this.sourceListRef.current.querySelector(this.element) as HTMLElement).focus();
+			}
+			(this.targetListRef.current.querySelector(this.element) as HTMLElement).focus();
+			break;
+		case KeyCode.ArrowLeft:
+			if (!this.state.sourceData.length) {
 				break;
-			case KeyCode.ArrowDown:
-				event.preventDefault();
-				switch (true) {
-					case document.activeElement === this.actionButtonsNode.lastChild:
-						(this.actionButtonsNode.firstChild as HTMLElement).focus();
-						break;
-					default:
-						(this.actionButtonsNode.lastChild as HTMLElement).focus();
-						break;
-				}
-				break;
-			case KeyCode.ArrowUp:
-				event.preventDefault();
-				switch (true) {
-					case document.activeElement === this.actionButtonsNode.firstChild:
-						(this.actionButtonsNode.lastChild as HTMLElement).focus();
-						break;
-					default:
-						(this.actionButtonsNode.firstChild as HTMLElement).focus();
-						break;
-				}
+			}
+			(this.sourceListRef.current.querySelector(this.element) as HTMLElement).focus();
+			break;
+		case KeyCode.ArrowDown:
+			event.preventDefault();
+			switch (true) {
+			case document.activeElement === this.actionButtonsNode.lastChild:
+				(this.actionButtonsNode.firstChild as HTMLElement).focus();
 				break;
 			default:
-				
+				(this.actionButtonsNode.lastChild as HTMLElement).focus();
+				break;
+			}
+			break;
+		case KeyCode.ArrowUp:
+			event.preventDefault();
+			switch (true) {
+			case document.activeElement === this.actionButtonsNode.firstChild:
+				(this.actionButtonsNode.lastChild as HTMLElement).focus();
+				break;
+			default:
+				(this.actionButtonsNode.firstChild as HTMLElement).focus();
+				break;
+			}
+			break;
+		default:
 		}
 	}
 
 	render() {
-		const { sourceData, targetData, sourceSelected, targetSelected } = this.state;
+		const {
+			sourceData, targetData, sourceSelected, targetSelected,
+		} = this.state;
 		const {
 			className,
 			dataSource,
@@ -260,13 +262,13 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 			moveToSource: this.moveToSource,
 			selectAllItems: this.selectAll,
 			oneWay,
-			actionButtonsNode: this.actionButtonsNode
+			actionButtonsNode: this.actionButtonsNode,
 		};
 		const transferWrapperClasses = classNames(
 			'cs-transfer-wrapper',
 			{
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 		return (
 			<CSTransferContext.Provider value={context}>
@@ -282,7 +284,7 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 						searchable={searchable}
 						helpText={sourceHelpText}
 					/>
-					<div className="cs-transfer-actions" ref={node => this.actionButtonsNode = node}>
+					<div className="cs-transfer-actions" ref={(node) => this.actionButtonsNode = node}>
 						<CSButton
 							label={`Move selection to ${targetLabel}`}
 							iconName="chevronright"
@@ -291,16 +293,17 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 							onClick={() => this.moveItemsTo('target')}
 							onKeyDown={(event: React.KeyboardEvent<any>) => this.handleActionsKeyDown(event)}
 						/>
-						{!oneWay &&
-							<CSButton
-								label={`Move selection to ${sourceLabel}`}
-								iconName="chevronleft"
-								labelHidden
-								disabled={!targetSelected.length}
-								onClick={() => this.moveItemsTo('source')}
-								onKeyDown={(event: React.KeyboardEvent<any>) => this.handleActionsKeyDown(event)}
-							/>
-						}
+						{!oneWay
+							&& (
+								<CSButton
+									label={`Move selection to ${sourceLabel}`}
+									iconName="chevronleft"
+									labelHidden
+									disabled={!targetSelected.length}
+									onClick={() => this.moveItemsTo('source')}
+									onKeyDown={(event: React.KeyboardEvent<any>) => this.handleActionsKeyDown(event)}
+								/>
+							)}
 					</div>
 					<CSTransferList
 						listRef={this.targetListRef}

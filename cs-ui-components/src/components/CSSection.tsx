@@ -21,7 +21,7 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 		super(props);
 
 		this.state = {
-			defaultClosed: false
+			defaultClosed: false,
 		};
 
 		this.toggle = this.toggle.bind(this);
@@ -29,7 +29,7 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 
 	toggle() {
 		this.setState({
-			defaultClosed: !this.state.defaultClosed
+			defaultClosed: !this.state.defaultClosed,
 		});
 	}
 
@@ -37,19 +37,18 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 	componentDidMount() {
 		if (this.props.defaultClosed) {
 			this.setState({
-				defaultClosed: true
+				defaultClosed: true,
 			});
 		}
 	}
 
 	componentDidUpdate(prevProps: CSSectionProps) {
 		if (prevProps.defaultClosed !== this.props.defaultClosed) {
-			this.setState({ defaultClosed: this.props.defaultClosed});
+			this.setState({ defaultClosed: this.props.defaultClosed });
 		}
 	}
 
 	render() {
-
 		const {
 			className,
 			children,
@@ -63,14 +62,14 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 		const sectionClasses = classNames(
 			'cs-section',
 			{
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 		const sectionTitleClasses = classNames(
 			'cs-section-header',
 			{
-				'cs-section-header-padding': defaultClosed === true && collapsible !== true
-			}
+				'cs-section-header-padding': defaultClosed === true && collapsible !== true,
+			},
 		);
 		return (
 			<section
@@ -79,28 +78,27 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 				{...rest}
 			>
 				<h3 className={sectionTitleClasses}>
-					{collapsible ?
-						<button
-							className="cs-section-button"
-							onClick={this.toggle}
-							aria-expanded={!this.state.defaultClosed}
-							aria-roledescription="section"
-						>
-							<CSIcon name="chevronright" size="0.875rem" rotate={this.state.defaultClosed ? 0 : 90} />
-							<span className="cs-section-title">{title}</span>
-						</button>
-					:
-						<span className="cs-section-title">{title}</span>
-
-					}
+					{collapsible
+						? (
+							<button
+								className="cs-section-button"
+								onClick={this.toggle}
+								aria-expanded={!this.state.defaultClosed}
+								aria-roledescription="section"
+							>
+								<CSIcon name="chevronright" size="0.875rem" rotate={this.state.defaultClosed ? 0 : 90} />
+								<span className="cs-section-title">{title}</span>
+							</button>
+						)
+						: <span className="cs-section-title">{title}</span>}
 				</h3>
-				{this.state.defaultClosed ?
-					null
-				:
-					<div className="cs-section-body">
-						{children}
-					</div>
-				}
+				{this.state.defaultClosed
+					? null
+					: (
+						<div className="cs-section-body">
+							{children}
+						</div>
+					)}
 			</section>
 		);
 	}

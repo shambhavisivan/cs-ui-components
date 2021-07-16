@@ -10,22 +10,24 @@ export interface CSTableHeaderProps {
 
 class CSTableHeader extends React.Component<CSTableHeaderProps> {
 	render() {
-		const { children, className, headerSticky, id, ...rest } = this.props;
+		const {
+			children, className, headerSticky, id, ...rest
+		} = this.props;
 
 		const tableHeaderClasses = classNames(
 			'cs-table-header',
 			{
 				'cs-table-header-sticky': headerSticky,
-				[`${className}`]: className
-			}
+				[`${className}`]: className,
+			},
 		);
 
-		const childrenWithProp = React.Children.map(children, child => {
+		const childrenWithProp = React.Children.map(children, (child) => {
 			if (child) {
 				return (
 					React.cloneElement(
 						child as any,
-						{ role: 'columnheader' }
+						{ role: 'columnheader' },
 					)
 				);
 			}
