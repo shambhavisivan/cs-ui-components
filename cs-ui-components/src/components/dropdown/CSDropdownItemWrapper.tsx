@@ -68,37 +68,21 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 		const firstElement = focusableElements[0];
 		const lastElement = focusableElements[focusableElements.length - 1];
 		const { mode, onDropdownTabClose, toggleDropdown } = this.props;
-		let index = focusableElements.indexOf(document.activeElement);
+		const index = focusableElements.indexOf(document.activeElement);
 
 		// if mode is button enable arrow keys navigation
 		if (mode === 'button') {
-			switch (event.key) {
-			case KeyCode.ArrowUp:
-				if (document.activeElement === firstElement) {
-					(lastElement as HTMLElement).focus();
-				} else {
-					index -= 1;
-					(focusableElements[index] as HTMLElement).focus();
-				}
-				break;
-			case KeyCode.ArrowDown:
-				if (document.activeElement === lastElement) {
-					(firstElement as HTMLElement).focus();
-				} else {
-					index += 1;
-					(focusableElements[index] as HTMLElement).focus();
-				}
-				break;
-			case KeyCode.Tab:
-				toggleDropdown();
-					// onDropdownTabClose prop - Needed for CSGrid to focus next cell when tab key pressed
-				onDropdownTabClose?.();
-				break;
+			if (event.key === KeyCode.ArrowUp) {
+				if (document.activeElement === firstElement) (lastElement as HTMLElement).focus();
+				else (focusableElements[index - 1] as HTMLElement).focus();
 			}
-		} else if (// if mode isn't button and last element is focused
-			event.key === KeyCode.Tab
-			&& lastElement === document.activeElement
-		) {
+			if (event.key === KeyCode.ArrowDown) {
+				if (document.activeElement === lastElement) (firstElement as HTMLElement).focus();
+				else (focusableElements[index + 1] as HTMLElement).focus();
+			}
+			if (event.key === KeyCode.Tab) toggleDropdown();
+			else onDropdownTabClose?.();
+		} else if (event.key === KeyCode.Tab && lastElement === document.activeElement) { // if mode isn't button and last element is focused
 			toggleDropdown();
 		}
 

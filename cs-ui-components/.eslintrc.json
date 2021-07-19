@@ -37,7 +37,6 @@
         "@typescript-eslint/no-unused-vars": ["error", { "ignoreRestSiblings": true }],
         // These warnings should be revisited and preferably resolved
         "consistent-return": ["warn"],
-        "default-case": ["warn"],
         "prefer-const": ["warn"],
         "no-use-before-define": ["warn", { "functions": true, "classes": true }],
         "no-underscore-dangle": ["warn"],
