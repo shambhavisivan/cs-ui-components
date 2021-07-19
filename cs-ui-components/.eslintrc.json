@@ -37,7 +37,6 @@
         "consistent-return": ["warn"],
         "default-case": ["warn"],
         "prefer-const": ["warn"],
-        "global-require": ["warn"],
         "no-use-before-define": ["warn", { "functions": true, "classes": true }],
         "no-unused-vars": ["warn"],
         "no-underscore-dangle": ["warn"],

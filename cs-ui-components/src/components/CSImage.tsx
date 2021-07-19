@@ -1,6 +1,7 @@
 import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
+import Logo from '../images/index';
 
 export type CSImageColor = 'white' | 'black' | 'purple';
 export type CSImageType = 'logo' | 'logomark';
@@ -55,7 +56,7 @@ class CSImage extends React.Component<CSImageProps> {
 					className={imageClasses}
 					id={id}
 					style={style}
-					src={require(`../images/cs-${type}-${color}-${variant}.png`)}
+					src={Logo[`cs-${type}-${color}-${variant}`]}
 					alt={`${type}-${color}-${variant}`}
 					aria-labelledby={this.uniqueAutoId}
 					{...rest}
