@@ -43,6 +43,7 @@ import CSSkipLinkPreview from './components/CSSkipLinkPreview';
 import CSGettingStarted from './CSGettingStarted';
 import CSTransferPreview from './components/CSTransferPreview';
 import CSProgressIndicatorPreview from './components/CSProgressIndicatorPreview';
+import CSTreePreview from './components/CSTreePreview';
 
 import SidebarList from './SidebarList';
 
@@ -240,11 +241,15 @@ class CSComponentsList extends React.Component {
 				name: 'Transfer',
 				component: CSTransferPreview,
 				isFormElement: true
+			},
+			{
+				name: 'Tree',
+				component: CSTreePreview
 			}
 		];
 
 		return (
-			<SidebarList toggle search sidebarList={componentsList} path="/components/CS"/>
+			<SidebarList toggle search sidebarList={componentsList} path="/components/CS" />
 		);
 	}
 }
