@@ -1,5 +1,26 @@
 # Release Notes
 
+## 1.1.25
+* General
+  * <i>important</i> added `Jest` & `Enzyme` initial setup
+  * <i>important</i> replaced `TSLint` with `ESLint`
+  * updated reset styles for Salesforce environment markup and styles
+* CSCheckbox
+  * added `indeterminate` prop
+* CSCurrency
+  * added option to format value without adding symbol
+* CSIcon
+  * fixed `className` prop to apply to the frame wrapper instead of svg when `frame={true}`
+* CSDateTimePicker
+  * fixed misaligned list items in time column
+  * fixed selected day styles
+* CSDropdown
+  * fixed `up` and `down` keyboard support on `mode=button` when `CSButton` is inside another component inside dropdown (multilevel-hierarchy)
+  * dropdown's min-width  is now set to width of a toggle button
+  * added `dropdownClassName` prop which adds custom class to the dropdown wrapper
+* CSSidebar
+  * fixed selected class not being removed when dropdown is closed on a multiple tabs setting
+
 ## 1.1.24
 * General
   * <i>important</i> updated react and npm packages to latest version in cs-ui-components and cs-ui-demo
