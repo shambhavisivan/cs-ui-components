@@ -1,0 +1,9 @@
+.cs-autoposition-root {
+	display: contents;
+
+	.cs-autoposition {
+		display: flex;
+		position: fixed;
+		z-index: var(--z-index-autoposition-wrapper);
+	}
+}
