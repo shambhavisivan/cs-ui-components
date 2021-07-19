@@ -1,5 +1,5 @@
 import React from 'react';
-import { CSTree, CSTreeDataType } from '@cloudsense/cs-ui-components';
+import { CSButton, CSChip, CSTree, CSTreeDataType } from '@cloudsense/cs-ui-components';
 
 import Preview from '../Preview';
 
@@ -160,6 +160,14 @@ class CSTreePreview extends React.Component<{}, CSTreePreviewState> {
 						]
 					}
 				]
+			},
+			{
+				label: 'Tree node 0-3',
+				nodeKey: '0-3',
+				render: <>
+					<CSChip text="Tree node 0-3" />
+					<CSButton label="Click me for message" onClick={() => alert('I\'m rendered by render prop')} />
+				</>
 			}
 		];
 	}
@@ -336,6 +344,14 @@ class CSTreePreview extends React.Component<{}, CSTreePreviewState> {
 													]
 												}
 											]
+										},
+										{
+											label: 'Tree node 0-2',
+											nodeKey: '0-2',
+											render: <>
+												<CSChip text="Tree node 0-2" />
+												<CSButton label="Click me for message" onClick={() => alert('I'm rendered by render prop')} />
+											</>
 										}
 									]}
 								/>`
@@ -459,7 +475,7 @@ class CSTreePreview extends React.Component<{}, CSTreePreviewState> {
 						name: 'treeData',
 						required: true,
 						types: 'Array<CSTreeDataType>',
-						description: `Set the data which will be rendered in form of tree nodes. Every node can have 'label', 'nodeKey', 'children', 'actions', 'actionsDisplay' and 'treeNodeIcon' properties defined. 'actions' array property renders CSButton for every object and allows defining CSButton properties. 'actionDisplay' can be defined as 'visible' or 'hover'. 'visible' is the default value, while 'hover' will show actions only if tree node is hovered. 'treeNodeIcon' allows rendering CSIcon-s on tree node by defining CSIcon properties.`
+						description: `Set the data which will be rendered in form of tree nodes. Every node can have 'label', 'nodeKey', 'children', 'actions', 'actionsDisplay', 'treeNodeIcon' and 'render' properties defined. 'actions' array property renders CSButton for every object and allows defining CSButton properties. 'actionDisplay' can be defined as 'visible' or 'hover'. 'visible' is the default value, while 'hover' will show actions only if tree node is hovered. 'treeNodeIcon' allows rendering CSIcon-s on tree node by defining CSIcon properties. 'render' property allows to render any JSX element which will replace tree node label.`
 					}, {
 						name: 'checkable',
 						types: 'boolean',

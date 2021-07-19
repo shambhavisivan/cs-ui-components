@@ -14,6 +14,7 @@ export interface CSTreeNodeCommonProps {
 	label: string;
 	nodeKey: string;
 	treeNodeIcon?: CSIconProps;
+	render?: JSX.Element;
 }
 
 export interface CSTreeNodeLegacyProps {
@@ -47,6 +48,7 @@ const CSTreeNode: React.FC<CSTreeNodeProps> = ({
 	nodeKey,
 	onExpand,
 	onSelect,
+	render,
 	selected,
 	style,
 	treeNodeIcon,
@@ -119,9 +121,13 @@ const CSTreeNode: React.FC<CSTreeNodeProps> = ({
 							{...treeNodeIcon}
 						/>
 					)}
-					<span className="cs-tree-node-label">
-						{label}
-					</span>
+					{render
+						? <>{render}</>
+						: (
+							<span className="cs-tree-node-label">
+								{label}
+							</span>
+						)}
 				</div>
 				{
 					actions?.length && (

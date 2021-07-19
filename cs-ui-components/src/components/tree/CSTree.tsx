@@ -61,6 +61,7 @@ const CSTree = ({
 				label: item.label,
 				nodeKey: item.nodeKey,
 				onSelect: (e: any) => handleNodeSelection(item.nodeKey, e),
+				render: item.render,
 				selected: selectedKey === item.nodeKey && !checkable,
 				treeNodeIcon: item.treeNodeIcon,
 				// isTreeDraggable: draggable
