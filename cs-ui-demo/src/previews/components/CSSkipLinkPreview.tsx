@@ -7,6 +7,12 @@ class CSSkipLinkPreview extends React.Component {
 	getDoc = () => ({
 		name: 'Skip Link',
 		usage: 'Creates links to specific parts of a page.',
+		alerts: [
+			{
+				variant: 'info',
+				text: 'Skip Link is accessible only by focusing it via keyboard.'
+			}
+		],
 		accessible: 'yes',
 		components: [
 			{
