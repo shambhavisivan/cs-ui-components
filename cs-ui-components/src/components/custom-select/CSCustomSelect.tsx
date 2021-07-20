@@ -8,8 +8,12 @@ import CSOption from './CSOption';
 import CSButton from '../CSButton';
 import { CSTooltipPosition } from '../CSTooltip';
 import KeyCode from '../../util/KeyCode';
+import CSAutoposition from '../../helpers/autoposition/CSAutoposition';
+import { CSAutopositions } from '../../helpers/autoposition/cs-autoposition-types';
 
 export type CSCustomSelectExportValueType = 'itemKey' | 'value';
+export type CSCustomSelectDropdownAlign = 'left' | 'right';
+export type CSCustomSelectDropdownPosition = 'top' | 'bottom';
 
 export interface CSOptionItem {
 	value: string;
@@ -18,6 +22,7 @@ export interface CSOptionItem {
 
 export interface CSCustomSelectProps {
 	[key: string]: any;
+	align?: CSCustomSelectDropdownAlign;
 	borderRadius?: string;
 	className?: string;
 	disabled?: boolean;
@@ -33,6 +38,7 @@ export interface CSCustomSelectProps {
 	multiselect?: boolean;
 	onSearch?: (e: React.ChangeEvent<HTMLInputElement>) => any;
 	onSelectChange?: (value?: any) => any;
+	position?: CSCustomSelectDropdownPosition;
 	required?: boolean;
 	title?: string;
 	tooltipPosition?: CSTooltipPosition;
@@ -41,14 +47,20 @@ export interface CSCustomSelectProps {
 
 export interface CSCustomSelectState {
 	activeListItem: number;
+	customSelectInputWidth?: number;
+	dropdownOpen: boolean;
 	searchTerm: string;
 	selectedItem: CSOptionItem;
 	selectedOptions: Array<CSOptionItem>;
-	isOpen: boolean;
 }
 
 class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelectState> {
-	private dropdownNode: React.RefObject<HTMLUListElement>;
+	public static defaultProps = {
+		align: 'left',
+		position: 'bottom',
+	};
+
+	private customSelectInputWrapperRef: React.RefObject<HTMLDivElement>;
 
 	private input: HTMLInputElement;
 
@@ -60,22 +72,21 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		super(props);
 
 		this.state = {
-			isOpen: false,
+			activeListItem: null,
+			dropdownOpen: false,
 			searchTerm: '',
 			selectedOptions: [],
 			selectedItem: {
 				itemKey: '',
 				value: '',
 			},
-			activeListItem: null,
 		};
 
-		this.dropdownNode = React.createRef();
+		this.customSelectInputWrapperRef = React.createRef();
 	}
 
 	componentDidMount() {
 		console.warn('CSCustomSelect is under construction and should not be used.');
-		document.addEventListener('click', this.handleOutsideClick);
 		if (this.props.value) {
 			this.setDefaultOptions();
 		}
@@ -117,33 +128,29 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		const { onSearch } = this.props;
 		this.setState({
 			searchTerm: e.target.value,
-			isOpen: true,
-			activeListItem: 0,
 		});
+		this.openCustomSelectDropdown();
 		if (onSearch) {
 			onSearch(e);
 		}
 	}
 
-	handleOnFocus = () => {
-		this.setState(
-			{
-				isOpen: true,
-				activeListItem: 0,
-			},
-		);
-	}
-
 	handleOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
 		e.stopPropagation();
-		this.setState({
-			isOpen: false,
-		});
+		if (
+			!this.state.searchTerm
+			|| !this.state.selectedItem
+			|| !this.state.selectedOptions
+		) {
+			this.closeCustomSelectDropdown();
+		}
 	}
 
-	handleOutsideClick = (e: any) => {
-		if (this.input && !this.input.contains(e.target)) {
-			this.setState({ searchTerm: '' });
+	handleOutsideClick = (event: any) => {
+		if (this.customSelectInputWrapperRef.current
+			&& !this.customSelectInputWrapperRef.current.contains(event.target)
+			&& !document.getElementById('cs-autoposition').contains(event.target)) {
+			this.closeCustomSelectDropdown();
 		}
 	}
 
@@ -155,7 +162,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		Escape keypress closes dropdown.
 	*/
 	handleOnKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-		const { searchTerm, isOpen } = this.state;
+		const { searchTerm, dropdownOpen } = this.state;
 		let { activeListItem } = this.state;
 		const { multiselect } = this.props;
 
@@ -166,10 +173,10 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		case event.key === KeyCode.Backspace && !searchTerm && multiselect:
 			this.deleteLastItem();
 			break;
-		case event.key === KeyCode.Escape && isOpen:
-			this.setState({ isOpen: !isOpen });
+		case event.key === KeyCode.Escape && dropdownOpen:
+			this.closeCustomSelectDropdown();
 			break;
-		case event.key === KeyCode.ArrowDown && isOpen:
+		case event.key === KeyCode.ArrowDown && dropdownOpen:
 			event.preventDefault();
 			switch (true) {
 			case activeListItem === null:
@@ -184,7 +191,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 				break;
 			}
 			break;
-		case event.key === KeyCode.ArrowUp && isOpen:
+		case event.key === KeyCode.ArrowUp && dropdownOpen:
 			event.preventDefault();
 			switch (true) {
 			case activeListItem === null:
@@ -202,15 +209,16 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		case event.key === KeyCode.Enter:
 			event.preventDefault();
 			switch (true) {
-			case isOpen && activeListItem !== null && !!this.filteredList.length:
+			case dropdownOpen && activeListItem !== null && !!this.filteredList.length:
 				this.onSelect(this.getOptionData(this.filteredList[activeListItem]));
 				break;
 			default:
-				this.setOpen();
+				this.toggleCustomSelectDropdown();
 				break;
 			}
 			break;
 		default:
+			return false;
 		}
 	}
 
@@ -242,7 +250,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 				},
 				this.handleSelectChange,
 			);
-			this.setOpen();
+			this.toggleCustomSelectDropdown();
 		}
 	}
 
@@ -335,8 +343,12 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		return includesSearchTerm(child.props.itemKey) || includesSearchTerm(child.props.value);
 	}
 
-	setOpen = () => {
-		this.setState({ isOpen: !this.state.isOpen });
+	toggleCustomSelectDropdown = () => {
+		if (!this.state.dropdownOpen) {
+			this.openCustomSelectDropdown();
+		} else {
+			this.closeCustomSelectDropdown();
+		}
 	}
 
 	// Accepts child as CSOption and returns only object of itemKey and value
@@ -361,15 +373,54 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		this.setState({ activeListItem: index });
 	}
 
+	// Opens dropdown
+	openCustomSelectDropdown = () => {
+		if (!this.customSelectInputWrapperRef.current) {
+			return;
+		}
+		const elementRect = this.customSelectInputWrapperRef.current.getBoundingClientRect();
+
+		this.setState({
+			dropdownOpen: true,
+			activeListItem: 0,
+			customSelectInputWidth: elementRect.width,
+		});
+
+		document.addEventListener('click', this.handleOutsideClick, true);
+	}
+
+	// Closes dropdown and sets state values to the initial values
+	closeCustomSelectDropdown = () => {
+		this.setState({
+			dropdownOpen: false,
+			activeListItem: null,
+			searchTerm: '',
+		});
+		document.removeEventListener('click', this.handleOutsideClick, true);
+	}
+
+	flipPosition = (position: string) => {
+		switch (position) {
+		case 'left':
+			return 'right';
+		case 'right':
+			return 'left';
+		default:
+			break;
+		}
+	}
+
 	render() {
 		const {
 			activeListItem,
+			customSelectInputWidth,
 			searchTerm,
 			selectedItem,
 			selectedOptions,
-			isOpen,
+			dropdownOpen,
 		} = this.state;
 		const {
+			align,
 			borderRadius,
 			children,
 			className,
@@ -386,6 +437,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 			multiselect,
 			onSearch,
 			onSelectChange,
+			position,
 			required,
 			title,
 			tooltipPosition,
@@ -417,13 +469,15 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		const selectedListItemClasses = classNames(
 			'cs-selected-input-option',
 			{
-				'cs-custom-select-dropdown-open': isOpen,
+				'cs-custom-select-dropdown-open': dropdownOpen,
 			},
 		);
 		const style: CSSProperties = {
 			'--cs-custom-select-border-radius': borderRadius,
 		};
-
+		const customSelectDropdownStyle: CSSProperties = {
+			'--cs-custom-select-input-width': customSelectInputWidth ? `${customSelectInputWidth}px` : '',
+		};
 		/*
 			Filters this.props.children based on searchTerm state, clones each of CSOption passed as children
 			and forwards handler methods for selecting and highlighting each of the items, as well as
@@ -449,7 +503,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 						onMouseOut: () => this.setState({ activeListItem: null }),
 						isMultiSelectItem: multiselect,
 						selected: selectedOptions.find((option) => this.getOptionData(child as unknown as CSOption).itemKey === option.itemKey)
-								|| this.getOptionData(child as unknown as CSOption).itemKey === selectedItem.itemKey,
+							|| this.getOptionData(child as unknown as CSOption).itemKey === selectedItem.itemKey,
 					}));
 				}
 				return (
@@ -463,6 +517,8 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 				);
 			}
 		};
+
+		const initialPosition = `${position}-${this.flipPosition(align)}` as CSAutopositions;
 
 		return (
 			<div className={customSelectWrapperClasses}>
@@ -479,8 +535,13 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 					)}
 				<div
 					className={customSelectInputWrapperClasses}
-					onBlur={() => this.setState({ searchTerm: '' })}
 					style={style}
+					onBlur={() => {
+						if (this.state.searchTerm) {
+							this.closeCustomSelectDropdown();
+						}
+					}}
+					ref={this.customSelectInputWrapperRef}
 				>
 					{(this.props.multiselect
 						&& this.state.selectedOptions.length > 0)
@@ -508,14 +569,14 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 							required={required}
 							disabled={disabled}
 							aria-invalid={error}
-							aria-expanded={isOpen}
+							aria-expanded={dropdownOpen}
 							aria-required={required}
 							title={title}
 							autoComplete="off"
 							onKeyDown={this.handleOnKeyDown}
-							onMouseDown={() => this.setState({ isOpen: true })}
-							onBlur={(e) => this.handleOnBlur(e)}
-							onFocus={this.handleOnFocus}
+							onMouseDown={() => this.openCustomSelectDropdown()}
+							onBlur={this.handleOnBlur}
+							onFocus={this.openCustomSelectDropdown}
 							ref={(node) => this.input = node}
 							role="listbox"
 							aria-multiselectable="true"
@@ -543,27 +604,38 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 							/>
 						)}
 					<CSIcon
-						name="down"
-						rotate={isOpen ? 180 : 0}
+						name="chevrondown"
+						rotate={dropdownOpen ? 180 : null}
 						className="cs-custom-select-icon"
 						color="var(--cs-custom-select-dropdown-icon-c)"
 					/>
 				</div>
 				{
-					(isOpen && !disabled)
-					&& (
-						<ul
-							className="cs-custom-select-dropdown"
-							id="cs-custom-select-dropdown"
-							ref={this.dropdownNode}
-						>
-							{renderDropdownOptionsAsChildren()}
-						</ul>
-					)
-				}
-				{
 					(error && errorMessage)
 					&& <CSFieldErrorMsg message={errorMessage} />
+				}
+				{
+					(dropdownOpen && !disabled)
+					&& (
+						<CSAutoposition
+							referencePoint={this.customSelectInputWrapperRef.current}
+							positionSchema={['top-left', 'top-right', 'bottom-right', 'bottom-left']}
+							initialPosition={initialPosition}
+							zIndex="var(--z-index-custom-select-dropdown)"
+						>
+							<div
+								style={customSelectDropdownStyle}
+								className="cs-custom-select-dropdown-wrapper"
+							>
+								<ul
+									className="cs-custom-select-dropdown"
+									id="cs-custom-select-dropdown"
+								>
+									{renderDropdownOptionsAsChildren()}
+								</ul>
+							</div>
+						</CSAutoposition>
+					)
 				}
 			</div>
 		);

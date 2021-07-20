@@ -6,3 +6,4 @@ declare module 'rc-notification';
 declare module 'resize-observer-polyfill';
 declare module '@wojtekmaj/enzyme-adapter-react-17';
 declare module 'uuid';
+declare module 'lodash';

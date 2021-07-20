@@ -48,6 +48,41 @@ class CSCustomSelectPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'align',
+						variations: [
+							{
+								primaryVariants: 'align="left"',
+								quickLink: 'left',
+								component: <CSCustomSelect label="Choose letter">
+									<CSOption itemKey="1" value="A" />
+									<CSOption itemKey="2" value="B" />
+									<CSOption itemKey="3" value="C" />
+									<CSOption itemKey="4" value="D" />
+								</CSCustomSelect>,
+								code: `<CSCustomSelect label="Choose letter">
+									<CSOption itemKey="1" value="A" />
+									<CSOption itemKey="2" value="B" />
+									<CSOption itemKey="3" value="C" />
+									<CSOption itemKey="4" value="D" />
+								</CSCustomSelect>`
+							}, {
+								primaryVariants: 'align="right"',
+								quickLink: 'right',
+								component: <CSCustomSelect label="Choose letter" align="right">
+									<CSOption itemKey="1" value="A" />
+									<CSOption itemKey="2" value="B" />
+									<CSOption itemKey="3" value="C" />
+									<CSOption itemKey="4" value="D" />
+								</CSCustomSelect>,
+								code: `<CSCustomSelect label="Choose letter" align="right">
+									<CSOption itemKey="1" value="A" />
+									<CSOption itemKey="2" value="B" />
+									<CSOption itemKey="3" value="C" />
+									<CSOption itemKey="4" value="D" />
+								</CSCustomSelect>`
+							}
+						]
+					}, {
 						propName: 'borderRadius',
 						variations: [
 							{
@@ -324,6 +359,41 @@ class CSCustomSelectPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'position',
+						variations: [
+							{
+								primaryVariants: 'position="bottom"',
+								quickLink: 'bottom',
+								component: <CSCustomSelect label="Choose letter">
+									<CSOption itemKey="1" value="A" />
+									<CSOption itemKey="2" value="B" />
+									<CSOption itemKey="3" value="C" />
+									<CSOption itemKey="4" value="D" />
+								</CSCustomSelect>,
+								code: `<CSCustomSelect label="Choose letter">
+									<CSOption itemKey="1" value="A" />
+									<CSOption itemKey="2" value="B" />
+									<CSOption itemKey="3" value="C" />
+									<CSOption itemKey="4" value="D" />
+								</CSCustomSelect>`
+							}, {
+								primaryVariants: 'position="top"',
+								quickLink: 'top',
+								component: <CSCustomSelect label="Choose letter" position="top">
+									<CSOption itemKey="1" value="A" />
+									<CSOption itemKey="2" value="B" />
+									<CSOption itemKey="3" value="C" />
+									<CSOption itemKey="4" value="D" />
+								</CSCustomSelect>,
+								code: `<CSCustomSelect label="Choose letter" position="top">
+									<CSOption itemKey="1" value="A" />
+									<CSOption itemKey="2" value="B" />
+									<CSOption itemKey="3" value="C" />
+									<CSOption itemKey="4" value="D" />
+								</CSCustomSelect>`
+							}
+						]
+					}, {
 						propName: 'onSelectChange',
 						variations: [
 							{
@@ -518,6 +588,14 @@ class CSCustomSelectPreview extends React.Component {
 						types: 'string',
 						description: 'Set the custom select label.'
 					}, {
+						name: 'align',
+						customTypes: [{
+							name: 'CSCustomSelectDropdownAlign',
+							types: ['\'left\'', '\'right\'']
+						}],
+						default: '\'left\'',
+						description: 'Horizontally align the custom select dropdown in the case of an overflow.'
+					}, {
 						name: 'borderRadius',
 						types: 'string',
 						default: `'0.25rem'`,
@@ -576,6 +654,14 @@ class CSCustomSelectPreview extends React.Component {
 						name: 'onSelectChange',
 						types: '(event) => void',
 						description: 'Handler method for when the selection is changed.'
+					}, {
+						name: 'position',
+						customTypes: [{
+							name: 'CSCustomSelectDropdownPosition',
+							types: ['\'bottom\'', '\'top\'']
+						}],
+						default: '\'bottom\'',
+						description: 'Determine the vertical position of the custom select dropdown content.'
 					}, {
 						name: 'required',
 						types: 'boolean',

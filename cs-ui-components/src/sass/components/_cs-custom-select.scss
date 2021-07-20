@@ -132,68 +132,67 @@
 
 
 // Dropdown
-.cs-custom-select-dropdown {
-	border-radius: 0.25rem;
-	font-size: 0.8125rem;
-	list-style: none;
-	margin-top: 0.25rem;
-	min-width: 6rem;
-	max-height: 15rem;
-	overflow-y: auto;
-	padding: 0.25rem 0;
-	position: absolute;
-	width: 100%;
-	z-index: var(--z-index-custom-select-dropdown);
-	@include sbg(--cs-custom-select-dropdown-bg);
-	@include css4 {
-		border: 1px solid cvar(--cs-custom-select-dropdown-br);
-		box-shadow: 0 2px 3px 0 cvar(--cs-custom-select-dropdown-shadow);
-	}
-	.cs-custom-select-no-data {
-		display: flex;
-		align-items: center;
-		padding: 0.5rem;
-		&-text {
-			@include sc(--cs-custom-select-no-data-c);
-			margin-left: 0.5rem;
+.cs-custom-select-dropdown-wrapper {
+	width: max-content;
+	min-width: var(--cs-custom-select-input-width);
+	.cs-custom-select-dropdown {
+		border-radius: 0.25rem;
+		font-size: 0.8125rem;
+		list-style: none;
+		max-height: 15rem;
+		overflow-y: auto;
+		padding: 0.25rem 0;
+		@include sbg(--cs-custom-select-dropdown-bg);
+		@include css4 {
+			border: 1px solid cvar(--cs-custom-select-dropdown-br);
+			box-shadow: 0 2px 3px 0 cvar(--cs-custom-select-dropdown-shadow);
 		}
-	}
-	.cs-option {
-		cursor: pointer;
-		padding: 0.5rem 0.75rem;
-		outline: 0;
-		display: flex;
-		> svg {
-			margin-right: 0.5rem;
-		}
-		&:first-child {
-			border-top-left-radius: 0.25rem;
-			border-top-right-radius: 0.25rem;
-		}
-		&:last-child {
-			border-bottom-left-radius: 0.25rem;
-			border-bottom-right-radius: 0.25rem;
-		}
-		.cs-option-value {
-			@include overflow-ellipsis;
-		}
-		.cs-option-check-icon {
+		.cs-custom-select-no-data {
 			display: flex;
-			justify-content: center;
-			width: 1.5rem;
-			margin-right: 0.25rem;
+			align-items: center;
+			padding: 0.5rem;
+			&-text {
+				@include sc(--cs-custom-select-no-data-c);
+				margin-left: 0.5rem;
+			}
 		}
-		&.cs-option-active {
-			@include sbg(--cs-custom-select-dropdown-hover-bg);
-		}
-		&.cs-option-list-item-selected {
-			@include sbg(--cs-option-list-item-selected-bg);
-
-			&:focus,
-			&:hover,
+		.cs-option {
+			cursor: pointer;
+			padding: 0.5rem 0.75rem;
+			outline: 0;
+			display: flex;
+			> svg {
+				margin-right: 0.5rem;
+			}
+			&:first-child {
+				border-top-left-radius: 0.25rem;
+				border-top-right-radius: 0.25rem;
+			}
+			&:last-child {
+				border-bottom-left-radius: 0.25rem;
+				border-bottom-right-radius: 0.25rem;
+			}
+			.cs-option-value {
+				@include overflow-ellipsis;
+			}
+			.cs-option-check-icon {
+				display: flex;
+				justify-content: center;
+				width: 1.5rem;
+				margin-right: 0.25rem;
+			}
 			&.cs-option-active {
-				@include bgd(--cs-option-list-item-selected-bg, 0.02);
+				@include sbg(--cs-custom-select-dropdown-hover-bg);
+			}
+			&.cs-option-list-item-selected {
+				@include sbg(--cs-option-list-item-selected-bg);
+				&:focus,
+				&:hover,
+				&.cs-option-active {
+					@include bgd(--cs-option-list-item-selected-bg, 0.02);
+				}
 			}
 		}
 	}
 }
+
