@@ -30,6 +30,7 @@
         "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
         "react/jsx-indent": ["error", "tab", { "checkAttributes": true, "indentLogicalExpressions": true }],
         "react/jsx-indent-props": ["error", "tab"],
+        "import/extensions": ["error", "never", { "svg": "always" }],
         // These warnings should be revisited and preferably resolved
         "consistent-return": ["warn"],
         "default-case": ["warn"],
@@ -49,7 +50,6 @@
         "no-unused-expressions": ["warn"],
         "no-param-reassign": ["warn"],
         "import/no-extraneous-dependencies": ["warn", { "devDependencies": false, "optionalDependencies": false, "peerDependencies": false }],
-        "import/extensions": ["warn"],
         "import/no-unresolved": ["warn"],
         "import/no-webpack-loader-syntax": ["warn"],
         "import/no-dynamic-require": ["warn"],
