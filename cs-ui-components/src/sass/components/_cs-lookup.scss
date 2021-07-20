@@ -73,73 +73,68 @@
 }
 
 /* CS LOOKUP DROPDOWN */
-.cs-lookup-dropdown-root {
-	display: contents;
-	.cs-lookup-dropdown {
-		position: fixed;
-		width: var(--cs-lookup-dropdown-width, max-content);
-		border-radius: 0.25rem;
-		z-index: var(--z-index-lookup-dropdown);
-		max-width: Max(var(--cs-lookup-dropdown-width, 50rem), 50rem);
-		min-width: Min(
-				var(--cs-lookup-dropdown-width, var(--cs-lookup-input-width)),
-				var(--cs-lookup-input-width));
-		overflow-x: auto;
-		@include css4 {
-			border: 1px solid cvar(--cs-lookup-results-br);
-		}
-		.cs-table {
-			border: none;
-			border-radius: inherit;
-			.cs-table-header {
-				width: 100%;
-				.cs-table-cell {
-					min-width: 5rem;
-					.cs-table-cell-text{
-						font-weight: $font-weight-bold;
-						text-transform: uppercase;
-						letter-spacing: 0.0625rem;
-						font-family: $font-primary !important;
-						@include sc(--cs-lookup-results-header-c);
-					}
+.cs-lookup-dropdown {
+	width: var(--cs-lookup-dropdown-width, max-content);
+	border-radius: 0.25rem;
+	max-width: Max(var(--cs-lookup-dropdown-width, 50rem), 50rem);
+	min-width: Min(
+		var(--cs-lookup-dropdown-width, var(--cs-lookup-input-width)),
+		var(--cs-lookup-input-width));
+	overflow-x: auto;
+	@include css4 {
+		border: 1px solid cvar(--cs-lookup-results-br);
+	}
+	.cs-table {
+		border: none;
+		border-radius: inherit;
+		.cs-table-header {
+			width: 100%;
+			.cs-table-cell {
+				min-width: 5rem;
+				.cs-table-cell-text{
+					font-weight: $font-weight-bold;
+					text-transform: uppercase;
+					letter-spacing: 0.0625rem;
+					font-family: $font-primary !important;
+					@include sc(--cs-lookup-results-header-c);
 				}
 			}
-			.cs-table-body {
-				width: 100%;
-				.cs-table-row {
-					cursor: pointer;
-					@include sc(--cs-lookup-results-row-c);
-					&.cs-lookup-dropdown-msg-wrapper{
-						align-items: center;
-						padding: 0.5rem;
-						pointer-events: none;
-						@include sbg(--cs-lookup-dropdown-msg-bg);
-						.cs-lookup-dropdown-msg-text {
-							font-size: 0.8125rem;
-							margin-left: 0.5rem;
-							@include sc(--cs-lookup-dropdown-msg-c);
+		}
+		.cs-table-body {
+			width: 100%;
+			.cs-table-row {
+				cursor: pointer;
+				@include sc(--cs-lookup-results-row-c);
+				&.cs-lookup-dropdown-msg-wrapper{
+					align-items: center;
+					padding: 0.5rem;
+					pointer-events: none;
+					@include sbg(--cs-lookup-dropdown-msg-bg);
+					.cs-lookup-dropdown-msg-text {
+						font-size: 0.8125rem;
+						margin-left: 0.5rem;
+						@include sc(--cs-lookup-dropdown-msg-c);
+					}
+					&-inverse {
+						@include sbg(--cs-lookup-dropdown-msg-inverse-bg);
+						@include css4 {
+							border: 1px solid cvar(--cs-lookup-dropdown-msg-inverse-br);
 						}
-						&-inverse {
-							@include sbg(--cs-lookup-dropdown-msg-inverse-bg);
-							@include css4 {
-								border: 1px solid cvar(--cs-lookup-dropdown-msg-inverse-br);
-							}
-							.cs-lookup-dropdown-msg-text {
-								@include sc(--cs-lookup-dropdown-msg-inverse-c);
-							}
+						.cs-lookup-dropdown-msg-text {
+							@include sc(--cs-lookup-dropdown-msg-inverse-c);
 						}
 					}
-					.cs-table-cell {
-						padding-top: 0.5rem;
-						padding-bottom: 0.5rem;
-						min-width: 5rem;
-						&:first-child .cs-table-cell-text {
-							font-weight: 400;
-						}
-						.cs-table-cell-text {
-							font-size: 0.75rem;
-							@include overflow-ellipsis;
-						}
+				}
+				.cs-table-cell {
+					padding-top: 0.5rem;
+					padding-bottom: 0.5rem;
+					min-width: 5rem;
+					&:first-child .cs-table-cell-text {
+						font-weight: 400;
+					}
+					.cs-table-cell-text {
+						font-size: 0.75rem;
+						@include overflow-ellipsis;
 					}
 				}
 			}

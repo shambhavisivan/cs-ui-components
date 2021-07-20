@@ -2,7 +2,6 @@ import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 import { Portal } from 'react-portal';
 import { v4 as uuidv4 } from 'uuid';
-import ResizeObserver from 'resize-observer-polyfill';
 import { debounce, find, remove } from 'lodash';
 import CSButton from './CSButton';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
@@ -15,6 +14,8 @@ import CSTableRow from './table/CSTableRow';
 import CSTableCell from './table/CSTableCell';
 import { CSTooltipPosition } from './CSTooltip';
 import KeyCode from '../util/KeyCode';
+import CSAutoposition from '../helpers/autoposition/CSAutoposition';
+import { CSAutopositions } from '../helpers/autoposition/cs-autoposition-types';
 
 export interface CSLookupTableColumnType {
 	key: string;
@@ -85,8 +86,6 @@ type CSLookupFetchingMode = 'after-search' | 'after-scroll' | undefined;
 
 export interface CSLookupState {
 	activeRowIndex: number;
-	computedDropdownStyle?: CSSProperties;
-	computedPosition: Array<string>;
 	dropdownOpen: boolean;
 	dropdownValues: Array<Record<string, any>>;
 	fetchingMode?: CSLookupFetchingMode;
@@ -110,8 +109,6 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 	public lookupWrapperRef: React.RefObject<HTMLInputElement>;
 
-	private lookupDropdownId = 'cs-lookup-dropdown-root';
-
 	private lookupTable = 'cs-lookup-table';
 
 	private lookupTableHeader = 'cs-lookup-table-header';
@@ -131,7 +128,6 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 		this.state = {
 			activeRowIndex: null,
-			computedPosition: [props.position, props.align],
 			dropdownOpen: false,
 			dropdownValues: [],
 			pageNo: 0,
@@ -140,14 +136,6 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			selectedOption: undefined,
 			selectedOptions: [],
 		};
-
-		let lookupRoot = document.getElementById(this.lookupDropdownId);
-		if (!lookupRoot) {
-			lookupRoot = document.createElement('div');
-			lookupRoot.className = this.lookupDropdownId;
-			lookupRoot.id = this.lookupDropdownId;
-			document.body.appendChild(lookupRoot);
-		}
 
 		this.executeServerSearchDebounced = debounce(this.executeServerSearch, 500);
 	}
@@ -191,7 +179,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	handleClickOutside = (event: any) => {
 		if (this.lookupWrapperRef.current
 			&& !this.lookupWrapperRef.current.contains(event.target)
-			&& !document.getElementById(this.lookupDropdownId).contains(event.target)) {
+			&& !document.getElementById('cs-autoposition').contains(event.target)) {
 			this.closeLookupDropdown();
 		}
 	}
@@ -256,11 +244,11 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		if (searchBy && !!searchBy.length) {
 			const keysToFilter = [...searchBy];
 			results = fetchedOptions.filter((item: any) => Object.keys(item).some((key: any) => keysToFilter.includes(key)
-					&& includesSearchTerm(item[key])));
+				&& includesSearchTerm(item[key])));
 		} else {
 			const lookupColumnsToFilter = lookupColumns.map((column) => column.key);
 			results = fetchedOptions.filter((item: any) => Object.keys(item).some((key: any) => lookupColumnsToFilter.includes(key)
-					&& includesSearchTerm(item[key])));
+				&& includesSearchTerm(item[key])));
 		}
 
 		this.setState({ dropdownValues: results });
@@ -507,51 +495,11 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		if (!this.lookupInputRef.current) {
 			return;
 		}
-		const elementRect = this.lookupInputRef.current.getBoundingClientRect();
-		const top = elementRect.top + elementRect.height + 1;
-		const bottom = window.innerHeight - elementRect.top + 1;
-		const { left } = elementRect;
-		const right = window.innerWidth - elementRect.right;
+		const lookupInputRect = this.lookupInputRef.current.getBoundingClientRect();
 
-		const dropdownPosition = this.state.computedPosition.join('-');
-
-		switch (dropdownPosition) {
-		case 'top-right':
-			this.setState({
-				computedDropdownStyle: {
-					bottom,
-					right,
-				},
-			});
-			break;
-		case 'top-left':
-			this.setState({
-				computedDropdownStyle: {
-					bottom,
-					left,
-				},
-			});
-			break;
-		case 'bottom-right':
-			this.setState({
-				computedDropdownStyle: {
-					top,
-					right,
-				},
-			});
-			break;
-		case 'bottom-left':
-		default:
-			this.setState({
-				computedDropdownStyle: {
-					top,
-					left,
-				},
-			});
-		}
 		this.setState({
 			dropdownOpen: true,
-			lookupInputWidth: elementRect.width,
+			lookupInputWidth: lookupInputRect.width,
 			activeRowIndex: 0,
 		});
 
@@ -563,8 +511,6 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 	closeLookupDropdown = () => {
 		this.setState({
-			computedDropdownStyle: undefined,
-			computedPosition: [this.props.position, this.props.align],
 			dropdownOpen: false,
 			pageNo: 0,
 			moreRecords: true,
@@ -579,68 +525,25 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		}
 	}
 
-	autoDropdownPosition = (dropdownRect: DOMRect) => {
-		const { computedPosition } = this.state;
-		let [openOn, alignTo] = computedPosition;
-
-		// check top position of dropdown
-		if (dropdownRect.top <= 0 && openOn === 'top') {
-			openOn = 'bottom';
-		}
-		// check bottom position of dropdown
-		if (dropdownRect.bottom
-			>= (window.innerHeight || document.documentElement.clientHeight)
-			&& openOn === 'bottom') {
-			openOn = 'top';
-		}
-		// check right position of dropdown
-		if (dropdownRect.right
-			>= (window.innerWidth || document.documentElement.clientWidth)
-			&& alignTo === 'left') {
-			alignTo = 'right';
-		}
-		// check left position of dropdown
-		if (dropdownRect.left <= 0 && alignTo === 'right') {
-			alignTo = 'left';
-		}
-
-		const position = [openOn, alignTo];
-		if (JSON.stringify(position) !== JSON.stringify(computedPosition)) {
-			this.setState({
-				computedPosition: position,
-			}, this.openLookupDropdown);
-		}
-	}
-
 	lookupRefCallback = (element: HTMLDivElement) => {
-		if (element) {
-			const resizer = new ResizeObserver(() => {
-				if (this.state.dropdownOpen) {
-					const lookupDropdownRect = element.getBoundingClientRect();
-					this.autoDropdownPosition(lookupDropdownRect);
+		if (this.props.infiniteScroll) {
+			element.firstElementChild.addEventListener('scroll', (event) => {
+				const scrollNode = event.target as HTMLDivElement;
+				const isEndOfScroll = (scrollNode.scrollHeight
+					- scrollNode.scrollTop
+					- scrollNode.offsetHeight <= 1);
+
+				if (
+					isEndOfScroll
+					&& this.state.moreRecords
+					&& this.state.fetchingMode === undefined
+				) {
+					this.setState({
+						fetchingMode: 'after-scroll',
+						pageNo: this.state.pageNo + 1,
+					}, this.fetchData);
 				}
 			});
-			resizer.observe(element);
-
-			if (this.props.infiniteScroll) {
-				element.firstElementChild.addEventListener('scroll', (event) => {
-					const scrollNode = event.target as HTMLDivElement;
-					const isEndOfScroll = (scrollNode.scrollHeight
-						- scrollNode.scrollTop
-						- scrollNode.offsetHeight <= 1);
-
-					if (
-						isEndOfScroll
-						&& this.state.moreRecords
-						&& this.state.fetchingMode === undefined
-					) {
-						this.setState({
-							fetchingMode: 'after-scroll',
-							pageNo: this.state.pageNo + 1,
-						}, this.fetchData);
-					}
-				});
-			}
 		}
 	}
 
@@ -648,6 +551,17 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		if (instance) {
 			const table = document.getElementById(this.lookupTable);
 			table.scrollTop = table.scrollHeight;
+		}
+	}
+
+	flipPosition = (position: string) => {
+		switch (position) {
+		case 'left':
+			return 'right';
+		case 'right':
+			return 'left';
+		default:
+			break;
 		}
 	}
 
@@ -747,7 +661,6 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		};
 
 		const lookupDropdownStyle: CSSProperties = {
-			...this.state.computedDropdownStyle,
 			'--cs-lookup-input-width': lookupInputWidth ? `${lookupInputWidth}px` : '',
 			'--cs-lookup-dropdown-width': dropdownWidth,
 		};
@@ -840,6 +753,9 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			}
 			return '17rem';
 		};
+
+		const initialPosition = `${position}-${this.flipPosition(align)}` as CSAutopositions;
+
 		return (
 			<div className={lookupFieldWrapperClasses}>
 				{(label && !labelHidden)
@@ -938,7 +854,12 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 				{
 					dropdownOpen
 					&& (
-						<Portal node={document && document.getElementById(this.lookupDropdownId)}>
+						<CSAutoposition
+							referencePoint={this.lookupInputRef.current}
+							positionSchema={['top-left', 'top-right', 'bottom-right', 'bottom-left']}
+							initialPosition={initialPosition}
+							zIndex="var(--z-index-lookup-dropdown)"
+						>
 							<div
 								className={lookupDropdownClasses}
 								style={lookupDropdownStyle}
@@ -971,7 +892,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 									</CSTableBody>
 								</CSTable>
 							</div>
-						</Portal>
+						</CSAutoposition>
 					)
 				}
 			</div>
