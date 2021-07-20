@@ -1,8 +1,4 @@
 /* CS Tooltip */
-.cs-tooltip-root {
-	display: contents;
-}
-
 .cs-tooltip {
 	border-radius: 0.25rem;
 	display: none;
@@ -13,9 +9,7 @@
 	height: var(--cs-tooltip-height, auto);
 	max-height: var(--cs-tooltip-max-height);
 	min-height: 2rem;
-	position: fixed;
 	transform: translate3d(0, 0, 0); // Fix safari text blur
-	z-index: var(--z-index-tooltip);
 	outline: 0;
 	white-space: normal;
 
