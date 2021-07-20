@@ -5,6 +5,8 @@ import CSButton from '../CSButton';
 import { CSIconOrigin } from '../CSIcon';
 import CSDropdownItemWrapper from './CSDropdownItemWrapper';
 import KeyCode from '../../util/KeyCode';
+import CSAutoposition from '../../helpers/autoposition/CSAutoposition';
+import { CSAutopositions, CSAutopositionSchema } from '../../helpers/autoposition/cs-autoposition-types';
 
 export type CSDropdownAlign = 'left' | 'right';
 export type CSDropdownIconPosition = 'left' | 'right';
@@ -44,8 +46,7 @@ export interface CSDropdownProps {
 }
 
 export interface CSDropdownStates {
-	computedDropdownStyle?: CSSProperties;
-	computedPosition: Array<string>;
+	computedPosition: string;
 	dropdownBtnWidth?: number;
 	isOpen: boolean;
 }
@@ -61,26 +62,45 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 		position: 'bottom',
 	};
 
-	private dropdownId = 'cs-dropdown-root';
-
 	private btnDropdownRef: React.RefObject<HTMLButtonElement>;
+
+	private fixedDeviation = 5;
+
+	private positionSchema: CSAutopositionSchema = [
+		{
+			position: 'top-left',
+			deviation: {
+				bottom: this.fixedDeviation,
+			},
+		},
+		{
+			position: 'top-right',
+			deviation: {
+				bottom: this.fixedDeviation,
+			},
+		},
+		{
+			position: 'bottom-left',
+			deviation: {
+				top: this.fixedDeviation,
+			},
+		},
+		{
+			position: 'bottom-right',
+			deviation: {
+				top: this.fixedDeviation,
+			},
+		},
+	];
 
 	constructor(props: CSDropdownProps) {
 		super(props);
 		this.state = {
-			computedPosition: [this.props.position, this.props.align],
+			computedPosition: `${this.props.position}-${this.props.align}`,
 			isOpen: false,
 		};
 
 		this.btnDropdownRef = React.createRef();
-
-		let dropdownRoot = document.getElementById(this.dropdownId);
-		if (!dropdownRoot) {
-			dropdownRoot = document.createElement('div');
-			dropdownRoot.className = this.dropdownId;
-			dropdownRoot.id = this.dropdownId;
-			document.body.appendChild(dropdownRoot);
-		}
 	}
 
 	handleOutsideClick = (e: any) => {
@@ -89,61 +109,19 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 		if (
 			this.btnDropdownRef.current
 			&& !this.btnDropdownRef.current.contains(e.target)
-			&& !document.getElementById(this.dropdownId).contains(e.target)) {
+			&& !document.getElementById('cs-autoposition').contains(e.target)) {
 			this.closeDropdown();
 		}
 	}
 
 	openDropdown = () => {
-		const { hover } = this.props;
 		const elementRect = this.btnDropdownRef.current.getBoundingClientRect();
-		const top = elementRect.top + elementRect.height + 5;
-		const bottom = window.innerHeight - elementRect.top + 5;
-		const { left } = elementRect;
-		const right = window.innerWidth - elementRect.right;
-
-		const dropdownPosition = this.state.computedPosition.join('-');
-
-		switch (dropdownPosition) {
-		case 'top-right':
-			this.setState({
-				computedDropdownStyle: {
-					bottom,
-					right,
-				},
-			});
-			break;
-		case 'top-left':
-			this.setState({
-				computedDropdownStyle: {
-					bottom,
-					left,
-				},
-			});
-			break;
-		case 'bottom-right':
-			this.setState({
-				computedDropdownStyle: {
-					top,
-					right,
-				},
-			});
-			break;
-		case 'bottom-left':
-		default:
-			this.setState({
-				computedDropdownStyle: {
-					top,
-					left,
-				},
-			});
-		}
 
 		this.setState({
 			dropdownBtnWidth: elementRect.width,
+			isOpen: true,
 		});
 
-		this.setState({ isOpen: true });
 		if (this.props.onDropdownOpen) {
 			this.props.onDropdownOpen();
 		}
@@ -152,8 +130,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 
 	closeDropdown = () => {
 		this.setState({
-			computedDropdownStyle: undefined,
-			computedPosition: [this.props.position, this.props.align],
+			computedPosition: `${this.props.position}-${this.props.align}`,
 			isOpen: false,
 		}, () => this.props.onDropdownClose?.());
 
@@ -184,43 +161,14 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 		}
 	}
 
-	autoDropdownPosition = (dropdownRect: DOMRect) => {
-		const { computedPosition } = this.state;
-		let [openOn, alignTo] = computedPosition;
-
-		// check top position of dropdown
-		if (dropdownRect.top <= 0 && openOn === 'top') {
-			openOn = 'bottom';
-		}
-		// check bottom position of dropdown
-		if (dropdownRect.bottom
-			>= (window.innerHeight || document.documentElement.clientHeight)
-			&& openOn === 'bottom') {
-			openOn = 'top';
-		}
-		// check right position of dropdown
-		if (dropdownRect.right
-			>= (window.innerWidth || document.documentElement.clientWidth)
-			&& alignTo === 'left') {
-			alignTo = 'right';
-		}
-		// check left position of dropdown
-		if (dropdownRect.left <= 0 && alignTo === 'right') {
-			alignTo = 'left';
-		}
-
-		const position = [openOn, alignTo];
-		if (JSON.stringify(position) !== JSON.stringify(computedPosition)) {
-			this.setState({
-				computedPosition: position,
-			}, this.openDropdown);
-		}
-	}
-
-	dropdownRefCallback = (element: HTMLDivElement) => {
-		if (element) {
-			const tooltipRect = element.getBoundingClientRect();
-			this.autoDropdownPosition(tooltipRect);
+	flipPosition = (position: string) => {
+		switch (position) {
+		case 'left':
+			return 'right';
+		case 'right':
+			return 'left';
+		default:
+			break;
 		}
 	}
 
@@ -263,13 +211,15 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 		);
 
 		const btnDropdownClasses = classNames({
-			'cs-dropdown-active': this.state.computedDropdownStyle,
+			'cs-dropdown-active': this.state.isOpen,
 		});
 
 		const dropdownStyle: CSSProperties = {
-			...this.state.computedDropdownStyle,
 			'--cs-dropdown-btn-width': this.state.dropdownBtnWidth ? `${this.state.dropdownBtnWidth}px` : '',
 		};
+
+		const initialPosition = `${position}-${this.flipPosition(align)}` as CSAutopositions;
+		const [yPosition, xPosition] = this.state.computedPosition.split('-');
 
 		return (
 			<div
@@ -293,35 +243,38 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 					onKeyDown={this.onKeyDown}
 					size={size}
 					label={label || 'Toggle dropdown'}
-					ariaExpanded={!!this.state.computedDropdownStyle}
+					ariaExpanded={!!this.state.isOpen}
 					ariaHaspopup={!!Object(children).length}
 					ref={this.btnDropdownRef}
 					title={title}
 				>
-					{this.state.computedDropdownStyle
-						&& (
-							<Portal node={document && document.getElementById(this.dropdownId)}>
-								<CSDropdownItemWrapper
-									dropdownClassName={dropdownClassName}
-									maxHeight={maxHeight}
-									maxWidth={maxWidth}
-									mode={mode}
-									hover={hover}
-									padding={padding}
-									animated={!hover}
-									visible={!!this.state.computedDropdownStyle}
-									style={dropdownStyle}
-									toggleDropdown={this.toggleDropdown}
-									ref={this.dropdownRefCallback}
-									align={this.state.computedPosition[1]}
-									position={this.state.computedPosition[0]}
-									onDropdownTabClose={onDropdownTabClose}
-									width={width}
-								>
-									{children}
-								</CSDropdownItemWrapper>
-							</Portal>
-						)}
+					{this.state.isOpen && (
+						<CSAutoposition
+							initialPosition={initialPosition}
+							referencePoint={this.btnDropdownRef.current}
+							positionSchema={this.positionSchema}
+							onPositionChange={(computedPosition) => this.setState({ computedPosition })}
+							zIndex="var(--z-index-dropdown-items-wrapper)"
+						>
+							<CSDropdownItemWrapper
+								maxHeight={maxHeight}
+								maxWidth={maxWidth}
+								mode={mode}
+								hover={hover}
+								padding={padding}
+								animated={!hover}
+								visible={!!this.state.isOpen}
+								style={dropdownStyle}
+								toggleDropdown={this.toggleDropdown}
+								align={this.flipPosition(xPosition)}
+								position={yPosition}
+								onDropdownTabClose={onDropdownTabClose}
+								width={width}
+							>
+								{children}
+							</CSDropdownItemWrapper>
+						</CSAutoposition>
+					)}
 				</CSButton>
 			</div>
 		);

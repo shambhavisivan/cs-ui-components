@@ -36,11 +36,11 @@ element. Variable names should be self-explanatory and sorted by index in ascend
   * `--z-index-main-header: 3;`
   * `--z-index-table-header: 3;`
   * `--z-index-button-custom-content: 4;`
-  * `--z-index-dropdown-items-wrapper: 5;`
   * `--z-index-sidebar-toggle: 10;`
   * `--z-index-path: 10;`
   * `--z-index-reset-zen-more-tabs-ul: 99;`
   * `--z-index-modal: 9000;`
+  * `--z-index-dropdown-items-wrapper: 9001;`
   * `--z-index-lookup-dropdown: 9001;`
   * `--z-index-toast: 9005;`
   * `--z-index-tooltip: 9025;`

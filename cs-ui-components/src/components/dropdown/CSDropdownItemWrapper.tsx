@@ -120,7 +120,6 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 			maxHeight,
 			maxWidth,
 			mounted,
-			mode,
 			padding,
 			position,
 			style,
