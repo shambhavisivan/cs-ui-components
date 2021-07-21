@@ -25,7 +25,7 @@ fi
 if changedFiles | grep -q '^cs-ui-demo'; then
     echo "Validating CS UI Demo"
     cd cs-ui-demo;
-    yarn;
+    yarn install --ignore-engines;
     echo "Running CS UI Demo Lint"
     yarn lint;
     echo "Finished validating CS UI Demo"
