@@ -6,6 +6,16 @@
 	flex-direction: column;
 	position: relative;
 
+	.cs-tooltip-wrapper.cs-tw-error {
+		position: absolute;
+		right: 0.5rem;
+		top: 0.5625rem;
+	}
+
+	> .cs-label-wrapper ~ .cs-tooltip-wrapper.cs-tw-error {
+		top: 1.75rem;
+	}
+
 	.cs-input-text {
 		@include input;
 		border-radius: var(--cs-input-text-border-radius, 0.25rem);
@@ -14,6 +24,10 @@
 			@include css4 {
 				box-shadow: 0 0 0.1875rem cvar(--cs-input-shadow);
 			}
+		}
+
+		&.cs-input-text-errorTooltip {
+			padding-inline-end: 1.75rem;
 		}
 	}
 }

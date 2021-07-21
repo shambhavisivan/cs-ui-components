@@ -16,6 +16,7 @@ export interface CSCheckboxProps {
 	disabled?: boolean;
 	error?: boolean;
 	errorMessage?: CSFieldErrorMsgType;
+	errorTooltip?: boolean;
 	helpText?: string;
 	hidden?: boolean;
 	id?: string;
@@ -92,6 +93,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 			disabled,
 			error,
 			errorMessage,
+			errorTooltip,
 			helpText,
 			hidden,
 			id,
@@ -149,36 +151,42 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 								title={labelTitle ? label : null}
 							/>
 						)}
-					{/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */}
-					<label
-						className="cs-checkbox-group"
-						onClick={(event) => event.stopPropagation()}
-						onKeyDown={(event) => event.stopPropagation()}
-					>
-						<input
-							onChange={this.handleOnChange}
-							className={checkboxClasses}
-							type="checkbox"
-							disabled={disabled}
-							checked={checked}
-							required={required}
-							id={this.uniqueAutoId}
-							name={name}
-							ref={this.checkboxRef}
-							aria-label={label}
-							aria-readonly={readOnly}
-							aria-required={required}
-							aria-invalid={error}
-							onKeyDown={onKeyDown}
-							{...rest}
-						/>
-						<span
-							className={checkboxFauxClasses}
-							title={title}
-							style={style}
-						/>
-					</label>
-					{(error && errorMessage)
+					<div className="cs-checkbox-wrapper-inner">
+						{/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */}
+						<label
+							className="cs-checkbox-group"
+							onClick={(event) => event.stopPropagation()}
+							onKeyDown={(event) => event.stopPropagation()}
+						>
+							<input
+								onChange={this.handleOnChange}
+								className={checkboxClasses}
+								type="checkbox"
+								disabled={disabled}
+								checked={checked}
+								required={required}
+								id={this.uniqueAutoId}
+								name={name}
+								ref={this.checkboxRef}
+								aria-label={label}
+								aria-readonly={readOnly}
+								aria-required={required}
+								aria-invalid={error}
+								onKeyDown={onKeyDown}
+								{...rest}
+							/>
+							<span
+								className={checkboxFauxClasses}
+								title={title}
+								style={style}
+							/>
+						</label>
+						{error
+							&& errorTooltip
+							&& <CSFieldErrorMsg message={errorMessage} toolTipMessage={errorTooltip} />}
+					</div>
+					{!errorTooltip
+						&& error
 						&& <CSFieldErrorMsg message={errorMessage} />}
 				</div>
 			</>

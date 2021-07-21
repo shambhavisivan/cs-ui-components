@@ -35,6 +35,7 @@ interface CSLookupCommmonProps {
 	dropdownWidth?: string;
 	error?: boolean;
 	errorMessage?: CSFieldErrorMsgType;
+	errorTooltip?: boolean;
 	fieldToBeDisplayed: string;
 	gridCustomPopup?: boolean;
 	helpText?: string;
@@ -601,6 +602,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			disabled,
 			error,
 			errorMessage,
+			errorTooltip,
 			lookupOptions,
 			fetchLookupOptions,
 			fieldToBeDisplayed,
@@ -659,6 +661,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			'cs-lookup-input',
 			{
 				'cs-lookup-input-error': error,
+				'cs-lookup-input-error-tooltip': errorTooltip,
 			},
 		);
 
@@ -876,7 +879,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 				</div>
 				{
 					(error && errorMessage)
-					&& <CSFieldErrorMsg message={errorMessage} />
+						&& <CSFieldErrorMsg message={errorMessage} toolTipMessage={errorTooltip} />
 				}
 				{
 					dropdownOpen

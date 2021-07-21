@@ -23,6 +23,7 @@ export interface CSDatepickerProps {
 	dropdownMode?: CSDatepickerDropdownMode;
 	error?: boolean;
 	errorMessage?: CSFieldErrorMsgType;
+	errorTooltip?: boolean;
 	helpText?: string;
 	id?: string;
 	inline?: boolean;
@@ -95,6 +96,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps> {
 			dropdownMode,
 			error,
 			errorMessage,
+			errorTooltip,
 			helpText,
 			id,
 			inline,
@@ -134,6 +136,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps> {
 			'cs-datepicker',
 			{
 				'cs-datepicker-error': error,
+				'cs-datepicker-error-tooltip': errorTooltip,
 				'cs-datepicker-read-only': readOnly,
 				'cs-datepicker-clearable': isClearable,
 				[`${className}`]: className,
@@ -204,9 +207,10 @@ class CSDatepicker extends React.Component<CSDatepickerProps> {
 						/>
 					</div>
 					{(!readOnly && !inline) && <CSIcon name="event" className="cs-datepicker-icon" size="0.875rem" />}
+					{error
+					&& errorMessage
+					&& <CSFieldErrorMsg message={errorMessage} toolTipMessage={errorTooltip} />}
 				</div>
-				{(error && errorMessage)
-					&& <CSFieldErrorMsg message={errorMessage} />}
 			</>
 		);
 	}

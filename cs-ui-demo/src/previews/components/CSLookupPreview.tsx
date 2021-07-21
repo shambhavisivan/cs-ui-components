@@ -361,6 +361,34 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 							}
 						]
 					}, {
+						propName: 'errorTooltip',
+						variations: [
+							{
+								primaryVariants: 'errorTooltip={true}',
+								secondaryVariants: 'error={true}',
+								component: <CSLookup
+									fieldToBeDisplayed="Account"
+									label="Account"
+									lookupOptions={sampleLookup.data}
+									lookupColumns={sampleLookup.columns}
+									mode="client"
+									error
+									errorMessage="Error message."
+									errorTooltip
+								/>,
+								code: `<CSLookup
+									fieldToBeDisplayed="Account"
+									label="Account"
+									lookupOptions={sampleLookup.data}
+									lookupColumns={sampleLookup.columns}
+									mode="client"
+									error
+									errorMessage="Error message."
+									errorTooltip
+								/>`
+							}
+						]
+					}, {
 						propName: 'gridCustomPopup',
 						description: '.ag-custom-component-popup class added to lookup wrapper to support AG Grid custom components, this prevents lookup from closing on mouse click when inside lookup component.',
 						variations: [
@@ -442,6 +470,9 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 									lookupColumns={sampleLookup.columns}
 									mode="client"
 									labelHidden
+									error
+									errorMessage="Error message."
+									errorTooltip
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
@@ -922,7 +953,14 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 							name: 'CSFieldErrorMsgType',
 							types: ['string', 'Array<string>']
 						},
-						description: 'Set the error message or messages for the text input.'
+						description: 'Set the error message or messages for the lookup.'
+					}, {
+						name: 'errorTooltip',
+						customTypes: {
+							name: 'CSFieldErrorMsgType',
+							types: ['string', 'Array<string>']
+						},
+						description: 'Set the error message tooltip for the text input.'
 					}, {
 						name: 'gridCustomPopup',
 						types: 'boolean',

@@ -12,6 +12,7 @@ export interface CSTextareaProps {
 	disabled?: boolean;
 	error?: boolean;
 	errorMessage?: CSFieldErrorMsgType;
+	errorTooltip?: boolean;
 	helpText?: string;
 	hidden?: boolean;
 	id?: string;
@@ -56,6 +57,7 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 			disabled,
 			error,
 			errorMessage,
+			errorTooltip,
 			helpText,
 			hidden,
 			id,
@@ -78,6 +80,7 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 			'cs-textarea',
 			{
 				'cs-textarea-error': error,
+				'cs-textarea-error-tooltip': errorTooltip,
 			},
 		);
 		const style: CSSProperties = {
@@ -122,8 +125,9 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 						title={title}
 						{...rest}
 					/>
-					{(error && errorMessage)
-						&& <CSFieldErrorMsg message={errorMessage} />}
+					{error
+						&& errorMessage
+						&& <CSFieldErrorMsg message={errorMessage} toolTipMessage={errorTooltip} />}
 				</div>
 			</>
 		);

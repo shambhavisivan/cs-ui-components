@@ -6,6 +6,16 @@
 	flex-direction: column;
 	position: relative;
 
+	.cs-tw-error {
+		position: absolute;
+		right: 1.8125rem;
+		top: 0.5625rem;
+		pointer-events: none;
+	}
+	> .cs-label-wrapper ~ .cs-tw-error {
+		top: 1.75rem;
+	}
+
 	.cs-select-group {
 		position: relative;
 
@@ -66,6 +76,10 @@
 						}
 					}
 				}
+			}
+
+			&-error-tooltip {
+				padding-inline-end: 3.25rem;
 			}
 		}
 

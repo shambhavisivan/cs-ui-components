@@ -101,6 +101,26 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 							}
 						]
 					}, {
+						propName: 'errorTooltip',
+						variations: [
+							{
+								primaryVariants: 'errorTooltip={true}',
+								secondaryVariants: 'error={true}',
+								component: <CSInputSearch
+									label="Enter value"
+									error
+									errorMessage="Error message."
+									errorTooltip
+								/>,
+								code: `<CSInputSearch
+									label="Enter value"
+									error
+									errorMessage="Error message."
+									errorTooltip
+								/>`
+							}
+						]
+					}, {
 						propName: 'helpText',
 						variations: [
 							{
@@ -304,6 +324,13 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 							types: ['string', 'Array<string>']
 						},
 						description: 'Set the error message or messages for the number input.'
+					}, {
+						name: 'errorTooltip',
+						customTypes: {
+							name: 'CSFieldErrorMsgType',
+							types: ['string', 'Array<string>']
+						},
+						description: 'Set the error message tooltip for the search input.'
 					}, {
 						name: 'helpText',
 						types: 'string',

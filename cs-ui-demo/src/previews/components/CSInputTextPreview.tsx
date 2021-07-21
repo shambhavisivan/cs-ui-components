@@ -94,6 +94,26 @@ class CSInputTextPreview extends React.Component<{}, CSInputTextPreviewState> {
 							}
 						]
 					}, {
+						propName: 'errorTooltip',
+						variations: [
+							{
+								primaryVariants: 'errorTooltip={true}',
+								secondaryVariants: 'error={true}',
+								component: <CSInputText
+									label="Enter value"
+									error
+									errorMessage="Error message."
+									errorTooltip
+								/>,
+								code: `<CSInputText
+									label="Enter value"
+									error
+									errorMessage="Error message."
+									errorTooltip
+								/>`
+							}
+						]
+					}, {
 						propName: 'helpText',
 						variations: [
 							{
@@ -306,6 +326,13 @@ class CSInputTextPreview extends React.Component<{}, CSInputTextPreviewState> {
 							types: ['string', 'Array<string>']
 						},
 						description: 'Set the error message or messages for the text input.'
+					}, {
+						name: 'errorTooltip',
+						customTypes: {
+							name: 'CSFieldErrorMsgType',
+							types: ['string', 'Array<string>']
+						},
+						description: 'Set the error message tooltip for the text input.'
 					}, {
 						name: 'helpText',
 						types: 'string',

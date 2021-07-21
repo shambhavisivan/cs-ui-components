@@ -14,6 +14,7 @@ export interface CSSelectProps {
 	disabled?: boolean;
 	error?: boolean;
 	errorMessage?: CSFieldErrorMsgType;
+	errorTooltip?: boolean;
 	helpText?: string;
 	hidden?: boolean;
 	id?: string;
@@ -64,6 +65,7 @@ class CSSelect extends React.Component<CSSelectProps> {
 			disabled,
 			error,
 			errorMessage,
+			errorTooltip,
 			helpText,
 			hidden,
 			id,
@@ -84,6 +86,7 @@ class CSSelect extends React.Component<CSSelectProps> {
 			'cs-select',
 			{
 				'cs-select-error': error,
+				'cs-select-error-tooltip': errorTooltip,
 				'cs-select-read-only': readOnly,
 			},
 		);
@@ -134,8 +137,9 @@ class CSSelect extends React.Component<CSSelectProps> {
 					{!readOnly
 						&& <CSIcon name="down" size="0.8125rem" />}
 				</div>
-				{(error && errorMessage)
-					&& <CSFieldErrorMsg message={errorMessage} />}
+				{error
+					&& errorMessage
+					&& <CSFieldErrorMsg message={errorMessage} toolTipMessage={errorTooltip} />}
 			</div>
 		);
 	}

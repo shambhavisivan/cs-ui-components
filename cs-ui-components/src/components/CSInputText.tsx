@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSLabel from './CSLabel';
-import { CSTooltipPosition } from './CSTooltip';
 
 export interface CSInputTextProps {
 	[key: string]: any;
@@ -12,6 +11,7 @@ export interface CSInputTextProps {
 	disabled?: boolean;
 	error?: boolean;
 	errorMessage?: CSFieldErrorMsgType;
+	errorTooltip?: boolean;
 	helpText?: string;
 	hidden?: boolean;
 	id?: string;
@@ -27,7 +27,6 @@ export interface CSInputTextProps {
 	readOnly?: boolean;
 	required?: boolean;
 	title?: string;
-	tooltipPosition?: CSTooltipPosition;
 	value?: string;
 }
 
@@ -69,6 +68,7 @@ class CSInputText extends React.Component<CSInputTextProps> {
 			disabled,
 			error,
 			errorMessage,
+			errorTooltip,
 			helpText,
 			hidden,
 			id,
@@ -101,6 +101,7 @@ class CSInputText extends React.Component<CSInputTextProps> {
 			'cs-input-text',
 			{
 				'cs-input-text-error': error,
+				'cs-input-text-errorTooltip': errorTooltip,
 			},
 		);
 		const style: CSSProperties = {
@@ -142,8 +143,9 @@ class CSInputText extends React.Component<CSInputTextProps> {
 						style={style}
 						{...rest}
 					/>
-					{(error && errorMessage)
-						&& <CSFieldErrorMsg message={errorMessage} />}
+					{error
+						&& errorMessage
+						&& <CSFieldErrorMsg message={errorMessage} toolTipMessage={errorTooltip} />}
 				</div>
 			</>
 		);

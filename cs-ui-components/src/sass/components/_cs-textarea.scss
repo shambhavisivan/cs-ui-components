@@ -6,6 +6,16 @@
 	flex-direction: column;
 	position: relative;
 
+	.cs-tw-error {
+		position: absolute;
+		right: 0.5rem;
+		top: 0.5625rem;
+		pointer-events: none;
+	}
+	> .cs-label-wrapper ~ .cs-tw-error {
+		top: 1.75rem;
+	}
+
 	.cs-textarea {
 		@include input;
 		overflow: auto;
@@ -20,6 +30,10 @@
 		&:read-only {
 			padding: 0;
 			height: auto;
+		}
+
+		&.cs-textarea-error-tooltip {
+			padding-inline-end: 1.75rem;
 		}
 	}
 }

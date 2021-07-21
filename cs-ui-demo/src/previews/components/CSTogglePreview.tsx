@@ -90,6 +90,26 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 							}
 						]
 					}, {
+						propName: 'errorTooltip',
+						variations: [
+							{
+								primaryVariants: 'errorTooltip={true}',
+								secondaryVariants: 'error={true}',
+								component: <CSToggle
+									label="This is a label"
+									error
+									errorMessage="Error message."
+									errorTooltip
+								/>,
+								code: `<CSToggle
+									label="This is a label"
+									error
+									errorMessage="Error message."
+									errorTooltip
+								/>`
+							}
+						]
+					}, {
 						propName: 'helpText',
 						variations: [
 							{
@@ -238,6 +258,13 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 							types: ['string', 'Array<string>']
 						},
 						description: 'Set the error message or messages for the toggle.'
+					}, {
+						name: 'errorTooltip',
+						customTypes: {
+							name: 'CSFieldErrorMsgType',
+							types: ['string', 'Array<string>']
+						},
+						description: 'Set the error message tooltip for the toggle.'
 					}, {
 						name: 'helpText',
 						types: 'string',

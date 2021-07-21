@@ -40,6 +40,15 @@ class CSFieldErrorMsgPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'toolTipMessage',
+						variations: [
+							{
+								secondaryVariants: 'message="text"',
+								component: <CSFieldErrorMsg toolTipMessage message="Error message."  />,
+								code: '<CSFieldErrorMsg toolTipMessage message="Error message." />'
+							}
+						]
+					}, {
 						propName: 'id | class',
 						variations: [
 							{
@@ -69,7 +78,11 @@ class CSFieldErrorMsgPreview extends React.Component {
 							name: 'CSFieldErrorMsgType',
 							types: ['string', 'Array<string>']
 						},
-						description: 'Set the error message text'
+						description: 'Set the error message text.'
+					}, {
+						name: 'tooltipMessage',
+						types: 'boolean',
+						description: 'Determine whether the message is in a tooltip.'
 					}, {
 						name: 'id',
 						types: 'string',

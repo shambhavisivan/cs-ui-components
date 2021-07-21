@@ -6,6 +6,15 @@
 	&.cs-lookup-hidden {
 		display: none;
 	}
+	.cs-tw-error {
+		position: absolute;
+		right: 1.8125rem;
+		top: 0.5625rem;
+		pointer-events: none;
+	}
+	> .cs-label-wrapper ~ .cs-tw-error {
+		top: 1.75rem;
+	}
 	.cs-lookup-input-wrapper {
 		display: flex;
 		flex-direction: column;
@@ -48,6 +57,12 @@
 					@include css4 {
 						box-shadow: 0 0 0.1875rem cvar(--cs-input-shadow);
 					}
+				}
+			}
+			&.cs-lookup-input-error-tooltip {
+				padding-inline-end: 4rem;
+				~ .cs-lookup-clear {
+					right: 2.8125rem;
 				}
 			}
 		}

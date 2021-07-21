@@ -23,6 +23,16 @@
 		order: 1;
 	}
 
+	.cs-checkbox-wrapper-inner {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+
+		.cs-tooltip-wrapper.cs-tw-error {
+			margin-inline-start: 0.25rem;
+		}
+	}
+
 	.cs-checkbox-group {
 		display: inline-flex;
 		width: fit-content;

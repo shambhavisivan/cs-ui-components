@@ -163,6 +163,26 @@ class CSInputFilePreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'errorTooltip',
+						variations: [
+							{
+								primaryVariants: 'errorTooltip={true}',
+								secondaryVariants: 'error={true}',
+								component: <CSInputFile
+									label="Enter value"
+									error
+									errorMessage="Error message."
+									errorTooltip
+								/>,
+								code: `<CSInputFile
+									label="Enter value"
+									error
+									errorMessage="Error message."
+									errorTooltip
+								/>`
+							}
+						]
+					}, {
 						propName: 'fileSize',
 						variations: [
 							{
@@ -249,6 +269,13 @@ class CSInputFilePreview extends React.Component {
 							types: ['string', 'Array<string>']
 						},
 						description: 'Set the error message or messages for the file input.'
+					}, {
+						name: 'errorTooltip',
+						customTypes: {
+							name: 'CSFieldErrorMsgType',
+							types: ['string', 'Array<string>']
+						},
+						description: 'Set the error message tooltip for the file input.'
 					}, {
 						name: 'fileSize',
 						types: 'boolean',

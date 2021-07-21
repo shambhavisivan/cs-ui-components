@@ -81,6 +81,26 @@ class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
 							}
 						]
 					}, {
+						propName: 'errorTooltip',
+						variations: [
+							{
+								primaryVariants: 'errorTooltip={true}',
+								secondaryVariants: 'error={true}',
+								component: <CSTextarea
+									label="Enter value"
+									error
+									errorMessage="Error message."
+									errorTooltip
+								/>,
+								code: `<CSTextarea
+									label="Enter value"
+									error
+									errorMessage="Error message."
+									errorTooltip
+								/>`
+							}
+						]
+					}, {
 						propName: 'helpText',
 						variations: [
 							{
@@ -280,6 +300,13 @@ class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
 							types: ['string', 'Array<string>']
 						},
 						description: 'Set the error message or messages for the textarea.'
+					}, {
+						name: 'errorTooltip',
+						customTypes: {
+							name: 'CSFieldErrorMsgType',
+							types: ['string', 'Array<string>']
+						},
+						description: 'Set the error message tooltip for the textarea.'
 					}, {
 						name: 'helpText',
 						types: 'string',

@@ -14,6 +14,7 @@ export interface CSToggleProps {
 	disabled?: boolean;
 	error?: boolean;
 	errorMessage?: CSFieldErrorMsgType;
+	errorTooltip?: boolean;
 	helpText?: string;
 	id?: string;
 	label: string;
@@ -55,6 +56,7 @@ class CSToggle extends React.Component<CSToggleProps> {
 			disabled,
 			error,
 			errorMessage,
+			errorTooltip,
 			helpText,
 			id,
 			label,
@@ -99,30 +101,36 @@ class CSToggle extends React.Component<CSToggleProps> {
 								title={labelTitle ? label : null}
 							/>
 						)}
-					{/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
-					<label
-						className="cs-toggle-wrapper"
-						onClick={(event) => event.stopPropagation()}
-						onKeyDown={(event) => event.stopPropagation()}
-					>
-						<input
-							onChange={this.handleOnChange}
-							className={toggleClasses}
-							type="checkbox"
-							disabled={disabled}
-							checked={checked}
-							required={required}
-							id={this.uniqueAutoId}
-							aria-label={label}
-							aria-readonly={readOnly}
-							aria-required={required}
-							aria-invalid={error}
-							{...rest}
-						/>
-						<span className="cs-toggle-faux" title={title} />
-					</label>
-					{(error && errorMessage)
-						&& <CSFieldErrorMsg message={errorMessage} />}
+					<div className="cs-toggle-wrapper-inner">
+						{/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
+						<label
+							className="cs-toggle-wrapper"
+							onClick={(event) => event.stopPropagation()}
+							onKeyDown={(event) => event.stopPropagation()}
+						>
+							<input
+								onChange={this.handleOnChange}
+								className={toggleClasses}
+								type="checkbox"
+								disabled={disabled}
+								checked={checked}
+								required={required}
+								id={this.uniqueAutoId}
+								aria-label={label}
+								aria-readonly={readOnly}
+								aria-required={required}
+								aria-invalid={error}
+								{...rest}
+							/>
+							<span className="cs-toggle-faux" title={title} />
+						</label>
+						{error
+							&& errorTooltip
+							&& <CSFieldErrorMsg message={errorMessage} toolTipMessage={errorTooltip} />}
+					</div>
+					{!errorTooltip
+							&& error
+							&& <CSFieldErrorMsg message={errorMessage} />}
 				</div>
 			</>
 		);

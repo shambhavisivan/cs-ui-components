@@ -101,6 +101,26 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 							}
 						]
 					}, {
+						propName: 'errorTooltip',
+						variations: [
+							{
+								primaryVariants: 'errorTooltip={true}',
+								secondaryVariants: 'error={true}',
+								component: <CSCheckbox
+									label="Select option"
+									error
+									errorMessage="Error message."
+									errorTooltip
+								/>,
+								code: `<CSInputText
+									label="Select option"
+									error
+									errorMessage="Error message."
+									errorTooltip
+								/>`
+							}
+						]
+					}, {
 						propName: 'helpText',
 						variations: [
 							{
@@ -307,6 +327,13 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 							types: ['string', 'Array<string>']
 						},
 						description: 'Set the error message or messages for the checkbox.'
+					}, {
+						name: 'errorTooltip',
+						customTypes: {
+							name: 'CSFieldErrorMsgType',
+							types: ['string', 'Array<string>']
+						},
+						description: 'Set the error tooltip messages for the checkbox.'
 					}, {
 						name: 'helpText',
 						types: 'string',

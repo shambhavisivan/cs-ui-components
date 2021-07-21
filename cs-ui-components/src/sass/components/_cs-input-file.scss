@@ -70,6 +70,10 @@
 				fill: cvar(--cs-input-file-icon-fill);
 			}
 		}
+
+		.cs-tooltip-wrapper.cs-tw-error {
+			margin-inline-end: 0.5rem;
+		}
 	}
 
 	// File input

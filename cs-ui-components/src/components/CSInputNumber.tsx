@@ -12,6 +12,7 @@ export interface CSInputNumberProps {
 	disabled?: boolean;
 	error?: boolean;
 	errorMessage?: CSFieldErrorMsgType;
+	errorTooltip?: boolean;
 	helpText?: string;
 	hidden?: boolean;
 	hideSpinner?: boolean;
@@ -96,6 +97,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 			disabled,
 			error,
 			errorMessage,
+			errorTooltip,
 			helpText,
 			hidden,
 			hideSpinner,
@@ -134,6 +136,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 			'cs-input-number',
 			{
 				'cs-input-number-error': error,
+				'cs-input-number-error-tooltip': errorTooltip,
 				[`cs-input-number-hide-spinner-${hideSpinner}`]: hideSpinner,
 			},
 		);
@@ -185,8 +188,9 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 						style={style}
 						{...rest}
 					/>
-					{(error && errorMessage)
-						&& <CSFieldErrorMsg message={errorMessage} />}
+					{error
+						&& errorMessage
+						&& <CSFieldErrorMsg message={errorMessage} toolTipMessage={errorTooltip} />}
 				</div>
 			</>
 		);

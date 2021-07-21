@@ -17,6 +17,7 @@ export interface CSInputSearchProps {
 	disabled?: boolean;
 	error?: boolean;
 	errorMessage?: CSFieldErrorMsgType;
+	errorTooltip?: boolean;
 	helpText?: string;
 	hidden?: boolean;
 	iconPosition?: CSInputSearchIconPosition;
@@ -160,6 +161,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 			disabled,
 			error,
 			errorMessage,
+			errorTooltip,
 			helpText,
 			hidden,
 			iconPosition,
@@ -204,6 +206,13 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 			'cs-input-search',
 			{
 				'cs-input-search-error': error,
+			},
+		);
+
+		const inputClearClasses = classNames(
+			'cs-input-search-clear',
+			{
+				'cs-input-search-clear-tooltip': errorTooltip,
 			},
 		);
 
@@ -259,7 +268,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 								<CSButton
 									btnType="transparent"
 									btnStyle="brand"
-									className="cs-input-search-clear"
+									className={inputClearClasses}
 									iconColor="var(--cs-input-clear)"
 									iconName="close"
 									labelHidden
@@ -268,8 +277,9 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 									size="small"
 								/>
 							)}
-						{(error && errorMessage)
-							&& <CSFieldErrorMsg message={errorMessage} />}
+						{error
+							&& errorMessage
+							&& <CSFieldErrorMsg message={errorMessage} toolTipMessage={errorTooltip} />}
 					</div>
 				</div>
 			</>

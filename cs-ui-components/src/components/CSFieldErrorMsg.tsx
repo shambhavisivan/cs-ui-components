@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import CSTooltip from './CSTooltip';
 
 export type CSFieldErrorMsgType = string | Array<string>;
 
@@ -8,6 +9,7 @@ export interface CSFieldErrorMsgProps {
 	className?: string;
 	id?: string;
 	message: CSFieldErrorMsgType;
+	toolTipMessage?: boolean;
 }
 
 class CSFieldErrorMsg extends React.Component<CSFieldErrorMsgProps> {
@@ -20,9 +22,7 @@ class CSFieldErrorMsg extends React.Component<CSFieldErrorMsgProps> {
 	}
 
 	render() {
-		const {
-			message, className, id, ...rest
-		} = this.props;
+		const { message, className, id, toolTipMessage, ...rest } = this.props;
 
 		const fieldErrorMsgClasses = classNames(
 			'cs-field-error-msg',
@@ -31,7 +31,9 @@ class CSFieldErrorMsg extends React.Component<CSFieldErrorMsgProps> {
 			},
 		);
 
-		return (
+		return toolTipMessage ? (
+			<CSTooltip content={this.getErrorMessage()} variant="error" position="top-left" />
+		) : (
 			<span className={fieldErrorMsgClasses} id={id} {...rest}>
 				{this.getErrorMessage()}
 			</span>

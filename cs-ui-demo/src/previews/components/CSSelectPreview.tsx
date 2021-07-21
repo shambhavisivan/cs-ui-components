@@ -121,6 +121,34 @@ class CSSelectPreview extends React.Component<{}, CSSelectPreviewState> {
 							}
 						]
 					}, {
+						propName: 'errorTooltip',
+						variations: [
+							{
+								primaryVariants: 'errorTooltip={true}',
+								secondaryVariants: 'error={true}',
+								component: <CSSelect
+									label="Choose amount"
+									error
+									errorMessage="Error message."
+									errorTooltip
+								>
+									<option>10</option>
+									<option>20</option>
+									<option>30</option>
+								</CSSelect>,
+								code: `<CSSelect
+									label="Choose amount"
+									error
+									errorMessage="Error message."
+									errorTooltip
+								>
+									<option>10</option>
+									<option>20</option>
+									<option>30</option>
+								</CSSelect>`
+							}
+						]
+					}, {
 						propName: 'helpText',
 						variations: [
 							{
@@ -380,6 +408,13 @@ class CSSelectPreview extends React.Component<{}, CSSelectPreviewState> {
 							types: ['string', 'Array<string>']
 						},
 						description: 'Set the error message or messages for the select.'
+					}, {
+						name: 'errorTooltip',
+						customTypes: {
+							name: 'CSFieldErrorMsgType',
+							types: ['string', 'Array<string>']
+						},
+						description: 'Set the error message tooltip for the select.'
 					}, {
 						name: 'helpText',
 						types: 'string',
