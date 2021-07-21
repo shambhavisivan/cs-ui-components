@@ -28,10 +28,6 @@ export interface CSCurrencyProps {
 }
 
 class CSCurrency extends React.Component<CSCurrencyProps> {
-	constructor(props: CSCurrencyProps) {
-		super(props);
-	}
-
 	// Typescript does not include currencySign, notation and signDisplay so far. Issue has been raised with microsoft typescript team and is in backlog.
 	formatValue = (unformattedValue: any) => new Intl.NumberFormat(this.props.locale,
 		{

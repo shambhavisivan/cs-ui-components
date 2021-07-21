@@ -28,10 +28,6 @@ class CSRadio extends React.Component<CSRadioProps> {
 		variant: 'neutral',
 	};
 
-	constructor(props: CSRadioProps) {
-		super(props);
-	}
-
 	render() {
 		const {
 			children,

@@ -21,10 +21,10 @@ const defaultProps = {
 };
 
 class CSPagination extends React.Component<CSPaginationProps> {
-	constructor(props: CSPaginationProps) {
-		super(props);
-		// this.state = { pager: {} };
-	}
+	// constructor(props: CSPaginationProps) {
+	// 	super(props);
+	// 	this.state = { pager: {} };
+	// }
 
 	componentDidMount() {
 		console.warn('CSPagination is under construction and should not be used.');
