@@ -224,9 +224,8 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	}
 
 	executeSearch = () => {
-		this.props.mode === 'client'
-			? this.executeClientSearch()
-			: this.executeServerSearchDebounced();
+		if (this.props.mode === 'client') this.executeClientSearch();
+		else this.executeServerSearchDebounced();
 	}
 
 	/*

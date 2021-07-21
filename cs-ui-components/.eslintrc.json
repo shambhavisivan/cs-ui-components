@@ -46,7 +46,6 @@
         "no-restricted-globals": ["warn"],
         "no-lone-blocks": ["warn"],
         "no-script-url": ["warn"],
-        "no-unused-expressions": ["warn"],
         "no-param-reassign": ["warn"],
         "import/no-extraneous-dependencies": ["warn", { "devDependencies": false, "optionalDependencies": false, "peerDependencies": false }],
         "import/no-unresolved": ["warn"],
