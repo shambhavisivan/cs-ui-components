@@ -85,7 +85,7 @@ class CSCurrency extends React.Component<CSCurrencyProps> {
 
 		/* possibly not 100% reliable method to check for browser version as userAgent string can be changed in settings */
 		const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-		const isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
+		const isSafari = !!navigator.userAgent.match(/Version\/[\d.]+.*Safari/);
 
 		const currencyClasses = classNames(
 			'cs-currency',
