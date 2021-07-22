@@ -36,15 +36,6 @@ class CSSelect extends React.Component<CSSelectProps> {
 
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
 
-	constructor(props: CSSelectProps) {
-		super(props);
-		const value = typeof props.value === undefined ? '' : props.value;
-		this.state = {
-			value,
-			prevValue: props.value,
-		};
-	}
-
 	handleOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		if (this.props.onChange) {
 			this.props.onChange(e.target.value);

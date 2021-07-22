@@ -59,7 +59,7 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 
 	constructor(props: CSSliderProps) {
 		super(props);
-		const value = typeof props.value === undefined ? '' : props.value;
+		const value = props.value ?? '';
 		this.state = {
 			value,
 			prevValue: props.value,

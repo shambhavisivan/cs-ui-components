@@ -86,7 +86,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 
 	constructor(props: CSInputSearchProps) {
 		super(props);
-		const value = typeof props.value === undefined ? '' : props.value;
+		const value = props.value ?? '';
 		this.state = {
 			value,
 		};
