@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CSButtonGroup from './CSButtonGroup';
+import CSButton from './CSButton';
 
 export interface CSPaginationProps {
 	// id?: string;
@@ -127,43 +129,46 @@ class CSPagination extends React.Component<CSPaginationProps> {
 			<nav aria-label="pagination" className={this.props.className}>
 				<ul className="cs-pagination">
 					{/*
-					<li className={pager.currentPage === 1 ? 'disabled' : ''} aria-disabled={pager.currentPage === 1}>
-						<a href="javascript:;" aria-label="previous page" onClick={() => this.setPage(pager.currentPage - 1)}>
-							<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 52 52">
-								<path fill="#0070d2" d="m38 8.3v35.4c0 1-1.3 1.7-2.2 0.9l-21.2-17.3c-0.8-0.6-0.8-1.9 0-2.5l21.2-17.5c0.9-0.7 2.2-0.1 2.2 1z"></path>
-							</svg>
-						</a>
-					</li>
+					<CSButton
+						className={pager.currentPage === 1 ? 'disabled' : ''}
+						label="previous page"
+						labelHidden
+						iconName="left"
+						disabled={pager.currentPage === 1}
+						onClick={() => this.setPage(pager.currentPage - 1)}
+					/>
 					{pager.pages.map((page, index) =>
-						<li key={index} className={pager.currentPage === page ? 'active' : ''}>
-							<a href="javascript:;" onClick={() => this.setPage(page)} aria-current={pager.currentPage === page}>{page}</a>
-						</li>
+						<CSButton
+							key={index}
+							className={pager.currentPage === page ? 'active' : ''}
+							label={page}
+							onClick={() => this.setPage(page)} aria-current={pager.currentPage === page}
+						/>
 					)}
-					<li className={pager.currentPage === pager.totalPages ? 'disabled' : ''} aria-disabled={pager.currentPage === pager.totalPages}>
-						<a href="javascript:;" aria-label="next page" onClick={() => this.setPage(pager.currentPage + 1)}>
-							<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 52 52">
-								<path fill="#0070d2" d="m14 43.7v-35.4c0-1 1.3-1.7 2.2-0.9l21.2 17.3c0.8 0.6 0.8 1.9 0 2.5l-21.2 17.5c-0.9 0.7-2.2 0.1-2.2-1z"></path>
-							</svg>
-						</a>
-					</li>
+					<CSButton
+						className={pager.currentPage === pager.totalPages ? 'disabled' : ''}
+						label="next page"
+						labelHidden
+						iconName="right"
+						disabled={pager.currentPage === pager.totalPages}
+						onClick={() => this.setPage(pager.currentPage + 1)}
+					/>
 					*/}
-					<li>
-						<a href="javascript:;" aria-label="previous page">
-							<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 52 52">
-								<path fill="#0070d2" d="m38 8.3v35.4c0 1-1.3 1.7-2.2 0.9l-21.2-17.3c-0.8-0.6-0.8-1.9 0-2.5l21.2-17.5c0.9-0.7 2.2-0.1 2.2 1z" />
-							</svg>
-						</a>
-					</li>
-					<li>
-						<a href="javascript:;">1</a>
-					</li>
-					<li>
-						<a href="javascript:;" aria-label="next page">
-							<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 52 52">
-								<path fill="#0070d2" d="m14 43.7v-35.4c0-1 1.3-1.7 2.2-0.9l21.2 17.3c0.8 0.6 0.8 1.9 0 2.5l-21.2 17.5c-0.9 0.7-2.2 0.1-2.2-1z" />
-							</svg>
-						</a>
-					</li>
+					<CSButtonGroup>
+						<CSButton
+							label="previous page"
+							labelHidden
+							iconName="left"
+						/>
+						<CSButton
+							label="1"
+						/>
+						<CSButton
+							label="next page"
+							labelHidden
+							iconName="right"
+						/>
+					</CSButtonGroup>
 				</ul>
 			</nav>
 		);
