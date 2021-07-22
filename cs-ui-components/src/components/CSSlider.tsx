@@ -62,7 +62,6 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 		const value = props.value ?? '';
 		this.state = {
 			value,
-			prevValue: props.value,
 			steps: [],
 			step: props.step,
 			min: props.min,

@@ -54,7 +54,6 @@
         "react/destructuring-assignment": ["warn"],
         "react/sort-comp": ["warn"],
         "react/no-did-update-set-state": ["warn"],
-        "react/no-unused-state": ["warn"],
         "react/no-array-index-key": ["warn"],
         "jsx-a11y/mouse-events-have-key-events": ["warn"],
         "jsx-a11y/role-has-required-aria-props": ["warn"],
