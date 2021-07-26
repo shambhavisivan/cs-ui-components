@@ -57,7 +57,7 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 		if (event && event.target !== event.currentTarget) {
 			return;
 		}
-		this.setState({ collapsed: !this.state.collapsed });
+		this.setState((prevState) => ({ collapsed: !prevState.collapsed }));
 	}
 
 	checkValidItems = () => {

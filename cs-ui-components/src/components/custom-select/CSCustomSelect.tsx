@@ -169,87 +169,67 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		const firstListElement = 0;
 		const lastListElement = this.filteredList.length - 1;
 
-		switch (true) {
-		case event.key === KeyCode.Backspace && !searchTerm && multiselect:
+		if (event.key === KeyCode.Backspace && !searchTerm && multiselect) {
 			this.deleteLastItem();
-			break;
-		case event.key === KeyCode.Escape && dropdownOpen:
+		} else if (event.key === KeyCode.Escape && dropdownOpen) {
 			this.closeCustomSelectDropdown();
-			break;
-		case event.key === KeyCode.ArrowDown && dropdownOpen:
+		} else if (event.key === KeyCode.ArrowDown && dropdownOpen) {
 			event.preventDefault();
-			switch (true) {
-			case activeListItem === null:
-				this.setState({ activeListItem: 0 });
-				break;
-			case (activeListItem === lastListElement):
-				this.setState({ activeListItem: 0 });
-				break;
-			default:
-				this.setState({ activeListItem: activeListItem + 1 });
-				break;
-			}
-			break;
-		case event.key === KeyCode.ArrowUp && dropdownOpen:
+			this.setState((prevState) => {
+				const { activeListItem: prevActiveListItem } = prevState;
+				if (prevActiveListItem === null || prevActiveListItem === lastListElement) {
+					return { activeListItem: 0 };
+				}
+				return { activeListItem: prevActiveListItem + 1 };
+			});
+		} else if (event.key === KeyCode.ArrowUp && dropdownOpen) {
 			event.preventDefault();
-			switch (true) {
-			case activeListItem === null:
-				this.setState({ activeListItem: lastListElement });
-				break;
-			case activeListItem === firstListElement:
-				this.setState({ activeListItem: lastListElement });
-				break;
-			default:
-				this.setState({ activeListItem: activeListItem - 1 });
-				break;
-			}
-			break;
-		case event.key === KeyCode.Enter:
-			event.preventDefault();
-			switch (true) {
-			case dropdownOpen && activeListItem !== null && !!this.filteredList.length:
+			this.setState((prevState) => {
+				const { activeListItem: prevActiveListItem } = prevState;
+				if (prevActiveListItem === null || prevActiveListItem === firstListElement) {
+					return { activeListItem: lastListElement };
+				}
+				return { activeListItem: prevActiveListItem - 1 };
+			});
+		} else if (event.key === KeyCode.Enter) {
+			if (dropdownOpen && activeListItem !== null && !!this.filteredList.length) {
 				this.onSelect(this.getOptionData(this.filteredList[activeListItem]));
-				break;
-			default:
+			} else {
 				this.toggleCustomSelectDropdown();
-				break;
 			}
-			break;
-		default:
-			return false;
 		}
 	}
 
 	// Sets selectedItem or selectedOptions if multiselect is set to true.
-	onSelect = (optionItem?: CSOptionItem) => {
-		const { selectedOptions } = this.state;
+	onSelect = (optionItem: CSOptionItem) => {
 		const { multiselect } = this.props;
 
-		if (multiselect) {
-			if (selectedOptions.find((option) => optionItem.itemKey === option.itemKey)) {
-				const _selectedOptions = selectedOptions.filter((option) => option.itemKey !== optionItem.itemKey);
-				this.setState(
-					{ selectedOptions: _selectedOptions },
-					this.handleSelectChange,
-				);
-			} else {
-				this.setState(
-					{ selectedOptions: [...selectedOptions, optionItem] },
-					this.handleSelectChange,
-				);
-			}
-			this.setState({ searchTerm: '' });
-		} else {
-			this.setState(
-				{
-					selectedItem: optionItem,
+		this.setState((prevState) => {
+			if (multiselect) {
+				const { selectedOptions: prevSelectedOptions } = prevState;
+				if (prevSelectedOptions.find((option) => optionItem.itemKey === option.itemKey)) {
+					return {
+						...prevState,
+						searchTerm: '',
+						selectedOptions: prevSelectedOptions.filter((option) => (
+							option.itemKey !== optionItem.itemKey
+						)),
+					};
+				}
+				return {
+					...prevState,
 					searchTerm: '',
-					activeListItem: null,
-				},
-				this.handleSelectChange,
-			);
+					selectedOptions: [...prevSelectedOptions, optionItem],
+				};
+			}
 			this.toggleCustomSelectDropdown();
-		}
+			return {
+				...prevState,
+				selectedItem: optionItem,
+				searchTerm: '',
+				activeListItem: null,
+			};
+		}, this.handleSelectChange);
 	}
 
 	// Fires on each selection change and returns option items based on defined exportValue prop
@@ -277,29 +257,28 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 
 	// Deletes item from the multiselect list based on its index
 	onDelete = (index: number) => {
-		const _selectedOptions = [...this.state.selectedOptions];
-		_selectedOptions.splice(index, 1);
-
-		this.setState(
-			{
-				selectedOptions: _selectedOptions,
+		this.setState((prevState) => {
+			const { selectedOptions: prevSelectedOptions } = prevState;
+			const newSelectedOptions = [...prevSelectedOptions];
+			newSelectedOptions.splice(index, 1);
+			return {
+				...prevState,
+				selectedOptions: newSelectedOptions,
 				activeListItem: null,
-			},
-			this.handleSelectChange,
-		);
+			};
+		}, this.handleSelectChange);
 	}
 
 	deleteLastItem = () => {
-		const _selectedOptions = [...this.state.selectedOptions];
-		_selectedOptions.pop();
-
-		this.setState(
-			{
-				selectedOptions: _selectedOptions,
+		this.setState((prevState) => {
+			const { selectedOptions: prevSelectedOptions } = prevState;
+			const newSelectedOptions = [...prevSelectedOptions];
+			newSelectedOptions.pop();
+			return {
+				selectedOptions: newSelectedOptions,
 				activeListItem: null,
-			},
-			this.handleSelectChange,
-		);
+			};
+		}, this.handleSelectChange);
 	}
 
 	// Deletes the item from the mulitselect list

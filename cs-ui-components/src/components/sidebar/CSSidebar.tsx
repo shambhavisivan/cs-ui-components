@@ -42,16 +42,16 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 	}
 
 	handleTabClick = (index: number) => {
-		this.setState({
+		this.setState((prevState) => ({
 			activeTabIndex: index,
-			closed: index === this.state.activeTabIndex && !this.state.closed && this.props.collapsible,
-		});
+			closed: index === prevState.activeTabIndex && !prevState.closed && this.props.collapsible,
+		}));
 	}
 
 	toggleClose = () => {
-		this.setState({
-			closed: !this.state.closed,
-		});
+		this.setState((prevState) => ({
+			closed: !prevState.closed,
+		}));
 	}
 
 	handleSidebarClickToggle = () => {

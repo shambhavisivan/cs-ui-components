@@ -1,6 +1,5 @@
 import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
-import { Portal } from 'react-portal';
 import { v4 as uuidv4 } from 'uuid';
 import { debounce, find, remove } from 'lodash';
 import CSButton from './CSButton';
@@ -537,10 +536,10 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 					&& this.state.moreRecords
 					&& this.state.fetchingMode === undefined
 				) {
-					this.setState({
+					this.setState((prevState) => ({
 						fetchingMode: 'after-scroll',
-						pageNo: this.state.pageNo + 1,
-					}, this.fetchData);
+						pageNo: prevState.pageNo + 1,
+					}), this.fetchData);
 				}
 			});
 		}

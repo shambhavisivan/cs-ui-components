@@ -46,9 +46,9 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 	}
 
 	onClose() {
-		this.setState({
-			closed: !this.state.closed,
-		});
+		this.setState((prevState) => ({
+			closed: !prevState.closed,
+		}));
 	}
 
 	render() {
