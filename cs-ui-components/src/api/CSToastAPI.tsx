@@ -87,7 +87,7 @@ export function renderCSToast(props: CSToastProps, position?: CSToastPosition, d
 		key,
 	});
 
-	counter++;
+	counter += 1;
 }
 
 const CSToastApi = {

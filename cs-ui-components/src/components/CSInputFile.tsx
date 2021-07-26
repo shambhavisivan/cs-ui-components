@@ -108,13 +108,13 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 
 	handleDragEnter(e: React.DragEvent<HTMLDivElement>) {
 		this.handleFileDragEvents(e);
-		this.dragEventCounter++;
+		this.dragEventCounter += 1;
 		this.setState({ isDraggedOver: true });
 	}
 
 	handleDragLeave(e: React.DragEvent<HTMLDivElement>) {
 		this.handleFileDragEvents(e);
-		this.dragEventCounter--;
+		this.dragEventCounter -= 1;
 
 		if (this.dragEventCounter === 0) {
 			this.setState({ isDraggedOver: false });

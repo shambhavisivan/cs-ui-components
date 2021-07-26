@@ -77,7 +77,7 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 				if (document.activeElement === firstElement) {
 					(lastElement as HTMLElement).focus();
 				} else {
-					index = --index;
+					index -= 1;
 					(focusableElements[index] as HTMLElement).focus();
 				}
 				break;
@@ -85,7 +85,7 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 				if (document.activeElement === lastElement) {
 					(firstElement as HTMLElement).focus();
 				} else {
-					index = ++index;
+					index += 1;
 					(focusableElements[index] as HTMLElement).focus();
 				}
 				break;

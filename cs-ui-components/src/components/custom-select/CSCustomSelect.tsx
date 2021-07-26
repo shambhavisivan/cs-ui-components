@@ -186,7 +186,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 				this.setState({ activeListItem: 0 });
 				break;
 			default:
-				const _activeListItem = ++activeListItem;
+				const _activeListItem = activeListItem + 1;
 				this.setState({ activeListItem: _activeListItem });
 				break;
 			}
@@ -201,7 +201,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 				this.setState({ activeListItem: lastListElement });
 				break;
 			default:
-				const _activeListItem = --activeListItem;
+				const _activeListItem = activeListItem - 1;
 				this.setState({ activeListItem: _activeListItem });
 				break;
 			}

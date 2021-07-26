@@ -455,7 +455,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			case (activeRowIndex === lastListElement):
 				break;
 			default:
-				_activeRowIndex = ++_activeRowIndex;
+				_activeRowIndex += 1;
 				this.checkInView(_activeRowIndex);
 				this.setState({ activeRowIndex: _activeRowIndex });
 				break;
@@ -469,7 +469,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			case activeRowIndex === firstListElement:
 				break;
 			default:
-				_activeRowIndex = --_activeRowIndex;
+				_activeRowIndex -= 1;
 				this.checkInView(_activeRowIndex);
 				this.setState({ activeRowIndex: _activeRowIndex });
 				break;
