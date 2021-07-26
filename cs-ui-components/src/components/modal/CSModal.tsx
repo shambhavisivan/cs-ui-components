@@ -215,13 +215,13 @@ class CSModal extends React.Component<CSModalProps> {
 			<Portal node={document && document.getElementById(this.modalId)}>
 				<div
 					className={modalOverlayClasses}
-					ref={(modalOverlayNode) => this.modalOverlay = modalOverlayNode}
+					ref={(modalOverlayNode) => { this.modalOverlay = modalOverlayNode; }}
 					id={id}
 					{...rest}
 				>
 					<div className={modalWrapperClasses}>
 						<div
-							ref={(modal) => this.modalRef = modal}
+							ref={(modal) => { this.modalRef = modal; }}
 							tabIndex={0}
 							className={modalClasses}
 							style={style}
@@ -234,13 +234,13 @@ class CSModal extends React.Component<CSModalProps> {
 									className="cs-modal-close"
 									onClick={onClose}
 									aria-label="close"
-									ref={(closeBtn) => this.modalCloseBtnRef = closeBtn}
+									ref={(closeBtn) => { this.modalCloseBtnRef = closeBtn; }}
 								>
 									<CSIcon name="close" size="1.5rem" />
 								</button>
 							)}
 							<div
-								ref={(node) => this.modalContentNode = node}
+								ref={(node) => { this.modalContentNode = node; }}
 								className={
 									loading
 										? 'cs-modal-content cs-modal-loading'

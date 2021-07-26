@@ -231,7 +231,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 							value={fixControlledValue(this.state.value)}
 							type="text"
 							autoComplete="off"
-							ref={(node) => this.input = node}
+							ref={(node) => { this.input = node; }}
 							onKeyDown={this.handleOnKeyDown}
 							onBlur={this.onBlur}
 							onFocus={this.onFocus}

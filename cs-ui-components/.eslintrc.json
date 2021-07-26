@@ -39,7 +39,6 @@
         "global-require": ["warn"],
         "no-use-before-define": ["warn", { "functions": true, "classes": true }],
         "no-unused-vars": ["warn"],
-        "no-return-assign": ["warn"],
         "no-underscore-dangle": ["warn"],
         "no-nested-ternary": ["warn"],
         "no-restricted-globals": ["warn"],

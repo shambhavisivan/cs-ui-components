@@ -284,7 +284,7 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 						searchable={searchable}
 						helpText={sourceHelpText}
 					/>
-					<div className="cs-transfer-actions" ref={(node) => this.actionButtonsNode = node}>
+					<div className="cs-transfer-actions" ref={(node) => { this.actionButtonsNode = node; }}>
 						<CSButton
 							label={`Move selection to ${targetLabel}`}
 							iconName="chevronright"

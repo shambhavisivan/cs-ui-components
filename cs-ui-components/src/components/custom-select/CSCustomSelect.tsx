@@ -163,7 +163,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 	*/
 	handleOnKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
 		const { searchTerm, dropdownOpen } = this.state;
-		let { activeListItem } = this.state;
+		const { activeListItem } = this.state;
 		const { multiselect } = this.props;
 
 		const firstListElement = 0;
@@ -554,7 +554,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 							onMouseDown={() => this.openCustomSelectDropdown()}
 							onBlur={this.handleOnBlur}
 							onFocus={this.openCustomSelectDropdown}
-							ref={(node) => this.input = node}
+							ref={(node) => { this.input = node; }}
 							role="listbox"
 							aria-multiselectable="true"
 							{...rest}
