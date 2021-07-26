@@ -42,7 +42,6 @@
         "no-return-assign": ["warn"],
         "no-underscore-dangle": ["warn"],
         "no-nested-ternary": ["warn"],
-        "no-case-declarations": ["warn"],
         "no-restricted-globals": ["warn"],
         "no-lone-blocks": ["warn"],
         "no-param-reassign": ["warn"],
