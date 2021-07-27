@@ -753,6 +753,11 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			);
 		}
 
+		// If both old & new values are falsy exit & prevent cell flash
+		if (!event.oldValue.cellValue && !event.newValue.cellValue) {
+			return;
+		}
+
 		if (
 			this.getCsGridColDef(event.colDef.field).flashOnCellValueChange &&
 			!isEqual(event.oldValue.cellValue, event.newValue.cellValue) &&
@@ -1076,8 +1081,8 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 					columnDef.sort === 'SORT_ASC'
 						? 'asc'
 						: columnDef.sort === 'SORT_DESC'
-							? 'desc'
-							: '';
+						? 'desc'
+						: '';
 			}
 
 			this.addIfDefined(agGridColDef, 'width', columnDef.width);
@@ -1259,7 +1264,9 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 
 					return (
 						params.event.key === 'Escape' ||
-						(lookupDropdownOpen && (params.event.key === KeyCode.Tab || params.event.key === KeyCode.Enter))
+						(lookupDropdownOpen &&
+							(params.event.key === KeyCode.Tab ||
+								params.event.key === KeyCode.Enter))
 					);
 				};
 
