@@ -148,7 +148,6 @@ class CSTransferItem extends React.Component<CSTransferItemProps> {
 
 		return (
 			<li
-				role="option"
 				ref={(node) => { this.listItemNode = node; }}
 				className={itemVariant === 'check-list' || isOneWay ? transferLIClasses : undefined}
 			>

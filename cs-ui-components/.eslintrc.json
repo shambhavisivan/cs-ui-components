@@ -54,7 +54,6 @@
         "react/destructuring-assignment": ["warn"],
         "react/no-array-index-key": ["warn"],
         "jsx-a11y/mouse-events-have-key-events": ["warn"],
-        "jsx-a11y/role-has-required-aria-props": ["warn"],
         "jsx-a11y/label-has-associated-control": ["warn"],
         "jsx-a11y/role-supports-aria-props": ["warn"],
         "jsx-a11y/click-events-have-key-events": ["warn"],
