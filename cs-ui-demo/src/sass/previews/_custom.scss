@@ -296,7 +296,7 @@
 	}
 }
 
-.cs-dropdown-root .custom-br-mint {
+.cs-dropdown-outer-item-wrapper.custom-br-mint {
 	@include css4 {
 		border: 3px solid cvar(--csd-custom-br-mint);
 	}

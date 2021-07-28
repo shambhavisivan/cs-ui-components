@@ -264,6 +264,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 							zIndex="var(--z-index-dropdown-items-wrapper)"
 						>
 							<CSDropdownItemWrapper
+								dropdownClassName={dropdownClassName}
 								maxHeight={maxHeight}
 								maxWidth={maxWidth}
 								mode={mode}
