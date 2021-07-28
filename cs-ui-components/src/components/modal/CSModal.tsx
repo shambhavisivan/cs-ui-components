@@ -200,7 +200,7 @@ class CSModal extends React.Component<CSModalProps> {
 			},
 		);
 
-		const renderChildren = React.Children.map(children, (child: any, index) => {
+		const renderChildren = React.Children.map(children, (child: any) => {
 			if (child) {
 				if (child.type === CSModalHeader) {
 					return React.cloneElement(child as React.ReactElement<any>, {

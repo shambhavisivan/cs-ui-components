@@ -26,7 +26,7 @@ class CSTabGroup extends React.Component<CSTabGroupProps> {
 			...rest
 		} = this.props;
 
-		const renderChildrenWithTabsAsProps = React.Children.map(children, (child, index) => {
+		const renderChildrenWithTabsAsProps = React.Children.map(children, (child) => {
 			if (child) {
 				return React.cloneElement(child as React.ReactElement<any>, {
 					parentVariant: variant,

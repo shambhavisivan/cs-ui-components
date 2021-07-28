@@ -64,7 +64,7 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 			...rest
 		} = this.props;
 
-		const renderChildrenWithTabsAsProps = React.Children.map(children, (child, index) => {
+		const renderChildrenWithTabsAsProps = React.Children.map(children, (child) => {
 			if (child) {
 				return React.cloneElement(child as React.ReactElement<any>, {
 					toggleActive: this.toggleActive,

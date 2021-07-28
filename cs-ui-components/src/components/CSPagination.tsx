@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import CSButtonGroup from './CSButtonGroup';
 import CSButton from './CSButton';
 
@@ -10,17 +9,17 @@ export interface CSPaginationProps {
 	items?: any;
 }
 
-const propTypes = {
-	items: PropTypes.array.isRequired,
-	onChangePage: PropTypes.func.isRequired,
-	initialPage: PropTypes.number,
-	pageSize: PropTypes.number,
-};
+// const propTypes = {
+// 	items: PropTypes.array.isRequired,
+// 	onChangePage: PropTypes.func.isRequired,
+// 	initialPage: PropTypes.number,
+// 	pageSize: PropTypes.number,
+// };
 
-const defaultProps = {
-	initialPage: 1,
-	pageSize: 10,
-};
+// const defaultProps = {
+// 	initialPage: 1,
+// 	pageSize: 10,
+// };
 
 class CSPagination extends React.Component<CSPaginationProps> {
 	// constructor(props: CSPaginationProps) {

@@ -1,6 +1,5 @@
 import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
-import { Portal } from 'react-portal';
 import CSButton from '../CSButton';
 import { CSIconOrigin } from '../CSIcon';
 import CSDropdownItemWrapper from './CSDropdownItemWrapper';

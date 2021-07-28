@@ -21,7 +21,7 @@ const CSSidebarTab = ({
 	children,
 	className,
 	iconName,
-	iconOrigin = 'slds',
+	iconOrigin,
 	id,
 	noTabHeader = false,
 	subtitle,
