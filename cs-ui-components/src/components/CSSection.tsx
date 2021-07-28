@@ -38,14 +38,18 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 
 	componentDidUpdate(prevProps: CSSectionProps) {
 		if (prevProps.defaultClosed !== this.props.defaultClosed) {
-			this.setState({ defaultClosed: this.props.defaultClosed });
+			this.updateDefaultClosed();
 		}
 	}
 
-	toggle() {
+	toggle = () => {
 		this.setState((prevState) => ({
 			defaultClosed: !prevState.defaultClosed,
 		}));
+	}
+
+	updateDefaultClosed = () => {
+		this.setState({ defaultClosed: this.props.defaultClosed });
 	}
 
 	render() {

@@ -152,15 +152,19 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			this.setValue();
 		}
 		if (prevProps.lookupOptions !== this.props.lookupOptions) {
-			this.setState({
-				dropdownValues: this.props.lookupOptions,
-			});
+			this.updateDropdownValues();
 		}
 	}
 
 	componentWillUnmount() {
 		document.removeEventListener('click', this.handleClickOutside, true);
 		clearTimeout(this.timeoutRef);
+	}
+
+	updateDropdownValues = () => {
+		this.setState({
+			dropdownValues: this.props.lookupOptions,
+		});
 	}
 
 	setValue = () => {

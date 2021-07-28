@@ -49,7 +49,7 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 
 	componentDidUpdate(prevProps: CSListGroupProps) {
 		if (prevProps.collapsed !== this.props.collapsed) {
-			this.setState({ collapsed: this.props.collapsed });
+			this.updateCollapsed();
 		}
 	}
 
@@ -58,6 +58,10 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 			return;
 		}
 		this.setState((prevState) => ({ collapsed: !prevState.collapsed }));
+	}
+
+	updateCollapsed = () => {
+		this.setState({ collapsed: this.props.collapsed });
 	}
 
 	checkValidItems = () => {

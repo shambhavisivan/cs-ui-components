@@ -42,7 +42,7 @@ class CSCardHeader extends React.Component<CSCardHeaderProps, CSCardHeaderState>
 
 	componentDidUpdate(prevProps: CSCardHeaderProps) {
 		if (prevProps.defaultClosed !== this.props.defaultClosed && this.props.collapsible) {
-			this.setState({ collapsed: this.props.defaultClosed });
+			this.updateDefaultClosed();
 		}
 	}
 
@@ -50,6 +50,10 @@ class CSCardHeader extends React.Component<CSCardHeaderProps, CSCardHeaderState>
 		this.setState((prevState) => ({
 			collapsed: prevState.collapsed,
 		}));
+	}
+
+	updateDefaultClosed = () => {
+		this.setState({ collapsed: this.props.defaultClosed });
 	}
 
 	render() {
