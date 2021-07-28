@@ -423,7 +423,8 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 				onMouseLeave={stylePosition === 'fixed' && !this.state.stickyActive ? this.closeTooltip : null}
 				onFocus={stylePosition === 'fixed' ? this.openTooltip : null}
 				onBlur={stylePosition === 'fixed' && !this.state.stickyActive ? this.closeTooltip : null}
-				tabIndex={focusable ? 0 : -1}
+				// eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+				tabIndex={focusable ? 0 : -1} // Tooltip is not interactive but should have tabindex={0} to display when focused
 				role="tooltip"
 				ref={this.tooltipRef}
 				aria-labelledby={this.uniqueAutoId}
