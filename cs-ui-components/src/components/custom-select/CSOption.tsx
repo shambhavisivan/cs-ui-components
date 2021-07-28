@@ -24,6 +24,12 @@ class CSOption extends React.Component<CSOptionProps> {
 		this.optionNode = React.createRef();
 	}
 
+	componentDidUpdate(prevProps: CSOptionProps) {
+		if (prevProps.active !== this.props.active && this.props.active) {
+			this.checkInView();
+		}
+	}
+
 	checkInView = () => {
 		const dropdownNode = document.getElementById('cs-custom-select-dropdown');
 
@@ -40,12 +46,6 @@ class CSOption extends React.Component<CSOptionProps> {
 			dropdownNode.scrollTop = optionTop;
 		} else if (optionBottom > dropdownBottom) {
 			dropdownNode.scrollTop += (optionBottom - dropdownBottom);
-		}
-	}
-
-	componentDidUpdate(prevProps: CSOptionProps) {
-		if (prevProps.active !== this.props.active && this.props.active) {
-			this.checkInView();
 		}
 	}
 

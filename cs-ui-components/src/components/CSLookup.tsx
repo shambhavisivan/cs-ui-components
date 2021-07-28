@@ -147,11 +147,6 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		this.setValue();
 	}
 
-	componentWillUnmount() {
-		document.removeEventListener('click', this.handleClickOutside, true);
-		clearTimeout(this.timeoutRef);
-	}
-
 	componentDidUpdate(prevProps: CSLookupProps) {
 		if (prevProps.value !== this.props.value) {
 			this.setValue();
@@ -161,6 +156,11 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 				dropdownValues: this.props.lookupOptions,
 			});
 		}
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener('click', this.handleClickOutside, true);
+		clearTimeout(this.timeoutRef);
 	}
 
 	setValue = () => {

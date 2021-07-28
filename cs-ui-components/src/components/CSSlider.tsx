@@ -70,6 +70,13 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 		this.stepsIcons = this.stepsIcons.bind(this);
 	}
 
+	componentDidMount() {
+		console.warn('CSSlider is under construction and should not be used.');
+		this.stepsIcons();
+		this.stepValuesIcons();
+		this.setState({});
+	}
+
 	handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		event.preventDefault();
 		if (this.props.readOnly) {
@@ -81,13 +88,6 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 		this.setState({
 			value: event.target.value,
 		});
-	}
-
-	componentDidMount() {
-		console.warn('CSSlider is under construction and should not be used.');
-		this.stepsIcons();
-		this.stepValuesIcons();
-		this.setState({});
 	}
 
 	stepsIcons() {

@@ -39,16 +39,16 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 		}
 	}
 
-	toggleActive(text: any) {
-		this.setState({
-			active: text,
-		});
-	}
-
 	onClose() {
 		this.setState((prevState) => ({
 			closed: !prevState.closed,
 		}));
+	}
+
+	toggleActive(text: any) {
+		this.setState({
+			active: text,
+		});
 	}
 
 	render() {

@@ -84,23 +84,6 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 		this.dragEventCounter = 0;
 	}
 
-	fileSizeDisplay(file: File) {
-		if (this.props.fileSize) {
-			let fileSizeDisplay;
-			if (file.size < 1000) {
-				// bytes
-				fileSizeDisplay = ` (${Math.round(file.size)}B)`;
-			} else if (file.size < 1000000) {
-				// kb
-				fileSizeDisplay = ` (${Math.round(file.size / 1000)}KB)`;
-			} else {
-				// mb
-				fileSizeDisplay = ` (${Math.round(file.size / 1000000)}MB)`;
-			}
-			return fileSizeDisplay;
-		}
-	}
-
 	handleAcceptFiles = (acceptFiles: Array<string> | string) => {
 		const newFiles = Array.isArray(acceptFiles) ? acceptFiles.join() : acceptFiles;
 		return newFiles;
@@ -118,6 +101,23 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 
 		if (this.dragEventCounter === 0) {
 			this.setState({ isDraggedOver: false });
+		}
+	}
+
+	fileSizeDisplay(file: File) {
+		if (this.props.fileSize) {
+			let fileSizeDisplay;
+			if (file.size < 1000) {
+				// bytes
+				fileSizeDisplay = ` (${Math.round(file.size)}B)`;
+			} else if (file.size < 1000000) {
+				// kb
+				fileSizeDisplay = ` (${Math.round(file.size / 1000)}KB)`;
+			} else {
+				// mb
+				fileSizeDisplay = ` (${Math.round(file.size / 1000000)}MB)`;
+			}
+			return fileSizeDisplay;
 		}
 	}
 

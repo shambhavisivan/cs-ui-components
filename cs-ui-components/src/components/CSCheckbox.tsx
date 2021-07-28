@@ -51,6 +51,18 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 		this.checkboxRef = React.createRef();
 	}
 
+	componentDidMount() {
+		if (this.props.indeterminate && !this.props.checked) {
+			this.setIndeterminate(true);
+		}
+	}
+
+	componentDidUpdate(prevProps: CSCheckboxProps) {
+		if (prevProps.indeterminate !== this.props.indeterminate) {
+			this.setIndeterminate(this.props.indeterminate);
+		}
+	}
+
 	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (this.props.readOnly) {
 			return;
@@ -75,18 +87,6 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 	setIndeterminate = (value: boolean) => {
 		if (this.checkboxRef.current) {
 			this.checkboxRef.current.indeterminate = value;
-		}
-	}
-
-	componentDidMount() {
-		if (this.props.indeterminate && !this.props.checked) {
-			this.setIndeterminate(true);
-		}
-	}
-
-	componentDidUpdate(prevProps: CSCheckboxProps) {
-		if (prevProps.indeterminate !== this.props.indeterminate) {
-			this.setIndeterminate(this.props.indeterminate);
 		}
 	}
 

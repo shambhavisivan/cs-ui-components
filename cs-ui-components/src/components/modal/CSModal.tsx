@@ -65,6 +65,46 @@ class CSModal extends React.Component<CSModalProps> {
 		}
 	}
 
+	componentDidMount() {
+		this.previouslyFocusedElement = document.activeElement as HTMLElement;
+		const focusable = this.getFocusableElements();
+		this.getFirstLastModalElement();
+		if (this.props.loading && !this.props.closeButton && focusable.length > 0) {
+			this.firstElement = this.modalRef;
+		}
+		this.firstElement.focus();
+
+		document.addEventListener('keydown', this.handleFocusChange);
+		const modalRoot = document.getElementById(this.modalId);
+
+		document.addEventListener('keydown', this.handleEsc, false);
+
+		if (this.props.outerClickClose) {
+			if (this.modalOverlay === modalRoot.lastElementChild
+				&& modalRoot.childElementCount === 2) {
+				modalRoot.firstElementChild.removeEventListener('click', this.handleOuterClick);
+			}
+			this.modalOverlay.addEventListener('click', this.handleOuterClick);
+		}
+
+		document.body.style.overflow = 'hidden';
+		document.documentElement.style.overflow = 'hidden';
+		this.props.setMounted();
+	}
+
+	componentWillUnmount() {
+		const modalRoot = document.getElementById(this.modalId);
+		document.removeEventListener('keydown', this.handleFocusChange);
+		document.removeEventListener('keydown', this.handleEsc, false);
+
+		if (modalRoot.childElementCount === 1) {
+			document.body.style.overflow = '';
+			document.documentElement.style.overflow = '';
+		}
+
+		this.previouslyFocusedElement.focus();
+	}
+
 	handleEsc(e: any) {
 		const parent = e.target.closest('.cs-modal-overlay');
 		if (this.props.onClose && (parent === this.modalOverlay)) {
@@ -118,46 +158,6 @@ class CSModal extends React.Component<CSModalProps> {
 			this.firstElement = this.modalRef;
 			this.lastElement = this.modalRef;
 		}
-	}
-
-	componentDidMount() {
-		this.previouslyFocusedElement = document.activeElement as HTMLElement;
-		const focusable = this.getFocusableElements();
-		this.getFirstLastModalElement();
-		if (this.props.loading && !this.props.closeButton && focusable.length > 0) {
-			this.firstElement = this.modalRef;
-		}
-		this.firstElement.focus();
-
-		document.addEventListener('keydown', this.handleFocusChange);
-		const modalRoot = document.getElementById(this.modalId);
-
-		document.addEventListener('keydown', this.handleEsc, false);
-
-		if (this.props.outerClickClose) {
-			if (this.modalOverlay === modalRoot.lastElementChild
-				&& modalRoot.childElementCount === 2) {
-				modalRoot.firstElementChild.removeEventListener('click', this.handleOuterClick);
-			}
-			this.modalOverlay.addEventListener('click', this.handleOuterClick);
-		}
-
-		document.body.style.overflow = 'hidden';
-		document.documentElement.style.overflow = 'hidden';
-		this.props.setMounted();
-	}
-
-	componentWillUnmount() {
-		const modalRoot = document.getElementById(this.modalId);
-		document.removeEventListener('keydown', this.handleFocusChange);
-		document.removeEventListener('keydown', this.handleEsc, false);
-
-		if (modalRoot.childElementCount === 1) {
-			document.body.style.overflow = '';
-			document.documentElement.style.overflow = '';
-		}
-
-		this.previouslyFocusedElement.focus();
 	}
 
 	render() {

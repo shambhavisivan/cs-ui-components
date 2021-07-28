@@ -88,187 +88,6 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		};
 	}
 
-	setSticky = (value: boolean) => {
-		this.setState({
-			stickyActive: value,
-		});
-	}
-
-	render() {
-		const {
-			children,
-			className,
-			content,
-			delayTooltip,
-			focusable,
-			height,
-			iconColor,
-			iconName,
-			iconOrigin,
-			iconSize,
-			id,
-			maxHeight,
-			maxWidth,
-			padding,
-			position,
-			stickyOnClick,
-			stylePosition,
-			tooltipHeader,
-			variant,
-			width,
-			...rest
-		} = this.props;
-
-		const tooltipClasses = classNames(
-			'cs-tooltip',
-			{
-				[`cs-tooltip-${this.state.computedPosition}`]: this.state.computedPosition,
-				[`cs-tooltip-${variant}`]: variant,
-				'cs-tooltip-with-header': tooltipHeader,
-				'cs-tooltip-overflow-auto': maxHeight || maxWidth || height || width,
-			},
-		);
-
-		const tooltipWrapperClasses = classNames(
-			'cs-tooltip-wrapper',
-			{
-				'cs-tw-icon-c': iconColor,
-				[`cs-tw-${variant}`]: variant,
-				[`cs-tooltip-style-position-${stylePosition}`]: stylePosition,
-				[`${className}`]: className,
-			},
-		);
-
-		const getTooltipStyle = () => {
-			if (this.state.loading) {
-				return {
-					'--cs-tooltip-height': '3.5rem',
-					'--cs-tooltip-width': '3.5rem',
-					'--cs-tooltip-padding': '0',
-				};
-			}
-			return {
-				'--cs-tooltip-height': height,
-				'--cs-tooltip-width': width,
-				'--cs-tooltip-max-height': maxHeight,
-				'--cs-tooltip-max-width': maxWidth,
-				'--cs-tooltip-padding': padding,
-			};
-		};
-
-		const tooltipStyle: CSSProperties = {
-			...getTooltipStyle(),
-			'--cs-tw-dimension': this.state.tooltipWrapperDimension ? `${this.state.tooltipWrapperDimension}px` : '',
-		};
-
-		const tooltip = (
-			<div
-				className={tooltipClasses}
-				style={tooltipStyle}
-				id={this.uniqueAutoId}
-				{...rest}
-			>
-				{this.state.loading
-					? <CSSpinner overlay="transparent" />
-					: (
-						<>
-							{tooltipHeader && (
-								<div className="cs-tooltip-header">{tooltipHeader}</div>
-							)}
-
-							{this.state.content
-								? Array.isArray(this.state.content)
-									? (this.state.content.map((contentItem, index) => (
-										<div className="cs-tooltip-body" key={index}>
-											{contentItem}
-										</div>
-									)))
-									: <div className="cs-tooltip-body">{this.state.content}</div>
-								: null}
-						</>
-					)}
-			</div>
-		);
-
-		const tooltipIconName = () => {
-			switch (true) {
-			case !!iconName:
-				return iconName;
-			case variant === 'basic':
-				return 'info';
-			default:
-				return variant;
-			}
-		};
-
-		const setIconSize = () => {
-			if (iconSize === 'medium') {
-				return '1rem';
-			}
-			return '0.875rem';
-		};
-
-		const handleOnMouseEnter = () => {
-			if (stylePosition === 'fixed' && !this.state.stickyActive) {
-				this.openTooltip();
-			} else if (stylePosition === 'absolute') {
-				this.setState({
-					content,
-				});
-			}
-		};
-
-		return (
-			<div
-				className={tooltipWrapperClasses}
-				onClick={stylePosition === 'fixed' && stickyOnClick ? () => this.setSticky(true) : null}
-				onMouseEnter={handleOnMouseEnter}
-				onMouseLeave={stylePosition === 'fixed' && !this.state.stickyActive ? this.closeTooltip : null}
-				onFocus={stylePosition === 'fixed' ? this.openTooltip : null}
-				onBlur={stylePosition === 'fixed' && !this.state.stickyActive ? this.closeTooltip : null}
-				tabIndex={focusable ? 0 : -1}
-				role="tooltip"
-				ref={this.tooltipRef}
-				aria-labelledby={this.uniqueAutoId}
-				id={id}
-			>
-				{children
-					|| (
-						<CSIcon
-							color={iconColor}
-							name={tooltipIconName()}
-							className="cs-tooltip-icon"
-							size={setIconSize()}
-							origin={iconOrigin}
-						/>
-					)}
-				{!this.state.hidden && (
-					<>
-						{stylePosition === 'absolute' ? (
-							tooltip
-						) : (
-							<>
-								{this.state.isOpen && (
-									<CSAutoposition
-										initialPosition={this.props.position}
-										positionSchema={this.getTooltipPositionSchema()}
-										referencePoint={this.tooltipRef.current}
-										onPositionChange={(computedPosition) => this.setState({ computedPosition })}
-										zIndex="var(--z-index-tooltip)"
-									>
-										<div className={tooltipWrapperClasses}>
-											{tooltip}
-										</div>
-									</CSAutoposition>
-								)}
-							</>
-						)}
-					</>
-				)}
-			</div>
-		);
-	}
-
 	componentDidMount() {
 		this._isMounted = true;
 	}
@@ -280,37 +99,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		this._isMounted = false;
 	}
 
-	resolvePromise = () => {
-		if (typeof this.props.content === 'function') {
-			Promise.resolve(this.props.content()).then(
-				(result) => this.setState({
-					content: result,
-					loading: false,
-				}, () => {
-					// To handle Esc key press before promise is resolved
-					if (this.state.isOpen) {
-						if (!document.getElementById(this.uniqueAutoId)) {
-							return false;
-						}
-					}
-				}),
-			);
-		}
-	}
-
-	handleOutsideClick = (event: any) => {
-		event.stopPropagation();
-		if (
-			this.tooltipRef.current
-			&& !this.tooltipRef.current.contains(event.target)
-			&& !document.getElementById('cs-autoposition').contains(event.target)
-		) {
-			this.setSticky(false);
-			this.closeTooltip();
-		}
-	}
-
-	onKeyDown(event: any) {
+	private onKeyDown(event: any) {
 		if (event.key === KeyCode.Escape) {
 			if (this.props.stickyOnClick) {
 				this.setSticky(false);
@@ -471,6 +260,210 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			},
 		}];
 		return schema;
+	}
+
+	setSticky = (value: boolean) => {
+		this.setState({
+			stickyActive: value,
+		});
+	}
+
+	resolvePromise = () => {
+		if (typeof this.props.content === 'function') {
+			Promise.resolve(this.props.content()).then(
+				(result) => this.setState({
+					content: result,
+					loading: false,
+				}, () => {
+					// To handle Esc key press before promise is resolved
+					if (this.state.isOpen) {
+						if (!document.getElementById(this.uniqueAutoId)) {
+							return false;
+						}
+					}
+				}),
+			);
+		}
+	}
+
+	handleOutsideClick = (event: any) => {
+		event.stopPropagation();
+		if (
+			this.tooltipRef.current
+			&& !this.tooltipRef.current.contains(event.target)
+			&& !document.getElementById('cs-autoposition').contains(event.target)
+		) {
+			this.setSticky(false);
+			this.closeTooltip();
+		}
+	}
+
+	render() {
+		const {
+			children,
+			className,
+			content,
+			delayTooltip,
+			focusable,
+			height,
+			iconColor,
+			iconName,
+			iconOrigin,
+			iconSize,
+			id,
+			maxHeight,
+			maxWidth,
+			padding,
+			position,
+			stickyOnClick,
+			stylePosition,
+			tooltipHeader,
+			variant,
+			width,
+			...rest
+		} = this.props;
+
+		const tooltipClasses = classNames(
+			'cs-tooltip',
+			{
+				[`cs-tooltip-${this.state.computedPosition}`]: this.state.computedPosition,
+				[`cs-tooltip-${variant}`]: variant,
+				'cs-tooltip-with-header': tooltipHeader,
+				'cs-tooltip-overflow-auto': maxHeight || maxWidth || height || width,
+			},
+		);
+
+		const tooltipWrapperClasses = classNames(
+			'cs-tooltip-wrapper',
+			{
+				'cs-tw-icon-c': iconColor,
+				[`cs-tw-${variant}`]: variant,
+				[`cs-tooltip-style-position-${stylePosition}`]: stylePosition,
+				[`${className}`]: className,
+			},
+		);
+
+		const getTooltipStyle = () => {
+			if (this.state.loading) {
+				return {
+					'--cs-tooltip-height': '3.5rem',
+					'--cs-tooltip-width': '3.5rem',
+					'--cs-tooltip-padding': '0',
+				};
+			}
+			return {
+				'--cs-tooltip-height': height,
+				'--cs-tooltip-width': width,
+				'--cs-tooltip-max-height': maxHeight,
+				'--cs-tooltip-max-width': maxWidth,
+				'--cs-tooltip-padding': padding,
+			};
+		};
+
+		const tooltipStyle: CSSProperties = {
+			...getTooltipStyle(),
+			'--cs-tw-dimension': this.state.tooltipWrapperDimension ? `${this.state.tooltipWrapperDimension}px` : '',
+		};
+
+		const tooltip = (
+			<div
+				className={tooltipClasses}
+				style={tooltipStyle}
+				id={this.uniqueAutoId}
+				{...rest}
+			>
+				{this.state.loading
+					? <CSSpinner overlay="transparent" />
+					: (
+						<>
+							{tooltipHeader && (
+								<div className="cs-tooltip-header">{tooltipHeader}</div>
+							)}
+
+							{this.state.content
+								? Array.isArray(this.state.content)
+									? (this.state.content.map((contentItem, index) => (
+										<div className="cs-tooltip-body" key={index}>
+											{contentItem}
+										</div>
+									)))
+									: <div className="cs-tooltip-body">{this.state.content}</div>
+								: null}
+						</>
+					)}
+			</div>
+		);
+
+		const tooltipIconName = () => {
+			if (iconName) return iconName;
+			if (variant === 'basic') return 'info';
+			return variant;
+		};
+
+		const setIconSize = () => {
+			if (iconSize === 'medium') return '1rem';
+			return '0.875rem';
+		};
+
+		const handleOnMouseEnter = () => {
+			if (stylePosition === 'fixed' && !this.state.stickyActive) {
+				this.openTooltip();
+			} else if (stylePosition === 'absolute') {
+				this.setState({
+					content,
+				});
+			}
+		};
+
+		return (
+			<div
+				className={tooltipWrapperClasses}
+				onClick={stylePosition === 'fixed' && stickyOnClick ? () => this.setSticky(true) : null}
+				onMouseEnter={handleOnMouseEnter}
+				onMouseLeave={stylePosition === 'fixed' && !this.state.stickyActive ? this.closeTooltip : null}
+				onFocus={stylePosition === 'fixed' ? this.openTooltip : null}
+				onBlur={stylePosition === 'fixed' && !this.state.stickyActive ? this.closeTooltip : null}
+				tabIndex={focusable ? 0 : -1}
+				role="tooltip"
+				ref={this.tooltipRef}
+				aria-labelledby={this.uniqueAutoId}
+				id={id}
+			>
+				{children
+				|| (
+					<CSIcon
+						color={iconColor}
+						name={tooltipIconName()}
+						className="cs-tooltip-icon"
+						size={setIconSize()}
+						origin={iconOrigin}
+					/>
+				)}
+				{!this.state.hidden && (
+					<>
+						{stylePosition === 'absolute' ? (
+							tooltip
+						) : (
+							<>
+								{this.state.isOpen && (
+									<CSAutoposition
+										initialPosition={this.props.position}
+										positionSchema={this.getTooltipPositionSchema()}
+										referencePoint={this.tooltipRef.current}
+										onPositionChange={(computedPosition) => this.setState({ computedPosition })}
+										zIndex="var(--z-index-tooltip)"
+									>
+										<div className={tooltipWrapperClasses}>
+											{tooltip}
+										</div>
+									</CSAutoposition>
+								)}
+							</>
+						)}
+					</>
+				)}
+			</div>
+		);
 	}
 }
 

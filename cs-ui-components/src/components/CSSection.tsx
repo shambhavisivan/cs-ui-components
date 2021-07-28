@@ -27,12 +27,6 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 		this.toggle = this.toggle.bind(this);
 	}
 
-	toggle() {
-		this.setState((prevState) => ({
-			defaultClosed: !prevState.defaultClosed,
-		}));
-	}
-
 	// When component mounts if defaultClosed equals true hide content initially
 	componentDidMount() {
 		if (this.props.defaultClosed) {
@@ -46,6 +40,12 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 		if (prevProps.defaultClosed !== this.props.defaultClosed) {
 			this.setState({ defaultClosed: this.props.defaultClosed });
 		}
+	}
+
+	toggle() {
+		this.setState((prevState) => ({
+			defaultClosed: !prevState.defaultClosed,
+		}));
 	}
 
 	render() {
