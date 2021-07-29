@@ -10,7 +10,7 @@ export interface CSPathItemProps {
 	className?: string;
 	disabled?: boolean;
 	id?: string;
-	onClick?: (e: React.MouseEvent<HTMLLIElement>) => any;
+	onClick?: (e: React.MouseEvent<HTMLButtonElement>) => any;
 	status?: CSPathItemStatus;
 	name: string;
 }
@@ -36,7 +36,6 @@ const CSPathItem = ({
 
 	return (
 		<li
-			onClick={onClick}
 			className={CSPathItemClasses}
 			title={name}
 			id={id}
@@ -47,6 +46,7 @@ const CSPathItem = ({
 				aria-invalid={status === 'error'}
 				disabled={disabled}
 				className="cs-path-item-wrapper"
+				onClick={onClick}
 			>
 				{status
 					&& (

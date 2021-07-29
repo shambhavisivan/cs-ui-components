@@ -142,6 +142,7 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 		};
 
 		return (
+			// eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
 			<aside
 				className={sidebarClasses}
 				style={style}

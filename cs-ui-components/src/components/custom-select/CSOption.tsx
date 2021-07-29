@@ -78,7 +78,7 @@ class CSOption extends React.Component<CSOptionProps> {
 		);
 
 		return (
-			// eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
+			/* eslint-disable-next-line jsx-a11y/mouse-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */
 			<li
 				className={optionClasses}
 				onMouseDown={onMouseDown}

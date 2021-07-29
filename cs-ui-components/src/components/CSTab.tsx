@@ -27,11 +27,9 @@ class CSTab extends React.Component<CSTabProps> {
 		status: 'initial',
 	};
 
-	onClickHandler = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-		event.preventDefault();
-		if (this.props.onClick) {
-			this.props.onClick();
-		}
+	onClickHandler = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+		if (!this.props.routerLink) event.preventDefault();
+		this.props.onClick?.();
 	}
 
 	render() {
@@ -91,6 +89,7 @@ class CSTab extends React.Component<CSTabProps> {
 			'aria-current': active,
 			'aria-invalid': status === 'error',
 			disabled,
+			onClick: this.onClickHandler,
 			style,
 		};
 
@@ -116,7 +115,6 @@ class CSTab extends React.Component<CSTabProps> {
 			<li
 				id={id}
 				className={tabClasses}
-				onClick={this.onClickHandler}
 				{...rest}
 			>
 				<>
