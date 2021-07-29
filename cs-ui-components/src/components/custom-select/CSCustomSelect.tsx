@@ -100,12 +100,11 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 	setDefaultOptions = () => {
 		const { children, multiselect, value } = this.props;
 		if (typeof value === 'string') {
-			let option: any;
-			option = React.Children.toArray(children).find(
+			const option = React.Children.toArray(children).find(
 				(child: React.ReactElement) => child.props.itemKey === value,
 			);
 
-			this.setState({ selectedItem: this.getOptionData(option) });
+			this.setState({ selectedItem: this.getOptionData(option as CSOption) });
 		} else if (Array.isArray(value) && multiselect) {
 			const options: Array<CSOptionItem> = [];
 			React.Children.forEach(children, (child: React.ReactElement) => {
