@@ -65,6 +65,7 @@ class CSTableRow extends React.Component<CSTableRowProps> {
 		return (
 			<CSTableContext.Consumer>
 				{(context) => (
+					// eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
 					<div
 						className={tableRowClasses}
 						role="row"
