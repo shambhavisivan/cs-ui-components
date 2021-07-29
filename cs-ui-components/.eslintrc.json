@@ -42,7 +42,6 @@
         "prefer-const": ["warn"],
         "no-underscore-dangle": ["warn"],
         "import/no-unresolved": ["warn"],
-        "import/no-webpack-loader-syntax": ["warn"],
         "react/static-property-placement": ["warn"],
         "react/button-has-type": ["warn"],
         "react/destructuring-assignment": ["warn"],

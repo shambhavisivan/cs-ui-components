@@ -1,6 +1,8 @@
 // Import SVG sprites
+// eslint-disable-next-line import/no-webpack-loader-syntax
 import SldsIconSvg from '!raw-loader!./icons/slds-icons.svg';
-import CsIconSvg from '!raw-loader!./icons//cs-icons.svg';
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import CsIconSvg from '!raw-loader!./icons/cs-icons.svg';
 
 import CSAlert, {
 	CSAlertStyleFormat,
