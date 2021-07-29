@@ -233,6 +233,7 @@ class CSModal extends React.Component<CSModalProps> {
 						>
 							{closeButton && (
 								<button
+									type="button"
 									className="cs-modal-close"
 									onClick={onClose}
 									aria-label="close"

@@ -42,7 +42,6 @@
         // These warnings should be revisited and preferably resolved
         "prefer-const": ["warn"],
         "no-underscore-dangle": ["warn"],
-        "react/button-has-type": ["warn"],
         "react/destructuring-assignment": ["warn"],
         "jsx-a11y/role-supports-aria-props": ["warn"],
         "jsx-a11y/click-events-have-key-events": ["warn"],

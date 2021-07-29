@@ -124,6 +124,7 @@ class CSTab extends React.Component<CSTabProps> {
 						)
 						: React.createElement(
 							'button',
+							{ type: 'button' },
 							componentProps,
 							tabContent(),
 						)}

@@ -83,7 +83,12 @@ const CSAlert = ({
 				) : null}
 			</h4>
 			{closeButton ? (
-				<button className="cs-alert-close" onClick={onClose} aria-label="close">
+				<button
+					className="cs-alert-close"
+					onClick={onClose}
+					aria-label="close"
+					type="button"
+				>
 					<CSIcon name="close" size={alertIconSize} />
 				</button>
 			) : null}

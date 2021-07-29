@@ -81,7 +81,12 @@ const CSToast = ({
 				</div>
 				{closeButton
 					? (
-						<button className="cs-toast-close-btn" onClick={onClose} aria-label="close">
+						<button
+							className="cs-toast-close-btn"
+							onClick={onClose}
+							aria-label="close"
+							type="button"
+						>
 							<CSIcon name="close" size="1.5rem" />
 						</button>
 					)

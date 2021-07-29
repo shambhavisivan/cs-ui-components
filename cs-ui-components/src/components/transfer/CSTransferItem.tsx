@@ -97,6 +97,7 @@ class CSTransferItem extends React.Component<CSTransferItemProps> {
 		const simpleList = itemVariant === 'simple-list' && !isOneWay
 			? (
 				<button
+					type="button"
 					className={transferLIClasses}
 					onClick={onSelect}
 					onKeyDown={this.handleKeyDown}

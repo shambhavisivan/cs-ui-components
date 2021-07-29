@@ -47,6 +47,7 @@ const CSPathItem = ({
 				disabled={disabled}
 				className="cs-path-item-wrapper"
 				onClick={onClick}
+				type="button"
 			>
 				{status
 					&& (

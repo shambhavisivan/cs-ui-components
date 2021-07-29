@@ -46,6 +46,7 @@ const CSProgressIndicatorItem = ({
 				aria-label={text}
 				aria-current={status === 'active'}
 				aria-roledescription="step"
+				type="button"
 			>
 				{getIconByStatus()}
 			</button>

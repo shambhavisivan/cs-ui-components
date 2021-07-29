@@ -85,6 +85,7 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 					{collapsible
 						? (
 							<button
+								type="button"
 								className="cs-section-button"
 								onClick={this.toggle}
 								aria-expanded={!this.state.defaultClosed}
