@@ -143,17 +143,13 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 		);
 
 		const headerIconSize = () => {
-			switch (listSize) {
-			case 'large':
-				return '1.125rem';
-			case 'small':
-				return '0.75rem';
-			default:
-			}
+			if (listSize === 'large') return '1.125rem';
+			if (listSize === 'small') return '0.75rem';
+			return undefined; // So that CSIcon can use its default size
 		};
 
 		const listItems = React.Children.map(this.props.children, (child: any, index) => {
-			if (child && child.type === CSListItem) {
+			if (child?.type === CSListItem) {
 				return React.cloneElement(child as React.ReactElement<any>, {
 					listSize,
 					listVariant,
@@ -164,6 +160,8 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 					isGrouped: true,
 				});
 			}
+
+			return null;
 		});
 
 		const listHeaderContent = customContent

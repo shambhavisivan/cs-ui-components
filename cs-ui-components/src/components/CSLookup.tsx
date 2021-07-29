@@ -347,16 +347,17 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		if (_selectedOption) {
 			return _selectedOption[this.props.fieldToBeDisplayed];
 		}
+
+		return null;
 	}
 
 	getMultiselectValues = () => {
-		if (
-			this.props.multiselect
-			&& !!this.state.selectedOptions.length
-		) {
+		if (this.props.multiselect && this.state.selectedOptions.length) {
 			const multiselectValues = this.state.selectedOptions.map((option) => option[this.props.fieldToBeDisplayed]);
+
 			return multiselectValues.join(', ');
 		}
+		return null;
 	}
 
 	setActiveTableRowIndex = (index: number) => {
@@ -557,14 +558,8 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	}
 
 	flipPosition = (position: string) => {
-		switch (position) {
-		case 'left':
-			return 'right';
-		case 'right':
-			return 'left';
-		default:
-			break;
-		}
+		if (position === 'left') return 'right';
+		return 'left';
 	}
 
 	render() {
@@ -736,6 +731,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			} if (!dropdownValues?.length && searchTerm && fetchingMode === undefined) {
 				return notFoundNode;
 			}
+			return null;
 		};
 
 		/*

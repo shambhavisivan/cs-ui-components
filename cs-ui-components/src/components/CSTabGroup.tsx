@@ -32,6 +32,8 @@ class CSTabGroup extends React.Component<CSTabGroupProps> {
 					parentVariant: variant,
 				});
 			}
+
+			return null;
 		});
 
 		const tabGroupClasses = classNames(

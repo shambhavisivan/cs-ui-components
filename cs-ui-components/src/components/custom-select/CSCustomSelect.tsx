@@ -252,6 +252,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 
 			return selectedItem;
 		}
+		return null;
 	}
 
 	// Deletes item from the multiselect list based on its index
@@ -376,14 +377,8 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 	}
 
 	flipPosition = (position: string) => {
-		switch (position) {
-		case 'left':
-			return 'right';
-		case 'right':
-			return 'left';
-		default:
-			break;
-		}
+		if (position === 'left') return 'right';
+		return 'left';
 	}
 
 	render() {
@@ -464,34 +459,35 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 			that no data is found.
 		*/
 		const renderDropdownOptionsAsChildren = () => {
-			if (children) {
-				this.filteredList = React.Children.toArray(children).filter((child: React.ReactElement) => child.type === CSOption && this.filterChildrenBy(child));
+			if (!children) return null;
 
-				if (this.filteredList.length) {
-					return this.filteredList.map((child: React.ReactElement, index) => React.cloneElement(child, {
-						type: 'list-item',
-						active: index === activeListItem,
-						onMouseDown: (event: React.MouseEvent<HTMLLIElement>) => {
-							event.preventDefault();
-							this.onSelect(this.getOptionData(child as unknown as CSOption));
-						},
-						onMouseOver: () => this.highlightListItem(index),
-						onMouseOut: () => this.setState({ activeListItem: null }),
-						isMultiSelectItem: multiselect,
-						selected: selectedOptions.find((option) => this.getOptionData(child as unknown as CSOption).itemKey === option.itemKey)
-							|| this.getOptionData(child as unknown as CSOption).itemKey === selectedItem.itemKey,
-					}));
-				}
-				return (
-					<li className="cs-custom-select-no-data">
-						<CSIcon
-							name="error"
-							color="var(--cs-custom-select-no-data-c)"
-						/>
-						<span className="cs-custom-select-no-data-text">No data found</span>
-					</li>
-				);
+			this.filteredList = React.Children.toArray(children).filter((child: React.ReactElement) => child.type === CSOption && this.filterChildrenBy(child));
+
+			if (this.filteredList.length) {
+				return this.filteredList.map((child: React.ReactElement, index) => React.cloneElement(child, {
+					type: 'list-item',
+					active: index === activeListItem,
+					onMouseDown: (event: React.MouseEvent<HTMLLIElement>) => {
+						event.preventDefault();
+						this.onSelect(this.getOptionData(child as unknown as CSOption));
+					},
+					onMouseOver: () => this.highlightListItem(index),
+					onMouseOut: () => this.setState({ activeListItem: null }),
+					isMultiSelectItem: multiselect,
+					selected: selectedOptions.find((option) => this.getOptionData(child as unknown as CSOption).itemKey === option.itemKey)
+						|| this.getOptionData(child as unknown as CSOption).itemKey === selectedItem.itemKey,
+				}));
 			}
+
+			return (
+				<li className="cs-custom-select-no-data">
+					<CSIcon
+						name="error"
+						color="var(--cs-custom-select-no-data-c)"
+					/>
+					<span className="cs-custom-select-no-data-text">No data found</span>
+				</li>
+			);
 		};
 
 		const initialPosition = `${position}-${this.flipPosition(align)}` as CSAutopositions;

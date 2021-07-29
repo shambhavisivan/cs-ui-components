@@ -90,16 +90,16 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 		/** * takes child props title, iconName and index to display them through this component when sidebar is collapsed ** */
 		const tabs: Array<any> = React.Children.map(children, (child: React.ReactElement, index) => {
 			if (child) {
-				return (
-					{
-						index,
-						title: child.props.title,
-						iconName: child.props.iconName,
-						iconOrigin: child.props.iconOrigin,
-						tabWidth: child.props.tabWidth,
-					}
-				);
+				return ({
+					index,
+					title: child.props.title,
+					iconName: child.props.iconName,
+					iconOrigin: child.props.iconOrigin,
+					tabWidth: child.props.tabWidth,
+				});
 			}
+
+			return null;
 		});
 
 		/** * pass isActiveTab status to child if that child is active ** */
@@ -109,6 +109,8 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 					isActiveTab: (this.state.activeTabIndex === index && !this.state.closed),
 				});
 			}
+
+			return null;
 		});
 
 		const getToggleIcon = () => {

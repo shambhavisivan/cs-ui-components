@@ -24,13 +24,13 @@ class CSTableHeader extends React.Component<CSTableHeaderProps> {
 
 		const childrenWithProp = React.Children.map(children, (child) => {
 			if (child) {
-				return (
-					React.cloneElement(
-						child as any,
-						{ role: 'columnheader' },
-					)
+				return React.cloneElement(
+					child as any,
+					{ role: 'columnheader' },
 				);
 			}
+
+			return null;
 		});
 
 		return (

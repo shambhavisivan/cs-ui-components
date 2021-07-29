@@ -46,6 +46,8 @@ class CSList extends React.Component<CSListProps> {
 					listVariant: variant,
 				});
 			}
+
+			return null;
 		});
 
 		return (

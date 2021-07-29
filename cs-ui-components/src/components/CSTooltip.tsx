@@ -99,7 +99,19 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		this._isMounted = false;
 	}
 
-	private onKeyDown(event: any) {
+	handleOutsideClick = (event: any) => {
+		event.stopPropagation();
+		if (
+			this.tooltipRef.current
+			&& !this.tooltipRef.current.contains(event.target)
+			&& !document.getElementById('cs-autoposition').contains(event.target)
+		) {
+			this.setSticky(false);
+			this.closeTooltip();
+		}
+	}
+
+	onKeyDown(event: any) {
 		if (event.key === KeyCode.Escape) {
 			if (this.props.stickyOnClick) {
 				this.setSticky(false);
@@ -274,27 +286,12 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 				(result) => this.setState({
 					content: result,
 					loading: false,
-				}, () => {
+				},
+				() => (
 					// To handle Esc key press before promise is resolved
-					if (this.state.isOpen) {
-						if (!document.getElementById(this.uniqueAutoId)) {
-							return false;
-						}
-					}
-				}),
+					!(this.state.isOpen && !document.getElementById(this.uniqueAutoId))
+				)),
 			);
-		}
-	}
-
-	handleOutsideClick = (event: any) => {
-		event.stopPropagation();
-		if (
-			this.tooltipRef.current
-			&& !this.tooltipRef.current.contains(event.target)
-			&& !document.getElementById('cs-autoposition').contains(event.target)
-		) {
-			this.setSticky(false);
-			this.closeTooltip();
 		}
 	}
 

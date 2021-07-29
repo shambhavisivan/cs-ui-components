@@ -35,6 +35,7 @@ const CSProgressIndicatorItem = ({
 		case 'loading':
 			return <CSIcon name="spinner" color="var(--cs-progress-indicator-loading-c)" spin />;
 		default:
+			return null;
 		}
 	};
 	return (

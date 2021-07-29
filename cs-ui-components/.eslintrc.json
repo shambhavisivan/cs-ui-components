@@ -38,7 +38,6 @@
         "no-use-before-define": "off",
         "@typescript-eslint/no-use-before-define": ["error"],
         // These warnings should be revisited and preferably resolved
-        "consistent-return": ["warn"],
         "prefer-const": ["warn"],
         "no-underscore-dangle": ["warn"],
         "no-param-reassign": ["warn"],

@@ -109,12 +109,9 @@ class CSCurrency extends React.Component<CSCurrencyProps> {
 		};
 
 		const getTitle = () => {
-			if (title) {
-				if (typeof title === 'boolean') {
-					return formattedValue();
-				}
-				return title;
-			}
+			if (!title) return null;
+			if (typeof title === 'boolean') return formattedValue();
+			return title;
 		};
 
 		return (

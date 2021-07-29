@@ -66,17 +66,17 @@ class CSRadio extends React.Component<CSRadioProps> {
 
 		const childrenWithProps = React.Children.map(this.props.children, (child) => {
 			if (child) {
-				return (
-					React.cloneElement(
-						child as any,
-						{
-							ariaInvalid: this.props.error,
-							ariaRequired: this.props.required,
-							parentDisabled: this.props.disabled,
-						},
-					)
+				return React.cloneElement(
+					child as any,
+					{
+						ariaInvalid: this.props.error,
+						ariaRequired: this.props.required,
+						parentDisabled: this.props.disabled,
+					},
 				);
 			}
+
+			return null;
 		});
 
 		return (

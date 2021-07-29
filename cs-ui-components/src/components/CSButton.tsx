@@ -70,10 +70,11 @@ class CSButton extends React.Component<CSButtonProps> {
 						size={this.props.iconSize}
 						spin
 					/>
-
 				</span>
 			);
-		} if (this.props.iconName) {
+		}
+
+		if (this.props.iconName) {
 			return (
 				<span className="cs-btn-icon">
 					<CSIcon
@@ -85,14 +86,16 @@ class CSButton extends React.Component<CSButtonProps> {
 				</span>
 			);
 		}
+
+		return null;
 	}
 
 	label() {
 		if (this.props.label) {
-			return (
-				<span className="cs-btn-label">{this.props.label}</span>
-			);
+			return <span className="cs-btn-label">{this.props.label}</span>;
 		}
+
+		return null;
 	}
 
 	render() {

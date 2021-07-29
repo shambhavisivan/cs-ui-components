@@ -56,10 +56,13 @@ const CSAutoposition = ({
 	const checkYAxis = (_autopositionWrapperRect: DOMRect) => {
 		if (_autopositionWrapperRect.top < 0) {
 			return 'bottom';
-		} if (_autopositionWrapperRect.bottom
-			>= (window.innerHeight || document.documentElement.clientHeight)) {
+		}
+
+		if (_autopositionWrapperRect.bottom >= (window.innerHeight || document.documentElement.clientHeight)) {
 			return 'top';
 		}
+
+		return undefined;
 	};
 
 	/*
@@ -68,12 +71,15 @@ const CSAutoposition = ({
 		where overflow is present.
 	*/
 	const checkXAxis = (_autopositionWrapperRect: DOMRect) => {
-		if (_autopositionWrapperRect.right
-			>= (window.innerWidth || document.documentElement.clientWidth)) {
+		if (_autopositionWrapperRect.right >= (window.innerWidth || document.documentElement.clientWidth)) {
 			return 'left';
-		} if (_autopositionWrapperRect.left < 0) {
+		}
+
+		if (_autopositionWrapperRect.left < 0) {
 			return 'right';
 		}
+
+		return undefined;
 	};
 
 	/*
@@ -130,23 +136,14 @@ const CSAutoposition = ({
 
 	/*
 		Returns opposite position based on the provided position.
-		If provided position is 'center' return void.
+		If provided position is 'center' return undefined.
 	*/
 	const getOppositePosition = (position: string) => {
-		switch (position) {
-		case 'top':
-			return 'bottom';
-		case 'bottom':
-			return 'top';
-		case 'left':
-			return 'right';
-		case 'right':
-			return 'left';
-		case 'center':
-			break;
-		default:
-			break;
-		}
+		if (position === 'top') return 'bottom';
+		if (position === 'bottom') return 'top';
+		if (position === 'left') return 'right';
+		if (position === 'right') return 'left';
+		return undefined;
 	};
 
 	/*
@@ -224,12 +221,12 @@ const CSAutoposition = ({
 				left: refPointRect?.left + refPointRect.width / 2,
 				transform: 'translateX(-50%) translate3d(0, 0, 0)',
 			};
-		} if (openOnPosition === 'left' || openOnPosition === 'right') {
-			return {
-				top: refPointRect?.top + refPointRect?.height / 2,
-				transform: 'translateY(-50%) translate3d(0, 0, 0)',
-			};
 		}
+
+		return {
+			top: refPointRect?.top + refPointRect?.height / 2,
+			transform: 'translateY(-50%) translate3d(0, 0, 0)',
+		};
 	};
 
 	/*

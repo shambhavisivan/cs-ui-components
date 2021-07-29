@@ -105,20 +105,10 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 	}
 
 	fileSizeDisplay(file: File) {
-		if (this.props.fileSize) {
-			let fileSizeDisplay;
-			if (file.size < 1000) {
-				// bytes
-				fileSizeDisplay = ` (${Math.round(file.size)}B)`;
-			} else if (file.size < 1000000) {
-				// kb
-				fileSizeDisplay = ` (${Math.round(file.size / 1000)}KB)`;
-			} else {
-				// mb
-				fileSizeDisplay = ` (${Math.round(file.size / 1000000)}MB)`;
-			}
-			return fileSizeDisplay;
-		}
+		if (!this.props.fileSize) return null;
+		if (file.size < 1000) return ` (${Math.round(file.size)}B)`; // bytes
+		if (file.size < 1000000) return ` (${Math.round(file.size / 1000)}KB)`; // kb
+		return ` (${Math.round(file.size / 1000000)}MB)`; // mb
 	}
 
 	render() {

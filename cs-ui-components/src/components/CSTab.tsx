@@ -66,20 +66,12 @@ class CSTab extends React.Component<CSTabProps> {
 		};
 
 		const getStatusIcon = () => {
-			switch (true) {
-			case (active && !tooltipContent):
-				return 'record';
-			case (!!tabIcon):
-				return tabIcon;
-			case (!!tooltipContent):
-				return; // If tooltipContent is provided, icon will come OOTB from CSTooltip
-			case (status === 'error' || status === 'warning'):
-				return 'warning';
-			case (status === 'success'):
-				return 'check';
-			default:
-				return 'routing_offline';
-			}
+			if (active && !tooltipContent) return 'record';
+			if (tabIcon) return tabIcon;
+			if (tooltipContent) return ''; // If tooltipContent is provided, icon will come OOTB from CSTooltip
+			if (status === 'error' || status === 'warning') return 'warning';
+			if (status === 'success') return 'check';
+			return 'routing_offline';
 		};
 
 		const renderTabIcon = () => tabIcon || !(parentVariant === 'normal' && status === 'initial');

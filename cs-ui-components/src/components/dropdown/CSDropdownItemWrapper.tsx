@@ -136,25 +136,27 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 		};
 
 		const childrenWithWrapper = React.Children.map(children, (child: any) => {
-			if (child) {
-				if (child.type === CSDivider) {
-					return (
-						<>
-							{child}
-						</>
-					);
-				}
+			if (!child) return null;
+
+			if (child.type === CSDivider) {
 				return (
-					<li role="none">
-						{React.cloneElement(
-							child,
-							{
-								role: 'menuitem',
-							},
-						)}
-					</li>
+					<>
+						{child}
+					</>
 				);
 			}
+
+			return (
+				<li role="none">
+					{React.cloneElement(
+						child,
+						{
+							onKeyDown: this.handleKeyDown,
+							role: 'menuitem',
+						},
+					)}
+				</li>
+			);
 		});
 
 		return (

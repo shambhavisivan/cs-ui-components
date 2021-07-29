@@ -161,14 +161,8 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 	}
 
 	flipPosition = (position: string) => {
-		switch (position) {
-		case 'left':
-			return 'right';
-		case 'right':
-			return 'left';
-		default:
-			break;
-		}
+		if (position === 'left') return 'right';
+		return 'left';
 	}
 
 	render() {

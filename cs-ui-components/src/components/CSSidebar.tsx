@@ -71,6 +71,8 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 					active: this.state.active,
 				});
 			}
+
+			return null;
 		});
 
 		const style: CSSProperties = {
