@@ -56,6 +56,11 @@ const CSAlert = ({
 	const alertRole = variant === 'info' ? 'status' : 'alert';
 	const alertIconSize = styleFormat === 'scoped' ? '1.5rem' : '0.875rem';
 	const alertIconName = variant === 'base' ? 'info' : variant;
+	const renderText = () => {
+		if (!text) return null;
+		if (Array.isArray(text)) return text.map((t, index) => <span className="cs-alert-text" key={index}>{t}</span>);
+		return (<span className="cs-alert-text">{text}</span>);
+	};
 	return (
 		<div
 			className={alertClasses}
@@ -71,11 +76,7 @@ const CSAlert = ({
 						origin={iconOrigin}
 					/>
 				) : null}
-				{text ? (
-					Array.isArray(text)
-						? text.map((t, index) => <span className="cs-alert-text" key={index}>{t}</span>)
-						: <span className="cs-alert-text">{text}</span>
-				) : null}
+				{renderText()}
 				{children ? (
 					<span className="cs-alert-text">{children}</span>
 				) : null}

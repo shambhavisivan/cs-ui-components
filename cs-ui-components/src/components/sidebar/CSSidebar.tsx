@@ -178,7 +178,7 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 								iconOrigin={tab.iconOrigin}
 								label={tab.title}
 								key={tab.index}
-								className={this.state.activeTabIndex === tab.index && !this.state.closed ? 'cs-sidebar-tab-selected' : this.state.closed ? '' : ''}
+								className={this.state.activeTabIndex === tab.index && !this.state.closed ? 'cs-sidebar-tab-selected' : null}
 								aria-current={this.state.activeTabIndex === tab.index}
 								onClick={() => { this.handleTabClick(tab.index); }}
 							/>

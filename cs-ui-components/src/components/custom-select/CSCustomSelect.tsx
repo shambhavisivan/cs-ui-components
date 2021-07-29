@@ -234,24 +234,23 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 
 	// Fires on each selection change and returns option items based on defined exportValue prop
 	handleSelectChange = () => {
-		const { exportValue, onSelectChange, multiselect } = this.props;
-		const { selectedItem, selectedOptions } = this.state;
-
-		let stateToExport: Array<CSOptionItem> | CSOptionItem;
+		const { onSelectChange } = this.props;
 
 		if (onSelectChange) {
-			// Set correct state to export according to mutliselect prop status
+			// Set correct state to export according to multiselect prop status
 			// If selectedItem object contains empty strings, return null
-			stateToExport = multiselect
-				? selectedOptions
-				: selectedItem.itemKey === ''
-					? null
-					: selectedItem;
-			if (exportValue) {
-				onSelectChange(this.getItemsByExportValue(stateToExport));
-			} else {
-				onSelectChange(stateToExport);
-			}
+			const { exportValue, multiselect } = this.props;
+			const { selectedItem, selectedOptions } = this.state;
+			let stateToExport: Array<CSOptionItem> | CSOptionItem;
+
+			if (multiselect) stateToExport = selectedOptions;
+			else if (selectedItem.itemKey !== '') stateToExport = selectedItem;
+			else stateToExport = null;
+
+			if (exportValue) onSelectChange(this.getItemsByExportValue(stateToExport));
+			else onSelectChange(stateToExport);
+
+			return selectedItem;
 		}
 	}
 

@@ -51,6 +51,17 @@ const CSToast = ({
 		'--cs-toast-width': width,
 	};
 	const toastRole = (variant === 'info' || variant === 'success') ? 'status' : 'alert';
+
+	const iconVisible = () => {
+		if (!iconVisibility) return null;
+		if (iconName) {
+			return (
+				<CSIcon name={iconName} origin={iconOrigin} size="1.5rem" />
+			);
+		}
+		return (<CSIcon name={variant} size="1.5rem" />);
+	};
+
 	return (
 		<div
 			className={toastWrapperClasses}
@@ -58,11 +69,7 @@ const CSToast = ({
 			{...rest}
 		>
 			<div className={toastClasses} role={toastRole} style={style}>
-				{iconVisibility
-					? (iconName
-						? <CSIcon name={iconName} origin={iconOrigin} size="1.5rem" />
-						: <CSIcon name={variant} size="1.5rem" />)
-					: null}
+				{iconVisible()}
 				<div className="cs-toast-text">
 					<h4>
 						{text}

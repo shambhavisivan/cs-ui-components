@@ -365,6 +365,18 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			'--cs-tw-dimension': this.state.tooltipWrapperDimension ? `${this.state.tooltipWrapperDimension}px` : '',
 		};
 
+		const tooltipContent = () => {
+			if (!this.state.content) return null;
+			if (Array.isArray(this.state.content)) {
+				return (this.state.content.map((contentItem, index) => (
+					<div className="cs-tooltip-body" key={index}>
+						{contentItem}
+					</div>
+				)));
+			}
+			return <div className="cs-tooltip-body">{this.state.content}</div>;
+		};
+
 		const tooltip = (
 			<div
 				className={tooltipClasses}
@@ -380,15 +392,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 								<div className="cs-tooltip-header">{tooltipHeader}</div>
 							)}
 
-							{this.state.content
-								? Array.isArray(this.state.content)
-									? (this.state.content.map((contentItem, index) => (
-										<div className="cs-tooltip-body" key={index}>
-											{contentItem}
-										</div>
-									)))
-									: <div className="cs-tooltip-body">{this.state.content}</div>
-								: null}
+							{tooltipContent()}
 						</>
 					)}
 			</div>
