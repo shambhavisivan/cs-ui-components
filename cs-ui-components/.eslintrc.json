@@ -32,6 +32,7 @@
         "react/jsx-indent": ["error", "tab", { "checkAttributes": true, "indentLogicalExpressions": true }],
         "react/jsx-indent-props": ["error", "tab"],
         "jsx-a11y/label-has-associated-control": ["error", { "required": { "some": ["nesting", "id"]}}],
+        "jsx-a11y/no-autofocus": ["off"],
         "import/extensions": ["error", "never", { "svg": "always" }],
         "no-unused-vars": ["off"],
         "@typescript-eslint/no-unused-vars": ["error", { "ignoreRestSiblings": true }],
@@ -44,8 +45,7 @@
         "no-underscore-dangle": ["warn"],
         "react/destructuring-assignment": ["warn"],
         "jsx-a11y/role-supports-aria-props": ["warn"],
-        "jsx-a11y/click-events-have-key-events": ["warn"],
-        "jsx-a11y/no-autofocus": ["warn"]
+        "jsx-a11y/click-events-have-key-events": ["warn"]
     },
     "settings": {
         "import/resolver": {
