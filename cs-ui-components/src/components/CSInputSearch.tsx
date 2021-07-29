@@ -60,9 +60,11 @@ export function resolveOnChange(
 			event.currentTarget = target;
 			const originalInputValue = target.value;
 			// change target ref value cause e.target.value should be '' when clear input
+			// eslint-disable-next-line no-param-reassign
 			target.value = '';
 			onChange(event as React.ChangeEvent<HTMLInputElement>);
 			// reset target ref value
+			// eslint-disable-next-line no-param-reassign
 			target.value = originalInputValue;
 			return;
 		}
