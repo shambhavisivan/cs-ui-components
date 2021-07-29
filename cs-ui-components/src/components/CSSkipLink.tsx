@@ -10,37 +10,32 @@ export interface CSSkipLinkProps {
 	jumpDestination: string;
 }
 
-class CSSkipLink extends React.Component<CSSkipLinkProps> {
-	render() {
-		const {
-			className,
-			color,
-			href,
-			id,
-			jumpDestination,
-			...rest
-		} = this.props;
-
-		const skipLinkClasses = classNames(
-			'cs-skip-link',
-			{
-				[`${className}`]: className,
-			},
-		);
-
-		return (
-			<a
-				className={skipLinkClasses}
-				href={href}
-				id={id}
-				style={{ '--cs-skip-link-custom-c': color }}
-				target="_self"
-				{...rest}
-			>
-				{`Jump to ${jumpDestination}`}
-			</a>
-		);
-	}
-}
+const CSSkipLink = ({
+	className,
+	color,
+	href,
+	id,
+	jumpDestination,
+	...rest
+}: CSSkipLinkProps) => {
+	const skipLinkClasses = classNames(
+		'cs-skip-link',
+		{
+			[`${className}`]: className,
+		},
+	);
+	return (
+		<a
+			className={skipLinkClasses}
+			href={href}
+			id={id}
+			style={{ '--cs-skip-link-custom-c': color }}
+			target="_self"
+			{...rest}
+		>
+			{`Jump to ${jumpDestination}`}
+		</a>
+	);
+};
 
 export default CSSkipLink;

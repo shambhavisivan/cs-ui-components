@@ -14,61 +14,54 @@ export interface CSLabelProps {
 	tooltipPosition?: CSTooltipPosition;
 }
 
-class CSLabel extends React.Component<CSLabelProps> {
-	render() {
-		const {
-			className,
-			helpText,
-			htmlFor,
-			id,
-			label,
-			required,
-			title,
-			tooltipPosition,
-			...rest
-		} = this.props;
+const CSLabel = ({
+	className,
+	helpText,
+	htmlFor,
+	id,
+	label,
+	required,
+	title,
+	tooltipPosition,
+	...rest
+}: CSLabelProps) => {
+	const labelClasses = classNames(
+		'cs-label-wrapper',
+		{
+			[`${className}`]: className,
+		},
+	);
+	return (
 
-		const labelClasses = classNames(
-			'cs-label-wrapper',
-			{
-				[`${className}`]: className,
-			},
-
-		);
-
-		return (
-			<>
-				<label
-					htmlFor={htmlFor}
-					className={labelClasses}
-					id={id}
-					{...rest}
-				>
-					{required
-						&& (
-							<span
-								className="cs-label-required"
-								aria-hidden="true"
-							>
-								*
-							</span>
-						)}
-					<span className="cs-label" title={title}>
-						{label}
+		<label
+			htmlFor={htmlFor}
+			className={labelClasses}
+			id={id}
+			{...rest}
+		>
+			{required
+				&& (
+					<span
+						className="cs-label-required"
+						aria-hidden="true"
+					>
+						*
 					</span>
-					{helpText
-						&& (
-							<div className="cs-tooltip-group">
-								<CSTooltip
-									content={helpText}
-									position={tooltipPosition}
-								/>
-							</div>
-						)}
-				</label>
-			</>
-		);
-	}
-}
+				)}
+			<span className="cs-label" title={title}>
+				{label}
+			</span>
+			{helpText
+				&& (
+					<div className="cs-tooltip-group">
+						<CSTooltip
+							content={helpText}
+							position={tooltipPosition}
+						/>
+					</div>
+				)}
+		</label>
+	);
+};
 
 export default CSLabel;

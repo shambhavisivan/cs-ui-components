@@ -6,28 +6,27 @@ export interface CSMainHeaderRightProps {
 	className?: string;
 	id?: string;
 }
-class CSMainHeaderRight extends React.Component<CSMainHeaderRightProps> {
-	render() {
-		const {
-			className,
-			children,
-			id,
-			...rest
-		} = this.props;
-
-		const mainHeaderRightClasses = classNames(
-			'cs-main-header-right',
-			{
-				[`${className}`]: className,
-			},
-		);
-
-		return (
-			<div className={mainHeaderRightClasses} id={id} {...rest}>
-				{children}
-			</div>
-		);
-	}
-}
+const CSMainHeaderRight = ({
+	className,
+	children,
+	id,
+	...rest
+}: CSMainHeaderRightProps) => {
+	const mainHeaderRightClasses = classNames(
+		'cs-main-header-right',
+		{
+			[`${className}`]: className,
+		},
+	);
+	return (
+		<div
+			className={mainHeaderRightClasses}
+			id={id}
+			{...rest}
+		>
+			{children}
+		</div>
+	);
+};
 
 export default CSMainHeaderRight;

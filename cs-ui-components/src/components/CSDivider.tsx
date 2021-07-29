@@ -12,44 +12,38 @@ export interface CSDividerProps {
 	variant: CSDividerVariant;
 }
 
-class CSDivider extends React.Component<CSDividerProps> {
-	render() {
-		const {
-			className,
-			id,
-			label,
-			size,
-			variant,
-			...rest
-		} = this.props;
-
-		const dividerClasses = classNames(
-			'cs-divider',
-			[`cs-divider-${variant}`],
-			{
-				'cs-divider-with-label': label,
-				[`${className}`]: className,
-			},
-		);
-
-		const style: CSSProperties = {
-			'--cs-divider-size': size,
-		};
-
-		return (
-			<div
-				className={dividerClasses}
-				style={style}
-				role="separator"
-				aria-orientation={variant}
-				id={id}
-				{...rest}
-			>
-				{(label && variant === 'horizontal')
+const CSDivider = ({
+	className,
+	id,
+	label,
+	size,
+	variant,
+	...rest
+}: CSDividerProps) => {
+	const dividerClasses = classNames(
+		'cs-divider',
+		[`cs-divider-${variant}`],
+		{
+			'cs-divider-with-label': label,
+			[`${className}`]: className,
+		},
+	);
+	const style: CSSProperties = {
+		'--cs-divider-size': size,
+	};
+	return (
+		<div
+			className={dividerClasses}
+			style={style}
+			role="separator"
+			aria-orientation={variant}
+			id={id}
+			{...rest}
+		>
+			{(label && variant === 'horizontal')
 					&& <span className="cs-divider-label">{label}</span>}
-			</div>
-		);
-	}
-}
+		</div>
+	);
+};
 
 export default CSDivider;

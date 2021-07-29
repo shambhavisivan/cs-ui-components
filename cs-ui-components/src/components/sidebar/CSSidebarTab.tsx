@@ -16,69 +16,60 @@ export interface CSSidebarTabProps {
 	title: string;
 }
 
-class CSSidebarTab extends React.Component<CSSidebarTabProps> {
-	public static defaultProps = {
-		iconOrigin: 'slds',
-		noTabHeader: false,
+const CSSidebarTab = ({
+	isActiveTab,
+	children,
+	className,
+	iconName,
+	iconOrigin = 'slds',
+	id,
+	noTabHeader = false,
+	subtitle,
+	tabPadding,
+	tabWidth,
+	title,
+	...rest
+}: CSSidebarTabProps) => {
+	const style: CSSProperties = {
+		'--cs-sidebar-tab-custom-padding': tabPadding,
 	};
 
-	render() {
-		const {
-			isActiveTab,
-			children,
-			className,
-			iconName,
-			iconOrigin,
-			id,
-			noTabHeader,
-			subtitle,
-			tabPadding,
-			tabWidth,
-			title,
-			...rest
-		} = this.props;
+	const sidebarTabClasses = classNames(
+		'cs-sidebar-tab',
+		{
+			[`${className}`]: className,
+		},
+	);
 
-		const style: CSSProperties = {
-			'--cs-sidebar-tab-custom-padding': tabPadding,
-		};
-
-		const sidebarTabClasses = classNames(
-			'cs-sidebar-tab',
-			{
-				[`${className}`]: className,
-			},
-		);
-
-		return (
-			<>
-				{isActiveTab
-					&& (
-						<div
-							className={sidebarTabClasses}
-							id={id}
-							style={style}
-							{...rest}
-						>
-							{!noTabHeader
-							&& (
-								<div className="cs-sidebar-tab-header">
-									<div className="cs-sidebar-tab-headings-wrapper">
-										<span className="cs-sidebar-tab-title-wrapper">
-											<h3 className="cs-sidebar-tab-title" title={title}>{title}</h3>
-										</span>
-										{subtitle
-										&& <h4 className="cs-sidebar-tab-subtitle">{subtitle}</h4>}
-									</div>
+	return (
+		<>
+			{isActiveTab
+				&& (
+					<div
+						className={sidebarTabClasses}
+						id={id}
+						style={style}
+						{...rest}
+					>
+						{!noTabHeader
+						&& (
+							<div className="cs-sidebar-tab-header">
+								<div className="cs-sidebar-tab-headings-wrapper">
+									<span className="cs-sidebar-tab-title-wrapper">
+										<h3 className="cs-sidebar-tab-title" title={title}>{title}</h3>
+									</span>
+									{subtitle
+									&& <h4 className="cs-sidebar-tab-subtitle">{subtitle}</h4>}
 								</div>
-							)}
-							<div className="cs-sidebar-tab-body">
-								{children}
 							</div>
+						)}
+						<div className="cs-sidebar-tab-body">
+							{children}
 						</div>
-					)}
-			</>
-		);
-	}
-}
+					</div>
+				)}
+		</>
+	);
+};
 
 export default CSSidebarTab;

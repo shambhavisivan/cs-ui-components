@@ -7,28 +7,23 @@ export interface CSMainHeaderIconProps {
 	id?: string;
 }
 
-class CSMainHeaderIcon extends React.Component<CSMainHeaderIconProps> {
-	render() {
-		const {
-			className,
-			children,
-			id,
-			...rest
-		} = this.props;
-
-		const mainHeaderIconClasses = classNames(
-			'cs-main-header-icon',
-			{
-				[`${className}`]: className,
-			},
-		);
-
-		return (
-			<div className={mainHeaderIconClasses} id={id} {...rest}>
-				{children}
-			</div>
-		);
-	}
-}
+const CSMainHeaderIcon = ({
+	className,
+	children,
+	id,
+	...rest
+}: CSMainHeaderIconProps) => {
+	const mainHeaderIconClasses = classNames(
+		'cs-main-header-icon',
+		{
+			[`${className}`]: className,
+		},
+	);
+	return (
+		<div className={mainHeaderIconClasses} id={id} {...rest}>
+			{children}
+		</div>
+	);
+};
 
 export default CSMainHeaderIcon;

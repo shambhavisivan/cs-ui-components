@@ -15,56 +15,52 @@ export interface CSPathItemProps {
 	name: string;
 }
 
-class CSPathItem extends React.Component<CSPathItemProps> {
-	render() {
-		const {
-			active,
-			className,
-			disabled,
-			status,
-			onClick,
-			id,
-			name,
-			...rest
-		} = this.props;
+const CSPathItem = ({
+	active,
+	className,
+	disabled,
+	status,
+	onClick,
+	id,
+	name,
+	...rest
+}: CSPathItemProps) => {
+	const CSPathItemClasses = classNames(
+		'cs-path-item',
+		{
+			[`cs-path-item-${status}`]: status,
+			'cs-path-item-active': active,
+			[`${className}`]: className,
+		},
+	);
 
-		const CSPathItemClasses = classNames(
-			'cs-path-item',
-			{
-				[`cs-path-item-${this.props.status}`]: status,
-				'cs-path-item-active': active,
-				[`${className}`]: className,
-			},
-		);
-
-		return (
-			<li
-				onClick={onClick}
-				className={CSPathItemClasses}
-				title={name}
-				id={id}
-				{...rest}
+	return (
+		<li
+			onClick={onClick}
+			className={CSPathItemClasses}
+			title={name}
+			id={id}
+			{...rest}
+		>
+			<button
+				aria-current={active}
+				aria-invalid={status === 'error'}
+				disabled={disabled}
+				className="cs-path-item-wrapper"
 			>
-				<button
-					aria-current={active}
-					aria-invalid={status === 'error'}
-					disabled={disabled}
-					className="cs-path-item-wrapper"
-				>
-					{this.props.status
-						&& (
-							<span className="cs-path-item-icon">
-								<CSIcon
-									name={status === 'success' ? 'check' : 'warning'}
-									color={status === 'warning' ? 'var(--cs-path-item-warning-icon)' : 'var(--cs-path-item-icon)'}
-								/>
-							</span>
-						)}
-					<span className="cs-path-item-name">{this.props.name}</span>
-				</button>
-			</li>
-		);
-	}
-}
+				{status
+					&& (
+						<span className="cs-path-item-icon">
+							<CSIcon
+								name={status === 'success' ? 'check' : 'warning'}
+								color={status === 'warning' ? 'var(--cs-path-item-warning-icon)' : 'var(--cs-path-item-icon)'}
+							/>
+						</span>
+					)}
+				<span className="cs-path-item-name">{name}</span>
+			</button>
+		</li>
+	);
+};
 
 export default CSPathItem;

@@ -11,39 +11,34 @@ export interface CSCardFooterProps {
 	padding?: string;
 }
 
-class CSCardFooter extends React.Component<CSCardFooterProps> {
-	public static defaultProps = {
-		align: 'left',
+const CSCardFooter = ({
+	align = 'left',
+	className,
+	children,
+	id,
+	padding,
+	...rest
+}: CSCardFooterProps) => {
+	const cardFooterClasses = classNames(
+		'cs-card-footer',
+		{
+			[`cs-card-footer-${align}`]: align,
+			[`${className}`]: className,
+		},
+	);
+	const cardFooterStyles: CSSProperties = {
+		'--cs-card-footer-padding': padding,
 	};
-
-	render() {
-		const {
-			align, className, children, id, padding, ...rest
-		} = this.props;
-
-		const cardFooterClasses = classNames(
-			'cs-card-footer',
-			{
-				[`cs-card-footer-${align}`]: align,
-				[`${className}`]: className,
-			},
-		);
-
-		const cardFooterStyles: CSSProperties = {
-			'--cs-card-footer-padding': padding,
-		};
-
-		return (
-			<footer
-				className={cardFooterClasses}
-				id={id}
-				style={cardFooterStyles}
-				{...rest}
-			>
-				{children}
-			</footer>
-		);
-	}
-}
+	return (
+		<footer
+			className={cardFooterClasses}
+			id={id}
+			style={cardFooterStyles}
+			{...rest}
+		>
+			{children}
+		</footer>
+	);
+};
 
 export default CSCardFooter;

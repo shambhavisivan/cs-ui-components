@@ -12,49 +12,37 @@ export interface CSMainHeaderProps {
 	sticky?: boolean;
 }
 
-class CSMainHeader extends React.Component<CSMainHeaderProps> {
-	public static defaultProps = {
-		color: 'neutral',
-		maxWidth: '100%',
-		sticky: true,
+const CSMainHeader = ({
+	children,
+	className,
+	color = 'neutral',
+	id,
+	maxWidth = '100%',
+	sticky = true,
+	...rest
+}: CSMainHeaderProps) => {
+	const mainHeaderGroupClasses = classNames(
+		'cs-main-header',
+		{
+			'cs-main-header-sticky': sticky === true,
+			[`cs-main-header-${color}`]: color,
+			[`${className}`]: className,
+		},
+	);
+	const style: CSSProperties = {
+		maxWidth,
 	};
-
-	render() {
-		const {
-			children,
-			className,
-			color,
-			id,
-			maxWidth,
-			sticky,
-			...rest
-		} = this.props;
-
-		const mainHeaderGroupClasses = classNames(
-			'cs-main-header',
-			{
-				'cs-main-header-sticky': sticky === true,
-				[`cs-main-header-${color}`]: color,
-				[`${className}`]: className,
-			},
-		);
-
-		const style: CSSProperties = {
-			maxWidth,
-		};
-
-		return (
-			<header
-				className={mainHeaderGroupClasses}
-				id={id}
-				{...rest}
-			>
-				<div style={style} className="cs-main-header-inner">
-					{children}
-				</div>
-			</header>
-		);
-	}
-}
+	return (
+		<header
+			className={mainHeaderGroupClasses}
+			id={id}
+			{...rest}
+		>
+			<div style={style} className="cs-main-header-inner">
+				{children}
+			</div>
+		</header>
+	);
+};
 
 export default CSMainHeader;

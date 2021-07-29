@@ -7,31 +7,27 @@ export interface CSProgressIndicatorProps {
 	id?: string;
 }
 
-class CSProgressIndicator extends React.Component<CSProgressIndicatorProps> {
-	render() {
-		const {
-			className,
-			id,
-			...rest
-		} = this.props;
-
-		const progressIndicatorClasses = classNames(
-			'cs-progress-indicator',
-			{
-				[`${className}`]: className,
-			},
-		);
-
-		return (
-			<ol
-				className={progressIndicatorClasses}
-				id={id}
-				{...rest}
-			>
-				{this.props.children}
-			</ol>
-		);
-	}
-}
+const CSProgressIndicator = ({
+	children,
+	className,
+	id,
+	...rest
+}: CSProgressIndicatorProps) => {
+	const progressIndicatorClasses = classNames(
+		'cs-progress-indicator',
+		{
+			[`${className}`]: className,
+		},
+	);
+	return (
+		<ol
+			className={progressIndicatorClasses}
+			id={id}
+			{...rest}
+		>
+			{children}
+		</ol>
+	);
+};
 
 export default CSProgressIndicator;

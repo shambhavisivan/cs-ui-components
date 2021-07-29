@@ -14,49 +14,38 @@ export interface CSChipProps {
 	variantStyle?: CSChipVariantStyle;
 }
 
-class CSChip extends React.Component<CSChipProps> {
-	public static defaultProps = {
-		variant: 'brand',
-		variantStyle: 'fill',
+const CSChip = ({
+	className,
+	color,
+	id,
+	text,
+	variant = 'brand',
+	variantStyle = 'fill',
+	...rest
+}: CSChipProps) => {
+	const chipClasses = classNames(
+		'cs-chip',
+		{
+			[`cs-chip-${variant}`]: variantStyle === 'fill',
+			[`cs-chip-${variant}-border`]: variantStyle === 'border',
+			'cs-chip-custom-color': color && variantStyle === 'fill',
+			'cs-chip-custom-color-border': color && variantStyle === 'border',
+			[`${className}`]: className,
+		},
+	);
+	const chipStyle: CSSProperties = {
+		'--cs-chip-custom-c': color,
 	};
-
-	render() {
-		const {
-			className,
-			color,
-			id,
-			text,
-			variant,
-			variantStyle,
-			...rest
-		} = this.props;
-
-		const chipClasses = classNames(
-			'cs-chip',
-			{
-				[`cs-chip-${variant}`]: variantStyle === 'fill',
-				[`cs-chip-${variant}-border`]: variantStyle === 'border',
-				'cs-chip-custom-color': color && variantStyle === 'fill',
-				'cs-chip-custom-color-border': color && variantStyle === 'border',
-				[`${className}`]: className,
-			},
-		);
-
-		const chipStyle: CSSProperties = {
-			'--cs-chip-custom-c': color,
-		};
-
-		return (
-			<div
-				className={chipClasses}
-				id={id}
-				style={chipStyle}
-				{...rest}
-			>
-				{text}
-			</div>
-		);
-	}
-}
+	return (
+		<div
+			className={chipClasses}
+			id={id}
+			style={chipStyle}
+			{...rest}
+		>
+			{text}
+		</div>
+	);
+};
 
 export default CSChip;

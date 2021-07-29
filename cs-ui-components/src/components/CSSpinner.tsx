@@ -16,61 +16,47 @@ export interface CSSpinnerProps {
 	size?: CSSpinnerSize;
 }
 
-class CSSpinner extends React.Component<CSSpinnerProps> {
-	public static defaultProps = {
-		color: 'brand',
-		size: 'large',
-		overlay: 'light',
-	};
-
-	render() {
-		const {
-			className,
-			color,
-			id,
-			inline,
-			label,
-			overlay,
-			size,
-			...rest
-		} = this.props;
-
-		const spinnerClasses = classNames(
-			'cs-spinner-wrapper',
-			{
-				'cs-spinner-inline': inline,
-				[`cs-spinner-overlay-${overlay}`]: overlay,
-				[`${className}`]: className,
-			},
-		);
-
-		return (
-			<>
-				<div
-					className={spinnerClasses}
-					id={id}
-					role="progressbar"
-					aria-live="polite"
-					aria-busy
-					{...rest}
-				>
-					<div className="cs-spinner-wrapper-label">
-						<div className={`cs-spinner cs-spinner-${size} cs-spinner-${color}`}>
-							<div className="cs-spinner-dot-a" />
-							<div className="cs-spinner-dot-b" />
-						</div>
-						{(label && !inline)
-							&& (
-								<div className="cs-spinner-label">
-									<span>{label}</span>
-								</div>
-							)}
-					</div>
+const CSSpinner = ({
+	className,
+	color = 'brand',
+	id,
+	inline,
+	label,
+	overlay = 'light',
+	size = 'large',
+	...rest
+}: CSSpinnerProps) => {
+	const spinnerClasses = classNames(
+		'cs-spinner-wrapper',
+		{
+			'cs-spinner-inline': inline,
+			[`cs-spinner-overlay-${overlay}`]: overlay,
+			[`${className}`]: className,
+		},
+	);
+	return (
+		<div
+			className={spinnerClasses}
+			id={id}
+			role="progressbar"
+			aria-live="polite"
+			aria-busy
+			{...rest}
+		>
+			<div className="cs-spinner-wrapper-label">
+				<div className={`cs-spinner cs-spinner-${size} cs-spinner-${color}`}>
+					<div className="cs-spinner-dot-a" />
+					<div className="cs-spinner-dot-b" />
 				</div>
-
-			</>
-		);
-	}
-}
+				{(label && !inline)
+						&& (
+							<div className="cs-spinner-label">
+								<span>{label}</span>
+							</div>
+						)}
+			</div>
+		</div>
+	);
+};
 
 export default CSSpinner;

@@ -1,3 +1,4 @@
+/* eslint-disable react/prefer-stateless-function */
 import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 

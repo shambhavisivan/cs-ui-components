@@ -10,34 +10,29 @@ export interface CSModalFooterProps {
 	id?: string;
 }
 
-class CSModalFooter extends React.Component<CSModalFooterProps> {
-	public static defaultProps = {
-		align: 'right',
-	};
-
-	render() {
-		const {
-			align, children, className, id, ...rest
-		} = this.props;
-
-		const modalFooterClasses = classNames(
-			'cs-modal-footer',
-			{
-				[`cs-modal-footer-${align}`]: align,
-				[`${className}`]: className,
-			},
-		);
-
-		return (
-			<footer
-				className={modalFooterClasses}
-				id={id}
-				{...rest}
-			>
-				{children}
-			</footer>
-		);
-	}
-}
+const CSModalFooter = ({
+	align = 'right',
+	children,
+	className,
+	id,
+	...rest
+}: CSModalFooterProps) => {
+	const modalFooterClasses = classNames(
+		'cs-modal-footer',
+		{
+			[`cs-modal-footer-${align}`]: align,
+			[`${className}`]: className,
+		},
+	);
+	return (
+		<footer
+			className={modalFooterClasses}
+			id={id}
+			{...rest}
+		>
+			{children}
+		</footer>
+	);
+};
 
 export default CSModalFooter;

@@ -7,28 +7,28 @@ export interface CSCardProps {
 	id?: string;
 }
 
-class CSCard extends React.Component<CSCardProps> {
-	render() {
-		const {
-			children, className, id, ...rest
-		} = this.props;
-		const cardClasses = classNames(
-			'cs-card',
-			{
-				[`${className}`]: className,
-			},
-		);
-		return (
-			<div
-				className={cardClasses}
-				id={id}
-				role="region"
-				{...rest}
-			>
-				{children}
-			</div>
-		);
-	}
-}
+const CSCard = ({
+	children,
+	className,
+	id,
+	...rest
+}: CSCardProps) => {
+	const cardClasses = classNames(
+		'cs-card',
+		{
+			[`${className}`]: className,
+		},
+	);
+	return (
+		<div
+			className={cardClasses}
+			id={id}
+			role="region"
+			{...rest}
+		>
+			{children}
+		</div>
+	);
+};
 
 export default CSCard;

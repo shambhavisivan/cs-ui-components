@@ -47,7 +47,6 @@
         "import/no-extraneous-dependencies": ["warn", { "devDependencies": false, "optionalDependencies": false, "peerDependencies": false }],
         "import/no-unresolved": ["warn"],
         "import/no-webpack-loader-syntax": ["warn"],
-        "react/prefer-stateless-function": ["warn"],
         "react/static-property-placement": ["warn"],
         "react/button-has-type": ["warn"],
         "react/destructuring-assignment": ["warn"],
