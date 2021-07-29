@@ -48,153 +48,6 @@ const CSAutoposition = ({
 		document.body.appendChild(autoPositionRoot);
 	}
 
-	useEffect(() => {
-		registerResizeObserver(autopositionWrapperRef.current);
-
-		window.addEventListener('scroll', recalcOnScroll, true);
-		window.addEventListener('resize', recalcRefPointRect);
-
-		if (!availablePositions.includes(initialPosition)) {
-			console.error('Wanted position is not defined in position schema.');
-		}
-
-		return () => {
-			window.removeEventListener('scroll', recalcOnScroll, true);
-			window.removeEventListener('resize', recalcRefPointRect);
-		};
-	}, []);
-
-	useLayoutEffect(() => {
-		/*
-			useLayoutEffect callback fires immediately after render, but before browser has a chance
-			to layout the elements, therefore wrong DOMRect values are calculated within recalcComputedPosition method.
-			Wrapping it in setTimeout allows correct calculation of DOMRect values.
-		*/
-		setTimeout(() => {
-			if (autopositionWrapperRef.current) {
-				recalcComputedPosition(autopositionWrapperRef.current);
-			}
-		}, 0);
-		onPositionChange?.(computedPosition);
-	}, [computedStyle]);
-
-	useLayoutEffect(() => {
-		setPositionStyle();
-	}, [refPointRect, computedPosition]);
-
-	const topPosition = useMemo(() => window.innerHeight - refPointRect.top, [refPointRect]);
-	const bottomPosition = useMemo(() => refPointRect.top + refPointRect.height, [refPointRect]);
-
-	const openOn = useMemo(() => ({
-		top: topPosition,
-		bottom: bottomPosition,
-		left: window.innerWidth - refPointRect.left,
-		right: refPointRect.right,
-	}), [refPointRect, topPosition, bottomPosition]);
-
-	const expandTo = useMemo(() => ({
-		top: topPosition,
-		bottom: bottomPosition,
-		left: window.innerWidth - refPointRect.right,
-		right: refPointRect.left,
-	}), [refPointRect, topPosition, bottomPosition]);
-
-	const recalcRefPointRect = () => setRefPointRect(referencePoint.getBoundingClientRect());
-
-	/*
-		Sets computedStyle state which is passed as a inline style to the autoposition wrapper.
-		computedStyle is based on computedPosition state and deviation defined in the positionSchema prop.
-	*/
-	const setPositionStyle = () => {
-		const [openOnPosition, expandToPosition] = computedPosition.split('-');
-		let deviationStyles = {};
-
-		const openOnOpposite = getOppositePosition(openOnPosition);
-		const expandToOpposite = getOppositePosition(expandToPosition);
-
-		let openOnValue = openOn[openOnPosition as CSAutopositionDirection];
-		let expandToValue = expandTo[expandToPosition as CSAutopositionDirection];
-
-		const deviation = getDeviationFromSchema(computedPosition);
-		/*
-			Loops through deviation object and appends those deviations which have the same
-			key as one defined in opposite position properties on lines 101 and 102.
-			If there aren't keys that match defined opposite positions, deviation will be appended
-			as a separate css position declaration.
-		*/
-		if (deviation) {
-			Object.keys(deviation).forEach((key) => {
-				const value: number = deviation[key];
-				if (key === openOnOpposite) {
-					openOnValue += value;
-				} else if (key === expandToOpposite) {
-					expandToValue += value;
-				} else {
-					deviationStyles = { ...deviationStyles, [key]: value };
-				}
-			});
-		}
-
-		/*
-			If 'expand-to' position is defined as 'center' append css declarations to computedStyle state and stop the following execution of the function.
-			Otherwise value from 'expandToValue' variable will be appended to the computedStyle state.
-		*/
-		if (expandToPosition === 'center') {
-			const centeredPosition = getCenteredPositionValue(openOnPosition);
-			setComputedStyle({
-				[openOnOpposite]: openOnValue,
-				...centeredPosition,
-				...deviationStyles,
-			});
-			return;
-		}
-
-		setComputedStyle({
-			[openOnOpposite]: openOnValue,
-			[expandToOpposite]: expandToValue,
-			...deviationStyles,
-		});
-	};
-
-	/*
-		Searches for deviation in positionSchema items which are defined as objects and returns it.
-		Otherwise returns false.
-	*/
-	const getDeviationFromSchema = (position: CSAutopositions) => {
-		let deviation: any;
-		positionSchema.forEach(
-			(positionItem: CSAutopositions | CSAutopositionSchemaItem) => {
-				if (typeof positionItem === 'object'
-					&& positionItem.position === position
-				) {
-					if (Object.keys(positionItem.deviation).length) {
-						deviation = positionItem.deviation;
-					} else {
-						console.warn(
-							`'deviation' object cannot be empty. If deviation for position '${positionItem.position}' isn't needed, define position as string type.`,
-						);
-					}
-				}
-			},
-		);
-		return deviation ?? false;
-	};
-
-	// Returns css declaration based on the provided position
-	const getCenteredPositionValue = (openOnPosition: string) => {
-		if (openOnPosition === 'top' || openOnPosition === 'bottom') {
-			return {
-				left: refPointRect?.left + refPointRect.width / 2,
-				transform: 'translateX(-50%) translate3d(0, 0, 0)',
-			};
-		} if (openOnPosition === 'left' || openOnPosition === 'right') {
-			return {
-				top: refPointRect?.top + refPointRect?.height / 2,
-				transform: 'translateY(-50%) translate3d(0, 0, 0)',
-			};
-		}
-	};
-
 	/*
 		Checks if autoposition wrapper node overflows on the top or
 		bottom of the document object and returns the opposite position of the one
@@ -310,6 +163,8 @@ const CSAutoposition = ({
 		resizer.observe(autopositionWrapper);
 	};
 
+	const recalcRefPointRect = () => setRefPointRect(referencePoint.getBoundingClientRect());
+
 	const recalcOnScroll = (event: any) => {
 		if ((event.target as HTMLElement).contains(referencePoint)) {
 			recalcRefPointRect();
@@ -320,6 +175,151 @@ const CSAutoposition = ({
 		...computedStyle,
 		'--z-index-autoposition-wrapper': zIndex,
 	};
+
+	const topPosition = useMemo(() => window.innerHeight - refPointRect.top, [refPointRect]);
+	const bottomPosition = useMemo(() => refPointRect.top + refPointRect.height, [refPointRect]);
+
+	const openOn = useMemo(() => ({
+		top: topPosition,
+		bottom: bottomPosition,
+		left: window.innerWidth - refPointRect.left,
+		right: refPointRect.right,
+	}), [refPointRect, topPosition, bottomPosition]);
+
+	const expandTo = useMemo(() => ({
+		top: topPosition,
+		bottom: bottomPosition,
+		left: window.innerWidth - refPointRect.right,
+		right: refPointRect.left,
+	}), [refPointRect, topPosition, bottomPosition]);
+
+	/*
+		Searches for deviation in positionSchema items which are defined as objects and returns it.
+		Otherwise returns false.
+	*/
+	const getDeviationFromSchema = (position: CSAutopositions) => {
+		let deviation: any;
+		positionSchema.forEach(
+			(positionItem: CSAutopositions | CSAutopositionSchemaItem) => {
+				if (typeof positionItem === 'object'
+					&& positionItem.position === position
+				) {
+					if (Object.keys(positionItem.deviation).length) {
+						deviation = positionItem.deviation;
+					} else {
+						console.warn(
+							`'deviation' object cannot be empty. If deviation for position '${positionItem.position}' isn't needed, define position as string type.`,
+						);
+					}
+				}
+			},
+		);
+		return deviation ?? false;
+	};
+
+	// Returns css declaration based on the provided position
+	const getCenteredPositionValue = (openOnPosition: string) => {
+		if (openOnPosition === 'top' || openOnPosition === 'bottom') {
+			return {
+				left: refPointRect?.left + refPointRect.width / 2,
+				transform: 'translateX(-50%) translate3d(0, 0, 0)',
+			};
+		} if (openOnPosition === 'left' || openOnPosition === 'right') {
+			return {
+				top: refPointRect?.top + refPointRect?.height / 2,
+				transform: 'translateY(-50%) translate3d(0, 0, 0)',
+			};
+		}
+	};
+
+	/*
+		Sets computedStyle state which is passed as a inline style to the autoposition wrapper.
+		computedStyle is based on computedPosition state and deviation defined in the positionSchema prop.
+	*/
+	const setPositionStyle = () => {
+		const [openOnPosition, expandToPosition] = computedPosition.split('-');
+		let deviationStyles = {};
+
+		const openOnOpposite = getOppositePosition(openOnPosition);
+		const expandToOpposite = getOppositePosition(expandToPosition);
+
+		let openOnValue = openOn[openOnPosition as CSAutopositionDirection];
+		let expandToValue = expandTo[expandToPosition as CSAutopositionDirection];
+
+		const deviation = getDeviationFromSchema(computedPosition);
+		/*
+			Loops through deviation object and appends those deviations which have the same
+			key as one defined in opposite position properties on lines 101 and 102.
+			If there aren't keys that match defined opposite positions, deviation will be appended
+			as a separate css position declaration.
+		*/
+		if (deviation) {
+			Object.keys(deviation).forEach((key) => {
+				const value: number = deviation[key];
+				if (key === openOnOpposite) {
+					openOnValue += value;
+				} else if (key === expandToOpposite) {
+					expandToValue += value;
+				} else {
+					deviationStyles = { ...deviationStyles, [key]: value };
+				}
+			});
+		}
+
+		/*
+			If 'expand-to' position is defined as 'center' append css declarations to computedStyle state and stop the following execution of the function.
+			Otherwise value from 'expandToValue' variable will be appended to the computedStyle state.
+		*/
+		if (expandToPosition === 'center') {
+			const centeredPosition = getCenteredPositionValue(openOnPosition);
+			setComputedStyle({
+				[openOnOpposite]: openOnValue,
+				...centeredPosition,
+				...deviationStyles,
+			});
+			return;
+		}
+
+		setComputedStyle({
+			[openOnOpposite]: openOnValue,
+			[expandToOpposite]: expandToValue,
+			...deviationStyles,
+		});
+	};
+
+	useEffect(() => {
+		registerResizeObserver(autopositionWrapperRef.current);
+
+		window.addEventListener('scroll', recalcOnScroll, true);
+		window.addEventListener('resize', recalcRefPointRect);
+
+		if (!availablePositions.includes(initialPosition)) {
+			console.error('Wanted position is not defined in position schema.');
+		}
+
+		return () => {
+			window.removeEventListener('scroll', recalcOnScroll, true);
+			window.removeEventListener('resize', recalcRefPointRect);
+		};
+	}, []);
+
+	useLayoutEffect(() => {
+		/*
+			useLayoutEffect callback fires immediately after render, but before browser has a chance
+			to layout the elements, therefore wrong DOMRect values are calculated within recalcComputedPosition method.
+			Wrapping it in setTimeout allows correct calculation of DOMRect values.
+		*/
+		setTimeout(() => {
+			if (autopositionWrapperRef.current) {
+				recalcComputedPosition(autopositionWrapperRef.current);
+			}
+		}, 0);
+		onPositionChange?.(computedPosition);
+	}, [computedStyle]);
+
+	useLayoutEffect(() => {
+		setPositionStyle();
+	}, [refPointRect, computedPosition]);
 
 	return (
 		<Portal node={document && document.getElementById(autopositionRootId)}>

@@ -118,6 +118,13 @@ import './sass/style.scss';
 
 import CSToastApi from './api/CSToastAPI';
 
+// Append sprites inside opening body tag
+function getSpriteIcons() {
+	const spriteContainer = document.createElement('div');
+	spriteContainer.innerHTML = SldsIconSvg + CsIconSvg;
+	document.body.insertBefore(spriteContainer, document.body.firstChild);
+}
+
 // Alternative to external sprite URL which causes CORS issues in Safari
 if (document.readyState !== 'loading') {
 	// document is already ready
@@ -127,13 +134,6 @@ if (document.readyState !== 'loading') {
 		// document was not ready
 		getSpriteIcons();
 	});
-}
-
-// Append sprites inside opening body tag
-function getSpriteIcons() {
-	const spriteContainer = document.createElement('div');
-	spriteContainer.innerHTML = SldsIconSvg + CsIconSvg;
-	document.body.insertBefore(spriteContainer, document.body.firstChild);
 }
 
 export {
