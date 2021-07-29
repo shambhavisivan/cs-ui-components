@@ -41,7 +41,6 @@
         // These warnings should be revisited and preferably resolved
         "prefer-const": ["warn"],
         "no-underscore-dangle": ["warn"],
-        "import/no-unresolved": ["warn"],
         "react/static-property-placement": ["warn"],
         "react/button-has-type": ["warn"],
         "react/destructuring-assignment": ["warn"],
@@ -49,5 +48,10 @@
         "jsx-a11y/role-supports-aria-props": ["warn"],
         "jsx-a11y/click-events-have-key-events": ["warn"],
         "jsx-a11y/no-autofocus": ["warn"]
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {"extensions": [".js", ".jsx", ".ts", ".tsx"]}
+        }
     }
 }

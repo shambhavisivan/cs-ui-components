@@ -1,5 +1,5 @@
 import * as React from 'react';
-import '../../setupTests.ts';
+import '../../setupTests';
 import { shallow } from 'enzyme';
 import CSAlert, { CSAlertVariant } from '../CSAlert';
 
