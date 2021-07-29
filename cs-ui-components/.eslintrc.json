@@ -41,7 +41,6 @@
         "no-unused-vars": ["warn"],
         "no-underscore-dangle": ["warn"],
         "no-nested-ternary": ["warn"],
-        "no-restricted-globals": ["warn"],
         "no-lone-blocks": ["warn"],
         "no-param-reassign": ["warn"],
         "import/no-extraneous-dependencies": ["warn", { "devDependencies": false, "optionalDependencies": false, "peerDependencies": false }],
