@@ -1,21 +1,21 @@
 import React from 'react';
-import { CSTableAlpha, CSIcon, CSChip, CSTableAlphaRow } from '@cloudsense/cs-ui-components';
+import { CSDataTable, CSIcon, CSChip, CSDataTableRowInterface, CSButton } from '@cloudsense/cs-ui-components';
 
 import Preview from '../Preview';
 
 const columns = [
 	{
 		key: 'name',
-		title: 'Name'
+		header: 'Name'
 	}, {
 		key: 'surname',
-		title: 'Surname'
+		header: 'Surname'
 	}, {
 		key: 'birthday',
-		title: 'Birthday'
+		header: 'Birthday'
 	}, {
 		key: 'location',
-		title: 'Location'
+		header: 'Location'
 	}
 ];
 
@@ -95,9 +95,9 @@ const rows = [
 	}
 ];
 
-class CSTableAlphaPreview extends React.Component {
+class CSDataTablePreview extends React.Component {
 	getDoc = () => ({
-		name: 'Table Alpha',
+		name: 'Data Table',
 		usage: 'A table displays rows of data.',
 		accessible: 'yes',
 		alerts: {
@@ -106,19 +106,19 @@ class CSTableAlphaPreview extends React.Component {
 		},
 		components: [
 			{
-				name: 'CSTableAlpha',
+				name: 'CSDataTable',
 				examples: [
 					{
 						propName: 'borderless',
 						variations: [
 							{
 								primaryVariants: 'borderless={true}',
-								component: <CSTableAlpha
+								component: <CSDataTable
 									columns={columns}
 									rows={rows}
 									borderless
 								/>,
-								code: `<CSTableAlpha
+								code: `<CSDataTable
 									columns={columns}
 									rows={rows}
 									borderless
@@ -130,12 +130,12 @@ class CSTableAlphaPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'columnDividers={true}',
-								component: <CSTableAlpha
+								component: <CSDataTable
 									columns={columns}
 									rows={rows}
 									columnDividers
 								/>,
-								code: `<CSTableAlpha
+								code: `<CSDataTable
 									columns={columns}
 									rows={rows}
 									columnDividers
@@ -148,17 +148,17 @@ class CSTableAlphaPreview extends React.Component {
 							{
 								quickLink: 'compact',
 								primaryVariants: 'density="compact"',
-								component: <CSTableAlpha columns={columns} rows={rows} />,
-								code: '<CSTableAlpha columns={columns} rows={rows} />'
+								component: <CSDataTable columns={columns} rows={rows} />,
+								code: '<CSDataTable columns={columns} rows={rows} />'
 							}, {
 								quickLink: 'comfortable',
 								primaryVariants: 'density="comfortable"',
-								component: <CSTableAlpha
+								component: <CSDataTable
 									columns={columns}
 									rows={rows}
 									density="comfortable"
 								/>,
-								code: `<CSTableAlpha
+								code: `<CSDataTable
 									columns={columns}
 									rows={rows}
 									density="comfortable"
@@ -166,12 +166,12 @@ class CSTableAlphaPreview extends React.Component {
 							}, {
 								quickLink: 'spacious',
 								primaryVariants: 'density="spacious"',
-								component: <CSTableAlpha
+								component: <CSDataTable
 									columns={columns}
 									rows={rows}
 									density="spacious"
 								/>,
-								code: `<CSTableAlpha
+								code: `<CSDataTable
 									columns={columns}
 									rows={rows}
 									density="spacious"
@@ -183,12 +183,12 @@ class CSTableAlphaPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'disableHover={true}',
-								component: <CSTableAlpha
+								component: <CSDataTable
 									columns={columns}
 									rows={rows}
 									disableHover
 								/>,
-								code: `<CSTableAlpha
+								code: `<CSDataTable
 									columns={columns}
 									rows={rows}
 									disableHover
@@ -200,12 +200,12 @@ class CSTableAlphaPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'headless={true}',
-								component: <CSTableAlpha
+								component: <CSDataTable
 									columns={columns}
 									rows={rows}
 									headless
 								/>,
-								code: `<CSTableAlpha
+								code: `<CSDataTable
 									columns={columns}
 									rows={rows}
 									headless
@@ -217,12 +217,12 @@ class CSTableAlphaPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'maxHeight="120px"',
-								component: <CSTableAlpha
+								component: <CSDataTable
 									columns={columns}
 									rows={rows}
 									maxHeight="120px"
 								/>,
-								code: `<CSTableAlpha
+								code: `<CSDataTable
 									columns={columns}
 									rows={rows}
 									maxHeight="120px"
@@ -234,12 +234,12 @@ class CSTableAlphaPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'rowHeight="3rem"',
-								component: <CSTableAlpha
+								component: <CSDataTable
 									columns={columns}
 									rows={rows}
 									rowHeight="3rem"
 								/>,
-								code: `<CSTableAlpha
+								code: `<CSDataTable
 									columns={columns}
 									rows={rows}
 									rowHeight="3rem"
@@ -252,13 +252,13 @@ class CSTableAlphaPreview extends React.Component {
 							{
 								primaryVariants: 'stickyHeader={true}',
 								secondaryVariants: 'maxHeight="120px"',
-								component: <CSTableAlpha
+								component: <CSDataTable
 									columns={columns}
 									rows={rows}
 									stickyHeader
 									maxHeight="120px"
 								/>,
-								code: `<CSTableAlpha
+								code: `<CSDataTable
 									columns={columns}
 									rows={rows}
 									stickyHeader
@@ -271,12 +271,12 @@ class CSTableAlphaPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'striped={true}',
-								component: <CSTableAlpha
+								component: <CSDataTable
 									columns={columns}
 									rows={rows}
 									striped
 								/>,
-								code: `<CSTableAlpha
+								code: `<CSDataTable
 									columns={columns}
 									rows={rows}
 									striped
@@ -293,22 +293,22 @@ class CSTableAlphaPreview extends React.Component {
 									'className="custom-class"',
 									`className: 'custom-class'`
 								],
-								component: <CSTableAlpha
+								component: <CSDataTable
 									columns={[
 										{
 											key: 'name',
-											title: 'Name',
+											header: 'Name',
 											id: 'custom-header-cell-id',
 											className: 'custom-bg-mint'
 										}, {
 											key: 'surname',
-											title: 'Surname'
+											header: 'Surname'
 										}, {
 											key: 'birthday',
-											title: 'Birthday'
+											header: 'Birthday'
 										}, {
 											key: 'location',
-											title: 'Location'
+											header: 'Location'
 										}
 									]}
 									rows={[
@@ -391,22 +391,22 @@ class CSTableAlphaPreview extends React.Component {
 									id="custom-table-id"
 									className="custom-br-purple"
 								/>,
-								code: `<CSTableAlpha
+								code: `<CSDataTable
 									columns={[
 										{
 											key: 'name',
-											title: 'Name',
+											header: 'Name',
 											id: 'custom-header-cell-id',
 											className: 'custom-bg-mint'
 										}, {
 											key: 'surname',
-											title: 'Surname'
+											header: 'Surname'
 										}, {
 											key: 'birthday',
-											title: 'Birthday'
+											header: 'Birthday'
 										}, {
 											key: 'location',
-											title: 'Location'
+											header: 'Location'
 										}
 									]}
 									rows={[
@@ -497,14 +497,14 @@ class CSTableAlphaPreview extends React.Component {
 					{
 						name: 'column',
 						customTypes: {
-							name: 'Array<CSTableAlphaColumn>',
-							types: 'See CSTableAlpha Column Attributes'
+							name: 'Array<CSDataTableColumn>',
+							types: 'See CSDataTable Column Attributes'
 						},
-						description: 'Define table columns. See CSTableAlpha Column Attributes for details.'
+						description: 'Define table columns. See CSDataTable Column Attributes for details.'
 					}, {
 						name: 'row',
 						types: 'boolean',
-						description: 'Define table rows. See CSTableAlpha Row Attributes for details.'
+						description: 'Define table rows. See CSDataTable Row Attributes for details.'
 					}, {
 						name: 'borderless',
 						types: 'boolean',
@@ -523,7 +523,7 @@ class CSTableAlphaPreview extends React.Component {
 					}, {
 						name: 'density',
 						customTypes: {
-							name: 'CSTableAlphaDensity',
+							name: 'CSDataTableDensity',
 							types: [`'compact'`, `'comfortable'`, `'spacious'`]
 						},
 						default: `'compact'`,
@@ -561,7 +561,7 @@ class CSTableAlphaPreview extends React.Component {
 					}
 				]
 			}, {
-				name: 'CSTableAlpha Column',
+				name: 'CSDataTable Column',
 				attributes: true,
 				examples: [
 					{
@@ -570,38 +570,38 @@ class CSTableAlphaPreview extends React.Component {
 							{
 								primaryVariants: `key: 'location'`,
 								secondaryVariants: `rows={[{ location: 'Zagreb' }]}`,
-								component: <CSTableAlpha
+								component: <CSDataTable
 									columns={[
 										{
 											key: 'name',
-											title: 'Name'
+											header: 'Name'
 										}, {
 											key: 'surname',
-											title: 'Surname'
+											header: 'Surname'
 										}, {
 											key: 'birthday',
-											title: 'Birthday'
+											header: 'Birthday'
 										}, {
 											key: 'location',
-											title: 'Location'
+											header: 'Location'
 										}
 									]}
 									rows={rows}
 								/>,
-								code: `<CSTableAlpha
+								code: `<CSDataTable
 									columns={[
 										{
 											key: 'name',
-											title: 'Name'
+											header: 'Name'
 										}, {
 											key: 'surname',
-											title: 'Surname'
+											header: 'Surname'
 										}, {
 											key: 'birthday',
-											title: 'Birthday'
+											header: 'Birthday'
 										}, {
 											key: 'location',
-											title: 'Location'
+											header: 'Location'
 										}
 									]}
 									rows={rows}
@@ -614,38 +614,38 @@ class CSTableAlphaPreview extends React.Component {
 							{
 								quickLink: 'left',
 								primaryVariants: `align: 'left'`,
-								component: <CSTableAlpha
+								component: <CSDataTable
 									columns={[
 										{
 											key: 'name',
-											title: 'Name'
+											header: 'Name'
 										}, {
 											key: 'surname',
-											title: 'Surname'
+											header: 'Surname'
 										}, {
 											key: 'birthday',
-											title: 'Birthday'
+											header: 'Birthday'
 										}, {
 											key: 'location',
-											title: 'Location'
+											header: 'Location'
 										}
 									]}
 									rows={rows}
 								/>,
-								code: `<CSTableAlpha
+								code: `<CSDataTable
 									columns={[
 										{
 											key: 'name',
-											title: 'Name'
+											header: 'Name'
 										}, {
 											key: 'surname',
-											title: 'Surname'
+											header: 'Surname'
 										}, {
 											key: 'birthday',
-											title: 'Birthday'
+											header: 'Birthday'
 										}, {
 											key: 'location',
-											title: 'Location'
+											header: 'Location'
 										}
 									]}
 									rows={rows}
@@ -653,39 +653,39 @@ class CSTableAlphaPreview extends React.Component {
 							}, {
 								quickLink: 'center',
 								primaryVariants: `align: 'center'`,
-								component: <CSTableAlpha
+								component: <CSDataTable
 									columns={[
 										{
 											key: 'name',
-											title: 'Name'
+											header: 'Name'
 										}, {
 											key: 'surname',
-											title: 'Surname'
+											header: 'Surname'
 										}, {
 											key: 'birthday',
-											title: 'Birthday'
+											header: 'Birthday'
 										}, {
 											key: 'location',
-											title: 'Location',
+											header: 'Location',
 											align: 'center'
 										}
 									]}
 									rows={rows}
 								/>,
-								code: `<CSTableAlpha
+								code: `<CSDataTable
 									columns={[
 										{
 											key: 'name',
-											title: 'Name'
+											header: 'Name'
 										}, {
 											key: 'surname',
-											title: 'Surname'
+											header: 'Surname'
 										}, {
 											key: 'birthday',
-											title: 'Birthday'
+											header: 'Birthday'
 										}, {
 											key: 'location',
-											title: 'Location',
+											header: 'Location',
 											align: 'center'
 										}
 									]}
@@ -694,39 +694,39 @@ class CSTableAlphaPreview extends React.Component {
 							}, {
 								quickLink: 'right',
 								primaryVariants: `align: 'right'`,
-								component: <CSTableAlpha
+								component: <CSDataTable
 									columns={[
 										{
 											key: 'name',
-											title: 'Name'
+											header: 'Name'
 										}, {
 											key: 'surname',
-											title: 'Surname'
+											header: 'Surname'
 										}, {
 											key: 'birthday',
-											title: 'Birthday'
+											header: 'Birthday'
 										}, {
 											key: 'location',
-											title: 'Location',
+											header: 'Location',
 											align: 'right'
 										}
 									]}
 									rows={rows}
 								/>,
-								code: `<CSTableAlpha
+								code: `<CSDataTable
 									columns={[
 										{
 											key: 'name',
-											title: 'Name'
+											header: 'Name'
 										}, {
 											key: 'surname',
-											title: 'Surname'
+											header: 'Surname'
 										}, {
 											key: 'birthday',
-											title: 'Birthday'
+											header: 'Birthday'
 										}, {
 											key: 'location',
-											title: 'Location',
+											header: 'Location',
 											align: 'right'
 										}
 									]}
@@ -740,40 +740,40 @@ class CSTableAlphaPreview extends React.Component {
 							{
 								quickLink: 'string',
 								primaryVariants: `cellClassName: 'custom-bg-mint'`,
-								component: <CSTableAlpha
+								component: <CSDataTable
 									columns={[
 										{
 											key: 'name',
-											title: 'Name',
+											header: 'Name',
 											cellClassName: 'custom-bg-mint'
 										}, {
 											key: 'surname',
-											title: 'Surname'
+											header: 'Surname'
 										}, {
 											key: 'birthday',
-											title: 'Birthday'
+											header: 'Birthday'
 										}, {
 											key: 'location',
-											title: 'Location'
+											header: 'Location'
 										}
 									]}
 									rows={rows}
 								/>,
-								code: `<CSTableAlpha
+								code: `<CSDataTable
 									columns={[
 										{
 											key: 'name',
-											title: 'Name',
+											header: 'Name',
 											cellClassName: 'custom-bg-mint'
 										}, {
 											key: 'surname',
-											title: 'Surname'
+											header: 'Surname'
 										}, {
 											key: 'birthday',
-											title: 'Birthday'
+											header: 'Birthday'
 										}, {
 											key: 'location',
-											title: 'Location'
+											header: 'Location'
 										}
 									]}
 									rows={rows}
@@ -781,42 +781,42 @@ class CSTableAlphaPreview extends React.Component {
 							}, {
 								quickLink: 'function',
 								primaryVariants: '(row) => string',
-								component: <CSTableAlpha
+								component: <CSDataTable
 									columns={[
 										{
 											key: 'name',
-											title: 'Name'
+											header: 'Name'
 										}, {
 											key: 'surname',
-											title: 'Surname'
+											header: 'Surname'
 										}, {
 											key: 'birthday',
-											title: 'Birthday'
+											header: 'Birthday'
 										}, {
 											key: 'location',
-											title: 'Location',
-											cellClassName: (row: CSTableAlphaRow) => (
+											header: 'Location',
+											cellClassName: (row: CSDataTableRowInterface) => (
 												row.data?.location === 'Zagreb' ? 'custom-bg-mint' : ''
 											)
 										}
 									]}
 									rows={rows}
 								/>,
-								code: `<CSTableAlpha
+								code: `<CSDataTable
 									columns={[
 										{
 											key: 'name',
-											title: 'Name'
+											header: 'Name'
 										}, {
 											key: 'surname',
-											title: 'Surname'
+											header: 'Surname'
 										}, {
 											key: 'birthday',
-											title: 'Birthday'
+											header: 'Birthday'
 										}, {
 											key: 'location',
-											title: 'Location',
-											cellClassName: (row: CSTableAlphaRow) => (
+											header: 'Location',
+											cellClassName: (row: CSDataTableRowInterface) => (
 											    row.data?.location === 'Zagreb' ? 'custom-bg-mint' : ''
 											)
 										}
@@ -830,40 +830,40 @@ class CSTableAlphaPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: `columnClassName: 'custom-bg-mint'`,
-								component: <CSTableAlpha
+								component: <CSDataTable
 									columns={[
 										{
 											key: 'name',
-											title: 'Name',
+											header: 'Name',
 											columnClassName: 'custom-bg-mint'
 										}, {
 											key: 'surname',
-											title: 'Surname'
+											header: 'Surname'
 										}, {
 											key: 'birthday',
-											title: 'Birthday'
+											header: 'Birthday'
 										}, {
 											key: 'location',
-											title: 'Location'
+											header: 'Location'
 										}
 									]}
 									rows={rows}
 								/>,
-								code: `<CSTableAlpha
+								code: `<CSDataTable
 									columns={[
 										{
 											key: 'name',
-											title: 'Name',
+											header: 'Name',
 											columnClassName: 'custom-bg-mint'
 										}, {
 											key: 'surname',
-											title: 'Surname'
+											header: 'Surname'
 										}, {
 											key: 'birthday',
-											title: 'Birthday'
+											header: 'Birthday'
 										}, {
 											key: 'location',
-											title: 'Location'
+											header: 'Location'
 										}
 									]}
 									rows={rows}
@@ -875,40 +875,40 @@ class CSTableAlphaPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'grow: 3',
-								component: <CSTableAlpha
+								component: <CSDataTable
 									columns={[
 										{
 											key: 'name',
-											title: 'Name',
+											header: 'Name',
 											grow: 3
 										}, {
 											key: 'surname',
-											title: 'Surname'
+											header: 'Surname'
 										}, {
 											key: 'birthday',
-											title: 'Birthday'
+											header: 'Birthday'
 										}, {
 											key: 'location',
-											title: 'Location'
+											header: 'Location'
 										}
 									]}
 									rows={rows}
 								/>,
-								code: `<CSTableAlpha
+								code: `<CSDataTable
 									columns={[
 										{
 											key: 'name',
-											title: 'Name',
+											header: 'Name',
 											grow: 3
 										}, {
 											key: 'surname',
-											title: 'Surname'
+											header: 'Surname'
 										}, {
 											key: 'birthday',
-											title: 'Birthday'
+											header: 'Birthday'
 										}, {
 											key: 'location',
-											title: 'Location'
+											header: 'Location'
 										}
 									]}
 									rows={rows}
@@ -920,40 +920,40 @@ class CSTableAlphaPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'render: (row) => <CSChip text={row.data?.location} />',
-								component: <CSTableAlpha
+								component: <CSDataTable
 									columns={[
 										{
 											key: 'name',
-											title: 'Name'
+											header: 'Name'
 										}, {
 											key: 'surname',
-											title: 'Surname'
+											header: 'Surname'
 										}, {
 											key: 'birthday',
-											title: 'Birthday'
+											header: 'Birthday'
 										}, {
 											key: 'location',
-											title: 'Location',
-											render: (row: CSTableAlphaRow) => <CSChip text={row.data?.location} />
+											header: 'Location',
+											render: (row: CSDataTableRowInterface) => <CSChip text={row.data?.location} />
 										}
 									]}
 									rows={rows}
 								/>,
-								code: `<CSTableAlpha
+								code: `<CSDataTable
 									columns={[
 										{
 											key: 'name',
-											title: 'Name'
+											header: 'Name'
 										}, {
 											key: 'surname',
-											title: 'Surname'
+											header: 'Surname'
 										}, {
 											key: 'birthday',
-											title: 'Birthday'
+											header: 'Birthday'
 										}, {
 											key: 'location',
-											title: 'Location',
-											render: (row: CSTableAlphaRow) => <CSChip text={row.data?.location} />
+											header: 'Location',
+											render: (row: CSDataTableRowInterface) => <CSChip text={row.data?.location} />
 										}
 									]}
 									rows={rows}
@@ -965,78 +965,78 @@ class CSTableAlphaPreview extends React.Component {
 						variations: [
 							{
 								quickLink: 'string',
-								primaryVariants: `title: 'Location'`,
-								component: <CSTableAlpha
+								primaryVariants: `header: 'Location'`,
+								component: <CSDataTable
 									columns={[
 										{
 											key: 'name',
-											title: 'Name'
+											header: 'Name'
 										}, {
 											key: 'surname',
-											title: 'Surname'
+											header: 'Surname'
 										}, {
 											key: 'birthday',
-											title: 'Birthday'
+											header: 'Birthday'
 										}, {
 											key: 'location',
-											title: 'Location'
+											header: 'Location'
 										}
 									]}
 									rows={rows}
 								/>,
-								code: `<CSTableAlpha
+								code: `<CSDataTable
 									columns={[
 										{
 											key: 'name',
-											title: 'Name'
+											header: 'Name'
 										}, {
 											key: 'surname',
-											title: 'Surname'
+											header: 'Surname'
 										}, {
 											key: 'birthday',
-											title: 'Birthday'
+											header: 'Birthday'
 										}, {
 											key: 'location',
-											title: 'Location'
+											header: 'Location'
 										}
 									]}
 									rows={rows}
 								/>`
 							}, {
 								quickLink: 'Element',
-								primaryVariants: `title: <CSIcon name="date_input" />`,
-								component: <CSTableAlpha
+								primaryVariants: `header: <CSIcon name="date_input" />`,
+								component: <CSDataTable
 									columns={[
 										{
 											key: 'name',
-											title: 'Name'
+											header: 'Name'
 										}, {
 											key: 'surname',
-											title: 'Surname'
+											header: 'Surname'
 										}, {
 											key: 'birthday',
-											title: <CSIcon name="date_input" />
+											header: <CSIcon name="date_input" />
 										}, {
 											key: 'location',
-											title: 'Location'
+											header: 'Location'
 										}
 									]}
 									rows={rows}
 								/>,
-								code: `<CSTableAlpha
+								code: `<CSDataTable
 									columns={[
 										{
 											key: 'name',
-											title: 'Name'
+											header: 'Name'
 										}, {
 											key: 'surname',
-											title: 'Surname'
+											header: 'Surname'
 										}, {
 											key: 'birthday',
-											title: <CSIcon name="date_input" />
+											header: <CSIcon name="date_input" />
 										}, {
 											key: 'location',
-											title: 'Location'
+											header: 'Location'
 										}
 									]}
 									rows={rows}
@@ -1048,40 +1048,40 @@ class CSTableAlphaPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: `width: '320px'`,
-								component: <CSTableAlpha
+								component: <CSDataTable
 									columns={[
 										{
 											key: 'name',
-											title: 'Name',
+											header: 'Name',
 											width: '320px'
 										}, {
 											key: 'surname',
-											title: 'Surname'
+											header: 'Surname'
 										}, {
 											key: 'birthday',
-											title: 'Birthday'
+											header: 'Birthday'
 										}, {
 											key: 'location',
-											title: 'Location'
+											header: 'Location'
 										}
 									]}
 									rows={rows}
 								/>,
-								code: `<CSTableAlpha
+								code: `<CSDataTable
 									columns={[
 										{
 											key: 'name',
-											title: 'Name',
+											header: 'Name',
 											width: '320px'
 										}, {
 											key: 'surname',
-											title: 'Surname'
+											header: 'Surname'
 										}, {
 											key: 'birthday',
-											title: 'Birthday'
+											header: 'Birthday'
 										}, {
 											key: 'location',
-											title: 'Location'
+											header: 'Location'
 										}
 									]}
 									rows={rows}
@@ -1093,40 +1093,40 @@ class CSTableAlphaPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: `wrap: true`,
-								component: <CSTableAlpha
+								component: <CSDataTable
 									columns={[
 										{
 											key: 'name',
-											title: 'Name'
+											header: 'Name'
 										}, {
 											key: 'surname',
-											title: 'Surname'
+											header: 'Surname'
 										}, {
 											key: 'birthday',
-											title: 'Birthday',
+											header: 'Birthday',
 											wrap: true
 										}, {
 											key: 'location',
-											title: 'Location'
+											header: 'Location'
 										}
 									]}
 									rows={rows}
 								/>,
-								code: `<CSTableAlpha
+								code: `<CSDataTable
 									columns={[
 										{
 											key: 'name',
-											title: 'Name'
+											header: 'Name'
 										}, {
 											key: 'surname',
-											title: 'Surname'
+											header: 'Surname'
 										}, {
 											key: 'birthday',
-											title: 'Birthday',
+											header: 'Birthday',
 											wrap: true
 										}, {
 											key: 'location',
-											title: 'Location'
+											header: 'Location'
 										}
 									]}
 									rows={rows}
@@ -1145,15 +1145,15 @@ class CSTableAlphaPreview extends React.Component {
 						name: 'align',
 						default: `'left'`,
 						customTypes: {
-							name: 'CSTableAlphaColumnAlign',
+							name: 'CSDataTableColumnAlign',
 							types: [`'left'`, `'center`, `'right'`]
 						},
 						description: 'Set a custom class for all the body cells inside a column or provide a function which applies classes to cells inside a column dynamically.'
 					}, {
 						name: 'cellClassName',
 						customTypes: {
-							name: 'CSTableAlphaCellClassName',
-							types: ['string', '(row: CSTableAlphaRow) => string']
+							name: 'CSDataTableCellClassName',
+							types: ['string', '(row: CSDataTableRow) => string']
 						},
 						description: 'Set a custom class for all the body cells inside a column or provide a function which applies classes to cells inside a column dynamically.'
 					}, {
@@ -1167,12 +1167,12 @@ class CSTableAlphaPreview extends React.Component {
 						description: 'Set the flex-grow attribute for a column.'
 					}, {
 						name: 'render',
-						types: '(row: CSTableAlphaRow) => CSTableAlphaCell',
+						types: '(row: CSDataTableRow) => CSDataTableCell',
 						description: 'Render custom content inside a cell.'
 					}, {
 						name: 'title',
 						customTypes: {
-							name: 'CSTableAlphaCell',
+							name: 'CSDataTableCell',
 							types: ['React.ReactElement', 'React.ReactText']
 						},
 						description: 'Set the header title.'
@@ -1200,7 +1200,7 @@ class CSTableAlphaPreview extends React.Component {
 					}
 				]
 			}, {
-				name: 'CSTableAlpha Row',
+				name: 'CSDataTable Row',
 				attributes: true,
 				examples: [
 					{
@@ -1209,9 +1209,9 @@ class CSTableAlphaPreview extends React.Component {
 							{
 								primaryVariants: `data: { location: 'Zagreb' }`,
 								secondaryVariants: `columns={[{ key: 'location' }]}`,
-								component: <CSTableAlpha columns={columns} rows={rows} />,
+								component: <CSDataTable columns={columns} rows={rows} />,
 
-								code: `<CSTableAlpha
+								code: `<CSDataTable
 									columns={columns}
 									rows={[
 										{
@@ -1296,86 +1296,115 @@ class CSTableAlphaPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: `height: '3rem'`,
-								component: <CSTableAlpha
+								component: <CSDataTable
 									columns={columns}
 									rows={[
 										{
 											key: 0,
-											height: '3rem',
+											collapsible: false,
+											defaultCollapsed: true,
 											data: {
 												name: 'Nikol',
 												surname: 'Badanjak',
 												birthday: '8th December',
 												location: 'Zagreb'
-											}
-										}, {
-											key: 1,
-											data: {
-												name: 'Leon',
-												surname: 'Španić',
-												birthday: '15th July',
-												location: 'Zagreb'
-											}
-										}, {
-											key: 2,
-											data: {
-												name: 'Karlo',
-												surname: 'Šeler',
-												birthday: '27th October',
-												location: 'Zagreb'
-											}
-										}, {
-											key: 3,
-											data: {
-												name: 'Simon',
-												surname: 'East',
-												birthday: '20th December',
-												location: 'Leeds'
-											}
-										}, {
-											key: 4,
-											data: {
-												name: 'Joe',
-												surname: 'Consterdine',
-												birthday: '20th September',
-												location: 'Leeds'
-											}
-										}, {
-											key: 5,
-											data: {
-												name: 'Danijel',
-												surname: 'Bošnjak',
-												birthday: '20th August',
-												location: 'Zagreb'
-											}
-										}, {
-											key: 6,
-											data: {
-												name: 'Dario',
-												surname: 'Šehović',
-												birthday: '11th October',
-												location: 'Zagreb'
-											}
-										}, {
-											key: 7,
-											data: {
-												name: 'Dominik',
-												surname: 'Kralj',
-												birthday: '11th July',
-												location: 'Zagreb'
-											}
-										}, {
-											key: 8,
-											data: {
-												name: 'Sathya',
-												surname: 'Somasundaram',
-												birthday: '28th May',
-												location: 'Chennai'
-											}
+											},
+											render: (row: CSDataTableRowInterface) => (
+												<>
+													This is actually <CSChip text={row.data?.name} /> even though we're in a custom full width row. <CSButton onClick={row.meta.toggleExpanded} label="Toggle" />
+												</>
+											),
+											children: [{
+												key: 1,
+												data: {
+													name: 'Leon',
+													surname: 'Španić',
+													birthday: '15th July',
+													location: 'Zagreb'
+												}
+											}, {
+												key: 2,
+												data: {
+													name: 'Karlo',
+													surname: 'Šeler',
+													birthday: '27th October',
+													location: 'Zagreb'
+												}
+											}, {
+												key: 3,
+												data: {
+													name: 'Simon',
+													surname: 'East',
+													birthday: '20th December',
+													location: 'Leeds'
+												}
+											}, {
+												key: 4,
+												collapsible: true,
+												data: {
+													name: 'Joe',
+													surname: 'Consterdine',
+													birthday: '20th September',
+													location: 'Leeds'
+												},
+												children: [{
+													key: 5,
+													data: {
+														name: 'Danijel',
+														surname: 'Bošnjak',
+														birthday: '20th August',
+														location: 'Zagreb'
+													}
+												}, {
+													key: 8,
+													data: {
+														name: 'Sathya',
+														surname: 'Somasundaram',
+														birthday: '28th May',
+														location: 'Chennai'
+													}
+												}, {
+													key: 9,
+													render: () => 'students',
+													collapsible: true,
+													children: [{
+														key: 6,
+														data: {
+															name: 'Dario',
+															surname: 'Šehović',
+															birthday: '11th October',
+															location: 'Zagreb'
+														}
+													}, {
+														key: 7,
+														data: {
+															name: 'Dominik',
+															surname: 'Kralj',
+															birthday: '11th July',
+															location: 'Zagreb'
+														}
+													}, {
+														key: 10,
+														render: () => (
+															<CSChip text="this is a full width row with custom content" />
+														)
+													}]
+												}, {
+													key: 11,
+													render: () => (
+														<CSChip text="this is a full width row with custom content" />
+													)
+												}, {
+													key: 12,
+													render: () => (
+														<CSChip text="this is a full width row with custom content" />
+													)
+												}]
+											}]
 										}
 									]}
 								/>,
-								code: `<CSTableAlpha
+								code: `<CSDataTable
 									columns={columns}
 									rows={[
 										{
@@ -1417,40 +1446,41 @@ class CSTableAlphaPreview extends React.Component {
 												name: 'Joe',
 												surname: 'Consterdine',
 												birthday: '20th September',
-												location: 'Leeds'
+												location: 'Leeds',
 											}
-										}, {
-											key: 5,
-											data: {
-												name: 'Danijel',
-												surname: 'Bošnjak',
-												birthday: '20th August',
-												location: 'Zagreb'
-											}
-										}, {
-											key: 6,
-											data: {
-												name: 'Dario',
-												surname: 'Šehović',
-												birthday: '11th October',
-												location: 'Zagreb'
-											}
-										}, {
-											key: 7,
-											data: {
-												name: 'Dominik',
-												surname: 'Kralj',
-												birthday: '11th July',
-												location: 'Zagreb'
-											}
-										}, {
-											key: 8,
-											data: {
-												name: 'Sathya',
-												surname: 'Somasundaram',
-												birthday: '28th May',
-												location: 'Chennai'
-											}
+											children: [{
+												key: 5,
+												data: {
+													name: 'Danijel',
+													surname: 'Bošnjak',
+													birthday: '20th August',
+													location: 'Zagreb'
+												}
+											}, {
+												key: 6,
+												data: {
+													name: 'Dario',
+													surname: 'Šehović',
+													birthday: '11th October',
+													location: 'Zagreb'
+												}
+											}, {
+												key: 7,
+												data: {
+													name: 'Dominik',
+													surname: 'Kralj',
+													birthday: '11th July',
+													location: 'Zagreb'
+												}
+											}, {
+												key: 8,
+												data: {
+													name: 'Sathya',
+													surname: 'Somasundaram',
+													birthday: '28th May',
+													location: 'Chennai'
+												}
+											}]
 										}
 									]}
 								/>`
@@ -1466,12 +1496,12 @@ class CSTableAlphaPreview extends React.Component {
 						description: 'Unique row identifier.'
 					}, {
 						name: 'children',
-						types: 'Array<CSTableAlphaRow>',
+						types: 'Array<CSDataTableRow>',
 						description: 'Set hierarchically subordinate rows of the current row. This structure renders recursively and can be repeated indefinitely.'
 					}, {
 						name: 'data',
 						customTypes: {
-							name: 'CSTableAlphaRowData',
+							name: 'CSDataTableRowData',
 							types: '{ [key: string]: any }'
 						},
 						description: 'Object of cell data where the column key corresponds to the cell attribute name.'
@@ -1525,4 +1555,4 @@ class CSTableAlphaPreview extends React.Component {
 	render = () => <Preview {...this.getDoc()} />;
 }
 
-export default CSTableAlphaPreview;
+export default CSDataTablePreview;

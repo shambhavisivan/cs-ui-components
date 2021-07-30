@@ -1,0 +1,177 @@
+.cs-data-table {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	overflow: auto;
+	max-height: var(--cs-data-table-max-height, auto);
+
+	.cs-data-table-header,
+	.cs-data-table-body,
+	.cs-data-table-group,
+	.cs-data-table-row-wrapper, {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+	}
+
+	.cs-data-table-row, {
+		display: flex;
+	}
+
+	&.cs-data-table-headless:not(.cs-data-table-borderless) .cs-data-table-body {
+		@include css4 {
+			border-top: 1px solid cvar(--cs-data-table-br);
+		}
+	}
+
+	.cs-data-table-cell {
+		display: flex;
+		position: relative;
+		flex-grow: var(--cs-data-table-column-flex, 1);
+		flex-basis: var(--cs-data-table-column-width, 0);
+		align-items: center;
+		max-width: var(--cs-data-table-column-width, 100%);
+		overflow: hidden;
+		padding: 0.25rem 0.5rem;
+		text-align: left;
+		font-size: 0.8125rem;
+		line-height: 1.75;
+		transition: all 100ms ease-in-out;
+		@include sc(--cs-data-table-cell-c);
+
+		&:first-child {
+			padding-left: 1.5rem;
+		}
+
+		&:last-child {
+			padding-right: 1.5rem;
+		}
+
+		.cs-data-table-truncate {
+			@include overflow-ellipsis;
+		}
+
+		&.cs-data-table-align-center {
+			justify-content: center;
+		}
+
+		&.cs-data-table-align-right {
+			justify-content: flex-end;
+		}
+	}
+
+	.cs-data-table-header .cs-data-table-cell {
+		font-weight: 700;
+		line-height: normal;
+		@include sc(--cs-data-table-header-c);
+	}
+
+	.cs-data-table-header .cs-data-table-row {
+		@include css4 {
+			border-top: 1px solid cvar(--cs-data-table-br);
+			border-bottom: 1px solid cvar(--cs-data-table-br);
+		}
+		@include sbg(--cs-data-table-header-bg);
+	}
+
+	.cs-data-table-body .cs-data-table-row {
+		height: var(--cs-data-table-row-height, auto);
+		transition: all 100ms ease-in-out;
+		@include sbg(--cs-data-table-row-bg);
+		@include css4 {
+			border-bottom: 1px solid cvar(--cs-data-table-br);
+		}
+
+		.cs-data-table-cell:first-child .cs-data-table-truncate,
+		.cs-data-table-cell:first-child .cs-data-table-render {
+			padding-left: var(--cs-data-table-column-offset, 0);
+		}
+
+		&:hover {
+			@include sbg(--cs-data-table-row-hover-bg);
+
+			.cs-data-table-cell {
+				@include css4 {
+					box-shadow:
+						inset 0 -1px 0 cvar(--cs-data-table-br),
+						inset 0 1px 0 cvar(--cs-data-table-br);
+				}
+			}
+		}
+	}
+
+	&.cs-data-table-column-dividers {
+		.cs-data-table-cell {
+			@include css4 {
+				border-right: 1px solid cvar(--cs-data-table-br);
+			}
+
+			&:last-child {
+				border-right: none;
+			}
+		}
+	}
+
+	&.cs-data-table-striped .cs-data-table-row-wrapper:nth-child(2n) .cs-data-table-row {
+		@include sbg(--cs-data-table-row-striped-bg);
+	}
+
+	&.cs-data-table-borderless .cs-data-table-row {
+		border-top: none;
+		border-bottom: none;
+	}
+
+	&.cs-data-table-density-comfortable {
+		.cs-data-table-cell {
+			padding: 0.5rem 0.75rem;
+
+			&:first-child {
+				padding-left: 1.5rem;
+			}
+
+			&:last-child {
+				padding-right: 1.5rem;
+			}
+		}
+	}
+
+	&.cs-data-table-density-spacious {
+		.cs-data-table-cell {
+			padding: 0.75rem 1.25rem;
+
+			&:first-child {
+				padding-left: 1.5rem;
+			}
+
+			&:last-child {
+				padding-right: 1.5rem;
+			}
+		}
+	}
+
+	&.cs-data-table-disable-hover .cs-data-table-body .cs-data-table-row:hover {
+		@include sbg(--cs-data-table-cell-bg);
+
+		.cs-data-table-cell {
+			box-shadow: none;
+		}
+	}
+
+	&.cs-data-table-sticky-header .cs-data-table-header {
+		z-index: var(--z-index-table-header);
+		position: sticky;
+		top: 0;
+	}
+
+	.cs-data-table-column-wrap .cs-data-table-truncate {
+		text-overflow: initial;
+		white-space: normal;
+	}
+
+	.cs-data-table-collapse-button {
+		margin-right: 0.75rem;
+		position: absolute;
+		left: -0.5rem;
+		margin-left: var(--cs-data-table-column-offset, 0);
+	}
+}

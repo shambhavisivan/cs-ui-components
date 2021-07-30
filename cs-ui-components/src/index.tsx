@@ -39,6 +39,18 @@ import CSCurrency, {
 	CSCurrencySign,
 } from './components/CSCurrency';
 import CSCustomSelect, { CSCustomSelectExportValueType } from './components/custom-select/CSCustomSelect';
+import CSDataTable, {
+	CSDataTableProps,
+	CSDataTableCellClassName,
+	CSDataTableColumnInterface,
+	CSDataTableColumnAlign,
+	CSDataTableDataInterface,
+	CSDataTableDensity,
+	CSDataTableElement,
+	CSDataTableRender,
+	CSDataTableRowInterface,
+	CSDataTableRowMetaInterface,
+} from './components/data-table/CSDataTable';
 import CSDatepicker, { CSDatepickerDropdownMode } from './components/CSDatepicker';
 import CSDateTimePicker, { CSDateTimePickerDropdownMode } from './components/CSDateTimePicker';
 import CSDivider, { CSDividerVariant } from './components/CSDivider';
@@ -103,16 +115,6 @@ import CSTableBody from './components/table/CSTableBody';
 import CSTableCell from './components/table/CSTableCell';
 import CSTableHeader from './components/table/CSTableHeader';
 import CSTableRow from './components/table/CSTableRow';
-import CSTableAlpha, {
-	CSTableAlphaProps,
-	CSTableAlphaColumn,
-	CSTableAlphaRow,
-	CSTableAlphaRowData,
-	CSTableAlphaDensity,
-	CSTableAlphaCell,
-	CSTableAlphaCellClassName,
-	CSTableAlphaColumnAlign,
-} from './components/table-alpha/CSTableAlpha';
 import CSTextarea from './components/CSTextarea';
 import CSToast, { CSToastVariant } from './components/CSToast';
 import CSToggle, { CSToggleLabelPosition } from './components/CSToggle';
@@ -182,6 +184,17 @@ export {
 	CSCurrencySign,
 	CSCustomSelect,
 	CSCustomSelectExportValueType,
+	CSDataTable,
+	CSDataTableProps,
+	CSDataTableCellClassName,
+	CSDataTableColumnInterface,
+	CSDataTableColumnAlign,
+	CSDataTableDataInterface,
+	CSDataTableDensity,
+	CSDataTableElement,
+	CSDataTableRender,
+	CSDataTableRowInterface,
+	CSDataTableRowMetaInterface,
 	CSDatepicker,
 	CSDatepickerDropdownMode,
 	CSDateTimePicker,
@@ -268,15 +281,6 @@ export {
 	CSTableRow,
 	CSTextarea,
 	CSToast,
-	CSTableAlpha,
-	CSTableAlphaProps,
-	CSTableAlphaColumn,
-	CSTableAlphaColumnAlign,
-	CSTableAlphaRow,
-	CSTableAlphaRowData,
-	CSTableAlphaDensity,
-	CSTableAlphaCell,
-	CSTableAlphaCellClassName,
 	CSToastApi,
 	CSToastVariant,
 	CSToggle,

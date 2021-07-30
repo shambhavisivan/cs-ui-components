@@ -9,6 +9,7 @@ import CSIconPreview from './components/CSIconPreview';
 import CSInputSearchPreview from './components/CSInputSearchPreview';
 import CSCurrencyPreview from './components/CSCurrencyPreview';
 import CSCustomSelectPreview from './components/CSCustomSelectPreview';
+import CSDataTablePreview from './components/CSDataTablePreview';
 import CSDatepickerPreview from './components/CSDatepickerPreview';
 import CSDateTimePickerPreview from './components/CSDateTimePickerPreview';
 import CSDividerPreview from './components/CSDividerPreview';
@@ -42,7 +43,6 @@ import CSSkipLinkPreview from './components/CSSkipLinkPreview';
 import CSGettingStarted from './CSGettingStarted';
 import CSTransferPreview from './components/CSTransferPreview';
 import CSProgressIndicatorPreview from './components/CSProgressIndicatorPreview';
-import CSTableAlphaPreview from './components/CSTableAlphaPreview';
 
 import SidebarList from './SidebarList';
 
@@ -87,6 +87,10 @@ class CSComponentsList extends React.Component {
 				name: 'Custom Select',
 				component: CSCustomSelectPreview,
 				isFormElement: true
+			},
+			{
+				name: 'Data Table',
+				component: CSDataTablePreview
 			},
 			{
 				name: 'Datepicker',
@@ -213,10 +217,6 @@ class CSComponentsList extends React.Component {
 			{
 				name: 'Table',
 				component: CSTablePreview
-			},
-			{
-				name: 'Table Alpha',
-				component: CSTableAlphaPreview
 			},
 			{
 				name: 'Textarea',
