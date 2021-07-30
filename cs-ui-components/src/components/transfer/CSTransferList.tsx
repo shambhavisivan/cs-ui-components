@@ -76,6 +76,7 @@ class CSTransferList extends React.Component<CSTransferListProps, CSTransferList
 		} = this.props;
 		const { term, validItemsKeys } = this.state;
 		const { selectItem, selectAllItems } = this.context;
+		const { listRef } = this.props;
 		return (
 			<div className="cs-transfer-list-wrapper">
 				<CSLabel
@@ -114,7 +115,7 @@ class CSTransferList extends React.Component<CSTransferListProps, CSTransferList
 						)}
 					<ul
 						className="cs-transfer-list"
-						ref={this.props.listRef}
+						ref={listRef}
 						role="listbox"
 						aria-describedby={this.uniqueAutoId}
 					>

@@ -32,7 +32,13 @@ export interface CSInputTextProps {
 }
 
 class CSInputText extends React.Component<CSInputTextProps> {
-	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
+	private readonly uniqueAutoId: string | null;
+
+	constructor(props: CSInputTextProps) {
+		super(props);
+
+		this.uniqueAutoId = props.id ? props.id : uuidv4();
+	}
 
 	onFocus: React.FocusEventHandler<HTMLInputElement> = (e) => {
 		const { onFocus } = this.props;
@@ -49,8 +55,10 @@ class CSInputText extends React.Component<CSInputTextProps> {
 	}
 
 	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		if (this.props.onChange) {
-			this.props.onChange(e);
+		const { onChange } = this.props;
+
+		if (onChange) {
+			onChange(e);
 		}
 	}
 

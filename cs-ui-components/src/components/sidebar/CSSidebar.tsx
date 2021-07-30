@@ -36,15 +36,17 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 		super(props);
 
 		this.state = {
-			closed: this.props.defaultClosed,
+			closed: props.defaultClosed,
 			activeTabIndex: 0,
 		};
 	}
 
 	handleTabClick = (index: number) => {
+		const { collapsible } = this.props;
+
 		this.setState((prevState) => ({
 			activeTabIndex: index,
-			closed: index === prevState.activeTabIndex && !prevState.closed && this.props.collapsible,
+			closed: index === prevState.activeTabIndex && !prevState.closed && collapsible,
 		}));
 	}
 
@@ -55,7 +57,10 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 	}
 
 	handleSidebarClickToggle = () => {
-		if (this.props.wholeSidebarClickable && this.state.closed && !this.props.multipleTabs) {
+		const { wholeSidebarClickable, multipleTabs } = this.props;
+		const { closed } = this.state;
+
+		if (wholeSidebarClickable && closed && !multipleTabs) {
 			this.toggleClose();
 		}
 	}
@@ -76,12 +81,17 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 			...rest
 		} = this.props;
 
+		const {
+			activeTabIndex,
+			closed,
+		} = this.state;
+
 		const sidebarClasses = classNames(
 			'cs-sidebar',
 			{
-				'cs-sidebar-closed': this.state.closed,
+				'cs-sidebar-closed': closed,
 				'cs-sidebar-multiple-tabs': multipleTabs,
-				'cs-whole-sidebar-clickable': (wholeSidebarClickable && this.state.closed && !multipleTabs),
+				'cs-whole-sidebar-clickable': (wholeSidebarClickable && closed && !multipleTabs),
 				'cs-sidebar-wrapper-left': opensTo === 'right',
 				[`${className}`]: className,
 			},
@@ -106,7 +116,7 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 		const renderChildrenWithProps = React.Children.map(children, (child, index) => {
 			if (child) {
 				return React.cloneElement(child as React.ReactElement<any>, {
-					isActiveTab: (this.state.activeTabIndex === index && !this.state.closed),
+					isActiveTab: (activeTabIndex === index && !closed),
 				});
 			}
 
@@ -114,7 +124,7 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 		});
 
 		const getToggleIcon = () => {
-			if (!this.state.closed) {
+			if (!closed) {
 				return 'close';
 			}
 
@@ -126,7 +136,7 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 		};
 
 		const getToggleIconOrigin = () => {
-			if (!this.state.closed) {
+			if (!closed) {
 				return 'slds';
 			}
 
@@ -134,17 +144,17 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 		};
 
 		const showToggleBtn = collapsible && (
-			(!this.state.closed && multipleTabs) || !multipleTabs
+			(!closed && multipleTabs) || !multipleTabs
 		);
 
 		const style: CSSProperties = {
 			'--cs-sidebar-height': height,
-			'--cs-sidebar-tab-custom-width': tabs[this.state.activeTabIndex].tabWidth ? tabs[this.state.activeTabIndex].tabWidth : tabsWidth,
+			'--cs-sidebar-tab-custom-width': tabs[activeTabIndex].tabWidth ? tabs[activeTabIndex].tabWidth : tabsWidth,
 			'--cs-sidebar-tabs-custom-padding': tabsPadding,
 		};
 
 		return (
-			// eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions,jsx-a11y/click-events-have-key-events
+			// eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events
 			<aside
 				className={sidebarClasses}
 				style={style}
@@ -158,7 +168,7 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 							btnType="transparent"
 							color="var(--cs-sidebar-toggle-btn-c)"
 							className="cs-sidebar-toggle"
-							label={this.state.closed ? 'expand sidebar' : 'collapse sidebar'}
+							label={closed ? 'expand sidebar' : 'collapse sidebar'}
 							iconName={getToggleIcon()}
 							iconOrigin={getToggleIconOrigin()}
 							labelHidden
@@ -167,7 +177,7 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 								event.stopPropagation();
 								this.toggleClose();
 							}}
-							ariaExpanded={!this.state.closed}
+							ariaExpanded={!closed}
 						/>
 					)}
 				{multipleTabs ? (
@@ -182,8 +192,8 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 								iconOrigin={tab.iconOrigin}
 								label={tab.title}
 								key={tab.index}
-								className={this.state.activeTabIndex === tab.index && !this.state.closed ? 'cs-sidebar-tab-selected' : null}
-								aria-current={this.state.activeTabIndex === tab.index}
+								className={activeTabIndex === tab.index && !closed ? 'cs-sidebar-tab-selected' : null}
+								aria-current={activeTabIndex === tab.index}
 								onClick={() => { this.handleTabClick(tab.index); }}
 							/>
 						))}
@@ -192,7 +202,7 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 					: (
 						<div className="cs-sidebar-single-tab-title-wrapper">
 							<span
-								className={this.state.closed ? 'cs-sidebar-tab-closed-title cs-visible' : 'cs-sidebar-tab-closed-title'}
+								className={closed ? 'cs-sidebar-tab-closed-title cs-visible' : 'cs-sidebar-tab-closed-title'}
 							>
 								{tabs[0].title}
 							</span>

@@ -41,14 +41,19 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 	}
 
 	componentDidMount() {
-		if (this.props.collapsed) {
+		const { collapsed } = this.props;
+
+		if (collapsed) {
 			this.setState({ collapsed: true });
 		}
+
 		this.checkValidItems();
 	}
 
 	componentDidUpdate(prevProps: CSListGroupProps) {
-		if (prevProps.collapsed !== this.props.collapsed) {
+		const { collapsed } = this.props;
+
+		if (prevProps.collapsed !== collapsed) {
 			this.updateCollapsed();
 		}
 	}
@@ -61,12 +66,15 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 	}
 
 	updateCollapsed = () => {
-		this.setState({ collapsed: this.props.collapsed });
+		const { collapsed } = this.props;
+		this.setState({ collapsed });
 	}
 
 	checkValidItems = () => {
+		const { children } = this.props;
+
 		const validKeys: any = [];
-		React.Children.forEach(this.props.children, (child: any, index) => {
+		React.Children.forEach(children, (child: any, index) => {
 			if (child && !child.props.disabled) {
 				validKeys.push(index);
 			}
@@ -109,6 +117,7 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 
 	render() {
 		const {
+			children,
 			collapsible,
 			customContent,
 			className,
@@ -149,7 +158,7 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 			return undefined; // So that CSIcon can use its default size
 		};
 
-		const listItems = React.Children.map(this.props.children, (child: any, index) => {
+		const listItems = React.Children.map(children, (child: any, index) => {
 			if (child?.type === CSListItem) {
 				return React.cloneElement(child as React.ReactElement<any>, {
 					listSize,

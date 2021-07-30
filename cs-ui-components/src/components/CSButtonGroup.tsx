@@ -18,7 +18,13 @@ class CSButtonGroup extends React.Component<CSButtonGroupProps> {
 		combined: true,
 	};
 
-	private uniqueAutoId = this.props.ariaDescription ? uuidv4() : null;
+	private readonly uniqueAutoId: string | null;
+
+	constructor(props: CSButtonGroupProps) {
+		super(props);
+
+		this.uniqueAutoId = props.ariaDescription ? uuidv4() : null;
+	}
 
 	render() {
 		const {

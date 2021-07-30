@@ -84,19 +84,23 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 
 	private input: HTMLInputElement;
 
-	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
+	private readonly uniqueAutoId: string;
 
 	constructor(props: CSInputSearchProps) {
 		super(props);
-		const value = props.value ?? '';
+
 		this.state = {
-			value,
+			value: props.value ?? '',
 		};
+
+		this.uniqueAutoId = props.id ? props.id : uuidv4();
 	}
 
 	componentDidUpdate(prevProps: CSInputSearchProps) {
-		if (prevProps.value !== this.props.value) {
-			this.setValue(this.props.value);
+		const { value } = this.props;
+
+		if (prevProps.value !== value) {
+			this.setValue(value);
 		}
 	}
 
@@ -105,11 +109,13 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 	}
 
 	clearSearch = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-		this.setValue('');
-		resolveOnChange(this.input, e, this.props.onChange);
+		const { onChange, onClearSearch } = this.props;
 
-		if (this.props.onClearSearch) {
-			this.props.onClearSearch();
+		this.setValue('');
+		resolveOnChange(this.input, e, onChange);
+
+		if (onClearSearch) {
+			onClearSearch();
 		}
 
 		this.input.focus();
@@ -117,6 +123,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 
 	onFocus: React.FocusEventHandler<HTMLInputElement> = (e) => {
 		const { onFocus } = this.props;
+
 		if (onFocus) {
 			onFocus(e);
 		}
@@ -124,19 +131,24 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 
 	onBlur: React.FocusEventHandler<HTMLInputElement> = (e) => {
 		const { onBlur } = this.props;
+
 		if (onBlur) {
 			onBlur(e);
 		}
 	}
 
 	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const { onChange } = this.props;
+
 		this.setValue(e.target.value);
-		resolveOnChange(this.input, e, this.props.onChange);
+		resolveOnChange(this.input, e, onChange);
 	}
 
 	handleOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-		if (this.props.onKeyDown) {
-			this.props.onKeyDown(e);
+		const { onKeyDown } = this.props;
+
+		if (onKeyDown) {
+			onKeyDown(e);
 		}
 	}
 
@@ -169,6 +181,8 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 			...rest
 		} = this.props;
 
+		const { value: valueState } = this.state;
+
 		const inputSearchWrapperClasses = classNames(
 			'cs-input-search-wrapper',
 			{
@@ -180,7 +194,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 		const inputSearchGroupClasses = classNames(
 			'cs-input-search-group',
 			{
-				'cs-clear': this.state.value,
+				'cs-clear': valueState,
 				'cs-icon-left': iconPosition === 'left',
 				'cs-icon-right': iconPosition === 'right',
 			},
@@ -230,7 +244,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 							aria-label={label}
 							aria-invalid={error}
 							aria-required={required}
-							value={fixControlledValue(this.state.value)}
+							value={fixControlledValue(valueState)}
 							type="text"
 							autoComplete="off"
 							ref={(node) => { this.input = node; }}
@@ -240,7 +254,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 							title={title}
 							{...rest}
 						/>
-						{this.state.value
+						{valueState
 							&& (
 								<CSButton
 									btnType="transparent"

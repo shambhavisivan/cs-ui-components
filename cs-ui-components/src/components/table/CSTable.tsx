@@ -13,7 +13,13 @@ export interface CSTableProps {
 export const CSTableContext = React.createContext<CSTableProps>({});
 
 class CSTable extends React.Component<CSTableProps> {
-	private uniqueAutoId = this.props.tableDescription ? uuidv4() : null;
+	private readonly uniqueAutoId;
+
+	constructor(props: CSTableProps) {
+		super(props);
+
+		this.uniqueAutoId = props.tableDescription ? uuidv4() : null;
+	}
 
 	render() {
 		const {

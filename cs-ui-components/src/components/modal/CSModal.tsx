@@ -66,10 +66,11 @@ class CSModal extends React.Component<CSModalProps> {
 	}
 
 	componentDidMount() {
+		const { loading, closeButton, outerClickClose, setMounted } = this.props;
 		this.previouslyFocusedElement = document.activeElement as HTMLElement;
 		const focusable = this.getFocusableElements();
 		this.getFirstLastModalElement();
-		if (this.props.loading && !this.props.closeButton && focusable.length > 0) {
+		if (loading && !closeButton && focusable.length > 0) {
 			this.firstElement = this.modalRef;
 		}
 		this.firstElement.focus();
@@ -79,7 +80,7 @@ class CSModal extends React.Component<CSModalProps> {
 
 		document.addEventListener('keydown', this.handleEsc, false);
 
-		if (this.props.outerClickClose) {
+		if (outerClickClose) {
 			if (this.modalOverlay === modalRoot.lastElementChild
 				&& modalRoot.childElementCount === 2) {
 				modalRoot.firstElementChild.removeEventListener('click', this.handleOuterClick);
@@ -89,7 +90,7 @@ class CSModal extends React.Component<CSModalProps> {
 
 		document.body.style.overflow = 'hidden';
 		document.documentElement.style.overflow = 'hidden';
-		this.props.setMounted();
+		setMounted();
 	}
 
 	componentWillUnmount() {
@@ -106,19 +107,22 @@ class CSModal extends React.Component<CSModalProps> {
 	}
 
 	handleEsc(e: any) {
+		const { onClose } = this.props;
 		const parent = e.target.closest('.cs-modal-overlay');
-		if (this.props.onClose && (parent === this.modalOverlay)) {
+		if (onClose && (parent === this.modalOverlay)) {
 			if (e.key === KeyCode.Escape) {
-				this.props.onClose(e);
+				onClose(e);
 			}
 		}
 	}
 
 	handleFocusChange = (event: any) => {
+		const { loading } = this.props;
+
 		if (event.key === KeyCode.Tab) {
 			this.getFirstLastModalElement();
 			const { activeElement } = document;
-			if (this.props.loading) {
+			if (loading) {
 				event.preventDefault();
 			} else if (event.shiftKey) {
 				if (activeElement === this.firstElement) {
@@ -133,12 +137,15 @@ class CSModal extends React.Component<CSModalProps> {
 	}
 
 	handleOuterClick(event: any) {
+		const { onClose } = this.props;
+
 		// ignore clicks on the component itself
 		if (this.modalContentNode && this.modalContentNode.contains(event.target)) {
 			return;
 		}
-		if (this.props.onClose) {
-			this.props.onClose(event);
+
+		if (onClose) {
+			onClose(event);
 		}
 	}
 
@@ -147,12 +154,13 @@ class CSModal extends React.Component<CSModalProps> {
 	}
 
 	getFirstLastModalElement() {
+		const { closeButton } = this.props;
 		const focusable = this.getFocusableElements();
 		if (focusable.length > 0) {
 			const lastFocusable = (focusable[focusable.length - 1] as HTMLElement).hasAttribute('disabled')
 				? focusable[focusable.length - 2]
 				: focusable[focusable.length - 1];
-			this.firstElement = this.props.closeButton ? this.modalCloseBtnRef : focusable[0] as HTMLElement;
+			this.firstElement = closeButton ? this.modalCloseBtnRef : focusable[0] as HTMLElement;
 			this.lastElement = lastFocusable as HTMLElement;
 		} else {
 			this.firstElement = this.modalRef;

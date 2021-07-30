@@ -62,16 +62,16 @@ class CSRadio extends React.Component<CSRadioProps> {
 			},
 		);
 
-		const uniqueAutoId = this.props.id ? this.props.id : uuidv4();
+		const uniqueAutoId = id || uuidv4();
 
-		const childrenWithProps = React.Children.map(this.props.children, (child) => {
+		const childrenWithProps = React.Children.map(children, (child) => {
 			if (child) {
 				return React.cloneElement(
 					child as any,
 					{
-						ariaInvalid: this.props.error,
-						ariaRequired: this.props.required,
-						parentDisabled: this.props.disabled,
+						ariaInvalid: error,
+						ariaRequired: required,
+						parentDisabled: disabled,
 					},
 				);
 			}

@@ -27,7 +27,8 @@ class CSTransferItem extends React.Component<CSTransferItemProps> {
 	private actionButtons: HTMLUListElement;
 
 	componentDidMount() {
-		this.actionButtons = this.context.actionButtonsNode;
+		const { actionButtonsNode } = this.context;
+		this.actionButtons = actionButtonsNode;
 		this.listNodes = this.listItemNode.parentElement.childNodes;
 	}
 
@@ -74,7 +75,13 @@ class CSTransferItem extends React.Component<CSTransferItemProps> {
 
 	render() {
 		const {
-			name, itemKey, itemVariant, onSelect, selected, disabled, listType,
+			name,
+			itemKey,
+			itemVariant,
+			onSelect,
+			selected,
+			disabled,
+			listType,
 		} = this.props;
 		const { oneWay, moveToSource } = this.context;
 		const isOneWay = listType === 'target' && oneWay;
@@ -85,7 +92,7 @@ class CSTransferItem extends React.Component<CSTransferItemProps> {
 				'cs-transfer-li-selected': selected,
 				'cs-transfer-li-simple': itemVariant === 'simple-list',
 				'cs-transfer-li-disabled': disabled,
-				'cs-transfer-li-one-way': this.context.oneWay && listType === 'target',
+				'cs-transfer-li-one-way': oneWay && listType === 'target',
 				'cs-transfer-li-check-list': itemVariant === 'check-list',
 			},
 		);

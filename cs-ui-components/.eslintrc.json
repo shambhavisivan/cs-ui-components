@@ -39,9 +39,7 @@
         "no-use-before-define": "off",
         "@typescript-eslint/no-use-before-define": ["error"],
         "import/no-extraneous-dependencies": ["error", { "devDependencies": ["**/setupTests.ts", "**/*.spec.tsx", "**/*.spec.ts"]}],
-        "react/static-property-placement": ["error", "static public field"],
-        // These warnings should be revisited and preferably resolved
-        "react/destructuring-assignment": ["warn"]
+        "react/static-property-placement": ["error", "static public field"]
     },
     "settings": {
         "import/resolver": {

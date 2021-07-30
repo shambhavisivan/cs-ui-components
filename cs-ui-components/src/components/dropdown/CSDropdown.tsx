@@ -95,7 +95,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 	constructor(props: CSDropdownProps) {
 		super(props);
 		this.state = {
-			computedPosition: `${this.props.position}-${this.props.align}`,
+			computedPosition: `${props.position}-${props.align}`,
 			isOpen: false,
 		};
 
@@ -114,6 +114,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 	}
 
 	openDropdown = () => {
+		const { onDropdownOpen } = this.props;
 		const elementRect = this.btnDropdownRef.current.getBoundingClientRect();
 
 		this.setState({
@@ -121,38 +122,45 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 			isOpen: true,
 		});
 
-		if (this.props.onDropdownOpen) {
-			this.props.onDropdownOpen();
+		if (onDropdownOpen) {
+			onDropdownOpen();
 		}
 		document.addEventListener('click', this.handleOutsideClick);
 	}
 
 	closeDropdown = () => {
+		const { position, align, onDropdownClose } = this.props;
+
 		this.setState({
-			computedPosition: `${this.props.position}-${this.props.align}`,
+			computedPosition: `${position}-${align}`,
 			isOpen: false,
-		}, () => this.props.onDropdownClose?.());
+		}, () => onDropdownClose?.());
 
 		document.removeEventListener('click', this.handleOutsideClick);
 	}
 
 	onKeyDown = (event: { key: string; }) => {
-		if (event.key === KeyCode.Escape && this.state.isOpen) {
+		const { isOpen } = this.state;
+
+		if (event.key === KeyCode.Escape && isOpen) {
 			this.closeDropdown();
 		}
 	}
 
 	toggleDropdown = (event?: React.MouseEvent<any>) => {
+		const { mode } = this.props;
+		const { isOpen } = this.state;
+
 		// prevent closing the dropdown if click is invoked on mode that isn't button
 		if (
 			event && event.type === 'click'
-			&& this.props.mode !== 'button'
+			&& mode !== 'button'
 			&& event.target !== event.currentTarget
 		) {
 			return;
 		}
 
-		if (!this.state.isOpen) {
+		if (!isOpen) {
 			this.openDropdown();
 		} else {
 			this.closeDropdown();
@@ -196,6 +204,12 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 			...rest
 		} = this.props;
 
+		const {
+			computedPosition,
+			dropdownBtnWidth,
+			isOpen,
+		} = this.state;
+
 		const dropdownWrapperClasses = classNames(
 			'cs-dropdown-wrapper',
 			{
@@ -204,15 +218,15 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 		);
 
 		const btnDropdownClasses = classNames({
-			'cs-dropdown-active': this.state.isOpen,
+			'cs-dropdown-active': isOpen,
 		});
 
 		const dropdownStyle: CSSProperties = {
-			'--cs-dropdown-btn-width': this.state.dropdownBtnWidth ? `${this.state.dropdownBtnWidth}px` : '',
+			'--cs-dropdown-btn-width': dropdownBtnWidth ? `${dropdownBtnWidth}px` : '',
 		};
 
 		const initialPosition = `${position}-${this.flipPosition(align)}` as CSAutopositions;
-		const [yPosition, xPosition] = this.state.computedPosition.split('-');
+		const [yPosition, xPosition] = computedPosition.split('-');
 
 		return (
 			<div
@@ -236,17 +250,17 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 					onKeyDown={this.onKeyDown}
 					size={size}
 					label={label || 'Toggle dropdown'}
-					ariaExpanded={!!this.state.isOpen}
+					ariaExpanded={!!isOpen}
 					ariaHaspopup={!!Object(children).length}
 					ref={this.btnDropdownRef}
 					title={title}
 				>
-					{this.state.isOpen && (
+					{isOpen && (
 						<CSAutoposition
 							initialPosition={initialPosition}
 							referencePoint={this.btnDropdownRef.current}
 							positionSchema={this.positionSchema}
-							onPositionChange={(computedPosition) => this.setState({ computedPosition })}
+							onPositionChange={(newComputedPosition) => this.setState({ computedPosition: newComputedPosition })}
 							zIndex="var(--z-index-dropdown-items-wrapper)"
 						>
 							<CSDropdownItemWrapper
@@ -256,7 +270,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 								hover={hover}
 								padding={padding}
 								animated={!hover}
-								visible={!!this.state.isOpen}
+								visible={!!isOpen}
 								style={dropdownStyle}
 								toggleDropdown={this.toggleDropdown}
 								align={this.flipPosition(xPosition)}

@@ -28,8 +28,9 @@ class CSTab extends React.Component<CSTabProps> {
 	};
 
 	onClickHandler = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-		if (!this.props.routerLink) event.preventDefault();
-		this.props.onClick?.();
+		const { routerLink, onClick } = this.props;
+		if (!routerLink) event.preventDefault();
+		onClick?.();
 	}
 
 	render() {

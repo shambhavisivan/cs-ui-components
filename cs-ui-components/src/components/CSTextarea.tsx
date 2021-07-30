@@ -34,11 +34,18 @@ class CSTextarea extends React.Component<CSTextareaProps> {
 		rows: 3,
 	};
 
-	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
+	private readonly uniqueAutoId: string;
+
+	constructor(props: CSTextareaProps) {
+		super(props);
+
+		this.uniqueAutoId = props.id ? props.id : uuidv4();
+	}
 
 	handleOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-		if (this.props.onChange) {
-			this.props.onChange(e);
+		const { onChange } = this.props;
+		if (onChange) {
+			onChange(e);
 		}
 	}
 

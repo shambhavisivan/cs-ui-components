@@ -29,38 +29,67 @@ export interface CSCurrencyProps {
 
 class CSCurrency extends React.Component<CSCurrencyProps> {
 	// Typescript does not include currencySign, notation and signDisplay so far. Issue has been raised with microsoft typescript team and is in backlog.
-	formatValue = (unformattedValue: any) => new Intl.NumberFormat(this.props.locale,
-		{
+	formatValue = (unformattedValue: any) => {
+		const {
+			currency,
+			currencyDisplay,
+			currencySign,
+			locale,
+			notation,
+			minimumIntegerDigits,
+			minimumFractionDigits,
+			maximumFractionDigits,
+			minimumSignificantDigits,
+			maximumSignificantDigits,
+			signDisplay,
+			useGrouping,
+		} = this.props;
+
+		return new Intl.NumberFormat(locale, {
 			localeMatcher: 'best fit',
-			currency: this.props.currency,
-			currencyDisplay: this.props.currencyDisplay,
-			style: this.props.currency ? 'currency' : undefined,
-			currencySign: this.props.currencySign, // Not supported in Safari. Not included in typescript NumberFormatOptions interface
-				// @ts-ignore
-			notation: this.props.notation, // Not supported in Safari. Not included in typescript NumberFormatOptions interface
-			signDisplay: this.props.signDisplay, // Not supported in Safari. Not included in typescript NumberFormatOptions interface
-			minimumIntegerDigits: this.props.minimumIntegerDigits,
-			minimumFractionDigits: this.props.minimumFractionDigits,
-			maximumFractionDigits: this.props.maximumFractionDigits,
-			minimumSignificantDigits: this.props.minimumSignificantDigits,
-			maximumSignificantDigits: this.props.maximumSignificantDigits,
-			useGrouping: this.props.useGrouping,
-		}).format(unformattedValue)
+			currency,
+			currencyDisplay,
+			style: currency ? 'currency' : undefined,
+			currencySign, // Not supported in Safari. Not included in typescript NumberFormatOptions interface
+			// @ts-ignore
+			notation, // Not supported in Safari. Not included in typescript NumberFormatOptions interface
+			signDisplay, // Not supported in Safari. Not included in typescript NumberFormatOptions interface
+			minimumIntegerDigits,
+			minimumFractionDigits,
+			maximumFractionDigits,
+			minimumSignificantDigits,
+			maximumSignificantDigits,
+			useGrouping,
+		}).format(unformattedValue);
+	}
 
 	// Safari does not support currencySign, notation and signDisplay, so this method is called when using Safari.
-	formatSafariValue = (unformattedValue: any) => new Intl.NumberFormat(this.props.locale,
-		{
+	formatSafariValue = (unformattedValue: any) => {
+		const {
+			currency,
+			currencyDisplay,
+			locale,
+			minimumIntegerDigits,
+			minimumFractionDigits,
+			maximumFractionDigits,
+			minimumSignificantDigits,
+			maximumSignificantDigits,
+			useGrouping,
+		} = this.props;
+
+		return new Intl.NumberFormat(locale, {
 			localeMatcher: 'best fit',
-			currency: this.props.currency,
-			currencyDisplay: this.props.currencyDisplay === 'narrowSymbol' ? 'symbol' : this.props.currencyDisplay, // "narrowSymbol" value not supported in Safari
-			style: this.props.currency ? 'currency' : undefined,
-			minimumIntegerDigits: this.props.minimumIntegerDigits,
-			minimumFractionDigits: this.props.minimumFractionDigits,
-			maximumFractionDigits: this.props.maximumFractionDigits, // In safari if maximumFractionDigits < minimumFractionDigits it breaks app
-			minimumSignificantDigits: this.props.minimumSignificantDigits,
-			maximumSignificantDigits: this.props.maximumSignificantDigits,
-			useGrouping: this.props.useGrouping,
-		}).format(unformattedValue)
+			currency,
+			currencyDisplay: currencyDisplay === 'narrowSymbol' ? 'symbol' : currencyDisplay, // "narrowSymbol" value not supported in Safari
+			style: currency ? 'currency' : undefined,
+			minimumIntegerDigits,
+			minimumFractionDigits,
+			maximumFractionDigits, // In safari if maximumFractionDigits < minimumFractionDigits it breaks app
+			minimumSignificantDigits,
+			maximumSignificantDigits,
+			useGrouping,
+		}).format(unformattedValue);
+	}
 
 	render() {
 		const {

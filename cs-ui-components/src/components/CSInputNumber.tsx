@@ -43,7 +43,13 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 		type: 'number',
 	};
 
-	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
+	private readonly uniqueAutoId: string;
+
+	constructor(props: CSInputNumberProps) {
+		super(props);
+
+		this.uniqueAutoId = props.id ? props.id : uuidv4();
+	}
 
 	onFocus: React.FocusEventHandler<HTMLInputElement> = (e) => {
 		const { onFocus } = this.props;
@@ -60,20 +66,26 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 	}
 
 	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		if (this.props.onChange) {
-			this.props.onChange(e.target.value);
+		const { onChange } = this.props;
+
+		if (onChange) {
+			onChange(e.target.value);
 		}
 	}
 
 	handleOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-		if (this.props.onKeyDown) {
-			this.props.onKeyDown(e);
+		const { onKeyDown } = this.props;
+
+		if (onKeyDown) {
+			onKeyDown(e);
 		}
 	}
 
 	handleOnPaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
-		if (this.props.onPaste) {
-			this.props.onPaste(e);
+		const { onPaste } = this.props;
+
+		if (onPaste) {
+			onPaste(e);
 		}
 	}
 

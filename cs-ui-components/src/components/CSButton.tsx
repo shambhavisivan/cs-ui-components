@@ -62,26 +62,33 @@ class CSButton extends React.Component<CSButtonProps> {
 	}
 
 	iconComponent() {
-		if (this.props.loading) {
+		const {
+			loading,
+			iconSize,
+			iconName,
+			iconRotate,
+			iconOrigin,
+		} = this.props;
+		if (loading) {
 			return (
 				<span className="cs-btn-icon">
 					<CSIcon
 						name="spinner"
-						size={this.props.iconSize}
+						size={iconSize}
 						spin
 					/>
 				</span>
 			);
 		}
 
-		if (this.props.iconName) {
+		if (iconName) {
 			return (
 				<span className="cs-btn-icon">
 					<CSIcon
-						name={this.props.iconName}
-						rotate={this.props.iconRotate}
-						origin={this.props.iconOrigin}
-						size={this.props.iconSize}
+						name={iconName}
+						rotate={iconRotate}
+						origin={iconOrigin}
+						size={iconSize}
 					/>
 				</span>
 			);
@@ -91,8 +98,10 @@ class CSButton extends React.Component<CSButtonProps> {
 	}
 
 	label() {
-		if (this.props.label) {
-			return <span className="cs-btn-label">{this.props.label}</span>;
+		const { label } = this.props;
+
+		if (label) {
+			return <span className="cs-btn-label">{label}</span>;
 		}
 
 		return null;
@@ -202,15 +211,15 @@ class CSButton extends React.Component<CSButtonProps> {
 						routerLink,
 						componentProps,
 						this.iconComponent(),
-						!this.props.labelHidden ? this.label() : null,
-						this.props.children ? <span className="cs-btn-custom-content">{children}</span> : null,
+						!labelHidden ? this.label() : null,
+						children ? <span className="cs-btn-custom-content">{children}</span> : null,
 					)
 					: React.createElement(
 						link ? 'a' : 'button',
 						componentProps,
 						this.iconComponent(),
-						!this.props.labelHidden ? this.label() : null,
-						this.props.children ? <span className="cs-btn-custom-content">{children}</span> : null,
+						!labelHidden ? this.label() : null,
+						children ? <span className="cs-btn-custom-content">{children}</span> : null,
 					)}
 			</>
 		);

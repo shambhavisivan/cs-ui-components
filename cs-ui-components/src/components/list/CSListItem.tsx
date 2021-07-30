@@ -16,8 +16,10 @@ export interface CSListItemProps {
 
 class CSListItem extends React.Component<CSListItemProps> {
 	componentDidUpdate(prevProps: CSListItemProps) {
-		if (prevProps.disabled !== this.props.disabled) {
-			this.props.checkValidItems();
+		const { disabled, checkValidItems } = this.props;
+
+		if (prevProps.disabled !== disabled) {
+			checkValidItems();
 		}
 	}
 

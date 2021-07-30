@@ -65,20 +65,24 @@ class CSDatepicker extends React.Component<CSDatepickerProps> {
 
 	public datepickerRef: React.RefObject<DatePicker>;
 
-	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
+	private readonly uniqueAutoId: string;
 
 	constructor(props: CSDatepickerProps) {
 		super(props);
 
 		this.datepickerRef = React.createRef();
+		this.uniqueAutoId = props.id ? props.id : uuidv4();
 	}
 
 	handleOnKeyDown = (event: any) => {
+		const { onKeyDown } = this.props;
+
 		// If shift key and tab pressed together close datepicker
 		if (event.shiftKey && event.key === KeyCode.Tab) {
 			this.datepickerRef.current.setOpen(false);
 		}
-		this.props.onKeyDown?.(event);
+
+		onKeyDown?.(event);
 	}
 
 	public render() {
@@ -177,7 +181,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps> {
 							name={name}
 							locale={locale}
 							selected={selected}
-							onCalendarClose={this.props.onCalendarClose}
+							onCalendarClose={onCalendarClose}
 							onChange={onChange}
 							onChangeRaw={onChangeRaw}
 							onKeyDown={this.handleOnKeyDown}

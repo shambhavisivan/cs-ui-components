@@ -116,9 +116,9 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 	private timeoutRef: NodeJS.Timeout;
 
-	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
-
 	private executeServerSearchDebounced: any;
+
+	private readonly uniqueAutoId: string;
 
 	constructor(props: CSLookupProps) {
 		super(props);
@@ -137,21 +137,24 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		};
 
 		this.executeServerSearchDebounced = debounce(this.executeServerSearch, 500);
+		this.uniqueAutoId = props.id ? props.id : uuidv4();
 	}
 
 	componentDidMount() {
-		if (this.props.mode === 'client') {
-			this.setState({ dropdownValues: this.props.lookupOptions });
+		const { mode, lookupOptions } = this.props;
+		if (mode === 'client') {
+			this.setState({ dropdownValues: lookupOptions });
 		}
 
 		this.setValue();
 	}
 
 	componentDidUpdate(prevProps: CSLookupProps) {
-		if (prevProps.value !== this.props.value) {
+		const { value, lookupOptions } = this.props;
+		if (prevProps.value !== value) {
 			this.setValue();
 		}
-		if (prevProps.lookupOptions !== this.props.lookupOptions) {
+		if (prevProps.lookupOptions !== lookupOptions) {
 			this.updateDropdownValues();
 		}
 	}
@@ -162,19 +165,22 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	}
 
 	updateDropdownValues = () => {
+		const { lookupOptions } = this.props;
+
 		this.setState({
-			dropdownValues: this.props.lookupOptions,
+			dropdownValues: lookupOptions,
 		});
 	}
 
 	setValue = () => {
-		if (this.props.multiselect && Array.isArray(this.props.value)) {
+		const { multiselect, value } = this.props;
+		if (multiselect && Array.isArray(value)) {
 			this.setState({
-				selectedOptions: [...this.props.value],
+				selectedOptions: [...value],
 			});
 		} else {
 			this.setState({
-				selectedOption: this.props.value,
+				selectedOption: value,
 			});
 		}
 	}
@@ -188,8 +194,10 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	}
 
 	fetchData = async () => {
+		const { fetchLookupOptions, pageSize, minTermLength } = this.props;
+		const { searchTerm, pageNo } = this.state;
 		try {
-			const fetchResults = await this.props.fetchLookupOptions(this.state.searchTerm, this.props.pageSize, this.state.pageNo);
+			const fetchResults = await fetchLookupOptions(searchTerm, pageSize, pageNo);
 			this.setState((prevState) => ({
 				fetchingMode: undefined,
 				dropdownValues: prevState.fetchingMode === 'after-scroll'
@@ -200,10 +208,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		} catch (error) {
 			console.error(`Lookup options couldn't be fetched: ${error}`);
 		} finally {
-			if (
-				this.props.minTermLength !== 0
-				&& this.state.searchTerm.length < this.props.minTermLength
-			) {
+			if (minTermLength !== 0 && searchTerm.length < minTermLength) {
 				this.setState({ dropdownValues: [] });
 			}
 		}
@@ -227,7 +232,8 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	}
 
 	executeSearch = () => {
-		if (this.props.mode === 'client') this.executeClientSearch();
+		const { mode } = this.props;
+		if (mode === 'client') this.executeClientSearch();
 		else this.executeServerSearchDebounced();
 	}
 
@@ -257,17 +263,17 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	}
 
 	executeServerSearch = () => {
-		if (
-			this.props.minTermLength !== 0
-			&& this.state.searchTerm.length < this.props.minTermLength
-		) {
+		const { minTermLength } = this.props;
+		const { searchTerm } = this.state;
+		if (minTermLength !== 0 && searchTerm.length < minTermLength) {
 			return;
 		}
 		this.fetchData();
 	}
 
 	clearSearch = async () => {
-		const value: any = this.props.multiselect ? [] : null;
+		const { multiselect, mode, lookupOptions } = this.props;
+		const value: any = multiselect ? [] : null;
 		const result = await this.handleSelectChange(value);
 
 		if (result) {
@@ -275,7 +281,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 				searchTerm: '',
 				selectedOption: null,
 				selectedOptions: [],
-				dropdownValues: this.props.mode === 'client' ? this.props.lookupOptions : [],
+				dropdownValues: mode === 'client' ? lookupOptions : [],
 			});
 		}
 
@@ -286,8 +292,8 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	}
 
 	selectAction = async (selectedOption: Record<string, any>) => {
+		const { multiselect, mode, lookupOptions } = this.props;
 		const { selectedOptions } = this.state;
-		const { multiselect } = this.props;
 
 		if (multiselect) {
 			let newSelectedOptions = [];
@@ -309,7 +315,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			if (result) {
 				this.setState({
 					selectedOption,
-					dropdownValues: this.props.mode === 'client' ? this.props.lookupOptions : [],
+					dropdownValues: mode === 'client' ? lookupOptions : [],
 					searchTerm: '',
 				});
 			}
@@ -335,28 +341,34 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		therefore function that calles handleSelectChange should be async.
 	*/
 	handleSelectChange = (selectedOptions: any) => {
-		if (this.props.onSelectChange) {
-			const result = this.props.onSelectChange(selectedOptions);
+		const { onSelectChange } = this.props;
+
+		if (onSelectChange) {
+			const result = onSelectChange(selectedOptions);
 			return result ?? true;
 		}
+
 		return true;
 	}
 
 	// returns the value of the selected option based on key provided in fieldToBeDisplayed prop
-	getValueToDisplay = (_selectedOption: Record<string, any>) => {
-		if (_selectedOption) {
-			return _selectedOption[this.props.fieldToBeDisplayed];
+	getValueToDisplay = (selectedOption: Record<string, any>) => {
+		const { fieldToBeDisplayed } = this.props;
+		if (selectedOption) {
+			return selectedOption[fieldToBeDisplayed];
 		}
 
 		return null;
 	}
 
 	getMultiselectValues = () => {
-		if (this.props.multiselect && !!this.state.selectedOptions.length) {
-			const multiselectValues = this.state.selectedOptions.map((option) => option[this.props.fieldToBeDisplayed]);
+		const { multiselect, fieldToBeDisplayed } = this.props;
+		const { selectedOptions } = this.state;
 
-			return multiselectValues.join(', ');
+		if (multiselect && !!selectedOptions.length) {
+			return selectedOptions.map((option) => option[fieldToBeDisplayed]).join(', ');
 		}
+
 		return null;
 	}
 
@@ -367,30 +379,38 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	}
 
 	handleOnClick = () => {
-		if (!this.state.dropdownOpen) {
+		const { dropdownOpen } = this.state;
+
+		if (!dropdownOpen) {
 			this.openLookupDropdown();
 		}
 	}
 
 	handleOnFocus = (event: React.FocusEvent<HTMLInputElement>) => {
-		if (this.props.onFocus) {
-			this.props.onFocus(event);
+		const { onFocus } = this.props;
+
+		if (onFocus) {
+			onFocus(event);
 		}
+
 		this.openLookupDropdown();
 	}
 
 	handleOnBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-		if (this.props.onBlur) {
-			this.props.onBlur(event);
+		const { onBlur, multiselect, mode, lookupOptions } = this.props;
+		const { selectedOptions } = this.state;
+
+		if (onBlur) {
+			onBlur(event);
 		}
-		if (this.props.multiselect && !!this.state.selectedOptions.length) {
+		if (multiselect && !!selectedOptions.length) {
 			this.setState({
 				searchTerm: '',
-				dropdownValues: this.props.mode === 'client'
-					? this.props.lookupOptions : [],
+				dropdownValues: mode === 'client'
+					? lookupOptions : [],
 			});
 		}
-		if (this.props.mode === 'server') {
+		if (mode === 'server') {
 			this.setState({
 				pageNo: 0,
 				moreRecords: true,
@@ -433,10 +453,15 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	}
 
 	handleOnKeyDown = async (event: React.KeyboardEvent<HTMLInputElement>) => {
+		const { loading } = this.props;
+
 		const {
-			activeRowIndex, dropdownOpen, dropdownValues, fetchingMode,
+			activeRowIndex,
+			dropdownOpen,
+			dropdownValues,
+			fetchingMode,
 		} = this.state;
-		const isLoading = this.props.loading || fetchingMode === 'after-search';
+		const isLoading = loading || fetchingMode === 'after-search';
 
 		const firstListElement = 0;
 		const lastListElement = dropdownValues.length - 1;
@@ -495,9 +520,12 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	}
 
 	openLookupDropdown = () => {
+		const { mode, minTermLength } = this.props;
+
 		if (!this.lookupInputRef.current) {
 			return;
 		}
+
 		const lookupInputRect = this.lookupInputRef.current.getBoundingClientRect();
 
 		this.setState({
@@ -506,41 +534,42 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			activeRowIndex: 0,
 		});
 
-		if (this.props.mode === 'server' && this.props.minTermLength === 0) {
+		if (mode === 'server' && minTermLength === 0) {
 			this.setState({ fetchingMode: 'after-search' }, this.fetchData);
 		}
 		document.addEventListener('click', this.handleClickOutside, true);
 	}
 
 	closeLookupDropdown = () => {
+		const { mode, lookupOptions, onLookupDropdownClose } = this.props;
+
 		this.setState({
 			dropdownOpen: false,
 			pageNo: 0,
 			moreRecords: true,
 			activeRowIndex: null,
-			dropdownValues: this.props.mode === 'client' ? this.props.lookupOptions : [],
+			dropdownValues: mode === 'client' ? lookupOptions : [],
 			searchTerm: '',
 		});
 		document.removeEventListener('click', this.handleClickOutside, true);
 
-		if (this.props.onLookupDropdownClose) {
-			this.props.onLookupDropdownClose();
+		if (onLookupDropdownClose) {
+			onLookupDropdownClose();
 		}
 	}
 
 	lookupRefCallback = (element: HTMLDivElement) => {
-		if (this.props.infiniteScroll) {
+		const { infiniteScroll } = this.props;
+		const { moreRecords, fetchingMode } = this.state;
+
+		if (infiniteScroll) {
 			element.firstElementChild.addEventListener('scroll', (event) => {
 				const scrollNode = event.target as HTMLDivElement;
 				const isEndOfScroll = (scrollNode.scrollHeight
 					- scrollNode.scrollTop
 					- scrollNode.offsetHeight <= 1);
 
-				if (
-					isEndOfScroll
-					&& this.state.moreRecords
-					&& this.state.fetchingMode === undefined
-				) {
+				if (isEndOfScroll && moreRecords && fetchingMode === undefined) {
 					this.setState((prevState) => ({
 						fetchingMode: 'after-scroll',
 						pageNo: prevState.pageNo + 1,
@@ -665,7 +694,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		const minTermLengthNode = (
 			<CSTableRow className={lookupDropdownMsgClasses}>
 				<span className="cs-lookup-dropdown-msg-text">
-					{`Please enter ${this.props.minTermLength} or more characters!`}
+					{`Please enter ${minTermLength} or more characters!`}
 				</span>
 			</CSTableRow>
 		);
@@ -687,7 +716,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			>
 				<CSIcon
 					name="spinner"
-					color={this.state.fetchingMode === 'after-scroll'
+					color={fetchingMode === 'after-scroll'
 						? 'var(--cs-lookup-dropdown-msg-inverse-c)'
 						: 'var(--cs-lookup-dropdown-msg-c)'}
 					spin
@@ -715,11 +744,10 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 				rowHighlighted={i === activeRowIndex}
 				id={`${this.lookupTableRowId}-${i}`}
 			>
-				{!!lookupColumns.length
-					&& this.props.lookupColumns.map((column, j) => (
-						// eslint-disable-next-line react/no-array-index-key
-						<CSTableCell text={item[column.key]} key={j} />
-					))}
+				{!!lookupColumns.length && lookupColumns.map((column, j) => (
+					// eslint-disable-next-line react/no-array-index-key
+					<CSTableCell text={item[column.key]} key={j} />
+				))}
 			</CSTableRow>
 		));
 
@@ -744,13 +772,10 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			Otherwise fixed height of 17rem will be returned.
 		*/
 		const calcTableBodyMaxHeight = () => {
-			if (
-				this.props.mode === 'server'
-				&& this.props.infiniteScroll
-				&& this.props.pageSize < 9
-			) {
-				return `${32 * (this.props.pageSize - 1)}px`;
+			if (mode === 'server' && infiniteScroll && pageSize < 9) {
+				return `${32 * (pageSize - 1)}px`;
 			}
+
 			return '17rem';
 		};
 

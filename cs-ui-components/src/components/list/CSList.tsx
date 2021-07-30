@@ -39,7 +39,7 @@ class CSList extends React.Component<CSListProps> {
 			},
 		);
 
-		const listItems = React.Children.map(this.props.children, (child) => {
+		const listItems = React.Children.map(children, (child) => {
 			if (child) {
 				return React.cloneElement(child as React.ReactElement<any>, {
 					listSize: size,

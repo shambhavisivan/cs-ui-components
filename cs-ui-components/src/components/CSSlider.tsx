@@ -1,3 +1,8 @@
+/* eslint-disable react/destructuring-assignment */
+// The rule was disabled because it's too difficult
+// to fix and the way state and props are managed
+// needs to be revisited before it's out of construction
+
 import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';

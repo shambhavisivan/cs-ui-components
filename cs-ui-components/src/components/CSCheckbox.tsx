@@ -41,46 +41,55 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 		labelHidden: false,
 	};
 
-	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
-
 	private checkboxRef: React.RefObject<HTMLInputElement>;
+
+	private readonly uniqueAutoId: string;
 
 	constructor(props: CSCheckboxProps) {
 		super(props);
 
 		this.checkboxRef = React.createRef();
+		this.uniqueAutoId = props.id ? props.id : uuidv4();
 	}
 
 	componentDidMount() {
-		if (this.props.indeterminate && !this.props.checked) {
+		const { indeterminate, checked } = this.props;
+
+		if (indeterminate && !checked) {
 			this.setIndeterminate(true);
 		}
 	}
 
 	componentDidUpdate(prevProps: CSCheckboxProps) {
-		if (prevProps.indeterminate !== this.props.indeterminate) {
-			this.setIndeterminate(this.props.indeterminate);
+		const { indeterminate } = this.props;
+
+		if (prevProps.indeterminate !== indeterminate) {
+			this.setIndeterminate(indeterminate);
 		}
 	}
 
 	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		if (this.props.readOnly) {
+		const { readOnly, onChange } = this.props;
+
+		if (readOnly) {
 			return;
 		}
 
-		if (this.props.onChange) {
-			this.props.onChange(e);
+		if (onChange) {
+			onChange(e);
 		}
 	}
 
 	handleOnClick = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
-		if (this.props.readOnly) {
+		const { readOnly, onClick } = this.props;
+
+		if (readOnly) {
 			e.preventDefault();
 			return;
 		}
 
-		if (this.props.onClick) {
-			this.props.onClick(e);
+		if (onClick) {
+			onClick(e);
 		}
 	}
 
@@ -177,7 +186,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 						/>
 						<span
 							className={checkboxFauxClasses}
-							title={this.props.title}
+							title={title}
 							style={style}
 						/>
 					</label>

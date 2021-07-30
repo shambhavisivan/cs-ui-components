@@ -25,7 +25,13 @@ class CSImage extends React.Component<CSImageProps> {
 		variant: 'initial',
 	};
 
-	private uniqueAutoId = this.props.longDescription ? uuidv4() : null;
+	private readonly uniqueAutoId: string | null;
+
+	constructor(props: CSImageProps) {
+		super(props);
+
+		this.uniqueAutoId = props.longDescription ? uuidv4() : null;
+	}
 
 	render() {
 		const {

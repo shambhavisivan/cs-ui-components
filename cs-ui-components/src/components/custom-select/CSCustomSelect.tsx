@@ -66,7 +66,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 
 	private filteredList: Array<any>;
 
-	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
+	private readonly uniqueAutoId: string;
 
 	constructor(props: CSCustomSelectProps) {
 		super(props);
@@ -83,11 +83,13 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		};
 
 		this.customSelectInputWrapperRef = React.createRef();
+		this.uniqueAutoId = props.id ? props.id : uuidv4();
 	}
 
 	componentDidMount() {
 		console.warn('CSCustomSelect is under construction and should not be used.');
-		if (this.props.value) {
+		const { value } = this.props;
+		if (value) {
 			this.setDefaultOptions();
 		}
 	}
@@ -136,11 +138,10 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 
 	handleOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
 		e.stopPropagation();
-		if (
-			!this.state.searchTerm
-			|| !this.state.selectedItem
-			|| !this.state.selectedOptions
-		) {
+
+		const { searchTerm, selectedItem, selectedOptions } = this.state;
+
+		if (!searchTerm || !selectedItem || !selectedOptions) {
 			this.closeCustomSelectDropdown();
 		}
 	}
@@ -320,7 +321,9 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 	}
 
 	toggleCustomSelectDropdown = () => {
-		if (!this.state.dropdownOpen) {
+		const { dropdownOpen } = this.state;
+
+		if (!dropdownOpen) {
 			this.openCustomSelectDropdown();
 		} else {
 			this.closeCustomSelectDropdown();
@@ -335,13 +338,17 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 
 	// Returns data defined at exportValue prop from selectedOptions state
 	getItemsByExportValue = (stateToExport: Array<CSOptionItem> | CSOptionItem) => {
+		const { exportValue } = this.props;
+
 		if (!stateToExport) {
 			return null;
 		}
+
 		if (Array.isArray(stateToExport)) {
-			return stateToExport.map((option: CSOptionItem) => option[this.props.exportValue]);
+			return stateToExport.map((option: CSOptionItem) => option[exportValue]);
 		}
-		return stateToExport[this.props.exportValue];
+
+		return stateToExport[exportValue];
 	}
 
 	// Highlights current hovered or focused item by setting activeListItem state
@@ -389,6 +396,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 			selectedOptions,
 			dropdownOpen,
 		} = this.state;
+
 		const {
 			align,
 			borderRadius,
@@ -505,32 +513,30 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 						/>
 					)}
 				<div
+					ref={this.customSelectInputWrapperRef}
 					className={customSelectInputWrapperClasses}
 					style={style}
 					onBlur={() => {
-						if (this.state.searchTerm) {
+						if (searchTerm) {
 							this.closeCustomSelectDropdown();
 						}
 					}}
-					ref={this.customSelectInputWrapperRef}
 				>
-					{(this.props.multiselect
-						&& this.state.selectedOptions.length > 0)
-						&& (
-							<ul className="cs-custom-select-items">
-								{this.state.selectedOptions.map((selectedOption, i) => (
-									<CSOption
-										type="selected-item"
-										value={selectedOption.value}
-										itemKey={selectedOption.itemKey}
-										key={selectedOption.itemKey}
-										onItemDelete={(event: any) => {
-											this.handleItemDelete(event, i);
-										}}
-									/>
-								))}
-							</ul>
-						)}
+					{multiselect && selectedOptions.length > 0 && (
+						<ul className="cs-custom-select-items">
+							{selectedOptions.map((selectedOption, i) => (
+								<CSOption
+									type="selected-item"
+									value={selectedOption.value}
+									itemKey={selectedOption.itemKey}
+									key={selectedOption.itemKey}
+									onItemDelete={(event: any) => {
+										this.handleItemDelete(event, i);
+									}}
+								/>
+							))}
+						</ul>
+					)}
 					<span className={customSelectInputClasses}>
 						<input
 							value={searchTerm}

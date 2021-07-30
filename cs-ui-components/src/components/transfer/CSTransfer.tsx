@@ -65,8 +65,9 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 	}
 
 	componentDidMount() {
+		const { variant } = this.props;
 		this.initTransferComponent();
-		this.element = this.props.variant === 'simple-list' ? 'button' : 'input[type=checkbox]';
+		this.element = variant === 'simple-list' ? 'button' : 'input[type=checkbox]';
 	}
 
 	initTransferComponent = () => {
@@ -106,7 +107,7 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 			}
 		} else if (variant === 'check-list' || ((event.ctrlKey || event.metaKey) && variant === 'simple-list')) {
 			newState[stateArrayName] = [...array, itemKey];
-		} else if (this.props.variant === 'simple-list') {
+		} else if (variant === 'simple-list') {
 			newState[stateArrayName] = [itemKey];
 		}
 		this.setState(newState);
@@ -165,12 +166,14 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 	}
 
 	handleOnChange = () => {
-		if (this.props.onChange) {
+		const { onChange } = this.props;
+		const { targetData } = this.state;
+		if (onChange) {
 			const targetKeys: Array<string> = [];
-			this.state.targetData.forEach((item) => {
+			targetData.forEach((item) => {
 				targetKeys.push(item.key);
 			});
-			this.props.onChange(targetKeys);
+			onChange(targetKeys);
 		}
 	}
 
@@ -190,15 +193,16 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 	}
 
 	handleActionsKeyDown = (event: React.KeyboardEvent<any>) => {
+		const { targetData, sourceData } = this.state;
 		switch (event.key) {
 		case KeyCode.ArrowRight:
-			if (!this.state.targetData.length) {
+			if (!targetData.length) {
 				break;
 			}
 			(this.targetListRef.current.querySelector(this.element) as HTMLElement).focus();
 			break;
 		case KeyCode.ArrowLeft:
-			if (!this.state.sourceData.length) {
+			if (!sourceData.length) {
 				break;
 			}
 			(this.sourceListRef.current.querySelector(this.element) as HTMLElement).focus();

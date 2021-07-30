@@ -28,15 +28,23 @@ export interface CSToggleProps {
 }
 
 class CSToggle extends React.Component<CSToggleProps> {
-	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
+	private readonly uniqueAutoId: string | null;
+
+	constructor(props: CSToggleProps) {
+		super(props);
+
+		this.uniqueAutoId = props.id ? props.id : uuidv4();
+	}
 
 	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		if (this.props.readOnly) {
+		const { readOnly, onChange } = this.props;
+
+		if (readOnly) {
 			return;
 		}
 
-		if (this.props.onChange) {
-			this.props.onChange(e);
+		if (onChange) {
+			onChange(e);
 		}
 	}
 

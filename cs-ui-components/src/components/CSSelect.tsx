@@ -34,11 +34,19 @@ class CSSelect extends React.Component<CSSelectProps> {
 		labelHidden: false,
 	};
 
-	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
+	private readonly uniqueAutoId : string;
+
+	constructor(props: CSSelectProps) {
+		super(props);
+
+		this.uniqueAutoId = props.id ? props.id : uuidv4();
+	}
 
 	handleOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-		if (this.props.onChange) {
-			this.props.onChange(e.target.value);
+		const { onChange } = this.props;
+
+		if (onChange) {
+			onChange(e.target.value);
 		}
 	}
 

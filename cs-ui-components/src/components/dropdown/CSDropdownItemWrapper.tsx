@@ -47,11 +47,14 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 	}
 
 	componentDidMount() {
-		this.props.setMounted();
+		const { setMounted } = this.props;
+		setMounted();
 	}
 
 	componentDidUpdate(prevProps: CSDropdownItemWrapperProps) {
-		if (prevProps.mounted !== this.props.mounted) {
+		const { mounted } = this.props;
+
+		if (prevProps.mounted !== mounted) {
 			this.getFocusableElements(this.dropdownUListRef.current);
 			if (this.focusableElements.length) {
 				this.focusableElements[0].focus();

@@ -25,7 +25,8 @@ class CSOption extends React.Component<CSOptionProps> {
 	}
 
 	componentDidUpdate(prevProps: CSOptionProps) {
-		if (prevProps.active !== this.props.active && this.props.active) {
+		const { active } = this.props;
+		if (prevProps.active !== active && active) {
 			this.checkInView();
 		}
 	}

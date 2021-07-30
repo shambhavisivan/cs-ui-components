@@ -27,7 +27,8 @@ const withCSUnmountDelay = (Component: any, timeout: number = 200) => {
 		}
 
 		componentDidUpdate(prevProps: CSUnmountDelayProps) {
-			if (prevProps.visible !== this.props.visible && !this.props.visible && this.props.animated) {
+			const { visible, animated } = this.props;
+			if (prevProps.visible !== visible && !visible && animated) {
 				this.timer = window.setTimeout(() => {
 					this.setState({ mounted: false });
 				}, timeout);
@@ -35,18 +36,21 @@ const withCSUnmountDelay = (Component: any, timeout: number = 200) => {
 		}
 
 		setMounted() {
-			if (this.props.animated) {
+			const { animated } = this.props;
+			if (animated) {
 				setTimeout(() => this.setState({ mounted: true }), 0);
 			}
 		}
 
 		render() {
-			if (!this.state.mounted && !this.props.visible) {
+			const { visible } = this.props;
+			const { mounted } = this.state;
+			if (!mounted && !visible) {
 				return null;
 			}
 			return (
 				<Component
-					mounted={this.state.mounted}
+					mounted={mounted}
 					setMounted={this.setMounted}
 					{...this.props}
 				/>

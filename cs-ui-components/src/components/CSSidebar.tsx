@@ -32,7 +32,9 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 	}
 
 	componentDidMount() {
-		if (this.props.closed) {
+		const { closed } = this.props;
+
+		if (closed) {
 			this.setState({
 				closed: true,
 			});
@@ -64,11 +66,16 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 			...rest
 		} = this.props;
 
+		const {
+			active,
+			closed: closedState,
+		} = this.state;
+
 		const renderChildrenWithTabsAsProps = React.Children.map(children, (child) => {
 			if (child) {
 				return React.cloneElement(child as React.ReactElement<any>, {
 					toggleActive: this.toggleActive,
-					active: this.state.active,
+					active,
 				});
 			}
 
@@ -83,7 +90,7 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 		const sidebarClasses = classNames(
 			'cs-sidebar',
 			{
-				closed: this.state.closed,
+				closedState,
 				[`${className}`]: className,
 			},
 		);
@@ -100,16 +107,15 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 								labelHidden
 								iconName="assignment"
 								size="small"
-								ariaExpanded={!this.state.closed}
+								ariaExpanded={!closed}
 							/>
 						)}
 				</div>
-				{!this.state.closed
-					&& (
-						<ul role="menu">
-							{renderChildrenWithTabsAsProps}
-						</ul>
-					)}
+				{!closed && (
+					<ul role="menu">
+						{renderChildrenWithTabsAsProps}
+					</ul>
+				)}
 			</nav>
 		);
 	}

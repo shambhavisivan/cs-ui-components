@@ -12,10 +12,11 @@ export interface CSFieldErrorMsgProps {
 
 class CSFieldErrorMsg extends React.Component<CSFieldErrorMsgProps> {
 	getErrorMessage = () => {
-		if (Array.isArray(this.props.message)) {
-			return this.props.message.join(' ');
+		const { message } = this.props;
+		if (Array.isArray(message)) {
+			return message.join(' ');
 		}
-		return this.props.message;
+		return message;
 	}
 
 	render() {

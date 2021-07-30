@@ -124,8 +124,10 @@ class CSPagination extends React.Component<CSPaginationProps> {
 		// 	return null;
 		// }
 
+		const { className } = this.props;
+
 		return (
-			<nav aria-label="pagination" className={this.props.className}>
+			<nav aria-label="pagination" className={className}>
 				<ul className="cs-pagination">
 					{/*
 					<CSButton

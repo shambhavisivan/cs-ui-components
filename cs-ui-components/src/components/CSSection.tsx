@@ -29,7 +29,9 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 
 	// When component mounts if defaultClosed equals true hide content initially
 	componentDidMount() {
-		if (this.props.defaultClosed) {
+		const { defaultClosed } = this.props;
+
+		if (defaultClosed) {
 			this.setState({
 				defaultClosed: true,
 			});
@@ -37,7 +39,9 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 	}
 
 	componentDidUpdate(prevProps: CSSectionProps) {
-		if (prevProps.defaultClosed !== this.props.defaultClosed) {
+		const { defaultClosed } = this.props;
+
+		if (prevProps.defaultClosed !== defaultClosed) {
 			this.updateDefaultClosed();
 		}
 	}
@@ -49,7 +53,9 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 	}
 
 	updateDefaultClosed = () => {
-		this.setState({ defaultClosed: this.props.defaultClosed });
+		const { defaultClosed } = this.props;
+
+		this.setState({ defaultClosed });
 	}
 
 	render() {
@@ -62,6 +68,8 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 			title,
 			...rest
 		} = this.props;
+
+		const { defaultClosed: defaultClosedState } = this.state;
 
 		const sectionClasses = classNames(
 			'cs-section',
@@ -88,22 +96,20 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 								type="button"
 								className="cs-section-button"
 								onClick={this.toggle}
-								aria-expanded={!this.state.defaultClosed}
+								aria-expanded={!defaultClosedState}
 								aria-roledescription="section"
 							>
-								<CSIcon name="chevronright" size="0.875rem" rotate={this.state.defaultClosed ? 0 : 90} />
+								<CSIcon name="chevronright" size="0.875rem" rotate={defaultClosedState ? 0 : 90} />
 								<span className="cs-section-title">{title}</span>
 							</button>
 						)
 						: <span className="cs-section-title">{title}</span>}
 				</h3>
-				{this.state.defaultClosed
-					? null
-					: (
-						<div className="cs-section-body">
-							{children}
-						</div>
-					)}
+				{defaultClosedState ? null : (
+					<div className="cs-section-body">
+						{children}
+					</div>
+				)}
 			</section>
 		);
 	}

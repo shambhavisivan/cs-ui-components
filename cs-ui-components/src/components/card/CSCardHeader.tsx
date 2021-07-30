@@ -35,13 +35,15 @@ class CSCardHeader extends React.Component<CSCardHeaderProps, CSCardHeaderState>
 	}
 
 	componentDidMount() {
-		if (this.props.defaultClosed && this.props.collapsible) {
+		const { defaultClosed, collapsible } = this.props;
+		if (defaultClosed && collapsible) {
 			this.setState({ collapsed: true });
 		}
 	}
 
 	componentDidUpdate(prevProps: CSCardHeaderProps) {
-		if (prevProps.defaultClosed !== this.props.defaultClosed && this.props.collapsible) {
+		const { defaultClosed, collapsible } = this.props;
+		if (prevProps.defaultClosed !== defaultClosed && collapsible) {
 			this.updateDefaultClosed();
 		}
 	}
@@ -53,7 +55,8 @@ class CSCardHeader extends React.Component<CSCardHeaderProps, CSCardHeaderState>
 	}
 
 	updateDefaultClosed = () => {
-		this.setState({ collapsed: this.props.defaultClosed });
+		const { defaultClosed } = this.props;
+		this.setState({ collapsed: defaultClosed });
 	}
 
 	render() {
@@ -73,12 +76,16 @@ class CSCardHeader extends React.Component<CSCardHeaderProps, CSCardHeaderState>
 			...rest
 		} = this.props;
 
+		const {
+			collapsed,
+		} = this.state;
+
 		const cardHeaderClasses = classNames(
 			'cs-card-header',
 			{
 				'cs-card-header-with-border': showBorder,
-				'cs-card-header-collapsible': this.props.collapsible,
-				'cs-card-header-collapsed': this.state.collapsed,
+				'cs-card-header-collapsible': collapsible,
+				'cs-card-header-collapsed': collapsed,
 				[`${className}`]: className,
 			},
 		);
@@ -94,15 +101,15 @@ class CSCardHeader extends React.Component<CSCardHeaderProps, CSCardHeaderState>
 				style={cardHeaderStyles}
 				{...rest}
 			>
-				{this.props.collapsible ? (
+				{collapsible ? (
 					<CSButton
-						label={this.state.collapsed ? 'expand' : 'collapse'}
+						label={collapsed ? 'expand' : 'collapse'}
 						btnType="transparent"
 						btnStyle="brand"
 						size="small"
 						labelHidden
 						iconName="chevronright"
-						iconRotate={this.state.collapsed ? 0 : 90}
+						iconRotate={collapsed ? 0 : 90}
 						className="cs-card-button"
 						onClick={this.handleCollapse}
 					/>
