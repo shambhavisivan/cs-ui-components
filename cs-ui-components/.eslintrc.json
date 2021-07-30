@@ -42,8 +42,7 @@
         "react/static-property-placement": ["error", "static public field"],
         // These warnings should be revisited and preferably resolved
         "no-underscore-dangle": ["warn"],
-        "react/destructuring-assignment": ["warn"],
-        "jsx-a11y/click-events-have-key-events": ["warn"]
+        "react/destructuring-assignment": ["warn"]
     },
     "settings": {
         "import/resolver": {

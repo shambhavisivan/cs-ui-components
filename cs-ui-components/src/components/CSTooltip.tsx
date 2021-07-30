@@ -418,6 +418,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		};
 
 		return (
+			// eslint-disable-next-line jsx-a11y/click-events-have-key-events
 			<div
 				className={tooltipWrapperClasses}
 				onClick={stylePosition === 'fixed' && stickyOnClick ? () => this.setSticky(true) : null}
