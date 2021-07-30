@@ -175,8 +175,6 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 			<li
 				id={id}
 				className={listGroupWrapperClasses}
-				role="group"
-				aria-expanded={collapsed}
 				aria-level={1}
 				{...rest}
 			>

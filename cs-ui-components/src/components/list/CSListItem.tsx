@@ -93,7 +93,7 @@ class CSListItem extends React.Component<CSListItemProps> {
 							className={listItemClasses}
 							onClick={onSelectChange}
 							aria-selected={selected}
-							role="button"
+							role="option"
 							tabIndex={disabled ? -1 : 0}
 							onKeyDown={this.handleKeyDown}
 						>

@@ -41,13 +41,14 @@ const CSPathItem = ({
 			id={id}
 			{...rest}
 		>
+			{/* eslint-disable-next-line jsx-a11y/role-supports-aria-props */}
 			<button
-				aria-current={active}
-				aria-invalid={status === 'error'}
+				onClick={onClick}
 				disabled={disabled}
 				className="cs-path-item-wrapper"
-				onClick={onClick}
 				type="button"
+				aria-current={active}
+				aria-invalid={status === 'error'} // property works well with JAWS screen reader
 			>
 				{status
 					&& (

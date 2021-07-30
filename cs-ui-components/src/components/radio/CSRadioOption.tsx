@@ -70,6 +70,8 @@ class CSRadioOption extends React.Component<CSRadioOptionProps> {
 
 		return (
 			<label className={radioOptionWrapperClasses} title={title}>
+				{/* readonly, invalid and required aria properties work well with role radio, unlike with radiomenuitem role which supports these attributes, but does not work well as a role and doesn't enter radio form mode in screen readers */}
+				{/* eslint-disable-next-line jsx-a11y/role-supports-aria-props */}
 				<input
 					onChange={this.toggleRadio}
 					className={radioOptionClasses}

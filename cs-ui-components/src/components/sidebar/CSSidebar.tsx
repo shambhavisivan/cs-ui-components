@@ -150,7 +150,6 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 				style={style}
 				id={id}
 				onClick={this.handleSidebarClickToggle}
-				aria-expanded={!this.state.closed}
 				{...rest}
 			>
 				{showToggleBtn

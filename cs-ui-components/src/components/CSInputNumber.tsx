@@ -155,6 +155,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps> {
 						disabled={disabled}
 						value={value}
 						type={type}
+						role="spinbutton"
 						aria-label={label}
 						aria-required={required}
 						aria-valuemin={min}

@@ -212,7 +212,6 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 						onChange={this.handleOnChange}
 						title={title}
 						aria-readonly={readOnly}
-						aria-required={required}
 						aria-invalid={error}
 						aria-valuemin={Number(this.state.min)}
 						aria-valuemax={Number(this.state.max)}

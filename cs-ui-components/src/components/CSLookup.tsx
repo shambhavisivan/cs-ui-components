@@ -804,6 +804,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 						id={id || this.uniqueAutoId}
 						ref={this.lookupInputRef}
 						style={style}
+						role="listbox"
 						aria-required={required}
 						aria-expanded={dropdownOpen}
 						aria-invalid={error}
