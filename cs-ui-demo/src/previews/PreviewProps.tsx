@@ -21,11 +21,11 @@ const PreviewProps: React.FC<PreviewInterface> = ({ components }) => (
 		{components?.map((component: ComponentInterface, componentIndex: number) => (
 			<div key={component.name} className="properties-table-wrapper">
 				<h2 className="demo-heading scroll-spy" id={!componentIndex ? 'component-props' : undefined}>
-					{component.name} Properties
+					{component.name} {component?.attributes ? 'Attributes' : 'Properties'}
 				</h2>
 				<CSTable className="properties-table">
 					<CSTableHeader className="properties-table-header">
-						<CSTableCell className="properties-table-cell" text="Prop" />
+						<CSTableCell className="properties-table-cell" text={component?.attributes ? 'Attribute' : 'Property'} />
 						<CSTableCell className="properties-table-cell" text="Required" />
 						<CSTableCell className="properties-table-cell" text="Type" />
 						<CSTableCell className="properties-table-cell" text="Default" />
@@ -37,7 +37,10 @@ const PreviewProps: React.FC<PreviewInterface> = ({ components }) => (
 								'properties-table-row',
 								{
 									'properties-table-row-inherited': typeof property.required === 'string',
-									'properties-table-row-special': ['children', 'id', 'className', '[key: string]'].includes(property.name)
+									'properties-table-row-special': (
+										['id', 'className', '[key: string]'].includes(property.name)
+										|| (property.name === 'children' && !component?.attributes)
+									)
 								}
 							);
 							return (

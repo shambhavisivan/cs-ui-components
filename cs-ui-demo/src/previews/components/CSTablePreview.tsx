@@ -1254,7 +1254,7 @@ class CSTablePreview extends React.Component {
 						description: 'This component is designed to support CSTableRow as a child.'
 					}, {
 						name: '[key: string]',
-						types: 'a',
+						types: 'any',
 						description: 'Spreads the rest of the props to the table body div.'
 					}
 				]

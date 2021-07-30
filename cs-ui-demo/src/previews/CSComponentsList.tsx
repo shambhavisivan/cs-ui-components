@@ -42,6 +42,7 @@ import CSSkipLinkPreview from './components/CSSkipLinkPreview';
 import CSGettingStarted from './CSGettingStarted';
 import CSTransferPreview from './components/CSTransferPreview';
 import CSProgressIndicatorPreview from './components/CSProgressIndicatorPreview';
+import CSTableAlphaPreview from './components/CSTableAlphaPreview';
 
 import SidebarList from './SidebarList';
 
@@ -214,6 +215,10 @@ class CSComponentsList extends React.Component {
 				component: CSTablePreview
 			},
 			{
+				name: 'Table Alpha',
+				component: CSTableAlphaPreview
+			},
+			{
 				name: 'Textarea',
 				component: CSTextareaPreview,
 				isFormElement: true
@@ -236,7 +241,6 @@ class CSComponentsList extends React.Component {
 				component: CSTransferPreview,
 				isFormElement: true
 			}
-
 		];
 
 		return (

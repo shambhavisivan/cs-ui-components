@@ -12,6 +12,7 @@ export interface PreviewInterface {
 
 export interface ComponentInterface {
 	name: string;
+	attributes?: boolean;
 	examples?: Array<ExampleInterface>;
 	properties: Array<PropInterface>;
 }

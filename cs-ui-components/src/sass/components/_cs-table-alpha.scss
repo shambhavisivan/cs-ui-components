@@ -1,0 +1,164 @@
+table.cs-table-alpha {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	overflow: auto;
+	max-height: var(--cs-table-alpha-max-height, auto);
+
+	thead,
+	tbody {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+	}
+
+	tr {
+		display: flex;
+	}
+
+	&.cs-table-alpha-headless:not(.cs-table-alpha-borderless) tbody tr:first-child {
+		border-top: 1px solid #dddbda;
+	}
+
+	th,
+	td {
+		display: flex;
+		flex-grow: var(--cs-table-alpha-column-flex, 1);
+		flex-basis: var(--cs-table-alpha-column-width, 0);
+		align-items: center;
+		max-width: var(--cs-table-alpha-column-width, 100%);
+		overflow: hidden;
+		padding: 0.25rem 0.5rem;
+		text-align: left;
+		font-size: 0.8125rem;
+		line-height: 1.75;
+		@include sc(--cs-table-alpha-cell-c);
+
+		&:first-child {
+			padding-left: 1.5rem;
+		}
+
+		&:last-child {
+			padding-right: 1.5rem;
+		}
+
+		.cs-table-alpha-truncate {
+			@include overflow-ellipsis;
+		}
+
+		&.cs-table-alpha-align-center {
+			justify-content: center;
+		}
+
+		&.cs-table-alpha-align-right {
+			justify-content: flex-end;
+		}
+	}
+
+	th {
+		font-weight: 700;
+		line-height: normal;
+		@include sc(--cs-table-alpha-header-c);
+	}
+
+	thead tr {
+		@include css4 {
+			border-top: 1px solid cvar(--cs-table-alpha-br);
+			border-bottom: 1px solid cvar(--cs-table-alpha-br);
+		}
+		@include sbg(--cs-table-alpha-header-bg);
+	}
+
+	tbody tr {
+		height: var(--cs-table-alpha-row-height, auto);
+		transition: all 100ms ease-in-out;
+		@include sbg(--cs-table-alpha-row-bg);
+		@include css4 {
+			border-bottom: 1px solid cvar(--cs-table-alpha-br);
+		}
+
+		&:hover {
+			@include sbg(--cs-table-alpha-row-hover-bg);
+
+			td {
+				@include css4 {
+					box-shadow:
+						inset 0 -1px 0 cvar(--cs-table-alpha-br),
+						inset 0 1px 0 cvar(--cs-table-alpha-br);
+				}
+			}
+		}
+	}
+
+	&.cs-table-alpha-column-dividers {
+		th,
+		td {
+			@include css4 {
+				border-right: 1px solid cvar(--cs-table-alpha-br);
+			}
+
+			&:last-child {
+				border-right: none;
+			}
+		}
+	}
+
+	&.cs-table-alpha-striped {
+		tr:nth-child(2n) {
+			@include sbg(--cs-table-alpha-row-striped-bg);
+		}
+	}
+
+	&.cs-table-alpha-borderless tr {
+		border-top: none;
+		border-bottom: none;
+	}
+
+	&.cs-table-alpha-density-comfortable {
+		th,
+		td {
+			padding: 0.5rem 0.75rem;
+
+			&:first-child {
+				padding-left: 1.5rem;
+			}
+
+			&:last-child {
+				padding-right: 1.5rem;
+			}
+		}
+	}
+
+	&.cs-table-alpha-density-spacious {
+		th,
+		td {
+			padding: 0.75rem 1.25rem;
+
+			&:first-child {
+				padding-left: 1.5rem;
+			}
+
+			&:last-child {
+				padding-right: 1.5rem;
+			}
+		}
+	}
+
+	&.cs-table-alpha-disable-hover tbody tr:hover {
+		@include sbg(--cs-table-alpha-cell-bg);
+
+		td {
+			box-shadow: none;
+		}
+	}
+
+	&.cs-table-alpha-sticky-header thead {
+		position: sticky;
+		top: 0;
+	}
+
+	.cs-table-alpha-column-wrap .cs-table-alpha-truncate {
+		text-overflow: initial;
+		white-space: normal;
+	}
+}
