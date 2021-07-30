@@ -163,7 +163,10 @@ class CSSidebar extends React.Component<CSSidebarProps, CSSidebarState> {
 							iconOrigin={getToggleIconOrigin()}
 							labelHidden
 							size="small"
-							onClick={this.toggleClose}
+							onClick={(event) => {
+								event.stopPropagation();
+								this.toggleClose();
+							}}
 							ariaExpanded={!this.state.closed}
 						/>
 					)}
