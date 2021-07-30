@@ -366,6 +366,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 			if (!this.state.content) return null;
 			if (Array.isArray(this.state.content)) {
 				return (this.state.content.map((contentItem, index) => (
+					// eslint-disable-next-line react/no-array-index-key
 					<div className="cs-tooltip-body" key={index}>
 						{contentItem}
 					</div>

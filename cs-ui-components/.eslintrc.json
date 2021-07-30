@@ -44,7 +44,6 @@
         "react/static-property-placement": ["warn"],
         "react/button-has-type": ["warn"],
         "react/destructuring-assignment": ["warn"],
-        "react/no-array-index-key": ["warn"],
         "jsx-a11y/role-supports-aria-props": ["warn"],
         "jsx-a11y/click-events-have-key-events": ["warn"],
         "jsx-a11y/no-autofocus": ["warn"]

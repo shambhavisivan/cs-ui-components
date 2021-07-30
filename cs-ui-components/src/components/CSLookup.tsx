@@ -698,6 +698,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 		const dropdownValuesNode = dropdownValues.map((item, i) => (
 			<CSTableRow
+				// eslint-disable-next-line react/no-array-index-key
 				key={`lookup-table-row${i}`}
 				onMouseDown={(event: any) => {
 					event.preventDefault();
@@ -716,6 +717,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			>
 				{!!lookupColumns.length
 					&& this.props.lookupColumns.map((column, j) => (
+						// eslint-disable-next-line react/no-array-index-key
 						<CSTableCell text={item[column.key]} key={j} />
 					))}
 			</CSTableRow>

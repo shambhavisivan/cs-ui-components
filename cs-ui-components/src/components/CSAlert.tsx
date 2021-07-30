@@ -58,6 +58,7 @@ const CSAlert = ({
 	const alertIconName = variant === 'base' ? 'info' : variant;
 	const renderText = () => {
 		if (!text) return null;
+		// eslint-disable-next-line react/no-array-index-key
 		if (Array.isArray(text)) return text.map((t, index) => <span className="cs-alert-text" key={index}>{t}</span>);
 		return (<span className="cs-alert-text">{text}</span>);
 	};
