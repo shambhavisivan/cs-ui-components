@@ -76,21 +76,22 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 
 	handleSelect = (key: number) => {
 		const { selectedItems } = this.state;
-		let _selectedItems: Array<number> = [];
 
-		_selectedItems = selectedItems.includes(key)
-			? selectedItems.filter((itemKey) => itemKey !== key)
-			: [...selectedItems, key];
-
-		this.setState({ selectedItems: _selectedItems });
+		this.setState({
+			selectedItems: (
+				selectedItems.includes(key)
+					? selectedItems.filter((itemKey) => itemKey !== key)
+					: [...selectedItems, key]
+			),
+		});
 	}
 
 	handleSelectAll = () => {
 		const { selectedItems, validItems } = this.state;
 		const { onSelectChange } = this.props;
-		const _selectedItems = selectedItems.length === validItems.length ? [] : validItems;
+		const newSelectedItems = selectedItems.length === validItems.length ? [] : validItems;
 
-		this.setState({ selectedItems: _selectedItems });
+		this.setState({ selectedItems: newSelectedItems });
 
 		if (onSelectChange) {
 			onSelectChange();

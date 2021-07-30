@@ -41,7 +41,6 @@
         "import/no-extraneous-dependencies": ["error", { "devDependencies": ["**/setupTests.ts", "**/*.spec.tsx", "**/*.spec.ts"]}],
         "react/static-property-placement": ["error", "static public field"],
         // These warnings should be revisited and preferably resolved
-        "no-underscore-dangle": ["warn"],
         "react/destructuring-assignment": ["warn"]
     },
     "settings": {

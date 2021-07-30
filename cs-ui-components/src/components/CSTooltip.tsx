@@ -72,7 +72,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 
 	private uniqueAutoId = uuidv4();
 
-	private _isMounted: boolean;
+	private mounted: boolean;
 
 	constructor(props: CSTooltipProps) {
 		super(props);
@@ -89,14 +89,14 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 	}
 
 	componentDidMount() {
-		this._isMounted = true;
+		this.mounted = true;
 	}
 
 	componentWillUnmount() {
 		if (this.state.stickyActive) {
 			document.removeEventListener('click', this.handleOutsideClick);
 		}
-		this._isMounted = false;
+		this.mounted = false;
 	}
 
 	handleOutsideClick = (event: any) => {
@@ -152,7 +152,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 	}
 
 	private closeTooltip = () => {
-		if (this._isMounted) {
+		if (this.mounted) {
 			this.setState({
 				computedPosition: this.props.position,
 				tooltipWrapperDimension: undefined,

@@ -71,20 +71,20 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 
 	initTransferComponent = () => {
 		const { dataSource, targetKeys } = this.props;
-		const _sourceData: any = [];
-		const _targetData: any = [];
+		const newSourceData: any = [];
+		const newTargetData: any = [];
 
 		if (targetKeys && targetKeys.length > 0) {
 			dataSource.forEach((data) => {
 				if (!targetKeys.includes(data.key)) {
-					_sourceData.push(data);
+					newSourceData.push(data);
 				} else {
-					_targetData.push(data);
+					newTargetData.push(data);
 				}
 			});
 			this.setState({
-				sourceData: _sourceData,
-				targetData: _targetData,
+				sourceData: newSourceData,
+				targetData: newTargetData,
 			});
 		} else {
 			this.setState({
@@ -102,8 +102,7 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 			if (!(event.ctrlKey || event.metaKey) && variant === 'simple-list') {
 				newState[stateArrayName] = [itemKey];
 			} else {
-				const _newArray: Array<string> = array.filter((key) => key !== itemKey);
-				newState[stateArrayName] = _newArray;
+				newState[stateArrayName] = array.filter((key) => key !== itemKey);
 			}
 		} else if (variant === 'check-list' || ((event.ctrlKey || event.metaKey) && variant === 'simple-list')) {
 			newState[stateArrayName] = [...array, itemKey];
@@ -121,19 +120,19 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 		const selectedKeys = direction === 'target' ? sourceSelected : targetSelected;
 		const opposite = direction === 'target' ? 'source' : 'target';
 		const newState: any = {};
-		const _sourceData: any = [];
-		const _targetData: any = [];
+		const newSourceData: any = [];
+		const newTargetData: any = [];
 
 		fromArray.forEach((item) => {
 			if (selectedKeys.includes(item.key)) {
-				_targetData.push(item);
+				newTargetData.push(item);
 			} else {
-				_sourceData.push(item);
+				newSourceData.push(item);
 			}
 		});
 
-		newState[`${direction}Data`] = [...toArray, ..._targetData];
-		newState[`${opposite}Data`] = _sourceData;
+		newState[`${direction}Data`] = [...toArray, ...newTargetData];
+		newState[`${opposite}Data`] = newSourceData;
 		newState[`${opposite}Selected`] = [];
 
 		this.setState(
@@ -146,12 +145,12 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 		const { sourceData, targetData } = this.state;
 		const item = targetData.find((listItem) => listItem.key === itemKey);
 
-		const _sourceData = [...sourceData, item];
+		const newSourceData = [...sourceData, item];
 		targetData.splice(targetData.indexOf(item), 1);
 
 		this.setState(
 			{
-				sourceData: _sourceData,
+				sourceData: newSourceData,
 				targetData,
 			},
 			() => this.handleSelection('source'),
@@ -159,16 +158,9 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 	}
 
 	selectAll = (dataList: Array<CSTransferItemsType>, selectList: Array<string>, listType: CSTransferListType) => {
-		const _dataKeys: Array<string> = [];
-		dataList.forEach((item) => {
-			if (!item.disabled) {
-				_dataKeys.push(item.key);
-			}
-		});
+		const allDataKeys = dataList.filter(({ disabled }) => !disabled).map(({ key }) => key);
 		const newState: any = {};
-		const stateArrayName = `${listType}Selected`;
-
-		newState[stateArrayName] = _dataKeys.length === selectList.length ? [] : _dataKeys;
+		newState[`${listType}Selected`] = allDataKeys.length === selectList.length ? [] : allDataKeys;
 		this.setState(newState);
 	}
 

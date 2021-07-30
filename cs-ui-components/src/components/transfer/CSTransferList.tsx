@@ -33,16 +33,7 @@ class CSTransferList extends React.Component<CSTransferListProps, CSTransferList
 
 	static getDerivedStateFromProps(nextProps: CSTransferListProps) {
 		const { listData } = nextProps;
-		const _validItemsKeys: Array<string> = [];
-
-		listData.forEach((item) => {
-			if (!item.disabled) {
-				_validItemsKeys.push(item.key);
-			}
-		});
-		return {
-			validItemsKeys: _validItemsKeys,
-		};
+		return listData.filter(({ disabled }) => !disabled).map(({ key }) => key);
 	}
 
 	private uniqueAutoId = uuidv4();

@@ -285,18 +285,18 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		}, 0);
 	}
 
-	selectAction = async (_selectedOption: Record<string, any>) => {
+	selectAction = async (selectedOption: Record<string, any>) => {
 		const { selectedOptions } = this.state;
 		const { multiselect } = this.props;
 
 		if (multiselect) {
 			let newSelectedOptions = [];
-			if (find(selectedOptions, _selectedOption)) {
-				const _selectedOptions = [...selectedOptions];
-				remove(_selectedOptions, _selectedOption);
-				newSelectedOptions = _selectedOptions;
+			if (find(selectedOptions, selectedOption)) {
+				const allCurrentlySelectedOptions = [...selectedOptions];
+				remove(allCurrentlySelectedOptions, selectedOption);
+				newSelectedOptions = allCurrentlySelectedOptions;
 			} else {
-				newSelectedOptions = [...selectedOptions, _selectedOption];
+				newSelectedOptions = [...selectedOptions, selectedOption];
 			}
 			const result = await this.handleSelectChange(newSelectedOptions);
 			if (result) {
@@ -305,10 +305,10 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 				});
 			}
 		} else {
-			const result = await this.handleSelectChange(_selectedOption);
+			const result = await this.handleSelectChange(selectedOption);
 			if (result) {
 				this.setState({
-					selectedOption: _selectedOption,
+					selectedOption,
 					dropdownValues: this.props.mode === 'client' ? this.props.lookupOptions : [],
 					searchTerm: '',
 				});
@@ -440,7 +440,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 		const firstListElement = 0;
 		const lastListElement = dropdownValues.length - 1;
-		let _activeRowIndex = activeRowIndex;
+		let newActiveRowIndex = activeRowIndex;
 
 		switch (true) {
 		case isLoading:
@@ -459,9 +459,9 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			case (activeRowIndex === lastListElement):
 				break;
 			default:
-				_activeRowIndex += 1;
-				this.checkInView(_activeRowIndex);
-				this.setState({ activeRowIndex: _activeRowIndex });
+				newActiveRowIndex += 1;
+				this.checkInView(newActiveRowIndex);
+				this.setState({ activeRowIndex: newActiveRowIndex });
 				break;
 			}
 			break;
@@ -473,9 +473,9 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			case activeRowIndex === firstListElement:
 				break;
 			default:
-				_activeRowIndex -= 1;
-				this.checkInView(_activeRowIndex);
-				this.setState({ activeRowIndex: _activeRowIndex });
+				newActiveRowIndex -= 1;
+				this.checkInView(newActiveRowIndex);
+				this.setState({ activeRowIndex: newActiveRowIndex });
 				break;
 			}
 			break;
