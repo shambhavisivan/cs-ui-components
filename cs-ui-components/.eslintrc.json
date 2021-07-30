@@ -1,49 +1,53 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "extends": [
-        "plugin:react/recommended",
-        "airbnb"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 12,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react",
-        "@typescript-eslint"
-    ],
-    "rules": {
-        // These settings should remain unchanged
-        "no-tabs": "off",
-        "no-undef": "off",
-        "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
-        "max-len": "off",
-        "indent": ["error", "tab", { "ignoreComments": true }],
-        "object-curly-newline": ["error", { "consistent": true, "multiline":  true }],
-        "react/jsx-props-no-spreading": "off",
-        "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
-        "react/jsx-indent": ["error", "tab", { "checkAttributes": true, "indentLogicalExpressions": true }],
-        "react/jsx-indent-props": ["error", "tab"],
-        "jsx-a11y/label-has-associated-control": ["error", { "required": { "some": ["nesting", "id"]}}],
-        "jsx-a11y/no-autofocus": ["off"],
-        "import/extensions": ["error", "never", { "svg": "always" }],
-        "no-unused-vars": ["off"],
-        "@typescript-eslint/no-unused-vars": ["error", { "ignoreRestSiblings": true }],
-        "no-use-before-define": "off",
-        "@typescript-eslint/no-use-before-define": ["error"],
-        "import/no-extraneous-dependencies": ["error", { "devDependencies": ["**/setupTests.ts", "**/*.spec.tsx", "**/*.spec.ts"]}],
-        "react/static-property-placement": ["error", "static public field"]
-    },
-    "settings": {
-        "import/resolver": {
-            "node": {"extensions": [".js", ".jsx", ".ts", ".tsx"]}
-        }
-    }
+  "env": {
+	"browser": true,
+	"es2021": true
+  },
+  "extends": [
+	"plugin:react/recommended",
+	"airbnb"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+	"ecmaFeatures": {
+	  "jsx": true
+	},
+	"ecmaVersion": 12,
+	"sourceType": "module"
+  },
+  "plugins": [
+	"react",
+	"@typescript-eslint"
+  ],
+  "rules": {
+	// JavaScript rules
+	"indent": ["error", "tab", { "ignoreComments": true }],
+	"max-len": "off",
+	"no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+	"no-tabs": "off",
+	"no-use-before-define": "off",
+	"no-undef": "off",
+	"no-unused-vars": ["off"],
+	"object-curly-newline": ["error", { "consistent": true, "multiline":  true }],
+	// Import & loader rules
+	"import/extensions": ["error", "never", { "svg": "always" }],
+	"import/no-extraneous-dependencies": ["error", { "devDependencies": ["**/setupTests.ts", "**/*.spec.tsx", "**/*.spec.ts"] }],
+	// React rules
+	"react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+	"react/jsx-indent": ["error", "tab", { "checkAttributes": true, "indentLogicalExpressions": true }],
+	"react/jsx-indent-props": ["error", "tab"],
+	"react/jsx-props-no-spreading": "off",
+	"react/static-property-placement": ["error", "static public field"],
+	// JSX rules
+	"jsx-a11y/label-has-associated-control": ["error", { "required": { "some": ["nesting", "id"] } }],
+	"jsx-a11y/no-autofocus": ["off"],
+	// TypeScript rules
+	"@typescript-eslint/no-use-before-define": ["error"],
+	"@typescript-eslint/no-unused-vars": ["error", { "ignoreRestSiblings": true }]
+  },
+  "settings": {
+	"import/resolver": {
+	  "node": { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+	}
+  }
 }
