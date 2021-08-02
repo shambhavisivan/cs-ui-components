@@ -17,7 +17,8 @@
   },
   "plugins": [
 	"react",
-	"@typescript-eslint"
+	"@typescript-eslint",
+	"react-hooks"
   ],
   "rules": {
 	// JavaScript rules
@@ -39,6 +40,8 @@
 	"react/jsx-indent-props": ["error", "tab"],
 	"react/jsx-props-no-spreading": "off",
 	"react/static-property-placement": ["error", "static public field"],
+	"react-hooks/rules-of-hooks": "error",
+	"react-hooks/exhaustive-deps": "warn",
 	// JSX rules
 	"jsx-a11y/label-has-associated-control": ["error", { "required": { "some": ["nesting", "id"] } }],
 	"jsx-a11y/no-autofocus": ["off"],

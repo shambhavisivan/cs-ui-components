@@ -1,6 +1,8 @@
 # CS UI Components - Release Notes
 
 ## 2.0.1
+* General
+  * added rules for eslint-plugin-react-hooks
 * CSAlert
   * fixed close button styling when `styleFormat="scoped"`
   * fixed close button styling when `styleType="light"`
