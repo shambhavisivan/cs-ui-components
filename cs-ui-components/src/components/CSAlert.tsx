@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import CSIcon, { CSIconOrigin } from './CSIcon';
+import CSButton from './CSButton';
 
 export type CSAlertStyleFormat = 'default' | 'scoped';
 export type CSAlertStyleType = 'default' | 'light';
@@ -83,14 +84,15 @@ const CSAlert = ({
 				) : null}
 			</h4>
 			{closeButton ? (
-				<button
-					className="cs-alert-close"
+				<CSButton
+					label="close"
+					labelHidden
+					btnType="transparent"
+					iconName="close"
+					iconSize={alertIconSize}
+					size="small"
 					onClick={onClose}
-					aria-label="close"
-					type="button"
-				>
-					<CSIcon name="close" size={alertIconSize} />
-				</button>
+				/>
 			) : null}
 		</div>
 	);

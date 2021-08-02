@@ -1,6 +1,7 @@
 import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 import CSIcon, { CSIconOrigin } from './CSIcon';
+import CSButton from './CSButton';
 
 export type CSToastVariant = 'info' | 'success' | 'warning' | 'error';
 
@@ -81,14 +82,15 @@ const CSToast = ({
 				</div>
 				{closeButton
 					? (
-						<button
-							className="cs-toast-close-btn"
+						<CSButton
+							label="close"
+							labelHidden
+							btnType="transparent"
+							iconName="close"
 							onClick={onClose}
-							aria-label="close"
-							type="button"
-						>
-							<CSIcon name="close" size="1.5rem" />
-						</button>
+							size="small"
+							iconSize="1.5rem"
+						/>
 					)
 					: null}
 			</div>

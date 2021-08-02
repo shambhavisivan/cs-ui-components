@@ -22,7 +22,7 @@
 			}
 		}
 
-		.cs-alert-close {
+		.cs-btn {
 			top: 0.75rem;
 		}
 	}
@@ -35,7 +35,6 @@
 		}
 
 		.cs-alert-text-wrapper {
-
 			.cs-alert-text {
 				@include sc(--cs-alert-info-c);
 			}
@@ -56,21 +55,6 @@
 			.cs-icon {
 				@include sf(--cs-alert-info-light-fill);
 			}
-
-			.cs-alert-close {
-
-				&:active {
-					@include css4 {
-						border: 1px solid cvar(--cs-alert-info-br);
-					}
-				}
-
-				&:focus {
-					@include css4 {
-						box-shadow: 0 0 3px cvar(--cs-alert-info-box);
-					}
-				}
-			}
 		}
 	}
 
@@ -82,7 +66,6 @@
 		}
 
 		.cs-alert-text-wrapper {
-
 			.cs-alert-text {
 				@include sc(--cs-alert-warning-c);
 			}
@@ -92,7 +75,7 @@
 			}
 		}
 
-		.cs-alert-close {
+		.cs-btn.cs-btn {
 			svg {
 				@include sf(--cs-alert-warning-fill);
 			}
@@ -122,8 +105,7 @@
 				@include sf(--cs-alert-warning-light-fill);
 			}
 
-			.cs-alert-close {
-
+			.cs-btn.cs-btn {
 				&:active {
 					@include css4 {
 						border: 1px solid cvar(--cs-alert-warning-br);
@@ -147,7 +129,6 @@
 		}
 
 		.cs-alert-text-wrapper {
-
 			.cs-alert-text {
 				@include sc(--cs-alert-error-c);
 			}
@@ -167,21 +148,6 @@
 
 			.cs-icon {
 				@include sf(--cs-alert-error-light-fill);
-			}
-
-			.cs-alert-close {
-
-				&:active {
-					@include css4 {
-						border: 1px solid cvar(--cs-alert-error-br);
-					}
-				}
-
-				&:focus {
-					@include css4 {
-						box-shadow: 0 0 3px cvar(--cs-alert-error-box);
-					}
-				}
 			}
 		}
 	}
@@ -215,22 +181,6 @@
 			.cs-icon {
 				@include sf(--cs-alert-base-light-fill);
 			}
-
-			.cs-alert-close {
-
-				&:active {
-					@include css4 {
-						border: 1px solid cvar(--cs-alert-base-br);
-					}
-				}
-
-				&:focus {
-					@include css4 {
-						box-shadow: 0 0 3px cvar(--cs-alert-base-box);
-					}
-				}
-			}
-
 		}
 	}
 
@@ -291,39 +241,31 @@
 		padding: 0.5rem 1rem;
 	}
 
-	.cs-alert-close {
-		display: flex;
-		justify-content: center;
-		align-items: center;
+	.cs-btn.cs-btn {
 		position: absolute;
-		width: 1.5rem;
-		height: 1.5rem;
 		top: 0.3125rem;
 		right: 0.75rem;
-		padding: 0;
-		border-radius: 0.25rem;
-		cursor: pointer;
-		-webkit-appearance: none;
-		border: none;
-		@include sbg(--cs-transparent);
-
-		&:hover .cs-icon{
-			opacity: 0.5;
-		}
-
-		svg {
-			@include sf(--cs-alert-close-fill);
-		}
-
-		&:active {
-			border: 1px solid cvar(--cs-alert-br);
-		}
 
 		&:focus {
-			outline: none;
 			@include css4 {
 				box-shadow: 0 0 3px cvar(--cs-alert-box);
+			}
 
+			&::after {
+				box-shadow: none;
+			}
+		}
+	}
+
+	&:not(.cs-alert-warning) {
+		.cs-btn-label-hidden.cs-btn-size-small.cs-btn {
+			&:active {
+				&::before {
+					@include sbg(--cs-transparent);
+					@include css4 {
+						border: 1px solid cvar(--cs-alert-br);
+					}
+				}
 			}
 		}
 	}

@@ -113,58 +113,45 @@
 			padding: 0.75rem 3rem 0.75rem 1rem;
 		}
 
-		.cs-toast-close-btn {
+		.cs-btn {
+			right: 0.5rem;
+			top: 0.5rem;
 			position: absolute;
-			width: 1.625rem;
-			height: 1.625rem;
-			right: 0.75rem;
-			padding: 0;
-			border-radius: 0.25rem;
-			cursor: pointer;
-			-webkit-appearance: none;
-			background: transparent;
-			@include css4 {
-				border: 1px solid cvar(--cs-transparent);
-			}
-
-			svg {
-				@include sf(--cs-toast-close-fill);
-			}
-
-			&:hover svg {
-				@include sf(--cs-toast-hover-fill);
-			}
+			width: 2rem;
+			height: 2rem;
 
 			&:focus {
-				outline: none;
 				@include css4 {
 					box-shadow: 0 0 3px cvar(--cs-toast-box);
-					border: 1px solid cvar(--cs-toast-br);
+				}
+
+				&::after {
+					box-shadow: none;
 				}
 			}
 
-			&:active svg {
-				@include sf(--cs-toast-active-fill);
+			&:active::before {
+				@include sbg(--cs-transparent);
+				@include css4 {
+					border: 1px solid cvar(--cs-toast-br);
+				}
 			}
 		}
 
-		&.cs-toast-warning .cs-toast-close-btn {
-
+		&.cs-toast-warning .cs-btn {
 			svg {
 				@include sf(--cs-toast-warning-fill);
 			}
 
-			&:hover,
-			&:active {
-				svg {
-					@include sf(--cs-toast-warning-hover-fill);
+			&:active::before {
+				@include css4 {
+					border: 1px solid cvar(--cs-toast-warning-fill);
 				}
 			}
 
 			&:focus {
 				@include css4 {
 					box-shadow: 0 0 3px cvar(--cs-toast-warning-box);
-					border: 1px solid cvar(--cs-toast-warning-br);
 				}
 			}
 		}

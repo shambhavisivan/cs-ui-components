@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { Portal } from 'react-portal';
 import { v4 as uuidv4 } from 'uuid';
 import CSSpinner from '../CSSpinner';
-import CSIcon from '../CSIcon';
+import CSButton from '../CSButton';
 import { CSModalHeader } from '../../index';
 import withCSUnmountDelay from '../../helpers/CSUnmountDelay';
 import KeyCode from '../../util/KeyCode';
@@ -240,15 +240,16 @@ class CSModal extends React.Component<CSModalProps> {
 							aria-describedby={this.uniqueAutoId}
 						>
 							{closeButton && (
-								<button
-									type="button"
-									className="cs-modal-close"
+								<CSButton
+									label="close"
+									labelHidden
+									btnType="transparent"
+									iconName="close"
 									onClick={onClose}
-									aria-label="close"
+									className="cs-modal-close"
+									iconSize="1.5rem"
 									ref={(closeBtn) => { this.modalCloseBtnRef = closeBtn; }}
-								>
-									<CSIcon name="close" size="1.5rem" />
-								</button>
+								/>
 							)}
 							<div
 								ref={(node) => { this.modalContentNode = node; }}
