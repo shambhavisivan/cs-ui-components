@@ -33,6 +33,66 @@ class CSSectionPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'bgColor',
+						variations: [
+							{
+								primaryVariants: 'bgColor="#3cdbc0"',
+								component: <CSSection title="Section Title" bgColor="#3cdbc0">
+									<ul>
+										<li>Item 1</li>
+										<li>Item 2</li>
+										<li>Item 3</li>
+									</ul>
+								</CSSection>,
+								code: `<CSSection title="Section Title" bgColor="#3cdbc0">
+									<ul>
+										<li>Item 1</li>
+										<li>Item 2</li>
+										<li>Item 3</li>
+									</ul>
+								</CSSection>`
+							}
+						]
+					}, {
+						propName: 'borderRadius',
+						variations: [
+							{
+								primaryVariants: 'borderRadius="0.75rem"',
+								quickLink: '0.75rem',
+								component: <CSSection title="Section Title" borderRadius="0.75rem">
+									<ul>
+										<li>Item 1</li>
+										<li>Item 2</li>
+										<li>Item 3</li>
+									</ul>
+								</CSSection>,
+								code: `<CSSection title="Section Title" borderRadius="0.75rem">
+									<ul>
+										<li>Item 1</li>
+										<li>Item 2</li>
+										<li>Item 3</li>
+									</ul>
+								</CSSection>`
+							}, {
+								primaryVariants: 'borderRadius="0"',
+								quickLink: '0',
+								component: <CSSection title="Section Title" borderRadius="0">
+									<ul>
+										<li>Item 1</li>
+										<li>Item 2</li>
+										<li>Item 3</li>
+									</ul>
+								</CSSection>,
+								code: `<CSSection title="Section Title" borderRadius="0">
+									<ul>
+										<li>Item 1</li>
+										<li>Item 2</li>
+										<li>Item 3</li>
+									</ul>
+								</CSSection>`
+							}
+						]
+					}, {
 						propName: 'collapsible',
 						variations: [
 							{
@@ -141,6 +201,15 @@ class CSSectionPreview extends React.Component {
 						required: true,
 						types: 'string',
 						description: 'Set a title for the section.'
+					}, {
+						name: 'bgColor',
+						types: 'string',
+						description: 'Set a custom color for the section header background. (e.g. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
+					}, {
+						name: 'borderRadius',
+						types: 'string',
+						default: `'0.25rem'`,
+						description: 'Sets custom border radius on the section header.'
 					}, {
 						name: 'collapsible',
 						types: 'boolean',

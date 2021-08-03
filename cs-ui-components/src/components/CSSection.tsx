@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 import CSIcon from './CSIcon';
 
 export interface CSSectionProps {
 	[key: string]: any;
+	bgColor?: string;
+	borderRadius?: string;
 	className?: string;
 	collapsible?: boolean;
 	defaultClosed?: boolean;
@@ -60,6 +62,8 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 
 	render() {
 		const {
+			bgColor,
+			borderRadius,
 			className,
 			children,
 			defaultClosed,
@@ -71,6 +75,10 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 
 		const { defaultClosed: defaultClosedState } = this.state;
 
+		const style:CSSProperties = {
+			'--cs-section-border-radius': borderRadius,
+			'--cs-section-header-bg': bgColor,
+		};
 		const sectionClasses = classNames(
 			'cs-section',
 			{
@@ -86,6 +94,7 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 		return (
 			<section
 				className={sectionClasses}
+				style={style}
 				id={id}
 				{...rest}
 			>

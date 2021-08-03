@@ -17,7 +17,9 @@
 		height: 1.75rem;
 		display: flex;
 		align-items: center;
-		@include sbg(--cs-section-bg);
+		border-radius: var(--cs-section-border-radius, 0.25rem);
+		--cs-section-background: var(--cs-section-header-bg, var(--cs-section-bg));
+		@include sbg(--cs-section-background);
 
 		.cs-section-title {
 			font-size: 0.875rem;
