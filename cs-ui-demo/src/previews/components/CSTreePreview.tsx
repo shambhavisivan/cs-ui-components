@@ -3,11 +3,21 @@ import { CSTree, CSTreeDataType } from '@cloudsense/cs-ui-components';
 
 import Preview from '../Preview';
 
-class CSTreePreview extends React.Component {
+interface CSTreePreviewState {
+	checked: Array<string>;
+	selectedKey: string;
+}
+
+class CSTreePreview extends React.Component<{}, CSTreePreviewState> {
 	treeData: Array<CSTreeDataType> = [];
 
-	constructor() {
-		super({});
+	constructor(props: any) {
+		super(props);
+
+		this.state = {
+			checked: ['0-0', ' 0-1-0', '0-2-2-0'],
+			selectedKey: '0-0'
+		};
 
 		this.treeData = [
 			{
@@ -160,7 +170,14 @@ class CSTreePreview extends React.Component {
 	}
 	handleExpand = (key: string) => alert(`Expanded node key: ${key}`);
 	handleSelect = (key: string) => alert(`Selected node key: ${key}`);
+	handleCheck = (key: string) => {
+		const checked = this.state.checked.includes(key) ?
+			this.state.checked.filter(_key => _key !== key) :
+			[...this.state.checked, key];
 
+		this.setState({ checked });
+	}
+	handleSelectedKey = (key: string) => this.setState({ selectedKey: key });
 	getDoc = () => ({
 		name: 'Tree',
 		usage: 'Tree is visualization of a structure hierarchy.',
@@ -173,6 +190,7 @@ class CSTreePreview extends React.Component {
 						propName: 'treeData',
 						variations: [
 							{
+
 								component: <CSTree
 									treeData={this.treeData}
 								/>,
@@ -324,16 +342,68 @@ class CSTreePreview extends React.Component {
 							}
 						]
 					}, {
-						propName: 'defaultExpandedNodes',
+						propName: 'checkable',
+						primaryVariants: ['checkable={true}'],
+						variations: [
+							{
+								primaryVariants: 'checkable={true}',
+								component: <CSTree
+									treeData={this.treeData}
+									checkable
+								/>,
+								code: `<CSTree
+									treeData={this.treeData}
+									checkable
+								/>`
+							}
+						]
+					}, {
+						propName: 'checkedKeys',
+						variations: [
+							{
+								secondaryVariants: 'checkable={true}',
+								component: <CSTree
+									treeData={this.treeData}
+									checkable
+									onSelect={this.handleCheck}
+									checkedKeys={this.state.checked}
+								/>,
+								code: `<CSTree
+									treeData={this.treeData}
+									checkable
+									onSelect={this.handleCheck}
+									checkedKeys={this.state.checked}
+								/>`
+							}
+						]
+					}, {
+						propName: 'defaultExpandedKeys',
 						variations: [
 							{
 								component: <CSTree
 									treeData={this.treeData}
-									defaultExpandedNodes={['0-1', '0-2-2']}
+									defaultExpandedKeys={['0-1', '0-2-2']}
 								/>,
 								code: `<CSTree
 									treeData={this.treeData}
-									defaultExpandedNodes={['0-1', '0-2-2']}
+									defaultExpandedKeys={['0-1', '0-2-2']}
+								/>`
+							}
+						]
+					}, {
+						propName: 'nonCheckableKeys',
+						secondaryVariants: 'checkable={true}',
+						variations: [
+							{
+								component: <CSTree
+									treeData={this.treeData}
+									checkable
+									nonCheckableKeys={['0-1', '0-2', '0-2-1', '0-2-2']}
+								/>,
+								code: `<CSTree
+									treeData={this.treeData}
+									checkable
+									nonCheckableKeys={['0-1', '0-2', '0-2-1', '0-2-2']}
 								/>`
 							}
 						]
@@ -365,6 +435,23 @@ class CSTreePreview extends React.Component {
 							/>`
 							}
 						]
+					}, {
+						propName: 'selectedKey',
+						variations: [
+							{
+								component: <CSTree
+									treeData={this.treeData}
+									onSelect={this.handleSelectedKey}
+									selectedKey={this.state.selectedKey}
+
+								/>,
+								code: `<CSTree
+								treeData={this.treeData}
+								onSelect={(key) => this.setState({ selectedKey: key})}
+								selectedKey={this.state.selectedKey}
+							/>`
+							}
+						]
 					}
 				],
 				properties: [
@@ -374,9 +461,21 @@ class CSTreePreview extends React.Component {
 						types: 'Array<CSTreeDataType>',
 						description: `Set the data which will be rendered in form of tree nodes. Every node can have 'label', 'nodeKey', 'children', 'actions', 'actionsDisplay' and 'treeNodeIcon' properties defined. 'actions' array property renders CSButton for every object and allows defining CSButton properties. 'actionDisplay' can be defined as 'visible' or 'hover'. 'visible' is the default value, while 'hover' will show actions only if tree node is hovered. 'treeNodeIcon' allows rendering CSIcon-s on tree node by defining CSIcon properties.`
 					}, {
-						name: 'defaultExpandedNodes',
+						name: 'checkable',
+						types: 'boolean',
+						description: 'Set whether the component is checkable (has checkboxes for multiple selection of tree nodes).'
+					}, {
+						name: 'checkedKeys',
+						types: 'Array<string>',
+						description: 'Set node keys which will be checked. This prop is only available in combination with checkable prop.'
+					}, {
+						name: 'defaultExpandedKeys',
 						types: 'Array<string>',
 						description: 'Set node keys for nodes with children which will be expanded by default.'
+					}, {
+						name: 'nonCheckableKeys',
+						types: 'Array<string>',
+						description: 'Set node keys which will override checkable prop - on such tree nodes checkbox won\'t be rendered.'
 					}, {
 						name: 'onExpand',
 						types: '(key: string) => any',
@@ -385,6 +484,10 @@ class CSTreePreview extends React.Component {
 						name: 'onSelect',
 						types: '(key: string) => any',
 						description: 'Handler method for when tree node is selected. It returns node key of the selected tree node.'
+					}, {
+						name: 'selectedKey',
+						types: 'string',
+						description: 'Set one selected node in the component and apply selected styles.'
 					}
 				]
 			}

@@ -30,15 +30,18 @@
 				padding: 0.125rem;
 				& > .cs-btn,
 				.cs-tree-node-icon {
-					margin-right: 0.5rem;
+					margin-right: 0.25rem;
 				}
 				.cs-tree-node-label {
 					font-size: 0.8125rem;
 					@include overflow-ellipsis;
 				}
+				.cs-tree-node-checkbox {
+					margin-right: 0.5rem;
+				}
 			}
 			&-single {
-				padding-left: calc(1.5rem + var(--cs-tree-node-level-padding))
+				padding-left: calc(1.5rem + var(--cs-tree-node-level-padding));
 			}
 			&-selected {
 				position: relative;

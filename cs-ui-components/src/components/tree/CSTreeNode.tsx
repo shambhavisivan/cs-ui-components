@@ -3,6 +3,7 @@ import React, { PropsWithChildren, useState } from 'react';
 import CSButton, { CSButtonProps } from '../CSButton';
 import CSIcon, { CSIconProps } from '../CSIcon';
 import KeyCode from '../../util/KeyCode';
+import CSCheckbox from '../CSCheckbox';
 
 export type CSTreeNodeActionDisplayType = 'visible' | 'hover';
 export type CSTreeNodeActionsType = Omit<CSButtonProps, 'onKeyDown' | 'onMouseDown'>;
@@ -17,6 +18,8 @@ export interface CSTreeNodeCommonProps {
 
 export interface CSTreeNodeLegacyProps {
 	ariaLevel?: number;
+	checkable?: boolean;
+	checked?: boolean;
 	defaultExpanded?: boolean;
 	isTreeDraggable?: boolean;
 	onExpand?: (key: string) => any;
@@ -35,6 +38,8 @@ const CSTreeNode: React.FC<CSTreeNodeProps> = ({
 	actions,
 	actionsDisplay,
 	ariaLevel,
+	checkable,
+	checked,
 	children,
 	defaultExpanded,
 	// isTreeDraggable,
@@ -62,8 +67,8 @@ const CSTreeNode: React.FC<CSTreeNodeProps> = ({
 	const treeNodeClasses = classNames(
 		'cs-tree-node',
 		{
-			'cs-tree-node-single': !children,
-			'cs-tree-node-selected': selected,
+			'cs-tree-node-single': !children || (checkable && !children),
+			'cs-tree-node-selected': selected && !checkable,
 			'cs-tree-node-actions-hover': actionsDisplay === 'hover',
 		},
 	);
@@ -79,34 +84,41 @@ const CSTreeNode: React.FC<CSTreeNodeProps> = ({
 		>
 			<div
 				className={treeNodeClasses}
-				onClick={onSelect}
+				onClick={!checkable ? onSelect : undefined}
 				onKeyDown={handleKeyDown}
 				style={style}
 				tabIndex={0}
 				role="button"
 			>
 				<div className="cs-tree-node-group">
-					{children
-						&& (
-							<CSButton
-								btnStyle="brand"
-								btnType="transparent"
-								iconName="chevronright"
-								iconRotate={!expanded ? 0 : 90}
-								label="expand tree group"
-								labelHidden
-								onClick={(e) => handleOnExpand(e)}
-								onKeyDown={(e) => e.stopPropagation()}
-								size="xsmall"
-							/>
-						)}
-					{treeNodeIcon
-						&& (
-							<CSIcon
-								className="cs-tree-node-icon"
-								{...treeNodeIcon}
-							/>
-						)}
+					{children && (
+						<CSButton
+							btnStyle="brand"
+							btnType="transparent"
+							iconName="chevronright"
+							iconRotate={!expanded ? 0 : 90}
+							label="expand tree group"
+							labelHidden
+							onClick={(e) => handleOnExpand(e)}
+							onKeyDown={(e) => e.stopPropagation()}
+							size="xsmall"
+						/>
+					)}
+					{checkable && (
+						<CSCheckbox
+							label="check tree node"
+							labelHidden
+							className="cs-tree-node-checkbox"
+							onChange={onSelect}
+							checked={checked}
+						/>
+					)}
+					{treeNodeIcon && (
+						<CSIcon
+							className="cs-tree-node-icon"
+							{...treeNodeIcon}
+						/>
+					)}
 					<span className="cs-tree-node-label">
 						{label}
 					</span>

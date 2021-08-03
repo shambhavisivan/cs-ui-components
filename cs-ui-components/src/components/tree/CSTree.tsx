@@ -1,4 +1,4 @@
-import React, { ReactElement, useState, useEffect } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import CSTreeNode, { CSTreeNodeCommonProps } from './CSTreeNode';
 
 export interface CSTreeDataType extends CSTreeNodeCommonProps {
@@ -6,20 +6,28 @@ export interface CSTreeDataType extends CSTreeNodeCommonProps {
 }
 
 export interface CSTreeProps {
-	defaultExpandedNodes?: Array<string>;
 	// draggable?: boolean;
-	onExpand?: (key: string) => any;
 	// onDrop?: () => any;
+	checkable?: boolean;
+	checkedKeys?: Array<string>;
+	defaultExpandedKeys?: Array<string>;
+	nonCheckableKeys?: Array<string>;
+	onExpand?: (key: string) => any;
 	onSelect?: (key: string) => any;
+	selectedKey?: string;
 	treeData: Array<CSTreeDataType>;
 }
 
 const CSTree = ({
-	defaultExpandedNodes,
 	// draggable,
 	// onDrop,
+	checkable,
+	checkedKeys,
+	defaultExpandedKeys,
+	nonCheckableKeys,
 	onExpand,
 	onSelect,
+	selectedKey,
 	treeData,
 }: CSTreeProps) => {
 	const [selected, setSelected] = useState<string>();
@@ -44,6 +52,19 @@ const CSTree = ({
 		const newData: Array<ReactElement> = [];
 		let currentLevel = level ?? 1;
 		data.forEach((item) => {
+			const commonProps = {
+				actions: item.actions,
+				actionsDisplay: item.actionsDisplay,
+				checkable: checkable ? (!nonCheckableKeys?.includes(item.nodeKey) ?? checkable) : false,
+				checked: (checkable && checkedKeys?.includes(item.nodeKey)),
+				key: item.nodeKey,
+				label: item.label,
+				nodeKey: item.nodeKey,
+				onSelect: (e: any) => handleNodeSelection(item.nodeKey, e),
+				selected: selectedKey === item.nodeKey && !checkable,
+				treeNodeIcon: item.treeNodeIcon,
+				// isTreeDraggable: draggable
+			};
 			if (item.children) {
 				currentLevel += 1;
 				newData.push(
@@ -51,7 +72,6 @@ const CSTree = ({
 						actions={item.actions}
 						actionsDisplay={item.actionsDisplay}
 						ariaLevel={currentLevel - 1}
-						defaultExpanded={defaultExpandedNodes?.includes(item.nodeKey)}
 						key={item.nodeKey}
 						label={item.label}
 						nodeKey={item.nodeKey}
@@ -60,6 +80,8 @@ const CSTree = ({
 						selected={selected === item.nodeKey}
 						style={{ '--cs-tree-node-level-padding': `${convertRemToPixels(currentLevel - 1)}px` }}
 						treeNodeIcon={item.treeNodeIcon}
+						defaultExpanded={defaultExpandedKeys?.includes(item.nodeKey)}
+						{...commonProps}
 					>
 						{renderTreeNodes(item.children, currentLevel)}
 					</CSTreeNode>,
@@ -79,6 +101,7 @@ const CSTree = ({
 						selected={selected === item.nodeKey}
 						style={{ '--cs-tree-node-level-padding': `${convertRemToPixels(currentLevel)}px` }}
 						treeNodeIcon={item.treeNodeIcon}
+						{...commonProps}
 					/>,
 				);
 			}
