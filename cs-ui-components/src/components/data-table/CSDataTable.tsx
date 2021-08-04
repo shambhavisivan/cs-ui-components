@@ -111,23 +111,26 @@ const CSDataTable = ({
 	));
 
 	return (
-		<div
-			className={tableClasses}
-			id={id}
-			style={tableStyles}
-			{...rest}
-		>
-			{!headless && <CSDataTableHeader columns={columns} />}
-			<div className="cs-data-table-body">
-				<CSDataTableGroup
-					columns={columns}
-					rows={rows}
-					extraIndent={extraIndent ? 2 : 0}
-					tableCollapsible={collapsible}
-					tableDefaultCollapsed={defaultCollapsed}
-				/>
+		<>
+			{console.warn('CSDataTable is under construction and should not be used.')}
+			<div
+				className={tableClasses}
+				id={id}
+				style={tableStyles}
+				{...rest}
+			>
+				{!headless && <CSDataTableHeader columns={columns} />}
+				<div className="cs-data-table-body">
+					<CSDataTableGroup
+						columns={columns}
+						rows={rows}
+						extraIndent={extraIndent ? 2 : 0}
+						tableCollapsible={collapsible}
+						tableDefaultCollapsed={defaultCollapsed}
+					/>
+				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 
