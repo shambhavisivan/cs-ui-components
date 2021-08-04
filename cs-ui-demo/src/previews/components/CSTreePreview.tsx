@@ -189,6 +189,10 @@ class CSTreePreview extends React.Component<{}, CSTreePreviewState> {
 	getDoc = () => ({
 		name: 'Tree',
 		usage: 'Tree is visualization of a structure hierarchy.',
+		alerts: {
+			variant: 'warning',
+			text: 'This component is under construction and should not be used.'
+		},
 		accessible: 'no',
 		components: [
 			{
