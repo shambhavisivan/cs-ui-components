@@ -563,7 +563,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		const { infiniteScroll } = this.props;
 		const { moreRecords, fetchingMode } = this.state;
 
-		if (infiniteScroll) {
+		if (infiniteScroll && element) {
 			element.firstElementChild.addEventListener('scroll', (event) => {
 				const scrollNode = event.target as HTMLDivElement;
 				const isEndOfScroll = (scrollNode.scrollHeight
