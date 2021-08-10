@@ -27,7 +27,6 @@ const CSAutoposition = ({
 	const [refPointRect, setRefPointRect] = useState<DOMRect>(referencePoint.getBoundingClientRect());
 	const [computedPosition, setComputedPosition] = useState<CSAutopositions>(initialPosition);
 	const [computedStyle, setComputedStyle] = useState<CSSProperties>({});
-	const [prevComputedPosition, setPrevComputedPosition] = useState<CSAutopositions>();
 	const autopositionRootId = 'cs-autoposition-root';
 	const autopositionId = 'cs-autoposition';
 	const autopositionWrapperRef = useRef<HTMLDivElement>(null);
@@ -121,13 +120,11 @@ const CSAutoposition = ({
 			and recalculate position style.
 			If new calculated position isn't defined in position schema
 			appropriate error messages will be visile in browser console.
-			prevComputedPosition covers the scenario where there's no space on the opposite side
-			of the overflow position and prevents the component to go in infinite loop.
 		*/
 		if (availablePositions.includes(newPosition)) {
-			if (computedPosition !== newPosition && newPosition !== prevComputedPosition) {
-				setPrevComputedPosition(computedPosition);
+			if (computedPosition !== newPosition) {
 				setComputedPosition(newPosition);
+				onPositionChange?.(newPosition);
 			}
 		} else {
 			console.error('No opposite positions are available in position schema for position recalculation.');
@@ -311,8 +308,7 @@ const CSAutoposition = ({
 				recalcComputedPosition(autopositionWrapperRef.current);
 			}
 		}, 0);
-		onPositionChange?.(computedPosition);
-	}, [computedStyle]);
+	}, [refPointRect]);
 
 	useLayoutEffect(() => {
 		setPositionStyle();
