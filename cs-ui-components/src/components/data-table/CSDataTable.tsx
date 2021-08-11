@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import React, { useEffect, CSSProperties } from 'react';
 import classNames from 'classnames';
 
 import CSDataTableHeader from './CSDataTableHeader';
@@ -85,6 +85,10 @@ const CSDataTable = ({
 	striped,
 	...rest
 }: CSDataTableProps) => {
+	useEffect(() => {
+		console.warn('CSDataTable is under construction and should not be used.');
+	}, []);
+
 	const tableClasses = classNames(
 		'cs-data-table',
 		{
@@ -111,26 +115,23 @@ const CSDataTable = ({
 	));
 
 	return (
-		<>
-			{console.warn('CSDataTable is under construction and should not be used.')}
-			<div
-				className={tableClasses}
-				id={id}
-				style={tableStyles}
-				{...rest}
-			>
-				{!headless && <CSDataTableHeader columns={columns} />}
-				<div className="cs-data-table-body">
-					<CSDataTableGroup
-						columns={columns}
-						rows={rows}
-						extraIndent={extraIndent ? 2 : 0}
-						tableCollapsible={collapsible}
-						tableDefaultCollapsed={defaultCollapsed}
-					/>
-				</div>
+		<div
+			className={tableClasses}
+			id={id}
+			style={tableStyles}
+			{...rest}
+		>
+			{!headless && <CSDataTableHeader columns={columns} />}
+			<div className="cs-data-table-body">
+				<CSDataTableGroup
+					columns={columns}
+					rows={rows}
+					extraIndent={extraIndent ? 2 : 0}
+					tableCollapsible={collapsible}
+					tableDefaultCollapsed={defaultCollapsed}
+				/>
 			</div>
-		</>
+		</div>
 	);
 };
 
