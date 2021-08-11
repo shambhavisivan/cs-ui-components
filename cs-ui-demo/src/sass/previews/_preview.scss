@@ -195,17 +195,19 @@
 					}
 
 					.copy-code-btn {
-						display: none;
+						visibility: hidden;
+						opacity: 0;
 						position: absolute;
-						top: 0.25rem;
-						right: 0.25rem;
+						top: calc(1rem - 1px);
+						right: calc(1rem - 1px);
+						transition: all 100ms ease-in-out;
 					}
 				}
 
-				&:hover {
-					.code-preview-wrapper .copy-code-btn {
-						display: block;
-					}
+				&:hover .code-preview-wrapper .copy-code-btn,
+				.code-preview-wrapper .copy-code-btn.copy-code-btn-recently-copied {
+					opacity: 1;
+					visibility: visible;
 				}
 			}
 
