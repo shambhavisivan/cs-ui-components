@@ -127,8 +127,7 @@ import CSTooltip, {
 import CSTransfer, { CSTransferVariant } from './components/transfer/CSTransfer';
 import CSTransferItem from './components/transfer/CSTransferItem';
 import CSTransferList, { CSTransferListType } from './components/transfer/CSTransferList';
-import CSTree, { CSTreeDataType } from './components/tree/CSTree';
-import CSTreeNode, { CSTreeNodeActionDisplayType, CSTreeNodeActionsType } from './components/tree/CSTreeNode';
+import CSTree, { CSTreeItemInterface, CSTreeItemMetaInterface, CSTreeActionType, CSTreeElementType, CSTreeRenderType } from './components/tree/CSTree';
 
 import './sass/style.scss';
 
@@ -298,8 +297,9 @@ export {
 	CSTransferList,
 	CSTransferListType,
 	CSTree,
-	CSTreeDataType,
-	CSTreeNode,
-	CSTreeNodeActionDisplayType,
-	CSTreeNodeActionsType,
+	CSTreeItemInterface,
+	CSTreeItemMetaInterface,
+	CSTreeActionType,
+	CSTreeElementType,
+	CSTreeRenderType,
 };

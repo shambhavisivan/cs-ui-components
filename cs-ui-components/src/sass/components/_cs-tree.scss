@@ -1,110 +1,120 @@
-/* CSTREE */
-
 .cs-tree {
 	display: flex;
 	flex-direction: column;
 
-	/* CSTREE NODE */
-	.cs-tree-node-wrapper {
+	.cs-tree-group {
 		display: flex;
 		flex-direction: column;
-		flex: 1;
-		.cs-tree-node {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			padding: 0.5rem 0.5rem 0.5rem var(--cs-tree-node-level-padding);
-			min-height: 2.5rem;
-			&:hover {
-				cursor: pointer;
-				@include sbg(--cs-tree-node-hover-bg);
-			}
-			&:focus, &:focus-within {
-				outline: 0;
-				@include sbg(--cs-tree-node-hover-bg);
-			}
-			&-group {
-				display: flex;
-				align-items: center;
-				overflow: hidden;
-				padding: 0.125rem;
-				& > .cs-btn,
-				.cs-tree-node-icon {
-					margin-right: 0.25rem;
-				}
-				.cs-tree-node-label {
-					font-size: 0.8125rem;
-					@include overflow-ellipsis;
-				}
-				.cs-tree-node-checkbox {
-					margin-right: 0.5rem;
-				}
-			}
-			&-single {
-				padding-left: calc(1.5rem + var(--cs-tree-node-level-padding));
-			}
-			&-selected {
-				position: relative;
-				@include sbg(--cs-tree-node-selected-bg);
-				&::after {
-					content: "";
-					display: block;
-					height: 100%;
-					left: 0;
-					position: absolute;
-					top: 0;
-					width: 0.25rem;
-					@include sbg(--cs-tree-node-selected-br);
-				}
-				&:hover, &:focus, &:focus-within {
-					@include sbg(--cs-tree-node-selected-hover-bg);
-				}
+	}
+
+	.cs-tree-item-wrapper {
+		display: flex;
+		flex-direction: column;
+
+		&:focus-visible {
+			outline: none;
+		}
+
+		&:focus-visible > .cs-tree-item {
+			@include sbg(--cs-tree-item-focus-bg);
+			@include css4 {
+				border-left-color: cvar(--cs-tree-item-focus-br);
 			}
 
-			/* CSTREE ACTIONS */
-			&-actions {
-				display: flex;
-				.cs-btn:not(:only-child) {
-					margin-left: 0.125rem;
-				}
-				&-indicator {
-					display: none;
-					align-items: center;
-					border-radius: 0.625rem 0.125rem 0.125rem 0.625rem;
-					cursor: pointer;
-					justify-content: center;
-					width: 1.5rem;
-					min-width: 1.5rem;
-					height: 1.5rem;
-					@include sbg(--cs-tree-node-actions-indicator-bg);
-					@include css4 {
-						border: 1px solid var(--cs-tree-node-actions-indicator-bg);
-					}
-				}
-				&-hover {
-					.cs-tree-node-actions-indicator {
-						display: flex;
-					}
-					.cs-tree-node-actions {
-						display: none;
-					}
-					&:hover, &:focus, &:focus-within {
-						.cs-tree-node-actions-indicator {
-							display: none;
-						}
-						.cs-tree-node-actions {
-							display: flex;
-						}
-					}
-				}
+			&:hover {
+				@include sbg(--cs-tree-item-hover-bg);
+			}
+		}
+	}
+
+	.cs-tree-item {
+		position: relative;
+		display: flex;
+		align-items: center;
+		padding: 0.5rem 0.5rem 0.5rem var(--cs-tree-item-offset, 1rem);
+		min-height: var(--cs-tree-item-height, 2.25rem);
+		cursor: pointer;
+		transition: all 100ms ease-in-out;
+		border-left: 0.25rem solid transparent;
+		@include sbg(--cs-tree-item-bg);
+
+		&:hover {
+			@include sbg(--cs-tree-item-hover-bg);
+		}
+
+		&:focus-within {
+			@include sbg(--cs-tree-item-focus-bg);
+
+			&:hover {
+				@include sbg(--cs-tree-item-hover-bg);
+			}
+		}
+	}
+
+	.cs-tree-item-active {
+		& > .cs-tree-item {
+			@include sbg(--cs-tree-item-active-bg);
+			@include css4 {
+				border-left-color: cvar(--cs-tree-item-active-br);
+			}
+
+			&:hover,
+			&:focus-within {
+				@include sbg(--cs-tree-item-active-hover-bg);
 			}
 		}
 
-		/* CSTREE GROUP */
-		.cs-tree-group {
-			display: flex;
-			flex-direction: column;
-			overflow: hidden;
+		&:focus-visible > .cs-tree-item {
+			@include sbg(--cs-tree-item-active-hover-bg);
+		}
+	}
+
+	.cs-tree-item-content {
+		flex: 1;
+		align-items: center;
+		font-size: 0.8125rem;
+		@include overflow-ellipsis;
+		@include sc(--cs-tree-item-c);
+	}
+
+	.cs-tree-item-overflow > .cs-tree-item > .cs-tree-item-content {
+		overflow: visible;
+		text-overflow: initial;
+		white-space: normal;
+	}
+
+	.cs-tree-collapse-button {
+		position: absolute;
+		left: -2rem;
+		margin-left: var(--cs-tree-item-offset, 0);
+	}
+
+	.cs-tree-checkbox {
+		display: none;
+		padding-right: 0.75rem;
+		min-width: 1.75rem;
+	}
+
+	&.cs-tree-selectable .cs-tree-checkbox {
+		display: block;
+	}
+
+	.cs-tree-item-actions-on-hover > .cs-tree-item > .cs-tree-actions {
+		display: none;
+	}
+
+	.cs-tree-item-actions-on-hover:focus-visible,
+	.cs-tree-item-actions-on-hover:focus-within,
+	.cs-tree-item-actions-on-hover:hover {
+		& > .cs-tree-item {
+			& > .cs-tree-actions {
+				display: flex;
+			}
+
+			& > .cs-tree-actions-show-more {
+				display: none;
+			}
 		}
 	}
 }
+

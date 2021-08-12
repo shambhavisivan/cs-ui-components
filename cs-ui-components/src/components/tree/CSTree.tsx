@@ -1,124 +1,120 @@
-import React, { ReactElement, useEffect, useState } from 'react';
-import CSTreeNode, { CSTreeNodeCommonProps } from './CSTreeNode';
+import React, { CSSProperties, useEffect } from 'react';
+import classNames from 'classnames';
+import CSTreeGroup from './CSTreeGroup';
+import { CSButtonProps } from '../CSButton';
+import { CSTreeProvider } from './CSTreeContext';
 
-export interface CSTreeDataType extends CSTreeNodeCommonProps {
-	children?: Array<CSTreeDataType>;
+export type CSTreeElementType = React.ReactElement | React.ReactText;
+export type CSTreeRenderType = CSTreeElementType | ((item: CSTreeItemInterface) => CSTreeElementType);
+export type CSTreeActionType = Omit<CSButtonProps, 'onKeyDown' | 'onMouseDown'>;
+
+export interface CSTreeItemMetaInterface {
+	level: number;
+	active: boolean;
+	activeKey: React.ReactText;
+	setActive: (active: boolean, key?: string) => void;
+	toggleActive: (key?: string) => void;
+	checked: boolean;
+	checkedKeys: Array<string>;
+	setChecked: (checked: boolean, key?: string) => void;
+	toggleChecked: (key?: string) => void;
+	indeterminate: boolean;
+	indeterminateKeys: Array<string>;
+	setIndeterminate: (indeterminate: boolean, key?: string) => void;
+	toggleIndeterminate: () => void;
+	readOnly: boolean;
+	readOnlyKeys: Array<string>;
+	setReadOnly: (readOnly: boolean, key?: string) => void;
+	toggleReadOnly: (key?: string) => void;
+	expanded: boolean;
+	setExpanded: (expanded: boolean, key?: string) => void;
+	toggleExpanded: () => void;
+}
+
+export interface CSTreeItemInterface {
+	key: React.ReactText;
+	actions?: Array<CSTreeActionType>;
+	children?: Array<CSTreeItemInterface>;
+	className?: string;
+	collapsible?: boolean;
+	defaultCollapsed?: boolean;
+	displayActionsOnHover?: boolean;
+	meta?: CSTreeItemMetaInterface;
+	render?: CSTreeRenderType;
+	selectable?: boolean;
 }
 
 export interface CSTreeProps {
-	// draggable?: boolean;
-	// onDrop?: () => any;
-	checkable?: boolean;
-	checkedKeys?: Array<string>;
-	defaultExpandedKeys?: Array<string>;
-	nonCheckableKeys?: Array<string>;
-	onExpand?: (key: string) => any;
-	onSelect?: (key: string) => any;
-	selectedKey?: string;
-	treeData: Array<CSTreeDataType>;
+	items: Array<CSTreeItemInterface>;
+	className?: string;
+	collapsible?: boolean;
+	defaultCollapsed?: boolean;
+	displayActionsOnHover?: boolean;
+	id?: string;
+	itemHeight?: string;
+	onItemClick?: (item: CSTreeItemInterface) => void;
+	onSelectChange?: (item: CSTreeItemInterface) => void;
+	selectable?: boolean;
+	[key: string]: any;
 }
 
 const CSTree = ({
-	// draggable,
-	// onDrop,
-	checkable,
-	checkedKeys,
-	defaultExpandedKeys,
-	nonCheckableKeys,
-	onExpand,
-	onSelect,
-	selectedKey,
-	treeData,
+	items,
+	className,
+	collapsible = true,
+	defaultCollapsed = true,
+	displayActionsOnHover = false,
+	id,
+	itemHeight,
+	onItemClick,
+	onSelectChange,
+	selectable,
+	...rest
 }: CSTreeProps) => {
-	const [selected, setSelected] = useState<string>();
 	useEffect(() => {
-		if (selected !== undefined) {
-			onSelect?.(selected);
-		}
-	}, [selected]);
+		console.warn('CSTree is under construction and should not be used.');
+	}, []);
 
-	const handleNodeSelection = (key: string, e: any) => {
-		e.stopPropagation();
-		if (selected === key) {
-			setSelected(null);
-		} else {
-			setSelected(key);
-		}
+	const treeClasses = classNames(
+		'cs-tree',
+		{
+			'cs-tree-selectable': selectable,
+			[className]: className,
+		},
+	);
+
+	const treeStyles: CSSProperties = {
+		'--cs-tree-item-height': itemHeight,
 	};
 
-	const convertRemToPixels = (rem: number) => rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
-
-	const renderTreeNodes = (data: Array<CSTreeDataType>, level?: number) => {
-		const newData: Array<ReactElement> = [];
-		let currentLevel = level ?? 1;
-		data.forEach((item) => {
-			const commonProps = {
-				actions: item.actions,
-				actionsDisplay: item.actionsDisplay,
-				checkable: checkable ? (!nonCheckableKeys?.includes(item.nodeKey) ?? checkable) : false,
-				checked: (checkable && checkedKeys?.includes(item.nodeKey)),
-				key: item.nodeKey,
-				label: item.label,
-				nodeKey: item.nodeKey,
-				onSelect: (e: any) => handleNodeSelection(item.nodeKey, e),
-				render: item.render,
-				selected: selectedKey === item.nodeKey && !checkable,
-				treeNodeIcon: item.treeNodeIcon,
-				// isTreeDraggable: draggable
-			};
-			if (item.children) {
-				currentLevel += 1;
-				newData.push(
-					<CSTreeNode
-						actions={item.actions}
-						actionsDisplay={item.actionsDisplay}
-						ariaLevel={currentLevel - 1}
-						key={item.nodeKey}
-						label={item.label}
-						nodeKey={item.nodeKey}
-						onExpand={onExpand}
-						onSelect={(e) => handleNodeSelection(item.nodeKey, e)}
-						selected={selected === item.nodeKey}
-						style={{ '--cs-tree-node-level-padding': `${convertRemToPixels(currentLevel - 1)}px` }}
-						treeNodeIcon={item.treeNodeIcon}
-						defaultExpanded={defaultExpandedKeys?.includes(item.nodeKey)}
-						{...commonProps}
-					>
-						{renderTreeNodes(item.children, currentLevel)}
-					</CSTreeNode>,
-				);
-				currentLevel -= 1;
-			} else {
-				newData.push(
-					<CSTreeNode
-						actions={item.actions}
-						actionsDisplay={item.actionsDisplay}
-						ariaLevel={currentLevel}
-						// isTreeDraggable={draggable}
-						key={item.nodeKey}
-						label={item.label}
-						nodeKey={item.nodeKey}
-						onSelect={(e) => handleNodeSelection(item.nodeKey, e)}
-						selected={selected === item.nodeKey}
-						style={{ '--cs-tree-node-level-padding': `${convertRemToPixels(currentLevel)}px` }}
-						treeNodeIcon={item.treeNodeIcon}
-						{...commonProps}
-					/>,
-				);
-			}
-			return null;
-		});
-
-		return newData;
-	};
+	// Determine whether the first level should have
+	// extra indentation to make space for the toggle button
+	const extraIndent = collapsible && items.some((item: CSTreeItemInterface) => (
+		item.children?.length && item.collapsible !== false
+	));
 
 	return (
-		<>
-			{console.warn('CSTree is under construction and should not be used.')}
-			<ul className="cs-tree" role="tree">
-				{renderTreeNodes(treeData)}
+		<CSTreeProvider
+			onItemClick={onItemClick}
+			onSelectChange={onSelectChange}
+			treeCollapsible={collapsible}
+			treeDefaultCollapsed={defaultCollapsed}
+			treeDisplayActionsOnHover={displayActionsOnHover}
+			treeSelectable={selectable}
+		>
+			<ul
+				id={id}
+				className={treeClasses}
+				style={treeStyles}
+				role="tree"
+				{...rest}
+			>
+				<CSTreeGroup
+					items={items}
+					extraIndent={extraIndent ? 2.25 : 0}
+				/>
 			</ul>
-		</>
+		</CSTreeProvider>
 	);
 };
 
