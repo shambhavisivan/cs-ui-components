@@ -472,6 +472,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			break;
 		case event.key === KeyCode.Escape && dropdownOpen:
 			this.closeLookupDropdown();
+			event.stopPropagation();
 			break;
 		case event.key === KeyCode.ArrowDown
 				&& !!dropdownValues.length
