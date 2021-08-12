@@ -50,7 +50,7 @@ class CSCardHeader extends React.Component<CSCardHeaderProps, CSCardHeaderState>
 
 	handleCollapse = () => {
 		this.setState((prevState) => ({
-			collapsed: prevState.collapsed,
+			collapsed: !prevState.collapsed,
 		}));
 	}
 
