@@ -359,6 +359,30 @@ class CSCustomSelectPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'onSelectChange',
+						variations: [
+							{
+								component: <CSCustomSelect
+									label="Choose letter"
+									onSelectChange={this.handleSelectChange}
+								>
+									<CSOption itemKey="1" value="A" />
+									<CSOption itemKey="2" value="B" />
+									<CSOption itemKey="3" value="C" />
+									<CSOption itemKey="4" value="D" />
+								</CSCustomSelect>,
+								code: `<CSCustomSelect
+									label="Choose letter"
+									onSelectChange={this.handleSelectChange}
+								>
+									<CSOption itemKey="1" value="A" />
+									<CSOption itemKey="2" value="B" />
+									<CSOption itemKey="3" value="C" />
+									<CSOption itemKey="4" value="D" />
+								</CSCustomSelect>`
+							}
+						]
+					}, {
 						propName: 'position',
 						variations: [
 							{
@@ -386,30 +410,6 @@ class CSCustomSelectPreview extends React.Component {
 									<CSOption itemKey="4" value="D" />
 								</CSCustomSelect>,
 								code: `<CSCustomSelect label="Choose letter" position="top">
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
-							}
-						]
-					}, {
-						propName: 'onSelectChange',
-						variations: [
-							{
-								component: <CSCustomSelect
-									label="Choose letter"
-									onSelectChange={this.handleSelectChange}
-								>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
-								code: `<CSCustomSelect
-									label="Choose letter"
-									onSelectChange={this.handleSelectChange}
-								>
 									<CSOption itemKey="1" value="A" />
 									<CSOption itemKey="2" value="B" />
 									<CSOption itemKey="3" value="C" />
