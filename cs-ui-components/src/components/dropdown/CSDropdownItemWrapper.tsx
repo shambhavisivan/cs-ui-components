@@ -35,7 +35,7 @@ export interface CSDropdownItemWrapperProps {
 }
 
 class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> {
-	private dropdownUListRef: React.RefObject<HTMLUListElement>;
+	private dropdownUListRef: any;
 
 	private focusableElements: any;
 
@@ -106,6 +106,7 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 			hover,
 			maxHeight,
 			maxWidth,
+			mode,
 			mounted,
 			padding,
 			position,
@@ -149,8 +150,22 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 				);
 			}
 
+			if (mode !== 'custom') {
+				return (
+					<li role="none">
+						{React.cloneElement(
+							child,
+							{
+								onKeyDown: this.handleKeyDown,
+								role: 'menuitem',
+							},
+						)}
+					</li>
+				);
+			}
+
 			return (
-				<li role="none">
+				<div role="none">
 					{React.cloneElement(
 						child,
 						{
@@ -158,7 +173,7 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 							role: 'menuitem',
 						},
 					)}
-				</li>
+				</div>
 			);
 		});
 
@@ -168,15 +183,30 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 				style={style}
 				ref={forwardRef}
 			>
-				<ul
-					className={btnDropdownItemWrapperClasses}
-					role="menu"
-					style={dropdownItemWrapperStyle}
-					ref={this.dropdownUListRef}
-					onKeyDown={this.handleKeyDown}
-				>
-					{childrenWithWrapper}
-				</ul>
+				{mode !== 'custom'
+					? (
+						<ul
+							className={btnDropdownItemWrapperClasses}
+							role="menu"
+							style={dropdownItemWrapperStyle}
+							ref={this.dropdownUListRef}
+							onKeyDown={this.handleKeyDown}
+						>
+							{childrenWithWrapper}
+						</ul>
+					)
+					: (
+						<div
+							className={btnDropdownItemWrapperClasses}
+							role="menu"
+							tabIndex={0}
+							style={dropdownItemWrapperStyle}
+							ref={this.dropdownUListRef}
+							onKeyDown={this.handleKeyDown}
+						>
+							{childrenWithWrapper}
+						</div>
+					)}
 			</div>
 		);
 	}
