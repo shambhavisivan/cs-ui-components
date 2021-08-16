@@ -6,6 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
 import { FieldType } from '..';
 import { createLocale, numberToDate, dateToNumber } from '../utils/DateUtil';
+import { FormFieldIcon } from '../FormFieldIcon';
 
 export interface DateFieldLocale {
 	format: string;
@@ -24,23 +25,28 @@ export class DateField extends React.Component<FormFieldProps, {}> {
 		const title = date ? format(date, 'PP', { locale }) : '';
 
 		return (
-			<DatePicker
-				{...this.props.wrapper.injectInputProps(
-					this.props.descriptor.name,
-					this.props.descriptor.fieldType as FieldType,
-					this.props.status
-				)}
-				name={this.props.descriptor.name}
-				dateFormat={this.props.locale.dates.format}
-				locale={locale}
-				selected={date}
-				onChange={value => this.props.handleFieldBlur(dateToNumber(value))}
-				required={this.props.status === 'mandatory'}
-				readOnly={
-					this.props.status === 'visible' || this.props.descriptor.enabled === 'false'
+			<div className="cs-form-datepicker-wrapper">
+				<DatePicker
+					{...this.props.wrapper.injectInputProps(
+						this.props.descriptor.name,
+						this.props.descriptor.fieldType as FieldType,
+						this.props.status
+					)}
+					name={this.props.descriptor.name}
+					dateFormat={this.props.locale.dates.format}
+					locale={locale}
+					selected={date}
+					onChange={value => this.props.handleFieldBlur(dateToNumber(value))}
+					required={this.props.status === 'mandatory'}
+					readOnly={
+						this.props.status === 'visible' || this.props.descriptor.enabled === 'false'
+					}
+					title={title}
+				/>
+				{this.props.icons &&
+					<FormFieldIcon icons={this.props.icons} />
 				}
-				title={title}
-			/>
+			</div>
 		);
 	}
 }

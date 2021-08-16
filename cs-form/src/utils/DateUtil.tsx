@@ -1,7 +1,7 @@
 import createDynamicLocale from '@cloudsense/react-datepicker-dynamiclocale';
 import { DateFieldLocale } from '../fields/DateField';
 
-export function dateToNumber(date: Date | null) {
+export function dateToNumber(date: Date | null | [Date, Date]) {
 	return date ? date.valueOf() : null;
 }
 

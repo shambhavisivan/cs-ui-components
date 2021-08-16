@@ -1,11 +1,12 @@
 import React from 'react';
-import { shallow, default as Enzyme } from 'enzyme';
+import { shallow, default as Enzyme, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { DateField } from '../../fields/DateField';
 import DatePicker from 'react-datepicker';
 import { ElementWrapper } from '../..';
 import { FieldDescriptor } from '../../types/FormDescriptor';
 import { LocaleSettings } from '../../CSForm';
+import { FormFieldsIcons } from '../../types/FormFieldsIcons';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -102,5 +103,31 @@ it('calls onChange() on change', done => {
 			status="enabled"
 		/>
 	);
-	uut.simulate('change', new Date(Date.UTC(2010, 1, 1)));
+	uut.find(DatePicker).simulate('change', new Date(Date.UTC(2010, 1, 1)));
+});
+
+it('renders icons wrapper with icons and tooltip', () => {
+	const icons: Array<FormFieldsIcons> = [{
+		iconName: 'activity'
+	}, {
+		iconName: 'info',
+		tooltip: {
+			content: 'test test'
+		}
+	}];
+	const uut = mount(
+		<DateField
+			locale={locale}
+			wrapper={wrapper}
+			descriptor={descriptor}
+			value={Date.UTC(1970, 1, 2)}
+			handleFieldChange={nop}
+			handleFieldBlur={nop}
+			fetchPossibleValues={nop}
+			status="enabled"
+			icons={icons}
+		/>
+	);
+	expect(uut.find('.cs-form-icons-wrapper')).toHaveLength(1);
+	expect(uut.find('.cs-icon')).toHaveLength(2);
 });

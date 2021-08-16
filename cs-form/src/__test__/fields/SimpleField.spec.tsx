@@ -1,11 +1,12 @@
 import React from 'react';
 import { SimpleField } from '../../fields/SimpleField';
-import { shallow, default as Enzyme } from 'enzyme';
+import { shallow, default as Enzyme, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { FieldDescriptor } from '../../types/FormDescriptor';
 import { ElementWrapper } from '../..';
 import { LocaleSettings } from '../../CSForm';
 import { CSInputText } from '@cloudsense/cs-ui-components';
+import { FormFieldsIcons } from '../../types/FormFieldsIcons';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -95,4 +96,30 @@ it('calls onChange() on change', done => {
 		/>
 	);
 	uut.simulate('change', { target: { value: 'new value' } });
+});
+
+it('renders icons wrapper with icons and tooltip', () => {
+	const icons: Array<FormFieldsIcons> = [{
+		iconName: 'activity'
+	}, {
+		iconName: 'info',
+		tooltip: {
+			content: 'test test'
+		}
+	}];
+	const uut = mount(
+		<SimpleField
+			locale={locale}
+			wrapper={wrapper}
+			descriptor={descriptor}
+			handleFieldChange={nop}
+			handleFieldBlur={nop}
+			fetchPossibleValues={nop}
+			value="test"
+			status="enabled"
+			icons={icons}
+		/>
+	);
+	expect(uut.find('.cs-input-text-icons')).toHaveLength(1);
+	expect(uut.find('.cs-icon')).toHaveLength(2);
 });

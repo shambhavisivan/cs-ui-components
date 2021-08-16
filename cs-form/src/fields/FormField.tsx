@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import { FieldDescriptor } from '../types/FormDescriptor';
+import { FormFieldsIcons } from '../types/FormFieldsIcons';
 import { SimpleField } from './SimpleField';
 import { DateField } from './DateField';
 import { BooleanField } from './BooleanField';
@@ -19,6 +20,7 @@ export interface FormFieldProps {
 	locale: LocaleSettings;
 	wrapper: ElementWrapper;
 	errorMessages?: Array<string>;
+	icons?: Array<FormFieldsIcons>;
 	handleFieldChange(newValue: any): void;
 	handleFieldBlur(newValue: any): void;
 	fetchPossibleValues(): Promise<Array<SelectOption>>;

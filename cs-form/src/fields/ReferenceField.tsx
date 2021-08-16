@@ -3,6 +3,7 @@ import { FormFieldProps } from './FormField';
 import { debounceInterval } from '../utils/Util';
 import debounce from 'lodash.debounce';
 import { ReferenceOption, ReferenceOptionColumn } from '../types/ReferenceOption';
+import { FormFieldIcon } from '../FormFieldIcon';
 
 interface State {
 	optionRowColumnDefs: Array<ReferenceOptionColumn>;
@@ -162,6 +163,9 @@ export class ReferenceField extends React.Component<FormFieldProps, State> {
 								<span className="cs-btn-icon icon-close" />
 							</button>
 						) : null}
+						{this.props.icons &&
+							<FormFieldIcon icons={this.props.icons} />
+						}
 					</div>
 				) : (
 					<div
@@ -179,6 +183,9 @@ export class ReferenceField extends React.Component<FormFieldProps, State> {
 							onChange={e => this.handleSearch(e)}
 						/>
 						<span className="icon-search" aria-hidden="true" />
+						{this.props.icons &&
+							<FormFieldIcon icons={this.props.icons} />
+						}
 					</div>
 				)}
 				{/* Reference options results */}

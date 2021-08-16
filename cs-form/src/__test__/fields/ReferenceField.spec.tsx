@@ -6,6 +6,7 @@ import ReactTestUtils, { act } from 'react-dom/test-utils';
 import { ElementWrapper, LocaleSettings, FieldDescriptor } from '../..';
 import { ReferenceField } from '../../fields/ReferenceField';
 import { ReferenceOption } from '../../../dist';
+import { FormFieldsIcons } from '../../types/FormFieldsIcons';
 
 /** TODO: this should happen at start of the test suite. */
 configure({ adapter: new Adapter() });
@@ -238,4 +239,37 @@ it('handleOutsideClick should do nothing when not in edit mode', () => {
 	expect(container.querySelectorAll('#startEditButton').length).toBe(1);
 	expect(container.querySelectorAll('.input-edit-mode').length).toBe(0);
 	expect(mockHandleChange).toHaveBeenCalledTimes(0);
+});
+
+it('renders icons wrapper with icons and tooltip', () => {
+	const mockHandleChange = jest.fn();
+	const icons: Array<FormFieldsIcons> = [{
+		iconName: 'activity'
+	}, {
+		iconName: 'info',
+		tooltip: {
+			content: 'test test'
+		}
+	}];
+
+	act(() => {
+		ReactDOM.render(
+			<ReferenceField
+				value={{ Id: 'InitialId', name: 'Initial name' }}
+				wrapper={wrapper}
+				descriptor={descriptor}
+				locale={locale}
+				handleFieldChange={nop}
+				handleFieldBlur={mockHandleChange}
+				fetchReferenceOptions={referenceOptionFetcher}
+				status="enabled"
+				fetchPossibleValues={nop}
+				icons={icons}
+			/>,
+			container
+		);
+	});
+
+	expect(container.querySelectorAll('.cs-form-icons-wrapper').length).toBe(1);
+	expect(container.querySelectorAll('.cs-icon').length).toBe(2);
 });

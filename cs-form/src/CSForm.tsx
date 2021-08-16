@@ -16,6 +16,7 @@ import { ErrorPanel } from './ErrorPanel';
 import { NumberFieldLocale } from './fields/NumberField';
 import { DateFieldLocale } from './fields/DateField';
 import { ReferenceOption } from './types/ReferenceOption';
+import { FormFieldsIcons } from './types/FormFieldsIcons';
 
 export interface LocaleSettings {
 	dates: DateFieldLocale;
@@ -154,6 +155,10 @@ export interface AllFormProps {
 	formSettings: FormSettings;
 	wrapper: ElementWrapper;
 	/**
+	 * Renders inline icons or tooltips for all form fields
+	 */
+	icons?: Array<FormFieldsIcons>;
+	/**
 	 * Called whenever the form object changes.
 	 * @param data New form object.
 	 * @param errors The currently calculated validation errors
@@ -187,6 +192,7 @@ export interface AllFormProps {
 		field: FieldDescriptor,
 		searchTerm: string
 	): Promise<Array<ReferenceOption>>;
+
 }
 
 /**
@@ -341,6 +347,7 @@ export class CSForm extends React.Component<FormProps, FormState> {
 				wrapper={this.props.wrapper}
 				formSettings={this.props.formSettings}
 				locale={this.props.locale}
+				icons={this.props.icons}
 			/>
 		);
 	}

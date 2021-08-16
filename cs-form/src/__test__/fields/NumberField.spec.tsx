@@ -7,6 +7,7 @@ import { ElementWrapper } from '../..';
 import { LocaleSettings } from '../../CSForm';
 import { NumberField } from '../../fields/NumberField';
 import ReactDOM from 'react-dom';
+import { FormFieldsIcons } from '../../types/FormFieldsIcons';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -477,4 +478,39 @@ test('Test NumberField does not go into edit mode on focus when it is read only.
 	const editTextInput = getNumberField();
 
 	expect(editTextInput.onchange).toBeNull();
+});
+
+it('renders icons wrapper with icons and tooltip', done => {
+
+	const icons: Array<FormFieldsIcons> = [{
+		iconName: 'activity'
+	}, {
+		iconName: 'info',
+		tooltip: {
+			content: 'test test'
+		}
+	}];
+
+	act(() => {
+		ReactDOM.render(
+			<NumberField
+				value="0"
+				wrapper={wrapper}
+				descriptor={descriptor}
+				locale={locale}
+				handleFieldChange={jestHandleChangeMock}
+				handleFieldBlur={jestHandleFieldBlurMock}
+				fetchPossibleValues={jestFetchPossibleValuesMock}
+				status="enabled"
+				icons={icons}
+			/>,
+			container
+		);
+	});
+
+	const numberInputIconsWrapperLength = container.querySelectorAll('.cs-input-number-icons').length;
+	const numberInputIconsLength = container.querySelectorAll('.cs-icon').length;
+	expect(numberInputIconsWrapperLength).toEqual(1);
+	expect(numberInputIconsLength).toEqual(2);
+	done();
 });

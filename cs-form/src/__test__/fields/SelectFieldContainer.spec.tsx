@@ -5,6 +5,7 @@ import { act } from 'react-dom/test-utils';
 import { SelectField } from '../../fields/SelectField';
 import { ElementWrapper, LocaleSettings, FieldDescriptor, SelectOption } from '../..';
 import { SelectFieldContainer } from '../../fields/SelectFieldContainer';
+import { FormFieldsIcons } from '../../types/FormFieldsIcons';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -63,4 +64,30 @@ it('renders SelectField with all props including options from fetchPossibleValue
 	expect(renderedSelect.prop('handleFieldChange')).toBe(nop);
 	expect(renderedSelect.prop('handleFieldBlur')).toBe(nop);
 	expect(renderedSelect.prop('locale')).toBe(locale);
+});
+
+it('renders icons wrapper with icons and tooltip', () => {
+	const icons: Array<FormFieldsIcons> = [{
+		iconName: 'activity'
+	}, {
+		iconName: 'info',
+		tooltip: {
+			content: 'test test'
+		}
+	}];
+	const uut = mount(
+		<SelectFieldContainer
+			value="option1"
+			wrapper={wrapper}
+			descriptor={descriptor}
+			locale={locale}
+			handleFieldChange={nop}
+			handleFieldBlur={nop}
+			fetchPossibleValues={optionFetcher}
+			status="enabled"
+			icons={icons}
+		/>
+	);
+	expect(uut.find('.cs-select-icons')).toHaveLength(1);
+	expect(uut.find('.cs-icon')).toHaveLength(3);
 });

@@ -5,6 +5,7 @@ import { withState } from '@dump247/storybook-state';
 import { ElementWrapper, FieldType, ComponentStatus, LocaleSettings, FieldDescriptor } from '..';
 import { FormField } from '../fields/FormField';
 import { OptionsKnobOptions } from '@storybook/addon-knobs/dist/components/types';
+import { FormFieldsIcons } from '../types/FormFieldsIcons';
 
 const statusLabel = 'Status';
 const statusValuesObj: Record<string, ComponentStatus> = {
@@ -195,7 +196,14 @@ formFieldStories.add(
 		);
 	})
 );
-
+const icons: Array<FormFieldsIcons> = [{
+	name: 'activity'
+}, {
+	name: 'info',
+	tooltip: {
+		content: 'test test'
+	}
+}];
 formFieldStories.add(
 	'with date field',
 	withState({ value: '' })(({ store }) => {
@@ -224,6 +232,7 @@ formFieldStories.add(
 					setValue(value);
 				}}
 				fetchPossibleValues={nop}
+				icons={icons}
 			/>
 		);
 	})

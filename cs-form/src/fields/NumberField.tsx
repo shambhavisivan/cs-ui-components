@@ -50,8 +50,8 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 		const value = this.state.isFormatterVisible
 			? this.state.value
 			: this.isNotUndefinedOrNull(this.props.value)
-			? this.props.value
-			: '';
+				? this.props.value
+				: '';
 
 		const isReadOnly =
 			this.props.status === 'visible' || this.props.descriptor.enabled === 'false';
@@ -81,6 +81,7 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 						}}
 						title={value}
 						labelHidden
+						icons={this.props.icons}
 					/>
 				) : (
 					<CSInputNumber
@@ -108,6 +109,7 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 						max={this.props.descriptor.maxVal}
 						title={value}
 						labelHidden
+						icons={this.props.icons}
 					/>
 				)}
 			</div>
