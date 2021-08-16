@@ -26,7 +26,6 @@ export interface CSCheckboxProps {
 	labelTitle?: boolean;
 	name?: string;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => any;
-	onClick?: (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
 	onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => any;
 	readOnly?: boolean;
 	required?: boolean;
@@ -80,19 +79,6 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 		}
 	}
 
-	handleOnClick = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
-		const { readOnly, onClick } = this.props;
-
-		if (readOnly) {
-			e.preventDefault();
-			return;
-		}
-
-		if (onClick) {
-			onClick(e);
-		}
-	}
-
 	setIndeterminate = (value: boolean) => {
 		if (this.checkboxRef.current) {
 			this.checkboxRef.current.indeterminate = value;
@@ -117,7 +103,6 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 			labelTitle,
 			name,
 			onChange,
-			onClick,
 			onKeyDown,
 			readOnly,
 			required,
@@ -174,7 +159,6 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 							checked={checked}
 							required={required}
 							id={this.uniqueAutoId}
-							onClick={this.handleOnClick}
 							name={name}
 							ref={this.checkboxRef}
 							aria-label={label}

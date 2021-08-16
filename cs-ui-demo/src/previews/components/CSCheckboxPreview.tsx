@@ -181,14 +181,6 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 							}
 						]
 					}, {
-						propName: 'onClick',
-						variations: [
-							{
-								component: <CSCheckbox label="Select option" onClick={this.handleClick} />,
-								code: '<CSCheckbox label="Select option" onClick={this.handleClick} />'
-							}
-						]
-					}, {
 						propName: 'onKeyDown',
 						variations: [
 							{
@@ -353,10 +345,6 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 						name: 'onChange',
 						types: '(event) => any',
 						description: 'Handler method for the change event.'
-					}, {
-						name: 'onClick',
-						types: '(event) => void',
-						description: 'Handler method for the click event.'
 					}, {
 						name: 'onKeyDown',
 						types: '(event) => any',
