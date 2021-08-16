@@ -38,6 +38,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 	public static defaultProps = {
 		variant: 'neutral',
 		labelHidden: false,
+		checked: false,
 	};
 
 	private checkboxRef: React.RefObject<HTMLInputElement>;
@@ -52,11 +53,9 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 	}
 
 	componentDidMount() {
-		const { indeterminate, checked } = this.props;
+		const { indeterminate } = this.props;
 
-		if (indeterminate && !checked) {
-			this.setIndeterminate(true);
-		}
+		if (indeterminate) this.setIndeterminate(true);
 	}
 
 	componentDidUpdate(prevProps: CSCheckboxProps) {
