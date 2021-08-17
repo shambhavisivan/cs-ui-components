@@ -150,7 +150,12 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 								title={labelTitle ? label : null}
 							/>
 						)}
-					<label className="cs-checkbox-group">
+					{/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */}
+					<label
+						className="cs-checkbox-group"
+						onClick={(event) => event.stopPropagation()}
+						onKeyDown={(event) => event.stopPropagation()}
+					>
 						<input
 							onChange={this.handleOnChange}
 							className={checkboxClasses}
