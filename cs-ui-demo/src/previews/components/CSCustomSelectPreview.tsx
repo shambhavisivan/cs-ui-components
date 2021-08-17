@@ -383,6 +383,24 @@ class CSCustomSelectPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'placeholder',
+						variations: [
+							{
+								component: <CSCustomSelect label="Choose letter" placeholder="Search...">
+									<CSOption itemKey="1" value="A" />
+									<CSOption itemKey="2" value="B" />
+									<CSOption itemKey="3" value="C" />
+									<CSOption itemKey="4" value="D" />
+								</CSCustomSelect>,
+								code: `<CSCustomSelect label="Choose letter" placeholder="Search...">
+									<CSOption itemKey="1" value="A" />
+									<CSOption itemKey="2" value="B" />
+									<CSOption itemKey="3" value="C" />
+									<CSOption itemKey="4" value="D" />
+								</CSCustomSelect>`
+							}
+						]
+					}, {
 						propName: 'position',
 						variations: [
 							{
@@ -429,6 +447,34 @@ class CSCustomSelectPreview extends React.Component {
 									<CSOption itemKey="4" value="D" />
 								</CSCustomSelect>,
 								code: `<CSCustomSelect label="Choose letter" required>
+									<CSOption itemKey="1" value="A" />
+									<CSOption itemKey="2" value="B" />
+									<CSOption itemKey="3" value="C" />
+									<CSOption itemKey="4" value="D" />
+								</CSCustomSelect>`
+							}
+						]
+					}, {
+						propName: 'showCompactMultiselect',
+						variations: [
+							{
+								primaryVariants: 'showCompactMultiselect={true}',
+								secondaryVariants: 'multiselect={true}',
+								component: <CSCustomSelect
+									label="Choose letter"
+									showCompactMultiselect
+									multiselect
+								>
+									<CSOption itemKey="1" value="A" />
+									<CSOption itemKey="2" value="B" />
+									<CSOption itemKey="3" value="C" />
+									<CSOption itemKey="4" value="D" />
+								</CSCustomSelect>,
+								code: `<CSCustomSelect
+									label="Choose letter"
+									showCompactMultiselect
+									multiselect
+								>
 									<CSOption itemKey="1" value="A" />
 									<CSOption itemKey="2" value="B" />
 									<CSOption itemKey="3" value="C" />
@@ -633,6 +679,11 @@ class CSCustomSelectPreview extends React.Component {
 						default: 'false',
 						description: 'Control the hidden attribute.'
 					}, {
+						name: 'label',
+						required: true,
+						types: ['string'],
+						description: 'Set the custom select label.'
+					}, {
 						name: 'labelHidden',
 						types: 'boolean',
 						default: 'false',
@@ -655,6 +706,10 @@ class CSCustomSelectPreview extends React.Component {
 						types: '(event) => void',
 						description: 'Handler method for when the selection is changed.'
 					}, {
+						name: 'placeholder',
+						types: ['string'],
+						description: 'Set a custom select input placeholder.'
+					}, {
 						name: 'position',
 						customTypes: [{
 							name: 'CSCustomSelectDropdownPosition',
@@ -663,10 +718,19 @@ class CSCustomSelectPreview extends React.Component {
 						default: '\'bottom\'',
 						description: 'Determine the vertical position of the custom select dropdown content.'
 					}, {
+						name: 'placeholder',
+						types: ['string'],
+						description: 'Set a custom select input placeholder.'
+					}, {
 						name: 'required',
 						types: 'boolean',
 						default: 'false',
 						description: 'Make the custom select required.'
+					}, {
+						name: 'showCompactMultiselect',
+						types: ['boolean'],
+						default: 'false',
+						description: 'Hides mutliselect items from input wrapper.'
 					}, {
 						name: 'title',
 						types: 'string',

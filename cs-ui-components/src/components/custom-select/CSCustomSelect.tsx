@@ -39,7 +39,9 @@ export interface CSCustomSelectProps {
 	onSearch?: (e: React.ChangeEvent<HTMLInputElement>) => any;
 	onSelectChange?: (value?: any) => any;
 	position?: CSCustomSelectDropdownPosition;
+	placeholder?: string;
 	required?: boolean;
+	showCompactMultiselect?: boolean;
 	title?: string;
 	tooltipPosition?: CSTooltipPosition;
 	value?: string | Array<string>;
@@ -416,7 +418,9 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 			onSearch,
 			onSelectChange,
 			position,
+			placeholder,
 			required,
+			showCompactMultiselect,
 			title,
 			tooltipPosition,
 			value,
@@ -441,7 +445,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 		const customSelectInputClasses = classNames(
 			'cs-custom-select-input',
 			{
-				'cs-custom-ms-input': multiselect,
+				'cs-custom-ms-input': multiselect && !showCompactMultiselect,
 			},
 		);
 		const selectedListItemClasses = classNames(
@@ -522,21 +526,24 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 						}
 					}}
 				>
-					{multiselect && selectedOptions.length > 0 && (
-						<ul className="cs-custom-select-items">
-							{selectedOptions.map((selectedOption, i) => (
-								<CSOption
-									type="selected-item"
-									value={selectedOption.value}
-									itemKey={selectedOption.itemKey}
-									key={selectedOption.itemKey}
-									onItemDelete={(event: any) => {
-										this.handleItemDelete(event, i);
-									}}
-								/>
-							))}
-						</ul>
-					)}
+					{(multiselect
+						&& !showCompactMultiselect
+						&& selectedOptions.length > 0)
+						&& (
+							<ul className="cs-custom-select-items">
+								{selectedOptions.map((selectedOption, i) => (
+									<CSOption
+										type="selected-item"
+										value={selectedOption.value}
+										itemKey={selectedOption.itemKey}
+										key={selectedOption.itemKey}
+										onItemDelete={(event: any) => {
+											this.handleItemDelete(event, i);
+										}}
+									/>
+								))}
+							</ul>
+						)}
 					<span className={customSelectInputClasses}>
 						<input
 							value={searchTerm}
@@ -550,8 +557,9 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 							aria-required={required}
 							title={title}
 							autoComplete="off"
+							placeholder={(placeholder && !selectedItem.value) ? placeholder : undefined}
 							onKeyDown={this.handleOnKeyDown}
-							onMouseDown={() => this.openCustomSelectDropdown()}
+							onMouseDown={this.openCustomSelectDropdown}
 							onBlur={this.handleOnBlur}
 							onFocus={this.openCustomSelectDropdown}
 							ref={(node) => { this.input = node; }}
