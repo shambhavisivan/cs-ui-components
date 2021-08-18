@@ -47,7 +47,7 @@
 		width: 2rem;
 		z-index: var(--z-index-button-icon);
 		pointer-events: none;
-		.cs-icon {
+		.cs-icon.cs-icon {
 			height: var(--cs-icon-size, 1rem);
 			width: var(--cs-icon-size, 1rem);
 			transition: transform ease 100ms;
