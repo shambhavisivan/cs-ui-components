@@ -33,7 +33,9 @@ const PreviewApi: React.FC<PreviewInterface> = ({ name, api }) => {
 								<div className={`${method.name}-demo api-demo`}>
 									{method.component}
 								</div>
-								<PreviewCode code={method.code} />
+								<div className="code-preview-wrapper">
+									<PreviewCode code={method.code} />
+								</div>
 							</div>
 						</div>
 						<div className="properties-table-wrapper">
