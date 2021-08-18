@@ -22,6 +22,7 @@
   "rules": {
 	// JavaScript rules
 	"indent": ["error", "tab", { "ignoreComments": true }],
+	"linebreak-style": "off",
 	"max-len": "off",
 	"no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
 	"no-tabs": "off",
