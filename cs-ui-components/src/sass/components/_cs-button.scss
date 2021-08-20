@@ -238,7 +238,7 @@
 				}
 				&:not(:disabled) {
 					.cs-btn-label {
-						@include cd(--cs-button-inverse-c, 0.15);
+						filter: none;
 					}
 					.cs-btn-icon .cs-icon {
 						@include cd(--cs-button-icon-brand-c, 0.15);
@@ -306,7 +306,8 @@
 				}
 				&:not(:disabled) {
 					.cs-btn-label {
-						@include cd(--cs-button-inverse-c, 0.15);
+						filter: none;
+						@include sc(--cs-button-inverse-c);
 					}
 					.cs-btn-icon .cs-icon {
 						@include cd(--cs-button-icon-brand-c, 0.15);
@@ -376,7 +377,8 @@
 				}
 				&:not(:disabled) {
 					.cs-btn-label {
-						@include cd(--cs-button-inverse-c, 0.15);
+						filter: none;
+						@include sc(--cs-button-inverse-c);
 					}
 					.cs-btn-icon .cs-icon {
 						@include cd(--cs-button-icon-brand-c, 0.15);
