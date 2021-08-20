@@ -78,7 +78,7 @@ class CSListItem extends React.Component<CSListItemProps> {
 			},
 		);
 
-		const listItemText = <span className="cs-list-item-text">{text}</span>;
+		const listItemText = text ? <span className="cs-list-item-text">{text}</span> : '';
 		const listItemContent = customContent
 			&& <div className="cs-list-item-custom-content">{customContent}</div>;
 
