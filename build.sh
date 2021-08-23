@@ -57,3 +57,15 @@ if changedFiles | grep -q '^cs-grid'; then
     echo "Finished validating cs-grid"
     cd ..;
 fi
+
+if changedFiles | grep -q '^cs-form-v2'; then
+    echo "Validating cs-form-v2"
+    cd cs-form-v2;
+    yarn install --ignore-engines;
+    echo "Running cs-form-v2 Lint"
+    yarn lint;
+    echo "Building cs-form-v2"
+    yarn build;
+    echo "Finished validating cs-form-v2"
+    cd ..;
+fi

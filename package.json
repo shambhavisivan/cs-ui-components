@@ -2,10 +2,12 @@
   "private": true,
   "workspaces": [
     "cs-ui-components",
-    "cs-ui-demo"
+    "cs-ui-demo",
+    "cs-form-v2"
   ],
   "scripts": {
     "components": "yarn workspace @cloudsense/cs-ui-components",
-    "demo": "yarn workspace @cloudsense/cs-ui-demo"
+    "demo": "yarn workspace @cloudsense/cs-ui-demo",
+    "form-v2": "yarn workspace cs-form-v2"
   }
 }

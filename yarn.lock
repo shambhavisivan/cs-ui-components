@@ -4324,6 +4324,11 @@ crypto-browserify@^3.11.0:
     randombytes "^2.0.0"
     randomfill "^1.0.3"
 
+"cs-form-v2@file:cs-form-v2":
+  version "1.0.0"
+  dependencies:
+    "@cloudsense/cs-ui-components" "1.1.25"
+
 css-blank-pseudo@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/css-blank-pseudo/-/css-blank-pseudo-0.1.4.tgz#dfdefd3254bf8a82027993674ccf35483bfcb3c5"
