@@ -19,6 +19,9 @@
 	"author": "CloudSense UI",
 	"license": "ISC",
 	"devDependencies": {
+		"@testing-library/jest-dom": "^5.14.1",
+		"jsdom": "^17.0.0",
+		"jsdom-global": "^3.0.2",
 		"@babel/core": "^7.8.4",
 		"@babel/preset-env": "^7.8.4",
 		"@babel/preset-react": "^7.8.3",
