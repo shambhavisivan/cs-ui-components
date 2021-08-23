@@ -1,5 +1,5 @@
 import React from 'react';
-import { CSSelect } from '@cloudsense/cs-ui-components';
+import { CSButtonSize, CSSelect, CSTooltipPosition, CSIconOrigin } from '@cloudsense/cs-ui-components';
 
 import Preview from '../Preview';
 
@@ -8,7 +8,47 @@ interface CSSelectPreviewState {
 }
 
 class CSSelectPreview extends React.Component<{}, CSSelectPreviewState> {
-	state = { value: '30' };
+	state = {
+		value: '30',
+		icons: [
+			{ iconName: 'cart'},
+			{
+				iconName: 'tag',
+				iconOrigin: 'cs' as CSIconOrigin,
+				getTooltip: {
+					content: ['icons tooltip'],
+					delay: 300,
+					maxWidth: '20rem',
+					padding: '0.5rem',
+					position: 'bottom-left' as CSTooltipPosition,
+					stickyOnClick: true
+				}
+			}
+		],
+		actions: [
+			{
+				action: () => alert('Delete option called'),
+				labelHidden: true,
+				icon: { iconName: 'delete' },
+				size: 'small' as CSButtonSize,
+				name: 'Delete'
+			},
+			{
+				action: () => alert('Add option called'),
+				icon: { iconName: 'add' },
+				labelHidden: true,
+				size: 'small' as CSButtonSize,
+				name: 'Add',
+				getTooltip: {
+					content: ['actions tooltip'],
+					delay: 300,
+					padding: '0.5rem',
+					position: 'bottom-left' as CSTooltipPosition,
+					stickyOnClick: true
+				}
+			}
+		]
+	};
 
 	handleChange = () => alert('Selection has changed.');
 
@@ -34,6 +74,53 @@ class CSSelectPreview extends React.Component<{}, CSSelectPreviewState> {
 									<option>Green</option>
 								</CSSelect>,
 								code: `<CSSelect label="Choose color">
+									<option>Red</option>
+									<option>Blue</option>
+									<option>Green</option>
+								</CSSelect>`
+							}
+						]
+					}, {
+						propName: 'actions',
+						variations: [
+							{
+								primaryVariants: [
+									'actions={this.state.actions}'
+								],
+								component: <CSSelect
+									label="Enter value"
+									actions={this.state.actions}
+								>
+									<option>Red</option>
+									<option>Blue</option>
+									<option>Green</option>
+								</CSSelect>,
+								code: `<CSSelect
+									label="Enter value"
+									actions={[
+										{
+											action: () => alert('Delete option called'),
+											icon: { iconName: 'delete' },
+											labelHidden: true,
+											size: 'small' as CSButtonSize,
+											name: 'Delete'
+										},
+										{
+											action: () => alert('Add option called'),
+											icon: { iconName: 'add' },
+											labelHidden: true,
+											size: 'small' as CSButtonSize,
+											name: 'Add',
+											getTooltip: {
+												content: ['actions tooltip'],
+												delay: 300,
+												padding: '0.5rem',
+												position: 'bottom-left' as CSTooltipPosition,
+												stickyOnClick: true,
+											}
+										}
+									]}
+								>
 									<option>Red</option>
 									<option>Blue</option>
 									<option>Green</option>
@@ -175,6 +262,45 @@ class CSSelectPreview extends React.Component<{}, CSSelectPreviewState> {
 									<option>3</option>
 								</CSSelect>,
 								code: `<CSSelect label="Choose number" hidden>
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+								</CSSelect>`
+							}
+						]
+					}, {
+						propName: 'icons',
+						variations: [
+							{
+								primaryVariants: [
+									'icons={this.state.icons}'
+								],
+								component: <CSSelect
+									label="Enter value"
+									icons={this.state.icons}
+								>
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+								</CSSelect>,
+								code: `<CSSelect
+									label="Enter value"
+									icons={[
+										{ iconName: 'cart'},
+										{
+											iconName: 'tag',
+											iconOrigin: 'cs' as CSIconOrigin,
+											getTooltip: {
+												content: ['icons tooltip'],
+												delay: 300,
+												maxWidth: '20rem',
+												padding: '0.5rem',
+												position: 'bottom-left' as CSTooltipPosition,
+												stickyOnClick: true
+											}
+										}
+									]}
+								>
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
@@ -387,6 +513,13 @@ class CSSelectPreview extends React.Component<{}, CSSelectPreviewState> {
 						types: 'string',
 						description: 'Set the select label.'
 					}, {
+						name: 'actions',
+						customTypes: {
+							name: 'CSSelectActionsProps',
+							types: 'Array<CSSelectActionProps>'
+						},
+						description: 'An array of objects which accepts valid CSIcon & CSButton props, a getTooltip function to show an icon with a tooltip & an action prop for the button action/function.'
+					}, {
 						name: 'borderRadius',
 						types: 'string',
 						default: `'0.25rem'`,
@@ -424,6 +557,13 @@ class CSSelectPreview extends React.Component<{}, CSSelectPreviewState> {
 						types: 'boolean',
 						default: 'false',
 						description: 'Control the hidden attribute.'
+					}, {
+						name: 'icons',
+						customTypes: {
+							name: 'CSSelectIconProps',
+							types: 'Array<CSSelectIconProps>'
+						},
+						description: 'An array of objects which accepts valid CSIcon props or a getTooltip function to show an icon with a tooltip.'
 					}, {
 						name: 'labelHidden',
 						types: 'boolean',

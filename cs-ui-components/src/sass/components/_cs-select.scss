@@ -12,8 +12,13 @@
 		top: 0.5625rem;
 		pointer-events: none;
 	}
+
 	> .cs-label-wrapper ~ .cs-tw-error {
 		top: 1.75rem;
+	}
+
+	.cs-select-wrapper-inner {
+		position: relative;
 	}
 
 	.cs-select-group {
@@ -27,6 +32,7 @@
 			border-radius: var(--cs-select-border-radius, 0.25rem);
 			-webkit-appearance: none;
 			padding: 0 2rem 0 0.75rem;
+			padding-right: var(--cs-select-options-spacing, 2rem);
 			@include sbg(--cs-input-bg);
 			@include css4 {
 				border: 1px solid cvar(--cs-input-br);
@@ -95,4 +101,23 @@
 // Version
 .component-version-select .version-preview {
 	overflow: visible;
+}
+
+// Options
+.cs-select-options {
+	bottom: 50%;
+	display: flex;
+	position: absolute;
+	right: 2rem;
+	transform: translateY(50%);
+
+	.cs-select-option {
+		align-items: center;
+		display: flex;
+
+		&:not(:last-child),
+        > *:not(:last-child) {
+            margin-right: 0.25rem;
+        }
+	}
 }
