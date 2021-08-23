@@ -1,0 +1,37 @@
+.cs-custom-data-wrapper {
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+	width: 100%;
+
+	.cs-custom-data-value {
+		font-size: 0.75rem;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		width: 100%;
+	}
+}
+
+.cs-custom-data-item-wrapper {
+	align-items: center;
+	display: flex;
+	margin-left: auto;
+	padding-left: 0.25rem;
+	position: relative;
+
+	> .cs-custom-data-item {
+		align-items: center;
+		display: flex;
+
+		&:not(:last-child),
+		> *:not(:last-child) {
+			margin-right: 0.25rem;
+		}
+	}
+
+	> .cs-custom-data-item-status-hidden {
+		display: none;
+	}
+}

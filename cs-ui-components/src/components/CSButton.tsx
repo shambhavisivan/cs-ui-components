@@ -33,7 +33,7 @@ export interface CSButtonProps {
 	labelHidden?: boolean;
 	link?: string;
 	loading?: boolean;
-	onClick?: (value: any) => any;
+	onClick?: (...args: any) => any;
 	onKeyDown?: (e: React.KeyboardEvent<HTMLAnchorElement | HTMLButtonElement>) => any;
 	onMouseDown?: (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => any;
 	onMouseEnter?: (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => any;

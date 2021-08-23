@@ -5,6 +5,7 @@ import CSSelectPreview from './components/CSSelectPreview';
 import CSCheckboxPreview from './components/CSCheckboxPreview';
 import CSTogglePreview from './components/CSTogglePreview';
 import CSTextareaPreview from './components/CSTextareaPreview';
+import CSCustomDataPreview from './components/CSCustomDataPreview';
 import CSIconPreview from './components/CSIconPreview';
 import CSInputSearchPreview from './components/CSInputSearchPreview';
 import CSCurrencyPreview from './components/CSCurrencyPreview';
@@ -83,6 +84,11 @@ class CSComponentsList extends React.Component {
 			{
 				name: 'Currency',
 				component: CSCurrencyPreview
+			},
+			{
+				name: 'Custom Data',
+				component: CSCustomDataPreview,
+				isFormElement: true
 			},
 			{
 				name: 'Custom Select',
