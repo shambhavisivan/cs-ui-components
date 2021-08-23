@@ -5,7 +5,7 @@ import { CSGridCellRendererState } from '../interfaces/cs-grid-base-interfaces';
 import { CSGridCellRendererProps } from '../interfaces/cs-grid-cell-props';
 import { getSeparator } from '../utils/cs-grid-number-formatting-helper';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
-import { CSGridCellError } from './cs-grid-cell-error';
+import { CSCustomDataHelper } from './cs-grid-custom-data-helper';
 
 interface CSGridNumberRendererState extends CSGridCellRendererState<number> {
 	numberFormat: Intl.NumberFormat;
@@ -42,7 +42,19 @@ export abstract class CSGridNumberRenderer<
 		}
 
 		const value = this.format(this.state.value.cellValue);
-		const contents = <span title={value}>{value}</span>;
+		const errorMessage = this.state.value.errorMessage;
+
+		const contents = (
+			<CSCustomDataHelper
+				getIcons={this.props.getIcons}
+				getActions={this.props.getActions}
+				nodeId={this.props.node.id}
+				api={this.props.api}
+				value={value}
+				statusMessage={errorMessage}
+			/>
+		);
+
 		let tooltip;
 		if (this.props.getTooltip) {
 			tooltip = this.props.getTooltip(this.props.node.id);
@@ -80,10 +92,6 @@ export abstract class CSGridNumberRenderer<
 				) : (
 					contents
 				)}
-				<CSGridCellError
-					errorMessage={this.state.value.errorMessage}
-					position={this.state.isLastColumn ? 'top-left' : 'top-right'}
-				/>
 			</span>
 		);
 	}

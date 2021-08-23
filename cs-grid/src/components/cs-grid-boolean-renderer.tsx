@@ -5,7 +5,7 @@ import { IsColumnFuncParams } from 'ag-grid-community/dist/lib/entities/colDef';
 import { CellData, CSGridCellRenderer } from '../interfaces/cs-grid-base-interfaces';
 import { CSGridCellRendererProps } from '../interfaces/cs-grid-cell-props';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
-import { CSGridCellError } from './cs-grid-cell-error';
+import { CSCustomDataHelper } from './cs-grid-custom-data-helper';
 
 export class CSGridBooleanRenderer extends CSGridBaseRenderer<boolean>
 	implements CSGridCellRenderer {
@@ -26,6 +26,8 @@ export class CSGridBooleanRenderer extends CSGridBaseRenderer<boolean>
 	}
 
 	render() {
+		const errorMessage = this.state.value?.errorMessage;
+
 		if (!this.state.value) {
 			return null;
 		}
@@ -34,15 +36,24 @@ export class CSGridBooleanRenderer extends CSGridBaseRenderer<boolean>
 		const editable = this.isEditable();
 
 		const contents = (
-			<CSCheckbox
-				label='checkbox'
-				labelHidden={true}
-				variant='brand'
-				onChange={editable ? this.onChange : undefined}
-				checked={this.state.value.cellValue}
-				readOnly={readOnly}
-				disabled={!editable}
-			/>
+			<>
+				<CSCheckbox
+					label='checkbox'
+					labelHidden={true}
+					variant='brand'
+					onChange={editable ? this.onChange : undefined}
+					checked={this.state.value.cellValue}
+					readOnly={readOnly}
+					disabled={!editable}
+				/>
+				<CSCustomDataHelper
+					getIcons={this.props.getIcons}
+					getActions={this.props.getActions}
+					nodeId={this.props.node.id}
+					api={this.props.api}
+					statusMessage={errorMessage}
+				/>
+			</>
 		);
 		let tooltip;
 		if (this.props.getTooltip) {
@@ -76,10 +87,6 @@ export class CSGridBooleanRenderer extends CSGridBaseRenderer<boolean>
 				) : (
 					contents
 				)}
-				<CSGridCellError
-					errorMessage={this.state.value.errorMessage}
-					position={this.state.isLastColumn ? 'top-left' : 'top-right'}
-				/>
 			</span>
 		);
 	}

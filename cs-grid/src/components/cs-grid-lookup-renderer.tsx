@@ -7,7 +7,7 @@ import {
 	CSGridBaseActionsRenderer,
 	CSGridBaseActionsRendererProps
 } from './cs-grid-base-actions-renderer';
-import { CSGridCellError } from './cs-grid-cell-error';
+import { CSCustomDataHelper } from './cs-grid-custom-data-helper';
 
 /**
  * A cell renderer for displaying the currently selected lookup values.
@@ -39,14 +39,19 @@ export class CSGridLookupRenderer extends CSGridBaseActionsRenderer<
 			return null;
 		}
 
+		const errorMessage = this.state.value.errorMessage;
+
 		const value = formatLookupValue(this.state.value.cellValue, this.props.displayColumn);
 		const contents = (
-			<>
-				<span ref={this.contentsRef} title={value}>
-					{value}
-				</span>
-				<this.Actions />
-			</>
+			<CSCustomDataHelper
+				getIcons={this.props.getIcons}
+				getActions={this.props.getActions}
+				menuIcon='dropdown'
+				nodeId={this.props.node.id}
+				api={this.props.api}
+				value={value}
+				statusMessage={errorMessage}
+			/>
 		);
 
 		let tooltip;
@@ -85,10 +90,6 @@ export class CSGridLookupRenderer extends CSGridBaseActionsRenderer<
 				) : (
 					contents
 				)}
-				<CSGridCellError
-					errorMessage={this.state.value.errorMessage}
-					position={this.state.isLastColumn ? 'top-left' : 'top-right'}
-				/>
 			</span>
 		);
 	}

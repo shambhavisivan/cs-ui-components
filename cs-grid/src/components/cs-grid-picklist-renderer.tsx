@@ -3,9 +3,9 @@ import React from 'react';
 import { CSTooltip } from '@cloudsense/cs-ui-components';
 import { CSGridCellRendererProps, PicklistOption } from '../interfaces/cs-grid-cell-props';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
-import { CSGridCellError } from './cs-grid-cell-error';
+import { CSCustomDataHelper } from './cs-grid-custom-data-helper';
 
-type PicklistCellValueType = string | PicklistOption | Array<string | PicklistOption>;
+export type PicklistCellValueType = string | PicklistOption | Array<string | PicklistOption>;
 
 export class CSGridPicklistRenderer extends CSGridBaseRenderer<PicklistCellValueType> {
 	constructor(props: CSGridCellRendererProps<PicklistCellValueType>) {
@@ -19,8 +19,21 @@ export class CSGridPicklistRenderer extends CSGridBaseRenderer<PicklistCellValue
 			return null;
 		}
 
+		const errorMessage = this.state.value.errorMessage;
+
 		const value = this.format(this.state.value.cellValue);
-		const contents = <span title={value}>{value}</span>;
+		const contents = (
+			<CSCustomDataHelper
+				getIcons={this.props.getIcons}
+				getActions={this.props.getActions}
+				menuIcon='dropdown'
+				nodeId={this.props.node.id}
+				api={this.props.api}
+				value={value}
+				statusMessage={errorMessage}
+			/>
+		);
+
 		let tooltip;
 		if (this.props.getTooltip) {
 			tooltip = this.props.getTooltip(this.props.node.id);
@@ -57,10 +70,6 @@ export class CSGridPicklistRenderer extends CSGridBaseRenderer<PicklistCellValue
 				) : (
 					contents
 				)}
-				<CSGridCellError
-					errorMessage={this.state.value.errorMessage}
-					position={this.state.isLastColumn ? 'top-left' : 'top-right'}
-				/>
 			</span>
 		);
 	}

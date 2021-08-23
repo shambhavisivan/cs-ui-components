@@ -1,13 +1,9 @@
 import React from 'react';
 
-import { CSIcon, CSTooltip, CSTooltipVariant } from '@cloudsense/cs-ui-components';
-import {
-	CSGridCellRendererProps,
-	Icon,
-	isStandardIcon,
-	RowValidationProps
-} from '../interfaces/cs-grid-cell-props';
+import { CSTooltip, CSTooltipVariant } from '@cloudsense/cs-ui-components';
+import { CSGridCellRendererProps, RowValidationProps } from '../interfaces/cs-grid-cell-props';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
+import { CSCustomDataHelper } from './cs-grid-custom-data-helper';
 
 export type ValidationStatus = 'Info' | 'Error' | 'None';
 
@@ -32,45 +28,22 @@ export class CSGridRowValidationRenderer extends CSGridBaseRenderer<
 		}
 
 		const cellValue = this.state.value.cellValue;
+
 		let status;
-		let iconsToShow;
 		if (typeof cellValue === 'object') {
 			status = cellValue.status;
-			iconsToShow = cellValue.icons;
 		} else {
 			status = cellValue;
 		}
 
-		let className: CSTooltipVariant;
+		let variant: CSTooltipVariant;
 		switch (status) {
 			case 'Info':
-				className = 'info';
+				variant = 'info';
 				break;
 			case 'Error':
-				className = 'error';
+				variant = 'error';
 				break;
-		}
-
-		const icons: Array<Icon> = [];
-		if (this.props.getIcons && iconsToShow) {
-			const iconMapping = this.props.getIcons(this.props.node.id);
-
-			for (const iconName of iconsToShow) {
-				const icon = iconMapping[iconName];
-				if (icon) {
-					if (isStandardIcon(icon)) {
-						icons.push(
-							<CSIcon
-								name={icon.iconName}
-								color={icon.color}
-								origin={icon.iconOrigin}
-							/>
-						);
-					} else {
-						icons.push(icon);
-					}
-				}
-			}
 		}
 
 		return (
@@ -82,13 +55,15 @@ export class CSGridRowValidationRenderer extends CSGridBaseRenderer<
 				{status !== 'None' && (
 					<CSTooltip
 						content={this.state.value.errorMessage}
-						variant={className}
+						variant={variant}
 						position={this.state.isLastColumn ? 'top-left' : 'top-right'}
 					/>
 				)}
-				{icons.map((icon, index) => (
-					<React.Fragment key={index}>{icon}</React.Fragment>
-				))}
+				<CSCustomDataHelper
+					getIcons={this.props.getIcons}
+					nodeId={this.props.node.id}
+					api={this.props.api}
+				/>
 			</span>
 		);
 	}

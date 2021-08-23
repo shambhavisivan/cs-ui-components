@@ -33,46 +33,76 @@ export type ColDef =
 	| RowSelectionColDef
 	| CustomColDef;
 
-interface DecimalColDef extends BaseColDef<number>, DecimalProps {
+interface DecimalColDef
+	extends BaseColDef<number>,
+		DecimalProps,
+		ActionProps<boolean>,
+		IconProps,
+		Flash {
 	cellType: 'Decimal';
 }
 
-interface IntegerColDef extends BaseColDef<string | number>, IntegerProps {
+interface IntegerColDef
+	extends BaseColDef<string | number>,
+		IntegerProps,
+		ActionProps<boolean>,
+		IconProps,
+		Flash {
 	cellType: 'Integer';
 }
 
 type LookupColDef = BaseColDef<Array<Record<string, string>> | Record<string, string>> &
 	LookupProps &
-	ActionProps<Array<Record<string, string>> | Record<string, string>> & {
+	ActionProps<boolean> &
+	IconProps &
+	Flash & {
 		cellType: 'Lookup' | 'MultiSelectLookup';
 	};
 
-interface PicklistColDef extends BaseColDef<string | Array<string>>, PicklistProps {
+interface PicklistColDef
+	extends BaseColDef<string | Array<string>>,
+		PicklistProps,
+		ActionProps<boolean>,
+		IconProps,
+		Flash {
 	cellType: 'Picklist' | 'MultiSelectPicklist';
 }
 
-interface CurrencyColDef extends BaseColDef<string | number> {
+interface CurrencyColDef
+	extends BaseColDef<string | number>,
+		ActionProps<boolean>,
+		IconProps,
+		Flash {
 	cellType: 'Currency';
 }
 
-interface BooleanColDef extends BaseColDef<boolean> {
+interface BooleanColDef extends BaseColDef<boolean>, ActionProps<boolean>, IconProps, Flash {
 	cellType: 'Boolean';
 }
 
-interface DateColDef extends BaseColDef<string>, DateProps {
+interface DateColDef extends BaseColDef<string>, DateProps, ActionProps<boolean>, IconProps, Flash {
 	cellType: 'Date';
 }
 
-interface DateTimeColDef extends BaseColDef<string>, DateTimeProps {
+interface DateTimeColDef
+	extends BaseColDef<string>,
+		DateTimeProps,
+		ActionProps<boolean>,
+		IconProps,
+		Flash {
 	cellType: 'DateTime';
 }
 
-interface TextColDef extends BaseColDef<string> {
+interface TextColDef extends BaseColDef<string>, ActionProps<boolean>, IconProps, Flash {
 	cellType: 'Text';
 }
 
 interface IconColDef extends BaseColDef<string>, IconProps, ActionProps<boolean> {
 	cellType: 'Icon';
+}
+
+interface Flash {
+	flashOnCellValueChange?: boolean;
 }
 
 interface RowValidationColDef

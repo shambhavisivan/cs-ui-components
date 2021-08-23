@@ -13,14 +13,6 @@
 				min-width: 2rem;
 			}
 
-			&:after {
-				content: "g";
-				font-size: 1rem;
-				pointer-events: none;
-				margin-left: 0.5rem;
-				@include sc(--csgrid-container-after-c);
-			}
-
 			// Actions
 			.select-wrapper-actions {
 				align-items: center;

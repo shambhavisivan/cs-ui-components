@@ -1136,6 +1136,15 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			if (
 				columnDef.cellType === 'RowSelection' ||
 				columnDef.cellType === 'Lookup' ||
+				columnDef.cellType === 'Text' ||
+				columnDef.cellType === 'Decimal' ||
+				columnDef.cellType === 'Date' ||
+				columnDef.cellType === 'DateTime' ||
+				columnDef.cellType === 'Currency' ||
+				columnDef.cellType === 'Picklist' ||
+				columnDef.cellType === 'MultiSelectPicklist' ||
+				columnDef.cellType === 'Boolean' ||
+				columnDef.cellType === 'Integer' ||
 				columnDef.cellType === 'MultiSelectLookup' ||
 				columnDef.cellType === 'Icon'
 			) {
@@ -1237,6 +1246,29 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				this.addIfDefined(cellParams, 'getActions', columnDef.getActions);
 			}
 
+			if (
+				columnDef.cellType === 'Lookup' ||
+				columnDef.cellType === 'Text' ||
+				columnDef.cellType === 'Decimal' ||
+				columnDef.cellType === 'Date' ||
+				columnDef.cellType === 'DateTime' ||
+				columnDef.cellType === 'Icon' ||
+				columnDef.cellType === 'RowValidation' ||
+				columnDef.cellType === 'Currency' ||
+				columnDef.cellType === 'Boolean' ||
+				columnDef.cellType === 'Picklist' ||
+				columnDef.cellType === 'MultiSelectPicklist' ||
+				columnDef.cellType === 'Integer' ||
+				columnDef.cellType === 'MultiSelectLookup'
+			) {
+				this.addIfDefined(cellParams, 'getIcons', columnDef.getIcons);
+				this.addIfDefined(
+					cellParams,
+					'flashOnCellValueChange',
+					columnDef.flashOnCellValueChange
+				);
+			}
+
 			if (columnDef.cellType === 'Picklist' || columnDef.cellType === 'MultiSelectPicklist') {
 				agGridColDef.cellEditor = 'picklistEditor';
 				agGridColDef.cellRenderer = 'picklistRenderer';
@@ -1257,7 +1289,6 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			if (columnDef.cellType === 'Lookup' || columnDef.cellType === 'MultiSelectLookup') {
 				agGridColDef.cellEditor = 'lookupEditor';
 				agGridColDef.cellRenderer = 'lookupRenderer';
-
 				const settings: AgGridColDef = {};
 				settings.suppressKeyboardEvent = (params: SuppressKeyboardEventParams) => {
 					const lookupDropdownOpen = document.querySelector('.cs-lookup-dropdown');
@@ -1296,14 +1327,12 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			if (columnDef.cellType === 'Integer') {
 				agGridColDef.cellEditor = 'integerEditor';
 				agGridColDef.cellRenderer = 'integerRenderer';
-
 				this.addIfDefined(cellParams, 'stepperArrows', columnDef.stepperArrows);
 			}
 
 			if (columnDef.cellType === 'Decimal') {
 				agGridColDef.cellEditor = 'decimalEditor';
 				agGridColDef.cellRenderer = 'decimalRenderer';
-
 				this.addIfDefined(cellParams, 'noOfDecimalDigits', columnDef.noOfDecimalDigits);
 			}
 
@@ -1365,8 +1394,6 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				dateColumns.set(columnDef.name, columnDef.userInfo);
 				this.addIfDefined(cellParams, 'getOpenToDate', columnDef.getOpenToDate);
 				this.addIfDefined(cellParams, 'textInputFormat', columnDef.textInputFormat);
-
-
 				const keyboardSettings: AgGridColDef = {};
 				keyboardSettings.suppressKeyboardEvent = (params: SuppressKeyboardEventParams) => {
 					const datepickerPopperOpen = document.querySelector('.react-datepicker-popper');
@@ -1395,7 +1422,6 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				dateTimeColumns.set(columnDef.name, columnDef.userInfo);
 				this.addIfDefined(cellParams, 'getOpenToDate', columnDef.getOpenToDate);
 				this.addIfDefined(cellParams, 'timeInterval', columnDef.timeInterval);
-
 				const keyboardSettings: AgGridColDef = {};
 				keyboardSettings.suppressKeyboardEvent = (params: SuppressKeyboardEventParams) => {
 					const datepickerPopperOpen = document.querySelector('.react-datepicker-popper');
@@ -1405,7 +1431,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 						return false;
 					}
 
-					return (event.key === KeyCode.Enter || event.key === KeyCode.Escape);
+					return event.key === KeyCode.Enter || event.key === KeyCode.Escape;
 				};
 
 				const defaultSettings = {
@@ -1421,6 +1447,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			if (columnDef.cellType === 'Text') {
 				agGridColDef.cellEditor = 'textEditor';
 				agGridColDef.cellRenderer = 'textRenderer';
+				agGridColDef.cellClass = 'custom-data-text-renderer-cell';
 			}
 
 			if (columnDef.cellType === 'MultiSelectLookup') {
@@ -1436,14 +1463,10 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 			if (columnDef.cellType === 'Icon') {
 				agGridColDef.cellRenderer = 'iconRenderer';
 				agGridColDef.cellEditor = 'noEditor';
-
-				this.addIfDefined(cellParams, 'getIcons', columnDef.getIcons);
 			}
 
 			if (columnDef.cellType === 'RowValidation') {
 				agGridColDef.cellRenderer = 'rowValidationRenderer';
-
-				this.addIfDefined(cellParams, 'getIcons', columnDef.getIcons);
 
 				const defaultSettings = {
 					editable: false,

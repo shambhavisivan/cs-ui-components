@@ -428,7 +428,35 @@ export class App extends React.Component<object, AppState> {
 				},
 				name: 'exampleText',
 				pinned: 'left',
-				userInfo
+				userInfo,
+				getActions: (guid: string) => {
+					return [
+						{
+							action: () => console.error('action called'),
+							labelHidden: true,
+							icon: { iconName: 'new_window' },
+							name: 'Open record in new window',
+							size: 'xsmall',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom action with tooltip example']
+								};
+							}
+						}
+					];
+				},
+				getIcons: (guid: string) => {
+					return [
+						{
+							iconName: 'info',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom icon with tooltip example']
+								};
+							}
+						}
+					];
+				}
 			},
 			{
 				cellType: 'Decimal',
@@ -438,6 +466,34 @@ export class App extends React.Component<object, AppState> {
 						content: ['example tooltip', 'Line two'],
 						delay: 300
 					};
+				},
+				getActions: (guid: string) => {
+					return [
+						{
+							action: () => console.error('action called'),
+							labelHidden: true,
+							icon: { iconName: 'new_window' },
+							name: 'Open record in new window',
+							size: 'xsmall',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom action with tooltip example']
+								};
+							}
+						}
+					];
+				},
+				getIcons: (guid: string) => {
+					return [
+						{
+							iconName: 'info',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom icon with tooltip example']
+								};
+							}
+						}
+					];
 				},
 				header: {
 					label: 'Decimal Column'
@@ -455,6 +511,34 @@ export class App extends React.Component<object, AppState> {
 						delay: 300
 					};
 				},
+				getActions: (guid: string) => {
+					return [
+						{
+							action: () => console.error('action called'),
+							labelHidden: true,
+							icon: { iconName: 'new_window' },
+							name: 'Open record in new window',
+							size: 'xsmall',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom action with tooltip example']
+								};
+							}
+						}
+					];
+				},
+				getIcons: (guid: string) => {
+					return [
+						{
+							iconName: 'info',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom icon with tooltip example']
+								};
+							}
+						}
+					];
+				},
 				header: {
 					label: 'Currency Column'
 				},
@@ -469,6 +553,34 @@ export class App extends React.Component<object, AppState> {
 						content: ['example tooltip', 'Line two'],
 						delay: 300
 					};
+				},
+				getIcons: (guid: string) => {
+					return [
+						{
+							iconName: 'info',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom icon with tooltip example']
+								};
+							}
+						}
+					];
+				},
+				getActions: (guid: string) => {
+					return [
+						{
+							action: () => console.error('action called'),
+							labelHidden: true,
+							icon: { iconName: 'new_window' },
+							name: 'Open record in new window',
+							size: 'xsmall',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom action with tooltip example']
+								};
+							}
+						}
+					];
 				},
 				editable: () => true,
 				header: {
@@ -487,6 +599,34 @@ export class App extends React.Component<object, AppState> {
 						delay: 300
 					};
 				},
+				getActions: (guid: string) => {
+					return [
+						{
+							action: () => console.error('action called'),
+							labelHidden: true,
+							icon: { iconName: 'new_window' },
+							name: 'Open record in new window',
+							size: 'xsmall',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom action with tooltip example']
+								};
+							}
+						}
+					];
+				},
+				getIcons: (guid: string) => {
+					return [
+						{
+							iconName: 'info',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom icon with tooltip example']
+								};
+							}
+						}
+					];
+				},
 				getOpenToDate: (guid: string) => '1999-09-23',
 				header: {
 					label: 'Date Column'
@@ -503,6 +643,34 @@ export class App extends React.Component<object, AppState> {
 						content: ['example tooltip', 'Line two'],
 						delay: 300
 					};
+				},
+				getActions: (guid: string) => {
+					return [
+						{
+							action: () => console.error('action called'),
+							labelHidden: true,
+							icon: { iconName: 'new_window' },
+							name: 'Open record in new window',
+							size: 'xsmall',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom action with tooltip example']
+								};
+							}
+						}
+					];
+				},
+				getIcons: (guid: string) => {
+					return [
+						{
+							iconName: 'info',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom icon with tooltip example']
+								};
+							}
+						}
+					];
 				},
 				getOpenToDate: (guid: string) => '2004-02-22',
 				header: {
@@ -521,6 +689,18 @@ export class App extends React.Component<object, AppState> {
 						delay: 300
 					};
 				},
+				getIcons: (guid: string) => {
+					return [
+						{
+							iconName: 'info',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom icon with tooltip example']
+								};
+							}
+						}
+					];
+				},
 				comparator: (a: CellData<any>, b: CellData<any>) =>
 					CSGridLookupComparator(a, b, this.lookupDisplayColumn),
 				displayColumn: this.lookupDisplayColumn,
@@ -535,6 +715,18 @@ export class App extends React.Component<object, AppState> {
 								),
 							icon: <span className='icon-new-window' aria-hidden='true' />,
 							name: 'Edit'
+						},
+						{
+							action: () => console.error('action called'),
+							labelHidden: true,
+							icon: { iconName: 'new_window' },
+							name: 'Open record in new window',
+							size: 'xsmall',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom action with tooltip example']
+								};
+							}
 						}
 					];
 				},
@@ -554,6 +746,44 @@ export class App extends React.Component<object, AppState> {
 						content: ['example tooltip', 'Line two'],
 						delay: 300
 					};
+				},
+				getActions: (guid: string) => {
+					return [
+						{
+							action: (rowGUID: string, currentValue: any) =>
+								console.log(
+									`Edit option called with rowGUID=${rowGUID} currentValue= ${JSON.stringify(
+										currentValue
+									)}`
+								),
+							icon: <span className='icon-new-window' aria-hidden='true' />,
+							name: 'Edit'
+						},
+						{
+							action: () => console.error('action called'),
+							labelHidden: true,
+							icon: { iconName: 'new_window' },
+							name: 'Open record in new window',
+							size: 'xsmall',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom action with tooltip example']
+								};
+							}
+						}
+					];
+				},
+				getIcons: (guid: string) => {
+					return [
+						{
+							iconName: 'info',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom icon with tooltip example']
+								};
+							}
+						}
+					];
 				},
 				comparator: (a: CellData<any>, b: CellData<any>) =>
 					CSGridLookupComparator(a, b, this.lookupDisplayColumn),
@@ -575,6 +805,34 @@ export class App extends React.Component<object, AppState> {
 						content: ['example tooltip', 'Line two'],
 						delay: 300
 					};
+				},
+				getActions: (guid: string) => {
+					return [
+						{
+							action: () => console.error('action called'),
+							labelHidden: true,
+							icon: { iconName: 'new_window' },
+							name: 'Open record in new window',
+							size: 'xsmall',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom action with tooltip example']
+								};
+							}
+						}
+					];
+				},
+				getIcons: (guid: string) => {
+					return [
+						{
+							iconName: 'info',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom icon with tooltip example']
+								};
+							}
+						}
+					];
 				},
 				header: {
 					label: 'Integer With Stepper Arrows'
@@ -644,6 +902,34 @@ export class App extends React.Component<object, AppState> {
 						delay: 300
 					};
 				},
+				getActions: (guid: string) => {
+					return [
+						{
+							action: () => console.error('action called'),
+							labelHidden: true,
+							icon: { iconName: 'new_window' },
+							name: 'Open record in new window',
+							size: 'xsmall',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom action with tooltip example']
+								};
+							}
+						}
+					];
+				},
+				getIcons: (guid: string) => {
+					return [
+						{
+							iconName: 'info',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom icon with tooltip example']
+								};
+							}
+						}
+					];
+				},
 				header: {
 					label: 'Integer No Stepper Arrows'
 				},
@@ -659,6 +945,34 @@ export class App extends React.Component<object, AppState> {
 						content: ['example tooltip', 'Line two'],
 						delay: 300
 					};
+				},
+				getActions: (guid: string) => {
+					return [
+						{
+							action: () => console.error('action called'),
+							labelHidden: true,
+							icon: { iconName: 'new_window' },
+							name: 'Open record in new window',
+							size: 'xsmall',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom action with tooltip example']
+								};
+							}
+						}
+					];
+				},
+				getIcons: (guid: string) => {
+					return [
+						{
+							iconName: 'info',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom icon with tooltip example']
+								};
+							}
+						}
+					];
 				},
 				filterAboveSize: 5,
 				getOptions: () => {
@@ -694,6 +1008,34 @@ export class App extends React.Component<object, AppState> {
 						content: ['example tooltip', 'Line two'],
 						delay: 300
 					};
+				},
+				getActions: (guid: string) => {
+					return [
+						{
+							action: () => console.error('action called'),
+							labelHidden: true,
+							icon: { iconName: 'new_window' },
+							name: 'Open record in new window',
+							size: 'xsmall',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom action with tooltip example']
+								};
+							}
+						}
+					];
+				},
+				getIcons: (guid: string) => {
+					return [
+						{
+							iconName: 'info',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom icon with tooltip example']
+								};
+							}
+						}
+					];
 				},
 				filterAboveSize: 5,
 				getOptions: () => {
@@ -734,6 +1076,34 @@ export class App extends React.Component<object, AppState> {
 						delay: 300
 					};
 				},
+				getActions: (guid: string) => {
+					return [
+						{
+							action: () => console.error('action called'),
+							labelHidden: true,
+							icon: { iconName: 'new_window' },
+							name: 'Open record in new window',
+							size: 'xsmall',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom action with tooltip example']
+								};
+							}
+						}
+					];
+				},
+				getIcons: (guid: string) => {
+					return [
+						{
+							iconName: 'info',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom icon with tooltip example']
+								};
+							}
+						}
+					];
+				},
 				getOptions: () => {
 					return [
 						'Bob',
@@ -766,6 +1136,34 @@ export class App extends React.Component<object, AppState> {
 						delay: 300
 					};
 				},
+				getActions: (guid: string) => {
+					return [
+						{
+							action: () => console.error('action called'),
+							labelHidden: true,
+							icon: { iconName: 'new_window' },
+							name: 'Open record in new window',
+							size: 'xsmall',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom action with tooltip example']
+								};
+							}
+						}
+					];
+				},
+				getIcons: (guid: string) => {
+					return [
+						{
+							iconName: 'info',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom icon with tooltip example']
+								};
+							}
+						}
+					];
+				},
 				filterAboveSize: 5,
 				getOptions: () => {
 					return [
@@ -794,87 +1192,28 @@ export class App extends React.Component<object, AppState> {
 				cellType: 'Icon',
 				flashOnCellValueChange: true,
 				getIcons: (guid: string) => {
-					return {
-						warning: { iconName: 'warning', color: 'orange' },
-						green: { iconName: 'close', color: 'green' },
-						red: {
-							iconName: 'close',
-							color: 'red',
+					return [
+						{
+							iconName: 'info',
 							getTooltip: (guid: string) => {
 								return {
-									content: ['status icon red test example'],
-									delay: 300,
-									variant: 'success',
-									stickyOnClick: true
+									content: ['Custom icon with tooltip examples']
 								};
 							}
-						},
-						yellow: {
-							color: 'yellow',
-							iconName: 'close'
-						},
-						breadcrumbs: {
-							iconName: 'breadcrumbs',
-							color: 'pink',
-							getTooltip: (guid: string) => {
-								return {
-									content: ['status icon pink test example'],
-									delay: 300
-								};
-							}
-						},
-						green2: (
-							<span
-								style={{
-									backgroundColor: '#5bb85c',
-									borderRadius: '50%',
-									display: 'block',
-									height: '1rem',
-									width: '1rem'
-								}}
-							/>
-						),
-						red2: (
-							<span
-								style={{
-									backgroundColor: '#c23934',
-									borderRadius: '50%',
-									display: 'block',
-									height: '1rem',
-									width: '1rem'
-								}}
-							/>
-						),
-						yellow2: (
-							<span
-								style={{
-									backgroundColor: '#ffb75d',
-									borderRadius: '50%',
-									display: 'block',
-									height: '1rem',
-									width: '1rem'
-								}}
-							/>
-						)
-					};
+						}
+					];
 				},
 				getActions: (guid: string) => {
 					return [
 						{
-							action: () => console.error('Edit option called'),
-							icon: { iconName: 'warning', color: 'hotpink' },
-							name: 'Edit',
-							btnType: 'error',
-							btnStyle: 'outline',
+							action: () => console.error('action called'),
+							labelHidden: true,
+							icon: { iconName: 'new_window' },
+							name: 'Open record in new window',
+							size: 'xsmall',
 							getTooltip: (guid: string) => {
 								return {
-									content: ['status icon pink test example'],
-									delay: 300,
-									stickyOnClick: true,
-									variant: 'warning',
-									height: '100px',
-									padding: '2rem',
-									position: 'bottom-right'
+									content: ['Custom action with tooltip example']
 								};
 							}
 						}
@@ -898,25 +1237,16 @@ export class App extends React.Component<object, AppState> {
 				cellType: 'RowValidation',
 				flashOnCellValueChange: true,
 				getIcons: (guid: string) => {
-					return {
-						large: (
-							<span
-								className='cs-grid_clear-button'
-								aria-hidden='true'
-								style={{ margin: 0, padding: 0 }}
-								key='row-validation-icon-clear-button'
-							/>
-						),
-						medium: (
-							<span
-								className='cs-grid_clear-button'
-								aria-hidden='true'
-								style={{ margin: 0, padding: 0 }}
-								key='row-validation-icon-clear-button'
-							/>
-						),
-						video: { iconName: 'video', color: '#73d9d2' }
-					};
+					return [
+						{
+							iconName: 'info',
+							getTooltip: (guid: string) => {
+								return {
+									content: ['Custom icon with tooltip example']
+								};
+							}
+						}
+					];
 				},
 				name: 'exampleRowValidation',
 				pinned: 'right',

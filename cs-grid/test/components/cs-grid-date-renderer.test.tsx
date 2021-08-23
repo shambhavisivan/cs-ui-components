@@ -1,12 +1,12 @@
 import { ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
 import { shallow } from 'enzyme';
 import React from 'react';
-import { CSGridCellError } from '../../src/components/cs-grid-cell-error';
 import { CSGridDateRenderer } from '../../src/components/cs-grid-date-renderer';
 import { CellData } from '../../src/interfaces/cs-grid-base-interfaces';
 import { CSGridCellRendererProps } from '../../src/interfaces/cs-grid-cell-props';
 import { UserInfo } from '../../src/interfaces/user-info';
 import { formatDate } from '../../src/utils/cs-grid-date-helper';
+import { CSCustomDataHelper } from '../../src/components/cs-grid-custom-data-helper';
 
 describe('CS Grid Date Renderer', () => {
 	let exampleDate: CellData<string>;
@@ -22,8 +22,7 @@ describe('CS Grid Date Renderer', () => {
 
 	beforeEach(() => {
 		exampleDate = {
-			cellValue: '2001-11-01',
-			errorMessage: 'errorMessage'
+			cellValue: '2001-11-01'
 		};
 
 		editable = true;
@@ -75,10 +74,11 @@ describe('CS Grid Date Renderer', () => {
 		expect(
 			cellRenderer.equals(
 				<span className='cs-grid_cell-content cs-grid_cell-content-date read-only-cell'>
-					<span className='cs-grid_date-cell-value-read-only' title={value}>
-						{value}
-					</span>
-					<CSGridCellError errorMessage={exampleDate.errorMessage} position='top-left' />
+					<CSCustomDataHelper
+						api={cSGridCellRendererProps.api}
+						value={value}
+						title={value}
+					/>
 				</span>
 			)
 		).toBeTruthy();
@@ -100,16 +100,17 @@ describe('CS Grid Date Renderer', () => {
 		expect(
 			cellRenderer.equals(
 				<span className='cs-grid_cell-content cs-grid_cell-content-date '>
-					<span className='cs-grid_date-cell-value' title={value}>
-						{value}
-					</span>
-					<CSGridCellError errorMessage={exampleDate.errorMessage} position='top-right' />
+					<CSCustomDataHelper
+						api={cSGridCellRendererProps.api}
+						value={value}
+						title={value}
+					/>
 				</span>
 			)
 		).toBeTruthy();
 	});
 
-	test('Renders a date renderer that has a cell value of undefined so should have no date and no remove button.', () => {
+	test('Renders a date renderer that has a cell value of undefined so should have no date', () => {
 		cSGridCellRendererProps.value.cellValue = undefined;
 
 		const cellRenderer = shallow(<CSGridDateRenderer {...cSGridCellRendererProps} />);
@@ -117,10 +118,11 @@ describe('CS Grid Date Renderer', () => {
 		expect(
 			cellRenderer.equals(
 				<span className='cs-grid_cell-content cs-grid_cell-content-date '>
-					<span className='cs-grid_date-cell-value' title=''>
-						{''}
-					</span>
-					<CSGridCellError errorMessage={exampleDate.errorMessage} position='top-left' />
+					<CSCustomDataHelper
+						api={cSGridCellRendererProps.api}
+						title=""
+						value=""
+					/>
 				</span>
 			)
 		).toBeTruthy();
@@ -139,6 +141,7 @@ describe('CS Grid Date Renderer', () => {
 		const cellRenderer = shallow(
 			<CSGridDateRenderer {...cSGridCellRendererProps} colDef={colDef} />
 		);
+
 		const instance = cellRenderer.instance() as CSGridDateRenderer;
 		const value = formatDate(
 			instance.state.value.cellValue,
@@ -149,10 +152,11 @@ describe('CS Grid Date Renderer', () => {
 		expect(
 			cellRenderer.equals(
 				<span className='cs-grid_cell-content cs-grid_cell-content-date '>
-					<span className='cs-grid_date-cell-value' title={value}>
-						{value}
-					</span>
-					<CSGridCellError errorMessage={exampleDate.errorMessage} position='top-left' />
+					<CSCustomDataHelper
+						api={cSGridCellRendererProps.api}
+						title={value}
+						value={value}
+					/>
 				</span>
 			)
 		).toBeTruthy();

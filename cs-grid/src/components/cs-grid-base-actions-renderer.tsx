@@ -14,7 +14,7 @@ import { CSGridBaseRenderer } from './cs-grid-base-renderer';
 
 export interface CSGridBaseActionsRendererState<T> extends CSGridCellRendererState<T> {
 	actions: Array<CSGridAction<T>>;
-	noOfInlineIcons: number;
+	noOfInlineIcons?: number;
 	useDropdown?: boolean;
 }
 

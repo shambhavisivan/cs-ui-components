@@ -3,7 +3,7 @@ import React from 'react';
 import { CSTooltip } from '@cloudsense/cs-ui-components';
 import { CSGridCellRendererProps } from '../interfaces/cs-grid-cell-props';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
-import { CSGridCellError } from './cs-grid-cell-error';
+import { CSCustomDataHelper } from './cs-grid-custom-data-helper';
 
 export class CSGridTextRenderer extends CSGridBaseRenderer<string> {
 	constructor(props: CSGridCellRendererProps<string>) {
@@ -18,7 +18,18 @@ export class CSGridTextRenderer extends CSGridBaseRenderer<string> {
 		}
 
 		const value = this.state.value.cellValue || '';
-		const contents = <span title={value}>{value}</span>;
+		const errorMessage = this.state.value.errorMessage;
+
+		const contents = (
+			<CSCustomDataHelper
+				getIcons={this.props.getIcons}
+				getActions={this.props.getActions}
+				nodeId={this.props.node.id}
+				api={this.props.api}
+				value={value}
+				statusMessage={errorMessage}
+			/>
+		);
 
 		let tooltip;
 		if (this.props.getTooltip) {
@@ -57,10 +68,6 @@ export class CSGridTextRenderer extends CSGridBaseRenderer<string> {
 				) : (
 					contents
 				)}
-				<CSGridCellError
-					errorMessage={this.state.value.errorMessage}
-					position={this.state.isLastColumn ? 'top-left' : 'top-right'}
-				/>
 			</span>
 		);
 	}

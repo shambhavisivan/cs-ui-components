@@ -50,7 +50,7 @@ export class CSGridLookupEditor
 	gridApi: GridApi;
 	lookupInputRef: HTMLInputElement;
 	private divRef: React.RefObject<HTMLDivElement>;
-	private lookupAutopositionRootId = 'cs-autoposition-root'
+	private lookupAutopositionRootId = 'cs-autoposition-root';
 	private clearButtonClass = 'cs-lookup-clear';
 
 	constructor(

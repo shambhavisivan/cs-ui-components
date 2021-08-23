@@ -4,8 +4,9 @@ import React from 'react';
 import { CSGridCellError } from '../../src/components/cs-grid-cell-error';
 import { CSGridIconRenderer } from '../../src/components/cs-grid-icon-renderer';
 import { CSGridRowSelectionRenderer } from '../../src/components/cs-grid-row-selection-renderer';
+import { CSCustomDataHelper } from '../../src/components/cs-grid-custom-data-helper';
 import { CellData } from '../../src/interfaces/cs-grid-base-interfaces';
-import { CSGridCellRendererProps } from '../../src/interfaces/cs-grid-cell-props';
+import { CSGridCellRendererProps, Icon } from '../../src/interfaces/cs-grid-cell-props';
 import { UserInfo } from '../../src/interfaces/user-info';
 
 describe('CS Grid Icon Renderer', () => {
@@ -17,10 +18,7 @@ describe('CS Grid Icon Renderer', () => {
 	let column: Column;
 	let columnApi: ColumnApi;
 	let cSGridCellRendererProps: CSGridCellRendererProps<Array<string>>;
-	const icon = <div>ICON</div>;
-	let getIcons = () => {
-		return { icon };
-	};
+	let getIcons: (guid: string) => Array<Icon>;
 
 	let setValueMock: jest.Mock<any, any>;
 
@@ -28,6 +26,19 @@ describe('CS Grid Icon Renderer', () => {
 		exampleIcon = {
 			cellValue: ['icon'],
 			errorMessage: 'errorMessage'
+		};
+
+		getIcons = (guid: string) => {
+			return [
+				{
+					iconName: 'info',
+					getTooltip: (guid: string) => {
+						return {
+							content: ['Custom icon with tooltip example']
+						};
+					}
+				}
+			];
 		};
 
 		editable = true;
@@ -74,14 +85,14 @@ describe('CS Grid Icon Renderer', () => {
 			/>
 		);
 
-		const instance = cellRenderer.instance() as CSGridRowSelectionRenderer;
-
 		expect(
 			cellRenderer.equals(
-				<span className='cs-grid_icon-cell read-only-cell'>
+				<span className="cs-grid_icon-cell read-only-cell">
 					<>
-						<React.Fragment key={0}>{icon}</React.Fragment>
-						<instance.Actions />
+						<CSCustomDataHelper
+							getIcons={getIcons}
+							api={cSGridCellRendererProps.api}
+						/>
 					</>
 					<CSGridCellError errorMessage={exampleIcon.errorMessage} position='top-left' />
 				</span>
@@ -100,14 +111,14 @@ describe('CS Grid Icon Renderer', () => {
 			/>
 		);
 
-		const instance = cellRenderer.instance() as CSGridRowSelectionRenderer;
-
 		expect(
 			cellRenderer.equals(
 				<span className='cs-grid_icon-cell'>
 					<>
-						<React.Fragment key={0}>{icon}</React.Fragment>
-						<instance.Actions />
+						<CSCustomDataHelper
+							getIcons={getIcons}
+							api={cSGridCellRendererProps.api}
+						/>
 					</>
 					<CSGridCellError errorMessage={exampleIcon.errorMessage} position='top-left' />
 				</span>
@@ -130,8 +141,10 @@ describe('CS Grid Icon Renderer', () => {
 			cellRenderer.equals(
 				<span className='cs-grid_icon-cell'>
 					<>
-						<React.Fragment key={0}>{icon}</React.Fragment>
-						<instance.Actions />
+						<CSCustomDataHelper
+							getIcons={getIcons}
+							api={cSGridCellRendererProps.api}
+						/>
 					</>
 					<CSGridCellError errorMessage={exampleIcon.errorMessage} position='top-right' />
 				</span>
@@ -153,7 +166,10 @@ describe('CS Grid Icon Renderer', () => {
 			cellRenderer.equals(
 				<span className='cs-grid_icon-cell'>
 					<>
-						<instance.Actions />
+						<CSCustomDataHelper
+							getIcons={getIcons}
+							api={cSGridCellRendererProps.api}
+						/>
 					</>
 					<CSGridCellError errorMessage={exampleIcon.errorMessage} position='top-left' />
 				</span>

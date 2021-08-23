@@ -1,11 +1,11 @@
 import { ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
 import { shallow } from 'enzyme';
 import React from 'react';
-import { CSGridCellError } from '../../src/components/cs-grid-cell-error';
 import { CSGridTextRenderer } from '../../src/components/cs-grid-text-renderer';
 import { CellData } from '../../src/interfaces/cs-grid-base-interfaces';
 import { CSGridCellRendererProps } from '../../src/interfaces/cs-grid-cell-props';
 import { UserInfo } from '../../src/interfaces/user-info';
+import { CSCustomDataHelper } from '../../src/components/cs-grid-custom-data-helper';
 
 describe('CS Grid Text Renderer', () => {
 	let exampleText: CellData<string>;
@@ -68,8 +68,11 @@ describe('CS Grid Text Renderer', () => {
 		expect(
 			cellRenderer.equals(
 				<span className='cs-grid_cell-content cs-grid_cell-content-text read-only-cell'>
-					<span title={exampleText.cellValue}>{exampleText.cellValue}</span>
-					<CSGridCellError errorMessage={exampleText.errorMessage} position='top-left' />
+					<CSCustomDataHelper
+						api={cSGridCellRendererProps.api}
+						value={exampleText.cellValue}
+						statusMessage={exampleText.errorMessage}
+					/>
 				</span>
 			)
 		).toBeTruthy();
@@ -85,8 +88,11 @@ describe('CS Grid Text Renderer', () => {
 		expect(
 			cellRenderer.equals(
 				<span className='cs-grid_cell-content cs-grid_cell-content-text '>
-					<span title={exampleText.cellValue}>{exampleText.cellValue}</span>
-					<CSGridCellError errorMessage={exampleText.errorMessage} position='top-left' />
+					<CSCustomDataHelper
+						api={cSGridCellRendererProps.api}
+						value={exampleText.cellValue}
+						statusMessage={exampleText.errorMessage}
+					/>
 				</span>
 			)
 		).toBeTruthy();
@@ -102,8 +108,11 @@ describe('CS Grid Text Renderer', () => {
 		expect(
 			cellRenderer.equals(
 				<span className='cs-grid_cell-content cs-grid_cell-content-text '>
-					<span title={exampleText.cellValue}>{exampleText.cellValue}</span>
-					<CSGridCellError errorMessage={exampleText.errorMessage} position='top-right' />
+					<CSCustomDataHelper
+						api={cSGridCellRendererProps.api}
+						value={exampleText.cellValue}
+						statusMessage={exampleText.errorMessage}
+					/>
 				</span>
 			)
 		).toBeTruthy();
@@ -117,8 +126,11 @@ describe('CS Grid Text Renderer', () => {
 		expect(
 			cellRenderer.equals(
 				<span className='cs-grid_cell-content cs-grid_cell-content-text '>
-					<span title=''>{''}</span>
-					<CSGridCellError errorMessage={exampleText.errorMessage} position='top-left' />
+					<CSCustomDataHelper
+						api={cSGridCellRendererProps.api}
+						statusMessage={exampleText.errorMessage}
+						value=""
+					/>
 				</span>
 			)
 		).toBeTruthy();

@@ -1,5 +1,5 @@
 import { ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import React from 'react';
 import { CSGridBaseRenderer } from '../../src/components/cs-grid-base-renderer';
 import { CellData, CSGridCellRendererState } from '../../src/interfaces/cs-grid-base-interfaces';

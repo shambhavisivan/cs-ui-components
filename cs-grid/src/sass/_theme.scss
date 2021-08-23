@@ -82,6 +82,7 @@ $variables: (
 	--csgrid-row-br: $cs-gray-light-2,
 	--csgrid-row-selected-bg: $cs-gray-light-7,
 	--csgrid-row-cell-bg: $cs-white,
+	--csgrid-row-cell-success: lighten($cs-green-light-1, 30%) !important,
 	--csgrid-row-cell-success-icon-bg: $cs-green-medium-1,
 	--csgrid-row-cell-success-br: $cs-green-medium-1,
 

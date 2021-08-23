@@ -7,8 +7,9 @@ import {
 	RowValidationValues,
 	ValidationStatus
 } from '../../src/components/cs-grid-row-validation-renderer';
+import { CSCustomDataHelper } from '../../src/components/cs-grid-custom-data-helper';
 import { CellData } from '../../src/interfaces/cs-grid-base-interfaces';
-import { CSGridCellRendererProps } from '../../src/interfaces/cs-grid-cell-props';
+import { CSGridCellRendererProps, Icon } from '../../src/interfaces/cs-grid-cell-props';
 import { UserInfo } from '../../src/interfaces/user-info';
 
 describe('CS Grid Row Validation Renderer', () => {
@@ -20,12 +21,34 @@ describe('CS Grid Row Validation Renderer', () => {
 	let column: Column;
 	let columnApi: ColumnApi;
 	let cSGridCellRendererProps: CSGridCellRendererProps<ValidationStatus | RowValidationValues>;
+	let exampleRowValidationRendererData: {
+		getIcons: (guid: string) => Array<Icon>,
+		nodeId: string,
+		api: GridApi
+	}
 
 	beforeEach(() => {
 		exampleRowValidationRenderer = {
 			cellValue: 'Info',
 			errorMessage: 'errorMessage'
 		};
+
+		exampleRowValidationRendererData = {
+			getIcons: (guid: string) => {
+				return [
+					{
+						iconName: 'info',
+						getTooltip: (guid: string) => {
+							return {
+								content: ['Custom icon with tooltip example']
+							};
+						}
+					}
+				];
+			},
+			nodeId: '12345',
+			api: new GridApi()
+		}
 
 		editable = true;
 
@@ -74,6 +97,9 @@ describe('CS Grid Row Validation Renderer', () => {
 						variant={'info'}
 						position='top-left'
 					/>
+					<CSCustomDataHelper
+						api={exampleRowValidationRendererData.api}
+					/>
 				</span>
 			)
 		).toBeTruthy();
@@ -93,6 +119,9 @@ describe('CS Grid Row Validation Renderer', () => {
 						variant={'error'}
 						position='top-left'
 					/>
+					<CSCustomDataHelper
+						api={exampleRowValidationRendererData.api}
+					/>
 				</span>
 			)
 		).toBeTruthy();
@@ -103,7 +132,13 @@ describe('CS Grid Row Validation Renderer', () => {
 
 		const cellRenderer = shallow(<CSGridRowValidationRenderer {...cSGridCellRendererProps} />);
 
-		expect(cellRenderer.equals(<span className='cs-grid_icon-cell' />)).toBeTruthy();
+		expect(cellRenderer.equals(
+			<span className='cs-grid_icon-cell'>
+				<CSCustomDataHelper
+					api={exampleRowValidationRendererData.api}
+				/>
+			</span>
+		)).toBeTruthy();
 	});
 
 	test('The row validation renderer should always render nothing if no value is given', () => {
@@ -124,6 +159,9 @@ describe('CS Grid Row Validation Renderer', () => {
 			cellRenderer.equals(
 				<span className='cs-grid_icon-cell'>
 					<CSTooltip content={exampleRowValidationRenderer.errorMessage} variant='info' />
+					<CSCustomDataHelper
+						api={exampleRowValidationRendererData.api}
+					/>
 				</span>
 			)
 		).toBeTruthy();
@@ -144,6 +182,9 @@ describe('CS Grid Row Validation Renderer', () => {
 						variant='info'
 						position='top-left'
 					/>
+					<CSCustomDataHelper
+						api={exampleRowValidationRendererData.api}
+					/>
 				</span>
 			)
 		).toBeTruthy();
@@ -152,13 +193,8 @@ describe('CS Grid Row Validation Renderer', () => {
 	test('Renders a basic row validation renderer with validation type Info and an optional icon.', () => {
 		cSGridCellRendererProps.value.cellValue = { status: 'Info', icons: ['red'] };
 
-		const redIcon = <div>red</div>;
-		const getIcons = () => {
-			return { red: redIcon };
-		};
-
 		const cellRenderer = shallow(
-			<CSGridRowValidationRenderer {...cSGridCellRendererProps} getIcons={getIcons} />
+			<CSGridRowValidationRenderer {...cSGridCellRendererProps} getIcons={exampleRowValidationRendererData.getIcons} />
 		);
 
 		expect(
@@ -169,7 +205,10 @@ describe('CS Grid Row Validation Renderer', () => {
 						variant='info'
 						position='top-left'
 					/>
-					<React.Fragment key={0}>{redIcon}</React.Fragment>
+					<CSCustomDataHelper
+						getIcons={exampleRowValidationRendererData.getIcons}
+						api={exampleRowValidationRendererData.api}
+					/>
 				</span>
 			)
 		).toBeTruthy();
@@ -178,13 +217,8 @@ describe('CS Grid Row Validation Renderer', () => {
 	test('Returning icons in getIcons but the cellValue does not contain any so none should be shown.', () => {
 		cSGridCellRendererProps.value.cellValue = { status: 'Info', icons: [] };
 
-		const redIcon = <div>red</div>;
-		const getIcons = () => {
-			return { red: redIcon };
-		};
-
 		const cellRenderer = shallow(
-			<CSGridRowValidationRenderer {...cSGridCellRendererProps} getIcons={getIcons} />
+			<CSGridRowValidationRenderer {...cSGridCellRendererProps} getIcons={exampleRowValidationRendererData.getIcons} />
 		);
 
 		expect(
@@ -194,6 +228,10 @@ describe('CS Grid Row Validation Renderer', () => {
 						content={exampleRowValidationRenderer.errorMessage}
 						variant='info'
 						position='top-left'
+					/>
+					<CSCustomDataHelper
+						getIcons={exampleRowValidationRendererData.getIcons}
+						api={exampleRowValidationRendererData.api}
 					/>
 				</span>
 			)
@@ -203,13 +241,8 @@ describe('CS Grid Row Validation Renderer', () => {
 	test('Returning icons in getIcons but the cellValue has an icon name that is not the getIcon results so no icons should be shown.', () => {
 		cSGridCellRendererProps.value.cellValue = { status: 'Info', icons: ['green'] };
 
-		const redIcon = <div>red</div>;
-		const getIcons = () => {
-			return { red: redIcon };
-		};
-
 		const cellRenderer = shallow(
-			<CSGridRowValidationRenderer {...cSGridCellRendererProps} getIcons={getIcons} />
+			<CSGridRowValidationRenderer {...cSGridCellRendererProps} getIcons={exampleRowValidationRendererData.getIcons} />
 		);
 
 		expect(
@@ -219,6 +252,10 @@ describe('CS Grid Row Validation Renderer', () => {
 						content={exampleRowValidationRenderer.errorMessage}
 						variant='info'
 						position='top-left'
+					/>
+					<CSCustomDataHelper
+						getIcons={exampleRowValidationRendererData.getIcons}
+						api={exampleRowValidationRendererData.api}
 					/>
 				</span>
 			)

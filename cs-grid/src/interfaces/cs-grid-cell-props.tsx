@@ -17,9 +17,12 @@ export interface CSGridCellEditorProps<T> extends CSGridCellProps<T> {
 }
 
 export interface CSGridCellRendererProps<T> extends CSGridCellProps<T> {
+	flashOnCellValueChange?: boolean;
 	value: CellData<T>;
 	getValue: () => any;
 	setValue: (value: any) => void;
+	getActions?(guid: string): Array<CSGridAction<T>>;
+	getIcons?(guid: string): Array<Icon>;
 }
 
 export interface CSGridCellProps<T> extends BaseProps<T> {
@@ -91,6 +94,7 @@ export interface CSGridAction<T> extends Tooltip {
 	disabled?: boolean;
 	btnType?: CSButtonType;
 	btnStyle?: CSButtonStyle;
+	labelHidden?: boolean;
 	size?: CSButtonSize;
 	color?: string;
 }
@@ -112,7 +116,7 @@ export interface PicklistOption {
 }
 
 export interface IconProps {
-	getIcons?(guid: string): Record<string, Icon>;
+	getIcons?(guid: string): Array<Icon>;
 }
 
 export type Icon = JSX.Element | StandardIcon;
@@ -120,10 +124,18 @@ export type Icon = JSX.Element | StandardIcon;
 export interface StandardIcon extends Tooltip {
 	iconName: string;
 	iconOrigin?: CSIconOrigin;
+	iconSize?: string;
 	color?: string;
 }
 
 export function isStandardIcon(object: any): object is StandardIcon {
+	// Throw warning if standard icon isn't passed
+	if ('iconName' in object === false) {
+		console.warn('Icon must be a standard icon');
+
+		return;
+	}
+
 	return 'iconName' in object;
 }
 

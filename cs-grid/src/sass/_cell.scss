@@ -29,50 +29,8 @@
 
 .cs-grid_app-wrapper {
 	.ag-cell-data-changed {
-		animation: success-border 1s;
-		border: 2px dashed transparent;
-		@include sbg(--csgrid-transparent);
-
-		.cs-grid_cell-content {
-			/* SUCCESS ICON ANIMATION */
-			&::before {
-				animation: success-pseudo 1s;
-				content: "\74";
-				font-family: 'cs-grid';
-				font-size: 0.9rem;
-				position: absolute;
-				right: 0.5625rem;
-				align-self: center;
-				opacity: 0;
-				@include sc(--csgrid-row-cell-success-icon-bg);
-			}
-
-			/* CELL TEXT CONTENT SPACING */
-			> span,
-			.cs-tooltip-wrapper > span {
-				padding-right: 0.75rem;
-			}
-		}
-
-		/* HIDE ACTION BUTTONS ON LOOKUP SUCCESS */
-		.cs-grid_cell-content-lookup.select-wrapper {
-			.select-wrapper-actions {
-				display: none;
-			}
-		}
-
-		/* LOOKUP/PICKLIST FIELDS */
-		.cs-grid_cell-content-lookup::before,
-		.cs-grid_cell-content-lookup::before,
-		.cs-grid_cell-content-picklist::before {
-			right: 1.75rem;
-		}
-		/* DATE FIELD */
-		.cs-grid_cell-content-date::before {
-			right: 0.75rem;
-		}
+		@include sbg(--csgrid-row-cell-success);
 	}
-
 	.ag-theme-balham {
 		.ag-header-cell::after,
 		.ag-header-group-cell::after {
@@ -107,6 +65,10 @@
 			padding-right: 0.75rem;
 			padding-left: 0.75rem;
 			border: 2px solid transparent;
+		}
+
+		.ag-has-focus .custom-data-text-renderer-cell.ag-cell.ag-cell-focus.ag-cell-last-left-pinned:not(.ag-cell-range-right):not(.ag-cell-range-single-cell) .cs-custom-data-item-wrapper {
+			right: -1px;
 		}
 
 		.ag-cell .ag-react-container {
@@ -178,7 +140,6 @@
 				}
 			}
 		}
-
 	}
 
 	.cs-grid_number-inner,
@@ -194,8 +155,11 @@
 
 /* ICON FIELD STYLES */
 .cs-grid_icon-cell {
-	&.cs-grid_icon-cell-tooltip > .cs-tooltip-wrapper > * + *,
-	&:not(.cs-grid_icon-cell-tooltip) > * + * {
-		margin-left: 0.5rem;
+	.cs-custom-data-item-wrapper {
+		margin-left: 0.25rem;
+	}
+
+	.cs-custom-data-wrapper {
+		width: auto;
 	}
 }

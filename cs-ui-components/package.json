@@ -5,7 +5,9 @@
 	"main": "./dist/index.js",
 	"types": "./dist/cs-ui-components/src/index.d.ts",
 	"jest": {
-		"setupFilesAfterEnv": ["<rootDir>/src/setupTests.ts"]
+		"setupFilesAfterEnv": [
+			"<rootDir>/src/setupTests.ts"
+		]
 	},
 	"scripts": {
 		"build": "rimraf dist && webpack",

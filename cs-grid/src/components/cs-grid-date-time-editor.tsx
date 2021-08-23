@@ -4,18 +4,13 @@ import 'moment/min/locales';
 import React from 'react';
 import { CSGridCellEditorProps, DateTimeProps } from '../interfaces/cs-grid-cell-props';
 
+import { CSDateTimePicker } from '@cloudsense/cs-ui-components';
 import {
 	CellData,
 	CSGridCellEditor,
 	CSGridCellEditorState
 } from '../interfaces/cs-grid-base-interfaces';
-import {
-	createLocale,
-	dateFormat,
-	dateTimeFormat,
-	timeFormat
-} from '../utils/cs-grid-date-helper';
-import { CSDateTimePicker } from '@cloudsense/cs-ui-components';
+import { createLocale, dateFormat, dateTimeFormat, timeFormat } from '../utils/cs-grid-date-helper';
 import KeyCode from '../utils/cs-grid-keycode';
 
 /**
@@ -23,12 +18,16 @@ import KeyCode from '../utils/cs-grid-keycode';
  */
 export class CSGridDateTimeEditor
 	extends React.Component<
-	CSGridCellEditorProps<string> & DateTimeProps,
-	CSGridCellEditorState<string>
+		CSGridCellEditorProps<string> & DateTimeProps,
+		CSGridCellEditorState<string>
 	>
 	implements CSGridCellEditor {
 	private divRef: React.RefObject<HTMLDivElement>;
-	private localeFormat = `${moment.localeData().longDateFormat('L').toLowerCase().replace(new RegExp('m', 'g'), 'M')} ${timeFormat}`;
+	private localeFormat = `${moment
+		.localeData()
+		.longDateFormat('L')
+		.toLowerCase()
+		.replace(new RegExp('m', 'g'), 'M')} ${timeFormat}`;
 
 	constructor(props: CSGridCellEditorProps<string>) {
 		super(props);
@@ -92,7 +91,7 @@ export class CSGridDateTimeEditor
 				this.props.stopEditing();
 			}, 0);
 		}
-	}
+	};
 
 	render() {
 		let date: Date = null;
@@ -126,8 +125,8 @@ export class CSGridDateTimeEditor
 					ref={ref => {
 						if (ref) {
 							setTimeout(() => {
-								if (ref.datepickerRef.current) {
-									ref.datepickerRef.current.setFocus();
+								if (ref.datepickerInnerRef.current) {
+									ref.datepickerInnerRef.current.setFocus();
 								}
 							}, 20);
 						}

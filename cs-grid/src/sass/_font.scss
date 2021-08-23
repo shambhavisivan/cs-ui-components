@@ -38,8 +38,7 @@
 
 .cs-grid_pagination-wrapper,
 .cs-grid_quick-filter-wrapper,
-.cs-grid_app-wrapper,
-.cs-dropdown-root {
+.cs-grid_app-wrapper {
 
 	[data-icon]::before {
 		font-family: "cs-grid" !important;
@@ -136,12 +135,6 @@
 
 	.icon-new-lead::before {
 		content: "\6d";
-	}
-
-	.select-wrapper:after {
-		content: "g";
-		font-size: 0.75rem !important;
-		font-family: "cs-grid"
 	}
 
 	.ag-icon-filter {

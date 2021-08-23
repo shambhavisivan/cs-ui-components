@@ -2,11 +2,10 @@ import moment from 'moment';
 import React from 'react';
 
 import { CSTooltip } from '@cloudsense/cs-ui-components';
-import { CellData } from '../interfaces/cs-grid-base-interfaces';
 import { CSGridCellRendererProps } from '../interfaces/cs-grid-cell-props';
 import { formatDate } from '../utils/cs-grid-date-helper';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
-import { CSGridCellError } from './cs-grid-cell-error';
+import { CSCustomDataHelper } from './cs-grid-custom-data-helper';
 
 /**
  * A cell renderer for displaying a localised date.
@@ -24,7 +23,8 @@ export class CSGridDateRenderer extends CSGridBaseRenderer<string> {
 			return null;
 		}
 
-		const readOnly = this.isReadOnly();
+		const errorMessage = this.state.value.errorMessage;
+
 		const value = formatDate(
 			this.state.value.cellValue,
 			this.props.userInfo.userLocale,
@@ -32,13 +32,19 @@ export class CSGridDateRenderer extends CSGridBaseRenderer<string> {
 		);
 
 		const contents = (
-			<span
-				className={'cs-grid_date-cell-value' + (readOnly ? '-read-only' : '')}
+			<CSCustomDataHelper
+				getIcons={this.props.getIcons}
+				getActions={this.props.getActions}
+				nodeId={this.props.node.id}
+				api={this.props.api}
 				title={value}
-			>
-				{value}
-			</span>
+				value={value}
+				statusMessage={errorMessage}
+			/>
 		);
+
+		const readOnly = this.isReadOnly();
+
 		let tooltip;
 		if (this.props.getTooltip) {
 			tooltip = this.props.getTooltip(this.props.node.id);
@@ -48,7 +54,7 @@ export class CSGridDateRenderer extends CSGridBaseRenderer<string> {
 			<span
 				className={`cs-grid_cell-content cs-grid_cell-content-date ${
 					readOnly ? 'read-only-cell' : ''
-					}`}
+				}`}
 			>
 				{tooltip ? (
 					<CSTooltip
@@ -59,8 +65,8 @@ export class CSGridDateRenderer extends CSGridBaseRenderer<string> {
 							tooltip.variant
 								? tooltip.variant
 								: this.state.value.errorMessage
-									? 'error'
-									: 'info'
+								? 'error'
+								: 'info'
 						}
 						position={tooltip.position}
 						height={tooltip.height}
@@ -73,12 +79,8 @@ export class CSGridDateRenderer extends CSGridBaseRenderer<string> {
 						{contents}
 					</CSTooltip>
 				) : (
-						contents
-					)}
-				<CSGridCellError
-					errorMessage={this.state.value.errorMessage}
-					position={this.state.isLastColumn ? 'top-left' : 'top-right'}
-				/>
+					contents
+				)}
 			</span>
 		);
 	}
