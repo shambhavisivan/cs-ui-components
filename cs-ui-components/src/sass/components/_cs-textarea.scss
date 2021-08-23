@@ -12,8 +12,13 @@
 		top: 0.5625rem;
 		pointer-events: none;
 	}
+
 	> .cs-label-wrapper ~ .cs-tw-error {
 		top: 1.75rem;
+	}
+
+	.cs-textarea-wrapper-inner {
+		position: relative;
 	}
 
 	.cs-textarea {
@@ -26,6 +31,7 @@
 		max-height: var(--max-height, 100%);
 		white-space: break-spaces;
 		border-radius: var(--cs-textarea-border-radius, 0.25rem);
+		padding-right: var(--cs-textarea-options-spacing, 0.75rem);
 
 		&:read-only {
 			padding: 0;
@@ -41,4 +47,22 @@
 // Version
 .component-version-textarea .version-preview {
 	overflow: visible;
+}
+
+// Options
+.cs-textarea-options {
+	top: 0.5rem;
+	display: flex;
+	position: absolute;
+	right: 0.5rem;
+
+	.cs-textarea-option {
+		align-items: center;
+		display: flex;
+
+		&:not(:last-child),
+        > *:not(:last-child) {
+            margin-right: 0.25rem;
+        }
+	}
 }

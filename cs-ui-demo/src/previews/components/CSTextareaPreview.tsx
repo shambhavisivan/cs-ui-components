@@ -1,6 +1,5 @@
 import React from 'react';
-import { CSTextarea } from '@cloudsense/cs-ui-components';
-
+import { CSButtonSize, CSTextarea, CSTooltipPosition, CSIconOrigin } from '@cloudsense/cs-ui-components';
 import Preview from '../Preview';
 
 interface CSTextareaPreviewState {
@@ -8,7 +7,47 @@ interface CSTextareaPreviewState {
 }
 
 class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
-	state = { value: '' };
+	state = {
+		value: '',
+		icons: [
+			{ iconName: 'cart'},
+			{
+				iconName: 'tag',
+				iconOrigin: 'cs' as CSIconOrigin,
+				getTooltip: {
+					content: ['icons tooltip'],
+					delay: 300,
+					maxWidth: '20rem',
+					padding: '0.5rem',
+					position: 'bottom-left' as CSTooltipPosition,
+					stickyOnClick: true
+				}
+			}
+		],
+		actions: [
+			{
+				action: () => alert('Delete option called'),
+				labelHidden: true,
+				icon: { iconName: 'delete' },
+				size: 'small' as CSButtonSize,
+				name: 'Delete'
+			},
+			{
+				action: () => alert('Add option called'),
+				icon: { iconName: 'add' },
+				labelHidden: true,
+				size: 'small' as CSButtonSize,
+				name: 'Add',
+				getTooltip: {
+					content: ['actions tooltip'],
+					delay: 300,
+					padding: '0.5rem',
+					position: 'bottom-left' as CSTooltipPosition,
+					stickyOnClick: true
+				}
+			}
+		]
+ 	};
 
 	handleChange = () => alert('Value has changed.');
 
@@ -30,6 +69,45 @@ class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
 							{
 								component: <CSTextarea label="Enter message" />,
 								code: '<CSTextarea label="Enter message" />'
+							}
+						]
+					}, {
+						propName: 'actions',
+						variations: [
+							{
+								primaryVariants: [
+									'actions={this.state.actions}'
+								],
+								component: <CSTextarea
+									label="Enter value"
+									actions={this.state.actions}
+								/>,
+								code: `<CSTextarea
+									label="Enter value"
+									actions={[
+										{
+											action: () => alert('Delete option called'),
+											icon: { iconName: 'delete' },
+											labelHidden: true,
+											size: 'small' as CSButtonSize,
+											name: 'Delete'
+										},
+										{
+											action: () => alert('Add option called'),
+											icon: { iconName: 'add' },
+											labelHidden: true,
+											size: 'small' as CSButtonSize,
+											name: 'Add',
+											getTooltip: {
+												content: ['actions tooltip'],
+												delay: 300,
+												padding: '0.5rem',
+												position: 'bottom-left' as CSTooltipPosition,
+												stickyOnClick: true,
+											}
+										}
+									]}
+								/>`
 							}
 						]
 					}, {
@@ -115,6 +193,37 @@ class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
 								primaryVariants: 'hidden={true}',
 								component: <CSTextarea label="Enter message" hidden />,
 								code: '<CSTextarea label="Enter message" hidden />'
+							}
+						]
+					}, {
+						propName: 'icons',
+						variations: [
+							{
+								primaryVariants: [
+									'icons={this.state.icons}'
+								],
+								component: <CSTextarea
+									label="Enter value"
+									icons={this.state.icons}
+								/>,
+								code: `<CSTextarea
+									label="Enter value"
+									icons={[
+										{ iconName: 'cart'},
+										{
+											iconName: 'tag',
+											iconOrigin: 'cs' as CSIconOrigin,
+											getTooltip: {
+												content: ['icons tooltip'],
+												delay: 300,
+												maxWidth: '20rem',
+												padding: '0.5rem',
+												position: 'bottom-left' as CSTooltipPosition,
+												stickyOnClick: true
+											}
+										}
+									]}
+								/>`
 							}
 						]
 					}, {
@@ -279,6 +388,13 @@ class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
 						types: 'string',
 						description: 'Set the textarea label.'
 					}, {
+						name: 'actions',
+						customTypes: {
+							name: 'CSTextareaActionsProps',
+							types: 'Array<CSTextareaActionProps>'
+						},
+						description: 'An array of objects which accepts valid CSIcon & CSButton props, a getTooltip function to show an icon with a tooltip & an action prop for the button action/function.'
+					}, {
 						name: 'borderRadius',
 						types: 'string',
 						default: `'0.25rem'`,
@@ -316,6 +432,13 @@ class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
 						types: 'boolean',
 						default: 'false',
 						description: 'Control the hidden attribute.'
+					}, {
+						name: 'icons',
+						customTypes: {
+							name: 'CSTextareaIconProps',
+							types: 'Array<CSTextareaIconProps>'
+						},
+						description: 'An array of objects which accepts valid CSIcon props or a getTooltip function to show an icon with a tooltip.'
 					}, {
 						name: 'labelHidden',
 						types: 'boolean',
