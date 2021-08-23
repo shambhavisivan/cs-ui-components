@@ -19,6 +19,7 @@ class CSList extends React.Component<CSListProps> {
 	};
 
 	componentDidMount() {
+		// eslint-disable-next-line no-console
 		console.warn('CSList is under construction and should not be used.');
 	}
 

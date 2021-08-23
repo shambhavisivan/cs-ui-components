@@ -16,9 +16,14 @@
 		top: 1.75rem;
 	}
 
+	.cs-input-number-wrapper-inner {
+		position: relative;
+	}
+
 	.cs-input-number {
 		@include input;
 		border-radius: var(--cs-input-number-border-radius, 0.25rem);
+		padding-right: var(--cs-input-number-options-spacing);
 
 		&.cs-input-number-hide-spinner-true {
 			-moz-appearance:textfield;
@@ -52,5 +57,24 @@
 	// Version
 	.component-version-input .version-preview {
 		overflow: visible;
+	}
+}
+
+// Options
+.cs-input-number-options {
+	bottom: 50%;
+	display: flex;
+	position: absolute;
+	right: 0.5rem;
+	transform: translateY(50%);
+
+	.cs-input-number-option {
+		align-items: center;
+		display: flex;
+
+		&:not(:last-child),
+        > *:not(:last-child) {
+            margin-right: 0.25rem;
+        }
 	}
 }

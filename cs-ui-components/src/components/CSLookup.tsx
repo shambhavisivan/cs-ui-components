@@ -207,6 +207,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 				moreRecords: fetchResults.moreRecords,
 			}));
 		} catch (error) {
+			// eslint-disable-next-line no-console
 			console.error(`Lookup options couldn't be fetched: ${error}`);
 		} finally {
 			if (minTermLength !== 0 && searchTerm.length < minTermLength) {

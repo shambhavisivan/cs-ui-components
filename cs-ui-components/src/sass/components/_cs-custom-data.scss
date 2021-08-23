@@ -34,4 +34,8 @@
 	> .cs-custom-data-item-status-hidden {
 		display: none;
 	}
+
+	&:first-child {
+		padding-left: 0;
+	}
 }

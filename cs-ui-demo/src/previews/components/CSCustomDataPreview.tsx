@@ -24,6 +24,7 @@ class CSCustomDataPreview extends React.Component {
 			{
 				action: () => alert('Delete option called'),
 				icon: { iconName: 'delete' },
+				labelHidden: true,
 				size: 'small' as CSButtonSize,
 				name: 'Delete'
 			},

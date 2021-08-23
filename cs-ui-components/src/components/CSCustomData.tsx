@@ -1,52 +1,10 @@
 import React from 'react';
 import classNames from 'classnames';
 import CSIcon, { CSIconOrigin } from './CSIcon';
-import CSTooltip, { CSTooltipIconSize, CSTooltipPosition, CSTooltipVariant } from './CSTooltip';
-import CSButton, { CSButtonType, CSButtonSize, CSButtonStyle } from './CSButton';
+import CSTooltip, { CSTooltipIconSize } from './CSTooltip';
+import CSButton from './CSButton';
+import { CSCustomDataIconProps, CSCustomDataActionProps, CSCustomDataMenuVariant } from '../util/CustomData';
 
-/* Icon base type */
-export type CSCustomDataIcon = {
-	iconColor?: string;
-	iconName: string;
-	iconOrigin?: CSIconOrigin;
-	iconSize?: string;
-}
-
-/* Get Tooltip base type */
-export type CSCustomDataTooltip = {
-	content: string | Array<string> | JSX.Element;
-	delay?: number;
-	height?: string;
-	maxHeight?: string;
-	maxWidth?: string;
-	padding?: string;
-	position?: CSTooltipPosition;
-	stickyOnClick?: boolean;
-	variant?: CSTooltipVariant;
-	width?: string;
-}
-
-/* Icon type */
-export type CSCustomDataIconProps = {
-	getTooltip?: CSCustomDataTooltip;
-} & CSCustomDataIcon
-
-/* Action type */
-export type CSCustomDataActionProps = {
-	action: () => void;
-	btnType?: CSButtonType;
-	size?: CSButtonSize;
-	btnStyle?: CSButtonStyle;
-	icon: CSCustomDataIcon;
-	labelHidden?: boolean;
-	name: string,
-	getTooltip?: CSCustomDataTooltip;
-}
-
-/* Menu type */
-export type CSCustomDataMenuVariant = 'dropdown' | 'datepicker';
-
-/* Props */
 interface CSCustomDataProps {
 	[key: string]: any;
 	className?: string;
@@ -114,14 +72,13 @@ function CSCustomData(props: CSCustomDataProps) {
 	const customDataItemStatusClasses = classNames(
 		'cs-custom-data-item',
 	);
+
 	return (
 		<div className={customDataWrapperClasses}>
 			{value && (
 				<span className="cs-custom-data-value" title={title}>{value}</span>
 			)}
-
 			<div className="cs-custom-data-item-wrapper">
-
 				{/* Icons */}
 				{icons?.length > 0
 					? (

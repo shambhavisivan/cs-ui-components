@@ -72,6 +72,7 @@ const CSTree = ({
 	...rest
 }: CSTreeProps) => {
 	useEffect(() => {
+		// eslint-disable-next-line no-console
 		console.warn('CSTree is under construction and should not be used.');
 	}, []);
 

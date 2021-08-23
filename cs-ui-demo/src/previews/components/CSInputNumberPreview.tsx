@@ -1,5 +1,5 @@
 import React from 'react';
-import { CSInputNumber } from '@cloudsense/cs-ui-components';
+import { CSButtonSize, CSInputNumber, CSTooltipPosition, CSIconOrigin } from '@cloudsense/cs-ui-components';
 
 import Preview from '../Preview';
 
@@ -11,7 +11,45 @@ interface CSInputNumberPreviewState {
 class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState> {
 	state = {
 		focused: false,
-		value: 1
+		value: 1,
+		icons: [
+			{ iconName: 'cart'},
+			{
+				iconName: 'tag',
+				iconOrigin: 'cs' as CSIconOrigin,
+				getTooltip: {
+					content: ['icons tooltip'],
+					delay: 300,
+					maxWidth: '20rem',
+					padding: '0.5rem',
+					position: 'bottom-left' as CSTooltipPosition,
+					stickyOnClick: true
+				}
+			}
+		],
+		actions: [
+			{
+				action: () => alert('Delete option called'),
+				labelHidden: true,
+				icon: { iconName: 'delete' },
+				size: 'small' as CSButtonSize,
+				name: 'Delete'
+			},
+			{
+				action: () => alert('Add option called'),
+				icon: { iconName: 'add' },
+				labelHidden: true,
+				size: 'small' as CSButtonSize,
+				name: 'Add',
+				getTooltip: {
+					content: ['actions tooltip'],
+					delay: 300,
+					padding: '0.5rem',
+					position: 'bottom-left' as CSTooltipPosition,
+					stickyOnClick: true
+				}
+			}
+		]
 	};
 
 	handleChange = () => alert('Value has changed.');
@@ -45,6 +83,45 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 							{
 								component: <CSInputNumber label="Enter value" />,
 								code: '<CSInputNumber label="Enter value" />'
+							}
+						]
+					}, {
+						propName: 'actions',
+						variations: [
+							{
+								primaryVariants: [
+									'actions={this.state.actions}'
+								],
+								component: <CSInputNumber
+									label="Enter value"
+									actions={this.state.actions}
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									actions={[
+										{
+											action: () => alert('Delete option called'),
+											icon: { iconName: 'delete' },
+											labelHidden: true,
+											size: 'small' as CSButtonSize,
+											name: 'Delete'
+										},
+										{
+											action: () => alert('Add option called'),
+											icon: { iconName: 'add' },
+											labelHidden: true,
+											size: 'small' as CSButtonSize,
+											name: 'Add',
+											getTooltip: {
+												content: ['actions tooltip'],
+												delay: 300,
+												padding: '0.5rem',
+												position: 'bottom-left' as CSTooltipPosition,
+												stickyOnClick: true,
+											}
+										}
+									]}
+								/>`
 							}
 						]
 					}, {
@@ -139,6 +216,37 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 								primaryVariants: 'hideSpinner={true}',
 								component: <CSInputNumber label="Enter value" hideSpinner />,
 								code: '<CSInputNumber label="Enter value" hideSpinner />'
+							}
+						]
+					}, {
+						propName: 'icons',
+						variations: [
+							{
+								primaryVariants: [
+									'icons={this.state.icons}'
+								],
+								component: <CSInputNumber
+									label="Enter value"
+									icons={this.state.icons}
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									icons={[
+										{ iconName: 'cart'},
+										{
+											iconName: 'tag',
+											iconOrigin: 'cs' as CSIconOrigin,
+											getTooltip: {
+												content: ['icons tooltip'],
+												delay: 300,
+												maxWidth: '20rem',
+												padding: '0.5rem',
+												position: 'bottom-left' as CSTooltipPosition,
+												stickyOnClick: true
+											}
+										}
+									]}
+								/>`
 							}
 						]
 					}, {
@@ -381,6 +489,13 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 						types: 'string',
 						description: 'Set the file input label.'
 					}, {
+						name: 'actions',
+						customTypes: {
+							name: 'CSInputNumberActionsProps',
+							types: 'Array<CSInputNumberActionProps>'
+						},
+						description: 'An array of objects which accepts valid CSIcon & CSButton props, a getTooltip function to show an icon with a tooltip & an action prop for the button action/function.'
+					}, {
 						name: 'borderRadius',
 						types: 'string',
 						default: `'0.25rem'`,
@@ -423,6 +538,13 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 						types: 'boolean',
 						default: 'false',
 						description: 'Determine whether the spinner should appear.'
+					},  {
+						name: 'icons',
+						customTypes: {
+							name: 'CSInputNumberIconProps',
+							types: 'Array<CSInputNumberIconProps>'
+						},
+						description: 'An array of objects which accepts valid CSIcon props or a getTooltip function to show an icon with a tooltip.'
 					}, {
 						name: 'labelHidden',
 						types: 'boolean',

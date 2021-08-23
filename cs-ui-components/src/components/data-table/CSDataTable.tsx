@@ -86,6 +86,7 @@ const CSDataTable = ({
 	...rest
 }: CSDataTableProps) => {
 	useEffect(() => {
+		// eslint-disable-next-line no-console
 		console.warn('CSDataTable is under construction and should not be used.');
 	}, []);
 

@@ -28,6 +28,7 @@ class CSPagination extends React.Component<CSPaginationProps> {
 	// }
 
 	componentDidMount() {
+		// eslint-disable-next-line no-console
 		console.warn('CSPagination is under construction and should not be used.');
 	}
 

@@ -89,6 +89,7 @@ class CSCustomSelect extends React.Component<CSCustomSelectProps, CSCustomSelect
 	}
 
 	componentDidMount() {
+		// eslint-disable-next-line no-console
 		console.warn('CSCustomSelect is under construction and should not be used.');
 		const { value } = this.props;
 		if (value) {

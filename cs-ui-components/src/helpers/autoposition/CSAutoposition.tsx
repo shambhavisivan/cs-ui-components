@@ -127,6 +127,7 @@ const CSAutoposition = ({
 				onPositionChange?.(newPosition);
 			}
 		} else {
+			// eslint-disable-next-line no-console
 			console.error('No opposite positions are available in position schema for position recalculation.');
 		}
 	};
@@ -201,6 +202,7 @@ const CSAutoposition = ({
 					if (Object.keys(positionItem.deviation).length) {
 						deviation = positionItem.deviation;
 					} else {
+						// eslint-disable-next-line no-console
 						console.warn(
 							`'deviation' object cannot be empty. If deviation for position '${positionItem.position}' isn't needed, define position as string type.`,
 						);
@@ -288,6 +290,7 @@ const CSAutoposition = ({
 		window.addEventListener('resize', recalcRefPointRect);
 
 		if (!availablePositions.includes(initialPosition)) {
+			// eslint-disable-next-line no-console
 			console.error('Wanted position is not defined in position schema.');
 		}
 
