@@ -1,5 +1,5 @@
 import React from 'react';
-import { CSLookup } from '@cloudsense/cs-ui-components';
+import { CSButtonSize, CSLookup, CSTooltipPosition, CSIconOrigin } from '@cloudsense/cs-ui-components';
 
 import Preview from '../Preview';
 
@@ -44,7 +44,47 @@ const sampleLookup = {
 };
 
 class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
-	state = { focused: false };
+	state = {
+		focused: false,
+		icons: [
+			{ iconName: 'cart'},
+			{
+				iconName: 'tag',
+				iconOrigin: 'cs' as CSIconOrigin,
+				getTooltip: {
+					content: ['icons tooltip'],
+					delay: 300,
+					maxWidth: '20rem',
+					padding: '0.5rem',
+					position: 'bottom-left' as CSTooltipPosition,
+					stickyOnClick: true
+				}
+			}
+		],
+		actions: [
+			{
+				action: () => alert('Delete option called'),
+				labelHidden: true,
+				icon: { iconName: 'delete' },
+				size: 'small' as CSButtonSize,
+				name: 'Delete'
+			},
+			{
+				action: () => alert('Add option called'),
+				icon: { iconName: 'add' },
+				labelHidden: true,
+				size: 'small' as CSButtonSize,
+				name: 'Add',
+				getTooltip: {
+					content: ['actions tooltip'],
+					delay: 300,
+					padding: '0.5rem',
+					position: 'bottom-left' as CSTooltipPosition,
+					stickyOnClick: true
+				}
+			}
+		]
+	};
 
 	handleBlur = () => alert('Lookup has lost focus.');
 	handleFocus = () => {
@@ -149,6 +189,53 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 									]}
 									lookupOptions={sampleLookup.data}
 									mode="client"
+								/>`
+							}
+						]
+					}, {
+						propName: 'actions',
+						variations: [
+							{
+								primaryVariants: [
+									'actions={this.state.actions}'
+								],
+								component: <CSLookup
+									fieldToBeDisplayed="Account"
+									label="Account"
+									lookupOptions={sampleLookup.data}
+									lookupColumns={sampleLookup.columns}
+									mode="client"
+									actions={this.state.actions}
+								/>,
+								code: `<CSLookup
+									fieldToBeDisplayed="Account"
+									label="Account"
+									lookupOptions={sampleLookup.data}
+									lookupColumns={sampleLookup.columns}
+									mode="client"
+									actions={[
+										{
+											action: () => alert('Delete option called'),
+											labelHidden: true,
+											icon: { iconName: 'delete' },
+											size: 'small' as CSButtonSize,
+											name: 'Delete'
+										},
+										{
+											action: () => alert('Add option called'),
+											icon: { iconName: 'add' },
+											labelHidden: true,
+											size: 'small' as CSButtonSize,
+											name: 'Add',
+											getTooltip: {
+												content: ['actions tooltip'],
+												delay: 300,
+												padding: '0.5rem',
+												position: 'bottom-left' as CSTooltipPosition,
+												stickyOnClick: true
+											}
+										}
+									]}
 								/>`
 							}
 						]
@@ -455,6 +542,45 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 									lookupColumns={sampleLookup.columns}
 									mode="client"
 									hidden
+								/>`
+							}
+						]
+					}, {
+						propName: 'icons',
+						variations: [
+							{
+								primaryVariants: [
+									'icons={this.state.icons}'
+								],
+								component: <CSLookup
+									fieldToBeDisplayed="Account"
+									label="Account"
+									lookupOptions={sampleLookup.data}
+									lookupColumns={sampleLookup.columns}
+									mode="client"
+									icons={this.state.icons}
+								/>,
+								code: `<CSLookup
+									fieldToBeDisplayed="Account"
+									label="Account"
+									lookupOptions={sampleLookup.data}
+									lookupColumns={sampleLookup.columns}
+									mode="client"
+									icons={[
+										{ iconName: 'cart'},
+										{
+											iconName: 'tag',
+											iconOrigin: 'cs' as CSIconOrigin,
+											getTooltip: {
+												content: ['icons tooltip'],
+												delay: 300,
+												maxWidth: '20rem',
+												padding: '0.5rem',
+												position: 'bottom-left' as CSTooltipPosition,
+												stickyOnClick: true
+											}
+										}
+									]}
 								/>`
 							}
 						]
@@ -913,6 +1039,13 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 						types: [`'client'`, `'server'`],
 						description: 'Set whether the component should run in client-side or server-side mode. The server-side mode loads records by reading the lookupOptions prop and filtering takes place within the component, while the server-side mode enables asynchronous fetching of records with the fetchLookupOptions prop, which also enables infinite scroll and setting the minimum search term length.'
 					}, {
+						name: 'actions',
+						customTypes: {
+							name: 'CSLookupActionsProps',
+							types: 'Array<CSLookupActionProps>'
+						},
+						description: 'An array of objects which accepts valid CSIcon & CSButton props, a getTooltip function to show an icon with a tooltip & an action prop for the button action/function.'
+					}, {
 						name: 'align',
 						customTypes: {
 							name: 'CSLookupDropdownAlign',
@@ -975,6 +1108,13 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 						types: 'boolean',
 						default: 'false',
 						description: 'Control the hidden attribute.'
+					}, {
+						name: 'icons',
+						customTypes: {
+							name: 'CSLookupIconProps',
+							types: 'Array<CSLookupIconProps>'
+						},
+						description: 'An array of objects which accepts valid CSIcon props or a getTooltip function to show an icon with a tooltip.'
 					}, {
 						name: 'labelHidden',
 						types: 'boolean',

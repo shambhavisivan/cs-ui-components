@@ -2,19 +2,20 @@ import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
 import { debounce, find, remove } from 'lodash';
-import CSButton from './CSButton';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSLabel from './CSLabel';
-import CSIcon from './CSIcon';
 import CSTable from './table/CSTable';
 import CSTableHeader from './table/CSTableHeader';
 import CSTableBody from './table/CSTableBody';
 import CSTableRow from './table/CSTableRow';
 import CSTableCell from './table/CSTableCell';
-import { CSTooltipPosition } from './CSTooltip';
 import KeyCode from '../util/KeyCode';
 import CSAutoposition from '../helpers/autoposition/CSAutoposition';
 import { CSAutopositions } from '../helpers/autoposition/cs-autoposition-types';
+import CSTooltip, { CSTooltipIconSize, CSTooltipPosition } from './CSTooltip';
+import CSButton from './CSButton';
+import { CSCustomDataIconProps, CSCustomDataActionProps } from '../util/CustomData';
+import CSIcon, { CSIconOrigin } from './CSIcon';
 
 export interface CSLookupTableColumnType {
 	key: string;
@@ -26,6 +27,7 @@ export type CSLookupDropdownPosition = 'top' | 'bottom';
 
 interface CSLookupCommmonProps {
 	[key: string]: any;
+	actions?: Array<CSCustomDataActionProps>;
 	align?: CSLookupDropdownAlign;
 	autoFocus?: boolean;
 	borderRadius?: string;
@@ -40,6 +42,7 @@ interface CSLookupCommmonProps {
 	gridCustomPopup?: boolean;
 	helpText?: string;
 	hidden?: boolean;
+	icons?: Array<CSCustomDataIconProps>;
 	id?: string;
 	label: string;
 	labelHidden?: boolean;
@@ -90,6 +93,7 @@ export interface CSLookupState {
 	dropdownValues: Array<Record<string, any>>;
 	fetchingMode?: CSLookupFetchingMode;
 	lookupInputWidth?: number;
+	lookupOptionsWrapperWidth: number | null;
 	moreRecords?: boolean;
 	pageNo?: number;
 	searchTerm?: string;
@@ -121,6 +125,8 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 	private readonly uniqueAutoId: string;
 
+	private lookupOptionsWrapperRef: React.RefObject<HTMLDivElement>;
+
 	constructor(props: CSLookupProps) {
 		super(props);
 		this.lookupInputRef = React.createRef();
@@ -130,12 +136,15 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			activeRowIndex: null,
 			dropdownOpen: false,
 			dropdownValues: [],
+			lookupOptionsWrapperWidth: null,
 			pageNo: 0,
 			moreRecords: true,
 			searchTerm: '',
 			selectedOption: undefined,
 			selectedOptions: [],
 		};
+
+		this.lookupOptionsWrapperRef = React.createRef();
 
 		this.executeServerSearchDebounced = debounce(this.executeServerSearch, 500);
 		this.uniqueAutoId = props.id ? props.id : uuidv4();
@@ -148,6 +157,15 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		}
 
 		this.setValue();
+
+		/* parent element which holds icons/actions/status/menu icon */
+		if (this.lookupOptionsWrapperRef) {
+			/* Get width of parent element and set state to width + 12 for extra spacing */
+			const el = this.lookupOptionsWrapperRef.current.getBoundingClientRect();
+			this.setState({
+				lookupOptionsWrapperWidth: el.width + 38,
+			});
+		}
 	}
 
 	componentDidUpdate(prevProps: CSLookupProps) {
@@ -596,6 +614,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 	render() {
 		const {
+			actions,
 			align,
 			autoFocus,
 			borderRadius,
@@ -610,6 +629,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			gridCustomPopup,
 			helpText,
 			hidden,
+			icons,
 			id,
 			infiniteScroll,
 			label,
@@ -638,6 +658,8 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			value,
 			...rest
 		} = this.props;
+
+		const { lookupOptionsWrapperWidth } = this.state;
 
 		const {
 			activeRowIndex,
@@ -689,7 +711,15 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 		const style: CSSProperties = {
 			'--cs-lookup-border-radius': borderRadius,
+			'--cs-lookup-options-spacing': `${lookupOptionsWrapperWidth}px`,
 		};
+
+		const lookupClearClasses = classNames(
+			'cs-lookup-clear',
+			{
+				'cs-lookup-clear-options': actions || icons,
+			},
+		);
 
 		const lookupDropdownStyle: CSSProperties = {
 			'--cs-lookup-input-width': lookupInputWidth ? `${lookupInputWidth}px` : '',
@@ -786,8 +816,33 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 		const initialPosition = `${position}-${this.flipPosition(align)}` as CSAutopositions;
 
+		/* Set actions array once data is available */
+		let actionsList;
+		if (actions?.length > 0) {
+			actionsList = actions;
+		}
+		/* Render actions button */
+		function getActionsBtn(action: CSCustomDataActionProps) {
+			return (
+				<CSButton
+					btnStyle={action.btnStyle}
+					btnType={action.btnType}
+					label={action.name}
+					labelHidden={action.labelHidden}
+					onClick={(event: any) => {
+						event.stopPropagation();
+						action.action();
+					}}
+					iconColor={action.icon.iconColor}
+					iconName={action.icon.iconName}
+					iconOrigin={action.icon.iconOrigin as CSIconOrigin}
+					iconSize={action.icon.iconSize}
+					size={action.size}
+				/>
+			);
+		}
 		return (
-			<div className={lookupFieldWrapperClasses}>
+			<div className={lookupFieldWrapperClasses} style={style}>
 				{(label && !labelHidden)
 					&& (
 						<CSLabel
@@ -799,84 +854,165 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 							title={labelTitle ? label : null}
 						/>
 					)}
-				<div
-					className="cs-lookup-input-wrapper"
-					ref={this.lookupWrapperRef}
-					onBlur={this.handleLookupWrapperBlur}
-				>
-					{!readOnly
-						&& (
-							<CSIcon
-								name="search"
-								className="cs-lookup-search-icon"
-								color="var(--cs-input-icon-fill)"
-								size="1rem"
-							/>
-						)}
-					<input
-						className={lookupInputClasses}
-						autoComplete="off"
-						autoFocus={autoFocus}
-						type="text"
-						placeholder={placeholder
-							&& (selectedOptions.length === 0 && !selectedOption)
-							? placeholder : undefined}
-						disabled={disabled}
-						readOnly={readOnly}
-						required={required}
-						value={searchTerm}
-						onFocus={!readOnly ? this.handleOnFocus : undefined}
-						onKeyDown={!readOnly ? this.handleOnKeyDown : undefined}
-						onChange={this.handleSearch}
-						onClick={!readOnly ? this.handleOnClick : undefined}
-						onBlur={this.handleOnBlur}
-						title={title}
-						id={id || this.uniqueAutoId}
-						ref={this.lookupInputRef}
-						style={style}
-						role="listbox"
-						aria-required={required}
-						aria-expanded={dropdownOpen}
-						aria-invalid={error}
-						aria-multiselectable={multiselect}
-						{...rest}
-					/>
-					{!searchTerm && (selectedOption || selectedOptions)
-						&& (
-							<span className={selectedLookupItemClasses}>
-								{this.getValueToDisplay(selectedOption) || this.getMultiselectValues()}
-							</span>
-						)}
-					{((searchTerm
-						|| selectedOption
-						|| selectedOptions.length)
-						&& !disabled
-						&& !readOnly
-						&& !loading
-						&& !fetchingMode)
-						? (
-							<CSButton
-								btnType="transparent"
-								btnStyle="brand"
-								className="cs-lookup-clear"
-								iconColor="var(--cs-input-clear)"
-								iconName="close"
-								labelHidden
-								label="clear"
-								onClick={this.clearSearch}
-								size="xsmall"
-							/>
-						) : null}
-					{!readOnly
-						&& (
-							<CSIcon
-								name="down"
-								rotate={dropdownOpen ? 180 : 0}
-								className="cs-lookup-dropdown-icon"
-								color="var(--cs-input-icon-fill)"
-								size="1rem"
-							/>
-						)}
+				<div className="cs-lookup-wrapper-inner">
+					<div
+						className="cs-lookup-input-wrapper"
+						ref={this.lookupWrapperRef}
+						onBlur={this.handleLookupWrapperBlur}
+					>
+						{!readOnly
+							&& (
+								<CSIcon
+									name="search"
+									className="cs-lookup-search-icon"
+									color="var(--cs-input-icon-fill)"
+									size="1rem"
+								/>
+							)}
+						<input
+							className={lookupInputClasses}
+							autoComplete="off"
+							autoFocus={autoFocus}
+							type="text"
+							placeholder={placeholder
+								&& (selectedOptions.length === 0 && !selectedOption)
+								? placeholder : undefined}
+							disabled={disabled}
+							readOnly={readOnly}
+							required={required}
+							value={searchTerm}
+							onFocus={!readOnly ? this.handleOnFocus : undefined}
+							onKeyDown={!readOnly ? this.handleOnKeyDown : undefined}
+							onChange={this.handleSearch}
+							onClick={!readOnly ? this.handleOnClick : undefined}
+							onBlur={this.handleOnBlur}
+							title={title}
+							id={id || this.uniqueAutoId}
+							ref={this.lookupInputRef}
+							role="listbox"
+							aria-required={required}
+							aria-expanded={dropdownOpen}
+							aria-invalid={error}
+							aria-multiselectable={multiselect}
+							{...rest}
+						/>
+						{!searchTerm && (selectedOption || selectedOptions)
+							&& (
+								<span className={selectedLookupItemClasses}>
+									{this.getValueToDisplay(selectedOption) || this.getMultiselectValues()}
+								</span>
+							)}
+						{((searchTerm
+							|| selectedOption
+							|| selectedOptions.length)
+							&& !disabled
+							&& !readOnly
+							&& !loading
+							&& !fetchingMode)
+							? (
+								<CSButton
+									btnType="transparent"
+									btnStyle="brand"
+									className={lookupClearClasses}
+									iconColor="var(--cs-input-clear)"
+									iconName="close"
+									labelHidden
+									label="clear"
+									onClick={this.clearSearch}
+									size="xsmall"
+								/>
+							) : null}
+						{!readOnly
+							&& (
+								<CSIcon
+									name="down"
+									rotate={dropdownOpen ? 180 : 0}
+									className="cs-lookup-dropdown-icon"
+									color="var(--cs-input-icon-fill)"
+									size="1rem"
+								/>
+							)}
+					</div>
+					{/* Icons, Actions */}
+					<div className="cs-lookup-options" ref={this.lookupOptionsWrapperRef}>
+						{/* Icons */}
+						{icons?.length > 0
+							? (
+								<div className="cs-lookup-option cs-lookup-icons">
+									{icons.map((icon) => {
+										let tooltipContents;
+										if (icon.getTooltip) {
+											tooltipContents = icon.getTooltip;
+										}
+										return (
+											<React.Fragment key={icon.iconName}>
+												{icon.getTooltip ? (
+													<CSTooltip
+														content={tooltipContents.content}
+														delayTooltip={tooltipContents.delay}
+														height={tooltipContents.height}
+														iconName={icon.iconName}
+														iconColor={icon.iconColor}
+														iconOrigin={icon.iconOrigin as CSIconOrigin}
+														iconSize={icon.iconSize as CSTooltipIconSize}
+														maxHeight={tooltipContents.maxHeight}
+														maxWidth={tooltipContents.maxWidth}
+														padding={tooltipContents.padding}
+														position={tooltipContents.position}
+														stickyOnClick={tooltipContents.stickyOnClick}
+														variant={tooltipContents.variant}
+														width={tooltipContents.width as CSTooltipIconSize}
+													/>
+												) :	(
+													<CSIcon
+														className="cs-text-display-item"
+														name={icon.iconName}
+														color={icon.iconColor}
+														origin={icon.iconOrigin as CSIconOrigin}
+														size={icon.iconSize}
+													/>
+												)}
+											</React.Fragment>
+										);
+									})}
+								</div>
+							)
+							: null}
+
+						{/* Actions */}
+						{actionsList?.length > 0
+							? (
+								<div className="cs-lookup-option cs-lookup-actions">
+									{actions.map((action: CSCustomDataActionProps) => {
+										let tooltipContents;
+										if (action.getTooltip) {
+											tooltipContents = action.getTooltip;
+										}
+										return (
+											<React.Fragment key={action.name}>
+												{tooltipContents ? (
+													<CSTooltip
+														content={tooltipContents.content}
+														delayTooltip={tooltipContents.delay}
+														height={tooltipContents.height}
+														maxHeight={tooltipContents.maxHeight}
+														maxWidth={tooltipContents.maxWidth}
+														padding={tooltipContents.padding}
+														position={tooltipContents.position}
+														stickyOnClick={tooltipContents.stickyOnClick}
+														variant={tooltipContents.variant}
+														width={tooltipContents.width as CSTooltipIconSize}
+													>
+														{getActionsBtn(action)}
+													</CSTooltip>
+												) : getActionsBtn(action)}
+											</React.Fragment>
+										);
+									})}
+								</div>
+							)
+							: null}
+					</div>
 				</div>
 				{
 					(error && errorMessage)
