@@ -9,7 +9,7 @@ export interface CSFieldErrorMsgProps {
 	className?: string;
 	id?: string;
 	message: CSFieldErrorMsgType;
-	toolTipMessage?: boolean;
+	tooltipMessage?: boolean;
 }
 
 class CSFieldErrorMsg extends React.Component<CSFieldErrorMsgProps> {
@@ -22,7 +22,7 @@ class CSFieldErrorMsg extends React.Component<CSFieldErrorMsgProps> {
 	}
 
 	render() {
-		const { message, className, id, toolTipMessage, ...rest } = this.props;
+		const { message, className, id, tooltipMessage, ...rest } = this.props;
 
 		const fieldErrorMsgClasses = classNames(
 			'cs-field-error-msg',
@@ -31,8 +31,8 @@ class CSFieldErrorMsg extends React.Component<CSFieldErrorMsgProps> {
 			},
 		);
 
-		return toolTipMessage ? (
-			<CSTooltip content={this.getErrorMessage()} variant="error" position="top-left" />
+		return tooltipMessage ? (
+			<CSTooltip content={message} variant="error" position="top-left" />
 		) : (
 			<span className={fieldErrorMsgClasses} id={id} {...rest}>
 				{this.getErrorMessage()}
