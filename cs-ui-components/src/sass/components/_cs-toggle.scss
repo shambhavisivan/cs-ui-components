@@ -202,3 +202,19 @@
 		}
 	}
 }
+
+// Options
+.cs-toggle-options {
+	display: flex;
+	padding-left: 0.5rem;
+
+	.cs-toggle-option {
+		align-items: center;
+		display: flex;
+
+		&:not(:last-child),
+        > *:not(:last-child) {
+            margin-right: 0.25rem;
+        }
+	}
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { CSToggle } from '@cloudsense/cs-ui-components';
+import { CSButtonSize, CSToggle, CSTooltipPosition, CSIconOrigin } from '@cloudsense/cs-ui-components';
 
 import Preview from '../Preview';
 
@@ -8,7 +8,47 @@ interface CSTogglePreviewState {
 }
 
 class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
-	state = { checked: true };
+	state = {
+		checked: true,
+		icons: [
+			{ iconName: 'cart'},
+			{
+				iconName: 'tag',
+				iconOrigin: 'cs' as CSIconOrigin,
+				getTooltip: {
+					content: ['icons tooltip'],
+					delay: 300,
+					maxWidth: '20rem',
+					padding: '0.5rem',
+					position: 'bottom-left' as CSTooltipPosition,
+					stickyOnClick: true
+				}
+			}
+		],
+		actions: [
+			{
+				action: () => alert('Delete option called'),
+				labelHidden: true,
+				icon: { iconName: 'delete' },
+				size: 'small' as CSButtonSize,
+				name: 'Delete'
+			},
+			{
+				action: () => alert('Add option called'),
+				icon: { iconName: 'add' },
+				labelHidden: true,
+				size: 'small' as CSButtonSize,
+				name: 'Add',
+				getTooltip: {
+					content: ['actions tooltip'],
+					delay: 300,
+					padding: '0.5rem',
+					position: 'bottom-left' as CSTooltipPosition,
+					stickyOnClick: true
+				}
+			}
+		]
+	};
 
 	handleChange = () => alert('Value has been toggled.');
 
@@ -30,6 +70,45 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 							{
 								component: <CSToggle label="This is a label" />,
 								code: '<CSToggle label="This is a label" />'
+							}
+						]
+					}, {
+						propName: 'actions',
+						variations: [
+							{
+								primaryVariants: [
+									'actions={this.state.actions}'
+								],
+								component: <CSToggle
+									label="This is a label"
+									actions={this.state.actions}
+								/>,
+								code: `<CSToggle
+									label="This is a label"
+									actions={[
+										{
+											action: () => alert('Delete option called'),
+											icon: { iconName: 'delete' },
+											labelHidden: true,
+											size: 'small' as CSButtonSize,
+											name: 'Delete'
+										},
+										{
+											action: () => alert('Add option called'),
+											icon: { iconName: 'add' },
+											labelHidden: true,
+											size: 'small' as CSButtonSize,
+											name: 'Add',
+											getTooltip: {
+												content: ['actions tooltip'],
+												delay: 300,
+												padding: '0.5rem',
+												position: 'bottom-left' as CSTooltipPosition,
+												stickyOnClick: true,
+											}
+										}
+									]}
+								/>`
 							}
 						]
 					}, {
@@ -115,6 +194,37 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 							{
 								component: <CSToggle label="This is a label" helpText="Help text example" />,
 								code: '<CSToggle label="This is a label" helpText="Help text example" />'
+							}
+						]
+					}, {
+						propName: 'icons',
+						variations: [
+							{
+								primaryVariants: [
+									'icons={this.state.icons}'
+								],
+								component: <CSToggle
+									label="This is a label"
+									icons={this.state.icons}
+								/>,
+								code: `<CSToggle
+									label="This is a label"
+									icons={[
+										{ iconName: 'cart'},
+										{
+											iconName: 'tag',
+											iconOrigin: 'cs' as CSIconOrigin,
+											getTooltip: {
+												content: ['icons tooltip'],
+												delay: 300,
+												maxWidth: '20rem',
+												padding: '0.5rem',
+												position: 'bottom-left' as CSTooltipPosition,
+												stickyOnClick: true
+											}
+										}
+									]}
+								/>`
 							}
 						]
 					}, {
@@ -238,6 +348,13 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 						types: 'string',
 						description: 'Set the toggle label.'
 					}, {
+						name: 'actions',
+						customTypes: {
+							name: 'CSToggleActionsProps',
+							types: 'Array<CSToggleActionProps>'
+						},
+						description: 'An array of objects which accepts valid CSIcon & CSButton props, a getTooltip function to show an icon with a tooltip & an action prop for the button action/function.'
+					}, {
 						name: 'checked',
 						types: 'boolean',
 						description: 'Control the checked state of the toggle.'
@@ -269,6 +386,13 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 						name: 'helpText',
 						types: 'string',
 						description: 'Set the text to be displayed in the tooltip.'
+					}, {
+						name: 'icons',
+						customTypes: {
+							name: 'CSToggleIconProps',
+							types: 'Array<CSToggleIconProps>'
+						},
+						description: 'An array of objects which accepts valid CSIcon props or a getTooltip function to show an icon with a tooltip.'
 					}, {
 						name: 'labelHidden',
 						types: 'boolean',
