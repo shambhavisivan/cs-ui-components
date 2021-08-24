@@ -388,6 +388,30 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 							}
 						]
 					}, {
+						propName: 'errorTooltip',
+						variations: [
+							{
+								primaryVariants: 'errorTooltip={true}',
+								secondaryVariants: 'error={true}',
+								component: <CSDateTimePicker
+									label="Enter date"
+									selected={this.state.dateErrorMsg}
+									onChange={(date: Date) => this.setDate(date, 'ErrorMsg')}
+									error
+									errorMessage="Error message."
+									errorTooltip
+								/>,
+							code: `<CSDateTimePicker
+								label="Enter date"
+								error
+								errorMessage="Error message."
+								errorTooltip
+								selected={this.state.selected}
+								onChange={(date: Date) => this.setState({ selected: date })}
+							/>`
+							}
+						]
+					}, {
 						propName: 'helpText',
 						variations: [
 							{
@@ -1107,6 +1131,10 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 							types: ['string', 'Array<string>']
 						},
 						description: 'Set the error message or messages for the datetimepicker.'
+					}, {
+						name: 'errorTooltip',
+						types: 'boolean',
+						description: 'Show the error tooltip for the datetimepicker.'
 					}, {
 						name: 'helpText',
 						types: 'string',

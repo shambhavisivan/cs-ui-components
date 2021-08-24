@@ -26,6 +26,7 @@ class CSDateTimePicker extends React.Component<CSDateTimePickerProps> {
 			dropdownMode,
 			error,
 			errorMessage,
+			errorTooltip,
 			forwardRef,
 			helpText,
 			id,
