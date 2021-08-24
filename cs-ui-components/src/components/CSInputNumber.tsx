@@ -53,6 +53,8 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 		type: 'number',
 	};
 
+	public inputNumberInnerRef: React.RefObject<HTMLInputElement>;
+
 	private inputNumberOptionsWrapperRef: React.RefObject<HTMLDivElement>;
 
 	private readonly uniqueAutoId: string;
@@ -67,6 +69,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 		};
 
 		this.inputNumberOptionsWrapperRef = React.createRef();
+		this.inputNumberInnerRef = React.createRef();
 	}
 
 	componentDidMount() {
@@ -248,6 +251,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 							title={title}
 							step={step}
 							style={style}
+							ref={this.inputNumberInnerRef}
 							{...rest}
 						/>
 
@@ -281,7 +285,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 															variant={tooltipContents.variant}
 															width={tooltipContents.width as CSTooltipIconSize}
 														/>
-													) :	(
+													) : (
 														<CSIcon
 															className="cs-text-display-item"
 															name={icon.iconName}

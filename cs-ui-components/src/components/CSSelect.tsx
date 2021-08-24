@@ -43,7 +43,9 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 		labelHidden: false,
 	};
 
-	private readonly uniqueAutoId : string;
+	public selectInnerRef: React.RefObject<HTMLSelectElement>;
+
+	private readonly uniqueAutoId: string;
 
 	private selectOptionsWrapperRef: React.RefObject<HTMLDivElement>;
 
@@ -57,6 +59,7 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 		};
 
 		this.selectOptionsWrapperRef = React.createRef();
+		this.selectInnerRef = React.createRef();
 	}
 
 	componentDidMount() {
@@ -189,6 +192,7 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 							value={value}
 							title={title}
 							style={style}
+							ref={this.selectInnerRef}
 							{...rest}
 						>
 							{children}
@@ -227,7 +231,7 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 														variant={tooltipContents.variant}
 														width={tooltipContents.width as CSTooltipIconSize}
 													/>
-												) :	(
+												) : (
 													<CSIcon
 														className="cs-text-display-item"
 														name={icon.iconName}

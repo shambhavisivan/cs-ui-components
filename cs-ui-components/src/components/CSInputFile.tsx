@@ -28,7 +28,7 @@ export interface CSInputFileState {
 }
 
 class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
-	private fileInput: React.RefObject<HTMLInputElement>;
+	public inputFileInnerRef: React.RefObject<HTMLInputElement>;
 
 	private dragEventCounter = 0;
 
@@ -44,7 +44,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 		this.handleFileDragEvents = this.handleFileDragEvents.bind(this);
 		this.handleFileDrop = this.handleFileDrop.bind(this);
 		this.handleAcceptFiles = this.handleAcceptFiles.bind(this);
-		this.fileInput = React.createRef();
+		this.inputFileInnerRef = React.createRef();
 		this.handleDragEnter = this.handleDragEnter.bind(this);
 		this.handleDragLeave = this.handleDragLeave.bind(this);
 	}
@@ -56,7 +56,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 
 	handleFileSubmit() {
 		const { fileSize, onChange } = this.props;
-		const file = this.fileInput.current.files[0];
+		const file = this.inputFileInnerRef.current.files[0];
 
 		this.setState({
 			label: fileSize ? file.name + this.fileSizeDisplay(file) : file.name,
@@ -161,13 +161,13 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 			'--drop-area-height': dropAreaHeight,
 		};
 
-		const input =			(
+		const input = (
 			<>
 				<input
 					accept={this.handleAcceptFiles(accept)}
 					id={id}
 					type="file"
-					ref={this.fileInput}
+					ref={this.inputFileInnerRef}
 					onChange={this.handleFileSubmit}
 					disabled={disabled}
 					title={label}

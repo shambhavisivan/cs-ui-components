@@ -60,6 +60,8 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 		return null;
 	}
 
+	public sliderInnerRef: React.RefObject<HTMLInputElement>;
+
 	private uniqueAutoId = this.props.id ? this.props.id : uuidv4();
 
 	constructor(props: CSSliderProps) {
@@ -73,6 +75,7 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 			max: props.max,
 		};
 		this.stepsIcons = this.stepsIcons.bind(this);
+		this.sliderInnerRef = React.createRef();
 	}
 
 	componentDidMount() {
@@ -221,6 +224,7 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 						aria-invalid={error}
 						aria-valuemin={Number(this.state.min)}
 						aria-valuemax={Number(this.state.max)}
+						ref={this.sliderInnerRef}
 						{...rest}
 					/>
 					{step ? (

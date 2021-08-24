@@ -41,6 +41,8 @@ export interface CSInputTextState {
 }
 
 class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
+	public inputTextInnerRef: React.RefObject<HTMLInputElement>;
+
 	private readonly uniqueAutoId: string | null;
 
 	private inputTextOptionsWrapperRef: React.RefObject<HTMLDivElement>;
@@ -55,6 +57,7 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 		};
 
 		this.inputTextOptionsWrapperRef = React.createRef();
+		this.inputTextInnerRef = React.createRef();
 	}
 
 	componentDidMount() {
@@ -203,6 +206,7 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 							onFocus={this.onFocus}
 							title={title}
 							style={style}
+							ref={this.inputTextInnerRef}
 							{...rest}
 						/>
 
@@ -236,7 +240,7 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 															variant={tooltipContents.variant}
 															width={tooltipContents.width as CSTooltipIconSize}
 														/>
-													) :	(
+													) : (
 														<CSIcon
 															className="cs-text-display-item"
 															name={icon.iconName}

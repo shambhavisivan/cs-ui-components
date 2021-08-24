@@ -72,7 +72,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 		dropdownMode: 'scroll',
 	};
 
-	public datepickerRef: React.RefObject<DatePicker>;
+	public datepickerInnerRef: React.RefObject<DatePicker>;
 
 	private datepickerOptionsWrapperRef: React.RefObject<HTMLDivElement>;
 
@@ -81,7 +81,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 	constructor(props: CSDatepickerProps) {
 		super(props);
 
-		this.datepickerRef = React.createRef();
+		this.datepickerInnerRef = React.createRef();
 		this.datepickerOptionsWrapperRef = React.createRef();
 		this.uniqueAutoId = props.id ? props.id : uuidv4();
 
@@ -106,7 +106,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 
 		// If shift key and tab pressed together close datepicker
 		if (event.shiftKey && event.key === KeyCode.Tab) {
-			this.datepickerRef.current.setOpen(false);
+			this.datepickerInnerRef.current.setOpen(false);
 		}
 
 		onKeyDown?.(event);
@@ -254,7 +254,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 							scrollableYearDropdown={scrollableYearDropdown}
 							dropdownMode={dropdownMode}
 							readOnly={readOnly}
-							ref={this.datepickerRef}
+							ref={this.datepickerInnerRef}
 							yearDropdownItemNumber={yearDropdownItemNumber}
 							autoComplete="off"
 							required={required}
@@ -296,7 +296,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 														variant={tooltipContents.variant}
 														width={tooltipContents.width as CSTooltipIconSize}
 													/>
-												) :	(
+												) : (
 													<CSIcon
 														className="cs-text-display-item"
 														name={icon.iconName}

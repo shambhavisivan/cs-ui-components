@@ -42,11 +42,11 @@ class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
 		variant: 'simple-list',
 	};
 
+	public sourceListRef: React.RefObject<HTMLUListElement>;
+
+	public targetListRef: React.RefObject<HTMLUListElement>;
+
 	private actionButtonsNode: HTMLDivElement;
-
-	private sourceListRef: React.RefObject<HTMLUListElement>;
-
-	private targetListRef: React.RefObject<HTMLUListElement>;
 
 	private element: string;
 

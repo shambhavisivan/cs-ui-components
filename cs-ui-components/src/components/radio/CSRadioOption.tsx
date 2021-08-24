@@ -17,10 +17,13 @@ export interface CSRadioOptionProps {
 }
 
 class CSRadioOption extends React.Component<CSRadioOptionProps> {
+	public radioOptionInnerRef: React.RefObject<HTMLInputElement>
+
 	constructor(props: CSRadioOptionProps) {
 		super(props);
 
 		this.toggleRadio = this.toggleRadio.bind(this);
+		this.radioOptionInnerRef = React.createRef();
 	}
 
 	toggleRadio(e: React.ChangeEvent<HTMLInputElement>) {
@@ -91,6 +94,7 @@ class CSRadioOption extends React.Component<CSRadioOptionProps> {
 					aria-invalid={ariaInvalid}
 					aria-required={ariaRequired}
 					defaultChecked={checked}
+					ref={this.radioOptionInnerRef}
 					{...rest}
 				/>
 				<span className="cs-radio-faux" />

@@ -44,6 +44,8 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 		rows: 3,
 	};
 
+	public textareaInnerRef: React.RefObject<HTMLTextAreaElement>;
+
 	private readonly uniqueAutoId: string;
 
 	private textareaOptionsWrapperRef: React.RefObject<HTMLDivElement>;
@@ -58,6 +60,7 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 		};
 
 		this.textareaOptionsWrapperRef = React.createRef();
+		this.textareaInnerRef = React.createRef();
 	}
 
 	componentDidMount() {
@@ -183,6 +186,7 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 							style={style}
 							onChange={this.handleOnChange}
 							title={title}
+							ref={this.textareaInnerRef}
 							{...rest}
 						/>
 						{/* Icons, Actions */}
@@ -215,7 +219,7 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 															variant={tooltipContents.variant}
 															width={tooltipContents.width as CSTooltipIconSize}
 														/>
-													) :	(
+													) : (
 														<CSIcon
 															className="cs-text-display-item"
 															name={icon.iconName}

@@ -83,7 +83,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 		labelHidden: false,
 	};
 
-	private input: HTMLInputElement;
+	public inputSearchInnerRef: React.RefObject<HTMLInputElement>;
 
 	private readonly uniqueAutoId: string;
 
@@ -94,6 +94,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 			value: props.value ?? '',
 		};
 
+		this.inputSearchInnerRef = React.createRef();
 		this.uniqueAutoId = props.id ? props.id : uuidv4();
 	}
 
@@ -113,13 +114,13 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 		const { onChange, onClearSearch } = this.props;
 
 		this.setValue('');
-		resolveOnChange(this.input, e, onChange);
+		resolveOnChange(this.inputSearchInnerRef.current, e, onChange);
 
 		if (onClearSearch) {
 			onClearSearch();
 		}
 
-		this.input.focus();
+		this.inputSearchInnerRef.current.focus();
 	}
 
 	onFocus: React.FocusEventHandler<HTMLInputElement> = (e) => {
@@ -142,7 +143,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 		const { onChange } = this.props;
 
 		this.setValue(e.target.value);
-		resolveOnChange(this.input, e, onChange);
+		resolveOnChange(this.inputSearchInnerRef.current, e, onChange);
 	}
 
 	handleOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -256,7 +257,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 							value={fixControlledValue(valueState)}
 							type="text"
 							autoComplete="off"
-							ref={(node) => { this.input = node; }}
+							ref={this.inputSearchInnerRef}
 							onKeyDown={this.handleOnKeyDown}
 							onBlur={this.onBlur}
 							onFocus={this.onFocus}

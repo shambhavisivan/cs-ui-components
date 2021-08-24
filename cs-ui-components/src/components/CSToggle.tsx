@@ -34,12 +34,15 @@ export interface CSToggleProps {
 }
 
 class CSToggle extends React.Component<CSToggleProps> {
+	public toggleInnerRef: React.Ref<HTMLInputElement>;
+
 	private readonly uniqueAutoId: string | null;
 
 	constructor(props: CSToggleProps) {
 		super(props);
 
 		this.uniqueAutoId = props.id ? props.id : uuidv4();
+		this.toggleInnerRef = React.createRef();
 	}
 
 	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -154,6 +157,7 @@ class CSToggle extends React.Component<CSToggleProps> {
 								aria-readonly={readOnly}
 								aria-required={required}
 								aria-invalid={error}
+								ref={this.toggleInnerRef}
 								{...rest}
 							/>
 							<span className="cs-toggle-faux" title={title} />

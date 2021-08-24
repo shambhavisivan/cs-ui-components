@@ -47,14 +47,14 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 		checked: false,
 	};
 
-	private checkboxRef: React.RefObject<HTMLInputElement>;
+	public checkboxInnerRef: React.RefObject<HTMLInputElement>;
 
 	private readonly uniqueAutoId: string;
 
 	constructor(props: CSCheckboxProps) {
 		super(props);
 
-		this.checkboxRef = React.createRef();
+		this.checkboxInnerRef = React.createRef();
 		this.uniqueAutoId = props.id ? props.id : uuidv4();
 	}
 
@@ -85,8 +85,8 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 	}
 
 	setIndeterminate = (value: boolean) => {
-		if (this.checkboxRef.current) {
-			this.checkboxRef.current.indeterminate = value;
+		if (this.checkboxInnerRef.current) {
+			this.checkboxInnerRef.current.indeterminate = value;
 		}
 	}
 
@@ -203,7 +203,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 								required={required}
 								id={this.uniqueAutoId}
 								name={name}
-								ref={this.checkboxRef}
+								ref={this.checkboxInnerRef}
 								aria-label={label}
 								aria-readonly={readOnly}
 								aria-required={required}
