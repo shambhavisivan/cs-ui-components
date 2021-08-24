@@ -543,11 +543,8 @@ class CSSelectPreview extends React.Component<{}, CSSelectPreviewState> {
 						description: 'Set the error message or messages for the select.'
 					}, {
 						name: 'errorTooltip',
-						customTypes: {
-							name: 'CSFieldErrorMsgType',
-							types: ['string', 'Array<string>']
-						},
-						description: 'Set the error message tooltip for the select.'
+						types: 'boolean',
+						description: 'Show an error tooltip for the select.'
 					}, {
 						name: 'helpText',
 						types: 'string',

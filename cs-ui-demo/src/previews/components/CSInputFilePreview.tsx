@@ -271,11 +271,8 @@ class CSInputFilePreview extends React.Component {
 						description: 'Set the error message or messages for the file input.'
 					}, {
 						name: 'errorTooltip',
-						customTypes: {
-							name: 'CSFieldErrorMsgType',
-							types: ['string', 'Array<string>']
-						},
-						description: 'Set the error message tooltip for the file input.'
+						types: 'boolean',
+						description: 'Show an error tooltip for the file input.'
 					}, {
 						name: 'fileSize',
 						types: 'boolean',

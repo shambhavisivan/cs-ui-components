@@ -1084,11 +1084,8 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 						description: 'Set the error message or messages for the datepicker.'
 					}, {
 						name: 'errorTooltip',
-						customTypes: {
-							name: 'CSFieldErrorMsgType',
-							types: ['string', 'Array<string>']
-						},
-						description: 'Set the error message tooltip for the datepicker.'
+						types: 'boolean',
+						description: 'Show an error tooltip for the datepicker.'
 					}, {
 						name: 'helpText',
 						types: 'string',

@@ -636,11 +636,8 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 						description: 'Set the error message or messages for the checkbox.'
 					}, {
 						name: 'errorTooltip',
-						customTypes: {
-							name: 'CSFieldErrorMsgType',
-							types: ['string', 'Array<string>']
-						},
-						description: 'Set the error tooltip messages for the checkbox.'
+						types: 'boolean',
+						description: 'Show an error tooltip for the checkbox.'
 					}, {
 						name: 'helpText',
 						types: 'string',

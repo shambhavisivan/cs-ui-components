@@ -418,11 +418,8 @@ class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
 						description: 'Set the error message or messages for the textarea.'
 					}, {
 						name: 'errorTooltip',
-						customTypes: {
-							name: 'CSFieldErrorMsgType',
-							types: ['string', 'Array<string>']
-						},
-						description: 'Set the error message tooltip for the textarea.'
+						types: 'boolean',
+						description: 'Show an error tooltip for the textarea.'
 					}, {
 						name: 'helpText',
 						types: 'string',

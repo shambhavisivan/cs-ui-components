@@ -377,11 +377,8 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 						description: 'Set the error message or messages for the toggle.'
 					}, {
 						name: 'errorTooltip',
-						customTypes: {
-							name: 'CSFieldErrorMsgType',
-							types: ['string', 'Array<string>']
-						},
-						description: 'Set the error message tooltip for the toggle.'
+						types: 'boolean',
+						description: 'Show an error tooltip for the toggle.'
 					}, {
 						name: 'helpText',
 						types: 'string',

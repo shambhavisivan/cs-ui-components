@@ -1089,11 +1089,8 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 						description: 'Set the error message or messages for the lookup.'
 					}, {
 						name: 'errorTooltip',
-						customTypes: {
-							name: 'CSFieldErrorMsgType',
-							types: ['string', 'Array<string>']
-						},
-						description: 'Set the error message tooltip for the text input.'
+						types: 'boolean',
+						description: 'Show an error tooltip for the lookup.'
 					}, {
 						name: 'gridCustomPopup',
 						types: 'boolean',

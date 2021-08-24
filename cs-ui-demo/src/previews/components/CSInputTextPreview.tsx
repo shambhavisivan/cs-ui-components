@@ -443,11 +443,8 @@ class CSInputTextPreview extends React.Component<{}, CSInputTextPreviewState> {
 						description: 'Set the error message or messages for the text input.'
 					}, {
 						name: 'errorTooltip',
-						customTypes: {
-							name: 'CSFieldErrorMsgType',
-							types: ['string', 'Array<string>']
-						},
-						description: 'Set the error message tooltip for the text input.'
+						types: 'boolean',
+						description: 'Show an error tooltip for the text input.'
 					}, {
 						name: 'helpText',
 						types: 'string',
