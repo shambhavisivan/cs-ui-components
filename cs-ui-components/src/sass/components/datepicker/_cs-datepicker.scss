@@ -64,6 +64,7 @@
 			min-height: 2rem;
 			padding: 0 1.8125rem 0 0.75rem;
 			border-radius: var(--cs-datepicker-border-radius, 0.25rem);
+			padding-right: var(--cs-datepicker-options-spacing);
 			margin: 0;
 			transition: border 0.1s linear, background-color 0.1s linear;
 			width: 100%;
@@ -474,3 +475,23 @@
 		@include bgd(--cs-input-icon-fill, 0.25);
 	}
 }
+
+// Options
+.cs-datepicker-options {
+	bottom: 1rem;
+	display: flex;
+	position: absolute;
+	right: 1.625rem;
+	transform: translateY(50%);
+
+	.cs-datepicker-option {
+		align-items: center;
+		display: flex;
+
+		&:not(:last-child),
+        > *:not(:last-child) {
+            margin-right: 0.25rem;
+        }
+	}
+}
+
