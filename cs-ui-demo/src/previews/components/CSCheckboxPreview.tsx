@@ -1,5 +1,5 @@
 import React from 'react';
-import { CSCheckbox } from '@cloudsense/cs-ui-components';
+import { CSButtonSize, CSCheckbox, CSTooltipPosition, CSIconOrigin } from '@cloudsense/cs-ui-components';
 
 import Preview from '../Preview';
 
@@ -8,7 +8,47 @@ interface CSCheckboxPreviewState {
 }
 
 class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
-	state = { checked: true };
+	state = {
+		checked: true,
+		icons: [
+			{ iconName: 'cart'},
+			{
+				iconName: 'tag',
+				iconOrigin: 'cs' as CSIconOrigin,
+				getTooltip: {
+					content: ['icons tooltip'],
+					delay: 300,
+					maxWidth: '20rem',
+					padding: '0.5rem',
+					position: 'bottom-left' as CSTooltipPosition,
+					stickyOnClick: true
+				}
+			}
+		],
+		actions: [
+			{
+				action: () => alert('Delete option called'),
+				labelHidden: true,
+				icon: { iconName: 'delete' },
+				size: 'small' as CSButtonSize,
+				name: 'Delete'
+			},
+			{
+				action: () => alert('Add option called'),
+				icon: { iconName: 'add' },
+				labelHidden: true,
+				size: 'small' as CSButtonSize,
+				name: 'Add',
+				getTooltip: {
+					content: ['actions tooltip'],
+					delay: 300,
+					padding: '0.5rem',
+					position: 'bottom-left' as CSTooltipPosition,
+					stickyOnClick: true
+				}
+			}
+		]
+	};
 
 	handleChange = () => alert('Checkbox has been toggled.');
 	handleClick = () => alert('Checkbox has been clicked.');
@@ -32,6 +72,45 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 							{
 								component: <CSCheckbox label="Select option" />,
 								code: '<CSCheckbox label="Select option" />'
+							}
+						]
+					}, {
+						propName: 'actions',
+						variations: [
+							{
+								primaryVariants: [
+									'actions={this.state.actions}'
+								],
+								component: <CSCheckbox
+									label="Select option"
+									actions={this.state.actions}
+								/>,
+								code: `<CSCheckbox
+									label="Select option"
+									actions={[
+										{
+											action: () => alert('Delete option called'),
+											icon: { iconName: 'delete' },
+											labelHidden: true,
+											size: 'small' as CSButtonSize,
+											name: 'Delete'
+										},
+										{
+											action: () => alert('Add option called'),
+											icon: { iconName: 'add' },
+											labelHidden: true,
+											size: 'small' as CSButtonSize,
+											name: 'Add',
+											getTooltip: {
+												content: ['actions tooltip'],
+												delay: 300,
+												padding: '0.5rem',
+												position: 'bottom-left' as CSTooltipPosition,
+												stickyOnClick: true,
+											}
+										}
+									]}
+								/>`
 							}
 						]
 					}, {
@@ -135,6 +214,37 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 								primaryVariants: 'hidden={true}',
 								component: <CSCheckbox label="Select option" hidden />,
 								code: '<CSCheckbox label="Select option" hidden />'
+							}
+						]
+					}, {
+						propName: 'icons',
+						variations: [
+							{
+								primaryVariants: [
+									'icons={this.state.icons}'
+								],
+								component: <CSCheckbox
+									label="Select option"
+									icons={this.state.icons}
+								/>,
+								code: `<CSCheckbox
+									label="Select option"
+									icons={[
+										{ iconName: 'cart'},
+										{
+											iconName: 'tag',
+											iconOrigin: 'cs' as CSIconOrigin,
+											getTooltip: {
+												content: ['icons tooltip'],
+												delay: 300,
+												maxWidth: '20rem',
+												padding: '0.5rem',
+												position: 'bottom-left' as CSTooltipPosition,
+												stickyOnClick: true
+											}
+										}
+									]}
+								/>`
 							}
 						]
 					}, {
@@ -302,6 +412,13 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 						types: 'string',
 						description: 'Set the checkbox label.'
 					}, {
+						name: 'actions',
+						customTypes: {
+							name: 'CSCheckboxActionsProps',
+							types: 'Array<CSCheckboxActionProps>'
+						},
+						description: 'An array of objects which accepts valid CSIcon & CSButton props, a getTooltip function to show an icon with a tooltip & an action prop for the button action/function.'
+					}, {
 						name: 'borderRadius',
 						types: 'string',
 						default: `'0.125rem'`,
@@ -343,6 +460,13 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 						types: 'boolean',
 						default: 'false',
 						description: 'Control the hidden attribute.'
+					}, {
+						name: 'icons',
+						customTypes: {
+							name: 'CSCheckboxIconProps',
+							types: 'Array<CSCheckboxIconProps>'
+						},
+						description: 'An array of objects which accepts valid CSIcon props or a getTooltip function to show an icon with a tooltip.'
 					}, {
 						name: 'indeterminate',
 						types: ['boolean'],
