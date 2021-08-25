@@ -5,8 +5,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import { FieldDescriptor } from '../../types/FormDescriptor';
 import { ElementWrapper } from '../..';
 import { LocaleSettings } from '../../CSForm';
-import { CSInputText } from '@cloudsense/cs-ui-components';
-import { FormFieldsIcons } from '../../types/FormFieldsIcons';
+import { CSCustomDataIconProps, CSInputText } from '@cloudsense/cs-ui-components';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -98,12 +97,12 @@ it('calls onChange() on change', done => {
 	uut.simulate('change', { target: { value: 'new value' } });
 });
 
-it('renders icons wrapper with icons and tooltip', () => {
-	const icons: Array<FormFieldsIcons> = [{
+it('renders icons wrapper with icons and getTooltip', () => {
+	const icons: Array<CSCustomDataIconProps> = [{
 		iconName: 'activity'
 	}, {
 		iconName: 'info',
-		tooltip: {
+		getTooltip: {
 			content: 'test test'
 		}
 	}];

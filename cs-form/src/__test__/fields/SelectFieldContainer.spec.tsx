@@ -5,7 +5,7 @@ import { act } from 'react-dom/test-utils';
 import { SelectField } from '../../fields/SelectField';
 import { ElementWrapper, LocaleSettings, FieldDescriptor, SelectOption } from '../..';
 import { SelectFieldContainer } from '../../fields/SelectFieldContainer';
-import { FormFieldsIcons } from '../../types/FormFieldsIcons';
+import { CSCustomDataIconProps } from '@cloudsense/cs-ui-components';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -66,12 +66,12 @@ it('renders SelectField with all props including options from fetchPossibleValue
 	expect(renderedSelect.prop('locale')).toBe(locale);
 });
 
-it('renders icons wrapper with icons and tooltip', () => {
-	const icons: Array<FormFieldsIcons> = [{
+it('renders icons wrapper with icons and getTooltip', () => {
+	const icons: Array<CSCustomDataIconProps> = [{
 		iconName: 'activity'
 	}, {
 		iconName: 'info',
-		tooltip: {
+		getTooltip: {
 			content: 'test test'
 		}
 	}];

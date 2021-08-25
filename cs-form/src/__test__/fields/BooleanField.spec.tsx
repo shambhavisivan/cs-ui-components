@@ -6,8 +6,7 @@ import { BooleanField } from '../../fields/BooleanField';
 import { FieldDescriptor } from '../../types/FormDescriptor';
 import { ElementWrapper } from '../..';
 import { LocaleSettings } from '../../CSForm';
-import { CSCheckbox } from '@cloudsense/cs-ui-components';
-import { FormFieldsIcons } from '../../types/FormFieldsIcons';
+import { CSCheckbox, CSCustomDataIconProps } from '@cloudsense/cs-ui-components';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -100,11 +99,11 @@ it('calls handleFieldChange() on change', done => {
 });
 
 it('renders icons wrapper with icons and tooltip', () => {
-	const icons: Array<FormFieldsIcons> = [{
+	const icons: Array<CSCustomDataIconProps> = [{
 		iconName: 'activity'
 	}, {
 		iconName: 'info',
-		tooltip: {
+		getTooltip: {
 			content: 'test test'
 		}
 	}];

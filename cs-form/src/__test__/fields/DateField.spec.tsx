@@ -6,7 +6,7 @@ import DatePicker from 'react-datepicker';
 import { ElementWrapper } from '../..';
 import { FieldDescriptor } from '../../types/FormDescriptor';
 import { LocaleSettings } from '../../CSForm';
-import { FormFieldsIcons } from '../../types/FormFieldsIcons';
+import { CSCustomDataIconProps } from '@cloudsense/cs-ui-components';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -106,12 +106,12 @@ it('calls onChange() on change', done => {
 	uut.find(DatePicker).simulate('change', new Date(Date.UTC(2010, 1, 1)));
 });
 
-it('renders icons wrapper with icons and tooltip', () => {
-	const icons: Array<FormFieldsIcons> = [{
+it('renders icons wrapper with icons and getTooltip', () => {
+	const icons: Array<CSCustomDataIconProps> = [{
 		iconName: 'activity'
 	}, {
 		iconName: 'info',
-		tooltip: {
+		getTooltip: {
 			content: 'test test'
 		}
 	}];

@@ -153,19 +153,21 @@ export class ReferenceField extends React.Component<FormFieldProps, State> {
 							onChange={e => this.handleSearch(e)}
 						/>
 						<span className="icon-search" aria-hidden="true" />
-						{this.state.searchTerm.length ? (
-							<button
-								className="cs-btn cs-btn-transparent cs-btn-icon-only btn-clear"
-								onClick={event => {
-									this.clearSearch();
-								}}
-							>
-								<span className="cs-btn-icon icon-close" />
-							</button>
-						) : null}
-						{this.props.icons &&
-							<FormFieldIcon icons={this.props.icons} />
-						}
+						<div className="input-wrapper-items">
+							{this.state.searchTerm.length ? (
+								<button
+									className="cs-btn cs-btn-transparent cs-btn-icon-only btn-clear"
+									onClick={event => {
+										this.clearSearch();
+									}}
+								>
+									<span className="cs-btn-icon icon-close" />
+								</button>
+							) : null}
+							{this.props.icons &&
+								<FormFieldIcon icons={this.props.icons} />
+							}
+						</div>
 					</div>
 				) : (
 					<div

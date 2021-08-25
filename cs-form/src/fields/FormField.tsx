@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react';
 import { FieldDescriptor } from '../types/FormDescriptor';
-import { FormFieldsIcons } from '../types/FormFieldsIcons';
 import { SimpleField } from './SimpleField';
 import { DateField } from './DateField';
 import { BooleanField } from './BooleanField';
@@ -12,6 +11,7 @@ import { NumberField } from './NumberField';
 import { ReferenceField } from './ReferenceField';
 import { SelectOption } from '../types/SelectOption';
 import { DateTimeField } from './DateTimeField';
+import { CSCustomDataIconProps } from '@cloudsense/cs-ui-components';
 
 export interface FormFieldProps {
 	value: any;
@@ -20,7 +20,7 @@ export interface FormFieldProps {
 	locale: LocaleSettings;
 	wrapper: ElementWrapper;
 	errorMessages?: Array<string>;
-	icons?: Array<FormFieldsIcons>;
+	icons?: Array<CSCustomDataIconProps>;
 	handleFieldChange(newValue: any): void;
 	handleFieldBlur(newValue: any): void;
 	fetchPossibleValues(): Promise<Array<SelectOption>>;

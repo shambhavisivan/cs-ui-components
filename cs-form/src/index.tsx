@@ -3,7 +3,6 @@ import * as fd from './types/FormDescriptor';
 import * as so from './types/SelectOption';
 import * as status from './types/ComponentStatus';
 import * as refOps from './types/ReferenceOption';
-import * as icon from './types/FormFieldsIcons';
 
 export const CSForm = Form.CSForm;
 export type FormSettings = Form.FormSettings;
@@ -22,4 +21,3 @@ export type SelectOption = so.SelectOption;
 export type ValidationError = Form.ValidationErrors;
 export type ReferenceOption = refOps.ReferenceOption;
 export type ReferenceOptionColumn = refOps.ReferenceOptionColumn;
-export type FormFieldsIcons = icon.FormFieldsIcons;

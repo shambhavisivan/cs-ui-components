@@ -7,7 +7,7 @@ import { ElementWrapper } from '../..';
 import { LocaleSettings } from '../../CSForm';
 import { NumberField } from '../../fields/NumberField';
 import ReactDOM from 'react-dom';
-import { FormFieldsIcons } from '../../types/FormFieldsIcons';
+import { CSCustomDataIconProps } from '@cloudsense/cs-ui-components';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -480,13 +480,13 @@ test('Test NumberField does not go into edit mode on focus when it is read only.
 	expect(editTextInput.onchange).toBeNull();
 });
 
-it('renders icons wrapper with icons and tooltip', done => {
+it('renders icons wrapper with icons and getTooltip', done => {
 
-	const icons: Array<FormFieldsIcons> = [{
+	const icons: Array<CSCustomDataIconProps> = [{
 		iconName: 'activity'
 	}, {
 		iconName: 'info',
-		tooltip: {
+		getTooltip: {
 			content: 'test test'
 		}
 	}];

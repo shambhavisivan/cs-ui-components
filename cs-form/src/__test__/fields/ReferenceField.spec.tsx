@@ -6,7 +6,7 @@ import ReactTestUtils, { act } from 'react-dom/test-utils';
 import { ElementWrapper, LocaleSettings, FieldDescriptor } from '../..';
 import { ReferenceField } from '../../fields/ReferenceField';
 import { ReferenceOption } from '../../../dist';
-import { FormFieldsIcons } from '../../types/FormFieldsIcons';
+import { CSCustomDataIconProps } from '@cloudsense/cs-ui-components';
 
 /** TODO: this should happen at start of the test suite. */
 configure({ adapter: new Adapter() });
@@ -241,13 +241,13 @@ it('handleOutsideClick should do nothing when not in edit mode', () => {
 	expect(mockHandleChange).toHaveBeenCalledTimes(0);
 });
 
-it('renders icons wrapper with icons and tooltip', () => {
+it('renders icons wrapper with icons and getTooltip', () => {
 	const mockHandleChange = jest.fn();
-	const icons: Array<FormFieldsIcons> = [{
+	const icons: Array<CSCustomDataIconProps> = [{
 		iconName: 'activity'
 	}, {
 		iconName: 'info',
-		tooltip: {
+		getTooltip: {
 			content: 'test test'
 		}
 	}];

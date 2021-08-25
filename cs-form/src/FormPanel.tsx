@@ -5,7 +5,7 @@ import { FormPanelDescriptor, FieldDescriptor } from './types/FormDescriptor';
 import { calculateComponentStatus } from './utils/ComponentStatusUtil';
 import { SelectOption } from './types/SelectOption';
 import { LocaleSettings } from './CSForm';
-import { FormFieldsIcons } from './types/FormFieldsIcons';
+import { CSCustomDataIconProps } from '@cloudsense/cs-ui-components';
 
 export interface FormPanelProps {
 	descriptor: FormPanelDescriptor;
@@ -14,7 +14,7 @@ export interface FormPanelProps {
 	locale: LocaleSettings;
 	formSettings: FormSettings;
 	wrapper: ElementWrapper;
-	icons?: Array<FormFieldsIcons>;
+	icons?: Array<CSCustomDataIconProps>;
 	fetchPossibleValues(field: FieldDescriptor): Promise<Array<SelectOption>>;
 	fetchReferenceOptions?(
 		field: FieldDescriptor,

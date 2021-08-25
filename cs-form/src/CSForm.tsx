@@ -16,7 +16,7 @@ import { ErrorPanel } from './ErrorPanel';
 import { NumberFieldLocale } from './fields/NumberField';
 import { DateFieldLocale } from './fields/DateField';
 import { ReferenceOption } from './types/ReferenceOption';
-import { FormFieldsIcons } from './types/FormFieldsIcons';
+import { CSCustomDataIconProps } from '@cloudsense/cs-ui-components';
 
 export interface LocaleSettings {
 	dates: DateFieldLocale;
@@ -157,7 +157,7 @@ export interface AllFormProps {
 	/**
 	 * Renders inline icons or tooltips for all form fields
 	 */
-	icons?: Array<FormFieldsIcons>;
+	icons?: Array<CSCustomDataIconProps>;
 	/**
 	 * Called whenever the form object changes.
 	 * @param data New form object.
@@ -223,7 +223,7 @@ export class CSForm extends React.Component<FormProps, FormState> {
 			props.labels
 		);
 
-		this.state = {data: undefined};
+		this.state = { data: undefined };
 	}
 
 	/**
@@ -236,7 +236,7 @@ export class CSForm extends React.Component<FormProps, FormState> {
 		if ('update' in this.props) {
 			this.props.update(newData, this.validate(newData));
 		} else {
-			this.setState({data: newData});
+			this.setState({ data: newData });
 		}
 	}
 
@@ -249,7 +249,7 @@ export class CSForm extends React.Component<FormProps, FormState> {
 		const newData = cloneAndReplaceField(this.props.data, name, newValue);
 		if ('onBlur' in this.props) {
 			this.props.onBlur(newData, this.validate(newData));
-			this.setState({data: undefined});
+			this.setState({ data: undefined });
 		} else {
 			this.props.update(newData, this.validate(newData));
 		}
