@@ -454,9 +454,6 @@
 					@include cd(--cs-button-c, 0.15);
 				}
 			}
-			&:active::after {
-				--cs-button-br: var(--cs-btn-custom-c, var(--cs-button-brand-br));
-			}
 			&:disabled::after {
 				@include css4 {
 					border: 1px solid cvar(--cs-transparent);
