@@ -2,6 +2,15 @@
 
 Generic configurable React form component.
 
+### 1.0.0-alpha.118:
+* Changed type for rendering icons throughout the project.
+
+### 1.0.0-alpha.117:
+* Added support for rendering icons and tooltips to form fields.
+
+### 1.0.0-alpha.116:
+* Fix onBlur for input fields.
+
 ### 1.0.0-alpha.115:
 * Added onBlur option to csForm component that is called whenever the form loses focus.
 
