@@ -3,10 +3,10 @@ import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSLabel from './CSLabel';
-import CSTooltip, { CSTooltipIconSize, CSTooltipPosition } from './CSTooltip';
-import CSButton from './CSButton';
+import { CSTooltipPosition } from './CSTooltip';
 import { CSCustomDataIconProps, CSCustomDataActionProps } from '../util/CustomData';
-import CSIcon, { CSIconOrigin } from './CSIcon';
+import CSCustomDataIcons from './custom-data/CSCustomDataIcons';
+import CSCustomDataActions from './custom-data/CSCustomDataActions';
 
 export type CSToggleLabelPosition = 'default' | 'left';
 
@@ -103,27 +103,6 @@ class CSToggle extends React.Component<CSToggleProps> {
 			actionsList = actions;
 		}
 
-		/* Render actions button */
-		function getActionsBtn(action: CSCustomDataActionProps) {
-			return (
-				<CSButton
-					btnStyle={action.btnStyle}
-					btnType={action.btnType}
-					label={action.name}
-					labelHidden={action.labelHidden}
-					onClick={(event: any) => {
-						event.stopPropagation();
-						action.action();
-					}}
-					iconColor={action.icon.iconColor}
-					iconName={action.icon.iconName}
-					iconOrigin={action.icon.iconOrigin as CSIconOrigin}
-					iconSize={action.icon.iconSize}
-					size={action.size}
-				/>
-			);
-		}
-
 		return (
 			<>
 				<div className={toggleElementWrapperClasses}>
@@ -165,85 +144,11 @@ class CSToggle extends React.Component<CSToggleProps> {
 						{error
 							&& errorTooltip
 							&& <CSFieldErrorMsg message={errorMessage} toolTipMessage={errorTooltip} />}
-						{/* Icons, Actions */}
 						<div className="cs-toggle-options">
 							{/* Icons */}
-							{icons?.length > 0
-								? (
-									<div className="cs-toggle-option cs-toggle-icons">
-										{icons.map((icon) => {
-											let tooltipContents;
-											if (icon.getTooltip) {
-												tooltipContents = icon.getTooltip;
-											}
-											return (
-												<React.Fragment key={icon.iconName}>
-													{icon.getTooltip ? (
-														<CSTooltip
-															content={tooltipContents.content}
-															delayTooltip={tooltipContents.delay}
-															height={tooltipContents.height}
-															iconName={icon.iconName}
-															iconColor={icon.iconColor}
-															iconOrigin={icon.iconOrigin as CSIconOrigin}
-															iconSize={icon.iconSize as CSTooltipIconSize}
-															maxHeight={tooltipContents.maxHeight}
-															maxWidth={tooltipContents.maxWidth}
-															padding={tooltipContents.padding}
-															position={tooltipContents.position}
-															stickyOnClick={tooltipContents.stickyOnClick}
-															variant={tooltipContents.variant}
-															width={tooltipContents.width as CSTooltipIconSize}
-														/>
-													) :	(
-														<CSIcon
-															className="cs-text-display-item"
-															name={icon.iconName}
-															color={icon.iconColor}
-															origin={icon.iconOrigin as CSIconOrigin}
-															size={icon.iconSize}
-														/>
-													)}
-												</React.Fragment>
-											);
-										})}
-									</div>
-								)
-								: null}
-
+							{icons?.length > 0 ? (<CSCustomDataIcons icons={icons} />) : null}
 							{/* Actions */}
-							{actionsList?.length > 0
-								? (
-									<div className="cs-toggle-option cs-toggle-actions">
-										{actions.map((action: CSCustomDataActionProps) => {
-											let tooltipContents;
-											if (action.getTooltip) {
-												tooltipContents = action.getTooltip;
-											}
-											return (
-												<React.Fragment key={action.name}>
-													{tooltipContents ? (
-														<CSTooltip
-															content={tooltipContents.content}
-															delayTooltip={tooltipContents.delay}
-															height={tooltipContents.height}
-															maxHeight={tooltipContents.maxHeight}
-															maxWidth={tooltipContents.maxWidth}
-															padding={tooltipContents.padding}
-															position={tooltipContents.position}
-															stickyOnClick={tooltipContents.stickyOnClick}
-															variant={tooltipContents.variant}
-															width={tooltipContents.width as CSTooltipIconSize}
-														>
-															{getActionsBtn(action)}
-														</CSTooltip>
-													) : getActionsBtn(action)}
-												</React.Fragment>
-											);
-										})}
-									</div>
-								)
-								: null}
+							{actionsList?.length > 0 ? (<CSCustomDataActions actions={actions} />) : null}
 						</div>
 					</div>
 					{!errorTooltip

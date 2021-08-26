@@ -38,7 +38,9 @@ import CSCurrency, {
 	CSSignDisplay,
 	CSCurrencySign,
 } from './components/CSCurrency';
-import CSCustomData from './components/CSCustomData';
+import CSCustomData from './components/custom-data/CSCustomData';
+import CSCustomDataActions from './components/custom-data/CSCustomDataActions';
+import CSCustomDataIcons from './components/custom-data/CSCustomDataIcons';
 import { CSCustomDataIcon, CSCustomDataTooltip, CSCustomDataIconProps, CSCustomDataActionProps, CSCustomDataMenuVariant } from './util/CustomData';
 import CSCustomSelect, { CSCustomSelectExportValueType } from './components/custom-select/CSCustomSelect';
 import CSDataTable, {
@@ -186,6 +188,8 @@ export {
 	CSSignDisplay,
 	CSCurrencySign,
 	CSCustomData,
+	CSCustomDataActions,
+	CSCustomDataIcons,
 	CSCustomDataIcon,
 	CSCustomDataTooltip,
 	CSCustomDataIconProps,
