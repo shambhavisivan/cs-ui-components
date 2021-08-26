@@ -79,12 +79,12 @@
 				}
 			}
 
-			&:indeterminate + .cs-checkbox-faux {
-
+			&.cs-checkbox-indeterminate + .cs-checkbox-faux {
 				&::after {
 					display: block;
 					content: "";
 					width: 0.5rem;
+					height: auto;
 					position: absolute;
 					top: 50%;
 					left: 50%;
@@ -103,7 +103,6 @@
 					&::after {
 						@include css4 {
 							border-bottom: 2px solid cvar(--cs-checkbox-brand-indeterminate-br);
-
 						}
 					}
 				}

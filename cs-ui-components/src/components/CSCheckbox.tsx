@@ -59,20 +59,6 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 		this.uniqueAutoId = props.id ? props.id : uuidv4();
 	}
 
-	componentDidMount() {
-		const { indeterminate } = this.props;
-
-		if (indeterminate) this.setIndeterminate(true);
-	}
-
-	componentDidUpdate(prevProps: CSCheckboxProps) {
-		const { indeterminate } = this.props;
-
-		if (prevProps.indeterminate !== indeterminate) {
-			this.setIndeterminate(indeterminate);
-		}
-	}
-
 	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { readOnly, onChange } = this.props;
 
@@ -82,12 +68,6 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 
 		if (onChange) {
 			onChange(e);
-		}
-	}
-
-	setIndeterminate = (value: boolean) => {
-		if (this.checkboxInnerRef.current) {
-			this.checkboxInnerRef.current.indeterminate = value;
 		}
 	}
 
@@ -127,6 +107,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 			{
 				'cs-checkbox-error': error === true,
 				'cs-checkbox-read-only': readOnly,
+				'cs-checkbox-indeterminate': indeterminate,
 			},
 		);
 		const checkboxWrapperClasses = classNames(
@@ -191,6 +172,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 								aria-readonly={readOnly}
 								aria-required={required}
 								aria-invalid={error}
+								aria-checked={indeterminate ? 'mixed' : checked}
 								onKeyDown={onKeyDown}
 								{...rest}
 							/>
