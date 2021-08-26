@@ -5,27 +5,32 @@ import Preview from '../Preview';
 
 interface CSCheckboxPreviewState {
 	checked: boolean;
+	[key: string]: boolean;
 }
 
 class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
-	state = {
-		checked: true,
-		icons: [
-			{ iconName: 'cart'},
-			{
-				iconName: 'tag',
-				iconOrigin: 'cs' as CSIconOrigin,
-				getTooltip: {
-					content: ['icons tooltip'],
-					delay: 300,
-					maxWidth: '20rem',
-					padding: '0.5rem',
-					position: 'bottom-left' as CSTooltipPosition,
-					stickyOnClick: true
-				}
+	state: CSCheckboxPreviewState = {
+		checked: true
+	};
+
+	icons = [
+		{ iconName: 'cart'},
+		{
+			iconName: 'tag',
+			iconOrigin: 'cs' as CSIconOrigin,
+			getTooltip: {
+				content: ['icons tooltip'],
+				delay: 300,
+				maxWidth: '20rem',
+				padding: '0.5rem',
+				position: 'bottom-left' as CSTooltipPosition,
+				stickyOnClick: true
 			}
-		],
-		actions: [
+		}
+	];
+
+	actions = (
+		[
 			{
 				action: () => alert('Delete option called'),
 				labelHidden: true,
@@ -48,11 +53,15 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 				}
 			}
 		]
-	};
+	);
 
-	handleChange = () => alert('Checkbox has been toggled.');
-	handleClick = () => alert('Checkbox has been clicked.');
-	handleKeyDown = () => alert('Key has been pressed.');
+	handleChange = (event: any) => {
+		this.setState({ onChange: event.target.checked });
+		alert('Checkbox has been toggled.');
+	}
+	handleKeyDown = (event: any) => {
+		alert(`Key ${event.key} has been pressed.`);
+	}
 
 	getDoc = () => ({
 		name: 'Checkbox',
@@ -70,8 +79,16 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 						},
 						variations: [
 							{
-								component: <CSCheckbox label="Select option" />,
-								code: '<CSCheckbox label="Select option" />'
+								component: <CSCheckbox
+									label="Select option"
+									checked={this.state.label}
+									onChange={(event: any) => this.setState({ label: event.target.checked })}
+								/>,
+								code: `<CSCheckbox
+									label="Select option"
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
+								/>`
 							}
 						]
 					}, {
@@ -79,14 +96,18 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 						variations: [
 							{
 								primaryVariants: [
-									'actions={this.state.actions}'
+									'actions={this.actions}'
 								],
 								component: <CSCheckbox
 									label="Select option"
-									actions={this.state.actions}
+									checked={this.state.actions}
+									onChange={(event: any) => this.setState({ actions: event.target.checked })}
+									actions={this.actions}
 								/>,
 								code: `<CSCheckbox
 									label="Select option"
+									checked={this.state.actions}
+									onChange={(event: any) => this.setState({ actions: event.target.checked })}
 									actions={[
 										{
 											action: () => alert('Delete option called'),
@@ -118,8 +139,18 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 						variations: [
 							{
 								primaryVariants: 'borderRadius="0.5rem"',
-								component: <CSCheckbox label="Select option" borderRadius="0.5rem" />,
-								code: '<CSCheckbox label="Select option" borderRadius="0.5rem" />'
+								component: <CSCheckbox
+									label="Select option"
+									borderRadius="0.5rem"
+									checked={this.state.borderRadius}
+									onChange={(event: any) => this.setState({ borderRadius: event.target.checked })}
+								/>,
+								code: `<CSCheckbox
+									label="Select option"
+									borderRadius="0.5rem"
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
+								/>`
 							}
 						]
 					}, {
@@ -158,8 +189,18 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 						variations: [
 							{
 								primaryVariants: 'error={true}',
-								component: <CSCheckbox label="Select option" error />,
-								code: '<CSCheckbox label="Select option" error />'
+								component: <CSCheckbox
+									label="Select option"
+									error
+									checked={this.state.error}
+									onChange={(event: any) => this.setState({ error: event.target.checked })}
+								/>,
+								code: `<CSCheckbox
+									label="Select option"
+									error
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
+								/>`
 							}
 						]
 					}, {
@@ -171,11 +212,15 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 									label="Select option"
 									error
 									errorMessage="Error message."
+									checked={this.state.errorMessage}
+									onChange={(event: any) => this.setState({ errorMessage: event.target.checked })}
 								/>,
 								code: `<CSCheckbox
 									label="Select option"
 									error
 									errorMessage="Error message."
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
 								/>`
 							}
 						]
@@ -190,12 +235,16 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 									error
 									errorMessage="Error message."
 									errorTooltip
+									checked={this.state.errorTooltip}
+									onChange={(event: any) => this.setState({ errorTooltip: event.target.checked })}
 								/>,
 								code: `<CSInputText
 									label="Select option"
 									error
 									errorMessage="Error message."
 									errorTooltip
+									checked={this.state.errorTooltip}
+									onChange={(event: any) => this.setState({ errorTooltip: event.target.checked })}
 								/>`
 							}
 						]
@@ -203,8 +252,18 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 						propName: 'helpText',
 						variations: [
 							{
-								component: <CSCheckbox label="Select option" helpText="Help text example" />,
-								code: '<CSCheckbox label="Select option" helpText="Help text example" />'
+								component: <CSCheckbox
+									label="Select option"
+									helpText="Help text example"
+									checked={this.state.helpText}
+									onChange={(event: any) => this.setState({ helpText: event.target.checked })}
+								/>,
+								code: `<CSCheckbox
+									label="Select option"
+									helpText="Help text example"
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
+								/>`
 							}
 						]
 					}, {
@@ -221,14 +280,18 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 						variations: [
 							{
 								primaryVariants: [
-									'icons={this.state.icons}'
+									'icons={this.icons}'
 								],
 								component: <CSCheckbox
 									label="Select option"
-									icons={this.state.icons}
+									checked={this.state.icons}
+									onChange={(event: any) => this.setState({ icons: event.target.checked })}
+									icons={this.icons}
 								/>,
 								code: `<CSCheckbox
 									label="Select option"
+									checked={this.state.icons}
+									onChange={(event: any) => this.setState({ icons: event.target.checked })}
 									icons={[
 										{ iconName: 'cart'},
 										{
@@ -252,14 +315,35 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 						variations: [
 							{
 								primaryVariants: 'indeterminate={true}',
-								component: <CSCheckbox label="Select option" indeterminate />,
-								code: '<CSCheckbox label="Select option" indeterminate />'
-							},
-							{
+								component: <CSCheckbox
+									label="Select option"
+									indeterminate
+									checked={this.state.indeterminate}
+									onChange={(event: any) => this.setState({ indeterminate: event.target.checked })}
+								/>,
+								code: `<CSCheckbox
+									label="Select option"
+									indeterminate
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
+								/>`
+							}, {
 								primaryVariants: 'indeterminate={true}',
 								secondaryVariants: 'variant="brand"',
-								component: <CSCheckbox label="Select option" variant="brand" indeterminate />,
-								code: '<CSCheckbox label="Select option" variant="brand" indeterminate />'
+								component: <CSCheckbox
+									label="Select option"
+									variant="brand"
+									indeterminate
+									checked={this.state.indeterminateBrand}
+									onChange={(event: any) => this.setState({ indeterminateBrand: event.target.checked })}
+								/>,
+								code: `<CSCheckbox
+									label="Select option"
+									variant="brand"
+									indeterminate
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
+								/>`
 							}
 						]
 					}, {
@@ -267,8 +351,18 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 						variations: [
 							{
 								primaryVariants: 'labelHidden={true}',
-								component: <CSCheckbox label="Select option" labelHidden />,
-								code: '<CSCheckbox label="Select option" labelHidden />'
+								component: <CSCheckbox
+									label="Select option"
+									labelHidden
+									checked={this.state.labelHidden}
+									onChange={(event: any) => this.setState({ labelHidden: event.target.checked })}
+								/>,
+								code: `<CSCheckbox
+									label="Select option"
+									labelHidden
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
+								/>`
 							}
 						]
 					}, {
@@ -276,13 +370,33 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 						variations: [
 							{
 								primaryVariants: 'labelPosition="left"',
-								component: <CSCheckbox label="Select option" labelPosition="left" />,
-								code: '<CSCheckbox label="Select option" labelPosition="left" />'
+								component: <CSCheckbox
+									label="Select option"
+									labelPosition="left"
+									checked={this.state.labelPosition}
+									onChange={(event: any) => this.setState({ labelPosition: event.target.checked })}
+								/>,
+								code: `<CSCheckbox
+									label="Select option"
+									labelPosition="left"
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
+								/>`
 							},
 							{
 								primaryVariants: 'labelPosition="right"',
-								component: <CSCheckbox label="Select option" labelPosition="right" />,
-								code: '<CSCheckbox label="Select option" labelPosition="right" />'
+								component: <CSCheckbox
+									label="Select option"
+									labelPosition="right"
+									checked={this.state.labelPositionRight}
+									onChange={(event: any) => this.setState({ labelPositionRight: event.target.checked })}
+								/>,
+								code: `<CSCheckbox
+									label="Select option"
+									labelPosition="right"
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
+								/>`
 							}
 						]
 					}, {
@@ -290,32 +404,70 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 						variations: [
 							{
 								primaryVariants: 'labelTitle={true}',
-								component: <CSCheckbox label="Select option" labelTitle />,
-								code: '<CSCheckbox label="Select option" labelTitle />'
+								component: <CSCheckbox
+									label="Select option"
+									labelTitle
+									checked={this.state.labelTitle}
+									onChange={(event: any) => this.setState({ labelTitle: event.target.checked })}
+								/>,
+								code: `<CSCheckbox
+									label="Select option"
+									labelTitle
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
+								/>`
 							}
 						]
 					}, {
 						propName: 'name',
 						variations: [
 							{
-								component: <CSCheckbox label="Select option" name="Checkbox" />,
-								code: '<CSCheckbox label="Select option" name="Checkbox" />'
+								component: <CSCheckbox
+									label="Select option"
+									name="Checkbox"
+									checked={this.state.name}
+									onChange={(event: any) => this.setState({ name: event.target.checked })}
+								/>,
+								code: `<CSCheckbox
+									label="Select option"
+									name="Checkbox"
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
+								/>`
 							}
 						]
 					}, {
 						propName: 'onChange',
 						variations: [
 							{
-								component: <CSCheckbox label="Select option" onChange={this.handleChange} />,
-								code: '<CSCheckbox label="Select option" onChange={this.handleChange} />'
+								component: <CSCheckbox
+									label="Select option"
+									checked={this.state.onChange}
+									onChange={this.handleChange}
+								/>,
+								code: `<CSCheckbox
+									label="Select option"
+									checked={this.state.checked}
+									onChange={this.handleChange}
+								/>`
 							}
 						]
 					}, {
 						propName: 'onKeyDown',
 						variations: [
 							{
-								component: <CSCheckbox label="Select option" onKeyDown={this.handleKeyDown} />,
-								code: '<CSCheckbox label="Select option" onKeyDown={this.handleKeyDown} />'
+								component: <CSCheckbox
+									label="Select option"
+									checked={this.state.onKeyDown}
+									onChange={(event: any) => this.setState({ onKeyDown: event.target.checked })}
+									onKeyDown={this.handleKeyDown}
+								/>,
+								code: `<CSCheckbox
+									label="Select option"
+									checked={this.state.onKeyDown}
+									onChange={(event: any) => this.setState({ onKeyDown: event.target.checked })}
+									onKeyDown={this.handleKeyDown}
+								/>`
 							}
 						]
 					}, {
@@ -340,16 +492,36 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 						variations: [
 							{
 								primaryVariants: 'required={true}',
-								component: <CSCheckbox label="Select option" required />,
-								code: '<CSCheckbox label="Select option" required />'
+								component: <CSCheckbox
+									label="Select option"
+									required
+									checked={this.state.required}
+									onChange={(event: any) => this.setState({ required: event.target.checked })}
+								/>,
+								code: `<CSCheckbox
+									label="Select option"
+									required
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
+								/>`
 							}
 						]
 					}, {
 						propName: 'title',
 						variations: [
 							{
-								component: <CSCheckbox label="Select option" title="This is a title" />,
-								code: '<CSCheckbox label="Select option" title="This is a title" />'
+								component: <CSCheckbox
+									label="Select option"
+									title="This is a title"
+									checked={this.state.title}
+									onChange={(event: any) => this.setState({ title: event.target.checked })}
+								/>,
+								code: `<CSCheckbox
+									label="Select option"
+									title="This is a title"
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
+								/>`
 							}
 						]
 					}, {
@@ -366,11 +538,15 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 									label="Select option"
 									helpText="Help text example"
 									tooltipPosition="top-left"
+									checked={this.state.tooltipPosition}
+									onChange={(event: any) => this.setState({ tooltipPosition: event.target.checked })}
 								/>,
 								code: `<CSCheckbox
 									label="Select option"
 									helpText="Help text example"
 									tooltipPosition="top-left"
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
 								/>`
 							}
 						]
@@ -379,8 +555,18 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 						variations: [
 							{
 								primaryVariants: 'variant="brand"',
-								component: <CSCheckbox label="Select option" variant="brand" />,
-								code: '<CSCheckbox label="Select option" variant="brand" />'
+								component: <CSCheckbox
+									label="Select option"
+									variant="brand"
+									checked={this.state.brand}
+									onChange={(event: any) => this.setState({ brand: event.target.checked })}
+								/>,
+								code: `<CSCheckbox
+									label="Select option"
+									variant="brand"
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
+								/>`
 							}
 						]
 					}, {
@@ -395,11 +581,15 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 									label="Select option"
 									id="custom-id"
 									className="custom-br-mint"
+									checked={this.state.idClassname}
+									onChange={(event: any) => this.setState({ idClassname: event.target.checked })}
 								/>,
 								code: `<CSCheckbox
 									label="Select option"
 									id="custom-id"
 									className="custom-br-mint"
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
 								/>`
 							}
 						]
