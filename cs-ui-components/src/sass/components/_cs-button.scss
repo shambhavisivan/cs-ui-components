@@ -239,9 +239,11 @@
 				&:not(:disabled) {
 					.cs-btn-label {
 						filter: none;
+						@include sc(--cs-button-c);
 					}
 					.cs-btn-icon .cs-icon {
-						@include cd(--cs-button-icon-brand-c, 0.15);
+						filter: none;
+						@include sc(--cs-button-icon-brand-c);
 					}
 				}
 			}
@@ -310,7 +312,8 @@
 						@include sc(--cs-button-inverse-c);
 					}
 					.cs-btn-icon .cs-icon {
-						@include cd(--cs-button-icon-brand-c, 0.15);
+						filter: none;
+						@include sc(--cs-button-icon-brand-c);
 					}
 				}
 			}
@@ -381,7 +384,8 @@
 						@include sc(--cs-button-inverse-c);
 					}
 					.cs-btn-icon .cs-icon {
-						@include cd(--cs-button-icon-brand-c, 0.15);
+						filter: none;
+						@include sc(--cs-button-icon-brand-c);
 					}
 				}
 			}

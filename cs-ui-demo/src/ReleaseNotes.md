@@ -3,6 +3,8 @@
 ## 2.0.1
 * CSAlert
   * fixed close button styling when `styleFormat="scoped"`
+* CSButton
+  * removed icon darken while hovering on `btnStyle="brand"`
 * CSRadio
   * added `hidden` prop
 
