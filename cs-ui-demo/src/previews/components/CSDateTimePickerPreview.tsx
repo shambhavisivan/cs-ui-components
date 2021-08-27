@@ -101,6 +101,23 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 							}
 						]
 					}, {
+						propName: 'onChange',
+						variations: [
+							{
+								secondaryVariants: 'selected={this.state.selected}',
+								component: <CSDateTimePicker
+									label="Enter date"
+									selected={this.state.dateOnChange}
+									onChange={this.handleChange}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									selected={this.state.selected}
+									onChange={this.handleChange}
+								/>`
+							}
+						]
+					}, {
 						propName: 'actions',
 						variations: [
 							{
@@ -142,40 +159,6 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 									selected={this.state.dateActions}
 									onChange={(date: Date) => this.setDate(date, 'Actions')}
 									width="30rem"
-								/>`
-							}
-						]
-					}, {
-						propName: 'onChange',
-						variations: [
-							{
-								secondaryVariants: 'selected={this.state.selected}',
-								component: <CSDateTimePicker
-									label="Enter date"
-									selected={this.state.dateOnChange}
-									onChange={this.handleChange}
-								/>,
-								code: `<CSDateTimePicker
-									label="Enter date"
-									selected={this.state.selected}
-									onChange={this.handleChange}
-								/>`
-							}
-						]
-					}, {
-						propName: 'selected',
-						variations: [
-							{
-								secondaryVariants: 'onChange={() => any}',
-								component: <CSDateTimePicker
-									label="Enter date"
-									selected={this.state.dateSelected}
-									onChange={(date: Date) => this.setDate(date, 'Selected')}
-								/>,
-								code: `<CSDateTimePicker
-									label="Enter date"
-									selected={this.state.selected}
-									onChange={(date: Date) => this.setState({ selected: date })}
 								/>`
 							}
 						]
@@ -752,6 +735,23 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 							}
 						]
 					}, {
+						propName: 'selected',
+						variations: [
+							{
+								secondaryVariants: 'onChange={() => any}',
+								component: <CSDateTimePicker
+									label="Enter date"
+									selected={this.state.dateSelected}
+									onChange={(date: Date) => this.setDate(date, 'Selected')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
+							}
+						]
+					}, {
 						propName: 'showMonthDropdown',
 						variations: [
 							{
@@ -1075,22 +1075,17 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 						types: 'string',
 						description: 'Set the datetimepicker label.'
 					}, {
+						name: 'onChange',
+						required: true,
+						types: '(Date) => any',
+						description: 'Handler method for the change event.'
+					}, {
 						name: 'actions',
 						customTypes: {
 							name: 'CSDateTimePickerActionsProps',
 							types: 'Array<CSDateTimePickerActionProps>'
 						},
 						description: 'An array of objects which accepts valid CSIcon & CSButton props, a getTooltip function to show an icon with a tooltip & an action prop for the button action/function.'
-					}, {
-						name: 'onChange',
-						required: true,
-						types: '(Date) => any',
-						description: 'Handler method for the change event.'
-					}, {
-						name: 'selected',
-						required: true,
-						types: 'Date',
-						description: 'Set the selected date and time.'
 					}, {
 						name: 'autoFocus',
 						types: 'boolean',
@@ -1217,6 +1212,11 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 						types: 'boolean',
 						default: 'false',
 						description: 'Set the year dropdown to fixed height and add a scrollbar.'
+					}, {
+						name: 'selected',
+						required: true,
+						types: 'Date',
+						description: 'Set the selected date and time.'
 					}, {
 						name: 'showMonthDropdown',
 						types: 'boolean',

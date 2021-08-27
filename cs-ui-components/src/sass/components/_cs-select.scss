@@ -5,16 +5,21 @@
 	display: flex;
 	flex-direction: column;
 	position: relative;
+	--cs-select-options-spacing-value: calc(var(--cs-select-options-spacing) - 0.25rem);
+	--cs-select-border-radius-value: var(--cs-lookup-border-radius);
 
 	.cs-tw-error {
 		position: absolute;
-		right: 1.8125rem;
+		right: calc(var(--cs-select-options-spacing-value) - 0.25rem);
 		top: 0.5625rem;
-		pointer-events: none;
 	}
 
 	> .cs-label-wrapper ~ .cs-tw-error {
 		top: 1.75rem;
+	}
+
+	&.cs-select-wrapper-options .cs-tw-error {
+		right: var(--cs-select-options-spacing-value);
 	}
 
 	.cs-select-wrapper-inner {
@@ -29,10 +34,10 @@
 			height: 2rem;
 			transition: border 0.1s linear, background-color 0.1s linear;
 			width: 100%;
-			border-radius: var(--cs-select-border-radius, 0.25rem);
+			border-radius: var(--cs-select-border-radius-value, 0.25rem);
 			-webkit-appearance: none;
 			padding: 0 2rem 0 0.75rem;
-			padding-right: var(--cs-select-options-spacing, 2rem);
+			padding-right: var(--cs-select-options-spacing-value, 2rem);
 			@include sbg(--cs-input-bg);
 			@include css4 {
 				border: 1px solid cvar(--cs-input-br);
@@ -85,7 +90,7 @@
 			}
 
 			&-error-tooltip {
-				padding-inline-end: 3.25rem;
+				padding-right: calc(var(--cs-select-options-spacing-value) + 1.25rem);
 			}
 		}
 

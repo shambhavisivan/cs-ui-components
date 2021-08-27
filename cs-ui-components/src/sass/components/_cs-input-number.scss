@@ -5,10 +5,12 @@
 	display: flex;
 	flex-direction: column;
 	position: relative;
+	--cs-input-number-border-radius-value: var(--cs-input-number-border-radius);
+	--cs-input-number-options-spacing-value: var(--cs-input-number-options-spacing);
 
 	.cs-tooltip-wrapper.cs-tw-error {
 		position: absolute;
-		right: 0.5rem;
+		right: calc(var(--cs-input-number-options-spacing-value) - 0.25rem);
 		top: 0.5625rem;
 	}
 
@@ -22,8 +24,8 @@
 
 	.cs-input-number {
 		@include input;
-		border-radius: var(--cs-input-number-border-radius, 0.25rem);
-		padding-right: var(--cs-input-number-options-spacing);
+		border-radius: var(--cs-input-number-border-radius-value, 0.25rem);
+		padding-right: var(--cs-input-number-options-spacing-value);
 
 		&.cs-input-number-hide-spinner-true {
 			-moz-appearance:textfield;
@@ -50,7 +52,7 @@
 		}
 
 		&.cs-input-number-error-tooltip {
-			padding-right: 1.75rem;
+			padding-right: calc(var(--cs-input-number-options-spacing-value) + 1rem);
 		}
 	}
 

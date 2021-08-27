@@ -209,7 +209,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 
 		return (
 			<>
-				<div className={inputNumberWrapperClasses}>
+				<div className={inputNumberWrapperClasses} style={style}>
 					{(label && !labelHidden)
 						&& (
 							<CSLabel
@@ -250,7 +250,6 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 							onPaste={this.handleOnPaste}
 							title={title}
 							step={step}
-							style={style}
 							ref={this.inputNumberInnerRef}
 							{...rest}
 						/>
@@ -300,7 +299,6 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 									</div>
 								)
 								: null}
-
 							{/* Actions */}
 							{actionsList?.length > 0
 								? (
@@ -335,8 +333,12 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 								)
 								: null}
 						</div>
+						{error
+							&& errorTooltip
+							&& <CSFieldErrorMsg message={errorMessage} toolTipMessage={errorTooltip} />}
 					</div>
-					{(error && errorMessage)
+					{!errorTooltip
+						&& error
 						&& <CSFieldErrorMsg message={errorMessage} />}
 				</div>
 			</>

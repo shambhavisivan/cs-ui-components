@@ -4,6 +4,7 @@
 	max-width: 100%;
 	position: relative;
 	width: var(--datepicker-width, 242px);
+	--cs-datepicker-options-spacing-value: var(--cs-datepicker-options-spacing);
 
 	.cs-datepicker-icon {
 		position: absolute;
@@ -18,11 +19,11 @@
 
 	&.cs-datepicker-error-tooltip {
 		.react-datepicker-wrapper input {
-			padding-right: 3rem;
+			padding-right: calc(var(--cs-datepicker-options-spacing-value) + 1rem);
 		}
 		.cs-tooltip-wrapper.cs-tw-error {
 			position: absolute;
-			right: 1.75rem;
+			right: calc(var(--cs-datepicker-options-spacing-value) - 0.25rem);
 			top: 0.5625rem;
 		}
 		> .cs-label-wrapper ~ .cs-tooltip-wrapper.cs-tw-error {
@@ -30,10 +31,10 @@
 		}
 		&.cs-datepicker-clearable .react-datepicker-wrapper {
 			.react-datepicker__close-icon {
-				right: 2.8125rem;
+				right: calc(var(--cs-datepicker-options-spacing-value) + 1rem);
 			}
 			input {
-				padding-right: 4.5rem;
+				padding-right: calc(var(--cs-datepicker-options-spacing-value) + 2.5rem);
 			}
 		}
 	}
@@ -64,7 +65,7 @@
 			min-height: 2rem;
 			padding: 0 1.8125rem 0 0.75rem;
 			border-radius: var(--cs-datepicker-border-radius, 0.25rem);
-			padding-right: var(--cs-datepicker-options-spacing);
+			padding-right: var(--cs-datepicker-options-spacing-value);
 			margin: 0;
 			transition: border 0.1s linear, background-color 0.1s linear;
 			width: 100%;
@@ -374,7 +375,7 @@
 	}
 
 	&-clearable .react-datepicker-wrapper input {
-		padding-right: 3rem;
+		padding-inline-end: calc(var(--cs-datepicker-options-spacing-value) + 1rem);
 	}
 
 	// datetimepicker
@@ -450,7 +451,7 @@
 .react-datepicker__close-icon {
 	width: 1rem;
 	height: 1rem;
-	right: 1.75rem;
+	right: calc(var(--cs-datepicker-options-spacing-value) - 0.25rem);
 	top: 50%;
 	transform: translateY(-50%);
 	border-radius: 0.25rem;

@@ -128,6 +128,7 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 			'cs-select-wrapper',
 			{
 				'cs-element-hidden': hidden,
+				'cs-select-wrapper-options': actions || icons,
 				[`${className}`]: className,
 			},
 		);
@@ -162,7 +163,7 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 			);
 		}
 		return (
-			<div className={selectWrapperClasses}>
+			<div className={selectWrapperClasses} style={style}>
 				{(label && !labelHidden)
 					&& (
 						<CSLabel
@@ -191,7 +192,6 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 							name={name}
 							value={value}
 							title={title}
-							style={style}
 							ref={this.selectInnerRef}
 							{...rest}
 						>

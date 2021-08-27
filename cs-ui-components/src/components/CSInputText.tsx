@@ -173,7 +173,7 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 		}
 		return (
 			<>
-				<div className={inputTextWrapperClasses}>
+				<div className={inputTextWrapperClasses} style={style}>
 					{(label && !labelHidden)
 						&& (
 							<CSLabel
@@ -205,7 +205,6 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 							onBlur={this.onBlur}
 							onFocus={this.onFocus}
 							title={title}
-							style={style}
 							ref={this.inputTextInnerRef}
 							{...rest}
 						/>
@@ -290,9 +289,12 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 								)
 								: null}
 						</div>
+						{error
+							&& errorTooltip
+							&& <CSFieldErrorMsg message={errorMessage} toolTipMessage={errorTooltip} />}
 					</div>
-
-					{(error && errorMessage)
+					{!errorTooltip
+						&& error
 						&& <CSFieldErrorMsg message={errorMessage} />}
 				</div>
 			</>

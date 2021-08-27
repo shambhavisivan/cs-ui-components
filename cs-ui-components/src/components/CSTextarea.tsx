@@ -127,6 +127,7 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 			'cs-textarea-wrapper',
 			{
 				'cs-element-hidden': hidden,
+				'cs-textarea-wrapper-options': actions || icons,
 				[`${className}`]: className,
 			},
 		);
@@ -158,7 +159,7 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 		}
 		return (
 			<>
-				<div className={textareaWrapperClasses}>
+				<div className={textareaWrapperClasses} style={style}>
 					{(label && !labelHidden)
 						&& (
 							<CSLabel
@@ -183,7 +184,6 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 							aria-required={required}
 							aria-invalid={error}
 							value={value}
-							style={style}
 							onChange={this.handleOnChange}
 							title={title}
 							ref={this.textareaInnerRef}
@@ -191,6 +191,9 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 						/>
 						{/* Icons, Actions */}
 						<div className="cs-textarea-options" ref={this.textareaOptionsWrapperRef}>
+							{error
+								&& errorTooltip
+								&& <CSFieldErrorMsg message={errorMessage} toolTipMessage={errorTooltip} />}
 							{/* Icons */}
 							{icons?.length > 0
 								? (
@@ -270,7 +273,8 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 								: null}
 						</div>
 					</div>
-					{(error && errorMessage)
+					{!errorTooltip
+						&& error
 						&& <CSFieldErrorMsg message={errorMessage} />}
 				</div>
 			</>
