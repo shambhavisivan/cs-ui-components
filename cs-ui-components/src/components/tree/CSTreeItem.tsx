@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useRef } from 'react';
 import classNames from 'classnames';
-import { CSTreeActionType, CSTreeItemInterface, CSTreeItemMetaInterface } from './CSTree';
-import CSButton from '../CSButton';
+import { CSTreeItemInterface, CSTreeItemMetaInterface } from './CSTree';
+import CSButton, { CSButtonProps } from '../CSButton';
 import CSTreeGroup from './CSTreeGroup';
 import CSButtonGroup from '../CSButtonGroup';
 import CSIcon from '../CSIcon';
@@ -21,26 +21,12 @@ const CSTreeItem = ({
 	extraIndent,
 }: CSTreeItemProps) => {
 	const {
-		activeItem,
-		setActiveItem,
-		toggleActiveItem,
-		checkedItems,
-		checkedItemsArray,
-		addCheckedItem,
-		removeCheckedItem,
-		toggleCheckedItem,
-		indeterminateItems,
-		indeterminateItemsArray,
-		addIndeterminateItem,
-		removeIndeterminateItem,
-		toggleIndeterminateItem,
-		readOnlyItems,
-		readOnlyItemsArray,
-		addReadOnlyItem,
-		removeReadOnlyItem,
-		toggleReadOnlyItem,
+		activeKey,
+		indeterminateKeys,
 		onItemClick,
 		onSelectChange,
+		readOnlyKeys,
+		selectedKeys,
 		treeCollapsible,
 		treeDisplayActionsOnHover,
 		treeDefaultCollapsed,
@@ -64,42 +50,16 @@ const CSTreeItem = ({
 		selectable,
 	} = item;
 
-	const itemMeta = {
+	const meta: CSTreeItemMetaInterface = {
 		level,
-		// Active state controls
-		active: activeItem === key,
-		activeKey: activeItem,
-		setActive: (isActive: boolean, activeKey?: string) => setActiveItem(isActive ? (activeKey || key) : null),
-		toggleActive: (activeKey?: string) => toggleActiveItem(activeKey || key),
-		// Checked state controls
-		checked: !!checkedItems[key],
-		checkedKeys: checkedItemsArray,
-		setChecked: (isChecked: boolean, checkedKey?: string) => {
-			if (isChecked) addCheckedItem(checkedKey || key);
-			else removeCheckedItem(checkedKey || key);
-		},
-		toggleChecked: (checkedKey?: string) => toggleCheckedItem(checkedKey || key),
-		// Indeterminate state controls
-		indeterminate: !!indeterminateItems[key],
-		indeterminateKeys: indeterminateItemsArray,
-		setIndeterminate: (isIndeterminate: boolean, indeterminateKey?: string) => {
-			if (isIndeterminate) addIndeterminateItem(indeterminateKey || key);
-			else removeIndeterminateItem(indeterminateKey || key);
-		},
-		toggleIndeterminate: (indeterminateKey?: string) => toggleIndeterminateItem(indeterminateKey || key),
-		// Read only state controls
-		readOnly: !!readOnlyItems[key],
-		readOnlyKeys: readOnlyItemsArray,
-		setReadOnly: (isReadOnly: boolean, readOnlyKey?: string) => {
-			if (isReadOnly) addReadOnlyItem(readOnlyKey || key);
-			else removeReadOnlyItem(readOnlyKey || key);
-		},
-		toggleReadOnly: (readOnlyKey?: string) => toggleReadOnlyItem(readOnlyKey || key),
-		// Expanded state controls
+		active: activeKey === key,
+		selected: selectedKeys.has(key),
+		indeterminate: indeterminateKeys.has(key),
+		readOnly: readOnlyKeys.has(key),
 		expanded,
 		setExpanded,
 		toggleExpanded: () => setExpanded((prevExpanded: boolean) => !prevExpanded),
-	} as CSTreeItemMetaInterface;
+	};
 
 	const shouldHideActions = useMemo(() => (
 		displayActionsOnHover === undefined ? treeDisplayActionsOnHover : displayActionsOnHover
@@ -117,18 +77,12 @@ const CSTreeItem = ({
 
 	const handleClick = (event?: React.MouseEvent<HTMLLIElement>) => {
 		event?.stopPropagation();
-		onItemClick?.({
-			...item,
-			meta: itemMeta,
-		});
+		onItemClick?.(event, { ...item, meta });
 	};
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		event.stopPropagation();
-		onSelectChange?.({
-			...item,
-			meta: itemMeta,
-		});
+		onSelectChange?.(event, { ...item, meta });
 	};
 
 	const handleKeyDown = (event: React.KeyboardEvent<HTMLLIElement>) => {
@@ -223,17 +177,17 @@ const CSTreeItem = ({
 				iconColor="#706e6b"
 				iconRotate={expanded ? 0 : -90}
 				className="cs-tree-collapse-button"
-				onClick={(event) => {
+				onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
 					event.stopPropagation();
-					itemMeta.toggleExpanded();
+					meta.toggleExpanded();
 				}}
 			/>
 		);
 	};
 
 	const renderLabel = () => {
-		if (itemMeta.indeterminate) return 'Indeterminate';
-		if (itemMeta.checked) return 'Deselect item';
+		if (meta.indeterminate) return 'Indeterminate';
+		if (meta.selected) return 'Deselect item';
 		return 'Select item';
 	};
 
@@ -244,17 +198,17 @@ const CSTreeItem = ({
 			<CSCheckbox
 				label={renderLabel()}
 				labelHidden
-				indeterminate={itemMeta.indeterminate}
-				checked={itemMeta.checked}
+				indeterminate={meta.indeterminate}
+				checked={meta.selected}
 				onChange={handleChange}
-				readOnly={itemMeta.readOnly}
+				readOnly={meta.readOnly}
 			/>
 		);
 	};
 
 	const renderContent = () => {
 		if (typeof render !== 'function') return render;
-		return render({ ...item, meta: itemMeta, render: undefined });
+		return render({ ...item, meta, render: undefined });
 	};
 
 	const renderActions = () => {
@@ -264,17 +218,19 @@ const CSTreeItem = ({
 			<>
 				{shouldHideActions && <CSIcon className="cs-tree-actions-show-more" name="threedots_vertical" />}
 				<CSButtonGroup combined={false} className="cs-tree-actions">
-					{actions.map((action: CSTreeActionType, actionIndex: number) => (
+					{actions.map((action: CSButtonProps, actionIndex: number) => (
 						<CSButton
 							// eslint-disable-next-line react/no-array-index-key
 							key={actionIndex}
-							label={action?.label || `Action ${actionIndex}`}
 							labelHidden
 							btnStyle="brand"
 							btnType="transparent"
 							size="xsmall"
 							{...action}
-							onKeyDown={(event) => event.stopPropagation()}
+							onKeyDown={(event: React.KeyboardEvent<HTMLButtonElement>) => {
+								event.stopPropagation();
+								action.onKeyDown?.(event);
+							}}
 							onClick={(event) => {
 								event.stopPropagation();
 								action.onClick?.(event);
@@ -307,7 +263,7 @@ const CSTreeItem = ({
 	const treeItemWrapperClasses = classNames(
 		'cs-tree-item-wrapper',
 		{
-			'cs-tree-item-active': itemMeta.active,
+			'cs-tree-item-active': meta.active,
 			'cs-tree-item-actions-on-hover': shouldHideActions,
 			'cs-tree-item-overflow': ['string', 'number'].indexOf(typeof render) === -1,
 			[className]: className,

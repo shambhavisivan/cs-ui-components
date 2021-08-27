@@ -129,7 +129,7 @@ import CSTooltip, {
 import CSTransfer, { CSTransferVariant } from './components/transfer/CSTransfer';
 import CSTransferItem from './components/transfer/CSTransferItem';
 import CSTransferList, { CSTransferListType } from './components/transfer/CSTransferList';
-import CSTree, { CSTreeItemInterface, CSTreeItemMetaInterface, CSTreeActionType, CSTreeElementType, CSTreeRenderType } from './components/tree/CSTree';
+import CSTree, { CSTreeItemInterface, CSTreeItemMetaInterface, CSTreeItemWithMetaInterface, CSTreeElementType, CSTreeRenderType } from './components/tree/CSTree';
 
 import './sass/style.scss';
 
@@ -307,7 +307,7 @@ export {
 	CSTree,
 	CSTreeItemInterface,
 	CSTreeItemMetaInterface,
-	CSTreeActionType,
+	CSTreeItemWithMetaInterface,
 	CSTreeElementType,
 	CSTreeRenderType,
 };

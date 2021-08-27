@@ -5,70 +5,68 @@ import { CSButtonProps } from '../CSButton';
 import { CSTreeProvider } from './CSTreeContext';
 
 export type CSTreeElementType = React.ReactElement | React.ReactText;
-export type CSTreeRenderType = CSTreeElementType | ((item: CSTreeItemInterface) => CSTreeElementType);
-export type CSTreeActionType = Omit<CSButtonProps, 'onKeyDown' | 'onMouseDown'>;
+export type CSTreeRenderType = CSTreeElementType | ((item: CSTreeItemWithMetaInterface) => CSTreeElementType);
 
 export interface CSTreeItemMetaInterface {
 	level: number;
 	active: boolean;
-	activeKey: React.ReactText;
-	setActive: (active: boolean, key?: string) => void;
-	toggleActive: (key?: string) => void;
-	checked: boolean;
-	checkedKeys: Array<string>;
-	setChecked: (checked: boolean, key?: string) => void;
-	toggleChecked: (key?: string) => void;
+	selected: boolean;
 	indeterminate: boolean;
-	indeterminateKeys: Array<string>;
-	setIndeterminate: (indeterminate: boolean, key?: string) => void;
-	toggleIndeterminate: () => void;
 	readOnly: boolean;
-	readOnlyKeys: Array<string>;
-	setReadOnly: (readOnly: boolean, key?: string) => void;
-	toggleReadOnly: (key?: string) => void;
 	expanded: boolean;
-	setExpanded: (expanded: boolean, key?: string) => void;
+	setExpanded: (expanded: boolean) => void;
 	toggleExpanded: () => void;
 }
 
 export interface CSTreeItemInterface {
 	key: React.ReactText;
-	actions?: Array<CSTreeActionType>;
+	actions?: Array<CSButtonProps>;
 	children?: Array<CSTreeItemInterface>;
 	className?: string;
 	collapsible?: boolean;
 	defaultCollapsed?: boolean;
 	displayActionsOnHover?: boolean;
-	meta?: CSTreeItemMetaInterface;
 	render?: CSTreeRenderType;
 	selectable?: boolean;
 }
 
+export interface CSTreeItemWithMetaInterface extends CSTreeItemInterface{
+	meta: CSTreeItemMetaInterface;
+}
+
 export interface CSTreeProps {
 	items: Array<CSTreeItemInterface>;
+	activeKey?: React.ReactText;
 	className?: string;
 	collapsible?: boolean;
 	defaultCollapsed?: boolean;
 	displayActionsOnHover?: boolean;
 	id?: string;
+	indeterminateKeys?: Array<React.ReactText>;
 	itemHeight?: string;
-	onItemClick?: (item: CSTreeItemInterface) => void;
-	onSelectChange?: (item: CSTreeItemInterface) => void;
+	onItemClick?: (event: React.MouseEvent<HTMLLIElement>, item: CSTreeItemWithMetaInterface) => void;
+	onSelectChange?: (event: React.ChangeEvent<HTMLInputElement>, item: CSTreeItemWithMetaInterface) => void;
+	readOnlyKeys?: Array<React.ReactText>;
 	selectable?: boolean;
+	selectedKeys?: Array<React.ReactText>;
 	[key: string]: any;
 }
 
 const CSTree = ({
 	items,
+	activeKey,
 	className,
 	collapsible = true,
 	defaultCollapsed = true,
 	displayActionsOnHover = false,
 	id,
+	indeterminateKeys,
 	itemHeight,
 	onItemClick,
 	onSelectChange,
+	readOnlyKeys,
 	selectable,
+	selectedKeys,
 	...rest
 }: CSTreeProps) => {
 	useEffect(() => {
@@ -96,8 +94,12 @@ const CSTree = ({
 
 	return (
 		<CSTreeProvider
+			activeKey={activeKey}
+			indeterminateKeys={new Set(indeterminateKeys)}
 			onItemClick={onItemClick}
 			onSelectChange={onSelectChange}
+			readOnlyKeys={new Set(readOnlyKeys)}
+			selectedKeys={new Set(selectedKeys)}
 			treeCollapsible={collapsible}
 			treeDefaultCollapsed={defaultCollapsed}
 			treeDisplayActionsOnHover={displayActionsOnHover}
