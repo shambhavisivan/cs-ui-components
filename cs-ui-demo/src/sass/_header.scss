@@ -22,8 +22,8 @@
 				display: flex;
 				align-items: center;
 				text-decoration: none;
-				padding: 0.5rem 1.25rem;
-				font-size: 1.375rem;
+				padding: 0.75rem 1.25rem;
+				font-size: 1.25rem;
 				cursor: pointer;
 				@include sc(--csd-header-tab-c);
 				@include css4 {
@@ -31,23 +31,67 @@
 					border-bottom: 5px solid cvar(--csd-transparent);
 				}
 
-				&:hover {
+				&:focus-visible {
+					outline: none;
 					@include css4 {
-						border-bottom: 5px solid cvar(--csd-header-tab-active-c);
+						box-shadow: 0 0 3px cvar(--csd-colors-grid-focus-shadow);
 					}
+				}
+
+				&.main-header-link-dropdown {
+					padding: 0;
+
+					.cs-dropdown-wrapper {
+						height: 100%;
+
+						.cs-btn {
+							height: 100%;
+							padding: 0.75rem 1.25rem;
+
+							.cs-icon {
+								width: 1.5rem;
+								height: 1.5rem;
+								margin-left: 0.5rem;
+								@include sf(--csd-header-dropdown-icon-c);
+							}
+
+							.cs-btn-label {
+								font-size: 1.375rem;
+								@include sc(--csd-header-tab-c);
+							}
+
+							&::before, &::after {
+								display: none;
+							}
+
+							&:hover .cs-btn-label {
+								filter: brightness(1);
+							}
+						}
+					}
+				}
+
+				.cs-chip {
+					font-size: 0.6875rem;
+					letter-spacing: 1px;
+					text-transform: none;
+					margin-left: 1rem;
+
+					&.black-text {
+						@include sc(--csd-chip-demo-c);
+					}
+				}
+
+				&:hover {
+					@include sbg(--csd-header-tab-hover-bg);
 				}
 
 				&.active-main-header-tab {
 					@include sc(--csd-header-tab-active-alt-c);
-					@include sbg(--csd-header-tab-active-bg);
 					@include css4 {
 						border-bottom: 5px solid cvar(--csd-header-tab-active-c);
 					}
 				}
-			}
-
-			&:first-child a {
-				width: 15rem;
 			}
 		}
 	}
@@ -55,18 +99,41 @@
 	&-right {
 		display: flex;
 		align-items: center;
-
-		.cs-chip {
-			font-size: 0.6875rem;
-			letter-spacing: 1px;
-			text-transform: none;
-			margin-right: 1rem;
-			@include sc(--csd-chip-demo-c);
-			@include sbg(--csd-chip-bg);
-		}
 	}
 
 	img {
 		padding: 0 1rem;
+	}
+}
+
+.cs-dropdown-outer-item-wrapper.cs-demo-header-dropdown-wrapper {
+    padding-top: 0.5rem;
+
+	.cs-dropdown-item-wrapper {
+		@include sbg(--csd-header-dropdown-bg);
+		@include css4 {
+			border: 1px solid cvar(--csd-header-dropdown-br);
+		}
+
+		.cs-divider {
+			@include css4 {
+				border-bottom: 1px solid cvar(--csd-header-dropdown-divider-br);
+			}
+		}
+
+		.main-header-dropdown-btn {
+			line-height: 2;
+			text-decoration: none;
+			width: 100%;
+			padding: 0.25rem 1.25rem;
+			height: 2.5rem;
+			font-size: 1rem;
+			@include sc(--csd-header-dropdown-c);
+			@include sbg(--csd-header-dropdown-btn-bg);
+
+			&:hover {
+				@include sbg(--csd-header-dropdown-btn-hover-bg);
+			}
+		}
 	}
 }

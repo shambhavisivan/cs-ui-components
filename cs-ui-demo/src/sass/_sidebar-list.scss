@@ -198,16 +198,6 @@
 .prop-sidebar {
 	&.release-notes-sidebar,
 	&.accessibility-sidebar {
-		@include sbg(--csd-components-list-wrapper-bg);
-
-		.prop-list {
-			@include sbg(--csd-components-list-wrapper-bg);
-
-			div .prop-group .prop-name:hover {
-				@include sbg(--csd-sidebar-link-hover-bg);
-			}
-		}
-
 		.quick-links-search {
 			margin-top: 1.25rem;
 		}
@@ -221,6 +211,15 @@
 			&::before {
 				@include sbg(--csd-components-list-wrapper-bg);
 			}
+		}
+	}
+
+	&.accessibility-sidebar,
+	&.accessibility-sidebar .prop-list {
+		@include sbg(--csd-components-list-wrapper-bg);
+
+		.prop-group .prop-name:hover {
+			@include sbg(--csd-sidebar-link-hover-bg);
 		}
 	}
 
@@ -242,7 +241,7 @@
 				a {
 					border: none;
 					font-weight: 700;
-					@include sbg(--csd-sidebar-link-active-bg);
+					@include sbg(--csd-shadow-light);
 				}
 			}
 		}

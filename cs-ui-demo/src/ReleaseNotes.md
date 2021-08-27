@@ -1,4 +1,4 @@
-# Release Notes
+# CS UI Components - Release Notes
 
 ## 1.1.25
 * General

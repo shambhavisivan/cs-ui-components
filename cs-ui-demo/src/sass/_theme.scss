@@ -93,9 +93,16 @@ $lightVariables: (
 	--csd-p-c: $cs-gray-dark-3,
 
 	--csd-header-tab-c: $cs-gray-dark-3,
-	--csd-header-tab-active-bg: $cs-gray-light-6,
 	--csd-header-tab-active-alt-c: $cs-gray-dark-1,
 	--csd-header-tab-active-c: $cs-purple,
+	--csd-header-tab-hover-bg: $cs-gray-light-10,
+	--csd-header-dropdown-bg: $cs-white,
+	--csd-header-dropdown-br: $cs-gray-light-2,
+	--csd-header-dropdown-btn-bg: $cs-white,
+	--csd-header-dropdown-btn-hover-bg: $cs-gray-light-8,
+	--csd-header-dropdown-c: $cs-black,
+	--csd-header-dropdown-divider-br: $cs-gray-light-2,
+	--csd-header-dropdown-icon-c: $cs-gray-medium-3,
 
 	--csd-button-preview-table-header-bg: $cs-gray-light-11,
 	--csd-button-preview-table-bg: $cs-white,
@@ -185,6 +192,12 @@ $lightVariables: (
 	--csd-preview-main-heading-subtitle-c: $cs-gray-dark-6,
 
 	--csd-release-notes-code-snippet-bg: $cs-white,
+	--csd-release-notes-csui-bg: $cs-mint,
+	--csd-release-notes-csgrid-bg: $cs-purple-medium-1,
+	--csd-release-notes-csform-bg: $cs-gray-light-1,
+	--csd-release-notes-future-scope-bg: $cs-gray-dark-2,
+	--csd-release-notes-c: $cs-black,
+	--csd-release-notes-alt-c: $cs-white,
 
 	--csd-sidebar-component-form-icon-fill: $cs-gray-medium-1,
 	--csd-sidebar-search-field-c: $cs-white,
@@ -244,10 +257,17 @@ $darkVariables: (
 	--csd-h3-c: $cs-gray-medium-2,
 	--csd-p-c: $cs-white,
 
-	--csd-header-tab-c: $cs-gray-light-1,
-	--csd-header-tab-active-bg: $cs-dark-theme,
+	--csd-header-tab-c: $cs-gray-light-11,
 	--csd-header-tab-active-alt-c: $cs-white,
 	--csd-header-tab-active-c: $cs-purple,
+	--csd-header-tab-hover-bg: $cs-dark-theme,
+	--csd-header-dropdown-bg: $cs-dark-theme-2,
+	--csd-header-dropdown-br: $cs-black,
+	--csd-header-dropdown-btn-bg: $cs-dark-theme-2,
+	--csd-header-dropdown-btn-hover-bg: rgba($cs-black, 0.12),
+	--csd-header-dropdown-c: $cs-white,
+	--csd-header-dropdown-divider-br: $cs-black,
+	--csd-header-dropdown-icon-c: $cs-white,
 
 	--csd-button-preview-table-header-bg: $cs-dark-theme-2,
 	--csd-button-preview-table-bg: $cs-dark-theme-3,
@@ -336,6 +356,12 @@ $darkVariables: (
 	--csd-preview-main-heading-subtitle-c: $cs-gray-medium-2,
 
 	--csd-release-notes-code-snippet-bg: $cs-dark-theme-3,
+	--csd-release-notes-csui-bg: $cs-mint,
+	--csd-release-notes-csgrid-bg: $cs-purple-medium-1,
+	--csd-release-notes-csform-bg: $cs-gray-light-1,
+	--csd-release-notes-future-scope-bg: $cs-gray-dark-2,
+	--csd-release-notes-c: $cs-black,
+	--csd-release-notes-alt-c: $cs-white,
 
 	--csd-sidebar-component-form-icon-fill: $cs-gray-medium-1,
 	--csd-sidebar-search-field-c: $cs-white,

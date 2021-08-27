@@ -1,0 +1,97 @@
+.components-preview .release-notes-page {
+    height: calc(100vh - 54px);
+    overflow: auto;
+    padding: 3.5rem 3rem 3rem;
+    width: 100%;
+    position: relative;
+    display: flex;
+	flex-direction: column;
+    @include scrollbar-color;
+
+	h1 {
+		padding-block-end: 1.5rem;
+		font-size: 3rem;
+		@include sc(--csd-access-title-c);
+	}
+
+	h2 {
+		font-size: 1.25rem;
+		font-weight: 400;
+		padding-block-end: 3rem;
+		margin-block-end: 3rem;
+		@include sc(--csd-preview-main-heading-subtitle-c);
+		@include css4 {
+			border-bottom: 1px solid var(--csd-divider-br);
+		}
+	}
+
+	.release-notes-picker {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: repeat(2, 100px);
+		gap: 1rem;
+
+		.release-notes-link {
+			padding: 0 2rem;
+			display: flex;
+			align-items: center;
+			text-decoration: none;
+			transition-duration: 0.25s;
+			overflow: hidden;
+			position: relative;
+			@include css4 {
+				box-shadow: 0 20px 23px -20px var(--csd-shadow-medium-dark);
+			}
+
+			&:hover {
+				transform: scale(1.02);
+			}
+
+			.cs-icon {
+				position: absolute;
+				right: 1rem;
+				opacity: 25%;
+				width: 10rem;
+				height: 10rem;
+				transform: rotate(15deg);
+			}
+
+			span {
+				font-size: 1.25rem;
+				font-weight: 700;
+			}
+
+			&.cs-ui {
+				@include sbg(--csd-release-notes-csui-bg);
+
+				span {
+					@include sc(--csd-release-notes-c);
+				}
+			}
+
+			&.cs-grid {
+				@include sbg(--csd-release-notes-csgrid-bg);
+
+				span {
+					@include sc(--csd-release-notes-alt-c);
+				}
+			}
+
+			&.cs-form {
+				@include sbg(--csd-release-notes-csform-bg);
+
+				span {
+					@include sc(--csd-release-notes-c);
+				}
+			}
+
+			&.future-scope {
+				@include sbg(--csd-release-notes-future-scope-bg);
+
+				span {
+					@include sc(--csd-release-notes-alt-c);
+				}
+			}
+		}
+    }
+}

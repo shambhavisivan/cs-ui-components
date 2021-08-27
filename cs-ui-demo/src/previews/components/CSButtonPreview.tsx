@@ -508,12 +508,12 @@ class CSButtonPreview extends React.Component {
 								component: <CSButton
 									label="Icon rotated 90 degrees"
 									iconName="list"
-									iconRotate={90}
+									iconRotate="90"
 								/>,
 								code: `<CSButton
 									label="Icon rotated 90 degrees"
 									iconName="list"
-									iconRotate={90}
+									iconRotate="90"
 								/>`
 							}, {
 								primaryVariants: 'iconRotate={-90}',
@@ -522,12 +522,12 @@ class CSButtonPreview extends React.Component {
 								component: <CSButton
 									label="Icon rotated -90 degrees"
 									iconName="list"
-									iconRotate={-90}
+									iconRotate="-90"
 								/>,
 								code: `<CSButton
 									label="Icon rotated -90 degrees"
 									iconName="list"
-									iconRotate={-90}
+									iconRotate="-90"
 								/>`
 							}
 						]

@@ -6,12 +6,13 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import CSComponentsList from './previews/CSComponentsList';
 import CSIconsList from './previews/CSIconsList';
 import CSColorsPreview from './previews/colors/CSColorsPreview';
-import ReleaseNotes from './previews/ReleaseNotes';
 import Accessibility from './previews/Accessibility';
 import MainHeader from './previews/MainHeader';
 
 import { ThemeProvider } from './context/ThemeContext';
 import { QuickLinksProvider } from './context/QuickLinksContext';
+
+import ReleaseNotesList from './previews/ReleaseNotesList';
 
 const App: React.FC = () => (
 	<ThemeProvider>
@@ -23,8 +24,8 @@ const App: React.FC = () => (
 						<Route path="/components" component={CSComponentsList} />
 						<Route path="/icons" component={CSIconsList} />
 						<Route path="/colors" component={CSColorsPreview} />
-						<Route path="/release-notes" component={ReleaseNotes} />
 						<Route path="/accessibility" component={Accessibility} />
+						<Route path="/release-notes" component={ReleaseNotesList} />
 						<Switch>
 							<Redirect exact from="/" to="/components/CSGettingStarted" />
 							<Redirect exact from="/components" to="/components/CSGettingStarted" />
