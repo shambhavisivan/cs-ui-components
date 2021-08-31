@@ -7,6 +7,8 @@
   * removed icon darken while hovering on `btnStyle="brand"`
 * CSRadio
   * added `hidden` prop
+* Tests added to components
+  * CSToast
 
 ## 2.0.0
 * General
