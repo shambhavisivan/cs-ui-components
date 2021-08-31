@@ -311,7 +311,13 @@ export class CSForm extends React.Component<FormProps, FormState> {
 		one: Record<string, Array<string>>,
 		other: Record<string, Array<string>>
 	) => Record<string, Array<string>> = (one, other) => {
-		const keys = new Set<string>([...Object.keys(one), ...Object.keys(other)]);
+		const keys = new Set<string>();
+		if (one) {
+			Object.keys(one).forEach(key => keys.add(key));
+		}
+		if (other) {
+			Object.keys(other).forEach(key => keys.add(key));
+		}
 		const ret: Record<string, Array<string>> = {};
 		keys.forEach(key => {
 			ret[key] = [...(one[key] || []), ...(other[key] || [])];
