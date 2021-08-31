@@ -1,6 +1,9 @@
 import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 import CSIcon from './CSIcon';
+import CSTooltip from './CSTooltip';
+
+export type CSSectionErrorMsgType = string | Array<string>;
 
 export interface CSSectionProps {
 	[key: string]: any;
@@ -9,6 +12,8 @@ export interface CSSectionProps {
 	className?: string;
 	collapsible?: boolean;
 	defaultClosed?: boolean;
+	error?: boolean;
+	errorMessage?: CSSectionErrorMsgType;
 	id?: string;
 	title: string;
 }
@@ -64,10 +69,12 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 		const {
 			bgColor,
 			borderRadius,
-			className,
 			children,
-			defaultClosed,
+			className,
 			collapsible,
+			defaultClosed,
+			error,
+			errorMessage,
 			id,
 			title,
 			...rest
@@ -75,7 +82,7 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 
 		const { defaultClosed: defaultClosedState } = this.state;
 
-		const style:CSSProperties = {
+		const style: CSSProperties = {
 			'--cs-section-border-radius': borderRadius,
 			'--cs-section-header-bg': bgColor,
 		};
@@ -89,8 +96,21 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 			'cs-section-header',
 			{
 				'cs-section-header-padding': defaultClosed === true && collapsible !== true,
+				'cs-section-header-error': error,
 			},
 		);
+
+		const sectionTitle = <span className="cs-section-title">{title}</span>;
+
+		const sectionErrorMsg = (errorMessage?.length && error)
+			? (
+				<CSTooltip
+					content={errorMessage}
+					variant="error"
+					iconName="warning"
+				/>
+			) : null;
+
 		return (
 			<section
 				className={sectionClasses}
@@ -109,10 +129,16 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 								aria-roledescription="section"
 							>
 								<CSIcon name="chevronright" size="0.875rem" rotate={defaultClosedState ? 0 : 90} />
-								<span className="cs-section-title">{title}</span>
+								{sectionTitle}
+								{sectionErrorMsg}
 							</button>
 						)
-						: <span className="cs-section-title">{title}</span>}
+						: (
+							<>
+								{sectionTitle}
+								{sectionErrorMsg}
+							</>
+						)}
 				</h3>
 				{defaultClosedState ? null : (
 					<div className="cs-section-body">

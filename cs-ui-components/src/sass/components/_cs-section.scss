@@ -27,6 +27,9 @@
 			&:first-child {
 				padding: 0 0.5rem;
 			}
+			&:nth-child(2) {
+				margin-right: 0.5rem;
+			}
 		}
 
 		.cs-section-button {
@@ -69,6 +72,20 @@
 
 		&.cs-section-header-padding {
 			padding: 0 0.75rem;
+		}
+
+		&.cs-section-header-error {
+			@include sbg(--cs-section-header-error-bg);
+			.cs-section-button{
+				&:hover {
+					@include sbg(--cs-section-header-error-hover);
+				}
+				&:focus-visible {
+					@include css4 {
+						box-shadow: 0 0 3px cvar(--cs-section-header-error-shadow);
+					}
+				}
+			}
 		}
 	}
 }

@@ -400,6 +400,9 @@ $variables: (
 	--cs-section-bg: $cs-gray-light-10,
 	--cs-section-hover-bg: $cs-blue-light-6,
 	--cs-section-button-shadow: $cs-blue-sf,
+	--cs-section-header-error-bg: rgba($cs-red-medium-1, 0.1),
+	--cs-section-header-error-hover: rgba($cs-red-medium-1, 0.11),
+	--cs-section-header-error-shadow: $cs-red-medium-1,
 
 	--cs-progress-bar-info-text-c: $cs-gray-dark-1,
 	--cs-progress-bar-bg: $cs-gray-light-2,

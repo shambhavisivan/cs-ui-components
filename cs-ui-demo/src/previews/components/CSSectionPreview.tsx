@@ -148,6 +148,67 @@ class CSSectionPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'error',
+						alert: {
+							variant: 'info',
+							text: 'Component in error state should always contain associated error message to satisfy accessibility best practices.'
+						},
+						variations: [
+							{
+								primaryVariants: 'error={true}',
+								component: <CSSection
+									title="Section Title"
+									error
+									bgColor="pink"
+								>
+									<ul>
+										<li>Item 1</li>
+										<li>Item 2</li>
+										<li>Item 3</li>
+									</ul>
+								</CSSection>,
+								code: `<CSSection
+									title="Section Title"
+									error
+								>
+									<ul>
+										<li>Item 1</li>
+										<li>Item 2</li>
+										<li>Item 3</li>
+									</ul>
+								</CSSection>`
+							}
+						]
+					}, {
+						propName: 'errorMessage',
+						variations: [
+							{
+								secondaryVariants: 'error={true}',
+								component: <CSSection
+									title="Section Title"
+									error
+									errorMessage="Error message"
+								>
+									<ul>
+										<li>Item 1</li>
+										<li>Item 2</li>
+										<li>Item 3</li>
+									</ul>
+								</CSSection>,
+								code: `<CSSection
+									title="Section Title"
+									error
+									errorMessage="Error message"
+								>
+									<ul>
+										<li>Item 1</li>
+										<li>Item 2</li>
+										<li>Item 3</li>
+									</ul>
+								</CSSection>`
+							}
+						]
+					}, {
 						propName: 'id | class',
 						variations: [
 							{
@@ -220,6 +281,18 @@ class CSSectionPreview extends React.Component {
 						types: 'boolean',
 						default: 'false',
 						description: 'Control whether the section is closed by default. It is designed to be used with collapsible prop.'
+					}, {
+						name: 'error',
+						types: 'boolean',
+						default: 'false',
+						description: 'Toggle the error state.'
+					}, {
+						name: 'errorMessage',
+						customTypes: {
+							name: 'CSSectionErrorMsgType',
+							types: ['string', 'Array<string>']
+						},
+						description: 'Set the tooltip error message or messages for the section.'
 					}, {
 						name: 'id',
 						types: 'string',
