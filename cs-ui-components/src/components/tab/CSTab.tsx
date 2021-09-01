@@ -1,8 +1,8 @@
 import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
-import CSIcon, { CSIconOrigin } from './CSIcon';
+import CSIcon, { CSIconOrigin } from '../CSIcon';
 import { CSTabGroupVariant } from './CSTabGroup';
-import CSTooltip from './CSTooltip';
+import CSTooltip from '../CSTooltip';
 
 export type CSTabStatus = 'initial' | 'error' | 'warning' | 'success';
 export interface CSTabProps {

@@ -1,6 +1,6 @@
 import React from 'react';
-import CSButtonGroup from './CSButtonGroup';
-import CSButton from './CSButton';
+import CSButtonGroup from '../CSButtonGroup';
+import CSButton from '../CSButton';
 
 export interface CSPaginationProps {
 	// id?: string;
