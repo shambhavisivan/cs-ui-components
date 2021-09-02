@@ -27,9 +27,13 @@
 		border-radius: var(--cs-input-text-border-radius-value, 0.25rem);
 		padding-right: var(--cs-input-text-options-spacing-value);
 
-		&:read-only:focus-visible {
-			@include css4 {
-				box-shadow: 0 0 0.1875rem cvar(--cs-input-shadow);
+		&:read-only {
+			pointer-events: none;
+
+			&:focus-visible {
+				@include css4 {
+					box-shadow: 0 0 0.1875rem cvar(--cs-input-shadow);
+				}
 			}
 		}
 

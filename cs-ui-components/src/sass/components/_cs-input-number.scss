@@ -39,6 +39,7 @@
 
 		&:disabled,
 		&:read-only {
+			pointer-events: none;
 			&::-webkit-outer-spin-button,
 			&::-webkit-inner-spin-button {
 				-webkit-appearance: none;
