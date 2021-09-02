@@ -20,6 +20,7 @@
   * CSInputText
   * CSLabel
   * CSSlider
+  * CSSpinner
   * CSToast
 
 ## 2.0.0
