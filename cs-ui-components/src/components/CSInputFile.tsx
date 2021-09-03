@@ -178,7 +178,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 					{error
 						&& errorMessage
 						&& errorTooltip
-						? <CSFieldErrorMsg message={errorMessage} toolTipMessage={errorTooltip} />
+						? <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />
 						: <CSIcon className="cs-input-file-icon" name="upload" size="0.875rem" />}
 					<span className="cs-input-file-label">{labelState || label}</span>
 				</span>

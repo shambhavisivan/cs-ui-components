@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { CSButton, CSIcon, CSAlert } from '@cloudsense/cs-ui-components';
 import classNames from 'classnames';
-import { useQuickLinks } from '../context/QuickLinksContext';
-import { getSlug } from './helpers';
+import { useQuickLinks } from '../../context/QuickLinksContext';
+import { getSlug } from '../helpers';
 import {
-	PreviewInterface,
+	CSUIPreviewInterface,
 	ComponentInterface,
 	ExampleInterface,
 	VariationInterface
-} from './types';
+} from '../types';
 import { HashLink } from 'react-router-hash-link';
 
-const PreviewQuickLinks: React.FC<PreviewInterface> = ({
+const PreviewQuickLinks: React.FC<CSUIPreviewInterface> = ({
 	components,
 	api,
 	accessibility,

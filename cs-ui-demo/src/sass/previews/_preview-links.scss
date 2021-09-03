@@ -140,6 +140,10 @@
 					max-width: 100%;
 					@include sc(--csd-sidebar-link-c);
 				}
+
+				&.attribute-name a {
+					font-weight: 400;
+				}
 			}
 
 			.prop-group {

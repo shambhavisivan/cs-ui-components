@@ -923,7 +923,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 				</div>
 				{
 					(error && errorMessage)
-						&& <CSFieldErrorMsg message={errorMessage} toolTipMessage={errorTooltip} />
+						&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />
 				}
 				{
 					dropdownOpen

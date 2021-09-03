@@ -173,7 +173,7 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 						<div className="cs-textarea-options" ref={this.textareaOptionsWrapperRef}>
 							{error
 								&& errorTooltip
-								&& <CSFieldErrorMsg message={errorMessage} toolTipMessage={errorTooltip} />}
+								&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
 							{/* Icons */}
 							{icons?.length > 0 ? (<CSCustomDataIcons icons={icons} />) : null}
 							{/* Actions */}

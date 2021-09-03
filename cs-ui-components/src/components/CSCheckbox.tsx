@@ -199,7 +199,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 						</label>
 						{error
 							&& errorTooltip
-							&& <CSFieldErrorMsg message={errorMessage} toolTipMessage={errorTooltip} />}
+							&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
 						<div className="cs-checkbox-options">
 							{/* Icons */}
 							{icons?.length > 0 ? (<CSCustomDataIcons icons={icons} />) : null}

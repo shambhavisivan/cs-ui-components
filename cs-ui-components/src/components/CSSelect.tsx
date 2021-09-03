@@ -191,7 +191,7 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 				</div>
 				{error
 					&& errorMessage
-					&& <CSFieldErrorMsg message={errorMessage} toolTipMessage={errorTooltip} />}
+					&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
 			</div>
 		);
 	}

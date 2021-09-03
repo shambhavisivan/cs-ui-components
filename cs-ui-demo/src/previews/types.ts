@@ -1,4 +1,5 @@
-export interface PreviewInterface {
+// CS UI Specific interfaces
+export interface CSUIPreviewInterface {
 	name: string;
 	usage?: string;
 	alerts?: AlertInterface | Array<AlertInterface>;
@@ -32,6 +33,33 @@ export interface VariationInterface {
 	code?: string;
 }
 
+// CS Form Specific Interfaces
+export interface CSFormPreviewInterface {
+	name: string;
+	usage?: string;
+	fieldTypes: Array<CSFormFieldTypesInterface>;
+	api?: Array<ApiInterface>;
+	children?: JSX.Element | Element;
+	activeElement?: Element;
+}
+
+export interface CSFormFieldTypesInterface {
+	name: string;
+	example?: Array<CSFormExampleInterface>;
+	properties: Array<PropInterface>;
+}
+
+export interface CSFormExampleInterface {
+	description?: string;
+	previews: Array<CSFormVisualInterface>;
+}
+
+export interface CSFormVisualInterface {
+	field: JSX.Element | Element;
+	code?: string;
+}
+
+// Generic Interfaces
 export interface PropInterface {
 	name: string;
 	required?: boolean | string;

@@ -10,7 +10,7 @@ const MainHeader: React.FC = () => {
 		<div className="app-main-header">
 			<ul>
 				<li className="main-header-tab">
-					<NavLink to="/components" activeClassName="active-main-header-tab">
+					<NavLink to="/cs-ui" activeClassName="active-main-header-tab">
 						CS UI Components
 						<CSChip
 							color="#4bcabb"
@@ -24,16 +24,16 @@ const MainHeader: React.FC = () => {
 						CS Grid
 						<CSChip color="#7f8de1" text={`v${version}`} />
 					</a>
-				</li>
-				<li className="main-header-tab">
-					<a href="">
+				</li> */}
+				{/* <li className="main-header-tab">
+					<NavLink to="/cs-form" activeClassName="active-main-header-tab">
 						CS Form
 						<CSChip
 							color="#d8d8d8"
 							text={`v${version}`}
 							className="black-text"
 						/>
-					</a>
+					</NavLink>
 				</li> */}
 				<li className="main-header-tab">
 					<NavLink

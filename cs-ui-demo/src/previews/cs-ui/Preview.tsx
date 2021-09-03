@@ -5,9 +5,9 @@ import PreviewExamples from './PreviewExamples';
 import PreviewProps from './PreviewProps';
 import PreviewApi from './PreviewApi';
 import PreviewAccessibility from './PreviewAccessibility';
-import { PreviewInterface } from './types';
+import { CSUIPreviewInterface } from '../types';
 
-const Preview: React.FC<PreviewInterface> = (preview: PreviewInterface) => {
+const Preview: React.FC<CSUIPreviewInterface> = (preview: CSUIPreviewInterface) => {
 	const [activeElement, setActiveElement] = useState<Element>();
 	const previewSectionRef = useRef<HTMLDivElement>(null);
 	const timer = useRef<ReturnType<typeof setTimeout> | null>(null);

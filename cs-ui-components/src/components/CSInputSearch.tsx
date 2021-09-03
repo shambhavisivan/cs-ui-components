@@ -280,7 +280,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 							)}
 						{error
 							&& errorMessage
-							&& <CSFieldErrorMsg message={errorMessage} toolTipMessage={errorTooltip} />}
+							&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
 					</div>
 				</div>
 			</>

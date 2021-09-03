@@ -1,16 +1,16 @@
 import React from 'react';
 import { CSAlert, CSAlertVariant } from '@cloudsense/cs-ui-components';
 import PreviewCode from './PreviewCode';
-import { getSlug, parseCode } from './helpers';
+import { getSlug, parseCode } from '../helpers';
 
 import {
 	ComponentInterface,
 	ExampleInterface,
-	PreviewInterface,
+	CSUIPreviewInterface,
 	VariationInterface
-} from './types';
+} from '../types';
 
-const PreviewExamples: React.FC<PreviewInterface> = ({ components }) => (
+const PreviewExamples: React.FC<CSUIPreviewInterface> = ({ components }) => (
 	<>
 		{components.map((component: ComponentInterface) => {
 			const componentLink = getSlug(component.name);

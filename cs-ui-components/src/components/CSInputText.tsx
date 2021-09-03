@@ -195,7 +195,7 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 						</div>
 						{error
 							&& errorTooltip
-							&& <CSFieldErrorMsg message={errorMessage} toolTipMessage={errorTooltip} />}
+							&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
 					</div>
 					{!errorTooltip
 						&& error

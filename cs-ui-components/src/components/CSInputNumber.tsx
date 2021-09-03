@@ -240,7 +240,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 						</div>
 						{error
 							&& errorTooltip
-							&& <CSFieldErrorMsg message={errorMessage} toolTipMessage={errorTooltip} />}
+							&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
 					</div>
 					{!errorTooltip
 						&& error

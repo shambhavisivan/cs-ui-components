@@ -7,12 +7,12 @@ import {
 	CSTableCell,
 	CSTableBody
 } from '@cloudsense/cs-ui-components';
-import { parseCode } from './helpers';
+import { parseCode } from '../helpers';
 import {
-	PreviewInterface
-} from './types';
+	CSUIPreviewInterface
+} from '../types';
 
-const PreviewAccessibility: React.FC<PreviewInterface | any> = ({ accessibility, name }) => {
+const PreviewAccessibility: React.FC<CSUIPreviewInterface | any> = ({ accessibility, name }) => {
 	const { criterionList, requirements } = accessibility;
 
 	return (

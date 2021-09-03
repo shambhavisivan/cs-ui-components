@@ -3,7 +3,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { base16AteliersulphurpoolLight as styleLight, darcula as styleDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { CSButton } from '@cloudsense/cs-ui-components';
 import classNames from 'classnames';
-import { useTheme, Theme } from '../context/ThemeContext';
+import { useTheme, Theme } from '../../context/ThemeContext';
 
 interface PreviewCodeProps {
 	code?: string;

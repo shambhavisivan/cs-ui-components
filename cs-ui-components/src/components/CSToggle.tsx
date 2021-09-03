@@ -143,7 +143,7 @@ class CSToggle extends React.Component<CSToggleProps> {
 						</label>
 						{error
 							&& errorTooltip
-							&& <CSFieldErrorMsg message={errorMessage} toolTipMessage={errorTooltip} />}
+							&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
 						<div className="cs-toggle-options">
 							{/* Icons */}
 							{icons?.length > 0 ? (<CSCustomDataIcons icons={icons} />) : null}

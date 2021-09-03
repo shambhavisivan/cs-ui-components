@@ -1,16 +1,16 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
-import AnchorSidebarList from './AnchorSidebarList';
-import { getSlug } from './helpers';
+import AnchorSidebarList from '../AnchorSidebarList';
+import { getSlug } from '../helpers';
 
 const anchorList = ['HTML App Wrapper', 'CSS Class Prefix', 'z-index', 'Unit Tests & UUID', 'Documenting Components'];
 
-const CSGettingStarted: React.FC = () => {
+const GettingStarted: React.FC = () => {
 	const [markdown, setMarkdown] = useState<string>('');
 
 	useEffect(() => {
-		const releaseNotesPath = require('../GettingStarted.md');
+		const releaseNotesPath = require('./GettingStarted.md');
 		fetch(releaseNotesPath)
 			.then(res => res.text())
 			.then(text => setMarkdown(text));
@@ -65,4 +65,4 @@ const CSGettingStarted: React.FC = () => {
 	);
 };
 
-export default CSGettingStarted;
+export default GettingStarted;

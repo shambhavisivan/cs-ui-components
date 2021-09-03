@@ -12,11 +12,11 @@ import {
 	getDefault,
 	getRequired,
 	getTypes
-} from './helpers';
+} from '../helpers';
 
-import { PreviewInterface, PropInterface, ComponentInterface } from './types';
+import { CSUIPreviewInterface, PropInterface, ComponentInterface } from '../types';
 
-const PreviewProps: React.FC<PreviewInterface> = ({ components }) => (
+const PreviewProps: React.FC<CSUIPreviewInterface> = ({ components }) => (
 	<>
 		{components?.map((component: ComponentInterface, componentIndex: number) => (
 			<div key={component.name} className="properties-table-wrapper">

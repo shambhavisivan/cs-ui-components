@@ -1,8 +1,8 @@
 import React from 'react';
 import { CSAlert, CSAlertVariant, CSIcon } from '@cloudsense/cs-ui-components';
-import { PreviewInterface, AlertInterface } from './types';
+import { CSUIPreviewInterface, AlertInterface } from '../types';
 
-const PreviewHeader: React.FC<PreviewInterface> = ({
+const PreviewHeader: React.FC<CSUIPreviewInterface> = ({
 	name,
 	alerts,
 	usage,

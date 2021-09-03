@@ -1,51 +1,51 @@
 import React from 'react';
-import CSInputTextPreview from './components/CSInputTextPreview';
-import CSInputNumberPreview from './components/CSInputNumberPreview';
-import CSSelectPreview from './components/CSSelectPreview';
-import CSCheckboxPreview from './components/CSCheckboxPreview';
-import CSTogglePreview from './components/CSTogglePreview';
-import CSTextareaPreview from './components/CSTextareaPreview';
-import CSCustomDataPreview from './components/CSCustomDataPreview';
-import CSIconPreview from './components/CSIconPreview';
-import CSInputSearchPreview from './components/CSInputSearchPreview';
-import CSCurrencyPreview from './components/CSCurrencyPreview';
-import CSCustomSelectPreview from './components/CSCustomSelectPreview';
-import CSDataTablePreview from './components/CSDataTablePreview';
-import CSDatepickerPreview from './components/CSDatepickerPreview';
-import CSDateTimePickerPreview from './components/CSDateTimePickerPreview';
-import CSDividerPreview from './components/CSDividerPreview';
-import CSInputFilePreview from './components/CSInputFilePreview';
-import CSTabPreview from './components/CSTabPreview';
-import CSModalPreview from './components/CSModalPreview';
-import CSSpinnerPreview from './components/CSSpinnerPreview';
-import CSMainHeaderPreview from './components/CSMainHeaderPreview';
-import CSCardPreview from './components/CSCardPreview';
-import CSSectionPreview from './components/CSSectionPreview';
-import CSTablePreview from './components/CSTablePreview';
-import CSPaginationPreview from './components/CSPaginationPreview';
-import CSChipPreview from './components/CSChipPreview';
-import CSTooltipPreview from './components/CSTooltipPreview';
-import CSRadioPreview from './components/CSRadioPreview';
-import CSPathPreview from './components/CSPathPreview';
-import CSToastPreview from './components/CSToastPreview';
-import CSAlertPreview from './components/CSAlertPreview';
-import CSButtonPreview from './components/CSButtonPreview';
-import CSLabelPreview from './components/CSLabelPreview';
-import CSProgressBarPreview from './components/CSProgressBarPreview';
-import CSDropdownPreview from './components/CSDropdownPreview';
-import CSButtonGroupPreview from './components/CSButtonGroupPreview';
-import CSImagePreview from './components/CSImagePreview';
-import CSLookupPreview from './components/CSLookupPreview';
-import CSSliderPreview from './components/CSSliderPreview';
-import CSSidebarPreview from './components/CSSidebarPreview';
-import CSListPreview from './components/CSListPreview';
-import CSFieldErrorMsgPreview from './components/CSFieldErrorMsgPreview';
-import CSSkipLinkPreview from './components/CSSkipLinkPreview';
-import CSGettingStarted from './CSGettingStarted';
-import CSTransferPreview from './components/CSTransferPreview';
-import CSProgressIndicatorPreview from './components/CSProgressIndicatorPreview';
-import CSTreePreview from './components/CSTreePreview';
 
+import CSAlertPreview from './cs-ui/components/CSAlertPreview';
+import CSButtonPreview from './cs-ui/components/CSButtonPreview';
+import CSButtonGroupPreview from './cs-ui/components/CSButtonGroupPreview';
+import CSCardPreview from './cs-ui/components/CSCardPreview';
+import CSCheckboxPreview from './cs-ui/components/CSCheckboxPreview';
+import CSChipPreview from './cs-ui/components/CSChipPreview';
+import CSCurrencyPreview from './cs-ui/components/CSCurrencyPreview';
+import CSCustomDataPreview from './cs-ui/components/CSCustomDataPreview';
+import CSCustomSelectPreview from './cs-ui/components/CSCustomSelectPreview';
+import CSDataTablePreview from './cs-ui/components/CSDataTablePreview';
+import CSDatepickerPreview from './cs-ui/components/CSDatepickerPreview';
+import CSDateTimePickerPreview from './cs-ui/components/CSDateTimePickerPreview';
+import CSDividerPreview from './cs-ui/components/CSDividerPreview';
+import CSDropdownPreview from './cs-ui/components/CSDropdownPreview';
+import CSFieldErrorMsgPreview from './cs-ui/components/CSFieldErrorMsgPreview';
+import CSIconPreview from './cs-ui/components/CSIconPreview';
+import CSImagePreview from './cs-ui/components/CSImagePreview';
+import CSInputFilePreview from './cs-ui/components/CSInputFilePreview';
+import CSInputNumberPreview from './cs-ui/components/CSInputNumberPreview';
+import CSInputSearchPreview from './cs-ui/components/CSInputSearchPreview';
+import CSInputTextPreview from './cs-ui/components/CSInputTextPreview';
+import CSLabelPreview from './cs-ui/components/CSLabelPreview';
+import CSListPreview from './cs-ui/components/CSListPreview';
+import CSLookupPreview from './cs-ui/components/CSLookupPreview';
+import CSMainHeaderPreview from './cs-ui/components/CSMainHeaderPreview';
+import CSModalPreview from './cs-ui/components/CSModalPreview';
+import CSPaginationPreview from './cs-ui/components/CSPaginationPreview';
+import CSPathPreview from './cs-ui/components/CSPathPreview';
+import CSProgressBarPreview from './cs-ui/components/CSProgressBarPreview';
+import CSProgressIndicatorPreview from './cs-ui/components/CSProgressIndicatorPreview';
+import CSRadioPreview from './cs-ui/components/CSRadioPreview';
+import CSSectionPreview from './cs-ui/components/CSSectionPreview';
+import CSSelectPreview from './cs-ui/components/CSSelectPreview';
+import CSSidebarPreview from './cs-ui/components/CSSidebarPreview';
+import CSSkipLinkPreview from './cs-ui/components/CSSkipLinkPreview';
+import CSSliderPreview from './cs-ui/components/CSSliderPreview';
+import CSSpinnerPreview from './cs-ui/components/CSSpinnerPreview';
+import CSTablePreview from './cs-ui/components/CSTablePreview';
+import CSTabPreview from './cs-ui/components/CSTabPreview';
+import CSTextareaPreview from './cs-ui/components/CSTextareaPreview';
+import CSToastPreview from './cs-ui/components/CSToastPreview';
+import CSTogglePreview from './cs-ui/components/CSTogglePreview';
+import CSTooltipPreview from './cs-ui/components/CSTooltipPreview';
+import CSTransferPreview from './cs-ui/components/CSTransferPreview';
+import CSTreePreview from './cs-ui/components/CSTreePreview';
+import GettingStarted from './cs-ui/GettingStarted';
 import SidebarList from './SidebarList';
 
 class CSComponentsList extends React.Component {
@@ -54,7 +54,7 @@ class CSComponentsList extends React.Component {
 		const componentsList = [
 			{
 				name: 'Getting Started',
-				component: CSGettingStarted
+				component: GettingStarted
 			},
 			{
 				name: 'Alert',
@@ -255,7 +255,7 @@ class CSComponentsList extends React.Component {
 		];
 
 		return (
-			<SidebarList toggle search sidebarList={componentsList} path="/components/CS" />
+			<SidebarList toggle search sidebarList={componentsList} path="/cs-ui/"/>
 		);
 	}
 }

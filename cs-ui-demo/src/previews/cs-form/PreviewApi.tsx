@@ -1,6 +1,6 @@
 import React from 'react';
 import PreviewCode from './PreviewCode';
-import {PreviewInterface, PropInterface} from './types';
+import {CSFormPreviewInterface, PropInterface} from '../types';
 import classNames from 'classnames';
 import {
 	CSTableBody,
@@ -14,9 +14,9 @@ import {
 	getDefault,
 	getRequired,
 	getTypes
-} from './helpers';
+} from '../helpers';
 
-const PreviewApi: React.FC<PreviewInterface> = ({ name, api }) => {
+const PreviewApi: React.FC<CSFormPreviewInterface> = ({ name, api }) => {
 	if (!api) {
 		return null;
 	}
@@ -33,9 +33,7 @@ const PreviewApi: React.FC<PreviewInterface> = ({ name, api }) => {
 								<div className={`${method.name}-demo api-demo`}>
 									{method.component}
 								</div>
-								<div className="code-preview-wrapper">
-									<PreviewCode code={method.code} />
-								</div>
+								<PreviewCode code={method.code} />
 							</div>
 						</div>
 						<div className="properties-table-wrapper">

@@ -23,6 +23,7 @@ element. Variable names should be self-explanatory and sorted by index in ascend
   * `--z-index-path-pseudo: -1;`
   * `--z-index-sidebar-hidden-wrapper: -1;`
   * `--z-index-divider-label: 1;`
+  * `--z-index-custom-select-dropdown: 1;`
   * `--z-index-progress-indicator: 1;`
   * `--z-index-transfer-list-item-focus: 1;`
   * `--z-index-sidebar-visible-wrapper: 1;`
@@ -35,12 +36,11 @@ element. Variable names should be self-explanatory and sorted by index in ascend
   * `--z-index-main-header: 3;`
   * `--z-index-table-header: 3;`
   * `--z-index-button-custom-content: 4;`
+  * `--z-index-dropdown-items-wrapper: 5;`
   * `--z-index-sidebar-toggle: 10;`
   * `--z-index-path: 10;`
   * `--z-index-reset-zen-more-tabs-ul: 99;`
   * `--z-index-modal: 9000;`
-  * `--z-index-dropdown-items-wrapper: 9001;`
-  * `--z-index-custom-select-dropdown: 9001;`
   * `--z-index-lookup-dropdown: 9001;`
   * `--z-index-toast: 9005;`
   * `--z-index-tooltip: 9025;`
@@ -66,7 +66,7 @@ Object.defineProperty(global, 'crypto', {
 ## Documenting Components
 Due to the ever-growing and continuously-changing nature of the cs-ui-components library, it is necessary	to document all components methodically and uniformly. Each component or component family (such as `CSTab` and `CSTabGroup`, which are closely related) should have its own dedicated page for various previews, examples, use cases and code snippets. In code, this is referred to as a preview component or a preview file, following the `CSNamePreview` naming convention.
 
-All relevant documentation is placed inside the `getDoc` method of the preview component, which returns an object of type `PreviewInterface`. All relevant props and attributes are typechecked and typehinted. Their definitions can be found in the `types.ts` file.
+All relevant documentation is placed inside the `getDoc` method of the preview component, which returns an object of type `CSUIPreviewInterface`. All relevant props and attributes are typechecked and typehinted. Their definitions can be found in the `types.ts` file.
 
 This is an example of all possible first-level attributes of the documentation object.
 
