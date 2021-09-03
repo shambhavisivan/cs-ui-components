@@ -15,6 +15,7 @@
 * CSDropdown
   * fixed keyboard navigation when mode is 'button' and minor style fixes
 * Tests added to components
+  * CSDivider
   * CSSlider
   * CSToast
   * CSInputText
