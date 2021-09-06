@@ -48,7 +48,9 @@ const PreviewExamples: React.FC<CSFormPreviewInterface> = ({ fieldTypes }) => (
 												<div className={`${getSlug(fieldType.name)}-demo component-demo`}>
 													{preview.field}
 												</div>
-												<PreviewCode code={preview.code} />
+												<div className="code-preview-wrapper">
+													<PreviewCode code={preview.code} />
+												</div>
 											</div>
 											<div key={fieldType.name} className="properties-table-wrapper">
 												<CSTable className="properties-table">

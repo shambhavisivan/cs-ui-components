@@ -1,11 +1,12 @@
 import React, { useRef, useLayoutEffect, useState } from 'react';
-import PreviewQuickLinks from './PreviewQuickLinks';
+import PreviewPropList from './PreviewPropList';
 import PreviewHeader from './PreviewHeader';
 import PreviewExamples from './PreviewExamples';
-import PreviewProps from './PreviewProps';
+import PreviewPropTable from './PreviewPropTable';
 import PreviewApi from './PreviewApi';
 import PreviewAccessibility from './PreviewAccessibility';
 import { CSUIPreviewInterface } from '../types';
+import SecondarySidebar from '../SecondarySidebar';
 
 const Preview: React.FC<CSUIPreviewInterface> = (preview: CSUIPreviewInterface) => {
 	const [activeElement, setActiveElement] = useState<Element>();
@@ -66,12 +67,18 @@ const Preview: React.FC<CSUIPreviewInterface> = (preview: CSUIPreviewInterface) 
 
 	return (
 		<>
-			<PreviewQuickLinks {...preview} activeElement={activeElement} />
+			<SecondarySidebar
+				searchPlaceholder="Search Props..."
+				preview
+				collapsible
+			>
+				<PreviewPropList {...preview} activeElement={activeElement} />
+			</SecondarySidebar>
 			<div className="preview-section-wrapper" ref={previewSectionRef}>
 				<PreviewHeader {...preview} />
 				{preview?.children}
 				<PreviewExamples {...preview} />
-				<PreviewProps {...preview} />
+				<PreviewPropTable {...preview} />
 				<PreviewApi {...preview} />
 				<PreviewAccessibility {...preview} />
 			</div>

@@ -68,7 +68,7 @@ const MainHeader: React.FC = () => {
 				</li>
 				<li className="main-header-tab">
 					<NavLink
-						to="/release-notes/StartingPage"
+						to="/release-notes"
 						className="main-header-link-dropdown"
 						activeClassName="active-main-header-tab"
 					>

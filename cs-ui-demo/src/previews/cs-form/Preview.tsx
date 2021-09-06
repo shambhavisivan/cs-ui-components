@@ -1,9 +1,10 @@
 import React, { useRef, useLayoutEffect, useState } from 'react';
-import PreviewQuickLinks from './PreviewQuickLinks';
+import PreviewFieldTypeList from './PreviewFieldTypeList';
 import PreviewHeader from './PreviewHeader';
 import PreviewExamples from './PreviewExamples';
 import PreviewApi from './PreviewApi';
 import { CSFormPreviewInterface } from '../types';
+import SecondarySidebar from '../SecondarySidebar';
 
 const Preview: React.FC<CSFormPreviewInterface> = (preview: CSFormPreviewInterface) => {
 	const [activeElement, setActiveElement] = useState<Element>();
@@ -64,7 +65,14 @@ const Preview: React.FC<CSFormPreviewInterface> = (preview: CSFormPreviewInterfa
 
 	return (
 		<>
-			<PreviewQuickLinks {...preview} activeElement={activeElement} />
+			<SecondarySidebar
+				searchPlaceholder="Search Types..."
+				preview
+				collapsible
+				className="cs-form-secondary-sidebar"
+			>
+				<PreviewFieldTypeList {...preview} activeElement={activeElement} />
+			</SecondarySidebar>
 			<div className="preview-section-wrapper" ref={previewSectionRef}>
 				<PreviewHeader {...preview} />
 				{preview?.children}

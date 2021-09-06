@@ -313,15 +313,14 @@
 
 		.icons-search-inner-wrapper {
 			position: relative;
-			padding: 1rem 0 0;
-
+			padding: 0.875rem 0 0;
 
 			> .cs-icon {
 				position: absolute;
 				width: 1rem;
 				height: 1rem;
-				top: 2rem;
-				left: 1rem;
+				top: 1.875rem;
+				left: 0.875rem;
 				pointer-events: none;
 				@include sf(--csd-icon-fill);
 			}

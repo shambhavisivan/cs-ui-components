@@ -1,4 +1,4 @@
-import React, {useLayoutEffect, useRef, useState} from 'react';
+import React, {ReactNode, useLayoutEffect, useRef, useState} from 'react';
 import classNames from 'classnames';
 import { CSButton, CSIcon } from '@cloudsense/cs-ui-components';
 import { HashLink } from 'react-router-hash-link';
@@ -8,19 +8,25 @@ import { getSlug } from './helpers';
 export type SecondarySidebarColor = 'purple' | 'black';
 
 export interface SecondarySidebarProps {
-	anchorList: Array<string>;
+	anchorList?: Array<string>;
+	children?: ReactNode;
 	collapsible?: boolean;
 	className?: string;
-	spyOn?: string;
 	color?: SecondarySidebarColor;
+	preview?: boolean;
+	searchPlaceholder?: string;
+	spyOn?: string;
 }
 
 const SecondarySidebar: React.FC<SecondarySidebarProps> = ({
 	anchorList,
-	collapsible,
+	children,
 	className,
-	spyOn,
-	color
+	collapsible,
+	color = 'purple',
+	preview,
+	searchPlaceholder,
+	spyOn
 }) => {
 	const [activeElement, setActiveElement] = useState<Element | null>(null);
 	const [searchTerm, setSearchTerm] = useState<string>('');
@@ -82,7 +88,7 @@ const SecondarySidebar: React.FC<SecondarySidebarProps> = ({
 		'secondary-sidebar',
 		{
 			'secondary-sidebar-closed': !quickLinks && collapsible,
-			[`secondary-sidebar-${color || 'purple'}`]: color || !color,
+			[`secondary-sidebar-${color}`] : color,
 			[`${className}`]: className
 		}
 	);
@@ -90,13 +96,13 @@ const SecondarySidebar: React.FC<SecondarySidebarProps> = ({
 	const sidebarToggleClasses = classNames(
 		'closed-secondary-sidebar-toggle',
 		{
-			[`secondary-sidebar-toggle-${color || 'purple'}`]: color || !color
+			[`secondary-sidebar-toggle-${color}`]: color
 		}
 	);
 
 	return (
 		<>
-			{!quickLinks &&
+			{(!quickLinks && collapsible) &&
 				<CSButton
 					iconName="rows"
 					label="open"
@@ -113,7 +119,7 @@ const SecondarySidebar: React.FC<SecondarySidebarProps> = ({
 					<div className="secondary-sidebar-search">
 						<CSIcon name="search" />
 						<input
-							placeholder="Search..."
+							placeholder={searchPlaceholder ? searchPlaceholder : 'Search...'}
 							onChange={handleChange}
 							value={searchTerm}
 						/>
@@ -141,26 +147,30 @@ const SecondarySidebar: React.FC<SecondarySidebarProps> = ({
 							borderRadius="50%"
 						/>
 					)}
-					<div className="prop-list" ref={sidebarRef}>
-						<div>
-							{anchorList.filter(filterAnchors).map((anchor: string) => {
-								const link = getSlug(anchor);
-								const nameClasses = classNames(
-									'prop-name',
-									{
-										active: link === activeElement?.id
-									}
-								);
-								return (
-									<div className="prop-group" key={anchor}>
-										<h5 className={nameClasses}>
-											<HashLink to={`#${link}`}>{anchor}</HashLink>
-										</h5>
-									</div>
-								);
-							})}
+					{preview ? (
+						children
+					) : (
+						<div className="prop-list" ref={sidebarRef}>
+							<div>
+								{anchorList?.filter(filterAnchors).map((anchor: string) => {
+									const link = getSlug(anchor);
+									const nameClasses = classNames(
+										'prop-name',
+										{
+											active: link === activeElement?.id
+										}
+									);
+									return (
+										<div className="prop-group" key={anchor}>
+											<h5 className={nameClasses}>
+												<HashLink to={`#${link}`}>{anchor}</HashLink>
+											</h5>
+										</div>
+									);
+								})}
+							</div>
 						</div>
-					</div>
+					)}
 				</div>
 			</div>
 		</>

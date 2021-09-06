@@ -33,6 +33,7 @@ const App: React.FC = () => (
 							<Redirect exact from="/cs-ui" to="/cs-ui/GettingStarted" />
 							<Redirect exact from="/cs-form" to="/cs-form/GettingStarted" />
 							<Redirect exact from="/icons/" to="/icons/LightningIcons" />
+							<Redirect exact from="/release-notes/" to="/release-notes/StartingPage" />
 						</Switch>
 					</div>
 				</div>

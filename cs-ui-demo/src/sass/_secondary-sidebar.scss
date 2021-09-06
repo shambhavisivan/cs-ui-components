@@ -430,6 +430,12 @@
 				}
 			}
 		}
+
+		&.cs-form-secondary-sidebar .prop-list > div > h4.component-name a {
+			font-weight: 400;
+			font-size: 0.875rem;
+			padding-inline-start: 0.25rem;
+		}
 	}
 }
 

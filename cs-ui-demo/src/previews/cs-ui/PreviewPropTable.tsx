@@ -16,7 +16,7 @@ import {
 
 import { CSUIPreviewInterface, PropInterface, ComponentInterface } from '../types';
 
-const PreviewProps: React.FC<CSUIPreviewInterface> = ({ components }) => (
+const PreviewPropTable: React.FC<CSUIPreviewInterface> = ({ components }) => (
 	<>
 		{components?.map((component: ComponentInterface, componentIndex: number) => (
 			<div key={component.name} className="properties-table-wrapper">
@@ -63,4 +63,4 @@ const PreviewProps: React.FC<CSUIPreviewInterface> = ({ components }) => (
 	</>
 );
 
-export default PreviewProps;
+export default PreviewPropTable;

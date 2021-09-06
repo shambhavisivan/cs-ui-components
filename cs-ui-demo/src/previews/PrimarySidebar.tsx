@@ -1,7 +1,6 @@
 import React from 'react';
 import {CSIcon, CSButton} from '@cloudsense/cs-ui-components';
-import {Route, NavLink} from 'react-router-dom';
-import classNames from 'classnames';
+import {NavLink} from 'react-router-dom';
 
 interface SidebarItem {
 	name: string;
