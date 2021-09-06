@@ -166,8 +166,8 @@
 				}
 
 				&:hover {
-					@include sc(--csd-sidebar-link-hover-c);
-					@include sbg(--csd-sidebar-link-hover-bg);
+					@include sc(--csd-primary-sidebar-link-hover-c);
+					@include sbg(--csd-primary-sidebar-link-hover-bg);
 				}
 
 				&:focus-visible {
@@ -178,10 +178,10 @@
 
 				&.active-component {
 					font-weight: 700;
-					@include sbg(--csd-sidebar-link-active-bg);
+					@include sbg(--csd-primary-sidebar-link-active-bg);
 
 					&:hover {
-						@include sc(--csd-sidebar-link-hover-c);
+						@include sc(--csd-primary-sidebar-link-hover-c);
 					}
 				}
 

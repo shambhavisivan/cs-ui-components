@@ -1,7 +1,7 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
-import AnchorSidebarList from '../AnchorSidebarList';
+import SecondarySidebar from '../SecondarySidebar';
 import { getSlug } from '../helpers';
 
 const anchorList = ['CS UI Components', 'CS Grid', 'CS Form'];
@@ -30,10 +30,11 @@ const FutureScope: React.FC = () => {
 
 	return (
 		<>
-			<AnchorSidebarList
+			<SecondarySidebar
 				className="release-notes-sidebar"
 				anchorList={anchorList}
 				spyOn=".release-notes"
+				collapsible
 			/>
 			<ReactMarkdown
 				children={markdown}

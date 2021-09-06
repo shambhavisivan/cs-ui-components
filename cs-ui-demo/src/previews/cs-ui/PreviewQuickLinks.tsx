@@ -50,6 +50,7 @@ const PreviewQuickLinks: React.FC<CSUIPreviewInterface> = ({
 
 	const sidebarClasses = classNames(
 		'secondary-sidebar',
+		'secondary-sidebar-purple',
 		{
 			'secondary-sidebar-closed': !quickLinks
 		}

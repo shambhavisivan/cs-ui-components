@@ -119,7 +119,6 @@ $lightVariables: (
 	--csd-colors-grid-c: $cs-gray-medium-1,
 	--csd-colors-grid-name-c: $cs-gray-dark-2,
 
-	--csd-primary-sidebar-bg: $cs-dark-theme-2,
 	--csd-components-search-field-br: $cs-gray-dark-6,
 	--csd-components-api-bg: $cs-white,
 	--csd-components-modal-bg: $cs-white,
@@ -175,10 +174,6 @@ $lightVariables: (
 	--csd-prop-table-row-stripes-bg-light: $cs-white,
 	--csd-prop-table-row-stripes-bg-dark: $cs-gray-light-7,
 	--csd-prop-code-br: $cs-gray-light-1,
-	--csd-secondary-sidebar-bg: $cs-purple,
-	--csd-secondary-sidebar-hover-bg: $cs-purple-dark-1,
-	--csd-secondary-sidebar-br: rgba($cs-white, 0.2),
-	--csd-secondary-sidebar-active-br: rgba($cs-white, 0.6),
 
 	--csd-primary-variant-c: $cs-black,
 	--csd-primary-variant-bg: $cs-white,
@@ -199,23 +194,30 @@ $lightVariables: (
 	--csd-release-notes-c: $cs-black,
 	--csd-release-notes-alt-c: $cs-white,
 
-	--csd-sidebar-component-form-icon-fill: $cs-gray-medium-1,
+	--csd-primary-sidebar-bg: $cs-dark-theme-2,
+	--csd-primary-sidebar-component-form-icon-fill: $cs-gray-medium-1,
+	--csd-primary-sidebar-link-hover-c: $cs-white,
+	--csd-primary-sidebar-link-hover-bg: rgba($cs-black, 0.2),
+	--csd-primary-sidebar-link-active-bg: rgba($cs-black, 0.5),
+	--csd-primary-sidebar-br: rgba($cs-white, 0.2),
+	--csd-primary-sidebar-active-br: rgba($cs-white, 0.6),
+
+	--csd-secondary-sidebar-bg: $cs-purple,
+	--csd-secondary-sidebar-hover-bg: $cs-purple-dark-1,
+	--csd-secondary-sidebar-br: rgba($cs-white, 0.2),
+	--csd-secondary-sidebar-active-br: rgba($cs-white, 0.6),
+
 	--csd-sidebar-search-field-c: $cs-white,
-	--csd-sidebar-search-field-bg: $cs-gray-dark-4,
 	--csd-sidebar-search-field-placeholder-c: $cs-gray-light-4,
 	--csd-sidebar-link-c: $cs-white,
-	--csd-sidebar-link-hover-c: $cs-white,
 	--csd-sidebar-info-bg: $cs-white,
 	--csd-sidebar-toggle-graphic-fill: $cs-white,
 	--csd-sidebar-input-bg: rgba($cs-white, 0.2),
-
 	--csd-sidebar-scroll-thumb-bg: rgba($cs-white, 0.2),
 	--csd-sidebar-scroll-bg: rgba($cs-black, 0.05),
+
 	--csd-scroll-thumb-bg: rgba($cs-black, 0.2),
 	--csd-scroll-bg: rgba($cs-black, 0.1),
-
-	--csd-sidebar-link-hover-bg: rgba($cs-black, 0.2),
-	--csd-sidebar-link-active-bg: rgba($cs-black, 0.5),
 
 	// May need to remove these
 	--csd-table-row-bg: $cs-white,
@@ -287,7 +289,6 @@ $darkVariables: (
 	--csd-colors-grid-c: $cs-white,
 	--csd-colors-grid-name-c: $cs-white,
 
-	--csd-primary-sidebar-bg: $cs-dark-theme-2,
 	--csd-components-search-field-br: $cs-gray-dark-6,
 	--csd-components-api-bg: $cs-dark-theme-2,
 	--csd-components-modal-bg: $cs-white,
@@ -343,10 +344,6 @@ $darkVariables: (
 	--csd-prop-table-row-stripes-bg-light: $cs-dark-theme-2,
 	--csd-prop-table-row-stripes-bg-dark: $cs-dark-theme,
 	--csd-prop-code-br: $cs-gray-dark-3,
-	--csd-secondary-sidebar-bg: $cs-purple,
-	--csd-secondary-sidebar-hover-bg: $cs-purple-dark-1,
-	--csd-secondary-sidebar-br: rgba($cs-white, 0.2),
-	--csd-secondary-sidebar-active-br: rgba($cs-white, 0.6),
 
 	--csd-primary-variant-c: $cs-white,
 	--csd-primary-variant-bg: $cs-gray-dark-2,
@@ -367,23 +364,30 @@ $darkVariables: (
 	--csd-release-notes-c: $cs-black,
 	--csd-release-notes-alt-c: $cs-white,
 
-	--csd-sidebar-component-form-icon-fill: $cs-gray-medium-1,
+	--csd-primary-sidebar-bg: $cs-dark-theme-2,
+	--csd-primary-sidebar-component-form-icon-fill: $cs-gray-medium-1,
+	--csd-primary-sidebar-link-hover-c: $cs-white,
+	--csd-primary-sidebar-link-hover-bg: rgba($cs-black, 0.2),
+	--csd-primary-sidebar-link-active-bg: rgba($cs-black, 0.5),
+	--csd-primary-sidebar-br: rgba($cs-white, 0.2),
+	--csd-primary-sidebar-active-br: rgba($cs-white, 0.6),
+
+	--csd-secondary-sidebar-bg: $cs-purple,
+	--csd-secondary-sidebar-hover-bg: $cs-purple-dark-1,
+	--csd-secondary-sidebar-br: rgba($cs-white, 0.2),
+	--csd-secondary-sidebar-active-br: rgba($cs-white, 0.6),
+
 	--csd-sidebar-search-field-c: $cs-white,
-	--csd-sidebar-search-field-bg: $cs-gray-dark-4,
 	--csd-sidebar-search-field-placeholder-c: $cs-gray-light-4,
 	--csd-sidebar-link-c: $cs-white,
-	--csd-sidebar-link-hover-c: $cs-white,
 	--csd-sidebar-info-bg: $cs-white,
 	--csd-sidebar-toggle-graphic-fill: $cs-white,
 	--csd-sidebar-input-bg: rgba($cs-white, 0.2),
-
 	--csd-sidebar-scroll-thumb-bg: rgba($cs-white, 0.2),
 	--csd-sidebar-scroll-bg: rgba($cs-black, 0.05),
+
 	--csd-scroll-thumb-bg: rgba($cs-white, 0.2),
 	--csd-scroll-bg: rgba($cs-black, 0.15),
-
-	--csd-sidebar-link-hover-bg: rgba($cs-black,0.2),
-	--csd-sidebar-link-active-bg: rgba($cs-black,0.5),
 
 	--csd-table-row-bg: $cs-white,
 	--csd-table-row-br: $cs-gray-light-5,

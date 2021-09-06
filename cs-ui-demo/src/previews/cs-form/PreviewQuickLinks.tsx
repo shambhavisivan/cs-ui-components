@@ -42,6 +42,7 @@ const PreviewQuickLinks: React.FC<CSFormPreviewInterface> = ({
 
 	const sidebarClasses = classNames(
 		'secondary-sidebar',
+		'secondary-sidebar-purple',
 		{
 			'secondary-sidebar-closed': !quickLinks
 		}

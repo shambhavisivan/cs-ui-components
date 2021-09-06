@@ -1,7 +1,7 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
-import AnchorSidebarList from './AnchorSidebarList';
+import SecondarySidebar from './SecondarySidebar';
 import { getSlug } from './helpers';
 
 const anchorList = ['General', 'Official Documentation', 'Criteria',  'Literature', 'App General', 'FAQ'];
@@ -30,10 +30,12 @@ const Accessibility: React.FC = () => {
 
 	return (
 		<>
-			<AnchorSidebarList
+			<SecondarySidebar
 				className="accessibility-sidebar"
 				anchorList={anchorList}
 				spyOn=".accessibility"
+				collapsible
+				color="black"
 			/>
 			<ReactMarkdown
 				children={markdown}

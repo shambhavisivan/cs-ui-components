@@ -5,18 +5,22 @@ import { HashLink } from 'react-router-hash-link';
 import { useQuickLinks } from '../context/QuickLinksContext';
 import { getSlug } from './helpers';
 
-export interface AnchorSidebarListProps {
+export type SecondarySidebarColor = 'purple' | 'black';
+
+export interface SecondarySidebarProps {
 	anchorList: Array<string>;
-	secondary?: boolean;
+	collapsible?: boolean;
 	className?: string;
 	spyOn?: string;
+	color?: SecondarySidebarColor;
 }
 
-const AnchorSidebarList: React.FC<AnchorSidebarListProps> = ({
+const SecondarySidebar: React.FC<SecondarySidebarProps> = ({
 	anchorList,
-	secondary,
+	collapsible,
 	className,
-	spyOn
+	spyOn,
+	color
 }) => {
 	const [activeElement, setActiveElement] = useState<Element | null>(null);
 	const [searchTerm, setSearchTerm] = useState<string>('');
@@ -77,8 +81,16 @@ const AnchorSidebarList: React.FC<AnchorSidebarListProps> = ({
 	const sidebarClasses = classNames(
 		'secondary-sidebar',
 		{
-			'secondary-sidebar-closed': !quickLinks && secondary,
+			'secondary-sidebar-closed': !quickLinks && collapsible,
+			[`secondary-sidebar-${color || 'purple'}`]: color || !color,
 			[`${className}`]: className
+		}
+	);
+
+	const sidebarToggleClasses = classNames(
+		'closed-secondary-sidebar-toggle',
+		{
+			[`secondary-sidebar-toggle-${color || 'purple'}`]: color || !color
 		}
 	);
 
@@ -91,7 +103,7 @@ const AnchorSidebarList: React.FC<AnchorSidebarListProps> = ({
 					btnType="transparent"
 					size="small"
 					labelHidden
-					className="closed-secondary-sidebar-toggle"
+					className={sidebarToggleClasses}
 					onClick={toggleQuickLinks}
 					borderRadius="50%"
 				/>
@@ -117,7 +129,7 @@ const AnchorSidebarList: React.FC<AnchorSidebarListProps> = ({
 							/>
 						)}
 					</div>
-					{secondary && (
+					{collapsible && (
 						<CSButton
 							iconName={quickLinks ? 'back' : 'rows'}
 							label={quickLinks ? 'close' : 'open'}
@@ -155,4 +167,4 @@ const AnchorSidebarList: React.FC<AnchorSidebarListProps> = ({
 	);
 };
 
-export default AnchorSidebarList;
+export default SecondarySidebar;

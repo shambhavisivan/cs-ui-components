@@ -14,7 +14,6 @@
 		overflow: hidden;
 		z-index: 1;
 		border-radius: 0.5rem;
-		@include sbg(--csd-secondary-sidebar-bg);
 		@include css4 {
 			box-shadow: 0 1px 5px var(--csd-shadow-dark);
 		}
@@ -29,11 +28,6 @@
 			position: absolute;
 			top: 1.125rem;
 			right: 1rem;
-
-			&:active::before,
-			&::before {
-				@include sbg(--csd-secondary-sidebar-bg);
-			}
 
 			&:hover {
 				transform: scale(1.1);
@@ -108,7 +102,6 @@
 			flex: 1;
 			overflow-y: auto;
 			overflow-x: hidden;
-			@include sbg(--csd-secondary-sidebar-bg);
 			@include css4 {
 				scrollbar-color: cvar(--csd-sidebar-scroll-thumb-bg) cvar(--csd-transparent);
 			}
@@ -139,11 +132,6 @@
 					display: flex;
 					align-items: center;
 					transition: background-color 100ms ease-in-out;
-					@include sbg(--csd-secondary-sidebar-bg);
-
-					&:hover {
-						@include sbg(--csd-secondary-sidebar-hover-bg);
-					}
 
 					a {
 						font-size: 1rem;
@@ -184,18 +172,11 @@
 						padding-left: 1.75rem;
 						transition: all 200ms ease-in-out;
 
-						&:hover {
-							@include sbg(--csd-secondary-sidebar-hover-bg);
-						}
-
 						a {
 							padding: 0.75rem 1rem;
 							font-size: 0.75rem;
 							transition: all 200ms ease-in-out;
 							@include sc(--csd-sidebar-link-c);
-							@include css4 {
-								border-left: 1px solid var(--csd-secondary-sidebar-br);
-							}
 						}
 
 						&.active {
@@ -204,12 +185,6 @@
 
 							&:hover {
 								@include sbg(--csd-shadow-medium);
-							}
-
-							a {
-								@include css4 {
-									border-left: 3px solid var(--csd-secondary-sidebar-active-br);
-								}
 							}
 						}
 					}
@@ -264,14 +239,8 @@
 					}
 				}
 
-				&.active {
-					@include css4 {
-						border-left: 3px solid var(--csd-secondary-sidebar-active-br);
-					}
-
-					a {
-						padding-left: calc(1.25rem - 3px);
-					}
+				&.active a {
+					padding-left: calc(1.25rem - 3px);
 				}
 
 				&:first-child {
@@ -331,26 +300,6 @@
 					right: 1rem;
 				}
 			}
-
-			.secondary-sidebar-toggle {
-				position: absolute;
-				top: 1.25rem;
-				left: 0.75rem;
-
-				&:hover::before,
-				&::before {
-					@include sbg(--csd-primary-sidebar-bg);
-				}
-			}
-		}
-
-		&.accessibility-sidebar,
-		&.accessibility-sidebar .prop-list {
-			@include sbg(--csd-primary-sidebar-bg);
-
-			.prop-group .prop-name:hover {
-				@include sbg(--csd-sidebar-link-hover-bg);
-			}
 		}
 
 		&.release-notes-sidebar,
@@ -381,6 +330,106 @@
 			font-weight: 400;
 			@include sbg(--csd-sidebar-active-bg);
 		}
+
+		&.secondary-sidebar-black {
+			@include sbg(--csd-primary-sidebar-bg);
+
+			.secondary-sidebar-toggle.cs-btn.cs-btn {
+				&:active::before,
+				&::before {
+					@include sbg(--csd-primary-sidebar-bg);
+				}
+			}
+
+			.prop-list {
+				@include sbg(--csd-primary-sidebar-bg);
+
+				> div {
+					.component-name {
+						@include sbg(--csd-primary-sidebar-bg);
+
+						&:hover {
+							@include sbg(--csd-primary-sidebar-link-hover-bg);
+						}
+					}
+				}
+			}
+
+			.prop-group .prop-name,
+			.prop-group .prop-variant {
+				&:hover {
+					@include sbg(--csd-primary-sidebar-link-hover-bg);
+				}
+
+				a {
+					@include css4 {
+						border-left: 1px solid var(--csd-primary-sidebar-br);
+					}
+				}
+
+				&.active a {
+					@include css4 {
+						border-left: 3px solid var(--csd-primary-sidebar-active-br);
+					}
+				}
+			}
+
+			.secondary-sidebar-bottom-group h4 a.active {
+				@include css4 {
+					border-left: 3px solid var(--csd-primary-sidebar-active-br);
+				}
+			}
+		}
+
+		&.secondary-sidebar-purple {
+			@include sbg(--csd-secondary-sidebar-bg);
+
+			.secondary-sidebar-toggle.cs-btn.cs-btn {
+				&:active::before,
+				&::before {
+					@include sbg(--csd-secondary-sidebar-bg);
+				}
+			}
+
+			.prop-list {
+				@include sbg(--csd-secondary-sidebar-bg);
+
+				> div {
+					.component-name {
+						@include sbg(--csd-secondary-sidebar-bg);
+
+						&:hover {
+							@include sbg(--csd-secondary-sidebar-hover-bg);
+						}
+					}
+				}
+			}
+
+			.prop-group .prop-name,
+			.prop-group .prop-variant {
+				&:hover {
+					@include sbg(--csd-secondary-sidebar-hover-bg);
+				}
+
+				a {
+					@include css4 {
+						border-left: 1px solid var(--csd-secondary-sidebar-br);
+					}
+				}
+
+				&.active a {
+					@include css4 {
+						border-left: 3px solid var(--csd-secondary-sidebar-active-br);
+					}
+				}
+			}
+
+			.secondary-sidebar-bottom-group h4 a.active {
+				@include css4 {
+					border-left: 3px solid var(--csd-secondary-sidebar-active-br);
+				}
+			}
+		}
 	}
 }
 
@@ -394,6 +443,14 @@
 	&:active::before,
 	&::before {
 		@include sbg(--csd-secondary-sidebar-bg);
+	}
+
+	&.secondary-sidebar-toggle-black {
+		&:hover::before,
+		&:active::before,
+		&::before {
+			@include sbg(--csd-primary-sidebar-bg);
+		}
 	}
 
 	&:hover {

@@ -1,7 +1,7 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
-import AnchorSidebarList from '../AnchorSidebarList';
+import SecondarySidebar from '../SecondarySidebar';
 import { getSlug } from '../helpers';
 
 const anchorList = ['HTML App Wrapper', 'CSS Class Prefix', 'z-index', 'Unit Tests & UUID', 'Documenting Components'];
@@ -30,11 +30,11 @@ const GettingStarted: React.FC = () => {
 
 	return (
 		<>
-			<AnchorSidebarList
+			<SecondarySidebar
 				anchorList={anchorList}
 				className="getting-started-sidebar"
 				spyOn=".getting-started"
-				secondary
+				collapsible
 			/>
 			<ReactMarkdown
 				children={markdown}
