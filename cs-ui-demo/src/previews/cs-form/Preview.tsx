@@ -37,7 +37,7 @@ const Preview: React.FC<CSFormPreviewInterface> = (preview: CSFormPreviewInterfa
 						return false;
 					});
 					setActiveElement(newActiveElement);
-					const sidebar = document.getElementById('quick-links-prop-list');
+					const sidebar = document.getElementById('secondary-sidebar-prop-list');
 					const newActiveAnchor = sidebar?.getElementsByClassName('active')[0];
 					if (newActiveAnchor?.getBoundingClientRect && sidebar?.getBoundingClientRect) {
 						const anchorTop = newActiveAnchor.getBoundingClientRect().top;

@@ -66,56 +66,71 @@ class SidebarList extends React.Component<SidebarListProps, SidebarListState> {
 
 		return (
 			<>
-				<div className={'components-list-wrapper' + (this.state.sidebarOpen ? ' sidebar-open' : ' sidebar-closed')}>
-					{this.props.toggle && (
-						<CSButton
-							iconName={this.state.sidebarOpen ? 'close' : 'rows'}
-							label={this.state.sidebarOpen ? 'close' : 'open'}
-							btnType="transparent"
-							size="small"
-							labelHidden
-							borderRadius="50%"
-							className="sidebar-toggle"
-							onClick={this.toggleSidebar}
-						/>
-					)}
-					{this.props.search && (
-						<div className="components-list-search">
-							<CSIcon name="search" />
-							<input placeholder="Search..." onChange={this.searchHandler} value={this.state.term}/>
-							{this.state.term &&
-								<CSButton
-									label="clear"
-									btnType="transparent"
-									iconName="close"
-									size="small"
-									labelHidden
-									onClick={this.clearSearch}
-								/>
-							}
+				{!this.state.sidebarOpen &&
+					<CSButton
+						iconName="rows"
+						label="open"
+						btnType="transparent"
+						size="small"
+						labelHidden
+						borderRadius="50%"
+						className="closed-sidebar-toggle"
+						onClick={this.toggleSidebar}
+					/>
+				}
+				<div className="primary-sidebar-wrapper">
+					<div className={'primary-sidebar' + (this.state.sidebarOpen ? ' sidebar-open' : ' sidebar-closed')}>
+						{this.props.search && (
+							<div className="primary-sidebar-search">
+								<CSIcon name="search" />
+								<input placeholder="Search..." onChange={this.searchHandler} value={this.state.term}/>
+								{this.state.term &&
+									<CSButton
+										label="clear"
+										btnType="transparent"
+										borderRadius="0.75rem"
+										iconName="close"
+										size="small"
+										labelHidden
+										onClick={this.clearSearch}
+									/>
+								}
+							</div>
+						)}
+						{this.props.toggle && (
+							<CSButton
+								iconName={this.state.sidebarOpen ? 'back' : 'rows'}
+								label={this.state.sidebarOpen ? 'close' : 'open'}
+								btnType="transparent"
+								size="small"
+								labelHidden
+								borderRadius="50%"
+								className="sidebar-toggle"
+								onClick={this.toggleSidebar}
+							/>
+						)}
+						<div className="primary-sidebar-inner">
+							<ul className="primary-sidebar-list">
+								{this.props.sidebarList.filter(component => {
+									const term = this.state.term.toLowerCase();
+									return component.name.toLowerCase().includes(term) || !term;
+								}).map(component => (
+									<li className={component.name.includes('Getting Started') ? 'ui-component info' : 'ui-component'} title={component.name} key={component.name.split(' ').join('')}>
+										<NavLink
+											to={`${this.props.path}${component.name.split(' ').join('')}`}
+											activeClassName="active-component"
+										>
+											<span className="ui-component-name">
+												{component.name}
+											</span>
+											{component.isFormElement &&
+												<CSIcon name="edit_form" color="var(--csd-sidebar-component-form-icon-fill)" title="form element" />
+											}
+										</NavLink>
+									</li>)
+								)}
+							</ul>
 						</div>
-					)}
-					<div className="components-list-inner">
-						<ul className="components-list">
-							{this.props.sidebarList.filter(component => {
-								const term = this.state.term.toLowerCase();
-								return component.name.toLowerCase().includes(term) || !term;
-							}).map(component => (
-								<li className={component.name.includes('Getting Started') ? 'ui-component info' : 'ui-component'} title={component.name} key={component.name.split(' ').join('')}>
-									<NavLink
-										to={`${this.props.path}${component.name.split(' ').join('')}`}
-										activeClassName="active-component"
-									>
-										<span className="ui-component-name">
-											{component.name}
-										</span>
-										{component.isFormElement &&
-											<CSIcon name="edit_form" color="var(--csd-sidebar-component-form-icon-fill)" title="form element" />
-										}
-									</NavLink>
-								</li>)
-							)}
-						</ul>
 					</div>
 				</div>
 				<div className={componentPreviewClass}>

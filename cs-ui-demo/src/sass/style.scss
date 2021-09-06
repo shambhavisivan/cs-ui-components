@@ -3,7 +3,8 @@
 
 @import "app";
 @import "header";
-@import "sidebar-list";
+@import "primary-sidebar";
+@import "secondary-sidebar";
 @import "sections";
 @import "code";
 @import "release-notes";
@@ -11,6 +12,5 @@
 @import "previews/preview";
 @import "previews/preview-accessibility";
 @import "previews/preview-heading";
-@import "previews/preview-links";
 @import "previews/preview-table";
 @import "previews/custom";

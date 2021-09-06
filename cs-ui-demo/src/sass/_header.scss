@@ -5,9 +5,6 @@
 	position: relative;
 	z-index: 3;
 	@include sbg(--csd-app-header-bg);
-	@include css4 {
-		box-shadow: 0 1px 3px cvar(--csd-shadow-light), 0 1px 2px cvar(--csd-shadow-medium);
-	}
 
 	ul {
 		list-style: none;

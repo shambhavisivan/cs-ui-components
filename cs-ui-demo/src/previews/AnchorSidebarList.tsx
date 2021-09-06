@@ -75,66 +75,83 @@ const AnchorSidebarList: React.FC<AnchorSidebarListProps> = ({
 	const filterAnchors = (anchor: string) => anchor.toLowerCase().includes(searchTerm.toLowerCase());
 
 	const sidebarClasses = classNames(
-		'prop-sidebar',
+		'secondary-sidebar',
 		{
-			'quick-links-closed': !quickLinks && secondary,
+			'secondary-sidebar-closed': !quickLinks && secondary,
 			[`${className}`]: className
 		}
 	);
 
 	return (
-		<div className={sidebarClasses}>
-			{secondary && (
+		<>
+			{!quickLinks &&
 				<CSButton
-					iconName={quickLinks ? 'close' : 'rows'}
-					label={quickLinks ? 'close' : 'open'}
+					iconName="rows"
+					label="open"
 					btnType="transparent"
 					size="small"
 					labelHidden
-					className="quick-links-toggle"
+					className="closed-secondary-sidebar-toggle"
 					onClick={toggleQuickLinks}
 					borderRadius="50%"
 				/>
-			)}
-			<div className="quick-links-search">
-				<CSIcon name="search" />
-				<input
-					placeholder="Search..."
-					onChange={handleChange}
-					value={searchTerm}
-				/>
-				{searchTerm && (
-					<CSButton
-						label="clear"
-						btnType="transparent"
-						iconName="close"
-						size="small"
-						labelHidden
-						onClick={() => setSearchTerm('')}
-					/>
-				)}
-			</div>
-			<div className="prop-list" ref={sidebarRef}>
-				<div>
-					{anchorList.filter(filterAnchors).map((anchor: string) => {
-						const link = getSlug(anchor);
-						const nameClasses = classNames(
-							'prop-name',
-							{
-								active: link === activeElement?.id
-							}
-						);
-						return (
-							<div className="prop-group" key={anchor}>
-								<h5 className={nameClasses}>
-									<HashLink to={`#${link}`}>{anchor}</HashLink>
-								</h5>
-							</div>
-						);
-					})}
+			}
+			<div className="secondary-sidebar-wrapper">
+				<div className={sidebarClasses}>
+					<div className="secondary-sidebar-search">
+						<CSIcon name="search" />
+						<input
+							placeholder="Search..."
+							onChange={handleChange}
+							value={searchTerm}
+						/>
+						{searchTerm && (
+							<CSButton
+								label="clear"
+								btnType="transparent"
+								iconName="close"
+								size="small"
+								labelHidden
+								borderRadius="50%"
+								onClick={() => setSearchTerm('')}
+							/>
+						)}
+					</div>
+					{secondary && (
+						<CSButton
+							iconName={quickLinks ? 'back' : 'rows'}
+							label={quickLinks ? 'close' : 'open'}
+							btnType="transparent"
+							size="small"
+							labelHidden
+							className="secondary-sidebar-toggle"
+							onClick={toggleQuickLinks}
+							borderRadius="50%"
+						/>
+					)}
+					<div className="prop-list" ref={sidebarRef}>
+						<div>
+							{anchorList.filter(filterAnchors).map((anchor: string) => {
+								const link = getSlug(anchor);
+								const nameClasses = classNames(
+									'prop-name',
+									{
+										active: link === activeElement?.id
+									}
+								);
+								return (
+									<div className="prop-group" key={anchor}>
+										<h5 className={nameClasses}>
+											<HashLink to={`#${link}`}>{anchor}</HashLink>
+										</h5>
+									</div>
+								);
+							})}
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 

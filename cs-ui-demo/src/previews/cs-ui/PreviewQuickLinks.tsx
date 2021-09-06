@@ -49,122 +49,139 @@ const PreviewQuickLinks: React.FC<CSUIPreviewInterface> = ({
 	const filterProps = (example: ExampleInterface) => (example.variations.length);
 
 	const sidebarClasses = classNames(
-		'prop-sidebar',
+		'secondary-sidebar',
 		{
-			'quick-links-closed': !quickLinks
+			'secondary-sidebar-closed': !quickLinks
 		}
 	);
 
 	return (
-		<div className={sidebarClasses}>
-			<CSButton
-				iconName={quickLinks ? 'close' : 'rows'}
-				label={quickLinks ? 'close' : 'open'}
-				btnType="transparent"
-				size="small"
-				labelHidden
-				className="quick-links-toggle"
-				onClick={toggleQuickLinks}
-				borderRadius="50%"
-			/>
-			<div className="quick-links-search">
-				<CSIcon name="search" />
-				<input
-					placeholder="Search props..."
-					onChange={handleChange}
-					value={searchTerm}
+		<>
+			{!quickLinks &&
+				<CSButton
+					iconName="rows"
+					label="open"
+					btnType="transparent"
+					size="small"
+					labelHidden
+					className="closed-secondary-sidebar-toggle"
+					onClick={toggleQuickLinks}
+					borderRadius="50%"
 				/>
-				{searchTerm && (
+			}
+			<div className="secondary-sidebar-wrapper">
+				<div className={sidebarClasses}>
+					<div className="secondary-sidebar-search">
+						<CSIcon name="search" />
+						<input
+							placeholder="Search props..."
+							onChange={handleChange}
+							value={searchTerm}
+						/>
+						{searchTerm && (
+							<CSButton
+								label="clear"
+								btnType="transparent"
+								iconName="close"
+								size="small"
+								labelHidden
+								borderRadius="50%"
+								onClick={() => setSearchTerm('')}
+							/>
+						)}
+					</div>
 					<CSButton
-						label="clear"
+						iconName={quickLinks ? 'back' : 'rows'}
+						label={quickLinks ? 'close' : 'open'}
 						btnType="transparent"
-						iconName="close"
 						size="small"
 						labelHidden
-						onClick={() => setSearchTerm('')}
+						className="secondary-sidebar-toggle"
+						onClick={toggleQuickLinks}
+						borderRadius="50%"
 					/>
-				)}
-			</div>
-			<div className="prop-list" id="quick-links-prop-list">
-				{components.map((component: ComponentInterface, previewIndex: number) => {
-					const examples = component.examples?.map(filterVariations).filter(filterProps);
-					const componentLink = getSlug(component.name);
-					return examples && (
-						<div key={component.name}>
-							<h4 className="component-name">
-								<CSButton
-									label={visibleSections[previewIndex] ? 'Collapse' : 'Expand'}
-									labelHidden
-									btnType="transparent"
-									size="small"
-									iconName="chevronright"
-									iconRotate={visibleSections[previewIndex] ? 90 : 0}
-									iconSize="1rem"
-									onClick={() => handleClick(previewIndex)}
-								/>
-								<HashLink to={`#${componentLink}`}>{component.name}</HashLink>
+					<div className="prop-list" id="secondary-sidebar-prop-list">
+						{components.map((component: ComponentInterface, previewIndex: number) => {
+							const examples = component.examples?.map(filterVariations).filter(filterProps);
+							const componentLink = getSlug(component.name);
+							return examples && (
+								<div key={component.name}>
+									<h4 className="component-name">
+										<CSButton
+											label={visibleSections[previewIndex] ? 'Collapse' : 'Expand'}
+											labelHidden
+											btnType="transparent"
+											size="small"
+											iconName="chevronright"
+											iconRotate={visibleSections[previewIndex] ? 90 : 0}
+											iconSize="1rem"
+											onClick={() => handleClick(previewIndex)}
+										/>
+										<HashLink to={`#${componentLink}`}>{component.name}</HashLink>
+									</h4>
+									{!examples.length && (
+										<CSAlert variant="info" text={`No results in ${component.name}.`} />
+									)}
+									{visibleSections[previewIndex] && examples.map((example: ExampleInterface) => {
+										const propLink = `${componentLink}-${getSlug(example.propName)}`;
+										const propNameClasses = classNames(
+											'prop-name',
+											{
+												active: propLink === activeElement.id
+											}
+										);
+										return (
+											<div className="prop-group" key={example.propName}>
+												<h5 className={propNameClasses}>
+													<HashLink to={`#${propLink}`}>{example.propName}</HashLink>
+												</h5>
+												{example.variations.map((variation: VariationInterface, variationIndex: number) => {
+													const variationLink = variation.quickLink && `${propLink}-${getSlug(variation.quickLink)}`;
+													const propVariantClasses = classNames(
+														'prop-variant',
+														{
+															active: variationLink === activeElement.id
+														}
+													);
+													return (
+														<span className={propVariantClasses} key={variationIndex}>
+															{variation.quickLink && (
+																<HashLink to={`#${variationLink}`}>{variation.quickLink}</HashLink>
+															)}
+														</span>
+													);
+												})}
+											</div>
+										);
+									})}
+								</div>
+							);
+						})}
+					</div>
+					<div className="secondary-sidebar-bottom-group">
+						<h4 className={activeElement.id === 'component-props' ? 'active' : ''}>
+							<HashLink to="#component-props">
+								Properties List
+							</HashLink>
+						</h4>
+						{api && (
+							<h4 className={activeElement.id === 'component-api' ? 'active' : ''}>
+								<HashLink to="#component-api">
+									API
+								</HashLink>
 							</h4>
-							{!examples.length && (
-								<CSAlert variant="info" text={`No results in ${component.name}.`} />
-							)}
-							{visibleSections[previewIndex] && examples.map((example: ExampleInterface) => {
-								const propLink = `${componentLink}-${getSlug(example.propName)}`;
-								const propNameClasses = classNames(
-									'prop-name',
-									{
-										active: propLink === activeElement.id
-									}
-								);
-								return (
-									<div className="prop-group" key={example.propName}>
-										<h5 className={propNameClasses}>
-											<HashLink to={`#${propLink}`}>{example.propName}</HashLink>
-										</h5>
-										{example.variations.map((variation: VariationInterface, variationIndex: number) => {
-											const variationLink = variation.quickLink && `${propLink}-${getSlug(variation.quickLink)}`;
-											const propVariantClasses = classNames(
-												'prop-variant',
-												{
-													active: variationLink === activeElement.id
-												}
-											);
-											return (
-												<span className={propVariantClasses} key={variationIndex}>
-													{variation.quickLink && (
-														<HashLink to={`#${variationLink}`}>{variation.quickLink}</HashLink>
-													)}
-												</span>
-											);
-										})}
-									</div>
-								);
-							})}
-						</div>
-					);
-				})}
+						)}
+						{accessibility && (
+							<h4 className={activeElement.id === 'component-accessibility' ? 'active' : ''}>
+								<HashLink to="#component-accessibility">
+									Accessibility
+								</HashLink>
+							</h4>
+						)}
+					</div>
+				</div>
 			</div>
-			<div className="prop-sidebar-bottom-group">
-				<h4 className={activeElement.id === 'component-props' ? 'active' : ''}>
-					<HashLink to="#component-props">
-						Properties List
-					</HashLink>
-				</h4>
-				{api && (
-					<h4 className={activeElement.id === 'component-api' ? 'active' : ''}>
-						<HashLink to="#component-api">
-							API
-						</HashLink>
-					</h4>
-				)}
-				{accessibility && (
-					<h4 className={activeElement.id === 'component-accessibility' ? 'active' : ''}>
-						<HashLink to="#component-accessibility">
-							Accessibility
-						</HashLink>
-					</h4>
-				)}
-			</div>
-		</div>
+		</>
 	);
 };
 

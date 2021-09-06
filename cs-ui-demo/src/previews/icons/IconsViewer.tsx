@@ -42,18 +42,20 @@ class IconsViewer extends React.Component<IconsViewerProps, IconsViewerState> {
 		return (
 			<>
 				<div className="icons-search-wrapper">
-					<CSIcon name="search"/>
-					<input className="icons-search" placeholder="Search..." onChange={this.searchHandler} value={this.state.term} />
-					{this.state.term &&
-						<CSButton
-							label="clear"
-							labelHidden
-							btnType="transparent"
-							iconColor="var(--csd-icon-fill)"
-							iconName="close"
-							onClick={this.clearSearch}
-						/>
-					}
+					<div className="icons-search-inner-wrapper">
+						<CSIcon name="search"/>
+						<input className="icons-search" placeholder="Search..." onChange={this.searchHandler} value={this.state.term} />
+						{this.state.term &&
+							<CSButton
+								label="clear"
+								labelHidden
+								btnType="transparent"
+								iconColor="var(--csd-icon-fill)"
+								iconName="close"
+								onClick={this.clearSearch}
+							/>
+						}
+					</div>
 				</div>
 				<div className="icons-preview-wrapper">
 					<div className="icons-preview">

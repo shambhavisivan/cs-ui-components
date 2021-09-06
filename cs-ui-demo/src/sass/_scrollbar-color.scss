@@ -10,7 +10,7 @@
 	&::-webkit-scrollbar-track {
 		box-shadow: none;
 		@include css4 {
-			background-color: cvar(--csd-transparent);
+			background-color: cvar(--csd-scroll-bg);
 		}
 	}
 
@@ -20,7 +20,7 @@
 		min-height: 2rem;
 		@include css4 {
 			border: 4px solid cvar(--csd-transparent);
-			background-color: cvar(--csd-sidebar-scroll-bg);
+			background-color: cvar(--csd-scroll-thumb-bg);
 		}
 	}
 }

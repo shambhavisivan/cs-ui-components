@@ -19,6 +19,7 @@ body,
 	justify-content: flex-end;
 	flex: 1;
 	overflow: hidden;
+	position: relative;
 	@include sbg(--csd-app-body-bg);
 }
 

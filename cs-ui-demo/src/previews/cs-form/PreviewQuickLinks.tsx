@@ -41,69 +41,86 @@ const PreviewQuickLinks: React.FC<CSFormPreviewInterface> = ({
 	};
 
 	const sidebarClasses = classNames(
-		'prop-sidebar',
+		'secondary-sidebar',
 		{
-			'quick-links-closed': !quickLinks
+			'secondary-sidebar-closed': !quickLinks
 		}
 	);
 
 	return (
-		<div className={sidebarClasses}>
-			<CSButton
-				iconName={quickLinks ? 'close' : 'rows'}
-				label={quickLinks ? 'close' : 'open'}
-				btnType="transparent"
-				size="small"
-				labelHidden
-				className="quick-links-toggle"
-				onClick={toggleQuickLinks}
-				borderRadius="50%"
-			/>
-			<div className="quick-links-search">
-				<CSIcon name="search" />
-				<input
-					placeholder="Search props..."
-					onChange={handleChange}
-					value={searchTerm}
+		<>
+			{!quickLinks &&
+				<CSButton
+					iconName="rows"
+					label="open"
+					btnType="transparent"
+					size="small"
+					labelHidden
+					className="closed-secondary-sidebar-toggle"
+					onClick={toggleQuickLinks}
+					borderRadius="50%"
 				/>
-				{searchTerm && (
+			}
+			<div className="secondary-sidebar-wrapper">
+				<div className={sidebarClasses}>
+					<div className="secondary-sidebar-search">
+						<CSIcon name="search" />
+						<input
+							placeholder="Search props..."
+							onChange={handleChange}
+							value={searchTerm}
+						/>
+						{searchTerm && (
+							<CSButton
+								label="clear"
+								btnType="transparent"
+								iconName="close"
+								size="small"
+								labelHidden
+								borderRadius="50%"
+								onClick={() => setSearchTerm('')}
+							/>
+						)}
+					</div>
 					<CSButton
-						label="clear"
+						iconName={quickLinks ? 'back' : 'rows'}
+						label={quickLinks ? 'close' : 'open'}
 						btnType="transparent"
-						iconName="close"
 						size="small"
 						labelHidden
-						onClick={() => setSearchTerm('')}
+						className="secondary-sidebar-toggle"
+						onClick={toggleQuickLinks}
+						borderRadius="50%"
 					/>
-				)}
-			</div>
-			<div className="prop-list" id="quick-links-prop-list">
-				{fieldTypes.map((fieldType: CSFormFieldTypesInterface, previewIndex: number) => {
-					const fieldTypeLink = getSlug(fieldType.name);
-					const fieldTypeClasses = classNames(
-						'component-name',
-						'fieldType-name'
-					);
-					return fieldType && (
-						<div key={fieldType.name}>
-							<h4 className={fieldTypeClasses}>
-								<HashLink to={`#${fieldTypeLink}`}>{fieldType.name}</HashLink>
-							</h4>
+					<div className="prop-list" id="secondary-sidebar-prop-list">
+						{fieldTypes.map((fieldType: CSFormFieldTypesInterface, previewIndex: number) => {
+							const fieldTypeLink = getSlug(fieldType.name);
+							const fieldTypeClasses = classNames(
+								'component-name',
+								'fieldType-name'
+							);
+							return fieldType && (
+								<div key={fieldType.name}>
+									<h4 className={fieldTypeClasses}>
+										<HashLink to={`#${fieldTypeLink}`}>{fieldType.name}</HashLink>
+									</h4>
 
-						</div>
-					);
-				})}
+								</div>
+							);
+						})}
+					</div>
+					<div className="secondary-sidebar-bottom-group">
+						{api && (
+							<h4 className={activeElement.id === 'component-api' ? 'active' : ''}>
+								<HashLink to="#component-api">
+									API
+								</HashLink>
+							</h4>
+						)}
+					</div>
+				</div>
 			</div>
-			<div className="prop-sidebar-bottom-group">
-				{api && (
-					<h4 className={activeElement.id === 'component-api' ? 'active' : ''}>
-						<HashLink to="#component-api">
-							API
-						</HashLink>
-					</h4>
-				)}
-			</div>
-		</div>
+		</>
 	);
 };
 

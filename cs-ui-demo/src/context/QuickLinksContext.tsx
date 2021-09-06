@@ -23,7 +23,7 @@ export const QuickLinksProvider: React.FC<QuickLinksContextProviderProps> = ({ c
 	const [quickLinks, setQuickLinks] = useState<boolean>(true);
 
 	useEffect(() => {
-		const storageQuickLinks = window.localStorage.getItem('cs-quick-links-visible');
+		const storageQuickLinks = window.localStorage.getItem('cs-secondary-sidebar-visible');
 		if (storageQuickLinks === 'true') {
 			setQuickLinks(false);
 		}
@@ -31,7 +31,7 @@ export const QuickLinksProvider: React.FC<QuickLinksContextProviderProps> = ({ c
 
 	const toggleQuickLinks = () => {
 		setQuickLinks(!quickLinks);
-		window.localStorage.setItem('cs-quick-links-visible', String(quickLinks));
+		window.localStorage.setItem('cs-secondary-sidebar-visible', String(quickLinks));
 	};
 
 	return <QuickLinksContext.Provider value={{ quickLinks, toggleQuickLinks }}>{children}</QuickLinksContext.Provider>;

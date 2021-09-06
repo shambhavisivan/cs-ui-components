@@ -309,66 +309,72 @@
 	.icons-search-wrapper {
 		position: relative;
 		width: 100%;
-		@include sbg(--csd-icons-search-field-bg);
-		@include css4 {
-			box-shadow: 0 1px 3px cvar(--csd-shadow-light), 0 1px 2px cvar(--csd-shadow-medium);
-		}
+		padding: 0 1rem;
 
-		> .cs-icon {
-			position: absolute;
-			width: 1rem;
-			height: 1rem;
-			top: 1rem;
-			left: 1rem;
-			pointer-events: none;
-			@include sf(--csd-icon-fill);
-		}
+		.icons-search-inner-wrapper {
+			position: relative;
+			padding: 1rem 0 0;
 
-		.icons-search {
-			width: 100%;
-			padding: 0.5rem 2.75rem;
-			height: 3rem;
-			border: none;
-			font-size: 1rem;
-			@include sc(--csd-icons-search-field-c);
-			@include sbg(--csd-transparent);
 
-			&::placeholder {
-				@include sc(--csd-icons-search-field-placeholder-c);
+			> .cs-icon {
+				position: absolute;
+				width: 1rem;
+				height: 1rem;
+				top: 2rem;
+				left: 1rem;
+				pointer-events: none;
+				@include sf(--csd-icon-fill);
 			}
 
-			&:focus,
-			&:active {
-				outline: none;
+			.icons-search {
+				width: 100%;
+				padding: 0.5rem 2.75rem;
+				height: 3rem;
 				border: none;
+				border-radius: 1.5rem;
+				font-size: 1rem;
+				@include sc(--csd-icons-search-field-c);
+				@include sbg(--csd-icons-search-field-bg);
+
+				&::placeholder {
+					@include sc(--csd-icons-search-field-placeholder-c);
+				}
+
+				&:focus,
+				&:active {
+					outline: none;
+					border: none;
+				}
 			}
-		}
 
-		.cs-btn {
-			position: absolute;
-			top: 1rem;
-			right: 1rem;
-			width: 1rem;
-			height: 1rem;
-			min-width: 1rem;
-
-			.cs-btn-icon {
+			.cs-btn {
+				position: absolute;
+				top: 2rem;
+				right: 1rem;
 				width: 1rem;
 				height: 1rem;
 				min-width: 1rem;
-			}
 
-			&:active::after,
-			&:focus::after {
-				outline: none;
-				box-shadow: none;
-				border: none;
+				.cs-btn-icon {
+					width: 1rem;
+					height: 1rem;
+					min-width: 1rem;
+				}
+
+				&:active::after,
+				&:focus::after {
+					outline: none;
+					box-shadow: none;
+					border: none;
+				}
 			}
 		}
 	}
 
 	.icons-preview-wrapper {
+		margin: 1rem;
 		overflow: auto;
+		border-radius: 0.5rem 0 0 0.5rem;
 		@include scrollbar-color;
 	}
 
@@ -381,6 +387,7 @@
 		align-items: start;
 		padding: 1rem;
 		margin: 0;
+		@include sbg(--csd-prop-custom-bg);
 
 		@media only screen and (min-width: 1250px) {
 			grid-template-columns: 1fr 1fr 1fr 1fr 1fr;

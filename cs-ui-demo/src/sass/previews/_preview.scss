@@ -4,6 +4,7 @@
 	position: relative;
 	flex: 1;
 	display: flex;
+	padding-inline-start: 0.5rem;
 
 	.preview-section-wrapper {
 		.demo-heading {
@@ -36,6 +37,7 @@
 		box-shadow: none;
 		height: calc(100vh - 54px);
 		overflow: auto;
+		padding: 0;
 		@include scrollbar-color;
 	}
 
@@ -47,14 +49,14 @@
 		min-width: 15rem;
 		width: 15rem;
 		max-width: 15rem;
-		@include sbg(--csd-prop-sidebar-bg);
+		@include sbg(--csd-secondary-sidebar-bg);
 		@include css4 {
 			box-shadow: 0 1px 5px var(--csd-shadow-dark);
 		}
 
 		.getting-started-link {
 			transition: background-color 100ms ease-in-out;
-			@include sbg(--csd-prop-sidebar-bg);
+			@include sbg(--csd-secondary-sidebar-bg);
 
 			a {
 				font-size: 1rem;
@@ -71,7 +73,7 @@
 			}
 
 			&:hover {
-				@include sbg(--csd-prop-sidebar-hover-bg);
+				@include sbg(--csd-secondary-sidebar-hover-bg);
 			}
 		}
 	}
@@ -186,6 +188,10 @@
 									border-right: 1px solid cvar(--csd-divider-br);
 								}
 							}
+
+							&:last-child span {
+								white-space: break-spaces;
+							}
 						}
 
 						* {
@@ -212,8 +218,9 @@
 			}
 
 			&.children {
-				padding: 2rem 3rem;
-				margin-top: 3rem;
+				border-radius: 0.5rem;
+				padding: 1rem 2rem;
+				margin: 3rem 1rem 0;
 				@include sbg(--csd-prop-custom-bg);
 
 				.component-info-text {
