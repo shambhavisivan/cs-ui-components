@@ -15,7 +15,7 @@ export interface CSSectionProps {
 	error?: boolean;
 	errorMessage?: CSSectionErrorMsgType;
 	id?: string;
-	title: string;
+	title?: string;
 }
 
 export interface CSSectionState {
@@ -100,7 +100,7 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 			},
 		);
 
-		const sectionTitle = <span className="cs-section-title">{title}</span>;
+		const sectionTitle = title ? <span className="cs-section-title">{title}</span> : null;
 
 		const sectionErrorMsg = (errorMessage?.length && error)
 			? (

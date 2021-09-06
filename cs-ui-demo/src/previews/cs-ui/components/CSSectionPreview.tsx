@@ -258,11 +258,6 @@ class CSSectionPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'title',
-						required: true,
-						types: 'string',
-						description: 'Set a title for the section.'
-					}, {
 						name: 'bgColor',
 						types: 'string',
 						description: 'Set a custom color for the section header background. (e.g. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
@@ -297,6 +292,10 @@ class CSSectionPreview extends React.Component {
 						name: 'id',
 						types: 'string',
 						description: 'Set the ID for the section.'
+					}, {
+						name: 'title',
+						types: 'string',
+						description: 'Set a title for the section.'
 					}, {
 						name: 'className',
 						types: 'string',
