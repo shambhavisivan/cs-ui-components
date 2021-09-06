@@ -216,88 +216,89 @@
 // CS COLORS
 // =========
 
-.cs-colors {
-	width: 100%;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
-	grid-column-gap: 1rem;
-	grid-row-gap: 1rem;
-	align-items: start;
-	padding: 1rem;
+.colors {
+	overflow: hidden;
 
-	@media only screen and (min-width: 1000px) {
-		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	.cs-colors-wrapper {
+		margin: 1rem;
+		overflow: auto;
+		border-radius: 0.5rem 0 0 0.5rem;
+		flex-grow: 1;
+		@include scrollbar-color;
 	}
 
-	@media only screen and (min-width: 1200px) {
-		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-	}
+	.cs-colors {
+		width: 100%;
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+		grid-column-gap: 1rem;
+		grid-row-gap: 1rem;
+		align-items: start;
+		padding: 1rem;
+		margin: 0;
+		min-height: 100%;
+		@include sbg(--csd-prop-custom-bg);
 
-	@media only screen and (min-width: 1400px) {
-		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-	}
-
-	@media only screen and (min-width: 1600px) {
-		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-	}
-
-	@media only screen and (min-width: 1800px) {
-		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-	}
-
-	@media only screen and (min-width: 2000px) {
-		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-	}
-
-	.cs-color {
-		font-size: 0.875rem;
-		border-radius: 0.25rem;
-		outline: 0;
-		overflow: hidden;
-		@include css4 {
-			box-shadow: 0 1px 3px cvar(--csd-shadow-light), 0 1px 2px cvar(--csd-shadow-medium);
+		@media only screen and (min-width: 1000px) {
+			grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 		}
 
-		&:focus {
+		@media only screen and (min-width: 1200px) {
+			grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+		}
+
+		@media only screen and (min-width: 1400px) {
+			grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+		}
+
+		@media only screen and (min-width: 1600px) {
+			grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+		}
+
+		@media only screen and (min-width: 1800px) {
+			grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+		}
+
+		@media only screen and (min-width: 2000px) {
+			grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+		}
+
+		.cs-color {
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-end;
+			height: 192px;
+			border-radius: 0.5rem;
 			@include css4 {
-				box-shadow: 0 0 3px cvar(--csd-colors-grid-focus-shadow);
+				box-shadow: 0 0 5px cvar(--csd-shadow-light), 0 0 1px cvar(--csd-shadow-medium);
+			}
+
+			.cs-color-body {
+				position: relative;
+				padding: 0.75rem;
+				width: 100%;
+				font-size: 0.75rem;
+				pointer-events: none;
+				border-radius: 0 0 0.5rem 0.5rem;
+				@include sc(--csd-colors-grid-c);
+				@include sbg(--csd-colors-grid-bg);
+				@include css4 {
+					border-top: 1px solid cvar(--csd-shadow-light)
+				}
+
+				.cs-color-name {
+					margin: 0 0 0.5rem 0;
+					width: 100%;
+					font-weight: 400;
+					display: block;
+					font-size: 0.9375rem;
+					@include sc(--csd-colors-grid-name-c);
+				}
 			}
 		}
 	}
-
-	.cs-color-header {
-		padding: 2rem;
-	}
-
-	.cs-color-body {
-		padding: 0.75rem;
-		min-width: 125px;
-		font-size: 0.875rem;
-		border-radius: 0 0 0.25rem 0.25rem;
-		overflow: hidden;
-		text-align: center;
-		@include sc(--csd-colors-grid-c);
-		@include sbg(--csd-colors-grid-bg);
-		@include css4 {
-			box-shadow: 0 1px 3px cvar(--csd-shadow-light), 0 1px 2px cvar(--csd-shadow-medium);
-		}
-
-		h4 {
-			display: block;
-		}
-	}
-
-	.cs-color-header {
-		padding-top: 60%;
-	}
-
-	.cs-color-name {
-		margin: 0 0 0.5rem 0;
-		width: 100%;
-		font-weight: normal;
-		@include sc(--csd-colors-grid-name-c);
-	}
 }
+
 
 // ========
 // CS ICONS
@@ -306,74 +307,11 @@
 .icons {
 	overflow: hidden;
 
-	.icons-search-wrapper {
-		position: relative;
-		width: 100%;
-		padding: 0 1rem;
-
-		.icons-search-inner-wrapper {
-			position: relative;
-			padding: 0.875rem 0 0;
-
-			> .cs-icon {
-				position: absolute;
-				width: 1rem;
-				height: 1rem;
-				top: 1.875rem;
-				left: 0.875rem;
-				pointer-events: none;
-				@include sf(--csd-icon-fill);
-			}
-
-			.icons-search {
-				width: 100%;
-				padding: 0.5rem 2.75rem;
-				height: 3rem;
-				border: none;
-				border-radius: 1.5rem;
-				font-size: 1rem;
-				@include sc(--csd-icons-search-field-c);
-				@include sbg(--csd-icons-search-field-bg);
-
-				&::placeholder {
-					@include sc(--csd-icons-search-field-placeholder-c);
-				}
-
-				&:focus,
-				&:active {
-					outline: none;
-					border: none;
-				}
-			}
-
-			.cs-btn {
-				position: absolute;
-				top: 2rem;
-				right: 1rem;
-				width: 1rem;
-				height: 1rem;
-				min-width: 1rem;
-
-				.cs-btn-icon {
-					width: 1rem;
-					height: 1rem;
-					min-width: 1rem;
-				}
-
-				&:active::after,
-				&:focus::after {
-					outline: none;
-					box-shadow: none;
-					border: none;
-				}
-			}
-		}
-	}
-
 	.icons-preview-wrapper {
 		margin: 1rem;
 		overflow: auto;
 		border-radius: 0.5rem 0 0 0.5rem;
+		flex-grow: 1;
 		@include scrollbar-color;
 	}
 
@@ -386,6 +324,7 @@
 		align-items: start;
 		padding: 1rem;
 		margin: 0;
+		min-height: 100%;
 		@include sbg(--csd-prop-custom-bg);
 
 		@media only screen and (min-width: 1250px) {
@@ -411,10 +350,10 @@
 			align-items: center;
 			height: 128px;
 			padding: 1rem;
-			border-radius: 0.25rem;
+			border-radius: 0.5rem;
 			@include sbg(--csd-icons-container-bg);
 			@include css4 {
-				box-shadow: 0 1px 3px cvar(--csd-shadow-light), 0 1px 2px cvar(--csd-shadow-medium);
+				box-shadow: 0 0 5px cvar(--csd-shadow-light), 0 0 1px cvar(--csd-shadow-medium);
 			}
 
 			> div {
@@ -440,6 +379,70 @@
 				word-break: break-all;
 				text-align: center;
 				@include sc(--csd-icons-paragraph-c);
+			}
+		}
+	}
+}
+
+.search-wrapper {
+	position: relative;
+	width: 100%;
+	padding: 0 1rem;
+
+	.search-inner-wrapper {
+		position: relative;
+		padding: 0.875rem 0 0;
+
+		> .cs-icon {
+			position: absolute;
+			width: 1rem;
+			height: 1rem;
+			top: 1.875rem;
+			left: 0.875rem;
+			pointer-events: none;
+			@include sf(--csd-icon-fill);
+		}
+
+		.search {
+			width: 100%;
+			padding: 0.5rem 2.75rem;
+			height: 3rem;
+			border: none;
+			border-radius: 1.5rem;
+			font-size: 1rem;
+			@include sc(--csd-icons-search-field-c);
+			@include sbg(--csd-icons-search-field-bg);
+
+			&::placeholder {
+				@include sc(--csd-icons-search-field-placeholder-c);
+			}
+
+			&:focus,
+			&:active {
+				outline: none;
+				border: none;
+			}
+		}
+
+		.cs-btn {
+			position: absolute;
+			top: 2rem;
+			right: 1rem;
+			width: 1rem;
+			height: 1rem;
+			min-width: 1rem;
+
+			.cs-btn-icon {
+				width: 1rem;
+				height: 1rem;
+				min-width: 1rem;
+			}
+
+			&:active::after,
+			&:focus::after {
+				outline: none;
+				box-shadow: none;
+				border: none;
 			}
 		}
 	}

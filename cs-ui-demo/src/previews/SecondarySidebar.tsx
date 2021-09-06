@@ -10,8 +10,8 @@ export type SecondarySidebarColor = 'purple' | 'black';
 export interface SecondarySidebarProps {
 	anchorList?: Array<string>;
 	children?: ReactNode;
-	collapsible?: boolean;
 	className?: string;
+	collapsible?: boolean;
 	color?: SecondarySidebarColor;
 	preview?: boolean;
 	searchPlaceholder?: string;

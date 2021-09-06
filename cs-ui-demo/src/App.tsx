@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import CSComponentsList from './previews/CSComponentsList';
 import CSFormList from './previews/CSFormList';
 import CSIconsList from './previews/CSIconsList';
-import CSColorsPreview from './previews/colors/CSColorsPreview';
+import CSColorsList from './previews/colors/CSColorsList';
 import Accessibility from './previews/Accessibility';
 import MainHeader from './previews/MainHeader';
 
@@ -25,7 +25,7 @@ const App: React.FC = () => (
 						<Route path="/cs-ui" component={CSComponentsList} />
 						<Route path="/cs-form" component={CSFormList} />
 						<Route path="/icons" component={CSIconsList} />
-						<Route path="/colors" component={CSColorsPreview} />
+						<Route path="/colors" component={CSColorsList} />
 						<Route path="/accessibility" component={Accessibility} />
 						<Route path="/release-notes" component={ReleaseNotesList} />
 						<Switch>

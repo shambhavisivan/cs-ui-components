@@ -33,12 +33,8 @@
 	}
 
 	&.colors {
-		flex-direction: column;
-		box-shadow: none;
-		height: calc(100vh - 54px);
-		overflow: auto;
 		padding: 0;
-		@include scrollbar-color;
+		flex-direction: column;
 	}
 
 	.getting-started-sidebar {
