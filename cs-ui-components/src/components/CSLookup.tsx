@@ -51,7 +51,7 @@ interface CSLookupCommmonProps {
 	labelTitle?: boolean;
 	lookupColumns: Array<CSLookupTableColumnType>;
 	multiselect?: boolean;
-	onBlur?: (event: React.FocusEvent<HTMLInputElement>) => any;
+	onBlur?: (event: React.FocusEvent<HTMLInputElement>, value: any) => any;
 	onLookupDropdownClose?: () => void;
 	onFocus?: (event: React.FocusEvent<HTMLInputElement>) => any;
 	onSearch?: (event: React.ChangeEvent<HTMLInputElement>) => any;
@@ -420,10 +420,11 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 	handleOnBlur = (event: React.FocusEvent<HTMLInputElement>) => {
 		const { onBlur, multiselect, mode, lookupOptions } = this.props;
-		const { selectedOptions } = this.state;
+		const { selectedOption, selectedOptions } = this.state;
 
+		const value = multiselect ? selectedOptions : selectedOption;
 		if (onBlur) {
-			onBlur(event);
+			onBlur(event, value);
 		}
 		if (multiselect && !!selectedOptions.length) {
 			this.setState({
@@ -923,7 +924,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 				</div>
 				{
 					(error && errorMessage)
-						&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />
+					&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />
 				}
 				{
 					dropdownOpen
@@ -942,27 +943,27 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 							>
 								<CSTable id={this.lookupTable}>
 									{(!!lookupColumns.length
-									&& !!dropdownValues.length
-									&& !loading
-									&& fetchingMode !== 'after-search')
-									&& (
-										<CSTableHeader
-											headerSticky
-											id={this.lookupTableHeader}
-											onMouseDown={(event: any) => {
-												event.preventDefault();
-												event.stopPropagation();
-											}}
-										>
-											{lookupColumns.map((column) => (
-												<CSTableCell text={column.label} key={column.key} />
-											))}
-										</CSTableHeader>
-									)}
+										&& !!dropdownValues.length
+										&& !loading
+										&& fetchingMode !== 'after-search')
+										&& (
+											<CSTableHeader
+												headerSticky
+												id={this.lookupTableHeader}
+												onMouseDown={(event: any) => {
+													event.preventDefault();
+													event.stopPropagation();
+												}}
+											>
+												{lookupColumns.map((column) => (
+													<CSTableCell text={column.label} key={column.key} />
+												))}
+											</CSTableHeader>
+										)}
 									<CSTableBody maxHeight={dropdownHeight ?? calcTableBodyMaxHeight()}>
 										{renderDropdownTableBody()}
 										{fetchingMode === 'after-scroll'
-										&& loadingNode}
+											&& loadingNode}
 									</CSTableBody>
 								</CSTable>
 							</div>

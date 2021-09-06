@@ -11,7 +11,7 @@ class CSSelectPreview extends React.Component<{}, CSSelectPreviewState> {
 	state = {
 		value: '30',
 		icons: [
-			{ iconName: 'cart'},
+			{ iconName: 'cart' },
 			{
 				iconName: 'tag',
 				iconOrigin: 'cs' as CSIconOrigin,
@@ -51,6 +51,7 @@ class CSSelectPreview extends React.Component<{}, CSSelectPreviewState> {
 	};
 
 	handleChange = () => alert('Selection has changed.');
+	handleBlur = () => alert('Select has lost focus.');
 
 	getDoc = () => ({
 		name: 'Select',
@@ -358,6 +359,22 @@ class CSSelectPreview extends React.Component<{}, CSSelectPreviewState> {
 							}
 						]
 					}, {
+						propName: 'onBlur',
+						variations: [
+							{
+								component: <CSSelect label="Choose amount" onBlur={this.handleBlur}>
+									<option>10</option>
+									<option>20</option>
+									<option>30</option>
+								</CSSelect>,
+								code: `<CSSelect label="Choose amount" onBlur={this.handleBlur}>
+									<option>10</option>
+									<option>20</option>
+									<option>30</option>
+								</CSSelect>`
+							}
+						]
+					}, {
 						propName: 'onChange',
 						variations: [
 							{
@@ -574,6 +591,10 @@ class CSSelectPreview extends React.Component<{}, CSSelectPreviewState> {
 						name: 'name',
 						types: 'string',
 						description: 'Set the checkbox name attribute.'
+					}, {
+						name: 'onBlur',
+						types: '(event) => any',
+						description: 'Handler method for the blur event.'
 					}, {
 						name: 'onChange',
 						types: '(event) => any',

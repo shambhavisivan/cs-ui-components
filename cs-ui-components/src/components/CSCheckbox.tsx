@@ -31,6 +31,7 @@ export interface CSCheckboxProps {
 	labelPosition?: CSCheckboxLabelPosition;
 	labelTitle?: boolean;
 	name?: string;
+	onBlur?: (e: React.FocusEvent<HTMLInputElement>) => any;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => any;
 	onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => any;
 	readOnly?: boolean;
@@ -110,6 +111,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 			labelPosition,
 			labelTitle,
 			name,
+			onBlur,
 			onChange,
 			onKeyDown,
 			readOnly,
@@ -175,6 +177,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 							onKeyDown={(event) => event.stopPropagation()}
 						>
 							<input
+								onBlur={onBlur}
 								onChange={this.handleOnChange}
 								className={checkboxClasses}
 								type="checkbox"

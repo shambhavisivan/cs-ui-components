@@ -8,7 +8,7 @@ interface CSDatepickerPreviewState {
 }
 
 const icons = [
-	{ iconName: 'cart'},
+	{ iconName: 'cart' },
 	{
 		iconName: 'tag',
 		iconOrigin: 'cs' as CSIconOrigin,
@@ -66,6 +66,7 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 		alert('Date has been selected.');
 		this.setDate(date, 'OnSelect');
 	}
+	handleBlur = () => alert('Datepicker has lost focus.');
 	setDate = (date: Date, stateSuffix: string) => {
 		this.stateSuffix = stateSuffix;
 		this.setState({
@@ -622,6 +623,24 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 							}
 						]
 					}, {
+						propName: 'onBlur',
+						variations: [
+							{
+								component: <CSDatepicker
+									label="Enter date"
+									onBlur={this.handleBlur}
+									selected={this.state.dateOnBlur}
+									onChange={(date: Date) => this.setDate(date, 'OnBlur')}
+								/>,
+								code: `<CSDatepicker
+									label="Enter date"
+									onBlur={this.handleBlur}
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
+							}
+						]
+					}, {
 						propName: 'onCalendarClose',
 						variations: [
 							{
@@ -1137,6 +1156,10 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 						name: 'name',
 						types: 'string',
 						description: 'Set the input name.'
+					}, {
+						name: 'onBlur',
+						types: '(event) => any',
+						description: 'Handler method for the blur event.'
 					}, {
 						name: 'onCalendarClose',
 						types: '() => void',

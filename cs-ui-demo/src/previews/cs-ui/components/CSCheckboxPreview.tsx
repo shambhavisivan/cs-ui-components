@@ -14,7 +14,7 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 	};
 
 	icons = [
-		{ iconName: 'cart'},
+		{ iconName: 'cart' },
 		{
 			iconName: 'tag',
 			iconOrigin: 'cs' as CSIconOrigin,
@@ -62,6 +62,7 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 	handleKeyDown = (event: any) => {
 		alert(`Key ${event.key} has been pressed.`);
 	}
+	handleBlur = () => alert('Checkbox has lost focus.');
 
 	getDoc = () => ({
 		name: 'Checkbox',
@@ -437,6 +438,20 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 							}
 						]
 					}, {
+						propName: 'onBlur',
+						variations: [
+							{
+								component: <CSCheckbox
+									label="Select option"
+									onBlur={this.handleBlur}
+								/>,
+								code: `<CSCheckbox
+									label="Select option"
+									onBlur={this.handleBlur}
+								/>`
+							}
+						]
+					}, {
 						propName: 'onChange',
 						variations: [
 							{
@@ -679,6 +694,10 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 						name: 'name',
 						types: 'string',
 						description: 'Set the checkbox name attribute.'
+					}, {
+						name: 'onBlur',
+						types: '(event) => any',
+						description: 'Handler method for the blur event.'
 					}, {
 						name: 'onChange',
 						types: '(event) => any',

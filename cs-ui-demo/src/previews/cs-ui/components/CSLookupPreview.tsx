@@ -47,7 +47,7 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 	state = {
 		focused: false,
 		icons: [
-			{ iconName: 'cart'},
+			{ iconName: 'cart' },
 			{
 				iconName: 'tag',
 				iconOrigin: 'cs' as CSIconOrigin,
@@ -1128,7 +1128,7 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 						description: 'Allow selection of multiple options.'
 					}, {
 						name: 'onBlur',
-						types: '(event) => any',
+						types: '(event, value) => any',
 						description: 'Handler method for the blur event.'
 					}, {
 						name: 'onFocus',

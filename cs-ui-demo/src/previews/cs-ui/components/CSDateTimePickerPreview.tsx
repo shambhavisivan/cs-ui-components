@@ -8,7 +8,7 @@ interface CSDateTimePickerPreviewState {
 }
 
 const icons = [
-	{ iconName: 'cart'},
+	{ iconName: 'cart' },
 	{
 		iconName: 'tag',
 		iconOrigin: 'cs' as CSIconOrigin,
@@ -60,6 +60,7 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 		this.setDate(date, 'OnChange');
 	}
 	handleKeyDown = () => alert('Key has been pressed.');
+	handleBlur = () => alert('DateTimepicker has lost focus.');
 	handleSelect = (date: Date) => {
 		alert('Date has been selected.');
 		this.setDate(date, 'OnSelect');
@@ -384,7 +385,7 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 									errorMessage="Error message."
 									errorTooltip
 								/>,
-							code: `<CSDateTimePicker
+								code: `<CSDateTimePicker
 								label="Enter date"
 								error
 								errorMessage="Error message."
@@ -619,6 +620,24 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 									name="datepicker"
 									selected={this.state.selected}
 									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
+							}
+						]
+					}, {
+						propName: 'onBlur',
+						variations: [
+							{
+								component: <CSDateTimePicker
+									label="Enter date"
+									selected={this.state.dateOnBlur}
+									onChange={(date: Date) => this.setDate(date, 'OnBlur')}
+									onBlur={this.handleBlur}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+									onBlur={this.handleBlur}
 								/>`
 							}
 						]
@@ -1185,6 +1204,10 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 						name: 'name',
 						types: 'string',
 						description: 'Set the input name.'
+					}, {
+						name: 'onBlur',
+						types: '(event) => any',
+						description: 'Handler method for the blur event.'
 					}, {
 						name: 'onKeyDown',
 						types: '(event) => any',

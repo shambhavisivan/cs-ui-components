@@ -42,6 +42,7 @@ export interface CSDatepickerProps {
 	minDate?: number;
 	minDateYear?: boolean;
 	name?: string;
+	onBlur?: (event: React.FocusEvent<HTMLInputElement>) => any;
 	onCalendarClose?: () => void;
 	onChange: (date: Date) => any;
 	onChangeRaw?: (event: React.FocusEvent<HTMLInputElement>) => any;
@@ -139,6 +140,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 			minDate,
 			minDateYear,
 			name,
+			onBlur,
 			onCalendarClose,
 			onChange,
 			onChangeRaw,
@@ -223,6 +225,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 							name={name}
 							locale={locale}
 							selected={selected}
+							onBlur={onBlur}
 							onCalendarClose={onCalendarClose}
 							onChange={onChange}
 							onChangeRaw={onChangeRaw}

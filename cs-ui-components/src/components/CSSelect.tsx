@@ -27,6 +27,7 @@ export interface CSSelectProps {
 	labelHidden?: boolean;
 	labelTitle?: boolean;
 	name?: string;
+	onBlur?: (value: any) => void;
 	onChange?: (value: any) => void;
 	readOnly?: boolean;
 	required?: boolean;
@@ -76,10 +77,12 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 
 	handleOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		const { onChange } = this.props;
+		onChange?.(e.target.value);
+	}
 
-		if (onChange) {
-			onChange(e.target.value);
-		}
+	handleOnBlur = (e: React.FocusEvent<HTMLSelectElement>) => {
+		const { onBlur } = this.props;
+		onBlur?.(e.target.value);
 	}
 
 	handleOnKeyDown = (e: React.KeyboardEvent<HTMLSelectElement>) => {
@@ -106,6 +109,7 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 			labelHidden,
 			labelTitle,
 			name,
+			onBlur,
 			onChange,
 			readOnly,
 			required,
@@ -169,6 +173,7 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 							aria-required={required}
 							aria-invalid={error}
 							aria-readonly={readOnly}
+							onBlur={this.handleOnBlur}
 							onChange={this.handleOnChange}
 							onKeyDown={readOnly ? this.handleOnKeyDown : undefined}
 							name={name}
