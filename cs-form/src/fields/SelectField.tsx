@@ -21,9 +21,9 @@ export const SelectField: React.FC<SelectFieldProps> = props => {
 			required={props.status === 'mandatory'}
 			disabled={props.status === 'visible' || props.descriptor.enabled === 'false'}
 			name={props.descriptor.name}
-			onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-				props.handleFieldBlur(e.target.value)
-			}
+			onChange={(e: string) => {
+				props.handleFieldBlur(e);
+			}}
 			value={value}
 			title={value}
 			labelHidden

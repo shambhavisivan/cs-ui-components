@@ -111,5 +111,5 @@ it('calls onChange() on change', done => {
 			status="enabled"
 		/>
 	);
-	uut.find(CSSelect).simulate('change', { target: { value: 'option2' } });
+	uut.find(CSSelect).simulate('change', 'option2');
 });
