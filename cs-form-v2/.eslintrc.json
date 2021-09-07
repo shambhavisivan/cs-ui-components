@@ -54,5 +54,10 @@
         "jsx-a11y/click-events-have-key-events": ["warn"],
         "jsx-a11y/no-noninteractive-element-interactions": ["warn"],
         "jsx-a11y/no-autofocus": ["warn"]
-    }
+    },
+    "settings": {
+	"import/resolver": {
+	  "node": { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+	}
+  }
 }

@@ -12,6 +12,7 @@ import React from 'react';
 import { CSFormSectionProps } from './cs-form-section-types';
 
 export type CSFormMode = 'read-only';
+export type CSFormData = Array<CSFormSectionProps>;
 
 export interface CSFormProps {
 	// formSettings?: any;
@@ -19,8 +20,8 @@ export interface CSFormProps {
 	// save: any;
 	// update(data, errors)
 	columnNumber?: number;
-	data: Array<CSFormSectionProps>;
+	data: CSFormData;
 	externalValidationErrors?: Array<string>;
 	mode?: CSFormMode;
-	onBLur?: React.FocusEvent<HTMLElement>;
+	onBlur?: React.FocusEvent<HTMLElement>;
 }

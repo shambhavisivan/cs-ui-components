@@ -61,11 +61,11 @@ fi
 if changedFiles | grep -q '^cs-form-v2'; then
     echo "Validating cs-form-v2"
     cd cs-form-v2;
-    yarn install --ignore-engines;
+    npm ci;
     echo "Running cs-form-v2 Lint"
-    yarn lint;
+    npm run lint;
     echo "Building cs-form-v2"
-    yarn build;
+    npm run build;
     echo "Finished validating cs-form-v2"
     cd ..;
 fi

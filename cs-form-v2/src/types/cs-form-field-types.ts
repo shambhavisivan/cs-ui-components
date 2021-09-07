@@ -1,27 +1,27 @@
-export type CSFormFieldType = 'BOOLEAN' |
+export type CSFormFieldType = 'CHECKBOX' |
 	'DATE' |
 	'DATETIME' |
 	'LOOKUP' |
 	'NUMBER' |
-	'PICKLIST' |
+	'SELECT' |
 	'TEXT';
 
-/** NUMBER FIELD PROPS */
-export interface CSFormBooleanFieldProps {
+/** CHECKBOX FIELD PROPS */
+export interface CSFormCheckboxFieldProps extends CSFormFieldCommonProps {
 	checked?: boolean;
-	fieldType: 'BOOLEAN';
+	fieldType: 'CHECKBOX';
 	indeterminite?: boolean;
 }
 
 /** DATE FIELD PROPS */
-export interface CSFormDateFieldProps {
+export interface CSFormDateFieldProps extends CSFormFieldCommonProps {
 	dateFormat?: string;
 	fieldType: 'DATE';
 	selected?: Date | null | undefined;
 }
 
 /** DATETIME FIELD PROPS */
-export interface CSFormDateTimeFieldProps extends Omit<CSFormDateFieldProps, 'fieldType'> {
+export interface CSFormDateTimeFieldProps extends Omit<CSFormDateFieldProps, 'fieldType'>, CSFormFieldCommonProps {
 	fieldType: 'DATETIME';
 	timeCaption?: string;
 	timeFormat?: string;
@@ -29,25 +29,31 @@ export interface CSFormDateTimeFieldProps extends Omit<CSFormDateFieldProps, 'fi
 }
 
 /** NUMBER FIELD PROPS */
-export interface CSFormNumberFieldProps {
+export interface CSFormNumberFieldProps extends CSFormFieldCommonProps {
 	fieldType: 'NUMBER';
 	max?: any;
 	maxLength?: number;
 	min?: any;
 }
 
-/** PICKLIST FIELD PROPS */
-export interface CSFormPicklistOption {
+/** SELECT FIELD PROPS */
+export interface CSFormSelectOption {
 	value: any;
 	label: string;
 }
 
-export interface CSFormPicklistFieldProps {
-	picklistOptions: Array<CSFormPicklistOption>;
+export interface CSFormSelectFieldProps extends CSFormFieldCommonProps {
+	fieldType: 'SELECT';
+	selectOptions: Array<CSFormSelectOption>;
+}
+
+/** TEXT FIELD PROPS */
+export interface CSFormTextFieldProps extends CSFormFieldCommonProps {
+	fieldType: 'TEXT';
 }
 
 /** LOOKUP FIELD PROPS */
-export type CSFormLookupFieldMode = 'CLIENT' | 'SERVER';
+export type CSFormLookupFieldMode = 'client' | 'server';
 
 export interface CSFormLookupFieldTableColumn {
 	key: string;
@@ -59,9 +65,11 @@ export interface CSFormLookupFieldFetchResult {
 	moreRecords: boolean;
 }
 
-export interface CSFormLookupFieldCommonProps {
+export interface CSFormLookupFieldCommonProps extends CSFormFieldCommonProps {
+	fieldType: 'LOOKUP';
 	fieldToBeDisplayed: string;
 	lookupColumns: Array<CSFormLookupFieldTableColumn>;
+	mode: CSFormLookupFieldMode;
 	multiselect?: boolean;
 	onSelectChange?: (value?: any) => any;
 }
@@ -70,14 +78,14 @@ export interface CSFormLookupFieldServerProps {
 	fetchLookupOptions: (searchTerm: string, pageSize: number, pageNo: number) => Promise<CSFormLookupFieldFetchResult>;
 	infiniteScroll?: boolean;
 	minTermLength?: number;
-	mode: 'SERVER';
+	mode: 'server';
 	pageSize: number;
 }
 
 export interface CSFormLookupFieldClientProps {
 	loading?: boolean;
 	lookupOptions: Array<Record<string, any>>;
-	mode: 'CLIENT';
+	mode: 'client';
 	searchBy?: Array<string>;
 }
 
@@ -88,25 +96,29 @@ export interface CSFormFieldCommonProps {
 	actions?: Array<any>;
 	disabled?: boolean;
 	errorMessages?: Array<string> | string;
-	fieldType: CSFormFieldType;
-	grow?: number;
 	hidden?: boolean;
 	icons?: Array<any>
 	label: string;
 	name?: string;
 	readOnly?: boolean;
 	required?: boolean;
-	showInNewLine?: boolean;
 	styleClass?: string;
 	title?: string;
 	value?: any;
 }
 
-export type CSFormFieldProps = CSFormFieldCommonProps &
-	(CSFormBooleanFieldProps |
+export interface CSFormFieldLayoutProps {
+	fieldType: CSFormFieldType;
+	grow?: number;
+	showInNewLine?: boolean;
+}
+
+export type CSFormFieldProps = CSFormFieldLayoutProps &
+	(CSFormCheckboxFieldProps |
 		CSFormDateFieldProps |
 		CSFormDateTimeFieldProps |
 		CSFormNumberFieldProps |
-		CSFormPicklistFieldProps |
-		CSFormLookupFieldProps
+		CSFormSelectFieldProps |
+		CSFormLookupFieldProps |
+		CSFormTextFieldProps
 	);
