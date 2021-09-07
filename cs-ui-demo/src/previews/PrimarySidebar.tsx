@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import {CSIcon, CSButton} from '@cloudsense/cs-ui-components';
 import {NavLink} from 'react-router-dom';
 
@@ -54,36 +55,29 @@ class PrimarySidebar extends React.Component<PrimarySidebarProps, PrimarySidebar
 	}
 
 	render() {
+		const sidebarWrapperClasses = classNames(
+			'sidebar-wrapper primary',
+			{
+				'sidebar-wrapper-closed': !this.state.sidebarOpen
+			}
+		);
+
 		return (
 			<>
-				{!this.state.sidebarOpen &&
-					<CSButton
-						iconName="rows"
-						label="open"
-						btnType="transparent"
-						size="small"
-						labelHidden
-						borderRadius="50%"
-						className="closed-sidebar-toggle"
-						onClick={this.toggleSidebar}
-					/>
-				}
-				<div className="primary-sidebar-wrapper">
-					<div className={'primary-sidebar' + (this.state.sidebarOpen ? ' sidebar-open' : ' sidebar-closed')}>
-						{this.props.toggle && (
-							<CSButton
-								iconName={this.state.sidebarOpen ? 'back' : 'rows'}
-								label={this.state.sidebarOpen ? 'close' : 'open'}
-								btnType="transparent"
-								size="small"
-								labelHidden
-								borderRadius="50%"
-								className="sidebar-toggle"
-								onClick={this.toggleSidebar}
-							/>
-						)}
+				<CSButton
+					iconName="rows"
+					label="open"
+					btnType="transparent"
+					size="small"
+					labelHidden
+					borderRadius="50%"
+					className="closed-sidebar-toggle"
+					onClick={this.toggleSidebar}
+				/>
+				<div className={sidebarWrapperClasses}>
+					<div className="sidebar">
 						{this.props.search && (
-							<div className="primary-sidebar-search">
+							<div className="sidebar-search">
 								<CSIcon name="search" />
 								<input placeholder="Search..." onChange={this.searchHandler} value={this.state.term}/>
 								{this.state.term &&
@@ -98,6 +92,18 @@ class PrimarySidebar extends React.Component<PrimarySidebarProps, PrimarySidebar
 									/>
 								}
 							</div>
+						)}
+						{this.props.toggle && (
+							<CSButton
+								iconName={this.state.sidebarOpen ? 'back' : 'rows'}
+								label={this.state.sidebarOpen ? 'close' : 'open'}
+								btnType="transparent"
+								size="small"
+								labelHidden
+								borderRadius="50%"
+								className="sidebar-toggle"
+								onClick={this.toggleSidebar}
+							/>
 						)}
 						<div className="primary-sidebar-inner">
 							<ul className="primary-sidebar-list">

@@ -4,8 +4,7 @@
 	position: relative;
 	flex: 1;
 	display: flex;
-	padding-inline-start: 0.5rem;
-	overflow: hidden;
+	transition: 0.4s;
 
 	.preview-section-wrapper {
 		.demo-heading {

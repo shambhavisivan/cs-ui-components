@@ -84,11 +84,17 @@ const SecondarySidebar: React.FC<SecondarySidebarProps> = ({
 
 	const filterAnchors = (anchor: string) => anchor.toLowerCase().includes(searchTerm.toLowerCase());
 
-	const sidebarClasses = classNames(
-		'secondary-sidebar',
+	const sidebarWrapperClasses = classNames(
+		'sidebar-wrapper secondary',
 		{
-			'secondary-sidebar-closed': !quickLinks && collapsible,
-			[`secondary-sidebar-${color}`] : color,
+			'sidebar-wrapper-closed': !quickLinks && collapsible
+		}
+	);
+
+	const sidebarClasses = classNames(
+		'sidebar',
+		{
+			[`sidebar-${color}`] : color,
 			[`${className}`]: className
 		}
 	);
@@ -102,7 +108,7 @@ const SecondarySidebar: React.FC<SecondarySidebarProps> = ({
 
 	return (
 		<>
-			{(!quickLinks && collapsible) &&
+			{collapsible &&
 				<CSButton
 					iconName="rows"
 					label="open"
@@ -114,9 +120,9 @@ const SecondarySidebar: React.FC<SecondarySidebarProps> = ({
 					borderRadius="50%"
 				/>
 			}
-			<div className="secondary-sidebar-wrapper">
+			<div className={sidebarWrapperClasses}>
 				<div className={sidebarClasses}>
-					<div className="secondary-sidebar-search">
+					<div className="sidebar-search">
 						<CSIcon name="search" />
 						<input
 							placeholder={searchPlaceholder ? searchPlaceholder : 'Search...'}
@@ -142,7 +148,7 @@ const SecondarySidebar: React.FC<SecondarySidebarProps> = ({
 							btnType="transparent"
 							size="small"
 							labelHidden
-							className="secondary-sidebar-toggle"
+							className="sidebar-toggle"
 							onClick={toggleQuickLinks}
 							borderRadius="50%"
 						/>

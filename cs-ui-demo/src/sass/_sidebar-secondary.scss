@@ -1,0 +1,372 @@
+.sidebar-wrapper.secondary .sidebar {
+	z-index: 1;
+
+	.sidebar-toggle {
+		z-index: 9;
+	}
+
+	.prop-list {
+		flex: 1;
+		overflow-y: auto;
+		overflow-x: hidden;
+		@include css4 {
+			scrollbar-color: cvar(--csd-sidebar-scroll-thumb-bg) cvar(--csd-transparent);
+		}
+
+		&::-webkit-scrollbar {
+			width: 1rem;
+			@include css4 {
+				background-color: cvar(--csd-sidebar-scroll-bg);
+			}
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background-clip: padding-box;
+			border-radius: 0.5rem;
+			min-height: 2rem;
+			@include css4 {
+				background-color: cvar(--csd-sidebar-scroll-thumb-bg);
+				border: 4px solid cvar(--csd-transparent);
+			}
+		}
+
+		> div {
+			.component-name {
+				position: sticky;
+				top: 0;
+				z-index: 1;
+				padding: 0.75rem 1rem;
+				display: flex;
+				align-items: center;
+				transition: background-color 100ms ease-in-out;
+
+				a {
+					font-size: 1rem;
+					font-weight: 700;
+					width: 100%;
+					text-decoration: none;
+					padding-inline-start: 0.5rem;
+					white-space: nowrap;
+					overflow-x: hidden;
+					text-overflow: ellipsis;
+					max-width: 100%;
+					@include sc(--csd-sidebar-link-c);
+				}
+
+				&.attribute-name a {
+					font-weight: 400;
+				}
+			}
+
+			.prop-group {
+				a {
+					font-weight: 400;
+					width: 100%;
+					position: relative;
+					display: block;
+					cursor: pointer;
+					text-decoration: none;
+					white-space: nowrap;
+					overflow-x: hidden;
+					text-overflow: ellipsis;
+					max-width: 100%;
+					transition: background-color 100ms ease-in-out;
+				}
+
+				.prop-name,
+				.prop-variant {
+					display: block;
+					padding-left: 1.75rem;
+					transition: all 200ms ease-in-out;
+
+					a {
+						padding: 0.75rem 1rem;
+						font-size: 0.75rem;
+						transition: all 200ms ease-in-out;
+						@include sc(--csd-sidebar-link-c);
+					}
+
+					&.active {
+						padding-left: calc(1.75rem - 2px);
+						@include sbg(--csd-shadow-light);
+
+						&:hover {
+							@include sbg(--csd-shadow-medium);
+						}
+					}
+				}
+
+				.prop-name a {
+					font-weight: 700;
+					font-size: 0.875rem;
+				}
+
+				.prop-variant a {
+					padding: 0.75rem 1rem 0.75rem 2rem;
+				}
+			}
+
+			a:focus-visible {
+				outline: 0;
+				text-decoration: underline;
+				text-underline-offset: 2px;
+			}
+		}
+	}
+
+	.secondary-sidebar-bottom-group {
+		margin-top: auto;
+		overflow: hidden;
+
+		h4 {
+			word-break: break-all;
+			transition: background-color 100ms ease-in-out;
+			position: relative;
+
+			a {
+				width: 100%;
+				font-size: 1rem;
+				display: flex;
+				align-items: center;
+				padding: 0.75rem 1.25rem;
+				font-weight: 400;
+				text-decoration: none;
+				white-space: nowrap;
+				overflow-x: hidden;
+				text-overflow: ellipsis;
+				max-width: 100%;
+				transition: background-color 100ms ease-in-out;
+				z-index: 1;
+				@include sc(--csd-sidebar-link-c);
+
+				&:focus-visible {
+					outline: 0;
+					text-decoration: underline;
+					text-underline-offset: 2px;
+				}
+			}
+
+			&.active a {
+				padding-left: calc(1.25rem - 3px);
+			}
+
+			&:first-child {
+				&::before {
+					@include sbg(--csd-shadow-light);
+				}
+
+				&:hover::before {
+					@include sbg(--csd-shadow-light-hover);
+				}
+			}
+
+			&:nth-child(2) {
+				&::before {
+					@include sbg(--csd-shadow-medium);
+				}
+
+				&:hover::before {
+					@include sbg(--csd-shadow-medium-hover);
+				}
+			}
+
+			&:nth-child(3) {
+				&::before {
+					@include sbg(--csd-shadow-medium-dark);
+				}
+
+				&:hover::before {
+					@include sbg(--csd-shadow-medium-dark-hover);
+				}
+			}
+
+			&::before {
+				content: "";
+				display: block;
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				pointer-events: none;
+			}
+		}
+	}
+
+	&.accessibility-sidebar {
+		margin-inline-start: 0.5rem;
+	}
+
+	&.release-notes-sidebar,
+	&.accessibility-sidebar {
+
+		input {
+			padding: 0.125rem 3rem 0;
+
+			+ .cs-btn {
+				right: 1rem;
+			}
+		}
+	}
+
+	&.release-notes-sidebar,
+	&.accessibility-sidebar,
+	&.getting-started-sidebar {
+		.prop-list .prop-group .prop-name {
+			padding-inline-start: 0;
+
+			a {
+				border: none;
+				font-weight: 400;
+				padding-inline: 1.25rem
+			}
+
+			&.active {
+				padding: unset;
+
+				a {
+					border: none;
+					font-weight: 700;
+					@include sbg(--csd-shadow-light);
+				}
+			}
+		}
+	}
+
+	&.getting-started-sidebar .prop-list .prop-group .prop-name.active a {
+		font-weight: 400;
+		@include sbg(--csd-sidebar-active-bg);
+	}
+
+	&.sidebar-black {
+		@include sbg(--csd-primary-sidebar-bg);
+
+		.sidebar-toggle {
+			&:active::before,
+			&::before {
+				@include sbg(--csd-primary-sidebar-bg);
+			}
+		}
+
+		.prop-list {
+			@include sbg(--csd-primary-sidebar-bg);
+
+			> div {
+				.component-name {
+					@include sbg(--csd-primary-sidebar-bg);
+
+					&:hover {
+						@include sbg(--csd-primary-sidebar-link-hover-bg);
+					}
+				}
+			}
+		}
+
+		.prop-group .prop-name,
+		.prop-group .prop-variant {
+			&:hover {
+				@include sbg(--csd-primary-sidebar-link-hover-bg);
+			}
+
+			a {
+				@include css4 {
+					border-left: 1px solid var(--csd-primary-sidebar-br);
+				}
+			}
+
+			&.active a {
+				@include css4 {
+					border-left: 3px solid var(--csd-primary-sidebar-active-br);
+				}
+			}
+		}
+
+		.secondary-sidebar-bottom-group h4 a.active {
+			@include css4 {
+				border-left: 3px solid var(--csd-primary-sidebar-active-br);
+			}
+		}
+	}
+
+	&.sidebar-purple {
+		@include sbg(--csd-secondary-sidebar-bg);
+
+		.sidebar-toggle {
+			&:active::before,
+			&::before {
+				@include sbg(--csd-secondary-sidebar-bg);
+			}
+		}
+
+		.prop-list {
+			@include sbg(--csd-secondary-sidebar-bg);
+
+			> div {
+				.component-name {
+					@include sbg(--csd-secondary-sidebar-bg);
+
+					&:hover {
+						@include sbg(--csd-secondary-sidebar-hover-bg);
+					}
+				}
+			}
+		}
+
+		.prop-group .prop-name,
+		.prop-group .prop-variant {
+			&:hover {
+				@include sbg(--csd-secondary-sidebar-hover-bg);
+			}
+
+			a {
+				@include css4 {
+					border-left: 1px solid var(--csd-secondary-sidebar-br);
+				}
+			}
+
+			&.active a {
+				@include css4 {
+					border-left: 3px solid var(--csd-secondary-sidebar-active-br);
+				}
+			}
+		}
+
+		.secondary-sidebar-bottom-group h4 a.active {
+			@include css4 {
+				border-left: 3px solid var(--csd-secondary-sidebar-active-br);
+			}
+		}
+	}
+
+	&.cs-form-secondary-sidebar .prop-list > div > h4.component-name a {
+		font-weight: 400;
+		font-size: 0.875rem;
+		padding-inline-start: 0.25rem;
+	}
+}
+
+.closed-secondary-sidebar-toggle.cs-btn.cs-btn.cs-btn {
+	z-index: 1;
+	position: absolute;
+	transition: 0.2s;
+	top: 1.625rem;
+	left: 1.5rem;
+
+	&:hover::before,
+	&:active::before,
+	&::before {
+		@include sbg(--csd-secondary-sidebar-bg);
+	}
+
+	&.secondary-sidebar-toggle-black {
+		&:hover::before,
+		&:active::before,
+		&::before {
+			@include sbg(--csd-primary-sidebar-bg);
+		}
+	}
+
+	&:hover {
+		transform: scale(1.1);
+	}
+}
