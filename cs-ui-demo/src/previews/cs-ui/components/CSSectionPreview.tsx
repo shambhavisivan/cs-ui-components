@@ -209,6 +209,33 @@ class CSSectionPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'hideSectionHeader',
+						variations: [
+							{
+								secondaryVariants: 'hideSectionHeader={true}',
+								component: <CSSection
+									title="Section Title"
+									hideSectionHeader
+								>
+									<ul>
+										<li>Item 1</li>
+										<li>Item 2</li>
+										<li>Item 3</li>
+									</ul>
+								</CSSection>,
+								code: `<CSSection
+									title="Section Title"
+									hideSectionHeader
+								>
+									<ul>
+										<li>Item 1</li>
+										<li>Item 2</li>
+										<li>Item 3</li>
+									</ul>
+								</CSSection>`
+							}
+						]
+					}, {
 						propName: 'id | class',
 						variations: [
 							{
@@ -258,6 +285,11 @@ class CSSectionPreview extends React.Component {
 				],
 				properties: [
 					{
+						name: 'title',
+						types: 'string',
+						description: 'Set a title for the section.',
+						required: true
+					}, {
 						name: 'bgColor',
 						types: 'string',
 						description: 'Set a custom color for the section header background. (e.g. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
@@ -289,13 +321,13 @@ class CSSectionPreview extends React.Component {
 						},
 						description: 'Set the tooltip error message or messages for the section.'
 					}, {
+						name: 'hideSectionHeader',
+						types: 'boolean',
+						description: 'Hide the header of the section.'
+					}, {
 						name: 'id',
 						types: 'string',
 						description: 'Set the ID for the section.'
-					}, {
-						name: 'title',
-						types: 'string',
-						description: 'Set a title for the section.'
 					}, {
 						name: 'className',
 						types: 'string',

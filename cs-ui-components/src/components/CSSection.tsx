@@ -14,8 +14,9 @@ export interface CSSectionProps {
 	defaultClosed?: boolean;
 	error?: boolean;
 	errorMessage?: CSSectionErrorMsgType;
+	hideSectionHeader?: boolean;
 	id?: string;
-	title?: string;
+	title: string;
 }
 
 export interface CSSectionState {
@@ -75,6 +76,7 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 			defaultClosed,
 			error,
 			errorMessage,
+			hideSectionHeader,
 			id,
 			title,
 			...rest
@@ -100,7 +102,7 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 			},
 		);
 
-		const sectionTitle = title ? <span className="cs-section-title">{title}</span> : null;
+		const sectionTitle = <span className="cs-section-title">{title}</span>;
 
 		const sectionErrorMsg = (errorMessage?.length && error)
 			? (
@@ -118,33 +120,38 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 				id={id}
 				{...rest}
 			>
-				<h3 className={sectionTitleClasses}>
-					{collapsible
-						? (
-							<button
-								type="button"
-								className="cs-section-button"
-								onClick={this.toggle}
-								aria-expanded={!defaultClosedState}
-								aria-roledescription="section"
-							>
-								<CSIcon name="chevronright" size="0.875rem" rotate={defaultClosedState ? 0 : 90} />
-								{sectionTitle}
-								{sectionErrorMsg}
-							</button>
-						)
-						: (
-							<>
-								{sectionTitle}
-								{sectionErrorMsg}
-							</>
-						)}
-				</h3>
-				{defaultClosedState ? null : (
-					<div className="cs-section-body">
-						{children}
-					</div>
-				)}
+				{!hideSectionHeader
+					? (
+						<h3 className={sectionTitleClasses}>
+							{collapsible
+								? (
+									<button
+										type="button"
+										className="cs-section-button"
+										onClick={this.toggle}
+										aria-expanded={!defaultClosedState}
+										aria-roledescription="section"
+									>
+										<CSIcon name="chevronright" size="0.875rem" rotate={defaultClosedState ? 0 : 90} />
+										{sectionTitle}
+										{sectionErrorMsg}
+									</button>
+								)
+								: (
+									<>
+										{sectionTitle}
+										{sectionErrorMsg}
+									</>
+								)}
+						</h3>
+					) : null}
+				{
+					defaultClosedState ? null : (
+						<div className="cs-section-body">
+							{children}
+						</div>
+					)
+				}
 			</section>
 		);
 	}
