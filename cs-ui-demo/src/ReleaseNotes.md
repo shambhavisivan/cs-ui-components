@@ -49,6 +49,7 @@
   * CSButton
   * CSButtonGroup
   * CSCard
+  * CSCheckbox
   * CSChip
   * CSCurrency
   * CSCustomData
