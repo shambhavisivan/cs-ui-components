@@ -1,18 +1,24 @@
-import React, { useEffect, CSSProperties } from 'react';
+import React, { useEffect, useMemo, CSSProperties } from 'react';
 import classNames from 'classnames';
 
 import CSDataTableHeader from './CSDataTableHeader';
 import CSDataTableGroup from './CSDataTableGroup';
+import { CSDataTableProvider } from './CSDataTableContext';
+import { CSCheckboxProps } from '../CSCheckbox';
 
 export type CSDataTableDensity = 'compact' | 'comfortable' | 'spacious';
 export type CSDataTableElement = React.ReactElement | React.ReactText;
-export type CSDataTableCellClassName = string | ((row: CSDataTableRowInterface) => string);
+export type CSDataTableCellClassName = string | ((row: CSDataTableRowWithMetaInterface) => string);
 export type CSDataTableColumnAlign = 'left' | 'center' | 'right';
-export type CSDataTableRender = (row: CSDataTableRowInterface) => CSDataTableElement;
+export type CSDataTableRender = (row: CSDataTableRowWithMetaInterface) => CSDataTableElement;
+export type CSDataTableSelectionType = 'row' | 'checkbox';
 
 export interface CSDataTableRowMetaInterface {
 	level: number;
 	expanded: boolean;
+	selected: boolean;
+	indeterminate: boolean;
+	readOnly: boolean;
 	setExpanded: () => void;
 	toggleExpanded: () => void;
 }
@@ -28,7 +34,6 @@ export interface CSDataTableColumnInterface {
 	header?: CSDataTableElement;
 	width?: string;
 	wrap?: boolean;
-	[key: string]: any;
 }
 
 export interface CSDataTableDataInterface {
@@ -45,7 +50,11 @@ export interface CSDataTableRowInterface {
 	height?: string;
 	id?: string;
 	render?: CSDataTableRender;
-	[key: string]: any;
+	selectable?: boolean;
+}
+
+export interface CSDataTableRowWithMetaInterface extends CSDataTableRowInterface {
+	meta: CSDataTableRowMetaInterface;
 }
 
 export interface CSDataTableProps {
@@ -58,10 +67,18 @@ export interface CSDataTableProps {
 	defaultCollapsed?: boolean;
 	density?: CSDataTableDensity;
 	disableHover?: boolean;
+	headerCheckbox?: CSCheckboxProps,
 	headless?: boolean;
 	id?: string;
+	indeterminateKeys?: React.ReactText | Array<React.ReactText>;
 	maxHeight?: string;
+	multiselect?: boolean;
+	onSelectChange?: (event: React.ChangeEvent<HTMLInputElement>, row: CSDataTableRowWithMetaInterface) => void;
+	readOnlyKeys?: React.ReactText | Array<React.ReactText>;
 	rowHeight?: string;
+	selectable?: boolean;
+	selectedKeys?: React.ReactText | Array<React.ReactText>;
+	selectionType?: CSDataTableSelectionType;
 	stickyHeader?: boolean;
 	striped?: boolean;
 	[key: string]: any;
@@ -77,10 +94,18 @@ const CSDataTable = ({
 	defaultCollapsed = false,
 	density = 'compact',
 	disableHover,
+	headerCheckbox,
 	headless,
 	id,
+	indeterminateKeys,
 	maxHeight,
+	multiselect = false,
+	onSelectChange,
+	readOnlyKeys,
 	rowHeight,
+	selectable,
+	selectedKeys,
+	selectionType = 'checkbox',
 	stickyHeader,
 	striped,
 	...rest
@@ -100,6 +125,7 @@ const CSDataTable = ({
 			'cs-data-table-sticky-header': stickyHeader,
 			'cs-data-table-headless': headless,
 			'cs-data-table-striped': striped,
+			'cs-data-table-row-selection': selectionType === 'row',
 			[className]: className,
 		},
 	);
@@ -111,28 +137,37 @@ const CSDataTable = ({
 
 	// Determine whether the first level should have
 	// extra indentation to make space for the toggle button
-	const extraIndent = collapsible && rows.some((row: CSDataTableRowInterface) => (
-		row.children?.length && row.collapsible !== false
-	));
+	const extraIndent = useMemo(() => (
+		collapsible && rows.some((row: CSDataTableRowInterface) => (
+			row.children?.length && row.collapsible !== false
+		))), [collapsible, rows]);
 
 	return (
-		<div
-			className={tableClasses}
-			id={id}
-			style={tableStyles}
-			{...rest}
+		<CSDataTableProvider
+			columns={columns}
+			onSelectChange={onSelectChange}
+			indeterminateKeys={new Set(Array.isArray(indeterminateKeys) ? indeterminateKeys : [indeterminateKeys])}
+			readOnlyKeys={new Set(Array.isArray(readOnlyKeys) ? readOnlyKeys : [readOnlyKeys])}
+			selectedKeys={new Set(Array.isArray(selectedKeys) ? selectedKeys : [selectedKeys])}
+			dataTableCollapsible={collapsible}
+			dataTableDefaultCollapsed={defaultCollapsed}
+			dataTableSelectable={selectable}
+			dataTableSelectionType={selectionType}
 		>
-			{!headless && <CSDataTableHeader columns={columns} />}
-			<div className="cs-data-table-body">
-				<CSDataTableGroup
-					columns={columns}
-					rows={rows}
-					extraIndent={extraIndent ? 2 : 0}
-					tableCollapsible={collapsible}
-					tableDefaultCollapsed={defaultCollapsed}
-				/>
+			<div
+				role="grid"
+				aria-multiselectable={selectable ? multiselect : undefined}
+				className={tableClasses}
+				id={id}
+				style={tableStyles}
+				{...rest}
+			>
+				{!headless && <CSDataTableHeader headerCheckbox={headerCheckbox} />}
+				<div className="cs-data-table-body">
+					<CSDataTableGroup rows={rows} extraIndent={extraIndent ? 2 : 0} />
+				</div>
 			</div>
-		</div>
+		</CSDataTableProvider>
 	);
 };
 

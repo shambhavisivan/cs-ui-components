@@ -63,6 +63,8 @@ import CSDataTable, {
 	CSDataTableRender,
 	CSDataTableRowInterface,
 	CSDataTableRowMetaInterface,
+	CSDataTableRowWithMetaInterface,
+	CSDataTableSelectionType,
 } from './components/data-table/CSDataTable';
 import CSDatepicker, { CSDatepickerDropdownMode } from './components/CSDatepicker';
 import CSDateTimePicker, { CSDateTimePickerDropdownMode } from './components/CSDateTimePicker';
@@ -216,7 +218,9 @@ export {
 	CSDataTableElement,
 	CSDataTableRender,
 	CSDataTableRowInterface,
+	CSDataTableRowWithMetaInterface,
 	CSDataTableRowMetaInterface,
+	CSDataTableSelectionType,
 	CSDatepicker,
 	CSDatepickerDropdownMode,
 	CSDateTimePicker,

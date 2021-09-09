@@ -1,5 +1,5 @@
 import React from 'react';
-import { CSDataTable, CSIcon, CSChip, CSDataTableRowInterface, CSButton } from '@cloudsense/cs-ui-components';
+import { CSDataTable, CSIcon, CSChip, CSDataTableRowWithMetaInterface, CSButton } from '@cloudsense/cs-ui-components';
 
 import Preview from '../Preview';
 
@@ -96,6 +96,13 @@ const rows = [
 ];
 
 class CSDataTablePreview extends React.Component {
+	state = {
+		checkboxSingleSelect: undefined,
+		checkboxMultiselect: [],
+		rowSingleSelect: undefined,
+		rowMultiselect: []
+	};
+
 	getDoc = () => ({
 		name: 'Data Table',
 		usage: 'A table displays rows of data.',
@@ -298,7 +305,6 @@ class CSDataTablePreview extends React.Component {
 										{
 											key: 'name',
 											header: 'Name',
-											id: 'custom-header-cell-id',
 											className: 'custom-bg-mint'
 										}, {
 											key: 'surname',
@@ -363,7 +369,7 @@ class CSDataTablePreview extends React.Component {
 										}, {
 											key: 6,
 											id: 'custom-row-id',
-											className: 'custom-bg-mint',
+											className: 'custom-br-mint',
 											data: {
 												name: 'Dario',
 												surname: 'Šehović',
@@ -461,7 +467,7 @@ class CSDataTablePreview extends React.Component {
 										}, {
 											key: 6,
 											id: 'custom-row-id',
-											className: 'custom-bg-mint',
+											className: 'custom-br-mint',
 											data: {
 												name: 'Dario',
 												surname: 'Šehović',
@@ -795,7 +801,7 @@ class CSDataTablePreview extends React.Component {
 										}, {
 											key: 'location',
 											header: 'Location',
-											cellClassName: (row: CSDataTableRowInterface) => (
+											cellClassName: (row: CSDataTableRowWithMetaInterface) => (
 												row.data?.location === 'Zagreb' ? 'custom-bg-mint' : ''
 											)
 										}
@@ -816,7 +822,7 @@ class CSDataTablePreview extends React.Component {
 										}, {
 											key: 'location',
 											header: 'Location',
-											cellClassName: (row: CSDataTableRowInterface) => (
+											cellClassName: (row: CSDataTableRowWithMetaInterface) => (
 											    row.data?.location === 'Zagreb' ? 'custom-bg-mint' : ''
 											)
 										}
@@ -916,52 +922,7 @@ class CSDataTablePreview extends React.Component {
 							}
 						]
 					}, {
-						propName: 'render',
-						variations: [
-							{
-								primaryVariants: 'render: (row) => <CSChip text={row.data?.location} />',
-								component: <CSDataTable
-									columns={[
-										{
-											key: 'name',
-											header: 'Name'
-										}, {
-											key: 'surname',
-											header: 'Surname'
-										}, {
-											key: 'birthday',
-											header: 'Birthday'
-										}, {
-											key: 'location',
-											header: 'Location',
-											render: (row: CSDataTableRowInterface) => <CSChip text={row.data?.location} />
-										}
-									]}
-									rows={rows}
-								/>,
-								code: `<CSDataTable
-									columns={[
-										{
-											key: 'name',
-											header: 'Name'
-										}, {
-											key: 'surname',
-											header: 'Surname'
-										}, {
-											key: 'birthday',
-											header: 'Birthday'
-										}, {
-											key: 'location',
-											header: 'Location',
-											render: (row: CSDataTableRowInterface) => <CSChip text={row.data?.location} />
-										}
-									]}
-									rows={rows}
-								/>`
-							}
-						]
-					}, {
-						propName: 'title',
+						propName: 'header',
 						variations: [
 							{
 								quickLink: 'string',
@@ -1037,6 +998,51 @@ class CSDataTablePreview extends React.Component {
 										}, {
 											key: 'location',
 											header: 'Location'
+										}
+									]}
+									rows={rows}
+								/>`
+							}
+						]
+					}, {
+						propName: 'render',
+						variations: [
+							{
+								primaryVariants: 'render: (row) => <CSChip text={row.data?.location} />',
+								component: <CSDataTable
+									columns={[
+										{
+											key: 'name',
+											header: 'Name'
+										}, {
+											key: 'surname',
+											header: 'Surname'
+										}, {
+											key: 'birthday',
+											header: 'Birthday'
+										}, {
+											key: 'location',
+											header: 'Location',
+											render: (row: CSDataTableRowWithMetaInterface) => <CSChip text={row.data?.location} />
+										}
+									]}
+									rows={rows}
+								/>,
+								code: `<CSDataTable
+									columns={[
+										{
+											key: 'name',
+											header: 'Name'
+										}, {
+											key: 'surname',
+											header: 'Surname'
+										}, {
+											key: 'birthday',
+											header: 'Birthday'
+										}, {
+											key: 'location',
+											header: 'Location',
+											render: (row: CSDataTableRowWithMetaInterface) => <CSChip text={row.data?.location} />
 										}
 									]}
 									rows={rows}
@@ -1301,15 +1307,16 @@ class CSDataTablePreview extends React.Component {
 									rows={[
 										{
 											key: 0,
-											collapsible: false,
 											defaultCollapsed: true,
+											collapsible: false,
+											selectable: false,
 											data: {
 												name: 'Nikol',
 												surname: 'Badanjak',
 												birthday: '8th December',
 												location: 'Zagreb'
 											},
-											render: (row: CSDataTableRowInterface) => (
+											render: (row: CSDataTableRowWithMetaInterface) => (
 												<>
 													This is actually <CSChip text={row.data?.name} /> even though we're in a custom full width row. <CSButton onClick={row.meta.toggleExpanded} label="Toggle" />
 												</>
@@ -1409,80 +1416,304 @@ class CSDataTablePreview extends React.Component {
 									rows={[
 										{
 											key: 0,
-											height: '3rem',
+											defaultCollapsed: true,
+											collapsible: false,
+											selectable: false,
 											data: {
 												name: 'Nikol',
 												surname: 'Badanjak',
 												birthday: '8th December',
 												location: 'Zagreb'
-											}
-										}, {
-											key: 1,
-											data: {
-												name: 'Leon',
-												surname: 'Španić',
-												birthday: '15th July',
-												location: 'Zagreb'
-											}
-										}, {
-											key: 2,
-											data: {
-												name: 'Karlo',
-												surname: 'Šeler',
-												birthday: '27th October',
-												location: 'Zagreb'
-											}
-										}, {
-											key: 3,
-											data: {
-												name: 'Simon',
-												surname: 'East',
-												birthday: '20th December',
-												location: 'Leeds'
-											}
-										}, {
-											key: 4,
-											data: {
-												name: 'Joe',
-												surname: 'Consterdine',
-												birthday: '20th September',
-												location: 'Leeds',
-											}
+											},
+											render: (row: CSDataTableRowWithMetaInterface) => (
+												<>
+													This is actually <CSChip text={row.data?.name} /> even though we're in a custom full width row. <CSButton onClick={row.meta.toggleExpanded} label="Toggle" />
+												</>
+											),
 											children: [{
-												key: 5,
+												key: 1,
 												data: {
-													name: 'Danijel',
-													surname: 'Bošnjak',
-													birthday: '20th August',
+													name: 'Leon',
+													surname: 'Španić',
+													birthday: '15th July',
 													location: 'Zagreb'
 												}
 											}, {
-												key: 6,
+												key: 2,
 												data: {
-													name: 'Dario',
-													surname: 'Šehović',
-													birthday: '11th October',
+													name: 'Karlo',
+													surname: 'Šeler',
+													birthday: '27th October',
 													location: 'Zagreb'
 												}
 											}, {
-												key: 7,
+												key: 3,
 												data: {
-													name: 'Dominik',
-													surname: 'Kralj',
-													birthday: '11th July',
-													location: 'Zagreb'
+													name: 'Simon',
+													surname: 'East',
+													birthday: '20th December',
+													location: 'Leeds'
 												}
 											}, {
-												key: 8,
+												key: 4,
+												collapsible: true,
 												data: {
-													name: 'Sathya',
-													surname: 'Somasundaram',
-													birthday: '28th May',
-													location: 'Chennai'
-												}
+													name: 'Joe',
+													surname: 'Consterdine',
+													birthday: '20th September',
+													location: 'Leeds'
+												},
+												children: [{
+													key: 5,
+													data: {
+														name: 'Danijel',
+														surname: 'Bošnjak',
+														birthday: '20th August',
+														location: 'Zagreb'
+													}
+												}, {
+													key: 8,
+													data: {
+														name: 'Sathya',
+														surname: 'Somasundaram',
+														birthday: '28th May',
+														location: 'Chennai'
+													}
+												}, {
+													key: 9,
+													render: () => 'students',
+													collapsible: true,
+													children: [{
+														key: 6,
+														data: {
+															name: 'Dario',
+															surname: 'Šehović',
+															birthday: '11th October',
+															location: 'Zagreb'
+														}
+													}, {
+														key: 7,
+														data: {
+															name: 'Dominik',
+															surname: 'Kralj',
+															birthday: '11th July',
+															location: 'Zagreb'
+														}
+													}, {
+														key: 10,
+														render: () => (
+															<CSChip text="this is a full width row with custom content" />
+														)
+													}]
+												}, {
+													key: 11,
+													render: () => (
+														<CSChip text="this is a full width row with custom content" />
+													)
+												}, {
+													key: 12,
+													render: () => (
+														<CSChip text="this is a full width row with custom content" />
+													)
+												}]
 											}]
 										}
 									]}
+								/>`
+							}
+						]
+					}, {
+						propName: 'selectability',
+						variations: [
+							{
+								primaryVariants: 'row',
+								quickLink: 'row',
+								component: <CSDataTable
+									columns={columns}
+									rows={rows}
+									selectable
+									selectedKeys={1}
+									selectionType="row"
+								/>,
+								code: `<CSDataTable
+									columns={columns}
+									rows={rows}
+									selectable
+									selectionType="row"
+								/>`
+							}, {
+								primaryVariants: 'row single select',
+								quickLink: 'row single select',
+								component: <CSDataTable
+									columns={columns}
+									rows={rows}
+									selectable
+									selectionType="row"
+									selectedKeys={this.state.rowSingleSelect}
+									onSelectChange={(event, row) => {
+										this.setState(({ rowSingleSelect }: any) => ({ rowSingleSelect: rowSingleSelect === row.key ? undefined : row.key }));
+									}}
+								/>,
+								code: `<CSDataTable
+									columns={columns}
+									rows={rows}
+									selectable
+									selectionType="row"
+									selectedKeys={this.state.rowSingleSelect}
+									onSelectChange={(event, row) => {
+										this.setState(({ rowSingleSelect }: any) => ({ rowSingleSelect: rowSingleSelect === row.key ? undefined : row.key }));
+									}}
+								/>`
+							}, {
+								primaryVariants: 'row multiselect',
+								quickLink: 'row multiselect',
+								component: <CSDataTable
+									columns={columns}
+									rows={rows}
+									selectable
+									selectionType="row"
+									multiselect
+									selectedKeys={this.state.rowMultiselect}
+									onSelectChange={(event, row) => {
+										this.setState(({ rowMultiselect }: any) => {
+											const prevIndex = rowMultiselect.indexOf(row.key);
+											const newRowMultiselect = rowMultiselect;
+											if (prevIndex >= 0) {
+												newRowMultiselect.splice(prevIndex, 1);
+											} else {
+												newRowMultiselect.push(row.key);
+											}
+											return { rowMultiselect: [...newRowMultiselect] };
+										});
+									}}
+								/>,
+								code: `<CSDataTable
+									columns={columns}
+									rows={rows}
+									selectable
+									selectionType="row"
+									multiselect
+									selectedKeys={this.state.rowMultiselect}
+									onSelectChange={(event, row) => {
+										this.setState(({ rowMultiselect }: any) => {
+											const prevIndex = rowMultiselect.indexOf(row.key);
+											const newRowMultiselect = rowMultiselect;
+											if (prevIndex >= 0) {
+												newRowMultiselect.splice(prevIndex, 1);
+											} else {
+												newRowMultiselect.push(row.key);
+											}
+											return { rowMultiselect: [...newRowMultiselect] };
+										});
+									}}
+								/>`
+							}, {
+								primaryVariants: 'checkbox dummy',
+								quickLink: 'checkbox dummy',
+								component: <CSDataTable
+									columns={columns}
+									rows={rows}
+									selectable
+									selectedKeys={[1, 4]}
+									indeterminateKeys={[2, 3]}
+									readOnlyKeys={[3, 4, 5]}
+								/>,
+							 	code: `<CSDataTable
+									columns={columns}
+									rows={rows}
+									selectable
+									selectedKeys={[1, 4]}
+									indeterminateKeys={[2, 3]}
+									readOnlyKeys={[3, 4, 5]}
+								/>`
+							}, {
+								primaryVariants: 'checkbox single select',
+								quickLink: 'checkbox single select',
+								component: <CSDataTable
+									columns={columns}
+									rows={rows}
+									selectable
+									selectedKeys={this.state.checkboxSingleSelect}
+									onSelectChange={(event, row) => {
+										this.setState(({ checkboxSingleSelect }: any) => ({ checkboxSingleSelect: checkboxSingleSelect === row.key ? undefined : row.key }));
+									}}
+								/>,
+							 	code: `<CSDataTable
+									columns={columns}
+									rows={rows}
+									selectable
+									selectedKeys={this.state.checkboxSingleSelect}
+									onSelectChange={(event, row) => {
+										this.setState(({ checkboxSingleSelect }: any) => ({ checkboxSingleSelect: checkboxSingleSelect === row.key ? undefined : row.key }));
+									}}
+								/>`
+							}, {
+								primaryVariants: 'checkbox multiselect',
+								quickLink: 'checkbox multiselect',
+								component: <CSDataTable
+									columns={columns}
+									rows={rows}
+									selectable
+									multiselect
+									selectedKeys={this.state.checkboxMultiselect}
+									onSelectChange={(event, row) => {
+										this.setState(({ checkboxMultiselect }: any) => {
+											const prevIndex = checkboxMultiselect.indexOf(row.key);
+											const newCheckboxMultiselect = checkboxMultiselect;
+											if (prevIndex >= 0) {
+												newCheckboxMultiselect.splice(prevIndex, 1);
+											} else {
+												newCheckboxMultiselect.push(row.key);
+											}
+											return { checkboxMultiselect: [...newCheckboxMultiselect] };
+										});
+									}}
+								/>,
+							 	code: `<CSDataTable
+									columns={columns}
+									rows={rows}
+									selectable
+									multiselect
+									selectedKeys={this.state.checkbox}
+									onSelectChange={(event, row) => {
+										this.setState(({ checkboxMultiselect }: any) => {
+											const prevIndex = checkboxMultiselect.indexOf(row.key);
+											const newCheckboxMultiselect = checkboxMultiselect;
+											if (prevIndex >= 0) {
+												newCheckboxMultiselect.splice(prevIndex, 1);
+											} else {
+												newCheckboxMultiselect.push(row.key);
+											}
+											return { checkboxMultiselect: [...newCheckboxMultiselect] };
+										});
+									}}
+								/>`
+							}, {
+								primaryVariants: 'header checkbox',
+								quickLink: 'header checkbox',
+								component: <CSDataTable
+									columns={columns}
+									rows={rows}
+									selectable
+									selectedKeys={1}
+									headerCheckbox={{
+										label: 'Select all',
+										labelHidden: true,
+										indeterminate: true,
+										onChange: () => alert('Header checkbox clicked.')
+									}}
+								/>,
+							 	code: `<CSDataTable
+									columns={columns}
+									rows={rows}
+									selectable
+									selectedKeys={1}
+									headerCheckbox={{
+										label: 'Select all',
+										labelHidden: true,
+										indeterminate: true,
+										onChange: () => alert('Header checkbox clicked.')
+									}}
 								/>`
 							}
 						]

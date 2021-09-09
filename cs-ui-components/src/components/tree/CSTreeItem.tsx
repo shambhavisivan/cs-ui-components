@@ -123,7 +123,7 @@ const CSTreeItem = ({
 				}
 				// If not inside a hierarchy, loop to the first tree element
 				if (!parentItem) itemRef.current.parentElement.firstElementChild.focus();
-					// If inside a hierarchy, but no next element is found,
+				// If inside a hierarchy, but no next element is found,
 				// also loop to the first tree element
 				else if (!parentItem.nextElementSibling) parentItem.parentElement.firstElementChild.focus();
 				// Focus the next focusable element otherwise

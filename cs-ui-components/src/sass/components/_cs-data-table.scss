@@ -39,7 +39,12 @@
 		transition: all 100ms ease-in-out;
 		@include sc(--cs-data-table-cell-c);
 
-		&:first-child {
+		&.cs-data-table-cell-checkbox-hidden {
+			display: none;
+		}
+
+		&:first-child,
+		&.cs-data-table-cell-checkbox + .cs-data-table-cell {
 			padding-left: 1.5rem;
 		}
 
@@ -57,6 +62,11 @@
 
 		&.cs-data-table-align-right {
 			justify-content: flex-end;
+		}
+
+		&.cs-data-table-cell-checkbox {
+			flex-grow: 0;
+			flex-basis: 3rem;
 		}
 	}
 
@@ -82,12 +92,19 @@
 			border-bottom: 1px solid cvar(--cs-data-table-br);
 		}
 
-		.cs-data-table-cell:first-child .cs-data-table-truncate,
-		.cs-data-table-cell:first-child .cs-data-table-render {
+		.cs-data-table-cell:not(.cs-data-table-cell-checkbox):first-child .cs-data-table-truncate,
+		.cs-data-table-cell:not(.cs-data-table-cell-checkbox):first-child .cs-data-table-render,
+		.cs-data-table-cell.cs-data-table-cell-checkbox + .cs-data-table-cell .cs-data-table-truncate,
+		.cs-data-table-cell.cs-data-table-cell-checkbox + .cs-data-table-cell .cs-data-table-render {
 			padding-left: var(--cs-data-table-column-offset, 0);
 		}
 
-		&:hover {
+		&:focus-visible {
+			outline: none;
+		}
+
+		&:hover,
+		&:focus-visible {
 			@include sbg(--cs-data-table-row-hover-bg);
 
 			.cs-data-table-cell {
@@ -112,6 +129,19 @@
 		}
 	}
 
+	&.cs-data-table-row-selection :not(.cs-data-table-header) .cs-data-table-row {
+		cursor: pointer;
+
+		&.cs-data-table-row-selected {
+			@include sbg(--cs-data-table-row-selected-bg);
+
+			&:hover,
+			&:focus-visible {
+				@include sbg(--cs-data-table-row-selected-hover-bg);
+			}
+		}
+	}
+
 	&.cs-data-table-striped .cs-data-table-row-wrapper:nth-child(2n) .cs-data-table-row {
 		@include sbg(--cs-data-table-row-striped-bg);
 	}
@@ -125,7 +155,8 @@
 		.cs-data-table-cell {
 			padding: 0.5rem 0.75rem;
 
-			&:first-child {
+			&:first-child,
+			&.cs-data-table-cell-checkbox + .cs-data-table-cell {
 				padding-left: 1.5rem;
 			}
 
@@ -139,7 +170,8 @@
 		.cs-data-table-cell {
 			padding: 0.75rem 1.25rem;
 
-			&:first-child {
+			&:first-child,
+			&.cs-data-table-cell-checkbox + .cs-data-table-cell {
 				padding-left: 1.5rem;
 			}
 

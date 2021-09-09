@@ -57,6 +57,8 @@ const CSDataTableCell = ({
 	return (
 		<div
 			key={columnIndex}
+			role="gridcell"
+			aria-colindex={columnIndex + 1}
 			className={tableColumnClasses}
 			style={tableColumnStyles}
 		>

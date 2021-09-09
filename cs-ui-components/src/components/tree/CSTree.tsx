@@ -30,7 +30,7 @@ export interface CSTreeItemInterface {
 	selectable?: boolean;
 }
 
-export interface CSTreeItemWithMetaInterface extends CSTreeItemInterface{
+export interface CSTreeItemWithMetaInterface extends CSTreeItemInterface {
 	meta: CSTreeItemMetaInterface;
 }
 
