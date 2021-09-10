@@ -1,15 +1,28 @@
 import React from 'react';
-import { CSCustomSelect, CSOption } from '@cloudsense/cs-ui-components';
+import { CSCustomSelect } from '@cloudsense/cs-ui-components';
 
 import Preview from '../Preview';
 
+const options = [
+	{ key: 0, label: 'Product' },
+	{ key: 1, label: 'Services' },
+	{ key: 2, label: 'Sales' },
+	{ key: 3, label: 'Marketing' }
+];
+
 class CSCustomSelectPreview extends React.Component {
+	state = {
+		singleSelectKey: undefined,
+		multiselectKeys: [],
+		multiselectCompactKeys: []
+	};
+
 	handleSearch = (event: any) => alert(event.target.value);
-	handleSelectChange = (options: any) => {
-		if (typeof options === 'object') {
-			alert(`Selected item: ${JSON.stringify(options)}`);
+	handleSelectChange = (option: any) => {
+		if (typeof option === 'object') {
+			alert(`Selected item: ${JSON.stringify(option)}`);
 		} else {
-			alert(`Selected item: ${options}`);
+			alert(`Selected item: ${option}`);
 		}
 	}
 
@@ -20,7 +33,7 @@ class CSCustomSelectPreview extends React.Component {
 			variant: 'warning',
 			text: 'This component is under construction and should not be used.'
 		},
-		accessible: 'no',
+		accessible: 'yes',
 		components: [
 			{
 				name: 'CSCustomSelect',
@@ -33,18 +46,8 @@ class CSCustomSelectPreview extends React.Component {
 						},
 						variations: [
 							{
-								component: <CSCustomSelect label="Choose letter">
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
-								code: `<CSCustomSelect label="Choose letter">
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
+								component: <CSCustomSelect options={options} label="Select department" />,
+								code: '<CSCustomSelect options={options} label="Select department" />'
 							}
 						]
 					}, {
@@ -53,33 +56,21 @@ class CSCustomSelectPreview extends React.Component {
 							{
 								primaryVariants: 'align="left"',
 								quickLink: 'left',
-								component: <CSCustomSelect label="Choose letter">
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
-								code: `<CSCustomSelect label="Choose letter">
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
+								component: <CSCustomSelect options={options} label="Select department" />,
+								code: '<CSCustomSelect options={options} label="Select department" />'
 							}, {
 								primaryVariants: 'align="right"',
 								quickLink: 'right',
-								component: <CSCustomSelect label="Choose letter" align="right">
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
-								code: `<CSCustomSelect label="Choose letter" align="right">
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
+								component: <CSCustomSelect
+									options={options}
+									label="Select department"
+									align="right"
+								/>,
+								code: `<CSCustomSelect
+									options={options}
+									label="Select department"
+									align="right"
+								/>`
 							}
 						]
 					}, {
@@ -87,18 +78,16 @@ class CSCustomSelectPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'borderRadius="0"',
-								component: <CSCustomSelect label="Choose letter" borderRadius="0">
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
-								code: `<CSCustomSelect label="Choose letter" borderRadius="0">
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
+								component: <CSCustomSelect
+									options={options}
+									label="Select department"
+									borderRadius="0"
+								/>,
+								code: `<CSCustomSelect
+									options={options}
+									label="Select department"
+									borderRadius="0"
+								/>`
 							}
 						]
 					}, {
@@ -106,18 +95,16 @@ class CSCustomSelectPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'disabled={true}',
-								component: <CSCustomSelect label="Choose letter" disabled>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
-								code: `<CSCustomSelect label="Choose letter" disabled>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
+								component: <CSCustomSelect
+									options={options}
+									label="Select department"
+									disabled
+								/>,
+								code: `<CSCustomSelect
+									options={options}
+									label="Select department"
+									disabled
+								/>`
 							}
 						]
 					}, {
@@ -129,18 +116,16 @@ class CSCustomSelectPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'error={true}',
-								component: <CSCustomSelect label="Choose letter" error>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
-								code: `<CSCustomSelect label="Choose letter" error>
-								<CSOption itemKey="1" value="A" />
-								<CSOption itemKey="2" value="B" />
-								<CSOption itemKey="3" value="C" />
-								<CSOption itemKey="4" value="D" />
-							</CSCustomSelect>`
+								component: <CSCustomSelect
+									options={options}
+									label="Select department"
+									error
+								/>,
+								code: `<CSCustomSelect
+									options={options}
+									label="Select department"
+									error
+								/>`
 							}
 						]
 					}, {
@@ -149,119 +134,33 @@ class CSCustomSelectPreview extends React.Component {
 							{
 								secondaryVariants: 'error={true}',
 								component: <CSCustomSelect
-									label="Choose letter"
+									options={options}
+									label="Select department"
 									error
-									errorMessage="Term not found"
-								>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
+									errorMessage="Error message"
+								/>,
 								code: `<CSCustomSelect
-									label="Choose letter"
+									options={options}
+									label="Select department"
 									error
-									errorMessage="Term not found"
-								>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
-							}
-						]
-					}, {
-						propName: 'exportValue',
-						alert: {
-							variant: 'info',
-							text: 'By default Custom Select exports objects which contain itemKey and value. If this props is defined, Custom Select will export values of the key that match this prop.'
-						},
-						variations: [
-							{
-								primaryVariants: 'exportValue="default"',
-								quickLink: 'default',
-								component: <CSCustomSelect
-									label="Choose letter"
-									onSelectChange={this.handleSelectChange}
-								>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
-								code: `<CSCustomSelect
-									label="Choose letter"
-									onSelectChange={this.handleSelectChange}
-								>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
-							}, {
-								primaryVariants: 'exportValue="itemKey"',
-								quickLink: 'itemKey',
-								component: <CSCustomSelect
-									label="Choose letter"
-									onSelectChange={this.handleSelectChange}
-									exportValue="itemKey"
-								>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
-								code: `<CSCustomSelect
-									label="Choose letter"
-									onSelectChange={this.handleSelectChange}
-									exportValue="itemKey"
-								>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
-							}, {
-								primaryVariants: 'exportValue="value"',
-								quickLink: 'value',
-								component: <CSCustomSelect
-									label="Choose letter"
-									onSelectChange={this.handleSelectChange}
-									exportValue="value"
-								>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
-								code: `<CSCustomSelect
-									label="Choose letter"
-									onSelectChange={this.handleSelectChange}
-									exportValue="value"
-								>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
+									errorMessage="Error message"
+								/>`
 							}
 						]
 					}, {
 						propName: 'helpText',
 						variations: [
 							{
-								component: <CSCustomSelect label="Choose letter" helpText="Help text example">
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
-								code: `<CSCustomSelect label="Choose letter" helpText="Help text example">
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
+								component: <CSCustomSelect
+									options={options}
+									label="Select department"
+									helpText="Help text"
+								/>,
+								code: `<CSCustomSelect
+									options={options}
+									label="Select department"
+									helpText="Help text"
+								/>`
 							}
 						]
 					}, {
@@ -269,18 +168,16 @@ class CSCustomSelectPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'hidden={true}',
-								component: <CSCustomSelect label="Choose letter" hidden>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
-								code: `<CSCustomSelect label="Choose letter" hidden>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
+								component: <CSCustomSelect
+									options={options}
+									label="Select department"
+									hidden
+								/>,
+								code: `<CSCustomSelect
+									options={options}
+									label="Select department"
+									hidden
+								/>`
 							}
 						]
 					}, {
@@ -288,18 +185,16 @@ class CSCustomSelectPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'labelHidden={true}',
-								component: <CSCustomSelect label="Choose letter" labelHidden>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
-								code: `<CSCustomSelect label="Choose letter" labelHidden>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
+								component: <CSCustomSelect
+									options={options}
+									label="Select department"
+									labelHidden
+								/>,
+								code: `<CSCustomSelect
+									options={options}
+									label="Select department"
+									labelHidden
+								/>`
 							}
 						]
 					}, {
@@ -307,97 +202,48 @@ class CSCustomSelectPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'labelTitle={true}',
-								component: <CSCustomSelect label="Choose letter" labelTitle>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
-								code: `<CSCustomSelect label="Choose letter" labelTitle>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
-							}
-						]
-					}, {
-						propName: 'multiselect',
-						variations: [
-							{
-								primaryVariants: 'multiselect={true}',
-								component: <CSCustomSelect label="Choose letter" multiselect>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
-								code: `<CSCustomSelect label="Choose letter" multiselect>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
+								component: <CSCustomSelect
+									options={options}
+									label="Select department"
+									labelTitle
+								/>,
+								code: `<CSCustomSelect
+									options={options}
+									label="Select department"
+									labelTitle
+								/>`
 							}
 						]
 					}, {
 						propName: 'onSearch',
 						variations: [
 							{
-								component: <CSCustomSelect label="Choose letter" onSearch={this.handleSearch}>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
-								code: `<CSCustomSelect label="Choose letter" onSearch={this.handleSearch}>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
-							}
-						]
-					}, {
-						propName: 'onSelectChange',
-						variations: [
-							{
 								component: <CSCustomSelect
-									label="Choose letter"
-									onSelectChange={this.handleSelectChange}
-								>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
+									options={options}
+									label="Select department"
+									onSearch={this.handleSearch}
+								/>,
 								code: `<CSCustomSelect
-									label="Choose letter"
-									onSelectChange={this.handleSelectChange}
-								>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
+									options={options}
+									label="Select department"
+									onSearch={this.handleSearch}
+								/>`
 							}
 						]
 					}, {
 						propName: 'placeholder',
 						variations: [
 							{
-								component: <CSCustomSelect label="Choose letter" placeholder="Search...">
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
-								code: `<CSCustomSelect label="Choose letter" placeholder="Search...">
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
+								component: <CSCustomSelect
+									options={options}
+									label="Select department"
+									placeholder="Search..."
+								/>,
+								code: `<CSCustomSelect
+									options={options}
+									label="Select department"
+									placeholder="Search..."
+								/>`
 							}
 						]
 					}, {
@@ -406,33 +252,21 @@ class CSCustomSelectPreview extends React.Component {
 							{
 								primaryVariants: 'position="bottom"',
 								quickLink: 'bottom',
-								component: <CSCustomSelect label="Choose letter">
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
-								code: `<CSCustomSelect label="Choose letter">
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
+								component: <CSCustomSelect options={options} label="Select department" />,
+								code: '<CSCustomSelect options={options} label="Select department" />'
 							}, {
 								primaryVariants: 'position="top"',
 								quickLink: 'top',
-								component: <CSCustomSelect label="Choose letter" position="top">
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
-								code: `<CSCustomSelect label="Choose letter" position="top">
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
+								component: <CSCustomSelect
+									options={options}
+									label="Select department"
+									position="top"
+								/>,
+								code: `<CSCustomSelect
+									options={options}
+									label="Select department"
+									position="top"
+								/>`
 							}
 						]
 					}, {
@@ -440,18 +274,16 @@ class CSCustomSelectPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'required={true}',
-								component: <CSCustomSelect label="Choose letter" required>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
-								code: `<CSCustomSelect label="Choose letter" required>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
+								component: <CSCustomSelect
+									options={options}
+									label="Select department"
+									required
+								/>,
+								code: `<CSCustomSelect
+									options={options}
+									label="Select department"
+									required
+								/>`
 							}
 						]
 					}, {
@@ -461,43 +293,35 @@ class CSCustomSelectPreview extends React.Component {
 								primaryVariants: 'showCompactMultiselect={true}',
 								secondaryVariants: 'multiselect={true}',
 								component: <CSCustomSelect
-									label="Choose letter"
-									showCompactMultiselect
+									options={options}
+									label="Select department"
 									multiselect
-								>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
+									selectedKeys={[1, 2]}
+									showCompactMultiselect
+								/>,
 								code: `<CSCustomSelect
-									label="Choose letter"
-									showCompactMultiselect
+									options={options}
+									label="Select department"
 									multiselect
-								>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
+									selectedKeys={[1, 2]}
+									showCompactMultiselect
+								/>`
 							}
 						]
 					}, {
 						propName: 'title',
 						variations: [
 							{
-								component: <CSCustomSelect label="Choose letter" title="This is a title">
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
-								code: `<CSCustomSelect label="Choose letter" title="This is a title">
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
+								component: <CSCustomSelect
+									options={options}
+									label="Select department"
+									title="Custom title"
+								/>,
+								code: `<CSCustomSelect
+									options={options}
+									label="Select department"
+									title="Custom title"
+								/>`
 							}
 						]
 					}, {
@@ -510,79 +334,17 @@ class CSCustomSelectPreview extends React.Component {
 							{
 								primaryVariants: 'tooltipPosition="top-left"',
 								component: <CSCustomSelect
-									label="Choose letter"
-									helpText="Help text example"
+									options={options}
+									label="Select department"
+									helpText="Help text"
 									tooltipPosition="top-left"
-								>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
+								/>,
 								code: `<CSCustomSelect
-									label="Choose letter"
-									helpText="Help text example"
+									options={options}
+									label="Select department"
+									helpText="Help text"
 									tooltipPosition="top-left"
-								>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
-							}
-						]
-					}, {
-						propName: 'value',
-						alert: {
-							variant: 'info',
-							text: 'To set multiselect list default options, array of keys must be passed to the value prop, otherwise key can be passed to set one value as default.'
-						},
-						variations: [
-							{
-								component: <CSCustomSelect
-									label="Choose letter"
-									value="1"
-									onSelectChange={this.handleSelectChange}
-								>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
-								code: `<CSCustomSelect
-									label="Choose letter"
-									value="1"
-									onSelectChange={this.handleSelectChange}
-								>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
-							}, {
-								secondaryVariants: 'multiselect={true}',
-								component: <CSCustomSelect
-									label="Choose letter"
-									value={['1', '2', '3']}
-									multiselect
-									onSelectChange={this.handleSelectChange}
-								>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
-								code: `<CSCustomSelect
-									label="Choose letter"
-									value={['1', '2', '3']}
-									multiselect
-									onSelectChange={this.handleSelectChange}
-								>
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
+								/>`
 							}
 						]
 					}, {
@@ -594,52 +356,192 @@ class CSCustomSelectPreview extends React.Component {
 									'className="custom-class"'
 								],
 								component: <CSCustomSelect
-									label="Choose letter"
+									options={options}
+									label="Select department"
 									id="custom-select-id"
 									className="custom-br-mint"
-								>
-									<CSOption
-										itemKey="1"
-										value="A"
-										id="custom-select-option-id"
-										className="custom-bg-mint"
-									/>
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
+								/>,
 								code: `<CSCustomSelect
-									label="Choose letter"
+									options={options}
+									label="Select department"
 									id="custom-select-id"
 									className="custom-br-mint"
-								>
-									<CSOption
-										itemKey="1"
-										value="A"
-										id="custom-select-option-id"
-										className="custom-bg-mint"
-									/>
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
+								/>`
+							}
+						]
+					}, {
+						propName: 'selection',
+						variations: [
+							{
+								primaryVariants: 'single select',
+								quickLink: 'single select',
+								component: <CSCustomSelect
+									options={options}
+									label="Select department"
+									selectedKeys={this.state.singleSelectKey}
+									onClear={() => this.setState({ singleSelectKey: undefined })}
+									onSelect={(option: any) => this.setState((prevState: any) => ({
+										singleSelectKey: prevState.singleSelectKey === option.key ? undefined : option.key
+									}))}
+								/>,
+								code: `<CSCustomSelect
+									options={[
+										{ key: 0, label: 'Product' },
+										{ key: 1, label: 'Services' },
+										{ key: 2, label: 'Sales' },
+										{ key: 3, label: 'Marketing' }
+									]}
+									label="Select department"
+									selectedKeys={this.state.singleSelectKey}
+									onClear={() => this.setState({ singleSelectKey: undefined })}
+									onSelect={(option: any) => this.setState((prevState: any) => ({
+										singleSelectKey: prevState.singleSelectKey === option.key ? undefined : option.key
+									}))}
+								/>`
+							}, {
+								primaryVariants: 'multiselect',
+								quickLink: 'multiselect',
+								component: <CSCustomSelect
+									options={options}
+									label="Select department"
+									multiselect
+									selectedKeys={this.state.multiselectKeys}
+									onClear={() => this.setState({ multiselectKeys: [] })}
+									onSelect={(option: any) => this.setState((prevState: any) => {
+										const prevIndex = prevState.multiselectKeys.indexOf(option.key);
+										const newSelectedKeys = prevState.multiselectKeys;
+										if (prevIndex >= 0) {
+											newSelectedKeys.splice(prevIndex, 1);
+										} else {
+											newSelectedKeys.push(option.key);
+										}
+										return { multiselectKeys: [...newSelectedKeys] };
+									})}
+									onDeselect={(option: any) => this.setState((prevState: any) => {
+										const prevIndex = prevState.multiselectKeys.indexOf(option.key);
+										const newSelectedKeys = prevState.multiselectKeys;
+										if (prevIndex >= 0) {
+											newSelectedKeys.splice(prevIndex, 1);
+										}
+										return { multiselectKeys: [...newSelectedKeys] };
+									})}
+								/>,
+								code: `<CSCustomSelect
+									options={[
+										{ key: 0, label: 'Product' },
+										{ key: 1, label: 'Services' },
+										{ key: 2, label: 'Sales' },
+										{ key: 3, label: 'Marketing' }
+									]}
+									label="Select department"
+									multiselect
+									selectedKeys={this.state.multiselectKeys}
+									onClear={() => this.setState({ multiselectKeys: [] })}
+									onSelect={(option: any) => this.setState((prevState: any) => {
+										const prevIndex = prevState.multiselectKeys.indexOf(option.key);
+										const newSelectedKeys = prevState.multiselectKeys;
+										if (prevIndex >= 0) {
+											newSelectedKeys.splice(prevIndex, 1);
+										} else {
+											newSelectedKeys.push(option.key);
+										}
+										return { multiselectKeys: [...newSelectedKeys] };
+									})}
+									onDeselect={(option: any) => this.setState((prevState: any) => {
+										const prevIndex = prevState.multiselectKeys.indexOf(option.key);
+										const newSelectedKeys = prevState.multiselectKeys;
+										if (prevIndex >= 0) {
+											newSelectedKeys.splice(prevIndex, 1);
+										}
+										return { multiselectKeys: [...newSelectedKeys] };
+									})}
+								/>`
+							}, {
+								primaryVariants: 'multiselect compact',
+								quickLink: 'multiselect compact',
+								component: <CSCustomSelect
+									options={options}
+									label="Select department"
+									multiselect
+									showCompactMultiselect
+									selectedKeys={this.state.multiselectCompactKeys}
+									onClear={() => this.setState({ multiselectCompactKeys: [] })}
+									onSelect={(option: any) => this.setState((prevState: any) => {
+										const prevIndex = prevState.multiselectCompactKeys.indexOf(option.key);
+										const newSelectedKeys = prevState.multiselectCompactKeys;
+										if (prevIndex >= 0) {
+											newSelectedKeys.splice(prevIndex, 1);
+										} else {
+											newSelectedKeys.push(option.key);
+										}
+										return { multiselectCompactKeys: [...newSelectedKeys] };
+									})}
+									onDeselect={(option: any) => this.setState((prevState: any) => {
+										const prevIndex = prevState.multiselectCompactKeys.indexOf(option.key);
+										const newSelectedKeys = prevState.multiselectCompactKeys;
+										if (prevIndex >= 0) {
+											newSelectedKeys.splice(prevIndex, 1);
+										}
+										return { multiselectCompactKeys: [...newSelectedKeys] };
+									})}
+								/>,
+								code: `<CSCustomSelect
+									options={[
+										{ key: 0, label: 'Product' },
+										{ key: 1, label: 'Services' },
+										{ key: 2, label: 'Sales' },
+										{ key: 3, label: 'Marketing' }
+									]}
+									label="Select department"
+									multiselect
+									showCompactMultiselect
+									selectedKeys={this.state.multiselectCompactKeys}
+									onClear={() => this.setState({ multiselectCompactKeys: [] })}
+									onSelect={(option: any) => this.setState((prevState: any) => {
+										const prevIndex = prevState.multiselectCompactKeys.indexOf(option.key);
+										const newSelectedKeys = prevState.multiselectCompactKeys;
+										if (prevIndex >= 0) {
+											newSelectedKeys.splice(prevIndex, 1);
+										} else {
+											newSelectedKeys.push(option.key);
+										}
+										return { multiselectCompactKeys: [...newSelectedKeys] };
+									})}
+									onDeselect={(option: any) => this.setState((prevState: any) => {
+										const prevIndex = prevState.multiselectCompactKeys.indexOf(option.key);
+										const newSelectedKeys = prevState.multiselectCompactKeys;
+										if (prevIndex >= 0) {
+											newSelectedKeys.splice(prevIndex, 1);
+										}
+										return { multiselectCompactKeys: [...newSelectedKeys] };
+									})}
+								/>`
 							}
 						]
 					}
 				],
 				properties: [
 					{
+						name: 'options',
+						required: true,
+						types: 'Array<CSCustomSelectOptionInterface>',
+						description: 'Array of objects with key and label attributes that define the available select options.'
+					}, {
 						name: 'label',
 						required: true,
 						types: 'string',
 						description: 'Set the custom select label.'
 					}, {
+						name: 'actions',
+						types: 'Array<CSButtonProps>',
+						description: 'Add custom action items to the dropdown.'
+					}, {
 						name: 'align',
 						customTypes: [{
 							name: 'CSCustomSelectDropdownAlign',
-							types: ['\'left\'', '\'right\'']
+							types: [`'left'`, `'right'`]
 						}],
-						default: '\'left\'',
+						default: `'left'`,
 						description: 'Horizontally align the custom select dropdown in the case of an overflow.'
 					}, {
 						name: 'borderRadius',
@@ -663,13 +565,6 @@ class CSCustomSelectPreview extends React.Component {
 						},
 						description: 'Set the error message or messages for the custom select.'
 					}, {
-						name: 'exportValue',
-						customTypes: {
-							name: 'CSCustomSelectExportValueType',
-							types: [`'itemKey'`, `'value'`]
-						},
-						description: 'Set key of the value that will be exported when selection is changed. By default object containing itemKey and value will be exported.'
-					}, {
 						name: 'helpText',
 						types: 'string',
 						description: 'Set the text to be displayed for the tooltip.'
@@ -678,11 +573,6 @@ class CSCustomSelectPreview extends React.Component {
 						types: 'boolean',
 						default: 'false',
 						description: 'Control the hidden attribute.'
-					}, {
-						name: 'label',
-						required: true,
-						types: ['string'],
-						description: 'Set the custom select label.'
 					}, {
 						name: 'labelHidden',
 						types: 'boolean',
@@ -696,41 +586,56 @@ class CSCustomSelectPreview extends React.Component {
 						name: 'multiselect',
 						types: 'boolean',
 						default: 'false',
-						description: 'Allow selection of multiple options.'
+						description: 'Add support for selecting multiple items.'
+					}, {
+						name: 'onClear',
+						types: '() => void',
+						description: 'Handler method for clearing the selection.'
+					}, {
+						name: 'onDeselect',
+						types: '(option) => void',
+						description: 'Handler method for deselecting an option. Should only be used with multiselect.'
 					}, {
 						name: 'onSearch',
-						types: '(event) => any',
-						description: 'Handler method when serch term changes.'
-					}, {
-						name: 'onSelectChange',
 						types: '(event) => void',
+						description: 'Handler method when search term changes.'
+					}, {
+						name: 'onSelect',
+						types: '(option) => void',
 						description: 'Handler method for when the selection is changed.'
 					}, {
 						name: 'placeholder',
-						types: ['string'],
+						types: 'string',
 						description: 'Set a custom select input placeholder.'
 					}, {
 						name: 'position',
 						customTypes: [{
 							name: 'CSCustomSelectDropdownPosition',
-							types: ['\'bottom\'', '\'top\'']
+							types: [`'bottom'`, `'top'`]
 						}],
-						default: '\'bottom\'',
+						default: `'bottom'`,
 						description: 'Determine the vertical position of the custom select dropdown content.'
-					}, {
-						name: 'placeholder',
-						types: ['string'],
-						description: 'Set a custom select input placeholder.'
 					}, {
 						name: 'required',
 						types: 'boolean',
 						default: 'false',
 						description: 'Make the custom select required.'
 					}, {
+						name: 'searchBy',
+						default: `'label'`,
+						customTypes: [{
+							name: 'CSCustomSelectSearchByType',
+							types: [`'label'`, `'all'`]
+						}]
+					}, {
+						name: 'selectedKeys',
+						types: ['React.ReactText', 'Array<React.ReactText>'],
+						description: 'A single key or an array of keys corresponding to selected options.'
+					}, {
 						name: 'showCompactMultiselect',
-						types: ['boolean'],
+						types: 'boolean',
 						default: 'false',
-						description: 'Hides mutliselect items from input wrapper.'
+						description: 'Hides multiselect items from input wrapper.'
 					}, {
 						name: 'title',
 						types: 'string',
@@ -757,10 +662,6 @@ class CSCustomSelectPreview extends React.Component {
 						default: `'top-right'`,
 						description: 'Set the tooltip position for the custom select.'
 					}, {
-						name: 'value',
-						types: ['string', 'Array<string>'],
-						description: 'Set the default option/s of Custom Select. If multiselect is set, this prop needs to recieve array of valid itemKeys, otherwise one itemKey is passed to default Custom Select component.'
-					}, {
 						name: 'id',
 						types: 'string',
 						description: 'Set the ID for the custom select.'
@@ -776,115 +677,6 @@ class CSCustomSelectPreview extends React.Component {
 						name: '[key: string]',
 						types: 'any',
 						description: 'Spreads the rest of the props to the custom select input.'
-					}
-				]
-			}, {
-				name: 'CSOption',
-				examples: [
-					{
-						propName: 'itemKey | value',
-						variations: [
-							{
-								component: <CSCustomSelect label="Choose letter">
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
-								code: `<CSCustomSelect label="Choose letter">
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
-							}
-						]
-					}, {
-						propName: 'searchBy',
-						alert: {
-							variant: 'info',
-							text: 'Option can be filtered by either itemKey or value or both. By default option will be filtered by both itemKey and value.'
-						},
-						variations: [
-							{
-								primaryVariants: 'searchBy="default"',
-								quickLink: 'default',
-								component: <CSCustomSelect label="Choose letter">
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>,
-								code: `<CSCustomSelect label="Choose letter">
-									<CSOption itemKey="1" value="A" />
-									<CSOption itemKey="2" value="B" />
-									<CSOption itemKey="3" value="C" />
-									<CSOption itemKey="4" value="D" />
-								</CSCustomSelect>`
-							}, {
-								primaryVariants: 'searchBy="itemKey"',
-								quickLink: 'itemKey',
-								component: <CSCustomSelect label="Choose letter">
-									<CSOption searchBy="itemKey" itemKey="1" value="A" />
-									<CSOption searchBy="itemKey" itemKey="2" value="B" />
-									<CSOption searchBy="itemKey" itemKey="3" value="C" />
-									<CSOption searchBy="itemKey" itemKey="4" value="D" />
-								</CSCustomSelect>,
-								code: `<CSCustomSelect label="Choose letter">
-									<CSOption searchBy="itemKey" itemKey="1" value="A" />
-									<CSOption searchBy="itemKey" itemKey="2" value="B" />
-									<CSOption searchBy="itemKey" itemKey="3" value="C" />
-									<CSOption searchBy="itemKey" itemKey="4" value="D" />
-								</CSCustomSelect>`
-							}, {
-								primaryVariants: 'searchBy="value"',
-								quickLink: 'value',
-								component: <CSCustomSelect label="Choose letter">
-									<CSOption searchBy="value" itemKey="1" value="A" />
-									<CSOption searchBy="value" itemKey="2" value="B" />
-									<CSOption searchBy="value" itemKey="3" value="C" />
-									<CSOption searchBy="value" itemKey="4" value="D" />
-								</CSCustomSelect>,
-								code: `<CSCustomSelect label="Choose letter">
-									<CSOption searchBy="value" itemKey="1" value="A" />
-									<CSOption searchBy="value" itemKey="2" value="B" />
-									<CSOption searchBy="value" itemKey="3" value="C" />
-									<CSOption searchBy="value" itemKey="4" value="D" />
-								</CSCustomSelect>`
-							}
-						]
-					}
-				],
-				properties: [
-					{
-						name: 'itemKey',
-						required: true,
-						types: 'string',
-						description: 'Set unique identifier of the option.'
-					}, {
-						name: 'value',
-						required: true,
-						types: 'string',
-						description: 'Set value to display of the option.'
-					}, {
-						name: 'searchBy',
-						customTypes: {
-							name: 'CSOptionFilterByType',
-							types: [`'itemKey'`, `'value'`]
-						},
-						description: 'Set the attribute against which the options should be searched. The options are filtered by both itemKey and value by default.'
-					}, {
-						name: 'id',
-						types: 'string',
-						description: 'Set the ID for the option.'
-					}, {
-						name: 'className',
-						types: 'string',
-						description: 'Apply custom CSS classes to the list item tag.'
-					}, {
-						name: '[key: string]',
-						types: 'any',
-						description: 'Spreads the rest of the props to the list item tag.'
 					}
 				]
 			}

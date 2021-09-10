@@ -40,10 +40,20 @@ import CSCurrency, {
 import CSCustomData from './components/custom-data/CSCustomData';
 import CSCustomDataActions from './components/custom-data/CSCustomDataActions';
 import CSCustomDataIcons from './components/custom-data/CSCustomDataIcons';
-import { CSCustomDataIcon, CSCustomDataTooltip, CSCustomDataIconProps, CSCustomDataActionProps, CSCustomDataMenuVariant } from './util/CustomData';
-import CSCustomSelect, { CSCustomSelectExportValueType } from './components/custom-select/CSCustomSelect';
+import {
+	CSCustomDataIcon,
+	CSCustomDataTooltip,
+	CSCustomDataIconProps,
+	CSCustomDataActionProps,
+	CSCustomDataMenuVariant,
+} from './util/CustomData';
+import CSCustomSelect, {
+	CSCustomSelectDropdownAlignType,
+	CSCustomSelectDropdownPositionType,
+	CSCustomSelectOptionInterface,
+	CSCustomSelectSearchByType,
+} from './components/custom-select/CSCustomSelect';
 import CSDataTable, {
-	CSDataTableProps,
 	CSDataTableCellClassName,
 	CSDataTableColumnInterface,
 	CSDataTableColumnAlign,
@@ -94,7 +104,6 @@ import CSModal, { CSModalSize } from './components/modal/CSModal';
 import CSModalBody from './components/modal/CSModalBody';
 import CSModalFooter, { CSModalFooterAlign } from './components/modal/CSModalFooter';
 import CSModalHeader from './components/modal/CSModalHeader';
-import CSOption, { CSOptionType, CSOptionSearchByType } from './components/custom-select/CSOption';
 import CSPagination from './components/pagination/CSPagination';
 import CSPaginationWrapper from './components/pagination/CSPaginationWrapper';
 import CSPath from './components/path/CSPath';
@@ -194,9 +203,11 @@ export {
 	CSCustomDataActionProps,
 	CSCustomDataMenuVariant,
 	CSCustomSelect,
-	CSCustomSelectExportValueType,
+	CSCustomSelectDropdownAlignType,
+	CSCustomSelectDropdownPositionType,
+	CSCustomSelectOptionInterface,
+	CSCustomSelectSearchByType,
 	CSDataTable,
-	CSDataTableProps,
 	CSDataTableCellClassName,
 	CSDataTableColumnInterface,
 	CSDataTableColumnAlign,
@@ -254,9 +265,6 @@ export {
 	CSModalFooterAlign,
 	CSModalHeader,
 	CSModalSize,
-	CSOption,
-	CSOptionSearchByType,
-	CSOptionType,
 	CSPagination,
 	CSPaginationWrapper,
 	CSPath,

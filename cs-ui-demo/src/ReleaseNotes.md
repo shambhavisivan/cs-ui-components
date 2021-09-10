@@ -216,7 +216,7 @@
   * fixed app breaking when `activeRowIndex` is null
   * input `ref` set to public
   * holding backspace won't delete selected item fixed
-  * implemented prevent update of inner state if `onSelectChange` returns false
+  * implemented prevent update of inner state if `onSelect` returns false
 * CSRadio
   * fixed changing value with keyboard when `readOnly={true}`
 * CSModalBody
@@ -412,7 +412,7 @@
   * internal state of CSInputText removed
 * CSList
   * `checkboxOption="not-selectable"` support added to CSListGroup
-  * `onSelect` renamed to `onSelectChange`
+  * `onSelect` renamed to `onSelect`
   * minor styling fixes
 * CSMainHeader
   * `color="success"` option added
