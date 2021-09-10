@@ -1,10 +1,14 @@
 .app-main-header {
 	display: flex;
-	align-items: center;
+	align-items: stretch;
 	justify-content: space-between;
 	position: relative;
 	z-index: 3;
+	height: 4rem;
 	@include sbg(--csd-app-header-bg);
+	@include css4 {
+		box-shadow: 0 0 5px cvar(--csd-shadow-light), 0 0 1px cvar(--csd-shadow-medium);
+	}
 
 	ul {
 		list-style: none;
@@ -22,6 +26,7 @@
 				padding: 0.75rem 1.25rem;
 				font-size: 1.25rem;
 				cursor: pointer;
+				white-space: nowrap;
 				@include sc(--csd-header-tab-c);
 				@include css4 {
 					border-top: 5px solid cvar(--csd-transparent);
@@ -43,7 +48,7 @@
 
 						.cs-btn {
 							height: 100%;
-							padding: 0.75rem 1.25rem;
+							padding: 0.75rem 1rem 0.75rem 1.25rem;
 
 							.cs-icon {
 								width: 1.5rem;
@@ -53,7 +58,7 @@
 							}
 
 							.cs-btn-label {
-								font-size: 1.375rem;
+								font-size: 1.25rem;
 								@include sc(--csd-header-tab-c);
 							}
 
@@ -124,13 +129,59 @@
 			width: 100%;
 			padding: 0.25rem 1.25rem;
 			height: 2.5rem;
-			font-size: 1rem;
-			@include sc(--csd-header-dropdown-c);
-			@include sbg(--csd-header-dropdown-btn-bg);
 
-			&:hover {
+			&::before {
+				@include sbg(--csd-header-dropdown-btn-bg);
+			}
+
+			&:hover::before {
 				@include sbg(--csd-header-dropdown-btn-hover-bg);
 			}
+
+			.cs-btn-label {
+				font-size: 1rem;
+				@include sc(--csd-header-dropdown-c);
+			}
 		}
+	}
+}
+
+@media only screen and (max-width: 1330px) {
+	.app-main-header {
+		height: 3rem;
+
+		ul .main-header-tab a {
+			padding: 0.5rem 0.75rem;
+			font-size: 1rem;
+
+			&.main-header-link-dropdown .cs-dropdown-wrapper .cs-btn {
+				padding: 0.5rem 0.25rem 0.5rem 0.75rem;
+
+				.cs-icon {
+					width: 1rem;
+					height: 1rem;
+					margin-left: 0.375rem;
+				}
+
+				.cs-btn-label {
+					font-size: 1rem;
+				}
+			}
+		}
+	}
+
+	.cs-dropdown-outer-item-wrapper.cs-demo-header-dropdown-wrapper .cs-dropdown-item-wrapper .main-header-dropdown-btn {
+		padding: 0.25rem 1rem;
+		height: 2rem;
+
+		.cs-btn-label {
+			font-size: 0.875rem;
+		}
+	}
+}
+
+@media only screen and (max-width: 1100px) {
+	.app-main-header ul .main-header-tab a .cs-chip {
+		display: none;
 	}
 }

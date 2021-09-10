@@ -14,6 +14,9 @@
 			margin: 0.5rem 0;
 			font-size: 3rem;
 			@include sc(--csd-preview-main-heading-title-c);
+			@media only screen and (max-width: 1080px) {
+				font-size: 2.5rem;
+			}
 		}
 
 		.preview-accessibility-status-wrapper {

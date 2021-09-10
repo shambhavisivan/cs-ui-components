@@ -6,6 +6,25 @@ import { version } from '@cloudsense/cs-ui-components/package.json';
 
 const MainHeader: React.FC = () => {
 	const { theme, toggleTheme } = useTheme();
+
+	const [dimensions, setDimensions] = React.useState({
+		width: window.innerWidth
+	});
+
+	React.useEffect(() => {
+		function handleResize() {
+			setDimensions({
+				width: window.innerWidth
+			});
+		}
+
+		window.addEventListener('resize', handleResize);
+
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
+	});
+
 	return (
 		<div className="app-main-header">
 			<ul>
@@ -20,16 +39,21 @@ const MainHeader: React.FC = () => {
 					</NavLink>
 				</li>
 				{/* <li className="main-header-tab">
-					<a href="">
+					<NavLink to="/cs-grid" activeClassName="active-main-header-tab">
 						CS Grid
-						<CSChip color="#7f8de1" text={`v${version}`} />
-					</a>
-				</li> */}
-				{/* <li className="main-header-tab">
+						<CSChip
+							color="#7f8de1"
+							// Needs to be updated to a live version when CSGrid is added to demo
+							text={`v${version}`}
+						/>
+					</NavLink>
+				</li>
+				<li className="main-header-tab">
 					<NavLink to="/cs-form" activeClassName="active-main-header-tab">
 						CS Form
 						<CSChip
 							color="#d8d8d8"
+							// Needs to be updated to a live version when CSForm is added to demo
 							text={`v${version}`}
 							className="black-text"
 						/>
@@ -37,28 +61,33 @@ const MainHeader: React.FC = () => {
 				</li> */}
 				<li className="main-header-tab">
 					<NavLink
-						to="/icons"
+						to="/utilities"
 						className="main-header-link-dropdown"
 						activeClassName="active-main-header-tab"
 					>
 						<CSDropdown
-							label="Icons"
+							label="Utilities"
 							hover
 							iconPosition="right"
 							dropdownClassName="cs-demo-header-dropdown-wrapper"
 						>
-							<NavLink to="/icons/LightningIcons" className="main-header-dropdown-btn">
-								Lightning Icons
-							</NavLink>
-							<NavLink to="/icons/CloudSenseIcons" className="main-header-dropdown-btn">
-								CloudSense Icons
-							</NavLink>
+							<CSButton
+								label="Lightning Icons"
+								className="main-header-dropdown-btn"
+								routerLink={<NavLink to="/utilities/LightningIcons" />}
+							/>
+							<CSButton
+								label="CloudSense Icons"
+								className="main-header-dropdown-btn"
+								routerLink={<NavLink to="/utilities/CloudSenseIcons" />}
+							/>
+							<CSDivider variant="horizontal" />
+							<CSButton
+								label="Colors"
+								className="main-header-dropdown-btn"
+								routerLink={<NavLink to="/utilities/Colors" />}
+							/>
 						</CSDropdown>
-					</NavLink>
-				</li>
-				<li className="main-header-tab">
-					<NavLink to="/colors" activeClassName="active-main-header-tab">
-						Colors
 					</NavLink>
 				</li>
 				<li className="main-header-tab">
@@ -79,19 +108,27 @@ const MainHeader: React.FC = () => {
 							className="main-header-dropdown"
 							dropdownClassName="cs-demo-header-dropdown-wrapper"
 						>
-							<NavLink to="/release-notes/CSUIComponents" className="main-header-dropdown-btn">
-								CS UI Components
-							</NavLink>
-							{/* <NavLink to="/release-notes" className="main-header-dropdown-btn" />
-								CS Grid
-							</NavLink>
-							<NavLink to="/release-notes" className="main-header-dropdown-btn" />
-								CS Form
-							</NavLink> */}
+							<CSButton
+								label="CS UI Components"
+								className="main-header-dropdown-btn"
+								routerLink={<NavLink to="/release-notes/CSUIComponents" />}
+							/>
+							{/* <CSButton
+								label="CS Grid"
+								className="main-header-dropdown-btn"
+								routerLink={<NavLink to="/release-notes/CSGrid" />}
+							/>
+							<CSButton
+								label="CS Form"
+								className="main-header-dropdown-btn"
+								routerLink={<NavLink to="/release-notes/CSForm" />}
+							/> */}
 							<CSDivider variant="horizontal" />
-							<NavLink to="/release-notes/FutureScope" className="main-header-dropdown-btn">
-								Future Scope
-							</NavLink>
+							<CSButton
+								label="Future Scope"
+								className="main-header-dropdown-btn"
+								routerLink={<NavLink to="/release-notes/FutureScope" />}
+							/>
 						</CSDropdown>
 					</NavLink>
 				</li>
@@ -106,9 +143,10 @@ const MainHeader: React.FC = () => {
 					onClick={toggleTheme}
 				/>
 				<CSImage
-					type="logo"
-					height="2.25rem"
-					color={theme === Theme.Dark ? 'white' : undefined}
+					type={dimensions.width <= 1330 ? 'logomark' : 'logo'}
+					height={dimensions.width <= 1330 ? '2rem' : '2.25rem'}
+					color={theme === Theme.Dark ? 'white' : 'purple'}
+					variant={theme === Theme.Dark ? 'initial' : dimensions.width <= 1330 ? 'reversed' : 'initial'}
 				/>
 			</div>
 		</div>

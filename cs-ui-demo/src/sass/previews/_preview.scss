@@ -5,6 +5,7 @@
 	flex: 1;
 	display: flex;
 	transition: 0.4s;
+	overflow-x: auto;
 
 	.preview-section-wrapper {
 		.demo-heading {
@@ -27,12 +28,7 @@
 		}
 	}
 
-	&.icons {
-		padding: 0;
-		flex-direction: column;
-	}
-
-	&.colors {
+	&.utilities {
 		padding: 0;
 		flex-direction: column;
 	}

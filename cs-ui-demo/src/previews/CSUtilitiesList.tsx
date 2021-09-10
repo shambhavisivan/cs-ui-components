@@ -1,12 +1,14 @@
 import React from 'react';
 import LightningIconsPreview from './icons/LightningIconsPreview';
 import CloudSenseIconsPreview from './icons/CloudSenseIconsPreview';
+import CSColorsList from './colors/CSColorsList';
+
 import SidebarList from './SidebarList';
 
-class CSIconsList extends React.Component {
+class CSUtilitiesList extends React.Component {
 
 	render() {
-		const iconsList = [
+		const utilitiesList = [
 			{
 				name: 'Lightning Icons',
 				component: LightningIconsPreview
@@ -14,13 +16,17 @@ class CSIconsList extends React.Component {
 			{
 				name: 'CloudSense Icons',
 				component: CloudSenseIconsPreview
+			},
+			{
+				name: 'Colors',
+				component: CSColorsList
 			}
 		];
 
 		return (
-			<SidebarList sidebarList={iconsList} path="/icons/" customClass="icons" />
+			<SidebarList sidebarList={utilitiesList} path="/utilities/" customClass="utilities" />
 		);
 	}
 }
 
-export default CSIconsList;
+export default CSUtilitiesList;

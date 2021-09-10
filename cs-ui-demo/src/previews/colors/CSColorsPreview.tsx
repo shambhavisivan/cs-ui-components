@@ -40,7 +40,7 @@ class CSColorsPreview extends React.Component<ColorsProps, ColorsState> {
 
 	render() {
 		return (
-			<div className="components-preview colors">
+			<>
 				<div className="search-wrapper">
 					<div className="search-inner-wrapper">
 						<CSIcon name="search"/>
@@ -77,7 +77,7 @@ class CSColorsPreview extends React.Component<ColorsProps, ColorsState> {
 						))}
 					</div>
 				</div>
-			</div>
+			</>
 		);
 	}
 }

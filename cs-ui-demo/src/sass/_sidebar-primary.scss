@@ -114,7 +114,7 @@
 	position: absolute;
 	top: 1.625rem;
 	left: 1.5rem;
-	transition: 0.2s;
+	transition: transform 0.2s;
 
 	&:hover::before,
 	&:active::before,

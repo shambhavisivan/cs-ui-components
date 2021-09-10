@@ -5,8 +5,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 
 import CSComponentsList from './previews/CSComponentsList';
 import CSFormList from './previews/CSFormList';
-import CSIconsList from './previews/CSIconsList';
-import CSColorsList from './previews/colors/CSColorsList';
+import CSUtilitiesList from './previews/CSUtilitiesList';
 import Accessibility from './previews/Accessibility';
 import MainHeader from './previews/MainHeader';
 
@@ -24,15 +23,14 @@ const App: React.FC = () => (
 					<div className="app-body">
 						<Route path="/cs-ui" component={CSComponentsList} />
 						<Route path="/cs-form" component={CSFormList} />
-						<Route path="/icons" component={CSIconsList} />
-						<Route path="/colors" component={CSColorsList} />
+						<Route path="/utilities" component={CSUtilitiesList} />
 						<Route path="/accessibility" component={Accessibility} />
 						<Route path="/release-notes" component={ReleaseNotesList} />
 						<Switch>
 							<Redirect exact from="/" to="/cs-ui/GettingStarted" />
 							<Redirect exact from="/cs-ui" to="/cs-ui/GettingStarted" />
 							<Redirect exact from="/cs-form" to="/cs-form/GettingStarted" />
-							<Redirect exact from="/icons/" to="/icons/LightningIcons" />
+							<Redirect exact from="/utilities/" to="/utilities/LightningIcons" />
 							<Redirect exact from="/release-notes/" to="/release-notes/StartingPage" />
 						</Switch>
 					</div>
