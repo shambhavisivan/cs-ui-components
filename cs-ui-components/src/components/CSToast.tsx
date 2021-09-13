@@ -12,7 +12,7 @@ export interface CSToastProps {
 	detail?: string;
 	iconName?: string;
 	iconOrigin?: CSIconOrigin;
-	iconVisibility?: boolean;
+	iconHidden?: boolean;
 	id?: string;
 	onClose?: () => void;
 	text?: string;
@@ -27,7 +27,7 @@ const CSToast = ({
 	detail,
 	iconName,
 	iconOrigin,
-	iconVisibility = true,
+	iconHidden = false,
 	id,
 	onClose,
 	text,
@@ -54,7 +54,7 @@ const CSToast = ({
 	const toastRole = (variant === 'info' || variant === 'success') ? 'status' : 'alert';
 
 	const iconVisible = () => {
-		if (!iconVisibility) return null;
+		if (iconHidden) return null;
 		if (iconName) {
 			return (
 				<CSIcon name={iconName} origin={iconOrigin} size="1.5rem" />

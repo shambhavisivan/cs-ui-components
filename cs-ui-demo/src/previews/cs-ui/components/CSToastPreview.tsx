@@ -117,18 +117,18 @@ class CSToastPreview extends React.Component {
 							}
 						]
 					}, {
-						propName: 'iconVisibility',
+						propName: 'iconHidden',
 						variations: [
 							{
-								primaryVariants: 'iconVisibility={false}',
+								primaryVariants: 'iconHidden={true}',
 								component: <CSToast
 									variant="success"
-									iconVisibility={false}
+									iconHidden
 									text="This is an example toast without an icon"
 								/>,
 								code: `<CSToast
 									variant="success"
-									iconVisibility={false}
+									iconHidden
 									text="This is an example toast without an icon"
 								/>`
 							}
@@ -266,9 +266,9 @@ class CSToastPreview extends React.Component {
 						default: `'slds'`,
 						description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
 					}, {
-						name: 'iconVisibility',
+						name: 'iconHidden',
 						types: 'boolean',
-						default: 'true',
+						default: 'false',
 						description: 'Show or hide the icon.'
 					}, {
 						name: 'onClose',
