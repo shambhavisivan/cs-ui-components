@@ -345,13 +345,18 @@
 	}
 }
 
-.closed-secondary-sidebar-toggle.cs-btn.cs-btn.cs-btn {
+button.closed-secondary-sidebar-toggle.cs-btn.cs-btn.cs-btn {
 	z-index: 1;
 	position: absolute;
 	transition: transform 0.2s;
 	top: 1.625rem;
 	left: 1.5rem;
 
+	&:disabled {
+		opacity: 1;
+	}
+
+	&:disabled::before,
 	&:hover::before,
 	&:active::before,
 	&::before {
@@ -359,6 +364,7 @@
 	}
 
 	&.secondary-sidebar-toggle-black {
+		&:disabled::before,
 		&:hover::before,
 		&:active::before,
 		&::before {

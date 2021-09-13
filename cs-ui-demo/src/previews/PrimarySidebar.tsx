@@ -73,6 +73,7 @@ class PrimarySidebar extends React.Component<PrimarySidebarProps, PrimarySidebar
 					borderRadius="50%"
 					className="closed-sidebar-toggle"
 					onClick={this.toggleSidebar}
+					disabled={this.state.sidebarOpen}
 				/>
 				<div className={sidebarWrapperClasses}>
 					<div className="sidebar">

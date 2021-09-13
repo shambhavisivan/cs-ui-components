@@ -109,13 +109,18 @@
 }
 
 
-.closed-sidebar-toggle.cs-btn.cs-btn.cs-btn {
+button.closed-sidebar-toggle.cs-btn.cs-btn.cs-btn {
 	z-index: 2;
 	position: absolute;
 	top: 1.625rem;
 	left: 1.5rem;
 	transition: transform 0.2s;
 
+	&:disabled {
+		opacity: 1;
+	}
+
+	&:disabled::before,
 	&:hover::before,
 	&:active::before,
 	&::before {

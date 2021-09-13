@@ -118,6 +118,7 @@ const SecondarySidebar: React.FC<SecondarySidebarProps> = ({
 					className={sidebarToggleClasses}
 					onClick={toggleQuickLinks}
 					borderRadius="50%"
+					disabled={quickLinks}
 				/>
 			}
 			<div className={sidebarWrapperClasses}>
