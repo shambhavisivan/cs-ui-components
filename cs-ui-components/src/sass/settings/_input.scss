@@ -14,7 +14,8 @@
 	}
 
 	&:active,
-	&:focus {
+	&:focus,
+	&.cs-dropdown-visible {
 		outline: 0;
 		@include css4 {
 			border-color: cvar(--cs-input-active-br);

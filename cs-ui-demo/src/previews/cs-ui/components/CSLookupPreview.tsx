@@ -7,41 +7,40 @@ interface CSLookupPreviewState {
 	focused: boolean;
 }
 
-const sampleLookup = {
-	columns: [
-		{ key: 'Account', label: 'Account' },
-		{ key: 'Industry', label: 'Industry' }
-	],
-	data: [
-		{ Id: 1, Account: 'Acme', Industry: 'Manufacturing' },
-		{ Id: 2, Account: 'Global Media', Industry: 'Industry' },
-		{ Id: 3, Account: 'Salesforce', Industry: 'Software' },
-		{ Id: 4, Account: 'Elisa', Industry: 'Telecommunications' },
-		{ Id: 5, Account: 'Facebook', Industry: 'Social media' },
-		{ Id: 6, Account: 'Google', Industry: 'Technology' },
-		{ Id: 7, Account: 'Spotify', Industry: 'Streaming and media' },
-		{ Id: 8, Account: 'British Gas', Industry: 'Energy' },
-		{ Id: 9, Account: 'Columbia Pictures', Industry: 'Film' },
-		{ Id: 10, Account: 'Rimac', Industry: 'Car manufacturing' },
-		{ Id: 11, Account: 'News Corp', Industry: 'Mass media' },
-		{ Id: 12, Account: 'Telstra', Industry: 'Telecommunications' },
-		{ Id: 13, Account: 'Netflix', Industry: 'Production' },
-		{ Id: 14, Account: 'Instagram', Industry: 'Social media' },
-		{ Id: 15, Account: 'Vodafone', Industry: 'Telecommunications' },
-		{ Id: 16, Account: 'Apple', Industry: 'Software' },
-		{ Id: 17, Account: 'Amazon', Industry: 'E-commerce' },
-		{ Id: 18, Account: 'Ikea', Industry: 'Furniture retail' },
-		{ Id: 19, Account: 'Microsoft', Industry: 'Software' },
-		{ Id: 20, Account: 'Visa', Industry: 'Finance' },
-		{ Id: 21, Account: 'IBM', Industry: 'Software' },
-		{ Id: 22, Account: 'eBay', Industry: 'E-commerce' },
-		{ Id: 23, Account: 'Oracle', Industry: 'Software' },
-		{ Id: 24, Account: 'Tesla', Industry: 'Car manufacturing' },
-		{ Id: 25, Account: 'YouTube', Industry: 'Streaming and media' },
-		{ Id: 26, Account: 'O2', Industry: 'Telecommunications' },
-		{ Id: 27, Account: 'Warner Bros. Pictures', Industry: 'Film' }
-	]
-};
+const columns = [
+	{ key: 'Account', header: 'Account' },
+	{ key: 'Industry', header: 'Industry' }
+];
+
+const options = [
+	{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
+	{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
+	{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } },
+	{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } },
+	{ key: 5, data: { Id: 5, Account: 'Facebook', Industry: 'Social media' } },
+	{ key: 6, data: { Id: 6, Account: 'Google', Industry: 'Technology' } },
+	{ key: 7, data: { Id: 7, Account: 'Spotify', Industry: 'Streaming and media' } },
+	{ key: 8, data: { Id: 8, Account: 'British Gas', Industry: 'Energy' } },
+	{ key: 9, data: { Id: 9, Account: 'Columbia Pictures', Industry: 'Film' } },
+	{ key: 10, data: { Id: 10, Account: 'Rimac', Industry: 'Car manufacturing' } },
+	{ key: 11, data: { Id: 11, Account: 'News Corp', Industry: 'Mass media' } },
+	{ key: 12, data: { Id: 12, Account: 'Telstra', Industry: 'Telecommunications' } },
+	{ key: 13, data: { Id: 13, Account: 'Netflix', Industry: 'Production' } },
+	{ key: 14, data: { Id: 14, Account: 'Instagram', Industry: 'Social media' } },
+	{ key: 15, data: { Id: 15, Account: 'Vodafone', Industry: 'Telecommunications' } },
+	{ key: 16, data: { Id: 16, Account: 'Apple', Industry: 'Software' } },
+	{ key: 17, data: { Id: 17, Account: 'Amazon', Industry: 'E-commerce' } },
+	{ key: 18, data: { Id: 18, Account: 'Ikea', Industry: 'Furniture retail' } },
+	{ key: 19, data: { Id: 19, Account: 'Microsoft', Industry: 'Software' } },
+	{ key: 20, data: { Id: 20, Account: 'Visa', Industry: 'Finance' } },
+	{ key: 21, data: { Id: 21, Account: 'IBM', Industry: 'Software' } },
+	{ key: 22, data: { Id: 22, Account: 'eBay', Industry: 'E-commerce' } },
+	{ key: 23, data: { Id: 23, Account: 'Oracle', Industry: 'Software' } },
+	{ key: 24, data: { Id: 24, Account: 'Tesla', Industry: 'Car manufacturing' } },
+	{ key: 25, data: { Id: 25, Account: 'YouTube', Industry: 'Streaming and media' } },
+	{ key: 26, data: { Id: 26, Account: 'O2', Industry: 'Telecommunications' } },
+	{ key: 27, data: { Id: 27, Account: 'Warner Bros. Pictures', Industry: 'Film' } }
+];
 
 class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 	state = {
@@ -103,12 +102,12 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 		await new Promise(resolve => setTimeout(resolve, 2000));
 		if (searchTerm === '') {
 			return {
-				records: sampleLookup.data.slice(pageNo * pageSize, (pageNo + 1) * pageSize),
-				moreRecords: (pageNo + 1) * pageSize < sampleLookup.data.length
+				records: options.slice(pageNo * pageSize, (pageNo + 1) * pageSize),
+				moreRecords: (pageNo + 1) * pageSize < options.length
 			};
 		} else {
-			const filteredData = sampleLookup.data
-				.filter(record => record.Account.toString().toLowerCase().includes(searchTerm.toLowerCase()))
+			const filteredData = options
+				.filter(record => record.data.Account.toString().toLowerCase().includes(searchTerm.toLowerCase()))
 				.slice(pageNo * pageSize, (pageNo + 1) * pageSize);
 			return {
 				records: filteredData,
@@ -120,12 +119,38 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 	getDoc = () => ({
 		name: 'Lookup',
 		usage: 'Lookup is an autocomplete combobox that will search against a database object.',
-		accessible: 'partially',
+		accessible: 'yes',
 		components: [
 			{
 				name: 'CSLookup',
 				examples: [
 					{
+						propName: 'columns',
+						variations: [
+							{
+								component: <CSLookup
+									fieldToBeDisplayed="Account"
+									label="Account"
+									columns={[
+										{ key: 'Account', header: 'Account' },
+										{ key: 'Industry', header: 'Industry' }
+									]}
+									options={options}
+									mode="client"
+								/>,
+								code: `<CSLookup
+									fieldToBeDisplayed="Account"
+									label="Account"
+									columns={[
+										{ key: 'Account', header: 'Account' },
+										{ key: 'Industry', header: 'Industry' }
+									]}
+									options={options}
+									mode="client"
+								/>`
+							}
+						]
+					}, {
 						propName: 'fieldToBeDisplayed',
 						variations: [
 							{
@@ -133,15 +158,15 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Id"
 									label="Id"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Id"
 									label="Id"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 								/>`
 							}
@@ -153,41 +178,15 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupColumns={sampleLookup.columns}
-									lookupOptions={sampleLookup.data}
+									columns={columns}
+									options={options}
 									mode="client"
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupColumns={sampleLookup.columns}
-									lookupOptions={sampleLookup.data}
-									mode="client"
-								/>`
-							}
-						]
-					}, {
-						propName: 'lookupColumns',
-						variations: [
-							{
-								component: <CSLookup
-									fieldToBeDisplayed="Account"
-									label="Account"
-									lookupColumns={[
-										{ key: 'Account', label: 'Account' },
-										{ key: 'Industry', label: 'Industry' }
-									]}
-									lookupOptions={sampleLookup.data}
-									mode="client"
-								/>,
-								code: `<CSLookup
-									fieldToBeDisplayed="Account"
-									label="Account"
-									lookupColumns={[
-										{ key: 'Account', label: 'Account' },
-										{ key: 'Industry', label: 'Industry' }
-									]}
-									lookupOptions={sampleLookup.data}
+									columns={columns}
+									options={options}
 									mode="client"
 								/>`
 							}
@@ -202,16 +201,17 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
+									multiselect
 									actions={this.state.actions}
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									actions={[
 										{
@@ -248,15 +248,15 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 								/>`
 							}, {
@@ -265,16 +265,16 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									align="right"
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									align="right"
 								/>`
@@ -288,16 +288,16 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									autoFocus
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									autoFocus
 								/>`
@@ -311,16 +311,16 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									borderRadius="0"
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									borderRadius="0"
 								/>`
@@ -334,16 +334,16 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									disabled
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									disabled
 								/>`
@@ -357,16 +357,16 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									dropdownHeight="5rem"
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									dropdownHeight="5rem"
 								/>`
@@ -380,16 +380,16 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									dropdownWidth="10rem"
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									dropdownWidth="10rem"
 								/>`
@@ -407,16 +407,16 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									error
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									error
 								/>`
@@ -430,8 +430,8 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									error
 									errorMessage="Error message."
@@ -439,8 +439,8 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									error
 									errorMessage="Error message."
@@ -456,8 +456,8 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									error
 									errorMessage="Error message."
@@ -466,8 +466,8 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									error
 									errorMessage="Error message."
@@ -485,16 +485,16 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									mode="client"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									fieldToBeDisplayed="Account"
 									gridCustomPopup
 								/>,
 								code: `<CSLookup
 									mode="client"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									fieldToBeDisplayed="Account"
 									gridCustomPopup
 								/>`
@@ -507,16 +507,16 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									helpText="Help text example"
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									helpText="Help text example"
 								/>`
@@ -530,16 +530,16 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									hidden
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									hidden
 								/>`
@@ -555,16 +555,16 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									icons={this.state.icons}
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									icons={[
 										{ iconName: 'cart'},
@@ -592,8 +592,8 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									labelHidden
 									error
@@ -603,8 +603,8 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									labelHidden
 								/>`
@@ -618,16 +618,16 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									labelTitle
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									labelTitle
 								/>`
@@ -641,16 +641,16 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									multiselect
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									multiselect
 								/>`
@@ -663,16 +663,16 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									onBlur={this.handleBlur}
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									onBlur={this.handleBlur}
 								/>`
@@ -685,40 +685,40 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									onFocus={this.handleFocus}
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									onFocus={this.handleFocus}
 								/>`
 							}
 						]
 					}, {
-						propName: 'onLookupDropdownClose',
+						propName: 'onDropdownClose',
 						variations: [
 							{
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
-									onLookupDropdownClose={this.handleClose}
+									onDropdownClose={this.handleClose}
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
-									onLookupDropdownClose={this.handleClose}
+									onDropdownClose={this.handleClose}
 								/>`
 							}
 						]
@@ -730,8 +730,8 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									searchBy={['Id', 'Account']}
 									onSearch={this.handleSearch}
@@ -739,8 +739,8 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									searchBy={['Id', 'Account']}
 									onSearch={this.handleSearch}
@@ -754,16 +754,16 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									onSelectChange={this.handleSelectChange}
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									onSelectChange={this.handleSelectChange}
 								/>`
@@ -776,16 +776,16 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupColumns={sampleLookup.columns}
-									lookupOptions={sampleLookup.data}
+									columns={columns}
+									options={options}
 									mode="client"
 									placeholder="Search..."
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupColumns={sampleLookup.columns}
-									lookupOptions={sampleLookup.data}
+									columns={columns}
+									options={options}
 									mode="client"
 									placeholder="Search..."
 								/>`
@@ -800,15 +800,15 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 								/>`
 							}, {
@@ -817,16 +817,16 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									position="top"
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									position="top"
 								/>`
@@ -840,19 +840,19 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
-									value={{ Id: 1, Account: 'Acme', Industry: 'Manufacturing' }}
+									value={{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } }}
 									readOnly
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
-									value={{ Id: 1, Account: 'Acme', Industry: 'Manufacturing' }}
+									value={{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } }}
 									readOnly
 								/>`
 							}
@@ -865,16 +865,16 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									required
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									required
 								/>`
@@ -887,16 +887,16 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									title="This is a title"
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									title="This is a title"
 								/>`
@@ -915,8 +915,8 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 									fieldToBeDisplayed="Account"
 									label="Account"
 									mode="client"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									helpText="Help text example"
 									tooltipPosition="top-left"
 								/>,
@@ -924,8 +924,8 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 									fieldToBeDisplayed="Account"
 									label="Account"
 									mode="client"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									helpText="Help text example"
 									tooltipPosition="top-left"
 								/>`
@@ -943,18 +943,18 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupColumns={sampleLookup.columns}
-									lookupOptions={sampleLookup.data}
+									columns={columns}
+									options={options}
 									mode="client"
-									value={{ Id: 1, Account: 'Acme', Industry: 'Manufacturing' }}
+									value={{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } }}
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupColumns={sampleLookup.columns}
-									lookupOptions={sampleLookup.data}
+									columns={columns}
+									options={options}
 									mode="client"
-									value={{ Id: 1, Account: 'Acme', Industry: 'Manufacturing' }}
+									value={{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } }}
 								/>`
 							}, {
 								primaryVariants: 'value={[...]}',
@@ -962,21 +962,21 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupColumns={sampleLookup.columns}
-									lookupOptions={sampleLookup.data}
+									columns={columns}
+									options={options}
 									mode="client"
 									multiselect
 									value={[
-										{ Id: 1, Account: 'Acme', Industry: 'Manufacturing' },
-										{ Id: 2, Account: 'Global Media', Industry: 'Industry' },
-										{ Id: 3, Account: 'Salesforce', Industry: 'Software' }
+										{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
+										{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
+										{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } }
 									]}
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupColumns={sampleLookup.columns}
-									lookupOptions={sampleLookup.data}
+									columns={columns}
+									options={options}
 									mode="client"
 									multiselect
 									value={[
@@ -998,8 +998,8 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									id="custom-id"
 									className="custom-class"
@@ -1007,8 +1007,8 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									id="custom-id"
 									className="custom-class"
@@ -1019,6 +1019,11 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 				],
 				properties: [
 					{
+						name: 'columns',
+						required: true,
+						types: 'Array<CSLookupTableColumnType>',
+						description: 'Set which columns should be shown in the dropdown.'
+					}, {
 						name: 'fieldToBeDisplayed',
 						required: true,
 						types: 'string',
@@ -1029,15 +1034,10 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 						types: 'string',
 						description: 'Set the lookup label.'
 					}, {
-						name: 'lookupColumns',
-						required: true,
-						types: 'Array<CSLookupTableColumnType>',
-						description: 'Set which columns should be shown in the dropdown.'
-					}, {
 						name: 'mode',
 						required: true,
 						types: [`'client'`, `'server'`],
-						description: 'Set whether the component should run in client-side or server-side mode. The server-side mode loads records by reading the lookupOptions prop and filtering takes place within the component, while the server-side mode enables asynchronous fetching of records with the fetchLookupOptions prop, which also enables infinite scroll and setting the minimum search term length.'
+						description: 'Set whether the component should run in client-side or server-side mode. The client-side mode loads records by reading the options prop and filtering takes place within the component, while the server-side mode enables asynchronous fetching of records with the fetchOptions prop, which also enables infinite scroll and setting the minimum search term length.'
 					}, {
 						name: 'actions',
 						customTypes: {
@@ -1196,8 +1196,8 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 					}, {
 						name: 'value',
 						types: [
-							'Record<string, any>',
-							'Array<Record<string, any>>',
+							'CSDataTableRowInterface',
+							'Array<CSDataTableRowInterface>',
 							'null'
 						],
 						description: 'Set which values should be displayed in the lookup.'
@@ -1219,78 +1219,22 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 				name: 'Client-Side CSLookup',
 				examples: [
 					{
-						propName: 'lookupOptions',
+						propName: 'options',
 						variations: [
 							{
 								secondaryVariants: 'mode="client"',
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupColumns={sampleLookup.columns}
-									lookupOptions={[
-										{ Id: 1, Account: 'Acme', Industry: 'Manufacturing' },
-										{ Id: 2, Account: 'Global Media', Industry: 'Industry' },
-										{ Id: 3, Account: 'Salesforce', Industry: 'Software' },
-										{ Id: 4, Account: 'Elisa', Industry: 'Telecommunications' },
-										{ Id: 5, Account: 'Facebook', Industry: 'Social media' },
-										{ Id: 6, Account: 'Google', Industry: 'Technology' },
-										{ Id: 7, Account: 'Spotify', Industry: 'Streaming and media' },
-										{ Id: 8, Account: 'British Gas', Industry: 'Energy' },
-										{ Id: 9, Account: 'Columbia Pictures', Industry: 'Film' },
-										{ Id: 10, Account: 'Rimac', Industry: 'Car manufacturing' },
-										{ Id: 11, Account: 'News Corp', Industry: 'Mass media' },
-										{ Id: 12, Account: 'Telstra', Industry: 'Telecommunications' },
-										{ Id: 13, Account: 'Netflix', Industry: 'Production' },
-										{ Id: 14, Account: 'Instagram', Industry: 'Social media' },
-										{ Id: 15, Account: 'Vodafone', Industry: 'Telecommunications' },
-										{ Id: 16, Account: 'Apple', Industry: 'Software' },
-										{ Id: 17, Account: 'Amazon', Industry: 'E-commerce' },
-										{ Id: 18, Account: 'Ikea', Industry: 'Furniture retail' },
-										{ Id: 19, Account: 'Microsoft', Industry: 'Software' },
-										{ Id: 20, Account: 'Visa', Industry: 'Finance' },
-										{ Id: 21, Account: 'IBM', Industry: 'Software' },
-										{ Id: 22, Account: 'eBay', Industry: 'E-commerce' },
-										{ Id: 23, Account: 'Oracle', Industry: 'Software' },
-										{ Id: 24, Account: 'Tesla', Industry: 'Car manufacturing' },
-										{ Id: 25, Account: 'YouTube', Industry: 'Streaming and media' },
-										{ Id: 26, Account: 'O2', Industry: 'Telecommunications' },
-										{ Id: 27, Account: 'Warner Bros. Pictures', Industry: 'Film' }
-									]}
+									columns={columns}
+									options={options}
 									mode="client"
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupColumns={sampleLookup.columns}
-									lookupOptions={[
-										{ Id: 1, Account: 'Acme', Industry: 'Manufacturing' },
-										{ Id: 2, Account: 'Global Media', Industry: 'Industry' },
-										{ Id: 3, Account: 'Salesforce', Industry: 'Software' },
-										{ Id: 4, Account: 'Elisa', Industry: 'Telecommunications' },
-										{ Id: 5, Account: 'Facebook', Industry: 'Social media' },
-										{ Id: 6, Account: 'Google', Industry: 'Technology' },
-										{ Id: 7, Account: 'Spotify', Industry: 'Streaming and media' },
-										{ Id: 8, Account: 'British Gas', Industry: 'Energy' },
-										{ Id: 9, Account: 'Columbia Pictures', Industry: 'Film' },
-										{ Id: 10, Account: 'Rimac', Industry: 'Car manufacturing' },
-										{ Id: 11, Account: 'News Corp', Industry: 'Mass media' },
-										{ Id: 12, Account: 'Telstra', Industry: 'Telecommunications' },
-										{ Id: 13, Account: 'Netflix', Industry: 'Production' },
-										{ Id: 14, Account: 'Instagram', Industry: 'Social media' },
-										{ Id: 15, Account: 'Vodafone', Industry: 'Telecommunications' },
-										{ Id: 16, Account: 'Apple', Industry: 'Software' },
-										{ Id: 17, Account: 'Amazon', Industry: 'E-commerce' },
-										{ Id: 18, Account: 'Ikea', Industry: 'Furniture retail' },
-										{ Id: 19, Account: 'Microsoft', Industry: 'Software' },
-										{ Id: 20, Account: 'Visa', Industry: 'Finance' },
-										{ Id: 21, Account: 'IBM', Industry: 'Software' },
-										{ Id: 22, Account: 'eBay', Industry: 'E-commerce' },
-										{ Id: 23, Account: 'Oracle', Industry: 'Software' },
-										{ Id: 24, Account: 'Tesla', Industry: 'Car manufacturing' },
-										{ Id: 25, Account: 'YouTube', Industry: 'Streaming and media' },
-										{ Id: 26, Account: 'O2', Industry: 'Telecommunications' },
-										{ Id: 27, Account: 'Warner Bros. Pictures', Industry: 'Film' }
-									]}
+									columns={columns}
+									options={options}
 									mode="client"
 								/>`
 							}
@@ -1304,16 +1248,16 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									loading
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									loading
 								/>`
@@ -1323,21 +1267,21 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 						propName: 'searchBy',
 						variations: [
 							{
-								primaryVariants: 'searchBy={[\'Id\', \'Account\']}',
+								primaryVariants: `searchBy={['Id', 'Account']}`,
 								secondaryVariants: 'mode="client"',
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									searchBy={['Id', 'Account']}
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupOptions={sampleLookup.data}
-									lookupColumns={sampleLookup.columns}
+									options={options}
+									columns={columns}
 									mode="client"
 									searchBy={['Id', 'Account']}
 								/>`
@@ -1347,9 +1291,9 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 				],
 				properties: [
 					{
-						name: 'lookupOptions',
+						name: 'options',
 						required: true,
-						types: 'Array<Record<string, any>>',
+						types: 'Array<CSDataTableRowInterface>',
 						description: 'Set the data that should be shown in the dropdown.'
 					}, {
 						name: 'loading',
@@ -1359,30 +1303,30 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 					}, {
 						name: 'searchBy',
 						types: 'Array<string>',
-						description: 'Set the keys by which the options should be filtered. By default, the options are filtered by the key provided in the lookupColumns prop.'
+						description: 'Set the keys by which the options should be filtered. By default, the options are filtered by the key provided in the columns prop.'
 					}
 				]
 			}, {
 				name: 'Server-Side CSLookup',
 				examples: [
 					{
-						propName: 'fetchLookupOptions',
+						propName: 'fetchOptions',
 						variations: [
 							{
 								secondaryVariants: 'mode="server"',
 								component: <CSLookup
-									fetchLookupOptions={this.fetchData}
+									fetchOptions={this.fetchData}
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupColumns={sampleLookup.columns}
+									columns={columns}
 									mode="server"
 									pageSize={27}
 								/>,
 								code: `<CSLookup
-									fetchLookupOptions={this.fetchData}
+									fetchOptions={this.fetchData}
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupColumns={sampleLookup.columns}
+									columns={columns}
 									mode="server"
 									pageSize={27}
 								/>`
@@ -1395,19 +1339,19 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								primaryVariants: 'pageSize={10}',
 								secondaryVariants: ['mode="server"', 'infiniteScroll={true}'],
 								component: <CSLookup
-									fetchLookupOptions={this.fetchData}
+									fetchOptions={this.fetchData}
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupColumns={sampleLookup.columns}
+									columns={columns}
 									mode="server"
 									infiniteScroll
 									pageSize={10}
 								/>,
 								code: `<CSLookup
-									fetchLookupOptions={this.fetchData}
+									fetchOptions={this.fetchData}
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupColumns={sampleLookup.columns}
+									columns={columns}
 									mode="server"
 									infiniteScroll
 									pageSize={10}
@@ -1421,19 +1365,19 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								primaryVariants: 'infiniteScroll={true}',
 								secondaryVariants: 'mode="server"',
 								component: <CSLookup
-									fetchLookupOptions={this.fetchData}
+									fetchOptions={this.fetchData}
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupColumns={sampleLookup.columns}
+									columns={columns}
 									mode="server"
 									pageSize={8}
 									infiniteScroll
 								/>,
 								code: `<CSLookup
-									fetchLookupOptions={this.fetchData}
+									fetchOptions={this.fetchData}
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupColumns={sampleLookup.columns}
+									columns={columns}
 									mode="server"
 									pageSize={8}
 									infiniteScroll
@@ -1447,19 +1391,19 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 								primaryVariants: 'minTermLength={3}',
 								secondaryVariants: 'mode="server"',
 								component: <CSLookup
-									fetchLookupOptions={this.fetchData}
+									fetchOptions={this.fetchData}
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupColumns={sampleLookup.columns}
+									columns={columns}
 									mode="server"
 									pageSize={24}
 									minTermLength={3}
 								/>,
 								code: `<CSLookup
-									fetchLookupOptions={this.fetchData}
+									fetchOptions={this.fetchData}
 									fieldToBeDisplayed="Account"
 									label="Account"
-									lookupColumns={sampleLookup.columns}
+									columns={columns}
 									mode="server"
 									pageSize={24}
 									minTermLength={3}
@@ -1470,10 +1414,10 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 				],
 				properties: [
 					{
-						name: 'fetchLookupOptions',
+						name: 'fetchOptions',
 						required: true,
 						types: '(searchTerm, pageSize, pageNo) => Promise<CSLookupFetchResult>',
-						description: 'Set a function which will be called on every search or focus change if the minTermLength prop is 0. The function takes the search term, the page size (which determines the number of returned records) and the page number which will automatically increase on every infiniteScroll event. It returns an object with a records property of the same type as lookupOptions and a boolean moreRecords property which indicates whether further records can be fetched.'
+						description: 'Set a function which will be called on every search or focus change if the minTermLength prop is 0. The function takes the search term, the page size (which determines the number of returned records) and the page number which will automatically increase on every infiniteScroll event. It returns an object with a records property of the same type as options and a boolean moreRecords property which indicates whether further records can be fetched.'
 					}, {
 						name: 'pageSize',
 						required: true,
@@ -1488,7 +1432,7 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 						name: 'minTermLength',
 						types: 'number',
 						default: '0',
-						description: 'Set the minimum number of characters that need to be entered before fetchLookupOptions is fired.'
+						description: 'Set the minimum number of characters that need to be entered before fetchOptions is fired.'
 					}
 				]
 			}
@@ -1511,7 +1455,7 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 			requirements: {
 				structure: [
 					'`<input type="text">`',
-					'`<CSTable>` - dropdown',
+					'`<CSDataTable>` - dropdown',
 					'Clear button is `<CSButton>`'
 				],
 				attributes: [
@@ -1526,8 +1470,7 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 				],
 				keyboardOperability: [
 					'`<input>` OOTB focusable',
-					'`<CSButton>` - focusable and supports clicks with `Enter` and `Space`',
-					'Dropdown keyboard operability limited - currently partially supported in table'
+					'`<CSButton>` - focusable and supports clicks with `Enter` and `Space`'
 				]
 			}
 		}

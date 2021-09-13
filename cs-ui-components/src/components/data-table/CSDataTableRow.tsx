@@ -218,23 +218,25 @@ const CSDataTableRow = ({
 	};
 
 	const handleRowKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-		event.stopPropagation();
-
 		if (dataTableSelectionType === 'row' && (event.code === KeyCode.Enter || event.code === KeyCode.Space)) {
 			// Make sure Enter triggers the default mouse click behaviour
+			event.stopPropagation();
 			event.preventDefault();
 			checkboxRef.current?.checkboxInnerRef.current?.click();
 		} else if (event.code === KeyCode.ArrowRight && isCollapsible) {
 			// If the row can be expanded, Arrow Right should expand it
+			event.stopPropagation();
 			event.preventDefault();
 			setExpanded(true);
 			setSubsectionVisible(true);
 		} else if (event.code === KeyCode.ArrowLeft && isCollapsible) {
 			// If the row can be expanded, Arrow Left should collapse it
+			event.stopPropagation();
 			event.preventDefault();
 			setExpanded(false);
 			setSubsectionVisible(false);
 		} else if (event.code === KeyCode.ArrowDown) {
+			event.stopPropagation();
 			event.preventDefault();
 			const childGroup = rowWrapperRef.current.lastElementChild;
 			const nextItem = rowWrapperRef.current.nextElementSibling;
@@ -265,6 +267,7 @@ const CSDataTableRow = ({
 				else parentItem.nextElementSibling.firstElementChild.focus();
 			}
 		} else if (event.code === KeyCode.ArrowUp) {
+			event.stopPropagation();
 			event.preventDefault();
 			const parentGroup = rowWrapperRef.current.parentElement.parentElement;
 			const previousRow = rowWrapperRef.current.previousElementSibling;

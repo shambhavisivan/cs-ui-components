@@ -96,7 +96,6 @@ import CSListItem from './components/list/CSListItem';
 import CSLookup, {
 	CSLookupDropdownAlign,
 	CSLookupDropdownPosition,
-	CSLookupTableColumnType,
 } from './components/CSLookup';
 import CSMainHeader, { CSMainHeaderColor } from './components/main-header/CSMainHeader';
 import CSMainHeaderIcon from './components/main-header/CSMainHeaderIcon';
@@ -254,7 +253,6 @@ export {
 	CSListItem,
 	CSListSize,
 	CSListVariant,
-	CSLookupTableColumnType,
 	CSLookup,
 	CSLookupDropdownAlign,
 	CSLookupDropdownPosition,
