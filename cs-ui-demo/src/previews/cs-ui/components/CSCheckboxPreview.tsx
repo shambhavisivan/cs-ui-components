@@ -239,7 +239,7 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 									checked={this.state.errorTooltip}
 									onChange={(event: any) => this.setState({ errorTooltip: event.target.checked })}
 								/>,
-								code: `<CSInputText
+								code: `<CSCheckbox
 									label="Select option"
 									error
 									errorMessage="Error message."
