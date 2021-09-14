@@ -49,6 +49,7 @@
 			appearance: none;
 			margin: 0;
 			width: 100%;
+			height: 0.25rem;
 			@include sbg(--cs-transparent);
 
 			&:focus {
@@ -227,7 +228,7 @@
 
 		.cs-slider-steps-wrapper {
 			position: absolute;
-			top: -0.125rem;
+			top: 0.375rem;
 			left: 0;
 			width: 100%;
 			display: flex;
