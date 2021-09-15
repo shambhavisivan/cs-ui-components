@@ -19,6 +19,25 @@ class CSCardPreview extends React.Component {
 				name: 'CSCard',
 				examples: [
 					{
+						propName: 'borderRadius',
+						variations: [
+							{
+								primaryVariants: [
+									'borderRadius="0.25rem"'
+								],
+								component: <CSCard borderRadius="0.25rem">
+									<CSCardHeader title="Card Header" />
+									<CSCardBody>Card Body</CSCardBody>
+									<CSCardFooter>Card Footer</CSCardFooter>
+								</CSCard>,
+								code: `<CSCard borderRadius="0.25rem">
+									<CSCardHeader title="Card Header" />
+									<CSCardBody>Card Body</CSCardBody>
+									<CSCardFooter>Card Footer</CSCardFooter>
+								</CSCard>`
+							}
+						]
+					}, {
 						propName: 'id | class',
 						variations: [
 							{
@@ -74,6 +93,11 @@ class CSCardPreview extends React.Component {
 					}
 				],
 				properties: [{
+					name: 'borderRadius',
+					types: 'number',
+					default: '0.25rem',
+					description: 'Set the border radius for the card.'
+				}, {
 					name: 'id',
 					types: 'string',
 					description: 'Set the ID for the card.'
@@ -102,6 +126,23 @@ class CSCardPreview extends React.Component {
 				name: 'CSCardHeader',
 				examples: [
 					{
+						propName: 'bgColor',
+						variations: [
+							{
+								primaryVariants: 'bgColor="#4a26ab"',
+								component: <CSCard>
+									<CSCardHeader title="This is a title" bgColor="#4a26ab" />
+									<CSCardBody>Card Body</CSCardBody>
+									<CSCardFooter>Card Footer</CSCardFooter>
+								</CSCard>,
+								code: `<CSCard>
+									<CSCardHeader title="This is a title" bgColor="#4a26ab" />
+									<CSCardBody>Card Body</CSCardBody>
+									<CSCardFooter>Card Footer</CSCardFooter>
+								</CSCard>`
+							}
+						]
+					}, {
 						propName: 'collapsible',
 						variations: [
 							{
@@ -330,6 +371,10 @@ class CSCardPreview extends React.Component {
 				],
 				properties: [
 					{
+						name: 'bgColor',
+						types: 'string',
+						description: 'Apply background color to the card header.(eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
+					}, {
 						name: 'collapsible',
 						types: 'boolean',
 						default: 'false',
@@ -550,6 +595,23 @@ class CSCardPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'bgColor',
+						variations: [
+							{
+								primaryVariants: 'bgColor="#4a26ab"',
+								component: <CSCard>
+									<CSCardHeader title="This is a title"/>
+									<CSCardBody>Card Body</CSCardBody>
+									<CSCardFooter bgColor="#4a26ab">Card Footer</CSCardFooter>
+								</CSCard>,
+								code: `<CSCard>
+									<CSCardHeader title="This is a title"/>
+									<CSCardBody>Card Body</CSCardBody>
+									<CSCardFooter bgColor="#4a26ab">Card Footer</CSCardFooter>
+								</CSCard>`
+							}
+						]
+					}, {
 						propName: 'padding',
 						variations: [
 							{
@@ -585,6 +647,10 @@ class CSCardPreview extends React.Component {
 						},
 						default: 'left',
 						description: 'Align the card footer content.'
+					}, {
+						name: 'bgColor',
+						types: 'string',
+						description: 'Apply background color to the card footer.(eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
 					}, {
 						name: 'padding',
 						types: 'string',

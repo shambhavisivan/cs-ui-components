@@ -2,7 +2,6 @@
 
 .cs-card {
 	background-clip: padding-box;
-	border-radius: 0.25rem;
 	padding: 0;
 	position: relative;
 	@include sc(--cs-card-c);
@@ -10,13 +9,15 @@
 	@include css4 {
 		border: 1px solid cvar(--cs-card-br);
 		box-shadow: 0 2px 2px 0 cvar(--cs-card-shadow);
+		border-radius: var(--cs-card-border-radius, 0.25rem);
 	}
-
+	
 	// Header
 	.cs-card-header {
 		display: flex;
 		align-items: center;
 		padding: var(--cs-card-header-padding, 0.75rem 1rem);
+		@include sbg(--cs-card-header-bg-color);
 		&-icon {
 			margin-right: 0.75rem;
 		}
@@ -56,6 +57,7 @@
 		display: flex;
 		font-size: 0.8125rem;
 		padding: var(--cs-card-footer-padding, 0.75rem 1rem);
+		@include sbg(--cs-card-footer-bg-color);
 		&-center {
 			justify-content: center;
 		}

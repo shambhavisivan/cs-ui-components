@@ -5,6 +5,7 @@ import CSButton from '../CSButton';
 
 export interface CSCardHeaderProps {
 	[key: string]: any;
+	bgColor?: string;
 	className?: string;
 	collapsible?: boolean;
 	defaultClosed?: boolean;
@@ -61,6 +62,7 @@ class CSCardHeader extends React.Component<CSCardHeaderProps, CSCardHeaderState>
 
 	render() {
 		const {
+			bgColor,
 			children,
 			className,
 			collapsible,
@@ -92,6 +94,7 @@ class CSCardHeader extends React.Component<CSCardHeaderProps, CSCardHeaderState>
 
 		const cardHeaderStyles: CSSProperties = {
 			'--cs-card-header-padding': padding,
+			'--cs-card-header-bg-color': bgColor,
 		};
 
 		return (
