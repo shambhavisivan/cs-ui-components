@@ -4,27 +4,38 @@
 	background-clip: padding-box;
 	padding: 0;
 	position: relative;
+	border-radius: var(--cs-card-border-radius, 0.25rem);
 	@include sc(--cs-card-c);
 	@include sbg(--cs-card-bg);
 	@include css4 {
 		border: 1px solid cvar(--cs-card-br);
 		box-shadow: 0 2px 2px 0 cvar(--cs-card-shadow);
-		border-radius: var(--cs-card-border-radius, 0.25rem);
 	}
-	
+
 	// Header
 	.cs-card-header {
 		display: flex;
 		align-items: center;
 		padding: var(--cs-card-header-padding, 0.75rem 1rem);
+		border-top-left-radius: var(--cs-card-border-radius, 0.25rem);
+		border-top-right-radius: var(--cs-card-border-radius, 0.25rem);
 		@include sbg(--cs-card-header-bg-color);
+
+		&:last-child,
+		&.cs-card-header-collapsed {
+			border-bottom-left-radius: var(--cs-card-border-radius, 0.25rem);
+			border-bottom-right-radius: var(--cs-card-border-radius, 0.25rem);
+		}
+
 		&-icon {
 			margin-right: 0.75rem;
 		}
+
 		&-title {
 			font-weight: $font-weight-bold;
 			@include sc(--cs-card-c);
 		}
+
 		&-with-border {
 			@include css4 {
 				border-bottom: 1px solid cvar(--cs-card-header-br);
@@ -50,6 +61,16 @@
 		padding: var(--cs-card-body-padding, 0.75rem 1rem);
 		max-height: var(--cs-card-body-max-height, unset);
 		overflow: auto;
+
+		&:first-child {
+			border-top-left-radius: var(--cs-card-border-radius, 0.25rem);
+			border-top-right-radius: var(--cs-card-border-radius, 0.25rem);
+		}
+
+		&:last-child {
+			border-bottom-left-radius: var(--cs-card-border-radius, 0.25rem);
+			border-bottom-right-radius: var(--cs-card-border-radius, 0.25rem);
+		}
 	}
 
 	// Footer
@@ -57,7 +78,15 @@
 		display: flex;
 		font-size: 0.8125rem;
 		padding: var(--cs-card-footer-padding, 0.75rem 1rem);
+		border-bottom-left-radius: var(--cs-card-border-radius, 0.25rem);
+		border-bottom-right-radius: var(--cs-card-border-radius, 0.25rem);
 		@include sbg(--cs-card-footer-bg-color);
+
+		&:first-child {
+			border-top-left-radius: var(--cs-card-border-radius, 0.25rem);
+			border-top-right-radius: var(--cs-card-border-radius, 0.25rem);
+		}
+
 		&-center {
 			justify-content: center;
 		}
@@ -69,6 +98,7 @@
 		&-right {
 			justify-content: flex-end;
 		}
+
 		@include css4 {
 			border-top: 1px solid cvar(--cs-card-br);
 		}

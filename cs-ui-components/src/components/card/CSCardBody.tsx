@@ -2,11 +2,11 @@ import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 
 export interface CSCardBodyProps {
-	[key: string]: any;
 	className?: string;
 	id?: string;
 	maxHeight?: string;
 	padding?: string;
+	[key: string]: any;
 }
 
 const CSCardBody = ({
@@ -23,10 +23,12 @@ const CSCardBody = ({
 			[`${className}`]: className,
 		},
 	);
+
 	const cardBodyStyles: CSSProperties = {
 		'--cs-card-body-padding': padding,
 		'--cs-card-body-max-height': maxHeight,
 	};
+
 	return (
 		<div
 			className={cardBodyClasses}
