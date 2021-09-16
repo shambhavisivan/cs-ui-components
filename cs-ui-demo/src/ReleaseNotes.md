@@ -46,6 +46,7 @@
   * CSMainHeader
   * CSPath
   * CSProgressIndicator
+  * CSRadio
   * CSSection
   * CSSelect
   * CSSidebar
