@@ -5,7 +5,7 @@ import { withState } from '@dump247/storybook-state';
 import { ElementWrapper, FieldType, ComponentStatus, LocaleSettings, FieldDescriptor } from '..';
 import { FormField } from '../fields/FormField';
 import { OptionsKnobOptions } from '@storybook/addon-knobs/dist/components/types';
-import { FormFieldsIcons } from '../types/FormFieldsIcons';
+import { CSCustomDataIconProps } from '@cloudsense/cs-ui-components';
 
 const statusLabel = 'Status';
 const statusValuesObj: Record<string, ComponentStatus> = {
@@ -196,14 +196,7 @@ formFieldStories.add(
 		);
 	})
 );
-const icons: Array<FormFieldsIcons> = [{
-	name: 'activity'
-}, {
-	name: 'info',
-	tooltip: {
-		content: 'test test'
-	}
-}];
+
 formFieldStories.add(
 	'with date field',
 	withState({ value: '' })(({ store }) => {
@@ -232,7 +225,6 @@ formFieldStories.add(
 					setValue(value);
 				}}
 				fetchPossibleValues={nop}
-				icons={icons}
 			/>
 		);
 	})
@@ -279,6 +271,48 @@ formFieldStories.add(
 			fieldType: 'ID',
 			name: 'IDField',
 			label: 'ID field'
+		};
+		const setValue = (value: any) => {
+			store.set({ value });
+		};
+
+		return (
+			<FormField
+				value={store.state.value}
+				descriptor={descriptor}
+				status={options(statusLabel, statusValuesObj, 'mandatory', optionsObj)}
+				locale={locale}
+				wrapper={wrapper}
+				handleFieldChange={(value: any) => {
+					console.info('handleFieldChange called');
+					setValue(value);
+				}}
+				handleFieldBlur={(value: any) => {
+					console.info('handleFieldBlur called');
+					setValue(value);
+				}}
+				fetchPossibleValues={nop}
+			/>
+		);
+	})
+);
+
+const icons: Array<CSCustomDataIconProps> = [{
+	iconName: 'activity'
+}, {
+	iconName: 'info',
+	getTooltip: {
+		content: 'Tooltip message'
+	}
+}];
+formFieldStories.add(
+	'with icons',
+	withState({ value: '' })(({ store }) => {
+		const descriptor: FieldDescriptor = {
+			fieldType: 'STRING',
+			name: 'stringField',
+			label: 'string field',
+			icons
 		};
 		const setValue = (value: any) => {
 			store.set({ value });

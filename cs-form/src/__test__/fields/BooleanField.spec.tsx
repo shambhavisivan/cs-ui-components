@@ -16,6 +16,17 @@ const descriptor: FieldDescriptor = {
 	label: 'Test field'
 };
 
+const icons: Array<CSCustomDataIconProps> = [{
+	iconName: 'activity'
+}, {
+	iconName: 'info',
+	getTooltip: {
+		content: 'test test'
+	}
+}];
+
+const descriptorWithIcons: FieldDescriptor = { ...descriptor, icons };
+
 const locale: LocaleSettings = ({} as unknown) as LocaleSettings;
 
 const wrapper: ElementWrapper = ({
@@ -99,25 +110,17 @@ it('calls handleFieldChange() on change', done => {
 });
 
 it('renders icons wrapper with icons and tooltip', () => {
-	const icons: Array<CSCustomDataIconProps> = [{
-		iconName: 'activity'
-	}, {
-		iconName: 'info',
-		getTooltip: {
-			content: 'test test'
-		}
-	}];
+
 	const uut = mount(
 		<BooleanField
 			value={false}
 			locale={locale}
 			wrapper={wrapper}
-			descriptor={descriptor}
+			descriptor={descriptorWithIcons}
 			handleFieldChange={nop}
 			handleFieldBlur={nop}
 			fetchPossibleValues={nop}
 			status="enabled"
-			icons={icons}
 		/>
 	);
 	expect(uut.find('.cs-checkbox-icons')).toHaveLength(1);

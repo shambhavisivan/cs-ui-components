@@ -15,6 +15,17 @@ const descriptor: FieldDescriptor = {
 	label: 'Test field'
 };
 
+const icons: Array<CSCustomDataIconProps> = [{
+	iconName: 'activity'
+}, {
+	iconName: 'info',
+	getTooltip: {
+		content: 'test test'
+	}
+}];
+
+const descriptorWithIcons: FieldDescriptor = { ...descriptor, icons };
+
 const locale: LocaleSettings = ({} as unknown) as LocaleSettings;
 
 const wrapper: ElementWrapper = ({
@@ -98,25 +109,16 @@ it('calls onChange() on change', done => {
 });
 
 it('renders icons wrapper with icons and getTooltip', () => {
-	const icons: Array<CSCustomDataIconProps> = [{
-		iconName: 'activity'
-	}, {
-		iconName: 'info',
-		getTooltip: {
-			content: 'test test'
-		}
-	}];
 	const uut = mount(
 		<SimpleField
 			locale={locale}
 			wrapper={wrapper}
-			descriptor={descriptor}
+			descriptor={descriptorWithIcons}
 			handleFieldChange={nop}
 			handleFieldBlur={nop}
 			fetchPossibleValues={nop}
 			value="test"
 			status="enabled"
-			icons={icons}
 		/>
 	);
 	expect(uut.find('.cs-input-text-icons')).toHaveLength(1);

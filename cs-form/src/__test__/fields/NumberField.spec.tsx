@@ -17,6 +17,17 @@ const descriptor: FieldDescriptor = {
 	label: 'Test field'
 };
 
+const icons: Array<CSCustomDataIconProps> = [{
+	iconName: 'activity'
+}, {
+	iconName: 'info',
+	getTooltip: {
+		content: 'test test'
+	}
+}];
+
+const descriptorWithIcons: FieldDescriptor = { ...descriptor, icons };
+
 let locale: LocaleSettings = {
 	dates: {
 		format: '',
@@ -482,27 +493,17 @@ test('Test NumberField does not go into edit mode on focus when it is read only.
 
 it('renders icons wrapper with icons and getTooltip', done => {
 
-	const icons: Array<CSCustomDataIconProps> = [{
-		iconName: 'activity'
-	}, {
-		iconName: 'info',
-		getTooltip: {
-			content: 'test test'
-		}
-	}];
-
 	act(() => {
 		ReactDOM.render(
 			<NumberField
 				value="0"
 				wrapper={wrapper}
-				descriptor={descriptor}
+				descriptor={descriptorWithIcons}
 				locale={locale}
 				handleFieldChange={jestHandleChangeMock}
 				handleFieldBlur={jestHandleFieldBlurMock}
 				fetchPossibleValues={jestFetchPossibleValuesMock}
 				status="enabled"
-				icons={icons}
 			/>,
 			container
 		);

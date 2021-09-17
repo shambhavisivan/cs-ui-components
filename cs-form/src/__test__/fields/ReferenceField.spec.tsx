@@ -32,12 +32,22 @@ const referenceOptionFetcher = (field: FieldDescriptor, searchTerm: string) => {
 		{ Id: 'OnDemandIdB', Name: 'On Demand NameB' }
 	] as Array<ReferenceOption>);
 };
-
 const descriptor: FieldDescriptor = {
 	fieldType: 'REFERENCE',
 	name: 'Account__c',
 	label: 'Account'
 };
+
+const icons: Array<CSCustomDataIconProps> = [{
+	iconName: 'activity'
+}, {
+	iconName: 'info',
+	getTooltip: {
+		content: 'test test'
+	}
+}];
+
+const descriptorWithIcons: FieldDescriptor = { ...descriptor, icons };
 
 let container: HTMLDivElement;
 
@@ -243,28 +253,19 @@ it('handleOutsideClick should do nothing when not in edit mode', () => {
 
 it('renders icons wrapper with icons and getTooltip', () => {
 	const mockHandleChange = jest.fn();
-	const icons: Array<CSCustomDataIconProps> = [{
-		iconName: 'activity'
-	}, {
-		iconName: 'info',
-		getTooltip: {
-			content: 'test test'
-		}
-	}];
 
 	act(() => {
 		ReactDOM.render(
 			<ReferenceField
 				value={{ Id: 'InitialId', name: 'Initial name' }}
 				wrapper={wrapper}
-				descriptor={descriptor}
+				descriptor={descriptorWithIcons}
 				locale={locale}
 				handleFieldChange={nop}
 				handleFieldBlur={mockHandleChange}
 				fetchReferenceOptions={referenceOptionFetcher}
 				status="enabled"
 				fetchPossibleValues={nop}
-				icons={icons}
 			/>,
 			container
 		);

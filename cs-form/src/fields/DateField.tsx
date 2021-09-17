@@ -43,8 +43,8 @@ export class DateField extends React.Component<FormFieldProps, {}> {
 					}
 					title={title}
 				/>
-				{this.props.icons &&
-					<FormFieldIcon icons={this.props.icons} />
+				{this.props.descriptor.icons &&
+					<FormFieldIcon icons={this.props.descriptor.icons} />
 				}
 			</div>
 		);

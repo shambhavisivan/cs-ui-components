@@ -81,7 +81,7 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 						}}
 						title={value}
 						labelHidden
-						icons={this.props.icons}
+						icons={this.props.descriptor.icons}
 					/>
 				) : (
 					<CSInputNumber
@@ -109,7 +109,7 @@ export class NumberField extends React.Component<FormFieldProps, NumberFieldStat
 						max={this.props.descriptor.maxVal}
 						title={value}
 						labelHidden
-						icons={this.props.icons}
+						icons={this.props.descriptor.icons}
 					/>
 				)}
 			</div>

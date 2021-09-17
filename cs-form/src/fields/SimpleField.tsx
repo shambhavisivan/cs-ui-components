@@ -23,7 +23,7 @@ export const SimpleField: React.FC<FormFieldProps> = props => {
 			hidden={props.status === 'hidden'}
 			title={value}
 			labelHidden
-			icons={props.icons}
+			icons={props.descriptor.icons}
 		/>
 	);
 };

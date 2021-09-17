@@ -1,6 +1,7 @@
 import { ComponentStatusConfiguration } from './ComponentStatus';
 import { SelectOption } from './SelectOption';
 import { ReferenceOptionColumn } from './ReferenceOption';
+import { CSCustomDataIconProps } from '@cloudsense/cs-ui-components';
 
 export interface FormDescriptor {
 	type: 'FORM';
@@ -68,6 +69,10 @@ export interface FieldDescriptor extends ComponentStatusConfiguration {
 	 * The time interval to be applied to time selection, relevant for DATETIME fieldType.
 	 */
 	timeInterval?: number;
+	/**
+	 * Renders inline icons or tooltips to form field
+	 */
+	icons?: Array<CSCustomDataIconProps>;
 }
 
 /**

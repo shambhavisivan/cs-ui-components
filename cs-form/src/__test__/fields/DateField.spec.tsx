@@ -30,6 +30,17 @@ const descriptor: FieldDescriptor = {
 	label: 'Test field'
 };
 
+const icons: Array<CSCustomDataIconProps> = [{
+	iconName: 'activity'
+}, {
+	iconName: 'info',
+	getTooltip: {
+		content: 'test test'
+	}
+}];
+
+const descriptorWithIcons: FieldDescriptor = { ...descriptor, icons };
+
 function nop(): any {
 	// dummy function
 }
@@ -107,25 +118,17 @@ it('calls onChange() on change', done => {
 });
 
 it('renders icons wrapper with icons and getTooltip', () => {
-	const icons: Array<CSCustomDataIconProps> = [{
-		iconName: 'activity'
-	}, {
-		iconName: 'info',
-		getTooltip: {
-			content: 'test test'
-		}
-	}];
+
 	const uut = mount(
 		<DateField
 			locale={locale}
 			wrapper={wrapper}
-			descriptor={descriptor}
+			descriptor={descriptorWithIcons}
 			value={Date.UTC(1970, 1, 2)}
 			handleFieldChange={nop}
 			handleFieldBlur={nop}
 			fetchPossibleValues={nop}
 			status="enabled"
-			icons={icons}
 		/>
 	);
 	expect(uut.find('.cs-form-icons-wrapper')).toHaveLength(1);

@@ -28,6 +28,17 @@ const descriptor: FieldDescriptor = {
 	label: 'Test field'
 };
 
+const icons: Array<CSCustomDataIconProps> = [{
+	iconName: 'activity'
+}, {
+	iconName: 'info',
+	getTooltip: {
+		content: 'test test'
+	}
+}];
+
+const descriptorWithIcons: FieldDescriptor = { ...descriptor, icons };
+
 const locale: LocaleSettings = ({} as unknown) as LocaleSettings;
 
 const wrapper: ElementWrapper = ({
@@ -67,25 +78,16 @@ it('renders SelectField with all props including options from fetchPossibleValue
 });
 
 it('renders icons wrapper with icons and getTooltip', () => {
-	const icons: Array<CSCustomDataIconProps> = [{
-		iconName: 'activity'
-	}, {
-		iconName: 'info',
-		getTooltip: {
-			content: 'test test'
-		}
-	}];
 	const uut = mount(
 		<SelectFieldContainer
 			value="option1"
 			wrapper={wrapper}
-			descriptor={descriptor}
+			descriptor={descriptorWithIcons}
 			locale={locale}
 			handleFieldChange={nop}
 			handleFieldBlur={nop}
 			fetchPossibleValues={optionFetcher}
 			status="enabled"
-			icons={icons}
 		/>
 	);
 	expect(uut.find('.cs-select-icons')).toHaveLength(1);

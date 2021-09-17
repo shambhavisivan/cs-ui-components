@@ -27,7 +27,7 @@ export const SelectField: React.FC<SelectFieldProps> = props => {
 			value={value}
 			title={value}
 			labelHidden
-			icons={props.icons}
+			icons={props.descriptor.icons}
 		>
 			{props.selectOptions &&
 				props.selectOptions.map(r => (

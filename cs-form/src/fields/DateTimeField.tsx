@@ -43,8 +43,8 @@ export class DateTimeField extends React.Component<FormFieldProps, {}> {
 					timeIntervals={this.props.descriptor.timeInterval || 1}
 					timeCaption={timeCaption}
 				/>
-				{this.props.icons &&
-					<FormFieldIcon icons={this.props.icons} />
+				{this.props.descriptor.icons &&
+					<FormFieldIcon icons={this.props.descriptor.icons} />
 				}
 			</div>
 		);
