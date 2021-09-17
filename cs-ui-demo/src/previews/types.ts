@@ -9,6 +9,7 @@ export interface CSUIPreviewInterface {
 	accessibility?: AccessibilityInterface;
 	children?: JSX.Element | Element;
 	activeElement?: Element;
+	searchTerm?: string;
 }
 
 export interface ComponentInterface {

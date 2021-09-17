@@ -11,17 +11,13 @@ import {
 import { HashLink } from 'react-router-hash-link';
 
 const PreviewPropList: React.FC<CSUIPreviewInterface> = ({
+	searchTerm = '',
 	components,
 	api,
 	accessibility,
 	activeElement= {}
 }) => {
-	const [searchTerm, setSearchTerm] = useState<string>('');
 	const [visibleSections, setVisibleSections] = useState<Array<boolean>>(components.map(() => true));
-
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setSearchTerm(event.target.value);
-	};
 
 	const handleClick = (index: number) => {
 		setVisibleSections((prevState: Array<boolean>) => {

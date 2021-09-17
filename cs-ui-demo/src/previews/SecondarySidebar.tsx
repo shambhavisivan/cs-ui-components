@@ -9,7 +9,7 @@ export type SecondarySidebarColor = 'purple' | 'black';
 
 export interface SecondarySidebarProps {
 	anchorList?: Array<string>;
-	children?: ReactNode;
+	children?: React.ReactElement;
 	className?: string;
 	collapsible?: boolean;
 	color?: SecondarySidebarColor;
@@ -20,7 +20,7 @@ export interface SecondarySidebarProps {
 
 const SecondarySidebar: React.FC<SecondarySidebarProps> = ({
 	anchorList,
-	children,
+	children = <div/>,
 	className,
 	collapsible,
 	color = 'purple',
@@ -155,7 +155,11 @@ const SecondarySidebar: React.FC<SecondarySidebarProps> = ({
 						/>
 					)}
 					{preview ? (
-						children
+						React.Children.map(children, child => {
+							return React.cloneElement(child, {
+								searchTerm
+							});
+						})
 					) : (
 						<div className="prop-list" ref={sidebarRef}>
 							<div>
