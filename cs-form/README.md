@@ -2,6 +2,12 @@
 
 Generic configurable React form component.
 
+### 1.0.0-alpha.120:
+* Changed icons support to be accessible from field descriptor instead of form
+
+### 1.0.0-alpha.119:
+* SelectField - Amend onChange method to return string value instead of event.target.value
+
 ### 1.0.0-alpha.118:
 * Changed type for rendering icons throughout the project.
 
