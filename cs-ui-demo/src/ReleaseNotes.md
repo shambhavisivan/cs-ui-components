@@ -24,6 +24,8 @@
   * set `label` prop to be optional
 * CSInputNumber
   * added `locale` prop
+* CSList
+  * fixed `self-select` option
 * CSRadio
   * added `hidden` prop
 * CSSection
@@ -55,6 +57,7 @@
   * CSInputSearch
   * CSInputText
   * CSLabel
+  * CSList
   * CSLookup
   * CSMainHeader
   * CSPath

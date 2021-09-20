@@ -20,6 +20,7 @@ export interface CSListGroupProps {
 
 export interface CSListGroupState {
 	collapsed: boolean;
+	selected: boolean;
 	selectedItems: Array<number>;
 	validItems: Array<number>;
 }
@@ -35,6 +36,7 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 
 		this.state = {
 			collapsed: false,
+			selected: false,
 			validItems: [],
 			selectedItems: [],
 		};
@@ -95,11 +97,25 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 	}
 
 	handleSelectAll = () => {
-		const { selectedItems, validItems } = this.state;
+		const { selected, selectedItems, validItems } = this.state;
 		const { onSelectChange } = this.props;
 		const newSelectedItems = selectedItems.length === validItems.length ? [] : validItems;
 
-		this.setState({ selectedItems: newSelectedItems });
+		this.setState({
+			selected: !selected,
+			selectedItems: newSelectedItems,
+		});
+
+		if (onSelectChange) {
+			onSelectChange();
+		}
+	}
+
+	handleSelectSelf = () => {
+		const { selected } = this.state;
+		const { onSelectChange } = this.props;
+
+		this.setState({ selected: !selected });
 
 		if (onSelectChange) {
 			onSelectChange();
@@ -132,6 +148,7 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 
 		const {
 			collapsed,
+			selected,
 			selectedItems,
 			validItems,
 		} = this.state;
@@ -208,12 +225,12 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 									onChange={
 										checkboxOption === 'select-all'
 											? this.handleSelectAll
-											: onSelectChange
+											: this.handleSelectSelf
 									}
 									variant="brand"
 									checked={checkboxOption === 'select-all'
 										? selectedItems.length === validItems.length
-										: undefined}
+										: selected}
 								/>
 							)}
 						{collapsible

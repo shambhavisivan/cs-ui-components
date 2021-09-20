@@ -587,8 +587,13 @@ class CSListPreview extends React.Component {
 					}, {
 						name: 'collapsible',
 						types: 'boolean',
-						default: 'false',
+						default: 'true',
 						description: 'List group collapsible state.'
+					}, {
+						name: 'selected',
+						types: 'boolean',
+						default: 'false',
+						description: 'List group selected state.'
 					}, {
 						name: 'customContent',
 						types: 'ReactNode',
