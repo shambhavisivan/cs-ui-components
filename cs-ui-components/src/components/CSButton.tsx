@@ -228,4 +228,6 @@ class CSButton extends React.Component<CSButtonProps> {
 
 const CSButtonWithRefs: React.ForwardRefExoticComponent<CSButtonProps & React.RefAttributes<HTMLButtonElement>> =	React.forwardRef<HTMLButtonElement, CSButtonProps>((props: CSButtonProps, ref) => <CSButton {...props} forwardRef={ref} />);
 
+CSButtonWithRefs.displayName = 'CSButton';
+
 export default CSButtonWithRefs;
