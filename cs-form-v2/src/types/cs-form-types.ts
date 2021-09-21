@@ -35,12 +35,10 @@ export interface CSFormLocale {
 }
 
 export interface CSFormProps {
-	// externalValidationErrors?: Array<string>;
-	// formSettings?: any;
-	// save: any;
 	columnNumber?: number;
 	data: CSFormData;
 	errorLabels?: CSFormErrorLabels;
+	formErrorMessage?: Array<string> | string;
 	locale?: CSFormLocale;
 	mode?: CSFormMode;
 	onBlur?: (newData: CSFormChangedFieldData) => void;
