@@ -114,6 +114,22 @@ class CSTabPreview extends React.Component {
 				name: 'CSTab',
 				examples: [
 					{
+						propName: 'name',
+						variations: [
+							{
+								component: <CSTabGroup>
+									<CSTab name="Tab One" />
+									<CSTab name="Tab Two" />
+									<CSTab name="Tab Three" />
+								</CSTabGroup>,
+								code: `<CSTabGroup>
+									<CSTab name="Tab One" />
+									<CSTab name="Tab Two" />
+									<CSTab name="Tab Three" />
+								</CSTabGroup>`
+							}
+						]
+					}, {
 						propName: 'active',
 						variations: [
 							{
@@ -336,22 +352,6 @@ class CSTabPreview extends React.Component {
 							}
 						]
 					}, {
-						propName: 'name',
-						variations: [
-							{
-								component: <CSTabGroup>
-									<CSTab name="Tab One" />
-									<CSTab name="Tab Two" />
-									<CSTab name="Tab Three" />
-								</CSTabGroup>,
-								code: `<CSTabGroup>
-									<CSTab name="Tab One" />
-									<CSTab name="Tab Two" />
-									<CSTab name="Tab Three" />
-								</CSTabGroup>`
-							}
-						]
-					}, {
 						propName: 'tooltipContent',
 						variations: [
 							{
@@ -473,6 +473,11 @@ class CSTabPreview extends React.Component {
 				],
 				properties: [
 					{
+						name: 'name',
+						required: true,
+						types: 'string',
+						description: 'Set the tab name.'
+					}, {
 						name: 'active',
 						types: 'string',
 						description: 'Control the active state.'
@@ -489,10 +494,6 @@ class CSTabPreview extends React.Component {
 						},
 						default: `'slds'`,
 						description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
-					}, {
-						name: 'name',
-						types: 'string',
-						description: 'Set the tab name.'
 					}, {
 						name: 'onClick',
 						types: '(value) => any',
