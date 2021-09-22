@@ -360,84 +360,12 @@ class CSButtonPreview extends React.Component {
 							}
 						]
 					}, {
-						propName: 'iconDisplay',
-						alert: {
-							variant: 'warning',
-							text: 'Prop is deprecated and should not be used. Use labelHidden prop instead.'
-						},
-						variations: [
-							{
-								primaryVariants: 'iconDisplay="default"',
-								secondaryVariants: 'iconName="list"',
-								quickLink: 'default',
-								component: <CSButton
-									label="Activity icon button"
-									iconName="list"
-									iconDisplay="default"
-								/>,
-								code: `<CSButton
-									label="Activity icon button"
-									iconName="list"
-									iconDisplay="default"
-								/>`
-							}, {
-								primaryVariants: 'iconDisplay="no-icon"',
-								secondaryVariants: ['size="large"', 'iconName="list"'],
-								quickLink: 'no-icon large',
-								component: <CSButton
-									label="No-icon button"
-									iconName="list"
-									iconDisplay="no-icon"
-									size="large"
-								/>,
-								code: `<CSButton
-									label="No-icon button"
-									iconName="list"
-									iconDisplay="no-icon"
-									size="large"
-								/>`
-							}, {
-								primaryVariants: 'iconDisplay="no-icon"',
-								secondaryVariants: ['size="small"', 'iconName="list"'],
-								quickLink: 'no-icon small',
-								component: <CSButton
-									label="No-icon button"
-									iconName="list"
-									iconDisplay="no-icon"
-									size="small"
-								/>,
-								code: `<CSButton
-									label="No-icon button"
-									iconName="list"
-									iconDisplay="no-icon"
-									size="small"
-								/>`
-							}, {
-								primaryVariants: 'iconDisplay="no-icon"',
-								secondaryVariants: ['size="xsmall"', 'iconName="list"'],
-								quickLink: 'no-icon xsmall',
-								component: <CSButton
-									label="No-icon button"
-									iconName="list"
-									iconDisplay="no-icon"
-									size="xsmall"
-								/>,
-								code: `<CSButton
-									label="No-icon button"
-									iconName="list"
-									iconDisplay="no-icon"
-									size="xsmall"
-								/>`
-							}
-						]
-					}, {
 						propName: 'iconName | iconOrigin',
 						variations: [
 							{
 								primaryVariants: [
 									'iconName="list"',
 									'iconOrigin="slds"'
-
 								],
 								quickLink: 'slds',
 								component: <CSButton
@@ -452,7 +380,6 @@ class CSButtonPreview extends React.Component {
 								primaryVariants: [
 									'iconName="tag"',
 									'iconOrigin="cs"'
-
 								],
 								quickLink: 'cs',
 								component: <CSButton
@@ -924,14 +851,6 @@ class CSButtonPreview extends React.Component {
 						name: 'iconColor',
 						types: 'string',
 						description: 'Set a custom color for the icon inside of the button. (eg. pink, #ff0000, rgba(0, 0, 0, 0.2), etc.)'
-					}, {
-						name: 'iconDisplay',
-						customTypes: {
-							name: 'CSButtonIconDisplay',
-							types: [`'default'`, `'no-icon'`]
-						},
-						default: `'default'`,
-						description: 'Set whether to omit the icon or display the icon only.'
 					}, {
 						name: 'iconName',
 						types: 'string',

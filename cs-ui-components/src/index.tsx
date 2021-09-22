@@ -11,7 +11,6 @@ import CSAlert, {
 	CSAlertVariant,
 } from './components/CSAlert';
 import CSButton, {
-	CSButtonIconDisplay,
 	CSButtonIconPosition,
 	CSButtonSize,
 	CSButtonStyle,
@@ -164,7 +163,6 @@ export {
 	CSButton,
 	CSButtonGroup,
 	CSButtonGroupMargin,
-	CSButtonIconDisplay,
 	CSButtonIconPosition,
 	CSButtonRole,
 	CSButtonSize,

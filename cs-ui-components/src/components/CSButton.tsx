@@ -2,7 +2,6 @@ import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 import CSIcon, { CSIconOrigin } from './CSIcon';
 
-export type CSButtonIconDisplay = 'default' | 'icon-only' | 'no-icon';
 export type CSButtonIconPosition = 'left' | 'right';
 export type CSButtonRole = 'menuitem';
 export type CSButtonSize = 'xsmall' | 'small' | 'normal' | 'large';
@@ -22,7 +21,6 @@ export interface CSButtonProps {
 	color?: string;
 	disabled?: boolean;
 	iconColor?: string;
-	iconDisplay?: CSButtonIconDisplay;
 	iconName?: string;
 	iconOrigin?: CSIconOrigin;
 	iconPosition?: CSButtonIconPosition;
@@ -120,7 +118,6 @@ class CSButton extends React.Component<CSButtonProps> {
 			color,
 			disabled,
 			iconColor,
-			iconDisplay,
 			iconName,
 			iconOrigin,
 			iconPosition,
@@ -161,8 +158,7 @@ class CSButton extends React.Component<CSButtonProps> {
 				'cs-btn-outline': btnStyle === 'outline',
 
 				'cs-btn-label-hidden': labelHidden,
-				'cs-btn-icon-only': iconDisplay === 'icon-only',
-				'cs-btn-no-icon': (!iconName || iconDisplay === 'no-icon') && !loading,
+				'cs-btn-no-icon': (!iconName) && !loading,
 
 				'cs-btn-icon-right': iconPosition === 'right',
 
