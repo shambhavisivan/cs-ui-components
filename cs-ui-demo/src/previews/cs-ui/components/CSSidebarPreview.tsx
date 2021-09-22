@@ -8,7 +8,43 @@ import {
 
 import Preview from '../Preview';
 
-class CSSidebarPreview extends React.Component {
+interface CSSidebarPreviewState {
+	[key: string]: boolean;
+}
+
+class CSSidebarPreview extends React.Component<{}, CSSidebarPreviewState> {
+	state = {
+		height1: true,
+		height2: true,
+		height3: true,
+		multipleTabs: true,
+		onToggle: true,
+		opensTo1: true,
+		opensTo2: true,
+		tabsPadding1: true,
+		tabsPadding2: true,
+		tabsWidth1: true,
+		tabsWidth2: true,
+		tabsWidth3: true,
+		wholeSidebarClickable: false,
+		class: true,
+		title: true,
+		icons1: true,
+		icons2: true,
+		noTabHeader1: true,
+		noTabHeader2: true,
+		tabPadding: true,
+		tabWidth: true,
+		subtitle: true,
+		children: true
+	};
+
+	toggleSidebar = (targetedSidebar: string) => {
+		this.setState((prevState: CSSidebarPreviewState) => ({
+			[targetedSidebar]: !prevState[targetedSidebar]
+		}));
+	}
+
 	getDoc = () => ({
 		name: 'Sidebar',
 		usage: 'Sidebar provides a generic box for related items which can be collapsed and grouped amongst tabs.',
@@ -18,35 +54,32 @@ class CSSidebarPreview extends React.Component {
 				name: 'CSSidebar',
 				examples: [
 					{
-						propName: 'collapsible',
+						propName: 'expanded',
 						variations: [
 							{
-								primaryVariants: 'collapsible={false}',
-								component: <CSSidebar collapsible={false}>
-									<CSSidebarTab title="Tab Title">
-										<span>This is example of non collapsible sidebar. It does not have close button.</span>
+								primaryVariants: 'expanded={true}',
+								quickLink: 'true',
+								component: <CSSidebar>
+									<CSSidebarTab title="Expanded Sidebar">
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>,
-								code: `<CSSidebar collapsible={false}>
-									<CSSidebarTab title="Tab Title">
-										<span>This is example of non collapsible sidebar. It does not have close button.</span>
+								code: `<CSSidebar>
+									<CSSidebarTab title="Expanded Sidebar">
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>`
-							}
-						]
-					}, {
-						propName: 'defaultClosed',
-						variations: [
-							{
-								primaryVariants: 'defaultClosed={true}',
-								component: <CSSidebar defaultClosed>
-									<CSSidebarTab title="Closed on first load">
-										<span>Sidebar has to be collapsible to be closed on first load</span>
+							}, {
+								primaryVariants: 'expanded={false}',
+								quickLink: 'false',
+								component: <CSSidebar expanded={false}>
+									<CSSidebarTab title="Collapsed Sidebar">
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>,
-								code: `<CSSidebar defaultClosed>
-									<CSSidebarTab title="Closed on first load">
-										<span>Sidebar has to be collapsible to be closed on first load</span>
+								code: `<CSSidebar expanded={false}>
+									<CSSidebarTab title="Collapsed Sidebar">
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>`
 							}
@@ -57,40 +90,64 @@ class CSSidebarPreview extends React.Component {
 							{
 								primaryVariants: 'height="50vh"',
 								quickLink: '50vh',
-								component: <CSSidebar height="50vh">
+								component: <CSSidebar
+									height="50vh"
+									expanded={this.state.height1}
+									onToggle={() => this.toggleSidebar('height1')}
+								>
 									<CSSidebarTab title="Tab Title">
-										<span>This sidebar takes half of the page height.</span>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>,
-								code: `<CSSidebar height="50vh">
+								code: `<CSSidebar
+									height="50vh"
+									expanded={this.state.expanded}
+									onToggle={this.toggleSidebar}
+								>
 									<CSSidebarTab title="Tab Title">
-										<span>This sidebar takes half of the page height.</span>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>`
 							}, {
 								primaryVariants: 'height="50%"',
 								quickLink: '50%',
-								component: <CSSidebar height="50%">
+								component: <CSSidebar
+									height="50%"
+									expanded={this.state.height2}
+									onToggle={() => this.toggleSidebar('height2')}
+								>
 									<CSSidebarTab title="Tab Title">
-										<span>This sidebar takes half of its parent height.</span>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>,
-								code: `<CSSidebar height="50%">
+								code: `<CSSidebar
+									height="50%"
+									expanded={this.state.expanded}
+									onToggle={this.toggleSidebar}
+								>
 									<CSSidebarTab title="Tab Title">
-										<span>This sidebar takes half of its parent height.</span>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>`
 							}, {
 								primaryVariants: 'height="20rem"',
 								quickLink: '20rem',
-								component: <CSSidebar height="20rem">
+								component: <CSSidebar
+									height="20rem"
+									expanded={this.state.height3}
+									onToggle={() => this.toggleSidebar('height3')}
+								>
 									<CSSidebarTab title="Tab Title">
-										<span>This sidebar height is 20rem.</span>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>,
-								code: `<CSSidebar height="20rem">
+								code: `<CSSidebar
+									height="20rem"
+									expanded={this.state.expanded}
+									onToggle={this.toggleSidebar}
+								>
 									<CSSidebarTab title="Tab Title">
-										<span>This sidebar height is 20rem.</span>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>`
 							}
@@ -100,26 +157,58 @@ class CSSidebarPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'multipleTabs={true}',
-								component: <CSSidebar multipleTabs>
-									<CSSidebarTab title="Tab 1 Title">
-										<span>This is content of tab one.</span>
+								component: <CSSidebar
+									multipleTabs
+									expanded={this.state.multipleTabs}
+									onToggle={() => this.toggleSidebar('multipleTabs')}
+								>
+									<CSSidebarTab title="Tab 1">
+										<span>This is the content of tab 1.</span>
 									</CSSidebarTab>
-									<CSSidebarTab title="Tab 2 Title">
-										<span>This is content of tab two.</span>
+									<CSSidebarTab title="Tab 2">
+										<span>This is the content of tab 2.</span>
 									</CSSidebarTab>
-									<CSSidebarTab title="Tab 3 Title">
-										<span>This is content of tab three.</span>
+									<CSSidebarTab title="Tab 3">
+										<span>This is the content of tab 3.</span>
 									</CSSidebarTab>
 								</CSSidebar>,
-								code: `<CSSidebar multipleTabs>
-									<CSSidebarTab title="Tab 1 Title">
-										<span>This is content of tab one.</span>
+								code: `<CSSidebar
+									multipleTabs
+									expanded={this.state.expanded}
+									onToggle={this.toggleSidebar}
+								>
+									<CSSidebarTab title="Tab 1">
+										<span>This is the content of tab 1.</span>
 									</CSSidebarTab>
-									<CSSidebarTab title="Tab 2 Title">
-										<span>This is content of tab two.</span>
+									<CSSidebarTab title="Tab 2">
+										<span>This is the content of tab 2.</span>
 									</CSSidebarTab>
-									<CSSidebarTab title="Tab 3 Title">
-										<span>This is content of tab three.</span>
+									<CSSidebarTab title="Tab 3">
+										<span>This is the content of tab 3.</span>
+									</CSSidebarTab>
+								</CSSidebar>`
+							}
+						]
+					}, {
+						propName: 'onToggle',
+						description: '`onToggle` should be used together with the `expanded` prop, which should then accept a state. If you wish to disallow expanding and collapsing, simply omit the `onToggle` function and give the `expanded` prop a static value. If you need to do so programmatically, you can set its value to `undefined`. You can preview these use cases under the `expanded` prop.',
+						variations: [
+							{
+								primaryVariants: 'onToggle={() => void}',
+								component: <CSSidebar
+									expanded={this.state.onToggle}
+									onToggle={() => this.toggleSidebar('onToggle')}
+								>
+									<CSSidebarTab title="Tab Title">
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
+									</CSSidebarTab>
+								</CSSidebar>,
+								code: `<CSSidebar
+									expanded={this.state.expanded}
+									onToggle={() => this.setState(({ expanded }) => ({ expanded: !expanded }))}
+								>
+									<CSSidebarTab title="Tab Title">
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>`
 							}
@@ -129,78 +218,60 @@ class CSSidebarPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'opensTo="right"',
-								secondaryVariants: 'multipleTabs',
-								quickLink: 'right, multipleTabs',
-								component: <CSSidebar multipleTabs>
-									<CSSidebarTab title="Tab 1 Title">
-										<span>This sidebar will open to the right which is the default.</span>
+								secondaryVariants: 'multipleTabs={true}',
+								quickLink: 'right',
+								component: <CSSidebar
+									multipleTabs
+									expanded={this.state.opensTo1}
+									onToggle={() => this.toggleSidebar('opensTo1')}
+								>
+									<CSSidebarTab title="Tab 1">
+										<span>This is the content of tab 1.</span>
 									</CSSidebarTab>
-									<CSSidebarTab title="Tab 2 Title">
-										<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</span>
+									<CSSidebarTab title="Tab 2">
+										<span>This is the content of tab 2.</span>
 									</CSSidebarTab>
 								</CSSidebar>,
-								code: `<CSSidebar multipleTabs>
-									<CSSidebarTab title="Tab 1 Title">
-										<span>This sidebar will open to the right which is the default.</span>
+								code: `<CSSidebar
+									multipleTabs
+									expanded={this.state.expanded}
+									onToggle={this.toggleSidebar}
+								>
+									<CSSidebarTab title="Tab 1">
+										<span>This is the content of tab 1.</span>
 									</CSSidebarTab>
-									<CSSidebarTab title="Tab 2 Title">
-										<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</span>
+									<CSSidebarTab title="Tab 2">
+										<span>This is the content of tab 2.</span>
 									</CSSidebarTab>
 								</CSSidebar>`
 							}, {
 								primaryVariants: 'opensTo="left"',
-								secondaryVariants: 'multipleTabs',
-								quickLink: 'left, multipleTabs',
+								secondaryVariants: 'multipleTabs={true}',
+								quickLink: 'left',
 								component: <CSSidebar
 									opensTo="left"
-									className="sidebar-far-right"
 									multipleTabs
+									expanded={this.state.opensTo2}
+									onToggle={() => this.toggleSidebar('opensTo2')}
 								>
-									<CSSidebarTab title="Tab 1 Title">
-										<span>Lorem ipsum.</span>
+									<CSSidebarTab title="Tab 1">
+										<span>This is the content of tab 1.</span>
 									</CSSidebarTab>
-									<CSSidebarTab title="Tab 2 Title">
-										<span>Ipsum lorem.</span>
+									<CSSidebarTab title="Tab 2">
+										<span>This is the content of tab 2.</span>
 									</CSSidebarTab>
 								</CSSidebar>,
 								code: `<CSSidebar
 									opensTo="left"
-									className="sidebar-far-right"
 									multipleTabs
+									expanded={this.state.expanded}
+									onToggle={this.toggleSidebar}
 								>
-									<CSSidebarTab title="Tab 1 Title">
-										<span>Lorem ipsum.</span>
+									<CSSidebarTab title="Tab 1">
+										<span>This is the content of tab 1.</span>
 									</CSSidebarTab>
-									<CSSidebarTab title="Tab 2 Title">
-										<span>Ipsum lorem.</span>
-									</CSSidebarTab>
-								</CSSidebar>`
-							}, {
-								primaryVariants: 'opensTo="right"',
-								secondaryVariants: 'multipleTabs={false}',
-								quickLink: 'right',
-								component: <CSSidebar>
-									<CSSidebarTab title="Tab Title">
-										<span>Lorem ipsum.</span>
-									</CSSidebarTab>
-								</CSSidebar>,
-								code: `<CSSidebar>
-									<CSSidebarTab title="Tab Title">
-										<span>Lorem ipsum.</span>
-									</CSSidebarTab>
-								</CSSidebar>`
-							}, {
-								primaryVariants: 'opensTo="left"',
-								secondaryVariants: 'multipleTabs={false}',
-								quickLink: 'left',
-								component: <CSSidebar opensTo="left" className="sidebar-far-right">
-									<CSSidebarTab title="Tab Title">
-										<span>Lorem ipsum.</span>
-									</CSSidebarTab>
-								</CSSidebar>,
-								code: `<CSSidebar opensTo="left" className="sidebar-far-right">
-									<CSSidebarTab title="Tab Title">
-										<span>Lorem ipsum.</span>
+									<CSSidebarTab title="Tab 2">
+										<span>This is the content of tab 2.</span>
 									</CSSidebarTab>
 								</CSSidebar>`
 							}
@@ -211,34 +282,52 @@ class CSSidebarPreview extends React.Component {
 							{
 								primaryVariants: 'tabsPadding="1.25rem"',
 								quickLink: '1.25rem',
-								component: <CSSidebar tabsPadding="1.25rem">
+								component: <CSSidebar
+									tabsPadding="1.25rem"
+									expanded={this.state.tabsPadding1}
+									onToggle={() => this.toggleSidebar('tabsPadding1')}
+								>
 									<CSSidebarTab title="Tab Title">
-										<span>Lorem ipsum.</span>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>,
-								code: `<CSSidebar tabsPadding="1.25rem">
+								code: `<CSSidebar
+									tabsPadding="1.25rem"
+									expanded={this.state.expanded}
+									onToggle={this.toggleSidebar}
+								>
 									<CSSidebarTab title="Tab Title">
-										<span>Lorem ipsum.</span>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>`
 							}, {
 								primaryVariants: 'tabsPadding="1rem 0.5rem"',
 								secondaryVariants: 'multipleTabs={true}',
 								quickLink: '1rem 0.5rem',
-								component: <CSSidebar tabsPadding="1rem 0.5rem" multipleTabs>
-									<CSSidebarTab title="Tab 1 Title">
-										<span>Ipsum lorem, lorem ipsum.</span>
+								component: <CSSidebar
+									tabsPadding="1rem 0.5rem"
+									multipleTabs
+									expanded={this.state.tabsPadding2}
+									onToggle={() => this.toggleSidebar('tabsPadding2')}
+								>
+									<CSSidebarTab title="Tab 1">
+										<span>This is the content of tab 1.</span>
 									</CSSidebarTab>
-									<CSSidebarTab title="Tab 2 Title">
-										<span>Lorem ipsum, ipsum lorem.</span>
+									<CSSidebarTab title="Tab 2">
+										<span>This is the content of tab 2.</span>
 									</CSSidebarTab>
 								</CSSidebar>,
-								code: `<CSSidebar tabsPadding="1rem 0.5rem" multipleTabs>
-									<CSSidebarTab title="Tab 1 Title">
-										<span>Ipsum lorem, lorem ipsum.</span>
+								code: `<CSSidebar
+									tabsPadding="1rem 0.5rem"
+									multipleTabs
+									expanded={this.state.expanded}
+									onToggle={this.toggleSidebar}
+								>
+									<CSSidebarTab title="Tab 1">
+										<span>This is the content of tab 1.</span>
 									</CSSidebarTab>
-									<CSSidebarTab title="Tab 2 Title">
-										<span>Lorem ipsum, ipsum lorem.</span>
+									<CSSidebarTab title="Tab 2">
+										<span>This is the content of tab 2.</span>
 									</CSSidebarTab>
 								</CSSidebar>`
 							}
@@ -249,65 +338,100 @@ class CSSidebarPreview extends React.Component {
 							{
 								primaryVariants: 'tabsWidth="20rem"',
 								quickLink: '20rem',
-								component: <CSSidebar tabsWidth="20rem">
+								component: <CSSidebar
+									tabsWidth="20rem"
+									expanded={this.state.tabsWidth1}
+									onToggle={() => this.toggleSidebar('tabsWidth1')}
+								>
 									<CSSidebarTab title="20rem">
-										<span>Lorem ipsum.</span>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>,
-								code: `<CSSidebar tabsWidth="20rem">
+								code: `<CSSidebar
+									tabsWidth="20rem"
+									expanded={this.state.expanded}
+									onToggle={this.toggleSidebar}
+								>
 									<CSSidebarTab title="20rem">
-										<span>Lorem ipsum.</span>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>`
 							}, {
 								primaryVariants: 'tabsWidth="200px"',
 								secondaryVariants: 'multipleTabs',
 								quickLink: '200px',
-								component: <CSSidebar tabsWidth="200px" multipleTabs>
-									<CSSidebarTab title="Tab 1 Title">
-										<span>Lorem ipsum.</span>
+								component: <CSSidebar
+									tabsWidth="200px"
+									multipleTabs
+									expanded={this.state.tabsWidth2}
+									onToggle={() => this.toggleSidebar('tabsWidth2')}
+								>
+									<CSSidebarTab title="Tab 1">
+										<span>This is the content of tab 1.</span>
 									</CSSidebarTab>
-									<CSSidebarTab title="Tab 2 Title">
-										<span>Lorem ipsum, ipsum lorem.</span>
+									<CSSidebarTab title="Tab 2">
+										<span>This is the content of tab 2.</span>
 									</CSSidebarTab>
 								</CSSidebar>,
-								code: `<CSSidebar tabsWidth="200px" multipleTabs>
-									<CSSidebarTab title="Tab 1 Title">
-										<span>Lorem ipsum.</span>
+								code: `<CSSidebar
+									tabsWidth="200px"
+									multipleTabs
+									expanded={this.state.expanded}
+									onToggle={this.toggleSidebar}
+								>
+									<CSSidebarTab title="Tab 1">
+										<span>This is the content of tab 1.</span>
 									</CSSidebarTab>
-									<CSSidebarTab title="Tab 2 Title">
-										<span>Lorem ipsum, ipsum lorem.</span>
+									<CSSidebarTab title="Tab 2">
+										<span>This is the content of tab 2.</span>
 									</CSSidebarTab>
 								</CSSidebar>`
 							}, {
 								primaryVariants: 'tabsWidth="100%"',
 								quickLink: '100%',
-								component: <CSSidebar tabsWidth="100%">
+								component: <CSSidebar
+									tabsWidth="100%"
+									expanded={this.state.tabsWidth3}
+									onToggle={() => this.toggleSidebar('tabsWidth3')}
+								>
 									<CSSidebarTab title="Tab Title">
-										<span>Lorem ipsum.</span>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>,
-								code: `<CSSidebar tabsWidth="100%">
+								code: `<CSSidebar
+									tabsWidth="100%"
+									expanded={this.state.expanded}
+									onToggle={this.toggleSidebar}
+								>
 									<CSSidebarTab title="Tab Title">
-										<span>Lorem ipsum.</span>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>`
 							}
 						]
 					}, {
 						propName: 'wholeSidebarClickable',
+						description: 'When set to `true`, only an icon click will expand an already collapsed sidebar.',
 						variations: [
 							{
 								primaryVariants: 'wholeSidebarClickable={false}',
-								secondaryVariants: 'defaultClosed={true}',
-								component: <CSSidebar wholeSidebarClickable={false} defaultClosed>
-									<CSSidebarTab title="Click on icon">
-										<span>This sidebar is not clickable anywhere to expand when it is collapsed, but only on the icon.</span>
+								secondaryVariants: ['expanded={state}', 'onToggle={() => void}'],
+								component: <CSSidebar
+									wholeSidebarClickable={false}
+									expanded={this.state.wholeSidebarClickable}
+									onToggle={() => this.toggleSidebar('wholeSidebarClickable')}
+								>
+									<CSSidebarTab title="Tab Title">
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>,
-								code: `<CSSidebar wholeSidebarClickable={false} defaultClosed>
-									<CSSidebarTab title="Click on icon">
-										<span>This sidebar is not clickable anywhere to expand when it is collapsed, but only on the icon.</span>
+								code: `<CSSidebar
+									wholeSidebarClickable={false}
+									expanded={this.state.expanded}
+									onToggle={this.toggleSidebar}
+								>
+									<CSSidebarTab title="Tab Title">
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>`
 							}
@@ -320,14 +444,32 @@ class CSSidebarPreview extends React.Component {
 									'id="custom-id"',
 									'className="custom-class"'
 								],
-								component: <CSSidebar className="custom-br-mint" id="custom-sidebar-id">
-									<CSSidebarTab title="Tab Title" className="custom-br-purple">
-										<span>This sidebar has custom class and custom id added, which can serve to apply custom styles.</span>
+								component: <CSSidebar
+									className="custom-br-mint"
+									id="custom-sidebar-id"
+									expanded={this.state.class}
+									onToggle={() => this.toggleSidebar('class')}
+								>
+									<CSSidebarTab
+										title="Tab Title"
+										id="custom-sidebar-tab-id"
+										className="custom-br-purple"
+									>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>,
-								code: `<CSSidebar className="custom-br-mint" id="custom-sidebar-id">
-									<CSSidebarTab title="Tab Title" className="custom-br-purple">
-										<span>This sidebar has custom class and custom id added, which can serve to apply custom styles.</span>
+								code: `<CSSidebar
+									className="custom-br-mint"
+									id="custom-sidebar-id"
+									expanded={this.state.expanded}
+									onToggle={this.toggleSidebar}
+								>
+									<CSSidebarTab
+										title="Tab Title"
+										id="custom-sidebar-id"
+										className="custom-br-purple"
+									>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>`
 							}
@@ -336,15 +478,10 @@ class CSSidebarPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'collapsible',
-						types: 'boolean',
+						name: 'expanded',
 						default: 'true',
-						description: 'Control whether the sidebar should be collapsible.'
-					}, {
-						name: 'defaultClosed',
 						types: 'boolean',
-						default: 'false',
-						description: 'Sets the initial display state of sidebar.'
+						description: 'Set whether the sidebar should be expanded or collapsed.'
 					}, {
 						name: 'height',
 						types: 'string',
@@ -354,6 +491,10 @@ class CSSidebarPreview extends React.Component {
 						types: 'boolean',
 						default: 'false',
 						description: 'Set if sidebar will have tabs track.'
+					}, {
+						name: 'onToggle',
+						types: '() => void',
+						description: 'Callback function for opening and closing the sidebar.'
 					}, {
 						name: 'opensTo',
 						customTypes: {
@@ -406,14 +547,17 @@ class CSSidebarPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'title="text"',
-								component: <CSSidebar>
+								component: <CSSidebar
+									expanded={this.state.title}
+									onToggle={() => this.toggleSidebar('title')}
+								>
 									<CSSidebarTab title="Tab Title">
-										<span>This sidebar tab has a title only, which is mandatory.</span>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>,
-								code: `<CSSidebar>
+								code: `<CSSidebar expanded={this.state.expanded} onToggle={this.toggleSidebar}>
 									<CSSidebarTab title="Tab Title">
-										<span>This sidebar tab has a title only, which is mandatory.</span>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>`
 							}
@@ -423,38 +567,55 @@ class CSSidebarPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: ['iconName="standard_objects"', 'iconOrigin="slds"'],
-								secondaryVariants: 'defaultClosed={true}',
+								secondaryVariants: 'expanded={false}',
 								quickLink: 'slds',
-								component: <CSSidebar defaultClosed>
+								component: <CSSidebar
+									expanded={this.state.icons1}
+									onToggle={() => this.toggleSidebar('icons1')}
+								>
 									<CSSidebarTab title="Tab Title" iconName="standard_objects">
-										<span>This sidebar tab has a specific icon, which is from the default slds origin.</span>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>,
-								code: `<CSSidebar defaultClosed>
+								code: `<CSSidebar expanded={this.state.expanded} onToggle={this.toggleSidebar}>
 									<CSSidebarTab title="Tab Title" iconName="standard_objects">
-										<span>This sidebar tab has a specific icon, which is from the default slds origin.</span>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>`
 							}, {
 								primaryVariants: ['iconName="action"', 'iconOrigin="cs"'],
-								secondaryVariants: 'defaultClosed={true}',
+								secondaryVariants: 'expanded={false}',
 								quickLink: 'cs',
-								component: <CSSidebar defaultClosed>
+								component: <CSSidebar
+									multipleTabs
+									expanded={this.state.icons2}
+									onToggle={() => this.toggleSidebar('icons2')}
+								>
 									<CSSidebarTab
-										title="Tab Title"
+										title="Tab 1"
 										iconName="action"
 										iconOrigin="cs"
 									>
-										<span>This sidebar tab has a specific cloudsense origin icon.</span>
+										<span>This is the content of tab 1.</span>
+									</CSSidebarTab>
+									<CSSidebarTab title="Tab 2">
+										<span>This is the content of tab 2.</span>
 									</CSSidebarTab>
 								</CSSidebar>,
-								code: `<CSSidebar defaultClosed>
+								code: `<CSSidebar
+									multipleTabs
+									expanded={this.state.expanded}
+									onToggle={this.toggleSidebar}
+								>
 									<CSSidebarTab
-										title="Tab Title"
+										title="Tab 1"
 										iconName="action"
 										iconOrigin="cs"
 									>
-										<span>This sidebar tab has a specific cloudsense origin icon.</span>
+										<span>This is the content of tab 1.</span>
+									</CSSidebarTab>
+									<CSSidebarTab title="Tab 2">
+										<span>This is the content of tab 2.</span>
 									</CSSidebarTab>
 								</CSSidebar>`
 							}
@@ -466,42 +627,45 @@ class CSSidebarPreview extends React.Component {
 								primaryVariants: 'noTabHeader={true}',
 								secondaryVariants: 'multipleTabs={false}',
 								quickLink: 'single tab',
-								component: <CSSidebar>
-									<CSSidebarTab
-										title="This is not displayed"
-										noTabHeader
-										tabPadding="0"
-									>
-										<span>No tab header.</span>
+								component: <CSSidebar
+									expanded={this.state.noTabHeader1}
+									onToggle={() => this.toggleSidebar('noTabHeader1')}
+								>
+									<CSSidebarTab title="This is not displayed" noTabHeader>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>,
-								code: `<CSSidebar>
-									<CSSidebarTab
-										title="This is not displayed"
-										noTabHeader
-										tabPadding="0"
-									>
-										<span>No tab header.</span>
+								code: `<CSSidebar expanded={this.state.expanded} onToggle={this.toggleSidebar}>
+									<CSSidebarTab title="This is not displayed" noTabHeader>
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>`
 							}, {
 								primaryVariants: 'noTabHeader={true}',
 								secondaryVariants: 'multipleTabs={true}',
 								quickLink: 'multiple tabs',
-								component: <CSSidebar multipleTabs>
-									<CSSidebarTab title="Tab title 1" noTabHeader>
-										<span>This tab has noTabHeader option.</span>
+								component: <CSSidebar
+									multipleTabs
+									expanded={this.state.noTabHeader2}
+									onToggle={() => this.toggleSidebar('noTabHeader2')}
+								>
+									<CSSidebarTab title="Tab 1" noTabHeader>
+										<span>This is the content of tab 1.</span>
 									</CSSidebarTab>
-									<CSSidebarTab title="Tab title 2">
-										<span>This tab has a header.</span>
+									<CSSidebarTab title="Tab 2">
+										<span>This is the content of tab 2.</span>
 									</CSSidebarTab>
 								</CSSidebar>,
-								code: `<CSSidebar multipleTabs>
+								code: `<CSSidebar
+									multipleTabs
+									expanded={this.state.expanded}
+									onToggle={this.toggleSidebar}
+								>
 									<CSSidebarTab title="Tab title 1" noTabHeader>
-										<span>This tab has noTabHeader option.</span>
+										<span>This is the content of tab 1.</span>
 									</CSSidebarTab>
 									<CSSidebarTab title="Tab title 2">
-										<span>This tab has a header.</span>
+										<span>This is the content of tab 2.</span>
 									</CSSidebarTab>
 								</CSSidebar>`
 							}
@@ -512,26 +676,36 @@ class CSSidebarPreview extends React.Component {
 							{
 								primaryVariants: ['tabPadding="3rem"', 'tabPadding="3rem 0"'],
 								secondaryVariants: 'tabsPadding="0"',
-								component: <CSSidebar tabsPadding="0" multipleTabs>
-									<CSSidebarTab title="Custom '3rem' padding" tabPadding="3rem">
-										<span>tabPadding overrides tabsPadding.</span>
+								component: <CSSidebar
+									tabsPadding="0"
+									multipleTabs
+									expanded={this.state.tabPadding}
+									onToggle={() => this.toggleSidebar('tabPadding')}
+								>
+									<CSSidebarTab title="Tab 1" tabPadding="3rem">
+										<span>This is the content of tab 1.</span>
 									</CSSidebarTab>
-									<CSSidebarTab title="Custom '3rem 0' padding" tabPadding="3rem 0">
-										<span>tabPadding overrides tabsPadding.</span>
+									<CSSidebarTab title="Tab 2" tabPadding="3rem 0">
+										<span>This is the content of tab 2.</span>
 									</CSSidebarTab>
-									<CSSidebarTab title="TabsPadding padding">
-										<span>No tabPadding override so tabsPadding is inherited.</span>
+									<CSSidebarTab title="Tab 3">
+										<span>This is the content of tab 3.</span>
 									</CSSidebarTab>
 								</CSSidebar>,
-								code: `<CSSidebar tabsPadding="0" multipleTabs>
-									<CSSidebarTab title="Custom '3rem' padding" tabPadding="3rem">
-										<span>tabPadding overrides tabsPadding.</span>
+								code: `<CSSidebar
+									tabsPadding="0"
+									multipleTabs
+									expanded={this.state.expanded}
+									onToggle={this.toggleSidebar}
+								>
+									<CSSidebarTab title="Tab 1" tabPadding="3rem">
+										<span>This is the content of tab 1.</span>
 									</CSSidebarTab>
-									<CSSidebarTab title="Custom '3rem 0' padding" tabPadding="3rem 0">
-										<span>tabPadding overrides tabsPadding.</span>
+									<CSSidebarTab title="Tab 2" tabPadding="3rem 0">
+										<span>This is the content of tab 2.</span>
 									</CSSidebarTab>
-									<CSSidebarTab title="TabsPadding padding">
-										<span>No tabPadding override so tabsPadding is inherited.</span>
+									<CSSidebarTab title="Tab 3">
+										<span>This is the content of tab 3.</span>
 									</CSSidebarTab>
 								</CSSidebar>`
 							}
@@ -541,20 +715,28 @@ class CSSidebarPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: ['tabWidth="16rem"', 'tabWidth="10rem"'],
-								component: <CSSidebar multipleTabs>
-									<CSSidebarTab title="Tab 1 Title" tabWidth="16rem">
-										<span>Tab can have any content.</span>
+								component: <CSSidebar
+									multipleTabs
+									expanded={this.state.tabWidth}
+									onToggle={() => this.toggleSidebar('tabWidth')}
+								>
+									<CSSidebarTab title="Tab 1" tabWidth="16rem">
+										<span>This is the content of tab 1.</span>
 									</CSSidebarTab>
-									<CSSidebarTab title="Tab 2 Title" tabWidth="10rem">
-										<span>Tab can have any content.</span>
+									<CSSidebarTab title="Tab 2" tabWidth="10rem">
+										<span>This is the content of tab 2.</span>
 									</CSSidebarTab>
 								</CSSidebar>,
-								code: `<CSSidebar multipleTabs>
+								code: `<CSSidebar
+									multipleTabs
+									expanded={this.state.expanded}
+									onToggle={this.toggleSidebar}
+								>
 									<CSSidebarTab title="Tab 1 Title" tabWidth="16rem">
-										<span>Tab can have any content.</span>
+										<span>This is the content of tab 1.</span>
 									</CSSidebarTab>
 									<CSSidebarTab title="Tab 2 Title" tabWidth="10rem">
-										<span>Tab can have any content.</span>
+										<span>This is the content of tab 2.</span>
 									</CSSidebarTab>
 								</CSSidebar>`
 							}
@@ -564,25 +746,31 @@ class CSSidebarPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'subtitle="text"',
-								component: <CSSidebar>
-									<CSSidebarTab title="Tab Title" subtitle="a custom subtitle">
-										<span>This sidebar tab has a subtitle.</span>
+								component: <CSSidebar
+									expanded={this.state.subtitle}
+									onToggle={() => this.toggleSidebar('subtitle')}
+								>
+									<CSSidebarTab title="Tab Title" subtitle="Tab Subtitle">
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>,
-								code: `<CSSidebar>
-									<CSSidebarTab title="Tab Title" subtitle="a custom subtitle">
-										<span>This sidebar tab has a subtitle.</span>
+								code: `<CSSidebar expanded={this.state.expanded} onToggle={this.toggleSidebar}>
+									<CSSidebarTab title="Tab Title" subtitle="Tab Subtitle">
+										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>`
 							}
 						]
 					}, {
 						propName: 'children',
-						description: 'CSSidebarTab supports custom content provided as a child',
+						description: '`CSSidebarTab` supports custom content provided as children.',
 						variations: [
 							{
-								component: <CSSidebar>
-									<CSSidebarTab title="Sidebar with CSList" tabPadding="0">
+								component: <CSSidebar
+									expanded={this.state.children}
+									onToggle={() => this.toggleSidebar('children')}
+								>
+									<CSSidebarTab title="Tab Title" tabPadding="0">
 										<CSList>
 											<CSListItem text="Product A" />
 											<CSListItem text="Product B" />
@@ -590,8 +778,8 @@ class CSSidebarPreview extends React.Component {
 										</CSList>
 									</CSSidebarTab>
 								</CSSidebar>,
-								code: `<CSSidebar>
-									<CSSidebarTab title="Sidebar with CSList" tabPadding="0">
+								code: `<CSSidebar expanded={this.state.expanded} onToggle={this.toggleSidebar}>
+									<CSSidebarTab title="Tab Title" tabPadding="0">
 										<CSList>
 											<CSListItem text="Product A" />
 											<CSListItem text="Product B" />
@@ -612,7 +800,7 @@ class CSSidebarPreview extends React.Component {
 					}, {
 						name: 'iconName',
 						types: 'string',
-						default: `'assignment'`,
+						default: `'rows'`,
 						description: 'Set the icon displayed for tab.'
 					}, {
 						name: 'iconOrigin',
