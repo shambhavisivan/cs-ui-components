@@ -495,20 +495,6 @@ class CSListPreview extends React.Component {
 										<CSListItem text="List item" />
 									</CSListGroup>
 								</CSList>`
-							}, {
-								primaryVariants: 'customContent={false}',
-								component: <CSList>
-									<CSListGroup text="List Group" collapsible={false}>
-										<CSListItem text="List item" />
-										<CSListItem text="List item" />
-									</CSListGroup>
-								</CSList>,
-								code: `<CSList>
-									<CSListGroup text="List Group" collapsible={false}>
-										<CSListItem text="List item" />
-										<CSListItem text="List item" />
-									</CSListGroup>
-								</CSList>`
 							}
 						]
 					}, {
@@ -516,6 +502,7 @@ class CSListPreview extends React.Component {
 						variations: [
 							{
 								secondaryVariants: 'variant="simple-list"',
+								quickLink: 'simple-list',
 								component: <CSList>
 									<CSListGroup text="List Group">
 										<CSListItem text="List item" />
@@ -530,6 +517,7 @@ class CSListPreview extends React.Component {
 								</CSList>`
 							}, {
 								secondaryVariants: 'variant="check-list"',
+								quickLink: 'check-list',
 								component: <CSList variant="check-list">
 									<CSListGroup text="List Group">
 										<CSListItem text="List item" />
