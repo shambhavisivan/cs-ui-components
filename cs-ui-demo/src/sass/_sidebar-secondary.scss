@@ -146,10 +146,6 @@
 				}
 			}
 
-			&.active a {
-				padding-left: calc(1.25rem - 3px);
-			}
-
 			&:first-child {
 				&::before {
 					@include sbg(--csd-shadow-light);

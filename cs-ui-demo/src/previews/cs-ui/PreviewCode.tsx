@@ -87,7 +87,8 @@ const PreviewCode: React.FC<PreviewCodeProps> = ({ code }) => {
 					style: {
 						fontSize: '0.875rem',
 						lineHeight: '1.25rem',
-						display: 'block'
+						display: 'block',
+						height: 'auto'
 					}
 				}}
 				lineNumberStyle={{
