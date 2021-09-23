@@ -20,6 +20,10 @@ class CSTablePreview extends React.Component {
 		name: 'Table',
 		usage: 'Tables are an enhanced version of an HTML table and are used to display tabular data.',
 		accessible: 'partially',
+		alerts: {
+			variant: 'error',
+			text: 'CSTable is deprecated and should not be used. Use CSDataTable instead.'
+		},
 		components: [
 			{
 				name: 'CSTable',

@@ -21,6 +21,11 @@ class CSTable extends React.Component<CSTableProps> {
 		this.uniqueAutoId = props.tableDescription ? uuidv4() : null;
 	}
 
+	componentDidMount() {
+		// eslint-disable-next-line no-console
+		console.warn('CSTable is deprecated and should not be used. Use CSDataTable instead.');
+	}
+
 	render() {
 		const {
 			children,
