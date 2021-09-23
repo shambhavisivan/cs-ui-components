@@ -40,13 +40,10 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 				examples: [
 					{
 						propName: 'animated',
-						alert: {
-							variant: 'warning',
-							text: 'Right now, the animated prop defaults to false. However, the expected behaviour is for it to default to true. Due to backwards compatibility, that cannot be implement until changes are made on all products. Because of that, it is strongly recommended to leave this prop out until backwards compatibility is dropped.'
-						},
 						variations: [
 							{
-								primaryVariants: 'animated={false}',
+								primaryVariants: 'animated={true}',
+								quickLink: 'true',
 								component: <>
 									<CSButton label="Open Modal" onClick={() => this.openModal('animated')} />
 									<CSModal visible={this.state.visibleModal === 'animated'}>
@@ -60,6 +57,29 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 								</>,
 								code: `<CSButton label="Open Modal" onClick={() => this.openModal('animated')} />
 								<CSModal visible={this.state.visibleModal === 'animated'}>
+									<CSModalBody>
+										Lorem ipsum dolor sit amet.
+									</CSModalBody>
+									<CSModalFooter>
+										<CSButton label="Close Modal" onClick={this.closeModal} />
+									</CSModalFooter>
+								</CSModal>`
+							}, {
+								primaryVariants: 'animated={false}',
+								quickLink: 'false',
+								component: <>
+									<CSButton label="Open Modal" onClick={() => this.openModal('notAnimated')} />
+									<CSModal visible={this.state.visibleModal === 'notAnimated'} animated={false}>
+										<CSModalBody>
+											Lorem ipsum dolor sit amet.
+										</CSModalBody>
+										<CSModalFooter>
+											<CSButton label="Close Modal" onClick={this.closeModal} />
+										</CSModalFooter>
+									</CSModal>
+								</>,
+								code: `<CSButton label="Open Modal" onClick={() => this.openModal('notAnimated')} />
+								<CSModal visible={this.state.visibleModal === 'notAnimated'} animated={false}>
 									<CSModalBody>
 										Lorem ipsum dolor sit amet.
 									</CSModalBody>
@@ -817,8 +837,8 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 					{
 						name: 'animated',
 						types: 'boolean',
-						default: 'false',
-						description: 'Disable animations/transitions. This prop is obsolete and will soon be removed. Do not use it.'
+						default: 'true',
+						description: 'Control whether the modal should have animations.'
 					}, {
 						name: 'closeButton',
 						types: 'boolean',

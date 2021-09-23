@@ -12,7 +12,7 @@ export type CSModalSize = 'auto' | 'xsmall' | 'small' | 'medium' | 'large' | 'xl
 
 export interface CSModalProps {
 	[key: string]: any;
-	animated: boolean;
+	animated?: boolean;
 	className?: string;
 	closeButton?: boolean;
 	id?: string;
@@ -29,6 +29,7 @@ export interface CSModalProps {
 
 class CSModal extends React.Component<CSModalProps> {
 	public static defaultProps = {
+		animated: true,
 		size: 'auto',
 	};
 

@@ -13,7 +13,7 @@ export interface CSUnmountDelayState {
 const withCSUnmountDelay = (Component: any, timeout: number = 200) => {
 	class CSUnmountDelay extends React.Component<CSUnmountDelayProps, CSUnmountDelayState> {
 		public static defaultProps = {
-			animated: false,
+			animated: true,
 			visible: true,
 		};
 
