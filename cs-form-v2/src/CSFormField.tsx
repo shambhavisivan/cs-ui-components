@@ -13,9 +13,14 @@ const CSFormField = ({
 	grow,
 	showInNewLine,
 	readOnly,
+	onBlur,
 	...rest
 }: CSFormFieldProps) => {
-	const { columnNumber, mode } = useCSForm();
+	const {
+		columnNumber,
+		locale,
+		mode,
+	} = useCSForm();
 
 	const formFieldWidth = 100 / columnNumber;
 	const formFieldGrow = grow * formFieldWidth;
@@ -23,19 +28,18 @@ const CSFormField = ({
 	const fieldSettings = {
 		readOnly: mode === 'read-only' ? true : readOnly,
 	};
-
 	const renderFormField = () => {
 		switch (rest.fieldType) {
 		case 'CHECKBOX':
 			return <CSFormCheckboxField {...fieldSettings} {...rest} />;
 		case 'DATE':
-			return <CSFormDateField {...fieldSettings} {...rest} />;
+			return <CSFormDateField locale={locale?.dateLocale} {...fieldSettings} {...rest} />;
 		case 'DATETIME':
-			return <CSFormDateTimeField {...fieldSettings} {...rest} />;
+			return <CSFormDateTimeField locale={locale?.dateLocale} {...fieldSettings} {...rest} />;
 		case 'LOOKUP':
 			return <CSFormLookupField {...fieldSettings} {...rest} />;
 		case 'NUMBER':
-			return <CSFormNumberField {...fieldSettings} {...rest} />;
+			return <CSFormNumberField locale={!rest.useLocale ? undefined : locale?.numberLocale} {...fieldSettings} {...rest} />;
 		case 'SELECT':
 			return <CSFormSelectField {...fieldSettings} {...rest} />;
 		case 'TEXT':
@@ -45,12 +49,12 @@ const CSFormField = ({
 	};
 
 	const formFieldStyle = {
-		'--cs-form-field-width': grow ? `${formFieldGrow}%` : `${formFieldWidth}%`,
+		'--csf-field-width': grow ? `${formFieldGrow}%` : `${formFieldWidth}%`,
 	};
 
 	const formFieldWrapper = (
 		<div
-			className="cs-form-field-wrapper"
+			className="csf-field-wrapper"
 			style={formFieldStyle as CSSProperties}
 		>
 			{renderFormField()}
@@ -61,7 +65,7 @@ const CSFormField = ({
 		<>
 			{showInNewLine
 				? (
-					<div className="cs-form-field-new-line">
+					<div className="csf-field-new-line">
 						{formFieldWrapper}
 					</div>
 				)

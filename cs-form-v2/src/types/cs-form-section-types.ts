@@ -1,4 +1,4 @@
-import { CSFormFieldProps } from './cs-form-field-types';
+import { CSFormFieldData } from './cs-form-field-types';
 
 /** FORM SECTION PROPS */
 export interface CSFormSectionProps {
@@ -6,8 +6,8 @@ export interface CSFormSectionProps {
 	defaultClosed?: boolean;
 	error?: boolean;
 	errorMessage?: Array<string> | string;
-	fields: Array<CSFormFieldProps>;
+	fields: Array<CSFormFieldData>;
 	hideSectionHeader?: boolean;
-	key: string;
+	sectionKey: string;
 	label: string;
 }

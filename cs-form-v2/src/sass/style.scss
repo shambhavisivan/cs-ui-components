@@ -2,7 +2,7 @@
 .cs-form {
 	display: flex;
 	flex-direction: column;
-	.cs-form-section {
+	.csf-section {
 		width: 100%;
 		margin-top: 0;
 		.cs-section-body {
@@ -10,15 +10,15 @@
 			flex-wrap: wrap;
 			align-items: baseline;
 			width: 100%;
-			.cs-form-field-wrapper {
+			.csf-field-wrapper {
 				display: flex;
 				padding: 0.5rem;
-				width: var(--cs-form-field-width);
+				width: var(--csf-field-width);
 				& > * {
 					flex: 1;
 				}
 			}
-			.cs-form-field-new-line {
+			.csf-field-new-line {
 				display: contents;
 				&::before {
 					content: '';

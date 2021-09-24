@@ -7,34 +7,44 @@ export type CSFormFieldType = 'CHECKBOX' |
 	'TEXT';
 
 /** CHECKBOX FIELD PROPS */
-export interface CSFormCheckboxFieldProps extends CSFormFieldCommonProps {
+export interface CSFormCheckboxFieldInterface {
 	checked?: boolean;
 	fieldType: 'CHECKBOX';
 	indeterminite?: boolean;
 }
 
-/** DATE FIELD PROPS */
-export interface CSFormDateFieldProps extends CSFormFieldCommonProps {
+export type CSFormCheckboxFieldProps = CSFormCheckboxFieldInterface & CSFormFieldCommonProps & CSFormFieldEvents;
+
+/** DATE FIELD */
+export interface CSFormDateFieldInterface {
 	dateFormat?: string;
 	fieldType: 'DATE';
+	locale?: any;
 	selected?: Date | null | undefined;
 }
 
-/** DATETIME FIELD PROPS */
-export interface CSFormDateTimeFieldProps extends Omit<CSFormDateFieldProps, 'fieldType'>, CSFormFieldCommonProps {
+export type CSFormDateFieldProps = CSFormDateFieldInterface & CSFormFieldCommonProps & CSFormFieldEvents;
+
+/** DATETIME FIELD */
+export interface CSFormDateTimeFieldInterface extends Omit<CSFormDateFieldInterface, 'fieldType'> {
 	fieldType: 'DATETIME';
 	timeCaption?: string;
 	timeFormat?: string;
 	timeIntervals?: number;
 }
 
-/** NUMBER FIELD PROPS */
-export interface CSFormNumberFieldProps extends CSFormFieldCommonProps {
+export type CSFormDateTimeFieldProps = CSFormDateTimeFieldInterface & CSFormFieldCommonProps & CSFormFieldEvents;
+
+/** NUMBER FIELD */
+export interface CSFormNumberFieldInterface {
 	fieldType: 'NUMBER';
+	locale?: any;
 	max?: any;
-	maxLength?: number;
 	min?: any;
+	useLocale?: boolean;
 }
+
+export type CSFormNumberFieldProps = CSFormNumberFieldInterface & CSFormFieldCommonProps & CSFormFieldEvents;
 
 /** SELECT FIELD PROPS */
 export interface CSFormSelectOption {
@@ -42,17 +52,22 @@ export interface CSFormSelectOption {
 	label: string;
 }
 
-export interface CSFormSelectFieldProps extends CSFormFieldCommonProps {
+export interface CSFormSelectFieldInterface {
 	fieldType: 'SELECT';
 	selectOptions: Array<CSFormSelectOption>;
 }
 
-/** TEXT FIELD PROPS */
-export interface CSFormTextFieldProps extends CSFormFieldCommonProps {
+export type CSFormSelectFieldProps = CSFormSelectFieldInterface & CSFormFieldCommonProps & CSFormFieldEvents;
+
+/** TEXT FIELD */
+export interface CSFormTextFieldInterface {
 	fieldType: 'TEXT';
+	maxLength?: number;
 }
 
-/** LOOKUP FIELD PROPS */
+export type CSFormTextFieldProps = CSFormTextFieldInterface & CSFormFieldCommonProps & CSFormFieldEvents;
+
+/** LOOKUP FIELD */
 export type CSFormLookupFieldMode = 'client' | 'server';
 
 export interface CSFormLookupFieldTableColumn {
@@ -65,13 +80,12 @@ export interface CSFormLookupFieldFetchResult {
 	moreRecords: boolean;
 }
 
-export interface CSFormLookupFieldCommonProps extends CSFormFieldCommonProps {
+export interface CSFormLookupFieldCommonProps {
 	fieldType: 'LOOKUP';
 	fieldToBeDisplayed: string;
 	lookupColumns: Array<CSFormLookupFieldTableColumn>;
 	mode: CSFormLookupFieldMode;
 	multiselect?: boolean;
-	onSelectChange?: (value?: any) => any;
 }
 
 export interface CSFormLookupFieldServerProps {
@@ -89,7 +103,9 @@ export interface CSFormLookupFieldClientProps {
 	searchBy?: Array<string>;
 }
 
-export type CSFormLookupFieldProps = CSFormLookupFieldCommonProps & (CSFormLookupFieldClientProps | CSFormLookupFieldServerProps);
+export type CSFormLookupFieldInterface = CSFormLookupFieldCommonProps & (CSFormLookupFieldClientProps | CSFormLookupFieldServerProps)
+
+export type CSFormLookupFieldProps = CSFormLookupFieldInterface & CSFormFieldCommonProps & CSFormFieldEvents;
 
 /** FORM FIELD PROPS */
 export interface CSFormFieldCommonProps {
@@ -100,12 +116,17 @@ export interface CSFormFieldCommonProps {
 	hidden?: boolean;
 	icons?: Array<any>
 	label: string;
-	name?: string;
+	name: string;
 	readOnly?: boolean;
 	required?: boolean;
 	styleClass?: string;
 	title?: string;
 	value?: any;
+}
+
+export interface CSFormFieldEvents {
+	onBlur?: (newValue: any) => any;
+	onChange?: (newValue: any) => any;
 }
 
 export interface CSFormFieldLayoutProps {
@@ -122,4 +143,15 @@ export type CSFormFieldProps = CSFormFieldLayoutProps &
 		CSFormSelectFieldProps |
 		CSFormLookupFieldProps |
 		CSFormTextFieldProps
+	);
+
+export type CSFormFieldData = CSFormFieldLayoutProps &
+	CSFormFieldCommonProps &
+	(CSFormCheckboxFieldInterface
+		| Omit<CSFormDateFieldInterface, 'locale'>
+		| Omit<CSFormDateTimeFieldInterface, 'locale'>
+		| Omit<CSFormNumberFieldInterface, 'locale'>
+		| CSFormSelectFieldInterface
+		| CSFormLookupFieldInterface
+		| CSFormTextFieldInterface
 	);

@@ -6,16 +6,25 @@ import { CSFormProps } from './types/cs-form-types';
 const CSForm = ({
 	columnNumber = 4,
 	data,
+	errorLabels,
+	locale,
 	mode,
+	onBlur,
+	onChange,
 }: CSFormProps) => {
 	const renderSections = () => data.map((section) => (
-		<CSFormSection key={section.key} {...section} />
+		<CSFormSection key={section.sectionKey} {...section} />
 	));
 
 	return (
 		<CSFormProvider
 			columnNumber={columnNumber}
+			data={data}
 			mode={mode}
+			locale={locale}
+			onBlur={onBlur}
+			onChange={onChange}
+			errorLabels={errorLabels}
 		>
 			<div className="cs-form">
 				{renderSections()}
