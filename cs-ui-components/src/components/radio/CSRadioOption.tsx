@@ -11,9 +11,11 @@ export interface CSRadioOptionProps {
 	id?: string;
 	label?: string;
 	name?: string;
+	onBlur?: (e: React.FocusEvent<HTMLInputElement>) => any;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => any;
 	readOnly?: boolean;
 	title?: string;
+	value?: string | number;
 }
 
 class CSRadioOption extends React.Component<CSRadioOptionProps> {
@@ -52,8 +54,10 @@ class CSRadioOption extends React.Component<CSRadioOptionProps> {
 			name,
 			parentDisabled,
 			readOnly,
+			onBlur,
 			onChange,
 			title,
+			value,
 			...rest
 		} = this.props;
 
@@ -84,6 +88,7 @@ class CSRadioOption extends React.Component<CSRadioOptionProps> {
 				{/* readonly, invalid and required aria properties work well with role radio, unlike with radiomenuitem role which supports these attributes, but does not work well as a role and doesn't enter radio form mode in screen readers */}
 				{/* eslint-disable-next-line jsx-a11y/role-supports-aria-props */}
 				<input
+					onBlur={onBlur}
 					onChange={this.toggleRadio}
 					className={radioOptionClasses}
 					type="radio"
@@ -95,6 +100,7 @@ class CSRadioOption extends React.Component<CSRadioOptionProps> {
 					aria-required={ariaRequired}
 					defaultChecked={checked}
 					ref={this.radioOptionInnerRef}
+					value={value}
 					{...rest}
 				/>
 				<span className="cs-radio-faux" />

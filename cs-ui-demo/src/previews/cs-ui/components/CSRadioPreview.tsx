@@ -3,8 +3,21 @@ import { CSRadio, CSRadioOption } from '@cloudsense/cs-ui-components';
 
 import Preview from '../Preview';
 
-class CSRadioPreview extends React.Component {
+interface CSRadioOptionState {
+	focused: boolean;
+}
+
+class CSRadioPreview extends React.Component<{}, CSRadioOptionState> {
+	state = { focused: false };
 	handleChange = () => alert('Selection has changed.');
+	handleBlur = () => {
+		this.setState(prevState => {
+			if (!prevState.focused) {
+				alert('Radio option has lost focus.');
+			}
+			return { focused: !prevState.focused };
+		});
+	}
 
 	getDoc = () => ({
 		name: 'Radio',
@@ -405,6 +418,36 @@ class CSRadioPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'onBlur',
+						variations: [
+							{
+								component: <CSRadio label="This is a label">
+									<CSRadioOption
+										label="Superior"
+										name="lake"
+										onBlur={this.handleBlur}
+									/>
+									<CSRadioOption
+										label="Baikal"
+										name="lake"
+										onBlur={this.handleBlur}
+									/>
+								</CSRadio>,
+								code: `<CSRadio label="This is a label">
+									<CSRadioOption
+										label="Superior"
+										name="lake"
+										onBlur={this.handleBlur}
+									/>
+									<CSRadioOption
+										label="Baikal"
+										name="lake"
+										onBlur={this.handleBlur}
+									/>
+								</CSRadio>`
+							}
+						]
+					}, {
 						propName: 'onChange',
 						variations: [
 							{
@@ -497,6 +540,37 @@ class CSRadioPreview extends React.Component {
 								</CSRadio>`
 							}
 						]
+					}, {
+						propName: 'value',
+						variations: [
+							{
+								primaryVariants: 'value={true}',
+								component: <CSRadio label="This is a label">
+									<CSRadioOption
+										label="English"
+										name="language"
+										value="eng"
+									/>
+									<CSRadioOption
+										label="Croatian"
+										name="language"
+										value="cro"
+									/>
+								</CSRadio>,
+								code: `<CSRadio label="This is a label">
+									<CSRadioOption
+										label="English"
+										name="language"
+										value="eng"
+									/>
+									<CSRadioOption
+										label="Croatian"
+										name="language"
+										value="cro"
+									/>
+								</CSRadio>`
+							}
+						]
 					}
 				],
 				properties: [
@@ -518,6 +592,10 @@ class CSRadioPreview extends React.Component {
 						types: 'string',
 						description: 'Set the radio option name attribute.'
 					}, {
+						name: 'onBlur',
+						types: '(event) => any',
+						description: 'Handler method for the blur event.'
+					}, {
 						name: 'onChange',
 						types: '(event) => any',
 						description: 'Handler method for the change event.'
@@ -530,6 +608,10 @@ class CSRadioPreview extends React.Component {
 						name: 'title',
 						types: 'string',
 						description: 'Set the radio option title.'
+					}, {
+						name: 'value',
+						types: 'string',
+						description: 'Set the radio option value.'
 					}, {
 						name: 'id',
 						types: 'string',
