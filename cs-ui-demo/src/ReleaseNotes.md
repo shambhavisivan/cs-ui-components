@@ -38,6 +38,7 @@
   * CSCard
   * CSChip
   * CSCurrency
+  * CSCustomData
   * CSDatepicker
   * CSDivider
   * CSFieldErrorMessage
