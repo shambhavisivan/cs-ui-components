@@ -8,6 +8,8 @@ const validateField = (field: CSFormFieldProps, value: any, errorLabels: CSFormE
 	if (field.required && !value) {
 		if (errorLabels?.requiredFieldErrLabel) {
 			errors.push(errorLabels.requiredFieldErrLabel);
+		} else if (field.fieldType === 'RADIO') {
+			errors.push('Radio options are required!');
 		} else {
 			errors.push(`${field.name} is required.`);
 		}

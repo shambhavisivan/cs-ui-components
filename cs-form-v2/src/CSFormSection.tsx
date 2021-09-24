@@ -33,8 +33,8 @@ const CSFormSection = ({
 				<CSFormField
 					{...field}
 					key={field.name}
-					onChange={(value: any) => handleOnChange(sectionKey, field.name, value)}
-					onBlur={(value) => handleOnBlur(sectionKey, field.name, value)}
+					onChange={(fieldName, value) => handleOnChange(sectionKey, fieldName, value)}
+					onBlur={(fieldName, value) => handleOnBlur(sectionKey, fieldName, value)}
 				/>
 			))}
 		</CSSection>

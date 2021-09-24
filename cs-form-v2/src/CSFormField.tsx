@@ -7,13 +7,14 @@ import CSFormLookupField from './form-fields/CSFormLookupField';
 import CSFormNumberField from './form-fields/CSFormNumberField';
 import CSFormSelectField from './form-fields/CSFormSelectField';
 import CSFormTextField from './form-fields/CSFormTextField';
+import CSFormToggleField from './form-fields/CSFormToggleField';
+import CSFormRadioField from './form-fields/CSFormRadioField';
 import { useCSForm } from './CSFormContext';
 
 const CSFormField = ({
 	grow,
 	showInNewLine,
 	readOnly,
-	onBlur,
 	...rest
 }: CSFormFieldProps) => {
 	const {
@@ -40,8 +41,12 @@ const CSFormField = ({
 			return <CSFormLookupField {...fieldSettings} {...rest} />;
 		case 'NUMBER':
 			return <CSFormNumberField locale={!rest.useLocale ? undefined : locale?.numberLocale} {...fieldSettings} {...rest} />;
+		case 'RADIO':
+			return <CSFormRadioField {...rest} />;
 		case 'SELECT':
 			return <CSFormSelectField {...fieldSettings} {...rest} />;
+		case 'TOGGLE':
+			return <CSFormToggleField {...fieldSettings} {...rest} />;
 		case 'TEXT':
 		default:
 			return <CSFormTextField {...fieldSettings} {...rest} />;
