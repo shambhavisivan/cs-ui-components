@@ -8,6 +8,7 @@
 * CSRadio
   * added `hidden` prop
 * Tests added to components
+  * CSSlider
   * CSToast
 
 ## 2.0.0
