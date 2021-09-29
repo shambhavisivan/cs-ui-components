@@ -338,16 +338,8 @@ class CSSliderPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'stepValues=[...]',
-								component: <CSSlider
-									label="Select value"
-									stepValues={['max', '0', '1', '2', '3']}
-								/>,
-								code: `<CSSlider
-									label="Select value"
-									min="0"
-									max="100"
-									stepValues={['max', '0', '1', '2', '3']}
-								/>`
+								component: <CSSlider label="Select value" stepValues={['max', '0', '1', '2', '3']} />,
+								code: `<CSSlider label="Select value" stepValues={['max', '0', '1', '2', '3']} />`
 							}
 						]
 					}, {
