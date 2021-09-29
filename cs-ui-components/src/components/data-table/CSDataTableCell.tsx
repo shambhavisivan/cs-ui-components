@@ -64,7 +64,7 @@ const CSDataTableCell = ({
 		>
 			{!columnIndex && expandButton()}
 			<div className="cs-data-table-truncate">
-				{render ? render({ ...row, meta: rowMeta }) : row.data?.[key]}
+				{render?.({ ...row, meta: rowMeta }) || row.data?.[key]}
 			</div>
 		</div>
 	);

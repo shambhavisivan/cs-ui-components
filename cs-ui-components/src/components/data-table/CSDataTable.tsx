@@ -7,11 +7,12 @@ import { CSDataTableProvider } from './CSDataTableContext';
 import { CSCheckboxProps } from '../CSCheckbox';
 
 export type CSDataTableDensity = 'compact' | 'comfortable' | 'spacious';
-export type CSDataTableElement = React.ReactElement | React.ReactText;
+export type CSDataTableElement = React.ReactElement | React.ReactText | null;
 export type CSDataTableCellClassName = string | ((row: CSDataTableRowWithMetaInterface) => string);
 export type CSDataTableColumnAlign = 'left' | 'center' | 'right';
 export type CSDataTableRender = (row: CSDataTableRowWithMetaInterface) => CSDataTableElement;
 export type CSDataTableSelectionType = 'row' | 'checkbox';
+export type CSDataTableCollapseButtonToggle = 'all' | 'children' | 'subsection';
 
 export interface CSDataTableRowMetaInterface {
 	level: number;
@@ -19,7 +20,10 @@ export interface CSDataTableRowMetaInterface {
 	selected: boolean;
 	indeterminate: boolean;
 	readOnly: boolean;
-	setExpanded: () => void;
+	subsectionVisible: boolean;
+	setSubsectionVisible: (subsectionVisible: boolean) => void;
+	toggleSubsectionVisible: () => void;
+	setExpanded: (expanded: boolean) => void;
 	toggleExpanded: () => void;
 }
 
@@ -73,6 +77,7 @@ export interface CSDataTableProps {
 	indeterminateKeys?: React.ReactText | Array<React.ReactText>;
 	maxHeight?: string;
 	multiselect?: boolean;
+	onCollapseClick?: (event: React.MouseEvent<HTMLButtonElement>, row: CSDataTableRowWithMetaInterface) => void;
 	onSelectChange?: (event: React.ChangeEvent<HTMLInputElement>, row: CSDataTableRowWithMetaInterface) => void;
 	readOnlyKeys?: React.ReactText | Array<React.ReactText>;
 	rowHeight?: string;
@@ -81,6 +86,7 @@ export interface CSDataTableProps {
 	selectionType?: CSDataTableSelectionType;
 	stickyHeader?: boolean;
 	striped?: boolean;
+	subsectionRender?: (row: CSDataTableRowWithMetaInterface) => CSDataTableElement;
 	[key: string]: any;
 }
 
@@ -100,6 +106,7 @@ const CSDataTable = ({
 	indeterminateKeys,
 	maxHeight,
 	multiselect = false,
+	onCollapseClick,
 	onSelectChange,
 	readOnlyKeys,
 	rowHeight,
@@ -108,10 +115,10 @@ const CSDataTable = ({
 	selectionType = 'checkbox',
 	stickyHeader,
 	striped,
+	subsectionRender,
 	...rest
 }: CSDataTableProps) => {
 	useEffect(() => {
-		// eslint-disable-next-line no-console
 		console.warn('CSDataTable is under construction and should not be used.');
 	}, []);
 
@@ -125,7 +132,8 @@ const CSDataTable = ({
 			'cs-data-table-sticky-header': stickyHeader,
 			'cs-data-table-headless': headless,
 			'cs-data-table-striped': striped,
-			'cs-data-table-row-selection': selectionType === 'row',
+			'cs-data-table-row-selection': selectable && selectionType === 'row',
+			'cs-data-table-checkbox-selection': selectable && selectionType === 'checkbox',
 			[className]: className,
 		},
 	);
@@ -138,14 +146,16 @@ const CSDataTable = ({
 	// Determine whether the first level should have
 	// extra indentation to make space for the toggle button
 	const extraIndent = useMemo(() => (
-		collapsible && rows.some((row: CSDataTableRowInterface) => (
+		collapsible && (subsectionRender || rows.some((row: CSDataTableRowInterface) => (
 			row.children?.length && row.collapsible !== false
-		))), [collapsible, rows]);
+		)))), [collapsible, rows]);
 
 	return (
 		<CSDataTableProvider
 			columns={columns}
+			onCollapseClick={onCollapseClick}
 			onSelectChange={onSelectChange}
+			subsectionRender={subsectionRender}
 			indeterminateKeys={new Set(Array.isArray(indeterminateKeys) ? indeterminateKeys : [indeterminateKeys])}
 			readOnlyKeys={new Set(Array.isArray(readOnlyKeys) ? readOnlyKeys : [readOnlyKeys])}
 			selectedKeys={new Set(Array.isArray(selectedKeys) ? selectedKeys : [selectedKeys])}

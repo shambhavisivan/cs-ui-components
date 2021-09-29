@@ -43,8 +43,7 @@
 			display: none;
 		}
 
-		&:first-child,
-		&.cs-data-table-cell-checkbox + .cs-data-table-cell {
+		&:first-child {
 			padding-left: 1.5rem;
 		}
 
@@ -114,6 +113,16 @@
 						inset 0 1px 0 cvar(--cs-data-table-br);
 				}
 			}
+		}
+	}
+
+	.cs-data-table-subsection {
+		font-size: 0.8125rem;
+		line-height: 1.75;
+		padding: 0.5rem 1.5rem;
+		@include sbg(--cs-data-table-header-bg);
+		@include css4 {
+			border-bottom: 1px solid cvar(--cs-data-table-br);
 		}
 	}
 
@@ -196,6 +205,7 @@
 	}
 
 	.cs-data-table-column-wrap .cs-data-table-truncate {
+		overflow: visible;
 		text-overflow: initial;
 		white-space: normal;
 	}
@@ -205,5 +215,13 @@
 		position: absolute;
 		left: -0.5rem;
 		margin-left: var(--cs-data-table-column-offset, 0);
+	}
+
+	&.cs-data-table-checkbox-selection .cs-data-table-collapse-button {
+		margin-left: calc(var(--cs-data-table-column-offset, 0) - 1rem);
+	}
+
+	&:not(.cs-data-table-checkbox-selection) .cs-data-table-cell-checkbox + .cs-data-table-cell {
+		padding-left: 1.5rem;
 	}
 }

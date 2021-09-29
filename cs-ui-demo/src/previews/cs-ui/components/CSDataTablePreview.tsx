@@ -1,5 +1,5 @@
 import React from 'react';
-import { CSDataTable, CSIcon, CSChip, CSDataTableRowWithMetaInterface, CSButton } from '@cloudsense/cs-ui-components';
+import { CSDataTable, CSIcon, CSChip, CSDataTableRowWithMetaInterface, CSButton, CSInputText } from '@cloudsense/cs-ui-components';
 
 import Preview from '../Preview';
 
@@ -1216,7 +1216,6 @@ class CSDataTablePreview extends React.Component {
 								primaryVariants: `data: { location: 'Zagreb' }`,
 								secondaryVariants: `columns={[{ key: 'location' }]}`,
 								component: <CSDataTable columns={columns} rows={rows} />,
-
 								code: `<CSDataTable
 									columns={columns}
 									rows={[
@@ -1309,7 +1308,6 @@ class CSDataTablePreview extends React.Component {
 											key: 0,
 											defaultCollapsed: true,
 											collapsible: false,
-											selectable: false,
 											data: {
 												name: 'Nikol',
 												surname: 'Badanjak',
@@ -1519,6 +1517,148 @@ class CSDataTablePreview extends React.Component {
 											}]
 										}
 									]}
+								/>`
+							}
+						]
+					}, {
+						propName: 'subsections',
+						variations: [
+							{
+								primaryVariants: 'base example',
+								quickLink: 'base example',
+								component: <CSDataTable
+									columns={columns}
+									rows={rows}
+									subsectionRender={() => <>
+										<CSInputText label="Subsection Input 1" />
+										<CSInputText label="Subsection Input 2" />
+										<div style={{ height: '1rem' }} />
+										<CSButton label="Subsection Button" />
+									</>}
+								/>,
+								code: `<CSDataTable
+									columns={columns}
+									rows={rows}
+									subsectionRender={() => <>
+										<CSInputText label="Subsection Input 1" />
+										<CSInputText label="Subsection Input 2" />
+										<div style={{ height: '1rem' }} />
+										<CSButton label="Subsection Button" />
+									</>}
+								/>`
+							}, {
+								primaryVariants: 'selective subsections',
+								quickLink: 'selective subsections',
+								component: <CSDataTable
+									columns={columns}
+									rows={rows}
+									subsectionRender={row => (
+										row.data?.location === 'Zagreb' ? null : (
+											<>
+												<CSInputText label="Subsection Input 1"/>
+												<CSInputText label="Subsection Input 2"/>
+												<div style={{ height: '1rem' }}/>
+												<CSButton label="Subsection Button"/>
+											</>
+										)
+									)}
+								/>,
+								code: `<CSDataTable
+									columns={columns}
+									rows={rows}
+									subsectionRender={row => (
+										row.data?.location === 'Zagreb' ? null : (
+											<>
+												<CSInputText label="Subsection Input 1"/>
+												<CSInputText label="Subsection Input 2"/>
+												<div style={{ height: '1rem' }}/>
+												<CSButton label="Subsection Button"/>
+											</>
+										)
+									)}
+								/>`
+							}, {
+								primaryVariants: 'custom toggles',
+								quickLink: 'custom toggles',
+								component: <CSDataTable
+									collapsible={false}
+									columns={[...columns, {
+										key: 'Name',
+										header: 'Toggle',
+										width: '5rem',
+										align: 'right',
+										wrap: true,
+										render:  row => {
+											if (row.data?.location === 'Zagreb') {
+												return (
+													<CSButton
+														iconName="chevrondown"
+														iconRotate={row.meta.subsectionVisible ? 0 : 90}
+														label={`${row.meta.subsectionVisible ? 'Hide' : 'Show'} subsection`}
+														labelHidden
+														onClick={row.meta.toggleSubsectionVisible}
+													/>
+												);
+											}
+											return (
+												<CSButton
+													label="No subsection"
+													labelHidden
+													iconName="error"
+													disabled
+												/>
+											);
+										}
+									}]}
+									rows={rows}
+									subsectionRender={() => (
+										<>
+											<CSInputText label="Subsection Input 1"/>
+											<CSInputText label="Subsection Input 2"/>
+											<div style={{ height: '1rem' }}/>
+											<CSButton label="Subsection Button"/>
+										</>
+									)}
+								/>,
+								code: `<CSDataTable
+									collapsible={false}
+									columns={[...columns, {
+										key: 'Name',
+										header: 'Toggle',
+										width: '5rem',
+										align: 'right',
+										wrap: true,
+										render:  row => {
+											if (row.data?.location === 'Zagreb') {
+												return (
+													<CSButton
+														iconName="chevrondown"
+														iconRotate={row.meta.subsectionVisible ? 0 : 90}
+														label={\`\${row.meta.subsectionVisible ? 'Hide' : 'Show'} subsection\`}
+														labelHidden
+														onClick={row.meta.toggleSubsectionVisible}
+													/>
+												);
+											}
+											return (
+												<CSButton
+													label="No subsection"
+													labelHidden
+													iconName="error"
+													disabled
+												/>
+											);
+										}
+									}]}
+									rows={rows}
+									subsectionRender={() => (
+										<>
+											<CSInputText label="Subsection Input 1"/>
+											<CSInputText label="Subsection Input 2"/>
+											<div style={{ height: '1rem' }}/>
+											<CSButton label="Subsection Button"/>
+										</>
+									)}
 								/>`
 							}
 						]

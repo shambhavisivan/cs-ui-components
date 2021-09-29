@@ -25,7 +25,9 @@ const CSDataTableRow = ({
 
 	const {
 		columns,
+		onCollapseClick,
 		onSelectChange,
+		subsectionRender,
 		indeterminateKeys,
 		readOnlyKeys,
 		selectedKeys,
@@ -46,7 +48,8 @@ const CSDataTableRow = ({
 	} = row;
 
 	const defaultCollapsible = defaultCollapsed === undefined ? dataTableDefaultCollapsed : defaultCollapsed;
-	const [expanded, setExpanded] = useState<boolean>(!defaultCollapsible);
+	const [expanded, setExpanded] = useState<boolean>(defaultCollapsible);
+	const [subsectionVisible, setSubsectionVisible] = useState<boolean>(defaultCollapsible);
 
 	// Define row meta data for render functions
 	const rowMeta = {
@@ -54,20 +57,27 @@ const CSDataTableRow = ({
 		selected: selectedKeys.has(row.key),
 		indeterminate: indeterminateKeys.has(row.key),
 		readOnly: readOnlyKeys.has(row.key),
+		subsectionVisible,
+		setSubsectionVisible,
+		toggleSubsectionVisible: () => setSubsectionVisible((prevSubsectionVisible: boolean) => !prevSubsectionVisible),
 		expanded,
 		setExpanded,
 		toggleExpanded: () => setExpanded((prevExpanded: boolean) => !prevExpanded),
 	} as CSDataTableRowMetaInterface;
 
 	const isCollapsible = useMemo(() => {
-		// Hide if no children
 		// Hide if the row is explicitly not collapsible
 		// Cannot be !collapsible because of undefined being falsy
-		if (!children || collapsible === false) return false;
+		if (collapsible === false) return false;
 		// Hide if the table isn't collapsible
 		// And the row does not have an explicit setting
 		return !(collapsible === undefined && !dataTableCollapsible);
 	}, [dataTableCollapsible, collapsible]);
+
+	// Determine whether the row has a subsection
+	const hasSubsection = useMemo(() => (
+		!!subsectionRender?.({ ...row, meta: rowMeta })
+	), [subsectionRender]);
 
 	const renderCheckbox = () => {
 		if (!dataTableSelectable) return null;
@@ -98,20 +108,30 @@ const CSDataTableRow = ({
 	};
 
 	const renderExpandButton = () => {
-		if (!isCollapsible) return null;
+		// Do not render an expand button
+		// if the row isn't collapsible of it it has no subsections
+		if (!isCollapsible || (!hasSubsection && !children)) return null;
 
 		return (
 			<CSButton
-				label={`${rowMeta.expanded ? 'Collapse' : 'Expand'} row`}
+				className="cs-data-table-collapse-button"
+				label={`${rowMeta.expanded || rowMeta.subsectionVisible ? 'Collapse' : 'Expand'} row`}
 				labelHidden
 				btnType="transparent"
 				btnStyle="brand"
 				size="xsmall"
 				iconName="chevrondown"
 				iconColor="#706e6b"
-				iconRotate={expanded ? 0 : -90}
-				onClick={rowMeta.toggleExpanded}
-				className="cs-data-table-collapse-button"
+				iconRotate={expanded ? null : -90}
+				onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+					if (onCollapseClick) {
+						// This prop overrides default toggle behaviour
+						onCollapseClick(event, { ...row, meta: rowMeta });
+					} else {
+						rowMeta.toggleSubsectionVisible();
+						rowMeta.toggleExpanded();
+					}
+				}}
 			/>
 		);
 	};
@@ -128,9 +148,19 @@ const CSDataTableRow = ({
 		return (
 			<CSDataTableGroup
 				rows={children}
-				extraIndent={extraIndent}
+				extraIndent={extraIndent || Number(!!dataTableSelectable && dataTableSelectionType === 'checkbox')}
 				level={level + 1}
 			/>
+		);
+	};
+
+	const renderSubsection = () => {
+		if (!subsectionRender || !subsectionVisible || !hasSubsection) return null;
+
+		return (
+			<div className="cs-data-table-subsection">
+				{subsectionRender({ ...row, meta: rowMeta })}
+			</div>
 		);
 	};
 
@@ -198,10 +228,12 @@ const CSDataTableRow = ({
 			// If the row can be expanded, Arrow Right should expand it
 			event.preventDefault();
 			setExpanded(true);
+			setSubsectionVisible(true);
 		} else if (event.code === KeyCode.ArrowLeft && isCollapsible) {
 			// If the row can be expanded, Arrow Left should collapse it
 			event.preventDefault();
 			setExpanded(false);
+			setSubsectionVisible(false);
 		} else if (event.code === KeyCode.ArrowDown) {
 			event.preventDefault();
 			const childGroup = rowWrapperRef.current.lastElementChild;
@@ -261,7 +293,7 @@ const CSDataTableRow = ({
 					previousChildGroup = previousChildGroup.lastElementChild.lastElementChild;
 				}
 				// Focus the previous focusable item otherwise
-				previousChildGroup.lastElementChild.focus();
+				previousChildGroup.firstElementChild.focus();
 			}
 		}
 	};
@@ -282,6 +314,7 @@ const CSDataTableRow = ({
 				{renderCheckbox()}
 				{renderRow()}
 			</div>
+			{renderSubsection()}
 			{renderChildGroup()}
 		</div>
 	);
