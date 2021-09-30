@@ -31,6 +31,7 @@ export interface CSCustomSelectProps {
 	disabled?: boolean;
 	error?: boolean;
 	errorMessage?: CSFieldErrorMsgType;
+	gridCustomPopup?: boolean;
 	helpText?: string;
 	hidden?: boolean;
 	id?: string;
@@ -63,6 +64,7 @@ const CSCustomSelect = ({
 	error,
 	errorMessage,
 	forwardRef,
+	gridCustomPopup,
 	helpText,
 	hidden,
 	id,
@@ -131,6 +133,13 @@ const CSCustomSelect = ({
 		'cs-custom-select-input',
 		{
 			'cs-custom-select-input-multiselect': multiselect && !showCompactMultiselect,
+		},
+	);
+
+	const customSelectDropdownClasses = classNames(
+		'cs-custom-select-dropdown-wrapper',
+		{
+			'ag-custom-component-popup': gridCustomPopup,
 		},
 	);
 
@@ -354,7 +363,7 @@ const CSCustomSelect = ({
 				initialPosition={initialPosition}
 				zIndex="var(--z-index-custom-select-dropdown)"
 			>
-				<div style={customSelectDropdownStyle} className="cs-custom-select-dropdown-wrapper">
+				<div style={customSelectDropdownStyle} className={customSelectDropdownClasses}>
 					<ul ref={customSelectDropdownRef} className="cs-custom-select-dropdown">
 						{!filteredOptions.length && (
 							<li className="cs-custom-select-no-data">

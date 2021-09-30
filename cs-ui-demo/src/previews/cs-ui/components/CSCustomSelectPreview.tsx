@@ -148,6 +148,23 @@ class CSCustomSelectPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'gridCustomPopup',
+						variations: [
+							{
+								primaryVariants: 'gridCustomPopup={true}',
+								component: <CSCustomSelect
+									options={options}
+									label="Choose letter"
+									gridCustomPopup
+								/>,
+								code: `<CSCustomSelect
+									options={options}
+									label="Choose letter"
+									gridCustomPopup
+								/>`
+							}
+						]
+					}, {
 						propName: 'helpText',
 						variations: [
 							{
@@ -564,6 +581,11 @@ class CSCustomSelectPreview extends React.Component {
 							types: ['string', 'Array<string>']
 						},
 						description: 'Set the error message or messages for the custom select.'
+					}, {
+						name: 'gridCustomPopup',
+						types: 'boolean',
+						default: 'false',
+						description: 'Provides React Portal support for AG Grid custom popups.'
 					}, {
 						name: 'helpText',
 						types: 'string',
