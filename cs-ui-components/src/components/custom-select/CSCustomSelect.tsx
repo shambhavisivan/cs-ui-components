@@ -1,4 +1,4 @@
-import React, { CSSProperties, useEffect, useRef, useState } from 'react';
+import React, { CSSProperties, useEffect, useRef, useState, useImperativeHandle } from 'react';
 import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -62,6 +62,7 @@ const CSCustomSelect = ({
 	disabled,
 	error,
 	errorMessage,
+	forwardRef,
 	helpText,
 	hidden,
 	id,
@@ -93,6 +94,8 @@ const CSCustomSelect = ({
 	const [dropdownVisible, setDropdownVisible] = useState(false);
 
 	const selectedKeysArray = Array.isArray(selectedKeys) ? selectedKeys : [selectedKeys];
+
+	useImperativeHandle(forwardRef, () => customSelectInputRef.current);
 
 	useEffect(() => {
 		const handleOutsideClick = (event: MouseEvent) => {
@@ -410,4 +413,8 @@ const CSCustomSelect = ({
 	);
 };
 
-export default CSCustomSelect;
+const CSCustomSelectWithRef = React.forwardRef<HTMLInputElement, CSCustomSelectProps>((props: CSCustomSelectProps, ref) => <CSCustomSelect {...props} forwardRef={ref} />);
+
+CSCustomSelectWithRef.displayName = 'CSCustomSelect';
+
+export default CSCustomSelectWithRef;
