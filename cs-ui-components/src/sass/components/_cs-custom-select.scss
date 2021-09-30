@@ -25,6 +25,10 @@
 				box-shadow: 0 0 0.1875rem cvar(--cs-input-shadow);
 			}
 		}
+
+		&:focus-within .cs-blinking-cursor {
+			display: none;
+		}
 	}
 
 	.cs-custom-select-input-wrapper-multiselect {

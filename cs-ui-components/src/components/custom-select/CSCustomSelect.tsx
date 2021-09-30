@@ -161,6 +161,12 @@ const CSCustomSelect = ({
 		);
 	};
 
+	const renderBlinkingCursor = () => {
+		if (!dropdownVisible) return null;
+
+		return <span className="cs-blinking-cursor" />;
+	};
+
 	const renderMultiselectOptions = () => {
 		if (!multiselect || showCompactMultiselect || !selectedKeysArray.length) return null;
 
@@ -248,6 +254,8 @@ const CSCustomSelect = ({
 							setDropdownVisible(false);
 						} else if (event.key === KeyCode.Enter) {
 							setDropdownVisible((prevDropdownVisible) => !prevDropdownVisible);
+						} else {
+							setDropdownVisible(true);
 						}
 					}}
 					{...rest}
@@ -389,6 +397,7 @@ const CSCustomSelect = ({
 				className={customSelectInputWrapperClasses}
 				style={style}
 			>
+				{renderBlinkingCursor()}
 				{renderMultiselectOptions()}
 				{renderCustomSelectInput()}
 				{renderSelectedOptions()}
