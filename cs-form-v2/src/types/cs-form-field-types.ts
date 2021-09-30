@@ -6,6 +6,7 @@ export type CSFormFieldType = 'CHECKBOX' |
 	'RADIO' |
 	'SELECT' |
 	'TEXT' |
+	'TEXTAREA' |
 	'TOGGLE';
 
 /** CHECKBOX FIELD */
@@ -136,6 +137,15 @@ export interface CSFormTextFieldInterface {
 
 export type CSFormTextFieldProps = CSFormTextFieldInterface & CSFormFieldCommonProps & CSFormFieldEvents;
 
+/** TEXTAREA FIELD */
+export interface CSFormTextareaFieldInterface {
+	fieldType: 'TEXTAREA';
+	maxHeight?: string;
+	rows?: number;
+}
+
+export type CSFormTextareaFieldProps = CSFormTextareaFieldInterface & CSFormFieldCommonProps & CSFormFieldEvents;
+
 /** TOGGLE FIELD */
 export interface CSFormToggleFieldInterface {
 	checked?: boolean;
@@ -181,6 +191,7 @@ export type CSFormFieldProps = CSFormFieldLayoutProps &
 		CSFormSelectFieldProps |
 		CSFormLookupFieldProps |
 		CSFormTextFieldProps |
+		CSFormTextareaFieldProps |
 		CSFormToggleFieldProps
 	);
 
@@ -194,5 +205,6 @@ export type CSFormFieldData = CSFormFieldLayoutProps &
 		| CSFormSelectFieldInterface
 		| CSFormLookupFieldInterface
 		| CSFormTextFieldInterface
+		| CSFormTextareaFieldInterface
 		| CSFormToggleFieldInterface
 	);
