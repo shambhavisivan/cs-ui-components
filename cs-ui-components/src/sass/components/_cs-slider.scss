@@ -30,7 +30,7 @@
 	position: relative;
 	width: var(--cs-slider-width, 100%);
 
-	.cs-slide-range {
+	.cs-slider-range {
 		word-wrap: break-word;
 		font-size: 0.75rem;
 		@include sc(--cs-slider-range-c);

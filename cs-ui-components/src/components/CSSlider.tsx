@@ -200,7 +200,7 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 					)}
 				{min || max
 					? (
-						<span className="cs-slide-range">
+						<span className="cs-slider-range">
 							{min}
 							-
 							{max}
