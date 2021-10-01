@@ -567,9 +567,8 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 			return (
 				<CSIcon
-					name="chevrondown"
+					name="down"
 					rotate={dropdownVisible ? 180 : null}
-					color="var(--cs-input-icon-fill)"
 					className="cs-lookup-dropdown-icon"
 				/>
 			);

@@ -326,17 +326,16 @@ const CSCustomSelect = ({
 				labelHidden
 				onKeyDown={handleClearKeyDown}
 				onClick={handleClearClick}
-				size="small"
+				size="xsmall"
 			/>
 		);
 	};
 
 	const renderDropdownChevron = () => (
 		<CSIcon
-			name="chevrondown"
+			name="down"
 			rotate={dropdownVisible ? 180 : null}
 			className="cs-custom-select-icon"
-			color="var(--cs-custom-select-dropdown-icon-c)"
 		/>
 	);
 
@@ -409,8 +408,8 @@ const CSCustomSelect = ({
 				className={customSelectInputWrapperClasses}
 				style={style}
 			>
-				{renderBlinkingCursor()}
 				{renderMultiselectOptions()}
+				{renderBlinkingCursor()}
 				{renderCustomSelectInput()}
 				{renderSelectedOptions()}
 				{renderClearButton()}

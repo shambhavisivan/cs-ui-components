@@ -98,16 +98,16 @@
 	.cs-custom-select-icon {
 		position: absolute;
 		right: 0.5rem;
-		pointer-events: none;
 		top: 0.4375rem;
+		pointer-events: none;
 		transition: transform 200ms ease-in-out;
 	}
 
 	.cs-custom-select-clear {
-		margin-right: 0.5rem;
 		position: absolute;
-		right: 1.125rem;
-		top: 0.1875rem;
+		top: 50%;
+		transform: translateY(-50%);
+		right: 1.625rem;
 	}
 
 	.cs-custom-select-items {
@@ -134,7 +134,7 @@
 			}
 
 			&:first-child {
-				margin-left: 0.75rem;
+				margin-left: 0.5rem;
 			}
 
 			&:hover {
@@ -260,4 +260,3 @@
 		}
 	}
 }
-
