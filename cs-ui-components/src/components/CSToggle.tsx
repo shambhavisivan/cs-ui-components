@@ -144,12 +144,14 @@ class CSToggle extends React.Component<CSToggleProps> {
 						{error
 							&& errorTooltip
 							&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
-						<div className="cs-toggle-options">
-							{/* Icons */}
-							{icons?.length > 0 ? (<CSCustomDataIcons icons={icons} />) : null}
-							{/* Actions */}
-							{actionsList?.length > 0 ? (<CSCustomDataActions actions={actions} />) : null}
-						</div>
+						{(actions?.length || icons?.length)
+							&& (
+								<div className="cs-toggle-options">
+									{icons?.length && <CSCustomDataIcons icons={icons} />}
+									{actionsList?.length && <CSCustomDataActions actions={actions} />}
+								</div>
+							)}
+
 					</div>
 					{!errorTooltip
 						&& error

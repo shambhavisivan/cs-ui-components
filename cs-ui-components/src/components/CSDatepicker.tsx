@@ -93,14 +93,11 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 	}
 
 	componentDidMount() {
-		/* parent element which holds icons/actions/status/menu icon */
-		if (this.datepickerOptionsWrapperRef) {
-			/* Get width of parent element and set state to width + 12 for extra spacing */
-			const el = this.datepickerOptionsWrapperRef.current.getBoundingClientRect();
-			this.setState({
-				datepickerOptionsWrapperWidth: el.width + 32,
-			});
-		}
+		/* Get width of parent element and set state to width + 32 for extra spacing */
+		const datepickerOptionsRef = this.datepickerOptionsWrapperRef.current?.getBoundingClientRect();
+		this.setState({
+			datepickerOptionsWrapperWidth: (datepickerOptionsRef?.width ?? 0) + 32,
+		});
 	}
 
 	handleOnKeyDown = (event: any) => {
@@ -193,12 +190,6 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 			return subDays(new Date(), minDate);
 		};
 
-		/* Set actions array once data is available */
-		let actionsList;
-		if (actions?.length > 0) {
-			actionsList = actions;
-		}
-
 		return (
 			<>
 				<div className={datepickerClasses} style={style}>
@@ -248,12 +239,13 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 							{...rest}
 						/>
 					</div>
-					<div className="cs-datepicker-options" ref={this.datepickerOptionsWrapperRef}>
-						{/* Icons */}
-						{icons?.length > 0 ? (<CSCustomDataIcons icons={icons} />) : null}
-						{/* Actions */}
-						{actionsList?.length > 0 ? (<CSCustomDataActions actions={actions} />) : null}
-					</div>
+					{(icons?.length || actions?.length)
+						&& (
+							<div className="cs-datepicker-options">
+								{icons?.length && <CSCustomDataIcons icons={icons} />}
+								{actions?.length && <CSCustomDataActions actions={actions} />}
+							</div>
+						)}
 					{(!readOnly && !inline) && <CSIcon name="event" className="cs-datepicker-icon" size="0.875rem" />}
 					{error
 						&& errorTooltip

@@ -65,14 +65,11 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 	}
 
 	componentDidMount() {
-		/* parent element which holds icons/actions/status/menu icon */
-		if (this.selectOptionsWrapperRef) {
-			/* Get width of parent element and set state to width + 12 for extra spacing */
-			const el = this.selectOptionsWrapperRef.current.getBoundingClientRect();
-			this.setState({
-				selectOptionsWrapperWidth: el.width + 40,
-			});
-		}
+		/* Get width of parent element and set state to width + 40 for extra spacing */
+		const selectOptionsRect = this.selectOptionsWrapperRef.current?.getBoundingClientRect();
+		this.setState({
+			selectOptionsWrapperWidth: (selectOptionsRect?.width ?? 0) + 40,
+		});
 	}
 
 	handleOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -142,12 +139,6 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 			'--cs-select-options-spacing': `${selectOptionsWrapperWidth}px`,
 		};
 
-		/* Set actions array once data is available */
-		let actionsList;
-		if (actions?.length > 0) {
-			actionsList = actions;
-		}
-
 		return (
 			<div className={selectWrapperClasses} style={style}>
 				{(label && !labelHidden)
@@ -187,12 +178,13 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 						{!readOnly
 							&& <CSIcon name="down" />}
 					</div>
-					<div className="cs-select-options" ref={this.selectOptionsWrapperRef}>
-						{/* Icons */}
-						{icons?.length > 0 ? (<CSCustomDataIcons icons={icons} />) : null}
-						{/* Actions */}
-						{actionsList?.length > 0 ? (<CSCustomDataActions actions={actions} />) : null}
-					</div>
+					{(actions?.length || icons?.length)
+						&& (
+							<div className="cs-select-options" ref={this.selectOptionsWrapperRef}>
+								{icons?.length && <CSCustomDataIcons icons={icons} />}
+								{actions?.length && <CSCustomDataActions actions={actions} />}
+							</div>
+						)}
 				</div>
 				{error
 					&& errorMessage

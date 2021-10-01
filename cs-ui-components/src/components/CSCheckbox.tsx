@@ -128,12 +128,6 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 			'--cs-checkbox-border-radius': borderRadius,
 		};
 
-		/* Set actions array once data is available */
-		let actionsList;
-		if (actions?.length > 0) {
-			actionsList = actions;
-		}
-
 		return (
 			<>
 				<div
@@ -185,12 +179,13 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 						{error
 							&& errorTooltip
 							&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
-						<div className="cs-checkbox-options">
-							{/* Icons */}
-							{icons?.length > 0 ? (<CSCustomDataIcons icons={icons} />) : null}
-							{/* Actions */}
-							{actionsList?.length > 0 ? (<CSCustomDataActions actions={actions} />) : null}
-						</div>
+						{(actions?.length || icons?.length)
+							&& (
+								<div className="cs-checkbox-options">
+									{icons?.length && <CSCustomDataIcons icons={icons} />}
+									{actions?.length && <CSCustomDataActions actions={actions} />}
+								</div>
+							)}
 					</div>
 					{!errorTooltip
 						&& error

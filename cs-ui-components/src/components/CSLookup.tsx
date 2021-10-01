@@ -144,12 +144,11 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 		this.setValue();
 
-		/* parent element which holds icons/actions/status/menu icon */
-		if (this.lookupOptionsWrapperRef) {
-			/* Get width of parent element and set state to width + 12 for extra spacing */
-			const el = this.lookupOptionsWrapperRef.current.getBoundingClientRect();
-			this.setState({ lookupOptionsWrapperWidth: el.width + 38 });
-		}
+		/* Get width of parent element and set state to width + 38 for extra spacing */
+		const lookupOptionsRect = this.lookupOptionsWrapperRef.current?.getBoundingClientRect();
+		this.setState({
+			lookupOptionsWrapperWidth: (lookupOptionsRect?.width ?? 0) + 38,
+		});
 	}
 
 	componentDidUpdate(prevProps: CSLookupProps) {
@@ -686,29 +685,34 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 						{renderClearButton()}
 						{renderExpandIcon()}
 					</div>
-					<div className="cs-lookup-options" ref={this.lookupOptionsWrapperRef}>
-						{renderCustomIcons()}
-						{renderCustomActions()}
-					</div>
+					{(actions?.length || icons?.length)
+						&& (
+							<div className="cs-lookup-options" ref={this.lookupOptionsWrapperRef}>
+								{renderCustomIcons()}
+								{renderCustomActions()}
+							</div>
+						)}
 				</div>
 				{error && errorMessage && <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
-				{dropdownVisible && (
-					<CSAutoposition
-						referencePoint={this.lookupInputRef.current}
-						positionSchema={['top-left', 'top-right', 'bottom-right', 'bottom-left']}
-						initialPosition={initialPosition}
-						zIndex="var(--z-index-lookup-dropdown)"
-					>
-						<div
-							className={lookupDropdownClasses}
-							style={lookupDropdownStyle}
-							ref={this.lookupDropdownRef}
-							key="dropdown-values"
+				{
+					dropdownVisible && (
+						<CSAutoposition
+							referencePoint={this.lookupInputRef.current}
+							positionSchema={['top-left', 'top-right', 'bottom-right', 'bottom-left']}
+							initialPosition={initialPosition}
+							zIndex="var(--z-index-lookup-dropdown)"
 						>
-							{renderDropdown()}
-						</div>
-					</CSAutoposition>
-				)}
+							<div
+								className={lookupDropdownClasses}
+								style={lookupDropdownStyle}
+								ref={this.lookupDropdownRef}
+								key="dropdown-values"
+							>
+								{renderDropdown()}
+							</div>
+						</CSAutoposition>
+					)
+				}
 			</div>
 		);
 	}

@@ -60,14 +60,11 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 	}
 
 	componentDidMount() {
-		/* parent element which holds icons/actions/status/menu icon */
-		if (this.inputTextOptionsWrapperRef) {
-			/* Get width of parent element and set state to width + 12 for extra spacing */
-			const el = this.inputTextOptionsWrapperRef.current.getBoundingClientRect();
-			this.setState({
-				inputTextOptionsWrapperWidth: el.width + 12,
-			});
-		}
+		/* Get width of parent element and set state to width + 12 for extra spacing */
+		const inputTextOptionsRect = this.inputTextOptionsWrapperRef.current?.getBoundingClientRect();
+		this.setState({
+			inputTextOptionsWrapperWidth: (inputTextOptionsRect?.width ?? 0) + 12,
+		});
 	}
 
 	onFocus: React.FocusEventHandler<HTMLInputElement> = (e) => {
@@ -144,12 +141,6 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 			'--cs-input-text-options-spacing': `${inputTextOptionsWrapperWidth}px`,
 		};
 
-		/* Set actions array once data is available */
-		let actionsList;
-		if (actions?.length > 0) {
-			actionsList = actions;
-		}
-
 		return (
 			<>
 				<div className={inputTextWrapperClasses} style={style}>
@@ -187,12 +178,13 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 							ref={this.inputTextInnerRef}
 							{...rest}
 						/>
-						<div className="cs-input-text-options" ref={this.inputTextOptionsWrapperRef}>
-							{/* Icons */}
-							{icons?.length > 0 ? (<CSCustomDataIcons icons={icons} />) : null}
-							{/* Actions */}
-							{actionsList?.length > 0 ? (<CSCustomDataActions actions={actions} />) : null}
-						</div>
+						{(actions?.length || icons?.length)
+							&& (
+								<div className="cs-input-text-options" ref={this.inputTextOptionsWrapperRef}>
+									{icons?.length && <CSCustomDataIcons icons={icons} />}
+									{actions?.length && <CSCustomDataActions actions={actions} />}
+								</div>
+							)}
 						{error
 							&& errorTooltip
 							&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
