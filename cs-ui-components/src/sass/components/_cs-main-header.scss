@@ -155,6 +155,7 @@
 		justify-content: space-between;
 		align-items: center;
 		width: 100%;
+		max-width: var(--cs-main-header-max-width);
 
 		.cs-main-header-icon {
 			width: 2rem;

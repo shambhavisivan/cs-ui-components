@@ -464,7 +464,7 @@ class CSMainHeaderPreview extends React.Component {
 						name: 'maxWidth',
 						types: 'string',
 						default: `'100%'`,
-						description: 'Set the max-width of the dropdown content. (eg. 720px, 80rem, 100%, etc.)'
+						description: 'Set the max-width of an inner header. (e.g. 720px, 80rem, 100%, etc.)'
 					}, {
 						name: 'sticky',
 						types: 'boolean',

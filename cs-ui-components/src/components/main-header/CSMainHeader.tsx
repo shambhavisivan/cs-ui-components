@@ -30,7 +30,7 @@ const CSMainHeader = ({
 		},
 	);
 	const style: CSSProperties = {
-		maxWidth,
+		'--cs-main-header-max-width': maxWidth,
 	};
 	return (
 		<header
