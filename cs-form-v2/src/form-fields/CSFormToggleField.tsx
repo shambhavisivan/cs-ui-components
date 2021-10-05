@@ -12,8 +12,8 @@ const CSFormTextField = ({
 }: CSFormToggleFieldProps) => (
 	<CSToggle
 		className={styleClass}
-		onBlur={(e: React.FocusEvent<HTMLInputElement>) => onBlur(name, e.target.checked)}
-		onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(name, e.target.checked)}
+		onBlur={(e: React.FocusEvent<HTMLInputElement>) => onBlur(e.target.checked)}
+		onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.checked)}
 		{...props}
 	/>
 );

@@ -12,8 +12,8 @@ const CSFormTextField = ({
 }: CSFormTextFieldProps) => (
 	<CSInputText
 		className={styleClass}
-		onBlur={(e: React.FocusEvent<HTMLInputElement>) => onBlur(name, e.target.value)}
-		onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(name, e.target.value)}
+		onBlur={(e: React.FocusEvent<HTMLInputElement>) => onBlur(e.target.value)}
+		onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
 		{...props}
 	/>
 );

@@ -16,13 +16,15 @@ const CSFormRadioField = ({
 	} = useCSForm();
 
 	const renderRadioOptions = () => radioOptions.map((option) => {
-		const { name, radioOptionName, readOnly, ...rest } = option;
+		const { radioOptionName, readOnly, value, ...rest } = option;
 		return (
 			<CSRadioOption
-				onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(name, e.target.checked)}
-				onBLur={(e: React.FocusEvent<HTMLInputElement>) => onBlur(name, e.target.checked)}
+				key={value}
+				onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
+				onBlur={(e: React.FocusEvent<HTMLInputElement>) => onBlur(e.target.value)}
 				readOnly={mode === 'read-only' ? true : readOnly}
 				name={radioOptionName}
+				value={value}
 				{...rest}
 			/>
 		);

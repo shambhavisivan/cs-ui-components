@@ -4,7 +4,6 @@ import { CSFormDateFieldProps } from '../types/cs-form-field-types';
 
 const CSFormDateField = ({
 	fieldType,
-	name,
 	onBlur,
 	onChange,
 	styleClass,
@@ -12,8 +11,8 @@ const CSFormDateField = ({
 }: CSFormDateFieldProps) => (
 	<CSDatepicker
 		className={styleClass}
-		onChange={(date: Date) => onChange(name, date)}
-		onBlur={(date: Date) => onBlur(name, date)}
+		onChange={(date: Date) => onChange(date)}
+		onBlur={(date: Date) => onBlur(date)}
 		{...props}
 	/>
 );

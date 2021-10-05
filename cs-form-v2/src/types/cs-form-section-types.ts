@@ -8,6 +8,7 @@ export interface CSFormSectionProps {
 	errorMessage?: Array<string> | string;
 	fields: Array<CSFormFieldData>;
 	hideSectionHeader?: boolean;
-	sectionKey: string;
 	label: string;
+	sectionKey: string;
+	styleClass?: string;
 }

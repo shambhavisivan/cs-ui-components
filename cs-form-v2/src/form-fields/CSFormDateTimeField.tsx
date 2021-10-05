@@ -6,14 +6,13 @@ const CSFormDateTimeField = ({
 	fieldType,
 	onBlur,
 	onChange,
-	name,
 	styleClass,
 	...props
 }: CSFormDateTimeFieldProps) => (
 	<CSDateTimePicker
 		className={styleClass}
-		onChange={(date: Date) => onChange(name, date)}
-		onBlur={(date: Date) => onBlur(name, date)}
+		onChange={(date: Date) => onChange(date)}
+		onBlur={(date: Date) => onBlur(date)}
 		{...props}
 	/>
 );

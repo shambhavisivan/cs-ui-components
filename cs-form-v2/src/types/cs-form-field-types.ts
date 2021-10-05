@@ -91,9 +91,9 @@ export type CSFormNumberFieldProps = CSFormNumberFieldInterface & CSFormFieldCom
 
 /** RADIO FIELD */
 export interface CSFormRadioOption extends Pick<CSFormFieldCommonProps,
-	'name' |
 	'readOnly' |
 	'disabled' |
+	'value' |
 	'title'> {
 	checked?: boolean;
 	label?: string;
@@ -103,12 +103,12 @@ export interface CSFormRadioOption extends Pick<CSFormFieldCommonProps,
 export interface CSFormRadioFieldInterface extends Pick<CSFormFieldCommonProps,
 	'error' |
 	'errorMessage' |
-	'label' |
 	'disabled' |
+	'label' |
+	'name' |
 	'readOnly' |
 	'required' |
-	'styleClass' |
-	'value'
+	'styleClass'
 > {
 	fieldType: 'RADIO';
 	radioOptions: Array<CSFormRadioOption>;
@@ -172,8 +172,8 @@ export interface CSFormFieldCommonProps {
 }
 
 export interface CSFormFieldEvents {
-	onBlur?: (fieldName: string, newValue: any) => any;
-	onChange?: (fieldName: string, newValue: any) => any;
+	onBlur?: (newValue: any) => any;
+	onChange?: (newValue: any) => any;
 }
 
 export interface CSFormFieldLayoutProps {

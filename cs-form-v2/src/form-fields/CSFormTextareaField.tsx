@@ -12,8 +12,8 @@ const CSFormTextareaField = ({
 }: CSFormTextareaFieldProps) => (
 	<CSTextarea
 		className={styleClass}
-		onBlur={(e: React.FocusEvent<HTMLTextAreaElement>) => onBlur(name, e.target.value)}
-		onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => onChange(name, e.target.value)}
+		onBlur={(e: React.FocusEvent<HTMLTextAreaElement>) => onBlur(e.target.value)}
+		onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => onChange(e.target.value)}
 		{...props}
 	/>
 );

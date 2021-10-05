@@ -4,7 +4,6 @@ import { CSFormNumberFieldProps } from '../types/cs-form-field-types';
 
 const CSFormNumberField = ({
 	fieldType,
-	name,
 	onBlur,
 	onChange,
 	styleClass,
@@ -12,8 +11,8 @@ const CSFormNumberField = ({
 }: CSFormNumberFieldProps) => (
 	<CSInputNumber
 		className={styleClass}
-		onChange={(value: any) => onChange(name, value)}
-		onBlur={(e: React.FocusEvent<HTMLInputElement>) => onBlur(name, e.target.value)}
+		onChange={(value: any) => onChange(value)}
+		onBlur={(e: React.FocusEvent<HTMLInputElement>) => onBlur(e.target.value)}
 		{...props}
 	/>
 );

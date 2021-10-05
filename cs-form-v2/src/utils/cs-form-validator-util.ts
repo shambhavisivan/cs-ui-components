@@ -1,7 +1,7 @@
 import { CSFormFieldProps } from '../types/cs-form-field-types';
-import { CSFormErrorLabels } from '../types/cs-form-types';
+import { CSFormData, CSFormErrorLabels } from '../types/cs-form-types';
 
-const validateField = (field: CSFormFieldProps, value: any, errorLabels: CSFormErrorLabels) => {
+const validateField = (field: CSFormFieldProps, value: any, errorLabels?: CSFormErrorLabels) => {
 	const errors: Array<string> = [];
 
 	/** Check requiredness of the field regardless of the type */
@@ -52,4 +52,36 @@ const validateField = (field: CSFormFieldProps, value: any, errorLabels: CSFormE
 	return null;
 };
 
-export default validateField;
+const validateForm = (data: CSFormData, errorLabels?: CSFormErrorLabels) => {
+	let validationResults: Array<object> = [];
+
+	data.forEach(({ sectionKey, fields }) => {
+		const evaluatedFields = fields.map((field) => {
+			const { name, value } = field;
+			const errorMessage = validateField(field, value, errorLabels);
+			if (errorMessage) {
+				return {
+					sectionKey,
+					name,
+					value,
+					errorMessage,
+				};
+			}
+
+			return {
+				sectionKey,
+				name,
+				value,
+			};
+		});
+
+		validationResults = [...validationResults, ...evaluatedFields];
+	});
+
+	return validationResults;
+};
+
+export {
+	validateForm,
+	validateField,
+};

@@ -1,5 +1,6 @@
 import React from 'react';
 import { CSSection } from '@cloudsense/cs-ui-components';
+import classNames from 'classnames';
 import CSFormField from './CSFormField';
 import { CSFormSectionProps } from './types/cs-form-section-types';
 import { useCSForm } from './CSFormContext';
@@ -13,15 +14,23 @@ const CSFormSection = ({
 	fields,
 	hideSectionHeader,
 	label,
+	styleClass,
 }: CSFormSectionProps) => {
 	const {
 		handleOnBlur,
 		handleOnChange,
 	} = useCSForm();
 
+	const sectionFieldClasses = classNames(
+		'csf-section',
+		{
+			[`${styleClass}`]: styleClass,
+		},
+	);
+
 	return (
 		<CSSection
-			className="csf-section"
+			className={sectionFieldClasses}
 			collapsible={collapsible}
 			defaultClosed={defaultClosed}
 			error={error}
@@ -33,8 +42,8 @@ const CSFormSection = ({
 				<CSFormField
 					{...field}
 					key={field.name}
-					onChange={(fieldName, value) => handleOnChange(sectionKey, fieldName, value)}
-					onBlur={(fieldName, value) => handleOnBlur(sectionKey, fieldName, value)}
+					onChange={(value) => handleOnChange(sectionKey, field, value)}
+					onBlur={(value) => handleOnBlur(sectionKey, field, value)}
 				/>
 			))}
 		</CSSection>

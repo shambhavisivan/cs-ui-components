@@ -17,8 +17,8 @@ const CSFormSelectField = ({
 	return (
 		<CSSelect
 			className={styleClass}
-			onBlur={(value: any) => onBlur(name, value)}
-			onChange={(value: any) => onChange(name, value)}
+			onBlur={(event: any) => onBlur(event.target.value)}
+			onChange={(value: any) => onChange(value)}
 			{...props}
 		>
 			{renderPicklistOptions()}
