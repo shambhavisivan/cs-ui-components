@@ -54,13 +54,13 @@ export interface CSFormLookupFieldFetchResult {
 export interface CSFormLookupFieldCommonProps {
 	fieldType: 'LOOKUP';
 	fieldToBeDisplayed: string;
-	lookupColumns: Array<CSFormLookupFieldTableColumn>;
+	columns: Array<CSFormLookupFieldTableColumn>;
 	mode: CSFormLookupFieldMode;
 	multiselect?: boolean;
 }
 
 export interface CSFormLookupFieldServerProps {
-	fetchLookupOptions: (searchTerm: string, pageSize: number, pageNo: number) => Promise<CSFormLookupFieldFetchResult>;
+	fetchOptions: (searchTerm: string, pageSize: number, pageNo: number) => Promise<CSFormLookupFieldFetchResult>;
 	infiniteScroll?: boolean;
 	minTermLength?: number;
 	mode: 'server';
@@ -69,7 +69,7 @@ export interface CSFormLookupFieldServerProps {
 
 export interface CSFormLookupFieldClientProps {
 	loading?: boolean;
-	lookupOptions: Array<Record<string, any>>;
+	options: Array<Record<string, any>>;
 	mode: 'client';
 	searchBy?: Array<string>;
 }
@@ -104,6 +104,7 @@ export interface CSFormRadioFieldInterface extends Pick<CSFormFieldCommonProps,
 	'error' |
 	'errorMessage' |
 	'disabled' |
+	'helpText' |
 	'label' |
 	'name' |
 	'readOnly' |
@@ -160,6 +161,7 @@ export interface CSFormFieldCommonProps {
 	disabled?: boolean;
 	error?: boolean;
 	errorMessage?: Array<string> | string;
+	helpText?: string;
 	hidden?: boolean;
 	icons?: Array<any>
 	label: string;
