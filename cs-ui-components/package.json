@@ -14,7 +14,7 @@
 		"build": "rimraf dist && webpack",
 		"lint": "eslint src --ext .js,.jsx,.tsx,.ts",
 		"watch": "webpack --watch",
-		"test": "jest --env=jsdom"
+		"test": "jest --clearCache && jest --env=jsdom"
 	},
 	"keywords": [],
 	"author": "CloudSense UI",
