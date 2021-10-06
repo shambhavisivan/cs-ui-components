@@ -31,6 +31,10 @@
 		}
 	}
 
+	.cs-custom-select-value-wrapper {
+		@include overflow-ellipsis;
+	}
+
 	.cs-custom-select-input-wrapper-multiselect {
 		padding-left: 0;
 	}
@@ -88,7 +92,6 @@
 	.cs-custom-select-value {
 		position: relative;
 		user-select: none;
-		left: 0.125rem;
 
 		&.cs-custom-select-dropdown-visible {
 			@include sc(--cs-selected-input-option-c);

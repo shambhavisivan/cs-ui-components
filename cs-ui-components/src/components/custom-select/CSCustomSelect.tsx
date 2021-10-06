@@ -411,7 +411,9 @@ const CSCustomSelect = ({
 				{renderMultiselectOptions()}
 				{renderBlinkingCursor()}
 				{renderCustomSelectInput()}
-				{renderSelectedOptions()}
+				<span className="cs-custom-select-value-wrapper">
+					{renderSelectedOptions()}
+				</span>
 				{renderClearButton()}
 				{renderDropdownChevron()}
 			</div>
