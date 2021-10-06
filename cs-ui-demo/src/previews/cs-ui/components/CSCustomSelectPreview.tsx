@@ -51,6 +51,30 @@ class CSCustomSelectPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'actions',
+						variations: [
+							{
+								component: <CSCustomSelect
+									options={options}
+									label="Select department"
+									actions={[{
+										label: 'Add department',
+										iconName: 'add',
+										onClick: () => alert('Department added.')
+									}]}
+								/>,
+								code: `<CSCustomSelect
+									options={options}
+									label="Select department"
+									actions={[{
+										label: 'Add department',
+										iconName: 'add',
+										onClick: () => alert('Department added.')
+									}]}
+								/>`
+							}
+						]
+					}, {
 						propName: 'align',
 						variations: [
 							{
