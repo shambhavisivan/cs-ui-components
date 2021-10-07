@@ -101,7 +101,8 @@
 	.cs-custom-select-icon {
 		position: absolute;
 		right: 0.5rem;
-		top: 0.4375rem;
+		top: 50%;
+		transform: translateY(-50%);
 		pointer-events: none;
 		transition: transform 200ms ease-in-out;
 	}
@@ -119,6 +120,7 @@
 		flex-wrap: wrap;
 		max-width: 100%;
 		width: auto;
+		padding: 0.25rem 0 0.25rem 0.5rem;
 
 		.cs-custom-select-item-multiselect {
 			display: inline-flex;
@@ -128,16 +130,12 @@
 			height: 1.375rem;
 			border-radius: 0.25rem;
 			padding: 0 0.25rem 0 0.5rem;
-			margin: 0 0.25rem 0 0;
+			margin: 0.125rem 0.25rem 0.125rem 0;
 			position: relative;
 			font-size: 0.8125rem;
 			@include sbg(--cs-option-ms-item-selected-bg);
 			@include css4 {
 				border: 1px solid cvar(--cs-option-ms-item-selected-br);
-			}
-
-			&:first-child {
-				margin-left: 0.5rem;
 			}
 
 			&:hover {
