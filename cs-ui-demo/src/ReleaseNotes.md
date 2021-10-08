@@ -43,6 +43,7 @@
   * CSCurrency
   * CSCustomData
   * CSDatepicker
+  * CSDateTimePicker
   * CSDivider
   * CSFieldErrorMessage
   * CSIcon
