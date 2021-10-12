@@ -2,7 +2,7 @@ import React from 'react';
 import { CSAlert } from '@cloudsense/cs-ui-components';
 
 import Preview from '../Preview';
-import { CSForm, CSFormData } from 'cs-form-v2';
+import { CSForm, CSFormData } from '@cloudsense/cs-form-v2';
 
 interface State {
 	data: CSFormData;
@@ -98,9 +98,9 @@ class FieldTypes extends React.Component<{}, State> {
 				fieldType: 'LOOKUP',
 				label: 'label',
 				mode: 'client',
-				lookupColumns: [{ key: 'Account', label: 'Account' },
+				columns: [{ key: 'Account', label: 'Account' },
 				{ key: 'Industry', label: 'Industry' }],
-				lookupOptions: [{ Id: 1, Account: 'Acme', Industry: 'Manufacturing' },
+				options: [{ Id: 1, Account: 'Acme', Industry: 'Manufacturing' },
 				{ Id: 2, Account: 'Global Media', Industry: 'Industry' },
 				{ Id: 3, Account: 'Salesforce', Industry: 'Software' },
 				{ Id: 4, Account: 'Elisa', Industry: 'Telecommunications' },

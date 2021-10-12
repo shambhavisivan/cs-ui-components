@@ -8,6 +8,6 @@
   "scripts": {
     "components": "yarn workspace @cloudsense/cs-ui-components",
     "demo": "yarn workspace @cloudsense/cs-ui-demo",
-    "form-v2": "yarn workspace cs-form-v2"
+    "form-v2": "yarn workspace @cloudsense/cs-form-v2"
   }
 }

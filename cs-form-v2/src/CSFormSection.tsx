@@ -17,8 +17,8 @@ const CSFormSection = ({
 	styleClass,
 }: CSFormSectionProps) => {
 	const {
-		handleOnBlur,
-		handleOnChange,
+		handleFieldBlur,
+		handleFieldChange,
 	} = useCSForm();
 
 	const sectionFieldClasses = classNames(
@@ -42,8 +42,8 @@ const CSFormSection = ({
 				<CSFormField
 					{...field}
 					key={field.name}
-					onChange={(value) => handleOnChange(sectionKey, field, value)}
-					onBlur={(value) => handleOnBlur(sectionKey, field, value)}
+					onChange={(value) => handleFieldChange(sectionKey, field, value)}
+					onBlur={(value) => handleFieldBlur(sectionKey, field, value)}
 				/>
 			))}
 		</CSSection>

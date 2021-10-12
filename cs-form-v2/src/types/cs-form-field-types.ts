@@ -11,7 +11,6 @@ export type CSFormFieldType = 'CHECKBOX' |
 
 /** CHECKBOX FIELD */
 export interface CSFormCheckboxFieldInterface {
-	checked?: boolean;
 	fieldType: 'CHECKBOX';
 	indeterminite?: boolean;
 }
@@ -93,11 +92,10 @@ export type CSFormNumberFieldProps = CSFormNumberFieldInterface & CSFormFieldCom
 export interface CSFormRadioOption extends Pick<CSFormFieldCommonProps,
 	'readOnly' |
 	'disabled' |
-	'value' |
 	'title'> {
-	checked?: boolean;
 	label?: string;
 	radioOptionName?: string;
+	radioOptionValue?: string;
 }
 
 export interface CSFormRadioFieldInterface extends Pick<CSFormFieldCommonProps,
@@ -109,7 +107,8 @@ export interface CSFormRadioFieldInterface extends Pick<CSFormFieldCommonProps,
 	'name' |
 	'readOnly' |
 	'required' |
-	'styleClass'
+	'styleClass' |
+	'value'
 > {
 	fieldType: 'RADIO';
 	radioOptions: Array<CSFormRadioOption>;

@@ -7,12 +7,14 @@ const CSFormCheckboxField = ({
 	onBlur,
 	onChange,
 	styleClass,
+	value,
 	...props
 }: CSFormCheckboxFieldProps) => (
 	<CSCheckbox
 		className={styleClass}
 		onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.checked)}
 		onBlur={(e: React.FocusEvent<HTMLInputElement>) => onBlur(e.target.checked)}
+		checked={value}
 		{...props}
 	/>
 );

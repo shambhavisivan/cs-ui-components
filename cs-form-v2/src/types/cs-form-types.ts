@@ -41,6 +41,6 @@ export interface CSFormProps {
 	formErrorMessage?: Array<string> | string;
 	locale?: CSFormLocale;
 	mode?: CSFormMode;
-	onBlur?: (newData: CSFormChangedFieldData) => void;
-	onChange?: (newData: CSFormChangedFieldData) => void;
+	onFieldBlur?: (newData: CSFormChangedFieldData) => void;
+	onFieldChange?: (newData: CSFormChangedFieldData) => void;
 }

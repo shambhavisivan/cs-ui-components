@@ -4,20 +4,20 @@ import { CSFormProps } from './types/cs-form-types';
 import { validateField } from './utils/cs-form-validator-util';
 
 export type CSFormContextInterface = Pick<CSFormProps, 'mode' | 'columnNumber' | 'locale' | 'errorLabels'> & {
-	handleOnChange: (sectionKey: string, field: CSFormFieldData, newValue: string) => void,
-	handleOnBlur: (sectionKey: string, field: CSFormFieldData, newValue: string) => void,
+	handleFieldChange: (sectionKey: string, field: CSFormFieldData, newValue: string) => void,
+	handleFieldBlur: (sectionKey: string, field: CSFormFieldData, newValue: string) => void,
 }
 export const CSFormContext = createContext<CSFormContextInterface>({
 	columnNumber: null,
 	errorLabels: {},
 	locale: {},
 	mode: null,
-	handleOnBlur: () => { },
-	handleOnChange: () => { },
+	handleFieldBlur: () => { },
+	handleFieldChange: () => { },
 });
 
-export const CSFormProvider = ({ children, columnNumber, errorLabels, locale, mode, onBlur, onChange }: PropsWithChildren<CSFormProps>) => {
-	const handleFieldChange = (sectionKey: string, field: CSFormFieldData, newValue: any) => {
+export const CSFormProvider = ({ children, columnNumber, errorLabels, locale, mode, onFieldBlur, onFieldChange }: PropsWithChildren<CSFormProps>) => {
+	const handleFieldEvent = (sectionKey: string, field: CSFormFieldData, newValue: any) => {
 		const errorMessage = validateField(field, newValue, errorLabels);
 		const fieldName = field.name;
 		if (errorMessage) {
@@ -36,14 +36,14 @@ export const CSFormProvider = ({ children, columnNumber, errorLabels, locale, mo
 		};
 	};
 
-	const handleOnChange = (sectionKey: string, field: CSFormFieldData, newValue: any) => {
-		const newData = handleFieldChange(sectionKey, field, newValue);
-		onChange?.(newData);
+	const handleFieldChange = (sectionKey: string, field: CSFormFieldData, newValue: any) => {
+		const newData = handleFieldEvent(sectionKey, field, newValue);
+		onFieldChange?.(newData);
 	};
 
-	const handleOnBlur = (sectionKey: string, field: CSFormFieldData, newValue: any) => {
-		const newData = handleFieldChange(sectionKey, field, newValue);
-		onBlur?.(newData);
+	const handleFieldBlur = (sectionKey: string, field: CSFormFieldData, newValue: any) => {
+		const newData = handleFieldEvent(sectionKey, field, newValue);
+		onFieldBlur?.(newData);
 	};
 
 	return (
@@ -52,8 +52,8 @@ export const CSFormProvider = ({ children, columnNumber, errorLabels, locale, mo
 				columnNumber,
 				locale,
 				mode,
-				handleOnBlur,
-				handleOnChange,
+				handleFieldBlur,
+				handleFieldChange,
 				errorLabels,
 			}}
 		>

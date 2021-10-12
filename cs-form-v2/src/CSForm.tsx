@@ -11,8 +11,8 @@ const CSForm = ({
 	formErrorMessage,
 	locale,
 	mode,
-	onBlur,
-	onChange,
+	onFieldBlur,
+	onFieldChange,
 }: CSFormProps) => {
 	const renderSections = () => data.map((section) => (
 		<CSFormSection key={section.sectionKey} {...section} />
@@ -24,8 +24,8 @@ const CSForm = ({
 			data={data}
 			mode={mode}
 			locale={locale}
-			onBlur={onBlur}
-			onChange={onChange}
+			onFieldBlur={onFieldBlur}
+			onFieldChange={onFieldChange}
 			errorLabels={errorLabels}
 		>
 			<div className="cs-form">
