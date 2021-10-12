@@ -44,6 +44,7 @@
   * CSChip
   * CSCurrency
   * CSCustomData
+  * CSCustomSelect
   * CSDatepicker
   * CSDateTimePicker
   * CSDivider
