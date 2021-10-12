@@ -16,6 +16,7 @@
 		"@babel/core": "^7.8.4",
 		"@babel/preset-env": "^7.8.4",
 		"@babel/preset-react": "^7.8.3",
+		"@cloudsense/cs-ui-components": "1.1.25",
 		"@types/enzyme": "^3.10.8",
 		"@types/jest": "^26.0.23",
 		"@types/node": "^15.6.1",
@@ -28,6 +29,7 @@
 		"@typescript-eslint/parser": "^4.28.3",
 		"@wojtekmaj/enzyme-adapter-react-17": "^0.6.2",
 		"babel-loader": "^8.2.2",
+		"classnames": "^2.2.6",
 		"css-loader": "^5.2.6",
 		"enzyme": "^3.11.0",
 		"eslint": "^7.30.0",
@@ -49,9 +51,6 @@
 		"typescript": "^4.3.5",
 		"webpack": "^4.41.5",
 		"webpack-cli": "^3.3.10"
-	},
-	"dependencies": {
-		"@cloudsense/cs-ui-components": "1.1.25"
 	},
 	"peerDependencies": {
 		"react": "^17.0.2",

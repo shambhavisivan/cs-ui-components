@@ -4,7 +4,7 @@ import CSFormSection from './CSFormSection';
 import { CSFormProps } from './types/cs-form-types';
 
 const CSForm = ({
-	columnNumber,
+	columnNumber = 4,
 	data,
 	mode,
 }: CSFormProps) => {

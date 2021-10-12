@@ -13,15 +13,16 @@ const CSFormSection = ({
 	label,
 }: CSFormSectionProps) => (
 	<CSSection
-		title={label}
+		className="cs-form-section"
 		collapsible={collapsible}
 		defaultClosed={defaultClosed}
-		hideSectionHeader={hideSectionHeader}
 		error={error}
 		errorMessage={errorMessage}
+		hideSectionHeader={hideSectionHeader}
+		title={label}
 	>
-		{fields.map((field) => (
-			<CSFormField {...field} />
+		{fields.map((field, index) => (
+			<CSFormField {...field} key={index} />
 		))}
 	</CSSection>
 );

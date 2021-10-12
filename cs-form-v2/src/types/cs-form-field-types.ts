@@ -95,7 +95,8 @@ export type CSFormLookupFieldProps = CSFormLookupFieldCommonProps & (CSFormLooku
 export interface CSFormFieldCommonProps {
 	actions?: Array<any>;
 	disabled?: boolean;
-	errorMessages?: Array<string> | string;
+	error?: boolean;
+	errorMessage?: Array<string> | string;
 	hidden?: boolean;
 	icons?: Array<any>
 	label: string;

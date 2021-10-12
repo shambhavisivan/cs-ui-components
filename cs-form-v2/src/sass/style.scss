@@ -1,0 +1,32 @@
+/* CS-FORM */
+.cs-form {
+	display: flex;
+	flex-direction: column;
+	.cs-form-section {
+		width: 100%;
+		margin-top: 0;
+		.cs-section-body {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: baseline;
+			width: 100%;
+			.cs-form-field-wrapper {
+				display: flex;
+				padding: 0.5rem;
+				width: var(--cs-form-field-width);
+				& > * {
+					flex: 1;
+				}
+			}
+			.cs-form-field-new-line {
+				display: contents;
+				&::before {
+					content: '';
+					width: 100%;
+					height: 0;
+				}
+			}
+		}
+	}
+}
+
