@@ -1022,6 +1022,20 @@ export class App extends React.Component<object, AppState> {
 						{ key: '13', label: 'Larry' }
 					];
 				},
+				getDropdownActions: () => {
+					return [
+						{
+							label: 'John Action',
+							iconName: 'add',
+							onClick: () => alert('John Action invoked.')
+						},
+						{
+							label: 'Larry Action',
+							iconName: 'add',
+							onClick: () => alert('Larry Action invoked.')
+						}
+					];
+				},
 				header: {
 					class: 'PicklistOverrideClass',
 					label: 'Picklist'
@@ -1083,6 +1097,20 @@ export class App extends React.Component<object, AppState> {
 						{ key: '11', label: 'Fred' },
 						{ key: '12', label: 'Jenny' },
 						{ key: '13', label: 'Larry' }
+					];
+				},
+				getDropdownActions: () => {
+					return [
+						{
+							label: 'John Action',
+							iconName: 'add',
+							onClick: () => alert('John Action invoked.')
+						},
+						{
+							label: 'Larry Action',
+							iconName: 'add',
+							onClick: () => alert('Larry Action invoked.')
+						}
 					];
 				},
 				header: {

@@ -87,9 +87,12 @@ export class CSGridPicklistEditor
 	};
 
 	render() {
+		const dropdownActions = this.props.getDropdownActions?.();
+
 		return (
 			<div className='ag-theme-balham' ref={this.divRef}>
 				<CSCustomSelect
+					dropdownActions={dropdownActions}
 					label='Search'
 					labelHidden={true}
 					showCompactMultiselect={true}

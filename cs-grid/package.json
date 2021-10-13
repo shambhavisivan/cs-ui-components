@@ -61,7 +61,7 @@
 		"@babel/plugin-proposal-function-bind": "7.2.0",
 		"@babel/preset-env": "^7.5.5",
 		"@babel/preset-react": "7.0.0",
-		"@cloudsense/cs-ui-components": "1.1.26-alpha6",
+		"@cloudsense/cs-ui-components": "2.0.0-alpha1",
 		"@types/classnames": "^2.2.11",
 		"@types/enzyme": "^3.10.8",
 		"@types/jest": "^24.0.19",

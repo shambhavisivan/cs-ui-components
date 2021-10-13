@@ -1,7 +1,7 @@
 import { Beans, ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import React from 'react';
-import { CSGridMultiSelectPicklistEditor } from '../../src/components/cs-grid-multi-select-picklist-editor';
+import { CSGridPicklistEditor } from '../../src/components/cs-grid-picklist-editor';
 import { CellData } from '../../src/interfaces/cs-grid-base-interfaces';
 import {
 	CSGridCellEditorProps,
@@ -9,16 +9,13 @@ import {
 	PicklistProps
 } from '../../src/interfaces/cs-grid-cell-props';
 import { UserInfo } from '../../src/interfaces/user-info';
-import { createDocumentListenersMock } from '../utils/document-listeners-mock';
 type PicklistCellValueType = PicklistOption | Array<PicklistOption>;
 
-describe('CS Grid MultiSelectPicklist Editor', () => {
+describe('CS Grid Picklist Editor', () => {
 	let stopEditingMock: jest.Mock<any, any>;
 	let containsMock: jest.Mock<any, any>;
 
-	const fireEvent = createDocumentListenersMock();
-
-	const exampleMultiSelectPicklist: CellData<PicklistOption> = {
+	const examplePicklist: CellData<PicklistOption> = {
 		cellValue: {
 			key: 'exampleCellValue',
 			label: 'exampleCellValue'
@@ -52,7 +49,7 @@ describe('CS Grid MultiSelectPicklist Editor', () => {
 			rowIndex: 0,
 			stopEditing: stopEditingMock,
 			userInfo,
-			value: exampleMultiSelectPicklist,
+			value: examplePicklist,
 
 			filterAboveSize: 5,
 			getOptions: () => {
@@ -79,7 +76,7 @@ describe('CS Grid MultiSelectPicklist Editor', () => {
 	});
 
 	test('CSCustomSelect should have actions data', () => {
-		const cellEditor = shallow(<CSGridMultiSelectPicklistEditor {...cSGridCellEditorProps} />);
+		const cellEditor = shallow(<CSGridPicklistEditor {...cSGridCellEditorProps} />);
 		expect(cellEditor.find('CSCustomSelect').prop('dropdownActions')).toEqual(
 			expect.arrayContaining([
 				expect.objectContaining({
@@ -89,12 +86,5 @@ describe('CS Grid MultiSelectPicklist Editor', () => {
 				})
 			])
 		);
-	});
-
-	test('The multiSelectPicklist editor should set the multi select flag to true.', () => {
-		const cellEditor = shallow(<CSGridMultiSelectPicklistEditor {...cSGridCellEditorProps} />);
-		const instance = cellEditor.instance() as CSGridMultiSelectPicklistEditor;
-
-		expect(instance.multiSelect).toBeTruthy();
 	});
 });

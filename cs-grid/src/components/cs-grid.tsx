@@ -1153,7 +1153,9 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 
 					settings.suppressKeyboardEvent = (params: SuppressKeyboardEventParams) => {
 						const lookupDropdownOpen = document.querySelector('.cs-lookup-dropdown');
-						const picklistDropdownOpen = document.querySelector('.cs-custom-select-wrapper');
+						const picklistDropdownOpen = document.querySelector(
+							'.cs-custom-select-wrapper'
+						);
 						// If lookup or picklist dropdown is open suppress all OOTB ag-grid keys
 						if (lookupDropdownOpen || picklistDropdownOpen) {
 							return true;
@@ -1276,7 +1278,9 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 
 				const settings: AgGridColDef = {};
 				settings.suppressKeyboardEvent = (params: SuppressKeyboardEventParams) => {
-					const picklistDropdownOpen = document.querySelector('.cs-custom-select-wrapper');
+					const picklistDropdownOpen = document.querySelector(
+						'.cs-custom-select-wrapper'
+					);
 
 					return (
 						params.event.key === KeyCode.Escape ||
@@ -1293,6 +1297,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 					columnDef.getEmptyPicklistContent
 				);
 				this.addIfDefined(cellParams, 'getOptions', columnDef.getOptions);
+				this.addIfDefined(cellParams, 'getDropdownActions', columnDef.getDropdownActions);
 				agGridColDef = { ...settings, ...agGridColDef };
 			}
 

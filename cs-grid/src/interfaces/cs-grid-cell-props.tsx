@@ -7,6 +7,7 @@ import {
 	CSTooltipPosition,
 	CSTooltipVariant
 } from '@cloudsense/cs-ui-components';
+import { CSButtonProps } from '@cloudsense/cs-ui-components/dist/cs-ui-components/src/components/CSButton';
 import { ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
 import { CellData, IsColumnFunc } from './cs-grid-base-interfaces';
 import { LookupSearchColDef } from './cs-grid-col-def';
@@ -105,6 +106,7 @@ export interface RowValidationProps extends IconProps {}
 export interface PicklistProps {
 	filterAboveSize?: number;
 	toggleSelection?: boolean;
+	getDropdownActions?: () => Array<CSButtonProps>;
 	getEmptyPicklistContent?(guid: string): JSX.Element;
 	getOptions(guid: string): Array<PicklistOption>;
 }
