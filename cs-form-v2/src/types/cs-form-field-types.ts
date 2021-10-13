@@ -157,7 +157,6 @@ export type CSFormTextareaFieldProps = CSFormTextareaFieldInterface & CSFormFiel
 
 /** TOGGLE FIELD */
 export interface CSFormToggleFieldInterface {
-	checked?: boolean;
 	fieldType: 'TOGGLE';
 }
 
