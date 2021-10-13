@@ -6,6 +6,13 @@ export type CSNotation = 'standard' | 'scientific' | 'engineering' | 'compact';
 export type CSSignDisplay = 'auto' | 'never' | 'always' | 'exceptZero';
 export type CSCurrencySign = 'standard' | 'accounting';
 
+// This fixes TS2339: Property 'MSStream' does not exist on type 'Window & typeof globalThis'.
+declare global {
+	interface Window {
+		MSStream: any
+	}
+}
+
 export interface CSCurrencyProps {
 	[key: string]: any;
 	className?: string;
@@ -129,8 +136,8 @@ class CSCurrency extends React.Component<CSCurrencyProps> {
 					return this.formatValue(value);
 				}
 
-					// When value is not defined, it is rendered as NaN next to the currency symbol
-					// This part removes NaN so only currency symbol is displayed
+				// When value is not defined, it is rendered as NaN next to the currency symbol
+				// This part removes NaN so only currency symbol is displayed
 				return this.formatValue(value).replace(/(NaN)/g, '');
 			}
 
