@@ -1,3 +1,5 @@
+import React from 'react';
+
 export type CSFormFieldType = 'CHECKBOX' |
 	'DATE' |
 	'DATETIME' |
@@ -42,11 +44,11 @@ export type CSFormLookupFieldMode = 'client' | 'server';
 
 export interface CSFormLookupFieldTableColumn {
 	key: string;
-	label: string;
+	header: string;
 }
 
 export interface CSFormLookupFieldFetchResult {
-	records: Array<Record<string, any>>;
+	records: Array<CSFormLookupFieldOptions>;
 	moreRecords: boolean;
 }
 
@@ -65,10 +67,17 @@ export interface CSFormLookupFieldServerProps {
 	mode: 'server';
 	pageSize: number;
 }
+export interface CSFormLookupFieldOptionsData {
+	[key: string]: any;
+}
+export interface CSFormLookupFieldOptions {
+	key: React.ReactText;
+	data: CSFormLookupFieldOptionsData;
+}
 
 export interface CSFormLookupFieldClientProps {
 	loading?: boolean;
-	options: Array<Record<string, any>>;
+	options: Array<CSFormLookupFieldOptions>;
 	mode: 'client';
 	searchBy?: Array<string>;
 }
