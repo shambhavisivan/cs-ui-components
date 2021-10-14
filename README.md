@@ -21,9 +21,9 @@ If you need to install `yarn`, you can do so by running `npm install --global ya
 1. Clone this git repository. If you've already cloned it before, pull the latest commit from the master branch.
 2. Navigate to the root directory (here) with your terminal.
 3. Run `yarn` or `yarn install` to install or update dependencies.
-4. Run `yarn components build` or `yarn components watch` and `yarn form-v2 build` or `yarn form-v2 watch`.
-  - If you have just cloned the repository for the first time or anew, or simply do not want to track changes or enable live reloading, run `yarn components build` and `yarn form-v2 build`.
-  - If you wish to continuously create builds, track changes as you code and enable live reloading, run `yarn components watch` or `yarn form-v2 build`, depending on the module you want to track. __Note:__ You have to perform the previous step first if you're coming from a freshly cloned repository.
+4. Run `yarn components build` or `yarn components watch` and `yarn form2 build` or `yarn form2 watch`.
+  - If you have just cloned the repository for the first time or anew, or simply do not want to track changes or enable live reloading, run `yarn components build` and `yarn form2 build`.
+  - If you wish to continuously create builds, track changes as you code and enable live reloading, run `yarn components watch` or `yarn form2 build`, depending on the module you want to track. __Note:__ You have to perform the previous step first if you're coming from a freshly cloned repository.
 5. In a separate terminal session, run `yarn demo start` from the root directory to launch the Demo App locally.
 
 If you do not wish to start the Demo App locally, you can access a hosted version of the latest published build [here](https://hvar.cloudsense.com/cs-ui-demo/). Use `cs-ui-demo-rnd` as the username and `c!z4uO&PaRZ2` for the password when prompted.
@@ -51,7 +51,7 @@ You do not have to navigate to subdirectories or libraries to run scripts in the
 - `yarn <workspace name> <command>` - Run a command inside a workspace. Available workspaces are:
   - `components` - Commands that need to be run in the `cs-ui-components` library.
   - `demo` - Commands that need to be run in the `cs-ui-demo` directory.
-  - `form-v2` - Commands that need to be run in the `cs-form-v2` library.
+  - `form2` - Commands that need to be run in the `cs-form-v2` library.
 
 ### Components
 
@@ -70,8 +70,8 @@ You do not have to navigate to subdirectories or libraries to run scripts in the
 
 ### Form V2
 
-- `yarn form-v2 lint` - Detect linting errors.
-- `yarn form-v2 lint -- --fix` - Fix detected linting errors.
-- `yarn form-v2 build` - Compile a static version of the code to the `dist` folder.
-- `yarn form-v2 watch` - Compile the code to the `dist` folder after every change.
-- `yarn form-v2 publish` - Publish the code to the `@cloudsense/cs-form-v2` npm repository.
+- `yarn form2 lint` - Detect linting errors.
+- `yarn form2 lint -- --fix` - Fix detected linting errors.
+- `yarn form2 build` - Compile a static version of the code to the `dist` folder.
+- `yarn form2 watch` - Compile the code to the `dist` folder after every change.
+- `yarn form2 publish` - Publish the code to the `@cloudsense/cs-form-v2` npm repository.
