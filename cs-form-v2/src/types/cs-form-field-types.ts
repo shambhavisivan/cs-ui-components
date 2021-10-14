@@ -30,6 +30,7 @@ export interface CSFormFieldLayoutProps {
 
 export type CSFormFieldType = 'CHECKBOX' |
 	'CUSTOM' |
+	'CUSTOM-SELECT' |
 	'DATE' |
 	'DATETIME' |
 	'LOOKUP' |
@@ -44,6 +45,28 @@ export type CSFormFieldType = 'CHECKBOX' |
 export interface CSFormCheckboxFieldProps extends CSFormFieldCommonProps {
 	fieldType: 'CHECKBOX';
 	indeterminite?: boolean;
+}
+
+/** CUSTOM FIELD */
+export interface CSFormCustomFieldProps extends Pick<CSFormFieldCommonProps, 'onBlur' | 'onChange'> {
+	fieldType: 'CUSTOM',
+	onFocus?: (value?: any) => any;
+	render: React.ReactElement;
+	[key: string]: any;
+}
+
+/** CUSTOM SELECT FIELD */
+export interface CSFormCustomSelectOption {
+	key: React.ReactText;
+	label: React.ReactText;
+}
+
+export interface CSFormCustomSelectFieldProps extends Omit<CSFormFieldCommonProps, 'actions' | 'icons'> {
+	fieldType: 'CUSTOM-SELECT';
+	multiselect?: boolean;
+	onClear?: () => void;
+	onSearch?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+	options?: Array<CSFormCustomSelectOption>;
 }
 
 /** DATE FIELD */
@@ -90,9 +113,11 @@ export interface CSFormLookupFieldServerProps {
 	mode: 'server';
 	pageSize: number;
 }
+
 export interface CSFormLookupFieldOptionsData {
 	[key: string]: any;
 }
+
 export interface CSFormLookupFieldOptions {
 	key: React.ReactText;
 	data: CSFormLookupFieldOptionsData;
@@ -173,15 +198,8 @@ export interface CSFormToggleFieldProps extends CSFormFieldCommonProps {
 	fieldType: 'TOGGLE';
 }
 
-/** CUSTOM FIELD */
-export interface CSFormCustomFieldProps extends Pick<CSFormFieldCommonProps, 'onBlur' | 'onChange'> {
-	fieldType: 'CUSTOM',
-	onFocus?: (value?: any) => any;
-	render: React.ReactElement;
-	[key: string]: any;
-}
-
 type CSFormStandardFields = CSFormCheckboxFieldProps
+	| CSFormCustomSelectFieldProps
 	| CSFormDateFieldProps
 	| CSFormDateTimeFieldProps
 	| CSFormNumberFieldProps

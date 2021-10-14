@@ -2,6 +2,8 @@ import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 import { CSFormFieldProps } from './types/cs-form-field-types';
 import CSFormCheckboxField from './form-fields/CSFormCheckboxField';
+import CSFormCustomField from './form-fields/CSFormCustomField';
+import CSFormCustomSelectField from './form-fields/CSFormCustomSelectField';
 import CSFormDateField from './form-fields/CSFormDateField';
 import CSFormDateTimeField from './form-fields/CSFormDateTimeField';
 import CSFormLookupField from './form-fields/CSFormLookupField';
@@ -12,7 +14,6 @@ import CSFormTextField from './form-fields/CSFormTextField';
 import CSFormTextareaField from './form-fields/CSFormTextareaField';
 import CSFormToggleField from './form-fields/CSFormToggleField';
 import { useCSForm } from './CSFormContext';
-import CSFormCustomField from './form-fields/CSFormCustomField';
 
 const CSFormField = ({
 	grow,
@@ -36,6 +37,8 @@ const CSFormField = ({
 		switch (rest.fieldType) {
 		case 'CUSTOM':
 			return <CSFormCustomField {...rest} />;
+		case 'CUSTOM-SELECT':
+			return <CSFormCustomSelectField {...fieldSettings} {...rest} />;
 		case 'CHECKBOX':
 			return <CSFormCheckboxField {...fieldSettings} {...rest} />;
 		case 'DATE':
