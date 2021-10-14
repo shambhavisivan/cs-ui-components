@@ -98,17 +98,14 @@ class FieldTypes extends React.Component<{}, State> {
 				fieldType: 'LOOKUP',
 				label: 'label',
 				mode: 'client',
-				columns: [{ key: 'Account', label: 'Account' },
-				{ key: 'Industry', label: 'Industry' }],
-				options: [{ Id: 1, Account: 'Acme', Industry: 'Manufacturing' },
-				{ Id: 2, Account: 'Global Media', Industry: 'Industry' },
-				{ Id: 3, Account: 'Salesforce', Industry: 'Software' },
-				{ Id: 4, Account: 'Elisa', Industry: 'Telecommunications' },
-				{ Id: 5, Account: 'Facebook', Industry: 'Social media' },
-				{ Id: 6, Account: 'Google', Industry: 'Technology' }],
+				columns: [{ key: 'Account', header: 'Account' },
+				{ key: 'Industry', header: 'Industry' }],
+				options: [{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
+				{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
+				{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } },
+				{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }],
 				fieldToBeDisplayed: 'Account',
 				name: 'lookup'
-
 			}]
 		}
 	];

@@ -2,7 +2,8 @@ import React from 'react';
 import { Theme, useTheme } from '../context/ThemeContext';
 import { NavLink } from 'react-router-dom';
 import { CSImage, CSChip, CSButton, CSDropdown, CSDivider } from '@cloudsense/cs-ui-components';
-import { version } from '@cloudsense/cs-ui-components/package.json';
+import { version as componentsVersion } from '@cloudsense/cs-ui-components/package.json';
+import { version as formVersion } from '@cloudsense/cs-form-v2/package.json';
 
 const MainHeader: React.FC = () => {
 	const { theme, toggleTheme } = useTheme();
@@ -33,7 +34,7 @@ const MainHeader: React.FC = () => {
 						CS UI Components
 						<CSChip
 							color="#4bcabb"
-							text={`v${version}`}
+							text={`v${componentsVersion}`}
 							className="black-text"
 						/>
 					</NavLink>
@@ -48,17 +49,18 @@ const MainHeader: React.FC = () => {
 						/>
 					</NavLink>
 				</li>
+				*/}
 				<li className="main-header-tab">
 					<NavLink to="/cs-form" activeClassName="active-main-header-tab">
 						CS Form
 						<CSChip
 							color="#d8d8d8"
 							// Needs to be updated to a live version when CSForm is added to demo
-							text={`v${version}`}
+							text={`v${formVersion}`}
 							className="black-text"
 						/>
 					</NavLink>
-				</li> */}
+				</li>
 				<li className="main-header-tab">
 					<NavLink
 						to="/utilities"
