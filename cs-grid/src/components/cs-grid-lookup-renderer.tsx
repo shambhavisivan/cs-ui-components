@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CSTooltip } from '@cloudsense/cs-ui-components';
+import { CSDataTableRowInterface, CSTooltip } from '@cloudsense/cs-ui-components';
 import { CSGridCellRendererProps, LookupProps } from '../interfaces/cs-grid-cell-props';
 import { formatLookupValue } from '../utils/cs-grid-lookup-formatting-helper';
 import {
@@ -13,12 +13,12 @@ import { CSCustomDataHelper } from './cs-grid-custom-data-helper';
  * A cell renderer for displaying the currently selected lookup values.
  */
 export class CSGridLookupRenderer extends CSGridBaseActionsRenderer<
-	Array<Record<string, string>> | Record<string, string>,
-	CSGridBaseActionsRendererProps<Array<Record<string, string>> | Record<string, string>> &
+	Array<CSDataTableRowInterface> | CSDataTableRowInterface,
+	CSGridBaseActionsRendererProps<Array<CSDataTableRowInterface> | CSDataTableRowInterface> &
 		LookupProps
 > {
 	constructor(
-		props: CSGridCellRendererProps<Array<Record<string, string>> | Record<string, string>> &
+		props: CSGridCellRendererProps<Array<CSDataTableRowInterface> | CSDataTableRowInterface> &
 			LookupProps
 	) {
 		super(props);

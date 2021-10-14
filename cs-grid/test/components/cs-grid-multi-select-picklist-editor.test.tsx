@@ -3,9 +3,14 @@ import { mount, shallow } from 'enzyme';
 import React from 'react';
 import { CSGridMultiSelectPicklistEditor } from '../../src/components/cs-grid-multi-select-picklist-editor';
 import { CellData } from '../../src/interfaces/cs-grid-base-interfaces';
-import { CSGridCellEditorProps, PicklistProps } from '../../src/interfaces/cs-grid-cell-props';
+import {
+	CSGridCellEditorProps,
+	PicklistOption,
+	PicklistProps
+} from '../../src/interfaces/cs-grid-cell-props';
 import { UserInfo } from '../../src/interfaces/user-info';
 import { createDocumentListenersMock } from '../utils/document-listeners-mock';
+type PicklistCellValueType = PicklistOption | Array<PicklistOption>;
 
 describe('CS Grid MultiSelectPicklist Editor', () => {
 	let stopEditingMock: jest.Mock<any, any>;
@@ -13,8 +18,11 @@ describe('CS Grid MultiSelectPicklist Editor', () => {
 
 	const fireEvent = createDocumentListenersMock();
 
-	const exampleMultiSelectPicklist: CellData<string> = {
-		cellValue: 'exampleCellValue'
+	const exampleMultiSelectPicklist: CellData<PicklistOption> = {
+		cellValue: {
+			key: 'exampleCellValue',
+			label: 'exampleCellValue'
+		}
 	};
 
 	const userInfo: UserInfo = {
@@ -26,7 +34,7 @@ describe('CS Grid MultiSelectPicklist Editor', () => {
 	const column: Column = new Column(colDef, null, 'colId', true);
 	const rowNode: RowNode = new RowNode(new Beans());
 
-	let cSGridCellEditorProps: CSGridCellEditorProps<string> & PicklistProps;
+	let cSGridCellEditorProps: CSGridCellEditorProps<PicklistCellValueType> & PicklistProps;
 
 	beforeEach(() => {
 		stopEditingMock = jest.fn();
@@ -48,7 +56,10 @@ describe('CS Grid MultiSelectPicklist Editor', () => {
 
 			filterAboveSize: 5,
 			getOptions: () => {
-				return ['Bob', 'Harry'];
+				return [
+					{ key: '1', label: 'Bob' },
+					{ key: '2', label: 'Harry' }
+				];
 			}
 		};
 	});
@@ -58,31 +69,5 @@ describe('CS Grid MultiSelectPicklist Editor', () => {
 		const instance = cellEditor.instance() as CSGridMultiSelectPicklistEditor;
 
 		expect(instance.multiSelect).toBeTruthy();
-	});
-
-	test('Confirms stopEditing is called when clicking outside the editor.', () => {
-		containsMock.mockReturnValue(false);
-		const cellEditor = mount(<CSGridMultiSelectPicklistEditor {...cSGridCellEditorProps} />);
-		const instance = cellEditor.instance() as any;
-
-		instance.divRef.current.contains = containsMock;
-		instance.isCancelBeforeStart();
-
-		fireEvent.click(document.body);
-
-		expect(stopEditingMock).toHaveBeenCalledTimes(1);
-	});
-
-	test('Confirms stopEditing is not called when clicking inside the editor.', () => {
-		containsMock.mockReturnValue(true);
-		const cellEditor = mount(<CSGridMultiSelectPicklistEditor {...cSGridCellEditorProps} />);
-		const instance = cellEditor.instance() as any;
-
-		instance.divRef.current.contains = containsMock;
-		instance.isCancelBeforeStart();
-
-		fireEvent.click(document.body);
-
-		expect(stopEditingMock).toHaveBeenCalledTimes(0);
 	});
 });

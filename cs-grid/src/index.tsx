@@ -1,4 +1,3 @@
-'use strict';
 import { CSButton, CSButtonGroup, CSChip, CSTooltip } from '@cloudsense/cs-ui-components';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -45,7 +44,7 @@ export class App extends React.Component<object, AppState> {
 	private gridApi: GridApi;
 
 	private columnState: string =
-		'[{"colId":"exampleRowSelection","hide":false,"aggFunc":null,"width":80,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleGuid","hide":true,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleDecimal","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleText","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleCurrency","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleDate","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleLookup","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleMultiSelectLookup","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleBoolean","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleIntegerStep","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleInteger","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"examplePicklist","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"examplePicklistWithLabels","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleMultiSelectPicklist","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleMultiSelectPicklistWithLabels","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleRowValidation","hide":false,"aggFunc":null,"width":40,"pivotIndex":null,"pinned":null,"rowGroupIndex":null}]';
+		'[{"colId":"exampleRowSelection","hide":false,"aggFunc":null,"width":80,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleGuid","hide":true,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleDecimal","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleText","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleCurrency","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleDate","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleLookup","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleMultiSelectLookup","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleBoolean","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleIntegerStep","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleInteger","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"examplePicklist","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleMultiSelectPicklist","hide":false,"aggFunc":null,"width":200,"pivotIndex":null,"pinned":null,"rowGroupIndex":null},{"colId":"exampleRowValidation","hide":false,"aggFunc":null,"width":40,"pivotIndex":null,"pinned":null,"rowGroupIndex":null}]';
 
 	private rowDataSeeds: Record<string, any> = [
 		{
@@ -58,36 +57,43 @@ export class App extends React.Component<object, AppState> {
 			exampleInteger: 35000,
 			exampleIntegerStep: 3500,
 			exampleLookup: {
-				hidden: '11111111111',
-				text1: 'Bob',
-				'text2.name.thirdPart': '645612'
-			},
-			exampleMultiSelectLookup: [
-				{
+				data: {
 					hidden: '11111111111',
 					text1: 'Bob',
 					'text2.name.thirdPart': '645612'
 				},
+				key: 1
+			},
+			exampleMultiSelectLookup: [
 				{
-					hidden: '11111111111',
-					text1: 'Harry',
-					'text2.name.thirdPart': '564768'
+					data: {
+						hidden: '11111111111',
+						text1: 'Bob',
+						'text2.name.thirdPart': '645612'
+					},
+					key: 1
+				},
+				{
+					data: {
+						hidden: '11111111111',
+						text1: 'Harry',
+						'text2.name.thirdPart': '564768'
+					},
+					key: 2
 				}
 			],
-			exampleMultiSelectPicklist: ['Harry', 'Sally'],
-			exampleMultiSelectPicklistWithLabels: [
+			exampleMultiSelectPicklist: [
 				{
-					id: '2',
+					key: '2',
 					label: 'Harry'
 				},
 				{
-					id: '3',
+					key: '3',
 					label: 'Sally'
 				}
 			],
-			examplePicklist: 'Bob',
-			examplePicklistWithLabels: {
-				id: '2',
+			examplePicklist: {
+				key: '2',
 				label: 'Harry'
 			},
 			exampleRowValidation: {
@@ -106,33 +112,40 @@ export class App extends React.Component<object, AppState> {
 			exampleInteger: 32000,
 			exampleIntegerStep: 32000,
 			exampleLookup: {
-				text1: 'Harry',
-				'text2.name.thirdPart': '564768'
-			},
-			exampleMultiSelectLookup: [
-				{
+				data: {
 					text1: 'Harry',
 					'text2.name.thirdPart': '564768'
 				},
+				key: 2
+			},
+			exampleMultiSelectLookup: [
 				{
-					text1: 'Sally',
-					'text2.name.thirdPart': '079845'
+					data: {
+						text1: 'Harry',
+						'text2.name.thirdPart': '564768'
+					},
+					key: 2
+				},
+				{
+					data: {
+						text1: 'Sally',
+						'text2.name.thirdPart': '079845'
+					},
+					key: 3
 				}
 			],
-			exampleMultiSelectPicklist: ['Sally', 'Bob'],
-			exampleMultiSelectPicklistWithLabels: [
+			exampleMultiSelectPicklist: [
 				{
-					id: '5',
+					key: '5',
 					label: 'John'
 				},
 				{
-					id: '3',
+					key: '3',
 					label: 'Sally'
 				}
 			],
-			examplePicklist: 'Harry',
-			examplePicklistWithLabels: {
-				id: '5',
+			examplePicklist: {
+				key: '5',
 				label: 'John'
 			},
 			exampleRowValidation: {
@@ -151,33 +164,41 @@ export class App extends React.Component<object, AppState> {
 			exampleInteger: 72000,
 			exampleIntegerStep: 72000,
 			exampleLookup: {
-				text1: 'Sally',
-				'text2.name.thirdPart': '079845'
-			},
-			exampleMultiSelectLookup: [
-				{
+				data: {
 					text1: 'Sally',
 					'text2.name.thirdPart': '079845'
 				},
+				key: 3
+			},
+			exampleMultiSelectLookup: [
 				{
-					text1: 'Bob',
-					'text2.name.thirdPart': '645612'
+					data: {
+						text1: 'Sally',
+						'text2.name.thirdPart': '079845'
+					},
+					key: 3
+				},
+				{
+					data: {
+						hidden: '11111111111',
+						text1: 'Bob',
+						'text2.name.thirdPart': '645612'
+					},
+					key: 1
 				}
 			],
-			exampleMultiSelectPicklist: ['Bob', 'Harry'],
-			exampleMultiSelectPicklistWithLabels: [
+			exampleMultiSelectPicklist: [
 				{
-					id: '5',
+					key: '5',
 					label: 'John'
 				},
 				{
-					id: '11',
+					key: '11',
 					label: 'Fred'
 				}
 			],
-			examplePicklist: 'Sally',
-			examplePicklistWithLabels: {
-				id: '11',
+			examplePicklist: {
+				key: '11',
 				label: 'Fred'
 			},
 			exampleRowValidation: {
@@ -197,33 +218,40 @@ export class App extends React.Component<object, AppState> {
 			exampleInteger: 99000,
 			exampleIntegerStep: 99000,
 			exampleLookup: {
-				text1: 'Sue',
-				'text2.name.thirdPart': '123456'
-			},
-			exampleMultiSelectLookup: [
-				{
+				data: {
 					text1: 'Sue',
 					'text2.name.thirdPart': '123456'
 				},
+				key: 7
+			},
+			exampleMultiSelectLookup: [
 				{
-					text1: 'Sean',
-					'text2.name.thirdPart': '987654'
+					data: {
+						text1: 'Sue',
+						'text2.name.thirdPart': '123456'
+					},
+					key: 7
+				},
+				{
+					data: {
+						text1: 'Sean',
+						'text2.name.thirdPart': '987654'
+					},
+					key: 8
 				}
 			],
-			exampleMultiSelectPicklist: ['Sean', 'Sue'],
-			exampleMultiSelectPicklistWithLabels: [
+			exampleMultiSelectPicklist: [
 				{
-					id: '7',
+					key: '7',
 					label: 'Sue'
 				},
 				{
-					id: '11',
+					key: '11',
 					label: 'Fred'
 				}
 			],
-			examplePicklist: 'Sean',
-			examplePicklistWithLabels: {
-				id: '7',
+			examplePicklist: {
+				key: '7',
 				label: 'Sue'
 			},
 			exampleRowValidation: {
@@ -251,12 +279,10 @@ export class App extends React.Component<object, AppState> {
 			exampleMultiSelectLookup: 'An error message',
 			exampleMultiSelectPicklist: 'An error message',
 			examplePicklist: 'An error message',
-			examplePicklistWithLabels: 'An error message',
 			exampleRowValidation: 'Error 1\nError 2',
 			exampleText: 'An error message'
 		},
 		{
-			examplePicklistWithLabels: 'An error message',
 			exampleRowValidation: 'Info 1\nInfo 2'
 		},
 		{
@@ -271,9 +297,7 @@ export class App extends React.Component<object, AppState> {
 			exampleLookup: '',
 			exampleMultiSelectLookup: '',
 			exampleMultiSelectPicklist: '',
-			exampleMultiSelectPicklistWithLabels: '',
 			examplePicklist: '',
-			examplePicklistWithLabels: '',
 			exampleRowValidation: 'Error 1Error 2',
 			exampleText: ''
 		}
@@ -335,19 +359,25 @@ export class App extends React.Component<object, AppState> {
 				],
 				rowData: [
 					{
-						hidden: '11111111111',
-						text1: 'Bob the Greatdfgdfgdfgdfgdfgdgdfgdfg / fgdf /d dfg / dfgdff /',
-						'text2.name.thirdPart': '1234567890987654321'
+						data: {
+							text1: 'Bob the Greatdfgdfgdfgdfgdfgdgdfgdfg / fgdf /d dfg / dfgdff /',
+							'text2.name.thirdPart': '1234567890987654321'
+						},
+						key: 1
 					},
 					{
-						hidden: '22222222222',
-						text1: 'Harry',
-						'text2.name.thirdPart': '564768'
+						data: {
+							text1: 'Harry',
+							'text2.name.thirdPart': '564768'
+						},
+						key: 2
 					},
 					{
-						hidden: '33333333333',
-						text1: 'Sally',
-						'text2.name.thirdPart': '079845'
+						data: {
+							text1: 'Sally',
+							'text2.name.thirdPart': '079845'
+						},
+						key: 3
 					}
 				]
 			};
@@ -977,19 +1007,19 @@ export class App extends React.Component<object, AppState> {
 				filterAboveSize: 5,
 				getOptions: () => {
 					return [
-						'Bob',
-						'Harry',
-						'Sally',
-						'Mary',
-						'John',
-						'Jack',
-						'Sue',
-						'Sean',
-						'Niall',
-						'Albert',
-						'Fred',
-						'Jenny',
-						'Larry'
+						{ key: '1', label: 'Bob' },
+						{ key: '2', label: 'Harry' },
+						{ key: '3', label: 'Sally' },
+						{ key: '4', label: 'Mary' },
+						{ key: '5', label: 'John' },
+						{ key: '6', label: 'Jack' },
+						{ key: '7', label: 'Sue' },
+						{ key: '8', label: 'Sean' },
+						{ key: '9', label: 'Niall' },
+						{ key: '10', label: 'Albert' },
+						{ key: '11', label: 'Fred' },
+						{ key: '12', label: 'Jenny' },
+						{ key: '13', label: 'Larry' }
 					];
 				},
 				header: {
@@ -1001,7 +1031,7 @@ export class App extends React.Component<object, AppState> {
 				userInfo
 			},
 			{
-				cellType: 'Picklist',
+				cellType: 'MultiSelectPicklist',
 				flashOnCellValueChange: true,
 				getTooltip: (guid: string) => {
 					return {
@@ -1040,152 +1070,25 @@ export class App extends React.Component<object, AppState> {
 				filterAboveSize: 5,
 				getOptions: () => {
 					return [
-						{ id: '1', label: 'Bob' },
-						{ id: '2', label: 'Harry', horizontalDivider: true },
-						{ id: '3', label: 'Sally' },
-						{ id: '4', label: 'Mary', horizontalDivider: false },
-						{ id: '5', label: 'John' },
-						{ id: '6', label: 'Jack' },
-						{ id: '7', label: 'Sue' },
-						{ id: '8', label: 'Sean' },
-						{ id: '9', label: 'Niall' },
-						{ id: '10', label: 'Albert', horizontalDivider: true },
-						{ id: '11', label: 'Fred' },
-						{ id: '12', label: 'Jenny' },
-						{
-							icon: <span className='icon-error' aria-hidden='true' />,
-							id: '1',
-							label: 'Larry'
-						}
-					];
-				},
-				header: {
-					class: 'PicklistOverrideClass',
-					label: 'Picklist With Labels'
-				},
-				name: 'examplePicklistWithLabels',
-				toggleSelection: false,
-				userInfo
-			},
-			{
-				cellType: 'MultiSelectPicklist',
-				flashOnCellValueChange: true,
-				getTooltip: (guid: string) => {
-					return {
-						content: ['example tooltip', 'Line two'],
-						delay: 300
-					};
-				},
-				getActions: (guid: string) => {
-					return [
-						{
-							action: () => console.error('action called'),
-							labelHidden: true,
-							icon: { iconName: 'new_window' },
-							name: 'Open record in new window',
-							size: 'xsmall',
-							getTooltip: (guid: string) => {
-								return {
-									content: ['Custom action with tooltip example']
-								};
-							}
-						}
-					];
-				},
-				getIcons: (guid: string) => {
-					return [
-						{
-							iconName: 'info',
-							getTooltip: (guid: string) => {
-								return {
-									content: ['Custom icon with tooltip example']
-								};
-							}
-						}
-					];
-				},
-				getOptions: () => {
-					return [
-						'Bob',
-						'Harry',
-						'Sally',
-						'Mary',
-						'John',
-						'Jack',
-						'Sue',
-						'Sean',
-						'Niall',
-						'Albert',
-						'Fred',
-						'Jenny',
-						'Larry'
+						{ key: '1', label: 'Bob' },
+						{ key: '2', label: 'Harry' },
+						{ key: '3', label: 'Sally' },
+						{ key: '4', label: 'Mary' },
+						{ key: '5', label: 'John' },
+						{ key: '6', label: 'Jack' },
+						{ key: '7', label: 'Sue' },
+						{ key: '8', label: 'Sean' },
+						{ key: '9', label: 'Niall' },
+						{ key: '10', label: 'Albert' },
+						{ key: '11', label: 'Fred' },
+						{ key: '12', label: 'Jenny' },
+						{ key: '13', label: 'Larry' }
 					];
 				},
 				header: {
 					label: 'Multi Select Picklist'
 				},
 				name: 'exampleMultiSelectPicklist',
-				userInfo
-			},
-			{
-				cellType: 'MultiSelectPicklist',
-				flashOnCellValueChange: true,
-				getTooltip: (guid: string) => {
-					return {
-						content: ['example tooltip', 'Line two'],
-						delay: 300
-					};
-				},
-				getActions: (guid: string) => {
-					return [
-						{
-							action: () => console.error('action called'),
-							labelHidden: true,
-							icon: { iconName: 'new_window' },
-							name: 'Open record in new window',
-							size: 'xsmall',
-							getTooltip: (guid: string) => {
-								return {
-									content: ['Custom action with tooltip example']
-								};
-							}
-						}
-					];
-				},
-				getIcons: (guid: string) => {
-					return [
-						{
-							iconName: 'info',
-							getTooltip: (guid: string) => {
-								return {
-									content: ['Custom icon with tooltip example']
-								};
-							}
-						}
-					];
-				},
-				filterAboveSize: 5,
-				getOptions: () => {
-					return [
-						{ id: '1', label: 'Bob' },
-						{ id: '2', label: 'Harry' },
-						{ id: '3', label: 'Sally' },
-						{ id: '4', label: 'Mary' },
-						{ id: '5', label: 'John' },
-						{ id: '6', label: 'Jack' },
-						{ id: '7', label: 'Sue' },
-						{ id: '8', label: 'Sean' },
-						{ id: '9', label: 'Niall' },
-						{ id: '10', label: 'Albert' },
-						{ id: '11', label: 'Fred' },
-						{ id: '12', label: 'Jenny' },
-						{ id: '1', label: 'Larry' }
-					];
-				},
-				header: {
-					label: 'Multi Select Picklist With Labels'
-				},
-				name: 'exampleMultiSelectPicklistWithLabels',
 				userInfo
 			},
 			{
@@ -1283,39 +1186,42 @@ export class App extends React.Component<object, AppState> {
 				},
 				exampleLookup: {
 					cellValue: {
-						hidden: '11111111111',
-						text1: 'Bob',
-						'text2.name.thirdPart': '645612'
+						data: {
+							hidden: '11111111111',
+							text1: 'Bob',
+							'text2.name.thirdPart': '645612'
+						},
+						key: 1
 					}
 				},
 				exampleMultiSelectLookup: {
 					cellValue: [
 						{
-							hidden: '11111111111',
-							text1: 'Bob',
-							'text2.name.thirdPart': '645612'
+							data: {
+								hidden: '11111111111',
+								text1: 'Bob',
+								'text2.name.thirdPart': '645612'
+							},
+							key: 1
 						},
 						{
-							hidden: '11111111111',
-							text1: 'Harry',
-							'text2.name.thirdPart': '564768'
+							data: {
+								hidden: '11111111111',
+								text1: 'Harry',
+								'text2.name.thirdPart': '564768'
+							},
+							key: 2
 						}
 					]
 				},
 				exampleMultiSelectPicklist: {
-					cellValue: ['Harry', 'Sally']
-				},
-				exampleMultiSelectPicklistWithLabels: {
 					cellValue: [
-						{ id: '2', label: 'Harry' },
-						{ id: '3', label: 'Sally' }
+						{ key: '2', label: 'Harry' },
+						{ key: '3', label: 'Sally' }
 					]
 				},
 				examplePicklist: {
-					cellValue: 'Bob'
-				},
-				examplePicklistWithLabels: {
-					cellValue: { id: '2', label: 'Harry' }
+					cellValue: { key: '2', label: 'Harry' }
 				},
 				exampleRowSelection: {},
 				exampleRowValidation: {
@@ -1364,40 +1270,41 @@ export class App extends React.Component<object, AppState> {
 				},
 				exampleLookup: {
 					cellValue: {
-						text1: 'Harry',
-						'text2.name.thirdPart': '564768'
+						data: {
+							text1: 'Harry',
+							'text2.name.thirdPart': '564768'
+						},
+						key: 2
 					},
 					errorMessage: 'An error message'
 				},
 				exampleMultiSelectLookup: {
 					cellValue: [
 						{
-							text1: 'Harry',
-							'text2.name.thirdPart': '564768'
+							data: {
+								text1: 'Harry',
+								'text2.name.thirdPart': '564768'
+							},
+							key: 2
 						},
 						{
-							text1: 'Sally',
-							'text2.name.thirdPart': '079845'
+							data: {
+								text1: 'Sally',
+								'text2.name.thirdPart': '079845'
+							},
+							key: 3
 						}
 					],
 					errorMessage: 'An error message'
 				},
 				exampleMultiSelectPicklist: {
-					cellValue: ['Sally', 'Bob'],
-					errorMessage: 'An error message'
-				},
-				exampleMultiSelectPicklistWithLabels: {
 					cellValue: [
-						{ id: '5', label: 'John' },
-						{ id: '3', label: 'Sally' }
+						{ key: '5', label: 'John' },
+						{ key: '3', label: 'Sally' }
 					]
 				},
 				examplePicklist: {
-					cellValue: 'Harry',
-					errorMessage: 'An error message'
-				},
-				examplePicklistWithLabels: {
-					cellValue: { id: '5', label: 'John' },
+					cellValue: { key: '5', label: 'John' },
 					errorMessage: 'An error message'
 				},
 				exampleRowSelection: {},
@@ -1440,36 +1347,39 @@ export class App extends React.Component<object, AppState> {
 				},
 				exampleLookup: {
 					cellValue: {
-						text1: 'Sally',
-						'text2.name.thirdPart': '079845'
+						data: {
+							text1: 'Sally',
+							'text2.name.thirdPart': '079845'
+						},
+						key: 3
 					}
 				},
 				exampleMultiSelectLookup: {
 					cellValue: [
 						{
-							text1: 'Sally',
-							'text2.name.thirdPart': '079845'
+							data: {
+								text1: 'Sally',
+								'text2.name.thirdPart': '079845'
+							},
+							key: 3
 						},
 						{
-							text1: 'Bob',
-							'text2.name.thirdPart': '645612'
+							data: {
+								text1: 'Bob',
+								'text2.name.thirdPart': '645612'
+							},
+							key: 1
 						}
 					]
 				},
 				exampleMultiSelectPicklist: {
-					cellValue: ['Bob', 'Harry']
-				},
-				exampleMultiSelectPicklistWithLabels: {
 					cellValue: [
-						{ id: '5', label: 'John' },
-						{ id: '11', label: 'Fred' }
+						{ key: '5', label: 'John' },
+						{ key: '11', label: 'Fred' }
 					]
 				},
 				examplePicklist: {
-					cellValue: 'Sally'
-				},
-				examplePicklistWithLabels: {
-					cellValue: { id: '11', label: 'Fred' },
+					cellValue: { key: '11', label: 'Fred' },
 					errorMessage: 'An error message'
 				},
 				exampleRowSelection: {},
@@ -1519,41 +1429,42 @@ export class App extends React.Component<object, AppState> {
 				},
 				exampleLookup: {
 					cellValue: {
-						text1: 'Sue',
-						'text2.name.thirdPart': '123456'
+						data: {
+							text1: 'Sue',
+							'text2.name.thirdPart': '123456'
+						},
+						key: 7
 					},
 					errorMessage: ''
 				},
 				exampleMultiSelectLookup: {
 					cellValue: [
 						{
-							text1: 'Sue',
-							'text2.name.thirdPart': '123456'
+							data: {
+								text1: 'Sue',
+								'text2.name.thirdPart': '123456'
+							},
+							key: 7
 						},
 						{
-							text1: 'Sean',
-							'text2.name.thirdPart': '987654'
+							data: {
+								text1: 'Sean',
+								'text2.name.thirdPart': '987654'
+							},
+							key: 8
 						}
 					],
 					errorMessage: ''
 				},
 				exampleMultiSelectPicklist: {
-					cellValue: ['Sean', 'Sue'],
-					errorMessage: ''
-				},
-				exampleMultiSelectPicklistWithLabels: {
 					cellValue: [
-						{ id: '7', label: 'Sue' },
-						{ id: '11', label: 'Fred' }
+						{ key: '7', label: 'Sue' },
+						{ key: '11', label: 'Fred' }
 					],
 					errorMessage: ''
 				},
 				examplePicklist: {
-					cellValue: 'Sean',
-					errorMessage: ''
-				},
-				examplePicklistWithLabels: {
-					cellValue: { id: '7', label: 'Sue' },
+					cellValue: { key: '7', label: 'Sue' },
 					errorMessage: ''
 				},
 				exampleRowSelection: {},

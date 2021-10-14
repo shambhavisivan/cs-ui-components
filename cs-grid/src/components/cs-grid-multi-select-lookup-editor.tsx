@@ -1,3 +1,4 @@
+import { CSDataTableRowInterface } from '@cloudsense/cs-ui-components';
 import { CSGridCellEditorProps, PaginatedLookupProps } from '../interfaces/cs-grid-cell-props';
 import { CSGridLookupEditor } from './cs-grid-lookup-editor';
 
@@ -7,7 +8,7 @@ import { CSGridLookupEditor } from './cs-grid-lookup-editor';
  */
 export class CSGridMultiSelectLookupEditor extends CSGridLookupEditor {
 	constructor(
-		props: CSGridCellEditorProps<Array<Record<string, string>> | Record<string, string>> &
+		props: CSGridCellEditorProps<Array<CSDataTableRowInterface> | CSDataTableRowInterface> &
 			PaginatedLookupProps
 	) {
 		super(props);

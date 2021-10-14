@@ -5,7 +5,7 @@ import { CSGridCellRendererProps, PicklistOption } from '../interfaces/cs-grid-c
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
 import { CSCustomDataHelper } from './cs-grid-custom-data-helper';
 
-export type PicklistCellValueType = string | PicklistOption | Array<string | PicklistOption>;
+export type PicklistCellValueType = PicklistOption | Array<PicklistOption>;
 
 export class CSGridPicklistRenderer extends CSGridBaseRenderer<PicklistCellValueType> {
 	constructor(props: CSGridCellRendererProps<PicklistCellValueType>) {
@@ -22,6 +22,7 @@ export class CSGridPicklistRenderer extends CSGridBaseRenderer<PicklistCellValue
 		const errorMessage = this.state.value.errorMessage;
 
 		const value = this.format(this.state.value.cellValue);
+
 		const contents = (
 			<CSCustomDataHelper
 				getIcons={this.props.getIcons}
@@ -74,23 +75,11 @@ export class CSGridPicklistRenderer extends CSGridBaseRenderer<PicklistCellValue
 		);
 	}
 
-	private format = (value: PicklistCellValueType): string => {
-		if (Array.isArray(value)) {
-			if (value.length > 0) {
-				return value.reduce((result: string, option: string | PicklistOption) => {
-					const label: string = typeof option === 'string' ? option : option.label;
-
-					if (!result) {
-						return `${label}`;
-					}
-
-					return `${result}, ${label}`;
-				}, '') as string;
-			} else {
-				return '';
-			}
+	private format = (values: PicklistCellValueType): string => {
+		if (Array.isArray(values)) {
+			return values.map((value: PicklistOption) => value.label).join(', ');
 		}
 
-		return typeof value === 'string' ? value : value.label;
+		return values.label;
 	};
 }

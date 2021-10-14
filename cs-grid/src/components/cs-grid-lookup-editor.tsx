@@ -1,4 +1,4 @@
-import { CSLookup } from '@cloudsense/cs-ui-components';
+import { CSDataTableRowInterface, CSLookup } from '@cloudsense/cs-ui-components';
 import { GridApi } from 'ag-grid-community';
 
 import React from 'react';
@@ -20,9 +20,9 @@ import {
  * columnDefs - The column definitions returned from the getLookupValues call.
  */
 interface CSGridLookupEditorState
-	extends CSGridCellEditorState<Array<Record<string, string>> | Record<string, string>> {
-	selected: Array<Record<string, string>>;
-	columnDefs: Array<{ key: string; label: string }>;
+	extends CSGridCellEditorState<Array<CSDataTableRowInterface> | CSDataTableRowInterface> {
+	selected: Array<CSDataTableRowInterface>;
+	columnDefs: Array<{ key: string; header: string }>;
 	guidColumn: string;
 }
 
@@ -40,7 +40,7 @@ interface CSGridLookupEditorState
  */
 export class CSGridLookupEditor
 	extends React.Component<
-		CSGridCellEditorProps<Array<Record<string, string>> | Record<string, string>> &
+		CSGridCellEditorProps<Array<CSDataTableRowInterface> | CSDataTableRowInterface> &
 			PaginatedLookupProps,
 		CSGridLookupEditorState
 	>
@@ -50,11 +50,9 @@ export class CSGridLookupEditor
 	gridApi: GridApi;
 	lookupInputRef: HTMLInputElement;
 	private divRef: React.RefObject<HTMLDivElement>;
-	private lookupAutopositionRootId = 'cs-autoposition-root';
-	private clearButtonClass = 'cs-lookup-clear';
 
 	constructor(
-		props: CSGridCellEditorProps<Array<Record<string, string>> | Record<string, string>> &
+		props: CSGridCellEditorProps<Array<CSDataTableRowInterface> | CSDataTableRowInterface> &
 			PaginatedLookupProps
 	) {
 		super(props);
@@ -106,12 +104,12 @@ export class CSGridLookupEditor
 					autoFocus={true}
 					mode='server'
 					labelHidden={true}
-					label=''
-					lookupColumns={this.state.columnDefs ?? []}
-					fetchLookupOptions={this.fetchLookupValues}
+					label='Search'
+					columns={this.state.columnDefs ?? []}
+					fetchOptions={this.fetchValues}
 					fieldToBeDisplayed={this.props.displayColumn}
 					onSelectChange={this.onChange}
-					onLookupDropdownClose={this.props.stopEditing}
+					onDropdownClose={this.props.stopEditing}
 					pageSize={1000}
 					infiniteScroll={true}
 					multiselect={this.multiSelect}
@@ -131,12 +129,12 @@ export class CSGridLookupEditor
 		);
 	}
 
-	private fetchLookupValues = async (
+	private fetchValues = async (
 		searchTerm: any,
 		pageSize: any,
 		pageNo: any
 	): Promise<{
-		records: Array<Record<string, any>>;
+		records: Array<CSDataTableRowInterface>;
 		moreRecords: boolean;
 	}> => {
 		const results = await this.props.getLookupValues(
@@ -147,20 +145,22 @@ export class CSGridLookupEditor
 		);
 		const formattedRows = formatRows(results.records, '\\.', replacementString);
 		const columnDefs = results.columnDefs.map((columnDef: { key: string; label: any }) => ({
-			key: columnDef.key.replace(new RegExp('\\.', 'g'), replacementString),
-			label: columnDef.label
+			header: columnDef.label,
+			key: columnDef.key.replace(new RegExp('\\.', 'g'), replacementString)
 		}));
 		this.setState({ columnDefs });
 
 		return {
-			records: formattedRows,
-			moreRecords: results.moreRecords
+			moreRecords: results.moreRecords,
+			records: formattedRows
 		};
 	};
 
-	private onChange = async (cellValue: Record<string, any> | Array<Record<string, any>>) => {
+	private onChange = async (
+		cellValue: CSDataTableRowInterface | Array<CSDataTableRowInterface>
+	) => {
 		console.warn('onChange()', cellValue);
-		let value: CellData<Array<Record<string, string>> | Record<string, string>> = {
+		let value: CellData<Array<CSDataTableRowInterface> | CSDataTableRowInterface> = {
 			cellValue,
 			errorMessage: this.state.value.errorMessage
 		};
@@ -186,12 +186,13 @@ export class CSGridLookupEditor
 
 	private handleOutsideClick = (event: MouseEvent) => {
 		const node = event.target as HTMLElement;
+		const autoposition = document.getElementById('cs-autoposition-root');
+
 		if (
 			this.divRef.current &&
 			!this.divRef.current.contains(node) &&
-			!document.getElementById(this.lookupAutopositionRootId).contains(node) &&
-			// The clear button no longer exists by the time the code gets here so we cannot use a ref.
-			!node.classList.contains(this.clearButtonClass)
+			autoposition &&
+			!autoposition.contains(node)
 		) {
 			this.props.stopEditing();
 		}

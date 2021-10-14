@@ -1153,8 +1153,9 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 
 					settings.suppressKeyboardEvent = (params: SuppressKeyboardEventParams) => {
 						const lookupDropdownOpen = document.querySelector('.cs-lookup-dropdown');
-						// If lookup dropdown is open suppress all OOTB ag-grid keys
-						if (lookupDropdownOpen) {
+						const picklistDropdownOpen = document.querySelector('.cs-custom-select-wrapper');
+						// If lookup or picklist dropdown is open suppress all OOTB ag-grid keys
+						if (lookupDropdownOpen || picklistDropdownOpen) {
 							return true;
 						}
 						// Get parent ag-cell which is active
@@ -1273,6 +1274,18 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 				agGridColDef.cellEditor = 'picklistEditor';
 				agGridColDef.cellRenderer = 'picklistRenderer';
 
+				const settings: AgGridColDef = {};
+				settings.suppressKeyboardEvent = (params: SuppressKeyboardEventParams) => {
+					const picklistDropdownOpen = document.querySelector('.cs-custom-select-wrapper');
+
+					return (
+						params.event.key === KeyCode.Escape ||
+						(picklistDropdownOpen &&
+							(params.event.key === KeyCode.Tab ||
+								params.event.key === KeyCode.Enter))
+					);
+				};
+
 				this.addIfDefined(cellParams, 'filterAboveSize', columnDef.filterAboveSize);
 				this.addIfDefined(
 					cellParams,
@@ -1280,6 +1293,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 					columnDef.getEmptyPicklistContent
 				);
 				this.addIfDefined(cellParams, 'getOptions', columnDef.getOptions);
+				agGridColDef = { ...settings, ...agGridColDef };
 			}
 
 			if (columnDef.cellType === 'Picklist') {
@@ -1294,7 +1308,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 					const lookupDropdownOpen = document.querySelector('.cs-lookup-dropdown');
 
 					return (
-						params.event.key === 'Escape' ||
+						params.event.key === KeyCode.Escape ||
 						(lookupDropdownOpen &&
 							(params.event.key === KeyCode.Tab ||
 								params.event.key === KeyCode.Enter))

@@ -1,5 +1,5 @@
-import { GridApi } from 'ag-grid-community';
 import { CSTooltipVariant } from '@cloudsense/cs-ui-components';
+import { GridApi } from 'ag-grid-community';
 import { CSGridAction, Icon, isStandardIcon } from '../interfaces/cs-grid-cell-props';
 
 // Map over Icons

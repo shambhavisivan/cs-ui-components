@@ -2,6 +2,7 @@ import {
 	CSButtonSize,
 	CSButtonStyle,
 	CSButtonType,
+	CSDataTableRowInterface,
 	CSIconOrigin,
 	CSTooltipPosition,
 	CSTooltipVariant
@@ -105,14 +106,12 @@ export interface PicklistProps {
 	filterAboveSize?: number;
 	toggleSelection?: boolean;
 	getEmptyPicklistContent?(guid: string): JSX.Element;
-	getOptions(guid: string): Array<string | PicklistOption>;
+	getOptions(guid: string): Array<PicklistOption>;
 }
 
 export interface PicklistOption {
-	id: string;
+	key: string;
 	label: string;
-	horizontalDivider?: boolean;
-	icon?: JSX.Element;
 }
 
 export interface IconProps {
@@ -186,12 +185,12 @@ export interface Tooltip {
  */
 export interface CSGridLookupSearchResult {
 	columnDefs: Array<LookupSearchColDef>;
-	rowData: Array<Record<string, string>>;
+	rowData: Array<CSDataTableRowInterface>;
 }
 
 export interface CSGridPaginatedLookupSearchResult {
 	columnDefs: Array<{ key: string; label: string }>;
-	records: Array<Record<string, string>>;
+	records: Array<CSDataTableRowInterface>;
 	moreRecords: boolean;
 }
 
