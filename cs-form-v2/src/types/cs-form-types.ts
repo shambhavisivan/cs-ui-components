@@ -5,7 +5,7 @@ export type CSFormData = Array<CSFormSectionProps>;
 
 export interface CSFormChangedFieldData {
 	sectionKey: string;
-	fieldName: string;
+	name: string;
 	value: any;
 	errorMessage?: Array<string> | string;
 }

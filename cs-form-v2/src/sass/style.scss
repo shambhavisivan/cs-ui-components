@@ -14,7 +14,7 @@
 				display: flex;
 				padding: 0.5rem;
 				width: var(--csf-field-width);
-				& > * {
+				&:not(.csf-field-wrapper-custom) > * {
 					flex: 1;
 				}
 			}

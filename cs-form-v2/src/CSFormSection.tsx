@@ -38,10 +38,10 @@ const CSFormSection = ({
 			hideSectionHeader={hideSectionHeader}
 			title={label}
 		>
-			{fields.map((field) => (
+			{fields.map((field, index) => (
 				<CSFormField
 					{...field}
-					key={field.name}
+					key={field.name ?? `csf-custom-${index}`}
 					onChange={(value) => handleFieldChange(sectionKey, field, value)}
 					onBlur={(value) => handleFieldBlur(sectionKey, field, value)}
 				/>

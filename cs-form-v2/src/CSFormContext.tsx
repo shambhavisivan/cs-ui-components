@@ -19,11 +19,11 @@ export const CSFormContext = createContext<CSFormContextInterface>({
 export const CSFormProvider = ({ children, columnNumber, errorLabels, locale, mode, onFieldBlur, onFieldChange }: PropsWithChildren<CSFormProps>) => {
 	const handleFieldEvent = (sectionKey: string, field: CSFormFieldData, newValue: any) => {
 		const errorMessage = validateField(field, newValue, errorLabels);
-		const fieldName = field.name;
+		const { name } = field;
 		if (errorMessage) {
 			return {
 				sectionKey,
-				fieldName,
+				name,
 				value: newValue,
 				errorMessage,
 			};
@@ -31,7 +31,7 @@ export const CSFormProvider = ({ children, columnNumber, errorLabels, locale, mo
 
 		return {
 			sectionKey,
-			fieldName,
+			name,
 			value: newValue,
 		};
 	};

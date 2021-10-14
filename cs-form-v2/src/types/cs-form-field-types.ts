@@ -1,6 +1,35 @@
 import React from 'react';
 
+type ExcludeCommonHelper<T, K extends string | number | symbol> = T extends unknown ? Omit<T, K> : never;
+
+/** FORM FIELD PROPS */
+export interface CSFormFieldCommonProps {
+	actions?: Array<any>;
+	disabled?: boolean;
+	error?: boolean;
+	errorMessage?: Array<string> | string;
+	helpText?: string;
+	hidden?: boolean;
+	icons?: Array<any>
+	label: string;
+	name: string;
+	onBlur?: (newValue?: any) => any;
+	onChange?: (newValue?: any) => any;
+	readOnly?: boolean;
+	required?: boolean;
+	styleClass?: string;
+	title?: string;
+	value?: any;
+}
+
+export interface CSFormFieldLayoutProps {
+	fieldType: CSFormFieldType;
+	grow?: number;
+	showInNewLine?: boolean;
+}
+
 export type CSFormFieldType = 'CHECKBOX' |
+	'CUSTOM' |
 	'DATE' |
 	'DATETIME' |
 	'LOOKUP' |
@@ -12,32 +41,26 @@ export type CSFormFieldType = 'CHECKBOX' |
 	'TOGGLE';
 
 /** CHECKBOX FIELD */
-export interface CSFormCheckboxFieldInterface {
+export interface CSFormCheckboxFieldProps extends CSFormFieldCommonProps {
 	fieldType: 'CHECKBOX';
 	indeterminite?: boolean;
 }
 
-export type CSFormCheckboxFieldProps = CSFormCheckboxFieldInterface & CSFormFieldCommonProps & CSFormFieldEvents;
-
 /** DATE FIELD */
-export interface CSFormDateFieldInterface {
+export interface CSFormDateFieldProps extends CSFormFieldCommonProps {
 	dateFormat?: string;
 	fieldType: 'DATE';
 	locale?: any;
 	selected?: Date | null | undefined;
 }
 
-export type CSFormDateFieldProps = CSFormDateFieldInterface & CSFormFieldCommonProps & CSFormFieldEvents;
-
 /** DATETIME FIELD */
-export interface CSFormDateTimeFieldInterface extends Omit<CSFormDateFieldInterface, 'fieldType'> {
+export interface CSFormDateTimeFieldProps extends Omit<CSFormDateFieldProps, 'fieldType'> {
 	fieldType: 'DATETIME';
 	timeCaption?: string;
 	timeFormat?: string;
 	timeIntervals?: number;
 }
-
-export type CSFormDateTimeFieldProps = CSFormDateTimeFieldInterface & CSFormFieldCommonProps & CSFormFieldEvents;
 
 /** LOOKUP FIELD */
 export type CSFormLookupFieldMode = 'client' | 'server';
@@ -82,20 +105,16 @@ export interface CSFormLookupFieldClientProps {
 	searchBy?: Array<string>;
 }
 
-export type CSFormLookupFieldInterface = CSFormLookupFieldCommonProps & (CSFormLookupFieldClientProps | CSFormLookupFieldServerProps)
-
-export type CSFormLookupFieldProps = CSFormLookupFieldInterface & CSFormFieldCommonProps & CSFormFieldEvents;
+export type CSFormLookupFieldProps = CSFormLookupFieldCommonProps & CSFormFieldCommonProps & (CSFormLookupFieldClientProps | CSFormLookupFieldServerProps);
 
 /** NUMBER FIELD */
-export interface CSFormNumberFieldInterface {
+export interface CSFormNumberFieldProps extends CSFormFieldCommonProps {
 	fieldType: 'NUMBER';
 	locale?: any;
 	max?: any;
 	min?: any;
 	useLocale?: boolean;
 }
-
-export type CSFormNumberFieldProps = CSFormNumberFieldInterface & CSFormFieldCommonProps & CSFormFieldEvents;
 
 /** RADIO FIELD */
 export interface CSFormRadioOption extends Pick<CSFormFieldCommonProps,
@@ -107,13 +126,15 @@ export interface CSFormRadioOption extends Pick<CSFormFieldCommonProps,
 	radioOptionValue?: string;
 }
 
-export interface CSFormRadioFieldInterface extends Pick<CSFormFieldCommonProps,
+export interface CSFormRadioFieldProps extends Pick<CSFormFieldCommonProps,
 	'error' |
 	'errorMessage' |
 	'disabled' |
 	'helpText' |
 	'label' |
 	'name' |
+	'onBlur' |
+	'onChange' |
 	'readOnly' |
 	'required' |
 	'styleClass' |
@@ -123,97 +144,61 @@ export interface CSFormRadioFieldInterface extends Pick<CSFormFieldCommonProps,
 	radioOptions: Array<CSFormRadioOption>;
 }
 
-export type CSFormRadioFieldProps = CSFormRadioFieldInterface & CSFormFieldEvents;
-
 /** SELECT FIELD */
 export interface CSFormSelectOption {
 	value: any;
 	label: string;
 }
 
-export interface CSFormSelectFieldInterface {
+export interface CSFormSelectFieldProps extends CSFormFieldCommonProps {
 	fieldType: 'SELECT';
 	selectOptions: Array<CSFormSelectOption>;
 }
 
-export type CSFormSelectFieldProps = CSFormSelectFieldInterface & CSFormFieldCommonProps & CSFormFieldEvents;
-
 /** TEXT FIELD */
-export interface CSFormTextFieldInterface {
+export interface CSFormTextFieldProps extends CSFormFieldCommonProps {
 	fieldType: 'TEXT';
 	maxLength?: number;
 }
 
-export type CSFormTextFieldProps = CSFormTextFieldInterface & CSFormFieldCommonProps & CSFormFieldEvents;
-
 /** TEXTAREA FIELD */
-export interface CSFormTextareaFieldInterface {
+export interface CSFormTextareaFieldProps extends CSFormFieldCommonProps {
 	fieldType: 'TEXTAREA';
 	maxHeight?: string;
 	rows?: number;
 }
 
-export type CSFormTextareaFieldProps = CSFormTextareaFieldInterface & CSFormFieldCommonProps & CSFormFieldEvents;
-
 /** TOGGLE FIELD */
-export interface CSFormToggleFieldInterface {
+export interface CSFormToggleFieldProps extends CSFormFieldCommonProps {
 	fieldType: 'TOGGLE';
 }
 
-export type CSFormToggleFieldProps = CSFormToggleFieldInterface & CSFormFieldCommonProps & CSFormFieldEvents;
-
-/** FORM FIELD PROPS */
-export interface CSFormFieldCommonProps {
-	actions?: Array<any>;
-	disabled?: boolean;
-	error?: boolean;
-	errorMessage?: Array<string> | string;
-	helpText?: string;
-	hidden?: boolean;
-	icons?: Array<any>
-	label: string;
-	name: string;
-	readOnly?: boolean;
-	required?: boolean;
-	styleClass?: string;
-	title?: string;
-	value?: any;
+/** CUSTOM FIELD */
+export interface CSFormCustomFieldProps extends Pick<CSFormFieldCommonProps, 'onBlur' | 'onChange'> {
+	fieldType: 'CUSTOM',
+	onFocus?: (value?: any) => any;
+	render: React.ReactElement;
+	[key: string]: any;
 }
 
-export interface CSFormFieldEvents {
-	onBlur?: (newValue: any) => any;
-	onChange?: (newValue: any) => any;
-}
+type CSFormStandardFields = CSFormCheckboxFieldProps
+	| CSFormDateFieldProps
+	| CSFormDateTimeFieldProps
+	| CSFormNumberFieldProps
+	| CSFormRadioFieldProps
+	| CSFormSelectFieldProps
+	| CSFormLookupFieldProps
+	| CSFormTextFieldProps
+	| CSFormTextareaFieldProps
+	| CSFormToggleFieldProps;
 
-export interface CSFormFieldLayoutProps {
-	fieldType: CSFormFieldType;
-	grow?: number;
-	showInNewLine?: boolean;
-}
+type CSFormFields = CSFormStandardFields | CSFormCustomFieldProps;
 
-export type CSFormFieldProps = CSFormFieldLayoutProps &
-	(CSFormCheckboxFieldProps |
-		CSFormDateFieldProps |
-		CSFormDateTimeFieldProps |
-		CSFormNumberFieldProps |
-		CSFormRadioFieldProps |
-		CSFormSelectFieldProps |
-		CSFormLookupFieldProps |
-		CSFormTextFieldProps |
-		CSFormTextareaFieldProps |
-		CSFormToggleFieldProps
-	);
+/** CSFormField props type */
+export type CSFormFieldProps = CSFormFieldLayoutProps & CSFormFields;
 
-export type CSFormFieldData = CSFormFieldLayoutProps &
-	CSFormFieldCommonProps &
-	(CSFormCheckboxFieldInterface
-		| Omit<CSFormDateFieldInterface, 'locale'>
-		| Omit<CSFormDateTimeFieldInterface, 'locale'>
-		| Omit<CSFormNumberFieldInterface, 'locale'>
-		| CSFormRadioFieldInterface
-		| CSFormSelectFieldInterface
-		| CSFormLookupFieldInterface
-		| CSFormTextFieldInterface
-		| CSFormTextareaFieldInterface
-		| CSFormToggleFieldInterface
-	);
+/** Props per field defined in data prop. onChange, onBlur and locale are excluded since they are defined on top of the whole CSForm */
+export type CSFormFieldData = CSFormFieldLayoutProps & (ExcludeCommonHelper<CSFormStandardFields, 'onChange' | 'onBlur' | 'locale'> | CSFormCustomFieldProps)
+
+/** Props used for form definition only, values for each field are excluded. */
+export type CSFormFieldDefinition = CSFormFieldLayoutProps & (ExcludeCommonHelper<CSFormStandardFields, 'onChange' | 'onBlur' | 'locale' | 'value'> | CSFormCustomFieldProps);

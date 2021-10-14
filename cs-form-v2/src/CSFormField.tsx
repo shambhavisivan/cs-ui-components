@@ -1,4 +1,5 @@
 import React, { CSSProperties } from 'react';
+import classNames from 'classnames';
 import { CSFormFieldProps } from './types/cs-form-field-types';
 import CSFormCheckboxField from './form-fields/CSFormCheckboxField';
 import CSFormDateField from './form-fields/CSFormDateField';
@@ -11,6 +12,7 @@ import CSFormTextField from './form-fields/CSFormTextField';
 import CSFormTextareaField from './form-fields/CSFormTextareaField';
 import CSFormToggleField from './form-fields/CSFormToggleField';
 import { useCSForm } from './CSFormContext';
+import CSFormCustomField from './form-fields/CSFormCustomField';
 
 const CSFormField = ({
 	grow,
@@ -32,6 +34,8 @@ const CSFormField = ({
 	};
 	const renderFormField = () => {
 		switch (rest.fieldType) {
+		case 'CUSTOM':
+			return <CSFormCustomField {...rest} />;
 		case 'CHECKBOX':
 			return <CSFormCheckboxField {...fieldSettings} {...rest} />;
 		case 'DATE':
@@ -60,9 +64,16 @@ const CSFormField = ({
 		'--csf-field-width': grow ? `${formFieldGrow}%` : `${formFieldWidth}%`,
 	};
 
+	const formFieldClasses = classNames(
+		'csf-field-wrapper',
+		{
+			'csf-field-wrapper-custom': rest.fieldType === 'CUSTOM',
+		},
+	);
+
 	const formFieldWrapper = (
 		<div
-			className="csf-field-wrapper"
+			className={formFieldClasses}
 			style={formFieldStyle as CSSProperties}
 		>
 			{renderFormField()}
