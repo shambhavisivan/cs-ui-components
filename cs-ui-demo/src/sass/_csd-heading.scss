@@ -1,0 +1,44 @@
+.csd-theme-light {
+	--csd-heading-c: #{$cs-black};
+}
+
+.csd-theme-dark {
+	--csd-heading-c: #{$cs-white};
+}
+
+.csd-heading {
+	color: var(--csd-heading-c);
+	font-weight: 700 !important;
+	line-height: 1;
+
+	&:first-child {
+		margin-top: 0 !important;
+	}
+
+	@at-root {
+		h1#{&} {
+			font-size: 2rem;
+		}
+
+		h2#{&} {
+			font-size: 1.5rem !important;
+			margin: 2rem 0 1rem !important;
+		}
+
+		h3#{&} {
+			font-size: 1.25rem;
+		}
+
+		h4#{&} {
+			font-size: 1rem;
+		}
+
+		h5#{&} {
+			font-size: 0.875rem;
+		}
+
+		h6#{&} {
+			font-size: 0.75rem;
+		}
+	}
+}

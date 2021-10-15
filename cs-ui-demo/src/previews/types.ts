@@ -1,3 +1,5 @@
+import React from 'react';
+
 // CS UI Specific interfaces
 export interface CSUIPreviewInterface {
 	name: string;
@@ -7,7 +9,7 @@ export interface CSUIPreviewInterface {
 	components: Array<ComponentInterface>;
 	api?: Array<ApiInterface>;
 	accessibility?: AccessibilityInterface;
-	children?: JSX.Element | Element;
+	children?: React.ReactNode;
 	activeElement?: Element;
 	searchTerm?: string;
 }

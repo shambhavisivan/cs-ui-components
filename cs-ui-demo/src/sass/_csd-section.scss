@@ -1,0 +1,69 @@
+:root {
+	--csd-section-bg: #{$cs-white};
+	--csd-section-info-light-bg: #{$cs-gray-light-4};
+	--csd-section-info-dark-bg: #{$cs-gray-light-3};
+	--csd-section-warning-light-bg: #{lighten($cs-orange-medium-1, 32%)};
+	--csd-section-warning-dark-bg: #{lighten($cs-orange-medium-1, 35%)};
+	--csd-section-danger-light-bg: #{lighten($cs-red-medium-2, 32%)};
+	--csd-section-danger-dark-bg: #{lighten($cs-red-medium-2, 35%)};
+}
+
+.csd-theme-dark {
+	--csd-section-bg: #242424;
+	--csd-section-info-light-bg: #{darken($cs-gray-dark-2, 4%)};
+	--csd-section-info-dark-bg: #{darken($cs-gray-dark-2, 8%)};
+	--csd-section-warning-light-bg: #{darken($cs-orange-dark-1, 18%)};
+	--csd-section-warning-dark-bg: #{darken($cs-orange-dark-1, 20%)};
+	--csd-section-danger-light-bg: #{darken($cs-red-medium-2, 32%)};
+	--csd-section-danger-dark-bg: #{darken($cs-red-medium-2, 35%)};
+}
+
+.csd-section {
+	margin: 1rem 0 0;
+	padding: 1rem;
+	border-radius: 0.5rem;
+	background-color: var(--csd-section-bg);
+	background-position: top right;
+	box-shadow:
+		0 1px 3px var(--csd-shadow-light),
+		0 1px 2px var(--csd-shadow-medium);
+
+	&:first-child {
+		margin-top: 0;
+	}
+
+	&.csd-section-transparent {
+		background-color: transparent;
+		box-shadow: none;
+	}
+
+	&.csd-section-info {
+		background-image: repeating-linear-gradient(
+			-135deg,
+			var(--csd-section-info-light-bg),
+			var(--csd-section-info-light-bg) 2rem,
+			var(--csd-section-info-dark-bg) 2rem,
+			var(--csd-section-info-dark-bg) 4rem
+		);
+	}
+
+	&.csd-section-warning {
+		background-image: repeating-linear-gradient(
+			-135deg,
+			var(--csd-section-warning-light-bg),
+			var(--csd-section-warning-light-bg) 2rem,
+			var(--csd-section-warning-dark-bg) 2rem,
+			var(--csd-section-warning-dark-bg) 4rem
+		);
+	}
+
+	&.csd-section-danger {
+		background-image: repeating-linear-gradient(
+			-135deg,
+			var(--csd-section-danger-light-bg),
+			var(--csd-section-danger-light-bg) 2rem,
+			var(--csd-section-danger-dark-bg) 2rem,
+			var(--csd-section-danger-dark-bg) 4rem
+		);
+	}
+}

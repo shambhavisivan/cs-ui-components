@@ -42,31 +42,6 @@ code.inline-code {
 	}
 }
 
-.inline-code-tooltip {
-	&.col-3 .cs-tooltip .cs-tooltip-body {
-		grid-template-columns: repeat(3, 1fr);
-	}
-
-	&.col-2 .cs-tooltip .cs-tooltip-body {
-		grid-template-columns: repeat(2, 1fr);
-	}
-
-	&.col-1 .cs-tooltip .cs-tooltip-body {
-		grid-template-columns: 1fr;
-	}
-
-	.cs-tooltip .cs-tooltip-body {
-		display: grid;
-		grid-gap: 0.5rem;
-		white-space: nowrap;
-
-		code.inline-code {
-			margin: 0;
-			text-align: center;
-		}
-	}
-}
-
 .getting-started :not(pre) code,
 .release-notes code {
 	margin-right: 0;

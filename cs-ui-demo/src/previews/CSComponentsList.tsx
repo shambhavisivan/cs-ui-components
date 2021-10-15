@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CSAlertPreview from './cs-ui/components/CSAlertPreview';
+import CSAlertPreview from './cs-ui/components/cs-alert/CSAlertPreview';
 import CSButtonPreview from './cs-ui/components/CSButtonPreview';
 import CSButtonGroupPreview from './cs-ui/components/CSButtonGroupPreview';
 import CSCardPreview from './cs-ui/components/CSCardPreview';
