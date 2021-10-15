@@ -11,6 +11,7 @@ import { NumberField } from './NumberField';
 import { ReferenceField } from './ReferenceField';
 import { SelectOption } from '../types/SelectOption';
 import { DateTimeField } from './DateTimeField';
+import { CSTooltip } from '@cloudsense/cs-ui-components';
 
 export interface FormFieldProps {
 	value: any;
@@ -72,7 +73,12 @@ export class FormField extends React.Component<FormFieldProps, {}> {
 			return this.props.wrapper.wrapField(
 				this.props.descriptor.name,
 				this.props.status,
-				<>{this.props.descriptor.label}</>,
+				<>
+					{this.props.descriptor.label}
+					{this.props.descriptor.helpText && (
+						<CSTooltip content={this.props.descriptor.helpText} />
+					)}
+				</>,
 				<>{this.renderField()}</>,
 				this.renderErrors()
 			);

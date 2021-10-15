@@ -73,6 +73,10 @@ export interface FieldDescriptor extends ComponentStatusConfiguration {
 	 * Renders inline icons or tooltips to form field
 	 */
 	icons?: Array<CSCustomDataIconProps>;
+	/**
+	 * Renders tooltip which displays provided help text
+	 */
+	helpText?: string;
 }
 
 /**

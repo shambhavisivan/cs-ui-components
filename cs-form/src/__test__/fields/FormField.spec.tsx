@@ -8,6 +8,7 @@ import { FieldDescriptor } from '../../types/FormDescriptor';
 import { ElementWrapper } from '../..';
 import { ComponentStatus } from '../../types/ComponentStatus';
 import { LocaleSettings } from '../../CSForm';
+import { CSTooltip } from '@cloudsense/cs-ui-components';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -40,6 +41,9 @@ const wrapper: ElementWrapper = ({
 function nop(): any {
 	// dummy function
 }
+
+const helpText = 'Help text example';
+const descriptorWithHelpText = { ...descriptor, helpText };
 
 it('renders nothing if hidden', () => {
 	const uut = shallow(
@@ -110,4 +114,21 @@ it('calls onChange() on change', done => {
 	uut.find(BooleanField)
 		.find('input')
 		.simulate('change', { target: { checked: true } });
+});
+
+it('renders tooltip with helpText', () => {
+	const uut = shallow(
+		<FormField
+			descriptor={descriptorWithHelpText}
+			wrapper={wrapper}
+			locale={locale}
+			value
+			handleFieldChange={nop}
+			handleFieldBlur={nop}
+			fetchPossibleValues={nop}
+			status="enabled"
+		/>
+	);
+
+	expect(uut.find(CSTooltip).prop('content')).toBe(helpText);
 });
