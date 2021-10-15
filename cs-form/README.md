@@ -2,6 +2,9 @@
 
 Generic configurable React form component.
 
+### 1.0.0-alpha.121:
+* Added support for tooltip help text to form fields
+
 ### 1.0.0-alpha.120:
 * Changed icons support to be accessible from field descriptor instead of form
 
