@@ -20,8 +20,6 @@
 		]
 	},
 	"dependencies": {
-		"@cloudsense/cs-ui-components": "^1.1.22",
-		"@cloudsense/cs-form-v2": "^1.0.0",
 		"common-tags": "^1.8.0",
 		"moment": "^2.27.0",
 		"react": "^17.0.2",
