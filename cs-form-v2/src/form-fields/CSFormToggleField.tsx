@@ -2,9 +2,8 @@ import React from 'react';
 import { CSToggle } from '@cloudsense/cs-ui-components';
 import { CSFormToggleFieldProps } from '../types/cs-form-field-types';
 
-const CSFormTextField = ({
+const CSFormToggleField = ({
 	fieldType,
-	name,
 	onBlur,
 	onChange,
 	styleClass,
@@ -20,4 +19,4 @@ const CSFormTextField = ({
 	/>
 );
 
-export default CSFormTextField;
+export default CSFormToggleField;
