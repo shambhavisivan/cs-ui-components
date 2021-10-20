@@ -44,7 +44,7 @@ export type CSFormFieldType = 'CHECKBOX' |
 /** CHECKBOX FIELD */
 export interface CSFormCheckboxFieldProps extends CSFormFieldCommonProps {
 	fieldType: 'CHECKBOX';
-	indeterminite?: boolean;
+	indeterminate?: boolean;
 }
 
 /** CUSTOM FIELD */
