@@ -90,8 +90,16 @@ export function renderCSToast(props: CSToastProps, position?: CSToastPosition, d
 	counter += 1;
 }
 
+const clearAllToasts = () => {
+	notificationInstancesMap.forEach((notification, key) => {
+		notification.destroy();
+		notificationInstancesMap.delete(key);
+	});
+};
+
 const CSToastApi = {
 	renderCSToast,
+	clearAllToasts,
 };
 
 export default CSToastApi;

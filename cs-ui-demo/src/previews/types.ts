@@ -81,7 +81,7 @@ export interface ApiInterface {
 	secondaryVariants?: string | Array<string>;
 	component: JSX.Element | Element;
 	code?: string;
-	arguments: Array<ArgumentInterface>;
+	arguments?: Array<ArgumentInterface>;
 }
 
 export interface ArgumentInterface {

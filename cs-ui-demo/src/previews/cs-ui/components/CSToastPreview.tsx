@@ -470,6 +470,18 @@ class CSToastPreview extends React.Component {
 						description: 'Set the duration in seconds.'
 					}
 				]
+			}, {
+				name: 'clearAllToasts',
+				description: 'onClick={() => CSToastApi.clearAllToasts()',
+				component:
+					<CSButton
+						label="Clear all toasts"
+						onClick={() => CSToastApi.clearAllToasts()}
+					/>,
+				code: `<CSButton
+					label="Clear all toasts"
+					onClick={() => CSToastApi.clearAllToasts()}
+				/>`
 			}
 		]
 	})
