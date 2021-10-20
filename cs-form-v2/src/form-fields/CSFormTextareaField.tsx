@@ -4,7 +4,6 @@ import { CSFormTextareaFieldProps } from '../types/cs-form-field-types';
 
 const CSFormTextareaField = ({
 	fieldType,
-	name,
 	onBlur,
 	onChange,
 	styleClass,
