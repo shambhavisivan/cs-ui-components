@@ -171,8 +171,8 @@ export interface CSFormRadioFieldProps extends Pick<CSFormFieldCommonProps,
 
 /** SELECT FIELD */
 export interface CSFormSelectOption {
-	value: any;
-	label: string;
+	key: React.ReactText;
+	value: string;
 }
 
 export interface CSFormSelectFieldProps extends CSFormFieldCommonProps {

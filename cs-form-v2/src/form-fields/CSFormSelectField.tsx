@@ -4,7 +4,6 @@ import { CSFormSelectFieldProps } from '../types/cs-form-field-types';
 
 const CSFormSelectField = ({
 	fieldType,
-	name,
 	onBlur,
 	onChange,
 	selectOptions,
@@ -12,7 +11,7 @@ const CSFormSelectField = ({
 	...props
 }: CSFormSelectFieldProps) => {
 	const renderPicklistOptions = () => selectOptions.map((option) => (
-		<option value={option.value} key={option.value}>{option.label}</option>
+		<option value={option.value} key={option.key}>{option.value}</option>
 	));
 	return (
 		<CSSelect
