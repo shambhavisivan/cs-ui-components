@@ -4,11 +4,17 @@
 	"description": "",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
+	"jest": {
+		"setupFilesAfterEnv": [
+			"<rootDir>/src/setupTests.ts"
+		],
+		"testEnvironment": "jsdom"
+	},
 	"scripts": {
 		"build": "rimraf dist && webpack",
 		"lint": "eslint src --ext .js,.jsx,.tsx,.ts",
 		"watch": "webpack --watch",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "jest --clearCache && jest --env=jsdom"
 	},
 	"author": "Cloudsense UI",
 	"license": "ISC",
@@ -17,6 +23,7 @@
 		"@babel/preset-env": "^7.8.4",
 		"@babel/preset-react": "^7.8.3",
 		"@cloudsense/cs-ui-components": "1.1.26-alpha6",
+		"@testing-library/jest-dom": "^5.14.1",
 		"@types/enzyme": "^3.10.8",
 		"@types/jest": "^26.0.23",
 		"@types/node": "^15.6.1",
@@ -39,6 +46,7 @@
 		"eslint-plugin-react": "7.21.5",
 		"eslint-plugin-react-hooks": "^4",
 		"jest": "^27.0.6",
+		"jsdom": "^17.0.0",
 		"node-sass": "^4.13.1",
 		"react": "17.0.2",
 		"react-dom": "17.0.2",
