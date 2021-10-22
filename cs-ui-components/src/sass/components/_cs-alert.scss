@@ -52,8 +52,24 @@
 				@include sc(--cs-alert-info-light-c);
 			}
 
-			.cs-icon {
-				@include sf(--cs-alert-info-light-fill);
+			.cs-btn-icon {
+				.cs-icon {
+					@include sf(--cs-alert-info-light-fill);
+				}
+			}
+
+			.cs-btn {
+				&:active {
+					@include css4 {
+						border: 1px solid cvar(--cs-alert-info-br);
+					}
+				}
+
+				&:focus {
+					@include css4 {
+						box-shadow: 0 0 3px cvar(--cs-alert-info-box);
+					}
+				}
 			}
 		}
 	}
@@ -101,11 +117,13 @@
 				@include sc(--cs-alert-warning-light-c);
 			}
 
-			.cs-icon {
-				@include sf(--cs-alert-warning-light-fill);
+			.cs-btn-icon {
+				.cs-icon {
+					@include sf(--cs-alert-warning-light-fill);
+				}
 			}
 
-			.cs-btn.cs-btn {
+			.cs-btn {
 				&:active {
 					@include css4 {
 						border: 1px solid cvar(--cs-alert-warning-br);
@@ -146,8 +164,24 @@
 				@include sc(--cs-alert-error-light-c);
 			}
 
-			.cs-icon {
-				@include sf(--cs-alert-error-light-fill);
+			.cs-btn-icon {
+				.cs-icon {
+					@include sf(--cs-alert-error-light-fill);
+				}
+			}
+
+			.cs-btn {
+				&:active {
+					@include css4 {
+						border: 1px solid cvar(--cs-alert-error-br);
+					}
+				}
+
+				&:focus {
+					@include css4 {
+						box-shadow: 0 0 3px cvar(--cs-alert-error-box);
+					}
+				}
 			}
 		}
 	}
@@ -160,7 +194,6 @@
 		}
 
 		.cs-alert-text-wrapper {
-
 			.cs-alert-text {
 				@include sc(--cs-alert-base-c);
 			}
@@ -178,8 +211,24 @@
 				@include sc(--cs-alert-base-light-c);
 			}
 
-			.cs-icon {
-				@include sf(--cs-alert-base-light-fill);
+			.cs-btn-icon {
+				.cs-icon {
+					@include sf(--cs-alert-base-light-fill);
+				}
+			}
+
+			.cs-btn {
+				&:active {
+					@include css4 {
+						border: 1px solid cvar(--cs-alert-base-br);
+					}
+				}
+
+				&:focus {
+					@include css4 {
+						box-shadow: 0 0 3px cvar(--cs-alert-base-box);
+					}
+				}
 			}
 		}
 	}
