@@ -500,37 +500,47 @@ class CSMainHeaderPreview extends React.Component {
 				name: 'CSMainHeaderLeft',
 				examples: [
 					{
+						propName: 'title',
+						variations: [
+							{
+								component: <CSMainHeader>
+									<CSMainHeaderLeft title="This is a title" />
+								</CSMainHeader>,
+								code: `<CSMainHeader>
+									<CSMainHeaderLeft title="This is a title" />
+								</CSMainHeader>`
+							}
+						]
+					}, {
 						propName: 'reverseOrder',
 						variations: [
 							{
 								primaryVariants: 'reverseOrder={true}',
 								component: <CSMainHeader>
-									<CSMainHeaderIcon>
-										<CSIcon name="emoji" />
-									</CSMainHeaderIcon>
 									<CSMainHeaderLeft
 										reverseOrder
 										title="This is a title"
 										subtitle="This is a subtitle"
 									/>
-									<CSMainHeaderRight>
-										<CSButton label="Button 1" />
-										<CSButton label="Button 2" btnStyle="brand" />
-									</CSMainHeaderRight>
 								</CSMainHeader>,
 								code: `<CSMainHeader>
-									<CSMainHeaderIcon>
-										<CSIcon name="emoji" />
-									</CSMainHeaderIcon>
 									<CSMainHeaderLeft
 										reverseOrder
 										title="This is a title"
 										subtitle="This is a subtitle"
 									/>
-									<CSMainHeaderRight>
-										<CSButton label="Button 1" />
-										<CSButton label="Button 2" btnStyle="brand" />
-									</CSMainHeaderRight>
+								</CSMainHeader>`
+							}
+						]
+					}, {
+						propName: 'subtitle',
+						variations: [
+							{
+								component: <CSMainHeader>
+									<CSMainHeaderLeft title="This is a title" subtitle="This is a subtitle" />
+								</CSMainHeader>,
+								code: `<CSMainHeader>
+									<CSMainHeaderLeft title="This is a title" subtitle="This is a subtitle" />
 								</CSMainHeader>`
 							}
 						]
