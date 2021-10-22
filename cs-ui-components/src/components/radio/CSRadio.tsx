@@ -14,6 +14,7 @@ export interface CSRadioProps {
 	error?: boolean;
 	errorMessage?: CSFieldErrorMsgType;
 	helpText?: string;
+	hidden?: boolean;
 	id?: string;
 	label: string;
 	labelHidden?: boolean;
@@ -36,6 +37,7 @@ class CSRadio extends React.Component<CSRadioProps> {
 			error,
 			errorMessage,
 			helpText,
+			hidden,
 			id,
 			label,
 			labelHidden,
@@ -50,6 +52,7 @@ class CSRadio extends React.Component<CSRadioProps> {
 			'cs-radio-wrapper',
 			{
 				[`${className}`]: className,
+				'cs-element-hidden': hidden,
 			},
 		);
 

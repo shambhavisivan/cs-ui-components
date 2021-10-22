@@ -125,6 +125,29 @@ class CSRadioPreview extends React.Component<{}, CSRadioOptionState> {
 							}
 						]
 					}, {
+						propName: 'hidden',
+						variations: [
+							{
+								primaryVariants: 'hidden={true}',
+								component: <CSRadio
+									label="This is a label"
+									hidden
+									tooltipPosition="bottom-right"
+								>
+									<CSRadioOption label="red" name="color" />
+									<CSRadioOption label="blue" name="color" />
+								</CSRadio>,
+								code: `<CSRadio
+									label="This is a label"
+									hidden
+									tooltipPosition="bottom-right"
+								>
+									<CSRadioOption label="red" name="color" />
+									<CSRadioOption label="blue" name="color" />
+								</CSRadio>`
+							}
+						]
+					}, {
 						propName: 'labelHidden',
 						variations: [
 							{
@@ -288,6 +311,10 @@ class CSRadioPreview extends React.Component<{}, CSRadioOptionState> {
 						name: 'helpText',
 						types: 'string',
 						description: 'Set the text to be displayed in the tooltip.'
+					}, {
+						name: 'hidden',
+						types: 'boolean',
+						description: 'Control the hidden attribute.'
 					}, {
 						name: 'labelHidden',
 						types: 'boolean',
