@@ -36,6 +36,7 @@
 			align-items: center;
 			cursor: pointer;
 			display: flex;
+			justify-content: flex-start;
 			padding: 0 0.5rem;
 			background: none;
 			text-align: left;
@@ -67,6 +68,11 @@
 			.cs-icon {
 				margin-right: 0.5rem;
 				transition: transform 0.2s;
+			}
+
+			.cs-btn-custom-content {
+				display: flex;
+				align-items: center;
 			}
 		}
 

@@ -7,6 +7,8 @@
   * removed icon darken while hovering on `btnStyle="brand"`
 * CSRadio
   * added `hidden` prop
+* CSSection
+  * replaced collapsible button with `CSButton`
 * Tests added to components
   * CSSlider
   * CSToast

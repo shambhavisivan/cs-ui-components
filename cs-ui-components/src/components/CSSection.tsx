@@ -2,6 +2,7 @@ import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 import CSIcon from './CSIcon';
 import CSTooltip from './CSTooltip';
+import CSButton from './CSButton';
 
 export type CSSectionErrorMsgType = string | Array<string>;
 
@@ -125,8 +126,9 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 						<h3 className={sectionTitleClasses}>
 							{collapsible
 								? (
-									<button
-										type="button"
+									<CSButton
+										label="collapsible"
+										labelHidden
 										className="cs-section-button"
 										onClick={this.toggle}
 										aria-expanded={!defaultClosedState}
@@ -135,7 +137,7 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 										<CSIcon name="chevronright" size="0.875rem" rotate={defaultClosedState ? 0 : 90} />
 										{sectionTitle}
 										{sectionErrorMsg}
-									</button>
+									</CSButton>
 								)
 								: (
 									<>
