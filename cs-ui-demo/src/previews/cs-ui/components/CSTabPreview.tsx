@@ -196,51 +196,6 @@ class CSTabPreview extends React.Component {
 							}
 						]
 					}, {
-						propName: 'iconName | iconOrigin',
-						variations: [
-							{
-								primaryVariants: [
-									'iconName="activity"',
-									'iconOrigin="slds"'
-								],
-								quickLink: 'slds',
-								component: <CSTabGroup>
-									<CSTab name="Tab One" tabIcon="activity" />
-									<CSTab name="Tab Two" />
-									<CSTab name="Tab Three" />
-								</CSTabGroup>,
-								code: `<CSTabGroup>
-									<CSTab name="Tab One" tabIcon="activity" />
-									<CSTab name="Tab Two" />
-									<CSTab name="Tab Three" />
-								</CSTabGroup>`
-							}, {
-								primaryVariants: [
-									'iconName="big_shot"',
-									'iconOrigin="cs"'
-								],
-								quickLink: 'cs',
-								component: <CSTabGroup>
-									<CSTab
-										name="Tab One"
-										iconOrigin="cs"
-										tabIcon="big_shot"
-									/>
-									<CSTab name="Tab Two" />
-									<CSTab name="Tab Three" />
-								</CSTabGroup>,
-								code: `<CSTabGroup>
-									<CSTab
-										name="Tab One"
-										iconOrigin="cs"
-										tabIcon="big_shot"
-									/>
-									<CSTab name="Tab Two" />
-									<CSTab name="Tab Three" />
-								</CSTabGroup>`
-							}
-						]
-					}, {
 						propName: 'onClick',
 						variations: [
 							{
@@ -335,20 +290,48 @@ class CSTabPreview extends React.Component {
 							}
 						]
 					}, {
-						propName: 'tabIcon',
+						propName: 'tabIcon | iconOrigin',
 						variations: [
 							{
-								primaryVariants: 'tabIcon="activity"',
+								primaryVariants: [
+									'iconName="activity"',
+									'iconOrigin="slds"'
+								],
+								quickLink: 'slds',
 								component: <CSTabGroup>
 									<CSTab name="Tab One" tabIcon="activity" />
 									<CSTab name="Tab Two" />
 									<CSTab name="Tab Three" />
 								</CSTabGroup>,
 								code: `<CSTabGroup>
-								<CSTab name="Tab One" tabIcon="activity" />
-								<CSTab name="Tab Two" />
-								<CSTab name="Tab Three" />
-							</CSTabGroup>`
+									<CSTab name="Tab One" tabIcon="activity" />
+									<CSTab name="Tab Two" />
+									<CSTab name="Tab Three" />
+								</CSTabGroup>`
+							}, {
+								primaryVariants: [
+									'iconName="big_shot"',
+									'iconOrigin="cs"'
+								],
+								quickLink: 'cs',
+								component: <CSTabGroup>
+									<CSTab
+										name="Tab One"
+										iconOrigin="cs"
+										tabIcon="big_shot"
+									/>
+									<CSTab name="Tab Two" />
+									<CSTab name="Tab Three" />
+								</CSTabGroup>,
+								code: `<CSTabGroup>
+									<CSTab
+										name="Tab One"
+										iconOrigin="cs"
+										tabIcon="big_shot"
+									/>
+									<CSTab name="Tab Two" />
+									<CSTab name="Tab Three" />
+								</CSTabGroup>`
 							}
 						]
 					}, {
