@@ -66,7 +66,7 @@ export interface CSFormCustomSelectFieldProps extends Omit<CSFormFieldCommonProp
 	multiselect?: boolean;
 	onClear?: () => void;
 	onSearch?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-	options?: Array<CSFormCustomSelectOption>;
+	options: Array<CSFormCustomSelectOption>;
 }
 
 /** DATE FIELD */
