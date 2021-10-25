@@ -146,9 +146,9 @@ export interface CSFormRadioOption extends Pick<CSFormFieldCommonProps,
 	'readOnly' |
 	'disabled' |
 	'title'> {
-	label?: string;
-	radioOptionName?: string;
-	radioOptionValue?: string;
+	label: string;
+	radioOptionName: string;
+	radioOptionValue: string;
 }
 
 export interface CSFormRadioFieldProps extends Pick<CSFormFieldCommonProps,
