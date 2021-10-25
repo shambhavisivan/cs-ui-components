@@ -16,6 +16,7 @@ import CSFormToggleField from './form-fields/CSFormToggleField';
 import { useCSForm } from './CSFormContext';
 
 const CSFormField = ({
+	hidden,
 	grow,
 	showInNewLine,
 	readOnly,
@@ -85,13 +86,15 @@ const CSFormField = ({
 
 	return (
 		<>
-			{showInNewLine
-				? (
-					<div className="csf-field-new-line">
-						{formFieldWrapper}
-					</div>
-				)
-				: formFieldWrapper}
+			{!hidden && (
+				showInNewLine
+					? (
+						<div className="csf-field-new-line">
+							{formFieldWrapper}
+						</div>
+					)
+					: formFieldWrapper
+			)}
 		</>
 	);
 };

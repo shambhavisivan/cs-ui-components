@@ -9,7 +9,6 @@ export interface CSFormFieldCommonProps {
 	error?: boolean;
 	errorMessage?: Array<string> | string;
 	helpText?: string;
-	hidden?: boolean;
 	icons?: Array<any>
 	label: string;
 	name: string;
@@ -24,6 +23,7 @@ export interface CSFormFieldCommonProps {
 
 export interface CSFormFieldLayoutProps {
 	fieldType: CSFormFieldType;
+	hidden?: boolean;
 	grow?: number;
 	showInNewLine?: boolean;
 }
