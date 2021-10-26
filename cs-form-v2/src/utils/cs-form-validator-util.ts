@@ -1,35 +1,42 @@
 import { CSFormFieldData } from '../types/cs-form-field-types';
 import { CSFormData, CSFormErrorLabels } from '../types/cs-form-types';
 
-const validateField = (field: CSFormFieldData, value: any, errorLabels?: CSFormErrorLabels) => {
+const defaultErrorLabels: CSFormErrorLabels = {
+	requiredFieldErrLabel: 'is required',
+	maxLengthTextFieldErr: 'value is higher than defined maxLength value',
+	maxNumberFieldErrLabel: 'value is higher than defined max value.',
+	minNumberFieldErrLabel: 'value is lower than defined min value.',
+};
+
+const validateField = (field: CSFormFieldData, value: any, customErrorLabels?: CSFormErrorLabels) => {
 	const errors: Array<string> = [];
 
 	/** Check requiredness of the field regardless of the type */
 	if (field.required && !value) {
-		if (errorLabels?.requiredFieldErrLabel) {
-			errors.push(errorLabels.requiredFieldErrLabel);
+		if (customErrorLabels?.requiredFieldErrLabel) {
+			errors.push(customErrorLabels.requiredFieldErrLabel);
 		} else if (field.fieldType === 'RADIO') {
 			errors.push('Radio options are required!');
 		} else {
-			errors.push(`${field.name} is required.`);
+			errors.push(`${field.name} ${defaultErrorLabels.requiredFieldErrLabel}`);
 		}
 	}
 
 	/** Number field validations */
 	if (field.fieldType === 'NUMBER') {
 		if (value > field.max) {
-			if (errorLabels?.maxNumberFieldErrLabel) {
-				errors.push(errorLabels.maxNumberFieldErrLabel);
+			if (customErrorLabels?.maxNumberFieldErrLabel) {
+				errors.push(customErrorLabels.maxNumberFieldErrLabel);
 			} else {
-				errors.push(`${field.name} value is higher than defined max value.`);
+				errors.push(`${field.name} ${defaultErrorLabels.maxNumberFieldErrLabel}`);
 			}
 		}
 
 		if (value < field.min) {
-			if (errorLabels?.minNumberFieldErrLabel) {
-				errors.push(errorLabels.minNumberFieldErrLabel);
+			if (customErrorLabels?.minNumberFieldErrLabel) {
+				errors.push(customErrorLabels.minNumberFieldErrLabel);
 			} else {
-				errors.push(`${field.name} value is lower than defined min value.`);
+				errors.push(`${field.name} ${defaultErrorLabels.minNumberFieldErrLabel}`);
 			}
 		}
 	}
@@ -37,10 +44,10 @@ const validateField = (field: CSFormFieldData, value: any, errorLabels?: CSFormE
 	/** Text field validations */
 	if (field.fieldType === 'TEXT') {
 		if ((value as string).length > field.maxLength) {
-			if (errorLabels?.maxLengthTextFieldErr) {
-				errors.push(errorLabels.maxLengthTextFieldErr);
+			if (customErrorLabels?.maxLengthTextFieldErr) {
+				errors.push(customErrorLabels.maxLengthTextFieldErr);
 			} else {
-				errors.push(`${field.name} value is higher than defined maxLength value.`);
+				errors.push(`${field.name} ${defaultErrorLabels.maxLengthTextFieldErr}`);
 			}
 		}
 	}
@@ -52,13 +59,13 @@ const validateField = (field: CSFormFieldData, value: any, errorLabels?: CSFormE
 	return null;
 };
 
-const validateForm = (data: CSFormData, errorLabels?: CSFormErrorLabels) => {
+const validateForm = (data: CSFormData, customErrorLabels?: CSFormErrorLabels) => {
 	let validationResults: Array<object> = [];
 	data.forEach(({ sectionKey, fields }) => {
 		const evaluatedFields = fields.filter((field) => field.fieldType !== 'CUSTOM')
 			.map((field) => {
 				const { name, value } = field;
-				const errorMessage = validateField(field, value, errorLabels);
+				const errorMessage = validateField(field, value, customErrorLabels);
 				if (errorMessage) {
 					return {
 						sectionKey,
@@ -84,4 +91,5 @@ const validateForm = (data: CSFormData, errorLabels?: CSFormErrorLabels) => {
 export {
 	validateForm,
 	validateField,
+	defaultErrorLabels,
 };
