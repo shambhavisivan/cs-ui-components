@@ -7,6 +7,7 @@ const CSFormNumberField = ({
 	onBlur,
 	onChange,
 	styleClass,
+	useLocale,
 	...props
 }: CSFormNumberFieldProps) => (
 	<CSInputNumber
