@@ -7,6 +7,7 @@ import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import { CSCustomDataIconProps, CSCustomDataActionProps } from '../util/CustomData';
 import CSCustomDataIcons from './custom-data/CSCustomDataIcons';
 import CSCustomDataActions from './custom-data/CSCustomDataActions';
+import KeyCode from '../util/KeyCode';
 
 export type CSCheckboxVariant = 'neutral' | 'brand';
 export type CSCheckboxLabelPosition = 'left' | 'right';
@@ -149,7 +150,12 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 						<label
 							className="cs-checkbox-group"
 							onClick={(event) => event.stopPropagation()}
-							onKeyDown={(event) => event.stopPropagation()}
+							onKeyDown={(event) => {
+								// Stop propagation on enter/space keys only
+								if (event.key === KeyCode.Enter || event.key === KeyCode.Space) {
+									event.stopPropagation();
+								}
+							}}
 						>
 							<input
 								onBlur={onBlur}

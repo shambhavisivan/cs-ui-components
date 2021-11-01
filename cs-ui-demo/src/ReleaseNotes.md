@@ -10,6 +10,8 @@
   * added `hidden` prop
 * CSSection
   * replaced collapsible button with `CSButton`
+* CSCheckbox
+  * Limited stopPropagation to only enter and space keys
 * Tests added to components
   * CSSlider
   * CSToast
