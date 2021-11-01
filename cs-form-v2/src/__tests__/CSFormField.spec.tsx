@@ -175,6 +175,7 @@ describe('<CSFormField />', () => {
 		const uut = mount(
 			<CSFormContext.Provider
 				value={{
+					data: [],
 					columnNumber: 5,
 					handleFieldBlur: () => { },
 					handleFieldChange: () => { },
@@ -195,6 +196,7 @@ describe('<CSFormField />', () => {
 		const uut = mount(
 			<CSFormContext.Provider
 				value={{
+					data: [],
 					columnNumber: 5,
 					handleFieldBlur: () => { },
 					handleFieldChange: () => { },

@@ -1,5 +1,5 @@
 import { CSFormSectionProps } from '../types/cs-form-section-types';
-import { CSFormFieldDefinition, CSFormFieldData } from '../types/cs-form-field-types';
+import { CSFormFieldDefinition } from '../types/cs-form-field-types';
 
 export interface CSFormSectionDefinition extends Omit<CSFormSectionProps, 'fields'> {
 	fields: Array<CSFormFieldDefinition>;
@@ -23,15 +23,19 @@ export const defineFormData = (formDefinition: CSFormDefinition, data: Array<Rec
 
 	formData = formDefinition.map(({ fields, ...rest }) => {
 		const newFields = fields.map((field) => {
-			let newField = { ...field } as CSFormFieldData;
-			if (dataMap.has(field?.name)) {
-				newField = { ...newField, value: dataMap.get(field.name) };
-			} else if (field.fieldType !== 'CUSTOM') {
-				newField = { ...newField, value: undefined };
-			}
+			let newField = {};
+			if (field.fieldType !== 'CUSTOM-MODAL') {
+				if (dataMap.has(field?.name)) {
+					newField = { ...field, value: dataMap.get(field.name) };
+				} else {
+					newField = { ...field, value: undefined };
+				}
 
-			if (errorMap?.has(field?.name)) {
-				newField = { ...newField, errorMessage: errorMap.get(field.name) };
+				if (errorMap?.has(field?.name)) {
+					newField = { ...newField, errorMessage: errorMap.get(field.name) };
+				}
+			} else {
+				newField = { ...field };
 			}
 			return newField;
 		});

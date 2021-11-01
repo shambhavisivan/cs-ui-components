@@ -1,4 +1,4 @@
-import { CSFormFieldData } from '../types/cs-form-field-types';
+import { CSFormCustomModalFieldProps, CSFormFieldData } from '../types/cs-form-field-types';
 import { CSFormData, CSFormErrorLabels } from '../types/cs-form-types';
 
 const defaultErrorLabels: CSFormErrorLabels = {
@@ -10,6 +10,8 @@ const defaultErrorLabels: CSFormErrorLabels = {
 
 const validateField = (field: CSFormFieldData, value: any, customErrorLabels?: CSFormErrorLabels) => {
 	const errors: Array<string> = [];
+
+	if (field.fieldType === 'CUSTOM-MODAL' || field.fieldType === 'CUSTOM') return null;
 
 	/** Check requiredness of the field regardless of the type */
 	if (field.required && !value) {
@@ -62,9 +64,9 @@ const validateField = (field: CSFormFieldData, value: any, customErrorLabels?: C
 const validateForm = (data: CSFormData, customErrorLabels?: CSFormErrorLabels) => {
 	let validationResults: Array<object> = [];
 	data.forEach(({ sectionKey, fields }) => {
-		const evaluatedFields = fields.filter((field) => field.fieldType !== 'CUSTOM')
+		const evaluatedFields = fields.filter((field) => field.fieldType !== 'CUSTOM' && field.fieldType !== 'CUSTOM-MODAL')
 			.map((field) => {
-				const { name, value } = field;
+				const { name, value } = field as Exclude<CSFormFieldData, CSFormCustomModalFieldProps>;
 				const errorMessage = validateField(field, value, customErrorLabels);
 				if (errorMessage) {
 					return {

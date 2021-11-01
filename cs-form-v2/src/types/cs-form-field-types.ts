@@ -1,4 +1,11 @@
+/* eslint-disable import/no-unresolved */
+import { CSButtonProps as CSFormModalButton } from '@cloudsense/cs-ui-components/dist/cs-ui-components/src/components/CSButton';
+import { CSModalHeaderProps } from '@cloudsense/cs-ui-components/dist/cs-ui-components/src/components/modal/CSModalHeader';
+import { CSModalBodyProps } from '@cloudsense/cs-ui-components/dist/cs-ui-components/src/components/modal/CSModalBody';
+import { CSModalFooterProps } from '@cloudsense/cs-ui-components/dist/cs-ui-components/src/components/modal/CSModalFooter';
 import React from 'react';
+import { CSModalProps } from '@cloudsense/cs-ui-components/dist/cs-ui-components/src/components/modal/CSModal';
+import { CSFormData } from './cs-form-types';
 
 type ExcludeCommonHelper<T, K extends string | number | symbol> = T extends unknown ? Omit<T, K> : never;
 
@@ -30,6 +37,7 @@ export interface CSFormFieldLayoutProps {
 
 export type CSFormFieldType = 'CHECKBOX' |
 	'CUSTOM' |
+	'CUSTOM-MODAL' |
 	'CUSTOM-SELECT' |
 	'DATE' |
 	'DATETIME' |
@@ -53,6 +61,36 @@ export interface CSFormCustomFieldProps extends Pick<CSFormFieldCommonProps, 'on
 	onFocus?: (value?: any) => any;
 	render: React.ReactElement;
 	[key: string]: any;
+}
+
+/** CUSTOM MODAL FIELD */
+export type CSFormCustomModalContentFactory = (data: CSFormData, closeModal: () => any) => Promise<React.ReactElement>;
+
+export interface CSFormModalHeaderProps extends CSModalHeaderProps {
+	headerContent?: React.ReactElement;
+	headerFactory?: (data: CSFormData) => Promise<React.ReactElement>;
+}
+
+export interface CSFormModalBodyProps extends CSModalBodyProps {
+	bodyContent?: React.ReactElement;
+	bodyFactory?: CSFormCustomModalContentFactory;
+}
+
+export interface CSFormModalFooterProps extends CSModalFooterProps {
+	footerContent?: React.ReactElement;
+	footerFactory?: CSFormCustomModalContentFactory;
+}
+
+export interface CSFormModalProps extends Omit<CSModalProps, 'loading' | 'mounted' | 'setMounted' | 'visible'> {
+	header: CSFormModalHeaderProps;
+	body: CSFormModalBodyProps;
+	footer?: CSFormModalFooterProps;
+}
+
+export interface CSFormCustomModalFieldProps {
+	fieldType: 'CUSTOM-MODAL';
+	modalButton: CSFormModalButton;
+	modal: CSFormModalProps;
 }
 
 /** CUSTOM SELECT FIELD */
@@ -210,13 +248,13 @@ type CSFormStandardFields = CSFormCheckboxFieldProps
 	| CSFormTextareaFieldProps
 	| CSFormToggleFieldProps;
 
-type CSFormFields = CSFormStandardFields | CSFormCustomFieldProps;
+type CSFormFields = CSFormStandardFields | CSFormCustomFieldProps | CSFormCustomModalFieldProps;
 
 /** CSFormField props type */
 export type CSFormFieldProps = CSFormFieldLayoutProps & CSFormFields;
 
 /** Props per field defined in data prop. onChange, onBlur and locale are excluded since they are defined on top of the whole CSForm */
-export type CSFormFieldData = CSFormFieldLayoutProps & (ExcludeCommonHelper<CSFormStandardFields, 'onChange' | 'onBlur' | 'locale'> | CSFormCustomFieldProps)
+export type CSFormFieldData = CSFormFieldLayoutProps & (ExcludeCommonHelper<CSFormStandardFields, 'onChange' | 'onBlur' | 'locale'> | CSFormCustomFieldProps | CSFormCustomModalFieldProps)
 
 /** Props used for form definition only, values for each field are excluded. */
-export type CSFormFieldDefinition = CSFormFieldLayoutProps & (ExcludeCommonHelper<CSFormStandardFields, 'onChange' | 'onBlur' | 'locale' | 'value'> | CSFormCustomFieldProps);
+export type CSFormFieldDefinition = CSFormFieldLayoutProps & (ExcludeCommonHelper<CSFormStandardFields, 'onChange' | 'onBlur' | 'locale' | 'value'> | CSFormCustomFieldProps | CSFormCustomModalFieldProps);

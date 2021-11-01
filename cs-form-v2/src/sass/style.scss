@@ -17,6 +17,9 @@
 				&:not(.csf-field-wrapper-custom) > * {
 					flex: 1;
 				}
+				&-custom {
+					align-self: center;
+				}
 			}
 			.csf-field-new-line {
 				display: contents;

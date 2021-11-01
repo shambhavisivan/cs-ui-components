@@ -1,5 +1,5 @@
 import React from 'react';
-import { CSAlert } from '@cloudsense/cs-ui-components';
+import { CSAlert, CSButton, CSChip } from '@cloudsense/cs-ui-components';
 
 import Preview from '../Preview';
 import { CSForm, CSFormData } from '@cloudsense/cs-form-v2';
@@ -106,6 +106,55 @@ class FieldTypes extends React.Component<{}, State> {
 				{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }],
 				fieldToBeDisplayed: 'Account',
 				name: 'lookup'
+			}]
+		}, {
+			sectionKey: '3',
+			collapsible: true,
+			label: 'section',
+			fields: [{
+				fieldType: 'CUSTOM',
+				render: <CSChip text="custom" />
+			}, {
+				fieldType: 'CUSTOM-MODAL',
+				showInNewLine: true,
+				modalButton: {
+					label: 'Open modal with content'
+				},
+				modal: {
+					closeButton: true,
+					header: {
+						title: 'Modal with content'
+					},
+					body: {
+						bodyContent: <span>Custom body content</span>
+					},
+					footer: {
+						footerContent: <span>Custom footer content</span>
+					}
+				}
+			}, {
+				fieldType: 'CUSTOM-MODAL',
+				modalButton: {
+					label: 'Open modal with factory'
+				},
+				modal: {
+					closeButton: true,
+					header: {
+						title: 'Modal with factory'
+					},
+					body: {
+						bodyFactory: async () => {
+							await new Promise(resolve => setTimeout(resolve, 3000));
+							return <span>Custom updated content</span>;
+						}
+					},
+					footer: {
+						footerFactory: async (data, closeModal) => {
+							await new Promise(resolve => setTimeout(resolve, 3000));
+							return <CSButton label="Close modal" onClick={closeModal} />;
+						}
+					}
+				}
 			}]
 		}
 	];

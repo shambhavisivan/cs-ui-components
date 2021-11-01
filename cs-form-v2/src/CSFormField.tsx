@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { CSFormFieldProps } from './types/cs-form-field-types';
 import CSFormCheckboxField from './form-fields/CSFormCheckboxField';
 import CSFormCustomField from './form-fields/CSFormCustomField';
+import CSFormCustomModalField from './form-fields/CSFormCustomModalField';
 import CSFormCustomSelectField from './form-fields/CSFormCustomSelectField';
 import CSFormDateField from './form-fields/CSFormDateField';
 import CSFormDateTimeField from './form-fields/CSFormDateTimeField';
@@ -19,7 +20,6 @@ const CSFormField = ({
 	hidden,
 	grow,
 	showInNewLine,
-	readOnly,
 	...rest
 }: CSFormFieldProps) => {
 	const {
@@ -31,36 +31,38 @@ const CSFormField = ({
 	const formFieldWidth = 100 / columnNumber;
 	const formFieldGrow = grow * formFieldWidth;
 
-	const fieldSettings = {
-		readOnly: mode === 'read-only' ? true : readOnly,
-	};
+	const fieldSettings = rest.fieldType !== 'CUSTOM-MODAL' ? {
+		readOnly: mode === 'read-only' || rest.readOnly,
+	} : undefined;
 	const renderFormField = () => {
 		switch (rest.fieldType) {
 		case 'CUSTOM':
 			return <CSFormCustomField {...rest} />;
+		case 'CUSTOM-MODAL':
+			return <CSFormCustomModalField {...rest} />;
 		case 'CUSTOM-SELECT':
-			return <CSFormCustomSelectField {...fieldSettings} {...rest} />;
+			return <CSFormCustomSelectField {...rest} {...fieldSettings} />;
 		case 'CHECKBOX':
-			return <CSFormCheckboxField {...fieldSettings} {...rest} />;
+			return <CSFormCheckboxField {...rest} {...fieldSettings} />;
 		case 'DATE':
-			return <CSFormDateField locale={locale?.dateLocale} {...fieldSettings} {...rest} />;
+			return <CSFormDateField locale={locale?.dateLocale} {...rest} {...fieldSettings} />;
 		case 'DATETIME':
-			return <CSFormDateTimeField locale={locale?.dateLocale} {...fieldSettings} {...rest} />;
+			return <CSFormDateTimeField locale={locale?.dateLocale} {...rest} {...fieldSettings} />;
 		case 'LOOKUP':
-			return <CSFormLookupField {...fieldSettings} {...rest} />;
+			return <CSFormLookupField {...rest} {...fieldSettings} />;
 		case 'NUMBER':
-			return <CSFormNumberField locale={!rest.useLocale ? undefined : locale?.numberLocale} {...fieldSettings} {...rest} />;
+			return <CSFormNumberField locale={!rest.useLocale ? undefined : locale?.numberLocale} {...rest} {...fieldSettings} />;
 		case 'RADIO':
 			return <CSFormRadioField {...rest} />;
 		case 'SELECT':
-			return <CSFormSelectField {...fieldSettings} {...rest} />;
+			return <CSFormSelectField {...rest} {...fieldSettings} />;
 		case 'TEXTAREA':
-			return <CSFormTextareaField {...fieldSettings} {...rest} />;
+			return <CSFormTextareaField {...rest} {...fieldSettings} />;
 		case 'TOGGLE':
-			return <CSFormToggleField {...fieldSettings} {...rest} />;
+			return <CSFormToggleField {...rest} {...fieldSettings} />;
 		case 'TEXT':
 		default:
-			return <CSFormTextField {...fieldSettings} {...rest} />;
+			return <CSFormTextField {...rest} {...fieldSettings} />;
 		}
 	};
 
@@ -71,7 +73,7 @@ const CSFormField = ({
 	const formFieldClasses = classNames(
 		'csf-field-wrapper',
 		{
-			'csf-field-wrapper-custom': rest.fieldType === 'CUSTOM',
+			'csf-field-wrapper-custom': rest.fieldType === 'CUSTOM' || rest.fieldType === 'CUSTOM-MODAL',
 		},
 	);
 

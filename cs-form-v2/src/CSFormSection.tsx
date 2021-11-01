@@ -28,6 +28,25 @@ const CSFormSection = ({
 		},
 	);
 
+	const renderedFields = fields.map((field, index) => {
+		const key = field.fieldType !== 'CUSTOM-MODAL' && field.fieldType !== 'CUSTOM'
+			? field.name
+			: `csf-custom-${index}`;
+
+		const events = field.fieldType !== 'CUSTOM-MODAL' ? {
+			onChange: (value: any) => handleFieldChange(sectionKey, field, value),
+			onBlur: (value: any) => handleFieldBlur(sectionKey, field, value),
+		} : undefined;
+
+		return (
+			<CSFormField
+				key={key}
+				{...field}
+				{...events}
+			/>
+		);
+	});
+
 	return (
 		<CSSection
 			className={sectionFieldClasses}
@@ -38,14 +57,7 @@ const CSFormSection = ({
 			hideSectionHeader={hideSectionHeader}
 			title={label}
 		>
-			{fields.map((field, index) => (
-				<CSFormField
-					{...field}
-					key={field.name ?? `csf-custom-${index}`}
-					onChange={(value) => handleFieldChange(sectionKey, field, value)}
-					onBlur={(value) => handleFieldBlur(sectionKey, field, value)}
-				/>
-			))}
+			{renderedFields}
 		</CSSection>
 	);
 };
