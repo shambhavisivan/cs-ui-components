@@ -1,5 +1,122 @@
 # CS UI Components - Release Notes
 
+## 2.0.0
+* General
+  * added `CSAutoposition` component
+  * create CSS helper for blinking cursors
+* CSAlert
+  * replaced close button with `CSButton`
+* CSButton
+  * <i>important</i> removed `iconDisplay` prop
+  * fixed style issues on hover and active states on brand buttons
+  * fixed `size` prop overriding `iconSize` prop
+* CSCard
+  * fixed `collapsible` prop
+  * added `borderRadius` prop
+  * added `bgColor` prop to CSCardHeader and CSCardFooter
+  * made component functional
+* CSCheckbox
+  * <i>important</i> removed `onClick` prop
+  * added `icons` and `actions` props
+  * added `onBlur` prop
+  * change `checked` to default to false
+  * fixed `indeterminate` to override checked
+  * fixed event propagation on click and keyboard events
+* CSCustomData
+  * <i>new</i> new component added
+* CSCustomSelect
+  * <i>important</i> restructured component
+  * replaced autoposition code with `CSAutoposition`
+  * added `ref` forwarding
+  * added `placeholder` prop
+  * added `showCompactMultiselect` prop
+  * added `gridCustomPopup` prop for custom popup support in CSGrid
+  * added blinking indicator
+  * fixed style issues
+* CSDataTable
+  * <i>new</i> new component added
+* CSDatePicker and CSDateTimePicker
+  * added `icons` and `actions` props
+  * added `onBlur` prop
+* CSDropdown
+  * replaced autoposition code with `CSAutoposition`
+  * fixed broken `dropdownClassName` prop
+  * restructured `mode="custom"` html
+* CSFieldErrorMsg
+  * fixed `tooltipMessage` support for array of messages
+  * fixed line height for multiline error messages
+* CSInputNumber
+  * added `icons` and `actions` props
+  * fixed focusable `readOnly` input field with mouse click
+* CSInputText
+  * fixed focusable `readOnly` input field with mouse click
+* CSList
+  * removed `.cs-list-item-text` if no text is passed as a prop
+* CSLookup
+  * <i>important</i> replaced `CSTable` with `CSDataTable`
+  * <i>important</i> renamed `lookupColumns` to `columns`
+  * <i>important</i> renamed `onLookupDropdownClose` to `onDropdownClose`
+  * <i>important</i> renamed `fetchLookupOptions` to `fetchOptions`
+  * <i>important</i> renamed `lookupOptions` to `options`
+  * <i>important</i> `columns` and `options` prop types restructured
+  * replaced autoposition code with `CSAutoposition`
+  * added `event.stopPropagation()` for `ESC` key press
+  * added `icons` and `actions` props
+  * added `onBlur` prop
+  * fixed crashing in CSGrid because of adding event listener on nonexisting ref element
+  * fixed style inconsistency on down arrow
+* CSModal
+  * replaced close button with `CSButton`
+  * set `animated` prop to true by default
+* CSRadio
+  * added `value` prop to `CSRadioOption`
+  * added `onBlur` prop to `CSRadioOption`
+  * fixed event propagation on click and keyboard events
+* CSSection
+  * added `borderRadius` prop
+  * added `bgColor` prop
+  * added `hideSectionHeader` prop
+  * added `error` and `errorMessage` props
+* CSSelect
+  * added `icons` and `actions` props
+  * added `onBlur` prop
+  * fixed style inconsistency on down arrow
+* CSSidebar
+  * made component stateless
+  * fixed close animation styles
+* CSSlider
+  * fixed styling issues
+* CSTab
+  * fixed active state overriding custom icons
+* CSTable
+  * <i>important</i> made component deprecated
+* CSTextarea
+  * added `icons` and `actions` props
+* CSToast
+  * <i>important</i> renamed `iconVisibility` to `iconHidden`
+  * replaced close button with `CSButton`
+  * added `clearAllToasts` method to CSToastApi
+* CSToggle
+  * added `icons` and `actions` props
+  * fixed event propagation on click and keyboard events
+* CSTooltip
+  * replaced autoposition code with `CSAutoposition`
+* CSTransfer
+  * fixed event propagation on click and keyboard events
+* CSTree
+  * <i>new</i> new component added
+* Demo App changes
+  * demo app redesign
+  * added Future Scope page
+  * added CSForm page
+  * added `copy preview code to clipboard` button
+  * added `ignore-engines` after yarn command to fix incompatible node jenkins error
+  * fixed style issues
+* Tests added to components
+  * CSAlert
+  * CSProgressBar
+  * CSSkipLink
+
 ## 1.1.25
 * General
   * <i>important</i> added `Jest` & `Enzyme` initial setup
