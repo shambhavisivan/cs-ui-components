@@ -835,6 +835,12 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 				],
 				properties: [
 					{
+						name: 'visible',
+						required: true,
+						types: 'boolean',
+						default: 'true',
+						description: 'Control whether or not to render the modal. This prop will soon change its behaviour.'
+					}, {
 						name: 'animated',
 						types: 'boolean',
 						default: 'true',
@@ -881,11 +887,6 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 						name: 'style',
 						types: 'object',
 						description: 'Add custom styles as inline css.'
-					}, {
-						name: 'visible',
-						types: 'boolean',
-						default: 'true',
-						description: 'Control whether or not to render the modal. This prop will soon change its behaviour. Please treat it as required.'
 					}, {
 						name: 'id',
 						types: 'string',
