@@ -1213,10 +1213,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cloudsense/cs-ui-components@1.1.26-alpha6":
-  version "1.1.26-alpha6"
-  resolved "https://registry.yarnpkg.com/@cloudsense/cs-ui-components/-/cs-ui-components-1.1.26-alpha6.tgz#6f1575296962e8aed9e2541895c3a337670887d8"
-  integrity sha512-f/u1Xs5mVJLVh+WbJt4h5vQm/DRjVFZsJxf2Q0BacZDvRXDkkPpfPimL3uuNOm5d6kQPl9U/ZS3FUOhyvUP3eQ==
+"@cloudsense/cs-ui-components@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@cloudsense/cs-ui-components/-/cs-ui-components-2.0.0.tgz#25c295244817dd1c9b4ae316fd8ffd9834ea90bf"
+  integrity sha512-DCtpPCXfK88IEhT3jE0DaxuPzwJDm2NPQsG++Nbo2Gm0XZdasKXNSualC1RGz2tpctjXuwjYXHpzg0OpB2aJ3A==
   dependencies:
     classnames "^2.2.6"
     date-fns "^2.22.1"
