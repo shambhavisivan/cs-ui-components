@@ -1,5 +1,11 @@
 # CS UI Components - Release Notes
 
+## 2.0.1
+* CSAlert
+  * fixed close button styling when `styleFormat="scoped"`
+* CSRadio
+  * added `hidden` prop
+
 ## 2.0.0
 * General
   * added `CSAutoposition` component
