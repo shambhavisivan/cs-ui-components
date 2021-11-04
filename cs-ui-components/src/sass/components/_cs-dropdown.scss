@@ -61,14 +61,17 @@
 						border: 1px solid cvar(--cs-transparent);
 					}
 				}
-				&:active::after {
-					@include css4 {
-						border: 1px solid cvar(--cs-button-active-br);
-					}
-				}
 				&:disabled::after {
 					@include css4 {
 						border: 1px solid cvar(--cs-transparent);
+					}
+				}
+				&:focus {
+					&::after {
+						box-shadow: none;
+					}
+					&:before {
+						@include sbg(--cs-dropdown-wrapper-btn-focus);
 					}
 				}
 			}

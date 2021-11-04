@@ -539,7 +539,9 @@ $variables: (
 	--cs-tree-item-active-bg: $cs-blue-light-2,
 	--cs-tree-item-active-hover-bg: $cs-blue-light-1,
 	--cs-tree-item-active-br: $cs-blue-sf,
-	--cs-tree-node-actions-indicator-bg: $cs-gray-light-4
+	--cs-tree-node-actions-indicator-bg: $cs-gray-light-4,
+
+	--cs-dropdown-wrapper-btn-focus: $cs-gray-light-8
 );
 
 // $darkVariables: (

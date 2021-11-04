@@ -142,7 +142,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 	onKeyDown = (event: { key: string; }) => {
 		const { isOpen } = this.state;
 
-		if (event.key === KeyCode.Escape && isOpen) {
+		if ((event.key === KeyCode.Escape || event.key === KeyCode.Tab) && isOpen) {
 			this.closeDropdown();
 		}
 	}

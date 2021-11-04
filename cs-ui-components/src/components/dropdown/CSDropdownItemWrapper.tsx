@@ -83,10 +83,16 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 				if (document.activeElement === lastElement) (firstElement as HTMLElement).focus();
 				else (focusableElements[index + 1] as HTMLElement).focus();
 			}
-			if (event.key === KeyCode.Tab) toggleDropdown();
-			else onDropdownTabClose?.();
-		} else if (event.key === KeyCode.Tab && lastElement === document.activeElement) { // if mode isn't button and last element is focused
-			toggleDropdown();
+			if (event.key === KeyCode.Tab) {
+				toggleDropdown();
+				onDropdownTabClose?.();
+				event.stopPropagation();
+			}
+		} else if (event.key === KeyCode.Tab) {
+			event.stopPropagation();
+			if (lastElement === document.activeElement) { // if mode isn't button and last element is focused
+				toggleDropdown();
+			}
 		}
 
 		// if escape is pressed close the dropdown (this applies to all modes)
@@ -150,32 +156,29 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 				);
 			}
 
+			const cloneElement = () => React.cloneElement(child, { role: 'menuitem' });
+
 			if (mode !== 'custom') {
 				return (
 					<li role="none">
-						{React.cloneElement(
-							child,
-							{
-								onKeyDown: this.handleKeyDown,
-								role: 'menuitem',
-							},
-						)}
+						{cloneElement()}
 					</li>
 				);
 			}
 
 			return (
 				<div role="none">
-					{React.cloneElement(
-						child,
-						{
-							onKeyDown: this.handleKeyDown,
-							role: 'menuitem',
-						},
-					)}
+					{cloneElement()}
 				</div>
 			);
 		});
+
+		const dropdownItemWrapperProps = {
+			className: btnDropdownItemWrapperClasses,
+			style: dropdownItemWrapperStyle,
+			ref: this.dropdownUListRef,
+			onKeyDown: this.handleKeyDown,
+		};
 
 		return (
 			<div
@@ -186,23 +189,17 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 				{mode !== 'custom'
 					? (
 						<ul
-							className={btnDropdownItemWrapperClasses}
+							{...dropdownItemWrapperProps}
 							role="menu"
-							style={dropdownItemWrapperStyle}
-							ref={this.dropdownUListRef}
-							onKeyDown={this.handleKeyDown}
 						>
 							{childrenWithWrapper}
 						</ul>
 					)
 					: (
 						<div
-							className={btnDropdownItemWrapperClasses}
+							{...dropdownItemWrapperProps}
 							role="menu"
 							tabIndex={0}
-							style={dropdownItemWrapperStyle}
-							ref={this.dropdownUListRef}
-							onKeyDown={this.handleKeyDown}
 						>
 							{childrenWithWrapper}
 						</div>

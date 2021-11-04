@@ -12,6 +12,8 @@
   * replaced collapsible button with `CSButton`
 * CSCheckbox
   * Limited stopPropagation to only enter and space keys
+* CSDropdown
+  * fixed keyboard navigation when mode is 'button' and minor style fixes
 * Tests added to components
   * CSSlider
   * CSToast
