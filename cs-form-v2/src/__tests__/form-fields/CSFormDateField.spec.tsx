@@ -173,7 +173,7 @@ describe('CSFormDateField', () => {
 			/>,
 		);
 		const datepicker = uut.find(CSDatepicker);
-		datepicker.simulate('blur');
+		datepicker.simulate('blur', { target: { value: '1/1/2021' } });
 		expect(handleOnBlurMock).toHaveBeenCalled();
 	});
 

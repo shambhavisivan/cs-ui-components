@@ -12,7 +12,7 @@ const CSFormDateTimeField = ({
 	<CSDateTimePicker
 		className={styleClass}
 		onChange={(date: Date) => onChange(date)}
-		onBlur={(date: Date) => onBlur(date)}
+		onBlur={(e: React.FocusEvent<HTMLInputElement>) => onBlur(e.target.value)}
 		{...props}
 	/>
 );
