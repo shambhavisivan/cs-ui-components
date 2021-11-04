@@ -4,12 +4,6 @@
 	"description": "Reusable React UI components",
 	"main": "./dist/index.js",
 	"types": "./dist/cs-ui-components/src/index.d.ts",
-	"jest": {
-		"setupFilesAfterEnv": [
-			"<rootDir>/src/setupTests.ts"
-		],
-		"testEnvironment": "jsdom"
-	},
 	"scripts": {
 		"build": "rimraf dist && webpack",
 		"lint": "eslint src --ext .js,.jsx,.tsx,.ts",
