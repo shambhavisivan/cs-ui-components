@@ -15,19 +15,26 @@ export interface CSInputFileProps {
 	error?: boolean;
 	errorMessage?: CSFieldErrorMsgType;
 	errorTooltip?: boolean;
+	fileSelectedLabel?: string;
 	fileSize?: boolean;
 	id?: string;
-	label: string;
+	label?: string;
 	onDrop?: (values: any) => any;
 	onChange?: (values: any) => any;
 }
 
 export interface CSInputFileState {
-	label?: string;
+	fileName: string;
+	fileSelectedLabel: string;
 	isDraggedOver: boolean;
 }
 
 class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
+	public static defaultProps = {
+		fileSelectedLabel: 'File selected',
+		label: 'Upload a file',
+	};
+
 	public inputFileInnerRef: React.RefObject<HTMLInputElement>;
 
 	private dragEventCounter = 0;
@@ -35,18 +42,12 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 	constructor(props: any) {
 		super(props);
 		this.state = {
-			label: '',
+			fileSelectedLabel: '',
+			fileName: '',
 			isDraggedOver: false,
 		};
 
-		this.fileSizeDisplay = this.fileSizeDisplay.bind(this);
-		this.handleFileSubmit = this.handleFileSubmit.bind(this);
-		this.handleFileDragEvents = this.handleFileDragEvents.bind(this);
-		this.handleFileDrop = this.handleFileDrop.bind(this);
-		this.handleAcceptFiles = this.handleAcceptFiles.bind(this);
 		this.inputFileInnerRef = React.createRef();
-		this.handleDragEnter = this.handleDragEnter.bind(this);
-		this.handleDragLeave = this.handleDragLeave.bind(this);
 	}
 
 	handleFileDragEvents = (e: React.DragEvent<HTMLDivElement>) => {
@@ -54,21 +55,19 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 		e.stopPropagation();
 	}
 
-	handleFileSubmit() {
-		const { fileSize, onChange } = this.props;
-		const file = this.inputFileInnerRef.current.files[0];
+	handleFileSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const { onChange } = this.props;
+		const file = e.target.files[0];
 
-		this.setState({
-			label: fileSize ? file.name + this.fileSizeDisplay(file) : file.name,
-		});
+		this.setUploadedFileData(file);
 
 		if (onChange) {
 			onChange(file);
 		}
 	}
 
-	handleFileDrop(e: React.DragEvent<HTMLDivElement>) {
-		const { onDrop, fileSize } = this.props;
+	handleFileDrop = (e: React.DragEvent<HTMLDivElement>) => {
+		const { onDrop } = this.props;
 		const file = e.dataTransfer.files[0];
 
 		if (typeof (file) !== 'object') {
@@ -80,8 +79,8 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 		if (onDrop) {
 			onDrop(file);
 		}
+		this.setUploadedFileData(file);
 		this.setState({
-			label: fileSize ? file.name + this.fileSizeDisplay(file) : file.name,
 			isDraggedOver: false,
 		});
 		this.dragEventCounter = 0;
@@ -91,13 +90,13 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 		Array.isArray(acceptFiles) ? acceptFiles.join() : acceptFiles
 	)
 
-	handleDragEnter(e: React.DragEvent<HTMLDivElement>) {
+	handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
 		this.handleFileDragEvents(e);
 		this.dragEventCounter += 1;
 		this.setState({ isDraggedOver: true });
 	}
 
-	handleDragLeave(e: React.DragEvent<HTMLDivElement>) {
+	handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
 		this.handleFileDragEvents(e);
 		this.dragEventCounter -= 1;
 
@@ -106,7 +105,18 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 		}
 	}
 
-	fileSizeDisplay(file: File) {
+	setUploadedFileData = (file: File) => {
+		const { fileSelectedLabel, fileSize } = this.props;
+		if (file) {
+			const fileName = fileSize ? file.name + this.fileSizeDisplay(file) : file.name;
+			this.setState({
+				fileName,
+				fileSelectedLabel,
+			});
+		}
+	}
+
+	fileSizeDisplay = (file: File) => {
 		const { fileSize } = this.props;
 
 		if (!fileSize) return null;
@@ -136,7 +146,8 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 
 		const {
 			isDraggedOver,
-			label: labelState,
+			fileName,
+			fileSelectedLabel,
 		} = this.state;
 
 		const wrapperClasses = classNames(
@@ -180,7 +191,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 						&& errorTooltip
 						? <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />
 						: <CSIcon className="cs-input-file-icon" name="upload" size="0.875rem" />}
-					<span className="cs-input-file-label">{labelState || label}</span>
+					<span className="cs-input-file-label">{fileSelectedLabel || label}</span>
 				</span>
 			</>
 		);
@@ -196,8 +207,8 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 					onDrop={!disabled ? this.handleFileDrop : null}
 				>
 					<label className={dropAreaClasses}>
-						{labelState ? (
-							<CSTooltip content={labelState} position="top-center" focusable={false}>
+						{fileName ? (
+							<CSTooltip content={fileName} position="top-center" focusable={false}>
 								{input}
 							</CSTooltip>
 						) : (

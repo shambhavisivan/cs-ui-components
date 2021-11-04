@@ -16,25 +16,13 @@ class CSInputFilePreview extends React.Component {
 				name: 'CSInputFile',
 				examples: [
 					{
-						propName: 'label',
-						alert: {
-							variant: 'info',
-							text: 'Label is a required prop because of accessibility. You need to provide an explanatory label for a file input. If you want to hide the label visually, you can use the labelHidden prop.'
-						},
-						variations: [
-							{
-								component: <CSInputFile label="Upload directory" />,
-								code: '<CSInputFile label="Upload directory" />'
-							}
-						]
-					}, {
 						propName: 'accept',
 						variations: [
 							{
 								primaryVariants: 'accept=".png"',
 								quickLink: 'file extension',
-								component: <CSInputFile label="Upload a file" accept=".png" />,
-								code: '<CSInputFile label="Upload a file" accept=".png" />'
+								component: <CSInputFile accept=".png" />,
+								code: '<CSInputFile accept=".png" />'
 							}, {
 								primaryVariants: 'accept="audio/*"',
 								quickLink: 'audio',
@@ -57,8 +45,8 @@ class CSInputFilePreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'disabled={true}',
-								component: <CSInputFile label="Upload directory" disabled />,
-								code: '<CSInputFile label="Upload directory" disabled />'
+								component: <CSInputFile disabled />,
+								code: '<CSInputFile disabled />'
 							}
 						]
 					}, {
@@ -72,13 +60,11 @@ class CSInputFilePreview extends React.Component {
 								],
 								quickLink: 'true',
 								component: <CSInputFile
-									label="Upload directory"
 									dropAreaBackground
 									dropAreaWidth="25rem"
 									dropAreaHeight="3rem"
 								/>,
 								code: `<CSInputFile
-									label="Upload directory"
 									dropAreaBackground
 									dropAreaWidth="25rem"
 									dropAreaHeight="3rem"
@@ -91,12 +77,10 @@ class CSInputFilePreview extends React.Component {
 								],
 								quickLink: 'false',
 								component: <CSInputFile
-									label="Upload directory"
 									dropAreaWidth="25rem"
 									dropAreaHeight="3rem"
 								/>,
 								code: `<CSInputFile
-									label="Upload directory"
 									dropAreaWidth="25rem"
 									dropAreaHeight="3rem"
 								/>`
@@ -108,13 +92,13 @@ class CSInputFilePreview extends React.Component {
 							{
 								primaryVariants: 'dropAreaHeight="100px"',
 								quickLink: '100px',
-								component: <CSInputFile label="Upload directory" dropAreaHeight="100px" />,
-								code: '<CSInputFile label="Upload directory" dropAreaHeight="100px" />'
+								component: <CSInputFile dropAreaHeight="100px" />,
+								code: '<CSInputFile dropAreaHeight="100px" />'
 							}, {
 								primaryVariants: 'dropAreaHeight="10rem"',
 								quickLink: '10rem',
-								component: <CSInputFile label="Upload directory" dropAreaHeight="10rem" />,
-								code: '<CSInputFile label="Upload directory" dropAreaHeight="10rem" />'
+								component: <CSInputFile dropAreaHeight="10rem" />,
+								code: '<CSInputFile dropAreaHeight="10rem" />'
 							}
 						]
 					}, {
@@ -123,13 +107,13 @@ class CSInputFilePreview extends React.Component {
 							{
 								primaryVariants: 'dropAreaWidth="100%"',
 								quickLink: '100%',
-								component: <CSInputFile label="Upload directory" dropAreaWidth="100%" />,
-								code: '<CSInputFile label="Upload directory" dropAreaWidth="100%" />'
+								component: <CSInputFile dropAreaWidth="100%" />,
+								code: '<CSInputFile dropAreaWidth="100%" />'
 							}, {
 								primaryVariants: 'dropAreaWidth="400px"',
 								quickLink: '400px',
-								component: <CSInputFile label="Upload directory" dropAreaWidth="400px" />,
-								code: '<CSInputFile label="Upload directory" dropAreaWidth="400px" />'
+								component: <CSInputFile dropAreaWidth="400px" />,
+								code: '<CSInputFile dropAreaWidth="400px" />'
 							}
 						]
 					}, {
@@ -141,8 +125,8 @@ class CSInputFilePreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'error={true}',
-								component: <CSInputFile label="Upload directory" error />,
-								code: '<CSInputFile label="Upload directory" error />'
+								component: <CSInputFile error />,
+								code: '<CSInputFile error />'
 							}
 						]
 					}, {
@@ -151,12 +135,10 @@ class CSInputFilePreview extends React.Component {
 							{
 								secondaryVariants: 'error={true}',
 								component: <CSInputFile
-									label="Upload directory"
 									error
 									errorMessage="File type not supported"
 								/>,
 								code: `<CSInputFile
-									label="Upload directory"
 									error
 									errorMessage="File type not supported"
 								/>`
@@ -169,13 +151,11 @@ class CSInputFilePreview extends React.Component {
 								primaryVariants: 'errorTooltip={true}',
 								secondaryVariants: 'error={true}',
 								component: <CSInputFile
-									label="Enter value"
 									error
 									errorMessage="Error message."
 									errorTooltip
 								/>,
 								code: `<CSInputFile
-									label="Enter value"
 									error
 									errorMessage="Error message."
 									errorTooltip
@@ -183,28 +163,48 @@ class CSInputFilePreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'fileSelectedLabel',
+						variations: [
+							{
+								component: <CSInputFile fileSelectedLabel="Directory uploaded" />,
+								code: '<CSInputFile fileSelectedLabel="Directory uploaded" />'
+							}
+						]
+					}, {
 						propName: 'fileSize',
 						variations: [
 							{
 								primaryVariants: 'fileSize={true}',
-								component: <CSInputFile label="Upload directory" fileSize />,
-								code: '<CSInputFile label="Upload directory" fileSize />'
+								component: <CSInputFile fileSize />,
+								code: '<CSInputFile fileSize />'
+							}
+						]
+					}, {
+						propName: 'label',
+						alert: {
+							variant: 'info',
+							text: 'Label will always be rendered and has default value (\'Upload a file\') because of accessibility.'
+						},
+						variations: [
+							{
+								component: <CSInputFile label="Upload directory" />,
+								code: '<CSInputFile label="Upload directory" />'
 							}
 						]
 					}, {
 						propName: 'onChange',
 						variations: [
 							{
-								component: <CSInputFile label="Upload directory" onChange={this.handleChange} />,
-								code: '<CSInputFile label="Upload directory" onChange={this.handleChange} />'
+								component: <CSInputFile onChange={this.handleChange} />,
+								code: '<CSInputFile onChange={this.handleChange} />'
 							}
 						]
 					}, {
 						propName: 'onDrop',
 						variations: [
 							{
-								component: <CSInputFile label="Upload directory" onDrop={this.handleDrop} />,
-								code: '<CSInputFile label="Upload directory" onDrop={this.handleDrop} />'
+								component: <CSInputFile onDrop={this.handleDrop} />,
+								code: '<CSInputFile onDrop={this.handleDrop} />'
 							}
 						]
 					}, {
@@ -216,12 +216,10 @@ class CSInputFilePreview extends React.Component {
 									'className="custom-class"'
 								],
 								component: <CSInputFile
-									label="Upload directory"
 									id="custom-id"
 									className="custom-br-mint"
 								/>,
 								code: `<CSInputFile
-									label="Upload directory"
 									id="custom-id"
 									className="custom-br-mint"
 								/>`
@@ -231,11 +229,6 @@ class CSInputFilePreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'label',
-						required: true,
-						types: 'string',
-						description: 'Set the file input label.'
-					}, {
 						name: 'accept',
 						types: ['string', 'Array<string>'],
 						description: 'Set which file types should be accepted. (eg. .jpg, .mp3, audio/*, image/*, etc.)'
@@ -274,6 +267,11 @@ class CSInputFilePreview extends React.Component {
 						types: 'boolean',
 						description: 'Show an error tooltip for the file input.'
 					}, {
+						name: 'fileSelectedLabel',
+						types: 'string',
+						default: '\'File selected\'',
+						description: 'Set input file label to display after file is selected.'
+					}, {
 						name: 'fileSize',
 						types: 'boolean',
 						default: 'false',
@@ -290,6 +288,11 @@ class CSInputFilePreview extends React.Component {
 						name: 'id',
 						types: 'string',
 						description: 'Set the ID for the file input.'
+					}, {
+						name: 'label',
+						types: 'string',
+						default: '\'Upload a file\'',
+						description: 'Set the file input label.'
 					}, {
 						name: 'className',
 						types: 'string',

@@ -11,6 +11,9 @@
 * CSButton
   * removed icon darken while hovering on `btnStyle="brand"`
   * fixed iconPosition and size props alignment issue
+* CSInputFile
+  * added `fileSelectedLabel` prop
+  * set `label` prop to be optional
 * CSInputNumber
   * added `locale` prop
 * CSRadio
