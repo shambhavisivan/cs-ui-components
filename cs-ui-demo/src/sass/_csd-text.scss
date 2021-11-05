@@ -39,10 +39,6 @@ p.csd-text {
 		}
 	}
 
-	& + & {
-		margin-left: 0.5rem;
-	}
-
 	&.csd-inline-code-custom {
 		display: flex;
 		background-color: transparent;

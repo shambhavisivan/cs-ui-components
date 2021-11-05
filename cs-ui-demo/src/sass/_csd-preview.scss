@@ -15,10 +15,6 @@
 	--cs-tab-hover-br: #{$cs-mint};
 	--cs-tab-active-br: #{$cs-purple-medium-1};
 	--cs-icon-c: #{transparentize($cs-white, 0.4)};
-	--cs-data-table-header-bg: #{transparentize($cs-white, 0.95)};
-	--cs-data-table-header-c: #{$cs-white};
-	--cs-data-table-row-bg: #212121;
-	--cs-data-table-cell-c: #{transparentize($cs-white, 0.2)};
 }
 
 .csd-preview {
@@ -109,14 +105,6 @@
 		}
 	}
 
-	.csd-preview-table {
-		--cs-data-table-br: var(--csd-preview-br);
-	}
-
-	.csd-preview-table-name * {
-		font-weight: 700;
-	}
-
 	&:not(:last-child) .csd-preview-toolbar-wrapper:last-child {
 		border-bottom: 1px solid var(--csd-preview-br);
 	}
@@ -132,7 +120,7 @@
 
 		.csd-preview-toolbar-wrapper:last-child .csd-preview-toolbar {
 			border-bottom: none;
-			margin-bottom: calc(-1rem - 1px);
+			margin-bottom: -1rem;
 			border-radius: 0 0 0.5rem 0.5rem;
 
 			li.cs-tab-wrapper:first-child {
@@ -140,10 +128,14 @@
 			}
 		}
 
-		.csd-preview-table {
+		.csd-table {
 			margin-bottom: -1rem;
 			border-bottom-left-radius: 0.5rem;
 			border-bottom-right-radius: 0.5rem;
+
+			.csd-inline-code + .csd-inline-code {
+				margin-left: 0.5rem;
+			}
 
 			.cs-data-table-row-wrapper:last-child .cs-data-table-row {
 				border-bottom: none;

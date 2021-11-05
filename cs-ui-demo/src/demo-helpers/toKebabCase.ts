@@ -1,15 +1,7 @@
-const toKebabCase = (inputString: string) => {
-	return inputString.split('').map((substring: string, substringIndex: number) => {
-		if (substring.match(/\w/i) === null) {
-			return '';
-		}
-
-		if (substringIndex && substring === substring.toUpperCase()) {
-			return `-${substring.toLowerCase()}`;
-		}
-
-		return substring.toLowerCase();
-	}).join('');
-};
+const toKebabCase = (inputString: string) => (
+	inputString.replace(/([a-z])([A-Z])/g, '$1-$2')
+		.replace(/\s+/g, '-')
+		.toLowerCase()
+);
 
 export default toKebabCase;

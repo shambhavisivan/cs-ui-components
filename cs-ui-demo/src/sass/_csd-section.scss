@@ -1,4 +1,5 @@
 :root {
+	--csd-section-c: #{$cs-black};
 	--csd-section-bg: #{$cs-white};
 	--csd-section-info-light-bg: #{$cs-gray-light-4};
 	--csd-section-info-dark-bg: #{$cs-gray-light-3};
@@ -9,6 +10,7 @@
 }
 
 .csd-theme-dark {
+	--csd-section-c: #{$cs-white};
 	--csd-section-bg: #242424;
 	--csd-section-info-light-bg: #{darken($cs-gray-dark-2, 4%)};
 	--csd-section-info-dark-bg: #{darken($cs-gray-dark-2, 8%)};
@@ -24,6 +26,7 @@
 	border-radius: 0.5rem;
 	background-color: var(--csd-section-bg);
 	background-position: top right;
+	color: var(--csd-section-c);
 	box-shadow:
 		0 1px 3px var(--csd-shadow-light),
 		0 1px 2px var(--csd-shadow-medium);

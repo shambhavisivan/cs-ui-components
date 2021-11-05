@@ -17,16 +17,16 @@
 
 	@at-root {
 		h1#{&} {
-			font-size: 2rem;
+			font-size: 1.5rem !important;
 		}
 
 		h2#{&} {
-			font-size: 1.5rem !important;
+			font-size: 1.25rem !important;
 			margin: 2rem 0 1rem !important;
 		}
 
 		h3#{&} {
-			font-size: 1.25rem;
+			font-size: 1.125rem;
 		}
 
 		h4#{&} {

@@ -1,0 +1,25 @@
+.csd-custom {
+	&-bg-purple {
+		background-color: var(--csd-custom-bg-purple) !important;
+	}
+
+	&-bg-mint {
+		background-color: var(--csd-custom-bg-mint) !important;
+	}
+
+	&-bg-blue {
+		background-color: var(--csd-custom-bg-blue) !important;
+	}
+
+	&-br-purple {
+		border: 3px solid var(--csd-custom-br-purple) !important;
+	}
+
+	&-br-mint {
+		border: 3px solid var(--csd-custom-br-mint) !important;
+	}
+
+	&-br-blue {
+		border: 3px solid var(--csd-custom-br-blue) !important;
+	}
+}

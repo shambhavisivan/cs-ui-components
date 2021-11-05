@@ -1,5 +1,5 @@
 .sidebar-wrapper.primary .sidebar {
-	z-index: 2;
+	z-index: 5;
 	@include sbg(--csd-primary-sidebar-bg);
 
 	.sidebar-toggle {
@@ -110,7 +110,7 @@
 
 
 button.closed-sidebar-toggle.cs-btn.cs-btn.cs-btn {
-	z-index: 2;
+	z-index: 5;
 	position: absolute;
 	top: 1.625rem;
 	left: 1.5rem;

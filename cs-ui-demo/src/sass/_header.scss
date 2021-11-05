@@ -3,12 +3,12 @@
 	align-items: stretch;
 	justify-content: space-between;
 	position: relative;
-	z-index: 3;
+	z-index: 5;
 	height: 4rem;
 	@include sbg(--csd-app-header-bg);
-	@include css4 {
-		box-shadow: 0 0 5px cvar(--csd-shadow-light), 0 0 1px cvar(--csd-shadow-medium);
-	}
+	box-shadow:
+		0 1px 3px var(--csd-shadow-light),
+		0 1px 2px var(--csd-shadow-medium);
 
 	ul {
 		list-style: none;

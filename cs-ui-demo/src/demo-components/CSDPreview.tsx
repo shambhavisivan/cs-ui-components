@@ -1,21 +1,23 @@
 import React, { useEffect, useRef, useState } from 'react';
-import {
-	CSButton,
-	CSDataTable,
-	CSDataTableRowWithMetaInterface, CSIcon,
-	CSTab,
-	CSTabGroup,
-	CSTooltip
-} from '@cloudsense/cs-ui-components';
 import classNames from 'classnames';
-import { Theme, useTheme } from '../context/ThemeContext';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import {
 	darcula as styleDark,
 	duotoneLight as styleLight
 } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import {
+	CSButton,
+	CSDataTable,
+	CSDataTableRowWithMetaInterface,
+	CSTab,
+	CSTabGroup,
+	CSTooltip
+} from '@cloudsense/cs-ui-components';
+
 import * as CSDH from '../demo-helpers';
+import { Theme, useTheme } from '../context/ThemeContext';
 import { getTypes, getCustomTypes } from '../previews/helpers';
+import CSDTable from './CSDTable';
 
 export type CSDPreviewVisibleSectionType = null | 'code' | 'table';
 export type CSDPreviewOrientation = 'horizontal' | 'vertical';
@@ -162,65 +164,7 @@ const CSDPreview = ({
 			return null;
 		}
 
-		return (
-			<CSDataTable
-				className="csd-preview-table"
-				density="comfortable"
-				columns={[
-					{
-						key: 'name',
-						header: 'Prop',
-						cellClassName: 'csd-preview-table-name'
-					}, {
-						key: 'required',
-						header: 'Required',
-						width: '5.25rem',
-						align: 'center',
-						render: (row: CSDataTableRowWithMetaInterface) => {
-							const required = row!.data!.required;
-							if (required === true) {
-								return <CSTooltip content="Required" iconName="check" />;
-							} else if (required === undefined) {
-								return <CSTooltip content="Not Required" iconName="dash" />;
-							}
-							return <CSTooltip content={`Inherited from ${required}`} iconName="arrowdown" />;
-						}
-					}, {
-						key: 'type',
-						header: 'Type',
-						grow: 2,
-						render: (row: CSDataTableRowWithMetaInterface) => {
-							return (
-								<>
-									{getCustomTypes(row.data?.customTypes)}
-									{getTypes(row.data?.types)}
-								</>
-							);
-						}
-					}, {
-						key: 'default',
-						header: 'Default',
-						render: (row: CSDataTableRowWithMetaInterface) => {
-							const defaultValue = row!.data!.default;
-							if (!defaultValue) {
-								return <CSTooltip content="Undefined" iconName="dash" />;
-							}
-							return <code className="csd-inline-code">{defaultValue}</code>;
-						}
-					}, {
-						key: 'description',
-						header: 'Description',
-						wrap: true,
-						grow: 4
-					}
-				]}
-				rows={table.filter((row: any) => related?.indexOf(row.name) !== -1).map((row: any) => ({
-					key: row.name,
-					data: row
-				}))}
-				disableHover
-			/>
-		);
+		return <CSDTable {...table} filter={related} />;
 	};
 
 	const previewShowcaseClasses = classNames(
