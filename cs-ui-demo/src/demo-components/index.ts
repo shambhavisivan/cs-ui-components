@@ -5,6 +5,7 @@ import CSDHeading from './CSDHeading';
 import CSDPage from './CSDPage';
 import CSDPreview from './CSDPreview';
 import CSDSection from './CSDSection';
+import CSDSidebar from './CSDSidebar';
 import CSDText from './CSDText';
 
 export {
@@ -15,5 +16,6 @@ export {
 	CSDPage as Page,
 	CSDPreview as Preview,
 	CSDSection as Section,
+	CSDSidebar as Sidebar,
 	CSDText as Text
 };

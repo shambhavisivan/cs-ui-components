@@ -24,7 +24,7 @@ class CSUtilitiesList extends React.Component {
 		];
 
 		return (
-			<SidebarList sidebarList={utilitiesList} path="/utilities/" customClass="utilities" />
+			<SidebarList sidebarList={utilitiesList} path="utilities" customClass="utilities" />
 		);
 	}
 }

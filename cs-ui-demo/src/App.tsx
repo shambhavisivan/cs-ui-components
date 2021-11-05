@@ -10,13 +10,13 @@ import Accessibility from './previews/Accessibility';
 import MainHeader from './previews/MainHeader';
 
 import { ThemeProvider } from './context/ThemeContext';
-import { QuickLinksProvider } from './context/QuickLinksContext';
+import { SidebarProvider } from './context/SidebarContext';
 
 import ReleaseNotesList from './previews/ReleaseNotesList';
 
 const App: React.FC = () => (
 	<ThemeProvider>
-		<QuickLinksProvider>
+		<SidebarProvider>
 			<Router basename="/cs-ui-demo">
 				<div className="cs-app-wrapper">
 					<MainHeader />
@@ -27,16 +27,16 @@ const App: React.FC = () => (
 						<Route path="/accessibility" component={Accessibility} />
 						<Route path="/release-notes" component={ReleaseNotesList} />
 						<Switch>
-							<Redirect exact from="/" to="/cs-ui/GettingStarted" />
-							<Redirect exact from="/cs-ui" to="/cs-ui/GettingStarted" />
-							<Redirect exact from="/cs-form" to="/cs-form/GettingStarted" />
-							<Redirect exact from="/utilities/" to="/utilities/LightningIcons" />
-							<Redirect exact from="/release-notes/" to="/release-notes/StartingPage" />
+							<Redirect exact from="/" to="/cs-ui/getting-started" />
+							<Redirect exact from="/cs-ui" to="/cs-ui/getting-started" />
+							<Redirect exact from="/cs-form" to="/cs-form/getting-started" />
+							<Redirect exact from="/utilities/" to="/utilities/lightning-icons" />
+							<Redirect exact from="/release-notes/" to="/release-notes/starting-page" />
 						</Switch>
 					</div>
 				</div>
 			</Router>
-		</QuickLinksProvider>
+		</SidebarProvider>
 	</ThemeProvider>
 );
 

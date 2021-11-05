@@ -23,7 +23,7 @@ class ReleaseNotesList extends React.Component {
 		];
 
 		return (
-			<SidebarList sidebarList={releaseNotesList} path="/release-notes/" />
+			<SidebarList sidebarList={releaseNotesList} path="release-notes" />
 		);
 	}
 }

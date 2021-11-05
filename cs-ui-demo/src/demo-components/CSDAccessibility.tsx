@@ -24,7 +24,7 @@ const CSDAccessibility = ({ criteria, requirements }: CSDAccessibilityProps) => 
 
 		return (
 			<CSDSection>
-				<CSDHeading level={2}>Related Criteria</CSDHeading>
+				<CSDHeading level={2} disableLinking>Related Criteria</CSDHeading>
 				{criteria.map((criterion: string, criterionIndex: number) => (
 					<React.Fragment key={criterion}>
 						<CSButton
@@ -67,7 +67,7 @@ const CSDAccessibility = ({ criteria, requirements }: CSDAccessibilityProps) => 
 
 		return (
 			<CSDSection>
-				<CSDHeading level={2}>Implemented &amp; Supported</CSDHeading>
+				<CSDHeading level={2} disableLinking>Implemented &amp; Supported</CSDHeading>
 				<CSDataTable
 					columnDividers
 					disableHover
@@ -94,10 +94,10 @@ const CSDAccessibility = ({ criteria, requirements }: CSDAccessibilityProps) => 
 	};
 
 	return (
-		<CSDContent>
+		<>
 			{renderCriteria()}
 			{renderRequirements()}
-		</CSDContent>
+		</>
 	);
 };
 

@@ -27,7 +27,7 @@ class CSFormList extends React.Component {
 		];
 
 		return (
-			<SidebarList toggle search sidebarList={componentsList} path="/cs-form/"/>
+			<SidebarList sidebarList={componentsList} path="cs-form"/>
 		);
 	}
 }

@@ -40,5 +40,9 @@
 		h6#{&} {
 			font-size: 0.75rem;
 		}
+
+		.csd-page .csd-content & {
+			scroll-margin-top: 5.5rem;
+		}
 	}
 }

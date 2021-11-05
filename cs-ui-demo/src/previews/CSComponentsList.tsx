@@ -54,208 +54,164 @@ class CSComponentsList extends React.Component {
 		const componentsList = [
 			{
 				name: 'Getting Started',
-				component: GettingStarted
-			},
-			{
+				component: GettingStarted,
+				icon: 'info'
+			}, {
 				name: 'Alert',
 				component: CSAlertPreview
-			},
-			{
+			}, {
 				name: 'Button',
 				component: CSButtonPreview
-			},
-			{
+			}, {
 				name: 'Button Group',
 				component: CSButtonGroupPreview
-			},
-			{
+			}, {
 				name: 'Card',
 				component: CSCardPreview
-			},
-			{
+			}, {
 				name: 'Checkbox',
 				component: CSCheckboxPreview,
-				isFormElement: true
-			},
-			{
+				icon: 'edit_form'
+			}, {
 				name: 'Chip',
 				component: CSChipPreview
-			},
-			{
+			}, {
 				name: 'Currency',
 				component: CSCurrencyPreview
-			},
-			{
+			}, {
 				name: 'Custom Data',
 				component: CSCustomDataPreview,
-				isFormElement: true
-			},
-			{
+				icon: 'edit_form'
+			}, {
 				name: 'Custom Select',
 				component: CSCustomSelectPreview,
-				isFormElement: true
-			},
-			{
+				icon: 'edit_form'
+			}, {
 				name: 'Data Table',
 				component: CSDataTablePreview
-			},
-			{
+			}, {
 				name: 'Datepicker',
 				component: CSDatepickerPreview,
-				isFormElement: true
-			},
-			{
+				icon: 'edit_form'
+			}, {
 				name: 'DateTimePicker',
 				component: CSDateTimePickerPreview,
-				isFormElement: true
-			},
-			{
+				icon: 'edit_form'
+			}, {
 				name: 'Divider',
 				component: CSDividerPreview
-			},
-			{
+			}, {
 				name: 'Dropdown',
 				component: CSDropdownPreview
-			},
-			{
+			}, {
 				name: 'Field Error Message',
 				component: CSFieldErrorMsgPreview
-			},
-			{
+			}, {
 				name: 'Icon',
 				component: CSIconPreview
-			},
-			{
+			}, {
 				name: 'Image',
 				component: CSImagePreview
-			},
-			{
+			}, {
 				name: 'Input File',
 				component: CSInputFilePreview,
-				isFormElement: true
-			},
-			{
+				icon: 'edit_form'
+			}, {
 				name: 'Input Number',
 				component: CSInputNumberPreview,
-				isFormElement: true
-			},
-			{
+				icon: 'edit_form'
+			}, {
 				name: 'Input Search',
 				component: CSInputSearchPreview,
-				isFormElement: true
-			},
-			{
+				icon: 'edit_form'
+			}, {
 				name: 'Input Text',
 				component: CSInputTextPreview,
-				isFormElement: true
-			},
-			{
+				icon: 'edit_form'
+			}, {
 				name: 'Label',
 				component: CSLabelPreview
-			},
-			{
+			}, {
 				name: 'List',
 				component: CSListPreview
-			},
-			{
+			}, {
 				name: 'Lookup',
 				component: CSLookupPreview,
-				isFormElement: true
-			},
-			{
+				icon: 'edit_form'
+			}, {
 				name: 'Main Header',
 				component: CSMainHeaderPreview
-			},
-			{
+			}, {
 				name: 'Modal',
 				component: CSModalPreview
-			},
-			{
+			}, {
 				name: 'Pagination',
 				component: CSPaginationPreview
-			},
-			{
+			}, {
 				name: 'Path',
 				component: CSPathPreview
-			},
-			{
+			}, {
 				name: 'Progress Bar',
 				component: CSProgressBarPreview
-			},
-			{
+			}, {
 				name: 'Progress Indicator',
 				component: CSProgressIndicatorPreview
-			},
-			{
+			}, {
 				name: 'Radio',
 				component: CSRadioPreview,
-				isFormElement: true
-			},
-			{
+				icon: 'edit_form'
+			}, {
 				name: 'Section',
 				component: CSSectionPreview
-			},
-			{
+			}, {
 				name: 'Select',
 				component: CSSelectPreview,
-				isFormElement: true
-			},
-			{
+				icon: 'edit_form'
+			}, {
 				name: 'Sidebar',
 				component: CSSidebarPreview
-			},
-			{
+			}, {
 				name: 'Skip Link',
 				component: CSSkipLinkPreview
-			},
-			{
+			}, {
 				name: 'Slider',
 				component: CSSliderPreview,
-				isFormElement: true
-			},
-			{
+				icon: 'edit_form'
+			},  {
 				name: 'Spinner',
 				component: CSSpinnerPreview
-			},
-			{
+			}, {
 				name: 'Tab',
 				component: CSTabPreview
-			},
-			{
+			}, {
 				name: 'Table',
 				component: CSTablePreview
-			},
-			{
+			}, {
 				name: 'Textarea',
 				component: CSTextareaPreview,
-				isFormElement: true
-			},
-			{
+				icon: 'edit_form'
+			}, {
 				name: 'Toast',
 				component: CSToastPreview
-			},
-			{
+			}, {
 				name: 'Toggle',
 				component: CSTogglePreview,
-				isFormElement: true
-			},
-			{
+				icon: 'edit_form'
+			}, {
 				name: 'Tooltip',
 				component: CSTooltipPreview
-			},
-			{
+			}, {
 				name: 'Transfer',
 				component: CSTransferPreview,
-				isFormElement: true
-			},
-			{
+				icon: 'edit_form'
+			}, {
 				name: 'Tree',
 				component: CSTreePreview
 			}
 		];
 
 		return (
-			<SidebarList toggle search sidebarList={componentsList} path="/cs-ui/"/>
+			<SidebarList sidebarList={componentsList} path="cs-ui"/>
 		);
 	}
 }

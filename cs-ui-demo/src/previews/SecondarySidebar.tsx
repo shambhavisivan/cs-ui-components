@@ -1,8 +1,8 @@
-import React, {ReactNode, useLayoutEffect, useRef, useState} from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { CSButton, CSIcon } from '@cloudsense/cs-ui-components';
 import { HashLink } from 'react-router-hash-link';
-import { useQuickLinks } from '../context/QuickLinksContext';
+import { useSidebar } from '../context/SidebarContext';
 import { getSlug } from './helpers';
 
 export type SecondarySidebarColor = 'purple' | 'black';
@@ -32,7 +32,7 @@ const SecondarySidebar: React.FC<SecondarySidebarProps> = ({
 	const [searchTerm, setSearchTerm] = useState<string>('');
 	const sidebarRef = useRef<HTMLDivElement>(null);
 	const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
-	const { quickLinks, toggleQuickLinks } = useQuickLinks();
+	const { primarySidebar, secondarySidebar, toggleSecondarySidebar } = useSidebar();
 
 	useLayoutEffect(() => {
 		if (spyOn && sidebarRef.current) {
@@ -87,7 +87,7 @@ const SecondarySidebar: React.FC<SecondarySidebarProps> = ({
 	const sidebarWrapperClasses = classNames(
 		'sidebar-wrapper secondary',
 		{
-			'sidebar-wrapper-closed': !quickLinks && collapsible
+			'sidebar-wrapper-closed': !secondarySidebar && collapsible
 		}
 	);
 
@@ -100,27 +100,26 @@ const SecondarySidebar: React.FC<SecondarySidebarProps> = ({
 	);
 
 	const sidebarToggleClasses = classNames(
-		'closed-secondary-sidebar-toggle',
+		'csd-sidebar-toggle',
 		{
-			[`secondary-sidebar-toggle-${color}`]: color
+			'csd-sidebar-toggle-closed': !secondarySidebar,
+			'csd-sidebar-toggle-primary-open': primarySidebar,
+			'csd-sidebar-toggle-secondary-open': secondarySidebar
 		}
 	);
 
 	return (
 		<>
-			{collapsible &&
-				<CSButton
-					iconName="rows"
-					label="open"
-					btnType="transparent"
-					size="small"
-					labelHidden
-					className={sidebarToggleClasses}
-					onClick={toggleQuickLinks}
-					borderRadius="50%"
-					disabled={quickLinks}
-				/>
-			}
+			<CSButton
+				iconName={secondarySidebar ? 'back' : 'rows'}
+				label={secondarySidebar ? 'Close sidebar' : 'Open sidebar'}
+				btnType="transparent"
+				size="small"
+				labelHidden
+				className={sidebarToggleClasses}
+				onClick={toggleSecondarySidebar}
+				borderRadius="50%"
+			/>
 			<div className={sidebarWrapperClasses}>
 				<div className={sidebarClasses}>
 					<div className="sidebar-search">
@@ -142,18 +141,6 @@ const SecondarySidebar: React.FC<SecondarySidebarProps> = ({
 							/>
 						)}
 					</div>
-					{collapsible && (
-						<CSButton
-							iconName={quickLinks ? 'back' : 'rows'}
-							label={quickLinks ? 'close' : 'open'}
-							btnType="transparent"
-							size="small"
-							labelHidden
-							className="sidebar-toggle"
-							onClick={toggleQuickLinks}
-							borderRadius="50%"
-						/>
-					)}
 					{preview ? (
 						React.Children.map(children, child => {
 							return React.cloneElement(child, {

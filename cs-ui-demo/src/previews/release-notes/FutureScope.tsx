@@ -1,8 +1,8 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
-import SecondarySidebar from '../SecondarySidebar';
-import { getSlug } from '../helpers';
+import * as CSD from '../../demo-components';
+import * as CSDH from '../../demo-helpers';
 
 const anchorList = ['CS UI Components', 'CS Grid', 'CS Form'];
 
@@ -30,11 +30,11 @@ const FutureScope: React.FC = () => {
 
 	return (
 		<>
-			<SecondarySidebar
-				className="release-notes-sidebar"
-				anchorList={anchorList}
+			<CSD.Sidebar
+				data={anchorList.map((anchor: string) => ({ name: anchor }))}
+				routePrefix="release-notes/cs-ui-components"
+				hashLinks
 				spyOn=".release-notes"
-				collapsible
 			/>
 			<ReactMarkdown
 				children={markdown}
@@ -42,22 +42,22 @@ const FutureScope: React.FC = () => {
 				className="release-notes future-scope"
 				components={{
 					h1: ({ children })  => {
-						return <h1 id={getSlug(children.toString())}>{children}</h1>;
+						return <h1 id={CSDH.toKebabCase(String(children))} className="csd-scrollspy">{String(children)}</h1>;
 					},
 					h2: ({ children })  => {
-						return <h2 id={getSlug(children.toString())}>{children}</h2>;
+						return <h2 id={CSDH.toKebabCase(String(children))} className="csd-scrollspy">{String(children)}</h2>;
 					},
 					h3: ({ children })  => {
-						return <h3 id={getSlug(children.toString())}>{children}</h3>;
+						return <h3 id={CSDH.toKebabCase(String(children))} className="csd-scrollspy">{String(children)}</h3>;
 					},
 					h4: ({ children })  => {
-						return <h4 id={getSlug(children.toString())}>{children}</h4>;
+						return <h4 id={CSDH.toKebabCase(String(children))} className="csd-scrollspy">{String(children)}</h4>;
 					},
 					h5: ({ children })  => {
-						return <h5 id={getSlug(children.toString())}>{children}</h5>;
+						return <h5 id={CSDH.toKebabCase(String(children))} className="csd-scrollspy">{String(children)}</h5>;
 					},
 					h6: ({ children })  => {
-						return <h6 id={getSlug(children.toString())}>{children}</h6>;
+						return <h6 id={CSDH.toKebabCase(String(children))} className="csd-scrollspy">{String(children)}</h6>;
 					}
 				}}
 			/>

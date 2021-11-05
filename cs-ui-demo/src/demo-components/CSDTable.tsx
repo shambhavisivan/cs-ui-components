@@ -105,12 +105,10 @@ const CSDTable = ({
 	}
 
 	return (
-		<CSDContent>
-			<CSDSection>
-				<CSDHeading level={2}>{`${name} ${type === 'props' ? 'Props' : 'Attributes'}`}</CSDHeading>
-				{renderTable()}
-			</CSDSection>
-		</CSDContent>
+		<CSDSection>
+			<CSDHeading level={2} disableLinking>{`${name} ${type === 'props' ? 'Props' : 'Attributes'}`}</CSDHeading>
+			{renderTable()}
+		</CSDSection>
 	);
 };
 

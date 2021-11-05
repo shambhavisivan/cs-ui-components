@@ -1,11 +1,13 @@
+.csd-sidebar-wrapper:not(.csd-sidebar-wrapper-closed) + .components-preview {
+	max-width: calc(100% - 15.5rem);
+}
+
 .components-preview {
 	width: 100%;
-	max-width: -moz-available; // Fix firefox columns width responsively
 	position: relative;
 	flex: 1;
 	display: flex;
 	transition: 0.4s;
-	overflow: auto;
 
 	.preview-section-wrapper {
 		.demo-heading {

@@ -7,11 +7,12 @@ import CSDHeading from './CSDHeading';
 
 export interface CSDHeaderProps {
 	title: string;
-	accessible: 'yes' | 'partly' | 'no';
 	activeTab: 'playground' | 'props' | 'accessibility' | 'examples';
 	props: boolean;
 	accessibility: boolean;
 	playground: boolean;
+	accessible?: 'yes' | 'partly' | 'no';
+	routePrefix?: string;
 }
 
 const CSDHeader = ({
@@ -20,10 +21,9 @@ const CSDHeader = ({
 	activeTab,
 	props,
 	accessibility,
-	playground
+	playground,
+	routePrefix = ''
 }: CSDHeaderProps) => {
-	const baseURL = `/cs-ui/${CSDH.toKebabCase(title)}`;
-
 	const renderTabs = () => {
 		if (!props && !accessibility && !playground) {
 			return null;
@@ -34,27 +34,27 @@ const CSDHeader = ({
 				<CSTab
 					name="Examples"
 					active={activeTab === 'examples'}
-					routerLink={<Link to={baseURL} />}
+					routerLink={<Link to={`/${routePrefix}`} />}
 				/>
 				{props && (
 					<CSTab
 						name="Props"
 						active={activeTab === 'props'}
-						routerLink={<Link to={`${baseURL}/props`}/>}
+						routerLink={<Link to={`/${routePrefix}/props`}/>}
 					/>
 				)}
 				{accessibility && (
 					<CSTab
 						name="Accessibility"
 						active={activeTab === 'accessibility'}
-						routerLink={<Link to={`${baseURL}/accessibility`}/>}
+						routerLink={<Link to={`/${routePrefix}/accessibility`}/>}
 					/>
 				)}
 				{playground && (
 					<CSTab
 						name="Playground"
 						active={activeTab === 'playground'}
-						routerLink={<Link to={`${baseURL}/playground`}/>}
+						routerLink={<Link to={`/${routePrefix}/playground`}/>}
 					/>
 				)}
 			</CSTabGroup>

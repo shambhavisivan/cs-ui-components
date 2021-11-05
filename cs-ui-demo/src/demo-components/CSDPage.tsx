@@ -1,8 +1,11 @@
-import React, { useMemo } from 'react';
+import React, { useState, useMemo, useRef, useLayoutEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import CSDAccessibility from './CSDAccessibility';
+import CSDContent from './CSDContent';
 import CSDHeader from './CSDHeader';
+import CSDSidebar from './CSDSidebar';
 import CSDTable from './CSDTable';
+import * as CSDH from '../demo-helpers';
 
 export interface CSDPageProps {
 	children: React.ReactNode;
@@ -11,18 +14,35 @@ export interface CSDPageProps {
 	accessibility?: any;
 	accessible?: 'yes' | 'partly' | 'no';
 	playground?: React.ReactNode;
-	sidebar?: boolean;
+	hideSidebar?: boolean;
+	routePrefix?: string;
 }
 
 const CSDPage = ({
 	children,
 	title,
-	accessible = 'no',
+	accessible,
 	tables,
 	accessibility,
 	playground,
-	sidebar
+	hideSidebar,
+	routePrefix = ''
 }: CSDPageProps) => {
+	const pageRef = useRef<HTMLDivElement>(null);
+	const [links, setLinks] = useState<Array<any>>([]);
+
+	useLayoutEffect(() => {
+		if (pageRef.current) {
+			const linkElements = Array.from(pageRef.current.getElementsByClassName('csd-scrollspy'));
+
+			const newLinks = linkElements.map((linkElement: any) => ({
+				name: linkElement.textContent
+			}));
+
+			setLinks(newLinks);
+		}
+	}, [pageRef.current]);
+
 	const path = useLocation().pathname.split('/');
 	const lastPath = path[path.length - 1];
 
@@ -42,46 +62,84 @@ const CSDPage = ({
 		return 'examples';
 	}, [lastPath, playground, accessibility, tables]);
 
-	const renderContent = () => {
-		if (activeTab === 'playground') {
-			return 'Playground';
+	const renderChildren = () => (
+		<CSDContent hidden={activeTab !== 'examples'}>
+			{children}
+		</CSDContent>
+	);
+
+	const renderProps = () => {
+		if (!tables) {
+			return null;
 		}
 
-		if (activeTab === 'accessibility') {
+		if (!Array.isArray(tables)) {
 			return (
+				<CSDContent hidden={activeTab !== 'props'}>
+					<CSDTable {...tables} section />
+				</CSDContent>
+			);
+		}
+
+		return (
+			<CSDContent hidden={activeTab !== 'props'}>
+				{tables.map((table: any) => (
+					<CSDTable key={table.name} {...table} section />
+				))}
+			</CSDContent>
+		);
+	};
+
+	const renderAccessibility = () => {
+		if (!accessibility) {
+			return null;
+		}
+
+		return (
+			<CSDContent hidden={activeTab !== 'accessibility'}>
 				<CSDAccessibility {...accessibility} />
-			);
+			</CSDContent>
+		);
+	};
+
+	const renderPlayground = () => {
+		if (!playground) {
+			return null;
 		}
 
-		if (activeTab === 'props') {
-			if (!Array.isArray(tables)) {
-				return <CSDTable {...tables} section />;
-			}
-
-			return (
-				<>
-					{tables.map((table: any) => (
-						<CSDTable key={table.name} {...table} section />
-					))}
-				</>
-			);
-		}
-
-		return children;
+		return (
+			<CSDContent hidden={activeTab !== 'playground'}>
+				Playground
+			</CSDContent>
+		);
 	};
 
 	return (
-		<div className="csd-page">
-			<CSDHeader
-				title={title}
-				accessible={accessible}
-				activeTab={activeTab}
-				props={!!tables}
-				accessibility={!!accessibility}
-				playground={!!playground}
-			/>
-			{renderContent()}
-		</div>
+		<>
+			{!hideSidebar && (
+				<CSDSidebar
+					hashLinks
+					data={links}
+					routePrefix={`${routePrefix}/${CSDH.toKebabCase(title)}`}
+					trackScroll={activeTab === 'examples'}
+				/>
+			)}
+			<div ref={pageRef} id="csd-page" className="csd-page">
+				<CSDHeader
+					title={title}
+					accessible={accessible}
+					activeTab={activeTab}
+					props={!!tables}
+					accessibility={!!accessibility}
+					playground={!!playground}
+					routePrefix={`${routePrefix}/${CSDH.toKebabCase(title)}`}
+				/>
+				{renderChildren()}
+				{renderProps()}
+				{renderAccessibility()}
+				{renderPlayground()}
+			</div>
+		</>
 	);
 };
 

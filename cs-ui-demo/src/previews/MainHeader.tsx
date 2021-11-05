@@ -76,18 +76,18 @@ const MainHeader: React.FC = () => {
 							<CSButton
 								label="Lightning Icons"
 								className="main-header-dropdown-btn"
-								routerLink={<NavLink to="/utilities/LightningIcons" />}
+								routerLink={<NavLink to="/utilities/lightning-icons" />}
 							/>
 							<CSButton
 								label="CloudSense Icons"
 								className="main-header-dropdown-btn"
-								routerLink={<NavLink to="/utilities/CloudSenseIcons" />}
+								routerLink={<NavLink to="/utilities/cloud-sense-icons" />}
 							/>
 							<CSDivider variant="horizontal" />
 							<CSButton
 								label="Colors"
 								className="main-header-dropdown-btn"
-								routerLink={<NavLink to="/utilities/Colors" />}
+								routerLink={<NavLink to="/utilities/colors" />}
 							/>
 						</CSDropdown>
 					</NavLink>
@@ -113,23 +113,23 @@ const MainHeader: React.FC = () => {
 							<CSButton
 								label="CS UI Components"
 								className="main-header-dropdown-btn"
-								routerLink={<NavLink to="/release-notes/CSUIComponents" />}
+								routerLink={<NavLink to="/release-notes/cs-ui-components" />}
 							/>
 							{/* <CSButton
 								label="CS Grid"
 								className="main-header-dropdown-btn"
-								routerLink={<NavLink to="/release-notes/CSGrid" />}
+								routerLink={<NavLink to="/release-notes/cs-grid" />}
 							/>
 							<CSButton
 								label="CS Form"
 								className="main-header-dropdown-btn"
-								routerLink={<NavLink to="/release-notes/CSForm" />}
+								routerLink={<NavLink to="/release-notes/cs-form" />}
 							/> */}
 							<CSDivider variant="horizontal" />
 							<CSButton
 								label="Future Scope"
 								className="main-header-dropdown-btn"
-								routerLink={<NavLink to="/release-notes/FutureScope" />}
+								routerLink={<NavLink to="/release-notes/future-scope" />}
 							/>
 						</CSDropdown>
 					</NavLink>
