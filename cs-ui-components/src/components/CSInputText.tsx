@@ -6,6 +6,7 @@ import CSLabel from './CSLabel';
 import { CSCustomDataIconProps, CSCustomDataActionProps } from '../util/CustomData';
 import CSCustomDataIcons from './custom-data/CSCustomDataIcons';
 import CSCustomDataActions from './custom-data/CSCustomDataActions';
+import { CSTooltipPosition } from './CSTooltip';
 
 export interface CSInputTextProps {
 	[key: string]: any;
@@ -32,6 +33,7 @@ export interface CSInputTextProps {
 	readOnly?: boolean;
 	required?: boolean;
 	title?: string;
+	tooltipPosition?: CSTooltipPosition;
 	value?: string;
 }
 

@@ -15,6 +15,7 @@
 * Tests added to components
   * CSSlider
   * CSToast
+  * CSInputText
 
 ## 2.0.0
 * General
