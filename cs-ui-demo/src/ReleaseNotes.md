@@ -17,6 +17,7 @@
 * CSCustomSelect
   * <i>important</i> renamed the `actions` prop to `dropdownActions`
 * Tests added to components
+  * CSButtonGroup
   * CSDivider
   * CSFieldErrorMessage
   * CSInputText
