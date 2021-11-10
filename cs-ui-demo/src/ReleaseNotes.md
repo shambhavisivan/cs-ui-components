@@ -16,10 +16,11 @@
   * fixed keyboard navigation when mode is 'button' and minor style fixes
 * Tests added to components
   * CSDivider
+  * CSFieldErrorMessage
+  * CSInputText
   * CSLabel
   * CSSlider
   * CSToast
-  * CSInputText
 
 ## 2.0.0
 * General
