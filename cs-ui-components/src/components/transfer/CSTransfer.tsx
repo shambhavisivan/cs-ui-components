@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import classNames from 'classnames';
 import CSButton from '../CSButton';
 import CSTransferList, { CSTransferListType } from './CSTransferList';
-import CSTransferContext from './CSTransferContext';
+import { CSTransferContextProvider } from './CSTransferContext';
 import KeyCode from '../../util/KeyCode';
 
-export interface CSTransferItemsType {
-	disabled?: boolean;
-	key: string;
-	name?: string;
+export interface CSTransferItemInterface {
+	key: React.ReactText;
+	label: string;
+}
+
+export interface CSTransferHelpText {
+	source?: string;
+	target?: string;
 }
 
 export type CSTransferVariant = 'simple-list' | 'check-list';
@@ -16,306 +20,186 @@ export type CSTransferVariant = 'simple-list' | 'check-list';
 export interface CSTransferProps {
 	[key: string]: any;
 	className?: string;
-	dataSource: Array<CSTransferItemsType>;
+	helpText?: CSTransferHelpText;
 	id?: string;
-	onChange?: (value?: any) => any;
+	items: Array<CSTransferItemInterface>;
+	onTransfer?: (key: Array<React.ReactText> | React.ReactText) => void;
 	oneWay?: boolean;
 	searchable?: boolean;
 	selectAll?: boolean;
-	sourceHelpText?: string;
 	sourceLabel: string;
-	targetHelpText?: string;
-	targetKeys?: Array<string>;
+	targetKeys?: Array<React.ReactText>;
 	targetLabel: string;
 	variant?: CSTransferVariant;
 }
 
-export interface CSTransferState {
-	sourceData: Array<CSTransferItemsType>;
-	sourceSelected: Array<string>;
-	targetData: Array<CSTransferItemsType>;
-	targetSelected: Array<string>;
-}
+const CSTransfer = ({
+	className,
+	helpText,
+	id,
+	items,
+	onTransfer,
+	oneWay,
+	searchable,
+	selectAll,
+	sourceLabel,
+	targetKeys,
+	targetLabel,
+	variant = 'simple-list',
+	...rest
+}: CSTransferProps) => {
+	const [selected, setSelected] = useState({ source: [], target: [] });
+	const sourceListRef = useRef(null);
+	const targetListRef = useRef(null);
+	const transferButtonsRef = useRef(null);
 
-class CSTransfer extends React.Component<CSTransferProps, CSTransferState> {
-	public static defaultProps = {
-		variant: 'simple-list',
+	const listItemElement = variant === 'simple-list' ? 'button' : 'input[type=checkbox]';
+
+	const transferItems = useMemo(() => ({
+		source: items.filter((item) => !targetKeys?.includes(item.key)),
+		target: items.filter((item) => targetKeys?.includes(item.key)),
+	}), [targetKeys]);
+
+	const onSelectChange = (event: any,
+		key: React.ReactText,
+		keysList: Array<React.ReactText>,
+		listType: CSTransferListType) => {
+		let newKeysList: Array<React.ReactText> = [...keysList];
+
+		if (newKeysList.includes(key)) {
+			if (!(event.ctrlKey || event.metaKey) && variant === 'simple-list') {
+				newKeysList = [key];
+			} else {
+				newKeysList = newKeysList.filter((itemKey) => itemKey !== key);
+			}
+		} else if (variant === 'check-list'
+			|| ((event.ctrlKey || event.metaKey) && variant === 'simple-list')) {
+			newKeysList.push(key);
+		} else if (variant === 'simple-list') {
+			newKeysList = [key];
+		}
+		setSelected((prevState) => ({ ...prevState, [listType]: newKeysList }));
 	};
 
-	public sourceListRef: React.RefObject<HTMLUListElement>;
+	const selectAllItems = (itemsList: Array<CSTransferItemInterface>, selectList: Array<React.ReactText>, listType: CSTransferListType) => {
+		const itemKeys = itemsList.map(({ key }) => key);
+		const selectedKeysList = itemKeys.length === selectList.length ? [] : itemKeys;
+		setSelected((prevState) => ({ ...prevState, [listType]: selectedKeysList }));
+	};
 
-	public targetListRef: React.RefObject<HTMLUListElement>;
+	const handleOnTransfer = (listType: CSTransferListType) => {
+		const selectedListKeys = selected[listType];
+		onTransfer?.(selectedListKeys.length > 1 ? selectedListKeys : selectedListKeys[0]);
+		setSelected((prevState) => ({ ...prevState, [listType]: [] }));
+	};
 
-	private actionButtonsNode: HTMLDivElement;
-
-	private element: string;
-
-	constructor(props: CSTransferProps) {
-		super(props);
-
-		this.state = {
-			sourceData: [],
-			sourceSelected: [],
-			targetData: [],
-			targetSelected: [],
-		};
-
-		this.sourceListRef = React.createRef();
-		this.targetListRef = React.createRef();
-	}
-
-	componentDidMount() {
-		const { variant } = this.props;
-		this.initTransferComponent();
-		this.element = variant === 'simple-list' ? 'button' : 'input[type=checkbox]';
-	}
-
-	initTransferComponent = () => {
-		const { dataSource, targetKeys } = this.props;
-		const newSourceData: any = [];
-		const newTargetData: any = [];
-
-		if (targetKeys && targetKeys.length > 0) {
-			dataSource.forEach((data) => {
-				if (!targetKeys.includes(data.key)) {
-					newSourceData.push(data);
-				} else {
-					newTargetData.push(data);
-				}
-			});
-			this.setState({
-				sourceData: newSourceData,
-				targetData: newTargetData,
-			});
-		} else {
-			this.setState({
-				sourceData: dataSource,
-			});
-		}
-	}
-
-	selectItem = (event: any, itemKey: string, array: Array<string>, listType: CSTransferListType) => {
-		const { variant } = this.props;
-		const newState: any = {};
-		const stateArrayName = `${listType}Selected`;
-
-		if (array.includes(itemKey)) {
-			if (!(event.ctrlKey || event.metaKey) && variant === 'simple-list') {
-				newState[stateArrayName] = [itemKey];
-			} else {
-				newState[stateArrayName] = array.filter((key) => key !== itemKey);
-			}
-		} else if (variant === 'check-list' || ((event.ctrlKey || event.metaKey) && variant === 'simple-list')) {
-			newState[stateArrayName] = [...array, itemKey];
-		} else if (variant === 'simple-list') {
-			newState[stateArrayName] = [itemKey];
-		}
-		this.setState(newState);
-	}
-
-	moveItemsTo = (direction: CSTransferListType) => {
-		const {
-			sourceData, targetData, sourceSelected, targetSelected,
-		} = this.state;
-		const [fromArray, toArray] = direction === 'target' ? [sourceData, targetData] : [targetData, sourceData];
-		const selectedKeys = direction === 'target' ? sourceSelected : targetSelected;
-		const opposite = direction === 'target' ? 'source' : 'target';
-		const newState: any = {};
-		const newSourceData: any = [];
-		const newTargetData: any = [];
-
-		fromArray.forEach((item) => {
-			if (selectedKeys.includes(item.key)) {
-				newTargetData.push(item);
-			} else {
-				newSourceData.push(item);
-			}
-		});
-
-		newState[`${direction}Data`] = [...toArray, ...newTargetData];
-		newState[`${opposite}Data`] = newSourceData;
-		newState[`${opposite}Selected`] = [];
-
-		this.setState(
-			newState,
-			() => this.handleSelection(direction),
-		);
-	}
-
-	moveToSource = (itemKey: string) => {
-		const { sourceData, targetData } = this.state;
-		const item = targetData.find((listItem) => listItem.key === itemKey);
-
-		const newSourceData = [...sourceData, item];
-		targetData.splice(targetData.indexOf(item), 1);
-
-		this.setState(
-			{
-				sourceData: newSourceData,
-				targetData,
-			},
-			() => this.handleSelection('source'),
-		);
-	}
-
-	selectAll = (dataList: Array<CSTransferItemsType>, selectList: Array<string>, listType: CSTransferListType) => {
-		const allDataKeys = dataList.filter(({ disabled }) => !disabled).map(({ key }) => key);
-		const newState: any = {};
-		newState[`${listType}Selected`] = allDataKeys.length === selectList.length ? [] : allDataKeys;
-		this.setState(newState);
-	}
-
-	handleOnChange = () => {
-		const { onChange } = this.props;
-		const { targetData } = this.state;
-		if (onChange) {
-			const targetKeys: Array<string> = [];
-			targetData.forEach((item) => {
-				targetKeys.push(item.key);
-			});
-			onChange(targetKeys);
-		}
-	}
-
-	handleSelection = (direction: CSTransferListType) => {
-		let listItems: any = [];
-		switch (direction) {
-		case 'target':
-			listItems = this.targetListRef.current.querySelectorAll(this.element);
-			(listItems[listItems.length - 1] as HTMLElement).focus();
-			break;
-		default:
-			listItems = this.sourceListRef.current.querySelectorAll(this.element);
-			(listItems[listItems.length - 1] as HTMLElement).focus();
-			break;
-		}
-		this.handleOnChange();
-	}
-
-	handleActionsKeyDown = (event: React.KeyboardEvent<any>) => {
-		const { targetData, sourceData } = this.state;
+	const handleActionsKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
 		switch (event.key) {
 		case KeyCode.ArrowRight:
-			if (!targetData.length) {
+			if (!transferItems.target.length) {
 				break;
 			}
-			(this.targetListRef.current.querySelector(this.element) as HTMLElement).focus();
+			(targetListRef.current?.querySelector(listItemElement) as HTMLElement)?.focus();
 			break;
 		case KeyCode.ArrowLeft:
-			if (!sourceData.length) {
+			if (!transferItems.source.length) {
 				break;
 			}
-			(this.sourceListRef.current.querySelector(this.element) as HTMLElement).focus();
+			(sourceListRef.current?.querySelector(listItemElement) as HTMLElement)?.focus();
 			break;
 		case KeyCode.ArrowDown:
 			event.preventDefault();
 			switch (true) {
-			case document.activeElement === this.actionButtonsNode.lastChild:
-				(this.actionButtonsNode.firstChild as HTMLElement).focus();
+			case document.activeElement === transferButtonsRef.current?.lastChild:
+				transferButtonsRef.current?.firstChild?.focus();
 				break;
 			default:
-				(this.actionButtonsNode.lastChild as HTMLElement).focus();
+				transferButtonsRef.current?.lastChild?.focus();
 				break;
 			}
 			break;
 		case KeyCode.ArrowUp:
 			event.preventDefault();
 			switch (true) {
-			case document.activeElement === this.actionButtonsNode.firstChild:
-				(this.actionButtonsNode.lastChild as HTMLElement).focus();
+			case document.activeElement === transferButtonsRef.current?.firstChild:
+				transferButtonsRef.current?.lastElementChild?.focus();
 				break;
 			default:
-				(this.actionButtonsNode.firstChild as HTMLElement).focus();
+				transferButtonsRef.current?.firstChild?.focus();
 				break;
 			}
 			break;
 		default:
 		}
-	}
+	};
 
-	render() {
-		const {
-			sourceData, targetData, sourceSelected, targetSelected,
-		} = this.state;
-		const {
-			className,
-			dataSource,
-			id,
-			onChange,
-			oneWay,
-			searchable,
-			selectAll,
-			sourceHelpText,
-			sourceLabel,
-			targetHelpText,
-			targetKeys,
-			targetLabel,
-			variant,
-			...rest
-		} = this.props;
-		const context = {
-			selectItem: this.selectItem,
-			moveToSource: this.moveToSource,
-			selectAllItems: this.selectAll,
-			oneWay,
-			actionButtonsNode: this.actionButtonsNode,
-		};
-		const transferWrapperClasses = classNames(
-			'cs-transfer-wrapper',
-			{
-				[`${className}`]: className,
-			},
-		);
-		return (
-			<CSTransferContext.Provider value={context}>
-				<div className={transferWrapperClasses} id={id} {...rest}>
-					<CSTransferList
-						listRef={this.sourceListRef}
-						listType="source"
-						label={sourceLabel}
-						variant={variant}
-						listData={sourceData}
-						selectList={sourceSelected}
-						selectAll={selectAll}
-						searchable={searchable}
-						helpText={sourceHelpText}
+	const transferWrapperClasses = classNames(
+		'cs-transfer-wrapper',
+		{
+			[`${className}`]: className,
+		},
+	);
+
+	return (
+		<CSTransferContextProvider
+			onTransfer={onTransfer}
+			oneWay={oneWay}
+			onSelectChange={onSelectChange}
+			selectAllItems={selectAllItems}
+		>
+			<div className={transferWrapperClasses} id={id} {...rest}>
+				<CSTransferList
+					listRef={sourceListRef}
+					listType="source"
+					label={sourceLabel}
+					variant={variant}
+					listItems={transferItems.source}
+					selectList={selected.source}
+					selectAll={selectAll}
+					searchable={searchable}
+					helpText={helpText?.source}
+					transferButtonsRef={transferButtonsRef}
+				/>
+				<div
+					className="cs-transfer-actions"
+					ref={transferButtonsRef}
+				>
+					<CSButton
+						label={`Move selection to ${targetLabel}`}
+						iconName="chevronright"
+						labelHidden
+						disabled={!selected.source.length}
+						onClick={() => handleOnTransfer('source')}
+						onKeyDown={(event: React.KeyboardEvent<HTMLButtonElement>) => handleActionsKeyDown(event)}
 					/>
-					<div className="cs-transfer-actions" ref={(node) => { this.actionButtonsNode = node; }}>
-						<CSButton
-							label={`Move selection to ${targetLabel}`}
-							iconName="chevronright"
-							labelHidden
-							disabled={!sourceSelected.length}
-							onClick={() => this.moveItemsTo('target')}
-							onKeyDown={(event: React.KeyboardEvent<any>) => this.handleActionsKeyDown(event)}
-						/>
-						{!oneWay
-							&& (
-								<CSButton
-									label={`Move selection to ${sourceLabel}`}
-									iconName="chevronleft"
-									labelHidden
-									disabled={!targetSelected.length}
-									onClick={() => this.moveItemsTo('source')}
-									onKeyDown={(event: React.KeyboardEvent<any>) => this.handleActionsKeyDown(event)}
-								/>
-							)}
-					</div>
-					<CSTransferList
-						listRef={this.targetListRef}
-						listType="target"
-						label={targetLabel}
-						variant={variant}
-						listData={targetData}
-						selectList={targetSelected}
-						selectAll={selectAll}
-						searchable={searchable}
-						helpText={targetHelpText}
-					/>
+					{!oneWay
+						&& (
+							<CSButton
+								label={`Move selection to ${sourceLabel}`}
+								iconName="chevronleft"
+								labelHidden
+								disabled={!selected.target.length}
+								onClick={() => handleOnTransfer('target')}
+								onKeyDown={(event: React.KeyboardEvent<HTMLButtonElement>) => handleActionsKeyDown(event)}
+							/>
+						)}
 				</div>
-			</CSTransferContext.Provider>
-		);
-	}
-}
+				<CSTransferList
+					listRef={targetListRef}
+					listType="target"
+					label={targetLabel}
+					variant={variant}
+					listItems={transferItems.target}
+					selectList={selected.target}
+					selectAll={selectAll}
+					searchable={searchable}
+					helpText={helpText?.target}
+					transferButtonsRef={transferButtonsRef}
+				/>
+			</div>
+
+		</CSTransferContextProvider>
+	);
+};
 
 export default CSTransfer;

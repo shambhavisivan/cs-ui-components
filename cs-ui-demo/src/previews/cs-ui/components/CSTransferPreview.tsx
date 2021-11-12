@@ -3,8 +3,44 @@ import { CSTransfer } from '@cloudsense/cs-ui-components';
 
 import Preview from '../Preview';
 
-class CSTransferPreview extends React.Component {
-	handleChange = (event: any) => alert('Selected items are: ' + event);
+interface CSTransferPreviewState {
+	[key: string]: Array<React.ReactText>;
+}
+
+class CSTransferPreview extends React.Component<{}, CSTransferPreviewState> {
+	items = [
+		{
+			key: 'ff0000',
+			label: 'red'
+		}, {
+			key: '008000',
+			label: 'green'
+		}, {
+			key: '0000ff',
+			label: 'blue'
+		}, {
+			key: 'ffff00',
+			label: 'yellow'
+		}
+	];
+
+	constructor(props: any) {
+		super(props);
+		this.state = {
+			onTransferKeys: ['ff0000'],
+			targetKeys: ['ff0000']
+		};
+	}
+
+	onTransferHandler = (keys: React.ReactText | Array<React.ReactText>, stateName: string) => {
+		const keysArray = Array.isArray(keys) ? keys : [keys];
+		const state = this.state[stateName];
+		const newKeys = keysArray.some(key => state.includes(key)) ?
+			state.filter(key => !keysArray.includes(key)) :
+			[...state, ...keysArray];
+
+		this.setState({ [stateName]: newKeys });
+	}
 
 	getDoc = () => ({
 		name: 'Transfer',
@@ -15,42 +51,28 @@ class CSTransferPreview extends React.Component {
 				name: 'CSTransfer',
 				examples: [
 					{
-						propName: 'dataSource',
+						propName: 'items',
 						variations: [
 							{
 								component: <CSTransfer
-									dataSource={[
-										{
-											key: 'ff0000',
-											name: 'red'
-										}, {
-											key: '008000',
-											name: 'green'
-										}, {
-											key: '0000ff',
-											name: 'blue'
-										}, {
-											key: 'ffff00',
-											name: 'yellow'
-										}
-									]}
+									items={this.items}
 									sourceLabel="Source"
 									targetLabel="Target"
 								/>,
 								code: `<CSTransfer
-									dataSource={[
+									items={[
 										{
 											key: 'ff0000',
-											name: 'red'
+											label: 'red'
 										}, {
 											key: '008000',
-											name: 'green'
+											label: 'green'
 										}, {
 											key: '0000ff',
-											name: 'blue'
+											label: 'blue'
 										}, {
 											key: 'ffff00',
-											name: 'yellow'
+											label: 'yellow'
 										}
 									]}
 									sourceLabel="Source"
@@ -63,38 +85,24 @@ class CSTransferPreview extends React.Component {
 						variations: [
 							{
 								component: <CSTransfer
-									dataSource={[
-										{
-											key: 'ff0000',
-											name: 'red'
-										}, {
-											key: '008000',
-											name: 'green'
-										}, {
-											key: '0000ff',
-											name: 'blue'
-										}, {
-											key: 'ffff00',
-											name: 'yellow'
-										}
-									]}
+									items={this.items}
 									sourceLabel="Example of sourceLabel"
 									targetLabel="Example of targetLabel"
 								/>,
 								code: `<CSTransfer
-									dataSource={[
+									items={[
 										{
 											key: 'ff0000',
-											name: 'red'
+											label: 'red'
 										}, {
 											key: '008000',
-											name: 'green'
+											label: 'green'
 										}, {
 											key: '0000ff',
-											name: 'blue'
+											label: 'blue'
 										}, {
 											key: 'ffff00',
-											name: 'yellow'
+											label: 'yellow'
 										}
 									]}
 									sourceLabel="Example of sourceLabel"
@@ -102,99 +110,113 @@ class CSTransferPreview extends React.Component {
 								/>`
 							}
 						]
-					}, {
-						propName: 'disabled',
-						alert: {
-							variant: 'info',
-							text: 'Disabled can only be set through dataSource array which is passed to component.'
-						},
+					},
+					// {
+					// 	propName: 'disabled',
+					// 	alert: {
+					// 		variant: 'info',
+					// 		text: 'Disabled can only be set through items array which is passed to component.'
+					// 	},
+					// 	variations: [
+					// 		{
+					// 			component: <CSTransfer
+					// 				items={this.items}
+					// 				sourceLabel="Source"
+					// 				targetLabel="Target"
+					// 			/>,
+					// 			code: `<CSTransfer
+					// 				items={[
+					// 					{
+					// 						key: 'ff0000',
+					// 						label: 'red',
+					// 						disabled: true
+					// 					}, {
+					// 						key: '008000',
+					// 						label: 'green'
+					// 					}, {
+					// 						key: '0000ff',
+					// 						label: 'blue'
+					// 					}, {
+					// 						key: 'ffff00',
+					// 						label: 'yellow'
+					// 					}
+					// 				]}
+					// 				sourceLabel="Source"
+					// 				targetLabel="Target"
+					// 			/>`
+					// 		}
+					// 	]
+					// },
+					{
+						propName: 'helpText',
 						variations: [
 							{
 								component: <CSTransfer
-									dataSource={[
-										{
-											key: 'ff0000',
-											name: 'red',
-											disabled: true
-										}, {
-											key: '008000',
-											name: 'green'
-										}, {
-											key: '0000ff',
-											name: 'blue'
-										}, {
-											key: 'ffff00',
-											name: 'yellow'
-										}
-									]}
+									items={this.items}
 									sourceLabel="Source"
 									targetLabel="Target"
+									helpText={{
+										source: 'Source help text example.',
+										target: 'Target help text example.'
+									}}
 								/>,
 								code: `<CSTransfer
-									dataSource={[
+									items={[
 										{
 											key: 'ff0000',
-											name: 'red',
-											disabled: true
+											label: 'red'
 										}, {
 											key: '008000',
-											name: 'green'
+											label: 'green'
 										}, {
 											key: '0000ff',
-											name: 'blue'
+											label: 'blue'
 										}, {
 											key: 'ffff00',
-											name: 'yellow'
+											label: 'yellow'
 										}
 									]}
 									sourceLabel="Source"
 									targetLabel="Target"
+									helpText={{
+										source: 'Source help text example.',
+										target: 'Target help text example.'
+									}}
 								/>`
 							}
 						]
 					}, {
-						propName: 'onChange',
+						propName: 'onTransfer',
 						variations: [
 							{
+								secondaryVariants: 'targetKeys: [\'ff0000\']',
 								component: <CSTransfer
-									dataSource={[
-										{
-											key: 'ff0000',
-											name: 'red'
-										}, {
-											key: '008000',
-											name: 'green'
-										}, {
-											key: '0000ff',
-											name: 'blue'
-										}, {
-											key: 'ffff00',
-											name: 'yellow'
-										}
-									]}
+									items={this.items}
 									sourceLabel="Source"
 									targetLabel="Target"
-									onChange={this.handleChange}
+									onTransfer={key => this.onTransferHandler(key, 'onTransferKeys')}
+									targetKeys={this.state.onTransferKeys}
 								/>,
 								code: `<CSTransfer
-									dataSource={[
+									items={[
 										{
 											key: 'ff0000',
-											name: 'red'
+											label: 'red'
 										}, {
 											key: '008000',
-											name: 'green'
+											label: 'green'
 										}, {
 											key: '0000ff',
-											name: 'blue'
+											label: 'blue'
 										}, {
 											key: 'ffff00',
-											name: 'yellow'
+											label: 'yellow'
 										}
 									]}
 									sourceLabel="Source"
 									targetLabel="Target"
-									onChange={this.handleChange}
+									onTransfer={(keys) => this.setState({ onTransferKeys: keys })}
+									targetKeys={this.state.onTransferKeys}
 								/>`
 							}
 						]
@@ -204,39 +226,26 @@ class CSTransferPreview extends React.Component {
 							{
 								primaryVariants: 'oneWay={true}',
 								component: <CSTransfer
-									dataSource={[
-										{
-											key: 'ff0000',
-											name: 'red'
-										}, {
-											key: '008000',
-											name: 'green'
-										}, {
-											key: '0000ff',
-											name: 'blue'
-										}, {
-											key: 'ffff00',
-											name: 'yellow'
-										}
-									]}
+									items={this.items}
 									sourceLabel="Source"
 									targetLabel="Target"
+									targetKeys={['ff0000']}
 									oneWay
 								/>,
 								code: `<CSTransfer
-									dataSource={[
+									items={[
 										{
 											key: 'ff0000',
-											name: 'red'
+											label: 'red'
 										}, {
 											key: '008000',
-											name: 'green'
+											label: 'green'
 										}, {
 											key: '0000ff',
-											name: 'blue'
+											label: 'blue'
 										}, {
 											key: 'ffff00',
-											name: 'yellow'
+											label: 'yellow'
 										}
 									]}
 									sourceLabel="Source"
@@ -251,39 +260,25 @@ class CSTransferPreview extends React.Component {
 							{
 								primaryVariants: 'searchable={true}',
 								component: <CSTransfer
-									dataSource={[
-										{
-											key: 'ff0000',
-											name: 'red'
-										}, {
-											key: '008000',
-											name: 'green'
-										}, {
-											key: '0000ff',
-											name: 'blue'
-										}, {
-											key: 'ffff00',
-											name: 'yellow'
-										}
-									]}
+									items={this.items}
 									sourceLabel="Source"
 									targetLabel="Target"
 									searchable
 								/>,
 								code: `<CSTransfer
-									dataSource={[
+									items={[
 										{
 											key: 'ff0000',
-											name: 'red'
+											label: 'red'
 										}, {
 											key: '008000',
-											name: 'green'
+											label: 'green'
 										}, {
 											key: '0000ff',
-											name: 'blue'
+											label: 'blue'
 										}, {
 											key: 'ffff00',
-											name: 'yellow'
+											label: 'yellow'
 										}
 									]}
 									sourceLabel="Source"
@@ -302,138 +297,32 @@ class CSTransferPreview extends React.Component {
 							{
 								primaryVariants: 'selectAll={true}',
 								component: <CSTransfer
-									dataSource={[
-										{
-											key: 'ff0000',
-											name: 'red'
-										}, {
-											key: '008000',
-											name: 'green'
-										}, {
-											key: '0000ff',
-											name: 'blue'
-										}, {
-											key: 'ffff00',
-											name: 'yellow'
-										}
-									]}
+									items={this.items}
 									sourceLabel="Source"
 									targetLabel="Target"
 									variant="check-list"
 									selectAll
 								/>,
 								code: ` <CSTransfer
-									dataSource={[
+									items={[
 										{
 											key: 'ff0000',
-											name: 'red'
+											label: 'red'
 										}, {
 											key: '008000',
-											name: 'green'
+											label: 'green'
 										}, {
 											key: '0000ff',
-											name: 'blue'
+											label: 'blue'
 										}, {
 											key: 'ffff00',
-											name: 'yellow'
+											label: 'yellow'
 										}
 									]}
 									sourceLabel="Source"
 									targetLabel="Target"
 									variant="check-list"
 									selectAll
-								/>`
-							}
-						]
-					}, {
-						propName: 'sourceHelpText',
-						variations: [
-							{
-								component: <CSTransfer
-									dataSource={[
-										{
-											key: 'ff0000',
-											name: 'red'
-										}, {
-											key: '008000',
-											name: 'green'
-										}, {
-											key: '0000ff',
-											name: 'blue'
-										}, {
-											key: 'ffff00',
-											name: 'yellow'
-										}
-									]}
-									sourceLabel="Source"
-									targetLabel="Target"
-									sourceHelpText="Help text example"
-								/>,
-								code: `<CSTransfer
-									dataSource={[
-										{
-											key: 'ff0000',
-											name: 'red'
-										}, {
-											key: '008000',
-											name: 'green'
-										}, {
-											key: '0000ff',
-											name: 'blue'
-										}, {
-											key: 'ffff00',
-											name: 'yellow'
-										}
-									]}
-									sourceLabel="Source"
-									targetLabel="Target"
-									sourceHelpText="Help text example"
-								/>`
-							}
-						]
-					}, {
-						propName: 'targetHelpText',
-						variations: [
-							{
-								component: <CSTransfer
-									dataSource={[
-										{
-											key: 'ff0000',
-											name: 'red'
-										}, {
-											key: '008000',
-											name: 'green'
-										}, {
-											key: '0000ff',
-											name: 'blue'
-										}, {
-											key: 'ffff00',
-											name: 'yellow'
-										}
-									]}
-									sourceLabel="Source"
-									targetLabel="Target"
-									targetHelpText="Help text example"
-								/>,
-								code: `<CSTransfer
-									dataSource={[
-										{
-											key: 'ff0000',
-											name: 'red'
-										}, {
-											key: '008000',
-											name: 'green'
-										}, {
-											key: '0000ff',
-											name: 'blue'
-										}, {
-											key: 'ffff00',
-											name: 'yellow'
-										}
-									]}
-									sourceLabel="Source"
-									targetLabel="Target"
-									targetHelpText="Help text example"
 								/>`
 							}
 						]
@@ -441,45 +330,34 @@ class CSTransferPreview extends React.Component {
 						propName: 'targetKeys',
 						variations: [
 							{
+								secondaryVariants: 'onTransfer = () => {...}',
 								component: <CSTransfer
-									dataSource={[
-										{
-											key: 'ff0000',
-											name: 'red'
-										}, {
-											key: '008000',
-											name: 'green'
-										}, {
-											key: '0000ff',
-											name: 'blue'
-										}, {
-											key: 'ffff00',
-											name: 'yellow'
-										}
-									]}
-									targetKeys={['ff0000', '008000', 'ee89ee']}
+									items={this.items}
 									sourceLabel="Source"
 									targetLabel="Target"
+									onTransfer={key => this.onTransferHandler(key, 'targetKeys')}
+									targetKeys={this.state.targetKeys}
 								/>,
 								code: `<CSTransfer
-									dataSource={[
+									items={[
 										{
 											key: 'ff0000',
-											name: 'red'
+											label: 'red'
 										}, {
 											key: '008000',
-											name: 'green'
+											label: 'green'
 										}, {
 											key: '0000ff',
-											name: 'blue'
+											label: 'blue'
 										}, {
 											key: 'ffff00',
-											name: 'yellow'
+											label: 'yellow'
 										}
 									]}
-									targetKeys={['ff0000', '008000', 'ee89ee']}
 									sourceLabel="Source"
 									targetLabel="Target"
+									onTransfer={(keys) => this.setState({targetKeys: keys })}
+									targetKeys={this.state.targetKeys}
 								/>`
 							}
 						]
@@ -494,38 +372,38 @@ class CSTransferPreview extends React.Component {
 								primaryVariants: 'variant="simple-list"',
 								quickLink: 'simple-list',
 								component: <CSTransfer
-									dataSource={[
+									items={[
 										{
 											key: 'ff0000',
-											name: 'red'
+											label: 'red'
 										}, {
 											key: '008000',
-											name: 'green'
+											label: 'green'
 										}, {
 											key: '0000ff',
-											name: 'blue'
+											label: 'blue'
 										}, {
 											key: 'ffff00',
-											name: 'yellow'
+											label: 'yellow'
 										}
 									]}
 									sourceLabel="Source"
 									targetLabel="Target"
 								/>,
 								code: `<CSTransfer
-									dataSource={[
+									items={[
 										{
 											key: 'ff0000',
-											name: 'red'
+											label: 'red'
 										}, {
 											key: '008000',
-											name: 'green'
+											label: 'green'
 										}, {
 											key: '0000ff',
-											name: 'blue'
+											label: 'blue'
 										}, {
 											key: 'ffff00',
-											name: 'yellow'
+											label: 'yellow'
 										}
 									]}
 									sourceLabel="Source"
@@ -535,19 +413,19 @@ class CSTransferPreview extends React.Component {
 								primaryVariants: 'variant="check-list"',
 								quickLink: 'check-list',
 								component: <CSTransfer
-									dataSource={[
+									items={[
 										{
 											key: 'ff0000',
-											name: 'red'
+											label: 'red'
 										}, {
 											key: '008000',
-											name: 'green'
+											label: 'green'
 										}, {
 											key: '0000ff',
-											name: 'blue'
+											label: 'blue'
 										}, {
 											key: 'ffff00',
-											name: 'yellow'
+											label: 'yellow'
 										}
 									]}
 									variant="check-list"
@@ -555,19 +433,19 @@ class CSTransferPreview extends React.Component {
 									targetLabel="Target"
 								/>,
 								code: `<CSTransfer
-									dataSource={[
+									items={[
 										{
 											key: 'ff0000',
-											name: 'red'
+											label: 'red'
 										}, {
 											key: '008000',
-											name: 'green'
+											label: 'green'
 										}, {
 											key: '0000ff',
-											name: 'blue'
+											label: 'blue'
 										}, {
 											key: 'ffff00',
-											name: 'yellow'
+											label: 'yellow'
 										}
 									]}
 									variant="check-list"
@@ -585,19 +463,19 @@ class CSTransferPreview extends React.Component {
 									'className="custom-class"'
 								],
 								component: <CSTransfer
-									dataSource={[
+									items={[
 										{
 											key: 'ff0000',
-											name: 'red'
+											label: 'red'
 										}, {
 											key: '008000',
-											name: 'green'
+											label: 'green'
 										}, {
 											key: '0000ff',
-											name: 'blue'
+											label: 'blue'
 										}, {
 											key: 'ffff00',
-											name: 'yellow'
+											label: 'yellow'
 										}
 									]}
 									sourceLabel="Source"
@@ -606,19 +484,19 @@ class CSTransferPreview extends React.Component {
 									className="custom-br-mint"
 								/>,
 								code: `<CSTransfer
-									dataSource={[
+									items={[
 										{
 											key: 'ff0000',
-											name: 'red'
+											label: 'red'
 										}, {
 											key: '008000',
-											name: 'green'
+											label: 'green'
 										}, {
 											key: '0000ff',
-											name: 'blue'
+											label: 'blue'
 										}, {
 											key: 'ffff00',
-											name: 'yellow'
+											label: 'yellow'
 										}
 									]}
 									sourceLabel="Source"
@@ -632,13 +510,13 @@ class CSTransferPreview extends React.Component {
 				],
 				properties: [
 					{
-						name: 'dataSource',
+						name: 'items',
 						required: true,
 						customTypes: {
 							name: 'Array<CSTransferItemsType>',
 							types: 'object'
 						},
-						description: 'Define an array of objects to be used as a data source. The object accepts disabled, key and name attributes. In case the key is within targetKeys, that item will be displayed in the target list.'
+						description: 'Define an array of objects to be used as a data source. The object accepts key and label attributes. In case the key is within targetKeys, that item will be displayed in the target list.'
 					}, {
 						name: 'sourceLabel',
 						required: true,
@@ -650,8 +528,15 @@ class CSTransferPreview extends React.Component {
 						types: 'string',
 						description: 'Set the target list label.'
 					}, {
-						name: 'onChange',
-						types: '(value) => any',
+						name: 'helpText',
+						customTypes: {
+							name: 'CSTransferHelpText',
+							types: 'object'
+						},
+						description: 'Set the text to be displayed in the transfer lists tooltip.'
+					}, {
+						name: 'onTransfer',
+						types: '(key: ReactText | Array<ReactText>) => void',
 						description: 'Handler method for the change event.'
 					}, {
 						name: 'oneWay',
@@ -669,17 +554,9 @@ class CSTransferPreview extends React.Component {
 						default: 'false',
 						description: 'Render a checkbox to select all items in a list. It can be only used with the check-list variant.'
 					}, {
-						name: 'sourceHelpText',
-						types: 'string',
-						description: 'Set the text to be displayed in the source list tooltip.'
-					}, {
-						name: 'targetHelpText',
-						types: 'string',
-						description: 'Set the text to be displayed in the target list tooltip.'
-					}, {
 						name: 'targetKeys',
-						types: 'Array<string>',
-						description: 'A set of keys for the elements listed in the target list.'
+						types: 'Array<ReactText>',
+						description: 'An array of keys corresponding to selected transfer items.'
 					}, {
 						name: 'variant',
 						customTypes: {

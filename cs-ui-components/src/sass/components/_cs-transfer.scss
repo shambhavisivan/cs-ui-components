@@ -61,7 +61,7 @@
 					&-simple {
 						cursor: pointer;
 
-						&:focus-visible {
+						&:focus {
 							outline: none;
 							z-index: var(--z-index-transfer-list-item-focus);
 							@include css4 {

@@ -137,7 +137,7 @@ import CSTooltip, {
 	CSTooltipStylePosition,
 	CSTooltipVariant,
 } from './components/CSTooltip';
-import CSTransfer, { CSTransferVariant } from './components/transfer/CSTransfer';
+import CSTransfer, { CSTransferItemInterface, CSTransferVariant, CSTransferHelpText } from './components/transfer/CSTransfer';
 import CSTransferItem from './components/transfer/CSTransferItem';
 import CSTransferList, { CSTransferListType } from './components/transfer/CSTransferList';
 import CSTree, { CSTreeItemInterface, CSTreeItemMetaInterface, CSTreeItemWithMetaInterface, CSTreeElementType, CSTreeRenderType } from './components/tree/CSTree';
@@ -314,7 +314,9 @@ export {
 	CSTooltipVariant,
 	CSTransfer,
 	CSTransferVariant,
+	CSTransferHelpText,
 	CSTransferItem,
+	CSTransferItemInterface,
 	CSTransferList,
 	CSTransferListType,
 	CSTree,

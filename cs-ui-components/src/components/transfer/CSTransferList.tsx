@@ -1,12 +1,19 @@
-import React, { RefObject } from 'react';
+import React, {
+	RefObject,
+	useImperativeHandle,
+	useRef,
+	useState,
+	useEffect,
+	ForwardedRef,
+} from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import CSCheckbox from '../CSCheckbox';
 import CSLabel from '../CSLabel';
 import CSIcon from '../CSIcon';
 import CSInputSearch from '../CSInputSearch';
 import CSTransferItem from './CSTransferItem';
-import CSTransferContext from './CSTransferContext';
-import { CSTransferVariant, CSTransferItemsType } from './CSTransfer';
+import { useCSTransfer } from './CSTransferContext';
+import { CSTransferVariant, CSTransferItemInterface } from './CSTransfer';
 import KeyCode from '../../util/KeyCode';
 
 export type CSTransferListType = 'source' | 'target';
@@ -14,139 +21,168 @@ export type CSTransferListType = 'source' | 'target';
 export interface CSTransferListProps {
 	helpText?: string;
 	label?: string;
-	listData?: Array<CSTransferItemsType>;
+	listItems?: Array<CSTransferItemInterface>;
+	listRef?: ForwardedRef<HTMLUListElement>;
 	listType?: CSTransferListType;
-	listRef?: RefObject<HTMLUListElement>;
 	searchable?: boolean;
 	selectAll?: boolean;
-	selectList: Array<string>;
+	selectList: Array<React.ReactText>;
+	transferButtonsRef: RefObject<any>;
 	variant?: CSTransferVariant;
 }
 
-export interface CSTransferListState {
-	term: string;
-	validItemsKeys: Array<string>;
-}
+const CSTransferList = ({
+	helpText,
+	label,
+	listItems,
+	listRef,
+	listType,
+	searchable,
+	selectAll,
+	selectList,
+	transferButtonsRef,
+	variant,
+}: CSTransferListProps) => {
+	const {
+		onSelectChange,
+		selectAllItems,
+		oneWay,
+	} = useCSTransfer();
+	const [searchTerm, setSearchTerm] = useState('');
+	const transferListRef = useRef<HTMLUListElement>(null);
+	const { current: uniqueAutoId } = useRef(uuidv4());
+	const listDataLength = useRef(listItems.length);
 
-class CSTransferList extends React.Component<CSTransferListProps, CSTransferListState> {
-	static contextType = CSTransferContext;
+	useImperativeHandle(listRef, () => transferListRef.current);
 
-	static getDerivedStateFromProps(nextProps: CSTransferListProps) {
-		const { listData } = nextProps;
-		return listData.filter(({ disabled }) => !disabled).map(({ key }) => key);
-	}
+	const listItemElement = variant === ('simple-list' || (oneWay && listType === 'target')) ? 'button' : 'input[type=checkbox]';
 
-	private uniqueAutoId = uuidv4();
+	useEffect(() => {
+		if (listItems.length > listDataLength.current) {
+			(transferListRef.current?.querySelector(listItemElement) as HTMLElement)?.focus();
+		}
+		listDataLength.current = listItems.length;
+	}, [listItems]);
 
-	constructor(props: CSTransferListProps) {
-		super(props);
+	const searchingFor = (term: any) => (item: any) => item.label.toLowerCase().includes(term.toLowerCase());
 
-		this.state = {
-			term: '',
-			validItemsKeys: [],
-		};
-	}
+	const handleTransferButtonsNavigation = (event: React.KeyboardEvent<any>) => {
+		if (event.key === KeyCode.ArrowRight && listType === 'source') {
+			transferButtonsRef.current?.firstChild?.focus();
+		} else if (event.key === KeyCode.ArrowLeft && listType === 'target') {
+			transferButtonsRef.current?.lastChild?.focus();
+		}
+	};
 
-	searchingFor = (term: any) => (item: any) => item.name.toLowerCase().includes(term.toLowerCase())
-
-	handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-		const { listType } = this.props;
-		const { actionButtonsNode } = this.context;
+	const handleListKeyDown = (event: React.KeyboardEvent<any>) => {
+		const items = Array.from(transferListRef.current?.querySelectorAll(listItemElement) as NodeListOf<HTMLElement>);
+		const firstListItem = items[0];
+		const lastListItem = items[items.length - 1];
+		let index = items.indexOf(document.activeElement as HTMLElement);
 		switch (true) {
-		case event.key === KeyCode.ArrowRight && listType === 'source':
-			(actionButtonsNode.firstChild as HTMLElement).focus();
+		case event.key === KeyCode.ArrowDown:
+			event.preventDefault();
+			switch (true) {
+			case document.activeElement === lastListItem:
+				firstListItem.focus();
+				break;
+			default:
+				index += 1;
+				items[index].focus();
+				break;
+			}
 			break;
-		case event.key === KeyCode.ArrowLeft && listType === 'target':
-			(actionButtonsNode.lastChild as HTMLElement).focus();
+		case event.key === KeyCode.ArrowUp:
+			event.preventDefault();
+			switch (true) {
+			case document.activeElement === firstListItem:
+				lastListItem.focus();
+				break;
+			default:
+				index -= 1;
+				items[index].focus();
+				break;
+			}
 			break;
 		default:
 		}
-	}
+		handleTransferButtonsNavigation(event);
+	};
 
-	render() {
-		const {
-			helpText,
-			label,
-			listData,
-			listType,
-			searchable,
-			selectAll,
-			selectList,
-			variant,
-		} = this.props;
-		const { term, validItemsKeys } = this.state;
-		const { selectItem, selectAllItems } = this.context;
-		const { listRef } = this.props;
-		return (
-			<div className="cs-transfer-list-wrapper">
-				<CSLabel
-					label={label}
-					helpText={helpText}
-					id={this.uniqueAutoId}
-				/>
-				<div className="cs-transfer-list-group">
-					{((selectAll && variant === 'check-list')
-						|| searchable)
-						&& (
-							<div className="cs-transfer-list-header">
-								{(selectAll && variant === 'check-list')
+	return (
+		<div className="cs-transfer-list-wrapper">
+			<CSLabel
+				label={label}
+				helpText={helpText}
+				id={uniqueAutoId}
+			/>
+			<div className="cs-transfer-list-group">
+				{((selectAll && variant === 'check-list')
+					|| searchable)
+					&& (
+						<div className="cs-transfer-list-header">
+							{(selectAll && variant === 'check-list')
 
 								&& (
 									<CSCheckbox
 										label="select all"
 										labelHidden
 										variant="brand"
-										onChange={() => selectAllItems(listData, selectList, listType)}
-										checked={validItemsKeys.length === selectList.length && !!selectList.length}
-										disabled={!listData.length}
-										onKeyDown={this.handleKeyDown}
+										onChange={() => selectAllItems(listItems, selectList, listType)}
+										checked={listItems.length === selectList.length && !!selectList.length}
+										disabled={!listItems.length}
+										onKeyDown={handleTransferButtonsNavigation}
 									/>
 								)}
-								{searchable
+							{searchable
 								&& (
 									<CSInputSearch
 										label="search list"
 										labelHidden
-										onChange={(e) => this.setState({ term: e.target.value })}
-										disabled={!listData.length}
+										onChange={(e) => setSearchTerm(e.target.value)}
+										disabled={!listItems.length}
 									/>
 								)}
-							</div>
-						)}
-					<ul
-						className="cs-transfer-list"
-						ref={listRef}
-						role="listbox"
-						aria-describedby={this.uniqueAutoId}
-					>
-						{listData.length
-							? listData.filter(this.searchingFor(term)).map((item) => (
-								<CSTransferItem
-									key={item.key}
-									itemKey={item.key}
-									name={item.name}
-									disabled={item.disabled}
-									onSelect={(e: any) => selectItem(e, item.key, selectList, listType)}
-									itemVariant={variant}
-									selected={selectList.includes(item.key)}
-									listType={listType}
+						</div>
+					)}
+				<ul
+					className="cs-transfer-list"
+					ref={transferListRef}
+					role="listbox"
+					aria-describedby={uniqueAutoId}
+					onKeyDown={handleListKeyDown}
+				>
+					{listItems.length
+						? listItems.filter(searchingFor(searchTerm)).map((items) => (
+							<CSTransferItem
+								key={items.key}
+								itemKey={items.key}
+								label={items.label}
+								// disabled={items.disabled}
+								onSelect={(e: any) => onSelectChange(e, items.key, selectList, listType)}
+								itemVariant={variant}
+								selected={selectList.includes(items.key)}
+								listType={listType}
+							/>
+						))
+						: (
+							<li className="cs-transfer-list-no-data">
+								<CSIcon
+									name="error"
+									color="var(--cs-transfer-list-no-data-c)"
+									size="1.5rem"
 								/>
-							))
-							: (
-								<li className="cs-transfer-list-no-data">
-									<CSIcon
-										name="error"
-										color="var(--cs-transfer-list-no-data-c)"
-										size="1.5rem"
-									/>
-									<span className="cs-transfer-list-no-data-text">No data</span>
-								</li>
-							)}
-					</ul>
-				</div>
+								<span className="cs-transfer-list-no-data-text">No data</span>
+							</li>
+						)}
+				</ul>
 			</div>
-		);
-	}
-}
+		</div>
+	);
+};
+
+const CSTransferWithRef = React.forwardRef<HTMLUListElement, CSTransferListProps>((props: CSTransferListProps, ref) => <CSTransferList {...props} listRef={ref} />);
+
+CSTransferWithRef.displayName = 'CSTransferList';
 
 export default CSTransferList;

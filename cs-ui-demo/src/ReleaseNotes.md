@@ -6,16 +6,22 @@
   * fixed close button styling when `styleType="light"`
 * CSButton
   * removed icon darken while hovering on `btnStyle="brand"`
+* CSCheckbox
+  * Limited stopPropagation to only enter and space keys
+* CSCustomSelect
+  * <i>important</i> renamed the `actions` prop to `dropdownActions`
+* CSDropdown
+  * fixed keyboard navigation when mode is 'button' and minor style fixes
 * CSRadio
   * added `hidden` prop
 * CSSection
   * replaced collapsible button with `CSButton`
-* CSCheckbox
-  * Limited stopPropagation to only enter and space keys
-* CSDropdown
-  * fixed keyboard navigation when mode is 'button' and minor style fixes
-* CSCustomSelect
-  * <i>important</i> renamed the `actions` prop to `dropdownActions`
+* CSTransfer
+  * <i>important</i> restructured component to be function-based and stateless
+  * <i>important</i> renamed `dataSource` to `items`
+  * <i>important</i> renamed items `name` to `label`
+  * <i>important</i> renamed `onChange` to `onTransfer`
+  * <i>important</i> merged `sourceHelpText` and `targetHelpText` into `helpText` object prop which accepts `source` and `target` string properties - each for the corresponding transfer list
 * Tests added to components
   * CSButtonGroup
   * CSChip
