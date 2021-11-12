@@ -18,6 +18,7 @@
   * <i>important</i> renamed the `actions` prop to `dropdownActions`
 * Tests added to components
   * CSButtonGroup
+  * CSChip
   * CSDivider
   * CSFieldErrorMessage
   * CSInputText
