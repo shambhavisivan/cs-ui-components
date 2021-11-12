@@ -23,6 +23,7 @@
   * CSFieldErrorMessage
   * CSInputText
   * CSLabel
+  * CSSection
   * CSSlider
   * CSSpinner
   * CSToast
