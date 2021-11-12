@@ -14,6 +14,8 @@
   * Limited stopPropagation to only enter and space keys
 * CSDropdown
   * fixed keyboard navigation when mode is 'button' and minor style fixes
+* CSCustomSelect
+  * <i>important</i> renamed the `actions` prop to `dropdownActions`
 * Tests added to components
   * CSDivider
   * CSFieldErrorMessage

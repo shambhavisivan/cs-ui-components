@@ -9,7 +9,7 @@ export interface CSCustomSelectOptionProps {
 	setDropdownVisible: (visible: boolean) => void,
 }
 
-const CSCustomSelectAction = ({
+const CSCustomSelectDropdownAction = ({
 	action,
 	focusInput,
 	setDropdownVisible,
@@ -24,7 +24,7 @@ const CSCustomSelectAction = ({
 	} = action;
 
 	const actionClasses = classNames(
-		'cs-custom-select-action',
+		'cs-custom-select-dropdown-action',
 		{
 			[className]: className,
 		},
@@ -53,4 +53,4 @@ const CSCustomSelectAction = ({
 	);
 };
 
-export default CSCustomSelectAction;
+export default CSCustomSelectDropdownAction;

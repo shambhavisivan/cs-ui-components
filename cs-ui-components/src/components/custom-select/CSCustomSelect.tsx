@@ -8,7 +8,7 @@ import { CSAutopositions } from '../../helpers/autoposition/cs-autoposition-type
 import CSLabel from '../CSLabel';
 import CSIcon from '../CSIcon';
 import CSCustomSelectOption from './CSCustomSelectOption';
-import CSCustomSelectAction from './CSCustomSelectAction';
+import CSCustomSelectDropdownAction from './CSCustomSelectDropdownAction';
 import CSButton, { CSButtonProps } from '../CSButton';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from '../CSFieldErrorMsg';
 import { CSTooltipPosition } from '../CSTooltip';
@@ -24,11 +24,11 @@ export interface CSCustomSelectOptionInterface {
 
 export interface CSCustomSelectProps {
 	options: Array<CSCustomSelectOptionInterface>;
-	actions?: Array<CSButtonProps>;
 	align?: CSCustomSelectDropdownAlignType;
 	borderRadius?: string;
 	className?: string;
 	disabled?: boolean;
+	dropdownActions?: Array<CSButtonProps>;
 	error?: boolean;
 	errorMessage?: CSFieldErrorMsgType;
 	gridCustomPopup?: boolean;
@@ -56,11 +56,11 @@ export interface CSCustomSelectProps {
 
 const CSCustomSelect = ({
 	options,
-	actions,
 	align = 'left',
 	borderRadius,
 	className,
 	disabled,
+	dropdownActions,
 	error,
 	errorMessage,
 	forwardRef,
@@ -381,8 +381,8 @@ const CSCustomSelect = ({
 								onSelectChange={onSelect}
 							/>
 						))}
-						{actions?.map((button: CSButtonProps, buttonIndex: number) => (
-							<CSCustomSelectAction
+						{dropdownActions?.map((button: CSButtonProps, buttonIndex: number) => (
+							<CSCustomSelectDropdownAction
 								// eslint-disable-next-line react/no-array-index-key
 								key={buttonIndex}
 								action={button}

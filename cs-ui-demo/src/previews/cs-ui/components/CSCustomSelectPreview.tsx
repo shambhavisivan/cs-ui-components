@@ -51,30 +51,6 @@ class CSCustomSelectPreview extends React.Component {
 							}
 						]
 					}, {
-						propName: 'actions',
-						variations: [
-							{
-								component: <CSCustomSelect
-									options={options}
-									label="Select department"
-									actions={[{
-										label: 'Add department',
-										iconName: 'add',
-										onClick: () => alert('Department added.')
-									}]}
-								/>,
-								code: `<CSCustomSelect
-									options={options}
-									label="Select department"
-									actions={[{
-										label: 'Add department',
-										iconName: 'add',
-										onClick: () => alert('Department added.')
-									}]}
-								/>`
-							}
-						]
-					}, {
 						propName: 'align',
 						variations: [
 							{
@@ -128,6 +104,30 @@ class CSCustomSelectPreview extends React.Component {
 									options={options}
 									label="Select department"
 									disabled
+								/>`
+							}
+						]
+					}, {
+						propName: 'dropdownActions',
+						variations: [
+							{
+								component: <CSCustomSelect
+									options={options}
+									label="Select department"
+									dropdownActions={[{
+										label: 'Add department',
+										iconName: 'add',
+										onClick: () => alert('Department added.')
+									}]}
+								/>,
+								code: `<CSCustomSelect
+									options={options}
+									label="Select department"
+									dropdownActions={[{
+										label: 'Add department',
+										iconName: 'add',
+										onClick: () => alert('Department added.')
+									}]}
 								/>`
 							}
 						]
@@ -573,10 +573,6 @@ class CSCustomSelectPreview extends React.Component {
 						types: 'string',
 						description: 'Set the custom select label.'
 					}, {
-						name: 'actions',
-						types: 'Array<CSButtonProps>',
-						description: 'Add custom action items to the dropdown.'
-					}, {
 						name: 'align',
 						customTypes: [{
 							name: 'CSCustomSelectDropdownAlign',
@@ -594,6 +590,10 @@ class CSCustomSelectPreview extends React.Component {
 						types: 'boolean',
 						default: 'false',
 						description: 'Disable the custom select.'
+					}, {
+						name: 'dropdownActions',
+						types: 'Array<CSButtonProps>',
+						description: 'Add custom action items to the dropdown.'
 					}, {
 						name: 'error',
 						types: 'boolean',
