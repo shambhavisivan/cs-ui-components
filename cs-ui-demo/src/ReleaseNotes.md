@@ -6,6 +6,8 @@
 * CSAlert
   * fixed close button styling when `styleFormat="scoped"`
   * fixed close button styling when `styleType="light"`
+* CSAutoposition
+  * implemented optional chaining of DOMRect objects
 * CSButton
   * removed icon darken while hovering on `btnStyle="brand"`
   * fixed iconPosition and size props alignment issue

@@ -24,7 +24,7 @@ const CSAutoposition = ({
 	onPositionChange,
 	zIndex,
 }: PropsWithChildren<CSAutopositionProps>) => {
-	const [refPointRect, setRefPointRect] = useState<DOMRect>(referencePoint.getBoundingClientRect());
+	const [refPointRect, setRefPointRect] = useState<DOMRect>(referencePoint?.getBoundingClientRect());
 	const [computedPosition, setComputedPosition] = useState<CSAutopositions>(initialPosition);
 	const [computedStyle, setComputedStyle] = useState<CSSProperties>({});
 	const autopositionRootId = 'cs-autoposition-root';
@@ -53,13 +53,9 @@ const CSAutoposition = ({
 		where overflow is present.
 	*/
 	const checkYAxis = (_autopositionWrapperRect: DOMRect) => {
-		if (_autopositionWrapperRect.top < 0) {
-			return 'bottom';
-		}
-
-		if (_autopositionWrapperRect.bottom >= (window.innerHeight || document.documentElement.clientHeight)) {
-			return 'top';
-		}
+		if (_autopositionWrapperRect) return undefined;
+		if (_autopositionWrapperRect.top < 0) return 'bottom';
+		if (_autopositionWrapperRect.bottom >= (window.innerHeight || document.documentElement.clientHeight)) return 'top';
 
 		return undefined;
 	};
@@ -70,13 +66,9 @@ const CSAutoposition = ({
 		where overflow is present.
 	*/
 	const checkXAxis = (_autopositionWrapperRect: DOMRect) => {
-		if (_autopositionWrapperRect.right >= (window.innerWidth || document.documentElement.clientWidth)) {
-			return 'left';
-		}
-
-		if (_autopositionWrapperRect.left < 0) {
-			return 'right';
-		}
+		if (!_autopositionWrapperRect) return undefined;
+		if ((_autopositionWrapperRect.right) >= (window.innerWidth || document.documentElement.clientWidth)) return 'left';
+		if (_autopositionWrapperRect.left < 0) return 'right';
 
 		return undefined;
 	};
@@ -87,7 +79,7 @@ const CSAutoposition = ({
 		Every time it's called computedPosition will be returned through onPositionChange prop.
 	*/
 	const recalcComputedPosition = (autopositionWrapper: HTMLDivElement) => {
-		const autopositionWrapperRect = autopositionWrapper.getBoundingClientRect();
+		const autopositionWrapperRect = autopositionWrapper?.getBoundingClientRect();
 		const xAxis = ['left', 'right', 'center'];
 		const yAxis = ['top', 'bottom', 'center'];
 
@@ -158,7 +150,7 @@ const CSAutoposition = ({
 		resizer.observe(autopositionWrapper);
 	};
 
-	const recalcRefPointRect = () => setRefPointRect(referencePoint.getBoundingClientRect());
+	const recalcRefPointRect = () => setRefPointRect(referencePoint?.getBoundingClientRect());
 
 	const recalcOnScroll = (event: any) => {
 		if ((event.target as HTMLElement).contains(referencePoint)) {
@@ -171,21 +163,21 @@ const CSAutoposition = ({
 		'--z-index-autoposition-wrapper': zIndex,
 	};
 
-	const topPosition = useMemo(() => window.innerHeight - refPointRect.top, [refPointRect]);
-	const bottomPosition = useMemo(() => refPointRect.top + refPointRect.height, [refPointRect]);
+	const topPosition = useMemo(() => window.innerHeight - (refPointRect?.top ?? 0), [refPointRect]);
+	const bottomPosition = useMemo(() => (refPointRect?.top ?? 0) + (refPointRect?.height ?? 0), [refPointRect]);
 
 	const openOn = useMemo(() => ({
 		top: topPosition,
 		bottom: bottomPosition,
-		left: window.innerWidth - refPointRect.left,
-		right: refPointRect.right,
+		left: window.innerWidth - (refPointRect?.left ?? 0),
+		right: refPointRect?.right ?? 0,
 	}), [refPointRect, topPosition, bottomPosition]);
 
 	const expandTo = useMemo(() => ({
 		top: topPosition,
 		bottom: bottomPosition,
-		left: window.innerWidth - refPointRect.right,
-		right: refPointRect.left,
+		left: window.innerWidth - (refPointRect?.right ?? 0),
+		right: refPointRect?.left ?? 0,
 	}), [refPointRect, topPosition, bottomPosition]);
 
 	/*
