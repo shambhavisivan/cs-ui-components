@@ -36,6 +36,7 @@
   * CSSidebar
   * CSSlider
   * CSSpinner
+  * CSTab
   * CSToast
 
 ## 2.0.0
