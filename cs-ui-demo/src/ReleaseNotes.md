@@ -27,6 +27,7 @@
 * Tests added to components
   * CSButtonGroup
   * CSChip
+  * CSDatepicker
   * CSDivider
   * CSFieldErrorMessage
   * CSInputText
