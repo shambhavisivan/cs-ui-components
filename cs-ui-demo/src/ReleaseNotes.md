@@ -33,6 +33,7 @@
   * CSInputText
   * CSLabel
   * CSSection
+  * CSSelect
   * CSSidebar
   * CSSlider
   * CSSpinner
