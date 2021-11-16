@@ -38,6 +38,7 @@
   * CSInputText
   * CSLabel
   * CSPath
+  * CSProgressIndicator
   * CSSection
   * CSSelect
   * CSSidebar
