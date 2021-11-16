@@ -51,6 +51,7 @@
   * CSSlider
   * CSSpinner
   * CSTab
+  * CSTextarea
   * CSToast
 
 ## 2.0.0
