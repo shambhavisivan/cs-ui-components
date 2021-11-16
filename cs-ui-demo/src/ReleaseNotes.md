@@ -32,6 +32,7 @@
   * CSFieldErrorMessage
   * CSInputText
   * CSLabel
+  * CSPath
   * CSSection
   * CSSelect
   * CSSidebar
