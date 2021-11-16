@@ -53,6 +53,7 @@
   * CSTab
   * CSTextarea
   * CSToast
+  * CSToggle
 
 ## 2.0.0
 * General
