@@ -8,6 +8,11 @@
   * fixed close button styling when `styleType="light"`
 * CSButton
   * removed icon darken while hovering on `btnStyle="brand"`
+  * fixed iconPosition and size props alignment issue
+* CSRadio
+  * added `hidden` prop
+* CSSection
+  * replaced collapsible button with `CSButton`
 * CSCheckbox
   * Limited stopPropagation to only enter and space keys
 * CSCustomSelect

@@ -160,13 +160,13 @@ class CSButton extends React.Component<CSButtonProps> {
 				'cs-btn-label-hidden': labelHidden,
 				'cs-btn-no-icon': (!iconName) && !loading,
 
-				'cs-btn-icon-right': iconPosition === 'right',
-
 				'cs-btn-max-width': width === 'max',
 
 				'cs-btn-size-xsmall': size === 'xsmall',
 				'cs-btn-size-small': size === 'small',
 				'cs-btn-size-large': size === 'large',
+
+				'cs-btn-icon-right': iconPosition === 'right',
 
 				[`${className}`]: className,
 			},

@@ -3,7 +3,7 @@
 	display: inline-flex;
 	align-items: center;
 	position: relative;
-	padding: 0 1rem 0 0.25rem;
+	padding: 0 0.75rem 0 0.25rem;
 	margin: 0;
 	height: 2rem;
 	font-weight: $font-weight-normal;
@@ -98,13 +98,6 @@
 		}
 	}
 	/* ALL BUTTONS PROPERTIES */
-	/* ICON POSITION */
-	&.cs-btn-icon-right {
-		padding: 0 0.25rem 0 1rem;
-		.cs-btn-icon {
-			order: 1;
-		}
-	}
 	/* ICON DISPLAY */
 	&.cs-btn-no-icon {
 		padding: 0 1rem;
@@ -151,7 +144,8 @@
 	/* SIZE */
 	&.cs-btn-size-small {
 		height: 1.5rem;
-		padding: 0 0.75rem 0 0.0625rem;
+		padding: 0 0.75rem 0 0.25rem;
+
 		&.cs-btn-icon-only,
 		&.cs-btn-label-hidden {
 			padding: 0;
@@ -168,6 +162,9 @@
 			&.cs-btn-label-hidden {
 				padding: 0 0.75rem;
 			}
+		}
+		&.cs-btn-icon-right {
+			padding: 0 0.25rem 0 0.75rem;
 		}
 		.cs-btn-label, .cs-btn-icon {
 			height: calc(1.5rem - 0.125rem);
@@ -195,6 +192,9 @@
 		&.cs-btn-no-icon {
 			padding: 0 0.25rem;
 		}
+		&.cs-btn-icon-right {
+			padding: 0 0.0625rem 0 0.25rem;
+		}
 	}
 	&.cs-btn-size-large {
 		height: 3rem;
@@ -213,10 +213,14 @@
 			}
 		}
 		&.cs-btn-icon-right {
-			padding: 0 0.5rem 0 2rem;
-			.cs-btn-icon {
-				margin: 0 0 0 0.5rem;
-			}
+			padding: 0 0.5rem 0 1rem;
+		}
+	}
+	/* ICON POSITION */
+	&.cs-btn-icon-right {
+		padding: 0 0.25rem 0 0.75rem;
+		.cs-btn-icon {
+			order: 1;
 		}
 	}
 
