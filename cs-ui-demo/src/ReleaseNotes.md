@@ -37,6 +37,7 @@
   * CSButtonGroup
   * CSCard
   * CSChip
+  * CSCurrency
   * CSDatepicker
   * CSDivider
   * CSFieldErrorMessage
