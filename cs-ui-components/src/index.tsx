@@ -86,7 +86,7 @@ import CSImage, {
 	CSImageVariant,
 } from './components/CSImage';
 import CSInputFile from './components/CSInputFile';
-import CSInputNumber from './components/CSInputNumber';
+import CSInputNumber, { CSInputNumberNumberLocale, CSInputNumberLocaleStyle } from './components/CSInputNumber';
 import CSInputSearch from './components/CSInputSearch';
 import CSInputText from './components/CSInputText';
 import CSLabel from './components/CSLabel';
@@ -244,6 +244,8 @@ export {
 	CSImageVariant,
 	CSInputFile,
 	CSInputNumber,
+	CSInputNumberNumberLocale,
+	CSInputNumberLocaleStyle,
 	CSInputSearch,
 	CSInputText,
 	CSLabel,

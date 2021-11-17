@@ -6,6 +6,7 @@ import Preview from '../Preview';
 interface CSInputNumberPreviewState {
 	focused: boolean;
 	value: number;
+	localeValue: any;
 }
 
 class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState> {
@@ -13,7 +14,7 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 		focused: false,
 		value: 1,
 		icons: [
-			{ iconName: 'cart'},
+			{ iconName: 'cart' },
 			{
 				iconName: 'tag',
 				iconOrigin: 'cs' as CSIconOrigin,
@@ -49,7 +50,8 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 					stickyOnClick: true
 				}
 			}
-		]
+		],
+		localeValue: 1211.3
 	};
 
 	handleChange = () => alert('Value has changed.');
@@ -64,6 +66,7 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 			return { focused: !prevState.focused };
 		});
 	}
+	handleChangeForLocale = (value: any) => this.setState({ localeValue: value });
 
 	getDoc = () => ({
 		name: 'Input Number',
@@ -265,6 +268,33 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 								primaryVariants: 'labelTitle={true}',
 								component: <CSInputNumber label="Enter value" labelTitle />,
 								code: '<CSInputNumber label="Enter value" labelTitle />'
+							}
+						]
+					}, {
+						propName: 'locale',
+						alert: {
+							variant: 'info',
+							text: 'Locale prop will override type prop if it\'s defined.'
+						},
+						variations: [
+							{
+								component: <CSInputNumber
+									value={this.state.localeValue}
+									label="Enter value"
+									locale={{ numLocale: 'en-EN', options: { style: 'currency', currency: 'GBP' } }}
+									onChange={this.handleChangeForLocale} />,
+								code: `<CSInputNumber
+								label="Enter value"
+								value={this.state.value}
+								locale={{
+										numLocale: 'en-EN',
+										options: {
+											style: 'currency',
+											currency: 'GBP'
+										}
+									}}
+								onChange={(value: any) => this.setState({ value })}
+							/>`
 							}
 						]
 					}, {
@@ -535,7 +565,7 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 						types: 'boolean',
 						default: 'false',
 						description: 'Determine whether the spinner should appear.'
-					},  {
+					}, {
 						name: 'icons',
 						customTypes: {
 							name: 'CSInputNumberIconProps',
@@ -551,6 +581,20 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 						name: 'labelTitle',
 						types: 'boolean',
 						description: 'Control whether to set the title attribute.'
+					}, {
+						name: 'locale',
+						customTypes: {
+							name: 'CSInputNumberNumberLocale',
+							types: `
+							numLocale: string;
+							options?: {
+								currency?: string;
+								style?: CSInputNumberLocaleStyle;
+								maximumFractionDigits?: number;
+								minimumFractionDigits?: number;
+							}`
+						},
+						description: 'Set the input number locale. The prop accepts an object which consists numLocale (string) for the desired locale and options (currency, style, maximumFractionDigits, minimumFractionDigits) for customizing the formatted locale value.'
 					}, {
 						name: 'max',
 						types: 'any',

@@ -11,6 +11,8 @@
 * CSButton
   * removed icon darken while hovering on `btnStyle="brand"`
   * fixed iconPosition and size props alignment issue
+* CSInputNumber
+  * added `locale` prop
 * CSRadio
   * added `hidden` prop
 * CSSection

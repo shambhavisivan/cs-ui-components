@@ -8,6 +8,18 @@ import { CSCustomDataIconProps, CSCustomDataActionProps } from '../util/CustomDa
 import CSCustomDataIcons from './custom-data/CSCustomDataIcons';
 import CSCustomDataActions from './custom-data/CSCustomDataActions';
 
+export interface CSInputNumberNumberLocale {
+	numLocale: string;
+	options?: {
+		currency?: string;
+		style?: CSInputNumberLocaleStyle;
+		maximumFractionDigits?: number;
+		minimumFractionDigits?: number;
+	}
+}
+
+export type CSInputNumberLocaleStyle = 'decimal' | 'currency' | 'percent' | 'unit';
+
 export interface CSInputNumberProps {
 	[key: string]: any;
 	actions?: Array<CSCustomDataActionProps>;
@@ -25,6 +37,7 @@ export interface CSInputNumberProps {
 	label: string;
 	labelHidden?: boolean;
 	labelTitle?: boolean;
+	locale?: CSInputNumberNumberLocale;
 	max?: any;
 	maxLength?: number;
 	min?: any;
@@ -46,6 +59,8 @@ export interface CSInputNumberProps {
 
 export interface CSInputNumberState {
 	inputNumberOptionsWrapperWidth: number | null;
+	showLocaleFormat?: boolean;
+	formattedValue?: string;
 }
 
 class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberState> {
@@ -73,22 +88,48 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 	}
 
 	componentDidMount() {
+		const { locale, value } = this.props;
+
 		/* Get width of parent element and set state to width + 16 for extra spacing */
 		const inputNumberOptionsRect = this.inputNumberOptionsWrapperRef.current?.getBoundingClientRect();
 		this.setState({
 			inputNumberOptionsWrapperWidth: (inputNumberOptionsRect?.width ?? 0) + 16,
 		});
+
+		if (locale) {
+			this.setState({
+				showLocaleFormat: true,
+			});
+			this.formatNumber(value, locale);
+		}
+	}
+
+	componentDidUpdate(prevProps: CSInputNumberProps) {
+		const { locale, value } = this.props;
+		if (locale && prevProps.value !== value) {
+			this.formatNumber(value, locale);
+		}
 	}
 
 	onFocus: React.FocusEventHandler<HTMLInputElement> = (e) => {
-		const { onFocus } = this.props;
+		const { onFocus, locale } = this.props;
+
+		if (locale) {
+			this.setState({ showLocaleFormat: false });
+		}
+
 		if (onFocus) {
 			onFocus(e);
 		}
 	}
 
 	onBlur: React.FocusEventHandler<HTMLInputElement> = (e) => {
-		const { onBlur } = this.props;
+		const { onBlur, locale } = this.props;
+
+		if (locale) {
+			this.setState({ showLocaleFormat: true });
+		}
+
 		if (onBlur) {
 			onBlur(e);
 		}
@@ -118,6 +159,13 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 		}
 	}
 
+	formatNumber = (value: any, locale: CSInputNumberNumberLocale) => {
+		const { numLocale, options } = locale;
+
+		const formattedValue = new Intl.NumberFormat(numLocale, { ...options }).format(value);
+		this.setState({ formattedValue });
+	}
+
 	render() {
 		const {
 			actions,
@@ -135,6 +183,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 			label,
 			labelHidden,
 			labelTitle,
+			locale,
 			max,
 			maxLength,
 			min,
@@ -155,7 +204,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 			...rest
 		} = this.props;
 
-		const { inputNumberOptionsWrapperWidth } = this.state;
+		const { formattedValue, inputNumberOptionsWrapperWidth, showLocaleFormat } = this.state;
 
 		const inputNumberWrapperClasses = classNames(
 			'cs-input-number-wrapper',
@@ -175,6 +224,12 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 		const style: CSSProperties = {
 			'--cs-input-number-border-radius': borderRadius,
 			'--cs-input-number-options-spacing': `${inputNumberOptionsWrapperWidth}px`,
+		};
+
+		const setType = () => {
+			if (locale) {
+				return showLocaleFormat ? 'text' : 'number';
+			} return type;
 		};
 
 		return (
@@ -203,8 +258,8 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 							readOnly={readOnly}
 							required={required}
 							disabled={disabled}
-							value={value}
-							type={type}
+							value={showLocaleFormat ? formattedValue : value}
+							type={setType()}
 							role="spinbutton"
 							aria-label={label}
 							aria-required={required}
