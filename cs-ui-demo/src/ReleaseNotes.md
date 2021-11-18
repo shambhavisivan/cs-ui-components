@@ -37,6 +37,7 @@
   * CSDatepicker
   * CSDivider
   * CSFieldErrorMessage
+  * CSIcon
   * CSInputText
   * CSLabel
   * CSMainHeader
