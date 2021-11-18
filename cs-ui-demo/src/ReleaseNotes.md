@@ -39,6 +39,7 @@
   * CSFieldErrorMessage
   * CSInputText
   * CSLabel
+  * CSMainHeader
   * CSPath
   * CSProgressIndicator
   * CSSection
