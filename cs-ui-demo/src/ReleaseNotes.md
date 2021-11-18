@@ -35,6 +35,7 @@
   * <i>important</i> merged `sourceHelpText` and `targetHelpText` into `helpText` object prop which accepts `source` and `target` string properties - each for the corresponding transfer list
 * Tests added to components
   * CSButtonGroup
+  * CSCard
   * CSChip
   * CSDatepicker
   * CSDivider
