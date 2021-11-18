@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import { getCustomTypes, getTypes } from '../previews/helpers';
 import { CSDataTable, CSTooltip, CSDataTableRowWithMetaInterface } from '@cloudsense/cs-ui-components';
 
-import CSDContent from './CSDContent';
 import CSDHeading from './CSDHeading';
 import CSDSection from './CSDSection';
 

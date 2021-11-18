@@ -69,4 +69,13 @@
 			var(--csd-section-danger-dark-bg) 4rem
 		);
 	}
+
+	> .csd-code {
+		margin: 0 -1rem -1rem !important;
+
+		&:last-child {
+			border-bottom-left-radius: 0.5rem;
+			border-bottom-right-radius: 0.5rem;
+		}
+	}
 }

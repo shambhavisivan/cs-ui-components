@@ -1,0 +1,112 @@
+:root {
+	--section-bg: #{$cs-white};
+	--section-secondary-bg: #{$cs-gray-light-3};
+	--heading-c: #{$cs-black};
+}
+
+.csd-theme-dark {
+	--section-bg: #242424;
+	--heading-c: #{$cs-white};
+}
+
+.csd-playground {
+	width: calc(100% - 2rem);
+	display: flex;
+	position: absolute;
+	height: calc(100% - 5rem);
+
+	.csd-playground-examples-wrapper {
+		flex: 1;
+		margin-right: 1rem;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+
+		> .csd-section:first-child h2.csd-heading {
+			margin: 0 -1rem 1rem !important;
+			padding: 0 1rem 1rem;
+			border-bottom: 1px solid var(--csd-preview-br);
+		}
+
+		> .csd-section:last-child {
+			padding: 0;
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			overflow: hidden;
+
+			h2.csd-heading {
+				background-color: var(--csd-section-bg);
+				border-bottom: 1px solid var(--csd-preview-br);
+				padding: 1rem;
+			}
+
+			.csd-code {
+				margin: -1rem 0 0 !important;
+				border-top: none !important;
+				border-bottom: none !important;
+				overflow-y: auto;
+				flex: 1;
+				@include scrollbar-color;
+
+				&::-webkit-scrollbar-track {
+					border-bottom-right-radius: 0.5rem;
+				}
+			}
+		}
+	}
+
+	.csd-playground-props-wrapper {
+		display: flex;
+		flex-direction: column;
+		border-radius: 0.5rem;
+		width: 25%;
+		max-width: 25%;
+		align-self: stretch;
+		flex: 1;
+
+		.csd-section {
+			background-color: var(--section-secondary-bg);
+			overflow: hidden;
+			padding: 0;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+		}
+
+		h2.csd-heading {
+			background-color: var(--section-secondary-bg);
+			border-bottom: 1px solid var(--csd-preview-br);
+			padding: 1rem;
+			margin-bottom: 0 !important;
+		}
+
+		.csd-playground-props {
+			padding: 1rem 1rem 0;
+			overflow: auto;
+			flex: 1;
+			@include scrollbar-color;
+
+			&::-webkit-scrollbar-track {
+				border-bottom-right-radius: 0.5rem;
+			}
+
+			> * {
+				margin-bottom: 1rem;
+			}
+
+			.cs-radio-group {
+				flex-direction: row;
+				flex-wrap: wrap;
+
+				.cs-radio-label {
+					margin-right: 1rem;
+
+					&:last-child {
+						margin-right: 0;
+					}
+				}
+			}
+		}
+	}
+}

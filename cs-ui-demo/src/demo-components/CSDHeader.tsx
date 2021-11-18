@@ -2,7 +2,6 @@ import React from 'react';
 import { CSChip, CSIcon, CSTab, CSTabGroup } from '@cloudsense/cs-ui-components';
 import { Link } from 'react-router-dom';
 
-import * as CSDH from '../demo-helpers';
 import CSDHeading from './CSDHeading';
 
 export interface CSDHeaderProps {

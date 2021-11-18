@@ -10,6 +10,7 @@
 	color: var(--csd-heading-c);
 	font-weight: 700 !important;
 	line-height: 1;
+	align-items: center;
 
 	&:first-child {
 		margin-top: 0 !important;
@@ -44,5 +45,9 @@
 		.csd-page .csd-content & {
 			scroll-margin-top: 5.5rem;
 		}
+	}
+
+	.csd-heading-action {
+		margin-left: auto;
 	}
 }

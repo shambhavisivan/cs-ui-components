@@ -3,6 +3,7 @@ import { CSAlert, CSButton } from '@cloudsense/cs-ui-components';
 import * as CSD from '../../../../demo-components';
 import CSAlertProps from './cs-alert-props';
 import CSAlertAccessibility from './cs-alert-accessibility';
+import CSAlertPlayground from './CSAlertPlayground';
 
 const CSAlertPreview = () => (
 	<CSD.Page
@@ -11,6 +12,7 @@ const CSAlertPreview = () => (
 		accessibility={CSAlertAccessibility}
 		tables={CSAlertProps}
 		routePrefix="cs-ui"
+		playground={<CSAlertPlayground />}
 	>
 		<CSD.Section>
 			<CSD.Heading level={2}>Variants</CSD.Heading>

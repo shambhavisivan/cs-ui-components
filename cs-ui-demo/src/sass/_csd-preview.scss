@@ -96,15 +96,6 @@
 		}
 	}
 
-	.csd-preview-code {
-		--preview-code-margin: 0;
-		border-bottom: 1px solid var(--csd-preview-br) !important;
-
-		* {
-			font-family: 'Lucida Console', monospace !important;
-		}
-	}
-
 	&:not(:last-child) .csd-preview-toolbar-wrapper:last-child {
 		border-bottom: 1px solid var(--csd-preview-br);
 	}
@@ -112,7 +103,7 @@
 	&:last-child {
 		margin-bottom: 0;
 
-		.csd-preview-code:last-child {
+		.csd-code:last-child {
 			--preview-code-margin: 0 0 -1rem 0;
 			border-radius: 0 0 0.5rem 0.5rem;
 			border-bottom: none !important;

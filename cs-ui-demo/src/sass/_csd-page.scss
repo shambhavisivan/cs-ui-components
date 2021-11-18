@@ -3,5 +3,6 @@
 	flex-direction: column;
 	overflow-y: scroll;
 	width: 100%;
+	position: relative;
 	@include scrollbar-color;
 }

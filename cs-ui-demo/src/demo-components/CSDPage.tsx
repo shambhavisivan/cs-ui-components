@@ -41,7 +41,7 @@ const CSDPage = ({
 
 			setLinks(newLinks);
 		}
-	}, [pageRef.current]);
+	}, []);
 
 	const path = useLocation().pathname.split('/');
 	const lastPath = path[path.length - 1];
@@ -109,7 +109,7 @@ const CSDPage = ({
 
 		return (
 			<CSDContent hidden={activeTab !== 'playground'}>
-				Playground
+				{playground}
 			</CSDContent>
 		);
 	};

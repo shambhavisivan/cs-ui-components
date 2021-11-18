@@ -83,7 +83,7 @@ const CSDSidebar = ({
 				return () => pageElement.removeEventListener('scroll', handleScroll);
 			}
 		}
-	}, [sidebarRef]);
+	}, [spyOn, trackScroll]);
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchTerm(event.target.value);
