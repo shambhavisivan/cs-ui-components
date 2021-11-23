@@ -2,11 +2,12 @@ import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
-import CSLabel from './CSLabel';
 import { CSTooltipPosition } from './CSTooltip';
 import { CSCustomDataIconProps, CSCustomDataActionProps } from '../util/CustomData';
 import CSCustomDataIcons from './custom-data/CSCustomDataIcons';
 import CSCustomDataActions from './custom-data/CSCustomDataActions';
+import CSLabel from './CSLabel';
+import CSButton from './CSButton';
 
 export interface CSTextareaProps {
 	[key: string]: any;
@@ -37,6 +38,10 @@ export interface CSTextareaProps {
 
 export interface CSTextareaState {
 	textareaOptionsWrapperWidth: number | null;
+	expandButton: boolean;
+	expanded: boolean;
+	actualHeight: number;
+	minHeight: number;
 }
 
 class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
@@ -55,20 +60,51 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 
 		this.uniqueAutoId = props.id ? props.id : uuidv4();
 
-		this.state = {
-			textareaOptionsWrapperWidth: null,
-		};
-
 		this.textareaOptionsWrapperRef = React.createRef();
 		this.textareaInnerRef = React.createRef();
+
+		this.state = {
+			textareaOptionsWrapperWidth: null,
+			expandButton: false,
+			expanded: false,
+			actualHeight: 0,
+			minHeight: 0,
+		};
+
+		this.handleReadOnly = this.handleReadOnly.bind(this);
 	}
 
 	componentDidMount() {
 		/* Get width of parent element and set state to width + 12 for extra spacing */
+		const { readOnly } = this.props;
 		const textareaOptionsRect = this.textareaOptionsWrapperRef.current?.getBoundingClientRect();
 		this.setState({
 			textareaOptionsWrapperWidth: (textareaOptionsRect?.width ?? 0) + 12,
 		});
+
+		if (readOnly && this.textareaInnerRef.current !== null) {
+			const { scrollHeight } = this.textareaInnerRef.current;
+			this.setState({
+				expandButton: scrollHeight > 84,
+				minHeight: scrollHeight < 84 ? scrollHeight : 84,
+			});
+		}
+	}
+
+	handleReadOnly() {
+		const { minHeight, expanded } = this.state;
+		if (!expanded) {
+			const { scrollHeight } = this.textareaInnerRef.current;
+			this.setState({
+				expanded: true,
+				actualHeight: scrollHeight > 84 ? scrollHeight : minHeight,
+			});
+		} else {
+			this.setState({
+				expanded: false,
+				actualHeight: minHeight,
+			});
+		}
 	}
 
 	handleOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -106,7 +142,13 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 			...rest
 		} = this.props;
 
-		const { textareaOptionsWrapperWidth } = this.state;
+		const {
+			textareaOptionsWrapperWidth,
+			expandButton,
+			expanded,
+			actualHeight,
+			minHeight,
+		} = this.state;
 
 		const textareaClasses = classNames(
 			'cs-textarea',
@@ -117,6 +159,8 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 		);
 		const style: CSSProperties = {
 			'--max-height': maxHeight,
+			'--read-only-min-height': `${minHeight}px`,
+			'--read-only-height': `${actualHeight}px`,
 			'--cs-textarea-border-radius': borderRadius,
 			'--cs-textarea-options-spacing': `${textareaOptionsWrapperWidth}px`,
 		};
@@ -144,6 +188,16 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 							/>
 						)}
 					<div className="cs-textarea-wrapper-inner">
+						{expandButton && (
+							<CSButton
+								label={expanded ? 'Show less...' : 'Show more...'}
+								className={expanded ? 'cs-textarea-expand-button cs-textarea-expanded' : 'cs-textarea-expand-button'}
+								btnStyle="brand"
+								btnType="transparent"
+								size="xsmall"
+								onClick={this.handleReadOnly}
+							/>
+						)}
 						<textarea
 							className={textareaClasses}
 							id={this.uniqueAutoId}
@@ -151,11 +205,12 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 							disabled={disabled}
 							readOnly={readOnly}
 							required={required}
-							rows={readOnly ? 1 : rows}
+							rows={readOnly ? undefined : rows}
 							aria-label={label}
 							aria-required={required}
 							aria-invalid={error}
 							value={value}
+							style={style}
 							onChange={this.handleOnChange}
 							title={title}
 							ref={this.textareaInnerRef}

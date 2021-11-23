@@ -11,6 +11,28 @@
 
 	.cs-textarea-wrapper-inner {
 		position: relative;
+
+		.cs-btn.cs-textarea-expand-button {
+			position: absolute;
+			right: 0.25rem;
+			bottom: 0.375rem;
+			display: inline-flex;
+			@include css4 {
+				box-shadow: -5px 0px 10px 0px cvar(--cs-button-white-br);
+			}
+
+			&::before {
+				@include sbg(--cs-input-bg);
+			}
+
+			&.cs-textarea-expanded {
+				display: none;
+			}
+		}
+
+		&:hover .cs-btn.cs-textarea-expand-button.cs-textarea-expanded {
+			display: inline-flex;
+		}
 	}
 
 	&.cs-textarea-wrapper-options .cs-tw-error {
@@ -31,7 +53,10 @@
 
 		&:read-only {
 			padding: 0;
-			height: auto;
+			resize: none;
+			overflow: hidden;
+			height: var(--read-only-height);
+			min-height: var(--read-only-min-height, 2.25rem);
 		}
 
 		&.cs-textarea-error-tooltip {

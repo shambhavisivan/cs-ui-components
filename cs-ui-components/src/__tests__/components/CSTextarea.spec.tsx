@@ -164,10 +164,10 @@ describe('<CSTextarea />', () => {
 		expect(uut.find('.cs-textarea').props().rows).toBe(rowsValue);
 	});
 
-	it('should set row number to 1 if its readonly', () => {
+	it('should set row number to undefined if its readonly', () => {
 		const uut = shallow(<CSTextarea label={labelValue} rows={10} readOnly />);
-		// Make sure rows attribute value is 1 regardless of different rows prop value
-		expect(uut.find('.cs-textarea').props().rows).toBe(1);
+		// Make sure rows attribute value is undefined regardless of different rows prop value
+		expect(uut.find('.cs-textarea').props().rows).toBe(undefined);
 	});
 
 	it('should set title attribute', () => {

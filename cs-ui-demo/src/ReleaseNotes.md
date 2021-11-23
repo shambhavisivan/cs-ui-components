@@ -30,6 +30,8 @@
   * added `hidden` prop
 * CSSection
   * replaced collapsible button with `CSButton`
+* CSTextarea
+  * added expand button when `readonly={true}` and content is larger than field
 * CSTransfer
   * <i>important</i> restructured component to be function-based and stateless
   * <i>important</i> renamed `dataSource` to `items`
