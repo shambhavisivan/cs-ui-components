@@ -11,21 +11,18 @@
 * CSButton
   * removed icon darken while hovering on `btnStyle="brand"`
   * fixed iconPosition and size props alignment issue
-* CSInputFile
-  * added `fileSelectedLabel` prop
-  * set `label` prop to be optional
-* CSInputNumber
-  * added `locale` prop
-* CSRadio
-  * added `hidden` prop
-* CSSection
-  * replaced collapsible button with `CSButton`
 * CSCheckbox
   * Limited stopPropagation to only enter and space keys
 * CSCustomSelect
   * <i>important</i> renamed the `actions` prop to `dropdownActions`
 * CSDropdown
+  * added `routerLink` prop
   * fixed keyboard navigation when mode is 'button' and minor style fixes
+* CSInputFile
+  * added `fileSelectedLabel` prop
+  * set `label` prop to be optional
+* CSInputNumber
+  * added `locale` prop
 * CSRadio
   * added `hidden` prop
 * CSSection

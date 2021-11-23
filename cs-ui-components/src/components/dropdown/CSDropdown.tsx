@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 import CSButton from '../CSButton';
@@ -39,6 +40,7 @@ export interface CSDropdownProps {
 	onDropdownTabClose?: () => void;
 	padding?: string;
 	position?: CSDropdownPosition;
+	routerLink?: JSX.Element;
 	size?: CSDropdownSize;
 	title?: string;
 	width?: string;
@@ -151,6 +153,8 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 		const { mode } = this.props;
 		const { isOpen } = this.state;
 
+		event?.stopPropagation();
+
 		// prevent closing the dropdown if click is invoked on mode that isn't button
 		if (
 			event && event.type === 'click'
@@ -198,6 +202,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 			onDropdownTabClose,
 			padding,
 			position,
+			routerLink,
 			size,
 			title,
 			width,
@@ -254,6 +259,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 					ariaHaspopup={!!Object(children).length}
 					ref={this.btnDropdownRef}
 					title={title}
+					routerLink={routerLink}
 				>
 					{isOpen && (
 						<CSAutoposition

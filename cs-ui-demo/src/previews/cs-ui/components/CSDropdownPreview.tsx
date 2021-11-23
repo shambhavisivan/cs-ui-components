@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import {
 	CSDropdown,
 	CSButton,
@@ -498,6 +499,22 @@ class CSDropdownPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'routerLink',
+						description: 'Can render React Router\'s `<NavLink />` or `<Link />` component. Should be used with the hover prop set to true',
+						variations: [
+							{
+								secondaryVariants: 'hover="true"',
+								component: <CSDropdown hover routerLink={<NavLink to="/utilities/cloud-sense-icons" />}>
+									<CSButton label="Button 1" />
+									<CSButton label="Button 2" />
+								</CSDropdown>,
+								code: `<CSDropdown hover routerLink={<NavLink to="/utilities/cloud-sense-icons" />}>
+									<CSButton label="Button 1" />
+									<CSButton label="Button 2" />
+								</CSDropdown>`
+							}
+						]
+					}, {
 						propName: 'size',
 						variations: [
 							{
@@ -621,7 +638,7 @@ class CSDropdownPreview extends React.Component {
 						description: 'This component is designed to support `<CSButton />` as children while `mode="button"`. In `mode="list"`, it is designed to support `<CSList />` as a child and, in `mode="custom"`, it is designed to support any content as children.',
 						variations: [
 							{
-								component: <CSDropdown padding="0">
+								component: <CSDropdown padding="0" mode="list">
 									<CSList variant="check-list" className="dropdown-list">
 										<CSListGroup text="List Group">
 											<CSListItem text="First list item" />
@@ -781,6 +798,10 @@ class CSDropdownPreview extends React.Component {
 						},
 						default: `'bottom'`,
 						description: 'Determine the vertical position of the dropdown content.'
+					}, {
+						name: 'routerLink',
+						types: 'Element',
+						description: 'Define a React Router NavLink or Link component to be rendered instead of the dropdown button.'
 					}, {
 						name: 'size',
 						customTypes: {

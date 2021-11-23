@@ -28,7 +28,7 @@ export interface CSDropdownItemWrapperProps {
 	position: CSDropdownPosition;
 	setMounted: () => void;
 	style?: CSSProperties;
-	toggleDropdown?: (focusBtnAfterClose?: boolean) => void;
+	toggleDropdown?: (e?: React.MouseEvent<any>) => void;
 	mounted: boolean;
 	visible: boolean;
 	width?: string;
@@ -102,6 +102,11 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 		}
 	}
 
+	handleBtnClick = (event: React.MouseEvent<any>) => {
+		const { toggleDropdown } = this.props;
+		toggleDropdown(event);
+	}
+
 	render() {
 		const {
 			align,
@@ -156,19 +161,33 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 				);
 			}
 
-			const cloneElement = () => React.cloneElement(child, { role: 'menuitem' });
-
-			if (mode !== 'custom') {
+			if (mode === 'button') {
 				return (
 					<li role="none">
-						{cloneElement()}
+						{React.cloneElement(child, {
+							role: 'menuitem',
+							onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
+								child.props.onClick?.(e);
+								this.handleBtnClick(e);
+							},
+						})}
+					</li>
+
+				);
+			}
+
+			if (mode === 'list') {
+				return (
+					<li role="none">
+						{React.cloneElement(child, { role: 'menuitem' })}
 					</li>
 				);
 			}
 
+			// mode === custom
 			return (
 				<div role="none">
-					{cloneElement()}
+					{child}
 				</div>
 			);
 		});

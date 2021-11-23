@@ -704,12 +704,12 @@ class CSButtonPreview extends React.Component {
 							{
 								component: <CSButton
 									label="routerLink button"
-									routerLink={<NavLink to="/icons/LightningIcons" />}
+									routerLink={<NavLink to="/utilities/LightningIcons" />}
 									iconName="link"
 								/>,
 								code: `<CSButton
 									label="routerLink button"
-									routerLink={<NavLink to="/icons/LightningIcons" />}
+									routerLink={<NavLink to="/utilities/LightningIcons" />}
 									iconName="link"
 								/>`
 							}
