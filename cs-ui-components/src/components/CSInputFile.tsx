@@ -218,6 +218,9 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 						)}
 					</label>
 				</div>
+				{!errorTooltip
+					&& error
+					&& <CSFieldErrorMsg message={errorMessage} />}
 			</>
 		);
 	}

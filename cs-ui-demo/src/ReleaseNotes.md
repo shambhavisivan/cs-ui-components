@@ -46,6 +46,7 @@
   * CSDivider
   * CSFieldErrorMessage
   * CSIcon
+  * CSInputFile
   * CSInputText
   * CSLabel
   * CSMainHeader
