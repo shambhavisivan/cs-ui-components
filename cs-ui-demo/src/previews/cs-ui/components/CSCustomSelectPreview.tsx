@@ -172,6 +172,26 @@ class CSCustomSelectPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'errorTooltip',
+						variations: [
+							{
+								component: <CSCustomSelect
+									options={options}
+									label="Select department"
+									error
+									errorMessage="Error message."
+									errorTooltip
+								/>,
+								code: `<CSCustomSelect
+									options={options}
+									label="Select department"
+									error
+									errorMessage="Error message."
+									errorTooltip
+								/>`
+							}
+						]
+					}, {
 						propName: 'gridCustomPopup',
 						variations: [
 							{
@@ -605,6 +625,11 @@ class CSCustomSelectPreview extends React.Component {
 							types: ['string', 'Array<string>']
 						},
 						description: 'Set the error message or messages for the custom select.'
+					}, {
+						name: 'errorTooltip',
+						types: 'boolean',
+						default: 'false',
+						description: 'Show an error tooltip for the custom select.'
 					}, {
 						name: 'gridCustomPopup',
 						types: 'boolean',

@@ -31,6 +31,7 @@ export interface CSCustomSelectProps {
 	dropdownActions?: Array<CSButtonProps>;
 	error?: boolean;
 	errorMessage?: CSFieldErrorMsgType;
+	errorTooltip?: boolean;
 	gridCustomPopup?: boolean;
 	helpText?: string;
 	hidden?: boolean;
@@ -63,6 +64,7 @@ const CSCustomSelect = ({
 	dropdownActions,
 	error,
 	errorMessage,
+	errorTooltip = false,
 	forwardRef,
 	gridCustomPopup,
 	helpText,
@@ -133,6 +135,7 @@ const CSCustomSelect = ({
 		'cs-custom-select-input',
 		{
 			'cs-custom-select-input-multiselect': multiselect && !showCompactMultiselect,
+			'cs-custom-select-input-error-tooltip': errorTooltip,
 		},
 	);
 
@@ -334,15 +337,14 @@ const CSCustomSelect = ({
 	const renderDropdownChevron = () => (
 		<CSIcon
 			name="down"
-			rotate={dropdownVisible ? 180 : null}
+			rotate={dropdownVisible ? 180 : 360}
 			className="cs-custom-select-icon"
 		/>
 	);
 
 	const renderErrorMessage = () => {
-		if (!error || !errorMessage) return null;
-
-		return <CSFieldErrorMsg message={errorMessage} />;
+		if (error && errorMessage) return <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />;
+		return null;
 	};
 
 	const renderOptions = () => {

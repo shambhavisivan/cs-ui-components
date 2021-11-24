@@ -15,6 +15,7 @@
   * Limited stopPropagation to only enter and space keys
 * CSCustomSelect
   * <i>important</i> renamed the `actions` prop to `dropdownActions`
+  * added `errorTooltip` support
 * CSDropdown
   * added `routerLink` prop
   * fixed keyboard navigation when mode is 'button' and minor style fixes

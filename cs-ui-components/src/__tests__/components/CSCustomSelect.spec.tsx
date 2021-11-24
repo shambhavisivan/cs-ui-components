@@ -13,6 +13,7 @@ const options = [
 ];
 
 const customSelectTextLabel = 'Enter value';
+const errorText = 'Error message';
 
 describe('<CSCustomSelect />', () => {
 	it('should pass correct label value to CSLabel', () => {
@@ -126,9 +127,22 @@ describe('<CSCustomSelect />', () => {
 	});
 
 	it('should render an error message from string', () => {
-		const errorText = 'error message';
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} error errorMessage={errorText} />).dive();
 		expect(uut.find('CSFieldErrorMsg').prop('message')).toBe(errorText);
+	});
+
+	it('should pass correct error message value to CSTooltip', () => {
+		const uut = shallow(
+			<CSCustomSelect
+				label={customSelectTextLabel}
+				options={options}
+				error
+				errorMessage={errorText}
+				errorTooltip
+			/>,
+		).dive();
+		expect(uut.find('CSFieldErrorMsg').prop('message')).toBe(errorText);
+		expect(uut.find('CSFieldErrorMsg').dive().find('CSTooltip').prop('content')).toBe(errorText);
 	});
 
 	it('should render gridCustomPopup class', () => {

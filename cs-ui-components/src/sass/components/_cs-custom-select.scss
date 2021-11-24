@@ -1,6 +1,16 @@
 .cs-custom-select-wrapper {
 	position: relative;
 
+	.cs-tw-error {
+		position: absolute;
+		right: 1.8125rem;
+		top: 0.5625rem;
+	}
+
+	> .cs-label-wrapper ~ .cs-tw-error {
+		top: 1.75rem;
+	}
+
 	.cs-custom-select-input-wrapper {
 		display: flex;
 		font-size: 0.75rem;
@@ -87,6 +97,14 @@
 			background: inherit;
 			font-size: 0.8125rem;
 		}
+
+		&.cs-custom-select-input-error-tooltip {
+			padding-inline-end: 4rem;
+
+			~ .cs-custom-select-clear {
+				right: 2.8125rem;
+			}
+		}
 	}
 
 	.cs-custom-select-value {
@@ -102,7 +120,7 @@
 		position: absolute;
 		right: 0.5rem;
 		top: 50%;
-		transform: translateY(-50%);
+		transform: translateY(-50%) rotate(cvar(--cs-icon-rotate));
 		pointer-events: none;
 		transition: transform 200ms ease-in-out;
 	}
