@@ -40,12 +40,12 @@ export interface CSCustomSelectProps {
 	labelHidden?: boolean;
 	labelTitle?: boolean;
 	multiselect?: boolean;
+	onClear?: () => void;
+	onDeselect?: (option: CSCustomSelectOptionInterface) => void;
 	onSearch?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	onSelect?: (option: CSCustomSelectOptionInterface) => void;
-	onDeselect?: (option: CSCustomSelectOptionInterface) => void;
-	onClear?: () => void;
-	position?: CSCustomSelectDropdownPositionType;
 	placeholder?: string;
+	position?: CSCustomSelectDropdownPositionType;
 	required?: boolean;
 	searchBy?: CSCustomSelectSearchByType;
 	selectedKeys?: React.ReactText | Array<React.ReactText>;
