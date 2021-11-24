@@ -120,7 +120,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 			onClearSearch();
 		}
 
-		this.inputSearchInnerRef.current.focus();
+		this.inputSearchInnerRef.current?.focus();
 	}
 
 	onFocus: React.FocusEventHandler<HTMLInputElement> = (e) => {
