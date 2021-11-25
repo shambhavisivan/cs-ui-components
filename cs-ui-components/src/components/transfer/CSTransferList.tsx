@@ -20,15 +20,15 @@ export type CSTransferListType = 'source' | 'target';
 
 export interface CSTransferListProps {
 	helpText?: string;
-	label?: string;
-	listItems?: Array<CSTransferItemInterface>;
+	label: string;
+	listItems: Array<CSTransferItemInterface>;
 	listRef?: ForwardedRef<HTMLUListElement>;
-	listType?: CSTransferListType;
+	listType: CSTransferListType;
 	searchable?: boolean;
 	selectAll?: boolean;
-	selectList: Array<React.ReactText>;
-	transferButtonsRef: RefObject<any>;
-	variant?: CSTransferVariant;
+	selectList?: Array<React.ReactText>;
+	transferButtonsRef?: RefObject<any>;
+	variant: CSTransferVariant;
 }
 
 const CSTransferList = ({
@@ -122,14 +122,13 @@ const CSTransferList = ({
 					&& (
 						<div className="cs-transfer-list-header">
 							{(selectAll && variant === 'check-list')
-
 								&& (
 									<CSCheckbox
 										label="select all"
 										labelHidden
 										variant="brand"
 										onChange={() => selectAllItems(listItems, selectList, listType)}
-										checked={listItems.length === selectList.length && !!selectList.length}
+										checked={listItems.length === selectList?.length && !!selectList?.length}
 										disabled={!listItems.length}
 										onKeyDown={handleTransferButtonsNavigation}
 									/>
@@ -161,7 +160,7 @@ const CSTransferList = ({
 								// disabled={items.disabled}
 								onSelect={(e: any) => onSelectChange(e, items.key, selectList, listType)}
 								itemVariant={variant}
-								selected={selectList.includes(items.key)}
+								selected={selectList?.includes(items.key)}
 								listType={listType}
 							/>
 						))

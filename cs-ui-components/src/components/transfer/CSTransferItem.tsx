@@ -44,7 +44,7 @@ const CSTransferItem = ({
 	const isOneWay = listType === 'target' && oneWay;
 
 	// Transfer list title
-	const transferListTitle = <span className="cs-transfer-li-title">{label}</span>;
+	const transferListLabel = <span className="cs-transfer-li-title">{label}</span>;
 
 	// Renders if list variant is set to simple-list
 	const simpleList = itemVariant === 'simple-list' && !isOneWay
@@ -57,7 +57,7 @@ const CSTransferItem = ({
 				role="option"
 				aria-selected={selected}
 			>
-				{transferListTitle}
+				{transferListLabel}
 			</button>
 		)
 		: null;
@@ -74,7 +74,7 @@ const CSTransferItem = ({
 					disabled={disabled}
 					checked={selected}
 				/>
-				{transferListTitle}
+				{transferListLabel}
 			</label>
 		)
 		: null;
@@ -83,7 +83,7 @@ const CSTransferItem = ({
 	const oneWayList = itemVariant === 'simple-list' && isOneWay && listType === 'target'
 		? (
 			<>
-				{transferListTitle}
+				{transferListLabel}
 				<CSButton
 					btnStyle="brand"
 					btnType="transparent"

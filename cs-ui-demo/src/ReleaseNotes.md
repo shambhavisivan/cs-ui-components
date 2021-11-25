@@ -63,6 +63,7 @@
   * CSTextarea
   * CSToast
   * CSToggle
+  * CSTransfer
 
 ## 2.0.0
 * General
