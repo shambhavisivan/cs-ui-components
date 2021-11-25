@@ -68,7 +68,11 @@ const CSDHeader = ({
 		if (accessible === 'yes') {
 			return (
 				<div className="csd-header-accessible">
-					<CSIcon name="smiley_and_people" size="22px" color="#4bca81" />
+					<CSIcon
+						name="smiley_and_people"
+						size="22px"
+						color="#4bca81"
+					/>
 					<CSChip text="ACCESSIBLE" color="#4bca81" />
 				</div>
 			);
@@ -77,18 +81,28 @@ const CSDHeader = ({
 		if (accessible === 'partly') {
 			return (
 				<div className="csd-header-accessible">
-					<CSIcon name="sentiment_neutral" size="22px" color="#ffa429" />
+					<CSIcon
+						name="sentiment_neutral"
+						size="22px"
+						color="#ffa429"
+					/>
 					<CSChip text="PARTLY&nbsp;ACCESSIBLE" color="#ffa429" />
 				</div>
 			);
 		}
 
-		return (
-			<div className="csd-header-accessible">
-				<CSIcon name="sentiment_negative" size="22px" color="#f91e0b" />
-				<CSChip text="NOT&nbsp;ACCESSIBLE" color="#f91e0b" />
-			</div>
-		);
+		if (accessible === 'no') {
+			return (
+				<div className="csd-header-accessible">
+					<CSIcon
+						name="sentiment_negative"
+						size="22px"
+						color="#c23934"
+					/>
+					<CSChip text="NOT&nbsp;ACCESSIBLE" color="#c23934" />
+				</div>
+			);
+		}
 	};
 
 	return (

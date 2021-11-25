@@ -6,7 +6,9 @@
 
 .csd-theme-dark {
 	--section-bg: #242424;
+	--section-secondary-bg: rgba(255, 255, 255, 0.2);
 	--heading-c: #{$cs-white};
+	--props-labels-c: #{$cs-white};
 }
 
 .csd-playground {
@@ -75,7 +77,6 @@
 		}
 
 		h2.csd-heading {
-			background-color: var(--section-secondary-bg);
 			border-bottom: 1px solid var(--csd-preview-br);
 			padding: 1rem;
 			margin-bottom: 0 !important;
@@ -86,6 +87,19 @@
 			overflow: auto;
 			flex: 1;
 			@include scrollbar-color;
+
+			.cs-label,
+			.cs-radio-label > span:last-child {
+				color: var(--props-labels-c);
+			}
+
+			.cs-custom-select-value {
+				color: #000;
+			}
+
+			.cs-custom-select-icon {
+				fill: #706e6b;
+			}
 
 			&::-webkit-scrollbar-track {
 				border-bottom-right-radius: 0.5rem;

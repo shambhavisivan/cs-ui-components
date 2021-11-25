@@ -1,11 +1,13 @@
 .csd-theme-light {
 	--csd-section-bg: #{$cs-white};
 	--csd-heading-c: #{$cs-black};
+	--csd-chip-c: #{$cs-white};
 }
 
 .csd-theme-dark {
 	--csd-section-bg: #242424;
 	--csd-heading-c: #{$cs-white};
+	--csd-chip-c: #{$cs-black};
 }
 
 .csd-header-wrapper {
@@ -49,7 +51,6 @@
 		}
 	}
 
-
 	.csd-header-fade {
 		z-index: -1;
 		content: "";
@@ -68,6 +69,10 @@
 
 		.cs-icon {
 			margin-inline-end: 0.5rem;
+		}
+
+		.cs-chip {
+			color: var(--csd-chip-c);
 		}
 
 		@media screen and (max-width: 1200px) {
