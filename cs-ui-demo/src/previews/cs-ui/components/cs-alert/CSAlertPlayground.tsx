@@ -86,17 +86,23 @@ const CSAlertPlayground = () => {
 				/>
 			</CSRadio>
 			<CSToggle label="closeButton" onClick={() => toggleProp('closeButton')} />
-			<CSToggle label="iconHidden" onClick={() => toggleProp('iconHidden')} />
+			<CSToggle label="iconHidden" onClick={() => {
+				toggleProp('iconHidden');
+				setProp('iconName', undefined);
+				setProp('iconOrigin', 'slds');
+			}} />
 			<CSCustomSelect
 				label="iconName"
+				disabled={alertProps.iconHidden}
 				onSelect={(value: CSCustomSelectOptionInterface) => setProp('iconName', value.key)}
 				selectedKeys={alertProps.iconName}
+				onClear={() => setProp('iconName', undefined)}
 				options={availableIcons.map((icon: any) => ({
 					key: icon.name,
 					label: icon.name
 				}))}
 			/>
-			<CSRadio label="iconOrigin">
+			<CSRadio label="iconOrigin" disabled={alertProps.iconHidden}>
 				<CSRadioOption
 					label="slds"
 					name="iconOrigin"
