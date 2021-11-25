@@ -40,60 +40,63 @@
 					}
 				}
 
-				&.main-header-link-dropdown {
-					padding: 0;
-
-					.cs-dropdown-wrapper {
-						height: 100%;
-
-						.cs-btn {
-							height: 100%;
-							padding: 0.75rem 1rem 0.75rem 1.25rem;
-
-							.cs-icon {
-								width: 1.5rem;
-								height: 1.5rem;
-								margin-left: 0.5rem;
-								@include sf(--csd-header-dropdown-icon-c);
-							}
-
-							.cs-btn-label {
-								font-size: 1.25rem;
-								@include sc(--csd-header-tab-c);
-							}
-
-							&::before, &::after {
-								display: none;
-							}
-
-							&:hover .cs-btn-label {
-								filter: brightness(1);
-							}
-						}
-					}
-				}
-
-				.cs-chip {
-					font-size: 0.6875rem;
-					letter-spacing: 1px;
-					text-transform: none;
-					margin-left: 1rem;
-
-					&.black-text {
-						@include sc(--csd-chip-demo-c);
-					}
-				}
-
-				&:hover {
-					@include sbg(--csd-header-tab-hover-bg);
-				}
-
 				&.active-main-header-tab {
 					@include sc(--csd-header-tab-active-alt-c);
 					@include css4 {
 						border-bottom: 5px solid cvar(--csd-header-tab-active-c);
 					}
 				}
+			}
+
+			.cs-dropdown-wrapper {
+				height: 100%;
+
+				.cs-btn {
+					height: 100%;
+					padding: 0.75rem 1rem 0.75rem 1.25rem;
+
+					&.active-main-header-tab {
+						@include sc(--csd-header-tab-active-alt-c);
+						@include css4 {
+							border-bottom: 5px solid cvar(--csd-header-tab-active-c);
+						}
+					}
+
+					.cs-icon {
+						width: 1.5rem;
+						height: 1.5rem;
+						margin-left: 0.5rem;
+						@include sf(--csd-header-dropdown-icon-c);
+					}
+
+					.cs-btn-label {
+						font-size: 1.25rem;
+						@include sc(--csd-header-tab-c);
+					}
+
+					&::before, &::after {
+						display: none;
+					}
+
+					&:hover .cs-btn-label {
+						filter: brightness(1);
+					}
+				}
+			}
+
+			.cs-chip {
+				font-size: 0.6875rem;
+				letter-spacing: 1px;
+				text-transform: none;
+				margin-left: 1rem;
+
+				&.black-text {
+					@include sc(--csd-chip-demo-c);
+				}
+			}
+
+			&:hover {
+				@include sbg(--csd-header-tab-hover-bg);
 			}
 		}
 	}
@@ -150,11 +153,13 @@
 	.app-main-header {
 		height: 3rem;
 
-		ul .main-header-tab a {
-			padding: 0.5rem 0.75rem;
-			font-size: 1rem;
+		ul .main-header-tab {
+			a {
+				padding: 0.5rem 0.75rem;
+				font-size: 1rem;
+			}
 
-			&.main-header-link-dropdown .cs-dropdown-wrapper .cs-btn {
+			.cs-dropdown-wrapper .cs-btn {
 				padding: 0.5rem 0.25rem 0.5rem 0.75rem;
 
 				.cs-icon {

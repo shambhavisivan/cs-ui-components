@@ -62,35 +62,30 @@ const MainHeader: React.FC = () => {
 					</NavLink>
 				</li>
 				<li className="main-header-tab">
-					<NavLink
-						to="/utilities"
-						className="main-header-link-dropdown"
-						activeClassName="active-main-header-tab"
+					<CSDropdown
+						label="Utilities"
+						hover
+						iconPosition="right"
+						routerLink={<NavLink to="/utilities" activeClassName="active-main-header-tab" />}
+						dropdownClassName="cs-demo-header-dropdown-wrapper"
 					>
-						<CSDropdown
-							label="Utilities"
-							hover
-							iconPosition="right"
-							dropdownClassName="cs-demo-header-dropdown-wrapper"
-						>
-							<CSButton
-								label="Lightning Icons"
-								className="main-header-dropdown-btn"
-								routerLink={<NavLink to="/utilities/lightning-icons" />}
-							/>
-							<CSButton
-								label="CloudSense Icons"
-								className="main-header-dropdown-btn"
-								routerLink={<NavLink to="/utilities/cloud-sense-icons" />}
-							/>
-							<CSDivider variant="horizontal" />
-							<CSButton
-								label="Colors"
-								className="main-header-dropdown-btn"
-								routerLink={<NavLink to="/utilities/colors" />}
-							/>
-						</CSDropdown>
-					</NavLink>
+						<CSButton
+							label="Lightning Icons"
+							className="main-header-dropdown-btn"
+							routerLink={<NavLink to="/utilities/lightning-icons" />}
+						/>
+						<CSButton
+							label="CloudSense Icons"
+							className="main-header-dropdown-btn"
+							routerLink={<NavLink to="/utilities/cloud-sense-icons" />}
+						/>
+						<CSDivider variant="horizontal" />
+						<CSButton
+							label="Colors"
+							className="main-header-dropdown-btn"
+							routerLink={<NavLink to="/utilities/colors" />}
+						/>
+					</CSDropdown>
 				</li>
 				<li className="main-header-tab">
 					<NavLink to="/accessibility" activeClassName="active-main-header-tab">
@@ -98,41 +93,35 @@ const MainHeader: React.FC = () => {
 					</NavLink>
 				</li>
 				<li className="main-header-tab">
-					<NavLink
-						to="/release-notes"
-						className="main-header-link-dropdown"
-						activeClassName="active-main-header-tab"
+					<CSDropdown
+						label="Release Notes"
+						hover
+						iconPosition="right"
+						routerLink={<NavLink to="/release-notes" activeClassName="active-main-header-tab" />}
+						dropdownClassName="cs-demo-header-dropdown-wrapper"
 					>
-						<CSDropdown
-							label="Release Notes"
-							hover
-							iconPosition="right"
-							className="main-header-dropdown"
-							dropdownClassName="cs-demo-header-dropdown-wrapper"
-						>
-							<CSButton
-								label="CS UI Components"
-								className="main-header-dropdown-btn"
-								routerLink={<NavLink to="/release-notes/cs-ui-components" />}
-							/>
-							{/* <CSButton
-								label="CS Grid"
-								className="main-header-dropdown-btn"
-								routerLink={<NavLink to="/release-notes/cs-grid" />}
-							/>
-							<CSButton
-								label="CS Form"
-								className="main-header-dropdown-btn"
-								routerLink={<NavLink to="/release-notes/cs-form" />}
-							/> */}
-							<CSDivider variant="horizontal" />
-							<CSButton
-								label="Future Scope"
-								className="main-header-dropdown-btn"
-								routerLink={<NavLink to="/release-notes/future-scope" />}
-							/>
-						</CSDropdown>
-					</NavLink>
+						<CSButton
+							label="CS UI Components"
+							className="main-header-dropdown-btn"
+							routerLink={<NavLink to="/release-notes/cs-ui-components" />}
+						/>
+						{/* <CSButton
+							label="CS Grid"
+							className="main-header-dropdown-btn"
+							routerLink={<NavLink to="/release-notes/cs-grid" />}
+						/>
+						<CSButton
+							label="CS Form"
+							className="main-header-dropdown-btn"
+							routerLink={<NavLink to="/release-notes/cs-form" />}
+						/> */}
+						<CSDivider variant="horizontal" />
+						<CSButton
+							label="Future Scope"
+							className="main-header-dropdown-btn"
+							routerLink={<NavLink to="/release-notes/future-scope" />}
+						/>
+					</CSDropdown>
 				</li>
 			</ul>
 			<div className="app-main-header-right">
