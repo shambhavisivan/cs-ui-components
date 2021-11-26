@@ -39,36 +39,37 @@
 		&:focus-within .cs-blinking-cursor {
 			display: none;
 		}
+
+		&.cs-custom-select-input-wrapper-error {
+			@include css4 {
+				border: 1px solid cvar(--cs-input-error-br);
+			}
+
+			&:focus-within,
+			&.cs-custom-select-dropdown-visible {
+				@include css4 {
+					border-color: cvar(--cs-input-error-c);
+					box-shadow: 0 0 3px cvar(--cs-input-error-shadow);
+				}
+			}
+		}
+
+		&.cs-custom-select-input-wrapper-multiselect {
+			padding-left: 0;
+		}
+
+		&.cs-custom-select-input-wrapper-disabled {
+			cursor: default;
+			user-select: none;
+			@include sbg(--cs-input-disabled-bg);
+			@include css4 {
+				border-color: cvar(--cs-input-disabled-br);
+			}
+		}
 	}
 
 	.cs-custom-select-value-wrapper {
 		@include overflow-ellipsis;
-	}
-
-	.cs-custom-select-input-wrapper-multiselect {
-		padding-left: 0;
-	}
-
-	.cs-custom-select-input-wrapper-disabled {
-		cursor: default;
-		user-select: none;
-		@include sbg(--cs-input-disabled-bg);
-		@include css4 {
-			border-color: cvar(--cs-input-disabled-br);
-		}
-	}
-
-	.cs-custom-select-input-wrapper-error {
-		@include css4 {
-			border: 1px solid cvar(--cs-input-error-br);
-		}
-
-		&:focus-within {
-			@include css4 {
-				border-color: cvar(--cs-input-error-c);
-				box-shadow: 0 0 3px cvar(--cs-input-error-shadow);
-			}
-		}
 	}
 
 	.cs-custom-select-input {
