@@ -50,6 +50,7 @@
   * CSFieldErrorMessage
   * CSIcon
   * CSInputFile
+  * CSInputNumber
   * CSInputSearch
   * CSInputText
   * CSLabel
