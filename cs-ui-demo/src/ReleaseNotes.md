@@ -66,6 +66,7 @@
   * CSTextarea
   * CSToast
   * CSToggle
+  * CSTooltip
   * CSTransfer
 
 ## 2.0.0

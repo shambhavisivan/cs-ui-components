@@ -49,6 +49,7 @@ interface CSTooltipState {
 class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 	static defaultProps = {
 		iconSize: 'small',
+		iconOrigin: 'slds',
 		position: 'top-right',
 		variant: 'info',
 		stylePosition: 'fixed',
@@ -189,14 +190,14 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 
 		const positions = computedPosition.split('-');
 		const openOnPosition = positions[0];
-		const tooltipWrapperRect = this.tooltipRef.current.getBoundingClientRect();
+		const tooltipWrapperRect = this.tooltipRef.current?.getBoundingClientRect();
 		if (openOnPosition === 'top' || openOnPosition === 'bottom') {
 			this.setState({
-				tooltipWrapperDimension: tooltipWrapperRect.width,
+				tooltipWrapperDimension: tooltipWrapperRect?.width ?? 0,
 			});
 		} else if (openOnPosition === 'left' || openOnPosition === 'right') {
 			this.setState({
-				tooltipWrapperDimension: tooltipWrapperRect.height,
+				tooltipWrapperDimension: tooltipWrapperRect?.height ?? 0,
 			});
 		}
 	}
@@ -204,11 +205,13 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 	private convertRemToPixels = (rem: number) => rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
 
 	private getTooltipPositionSchema = () => {
-		const wrapperInfo = this.tooltipRef.current.getBoundingClientRect();
+		const wrapperInfo = this.tooltipRef.current?.getBoundingClientRect();
+		const wrapperInfoWidth = wrapperInfo?.width ?? 0;
+		const wrapperInfoHeight = wrapperInfo?.height ?? 0;
 
 		const fixedDeviation = 10;
-		const computedWidthDeviation = wrapperInfo.width / 2 - this.convertRemToPixels(1.5);
-		const computedHeightDeviation = -wrapperInfo.height / 2 - this.convertRemToPixels(1) + 2;
+		const computedWidthDeviation = wrapperInfoWidth / 2 - this.convertRemToPixels(1.5);
+		const computedHeightDeviation = -wrapperInfoHeight / 2 - this.convertRemToPixels(1) + 2;
 
 		const schema: CSAutopositionSchema = [{
 			position: 'top-left',
@@ -451,15 +454,15 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 				id={id}
 			>
 				{children
-				|| (
-					<CSIcon
-						color={iconColor}
-						name={tooltipIconName()}
-						className="cs-tooltip-icon"
-						size={setIconSize()}
-						origin={iconOrigin}
-					/>
-				)}
+					|| (
+						<CSIcon
+							color={iconColor}
+							name={tooltipIconName()}
+							className="cs-tooltip-icon"
+							size={setIconSize()}
+							origin={iconOrigin}
+						/>
+					)}
 				{!hidden && (
 					<>
 						{stylePosition === 'absolute' ? (

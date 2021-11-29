@@ -698,7 +698,6 @@ class CSTooltipPreview extends React.Component {
 					}, {
 						name: 'delayTooltip',
 						types: 'number',
-						default: '0',
 						description: 'Delay the tooltip becoming visible in ms.'
 					}, {
 						name: 'focusable',
