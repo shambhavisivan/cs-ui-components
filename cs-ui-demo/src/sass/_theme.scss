@@ -228,6 +228,9 @@ $lightVariables: (
 	--csd-table-head-row-c: $cs-white,
 	--csd-table-backlog-bg: $cs-gray-medium-1,
 
+	--csd-tooltip-body-bg: rgba($cs-black, 0.1),
+	--csd-tooltip-body-c: rgba($cs-black, 0.6),
+
 	--csd-dropdown-purple-bg: $cs-purple,
 	--csd-spinner-black-bg: $cs-black,
 	--csd-image-black-bg: $cs-black,
@@ -396,6 +399,9 @@ $darkVariables: (
 	--csd-table-head-row-bg: $cs-purple,
 	--csd-table-head-row-c: $cs-white,
 	--csd-table-backlog-bg: $cs-gray-medium-1,
+
+	--csd-tooltip-body-bg: rgba($cs-black, 0.1),
+	--csd-tooltip-body-c: rgba($cs-black, 0.6),
 
 	--csd-dropdown-purple-bg: $cs-purple,
 	--csd-spinner-black-bg: $cs-black,

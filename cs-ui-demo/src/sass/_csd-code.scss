@@ -64,6 +64,8 @@
 		white-space: nowrap;
 
 		code.csd-inline-code {
+			background: var(--csd-tooltip-body-bg);
+			color: var(--csd-tooltip-body-c);
 			margin: 0;
 			text-align: center;
 		}
