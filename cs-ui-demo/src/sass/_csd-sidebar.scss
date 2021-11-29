@@ -214,7 +214,7 @@
 	&.csd-sidebar-toggle-primary:not(.csd-sidebar-toggle-primary-open):not(.csd-sidebar-toggle-secondary-open) {
 		background-color: var(--csd-components-sidebar-bg);
 		top: 1.25rem;
-		left: 0.25rem;
+		left: 1.75rem;
 	}
 
 	&.csd-sidebar-toggle-primary.csd-sidebar-toggle-primary-open:not(.csd-sidebar-toggle-secondary-open) + .csd-sidebar-wrapper {

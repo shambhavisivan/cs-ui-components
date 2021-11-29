@@ -5,10 +5,13 @@ const getTypes = (types?: string | Array<string>) => {
 		return null;
 	}
 	if (!Array.isArray(types)) {
-		return <code className="csd-inline-code">{types}</code>;
+		return <code className="csd-inline-code" title={types}>{types}</code>;
 	}
-	return types.map((type: string) => (
-		<code key={type} className="csd-inline-code">{type}</code>
+	return types.map((type: string, i) => (
+		<>
+			<code key={type} className="csd-inline-code" title={type}>{type}</code>
+			{i === types.length - 1 || <br />}
+		</>
 	));
 };
 

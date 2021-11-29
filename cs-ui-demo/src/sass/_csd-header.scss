@@ -86,3 +86,7 @@
 		}
 	}
 }
+
+.csd-sidebar-wrapper-closed + .components-preview > .csd-sidebar-wrapper-closed + .csd-page > .csd-header-wrapper .csd-heading {
+	padding-inline-start: 3rem !important;
+}

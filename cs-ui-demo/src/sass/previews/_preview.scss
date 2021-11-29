@@ -4,10 +4,11 @@
 
 .components-preview {
 	width: 100%;
+	max-width: 100%;
 	position: relative;
 	flex: 1;
 	display: flex;
-	transition: 0.4s;
+	transition: all 400ms ease-in-out 200ms;
 
 	.preview-section-wrapper {
 		.demo-heading {
