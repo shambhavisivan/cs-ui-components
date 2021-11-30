@@ -163,9 +163,13 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	}
 
 	setValue = () => {
-		const { value } = this.props;
-		const selectedOptions = value || [];
-		this.setState({ selectedOptions: Array.isArray(selectedOptions) ? selectedOptions : [selectedOptions] });
+		const { multiselect, value } = this.props;
+		let selectedOptions = value || [];
+		if (Array.isArray(selectedOptions)) {
+			if (!multiselect && selectedOptions.length > 1) selectedOptions = [selectedOptions[0]];
+		} else selectedOptions = [selectedOptions];
+
+		this.setState({ selectedOptions });
 	}
 
 	handleOutsideClick = (event: any) => {
@@ -607,7 +611,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 				selectable
 				selectionType="row"
 				columns={columns}
-				rows={(mode === 'server' && moreRecords)
+				rows={(mode === 'server' && moreRecords && infiniteScroll)
 					? [...dropdownOptions, { key: 'cs-lookup-load-more', render: renderLoading, className: 'cs-lookup-load-more', selectable: false }]
 					: dropdownOptions}
 				selectedKeys={selectedOptions.map((selectedOption: CSDataTableRowInterface) => selectedOption.key)}
@@ -629,7 +633,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			if (minTermLength && searchTerm.length < minTermLength) return renderMinLengthMessage();
 			if (loading || fetchingMode === 'after-search') return renderLoading();
 			if (dropdownOptions?.length) return renderOptions();
-			if (!dropdownOptions?.length && searchTerm && fetchingMode === undefined) return renderNotFound();
+			if (!dropdownOptions?.length) return renderNotFound();
 			return null;
 		};
 

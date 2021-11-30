@@ -54,6 +54,7 @@
   * CSInputSearch
   * CSInputText
   * CSLabel
+  * CSLookup
   * CSMainHeader
   * CSPath
   * CSProgressIndicator
