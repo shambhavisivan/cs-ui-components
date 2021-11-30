@@ -4,12 +4,6 @@
 	"description": "",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
-	"jest": {
-		"setupFilesAfterEnv": [
-			"<rootDir>/src/setupTests.ts"
-		],
-		"testEnvironment": "jsdom"
-	},
 	"scripts": {
 		"build": "rimraf dist && webpack",
 		"lint": "eslint src --ext .js,.jsx,.tsx,.ts",
