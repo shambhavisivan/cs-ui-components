@@ -8,26 +8,29 @@ const CSFormLookupField = ({
 	onChange,
 	styleClass,
 	...props
-}: CSFormLookupFieldProps) => (
-	<>
-		{props.mode === 'client'
-			? (
-				<CSLookup
-					onSelectChange={(value: any) => onChange(value)}
-					onBlur={(value: any) => onBlur(value)}
-					className={styleClass}
-					{...props}
-				/>
-			)
-			: (
-				<CSLookup
-					onSelectChange={(value: any) => onChange(value)}
-					onBlur={(value: any) => onBlur(value)}
-					className={styleClass}
-					{...props}
-				/>
-			)}
-	</>
-);
+}: CSFormLookupFieldProps) => {
+	const { mode } = props;
+	return (
+		<>
+			{mode === 'client'
+				? (
+					<CSLookup
+						onSelectChange={(value: any) => onChange(value)}
+						onBlur={(value: any) => onBlur(value)}
+						className={styleClass}
+						{...props}
+					/>
+				)
+				: (
+					<CSLookup
+						onSelectChange={(value: any) => onChange(value)}
+						onBlur={(value: any) => onBlur(value)}
+						className={styleClass}
+						{...props}
+					/>
+				)}
+		</>
+	);
+};
 
 export default CSFormLookupField;
