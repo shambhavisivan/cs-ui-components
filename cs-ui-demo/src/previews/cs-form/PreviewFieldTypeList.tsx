@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { getSlug } from '../helpers';
 import {
@@ -12,29 +12,6 @@ const PreviewFieldTypeList: React.FC<CSFormPreviewInterface> = ({
 	api,
 	activeElement= {}
 }) => {
-	const [searchTerm, setSearchTerm] = useState<string>('');
-	const [visibleSections, setVisibleSections] = useState<Array<boolean>>(fieldTypes.map(() => true));
-
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setSearchTerm(event.target.value);
-	};
-
-	const handleClick = (index: number) => {
-		setVisibleSections((prevState: Array<boolean>) => {
-			const newState = [...prevState];
-			newState[index] = !newState[index];
-			return newState;
-		});
-	};
-
-	const filterFieldTypes = (fieldType: CSFormFieldTypesInterface) => {
-		if (fieldType.name.toLowerCase().includes(searchTerm.toLowerCase())) {
-			return fieldType;
-		}
-		return {
-			...fieldType
-		};
-	};
 
 	return (
 		<>
