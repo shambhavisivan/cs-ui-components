@@ -185,20 +185,13 @@
 				justify-content: flex-end;
 			}
 
-			> .cs-button {
+			> .cs-btn,
+			> .cs-button-group {
 				margin-right: 0.5rem;
 
-				&:last-of-type {
+				&:last-child, &:only-child {
 					margin-right: 0;
 				}
-			}
-
-			.cs-btn:only-of-type {
-				margin: 0;
-			}
-
-			.cs-btn:not(:last-of-type) {
-				margin-right: 0.5rem;
 			}
 		}
 
