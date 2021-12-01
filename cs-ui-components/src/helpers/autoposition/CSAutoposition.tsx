@@ -6,6 +6,7 @@ import React, {
 	useMemo,
 	useRef,
 	useState,
+	useCallback,
 } from 'react';
 import { Portal } from 'react-portal';
 import ResizeObserver from 'resize-observer-polyfill';
@@ -53,11 +54,11 @@ const CSAutoposition = ({
 		where overflow is present.
 	*/
 	const checkYAxis = (_autopositionWrapperRect: DOMRect) => {
-		if (_autopositionWrapperRect) return undefined;
-		if (_autopositionWrapperRect.top < 0) return 'bottom';
-		if (_autopositionWrapperRect.bottom >= (window.innerHeight || document.documentElement.clientHeight)) return 'top';
+		let direction = '';
+		if (_autopositionWrapperRect.top < 0) direction = 'bottom';
+		if (_autopositionWrapperRect.bottom >= (window.innerHeight || document.documentElement.clientHeight)) direction = 'top';
 
-		return undefined;
+		return direction;
 	};
 
 	/*
@@ -66,11 +67,11 @@ const CSAutoposition = ({
 		where overflow is present.
 	*/
 	const checkXAxis = (_autopositionWrapperRect: DOMRect) => {
-		if (!_autopositionWrapperRect) return undefined;
-		if ((_autopositionWrapperRect.right) >= (window.innerWidth || document.documentElement.clientWidth)) return 'left';
-		if (_autopositionWrapperRect.left < 0) return 'right';
+		let direction = '';
+		if ((_autopositionWrapperRect.right) >= (window.innerWidth || document.documentElement.clientWidth)) direction = 'left';
+		if (_autopositionWrapperRect.left < 0) direction = 'right';
 
-		return undefined;
+		return direction;
 	};
 
 	/*
@@ -78,7 +79,7 @@ const CSAutoposition = ({
 		wrapper overflows on one part of the document object (top, bottom, left or right).
 		Every time it's called computedPosition will be returned through onPositionChange prop.
 	*/
-	const recalcComputedPosition = (autopositionWrapper: HTMLDivElement) => {
+	const recalcComputedPosition = useCallback((autopositionWrapper: HTMLDivElement) => {
 		const autopositionWrapperRect = autopositionWrapper?.getBoundingClientRect();
 		const xAxis = ['left', 'right', 'center'];
 		const yAxis = ['top', 'bottom', 'center'];
@@ -94,15 +95,15 @@ const CSAutoposition = ({
 			of the overflow if overflow is present.
 		*/
 		if (xAxis.includes(_openOn)) {
-			newOpenOn = checkXAxis(autopositionWrapperRect) ?? _openOn;
+			newOpenOn = checkXAxis(autopositionWrapperRect) || _openOn;
 		} else if (xAxis.includes(_expandTo)) {
-			newExpandTo = checkXAxis(autopositionWrapperRect) ?? _expandTo;
+			newExpandTo = checkXAxis(autopositionWrapperRect) || _expandTo;
 		}
 
 		if (yAxis.includes(_openOn)) {
-			newOpenOn = checkYAxis(autopositionWrapperRect) ?? _openOn;
+			newOpenOn = checkYAxis(autopositionWrapperRect) || _openOn;
 		} else if (yAxis.includes(_expandTo)) {
-			newExpandTo = checkYAxis(autopositionWrapperRect) ?? _expandTo;
+			newExpandTo = checkYAxis(autopositionWrapperRect) || _expandTo;
 		}
 
 		const newPosition = `${newOpenOn}-${newExpandTo}` as CSAutopositions;
@@ -122,7 +123,7 @@ const CSAutoposition = ({
 			// eslint-disable-next-line no-console
 			console.error('No opposite positions are available in position schema for position recalculation.');
 		}
-	};
+	}, [availablePositions, computedPosition, onPositionChange]);
 
 	/*
 		Returns opposite position based on the provided position.
@@ -141,22 +142,22 @@ const CSAutoposition = ({
 		Recalculation of computedPosition will be invoked every time size (width or height)
 		changes.
 	*/
-	const registerResizeObserver = (autopositionWrapper: HTMLDivElement) => {
+	const registerResizeObserver = useCallback((autopositionWrapper: HTMLDivElement) => {
 		const resizer = new ResizeObserver(() => {
 			if (autopositionWrapper.clientHeight) {
 				recalcComputedPosition(autopositionWrapper);
 			}
 		});
 		resizer.observe(autopositionWrapper);
-	};
+	}, [recalcComputedPosition]);
 
-	const recalcRefPointRect = () => setRefPointRect(referencePoint?.getBoundingClientRect());
+	const recalcRefPointRect = useCallback(() => setRefPointRect(referencePoint?.getBoundingClientRect()), [referencePoint]);
 
-	const recalcOnScroll = (event: any) => {
+	const recalcOnScroll = useCallback((event: any) => {
 		if ((event.target as HTMLElement).contains(referencePoint)) {
 			recalcRefPointRect();
 		}
-	};
+	}, [recalcRefPointRect, referencePoint]);
 
 	const autopositionStyle = {
 		...computedStyle,
@@ -184,7 +185,7 @@ const CSAutoposition = ({
 		Searches for deviation in positionSchema items which are defined as objects and returns it.
 		Otherwise returns false.
 	*/
-	const getDeviationFromSchema = (position: CSAutopositions) => {
+	const getDeviationFromSchema = useCallback((position: CSAutopositions) => {
 		let deviation: any;
 		positionSchema.forEach(
 			(positionItem: CSAutopositions | CSAutopositionSchemaItem) => {
@@ -203,10 +204,10 @@ const CSAutoposition = ({
 			},
 		);
 		return deviation ?? false;
-	};
+	}, [positionSchema]);
 
 	// Returns css declaration based on the provided position
-	const getCenteredPositionValue = (openOnPosition: string) => {
+	const getCenteredPositionValue = useCallback((openOnPosition: string) => {
 		if (openOnPosition === 'top' || openOnPosition === 'bottom') {
 			return {
 				left: refPointRect?.left + refPointRect.width / 2,
@@ -218,13 +219,13 @@ const CSAutoposition = ({
 			top: refPointRect?.top + refPointRect?.height / 2,
 			transform: 'translateY(-50%) translate3d(0, 0, 0)',
 		};
-	};
+	}, [refPointRect?.height, refPointRect?.left, refPointRect?.top, refPointRect?.width]);
 
 	/*
 		Sets computedStyle state which is passed as a inline style to the autoposition wrapper.
 		computedStyle is based on computedPosition state and deviation defined in the positionSchema prop.
 	*/
-	const setPositionStyle = () => {
+	const setPositionStyle = useCallback(() => {
 		const [openOnPosition, expandToPosition] = computedPosition.split('-');
 		let deviationStyles = {};
 
@@ -273,7 +274,7 @@ const CSAutoposition = ({
 			[expandToOpposite]: expandToValue,
 			...deviationStyles,
 		});
-	};
+	}, [computedPosition, expandTo, getCenteredPositionValue, getDeviationFromSchema, openOn]);
 
 	useEffect(() => {
 		registerResizeObserver(autopositionWrapperRef.current);
@@ -290,7 +291,7 @@ const CSAutoposition = ({
 			window.removeEventListener('scroll', recalcOnScroll, true);
 			window.removeEventListener('resize', recalcRefPointRect);
 		};
-	}, []);
+	}, [availablePositions, initialPosition, recalcOnScroll, recalcRefPointRect, registerResizeObserver]);
 
 	useLayoutEffect(() => {
 		/*
@@ -303,11 +304,11 @@ const CSAutoposition = ({
 				recalcComputedPosition(autopositionWrapperRef.current);
 			}
 		}, 0);
-	}, [refPointRect]);
+	}, [recalcComputedPosition, refPointRect]);
 
 	useLayoutEffect(() => {
 		setPositionStyle();
-	}, [refPointRect, computedPosition]);
+	}, [refPointRect, computedPosition, setPositionStyle]);
 
 	return (
 		<Portal node={document && document.getElementById(autopositionRootId)}>
