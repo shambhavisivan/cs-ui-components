@@ -108,7 +108,7 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		if (
 			this.tooltipRef.current
 			&& !this.tooltipRef.current.contains(event.target)
-			&& !document.getElementById('cs-autoposition').contains(event.target)
+			&& !document.getElementById('cs-autoposition')?.contains(event.target)
 		) {
 			this.setSticky(false);
 			this.closeTooltip();
