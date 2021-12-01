@@ -45,6 +45,7 @@ const CSAlert = ({
 		[`cs-alert-${variant}`],
 		[`cs-alert-type-${styleType}`],
 		{
+			'cs-alert-icon-hidden': iconHidden,
 			'cs-alert-scoped': styleFormat === 'scoped',
 			'cs-alert-no-close-btn': !closeButton,
 			[`${className}`]: className,

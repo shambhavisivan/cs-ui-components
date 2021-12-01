@@ -4,8 +4,8 @@
 * General
   * added rules for eslint-plugin-react-hooks
 * CSAlert
-  * fixed close button styling when `styleFormat="scoped"`
-  * fixed close button styling when `styleType="light"`
+  * fixed close button position when `styleFormat="scoped"`
+  * fixed close button and icon styling when `styleType="light"`
 * CSAutoposition
   * implemented optional chaining of DOMRect objects
   * fixed autoposition for top and bottom positions

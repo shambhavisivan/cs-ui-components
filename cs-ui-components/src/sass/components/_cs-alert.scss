@@ -22,8 +22,12 @@
 			}
 		}
 
-		.cs-btn.cs-btn {
+		button.cs-btn.cs-btn-label-hidden{
 			top: 0.75rem;
+		}
+
+		&.cs-alert-icon-hidden button.cs-btn.cs-btn-label-hidden {
+			top: 0.5625rem;
 		}
 	}
 
@@ -34,14 +38,12 @@
 			@include sc(--cs-alert-info-c);
 		}
 
-		.cs-alert-text-wrapper {
-			.cs-alert-text {
-				@include sc(--cs-alert-info-c);
-			}
+		.cs-alert-text {
+			@include sc(--cs-alert-info-c);
+		}
 
-			.cs-icon {
-				@include sf(--cs-alert-info-fill);
-			}
+		.cs-icon {
+			@include sf(--cs-alert-info-fill);
 		}
 
 		&.cs-alert-type-light {
@@ -52,10 +54,9 @@
 				@include sc(--cs-alert-info-light-c);
 			}
 
-			.cs-btn-icon {
-				.cs-icon {
-					@include sf(--cs-alert-info-light-fill);
-				}
+			.cs-btn-icon .cs-icon,
+			.cs-icon {
+				@include sf(--cs-alert-info-light-fill);
 			}
 
 			.cs-btn {
@@ -81,17 +82,15 @@
 			@include sc(--cs-alert-warning-c);
 		}
 
-		.cs-alert-text-wrapper {
-			.cs-alert-text {
-				@include sc(--cs-alert-warning-c);
-			}
-
-			.cs-icon {
-				@include sf(--cs-alert-warning-fill);
-			}
+		.cs-alert-text {
+			@include sc(--cs-alert-warning-c);
 		}
 
-		.cs-btn.cs-btn {
+		.cs-icon {
+			@include sf(--cs-alert-warning-fill);
+		}
+
+		button.cs-btn.cs-btn-label-hidden {
 			svg {
 				@include sf(--cs-alert-warning-fill);
 			}
@@ -117,10 +116,9 @@
 				@include sc(--cs-alert-warning-light-c);
 			}
 
-			.cs-btn-icon {
-				.cs-icon {
-					@include sf(--cs-alert-warning-light-fill);
-				}
+			.cs-btn-icon .cs-icon,
+			.cs-icon {
+				@include sf(--cs-alert-warning-light-fill);
 			}
 
 			.cs-btn {
@@ -146,14 +144,12 @@
 			@include sc(--cs-alert-error-c);
 		}
 
-		.cs-alert-text-wrapper {
-			.cs-alert-text {
-				@include sc(--cs-alert-error-c);
-			}
+		.cs-alert-text {
+			@include sc(--cs-alert-error-c);
+		}
 
-			.cs-icon {
-				@include sf(--cs-alert-error-fill);
-			}
+		.cs-icon {
+			@include sf(--cs-alert-error-fill);
 		}
 
 		&.cs-alert-type-light {
@@ -164,10 +160,9 @@
 				@include sc(--cs-alert-error-light-c);
 			}
 
-			.cs-btn-icon {
-				.cs-icon {
-					@include sf(--cs-alert-error-light-fill);
-				}
+			.cs-btn-icon .cs-icon,
+			.cs-icon {
+				@include sf(--cs-alert-error-light-fill);
 			}
 
 			.cs-btn {
@@ -193,14 +188,12 @@
 			@include sc(--cs-alert-base-c);
 		}
 
-		.cs-alert-text-wrapper {
-			.cs-alert-text {
-				@include sc(--cs-alert-base-c);
-			}
+		.cs-alert-text {
+			@include sc(--cs-alert-base-c);
+		}
 
-			.cs-icon {
-				@include sf(--cs-alert-base-fill);
-			}
+		.cs-icon {
+			@include sf(--cs-alert-base-fill);
 		}
 
 		&.cs-alert-type-light {
@@ -211,10 +204,9 @@
 				@include sc(--cs-alert-base-light-c);
 			}
 
-			.cs-btn-icon {
-				.cs-icon {
-					@include sf(--cs-alert-base-light-fill);
-				}
+			.cs-btn-icon .cs-icon,
+			.cs-icon {
+				@include sf(--cs-alert-base-light-fill);
 			}
 
 			.cs-btn {
@@ -290,7 +282,7 @@
 		padding: 0.5rem 1rem;
 	}
 
-	.cs-btn.cs-btn {
+	button.cs-btn.cs-btn-label-hidden {
 		position: absolute;
 		top: 0.3125rem;
 		right: 0.75rem;
