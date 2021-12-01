@@ -290,6 +290,7 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 						variations: [
 							{
 								primaryVariants: 'dropdownMode="scroll"',
+								quickLink: 'scroll',
 								component: <CSDateTimePicker
 									label="Enter date"
 									showYearDropdown
@@ -306,9 +307,9 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 									selected={this.state.selected}
 									onChange={(date: Date) => this.setState({ selected: date })}
 								/>`
-
 							}, {
 								primaryVariants: 'dropdownMode="select"',
+								quickLink: 'select',
 								component: <CSDateTimePicker
 									label="Enter date"
 									showYearDropdown
@@ -1237,8 +1238,7 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 						description: 'Set the year dropdown to fixed height and add a scrollbar.'
 					}, {
 						name: 'selected',
-						required: true,
-						types: 'Date',
+						types: ['Date', 'null', 'undefined'],
 						description: 'Set the selected date and time.'
 					}, {
 						name: 'showMonthDropdown',

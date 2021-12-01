@@ -364,6 +364,24 @@ class CSListPreview extends React.Component {
 				name: 'CSListGroup',
 				examples: [
 					{
+						propName: 'text',
+						variations: [
+							{
+								component: <CSList>
+									<CSListGroup text="List Group">
+										<CSListItem text="List item" />
+										<CSListItem text="List item" />
+									</CSListGroup>
+								</CSList>,
+								code: `<CSList>
+									<CSListGroup text="List Group">
+										<CSListItem text="List item" />
+										<CSListItem text="List item" />
+									</CSListGroup>
+								</CSList>`
+							}
+						]
+					}, {
 						propName: 'checkboxOption',
 						alert: {
 							variant: 'info',
@@ -551,28 +569,15 @@ class CSListPreview extends React.Component {
 								</CSList>`
 							}
 						]
-					}, {
-						propName: 'text',
-						variations: [
-							{
-								component: <CSList>
-									<CSListGroup text="List Group">
-										<CSListItem text="List item" />
-										<CSListItem text="List item" />
-									</CSListGroup>
-								</CSList>,
-								code: `<CSList>
-									<CSListGroup text="List Group">
-										<CSListItem text="List item" />
-										<CSListItem text="List item" />
-									</CSListGroup>
-								</CSList>`
-							}
-						]
 					}
 				],
 				properties: [
 					{
+						name: 'text',
+						required: true,
+						types: 'string',
+						description: 'List group header text.'
+					}, {
 						name: 'checkboxOption',
 						customTypes: {
 							name: 'CSListGroupCheckboxOption',
@@ -602,10 +607,6 @@ class CSListPreview extends React.Component {
 						name: 'onSelectChange',
 						types: '(value) => any',
 						description: 'Callback function which will be executed when list group checkbox is selected. It can only be used if variant is check-list.'
-					}, {
-						name: 'text',
-						types: 'string',
-						description: 'List group header text.'
 					}, {
 						name: 'id',
 						types: 'string',

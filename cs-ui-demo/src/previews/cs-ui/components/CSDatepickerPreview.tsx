@@ -290,6 +290,7 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 						variations: [
 							{
 								primaryVariants: 'dropdownMode="scroll"',
+								quickLink: 'scroll',
 								component: <CSDatepicker
 									label="Enter date"
 									showYearDropdown
@@ -308,6 +309,7 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 								/>`
 							}, {
 								primaryVariants: 'dropdownMode="select"',
+								quickLink: 'select',
 								component: <CSDatepicker
 									label="Enter date"
 									showYearDropdown
