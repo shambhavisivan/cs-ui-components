@@ -8,9 +8,8 @@
 		align-items: flex-start;
 		position: relative;
 		border-radius: 0.25rem;
-		padding: 0.75rem 1rem;
+		padding: 0.75rem 1rem 0.75rem 0.5rem;
 		width: var(--cs-toast-width);
-		min-width: 15rem;
 		/*
 			BUG: issue with parent height when there is a long text
 			TODO: investigate why parent has width of full text width
@@ -19,7 +18,7 @@
 		max-width: var(--cs-toast-width, 34rem);
 
 		> .cs-icon {
-			margin-right: 0.5rem;
+			margin-inline-start: 0.5rem;
 		}
 
 		&.cs-toast-info {
@@ -89,6 +88,7 @@
 		.cs-toast-text {
 			flex: 1;
 			padding-top: 0.125rem;
+			margin-inline-start: 0.5rem;
 			display: flex;
 			flex-direction: column;
 			font-family: $font-primary !important;
@@ -110,7 +110,7 @@
 		}
 
 		&.cs-toast-close {
-			padding: 0.75rem 3rem 0.75rem 1rem;
+			padding: 0.75rem 3rem 0.75rem 0.5rem;
 		}
 
 		.cs-btn {

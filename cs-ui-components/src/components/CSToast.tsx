@@ -71,15 +71,17 @@ const CSToast = ({
 		>
 			<div className={toastClasses} role={toastRole} style={style}>
 				{iconVisible()}
-				<div className="cs-toast-text">
-					<h4>
-						{text}
-					</h4>
-					{detail ? (
-						<div className="cs-toast-detail">{detail}</div>
-					) : null}
-					{children}
-				</div>
+				{(text || detail || children) && (
+					<div className="cs-toast-text">
+						{text && (
+							<h4>{text}</h4>
+						)}
+						{detail && (
+							<div className="cs-toast-detail">{detail}</div>
+						)}
+						{children}
+					</div>
+				)}
 				{closeButton
 					? (
 						<CSButton

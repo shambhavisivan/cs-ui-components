@@ -152,6 +152,31 @@ class CSToastPreview extends React.Component {
 								/>`
 							}
 						]
+					},  {
+						propName: 'text',
+						variations: [
+							{
+								primaryVariants: 'has text',
+								quickLink: 'has text',
+								component: <CSToast
+									variant="info"
+									text="This is an example toast with text"
+								/>,
+								code: `<CSToast
+									variant="info"
+									text="This is an example toast with text"
+								/>`
+							}, {
+								primaryVariants: 'doesn\'t have text',
+								quickLink: 'doesn\'t have text',
+								component: <CSToast
+									variant="info"
+								/>,
+								code: `<CSToast
+									variant="info"
+								/>`
+							}
+						]
 					}, {
 						propName: 'width',
 						variations: [
@@ -252,7 +277,7 @@ class CSToastPreview extends React.Component {
 					}, {
 						name: 'detail',
 						types: 'string',
-						description: 'Set the text content for the toast detail.'
+						description: 'Set the text for the toast detail.'
 					}, {
 						name: 'iconName',
 						types: 'string',
@@ -277,7 +302,7 @@ class CSToastPreview extends React.Component {
 					}, {
 						name: 'text',
 						types: 'string',
-						description: 'Set textual content for the toast.'
+						description: 'Set the text for the toast.'
 					}, {
 						name: 'width',
 						types: 'string',
