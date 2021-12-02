@@ -5,11 +5,11 @@
 		@include screen-reader-hidden;
 	}
 
-	&.cs-button-group-false > *:not(:last-child) {
+	&:not(.cs-button-group-combined) > *:not(:last-child) {
 		margin-right: 0.5rem;
 	}
 
-	&.cs-button-group-true {
+	&.cs-button-group-combined {
 		> .cs-aria-description:first-child {
 			+ .cs-btn,
 			+ .cs-dropdown-wrapper > .cs-btn {

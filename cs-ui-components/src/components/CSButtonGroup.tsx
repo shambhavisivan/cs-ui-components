@@ -38,10 +38,11 @@ class CSButtonGroup extends React.Component<CSButtonGroupProps> {
 		} = this.props;
 
 		const buttonGroupClasses = classNames(
-			[`cs-button-group cs-button-group-${combined}`],
+			'cs-button-group',
 			{
 				[`cs-button-group-margin-${marginPosition}`]: marginPosition,
 				[`${className}`]: className,
+				'cs-button-group-combined': combined,
 			},
 		);
 
