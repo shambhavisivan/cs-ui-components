@@ -23,7 +23,7 @@ const CSIcon = ({
 	frame,
 	id,
 	name,
-	origin,
+	origin = 'slds',
 	rotate,
 	size,
 	spin,
@@ -44,10 +44,8 @@ const CSIcon = ({
 		'--cs-icon-rotate': rotate ? `${rotate}deg` : null,
 	};
 
-	let prefix = 'cssfi-';
-	if (origin === 'cs') {
-		prefix = 'csi-';
-	}
+	const prefix = origin === 'slds' ? 'cssfi-' : 'csi-';
+
 	return (
 		<>
 			{frame ? (
