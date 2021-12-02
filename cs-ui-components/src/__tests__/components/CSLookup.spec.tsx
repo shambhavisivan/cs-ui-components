@@ -765,33 +765,27 @@ describe('<CSLookup />', () => {
 		expect(lookupDataTableRows).toHaveLength(2);
 	});
 
-	// it('should call fetchOptions when scrollbar hits the bottom of the lookup dropdown', async () => {
-	// 	const fetchDataMock = jest.fn(fetchData);
-	// 	const uut = mount(
-	// 		<CSLookup
-	// 			label={label}
-	// 			columns={columns}
-	// 			mode={modeServer}
-	// 			fieldToBeDisplayed={fieldToBeDisplayed}
-	// 			pageSize={10}
-	// 			fetchOptions={fetchDataMock}
-	// 			infiniteScroll
-	// 		/>,
-	// 	);
-	// 	const lookupInput = uut.find('.cs-lookup-input');
-	// 	lookupInput.simulate('focus');
-	// 	await new Promise((r) => setTimeout(r, 500));
-	// 	uut.update();
-	// 	const lookupDataTable = uut.find('.cs-data-table');
-
-	// 	lookupDataTable.simulate('scroll', {
-	// 		target: {
-	// 			scrollTo: lookupDataTable.getDOMNode().scrollHeight,
-	// 		},
-	// 	});
-	// 	await new Promise((r) => setTimeout(r, 2000));
-	// 	expect(fetchDataMock).toHaveBeenCalledTimes(2);
-	// });
+	it('should call fetchOptions when scrollbar hits the bottom of the lookup dropdown', async () => {
+		const fetchDataMock = jest.fn(fetchData);
+		const uut = mount(
+			<CSLookup
+				label={label}
+				columns={columns}
+				mode={modeServer}
+				fieldToBeDisplayed={fieldToBeDisplayed}
+				pageSize={10}
+				fetchOptions={fetchDataMock}
+				infiniteScroll
+			/>,
+		);
+		const lookupInput = uut.find('.cs-lookup-input');
+		lookupInput.simulate('focus');
+		await new Promise((r) => setTimeout(r, 200));
+		uut.update();
+		const lookupDataTable = uut.find('.cs-data-table');
+		lookupDataTable.simulate('scroll');
+		expect(fetchDataMock).toHaveBeenCalledTimes(2);
+	});
 
 	it('should initiate options fetch when defined minTermLength is met', async () => {
 		const fetchDataMock = jest.fn(fetchData);
