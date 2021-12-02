@@ -81,10 +81,6 @@
 			}
 		}
 
-		&.cs-modal-no-close-btn {
-			padding: 2rem;
-		}
-
 		.cs-modal-close {
 			align-self: flex-end;
 			margin-right: -0.5rem;
@@ -221,6 +217,10 @@
 
 		&.cs-modal-xlarge {
 			padding: 0.5rem 2rem 2rem;
+		}
+
+		&.cs-modal-no-close-btn {
+			padding: 2rem;
 		}
 	}
 }

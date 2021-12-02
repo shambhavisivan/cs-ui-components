@@ -4,7 +4,7 @@ import { Portal } from 'react-portal';
 import { v4 as uuidv4 } from 'uuid';
 import CSSpinner from '../CSSpinner';
 import CSButton from '../CSButton';
-import { CSModalHeader } from '../../index';
+import CSModalHeader from './CSModalHeader';
 import withCSUnmountDelay from '../../helpers/CSUnmountDelay';
 import KeyCode from '../../util/KeyCode';
 
@@ -71,10 +71,10 @@ class CSModal extends React.Component<CSModalProps> {
 		this.previouslyFocusedElement = document.activeElement as HTMLElement;
 		const focusable = this.getFocusableElements();
 		this.getFirstLastModalElement();
-		if (loading && !closeButton && focusable.length > 0) {
+		if (loading && !closeButton && focusable?.length > 0) {
 			this.firstElement = this.modalRef;
 		}
-		this.firstElement.focus();
+		this.firstElement?.focus();
 
 		document.addEventListener('keydown', this.handleFocusChange);
 		const modalRoot = document.getElementById(this.modalId);
@@ -151,13 +151,13 @@ class CSModal extends React.Component<CSModalProps> {
 	}
 
 	getFocusableElements() {
-		return this.modalRef.querySelectorAll('button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+		return this.modalRef?.querySelectorAll('button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
 	}
 
 	getFirstLastModalElement() {
 		const { closeButton } = this.props;
 		const focusable = this.getFocusableElements();
-		if (focusable.length > 0) {
+		if (focusable?.length > 0) {
 			const lastFocusable = (focusable[focusable.length - 1] as HTMLElement).hasAttribute('disabled')
 				? focusable[focusable.length - 2]
 				: focusable[focusable.length - 1];
@@ -204,7 +204,7 @@ class CSModal extends React.Component<CSModalProps> {
 			'cs-modal',
 			`cs-modal-${size}`,
 			{
-				'cs-modal-no-close-btn': closeButton,
+				'cs-modal-no-close-btn': !closeButton,
 				'cs-modal-hidden': !(visible && mounted) && animated,
 			},
 		);

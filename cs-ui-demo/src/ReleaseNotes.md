@@ -74,6 +74,7 @@
   * CSList
   * CSLookup
   * CSMainHeader
+  * CSModal
   * CSPath
   * CSProgressIndicator
   * CSRadio
