@@ -36,7 +36,7 @@ describe('<CSTextarea />', () => {
 		// Make sure belonging class exists and CSCustomDataActions is rendered
 		expect(textareaCustomActions).toHaveLength(1);
 		// Make sure CSCustomDataActions received correct actions object
-		expect(JSON.stringify(textareaCustomActions.prop('actions'))).toBe(JSON.stringify(actionsValue));
+		expect(textareaCustomActions.prop('actions')).toMatchObject(actionsValue);
 	});
 
 	it('should set custom border radius', () => {
@@ -99,7 +99,7 @@ describe('<CSTextarea />', () => {
 		// Make sure belonging class exists and CSCustomDataIcons is rendered
 		expect(textareaCustomIcons).toHaveLength(1);
 		// Make sure CSCustomDataIcons received correct icons object
-		expect(JSON.stringify(textareaCustomIcons.prop('icons'))).toBe(JSON.stringify(iconsValue));
+		expect(textareaCustomIcons.prop('icons')).toMatchObject(iconsValue);
 	});
 
 	it('should hide label', () => {

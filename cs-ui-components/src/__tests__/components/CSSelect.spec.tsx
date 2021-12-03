@@ -33,7 +33,7 @@ describe('<CSSelect />', () => {
 		const selectCustomActions = uut.find('.cs-select-wrapper CSCustomDataActions');
 		expect(selectCustomActions).toHaveLength(1);
 		// Make sure CSCustomDataActions received correct actions object
-		expect(JSON.stringify(selectCustomActions.prop('actions'))).toBe(JSON.stringify(actionsValue));
+		expect(selectCustomActions.prop('actions')).toMatchObject(actionsValue);
 	});
 
 	it('should set custom border radius', () => {
@@ -90,7 +90,7 @@ describe('<CSSelect />', () => {
 		const selectCustomIcons = uut.find('.cs-select-wrapper CSCustomDataIcons');
 		expect(selectCustomIcons).toHaveLength(1);
 		// Make sure CSCustomDataIcons received correct icons object
-		expect(JSON.stringify(selectCustomIcons.prop('icons'))).toBe(JSON.stringify(iconsValue));
+		expect(selectCustomIcons.prop('icons')).toMatchObject(iconsValue);
 	});
 
 	it('should hide label', () => {

@@ -36,7 +36,7 @@ describe('<CSToggle />', () => {
 		const toggleCustomActions = uut.find('.cs-toggle-element CSCustomDataActions');
 		expect(toggleCustomActions).toHaveLength(1);
 		// Make sure CSCustomDataActions received correct actions object
-		expect(JSON.stringify(toggleCustomActions.prop('actions'))).toBe(JSON.stringify(actionsValue));
+		expect(toggleCustomActions.prop('actions')).toMatchObject(actionsValue);
 	});
 
 	it('should set checked attribute to true', () => {
@@ -82,7 +82,7 @@ describe('<CSToggle />', () => {
 		const toggleCustomIcons = uut.find('.cs-toggle-element CSCustomDataIcons');
 		expect(toggleCustomIcons).toHaveLength(1);
 		// Make sure CSCustomDataIcons received correct icons object
-		expect(JSON.stringify(toggleCustomIcons.prop('icons'))).toBe(JSON.stringify(iconsValue));
+		expect(toggleCustomIcons.prop('icons')).toMatchObject(iconsValue);
 	});
 
 	it('should hide label', () => {

@@ -82,35 +82,31 @@ describe('<CSCustomData />', () => {
 	});
 
 	it('should have one action', () => {
-		const stringifiedAction = JSON.stringify(action);
 		const uut = shallow(<CSCustomData actions={action} />);
 		const customDataActions = uut.find('CSCustomDataActions');
 		expect(customDataActions).toHaveLength(1);
-		expect(JSON.stringify(customDataActions.prop('actions'))).toBe(stringifiedAction);
+		expect(customDataActions.prop('actions')).toMatchObject(action);
 	});
 
 	it('should have more than one action', () => {
-		const stringifiedActions = JSON.stringify(actions);
 		const uut = shallow(<CSCustomData actions={actions} />);
 		const customDataActions = uut.find('CSCustomDataActions');
 		expect(customDataActions).toHaveLength(1);
-		expect(JSON.stringify(customDataActions.prop('actions'))).toBe(stringifiedActions);
+		expect(customDataActions.prop('actions')).toMatchObject(actions);
 	});
 
 	it('should have one icon', () => {
-		const stringifiedIcon = JSON.stringify(icon);
 		const uut = shallow(<CSCustomData icons={icon} />);
 		const customDataIcons = uut.find('CSCustomDataIcons');
 		expect(customDataIcons).toHaveLength(1);
-		expect(JSON.stringify(customDataIcons.prop('icons'))).toBe(stringifiedIcon);
+		expect(customDataIcons.prop('icons')).toMatchObject(icon);
 	});
 
 	it('should have more than one icon', () => {
-		const stringifiedIcons = JSON.stringify(icons);
 		const uut = shallow(<CSCustomData icons={icons} />);
 		const customDataIcons = uut.find('CSCustomDataIcons');
 		expect(customDataIcons).toHaveLength(1);
-		expect(JSON.stringify(customDataIcons.prop('icons'))).toBe(stringifiedIcons);
+		expect(customDataIcons.prop('icons')).toMatchObject(icons);
 	});
 
 	it('should pass correct value to CSIcon name prop', () => {

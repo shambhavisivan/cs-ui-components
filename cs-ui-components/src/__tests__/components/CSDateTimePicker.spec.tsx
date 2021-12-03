@@ -54,7 +54,7 @@ describe('<CSDateTimePicker />', () => {
 		);
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker).toHaveLength(1);
-		expect(JSON.stringify(datepicker.prop('actions'))).toBe(JSON.stringify(actionsValue));
+		expect(datepicker.prop('actions')).toMatchObject(actionsValue);
 	});
 
 	it('should pass correct autoFocus value to CSDatepicker', () => {
@@ -182,7 +182,7 @@ describe('<CSDateTimePicker />', () => {
 			/>,
 		);
 		const datepicker = uut.dive().find('CSDatepicker');
-		expect(JSON.stringify(datepicker.prop('icons'))).toBe(JSON.stringify(iconsValue));
+		expect(datepicker.prop('icons')).toMatchObject(iconsValue);
 	});
 
 	it('should pass correct inline value to CSDatepicker', () => {

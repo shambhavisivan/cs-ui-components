@@ -30,7 +30,7 @@ it('should pass correct actions value to CSCustomDataActions', () => {
 	}];
 	const uut = shallow(<CSInputText label={label} actions={actions} />);
 	const inputTextActions = uut.find('CSCustomDataActions');
-	expect(JSON.stringify(inputTextActions.prop('actions'))).toBe(JSON.stringify(actions));
+	expect(inputTextActions.prop('actions')).toMatchObject(actions);
 });
 
 it('should render input text with sharp border', () => {
@@ -86,7 +86,7 @@ it('should pass correct icons value to CSCustomDataIcons', () => {
 	}];
 	const uut = shallow(<CSInputText label={label} icons={icons} />);
 	const inputTextIcons = uut.find('CSCustomDataIcons');
-	expect(JSON.stringify(inputTextIcons.prop('icons'))).toBe(JSON.stringify(icons));
+	expect(inputTextIcons.prop('icons')).toMatchObject(icons);
 });
 
 it('should hide input text label', () => {
