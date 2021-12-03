@@ -1,5 +1,7 @@
 import React from 'react';
-import { CSButtonSize, CSInputNumber, CSTooltipPosition, CSIconOrigin } from '@cloudsense/cs-ui-components';
+import { CSInputNumber } from '@cloudsense/cs-ui-components';
+import { actions, actionsCode } from '../helpers/actions';
+import { icons, iconsCode } from '../helpers/icons';
 
 import Preview from '../Preview';
 
@@ -13,44 +15,6 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 	state = {
 		focused: false,
 		value: 1,
-		icons: [
-			{ iconName: 'cart' },
-			{
-				iconName: 'tag',
-				iconOrigin: 'cs' as CSIconOrigin,
-				getTooltip: {
-					content: ['icons tooltip'],
-					delay: 300,
-					maxWidth: '20rem',
-					padding: '0.5rem',
-					position: 'bottom-left' as CSTooltipPosition,
-					stickyOnClick: true
-				}
-			}
-		],
-		actions: [
-			{
-				action: () => alert('Delete option called'),
-				labelHidden: true,
-				icon: { iconName: 'delete' },
-				size: 'small' as CSButtonSize,
-				name: 'Delete'
-			},
-			{
-				action: () => alert('Add option called'),
-				icon: { iconName: 'add' },
-				labelHidden: true,
-				size: 'small' as CSButtonSize,
-				name: 'Add',
-				getTooltip: {
-					content: ['actions tooltip'],
-					delay: 300,
-					padding: '0.5rem',
-					position: 'bottom-left' as CSTooltipPosition,
-					stickyOnClick: true
-				}
-			}
-		],
 		localeValue: 1211.3
 	};
 
@@ -93,37 +57,15 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 						variations: [
 							{
 								primaryVariants: [
-									'actions={this.state.actions}'
+									'actions={actions}'
 								],
 								component: <CSInputNumber
 									label="Enter value"
-									actions={this.state.actions}
+									actions={actions}
 								/>,
 								code: `<CSInputNumber
 									label="Enter value"
-									actions={[
-										{
-											action: () => alert('Delete option called'),
-											icon: { iconName: 'delete' },
-											labelHidden: true,
-											size: 'small' as CSButtonSize,
-											name: 'Delete'
-										},
-										{
-											action: () => alert('Add option called'),
-											icon: { iconName: 'add' },
-											labelHidden: true,
-											size: 'small' as CSButtonSize,
-											name: 'Add',
-											getTooltip: {
-												content: ['actions tooltip'],
-												delay: 300,
-												padding: '0.5rem',
-												position: 'bottom-left' as CSTooltipPosition,
-												stickyOnClick: true,
-											}
-										}
-									]}
+									actions={${actionsCode}}
 								/>`
 							}
 						]
@@ -226,30 +168,16 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 						variations: [
 							{
 								primaryVariants: [
-									'icons={this.state.icons}'
+									'icons={icons}'
 								],
 								component: <CSInputNumber
 									label="Enter value"
-									icons={this.state.icons}
+									icons={icons}
 								/>,
 								code: `<CSInputNumber
 									label="Enter value"
-									icons={[
-										{ iconName: 'cart'},
-										{
-											iconName: 'tag',
-											iconOrigin: 'cs' as CSIconOrigin,
-											getTooltip: {
-												content: ['icons tooltip'],
-												delay: 300,
-												maxWidth: '20rem',
-												padding: '0.5rem',
-												position: 'bottom-left' as CSTooltipPosition,
-												stickyOnClick: true
-											}
-										}
-									]}
-								/>`
+									icons={${iconsCode}}
+								>`
 							}
 						]
 					}, {

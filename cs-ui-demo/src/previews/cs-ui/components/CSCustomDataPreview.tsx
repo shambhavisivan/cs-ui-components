@@ -1,48 +1,12 @@
 import React from 'react';
-import { CSCustomData, CSTooltipVariant, CSButtonSize, CSTooltipPosition, CSIconOrigin } from '@cloudsense/cs-ui-components';
+import { CSCustomData, CSTooltipVariant, CSTooltipPosition } from '@cloudsense/cs-ui-components';
+import { actions, actionsCode } from '../helpers/actions';
+import { icons, iconsCode } from '../helpers/icons';
 
 import Preview from '../Preview';
 
 class CSCustomDataPreview extends React.Component {
 	state = {
-		icons: [
-			{ iconName: 'cart'},
-			{
-				iconName: 'tag',
-				iconOrigin: 'cs' as CSIconOrigin,
-				getTooltip: {
-					content: ['icons tooltip'],
-					delay: 300,
-					maxWidth: '20rem',
-					padding: '0.5rem',
-					position: 'bottom-left' as CSTooltipPosition,
-					stickyOnClick: true
-				}
-			}
-		],
-		actions: [
-			{
-				action: () => alert('Delete option called'),
-				icon: { iconName: 'delete' },
-				labelHidden: true,
-				size: 'small' as CSButtonSize,
-				name: 'Delete'
-			},
-			{
-				action: () => alert('Add option called'),
-				icon: { iconName: 'add' },
-				labelHidden: true,
-				size: 'small' as CSButtonSize,
-				name: 'Add',
-				getTooltip: {
-					content: ['actions tooltip'],
-					delay: 300,
-					padding: '0.5rem',
-					position: 'bottom-left' as CSTooltipPosition,
-					stickyOnClick: true
-				}
-			}
-		],
 		status: {
 			iconName: 'error',
 			getTooltip: {
@@ -69,73 +33,36 @@ class CSCustomDataPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: [
-									'actions={this.state.actions}'
+									'actions={actions}'
 								],
 								component: <CSCustomData
 									value="Toyota"
-									actions={this.state.actions}
+									actions={actions}
 								/>,
 								code: `<CSCustomData
 									value="Toyota"
-									actions={[
-										{
-											action: () => alert('Delete option called'),
-											icon: { iconName: 'delete' },
-											size: 'small' as CSButtonSize,
-											name: 'Delete'
-										},
-										{
-											action: () => alert('Add option called'),
-											icon: { iconName: 'add' },
-											labelHidden: true,
-											size: 'small' as CSButtonSize,
-											name: 'Add',
-											getTooltip: {
-												content: ['actions tooltip'],
-												delay: 300,
-												padding: '0.5rem',
-												position: 'bottom-left' as CSTooltipPosition,
-												stickyOnClick: true,
-											}
-										}
-									]}
+									actions={${actionsCode}}
 								/>`
 							}
 						]
-					},
-					{
+					}, {
 						propName: 'icons',
 						variations: [
 							{
 								primaryVariants: [
-									'icons={this.state.icons}'
+									'icons={icons}'
 								],
 								component: <CSCustomData
 									value="Toyota"
-									icons={this.state.icons}
+									icons={icons}
 								/>,
 								code: `<CSCustomData
 									value="Toyota"
-									icons={[
-										{ iconName: 'cart'},
-										{
-											iconName: 'tag',
-											iconOrigin: 'cs' as CSIconOrigin,
-											getTooltip: {
-												content: ['icons tooltip'],
-												delay: 300,
-												maxWidth: '20rem',
-												padding: '0.5rem',
-												position: 'bottom-left' as CSTooltipPosition,
-												stickyOnClick: true,
-											}
-										}
-									]}
+									icons={${iconsCode}}
 								/>`
 							}
 						]
-					},
-					{
+					}, {
 						propName: 'menuIcon',
 						variations: [
 							{
@@ -151,8 +78,7 @@ class CSCustomDataPreview extends React.Component {
 									value="Toyota"
 									menuIcon="dropdown"
 								/>`
-							},
-							{
+							}, {
 								primaryVariants: [
 									'menuIcon="datepicker"'
 								],
@@ -167,8 +93,7 @@ class CSCustomDataPreview extends React.Component {
 								/>`
 							}
 						]
-					},
-					{
+					}, {
 						propName: 'status',
 						variations: [
 							{
@@ -198,8 +123,7 @@ class CSCustomDataPreview extends React.Component {
 								/>`
 							}
 						]
-					},
-					{
+					}, {
 						propName: 'title',
 						variations: [
 							{
@@ -216,8 +140,7 @@ class CSCustomDataPreview extends React.Component {
 								/>`
 							}
 						]
-					},
-					{
+					}, {
 						propName: 'value',
 						variations: [
 							{

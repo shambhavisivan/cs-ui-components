@@ -1,5 +1,7 @@
 import React from 'react';
-import { CSButtonSize, CSToggle, CSTooltipPosition, CSIconOrigin } from '@cloudsense/cs-ui-components';
+import { CSToggle } from '@cloudsense/cs-ui-components';
+import { actions } from '../helpers/actions';
+import { icons, iconsCode } from '../helpers/icons';
 
 import Preview from '../Preview';
 
@@ -8,47 +10,7 @@ interface CSTogglePreviewState {
 }
 
 class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
-	state = {
-		checked: true,
-		icons: [
-			{ iconName: 'cart'},
-			{
-				iconName: 'tag',
-				iconOrigin: 'cs' as CSIconOrigin,
-				getTooltip: {
-					content: ['icons tooltip'],
-					delay: 300,
-					maxWidth: '20rem',
-					padding: '0.5rem',
-					position: 'bottom-left' as CSTooltipPosition,
-					stickyOnClick: true
-				}
-			}
-		],
-		actions: [
-			{
-				action: () => alert('Delete option called'),
-				labelHidden: true,
-				icon: { iconName: 'delete' },
-				size: 'small' as CSButtonSize,
-				name: 'Delete'
-			},
-			{
-				action: () => alert('Add option called'),
-				icon: { iconName: 'add' },
-				labelHidden: true,
-				size: 'small' as CSButtonSize,
-				name: 'Add',
-				getTooltip: {
-					content: ['actions tooltip'],
-					delay: 300,
-					padding: '0.5rem',
-					position: 'bottom-left' as CSTooltipPosition,
-					stickyOnClick: true
-				}
-			}
-		]
-	};
+	state = { checked: true };
 
 	handleChange = () => alert('Value has been toggled.');
 
@@ -77,37 +39,15 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 						variations: [
 							{
 								primaryVariants: [
-									'actions={this.state.actions}'
+									'actions={actions}'
 								],
 								component: <CSToggle
 									label="This is a label"
-									actions={this.state.actions}
+									actions={actions}
 								/>,
 								code: `<CSToggle
 									label="This is a label"
-									actions={[
-										{
-											action: () => alert('Delete option called'),
-											icon: { iconName: 'delete' },
-											labelHidden: true,
-											size: 'small' as CSButtonSize,
-											name: 'Delete'
-										},
-										{
-											action: () => alert('Add option called'),
-											icon: { iconName: 'add' },
-											labelHidden: true,
-											size: 'small' as CSButtonSize,
-											name: 'Add',
-											getTooltip: {
-												content: ['actions tooltip'],
-												delay: 300,
-												padding: '0.5rem',
-												position: 'bottom-left' as CSTooltipPosition,
-												stickyOnClick: true,
-											}
-										}
-									]}
+									actions={${actions}}
 								/>`
 							}
 						]
@@ -201,29 +141,15 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 						variations: [
 							{
 								primaryVariants: [
-									'icons={this.state.icons}'
+									'icons={icons}'
 								],
 								component: <CSToggle
 									label="This is a label"
-									icons={this.state.icons}
+									icons={icons}
 								/>,
 								code: `<CSToggle
 									label="This is a label"
-									icons={[
-										{ iconName: 'cart'},
-										{
-											iconName: 'tag',
-											iconOrigin: 'cs' as CSIconOrigin,
-											getTooltip: {
-												content: ['icons tooltip'],
-												delay: 300,
-												maxWidth: '20rem',
-												padding: '0.5rem',
-												position: 'bottom-left' as CSTooltipPosition,
-												stickyOnClick: true
-											}
-										}
-									]}
+									icons={${iconsCode}}
 								/>`
 							}
 						]

@@ -1,5 +1,7 @@
 import React from 'react';
-import { CSButtonSize, CSCheckbox, CSTooltipPosition, CSIconOrigin } from '@cloudsense/cs-ui-components';
+import { CSCheckbox } from '@cloudsense/cs-ui-components';
+import { actions, actionsCode } from '../helpers/actions';
+import { icons, iconsCode } from '../helpers/icons';
 
 import Preview from '../Preview';
 
@@ -12,48 +14,6 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 	state: CSCheckboxPreviewState = {
 		checked: true
 	};
-
-	icons = [
-		{ iconName: 'cart' },
-		{
-			iconName: 'tag',
-			iconOrigin: 'cs' as CSIconOrigin,
-			getTooltip: {
-				content: ['icons tooltip'],
-				delay: 300,
-				maxWidth: '20rem',
-				padding: '0.5rem',
-				position: 'bottom-left' as CSTooltipPosition,
-				stickyOnClick: true
-			}
-		}
-	];
-
-	actions = (
-		[
-			{
-				action: () => alert('Delete option called'),
-				labelHidden: true,
-				icon: { iconName: 'delete' },
-				size: 'small' as CSButtonSize,
-				name: 'Delete'
-			},
-			{
-				action: () => alert('Add option called'),
-				icon: { iconName: 'add' },
-				labelHidden: true,
-				size: 'small' as CSButtonSize,
-				name: 'Add',
-				getTooltip: {
-					content: ['actions tooltip'],
-					delay: 300,
-					padding: '0.5rem',
-					position: 'bottom-left' as CSTooltipPosition,
-					stickyOnClick: true
-				}
-			}
-		]
-	);
 
 	handleChange = (event: any) => {
 		this.setState({ onChange: event.target.checked });
@@ -97,41 +57,19 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 						variations: [
 							{
 								primaryVariants: [
-									'actions={this.actions}'
+									'actions={actions}'
 								],
 								component: <CSCheckbox
 									label="Select option"
 									checked={this.state.actions}
 									onChange={(event: any) => this.setState({ actions: event.target.checked })}
-									actions={this.actions}
+									actions={actions}
 								/>,
 								code: `<CSCheckbox
 									label="Select option"
 									checked={this.state.actions}
 									onChange={(event: any) => this.setState({ actions: event.target.checked })}
-									actions={[
-										{
-											action: () => alert('Delete option called'),
-											icon: { iconName: 'delete' },
-											labelHidden: true,
-											size: 'small' as CSButtonSize,
-											name: 'Delete'
-										},
-										{
-											action: () => alert('Add option called'),
-											icon: { iconName: 'add' },
-											labelHidden: true,
-											size: 'small' as CSButtonSize,
-											name: 'Add',
-											getTooltip: {
-												content: ['actions tooltip'],
-												delay: 300,
-												padding: '0.5rem',
-												position: 'bottom-left' as CSTooltipPosition,
-												stickyOnClick: true,
-											}
-										}
-									]}
+									actions={${actionsCode}}
 								/>`
 							}
 						]
@@ -281,33 +219,19 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 						variations: [
 							{
 								primaryVariants: [
-									'icons={this.icons}'
+									'icons={icons}'
 								],
 								component: <CSCheckbox
 									label="Select option"
 									checked={this.state.icons}
 									onChange={(event: any) => this.setState({ icons: event.target.checked })}
-									icons={this.icons}
+									icons={icons}
 								/>,
 								code: `<CSCheckbox
 									label="Select option"
 									checked={this.state.icons}
 									onChange={(event: any) => this.setState({ icons: event.target.checked })}
-									icons={[
-										{ iconName: 'cart'},
-										{
-											iconName: 'tag',
-											iconOrigin: 'cs' as CSIconOrigin,
-											getTooltip: {
-												content: ['icons tooltip'],
-												delay: 300,
-												maxWidth: '20rem',
-												padding: '0.5rem',
-												position: 'bottom-left' as CSTooltipPosition,
-												stickyOnClick: true
-											}
-										}
-									]}
+									icons={${iconsCode}}
 								/>`
 							}
 						]

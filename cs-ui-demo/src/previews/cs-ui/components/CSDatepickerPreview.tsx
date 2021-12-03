@@ -1,51 +1,13 @@
 import React from 'react';
-import { CSButtonSize, CSDatepicker, CSTooltipPosition, CSIconOrigin } from '@cloudsense/cs-ui-components';
+import { CSDatepicker } from '@cloudsense/cs-ui-components';
+import { actions, actionsCode } from '../helpers/actions';
+import { icons, iconsCode } from '../helpers/icons';
 
 import Preview from '../Preview';
 
 interface CSDatepickerPreviewState {
 	[key: string]: Date;
 }
-
-const icons = [
-	{ iconName: 'cart' },
-	{
-		iconName: 'tag',
-		iconOrigin: 'cs' as CSIconOrigin,
-		getTooltip: {
-			content: ['icons tooltip'],
-			delay: 300,
-			maxWidth: '20rem',
-			padding: '0.5rem',
-			position: 'bottom-left' as CSTooltipPosition,
-			stickyOnClick: true
-		}
-	}
-];
-
-const actions = [
-	{
-		action: () => alert('Delete option called'),
-		labelHidden: true,
-		icon: { iconName: 'delete' },
-		size: 'small' as CSButtonSize,
-		name: 'Delete'
-	},
-	{
-		action: () => alert('Add option called'),
-		icon: { iconName: 'add' },
-		labelHidden: true,
-		size: 'small' as CSButtonSize,
-		name: 'Add',
-		getTooltip: {
-			content: ['actions tooltip'],
-			delay: 300,
-			padding: '0.5rem',
-			position: 'bottom-left' as CSTooltipPosition,
-			stickyOnClick: true
-		}
-	}
-];
 
 class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> {
 	stateSuffix: string = '';
@@ -133,29 +95,7 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 									width="30rem"
 								/>,
 								code: `<CSDatepicker
-									actions={[
-										{
-											action: () => alert('Delete option called'),
-											icon: { iconName: 'delete' },
-											labelHidden: true,
-											size: 'small' as CSButtonSize,
-											name: 'Delete'
-										},
-										{
-											action: () => alert('Add option called'),
-											icon: { iconName: 'add' },
-											labelHidden: true,
-											size: 'small' as CSButtonSize,
-											name: 'Add',
-											getTooltip: {
-												content: ['actions tooltip'],
-												delay: 300,
-												padding: '0.5rem',
-												position: 'bottom-left' as CSTooltipPosition,
-												stickyOnClick: true,
-											}
-										}
-									]}
+									actions={${actionsCode}}
 									label="Enter date"
 									selected={this.state.dateActions}
 									onChange={(date: Date) => this.setDate(date, 'Actions')}
@@ -429,21 +369,7 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 									width="30rem"
 								/>,
 								code: `<CSDatepicker
-									icons={[
-										{ iconName: 'cart'},
-										{
-											iconName: 'tag',
-											iconOrigin: 'cs' as CSIconOrigin,
-											getTooltip: {
-												content: ['icons tooltip'],
-												delay: 300,
-												maxWidth: '20rem',
-												padding: '0.5rem',
-												position: 'bottom-left' as CSTooltipPosition,
-												stickyOnClick: true
-											}
-										}
-									]}
+									icons={${iconsCode}}
 									label="Enter date"
 									selected={this.state.dateIcons}
 									onChange={(date: Date) => this.setDate(date, 'Icons')}

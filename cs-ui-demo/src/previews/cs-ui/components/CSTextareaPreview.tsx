@@ -1,5 +1,7 @@
 import React from 'react';
-import { CSButtonSize, CSTextarea, CSTooltipPosition, CSIconOrigin } from '@cloudsense/cs-ui-components';
+import { CSTextarea } from '@cloudsense/cs-ui-components';
+import { actions, actionsCode } from '../helpers/actions';
+import { icons, iconsCode } from '../helpers/icons';
 import Preview from '../Preview';
 
 interface CSTextareaPreviewState {
@@ -7,47 +9,7 @@ interface CSTextareaPreviewState {
 }
 
 class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
-	state = {
-		value: '',
-		icons: [
-			{ iconName: 'cart'},
-			{
-				iconName: 'tag',
-				iconOrigin: 'cs' as CSIconOrigin,
-				getTooltip: {
-					content: ['icons tooltip'],
-					delay: 300,
-					maxWidth: '20rem',
-					padding: '0.5rem',
-					position: 'bottom-left' as CSTooltipPosition,
-					stickyOnClick: true
-				}
-			}
-		],
-		actions: [
-			{
-				action: () => alert('Delete option called'),
-				labelHidden: true,
-				icon: { iconName: 'delete' },
-				size: 'small' as CSButtonSize,
-				name: 'Delete'
-			},
-			{
-				action: () => alert('Add option called'),
-				icon: { iconName: 'add' },
-				labelHidden: true,
-				size: 'small' as CSButtonSize,
-				name: 'Add',
-				getTooltip: {
-					content: ['actions tooltip'],
-					delay: 300,
-					padding: '0.5rem',
-					position: 'bottom-left' as CSTooltipPosition,
-					stickyOnClick: true
-				}
-			}
-		]
- 	};
+	state = { value: '' };
 
 	handleChange = () => alert('Value has changed.');
 
@@ -76,37 +38,15 @@ class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
 						variations: [
 							{
 								primaryVariants: [
-									'actions={this.state.actions}'
+									'actions={actions}'
 								],
 								component: <CSTextarea
 									label="Enter value"
-									actions={this.state.actions}
+									actions={actions}
 								/>,
 								code: `<CSTextarea
 									label="Enter value"
-									actions={[
-										{
-											action: () => alert('Delete option called'),
-											icon: { iconName: 'delete' },
-											labelHidden: true,
-											size: 'small' as CSButtonSize,
-											name: 'Delete'
-										},
-										{
-											action: () => alert('Add option called'),
-											icon: { iconName: 'add' },
-											labelHidden: true,
-											size: 'small' as CSButtonSize,
-											name: 'Add',
-											getTooltip: {
-												content: ['actions tooltip'],
-												delay: 300,
-												padding: '0.5rem',
-												position: 'bottom-left' as CSTooltipPosition,
-												stickyOnClick: true,
-											}
-										}
-									]}
+									actions={${actionsCode}}
 								/>`
 							}
 						]
@@ -200,29 +140,15 @@ class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
 						variations: [
 							{
 								primaryVariants: [
-									'icons={this.state.icons}'
+									'icons={icons}'
 								],
 								component: <CSTextarea
 									label="Enter value"
-									icons={this.state.icons}
+									icons={icons}
 								/>,
 								code: `<CSTextarea
 									label="Enter value"
-									icons={[
-										{ iconName: 'cart'},
-										{
-											iconName: 'tag',
-											iconOrigin: 'cs' as CSIconOrigin,
-											getTooltip: {
-												content: ['icons tooltip'],
-												delay: 300,
-												maxWidth: '20rem',
-												padding: '0.5rem',
-												position: 'bottom-left' as CSTooltipPosition,
-												stickyOnClick: true
-											}
-										}
-									]}
+									icons={${iconsCode}}
 								/>`
 							}
 						]
@@ -233,7 +159,6 @@ class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
 								primaryVariants: 'labelHidden={true}',
 								component: <CSTextarea label="Enter message" labelHidden />,
 								code: '<CSTextarea label="Enter message" labelHidden />'
-
 							}
 						]
 					}, {
@@ -253,8 +178,7 @@ class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
 								quickLink: '200px',
 								component: <CSTextarea label="Enter message" maxHeight="200px" />,
 								code: '<CSTextarea label="Enter message" maxHeight="200px" />'
-							},
-							{
+							}, {
 								primaryVariants: 'maxHeight="5rem"',
 								quickLink: '5rem',
 								component: <CSTextarea label="Enter message" maxHeight="5rem" />,
@@ -296,8 +220,7 @@ class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
 									readOnly
 									value="value"
 								/>`
-							},
-							{
+							}, {
 								primaryVariants: 'readOnly={true}',
 								component: <CSTextarea
 									label="Enter message"

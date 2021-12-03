@@ -1,5 +1,7 @@
 import React from 'react';
-import { CSButtonSize, CSLookup, CSTooltipPosition, CSIconOrigin } from '@cloudsense/cs-ui-components';
+import { CSLookup } from '@cloudsense/cs-ui-components';
+import { actions, actionsCode } from '../helpers/actions';
+import { icons, iconsCode } from '../helpers/icons';
 
 import Preview from '../Preview';
 
@@ -43,47 +45,7 @@ const options = [
 ];
 
 class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
-	state = {
-		focused: false,
-		icons: [
-			{ iconName: 'cart' },
-			{
-				iconName: 'tag',
-				iconOrigin: 'cs' as CSIconOrigin,
-				getTooltip: {
-					content: ['icons tooltip'],
-					delay: 300,
-					maxWidth: '20rem',
-					padding: '0.5rem',
-					position: 'bottom-left' as CSTooltipPosition,
-					stickyOnClick: true
-				}
-			}
-		],
-		actions: [
-			{
-				action: () => alert('Delete option called'),
-				labelHidden: true,
-				icon: { iconName: 'delete' },
-				size: 'small' as CSButtonSize,
-				name: 'Delete'
-			},
-			{
-				action: () => alert('Add option called'),
-				icon: { iconName: 'add' },
-				labelHidden: true,
-				size: 'small' as CSButtonSize,
-				name: 'Add',
-				getTooltip: {
-					content: ['actions tooltip'],
-					delay: 300,
-					padding: '0.5rem',
-					position: 'bottom-left' as CSTooltipPosition,
-					stickyOnClick: true
-				}
-			}
-		]
-	};
+	state = { focused: false };
 
 	handleBlur = () => alert('Lookup has lost focus.');
 	handleFocus = () => {
@@ -196,7 +158,7 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 						variations: [
 							{
 								primaryVariants: [
-									'actions={this.state.actions}'
+									'actions={actions}'
 								],
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
@@ -205,7 +167,7 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 									columns={columns}
 									mode="client"
 									multiselect
-									actions={this.state.actions}
+									actions={actions}
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
@@ -213,29 +175,7 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 									options={options}
 									columns={columns}
 									mode="client"
-									actions={[
-										{
-											action: () => alert('Delete option called'),
-											labelHidden: true,
-											icon: { iconName: 'delete' },
-											size: 'small' as CSButtonSize,
-											name: 'Delete'
-										},
-										{
-											action: () => alert('Add option called'),
-											icon: { iconName: 'add' },
-											labelHidden: true,
-											size: 'small' as CSButtonSize,
-											name: 'Add',
-											getTooltip: {
-												content: ['actions tooltip'],
-												delay: 300,
-												padding: '0.5rem',
-												position: 'bottom-left' as CSTooltipPosition,
-												stickyOnClick: true
-											}
-										}
-									]}
+									actions={${actionsCode}}
 								/>`
 							}
 						]
@@ -550,7 +490,7 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 						variations: [
 							{
 								primaryVariants: [
-									'icons={this.state.icons}'
+									'icons={icons}'
 								],
 								component: <CSLookup
 									fieldToBeDisplayed="Account"
@@ -558,7 +498,7 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 									options={options}
 									columns={columns}
 									mode="client"
-									icons={this.state.icons}
+									icons={icons}
 								/>,
 								code: `<CSLookup
 									fieldToBeDisplayed="Account"
@@ -566,21 +506,7 @@ class CSLookupPreview extends React.Component<{}, CSLookupPreviewState> {
 									options={options}
 									columns={columns}
 									mode="client"
-									icons={[
-										{ iconName: 'cart'},
-										{
-											iconName: 'tag',
-											iconOrigin: 'cs' as CSIconOrigin,
-											getTooltip: {
-												content: ['icons tooltip'],
-												delay: 300,
-												maxWidth: '20rem',
-												padding: '0.5rem',
-												position: 'bottom-left' as CSTooltipPosition,
-												stickyOnClick: true
-											}
-										}
-									]}
+									icons={${iconsCode}}
 								/>`
 							}
 						]
