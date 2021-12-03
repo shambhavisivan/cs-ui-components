@@ -72,7 +72,7 @@ const CSCardHeader = ({
 					size="small"
 					iconName="chevronright"
 					iconRotate={expanded ? 90 : null}
-					className="cs-card-button"
+					className="cs-card-toggle-btn"
 					onClick={() => setExpanded((prevExpanded: boolean) => !prevExpanded)}
 				/>
 			) : null}

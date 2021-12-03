@@ -63,7 +63,7 @@ describe('<CSCardHeader />', () => {
 		// Make sure belonging class exists on CSCardHeader
 		expect(uut.find('.cs-card-header-collapsible')).toHaveLength(1);
 		// Make sure it is collapsible by ensuring header toggle button exists
-		expect(uut.find('.cs-card-header > .cs-card-button')).toHaveLength(1);
+		expect(uut.find('.cs-card-header > .cs-card-toggle-btn')).toHaveLength(1);
 	});
 
 	it('should make card header closed by default', () => {

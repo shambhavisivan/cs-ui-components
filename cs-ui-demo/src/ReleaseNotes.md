@@ -12,6 +12,8 @@
 * CSButton
   * removed icon darken while hovering on `btnStyle="brand"`
   * fixed iconPosition and size props alignment issue
+* CSCard
+  * renamed `cs-card-button` class to `cs-card-toggle-btn` in `CSCardHeader`
 * CSCheckbox
   * Limited stopPropagation to only enter and space keys
 * CSCustomSelect
