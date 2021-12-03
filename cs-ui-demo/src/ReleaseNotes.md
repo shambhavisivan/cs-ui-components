@@ -31,6 +31,8 @@
   * added `hidden` prop
 * CSSection
   * replaced collapsible button with `CSButton`
+* CSSidebar
+  * set `expanded` prop to be `false` by default
 * CSTextarea
   * added expand button when `readonly={true}` and content is larger than field
 * CSTooltip

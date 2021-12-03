@@ -13,14 +13,14 @@ describe('<CSSidebar />', () => {
 				<CSSidebarTab title={sidebarTitle} />
 			</CSSidebar>,
 		);
-		const defaultSidebar = uut.find('.cs-sidebar.cs-sidebar-wrapper-left:not(.cs-sidebar-closed):not(.cs-sidebar-multiple-tabs)');
+		const defaultSidebar = uut.find('.cs-sidebar.cs-sidebar-wrapper-left.cs-sidebar-closed:not(.cs-sidebar-multiple-tabs)');
 		// Should have default values for props multipleTabs, expanded, opensTo
 		expect(defaultSidebar).toHaveLength(1);
 	});
 
 	it('should render closed sidebar', () => {
 		const uut = shallow(
-			<CSSidebar expanded={false}>
+			<CSSidebar>
 				<CSSidebarTab title={sidebarTitle} />
 			</CSSidebar>,
 		);
@@ -56,7 +56,7 @@ describe('<CSSidebar />', () => {
 	it('should trigger function passed to onToggle by clicking on toggle button', () => {
 		const handleOnToggle = jest.fn();
 		const uut = shallow(
-			<CSSidebar onToggle={handleOnToggle}>
+			<CSSidebar onToggle={handleOnToggle} expanded>
 				<CSSidebarTab title={sidebarTitle} />
 			</CSSidebar>,
 		);
@@ -129,7 +129,7 @@ describe('<CSSidebar />', () => {
 	it('should make sidebar to not be expandable by click on whole sidebar and not have belonging class', () => {
 		const handleOnToggle = jest.fn();
 		const uut = shallow(
-			<CSSidebar wholeSidebarClickable={false} expanded={false} onToggle={handleOnToggle}>
+			<CSSidebar wholeSidebarClickable={false} onToggle={handleOnToggle}>
 				<CSSidebarTab title={sidebarTitle} />
 			</CSSidebar>,
 		);
@@ -142,7 +142,7 @@ describe('<CSSidebar />', () => {
 	it('should make sidebar to be expandable by click on toggle button', () => {
 		const handleOnToggle = jest.fn();
 		const uut = shallow(
-			<CSSidebar wholeSidebarClickable={false} expanded={false} onToggle={handleOnToggle}>
+			<CSSidebar wholeSidebarClickable={false} onToggle={handleOnToggle}>
 				<CSSidebarTab title={sidebarTitle} />
 			</CSSidebar>,
 		);
@@ -154,7 +154,7 @@ describe('<CSSidebar />', () => {
 	it('should have belonging class and make sidebar expandable by click on whole sidebar', () => {
 		const handleOnToggle = jest.fn();
 		const uut = shallow(
-			<CSSidebar wholeSidebarClickable expanded={false} onToggle={handleOnToggle}>
+			<CSSidebar wholeSidebarClickable onToggle={handleOnToggle}>
 				<CSSidebarTab title={sidebarTitle} />
 			</CSSidebar>,
 		);
@@ -169,7 +169,7 @@ describe('<CSSidebar />', () => {
 	it('should prevent toggle button click because it already propagates from sidebar element', () => {
 		const handleOnToggle = jest.fn();
 		const uut = shallow(
-			<CSSidebar wholeSidebarClickable expanded={false} onToggle={handleOnToggle}>
+			<CSSidebar wholeSidebarClickable onToggle={handleOnToggle}>
 				<CSSidebarTab title={sidebarTitle} />
 			</CSSidebar>,
 		);
@@ -204,7 +204,7 @@ describe('<CSSidebar />', () => {
 describe('<CSSidebarTab />', () => {
 	it('should render title on sidebar tab', () => {
 		const uut = shallow(
-			<CSSidebar>
+			<CSSidebar expanded>
 				<CSSidebarTab title={sidebarTitle} />
 			</CSSidebar>,
 		);
@@ -216,7 +216,7 @@ describe('<CSSidebarTab />', () => {
 		// Sidebar needs to be closed to show tab icon because when expanded button always uses close icon
 		const iconNameValue = 'activity';
 		const uut = shallow(
-			<CSSidebar expanded={false}>
+			<CSSidebar>
 				<CSSidebarTab title={sidebarTitle} iconName={iconNameValue} />
 			</CSSidebar>,
 		);
@@ -229,7 +229,7 @@ describe('<CSSidebarTab />', () => {
 		// Sidebar needs to be closed to show tab icon because when expanded button always uses close icon
 		const iconOriginValue = 'cs';
 		const uut = shallow(
-			<CSSidebar expanded={false}>
+			<CSSidebar>
 				<CSSidebarTab title={sidebarTitle} iconOrigin={iconOriginValue} />
 			</CSSidebar>,
 		);
@@ -242,7 +242,7 @@ describe('<CSSidebarTab />', () => {
 		// Sidebar needs to be closed to show tab icon because when expanded button uses close icon
 		const iconNameValue = 'activity';
 		const uut = shallow(
-			<CSSidebar multipleTabs expanded={false}>
+			<CSSidebar multipleTabs>
 				<CSSidebarTab title={sidebarTitle} iconName={iconNameValue} />
 			</CSSidebar>,
 		);
@@ -255,7 +255,7 @@ describe('<CSSidebarTab />', () => {
 		// Sidebar needs to be closed to show tab icon because when expanded button uses close icon
 		const iconOriginValue = 'cs';
 		const uut = shallow(
-			<CSSidebar multipleTabs expanded={false}>
+			<CSSidebar multipleTabs>
 				<CSSidebarTab title={sidebarTitle} iconOrigin={iconOriginValue} />
 			</CSSidebar>,
 		);
@@ -277,7 +277,7 @@ describe('<CSSidebarTab />', () => {
 	it('should set sidebar tab padding', () => {
 		const tabPaddingValue = '2rem';
 		const uut = shallow(
-			<CSSidebar>
+			<CSSidebar expanded>
 				<CSSidebarTab title={sidebarTitle} tabPadding={tabPaddingValue} />
 			</CSSidebar>,
 		);
@@ -299,7 +299,7 @@ describe('<CSSidebarTab />', () => {
 	it('should set sidebar tab subtitle', () => {
 		const subtitle = 'subtitle';
 		const uut = shallow(
-			<CSSidebar>
+			<CSSidebar expanded>
 				<CSSidebarTab title={sidebarTitle} subtitle={subtitle} />
 			</CSSidebar>,
 		);
@@ -310,7 +310,7 @@ describe('<CSSidebarTab />', () => {
 	it('should set custom ID on sidebar tab', () => {
 		const customId = 'custom-id';
 		const uut = shallow(
-			<CSSidebar>
+			<CSSidebar expanded>
 				<CSSidebarTab title={sidebarTitle} id={customId} />
 			</CSSidebar>,
 		);
@@ -321,7 +321,7 @@ describe('<CSSidebarTab />', () => {
 	it('should set custom class on sidebar tab', () => {
 		const customClass = 'custom-class';
 		const uut = shallow(
-			<CSSidebar>
+			<CSSidebar expanded>
 				<CSSidebarTab title={sidebarTitle} className={customClass} />
 			</CSSidebar>,
 		);
@@ -331,7 +331,7 @@ describe('<CSSidebarTab />', () => {
 
 	it('should display custom children', () => {
 		const uut = shallow(
-			<CSSidebar>
+			<CSSidebar expanded>
 				<CSSidebarTab title={sidebarTitle}>
 					<div className="custom-content" />
 				</CSSidebarTab>

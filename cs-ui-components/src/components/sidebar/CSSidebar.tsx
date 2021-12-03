@@ -21,7 +21,7 @@ export interface CSSidebarProps {
 const CSSidebar = ({
 	children,
 	className,
-	expanded = true,
+	expanded = false,
 	height,
 	id,
 	multipleTabs = false,

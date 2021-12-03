@@ -59,12 +59,12 @@ class CSSidebarPreview extends React.Component<{}, CSSidebarPreviewState> {
 							{
 								primaryVariants: 'expanded={true}',
 								quickLink: 'true',
-								component: <CSSidebar>
+								component: <CSSidebar expanded>
 									<CSSidebarTab title="Expanded Sidebar">
 										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>,
-								code: `<CSSidebar>
+								code: `<CSSidebar expanded>
 									<CSSidebarTab title="Expanded Sidebar">
 										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
@@ -72,12 +72,12 @@ class CSSidebarPreview extends React.Component<{}, CSSidebarPreviewState> {
 							}, {
 								primaryVariants: 'expanded={false}',
 								quickLink: 'false',
-								component: <CSSidebar expanded={false}>
+								component: <CSSidebar>
 									<CSSidebarTab title="Collapsed Sidebar">
 										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
 								</CSSidebar>,
-								code: `<CSSidebar expanded={false}>
+								code: `<CSSidebar>
 									<CSSidebarTab title="Collapsed Sidebar">
 										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, voluptate!</span>
 									</CSSidebarTab>
@@ -479,7 +479,7 @@ class CSSidebarPreview extends React.Component<{}, CSSidebarPreviewState> {
 				properties: [
 					{
 						name: 'expanded',
-						default: 'true',
+						default: 'false',
 						types: 'boolean',
 						description: 'Set whether the sidebar should be expanded or collapsed.'
 					}, {
