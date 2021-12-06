@@ -71,7 +71,7 @@ describe('<CSCardHeader />', () => {
 		expect(uut.find('.cs-card-header-collapsible.cs-card-header-collapsed')).toHaveLength(1);
 	});
 
-	it('should pass correct iconColor value to CSIcon', () => {
+	it('should pass iconColor to CSIcon', () => {
 		const iconColorValue = 'red';
 		const uut = shallow(<CSCardHeader iconName="description" iconColor={iconColorValue} />);
 		const cardHeaderIcon = uut.find('.cs-card-header-icon > CSIcon');
@@ -84,17 +84,15 @@ describe('<CSCardHeader />', () => {
 		expect(cardHeaderIcon.prop('frame')).toBeTruthy();
 	});
 
-	it('should pass correct iconName to CSIcon', () => {
+	it('should pass iconName to CSIcon', () => {
 		const uut = shallow(<CSCardHeader iconName={iconNameValue} />);
 		const cardHeaderIcon = uut.find('.cs-card-header-icon > CSIcon');
-		// Make sure the icon is from the slds pack
 		expect(cardHeaderIcon.prop('name')).toBe(iconNameValue);
 	});
 
-	it('should pass correct iconOrigin to CSIcon', () => {
+	it('should pass iconOrigin to CSIcon', () => {
 		const uut = shallow(<CSCardHeader iconName={iconNameValue} iconOrigin={iconOriginValue} />);
 		const cardHeaderIcon = uut.find('.cs-card-header-icon > CSIcon');
-		// Make sure the icon is from the slds pack
 		expect(cardHeaderIcon.prop('origin')).toBe(iconOriginValue);
 	});
 

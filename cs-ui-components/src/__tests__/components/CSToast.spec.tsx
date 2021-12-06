@@ -41,20 +41,21 @@ describe('<CSToast />', () => {
 		expect(uut.find('.cs-toast-text > .cs-toast-detail').text()).toContain(detail);
 	});
 
-	it('should have SLDS quote icon by passing correct values to CSIcon origin and name props', () => {
-		const uut = shallow(<CSToast variant="info" iconName="quote" iconOrigin="slds" />);
+	it('should pass iconName to CSIcon', () => {
+		const iconNameValue = 'quote';
+		const uut = shallow(<CSToast variant="info" iconName={iconNameValue} />);
 		const icon = uut.find('.cs-toast.cs-toast-info > CSIcon');
 		expect(icon).toHaveLength(1);
-		expect(icon.prop('origin')).toBe('slds');
-		expect(icon.prop('name')).toBe('quote');
+		expect(icon.prop('name')).toBe(iconNameValue);
 	});
 
-	it('should have CS big shot icon by passing correct values to CSIcon origin and name props', () => {
-		const uut = shallow(<CSToast variant="info" iconName="big_shot" iconOrigin="cs" />);
+	it('should pass iconName to CSIcon', () => {
+		const iconNameValue = 'big_shot';
+		const iconOriginCSValue = 'cs';
+		const uut = shallow(<CSToast variant="info" iconName={iconNameValue} iconOrigin={iconOriginCSValue} />);
 		const icon = uut.find('.cs-toast.cs-toast-info > CSIcon');
 		expect(icon).toHaveLength(1);
-		expect(icon.prop('origin')).toBe('cs');
-		expect(icon.prop('name')).toBe('big_shot');
+		expect(icon.prop('origin')).toBe(iconOriginCSValue);
 	});
 
 	it('should not have an icon', () => {

@@ -212,7 +212,7 @@ describe('<CSSidebarTab />', () => {
 		expect(sidebarTab.text()).toBe(sidebarTitle);
 	});
 
-	it('should pass correct iconName value to toggle button', () => {
+	it('should pass iconName to toggle CSButton', () => {
 		// Sidebar needs to be closed to show tab icon because when expanded button always uses close icon
 		const iconNameValue = 'activity';
 		const uut = shallow(
@@ -225,7 +225,7 @@ describe('<CSSidebarTab />', () => {
 		expect(sidebarToggleBtn.prop('iconName')).toBe(iconNameValue);
 	});
 
-	it('should pass correct iconOrigin value to toggle button', () => {
+	it('should pass iconOrigin to toggle CSButton', () => {
 		// Sidebar needs to be closed to show tab icon because when expanded button always uses close icon
 		const iconOriginValue = 'cs';
 		const uut = shallow(
@@ -238,7 +238,7 @@ describe('<CSSidebarTab />', () => {
 		expect(sidebarToggleBtn.prop('iconOrigin')).toBe(iconOriginValue);
 	});
 
-	it('should pass correct iconName value to toggle button in multipleTab variant', () => {
+	it('should pass iconName to toggle CSButton in multipleTab variant', () => {
 		// Sidebar needs to be closed to show tab icon because when expanded button uses close icon
 		const iconNameValue = 'activity';
 		const uut = shallow(
@@ -251,7 +251,7 @@ describe('<CSSidebarTab />', () => {
 		expect(sidebarTabBtn.prop('iconName')).toBe(iconNameValue);
 	});
 
-	it('should pass correct iconOrigin value to toggle button in multipleTab variant', () => {
+	it('should pass iconOrigin to toggle CSButton in multipleTab variant', () => {
 		// Sidebar needs to be closed to show tab icon because when expanded button uses close icon
 		const iconOriginValue = 'cs';
 		const uut = shallow(

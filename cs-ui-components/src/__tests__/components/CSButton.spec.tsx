@@ -5,7 +5,7 @@ import '../../setupTests';
 import CSButton from '../../components/CSButton';
 
 const label = 'button label';
-const iconName = 'activity';
+const iconNameValue = 'activity';
 const link = 'https://cloudsense.com';
 
 describe('<CSButton />', () => {
@@ -106,18 +106,18 @@ describe('<CSButton />', () => {
 	});
 
 	it('should pass iconName to CSIcon', () => {
-		const uut = shallow(<CSButton label={label} iconName={iconName} />).dive();
+		const uut = shallow(<CSButton label={label} iconName={iconNameValue} />).dive();
 		const buttonIcon = uut.find('CSIcon');
 		expect(buttonIcon).toHaveLength(1);
-		expect(buttonIcon.prop('name')).toBe(iconName);
+		expect(buttonIcon.prop('name')).toBe(iconNameValue);
 	});
 
 	it('should pass iconOrigin to CSIcon', () => {
-		const iconOrigin = 'cs';
-		const iconNameCS = 'action';
-		const uut = shallow(<CSButton label={label} iconOrigin={iconOrigin} iconName={iconNameCS} />).dive();
+		const iconOriginValue = 'cs';
+		const iconNameCSValue = 'action';
+		const uut = shallow(<CSButton label={label} iconOrigin={iconOriginValue} iconName={iconNameCSValue} />).dive();
 		const buttonIcon = uut.find('CSIcon');
-		expect(buttonIcon.prop('origin')).toBe(iconOrigin);
+		expect(buttonIcon.prop('origin')).toBe(iconOriginValue);
 	});
 
 	it('should left-position the icon inside the button', () => {
@@ -134,14 +134,14 @@ describe('<CSButton />', () => {
 
 	it('should pass iconRotate to CSIcon', () => {
 		const iconRotate = 90;
-		const uut = shallow(<CSButton label={label} iconName={iconName} iconRotate={iconRotate} />).dive();
+		const uut = shallow(<CSButton label={label} iconName={iconNameValue} iconRotate={iconRotate} />).dive();
 		const buttonIcon = uut.find('CSIcon');
 		expect(buttonIcon.prop('rotate')).toBe(iconRotate);
 	});
 
 	it('should pass iconSize to CSIcon', () => {
 		const iconSize = '3rem';
-		const uut = shallow(<CSButton label={label} iconName={iconName} iconSize={iconSize} />).dive();
+		const uut = shallow(<CSButton label={label} iconName={iconNameValue} iconSize={iconSize} />).dive();
 		const buttonIcon = uut.find('CSIcon');
 		expect(buttonIcon.prop('size')).toBe(iconSize);
 	});

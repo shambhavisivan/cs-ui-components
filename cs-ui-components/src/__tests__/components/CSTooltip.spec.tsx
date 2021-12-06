@@ -102,33 +102,27 @@ describe('<CSTooltip />', () => {
 		expect(tooltip.props().style).toHaveProperty('--cs-tooltip-height', tooltipHeight);
 	});
 
-	it('should pass correct iconColor value to CSIcon', () => {
-		const tooltipIconColor = 'rgb(74, 38, 171)';
-		const uut = shallow(<CSTooltip content={tooltipContent} iconColor={tooltipIconColor} />);
+	it('should pass iconColor to CSIcon', () => {
+		const iconColorValue = 'rgb(74, 38, 171)';
+		const uut = shallow(<CSTooltip content={tooltipContent} iconColor={iconColorValue} />);
 		const tooltipIcon = uut.find('.cs-tooltip-wrapper.cs-tw-icon-c > CSIcon');
-		expect(tooltipIcon.prop('color')).toBe(tooltipIconColor);
+		expect(tooltipIcon.prop('color')).toBe(iconColorValue);
 	});
 
-	it('should set CSIcon iconOrigin value to slds', () => {
-		const tooltipIconOrigin = 'slds';
-		const uut = shallow(<CSTooltip content={tooltipContent} iconOrigin={tooltipIconOrigin} />);
+	it('should pass iconName to CSIcon', () => {
+		const iconNameValue = 'apps';
+		const uut = shallow(<CSTooltip content={tooltipContent} iconName={iconNameValue} />);
 		const tooltipIcon = uut.find('.cs-tooltip-wrapper > CSIcon');
-		expect(tooltipIcon.prop('origin')).toBe(tooltipIconOrigin);
+		expect(tooltipIcon.prop('name')).toBe(iconNameValue);
 	});
 
-	it('should set CSIcon iconOrigin value to cs', () => {
-		const tooltipIconOrigin = 'cs';
-		const uut = shallow(<CSTooltip content={tooltipContent} iconOrigin={tooltipIconOrigin} />);
+	it('should pass iconOrigin to CSIcon', () => {
+		const iconOriginValue = 'slds';
+		const uut = shallow(<CSTooltip content={tooltipContent} iconOrigin={iconOriginValue} />);
 		const tooltipIcon = uut.find('.cs-tooltip-wrapper > CSIcon');
-		expect(tooltipIcon.prop('origin')).toBe(tooltipIconOrigin);
+		expect(tooltipIcon.prop('origin')).toBe(iconOriginValue);
 	});
 
-	it('should render tooltip with correct icon name', () => {
-		const tooltipIconName = 'apps';
-		const uut = shallow(<CSTooltip content={tooltipContent} iconName={tooltipIconName} />);
-		const tooltipIcon = uut.find('.cs-tooltip-wrapper > CSIcon');
-		expect(tooltipIcon.prop('name')).toBe(tooltipIconName);
-	});
 	it('should set correct size prop of CSIcon if iconSize is small', () => {
 		const uut = shallow(<CSTooltip content={tooltipContent} iconSize="small" />);
 		const tooltipIcon = uut.find('.cs-tooltip-wrapper > CSIcon');
