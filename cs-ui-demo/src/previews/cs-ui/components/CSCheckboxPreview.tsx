@@ -295,6 +295,7 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 						variations: [
 							{
 								primaryVariants: 'labelPosition="left"',
+								quickLink: 'left',
 								component: <CSCheckbox
 									label="Select option"
 									labelPosition="left"
@@ -307,9 +308,9 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 									checked={this.state.checked}
 									onChange={(event: any) => this.setState({ checked: event.target.checked })}
 								/>`
-							},
-							{
+							}, {
 								primaryVariants: 'labelPosition="right"',
+								quickLink: 'right',
 								component: <CSCheckbox
 									label="Select option"
 									labelPosition="right"
