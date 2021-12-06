@@ -88,7 +88,7 @@ const CSCustomSelect = ({
 	tooltipPosition,
 	...rest
 }: CSCustomSelectProps) => {
-	const { current: uniqueId } = useRef(uuidv4());
+	const { current: uniqueId } = useRef(id || uuidv4());
 	const customSelectInputWrapperRef = useRef(null);
 	const customSelectInputRef = useRef(null);
 	const customSelectDropdownRef = useRef(null);

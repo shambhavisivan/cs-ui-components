@@ -172,7 +172,9 @@ describe('<CSSelect />', () => {
 		const customId = 'custom-id';
 		const uut = shallow(<CSSelect label={labelValue} id={customId} />);
 		const selectField = uut.find(`.cs-select#${customId}`);
+		const selectLabelHtmlFor = uut.find('CSLabel').props().htmlFor;
 		expect(selectField).toHaveLength(1);
+		expect(selectLabelHtmlFor).toBe(customId);
 	});
 
 	it('should render select options', () => {

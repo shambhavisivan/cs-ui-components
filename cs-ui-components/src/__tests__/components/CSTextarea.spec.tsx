@@ -204,6 +204,8 @@ describe('<CSTextarea />', () => {
 		const customId = 'custom-id';
 		const uut = shallow(<CSTextarea label={labelValue} id={customId} />);
 		const textarea = uut.find(`.cs-textarea#${customId}`);
+		const textareaLabelHtmlFor = uut.find('CSLabel').props().htmlFor;
 		expect(textarea).toHaveLength(1);
+		expect(textareaLabelHtmlFor).toBe(customId);
 	});
 });

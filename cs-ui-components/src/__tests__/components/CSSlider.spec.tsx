@@ -153,6 +153,8 @@ describe('<CSSlider />', () => {
 		const customId = 'custom-id';
 		const uut = shallow(<CSSlider label="Select value" id={customId} />);
 		const sliderGroup = uut.find('.cs-slider-wrapper > .cs-slider-group');
+		const sliderLabelHtmlFor = uut.find('CSLabel').props().htmlFor;
 		expect(sliderGroup.find(`.cs-slider#${customId}`)).toHaveLength(1);
+		expect(sliderLabelHtmlFor).toBe(customId);
 	});
 });

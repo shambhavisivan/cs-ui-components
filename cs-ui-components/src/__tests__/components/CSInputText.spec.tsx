@@ -187,5 +187,7 @@ it('should set custom id', () => {
 	const id = 'custom-id';
 	const uut = shallow(<CSInputText label={label} id={id} />);
 	const inputText = uut.find('.cs-input-text');
+	const inputTextLabelHtmlFor = uut.find('CSLabel').props().htmlFor;
 	expect(inputText.prop('id')).toBe(id);
+	expect(inputTextLabelHtmlFor).toBe(id);
 });

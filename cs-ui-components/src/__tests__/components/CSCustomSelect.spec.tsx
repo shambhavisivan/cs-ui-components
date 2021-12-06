@@ -283,7 +283,9 @@ describe('<CSCustomSelect />', () => {
 		const customId = 'custom-id';
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} id={customId} />).dive();
 		const element = uut.find(`.cs-custom-select-wrapper#${customId}`);
+		const customSelectLabelHtmlFor = uut.find('CSLabel').props().htmlFor;
 		expect(element).toHaveLength(1);
+		expect(customSelectLabelHtmlFor).toBe(customId);
 	});
 });
 

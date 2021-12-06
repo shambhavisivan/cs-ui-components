@@ -157,6 +157,8 @@ describe('<CSToggle />', () => {
 		const customId = 'custom-id';
 		const uut = shallow(<CSToggle label={labelValue} id={customId} />);
 		const toggle = uut.find(`.cs-toggle#${customId}`);
+		const toggleLabelHtmlFor = uut.find('CSLabel').props().htmlFor;
 		expect(toggle).toHaveLength(1);
+		expect(toggleLabelHtmlFor).toBe(customId);
 	});
 });

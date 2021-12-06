@@ -576,6 +576,8 @@ describe('<CSDatepicker />', () => {
 			/>,
 		);
 		const datepicker = uut.find(DatePicker);
+		const datepickerLabelHtmlFor = uut.find('CSLabel').props().htmlFor;
 		expect(datepicker.prop('id')).toBe(customId);
+		expect(datepickerLabelHtmlFor).toBe(customId);
 	});
 });
