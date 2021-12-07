@@ -52,7 +52,7 @@
 		padding-right: var(--cs-textarea-options-spacing-value, 0.75rem);
 
 		&:read-only {
-			padding: 0;
+			padding: 0 var(--cs-textarea-options-spacing-value, 0) 0 0;
 			resize: none;
 			overflow: hidden;
 			height: var(--read-only-height);
