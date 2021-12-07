@@ -158,9 +158,9 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 			},
 		);
 		const style: CSSProperties = {
-			'--max-height': maxHeight,
-			'--read-only-min-height': `${minHeight}px`,
-			'--read-only-height': `${actualHeight}px`,
+			'--cs-textarea-max-height': maxHeight,
+			'--cs-textarea-read-only-min-height': `${minHeight}px`,
+			'--cs-textarea-read-only-height': `${actualHeight}px`,
 			'--cs-textarea-border-radius': borderRadius,
 			'--cs-textarea-options-spacing': `${textareaOptionsWrapperWidth}px`,
 		};

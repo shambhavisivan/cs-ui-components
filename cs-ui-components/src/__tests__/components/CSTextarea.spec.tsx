@@ -120,7 +120,7 @@ describe('<CSTextarea />', () => {
 		const uut = shallow(<CSTextarea label={labelValue} maxHeight={maxHeightValue} />);
 		const textareaStyle = uut.find('.cs-textarea-wrapper').get(0).props.style;
 		// Make sure css var and correct value are set
-		expect(textareaStyle).toHaveProperty('--max-height', maxHeightValue);
+		expect(textareaStyle).toHaveProperty('--cs-textarea-max-height', maxHeightValue);
 	});
 
 	it('should trigger onChange event ', () => {
