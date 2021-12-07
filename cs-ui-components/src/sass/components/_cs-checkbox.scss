@@ -194,7 +194,8 @@
 			}
 
 			&.cs-checkbox-error {
-				+ .cs-checkbox-faux {
+				+ .cs-checkbox-faux,
+				+ .cs-checkbox-faux.cs-checkbox-brand {
 					@include css4 {
 						border: 1px solid cvar(--cs-checkbox-error-br);
 					}
