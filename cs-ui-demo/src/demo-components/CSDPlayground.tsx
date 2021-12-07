@@ -42,7 +42,7 @@ const CSDPlayground = ({
 		const indent = visiblePropsCount > 2 ? '\t' : '';
 		const inlineDivider = visiblePropsCount > 2 ? '\n' : '';
 
-		code.push(`<${componentName}`);
+		code.push(`<CS${componentName}`);
 
 		const renderCodeLine = (propName: string, hideIfSame: boolean = false) => {
 			if (propName === 'children' || (hideIfSame && currentProps[propName] === defaultProps[propName])) {
@@ -71,7 +71,7 @@ const CSDPlayground = ({
 			code.push(indent);
 			code.push(currentProps.children);
 			code.push(inlineDivider);
-			code.push(`</ ${componentName}>`);
+			code.push(`</CS${componentName}>`);
 		} else {
 			code.push(divider);
 			code.push('/>');
