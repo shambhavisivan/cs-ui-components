@@ -49,7 +49,6 @@ class CSButton extends React.Component<CSButtonProps> {
 	constructor(props: CSButtonProps) {
 		super(props);
 		this.iconComponent = this.iconComponent.bind(this);
-		this.label = this.label.bind(this);
 	}
 
 	handleClick = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
@@ -90,16 +89,6 @@ class CSButton extends React.Component<CSButtonProps> {
 					/>
 				</span>
 			);
-		}
-
-		return null;
-	}
-
-	label() {
-		const { label } = this.props;
-
-		if (label) {
-			return <span className="cs-btn-label">{label}</span>;
 		}
 
 		return null;
@@ -207,14 +196,14 @@ class CSButton extends React.Component<CSButtonProps> {
 						routerLink,
 						componentProps,
 						this.iconComponent(),
-						!labelHidden ? this.label() : null,
+						!labelHidden ? <span className="cs-btn-label">{label}</span> : null,
 						children ? <span className="cs-btn-custom-content">{children}</span> : null,
 					)
 					: React.createElement(
 						link ? 'a' : 'button',
 						componentProps,
 						this.iconComponent(),
-						!labelHidden ? this.label() : null,
+						!labelHidden ? <span className="cs-btn-label">{label}</span> : null,
 						children ? <span className="cs-btn-custom-content">{children}</span> : null,
 					)}
 			</>
