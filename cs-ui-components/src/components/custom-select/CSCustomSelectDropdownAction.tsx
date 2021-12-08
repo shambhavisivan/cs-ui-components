@@ -5,14 +5,14 @@ import KeyCode from '../../util/KeyCode';
 
 export interface CSCustomSelectOptionProps {
 	action: CSButtonProps;
+	closeDropdown: () => void;
 	focusInput: () => void;
-	setDropdownVisible: (visible: boolean) => void,
 }
 
 const CSCustomSelectDropdownAction = ({
 	action,
+	closeDropdown,
 	focusInput,
-	setDropdownVisible,
 }: CSCustomSelectOptionProps) => {
 	const customSelectActionRef = useRef(null);
 
@@ -46,7 +46,7 @@ const CSCustomSelectDropdownAction = ({
 					else customSelectActionRef.current?.parentElement?.lastElementChild?.focus();
 				} else if (event.key === KeyCode.Escape) {
 					focusInput();
-					setDropdownVisible(false);
+					closeDropdown();
 				}
 			}}
 		/>

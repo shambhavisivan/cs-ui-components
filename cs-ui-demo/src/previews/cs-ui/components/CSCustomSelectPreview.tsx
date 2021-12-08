@@ -17,6 +17,7 @@ class CSCustomSelectPreview extends React.Component {
 		multiselectCompactKeys: []
 	};
 
+	handleClose = () => alert('Custom select has closed.');
 	handleSearch = (event: any) => alert(event.target.value);
 	handleSelectChange = (option: any) => {
 		if (typeof option === 'object') {
@@ -272,6 +273,22 @@ class CSCustomSelectPreview extends React.Component {
 									options={options}
 									label="Select department"
 									labelTitle
+								/>`
+							}
+						]
+					}, {
+						propName: 'onDropdownClose',
+						variations: [
+							{
+								component: <CSCustomSelect
+									options={options}
+									label="Select department"
+									onDropdownClose={this.handleClose}
+								/>,
+								code: `<CSCustomSelect
+									options={options}
+									label="Select department"
+									onDropdownClose={this.handleClose}
 								/>`
 							}
 						]
@@ -666,6 +683,10 @@ class CSCustomSelectPreview extends React.Component {
 						name: 'onDeselect',
 						types: '(option) => void',
 						description: 'Handler method for deselecting an option. Should only be used with multiselect.'
+					}, {
+						name: 'onDropdownClose',
+						types: '() => void',
+						description: 'Handler method when custom select dropdown closes.'
 					}, {
 						name: 'onSearch',
 						types: '(event) => void',

@@ -5,21 +5,21 @@ import CSIcon from '../CSIcon';
 import KeyCode from '../../util/KeyCode';
 
 export interface CSCustomSelectOptionProps {
-	multiselect?: boolean;
-	selected: boolean;
-	option: CSCustomSelectOptionInterface,
-	onSelectChange: (option: CSCustomSelectOptionInterface) => void;
+	closeDropdown: () => void;
 	focusInput: () => void;
-	setDropdownVisible: (visible: boolean) => void,
+	multiselect?: boolean;
+	onSelectChange: (option: CSCustomSelectOptionInterface) => void;
+	option: CSCustomSelectOptionInterface,
+	selected: boolean;
 }
 
 const CSCustomSelectOption = ({
-	multiselect,
-	selected,
-	option,
-	onSelectChange,
+	closeDropdown,
 	focusInput,
-	setDropdownVisible,
+	multiselect,
+	onSelectChange,
+	option,
+	selected,
 }: CSCustomSelectOptionProps) => {
 	const customSelectOptionRef = useRef(null);
 
@@ -35,7 +35,7 @@ const CSCustomSelectOption = ({
 
 		if (!multiselect) {
 			focusInput();
-			setDropdownVisible(false);
+			closeDropdown();
 		}
 	};
 
@@ -58,7 +58,7 @@ const CSCustomSelectOption = ({
 					else customSelectOptionRef.current?.parentElement?.lastElementChild?.focus();
 				} else if (event.key === KeyCode.Escape) {
 					focusInput();
-					setDropdownVisible(false);
+					closeDropdown();
 				} else if (event.key === KeyCode.Enter || event.key === KeyCode.Space) {
 					handleSelectionChange();
 				} else {

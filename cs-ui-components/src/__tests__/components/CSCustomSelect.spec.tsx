@@ -164,7 +164,7 @@ describe('<CSCustomSelect />', () => {
 		/>).dive();
 
 		const closeButton = uut.find('CSButton');
-		closeButton.simulate('click', { stopPropagation: () => {} });
+		closeButton.simulate('click', { stopPropagation: () => { } });
 		expect(handleClearMock).toHaveBeenCalledTimes(1);
 	});
 
@@ -179,7 +179,7 @@ describe('<CSCustomSelect />', () => {
 			selectedKeys={keys}
 		/>).dive();
 		const button = uut.find('.cs-custom-select-items > .cs-custom-select-option > CSButton').at(0);
-		button.simulate('click', { preventDefault: () => {} });
+		button.simulate('click', { preventDefault: () => { } });
 		expect(handleDeselect).toHaveBeenCalledTimes(1);
 	});
 
@@ -194,7 +194,7 @@ describe('<CSCustomSelect />', () => {
 			selectedKeys={keys}
 		/>).dive();
 		const button = uut.find('.cs-custom-select-items > .cs-custom-select-option > CSButton').at(0);
-		button.simulate('keydown', { key: 'Enter', preventDefault: () => {} });
+		button.simulate('keydown', { key: 'Enter', preventDefault: () => { } });
 		expect(handleDeselect).toHaveBeenCalledTimes(1);
 	});
 
@@ -211,6 +211,19 @@ describe('<CSCustomSelect />', () => {
 		const input = uut.find('input');
 		input.simulate('keydown', { key: 'Backspace' });
 		expect(handleDeselect).toHaveBeenCalledTimes(1);
+	});
+
+	it('should call onDropdownClose', () => {
+		const handleDropdownCloseMock = jest.fn();
+		const uut = shallow(<CSCustomSelect
+			label={customSelectTextLabel}
+			options={options}
+			onDropdownClose={handleDropdownCloseMock}
+		/>).dive();
+		const input = uut.find('input');
+		input.simulate('click');
+		input.simulate('keydown', { key: 'Tab' });
+		expect(handleDropdownCloseMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('onSearch should fire onChange method', () => {
@@ -329,7 +342,7 @@ describe('<CSCustomSelectDropdownAction />', () => {
 	};
 
 	it('should return dropdown actions', () => {
-		const uut = shallow(<CSCustomSelectDropdownAction action={action} focusInput={() => {}} setDropdownVisible={() => {}} />).dive();
+		const uut = shallow(<CSCustomSelectDropdownAction action={action} focusInput={() => { }} closeDropdown={() => { }} />).dive();
 		const button = uut.find('CSButton');
 		const buttonProps = button.props();
 		const buttonExpectedProps = { ...action, className: 'cs-custom-select-dropdown-action custom-class' };
@@ -339,16 +352,16 @@ describe('<CSCustomSelectDropdownAction />', () => {
 
 	it('should invoke focusInput function when escape key is pressed', () => {
 		const focusInputMock = jest.fn();
-		const uut = shallow(<CSCustomSelectDropdownAction action={action} focusInput={focusInputMock} setDropdownVisible={() => {}} />);
+		const uut = shallow(<CSCustomSelectDropdownAction action={action} focusInput={focusInputMock} closeDropdown={() => { }} />);
 		uut.simulate('keydown', { key: 'Escape' });
 		expect(focusInputMock).toHaveBeenCalledTimes(1);
 	});
 
-	it('should invoke setDropdownVisible function when escape key is pressed', () => {
-		const setDropdownVisibleMock = jest.fn();
-		const uut = shallow(<CSCustomSelectDropdownAction action={action} focusInput={() => {}} setDropdownVisible={setDropdownVisibleMock} />);
+	it('should invoke closeDropdown function when escape key is pressed', () => {
+		const closeDropdownMock = jest.fn();
+		const uut = shallow(<CSCustomSelectDropdownAction action={action} focusInput={() => { }} closeDropdown={closeDropdownMock} />);
 		uut.simulate('keydown', { key: 'Escape' });
-		expect(setDropdownVisibleMock).toHaveBeenCalledTimes(1);
+		expect(closeDropdownMock).toHaveBeenCalledTimes(1);
 	});
 });
 
@@ -360,37 +373,37 @@ describe('<CSCustomSelectOption />', () => {
 
 	it('should invoke focusInput method when input is clicked', () => {
 		const focusInputMock = jest.fn();
-		const uut = shallow(<CSCustomSelectOption selected={false} option={option} onSelectChange={() => {}} focusInput={focusInputMock} setDropdownVisible={() => {}} />);
+		const uut = shallow(<CSCustomSelectOption selected={false} option={option} onSelectChange={() => { }} focusInput={focusInputMock} closeDropdown={() => { }} />);
 		uut.simulate('click');
 		expect(focusInputMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should return option passed down from CSCustomSelect', () => {
-		const uut = shallow(<CSCustomSelectOption option={option} selected={false} onSelectChange={() => {}} focusInput={() => {}} setDropdownVisible={() => {}} />);
+		const uut = shallow(<CSCustomSelectOption option={option} selected={false} onSelectChange={() => { }} focusInput={() => { }} closeDropdown={() => { }} />);
 		expect(uut.find('.cs-custom-select-option-value').text()).toBe(option.label);
 	});
 
 	it('should invoke onSelectChange method when option is clicked', () => {
 		const onSelectChangeMock = jest.fn();
-		const uut = shallow(<CSCustomSelectOption selected={false} option={option} onSelectChange={onSelectChangeMock} focusInput={() => {}} setDropdownVisible={() => {}} />);
+		const uut = shallow(<CSCustomSelectOption selected={false} option={option} onSelectChange={onSelectChangeMock} focusInput={() => { }} closeDropdown={() => { }} />);
 		uut.simulate('click');
 		expect(onSelectChangeMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should apply selected', () => {
-		const uut = shallow(<CSCustomSelectOption selected option={option} onSelectChange={() => {}} focusInput={() => {}} setDropdownVisible={() => {}} />);
+		const uut = shallow(<CSCustomSelectOption selected option={option} onSelectChange={() => { }} focusInput={() => { }} closeDropdown={() => { }} />);
 		expect(uut.find('.cs-custom-select-option-selected')).toHaveLength(1);
 	});
 
-	it('should invoke setDropdownVisible method when option is clicked', () => {
-		const setDropdownVisibleMock = jest.fn();
-		const uut = shallow(<CSCustomSelectOption selected={false} option={option} onSelectChange={() => {}} focusInput={() => {}} setDropdownVisible={setDropdownVisibleMock} />);
+	it('should invoke closeDropdown method when option is clicked', () => {
+		const closeDropdownMock = jest.fn();
+		const uut = shallow(<CSCustomSelectOption selected={false} option={option} onSelectChange={() => { }} focusInput={() => { }} closeDropdown={closeDropdownMock} />);
 		uut.simulate('click');
-		expect(setDropdownVisibleMock).toHaveBeenCalledTimes(1);
+		expect(closeDropdownMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should apply multiselect', () => {
-		const uut = shallow(<CSCustomSelectOption multiselect selected={false} option={option} onSelectChange={() => {}} focusInput={() => {}} setDropdownVisible={() => {}} />);
+		const uut = shallow(<CSCustomSelectOption multiselect selected={false} option={option} onSelectChange={() => { }} focusInput={() => { }} closeDropdown={() => { }} />);
 		expect(uut.find('.cs-custom-select-option-selected')).toHaveLength(0);
 		expect(uut.find('.cs-custom-select-option-check-icon')).toHaveLength(1);
 	});

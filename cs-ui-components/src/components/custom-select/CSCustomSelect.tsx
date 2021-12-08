@@ -1,4 +1,4 @@
-import React, { CSSProperties, useEffect, useRef, useState, useImperativeHandle } from 'react';
+import React, { CSSProperties, useEffect, useRef, useState, useImperativeHandle, useCallback } from 'react';
 import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -42,6 +42,7 @@ export interface CSCustomSelectProps {
 	multiselect?: boolean;
 	onClear?: () => void;
 	onDeselect?: (option: CSCustomSelectOptionInterface) => void;
+	onDropdownClose?: () => void;
 	onSearch?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	onSelect?: (option: CSCustomSelectOptionInterface) => void;
 	placeholder?: string;
@@ -76,6 +77,7 @@ const CSCustomSelect = ({
 	multiselect,
 	onClear,
 	onDeselect,
+	onDropdownClose,
 	onSearch,
 	onSelect,
 	position = 'bottom',
@@ -99,19 +101,24 @@ const CSCustomSelect = ({
 
 	const selectedKeysArray = Array.isArray(selectedKeys) ? selectedKeys : [selectedKeys];
 
+	const closeDropdown = useCallback(() => {
+		setDropdownVisible(false);
+		onDropdownClose?.();
+	}, [setDropdownVisible, onDropdownClose]);
+
 	useImperativeHandle(forwardRef, () => customSelectInputRef.current);
 
 	useEffect(() => {
 		const handleOutsideClick = (event: MouseEvent) => {
 			const clickOutsideInput = customSelectWrapperRef.current && !customSelectWrapperRef.current.contains(event.target);
 			const clickOutsideDropdown = customSelectDropdownRef.current && !customSelectDropdownRef.current.contains(event.target);
-			if (clickOutsideInput && clickOutsideDropdown) setDropdownVisible(false);
+			if (clickOutsideInput && clickOutsideDropdown) closeDropdown();
 		};
 
 		document.addEventListener('click', handleOutsideClick);
 
 		return () => document.removeEventListener('click', handleOutsideClick);
-	}, [customSelectWrapperRef, customSelectDropdownRef]);
+	}, [customSelectWrapperRef, customSelectDropdownRef, closeDropdown]);
 
 	const customSelectWrapperClasses = classNames(
 		'cs-custom-select-wrapper',
@@ -253,7 +260,7 @@ const CSCustomSelect = ({
 					onFocus={() => setDropdownVisible(true)}
 					onKeyDown={(event: React.KeyboardEvent<HTMLInputElement>) => {
 						if (event.key === KeyCode.Tab && (event.shiftKey || (!searchTerm && !selectedKeysArray.length))) {
-							setDropdownVisible(false);
+							closeDropdown();
 						} else if (event.key === KeyCode.ArrowDown) {
 							event.preventDefault();
 							setDropdownVisible(true);
@@ -266,7 +273,7 @@ const CSCustomSelect = ({
 							const lastSelectedOption = options.find((option: CSCustomSelectOptionInterface) => option.key === selectedKeysArray[selectedKeysArray.length - 1]);
 							if (lastSelectedOption) onDeselect?.(lastSelectedOption);
 						} else if (event.key === KeyCode.Escape && dropdownVisible) {
-							setDropdownVisible(false);
+							closeDropdown();
 						} else if (event.key === KeyCode.Enter) {
 							setDropdownVisible((prevDropdownVisible) => !prevDropdownVisible);
 						} else {
@@ -312,7 +319,7 @@ const CSCustomSelect = ({
 
 		const handleClearKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
 			if (event.key === KeyCode.Tab && (!event.shiftKey || (!searchTerm && !selectedKeysArray.length))) {
-				setDropdownVisible(false);
+				closeDropdown();
 			} else if (event.key === KeyCode.Enter) {
 				handleClear(event);
 			}
@@ -379,7 +386,7 @@ const CSCustomSelect = ({
 								selected={selectedKeysArray.indexOf(option.key) !== -1}
 								multiselect={multiselect}
 								focusInput={() => customSelectInputRef.current?.focus()}
-								setDropdownVisible={setDropdownVisible}
+								closeDropdown={closeDropdown}
 								onSelectChange={onSelect}
 							/>
 						))}
@@ -389,7 +396,7 @@ const CSCustomSelect = ({
 								key={buttonIndex}
 								action={button}
 								focusInput={() => customSelectInputRef.current?.focus()}
-								setDropdownVisible={setDropdownVisible}
+								closeDropdown={closeDropdown}
 							/>
 						))}
 					</ul>
