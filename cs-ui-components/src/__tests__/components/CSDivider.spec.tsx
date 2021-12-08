@@ -7,14 +7,21 @@ const variantHorizontal = 'horizontal';
 const variantVertical = 'vertical';
 
 describe('<CSDivider />', () => {
-	it('should render divider with vertical variant', () => {
+	it('should render the default CSDivider', () => {
 		const uut = shallow(<CSDivider variant={variantVertical} />);
-		expect(uut.find('.cs-divider-vertical')).toHaveLength(1);
+		// should render a divider
+		const divider = uut.find('.cs-divider');
+		expect(divider).toHaveLength(1);
+		// variant
+		expect(divider.find('.cs-divider-vertical')).toHaveLength(1);
+		expect(divider.prop('aria-orientation')).toBe(variantVertical);
 	});
 
 	it('should render divider with horizontal variant', () => {
 		const uut = shallow(<CSDivider variant={variantHorizontal} />);
-		expect(uut.find('.cs-divider-horizontal')).toHaveLength(1);
+		const divider = uut.find('.cs-divider');
+		expect(divider.find('.cs-divider-horizontal')).toHaveLength(1);
+		expect(divider.prop('aria-orientation')).toBe(variantHorizontal);
 	});
 
 	it('should render divider with label', () => {

@@ -11,28 +11,36 @@ const link = 'https://cloudsense.com';
 describe('<CSButton />', () => {
 	it('should render the default CSButton', () => {
 		const uut = shallow(<CSButton label={label} />).dive();
+		// Should render a button
 		const button = uut.find('button.cs-btn');
+		expect(button).toHaveLength(1);
+		// disabled
+		expect(button.props().disabled).toBeFalsy();
+		// Should render a label
 		const buttonLabel = uut.find('.cs-btn-label');
+		expect(buttonLabel).toHaveLength(1);
+		expect(buttonLabel.text()).toBe(label);
+		// aria-label
 		const buttonAriaLabel = uut.find('.cs-btn').prop('aria-label');
+		expect(buttonAriaLabel).toBe(label);
+		// btnType
 		const defaultButton = uut.find('.cs-btn.cs-btn-initial.cs-btn-default');
+		expect(defaultButton).toHaveLength(1);
+		// iconPosition
 		const buttonRight = uut.find('.cs-btn.cs-btn-icon-right');
+		expect(buttonRight).toHaveLength(0);
+		// labelHidden
 		const buttonLabelHidden = uut.find('.cs-btn.cs-btn-label-hidden');
+		expect(buttonLabelHidden).toHaveLength(0);
+		// size
 		const extraSmallButton = uut.find('.cs-btn.cs-btn-size-xsmall');
 		const smallButton = uut.find('.cs-btn.cs-btn-size-small');
 		const largeButton = uut.find('.cs-btn.cs-btn-size-large');
-		const maxWidthButton = uut.find('.cs-btn.cs-btn-max-width');
-		expect(button).toHaveLength(1);
-		expect(buttonLabel).toHaveLength(1);
-		expect(buttonLabel.text()).toBe(label);
-		expect(buttonAriaLabel).toBe(label);
-		expect(button.props().disabled).toBeFalsy();
-		expect(defaultButton).toHaveLength(1);
-		expect(buttonRight).toHaveLength(0);
-		expect(buttonLabelHidden).toHaveLength(0);
-		expect(buttonLabel).toHaveLength(1);
 		expect(extraSmallButton).toHaveLength(0);
-		expect(smallButton).toHaveLength(0);
 		expect(largeButton).toHaveLength(0);
+		expect(smallButton).toHaveLength(0);
+		// width
+		const maxWidthButton = uut.find('.cs-btn.cs-btn-max-width');
 		expect(maxWidthButton).toHaveLength(0);
 	});
 

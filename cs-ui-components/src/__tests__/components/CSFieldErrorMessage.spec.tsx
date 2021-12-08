@@ -7,6 +7,7 @@ const message = 'Error message.';
 
 describe('<CSFieldErrorMsg />', () => {
 	it('should render the default CSFieldErrorMsg', () => {
+		// should render a field error message
 		const uut = shallow(<CSFieldErrorMsg message={message} />);
 		expect(uut.find('.cs-field-error-msg')).toHaveLength(1);
 		expect(uut.find('.cs-field-error-msg').text()).toBe(message);

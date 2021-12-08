@@ -6,7 +6,11 @@ import CSButtonGroup from '../../components/CSButtonGroup';
 describe('<CSButtonGroup />', () => {
 	it('should render the default CSButtonGroup', () => {
 		const uut = shallow(<CSButtonGroup />);
-		expect(uut.find('.cs-button-group.cs-button-group-combined')).toHaveLength(1);
+		// Should render a button group
+		const buttonGroup = uut.find('.cs-button-group');
+		expect(buttonGroup).toHaveLength(1);
+		// combined
+		expect(buttonGroup.find('.cs-button-group-combined')).toHaveLength(1);
 	});
 
 	it('should set aria description attribute', () => {

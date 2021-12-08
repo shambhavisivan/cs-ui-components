@@ -19,6 +19,26 @@ const customClass = 'custom-class';
 const customId = 'custom-id';
 
 describe('<CSInputFile />', () => {
+	it('should render the default CSInputFile', () => {
+		const uut = shallow(<CSInputFile />);
+		// Should render input file
+		const inputFile = uut.find('.cs-input-file-wrapper input');
+		expect(inputFile).toHaveLength(1);
+		// disabled
+		expect(uut.find('label.cs-input-file-disabled')).toHaveLength(0);
+		// dropAreaHighlighted
+		expect(uut.find('.cs-input-file-drop-area-highlighted')).toHaveLength(0);
+		// error
+		expect(uut.find('.cs-input-file-wrapper.cs-input-file-error')).toHaveLength(0);
+		// label
+		expect(uut.find('.cs-input-file-label').text()).toBe('Upload a file');
+		inputFile.simulate('change', { target: { files: [file] } });
+		// fileSelectedLabel
+		expect(uut.find('.cs-input-file-label').text()).toBe('File selected');
+		const inputFileTooltip = uut.find('CSTooltip');
+		expect(inputFileTooltip.prop('content')).toBe('hello.png');
+	});
+
 	it('should render input file that accepts a file type', () => {
 		const uut = shallow(<CSInputFile accept={fileType} />);
 		expect(uut.find('input').props().accept).toBe(fileType);

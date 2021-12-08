@@ -6,6 +6,20 @@ import CSSlider from '../../components/CSSlider';
 const labelValue = 'Slider';
 
 describe('<CSSlider />', () => {
+	it('should render the default CSSlider', () => {
+		const uut = shallow(<CSSlider label={labelValue} />);
+		// Should render a slider
+		const slider = uut.find('.cs-slider-group > .cs-slider');
+		expect(slider).toHaveLength(1);
+		// Should have a label
+		const sliderLabel = uut.find('.cs-slider-wrapper > CSLabel');
+		expect(sliderLabel).toHaveLength(1);
+		// disabled
+		expect(slider.props().disabled).toBeFalsy();
+		// required
+		expect(slider.prop('required')).toBeFalsy();
+	});
+
 	it('should pass label to CSLabel', () => {
 		const uut = shallow(<CSSlider label={labelValue} />);
 		const label = uut.find('.cs-slider-wrapper > CSLabel');
@@ -21,7 +35,7 @@ describe('<CSSlider />', () => {
 	it('should render slider with error styles', () => {
 		const uut = shallow(<CSSlider label={labelValue} error />);
 		const sliderInput = uut.find('.cs-slider-error');
-		expect(sliderInput.props()['aria-invalid']).toBeTruthy();
+		expect(sliderInput.prop('aria-invalid')).toBeTruthy();
 	});
 
 	it('should pass errorMessage to CSFieldErrorMessage', () => {
@@ -56,7 +70,7 @@ describe('<CSSlider />', () => {
 		expect(uut.find('.cs-slider-wrapper > .cs-slider-range')).toHaveLength(1);
 		const sliderInput = uut.find('.cs-slider');
 		expect(sliderInput.prop('max')).toBe(max);
-		expect(sliderInput.props()['aria-valuemax']).toBe(Number(max));
+		expect(sliderInput.prop('aria-valuemax')).toBe(Number(max));
 	});
 
 	it('should set min and set min attribute value', () => {
@@ -65,7 +79,7 @@ describe('<CSSlider />', () => {
 		expect(uut.find('.cs-slider-wrapper > .cs-slider-range')).toHaveLength(1);
 		const sliderInput = uut.find('.cs-slider');
 		expect(sliderInput.find('.cs-slider').prop('min')).toBe(min);
-		expect(sliderInput.props()['aria-valuemin']).toBe(Number(min));
+		expect(sliderInput.prop('aria-valuemin')).toBe(Number(min));
 	});
 
 	it('should use a working onChange callback', () => {

@@ -7,6 +7,20 @@ const label = 'Progress';
 const progress = '50%';
 
 describe('<CSProgressBar />', () => {
+	it('should render the default CSProgressBar', () => {
+		const uut = shallow(<CSProgressBar label={label} progress={progress} />);
+		// Should render a progress bar
+		const progressBar = uut.find('.cs-progress-bar');
+		expect(progressBar).toHaveLength(1);
+		// Should render a label
+		const progressBarLabel = uut.find('.cs-progress-bar-text > CSLabel');
+		expect(progressBarLabel).toHaveLength(1);
+		// status
+		expect(uut.find('.cs-progress-status')).toHaveLength(0);
+		// thickness
+		expect(uut.find('.cs-progress-bar-medium')).toHaveLength(1);
+	});
+
 	it('should pass label to CSLabel', () => {
 		const uut = shallow(<CSProgressBar label={label} progress={progress} />);
 		expect(uut.find('.cs-progress-bar-wrapper')).toHaveLength(1);

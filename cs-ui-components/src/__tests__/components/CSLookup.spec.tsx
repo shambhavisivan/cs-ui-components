@@ -71,27 +71,42 @@ describe('<CSLookup />', () => {
 				]}
 			/>,
 		);
+		// Should render a lookup
 		const lookupInput = uut.find('.cs-lookup-input');
-		const lookupWrapperHidden = uut.find('.cs-lookup-wrapper.cs-lookup-hidden');
+		expect(lookupInput).toHaveLength(1);
+		// Should render a label
 		const lookupLabel = uut.find('CSLabel');
-		lookupInput.simulate('focus');
-		const lookupAutoposition = uut.find('CSAutoposition');
-		const lookupTable = lookupAutoposition.find('CSDataTable');
-		const lookupDropdownCustomPopup = uut.find('.cs-lookup-dropdown.ag-custom-component-popup');
-		const lookupSelectedOption = uut.find('.cs-selected-input-option');
-		expect(lookupInput.props().autoFocus).toBeFalsy();
-		expect(lookupInput.props().disabled).toBeFalsy();
-		expect(lookupInput.props().readOnly).toBeFalsy();
-		expect(lookupInput.props().required).toBeFalsy();
-		expect(lookupInput.props()['aria-required']).toBeFalsy();
 		expect(lookupLabel).toHaveLength(1);
+		// autoFocus
+		expect(lookupInput.props().autoFocus).toBeFalsy();
+		// disabled
+		expect(lookupInput.props().disabled).toBeFalsy();
+		// readOnly
+		expect(lookupInput.props().readOnly).toBeFalsy();
+		// required
+		expect(lookupInput.props().required).toBeFalsy();
 		expect(lookupLabel.prop('required')).toBeFalsy();
-		expect(lookupInput.props()['aria-multiselectable']).toBeFalsy();
-		expect(lookupWrapperHidden).toHaveLength(0);
+		expect(lookupInput.prop('aria-required')).toBeFalsy();
+		lookupInput.simulate('focus');
+		// Should render Autoposition
+		const lookupAutoposition = uut.find('CSAutoposition');
 		expect(lookupAutoposition.prop('initialPosition')).toBe('bottom-right');
-		expect(lookupTable.prop('maxHeight')).toBe('17rem');
-		expect(lookupSelectedOption.text()).toBe('Acme');
+		// Should render Data table
+		const lookupTable = lookupAutoposition.find('CSDataTable');
+		expect(lookupTable).toHaveLength(1);
+		// hidden
+		const lookupWrapperHidden = uut.find('.cs-lookup-wrapper.cs-lookup-hidden');
+		expect(lookupWrapperHidden).toHaveLength(0);
+		// gridCustomPopup
+		const lookupDropdownCustomPopup = uut.find('.cs-lookup-dropdown.ag-custom-component-popup');
 		expect(lookupDropdownCustomPopup).toHaveLength(0);
+		// options
+		const lookupSelectedOption = uut.find('.cs-selected-input-option');
+		expect(lookupSelectedOption.text()).toBe('Acme');
+		// multiselect
+		expect(lookupInput.prop('aria-multiselectable')).toBeFalsy();
+		// maxHeight
+		expect(lookupTable.prop('maxHeight')).toBe('17rem');
 	});
 
 	// Common props
@@ -283,7 +298,7 @@ describe('<CSLookup />', () => {
 		);
 		const lookupInputError = uut.find('.cs-lookup-input-error');
 		expect(lookupInputError).toHaveLength(1);
-		expect(lookupInputError.props()['aria-invalid']).toBeTruthy();
+		expect(lookupInputError.prop('aria-invalid')).toBeTruthy();
 	});
 
 	it('should pass errorMessage to CSFieldErrorMsg', () => {
@@ -429,7 +444,7 @@ describe('<CSLookup />', () => {
 		const lookupInput = uut.find('.cs-lookup-input');
 		const lookupSelectedOption = uut.find('.cs-selected-input-option');
 		expect(lookupSelectedOption.text()).toBe('Acme, Global Media');
-		expect(lookupInput.props()['aria-multiselectable']).toBeTruthy();
+		expect(lookupInput.prop('aria-multiselectable')).toBeTruthy();
 	});
 
 	it('should use a working onBlur callback', () => {
@@ -582,7 +597,7 @@ describe('<CSLookup />', () => {
 		);
 		const lookupInput = uut.find('.cs-lookup-input');
 		expect(lookupInput.props().required).toBeTruthy();
-		expect(lookupInput.props()['aria-required']).toBeTruthy();
+		expect(lookupInput.prop('aria-required')).toBeTruthy();
 		const lookupLabel = uut.find('CSLabel');
 		expect(lookupLabel.prop('required')).toBeTruthy();
 	});

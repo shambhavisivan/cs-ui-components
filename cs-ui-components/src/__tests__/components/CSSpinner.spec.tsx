@@ -6,9 +6,13 @@ import CSSpinner from '../../components/CSSpinner';
 describe('<CSSpinner />', () => {
 	it('should render the default CSSpinner', () => {
 		const uut = shallow(<CSSpinner />);
+		// Should render a spinner
 		expect(uut.find('.cs-spinner-wrapper')).toHaveLength(1);
+		// color
 		expect(uut.find('.cs-spinner-brand')).toHaveLength(1);
+		// overlay
 		expect(uut.find('.cs-spinner-overlay-light')).toHaveLength(1);
+		// size
 		expect(uut.find('.cs-spinner-large')).toHaveLength(1);
 	});
 

@@ -15,7 +15,13 @@ describe('<CSList />', () => {
 				<CSListItem />
 			</CSList>,
 		);
-		const listItem = uut.find('.cs-list-wrapper > CSListItem');
+		// Should render a list
+		const list = uut.find('.cs-list-wrapper');
+		expect(list).toHaveLength(1);
+		// Should render a list item
+		const listItem = list.find('CSListItem');
+		expect(listItem).toHaveLength(1);
+		// variant
 		expect(listItem.dive().find('.cs-list-item-medium.cs-list-item-simple-list')).toHaveLength(1);
 	});
 	it('should pass size to CSListItem', () => {
@@ -113,9 +119,14 @@ describe('<CSListItem />', () => {
 				<CSListItem />
 			</CSList>,
 		);
+		// Should render a list item
 		const listItem = uut.find('CSListItem');
+		expect(listItem).toHaveLength(1);
+		// variant
 		expect(listItem.dive().find('.cs-list-item-simple-list')).toHaveLength(1);
+		// disabled
 		expect(listItem.prop('disabled')).toBeFalsy();
+		// selected
 		expect(listItem.prop('selected')).toBeFalsy();
 		expect(listItem.prop('aria-selected')).toBeFalsy();
 	});
@@ -214,10 +225,13 @@ describe('<CSListGroup />', () => {
 				<CSListGroup text={listGroupText} />
 			</CSList>,
 		);
+		// Should render a list group
 		const listGroup = uut.find('CSListGroup');
-		// Check if it's collapsible
+		expect(listGroup).toHaveLength(1);
+		// collapsible
 		expect(listGroup.dive().find('CSIcon')).toHaveLength(1);
 		expect(listGroup.dive().find('.cs-list-group-header-simple-list')).toHaveLength(1);
+		// checkboxOption
 		expect(listGroup.prop('checkboxOption')).toBe('select-all');
 	});
 

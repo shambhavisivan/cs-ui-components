@@ -10,17 +10,26 @@ const tooltipJSXContent = <span>Element content</span>;
 describe('<CSTooltip />', () => {
 	it('should render the default CSTooltip', () => {
 		const uut = shallow(<CSTooltip content={tooltipContent} />);
+		// Should render a tooltip
 		const tooltipWrapper = uut.find('.cs-tooltip-wrapper.cs-tw-info.cs-tooltip-style-position-fixed');
-		const tooltipIcon = tooltipWrapper.find('CSIcon');
+		expect(tooltipWrapper).toHaveLength(1);
 		tooltipWrapper.simulate('mouseenter');
 		const autoposition = uut.find('CSAutoposition');
 		const tooltip = autoposition.dive().find('.cs-tooltip.cs-tooltip-top-right.cs-tooltip-info');
-		const tooltipFixed = autoposition.dive().find('.cs-tooltip-style-position-fixed');
 		expect(tooltip).toHaveLength(1);
-		expect(tooltipFixed).toHaveLength(1);
-		expect(tooltipWrapper.props().tabIndex).toBe(0);
+		// Should have an icon
+		const tooltipIcon = tooltipWrapper.find('CSIcon');
+		expect(tooltipIcon).toHaveLength(1);
+		// iconName
 		expect(tooltipIcon.prop('size')).toBe('0.875rem');
+		// iconOrigin
 		expect(tooltipIcon.prop('origin')).toBe('slds');
+		// Should have autoposition
+		const tooltipFixed = autoposition.dive().find('.cs-tooltip-style-position-fixed');
+		expect(tooltipFixed).toHaveLength(1);
+		// focusable
+		expect(tooltipWrapper.props().tabIndex).toBe(0);
+		// position
 		expect(autoposition.prop('initialPosition')).toBe('top-right');
 	});
 	it('should render tooltip with string content', () => {

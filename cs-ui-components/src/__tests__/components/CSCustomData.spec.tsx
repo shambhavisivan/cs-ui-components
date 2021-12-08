@@ -75,10 +75,9 @@ const actions = [
 describe('<CSCustomData />', () => {
 	it('should render the default CSCustomData', () => {
 		const uut = shallow(<CSCustomData />);
-		const customDataActions = uut.find('CSCustomDataActions');
-		expect(customDataActions).toHaveLength(0);
-		const customDataStatusTooltip = uut.find('CSTooltip');
-		expect(customDataStatusTooltip).toHaveLength(0);
+		// Should render the custom data
+		const customData = uut.find('.cs-custom-data-wrapper');
+		expect(customData).toHaveLength(1);
 	});
 
 	it('should pass action to CSCustomDataActions', () => {

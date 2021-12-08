@@ -22,29 +22,39 @@ const actionsValue = [
 describe('<CSCheckbox />', () => {
 	it('should render the default CSCheckbox', () => {
 		const uut = shallow(<CSCheckbox label={label} />);
+		// Should render a checkbox
 		const checkbox = uut.find('.cs-checkbox');
 		expect(checkbox).toHaveLength(1);
+		// checked
+		expect(checkbox.props().checked).toBeFalsy();
+		expect(checkbox.prop('aria-checked')).toBeFalsy();
+		// disabled
+		expect(checkbox.props().disabled).toBeFalsy();
+		// Should render a label
+		const checkboxLabel = uut.find('CSLabel');
+		expect(checkboxLabel).toHaveLength(1);
+		// required
+		expect(checkbox.prop('required')).toBeFalsy();
+		expect(checkbox.prop('aria-required')).toBeFalsy();
+		expect(checkboxLabel.prop('required')).toBeFalsy();
+		// error
+		const checkboxError = uut.find('.cs-checkbox.cs-checkbox-error');
+		expect(checkboxError).toHaveLength(0);
+		// aria-invalid
+		expect(checkbox.prop('aria-invalid')).toBeFalsy();
+		// readOnly
+		const checkboxReadOnly = uut.find('.cs-checkbox.cs-checkbox-readonly');
+		expect(checkboxReadOnly).toHaveLength(0);
+		// indeterminate
+		const checkboxIndeterminate = uut.find('.cs-checkbox.cs-checkbox-indeterminate');
+		expect(checkboxIndeterminate).toHaveLength(0);
+		// labelPosition
 		const checkboxLabelLeft = uut.find('.cs-checkbox.cs-checkbox-label-left');
 		expect(checkboxLabelLeft).toHaveLength(0);
 		const checkboxLabelRight = uut.find('.cs-checkbox.cs-checkbox-label-right');
 		expect(checkboxLabelRight).toHaveLength(0);
 		const checkboxFauxNeutral = uut.find('.cs-checkbox-faux.cs-checkbox-neutral');
 		expect(checkboxFauxNeutral).toHaveLength(1);
-		const checkboxError = uut.find('.cs-checkbox.cs-checkbox-error');
-		expect(checkboxError).toHaveLength(0);
-		expect(checkbox.prop('aria-invalid')).toBeFalsy();
-		const checkboxReadOnly = uut.find('.cs-checkbox.cs-checkbox-readonly');
-		expect(checkboxReadOnly).toHaveLength(0);
-		const checkboxIndeterminate = uut.find('.cs-checkbox.cs-checkbox-indeterminate');
-		expect(checkboxIndeterminate).toHaveLength(0);
-		const checkboxLabel = uut.find('CSLabel');
-		expect(checkboxLabel).toHaveLength(1);
-		expect(checkbox.props().checked).toBeFalsy();
-		expect(checkbox.prop('aria-checked')).toBeFalsy();
-		expect(checkbox.props().disabled).toBeFalsy();
-		expect(checkboxLabel.prop('required')).toBeFalsy();
-		expect(checkbox.prop('required')).toBeFalsy();
-		expect(checkbox.prop('aria-required')).toBeFalsy();
 	});
 
 	it('should pass label to CSLabel and set aria-label', () => {

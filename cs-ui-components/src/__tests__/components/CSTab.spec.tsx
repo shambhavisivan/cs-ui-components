@@ -12,9 +12,11 @@ const customId = 'custom-id';
 describe('<CSTabGroup />', () => {
 	it('should render the default CSTabGroup', () => {
 		const uut = mount(<CSTabGroup><CSTab name={tabName} /></CSTabGroup>);
+		// Should render a tab group
 		const tabGroup = uut.find('.cs-tab-group');
-		const tab = uut.find('.cs-tab-group .cs-tab-wrapper-normal');
 		expect(tabGroup).toHaveLength(1);
+		// Should render a tab
+		const tab = uut.find('.cs-tab-group .cs-tab-wrapper-normal');
 		expect(tab).toHaveLength(1);
 	});
 
@@ -22,7 +24,7 @@ describe('<CSTabGroup />', () => {
 		const listNameValue = 'group';
 		const uut = shallow(<CSTabGroup listName={listNameValue} />);
 		const tabGroup = uut.find('.cs-tab-group > nav');
-		expect(tabGroup.props()['aria-label']).toBe(listNameValue);
+		expect(tabGroup.prop('aria-label')).toBe(listNameValue);
 	});
 
 	it('should pass variant normal to CSTab parentVariant and render variant normal tab', () => {
@@ -63,6 +65,21 @@ describe('<CSTabGroup />', () => {
 });
 
 describe('<CSTab />', () => {
+	it('should render the default CSTab', () => {
+		const uut = shallow(<CSTab name={tabName} />);
+		// Should render a tab
+		const tab = uut.find('.cs-tab');
+		expect(tab).toHaveLength(1);
+		// name
+		const tabNameValue = uut.find('.cs-tab-name');
+		expect(tabNameValue.text()).toBe(tabName);
+		// disabled
+		expect(tab.props().disabled).toBeFalsy();
+		// status
+		const tabWrapper = uut.find('.cs-tab-wrapper.cs-tab-wrapper-initial');
+		expect(tabWrapper).toHaveLength(1);
+	});
+
 	it('should set tab name', () => {
 		const uut = shallow(<CSTab name={tabName} />);
 		const tab = uut.find('.cs-tab-name');

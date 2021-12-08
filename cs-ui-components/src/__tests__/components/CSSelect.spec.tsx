@@ -20,11 +20,35 @@ const actionsValue = [
 ];
 
 describe('<CSSelect />', () => {
+	it('should render the default CSSelect', () => {
+		const uut = shallow(<CSSelect label={labelValue} />);
+		// Should render a select
+		const select = uut.find('.cs-select');
+		expect(select).toHaveLength(1);
+		// Should render a label
+		const selectLabel = uut.find('.cs-select-wrapper > CSLabel');
+		expect(selectLabel).toHaveLength(1);
+		// disabled
+		expect(select.props().disabled).toBeFalsy();
+		// error
+		const errorSelect = uut.find('.cs-select.cs-select-error');
+		expect(errorSelect).toHaveLength(0);
+		expect(select.prop('aria-invalid')).toBeFalsy();
+		// readOnly
+		const readonlySelect = uut.find('.cs-select.cs-select-read-only');
+		expect(readonlySelect).toHaveLength(0);
+		expect(select.prop('aria-readonly')).toBeFalsy();
+		// required
+		expect(select.props().required).toBeFalsy();
+		expect(select.prop('aria-required')).toBeFalsy();
+		expect(selectLabel.prop('required')).toBeFalsy();
+	});
+
 	it('should pass label to CSLabel', () => {
 		const uut = shallow(<CSSelect label={labelValue} />);
 		const select = uut.find('.cs-select');
 		const selectLabel = uut.find('.cs-select-wrapper > CSLabel');
-		expect(select.props()['aria-label']).toBe(labelValue);
+		expect(select.prop('aria-label')).toBe(labelValue);
 		expect(selectLabel.prop('label')).toBe(labelValue);
 	});
 
@@ -52,7 +76,7 @@ describe('<CSSelect />', () => {
 	it('should render select in error state', () => {
 		const uut = shallow(<CSSelect label={labelValue} error />);
 		const select = uut.find('.cs-select.cs-select-error');
-		expect(select.props()['aria-invalid']).toBeTruthy();
+		expect(select.prop('aria-invalid')).toBeTruthy();
 		expect(select).toHaveLength(1);
 	});
 
@@ -131,7 +155,7 @@ describe('<CSSelect />', () => {
 	it('should set readOnly attribute', () => {
 		const uut = shallow(<CSSelect label={labelValue} readOnly />);
 		const select = uut.find('.cs-select.cs-select-read-only');
-		expect(select.props()['aria-readonly']).toBeTruthy();
+		expect(select.prop('aria-readonly')).toBeTruthy();
 		expect(select).toHaveLength(1);
 	});
 
@@ -141,7 +165,7 @@ describe('<CSSelect />', () => {
 		const selectLabel = uut.find('.cs-select-wrapper > CSLabel');
 		// Make sure select attribute required is set
 		expect(select.props().required).toEqual(true);
-		expect(select.props()['aria-required']).toBeTruthy();
+		expect(select.prop('aria-required')).toBeTruthy();
 		// Make sure CSLabel prop required received correct value
 		expect(selectLabel.prop('required')).toEqual(true);
 	});

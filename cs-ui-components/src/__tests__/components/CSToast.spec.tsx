@@ -6,6 +6,19 @@ import CSToast from '../../components/CSToast';
 const variant = 'info';
 
 describe('<CSToast />', () => {
+	it('should render the default CSToast', () => {
+		const uut = shallow(<CSToast variant={variant} />);
+		// Should render a toast
+		const toast = uut.find('.cs-toast.cs-toast-info');
+		expect(toast).toHaveLength(1);
+		// closeButton
+		expect(uut.find('.cs-toast.cs-toast-close')).toHaveLength(0);
+		expect(uut.find('.cs-toast > CSButton')).toHaveLength(0);
+		// iconHidden
+		const toastIcon = uut.find('.cs-toast > CSIcon');
+		expect(toastIcon).toHaveLength(1);
+	});
+
 	it('should render variant info and pass name to CSIcon', () => {
 		const uut = shallow(<CSToast variant={variant} />);
 		expect(uut.find('.cs-toast.cs-toast-info')).toHaveLength(1);

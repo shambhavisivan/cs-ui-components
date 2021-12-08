@@ -8,9 +8,12 @@ const labelContent = 'This is a label';
 describe('<CSLabel />', () => {
 	it('should render the default CSLabel', () => {
 		const uut = shallow(<CSLabel label={labelContent} />);
+		// Should render a label
 		const label = uut.find('.cs-label');
 		expect(label).toHaveLength(1);
 		expect(label.text()).toBe(labelContent);
+		// required
+		expect(uut.find('.cs-label-required')).toHaveLength(0);
 	});
 
 	it('should pass helpText to CSTooltip', () => {

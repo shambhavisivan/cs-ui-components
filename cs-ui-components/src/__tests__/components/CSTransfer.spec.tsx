@@ -39,15 +39,19 @@ describe('<CSTransfer />', () => {
 				targetLabel={targetListLabel}
 			/>,
 		).dive();
+		// Should render transfer lists
 		const transferLists = uut.find('.cs-transfer-wrapper > CSTransferList');
+		expect(transferLists).toHaveLength(2);
 		const sourceList = transferLists.at(0);
 		const targetList = transferLists.at(1);
+		// Should render transfer actions
 		const transferActions = uut.find('.cs-transfer-actions > CSButton');
-		expect(transferLists).toHaveLength(2);
+		expect(transferActions).toHaveLength(2);
+		// sourceLabel | targetLabel
 		expect(sourceList.prop('listType')).toBe(sourceListType);
 		expect(targetList.prop('listType')).toBe(targetListType);
+		// items
 		expect(sourceList.dive().find('CSTransferItem')).toHaveLength(4);
-		expect(transferActions).toHaveLength(2);
 	});
 
 	it('should pass source list and target list labels to CSTransferList components', () => {
@@ -567,7 +571,7 @@ describe('<CSTransferItem />', () => {
 		);
 		const selectedTransferListItem = uut.find('button.cs-transfer-li-selected');
 		expect(selectedTransferListItem).toHaveLength(1);
-		expect(selectedTransferListItem.props()['aria-selected']).toBeTruthy();
+		expect(selectedTransferListItem.prop('aria-selected')).toBeTruthy();
 	});
 
 	it('should render selected check-list list item', () => {

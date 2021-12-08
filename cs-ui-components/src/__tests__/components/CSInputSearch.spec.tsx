@@ -9,22 +9,31 @@ const errorMessage = 'input search error message';
 describe('<CSInputSearch />', () => {
 	it('should render the default CSInputSearch', () => {
 		const uut = shallow(<CSInputSearch label={label} />);
+		// Should render input search
 		const inputSearch = uut.find('.cs-input-search');
-		const inputSearchGroup = uut.find('.cs-input-search-group.cs-icon-left');
+		expect(inputSearch).toHaveLength(1);
+		// Should render a label
 		const inputSearchLabel = uut.find('CSLabel');
-		const inputSearchError = uut.find('.cs-input-search.cs-input-search-error');
-		const hiddenInputSearch = uut.find('.cs-input-search-wrapper.cs-element-hidden');
 		expect(inputSearchLabel.prop('label')).toBe(label);
 		expect(inputSearch.prop('aria-label')).toBe(label);
+		// autoFocus
 		expect(inputSearch.props().autoFocus).toBeFalsy();
+		// disabled
 		expect(inputSearch.props().disabled).toBeFalsy();
+		// error
+		const inputSearchError = uut.find('.cs-input-search.cs-input-search-error');
+		expect(inputSearchError).toHaveLength(0);
 		expect(inputSearch.prop('aria-invalid')).toBeFalsy();
+		// iconPosition
+		const inputSearchGroup = uut.find('.cs-input-search-group.cs-icon-left');
+		expect(inputSearchGroup).toHaveLength(1);
+		// hidden
+		const hiddenInputSearch = uut.find('.cs-input-search-wrapper.cs-element-hidden');
+		expect(hiddenInputSearch).toHaveLength(0);
+		// required
 		expect(inputSearch.props().required).toBeFalsy();
 		expect(inputSearchLabel.prop('required')).toBeFalsy();
 		expect(inputSearch.prop('aria-required')).toBeFalsy();
-		expect(inputSearchGroup).toHaveLength(1);
-		expect(hiddenInputSearch).toHaveLength(0);
-		expect(inputSearchError).toHaveLength(0);
 	});
 
 	it('should set the autofocus attribute', () => {

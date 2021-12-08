@@ -26,7 +26,7 @@ describe('<CSToggle />', () => {
 		const toggleLabel = uut.find('.cs-toggle-element > CSLabel');
 		const toggle = uut.find('.cs-toggle');
 		// Make sure CSLabel received correct value for label prop
-		expect(toggle.props()['aria-label']).toBe(labelValue);
+		expect(toggle.prop('aria-label')).toBe(labelValue);
 		// Make sure toggle input has aria-label set
 		expect(toggleLabel.prop('label')).toBe(labelValue);
 	});
@@ -53,7 +53,7 @@ describe('<CSToggle />', () => {
 		const uut = shallow(<CSToggle label={labelValue} error />);
 		const toggle = uut.find('.cs-toggle.cs-toggle-error');
 		expect(toggle).toHaveLength(1);
-		expect(toggle.props()['aria-invalid']).toBeTruthy();
+		expect(toggle.prop('aria-invalid')).toBeTruthy();
 	});
 
 	it('should render an error message from string', () => {
@@ -119,7 +119,7 @@ describe('<CSToggle />', () => {
 		const uut = shallow(<CSToggle label={labelValue} readOnly />);
 		const toggle = uut.find('.cs-toggle.cs-toggle-read-only');
 		expect(toggle).toHaveLength(1);
-		expect(toggle.props()['aria-readonly']).toBeTruthy();
+		expect(toggle.prop('aria-readonly')).toBeTruthy();
 	});
 
 	it('should set required attribute', () => {
@@ -127,7 +127,7 @@ describe('<CSToggle />', () => {
 		const toggle = uut.find('.cs-toggle');
 		const toggleLabel = uut.find('.cs-toggle-element > CSLabel');
 		expect(toggle.props().required).toEqual(true);
-		expect(toggle.props()['aria-required']).toBeTruthy();
+		expect(toggle.prop('aria-required')).toBeTruthy();
 		expect(toggleLabel.prop('required')).toEqual(true);
 	});
 

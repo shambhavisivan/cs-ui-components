@@ -8,6 +8,7 @@ const locale = 'en';
 describe('<CSCurrency />', () => {
 	it('should render the default CSCurrency', () => {
 		const uut = shallow(<CSCurrency locale="en" />);
+		// Should render a currency
 		expect(uut.find('.cs-currency')).toHaveLength(1);
 	});
 

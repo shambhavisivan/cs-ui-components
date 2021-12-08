@@ -9,7 +9,12 @@ const chipText = 'chip';
 describe('<CSChip />', () => {
 	it('should render the default CSChip', () => {
 		const uut = shallow(<CSChip text={chipText} />);
-		expect(uut.find('.cs-chip-brand')).toHaveLength(1);
+		// Should render a chip
+		const chip = uut.find('.cs-chip');
+		expect(chip).toHaveLength(1);
+		// variant
+		expect(chip.find('.cs-chip-brand')).toHaveLength(1);
+		expect(chip.find('.cs-chip-brand-border')).toHaveLength(0);
 	});
 
 	it('should render chip with variant brand', () => {

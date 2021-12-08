@@ -11,6 +11,7 @@ const customId = 'custom-id';
 describe('<CSProgressIndicator />', () => {
 	it('should render the default CSProgressIndicator', () => {
 		const uut = shallow(<CSProgressIndicator />);
+		// Should render a progress indicator
 		const progressIndicator = uut.find('.cs-progress-indicator');
 		expect(progressIndicator).toHaveLength(1);
 	});
@@ -47,9 +48,9 @@ describe('<CSProgressIndicatorItem />', () => {
 		const progressIndicatorItemButton = uut.find('.cs-progress-indicator-item .cs-progress-indicator-marker');
 		expect(progressIndicatorItem).toHaveLength(1);
 		// Make sure aria-roledescription attribute is set
-		expect(progressIndicatorItemButton.props()['aria-roledescription']).toBe('step');
+		expect(progressIndicatorItemButton.prop('aria-roledescription')).toBe('step');
 		// Make sure aria-label attribute is set
-		expect(progressIndicatorItemButton.props()['aria-label']).toBe(textValue);
+		expect(progressIndicatorItemButton.prop('aria-label')).toBe(textValue);
 		// Make sure title attribute is set
 		expect(progressIndicatorItemButton.props().title).toBe('incomplete');
 	});
@@ -79,7 +80,7 @@ describe('<CSProgressIndicatorItem />', () => {
 		// Make sure belonging class name exists
 		expect(progressIndicatorItem).toHaveLength(1);
 		// Make sure aria-current attribute is set
-		expect(progressIndicatorItemButton.props()['aria-current']).toBeTruthy();
+		expect(progressIndicatorItemButton.prop('aria-current')).toBeTruthy();
 		// Make sure title is set
 		expect(progressIndicatorItemButton.props().title).toBe(statusValue);
 	});

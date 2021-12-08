@@ -8,14 +8,19 @@ const defaultType = 'logo';
 
 describe('<CSImage />', () => {
 	it('should render the default CSImage', () => {
-		const type = 'logo';
 		const color = 'purple';
 		const variant = 'initial';
-		const uut = shallow(<CSImage type={type} />);
+		const uut = shallow(<CSImage type={defaultType} />);
+		// Should render an image
 		const image = uut.find('img.cs-image');
-		expect(image.props().src).toBe(Logo[`cs-${type}-${color}-${variant}`]);
-		expect(image.prop('alt')).toBe(`${type}-${color}-${variant}`);
+		expect(image).toHaveLength(1);
+		// color
+		expect(image.props().src).toBe(Logo[`cs-${defaultType}-${color}-${variant}`]);
+		// variant
+		expect(image.prop('alt')).toBe(`${defaultType}-${color}-${variant}`);
+		// height
 		expect(image.props().style).toHaveProperty('--cs-image-height', undefined);
+		// width
 		expect(image.props().style).toHaveProperty('--cs-image-width', undefined);
 	});
 

@@ -14,7 +14,13 @@ const customId = 'custom-id';
 describe('<CSIcon />', () => {
 	it('should render the default CSIcon', () => {
 		const uut = shallow(<CSIcon name={name} />);
+		// should render an icon
+		const icon = uut.find('.cs-icon');
+		expect(icon).toHaveLength(1);
+		// origin
 		expect(uut.find('use').props().href).toBe('#cssfi-video');
+		// spin
+		expect(icon.find('.cs-icon-spin')).toHaveLength(0);
 	});
 
 	it('should set icon color', () => {

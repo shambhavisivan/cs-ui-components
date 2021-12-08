@@ -8,9 +8,22 @@ const title = 'section title';
 describe('<CSSection />', () => {
 	it('should render the default CSSection', () => {
 		const uut = shallow(<CSSection title={title} />);
+		// Should render a section
+		const section = uut.find('section.cs-section');
+		expect(section).toHaveLength(1);
+		// title
 		const sectionTitle = uut.find('.cs-section-title');
 		expect(sectionTitle).toHaveLength(1);
 		expect(sectionTitle.text()).toBe(title);
+		// collapsible
+		const collapseButton = uut.find('.cs-section-button');
+		expect(collapseButton).toHaveLength(0);
+		// defaultClosed
+		const sectionBody = uut.find('.cs-section-body');
+		expect(sectionBody).toHaveLength(1);
+		// error
+		const sectionHeader = uut.find('.cs-section-header');
+		expect(sectionHeader.find('.cs-section-header-error')).toHaveLength(0);
 	});
 
 	it('should apply background color to section header', () => {
@@ -41,7 +54,7 @@ describe('<CSSection />', () => {
 		const sectionToggleIcon = uut.find('.cs-section-header CSIcon');
 		expect(sectionToggleIcon.prop('rotate')).toBe(0);
 		const sectionToggleButton = uut.find('.cs-section-button');
-		expect(sectionToggleButton.props()['aria-expanded']).toBeFalsy();
+		expect(sectionToggleButton.prop('aria-expanded')).toBeFalsy();
 	});
 
 	it('should render section with error styles', () => {

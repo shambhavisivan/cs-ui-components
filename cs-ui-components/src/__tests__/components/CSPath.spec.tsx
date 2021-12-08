@@ -9,6 +9,7 @@ const pathItemName = 'Path Item';
 describe('<CSPath />', () => {
 	it('should render the default CSPath', () => {
 		const uut = shallow(<CSPath />);
+		// Should render a path
 		const path = uut.find('nav.cs-path > ol.cs-path-wrapper');
 		expect(path).toHaveLength(1);
 	});
@@ -41,10 +42,17 @@ describe('<CSPath />', () => {
 describe('<CSPathItem />', () => {
 	it('should render the default CSPathItem', () => {
 		const uut = shallow(<CSPathItem name={pathItemName} />);
+		// Should render path item
 		const pathItemLINode = uut.find('li.cs-path-item');
+		expect(pathItemLINode).toHaveLength(1);
+		// name
 		const pathItemNameNode = uut.find('li.cs-path-item > button.cs-path-item-wrapper > span.cs-path-item-name');
 		expect(pathItemLINode.props().title).toBe(pathItemName);
 		expect(pathItemNameNode.text()).toBe(pathItemName);
+		// active
+		expect(pathItemLINode.find('.cs-path-item-active')).toHaveLength(0);
+		// disabled
+		expect(uut.prop('disabled')).toBeFalsy();
 	});
 
 	it('should render active path list item', () => {

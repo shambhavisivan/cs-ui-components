@@ -25,7 +25,7 @@ describe('<CSTextarea />', () => {
 		const textareaLabel = uut.find('.cs-textarea-wrapper > CSLabel');
 		const textarea = uut.find('.cs-textarea');
 		// Make sure textarea aria-label is set
-		expect(textarea.props()['aria-label']).toBe(labelValue);
+		expect(textarea.prop('aria-label')).toBe(labelValue);
 		// Make sure CSLabel label prop received correct value
 		expect(textareaLabel.prop('label')).toBe(labelValue);
 	});
@@ -56,7 +56,7 @@ describe('<CSTextarea />', () => {
 		const uut = shallow(<CSTextarea label={labelValue} error />);
 		const textarea = uut.find('.cs-textarea.cs-textarea-error');
 		// Make sure aria-invalid is set
-		expect(textarea.props()['aria-invalid']).toBeTruthy();
+		expect(textarea.prop('aria-invalid')).toBeTruthy();
 		// Make sure belonging class exists
 		expect(textarea).toHaveLength(1);
 	});
@@ -150,7 +150,7 @@ describe('<CSTextarea />', () => {
 		const textarea = uut.find('.cs-textarea');
 		const textareaLabel = uut.find('.cs-textarea-wrapper CSLabel');
 		// Make sure aria-required is set
-		expect(textarea.props()['aria-required']).toBeTruthy();
+		expect(textarea.prop('aria-required')).toBeTruthy();
 		// Make sure required attribute is set
 		expect(textarea.props().required).toEqual(true);
 		// Make sure required value is passed to to CSLabel

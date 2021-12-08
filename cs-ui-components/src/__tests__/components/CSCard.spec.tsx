@@ -17,6 +17,7 @@ describe('<CSCard />', () => {
 	it('should render the default CSCard', () => {
 		const uut = shallow(<CSCard />);
 		const card = uut.find('.cs-card');
+		// Should render a card
 		expect(card).toHaveLength(1);
 	});
 
@@ -54,8 +55,11 @@ describe('<CSCard />', () => {
 describe('<CSCardHeader />', () => {
 	it('should render the default CSCardHeader', () => {
 		const uut = shallow(<CSCardHeader />);
-		const cardHeader = uut.find('.cs-card-header.cs-card-header-with-border');
+		// Should render a card header
+		const cardHeader = uut.find('.cs-card-header');
 		expect(cardHeader).toHaveLength(1);
+		// borderRadius
+		expect(cardHeader.find('.cs-card-header-with-border')).toHaveLength(1);
 	});
 
 	it('should set custom background color', () => {
@@ -155,6 +159,7 @@ describe('<CSCardHeader />', () => {
 describe('<CSCardBody />', () => {
 	it('should render the default CSCardBody', () => {
 		const uut = shallow(<CSCardBody />);
+		// Should render a card body
 		const cardBody = uut.find('.cs-card-body');
 		expect(cardBody).toHaveLength(1);
 	});
@@ -199,8 +204,11 @@ describe('<CSCardBody />', () => {
 describe('<CSCardFooter />', () => {
 	it('should render the default CSCardFooter', () => {
 		const uut = shallow(<CSCardFooter />);
-		const cardFooter = uut.find('.cs-card-footer.cs-card-footer-left');
+		// Should render a card footer, align
+		const cardFooter = uut.find('.cs-card-footer');
 		expect(cardFooter).toHaveLength(1);
+		// align
+		expect(cardFooter.find('.cs-card-footer-left')).toHaveLength(1);
 	});
 
 	it('should align child elements to left', () => {

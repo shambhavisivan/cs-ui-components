@@ -6,14 +6,39 @@ import CSInputText from '../../components/CSInputText';
 const label = 'Enter value';
 const errorMsg = 'Error message.';
 
-it('should pass label to CSLabel', () => {
-	const uut = shallow(<CSInputText label={label} />);
-	const inputTextLabel = uut.find('CSLabel');
-	expect(inputTextLabel.prop('label')).toBe(label);
-});
-
 describe('<CSInputText />', () => {
-	it('should pass actions to CSCustomDataActions', () => {
+	it('should render the default CSInputText', () => {
+		const uut = shallow(<CSInputText label={label} />);
+		// Should render input text
+		const inputText = uut.find('.cs-input-text');
+		expect(inputText).toHaveLength(1);
+		// Should render a label
+		const inputTextLabel = uut.find('CSLabel');
+		expect(inputTextLabel).toHaveLength(1);
+		// disabled
+		expect(inputText.prop('disabled')).toBeFalsy();
+		// error
+		const errorInputSearch = uut.find('.cs-input-text-error');
+		expect(errorInputSearch).toHaveLength(0);
+		expect(inputText.prop('aria-invalid')).toBeFalsy();
+		// hidden
+		const hiddenInputSearch = uut.find('.cs-input-text-wrapper.cs-element-hidden');
+		expect(hiddenInputSearch).toHaveLength(0);
+		// readOnly
+		expect(inputText.prop('readOnly')).toBeFalsy();
+		// required
+		expect(inputText.prop('required')).toBeFalsy();
+		expect(inputText.prop('aria-required')).toBeFalsy();
+		expect(inputTextLabel.prop('aria-required')).toBeFalsy();
+	});
+
+	it('should pass label to CSLabel', () => {
+		const uut = shallow(<CSInputText label={label} />);
+		const inputTextLabel = uut.find('CSLabel');
+		expect(inputTextLabel.prop('label')).toBe(label);
+	});
+
+	it('should pass correct actions value to CSCustomDataActions', () => {
 		const actions = [{
 			action: () => {},
 			labelHidden: true,

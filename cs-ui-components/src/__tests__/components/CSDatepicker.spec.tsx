@@ -17,6 +17,40 @@ const minDate = 5;
 const onChange = jest.fn();
 
 describe('<CSDatepicker />', () => {
+	it('should render the default CSDatepicker', () => {
+		const uut = shallow(<CSDatepicker label={labelValue} onChange={onChange} />);
+		// Should render a datepicker
+		const datepicker = uut.find(DatePicker);
+		expect(datepicker).toHaveLength(1);
+		// Should have a label
+		expect(uut.find('.cs-datepicker > CSLabel')).toHaveLength(1);
+		// autoFocus
+		expect(datepicker.prop('autoFocus')).toBeFalsy();
+		// dateFormat
+		expect(datepicker.prop('dateFormat')).toBe('dd-MM-yyyy');
+		// disabled
+		expect(datepicker.prop('disabled')).toBeFalsy();
+		// dropdownMode
+		expect(datepicker.prop('dropdownMode')).toBe('scroll');
+		// error
+		expect(uut.find('.cs-datepicker.cs-datepicker-error')).toHaveLength(0);
+		// inline
+		expect(datepicker.prop('inline')).toBeFalsy();
+		// maxDate
+		expect(datepicker.prop('maxDate')).toBeFalsy();
+		// minDate
+		expect(datepicker.prop('minDate')).toBeFalsy();
+		// readOnly
+		expect(datepicker.prop('readOnly')).toBeFalsy();
+		// required
+		expect(datepicker.prop('required')).toBeFalsy();
+		expect(uut.find('.cs-datepicker > CSLabel').prop('required')).toBeFalsy();
+		// scrollableYearDropdown
+		expect(datepicker.prop('scrollableYearDropdown')).toBeFalsy();
+		// errorMessage
+		expect(uut.find('CSFieldErrorMsg')).toHaveLength(0);
+	});
+
 	it('should pass label to CSLabel', () => {
 		const uut = shallow(<CSDatepicker label={labelValue} onChange={onChange} />);
 		const datepickerLabel = uut.find('.cs-datepicker > CSLabel');

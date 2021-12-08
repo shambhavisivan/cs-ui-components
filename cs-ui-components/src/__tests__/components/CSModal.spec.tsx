@@ -14,9 +14,11 @@ const text = 'Lorem ipsum dolor sit amet.';
 const titleText = 'Title';
 
 describe('<CSModal />', () => {
-	it('should render default CSModal', () => {
+	it('should render the default CSModal', () => {
 		const uut = shallow(<CSModal />).dive();
+		// Should render a modal
 		const modal = uut.find('CSModal').dive();
+		expect(modal).toHaveLength(1);
 		// visible
 		expect(modal).toHaveLength(1);
 		const modalAria = modal.dive().find('.cs-modal').prop('aria-modal');
@@ -184,9 +186,11 @@ describe('<CSModal />', () => {
 });
 
 describe('<CSModalHeader />', () => {
-	it('should render default CSModalHeader', () => {
+	it('should render the default CSModalHeader', () => {
 		const uut = shallow(<CSModalHeader />);
-		expect(uut.find('.cs-modal-header')).toHaveLength(1);
+		// Should render a modal header
+		const modalHeader = uut.find('.cs-modal-header');
+		expect(modalHeader).toHaveLength(1);
 	});
 
 	it('should render subtitle', () => {
@@ -234,11 +238,15 @@ describe('<CSModalHeader />', () => {
 });
 
 describe('<CSModalBody />', () => {
-	it('should render default CSModalBody', () => {
+	it('should render the default CSModalBody', () => {
 		const uut = shallow(<CSModalBody />);
-		const modalBody = uut.props().style;
-		expect(modalBody).toHaveProperty('--cs-modal-body-min-height', undefined);
-		expect(modalBody).toHaveProperty('--cs-modal-body-padding', undefined);
+		// Should render a modal body
+		const modalBody = uut.find('.cs-modal-body');
+		expect(modalBody).toHaveLength(1);
+		// minHeight
+		expect(uut.props().style).toHaveProperty('--cs-modal-body-min-height', undefined);
+		// padding
+		expect(uut.props().style).toHaveProperty('--cs-modal-body-padding', undefined);
 	});
 
 	it('should set custom min height', () => {
@@ -278,10 +286,13 @@ describe('<CSModalBody />', () => {
 });
 
 describe('<CSModalFooter />', () => {
-	it('should render default CSModalFooter', () => {
+	it('should render the default CSModalFooter', () => {
 		const uut = shallow(<CSModalFooter />);
-		const modalFooter = uut.find('.cs-modal-footer-right');
+		// Should render a modal footer
+		const modalFooter = uut.find('.cs-modal-footer');
 		expect(modalFooter).toHaveLength(1);
+		// align
+		expect(modalFooter.find('.cs-modal-footer-right')).toHaveLength(1);
 	});
 
 	it('should align left', () => {

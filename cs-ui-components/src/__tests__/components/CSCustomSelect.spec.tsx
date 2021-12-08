@@ -19,6 +19,35 @@ const customSelectTextLabel = 'Enter value';
 const errorText = 'Error message';
 
 describe('<CSCustomSelect />', () => {
+	it('should render the default CSCustomSelect', () => {
+		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} />).dive();
+		uut.find('input').simulate('click');
+		// Should render custom select
+		const customSelect = uut.find('.cs-custom-select-input');
+		expect(customSelect).toHaveLength(1);
+		// should have a label
+		const customSelectWrapper = uut.find('.cs-custom-select-wrapper');
+		expect(customSelectWrapper.find('CSLabel')).toHaveLength(1);
+		// align
+		const autoposition = uut.find('CSAutoposition');
+		expect(autoposition.prop('initialPosition')).toContain('right');
+		// position
+		expect(autoposition.prop('initialPosition')).toContain('bottom');
+		// disabled
+		const customSelectInputWrapper = uut.find('.cs-custom-select-input-wrapper');
+		expect(customSelectInputWrapper.find('.cs-custom-select-input-wrapper-disabled')).toHaveLength(0);
+		// errorMessage
+		const fieldErrorMessage = uut.find('CSFieldErrorMsg');
+		expect(fieldErrorMessage).toHaveLength(0);
+		// gridCustomPopup
+		const customSelectDropdownWrapper = uut.find('.cs-custom-select-dropdown-wrapper');
+		expect(customSelectDropdownWrapper.find('.ag-custom-component-popup')).toHaveLength(0);
+		// hidden
+		expect(customSelectWrapper.find('.cs-element-hidden')).toHaveLength(0);
+		// selection
+		expect(customSelect.find('.cs-custom-select-input-multiselect')).toHaveLength(0);
+	});
+
 	it('should pass label to CSLabel', () => {
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} />).dive();
 		expect(uut.find('CSLabel').prop('label')).toBe(customSelectTextLabel);

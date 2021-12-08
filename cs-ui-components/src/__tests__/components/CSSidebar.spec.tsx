@@ -13,9 +13,15 @@ describe('<CSSidebar />', () => {
 				<CSSidebarTab title={sidebarTitle} />
 			</CSSidebar>,
 		);
-		const defaultSidebar = uut.find('.cs-sidebar.cs-sidebar-wrapper-left.cs-sidebar-closed:not(.cs-sidebar-multiple-tabs)');
-		// Should have default values for props multipleTabs, expanded, opensTo
-		expect(defaultSidebar).toHaveLength(1);
+		// Should render a sidebar
+		const sidebar = uut.find('.cs-sidebar');
+		expect(sidebar).toHaveLength(1);
+		// expanded
+		expect(sidebar.find('.cs-sidebar-closed')).toHaveLength(1);
+		// multipleTabs
+		expect(sidebar.find('.cs-sidebar.cs-sidebar-multiple-tabs')).toHaveLength(0);
+		// opensTo
+		expect(sidebar.find('.cs-sidebar-wrapper-left')).toHaveLength(1);
 	});
 
 	it('should render closed sidebar', () => {
@@ -212,13 +218,29 @@ describe('<CSSidebar />', () => {
 });
 
 describe('<CSSidebarTab />', () => {
+	it('should render the default CSSidebarTab', () => {
+		const uut = shallow(
+			<CSSidebar expanded>
+				<CSSidebarTab title={sidebarTitle} />
+			</CSSidebar>,
+		);
+		// Should render a sidebar tab
+		const sidebarTab = uut.find(CSSidebarTab).dive();
+		expect(sidebarTab).toHaveLength(1);
+		// title
+		expect(sidebarTab.find('.cs-sidebar-tab-title').text()).toBe(sidebarTitle);
+		// noTabHeader
+		const sidebarTabHeader = sidebarTab.find('.cs-sidebar-tab-header');
+		expect(sidebarTabHeader).toHaveLength(1);
+	});
+
 	it('should render title on sidebar tab', () => {
 		const uut = shallow(
 			<CSSidebar expanded>
 				<CSSidebarTab title={sidebarTitle} />
 			</CSSidebar>,
 		);
-		const sidebarTab = uut.find(CSSidebarTab).dive().find('.cs-sidebar-tab-title');
+		const sidebarTab = uut.find(CSSidebarTab).dive();
 		expect(sidebarTab.text()).toBe(sidebarTitle);
 	});
 

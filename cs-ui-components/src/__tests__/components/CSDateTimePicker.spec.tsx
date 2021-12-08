@@ -11,6 +11,39 @@ const maxDate = 5;
 const onChange = () => { };
 
 describe('<CSDateTimePicker />', () => {
+	it('should render the default CSDateTimepicker', () => {
+		const uut = shallow(<CSDateTimePicker label={labelValue} onChange={onChange} />);
+		// Should render a datepicker
+		const datepicker = uut.dive().find('CSDatepicker');
+		// Should have a label
+		expect(datepicker.dive().find('.cs-datepicker > CSLabel')).toHaveLength(1);
+		// autoFocus
+		expect(datepicker.prop('autoFocus')).toBeFalsy();
+		// dateFormat
+		expect(datepicker.prop('dateFormat')).toBe('MMMM d, yyyy h:mm aa');
+		// disabled
+		expect(datepicker.prop('disabled')).toBeFalsy();
+		// dropdownMode
+		expect(datepicker.prop('dropdownMode')).toBe('scroll');
+		// error
+		expect(uut.find('.cs-datetimepicker.cs-datepicker-error')).toHaveLength(0);
+		// inline
+		expect(datepicker.prop('inline')).toBeFalsy();
+		// maxDate
+		expect(datepicker.prop('maxDate')).toBeFalsy();
+		// minDate
+		expect(datepicker.prop('minDate')).toBeFalsy();
+		// readOnly
+		expect(datepicker.prop('readOnly')).toBeFalsy();
+		// required
+		expect(datepicker.prop('required')).toBeFalsy();
+		expect(datepicker.dive().find('.cs-datepicker > CSLabel').prop('required')).toBeFalsy();
+		// scrollableYearDropdown
+		expect(datepicker.prop('scrollableYearDropdown')).toBeFalsy();
+		// errorMessage
+		expect(uut.find('CSFieldErrorMsg')).toHaveLength(0);
+	});
+
 	it('should pass showTimeSelect to CSDatepicker', () => {
 		const uut = shallow(<CSDateTimePicker label={labelValue} onChange={onChange} />);
 		const datepicker = uut.dive().find('CSDatepicker');

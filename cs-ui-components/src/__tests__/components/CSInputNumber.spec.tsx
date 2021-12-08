@@ -9,23 +9,31 @@ const errorMessage = 'input number error message';
 describe('<CSInputNumber />', () => {
 	it('should render the default CSInputNumber', () => {
 		const uut = shallow(<CSInputNumber label={label} />);
+		// Should render input number
 		const inputNumber = uut.find('.cs-input-number');
-		const inputNumberLabel = uut.find('CSLabel');
-		const inputNumberAriaLabel = inputNumber.prop('aria-label');
-		const inputNumberType = inputNumber.props().type;
-		const inputNumberError = uut.find('.cs-input-number.cs-input-number-error');
-		const hiddenInputNumber = uut.find('.cs-input-number-wrapper.cs-element-hidden');
-		const hiddenInputNumberSpinner = uut.find('.cs-input-number.cs-input-number-hide-spinner-true');
 		expect(inputNumber).toHaveLength(1);
+		// Should render a label
+		const inputNumberLabel = uut.find('CSLabel');
 		expect(inputNumberLabel).toHaveLength(1);
 		expect(inputNumberLabel.prop('label')).toBe(label);
+		const inputNumberAriaLabel = inputNumber.prop('aria-label');
 		expect(inputNumberAriaLabel).toBe(label);
-		expect(inputNumberType).toBe('number');
+		// disabled
 		expect(inputNumber.props().disabled).toBeFalsy();
-		expect(inputNumber.props().readOnly).toBeFalsy();
+		// error
+		const inputNumberError = uut.find('.cs-input-number.cs-input-number-error');
 		expect(inputNumberError).toHaveLength(0);
 		expect(inputNumber.prop('aria-invalid')).toBeFalsy();
+		// readonly
+		expect(inputNumber.props().readOnly).toBeFalsy();
+		// type
+		const inputNumberType = inputNumber.props().type;
+		expect(inputNumberType).toBe('number');
+		// hidden
+		const hiddenInputNumber = uut.find('.cs-input-number-wrapper.cs-element-hidden');
 		expect(hiddenInputNumber).toHaveLength(0);
+		// hideSpinner
+		const hiddenInputNumberSpinner = uut.find('.cs-input-number.cs-input-number-hide-spinner-true');
 		expect(hiddenInputNumberSpinner).toHaveLength(0);
 	});
 
