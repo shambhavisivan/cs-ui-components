@@ -29,13 +29,13 @@ describe('<CSDivider />', () => {
 		expect(uut.find('.cs-divider').get(0).props.style).toHaveProperty('--cs-divider-size', size);
 	});
 
-	it('should render divider with custom class', () => {
+	it('should have a custom class name', () => {
 		const customClass = 'custom-class';
 		const uut = shallow(<CSDivider variant={variantVertical} className={customClass} />);
 		expect(uut.find(`.cs-divider.${customClass}`)).toHaveLength(1);
 	});
 
-	it('should render divider with custom id', () => {
+	it('should have a custom ID', () => {
 		const customId = 'custom-id';
 		const uut = shallow(<CSDivider variant={variantVertical} id={customId} />);
 		expect(uut.find(`.cs-divider#${customId}`)).toHaveLength(1);

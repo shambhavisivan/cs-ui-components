@@ -7,7 +7,7 @@ const chipColor = '#4a26ab';
 const chipText = 'chip';
 
 describe('<CSChip />', () => {
-	it('should render chip with variant brand and variant style filled', () => {
+	it('should render the default CSChip', () => {
 		const uut = shallow(<CSChip text={chipText} />);
 		expect(uut.find('.cs-chip-brand')).toHaveLength(1);
 	});
@@ -83,7 +83,7 @@ describe('<CSChip />', () => {
 		expect(uut.find('.cs-chip-dark-border')).toHaveLength(1);
 	});
 
-	it('should render chip with color pattern fill', () => {
+	it('should set color', () => {
 		const uut = shallow(<CSChip text={chipText} color={chipColor} />);
 		const CSChipColor = uut.find('.cs-chip-brand.cs-chip-custom-color');
 		expect(CSChipColor).toHaveLength(1);
@@ -102,13 +102,13 @@ describe('<CSChip />', () => {
 		expect(CSChipBorder.get(0).props.style).toHaveProperty('--cs-chip-custom-c', chipColor);
 	});
 
-	it('should render chip with custom class', () => {
+	it('should have a custom class name', () => {
 		const customClass = 'custom-br-mint';
 		const uut = shallow(<CSChip text={chipText} className={customClass} />);
 		expect(uut.find(`.cs-chip.${customClass}`)).toHaveLength(1);
 	});
 
-	it('should render divider with custom id', () => {
+	it('should have a custom ID', () => {
 		const customId = 'custom-id';
 		const uut = shallow(<CSChip text={chipText} id={customId} />);
 		expect(uut.find(`.cs-chip#${customId}`)).toHaveLength(1);

@@ -9,7 +9,7 @@ import CSButton from '../../components/CSButton';
 const listGroupText = 'List group';
 
 describe('<CSList />', () => {
-	it('should render default CSList', () => {
+	it('should render the default CSList', () => {
 		const uut = shallow(
 			<CSList size="medium">
 				<CSListItem />
@@ -18,7 +18,7 @@ describe('<CSList />', () => {
 		const listItem = uut.find('.cs-list-wrapper > CSListItem');
 		expect(listItem.dive().find('.cs-list-item-medium.cs-list-item-simple-list')).toHaveLength(1);
 	});
-	it('should pass small size value to list item', () => {
+	it('should pass size to CSListItem', () => {
 		const size = 'small';
 		const uut = shallow(
 			<CSList size={size}>
@@ -30,7 +30,7 @@ describe('<CSList />', () => {
 		expect(listItem.dive().find('.cs-list-item-small.cs-list-item-simple-list')).toHaveLength(1);
 	});
 
-	it('should pass medium size value to list item', () => {
+	it('should pass size to CSListItem', () => {
 		const size = 'medium';
 		const uut = shallow(
 			<CSList size={size}>
@@ -42,7 +42,7 @@ describe('<CSList />', () => {
 		expect(listItem.dive().find('.cs-list-item-medium.cs-list-item-simple-list')).toHaveLength(1);
 	});
 
-	it('should pass large size value to list item', () => {
+	it('should pass size to CSListItem', () => {
 		const size = 'large';
 		const uut = shallow(
 			<CSList size={size}>
@@ -54,7 +54,7 @@ describe('<CSList />', () => {
 		expect(listItem.dive().find('.cs-list-item-large.cs-list-item-simple-list')).toHaveLength(1);
 	});
 
-	it('should be a simple list variant', () => {
+	it('should render a simple list variant', () => {
 		const variant = 'simple-list';
 		const uut = shallow(
 			<CSList>
@@ -66,7 +66,7 @@ describe('<CSList />', () => {
 		expect(listItem.dive().find('.cs-list-item-simple-list')).toHaveLength(1);
 	});
 
-	it('should be a check list variant', () => {
+	it('should render a check list variant', () => {
 		const variant = 'check-list';
 		const uut = shallow(
 			<CSList variant={variant}>
@@ -84,7 +84,7 @@ describe('<CSList />', () => {
 		expect(uut.find(`.cs-list-wrapper.${customClass}`));
 	});
 
-	it('should have a custom id', () => {
+	it('should have a custom ID', () => {
 		const customId = 'custom-id';
 		const uut = shallow(<CSList id={customId} />);
 		expect(uut.find(`.cs-list-wrapper#${customId}`));
@@ -107,7 +107,7 @@ describe('<CSList />', () => {
 });
 
 describe('<CSListItem />', () => {
-	it('should render default CSListItem', () => {
+	it('should render the default CSListItem', () => {
 		const uut = shallow(
 			<CSList>
 				<CSListItem />
@@ -120,15 +120,15 @@ describe('<CSListItem />', () => {
 		expect(listItem.prop('aria-selected')).toBeFalsy();
 	});
 
-	it('should have custom content', () => {
+	it('should render custom content', () => {
 		const uut = shallow(<CSListItem customContent={(<CSButton label="Button" />)} />);
 		const customContent = uut.find('.cs-list-item > .cs-list-item-custom-content');
 		expect(customContent.find('CSButton')).toHaveLength(1);
 	});
 
-	it('should be a disabled simple list variant ', () => {
+	it('should render disabled list item ', () => {
 		const uut = shallow(
-			<CSList>
+			<CSList variant="simple-list">
 				<CSListItem disabled />
 			</CSList>,
 		);
@@ -137,7 +137,7 @@ describe('<CSListItem />', () => {
 		expect(listItem.prop('tabIndex')).toBe(-1);
 	});
 
-	it('should be a disabled check list variant ', () => {
+	it('should render disabled check list variant list item', () => {
 		const uut = shallow(
 			<CSList variant="check-list">
 				<CSListItem disabled />
@@ -148,7 +148,7 @@ describe('<CSListItem />', () => {
 		expect(listItem.dive().find('CSCheckbox').prop('disabled')).toBeTruthy();
 	});
 
-	it('should trigger onSelectChange function with click event', () => {
+	it('should use a working onSelectChange callback', () => {
 		const handleOnSelectChangeMock = jest.fn();
 		const uut = shallow(
 			<CSList>
@@ -194,7 +194,7 @@ describe('<CSListItem />', () => {
 		expect(uut.find(`.cs-list-item-wrapper.${customClass}`));
 	});
 
-	it('should have a custom id', () => {
+	it('should have a custom ID', () => {
 		const customId = 'custom-id';
 		const uut = shallow(<CSListItem id={customId} />);
 		expect(uut.find(`.cs-list-item-wrapper#${customId}`));
@@ -208,7 +208,7 @@ describe('<CSListItem />', () => {
 });
 
 describe('<CSListGroup />', () => {
-	it('should render default CSListGroup', () => {
+	it('should render the default CSListGroup', () => {
 		const uut = shallow(
 			<CSList>
 				<CSListGroup text={listGroupText} />
@@ -280,14 +280,12 @@ describe('<CSListGroup />', () => {
 		expect(uut.find('.cs-list-group-header-noncollapsible')).toHaveLength(1);
 	});
 
-	it('should have custom content', () => {
+	it('should render custom content', () => {
 		const uut = shallow(
 			<CSList>
 				<CSListGroup
 					text={listGroupText}
-					customContent={(
-						<CSButton label="delete" />
-					)}
+					customContent={(<CSButton label="delete" />)}
 				/>
 			</CSList>,
 		);
@@ -331,7 +329,7 @@ describe('<CSListGroup />', () => {
 		expect(listGroup.dive().find('.cs-list-group-header-check-list')).toHaveLength(1);
 	});
 
-	it('should trigger onSelectChange function with change event', () => {
+	it('should use a working onSelectChange callback', () => {
 		const handleOnSelectChangeMock = jest.fn();
 		const uut = shallow(
 			<CSList variant="check-list">
@@ -361,7 +359,7 @@ describe('<CSListGroup />', () => {
 		expect(uut.find(`.cs-list-group-wrapper.${customClass}`));
 	});
 
-	it('should have a custom id', () => {
+	it('should have a custom ID', () => {
 		const customId = 'custom-id';
 		const uut = shallow(<CSListGroup text={listGroupText} id={customId} />);
 		expect(uut.find(`.cs-list-group-wrapper#${customId}`));

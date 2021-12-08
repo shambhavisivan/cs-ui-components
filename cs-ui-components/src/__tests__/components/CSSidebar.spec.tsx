@@ -7,7 +7,7 @@ import CSSidebarTab from '../../components/sidebar/CSSidebarTab';
 const sidebarTitle = 'title';
 
 describe('<CSSidebar />', () => {
-	it('should render default sidebar', () => {
+	it('should render the default CSSidebar', () => {
 		const uut = shallow(
 			<CSSidebar>
 				<CSSidebarTab title={sidebarTitle} />
@@ -139,7 +139,7 @@ describe('<CSSidebar />', () => {
 		expect(handleOnToggle).toHaveBeenCalledTimes(0);
 	});
 
-	it('should make sidebar to be expandable by click on toggle button', () => {
+	it('should use a working onToggle callback', () => {
 		const handleOnToggle = jest.fn();
 		const uut = shallow(
 			<CSSidebar wholeSidebarClickable={false} onToggle={handleOnToggle}>
@@ -151,7 +151,7 @@ describe('<CSSidebar />', () => {
 		expect(handleOnToggle).toHaveBeenCalledTimes(1);
 	});
 
-	it('should have belonging class and make sidebar expandable by click on whole sidebar', () => {
+	it('should use a working onToggle callback by click on whole sidebar', () => {
 		const handleOnToggle = jest.fn();
 		const uut = shallow(
 			<CSSidebar wholeSidebarClickable onToggle={handleOnToggle}>
@@ -178,7 +178,7 @@ describe('<CSSidebar />', () => {
 		expect(handleOnToggle).toHaveBeenCalledTimes(0);
 	});
 
-	it('should set custom ID on sidebar', () => {
+	it('should have a custom ID', () => {
 		const customId = 'custom-id';
 		const uut = shallow(
 			<CSSidebar id={customId}>
@@ -189,7 +189,7 @@ describe('<CSSidebar />', () => {
 		expect(sidebar).toHaveLength(1);
 	});
 
-	it('should set custom class on sidebar', () => {
+	it('should have a custom class name', () => {
 		const customClass = 'custom-class';
 		const uut = shallow(
 			<CSSidebar className={customClass}>
@@ -284,7 +284,7 @@ describe('<CSSidebarTab />', () => {
 		expect(sidebarTab).toHaveLength(0);
 	});
 
-	it('should set sidebar tab padding', () => {
+	it('should set custom padding', () => {
 		const tabPaddingValue = '2rem';
 		const uut = shallow(
 			<CSSidebar expanded>
@@ -295,7 +295,7 @@ describe('<CSSidebarTab />', () => {
 		expect(sidebarTabStyle).toHaveProperty('--cs-sidebar-tab-custom-padding', tabPaddingValue);
 	});
 
-	it('should set custom sidebar tab width and override tabsWidth if it is defined', () => {
+	it('should set custom width and override tabsWidth if it is defined', () => {
 		const tabWidthValue = '150px';
 		const uut = shallow(
 			<CSSidebar multipleTabs tabsWidth="200px">
@@ -306,7 +306,7 @@ describe('<CSSidebarTab />', () => {
 		expect(sidebar).toHaveProperty('--cs-sidebar-tab-custom-width', tabWidthValue);
 	});
 
-	it('should set sidebar tab subtitle', () => {
+	it('should render subtitle', () => {
 		const subtitle = 'subtitle';
 		const uut = shallow(
 			<CSSidebar expanded>
@@ -317,7 +317,7 @@ describe('<CSSidebarTab />', () => {
 		expect(sidebarTab.text()).toBe(subtitle);
 	});
 
-	it('should set custom ID on sidebar tab', () => {
+	it('should have a custom ID', () => {
 		const customId = 'custom-id';
 		const uut = shallow(
 			<CSSidebar expanded>
@@ -328,7 +328,7 @@ describe('<CSSidebarTab />', () => {
 		expect(sidebarTab).toHaveLength(1);
 	});
 
-	it('should set custom class on sidebar tab', () => {
+	it('should have a custom class name', () => {
 		const customClass = 'custom-class';
 		const uut = shallow(
 			<CSSidebar expanded>
@@ -339,7 +339,7 @@ describe('<CSSidebarTab />', () => {
 		expect(sidebar).toHaveLength(1);
 	});
 
-	it('should display custom children', () => {
+	it('should render custom children', () => {
 		const uut = shallow(
 			<CSSidebar expanded>
 				<CSSidebarTab title={sidebarTitle}>

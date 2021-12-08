@@ -7,7 +7,7 @@ const label = 'Progress';
 const progress = '50%';
 
 describe('<CSProgressBar />', () => {
-	it('should pass correct label value to CSLabel', () => {
+	it('should pass label to CSLabel', () => {
 		const uut = shallow(<CSProgressBar label={label} progress={progress} />);
 		expect(uut.find('.cs-progress-bar-wrapper')).toHaveLength(1);
 		expect(uut.find('.cs-progress-bar-text > CSLabel').prop('label')).toBe(label);
@@ -18,7 +18,7 @@ describe('<CSProgressBar />', () => {
 		expect(uut.find('.cs-progress-bar').get(0).props.style).toHaveProperty('--cs-progress-bar-width', '50%');
 	});
 
-	it('should set border radius value', () => {
+	it('should set custom border radius', () => {
 		const uut = shallow(
 			<CSProgressBar
 				label={label}
@@ -54,7 +54,7 @@ describe('<CSProgressBar />', () => {
 		expect(infoText.text()).toBe(infoTextContent);
 	});
 
-	it('should have a hidden label', () => {
+	it('should hide label', () => {
 		const uut = shallow(
 			<CSProgressBar
 				label={label}
@@ -65,7 +65,7 @@ describe('<CSProgressBar />', () => {
 		expect(uut.find('.cs-progress-bar-text > CSLabel')).toHaveLength(0);
 	});
 
-	it('should pass correct label value to CSLabel title prop', () => {
+	it('should pass label to CSLabel title prop', () => {
 		const uut = shallow(
 			<CSProgressBar
 				label={label}
@@ -77,12 +77,12 @@ describe('<CSProgressBar />', () => {
 		expect(progressBarLabel.prop('title')).toBe(label);
 	});
 
-	it('should have neutral status', () => {
+	it('should render neutral status progress bar', () => {
 		const uut = shallow(<CSProgressBar label={label} progress={progress} />);
 		expect(uut.find('.cs-progress-status')).toHaveLength(0);
 	});
 
-	it('should have loading status and loading icon', () => {
+	it('should render loading status progress bar and loading icon', () => {
 		const uut = shallow(
 			<CSProgressBar
 				label={label}
@@ -95,7 +95,7 @@ describe('<CSProgressBar />', () => {
 		expect(icon.prop('name')).toBe('spinner');
 	});
 
-	it('should have success status and success icon', () => {
+	it('should render success status progress bar and success icon', () => {
 		const uut = shallow(
 			<CSProgressBar
 				label={label}
@@ -108,7 +108,7 @@ describe('<CSProgressBar />', () => {
 		expect(icon.prop('name')).toBe('check');
 	});
 
-	it('should have error status and error icon', () => {
+	it('should render error status and progress bar error icon', () => {
 		const uut = shallow(
 			<CSProgressBar
 				label={label}
@@ -177,7 +177,7 @@ describe('<CSProgressBar />', () => {
 		expect(progressBar.props().title).toBe(title);
 	});
 
-	it('should set custom class', () => {
+	it('should have a custom class name', () => {
 		const customClass = 'custom-class';
 		const uut = shallow(
 			<CSProgressBar
@@ -190,7 +190,7 @@ describe('<CSProgressBar />', () => {
 		expect(progressBarWrapper).toHaveLength(1);
 	});
 
-	it('should set custom ID', () => {
+	it('should have a custom ID', () => {
 		const customId = 'custom-id';
 		const uut = shallow(
 			<CSProgressBar

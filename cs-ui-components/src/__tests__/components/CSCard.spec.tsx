@@ -14,7 +14,7 @@ const bgColorValue = 'green';
 const paddingValue = '0';
 
 describe('<CSCard />', () => {
-	it('should render default CSCard', () => {
+	it('should render the default CSCard', () => {
 		const uut = shallow(<CSCard />);
 		const card = uut.find('.cs-card');
 		expect(card).toHaveLength(1);
@@ -27,13 +27,13 @@ describe('<CSCard />', () => {
 		expect(cardStyle).toHaveProperty('--cs-card-border-radius', borderRadiusValue);
 	});
 
-	it('should set custom class', () => {
+	it('should have a custom class name', () => {
 		const uut = shallow(<CSCard className={customClass} />);
 		const card = uut.find(`.cs-card.${customClass}`);
 		expect(card).toHaveLength(1);
 	});
 
-	it('should set custom ID', () => {
+	it('should have a custom ID', () => {
 		const uut = shallow(<CSCard id={customId} />);
 		const card = uut.find(`.cs-card#${customId}`);
 		expect(card).toHaveLength(1);
@@ -52,19 +52,19 @@ describe('<CSCard />', () => {
 });
 
 describe('<CSCardHeader />', () => {
-	it('should render default CSCardHeader', () => {
+	it('should render the default CSCardHeader', () => {
 		const uut = shallow(<CSCardHeader />);
 		const cardHeader = uut.find('.cs-card-header.cs-card-header-with-border');
 		expect(cardHeader).toHaveLength(1);
 	});
 
-	it('should set custom background color on header', () => {
+	it('should set custom background color', () => {
 		const uut = shallow(<CSCardHeader bgColor={bgColorValue} />);
 		const cardHeaderStyle = uut.find('.cs-card-header').get(0).props.style;
 		expect(cardHeaderStyle).toHaveProperty('--cs-card-header-bg-color', bgColorValue);
 	});
 
-	it('should make card header collapsible', () => {
+	it('should be collapsible', () => {
 		const uut = shallow(<CSCardHeader collapsible />);
 		// Make sure belonging class exists on CSCardHeader
 		expect(uut.find('.cs-card-header-collapsible')).toHaveLength(1);
@@ -73,7 +73,7 @@ describe('<CSCardHeader />', () => {
 		expect(uut.find('.cs-card-header > CSButton').prop('ariaExpanded')).toBeTruthy();
 	});
 
-	it('should make card header closed by default', () => {
+	it('should be closed by default', () => {
 		const uut = shallow(<CSCardHeader collapsible defaultClosed />);
 		expect(uut.find('.cs-card-header-collapsible.cs-card-header-collapsed')).toHaveLength(1);
 		expect(uut.find('.cs-card-header > CSButton').prop('ariaExpanded')).toBeFalsy();
@@ -86,7 +86,7 @@ describe('<CSCardHeader />', () => {
 		expect(cardHeaderIcon.prop('color')).toBe(iconColorValue);
 	});
 
-	it('should set card header icon frame', () => {
+	it('should render icon frame', () => {
 		const uut = shallow(<CSCardHeader iconName="description" iconFrame />);
 		const cardHeaderIcon = uut.find('.cs-card-header-icon > CSIcon');
 		expect(cardHeaderIcon.prop('frame')).toBeTruthy();
@@ -104,37 +104,37 @@ describe('<CSCardHeader />', () => {
 		expect(cardHeaderIcon.prop('origin')).toBe(iconOriginValue);
 	});
 
-	it('should set card header padding', () => {
+	it('should set custom padding', () => {
 		const uut = shallow(<CSCardHeader padding={paddingValue} />);
 		const cardHeaderStyle = uut.find('.cs-card-header').get(0).props.style;
 		expect(cardHeaderStyle).toHaveProperty('--cs-card-header-padding', paddingValue);
 	});
 
-	it('should show card header border', () => {
+	it('should show border', () => {
 		const uut = shallow(<CSCardHeader showBorder />);
 		// Make sure class that adds border exists
 		expect(uut.find('.cs-card-header.cs-card-header-with-border')).toHaveLength(1);
 	});
 
-	it('should not show card header border', () => {
+	it('should not show border', () => {
 		const uut = shallow(<CSCardHeader showBorder={false} />);
 		expect(uut.find('.cs-card-header:not(.cs-card-header-with-border)')).toHaveLength(1);
 	});
 
-	it('should render card header title', () => {
+	it('should set title', () => {
 		const title = 'Header title';
 		const uut = shallow(<CSCardHeader title={title} />);
 		const cardHeaderTitle = uut.find('.cs-card-header-title');
 		expect(cardHeaderTitle.text()).toBe(title);
 	});
 
-	it('should set custom class', () => {
+	it('should have a custom class name', () => {
 		const uut = shallow(<CSCardHeader className={customClass} />);
 		const cardHeader = uut.find(`.cs-card-header.${customClass}`);
 		expect(cardHeader).toHaveLength(1);
 	});
 
-	it('should set custom ID', () => {
+	it('should have a custom ID', () => {
 		const uut = shallow(<CSCardHeader id={customId} />);
 		const cardHeader = uut.find(`.cs-card-header#${customId}`);
 		expect(cardHeader).toHaveLength(1);
@@ -153,32 +153,32 @@ describe('<CSCardHeader />', () => {
 });
 
 describe('<CSCardBody />', () => {
-	it('should render default CSCardBody', () => {
+	it('should render the default CSCardBody', () => {
 		const uut = shallow(<CSCardBody />);
 		const cardBody = uut.find('.cs-card-body');
 		expect(cardBody).toHaveLength(1);
 	});
 
-	it('should set card body max height', () => {
+	it('should set max height', () => {
 		const maxHeightValue = '5rem';
 		const uut = shallow(<CSCardBody maxHeight={maxHeightValue} />);
 		const cardBodyStyle = uut.find('.cs-card-body').get(0).props.style;
 		expect(cardBodyStyle).toHaveProperty('--cs-card-body-max-height', maxHeightValue);
 	});
 
-	it('should set card body padding', () => {
+	it('should set custom padding', () => {
 		const uut = shallow(<CSCardBody padding={paddingValue} />);
 		const cardBodyStyle = uut.find('.cs-card-body').get(0).props.style;
 		expect(cardBodyStyle).toHaveProperty('--cs-card-body-padding', paddingValue);
 	});
 
-	it('should set custom class', () => {
+	it('should have a custom class name', () => {
 		const uut = shallow(<CSCardBody className={customClass} />);
 		const cardBody = uut.find(`.cs-card-body.${customClass}`);
 		expect(cardBody).toHaveLength(1);
 	});
 
-	it('should set custom ID', () => {
+	it('should have a custom ID', () => {
 		const uut = shallow(<CSCardBody id={customId} />);
 		const cardBody = uut.find(`.cs-card-body#${customId}`);
 		expect(cardBody).toHaveLength(1);
@@ -197,46 +197,46 @@ describe('<CSCardBody />', () => {
 });
 
 describe('<CSCardFooter />', () => {
-	it('should render default CSCardFooter', () => {
+	it('should render the default CSCardFooter', () => {
 		const uut = shallow(<CSCardFooter />);
 		const cardFooter = uut.find('.cs-card-footer.cs-card-footer-left');
 		expect(cardFooter).toHaveLength(1);
 	});
 
-	it('should align card footer child elements to left', () => {
+	it('should align child elements to left', () => {
 		const uut = shallow(<CSCardFooter align="left" />);
 		expect(uut.find('.cs-card-footer.cs-card-footer-left')).toHaveLength(1);
 	});
 
-	it('should align card footer child elements to center', () => {
+	it('should align child elements to center', () => {
 		const uut = shallow(<CSCardFooter align="center" />);
 		expect(uut.find('.cs-card-footer.cs-card-footer-center')).toHaveLength(1);
 	});
 
-	it('should align card footer child elements to right', () => {
+	it('should align child elements to right', () => {
 		const uut = shallow(<CSCardFooter align="right" />);
 		expect(uut.find('.cs-card-footer.cs-card-footer-right')).toHaveLength(1);
 	});
 
-	it('should set custom background color on footer', () => {
+	it('should set custom background color', () => {
 		const uut = shallow(<CSCardFooter bgColor={bgColorValue} />);
 		const cardFooterStyle = uut.find('.cs-card-footer').get(0).props.style;
 		expect(cardFooterStyle).toHaveProperty('--cs-card-footer-bg-color', bgColorValue);
 	});
 
-	it('should set card footer padding', () => {
+	it('should set custom padding', () => {
 		const uut = shallow(<CSCardFooter padding={paddingValue} />);
 		const cardStyle = uut.find('.cs-card-footer').get(0).props.style;
 		expect(cardStyle).toHaveProperty('--cs-card-footer-padding', paddingValue);
 	});
 
-	it('should set custom class', () => {
+	it('should have a custom class name', () => {
 		const uut = shallow(<CSCardFooter className={customClass} />);
 		const cardFooter = uut.find(`.cs-card-footer.${customClass}`);
 		expect(cardFooter).toHaveLength(1);
 	});
 
-	it('should set custom ID', () => {
+	it('should have a custom ID', () => {
 		const uut = shallow(<CSCardFooter id={customId} />);
 		const cardFooter = uut.find(`.cs-card-footer#${customId}`);
 		expect(cardFooter).toHaveLength(1);

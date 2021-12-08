@@ -12,7 +12,7 @@ const customClass = 'custom-class';
 const customId = 'custom-id';
 
 describe('<CSMainHeader />', () => {
-	it('should render default CSMainHeader', () => {
+	it('should render the default CSMainHeader', () => {
 		const uut = shallow(<CSMainHeader />);
 		const mainHeader = uut.find('.cs-main-header.cs-main-header-neutral.cs-main-header-sticky');
 		const mainHeaderStyle = uut.find('.cs-main-header-inner').get(0).props.style;
@@ -63,13 +63,13 @@ describe('<CSMainHeader />', () => {
 		expect(mainHeader).toHaveLength(1);
 	});
 
-	it('should set custom class name', () => {
+	it('should have a custom class name', () => {
 		const uut = shallow(<CSMainHeader className={customClass} />);
 		const mainHeader = uut.find(`.cs-main-header.${customClass}`);
 		expect(mainHeader).toHaveLength(1);
 	});
 
-	it('should set custom ID', () => {
+	it('should have a custom ID', () => {
 		const uut = shallow(<CSMainHeader id={customId} />);
 		const mainHeader = uut.find(`.cs-main-header#${customId}`);
 		expect(mainHeader).toHaveLength(1);
@@ -89,7 +89,7 @@ describe('<CSMainHeader />', () => {
 });
 
 describe('<CSMainHeaderLeft />', () => {
-	it('should display title', () => {
+	it('should render the default CSMainHeaderLeft and display title', () => {
 		const uut = shallow(<CSMainHeaderLeft title={title} />);
 		const mainHeaderLeft = uut.find('.cs-main-header-left');
 		const mainHeaderLeftTitle = uut.find('.cs-main-header-title');
@@ -109,13 +109,13 @@ describe('<CSMainHeaderLeft />', () => {
 		expect(mainHeaderLeftSubtitle.text()).toBe(subtitle);
 	});
 
-	it('should set custom class name', () => {
+	it('should have a custom class name', () => {
 		const uut = shallow(<CSMainHeaderLeft title={title} className={customClass} />);
 		const mainHeaderLeft = uut.find(`.cs-main-header-left.${customClass}`);
 		expect(mainHeaderLeft).toHaveLength(1);
 	});
 
-	it('should set custom ID', () => {
+	it('should have a custom ID', () => {
 		const uut = shallow(<CSMainHeaderLeft title={title} id={customId} />);
 		const mainHeaderLeft = uut.find(`.cs-main-header-left#${customId}`);
 		expect(mainHeaderLeft).toHaveLength(1);
@@ -135,19 +135,19 @@ describe('<CSMainHeaderLeft />', () => {
 });
 
 describe('<CSMainHeaderRight />', () => {
-	it('should render default CSMainHeaderRight', () => {
+	it('should render the default CSMainHeaderRight', () => {
 		const uut = shallow(<CSMainHeaderRight />);
 		const mainHeaderRight = uut.find('.cs-main-header-right');
 		expect(mainHeaderRight).toHaveLength(1);
 	});
 
-	it('should set custom class name', () => {
+	it('should have a custom class name', () => {
 		const uut = shallow(<CSMainHeaderRight className={customClass} />);
 		const mainHeaderRight = uut.find(`.cs-main-header-right.${customClass}`);
 		expect(mainHeaderRight).toHaveLength(1);
 	});
 
-	it('should set custom ID', () => {
+	it('should have a custom ID', () => {
 		const uut = shallow(<CSMainHeaderRight id={customId} />);
 		const mainHeaderRight = uut.find(`.cs-main-header-right#${customId}`);
 		expect(mainHeaderRight).toHaveLength(1);
@@ -167,19 +167,19 @@ describe('<CSMainHeaderRight />', () => {
 });
 
 describe('<CSMainHeaderIcon />', () => {
-	it('should render default CSMainHeaderIcon', () => {
+	it('should render the default CSMainHeaderIcon', () => {
 		const uut = shallow(<CSMainHeaderIcon />);
 		const mainHeaderIcon = uut.find('.cs-main-header-icon');
 		expect(mainHeaderIcon).toHaveLength(1);
 	});
 
-	it('should set custom class name', () => {
+	it('should have a custom class name', () => {
 		const uut = shallow(<CSMainHeaderIcon className={customClass} />);
 		const mainHeaderIcon = uut.find(`.cs-main-header-icon.${customClass}`);
 		expect(mainHeaderIcon).toHaveLength(1);
 	});
 
-	it('should set custom ID', () => {
+	it('should have a custom ID', () => {
 		const uut = shallow(<CSMainHeaderIcon id={customId} />);
 		const mainHeaderIcon = uut.find(`.cs-main-header-icon#${customId}`);
 		expect(mainHeaderIcon).toHaveLength(1);

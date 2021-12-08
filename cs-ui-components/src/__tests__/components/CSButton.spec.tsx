@@ -9,7 +9,7 @@ const iconNameValue = 'activity';
 const link = 'https://cloudsense.com';
 
 describe('<CSButton />', () => {
-	it('should render a default button', () => {
+	it('should render the default CSButton', () => {
 		const uut = shallow(<CSButton label={label} />).dive();
 		const button = uut.find('button.cs-btn');
 		const buttonLabel = uut.find('.cs-btn-label');
@@ -36,7 +36,7 @@ describe('<CSButton />', () => {
 		expect(maxWidthButton).toHaveLength(0);
 	});
 
-	it('should have custom border radius', () => {
+	it('should set custom border radius', () => {
 		const borderRadius = '0';
 		const uut = shallow(<CSButton label={label} borderRadius={borderRadius} />).dive();
 		const buttonStyle = uut.find('.cs-btn').props().style;
@@ -85,14 +85,14 @@ describe('<CSButton />', () => {
 		expect(transparentButton).toHaveLength(1);
 	});
 
-	it('should have a custom color', () => {
+	it('should set custom color', () => {
 		const color = '#000';
 		const uut = shallow(<CSButton label={label} color={color} />).dive();
 		const buttonStyle = uut.find('.cs-btn').props().style;
 		expect(buttonStyle).toHaveProperty('--cs-btn-custom-c', color);
 	});
 
-	it('should be disabled', () => {
+	it('should set disabled attribute', () => {
 		const uut = shallow(<CSButton label={label} disabled />).dive();
 		const disabledButton = uut.find('.cs-btn');
 		expect(disabledButton.props().disabled).toBeTruthy();

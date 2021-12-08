@@ -20,7 +20,7 @@ const actionsValue = [
 ];
 
 describe('<CSCheckbox />', () => {
-	it('should render default checkbox', () => {
+	it('should render the default CSCheckbox', () => {
 		const uut = shallow(<CSCheckbox label={label} />);
 		const checkbox = uut.find('.cs-checkbox');
 		expect(checkbox).toHaveLength(1);
@@ -69,7 +69,7 @@ describe('<CSCheckbox />', () => {
 		expect(fauxStyle).toHaveProperty('--cs-checkbox-border-radius', borderRadiusValue);
 	});
 
-	it('should set checked and aria checked attributes', () => {
+	it('should set checked and aria-checked attributes', () => {
 		const uut = shallow(<CSCheckbox label={label} checked />);
 		const checkbox = uut.find('.cs-checkbox');
 		expect(checkbox.props().checked).toBeTruthy();
@@ -219,14 +219,14 @@ describe('<CSCheckbox />', () => {
 		expect(faux).toHaveLength(1);
 	});
 
-	it('should set a custom class name', () => {
+	it('should have a custom class name', () => {
 		const customClass = 'custom-class';
 		const uut = shallow(<CSCheckbox label={label} className={customClass} />);
 		const checkboxWrapper = uut.find(`.cs-checkbox-wrapper.${customClass}`);
 		expect(checkboxWrapper).toHaveLength(1);
 	});
 
-	it('should set a custom ID', () => {
+	it('should have a custom ID', () => {
 		const customId = 'custom-id';
 		const uut = shallow(<CSCheckbox label={label} id={customId} />);
 		const checkbox = uut.find(`.cs-checkbox#${customId}`);

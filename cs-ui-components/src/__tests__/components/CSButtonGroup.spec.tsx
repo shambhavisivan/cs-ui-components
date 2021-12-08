@@ -4,24 +4,24 @@ import '../../setupTests';
 import CSButtonGroup from '../../components/CSButtonGroup';
 
 describe('<CSButtonGroup />', () => {
-	it('should render button group ', () => {
+	it('should render the default CSButtonGroup', () => {
 		const uut = shallow(<CSButtonGroup />);
 		expect(uut.find('.cs-button-group.cs-button-group-combined')).toHaveLength(1);
 	});
 
-	it('should render button group with aria description', () => {
+	it('should set aria description attribute', () => {
 		const ariaDescription = 'Description for button group';
 		const uut = shallow(<CSButtonGroup ariaDescription={ariaDescription} />);
 		expect(uut.find('.cs-button-group')).toHaveLength(1);
 		expect(uut.find('.cs-button-group > .cs-aria-description').text()).toBe(ariaDescription);
 	});
 
-	it('should render button group with combined group true', () => {
+	it('should render a combined button group', () => {
 		const uut = shallow(<CSButtonGroup combined />);
 		expect(uut.find('.cs-button-group-combined')).toHaveLength(1);
 	});
 
-	it('should render button group with combined group false', () => {
+	it('should render uncombined button group', () => {
 		const uut = shallow(<CSButtonGroup combined={false} />);
 		expect(uut.find('.cs-button-group:not(.cs-button-group-combined)')).toHaveLength(1);
 	});
@@ -41,13 +41,13 @@ describe('<CSButtonGroup />', () => {
 		expect(uut.find('.cs-button-group-margin-both')).toHaveLength(1);
 	});
 
-	it('should render button group with custom class', () => {
+	it('should have a custom class name', () => {
 		const customClass = 'custom-class';
 		const uut = shallow(<CSButtonGroup className={customClass} />);
 		expect(uut.find(`.cs-button-group.${customClass}`)).toHaveLength(1);
 	});
 
-	it('should render button group with custom id', () => {
+	it('should have a custom ID', () => {
 		const customId = 'custom-id';
 		const uut = shallow(<CSButtonGroup id={customId} />);
 		expect(uut.find(`.cs-button-group#${customId}`)).toHaveLength(1);

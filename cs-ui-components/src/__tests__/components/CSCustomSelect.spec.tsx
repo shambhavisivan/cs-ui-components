@@ -19,16 +19,13 @@ const customSelectTextLabel = 'Enter value';
 const errorText = 'Error message';
 
 describe('<CSCustomSelect />', () => {
-	it('should pass correct label value to CSLabel', () => {
+	it('should pass label to CSLabel', () => {
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} />).dive();
 		expect(uut.find('CSLabel').prop('label')).toBe(customSelectTextLabel);
 	});
 
 	it('should pass an array of option objects to CSCustomSelectOption', () => {
-		const uut = shallow(<CSCustomSelect
-			label={customSelectTextLabel}
-			options={options}
-		/>).dive();
+		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} />).dive();
 		const customSelectInput = uut.find('.cs-custom-select-input > input');
 		customSelectInput.simulate('click');
 		uut.find('CSCustomSelectOption').forEach((customSelectOption, optionIndex) => {
@@ -36,50 +33,52 @@ describe('<CSCustomSelect />', () => {
 		});
 	});
 
-	it('should pass initialPosition right value to CSAutoposition', () => {
+	it('should pass initialPosition right to CSAutoposition', () => {
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} align="left" />).dive();
 		uut.find('input').simulate('click');
 		expect(uut.find('CSAutoposition').prop('initialPosition')).toContain('right');
 	});
 
-	it('should pass initialPosition left value to CSAutoposition', () => {
+	it('should pass initialPosition left to CSAutoposition', () => {
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} align="right" />).dive();
 		uut.find('input').simulate('click');
 		expect(uut.find('CSAutoposition').prop('initialPosition')).toContain('left');
 	});
 
-	it('should apply border radius', () => {
+	it('should set custom border radius', () => {
 		const borderRadiusSize = '1rem';
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} borderRadius={borderRadiusSize} />).dive();
 		const customSelectStyle = uut.find('.cs-custom-select-input-wrapper').props().style;
 		expect(customSelectStyle).toHaveProperty('--cs-custom-select-border-radius', borderRadiusSize);
 	});
 
-	it('should set disabled attribute to true', () => {
+	it('should set disabled attribute', () => {
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} disabled />).dive();
 		expect(uut.find('.cs-custom-select-input-wrapper-disabled')).toHaveLength(1);
 		expect(uut.find('.cs-custom-select-input > input').props().disabled).toEqual(true);
 	});
 
-	it('should pass correct action objects to CSCustomSelectDropdownAction', () => {
+	it('should pass action objects to CSCustomSelectDropdownAction', () => {
 		const dropdownActions = [{
 			label: 'Add department',
 			iconName: 'add',
-			onClick: () => alert('Department added.'),
+			onClick: () => {},
 		}, {
 			label: 'Add department 2',
 			iconName: 'add',
-			onClick: () => alert('Department 2 added.'),
+			onClick: () => {},
 		}, {
 			label: 'Add department 3',
 			iconName: 'add',
-			onClick: () => alert('Department 3 added.'),
+			onClick: () => {},
 		}];
-		const uut = shallow(<CSCustomSelect
-			label={customSelectTextLabel}
-			options={options}
-			dropdownActions={dropdownActions}
-		/>).dive();
+		const uut = shallow(
+			<CSCustomSelect
+				label={customSelectTextLabel}
+				options={options}
+				dropdownActions={dropdownActions}
+			/>,
+		).dive();
 		const customSelectInput = uut.find('.cs-custom-select-input > input');
 		customSelectInput.simulate('click');
 		uut.find('.cs-autoposition CSCustomSelectDropdownAction').forEach((customSelectAction, actionIndex) => {
@@ -101,7 +100,7 @@ describe('<CSCustomSelect />', () => {
 		expect(uut.find('CSFieldErrorMsg').prop('message')).toBe(errorText);
 	});
 
-	it('should pass correct error message value to CSTooltip', () => {
+	it('should pass errorMessage to CSTooltip', () => {
 		const uut = shallow(
 			<CSCustomSelect
 				label={customSelectTextLabel}
@@ -122,7 +121,7 @@ describe('<CSCustomSelect />', () => {
 		expect(uut.find('.cs-custom-select-dropdown-wrapper.ag-custom-component-popup')).toHaveLength(1);
 	});
 
-	it('should render tooltip along label with a help message and pass correct value to CSLabel which renders tooltip', () => {
+	it('should render tooltip along label with a help message and pass to CSLabel which renders tooltip', () => {
 		const helpTextMsg = 'help text in tooltip';
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} helpText={helpTextMsg} />).dive();
 		const toggleLabel = uut.find('CSLabel');
@@ -154,66 +153,73 @@ describe('<CSCustomSelect />', () => {
 		expect(customSelectInputMultiselect.find('input').prop('aria-multiselectable')).toBeTruthy();
 	});
 
-	it('should invoke the onClear method when an option is selected and the clear button is clicked', () => {
+	it('should use a working onClear callback', () => {
 		const handleClearMock = jest.fn();
-		const uut = shallow(<CSCustomSelect
-			label={customSelectTextLabel}
-			options={options}
-			selectedKeys={0}
-			onClear={handleClearMock}
-		/>).dive();
-
+		const uut = shallow(
+			<CSCustomSelect
+				label={customSelectTextLabel}
+				options={options}
+				selectedKeys={0}
+				onClear={handleClearMock}
+			/>,
+		).dive();
 		const closeButton = uut.find('CSButton');
 		closeButton.simulate('click', { stopPropagation: () => { } });
 		expect(handleClearMock).toHaveBeenCalledTimes(1);
 	});
 
-	it('should invoke onDeselect method when multiselect item deselected onClick', () => {
+	it('should use a working onDeselect callback when multiselect item deselected onClick', () => {
 		const handleDeselect = jest.fn();
 		const keys = [0, 2, 3];
-		const uut = shallow(<CSCustomSelect
-			label={customSelectTextLabel}
-			options={options}
-			multiselect
-			onDeselect={handleDeselect}
-			selectedKeys={keys}
-		/>).dive();
+		const uut = shallow(
+			<CSCustomSelect
+				label={customSelectTextLabel}
+				options={options}
+				multiselect
+				onDeselect={handleDeselect}
+				selectedKeys={keys}
+			/>,
+		).dive();
 		const button = uut.find('.cs-custom-select-items > .cs-custom-select-option > CSButton').at(0);
 		button.simulate('click', { preventDefault: () => { } });
 		expect(handleDeselect).toHaveBeenCalledTimes(1);
 	});
 
-	it('should invoke onDeselect method when multiselect item deselected with enter key', () => {
+	it('should use a working onDeselect callback when multiselect item deselected with enter key', () => {
 		const handleDeselect = jest.fn();
 		const keys = [0, 2, 3];
-		const uut = shallow(<CSCustomSelect
-			label={customSelectTextLabel}
-			options={options}
-			multiselect
-			onDeselect={handleDeselect}
-			selectedKeys={keys}
-		/>).dive();
+		const uut = shallow(
+			<CSCustomSelect
+				label={customSelectTextLabel}
+				options={options}
+				multiselect
+				onDeselect={handleDeselect}
+				selectedKeys={keys}
+			/>,
+		).dive();
 		const button = uut.find('.cs-custom-select-items > .cs-custom-select-option > CSButton').at(0);
 		button.simulate('keydown', { key: 'Enter', preventDefault: () => { } });
 		expect(handleDeselect).toHaveBeenCalledTimes(1);
 	});
 
-	it('should invoke onDeselect method when multiselect item deselected with backspace key', () => {
+	it('should use a working onDeselect callback when multiselect item deselected with backspace key', () => {
 		const handleDeselect = jest.fn();
 		const keys = [0, 2, 3];
-		const uut = shallow(<CSCustomSelect
-			label={customSelectTextLabel}
-			options={options}
-			multiselect
-			onDeselect={handleDeselect}
-			selectedKeys={keys}
-		/>).dive();
+		const uut = shallow(
+			<CSCustomSelect
+				label={customSelectTextLabel}
+				options={options}
+				multiselect
+				onDeselect={handleDeselect}
+				selectedKeys={keys}
+			/>,
+		).dive();
 		const input = uut.find('input');
 		input.simulate('keydown', { key: 'Backspace' });
 		expect(handleDeselect).toHaveBeenCalledTimes(1);
 	});
 
-	it('should call onDropdownClose', () => {
+	it('should use a working onDropdownClose callback', () => {
 		const handleDropdownCloseMock = jest.fn();
 		const uut = shallow(<CSCustomSelect
 			label={customSelectTextLabel}
@@ -226,14 +232,14 @@ describe('<CSCustomSelect />', () => {
 		expect(handleDropdownCloseMock).toHaveBeenCalledTimes(1);
 	});
 
-	it('onSearch should fire onChange method', () => {
+	it('should use a working onSearch callback', () => {
 		const handleSearchMock = jest.fn();
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} onSearch={handleSearchMock} />).dive();
 		uut.find('input').simulate('change', { target: { value: 'test' } });
 		expect(handleSearchMock).toHaveBeenCalledTimes(1);
 	});
 
-	it('should render custom select with placeholder attribute', () => {
+	it('should set placeholder', () => {
 		const placeholderText = 'Enter text';
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} placeholder={placeholderText} />).dive();
 		expect(uut.find('.cs-custom-select-input > input').prop('placeholder')).toBe(placeholderText);
@@ -277,7 +283,7 @@ describe('<CSCustomSelect />', () => {
 		expect(customSelectInput.props().title).toBe('title');
 	});
 
-	it('should pass correct tooltip position value to CSLabel', () => {
+	it('should pass tooltip position to CSLabel', () => {
 		const tooltipPositionValue = 'top-left';
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} helpText="test" tooltipPosition={tooltipPositionValue} />).dive();
 		const customSelectLabel = uut.find('CSLabel');
@@ -330,11 +336,11 @@ describe('<CSCustomSelectDropdownAction />', () => {
 		labelHidden: false,
 		link: 'https://www.google.com',
 		loading: false,
-		onClick: () => alert('onclick'),
-		onKeyDown: () => alert('onkeydown'),
-		onMouseDown: () => alert('onmousedown'),
-		onMouseEnter: () => alert('onmouseenter'),
-		onMouseLeave: () => alert('onmouseleave'),
+		onClick: () => {},
+		onKeyDown: () => {},
+		onMouseDown: () => {},
+		onMouseEnter: () => {},
+		onMouseLeave: () => {},
 		openInNewTab: false,
 		role: 'menuitem' as CSButtonRole,
 		routerLink: <NavLink to="/utilities/LightningIcons" />,
@@ -356,14 +362,14 @@ describe('<CSCustomSelectDropdownAction />', () => {
 		expect(uut.find('.cs-custom-select-dropdown-action')).toHaveLength(1);
 	});
 
-	it('should invoke focusInput function when escape key is pressed', () => {
+	it('should use a working focusInput callback', () => {
 		const focusInputMock = jest.fn();
 		const uut = shallow(<CSCustomSelectDropdownAction action={action} focusInput={focusInputMock} closeDropdown={() => { }} />);
 		uut.simulate('keydown', { key: 'Escape' });
 		expect(focusInputMock).toHaveBeenCalledTimes(1);
 	});
 
-	it('should invoke closeDropdown function when escape key is pressed', () => {
+	it('should use a working closeDropdown callback', () => {
 		const closeDropdownMock = jest.fn();
 		const uut = shallow(<CSCustomSelectDropdownAction action={action} focusInput={() => { }} closeDropdown={closeDropdownMock} />);
 		uut.simulate('keydown', { key: 'Escape' });
@@ -391,7 +397,7 @@ describe('<CSCustomSelectOption />', () => {
 		label: 'Test',
 	};
 
-	it('should invoke focusInput method when input is clicked', () => {
+	it('should use a working focusInput callback', () => {
 		const focusInputMock = jest.fn();
 		const uut = shallow(<CSCustomSelectOption selected={false} option={option} onSelectChange={() => { }} focusInput={focusInputMock} closeDropdown={() => { }} />);
 		uut.simulate('click');
@@ -403,7 +409,7 @@ describe('<CSCustomSelectOption />', () => {
 		expect(uut.find('.cs-custom-select-option-value').text()).toBe(option.label);
 	});
 
-	it('should invoke onSelectChange method when option is clicked', () => {
+	it('should use a working onSelectChange callback', () => {
 		const onSelectChangeMock = jest.fn();
 		const uut = shallow(<CSCustomSelectOption selected={false} option={option} onSelectChange={onSelectChangeMock} focusInput={() => { }} closeDropdown={() => { }} />);
 		uut.simulate('click');
@@ -415,7 +421,7 @@ describe('<CSCustomSelectOption />', () => {
 		expect(uut.find('.cs-custom-select-option-selected')).toHaveLength(1);
 	});
 
-	it('should invoke closeDropdown method when option is clicked', () => {
+	it('should use a working closeDropdown callback', () => {
 		const closeDropdownMock = jest.fn();
 		const uut = shallow(<CSCustomSelectOption selected={false} option={option} onSelectChange={() => { }} focusInput={() => { }} closeDropdown={closeDropdownMock} />);
 		uut.simulate('click');

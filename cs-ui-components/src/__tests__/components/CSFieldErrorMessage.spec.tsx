@@ -6,7 +6,7 @@ import CSFieldErrorMsg from '../../components/CSFieldErrorMsg';
 const message = 'Error message.';
 
 describe('<CSFieldErrorMsg />', () => {
-	it('should render message', () => {
+	it('should render the default CSFieldErrorMsg', () => {
 		const uut = shallow(<CSFieldErrorMsg message={message} />);
 		expect(uut.find('.cs-field-error-msg')).toHaveLength(1);
 		expect(uut.find('.cs-field-error-msg').text()).toBe(message);

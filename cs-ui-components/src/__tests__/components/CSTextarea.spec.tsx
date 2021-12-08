@@ -20,7 +20,7 @@ const actionsValue = [
 ];
 
 describe('<CSTextarea />', () => {
-	it('should pass correct label value to CSLabel', () => {
+	it('should render the default CSTextarea', () => {
 		const uut = shallow(<CSTextarea label={labelValue} />);
 		const textareaLabel = uut.find('.cs-textarea-wrapper > CSLabel');
 		const textarea = uut.find('.cs-textarea');
@@ -61,7 +61,7 @@ describe('<CSTextarea />', () => {
 		expect(textarea).toHaveLength(1);
 	});
 
-	it('should pass correct errorMessage value to CSFieldErrorMsg', () => {
+	it('should pass errorMessage to CSFieldErrorMsg', () => {
 		const uut = shallow(<CSTextarea label={labelValue} error errorMessage={errorText} />);
 		const textareaErrorMsg = uut.find('.cs-textarea-wrapper CSFieldErrorMsg');
 		// Make sure CSFieldErrorMsg is rendered
@@ -79,7 +79,7 @@ describe('<CSTextarea />', () => {
 		expect(textareaErrorTooltip.prop('tooltipMessage')).toBe(true);
 	});
 
-	it('should pass correct helpText value to CSLabel', () => {
+	it('should pass helpText to CSLabel', () => {
 		const helpTextMsg = 'help text in tooltip';
 		const uut = shallow(<CSTextarea label={labelValue} helpText={helpTextMsg} />);
 		const textareaLabel = uut.find('.cs-textarea-wrapper > CSLabel');
@@ -108,7 +108,7 @@ describe('<CSTextarea />', () => {
 		expect(textareaLabel).toHaveLength(0);
 	});
 
-	it('should pass correct label value to CSLabel title prop', () => {
+	it('should pass label to CSLabel title prop', () => {
 		const uut = shallow(<CSTextarea label={labelValue} labelTitle />);
 		const textareaLabel = uut.find('.cs-textarea-wrapper > CSLabel');
 		// Make sure CSLabel received correct value for title prop
@@ -123,7 +123,7 @@ describe('<CSTextarea />', () => {
 		expect(textareaStyle).toHaveProperty('--cs-textarea-max-height', maxHeightValue);
 	});
 
-	it('should trigger onChange event ', () => {
+	it('should use a working onChange callback', () => {
 		const handleOnChange = jest.fn();
 		const uut = shallow(<CSTextarea label={labelValue} onChange={handleOnChange} />);
 		const textarea = uut.find('.cs-textarea');
@@ -145,7 +145,7 @@ describe('<CSTextarea />', () => {
 		expect(uut.find('.cs-textarea').props().readOnly).toEqual(true);
 	});
 
-	it('should set required attribute and pass correct value to CSLabel', () => {
+	it('should set required attribute and pass to CSLabel', () => {
 		const uut = shallow(<CSTextarea label={labelValue} required />);
 		const textarea = uut.find('.cs-textarea');
 		const textareaLabel = uut.find('.cs-textarea-wrapper CSLabel');
@@ -178,7 +178,7 @@ describe('<CSTextarea />', () => {
 		expect(textarea.props().title).toBe(titleValue);
 	});
 
-	it('should pass correct tooltipPosition value to CSLabel', () => {
+	it('should pass tooltipPosition to CSLabel', () => {
 		const tooltipPositionValue = 'top-left';
 		const uut = shallow(<CSTextarea label={labelValue} tooltipPosition={tooltipPositionValue} />);
 		const textareaLabel = uut.find('CSLabel');
@@ -193,14 +193,14 @@ describe('<CSTextarea />', () => {
 		expect(uut.find('.cs-textarea').props().value).toBe(value);
 	});
 
-	it('should set custom class', () => {
+	it('should have a custom class name', () => {
 		const customClass = 'custom-class';
 		const uut = shallow(<CSTextarea label={labelValue} className={customClass} />);
 		const textarea = uut.find(`.cs-textarea-wrapper.${customClass}`);
 		expect(textarea).toHaveLength(1);
 	});
 
-	it('should set custom ID', () => {
+	it('should have a custom ID', () => {
 		const customId = 'custom-id';
 		const uut = shallow(<CSTextarea label={labelValue} id={customId} />);
 		const textarea = uut.find(`.cs-textarea#${customId}`);

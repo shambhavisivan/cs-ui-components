@@ -7,24 +7,24 @@ import CSPathItem from '../../components/path/CSPathItem';
 const pathItemName = 'Path Item';
 
 describe('<CSPath />', () => {
-	it('should render path wrapper', () => {
+	it('should render the default CSPath', () => {
 		const uut = shallow(<CSPath />);
 		const path = uut.find('nav.cs-path > ol.cs-path-wrapper');
 		expect(path).toHaveLength(1);
 	});
 
-	it('should render path wrapper with a custom class', () => {
+	it('should have a custom class name', () => {
 		const customClass = 'custom-class';
 		const uut = shallow(<CSPath className={customClass} />);
 		const path = uut.find(`nav.cs-path.${customClass}`);
 		expect(path).toHaveLength(1);
 	});
 
-	it('should render path wrapper with a custom id', () => {
+	it('should have a custom ID', () => {
 		const id = 'custom-id';
 		const uut = shallow(<CSPath id={id} />);
-		const path = uut.find('nav.cs-path');
-		expect(path.prop('id')).toBe(id);
+		const path = uut.find(`nav.cs-path#${id}`);
+		expect(path).toHaveLength(1);
 	});
 
 	it('should render CSPathItem as children', () => {
@@ -39,7 +39,7 @@ describe('<CSPath />', () => {
 });
 
 describe('<CSPathItem />', () => {
-	it('should render path list item with name', () => {
+	it('should render the default CSPathItem', () => {
 		const uut = shallow(<CSPathItem name={pathItemName} />);
 		const pathItemLINode = uut.find('li.cs-path-item');
 		const pathItemNameNode = uut.find('li.cs-path-item > button.cs-path-item-wrapper > span.cs-path-item-name');
@@ -47,7 +47,7 @@ describe('<CSPathItem />', () => {
 		expect(pathItemNameNode.text()).toBe(pathItemName);
 	});
 
-	it('should render path list item with active styles', () => {
+	it('should render active path list item', () => {
 		const uut = shallow(<CSPathItem name={pathItemName} active />);
 		const pathListItem = uut.find('li.cs-path-item-active');
 		const pathItemButton = uut.find('button.cs-path-item-wrapper');
@@ -61,7 +61,7 @@ describe('<CSPathItem />', () => {
 		expect(pathItemButton.prop('disabled')).toBeTruthy();
 	});
 
-	it('should trigger onClick event on path list item button', () => {
+	it('should use a working onClick callback', () => {
 		const handleClickMock = jest.fn();
 		const uut = shallow(<CSPathItem name={pathItemName} onClick={handleClickMock} />);
 		const pathItemButton = uut.find('button.cs-path-item-wrapper');
@@ -96,5 +96,19 @@ describe('<CSPathItem />', () => {
 		expect(pathListItem).toHaveLength(1);
 		expect(pathListItemIcon.prop('name')).toBe('warning');
 		expect(pathListItemIcon.prop('color')).toBe('var(--cs-path-item-warning-icon)');
+	});
+
+	it('should have a custom class name', () => {
+		const customClass = 'custom-class';
+		const uut = shallow(<CSPathItem name={pathItemName} className={customClass} />);
+		const pathListItem = uut.find(`.cs-path-item.${customClass}`);
+		expect(pathListItem).toHaveLength(1);
+	});
+
+	it('should have a custom ID', () => {
+		const id = 'custom-id';
+		const uut = shallow(<CSPathItem name={pathItemName} id={id} />);
+		const pathListItem = uut.find(`.cs-path-item#${id}`);
+		expect(pathListItem).toHaveLength(1);
 	});
 });

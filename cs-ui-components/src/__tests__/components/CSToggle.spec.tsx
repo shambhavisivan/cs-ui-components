@@ -21,7 +21,7 @@ const actionsValue = [
 ];
 
 describe('<CSToggle />', () => {
-	it('should render toggle label and pass correct value', () => {
+	it('should render the default CSToggle', () => {
 		const uut = shallow(<CSToggle label={labelValue} />);
 		const toggleLabel = uut.find('.cs-toggle-element > CSLabel');
 		const toggle = uut.find('.cs-toggle');
@@ -39,12 +39,12 @@ describe('<CSToggle />', () => {
 		expect(toggleCustomActions.prop('actions')).toMatchObject(actionsValue);
 	});
 
-	it('should set checked attribute to true', () => {
+	it('should set checked attribute', () => {
 		const uut = shallow(<CSToggle label={labelValue} checked />);
 		expect(uut.find('.cs-toggle').props().checked).toEqual(true);
 	});
 
-	it('should set disabled attribute to true', () => {
+	it('should set disabled attribute', () => {
 		const uut = shallow(<CSToggle label={labelValue} disabled />);
 		expect(uut.find('.cs-toggle').props().disabled).toEqual(true);
 	});
@@ -70,14 +70,14 @@ describe('<CSToggle />', () => {
 		expect(toggleErrorMsg.prop('tooltipMessage')).toBe(true);
 	});
 
-	it('should pass correct value to CSLabel which renders tooltip', () => {
+	it('should pass helpText to CSLabel', () => {
 		const uut = shallow(<CSToggle label={labelValue} helpText={helpTextMsg} />);
 		const toggleLabel = uut.find('.cs-toggle-element > CSLabel');
 		// Make sure CSLabel received correct value for helpText prop
 		expect(toggleLabel.prop('helpText')).toBe(helpTextMsg);
 	});
 
-	it('should render custom icons and check if passed object is correct', () => {
+	it('should pass icons to CSCustomDataIcons', () => {
 		const uut = shallow(<CSToggle label={labelValue} icons={iconsValue} />);
 		const toggleCustomIcons = uut.find('.cs-toggle-element CSCustomDataIcons');
 		expect(toggleCustomIcons).toHaveLength(1);
@@ -100,14 +100,14 @@ describe('<CSToggle />', () => {
 		expect(uut.find('.cs-toggle-element.cs-toggle-label-left')).toHaveLength(1);
 	});
 
-	it('should display title on label', () => {
+	it('should pass label to CSLabel as title', () => {
 		const label = 'label';
 		const uut = shallow(<CSToggle label={label} labelTitle />);
 		const toggleLabel = uut.find('.cs-toggle-element > CSLabel');
 		expect(toggleLabel.props().title).toBe(label);
 	});
 
-	it('should trigger onChange event', () => {
+	it('should use a working onChange callback', () => {
 		const handleChange = jest.fn();
 		const uut = shallow(<CSToggle label={labelValue} onChange={handleChange} />);
 		const toggle = uut.find('.cs-toggle');
@@ -138,7 +138,7 @@ describe('<CSToggle />', () => {
 		expect(toggleFaux.props().title).toBe(title);
 	});
 
-	it('should pass correct value to the CSLabel which renders tooltip', () => {
+	it('should pass tooltipPosition to CSLabel', () => {
 		const tooltipPositionValue = 'top-left';
 		const uut = shallow(<CSToggle label={labelValue} helpText={helpTextMsg} tooltipPosition={tooltipPositionValue} />);
 		const toggleLabel = uut.find('CSLabel');
@@ -146,14 +146,14 @@ describe('<CSToggle />', () => {
 		expect(toggleLabel.prop('tooltipPosition')).toBe(tooltipPositionValue);
 	});
 
-	it('should set custom class name', () => {
+	it('should have a custom class name', () => {
 		const customClass = 'custom-class';
 		const uut = shallow(<CSToggle label={labelValue} className={customClass} />);
 		const toggleWrapper = uut.find(`.cs-toggle-element.${customClass}`);
 		expect(toggleWrapper).toHaveLength(1);
 	});
 
-	it('should set custom ID', () => {
+	it('should have a custom ID', () => {
 		const customId = 'custom-id';
 		const uut = shallow(<CSToggle label={labelValue} id={customId} />);
 		const toggle = uut.find(`.cs-toggle#${customId}`);

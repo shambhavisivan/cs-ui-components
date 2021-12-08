@@ -6,7 +6,7 @@ import CSCurrency from '../../components/CSCurrency';
 const locale = 'en';
 
 describe('<CSCurrency />', () => {
-	it('should render currency', () => {
+	it('should render the default CSCurrency', () => {
 		const uut = shallow(<CSCurrency locale="en" />);
 		expect(uut.find('.cs-currency')).toHaveLength(1);
 	});
@@ -26,13 +26,13 @@ describe('<CSCurrency />', () => {
 		expect(currencyElem.props().title).toBe(currencyText);
 	});
 
-	it('should render currency with custom class', () => {
+	it('should have a custom class name', () => {
 		const customClass = 'custom-br-mint';
 		const uut = shallow(<CSCurrency locale={locale} className={customClass} value={1000} />);
 		expect(uut.find(`.cs-currency.${customClass}`)).toHaveLength(1);
 	});
 
-	it('should render currency with custom id', () => {
+	it('should have a custom ID', () => {
 		const customId = 'custom-id';
 		const uut = shallow(<CSCurrency locale={locale} id={customId} value={1000} />);
 		expect(uut.find(`.cs-currency#${customId}`)).toHaveLength(1);

@@ -30,7 +30,7 @@ describe('<CSInputFile />', () => {
 		expect(uut.find('input').props().accept).toBe(joinedFileTypes);
 	});
 
-	it('should render disabled input file', () => {
+	it('should set disabled attribute', () => {
 		const uut = shallow(<CSInputFile disabled />);
 		expect(uut.find('label.cs-input-file-disabled')).toHaveLength(1);
 		expect(uut.find('input').prop('disabled')).toBeTruthy();
@@ -41,12 +41,12 @@ describe('<CSInputFile />', () => {
 		expect(uut.find('.cs-input-file-drop-area-highlighted')).toHaveLength(1);
 	});
 
-	it('should render input file with drop area height', () => {
+	it('should set drop area custom height', () => {
 		const uut = shallow(<CSInputFile dropAreaHeight={dropAreaHeight} />);
 		expect(uut.find('.cs-input-file-wrapper').props().style).toHaveProperty('--drop-area-height', dropAreaHeight);
 	});
 
-	it('should render input file with drop area width', () => {
+	it('should set drop area custom width', () => {
 		const uut = shallow(<CSInputFile dropAreaWidth={dropAreaWidth} />);
 		expect(uut.find('.cs-input-file-wrapper').props().style).toEqual({ '--drop-area-height': undefined, '--drop-area-width': dropAreaWidth });
 	});
@@ -56,12 +56,12 @@ describe('<CSInputFile />', () => {
 		expect(uut.find('.cs-input-file-wrapper.cs-input-file-error')).toHaveLength(1);
 	});
 
-	it('should pass errorMessage value to CSFieldErrorMsg', () => {
+	it('should pass errorMessage to CSFieldErrorMsg', () => {
 		const uut = shallow(<CSInputFile error errorMessage={errorMessage} />);
 		expect(uut.find('.cs-input-file-wrapper + CSFieldErrorMsg').prop('message')).toBe(errorMessage);
 	});
 
-	it('should pass errorTooltip value to CSFieldErrorMsg', () => {
+	it('should pass errorTooltip to CSFieldErrorMsg', () => {
 		const uut = shallow(<CSInputFile error errorMessage={errorMessage} errorTooltip />);
 		expect(uut.find('.cs-input-file-btn > CSFieldErrorMsg').prop('tooltipMessage')).toBe(true);
 	});
@@ -113,7 +113,7 @@ describe('<CSInputFile />', () => {
 		expect(uut.find('.cs-input-file-wrapper input').props().title).toBe(inputLabel);
 	});
 
-	it('should trigger onChange event', () => {
+	it('should use a working onChange callback', () => {
 		const handleChangeMock = jest.fn();
 		const uut = shallow(<CSInputFile onChange={handleChangeMock} />);
 		const inputFile = uut.find('.cs-input-file-wrapper input');
@@ -121,7 +121,7 @@ describe('<CSInputFile />', () => {
 		expect(handleChangeMock).toHaveBeenCalledTimes(1);
 	});
 
-	it('should trigger onDrop event', () => {
+	it('should use a working onDrop callback', () => {
 		const handleDropMock = jest.fn();
 		const dropEventMock = {
 			dataTransfer: {
@@ -140,7 +140,7 @@ describe('<CSInputFile />', () => {
 		const uut = shallow(<CSInputFile className={customClass} />);
 		expect(uut.find(`.cs-input-file-wrapper.${customClass}`)).toHaveLength(1);
 	});
-	it('should have a custom id', () => {
+	it('should have a custom ID', () => {
 		const uut = shallow(<CSInputFile id={customId} />);
 		expect(uut.find(`.cs-input-file-wrapper input#${customId}`)).toHaveLength(1);
 	});

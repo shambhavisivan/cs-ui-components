@@ -31,7 +31,7 @@ const items = [
 ];
 
 describe('<CSTransfer />', () => {
-	it('should render simple-list transfer with action buttons, CSTransferLists with different list types and CSTransferItems', () => {
+	it('should render the default CSTransfer', () => {
 		const uut = shallow(
 			<CSTransfer
 				items={items}
@@ -50,7 +50,7 @@ describe('<CSTransfer />', () => {
 		expect(transferActions).toHaveLength(2);
 	});
 
-	it('should pass correct source list and target list labels to CSTransferList components', () => {
+	it('should pass source list and target list labels to CSTransferList components', () => {
 		const uut = shallow(
 			<CSTransfer
 				targetLabel={targetListLabel}
@@ -63,7 +63,7 @@ describe('<CSTransfer />', () => {
 		expect(transferLabels.at(1).prop('label')).toBe(targetListLabel);
 	});
 
-	it('should pass help text value to source CSTransferList', () => {
+	it('should pass help text to source CSTransferList', () => {
 		const uut = shallow(
 			<CSTransfer
 				targetLabel={targetListLabel}
@@ -77,7 +77,7 @@ describe('<CSTransfer />', () => {
 		expect(sourceHelpText).toBe(helpText);
 	});
 
-	it('should pass help text value to target CSTransferList', () => {
+	it('should pass help text to target CSTransferList', () => {
 		const uut = shallow(
 			<CSTransfer
 				targetLabel={targetListLabel}
@@ -153,7 +153,7 @@ describe('<CSTransfer />', () => {
 		expect(onTransferMock).toHaveBeenCalled();
 	});
 
-	it('should pass correct searchable value to CSTransferLists', () => {
+	it('should pass searchable to CSTransferLists', () => {
 		const uut = shallow(
 			<CSTransfer
 				targetLabel={targetListLabel}
@@ -169,7 +169,7 @@ describe('<CSTransfer />', () => {
 		expect(targetList.prop('searchable')).toBeTruthy();
 	});
 
-	it('should pass correct simple-list variant to CSTransferLists', () => {
+	it('should pass simple-list variant to CSTransferLists', () => {
 		const uut = shallow(
 			<CSTransfer
 				targetLabel={targetListLabel}
@@ -184,7 +184,7 @@ describe('<CSTransfer />', () => {
 		expect(targetList.prop('variant')).toBe(simpleListVariant);
 	});
 
-	it('should pass correct check-list variant to CSTransferLists', () => {
+	it('should pass check-list variant to CSTransferLists', () => {
 		const uut = shallow(
 			<CSTransfer
 				targetLabel={targetListLabel}
@@ -200,7 +200,7 @@ describe('<CSTransfer />', () => {
 		expect(targetList.prop('variant')).toBe(checkListVariant);
 	});
 
-	it('should pass correct selectAll value to CSTransferLists', () => {
+	it('should pass selectAll to CSTransferLists', () => {
 		const uut = shallow(
 			<CSTransfer
 				targetLabel={targetListLabel}
@@ -230,7 +230,7 @@ describe('<CSTransfer />', () => {
 		expect(uut.find(`.cs-transfer-wrapper.${customClass}`)).toHaveLength(1);
 	});
 
-	it('should render transfer with custom id', () => {
+	it('should render transfer with custom ID', () => {
 		const customID = 'custom-id';
 		const uut = shallow(
 			<CSTransfer
@@ -271,7 +271,7 @@ describe('<CSTransferList />', () => {
 		expect(transferListItems).toHaveLength(4);
 	});
 
-	it('should pass correct label value to CSLabel', () => {
+	it('should pass label to CSLabel', () => {
 		const uut = shallow(
 			<CSTransferList
 				label={sourceListLabel}
@@ -284,7 +284,7 @@ describe('<CSTransferList />', () => {
 		expect(transferLabel.prop('label')).toBe(sourceListLabel);
 	});
 
-	it('should pass correct simple-list variant value to CSTransferItem', () => {
+	it('should pass simple-list variant to CSTransferItem', () => {
 		const uut = shallow(
 			<CSTransferList
 				label={sourceListLabel}
@@ -297,7 +297,7 @@ describe('<CSTransferList />', () => {
 		expect(transferListItem.prop('itemVariant')).toBe(simpleListVariant);
 	});
 
-	it('should pass correct check-list variant value to CSTransferItem', () => {
+	it('should pass check-list variant to CSTransferItem', () => {
 		const uut = shallow(
 			<CSTransferList
 				label={sourceListLabel}
@@ -310,7 +310,7 @@ describe('<CSTransferList />', () => {
 		expect(transferListItem.prop('itemVariant')).toBe(checkListVariant);
 	});
 
-	it('should pass correct source listType value to CSTransferItem', () => {
+	it('should pass source listType to CSTransferItem', () => {
 		const uut = shallow(
 			<CSTransferList
 				label={sourceListLabel}
@@ -323,7 +323,7 @@ describe('<CSTransferList />', () => {
 		expect(transferListItem.prop('listType')).toBe(sourceListType);
 	});
 
-	it('should pass correct target listType value to CSTransferItem', () => {
+	it('should pass target listType to CSTransferItem', () => {
 		const uut = shallow(
 			<CSTransferList
 				label={sourceListLabel}
@@ -353,7 +353,7 @@ describe('<CSTransferList />', () => {
 		expect(noDataNodeText).toBe('No data');
 	});
 
-	it('should pass correct helpText value to CSLabel', () => {
+	it('should pass helpText to CSLabel', () => {
 		const transferListHelpText = 'Help text.';
 		const uut = shallow(
 			<CSTransferList
@@ -455,7 +455,7 @@ describe('<CSTransferList />', () => {
 		expect(transferItem.prop('selected')).toBeTruthy();
 	});
 
-	it('should pass correct item key to CSTransferItem', () => {
+	it('should pass item key to CSTransferItem', () => {
 		const uut = shallow(
 			<CSTransferList
 				label={sourceListLabel}

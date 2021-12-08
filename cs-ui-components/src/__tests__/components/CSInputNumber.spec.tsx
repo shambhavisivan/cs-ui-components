@@ -7,7 +7,7 @@ const label = 'input number value';
 const errorMessage = 'input number error message';
 
 describe('<CSInputNumber />', () => {
-	it('should render the default input number instance', () => {
+	it('should render the default CSInputNumber', () => {
 		const uut = shallow(<CSInputNumber label={label} />);
 		const inputNumber = uut.find('.cs-input-number');
 		const inputNumberLabel = uut.find('CSLabel');
@@ -29,7 +29,7 @@ describe('<CSInputNumber />', () => {
 		expect(hiddenInputNumberSpinner).toHaveLength(0);
 	});
 
-	it('should pass the correct actions to CSCustomDataActions', () => {
+	it('should pass actions to CSCustomDataActions', () => {
 		const actions = [{
 			action: () => { },
 			icon: { iconName: 'delete' },
@@ -44,27 +44,27 @@ describe('<CSInputNumber />', () => {
 		expect(inputNumberActions).toMatchObject(actions);
 	});
 
-	it('should have a custom border radius', () => {
+	it('should set custom border radius', () => {
 		const borderRadius = '0';
 		const uut = shallow(<CSInputNumber label={label} borderRadius={borderRadius} />);
 		const inputNumberStyle = uut.find('.cs-input-number-wrapper').props().style;
 		expect(inputNumberStyle).toHaveProperty('--cs-input-number-border-radius', borderRadius);
 	});
 
-	it('should be disabled', () => {
+	it('should set disabled attribute', () => {
 		const uut = shallow(<CSInputNumber label={label} disabled />);
 		const disabledInputNumber = uut.find('.cs-input-number');
 		expect(disabledInputNumber.props().disabled).toBeTruthy();
 	});
 
-	it('should display in the error state', () => {
+	it('should render in the error state', () => {
 		const uut = shallow(<CSInputNumber label={label} error />);
 		const inputNumberError = uut.find('.cs-input-number.cs-input-number-error');
 		expect(inputNumberError).toHaveLength(1);
 		expect(inputNumberError.prop('aria-invalid')).toBeTruthy();
 	});
 
-	it('should pass the errorMessage to CSFieldErrorMsg', () => {
+	it('should pass errorMessage to CSFieldErrorMsg', () => {
 		const uut = shallow(<CSInputNumber label={label} error errorMessage={errorMessage} />);
 		const inputNumberErrorMsg = uut.find('CSFieldErrorMsg');
 		expect(inputNumberErrorMsg.prop('message')).toBe(errorMessage);
@@ -95,7 +95,7 @@ describe('<CSInputNumber />', () => {
 		expect(hiddenInputNumberSpinner).toHaveLength(1);
 	});
 
-	it('should pass the correct icons to CSCustomDataIcons', () => {
+	it('should pass icons to CSCustomDataIcons', () => {
 		const icons = [{
 			iconName: 'activity',
 		}, {
@@ -127,7 +127,7 @@ describe('<CSInputNumber />', () => {
 		expect(inputNumber.prop('aria-valuemax')).toBe(max);
 	});
 
-	it('should set the maxlength attribute', () => {
+	it('should set the max length attribute', () => {
 		const maxLength = 10;
 		const uut = shallow(<CSInputNumber label={label} type="text" maxLength={maxLength} />);
 		const inputNumberMaxLength = uut.find('.cs-input-number').prop('maxLength');
@@ -248,14 +248,14 @@ describe('<CSInputNumber />', () => {
 		expect(inputNumber.prop('aria-valuenow')).toBe(value);
 	});
 
-	it('should set a custom class', () => {
+	it('should have a custom class name', () => {
 		const className = 'custom-class';
 		const uut = shallow(<CSInputNumber label={label} className={className} />);
 		const inputNumber = uut.find(`.cs-input-number-wrapper.${className}`);
 		expect(inputNumber).toHaveLength(1);
 	});
 
-	it('should set a custom id', () => {
+	it('should have a custom ID', () => {
 		const id = 'custom-id';
 		const uut = shallow(<CSInputNumber label={label} id={id} />);
 		const inputNumber = uut.find(`.cs-input-number#${id}`);

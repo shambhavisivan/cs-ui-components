@@ -9,7 +9,7 @@ const customClass = 'custom-class';
 const customId = 'custom-id';
 
 describe('<CSProgressIndicator />', () => {
-	it('should render default CSProgressIndicator', () => {
+	it('should render the default CSProgressIndicator', () => {
 		const uut = shallow(<CSProgressIndicator />);
 		const progressIndicator = uut.find('.cs-progress-indicator');
 		expect(progressIndicator).toHaveLength(1);
@@ -41,7 +41,7 @@ describe('<CSProgressIndicator />', () => {
 });
 
 describe('<CSProgressIndicatorItem />', () => {
-	it('should render default CSProgressIndicatorItem', () => {
+	it('should render the default CSProgressIndicatorItem', () => {
 		const uut = shallow(<CSProgressIndicatorItem text={textValue} />);
 		const progressIndicatorItem = uut.find('.cs-progress-indicator-item.cs-progress-indicator-item-incomplete');
 		const progressIndicatorItemButton = uut.find('.cs-progress-indicator-item .cs-progress-indicator-marker');

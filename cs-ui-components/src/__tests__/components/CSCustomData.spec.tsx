@@ -33,14 +33,14 @@ const icons = [
 ];
 const action = [
 	{
-		action: () => alert('Delete option called'),
+		action: () => {},
 		icon: { iconName: 'delete' },
 		name: 'Delete',
 	},
 ];
 const actions = [
 	{
-		action: () => alert('Delete option called'),
+		action: () => {},
 		icon: {
 			iconName: 'delete',
 			iconColor: '#c23934',
@@ -54,7 +54,7 @@ const actions = [
 		labelHidden: false,
 	},
 	{
-		action: () => alert('Add option called'),
+		action: () => {},
 		icon: { iconName: 'add' },
 		name: 'Add',
 		getTooltip: {
@@ -73,7 +73,7 @@ const actions = [
 ];
 
 describe('<CSCustomData />', () => {
-	it('should not have actions and status', () => {
+	it('should render the default CSCustomData', () => {
 		const uut = shallow(<CSCustomData />);
 		const customDataActions = uut.find('CSCustomDataActions');
 		expect(customDataActions).toHaveLength(0);
@@ -81,35 +81,35 @@ describe('<CSCustomData />', () => {
 		expect(customDataStatusTooltip).toHaveLength(0);
 	});
 
-	it('should have one action', () => {
+	it('should pass action to CSCustomDataActions', () => {
 		const uut = shallow(<CSCustomData actions={action} />);
 		const customDataActions = uut.find('CSCustomDataActions');
 		expect(customDataActions).toHaveLength(1);
 		expect(customDataActions.prop('actions')).toMatchObject(action);
 	});
 
-	it('should have more than one action', () => {
+	it('should pass actions to CSCustomDataActions', () => {
 		const uut = shallow(<CSCustomData actions={actions} />);
 		const customDataActions = uut.find('CSCustomDataActions');
 		expect(customDataActions).toHaveLength(1);
 		expect(customDataActions.prop('actions')).toMatchObject(actions);
 	});
 
-	it('should have one icon', () => {
+	it('should pass icon to CSCustomDataIcons', () => {
 		const uut = shallow(<CSCustomData icons={icon} />);
 		const customDataIcons = uut.find('CSCustomDataIcons');
 		expect(customDataIcons).toHaveLength(1);
 		expect(customDataIcons.prop('icons')).toMatchObject(icon);
 	});
 
-	it('should have more than one icon', () => {
+	it('should pass icons to CSCustomDataIcons', () => {
 		const uut = shallow(<CSCustomData icons={icons} />);
 		const customDataIcons = uut.find('CSCustomDataIcons');
 		expect(customDataIcons).toHaveLength(1);
 		expect(customDataIcons.prop('icons')).toMatchObject(icons);
 	});
 
-	it('should pass correct value to CSIcon name prop', () => {
+	it('should pass menuIcon to CSIcon as a name', () => {
 		const uut = shallow(<CSCustomData menuIcon="dropdown" />);
 		const menuIcon = uut.find('CSIcon');
 		expect(menuIcon.prop('name')).toBe('down');
@@ -121,7 +121,7 @@ describe('<CSCustomData />', () => {
 		expect(datepickerIcon.prop('name')).toBe('date_input');
 	});
 
-	it('should render custom data with tooltip status', () => {
+	it('should pass status to CSTooltip ', () => {
 		const statusTooltip = {
 			iconName: 'error',
 			iconColor: '#c23934',
@@ -159,7 +159,7 @@ describe('<CSCustomData />', () => {
 		expect(customDataStatusTooltip.prop('iconSize')).toBe(statusTooltip.iconSize);
 	});
 
-	it('should render custom data with icon status', () => {
+	it('should pass status to CSIcon', () => {
 		const statusIcon = {
 			iconName: 'error',
 			iconColor: '#c23934',
@@ -175,13 +175,13 @@ describe('<CSCustomData />', () => {
 		expect(customDataStatusIcon.prop('size')).toBe(statusIcon.iconSize);
 	});
 
-	it('should render custom data with a title', () => {
+	it('should set title attribute', () => {
 		const uut = shallow(<CSCustomData value={value} title={title} />);
 		const customData = uut.find('.cs-custom-data-wrapper > .cs-custom-data-value');
 		expect(customData.props().title).toBe(title);
 	});
 
-	it('should render custom data with a value', () => {
+	it('should set value attribute', () => {
 		const uut = shallow(<CSCustomData value={value} />);
 		const customData = uut.find('.cs-custom-data-wrapper > .cs-custom-data-value');
 		expect(customData).toHaveLength(1);
@@ -190,27 +190,6 @@ describe('<CSCustomData />', () => {
 });
 
 describe('<CSCustomDataActions />', () => {
-	it('should pass correct iconName and label value to CSButton', () => {
-		const uut = shallow(<CSCustomData actions={action} />);
-		const customDataActions = uut.find('CSCustomDataActions');
-		const actionsButton = customDataActions.dive().find('CSButton');
-		expect(actionsButton).toHaveLength(1);
-		expect(actionsButton.prop('iconName')).toBe(action[0].icon.iconName);
-		expect(actionsButton.prop('label')).toBe(action[0].name);
-	});
-
-	it('should pass correct iconName and label values to CSButton', () => {
-		const uut = shallow(<CSCustomData actions={actions} />);
-		const customDataActions = uut.find('CSCustomDataActions');
-		expect(customDataActions).toHaveLength(1);
-		const actionsButton = customDataActions.dive().find('CSButton');
-		expect(actionsButton).toHaveLength(2);
-		expect(actionsButton.at(0).prop('iconName')).toBe(actions[0].icon.iconName);
-		expect(actionsButton.at(0).prop('label')).toBe(actions[0].name);
-		expect(actionsButton.at(1).prop('iconName')).toBe(actions[1].icon.iconName);
-		expect(actionsButton.at(1).prop('label')).toBe(actions[1].name);
-	});
-
 	it('should pass actions data to CSTooltip props', () => {
 		const uut = shallow(<CSCustomData actions={actions} />);
 		const customDataActions = uut.find('CSCustomDataActions');
@@ -246,25 +225,6 @@ describe('<CSCustomDataActions />', () => {
 });
 
 describe('<CSCustomDataIcons />', () => {
-	it('should pass correct name value to CSIcon', () => {
-		const uut = shallow(<CSCustomData icons={icon} />);
-		const customDataIcons = uut.find('CSCustomDataIcons');
-		expect(customDataIcons).toHaveLength(1);
-		const iconsIcon = customDataIcons.dive().find('CSIcon');
-		expect(iconsIcon).toHaveLength(1);
-		expect(iconsIcon.prop('name')).toBe(icon[0].iconName);
-	});
-
-	it('should pass correct name values to CSIcon', () => {
-		const uut = shallow(<CSCustomData icons={icons} />);
-		const customDataIcons = uut.find('CSCustomDataIcons');
-		expect(customDataIcons).toHaveLength(1);
-		const iconsIcon = customDataIcons.dive().find('CSIcon');
-		expect(iconsIcon).toHaveLength(2);
-		expect(iconsIcon.at(0).prop('name')).toBe(icons[0].iconName);
-		expect(iconsIcon.at(1).prop('name')).toBe(icons[1].iconName);
-	});
-
 	it('should pass icons data to CSTooltip props', () => {
 		const uut = shallow(<CSCustomData icons={icons} />);
 		const customDataIcons = uut.find('CSCustomDataIcons');

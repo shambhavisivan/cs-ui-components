@@ -83,7 +83,7 @@ describe('<CSAlert />', () => {
 		expect(icon.props().name).toBe('action');
 	});
 
-	it('should render default non-scoped alert', () => {
+	it('should render the default non-scoped alert', () => {
 		const uut = shallow(<CSAlert variant="info" styleFormat="default" />);
 		// Make sure scoped styles are not applied
 		expect(uut.find('.cs-alert-scoped')).toHaveLength(0);

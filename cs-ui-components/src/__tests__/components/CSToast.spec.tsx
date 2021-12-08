@@ -6,25 +6,25 @@ import CSToast from '../../components/CSToast';
 const variant = 'info';
 
 describe('<CSToast />', () => {
-	it('should set variant info and pass correct name value to CSIcon', () => {
+	it('should render variant info and pass name to CSIcon', () => {
 		const uut = shallow(<CSToast variant={variant} />);
 		expect(uut.find('.cs-toast.cs-toast-info')).toHaveLength(1);
 		expect(uut.find('.cs-toast.cs-toast-info > CSIcon').prop('name')).toBe('info');
 	});
 
-	it('should set variant success and pass correct name value to CSIcon', () => {
+	it('should render variant success and pass name to CSIcon', () => {
 		const uut = shallow(<CSToast variant="success" />);
 		expect(uut.find('.cs-toast.cs-toast-success')).toHaveLength(1);
 		expect(uut.find('.cs-toast.cs-toast-success > CSIcon').prop('name')).toBe('success');
 	});
 
-	it('should set variant warning and pass correct name value to CSIcon', () => {
+	it('should render variant warning and pass name to CSIcon', () => {
 		const uut = shallow(<CSToast variant="warning" />);
 		expect(uut.find('.cs-toast.cs-toast-warning')).toHaveLength(1);
 		expect(uut.find('.cs-toast.cs-toast-warning > CSIcon').prop('name')).toBe('warning');
 	});
 
-	it('should set variant error and pass correct name value to CSIcon', () => {
+	it('should render variant error and pass name to CSIcon', () => {
 		const uut = shallow(<CSToast variant="error" />);
 		expect(uut.find('.cs-toast.cs-toast-error')).toHaveLength(1);
 		expect(uut.find('.cs-toast.cs-toast-error > CSIcon').prop('name')).toBe('error');
@@ -36,7 +36,7 @@ describe('<CSToast />', () => {
 		expect(uut.find('.cs-toast > CSButton')).toHaveLength(1);
 	});
 
-	it('should have a detail', () => {
+	it('should render detail message', () => {
 		const detail = 'This is the detail';
 		const uut = shallow(<CSToast variant={variant} detail={detail} />);
 		expect(uut.find('.cs-toast-text > .cs-toast-detail')).toHaveLength(1);
@@ -51,7 +51,7 @@ describe('<CSToast />', () => {
 		expect(icon.prop('name')).toBe(iconNameValue);
 	});
 
-	it('should pass iconName to CSIcon', () => {
+	it('should pass iconOrigin to CSIcon', () => {
 		const iconNameValue = 'big_shot';
 		const iconOriginCSValue = 'cs';
 		const uut = shallow(<CSToast variant={variant} iconName={iconNameValue} iconOrigin={iconOriginCSValue} />);
@@ -65,7 +65,7 @@ describe('<CSToast />', () => {
 		expect(uut.find('.cs-toast > CSIcon')).toHaveLength(0);
 	});
 
-	it('should have close button and corresponding callback', () => {
+	it('should use a working onClose callback', () => {
 		const handleCloseMock = jest.fn();
 		const uut = shallow(<CSToast variant={variant} closeButton onClose={handleCloseMock} />);
 		const closeButton = uut.find('.cs-toast > CSButton');
@@ -73,7 +73,7 @@ describe('<CSToast />', () => {
 		expect(handleCloseMock).toHaveBeenCalledTimes(1);
 	});
 
-	it('should have text', () => {
+	it('should render text message', () => {
 		const text = 'This is a text example';
 		const uut = shallow(<CSToast variant={variant} text={text} />);
 		const textElement = uut.find('.cs-toast-text > h4');

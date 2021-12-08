@@ -6,7 +6,7 @@ import CSSection from '../../components/CSSection';
 const title = 'section title';
 
 describe('<CSSection />', () => {
-	it('should render section title and display correct text', () => {
+	it('should render the default CSSection', () => {
 		const uut = shallow(<CSSection title={title} />);
 		const sectionTitle = uut.find('.cs-section-title');
 		expect(sectionTitle).toHaveLength(1);
@@ -28,7 +28,7 @@ describe('<CSSection />', () => {
 		expect(section).toHaveProperty('--cs-section-border-radius', borderRadiusValue);
 	});
 
-	it('should render collapsible section', () => {
+	it('should be collapsible', () => {
 		const uut = shallow(<CSSection title={title} collapsible />);
 		const sectionToggleButton = uut.find('.cs-section-button');
 		expect(sectionToggleButton).toHaveLength(1);
@@ -50,7 +50,7 @@ describe('<CSSection />', () => {
 		expect(sectionHeader).toHaveLength(1);
 	});
 
-	it('should render CSTooltip and pass correct errorMessage value to CSTooltip', () => {
+	it('should pass errorMessage to CSTooltip', () => {
 		const errorMessageText = 'This section has an error';
 		const uut = shallow(<CSSection title={title} error errorMessage={errorMessageText} />);
 		const sectionErrorTooltip = uut.find('.cs-section-header > CSTooltip');
@@ -66,14 +66,14 @@ describe('<CSSection />', () => {
 		expect(sectionHeader).toHaveLength(0);
 	});
 
-	it('should set custom class', () => {
+	it('should have a custom class name', () => {
 		const customClass = 'custom-class';
 		const uut = shallow(<CSSection title={title} className={customClass} />);
 		const section = uut.find(`.cs-section.${customClass}`);
 		expect(section).toHaveLength(1);
 	});
 
-	it('should set custom ID', () => {
+	it('should have a custom ID', () => {
 		const customId = 'custom-id';
 		const uut = shallow(<CSSection title={title} id={customId} />);
 		const section = uut.find(`.cs-section#${customId}`);

@@ -23,14 +23,14 @@ describe('<CSSkipLink />', () => {
 		expect(skipLinkStyle).toHaveProperty('--cs-skip-link-custom-c', 'green');
 	});
 
-	it('should set custom class name', () => {
+	it('should have a custom class name', () => {
 		const customClass = 'custom-class';
 		const uut = shallow(<CSSkipLink href={href} jumpDestination={jumpDestinationValue} className={customClass} />);
 		const skipLink = uut.find(`.cs-skip-link.${customClass}`);
 		expect(skipLink).toHaveLength(1);
 	});
 
-	it('should set custom ID', () => {
+	it('should have a custom ID', () => {
 		const customId = 'custom-id';
 		const uut = shallow(<CSSkipLink href={href} jumpDestination={jumpDestinationValue} id={customId} />);
 		const skipLink = uut.find(`.cs-skip-link#${customId}`);

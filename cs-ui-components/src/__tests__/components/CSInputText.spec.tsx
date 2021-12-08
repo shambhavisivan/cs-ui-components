@@ -6,24 +6,22 @@ import CSInputText from '../../components/CSInputText';
 const label = 'Enter value';
 const errorMsg = 'Error message.';
 
-it('should pass correct label value to CSLabel', () => {
+it('should pass label to CSLabel', () => {
 	const uut = shallow(<CSInputText label={label} />);
 	const inputTextLabel = uut.find('CSLabel');
 	expect(inputTextLabel.prop('label')).toBe(label);
 });
 
-describe('<CSToast />', () => {
-	it('should pass correct actions value to CSCustomDataActions', () => {
+describe('<CSInputText />', () => {
+	it('should pass actions to CSCustomDataActions', () => {
 		const actions = [{
-			action: () => {
-			},
+			action: () => {},
 			labelHidden: true,
 			icon: { iconName: 'delete' },
 			name: 'Delete',
 		},
 		{
-			action: () => {
-			},
+			action: () => {},
 			icon: { iconName: 'add' },
 			labelHidden: true,
 			name: 'Add',
@@ -36,7 +34,7 @@ describe('<CSToast />', () => {
 		expect(inputTextActions.prop('actions')).toMatchObject(actions);
 	});
 
-	it('should render input text with sharp border', () => {
+	it('should set custom border radius', () => {
 		const uut = shallow(<CSInputText label={label} borderRadius="0" />);
 		const inputTextStyle = uut.find('.cs-input-text-wrapper').prop('style');
 		expect(inputTextStyle).toHaveProperty('--cs-input-text-border-radius', '0');
@@ -54,19 +52,19 @@ describe('<CSToast />', () => {
 		expect(inputTextError).toHaveLength(1);
 	});
 
-	it('should pass correct error message to CSFieldErrorMsg', () => {
+	it('should pass errorMessage to CSFieldErrorMsg', () => {
 		const uut = shallow(<CSInputText label={label} error errorMessage={errorMsg} />);
 		const inputTextErrorMsg = uut.find('CSFieldErrorMsg');
 		expect(inputTextErrorMsg.prop('message')).toBe(errorMsg);
 	});
 
-	it('should pass correct errorTooltip value to CSFieldErrorMsg', () => {
+	it('should pass errorTooltip to CSFieldErrorMsg', () => {
 		const uut = shallow(<CSInputText label={label} error errorMessage={errorMsg} errorTooltip />);
 		const inputTextErrorMsg = uut.find('CSFieldErrorMsg');
 		expect(inputTextErrorMsg.prop('tooltipMessage')).toBeTruthy();
 	});
 
-	it('should pass correct helpText value to CSLabel', () => {
+	it('should pass helpText to CSLabel', () => {
 		const helpText = 'Help text.';
 		const uut = shallow(<CSInputText label={label} helpText={helpText} />);
 		const inputTextLabel = uut.find('CSLabel');
@@ -78,7 +76,7 @@ describe('<CSToast />', () => {
 		expect(uut.find('.cs-input-text-wrapper.cs-element-hidden')).toHaveLength(1);
 	});
 
-	it('should pass correct icons value to CSCustomDataIcons', () => {
+	it('should pass icons to CSCustomDataIcons', () => {
 		const icons = [{
 			iconName: 'activity',
 		}, {
@@ -95,7 +93,7 @@ describe('<CSToast />', () => {
 		expect(uut.find('CSLabel')).toHaveLength(0);
 	});
 
-	it('should pass correct title value to CSLabel', () => {
+	it('should pass title to CSLabel', () => {
 		const uut = shallow(<CSInputText label={label} labelTitle />);
 		const inputTextLabel = uut.find('CSLabel');
 		expect(inputTextLabel.prop('title')).toBe(label);
@@ -115,7 +113,7 @@ describe('<CSToast />', () => {
 		expect(inputText.prop('name')).toBe(name);
 	});
 
-	it('should trigger onBlur event', () => {
+	it('should use a working onBlur callback', () => {
 		const handleBlurMock = jest.fn();
 		const uut = shallow(<CSInputText label={label} onBlur={handleBlurMock} />);
 		const inputText = uut.find('.cs-input-text');
@@ -123,7 +121,7 @@ describe('<CSToast />', () => {
 		expect(handleBlurMock).toHaveBeenCalledTimes(1);
 	});
 
-	it('should trigger onChange event', () => {
+	it('should use a working onChange callback', () => {
 		const handleChangeMock = jest.fn();
 		const uut = shallow(<CSInputText label={label} onChange={handleChangeMock} />);
 		const inputText = uut.find('.cs-input-text');
@@ -131,7 +129,7 @@ describe('<CSToast />', () => {
 		expect(handleChangeMock).toHaveBeenCalledTimes(1);
 	});
 
-	it('should trigger onFocus event', () => {
+	it('should use a working onFocus callback', () => {
 		const handleFocusMock = jest.fn();
 		const uut = shallow(<CSInputText label={label} onFocus={handleFocusMock} />);
 		const inputText = uut.find('.cs-input-text');
@@ -164,7 +162,7 @@ describe('<CSToast />', () => {
 		expect(inputText.prop('title')).toBe(title);
 	});
 
-	it('should pass correct tooltip position to CSLabel', () => {
+	it('should pass tooltipPosition to CSLabel', () => {
 		const tooltipPosition = 'top-left';
 		const uut = shallow(<CSInputText label={label} tooltipPosition={tooltipPosition} />);
 		const inputTextLabel = uut.find('CSLabel');
@@ -178,13 +176,13 @@ describe('<CSToast />', () => {
 		expect(inputText.prop('value')).toBe(value);
 	});
 
-	it('should set custom class', () => {
+	it('should have a custom class name', () => {
 		const customClass = 'custom-class';
 		const uut = shallow(<CSInputText label={label} className={customClass} />);
 		expect(uut.find(`.cs-input-text-wrapper.${customClass}`)).toHaveLength(1);
 	});
 
-	it('should set custom id', () => {
+	it('should have a custom ID', () => {
 		const id = 'custom-id';
 		const uut = shallow(<CSInputText label={label} id={id} />);
 		const inputText = uut.find('.cs-input-text');

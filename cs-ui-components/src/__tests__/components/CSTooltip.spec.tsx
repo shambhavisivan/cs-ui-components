@@ -8,7 +8,7 @@ const tooltipHeaderContent = 'Header text';
 const tooltipJSXContent = <span>Element content</span>;
 
 describe('<CSTooltip />', () => {
-	it('should render tooltip with default prop values', () => {
+	it('should render the default CSTooltip', () => {
 		const uut = shallow(<CSTooltip content={tooltipContent} />);
 		const tooltipWrapper = uut.find('.cs-tooltip-wrapper.cs-tw-info.cs-tooltip-style-position-fixed');
 		const tooltipIcon = tooltipWrapper.find('CSIcon');
@@ -135,7 +135,7 @@ describe('<CSTooltip />', () => {
 		expect(tooltipIcon.prop('size')).toBe('1rem');
 	});
 
-	it('should render tooltip with correct max height', () => {
+	it('should set custom max height', () => {
 		const tooltipMaxHeight = '100px';
 		const uut = shallow(<CSTooltip content={tooltipContent} maxHeight={tooltipMaxHeight} />);
 		const tooltipWrapper = uut.find('.cs-tooltip-wrapper');
@@ -144,7 +144,7 @@ describe('<CSTooltip />', () => {
 		expect(tooltip.props().style).toHaveProperty('--cs-tooltip-max-height', tooltipMaxHeight);
 	});
 
-	it('should render tooltip with correct max width', () => {
+	it('should set custom max width', () => {
 		const tooltipMaxWidth = '100px';
 		const uut = shallow(<CSTooltip content={tooltipContent} maxWidth={tooltipMaxWidth} />);
 		const tooltipWrapper = uut.find('.cs-tooltip-wrapper');
@@ -153,7 +153,7 @@ describe('<CSTooltip />', () => {
 		expect(tooltip.props().style).toHaveProperty('--cs-tooltip-max-width', tooltipMaxWidth);
 	});
 
-	it('should render tooltip with correct padding', () => {
+	it('should set custom padding', () => {
 		const tooltipPadding = '0';
 		const uut = shallow(<CSTooltip content={tooltipContent} padding={tooltipPadding} />);
 		const tooltipWrapper = uut.find('.cs-tooltip-wrapper');
@@ -162,7 +162,7 @@ describe('<CSTooltip />', () => {
 		expect(tooltip.props().style).toHaveProperty('--cs-tooltip-padding', tooltipPadding);
 	});
 
-	it('should add a class and pass correct position value to CSAutoposition if position is top-left', () => {
+	it('should add a class and pass position to CSAutoposition if position is top-left', () => {
 		const tooltipPosition = 'top-left';
 		const uut = shallow(<CSTooltip content={tooltipContent} position={tooltipPosition} />);
 		const tooltipWrapper = uut.find('.cs-tooltip-wrapper');
@@ -173,7 +173,7 @@ describe('<CSTooltip />', () => {
 		expect(tooltip).toHaveLength(1);
 	});
 
-	it('should add a class and pass correct position value to CSAutoposition if position is top-center', () => {
+	it('should add a class and pass position to CSAutoposition if position is top-center', () => {
 		const tooltipPosition = 'top-center';
 		const uut = shallow(<CSTooltip content={tooltipContent} position={tooltipPosition} />);
 		const tooltipWrapper = uut.find('.cs-tooltip-wrapper');
@@ -184,7 +184,7 @@ describe('<CSTooltip />', () => {
 		expect(tooltip).toHaveLength(1);
 	});
 
-	it('should add a class and pass correct position value to CSAutoposition if position is bottom-right', () => {
+	it('should add a class and pass position to CSAutoposition if position is bottom-right', () => {
 		const tooltipPosition = 'bottom-right';
 		const uut = shallow(<CSTooltip content={tooltipContent} position={tooltipPosition} />);
 		const tooltipWrapper = uut.find('.cs-tooltip-wrapper');
@@ -195,7 +195,7 @@ describe('<CSTooltip />', () => {
 		expect(tooltip).toHaveLength(1);
 	});
 
-	it('should add a class and pass correct position value to CSAutoposition if position is bottom-left', () => {
+	it('should add a class and pass position to CSAutoposition if position is bottom-left', () => {
 		const tooltipPosition = 'bottom-left';
 		const uut = shallow(<CSTooltip content={tooltipContent} position={tooltipPosition} />);
 		const tooltipWrapper = uut.find('.cs-tooltip-wrapper');
@@ -206,7 +206,7 @@ describe('<CSTooltip />', () => {
 		expect(tooltip).toHaveLength(1);
 	});
 
-	it('should add a class and pass correct position value to CSAutoposition if position is bottom-center', () => {
+	it('should add a class and pass position to CSAutoposition if position is bottom-center', () => {
 		const tooltipPosition = 'bottom-center';
 		const uut = shallow(<CSTooltip content={tooltipContent} position={tooltipPosition} />);
 		const tooltipWrapper = uut.find('.cs-tooltip-wrapper');
@@ -217,7 +217,7 @@ describe('<CSTooltip />', () => {
 		expect(tooltip).toHaveLength(1);
 	});
 
-	it('should add a class and pass correct position value to CSAutoposition if position is right-top', () => {
+	it('should add a class and pass position to CSAutoposition if position is right-top', () => {
 		const tooltipPosition = 'right-top';
 		const uut = shallow(<CSTooltip content={tooltipContent} position={tooltipPosition} />);
 		const tooltipWrapper = uut.find('.cs-tooltip-wrapper');
@@ -228,7 +228,7 @@ describe('<CSTooltip />', () => {
 		expect(tooltip).toHaveLength(1);
 	});
 
-	it('should add a class and pass correct position value to CSAutoposition if position is right-bottom', () => {
+	it('should add a class and pass position to CSAutoposition if position is right-bottom', () => {
 		const tooltipPosition = 'right-bottom';
 		const uut = shallow(<CSTooltip content={tooltipContent} position={tooltipPosition} />);
 		const tooltipWrapper = uut.find('.cs-tooltip-wrapper');
@@ -239,7 +239,7 @@ describe('<CSTooltip />', () => {
 		expect(tooltip).toHaveLength(1);
 	});
 
-	it('should add a class and pass correct position value to CSAutoposition if position is right-center', () => {
+	it('should add a class and pass position to CSAutoposition if position is right-center', () => {
 		const tooltipPosition = 'right-center';
 		const uut = shallow(<CSTooltip content={tooltipContent} position={tooltipPosition} />);
 		const tooltipWrapper = uut.find('.cs-tooltip-wrapper');
@@ -250,7 +250,7 @@ describe('<CSTooltip />', () => {
 		expect(tooltip).toHaveLength(1);
 	});
 
-	it('should add a class and pass correct position value to CSAutoposition if position is left-top', () => {
+	it('should add a class and pass position to CSAutoposition if position is left-top', () => {
 		const tooltipPosition = 'left-top';
 		const uut = shallow(<CSTooltip content={tooltipContent} position={tooltipPosition} />);
 		const tooltipWrapper = uut.find('.cs-tooltip-wrapper');
@@ -261,7 +261,7 @@ describe('<CSTooltip />', () => {
 		expect(tooltip).toHaveLength(1);
 	});
 
-	it('should add a class and pass correct position value to CSAutoposition if position is left-bottom', () => {
+	it('should add a class and pass position to CSAutoposition if position is left-bottom', () => {
 		const tooltipPosition = 'left-bottom';
 		const uut = shallow(<CSTooltip content={tooltipContent} position={tooltipPosition} />);
 		const tooltipWrapper = uut.find('.cs-tooltip-wrapper');
@@ -272,7 +272,7 @@ describe('<CSTooltip />', () => {
 		expect(tooltip).toHaveLength(1);
 	});
 
-	it('should add a class and pass correct position value to CSAutoposition if position is left-center', () => {
+	it('should add a class and pass position to CSAutoposition if position is left-center', () => {
 		const tooltipPosition = 'left-center';
 		const uut = shallow(<CSTooltip content={tooltipContent} position={tooltipPosition} />);
 		const tooltipWrapper = uut.find('.cs-tooltip-wrapper');
@@ -387,14 +387,14 @@ describe('<CSTooltip />', () => {
 		expect(tooltip.props().style).toHaveProperty('--cs-tooltip-width', tooltipWidth);
 	});
 
-	it('should render tooltip with custom class', () => {
+	it('should have a custom class name', () => {
 		const tooltipCustomClass = 'custom-class';
 		const uut = shallow(<CSTooltip content={tooltipContent} className={tooltipCustomClass} />);
 		const tooltipWrapper = uut.find(`.cs-tooltip-wrapper.${tooltipCustomClass}`);
 		expect(tooltipWrapper).toHaveLength(1);
 	});
 
-	it('should render tooltip with custom id', () => {
+	it('should have a custom ID', () => {
 		const tooltipCustomId = 'custom-id';
 		const uut = shallow(<CSTooltip content={tooltipContent} id={tooltipCustomId} />);
 		const tooltipWrapper = uut.find('.cs-tooltip-wrapper');

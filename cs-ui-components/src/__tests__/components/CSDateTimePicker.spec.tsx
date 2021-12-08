@@ -11,19 +11,19 @@ const maxDate = 5;
 const onChange = () => { };
 
 describe('<CSDateTimePicker />', () => {
-	it('should pass correct showTimeSelect value to CSDatepicker', () => {
+	it('should pass showTimeSelect to CSDatepicker', () => {
 		const uut = shallow(<CSDateTimePicker label={labelValue} onChange={onChange} />);
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('showTimeSelect')).toBeTruthy();
 	});
 
-	it('should pass correct label to CSDatepicker', () => {
+	it('should pass label to CSDatepicker', () => {
 		const uut = shallow(<CSDateTimePicker label={labelValue} onChange={onChange} />);
 		const dateTimePickerLabel = uut.dive().find('CSDatepicker');
 		expect(dateTimePickerLabel.prop('label')).toBe(labelValue);
 	});
 
-	it('should call onChange handler', () => {
+	it('should use a working onChange callback', () => {
 		const handleOnChangeMock = jest.fn();
 		const event: any = {};
 		const uut = shallow(<CSDateTimePicker label={labelValue} onChange={handleOnChangeMock} />);
@@ -32,7 +32,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(handleOnChangeMock).toHaveBeenCalledTimes(1);
 	});
 
-	it('should pass correct actions value to CSDatepicker', () => {
+	it('should pass actions to CSDatepicker', () => {
 		const actionsValue = [
 			{
 				action: () => jest.fn(),
@@ -57,7 +57,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('actions')).toMatchObject(actionsValue);
 	});
 
-	it('should pass correct autoFocus value to CSDatepicker', () => {
+	it('should pass autoFocus to CSDatepicker', () => {
 		const uut = shallow(
 			<CSDateTimePicker
 				label={labelValue}
@@ -69,7 +69,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('autoFocus')).toBeTruthy();
 	});
 
-	it('should pass correct border radius to CSDatepicker', () => {
+	it('should pass border radius to CSDatepicker', () => {
 		const borderRadius = '1rem';
 		const uut = shallow(
 			<CSDateTimePicker
@@ -82,7 +82,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('borderRadius')).toBe(borderRadius);
 	});
 
-	it('should pass correct date format to CSDatepicker', () => {
+	it('should pass dateFormat to CSDatepicker', () => {
 		const dateFormat = 'd MMMM, yyyy h:mm aa';
 		const uut = shallow(
 			<CSDateTimePicker
@@ -95,7 +95,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('dateFormat')).toBe(dateFormat);
 	});
 
-	it('should pass correct disabled value to CSDatepicker', () => {
+	it('should pass disabled to CSDatepicker', () => {
 		const uut = shallow(
 			<CSDateTimePicker
 				label={labelValue}
@@ -107,7 +107,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('disabled')).toBeTruthy();
 	});
 
-	it('should pass correct dropdown mode to CSDatepicker', () => {
+	it('should pass dropdownMode to CSDatepicker', () => {
 		const dropdownMode = 'scroll';
 		const uut = shallow(
 			<CSDateTimePicker
@@ -120,7 +120,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('dropdownMode')).toBe(dropdownMode);
 	});
 
-	it('should pass correct error value to CSDatepicker', () => {
+	it('should pass error to CSDatepicker', () => {
 		const uut = shallow(
 			<CSDateTimePicker
 				label={labelValue}
@@ -132,7 +132,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('error')).toBeTruthy();
 	});
 
-	it('should pass correct error message to CSDatepicker', () => {
+	it('should pass errorMessage to CSDatepicker', () => {
 		const uut = shallow(
 			<CSDateTimePicker
 				label={labelValue}
@@ -145,7 +145,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('errorMessage')).toBe(errorMessage);
 	});
 
-	it('should pass correct errorTooltip value to CSDatepicker', () => {
+	it('should pass errorTooltip to CSDatepicker', () => {
 		const uut = shallow(
 			<CSDateTimePicker
 				label={labelValue}
@@ -159,7 +159,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('errorTooltip')).toBeTruthy();
 	});
 
-	it('should pass correct help text to CSDatepicker', () => {
+	it('should pass helpText to CSDatepicker', () => {
 		const helpText = 'Help text';
 		const uut = shallow(
 			<CSDateTimePicker
@@ -172,7 +172,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('helpText')).toBe(helpText);
 	});
 
-	it('should pass correct icons value to CSDatepicker', () => {
+	it('should pass icons to CSDatepicker', () => {
 		const iconsValue = [{ iconName: 'cart' }];
 		const uut = shallow(
 			<CSDateTimePicker
@@ -185,7 +185,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('icons')).toMatchObject(iconsValue);
 	});
 
-	it('should pass correct inline value to CSDatepicker', () => {
+	it('should pass inline to CSDatepicker', () => {
 		const uut = shallow(
 			<CSDateTimePicker
 				label={labelValue}
@@ -197,7 +197,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('inline')).toBeTruthy();
 	});
 
-	it('should pass correct isClearable value to CSDatepicker', () => {
+	it('should pass isClearable to CSDatepicker', () => {
 		const uut = shallow(
 			<CSDateTimePicker
 				label={labelValue}
@@ -209,7 +209,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('isClearable')).toBeTruthy();
 	});
 
-	it('should pass correct labelHidden value to CSDatepicker', () => {
+	it('should pass labelHidden to CSDatepicker', () => {
 		const uut = shallow(
 			<CSDateTimePicker
 				label={labelValue}
@@ -221,7 +221,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('labelHidden')).toBeTruthy();
 	});
 
-	it('should pass correct labelTitle value to CSDatepicker', () => {
+	it('should pass labelTitle to CSDatepicker', () => {
 		const uut = shallow(
 			<CSDateTimePicker
 				label={labelValue}
@@ -233,7 +233,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('labelTitle')).toBeTruthy();
 	});
 
-	it('should pass correct max date to CSDatepicker', () => {
+	it('should pass maxDate to CSDatepicker', () => {
 		const uut = shallow(
 			<CSDateTimePicker
 				label={labelValue}
@@ -245,7 +245,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('maxDate')).toBe(maxDate);
 	});
 
-	it('should pass correct maxDateYear to CSDatepicker', () => {
+	it('should pass maxDateYear to CSDatepicker', () => {
 		const uut = shallow(
 			<CSDateTimePicker
 				label={labelValue}
@@ -258,7 +258,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('maxDateYear')).toBeTruthy();
 	});
 
-	it('should pass correct minDate to CSDatepicker', () => {
+	it('should pass minDate to CSDatepicker', () => {
 		const uut = shallow(
 			<CSDateTimePicker
 				label={labelValue}
@@ -270,7 +270,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('minDate')).toBe(minDate);
 	});
 
-	it('should pass correct minDateYear to CSDatepicker', () => {
+	it('should pass minDateYear to CSDatepicker', () => {
 		const uut = shallow(
 			<CSDateTimePicker
 				label={labelValue}
@@ -283,7 +283,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('minDateYear')).toBeTruthy();
 	});
 
-	it('should pass correct name to CSDatepicker', () => {
+	it('should pass name to CSDatepicker', () => {
 		const name = 'name';
 		const uut = shallow(
 			<CSDateTimePicker
@@ -296,7 +296,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('name')).toBe(name);
 	});
 
-	it('should call onBlur handler', () => {
+	it('should use a working onBlur callback', () => {
 		const handleOnBlurMock = jest.fn();
 		const event: any = {};
 		const uut = shallow(
@@ -311,7 +311,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(handleOnBlurMock).toHaveBeenCalledTimes(1);
 	});
 
-	it('should call onKeyDown handler', () => {
+	it('should use a working onKeyDown callback', () => {
 		const handleOnKeyDownMock = jest.fn();
 		const event: any = {};
 		const uut = shallow(
@@ -326,7 +326,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(handleOnKeyDownMock).toHaveBeenCalledTimes(1);
 	});
 
-	it('should call onSelect handler', () => {
+	it('should use a working onSelect callback', () => {
 		const handleOnSelectMock = jest.fn();
 		const event: any = {};
 		const uut = shallow(
@@ -341,7 +341,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(handleOnSelectMock).toHaveBeenCalledTimes(1);
 	});
 
-	it('should pass correct placeholder value to CSDatepicker', () => {
+	it('should pass placeholder to CSDatepicker', () => {
 		const placeholder = 'placeholder';
 		const uut = shallow(
 			<CSDateTimePicker
@@ -354,7 +354,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('placeholder')).toBe(placeholder);
 	});
 
-	it('should pass correct readOnly value to CSDatepicker', () => {
+	it('should pass readOnly to CSDatepicker', () => {
 		const uut = shallow(
 			<CSDateTimePicker
 				label={labelValue}
@@ -366,7 +366,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('readOnly')).toBeTruthy();
 	});
 
-	it('should pass correct required value to CSDatepicker', () => {
+	it('should pass required to CSDatepicker', () => {
 		const uut = shallow(
 			<CSDateTimePicker
 				label={labelValue}
@@ -378,7 +378,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('required')).toBeTruthy();
 	});
 
-	it('should pass correct scrollableYearDropdown value to CSDatepicker', () => {
+	it('should pass scrollableYearDropdown to CSDatepicker', () => {
 		const uut = shallow(
 			<CSDateTimePicker
 				label={labelValue}
@@ -390,7 +390,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('scrollableYearDropdown')).toBeTruthy();
 	});
 
-	it('should pass correct selected date to CSDatepicker', () => {
+	it('should pass selectedDate to CSDatepicker', () => {
 		const selectedDate = new Date();
 		const uut = shallow(
 			<CSDateTimePicker
@@ -403,7 +403,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('selected')).toBe(selectedDate);
 	});
 
-	it('should pass correct showMonthDropdown value to CSDatepicker', () => {
+	it('should pass showMonthDropdown to CSDatepicker', () => {
 		const uut = shallow(
 			<CSDateTimePicker
 				label={labelValue}
@@ -415,7 +415,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('showMonthDropdown')).toBeTruthy();
 	});
 
-	it('should pass correct showYearDropdown value to CSDatepicker', () => {
+	it('should pass showYearDropdown to CSDatepicker', () => {
 		const uut = shallow(
 			<CSDateTimePicker
 				label={labelValue}
@@ -427,7 +427,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('showYearDropdown')).toBeTruthy();
 	});
 
-	it('should pass correct time caption to DatePicker', () => {
+	it('should pass timeCaption to DatePicker', () => {
 		const timeCaption = 'Tick Tock';
 		const uut = shallow(
 			<CSDateTimePicker
@@ -440,7 +440,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('timeCaption')).toBe(timeCaption);
 	});
 
-	it('should pass correct time format to DatePicker', () => {
+	it('should pass timeFormat to DatePicker', () => {
 		const timeFormat = 'HH:mm:ss';
 		const uut = shallow(
 			<CSDateTimePicker
@@ -453,7 +453,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('timeFormat')).toBe(timeFormat);
 	});
 
-	it('should pass correct time intervals to DatePicker', () => {
+	it('should pass timeIntervals to DatePicker', () => {
 		const timeIntervals = 60;
 		const uut = shallow(
 			<CSDateTimePicker
@@ -466,7 +466,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('timeIntervals')).toBe(timeIntervals);
 	});
 
-	it('should pass correct title value to CSDatepicker', () => {
+	it('should pass title to CSDatepicker', () => {
 		const title = 'title';
 		const uut = shallow(
 			<CSDateTimePicker
@@ -479,7 +479,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('title')).toBe(title);
 	});
 
-	it('should pass correct todayButton value to CSDatepicker', () => {
+	it('should pass todayButton to CSDatepicker', () => {
 		const uut = shallow(
 			<CSDateTimePicker
 				label={labelValue}
@@ -491,7 +491,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('todayButton')).toBeTruthy();
 	});
 
-	it('should pass correct tooltip position to CSDatepicker', () => {
+	it('should pass tooltipPosition to CSDatepicker', () => {
 		const tooltipPosition = 'top-left';
 		const uut = shallow(
 			<CSDateTimePicker
@@ -504,7 +504,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('tooltipPosition')).toBe(tooltipPosition);
 	});
 
-	it('should pass correct value to CSDatepicker', () => {
+	it('should pass value to CSDatepicker', () => {
 		const value = '21-02-2021';
 		const uut = shallow(
 			<CSDateTimePicker
@@ -517,7 +517,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('value')).toBe(value);
 	});
 
-	it('should pass correct width value to CSDatepicker', () => {
+	it('should pass width to CSDatepicker', () => {
 		const width = '300px';
 		const uut = shallow(
 			<CSDateTimePicker
@@ -530,7 +530,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('width')).toBe(width);
 	});
 
-	it('should pass correct yearDropdownItemNumber to CSDatepicker', () => {
+	it('should pass yearDropdownItemNumber to CSDatepicker', () => {
 		const yearDropdownItemNumber = 5;
 		const uut = shallow(
 			<CSDateTimePicker
@@ -543,7 +543,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('yearDropdownItemNumber')).toBe(yearDropdownItemNumber);
 	});
 
-	it('should pass correct custom class to CSDatepicker', () => {
+	it('should pass className to CSDatepicker', () => {
 		const customClass = 'custom-class';
 		const uut = shallow(
 			<CSDateTimePicker
@@ -556,7 +556,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('className')).toBe(`cs-datetimepicker ${customClass}`);
 	});
 
-	it('should pass correct id to CSDatepicker', () => {
+	it('should pass id to CSDatepicker', () => {
 		const customId = 'custom-id';
 		const uut = shallow(
 			<CSDateTimePicker

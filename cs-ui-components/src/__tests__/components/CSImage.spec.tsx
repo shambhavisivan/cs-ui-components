@@ -7,7 +7,7 @@ import Logo from '../../images/index';
 const defaultType = 'logo';
 
 describe('<CSImage />', () => {
-	it('should render the default image', () => {
+	it('should render the default CSImage', () => {
 		const type = 'logo';
 		const color = 'purple';
 		const variant = 'initial';
@@ -89,21 +89,21 @@ describe('<CSImage />', () => {
 		expect(image.prop('alt')).toBe(`${type}-${color}-${variant}`);
 	});
 
-	it('should render image with custom height', () => {
+	it('should set custom height', () => {
 		const height = '10px';
 		const uut = shallow(<CSImage type={defaultType} height={height} />);
 		const image = uut.find('img.cs-image');
 		expect(image.props().style).toHaveProperty('--cs-image-height', height);
 	});
 
-	it('should render image with custom width', () => {
+	it('should set custom width', () => {
 		const width = '10px';
 		const uut = shallow(<CSImage type={defaultType} width={width} />);
 		const image = uut.find('img.cs-image');
 		expect(image.props().style).toHaveProperty('--cs-image-width', width);
 	});
 
-	it('should render image with long description', () => {
+	it('should set aria-labelledby attribute', () => {
 		const description = 'long description';
 		const uut = shallow(<CSImage type={defaultType} longDescription={description} />);
 		const imageDescription = uut.find('img.cs-image + .cs-aria-description');
@@ -119,7 +119,7 @@ describe('<CSImage />', () => {
 		expect(image).toHaveLength(1);
 	});
 
-	it('should have a custom id', () => {
+	it('should have a custom ID', () => {
 		const customId = 'custom-id';
 		const uut = shallow(<CSImage type={defaultType} id={customId} />);
 		const image = uut.find(`img.cs-image#${customId}`);

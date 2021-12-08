@@ -7,7 +7,7 @@ const label = 'input search value';
 const errorMessage = 'input search error message';
 
 describe('<CSInputSearch />', () => {
-	it('should render the default input search instance', () => {
+	it('should render the default CSInputSearch', () => {
 		const uut = shallow(<CSInputSearch label={label} />);
 		const inputSearch = uut.find('.cs-input-search');
 		const inputSearchGroup = uut.find('.cs-input-search-group.cs-icon-left');
@@ -33,14 +33,14 @@ describe('<CSInputSearch />', () => {
 		expect(inputSearchAutofocus).toBeTruthy();
 	});
 
-	it('should have a custom border radius', () => {
+	it('should set custom border radius', () => {
 		const borderRadius = '0';
 		const uut = shallow(<CSInputSearch label={label} borderRadius={borderRadius} />);
 		const inputSearchStyle = uut.find('.cs-input-search-group').props().style;
 		expect(inputSearchStyle).toHaveProperty('--cs-input-search-border-radius', borderRadius);
 	});
 
-	it('should be disabled', () => {
+	it('should set disabled attribute', () => {
 		const uut = shallow(<CSInputSearch label={label} disabled />);
 		const disabledInputSearch = uut.find('.cs-input-search');
 		expect(disabledInputSearch.props().disabled).toBeTruthy();
@@ -182,21 +182,21 @@ describe('<CSInputSearch />', () => {
 		expect(inputSearchValue).toBe(value);
 	});
 
-	it('should have a custom width', () => {
+	it('should set a custom width', () => {
 		const width = '10rem';
 		const uut = shallow(<CSInputSearch label={label} width={width} />);
 		const inputSearchStyle = uut.find('.cs-input-search-group').props().style;
 		expect(inputSearchStyle).toHaveProperty('--search-width', width);
 	});
 
-	it('should set a custom class', () => {
+	it('should have a custom class name', () => {
 		const className = 'custom-class';
 		const uut = shallow(<CSInputSearch label={label} className={className} />);
 		const inputSearch = uut.find(`.cs-input-search-wrapper.${className}`);
 		expect(inputSearch).toHaveLength(1);
 	});
 
-	it('should set a custom id', () => {
+	it('should have a custom ID', () => {
 		const id = 'custom-id';
 		const uut = shallow(<CSInputSearch label={label} id={id} />);
 		const inputSearch = uut.find(`.cs-input-search#${id}`);

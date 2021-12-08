@@ -12,12 +12,12 @@ const customClass = 'custom-br-mint';
 const customId = 'custom-id';
 
 describe('<CSIcon />', () => {
-	it('should render icon with name', () => {
+	it('should render the default CSIcon', () => {
 		const uut = shallow(<CSIcon name={name} />);
 		expect(uut.find('use').props().href).toBe('#cssfi-video');
 	});
 
-	it('should render icon with color', () => {
+	it('should set icon color', () => {
 		const uut = shallow(<CSIcon name={name} color={color} />);
 		expect(uut.find('.cs-icon').props().style).toHaveProperty('--cs-icon-c', color);
 		expect(uut.find('.cs-icon').props().style).toHaveProperty('--cs-main-header-neutral-icon', color);
@@ -38,12 +38,12 @@ describe('<CSIcon />', () => {
 		expect(uut.find('use').props().href).toContain('#csi');
 	});
 
-	it('should render icon with custom value for --cs-icon-rotate', () => {
+	it('should set icon rotate', () => {
 		const uut = shallow(<CSIcon name={name} rotate={45} />);
 		expect(uut.find('.cs-icon').props().style).toHaveProperty('--cs-icon-rotate', '45deg');
 	});
 
-	it('should render icon with custom size', () => {
+	it('should set size', () => {
 		const uut = shallow(<CSIcon name={name} size={size} />);
 		expect(uut.find('.cs-icon').props().style).toHaveProperty('--cs-icon-size', size);
 	});
@@ -53,7 +53,7 @@ describe('<CSIcon />', () => {
 		expect(uut.find('.cs-icon-spin')).toHaveLength(1);
 	});
 
-	it('should render icon with title', () => {
+	it('should set title attribute', () => {
 		const uut = shallow(<CSIcon name={name} title={title} />);
 		expect(uut.find('title').text()).toBe(title);
 	});

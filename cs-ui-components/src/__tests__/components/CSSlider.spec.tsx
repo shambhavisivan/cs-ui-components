@@ -6,7 +6,7 @@ import CSSlider from '../../components/CSSlider';
 const labelValue = 'Slider';
 
 describe('<CSSlider />', () => {
-	it('should pass label value to CSLabel', () => {
+	it('should pass label to CSLabel', () => {
 		const uut = shallow(<CSSlider label={labelValue} />);
 		const label = uut.find('.cs-slider-wrapper > CSLabel');
 		expect(label.prop('label')).toBe(labelValue);
@@ -24,14 +24,14 @@ describe('<CSSlider />', () => {
 		expect(sliderInput.props()['aria-invalid']).toBeTruthy();
 	});
 
-	it('should pass errorMessage value to CSFieldErrorMessage', () => {
+	it('should pass errorMessage to CSFieldErrorMessage', () => {
 		const errorMessageContent = 'Error message.';
 		const uut = shallow(<CSSlider label={labelValue} error errorMessage={errorMessageContent} />);
 		const errorMessage = uut.find('.cs-slider-wrapper > CSFieldErrorMsg');
 		expect(errorMessage.prop('message')).toBe(errorMessageContent);
 	});
 
-	it('should pass helpText value to CSLabel', () => {
+	it('should pass helpText to CSLabel', () => {
 		const helpText = 'Help text example';
 		const uut = shallow(<CSSlider label="Select value" helpText={helpText} />);
 		const sliderLabel = uut.find('.cs-slider-wrapper > CSLabel');
@@ -50,7 +50,7 @@ describe('<CSSlider />', () => {
 		expect(sliderLabel.prop('title')).toBe(labelTitle);
 	});
 
-	it('should display max and set max attribute value', () => {
+	it('should set max and set max attribute value', () => {
 		const max = '50';
 		const uut = shallow(<CSSlider label={labelValue} max={max} />);
 		expect(uut.find('.cs-slider-wrapper > .cs-slider-range')).toHaveLength(1);
@@ -59,7 +59,7 @@ describe('<CSSlider />', () => {
 		expect(sliderInput.props()['aria-valuemax']).toBe(Number(max));
 	});
 
-	it('should display min and set min attribute value', () => {
+	it('should set min and set min attribute value', () => {
 		const min = '50';
 		const uut = shallow(<CSSlider label={labelValue} min={min} />);
 		expect(uut.find('.cs-slider-wrapper > .cs-slider-range')).toHaveLength(1);
@@ -68,7 +68,7 @@ describe('<CSSlider />', () => {
 		expect(sliderInput.props()['aria-valuemin']).toBe(Number(min));
 	});
 
-	it('should trigger onChange event', () => {
+	it('should use a working onChange callback', () => {
 		const handleOnChangeMock = jest.fn();
 		const uut = shallow(<CSSlider label={labelValue} onChange={handleOnChangeMock} />);
 		const sliderInput = uut.find('.cs-slider');
@@ -116,7 +116,7 @@ describe('<CSSlider />', () => {
 		expect(slider.props().title).toBe(title);
 	});
 
-	it('should pass tooltipPosition value to CSLabel', () => {
+	it('should pass tooltipPosition to CSLabel', () => {
 		const tooltipPosition = 'top-left';
 		const uut = shallow(<CSSlider label={labelValue} helpText="Help text example" tooltipPosition={tooltipPosition} />);
 		const sliderLabel = uut.find('.cs-slider-wrapper > CSLabel');
@@ -149,7 +149,7 @@ describe('<CSSlider />', () => {
 		expect(sliderWrapper).toHaveLength(1);
 	});
 
-	it('should have a custom id', () => {
+	it('should have a custom ID', () => {
 		const customId = 'custom-id';
 		const uut = shallow(<CSSlider label={labelValue} id={customId} />);
 		const sliderGroup = uut.find('.cs-slider-wrapper > .cs-slider-group');

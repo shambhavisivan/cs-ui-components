@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import CSSpinner from '../../components/CSSpinner';
 
 describe('<CSSpinner />', () => {
-	it('should have a wrapper and default prop values', () => {
+	it('should render the default CSSpinner', () => {
 		const uut = shallow(<CSSpinner />);
 		expect(uut.find('.cs-spinner-wrapper')).toHaveLength(1);
 		expect(uut.find('.cs-spinner-brand')).toHaveLength(1);

@@ -10,7 +10,7 @@ const customClass = 'custom-class';
 const customId = 'custom-id';
 
 describe('<CSTabGroup />', () => {
-	it('should render default CSTabGroup', () => {
+	it('should render the default CSTabGroup', () => {
 		const uut = mount(<CSTabGroup><CSTab name={tabName} /></CSTabGroup>);
 		const tabGroup = uut.find('.cs-tab-group');
 		const tab = uut.find('.cs-tab-group .cs-tab-wrapper-normal');
@@ -18,7 +18,7 @@ describe('<CSTabGroup />', () => {
 		expect(tab).toHaveLength(1);
 	});
 
-	it('should set aria-label', () => {
+	it('should set aria-label attribute', () => {
 		const listNameValue = 'group';
 		const uut = shallow(<CSTabGroup listName={listNameValue} />);
 		const tabGroup = uut.find('.cs-tab-group > nav');
@@ -37,13 +37,13 @@ describe('<CSTabGroup />', () => {
 		expect(tabGroup).toHaveLength(1);
 	});
 
-	it('should set custom class name', () => {
+	it('should have a custom class name', () => {
 		const uut = shallow(<CSTabGroup className={customClass} />);
 		const tabGroup = uut.find(`.cs-tab-group.${customClass}`);
 		expect(tabGroup).toHaveLength(1);
 	});
 
-	it('should set custom ID', () => {
+	it('should have a custom ID', () => {
 		const uut = shallow(<CSTabGroup id={customId} />);
 		const tabGroup = uut.find(`.cs-tab-group#${customId}`);
 		expect(tabGroup).toHaveLength(1);
@@ -97,7 +97,7 @@ describe('<CSTab />', () => {
 		expect(tabIcon.prop('name')).toBe('action');
 	});
 
-	it('should handle onClick event', () => {
+	it('should use a working onClick callback', () => {
 		const handleClick = jest.fn();
 		const uut = mount(<CSTab name={tabName} onClick={handleClick} />);
 		const tab = uut.find('.cs-tab');
@@ -147,7 +147,7 @@ describe('<CSTab />', () => {
 		expect(tabIcon.prop('name')).toBe('check');
 	});
 
-	it('should pass correct tooltipContent value to CSTooltip', () => {
+	it('should pass tooltipContent to CSTooltip', () => {
 		const tooltipContentValue = 'error message';
 		const uut = shallow(<CSTab name={tabName} tooltipContent={tooltipContentValue} />);
 		const tabTooltip = uut.find('CSTooltip');
@@ -161,13 +161,13 @@ describe('<CSTab />', () => {
 		expect(tabStyles).toHaveProperty('--cs-tab-width', '10rem');
 	});
 
-	it('should set custom class name', () => {
+	it('should have a custom class name', () => {
 		const uut = shallow(<CSTab name={tabName} className={customClass} />);
 		const tabGroup = uut.find(`.cs-tab-wrapper.${customClass}`);
 		expect(tabGroup).toHaveLength(1);
 	});
 
-	it('should set custom ID', () => {
+	it('should have a custom ID', () => {
 		const uut = shallow(<CSTab name={tabName} id={customId} />);
 		const tabGroup = uut.find(`.cs-tab-wrapper#${customId}`);
 		expect(tabGroup).toHaveLength(1);

@@ -20,7 +20,7 @@ const actionsValue = [
 ];
 
 describe('<CSSelect />', () => {
-	it('should pass correct label value to CSLabel', () => {
+	it('should pass label to CSLabel', () => {
 		const uut = shallow(<CSSelect label={labelValue} />);
 		const select = uut.find('.cs-select');
 		const selectLabel = uut.find('.cs-select-wrapper > CSLabel');
@@ -28,7 +28,7 @@ describe('<CSSelect />', () => {
 		expect(selectLabel.prop('label')).toBe(labelValue);
 	});
 
-	it('should render custom actions', () => {
+	it('should pass actions to CSCustomDataActions', () => {
 		const uut = shallow(<CSSelect label={labelValue} actions={actionsValue} />);
 		const selectCustomActions = uut.find('.cs-select-wrapper CSCustomDataActions');
 		expect(selectCustomActions).toHaveLength(1);
@@ -43,7 +43,7 @@ describe('<CSSelect />', () => {
 		expect(selectField).toHaveProperty('--cs-select-border-radius', '1rem');
 	});
 
-	it('should set disabled attribute to true', () => {
+	it('should set disabled attribute', () => {
 		const uut = shallow(<CSSelect label={labelValue} disabled />);
 		const select = uut.find('.cs-select');
 		expect(select.props().disabled).toEqual(true);
@@ -56,7 +56,7 @@ describe('<CSSelect />', () => {
 		expect(select).toHaveLength(1);
 	});
 
-	it('should pass correct errorMessage value to CSFieldErrorMsg', () => {
+	it('should pass errorMessage to CSFieldErrorMsg', () => {
 		const uut = shallow(<CSSelect label={labelValue} error errorMessage={errorMessageValue} />);
 		const selectErrorMsg = uut.find('.cs-select-wrapper > CSFieldErrorMsg');
 		expect(selectErrorMsg.prop('message')).toBe(errorMessageValue);
@@ -71,7 +71,7 @@ describe('<CSSelect />', () => {
 		expect(selectErrorMsg.prop('tooltipMessage')).toBe(true);
 	});
 
-	it('should pass correct helpText value to CSLabel', () => {
+	it('should pass helpText to CSLabel', () => {
 		const helpTextMsg = 'help text in tooltip';
 		const uut = shallow(<CSSelect label={labelValue} helpText={helpTextMsg} />);
 		const selectLabel = uut.find('CSLabel');
@@ -85,7 +85,7 @@ describe('<CSSelect />', () => {
 		expect(select).toHaveLength(1);
 	});
 
-	it('should render custom icons', () => {
+	it('should pass icons to CSCustomDataIcons', () => {
 		const uut = shallow(<CSSelect label={labelValue} icons={iconsValue} />);
 		const selectCustomIcons = uut.find('.cs-select-wrapper CSCustomDataIcons');
 		expect(selectCustomIcons).toHaveLength(1);
@@ -112,7 +112,7 @@ describe('<CSSelect />', () => {
 		expect(select.props().name).toBe(nameValue);
 	});
 
-	it('should trigger onBlur event', () => {
+	it('should use a working onBlur callback', () => {
 		const handleOnBlur = jest.fn();
 		const uut = mount(<CSSelect label={labelValue} onBlur={handleOnBlur} />);
 		const select = uut.find('.cs-select');
@@ -120,7 +120,7 @@ describe('<CSSelect />', () => {
 		expect(handleOnBlur).toHaveBeenCalled();
 	});
 
-	it('should trigger onChange event', () => {
+	it('should use a working onChange callback', () => {
 		const handleChange = jest.fn();
 		const uut = mount(<CSSelect label={labelValue} onChange={handleChange} />);
 		const select = uut.find('.cs-select');
@@ -146,14 +146,14 @@ describe('<CSSelect />', () => {
 		expect(selectLabel.prop('required')).toEqual(true);
 	});
 
-	it('should set title on field', () => {
+	it('should set title', () => {
 		const titleValue = 'title';
 		const uut = shallow(<CSSelect label={labelValue} title={titleValue} />);
 		const select = uut.find('.cs-select');
 		expect(select.props().title).toBe(titleValue);
 	});
 
-	it('should pass correct tooltipPosition value to CSLabel', () => {
+	it('should pass tooltipPosition to CSLabel', () => {
 		const tooltipPositionValue = 'top-left';
 		const uut = shallow(<CSSelect label={labelValue} helpText="test" tooltipPosition={tooltipPositionValue} />);
 		const selectLabel = uut.find('CSLabel');
@@ -161,14 +161,14 @@ describe('<CSSelect />', () => {
 		expect(selectLabel.prop('tooltipPosition')).toBe(tooltipPositionValue);
 	});
 
-	it('should set custom class', () => {
+	it('should have a custom class name', () => {
 		const customClass = 'custom-class';
 		const uut = shallow(<CSSelect label={labelValue} className={customClass} />);
 		const selectWrapper = uut.find(`.cs-select-wrapper.${customClass}`);
 		expect(selectWrapper).toHaveLength(1);
 	});
 
-	it('should set custom id', () => {
+	it('should have a custom ID', () => {
 		const customId = 'custom-id';
 		const uut = shallow(<CSSelect label={labelValue} id={customId} />);
 		const selectField = uut.find(`.cs-select#${customId}`);
