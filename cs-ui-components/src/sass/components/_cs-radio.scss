@@ -12,14 +12,14 @@
 		flex-direction: column;
 
 		// Label
-		.cs-radio-label {
+		.cs-radio-option-wrapper {
 			align-items: center;
 			cursor: pointer;
 			display: inline-flex;
 			width: fit-content;
 			font-size: 0.875rem;
 			margin-bottom: 0.25rem;
-			@include sc(--cs-radio-label-c);
+			@include sc(--cs-radio-option-wrapper-c);
 
 			&-read-only {
 				cursor: default;
@@ -27,9 +27,9 @@
 		}
 
 		// Disabled/Read-only
-		&.cs-radio-disabled .cs-radio-label,
-		.cs-radio-label-disabled,
-		.cs-radio-label-read-only {
+		&.cs-radio-disabled .cs-radio-option-wrapper,
+		.cs-radio-option-wrapper-disabled,
+		.cs-radio-option-wrapper-read-only {
 			pointer-events: none;
 		}
 
@@ -132,7 +132,7 @@
 		}
 
 		// Error
-		&.cs-radio-error .cs-radio-label > .cs-radio {
+		&.cs-radio-error .cs-radio-option-wrapper > .cs-radio {
 			&:hover + .cs-radio-faux {
 				@include css4 {
 					box-shadow: 0 0 2px cvar(--cs-radio-error-focus-shadow);

@@ -383,6 +383,20 @@ class CSRadioPreview extends React.Component<{}, CSRadioOptionState> {
 				name: 'CSRadioOption',
 				examples: [
 					{
+						propName: 'name',
+						variations: [
+							{
+								component: <CSRadio label="This is a label">
+									<CSRadioOption name="name" />
+									<CSRadioOption name="name" />
+								</CSRadio>,
+								code: `<CSRadio label="This is a label">
+									<CSRadioOption name="name" />
+									<CSRadioOption name="name" />
+								</CSRadio>`
+							}
+						]
+					}, {
 						propName: 'checked',
 						variations: [
 							{
@@ -602,6 +616,11 @@ class CSRadioPreview extends React.Component<{}, CSRadioOptionState> {
 				],
 				properties: [
 					{
+						name: 'name',
+						required: 'true',
+						types: 'string',
+						description: 'Set the radio option name attribute.'
+					}, {
 						name: 'checked',
 						types: 'boolean',
 						description: 'Control the checked state of the radio option.'
@@ -614,10 +633,6 @@ class CSRadioPreview extends React.Component<{}, CSRadioOptionState> {
 						name: 'label',
 						types: 'string',
 						description: 'Set the radio option label.'
-					}, {
-						name: 'name',
-						types: 'string',
-						description: 'Set the radio option name attribute.'
 					}, {
 						name: 'onBlur',
 						types: '(event) => any',

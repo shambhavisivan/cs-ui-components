@@ -10,7 +10,7 @@ export interface CSRadioOptionProps {
 	disabled?: boolean;
 	id?: string;
 	label?: string;
-	name?: string;
+	name: string;
 	onBlur?: (e: React.FocusEvent<HTMLInputElement>) => any;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => any;
 	readOnly?: boolean;
@@ -62,10 +62,10 @@ class CSRadioOption extends React.Component<CSRadioOptionProps> {
 		} = this.props;
 
 		const radioOptionWrapperClasses = classNames(
-			'cs-radio-label',
+			'cs-radio-option-wrapper',
 			{
-				'cs-radio-label-read-only': readOnly,
-				'cs-radio-label-disabled': disabled,
+				'cs-radio-option-wrapper-read-only': readOnly,
+				'cs-radio-option-wrapper-disabled': disabled,
 				[`${className}`]: className,
 			},
 		);
@@ -104,7 +104,7 @@ class CSRadioOption extends React.Component<CSRadioOptionProps> {
 					{...rest}
 				/>
 				<span className="cs-radio-faux" />
-				<span>{label}</span>
+				<span className="cs-radio-option-label">{label}</span>
 			</label>
 		);
 	}

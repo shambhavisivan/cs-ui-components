@@ -160,7 +160,7 @@ describe('<CSRadioOption />', () => {
 
 	it('should have a label', () => {
 		const uut = shallow(<CSRadioOption label={label} name={name} />);
-		const optionLabel = (uut.find('.cs-radio-label > span').at(1));
+		const optionLabel = (uut.find('.cs-radio-option-wrapper > .cs-radio-option-label'));
 		expect(optionLabel.text()).toBe(label);
 	});
 
@@ -173,7 +173,7 @@ describe('<CSRadioOption />', () => {
 				onChange={handleChangeMock}
 			/>,
 		);
-		const radioOption = uut.find('.cs-radio-label > .cs-radio');
+		const radioOption = uut.find('.cs-radio-option-wrapper > .cs-radio');
 		radioOption.simulate('change');
 		expect(handleChangeMock).toHaveBeenCalledTimes(1);
 	});
@@ -198,7 +198,7 @@ describe('<CSRadioOption />', () => {
 				title={labelTitle}
 			/>,
 		);
-		expect(uut.find('.cs-radio-label').prop('title')).toBe(labelTitle);
+		expect(uut.find('.cs-radio-option-wrapper').prop('title')).toBe(labelTitle);
 	});
 
 	it('should have a custom class name', () => {
@@ -210,7 +210,7 @@ describe('<CSRadioOption />', () => {
 				className={customClass}
 			/>,
 		);
-		expect(uut.find(`.cs-radio-label.${customClass}`)).toHaveLength(1);
+		expect(uut.find(`.cs-radio-option-wrapper.${customClass}`)).toHaveLength(1);
 	});
 
 	it('should have a custom id', () => {
@@ -222,6 +222,6 @@ describe('<CSRadioOption />', () => {
 				id={customId}
 			/>,
 		);
-		expect(uut.find(`.cs-radio-label > .cs-radio#${customId}`)).toHaveLength(1);
+		expect(uut.find(`.cs-radio-option-wrapper > .cs-radio#${customId}`)).toHaveLength(1);
 	});
 });

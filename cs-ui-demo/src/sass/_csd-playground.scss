@@ -89,7 +89,7 @@
 			@include scrollbar-color;
 
 			.cs-label,
-			.cs-radio-label > span:last-child {
+			.cs-radio-option-wrapper > span:last-child {
 				color: var(--props-labels-c);
 			}
 
@@ -113,7 +113,7 @@
 				flex-direction: row;
 				flex-wrap: wrap;
 
-				.cs-radio-label {
+				.cs-radio-option-wrapper {
 					margin-right: 1rem;
 
 					&:last-child {

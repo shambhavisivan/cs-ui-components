@@ -31,6 +31,10 @@
   * fixed `self-select` option
 * CSRadio
   * added `hidden` prop
+* CSRadioOption
+  * changed `name` prop to required
+  * changed `cs-radio-label` class to `cs-radio-option-wrapper`
+  * added `cs-radio-option-label` class to the label span
 * CSSection
   * replaced collapsible button with `CSButton`
 * CSSidebar
