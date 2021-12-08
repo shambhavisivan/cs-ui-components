@@ -86,18 +86,19 @@ const CSSidebar = ({
 
 	const getToggleIcon = () => {
 		if (expanded) return 'close';
-		if (tabs[0].iconName) return tabs[0].iconName;
+		if (tabs && tabs[0].iconName) return tabs[0].iconName;
 		return 'rows';
 	};
 
 	const getToggleIconOrigin = () => {
 		if (expanded) return 'slds';
+		if (!tabs) return null;
 		return tabs[0].iconOrigin;
 	};
 
 	const style: CSSProperties = {
 		'--cs-sidebar-height': height,
-		'--cs-sidebar-tab-custom-width': tabs[activeTabIndex].tabWidth ? tabs[activeTabIndex].tabWidth : tabsWidth,
+		'--cs-sidebar-tab-custom-width': (tabs && tabs[activeTabIndex].tabWidth) ? tabs[activeTabIndex].tabWidth : tabsWidth,
 		'--cs-sidebar-tabs-custom-padding': tabsPadding,
 	};
 
@@ -128,7 +129,7 @@ const CSSidebar = ({
 			)}
 			{multipleTabs ? (
 				<div className="cs-button-tabs-wrapper">
-					{tabs.map((tab: any) => (
+					{tabs?.map((tab: any) => (
 						<CSButton
 							btnType="transparent"
 							btnStyle="brand"
@@ -147,7 +148,9 @@ const CSSidebar = ({
 			) : (
 				<div className="cs-sidebar-single-tab-title-wrapper">
 					<span className={`cs-sidebar-tab-closed-title${expanded ? '' : ' cs-visible'}`}>
-						{tabs[0].title}
+						{tabs && (
+							tabs[0].title
+						)}
 					</span>
 				</div>
 			)}

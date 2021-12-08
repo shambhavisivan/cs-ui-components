@@ -40,6 +40,7 @@
   * replaced collapsible button with `CSButton`
 * CSSidebar
   * set `expanded` prop to be `false` by default
+  * fixed breaking error when no tabs are added inside `CSSidebar`
 * CSTextarea
   * added expand button when `readonly={true}` and content is larger than field
 * CSTooltip
