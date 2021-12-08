@@ -23,7 +23,7 @@
 		}
 	}
 
-	&:read-only {
+	&:read-only:not(:disabled) {
 		cursor: default;
 		font-size: 0.875rem;
 		font-weight: $font-weight-normal;

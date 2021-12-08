@@ -51,7 +51,7 @@
 		border-radius: var(--cs-textarea-border-radius-value, 0.25rem);
 		padding-right: var(--cs-textarea-options-spacing-value, 0.75rem);
 
-		&:read-only {
+		&:read-only:not(:disabled) {
 			padding: 0 var(--cs-textarea-options-spacing-value, 0) 0 0;
 			resize: none;
 			overflow: hidden;
