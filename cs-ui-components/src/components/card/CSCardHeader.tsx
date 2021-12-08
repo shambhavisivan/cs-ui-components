@@ -74,6 +74,7 @@ const CSCardHeader = ({
 					iconRotate={expanded ? 90 : null}
 					className="cs-card-toggle-btn"
 					onClick={() => setExpanded((prevExpanded: boolean) => !prevExpanded)}
+					ariaExpanded={expanded}
 				/>
 			) : null}
 			{iconName && (

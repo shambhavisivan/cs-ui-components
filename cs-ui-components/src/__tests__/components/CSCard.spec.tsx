@@ -64,11 +64,13 @@ describe('<CSCardHeader />', () => {
 		expect(uut.find('.cs-card-header-collapsible')).toHaveLength(1);
 		// Make sure it is collapsible by ensuring header toggle button exists
 		expect(uut.find('.cs-card-header > .cs-card-toggle-btn')).toHaveLength(1);
+		expect(uut.find('.cs-card-header > CSButton').prop('ariaExpanded')).toBeTruthy();
 	});
 
 	it('should make card header closed by default', () => {
 		const uut = shallow(<CSCardHeader collapsible defaultClosed />);
 		expect(uut.find('.cs-card-header-collapsible.cs-card-header-collapsed')).toHaveLength(1);
+		expect(uut.find('.cs-card-header > CSButton').prop('ariaExpanded')).toBeFalsy();
 	});
 
 	it('should pass iconColor to CSIcon', () => {
