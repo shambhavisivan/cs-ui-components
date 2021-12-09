@@ -1,6 +1,6 @@
 import React from 'react';
 import FieldTypes from './cs-form/components/FieldTypes';
-import GettingStarted from './cs-form/GettingStarted';
+import GettingStarted from './cs-form/getting-started/GettingStarted';
 
 import SidebarList from './SidebarList';
 
@@ -27,7 +27,7 @@ class CSFormList extends React.Component {
 		];
 
 		return (
-			<SidebarList sidebarList={componentsList} path="cs-form"/>
+			<SidebarList sidebarList={componentsList} path="cs-form" />
 		);
 	}
 }
