@@ -126,12 +126,16 @@
 			font-size: 0.875rem;
 			text-decoration: none;
 			cursor: pointer;
-			white-space: nowrap;
-			overflow-x: hidden;
-			text-overflow: ellipsis;
 			border-left: 0.25rem solid transparent;
 			color: var(--csd-sidebar-link-c);
 			transition: all 200ms ease-in-out;
+
+			span {
+				display: block;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
+			}
 
 			&:focus-visible {
 				outline: 0;
@@ -225,5 +229,18 @@
 		.csd-sidebar-clear {
 			right: 4.75rem;
 		}
+	}
+}
+
+.csd-sidebar-wrapper:not(.csd-sidebar-wrapper-primary) .csd-sidebar-list-item-down {
+	margin-left: 1.5rem;
+
+	a {
+		padding-left: calc(0.75rem + 1px);
+	}
+
+	a:not(.csd-sidebar-list-item-active) {
+		padding-left: 1rem;
+		border-left: 1px solid rgba(255, 255, 255, 0.25);
 	}
 }

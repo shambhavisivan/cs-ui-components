@@ -109,7 +109,7 @@ const CSDSidebar = ({
 					to={`/${routePrefix}#${linkId}`}
 					className={linkId === activeElementId && trackScroll ? 'csd-sidebar-list-item-active' : undefined}
 				>
-					{anchor.name}
+					<span>{anchor.name}</span>
 					{anchor.icon && (
 						<CSIcon
 							className="csd-sidebar-icon"
@@ -195,7 +195,7 @@ const CSDSidebar = ({
 							const sidebarListItemClasses = classNames(
 								'csd-sidebar-list-item',
 								{
-									'csd-sidebar-list-item-down': minLevel !== anchor.level
+									'csd-sidebar-list-item-down': anchor.level && minLevel !== anchor.level
 								}
 							);
 

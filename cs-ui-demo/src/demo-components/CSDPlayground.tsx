@@ -96,7 +96,7 @@ const CSDPlayground = ({
 			</div>
 			<div className="csd-playground-props-wrapper">
 				<CSDSection>
-					<CSDHeading level={2}>Props</CSDHeading>
+					<CSDHeading level={2} disableLinking>Props</CSDHeading>
 					<div className="csd-playground-props">
 						{children}
 					</div>

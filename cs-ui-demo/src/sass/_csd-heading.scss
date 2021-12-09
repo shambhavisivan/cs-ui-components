@@ -45,7 +45,15 @@
 		}
 
 		.csd-page .csd-content & {
-			scroll-margin-top: 5.5rem;
+			scroll-margin-top: 6rem;
+		}
+
+		.csd-content > h1#{&} {
+			padding-left: 1rem;
+		}
+
+		.csd-section + & {
+			margin-top: 1.25rem;
 		}
 	}
 
