@@ -204,4 +204,10 @@ describe('<CSInputSearch />', () => {
 		expect(inputSearch).toHaveLength(1);
 		expect(inputSearchLabelHtmlFor).toBe(id);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSInputSearch label={label} data-testid="rest" />);
+		const inputSearch = uut.find({ 'data-testid': 'rest' });
+		expect(inputSearch).toHaveLength(1);
+	});
 });

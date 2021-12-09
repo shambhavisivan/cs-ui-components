@@ -208,4 +208,10 @@ describe('<CSTextarea />', () => {
 		expect(textarea).toHaveLength(1);
 		expect(textareaLabelHtmlFor).toBe(customId);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSTextarea label={labelValue} data-testid="rest" />);
+		const textarea = uut.find({ 'data-testid': 'rest' });
+		expect(textarea).toHaveLength(1);
+	});
 });

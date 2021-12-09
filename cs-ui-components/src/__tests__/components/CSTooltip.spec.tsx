@@ -411,4 +411,12 @@ describe('<CSTooltip />', () => {
 		const tooltipChild = uut.find('.cs-tooltip-wrapper span');
 		expect(tooltipChild.text()).toBe(childText);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSTooltip content={tooltipContent} data-testid="rest" />);
+		const tooltipWrapper = uut.find('.cs-tooltip-wrapper');
+		tooltipWrapper.simulate('mouseenter');
+		const tooltip = uut.find({ 'data-testid': 'rest' });
+		expect(tooltip).toHaveLength(1);
+	});
 });

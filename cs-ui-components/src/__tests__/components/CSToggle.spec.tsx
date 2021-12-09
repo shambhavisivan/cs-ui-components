@@ -161,4 +161,10 @@ describe('<CSToggle />', () => {
 		expect(toggle).toHaveLength(1);
 		expect(toggleLabelHtmlFor).toBe(customId);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSToggle label={labelValue} data-testid="rest" />);
+		const toggle = uut.find({ 'data-testid': 'rest' });
+		expect(toggle).toHaveLength(1);
+	});
 });

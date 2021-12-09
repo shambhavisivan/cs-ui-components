@@ -84,4 +84,10 @@ describe('<CSSection />', () => {
 		const uut = shallow(<CSSection title={title}><div className="custom-child" /></CSSection>);
 		expect(uut.find('.cs-section-body > .custom-child')).toHaveLength(1);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSSection title={title} data-testid="rest" />);
+		const section = uut.find({ 'data-testid': 'rest' });
+		expect(section).toHaveLength(1);
+	});
 });

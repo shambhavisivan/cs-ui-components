@@ -263,4 +263,10 @@ describe('<CSInputNumber />', () => {
 		expect(inputNumber).toHaveLength(1);
 		expect(inputNumberLabelHtmlFor).toBe(id);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSInputNumber label={label} data-testid="rest" />);
+		const inputNumber = uut.find({ 'data-testid': 'rest' });
+		expect(inputNumber).toHaveLength(1);
+	});
 });

@@ -580,4 +580,16 @@ describe('<CSDatepicker />', () => {
 		expect(datepicker.prop('id')).toBe(customId);
 		expect(datepickerLabelHtmlFor).toBe(customId);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(
+			<CSDatepicker
+				label={labelValue}
+				onChange={onChange}
+				data-testid="rest"
+			/>,
+		);
+		const datepicker = uut.find({ 'data-testid': 'rest' });
+		expect(datepicker).toHaveLength(1);
+	});
 });

@@ -133,6 +133,12 @@ describe('<CSRadio />', () => {
 		expect(uut.find(`.cs-radio-wrapper > .cs-radio-group#${customId}`)).toHaveLength(1);
 		expect(uut.find('.cs-radio-wrapper > CSLabel').props().htmlFor).toBe(customId);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSRadio label={label} data-testid="rest" />);
+		const radio = uut.find({ 'data-testid': 'rest' });
+		expect(radio).toHaveLength(1);
+	});
 });
 
 describe('<CSRadioOption />', () => {
@@ -223,5 +229,17 @@ describe('<CSRadioOption />', () => {
 			/>,
 		);
 		expect(uut.find(`.cs-radio-option-wrapper > .cs-radio#${customId}`)).toHaveLength(1);
+	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(
+			<CSRadioOption
+				label={label}
+				name={name}
+				data-testid="rest"
+			/>,
+		);
+		const radioOption = uut.find({ 'data-testid': 'rest' });
+		expect(radioOption).toHaveLength(1);
 	});
 });

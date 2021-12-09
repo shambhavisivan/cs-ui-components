@@ -43,6 +43,12 @@ describe('<CSCard />', () => {
 		const uut = shallow(<CSCard><CSCardBody /></CSCard>);
 		expect(uut.find('.cs-card > CSCardBody')).toHaveLength(1);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSCard data-testid="rest" />);
+		const card = uut.find({ 'data-testid': 'rest' });
+		expect(card).toHaveLength(1);
+	});
 });
 
 describe('<CSCardHeader />', () => {
@@ -138,6 +144,12 @@ describe('<CSCardHeader />', () => {
 		const uut = shallow(<CSCardHeader><div className="custom-content" /></CSCardHeader>);
 		expect(uut.find('.cs-card-header > .custom-content')).toHaveLength(1);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSCardHeader data-testid="rest" />);
+		const cardHeader = uut.find({ 'data-testid': 'rest' });
+		expect(cardHeader).toHaveLength(1);
+	});
 });
 
 describe('<CSCardBody />', () => {
@@ -175,6 +187,12 @@ describe('<CSCardBody />', () => {
 	it('should render custom children', () => {
 		const uut = shallow(<CSCardBody><div className="custom-content" /></CSCardBody>);
 		expect(uut.find('.cs-card-body > .custom-content')).toHaveLength(1);
+	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSCardBody data-testid="rest" />);
+		const cardBody = uut.find({ 'data-testid': 'rest' });
+		expect(cardBody).toHaveLength(1);
 	});
 });
 
@@ -227,5 +245,11 @@ describe('<CSCardFooter />', () => {
 	it('should render custom children', () => {
 		const uut = shallow(<CSCardFooter><div className="custom-content" /></CSCardFooter>);
 		expect(uut.find('.cs-card-footer > .custom-content')).toHaveLength(1);
+	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSCardFooter data-testid="rest" />);
+		const cardFooter = uut.find({ 'data-testid': 'rest' });
+		expect(cardFooter).toHaveLength(1);
 	});
 });

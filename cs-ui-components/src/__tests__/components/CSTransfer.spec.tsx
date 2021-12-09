@@ -242,6 +242,19 @@ describe('<CSTransfer />', () => {
 		);
 		expect(uut.find('.cs-transfer-wrapper').prop('id')).toBe(customID);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(
+			<CSTransfer
+				items={items}
+				sourceLabel={sourceListLabel}
+				targetLabel={targetListLabel}
+				data-testid="rest"
+			/>,
+		);
+		const transfer = uut.find({ 'data-testid': 'rest' });
+		expect(transfer).toHaveLength(1);
+	});
 });
 
 describe('<CSTransferList />', () => {

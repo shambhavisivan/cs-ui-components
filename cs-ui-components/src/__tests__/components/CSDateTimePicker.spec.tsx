@@ -568,4 +568,10 @@ describe('<CSDateTimePicker />', () => {
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('id')).toBe(customId);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSDateTimePicker label={labelValue} data-testid="rest" />);
+		const datepicker = uut.find({ 'data-testid': 'rest' });
+		expect(datepicker).toHaveLength(1);
+	});
 });

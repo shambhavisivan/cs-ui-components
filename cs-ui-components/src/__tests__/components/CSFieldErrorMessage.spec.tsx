@@ -29,13 +29,19 @@ describe('<CSFieldErrorMsg />', () => {
 	it('should have a custom class name', () => {
 		const customClass = 'custom-br-mint';
 		const uut = shallow(<CSFieldErrorMsg message={message} className={customClass} />);
-		const textWrapper = uut.find(`.cs-field-error-msg.${customClass}`);
-		expect(textWrapper).toHaveLength(1);
+		const fieldErrorMessage = uut.find(`.cs-field-error-msg.${customClass}`);
+		expect(fieldErrorMessage).toHaveLength(1);
 	});
 	it('should have a custom ID', () => {
 		const customId = 'custom-id';
 		const uut = shallow(<CSFieldErrorMsg message={message} id={customId} />);
-		const textWrapper = uut.find(`.cs-field-error-msg#${customId}`);
-		expect(textWrapper).toHaveLength(1);
+		const fieldErrorMessage = uut.find(`.cs-field-error-msg#${customId}`);
+		expect(fieldErrorMessage).toHaveLength(1);
+	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSFieldErrorMsg message={message} data-testid="rest" />);
+		const fieldErrorMessage = uut.find({ 'data-testid': 'rest' });
+		expect(fieldErrorMessage).toHaveLength(1);
 	});
 });

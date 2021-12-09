@@ -32,6 +32,12 @@ describe('<CSProgressIndicator />', () => {
 		const progressIndicatorContent = uut.find('.cs-progress-indicator > CSProgressIndicatorItem');
 		expect(progressIndicatorContent).toHaveLength(1);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSProgressIndicator data-testid="rest" />);
+		const progressIndicator = uut.find({ 'data-testid': 'rest' });
+		expect(progressIndicator).toHaveLength(1);
+	});
 });
 
 describe('<CSProgressIndicatorItem />', () => {
@@ -129,6 +135,12 @@ describe('<CSProgressIndicatorItem />', () => {
 	it('should have a custom ID', () => {
 		const uut = shallow(<CSProgressIndicatorItem text={textValue} id={customId} />);
 		const progressIndicatorItem = uut.find(`.cs-progress-indicator-item#${customId}`);
+		expect(progressIndicatorItem).toHaveLength(1);
+	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSProgressIndicatorItem text={textValue} data-testid="rest" />);
+		const progressIndicatorItem = uut.find({ 'data-testid': 'rest' });
 		expect(progressIndicatorItem).toHaveLength(1);
 	});
 });

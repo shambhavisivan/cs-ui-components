@@ -234,4 +234,10 @@ describe('<CSCheckbox />', () => {
 		expect(checkbox).toHaveLength(1);
 		expect(checkboxLabelHtmlFor).toBe(customId);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSCheckbox label={label} data-testid="rest" />);
+		const checkbox = uut.find({ 'data-testid': 'rest' });
+		expect(checkbox).toHaveLength(1);
+	});
 });

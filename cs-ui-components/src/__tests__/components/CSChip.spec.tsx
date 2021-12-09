@@ -113,4 +113,10 @@ describe('<CSChip />', () => {
 		const uut = shallow(<CSChip text={chipText} id={customId} />);
 		expect(uut.find(`.cs-chip#${customId}`)).toHaveLength(1);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSChip text={chipText} data-testid="rest" />);
+		const chip = uut.find({ 'data-testid': 'rest' });
+		expect(chip).toHaveLength(1);
+	});
 });

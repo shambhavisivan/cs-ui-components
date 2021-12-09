@@ -189,4 +189,10 @@ describe('<CSSelect />', () => {
 		// Make sure all options are rendered
 		expect(uut.find('.cs-select > option')).toHaveLength(2);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSSelect label={labelValue} data-testid="rest" />);
+		const select = uut.find({ 'data-testid': 'rest' });
+		expect(select).toHaveLength(1);
+	});
 });

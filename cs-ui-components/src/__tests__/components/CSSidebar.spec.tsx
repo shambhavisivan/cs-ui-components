@@ -199,6 +199,16 @@ describe('<CSSidebar />', () => {
 		const sidebar = uut.find(`.cs-sidebar.${customClass}`);
 		expect(sidebar).toHaveLength(1);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(
+			<CSSidebar data-testid="rest">
+				<CSSidebarTab title={sidebarTitle} />
+			</CSSidebar>,
+		);
+		const sidebar = uut.find({ 'data-testid': 'rest' });
+		expect(sidebar).toHaveLength(1);
+	});
 });
 
 describe('<CSSidebarTab />', () => {
@@ -339,5 +349,15 @@ describe('<CSSidebarTab />', () => {
 		);
 		const sidebarTabContent = uut.find(CSSidebarTab).dive().find('.cs-sidebar-tab-body > .custom-content');
 		expect(sidebarTabContent).toHaveLength(1);
+	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(
+			<CSSidebar>
+				<CSSidebarTab data-testid="rest" title={sidebarTitle} />
+			</CSSidebar>,
+		);
+		const sidebarTab = uut.find({ 'data-testid': 'rest' });
+		expect(sidebarTab).toHaveLength(1);
 	});
 });

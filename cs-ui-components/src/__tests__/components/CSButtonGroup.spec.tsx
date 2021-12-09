@@ -52,4 +52,10 @@ describe('<CSButtonGroup />', () => {
 		const uut = shallow(<CSButtonGroup id={customId} />);
 		expect(uut.find(`.cs-button-group#${customId}`)).toHaveLength(1);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSButtonGroup data-testid="rest" />);
+		const buttonGroup = uut.find({ 'data-testid': 'rest' });
+		expect(buttonGroup).toHaveLength(1);
+	});
 });

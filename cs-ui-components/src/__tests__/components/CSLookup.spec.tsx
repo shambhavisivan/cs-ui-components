@@ -810,4 +810,23 @@ describe('<CSLookup />', () => {
 		await new Promise((r) => setTimeout(r, 1000));
 		expect(fetchDataMock).toHaveBeenCalledTimes(1);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(
+			<CSLookup
+				label={label}
+				columns={columns}
+				mode={modeClient}
+				fieldToBeDisplayed={fieldToBeDisplayed}
+				options={options}
+				value={[
+					{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
+					{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
+				]}
+				data-testid="rest"
+			/>,
+		);
+		const lookup = uut.find({ 'data-testid': 'rest' });
+		expect(lookup).toHaveLength(1);
+	});
 });

@@ -171,4 +171,10 @@ describe('<CSAlert />', () => {
 		const uut = shallow(<CSAlert variant="info"><div className="custom-child" /></CSAlert>);
 		expect(uut.find('.cs-alert-text > div.custom-child')).toHaveLength(1);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSAlert variant="info" data-testid="rest" />);
+		const alert = uut.find({ 'data-testid': 'rest' });
+		expect(alert).toHaveLength(1);
+	});
 });

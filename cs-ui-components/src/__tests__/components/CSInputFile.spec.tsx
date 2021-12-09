@@ -144,4 +144,10 @@ describe('<CSInputFile />', () => {
 		const uut = shallow(<CSInputFile id={customId} />);
 		expect(uut.find(`.cs-input-file-wrapper input#${customId}`)).toHaveLength(1);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSInputFile data-testid="rest" />);
+		const inputFile = uut.find({ 'data-testid': 'rest' });
+		expect(inputFile).toHaveLength(1);
+	});
 });

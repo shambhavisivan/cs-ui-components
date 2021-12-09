@@ -93,4 +93,10 @@ describe('<CSSpinner />', () => {
 		const spinnerWrapper = uut.find(`.cs-spinner-wrapper#${customId}`);
 		expect(spinnerWrapper).toHaveLength(1);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSSpinner data-testid="rest" />);
+		const spinner = uut.find({ 'data-testid': 'rest' });
+		expect(spinner).toHaveLength(1);
+	});
 });

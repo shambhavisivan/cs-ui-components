@@ -80,6 +80,12 @@ describe('<CSMainHeader />', () => {
 		const mainHeaderContent = uut.find('.cs-main-header .custom-content');
 		expect(mainHeaderContent).toHaveLength(1);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSMainHeader data-testid="rest" />);
+		const mainHeader = uut.find({ 'data-testid': 'rest' });
+		expect(mainHeader).toHaveLength(1);
+	});
 });
 
 describe('<CSMainHeaderLeft />', () => {
@@ -120,6 +126,12 @@ describe('<CSMainHeaderLeft />', () => {
 		const mainHeaderLeftContent = uut.find('.cs-main-header-left > .custom-content');
 		expect(mainHeaderLeftContent).toHaveLength(1);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSMainHeaderLeft title={title} data-testid="rest" />);
+		const mainHeaderLeft = uut.find({ 'data-testid': 'rest' });
+		expect(mainHeaderLeft).toHaveLength(1);
+	});
 });
 
 describe('<CSMainHeaderRight />', () => {
@@ -146,6 +158,12 @@ describe('<CSMainHeaderRight />', () => {
 		const mainHeaderRightContent = uut.find('.cs-main-header-right > .custom-content');
 		expect(mainHeaderRightContent).toHaveLength(1);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSMainHeaderRight data-testid="rest" />);
+		const mainHeaderRight = uut.find({ 'data-testid': 'rest' });
+		expect(mainHeaderRight).toHaveLength(1);
+	});
 });
 
 describe('<CSMainHeaderIcon />', () => {
@@ -171,5 +189,11 @@ describe('<CSMainHeaderIcon />', () => {
 		const uut = shallow(<CSMainHeaderIcon><div className="custom-content" /></CSMainHeaderIcon>);
 		const mainHeaderIconContent = uut.find('.cs-main-header-icon > .custom-content');
 		expect(mainHeaderIconContent).toHaveLength(1);
+	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSMainHeaderIcon data-testid="rest" />);
+		const mainHeaderIcon = uut.find({ 'data-testid': 'rest' });
+		expect(mainHeaderIcon).toHaveLength(1);
 	});
 });

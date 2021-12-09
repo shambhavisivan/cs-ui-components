@@ -26,14 +26,20 @@ describe('<CSSkipLink />', () => {
 	it('should set custom class name', () => {
 		const customClass = 'custom-class';
 		const uut = shallow(<CSSkipLink href={href} jumpDestination={jumpDestinationValue} className={customClass} />);
-		const element = uut.find(`.cs-skip-link.${customClass}`);
-		expect(element).toHaveLength(1);
+		const skipLink = uut.find(`.cs-skip-link.${customClass}`);
+		expect(skipLink).toHaveLength(1);
 	});
 
 	it('should set custom ID', () => {
 		const customId = 'custom-id';
 		const uut = shallow(<CSSkipLink href={href} jumpDestination={jumpDestinationValue} id={customId} />);
-		const element = uut.find(`.cs-skip-link#${customId}`);
-		expect(element).toHaveLength(1);
+		const skipLink = uut.find(`.cs-skip-link#${customId}`);
+		expect(skipLink).toHaveLength(1);
+	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSSkipLink href={href} jumpDestination={jumpDestinationValue} data-testid="rest" />);
+		const skipLink = uut.find({ 'data-testid': 'rest' });
+		expect(skipLink).toHaveLength(1);
 	});
 });

@@ -57,4 +57,10 @@ describe('<CSLabel />', () => {
 		const labelWrapper = uut.find(`.cs-label-wrapper#${customId}`);
 		expect(labelWrapper).toHaveLength(1);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSLabel label={labelContent} data-testid="rest" />);
+		const label = uut.find({ 'data-testid': 'rest' });
+		expect(label).toHaveLength(1);
+	});
 });

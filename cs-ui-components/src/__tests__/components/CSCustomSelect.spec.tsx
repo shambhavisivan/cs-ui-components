@@ -300,6 +300,12 @@ describe('<CSCustomSelect />', () => {
 		expect(element).toHaveLength(1);
 		expect(customSelectLabelHtmlFor).toBe(customId);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} data-testid="rest" />);
+		const customSelect = uut.find({ 'data-testid': 'rest' });
+		expect(customSelect).toHaveLength(1);
+	});
 });
 
 describe('<CSCustomSelectDropdownAction />', () => {
@@ -363,6 +369,20 @@ describe('<CSCustomSelectDropdownAction />', () => {
 		uut.simulate('keydown', { key: 'Escape' });
 		expect(closeDropdownMock).toHaveBeenCalledTimes(1);
 	});
+
+	// TODO: remove or fix rest prop from CSCustomSelectDropdownAction
+	// it('should accept arbitrary props', () => {
+	// 	const uut = shallow(
+	// 		<CSCustomSelectDropdownAction
+	// 			action={action}
+	// 			focusInput={() => {}}
+	// 			setDropdownVisible={() => {}}
+	// 			data-testid="rest"
+	// 		/>,
+	// 	);
+	// 	const customSelectDropdownAction = uut.find({ 'data-testid': 'rest' });
+	// 	expect(customSelectDropdownAction).toHaveLength(1);
+	// });
 });
 
 describe('<CSCustomSelectOption />', () => {

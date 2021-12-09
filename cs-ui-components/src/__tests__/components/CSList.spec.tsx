@@ -98,6 +98,12 @@ describe('<CSList />', () => {
 		);
 		expect(uut.find('.cs-list-wrapper > .custom-child')).toHaveLength(1);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSList data-testid="rest" />);
+		const list = uut.find({ 'data-testid': 'rest' });
+		expect(list).toHaveLength(1);
+	});
 });
 
 describe('<CSListItem />', () => {
@@ -192,6 +198,12 @@ describe('<CSListItem />', () => {
 		const customId = 'custom-id';
 		const uut = shallow(<CSListItem id={customId} />);
 		expect(uut.find(`.cs-list-item-wrapper#${customId}`));
+	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSListItem data-testid="rest" />);
+		const listItem = uut.find({ 'data-testid': 'rest' });
+		expect(listItem).toHaveLength(1);
 	});
 });
 
@@ -353,5 +365,11 @@ describe('<CSListGroup />', () => {
 		const customId = 'custom-id';
 		const uut = shallow(<CSListGroup text={listGroupText} id={customId} />);
 		expect(uut.find(`.cs-list-group-wrapper#${customId}`));
+	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSListGroup text={listGroupText} data-testid="rest" />);
+		const listGroup = uut.find({ 'data-testid': 'rest' });
+		expect(listGroup).toHaveLength(1);
 	});
 });

@@ -4,6 +4,8 @@ import '../../setupTests';
 import CSImage from '../../components/CSImage';
 import Logo from '../../images/index';
 
+const defaultType = 'logo';
+
 describe('<CSImage />', () => {
 	it('should render the default image', () => {
 		const type = 'logo';
@@ -88,25 +90,22 @@ describe('<CSImage />', () => {
 	});
 
 	it('should render image with custom height', () => {
-		const type = 'logo';
 		const height = '10px';
-		const uut = shallow(<CSImage type={type} height={height} />);
+		const uut = shallow(<CSImage type={defaultType} height={height} />);
 		const image = uut.find('img.cs-image');
 		expect(image.props().style).toHaveProperty('--cs-image-height', height);
 	});
 
 	it('should render image with custom width', () => {
-		const type = 'logo';
 		const width = '10px';
-		const uut = shallow(<CSImage type={type} width={width} />);
+		const uut = shallow(<CSImage type={defaultType} width={width} />);
 		const image = uut.find('img.cs-image');
 		expect(image.props().style).toHaveProperty('--cs-image-width', width);
 	});
 
 	it('should render image with long description', () => {
-		const type = 'logo';
 		const description = 'long description';
-		const uut = shallow(<CSImage type={type} longDescription={description} />);
+		const uut = shallow(<CSImage type={defaultType} longDescription={description} />);
 		const imageDescription = uut.find('img.cs-image + .cs-aria-description');
 		const image = uut.find('img.cs-image');
 		expect(imageDescription.text()).toBe(description);
@@ -114,18 +113,22 @@ describe('<CSImage />', () => {
 	});
 
 	it('should have a custom class name', () => {
-		const type = 'logo';
 		const customClass = 'custom-class';
-		const uut = shallow(<CSImage type={type} className={customClass} />);
+		const uut = shallow(<CSImage type={defaultType} className={customClass} />);
 		const image = uut.find(`img.cs-image.${customClass}`);
 		expect(image).toHaveLength(1);
 	});
 
 	it('should have a custom id', () => {
-		const type = 'logo';
 		const customId = 'custom-id';
-		const uut = shallow(<CSImage type={type} id={customId} />);
+		const uut = shallow(<CSImage type={defaultType} id={customId} />);
 		const image = uut.find(`img.cs-image#${customId}`);
+		expect(image).toHaveLength(1);
+	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSImage type={defaultType} data-testid="rest" />);
+		const image = uut.find({ 'data-testid': 'rest' });
 		expect(image).toHaveLength(1);
 	});
 });

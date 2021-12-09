@@ -54,6 +54,12 @@ describe('<CSTabGroup />', () => {
 		const tabGroupContent = uut.find('.cs-tab-group .custom-content');
 		expect(tabGroupContent).toHaveLength(1);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSTabGroup data-testid="rest" />);
+		const tabGroup = uut.find({ 'data-testid': 'rest' });
+		expect(tabGroup).toHaveLength(1);
+	});
 });
 
 describe('<CSTab />', () => {
@@ -170,6 +176,12 @@ describe('<CSTab />', () => {
 	it('should render custom children', () => {
 		const uut = shallow(<CSTab name={tabName}><div className="custom-content" /></CSTab>);
 		const tab = uut.find('.cs-tab > .custom-content');
+		expect(tab).toHaveLength(1);
+	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSTab name={tabName} data-testid="rest" />);
+		const tab = uut.find({ 'data-testid': 'rest' });
 		expect(tab).toHaveLength(1);
 	});
 });

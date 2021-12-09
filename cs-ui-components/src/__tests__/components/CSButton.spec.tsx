@@ -317,4 +317,10 @@ describe('<CSButton />', () => {
 		const buttonRole = uut.find('.cs-btn').props().role;
 		expect(buttonRole).toBe(role);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSButton label={label} data-testid="rest" />);
+		const button = uut.find({ 'data-testid': 'rest' });
+		expect(button).toHaveLength(1);
+	});
 });

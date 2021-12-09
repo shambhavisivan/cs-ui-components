@@ -67,4 +67,10 @@ describe('<CSIcon />', () => {
 		const uut = shallow(<CSIcon name={name} id={customId} />);
 		expect(uut.find(`.cs-icon#${customId}`)).toHaveLength(1);
 	});
+
+	it('should accept arbitrary props', () => {
+		const uut = shallow(<CSIcon name={name} data-testid="rest" />);
+		const icon = uut.find({ 'data-testid': 'rest' });
+		expect(icon).toHaveLength(1);
+	});
 });
