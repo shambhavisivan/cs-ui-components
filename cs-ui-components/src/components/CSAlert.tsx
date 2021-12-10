@@ -29,7 +29,7 @@ const CSAlert = ({
 	className,
 	closeButton,
 	iconName,
-	iconOrigin,
+	iconOrigin = 'slds',
 	iconHidden = false,
 	id,
 	onClose,
