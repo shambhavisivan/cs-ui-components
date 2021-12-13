@@ -4,7 +4,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 
 import CSComponentsList from './previews/CSComponentsList';
-import CSFormList from './previews/CSFormList';
+import CSFormList from './previews/cs-form/CSFormList';
 import CSUtilitiesList from './previews/CSUtilitiesList';
 import Accessibility from './previews/Accessibility';
 import MainHeader from './previews/MainHeader';

@@ -14,7 +14,6 @@ export interface CSFormErrorLabels {
 	requiredFieldErrLabel?: string;
 	maxNumberFieldErrLabel?: string;
 	minNumberFieldErrLabel?: string;
-	maxLengthTextFieldErr?: string;
 }
 
 export type CSFormNumberFiledLocaleStyle = 'decimal' | 'currency' | 'percent' | 'unit';

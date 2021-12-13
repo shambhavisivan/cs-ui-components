@@ -19,20 +19,22 @@ const arrayToMap = (array: Array<Record<string, any>>) => {
 export const defineFormData = (formDefinition: CSFormDefinition, data: Array<Record<string, any>>, errors?: Array<Record<string, any>>) => {
 	let formData = [];
 	const dataMap = arrayToMap(data);
-	const errorMap = errors ? arrayToMap(errors) : undefined;
+	const errorMap = errors?.length > 0 ? arrayToMap(errors) : undefined;
 
 	formData = formDefinition.map(({ fields, ...rest }) => {
 		const newFields = fields.map((field) => {
-			let newField = {};
+			let newField;
 			if (field.fieldType !== 'CUSTOM-MODAL') {
 				if (dataMap.has(field?.name)) {
 					newField = { ...field, value: dataMap.get(field.name) };
 				} else {
-					newField = { ...field, value: undefined };
+					newField = field;
 				}
 
 				if (errorMap?.has(field?.name)) {
-					newField = { ...newField, errorMessage: errorMap.get(field.name) };
+					newField = { ...newField, errorMessage: errorMap.get(field.name), error: true };
+				} else if (Object.keys(newField).indexOf('errorMessage')) {
+					newField = { ...newField, errorMessage: '', error: false };
 				}
 			} else {
 				newField = { ...field };

@@ -36,6 +36,7 @@ const CSForm = ({
 							text={formErrorMessage}
 							variant="error"
 							styleType="light"
+							className="csf-error-msg"
 						/>
 					) : null}
 				{renderSections()}

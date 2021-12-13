@@ -3,7 +3,6 @@ import { CSFormData, CSFormErrorLabels } from '../types/cs-form-types';
 
 const defaultErrorLabels: CSFormErrorLabels = {
 	requiredFieldErrLabel: 'is required',
-	maxLengthTextFieldErr: 'value is higher than defined maxLength value',
 	maxNumberFieldErrLabel: 'value is higher than defined max value.',
 	minNumberFieldErrLabel: 'value is lower than defined min value.',
 };
@@ -39,17 +38,6 @@ const validateField = (field: CSFormFieldData, value: any, customErrorLabels?: C
 				errors.push(customErrorLabels.minNumberFieldErrLabel);
 			} else {
 				errors.push(`${field.name} ${defaultErrorLabels.minNumberFieldErrLabel}`);
-			}
-		}
-	}
-
-	/** Text field validations */
-	if (field.fieldType === 'TEXT') {
-		if ((value as string).length > field.maxLength) {
-			if (customErrorLabels?.maxLengthTextFieldErr) {
-				errors.push(customErrorLabels.maxLengthTextFieldErr);
-			} else {
-				errors.push(`${field.name} ${defaultErrorLabels.maxLengthTextFieldErr}`);
 			}
 		}
 	}

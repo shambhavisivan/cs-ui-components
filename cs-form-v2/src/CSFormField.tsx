@@ -51,7 +51,7 @@ const CSFormField = ({
 		case 'LOOKUP':
 			return <CSFormLookupField {...rest} {...fieldSettings} />;
 		case 'NUMBER':
-			return <CSFormNumberField locale={!rest.useLocale ? undefined : locale?.numberLocale} {...rest} {...fieldSettings} />;
+			return <CSFormNumberField locale={rest.useLocale && locale?.numberLocale} {...rest} {...fieldSettings} />;
 		case 'RADIO':
 			return <CSFormRadioField {...rest} />;
 		case 'SELECT':

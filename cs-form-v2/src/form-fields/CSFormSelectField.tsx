@@ -16,7 +16,7 @@ const CSFormSelectField = ({
 	return (
 		<CSSelect
 			className={styleClass}
-			onBlur={(event: any) => onBlur(event.target.value)}
+			onBlur={(value: any) => onBlur(value)}
 			onChange={(value: any) => onChange(value)}
 			{...props}
 		>

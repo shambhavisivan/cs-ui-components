@@ -2,6 +2,10 @@
 .cs-form {
 	display: flex;
 	flex-direction: column;
+	flex: 1;
+	.csf-error-msg {
+		margin-bottom: 0.25rem;
+	}
 	.csf-section {
 		width: 100%;
 		margin-top: 0;

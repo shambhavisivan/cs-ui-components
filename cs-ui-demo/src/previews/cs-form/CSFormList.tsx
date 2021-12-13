@@ -1,8 +1,9 @@
 import React from 'react';
-import FieldTypes from './cs-form/components/FieldTypes';
-import GettingStarted from './cs-form/getting-started/GettingStarted';
+import FieldTypes from './components/FieldTypes';
+import GettingStarted from './getting-started/GettingStarted';
+import CSFormPreview from './components/form/CSFormPreview';
 
-import SidebarList from './SidebarList';
+import SidebarList from '../SidebarList';
 
 class CSFormList extends React.Component {
 
@@ -11,6 +12,10 @@ class CSFormList extends React.Component {
 			{
 				name: 'Getting Started',
 				component: GettingStarted
+			},
+			{
+				name: 'Form',
+				component: CSFormPreview
 			},
 			{
 				name: 'Field Types',
