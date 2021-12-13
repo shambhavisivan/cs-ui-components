@@ -43,15 +43,12 @@
 			width: 100%;
 			height: 100%;
 			border-radius: inherit;
-			@include css4 {
-				border: 1px solid cvar(--cs-transparent);
-			}
 
 			&:focus {
 				outline: 0;
 			}
 
-			&:focus-visible {
+			&:focus-visible::after {
 				@include css4 {
 					box-shadow: 0 0 3px cvar(--cs-section-button-shadow);
 				}
@@ -73,6 +70,18 @@
 			.cs-btn-custom-content {
 				display: flex;
 				align-items: center;
+			}
+
+			&::before {
+				border-radius: inherit;
+				@include sbg(--cs-section-background);
+			}
+
+			&::after {
+				border-radius: inherit;
+				@include css4 {
+					border: none;
+				}
 			}
 		}
 
