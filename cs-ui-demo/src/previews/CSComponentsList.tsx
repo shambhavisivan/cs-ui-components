@@ -43,7 +43,7 @@ import CSTextareaPreview from './cs-ui/components/CSTextareaPreview';
 import CSToastPreview from './cs-ui/components/CSToastPreview';
 import CSTogglePreview from './cs-ui/components/CSTogglePreview';
 import CSTooltipPreview from './cs-ui/components/CSTooltipPreview';
-import CSTransferPreview from './cs-ui/components/CSTransferPreview';
+import CSTransferPreview from './cs-ui/components/cs-transfer/CSTransferPreview';
 import CSTreePreview from './cs-ui/components/CSTreePreview';
 import GettingStarted from './cs-ui/GettingStarted';
 import SidebarList from './SidebarList';
