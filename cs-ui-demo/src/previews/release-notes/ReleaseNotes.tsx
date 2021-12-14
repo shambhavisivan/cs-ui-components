@@ -16,11 +16,11 @@ const ReleaseNotes: React.FC = () => {
 						<CSIcon name="layout" color="#000" />
 						<span>CS UI Components</span>
 					</NavLink>
-					<NavLink to="/release-notes/future-scope" className="release-notes-link release-notes-cs-grid">
+					<NavLink to="/release-notes/cs-grid" className="release-notes-link release-notes-cs-grid">
 						<CSIcon name="table" color="#fff" />
 						<span>CS Grid</span>
 					</NavLink>
-					<NavLink to="/release-notes/future-scope" className="release-notes-link release-notes-cs-form">
+					<NavLink to="/release-notes/cs-form" className="release-notes-link release-notes-cs-form">
 						<CSIcon name="edit_form" color="#000" />
 						<span>CS Form</span>
 					</NavLink>

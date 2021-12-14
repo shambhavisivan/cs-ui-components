@@ -1,16 +1,16 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import * as CSD from '../../demo-components';
 import * as CSDH from '../../demo-helpers';
 
-const anchorList = ['CS UI Components', 'CS Grid', 'CS Form'];
+const anchorList = ['Coming Soon'];
 
-const FutureScope: React.FC = () => {
+const CSFormReleaseNotes: React.FC = () => {
 	const [markdown, setMarkdown] = useState<string>('');
 
 	useEffect(() => {
-		const releaseNotesPath = require('./FutureScope.md');
+		const releaseNotesPath = require('./CSFormReleaseNotes.md');
 		fetch(releaseNotesPath)
 			.then(res => res.text())
 			.then(text => setMarkdown(text));
@@ -32,14 +32,14 @@ const FutureScope: React.FC = () => {
 		<>
 			<CSD.Sidebar
 				data={anchorList.map((anchor: string) => ({ name: anchor }))}
-				routePrefix="release-notes/future-scope"
+				routePrefix="release-notes/cs-form"
 				hashLinks
 				spyOn=".release-notes"
 			/>
 			<ReactMarkdown
 				children={markdown}
 				rehypePlugins={[rehypeRaw]}
-				className="release-notes future-scope"
+				className="release-notes"
 				components={{
 					h1: ({ children })  => {
 						return <h1 id={CSDH.toKebabCase(String(children))} className="csd-scrollspy">{String(children)}</h1>;
@@ -65,4 +65,4 @@ const FutureScope: React.FC = () => {
 	);
 };
 
-export default FutureScope;
+export default CSFormReleaseNotes;

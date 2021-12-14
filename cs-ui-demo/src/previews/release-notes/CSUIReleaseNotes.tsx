@@ -10,7 +10,7 @@ const CSUIReleaseNotes: React.FC = () => {
 	const [markdown, setMarkdown] = useState<string>('');
 
 	useEffect(() => {
-		const releaseNotesPath = require('../../ReleaseNotes.md');
+		const releaseNotesPath = require('./CSUIReleaseNotes.md');
 		fetch(releaseNotesPath)
 			.then(res => res.text())
 			.then(text => setMarkdown(text));

@@ -105,7 +105,7 @@ const MainHeader: React.FC = () => {
 							className="main-header-dropdown-btn"
 							routerLink={<NavLink to="/release-notes/cs-ui-components" />}
 						/>
-						{/* <CSButton
+						<CSButton
 							label="CS Grid"
 							className="main-header-dropdown-btn"
 							routerLink={<NavLink to="/release-notes/cs-grid" />}
@@ -114,7 +114,7 @@ const MainHeader: React.FC = () => {
 							label="CS Form"
 							className="main-header-dropdown-btn"
 							routerLink={<NavLink to="/release-notes/cs-form" />}
-						/> */}
+						/>
 						<CSDivider variant="horizontal" />
 						<CSButton
 							label="Future Scope"
