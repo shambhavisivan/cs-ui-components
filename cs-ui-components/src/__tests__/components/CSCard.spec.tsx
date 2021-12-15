@@ -114,14 +114,14 @@ describe('<CSCardHeader />', () => {
 		expect(cardHeaderStyle).toHaveProperty('--cs-card-header-padding', paddingValue);
 	});
 
-	it('should show border', () => {
-		const uut = shallow(<CSCardHeader showBorder />);
+	it('should have border', () => {
+		const uut = shallow(<CSCardHeader />);
 		// Make sure class that adds border exists
 		expect(uut.find('.cs-card-header.cs-card-header-with-border')).toHaveLength(1);
 	});
 
-	it('should not show border', () => {
-		const uut = shallow(<CSCardHeader showBorder={false} />);
+	it('should hide border', () => {
+		const uut = shallow(<CSCardHeader hideBorder />);
 		expect(uut.find('.cs-card-header:not(.cs-card-header-with-border)')).toHaveLength(1);
 	});
 
@@ -204,7 +204,7 @@ describe('<CSCardBody />', () => {
 describe('<CSCardFooter />', () => {
 	it('should render the default CSCardFooter', () => {
 		const uut = shallow(<CSCardFooter />);
-		// Should render a card footer, align
+		// Should render a card footer
 		const cardFooter = uut.find('.cs-card-footer');
 		expect(cardFooter).toHaveLength(1);
 		// align

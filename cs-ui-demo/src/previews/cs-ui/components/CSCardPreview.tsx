@@ -191,6 +191,37 @@ class CSCardPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'hideBorder',
+						variations: [
+							{
+								primaryVariants: 'hideBorder={true}',
+								quickLink: 'true',
+								component: <CSCard>
+									<CSCardHeader title="Card Header" hideBorder />
+									<CSCardBody>Card Body</CSCardBody>
+									<CSCardFooter>Card Footer</CSCardFooter>
+								</CSCard>,
+								code: `<CSCard>
+									<CSCardHeader title="Card Header" hideBorder />
+									<CSCardBody>Card Body</CSCardBody>
+									<CSCardFooter>Card Footer</CSCardFooter>
+								</CSCard>`
+							}, {
+								primaryVariants: 'hideBorder={false}',
+								quickLink: 'false',
+								component: <CSCard>
+									<CSCardHeader title="Card Header" />
+									<CSCardBody>Card Body</CSCardBody>
+									<CSCardFooter>Card Footer</CSCardFooter>
+								</CSCard>,
+								code: `<CSCard>
+									<CSCardHeader title="Card Header" />
+									<CSCardBody>Card Body</CSCardBody>
+									<CSCardFooter>Card Footer</CSCardFooter>
+								</CSCard>`
+							}
+						]
+					}, {
 						propName: 'iconColor',
 						variations: [
 							{
@@ -321,37 +352,6 @@ class CSCardPreview extends React.Component {
 							}
 						]
 					}, {
-						propName: 'showBorder',
-						variations: [
-							{
-								primaryVariants: 'showBorder={true}',
-								quickLink: 'true',
-								component: <CSCard>
-									<CSCardHeader title="Card Header" />
-									<CSCardBody>Card Body</CSCardBody>
-									<CSCardFooter>Card Footer</CSCardFooter>
-								</CSCard>,
-								code: `<CSCard>
-									<CSCardHeader title="Card Header" />
-									<CSCardBody>Card Body</CSCardBody>
-									<CSCardFooter>Card Footer</CSCardFooter>
-								</CSCard>`
-							}, {
-								primaryVariants: 'showBorder={false}',
-								quickLink: 'false',
-								component: <CSCard>
-									<CSCardHeader title="Card Header" showBorder={false} />
-									<CSCardBody>Card Body</CSCardBody>
-									<CSCardFooter>Card Footer</CSCardFooter>
-								</CSCard>,
-								code: `<CSCard>
-									<CSCardHeader title="Card Header" showBorder={false} />
-									<CSCardBody>Card Body</CSCardBody>
-									<CSCardFooter>Card Footer</CSCardFooter>
-								</CSCard>`
-							}
-						]
-					}, {
 						propName: 'title',
 						variations: [
 							{
@@ -385,6 +385,11 @@ class CSCardPreview extends React.Component {
 						default: 'false',
 						description: 'Control whether the card is closed by default. It is designed to be used with collapsible prop.'
 					}, {
+						name: 'hideBorder',
+						types: 'boolean',
+						default: 'false',
+						description: 'Hide the border beneath the card header.'
+					}, {
 						name: 'iconColor',
 						types: 'string',
 						description: 'Set a custom color for the icon inside of the card header.'
@@ -409,11 +414,6 @@ class CSCardPreview extends React.Component {
 						name: 'padding',
 						types: 'string',
 						description: 'Set custom padding for the card header.'
-					}, {
-						name: 'showBorder',
-						types: 'boolean',
-						default: 'true',
-						description: 'Hide the border beneath the card header.'
 					}, {
 						name: 'title',
 						types: 'string',

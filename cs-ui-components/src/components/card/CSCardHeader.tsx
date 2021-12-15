@@ -8,13 +8,13 @@ export interface CSCardHeaderProps {
 	className?: string;
 	collapsible?: boolean;
 	defaultClosed?: boolean;
+	hideBorder?: boolean;
 	iconColor?: string;
 	iconFrame?: boolean;
 	iconName?: string;
 	iconOrigin?: CSIconOrigin;
 	id?: string;
 	padding?: string;
-	showBorder?: boolean;
 	title?: string;
 	[key: string]: any;
 }
@@ -25,13 +25,13 @@ const CSCardHeader = ({
 	className,
 	collapsible,
 	defaultClosed,
+	hideBorder = false,
 	iconColor,
 	iconFrame,
 	iconName,
 	iconOrigin,
 	id,
 	padding,
-	showBorder = true,
 	title,
 	...rest
 }: CSCardHeaderProps) => {
@@ -44,7 +44,7 @@ const CSCardHeader = ({
 	const cardHeaderClasses = classNames(
 		'cs-card-header',
 		{
-			'cs-card-header-with-border': showBorder,
+			'cs-card-header-with-border': !hideBorder,
 			'cs-card-header-collapsible': collapsible,
 			'cs-card-header-collapsed': !expanded,
 			[`${className}`]: className,
