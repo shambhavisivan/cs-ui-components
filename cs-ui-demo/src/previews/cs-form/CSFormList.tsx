@@ -2,6 +2,7 @@ import React from 'react';
 import FieldTypes from './components/FieldTypes';
 import GettingStarted from './getting-started/GettingStarted';
 import CSFormPreview from './components/form/CSFormPreview';
+import CSFormSectionPreview from './components/section/CSFormSectionPreview';
 
 import SidebarList from '../SidebarList';
 
@@ -16,6 +17,10 @@ class CSFormList extends React.Component {
 			{
 				name: 'Form',
 				component: CSFormPreview
+			},
+			{
+				name: 'Section',
+				component: CSFormSectionPreview
 			},
 			{
 				name: 'Field Types',

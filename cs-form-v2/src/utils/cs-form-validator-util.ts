@@ -2,7 +2,7 @@ import { CSFormCustomModalFieldProps, CSFormFieldData } from '../types/cs-form-f
 import { CSFormData, CSFormErrorLabels } from '../types/cs-form-types';
 
 const defaultErrorLabels: CSFormErrorLabels = {
-	requiredFieldErrLabel: 'is required',
+	requiredFieldErrLabel: 'is required.',
 	maxNumberFieldErrLabel: 'value is higher than defined max value.',
 	minNumberFieldErrLabel: 'value is lower than defined min value.',
 };
