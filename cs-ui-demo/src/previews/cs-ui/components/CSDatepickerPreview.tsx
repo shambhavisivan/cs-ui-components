@@ -809,16 +809,16 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 						propName: 'todayButton',
 						variations: [
 							{
-								primaryVariants: 'todayButton={true}',
+								primaryVariants: 'todayButton="text"',
 								component: <CSDatepicker
 									label="Enter date"
-									todayButton
+									todayButton="Today"
 									selected={this.state.dateTodayButton}
 									onChange={(date: Date) => this.setDate(date, 'TodayButton')}
 								/>,
 								code: `<CSDatepicker
 									label="Enter date"
-									todayButton
+									todayButton="Today"
 									selected={this.state.selected}
 									onChange={(date: Date) => this.setState({ selected: date })}
 								/>`
@@ -1145,8 +1145,8 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 						description: 'Set the datepicker title.'
 					}, {
 						name: 'todayButton',
-						types: 'boolean',
-						description: 'Show the today button.'
+						types: 'string',
+						description: 'Set the label and show the today button.'
 					}, {
 						name: 'tooltipPosition',
 						customTypes: {

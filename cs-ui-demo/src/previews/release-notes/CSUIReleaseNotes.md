@@ -26,6 +26,10 @@
 * CSDropdown
   * added `routerLink` prop
   * fixed keyboard navigation when mode is 'button' and minor style fixes
+* CSDatePicker
+  * altered the `todayButton` prop from boolean to string
+* CSDateTimePicker
+  * altered the `todayButton` prop from boolean to string
 * CSInputFile
   * added `fileSelectedLabel` prop
   * set `label` prop to be optional

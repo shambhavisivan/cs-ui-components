@@ -512,16 +512,17 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('title')).toBe(title);
 	});
 
-	it('should pass todayButton to CSDatepicker', () => {
+	it('should pass correct todayButton value to CSDatepicker', () => {
+		const todayLabel = 'today';
 		const uut = shallow(
 			<CSDateTimePicker
 				label={labelValue}
 				onChange={onChange}
-				todayButton
+				todayButton={todayLabel}
 			/>,
 		);
 		const datepicker = uut.dive().find('CSDatepicker');
-		expect(datepicker.prop('todayButton')).toBeTruthy();
+		expect(datepicker.prop('todayButton')).toBe(todayLabel);
 	});
 
 	it('should pass tooltipPosition to CSDatepicker', () => {

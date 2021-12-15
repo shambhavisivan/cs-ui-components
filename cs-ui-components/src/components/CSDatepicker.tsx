@@ -57,7 +57,7 @@ export interface CSDatepickerProps {
 	showMonthDropdown?: boolean;
 	showYearDropdown?: boolean;
 	title?: string;
-	todayButton?: boolean;
+	todayButton?: string;
 	tooltipPosition?: CSTooltipPosition;
 	value?: string;
 	width?: string;
@@ -209,7 +209,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 							dateFormat={dateFormat}
 							isClearable={isClearable}
 							placeholderText={placeholder}
-							todayButton={todayButton ? 'Today' : null}
+							todayButton={todayButton}
 							disabled={disabled}
 							maxDate={maxDateYear || maxDate ? calcMaxDate() : undefined}
 							minDate={minDateYear || minDate ? calcMinDate() : undefined}
