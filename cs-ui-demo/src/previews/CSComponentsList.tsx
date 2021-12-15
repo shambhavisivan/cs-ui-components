@@ -9,7 +9,7 @@ import CSChipPreview from './cs-ui/components/CSChipPreview';
 import CSCurrencyPreview from './cs-ui/components/CSCurrencyPreview';
 import CSCustomDataPreview from './cs-ui/components/CSCustomDataPreview';
 import CSCustomSelectPreview from './cs-ui/components/CSCustomSelectPreview';
-import CSDataTablePreview from './cs-ui/components/CSDataTablePreview';
+import CSDataTablePreview from './cs-ui/components/cs-data-table/CSDataTablePreview';
 import CSDatepickerPreview from './cs-ui/components/CSDatepickerPreview';
 import CSDateTimePickerPreview from './cs-ui/components/CSDateTimePickerPreview';
 import CSDividerPreview from './cs-ui/components/CSDividerPreview';

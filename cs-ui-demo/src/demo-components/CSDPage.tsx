@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import CSDAccessibility from './CSDAccessibility';
 import CSDContent from './CSDContent';
 import CSDHeader from './CSDHeader';
-import CSDSidebar from './CSDSidebar';
+import CSDSidebar, { CSDSidebarItem } from './CSDSidebar';
 import CSDTable from './CSDTable';
 import * as CSDH from '../demo-helpers';
 
@@ -29,15 +29,16 @@ const CSDPage = ({
 	routePrefix = ''
 }: CSDPageProps) => {
 	const pageRef = useRef<HTMLDivElement>(null);
-	const [links, setLinks] = useState<Array<any>>([]);
+	const [links, setLinks] = useState<Array<CSDSidebarItem>>([]);
 
 	useLayoutEffect(() => {
 		if (pageRef.current) {
 			const linkElements = Array.from(pageRef.current.getElementsByClassName('csd-scrollspy'));
 
-			const newLinks = linkElements.map((linkElement: any) => ({
-				name: linkElement.textContent
-			}));
+			const newLinks = linkElements.map((linkElement: Element) => ({
+				name: linkElement.textContent,
+				level: Number(linkElement.ariaLevel)
+			})) as Array<CSDSidebarItem>;
 
 			setLinks(newLinks);
 		}

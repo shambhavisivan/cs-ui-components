@@ -9,6 +9,7 @@ import { useSidebar } from '../context/SidebarContext';
 export interface CSDSidebarItem {
 	name: string;
 	icon?: string;
+	level?: number;
 }
 
 export interface CSDSidebarProps {
@@ -36,6 +37,14 @@ const CSDSidebar = ({
 
 	const open = primary ? primarySidebar : secondarySidebar;
 	const toggle = primary ? togglePrimarySidebar : toggleSecondarySidebar;
+
+	const minLevel = data.reduce((prevMinValue, currentLink) => {
+		if (!currentLink.level || prevMinValue <= currentLink.level) {
+			return prevMinValue;
+		}
+
+		return currentLink.level;
+	}, 6);
 
 	useLayoutEffect(() => {
 		if (sidebarRef.current && trackScroll) {
@@ -182,11 +191,20 @@ const CSDSidebar = ({
 						)}
 					</div>
 					<ul className="csd-sidebar-list" ref={sidebarRef}>
-						{data?.filter(filterAnchors).map((anchor: CSDSidebarItem) => (
-							<li key={anchor.name} className="csd-sidebar-list-item">
-								{renderLink(anchor)}
-							</li>
-						))}
+						{data?.filter(filterAnchors).map((anchor: CSDSidebarItem) => {
+							const sidebarListItemClasses = classNames(
+								'csd-sidebar-list-item',
+								{
+									'csd-sidebar-list-item-down': minLevel !== anchor.level
+								}
+							);
+
+							return (
+								<li key={anchor.name} className={sidebarListItemClasses}>
+									{renderLink(anchor)}
+								</li>
+							);
+						})}
 					</ul>
 				</div>
 			</nav>

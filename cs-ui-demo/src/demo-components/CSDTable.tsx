@@ -72,7 +72,7 @@ const CSDTable = ({
 			columns={[
 				{
 					key: 'name',
-					header: 'Prop',
+					header: type === 'props' ? 'Prop' : 'Attribute',
 					cellClassName: 'csd-table-name'
 				}, {
 					key: 'required',

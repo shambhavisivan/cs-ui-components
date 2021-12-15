@@ -16,8 +16,9 @@ const CSDHeading = ({
 	level = 1
 }: CSDHeadingProps) => {
 	const props = {
-		id: disableLinking ? undefined : CSDH.toKebabCase(children),
-		className: classNames('csd-heading', { 'csd-scrollspy': !disableLinking })
+		'id': disableLinking ? undefined : CSDH.toKebabCase(children),
+		'className': classNames('csd-heading', { 'csd-scrollspy': !disableLinking }),
+		'aria-level': level
 	};
 
 	const getChildren = () => {
