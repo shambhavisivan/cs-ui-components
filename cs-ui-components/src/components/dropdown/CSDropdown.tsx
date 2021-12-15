@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 import CSButton from '../CSButton';
@@ -34,7 +33,6 @@ export interface CSDropdownProps {
 	maxHeight?: string;
 	maxWidth?: string;
 	mode?: CSDropdownMode;
-	onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 	onDropdownClose?: () => void;
 	onDropdownOpen?: () => void;
 	onDropdownTabClose?: () => void;
@@ -54,13 +52,16 @@ export interface CSDropdownStates {
 
 class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 	public static defaultProps = {
+		align: 'left',
 		btnType: 'default',
 		btnStyle: 'initial',
-		align: 'left',
 		iconName: 'down',
+		iconOrigin: 'slds',
+		iconRotate: 0,
 		hover: false,
 		mode: 'button',
 		position: 'bottom',
+		size: 'normal',
 	};
 
 	private btnDropdownRef: React.RefObject<HTMLButtonElement>;
@@ -109,18 +110,18 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 		e.stopPropagation();
 		if (
 			this.btnDropdownRef.current
-			&& !this.btnDropdownRef.current.contains(e.target)
-			&& !document.getElementById('cs-autoposition').contains(e.target)) {
+			&& !this.btnDropdownRef.current?.contains(e.target)
+			&& !document.getElementById('cs-autoposition')?.contains(e.target)) {
 			this.closeDropdown();
 		}
 	}
 
 	openDropdown = () => {
 		const { onDropdownOpen } = this.props;
-		const elementRect = this.btnDropdownRef.current.getBoundingClientRect();
+		const elementRect = this.btnDropdownRef.current?.getBoundingClientRect();
 
 		this.setState({
-			dropdownBtnWidth: elementRect.width,
+			dropdownBtnWidth: elementRect?.width,
 			isOpen: true,
 		});
 
@@ -168,7 +169,7 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 			this.openDropdown();
 		} else {
 			this.closeDropdown();
-			this.btnDropdownRef.current.focus();
+			this.btnDropdownRef.current?.focus();
 		}
 	}
 
@@ -196,7 +197,6 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 			maxHeight,
 			maxWidth,
 			mode,
-			onClick,
 			onDropdownClose,
 			onDropdownOpen,
 			onDropdownTabClose,

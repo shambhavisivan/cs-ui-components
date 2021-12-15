@@ -28,6 +28,7 @@
   * added `onDropdownClose` prop
   * added `actions` and `icons` support
 * CSDropdown
+  * <i>important</i> removed `onClick` prop
   * added `routerLink` prop
   * fixed keyboard navigation when mode is 'button' and minor style fixes
 * CSDatePicker
@@ -84,6 +85,7 @@
   * CSDatepicker
   * CSDateTimePicker
   * CSDivider
+  * CSDropdown
   * CSFieldErrorMessage
   * CSIcon
   * CSImage

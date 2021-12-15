@@ -18,10 +18,7 @@ export interface CSDropdownItemWrapperProps {
 	hover?: boolean;
 	maxHeight?: string;
 	maxWidth?: string;
-	onClick?: (e: React.MouseEvent<HTMLButtonElement>) => any;
 	onDropdownTabClose?: () => void;
-	onMouseEnter?: (e: React.MouseEvent<HTMLDivElement>) => any;
-	onMouseLeave?: (e: React.MouseEvent<HTMLDivElement>) => any;
 	mode?: CSDropdownMode;
 	padding?: string;
 	position: CSDropdownPosition;
