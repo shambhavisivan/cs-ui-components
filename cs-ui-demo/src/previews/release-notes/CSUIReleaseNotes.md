@@ -52,6 +52,7 @@
   * <i>important</i> renamed `onChange` to `onTransfer`
   * <i>important</i> merged `sourceHelpText` and `targetHelpText` into `helpText` object prop which accepts `source` and `target` string properties - each for the corresponding transfer list
 * Tests added to components
+  * CSAutoposition
   * CSButton
   * CSButtonGroup
   * CSCard
