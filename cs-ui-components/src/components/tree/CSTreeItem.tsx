@@ -176,6 +176,7 @@ const CSTreeItem = ({
 				iconName="chevrondown"
 				iconColor="#706e6b"
 				iconRotate={expanded ? 0 : -90}
+				aria-expanded={expanded}
 				className="cs-tree-collapse-button"
 				onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
 					event.stopPropagation();

@@ -246,7 +246,7 @@ class CSListGroup extends React.Component<CSListGroupProps, CSListGroupState> {
 					</div>
 				</h3>
 				{!collapsed ? (
-					<ul className="cs-list-group">
+					<ul className="cs-list-group" role="group">
 						{listItems}
 					</ul>
 				) : null}

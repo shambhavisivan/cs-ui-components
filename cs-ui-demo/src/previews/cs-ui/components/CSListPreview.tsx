@@ -13,7 +13,7 @@ class CSListPreview extends React.Component {
 			variant: 'warning',
 			text: 'This component is under construction and should not be used.'
 		},
-		accessible: 'partially',
+		accessible: 'yes',
 		components: [
 			{
 				name: 'CSList',
@@ -643,15 +643,16 @@ class CSListPreview extends React.Component {
 			],
 			requirements: {
 				structure: [
-					'`<ul>` - list, allows screen reader list navigation and counts `<li>` items',
-					'`<li>` - list item, allows screen reader list navigation',
+					'`<ul>` - list, allows screen reader list navigation and count of `<li>` items',
+					'`<li>` - list item, allows screen reader list navigation, sets role',
 					'`<button>` inside `<h3>` - group header - allows heading search, as well as focusable'
 				],
 				attributes: [
 					'`aria-selected` - true when list item is selected',
 					'`aria-expanded` - true on group header when group is expanded',
 					'`aria-level` - Defines the hierarchical level of an element within a structure. 1 on a group, 2 on a list item if list item is within a group, otherwise value is 1.',
-					'`role="list` - implicit on `ul`',
+					'`role="group"` - added on group `ul` - enables enumeration of group items',
+					'`role="list"` - implicit on `ul`',
 					'`role="listitem"` - implicit on list item `<li>`',
 					'`role="option"` - simple list node items'
 				],
