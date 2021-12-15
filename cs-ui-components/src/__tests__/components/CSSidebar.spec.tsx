@@ -52,7 +52,7 @@ describe('<CSSidebar />', () => {
 			</CSSidebar>,
 		);
 		const sidebar = uut.find('.cs-sidebar.cs-sidebar-multiple-tabs');
-		const sidebarTabsWrapper = uut.find('.cs-button-tabs-wrapper');
+		const sidebarTabsWrapper = uut.find('.cs-btn-tabs-wrapper');
 		// Make sure belonging class exists
 		expect(sidebar).toHaveLength(1);
 		// Make sure tabs button wrapper is rendered
@@ -79,7 +79,7 @@ describe('<CSSidebar />', () => {
 				<CSSidebarTab title={sidebarTitle} />
 			</CSSidebar>,
 		);
-		const sidebarTabButton = uut.find('.cs-button-tabs-wrapper CSButton').dive();
+		const sidebarTabButton = uut.find('.cs-btn-tabs-wrapper CSButton').dive();
 		expect(sidebarTabButton).toHaveLength(1);
 		sidebarTabButton.simulate('click');
 		expect(handleOnToggle).toHaveBeenCalledTimes(1);
@@ -278,7 +278,7 @@ describe('<CSSidebarTab />', () => {
 				<CSSidebarTab title={sidebarTitle} iconName={iconNameValue} />
 			</CSSidebar>,
 		);
-		const sidebarTabBtn = uut.find('.cs-button-tabs-wrapper > CSButton');
+		const sidebarTabBtn = uut.find('.cs-btn-tabs-wrapper > CSButton');
 		expect(sidebarTabBtn).toHaveLength(1);
 		expect(sidebarTabBtn.prop('iconName')).toBe(iconNameValue);
 	});
@@ -291,7 +291,7 @@ describe('<CSSidebarTab />', () => {
 				<CSSidebarTab title={sidebarTitle} iconOrigin={iconOriginValue} />
 			</CSSidebar>,
 		);
-		const sidebarTabBtn = uut.find('.cs-button-tabs-wrapper > CSButton');
+		const sidebarTabBtn = uut.find('.cs-btn-tabs-wrapper > CSButton');
 		expect(sidebarTabBtn).toHaveLength(1);
 		expect(sidebarTabBtn.prop('iconOrigin')).toBe(iconOriginValue);
 	});

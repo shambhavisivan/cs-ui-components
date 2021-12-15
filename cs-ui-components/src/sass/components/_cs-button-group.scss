@@ -1,15 +1,15 @@
-.cs-button-group {
+.cs-btn-group {
 	display: inline-flex;
 
 	.cs-aria-description {
 		@include screen-reader-hidden;
 	}
 
-	&:not(.cs-button-group-combined) > *:not(:last-child) {
+	&:not(.cs-btn-group-combined) > *:not(:last-child) {
 		margin-right: 0.5rem;
 	}
 
-	&.cs-button-group-combined {
+	&.cs-btn-group-combined {
 		> .cs-aria-description:first-child {
 			+ .cs-btn,
 			+ .cs-dropdown-wrapper > .cs-btn {
@@ -84,15 +84,15 @@
 		}
 	}
 
-	&.cs-button-group-margin-left {
+	&.cs-btn-group-margin-left {
 		margin-inline-start: 0.5rem;
 	}
 
-	&.cs-button-group-margin-right {
+	&.cs-btn-group-margin-right {
 		margin-inline-end: 0.5rem;
 	}
 
-	&.cs-button-group-margin-both {
+	&.cs-btn-group-margin-both {
 		margin: 0 0.5rem;
 	}
 }

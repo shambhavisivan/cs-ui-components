@@ -128,7 +128,7 @@ const CSSidebar = ({
 				/>
 			)}
 			{multipleTabs ? (
-				<div className="cs-button-tabs-wrapper">
+				<div className="cs-btn-tabs-wrapper">
 					{tabs?.map((tab: any) => (
 						<CSButton
 							btnType="transparent"

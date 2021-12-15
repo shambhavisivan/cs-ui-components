@@ -12,6 +12,8 @@
 * CSButton
   * removed icon darken while hovering on `btnStyle="brand"`
   * fixed iconPosition and size props alignment issue
+* CSButtonGroup
+  * changed classes with `.cs-button` prefix to `.cs-btn`
 * CSCard
   * renamed `cs-card-button` class to `cs-card-toggle-btn` in `CSCardHeader`
 * CSCheckbox
@@ -30,6 +32,8 @@
   * added `locale` prop
 * CSList
   * fixed `self-select` option
+* CSModal
+  * changed classes with `.cs-button` prefix to `.cs-btn`
 * CSRadio
   * added `hidden` prop
 * CSRadioOption
@@ -41,6 +45,7 @@
 * CSSidebar
   * set `expanded` prop to be `false` by default
   * fixed breaking error when no tabs are added inside `CSSidebar`
+  * changed classes with `.cs-button` prefix to `.cs-btn`
 * CSTextarea
   * added expand button when `readonly={true}` and content is larger than field
 * CSTooltip
