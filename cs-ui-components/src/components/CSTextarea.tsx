@@ -174,6 +174,19 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 			},
 		);
 
+		const options =	(actions || icons) && (
+			<div className="cs-textarea-options" ref={this.textareaOptionsWrapperRef}>
+				{icons?.length && <CSCustomDataIcons icons={icons} />}
+				{actions?.length && <CSCustomDataActions actions={actions} />}
+			</div>
+		);
+
+		const tooltipMessage = (error && errorTooltip) && (
+			<div className="cs-textarea-error-message">
+				<CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />
+			</div>
+		);
+
 		return (
 			<>
 				<div className={textareaWrapperClasses} style={style}>
@@ -217,17 +230,17 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 							ref={this.textareaInnerRef}
 							{...rest}
 						/>
-						<div className="cs-textarea-options" ref={this.textareaOptionsWrapperRef}>
-							{error
-								&& errorTooltip
-								&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
-							{icons?.length && <CSCustomDataIcons icons={icons} />}
-							{actions?.length && <CSCustomDataActions actions={actions} />}
-						</div>
+						{(actions || icons || errorTooltip) && (
+							<div className="cs-textarea-wrapper-inner-content">
+								{options}
+								{tooltipMessage}
+							</div>
+						)}
+						{!errorTooltip
+							&& error
+							&& errorMessage
+							&& <CSFieldErrorMsg message={errorMessage} />}
 					</div>
-					{!errorTooltip
-						&& error
-						&& <CSFieldErrorMsg message={errorMessage} />}
 				</div>
 			</>
 		);

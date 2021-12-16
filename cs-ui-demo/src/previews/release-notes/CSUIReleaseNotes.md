@@ -54,6 +54,7 @@
   * changed classes with `.cs-button` prefix to `.cs-btn`
 * CSTextarea
   * added expand button when `readonly={true}` and content is larger than field
+  * renamed class `.cs-textarea-options` to `.cs-textarea-error-message` on `errorTooltip`
 * CSTooltip
   * fixed breaking error on long delay and stickyOnClick props combo
 * CSTransfer

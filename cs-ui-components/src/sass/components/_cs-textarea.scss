@@ -71,20 +71,29 @@
 }
 
 // Options
-.cs-textarea-options {
+.cs-textarea-wrapper-inner-content {
+	position: absolute;
 	top: 0.5rem;
+	right: 1.125rem;
 	display: flex;
 	align-items: center;
-	position: absolute;
-	right: 0.5rem;
+
+	.cs-textarea-options {
+		display: flex;
+	}
 
 	.cs-custom-data-item {
 		align-items: center;
 		display: flex;
 
 		&:not(:last-child),
-        > *:not(:last-child) {
-            margin-right: 0.25rem;
-        }
+		> *:not(:last-child) {
+			margin-right: 0.25rem;
+		}
 	}
+}
+
+.cs-textarea-options + .cs-textarea-error-message {
+	position: absolute;
+	right: 100%;
 }
