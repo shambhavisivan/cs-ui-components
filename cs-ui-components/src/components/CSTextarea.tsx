@@ -87,6 +87,7 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 			this.setState({
 				expandButton: scrollHeight > 84,
 				minHeight: scrollHeight < 84 ? scrollHeight : 84,
+				actualHeight: scrollHeight < 84 ? scrollHeight : 84,
 			});
 		}
 	}
@@ -159,10 +160,10 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 		);
 		const style: CSSProperties = {
 			'--cs-textarea-max-height': maxHeight,
-			'--cs-textarea-read-only-min-height': `${minHeight}px`,
-			'--cs-textarea-read-only-height': `${actualHeight}px`,
+			'--cs-textarea-read-only-min-height': readOnly && expandButton ? `${minHeight}px` : '',
+			'--cs-textarea-read-only-height': readOnly && expandButton ? `${actualHeight}px` : '',
 			'--cs-textarea-border-radius': borderRadius,
-			'--cs-textarea-options-spacing': `${textareaOptionsWrapperWidth}px`,
+			'--cs-textarea-options-spacing': icons || actions ? `${textareaOptionsWrapperWidth}px` : '',
 		};
 		const textareaWrapperClasses = classNames(
 			'cs-textarea-wrapper',
