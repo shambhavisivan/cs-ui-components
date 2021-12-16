@@ -105,6 +105,7 @@
   * CSCurrency
   * CSCustomData
   * CSCustomSelect
+  * CSDataTable
   * CSDatepicker
   * CSDateTimePicker
   * CSDivider
