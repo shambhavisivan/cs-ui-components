@@ -94,7 +94,6 @@ const CSCustomSelect = ({
 	const customSelectInputWrapperRef = useRef(null);
 	const customSelectInputRef = useRef(null);
 	const customSelectDropdownRef = useRef(null);
-	const customSelectWrapperRef = useRef(null);
 
 	const [searchTerm, setSearchTerm] = useState('');
 	const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -110,7 +109,7 @@ const CSCustomSelect = ({
 
 	useEffect(() => {
 		const handleOutsideClick = (event: MouseEvent) => {
-			const clickOutsideInput = customSelectWrapperRef.current && !customSelectWrapperRef.current.contains(event.target);
+			const clickOutsideInput = customSelectInputWrapperRef.current && !customSelectInputWrapperRef.current.contains(event.target);
 			const clickOutsideDropdown = customSelectDropdownRef.current && !customSelectDropdownRef.current.contains(event.target);
 			if (clickOutsideInput && clickOutsideDropdown) closeDropdown();
 		};
@@ -118,7 +117,7 @@ const CSCustomSelect = ({
 		document.addEventListener('click', handleOutsideClick);
 
 		return () => document.removeEventListener('click', handleOutsideClick);
-	}, [customSelectWrapperRef, customSelectDropdownRef, closeDropdown]);
+	}, [customSelectInputWrapperRef, customSelectDropdownRef, closeDropdown]);
 
 	const customSelectWrapperClasses = classNames(
 		'cs-custom-select-wrapper',
@@ -239,7 +238,7 @@ const CSCustomSelect = ({
 		};
 
 		return (
-			<span className={customSelectInputClasses}>
+			<div className={customSelectInputClasses}>
 				<input
 					ref={customSelectInputRef}
 					value={searchTerm}
@@ -282,7 +281,7 @@ const CSCustomSelect = ({
 					}}
 					{...rest}
 				/>
-			</span>
+			</div>
 		);
 	};
 
@@ -408,7 +407,6 @@ const CSCustomSelect = ({
 	return (
 		<div
 			id={id}
-			ref={customSelectWrapperRef}
 			className={customSelectWrapperClasses}
 		>
 			{renderLabel()}
