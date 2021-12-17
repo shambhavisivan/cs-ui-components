@@ -26,6 +26,7 @@
   * <i>important</i> renamed the `actions` prop to `dropdownActions`
   * added `errorTooltip` support
   * added `onDropdownClose` prop
+  * added `actions` and `icons` support
 * CSDropdown
   * added `routerLink` prop
   * fixed keyboard navigation when mode is 'button' and minor style fixes

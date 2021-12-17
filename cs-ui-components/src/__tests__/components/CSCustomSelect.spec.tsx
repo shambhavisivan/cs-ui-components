@@ -17,6 +17,19 @@ const options = [
 
 const customSelectTextLabel = 'Enter value';
 const errorText = 'Error message';
+const iconsValue = [{ iconName: 'cart' }];
+const actionsValue = [
+	{
+		action: () => {},
+		icon: { iconName: 'delete' },
+		name: 'Delete',
+	},
+	{
+		action: () => {},
+		icon: { iconName: 'add' },
+		name: 'Add',
+	},
+];
 
 describe('<CSCustomSelect />', () => {
 	it('should render the default CSCustomSelect', () => {
@@ -51,6 +64,19 @@ describe('<CSCustomSelect />', () => {
 	it('should pass label to CSLabel', () => {
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} />).dive();
 		expect(uut.find('CSLabel').prop('label')).toBe(customSelectTextLabel);
+	});
+
+	it('should pass actions to CSCustomDataActions', () => {
+		const uut = shallow(
+			<CSCustomSelect
+				label={customSelectTextLabel}
+				options={options}
+				actions={actionsValue}
+			/>,
+		).dive();
+		const customSelectActions = uut.find('.cs-custom-select-options > CSCustomDataActions');
+		expect(customSelectActions).toHaveLength(1);
+		expect(customSelectActions.prop('actions')).toMatchObject(actionsValue);
 	});
 
 	it('should pass an array of option objects to CSCustomSelectOption', () => {
@@ -152,7 +178,13 @@ describe('<CSCustomSelect />', () => {
 
 	it('should render tooltip along label with a help message and pass to CSLabel which renders tooltip', () => {
 		const helpTextMsg = 'help text in tooltip';
-		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} helpText={helpTextMsg} />).dive();
+		const uut = shallow(
+			<CSCustomSelect
+				label={customSelectTextLabel}
+				options={options}
+				helpText={helpTextMsg}
+			/>,
+		).dive();
 		const toggleLabel = uut.find('CSLabel');
 		expect(toggleLabel.prop('helpText')).toBe(helpTextMsg);
 	});
@@ -160,6 +192,19 @@ describe('<CSCustomSelect />', () => {
 	it('should hide custom select', () => {
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} hidden />).dive();
 		expect(uut.find('.cs-custom-select-wrapper.cs-element-hidden')).toHaveLength(1);
+	});
+
+	it('should pass icons to CSCustomDataIcons', () => {
+		const uut = shallow(
+			<CSCustomSelect
+				label={customSelectTextLabel}
+				options={options}
+				icons={iconsValue}
+			/>,
+		).dive();
+		const customSelectIcons = uut.find('.cs-custom-select-options > CSCustomDataIcons');
+		expect(customSelectIcons).toHaveLength(1);
+		expect(customSelectIcons.prop('icons')).toMatchObject(iconsValue);
 	});
 
 	it('should not display label', () => {

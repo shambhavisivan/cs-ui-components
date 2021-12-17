@@ -1,5 +1,7 @@
 import React from 'react';
 import { CSCustomSelect } from '@cloudsense/cs-ui-components';
+import { actions, actionsCode } from '../helpers/actions';
+import { icons, iconsCode } from '../helpers/icons';
 
 import Preview from '../Preview';
 
@@ -49,6 +51,22 @@ class CSCustomSelectPreview extends React.Component {
 							{
 								component: <CSCustomSelect options={options} label="Select department" />,
 								code: '<CSCustomSelect options={options} label="Select department" />'
+							}
+						]
+					}, {
+						propName: 'actions',
+						variations: [
+							{
+								component: <CSCustomSelect
+									options={options}
+									label="Select department"
+									actions={actions}
+								/>,
+								code: `<CSCustomSelect
+									options={options}
+									label="Select department"
+									actions={${actionsCode}}
+								/>`
 							}
 						]
 					}, {
@@ -239,6 +257,22 @@ class CSCustomSelectPreview extends React.Component {
 									options={options}
 									label="Select department"
 									hidden
+								/>`
+							}
+						]
+					}, {
+						propName: 'icons',
+						variations: [
+							{
+								component: <CSCustomSelect
+									options={options}
+									label="Select department"
+									icons={icons}
+								/>,
+								code: `<CSCustomSelect
+									options={options}
+									label="Select department"
+									icons={${iconsCode}}
 								/>`
 							}
 						]
@@ -610,6 +644,13 @@ class CSCustomSelectPreview extends React.Component {
 						types: 'string',
 						description: 'Set the custom select label.'
 					}, {
+						name: 'actions',
+						customTypes: {
+							name: 'CSCustomSelectActionsProps',
+							types: 'Array<CSCustomSelectActionProps>'
+						},
+						description: 'An array of objects which accepts valid CSIcon & CSButton props, a getTooltip function to show an icon with a tooltip & an action prop for the button action/function.'
+					}, {
 						name: 'align',
 						customTypes: [{
 							name: 'CSCustomSelectDropdownAlign',
@@ -661,6 +702,13 @@ class CSCustomSelectPreview extends React.Component {
 						types: 'boolean',
 						default: 'false',
 						description: 'Control the hidden attribute.'
+					}, {
+						name: 'icons',
+						customTypes: {
+							name: 'CSCustomSelectIconProps',
+							types: 'Array<CSCustomSelectIconProps>'
+						},
+						description: 'An array of objects which accepts valid CSIcon props or a getTooltip function to show an icon with a tooltip.'
 					}, {
 						name: 'labelHidden',
 						types: 'boolean',

@@ -1,10 +1,12 @@
 .cs-custom-select-wrapper {
 	position: relative;
+	--cs-custom-select-options-spacing-value: calc(var(--cs-custom-select-options-spacing) + 0.25rem);
 
 	.cs-tw-error {
 		position: absolute;
-		right: 1.8125rem;
-		top: 0.5625rem;
+		right: calc(var(--cs-custom-select-options-spacing-value) + 1.75rem);
+		top: 50%;
+		transform: translateY(-50%);
 	}
 
 	> .cs-label-wrapper ~ .cs-tw-error {
@@ -103,7 +105,7 @@
 			padding-inline-end: 4rem;
 
 			~ .cs-custom-select-clear {
-				right: 2.8125rem;
+				right: calc(var(--cs-custom-select-options-spacing-value) + 2.75rem);
 			}
 		}
 	}
@@ -131,6 +133,10 @@
 		top: 50%;
 		transform: translateY(-50%);
 		right: 1.625rem;
+
+		&-options {
+			right: calc(var(--cs-custom-select-options-spacing) + 2rem);
+		}
 	}
 
 	.cs-custom-select-items {
@@ -278,4 +284,26 @@
 			}
 		}
 	}
+}
+
+
+.cs-custom-select-options {
+	bottom: 50%;
+	display: flex;
+	position: absolute;
+	right: 1.75rem;
+	transform: translateY(50%);
+
+	.cs-custom-data-item {
+		align-items: center;
+		display: flex;
+
+		&:first-child {
+			margin-right: 0.125rem;
+		}
+
+		& > *:not(:last-child) {
+			margin-right: 0.25rem;
+		}
+}
 }

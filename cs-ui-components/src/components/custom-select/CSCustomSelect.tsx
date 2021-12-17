@@ -12,6 +12,9 @@ import CSCustomSelectDropdownAction from './CSCustomSelectDropdownAction';
 import CSButton, { CSButtonProps } from '../CSButton';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from '../CSFieldErrorMsg';
 import { CSTooltipPosition } from '../CSTooltip';
+import { CSCustomDataIconProps, CSCustomDataActionProps } from '../../util/CustomData';
+import CSCustomDataIcons from '../custom-data/CSCustomDataIcons';
+import CSCustomDataActions from '../custom-data/CSCustomDataActions';
 
 export type CSCustomSelectDropdownAlignType = 'left' | 'right';
 export type CSCustomSelectDropdownPositionType = 'top' | 'bottom';
@@ -23,6 +26,7 @@ export interface CSCustomSelectOptionInterface {
 }
 
 export interface CSCustomSelectProps {
+	actions?: Array<CSCustomDataActionProps>;
 	options: Array<CSCustomSelectOptionInterface>;
 	align?: CSCustomSelectDropdownAlignType;
 	borderRadius?: string;
@@ -35,6 +39,7 @@ export interface CSCustomSelectProps {
 	gridCustomPopup?: boolean;
 	helpText?: string;
 	hidden?: boolean;
+	icons?: Array<CSCustomDataIconProps>;
 	id?: string;
 	label: string;
 	labelHidden?: boolean;
@@ -57,6 +62,7 @@ export interface CSCustomSelectProps {
 }
 
 const CSCustomSelect = ({
+	actions,
 	options,
 	align = 'left',
 	borderRadius,
@@ -70,6 +76,7 @@ const CSCustomSelect = ({
 	gridCustomPopup,
 	helpText,
 	hidden,
+	icons,
 	id,
 	label,
 	labelHidden,
@@ -94,6 +101,7 @@ const CSCustomSelect = ({
 	const customSelectInputWrapperRef = useRef(null);
 	const customSelectInputRef = useRef(null);
 	const customSelectDropdownRef = useRef(null);
+	const customSelectOptionsWrapperRef = useRef(null);
 
 	const [searchTerm, setSearchTerm] = useState('');
 	const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -119,11 +127,20 @@ const CSCustomSelect = ({
 		return () => document.removeEventListener('click', handleOutsideClick);
 	}, [customSelectInputWrapperRef, customSelectDropdownRef, closeDropdown]);
 
+	const getOptionsSpacing = () => {
+		if (actions) return '52px';
+		if (icons) return '34px';
+		if (errorTooltip) return '0px';
+
+		return customSelectOptionsWrapperRef.current && `${customSelectOptionsWrapperRef.current.getBoundingClientRect().width}px`;
+	};
+
 	const customSelectWrapperClasses = classNames(
 		'cs-custom-select-wrapper',
 		{
 			'cs-element-hidden': hidden,
 			[className]: className,
+			'cs-custom-select-wrapper-options': actions || icons,
 		},
 	);
 
@@ -163,8 +180,19 @@ const CSCustomSelect = ({
 		'--cs-custom-select-border-radius': borderRadius,
 	};
 
+	const customSelectClearClasses = classNames(
+		'cs-custom-select-clear',
+		{
+			'cs-custom-select-clear-options': actions || icons,
+		},
+	);
+
 	const customSelectDropdownStyle: CSSProperties = {
 		'--cs-custom-select-input-width': customSelectInputWrapperRef.current && `${customSelectInputWrapperRef.current.getBoundingClientRect().width}px`,
+	};
+
+	const customSelectDropdownWrapperStyle: CSSProperties = {
+		'--cs-custom-select-options-spacing': actions && icons ? '86px' : getOptionsSpacing(),
 	};
 
 	const renderLabel = () => {
@@ -285,6 +313,19 @@ const CSCustomSelect = ({
 		);
 	};
 
+	const inputOptions = (actions || icons) && (
+		<div className="cs-custom-select-options">
+			{icons?.length && <CSCustomDataIcons icons={icons} />}
+			{actions?.length && <CSCustomDataActions actions={actions} />}
+		</div>
+	);
+
+	const tooltipMessage = (error && errorTooltip) && (
+		<div className="cs-custom-select-error-message">
+			<CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />
+		</div>
+	);
+
 	const renderSelectedOptions = () => {
 		if (multiselect && !showCompactMultiselect) return null;
 
@@ -328,7 +369,7 @@ const CSCustomSelect = ({
 			<CSButton
 				btnType="transparent"
 				btnStyle="brand"
-				className="cs-custom-select-clear"
+				className={customSelectClearClasses}
 				iconColor="var(--cs-input-clear)"
 				iconName="close"
 				label="clear"
@@ -347,11 +388,6 @@ const CSCustomSelect = ({
 			className="cs-custom-select-icon"
 		/>
 	);
-
-	const renderErrorMessage = () => {
-		if (error && errorMessage) return <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />;
-		return null;
-	};
 
 	const renderOptions = () => {
 		if (!dropdownVisible || disabled || !options.length) return null;
@@ -408,6 +444,7 @@ const CSCustomSelect = ({
 		<div
 			id={id}
 			className={customSelectWrapperClasses}
+			style={customSelectDropdownWrapperStyle}
 		>
 			{renderLabel()}
 			<div
@@ -423,8 +460,17 @@ const CSCustomSelect = ({
 				</span>
 				{renderClearButton()}
 				{renderDropdownChevron()}
+				{(actions || icons || errorTooltip) && (
+					<div className="cs-custom-select-wrapper-inner-content" ref={customSelectOptionsWrapperRef}>
+						{inputOptions}
+						{tooltipMessage}
+					</div>
+				)}
 			</div>
-			{renderErrorMessage()}
+			{!errorTooltip
+				&& error
+				&& errorMessage
+				&& <CSFieldErrorMsg message={errorMessage} />}
 			{renderOptions()}
 		</div>
 	);
