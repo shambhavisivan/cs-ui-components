@@ -27,9 +27,9 @@
   * added `routerLink` prop
   * fixed keyboard navigation when mode is 'button' and minor style fixes
 * CSDatePicker
-  * altered the `todayButton` prop from boolean to string
+  * changed the `todayButton` prop from boolean to string
 * CSDateTimePicker
-  * altered the `todayButton` prop from boolean to string
+  * changed the `todayButton` prop from boolean to string
 * CSInputFile
   * added `fileSelectedLabel` prop
   * set `label` prop to be optional
@@ -38,6 +38,7 @@
 * CSList
   * fixed `self-select` option
 * CSModal
+  * <i>important</i> changed `visible` prop in `CSUnmountDelay` to be `false` by default
   * changed classes with `.cs-button` prefix to `.cs-btn`
 * CSRadio
   * added `hidden` prop

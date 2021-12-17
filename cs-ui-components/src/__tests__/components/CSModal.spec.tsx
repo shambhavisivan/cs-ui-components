@@ -14,12 +14,16 @@ const text = 'Lorem ipsum dolor sit amet.';
 const titleText = 'Title';
 
 describe('<CSModal />', () => {
+	it('should not display CSModal', () => {
+		const uut = shallow(<CSModal />).dive(); // This dive() is to get into CSUnmountDelayed, wrapper component of CSModal
+		const modal = uut.find('CSModal');
+		// Should not render a modal
+		expect(modal).toHaveLength(0);
+	});
+
 	it('should render the default CSModal', () => {
-		const uut = shallow(<CSModal />).dive();
-		// Should render a modal
+		const uut = shallow(<CSModal visible />).dive();
 		const modal = uut.find('CSModal').dive();
-		expect(modal).toHaveLength(1);
-		// visible
 		expect(modal).toHaveLength(1);
 		const modalAria = modal.dive().find('.cs-modal').prop('aria-modal');
 		expect(modalAria).toBeTruthy();
@@ -41,16 +45,8 @@ describe('<CSModal />', () => {
 		expect(modalHidden).toHaveLength(1);
 	});
 
-	it('should display modal', () => {
-		const uut = shallow(<CSModal visible />).dive();
-		const modal = uut.find('CSModal').dive();
-		expect(modal).toHaveLength(1);
-		const modalAria = modal.dive().find('.cs-modal').prop('aria-modal');
-		expect(modalAria).toBeTruthy();
-	});
-
 	it('should check if animated is true', () => {
-		const uut = shallow(<CSModal animated />).dive();
+		const uut = shallow(<CSModal visible animated />).dive();
 		const modal = uut.find('CSModal').dive();
 		const modalOverlayHidden = modal.find('.cs-modal-overlay-hidden');
 		const modalHidden = modal.find('.cs-modal-hidden');
@@ -59,7 +55,7 @@ describe('<CSModal />', () => {
 	});
 
 	it('should check if animated is false', () => {
-		const uut = shallow(<CSModal animated={false} />).dive();
+		const uut = shallow(<CSModal visible animated={false} />).dive();
 		const modal = uut.find('CSModal').dive();
 		const modalOverlayHidden = modal.find('.cs-modal-overlay-hidden');
 		const modalHidden = modal.find('.cs-modal-hidden');
@@ -68,14 +64,14 @@ describe('<CSModal />', () => {
 	});
 
 	it('should render close button', () => {
-		const uut = shallow(<CSModal closeButton />).dive();
+		const uut = shallow(<CSModal visible closeButton />).dive();
 		const modal = uut.find('CSModal').dive();
 		const closeButton = modal.find('.cs-modal-close');
 		expect(closeButton).toHaveLength(1);
 	});
 
 	it('should render loading modal', () => {
-		const uut = shallow(<CSModal loading />).dive();
+		const uut = shallow(<CSModal visible loading />).dive();
 		const modal = uut.find('CSModal').dive();
 		const loading = modal.find('.cs-modal-loading');
 		expect(loading).toHaveLength(1);
@@ -85,7 +81,7 @@ describe('<CSModal />', () => {
 
 	it('should apply loading text to spinner', () => {
 		const loadingText = 'loading';
-		const uut = shallow(<CSModal loading loadingText={loadingText} />).dive();
+		const uut = shallow(<CSModal visible loading loadingText={loadingText} />).dive();
 		const modal = uut.find('CSModal').dive();
 		const spinnerText = modal.find('.cs-modal > .cs-modal-content > CSSpinner').dive().find('.cs-spinner-label > span');
 		expect(spinnerText.text()).toBe(loadingText);
@@ -101,50 +97,50 @@ describe('<CSModal />', () => {
 	});
 
 	it('should apply size auto to modal', () => {
-		const uut = shallow(<CSModal size="auto" />).dive();
+		const uut = shallow(<CSModal visible size="auto" />).dive();
 		const modal = uut.find('CSModal').dive();
 		expect(modal.find('.cs-modal-auto')).toHaveLength(1);
 	});
 
 	it('should apply size xsmall', () => {
-		const uut = shallow(<CSModal size="xsmall" />).dive();
+		const uut = shallow(<CSModal visible size="xsmall" />).dive();
 		const modal = uut.find('CSModal').dive();
 		expect(modal.find('.cs-modal-xsmall')).toHaveLength(1);
 	});
 
 	it('should apply size small', () => {
-		const uut = shallow(<CSModal size="small" />).dive();
+		const uut = shallow(<CSModal visible size="small" />).dive();
 		const modal = uut.find('CSModal').dive();
 		expect(modal.find('.cs-modal-small')).toHaveLength(1);
 	});
 
 	it('should apply size medium', () => {
-		const uut = shallow(<CSModal size="medium" />).dive();
+		const uut = shallow(<CSModal visible size="medium" />).dive();
 		const modal = uut.find('CSModal').dive();
 		expect(modal.find('.cs-modal-medium')).toHaveLength(1);
 	});
 
 	it('should apply size large', () => {
-		const uut = shallow(<CSModal size="large" />).dive();
+		const uut = shallow(<CSModal visible size="large" />).dive();
 		const modal = uut.find('CSModal').dive();
 		expect(modal.find('.cs-modal-large')).toHaveLength(1);
 	});
 
 	it('should apply size xlarge', () => {
-		const uut = shallow(<CSModal size="xlarge" />).dive();
+		const uut = shallow(<CSModal visible size="xlarge" />).dive();
 		const modal = uut.find('CSModal').dive();
 		expect(modal.find('.cs-modal-xlarge')).toHaveLength(1);
 	});
 
 	it('should apply inline style', () => {
 		const style = { border: '2px solid var(--csd-custom-br-purple)' };
-		const uut = shallow(<CSModal style={style} />).dive();
+		const uut = shallow(<CSModal visible style={style} />).dive();
 		const modal = uut.find('CSModal').dive();
 		expect(modal.find('.cs-modal').props().style).toMatchObject(style);
 	});
 
 	it('should not be hidden if mounted is true', () => {
-		const uut = shallow(<CSModal mounted visible />).dive();
+		const uut = shallow(<CSModal visible mounted />).dive();
 		const modal = uut.find('CSModal').dive();
 		const modalOverlay = modal.find('.cs-modal-overlay');
 		expect(modalOverlay.find('.cs-modal-overlay-hidden')).toHaveLength(0);
@@ -153,19 +149,19 @@ describe('<CSModal />', () => {
 
 	it('should invoke setMounted', () => {
 		const handleOnSetMounted = jest.fn();
-		shallow(<CSModal setMounted={handleOnSetMounted} />).dive().find('CSModal').dive();
+		shallow(<CSModal visible setMounted={handleOnSetMounted} />).dive().find('CSModal').dive();
 		expect(handleOnSetMounted).toHaveBeenCalledTimes(1);
 	});
 
 	it('should have a custom class name', () => {
-		const uut = shallow(<CSModal className={customClass} />).dive();
+		const uut = shallow(<CSModal visible className={customClass} />).dive();
 		const modal = uut.find('CSModal').dive();
 		const modalOverlay = modal.find(`.cs-modal-overlay.${customClass}`);
 		expect(modalOverlay).toHaveLength(1);
 	});
 
 	it('should have a custom ID', () => {
-		const uut = shallow(<CSModal id={customId} />).dive();
+		const uut = shallow(<CSModal visible id={customId} />).dive();
 		const modal = uut.find('CSModal').dive();
 		const modalOverlay = modal.find(`.cs-modal-overlay#${customId}`);
 		expect(modalOverlay).toHaveLength(1);
@@ -173,7 +169,7 @@ describe('<CSModal />', () => {
 
 	it('should render children', () => {
 		const uut = shallow(
-			<CSModal>
+			<CSModal visible>
 				<CSModalHeader title={titleText}>
 					<CSButton label={buttonLabel} />
 				</CSModalHeader>
