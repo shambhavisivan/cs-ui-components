@@ -43,9 +43,6 @@ class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
 								component: <CSTextarea
 									label="Enter value"
 									actions={actions}
-									error
-									errorMessage="dsadsaa"
-									errorTooltip
 								/>,
 								code: `<CSTextarea
 									label="Enter value"
@@ -148,9 +145,6 @@ class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
 								component: <CSTextarea
 									label="Enter value"
 									icons={icons}
-									error
-									errorMessage="dsadsaa"
-									errorTooltip
 								/>,
 								code: `<CSTextarea
 									label="Enter value"
