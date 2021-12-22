@@ -122,7 +122,7 @@ const CSDataTableRow = ({
 				size="xsmall"
 				iconName="chevrondown"
 				iconColor="#706e6b"
-				iconRotate={expanded ? null : -90}
+				iconRotate={rowMeta.expanded || (rowMeta.subsectionVisible && !row.children) ? null : -90}
 				onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
 					if (onCollapseClick) {
 						// This prop overrides default toggle behaviour
