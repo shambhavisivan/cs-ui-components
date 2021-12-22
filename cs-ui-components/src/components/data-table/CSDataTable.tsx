@@ -97,7 +97,7 @@ const CSDataTable = ({
 	className,
 	collapsible = true,
 	columnDividers,
-	defaultCollapsed = false,
+	defaultCollapsed = true,
 	density = 'compact',
 	disableHover,
 	headerCheckbox,

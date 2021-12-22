@@ -48,8 +48,8 @@ const CSDataTableRow = ({
 	} = row;
 
 	const defaultCollapsible = defaultCollapsed === undefined ? dataTableDefaultCollapsed : defaultCollapsed;
-	const [expanded, setExpanded] = useState<boolean>(defaultCollapsible);
-	const [subsectionVisible, setSubsectionVisible] = useState<boolean>(defaultCollapsible);
+	const [expanded, setExpanded] = useState<boolean>(!defaultCollapsible);
+	const [subsectionVisible, setSubsectionVisible] = useState<boolean>(!defaultCollapsible);
 
 	// Define row meta data for render functions
 	const rowMeta = {

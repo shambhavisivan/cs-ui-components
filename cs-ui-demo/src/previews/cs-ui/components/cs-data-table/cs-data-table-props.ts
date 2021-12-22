@@ -31,7 +31,7 @@ export default {
 		}, {
 			name: 'defaultCollapsed',
 			types: 'boolean',
-			default: 'false',
+			default: 'true',
 			description: 'Control whether subsections or children should be collapsed by default.'
 		}, {
 			name: 'density',
