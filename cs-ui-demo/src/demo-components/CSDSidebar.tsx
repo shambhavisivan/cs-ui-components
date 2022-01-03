@@ -59,7 +59,7 @@ const CSDSidebar = ({
 						const newActiveElement = observableElements.reverse().find((element: Element) => {
 							const target = event.target as HTMLElement;
 							if (element?.getBoundingClientRect && target?.getBoundingClientRect) {
-								return element.getBoundingClientRect().top <= target.getBoundingClientRect().top + 89;
+								return element.getBoundingClientRect().top <= target.getBoundingClientRect().top + 97;
 							}
 							return false;
 						});
