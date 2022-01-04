@@ -3,6 +3,7 @@
 ## 2.0.1
 * General
   * added rules for eslint-plugin-react-hooks
+  * added the latest icons to the SLDS icon set
 * CSAlert
   * fixed close button position when `styleFormat="scoped"`
   * fixed close button and icon styling when `styleType="light"`
