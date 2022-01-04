@@ -55,6 +55,9 @@
 				.cs-btn-label {
 					font-size: 0.75rem;
 				}
+				&::before {
+					border-radius: 0;
+				}
 				&::after {
 					border-radius: 0;
 					@include css4 {
