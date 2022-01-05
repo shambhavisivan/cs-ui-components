@@ -126,7 +126,7 @@ const CSDSidebar = ({
 				activeClassName="csd-sidebar-list-item-active"
 				to={`/${routePrefix}/${linkId}`}
 			>
-				{anchor.name}
+				<span>{anchor.name}</span>
 				{anchor.icon && (
 					<CSIcon
 						className="csd-sidebar-icon"
