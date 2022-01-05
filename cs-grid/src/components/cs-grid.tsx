@@ -410,7 +410,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 								sortable: true
 							}}
 							frameworkComponents={this.state.frameworkComponents}
-							stopEditingWhenGridLosesFocus={
+							stopEditingWhenCellsLoseFocus={
 								!this.featureFlags.flags.useColumnLevelFocus
 							}
 							suppressDragLeaveHidesColumns={true}
