@@ -12,7 +12,6 @@ import {
 
 export interface CSDropdownItemWrapperProps {
 	align: CSDropdownAlign;
-	animated: boolean;
 	children?: any;
 	dropdownClassName?: string;
 	forwardRef?: any;
@@ -110,7 +109,6 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 	render() {
 		const {
 			align,
-			animated,
 			children,
 			dropdownClassName,
 			forwardRef,
@@ -130,7 +128,7 @@ class CSDropdownItemWrapper extends React.Component<CSDropdownItemWrapperProps> 
 			'cs-dropdown-outer-item-wrapper',
 			{
 				[`${dropdownClassName}`]: dropdownClassName,
-				'cs-dropdown-hidden': !(visible && mounted) && animated,
+				'cs-dropdown-hidden': !(visible && mounted),
 				'cs-dropdown-hover': hover,
 				[`cs-dropdown-${position}-${align}`]: position && align && hover,
 			},

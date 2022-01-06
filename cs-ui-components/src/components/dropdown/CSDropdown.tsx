@@ -253,6 +253,8 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 					onMouseOver={hover ? this.openDropdown : undefined}
 					onMouseLeave={hover ? this.closeDropdown : undefined}
 					onKeyDown={this.onKeyDown}
+					onFocus={hover ? this.openDropdown : undefined}
+					onBlur={hover ? this.closeDropdown : undefined}
 					size={size}
 					label={label || 'Toggle dropdown'}
 					ariaExpanded={!!isOpen}
@@ -276,7 +278,6 @@ class CSDropdown extends React.Component<CSDropdownProps, CSDropdownStates> {
 								mode={mode}
 								hover={hover}
 								padding={padding}
-								animated={!hover}
 								visible={!!isOpen}
 								style={dropdownStyle}
 								toggleDropdown={this.toggleDropdown}
