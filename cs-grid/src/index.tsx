@@ -393,7 +393,7 @@ export class App extends React.Component<object, AppState> {
 					return [
 						{
 							action: () => console.error('Edit option called'),
-							icon: <span className='icon-error' aria-hidden='true' />,
+							icon: { iconName: 'warning', color: '#c23934', iconSize: '0.875rem' },
 							name: 'Custom content'
 						},
 						{
@@ -743,8 +743,10 @@ export class App extends React.Component<object, AppState> {
 										currentValue
 									)}`
 								),
-							icon: <span className='icon-new-window' aria-hidden='true' />,
-							name: 'Edit'
+							labelHidden: true,
+							icon: { iconName: 'new_window' },
+							name: 'Edit',
+							size: 'xsmall'
 						},
 						{
 							action: () => console.error('action called'),
@@ -786,8 +788,10 @@ export class App extends React.Component<object, AppState> {
 										currentValue
 									)}`
 								),
-							icon: <span className='icon-new-window' aria-hidden='true' />,
-							name: 'Edit'
+							labelHidden: true,
+							icon: { iconName: 'new_window' },
+							name: 'Edit',
+							size: 'xsmall'
 						},
 						{
 							action: () => console.error('action called'),

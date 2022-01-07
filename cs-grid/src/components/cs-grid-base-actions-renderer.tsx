@@ -102,6 +102,7 @@ export abstract class CSGridBaseActionsRenderer<
 								iconName={action.icon.iconName}
 								iconColor={action.icon.color}
 								iconOrigin={action.icon.iconOrigin}
+								iconSize={action.icon.iconSize}
 								ref={(ref: HTMLButtonElement) => (this.buttonRefs[index] = ref)}
 								id={`icon-item-${this.props.node.id}-${colId}-${index}`}
 							/>
@@ -121,6 +122,7 @@ export abstract class CSGridBaseActionsRenderer<
 							iconName={action.icon.iconName}
 							iconColor={action.icon.color ? action.icon.color : null}
 							iconOrigin={action.icon.iconOrigin}
+							iconSize={action.icon.iconSize}
 							ref={(ref: HTMLButtonElement) => (this.dropdownBtnRef[index] = ref)}
 							id={`row-selection-list-item-${action.name}`}
 						/>
