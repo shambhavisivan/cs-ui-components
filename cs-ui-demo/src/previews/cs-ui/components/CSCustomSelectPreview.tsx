@@ -134,9 +134,9 @@ class CSCustomSelectPreview extends React.Component {
 									options={options}
 									label="Select department"
 									dropdownActions={[{
-										label: 'Add department',
+										label: 'Add department 1',
 										iconName: 'add',
-										onClick: () => alert('Department added.')
+										onClick: () => alert('Department 1 added.')
 									}]}
 								/>,
 								code: `<CSCustomSelect

@@ -51,11 +51,10 @@ const CSCustomSelectOption = ({
 				if (event.key === KeyCode.ArrowDown) {
 					const nextSibling = customSelectOptionRef.current?.nextElementSibling;
 					if (nextSibling) nextSibling.focus();
-					else customSelectOptionRef.current?.parentElement?.firstElementChild?.focus();
+					else customSelectOptionRef.current?.parentElement?.nextElementSibling?.firstElementChild?.focus();
 				} else if (event.key === KeyCode.ArrowUp) {
 					const prevSibling = customSelectOptionRef.current?.previousElementSibling;
 					if (prevSibling) prevSibling.focus();
-					else customSelectOptionRef.current?.parentElement?.lastElementChild?.focus();
 				} else if (event.key === KeyCode.Escape) {
 					focusInput();
 					closeDropdown();

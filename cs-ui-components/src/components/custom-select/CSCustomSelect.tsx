@@ -425,16 +425,20 @@ const CSCustomSelect = ({
 								onSelectChange={onSelect}
 							/>
 						))}
-						{dropdownActions?.map((button: CSButtonProps, buttonIndex: number) => (
-							<CSCustomSelectDropdownAction
-								// eslint-disable-next-line react/no-array-index-key
-								key={buttonIndex}
-								action={button}
-								focusInput={() => customSelectInputRef.current?.focus()}
-								closeDropdown={closeDropdown}
-							/>
-						))}
 					</ul>
+					{!dropdownActions ? '' : (
+						<div className="cs-custom-select-dropdown-action-wrapper">
+							{dropdownActions?.map((button: CSButtonProps, buttonIndex: number) => (
+								<CSCustomSelectDropdownAction
+									// eslint-disable-next-line react/no-array-index-key
+									key={buttonIndex}
+									action={button}
+									focusInput={() => customSelectInputRef.current?.focus()}
+									closeDropdown={closeDropdown}
+								/>
+							))}
+						</div>
+					)}
 				</div>
 			</CSAutoposition>
 		);

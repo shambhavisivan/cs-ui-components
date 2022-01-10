@@ -39,11 +39,10 @@ const CSCustomSelectDropdownAction = ({
 				if (event.key === KeyCode.ArrowDown) {
 					const nextSibling = customSelectActionRef.current?.nextElementSibling;
 					if (nextSibling) nextSibling.focus();
-					else customSelectActionRef.current?.parentElement?.firstElementChild?.focus();
 				} else if (event.key === KeyCode.ArrowUp) {
 					const prevSibling = customSelectActionRef.current?.previousElementSibling;
 					if (prevSibling) prevSibling.focus();
-					else customSelectActionRef.current?.parentElement?.lastElementChild?.focus();
+					else customSelectActionRef.current?.parentElement?.previousElementSibling?.lastElementChild?.focus();
 				} else if (event.key === KeyCode.Escape) {
 					focusInput();
 					closeDropdown();
