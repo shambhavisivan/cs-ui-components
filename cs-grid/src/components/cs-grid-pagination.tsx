@@ -17,10 +17,9 @@ interface CSGridPaginationProps {
 }
 
 export function CSGridPaginator(props: CSGridPaginationProps) {
-	const pageSizeOptions: Array<React.DetailedHTMLProps<
-		React.OptionHTMLAttributes<HTMLOptionElement>,
-		HTMLOptionElement
-	>> = [];
+	const pageSizeOptions: Array<
+		React.DetailedHTMLProps<React.OptionHTMLAttributes<HTMLOptionElement>, HTMLOptionElement>
+	> = [];
 	for (const pageSize of props.pageSizes) {
 		pageSizeOptions.push(
 			<option key={pageSize} value={pageSize} title={`${pageSize} rows per page`}>

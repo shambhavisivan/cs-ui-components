@@ -44,7 +44,8 @@ export class CSGridLookupEditor
 			PaginatedLookupProps,
 		CSGridLookupEditorState
 	>
-	implements CSGridCellEditor {
+	implements CSGridCellEditor
+{
 	multiSelect: boolean = false;
 
 	gridApi: GridApi;
@@ -115,7 +116,7 @@ export class CSGridLookupEditor
 					multiselect={this.multiSelect}
 					value={this.state.value.cellValue}
 					minTermLength={this.props.minSearchTermLength}
-					ref={ref => {
+					ref={(ref) => {
 						if (ref) {
 							setTimeout(() => {
 								if (ref.lookupInputRef.current) {

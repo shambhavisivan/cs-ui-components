@@ -5,7 +5,7 @@ import { CSGridAction, Icon, isStandardIcon } from '../interfaces/cs-grid-cell-p
 // Map over Icons
 export function getNewIcons(icons: Array<Icon> = [], id: string) {
 	// Filter out non-standard icons
-	return icons.filter(isStandardIcon).map(icon => {
+	return icons.filter(isStandardIcon).map((icon) => {
 		// If standard icon return array of icons
 		if (isStandardIcon(icon)) {
 			const tooltip = icon.getTooltip?.(id);
@@ -29,8 +29,8 @@ export function getNewActions<T>(
 	cellValue: T
 ) {
 	return actions
-		?.filter(action => action.icon && isStandardIcon(action.icon))
-		.map(action => {
+		?.filter((action) => action.icon && isStandardIcon(action.icon))
+		.map((action) => {
 			if (action.icon) {
 				// If standard icon return action
 				if (isStandardIcon(action.icon)) {

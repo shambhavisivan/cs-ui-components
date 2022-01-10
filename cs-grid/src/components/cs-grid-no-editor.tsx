@@ -5,8 +5,10 @@ import { CSGridCellEditorProps } from '../interfaces/cs-grid-cell-props';
 /**
  * Ensures the editor is never opened when clicking a cell using this editor.
  */
-export class CSGridNoEditor extends React.Component<CSGridCellEditorProps<any>>
-	implements CSGridCellEditor {
+export class CSGridNoEditor
+	extends React.Component<CSGridCellEditorProps<any>>
+	implements CSGridCellEditor
+{
 	constructor(props: CSGridCellEditorProps<any>) {
 		super(props);
 	}

@@ -157,9 +157,7 @@ export interface DateTimeProps extends DateProps {
 }
 
 export interface Tooltip {
-	getTooltip?(
-		rowNodeId: string
-	): {
+	getTooltip?(rowNodeId: string): {
 		content: string | Array<string> | JSX.Element;
 		delay?: number;
 		variant?: CSTooltipVariant;

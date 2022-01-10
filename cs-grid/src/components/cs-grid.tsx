@@ -239,7 +239,9 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 
 	convertRowDataToLegacyRow = (records: Array<RowData>): Array<Row> => {
 		return records.map((record, rowNumber) => {
-			const isAlreadyLegacy = Object.values(record).some(s => s && s.cellValue !== undefined);
+			const isAlreadyLegacy = Object.values(record).some(
+				(s) => s && s.cellValue !== undefined
+			);
 			if (isAlreadyLegacy) {
 				return record;
 			} else {
@@ -264,7 +266,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 	convertLegacyRowToRowData = (
 		rows: Array<Row>
 	): Array<Omit<RowData, 'row_cell_notifications'>> => {
-		return rows.map(row => {
+		return rows.map((row) => {
 			const record: RowData = {};
 			for (const fieldKey of Object.keys(row)) {
 				record[fieldKey] = row[fieldKey].cellValue;
@@ -729,7 +731,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 	};
 
 	private getCsGridColDef(fieldKey: string): ColDef {
-		return this.props.columnDefs.find(colDef => colDef.name === fieldKey);
+		return this.props.columnDefs.find((colDef) => colDef.name === fieldKey);
 	}
 
 	private onCellValueChanged = (event: CellValueChangedEvent) => {
@@ -1569,8 +1571,8 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 
 			return {
 				columnDefs: results.columnDefs
-					.filter(colDef => colDef.visible ?? true)
-					.map(colDef => ({
+					.filter((colDef) => colDef.visible ?? true)
+					.map((colDef) => ({
 						key: colDef.name,
 						label: colDef.header?.label ?? colDef.name
 					})),

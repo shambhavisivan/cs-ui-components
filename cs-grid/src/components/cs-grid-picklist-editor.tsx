@@ -23,7 +23,8 @@ export class CSGridPicklistEditor
 		CSGridCellEditorProps<PicklistCellValueType> & PicklistProps,
 		CSGridPicklistEditorState
 	>
-	implements CSGridCellEditor {
+	implements CSGridCellEditor
+{
 	multiSelect: boolean = false;
 	customSelectInputRef: HTMLInputElement;
 	private divRef: React.RefObject<HTMLDivElement>;

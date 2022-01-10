@@ -25,7 +25,7 @@ export class CSGridDecimalEditor extends CSGridNumberEditor<
 	isCancelAfterEnd() {
 		document.removeEventListener('click', this.handleOutsideClick);
 
-		this.setState(prevState => {
+		this.setState((prevState) => {
 			let formattedValue = this.formatValue();
 
 			if (

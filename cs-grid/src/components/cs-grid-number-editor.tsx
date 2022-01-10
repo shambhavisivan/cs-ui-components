@@ -16,7 +16,8 @@ import { CSGridCellError } from './cs-grid-cell-error';
  */
 export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string | number>>
 	extends React.Component<P, CSGridCellEditorState<string | number>>
-	implements CSGridCellEditor {
+	implements CSGridCellEditor
+{
 	numberFormatType: NumberFormat = 'Decimal';
 	currencySymbol: string = '';
 	inputType = 'text';
@@ -79,7 +80,7 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 	isCancelAfterEnd() {
 		document.removeEventListener('click', this.handleOutsideClick);
 
-		this.setState(prevState => {
+		this.setState((prevState) => {
 			prevState.value.cellValue = this.formatValue();
 
 			return { value: prevState.value };
@@ -216,6 +217,6 @@ export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string 
 			style: 'currency'
 		});
 
-		return formatter.formatToParts(1).find(part => part.type === 'currency').value;
+		return formatter.formatToParts(1).find((part) => part.type === 'currency').value;
 	};
 }

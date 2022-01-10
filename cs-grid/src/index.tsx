@@ -1632,7 +1632,7 @@ export class App extends React.Component<object, AppState> {
 						// 	[this.state.rowData[3].exampleGuid.cellValue]: '#73d9d2'
 						// }}
 						// tslint:disable-next-line: jsx-no-lambda
-						getRowClass={rowGuid => {
+						getRowClass={(rowGuid) => {
 							if (rowGuid === this.state.rowData[4].exampleGuid.cellValue) {
 								return ['rowClass'];
 							}

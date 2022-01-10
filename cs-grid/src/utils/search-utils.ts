@@ -70,7 +70,7 @@ const validateQualifiedSearch = (
 		}
 
 		const validColumnName = columnDefinitions.some(
-			column =>
+			(column) =>
 				column.header &&
 				column.header.label.toLowerCase() === columnName.toLowerCase() &&
 				(column.visible === undefined || column.visible)
@@ -122,14 +122,14 @@ const convertQueriesToColumnFilters = (
 		);
 
 		// removing empty array values equates to allow && as well as &.
-		conditions = conditions.filter(el => el);
+		conditions = conditions.filter((el) => el);
 
 		if (conditions.length === 1) {
 			conditions = removeEscapesAndSplitForSearchFilter(
 				qualifiedSearchQueries[columnName],
 				'|'
 			);
-			conditions = conditions.filter(el => el);
+			conditions = conditions.filter((el) => el);
 
 			if (conditions.length === 2) {
 				operator = 'OR';
@@ -153,7 +153,7 @@ const convertQueriesToColumnFilters = (
 		};
 
 		const columnDefinition = columnDefinitions.find(
-			column =>
+			(column) =>
 				column.header &&
 				column.header.label.toLowerCase() === columnName.toLowerCase() &&
 				(column.visible === undefined || column.visible)

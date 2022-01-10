@@ -21,11 +21,11 @@ export function CSGridDefaultComparator<T>(a: CellData<T>, b: CellData<T>) {
 	}
 
 	if (typeof aValue === 'string' || aValue instanceof String) {
-		aValue = (aValue.toUpperCase() as unknown) as T;
+		aValue = aValue.toUpperCase() as unknown as T;
 	}
 
 	if (typeof bValue === 'string' || bValue instanceof String) {
-		bValue = (bValue.toUpperCase() as unknown) as T;
+		bValue = bValue.toUpperCase() as unknown as T;
 	}
 
 	return aValue > bValue ? 1 : aValue < bValue ? -1 : 0;

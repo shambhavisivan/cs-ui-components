@@ -40,7 +40,7 @@ export function getSeparator(locale: string, separatorType: string): string {
 	return getIntl(locale)
 		.NumberFormat(locale)
 		.formatToParts(numberWithGroupAndDecimalSeparator)
-		.find(part => part.type === separatorType).value;
+		.find((part) => part.type === separatorType).value;
 }
 
 /**
@@ -52,5 +52,5 @@ export function getCurrencySymbol(locale: string, currency: string): string {
 		style: 'currency'
 	});
 
-	return formatter.formatToParts(1).find(part => part.type === 'currency').value;
+	return formatter.formatToParts(1).find((part) => part.type === 'currency').value;
 }

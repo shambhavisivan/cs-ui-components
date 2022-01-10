@@ -27,7 +27,7 @@ export class CSGridFeatureFlagHelper<T extends string> {
 	}
 
 	active: () => Record<T, CSGridFlagDefinition> = () => {
-		return this.mapFlagDefinitions(flag => this.flags[flag]);
+		return this.mapFlagDefinitions((flag) => this.flags[flag]);
 	};
 
 	all: () => Record<T, CSGridFlagDefinition> = () => {
@@ -36,7 +36,7 @@ export class CSGridFeatureFlagHelper<T extends string> {
 
 	private mapFlagDefinitions: (
 		flagFilter: (flag: T) => boolean
-	) => Record<string, CSGridFlagDefinition> = flagFilter => {
+	) => Record<string, CSGridFlagDefinition> = (flagFilter) => {
 		return Object.keys(this.flags)
 			.filter(flagFilter)
 			.reduce((acc: Record<T, CSGridFlagDefinition>, curr: T) => {

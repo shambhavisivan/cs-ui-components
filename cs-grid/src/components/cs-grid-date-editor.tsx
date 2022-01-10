@@ -20,7 +20,8 @@ export class CSGridDateEditor
 		CSGridCellEditorProps<string> & DateProps,
 		CSGridCellEditorState<string> & { inputValue?: string }
 	>
-	implements CSGridCellEditor {
+	implements CSGridCellEditor
+{
 	private divRef: React.RefObject<HTMLDivElement>;
 
 	constructor(props: CSGridCellEditorProps<string>) {

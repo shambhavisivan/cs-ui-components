@@ -65,10 +65,12 @@ export abstract class CSGridBaseActionsRenderer<
 
 		const icons: Array<Icon> = [];
 
-		const dropDownValues: Array<React.DetailedHTMLProps<
-			React.ButtonHTMLAttributes<HTMLButtonElement>,
-			HTMLButtonElement
-		>> = [];
+		const dropDownValues: Array<
+			React.DetailedHTMLProps<
+				React.ButtonHTMLAttributes<HTMLButtonElement>,
+				HTMLButtonElement
+			>
+		> = [];
 
 		let noOfInlineIcons;
 		if (this.state.noOfInlineIcons) {

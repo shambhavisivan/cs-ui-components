@@ -21,7 +21,8 @@ export class CSGridDateTimeEditor
 		CSGridCellEditorProps<string> & DateTimeProps,
 		CSGridCellEditorState<string>
 	>
-	implements CSGridCellEditor {
+	implements CSGridCellEditor
+{
 	private divRef: React.RefObject<HTMLDivElement>;
 	private localeFormat = `${moment
 		.localeData()
@@ -122,7 +123,7 @@ export class CSGridDateTimeEditor
 					dateFormat={this.localeFormat}
 					openToDate={openToDate}
 					onKeyDown={this.onKeyDown}
-					ref={ref => {
+					ref={(ref) => {
 						if (ref) {
 							setTimeout(() => {
 								if (ref.datepickerInnerRef.current) {

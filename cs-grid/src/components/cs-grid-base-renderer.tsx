@@ -13,10 +13,13 @@ import { CSGridCellRendererProps } from '../interfaces/cs-grid-cell-props';
  * A base class for all cell renderers.
  */
 export abstract class CSGridBaseRenderer<
-	T,
-	P extends CSGridCellRendererProps<T> = CSGridCellRendererProps<T>,
-	S extends CSGridCellRendererState<T> = CSGridCellRendererState<T>
-> extends React.Component<P, S> implements CSGridCellRenderer {
+		T,
+		P extends CSGridCellRendererProps<T> = CSGridCellRendererProps<T>,
+		S extends CSGridCellRendererState<T> = CSGridCellRendererState<T>
+	>
+	extends React.Component<P, S>
+	implements CSGridCellRenderer
+{
 	constructor(props: P) {
 		super(props);
 
