@@ -20,9 +20,13 @@
 				width: var(--csf-field-width);
 				&:not(.csf-field-wrapper-custom) > * {
 					flex: 1;
+					max-width: 100%;
 				}
 				&-custom {
 					align-self: center;
+				}
+				.cs-label-wrapper {
+					max-width: 100%;
 				}
 			}
 			.csf-field-new-line {

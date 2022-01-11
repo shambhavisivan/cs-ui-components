@@ -195,12 +195,10 @@ export const readOnlyData: CSFormData = [
 			name: 'radio-2',
 			value: 'red',
 			radioOptions: [{
-				radioOptionName: 'color',
 				radioOptionValue: 'red',
 				label: 'Red'
 
 			}, {
-				radioOptionName: 'color',
 				radioOptionValue: 'blue',
 				label: 'Blue'
 			}]

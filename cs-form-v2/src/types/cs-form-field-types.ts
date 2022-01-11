@@ -185,7 +185,6 @@ export interface CSFormRadioOption extends Pick<CSFormFieldCommonProps,
 	'disabled' |
 	'title'> {
 	label: string;
-	radioOptionName: string;
 	radioOptionValue: string;
 }
 

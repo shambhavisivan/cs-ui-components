@@ -5,6 +5,7 @@ import { useCSForm } from '../CSFormContext';
 
 const CSFormRadioField = ({
 	fieldType,
+	name,
 	onBlur,
 	onChange,
 	radioOptions,
@@ -17,7 +18,7 @@ const CSFormRadioField = ({
 	} = useCSForm();
 
 	const renderRadioOptions = () => radioOptions.map((option) => {
-		const { radioOptionName, readOnly, radioOptionValue, ...rest } = option;
+		const { readOnly, radioOptionValue, ...rest } = option;
 		return (
 			<CSRadioOption
 				key={radioOptionValue}
@@ -25,7 +26,7 @@ const CSFormRadioField = ({
 				onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
 				onBlur={(e: React.FocusEvent<HTMLInputElement>) => onBlur(e.target.value)}
 				readOnly={mode === 'read-only' ? true : readOnly}
-				name={radioOptionName}
+				name={name}
 				value={radioOptionValue}
 				{...rest}
 			/>
