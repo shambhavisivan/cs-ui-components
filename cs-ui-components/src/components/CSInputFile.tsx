@@ -25,7 +25,7 @@ export interface CSInputFileProps {
 
 export interface CSInputFileState {
 	fileName: string;
-	fileSelectedLabel: string;
+	fileLabel: string;
 	isDraggedOver: boolean;
 }
 
@@ -42,7 +42,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 	constructor(props: any) {
 		super(props);
 		this.state = {
-			fileSelectedLabel: '',
+			fileLabel: '',
 			fileName: '',
 			isDraggedOver: false,
 		};
@@ -111,7 +111,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 			const fileName = fileSize ? file.name + this.fileSizeDisplay(file) : file.name;
 			this.setState({
 				fileName,
-				fileSelectedLabel,
+				fileLabel: fileSelectedLabel,
 			});
 		}
 	}
@@ -136,6 +136,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 			error,
 			errorMessage,
 			errorTooltip,
+			fileSelectedLabel,
 			fileSize,
 			id,
 			label,
@@ -147,7 +148,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 		const {
 			isDraggedOver,
 			fileName,
-			fileSelectedLabel,
+			fileLabel,
 		} = this.state;
 
 		const wrapperClasses = classNames(
@@ -191,7 +192,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 						&& errorTooltip
 						? <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />
 						: <CSIcon className="cs-input-file-icon" name="upload" size="0.875rem" />}
-					<span className="cs-input-file-label">{fileSelectedLabel || label}</span>
+					<span className="cs-input-file-label">{fileLabel || label}</span>
 				</span>
 			</>
 		);
