@@ -461,7 +461,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 		this.onPaginationChanged();
 
 		if (this.props.columnState) {
-			params.columnApi.setColumnState(JSON.parse(this.props.columnState));
+			params.columnApi.applyColumnState(JSON.parse(this.props.columnState));
 		}
 
 		const dataSourceAPI = this.props.dataSourceAPI;
