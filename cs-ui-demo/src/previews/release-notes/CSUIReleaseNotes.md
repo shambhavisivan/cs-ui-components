@@ -31,6 +31,7 @@
   * fixed field height increase when items are selected
   * fixed field focus in `multiselect` when there are many items selected
   * fixed keyboard `tab` to close dropdown when focus is inside dropdown
+  * fixed dropdown width issue on resizing the screen
 * CSDataTable
   * <i>important</i> flipped the default value for the `defaultCollapsed` prop to `true`
   * added `title` column attribute

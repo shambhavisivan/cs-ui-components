@@ -191,10 +191,6 @@ const CSCustomSelect = ({
 		},
 	);
 
-	const customSelectDropdownStyle: CSSProperties = {
-		'--cs-custom-select-input-width': customSelectInputWrapperRef.current && `${customSelectInputWrapperRef.current.getBoundingClientRect().width}px`,
-	};
-
 	const customSelectDropdownWrapperStyle: CSSProperties = {
 		'--cs-custom-select-options-spacing': actions && icons ? '86px' : getOptionsSpacing(),
 	};
@@ -422,8 +418,9 @@ const CSCustomSelect = ({
 				positionSchema={['top-left', 'top-right', 'bottom-right', 'bottom-left']}
 				initialPosition={initialPosition}
 				zIndex="var(--z-index-custom-select-dropdown)"
+				trackRefPointWidth
 			>
-				<div style={customSelectDropdownStyle} className={customSelectDropdownClasses}>
+				<div className={customSelectDropdownClasses}>
 					<ul ref={customSelectDropdownRef} className="cs-custom-select-dropdown">
 						{!filteredOptions.length && (
 							<li className="cs-custom-select-no-data">

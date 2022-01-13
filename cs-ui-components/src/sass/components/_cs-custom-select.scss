@@ -197,8 +197,7 @@
 }
 
 .cs-custom-select-dropdown-wrapper {
-	width: max-content;
-	min-width: var(--cs-custom-select-input-width);
+	width: 100%;
 
 	.cs-custom-select-dropdown {
 		border-radius: 0.25rem;
