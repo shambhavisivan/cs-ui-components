@@ -168,9 +168,9 @@ class CSTablePreview extends React.Component {
 											<CSTableCell>
 												<CSButton
 													label="label"
+													labelHidden
 													btnType="default"
 													iconName="emoji"
-													iconDisplay="icon-only"
 												/>
 											</CSTableCell>
 										</CSTableRow>
@@ -181,9 +181,9 @@ class CSTablePreview extends React.Component {
 											<CSTableCell>
 												<CSButton
 													label="label"
+													labelHidden
 													btnType="default"
 													iconName="emoji"
-													iconDisplay="icon-only"
 												/>
 											</CSTableCell>
 										</CSTableRow>
@@ -210,9 +210,9 @@ class CSTablePreview extends React.Component {
 											<CSTableCell>
 												<CSButton
 													label="label"
+													labelHidden
 													btnType="default"
 													iconName="emoji"
-													iconDisplay="icon-only"
 												/>
 											</CSTableCell>
 										</CSTableRow>
@@ -223,9 +223,9 @@ class CSTablePreview extends React.Component {
 											<CSTableCell>
 												<CSButton
 													label="label"
+													labelHidden
 													btnType="default"
 													iconName="emoji"
-													iconDisplay="icon-only"
 												/>
 											</CSTableCell>
 										</CSTableRow>
@@ -253,9 +253,9 @@ class CSTablePreview extends React.Component {
 											<CSTableCell>
 												<CSButton
 													label="label"
+													labelHidden
 													btnType="default"
 													iconName="emoji"
-													iconDisplay="icon-only"
 												/>
 											</CSTableCell>
 										</CSTableRow>
@@ -276,9 +276,9 @@ class CSTablePreview extends React.Component {
 											<CSTableCell>
 												<CSButton
 													label="label"
+													labelHidden
 													btnType="default"
 													iconName="emoji"
-													iconDisplay="icon-only"
 												/>
 											</CSTableCell>
 										</CSTableRow>
@@ -345,9 +345,9 @@ class CSTablePreview extends React.Component {
 											<CSTableCell>
 												<CSButton
 													label="label"
+													labelHidden
 													btnType="default"
 													iconName="emoji"
-													iconDisplay="icon-only"
 												/>
 											</CSTableCell>
 										</CSTableRow>
@@ -358,9 +358,9 @@ class CSTablePreview extends React.Component {
 											<CSTableCell>
 												<CSButton
 													label="label"
+													labelHidden
 													btnType="default"
 													iconName="emoji"
-													iconDisplay="icon-only"
 												/>
 											</CSTableCell>
 										</CSTableRow>
@@ -371,9 +371,9 @@ class CSTablePreview extends React.Component {
 											<CSTableCell>
 												<CSButton
 													label="label"
+													labelHidden
 													btnType="default"
 													iconName="emoji"
-													iconDisplay="icon-only"
 												/>
 											</CSTableCell>
 										</CSTableRow>
@@ -384,9 +384,9 @@ class CSTablePreview extends React.Component {
 											<CSTableCell>
 												<CSButton
 													label="label"
+													labelHidden
 													btnType="default"
 													iconName="emoji"
-													iconDisplay="icon-only"
 												/>
 											</CSTableCell>
 										</CSTableRow>
@@ -397,9 +397,9 @@ class CSTablePreview extends React.Component {
 											<CSTableCell>
 												<CSButton
 													label="label"
+													labelHidden
 													btnType="default"
 													iconName="emoji"
-													iconDisplay="icon-only"
 												/>
 											</CSTableCell>
 										</CSTableRow>
@@ -420,9 +420,9 @@ class CSTablePreview extends React.Component {
 											<CSTableCell>
 												<CSButton
 													label="label"
+													labelHidden
 													btnType="default"
 													iconName="emoji"
-													iconDisplay="icon-only"
 												/>
 											</CSTableCell>
 										</CSTableRow>
@@ -433,9 +433,9 @@ class CSTablePreview extends React.Component {
 											<CSTableCell>
 												<CSButton
 													label="label"
+													labelHidden
 													btnType="default"
 													iconName="emoji"
-													iconDisplay="icon-only"
 												/>
 											</CSTableCell>
 										</CSTableRow>
@@ -446,9 +446,9 @@ class CSTablePreview extends React.Component {
 											<CSTableCell>
 												<CSButton
 													label="label"
+													labelHidden
 													btnType="default"
 													iconName="emoji"
-													iconDisplay="icon-only"
 												/>
 											</CSTableCell>
 										</CSTableRow>
@@ -459,9 +459,9 @@ class CSTablePreview extends React.Component {
 											<CSTableCell>
 												<CSButton
 													label="label"
+													labelHidden
 													btnType="default"
 													iconName="emoji"
-													iconDisplay="icon-only"
 												/>
 											</CSTableCell>
 										</CSTableRow>
@@ -472,9 +472,9 @@ class CSTablePreview extends React.Component {
 											<CSTableCell>
 												<CSButton
 													label="label"
+													labelHidden
 													btnType="default"
 													iconName="emoji"
-													iconDisplay="icon-only"
 												/>
 											</CSTableCell>
 										</CSTableRow>
@@ -533,9 +533,9 @@ class CSTablePreview extends React.Component {
 											<CSTableCell>
 												<CSButton
 													label="label"
+													labelHidden
 													btnType="default"
 													iconName="emoji"
-													iconDisplay="icon-only"
 												/>
 											</CSTableCell>
 										</CSTableRow>
@@ -546,9 +546,9 @@ class CSTablePreview extends React.Component {
 											<CSTableCell>
 												<CSButton
 													label="label"
+													labelHidden
 													btnType="default"
 													iconName="emoji"
-													iconDisplay="icon-only"
 												/>
 											</CSTableCell>
 										</CSTableRow>
@@ -559,9 +559,9 @@ class CSTablePreview extends React.Component {
 											<CSTableCell>
 												<CSButton
 													label="label"
+													labelHidden
 													btnType="default"
 													iconName="emoji"
-													iconDisplay="icon-only"
 												/>
 											</CSTableCell>
 										</CSTableRow>
@@ -572,9 +572,9 @@ class CSTablePreview extends React.Component {
 											<CSTableCell>
 												<CSButton
 													label="label"
+													labelHidden
 													btnType="default"
 													iconName="emoji"
-													iconDisplay="icon-only"
 												/>
 											</CSTableCell>
 										</CSTableRow>
@@ -595,9 +595,9 @@ class CSTablePreview extends React.Component {
 											<CSTableCell>
 												<CSButton
 													label="label"
+													labelHidden
 													btnType="default"
 													iconName="emoji"
-													iconDisplay="icon-only"
 												/>
 											</CSTableCell>
 										</CSTableRow>
@@ -608,9 +608,9 @@ class CSTablePreview extends React.Component {
 											<CSTableCell>
 												<CSButton
 													label="label"
+													labelHidden
 													btnType="default"
 													iconName="emoji"
-													iconDisplay="icon-only"
 												/>
 											</CSTableCell>
 										</CSTableRow>
@@ -621,9 +621,9 @@ class CSTablePreview extends React.Component {
 											<CSTableCell>
 												<CSButton
 													label="label"
+													labelHidden
 													btnType="default"
 													iconName="emoji"
-													iconDisplay="icon-only"
 												/>
 											</CSTableCell>
 										</CSTableRow>
@@ -634,9 +634,9 @@ class CSTablePreview extends React.Component {
 											<CSTableCell>
 												<CSButton
 													label="label"
+													labelHidden
 													btnType="default"
 													iconName="emoji"
-													iconDisplay="icon-only"
 												/>
 											</CSTableCell>
 										</CSTableRow>
