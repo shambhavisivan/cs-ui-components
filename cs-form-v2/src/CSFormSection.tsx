@@ -33,7 +33,7 @@ const CSFormSection = ({
 			? field.name
 			: `csf-custom-${index}`;
 
-		const events = field.fieldType !== 'CUSTOM-MODAL' ? {
+		const events = field.fieldType !== 'CUSTOM-MODAL' && field.fieldType !== 'CUSTOM' ? {
 			onChange: (value: any) => handleFieldChange(sectionKey, field, value),
 			onBlur: (value: any) => handleFieldBlur(sectionKey, field, value),
 		} : undefined;

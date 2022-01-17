@@ -6,7 +6,7 @@ const CSFormCustomField = ({
 	render,
 	...rest
 }: CSFormCustomFieldProps) => (
-	<>{React.cloneElement(render, { ...rest })}</>
+	<>{React.cloneElement(render, rest)}</>
 );
 
 export default CSFormCustomField;

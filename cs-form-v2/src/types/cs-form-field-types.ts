@@ -66,31 +66,31 @@ export interface CSFormCustomFieldProps extends Pick<CSFormFieldCommonProps, 'on
 /** CUSTOM MODAL FIELD */
 export type CSFormCustomModalContentFactory = (data: CSFormData, closeModal: () => any) => Promise<React.ReactElement>;
 
-export interface CSFormModalHeaderProps extends CSModalHeaderProps {
+export interface CSFormModalHeaderAttributes extends CSModalHeaderProps {
 	headerContent?: React.ReactElement;
 	headerFactory?: (data: CSFormData) => Promise<React.ReactElement>;
 }
 
-export interface CSFormModalBodyProps extends CSModalBodyProps {
+export interface CSFormModalBodyAttributes extends CSModalBodyProps {
 	bodyContent?: React.ReactElement;
 	bodyFactory?: CSFormCustomModalContentFactory;
 }
 
-export interface CSFormModalFooterProps extends CSModalFooterProps {
+export interface CSFormModalFooterAttributes extends CSModalFooterProps {
 	footerContent?: React.ReactElement;
 	footerFactory?: CSFormCustomModalContentFactory;
 }
 
-export interface CSFormModalProps extends Omit<CSModalProps, 'loading' | 'mounted' | 'setMounted' | 'visible'> {
-	header: CSFormModalHeaderProps;
-	body: CSFormModalBodyProps;
-	footer?: CSFormModalFooterProps;
+export interface CSFormCustomModalProps extends Omit<CSModalProps, 'loading' | 'mounted' | 'setMounted' | 'visible'> {
+	header: CSFormModalHeaderAttributes;
+	body: CSFormModalBodyAttributes ;
+	footer?: CSFormModalFooterAttributes;
 }
 
 export interface CSFormCustomModalFieldProps {
 	fieldType: 'CUSTOM-MODAL';
 	modalButton: CSFormModalButton;
-	modal: CSFormModalProps;
+	modal: CSFormCustomModalProps;
 }
 
 /** CUSTOM SELECT FIELD */

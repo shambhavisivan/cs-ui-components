@@ -4,6 +4,7 @@ import GettingStarted from './getting-started/GettingStarted';
 import CSFormPreview from './components/form/CSFormPreview';
 import CSFormSectionPreview from './components/section/CSFormSectionPreview';
 import CSFormStandardFormFieldsPreview from './components/standard-form-fields/CSFormStandardFormFieldsPreview';
+import CSFormCustomFormFieldsPreview from './components/custom-form-fields/CSFormCustomFormFieldsPreview';
 
 import SidebarList from '../SidebarList';
 
@@ -28,8 +29,8 @@ class CSFormList extends React.Component {
 				component: CSFormStandardFormFieldsPreview
 			},
 			{
-				name: 'Field Types',
-				component: FieldTypes
+				name: 'Custom Form Fields',
+				component: CSFormCustomFormFieldsPreview
 			},
 			{
 				name: 'Validation',
