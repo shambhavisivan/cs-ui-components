@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, CSSProperties } from 'react';
+import React, { useMemo, CSSProperties } from 'react';
 import classNames from 'classnames';
 
 import CSDataTableHeader from './CSDataTableHeader';
@@ -118,10 +118,6 @@ const CSDataTable = ({
 	subsectionRender,
 	...rest
 }: CSDataTableProps) => {
-	useEffect(() => {
-		console.warn('CSDataTable is under construction and should not be used.');
-	}, []);
-
 	const tableClasses = classNames(
 		'cs-data-table',
 		{
