@@ -35,6 +35,7 @@
 					}
 					&:focus {
 						outline: 0;
+						z-index: var(--z-index-list-active);
 						@include css4 {
 							box-shadow: 0 0px 3px cvar(--cs-list-item-header-box);
 						}
@@ -58,9 +59,7 @@
 					}
 				}
 			}
-			&-simple-list {
-				@include sbg(--cs-white);
-			}
+			&-simple-list,
 			&-check-list {
 				@include sbg(--cs-list-item-header-bg);
 				.cs-list-group-header-text {
