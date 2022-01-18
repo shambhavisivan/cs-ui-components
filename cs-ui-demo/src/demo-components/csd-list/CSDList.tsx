@@ -1,16 +1,15 @@
 import React, { CSSProperties } from 'react';
-import * as CSDH from '../demo-helpers';
 
 export type CSDListType = 'ul' | 'ol';
 
 export interface CSDListProps {
-	items: Array<string>;
+	children: any;
 	styleType?: string;
 	type?: CSDListType;
 }
 
 const CSDList = ({
-	items,
+	children,
 	styleType = 'disc',
 	type = 'ul'
 }: CSDListProps) => {
@@ -19,20 +18,19 @@ const CSDList = ({
 		'--csd-list-style-type': styleType
 	} as unknown as CSSProperties;
 
-	const props = {
-		className: 'csd-list',
-		style
-	};
-
-	const listMap = () => {
-		return (
-			items.map(item => (
-				<li key={item}>{CSDH.parseCode(item)}</li>
-			))
-		);
-	};
-
-	return React.createElement(type, props, listMap());
+	return (
+		<>
+			{type === 'ul' ?
+				<ul className="csd-list" style={style}>
+					{children}
+				</ul>
+			:
+				<ol className="csd-list" style={style}>
+					{children}
+				</ol>
+			}
+		</>
+	);
 };
 
 export default CSDList;

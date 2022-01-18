@@ -4,7 +4,8 @@ import CSDContent from './CSDContent';
 import CSDCopyButton from './CSDCopyButton';
 import CSDHeader from './CSDHeader';
 import CSDHeading from './CSDHeading';
-import CSDList from './CSDList';
+import CSDList from './csd-list/CSDList';
+import CSDListItem from './csd-list/CSDListItem';
 import CSDPage from './CSDPage';
 import CSDPlayground from './CSDPlayground';
 import CSDPreview from './CSDPreview';
@@ -20,6 +21,7 @@ export {
 	CSDHeader as Header,
 	CSDHeading as Heading,
 	CSDList as List,
+	CSDListItem as ListItem,
 	CSDPage as Page,
 	CSDPlayground as Playground,
 	CSDPreview as Preview,

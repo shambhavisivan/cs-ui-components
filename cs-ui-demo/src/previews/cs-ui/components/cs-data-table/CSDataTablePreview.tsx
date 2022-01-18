@@ -55,19 +55,6 @@ const rows = [{
 	}
 }];
 
-const rowMetaDataList = [
-	'`level` represents the level inside a data table hierarchy. Root elements are of level `0`, while its immediate children are of level `1`.',
-	'`expanded` is a boolean attribute that is set to `true` when the current row is expanded.',
-	'`selected` is a boolean attribute that is set to `true` when the current row is selected.',
-	'`indeterminate` is a boolean attribute that is set to `true` when the checkbox in the current row is set to indeterminate.',
-	'`readOnly` is a boolean attribute that is set to `true` when the checkbox in the current row is set to read only.',
-	'`subsectionVisible` is a boolean attribute that is set to `true` when the subsection of the current row is expanded.',
-	'`setSubsectionVisible` is a function that controls the subsection visibility by accepting an explicit boolean parameter.',
-	'`toggleSubsectionVisible` is a function that toggles the subsection visibility by flipping the current visibility state with React state asynchronicity in mind.',
-	'`setExpanded` is a function that controls the children visibility by accepting an explicit boolean parameter.',
-	'`toggleExpanded` is a function that toggles the children visibility by flipping the current visibility state with React state asynchronicity in mind.'
-];
-
 const CSDataTablePreview = () => {
 	const [singleSelectSelectedKey, setSingleSelectSelectedKey] = useState<React.ReactText>();
 	const [headerSelectSelectedKeys, setHeaderSelectSelectedKeys] = useState<Array<React.ReactText>>([]);
@@ -560,7 +547,18 @@ const CSDataTablePreview = () => {
 					values and control functions that can be used to read the managed state of the current row
 					or even control it. These are the `meta` object attributes:
 				</CSD.Text>
-				<CSD.List items={rowMetaDataList}/>
+				<CSD.List>
+					<CSD.ListItem>`level` represents the level inside a data table hierarchy. Root elements are of level `0`, while its immediate children are of level `1`.</CSD.ListItem>
+					<CSD.ListItem>`expanded` is a boolean attribute that is set to `true` when the current row is expanded.</CSD.ListItem>
+					<CSD.ListItem>`selected` is a boolean attribute that is set to `true` when the current row is selected.</CSD.ListItem>
+					<CSD.ListItem>`indeterminate` is a boolean attribute that is set to `true` when the checkbox in the current row is set to indeterminate.</CSD.ListItem>
+					<CSD.ListItem>`readOnly` is a boolean attribute that is set to `true` when the checkbox in the current row is set to read only.</CSD.ListItem>
+					<CSD.ListItem>`subsectionVisible` is a boolean attribute that is set to `true` when the subsection of the current row is expanded.</CSD.ListItem>
+					<CSD.ListItem>`setSubsectionVisible` is a function that controls the subsection visibility by accepting an explicit boolean parameter.</CSD.ListItem>
+					<CSD.ListItem>`toggleSubsectionVisible` is a function that toggles the subsection visibility by flipping the current visibility state with React state asynchronicity in mind.</CSD.ListItem>
+					<CSD.ListItem>`setExpanded` is a function that controls the children visibility by accepting an explicit boolean parameter.</CSD.ListItem>
+					<CSD.ListItem>`toggleExpanded` is a function that toggles the children visibility by flipping the current visibility state with React state asynchronicity in mind.</CSD.ListItem>
+				</CSD.List>
 				<CSD.Code>
 					{`
 						interface CSDataTableRowMetaInterface {
