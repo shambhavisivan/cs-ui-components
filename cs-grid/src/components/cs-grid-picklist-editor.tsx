@@ -101,6 +101,7 @@ export class CSGridPicklistEditor
 					placeholder='Search...'
 					onSelect={this.handleChange}
 					onDeselect={this.handleChange}
+					onDropdownClose={this.props.stopEditing}
 					multiselect={this.multiSelect}
 					options={this.state.options}
 					selectedKeys={this.picklistValueKeys(this.state.value.cellValue)}
