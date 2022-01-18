@@ -382,6 +382,10 @@
 	&.cs-datetimepicker {
 		width: var(--datepicker-width, 22rem);
 
+		.react-datepicker {
+			width: max-content;
+		}
+
 		.react-datepicker__header,
 		.react-datepicker__time-container {
 			@include css4 {
