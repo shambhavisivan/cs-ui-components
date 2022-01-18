@@ -30,8 +30,9 @@ const CSCustomSelectOption = ({
 		},
 	);
 
-	const handleSelectionChange = () => {
-		onSelectChange?.(option);
+	const handleSelectionChange = async () => {
+		// await onSelectChange before any other code to allow ag-grid to calculate updated state before closing dropdown
+		await onSelectChange?.(option);
 
 		if (!multiselect) {
 			focusInput();

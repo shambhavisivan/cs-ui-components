@@ -302,7 +302,10 @@ const CSCustomSelect = ({
 						} else if (event.key === KeyCode.Escape && dropdownVisible) {
 							closeDropdown();
 						} else if (event.key === KeyCode.Enter) {
-							setDropdownVisible((prevDropdownVisible) => !prevDropdownVisible);
+							setDropdownVisible((prevDropdownVisible) => {
+								if (prevDropdownVisible) onDropdownClose?.();
+								return !prevDropdownVisible;
+							});
 						} else {
 							setDropdownVisible(true);
 						}

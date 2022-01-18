@@ -471,10 +471,11 @@ describe('<CSCustomSelectOption />', () => {
 		label: 'Test',
 	};
 
-	it('should use a working focusInput callback', () => {
+	it('should use a working focusInput callback', async () => {
 		const focusInputMock = jest.fn();
 		const uut = shallow(<CSCustomSelectOption selected={false} option={option} onSelectChange={() => { }} focusInput={focusInputMock} closeDropdown={() => { }} />);
 		uut.simulate('click');
+		await new Promise((r) => setTimeout(r, 0));
 		expect(focusInputMock).toHaveBeenCalledTimes(1);
 	});
 
@@ -495,10 +496,11 @@ describe('<CSCustomSelectOption />', () => {
 		expect(uut.find('.cs-custom-select-option-selected')).toHaveLength(1);
 	});
 
-	it('should use a working closeDropdown callback', () => {
+	it('should use a working closeDropdown callback', async () => {
 		const closeDropdownMock = jest.fn();
 		const uut = shallow(<CSCustomSelectOption selected={false} option={option} onSelectChange={() => { }} focusInput={() => { }} closeDropdown={closeDropdownMock} />);
 		uut.simulate('click');
+		await new Promise((r) => setTimeout(r, 0));
 		expect(closeDropdownMock).toHaveBeenCalledTimes(1);
 	});
 

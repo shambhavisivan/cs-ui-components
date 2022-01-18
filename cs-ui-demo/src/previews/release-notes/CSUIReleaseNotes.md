@@ -29,6 +29,7 @@
   * added `errorTooltip` support
   * added `onDropdownClose` prop
   * added `actions` and `icons` support
+  * changed `onDropdownClose` prop to execute when dropdown open and enter key pressed
 * CSDropdown
   * <i>important</i> removed `onClick` prop
   * added `routerLink` prop
