@@ -60,7 +60,7 @@ class CSToggle extends React.Component<CSToggleProps> {
 	render() {
 		const {
 			actions,
-			checked,
+			checked = false,
 			className,
 			disabled,
 			error,

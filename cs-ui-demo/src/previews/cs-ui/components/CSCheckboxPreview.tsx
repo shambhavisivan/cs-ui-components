@@ -556,6 +556,7 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 					}, {
 						name: 'checked',
 						types: 'boolean',
+						default: 'false',
 						description: 'Control the checked state of the checkbox.'
 					}, {
 						name: 'disabled',

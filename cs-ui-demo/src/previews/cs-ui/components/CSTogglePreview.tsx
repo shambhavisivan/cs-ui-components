@@ -283,6 +283,7 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 					}, {
 						name: 'checked',
 						types: 'boolean',
+						default: 'false',
 						description: 'Control the checked state of the toggle.'
 					}, {
 						name: 'disabled',
