@@ -27,8 +27,9 @@ export type CSAutopositionSchema = Array<CSAutopositions | CSAutopositionSchemaI
 
 export interface CSAutopositionProps {
 	initialPosition: CSAutopositions;
+	onPositionChange?: (position: string) => any;
 	positionSchema: CSAutopositionSchema;
 	referencePoint: HTMLElement;
-	onPositionChange?: (position: string) => any;
+	trackRefPointWidth?: boolean;
 	zIndex?: number | string;
 }

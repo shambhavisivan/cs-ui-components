@@ -20,9 +20,10 @@ import {
 const CSAutoposition = ({
 	children,
 	initialPosition,
+	onPositionChange,
 	positionSchema,
 	referencePoint,
-	onPositionChange,
+	trackRefPointWidth,
 	zIndex,
 }: PropsWithChildren<CSAutopositionProps>) => {
 	const [refPointRect, setRefPointRect] = useState<DOMRect>(referencePoint?.getBoundingClientRect());
@@ -162,6 +163,7 @@ const CSAutoposition = ({
 	const autopositionStyle = {
 		...computedStyle,
 		'--z-index-autoposition-wrapper': zIndex,
+		'--cs-autoposition-min-width': trackRefPointWidth && `${refPointRect.width}px`,
 	};
 
 	const topPosition = useMemo(() => window.innerHeight - (refPointRect?.top ?? 0), [refPointRect]);
