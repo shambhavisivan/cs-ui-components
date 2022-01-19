@@ -4,6 +4,7 @@ export default {
 	data: [
 		{
 			name: 'variant',
+			link: '/cs-ui/alert#variants',
 			required: true,
 			customTypes: {
 				name: 'CSAlertVariant',

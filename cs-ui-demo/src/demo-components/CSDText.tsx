@@ -2,15 +2,18 @@ import React from 'react';
 import * as CSDH from '../demo-helpers';
 
 export interface CSDTextInterface {
-	children: string;
+	children: any;
 }
 
-const CSDText = ({ children }: CSDTextInterface) => {
-	return (
-		<p className="csd-text">
-			{CSDH.parseCode(children)}
-		</p>
-	);
-};
+const CSDText = ({ children }: CSDTextInterface) => (
+	<p className="csd-text">
+		{React.Children.map(children, (child: any) => {
+			if (typeof child === 'string') {
+				return CSDH.parseCode(child);
+			}
+			return child;
+		})}
+	</p>
+);
 
 export default CSDText;

@@ -27,7 +27,7 @@ const GettingStarted = () => (
 			<CSD.Text>Some of the key differences between the new CSForm (`cs-form-v2`) and the old CSForm (`cs-form`) are listed below:</CSD.Text>
 			<CSD.List>
 				<CSD.ListItem>Combination of form definition and data</CSD.ListItem>
-				<CSD.ListItem>Grouping fileds into sections</CSD.ListItem>
+				<CSD.ListItem>Grouping fields into sections</CSD.ListItem>
 				<CSD.ListItem>Defining fields width and position in the layout</CSD.ListItem>
 				<CSD.ListItem>`formSettings` prop deprecation</CSD.ListItem>
 				<CSD.ListItem>`Save` button support deprecation</CSD.ListItem>

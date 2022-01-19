@@ -4,6 +4,7 @@ import CSDContent from './CSDContent';
 import CSDCopyButton from './CSDCopyButton';
 import CSDHeader from './CSDHeader';
 import CSDHeading from './CSDHeading';
+import CSDLink from './CSDLink';
 import CSDList from './csd-list/CSDList';
 import CSDListItem from './csd-list/CSDListItem';
 import CSDPage from './CSDPage';
@@ -20,6 +21,7 @@ export {
 	CSDCopyButton as CopyButton,
 	CSDHeader as Header,
 	CSDHeading as Heading,
+	CSDLink as Link,
 	CSDList as List,
 	CSDListItem as ListItem,
 	CSDPage as Page,

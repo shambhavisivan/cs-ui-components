@@ -5,6 +5,7 @@ import { CSDataTable, CSTooltip, CSDataTableRowWithMetaInterface } from '@clouds
 
 import CSDHeading from './CSDHeading';
 import CSDSection from './CSDSection';
+import CSDLink from './CSDLink';
 
 export interface CSDTableProps {
 	name?: string;
@@ -27,6 +28,16 @@ const CSDTable = ({
 			'csd-table-section': section
 		}
 	);
+
+	const renderLink = (row: CSDataTableRowWithMetaInterface) => {
+		const link = row.data!.link;
+
+		if (link) {
+			return <CSDLink path={link}>{row.data!.name}</CSDLink>;
+		} else {
+			return <>{row.data!.name}</>;
+		}
+	};
 
 	const renderRequired = (row: CSDataTableRowWithMetaInterface) => {
 		const required = row.data!.required;
@@ -73,7 +84,8 @@ const CSDTable = ({
 				{
 					key: 'name',
 					header: type === 'props' ? 'Prop' : 'Attribute',
-					cellClassName: 'csd-table-name'
+					cellClassName: 'csd-table-name',
+					render: renderLink
 				}, {
 					key: 'required',
 					header: 'Required',

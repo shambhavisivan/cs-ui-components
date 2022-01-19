@@ -243,7 +243,9 @@ $lightVariables: (
 	--csd-spinner-black-bg: $cs-black,
 	--csd-image-black-bg: $cs-black,
 	--csd-divider-br: $cs-gray-medium-3,
-	--csd-transparent: transparent
+	--csd-transparent: transparent,
+
+	--csd-link-c: $cs-purple
 );
 
 /* Dark theme support */
@@ -423,7 +425,9 @@ $darkVariables: (
 	--csd-spinner-black-bg: $cs-black,
 	--csd-image-black-bg: $cs-black,
 	--csd-divider-br: $cs-gray-dark-3,
-	--csd-transparent: transparent
+	--csd-transparent: transparent,
+
+	--csd-link-c: $cs-mint
 );
 
 // Every variable that uses main color needs to be set in #root as well
