@@ -39,6 +39,8 @@
   * set `label` prop to be optional
 * CSInputNumber
   * added `locale` prop
+* CSLabel
+  * added `max-height` to label `cs-label-wrapper` class
 * CSList
   * fixed `self-select` option
 * CSModal
