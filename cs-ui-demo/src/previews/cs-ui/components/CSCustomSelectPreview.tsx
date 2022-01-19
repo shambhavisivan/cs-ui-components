@@ -378,6 +378,25 @@ class CSCustomSelectPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'readOnly',
+						variations: [
+							{
+								primaryVariants: 'readOnly={true}',
+								component: <CSCustomSelect
+									options={options}
+									label="Select department"
+									readOnly
+									selectedKeys={[1]}
+								/>,
+								code: `<CSCustomSelect
+									options={options}
+									label="Select department"
+									readOnly
+									selectedKeys={[1]}
+								/>`
+							}
+						]
+					}, {
 						propName: 'required',
 						variations: [
 							{
@@ -751,6 +770,11 @@ class CSCustomSelectPreview extends React.Component {
 						}],
 						default: `'bottom'`,
 						description: 'Determine the vertical position of the custom select dropdown content.'
+					}, {
+						name: 'readOnly',
+						types: 'boolean',
+						default: 'false',
+						description: 'Control whether to apply the readonly attribute.'
 					}, {
 						name: 'required',
 						types: 'boolean',

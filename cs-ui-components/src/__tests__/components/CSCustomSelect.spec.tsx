@@ -55,6 +55,11 @@ describe('<CSCustomSelect />', () => {
 		// gridCustomPopup
 		const customSelectDropdownWrapper = uut.find('.cs-custom-select-dropdown-wrapper');
 		expect(customSelectDropdownWrapper.find('.ag-custom-component-popup')).toHaveLength(0);
+		// readOnly
+		const readonlySelect = uut.find('.cs-custom-select-input-wrapper.cs-custom-select-read-only');
+		expect(readonlySelect).toHaveLength(0);
+		expect(customSelect.find('input').prop('aria-readonly')).toBeFalsy();
+		expect(uut.find('.cs-custom-select-input > input').props().readOnly).toBeFalsy();
 		// hidden
 		expect(customSelectWrapper.find('.cs-element-hidden')).toHaveLength(0);
 		// selection
@@ -317,6 +322,14 @@ describe('<CSCustomSelect />', () => {
 		const placeholderText = 'Enter text';
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} placeholder={placeholderText} />).dive();
 		expect(uut.find('.cs-custom-select-input > input').prop('placeholder')).toBe(placeholderText);
+	});
+
+	it('should set readOnly attribute', () => {
+		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} readOnly />).dive();
+		const customSelectInput = uut.find('.cs-custom-select-input-wrapper.cs-custom-select-read-only');
+		expect(customSelectInput.find('.cs-custom-select-input input').prop('aria-readonly')).toBeTruthy();
+		expect(customSelectInput.find('.cs-custom-select-input input').props().readOnly).toBeTruthy();
+		expect(customSelectInput).toHaveLength(1);
 	});
 
 	it('should apply position bottom', () => {

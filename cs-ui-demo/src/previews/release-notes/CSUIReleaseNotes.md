@@ -26,6 +26,7 @@
   * Limited stopPropagation to only enter and space keys
 * CSCustomSelect
   * <i>important</i> renamed the `actions` prop to `dropdownActions`
+  * added `readOnly` prop
   * added `errorTooltip` support
   * added `onDropdownClose` prop
   * added `actions` and `icons` support

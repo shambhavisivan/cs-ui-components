@@ -68,6 +68,21 @@
 				border-color: cvar(--cs-input-disabled-br);
 			}
 		}
+
+		&.cs-custom-select-read-only {
+			cursor: default;
+			pointer-events: none;
+			padding-left: 0;
+			border: none;
+
+			.cs-custom-select-items {
+				padding-left: 0;
+			}
+			// Temporary multiselect readonly fix
+			.cs-custom-select-input { 
+				position: absolute 
+			} 
+		}
 	}
 
 	.cs-custom-select-value-wrapper {
