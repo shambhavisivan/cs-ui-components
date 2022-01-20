@@ -135,7 +135,7 @@ const MainHeader: React.FC = () => {
 				/>
 				<CSImage
 					type={dimensions.width <= 1330 ? 'logomark' : 'logo'}
-					height={dimensions.width <= 1330 ? '2rem' : '2.25rem'}
+					height="2rem"
 					color={theme === Theme.Dark ? 'white' : 'purple'}
 					variant={theme === Theme.Dark ? 'initial' : dimensions.width <= 1330 ? 'reversed' : 'initial'}
 				/>
