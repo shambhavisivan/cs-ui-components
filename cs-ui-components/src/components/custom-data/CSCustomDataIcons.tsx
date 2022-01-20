@@ -3,7 +3,7 @@ import CSTooltip, { CSTooltipIconSize } from '../CSTooltip';
 import { CSCustomDataIconProps } from '../../util/CustomData';
 import CSIcon, { CSIconOrigin } from '../CSIcon';
 
-interface CSCustomDataIconsProps {
+export interface CSCustomDataIconsProps {
 	[key: string]: any;
 	icons: Array<CSCustomDataIconProps>;
 }

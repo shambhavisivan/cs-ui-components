@@ -21,10 +21,10 @@ import CSButton, {
 	CSButtonProps,
 } from './components/CSButton';
 import CSButtonGroup, { CSButtonGroupMargin, CSButtonGroupProps } from './components/CSButtonGroup';
-import CSCard from './components/card/CSCard';
-import CSCardBody from './components/card/CSCardBody';
-import CSCardFooter, { CSCardFooterAlign } from './components/card/CSCardFooter';
-import CSCardHeader from './components/card/CSCardHeader';
+import CSCard, { CSCardProps } from './components/card/CSCard';
+import CSCardBody, { CSCardBodyProps } from './components/card/CSCardBody';
+import CSCardFooter, { CSCardFooterAlign, CSCardFooterProps } from './components/card/CSCardFooter';
+import CSCardHeader, { CSCardHeaderProps } from './components/card/CSCardHeader';
 import CSCheckbox, {
 	CSCheckboxLabelPosition,
 	CSCheckboxVariant,
@@ -42,9 +42,9 @@ import CSCurrency, {
 	CSCurrencySign,
 	CSCurrencyProps,
 } from './components/CSCurrency';
-import CSCustomData from './components/custom-data/CSCustomData';
-import CSCustomDataActions from './components/custom-data/CSCustomDataActions';
-import CSCustomDataIcons from './components/custom-data/CSCustomDataIcons';
+import CSCustomData, { CSCustomDataProps } from './components/custom-data/CSCustomData';
+import CSCustomDataActions, { CSCustomDataActionsProps } from './components/custom-data/CSCustomDataActions';
+import CSCustomDataIcons, { CSCustomDataIconsProps } from './components/custom-data/CSCustomDataIcons';
 import {
 	CSCustomDataIcon,
 	CSCustomDataTooltip,
@@ -135,12 +135,17 @@ import CSProgressIndicatorItem from './components/progress-indicator/CSProgressI
 import CSRadio, { CSRadioVariant } from './components/radio/CSRadio';
 import CSRadioOption from './components/radio/CSRadioOption';
 import CSSection, { CSSectionErrorMsgType, CSSectionProps } from './components/CSSection';
-import CSSelect from './components/CSSelect';
+import CSSelect, { CSSelectProps } from './components/CSSelect';
 import CSSidebar, { CSSidebarOpensTo } from './components/sidebar/CSSidebar';
 import CSSidebarTab from './components/sidebar/CSSidebarTab';
-import CSSkipLink from './components/CSSkipLink';
-import CSSlider from './components/CSSlider';
-import CSSpinner, { CSSpinnerColor, CSSpinnerOverlay, CSSpinnerSize } from './components/CSSpinner';
+import CSSkipLink, { CSSkipLinkProps } from './components/CSSkipLink';
+import CSSlider, { CSSliderProps } from './components/CSSlider';
+import CSSpinner, {
+	CSSpinnerColor,
+	CSSpinnerOverlay,
+	CSSpinnerSize,
+	CSSpinnerProps,
+} from './components/CSSpinner';
 import CSTab, { CSTabStatus } from './components/tab/CSTab';
 import CSTabGroup, { CSTabGroupVariant } from './components/tab/CSTabGroup';
 import CSTable from './components/table/CSTable';
@@ -148,14 +153,16 @@ import CSTableBody from './components/table/CSTableBody';
 import CSTableCell from './components/table/CSTableCell';
 import CSTableHeader from './components/table/CSTableHeader';
 import CSTableRow from './components/table/CSTableRow';
-import CSTextarea from './components/CSTextarea';
-import CSToast, { CSToastVariant } from './components/CSToast';
-import CSToggle, { CSToggleLabelPosition } from './components/CSToggle';
+import CSTextarea, { CSTextareaProps } from './components/CSTextarea';
+import CSToast, { CSToastVariant, CSToastProps } from './components/CSToast';
+import CSToggle, { CSToggleLabelPosition, CSToggleProps } from './components/CSToggle';
 import CSTooltip, {
 	CSTooltipIconSize,
 	CSTooltipPosition,
 	CSTooltipStylePosition,
 	CSTooltipVariant,
+	CSTooltipContent,
+	CSTooltipProps,
 } from './components/CSTooltip';
 import CSTransfer, { CSTransferItemInterface, CSTransferVariant, CSTransferHelpText } from './components/transfer/CSTransfer';
 import CSTransferItem from './components/transfer/CSTransferItem';
@@ -203,10 +210,14 @@ export {
 	CSButtonWidth,
 	CSButtonProps,
 	CSCard,
+	CSCardProps,
 	CSCardBody,
+	CSCardBodyProps,
 	CSCardFooter,
+	CSCardFooterProps,
 	CSCardFooterAlign,
 	CSCardHeader,
+	CSCardHeaderProps,
 	CSCheckbox,
 	CSCheckboxLabelPosition,
 	CSCheckboxVariant,
@@ -222,8 +233,11 @@ export {
 	CSCurrencySign,
 	CSCurrencyProps,
 	CSCustomData,
+	CSCustomDataProps,
 	CSCustomDataActions,
+	CSCustomDataActionsProps,
 	CSCustomDataIcons,
+	CSCustomDataIconsProps,
 	CSCustomDataIcon,
 	CSCustomDataTooltip,
 	CSCustomDataIconProps,
@@ -331,15 +345,19 @@ export {
 	CSSectionErrorMsgType,
 	CSSectionProps,
 	CSSelect,
+	CSSelectProps,
 	CSSidebar,
 	CSSidebarOpensTo,
 	CSSidebarTab,
 	CSSkipLink,
+	CSSkipLinkProps,
 	CSSlider,
+	CSSliderProps,
 	CSSpinner,
 	CSSpinnerColor,
 	CSSpinnerOverlay,
 	CSSpinnerSize,
+	CSSpinnerProps,
 	CSTab,
 	CSTabGroup,
 	CSTabGroupVariant,
@@ -350,16 +368,21 @@ export {
 	CSTableHeader,
 	CSTableRow,
 	CSTextarea,
+	CSTextareaProps,
 	CSToast,
 	CSToastApi,
 	CSToastVariant,
+	CSToastProps,
 	CSToggle,
 	CSToggleLabelPosition,
+	CSToggleProps,
 	CSTooltip,
 	CSTooltipIconSize,
 	CSTooltipPosition,
 	CSTooltipStylePosition,
 	CSTooltipVariant,
+	CSTooltipContent,
+	CSTooltipProps,
 	CSTransfer,
 	CSTransferVariant,
 	CSTransferHelpText,

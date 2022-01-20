@@ -6,7 +6,7 @@ import { CSCustomDataIconProps, CSCustomDataActionProps, CSCustomDataMenuVariant
 import CSCustomDataActions from './CSCustomDataActions';
 import CSCustomDataIcons from './CSCustomDataIcons';
 
-interface CSCustomDataProps {
+export interface CSCustomDataProps {
 	[key: string]: any;
 	className?: string;
 	icons?: Array<CSCustomDataIconProps>;

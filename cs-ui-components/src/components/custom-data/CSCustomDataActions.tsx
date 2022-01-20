@@ -4,7 +4,7 @@ import { CSCustomDataActionProps } from '../../util/CustomData';
 import CSButton from '../CSButton';
 import { CSIconOrigin } from '../CSIcon';
 
-interface CSCustomDataActionsProps {
+export interface CSCustomDataActionsProps {
 	[key: string]: any;
 	actions: Array<CSCustomDataActionProps>;
 }
