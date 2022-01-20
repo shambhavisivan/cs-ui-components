@@ -9,6 +9,7 @@ import CSAlert, {
 	CSAlertStyleType,
 	CSAlertTextAlign,
 	CSAlertVariant,
+	CSAlertProps,
 } from './components/CSAlert';
 import CSButton, {
 	CSButtonIconPosition,
@@ -17,8 +18,9 @@ import CSButton, {
 	CSButtonType,
 	CSButtonWidth,
 	CSButtonRole,
+	CSButtonProps,
 } from './components/CSButton';
-import CSButtonGroup, { CSButtonGroupMargin } from './components/CSButtonGroup';
+import CSButtonGroup, { CSButtonGroupMargin, CSButtonGroupProps } from './components/CSButtonGroup';
 import CSCard from './components/card/CSCard';
 import CSCardBody from './components/card/CSCardBody';
 import CSCardFooter, { CSCardFooterAlign } from './components/card/CSCardFooter';
@@ -26,10 +28,12 @@ import CSCardHeader from './components/card/CSCardHeader';
 import CSCheckbox, {
 	CSCheckboxLabelPosition,
 	CSCheckboxVariant,
+	CSCheckboxProps,
 } from './components/CSCheckbox';
 import CSChip, {
 	CSChipVariant,
 	CSChipVariantStyle,
+	CSChipProps,
 } from './components/CSChip';
 import CSCurrency, {
 	CSCurrencyDisplay,
@@ -170,15 +174,18 @@ export {
 	CSAlertStyleType,
 	CSAlertTextAlign,
 	CSAlertVariant,
+	CSAlertProps,
 	CSButton,
 	CSButtonGroup,
 	CSButtonGroupMargin,
+	CSButtonGroupProps,
 	CSButtonIconPosition,
 	CSButtonRole,
 	CSButtonSize,
 	CSButtonStyle,
 	CSButtonType,
 	CSButtonWidth,
+	CSButtonProps,
 	CSCard,
 	CSCardBody,
 	CSCardFooter,
@@ -187,9 +194,11 @@ export {
 	CSCheckbox,
 	CSCheckboxLabelPosition,
 	CSCheckboxVariant,
+	CSCheckboxProps,
 	CSChip,
 	CSChipVariant,
 	CSChipVariantStyle,
+	CSChipProps,
 	CSCurrency,
 	CSCurrencyDisplay,
 	CSNotation,
