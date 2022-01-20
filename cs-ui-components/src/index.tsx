@@ -40,6 +40,7 @@ import CSCurrency, {
 	CSNotation,
 	CSSignDisplay,
 	CSCurrencySign,
+	CSCurrencyProps,
 } from './components/CSCurrency';
 import CSCustomData from './components/custom-data/CSCustomData';
 import CSCustomDataActions from './components/custom-data/CSCustomDataActions';
@@ -70,9 +71,12 @@ import CSDataTable, {
 	CSDataTableRowWithMetaInterface,
 	CSDataTableSelectionType,
 } from './components/data-table/CSDataTable';
-import CSDatepicker, { CSDatepickerDropdownMode } from './components/CSDatepicker';
-import CSDateTimePicker, { CSDateTimePickerDropdownMode } from './components/CSDateTimePicker';
-import CSDivider, { CSDividerVariant } from './components/CSDivider';
+import CSDatepicker, {
+	CSDatepickerDropdownMode,
+	CSDatepickerProps,
+} from './components/CSDatepicker';
+import CSDateTimePicker, { CSDateTimePickerDropdownMode, CSDateTimePickerProps } from './components/CSDateTimePicker';
+import CSDivider, { CSDividerVariant, CSDividerProps } from './components/CSDivider';
 import CSDropdown, {
 	CSDropdownAlign,
 	CSDropdownIconPosition,
@@ -82,7 +86,7 @@ import CSDropdown, {
 	CSDropdownStyle,
 	CSDropdownType,
 } from './components/dropdown/CSDropdown';
-import CSFieldErrorMsg, { CSFieldErrorMsgType } from './components/CSFieldErrorMsg';
+import CSFieldErrorMsg, { CSFieldErrorMsgType, CSFieldErrorMsgProps } from './components/CSFieldErrorMsg';
 import CSIcon, { CSIconOrigin } from './components/CSIcon';
 import CSImage, {
 	CSImageColor,
@@ -204,6 +208,7 @@ export {
 	CSNotation,
 	CSSignDisplay,
 	CSCurrencySign,
+	CSCurrencyProps,
 	CSCustomData,
 	CSCustomDataActions,
 	CSCustomDataIcons,
@@ -231,10 +236,13 @@ export {
 	CSDataTableSelectionType,
 	CSDatepicker,
 	CSDatepickerDropdownMode,
+	CSDatepickerProps,
 	CSDateTimePicker,
 	CSDateTimePickerDropdownMode,
+	CSDateTimePickerProps,
 	CSDivider,
 	CSDividerVariant,
+	CSDividerProps,
 	CSDropdown,
 	CSDropdownAlign,
 	CSDropdownIconPosition,
@@ -245,6 +253,7 @@ export {
 	CSDropdownType,
 	CSFieldErrorMsg,
 	CSFieldErrorMsgType,
+	CSFieldErrorMsgProps,
 	CSIcon,
 	CSIconOrigin,
 	CSImage,
