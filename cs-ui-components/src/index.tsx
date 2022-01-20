@@ -87,15 +87,20 @@ import CSDropdown, {
 	CSDropdownType,
 } from './components/dropdown/CSDropdown';
 import CSFieldErrorMsg, { CSFieldErrorMsgType, CSFieldErrorMsgProps } from './components/CSFieldErrorMsg';
-import CSIcon, { CSIconOrigin } from './components/CSIcon';
+import CSIcon, { CSIconOrigin, CSIconProps } from './components/CSIcon';
 import CSImage, {
 	CSImageColor,
 	CSImageType,
 	CSImageVariant,
+	CSImageProps,
 } from './components/CSImage';
-import CSInputFile from './components/CSInputFile';
-import CSInputNumber, { CSInputNumberNumberLocale, CSInputNumberLocaleStyle } from './components/CSInputNumber';
-import CSInputSearch from './components/CSInputSearch';
+import CSInputFile, { CSInputFileProps } from './components/CSInputFile';
+import CSInputNumber, {
+	CSInputNumberNumberLocale,
+	CSInputNumberLocaleStyle,
+	CSInputNumberProps,
+} from './components/CSInputNumber';
+import CSInputSearch, { CSInputSearchIconPosition, CSInputSearchProps } from './components/CSInputSearch';
 import CSInputText from './components/CSInputText';
 import CSLabel from './components/CSLabel';
 import CSList, { CSListSize, CSListVariant } from './components/list/CSList';
@@ -256,15 +261,21 @@ export {
 	CSFieldErrorMsgProps,
 	CSIcon,
 	CSIconOrigin,
+	CSIconProps,
 	CSImage,
 	CSImageColor,
 	CSImageType,
 	CSImageVariant,
+	CSImageProps,
 	CSInputFile,
+	CSInputFileProps,
 	CSInputNumber,
 	CSInputNumberNumberLocale,
 	CSInputNumberLocaleStyle,
+	CSInputNumberProps,
 	CSInputSearch,
+	CSInputSearchIconPosition,
+	CSInputSearchProps,
 	CSInputText,
 	CSLabel,
 	CSList,
