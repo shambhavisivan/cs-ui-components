@@ -12,7 +12,6 @@ export type CSDataTableCellClassName = string | ((row: CSDataTableRowWithMetaInt
 export type CSDataTableColumnAlign = 'left' | 'center' | 'right';
 export type CSDataTableRender = (row: CSDataTableRowWithMetaInterface) => CSDataTableElement;
 export type CSDataTableSelectionType = 'row' | 'checkbox';
-export type CSDataTableCollapseButtonToggle = 'all' | 'children' | 'subsection';
 
 export interface CSDataTableRowMetaInterface {
 	level: number;

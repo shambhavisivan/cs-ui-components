@@ -57,6 +57,7 @@ import CSCustomSelect, {
 	CSCustomSelectDropdownPositionType,
 	CSCustomSelectOptionInterface,
 	CSCustomSelectSearchByType,
+	CSCustomSelectProps,
 } from './components/custom-select/CSCustomSelect';
 import CSDataTable, {
 	CSDataTableCellClassName,
@@ -70,6 +71,7 @@ import CSDataTable, {
 	CSDataTableRowMetaInterface,
 	CSDataTableRowWithMetaInterface,
 	CSDataTableSelectionType,
+	CSDataTableProps,
 } from './components/data-table/CSDataTable';
 import CSDatepicker, { CSDatepickerDropdownMode, CSDatepickerProps } from './components/CSDatepicker';
 import CSDateTimePicker, { CSDateTimePickerDropdownMode, CSDateTimePickerProps } from './components/CSDateTimePicker';
@@ -82,6 +84,7 @@ import CSDropdown, {
 	CSDropdownSize,
 	CSDropdownStyle,
 	CSDropdownType,
+	CSDropdownProps,
 } from './components/dropdown/CSDropdown';
 import CSFieldErrorMsg, { CSFieldErrorMsgType, CSFieldErrorMsgProps } from './components/CSFieldErrorMsg';
 import CSIcon, { CSIconOrigin, CSIconProps } from './components/CSIcon';
@@ -100,9 +103,13 @@ import CSInputNumber, {
 import CSInputSearch, { CSInputSearchIconPosition, CSInputSearchProps } from './components/CSInputSearch';
 import CSInputText, { CSInputTextProps } from './components/CSInputText';
 import CSLabel, { CSLabelProps } from './components/CSLabel';
-import CSList, { CSListSize, CSListVariant } from './components/list/CSList';
-import CSListGroup, { CSListGroupCheckboxOption } from './components/list/CSListGroup';
-import CSListItem from './components/list/CSListItem';
+import CSList, {
+	CSListSize,
+	CSListVariant,
+	CSListProps,
+} from './components/list/CSList';
+import CSListGroup, { CSListGroupCheckboxOption, CSListGroupProps } from './components/list/CSListGroup';
+import CSListItem, { CSListItemProps } from './components/list/CSListItem';
 import CSLookup, {
 	CSLookupDropdownAlign,
 	CSLookupDropdownPosition,
@@ -113,10 +120,10 @@ import CSLookup, {
 	CSLookupServerProps,
 	CSLookupClientProps,
 } from './components/CSLookup';
-import CSMainHeader, { CSMainHeaderColor } from './components/main-header/CSMainHeader';
-import CSMainHeaderIcon from './components/main-header/CSMainHeaderIcon';
-import CSMainHeaderLeft from './components/main-header/CSMainHeaderLeft';
-import CSMainHeaderRight from './components/main-header/CSMainHeaderRight';
+import CSMainHeader, { CSMainHeaderColor, CSMainHeaderProps } from './components/main-header/CSMainHeader';
+import CSMainHeaderIcon, { CSMainHeaderIconProps } from './components/main-header/CSMainHeaderIcon';
+import CSMainHeaderLeft, { CSMainHeaderLeftProps } from './components/main-header/CSMainHeaderLeft';
+import CSMainHeaderRight, { CSMainHeaderRightProps } from './components/main-header/CSMainHeaderRight';
 import CSModal, { CSModalSize } from './components/modal/CSModal';
 import CSModalBody from './components/modal/CSModalBody';
 import CSModalFooter, { CSModalFooterAlign } from './components/modal/CSModalFooter';
@@ -244,6 +251,7 @@ export {
 	CSCustomDataActionProps,
 	CSCustomDataMenuVariant,
 	CSCustomSelect,
+	CSCustomSelectProps,
 	CSCustomSelectDropdownAlignType,
 	CSCustomSelectDropdownPositionType,
 	CSCustomSelectOptionInterface,
@@ -260,6 +268,7 @@ export {
 	CSDataTableRowWithMetaInterface,
 	CSDataTableRowMetaInterface,
 	CSDataTableSelectionType,
+	CSDataTableProps,
 	CSDatepicker,
 	CSDatepickerDropdownMode,
 	CSDatepickerProps,
@@ -277,6 +286,7 @@ export {
 	CSDropdownSize,
 	CSDropdownStyle,
 	CSDropdownType,
+	CSDropdownProps,
 	CSFieldErrorMsg,
 	CSFieldErrorMsgType,
 	CSFieldErrorMsgProps,
@@ -302,9 +312,12 @@ export {
 	CSLabel,
 	CSLabelProps,
 	CSList,
+	CSListProps,
 	CSListGroup,
+	CSListGroupProps,
 	CSListGroupCheckboxOption,
 	CSListItem,
+	CSListItemProps,
 	CSListSize,
 	CSListVariant,
 	CSLookup,
@@ -317,10 +330,14 @@ export {
 	CSLookupServerProps,
 	CSLookupClientProps,
 	CSMainHeader,
+	CSMainHeaderProps,
 	CSMainHeaderColor,
 	CSMainHeaderIcon,
+	CSMainHeaderIconProps,
 	CSMainHeaderLeft,
+	CSMainHeaderLeftProps,
 	CSMainHeaderRight,
+	CSMainHeaderRightProps,
 	CSModal,
 	CSModalBody,
 	CSModalFooter,
