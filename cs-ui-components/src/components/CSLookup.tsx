@@ -19,7 +19,7 @@ import KeyCode from '../util/KeyCode';
 export type CSLookupDropdownAlign = 'left' | 'right';
 export type CSLookupDropdownPosition = 'top' | 'bottom';
 
-interface CSLookupCommonProps {
+export interface CSLookupCommonProps {
 	columns: Array<CSDataTableColumnInterface>;
 	actions?: Array<CSCustomDataActionProps>;
 	align?: CSLookupDropdownAlign;
@@ -57,12 +57,12 @@ interface CSLookupCommonProps {
 	[key: string]: any;
 }
 
-interface CSLookupFetchResult {
+export interface CSLookupFetchResult {
 	records: Array<CSDataTableRowInterface>;
 	moreRecords: boolean;
 }
 
-interface CSLookupServerProps {
+export interface CSLookupServerProps {
 	fetchOptions: (searchTerm: string, pageSize: number, pageNo: number) => Promise<CSLookupFetchResult>;
 	infiniteScroll?: boolean;
 	minTermLength?: number;
@@ -70,7 +70,7 @@ interface CSLookupServerProps {
 	pageSize: number;
 }
 
-interface CSLookupClientProps {
+export interface CSLookupClientProps {
 	loading?: boolean;
 	options: Array<CSDataTableRowInterface>;
 	mode: 'client';
@@ -79,7 +79,7 @@ interface CSLookupClientProps {
 
 export type CSLookupProps = CSLookupCommonProps & (CSLookupClientProps | CSLookupServerProps);
 
-type CSLookupFetchingMode = 'after-search' | 'after-scroll' | undefined;
+export type CSLookupFetchingMode = 'after-search' | 'after-scroll' | undefined;
 
 export interface CSLookupState {
 	dropdownVisible: boolean;

@@ -71,10 +71,7 @@ import CSDataTable, {
 	CSDataTableRowWithMetaInterface,
 	CSDataTableSelectionType,
 } from './components/data-table/CSDataTable';
-import CSDatepicker, {
-	CSDatepickerDropdownMode,
-	CSDatepickerProps,
-} from './components/CSDatepicker';
+import CSDatepicker, { CSDatepickerDropdownMode, CSDatepickerProps } from './components/CSDatepicker';
 import CSDateTimePicker, { CSDateTimePickerDropdownMode, CSDateTimePickerProps } from './components/CSDateTimePicker';
 import CSDivider, { CSDividerVariant, CSDividerProps } from './components/CSDivider';
 import CSDropdown, {
@@ -101,14 +98,20 @@ import CSInputNumber, {
 	CSInputNumberProps,
 } from './components/CSInputNumber';
 import CSInputSearch, { CSInputSearchIconPosition, CSInputSearchProps } from './components/CSInputSearch';
-import CSInputText from './components/CSInputText';
-import CSLabel from './components/CSLabel';
+import CSInputText, { CSInputTextProps } from './components/CSInputText';
+import CSLabel, { CSLabelProps } from './components/CSLabel';
 import CSList, { CSListSize, CSListVariant } from './components/list/CSList';
 import CSListGroup, { CSListGroupCheckboxOption } from './components/list/CSListGroup';
 import CSListItem from './components/list/CSListItem';
 import CSLookup, {
 	CSLookupDropdownAlign,
 	CSLookupDropdownPosition,
+	CSLookupFetchingMode,
+	CSLookupFetchResult,
+	CSLookupProps,
+	CSLookupCommonProps,
+	CSLookupServerProps,
+	CSLookupClientProps,
 } from './components/CSLookup';
 import CSMainHeader, { CSMainHeaderColor } from './components/main-header/CSMainHeader';
 import CSMainHeaderIcon from './components/main-header/CSMainHeaderIcon';
@@ -122,12 +125,16 @@ import CSPagination from './components/pagination/CSPagination';
 import CSPaginationWrapper from './components/pagination/CSPaginationWrapper';
 import CSPath from './components/path/CSPath';
 import CSPathItem, { CSPathItemStatus } from './components/path/CSPathItem';
-import CSProgressBar, { CSProgressBarStatus, CSProgressBarThickness } from './components/CSProgressBar';
+import CSProgressBar, {
+	CSProgressBarStatus,
+	CSProgressBarThickness,
+	CSProgressBarProps,
+} from './components/CSProgressBar';
 import CSProgressIndicator from './components/progress-indicator/CSProgressIndicator';
 import CSProgressIndicatorItem from './components/progress-indicator/CSProgressIndicatorItem';
 import CSRadio, { CSRadioVariant } from './components/radio/CSRadio';
 import CSRadioOption from './components/radio/CSRadioOption';
-import CSSection, { CSSectionErrorMsgType } from './components/CSSection';
+import CSSection, { CSSectionErrorMsgType, CSSectionProps } from './components/CSSection';
 import CSSelect from './components/CSSelect';
 import CSSidebar, { CSSidebarOpensTo } from './components/sidebar/CSSidebar';
 import CSSidebarTab from './components/sidebar/CSSidebarTab';
@@ -277,7 +284,9 @@ export {
 	CSInputSearchIconPosition,
 	CSInputSearchProps,
 	CSInputText,
+	CSInputTextProps,
 	CSLabel,
+	CSLabelProps,
 	CSList,
 	CSListGroup,
 	CSListGroupCheckboxOption,
@@ -287,6 +296,12 @@ export {
 	CSLookup,
 	CSLookupDropdownAlign,
 	CSLookupDropdownPosition,
+	CSLookupFetchResult,
+	CSLookupFetchingMode,
+	CSLookupProps,
+	CSLookupCommonProps,
+	CSLookupServerProps,
+	CSLookupClientProps,
 	CSMainHeader,
 	CSMainHeaderColor,
 	CSMainHeaderIcon,
@@ -306,6 +321,7 @@ export {
 	CSProgressBar,
 	CSProgressBarStatus,
 	CSProgressBarThickness,
+	CSProgressBarProps,
 	CSProgressIndicator,
 	CSProgressIndicatorItem,
 	CSRadio,
@@ -313,6 +329,7 @@ export {
 	CSRadioVariant,
 	CSSection,
 	CSSectionErrorMsgType,
+	CSSectionProps,
 	CSSelect,
 	CSSidebar,
 	CSSidebarOpensTo,
