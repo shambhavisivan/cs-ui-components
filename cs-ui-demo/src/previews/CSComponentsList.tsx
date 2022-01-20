@@ -23,7 +23,7 @@ import CSInputSearchPreview from './cs-ui/components/CSInputSearchPreview';
 import CSInputTextPreview from './cs-ui/components/CSInputTextPreview';
 import CSLabelPreview from './cs-ui/components/CSLabelPreview';
 import CSListPreview from './cs-ui/components/CSListPreview';
-import CSLookupPreview from './cs-ui/components/CSLookupPreview';
+import CSLookupPreview from './cs-ui/components/cs-lookup/CSLookupPreview';
 import CSMainHeaderPreview from './cs-ui/components/CSMainHeaderPreview';
 import CSModalPreview from './cs-ui/components/CSModalPreview';
 import CSPaginationPreview from './cs-ui/components/CSPaginationPreview';
