@@ -26,7 +26,7 @@ import CSListPreview from './cs-ui/components/CSListPreview';
 import CSLookupPreview from './cs-ui/components/cs-lookup/CSLookupPreview';
 import CSMainHeaderPreview from './cs-ui/components/CSMainHeaderPreview';
 import CSModalPreview from './cs-ui/components/CSModalPreview';
-import CSPaginationPreview from './cs-ui/components/CSPaginationPreview';
+// import CSPaginationPreview from './cs-ui/components/CSPaginationPreview';
 import CSPathPreview from './cs-ui/components/CSPathPreview';
 import CSProgressBarPreview from './cs-ui/components/CSProgressBarPreview';
 import CSProgressIndicatorPreview from './cs-ui/components/CSProgressIndicatorPreview';
@@ -144,10 +144,12 @@ class CSComponentsList extends React.Component {
 			}, {
 				name: 'Modal',
 				component: CSModalPreview
-			}, {
-				name: 'Pagination',
-				component: CSPaginationPreview
-			}, {
+			},
+			// {
+			// 	name: 'Pagination',
+			// 	component: CSPaginationPreview
+			// },
+			{
 				name: 'Path',
 				component: CSPathPreview
 			}, {
