@@ -124,23 +124,23 @@ import CSMainHeader, { CSMainHeaderColor, CSMainHeaderProps } from './components
 import CSMainHeaderIcon, { CSMainHeaderIconProps } from './components/main-header/CSMainHeaderIcon';
 import CSMainHeaderLeft, { CSMainHeaderLeftProps } from './components/main-header/CSMainHeaderLeft';
 import CSMainHeaderRight, { CSMainHeaderRightProps } from './components/main-header/CSMainHeaderRight';
-import CSModal, { CSModalSize } from './components/modal/CSModal';
-import CSModalBody from './components/modal/CSModalBody';
-import CSModalFooter, { CSModalFooterAlign } from './components/modal/CSModalFooter';
-import CSModalHeader from './components/modal/CSModalHeader';
-import CSPagination from './components/pagination/CSPagination';
-import CSPaginationWrapper from './components/pagination/CSPaginationWrapper';
-import CSPath from './components/path/CSPath';
-import CSPathItem, { CSPathItemStatus } from './components/path/CSPathItem';
+import CSModal, { CSModalSize, CSModalProps } from './components/modal/CSModal';
+import CSModalBody, { CSModalBodyProps } from './components/modal/CSModalBody';
+import CSModalFooter, { CSModalFooterAlign, CSModalFooterProps } from './components/modal/CSModalFooter';
+import CSModalHeader, { CSModalHeaderProps } from './components/modal/CSModalHeader';
+import CSPagination, { CSPaginationProps } from './components/pagination/CSPagination';
+import CSPaginationWrapper, { CSPaginationWrapperProps } from './components/pagination/CSPaginationWrapper';
+import CSPath, { CSPathProps } from './components/path/CSPath';
+import CSPathItem, { CSPathItemStatus, CSPathItemProps } from './components/path/CSPathItem';
 import CSProgressBar, {
 	CSProgressBarStatus,
 	CSProgressBarThickness,
 	CSProgressBarProps,
 } from './components/CSProgressBar';
-import CSProgressIndicator from './components/progress-indicator/CSProgressIndicator';
-import CSProgressIndicatorItem from './components/progress-indicator/CSProgressIndicatorItem';
-import CSRadio, { CSRadioVariant } from './components/radio/CSRadio';
-import CSRadioOption from './components/radio/CSRadioOption';
+import CSProgressIndicator, { CSProgressIndicatorProps } from './components/progress-indicator/CSProgressIndicator';
+import CSProgressIndicatorItem, { CSProgressIndicatorItemStatus, CSProgressIndicatorItemProps } from './components/progress-indicator/CSProgressIndicatorItem';
+import CSRadio, { CSRadioVariant, CSRadioProps } from './components/radio/CSRadio';
+import CSRadioOption, { CSRadioOptionProps } from './components/radio/CSRadioOption';
 import CSSection, { CSSectionErrorMsgType, CSSectionProps } from './components/CSSection';
 import CSSelect, { CSSelectProps } from './components/CSSelect';
 import CSSidebar, { CSSidebarOpensTo } from './components/sidebar/CSSidebar';
@@ -339,24 +339,37 @@ export {
 	CSMainHeaderRight,
 	CSMainHeaderRightProps,
 	CSModal,
+	CSModalProps,
 	CSModalBody,
+	CSModalBodyProps,
 	CSModalFooter,
 	CSModalFooterAlign,
+	CSModalFooterProps,
 	CSModalHeader,
+	CSModalHeaderProps,
 	CSModalSize,
 	CSPagination,
+	CSPaginationProps,
 	CSPaginationWrapper,
+	CSPaginationWrapperProps,
 	CSPath,
+	CSPathProps,
 	CSPathItem,
+	CSPathItemProps,
 	CSPathItemStatus,
 	CSProgressBar,
 	CSProgressBarStatus,
 	CSProgressBarThickness,
 	CSProgressBarProps,
 	CSProgressIndicator,
+	CSProgressIndicatorProps,
 	CSProgressIndicatorItem,
+	CSProgressIndicatorItemStatus,
+	CSProgressIndicatorItemProps,
 	CSRadio,
+	CSRadioProps,
 	CSRadioOption,
+	CSRadioOptionProps,
 	CSRadioVariant,
 	CSSection,
 	CSSectionErrorMsgType,
