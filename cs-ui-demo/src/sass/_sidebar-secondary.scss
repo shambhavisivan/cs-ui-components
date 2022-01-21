@@ -88,10 +88,10 @@
 
 					&.active {
 						padding-left: calc(1.75rem - 2px);
-						@include sbg(--csd-shadow-light);
+						background-color: var(--csd-sidebar-link-active-bg);
 
 						&:hover {
-							@include sbg(--csd-shadow-medium);
+							background-color: var(--csd-sidebar-link-hover-bg);
 						}
 					}
 				}
@@ -148,31 +148,31 @@
 
 			&:first-child {
 				&::before {
-					@include sbg(--csd-shadow-light);
+					@include sbg(--csd-secondary-sidebar-first-link-bg);
 				}
 
 				&:hover::before {
-					@include sbg(--csd-shadow-light-hover);
+					@include sbg(--csd-secondary-sidebar-first-link-hover-bg);
 				}
 			}
 
 			&:nth-child(2) {
 				&::before {
-					@include sbg(--csd-shadow-medium);
+					@include sbg(--csd-secondary-sidebar-second-link-bg);
 				}
 
 				&:hover::before {
-					@include sbg(--csd-shadow-medium-hover);
+					@include sbg(--csd-secondary-sidebar-second-link-hover-bg);
 				}
 			}
 
 			&:nth-child(3) {
 				&::before {
-					@include sbg(--csd-shadow-medium-dark);
+					@include sbg(--csd-secondary-sidebar-third-link-bg);
 				}
 
 				&:hover::before {
-					@include sbg(--csd-shadow-medium-dark-hover);
+					@include sbg(--csd-secondary-sidebar-third-link-hover-bg);
 				}
 			}
 
@@ -187,51 +187,6 @@
 				pointer-events: none;
 			}
 		}
-	}
-
-	&.accessibility-sidebar {
-		margin-inline-start: 0.5rem;
-	}
-
-	&.release-notes-sidebar,
-	&.accessibility-sidebar {
-
-		input {
-			padding: 0.125rem 3rem 0;
-
-			+ .cs-btn {
-				right: 1rem;
-			}
-		}
-	}
-
-	&.release-notes-sidebar,
-	&.accessibility-sidebar,
-	&.getting-started-sidebar {
-		.prop-list .prop-group .prop-name {
-			padding-inline-start: 0;
-
-			a {
-				border: none;
-				font-weight: 400;
-				padding-inline: 1.25rem
-			}
-
-			&.active {
-				padding: unset;
-
-				a {
-					border: none;
-					font-weight: 700;
-					@include sbg(--csd-shadow-light);
-				}
-			}
-		}
-	}
-
-	&.getting-started-sidebar .prop-list .prop-group .prop-name.active a {
-		font-weight: 400;
-		@include sbg(--csd-sidebar-active-bg);
 	}
 
 	&.sidebar-black {
@@ -302,7 +257,7 @@
 					@include sbg(--csd-secondary-sidebar-bg);
 
 					&:hover {
-						@include sbg(--csd-secondary-sidebar-hover-bg);
+						background-color: var(--csd-sidebar-link-hover-bg);
 					}
 				}
 			}
@@ -311,7 +266,7 @@
 		.prop-group .prop-name,
 		.prop-group .prop-variant {
 			&:hover {
-				@include sbg(--csd-secondary-sidebar-hover-bg);
+				background-color: var(--csd-sidebar-link-hover-bg);
 			}
 
 			a {

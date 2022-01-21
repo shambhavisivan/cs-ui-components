@@ -144,12 +144,11 @@
 			}
 
 			&.csd-sidebar-list-item-active {
-				border-left-color: rgba(255, 255, 255, 0.5);
-				background-color: var(--csd-shadow-light);
+				background-color: var(--csd-sidebar-link-active-bg);
 			}
 
 			&:hover {
-				background-color: var(--csd-shadow-medium);
+				background-color: var(--csd-sidebar-link-hover-bg);
 			}
 		}
 	}
@@ -167,11 +166,11 @@
 
 		.csd-sidebar-list-item a {
 			&.csd-sidebar-list-item-active {
-				background-color: var(--csd-shadow-medium);
+				background-color: var(--csd-sidebar-link-active-bg);
 			}
 
 			&:hover {
-				background-color: var(--csd-shadow-dark);
+				background-color: var(--csd-sidebar-link-hover-bg);
 			}
 		}
 	}
@@ -195,7 +194,7 @@
 	}
 
 	&::before {
-		background: var(--csd-shadow-medium) !important;
+		background-color: var(--csd-sidebar-link-hover-bg) !important;
 	}
 
 	&.csd-sidebar-toggle-closed {
@@ -237,10 +236,14 @@
 
 	a {
 		padding-left: calc(0.75rem + 1px);
+
+		&.csd-sidebar-list-item-active {
+			border-left-color: var(--csd-sidebar-link-active-br);
+		}
 	}
 
 	a:not(.csd-sidebar-list-item-active) {
 		padding-left: 1rem;
-		border-left: 1px solid rgba(255, 255, 255, 0.25);
+		border-left: 1px solid var(--csd-sidebar-link-br);
 	}
 }
