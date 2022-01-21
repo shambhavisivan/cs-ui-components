@@ -43,6 +43,11 @@ export default {
 			},
 			description: 'Set the header title.'
 		}, {
+			name: 'title',
+			default: 'false',
+			types: 'boolean',
+			description: 'Determine whether a column\'s cells should each have a title based on their content.'
+		}, {
 			name: 'width',
 			types: 'string',
 			description: 'Define column width. This overrides the grow attribute.'

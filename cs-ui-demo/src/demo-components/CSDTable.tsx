@@ -85,6 +85,7 @@ const CSDTable = ({
 					key: 'name',
 					header: type === 'props' ? 'Prop' : 'Attribute',
 					cellClassName: 'csd-table-name',
+					title: true,
 					render: renderLink
 				}, {
 					key: 'required',

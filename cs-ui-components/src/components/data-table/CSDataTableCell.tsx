@@ -28,6 +28,7 @@ const CSDataTableCell = ({
 		columnClassName,
 		grow,
 		render,
+		title,
 		width,
 		wrap,
 	} = column;
@@ -63,7 +64,7 @@ const CSDataTableCell = ({
 			style={tableColumnStyles}
 		>
 			{!columnIndex && expandButton()}
-			<div className="cs-data-table-truncate">
+			<div className="cs-data-table-truncate" title={title ? row.data?.[key] : undefined}>
 				{render?.({ ...row, meta: rowMeta }) || row.data?.[key]}
 			</div>
 		</div>

@@ -18,6 +18,7 @@
   * changed classes with `.cs-button` prefix to `.cs-btn`
 * CSDataTable
   * <i>important</i> flipped the default value for the `defaultCollapsed` prop to `true`
+  * added `title` column attribute
 * CSCard
   * renamed `cs-card-button` class to `cs-card-toggle-btn` in `CSCardHeader`
   * renamed `showBorder` prop to `hideBorder` and reversed logic in `CSCardHeader`
