@@ -54,6 +54,8 @@ const CSDHeader = ({
 						name="Playground"
 						active={activeTab === 'playground'}
 						routerLink={<Link to={`/${routePrefix}/playground`}/>}
+						tabIcon="recipe"
+						title="Experimental Feature"
 					/>
 				)}
 			</CSTabGroup>

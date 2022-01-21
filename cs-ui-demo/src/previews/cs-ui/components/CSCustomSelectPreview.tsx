@@ -32,10 +32,6 @@ class CSCustomSelectPreview extends React.Component {
 	getDoc = () => ({
 		name: 'Custom Select',
 		usage: 'Select element presents a menu of options.',
-		alerts: {
-			variant: 'warning',
-			text: 'This component is under construction and should not be used.'
-		},
 		accessible: 'yes',
 		components: [
 			{

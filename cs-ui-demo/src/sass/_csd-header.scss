@@ -42,6 +42,17 @@
 				.cs-tab {
 					height: auto;
 					padding: 1rem 1rem;
+
+					.cs-icon {
+						height: 1rem;
+						width: 1rem;
+						margin-block-start: -0.25rem;
+						fill: var(--csd-header-tab-icon-c);
+
+						+ .cs-tab-name {
+							margin-inline-start: 0.25rem;
+						}
+					}
 				}
 
 				.cs-tab:hover::after {
