@@ -143,8 +143,8 @@ import CSRadio, { CSRadioVariant, CSRadioProps } from './components/radio/CSRadi
 import CSRadioOption, { CSRadioOptionProps } from './components/radio/CSRadioOption';
 import CSSection, { CSSectionErrorMsgType, CSSectionProps } from './components/CSSection';
 import CSSelect, { CSSelectProps } from './components/CSSelect';
-import CSSidebar, { CSSidebarOpensTo } from './components/sidebar/CSSidebar';
-import CSSidebarTab from './components/sidebar/CSSidebarTab';
+import CSSidebar, { CSSidebarOpensTo, CSSidebarProps } from './components/sidebar/CSSidebar';
+import CSSidebarTab, { CSSidebarTabIconOrigin, CSSidebarTabProps } from './components/sidebar/CSSidebarTab';
 import CSSkipLink, { CSSkipLinkProps } from './components/CSSkipLink';
 import CSSlider, { CSSliderProps } from './components/CSSlider';
 import CSSpinner, {
@@ -153,13 +153,13 @@ import CSSpinner, {
 	CSSpinnerSize,
 	CSSpinnerProps,
 } from './components/CSSpinner';
-import CSTab, { CSTabStatus } from './components/tab/CSTab';
-import CSTabGroup, { CSTabGroupVariant } from './components/tab/CSTabGroup';
-import CSTable from './components/table/CSTable';
-import CSTableBody from './components/table/CSTableBody';
-import CSTableCell from './components/table/CSTableCell';
-import CSTableHeader from './components/table/CSTableHeader';
-import CSTableRow from './components/table/CSTableRow';
+import CSTab, { CSTabStatus, CSTabProps } from './components/tab/CSTab';
+import CSTabGroup, { CSTabGroupVariant, CSTabGroupProps } from './components/tab/CSTabGroup';
+import CSTable, { CSTableProps } from './components/table/CSTable';
+import CSTableBody, { CSTableBodyProps } from './components/table/CSTableBody';
+import CSTableCell, { CSTableCellProps } from './components/table/CSTableCell';
+import CSTableHeader, { CSTableHeaderProps } from './components/table/CSTableHeader';
+import CSTableRow, { CSTableRowProps } from './components/table/CSTableRow';
 import CSTextarea, { CSTextareaProps } from './components/CSTextarea';
 import CSToast, { CSToastVariant, CSToastProps } from './components/CSToast';
 import CSToggle, { CSToggleLabelPosition, CSToggleProps } from './components/CSToggle';
@@ -171,11 +171,20 @@ import CSTooltip, {
 	CSTooltipContent,
 	CSTooltipProps,
 } from './components/CSTooltip';
-import CSTransfer, { CSTransferItemInterface, CSTransferVariant, CSTransferHelpText } from './components/transfer/CSTransfer';
-import CSTransferItem from './components/transfer/CSTransferItem';
-import CSTransferList, { CSTransferListType } from './components/transfer/CSTransferList';
-import CSTree, { CSTreeItemInterface, CSTreeItemMetaInterface, CSTreeItemWithMetaInterface, CSTreeElementType, CSTreeRenderType } from './components/tree/CSTree';
-
+import CSTransfer, {
+	CSTransferItemInterface,
+	CSTransferVariant,
+	CSTransferHelpText,
+	CSTransferProps,
+} from './components/transfer/CSTransfer';
+import CSTree, {
+	CSTreeItemInterface,
+	CSTreeItemMetaInterface,
+	CSTreeItemWithMetaInterface,
+	CSTreeElementType,
+	CSTreeRenderType,
+	CSTreeProps,
+} from './components/tree/CSTree';
 import './sass/style.scss';
 
 import CSToastApi from './api/CSToastAPI';
@@ -377,8 +386,11 @@ export {
 	CSSelect,
 	CSSelectProps,
 	CSSidebar,
+	CSSidebarProps,
 	CSSidebarOpensTo,
 	CSSidebarTab,
+	CSSidebarTabIconOrigin,
+	CSSidebarTabProps,
 	CSSkipLink,
 	CSSkipLinkProps,
 	CSSlider,
@@ -389,14 +401,21 @@ export {
 	CSSpinnerSize,
 	CSSpinnerProps,
 	CSTab,
+	CSTabProps,
 	CSTabGroup,
+	CSTabGroupProps,
 	CSTabGroupVariant,
 	CSTabStatus,
 	CSTable,
+	CSTableProps,
 	CSTableBody,
+	CSTableBodyProps,
 	CSTableCell,
+	CSTableCellProps,
 	CSTableHeader,
+	CSTableHeaderProps,
 	CSTableRow,
+	CSTableRowProps,
 	CSTextarea,
 	CSTextareaProps,
 	CSToast,
@@ -414,16 +433,15 @@ export {
 	CSTooltipContent,
 	CSTooltipProps,
 	CSTransfer,
+	CSTransferProps,
 	CSTransferVariant,
 	CSTransferHelpText,
-	CSTransferItem,
 	CSTransferItemInterface,
-	CSTransferList,
-	CSTransferListType,
 	CSTree,
 	CSTreeItemInterface,
 	CSTreeItemMetaInterface,
 	CSTreeItemWithMetaInterface,
 	CSTreeElementType,
 	CSTreeRenderType,
+	CSTreeProps,
 };
