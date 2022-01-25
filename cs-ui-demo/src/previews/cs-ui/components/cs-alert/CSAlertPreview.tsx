@@ -16,7 +16,7 @@ const CSAlertPreview = () => (
 	>
 		<CSD.Section>
 			<CSD.Heading level={2}>Variants</CSD.Heading>
-			<CSD.Text>To achieve proper <CSD.Link path="/cs-ui/alert#styling">styling</CSD.Link> and convey the context of an alert message, use one of the required variants.</CSD.Text>
+			<CSD.Text>To achieve proper styling and convey the context of an alert message, use one of the required variants.</CSD.Text>
 			<CSD.Text>Each variant will apply appropriate styling and a default contextual icon.</CSD.Text>
 			<CSD.Preview
 				orientation="vertical"

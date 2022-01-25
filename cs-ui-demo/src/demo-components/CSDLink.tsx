@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 import { HashLink } from 'react-router-hash-link';
 
 export type CSDLinkType = 'internal' | 'external';
