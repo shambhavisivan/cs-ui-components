@@ -44,13 +44,13 @@ export class CSGridLookupEditor
 			PaginatedLookupProps,
 		CSGridLookupEditorState
 	>
-	implements CSGridCellEditor
-{
+	implements CSGridCellEditor {
 	multiSelect: boolean = false;
 
 	gridApi: GridApi;
 	lookupInputRef: HTMLInputElement;
 	private divRef: React.RefObject<HTMLDivElement>;
+	private mounted: boolean;
 
 	constructor(
 		props: CSGridCellEditorProps<Array<CSDataTableRowInterface> | CSDataTableRowInterface> &
@@ -72,6 +72,14 @@ export class CSGridLookupEditor
 			selected: formatRows(selected, '\\.', replacementString),
 			value: this.props.value
 		};
+	}
+
+	componentDidMount() {
+		this.mounted = true;
+	}
+
+	componentWillUnmount() {
+		this.mounted = false;
 	}
 
 	isCancelBeforeStart() {
@@ -149,12 +157,15 @@ export class CSGridLookupEditor
 			header: columnDef.label,
 			key: columnDef.key.replace(new RegExp('\\.', 'g'), replacementString)
 		}));
-		this.setState({ columnDefs });
 
-		return {
-			moreRecords: results.moreRecords,
-			records: formattedRows
-		};
+		if (this.mounted) {
+			this.setState({ columnDefs });
+
+			return {
+				moreRecords: results.moreRecords,
+				records: formattedRows
+			};
+		}
 	};
 
 	private onChange = async (
