@@ -111,6 +111,8 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 	private readonly lookupCloseButtonRef: React.RefObject<HTMLButtonElement>;
 
+	private mounted: boolean;
+
 	public lookupInputRef: React.RefObject<HTMLInputElement>;
 
 	public lookupWrapperRef: React.RefObject<HTMLInputElement>;
@@ -139,6 +141,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 	}
 
 	componentDidMount() {
+		this.mounted = true;
 		const { mode, options } = this.props;
 		if (mode === 'client') this.setState({ dropdownOptions: options });
 
@@ -155,6 +158,10 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		const { value, options } = this.props;
 		if (prevProps.value !== value) this.setValue();
 		if (prevProps.options !== options) this.updateDropdownValues();
+	}
+
+	componentWillUnmount() {
+		this.mounted = false;
 	}
 
 	updateDropdownValues = () => {
@@ -184,13 +191,15 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 		try {
 			const fetchResults = await fetchOptions(searchTerm, pageSize, pageNo);
-			this.setState((prevState) => ({
-				fetchingMode: undefined,
-				dropdownOptions: prevState.fetchingMode === 'after-scroll'
-					? [...prevState.dropdownOptions, ...fetchResults.records]
-					: fetchResults.records,
-				moreRecords: fetchResults.moreRecords,
-			}));
+			if (this.mounted) {
+				this.setState((prevState) => ({
+					fetchingMode: undefined,
+					dropdownOptions: prevState.fetchingMode === 'after-scroll'
+						? [...prevState.dropdownOptions, ...fetchResults.records]
+						: fetchResults.records,
+					moreRecords: fetchResults.moreRecords,
+				}));
+			}
 		} catch (error) {
 			console.error(`Lookup options couldn't be fetched: ${error}`);
 		} finally {

@@ -149,7 +149,9 @@ class CSTooltip extends React.Component<CSTooltipProps, CSTooltipState> {
 		if (delayTooltip && delayTooltip > 0) {
 			this.timeoutRef = setTimeout(() => {
 				this.popupTriggered = true;
-				this.setState({ hidden: false });
+				if (this.mounted) {
+					this.setState({ hidden: false });
+				}
 			}, delayTooltip);
 		}
 
