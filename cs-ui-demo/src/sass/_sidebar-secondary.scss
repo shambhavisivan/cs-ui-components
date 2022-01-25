@@ -88,11 +88,6 @@
 
 					&.active {
 						padding-left: calc(1.75rem - 2px);
-						background-color: var(--csd-sidebar-link-active-bg);
-
-						&:hover {
-							background-color: var(--csd-sidebar-link-hover-bg);
-						}
 					}
 				}
 
@@ -148,31 +143,31 @@
 
 			&:first-child {
 				&::before {
-					@include sbg(--csd-secondary-sidebar-first-link-bg);
+					@include bgd(--csd-secondary-sidebar-bg, 0.1);
 				}
 
 				&:hover::before {
-					@include sbg(--csd-secondary-sidebar-first-link-hover-bg);
+					@include bgd(--csd-secondary-sidebar-bg, 0.25);
 				}
 			}
 
 			&:nth-child(2) {
 				&::before {
-					@include sbg(--csd-secondary-sidebar-second-link-bg);
+					@include bgd(--csd-secondary-sidebar-bg, 0.2);
 				}
 
 				&:hover::before {
-					@include sbg(--csd-secondary-sidebar-second-link-hover-bg);
+					@include bgd(--csd-secondary-sidebar-bg, 0.35);
 				}
 			}
 
 			&:nth-child(3) {
 				&::before {
-					@include sbg(--csd-secondary-sidebar-third-link-bg);
+					@include bgd(--csd-secondary-sidebar-bg, 0.3);
 				}
 
 				&:hover::before {
-					@include sbg(--csd-secondary-sidebar-third-link-hover-bg);
+					@include bgd(--csd-secondary-sidebar-bg, 0.45);
 				}
 			}
 
@@ -207,7 +202,7 @@
 					@include sbg(--csd-primary-sidebar-bg);
 
 					&:hover {
-						@include sbg(--csd-primary-sidebar-link-hover-bg);
+						@include bgd(--csd-secondary-sidebar-bg, 0.25);
 					}
 				}
 			}
@@ -216,7 +211,7 @@
 		.prop-group .prop-name,
 		.prop-group .prop-variant {
 			&:hover {
-				@include sbg(--csd-primary-sidebar-link-hover-bg);
+				@include bgd(--csd-secondary-sidebar-bg, 0.25);
 			}
 
 			a {
@@ -256,28 +251,57 @@
 				.component-name {
 					@include sbg(--csd-secondary-sidebar-bg);
 
-					&:hover {
-						background-color: var(--csd-sidebar-link-hover-bg);
+					&::before {
+						content: "";
+						display: block;
+						position: absolute;
+						top: 0;
+						right: 0;
+						bottom: 0;
+						left: 0;
+						pointer-events: none;
+					}
+
+					&:hover::before {
+						@include bgd(--csd-secondary-sidebar-bg, 0.25);
+					}
+
+					a {
+						z-index: 1;
 					}
 				}
 			}
-		}
 
-		.prop-group .prop-name,
-		.prop-group .prop-variant {
-			&:hover {
-				background-color: var(--csd-sidebar-link-hover-bg);
-			}
+			.prop-group .prop-name,
+			.prop-group .prop-variant {
+				position: relative;
 
-			a {
-				@include css4 {
-					border-left: 1px solid var(--csd-secondary-sidebar-br);
+				&::before {
+					content: "";
+					display: block;
+					position: absolute;
+					top: 0;
+					right: 0;
+					bottom: 0;
+					left: 0;
+					pointer-events: none;
 				}
-			}
 
-			&.active a {
-				@include css4 {
-					border-left: 3px solid var(--csd-secondary-sidebar-active-br);
+				&.active:not(:hover):before,
+				&:hover::before {
+					@include bgd(--csd-secondary-sidebar-bg, 0.25);
+				}
+
+				a {
+					@include css4 {
+						border-left: 1px solid var(--csd-secondary-sidebar-br);
+					}
+				}
+
+				&.active a {
+					@include css4 {
+						border-left: 3px solid var(--csd-secondary-sidebar-active-br);
+					}
 				}
 			}
 		}
