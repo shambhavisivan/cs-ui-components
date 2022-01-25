@@ -16,6 +16,7 @@
 	display: flex;
 	position: absolute;
 	height: calc(100% - 5rem);
+	padding-block-end: 1rem;
 
 	.csd-playground-examples-wrapper {
 		flex: 1;

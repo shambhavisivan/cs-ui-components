@@ -19,6 +19,7 @@
 	@include sbg(--csd-app-body-bg);
 
 	.csd-header {
+		height: 3rem;
 		display: flex;
 		align-items: center;
 		border-radius: 0.5rem;
