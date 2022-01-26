@@ -67,8 +67,8 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 								/>,
 								code: `<CSCheckbox
 									label="Select option"
-									checked={this.state.actions}
-									onChange={(event: any) => this.setState({ actions: event.target.checked })}
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
 									actions={${actionsCode}}
 								/>`
 							}

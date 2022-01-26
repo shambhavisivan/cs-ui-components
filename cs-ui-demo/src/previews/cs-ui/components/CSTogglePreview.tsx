@@ -7,12 +7,18 @@ import Preview from '../Preview';
 
 interface CSTogglePreviewState {
 	checked: boolean;
+	[key: string]: boolean;
 }
 
 class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
-	state = { checked: true };
+	state: CSTogglePreviewState = {
+		checked: true
+	};
 
-	handleChange = () => alert('Value has been toggled.');
+	handleChange = (event: any) => {
+		this.setState({ onChange: event.target.checked });
+		alert('Value has been toggled.');
+	}
 
 	getDoc = () => ({
 		name: 'Toggle',
@@ -30,8 +36,16 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 						},
 						variations: [
 							{
-								component: <CSToggle label="This is a label" />,
-								code: '<CSToggle label="This is a label" />'
+								component: <CSToggle
+									label="This is a label"
+									checked={this.state.label}
+									onChange={(event: any) => this.setState({ label: event.target.checked })}
+								/>,
+								code: `<CSToggle
+									label="This is a label"
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ label: event.target.checked })}
+								/>`
 							}
 						]
 					}, {
@@ -43,10 +57,14 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 								],
 								component: <CSToggle
 									label="This is a label"
+									checked={this.state.actions}
+									onChange={(event: any) => this.setState({ actions: event.target.checked })}
 									actions={actions}
 								/>,
 								code: `<CSToggle
 									label="This is a label"
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
 									actions={${actions}}
 								/>`
 							}
@@ -87,8 +105,18 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 						variations: [
 							{
 								primaryVariants: 'error={true}',
-								component: <CSToggle label="This is a label" error />,
-								code: '<CSToggle label="This is a label" error />'
+								component: <CSToggle
+									label="This is a label"
+									checked={this.state.error}
+									onChange={(event: any) => this.setState({ error: event.target.checked })}
+									error
+								/>,
+								code: `<CSToggle
+									label="This is a label"
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
+									error
+								/>`
 							}
 						]
 					}, {
@@ -98,11 +126,15 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 								secondaryVariants: 'error={true}',
 								component: <CSToggle
 									label="This is a label"
+									checked={this.state.errorMessage}
+									onChange={(event: any) => this.setState({ errorMessage: event.target.checked })}
 									error
 									errorMessage="Error message."
 								/>,
 								code: `<CSToggle
 									label="This is a label"
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
 									error
 									errorMessage="Error message."
 								/>`
@@ -116,12 +148,16 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 								secondaryVariants: 'error={true}',
 								component: <CSToggle
 									label="This is a label"
+									checked={this.state.errorTooltip}
+									onChange={(event: any) => this.setState({ errorTooltip: event.target.checked })}
 									error
 									errorMessage="Error message."
 									errorTooltip
 								/>,
 								code: `<CSToggle
 									label="This is a label"
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
 									error
 									errorMessage="Error message."
 									errorTooltip
@@ -132,8 +168,18 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 						propName: 'helpText',
 						variations: [
 							{
-								component: <CSToggle label="This is a label" helpText="Help text example" />,
-								code: '<CSToggle label="This is a label" helpText="Help text example" />'
+								component: <CSToggle
+									label="This is a label"
+									checked={this.state.helpText}
+									onChange={(event: any) => this.setState({ helpText: event.target.checked })}
+									helpText="Help text example"
+								/>,
+								code: `<CSToggle
+									label="This is a label"
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
+									helpText="Help text example"
+								/>`
 							}
 						]
 					}, {
@@ -145,10 +191,14 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 								],
 								component: <CSToggle
 									label="This is a label"
+									checked={this.state.icons}
+									onChange={(event: any) => this.setState({ icons: event.target.checked })}
 									icons={icons}
 								/>,
 								code: `<CSToggle
 									label="This is a label"
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
 									icons={${iconsCode}}
 								/>`
 							}
@@ -158,8 +208,18 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 						variations: [
 							{
 								primaryVariants: 'labelHidden={true}',
-								component: <CSToggle label="This is a label" labelHidden />,
-								code: '<CSToggle label="This is a label" labelHidden />'
+								component: <CSToggle
+									label="This is a label"
+									checked={this.state.labelHidden}
+									onChange={(event: any) => this.setState({ labelHidden: event.target.checked })}
+									labelHidden
+								/>,
+								code: `<CSToggle
+									label="This is a label"
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
+									labelHidden
+								/>`
 							}
 						]
 					}, {
@@ -168,8 +228,18 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 						variations: [
 							{
 								primaryVariants: 'labelPosition="left"',
-								component: <CSToggle label="This label is on the left" labelPosition="left" />,
-								code: '<CSToggle label="This label is on the left" labelPosition="left" />'
+								component: <CSToggle
+									label="This label is on the left"
+									checked={this.state.labelPosition}
+									onChange={(event: any) => this.setState({ labelPosition: event.target.checked })}
+									labelPosition="left"
+								/>,
+								code: `<CSToggle
+									label="This label is on the left"
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
+									labelPosition="left"
+								/>`
 							}
 						]
 					}, {
@@ -177,16 +247,34 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 						variations: [
 							{
 								primaryVariants: 'labelTitle={true}',
-								component: <CSToggle label="This is a label" labelTitle />,
-								code: '<CSToggle label="This is a label" labelTitle />'
+								component: <CSToggle
+									label="This is a label"
+									checked={this.state.labelTitle}
+									onChange={(event: any) => this.setState({ labelTitle: event.target.checked })}
+									labelTitle
+								/>,
+								code: `<CSToggle
+									label="This is a label"
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
+									labelTitle
+								/>`
 							}
 						]
 					}, {
 						propName: 'onChange',
 						variations: [
 							{
-								component: <CSToggle label="This is a label" onChange={this.handleChange} />,
-								code: '<CSToggle label="This is a label" onChange={this.handleChange} />'
+								component: <CSToggle
+									label="This is a label"
+									checked={this.state.onChange}
+									onChange={this.handleChange}
+								/>,
+								code: `<CSToggle
+									label="This is a label"
+									checked={this.state.onChange}
+									onChange={this.handleChange}
+								/>`
 							}
 						]
 					}, {
@@ -211,16 +299,36 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 						variations: [
 							{
 								primaryVariants: 'required={true}',
-								component: <CSToggle label="This is a label" required />,
-								code: '<CSToggle label="This is a label" required />'
+								component: <CSToggle
+									label="This is a label"
+									checked={this.state.required}
+									onChange={(event: any) => this.setState({ required: event.target.checked })}
+									required
+								/>,
+								code: `<CSToggle
+									label="This is a label"
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
+									required
+								/>`
 							}
 						]
 					}, {
 						propName: 'title',
 						variations: [
 							{
-								component: <CSToggle label="This is a label" title="This is a title" />,
-								code: '<CSToggle label="This is a label" title="This is a title" />'
+								component: <CSToggle
+									label="This is a label"
+									checked={this.state.title}
+									onChange={(event: any) => this.setState({ title: event.target.checked })}
+									title="This is a title"
+								/>,
+								code: `<CSToggle
+									label="This is a label"
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
+									title="This is a title"
+								/>`
 							}
 						]
 					}, {
@@ -235,11 +343,15 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 								secondaryVariants: 'helpText="text"',
 								component: <CSToggle
 									label="This is a label"
+									checked={this.state.tooltipPosition}
+									onChange={(event: any) => this.setState({ tooltipPosition: event.target.checked })}
 									helpText="Help text example"
 									tooltipPosition="top-left"
 								/>,
 								code: `<CSToggle
 									label="This is a label"
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
 									helpText="Help text example"
 									tooltipPosition="top-left"
 								/>`
@@ -255,11 +367,15 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 								],
 								component: <CSToggle
 									label="This is a label"
+									checked={this.state.idClassname}
+									onChange={(event: any) => this.setState({ idClassname: event.target.checked })}
 									id="custom-id"
 									className="custom-br-mint"
 								/>,
 								code: `<CSToggle
 									label="This is a label"
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
 									id="custom-id"
 									className="custom-br-mint"
 								/>`
