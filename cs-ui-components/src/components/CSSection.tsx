@@ -87,7 +87,7 @@ class CSSection extends React.Component<CSSectionProps, CSSectionState> {
 
 		const style: CSSProperties = {
 			'--cs-section-border-radius': borderRadius,
-			'--cs-section-header-bg': bgColor,
+			'--cs-section-header-bg': error ? '#d81c2a1a' : bgColor,
 		};
 		const sectionClasses = classNames(
 			'cs-section',

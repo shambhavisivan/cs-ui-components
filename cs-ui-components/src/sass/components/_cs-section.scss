@@ -91,11 +91,22 @@
 
 		&.cs-section-header-error {
 			@include sbg(--cs-section-header-error-bg);
-			.cs-section-button{
+
+			.cs-section-button {
+				&::before {
+					background: transparent;
+				}
+
+				&:active {
+					@include bgd(--cs-section-header-error-hover, 0.02);
+				}
+
 				&:hover {
 					@include sbg(--cs-section-header-error-hover);
 				}
-				&:focus-visible {
+
+				&:focus-visible,
+				&:focus::after {
 					@include css4 {
 						box-shadow: 0 0 3px cvar(--cs-section-header-error-shadow);
 					}

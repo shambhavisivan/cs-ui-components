@@ -156,21 +156,14 @@ class CSSectionPreview extends React.Component {
 						variations: [
 							{
 								primaryVariants: 'error={true}',
-								component: <CSSection
-									title="Section Title"
-									error
-									bgColor="pink"
-								>
+								component: <CSSection title="Section Title" error>
 									<ul>
 										<li>Item 1</li>
 										<li>Item 2</li>
 										<li>Item 3</li>
 									</ul>
 								</CSSection>,
-								code: `<CSSection
-									title="Section Title"
-									error
-								>
+								code: `<CSSection title="Section Title" error>
 									<ul>
 										<li>Item 1</li>
 										<li>Item 2</li>
