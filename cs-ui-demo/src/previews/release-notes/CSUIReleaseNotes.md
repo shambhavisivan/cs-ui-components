@@ -65,6 +65,7 @@
 * CSTextarea
   * added expand button when `readonly={true}` and content is larger than field
   * renamed class `.cs-textarea-options` to `.cs-textarea-error-message` on `errorTooltip`
+  * fixed errorMessage spacing and right padding when errorTooltip is visible
 * CSToggle
   * set `checked` prop to be `false` by default
 * CSTooltip

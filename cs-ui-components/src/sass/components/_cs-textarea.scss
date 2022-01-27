@@ -10,6 +10,8 @@
 	--cs-textarea-options-spacing-value: var(--cs-textarea-options-spacing);
 
 	.cs-textarea-wrapper-inner {
+		display: flex;
+		flex-direction: column;
 		position: relative;
 
 		.cs-btn.cs-textarea-expand-button {
@@ -35,8 +37,18 @@
 		}
 	}
 
-	&.cs-textarea-wrapper-options .cs-tw-error {
-		margin-inline-end: 0.25rem;
+	&.cs-textarea-wrapper-options {
+		.cs-tw-error {
+			margin-inline-end: 0.25rem;
+		}
+
+		.cs-textarea-error-tooltip {
+			padding-right: calc(var(--cs-textarea-options-spacing-value) + 1.25rem);
+		}
+	}
+
+	&:not(.cs-textarea-wrapper-options) .cs-textarea-error-tooltip {
+		padding-right: 1.6125rem;
 	}
 
 	.cs-textarea {
@@ -58,10 +70,6 @@
 			height: var(--cs-textarea-read-only-height);
 			min-height: var(--cs-textarea-read-only-min-height, 2.25rem);
 		}
-
-		&.cs-textarea-error-tooltip {
-			padding-right: var(--cs-textarea-options-spacing-value);
-		}
 	}
 }
 
@@ -74,7 +82,7 @@
 .cs-textarea-wrapper-inner-content {
 	position: absolute;
 	top: 0.5rem;
-	right: 1.125rem;
+	right: 0.5rem;
 	display: flex;
 	align-items: center;
 
