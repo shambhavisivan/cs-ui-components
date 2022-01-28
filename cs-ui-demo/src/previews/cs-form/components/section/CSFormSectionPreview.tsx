@@ -53,7 +53,7 @@ const CSFormSectionPreview = () => {
 				</CSD.Text>
 				<CSD.Text>Section fields are defined within `fields` property.</CSD.Text>
 				<CSD.Text>It is a property which takes array of objects where each object represents one field in the section.</CSD.Text>
-				<CSD.Text>Field object properties can vary depending on the type of the field. More about form fields can be found here.</CSD.Text>
+				<CSD.Text>Field object properties can vary depending on the type of the field. More about form fields can be found <CSD.Link path="./standard-form-fields">here</CSD.Link>.</CSD.Text>
 				<CSD.Preview
 					table={CSFormSectionAttributes}
 					related={['sectionKey', 'label', 'fields']}

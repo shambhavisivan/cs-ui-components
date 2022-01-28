@@ -116,7 +116,10 @@ const CSFormPreview = () => {
 					It is an array of objects which represent one form section with properties relevant to the section, among which is fields array.
 					Fields array defines which type of fields will be rendered in the defined section.
 				</CSD.Text>
-				<CSD.Text>`defineFormData()` util method can help with combining form definition and actual data if that's needed. Details regarding `defineFormData()` can be found here.</CSD.Text>
+				<CSD.Text>
+					`defineFormData()` util method can help with combining form definition and actual data if that's needed.
+					Details regarding `defineFormData()` can be found <CSD.Link path="./utils#defining-form-data">here</CSD.Link>.
+				</CSD.Text>
 				<CSD.Preview
 					table={CSFormProps}
 					related={['data']}
@@ -209,7 +212,10 @@ const CSFormPreview = () => {
 				<CSD.Text>CSForm supports defining number of fields/columns per row across sections which defines the layout of the whole form.</CSD.Text>
 				<CSD.Text>`columnNumber` prop defines the number of fields rendered in one row. It is consistent for every section in the form and cannot be changed per section.</CSD.Text>
 				<CSD.Text>Default columnNumber value is 4 columns.</CSD.Text>
-				<CSD.Text>Such defined layout can be changed via field's `grow` and `showInNewLine` attributes. Details can be found here.</CSD.Text>
+				<CSD.Text>
+					Such defined layout can be changed via field's `grow` and `showInNewLine` attributes.
+					Details can be found <CSD.Link path="./standard-form-fields#layout-properties">here</CSD.Link>.
+				</CSD.Text>
 				<CSD.Preview
 					table={CSFormProps}
 					related={['columnNumber', 'data']}

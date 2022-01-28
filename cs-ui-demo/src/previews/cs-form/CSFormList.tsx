@@ -1,12 +1,13 @@
 import React from 'react';
-import FieldTypes from './components/FieldTypes';
-import GettingStarted from './getting-started/GettingStarted';
+import GettingStarted from './GettingStarted';
 import CSFormPreview from './components/form/CSFormPreview';
 import CSFormSectionPreview from './components/section/CSFormSectionPreview';
 import CSFormStandardFormFieldsPreview from './components/standard-form-fields/CSFormStandardFormFieldsPreview';
 import CSFormCustomFormFieldsPreview from './components/custom-form-fields/CSFormCustomFormFieldsPreview';
 
 import SidebarList from '../SidebarList';
+import CSFormValidationPreview from './components/validation/CSFormValidationPreview';
+import CSFormUtilsPreview from './components/utils/CSFormUtilsPreview';
 
 class CSFormList extends React.Component {
 
@@ -34,11 +35,11 @@ class CSFormList extends React.Component {
 			},
 			{
 				name: 'Validation',
-				component: FieldTypes
+				component: CSFormValidationPreview
 			},
 			{
-				name: 'Custom Fields',
-				component: FieldTypes
+				name: 'Utils',
+				component: CSFormUtilsPreview
 			}
 		];
 
