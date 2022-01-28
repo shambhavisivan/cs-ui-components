@@ -111,6 +111,7 @@ const CSCustomSelect = ({
 	const closeDropdown = useCallback(() => {
 		setDropdownVisible(false);
 		onDropdownClose?.();
+		setSearchTerm('');
 	}, [setDropdownVisible, onDropdownClose]);
 
 	useImperativeHandle(forwardRef, () => customSelectInputRef.current);
