@@ -1,12 +1,32 @@
 .cs-btn-group {
 	display: inline-flex;
 
+	.cs-btn {
+		margin: 0;
+		margin-left: -1px;
+		&::after {
+			border-radius: 0;
+		}
+		&:first-child::after {
+			border-top-left-radius: 0.25rem;
+			border-bottom-left-radius: 0.25rem;
+		}
+		&:last-child::after {
+			border-top-right-radius: 0.25rem;
+			border-bottom-right-radius: 0.25rem;
+		}
+	}
+
 	.cs-aria-description {
 		@include screen-reader-hidden;
 	}
 
 	&:not(.cs-btn-group-combined) > *:not(:last-child) {
 		margin-right: 0.5rem;
+	}
+
+	&:not(.cs-btn-group-combined) > .cs-btn::after {
+		border-radius: 0.25rem;
 	}
 
 	&.cs-btn-group-combined {

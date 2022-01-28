@@ -589,24 +589,3 @@
 		z-index: var(--z-index-button-custom-content);
 	}
 }
-
-/* CSBUTTONGROUP COMPONENT */
-.cs-btn-group {
-	display: inline-flex;
-	margin: 0.25rem 0.1875rem;
-	.cs-btn {
-		margin: 0;
-		margin-left: -1px;
-		&::after {
-			border-radius: 0;
-		}
-		&:first-child::after {
-			border-top-left-radius: 0.25rem;
-			border-bottom-left-radius: 0.25rem;
-		}
-		&:last-child::after {
-			border-top-right-radius: 0.25rem;
-			border-bottom-right-radius: 0.25rem;
-		}
-	}
-}
