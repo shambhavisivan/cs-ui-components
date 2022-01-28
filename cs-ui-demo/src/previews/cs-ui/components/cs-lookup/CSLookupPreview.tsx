@@ -92,7 +92,8 @@ const CSLookupPreview = () => {
 					There is a fifth or sixth required prop determined by the value of `mode` called `options` if `mode="client"` or `fetchOptions` and `pageSize` if `mode="server"`.
 				</CSD.Text>
 				<CSD.Text>
-					There are multiple props that only work on either `client` or `server` versions of CSLookup. These are explained in their respective sections below.
+					There are multiple props that only work on either <CSD.Link path="#client-side"><b>client</b></CSD.Link> or <CSD.Link path="#server-side"><b>server</b></CSD.Link>  versions of CSLookup.
+					These are explained in their respective sections below.
 				</CSD.Text>
 				<CSD.Text>
 					To get started a `label` must be provided. Even if no label is required visually, it is still a required prop for accessibility reasons.
@@ -100,7 +101,7 @@ const CSLookupPreview = () => {
 				<CSD.Text>
 					The `columns` prop determines which columns are to be shown in the lookup dropdown.
 					It accepts an array of objects as its value which can customize a wide variety of factors.
-					These are explained in full in the `CSDataTable` component page under the section `Column Controls`.
+					These are explained in full in the `CSDataTable` component page under the section <CSD.Link path="/cs-ui/data-table#column-controls"><b>Column Controls</b></CSD.Link>.
 					The columns on this page just feature two of those possible values, `key` which is required, and `header`.
 					The value for `header` can be a string, number or renderable React element, but for simplicity all examples shown below will be strings.
 				</CSD.Text>
@@ -196,7 +197,7 @@ const CSLookupPreview = () => {
 				</CSD.Preview>
 			</CSD.Section>
 			<CSD.Section>
-				<CSD.Heading level={2}>Search</CSD.Heading>
+				<CSD.Heading level={2}>Client Side Search</CSD.Heading>
 				<CSD.Text>
 					Search, by default works by searching through all the columns and filtering the results.
 					The `searchBy` prop allows you to override the default functionality and provide a specific column to search against.
@@ -317,7 +318,7 @@ const CSLookupPreview = () => {
 				</CSD.Preview>
 			</CSD.Section>
 			<CSD.Section>
-				<CSD.Heading level={2}>Search</CSD.Heading>
+				<CSD.Heading level={2}>Server Side Search</CSD.Heading>
 				<CSD.Text>
 					Sometimes there may be too many returned items in the lookup which could cause the search to be less effective at producing the results you are after.
 					If this is the case, then the `minTermLength` prop could help narrow down the results further by providing a minimum search term length.
