@@ -134,18 +134,6 @@ describe('<CSDropdown />', () => {
 		expect(dropdownItemWrapper.prop('hover')).toBeTruthy();
 	});
 
-	it('should enable hover and onFocus to trigger openDropdown', () => {
-		const uut = shallow(
-			<CSDropdown hover>
-				<CSButton label={btnLabel} />
-			</CSDropdown>,
-		);
-		const dropdownBtn = uut.find('.cs-dropdown-wrapper > CSButton');
-		dropdownBtn.simulate('focus');
-		const dropdownItemWrapper = uut.find('CSAutoposition').dive().find('ForwardRef');
-		expect(dropdownItemWrapper).toHaveLength(1);
-	});
-
 	it('should pass iconName to CSButton', () => {
 		const iconName = 'broadcast';
 		const uut = shallow(

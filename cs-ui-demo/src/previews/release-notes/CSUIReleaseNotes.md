@@ -44,6 +44,7 @@
   * <i>important</i> removed `onClick` prop
   * added `routerLink` prop
   * fixed keyboard navigation when mode is 'button' and minor style fixes
+  * <i>important</i> removed onFocus and onBlur events on button that opens `CSDropdown` to fix dropdown items not been clickable
 * CSInputFile
   * added `fileSelectedLabel` prop
   * set `label` prop to be optional
