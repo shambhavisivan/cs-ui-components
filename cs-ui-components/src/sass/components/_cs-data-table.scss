@@ -8,13 +8,13 @@
 	.cs-data-table-header,
 	.cs-data-table-body,
 	.cs-data-table-group,
-	.cs-data-table-row-wrapper, {
+	.cs-data-table-row-wrapper {
 		display: flex;
 		flex-direction: column;
 		width: 100%;
 	}
 
-	.cs-data-table-row, {
+	.cs-data-table-row {
 		display: flex;
 	}
 
@@ -36,7 +36,6 @@
 		text-align: left;
 		font-size: 0.8125rem;
 		line-height: 1.75;
-		transition: all 100ms ease-in-out;
 		@include sc(--cs-data-table-cell-c);
 
 		&.cs-data-table-cell-checkbox-hidden {
@@ -85,7 +84,6 @@
 
 	.cs-data-table-body .cs-data-table-row {
 		height: var(--cs-data-table-row-height, auto);
-		transition: all 100ms ease-in-out;
 		@include sbg(--cs-data-table-row-bg);
 		@include css4 {
 			border-bottom: 1px solid cvar(--cs-data-table-br);
