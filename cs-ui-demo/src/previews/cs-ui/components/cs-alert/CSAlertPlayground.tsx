@@ -85,12 +85,20 @@ const CSAlertPlayground = () => {
 					checked
 				/>
 			</CSRadio>
-			<CSToggle label="closeButton" onClick={() => toggleProp('closeButton')} />
-			<CSToggle label="iconHidden" onClick={() => {
-				toggleProp('iconHidden');
-				setProp('iconName', undefined);
-				setProp('iconOrigin', 'slds');
-			}} />
+			<CSToggle
+				label="closeButton"
+				checked={alertProps.closeButton}
+				onClick={() => toggleProp('closeButton')}
+			/>
+			<CSToggle
+				label="iconHidden"
+				checked={alertProps.iconHidden}
+				onClick={() => {
+					toggleProp('iconHidden');
+					setProp('iconName', undefined);
+					setProp('iconOrigin', 'slds');
+				}}
+			/>
 			<CSCustomSelect
 				label="iconName"
 				disabled={alertProps.iconHidden}
