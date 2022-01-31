@@ -4,7 +4,7 @@
 	max-width: 100%;
 	position: relative;
 	width: var(--datepicker-width, 242px);
-	--cs-datepicker-options-spacing-value: var(--cs-datepicker-options-spacing);
+	--cs-datepicker-options-spacing-value: calc(var(--cs-datepicker-options-spacing) + 0.125rem);
 
 	.cs-datepicker-icon {
 		position: absolute;
@@ -21,18 +21,22 @@
 		.react-datepicker-wrapper input {
 			padding-right: calc(var(--cs-datepicker-options-spacing-value) + 1rem);
 		}
+
 		.cs-tooltip-wrapper.cs-tw-error {
 			position: absolute;
 			right: calc(var(--cs-datepicker-options-spacing-value) - 0.25rem);
 			top: 0.5625rem;
 		}
+
 		> .cs-label-wrapper ~ .cs-tooltip-wrapper.cs-tw-error {
 			top: 1.75rem;
 		}
+
 		&.cs-datepicker-clearable .react-datepicker-wrapper {
 			.react-datepicker__close-icon {
 				right: calc(var(--cs-datepicker-options-spacing-value) + 1rem);
 			}
+
 			input {
 				padding-right: calc(var(--cs-datepicker-options-spacing-value) + 2.5rem);
 			}

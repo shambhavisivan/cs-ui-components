@@ -241,7 +241,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 					</div>
 					{(icons?.length || actions?.length)
 						&& (
-							<div className="cs-datepicker-options">
+							<div className="cs-datepicker-options" ref={this.datepickerOptionsWrapperRef}>
 								{icons?.length && <CSCustomDataIcons icons={icons} />}
 								{actions?.length && <CSCustomDataActions actions={actions} />}
 							</div>
