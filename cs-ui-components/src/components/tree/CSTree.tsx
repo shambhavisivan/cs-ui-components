@@ -114,7 +114,7 @@ const CSTree = ({
 			>
 				<CSTreeGroup
 					items={items}
-					extraIndent={extraIndent ? 2.25 : 0}
+					extraIndent={extraIndent ? 2.25 : 0.75}
 				/>
 			</ul>
 		</CSTreeProvider>
