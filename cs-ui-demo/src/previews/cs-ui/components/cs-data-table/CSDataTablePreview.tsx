@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { useState } from 'react';
 import { CSDataTable, CSDataTableRowWithMetaInterface, CSDataTableRowInterface, CSIcon, CSChip, CSInputText, CSButton } from '@cloudsense/cs-ui-components';
 import * as CSD from '../../../../demo-components';
 import CSDataTableAccessibility from './cs-data-table-accessibility';
@@ -447,7 +447,7 @@ const CSDataTablePreview = () => {
 				<CSD.Text>
 					Sometimes it is useful to control row height on a per-row basis.
 					A row object can accept a `height` attribute which sets its height.
-					This attribute will override the `maxHeight` prop on the data table,
+					This attribute will override the `rowHeight` prop on the data table,
 					but it does not get inherited to children.
 				</CSD.Text>
 				<CSD.Preview
@@ -548,7 +548,7 @@ const CSDataTablePreview = () => {
 					or even control it. These are the `meta` object attributes:
 				</CSD.Text>
 				<CSD.List>
-					<CSD.ListItem>`level` represents the level inside a data table hierarchy. Root elements are of level `0`, while its immediate children are of level `1`.</CSD.ListItem>
+					<CSD.ListItem>`level` represents the level inside a data table hierarchy. Root elements are of level `0`, while their immediate children are of level `1`.</CSD.ListItem>
 					<CSD.ListItem>`expanded` is a boolean attribute that is set to `true` when the current row is expanded.</CSD.ListItem>
 					<CSD.ListItem>`selected` is a boolean attribute that is set to `true` when the current row is selected.</CSD.ListItem>
 					<CSD.ListItem>`indeterminate` is a boolean attribute that is set to `true` when the checkbox in the current row is set to indeterminate.</CSD.ListItem>
@@ -939,18 +939,64 @@ const CSDataTablePreview = () => {
 					but it will not be inherited to the children
 					of the current row.
 				</CSD.Text>
+				<CSD.Text>
+					Furthermore, `defaultCollapsed` and `collapsible`
+					can be combined to show a static data table with all rows visible at once.
+				</CSD.Text>
+				<CSD.Preview
+					orientation="vertical"
+					table={CSDataTableProps}
+					related={['columns', 'rows', 'defaultCollapsed', 'collapsible']}
+					code={`
+						<CSDataTable
+							columns={columns}
+							collapsible={false}
+							defaultCollapsed={false}
+							rows={[{
+								key: 'london',
+								children: rows,
+								data: {
+									name: 'London',
+									population: 9950000,
+									area: 1738,
+									timezone: 'GMT/BST',
+									elevation: 11,
+									country: 'United Kingdom'
+								}
+							}]}
+						/>
+					`}
+				>
+					<CSDataTable
+						columns={columns}
+						collapsible={false}
+						defaultCollapsed={false}
+						rows={[{
+							key: 'london',
+							children: rows,
+							data: {
+								name: 'London',
+								population: 9950000,
+								area: 1738,
+								timezone: 'GMT/BST',
+								elevation: 11,
+								country: 'United Kingdom'
+							}
+						}]}
+					/>
+				</CSD.Preview>
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Custom Hierarchy Toggles</CSD.Heading>
 				<CSD.Text>
 					Default controls can be added by setting
-					the `collapsible` prop to `false` and making use of the `toggleSubsectionVisible`
+					the `collapsible` prop to `false` and making use of the `toggleExpanded`
 					method inside the `meta` attribute of the row.
 				</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
 					table={CSDataTableProps}
-					related={['columns', 'rows', 'subsectionRender', 'collapsible']}
+					related={['columns', 'rows', 'collapsible']}
 					code={`
 						<CSDataTable
 							collapsible={false}
@@ -1305,7 +1351,7 @@ const CSDataTablePreview = () => {
 					Unlike collapsibility and subsections, which manage state under the hood,
 					the selectability aspect of data tables is completely stateless.
 					This means that determining data table interactions and
-					behaviour, is left to the developer. Because of this,
+					behaviour is left to the developer. Because of this,
 					it is possible to support a wide array of possibilities for
 					triggers and callbacks when selecting rows.
 				</CSD.Text>
@@ -1336,7 +1382,7 @@ const CSDataTablePreview = () => {
 							rows={rows}
 							selectable
 							selectedKeys={selectedKey}
-							onSelectChange={(event: ChangeEvent, row: CSDataTableRowWithMetaInterface) => {
+							onSelectChange={(event: React.ChangeEvent, row: CSDataTableRowWithMetaInterface) => {
 								setSelectdKey((prevSelectedKey?: React.ReactText) => row.key !== prevSelectedKey ? row.key : undefined);
 							}}
 						/>
@@ -1347,7 +1393,7 @@ const CSDataTablePreview = () => {
 						rows={rows}
 						selectable
 						selectedKeys={singleSelectSelectedKey}
-						onSelectChange={(event: ChangeEvent, row: CSDataTableRowWithMetaInterface) => {
+						onSelectChange={(event: React.ChangeEvent, row: CSDataTableRowWithMetaInterface) => {
 							setSingleSelectSelectedKey((prevSelectedKey?: React.ReactText) => row.key !== prevSelectedKey ? row.key : undefined);
 						}}
 					/>
@@ -1371,7 +1417,7 @@ const CSDataTablePreview = () => {
 							selectable
 							multiselect
 							selectedKeys={selectedKeys}
-							onSelectChange={(event: ChangeEvent, row: CSDataTableRowWithMetaInterface) => {
+							onSelectChange={(event: React.ChangeEvent, row: CSDataTableRowWithMetaInterface) => {
 								setSelectedKeys((prevSelectedKeys: Array<React.ReactText>) => {
 									const prevIndex = prevSelectedKeys.indexOf(row.key);
 									const newSelectedKeys = [...prevSelectedKeys];
@@ -1392,7 +1438,7 @@ const CSDataTablePreview = () => {
 						selectable
 						multiselect
 						selectedKeys={multiselectSelectedKeys}
-						onSelectChange={(event: ChangeEvent, row: CSDataTableRowWithMetaInterface) => {
+						onSelectChange={(event: React.ChangeEvent, row: CSDataTableRowWithMetaInterface) => {
 							setMultiselectSelectedKeys((prevSelectedKeys: Array<React.ReactText>) => {
 								const prevIndex = prevSelectedKeys.indexOf(row.key);
 								const newSelectedKeys = [...prevSelectedKeys];
@@ -1440,7 +1486,7 @@ const CSDataTablePreview = () => {
 							selectedKeys={selectedKey}
 							readOnlyKeys={readOnlyKey}
 							indeterminateKeys={indeterminateKey}
-							onSelectChange={(event: ChangeEvent, row: CSDataTableRowWithMetaInterface) => {
+							onSelectChange={(event: React.ChangeEvent, row: CSDataTableRowWithMetaInterface) => {
 								if (row.data!.name === 'Zagreb') {
 									setSelectedKey((prevSelectedKey?: React.ReactText) => row.key !== prevSelectedKey ? row.key : undefined);
 								} else {
@@ -1469,7 +1515,7 @@ const CSDataTablePreview = () => {
 						selectedKeys={advancedCheckboxSelectedKey}
 						readOnlyKeys={advancedCheckboxReadOnlyKey}
 						indeterminateKeys={advancedCheckboxIndeterminateKey}
-						onSelectChange={(event: ChangeEvent, row: CSDataTableRowWithMetaInterface) => {
+						onSelectChange={(event: React.ChangeEvent, row: CSDataTableRowWithMetaInterface) => {
 							if (row.data!.name === 'Zagreb') {
 								setAdvancedCheckboxSelectedKey((prevSelectedKey?: React.ReactText) => row.key !== prevSelectedKey ? row.key : undefined);
 							} else {
@@ -1498,7 +1544,7 @@ const CSDataTablePreview = () => {
 							multiselect
 							selectable
 							selectedKeys={selectedKeys}
-							onSelectChange={(event: ChangeEvent, row: CSDataTableRowWithMetaInterface) => {
+							onSelectChange={(event: React.ChangeEvent, row: CSDataTableRowWithMetaInterface) => {
 								setSelectedKeys((prevSelectedKeys: Array<React.ReactText>) => {
 									const prevIndex = prevSelectedKeys.indexOf(row.key);
 									const newSelectedKeys = [...prevSelectedKeys];
@@ -1532,7 +1578,7 @@ const CSDataTablePreview = () => {
 						multiselect
 						selectable
 						selectedKeys={headerSelectSelectedKeys}
-						onSelectChange={(event: ChangeEvent, row: CSDataTableRowWithMetaInterface) => {
+						onSelectChange={(event: React.ChangeEvent, row: CSDataTableRowWithMetaInterface) => {
 							setHeaderSelectSelectedKeys((prevSelectedKeys: Array<React.ReactText>) => {
 								const prevIndex = prevSelectedKeys.indexOf(row.key);
 								const newSelectedKeys = [...prevSelectedKeys];
@@ -1581,7 +1627,7 @@ const CSDataTablePreview = () => {
 							selectable
 							selectionType="row"
 							selectedKeys={selectedKey}
-							onSelectChange={(event: ChangeEvent, row: CSDataTableRowWithMetaInterface) => {
+							onSelectChange={(event: React.ChangeEvent, row: CSDataTableRowWithMetaInterface) => {
 								setSelectedKey((prevSelectedKey?: React.ReactText) => row.key !== prevSelectedKey ? row.key : undefined);
 							}}
 						/>
@@ -1593,7 +1639,7 @@ const CSDataTablePreview = () => {
 						selectable
 						selectionType="row"
 						selectedKeys={singleSelectSelectedKey}
-						onSelectChange={(event: ChangeEvent, row: CSDataTableRowWithMetaInterface) => {
+						onSelectChange={(event: React.ChangeEvent, row: CSDataTableRowWithMetaInterface) => {
 							setSingleSelectSelectedKey((prevSelectedKey?: React.ReactText) => row.key !== prevSelectedKey ? row.key : undefined);
 						}}
 					/>
@@ -1611,7 +1657,7 @@ const CSDataTablePreview = () => {
 							selectionType="row"
 							multiselect
 							selectedKeys={selectedKeys}
-							onSelectChange={(event: ChangeEvent, row: CSDataTableRowWithMetaInterface) => {
+							onSelectChange={(event: React.ChangeEvent, row: CSDataTableRowWithMetaInterface) => {
 								setSelectedKeys((prevSelectedKeys: Array<React.ReactText>) => {
 									const prevIndex = prevSelectedKeys.indexOf(row.key);
 									const newSelectedKeys = [...prevSelectedKeys];
@@ -1633,7 +1679,7 @@ const CSDataTablePreview = () => {
 						selectionType="row"
 						multiselect
 						selectedKeys={multiselectRowSelectedKeys}
-						onSelectChange={(event: ChangeEvent, row: CSDataTableRowWithMetaInterface) => {
+						onSelectChange={(event: React.ChangeEvent, row: CSDataTableRowWithMetaInterface) => {
 							setMultiselectRowSelectedKeys((prevSelectedKeys: Array<React.ReactText>) => {
 								const prevIndex = prevSelectedKeys.indexOf(row.key);
 								const newSelectedKeys = [...prevSelectedKeys];
@@ -1654,7 +1700,7 @@ const CSDataTablePreview = () => {
 					When the data table is marked as selectable,
 					all the rows inherit the selectable property.
 					That can be overridden on a per-row basis by setting the
-					`selectable` property on the row object. The row value will
+					`selectable` attribute on the row object. The row value will
 					only override the global value when the global value is set to `true`.
 				</CSD.Text>
 				<CSD.Preview
@@ -1677,7 +1723,7 @@ const CSDataTablePreview = () => {
 							}, ...rows]}
 							selectable
 							selectedKeys={selectedKey}
-							onSelectChange={(event: ChangeEvent, row: CSDataTableRowWithMetaInterface) => {
+							onSelectChange={(event: React.ChangeEvent, row: CSDataTableRowWithMetaInterface) => {
 								setSelectedKey((prevSelectedKey?: React.ReactText) => row.key !== prevSelectedKey ? row.key : undefined);
 							}}
 						/>
@@ -1698,7 +1744,7 @@ const CSDataTablePreview = () => {
 						}, ...rows]}
 						selectable
 						selectedKeys={restrictedSelectionSelectedKey}
-						onSelectChange={(event: ChangeEvent, row: CSDataTableRowWithMetaInterface) => {
+						onSelectChange={(event: React.ChangeEvent, row: CSDataTableRowWithMetaInterface) => {
 							setRestrictedSelectionSelectedKey((prevSelectedKey?: React.ReactText) => row.key !== prevSelectedKey ? row.key : undefined);
 						}}
 					/>
