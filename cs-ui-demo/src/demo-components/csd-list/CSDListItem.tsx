@@ -7,17 +7,13 @@ export interface CSDListItemProps {
 
 const CSDListItem = ({
 	children
-}: CSDListItemProps) => {
-
-	return (
-		<li>
-			{typeof children === 'string' ?
-				CSDH.parseCode(children)
-			:
-				children
-			}
-		</li>
-	);
-};
+}: CSDListItemProps) => (
+	<li>
+		{typeof children === 'string'
+			? CSDH.parseCode(children)
+			: children
+		}
+	</li>
+);
 
 export default CSDListItem;

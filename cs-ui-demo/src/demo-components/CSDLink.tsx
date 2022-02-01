@@ -14,16 +14,18 @@ const CSDLink = ({
 	path,
 	type = 'internal'
 }: CSDLinkProps) => {
-
-	return (
-		type === 'internal' ?
-			<HashLink to={`${path}`} className="csd-link">
+	if (type === 'internal') {
+		return (
+			<HashLink to={path} className="csd-link">
 				{children}
 			</HashLink>
-		:
-			<a href={`${path}`} className="csd-link">
-				{children}
-			</a>
+		);
+	}
+
+	return (
+		<a href={path} className="csd-link">
+			{children}
+		</a>
 	);
 };
 

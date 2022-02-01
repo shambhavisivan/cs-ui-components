@@ -34,9 +34,9 @@ const CSDTable = ({
 
 		if (link) {
 			return <CSDLink path={link}>{row.data!.name}</CSDLink>;
-		} else {
-			return <>{row.data!.name}</>;
 		}
+
+		return row.data!.name;
 	};
 
 	const renderRequired = (row: CSDataTableRowWithMetaInterface) => {

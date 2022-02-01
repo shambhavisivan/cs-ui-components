@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import React from 'react';
 
 export type CSDListType = 'ul' | 'ol';
 
@@ -14,23 +14,11 @@ const CSDList = ({
 	type = 'ul'
 }: CSDListProps) => {
 
-	const style: CSSProperties = {
+	const style = {
 		'--csd-list-style-type': styleType
-	} as unknown as CSSProperties;
+	};
 
-	return (
-		<>
-			{type === 'ul' ?
-				<ul className="csd-list" style={style}>
-					{children}
-				</ul>
-			:
-				<ol className="csd-list" style={style}>
-					{children}
-				</ol>
-			}
-		</>
-	);
+	return React.createElement(type, { style, className: 'csd-list' }, children);
 };
 
 export default CSDList;
