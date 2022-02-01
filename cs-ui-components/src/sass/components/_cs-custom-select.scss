@@ -58,6 +58,10 @@
 
 		&.cs-custom-select-input-wrapper-multiselect {
 			padding-left: 0;
+
+			.cs-custom-select-items {
+				padding: 0.125rem 0 0.125rem 0.5rem; // Space is 0.25rem, half the field padding, half the item margin - needed when there are multiple rows of items
+			}
 		}
 
 		&.cs-custom-select-input-wrapper-disabled {
@@ -78,14 +82,11 @@
 			.cs-custom-select-items {
 				padding-left: 0;
 			}
-			// Temporary multiselect readonly fix
-			.cs-custom-select-input { 
-				position: absolute 
-			} 
 		}
 	}
 
 	.cs-custom-select-value-wrapper {
+		z-index: var(--z-index-custom-select-values);
 		@include overflow-ellipsis;
 	}
 
@@ -96,19 +97,11 @@
 		left: 0.6875rem;
 		right: 0;
 
-		&.cs-custom-select-input-multiselect {
-			position: relative;
-			top: unset;
-			bottom: unset;
-			left: unset;
-			right: unset;
-			flex: 1;
-		}
-
 		input {
 			border: none;
 			outline: none;
 			width: 100%;
+			height: 100%;
 			padding-right: 3rem;
 			overflow: hidden;
 			text-overflow: ellipsis;
@@ -161,6 +154,7 @@
 		max-width: 100%;
 		width: auto;
 		padding: 0.25rem 0 0.25rem 0.5rem;
+		z-index: var(--z-index-custom-select-values);
 
 		.cs-custom-select-item-multiselect {
 			display: inline-flex;

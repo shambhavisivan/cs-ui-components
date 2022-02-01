@@ -227,9 +227,8 @@ describe('<CSCustomSelect />', () => {
 		const keys = [0, 2, 3];
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} multiselect selectedKeys={keys} />).dive();
 		expect(uut.find('.cs-custom-select-input-wrapper-multiselect')).toHaveLength(1);
-		const customSelectInputMultiselect = uut.find('.cs-custom-select-input-multiselect');
-		expect(customSelectInputMultiselect).toHaveLength(1);
-		expect(customSelectInputMultiselect.find('input').prop('aria-multiselectable')).toBeTruthy();
+		const customSelectMultiselectInput = uut.find('.cs-custom-select-input input');
+		expect(customSelectMultiselectInput.prop('aria-multiselectable')).toBeTruthy();
 	});
 
 	it('should use a working onClear callback', () => {

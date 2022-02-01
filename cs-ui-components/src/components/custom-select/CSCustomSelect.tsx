@@ -161,7 +161,6 @@ const CSCustomSelect = ({
 	const customSelectInputClasses = classNames(
 		'cs-custom-select-input',
 		{
-			'cs-custom-select-input-multiselect': multiselect && !showCompactMultiselect,
 			'cs-custom-select-input-error-tooltip': errorTooltip,
 		},
 	);
