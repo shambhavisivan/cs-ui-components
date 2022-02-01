@@ -23,7 +23,15 @@
 		}
 	}
 
-	.cs-data-table-truncate .csd-inline-code:not(:last-child) {
-		margin-block-end: 0.25rem;
+	.csd-inline-code {
+		display: block;
+
+		&:not(:last-child) {
+			margin-bottom: 0.5rem;
+		}
+	}
+
+	.cs-tooltip-wrapper:not(:last-child) > .csd-inline-code {
+		margin-bottom: 0.5rem;
 	}
 }
