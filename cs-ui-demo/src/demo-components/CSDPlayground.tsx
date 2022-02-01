@@ -85,17 +85,17 @@ const CSDPlayground = ({
 	return (
 		<div className="csd-playground">
 			<div className="csd-playground-examples-wrapper">
-				<CSDSection>
+				<CSDSection variant="neutral">
 					<CSDHeading level={2} disableLinking>Preview</CSDHeading>
 					{component}
 				</CSDSection>
-				<CSDSection>
+				<CSDSection variant="neutral">
 					<CSDHeading level={2} disableLinking action={<CSDCopyButton code={formattedCode} />}>Code</CSDHeading>
 					<CSDCode preventFormatting>{formattedCode}</CSDCode>
 				</CSDSection>
 			</div>
 			<div className="csd-playground-props-wrapper">
-				<CSDSection>
+				<CSDSection variant="neutral">
 					<CSDHeading level={2} disableLinking>Props</CSDHeading>
 					<div className="csd-playground-props">
 						{children}

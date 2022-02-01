@@ -1,14 +1,14 @@
 .csd-theme-light {
-	--csd-text-c: #{transparentize($cs-black, 0.4)};
+	--csd-text-c: #{$cs-gray-dark-2};
 }
 
 .csd-theme-dark {
-	--csd-text-c: #{transparentize($cs-white, 0.2)};
+	--csd-text-c: #{$cs-gray-light-5};
 }
 
 p.csd-text {
 	font-size: 0.875rem;
-	margin: 0 0 1rem;
+	margin: 0 0 0.625rem;
 	line-height: 1.5rem;
 	color: var(--csd-text-c);
 

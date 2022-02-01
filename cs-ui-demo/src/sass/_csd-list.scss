@@ -9,11 +9,11 @@
 .cs-app-wrapper {
 	ul.csd-list,
 	ol.csd-list {
-		list-style-position: inside;
+		margin-left: 1.75rem;
 
 		li {
 			font-size: 0.875rem;
-			margin: 0 0 1rem;
+			margin: 0 0 0.5rem;
 			line-height: 1rem;
 			color: var(--csd-list-c);
 		}

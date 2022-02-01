@@ -4,6 +4,17 @@
 	border-radius: 0 0 0.5rem 0.5rem;
 	--cs-data-table-br: var(--csd-preview-br);
 
+	@at-root .csd-section-transparent & {
+		border-radius: 0.5rem;
+		box-shadow:
+			0 1px 3px var(--csd-shadow-light),
+			0 1px 2px var(--csd-shadow-medium);
+
+		.cs-data-table-body {
+			border-top: none !important;
+		}
+	}
+
 	.cs-data-table-row .cs-data-table-cell:first-child {
 		background-color: var(--cs-data-table-header-bg);
 		color: var(--cs-data-table-header-c);

@@ -10,7 +10,7 @@ export interface CSDSectionProps {
 
 const CSDSection = ({
 	children,
-	variant = 'neutral'
+	variant = 'transparent'
 }: CSDSectionProps) => {
 	const sectionClassNames = classNames(
 		'csd-section',
