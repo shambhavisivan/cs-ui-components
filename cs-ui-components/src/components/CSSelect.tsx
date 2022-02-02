@@ -130,6 +130,7 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 			'cs-select-wrapper',
 			{
 				'cs-element-hidden': hidden,
+				'cs-select-wrapper-read-only': readOnly,
 				'cs-select-wrapper-options': actions || icons,
 				[`${className}`]: className,
 			},

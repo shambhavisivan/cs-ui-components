@@ -325,7 +325,7 @@ describe('<CSCustomSelect />', () => {
 
 	it('should set readOnly attribute', () => {
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} readOnly />).dive();
-		const customSelectInput = uut.find('.cs-custom-select-input-wrapper.cs-custom-select-read-only');
+		const customSelectInput = uut.find('.cs-custom-select-input-wrapper.cs-custom-select-input-wrapper-read-only');
 		expect(customSelectInput.find('.cs-custom-select-input input').prop('aria-readonly')).toBeTruthy();
 		expect(customSelectInput.find('.cs-custom-select-input input').props().readOnly).toBeTruthy();
 		expect(customSelectInput).toHaveLength(1);

@@ -50,7 +50,7 @@ describe('<CSLabel />', () => {
 	it('should have a custom class name', () => {
 		const customClass = 'custom-class';
 		const uut = shallow(<CSLabel label={labelContent} className={customClass} />);
-		const labelWrapper = uut.find(`.cs-label-wrapper.${customClass}`);
+		const labelWrapper = uut.find(`.cs-label-outer-wrapper.${customClass}`);
 		expect(labelWrapper).toHaveLength(1);
 	});
 

@@ -14,8 +14,12 @@
 		top: 0.5625rem;
 	}
 
-	> .cs-label-wrapper ~ .cs-tw-error {
+	> .cs-label-outer-wrapper ~ .cs-tw-error {
 		top: 1.75rem;
+	}
+
+	&.cs-select-wrapper-read-only .cs-label-wrapper {
+		pointer-events: none;
 	}
 
 	&.cs-select-wrapper-options .cs-tw-error {

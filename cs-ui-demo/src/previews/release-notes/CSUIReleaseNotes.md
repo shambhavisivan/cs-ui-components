@@ -50,6 +50,7 @@
 * CSInputNumber
   * added `locale` prop
 * CSLabel
+  * <i>important</i> added `cs-label-outer-wrapper` and made `cs-label-wrapper` and `cs-tooltip-group` siblings
   * added `max-height` to label `cs-label-wrapper` class
 * CSList
   * fixed `self-select` option

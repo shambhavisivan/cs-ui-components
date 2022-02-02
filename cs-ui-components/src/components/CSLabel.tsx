@@ -25,32 +25,33 @@ const CSLabel = ({
 	tooltipPosition,
 	...rest
 }: CSLabelProps) => {
-	const labelClasses = classNames(
-		'cs-label-wrapper',
+	const labelOuterWrapperClasses = classNames(
+		'cs-label-outer-wrapper',
 		{
 			[`${className}`]: className,
 		},
 	);
 	return (
-
-		<label
-			htmlFor={htmlFor}
-			className={labelClasses}
-			id={id}
-			{...rest}
-		>
-			{required
-				&& (
-					<span
-						className="cs-label-required"
-						aria-hidden="true"
-					>
-						*
-					</span>
-				)}
-			<span className="cs-label" title={title}>
-				{label}
-			</span>
+		<div className={labelOuterWrapperClasses}>
+			<label
+				htmlFor={htmlFor}
+				className="cs-label-wrapper"
+				id={id}
+				{...rest}
+			>
+				{required
+					&& (
+						<span
+							className="cs-label-required"
+							aria-hidden="true"
+						>
+							*
+						</span>
+					)}
+				<span className="cs-label" title={title}>
+					{label}
+				</span>
+			</label>
 			{helpText
 				&& (
 					<div className="cs-tooltip-group">
@@ -60,7 +61,7 @@ const CSLabel = ({
 						/>
 					</div>
 				)}
-		</label>
+		</div>
 	);
 };
 

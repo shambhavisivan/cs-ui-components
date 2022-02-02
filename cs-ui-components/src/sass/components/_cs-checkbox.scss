@@ -9,16 +9,16 @@
 		flex-direction: row;
 		align-items: center;
 
-		.cs-label-wrapper {
+		.cs-label-outer-wrapper {
 			padding-bottom: 0;
 		}
 	}
 
-	&.cs-checkbox-label-left .cs-label-wrapper {
+	&.cs-checkbox-label-left .cs-label-outer-wrapper {
 		margin-right: 0.5rem;
 	}
 
-	&.cs-checkbox-label-right .cs-label-wrapper {
+	&.cs-checkbox-label-right .cs-label-outer-wrapper {
 		order: 1;
 		margin-left: 0.5rem;
 	}

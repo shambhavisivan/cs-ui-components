@@ -1,33 +1,41 @@
 // CS Label
 //
 // CS label component.
-.cs-label-wrapper {
+
+.cs-label-outer-wrapper {
 	display: flex;
 	padding-bottom: 0.25rem;
 	align-items: flex-end;
 	max-width: fit-content;
 	max-height: 1.1875rem;
 
-	.cs-label-required {
-		display: inline-block;
-		padding-right: 0.25rem;
-		font-size: 0.875rem;
-		@include sc(--cs-label-required-c);
+	.cs-label-wrapper {
+		display: flex;
+		align-items: flex-end;
+		max-width: fit-content;
+		max-height: 1.1875rem;
+
+		.cs-label-required {
+			display: inline-block;
+			padding-right: 0.25rem;
+			font-size: 0.875rem;
+			@include sc(--cs-label-required-c);
+		}
+
+		.cs-label {
+			position: relative;
+			font-size: 0.75rem;
+			@include sc(--cs-label-c);
+			@include overflow-ellipsis;
+		}
+
+		&.cs-label-disabled {
+			pointer-events: none;
+		}
 	}
 
 	.cs-tooltip-group {
 		display: inline-flex;
 		margin-left: 0.25rem;
-	}
-
-	.cs-label {
-		position: relative;
-		font-size: 0.75rem;
-		@include sc(--cs-label-c);
-		@include overflow-ellipsis;
-	}
-
-	&.cs-label-disabled {
-		pointer-events: none;
 	}
 }

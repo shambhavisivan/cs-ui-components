@@ -142,6 +142,7 @@ const CSCustomSelect = ({
 		'cs-custom-select-wrapper',
 		{
 			'cs-element-hidden': hidden,
+			'cs-custom-select-wrapper-read-only': readOnly,
 			[className]: className,
 			'cs-custom-select-wrapper-options': actions || icons,
 		},
@@ -151,7 +152,7 @@ const CSCustomSelect = ({
 		'cs-custom-select-input-wrapper',
 		{
 			'cs-custom-select-input-wrapper-disabled': disabled,
-			'cs-custom-select-read-only': readOnly,
+			'cs-custom-select-input-wrapper-read-only': readOnly,
 			'cs-custom-select-input-wrapper-error': error,
 			'cs-custom-select-input-wrapper-multiselect': selectedKeysArray.length && multiselect && !showCompactMultiselect,
 			'cs-custom-select-dropdown-visible': dropdownVisible,
