@@ -223,67 +223,65 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 		};
 
 		return (
-			<>
-				<div className={inputSearchWrapperClasses}>
-					{(label && !labelHidden)
+			<div className={inputSearchWrapperClasses}>
+				{(label && !labelHidden)
+					&& (
+						<CSLabel
+							htmlFor={this.uniqueAutoId}
+							label={label}
+							helpText={helpText}
+							tooltipPosition={tooltipPosition}
+							required={required}
+							title={labelTitle ? label : null}
+						/>
+					)}
+				<div className={inputSearchGroupClasses} style={style}>
+					<CSIcon
+						name="search"
+						className="cs-input-search-icon"
+						color="var(--cs-input-icon-fill)"
+						size="0.875rem"
+					/>
+					<input
+						className={inputSearchClasses}
+						autoFocus={autoFocus}
+						onChange={this.handleOnChange}
+						id={this.uniqueAutoId}
+						placeholder={placeholder}
+						disabled={disabled}
+						required={required}
+						aria-label={label}
+						aria-invalid={error}
+						aria-required={required}
+						value={fixControlledValue(valueState)}
+						type="text"
+						autoComplete="off"
+						ref={this.inputSearchInnerRef}
+						onKeyDown={this.handleOnKeyDown}
+						onBlur={this.onBlur}
+						onFocus={this.onFocus}
+						title={title}
+						{...rest}
+					/>
+					{valueState
 						&& (
-							<CSLabel
-								htmlFor={this.uniqueAutoId}
-								label={label}
-								helpText={helpText}
-								tooltipPosition={tooltipPosition}
-								required={required}
-								title={labelTitle ? label : null}
+							<CSButton
+								btnType="transparent"
+								btnStyle="brand"
+								className={inputClearClasses}
+								iconColor="var(--cs-input-clear)"
+								iconName="close"
+								labelHidden
+								label="clear"
+								onClick={this.clearSearch}
+								size="small"
 							/>
 						)}
-					<div className={inputSearchGroupClasses} style={style}>
-						<CSIcon
-							name="search"
-							className="cs-input-search-icon"
-							color="var(--cs-input-icon-fill)"
-							size="0.875rem"
-						/>
-						<input
-							className={inputSearchClasses}
-							autoFocus={autoFocus}
-							onChange={this.handleOnChange}
-							id={this.uniqueAutoId}
-							placeholder={placeholder}
-							disabled={disabled}
-							required={required}
-							aria-label={label}
-							aria-invalid={error}
-							aria-required={required}
-							value={fixControlledValue(valueState)}
-							type="text"
-							autoComplete="off"
-							ref={this.inputSearchInnerRef}
-							onKeyDown={this.handleOnKeyDown}
-							onBlur={this.onBlur}
-							onFocus={this.onFocus}
-							title={title}
-							{...rest}
-						/>
-						{valueState
-							&& (
-								<CSButton
-									btnType="transparent"
-									btnStyle="brand"
-									className={inputClearClasses}
-									iconColor="var(--cs-input-clear)"
-									iconName="close"
-									labelHidden
-									label="clear"
-									onClick={this.clearSearch}
-									size="small"
-								/>
-							)}
-						{error
-							&& errorMessage
-							&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
-					</div>
 				</div>
-			</>
+				{error
+					&& errorMessage
+					&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
+			</div>
 		);
 	}
 }

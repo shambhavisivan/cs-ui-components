@@ -1,16 +1,20 @@
-.cs-toggle-element {
+.cs-toggle-wrapper {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	position: relative;
 
 	&.cs-toggle-label-left {
-		flex-direction: row;
-		align-items: center;
+		.cs-toggle-wrapper-outer {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			position: relative;
+		}
 
 		.cs-label-wrapper {
 			margin-right: 0.5rem;
-			padding-bottom: 0.125rem;
+			padding-bottom: 0;
 		}
 	}
 }
@@ -25,7 +29,7 @@
 	}
 }
 
-.cs-toggle-wrapper {
+.cs-toggle-group {
 	display: inline-flex;
 	justify-content: flex-start;
 	align-items: center;

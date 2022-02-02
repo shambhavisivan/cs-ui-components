@@ -23,7 +23,7 @@ describe('<CSDatepicker />', () => {
 		const datepicker = uut.find(DatePicker);
 		expect(datepicker).toHaveLength(1);
 		// Should have a label
-		expect(uut.find('.cs-datepicker > CSLabel')).toHaveLength(1);
+		expect(uut.find('.cs-datepicker-wrapper > CSLabel')).toHaveLength(1);
 		// autoFocus
 		expect(datepicker.prop('autoFocus')).toBeFalsy();
 		// dateFormat
@@ -33,7 +33,7 @@ describe('<CSDatepicker />', () => {
 		// dropdownMode
 		expect(datepicker.prop('dropdownMode')).toBe('scroll');
 		// error
-		expect(uut.find('.cs-datepicker.cs-datepicker-error')).toHaveLength(0);
+		expect(uut.find('.cs-datepicker-wrapper.cs-datepicker-wrapper-error')).toHaveLength(0);
 		// inline
 		expect(datepicker.prop('inline')).toBeFalsy();
 		// maxDate
@@ -44,7 +44,7 @@ describe('<CSDatepicker />', () => {
 		expect(datepicker.prop('readOnly')).toBeFalsy();
 		// required
 		expect(datepicker.prop('required')).toBeFalsy();
-		expect(uut.find('.cs-datepicker > CSLabel').prop('required')).toBeFalsy();
+		expect(uut.find('.cs-datepicker-wrapper > CSLabel').prop('required')).toBeFalsy();
 		// scrollableYearDropdown
 		expect(datepicker.prop('scrollableYearDropdown')).toBeFalsy();
 		// errorMessage
@@ -53,7 +53,7 @@ describe('<CSDatepicker />', () => {
 
 	it('should pass label to CSLabel', () => {
 		const uut = shallow(<CSDatepicker label={labelValue} onChange={onChange} />);
-		const datepickerLabel = uut.find('.cs-datepicker > CSLabel');
+		const datepickerLabel = uut.find('.cs-datepicker-wrapper > CSLabel');
 		expect(datepickerLabel.prop('label')).toBe(labelValue);
 	});
 
@@ -86,7 +86,7 @@ describe('<CSDatepicker />', () => {
 				actions={actionsValue}
 			/>,
 		);
-		const datepickerActions = uut.find('.cs-datepicker CSCustomDataActions');
+		const datepickerActions = uut.find('.cs-datepicker-wrapper CSCustomDataActions');
 		expect(datepickerActions).toHaveLength(1);
 		expect(datepickerActions.prop('actions')).toMatchObject(actionsValue);
 	});
@@ -112,7 +112,7 @@ describe('<CSDatepicker />', () => {
 				borderRadius={borderRadius}
 			/>,
 		);
-		const datepickerStyle = uut.find('.cs-datepicker').get(0).props.style;
+		const datepickerStyle = uut.find('.cs-datepicker-wrapper').get(0).props.style;
 		expect(datepickerStyle).toHaveProperty('--cs-datepicker-border-radius', borderRadius);
 	});
 
@@ -162,7 +162,7 @@ describe('<CSDatepicker />', () => {
 				error
 			/>,
 		);
-		expect(uut.find('.cs-datepicker.cs-datepicker-error')).toHaveLength(1);
+		expect(uut.find('.cs-datepicker-wrapper.cs-datepicker-wrapper-error')).toHaveLength(1);
 	});
 
 	it('should pass errorMessage to CSFieldErrorMsg', () => {
@@ -201,7 +201,7 @@ describe('<CSDatepicker />', () => {
 				helpText={helpText}
 			/>,
 		);
-		const datepickerLabel = uut.find('.cs-datepicker > CSLabel');
+		const datepickerLabel = uut.find('.cs-datepicker-wrapper > CSLabel');
 		expect(datepickerLabel.prop('helpText')).toBe(helpText);
 	});
 
@@ -214,7 +214,7 @@ describe('<CSDatepicker />', () => {
 				icons={iconsValue}
 			/>,
 		);
-		const datepickerIcons = uut.find('.cs-datepicker CSCustomDataIcons');
+		const datepickerIcons = uut.find('.cs-datepicker-wrapper CSCustomDataIcons');
 		expect(datepickerIcons).toHaveLength(1);
 		expect(datepickerIcons.prop('icons')).toMatchObject(iconsValue);
 	});
@@ -239,7 +239,7 @@ describe('<CSDatepicker />', () => {
 				isClearable
 			/>,
 		);
-		const datepickerWrapper = uut.find('.cs-datepicker-clearable');
+		const datepickerWrapper = uut.find('.cs-datepicker-wrapper-clearable');
 		const datepicker = uut.find(DatePicker);
 		expect(datepicker.prop('isClearable')).toBeTruthy();
 		expect(datepickerWrapper).toHaveLength(1);
@@ -253,7 +253,7 @@ describe('<CSDatepicker />', () => {
 				labelHidden
 			/>,
 		);
-		const datepickerLabel = uut.find('.cs-datepicker > CSLabel');
+		const datepickerLabel = uut.find('.cs-datepicker-wrapper > CSLabel');
 		expect(datepickerLabel).toHaveLength(0);
 	});
 
@@ -265,7 +265,7 @@ describe('<CSDatepicker />', () => {
 				labelTitle
 			/>,
 		);
-		const datepickerLabel = uut.find('.cs-datepicker > CSLabel');
+		const datepickerLabel = uut.find('.cs-datepicker-wrapper > CSLabel');
 		expect(datepickerLabel.prop('title')).toBe(labelValue);
 	});
 
@@ -458,7 +458,7 @@ describe('<CSDatepicker />', () => {
 			/>,
 		);
 		const datepicker = uut.find(DatePicker);
-		const datepickerLabel = uut.find('.cs-datepicker > CSLabel');
+		const datepickerLabel = uut.find('.cs-datepicker-wrapper > CSLabel');
 		expect(datepicker.prop('required')).toBeTruthy();
 		expect(datepickerLabel.prop('required')).toBeTruthy();
 	});
@@ -521,7 +521,7 @@ describe('<CSDatepicker />', () => {
 				title={title}
 			/>,
 		);
-		const datepickerWrapper = uut.find('.cs-datepicker-wrapper');
+		const datepickerWrapper = uut.find('.cs-datepicker');
 		expect(datepickerWrapper.props().title).toBe(title);
 	});
 
@@ -547,7 +547,7 @@ describe('<CSDatepicker />', () => {
 				tooltipPosition={tooltipPosition}
 			/>,
 		);
-		const datepickerLabel = uut.find('.cs-datepicker > CSLabel');
+		const datepickerLabel = uut.find('.cs-datepicker-wrapper > CSLabel');
 		expect(datepickerLabel.prop('tooltipPosition')).toBe(tooltipPosition);
 	});
 
@@ -572,7 +572,7 @@ describe('<CSDatepicker />', () => {
 				width="300px"
 			/>,
 		);
-		const datepickerStyle = uut.find('.cs-datepicker').get(0).props.style;
+		const datepickerStyle = uut.find('.cs-datepicker-wrapper').get(0).props.style;
 		expect(datepickerStyle).toHaveProperty('--datepicker-width', '300px');
 	});
 
@@ -597,7 +597,7 @@ describe('<CSDatepicker />', () => {
 				className="custom-class"
 			/>,
 		);
-		const datepicker = uut.find('.cs-datepicker.custom-class');
+		const datepicker = uut.find('.cs-datepicker-wrapper.custom-class');
 		expect(datepicker).toHaveLength(1);
 	});
 

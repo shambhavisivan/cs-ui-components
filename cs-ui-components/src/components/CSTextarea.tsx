@@ -188,61 +188,59 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 		);
 
 		return (
-			<>
-				<div className={textareaWrapperClasses} style={style}>
-					{(label && !labelHidden)
-						&& (
-							<CSLabel
-								htmlFor={this.uniqueAutoId}
-								label={label}
-								helpText={helpText}
-								tooltipPosition={tooltipPosition}
-								required={required}
-								title={labelTitle ? label : null}
-							/>
-						)}
-					<div className="cs-textarea-wrapper-inner">
-						{expandButton && (
-							<CSButton
-								label={expanded ? 'Show less...' : 'Show more...'}
-								className={expanded ? 'cs-textarea-expand-button cs-textarea-expanded' : 'cs-textarea-expand-button'}
-								btnStyle="brand"
-								btnType="transparent"
-								size="xsmall"
-								onClick={this.handleReadOnly}
-							/>
-						)}
-						<textarea
-							className={textareaClasses}
-							id={this.uniqueAutoId}
-							placeholder={placeholder}
-							disabled={disabled}
-							readOnly={readOnly}
+			<div className={textareaWrapperClasses} style={style}>
+				{(label && !labelHidden)
+					&& (
+						<CSLabel
+							htmlFor={this.uniqueAutoId}
+							label={label}
+							helpText={helpText}
+							tooltipPosition={tooltipPosition}
 							required={required}
-							rows={readOnly ? undefined : rows}
-							aria-label={label}
-							aria-required={required}
-							aria-invalid={error}
-							value={value}
-							style={style}
-							onChange={this.handleOnChange}
-							title={title}
-							ref={this.textareaInnerRef}
-							{...rest}
+							title={labelTitle ? label : null}
 						/>
-						{(actions || icons || errorTooltip) && (
-							<div className="cs-textarea-wrapper-inner-content">
-								{options}
-								{tooltipMessage}
-							</div>
-						)}
-						{!errorTooltip
-							&& error
-							&& errorMessage
-							&& <CSFieldErrorMsg message={errorMessage} />}
-					</div>
+					)}
+				<div className="cs-textarea-wrapper-inner">
+					{expandButton && (
+						<CSButton
+							label={expanded ? 'Show less...' : 'Show more...'}
+							className={expanded ? 'cs-textarea-expand-button cs-textarea-expanded' : 'cs-textarea-expand-button'}
+							btnStyle="brand"
+							btnType="transparent"
+							size="xsmall"
+							onClick={this.handleReadOnly}
+						/>
+					)}
+					<textarea
+						className={textareaClasses}
+						id={this.uniqueAutoId}
+						placeholder={placeholder}
+						disabled={disabled}
+						readOnly={readOnly}
+						required={required}
+						rows={readOnly ? undefined : rows}
+						aria-label={label}
+						aria-required={required}
+						aria-invalid={error}
+						value={value}
+						style={style}
+						onChange={this.handleOnChange}
+						title={title}
+						ref={this.textareaInnerRef}
+						{...rest}
+					/>
+					{(actions || icons || errorTooltip) && (
+						<div className="cs-textarea-wrapper-inner-content">
+							{options}
+							{tooltipMessage}
+						</div>
+					)}
 				</div>
-			</>
+				{!errorTooltip
+					&& error
+					&& errorMessage
+					&& <CSFieldErrorMsg message={errorMessage} />}
+			</div>
 		);
 	}
 }

@@ -16,9 +16,6 @@
   * fixed iconPosition and size props alignment issue
 * CSButtonGroup
   * changed classes with `.cs-button` prefix to `.cs-btn`
-* CSDataTable
-  * <i>important</i> flipped the default value for the `defaultCollapsed` prop to `true`
-  * added `title` column attribute
 * CSCard
   * renamed `cs-card-button` class to `cs-card-toggle-btn` in `CSCardHeader`
   * renamed `showBorder` prop to `hideBorder` and reversed logic in `CSCardHeader`
@@ -32,17 +29,22 @@
   * added `actions` and `icons` support
   * changed `onDropdownClose` prop to execute when dropdown open and enter key pressed
   * fixed field height increase when items are selected
+* CSDataTable
+  * <i>important</i> flipped the default value for the `defaultCollapsed` prop to `true`
+  * added `title` column attribute
+* CSDatePicker
+  * changed the `todayButton` prop from boolean to string
+  * <i>important</i> flipped the classes `cs-datepicker` and `cs-datepicker-wrapper`
+* CSDateTimePicker
+  * changed the `todayButton` prop from boolean to string
 * CSDropdown
   * <i>important</i> removed `onClick` prop
   * added `routerLink` prop
   * fixed keyboard navigation when mode is 'button' and minor style fixes
-* CSDatePicker
-  * changed the `todayButton` prop from boolean to string
-* CSDateTimePicker
-  * changed the `todayButton` prop from boolean to string
 * CSInputFile
   * added `fileSelectedLabel` prop
   * set `label` prop to be optional
+  * <i>important</i> added `cs-input-file-wrapper`
 * CSInputNumber
   * added `locale` prop
 * CSLabel
@@ -70,6 +72,8 @@
   * fixed errorMessage spacing and right padding when errorTooltip is visible
 * CSToggle
   * set `checked` prop to be `false` by default
+  * <i>important</i> Changed `cs-toggle-wrapper` class to `cs-toggle-group`
+  * <i>important</i> Changed `cs-toggle-element` class to `cs-toggle-wrapper`
 * CSTooltip
   * fixed breaking error on long delay and stickyOnClick props combo
 * CSTransfer

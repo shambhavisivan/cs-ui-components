@@ -151,8 +151,8 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 			fileLabel,
 		} = this.state;
 
-		const wrapperClasses = classNames(
-			'cs-input-file-wrapper',
+		const inputFileClasses = classNames(
+			'cs-input-file',
 			{
 				'cs-input-file-drop-area-highlighted': dropAreaBackground,
 				'cs-input-file-error': error,
@@ -198,9 +198,9 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 		);
 
 		return (
-			<>
+			<div className="cs-input-file-wrapper">
 				<div
-					className={wrapperClasses}
+					className={inputFileClasses}
 					style={style}
 					onDragOver={!disabled ? this.handleFileDragEvents : null}
 					onDragEnter={!disabled ? this.handleDragEnter : null}
@@ -222,7 +222,7 @@ class CSInputFile extends React.Component<CSInputFileProps, CSInputFileState> {
 				{!errorTooltip
 					&& error
 					&& <CSFieldErrorMsg message={errorMessage} />}
-			</>
+			</div>
 		);
 	}
 }

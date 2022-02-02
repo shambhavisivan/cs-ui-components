@@ -16,7 +16,7 @@ describe('<CSDateTimePicker />', () => {
 		// Should render a datepicker
 		const datepicker = uut.dive().find('CSDatepicker');
 		// Should have a label
-		expect(datepicker.dive().find('.cs-datepicker > CSLabel')).toHaveLength(1);
+		expect(datepicker.dive().find('.cs-datepicker-wrapper > CSLabel')).toHaveLength(1);
 		// autoFocus
 		expect(datepicker.prop('autoFocus')).toBeFalsy();
 		// dateFormat
@@ -26,7 +26,7 @@ describe('<CSDateTimePicker />', () => {
 		// dropdownMode
 		expect(datepicker.prop('dropdownMode')).toBe('scroll');
 		// error
-		expect(uut.find('.cs-datetimepicker.cs-datepicker-error')).toHaveLength(0);
+		expect(uut.find('.cs-datetimepicker.cs-datepicker-wrapper-error')).toHaveLength(0);
 		// inline
 		expect(datepicker.prop('inline')).toBeFalsy();
 		// maxDate
@@ -37,7 +37,7 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('readOnly')).toBeFalsy();
 		// required
 		expect(datepicker.prop('required')).toBeFalsy();
-		expect(datepicker.dive().find('.cs-datepicker > CSLabel').prop('required')).toBeFalsy();
+		expect(datepicker.dive().find('.cs-datepicker-wrapper > CSLabel').prop('required')).toBeFalsy();
 		// scrollableYearDropdown
 		expect(datepicker.prop('scrollableYearDropdown')).toBeFalsy();
 		// errorMessage

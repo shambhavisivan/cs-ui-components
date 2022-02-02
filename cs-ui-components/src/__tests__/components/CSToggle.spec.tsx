@@ -23,7 +23,7 @@ const actionsValue = [
 describe('<CSToggle />', () => {
 	it('should render the default CSToggle', () => {
 		const uut = shallow(<CSToggle label={labelValue} />);
-		const toggleLabel = uut.find('.cs-toggle-element > CSLabel');
+		const toggleLabel = uut.find('.cs-toggle-wrapper > .cs-toggle-wrapper-outer > CSLabel');
 		const toggle = uut.find('.cs-toggle');
 		// Make sure CSLabel received correct value for label prop
 		expect(toggle.prop('aria-label')).toBe(labelValue);
@@ -33,7 +33,7 @@ describe('<CSToggle />', () => {
 
 	it('should render custom actions and check if passed object is correct', () => {
 		const uut = shallow(<CSToggle label={labelValue} actions={actionsValue} />);
-		const toggleCustomActions = uut.find('.cs-toggle-element CSCustomDataActions');
+		const toggleCustomActions = uut.find('.cs-toggle-wrapper CSCustomDataActions');
 		expect(toggleCustomActions).toHaveLength(1);
 		// Make sure CSCustomDataActions received correct actions object
 		expect(toggleCustomActions.prop('actions')).toMatchObject(actionsValue);
@@ -58,28 +58,28 @@ describe('<CSToggle />', () => {
 
 	it('should render an error message from string', () => {
 		const uut = shallow(<CSToggle label={labelValue} error errorMessage={errorText} />);
-		const toggleErrorMsg = uut.find('.cs-toggle-element CSFieldErrorMsg');
+		const toggleErrorMsg = uut.find('.cs-toggle-wrapper CSFieldErrorMsg');
 		// Make sure CSFieldErrorMsg received correct value for message prop
 		expect(toggleErrorMsg.prop('message')).toBe(errorText);
 	});
 
 	it('should render toggle in error state with an error tooltip', () => {
 		const uut = shallow(<CSToggle label={labelValue} error errorMessage={errorText} errorTooltip />);
-		const toggleErrorMsg = uut.find('.cs-toggle-element CSFieldErrorMsg');
+		const toggleErrorMsg = uut.find('.cs-toggle-wrapper CSFieldErrorMsg');
 		// Make sure CSFieldErrorMsg prop tooltipMessage received correct value and casted into true
 		expect(toggleErrorMsg.prop('tooltipMessage')).toBe(true);
 	});
 
 	it('should pass helpText to CSLabel', () => {
 		const uut = shallow(<CSToggle label={labelValue} helpText={helpTextMsg} />);
-		const toggleLabel = uut.find('.cs-toggle-element > CSLabel');
+		const toggleLabel = uut.find('.cs-toggle-wrapper > .cs-toggle-wrapper-outer > CSLabel');
 		// Make sure CSLabel received correct value for helpText prop
 		expect(toggleLabel.prop('helpText')).toBe(helpTextMsg);
 	});
 
 	it('should pass icons to CSCustomDataIcons', () => {
 		const uut = shallow(<CSToggle label={labelValue} icons={iconsValue} />);
-		const toggleCustomIcons = uut.find('.cs-toggle-element CSCustomDataIcons');
+		const toggleCustomIcons = uut.find('.cs-toggle-wrapper CSCustomDataIcons');
 		expect(toggleCustomIcons).toHaveLength(1);
 		// Make sure CSCustomDataIcons received correct icons object
 		expect(toggleCustomIcons.prop('icons')).toMatchObject(iconsValue);
@@ -87,23 +87,23 @@ describe('<CSToggle />', () => {
 
 	it('should hide label', () => {
 		const uut = shallow(<CSToggle label={labelValue} labelHidden />);
-		expect(uut.find('.cs-toggle-element > CSLabel')).toHaveLength(0);
+		expect(uut.find('.cs-toggle-wrapper > .cs-toggle-wrapper-outer > CSLabel')).toHaveLength(0);
 	});
 
 	it('should display label on default top position', () => {
 		const uut = shallow(<CSToggle label={labelValue} labelPosition="default" />);
-		expect(uut.find('.cs-toggle-element:not(.cs-toggle-label-left)')).toHaveLength(1);
+		expect(uut.find('.cs-toggle-wrapper:not(.cs-toggle-label-left)')).toHaveLength(1);
 	});
 
 	it('should display label on left position', () => {
 		const uut = shallow(<CSToggle label={labelValue} labelPosition="left" />);
-		expect(uut.find('.cs-toggle-element.cs-toggle-label-left')).toHaveLength(1);
+		expect(uut.find('.cs-toggle-wrapper.cs-toggle-label-left')).toHaveLength(1);
 	});
 
 	it('should pass label to CSLabel as title', () => {
 		const label = 'label';
 		const uut = shallow(<CSToggle label={label} labelTitle />);
-		const toggleLabel = uut.find('.cs-toggle-element > CSLabel');
+		const toggleLabel = uut.find('.cs-toggle-wrapper > .cs-toggle-wrapper-outer > CSLabel');
 		expect(toggleLabel.props().title).toBe(label);
 	});
 
@@ -125,7 +125,7 @@ describe('<CSToggle />', () => {
 	it('should set required attribute', () => {
 		const uut = shallow(<CSToggle label={labelValue} required />);
 		const toggle = uut.find('.cs-toggle');
-		const toggleLabel = uut.find('.cs-toggle-element > CSLabel');
+		const toggleLabel = uut.find('.cs-toggle-wrapper > .cs-toggle-wrapper-outer > CSLabel');
 		expect(toggle.props().required).toEqual(true);
 		expect(toggle.prop('aria-required')).toBeTruthy();
 		expect(toggleLabel.prop('required')).toEqual(true);
@@ -149,7 +149,7 @@ describe('<CSToggle />', () => {
 	it('should have a custom class name', () => {
 		const customClass = 'custom-class';
 		const uut = shallow(<CSToggle label={labelValue} className={customClass} />);
-		const toggleWrapper = uut.find(`.cs-toggle-element.${customClass}`);
+		const toggleWrapper = uut.find(`.cs-toggle-wrapper.${customClass}`);
 		expect(toggleWrapper).toHaveLength(1);
 	});
 

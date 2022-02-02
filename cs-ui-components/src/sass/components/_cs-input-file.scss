@@ -2,7 +2,7 @@
 //
 // CS Input File component.
 
-.cs-input-file-wrapper {
+.cs-input-file {
 	position: relative;
 	display: inline-flex;
 	border-radius: 0.25rem;
@@ -19,6 +19,7 @@
 		align-items: center;
 		width: 100%;
 		padding: 0.125rem;
+		border-radius: 0.25rem;
 		cursor: pointer;
 		@include sbg(--cs-input-file-drop-area-bg);
 

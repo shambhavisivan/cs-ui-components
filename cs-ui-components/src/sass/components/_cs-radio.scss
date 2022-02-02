@@ -18,11 +18,15 @@
 			display: inline-flex;
 			width: fit-content;
 			font-size: 0.875rem;
-			margin-bottom: 0.25rem;
+			margin-block-end: 0.25rem;
 			@include sc(--cs-radio-option-wrapper-c);
 
 			&-read-only {
 				cursor: default;
+			}
+
+			&:last-child {
+				margin-block-end: 0;
 			}
 		}
 

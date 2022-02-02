@@ -163,12 +163,12 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 		const { datepickerOptionsWrapperWidth } = this.state;
 
 		const datepickerClasses = classNames(
-			'cs-datepicker',
+			'cs-datepicker-wrapper',
 			{
-				'cs-datepicker-error': error,
-				'cs-datepicker-error-tooltip': errorTooltip,
-				'cs-datepicker-read-only': readOnly,
-				'cs-datepicker-clearable': isClearable,
+				'cs-datepicker-wrapper-error': error,
+				'cs-datepicker-wrapper-error-tooltip': errorTooltip,
+				'cs-datepicker-wrapper-read-only': readOnly,
+				'cs-datepicker-wrapper-clearable': isClearable,
 				[`${className}`]: className,
 			},
 		);
@@ -191,70 +191,65 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 		};
 
 		return (
-			<>
-				<div className={datepickerClasses} style={style}>
-					{(label && !labelHidden && !inline)
-						&& (
-							<CSLabel
-								htmlFor={this.uniqueAutoId}
-								label={label}
-								helpText={helpText}
-								tooltipPosition={tooltipPosition}
-								required={required}
-								title={labelTitle ? label : null}
-							/>
-						)}
-					<div className="cs-datepicker-wrapper" title={title}>
-						<DatePicker
-							dateFormat={dateFormat}
-							isClearable={isClearable}
-							placeholderText={placeholder}
-							todayButton={todayButton}
-							disabled={disabled}
-							maxDate={maxDateYear || maxDate ? calcMaxDate() : undefined}
-							minDate={minDateYear || minDate ? calcMinDate() : undefined}
-							name={name}
-							locale={locale}
-							selected={selected}
-							onBlur={onBlur}
-							onCalendarClose={onCalendarClose}
-							onChange={onChange}
-							onChangeRaw={onChangeRaw}
-							onKeyDown={this.handleOnKeyDown}
-							onSelect={onSelect}
-							openToDate={openToDate}
-							showYearDropdown={showYearDropdown}
-							showMonthDropdown={showMonthDropdown}
-							scrollableYearDropdown={scrollableYearDropdown}
-							dropdownMode={dropdownMode}
-							readOnly={readOnly}
-							ref={this.datepickerInnerRef}
-							yearDropdownItemNumber={yearDropdownItemNumber}
-							autoComplete="off"
+			<div className={datepickerClasses} style={style}>
+				{(label && !labelHidden && !inline)
+					&& (
+						<CSLabel
+							htmlFor={this.uniqueAutoId}
+							label={label}
+							helpText={helpText}
+							tooltipPosition={tooltipPosition}
 							required={required}
-							id={this.uniqueAutoId}
-							inline={inline}
-							autoFocus={autoFocus}
-							value={value}
-							{...rest}
+							title={labelTitle ? label : null}
 						/>
-					</div>
-					{(icons?.length || actions?.length)
-						&& (
-							<div className="cs-datepicker-options" ref={this.datepickerOptionsWrapperRef}>
-								{icons?.length && <CSCustomDataIcons icons={icons} />}
-								{actions?.length && <CSCustomDataActions actions={actions} />}
-							</div>
-						)}
-					{(!readOnly && !inline) && <CSIcon name="event" className="cs-datepicker-icon" size="0.875rem" />}
-					{error
-						&& errorTooltip
-						&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
+					)}
+				<div className="cs-datepicker" title={title}>
+					<DatePicker
+						dateFormat={dateFormat}
+						isClearable={isClearable}
+						placeholderText={placeholder}
+						todayButton={todayButton}
+						disabled={disabled}
+						maxDate={maxDateYear || maxDate ? calcMaxDate() : undefined}
+						minDate={minDateYear || minDate ? calcMinDate() : undefined}
+						name={name}
+						locale={locale}
+						selected={selected}
+						onBlur={onBlur}
+						onCalendarClose={onCalendarClose}
+						onChange={onChange}
+						onChangeRaw={onChangeRaw}
+						onKeyDown={this.handleOnKeyDown}
+						onSelect={onSelect}
+						openToDate={openToDate}
+						showYearDropdown={showYearDropdown}
+						showMonthDropdown={showMonthDropdown}
+						scrollableYearDropdown={scrollableYearDropdown}
+						dropdownMode={dropdownMode}
+						readOnly={readOnly}
+						ref={this.datepickerInnerRef}
+						yearDropdownItemNumber={yearDropdownItemNumber}
+						autoComplete="off"
+						required={required}
+						id={this.uniqueAutoId}
+						inline={inline}
+						autoFocus={autoFocus}
+						value={value}
+						{...rest}
+					/>
 				</div>
-				{!errorTooltip
-					&& error
-					&& <CSFieldErrorMsg message={errorMessage} />}
-			</>
+				{(icons?.length || actions?.length)
+					&& (
+						<div className="cs-datepicker-options" ref={this.datepickerOptionsWrapperRef}>
+							{icons?.length && <CSCustomDataIcons icons={icons} />}
+							{actions?.length && <CSCustomDataActions actions={actions} />}
+						</div>
+					)}
+				{(!readOnly && !inline) && <CSIcon name="event" className="cs-datepicker-icon" size="0.875rem" />}
+				{error
+					&& errorMessage
+					&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
+			</div>
 		);
 	}
 }

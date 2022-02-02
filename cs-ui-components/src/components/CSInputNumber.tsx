@@ -233,67 +233,62 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 		};
 
 		return (
-			<>
-				<div className={inputNumberWrapperClasses} style={style}>
-					{(label && !labelHidden)
-						&& (
-							<CSLabel
-								htmlFor={this.uniqueAutoId}
-								label={label}
-								helpText={helpText}
-								tooltipPosition={tooltipPosition}
-								required={required}
-								title={labelTitle ? label : null}
-							/>
-						)}
-					<div className="cs-input-number-wrapper-inner">
-						<input
-							className={inputNumberClasses}
-							id={this.uniqueAutoId}
-							placeholder={placeholder}
-							min={min}
-							max={max}
-							name={name}
-							maxLength={type === 'text' ? maxLength : undefined}
-							readOnly={readOnly}
+			<div className={inputNumberWrapperClasses} style={style}>
+				{(label && !labelHidden)
+					&& (
+						<CSLabel
+							htmlFor={this.uniqueAutoId}
+							label={label}
+							helpText={helpText}
+							tooltipPosition={tooltipPosition}
 							required={required}
-							disabled={disabled}
-							value={showLocaleFormat ? formattedValue : value}
-							type={setType()}
-							role="spinbutton"
-							aria-label={label}
-							aria-required={required}
-							aria-valuemin={min}
-							aria-valuemax={max}
-							aria-valuenow={value}
-							aria-invalid={error}
-							autoComplete="off"
-							onBlur={this.onBlur}
-							onFocus={this.onFocus}
-							onChange={this.handleOnChange}
-							onKeyDown={this.handleOnKeyDown}
-							onPaste={this.handleOnPaste}
-							title={title}
-							step={step}
-							ref={this.inputNumberInnerRef}
-							{...rest}
+							title={labelTitle ? label : null}
 						/>
-						{(actions?.length || icons?.length)
-							&& (
-								<div className="cs-input-number-options" ref={this.inputNumberOptionsWrapperRef}>
-									{icons?.length && <CSCustomDataIcons icons={icons} />}
-									{actions?.length && <CSCustomDataActions actions={actions} />}
-								</div>
-							)}
-						{error
-							&& errorTooltip
-							&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
-					</div>
-					{!errorTooltip
-						&& error
-						&& <CSFieldErrorMsg message={errorMessage} />}
+					)}
+				<div className="cs-input-number-wrapper-inner">
+					<input
+						className={inputNumberClasses}
+						id={this.uniqueAutoId}
+						placeholder={placeholder}
+						min={min}
+						max={max}
+						name={name}
+						maxLength={type === 'text' ? maxLength : undefined}
+						readOnly={readOnly}
+						required={required}
+						disabled={disabled}
+						value={showLocaleFormat ? formattedValue : value}
+						type={setType()}
+						role="spinbutton"
+						aria-label={label}
+						aria-required={required}
+						aria-valuemin={min}
+						aria-valuemax={max}
+						aria-valuenow={value}
+						aria-invalid={error}
+						autoComplete="off"
+						onBlur={this.onBlur}
+						onFocus={this.onFocus}
+						onChange={this.handleOnChange}
+						onKeyDown={this.handleOnKeyDown}
+						onPaste={this.handleOnPaste}
+						title={title}
+						step={step}
+						ref={this.inputNumberInnerRef}
+						{...rest}
+					/>
+					{(actions?.length || icons?.length)
+						&& (
+							<div className="cs-input-number-options" ref={this.inputNumberOptionsWrapperRef}>
+								{icons?.length && <CSCustomDataIcons icons={icons} />}
+								{actions?.length && <CSCustomDataActions actions={actions} />}
+							</div>
+						)}
 				</div>
-			</>
+				{error
+					&& errorMessage
+					&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
+			</div>
 		);
 	}
 }

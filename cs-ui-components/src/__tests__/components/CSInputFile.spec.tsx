@@ -22,14 +22,14 @@ describe('<CSInputFile />', () => {
 	it('should render the default CSInputFile', () => {
 		const uut = shallow(<CSInputFile />);
 		// Should render input file
-		const inputFile = uut.find('.cs-input-file-wrapper input');
+		const inputFile = uut.find('.cs-input-file input');
 		expect(inputFile).toHaveLength(1);
 		// disabled
 		expect(uut.find('label.cs-input-file-disabled')).toHaveLength(0);
 		// dropAreaHighlighted
 		expect(uut.find('.cs-input-file-drop-area-highlighted')).toHaveLength(0);
 		// error
-		expect(uut.find('.cs-input-file-wrapper.cs-input-file-error')).toHaveLength(0);
+		expect(uut.find('.cs-input-file.cs-input-file-error')).toHaveLength(0);
 		// label
 		expect(uut.find('.cs-input-file-label').text()).toBe('Upload a file');
 		inputFile.simulate('change', { target: { files: [file] } });
@@ -63,22 +63,22 @@ describe('<CSInputFile />', () => {
 
 	it('should set drop area custom height', () => {
 		const uut = shallow(<CSInputFile dropAreaHeight={dropAreaHeight} />);
-		expect(uut.find('.cs-input-file-wrapper').props().style).toHaveProperty('--drop-area-height', dropAreaHeight);
+		expect(uut.find('.cs-input-file').props().style).toHaveProperty('--drop-area-height', dropAreaHeight);
 	});
 
 	it('should set drop area custom width', () => {
 		const uut = shallow(<CSInputFile dropAreaWidth={dropAreaWidth} />);
-		expect(uut.find('.cs-input-file-wrapper').props().style).toEqual({ '--drop-area-height': undefined, '--drop-area-width': dropAreaWidth });
+		expect(uut.find('.cs-input-file').props().style).toEqual({ '--drop-area-height': undefined, '--drop-area-width': dropAreaWidth });
 	});
 
 	it('should render error input file', () => {
 		const uut = shallow(<CSInputFile error />);
-		expect(uut.find('.cs-input-file-wrapper.cs-input-file-error')).toHaveLength(1);
+		expect(uut.find('.cs-input-file.cs-input-file-error')).toHaveLength(1);
 	});
 
 	it('should pass errorMessage to CSFieldErrorMsg', () => {
 		const uut = shallow(<CSInputFile error errorMessage={errorMessage} />);
-		expect(uut.find('.cs-input-file-wrapper + CSFieldErrorMsg').prop('message')).toBe(errorMessage);
+		expect(uut.find('.cs-input-file + CSFieldErrorMsg').prop('message')).toBe(errorMessage);
 	});
 
 	it('should pass errorTooltip to CSFieldErrorMsg', () => {
@@ -122,7 +122,7 @@ describe('<CSInputFile />', () => {
 	it('should render input file with fileSelectedLabel', () => {
 		const handleFileSelectedMock = jest.fn();
 		const uut = shallow(<CSInputFile onChange={handleFileSelectedMock} fileSelectedLabel={fileSelectedLabel} />);
-		const inputFile = uut.find('.cs-input-file-wrapper input');
+		const inputFile = uut.find('.cs-input-file input');
 		inputFile.simulate('change', { target: { files: [file] } });
 		expect(uut.find('.cs-input-file-label').text()).toBe(fileSelectedLabel);
 	});
@@ -130,13 +130,13 @@ describe('<CSInputFile />', () => {
 	it('should render input file with label', () => {
 		const uut = shallow(<CSInputFile label={inputLabel} />);
 		expect(uut.find('.cs-input-file-label').text()).toBe(inputLabel);
-		expect(uut.find('.cs-input-file-wrapper input').props().title).toBe(inputLabel);
+		expect(uut.find('.cs-input-file input').props().title).toBe(inputLabel);
 	});
 
 	it('should use a working onChange callback', () => {
 		const handleChangeMock = jest.fn();
 		const uut = shallow(<CSInputFile onChange={handleChangeMock} />);
-		const inputFile = uut.find('.cs-input-file-wrapper input');
+		const inputFile = uut.find('.cs-input-file input');
 		inputFile.simulate('change', { target: { files: [file] } });
 		expect(handleChangeMock).toHaveBeenCalledTimes(1);
 	});
@@ -151,18 +151,18 @@ describe('<CSInputFile />', () => {
 			stopPropagation: () => jest.fn(),
 		};
 		const uut = shallow(<CSInputFile onDrop={handleDropMock} />);
-		const inputFile = uut.find('.cs-input-file-wrapper');
+		const inputFile = uut.find('.cs-input-file');
 		inputFile.simulate('drop', dropEventMock);
 		expect(handleDropMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should have a custom class name', () => {
 		const uut = shallow(<CSInputFile className={customClass} />);
-		expect(uut.find(`.cs-input-file-wrapper.${customClass}`)).toHaveLength(1);
+		expect(uut.find(`.cs-input-file.${customClass}`)).toHaveLength(1);
 	});
 	it('should have a custom ID', () => {
 		const uut = shallow(<CSInputFile id={customId} />);
-		expect(uut.find(`.cs-input-file-wrapper input#${customId}`)).toHaveLength(1);
+		expect(uut.find(`.cs-input-file input#${customId}`)).toHaveLength(1);
 	});
 
 	it('should accept arbitrary props', () => {

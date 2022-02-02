@@ -8,6 +8,7 @@
 }
 
 .cs-input-search-wrapper {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 
@@ -15,6 +16,10 @@
 		position: absolute;
 		right: 0.5rem;
 		top: 0.5625rem;
+	}
+
+	> .cs-label-wrapper ~ .cs-tooltip-wrapper.cs-tw-error {
+		top: 1.75rem;
 	}
 }
 

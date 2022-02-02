@@ -89,8 +89,8 @@ class CSToggle extends React.Component<CSToggleProps> {
 			},
 		);
 
-		const toggleElementWrapperClasses = classNames(
-			'cs-toggle-element',
+		const toggleWrapperClasses = classNames(
+			'cs-toggle-wrapper',
 			{
 				[`cs-toggle-label-${labelPosition}`]: labelPosition,
 				[`${className}`]: className,
@@ -104,8 +104,8 @@ class CSToggle extends React.Component<CSToggleProps> {
 		}
 
 		return (
-			<>
-				<div className={toggleElementWrapperClasses}>
+			<div className={toggleWrapperClasses}>
+				<div className="cs-toggle-wrapper-outer">
 					{(label && !labelHidden)
 						&& (
 							<CSLabel
@@ -120,7 +120,7 @@ class CSToggle extends React.Component<CSToggleProps> {
 					<div className="cs-toggle-wrapper-inner">
 						{/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
 						<label
-							className="cs-toggle-wrapper"
+							className="cs-toggle-group"
 							onClick={(event) => event.stopPropagation()}
 							onKeyDown={(event) => event.stopPropagation()}
 						>
@@ -153,11 +153,11 @@ class CSToggle extends React.Component<CSToggleProps> {
 							)}
 
 					</div>
-					{!errorTooltip
-						&& error
-						&& <CSFieldErrorMsg message={errorMessage} />}
 				</div>
-			</>
+				{!errorTooltip
+					&& error
+					&& <CSFieldErrorMsg message={errorMessage} />}
+			</div>
 		);
 	}
 }

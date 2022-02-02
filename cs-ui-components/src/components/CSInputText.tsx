@@ -144,58 +144,53 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 		};
 
 		return (
-			<>
-				<div className={inputTextWrapperClasses} style={style}>
-					{(label && !labelHidden)
-						&& (
-							<CSLabel
-								htmlFor={this.uniqueAutoId}
-								label={label}
-								helpText={helpText}
-								tooltipPosition={tooltipPosition}
-								required={required}
-								title={labelTitle ? label : null}
-							/>
-						)}
-					<div className="cs-input-text-wrapper-inner">
-						<input
-							className={inputTextClasses}
-							id={this.uniqueAutoId}
-							placeholder={placeholder}
-							disabled={disabled}
-							maxLength={maxLength}
-							readOnly={readOnly}
+			<div className={inputTextWrapperClasses} style={style}>
+				{(label && !labelHidden)
+					&& (
+						<CSLabel
+							htmlFor={this.uniqueAutoId}
+							label={label}
+							helpText={helpText}
+							tooltipPosition={tooltipPosition}
 							required={required}
-							value={value}
-							type="text"
-							aria-label={label}
-							aria-required={required}
-							aria-invalid={error}
-							autoComplete="off"
-							onChange={this.handleOnChange}
-							name={name}
-							onBlur={this.onBlur}
-							onFocus={this.onFocus}
-							title={title}
-							ref={this.inputTextInnerRef}
-							{...rest}
+							title={labelTitle ? label : null}
 						/>
-						{(actions?.length || icons?.length)
-							&& (
-								<div className="cs-input-text-options" ref={this.inputTextOptionsWrapperRef}>
-									{icons?.length && <CSCustomDataIcons icons={icons} />}
-									{actions?.length && <CSCustomDataActions actions={actions} />}
-								</div>
-							)}
-						{error
-							&& errorTooltip
-							&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
-					</div>
-					{!errorTooltip
-						&& error
-						&& <CSFieldErrorMsg message={errorMessage} />}
+					)}
+				<div className="cs-input-text-wrapper-inner">
+					<input
+						className={inputTextClasses}
+						id={this.uniqueAutoId}
+						placeholder={placeholder}
+						disabled={disabled}
+						maxLength={maxLength}
+						readOnly={readOnly}
+						required={required}
+						value={value}
+						type="text"
+						aria-label={label}
+						aria-required={required}
+						aria-invalid={error}
+						autoComplete="off"
+						onChange={this.handleOnChange}
+						name={name}
+						onBlur={this.onBlur}
+						onFocus={this.onFocus}
+						title={title}
+						ref={this.inputTextInnerRef}
+						{...rest}
+					/>
+					{(actions?.length || icons?.length)
+						&& (
+							<div className="cs-input-text-options" ref={this.inputTextOptionsWrapperRef}>
+								{icons?.length && <CSCustomDataIcons icons={icons} />}
+								{actions?.length && <CSCustomDataActions actions={actions} />}
+							</div>
+						)}
 				</div>
-			</>
+				{error
+					&& errorMessage
+					&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
+			</div>
 		);
 	}
 }
