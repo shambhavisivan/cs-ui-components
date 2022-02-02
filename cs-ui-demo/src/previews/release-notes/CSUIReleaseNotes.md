@@ -51,6 +51,8 @@
   * added `max-height` to label `cs-label-wrapper` class
 * CSList
   * fixed `self-select` option
+* CSLookup
+  * fixed deleting search term with backspace deletes the whole term instead of one letter
 * CSModal
   * <i>important</i> changed `visible` prop in `CSUnmountDelay` to be `false` by default
   * changed classes with `.cs-button` prefix to `.cs-btn`
