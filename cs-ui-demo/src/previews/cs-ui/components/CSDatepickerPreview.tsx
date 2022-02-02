@@ -456,6 +456,24 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 							}
 						]
 					}, {
+						propName: 'locale',
+						variations: [
+							{
+								component: <CSDatepicker
+									label="Enter date"
+									locale="es"
+									selected={this.state.dateLocale}
+									onChange={(date: Date) => this.setDate(date, 'Locale')}
+								/>,
+								code: `<CSDatepicker
+									label="Enter date"
+									locale="es"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
+							}
+						]
+					}, {
 						propName: 'maxDate',
 						variations: [
 							{
@@ -1079,7 +1097,7 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 						description: 'Control whether to set the title attribute.'
 					}, {
 						name: 'locale',
-						types: 'any',
+						types: 'string',
 						description: 'Set the datepicker locale.'
 					}, {
 						name: 'maxDate',
@@ -1215,6 +1233,11 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 						name: '[key: string]',
 						types: 'any',
 						description: 'Spreads the rest of the props to the datepicker.'
+					}, {
+						name: 'timeFormat',
+						types: 'string',
+						required: 'CSDateTimePicker',
+						description: 'Set the date format for various locales. (eg. HH:mm, HH:mm:ss, yyyy-MM, yyyy-MM:dd, etc.)'
 					}
 				]
 			}

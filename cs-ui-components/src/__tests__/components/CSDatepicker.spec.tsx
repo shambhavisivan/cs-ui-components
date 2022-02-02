@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import '../../setupTests';
 import DatePicker from 'react-datepicker';
 import {
@@ -27,7 +27,7 @@ describe('<CSDatepicker />', () => {
 		// autoFocus
 		expect(datepicker.prop('autoFocus')).toBeFalsy();
 		// dateFormat
-		expect(datepicker.prop('dateFormat')).toBe('dd-MM-yyyy');
+		expect(datepicker.prop('dateFormat')).toBe('P');
 		// disabled
 		expect(datepicker.prop('disabled')).toBeFalsy();
 		// dropdownMode
@@ -267,6 +267,24 @@ describe('<CSDatepicker />', () => {
 		);
 		const datepickerLabel = uut.find('.cs-datepicker-wrapper > CSLabel');
 		expect(datepickerLabel.prop('title')).toBe(labelValue);
+	});
+
+	it('should pass locale to Datepicker', () => {
+		const uut = mount(
+			<CSDatepicker
+				locale="es"
+				label={labelValue}
+				onChange={onChange}
+			/>,
+		);
+
+		const datepickerInput = uut.find('.react-datepicker__input-container > input');
+		datepickerInput.simulate('click');
+
+		const datepickerDay = uut.find('.react-datepicker__day-names > .react-datepicker__day-name').at(0).text();
+
+		expect(uut.find(DatePicker).prop('locale')).toBe('es');
+		expect(datepickerDay).toBe('lu');
 	});
 
 	it('should pass max date to DatePicker', () => {
@@ -524,6 +542,20 @@ describe('<CSDatepicker />', () => {
 		);
 		const datepicker = uut.find(DatePicker);
 		expect(datepicker.prop('showYearDropdown')).toBeTruthy();
+	});
+
+	it('should set timeFormat for DatePicker', () => {
+		const timeFormat = 'HH:mm:ss';
+		const uut = shallow(
+			<CSDatepicker
+				label={labelValue}
+				onChange={onChange}
+				timeFormat={timeFormat}
+			/>,
+		);
+
+		const datepicker = uut.find(DatePicker);
+		expect(datepicker.prop('timeFormat')).toBe(timeFormat);
 	});
 
 	it('should set title attribute', () => {

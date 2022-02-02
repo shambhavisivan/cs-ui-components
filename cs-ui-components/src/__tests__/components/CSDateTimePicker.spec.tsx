@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import '../../setupTests';
 import DatePicker from 'react-datepicker';
 import CSDateTimePicker from '../../components/CSDateTimePicker';
@@ -20,7 +20,9 @@ describe('<CSDateTimePicker />', () => {
 		// autoFocus
 		expect(datepicker.prop('autoFocus')).toBeFalsy();
 		// dateFormat
-		expect(datepicker.prop('dateFormat')).toBe('MMMM d, yyyy h:mm aa');
+		expect(datepicker.prop('dateFormat')).toBe('Pp');
+		// timeFormat
+		expect(datepicker.prop('timeFormat')).toBe('p');
 		// disabled
 		expect(datepicker.prop('disabled')).toBeFalsy();
 		// dropdownMode
@@ -264,6 +266,24 @@ describe('<CSDateTimePicker />', () => {
 		);
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('labelTitle')).toBeTruthy();
+	});
+
+	it('should pass locale to CSDatepicker', () => {
+		const uut = mount(
+			<CSDateTimePicker
+				locale="es"
+				label={labelValue}
+				onChange={onChange}
+			/>,
+		);
+
+		const datepickerInput = uut.find('.react-datepicker__input-container > input');
+		datepickerInput.simulate('click');
+
+		const datepickerDay = uut.find('.react-datepicker__day-names > .react-datepicker__day-name').at(0).text();
+
+		expect(uut.find(DatePicker).prop('locale')).toBe('es');
+		expect(datepickerDay).toBe('lu');
 	});
 
 	it('should pass maxDate to CSDatepicker', () => {

@@ -13,8 +13,9 @@ export interface CSDateTimePickerProps
 
 class CSDateTimePicker extends React.Component<CSDateTimePickerProps> {
 	public static defaultProps = {
-		dateFormat: 'MMMM d, yyyy h:mm aa',
+		dateFormat: 'Pp',
 		dropdownMode: 'scroll',
+		timeFormat: 'p',
 	};
 
 	public render() {
@@ -74,6 +75,7 @@ class CSDateTimePicker extends React.Component<CSDateTimePickerProps> {
 		return (
 			<CSDatepicker
 				showTimeSelect
+				timeFormat={timeFormat}
 				onChange={onChange}
 				selected={selected}
 				label={label}

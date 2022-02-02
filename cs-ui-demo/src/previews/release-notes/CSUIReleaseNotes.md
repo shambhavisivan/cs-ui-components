@@ -44,8 +44,10 @@
 * CSDatePicker
   * changed the `todayButton` prop from boolean to string
   * <i>important</i> flipped the classes `cs-datepicker` and `cs-datepicker-wrapper`
+  * <i>important</i> Fixed locale prop and console warnings for all languages
 * CSDateTimePicker
   * changed the `todayButton` prop from boolean to string
+  * fixed timeFormat prop
 * CSDropdown
   * <i>important</i> removed `onClick` prop
   * added `routerLink` prop

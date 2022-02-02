@@ -1,10 +1,11 @@
 import React, { CSSProperties } from 'react';
-import DatePicker from 'react-datepicker';
+import DatePicker, { setDefaultLocale, registerLocale } from 'react-datepicker';
 import {
 	addDays, subDays, addYears, subYears,
 } from 'date-fns';
 import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
+import * as dateFnsLocales from 'date-fns/locale';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSIcon from './CSIcon';
 import CSLabel from './CSLabel';
@@ -36,7 +37,7 @@ export interface CSDatepickerProps {
 	label: string;
 	labelHidden?: boolean;
 	labelTitle?: boolean;
-	locale?: any;
+	locale?: string;
 	maxDate?: number;
 	maxDateYear?: boolean;
 	minDate?: number;
@@ -57,6 +58,7 @@ export interface CSDatepickerProps {
 	selected?: Date | null | undefined;
 	showMonthDropdown?: boolean;
 	showYearDropdown?: boolean;
+	timeFormat?: string;
 	title?: string;
 	todayButton?: string;
 	tooltipPosition?: CSTooltipPosition;
@@ -71,7 +73,7 @@ export interface CSDatepickerState {
 
 class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState> {
 	public static defaultProps = {
-		dateFormat: 'dd-MM-yyyy',
+		dateFormat: 'P',
 		dropdownMode: 'scroll',
 	};
 
@@ -91,6 +93,14 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 		this.state = {
 			datepickerOptionsWrapperWidth: null,
 		};
+
+		if (props.locale) {
+			const localeCode = props.locale.replace('-', '');
+			registerLocale(props.locale, dateFnsLocales[localeCode]);
+		} else {
+			setDefaultLocale('en-GB');
+			registerLocale('en-GB', dateFnsLocales.enGB);
+		}
 	}
 
 	componentDidMount() {
@@ -153,6 +163,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 			selected,
 			showMonthDropdown,
 			showYearDropdown,
+			timeFormat,
 			title,
 			todayButton,
 			tooltipPosition,
@@ -231,6 +242,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 						dropdownMode={dropdownMode}
 						readOnly={readOnly}
 						ref={this.datepickerInnerRef}
+						timeFormat={timeFormat}
 						yearDropdownItemNumber={yearDropdownItemNumber}
 						autoComplete="off"
 						required={required}

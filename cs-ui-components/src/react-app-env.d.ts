@@ -1,5 +1,6 @@
 declare module 'classnames';
 declare module 'date-fns';
+declare module 'date-fns/locale';
 declare module 'jsx-to-string';
 declare module 'lodash';
 declare module 'rc-notification';
