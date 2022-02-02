@@ -320,7 +320,8 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 	handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
 		const { selectedOptions, dropdownVisible, searchTerm } = this.state;
-		if (event.code === KeyCode.Backspace && selectedOptions.length) {
+		const { multiselect } = this.props;
+		if (event.code === KeyCode.Backspace && selectedOptions.length && multiselect && !searchTerm) {
 			this.selectAction(selectedOptions[selectedOptions.length - 1]);
 		} else if (event.code === KeyCode.Escape && dropdownVisible) {
 			this.closeDropdown();

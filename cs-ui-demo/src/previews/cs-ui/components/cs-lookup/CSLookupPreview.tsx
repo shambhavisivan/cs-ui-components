@@ -431,7 +431,7 @@ const CSLookupPreview = () => {
 					The others, `onBlur`, `onFocus`, `onDropdownClose`, `onSearch` work in largely the same way where they pass a function which executes after certain criteria is met.
 				</CSD.Text>
 				<CSD.Text>
-					`onBlur`, `onFocus`, and `onDropdownClose` run on mouse or keyoboard events. `onSearch`, however, runs each time a new letter is typed into the search field.
+					`onBlur`, `onFocus`, and `onDropdownClose` run on mouse or keyboard events. `onSearch`, however, runs each time a new letter is typed into the search field.
 				</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
