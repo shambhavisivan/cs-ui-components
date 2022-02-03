@@ -15,4 +15,8 @@ p.csd-text {
 	&:last-child {
 		margin-bottom: 0;
 	}
+
+	+ .csd-code {
+		margin-block-start: 2rem !important;
+	}
 }

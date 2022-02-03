@@ -1,4 +1,3 @@
-.getting-started :not(pre) code,
 .release-notes code,
 code.inline-code {
 	display: inline-block;
@@ -42,7 +41,6 @@ code.inline-code {
 	}
 }
 
-.getting-started :not(pre) code,
 .release-notes code {
 	margin-right: 0;
 	@include sc(--csd-primary-variant-c);

@@ -306,3 +306,7 @@
 .csd-form-validation-wrapper {
 	flex: 1;
 }
+
+.cs-chip.getting-started-chip {
+	@include sc(--csd-important-chip-c);
+}

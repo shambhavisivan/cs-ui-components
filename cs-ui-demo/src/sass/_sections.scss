@@ -5,8 +5,7 @@
 	}
 
 	/* IMPORTANT CHIP */
-	.release-notes,
-	.getting-started {
+	.release-notes {
 		i, em {
 			display: inline-flex;
 			align-items: center;
@@ -115,8 +114,7 @@
 	}
 
 	.release-notes,
-	.accessibility,
-	.getting-started {
+	.accessibility {
 		overflow: auto;
 		padding: 2rem 3rem 3rem;
 		width: 100%;

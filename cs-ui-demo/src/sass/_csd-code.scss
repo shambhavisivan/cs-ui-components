@@ -20,6 +20,14 @@
 			0 1px 3px var(--csd-shadow-light),
 			0 1px 2px var(--csd-shadow-medium);
 	}
+
+	+ .csd-text {
+		margin-top: 2rem;
+	}
+
+	+ .csd-code {
+		margin-block-start: 0.5rem !important;
+	}
 }
 
 .csd-inline-code {
