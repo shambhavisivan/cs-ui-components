@@ -43,7 +43,7 @@ const CSCustomSelectDropdownAction = ({
 					const prevSibling = customSelectActionRef.current?.previousElementSibling;
 					if (prevSibling) prevSibling.focus();
 					else customSelectActionRef.current?.parentElement?.previousElementSibling?.lastElementChild?.focus();
-				} else if (event.key === KeyCode.Escape) {
+				} else if (event.key === KeyCode.Escape || event.key === KeyCode.Tab) {
 					focusInput();
 					closeDropdown();
 				}

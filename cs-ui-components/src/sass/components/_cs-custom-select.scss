@@ -86,7 +86,7 @@
 	}
 
 	.cs-custom-select-value-wrapper {
-		z-index: var(--z-index-custom-select-values);
+		pointer-events: none;
 		@include overflow-ellipsis;
 	}
 
@@ -154,7 +154,6 @@
 		max-width: 100%;
 		width: auto;
 		padding: 0.25rem 0 0.25rem 0.5rem;
-		z-index: var(--z-index-custom-select-values);
 
 		.cs-custom-select-item-multiselect {
 			display: inline-flex;
@@ -167,6 +166,7 @@
 			margin: 0.125rem 0.25rem 0.125rem 0;
 			position: relative;
 			font-size: 0.8125rem;
+			z-index: var(--z-index-custom-select-values);
 			@include sbg(--cs-option-ms-item-selected-bg);
 			@include css4 {
 				border: 1px solid cvar(--cs-option-ms-item-selected-br);
@@ -185,6 +185,7 @@
 			}
 
 			.cs-custom-select-option-value {
+				line-height: initial;
 				@include overflow-ellipsis;
 			}
 		}

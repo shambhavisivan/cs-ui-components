@@ -61,6 +61,9 @@ const CSCustomSelectOption = ({
 					closeDropdown();
 				} else if (event.key === KeyCode.Enter || event.key === KeyCode.Space) {
 					handleSelectionChange();
+				} else if (event.key === KeyCode.Tab) {
+					focusInput?.();
+					closeDropdown();
 				} else {
 					focusInput?.();
 				}
