@@ -27,6 +27,8 @@ export interface CSToggleProps {
 	labelPosition?: CSToggleLabelPosition;
 	labelTitle?: boolean;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => any;
+	onClick?: (e: React.MouseEvent<HTMLInputElement>) => any;
+	onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => any;
 	readOnly?: boolean;
 	required?: boolean;
 	title?: string;
@@ -48,13 +50,13 @@ class CSToggle extends React.Component<CSToggleProps> {
 	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { readOnly, onChange } = this.props;
 
-		if (readOnly) {
-			return;
-		}
+		if (onChange && !readOnly) onChange?.(e);
+	}
 
-		if (onChange) {
-			onChange(e);
-		}
+	handleOnClick = (e: React.MouseEvent<HTMLInputElement>) => {
+		const { readOnly, onClick } = this.props;
+
+		if (onClick && !readOnly) onClick?.(e);
 	}
 
 	render() {
@@ -74,6 +76,8 @@ class CSToggle extends React.Component<CSToggleProps> {
 			labelPosition,
 			labelTitle,
 			onChange,
+			onClick,
+			onKeyDown,
 			readOnly,
 			required,
 			title,
@@ -126,6 +130,8 @@ class CSToggle extends React.Component<CSToggleProps> {
 						>
 							<input
 								onChange={this.handleOnChange}
+								onClick={this.handleOnClick}
+								onKeyDown={onKeyDown}
 								className={toggleClasses}
 								type="checkbox"
 								disabled={disabled}

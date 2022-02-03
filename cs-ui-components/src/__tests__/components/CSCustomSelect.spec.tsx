@@ -20,12 +20,12 @@ const errorText = 'Error message';
 const iconsValue = [{ iconName: 'cart' }];
 const actionsValue = [
 	{
-		action: () => {},
+		action: () => { },
 		icon: { iconName: 'delete' },
 		name: 'Delete',
 	},
 	{
-		action: () => {},
+		action: () => { },
 		icon: { iconName: 'add' },
 		name: 'Add',
 	},
@@ -122,15 +122,15 @@ describe('<CSCustomSelect />', () => {
 		const dropdownActions = [{
 			label: 'Add department',
 			iconName: 'add',
-			onClick: () => {},
+			onClick: () => { },
 		}, {
 			label: 'Add department 2',
 			iconName: 'add',
-			onClick: () => {},
+			onClick: () => { },
 		}, {
 			label: 'Add department 3',
 			iconName: 'add',
-			onClick: () => {},
+			onClick: () => { },
 		}];
 		const uut = shallow(
 			<CSCustomSelect
@@ -246,6 +246,20 @@ describe('<CSCustomSelect />', () => {
 		expect(handleClearMock).toHaveBeenCalledTimes(1);
 	});
 
+	it('should use a working onClick callback', () => {
+		const handleClickMock = jest.fn();
+		const uut = shallow(
+			<CSCustomSelect
+				label={customSelectTextLabel}
+				options={options}
+				onClick={handleClickMock}
+			/>,
+		).dive();
+		const input = uut.find('input');
+		input.simulate('click');
+		expect(handleClickMock).toHaveBeenCalledTimes(1);
+	});
+
 	it('should use a working onDeselect callback when multiselect item deselected onClick', () => {
 		const handleDeselect = jest.fn();
 		const keys = [0, 2, 3];
@@ -308,6 +322,20 @@ describe('<CSCustomSelect />', () => {
 		input.simulate('click');
 		input.simulate('keydown', { key: 'Tab' });
 		expect(handleDropdownCloseMock).toHaveBeenCalledTimes(1);
+	});
+
+	it('should use a working onKeyDown callback', () => {
+		const handleKeyDownMock = jest.fn();
+		const uut = shallow(
+			<CSCustomSelect
+				label={customSelectTextLabel}
+				options={options}
+				onKeyDown={handleKeyDownMock}
+			/>,
+		).dive();
+		const input = uut.find('input');
+		input.simulate('keydown', {} as any);
+		expect(handleKeyDownMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should use a working onSearch callback', () => {
@@ -422,11 +450,11 @@ describe('<CSCustomSelectDropdownAction />', () => {
 		labelHidden: false,
 		link: 'https://www.google.com',
 		loading: false,
-		onClick: () => {},
-		onKeyDown: () => {},
-		onMouseDown: () => {},
-		onMouseEnter: () => {},
-		onMouseLeave: () => {},
+		onClick: () => { },
+		onKeyDown: () => { },
+		onMouseDown: () => { },
+		onMouseEnter: () => { },
+		onMouseLeave: () => { },
 		openInNewTab: false,
 		role: 'menuitem' as CSButtonRole,
 		routerLink: <NavLink to="/utilities/LightningIcons" />,

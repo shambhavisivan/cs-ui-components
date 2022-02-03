@@ -13,6 +13,8 @@ export interface CSRadioOptionProps {
 	name: string;
 	onBlur?: (e: React.FocusEvent<HTMLInputElement>) => any;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => any;
+	onClick?: (e: React.MouseEvent<HTMLInputElement>) => any;
+	onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => any;
 	readOnly?: boolean;
 	title?: string;
 	value?: string | number;
@@ -56,6 +58,8 @@ class CSRadioOption extends React.Component<CSRadioOptionProps> {
 			readOnly,
 			onBlur,
 			onChange,
+			onClick,
+			onKeyDown,
 			title,
 			value,
 			...rest
@@ -90,6 +94,8 @@ class CSRadioOption extends React.Component<CSRadioOptionProps> {
 				<input
 					onBlur={onBlur}
 					onChange={this.toggleRadio}
+					onClick={onClick}
+					onKeyDown={onKeyDown}
 					className={radioOptionClasses}
 					type="radio"
 					name={name}

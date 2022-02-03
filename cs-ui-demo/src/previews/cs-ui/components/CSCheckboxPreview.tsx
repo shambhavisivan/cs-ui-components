@@ -12,13 +12,20 @@ interface CSCheckboxPreviewState {
 
 class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 	state: CSCheckboxPreviewState = {
-		checked: true
+		checked: true,
+		label: true
 	};
 
 	handleChange = (event: any) => {
 		this.setState({ onChange: event.target.checked });
 		alert('Checkbox has been toggled.');
 	}
+
+	handleClick = (event: any) => {
+		this.setState({ onClick: event.target.checked });
+		alert('Checkbox has been clicked.');
+	}
+
 	handleKeyDown = (event: any) => {
 		alert(`Key ${event.key} has been pressed.`);
 	}
@@ -393,6 +400,24 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 							}
 						]
 					}, {
+						propName: 'onClick',
+						variations: [
+							{
+								component: <CSCheckbox
+									label="Select option"
+									checked={this.state.onClick}
+									onChange={(event: any) => this.setState({ onClick: event.target.checked })}
+									onClick={this.handleClick}
+								/>,
+								code: `<CSCheckbox
+									label="Select option"
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ checked: event.target.checked })}
+									onClick={this.handleClick}
+								/>`
+							}
+						]
+					}, {
 						propName: 'onKeyDown',
 						variations: [
 							{
@@ -628,6 +653,10 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 						name: 'onChange',
 						types: '(event) => any',
 						description: 'Handler method for the change event.'
+					}, {
+						name: 'onClick',
+						types: '(event) => any',
+						description: 'Handler method for the click event.'
 					}, {
 						name: 'onKeyDown',
 						types: '(event) => any',

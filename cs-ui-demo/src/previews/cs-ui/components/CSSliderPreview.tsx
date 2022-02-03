@@ -5,6 +5,8 @@ import Preview from '../Preview';
 
 class CSSliderPreview extends React.Component {
 	handleChange = () => alert('Value had changed.');
+	handleClick = () => alert('Slider has been clicked.');
+	handleKeyDown = (event: any) => alert(`Key ${event.key} has been pressed.`);
 
 	getDoc = () => ({
 		name: 'Slider',
@@ -209,6 +211,42 @@ class CSSliderPreview extends React.Component {
 									min="0"
 									max="100"
 									onChange={this.handleChange}
+								/>`
+							}
+						]
+					}, {
+						propName: 'onClick',
+						variations: [
+							{
+								component: <CSSlider
+									label="Select value"
+									min="0"
+									max="100"
+									onClick={this.handleClick}
+								/>,
+								code: `<CSSlider
+									label="Select value"
+									min="0"
+									max="100"
+									onClick={this.handleClick}
+								/>`
+							}
+						]
+					}, {
+						propName: 'onKeyDown',
+						variations: [
+							{
+								component: <CSSlider
+									label="Select value"
+									min="0"
+									max="100"
+									onKeyDown={this.handleKeyDown}
+								/>,
+								code: `<CSSlider
+									label="Select value"
+									min="0"
+									max="100"
+									onKeyDown={this.handleKeyDown}
 								/>`
 							}
 						]
@@ -528,6 +566,14 @@ class CSSliderPreview extends React.Component {
 						name: 'onChange',
 						types: '(event) => void',
 						description: 'Handler method for the change event.'
+					}, {
+						name: 'onClick',
+						types: '(event) => void',
+						description: 'Handler method for the click event.'
+					}, {
+						name: 'onKeyDown',
+						types: '(event) => void',
+						description: 'Handler method for the keydown event.'
 					}, {
 						name: 'readOnly',
 						types: 'boolean',

@@ -464,6 +464,23 @@ describe('<CSLookup />', () => {
 		expect(handleBlurMock).toHaveBeenCalledTimes(1);
 	});
 
+	it('should use a working onClick callback', () => {
+		const handleClickMock = jest.fn();
+		const uut = shallow(
+			<CSLookup
+				label={label}
+				columns={columns}
+				mode={modeClient}
+				fieldToBeDisplayed={fieldToBeDisplayed}
+				options={options}
+				onClick={handleClickMock}
+			/>,
+		);
+		const lookupInput = uut.find('.cs-lookup-input');
+		lookupInput.simulate('click');
+		expect(handleClickMock).toHaveBeenCalledTimes(1);
+	});
+
 	it('should use a working onFocus callback', () => {
 		const handleFocusMock = jest.fn();
 		const uut = shallow(
@@ -499,6 +516,23 @@ describe('<CSLookup />', () => {
 	// 	lookupInput.simulate('blur');
 	// 	expect(handleDropdownCloseMock).toHaveBeenCalledTimes(1);
 	// });
+
+	it('should use a working onKeyDown callback', () => {
+		const handleKeyDownMock = jest.fn();
+		const uut = shallow(
+			<CSLookup
+				label={label}
+				columns={columns}
+				mode={modeClient}
+				fieldToBeDisplayed={fieldToBeDisplayed}
+				options={options}
+				onKeyDown={handleKeyDownMock}
+			/>,
+		);
+		const lookupInput = uut.find('.cs-lookup-input');
+		lookupInput.simulate('keydown', {} as any);
+		expect(handleKeyDownMock).toHaveBeenCalledTimes(1);
+	});
 
 	it('should use a working onSearch callback', () => {
 		const handleSearchMock = jest.fn();

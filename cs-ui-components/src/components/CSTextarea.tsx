@@ -27,6 +27,8 @@ export interface CSTextareaProps {
 	labelTitle?: boolean;
 	maxHeight?: string;
 	onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => any;
+	onClick?: (e: React.MouseEvent<HTMLTextAreaElement>) => any;
+	onKeyDown?: (e: React.KeyboardEvent<HTMLTextAreaElement>) => any;
 	placeholder?: string;
 	readOnly?: boolean;
 	required?: boolean;
@@ -108,13 +110,6 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 		}
 	}
 
-	handleOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-		const { onChange } = this.props;
-		if (onChange) {
-			onChange(e);
-		}
-	}
-
 	render() {
 		const {
 			actions,
@@ -133,6 +128,8 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 			labelTitle,
 			maxHeight,
 			onChange,
+			onClick,
+			onKeyDown,
 			placeholder,
 			readOnly,
 			required,
@@ -174,7 +171,7 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 			},
 		);
 
-		const options =	(actions || icons) && (
+		const options = (actions || icons) && (
 			<div className="cs-textarea-options" ref={this.textareaOptionsWrapperRef}>
 				{icons?.length && <CSCustomDataIcons icons={icons} />}
 				{actions?.length && <CSCustomDataActions actions={actions} />}
@@ -224,7 +221,9 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 						aria-invalid={error}
 						value={value}
 						style={style}
-						onChange={this.handleOnChange}
+						onChange={onChange}
+						onClick={onClick}
+						onKeyDown={onKeyDown}
 						title={title}
 						ref={this.textareaInnerRef}
 						{...rest}

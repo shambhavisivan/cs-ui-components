@@ -181,6 +181,14 @@ describe('<CSInputNumber />', () => {
 		expect(handleFocusMock).toHaveBeenCalledTimes(1);
 	});
 
+	it('should use a working onClick callback', () => {
+		const handleClickMock = jest.fn();
+		const uut = shallow(<CSInputNumber label={label} onClick={handleClickMock} />);
+		const inputNumber = uut.find('.cs-input-number');
+		inputNumber.simulate('click');
+		expect(handleClickMock).toHaveBeenCalledTimes(1);
+	});
+
 	it('should use a working onKeyDown callback', () => {
 		const handleKeyDownMock = jest.fn();
 		const uut = shallow(<CSInputNumber label={label} onKeyDown={handleKeyDownMock} />);

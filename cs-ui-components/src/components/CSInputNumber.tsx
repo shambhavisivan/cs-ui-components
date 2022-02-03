@@ -44,6 +44,7 @@ export interface CSInputNumberProps {
 	name?: string;
 	onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 	onChange?: (value?: any) => any;
+	onClick?: (event: React.MouseEvent<HTMLInputElement>) => any;
 	onFocus?: (event: React.FocusEvent<HTMLInputElement>) => any;
 	onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 	onPaste?: (event: React.ClipboardEvent<HTMLInputElement>) => void;
@@ -143,22 +144,6 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 		}
 	}
 
-	handleOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-		const { onKeyDown } = this.props;
-
-		if (onKeyDown) {
-			onKeyDown(e);
-		}
-	}
-
-	handleOnPaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
-		const { onPaste } = this.props;
-
-		if (onPaste) {
-			onPaste(e);
-		}
-	}
-
 	formatNumber = (value: any, locale: CSInputNumberNumberLocale) => {
 		const { numLocale, options } = locale;
 
@@ -190,6 +175,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 			name,
 			onBlur,
 			onChange,
+			onClick,
 			onFocus,
 			onKeyDown,
 			onPaste,
@@ -270,8 +256,9 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 						onBlur={this.onBlur}
 						onFocus={this.onFocus}
 						onChange={this.handleOnChange}
-						onKeyDown={this.handleOnKeyDown}
-						onPaste={this.handleOnPaste}
+						onKeyDown={onKeyDown}
+						onPaste={onPaste}
+						onClick={onClick}
 						title={title}
 						step={step}
 						ref={this.inputNumberInnerRef}

@@ -132,6 +132,22 @@ describe('<CSTextarea />', () => {
 		expect(handleOnChange).toHaveBeenCalledTimes(1);
 	});
 
+	it('should use a working onClick callback', () => {
+		const handleOnClick = jest.fn();
+		const uut = shallow(<CSTextarea label={labelValue} onClick={handleOnClick} />);
+		const textarea = uut.find('.cs-textarea');
+		textarea.simulate('click');
+		expect(handleOnClick).toHaveBeenCalledTimes(1);
+	});
+
+	it('should use a working onKeyDown callback', () => {
+		const handleOnKeyDown = jest.fn();
+		const uut = shallow(<CSTextarea label={labelValue} onKeyDown={handleOnKeyDown} />);
+		const textarea = uut.find('.cs-textarea');
+		textarea.simulate('keydown');
+		expect(handleOnKeyDown).toHaveBeenCalledTimes(1);
+	});
+
 	it('should render textarea with placeholder attribute with correct value', () => {
 		const placeholder = 'placeholder text';
 		const uut = shallow(<CSTextarea label={labelValue} placeholder={placeholder} />);

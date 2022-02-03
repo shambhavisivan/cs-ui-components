@@ -19,6 +19,7 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 	};
 
 	handleChange = () => alert('Value has changed.');
+	handleClick = () => alert('Input has been clicked.');
 	handleBlur = () => alert('Input has lost focus.');
 	handleKeyDown = (event: any) => alert(`Key ${event.key} has been pressed.`);
 	handlePaste = () => alert('Value has been pasted.');
@@ -276,6 +277,14 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 							{
 								component: <CSInputNumber label="Enter value" onChange={this.handleChange} />,
 								code: '<CSInputNumber label="Enter value" onChange={this.handleChange} />'
+							}
+						]
+					}, {
+						propName: 'onClick',
+						variations: [
+							{
+								component: <CSInputNumber label="Enter value" onClick={this.handleClick} />,
+								code: '<CSInputNumber label="Enter value" onChange={this.handleClick} />'
 							}
 						]
 					}, {
@@ -547,6 +556,10 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 						name: 'onChange',
 						types: '(value) => any',
 						description: 'Handler method for the change event.'
+					}, {
+						name: 'onClick',
+						types: '(event) => any',
+						description: 'Handler method for the click event.'
 					}, {
 						name: 'onFocus',
 						types: '(event) => any',

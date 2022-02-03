@@ -43,8 +43,10 @@ export interface CSLookupCommonProps {
 	labelTitle?: boolean;
 	multiselect?: boolean;
 	onBlur?: (event: React.FocusEvent<HTMLInputElement>, value?: CSDataTableRowInterface | Array<CSDataTableRowInterface>) => any;
+	onClick?: (event: React.MouseEvent<HTMLInputElement>) => any;
 	onDropdownClose?: () => void;
 	onFocus?: (event: React.FocusEvent<HTMLInputElement>) => any;
+	onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => any;
 	onSearch?: (event: React.ChangeEvent<HTMLInputElement>) => any;
 	onSelectChange?: (value?: CSDataTableRowInterface | Array<CSDataTableRowInterface>) => any;
 	placeholder?: string;
@@ -300,9 +302,11 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		if (!multiselect) this.closeDropdown();
 	}
 
-	handleClick = () => {
+	handleClick = (event: React.MouseEvent<HTMLInputElement>) => {
+		const { onClick } = this.props;
 		const { dropdownVisible } = this.state;
 		if (!dropdownVisible) this.openDropdown();
+		onClick?.(event);
 	}
 
 	handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
@@ -320,7 +324,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 	handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
 		const { selectedOptions, dropdownVisible, searchTerm } = this.state;
-		const { multiselect } = this.props;
+		const { onKeyDown, multiselect } = this.props;
 		if (event.code === KeyCode.Backspace && selectedOptions.length && multiselect && !searchTerm) {
 			this.selectAction(selectedOptions[selectedOptions.length - 1]);
 		} else if (event.code === KeyCode.Escape && dropdownVisible) {
@@ -348,6 +352,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			if (dropdownVisible) this.closeDropdown();
 			else this.openDropdown();
 		}
+		onKeyDown?.(event);
 	}
 
 	handleDropdownKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -460,8 +465,10 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			mode,
 			multiselect,
 			onBlur,
+			onClick,
 			onFocus,
 			onDropdownClose,
+			onKeyDown,
 			onSearch,
 			onSelectChange,
 			pageSize,
@@ -683,7 +690,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 							onFocus={this.handleFocus}
 							onKeyDown={this.handleKeyDown}
 							onChange={this.handleSearch}
-							onClick={this.openDropdown}
+							onClick={this.handleClick}
 							title={title}
 							id={id || this.uniqueAutoId}
 							ref={this.lookupInputRef}

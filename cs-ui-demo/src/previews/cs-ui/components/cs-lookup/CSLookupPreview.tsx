@@ -45,6 +45,7 @@ const CSLookupPreview = () => {
 	const [focused, setFocused] = useState<boolean>(false);
 
 	const handleBlur = () => alert('Lookup has lost focus.');
+	const handleClick = () => alert('Lookup input has been clicked.');
 	const handleFocus = () => {
 		setFocused((prevFocused: boolean) => !prevFocused);
 		if (focused) {
@@ -52,6 +53,7 @@ const CSLookupPreview = () => {
 		}
 	};
 	const handleClose = () => alert('Lookup has closed.');
+	const handleKeyDown = (event: any) => alert(`Key ${event.key} has been pressed.`);
 	const handleSearch = (event: any) => alert(event.target.value);
 	const handleSelectChange = (item: any) => alert(JSON.stringify(item));
 	const fetchData = async (searchTerm: any, pageSize: any, pageNo: any) => {
@@ -427,19 +429,32 @@ const CSLookupPreview = () => {
 			<CSD.Section>
 				<CSD.Heading level={2}>Event Handling</CSD.Heading>
 				<CSD.Text>
-					CSLookup features five event handler props. The first, `onSelectChange` is explained in the "Selection" part of this page above.
-					The others, `onBlur`, `onFocus`, `onDropdownClose`, `onSearch` work in largely the same way where they pass a function which executes after certain criteria is met.
+					CSLookup features seven event handler props. The first, `onSelectChange` is explained in the "Selection" part of this page above.
+					The others, `onBlur`, `onClick`, `onFocus`, `onDropdownClose`, `onKeyDown` and `onSearch` work in largely the same way where they pass a function which executes after certain criteria is met.
 				</CSD.Text>
 				<CSD.Text>
-					`onBlur`, `onFocus`, and `onDropdownClose` run on mouse or keyboard events. `onSearch`, however, runs each time a new letter is typed into the search field.
+					`onBlur`, `onClick`, `onFocus`, `onDropdownClose` and `onKeyDown` run on mouse or keyboard events. `onSearch`, however, runs each time a new letter is typed into the search field.
 				</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
 					table={clientWithBaseProps}
-					related={['label', 'columns', 'fieldToBeDisplayed', 'mode', 'options', 'onBlur', 'onFocus', 'onDropdownClose', 'searchBy', 'onSearch']}
+					related={[
+						'label',
+						'columns',
+						'fieldToBeDisplayed',
+						'mode',
+						'options',
+						'onBlur',
+						'onClick',
+						'onFocus',
+						'onDropdownClose',
+						'onKeyDown',
+						'searchBy',
+						'onSearch'
+					]}
 					code={`
 						<CSLookup
-							label="Label"
+							label="Lookup with onBlur"
 							columns={columns}
 							fieldToBeDisplayed="Account"
 							mode="client"
@@ -447,7 +462,15 @@ const CSLookupPreview = () => {
 							onBlur={handleBlur}
 						/>
 						<CSLookup
-							label="Label"
+							label="Lookup with onClick"
+							columns={columns}
+							fieldToBeDisplayed="Account"
+							mode="client"
+							options={options}
+							onClick={handleClick}
+						/>
+						<CSLookup
+							label="Lookup with onFocus"
 							columns={columns}
 							fieldToBeDisplayed="Account"
 							mode="client"
@@ -455,7 +478,7 @@ const CSLookupPreview = () => {
 							onFocus={handleFocus}
 						/>
 						<CSLookup
-							label="Label"
+							label="Lookup with onDropdownClose"
 							columns={columns}
 							fieldToBeDisplayed="Account"
 							mode="client"
@@ -463,7 +486,15 @@ const CSLookupPreview = () => {
 							onDropdownClose={handleClose}
 						/>
 						<CSLookup
-							label="Label"
+							label="Lookup with onKeyDown"
+							columns={columns}
+							fieldToBeDisplayed="Account"
+							mode="client"
+							options={options}
+							onKeyDown={handleKeyDown}
+						/>
+						<CSLookup
+							label="Lookup with onSearch"
 							columns={columns}
 							fieldToBeDisplayed="Account"
 							mode="client"
@@ -474,7 +505,7 @@ const CSLookupPreview = () => {
 					`}
 				>
 					<CSLookup
-						label="Label"
+						label="Lookup with onBlur"
 						columns={columns}
 						fieldToBeDisplayed="Account"
 						mode="client"
@@ -482,7 +513,15 @@ const CSLookupPreview = () => {
 						onBlur={handleBlur}
 					/>
 					<CSLookup
-						label="Label"
+						label="Lookup with onClick"
+						columns={columns}
+						fieldToBeDisplayed="Account"
+						mode="client"
+						options={options}
+						onClick={handleClick}
+					/>
+					<CSLookup
+						label="Lookup with onFocus"
 						columns={columns}
 						fieldToBeDisplayed="Account"
 						mode="client"
@@ -490,7 +529,7 @@ const CSLookupPreview = () => {
 						onFocus={handleFocus}
 					/>
 					<CSLookup
-						label="Label"
+						label="Lookup with onDropdownClose"
 						columns={columns}
 						fieldToBeDisplayed="Account"
 						mode="client"
@@ -498,7 +537,15 @@ const CSLookupPreview = () => {
 						onDropdownClose={handleClose}
 					/>
 					<CSLookup
-						label="Label"
+						label="Lookup with onKeyDown"
+						columns={columns}
+						fieldToBeDisplayed="Account"
+						mode="client"
+						options={options}
+						onKeyDown={handleKeyDown}
+					/>
+					<CSLookup
+						label="Lookup with onSearch"
 						columns={columns}
 						fieldToBeDisplayed="Account"
 						mode="client"
@@ -958,7 +1005,7 @@ const CSLookupPreview = () => {
 						mode="client"
 						options={options}
 						icons={[
-							{ iconName: 'cart'},
+							{ iconName: 'cart' },
 							{
 								iconName: 'tag',
 								iconOrigin: 'cs' as CSIconOrigin,

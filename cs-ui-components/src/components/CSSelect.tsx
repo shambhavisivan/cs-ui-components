@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSLabel from './CSLabel';
-import KeyCode from '../util/KeyCode';
 import { CSTooltipPosition } from './CSTooltip';
 import { CSCustomDataIconProps, CSCustomDataActionProps } from '../util/CustomData';
 import CSIcon from './CSIcon';
@@ -29,6 +28,8 @@ export interface CSSelectProps {
 	name?: string;
 	onBlur?: (value: any) => void;
 	onChange?: (value: any) => void;
+	onClick?: (event: React.MouseEvent<HTMLSelectElement>) => void;
+	onKeyDown?: (event: React.KeyboardEvent<HTMLSelectElement>) => void;
 	readOnly?: boolean;
 	required?: boolean;
 	title?: string;
@@ -82,12 +83,6 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 		onBlur?.(e.target.value);
 	}
 
-	handleOnKeyDown = (e: React.KeyboardEvent<HTMLSelectElement>) => {
-		if (e.key !== KeyCode.Tab) {
-			e.preventDefault();
-		}
-	}
-
 	render() {
 		const {
 			actions,
@@ -108,6 +103,8 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 			name,
 			onBlur,
 			onChange,
+			onClick,
+			onKeyDown,
 			readOnly,
 			required,
 			title,
@@ -167,7 +164,8 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 							aria-readonly={readOnly}
 							onBlur={this.handleOnBlur}
 							onChange={this.handleOnChange}
-							onKeyDown={readOnly ? this.handleOnKeyDown : undefined}
+							onClick={onClick}
+							onKeyDown={onKeyDown}
 							name={name}
 							value={value}
 							title={title}

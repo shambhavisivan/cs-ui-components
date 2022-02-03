@@ -16,8 +16,10 @@ class CSInputTextPreview extends React.Component<{}, CSInputTextPreviewState> {
 		value: 'Enter name'
 	};
 
-	handleChange = () => alert('Value has changed.');
 	handleBlur = () => alert('Input has lost focus.');
+	handleChange = () => alert('Value has changed.');
+	handleClick = () => alert('Input has been clicked.');
+	handleKeyDown = (event: any) => alert(`Key ${event.key} has been pressed.`);
 	handleFocus = () => {
 		this.setState(prevState => {
 			if (!prevState.focused) {
@@ -47,7 +49,7 @@ class CSInputTextPreview extends React.Component<{}, CSInputTextPreviewState> {
 								code: '<CSInputText label="Enter value" />'
 							}
 						]
-					}, 					{
+					}, {
 						propName: 'actions',
 						variations: [
 							{
@@ -217,11 +219,27 @@ class CSInputTextPreview extends React.Component<{}, CSInputTextPreviewState> {
 							}
 						]
 					}, {
+						propName: 'onClick',
+						variations: [
+							{
+								component: <CSInputText label="Enter value" onClick={this.handleClick} />,
+								code: '<CSInputText label="Enter value" onClick={this.handleClick} />'
+							}
+						]
+					}, {
 						propName: 'onFocus',
 						variations: [
 							{
 								component: <CSInputText label="Enter value" onFocus={this.handleFocus} />,
 								code: '<CSInputText label="Enter value" onFocus={this.handleFocus} />'
+							}
+						]
+					}, {
+						propName: 'onKeyDown',
+						variations: [
+							{
+								component: <CSInputText label="Enter value" onKeyDown={this.handleKeyDown} />,
+								code: '<CSInputText label="Enter value" onKeyDown={this.handleKeyDown} />'
 							}
 						]
 					}, {
@@ -382,7 +400,7 @@ class CSInputTextPreview extends React.Component<{}, CSInputTextPreviewState> {
 						types: 'boolean',
 						default: 'false',
 						description: 'Control the hidden attribute.'
-					}, 					{
+					}, {
 						name: 'icons',
 						customTypes: {
 							name: 'CSInputTextIconProps',
@@ -415,9 +433,17 @@ class CSInputTextPreview extends React.Component<{}, CSInputTextPreviewState> {
 						types: '(event) => any',
 						description: 'Handler method for the change event.'
 					}, {
+						name: 'onClick',
+						types: '(event) => any',
+						description: 'Handler method for the click event.'
+					}, {
 						name: 'onFocus',
 						types: '(event) => any',
 						description: 'Handler method for the focus event.'
+					}, {
+						name: 'onKeyDown',
+						types: '(event) => any',
+						description: 'Handler method for the keydown event.'
 					}, {
 						name: 'placeholder',
 						types: 'string',

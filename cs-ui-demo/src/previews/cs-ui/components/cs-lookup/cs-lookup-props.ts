@@ -118,13 +118,17 @@ export default {
 			types: '(event, value) => any',
 			description: 'Handler method for the blur event.'
 		}, {
-			name: 'onFocus',
+			name: 'onClick',
 			types: '(event) => any',
-			description: 'Handler method for the focus event.'
+			description: 'Handler method for the click event.'
 		}, {
 			name: 'onDropdownClose',
 			types: '() => void',
 			description: 'Handler method for when the lookup is closed.'
+		}, {
+			name: 'onKeyDown',
+			types: '(event) => any',
+			description: 'Handler method for the keydown event.'
 		}, {
 			name: 'onSearch',
 			types: '(event) => any',

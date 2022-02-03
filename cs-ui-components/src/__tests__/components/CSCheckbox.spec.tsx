@@ -8,12 +8,12 @@ const iconsValue = [{ iconName: 'cart' }];
 const errorMessage = 'error message';
 const actionsValue = [
 	{
-		action: () => {},
+		action: () => { },
 		icon: { iconName: 'delete' },
 		name: 'Delete',
 	},
 	{
-		action: () => {},
+		action: () => { },
 		icon: { iconName: 'add' },
 		name: 'Add',
 	},
@@ -177,6 +177,14 @@ describe('<CSCheckbox />', () => {
 		const checkbox = uut.find('.cs-checkbox');
 		checkbox.simulate('change');
 		expect(handleChangeMock).toHaveBeenCalledTimes(1);
+	});
+
+	it('should use a working onClick callback', () => {
+		const handleClickMock = jest.fn();
+		const uut = shallow(<CSCheckbox label={label} onClick={handleClickMock} />);
+		const checkbox = uut.find('.cs-checkbox');
+		checkbox.simulate('click');
+		expect(handleClickMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should use a working onKeyDown callback', () => {

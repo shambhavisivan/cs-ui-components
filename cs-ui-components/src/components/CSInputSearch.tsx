@@ -27,6 +27,7 @@ export interface CSInputSearchProps {
 	labelTitle?: boolean;
 	onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+	onClick?: (event: React.MouseEvent<HTMLInputElement>) => void;
 	onClearSearch?: () => void;
 	onFocus?: (event: React.FocusEvent<HTMLInputElement>) => any;
 	onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
@@ -123,35 +124,11 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 		this.inputSearchInnerRef.current?.focus();
 	}
 
-	onFocus: React.FocusEventHandler<HTMLInputElement> = (e) => {
-		const { onFocus } = this.props;
-
-		if (onFocus) {
-			onFocus(e);
-		}
-	}
-
-	onBlur: React.FocusEventHandler<HTMLInputElement> = (e) => {
-		const { onBlur } = this.props;
-
-		if (onBlur) {
-			onBlur(e);
-		}
-	}
-
 	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { onChange } = this.props;
 
 		this.setValue(e.target.value);
 		resolveOnChange(this.inputSearchInnerRef.current, e, onChange);
-	}
-
-	handleOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-		const { onKeyDown } = this.props;
-
-		if (onKeyDown) {
-			onKeyDown(e);
-		}
 	}
 
 	render() {
@@ -173,6 +150,7 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 			onBlur,
 			onChange,
 			onClearSearch,
+			onClick,
 			onFocus,
 			onKeyDown,
 			placeholder,
@@ -257,9 +235,10 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 						type="text"
 						autoComplete="off"
 						ref={this.inputSearchInnerRef}
-						onKeyDown={this.handleOnKeyDown}
-						onBlur={this.onBlur}
-						onFocus={this.onFocus}
+						onKeyDown={onKeyDown}
+						onBlur={onBlur}
+						onClick={onClick}
+						onFocus={onFocus}
 						title={title}
 						{...rest}
 					/>

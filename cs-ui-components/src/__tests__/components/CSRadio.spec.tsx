@@ -217,6 +217,34 @@ describe('<CSRadioOption />', () => {
 		expect(handleChangeMock).toHaveBeenCalledTimes(1);
 	});
 
+	it('should use a working onClick callback', () => {
+		const handleClickMock = jest.fn();
+		const uut = shallow(
+			<CSRadioOption
+				label={label}
+				name={name}
+				onClick={handleClickMock}
+			/>,
+		);
+		const radioOption = uut.find('.cs-radio-option-wrapper > .cs-radio');
+		radioOption.simulate('click');
+		expect(handleClickMock).toHaveBeenCalledTimes(1);
+	});
+
+	it('should use a working onKeyDown callback', () => {
+		const handleKeyDownMock = jest.fn();
+		const uut = shallow(
+			<CSRadioOption
+				label={label}
+				name={name}
+				onKeyDown={handleKeyDownMock}
+			/>,
+		);
+		const radioOption = uut.find('.cs-radio-option-wrapper > .cs-radio');
+		radioOption.simulate('keydown');
+		expect(handleKeyDownMock).toHaveBeenCalledTimes(1);
+	});
+
 	it('should set readOnly attribute', () => {
 		const uut = shallow(
 			<CSRadioOption

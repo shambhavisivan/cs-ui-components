@@ -46,6 +46,7 @@ export interface CSDatepickerProps {
 	onCalendarClose?: () => void;
 	onChange: (date: Date) => any;
 	onChangeRaw?: (event: React.FocusEvent<HTMLInputElement>) => any;
+	onClick?: () => void;
 	onKeyDown?: (event: React.KeyboardEvent<any>) => any;
 	onSelect?: (date: Date) => any;
 	openToDate?: any;
@@ -141,6 +142,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 			onCalendarClose,
 			onChange,
 			onChangeRaw,
+			onClick,
 			onKeyDown,
 			onSelect,
 			openToDate,
@@ -219,6 +221,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 						onCalendarClose={onCalendarClose}
 						onChange={onChange}
 						onChangeRaw={onChangeRaw}
+						onInputClick={onClick}
 						onKeyDown={this.handleOnKeyDown}
 						onSelect={onSelect}
 						openToDate={openToDate}

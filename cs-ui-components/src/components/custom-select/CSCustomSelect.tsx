@@ -46,8 +46,10 @@ export interface CSCustomSelectProps {
 	labelTitle?: boolean;
 	multiselect?: boolean;
 	onClear?: () => void;
+	onClick?: (event: React.MouseEvent<HTMLInputElement>) => void;
 	onDeselect?: (option: CSCustomSelectOptionInterface) => void;
 	onDropdownClose?: () => void;
+	onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 	onSearch?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	onSelect?: (option: CSCustomSelectOptionInterface) => void;
 	placeholder?: string;
@@ -84,8 +86,10 @@ const CSCustomSelect = ({
 	labelTitle,
 	multiselect,
 	onClear,
+	onClick,
 	onDeselect,
 	onDropdownClose,
+	onKeyDown,
 	onSearch,
 	onSelect,
 	position = 'bottom',
@@ -288,7 +292,11 @@ const CSCustomSelect = ({
 					title={title}
 					autoComplete="off"
 					placeholder={!selectedKeysArray.length ? placeholder : ''}
-					onClick={() => (!readOnly ? setDropdownVisible(true) : null)}
+					onClick={(event: React.MouseEvent<HTMLInputElement>) => {
+						if (readOnly) return;
+						setDropdownVisible(true);
+						onClick?.(event);
+					}}
 					onFocus={() => (!readOnly ? setDropdownVisible(true) : null)}
 					onKeyDown={(event: React.KeyboardEvent<HTMLInputElement>) => {
 						if (readOnly) return;
@@ -315,6 +323,7 @@ const CSCustomSelect = ({
 						} else {
 							setDropdownVisible(true);
 						}
+						onKeyDown?.(event);
 					}}
 					{...rest}
 				/>

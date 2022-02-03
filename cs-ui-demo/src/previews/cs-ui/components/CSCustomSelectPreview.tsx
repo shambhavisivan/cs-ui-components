@@ -20,6 +20,8 @@ class CSCustomSelectPreview extends React.Component {
 	};
 
 	handleClose = () => alert('Custom select has closed.');
+	handleClick = () => alert('Custom select input has been clicked.');
+	handleKeyDown = (event: any) => alert(`Key ${event.key} has been pressed.`);
 	handleSearch = (event: any) => alert(event.target.value);
 	handleSelectChange = (option: any) => {
 		if (typeof option === 'object') {
@@ -307,6 +309,22 @@ class CSCustomSelectPreview extends React.Component {
 							}
 						]
 					}, {
+						propName: 'onClick',
+						variations: [
+							{
+								component: <CSCustomSelect
+									options={options}
+									label="Select department"
+									onClick={this.handleClick}
+								/>,
+								code: `<CSCustomSelect
+									options={options}
+									label="Select department"
+									onClick={this.handleClick}
+								/>`
+							}
+						]
+					}, {
 						propName: 'onDropdownClose',
 						variations: [
 							{
@@ -319,6 +337,22 @@ class CSCustomSelectPreview extends React.Component {
 									options={options}
 									label="Select department"
 									onDropdownClose={this.handleClose}
+								/>`
+							}
+						]
+					}, {
+						propName: 'onKeyDown',
+						variations: [
+							{
+								component: <CSCustomSelect
+									options={options}
+									label="Select department"
+									onKeyDown={this.handleKeyDown}
+								/>,
+								code: `<CSCustomSelect
+									options={options}
+									label="Select department"
+									onKeyDown={this.handleKeyDown}
 								/>`
 							}
 						]
@@ -743,6 +777,10 @@ class CSCustomSelectPreview extends React.Component {
 						types: '() => void',
 						description: 'Handler method for clearing the selection.'
 					}, {
+						name: 'onClick',
+						types: '(event) => void',
+						description: 'Handler method for the click event.'
+					}, {
 						name: 'onDeselect',
 						types: '(option) => void',
 						description: 'Handler method for deselecting an option. Should only be used with multiselect.'
@@ -750,6 +788,10 @@ class CSCustomSelectPreview extends React.Component {
 						name: 'onDropdownClose',
 						types: '() => void',
 						description: 'Handler method when custom select dropdown closes.'
+					}, {
+						name: 'onKeyDown',
+						types: '(event) => void',
+						description: 'Handler method for the keydown event.'
 					}, {
 						name: 'onSearch',
 						types: '(event) => void',

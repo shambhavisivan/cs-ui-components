@@ -112,7 +112,23 @@ describe('<CSToggle />', () => {
 		const uut = shallow(<CSToggle label={labelValue} onChange={handleChange} />);
 		const toggle = uut.find('.cs-toggle');
 		toggle.simulate('change');
-		expect(handleChange).toHaveBeenCalled();
+		expect(handleChange).toHaveBeenCalledTimes(1);
+	});
+
+	it('should use a working onClick callback', () => {
+		const handleClick = jest.fn();
+		const uut = shallow(<CSToggle label={labelValue} onClick={handleClick} />);
+		const toggle = uut.find('.cs-toggle');
+		toggle.simulate('click');
+		expect(handleClick).toHaveBeenCalledTimes(1);
+	});
+
+	it('should use a working onKeyDown callback', () => {
+		const handleKeyDown = jest.fn();
+		const uut = shallow(<CSToggle label={labelValue} onKeyDown={handleKeyDown} />);
+		const toggle = uut.find('.cs-toggle');
+		toggle.simulate('keydown');
+		expect(handleKeyDown).toHaveBeenCalledTimes(1);
 	});
 
 	it('should set readOnly attribute', () => {

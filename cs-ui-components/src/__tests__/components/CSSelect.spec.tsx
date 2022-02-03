@@ -152,6 +152,22 @@ describe('<CSSelect />', () => {
 		expect(handleChange).toHaveBeenCalled();
 	});
 
+	it('should use a working onClick callback', () => {
+		const handleClick = jest.fn();
+		const uut = mount(<CSSelect label={labelValue} onClick={handleClick} />);
+		const select = uut.find('.cs-select');
+		select.simulate('click');
+		expect(handleClick).toHaveBeenCalled();
+	});
+
+	it('should use a working onKeyDown callback', () => {
+		const handleKeyDown = jest.fn();
+		const uut = mount(<CSSelect label={labelValue} onKeyDown={handleKeyDown} />);
+		const select = uut.find('.cs-select');
+		select.simulate('keydown');
+		expect(handleKeyDown).toHaveBeenCalled();
+	});
+
 	it('should set readOnly attribute', () => {
 		const uut = shallow(<CSSelect label={labelValue} readOnly />);
 		const select = uut.find('.cs-select.cs-select-read-only');

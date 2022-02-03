@@ -10,8 +10,9 @@ interface CSInputSearchPreviewState {
 class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState> {
 	state = { focused: false };
 
-	handleChange = () => alert('Value has changed.');
 	handleBlur = () => alert('Input has lost focus.');
+	handleChange = () => alert('Value has changed.');
+	handleClick = () => alert('Input has been clicked.');
 	handleKeyDown = (event: any) => alert(`Key ${event.key} has been pressed.`);
 	handleClearSearch = () => alert('Value has been cleared.');
 	handleFocus = () => {
@@ -187,6 +188,14 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 							{
 								component: <CSInputSearch label="Type here" onClearSearch={this.handleClearSearch} />,
 								code: '<CSInputSearch label="Type here" onClearSearch={this.handleClearSearch} />'
+							}
+						]
+					}, {
+						propName: 'onClick',
+						variations: [
+							{
+								component: <CSInputSearch label="Type here" onClick={this.handleClick} />,
+								code: '<CSInputSearch label="Type here" onClick={this.handleClick} />'
 							}
 						]
 					}, {
@@ -366,6 +375,10 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 						name: 'onClearSearch',
 						types: '() => void',
 						description: 'Handler method for when the input is cleared.'
+					}, {
+						name: 'onClick',
+						types: '(event) => any',
+						description: 'Handler method for the click event.'
 					}, {
 						name: 'onFocus',
 						types: '(event) => any',

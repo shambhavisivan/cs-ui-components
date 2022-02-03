@@ -40,13 +40,13 @@ describe('<CSInputText />', () => {
 
 	it('should pass correct actions value to CSCustomDataActions', () => {
 		const actions = [{
-			action: () => {},
+			action: () => { },
 			labelHidden: true,
 			icon: { iconName: 'delete' },
 			name: 'Delete',
 		},
 		{
-			action: () => {},
+			action: () => { },
 			icon: { iconName: 'add' },
 			labelHidden: true,
 			name: 'Add',
@@ -154,12 +154,28 @@ describe('<CSInputText />', () => {
 		expect(handleChangeMock).toHaveBeenCalledTimes(1);
 	});
 
+	it('should use a working onClick callback', () => {
+		const handleClickMock = jest.fn();
+		const uut = shallow(<CSInputText label={label} onClick={handleClickMock} />);
+		const inputText = uut.find('.cs-input-text');
+		inputText.simulate('click');
+		expect(handleClickMock).toHaveBeenCalledTimes(1);
+	});
+
 	it('should use a working onFocus callback', () => {
 		const handleFocusMock = jest.fn();
 		const uut = shallow(<CSInputText label={label} onFocus={handleFocusMock} />);
 		const inputText = uut.find('.cs-input-text');
 		inputText.simulate('focus');
 		expect(handleFocusMock).toHaveBeenCalledTimes(1);
+	});
+
+	it('should use a working onKeyDown callback', () => {
+		const handleKeyDownMock = jest.fn();
+		const uut = shallow(<CSInputText label={label} onKeyDown={handleKeyDownMock} />);
+		const inputText = uut.find('.cs-input-text');
+		inputText.simulate('keydown');
+		expect(handleKeyDownMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should set placeholder attribute', () => {

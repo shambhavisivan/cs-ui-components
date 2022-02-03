@@ -14,6 +14,8 @@ class CSSelectPreview extends React.Component<{}, CSSelectPreviewState> {
 
 	handleChange = () => alert('Selection has changed.');
 	handleBlur = () => alert('Select has lost focus.');
+	handleClick = () => alert('Select has been clicked.');
+	handleKeyDown = (event: any) => alert(`Key ${event.key} has been pressed.`);
 
 	getDoc = () => ({
 		name: 'Select',
@@ -317,6 +319,38 @@ class CSSelectPreview extends React.Component<{}, CSSelectPreviewState> {
 							}
 						]
 					}, {
+						propName: 'onClick',
+						variations: [
+							{
+								component: <CSSelect label="Choose amount" onClick={this.handleClick}>
+									<option>10</option>
+									<option>20</option>
+									<option>30</option>
+								</CSSelect>,
+								code: `<CSSelect label="Choose amount" onClick={this.handleClick}>
+									<option>10</option>
+									<option>20</option>
+									<option>30</option>
+								</CSSelect>`
+							}
+						]
+					}, {
+						propName: 'onKeyDown',
+						variations: [
+							{
+								component: <CSSelect label="Choose amount" onKeyDown={this.handleKeyDown}>
+									<option>10</option>
+									<option>20</option>
+									<option>30</option>
+								</CSSelect>,
+								code: `<CSSelect label="Choose amount" onKeyDown={this.handleKeyDown}>
+									<option>10</option>
+									<option>20</option>
+									<option>30</option>
+								</CSSelect>`
+							}
+						]
+					}, {
 						propName: 'readOnly',
 						variations: [
 							{
@@ -519,12 +553,20 @@ class CSSelectPreview extends React.Component<{}, CSSelectPreviewState> {
 						description: 'Set the checkbox name attribute.'
 					}, {
 						name: 'onBlur',
-						types: '(event) => any',
+						types: '(event) => void',
 						description: 'Handler method for the blur event.'
 					}, {
 						name: 'onChange',
-						types: '(event) => any',
+						types: '(event) => void',
 						description: 'Handler method for the change event.'
+					}, {
+						name: 'onClick',
+						types: '(event) => void',
+						description: 'Handler method for the click event.'
+					}, {
+						name: 'onKeyDown',
+						types: '(event) => void',
+						description: 'Handler method for the keydown event.'
 					}, {
 						name: 'readOnly',
 						types: 'boolean',

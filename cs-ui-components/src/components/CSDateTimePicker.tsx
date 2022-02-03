@@ -42,6 +42,7 @@ class CSDateTimePicker extends React.Component<CSDateTimePickerProps> {
 			name,
 			onBlur,
 			onChange,
+			onClick,
 			onKeyDown,
 			onSelect,
 			placeholder,

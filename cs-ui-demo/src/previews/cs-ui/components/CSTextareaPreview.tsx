@@ -12,6 +12,8 @@ class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
 	state = { value: '' };
 
 	handleChange = () => alert('Value has changed.');
+	handleClick = () => alert('Textarea has been clicked.');
+	handleKeyDown = (event: any) => alert(`Key ${event.key} has been pressed.`);
 
 	getDoc = () => ({
 		name: 'Textarea',
@@ -191,6 +193,22 @@ class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
 							{
 								component: <CSTextarea label="Enter message" onChange={this.handleChange} />,
 								code: '<CSTextarea label="Enter message" onChange={this.handleChange} />'
+							}
+						]
+					}, {
+						propName: 'onClick',
+						variations: [
+							{
+								component: <CSTextarea label="Enter message" onClick={this.handleClick} />,
+								code: '<CSTextarea label="Enter message" onClick={this.handleClick} />'
+							}
+						]
+					}, {
+						propName: 'onKeyDown',
+						variations: [
+							{
+								component: <CSTextarea label="Enter message" onKeyDown={this.handleKeyDown} />,
+								code: '<CSTextarea label="Enter message" onKeyDown={this.handleKeyDown} />'
 							}
 						]
 					}, {
@@ -393,6 +411,14 @@ class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
 						name: 'onChange',
 						types: '(event) => any',
 						description: 'Handler method for the change event.'
+					}, {
+						name: 'onClick',
+						types: '(event) => any',
+						description: 'Handler method for the click event.'
+					}, {
+						name: 'onKeyDown',
+						types: '(event) => any',
+						description: 'Handler method for the keydown event.'
 					}, {
 						name: 'placeholder',
 						types: 'string',

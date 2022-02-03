@@ -23,6 +23,7 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 	}
 	handleKeyDown = () => alert('Key has been pressed.');
 	handleBlur = () => alert('DateTimepicker has lost focus.');
+	handleClick = () => alert('DateTimepicker input has been clicked.');
 	handleSelect = (date: Date) => {
 		alert('Date has been selected.');
 		this.setDate(date, 'OnSelect');
@@ -565,6 +566,24 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 									selected={this.state.selected}
 									onChange={(date: Date) => this.setState({ selected: date })}
 									onBlur={this.handleBlur}
+								/>`
+							}
+						]
+					}, {
+						propName: 'onClick',
+						variations: [
+							{
+								component: <CSDateTimePicker
+									label="Enter date"
+									selected={this.state.dateOnClick}
+									onChange={(date: Date) => this.setDate(date, 'OnClick')}
+									onClick={this.handleClick}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+									onClick={this.handleClick}
 								/>`
 							}
 						]
@@ -1135,6 +1154,10 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 						name: 'onBlur',
 						types: '(event) => any',
 						description: 'Handler method for the blur event.'
+					}, {
+						name: 'onClick',
+						types: '() => void',
+						description: 'Handler method for the click event.'
 					}, {
 						name: 'onKeyDown',
 						types: '(event) => any',

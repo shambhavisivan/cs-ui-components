@@ -24,6 +24,7 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 	}
 	handleChangeRaw = () => alert('Date has changed from raw value.');
 	handleKeyDown = () => alert('Key has been pressed.');
+	handleClick = () => alert('Datepicker input has been clicked.');
 	handleSelect = (date: Date) => {
 		alert('Date has been selected.');
 		this.setDate(date, 'OnSelect');
@@ -605,6 +606,24 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 							}
 						]
 					}, {
+						propName: 'onClick',
+						variations: [
+							{
+								component: <CSDatepicker
+									label="Enter date"
+									selected={this.state.dateOnClick}
+									onChange={(date: Date) => this.setDate(date, 'OnClick')}
+									onClick={this.handleClick}
+								/>,
+								code: `<CSDatepicker
+									label="Enter date"
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+									onClick={this.handleClick}
+								/>`
+							}
+						]
+					}, {
 						propName: 'onKeyDown',
 						variations: [
 							{
@@ -1096,6 +1115,10 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 						name: 'onChangeRaw',
 						types: '(event) => any',
 						description: 'Handler method for the change of input value.'
+					}, {
+						name: 'onClick',
+						types: '() => void',
+						description: 'Handler method for the click event.'
 					}, {
 						name: 'onKeyDown',
 						types: '(event) => any',

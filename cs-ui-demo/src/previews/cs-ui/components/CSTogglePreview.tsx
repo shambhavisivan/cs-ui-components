@@ -19,6 +19,8 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 		this.setState({ onChange: event.target.checked });
 		alert('Value has been toggled.');
 	}
+	handleClick = () => alert('Toggle has been clicked.');
+	handleKeyDown = (event: any) => alert(`Key ${event.key} has been pressed.`);
 
 	getDoc = () => ({
 		name: 'Toggle',
@@ -272,8 +274,44 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 								/>,
 								code: `<CSToggle
 									label="This is a label"
-									checked={this.state.onChange}
+									checked={this.state.checked}
 									onChange={this.handleChange}
+								/>`
+							}
+						]
+					}, {
+						propName: 'onClick',
+						variations: [
+							{
+								component: <CSToggle
+									label="This is a label"
+									checked={this.state.onClick}
+									onChange={(event: any) => this.setState({ onClick: event.target.checked })}
+									onClick={this.handleClick}
+								/>,
+								code: `<CSToggle
+									label="This is a label"
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ onClick: event.target.checked })}
+									onClick={this.handleClick}
+								/>`
+							}
+						]
+					}, {
+						propName: 'onKeyDown',
+						variations: [
+							{
+								component: <CSToggle
+									label="This is a label"
+									checked={this.state.onKeyDown}
+									onChange={(event: any) => this.setState({ onKeyDown: event.target.checked })}
+									onKeyDown={this.handleKeyDown}
+								/>,
+								code: `<CSToggle
+									label="This is a label"
+									checked={this.state.checked}
+									onChange={(event: any) => this.setState({ onKeyDown: event.target.checked })}
+									onKeyDown={this.handleKeyDown}
 								/>`
 							}
 						]
@@ -454,6 +492,14 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 						name: 'onChange',
 						types: '(event) => any',
 						description: 'Handler method for the change event.'
+					}, {
+						name: 'onClick',
+						types: '(event) => any',
+						description: 'Handler method for the click event.'
+					}, {
+						name: 'onKeyDown',
+						types: '(event) => any',
+						description: 'Handler method for the keydown event.'
 					}, {
 						name: 'readOnly',
 						types: 'boolean',

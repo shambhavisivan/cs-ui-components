@@ -24,6 +24,8 @@ export interface CSSliderProps {
 	max?: string;
 	min?: string;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	onClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
+	onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 	readOnly?: boolean;
 	required?: boolean;
 	step?: string;
@@ -139,6 +141,8 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 			max,
 			min,
 			onChange,
+			onClick,
+			onKeyDown,
 			readOnly,
 			required,
 			step,
@@ -219,6 +223,8 @@ class CSSlider extends React.Component<CSSliderProps, CSSliderState> {
 						value={fixControlledValue(this.state.value)}
 						type="range"
 						onChange={this.handleOnChange}
+						onClick={onClick}
+						onKeyDown={onKeyDown}
 						title={title}
 						aria-readonly={readOnly}
 						aria-invalid={error}

@@ -28,7 +28,9 @@ export interface CSInputTextProps {
 	name?: string;
 	onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => any;
+	onClick?: (event: React.MouseEvent<HTMLInputElement>) => any;
 	onFocus?: (event: React.FocusEvent<HTMLInputElement>) => any;
+	onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => any;
 	placeholder?: string;
 	readOnly?: boolean;
 	required?: boolean;
@@ -69,28 +71,6 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 		});
 	}
 
-	onFocus: React.FocusEventHandler<HTMLInputElement> = (e) => {
-		const { onFocus } = this.props;
-		if (onFocus) {
-			onFocus(e);
-		}
-	}
-
-	onBlur: React.FocusEventHandler<HTMLInputElement> = (e) => {
-		const { onBlur } = this.props;
-		if (onBlur) {
-			onBlur(e);
-		}
-	}
-
-	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const { onChange } = this.props;
-
-		if (onChange) {
-			onChange(e);
-		}
-	}
-
 	render() {
 		const {
 			actions,
@@ -111,7 +91,9 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 			name,
 			onBlur,
 			onChange,
+			onClick,
 			onFocus,
+			onKeyDown,
 			placeholder,
 			readOnly,
 			required,
@@ -171,10 +153,12 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 						aria-required={required}
 						aria-invalid={error}
 						autoComplete="off"
-						onChange={this.handleOnChange}
 						name={name}
-						onBlur={this.onBlur}
-						onFocus={this.onFocus}
+						onBlur={onBlur}
+						onChange={onChange}
+						onClick={onClick}
+						onFocus={onFocus}
+						onKeyDown={onKeyDown}
 						title={title}
 						ref={this.inputTextInnerRef}
 						{...rest}

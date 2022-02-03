@@ -344,6 +344,21 @@ describe('<CSDateTimePicker />', () => {
 		expect(handleOnBlurMock).toHaveBeenCalledTimes(1);
 	});
 
+	it('should use a working onClick callback', () => {
+		const handleOnClickMock = jest.fn();
+		const uut = shallow(
+			<CSDateTimePicker
+				label={labelValue}
+				onChange={onChange}
+				onClick={handleOnClickMock}
+			/>,
+		);
+		const datepicker = uut.dive().find('CSDatepicker');
+		const event: any = {};
+		datepicker.prop('onClick')(event);
+		expect(handleOnClickMock).toHaveBeenCalledTimes(1);
+	});
+
 	it('should use a working onKeyDown callback', () => {
 		const handleOnKeyDownMock = jest.fn();
 		const event: any = {};

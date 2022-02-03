@@ -10,6 +10,8 @@ interface CSRadioOptionState {
 class CSRadioPreview extends React.Component<{}, CSRadioOptionState> {
 	state = { focused: false };
 	handleChange = () => alert('Selection has changed.');
+	handleClick = () => alert('Radio has been clicked.');
+	handleKeyDown = (event: any) => alert(`Key ${event.key} has been pressed.`);
 	handleBlur = () => {
 		this.setState(prevState => {
 			if (!prevState.focused) {
@@ -494,26 +496,86 @@ class CSRadioPreview extends React.Component<{}, CSRadioOptionState> {
 							{
 								component: <CSRadio label="This is a label">
 									<CSRadioOption
+										label="Banana"
+										name="fruit"
+										onChange={this.handleChange}
+									/>
+									<CSRadioOption
+										label="Orange"
+										name="fruit"
+										onChange={this.handleChange}
+									/>
+								</CSRadio>,
+								code: `<CSRadio label="This is a label">
+									<CSRadioOption
+										label="Banana"
+										name="fruit"
+										onChange={this.handleChange}
+									/>
+									<CSRadioOption
+										label="Orange"
+										name="fruit"
+										onChange={this.handleChange}
+									/>
+								</CSRadio>`
+							}
+						]
+					}, {
+						propName: 'onClick',
+						variations: [
+							{
+								component: <CSRadio label="This is a label">
+									<CSRadioOption
 										label="Adriatic"
 										name="sea"
-										onChange={this.handleChange}
+										onClick={this.handleClick}
 									/>
 									<CSRadioOption
 										label="North"
 										name="sea"
-										onChange={this.handleChange}
+										onClick={this.handleClick}
 									/>
 								</CSRadio>,
 								code: `<CSRadio label="This is a label">
 									<CSRadioOption
 										label="Adriatic"
 										name="sea"
-										onChange={this.handleChange}
+										onClick={this.handleClick}
 									/>
 									<CSRadioOption
 										label="North"
 										name="sea"
-										onChange={this.handleChange}
+										onClick={this.handleClick}
+									/>
+								</CSRadio>`
+							}
+						]
+					}, {
+						propName: 'onKeyDown',
+						variations: [
+							{
+								component: <CSRadio label="This is a label">
+									<CSRadioOption
+										label="Carrot"
+										name="vegetable"
+										onKeyDown={this.handleKeyDown}
+									/>
+									<CSRadioOption
+										label="Broccoli"
+										name="vegetable"
+										onKeyDown={this.handleKeyDown}
+									/>
+								</CSRadio>,
+								code: `<CSRadio label="This is a label">
+									<CSRadioOption
+										label="Carrot"
+										name="vegetable"
+										onKeyDown={this.handleKeyDown}
+									/>
+									<CSRadioOption
+										label="Broccoli"
+										name="vegetable"
+										onKeyDown={this.handleKeyDown}
 									/>
 								</CSRadio>`
 							}
@@ -637,6 +699,14 @@ class CSRadioPreview extends React.Component<{}, CSRadioOptionState> {
 						name: 'onBlur',
 						types: '(event) => any',
 						description: 'Handler method for the blur event.'
+					}, {
+						name: 'onClick',
+						types: '(event) => any',
+						description: 'Handler method for the click event.'
+					}, {
+						name: 'onKeyDown',
+						types: '(event) => any',
+						description: 'Handler method for the keydown event.'
 					}, {
 						name: 'onChange',
 						types: '(event) => any',

@@ -34,6 +34,7 @@ export interface CSCheckboxProps {
 	name?: string;
 	onBlur?: (e: React.FocusEvent<HTMLInputElement>) => any;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => any;
+	onClick?: (e: React.MouseEvent<HTMLInputElement>) => any;
 	onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => any;
 	readOnly?: boolean;
 	required?: boolean;
@@ -63,13 +64,13 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { readOnly, onChange } = this.props;
 
-		if (readOnly) {
-			return;
-		}
+		if (onChange && !readOnly) onChange?.(e);
+	}
 
-		if (onChange) {
-			onChange(e);
-		}
+	handleOnClick = (e: React.MouseEvent<HTMLInputElement>) => {
+		const { readOnly, onClick } = this.props;
+
+		if (onClick && !readOnly) onClick?.(e);
 	}
 
 	render() {
@@ -94,6 +95,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 			name,
 			onBlur,
 			onChange,
+			onClick,
 			onKeyDown,
 			readOnly,
 			required,
@@ -160,6 +162,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 							<input
 								onBlur={onBlur}
 								onChange={this.handleOnChange}
+								onClick={this.handleOnClick}
 								className={checkboxClasses}
 								type="checkbox"
 								disabled={disabled}

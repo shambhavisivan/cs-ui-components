@@ -87,7 +87,23 @@ describe('<CSSlider />', () => {
 		const uut = shallow(<CSSlider label={labelValue} onChange={handleOnChangeMock} />);
 		const sliderInput = uut.find('.cs-slider');
 		sliderInput.simulate('change', { preventDefault: jest.fn(), target: { value: 50 } });
-		expect(handleOnChangeMock).toHaveBeenCalled();
+		expect(handleOnChangeMock).toHaveBeenCalledTimes(1);
+	});
+
+	it('should use a working onClick callback', () => {
+		const handleOnClickMock = jest.fn();
+		const uut = shallow(<CSSlider label={labelValue} onClick={handleOnClickMock} />);
+		const sliderInput = uut.find('.cs-slider');
+		sliderInput.simulate('click');
+		expect(handleOnClickMock).toHaveBeenCalledTimes(1);
+	});
+
+	it('should use a working onKeyDown callback', () => {
+		const handleOnKeyDownMock = jest.fn();
+		const uut = shallow(<CSSlider label={labelValue} onKeyDown={handleOnKeyDownMock} />);
+		const sliderInput = uut.find('.cs-slider');
+		sliderInput.simulate('keydown');
+		expect(handleOnKeyDownMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should set readOnly attribute', () => {
