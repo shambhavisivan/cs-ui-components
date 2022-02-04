@@ -139,6 +139,7 @@
   * CSToggle
   * CSTooltip
   * CSTransfer
+  * CSTree
 
 ## 2.0.0
 * General
