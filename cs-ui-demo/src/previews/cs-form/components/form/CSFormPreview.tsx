@@ -103,21 +103,21 @@ const CSFormPreview = () => {
 			]}
 			routePrefix="cs-form"
 		>
+			<CSD.Heading>Intro</CSD.Heading>
 			<CSD.Section>
-				<CSD.Heading level={2}>Intro</CSD.Heading>
-				<CSD.Text>CSForm component is the master component from which the whole form is defined and rendered.</CSD.Text>
-				<CSD.Text> It is the only component that a developer would need to use in order to generate form, its sections and fields.</CSD.Text>
+				<CSD.Text>The CSForm component is the master component from which the entire form is defined and rendered.</CSD.Text>
+				<CSD.Text>It is the only component that a developer would need to use in order to generate the form, its sections and its fields.</CSD.Text>
 				<CSD.Text>All other components are generated from the structure defined in the `data` prop.</CSD.Text>
 			</CSD.Section>
+			<CSD.Heading>Structure and Data</CSD.Heading>
 			<CSD.Section>
-				<CSD.Heading level={2}>Structure and Data</CSD.Heading>
-				<CSD.Text>Structure and form field values are defined through `data` prop.</CSD.Text>
+				<CSD.Text>The structure and form field values are defined through the `data` prop.</CSD.Text>
 				<CSD.Text>
-					It is an array of objects which represent one form section with properties relevant to the section, among which is fields array.
-					Fields array defines which type of fields will be rendered in the defined section.
+					The `data` prop is an array of objects which represent one form section with properties relevant to the section, among which is the fields array.
+					The fields array defines which type of fields will be rendered in the defined section.
 				</CSD.Text>
 				<CSD.Text>
-					`defineFormData()` util method can help with combining form definition and actual data if that's needed.
+					The `defineFormData()` util method can help with combining the form definition and actual data if required.
 					Details regarding `defineFormData()` can be found <CSD.Link path="./utils#defining-form-data">here</CSD.Link>.
 				</CSD.Text>
 				<CSD.Preview
@@ -131,13 +131,13 @@ const CSFormPreview = () => {
 								collapsible: true,
 								fields: [{
 									fieldType: 'NUMBER',
-									name: 'number 1',
 									label: 'Number field',
+									name: 'number 1',
 									required: true,
 								}, {
 									fieldType: 'TEXT',
-									name: 'text-1',
 									label: 'Text field',
+									name: 'text-1',
 								}, {
 									fieldType: 'TOGGLE',
 									label: 'Toggle field',
@@ -186,11 +186,11 @@ const CSFormPreview = () => {
 								}, {
 									fieldType: 'TEXTAREA',
 									label: 'Textarea field',
-									name: 'textarea-1'
+									name: 'textarea-2'
 								}, {
 									fieldType: 'LOOKUP',
 									label: 'Lookup field',
-									name: 'lookup-1',
+									name: 'lookup-2',
 									mode: 'client',
 									columns: [{ key: 'Account', header: 'Account' },
 									{ key: 'Industry', header: 'Industry' }],
@@ -207,13 +207,13 @@ const CSFormPreview = () => {
 					<CSForm data={initialData} />
 				</CSD.Preview>
 			</CSD.Section>
+			<CSD.Heading>Layout</CSD.Heading>
 			<CSD.Section>
-				<CSD.Heading level={2}>Layout</CSD.Heading>
-				<CSD.Text>CSForm supports defining number of fields/columns per row across sections which defines the layout of the whole form.</CSD.Text>
-				<CSD.Text>`columnNumber` prop defines the number of fields rendered in one row. It is consistent for every section in the form and cannot be changed per section.</CSD.Text>
-				<CSD.Text>Default columnNumber value is 4 columns.</CSD.Text>
+				<CSD.Text>CSForm supports defining the number of fields/columns per row across the sections which define the layout of the whole form.</CSD.Text>
+				<CSD.Text>The `columnNumber` prop defines the number of fields rendered in each row. It is consistent for every section in the form and cannot be changed for individual sections.</CSD.Text>
+				<CSD.Text>The default columnNumber value is 4 columns.</CSD.Text>
 				<CSD.Text>
-					Such defined layout can be changed via field's `grow` and `showInNewLine` attributes.
+					A defined layout can be changed via the field's `grow` and `showInNewLine` attributes.
 					Details can be found <CSD.Link path="./standard-form-fields#layout-properties">here</CSD.Link>.
 				</CSD.Text>
 				<CSD.Preview
@@ -224,9 +224,9 @@ const CSFormPreview = () => {
 					<CSForm data={initialData} columnNumber={5} />
 				</CSD.Preview>
 			</CSD.Section>
+			<CSD.Heading>Error Handling and Display</CSD.Heading>
 			<CSD.Section>
-				<CSD.Heading level={2}>Error Handling and Display</CSD.Heading>
-				<CSD.Text>To display an error message or messages relevant for the entire form `formErrorMessage` prop needs to be defined.</CSD.Text>
+				<CSD.Text>To display an error message or messages relevant for the entire form, the `formErrorMessage` prop needs to be defined.</CSD.Text>
 				<CSD.Text>CSForm can display one message or an array of messages in a global CSAlert component.</CSD.Text>
 				<CSD.Preview
 					table={CSFormProps}
@@ -246,16 +246,16 @@ const CSFormPreview = () => {
 					/>
 				</CSD.Preview>
 			</CSD.Section>
+			<CSD.Heading>Custom Error Labels</CSD.Heading>
 			<CSD.Section>
-				<CSD.Heading level={2}>Custom Error Labels</CSD.Heading>
 				<CSD.Text>
 					CSForm also provides custom labeling of errors for some out-of-the-box validations.
-					Custom error labels can be defined in `errorLabels` prop which consists 3 properties for each supported validation:
+					Custom error labels can be defined in the `errorLabels` prop which consists of 3 properties for each supported validation:
 				</CSD.Text>
 				<CSD.List>
 					<CSD.ListItem>requiredFieldErrLabel - error label for field requiredness validation</CSD.ListItem>
-					<CSD.ListItem>maxNumberFieldErrLabel - error label for validation of input number field\'s max attribute</CSD.ListItem>
-					<CSD.ListItem>minNumberFieldErrLabel - error label for validation  of input number field\'s min attribute</CSD.ListItem>
+					<CSD.ListItem>maxNumberFieldErrLabel - error label for validation of the input number field\'s max attribute</CSD.ListItem>
+					<CSD.ListItem>minNumberFieldErrLabel - error label for validation of the input number field\'s min attribute</CSD.ListItem>
 				</CSD.List>
 				<CSD.Preview
 					table={CSFormProps}
@@ -283,16 +283,16 @@ const CSFormPreview = () => {
 					/>
 				</CSD.Preview>
 			</CSD.Section>
+			<CSD.Heading>Localization</CSD.Heading>
 			<CSD.Section>
-				<CSD.Heading level={2}>Localization</CSD.Heading>
-				<CSD.Text>Displaying date, time and number formats is achieved through `locale` prop.</CSD.Text>
+				<CSD.Text>Displaying the date, time and number formats is achieved through the `locale` prop.</CSD.Text>
 				<CSD.Text>This prop is defined as an object with two properties - one for date/datetime, the other for number.</CSD.Text>
 				<CSD.Text>
 					`dateLocale` is a string property where the desired locale is defined.
 					The date or datetime fields will be formatted according to the defined BCP 47 language tag.
 				</CSD.Text>
-				<CSD.Text>Number formatting is achieved by using Intl.NumberFormat API.</CSD.Text>
-				<CSD.Text>`numberLocale` object property will format number according to BCP 47 language tag passed in `numLocale` property and options which are listed below:</CSD.Text>
+				<CSD.Text>Number formatting is achieved by using the Intl.NumberFormat API.</CSD.Text>
+				<CSD.Text>The `numberLocale` object property will format the number according to the BCP 47 language tag passed in the `numLocale` property and options which are listed below:</CSD.Text>
 				<CSD.List>
 					<CSD.ListItem>currency</CSD.ListItem>
 					<CSD.ListItem>style</CSD.ListItem>
@@ -311,8 +311,8 @@ const CSFormPreview = () => {
 									collapsible: true,
 									fields: [{
 										fieldType: 'NUMBER',
-										name: 'number-1',
 										label: 'Number field',
+										name: 'number-1',
 										useLocale: true,
 										value: 100
 									}, {
@@ -358,12 +358,12 @@ const CSFormPreview = () => {
 					/>
 				</CSD.Preview>
 			</CSD.Section>
+			<CSD.Heading>Mode</CSD.Heading>
 			<CSD.Section>
-				<CSD.Heading level={2}>Mode</CSD.Heading>
-				<CSD.Text>`mode` functionality controlls how the entire form will be displayed.</CSD.Text>
+				<CSD.Text>The `mode` functionality controls how the entire form will be displayed.</CSD.Text>
 				<CSD.Text>
-					Currently only `'read-only'` value is supported as part of the `mode` prop, which would render the entire form as read-only,
-					overriding readOnly property defined per each form field.
+					Currently only the `'read-only'` value is supported as part of the `mode` prop, which would render the entire form as read-only,
+					overriding the readOnly property defined in each form field.
 				</CSD.Text>
 				<CSD.Preview
 					table={CSFormProps}
@@ -373,15 +373,15 @@ const CSFormPreview = () => {
 					<CSForm data={readOnlyData} mode="read-only" />
 				</CSD.Preview>
 			</CSD.Section>
+			<CSD.Heading>Event Handling</CSD.Heading>
 			<CSD.Section>
-				<CSD.Heading level={2}>Event Handling</CSD.Heading>
-				<CSD.Text> CSForm handles two types of events: change and blur.</CSD.Text>
+				<CSD.Text>CSForm handles two types of events: change and blur.</CSD.Text>
 				<CSD.Text>
-					Each time either of the two events are triggered, form field which triggered the event will be validated and unique field name,
-					section key and value will be returned through event handler props (onFieldBlur or onFieldChange).
+					Each time either of the two events are triggered, the form field which triggered the event will be validated and a unique field name,
+					section key and value will be returned through the event handler props (onFieldBlur or onFieldChange).
 				</CSD.Text>
-				<CSD.Text>Also, error message(s) will be returned if one of the form validations fails.</CSD.Text>
-				<CSD.Text>Check browser console to see retuned object when field's blur event is triggered.</CSD.Text>
+				<CSD.Text>Also, the error message(s) will be returned if one of the form validations fails.</CSD.Text>
+				<CSD.Text>Check the browser console to see the returned object when the field's blur event is triggered.</CSD.Text>
 				<CSD.Preview
 					table={CSFormProps}
 					related={['data', 'onFieldBlur', 'onFieldChange']}

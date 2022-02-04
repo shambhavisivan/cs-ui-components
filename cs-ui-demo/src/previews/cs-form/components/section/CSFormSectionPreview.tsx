@@ -38,22 +38,22 @@ const CSFormSectionPreview = () => {
 			tables={[CSFormSectionAttributes]}
 			routePrefix="cs-form"
 		>
+			<CSD.Heading>Intro</CSD.Heading>
 			<CSD.Section>
-				<CSD.Heading level={2}>Intro</CSD.Heading>
-				<CSD.Text>In CSForm, fields are grouped into sections. Form can have multiple groups of fields.</CSD.Text>
+				<CSD.Text>In CSForm, fields are grouped into sections. The form can have multiple groups of fields.</CSD.Text>
 				<CSD.Text>Each section is defined within CSForm's data prop as an object with properties which control the look and behaviour of the section.</CSD.Text>
 			</CSD.Section>
+			<CSD.Heading>Key, Label and Fields</CSD.Heading>
 			<CSD.Section>
-				<CSD.Heading level={2}>Key, Label and Fields</CSD.Heading>
 				<CSD.Text>`label`, `sectionKey` and `fields` are mandatory object properties of the section object.</CSD.Text>
-				<CSD.Text>`label` represents explanatory name for the group of fields and it is shown in the section header.</CSD.Text>
+				<CSD.Text>`label` represents the explanatory name for the group of fields and it is shown in the section header.</CSD.Text>
 				<CSD.Text>
-					`sectionKey` is defined as a unique identifier for the section and it will be returned through
-					onFieldBlur or onFieldChange handlers when section field triggers one of the events (change or blur).
+					`sectionKey` is defined as a unique identifier for the section and it will be returned through the
+					onFieldBlur or onFieldChange handlers when the section field triggers one of the events (change or blur).
 				</CSD.Text>
-				<CSD.Text>Section fields are defined within `fields` property.</CSD.Text>
-				<CSD.Text>It is a property which takes array of objects where each object represents one field in the section.</CSD.Text>
-				<CSD.Text>Field object properties can vary depending on the type of the field. More about form fields can be found <CSD.Link path="./standard-form-fields">here</CSD.Link>.</CSD.Text>
+				<CSD.Text>Section fields are defined within the `fields` property.</CSD.Text>
+				<CSD.Text>It is a property which takes the array of objects where each object represents one field in the section.</CSD.Text>
+				<CSD.Text>Field object properties can vary depending on the type of field. More about form fields can be found <CSD.Link path="./standard-form-fields">here</CSD.Link>.</CSD.Text>
 				<CSD.Preview
 					table={CSFormSectionAttributes}
 					related={['sectionKey', 'label', 'fields']}
@@ -64,15 +64,15 @@ const CSFormSectionPreview = () => {
 								label: 'Standard Fields Section',
 								fields: [{
 									fieldType: 'NUMBER',
-									name: 'number-1',
 									label: 'Number field',
+									name: 'number-1',
 									required: true,
 									min: 1,
 									max: 5
 								}, {
 									fieldType: 'TEXT',
-									name: 'text-1',
 									label: 'Text field',
+									name: 'text-1',
 									maxLength: 10
 								}, {
 									fieldType: 'TOGGLE',
@@ -108,14 +108,14 @@ const CSFormSectionPreview = () => {
 					<CSForm data={initialSectionData} />
 				</CSD.Preview>
 			</CSD.Section>
+			<CSD.Heading>Header and Collapsibility</CSD.Heading>
 			<CSD.Section>
-				<CSD.Heading level={2}>Header and Collapsibility</CSD.Heading>
-				<CSD.Text>Each form section contains a header that holds section label and an indicator which shows the collapsibility of the section.</CSD.Text>
+				<CSD.Text>Each form section contains a header that holds the section label and an indicator which shows the collapsibility of the section.</CSD.Text>
 				<CSD.Text>Collapsibility of the form section can be achieved by setting the `collapsible` property.</CSD.Text>
-				<CSD.Text>If the section is collapsible it will be expanded by default which can be changed by setting `defaultClosed` property to `true`.</CSD.Text>
+				<CSD.Text>If the section is collapsible it will be expanded by default which can be changed by setting the `defaultClosed` property to `true`.</CSD.Text>
 				<CSD.Text>
-					In certain scenarios form might not need multiple sections in which case section header might not be needed.
-					Form fields will still need to be inside a form section, but section can be hidden from UI by setting `hideSectionHeader` property to true.
+					In certain scenarios form might not need multiple sections, in which case the section header might not be needed.
+					Form fields will still need to be inside a form section, but the section can be hidden from the UI by setting the `hideSectionHeader` property to true.
 					By doing this, functionalities like `error`, `errorMessage`, `collapsible` and `defaultClosed` will become unavailable!
 				</CSD.Text>
 				<CSD.Preview
@@ -146,11 +146,11 @@ const CSFormSectionPreview = () => {
 					<CSForm data={headerAndCollapsibilitySectionData} />
 				</CSD.Preview>
 			</CSD.Section>
+			<CSD.Heading>Error Handling and Display</CSD.Heading>
 			<CSD.Section>
-				<CSD.Heading level={2}>Error Handling and Display</CSD.Heading>
-				<CSD.Text>Section allows displaying error messages which are relevant to the corresponding section fields.</CSD.Text>
-				<CSD.Text>Error message(s) can be defined in `errorMessage` property which accepts one message or an array of messages.</CSD.Text>
-				<CSD.Text>`errorMessage` should be used together with `error` prop which will display error styles on the section header.</CSD.Text>
+				<CSD.Text>The section allows for displaying error messages which are relevant to the corresponding section fields.</CSD.Text>
+				<CSD.Text>Error message(s) can be defined in the `errorMessage` property which accepts one message or an array of messages.</CSD.Text>
+				<CSD.Text>`errorMessage` should be used with the `error` prop which will display error styles on the section header.</CSD.Text>
 				<CSD.Preview
 					table={CSFormSectionAttributes}
 					related={['sectionKey', 'label', 'fields', 'collapsible', 'error', 'errorMessage']}
@@ -174,10 +174,10 @@ const CSFormSectionPreview = () => {
 					/>
 				</CSD.Preview>
 			</CSD.Section>
+			<CSD.Heading>Custom Styles</CSD.Heading>
 			<CSD.Section>
-				<CSD.Heading level={2}>Custom Styles</CSD.Heading>
 				<CSD.Text>We can add custom styles to a form section by adding a custom CSS class to it.</CSD.Text>
-				<CSD.Text>This is achieved by passing string value to `styleClass` atrribute.</CSD.Text>
+				<CSD.Text>This is achieved by passing a string value to the `styleClass` atrribute.</CSD.Text>
 				<CSD.Preview
 					table={CSFormSectionAttributes}
 					related={['sectionKey', 'label', 'fields', 'collapsible', 'styleClass']}

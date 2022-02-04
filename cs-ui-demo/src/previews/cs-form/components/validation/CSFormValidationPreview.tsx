@@ -31,21 +31,21 @@ const CSFormValidationPreview = () => {
 	};
 	return (
 		<CSD.Page title="Validation" routePrefix="cs-form">
+			<CSD.Heading>About</CSD.Heading>
 			<CSD.Section>
-				<CSD.Heading level={2}>About</CSD.Heading>
 				<CSD.Text>CSForm supports out-of-the-box validation of form fields.</CSD.Text>
-				<CSD.Text>Each form field is validated after `change` or `blur` event is triggered.</CSD.Text>
+				<CSD.Text>Each form field is validated after a `change` or `blur` event is triggered.</CSD.Text>
 				<CSD.Text>
-					Currently, CSForm supports validation for requiredness of all form fields regardless of the type
-					and validation form `min` and `max` number field attributes.
+					Currently, CSForm supports validation for the requiredness of all form fields regardless of the type
+					and the validation form's `min` and `max` number field attributes.
 				</CSD.Text>
 				<CSD.Text>
-					If one of the mentioned validation fails, object that contains field information with out-of-the-box error message will be
-					returned though `onFieldChange` or `onFieldBlur` handlers.
+					If one of the mentioned validations fail, the object that contains the field information with the out-of-the-box error message will be
+					returned through the `onFieldChange` or `onFieldBlur` handlers.
 				</CSD.Text>
 				<CSD.Text>
-					Below preview displays validation of field when `change` event occurs.
-					Check the console to see the object which is a result of field validation.
+					The below preview displays the validation of the field when a `change` event occurs.
+					Check the console to see the object which is a result of the field validation.
 				</CSD.Text>
 				<CSD.Preview
 					code={`
@@ -79,14 +79,14 @@ const CSFormValidationPreview = () => {
 					/>
 				</CSD.Preview>
 				<CSD.Text>Out-of-the-box validation messages can be overriden by defining CSForm's `errorLabels` prop.</CSD.Text>
-				<CSD.Text>Each out-of-the-box message per validation type is listed below: </CSD.Text>
+				<CSD.Text>The out-of-the-box message for each validation type is listed below: </CSD.Text>
 				<CSD.List>
 					<CSD.ListItem>field requiredness - '--field-name-- is required'</CSD.ListItem>
 					<CSD.ListItem>number field max attribute - '--field-name-- value is higher than defined max value.'</CSD.ListItem>
 					<CSD.ListItem>number field max attribute - '--field-name-- value is lower than defined min value.'</CSD.ListItem>
 				</CSD.List>
 				<CSD.Text>
-					Additionaly, CSForm provides `validateForm()` util method which can be used for validation of entire form.
+					Additionally, CSForm provides a `validateForm()` util method which can be used for validation of the entire form.
 					More about the method can be found <CSD.Link path="./utils#form-validation">here</CSD.Link>.</CSD.Text>
 			</CSD.Section>
 		</CSD.Page>

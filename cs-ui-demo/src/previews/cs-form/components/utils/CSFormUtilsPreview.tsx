@@ -54,20 +54,20 @@ const CSFormUtilsPreview = () => {
 
 	return (
 		<CSD.Page title="Utils" routePrefix="cs-form">
+			<CSD.Heading>Info</CSD.Heading>
 			<CSD.Section>
-				<CSD.Heading level={2}>Info</CSD.Heading>
 				<CSD.Text>CSForm provides utility methods to facilitate the usage of the new form and migration from the old form.</CSD.Text>
-				<CSD.Text>Currently, there are 2 utility methods: `defineFormData()` and `validateForm()` available.</CSD.Text>
+				<CSD.Text>Currently, there are 2 utility methods: `defineFormData()` and `validateForm()`.</CSD.Text>
 			</CSD.Section>
+			<CSD.Heading>Defining form data</CSD.Heading>
 			<CSD.Section>
-				<CSD.Heading level={2}>Defining form data</CSD.Heading>
 				<CSD.Text>`defineFormData()` generates the data which is used to render CSForm.</CSD.Text>
-				<CSD.Text>In most projects, definition of form structure, field values and errors are kept as a separate entities.</CSD.Text>
-				<CSD.Text>`defineFormData()` accepts these entities as arguments and returns JSON structure which can be then passed to CSForm's `data` prop.</CSD.Text>
-				<CSD.Text>The first argument is form definition where all form fields with their properties are defined.</CSD.Text>
-				<CSD.Text>The second argument represents array of field values in a form of key-value pair where key is the uniqe name of the field and value is acutal field value.</CSD.Text>
-				<CSD.Text>The third argument is similar to the second, only the value represents validation error message(s).</CSD.Text>
-				<CSD.Text>Check below preview to see one use case of `defineFormData()` and check the console for its return value.</CSD.Text>
+				<CSD.Text>In most projects, the definition of form structure, field values and errors are kept as separate entities.</CSD.Text>
+				<CSD.Text>`defineFormData()` accepts these entities as arguments and returns a JSON structure which can then be passed to CSForm's `data` prop.</CSD.Text>
+				<CSD.Text>The first argument is a form definition where all form fields with their properties are defined.</CSD.Text>
+				<CSD.Text>The second argument represents an array of field values in the form of a key-value pair where key is the unique name of the field and value is actual field value.</CSD.Text>
+				<CSD.Text>The third argument is similar to the second, only the value represents the validation error message(s).</CSD.Text>
+				<CSD.Text>Check the preview below to see one use case of `defineFormData()` and check the console for its returned value.</CSD.Text>
 				<CSD.Preview
 					code={`
 						const [data, setData] = useState(data);
@@ -107,8 +107,8 @@ const CSFormUtilsPreview = () => {
 					/>
 				</CSD.Preview>
 			</CSD.Section>
+			<CSD.Heading>Form validation</CSD.Heading>
 			<CSD.Section>
-				<CSD.Heading level={2}>Form validation</CSD.Heading>
 				<CSD.Text>
 					`validateForm()` can be used for validation of all fields in a form.
 					It triggers out-of-the-box validation as it is described <CSD.Link path="./validation">here</CSD.Link>.
@@ -117,8 +117,8 @@ const CSFormUtilsPreview = () => {
 					It can be used as part of a `Save` button which would validate the form before executing any additional logic, or it can
 					be triggered when the form loads.
 				</CSD.Text>
-				<CSD.Text>`validateForm()` accepts 2 arguments: form data and custom error labels for each supported field validation.</CSD.Text>
-				<CSD.Text>Validation result consists of objects which represent each validated field. Check the console to see validation result after clicking `Validate` button.</CSD.Text>
+				<CSD.Text>`validateForm()` accepts 2 arguments for each supported field validation: form data and custom error labels.</CSD.Text>
+				<CSD.Text>The validation result consists of objects which represent each validated field. Check the console to see the validation result after clicking the `Validate` button.</CSD.Text>
 				<CSD.Preview
 					code={`
 						<>

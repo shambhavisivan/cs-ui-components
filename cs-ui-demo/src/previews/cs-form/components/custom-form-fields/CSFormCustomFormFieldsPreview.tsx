@@ -37,14 +37,14 @@ const CSFormCustomFormFieldsPreview = () => {
 			<CSD.Heading>Intro</CSD.Heading>
 			<CSD.Section>
 				<CSD.Text>
-					Custom form fields allow rendering custom content as an inline form field or within a custom modal,
+					Custom form fields allow the rendering of custom content as an inline form field or within a custom modal,
 					hence there are 2 types of custom fields: custom and custom-modal.
 				</CSD.Text>
 				<CSD.Text>
 					Like standard form fields, custom fields are defined in CSForm's data prop as part of the section object's fields array,
-					but they don't subject to any validation and they don't need uniqe name or label in order to be rendred.
+					but they aren't subject to any validation and they don't need a unique name or label in order to be rendered.
 				</CSD.Text>
-				<CSD.Text> In order to render desired custom field, `fieldType` property needs to be defined.</CSD.Text>
+				<CSD.Text>In order to render the desired custom field, the `fieldType` property needs to be defined.</CSD.Text>
 				<CSD.Text>The table below shows which component will be rendered for each fieldType property value:</CSD.Text>
 				<CSDataTable
 					columns={[
@@ -72,15 +72,15 @@ const CSFormCustomFormFieldsPreview = () => {
 						}
 					]}
 				/>
-				<CSD.Text>Custom form fields also have common properties just like standard field, and they also have specific properties based on `fieldType` value.</CSD.Text>
+				<CSD.Text>Custom form fields also have common properties just like standard fields, and they also have specific properties based on the `fieldType` value.</CSD.Text>
 				<CSD.Text>Both of these field types are explained and displayed below.</CSD.Text>
 			</CSD.Section>
 			<CSD.Heading>Common Properites</CSD.Heading>
 			<CSD.Section>
 				<CSD.Text>Custom fields share 4 properties: `fieldType`, `grow`, `showInNewLine` and `hidden`.</CSD.Text>
-				<CSD.Text>Just like in standard fields, `fieldType` defines which field will be rendered and enables access to fields specific properties.</CSD.Text>
-				<CSD.Text>`grow` and `showInNewLine` define field width and position in the form section.</CSD.Text>
-				<CSD.Text>`hidden` property hides form field based on a condition.</CSD.Text>
+				<CSD.Text>Just like in standard fields, `fieldType` defines which field will be rendered and enables access to a field's specific properties.</CSD.Text>
+				<CSD.Text>`grow` and `showInNewLine` define a field's width and position in the form section.</CSD.Text>
+				<CSD.Text>The `hidden` property hides the form field based on a condition.</CSD.Text>
 				<CSD.Preview
 					table={CSCustomFieldsCommonAttributes}
 					code={`
@@ -159,10 +159,10 @@ const CSFormCustomFormFieldsPreview = () => {
 			<CSD.Heading>Field Specific Properties</CSD.Heading>
 			<CSD.Section>
 				<CSD.Heading level={2}>Custom Field</CSD.Heading>
-				<CSD.Text>Custom field's specific properties are `render` `onBlur`, `onChange` and `onFocus`.</CSD.Text>
-				<CSD.Text>`render` property takes any custom ReactElement and renders it in form of an inline field.</CSD.Text>
+				<CSD.Text>A custom field's specific properties are `render` `onBlur`, `onChange` and `onFocus`.</CSD.Text>
+				<CSD.Text>The `render` property takes any custom ReactElement and renders it in the form of an inline field.</CSD.Text>
 				<CSD.Text>`onBlur`,`onChange` and `onFocus` are event handlers which are fired on a corresponding field event (change, blur and focus).</CSD.Text>
-				<CSD.Text>Custom form field also allows definition of any arbitrary property which would suit the element defined in the `render` property.</CSD.Text>
+				<CSD.Text>A custom form field also allows for the definition of any arbitrary property which would suit the element defined in the `render` property.</CSD.Text>
 				<CSD.Preview
 					table={CSCustomFieldSpecificAttributes}
 					code={`
@@ -200,14 +200,14 @@ const CSFormCustomFormFieldsPreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Custom Modal Field</CSD.Heading>
-				<CSD.Text>Custom modal field enables rendering custom content inside a modal.</CSD.Text>
-				<CSD.Text>This field actually consists of 2 components: button that initiates rendering of the modal and actual modal where custom content resides.</CSD.Text>
-				<CSD.Text>Modal component conists of header, body and footer children components.</CSD.Text>
+				<CSD.Text>A custom modal field enables for the rendering of custom content inside a modal.</CSD.Text>
+				<CSD.Text>This field consists of 2 components: a button that initiates the rendering of the modal and the modal itself, where custom content resides.</CSD.Text>
+				<CSD.Text>The modal component conists of header, body and footer child components.</CSD.Text>
 				<CSD.Text>
-					All modal children components support rendering custom content which can be static or can be dynamically added when modal opens.
-					This is achieved by defining corresponding content property (i.e. `headerContent`) for static rendering, or factory property (i.e. `headerFactory`) for async rendering
-					of custom content. Factory properties allow consumption of CSForm data in the custom content, and they provide method for closing the modal which can be called
-					in a desired manner within custom content.
+					All the modal child components support rendering custom content which can be static or can be dynamically added when the modal opens.
+					This is achieved by defining the corresponding content property (i.e. `headerContent`) for static rendering, or factory property (i.e. `headerFactory`) for async rendering
+					of custom content. Factory properties allow for the consumption of CSForm data in the custom content. They also provide a method for closing the modal which can be called
+					in a desired manner within the custom content.
 				</CSD.Text>
 				<CSD.Preview>
 					<CSForm
@@ -262,8 +262,8 @@ const CSFormCustomFormFieldsPreview = () => {
 						}]}
 					/>
 				</CSD.Preview>
-				<CSD.Text>Both modal button and modal inherit properties from `CSButton` and `CSModal` (with its child components).</CSD.Text>
-				<CSD.Text>Details regarding modal button and modal inherited properties can be found by clicking on a desired property in following lists.</CSD.Text>
+				<CSD.Text>Both the modal button and the modal inherit properties from `CSButton` and `CSModal` (with its child components).</CSD.Text>
+				<CSD.Text>Details regarding the modal button's and the modal's inherited properties can be found by clicking on a desired property in following lists.</CSD.Text>
 				<CSD.Text>Modal button properties:</CSD.Text>
 				<CSD.List>
 					<CSD.ListItem><CSD.Link path={`${modalButtonPath}borderRadius`}>borderRadius</CSD.Link></CSD.ListItem>
