@@ -9,11 +9,11 @@ export default {
 				types: [`CUSTOM`, `CUSTOM-MODAL`]
 			},
 			required: true,
-			description: 'Set type of the field which enables properties specific for the type.'
+			description: 'Set the type of the field which enables specific properties.'
 		}, {
 			name: 'grow',
 			types: 'number',
-			description: 'Set the number of columns that field takes in one row.'
+			description: 'Set the number of columns that the field takes in one row.'
 		}, {
 			name: 'hidden',
 			types: 'boolean',
@@ -23,7 +23,7 @@ export default {
 			name: 'showInNewLine',
 			types: 'boolean',
 			default: 'false',
-			description: 'Render the field as the first field in the new line in form section.'
+			description: 'Render the field as the first field in a new line in form section.'
 		}
 	]
 };

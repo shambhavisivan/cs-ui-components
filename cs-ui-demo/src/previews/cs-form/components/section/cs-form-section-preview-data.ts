@@ -1,16 +1,16 @@
 import { CSFormData } from '@cloudsense/cs-form-v2';
 export const fields: any = [{
 	fieldType: 'NUMBER',
-	name: 'number-1',
 	label: 'Number field',
+	name: 'number-1',
 	required: true,
 	min: 1,
 	max: 5,
 	value: ''
 }, {
 	fieldType: 'TEXT',
-	name: 'text-1',
 	label: 'Text field',
+	name: 'text-1',
 	maxLength: 10,
 	value: ''
 }, {

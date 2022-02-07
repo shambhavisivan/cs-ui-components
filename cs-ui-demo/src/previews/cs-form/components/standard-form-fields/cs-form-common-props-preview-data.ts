@@ -46,12 +46,12 @@ export const fieldTypeData: CSFormData = [
 		collapsible: true,
 		fields: [{
 			fieldType: 'NUMBER',
-			name: 'number-1',
-			label: 'Number field'
+			label: 'Number field',
+			name: 'number-1'
 		}, {
 			fieldType: 'TEXT',
-			name: 'text-1',
-			label: 'Text field'
+			label: 'Text field',
+			name: 'text-1'
 		}, {
 			fieldType: 'TEXTAREA',
 			label: 'Textarea field',
@@ -93,8 +93,8 @@ export const customOptionsData: CSFormData = [
 		collapsible: true,
 		fields: [{
 			fieldType: 'NUMBER',
-			name: 'number-1',
 			label: 'Number field',
+			name: 'number-1',
 			actions
 		}, {
 			fieldType: 'LOOKUP',
@@ -120,13 +120,13 @@ export const layoutPropsData: CSFormData = [
 		collapsible: true,
 		fields: [{
 			fieldType: 'TEXT',
-			name: 'text-1',
 			label: 'Text field',
+			name: 'text-1',
 			grow: 2
 		}, {
 			fieldType: 'NUMBER',
-			name: 'number-1',
-			label: 'Number field'
+			label: 'Number field',
+			name: 'number-1'
 		}, {
 			fieldType: 'TEXTAREA',
 			label: 'Textarea field',
@@ -134,8 +134,8 @@ export const layoutPropsData: CSFormData = [
 			showInNewLine: true
 		}, {
 			fieldType: 'TEXT',
-			name: 'text-1-1',
-			label: 'Text field'
+			label: 'Text field',
+			name: 'text-1-1'
 		}]
 	}
 ];
@@ -181,18 +181,18 @@ export const fieldStateVisibilityData: CSFormData = [
 		collapsible: true,
 		fields: [{
 			fieldType: 'TOGGLE',
-			name: 'toggle-1',
 			label: 'Toggle field',
+			name: 'toggle-1',
 			hidden: true
 		}, {
 			fieldType: 'TEXT',
-			name: 'text-1',
 			label: 'Text field',
+			name: 'text-1',
 			disabled: true
 		}, {
 			fieldType: 'NUMBER',
-			name: 'number-1',
 			label: 'Number field',
+			name: 'number-1',
 			readOnly: true,
 			value: 2
 		}, {
@@ -233,13 +233,13 @@ export const fieldTitleAndValueData: CSFormData = [
 		collapsible: true,
 		fields: [{
 			fieldType: 'TEXT',
-			name: 'text-1',
 			label: 'Text field',
+			name: 'text-1',
 			title: 'Text field title'
 		}, {
 			fieldType: 'NUMBER',
-			name: 'number-1',
 			label: 'Number field',
+			name: 'number-1',
 			value: 2
 		}]
 	}

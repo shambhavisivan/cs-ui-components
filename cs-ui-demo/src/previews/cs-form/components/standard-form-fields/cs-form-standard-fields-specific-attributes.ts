@@ -32,7 +32,7 @@ export const CSFormCustomSelectFieldAttributes = {
 		}, {
 			name: 'onSearch',
 			types: '(event) => void',
-			description: 'Handler method when search term changes.'
+			description: 'Handler method when the search term changes.'
 		}
 	]
 };
@@ -45,12 +45,12 @@ export const CSFormCustomSelectOptionAttributes = {
 			name: 'key',
 			types: 'ReactText',
 			required: true,
-			description: 'Set unique key for custom select option.'
+			description: 'Set a unique key for the custom select option.'
 		}, {
 			name: 'label',
 			types: 'ReactText',
 			required: true,
-			description: 'Set label to display for custom select option.'
+			description: 'Set the label to display for the custom select option.'
 		}
 	]
 };
@@ -183,7 +183,7 @@ export const CSFormLookupFieldServerAttributes = {
 			name: 'minTermLength',
 			types: 'number',
 			default: '0',
-			description: 'Set the minimum number of characters that need to be entered before fetchOptions is fired.'
+			description: 'Set the minimum number of characters that needs to be entered before fetchOptions is fired.'
 		}
 	]
 };
@@ -203,7 +203,7 @@ export const CSFormNumberFieldAttributes = {
 		}, {
 			name: 'useLocale',
 			types: 'boolean',
-			description: 'Set whether number field value will be formatted by defined locale.'
+			description: 'Set whether the number field value will be formatted by the defined locale.'
 		}
 	]
 };
@@ -219,7 +219,7 @@ export const CSFormRadioFieldAttributes = {
 				types: 'See CSFormRadioOption Attributes'
 			},
 			required: true,
-			description: 'Define options which will be rendered as a part of grouped input radio elements.'
+			description: 'Define options which will be rendered as a part of the grouped input radio elements.'
 		}
 	]
 };
@@ -267,7 +267,7 @@ export const CSFormSelectFieldAttributes = {
 				types: 'See CSFormSelectOption Attributes'
 			},
 			required: true,
-			description: 'Set options which will be available in the picklist.'
+			description: 'Set the options which will be available in the picklist.'
 		}
 	]
 };
@@ -280,12 +280,12 @@ export const CSFormSelectOptionAttributes = {
 			name: 'key',
 			types: 'ReactText',
 			required: true,
-			description: 'Set unique key for select option.'
+			description: 'Set a unique key for the select option.'
 		}, {
 			name: 'value',
 			types: 'string',
 			required: true,
-			description: 'Set value of select option.'
+			description: 'Set the value of the select option.'
 		}
 	]
 };

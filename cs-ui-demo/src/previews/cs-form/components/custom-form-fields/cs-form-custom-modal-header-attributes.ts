@@ -5,12 +5,12 @@ export default {
 		{
 			name: 'headerContent',
 			types: 'ReactElement',
-			description: 'Set custom content to modal header.'
+			description: 'Set custom content to the modal header.'
 		}, {
 			name: 'headerFactory',
 			types: '(data: CSFormData) => Promise<React.ReactElement>',
 			description: `Set async custom content to modal header.
-				Handler will fire when modal opens and return a promise with custom React element which can
+				Handler will fire when the modal opens and return a promise with the custom React element which can
 				consume CSForm data.`
 		}, {
 			name: 'subtitle',
@@ -36,7 +36,7 @@ export default {
 			name: 'titleId',
 			required: 'CSModal',
 			types: 'string',
-			description: 'Establish a relationship between modal title and the dialog wrapper.'
+			description: 'Establish a relationship between the modal title and the dialog wrapper.'
 		}
 	]
 };

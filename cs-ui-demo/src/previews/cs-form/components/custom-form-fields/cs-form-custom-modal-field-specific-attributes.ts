@@ -8,14 +8,14 @@ export default {
 				name: 'CSFormModalButton',
 				types: 'See CSFormModalButton Attributes'
 			},
-			description: 'Define modal button which initiates rendering of custom modal.'
+			description: 'Define the modal button which initiates the rendering of custom modal.'
 		}, {
 			name: 'modal',
 			customTypes: {
 				name: 'CSFormCustomModalProps',
 				types: 'See CSFormCustomModal Attributes'
 			},
-			description: 'Define modal, its header, body and footer with various properites.'
+			description: 'Define the modal, its header, body and footer with various properites.'
 		}
 	]
 };

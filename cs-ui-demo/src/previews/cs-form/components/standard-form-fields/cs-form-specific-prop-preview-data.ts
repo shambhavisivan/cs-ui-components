@@ -7,14 +7,14 @@ export const numberLocaleData: CSFormData = [
 		collapsible: true,
 		fields: [{
 			fieldType: 'NUMBER',
-			name: 'number-1',
 			label: 'Number field with locale',
+			name: 'number-1',
 			useLocale: true,
 			value: 100
 		}, {
 			fieldType: 'NUMBER',
-			name: 'number-2',
 			label: 'Number field without locale',
+			name: 'number-2',
 			useLocale: false,
 			value: 100
 		}]

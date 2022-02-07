@@ -5,13 +5,13 @@ export default {
 		{
 			name: 'bodyContent',
 			types: 'ReactElement',
-			description: 'Set custom content to modal body.'
+			description: 'Set custom content to the modal body.'
 		}, {
 			name: 'bodyFactory',
 			types: '(data: CSFormData, closeModal: () => any) => Promise<React.ReactElement>',
 			description: `Set async custom content to modal body.
-				Handler will fire when modal opens and return a promise with custom React element which can
-				consume CSForm data and has ability to close modal in desired manner by calling closeModal() method.`
+				Handler will fire when the modal opens and return a promise with a custom React element which can
+				consume CSForm data and has the ability to close the modal in a desired manner by calling the closeModal() method.`
 		}, {
 			name: 'minHeight',
 			types: 'string',

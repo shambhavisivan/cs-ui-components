@@ -7,14 +7,14 @@ export default [
 		collapsible: true,
 		fields: [{
 			fieldType: 'TEXTAREA',
-			name: 'textarea-1',
 			label: 'Textarea field',
+			name: 'textarea-1',
 			required: true,
 			value: 'Example text.'
 		}, {
 			fieldType: 'NUMBER',
-			name: 'number-1',
 			label: 'Number field',
+			name: 'number-1',
 			min: 1,
 			max: 5,
 			value: 1

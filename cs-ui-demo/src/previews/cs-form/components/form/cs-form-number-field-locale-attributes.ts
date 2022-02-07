@@ -5,14 +5,14 @@ export default {
 		{
 			name: 'numLocale',
 			types: 'string',
-			description: 'Set BCP 47 language tag.'
+			description: 'Set the BCP 47 language tag.'
 		}, {
 			name: 'options',
 			customTypes: {
 				name: 'CSFormNumberFiledLocale',
 				types: 'To be added'
 			},
-			description: 'Set options for locale formatting.'
+			description: 'Set the options for locale formatting.'
 		}
 	]
 };

@@ -9,7 +9,7 @@ export default {
 				types: 'See CSFormModalHeader Attributes'
 			},
 			required: true,
-			description: 'Set modal header.'
+			description: 'Set the modal header.'
 
 		}, {
 			name: 'body',
@@ -18,7 +18,7 @@ export default {
 				types: 'See CSFormModalBody Attributes'
 			},
 			required: true,
-			description: 'Set modal body.'
+			description: 'Set the modal body.'
 
 		}, {
 			name: 'footer',
@@ -26,7 +26,7 @@ export default {
 				name: 'CSFormModalFooterAttributes',
 				types: 'See CSFormModalFooter Attributes'
 			},
-			description: 'Set modal footer.'
+			description: 'Set the modal footer.'
 		}, {
 			name: 'animated',
 			types: 'boolean',

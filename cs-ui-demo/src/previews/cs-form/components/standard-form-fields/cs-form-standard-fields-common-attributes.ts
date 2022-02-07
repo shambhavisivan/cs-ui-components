@@ -21,7 +21,7 @@ export default {
 				]
 			},
 			required: true,
-			description: 'Set type of the field which enables properties specific for the type.'
+			description: 'Set the type of the field which enables specific properties.'
 		}, {
 			name: 'label',
 			types: 'string',
@@ -31,11 +31,11 @@ export default {
 			name: 'name',
 			types: 'string',
 			required: true,
-			description: `Set unique identifier for the form field and 'name' attribute. Defined value of this property is returned when field change or blur is triggered as part of an object.`
+			description: `Set the unique identifier for the form field and 'name' attribute. The defined value of this property is returned when the field change or blur is triggered as part of an object.`
 		}, {
 			name: 'actions',
 			types: 'Array<CSCustomDataActionProps>',
-			description: 'An array of objects which accepts valid CSIcon & CSButton props, a getTooltip function to show an icon with a tooltip & an action prop for the button action/function.'
+			description: 'An array of objects which accepts valid CSIcon & CSButton props, a getTooltip function to show an icon with a tooltip, and an action prop for the button action/function.'
 		}, {
 			name: 'disabled',
 			types: 'boolean',
@@ -49,11 +49,11 @@ export default {
 		}, {
 			name: 'errorMessage',
 			types: ['string', 'Array<string>'],
-			description: 'Set error message(s) for the field.'
+			description: 'Set the error message(s) for the field.'
 		}, {
 			name: 'grow',
 			types: 'number',
-			description: 'Set the number of columns that field takes in one row.'
+			description: 'Set the number of columns that the field takes in one row.'
 		}, {
 			name: 'helpText',
 			types: 'string',
@@ -81,7 +81,7 @@ export default {
 			name: 'showInNewLine',
 			types: 'boolean',
 			default: 'false',
-			description: 'Render the field as the first field in the new line in form section.'
+			description: 'Render the field as the first field in a new line in the form section.'
 		}, {
 			name: 'styleClass',
 			types: 'string',

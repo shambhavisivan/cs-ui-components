@@ -6,15 +6,15 @@ export const initialData: CSFormData = [
 		collapsible: true,
 		fields: [{
 			fieldType: 'NUMBER',
-			name: 'number-1',
 			label: 'Number field',
+			name: 'number-1',
 			required: true,
 			min: 1,
 			max: 5
 		}, {
 			fieldType: 'TEXT',
-			name: 'text-1',
 			label: 'Text field',
+			name: 'text-1',
 			maxLength: 10
 		}, {
 			fieldType: 'TOGGLE',
@@ -88,8 +88,8 @@ export const localeData: CSFormData = [
 		collapsible: true,
 		fields: [{
 			fieldType: 'NUMBER',
-			name: 'number-1',
 			label: 'Number field',
+			name: 'number-1',
 			useLocale: true,
 			value: 100
 		}, {
@@ -113,16 +113,16 @@ export const eventsData: CSFormData = [
 		collapsible: true,
 		fields: [{
 			fieldType: 'NUMBER',
-			name: 'number-1',
 			label: 'Number field',
+			name: 'number-1',
 			required: true,
 			min: 1,
 			max: 5,
 			value: 3
 		}, {
 			fieldType: 'TEXT',
-			name: 'text-1',
 			label: 'Text field',
+			name: 'text-1',
 			maxLength: 10,
 			value: ''
 		}, {
@@ -141,13 +141,13 @@ export const readOnlyData: CSFormData = [
 		collapsible: true,
 		fields: [{
 			fieldType: 'NUMBER',
-			name: 'number-1',
 			label: 'Number field',
+			name: 'number-1',
 			value: 3
 		}, {
 			fieldType: 'TEXT',
-			name: 'text-1',
 			label: 'Text field',
+			name: 'text-1',
 			value: 'Example text.'
 		}, {
 			fieldType: 'TOGGLE',
@@ -242,14 +242,14 @@ export const formErrorData: CSFormData = [
 		collapsible: true,
 		fields: [{
 			fieldType: 'NUMBER',
-			name: 'number-form-error',
 			label: 'Number field',
+			name: 'number-form-error',
 			required: true,
 			value: ''
 		}, {
 			fieldType: 'TEXT',
-			name: 'text-1',
 			label: 'Text field',
+			name: 'text-1',
 			maxLength: 10,
 			value: ''
 		}, {

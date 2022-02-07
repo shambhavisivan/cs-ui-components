@@ -5,7 +5,7 @@ export default {
 		{
 			name: 'sectionKey',
 			types: 'string',
-			description: 'Key of the section which contains changed form field.'
+			description: 'Key for the section which contains the changed form field.'
 		}, {
 			name: 'name',
 			types: 'string',
@@ -17,7 +17,7 @@ export default {
 		}, {
 			name: 'errorMessage',
 			types: ['Array<string>', 'string'],
-			description: 'Error message returned after validation triggered by blur or change events.'
+			description: 'Error message returned after the validation triggered by blur or change events.'
 		}
 	]
 };

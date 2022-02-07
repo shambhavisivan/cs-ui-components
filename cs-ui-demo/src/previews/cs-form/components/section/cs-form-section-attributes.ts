@@ -6,7 +6,7 @@ export default {
 			name: 'fields',
 			types: 'CSFormFieldData',
 			required: true,
-			description: 'Define form fields for the section.'
+			description: 'Define the form fields for the section.'
 		}, {
 			name: 'label',
 			types: 'string',
@@ -26,7 +26,7 @@ export default {
 			name: 'defaultClosed',
 			types: 'boolean',
 			default: 'false',
-			description: 'Control whether the form section is closed by default. It is designed to be used with collapsible prop.'
+			description: 'Control whether the form section is closed by default. It is designed to be used with the collapsible prop.'
 		}, {
 			name: 'error',
 			types: 'boolean',

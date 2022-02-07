@@ -11,7 +11,7 @@ export default {
 			name: 'borderRadius',
 			types: 'string',
 			default: `'0.25rem'`,
-			description: 'Sets custom border radius on the button.'
+			description: 'Sets a custom border radius for the button.'
 		}, {
 			name: 'btnStyle',
 			customTypes: {
@@ -61,7 +61,7 @@ export default {
 				types: [`'slds'`, `'cs'`]
 			},
 			default: `'slds'`,
-			description: 'Select whether the Salesforce or the CloudSense icon set should be used.'
+			description: 'Select whether the Salesforce or CloudSense icon set should be used.'
 		}, {
 			name: 'iconPosition',
 			customTypes: {
@@ -74,7 +74,7 @@ export default {
 			name: 'iconRotate',
 			types: ['number', 'string'],
 			default: '0',
-			description: 'Please always use a number value. String values are deprecated and will be removed. Set by how many degrees the icon should be rotated. (eg. 90, 180, -90 etc.)'
+			description: 'Please always use a number value. String values are deprecated and will be removed. Set how many degrees the icon should be rotated by. (eg. 90, 180, -90 etc.)'
 		}, {
 			name: 'iconSize',
 			types: 'string',
@@ -134,7 +134,7 @@ export default {
 				]
 			},
 			default: `'normal'`,
-			description: 'Set button size.'
+			description: 'Set the button size.'
 		}, {
 			name: 'title',
 			types: 'string',
@@ -150,7 +150,7 @@ export default {
 				types: [`'auto'`, `'max'`]
 			},
 			default: `'auto'`,
-			description: 'Set button width.'
+			description: 'Set the button width.'
 		}, {
 			name: 'id',
 			types: 'string',
@@ -171,7 +171,7 @@ export default {
 			name: 'ariaExpanded',
 			required: 'CSButtonDropdown',
 			types: 'boolean',
-			description: 'Accessible attribute to indicate whether an object controlled by button is expanded or not.'
+			description: 'Accessible attribute to indicate whether an object controlled by the button is expanded or not.'
 		}, {
 			name: 'ariaHaspopup',
 			required: 'CSButtonDropdown',
@@ -189,7 +189,7 @@ export default {
 				name: 'CSButtonRole',
 				types: `'menuitem'`
 			},
-			description: 'Override implicit native button role when button is used in a certain context.'
+			description: 'Override the implicit native button role when the button is used in a certain context.'
 		}
 	]
 };
