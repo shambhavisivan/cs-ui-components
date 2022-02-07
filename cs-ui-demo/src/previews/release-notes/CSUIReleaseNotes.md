@@ -54,6 +54,8 @@
   * added `max-height` to label `cs-label-wrapper` class
 * CSList
   * fixed `self-select` option
+* CSListGroup
+  * removed box shadow on mouse focus
 * CSLookup
   * fixed deleting search term with backspace deletes the whole term instead of one letter
 * CSModal
@@ -67,6 +69,7 @@
   * added `cs-radio-option-label` class to the label span
 * CSSection
   * replaced collapsible button with `CSButton`
+  * removed box shadow on mouse focus
 * CSSidebar
   * set `expanded` prop to be `false` by default
   * fixed breaking error when no tabs are added inside `CSSidebar`

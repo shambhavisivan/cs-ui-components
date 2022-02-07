@@ -46,6 +46,10 @@
 
 			&:focus {
 				outline: 0;
+
+				&::after {
+					box-shadow: none;
+				}
 			}
 
 			&:focus-visible::after {
