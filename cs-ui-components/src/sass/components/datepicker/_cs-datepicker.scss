@@ -64,7 +64,7 @@
 
 		input {
 			display: inline-block;
-			font-size: 0.75rem;
+			font-size: 0.8125rem;
 			line-height: 1.875rem;
 			min-height: 2rem;
 			padding: 0 1.8125rem 0 0.75rem;
@@ -361,7 +361,6 @@
 	&-read-only .react-datepicker-wrapper input {
 		pointer-events: none;
 		cursor: default;
-		font-size: 0.875rem;
 		font-weight: $font-weight-normal;
 		padding-left: 0;
 		@include sbg(--cs-transparent);
