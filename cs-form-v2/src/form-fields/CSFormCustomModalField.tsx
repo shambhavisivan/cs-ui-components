@@ -37,7 +37,7 @@ const CSFormCustomModalField = ({
 	useEffect(() => setBodyContent(bodyContent), [bodyContent]);
 	useEffect(() => {
 		if (isFooterDefined) { setFooterContent(footer.footerContent); }
-	}, [isFooterDefined && footer.footerContent]);
+	}, [footer?.footerContent, isFooterDefined]);
 
 	useEffect(() => {
 		if (headerFactory && modalVisible) {
@@ -47,7 +47,7 @@ const CSFormCustomModalField = ({
 				.catch((err) => { console.log(err); })
 				.finally(() => { setLoading(false); });
 		}
-	}, [headerFactory, modalVisible]);
+	}, [headerFactory, modalVisible, data]);
 
 	useEffect(() => {
 		if (bodyFactory && modalVisible) {
@@ -57,7 +57,7 @@ const CSFormCustomModalField = ({
 				.catch((err) => { console.log(err); })
 				.finally(() => { setLoading(false); });
 		}
-	}, [bodyFactory, modalVisible]);
+	}, [bodyFactory, modalVisible, data]);
 
 	useEffect(() => {
 		if (isFooterDefined && footer.footerFactory && modalVisible) {
@@ -67,7 +67,7 @@ const CSFormCustomModalField = ({
 				.catch((err) => { console.log(err); })
 				.finally(() => { setLoading(false); });
 		}
-	}, [isFooterDefined && footer.footerFactory, modalVisible]);
+	}, [isFooterDefined, footer, footer?.footerFactory, modalVisible, data]);
 
 	const renderFooter = () => {
 		if (isFooterDefined) {

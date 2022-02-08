@@ -1,7 +1,7 @@
 // tslint:disable:no-console
 import React from 'react';
 import * as CSD from '../../../../demo-components';
-import { CSButton, CSChip, CSDataTable, CSInputSearch, CSSlider, CSTooltip } from '@cloudsense/cs-ui-components';
+import { CSButton, CSChip, CSDataTable, CSInputSearch, CSTooltip } from '@cloudsense/cs-ui-components';
 import CSCustomFieldsCommonAttributes from './cs-form-custom-fields-common-attributes';
 import CSCustomFieldSpecificAttributes from './cs-form-custom-field-specific-attributes';
 import CSFormCustomModalFieldSpecificAttributes from './cs-form-custom-modal-field-specific-attributes';
