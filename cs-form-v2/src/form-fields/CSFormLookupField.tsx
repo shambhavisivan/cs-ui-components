@@ -1,5 +1,5 @@
 import React from 'react';
-import { CSLookup } from '@cloudsense/cs-ui-components';
+import { CSDataTableRowInterface, CSLookup } from '@cloudsense/cs-ui-components';
 import { CSFormLookupFieldProps } from '../types/cs-form-field-types';
 
 const CSFormLookupField = ({
@@ -15,16 +15,16 @@ const CSFormLookupField = ({
 			{mode === 'client'
 				? (
 					<CSLookup
-						onSelectChange={(value: any) => onChange(value)}
-						onBlur={(value: any) => onBlur(value)}
+						onSelectChange={(value: CSDataTableRowInterface | Array<CSDataTableRowInterface>) => onChange(value)}
+						onBlur={(event, value: CSDataTableRowInterface | Array<CSDataTableRowInterface>) => onBlur(value)}
 						className={styleClass}
 						{...props}
 					/>
 				)
 				: (
 					<CSLookup
-						onSelectChange={(value: any) => onChange(value)}
-						onBlur={(value: any) => onBlur(value)}
+						onSelectChange={(value: CSDataTableRowInterface | Array<CSDataTableRowInterface>) => onChange(value)}
+						onBlur={(event, value: CSDataTableRowInterface | Array<CSDataTableRowInterface>) => onBlur(value)}
 						className={styleClass}
 						{...props}
 					/>
