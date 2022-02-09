@@ -323,7 +323,9 @@ const CSCustomSelect = ({
 			} else if (event.key === KeyCode.ArrowUp) {
 				event.preventDefault();
 				setDropdownVisible(true);
-				customSelectDropdownRef.current?.lastElementChild?.focus();
+				const lastAction = customSelectDropdownRef.current?.parentElement?.lastElementChild?.lastElementChild;
+				if (lastAction) lastAction.focus();
+				else customSelectDropdownRef.current?.lastElementChild?.focus();
 			} else if (event.key === KeyCode.Backspace) {
 				removeLastOption();
 			} else if (event.key === KeyCode.Escape && dropdownVisible) {

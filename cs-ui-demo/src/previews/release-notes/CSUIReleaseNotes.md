@@ -35,6 +35,7 @@
   * fixed keyboard `tab` to close dropdown when focus is inside dropdown
   * fixed dropdown width issue on resizing the screen
   * fixed text cursor positioning issues
+  * fixed dropdown keyboard navigation issues
 * CSDataTable
   * <i>important</i> flipped the default value for the `defaultCollapsed` prop to `true`
   * added `title` column attribute

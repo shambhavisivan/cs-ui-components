@@ -45,11 +45,18 @@ const CSCustomSelectOption = ({
 	const handleKeyDown = (event: React.KeyboardEvent<HTMLLIElement>) => {
 		if (event.key === KeyCode.ArrowDown) {
 			const nextSibling = customSelectOptionRef.current?.nextElementSibling;
+			const firstAction = customSelectOptionRef.current?.parentElement?.nextElementSibling?.firstElementChild;
+			const firstSibling = customSelectOptionRef.current?.parentElement?.firstElementChild;
 			if (nextSibling) nextSibling.focus();
-			else customSelectOptionRef.current?.parentElement?.nextElementSibling?.firstElementChild?.focus();
+			else if (firstAction) firstAction.focus();
+			else firstSibling?.focus();
 		} else if (event.key === KeyCode.ArrowUp) {
 			const prevSibling = customSelectOptionRef.current?.previousElementSibling;
+			const lastAction = customSelectOptionRef.current?.parentElement?.nextElementSibling?.lastElementChild;
+			const lastSibling = customSelectOptionRef.current?.parentElement?.lastElementChild;
 			if (prevSibling) prevSibling.focus();
+			else if (lastAction) lastAction.focus();
+			else lastSibling?.focus();
 		} else if (event.key === KeyCode.Escape) {
 			focusInput?.();
 			closeDropdown?.();
