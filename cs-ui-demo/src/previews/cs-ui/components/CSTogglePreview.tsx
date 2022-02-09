@@ -76,7 +76,7 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 						variations: [
 							{
 								primaryVariants: 'checked={true}',
-								secondaryVariants: ' onChange={() => any}',
+								secondaryVariants: ' onChange={() => void}',
 								component: <CSToggle
 									label="This is a label"
 									checked={this.state.checked}
@@ -490,15 +490,15 @@ class CSTogglePreview extends React.Component<{}, CSTogglePreviewState> {
 						description: 'Control whether to set the title attribute.'
 					}, {
 						name: 'onChange',
-						types: '(event) => any',
+						types: '(event) => void',
 						description: 'Handler method for the change event.'
 					}, {
 						name: 'onClick',
-						types: '(event) => any',
+						types: '(event) => void',
 						description: 'Handler method for the click event.'
 					}, {
 						name: 'onKeyDown',
-						types: '(event) => any',
+						types: '(event) => void',
 						description: 'Handler method for the keydown event.'
 					}, {
 						name: 'readOnly',

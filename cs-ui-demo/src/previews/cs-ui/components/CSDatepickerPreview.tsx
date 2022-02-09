@@ -995,7 +995,7 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 					}, {
 						name: 'onChange',
 						required: true,
-						types: '(Date) => any',
+						types: '(Date) => void',
 						description: 'Handler method for the change event.'
 					}, {
 						name: 'actions',
@@ -1105,7 +1105,7 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 						description: 'Set the input name.'
 					}, {
 						name: 'onBlur',
-						types: '(event) => any',
+						types: '(event) => void',
 						description: 'Handler method for the blur event.'
 					}, {
 						name: 'onCalendarClose',
@@ -1113,7 +1113,7 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 						description: 'Handler method for closing the calendar.'
 					}, {
 						name: 'onChangeRaw',
-						types: '(event) => any',
+						types: '(event) => void',
 						description: 'Handler method for the change of input value.'
 					}, {
 						name: 'onClick',
@@ -1121,11 +1121,11 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 						description: 'Handler method for the click event.'
 					}, {
 						name: 'onKeyDown',
-						types: '(event) => any',
+						types: '(event) => void',
 						description: 'Handler method for the keydown event.'
 					}, {
 						name: 'onSelect',
-						types: '(Date) => any',
+						types: '(Date) => void',
 						description: 'Handler method for the change of date via date selection.'
 					}, {
 						name: 'openToDate',

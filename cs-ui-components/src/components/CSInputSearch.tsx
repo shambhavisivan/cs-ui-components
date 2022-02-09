@@ -29,7 +29,7 @@ export interface CSInputSearchProps {
 	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	onClick?: (event: React.MouseEvent<HTMLInputElement>) => void;
 	onClearSearch?: () => void;
-	onFocus?: (event: React.FocusEvent<HTMLInputElement>) => any;
+	onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
 	onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 	placeholder?: string;
 	required?: boolean;

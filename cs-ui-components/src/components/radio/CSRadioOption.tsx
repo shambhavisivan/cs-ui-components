@@ -11,10 +11,10 @@ export interface CSRadioOptionProps {
 	id?: string;
 	label?: string;
 	name: string;
-	onBlur?: (e: React.FocusEvent<HTMLInputElement>) => any;
-	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => any;
-	onClick?: (e: React.MouseEvent<HTMLInputElement>) => any;
-	onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => any;
+	onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	onClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
+	onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 	readOnly?: boolean;
 	title?: string;
 	value?: string | number;

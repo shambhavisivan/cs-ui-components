@@ -27,10 +27,10 @@ export interface CSInputTextProps {
 	maxLength?: number;
 	name?: string;
 	onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
-	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => any;
-	onClick?: (event: React.MouseEvent<HTMLInputElement>) => any;
-	onFocus?: (event: React.FocusEvent<HTMLInputElement>) => any;
-	onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => any;
+	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+	onClick?: (event: React.MouseEvent<HTMLInputElement>) => void;
+	onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
+	onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 	placeholder?: string;
 	readOnly?: boolean;
 	required?: boolean;

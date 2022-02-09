@@ -42,12 +42,12 @@ export interface CSLookupCommonProps {
 	labelHidden?: boolean;
 	labelTitle?: boolean;
 	multiselect?: boolean;
-	onBlur?: (event: React.FocusEvent<HTMLInputElement>, value?: CSDataTableRowInterface | Array<CSDataTableRowInterface>) => any;
-	onClick?: (event: React.MouseEvent<HTMLInputElement>) => any;
+	onBlur?: (event: React.FocusEvent<HTMLInputElement>, value?: CSDataTableRowInterface | Array<CSDataTableRowInterface>) => void;
+	onClick?: (event: React.MouseEvent<HTMLInputElement>) => void;
 	onDropdownClose?: () => void;
-	onFocus?: (event: React.FocusEvent<HTMLInputElement>) => any;
-	onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => any;
-	onSearch?: (event: React.ChangeEvent<HTMLInputElement>) => any;
+	onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
+	onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+	onSearch?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	onSelectChange?: (value?: CSDataTableRowInterface | Array<CSDataTableRowInterface>) => any;
 	placeholder?: string;
 	position?: CSLookupDropdownPosition;

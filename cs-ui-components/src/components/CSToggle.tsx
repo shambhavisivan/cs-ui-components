@@ -26,9 +26,9 @@ export interface CSToggleProps {
 	labelHidden?: boolean;
 	labelPosition?: CSToggleLabelPosition;
 	labelTitle?: boolean;
-	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => any;
-	onClick?: (e: React.MouseEvent<HTMLInputElement>) => any;
-	onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => any;
+	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	onClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
+	onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 	readOnly?: boolean;
 	required?: boolean;
 	title?: string;

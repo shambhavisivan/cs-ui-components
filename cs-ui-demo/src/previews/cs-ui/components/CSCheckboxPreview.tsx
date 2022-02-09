@@ -104,7 +104,7 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 						variations: [
 							{
 								primaryVariants: 'checked={true}',
-								secondaryVariants: ' onChange={() => any}',
+								secondaryVariants: ' onChange={() => void}',
 								component: <CSCheckbox
 									label="Select option"
 									checked={this.state.checked}
@@ -647,19 +647,19 @@ class CSCheckboxPreview extends React.Component<{}, CSCheckboxPreviewState> {
 						description: 'Set the checkbox name attribute.'
 					}, {
 						name: 'onBlur',
-						types: '(event) => any',
+						types: '(event) => void',
 						description: 'Handler method for the blur event.'
 					}, {
 						name: 'onChange',
-						types: '(event) => any',
+						types: '(event) => void',
 						description: 'Handler method for the change event.'
 					}, {
 						name: 'onClick',
-						types: '(event) => any',
+						types: '(event) => void',
 						description: 'Handler method for the click event.'
 					}, {
 						name: 'onKeyDown',
-						types: '(event) => any',
+						types: '(event) => void',
 						description: 'Handler method for the keydown event.'
 					}, {
 						name: 'readOnly',

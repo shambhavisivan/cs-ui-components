@@ -433,7 +433,7 @@ class CSSelectPreview extends React.Component<{}, CSSelectPreviewState> {
 						propName: 'value',
 						variations: [
 							{
-								secondaryVariants: ' onChange={() => any}',
+								secondaryVariants: ' onChange={() => void}',
 								component: <CSSelect
 									label="Choose amount"
 									value={this.state.value}

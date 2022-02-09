@@ -278,11 +278,11 @@ class CSInputFilePreview extends React.Component {
 						description: 'Display the file size.'
 					}, {
 						name: 'onChange',
-						types: '(value) => any',
+						types: '(value) => void',
 						description: 'Handler method for the change event.'
 					}, {
 						name: 'onDrop',
-						types: '(value) => any',
+						types: '(value) => void',
 						description: 'Handler method for the drop event.'
 					}, {
 						name: 'id',

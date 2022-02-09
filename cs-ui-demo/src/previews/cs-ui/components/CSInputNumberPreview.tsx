@@ -414,7 +414,7 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 						propName: 'value',
 						variations: [
 							{
-								secondaryVariants: ' onChange={() => any}',
+								secondaryVariants: ' onChange={() => void}',
 								component: <CSInputNumber
 									label="Enter value"
 									value={this.state.value}
@@ -554,15 +554,15 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 						description: 'Handler method for the blur event.'
 					}, {
 						name: 'onChange',
-						types: '(value) => any',
+						types: '(value) => void',
 						description: 'Handler method for the change event.'
 					}, {
 						name: 'onClick',
-						types: '(event) => any',
+						types: '(event) => void',
 						description: 'Handler method for the click event.'
 					}, {
 						name: 'onFocus',
-						types: '(event) => any',
+						types: '(event) => void',
 						description: 'Handler method for the focus event.'
 					}, {
 						name: 'onKeyDown',

@@ -42,13 +42,13 @@ export interface CSDatepickerProps {
 	minDate?: number;
 	minDateYear?: boolean;
 	name?: string;
-	onBlur?: (event: React.FocusEvent<HTMLInputElement>) => any;
+	onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 	onCalendarClose?: () => void;
-	onChange: (date: Date) => any;
-	onChangeRaw?: (event: React.FocusEvent<HTMLInputElement>) => any;
+	onChange: (date: Date) => void;
+	onChangeRaw?: (event: React.FocusEvent<HTMLInputElement>) => void;
 	onClick?: () => void;
-	onKeyDown?: (event: React.KeyboardEvent<any>) => any;
-	onSelect?: (date: Date) => any;
+	onKeyDown?: (event: React.KeyboardEvent<any>) => void;
+	onSelect?: (date: Date) => void;
 	openToDate?: any;
 	placeholder?: string;
 	readOnly?: boolean;

@@ -703,7 +703,7 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 						propName: 'selected',
 						variations: [
 							{
-								secondaryVariants: 'onChange={() => any}',
+								secondaryVariants: 'onChange={() => void}',
 								component: <CSDateTimePicker
 									label="Enter date"
 									selected={this.state.dateSelected}
@@ -1042,7 +1042,7 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 					}, {
 						name: 'onChange',
 						required: true,
-						types: '(Date) => any',
+						types: '(Date) => void',
 						description: 'Handler method for the change event.'
 					}, {
 						name: 'actions',
@@ -1152,7 +1152,7 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 						description: 'Set the input name.'
 					}, {
 						name: 'onBlur',
-						types: '(event) => any',
+						types: '(event) => void',
 						description: 'Handler method for the blur event.'
 					}, {
 						name: 'onClick',
@@ -1160,11 +1160,11 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 						description: 'Handler method for the click event.'
 					}, {
 						name: 'onKeyDown',
-						types: '(event) => any',
+						types: '(event) => void',
 						description: 'Handler method for the keydown event.'
 					}, {
 						name: 'onSelect',
-						types: '(Date) => any',
+						types: '(Date) => void',
 						description: 'Handler method for the change of date via date selection.'
 					}, {
 						name: 'placeholder',

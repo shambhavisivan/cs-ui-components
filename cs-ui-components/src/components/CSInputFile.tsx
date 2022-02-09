@@ -19,8 +19,8 @@ export interface CSInputFileProps {
 	fileSize?: boolean;
 	id?: string;
 	label?: string;
-	onDrop?: (values: any) => any;
-	onChange?: (values: any) => any;
+	onDrop?: (values: any) => void;
+	onChange?: (values: any) => void;
 }
 
 export interface CSInputFileState {

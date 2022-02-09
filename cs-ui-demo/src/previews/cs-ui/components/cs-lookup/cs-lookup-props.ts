@@ -137,12 +137,12 @@ export default {
 		}, {
 			name: 'onBlur',
 			link: '/cs-ui/lookup#event-handling',
-			types: '(event, value) => any',
+			types: '(event, value) => void',
 			description: 'Handler method for the blur event.'
 		}, {
 			name: 'onClick',
 			link: '/cs-ui/lookup#event-handling',
-			types: '(event) => any',
+			types: '(event) => void',
 			description: 'Handler method for the click event.'
 		}, {
 			name: 'onDropdownClose',
@@ -152,12 +152,12 @@ export default {
 		}, {
 			name: 'onKeyDown',
 			link: '/cs-ui/lookup#event-handling',
-			types: '(event) => any',
+			types: '(event) => void',
 			description: 'Handler method for the keydown event.'
 		}, {
 			name: 'onSearch',
 			link: '/cs-ui/lookup#event-handling',
-			types: '(event) => any',
+			types: '(event) => void',
 			description: 'Handler method for when the search term changes.'
 		}, {
 			name: 'onSelectChange',

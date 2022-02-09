@@ -697,19 +697,19 @@ class CSRadioPreview extends React.Component<{}, CSRadioOptionState> {
 						description: 'Set the radio option label.'
 					}, {
 						name: 'onBlur',
-						types: '(event) => any',
+						types: '(event) => void',
 						description: 'Handler method for the blur event.'
 					}, {
 						name: 'onClick',
-						types: '(event) => any',
+						types: '(event) => void',
 						description: 'Handler method for the click event.'
 					}, {
 						name: 'onKeyDown',
-						types: '(event) => any',
+						types: '(event) => void',
 						description: 'Handler method for the keydown event.'
 					}, {
 						name: 'onChange',
-						types: '(event) => any',
+						types: '(event) => void',
 						description: 'Handler method for the change event.'
 					}, {
 						name: 'readOnly',

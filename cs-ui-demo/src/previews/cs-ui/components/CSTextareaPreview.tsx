@@ -304,7 +304,7 @@ class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
 						propName: 'value',
 						variations: [
 							{
-								secondaryVariants: ' onChange={() => any}',
+								secondaryVariants: ' onChange={() => void}',
 								component: <CSTextarea
 									label="Enter message"
 									value={this.state.value}
@@ -409,15 +409,15 @@ class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
 						description: 'Set the max-height for the textarea. (eg. 200px, 20rem, etc.)'
 					}, {
 						name: 'onChange',
-						types: '(event) => any',
+						types: '(event) => void',
 						description: 'Handler method for the change event.'
 					}, {
 						name: 'onClick',
-						types: '(event) => any',
+						types: '(event) => void',
 						description: 'Handler method for the click event.'
 					}, {
 						name: 'onKeyDown',
-						types: '(event) => any',
+						types: '(event) => void',
 						description: 'Handler method for the keydown event.'
 					}, {
 						name: 'placeholder',

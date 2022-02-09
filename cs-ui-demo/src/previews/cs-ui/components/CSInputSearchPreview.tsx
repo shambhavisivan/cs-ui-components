@@ -377,11 +377,11 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 						description: 'Handler method for when the input is cleared.'
 					}, {
 						name: 'onClick',
-						types: '(event) => any',
+						types: '(event) => void',
 						description: 'Handler method for the click event.'
 					}, {
 						name: 'onFocus',
-						types: '(event) => any',
+						types: '(event) => void',
 						description: 'Handler method for the focus event.'
 					}, {
 						name: 'onKeyDown',

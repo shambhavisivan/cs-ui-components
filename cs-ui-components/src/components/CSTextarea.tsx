@@ -26,9 +26,9 @@ export interface CSTextareaProps {
 	labelHidden?: boolean;
 	labelTitle?: boolean;
 	maxHeight?: string;
-	onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => any;
-	onClick?: (e: React.MouseEvent<HTMLTextAreaElement>) => any;
-	onKeyDown?: (e: React.KeyboardEvent<HTMLTextAreaElement>) => any;
+	onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+	onClick?: (e: React.MouseEvent<HTMLTextAreaElement>) => void;
+	onKeyDown?: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void;
 	placeholder?: string;
 	readOnly?: boolean;
 	required?: boolean;
