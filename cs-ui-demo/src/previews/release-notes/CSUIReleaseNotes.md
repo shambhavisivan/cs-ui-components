@@ -29,10 +29,12 @@
   * added `onDropdownClose` prop
   * added `actions` and `icons` support
   * changed `onDropdownClose` prop to execute when dropdown open and enter key pressed
+  * improved clear button behaviour so that it doesn't deselect options when clearing search
   * fixed field height increase when items are selected
   * fixed field focus in `multiselect` when there are many items selected
   * fixed keyboard `tab` to close dropdown when focus is inside dropdown
   * fixed dropdown width issue on resizing the screen
+  * fixed text cursor positioning issues
 * CSDataTable
   * <i>important</i> flipped the default value for the `defaultCollapsed` prop to `true`
   * added `title` column attribute

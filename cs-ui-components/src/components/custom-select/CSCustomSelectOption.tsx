@@ -5,11 +5,12 @@ import CSIcon from '../CSIcon';
 import KeyCode from '../../util/KeyCode';
 
 export interface CSCustomSelectOptionProps {
-	closeDropdown: () => void;
-	focusInput: () => void;
+	closeDropdown?: () => void;
+	focusInput?: () => void;
 	multiselect?: boolean;
 	onSelectChange: (option: CSCustomSelectOptionInterface) => void;
 	option: CSCustomSelectOptionInterface,
+	removeLastOption?: () => void,
 	selected: boolean;
 }
 
@@ -19,6 +20,7 @@ const CSCustomSelectOption = ({
 	multiselect,
 	onSelectChange,
 	option,
+	removeLastOption,
 	selected,
 }: CSCustomSelectOptionProps) => {
 	const customSelectOptionRef = useRef(null);
@@ -35,8 +37,32 @@ const CSCustomSelectOption = ({
 		await onSelectChange?.(option);
 
 		if (!multiselect) {
-			focusInput();
-			closeDropdown();
+			focusInput?.();
+			closeDropdown?.();
+		}
+	};
+
+	const handleKeyDown = (event: React.KeyboardEvent<HTMLLIElement>) => {
+		if (event.key === KeyCode.ArrowDown) {
+			const nextSibling = customSelectOptionRef.current?.nextElementSibling;
+			if (nextSibling) nextSibling.focus();
+			else customSelectOptionRef.current?.parentElement?.nextElementSibling?.firstElementChild?.focus();
+		} else if (event.key === KeyCode.ArrowUp) {
+			const prevSibling = customSelectOptionRef.current?.previousElementSibling;
+			if (prevSibling) prevSibling.focus();
+		} else if (event.key === KeyCode.Escape) {
+			focusInput?.();
+			closeDropdown?.();
+		} else if (event.key === KeyCode.Enter || event.key === KeyCode.Space) {
+			handleSelectionChange();
+		} else if (event.key === KeyCode.Tab) {
+			focusInput?.();
+			closeDropdown?.();
+		} else if (event.key === KeyCode.Backspace) {
+			focusInput?.();
+			removeLastOption?.();
+		} else {
+			focusInput?.();
 		}
 	};
 
@@ -48,26 +74,7 @@ const CSCustomSelectOption = ({
 			aria-selected={selected}
 			className={optionClasses}
 			onClick={handleSelectionChange}
-			onKeyDown={(event: React.KeyboardEvent<HTMLLIElement>) => {
-				if (event.key === KeyCode.ArrowDown) {
-					const nextSibling = customSelectOptionRef.current?.nextElementSibling;
-					if (nextSibling) nextSibling.focus();
-					else customSelectOptionRef.current?.parentElement?.nextElementSibling?.firstElementChild?.focus();
-				} else if (event.key === KeyCode.ArrowUp) {
-					const prevSibling = customSelectOptionRef.current?.previousElementSibling;
-					if (prevSibling) prevSibling.focus();
-				} else if (event.key === KeyCode.Escape) {
-					focusInput();
-					closeDropdown();
-				} else if (event.key === KeyCode.Enter || event.key === KeyCode.Space) {
-					handleSelectionChange();
-				} else if (event.key === KeyCode.Tab) {
-					focusInput?.();
-					closeDropdown();
-				} else {
-					focusInput?.();
-				}
-			}}
+			onKeyDown={handleKeyDown}
 		>
 			{multiselect && (
 				<span className="cs-custom-select-option-check-icon">
