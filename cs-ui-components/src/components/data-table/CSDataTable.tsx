@@ -35,6 +35,7 @@ export interface CSDataTableColumnInterface {
 	grow?: number;
 	render?: CSDataTableRender;
 	header?: CSDataTableElement;
+	headerTitle?: boolean;
 	title?: boolean;
 	width?: string;
 	wrap?: boolean;

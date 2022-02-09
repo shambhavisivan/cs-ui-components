@@ -28,6 +28,7 @@ const CSDataTableHeader = ({ headerCheckbox }: CSDataTableHeaderInterface) => {
 			columnClassName,
 			grow,
 			header,
+			headerTitle,
 			width,
 			wrap,
 		} = column;
@@ -47,6 +48,8 @@ const CSDataTableHeader = ({ headerCheckbox }: CSDataTableHeaderInterface) => {
 			'--cs-data-table-column-width': width,
 		};
 
+		const title = (!React.isValidElement(header) && headerTitle) ? String(header) : undefined;
+
 		return (
 			<div
 				role="columnheader"
@@ -54,7 +57,7 @@ const CSDataTableHeader = ({ headerCheckbox }: CSDataTableHeaderInterface) => {
 				className={tableColumnClasses}
 				style={tableColumnStyles}
 			>
-				<div className="cs-data-table-truncate">
+				<div className="cs-data-table-truncate" title={title}>
 					{header}
 				</div>
 			</div>

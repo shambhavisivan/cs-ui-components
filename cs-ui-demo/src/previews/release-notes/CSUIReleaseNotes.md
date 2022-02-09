@@ -39,6 +39,7 @@
 * CSDataTable
   * <i>important</i> flipped the default value for the `defaultCollapsed` prop to `true`
   * added `title` column attribute
+  * added `headerTitle` column attribute
 * CSDatePicker
   * changed the `todayButton` prop from boolean to string
   * <i>important</i> flipped the classes `cs-datepicker` and `cs-datepicker-wrapper`

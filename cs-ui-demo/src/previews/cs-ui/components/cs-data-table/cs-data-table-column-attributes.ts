@@ -43,6 +43,11 @@ export default {
 			},
 			description: 'Set the header title.'
 		}, {
+			name: 'headerTitle',
+			default: 'false',
+			types: 'boolean',
+			description: 'Determine whether a header cell should have a title based on its content.'
+		}, {
 			name: 'title',
 			default: 'false',
 			types: 'boolean',

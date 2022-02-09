@@ -780,6 +780,66 @@ const CSDataTablePreview = () => {
 				</CSD.Preview>
 			</CSD.Section>
 			<CSD.Section>
+				<CSD.Heading level={2}>Titles</CSD.Heading>
+				<CSD.Text>
+					Column cells sometimes truncate content by breaking off text with ellipsis.
+					In order to go around that, setting the `title` attribute on the column object to `true` will attach an HTML title attribute to the cell.
+					This only works with non-custom cells, where the title attribute can be added manually.
+				</CSD.Text>
+				<CSD.Preview
+					orientation="vertical"
+					table={CSDataTableColumnAttributes}
+					related={['key', 'header', 'title']}
+					code={`
+						<CSDataTable
+							columns={[{
+								key: 'country',
+								header: 'Country',
+								title: true
+							}, ...columns]}
+							rows={rows}
+						/>
+					`}
+				>
+					<CSDataTable
+						columns={[{
+							key: 'country',
+							header: 'Country',
+							title: true
+						}, ...columns]}
+						rows={rows}
+					/>
+				</CSD.Preview>
+				<CSD.Text>
+					In order to add a title to the header, `headerTitle` should be set to `true`.
+					Similar to cell titles, this only works for non-element headers.
+				</CSD.Text>
+				<CSD.Preview
+					orientation="vertical"
+					table={CSDataTableColumnAttributes}
+					related={['key', 'header', 'headerTitle']}
+					code={`
+						<CSDataTable
+							columns={[{
+								key: 'country',
+								header: 'Country',
+								headerTitle: true
+							}, ...columns]}
+							rows={rows}
+						/>
+					`}
+				>
+					<CSDataTable
+						columns={[{
+							key: 'country',
+							header: 'Country',
+							headerTitle: true
+						}, ...columns]}
+						rows={rows}
+					/>
+				</CSD.Preview>
+			</CSD.Section>
+			<CSD.Section>
 				<CSD.Heading level={2}>Rendering Custom Cells</CSD.Heading>
 				<CSD.Text>
 					Cells display the corresponding values from the `row.data` object.
