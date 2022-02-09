@@ -76,6 +76,7 @@
 * CSSection
   * replaced collapsible button with `CSButton`
   * removed box shadow on mouse focus
+  * removed default margins unless multiple CSSection components are siblings
 * CSSidebar
   * set `expanded` prop to be `false` by default
   * fixed breaking error when no tabs are added inside `CSSidebar`

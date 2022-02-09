@@ -3,8 +3,10 @@
 // CS section component.
 
 .cs-section {
-	margin-bottom: 0.5rem;
-	margin-top: 0.5rem;
+
+	+ .cs-section {
+		margin-block-start: 0.5rem;
+	}
 
 	ul {
 		list-style: none;
