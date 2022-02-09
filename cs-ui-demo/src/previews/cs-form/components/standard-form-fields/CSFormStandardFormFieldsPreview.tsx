@@ -159,7 +159,7 @@ const CSFormStandardFormFieldsPreview = () => {
 				<CSD.Text>Each of the common properties is represented in the previews below.</CSD.Text>
 			</CSD.Section>
 			<CSD.Section>
-				<CSD.Heading level={2}>Required Properties</CSD.Heading>
+				<CSD.Heading level={2}>Required</CSD.Heading>
 				<CSD.Text>Common properites that are required for each field are `fieldType`, `name` and `label`.</CSD.Text>
 				<CSD.Text>
 					`fieldType` determines what kind of form field component will be rendered.
@@ -219,7 +219,7 @@ const CSFormStandardFormFieldsPreview = () => {
 				</CSD.Preview>
 			</CSD.Section>
 			<CSD.Section>
-				<CSD.Heading level={2}>Layout properties</CSD.Heading>
+				<CSD.Heading level={2}>Layout</CSD.Heading>
 				<CSD.Text>The `grow` and `showInNewLine` properties are used for changing the field's layout by defining its width or setting the field to new line.</CSD.Text>
 				<CSD.Text>
 					The `grow` property will determine how many columns one form field will take up in a single row.
@@ -257,7 +257,7 @@ const CSFormStandardFormFieldsPreview = () => {
 				</CSD.Preview>
 			</CSD.Section>
 			<CSD.Section>
-				<CSD.Heading level={2}>Custom Data Properties</CSD.Heading>
+				<CSD.Heading level={2}>Custom Data</CSD.Heading>
 				<CSD.Text>The `actions` and `icons` array properties allow the rendering of custom form field items such as icons, tooltips and buttons for invoking custom code.</CSD.Text>
 				<CSD.Preview
 					code={`
@@ -327,7 +327,7 @@ const CSFormStandardFormFieldsPreview = () => {
 				</CSD.Preview>
 			</CSD.Section>
 			<CSD.Section>
-				<CSD.Heading level={2}>Error and Helptext Display Properties</CSD.Heading>
+				<CSD.Heading level={2}>Error and Helptext Display</CSD.Heading>
 				<CSD.Text>Displaying various field information can be achieved by setting the `errorMessage` or `helpText` properties.</CSD.Text>
 				<CSD.Text>`error` and `errorMessage` enable rendering error styles and displaying error messages relevant for certain fields.</CSD.Text>
 				<CSD.Text>Both properties are designed to be used together to satisfy accessibility best practices.</CSD.Text>
@@ -476,7 +476,7 @@ const CSFormStandardFormFieldsPreview = () => {
 				<CSD.Text>Specific properties for each field type are listed below:</CSD.Text>
 			</CSD.Section>
 			<CSD.Section>
-				<CSD.Heading level={2}>Checkbox Specific Properties</CSD.Heading>
+				<CSD.Heading level={2}>Checkbox</CSD.Heading>
 				<CSD.Text>The checkbox field specific property is `indeterminate`.</CSD.Text>
 				<CSD.Text>Details about the `indeterminate` property can be found below:</CSD.Text>
 				<CSD.List>
@@ -484,7 +484,7 @@ const CSFormStandardFormFieldsPreview = () => {
 				</CSD.List>
 			</CSD.Section>
 			<CSD.Section>
-				<CSD.Heading level={2}>Custom Select Specific Properties</CSD.Heading>
+				<CSD.Heading level={2}>Custom Select</CSD.Heading>
 				<CSD.Text>Custom select field specific properties are `multiselect`, `onClear`, `onSearch` and `options`.</CSD.Text>
 				<CSD.Text>Details about each of the properties can be found below:</CSD.Text>
 				<CSD.List>
@@ -495,7 +495,7 @@ const CSFormStandardFormFieldsPreview = () => {
 				</CSD.List>
 			</CSD.Section>
 			<CSD.Section>
-				<CSD.Heading level={2}>Date Specific Properties</CSD.Heading>
+				<CSD.Heading level={2}>Date</CSD.Heading>
 				<CSD.Text>Date field specific properties are `dateFormat` and `selected`.</CSD.Text>
 				<CSD.Text>Details about each of the properties can be found below:</CSD.Text>
 				<CSD.List>
@@ -504,7 +504,7 @@ const CSFormStandardFormFieldsPreview = () => {
 				</CSD.List>
 			</CSD.Section>
 			<CSD.Section>
-				<CSD.Heading level={2}>Date-time Specific Properties</CSD.Heading>
+				<CSD.Heading level={2}>Date-time</CSD.Heading>
 				<CSD.Text>Date-time field specific properties are `dateFormat`, `selected`, `timeCaption`, `timeFormat` and `timeIntervals`.</CSD.Text>
 				<CSD.Text>Details about each of the properties can be found below:</CSD.Text>
 				<CSD.List>
@@ -516,7 +516,7 @@ const CSFormStandardFormFieldsPreview = () => {
 				</CSD.List>
 			</CSD.Section>
 			<CSD.Section>
-				<CSD.Heading level={2}>Lookup Specific Properties</CSD.Heading>
+				<CSD.Heading level={2}>Lookup</CSD.Heading>
 				<CSD.Text>The lookup field consists of three groups of properties: common, client-mode and server-mode.</CSD.Text>
 				<CSD.Text>Each group of properties are listed below and the details of each property can be found by clicking on the desired property in the list.</CSD.Text>
 				<CSD.Text>Lookup field common properties:</CSD.Text>
@@ -541,7 +541,7 @@ const CSFormStandardFormFieldsPreview = () => {
 				</CSD.List>
 			</CSD.Section>
 			<CSD.Section>
-				<CSD.Heading level={2}>Number Specific Properties</CSD.Heading>
+				<CSD.Heading level={2}>Number</CSD.Heading>
 				<CSD.Text>Number field specific properties are `max`, `min` and `useLocale`.</CSD.Text>
 				<CSD.Text>Details about `min` and `max` properties can be found below:</CSD.Text>
 				<CSD.List>
@@ -595,7 +595,7 @@ const CSFormStandardFormFieldsPreview = () => {
 				</CSD.Preview>
 			</CSD.Section>
 			<CSD.Section>
-				<CSD.Heading level={2}>Radio Specific Properties</CSD.Heading>
+				<CSD.Heading level={2}>Radio</CSD.Heading>
 				<CSD.Text> The radio field specific property is `radioOptions`.</CSD.Text>
 				<CSD.Text>`radioOptions` is an array prop which defines which options will be rendered as a part of the grouped input radio elements</CSD.Text>
 				<CSD.Text>Each option is defined by the `label`, `radioOptionName` and `radioOptionValue` properties.</CSD.Text>
@@ -662,7 +662,7 @@ const CSFormStandardFormFieldsPreview = () => {
 				</CSD.Preview>
 			</CSD.Section>
 			<CSD.Section>
-				<CSD.Heading level={2}>Select Specific Properties</CSD.Heading>
+				<CSD.Heading level={2}>Select</CSD.Heading>
 				<CSD.Text>The select field specific property is `selectOptions`.</CSD.Text>
 				<CSD.Text>`selectOptions` is an array prop which defines the options available for selection.</CSD.Text>
 				<CSD.Text>Each object in the `selectOptions` array represents one option and it consists of 2 properties - `key` and `value`.</CSD.Text>
@@ -696,7 +696,7 @@ const CSFormStandardFormFieldsPreview = () => {
 				</CSD.Preview>
 			</CSD.Section>
 			<CSD.Section>
-				<CSD.Heading level={2}>Text Specific Properties</CSD.Heading>
+				<CSD.Heading level={2}>Text</CSD.Heading>
 				<CSD.Text>The text field specific property is `maxLength`.</CSD.Text>
 				<CSD.Text>Details about the `maxLength` property can be found below:</CSD.Text>
 				<CSD.List>
@@ -704,7 +704,7 @@ const CSFormStandardFormFieldsPreview = () => {
 				</CSD.List>
 			</CSD.Section>
 			<CSD.Section>
-				<CSD.Heading level={2}>Textarea Specific Properties</CSD.Heading>
+				<CSD.Heading level={2}>Textarea</CSD.Heading>
 				<CSD.Text>Textarea specific properties are `maxHeight` and `rows`.</CSD.Text>
 				<CSD.Text>Details about each of the properties can be found below:</CSD.Text>
 				<CSD.List>
