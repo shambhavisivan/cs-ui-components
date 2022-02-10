@@ -10,7 +10,7 @@ import CSIcon from './CSIcon';
 import CSLabel from './CSLabel';
 import { CSTooltipPosition } from './CSTooltip';
 import KeyCode from '../util/KeyCode';
-import { CSCustomDataIconProps, CSCustomDataActionProps } from '../util/CustomData';
+import { CSCustomDataIconProps, CSCustomDataActionProps } from './custom-data/CSCustomData';
 import CSCustomDataIcons from './custom-data/CSCustomDataIcons';
 import CSCustomDataActions from './custom-data/CSCustomDataActions';
 

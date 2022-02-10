@@ -10,7 +10,7 @@ import CSCustomDataIcons from './custom-data/CSCustomDataIcons';
 import CSCustomDataActions from './custom-data/CSCustomDataActions';
 import CSDataTable, { CSDataTableColumnInterface, CSDataTableRowInterface } from './data-table/CSDataTable';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
-import { CSCustomDataIconProps, CSCustomDataActionProps } from '../util/CustomData';
+import { CSCustomDataIconProps, CSCustomDataActionProps } from './custom-data/CSCustomData';
 import CSAutoposition from '../helpers/autoposition/CSAutoposition';
 import { CSAutopositions } from '../helpers/autoposition/cs-autoposition-types';
 import { CSTooltipPosition } from './CSTooltip';

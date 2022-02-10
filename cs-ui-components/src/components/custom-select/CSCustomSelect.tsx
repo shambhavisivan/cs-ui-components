@@ -12,7 +12,7 @@ import CSCustomSelectDropdownAction from './CSCustomSelectDropdownAction';
 import CSButton, { CSButtonProps } from '../CSButton';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from '../CSFieldErrorMsg';
 import { CSTooltipPosition } from '../CSTooltip';
-import { CSCustomDataIconProps, CSCustomDataActionProps } from '../../util/CustomData';
+import { CSCustomDataIconProps, CSCustomDataActionProps } from '../custom-data/CSCustomData';
 import CSCustomDataIcons from '../custom-data/CSCustomDataIcons';
 import CSCustomDataActions from '../custom-data/CSCustomDataActions';
 

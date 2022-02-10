@@ -42,16 +42,17 @@ import CSCurrency, {
 	CSCurrencySign,
 	CSCurrencyProps,
 } from './components/CSCurrency';
-import CSCustomData, { CSCustomDataProps } from './components/custom-data/CSCustomData';
-import CSCustomDataActions, { CSCustomDataActionsProps } from './components/custom-data/CSCustomDataActions';
-import CSCustomDataIcons, { CSCustomDataIconsProps } from './components/custom-data/CSCustomDataIcons';
-import {
+import CSCustomData, {
+	CSCustomDataProps,
 	CSCustomDataIcon,
 	CSCustomDataTooltip,
 	CSCustomDataIconProps,
 	CSCustomDataActionProps,
 	CSCustomDataMenuVariant,
-} from './util/CustomData';
+} from './components/custom-data/CSCustomData';
+import CSCustomDataActions, { CSCustomDataActionsProps } from './components/custom-data/CSCustomDataActions';
+import CSCustomDataIcons, { CSCustomDataIconsProps } from './components/custom-data/CSCustomDataIcons';
+
 import CSCustomSelect, {
 	CSCustomSelectDropdownAlignType,
 	CSCustomSelectDropdownPositionType,

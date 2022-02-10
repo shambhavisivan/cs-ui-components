@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSLabel from './CSLabel';
 import { CSTooltipPosition } from './CSTooltip';
-import { CSCustomDataIconProps, CSCustomDataActionProps } from '../util/CustomData';
+import { CSCustomDataIconProps, CSCustomDataActionProps } from './custom-data/CSCustomData';
 import CSIcon from './CSIcon';
 import CSCustomDataIcons from './custom-data/CSCustomDataIcons';
 import CSCustomDataActions from './custom-data/CSCustomDataActions';

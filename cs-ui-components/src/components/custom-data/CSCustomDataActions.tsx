@@ -1,6 +1,6 @@
 import React from 'react';
 import CSTooltip, { CSTooltipIconSize } from '../CSTooltip';
-import { CSCustomDataActionProps } from '../../util/CustomData';
+import { CSCustomDataActionProps } from './CSCustomData';
 import CSButton from '../CSButton';
 import { CSIconOrigin } from '../CSIcon';
 
