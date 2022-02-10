@@ -51,6 +51,7 @@
   * fixed dropdown keyboard navigation issues
 * CSDataTable
   * <i>important</i> flipped the default value for the `defaultCollapsed` prop to `true`
+  * flipped the default value for the `stickyHeader` prop to `true`
   * added `title` column attribute
   * added `headerTitle` column attribute
 * CSDatePicker

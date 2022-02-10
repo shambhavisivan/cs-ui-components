@@ -53,7 +53,7 @@ const CSDataTableHeader = ({ headerCheckbox }: CSDataTableHeaderInterface) => {
 		return (
 			<div
 				role="columnheader"
-				aria-colindex={columnIndex}
+				aria-colindex={columnIndex + 1}
 				className={tableColumnClasses}
 				style={tableColumnStyles}
 			>

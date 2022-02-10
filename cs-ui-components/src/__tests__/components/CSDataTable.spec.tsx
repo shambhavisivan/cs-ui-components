@@ -72,7 +72,7 @@ describe('<CSDataTable />', () => {
 		// Make sure it has no striped row
 		expect(uut.find('.cs-data-table-striped')).toHaveLength(0);
 		// Make sure it has no sticky header
-		expect(uut.find('.cs-data-table-sticky-header')).toHaveLength(0);
+		expect(uut.find('.cs-data-table-sticky-header')).toHaveLength(1);
 		// Make sure it has no disable hover
 		expect(uut.find('.cs-data-table-disable-hover')).toHaveLength(0);
 		// Make sure the content is aligned left
@@ -139,7 +139,7 @@ describe('<CSDataTable />', () => {
 		const dataTableHeight = '120px';
 		const uut = shallow(<CSDataTable columns={columns} rows={rows} maxHeight={dataTableHeight} />);
 
-		const dataTableStyle = uut.find('.cs-data-table').get(0).props.style;
+		const dataTableStyle = uut.find('.cs-data-table-wrapper').get(0).props.style;
 		expect(dataTableStyle).toHaveProperty('--cs-data-table-max-height', dataTableHeight);
 	});
 
@@ -147,13 +147,13 @@ describe('<CSDataTable />', () => {
 		const rowHeight = '3rem';
 		const uut = shallow(<CSDataTable columns={columns} rows={rows} rowHeight={rowHeight} />);
 
-		const dataTableStyle = uut.find('.cs-data-table').get(0).props.style;
+		const dataTableStyle = uut.find('.cs-data-table-wrapper').get(0).props.style;
 		expect(dataTableStyle).toHaveProperty('--cs-data-table-row-height', rowHeight);
 	});
 
-	it('should render the table with fixed head', () => {
-		const uut = shallow(<CSDataTable columns={columns} rows={rows} stickyHeader />);
-		expect(uut.find('.cs-data-table.cs-data-table-sticky-header')).toHaveLength(1);
+	it('should render the table without fixed head', () => {
+		const uut = shallow(<CSDataTable columns={columns} rows={rows} stickyHeader={false} />);
+		expect(uut.find('.cs-data-table.cs-data-table-sticky-header')).toHaveLength(0);
 	});
 
 	it('should render the table with striped row', () => {

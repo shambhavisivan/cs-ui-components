@@ -114,7 +114,7 @@ const CSDataTable = ({
 	selectable,
 	selectedKeys,
 	selectionType = 'checkbox',
-	stickyHeader,
+	stickyHeader = true,
 	striped,
 	subsectionRender,
 	...rest
@@ -161,17 +161,18 @@ const CSDataTable = ({
 			dataTableSelectable={selectable}
 			dataTableSelectionType={selectionType}
 		>
-			<div
-				role="grid"
-				aria-multiselectable={selectable ? multiselect : undefined}
-				className={tableClasses}
-				id={id}
-				style={tableStyles}
-				{...rest}
-			>
-				{!headless && <CSDataTableHeader headerCheckbox={headerCheckbox} />}
-				<div className="cs-data-table-body">
-					<CSDataTableGroup rows={rows} extraIndent={extraIndent ? 2 : 0} />
+			<div className="cs-data-table-wrapper" style={tableStyles}>
+				<div
+					role="grid"
+					aria-multiselectable={selectable ? multiselect : undefined}
+					className={tableClasses}
+					id={id}
+					{...rest}
+				>
+					{!headless && <CSDataTableHeader headerCheckbox={headerCheckbox} />}
+					<div className="cs-data-table-body">
+						<CSDataTableGroup rows={rows} extraIndent={extraIndent ? 2 : 0} />
+					</div>
 				</div>
 			</div>
 		</CSDataTableProvider>

@@ -1,9 +1,15 @@
+.cs-data-table-wrapper {
+	width: 100%;
+	max-width: 100%;
+	overflow: auto;
+	max-height: var(--cs-data-table-max-height, 100%);
+}
+
 .cs-data-table {
 	display: flex;
 	flex-direction: column;
-	width: 100%;
-	overflow: auto;
-	max-height: var(--cs-data-table-max-height, auto);
+	min-width: 100%;
+	width: max-content;
 
 	.cs-data-table-header,
 	.cs-data-table-body,
@@ -28,9 +34,9 @@
 		display: flex;
 		position: relative;
 		flex-grow: var(--cs-data-table-column-flex, 1);
-		flex-basis: var(--cs-data-table-column-width, 0);
+		flex-basis: var(--cs-data-table-column-width, 3rem);
+		flex-shrink: 0;
 		align-items: center;
-		min-width: 3rem;
 		max-width: var(--cs-data-table-column-width, 100%);
 		overflow: hidden;
 		padding: 0.25rem 0.5rem;
@@ -38,6 +44,10 @@
 		font-size: 0.8125rem;
 		line-height: 1.75;
 		@include sc(--cs-data-table-cell-c);
+		@include sbg(--cs-data-table-row-bg);
+		@include css4 {
+			border-bottom: 1px solid cvar(--cs-data-table-br);
+		}
 
 		&.cs-data-table-cell-checkbox-hidden {
 			display: none;
@@ -73,22 +83,15 @@
 		font-weight: 700;
 		line-height: normal;
 		@include sc(--cs-data-table-header-c);
-	}
-
-	.cs-data-table-header .cs-data-table-row {
+		@include sbg(--cs-data-table-header-bg);
 		@include css4 {
 			border-top: 1px solid cvar(--cs-data-table-br);
 			border-bottom: 1px solid cvar(--cs-data-table-br);
 		}
-		@include sbg(--cs-data-table-header-bg);
 	}
 
 	.cs-data-table-body .cs-data-table-row {
 		height: var(--cs-data-table-row-height, auto);
-		@include sbg(--cs-data-table-row-bg);
-		@include css4 {
-			border-bottom: 1px solid cvar(--cs-data-table-br);
-		}
 
 		.cs-data-table-cell:not(.cs-data-table-cell-checkbox):first-child .cs-data-table-truncate,
 		.cs-data-table-cell:not(.cs-data-table-cell-checkbox):first-child .cs-data-table-render,
@@ -103,9 +106,8 @@
 
 		&:hover,
 		&:focus-visible {
-			@include sbg(--cs-data-table-row-hover-bg);
-
 			.cs-data-table-cell {
+				@include sbg(--cs-data-table-row-hover-bg);
 				@include css4 {
 					box-shadow:
 						inset 0 -1px 0 cvar(--cs-data-table-br),
@@ -141,20 +143,24 @@
 		cursor: pointer;
 
 		&.cs-data-table-row-selected {
-			@include sbg(--cs-data-table-row-selected-bg);
+			.cs-data-table-cell {
+				@include sbg(--cs-data-table-row-selected-bg);
+			}
 
 			&:hover,
 			&:focus-visible {
-				@include sbg(--cs-data-table-row-selected-hover-bg);
+				.cs-data-table-cell {
+					@include sbg(--cs-data-table-row-selected-hover-bg);
+				}
 			}
 		}
 	}
 
-	&.cs-data-table-striped .cs-data-table-row-wrapper:nth-child(2n) .cs-data-table-row {
+	&.cs-data-table-striped .cs-data-table-row-wrapper:nth-child(2n) .cs-data-table-cell {
 		@include sbg(--cs-data-table-row-striped-bg);
 	}
 
-	&.cs-data-table-borderless .cs-data-table-row {
+	&.cs-data-table-borderless .cs-data-table-cell {
 		border-top: none;
 		border-bottom: none;
 	}
@@ -189,12 +195,9 @@
 		}
 	}
 
-	&.cs-data-table-disable-hover .cs-data-table-body .cs-data-table-row:hover {
+	&.cs-data-table-disable-hover .cs-data-table-body .cs-data-table-row:hover .cs-data-table-cell {
 		@include sbg(--cs-data-table-cell-bg);
-
-		.cs-data-table-cell {
-			box-shadow: none;
-		}
+		box-shadow: none;
 	}
 
 	&.cs-data-table-sticky-header .cs-data-table-header {

@@ -130,7 +130,7 @@ export default {
 			name: 'stickyHeader',
 			link: '/cs-ui/data-table#header-display',
 			types: 'boolean',
-			default: 'false',
+			default: 'true',
 			description: 'Control whether the header should stay fixed when scrolling.'
 		}, {
 			name: 'striped',

@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { CSDataTable, CSDataTableRowWithMetaInterface, CSDataTableRowInterface, CSIcon, CSChip, CSInputText, CSButton } from '@cloudsense/cs-ui-components';
+import {
+	CSDataTable,
+	CSDataTableRowWithMetaInterface,
+	CSDataTableRowInterface,
+	CSIcon,
+	CSChip,
+	CSInputText,
+	CSButton
+} from '@cloudsense/cs-ui-components';
 import * as CSD from '../../../../demo-components';
 import CSDataTableAccessibility from './cs-data-table-accessibility';
 import CSDataTableProps from './cs-data-table-props';
@@ -235,11 +243,13 @@ const CSDataTablePreview = () => {
 					a y-axis scrollbar will appear to navigate to rows that overflow.
 				</CSD.Text>
 				<CSD.Text>
-					By default, the entire table is scrollable.
-					Sometimes it is useful to restrict the scrolling functionality
-					only to the table body so that the header remains sticky.
-					That can be achieved by setting the `stickyHeader` prop,
-					which is documented in the Header Display section.
+					By default, the entire table is scrollable
+					and the header will remain sticky in order to
+					always show column context at a glance,
+					even if some of the rows aren't visible.
+					This feature can be disabled by setting
+					the `stickyHeader` prop to `false`, which is documented in
+					the <CSD.Link path="/cs-ui/data-table#header-display">Header Display</CSD.Link> section.
 				</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
@@ -295,18 +305,30 @@ const CSDataTablePreview = () => {
 					<CSDataTable columns={columns} rows={rows} headless />
 				</CSD.Preview>
 				<CSD.Text>
-					When the table height is bound by a container or by the `maxHeight` property,
-					the header scrolls with the rest of the content. With larger tables,
-					it is preferable to implement header stickiness,
-					which can be done by setting the `stickyHeader` prop.
+					Sometimes it might be useful to expand the scrolling functionality
+					to not just the table body, but the entire table
+					so that the header is no longer sticky.
+					That can be achieved by setting the `stickyHeader` prop to `false`.
 				</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
 					table={CSDataTableProps}
 					related={['columns', 'rows', 'stickyHeader', 'maxHeight']}
-					code={`<CSDataTable columns={columns} rows={rows} stickyHeader maxHeight="4rem" />`}
+					code={`
+						<CSDataTable
+							columns={columns}
+							rows={rows}
+							stickyHeader={false}
+							maxHeight="4rem"
+						/>
+					`}
 				>
-					<CSDataTable columns={columns} rows={rows} stickyHeader maxHeight="4rem" />
+					<CSDataTable
+						columns={columns}
+						rows={rows}
+						stickyHeader={false}
+						maxHeight="4rem"
+					/>
 				</CSD.Preview>
 			</CSD.Section>
 			<CSD.Section>
