@@ -9,10 +9,6 @@ class CSListPreview extends React.Component {
 	getDoc = () => ({
 		name: 'List',
 		usage: 'List that contains items.',
-		alerts: {
-			variant: 'warning',
-			text: 'This component is under construction and should not be used.'
-		},
 		accessible: 'yes',
 		components: [
 			{
