@@ -68,10 +68,6 @@ export const CSFormDateFieldAttributes = {
 			name: 'locale',
 			types: 'any',
 			description: 'Set the datepicker locale.'
-		}, {
-			name: 'selected',
-			types: ['Date', 'null', 'undefined'],
-			description: 'Set the selected date.'
 		}
 	]
 };
@@ -89,10 +85,6 @@ export const CSFormDateTimeFieldAttributes = {
 			name: 'locale',
 			types: 'any',
 			description: 'Set the datepicker locale.'
-		}, {
-			name: 'selected',
-			types: ['Date', 'null', 'undefined'],
-			description: 'Set the selected date.'
 		}, {
 			name: 'timeCaption',
 			types: 'string',

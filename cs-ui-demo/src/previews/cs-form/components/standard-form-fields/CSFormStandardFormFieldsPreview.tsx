@@ -496,20 +496,18 @@ const CSFormStandardFormFieldsPreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Date</CSD.Heading>
-				<CSD.Text>Date field specific properties are `dateFormat` and `selected`.</CSD.Text>
-				<CSD.Text>Details about each of the properties can be found below:</CSD.Text>
+				<CSD.Text>Date field specific properties is `dateFormat`.</CSD.Text>
+				<CSD.Text>Details about the `dateFormat`property can be found below:</CSD.Text>
 				<CSD.List>
 					<CSD.ListItem><CSD.Link path={`${datePath}-dateFormat`}>dateFormat</CSD.Link></CSD.ListItem>
-					<CSD.ListItem><CSD.Link path={`${datePath}-selected`}>selected</CSD.Link></CSD.ListItem>
 				</CSD.List>
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Date-time</CSD.Heading>
-				<CSD.Text>Date-time field specific properties are `dateFormat`, `selected`, `timeCaption`, `timeFormat` and `timeIntervals`.</CSD.Text>
+				<CSD.Text>Date-time field specific properties are `dateFormat`, `timeCaption`, `timeFormat` and `timeIntervals`.</CSD.Text>
 				<CSD.Text>Details about each of the properties can be found below:</CSD.Text>
 				<CSD.List>
 					<CSD.ListItem><CSD.Link path={`${dateTimePath}-dateFormat`}>dateFormat</CSD.Link></CSD.ListItem>
-					<CSD.ListItem><CSD.Link path={`${dateTimePath}-selected`}>selected</CSD.Link></CSD.ListItem>
 					<CSD.ListItem><CSD.Link path={`${dateTimePath}-timeCaption`}>timeCaption</CSD.Link></CSD.ListItem>
 					<CSD.ListItem><CSD.Link path={`${dateTimePath}-timeFormat`}>timeFormat</CSD.Link></CSD.ListItem>
 					<CSD.ListItem><CSD.Link path={`${dateTimePath}-timeIntervals`}>timeIntervals</CSD.Link></CSD.ListItem>
@@ -597,7 +595,7 @@ const CSFormStandardFormFieldsPreview = () => {
 			<CSD.Section>
 				<CSD.Heading level={2}>Radio</CSD.Heading>
 				<CSD.Text> The radio field specific property is `radioOptions`.</CSD.Text>
-				<CSD.Text>`radioOptions` is an array prop which defines which options will be rendered as a part of the grouped input radio elements</CSD.Text>
+				<CSD.Text>`radioOptions` is an array prop which defines which options will be rendered as a part of the grouped input radio elements.</CSD.Text>
 				<CSD.Text>Each option is defined by the `label`, `radioOptionName` and `radioOptionValue` properties.</CSD.Text>
 				<CSD.Text>Also, `readOnly`, `disabled` and `title` properties can be defined for each radio option.</CSD.Text>
 				<CSD.Preview

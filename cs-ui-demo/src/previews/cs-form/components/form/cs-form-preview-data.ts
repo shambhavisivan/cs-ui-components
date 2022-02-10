@@ -96,12 +96,12 @@ export const localeData: CSFormData = [
 			fieldType: 'DATE',
 			label: 'Date field',
 			name: 'date-1',
-			selected: new Date()
+			value: new Date()
 		}, {
 			fieldType: 'DATETIME',
 			label: 'Date-time field',
 			name: 'date-time-1',
-			selected: new Date()
+			value: new Date()
 		}]
 	}
 ];
@@ -188,7 +188,7 @@ export const readOnlyData: CSFormData = [
 			fieldType: 'DATE',
 			label: 'Date field',
 			name: 'date-2',
-			value: '1-1-2021'
+			value: new Date()
 		}, {
 			fieldType: 'RADIO',
 			label: 'Select color:',
@@ -206,7 +206,7 @@ export const readOnlyData: CSFormData = [
 			fieldType: 'DATETIME',
 			label: 'Date-time field',
 			name: 'date-time-2',
-			value: '1-1-2021'
+			value: new Date()
 		}, {
 			fieldType: 'LOOKUP',
 			label: 'Lookup field',

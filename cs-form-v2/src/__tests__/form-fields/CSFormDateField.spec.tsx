@@ -218,20 +218,6 @@ describe('CSFormDateField', () => {
 		expect(datepicker.prop('required')).toBeTruthy();
 	});
 
-	it('should pass correct selected date to CSDatepicker', () => {
-		const selectedDate = new Date();
-		const uut = shallow(
-			<CSFormDateField
-				fieldType={fieldType}
-				label={label}
-				name={name}
-				selected={selectedDate}
-			/>,
-		);
-		const datepicker = uut.find(CSDatepicker);
-		expect(datepicker.prop('selected')).toBe(selectedDate);
-	});
-
 	it('should pass correct styleClass to CSDatepicker', () => {
 		const styleClass = 'custom-class';
 		const uut = shallow(
@@ -261,7 +247,7 @@ describe('CSFormDateField', () => {
 	});
 
 	it('should pass correct value to CSDatepicker', () => {
-		const value = '1-1-2020';
+		const value = new Date();
 		const uut = shallow(
 			<CSFormDateField
 				fieldType={fieldType}
@@ -271,6 +257,6 @@ describe('CSFormDateField', () => {
 			/>,
 		);
 		const datepicker = uut.find(CSDatepicker);
-		expect(datepicker.prop('value')).toBe(value);
+		expect(datepicker.prop('selected')).toBe(value);
 	});
 });

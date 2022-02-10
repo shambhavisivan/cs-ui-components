@@ -319,22 +319,22 @@ const CSFormPreview = () => {
 										fieldType: 'DATE',
 										label: 'Date field',
 										name: 'date-1',
-										selected: new Date()
+										value: new Date()
 									}, {
 										fieldType: 'DATETIME',
 										label: 'Date-time field',
 										name: 'date-time-1',
-										selected: new Date()
+										value: new Date()
 									}]
 								}
 							]}
 							locale={{
-								dateLocale: 'en-EN',
+								dateLocale: 'es',
 								numberLocale: {
-									numLocale: 'en-EN',
+									numLocale: 'es',
 									options: {
 										style: 'currency',
-										currency: 'GBP'
+										currency: 'EUR'
 									}
 								}
 							}}
@@ -345,12 +345,12 @@ const CSFormPreview = () => {
 					<CSForm
 						data={data.localeData}
 						locale={{
-							dateLocale: 'en-GB',
+							dateLocale: 'es',
 							numberLocale: {
-								numLocale: 'en-EN',
+								numLocale: 'es',
 								options: {
 									style: 'currency',
-									currency: 'GBP'
+									currency: 'EUR'
 								}
 							}
 						}}

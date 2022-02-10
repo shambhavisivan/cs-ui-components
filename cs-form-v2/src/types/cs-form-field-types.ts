@@ -112,7 +112,6 @@ export interface CSFormDateFieldProps extends CSFormFieldCommonProps {
 	dateFormat?: string;
 	fieldType: 'DATE';
 	locale?: any;
-	selected?: Date | null | undefined;
 }
 
 /** DATETIME FIELD */

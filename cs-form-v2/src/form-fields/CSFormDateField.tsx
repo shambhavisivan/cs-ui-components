@@ -7,12 +7,14 @@ const CSFormDateField = ({
 	onBlur,
 	onChange,
 	styleClass,
+	value,
 	...props
 }: CSFormDateFieldProps) => (
 	<CSDatepicker
 		className={styleClass}
 		onChange={(date: Date) => onChange(date)}
 		onBlur={(e: React.FocusEvent<HTMLInputElement>) => onBlur(e.target.value)}
+		selected={value}
 		{...props}
 	/>
 );
