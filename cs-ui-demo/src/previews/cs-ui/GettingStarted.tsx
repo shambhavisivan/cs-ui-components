@@ -45,7 +45,6 @@ const GettingStarted = () => (
 				<CSD.ListItem>--z-index-path-pseudo: -1;</CSD.ListItem>
 				<CSD.ListItem>--z-index-sidebar-hidden-wrapper: -1;</CSD.ListItem>
 				<CSD.ListItem>--z-index-divider-label: 1;</CSD.ListItem>
-				<CSD.ListItem>--z-index-custom-select-dropdown: 1;</CSD.ListItem>
 				<CSD.ListItem>--z-index-progress-indicator: 1;</CSD.ListItem>
 				<CSD.ListItem>--z-index-transfer-list-item-focus: 1;</CSD.ListItem>
 				<CSD.ListItem>--z-index-sidebar-visible-wrapper: 1;</CSD.ListItem>
@@ -59,11 +58,12 @@ const GettingStarted = () => (
 				<CSD.ListItem>--z-index-main-header: 3;</CSD.ListItem>
 				<CSD.ListItem>--z-index-table-header: 3;</CSD.ListItem>
 				<CSD.ListItem>--z-index-button-custom-content: 4;</CSD.ListItem>
-				<CSD.ListItem>--z-index-dropdown-items-wrapper: 5;</CSD.ListItem>
 				<CSD.ListItem>--z-index-sidebar-toggle: 10;</CSD.ListItem>
 				<CSD.ListItem>--z-index-path: 10;</CSD.ListItem>
 				<CSD.ListItem>--z-index-reset-zen-more-tabs-ul: 99;</CSD.ListItem>
 				<CSD.ListItem>--z-index-modal: 9000;</CSD.ListItem>
+				<CSD.ListItem>--z-index-dropdown-items-wrapper: 9001;</CSD.ListItem>
+				<CSD.ListItem>--z-index-custom-select-dropdown: 9001;</CSD.ListItem>
 				<CSD.ListItem>--z-index-lookup-dropdown: 9001;</CSD.ListItem>
 				<CSD.ListItem>--z-index-toast: 9005;</CSD.ListItem>
 				<CSD.ListItem>--z-index-tooltip: 9025;</CSD.ListItem>
