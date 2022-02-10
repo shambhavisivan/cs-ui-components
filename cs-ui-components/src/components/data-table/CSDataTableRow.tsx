@@ -209,7 +209,6 @@ const CSDataTableRow = ({
 
 	const handleRowClick = (event: React.MouseEvent<HTMLDivElement>) => {
 		event.preventDefault();
-		event.stopPropagation();
 
 		if (dataTableSelectionType === 'row') {
 			// Clicking the row triggers an invisible checkbox to trigger an onChange event
