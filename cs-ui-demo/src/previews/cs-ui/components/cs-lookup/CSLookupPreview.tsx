@@ -237,13 +237,13 @@ const CSLookupPreview = () => {
 					This enables asynchronous fetching of records with the `fetchOptions` prop, which also allows the use of the `infiniteScroll` and `minTermLength`
 					props which aren't able to be used when `mode="client"`.
 				</CSD.Text>
+				<CSD.Heading level={2}>Fetching Options</CSD.Heading>
 				<CSD.Text>
 					The `fetchOptions` prop accepts a function which will be called on every search or focus change if the `minTermLength` is set to `0`, which it is by default.
 					The function takes the search term, the page size (which determines the number of returned records)
 					and the page number which will automatically increase on every infiniteScroll event.
 					It returns an object with a records property of the same type as options and a boolean moreRecords property which indicates whether further records can be fetched.
 				</CSD.Text>
-				<CSD.Heading level={2}>Fetching Options</CSD.Heading>
 				<CSD.Preview
 					orientation="vertical"
 					table={clientWithBaseProps}
