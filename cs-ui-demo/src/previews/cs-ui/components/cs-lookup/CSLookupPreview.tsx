@@ -664,6 +664,7 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							value={{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } }}
 							readOnly
 						/>
 						<CSLookup
@@ -690,6 +691,7 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						value={{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } }}
 						readOnly
 					/>
 					<CSLookup
