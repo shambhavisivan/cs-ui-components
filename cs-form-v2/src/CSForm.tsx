@@ -13,6 +13,8 @@ const CSForm = ({
 	mode,
 	onFieldBlur,
 	onFieldChange,
+	onFieldClick,
+	onFieldKeyDown,
 }: CSFormProps) => {
 	const renderSections = () => data.map((section) => (
 		<CSFormSection key={section.sectionKey} {...section} />
@@ -26,6 +28,8 @@ const CSForm = ({
 			locale={locale}
 			onFieldBlur={onFieldBlur}
 			onFieldChange={onFieldChange}
+			onFieldClick={onFieldClick}
+			onFieldKeyDown={onFieldKeyDown}
 			errorLabels={errorLabels}
 		>
 			<div className="cs-form">

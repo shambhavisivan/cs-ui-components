@@ -1,3 +1,5 @@
+import React from 'react';
+import { CSFormFieldData } from './cs-form-field-types';
 import { CSFormSectionProps } from './cs-form-section-types';
 
 export type CSFormMode = 'read-only';
@@ -42,4 +44,6 @@ export interface CSFormProps {
 	mode?: CSFormMode;
 	onFieldBlur?: (newData: CSFormChangedFieldData) => void;
 	onFieldChange?: (newData: CSFormChangedFieldData) => void;
+	onFieldClick?: (fieldData: CSFormFieldData) => void;
+	onFieldKeyDown?: (fieldData: CSFormFieldData, event: React.KeyboardEvent<HTMLElement>) => void;
 }

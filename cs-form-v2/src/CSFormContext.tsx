@@ -4,8 +4,10 @@ import { CSFormProps } from './types/cs-form-types';
 import { validateField } from './utils/cs-form-validator-util';
 
 export type CSFormContextInterface = Pick<CSFormProps, 'data' | 'mode' | 'columnNumber' | 'locale' | 'errorLabels'> & {
-	handleFieldChange: (sectionKey: string, field: CSFormFieldData, newValue: string) => void,
 	handleFieldBlur: (sectionKey: string, field: CSFormFieldData, newValue: string) => void,
+	handleFieldChange: (sectionKey: string, field: CSFormFieldData, newValue: string) => void,
+	handleFieldClick: (field: CSFormFieldData) => void;
+	handleFieldKeyDown: (field: CSFormFieldData, event: React.KeyboardEvent<HTMLElement>) => void;
 }
 export const CSFormContext = createContext<CSFormContextInterface>({
 	columnNumber: null,
@@ -15,9 +17,11 @@ export const CSFormContext = createContext<CSFormContextInterface>({
 	mode: null,
 	handleFieldBlur: () => { },
 	handleFieldChange: () => { },
+	handleFieldClick: () => { },
+	handleFieldKeyDown: () => { },
 });
 
-export const CSFormProvider = ({ children, columnNumber, data, errorLabels, locale, mode, onFieldBlur, onFieldChange }: PropsWithChildren<CSFormProps>) => {
+export const CSFormProvider = ({ children, columnNumber, data, errorLabels, locale, mode, onFieldBlur, onFieldChange, onFieldClick, onFieldKeyDown }: PropsWithChildren<CSFormProps>) => {
 	const handleFieldEvent = (sectionKey: string, field: Exclude<CSFormFieldData, CSFormCustomModalFieldProps>, newValue: any) => {
 		const errorMessage = validateField(field, newValue, errorLabels);
 		const { name } = field;
@@ -47,6 +51,14 @@ export const CSFormProvider = ({ children, columnNumber, data, errorLabels, loca
 		onFieldBlur?.(newData);
 	};
 
+	const handleFieldClick = (field: CSFormFieldData) => {
+		onFieldClick?.(field);
+	};
+
+	const handleFieldKeyDown = (field: CSFormFieldData, event: React.KeyboardEvent<HTMLElement>) => {
+		onFieldKeyDown?.(field, event);
+	};
+
 	return (
 		<CSFormContext.Provider
 			value={{
@@ -56,6 +68,8 @@ export const CSFormProvider = ({ children, columnNumber, data, errorLabels, loca
 				mode,
 				handleFieldBlur,
 				handleFieldChange,
+				handleFieldClick,
+				handleFieldKeyDown,
 				errorLabels,
 			}}
 		>

@@ -19,6 +19,8 @@ const CSFormSection = ({
 	const {
 		handleFieldBlur,
 		handleFieldChange,
+		handleFieldClick,
+		handleFieldKeyDown,
 	} = useCSForm();
 
 	const sectionFieldClasses = classNames(
@@ -36,6 +38,8 @@ const CSFormSection = ({
 		const events = field.fieldType !== 'CUSTOM-MODAL' && field.fieldType !== 'CUSTOM' ? {
 			onChange: (value: any) => handleFieldChange(sectionKey, field, value),
 			onBlur: (value: any) => handleFieldBlur(sectionKey, field, value),
+			onClick: () => handleFieldClick(field),
+			onKeyDown: (event: React.KeyboardEvent<HTMLElement>) => handleFieldKeyDown(field, event),
 		} : undefined;
 
 		return (

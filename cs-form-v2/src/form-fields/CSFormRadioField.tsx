@@ -8,6 +8,8 @@ const CSFormRadioField = ({
 	name,
 	onBlur,
 	onChange,
+	onClick,
+	onKeyDown,
 	radioOptions,
 	styleClass,
 	value,
@@ -23,8 +25,10 @@ const CSFormRadioField = ({
 			<CSRadioOption
 				key={radioOptionValue}
 				checked={value === radioOptionValue}
-				onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
 				onBlur={(e: React.FocusEvent<HTMLInputElement>) => onBlur(e.target.value)}
+				onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
+				onClick={onClick}
+				onKeyDown={onKeyDown}
 				readOnly={mode === 'read-only' ? true : readOnly}
 				name={name}
 				value={radioOptionValue}

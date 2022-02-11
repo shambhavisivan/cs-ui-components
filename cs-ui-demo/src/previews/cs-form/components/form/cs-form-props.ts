@@ -48,6 +48,14 @@ export default {
 			name: 'onFieldChange',
 			types: '(newData: CSFormChangedFieldData) => void',
 			description: 'Handler method when the form field change event is triggered.'
+		}, {
+			name: 'onFieldClick',
+			types: '(fieldData: CSFormFieldData) => void',
+			description: 'Handler method when form field click event is triggered.'
+		}, {
+			name: 'onFieldKeyDown',
+			types: '(fieldData: CSFormFieldData, event: React.KeyboardEvent<HTMLElement>) => void',
+			description: 'Handler method when form field keydown event is triggered.'
 		}
 	]
 };

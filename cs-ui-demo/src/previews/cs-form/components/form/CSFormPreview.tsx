@@ -24,7 +24,7 @@ const CSFormPreview = () => {
 	const fieldErrLabels = {
 		required: 'Field is required.',
 		min: 'Value is lower than minimal defined value.',
-		max: 'Value is higher than minimal defined value.'
+		max: 'Value is higher than maximal defined value.'
 	};
 	const [formErr, setFormErr] = useState<string | Array<string>>(formErrMsg);
 	const [fieldErr, setFieldErr] = useState<Array<Record<string, any>>>([
@@ -55,7 +55,7 @@ const CSFormPreview = () => {
 		setFieldErr(newErrors);
 		const newData = defineFormData(data[stateName], newField, newErrors);
 		setData(prevState => ({ ...prevState, [stateName]: newData }));
-		if (logField) { console.log(JSON.stringify(field)); }
+		if (logField) { console.log(field); }
 	};
 
 	const customErrLabelsData: CSFormData = [
@@ -306,25 +306,25 @@ const CSFormPreview = () => {
 						<CSForm
 							data={[
 								{
-									sectionKey: 'section-1',
+									sectionKey: 'section-locale',
 									label: 'First Section',
 									collapsible: true,
 									fields: [{
 										fieldType: 'NUMBER',
 										label: 'Number field',
-										name: 'number-1',
+										name: 'number-locale',
 										useLocale: true,
 										value: 100
 									}, {
 										fieldType: 'DATE',
 										label: 'Date field',
-										name: 'date-1',
-										value: new Date()
+										name: 'date-locale',
+										selected: new Date()
 									}, {
 										fieldType: 'DATETIME',
 										label: 'Date-time field',
-										name: 'date-time-1',
-										value: new Date()
+										name: 'date-time-locale',
+										selected: new Date()
 									}]
 								}
 							]}
@@ -375,28 +375,33 @@ const CSFormPreview = () => {
 			</CSD.Section>
 			<CSD.Heading>Event Handling</CSD.Heading>
 			<CSD.Section>
-				<CSD.Text>CSForm handles two types of events: change and blur.</CSD.Text>
+				<CSD.Text>CSForm handles four types of events: blur, change, click and keydown.</CSD.Text>
 				<CSD.Text>
-					Each time either of the two events are triggered, the form field which triggered the event will be validated and a unique field name,
+					Each time blur or change events are triggered, the form field which triggered the event will be validated and a unique field name,
 					section key and value will be returned through the event handler props (onFieldBlur or onFieldChange).
 				</CSD.Text>
 				<CSD.Text>Also, the error message(s) will be returned if one of the form validations fails.</CSD.Text>
-				<CSD.Text>Check the browser console to see the returned object when the field's blur event is triggered.</CSD.Text>
+				<CSD.Text>Triggering click or keydown events will return object with current field data.</CSD.Text>
+				<CSD.Text>Check the browser console to see the returned object when the field's blur, click or keydown event is triggered.</CSD.Text>
 				<CSD.Preview
 					table={CSFormProps}
-					related={['data', 'onFieldBlur', 'onFieldChange']}
+					related={['data', 'onFieldBlur', 'onFieldChange', 'onFieldClick', 'onFieldKeyDown']}
 					code={`
 						<CSForm
 							data={data}
 							onFieldChange={(newData) => setData(newData)}
-							onFieldBlur={(newData) => console.log(JSON.stringify(newData))}
+							onFieldBlur={console.log}
+							onFieldClick={console.log}
+							onFieldKeyDown={console.log}
 						/>
 					`}
 				>
 					<CSForm
 						data={data.eventsData}
 						onFieldChange={newData => handleFieldChange('eventsData', newData, true)}
-						onFieldBlur={newData => console.log(JSON.stringify(newData))}
+						onFieldBlur={console.log}
+						onFieldClick={console.log}
+						onFieldKeyDown={console.log}
 					/>
 				</CSD.Preview>
 			</CSD.Section>

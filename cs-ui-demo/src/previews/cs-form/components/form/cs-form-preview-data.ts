@@ -83,52 +83,51 @@ export const initialData: CSFormData = [
 
 export const localeData: CSFormData = [
 	{
-		sectionKey: 'section-1',
+		sectionKey: 'section-locale',
 		label: 'First Section',
 		collapsible: true,
 		fields: [{
 			fieldType: 'NUMBER',
 			label: 'Number field',
-			name: 'number-1',
+			name: 'number-locale',
 			useLocale: true,
 			value: 100
 		}, {
 			fieldType: 'DATE',
 			label: 'Date field',
-			name: 'date-1',
-			value: new Date()
+			name: 'date-locale',
+			selected: new Date()
 		}, {
 			fieldType: 'DATETIME',
 			label: 'Date-time field',
-			name: 'date-time-1',
-			value: new Date()
+			name: 'date-time-locale',
+			selected: new Date()
 		}]
 	}
 ];
 
 export const eventsData: CSFormData = [
 	{
-		sectionKey: 'section-1',
+		sectionKey: 'section-2',
 		label: 'First Section',
 		collapsible: true,
 		fields: [{
 			fieldType: 'NUMBER',
 			label: 'Number field',
-			name: 'number-1',
-			required: true,
+			name: 'number-2',
 			min: 1,
 			max: 5,
 			value: 3
 		}, {
 			fieldType: 'TEXT',
 			label: 'Text field',
-			name: 'text-1',
-			maxLength: 10,
-			value: ''
+			name: 'text-2',
+			required: true,
+			value: 'Example text'
 		}, {
 			fieldType: 'TOGGLE',
 			label: 'Toggle field',
-			name: 'toggle-1',
+			name: 'toggle-2',
 			value: false
 		}]
 	}

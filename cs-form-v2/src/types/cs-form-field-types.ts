@@ -21,6 +21,8 @@ export interface CSFormFieldCommonProps {
 	name: string;
 	onBlur?: (newValue?: any) => any;
 	onChange?: (newValue?: any) => any;
+	onClick?: () => void;
+	onKeyDown?: (event: React.KeyboardEvent<HTMLElement>) => void;
 	readOnly?: boolean;
 	required?: boolean;
 	styleClass?: string;
@@ -187,6 +189,7 @@ export interface CSFormRadioOption extends Pick<CSFormFieldCommonProps,
 	radioOptionValue: string;
 }
 
+// CSRadio doesn't support actions and icons so supported props are picked from CSFormFieldCommonProps type
 export interface CSFormRadioFieldProps extends Pick<CSFormFieldCommonProps,
 	'error' |
 	'errorMessage' |
@@ -195,7 +198,9 @@ export interface CSFormRadioFieldProps extends Pick<CSFormFieldCommonProps,
 	'label' |
 	'name' |
 	'onBlur' |
+	'onClick' |
 	'onChange' |
+	'onKeyDown' |
 	'readOnly' |
 	'required' |
 	'styleClass' |
@@ -251,8 +256,8 @@ type CSFormFields = CSFormStandardFields | CSFormCustomFieldProps | CSFormCustom
 /** CSFormField props type */
 export type CSFormFieldProps = CSFormFieldLayoutProps & CSFormFields;
 
-/** Props per field defined in data prop. onChange, onBlur and locale are excluded since they are defined on top of the whole CSForm */
-export type CSFormFieldData = CSFormFieldLayoutProps & (ExcludeCommonHelper<CSFormStandardFields, 'onChange' | 'onBlur' | 'locale'> | CSFormCustomFieldProps | CSFormCustomModalFieldProps)
+/** Props per field defined in data prop. onClick, onChange, onBlur, onKeyDown and locale are excluded since they are defined on top of the whole CSForm */
+export type CSFormFieldData = CSFormFieldLayoutProps & (ExcludeCommonHelper<CSFormStandardFields, 'onClick' | 'onChange' | 'onBlur' | 'onKeyDown' | 'locale'> | CSFormCustomFieldProps | CSFormCustomModalFieldProps)
 
 /** Props used for form definition only, values for each field are excluded. */
-export type CSFormFieldDefinition = CSFormFieldLayoutProps & (ExcludeCommonHelper<CSFormStandardFields, 'onChange' | 'onBlur' | 'locale' | 'value'> | CSFormCustomFieldProps | CSFormCustomModalFieldProps);
+export type CSFormFieldDefinition = CSFormFieldLayoutProps & (ExcludeCommonHelper<CSFormStandardFields, 'onClick' | 'onChange' | 'onBlur' | 'onKeyDown' | 'locale' | 'value'> | CSFormCustomFieldProps | CSFormCustomModalFieldProps);
