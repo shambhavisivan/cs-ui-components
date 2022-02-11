@@ -5,14 +5,9 @@ import {
 	CSAlertStyleFormat,
 	CSAlertStyleType,
 	CSAlertTextAlign,
-	CSIconOrigin,
-	CSRadio,
-	CSRadioOption,
-	CSToggle,
-	CSCustomSelect,
-	CSCustomSelectOptionInterface,
-	CSInputText
+	CSIconOrigin
 } from '@cloudsense/cs-ui-components';
+import { CSForm } from '@cloudsense/cs-form-v2';
 
 import lightningIcons from '../../../icons/LightningIconsList';
 import cloudSenseIcons from '../../../icons/CloudSenseIconsList';
@@ -38,18 +33,27 @@ const CSAlertPlayground = () => {
 
 	const [alertProps, setAlertProps] = useState({ ...alertRequiredProps, ...alertDefaultProps });
 
-	const toggleProp = (prop: string) => {
-		setAlertProps((prevState: any) => ({
-			...prevState,
-			[prop]: !prevState[prop]
-		}));
-	};
+	const handleFieldChange = ({ name, value }: { name: string, value: any }) => {
+		setAlertProps((prevState: any) => {
+			const newState = { ...prevState };
 
-	const setProp = (prop: string, value: any) => {
-		setAlertProps((prevState: any) => ({
-			...prevState,
-			[prop]: value
-		}));
+			if (typeof value === 'object') {
+				newState[name] = value.key;
+			} else if (value === '') {
+				newState[name] = undefined;
+			} else {
+				newState[name] = value;
+			}
+
+			if (name === 'iconHidden') {
+				newState.iconName = undefined;
+				newState.iconOrigin = 'slds';
+			} else if (name === 'iconOrigin') {
+				newState.iconName = undefined;
+			}
+
+			return newState;
+		});
 	};
 
 	const availableIcons = alertProps.iconOrigin === 'slds' ? lightningIcons : cloudSenseIcons;
@@ -62,115 +66,120 @@ const CSAlertPlayground = () => {
 			requiredProps={alertRequiredProps}
 			currentProps={alertProps}
 		>
-			<CSRadio label="variant" required>
-				<CSRadioOption
-					label="info"
-					name="variant"
-					onClick={() => setProp('variant', 'info')}
-				/>
-				<CSRadioOption
-					label="warning"
-					name="variant"
-					onClick={() => setProp('variant', 'warning')}
-				/>
-				<CSRadioOption
-					label="error"
-					name="variant"
-					onClick={() => setProp('variant', 'error')}
-				/>
-				<CSRadioOption
-					label="base"
-					name="variant"
-					onClick={() => setProp('variant', 'base')}
-					checked
-				/>
-			</CSRadio>
-			<CSToggle
-				label="closeButton"
-				checked={alertProps.closeButton}
-				onClick={() => toggleProp('closeButton')}
+			<CSForm
+				onFieldChange={handleFieldChange}
+				columnNumber={1}
+				data={[{
+					sectionKey: 'controls',
+					label: 'Controls',
+					hideSectionHeader: true,
+					fields: [{
+						fieldType: 'RADIO',
+						label: 'variant',
+						name: 'variant',
+						required: true,
+						value: alertProps.variant,
+						radioOptions: [{
+							radioOptionValue: 'info',
+							label: 'info'
+						}, {
+							radioOptionValue: 'warning',
+							label: 'warning'
+						}, {
+							radioOptionValue: 'error',
+							label: 'error'
+						}, {
+							radioOptionValue: 'base',
+							label: 'base'
+						}]
+					}, {
+						fieldType: 'TOGGLE',
+						label: 'closeButton',
+						name: 'closeButton',
+						value: alertProps.closeButton
+					}, {
+						fieldType: 'TOGGLE',
+						label: 'iconHidden',
+						name: 'iconHidden',
+						value: alertProps.iconHidden
+					}, {
+						fieldType: 'CUSTOM-SELECT',
+						label: 'iconName',
+						name: 'iconName',
+						disabled: alertProps.iconHidden,
+						onClear: () => handleFieldChange({ name: 'iconName', value: undefined }),
+						value: alertProps.iconName,
+						options: availableIcons.map((icon: any) => ({
+							key: icon.name,
+							label: icon.name
+						}))
+					}, {
+						fieldType: 'RADIO',
+						label: 'iconOrigin',
+						name: 'iconOrigin',
+						disabled: alertProps.iconHidden,
+						value: alertProps.iconOrigin,
+						radioOptions: [{
+							radioOptionValue: 'slds',
+							label: 'slds'
+						}, {
+							radioOptionValue: 'cs',
+							label: 'cs'
+						}]
+					}, {
+						fieldType: 'RADIO',
+						label: 'styleFormat',
+						name: 'styleFormat',
+						value: alertProps.styleFormat,
+						radioOptions: [{
+							radioOptionValue: 'default',
+							label: 'default'
+						}, {
+							radioOptionValue: 'scoped',
+							label: 'scoped'
+						}]
+					}, {
+						fieldType: 'RADIO',
+						label: 'styleType',
+						name: 'styleType',
+						value: alertProps.styleType,
+						radioOptions: [{
+							radioOptionValue: 'default',
+							label: 'default'
+						}, {
+							radioOptionValue: 'light',
+							label: 'light'
+						}]
+					}, {
+						fieldType: 'TEXT',
+						label: 'text',
+						name: 'text',
+						value: alertProps.text
+					}, {
+						fieldType: 'RADIO',
+						label: 'textAlign',
+						name: 'textAlign',
+						value: alertProps.textAlign,
+						radioOptions: [{
+							radioOptionValue: 'left',
+							label: 'left'
+						}, {
+							radioOptionValue: 'center',
+							label: 'center'
+						}]
+					}, {
+						fieldType: 'TEXT',
+						label: 'id',
+						name: 'id',
+						value: alertProps.id
+					}, {
+						fieldType: 'TEXT',
+						label: 'className',
+						name: 'className',
+						value: alertProps.className
+					}]
+				}]}
 			/>
-			<CSToggle
-				label="iconHidden"
-				checked={alertProps.iconHidden}
-				onClick={() => {
-					toggleProp('iconHidden');
-					setProp('iconName', undefined);
-					setProp('iconOrigin', 'slds');
-				}}
-			/>
-			<CSCustomSelect
-				label="iconName"
-				disabled={alertProps.iconHidden}
-				onSelect={(value: CSCustomSelectOptionInterface) => setProp('iconName', value.key)}
-				selectedKeys={alertProps.iconName}
-				onClear={() => setProp('iconName', undefined)}
-				options={availableIcons.map((icon: any) => ({
-					key: icon.name,
-					label: icon.name
-				}))}
-			/>
-			<CSRadio label="iconOrigin" disabled={alertProps.iconHidden}>
-				<CSRadioOption
-					label="slds"
-					name="iconOrigin"
-					checked
-					onClick={() => {
-						setProp('iconOrigin', 'slds');
-						setProp('iconName', undefined);
-					}}
-				/>
-				<CSRadioOption
-					label="cs"
-					name="iconOrigin"
-					onClick={() => {
-						setProp('iconOrigin', 'cs');
-						setProp('iconName', undefined);
-					}}
-				/>
-			</CSRadio>
-			<CSRadio label="styleFormat">
-				<CSRadioOption
-					label="default"
-					name="styleFormat"
-					onClick={() => setProp('styleFormat', 'default')}
-					checked
-				/>
-				<CSRadioOption
-					label="scoped"
-					name="styleFormat"
-					onClick={() => setProp('styleFormat', 'scoped')}
-				/>
-			</CSRadio>
-			<CSRadio label="styleType">
-				<CSRadioOption
-					label="default"
-					name="styleType"
-					onClick={() => setProp('styleType', 'default')}
-					checked
-				/>
-				<CSRadioOption
-					label="light"
-					name="styleType"
-					onClick={() => setProp('styleType', 'light')}
-				/>
-			</CSRadio>
-			<CSInputText label="text" onChange={(event: React.ChangeEvent<HTMLInputElement>) => setProp('text', event.target.value)} />
-			<CSRadio label="textAlign">
-				<CSRadioOption
-					label="left"
-					name="setAlign"
-					onClick={() => setProp('textAlign', 'left')}
-					checked
-				/>
-				<CSRadioOption
-					label="center"
-					name="setAlign"
-					onClick={() => setProp('textAlign', 'center')}
-				/>
-			</CSRadio>
-			<CSInputText label="id" onChange={(event: React.ChangeEvent<HTMLInputElement>) => setProp('id', event.target.value)} />
-			<CSInputText label="className" onChange={(event: React.ChangeEvent<HTMLInputElement>) => setProp('className', event.target.value)} />
 		</CSD.Playground>
 	);
 };
