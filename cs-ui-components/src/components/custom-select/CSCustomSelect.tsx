@@ -45,6 +45,7 @@ export interface CSCustomSelectProps {
 	labelHidden?: boolean;
 	labelTitle?: boolean;
 	multiselect?: boolean;
+	onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 	onClear?: () => void;
 	onClick?: (event: React.MouseEvent<HTMLInputElement>) => void;
 	onDeselect?: (option: CSCustomSelectOptionInterface) => void;
@@ -85,6 +86,7 @@ const CSCustomSelect = ({
 	labelHidden,
 	labelTitle,
 	multiselect,
+	onBlur,
 	onClear,
 	onClick,
 	onDeselect,
@@ -367,6 +369,7 @@ const CSCustomSelect = ({
 						placeholder={!selectedKeysArray.length ? placeholder : ''}
 						onClick={handleClick}
 						onFocus={handleFocus}
+						onBlur={onBlur}
 						onKeyDown={handleKeyDown}
 						{...rest}
 					/>

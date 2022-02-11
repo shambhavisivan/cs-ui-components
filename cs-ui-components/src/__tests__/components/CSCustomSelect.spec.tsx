@@ -246,6 +246,20 @@ describe('<CSCustomSelect />', () => {
 		expect(handleClearMock).toHaveBeenCalledTimes(1);
 	});
 
+	it('should use a working onBlur callback', () => {
+		const handleBlurMock = jest.fn();
+		const uut = shallow(
+			<CSCustomSelect
+				label={customSelectTextLabel}
+				options={options}
+				onBlur={handleBlurMock}
+			/>,
+		).dive();
+		const input = uut.find('input');
+		input.simulate('blur');
+		expect(handleBlurMock).toHaveBeenCalledTimes(1);
+	});
+
 	it('should use a working onClick callback', () => {
 		const handleClickMock = jest.fn();
 		const uut = shallow(

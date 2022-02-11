@@ -19,6 +19,7 @@ class CSCustomSelectPreview extends React.Component {
 		multiselectCompactKeys: []
 	};
 
+	handleBlur = () => alert('Custom select has lost focus.');
 	handleClose = () => alert('Custom select has closed.');
 	handleClick = () => alert('Custom select input has been clicked.');
 	handleKeyDown = (event: any) => alert(`Key ${event.key} has been pressed.`);
@@ -305,6 +306,22 @@ class CSCustomSelectPreview extends React.Component {
 									options={options}
 									label="Select department"
 									labelTitle
+								/>`
+							}
+						]
+					}, {
+						propName: 'onBlur',
+						variations: [
+							{
+								component: <CSCustomSelect
+									options={options}
+									label="Select department"
+									onBlur={this.handleBlur}
+								/>,
+								code: `<CSCustomSelect
+									options={options}
+									label="Select department"
+									onBlur={this.handleBlur}
 								/>`
 							}
 						]
@@ -772,6 +789,10 @@ class CSCustomSelectPreview extends React.Component {
 						types: 'boolean',
 						default: 'false',
 						description: 'Add support for selecting multiple items.'
+					}, {
+						name: 'onBlur',
+						types: '(event) => void',
+						description: 'Handler method for the blur event.'
 					}, {
 						name: 'onClear',
 						types: '() => void',
