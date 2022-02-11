@@ -1,4 +1,4 @@
-import React, { CSSProperties, useEffect } from 'react';
+import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 import CSTreeGroup from './CSTreeGroup';
 import { CSButtonProps } from '../CSButton';
@@ -69,11 +69,6 @@ const CSTree = ({
 	selectedKeys,
 	...rest
 }: CSTreeProps) => {
-	useEffect(() => {
-		// eslint-disable-next-line no-console
-		console.warn('CSTree is under construction and should not be used.');
-	}, []);
-
 	const treeClasses = classNames(
 		'cs-tree',
 		{
