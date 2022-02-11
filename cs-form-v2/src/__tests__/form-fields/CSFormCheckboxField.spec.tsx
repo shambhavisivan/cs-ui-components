@@ -177,6 +177,36 @@ describe('CSFormCheckboxField', () => {
 		expect(handleOnChangeMock).toHaveBeenCalled();
 	});
 
+	it('should call onClick event', () => {
+		const handleOnClickMock = jest.fn();
+		const uut = shallow(
+			<CSFormCheckboxField
+				fieldType={fieldType}
+				label={label}
+				name={name}
+				onClick={handleOnClickMock}
+			/>,
+		);
+		const checkbox = uut.find(CSCheckbox);
+		checkbox.simulate('click');
+		expect(handleOnClickMock).toHaveBeenCalled();
+	});
+
+	it('should call onKeyDown event', () => {
+		const handleOnKeyDownMock = jest.fn();
+		const uut = shallow(
+			<CSFormCheckboxField
+				fieldType={fieldType}
+				label={label}
+				name={name}
+				onKeyDown={handleOnKeyDownMock}
+			/>,
+		);
+		const checkbox = uut.find(CSCheckbox);
+		checkbox.simulate('keydown', {} as any);
+		expect(handleOnKeyDownMock).toHaveBeenCalled();
+	});
+
 	it('should pass correct readOnly value to CSCheckbox', () => {
 		const uut = shallow(
 			<CSFormCheckboxField

@@ -174,7 +174,7 @@ describe('CSFormDateField', () => {
 		);
 		const datepicker = uut.find(CSDatepicker);
 		datepicker.simulate('blur', { target: { value: '1/1/2021' } });
-		expect(handleOnBlurMock).toHaveBeenCalled();
+		expect(handleOnBlurMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should call onChange event', () => {
@@ -189,7 +189,37 @@ describe('CSFormDateField', () => {
 		);
 		const datepicker = uut.find(CSDatepicker);
 		datepicker.simulate('change');
-		expect(handleOnChangeMock).toHaveBeenCalled();
+		expect(handleOnChangeMock).toHaveBeenCalledTimes(1);
+	});
+
+	it('should call onClick event', () => {
+		const handleOnClickMock = jest.fn();
+		const uut = shallow(
+			<CSFormDateField
+				fieldType={fieldType}
+				label={label}
+				name={name}
+				onClick={handleOnClickMock}
+			/>,
+		);
+		const datepicker = uut.find(CSDatepicker);
+		datepicker.simulate('click');
+		expect(handleOnClickMock).toHaveBeenCalledTimes(1);
+	});
+
+	it('should call onKeyDown event', () => {
+		const handleOnKeyDownMock = jest.fn();
+		const uut = shallow(
+			<CSFormDateField
+				fieldType={fieldType}
+				label={label}
+				name={name}
+				onKeyDown={handleOnKeyDownMock}
+			/>,
+		);
+		const datepicker = uut.find(CSDatepicker);
+		datepicker.simulate('keydown');
+		expect(handleOnKeyDownMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should pass correct readOnly value to CSDatepicker', () => {

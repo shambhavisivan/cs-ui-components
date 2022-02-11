@@ -19,16 +19,8 @@ const numberField: CSFormFieldData = {
 const numberFieldMax = { ...numberField, max: 9 };
 const numberFieldMin = { ...numberField, min: 5 };
 
-const textField: CSFormFieldData = {
-	fieldType: 'TEXT',
-	label: 'label',
-	name: 'text',
-	maxLength: 5,
-};
-
 const customErrorLabels: CSFormErrorLabels = {
 	requiredFieldErrLabel: 'Required field!',
-	maxLengthTextFieldErr: 'Value length is higher than defined max length',
 	maxNumberFieldErrLabel: 'Value is higher than defined max value',
 	minNumberFieldErrLabel: 'Value is lower that defined min value',
 };
@@ -49,7 +41,6 @@ const formData: CSFormData = [
 		label: 'section',
 		fields: [
 			{ ...numberFieldMax, value: 10 },
-			{ ...textField, value: 'Some long text!' },
 		],
 	},
 ];
@@ -69,11 +60,6 @@ const validationResults = [
 		name: numberFieldMax.name,
 		value: 10,
 		errorMessage: [customErrorLabels.maxNumberFieldErrLabel],
-	}, {
-		...sectionKeySecond,
-		name: textField.name,
-		value: 'Some long text!',
-		errorMessage: [customErrorLabels.maxLengthTextFieldErr],
 	}];
 
 describe('validateField()', () => {
@@ -92,11 +78,6 @@ describe('validateField()', () => {
 		expect(error[0]).toBe(`${numberFieldMin.name} ${defaultErrorLabels.minNumberFieldErrLabel}`);
 	});
 
-	it('should return OOTB error message if text field value length is higher than defined', () => {
-		const error = validateField(textField, 'Some long text.');
-		expect(error[0]).toBe(`${textField.name} ${defaultErrorLabels.maxLengthTextFieldErr}`);
-	});
-
 	it('should return custom error message if field is required and value is not defined', () => {
 		const error = validateField(requiredField, null, customErrorLabels);
 		expect(error[0]).toBe(customErrorLabels.requiredFieldErrLabel);
@@ -110,11 +91,6 @@ describe('validateField()', () => {
 	it('should return custom error message if number field value is lower than defined', () => {
 		const error = validateField(numberFieldMin, 4, customErrorLabels);
 		expect(error[0]).toBe(customErrorLabels.minNumberFieldErrLabel);
-	});
-
-	it('should return custom error message if text field value length is higher than defined', () => {
-		const error = validateField(textField, 'Some long text.', customErrorLabels);
-		expect(error[0]).toBe(customErrorLabels.maxLengthTextFieldErr);
 	});
 
 	it('should return multiple error messages if more validations fail', () => {

@@ -179,6 +179,8 @@ describe('<CSFormField />', () => {
 					columnNumber: 5,
 					handleFieldBlur: () => { },
 					handleFieldChange: () => { },
+					handleFieldClick: () => { },
+					handleFieldKeyDown: () => { },
 				}}
 			>
 				<CSFormField
@@ -200,6 +202,8 @@ describe('<CSFormField />', () => {
 					columnNumber: 5,
 					handleFieldBlur: () => { },
 					handleFieldChange: () => { },
+					handleFieldClick: () => { },
+					handleFieldKeyDown: () => { },
 				}}
 			>
 				<CSFormField

@@ -4,7 +4,6 @@ import { CSFormCustomSelectFieldProps } from '../types/cs-form-field-types';
 
 const CSFormCustomSelectField = ({
 	fieldType,
-	onBlur,
 	onChange,
 	styleClass,
 	value,

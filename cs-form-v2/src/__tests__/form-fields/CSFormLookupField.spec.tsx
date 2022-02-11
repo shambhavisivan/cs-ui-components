@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 import '../../setupTests';
+import { CSLookup } from '@cloudsense/cs-ui-components';
 import CSFormLookupField from '../../form-fields/CSFormLookupField';
 
 const label = 'label';
@@ -48,7 +49,7 @@ describe('CSFormLookupField', () => {
 				options={lookupOptions}
 			/>,
 		);
-		const lookup = uut.find('CSLookup');
+		const lookup = uut.find(CSLookup);
 		expect(lookup.prop('mode')).toBe(modeClient);
 	});
 
@@ -64,7 +65,7 @@ describe('CSFormLookupField', () => {
 				options={lookupOptions}
 			/>,
 		);
-		const lookup = uut.find('CSLookup');
+		const lookup = uut.find(CSLookup);
 		expect(lookup.prop('label')).toBe(label);
 	});
 
@@ -80,7 +81,7 @@ describe('CSFormLookupField', () => {
 				options={lookupOptions}
 			/>,
 		);
-		const lookup = uut.find('CSLookup');
+		const lookup = uut.find(CSLookup);
 		expect(lookup.prop('name')).toBe(name);
 	});
 
@@ -97,7 +98,7 @@ describe('CSFormLookupField', () => {
 				actions={actions}
 			/>,
 		);
-		const lookup = uut.find('CSLookup');
+		const lookup = uut.find(CSLookup);
 		expect(JSON.stringify(lookup.prop('actions'))).toBe(JSON.stringify(actions));
 	});
 
@@ -114,7 +115,7 @@ describe('CSFormLookupField', () => {
 				disabled
 			/>,
 		);
-		const lookup = uut.find('CSLookup');
+		const lookup = uut.find(CSLookup);
 		expect(lookup.prop('disabled')).toBeTruthy();
 	});
 
@@ -131,7 +132,7 @@ describe('CSFormLookupField', () => {
 				error
 			/>,
 		);
-		const lookup = uut.find('CSLookup');
+		const lookup = uut.find(CSLookup);
 		expect(lookup.prop('error')).toBeTruthy();
 	});
 
@@ -150,7 +151,7 @@ describe('CSFormLookupField', () => {
 				errorMessage={errorMessage}
 			/>,
 		);
-		const lookup = uut.find('CSLookup');
+		const lookup = uut.find(CSLookup);
 		expect(lookup.prop('errorMessage')).toBe(errorMessage);
 	});
 
@@ -168,7 +169,7 @@ describe('CSFormLookupField', () => {
 				helpText={helpText}
 			/>,
 		);
-		const lookup = uut.find('CSLookup');
+		const lookup = uut.find(CSLookup);
 		expect(lookup.prop('helpText')).toBe(helpText);
 	});
 
@@ -185,7 +186,7 @@ describe('CSFormLookupField', () => {
 				icons={icons}
 			/>,
 		);
-		const lookup = uut.find('CSLookup');
+		const lookup = uut.find(CSLookup);
 		expect(JSON.stringify(lookup.prop('icons'))).toBe(JSON.stringify(icons));
 	});
 
@@ -204,9 +205,9 @@ describe('CSFormLookupField', () => {
 			/>,
 		);
 
-		const lookup = uut.find('CSLookup');
-		(lookup.props() as any).onBlur();
-		expect(handleOnBlurMock).toHaveBeenCalled();
+		const lookup = uut.find(CSLookup);
+		lookup.props().onBlur({} as any);
+		expect(handleOnBlurMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should call onChange event', () => {
@@ -224,9 +225,47 @@ describe('CSFormLookupField', () => {
 			/>,
 		);
 
-		const lookup = uut.find('CSLookup');
-		(lookup.props() as any).onSelectChange();
-		expect(handleOnChangeMock).toHaveBeenCalled();
+		const lookup = uut.find(CSLookup);
+		lookup.props().onSelectChange();
+		expect(handleOnChangeMock).toHaveBeenCalledTimes(1);
+	});
+
+	it('should call onClick event', () => {
+		const handleOnClickMock = jest.fn();
+		const uut = shallow(
+			<CSFormLookupField
+				fieldToBeDisplayed={fieldToBeDisplayed}
+				fieldType={fieldType}
+				label={label}
+				name={name}
+				mode={modeClient}
+				columns={columns}
+				options={lookupOptions}
+				onClick={handleOnClickMock}
+			/>,
+		);
+		const lookup = uut.find(CSLookup);
+		lookup.props().onClick({} as any);
+		expect(handleOnClickMock).toHaveBeenCalledTimes(1);
+	});
+
+	it('should call onKeyDown event', () => {
+		const handleOnKeyDownMock = jest.fn();
+		const uut = shallow(
+			<CSFormLookupField
+				fieldToBeDisplayed={fieldToBeDisplayed}
+				fieldType={fieldType}
+				label={label}
+				name={name}
+				mode={modeClient}
+				columns={columns}
+				options={lookupOptions}
+				onKeyDown={handleOnKeyDownMock}
+			/>,
+		);
+		const lookup = uut.find(CSLookup);
+		lookup.props().onKeyDown({} as any);
+		expect(handleOnKeyDownMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should pass correct readOnly value to CSLookup', () => {
@@ -242,7 +281,7 @@ describe('CSFormLookupField', () => {
 				readOnly
 			/>,
 		);
-		const lookup = uut.find('CSLookup');
+		const lookup = uut.find(CSLookup);
 		expect(lookup.prop('readOnly')).toBeTruthy();
 	});
 
@@ -259,7 +298,7 @@ describe('CSFormLookupField', () => {
 				required
 			/>,
 		);
-		const lookup = uut.find('CSLookup');
+		const lookup = uut.find(CSLookup);
 		expect(lookup.prop('required')).toBeTruthy();
 	});
 
@@ -277,7 +316,7 @@ describe('CSFormLookupField', () => {
 				styleClass={styleClass}
 			/>,
 		);
-		const lookup = uut.find('CSLookup');
+		const lookup = uut.find(CSLookup);
 		expect(lookup.prop('className')).toBe(styleClass);
 	});
 
@@ -295,7 +334,7 @@ describe('CSFormLookupField', () => {
 				title={title}
 			/>,
 		);
-		const lookup = uut.find('CSLookup');
+		const lookup = uut.find(CSLookup);
 		expect(lookup.prop('title')).toBe(title);
 	});
 
@@ -313,7 +352,7 @@ describe('CSFormLookupField', () => {
 				value={value}
 			/>,
 		);
-		const lookup = uut.find('CSLookup');
+		const lookup = uut.find(CSLookup);
 		expect(JSON.stringify(lookup.prop('value'))).toBe(JSON.stringify(value));
 	});
 
@@ -330,7 +369,7 @@ describe('CSFormLookupField', () => {
 				options={lookupOptions}
 			/>,
 		);
-		const lookup = uut.find('CSLookup');
+		const lookup = uut.find(CSLookup);
 		expect(JSON.stringify(lookup.prop('options'))).toBe(JSON.stringify(lookupOptions));
 	});
 
@@ -347,7 +386,7 @@ describe('CSFormLookupField', () => {
 				loading
 			/>,
 		);
-		const lookup = uut.find('CSLookup');
+		const lookup = uut.find(CSLookup);
 		expect(lookup.prop('loading')).toBeTruthy();
 	});
 
@@ -365,7 +404,7 @@ describe('CSFormLookupField', () => {
 				searchBy={searchBy}
 			/>,
 		);
-		const lookup = uut.find('CSLookup');
+		const lookup = uut.find(CSLookup);
 		expect(lookup.prop('searchBy')).toBe(searchBy);
 	});
 
@@ -384,9 +423,9 @@ describe('CSFormLookupField', () => {
 				pageSize={pageSize}
 			/>,
 		);
-		const lookup = uut.find('CSLookup');
+		const lookup = uut.find(CSLookup);
 		(lookup.props() as any).fetchOptions();
-		expect(fetchOptionsMock).toHaveBeenCalled();
+		expect(fetchOptionsMock).toHaveBeenCalledTimes(1);
 	});
 	it('should pass correct infiniteScroll value to CSLookup', () => {
 		const uut = shallow(
@@ -402,7 +441,7 @@ describe('CSFormLookupField', () => {
 				infiniteScroll
 			/>,
 		);
-		const lookup = uut.find('CSLookup');
+		const lookup = uut.find(CSLookup);
 		expect(lookup.prop('infiniteScroll')).toBeTruthy();
 	});
 
@@ -421,7 +460,7 @@ describe('CSFormLookupField', () => {
 				minTermLength={minTermLength}
 			/>,
 		);
-		const lookup = uut.find('CSLookup');
+		const lookup = uut.find(CSLookup);
 		expect(lookup.prop('minTermLength')).toBe(minTermLength);
 	});
 
@@ -438,7 +477,7 @@ describe('CSFormLookupField', () => {
 				pageSize={pageSize}
 			/>,
 		);
-		const lookup = uut.find('CSLookup');
+		const lookup = uut.find(CSLookup);
 		expect(lookup.prop('pageSize')).toBe(pageSize);
 	});
 });

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import '../../setupTests';
 import { CSCustomSelect } from '@cloudsense/cs-ui-components';
 import CSFormCustomSelectField from '../../form-fields/CSFormCustomSelectField';
@@ -113,11 +113,25 @@ describe('CSFormCustomSelectField', () => {
 		expect(customSelect.prop('helpText')).toBe(helpText);
 	});
 
-        // onBlur test will be added when it's implemented in CSCustomSelect
+	it('should call onBlur event', () => {
+		const handleOnBlurMock = jest.fn();
+		const uut = shallow(
+			<CSFormCustomSelectField
+				options={customSelectOptions}
+				fieldType={fieldType}
+				label={label}
+				name={name}
+				onBlur={handleOnBlurMock}
+			/>,
+		);
+		const customSelect = uut.find(CSCustomSelect);
+		customSelect.simulate('blur');
+		expect(handleOnBlurMock).toHaveBeenCalledTimes(1);
+	});
 
 	it('should call onChange when onSelect or onDeselect is triggered', () => {
 		const handleOnChangeMock = jest.fn();
-		const uut = mount(
+		const uut = shallow(
 			<CSFormCustomSelectField
 				options={customSelectOptions}
 				fieldType={fieldType}
@@ -127,10 +141,42 @@ describe('CSFormCustomSelectField', () => {
 			/>,
 		);
 
-		const customSelect = uut.find('CSCustomSelect');
+		const customSelect = uut.find(CSCustomSelect);
 		customSelect.prop('onSelect')({} as any);
 		customSelect.prop('onDeselect' as any)();
 		expect(handleOnChangeMock).toHaveBeenCalledTimes(2);
+	});
+
+	it('should call onClick event', () => {
+		const handleOnClickMock = jest.fn();
+		const uut = shallow(
+			<CSFormCustomSelectField
+				options={customSelectOptions}
+				fieldType={fieldType}
+				label={label}
+				name={name}
+				onClick={handleOnClickMock}
+			/>,
+		);
+		const customSelect = uut.find(CSCustomSelect);
+		customSelect.simulate('click');
+		expect(handleOnClickMock).toHaveBeenCalledTimes(1);
+	});
+
+	it('should call onKeyDown event', () => {
+		const handleOnKeyDownMock = jest.fn();
+		const uut = shallow(
+			<CSFormCustomSelectField
+				options={customSelectOptions}
+				fieldType={fieldType}
+				label={label}
+				name={name}
+				onKeyDown={handleOnKeyDownMock}
+			/>,
+		);
+		const customSelect = uut.find(CSCustomSelect);
+		customSelect.simulate('keydown');
+		expect(handleOnKeyDownMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should pass correct readOnly value to CSCustomSelect', () => {

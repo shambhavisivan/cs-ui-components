@@ -174,7 +174,7 @@ describe('CSFormSelectField', () => {
 		);
 		const select = uut.find(CSSelect);
 		select.simulate('blur', { target: { value: 'First' } });
-		expect(handleOnBlurMock).toHaveBeenCalled();
+		expect(handleOnBlurMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should call onChange event', () => {
@@ -190,7 +190,39 @@ describe('CSFormSelectField', () => {
 		);
 		const select = uut.find(CSSelect);
 		select.simulate('change', { target: { value: 'First' } });
-		expect(handleOnChangeMock).toHaveBeenCalled();
+		expect(handleOnChangeMock).toHaveBeenCalledTimes(1);
+	});
+
+	it('should call onClick event', () => {
+		const handleOnClickMock = jest.fn();
+		const uut = shallow(
+			<CSFormSelectField
+				selectOptions={selectOptions}
+				fieldType={fieldType}
+				label={label}
+				name={name}
+				onClick={handleOnClickMock}
+			/>,
+		);
+		const select = uut.find(CSSelect);
+		select.simulate('click');
+		expect(handleOnClickMock).toHaveBeenCalledTimes(1);
+	});
+
+	it('should call onKeyDown event', () => {
+		const handleOnKeyDownMock = jest.fn();
+		const uut = shallow(
+			<CSFormSelectField
+				selectOptions={selectOptions}
+				fieldType={fieldType}
+				label={label}
+				name={name}
+				onKeyDown={handleOnKeyDownMock}
+			/>,
+		);
+		const select = uut.find(CSSelect);
+		select.simulate('keydown');
+		expect(handleOnKeyDownMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should pass correct readOnly value to CSSelect', () => {

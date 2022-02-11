@@ -160,7 +160,7 @@ describe('CSFormTextField', () => {
 		);
 		const inputText = uut.find(CSInputText);
 		inputText.simulate('blur', { target: { value: 'Text' } });
-		expect(handleOnBlurMock).toHaveBeenCalled();
+		expect(handleOnBlurMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should call onChange event', () => {
@@ -175,7 +175,37 @@ describe('CSFormTextField', () => {
 		);
 		const inputText = uut.find(CSInputText);
 		inputText.simulate('change', { target: { value: 'Text' } });
-		expect(handleOnChangeMock).toHaveBeenCalled();
+		expect(handleOnChangeMock).toHaveBeenCalledTimes(1);
+	});
+
+	it('should call onClick event', () => {
+		const handleOnClickMock = jest.fn();
+		const uut = shallow(
+			<CSFormTextField
+				fieldType={fieldType}
+				label={label}
+				name={name}
+				onClick={handleOnClickMock}
+			/>,
+		);
+		const inputText = uut.find(CSInputText);
+		inputText.simulate('click');
+		expect(handleOnClickMock).toHaveBeenCalledTimes(1);
+	});
+
+	it('should call onKeyDown event', () => {
+		const handleOnKeyDownMock = jest.fn();
+		const uut = shallow(
+			<CSFormTextField
+				fieldType={fieldType}
+				label={label}
+				name={name}
+				onKeyDown={handleOnKeyDownMock}
+			/>,
+		);
+		const inputText = uut.find(CSInputText);
+		inputText.simulate('keydown');
+		expect(handleOnKeyDownMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should pass correct readOnly value to CSInputText', () => {

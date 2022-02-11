@@ -6,12 +6,11 @@ import CSFormRadioField from '../../form-fields/CSFormRadioField';
 
 const label = 'label';
 const fieldType = 'RADIO';
-const name = 'radio';
-const radioOptionName = 'lang';
+const name = 'lang';
 const radioOptions = [
-	{ radioOptionName, radioOptionValue: 'eng', label: 'English' },
-	{ radioOptionName, radioOptionValue: 'cro', label: 'Croatian' },
-	{ radioOptionName, radioOptionValue: 'fr', label: 'French' },
+	{ radioOptionValue: 'eng', label: 'English' },
+	{ radioOptionValue: 'cro', label: 'Croatian' },
+	{ radioOptionValue: 'fr', label: 'French' },
 ];
 
 describe('CSFormRadioField', () => {
@@ -39,19 +38,6 @@ describe('CSFormRadioField', () => {
 		);
 		const radio = uut.find(CSRadio);
 		expect(radio.prop('label')).toBe(label);
-	});
-
-	it('should pass correct name to CSRadio', () => {
-		const uut = shallow(
-			<CSFormRadioField
-				radioOptions={radioOptions}
-				fieldType={fieldType}
-				label={label}
-				name={name}
-			/>,
-		);
-		const radio = uut.find(CSRadio);
-		expect(radio.prop('name')).toBe(name);
 	});
 
 	it('should pass correct disabled value to CSRadio', () => {
@@ -126,7 +112,7 @@ describe('CSFormRadioField', () => {
 		);
 		const options = uut.find(CSRadioOption);
 		options.first().simulate('blur', { target: { value: 'First' } });
-		expect(handleOnBlurMock).toHaveBeenCalled();
+		expect(handleOnBlurMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should call onChange event', () => {
@@ -142,7 +128,39 @@ describe('CSFormRadioField', () => {
 		);
 		const options = uut.find(CSRadioOption);
 		options.first().simulate('change', { target: { value: 'First' } });
-		expect(handleOnChangeMock).toHaveBeenCalled();
+		expect(handleOnChangeMock).toHaveBeenCalledTimes(1);
+	});
+
+	it('should call onClick event', () => {
+		const handleOnClickMock = jest.fn();
+		const uut = shallow(
+			<CSFormRadioField
+				radioOptions={radioOptions}
+				fieldType={fieldType}
+				label={label}
+				name={name}
+				onClick={handleOnClickMock}
+			/>,
+		);
+		const options = uut.find(CSRadioOption);
+		options.first().simulate('click');
+		expect(handleOnClickMock).toHaveBeenCalledTimes(1);
+	});
+
+	it('should call onKeyDown event', () => {
+		const handleOnKeyDownMock = jest.fn();
+		const uut = shallow(
+			<CSFormRadioField
+				radioOptions={radioOptions}
+				fieldType={fieldType}
+				label={label}
+				name={name}
+				onKeyDown={handleOnKeyDownMock}
+			/>,
+		);
+		const options = uut.find(CSRadioOption);
+		options.first().simulate('keydown');
+		expect(handleOnKeyDownMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should pass correct readOnly value to CSRadio', () => {
@@ -204,7 +222,7 @@ describe('CSFormRadioField', () => {
 	});
 
 	it('should pass correct option disabled value to CSRadioOption', () => {
-		const radioOptionDisabled = [{ radioOptionName: 'lang', radioOptionValue: 'eng', label: 'English', disabled: true }];
+		const radioOptionDisabled = [{ radioOptionValue: 'eng', label: 'English', disabled: true }];
 		const uut = shallow(
 			<CSFormRadioField
 				radioOptions={radioOptionDisabled}
@@ -230,7 +248,7 @@ describe('CSFormRadioField', () => {
 		expect(options.first().prop('label')).toBe('English');
 	});
 
-	it('should pass correct radioOptionName value to CSRadioOption', () => {
+	it('should pass correct name value to CSRadioOption', () => {
 		const uut = shallow(
 			<CSFormRadioField
 				radioOptions={radioOptions}
@@ -240,7 +258,7 @@ describe('CSFormRadioField', () => {
 			/>,
 		);
 		const options = uut.find(CSRadioOption);
-		expect(options.first().prop('name')).toBe(radioOptionName);
+		expect(options.first().prop('name')).toBe(name);
 	});
 
 	it('should pass correct radioOptionValue value to CSRadioOption', () => {
@@ -257,7 +275,7 @@ describe('CSFormRadioField', () => {
 	});
 
 	it('should pass correct option readOnly value to CSRadioOption', () => {
-		const radioOptionReadOnly = [{ radioOptionName: 'lang', radioOptionValue: 'eng', label: 'English', readOnly: true }];
+		const radioOptionReadOnly = [{ radioOptionValue: 'eng', label: 'English', readOnly: true }];
 		const uut = shallow(
 			<CSFormRadioField
 				radioOptions={radioOptionReadOnly}
@@ -272,7 +290,7 @@ describe('CSFormRadioField', () => {
 
 	it('should pass correct option title to CSRadioOption', () => {
 		const title = 'title';
-		const radioOptionWithTitle = [{ radioOptionName: 'lang', radioOptionValue: 'eng', label: 'English', title }];
+		const radioOptionWithTitle = [{ radioOptionValue: 'eng', label: 'English', title }];
 		const uut = shallow(
 			<CSFormRadioField
 				radioOptions={radioOptionWithTitle}

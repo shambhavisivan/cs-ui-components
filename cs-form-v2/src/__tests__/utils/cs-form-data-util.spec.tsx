@@ -25,10 +25,6 @@ const formData = [{
 	number_2: 2,
 }];
 
-const formDataWithoutOneValue = [{
-	text_1: 'Example text',
-}];
-
 const formErrorMessages = [{
 	text_1: 'Error message',
 }, {
@@ -43,6 +39,7 @@ const result = [{
 		name: 'text_1',
 		label: 'label',
 		value: 'Example text',
+		error: true,
 		errorMessage: 'Error message',
 
 	}],
@@ -54,6 +51,7 @@ const result = [{
 		name: 'number_2',
 		label: 'label',
 		value: 2,
+		error: true,
 		errorMessage: 'Error message',
 	}],
 }];
@@ -79,15 +77,15 @@ const resultWithoutErrors = [{
 	}],
 }];
 
-const resultWithoutValue = [{
+const resultWithoutData = [{
 	sectionKey: 'section_1',
 	label: 'section',
 	fields: [{
 		fieldType: 'TEXT',
 		name: 'text_1',
 		label: 'label',
-		value: 'Example text',
-
+		error: true,
+		errorMessage: 'Error message',
 	}],
 }, {
 	sectionKey: 'section_2',
@@ -96,7 +94,8 @@ const resultWithoutValue = [{
 		fieldType: 'NUMBER',
 		name: 'number_2',
 		label: 'label',
-		value: undefined,
+		error: true,
+		errorMessage: 'Error message',
 	}],
 }];
 
@@ -106,13 +105,13 @@ describe('defineFormData()', () => {
 		expect(JSON.stringify(data)).toBe(JSON.stringify(result));
 	});
 
-	it('should combine only form definition and from data if error messages are not provided', () => {
-		const data = defineFormData(formDefinition, formData);
-		expect(JSON.stringify(data)).toBe(JSON.stringify(resultWithoutErrors));
+	it('should combine only form definition and from data if data is not provided', () => {
+		const data = defineFormData(formDefinition, [], formErrorMessages);
+		expect(JSON.stringify(data)).toBe(JSON.stringify(resultWithoutData));
 	});
 
-	it('should set value property to undefined if not provided in the data argument', () => {
-		const data = defineFormData(formDefinition, formDataWithoutOneValue);
-		expect(JSON.stringify(data)).toBe(JSON.stringify(resultWithoutValue));
+	it('should combine only form definition and from data if error messages are not provided', () => {
+		const data = defineFormData(formDefinition, formData, []);
+		expect(JSON.stringify(data)).toBe(JSON.stringify(resultWithoutErrors));
 	});
 });

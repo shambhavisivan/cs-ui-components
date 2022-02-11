@@ -34,9 +34,10 @@ export const defineFormData = (formDefinition: CSFormDefinition, data?: Array<Re
 				}
 
 				if (errorMap?.has(field?.name)) {
-					newField = { ...newField, errorMessage: errorMap.get(field.name), error: true };
+					newField = { ...newField, error: true, errorMessage: errorMap.get(field.name) };
 				} else if (Object.keys(newField).indexOf('errorMessage')) {
-					newField = { ...newField, errorMessage: '', error: false };
+					delete newField.error;
+					delete newField.errorMessage;
 				}
 			} else {
 				newField = { ...field };

@@ -146,7 +146,7 @@ describe('CSFormToggleField', () => {
 		);
 		const toggle = uut.find(CSToggle);
 		toggle.simulate('blur', { target: { checked: false } });
-		expect(handleOnBlurMock).toHaveBeenCalled();
+		expect(handleOnBlurMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should call onChange event', () => {
@@ -161,7 +161,37 @@ describe('CSFormToggleField', () => {
 		);
 		const toggle = uut.find(CSToggle);
 		toggle.simulate('change', { target: { checked: false } });
-		expect(handleOnChangeMock).toHaveBeenCalled();
+		expect(handleOnChangeMock).toHaveBeenCalledTimes(1);
+	});
+
+	it('should call onClick event', () => {
+		const handleOnClickMock = jest.fn();
+		const uut = shallow(
+			<CSFormToggleField
+				fieldType={fieldType}
+				label={label}
+				name={name}
+				onClick={handleOnClickMock}
+			/>,
+		);
+		const toggle = uut.find(CSToggle);
+		toggle.simulate('click');
+		expect(handleOnClickMock).toHaveBeenCalledTimes(1);
+	});
+
+	it('should call onKeyDown event', () => {
+		const handleOnKeyDownMock = jest.fn();
+		const uut = shallow(
+			<CSFormToggleField
+				fieldType={fieldType}
+				label={label}
+				name={name}
+				onKeyDown={handleOnKeyDownMock}
+			/>,
+		);
+		const toggle = uut.find(CSToggle);
+		toggle.simulate('keydown');
+		expect(handleOnKeyDownMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should pass correct readOnly value to CSToggle', () => {

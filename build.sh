@@ -66,6 +66,8 @@ if changedFiles | grep -q '^cs-form-v2'; then
     npm run lint;
     echo "Building cs-form-v2"
     npm run build;
+    echo "Running cs-form-v2 Tests"
+    npm run test;
     echo "Finished validating cs-form-v2"
     cd ..;
 fi

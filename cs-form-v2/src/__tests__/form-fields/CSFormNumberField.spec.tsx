@@ -174,7 +174,7 @@ describe('CSFormNumberField', () => {
 		);
 		const inputNumber = uut.find(CSInputNumber);
 		inputNumber.simulate('blur', { target: { value: 2 } });
-		expect(handleOnBlurMock).toHaveBeenCalled();
+		expect(handleOnBlurMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should call onChange event', () => {
@@ -189,7 +189,37 @@ describe('CSFormNumberField', () => {
 		);
 		const inputNumber = uut.find(CSInputNumber);
 		inputNumber.simulate('change', { target: { value: 2 } });
-		expect(handleOnChangeMock).toHaveBeenCalled();
+		expect(handleOnChangeMock).toHaveBeenCalledTimes(1);
+	});
+
+	it('should call onClick event', () => {
+		const handleOnClickMock = jest.fn();
+		const uut = shallow(
+			<CSFormNumberField
+				fieldType={fieldType}
+				label={label}
+				name={name}
+				onClick={handleOnClickMock}
+			/>,
+		);
+		const inputNumber = uut.find(CSInputNumber);
+		inputNumber.simulate('click');
+		expect(handleOnClickMock).toHaveBeenCalledTimes(1);
+	});
+
+	it('should call onKeyDown event', () => {
+		const handleOnKeyDownMock = jest.fn();
+		const uut = shallow(
+			<CSFormNumberField
+				fieldType={fieldType}
+				label={label}
+				name={name}
+				onKeyDown={handleOnKeyDownMock}
+			/>,
+		);
+		const inputNumber = uut.find(CSInputNumber);
+		inputNumber.simulate('keydown', {} as any);
+		expect(handleOnKeyDownMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should pass correct readOnly value to CSInputNumber', () => {

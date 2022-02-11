@@ -37,8 +37,8 @@ describe('CSFormTextareaField', () => {
 				name={name}
 			/>,
 		);
-		const inputText = uut.find(CSTextarea);
-		expect(inputText.prop('label')).toBe(label);
+		const textarea = uut.find(CSTextarea);
+		expect(textarea.prop('label')).toBe(label);
 	});
 
 	it('should pass correct name to CSTextarea', () => {
@@ -49,8 +49,8 @@ describe('CSFormTextareaField', () => {
 				name={name}
 			/>,
 		);
-		const inputText = uut.find(CSTextarea);
-		expect(inputText.prop('name')).toBe(name);
+		const textarea = uut.find(CSTextarea);
+		expect(textarea.prop('name')).toBe(name);
 	});
 
 	it('should pass correct actions list to CSTextarea', () => {
@@ -62,8 +62,8 @@ describe('CSFormTextareaField', () => {
 				actions={actions}
 			/>,
 		);
-		const inputText = uut.find(CSTextarea);
-		expect(JSON.stringify(inputText.prop('actions'))).toBe(JSON.stringify(actions));
+		const textarea = uut.find(CSTextarea);
+		expect(JSON.stringify(textarea.prop('actions'))).toBe(JSON.stringify(actions));
 	});
 
 	it('should pass correct disabled value to CSTextarea', () => {
@@ -75,8 +75,8 @@ describe('CSFormTextareaField', () => {
 				disabled
 			/>,
 		);
-		const inputText = uut.find(CSTextarea);
-		expect(inputText.prop('disabled')).toBeTruthy();
+		const textarea = uut.find(CSTextarea);
+		expect(textarea.prop('disabled')).toBeTruthy();
 	});
 
 	it('should pass correct error value to CSTextarea', () => {
@@ -88,8 +88,8 @@ describe('CSFormTextareaField', () => {
 				error
 			/>,
 		);
-		const inputText = uut.find(CSTextarea);
-		expect(inputText.prop('error')).toBeTruthy();
+		const textarea = uut.find(CSTextarea);
+		expect(textarea.prop('error')).toBeTruthy();
 	});
 
 	it('should pass correct error message to CSTextarea', () => {
@@ -103,8 +103,8 @@ describe('CSFormTextareaField', () => {
 				errorMessage={errorMessage}
 			/>,
 		);
-		const inputText = uut.find(CSTextarea);
-		expect(inputText.prop('errorMessage')).toBe(errorMessage);
+		const textarea = uut.find(CSTextarea);
+		expect(textarea.prop('errorMessage')).toBe(errorMessage);
 	});
 
 	it('should pass correct help text to CSTextarea', () => {
@@ -117,8 +117,8 @@ describe('CSFormTextareaField', () => {
 				helpText={helpText}
 			/>,
 		);
-		const inputText = uut.find(CSTextarea);
-		expect(inputText.prop('helpText')).toBe(helpText);
+		const textarea = uut.find(CSTextarea);
+		expect(textarea.prop('helpText')).toBe(helpText);
 	});
 
 	it('should pass correct icons value to CSTextarea', () => {
@@ -130,8 +130,8 @@ describe('CSFormTextareaField', () => {
 				icons={icons}
 			/>,
 		);
-		const inputText = uut.find(CSTextarea);
-		expect(JSON.stringify(inputText.prop('icons'))).toBe(JSON.stringify(icons));
+		const textarea = uut.find(CSTextarea);
+		expect(JSON.stringify(textarea.prop('icons'))).toBe(JSON.stringify(icons));
 	});
 
 	it('should pass correct max height value to CSTextarea', () => {
@@ -144,8 +144,8 @@ describe('CSFormTextareaField', () => {
 				maxHeight={maxHeight}
 			/>,
 		);
-		const inputText = uut.find(CSTextarea);
-		expect(inputText.prop('maxHeight')).toBe(maxHeight);
+		const textarea = uut.find(CSTextarea);
+		expect(textarea.prop('maxHeight')).toBe(maxHeight);
 	});
 
 	it('should call onBlur event', () => {
@@ -158,9 +158,9 @@ describe('CSFormTextareaField', () => {
 				onBlur={handleOnBlurMock}
 			/>,
 		);
-		const inputText = uut.find(CSTextarea);
-		inputText.simulate('blur', { target: { value: 'Text' } });
-		expect(handleOnBlurMock).toHaveBeenCalled();
+		const textarea = uut.find(CSTextarea);
+		textarea.simulate('blur', { target: { value: 'Text' } });
+		expect(handleOnBlurMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should call onChange event', () => {
@@ -173,9 +173,39 @@ describe('CSFormTextareaField', () => {
 				onChange={handleOnChangeMock}
 			/>,
 		);
-		const inputText = uut.find(CSTextarea);
-		inputText.simulate('change', { target: { value: 'Text' } });
-		expect(handleOnChangeMock).toHaveBeenCalled();
+		const textarea = uut.find(CSTextarea);
+		textarea.simulate('change', { target: { value: 'Text' } });
+		expect(handleOnChangeMock).toHaveBeenCalledTimes(1);
+	});
+
+	it('should call onClick event', () => {
+		const handleOnClickMock = jest.fn();
+		const uut = shallow(
+			<CSFormTextareaField
+				fieldType={fieldType}
+				label={label}
+				name={name}
+				onClick={handleOnClickMock}
+			/>,
+		);
+		const textarea = uut.find(CSTextarea);
+		textarea.simulate('click');
+		expect(handleOnClickMock).toHaveBeenCalledTimes(1);
+	});
+
+	it('should call onKeyDown event', () => {
+		const handleOnKeyDownMock = jest.fn();
+		const uut = shallow(
+			<CSFormTextareaField
+				fieldType={fieldType}
+				label={label}
+				name={name}
+				onKeyDown={handleOnKeyDownMock}
+			/>,
+		);
+		const textarea = uut.find(CSTextarea);
+		textarea.simulate('keydown');
+		expect(handleOnKeyDownMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should pass correct readOnly value to CSTextarea', () => {
@@ -187,8 +217,8 @@ describe('CSFormTextareaField', () => {
 				readOnly
 			/>,
 		);
-		const inputText = uut.find(CSTextarea);
-		expect(inputText.prop('readOnly')).toBeTruthy();
+		const textarea = uut.find(CSTextarea);
+		expect(textarea.prop('readOnly')).toBeTruthy();
 	});
 
 	it('should pass correct required value to CSTextarea', () => {
@@ -200,8 +230,8 @@ describe('CSFormTextareaField', () => {
 				required
 			/>,
 		);
-		const inputText = uut.find(CSTextarea);
-		expect(inputText.prop('required')).toBeTruthy();
+		const textarea = uut.find(CSTextarea);
+		expect(textarea.prop('required')).toBeTruthy();
 	});
 
 	it('should pass correct rows value to CSTextarea', () => {
@@ -214,8 +244,8 @@ describe('CSFormTextareaField', () => {
 				rows={rows}
 			/>,
 		);
-		const inputText = uut.find(CSTextarea);
-		expect(inputText.prop('rows')).toBe(rows);
+		const textarea = uut.find(CSTextarea);
+		expect(textarea.prop('rows')).toBe(rows);
 	});
 
 	it('should pass correct styleClass to CSTextarea', () => {
@@ -228,8 +258,8 @@ describe('CSFormTextareaField', () => {
 				styleClass={styleClass}
 			/>,
 		);
-		const inputText = uut.find(CSTextarea);
-		expect(inputText.prop('className')).toBe(styleClass);
+		const textarea = uut.find(CSTextarea);
+		expect(textarea.prop('className')).toBe(styleClass);
 	});
 
 	it('should pass correct title to CSTextarea', () => {
@@ -242,8 +272,8 @@ describe('CSFormTextareaField', () => {
 				title={title}
 			/>,
 		);
-		const inputText = uut.find(CSTextarea);
-		expect(inputText.prop('title')).toBe(title);
+		const textarea = uut.find(CSTextarea);
+		expect(textarea.prop('title')).toBe(title);
 	});
 
 	it('should pass correct value to CSTextarea', () => {
@@ -256,7 +286,7 @@ describe('CSFormTextareaField', () => {
 				value={value}
 			/>,
 		);
-		const inputText = uut.find(CSTextarea);
-		expect(inputText.prop('value')).toBe(value);
+		const textarea = uut.find(CSTextarea);
+		expect(textarea.prop('value')).toBe(value);
 	});
 });

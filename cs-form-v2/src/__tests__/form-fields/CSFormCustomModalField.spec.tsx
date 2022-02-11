@@ -24,13 +24,13 @@ const modalDef = {
 const content = <span>Custom content</span>;
 
 describe('<CSFormCustomModalField />', () => {
-	it('should render modal button default properites', () => {
+	it('should render modal button default properties', () => {
 		const uut = shallow(<CSFormCustomModalField fieldType={fieldType} modalButton={modalButtonDef} modal={modalDef} />);
 		const modalButton = uut.find(CSButton);
 		expect(modalButton.first().prop('label')).toBe(modalButtonDef.label);
 	});
 
-	it('should render modal with default properites', () => {
+	it('should render modal with default properties', () => {
 		const uut = shallow(<CSFormCustomModalField fieldType={fieldType} modalButton={modalButtonDef} modal={modalDef} />);
 		const modal = uut.find(CSModal);
 		const modalHeader = uut.find(CSModalHeader);
@@ -142,11 +142,10 @@ describe('<CSFormCustomModalField />', () => {
 	});
 
 	it('should dynamically change content of CSModalHeader', async () => {
-		const headerFactory = () => new Promise<React.ReactElement>((resolve) => {
-			setTimeout(() => {
-				resolve(content);
-			}, 100);
-		});
+		const headerFactory = async () => {
+			await new Promise((resolve) => setTimeout(resolve, 100));
+			return content;
+		};
 		const modalDefHeaderFactory = { ...modalDef, header: { ...modalDef.header, headerFactory } };
 		const uut = mount(<CSFormCustomModalField fieldType={fieldType} modalButton={modalButtonDef} modal={modalDefHeaderFactory} />);
 		const modalButton = uut.find(CSButton);
@@ -176,11 +175,10 @@ describe('<CSFormCustomModalField />', () => {
 	});
 
 	it('should dynamically change content of CSModalBody', async () => {
-		const bodyFactory = () => new Promise<React.ReactElement>((resolve) => {
-			setTimeout(() => {
-				resolve(content);
-			}, 100);
-		});
+		const bodyFactory = async () => {
+			await new Promise((resolve) => setTimeout(resolve, 100));
+			return content;
+		};
 		const modalDefBodyFactory = { ...modalDef, body: { ...modalDef.body, bodyFactory } };
 		const uut = mount(<CSFormCustomModalField fieldType={fieldType} modalButton={modalButtonDef} modal={modalDefBodyFactory} />);
 		const modalButton = uut.find(CSButton);
@@ -226,11 +224,10 @@ describe('<CSFormCustomModalField />', () => {
 	});
 
 	it('should dynamically change content of CSModalFooter', async () => {
-		const footerFactory = () => new Promise<React.ReactElement>((resolve) => {
-			setTimeout(() => {
-				resolve(content);
-			}, 100);
-		});
+		const footerFactory = async () => {
+			await new Promise((resolve) => setTimeout(resolve, 100));
+			return content;
+		};
 		const modalDefFooterFactory = { ...modalDef, footer: { ...modalDef.footer, footerFactory } };
 		const uut = mount(<CSFormCustomModalField fieldType={fieldType} modalButton={modalButtonDef} modal={modalDefFooterFactory} />);
 		const modalButton = uut.find(CSButton);
