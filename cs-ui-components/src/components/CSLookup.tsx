@@ -512,10 +512,10 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			},
 		);
 
-		const selectedLookupItemClasses = classNames(
-			'cs-selected-input-option',
+		const lookupInputContent = classNames(
+			'cs-lookup-input-content',
 			{
-				'cs-custom-select-dropdown-open': dropdownVisible,
+				'cs-lookup-dropdown-open': dropdownVisible,
 			},
 		);
 
@@ -552,15 +552,26 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 		const initialPosition = `${position}-${this.flipPosition(align)}` as CSAutopositions;
 
-		const renderValues = () => {
-			if (searchTerm) return null;
+		const renderBlinkingCursor = () => {
+			if (!dropdownVisible || readOnly) return null;
 
-			return (
-				<span className={selectedLookupItemClasses}>
-					{selectedOptions?.map((option) => option?.data?.[fieldToBeDisplayed]).join(', ')}
-				</span>
-			);
+			const canvas = document.createElement('canvas');
+			const context = canvas.getContext('2d');
+			let width = 0;
+			if (context && this.lookupInputRef.current) {
+				context.font = getComputedStyle(this.lookupInputRef.current).font;
+				width = context.measureText(searchTerm).width;
+			}
+
+			return <div className="cs-blinking-cursor" style={{ left: width }} />;
 		};
+
+		const renderValues = (
+			<span className={lookupInputContent}>
+				{renderBlinkingCursor()}
+				{!searchTerm && selectedOptions?.map((option) => option?.data?.[fieldToBeDisplayed]).join(', ')}
+			</span>
+		);
 
 		const renderClearButton = () => {
 			if (!searchTerm && !selectedOptions.length) return null;
@@ -701,7 +712,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 							aria-multiselectable={multiselect}
 							{...rest}
 						/>
-						{renderValues()}
+						{renderValues}
 						{renderClearButton()}
 						{renderExpandIcon()}
 					</div>

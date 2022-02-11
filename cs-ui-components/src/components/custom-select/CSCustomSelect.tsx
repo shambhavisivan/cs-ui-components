@@ -292,7 +292,7 @@ const CSCustomSelect = ({
 		const canvas = document.createElement('canvas');
 		const context = canvas.getContext('2d');
 		let width = 0;
-		if (context) {
+		if (context && customSelectInputRef.current) {
 			context.font = getComputedStyle(customSelectInputRef.current).font;
 			width = context.measureText(searchTerm).width;
 		}

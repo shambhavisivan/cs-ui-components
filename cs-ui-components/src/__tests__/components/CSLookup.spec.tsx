@@ -101,7 +101,7 @@ describe('<CSLookup />', () => {
 		const lookupDropdownCustomPopup = uut.find('.cs-lookup-dropdown.ag-custom-component-popup');
 		expect(lookupDropdownCustomPopup).toHaveLength(0);
 		// options
-		const lookupSelectedOption = uut.find('.cs-selected-input-option');
+		const lookupSelectedOption = uut.find('.cs-lookup-input-content');
 		expect(lookupSelectedOption.text()).toBe('Acme');
 		// multiselect
 		expect(lookupInput.prop('aria-multiselectable')).toBeFalsy();
@@ -151,7 +151,7 @@ describe('<CSLookup />', () => {
 				value={{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } }}
 			/>,
 		);
-		const lookupSelectedOption = uut.find('.cs-selected-input-option');
+		const lookupSelectedOption = uut.find('.cs-lookup-input-content');
 		expect(lookupSelectedOption.text()).toBe('Acme');
 	});
 
@@ -442,7 +442,7 @@ describe('<CSLookup />', () => {
 			/>,
 		);
 		const lookupInput = uut.find('.cs-lookup-input');
-		const lookupSelectedOption = uut.find('.cs-selected-input-option');
+		const lookupSelectedOption = uut.find('.cs-lookup-input-content');
 		expect(lookupSelectedOption.text()).toBe('Acme, Global Media');
 		expect(lookupInput.prop('aria-multiselectable')).toBeTruthy();
 	});
