@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef, useLayoutEffect } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import CSDAccessibility from './CSDAccessibility';
 import CSDContent from './CSDContent';
@@ -31,7 +31,15 @@ const CSDPage = ({
 	const pageRef = useRef<HTMLDivElement>(null);
 	const [links, setLinks] = useState<Array<CSDSidebarItem>>([]);
 
-	useLayoutEffect(() => {
+	useEffect(() => {
+		const scrollId = window.location.hash;
+		if (scrollId) {
+			const scrollToElement = document.getElementById(scrollId.substring(1));
+			if (scrollToElement) {
+				scrollToElement.scrollIntoView({ block: 'start' });
+			}
+		}
+
 		if (pageRef.current) {
 			const linkElements = Array.from(pageRef.current.getElementsByClassName('csd-scrollspy'));
 
