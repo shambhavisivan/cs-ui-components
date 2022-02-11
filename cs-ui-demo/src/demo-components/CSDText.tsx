@@ -6,14 +6,14 @@ export interface CSDTextInterface {
 }
 
 const CSDText = ({ children }: CSDTextInterface) => (
-	<p className="csd-text">
+	<div className="csd-text">
 		{React.Children.map(children, (child: any) => {
 			if (typeof child === 'string') {
 				return CSDH.parseCode(child);
 			}
 			return child;
 		})}
-	</p>
+	</div>
 );
 
 export default CSDText;
