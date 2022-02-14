@@ -96,12 +96,12 @@ export const localeData: CSFormData = [
 			fieldType: 'DATE',
 			label: 'Date field',
 			name: 'date-locale',
-			selected: new Date()
+			value: new Date()
 		}, {
 			fieldType: 'DATETIME',
 			label: 'Date-time field',
 			name: 'date-time-locale',
-			selected: new Date()
+			value: new Date()
 		}]
 	}
 ];
