@@ -636,6 +636,8 @@ const CSLookupPreview = () => {
 					Similar to the `error` props, most form fields including CSLookup feature a selection of boolean restriction props that
 					either prevent or require user interaction. Each prop can be used individually or in combination, however certain combinations
 					are recommended against such as combining `required` with any prop that prevents interaction.
+					Using the `readOnly` prop user won't be able to modify the input field anymore, however, user will still be able to focus it,
+					highlight it, and copy the text from it. Using the `disabled` prop input field will become unusable, un-clickable and the value will be hidden.
 				</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
