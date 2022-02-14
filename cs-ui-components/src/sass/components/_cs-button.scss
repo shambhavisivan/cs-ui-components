@@ -14,6 +14,7 @@
 	background: none;
 	text-decoration: none;
 	font-family: inherit;
+	@include overflow-ellipsis;
 	--cs-button-c: var(--cs-btn-custom-c, var(--cs-button-default-c));
 	--cs-button-bg: var(--cs-button-default-bg);
 	--cs-button-br: var(--cs-button-default-br);
@@ -55,15 +56,15 @@
 		}
 	}
 	.cs-btn-label {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
+		display: inline-block;
+		justify-content: flex-start;
 		height: calc(2rem - 2px);
+		line-height: calc(2rem - 2px);
 		font-size: 0.8125rem;
-		white-space: nowrap;
-		z-index: var(--z-index-button-label);
-		@include sc(--cs-button-c);
 		pointer-events: none;
+		z-index: var(--z-index-button-label);
+		@include overflow-ellipsis;
+		@include sc(--cs-button-c);
 	}
 	&:hover {
 		&::before {
@@ -132,7 +133,6 @@
 		margin-left: 0;
 		.cs-btn-label {
 			flex: 1;
-			@include overflow-ellipsis;
 		}
 		&.cs-btn-no-icon {
 			padding: 0 1rem;
