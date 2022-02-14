@@ -148,16 +148,14 @@
 	.cs-custom-select-icon {
 		position: absolute;
 		right: 0.5rem;
-		top: 50%;
-		transform: translateY(-50%) rotate(cvar(--cs-icon-rotate));
+		align-self: center;
 		pointer-events: none;
 		transition: transform 200ms ease-in-out;
 	}
 
 	.cs-custom-select-clear {
 		position: absolute;
-		top: 50%;
-		transform: translateY(-50%);
+		align-self: center;
 		right: 1.625rem;
 
 		&-options {

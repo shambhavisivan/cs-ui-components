@@ -432,7 +432,7 @@ const CSCustomSelect = ({
 		return (
 			<CSIcon
 				name="down"
-				rotate={dropdownVisible ? 180 : 360}
+				rotate={dropdownVisible ? 180 : null}
 				className="cs-custom-select-icon"
 			/>
 		);
