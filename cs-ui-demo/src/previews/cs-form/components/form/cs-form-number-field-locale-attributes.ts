@@ -4,10 +4,12 @@ export default {
 	data: [
 		{
 			name: 'numLocale',
+			link: '/cs-form/form#localization',
 			types: 'string',
 			description: 'Set the BCP 47 language tag.'
 		}, {
 			name: 'options',
+			link: '/cs-form/form#localization',
 			customTypes: {
 				name: 'CSFormNumberFiledLocale',
 				types: 'To be added'
