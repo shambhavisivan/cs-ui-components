@@ -106,24 +106,58 @@
 		}
 	}
 
+	.react-datepicker__tab-loop {
+		.react-datepicker-popper {
+			.react-datepicker {
+				.react-datepicker__triangle {
+					left: 2rem !important;
+					transform: none !important;
+					@include css4 {
+						border-bottom-color: cvar(--cs-datepicker-bg);
+					}
+
+					&::before {
+						@include css4 {
+							border-bottom-color: cvar(--cs-datepicker-br);
+						}
+					}
+				}
+
+				@include css4 {
+					border-top-color: cvar(--cs-datepicker-today-bg);
+				}
+			}
+
+			&[data-placement^="bottom-end"],
+			&[data-placement^="top-end"] {
+				.react-datepicker__triangle {
+					left: initial !important;
+					right: 2rem !important;
+				}
+			}
+		}
+	}
+
+	&.cs-datetimepicker {
+		.react-datepicker-popper[data-placement^="bottom-end"],
+		.react-datepicker-popper[data-placement^="top-end"] {
+			.react-datepicker__triangle {
+				&::before {
+					@include css4 {
+						border-bottom-color: cvar(--cs-datepicker-triangle-bg);
+					}
+				}
+				@include css4 {
+					border-bottom-color: cvar(--cs-datepicker-triangle-bg);
+				}
+			}
+		}
+	}
+
 	.react-datepicker {
 		@include css4 {
 			box-shadow: 0 2px 8px var(--cs-shadow-light);
 			border: 1px solid cvar(--cs-datepicker-br);
-		}
-
-		.react-datepicker__triangle {
-			left: 2rem !important;
-			transform: none !important;
-			@include css4 {
-				border-bottom-color: cvar(--cs-datepicker-bg);
-			}
-
-			&::before {
-				@include css4 {
-					border-bottom-color: cvar(--cs-datepicker-br);
-				}
-			}
 		}
 
 		.react-datepicker__navigation {
