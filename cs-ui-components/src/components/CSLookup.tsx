@@ -282,19 +282,21 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		const { selectedOptions, searchTerm } = this.state;
 
 		const prevIndex = selectedOptions.findIndex((prevSelectedOption) => prevSelectedOption.key === selectedOption.key);
-		const newSelectedOptions = selectedOptions;
+		const newSelectedOptions = [...selectedOptions];
 
 		if (prevIndex !== -1 && multiselect) newSelectedOptions.splice(prevIndex, 1);
 		else if (multiselect) newSelectedOptions.push(selectedOption);
 		else newSelectedOptions[0] = selectedOption;
 
 		try {
-			await onSelectChange?.(multiselect ? newSelectedOptions : newSelectedOptions?.[0]);
+			const result = await onSelectChange?.(multiselect ? newSelectedOptions : newSelectedOptions?.[0]) ?? true;
 			if (!multiselect) this.lookupInputRef.current?.focus();
-			this.setState({
-				selectedOptions: newSelectedOptions,
-				searchTerm: multiselect ? searchTerm : '',
-			});
+			if (result) {
+				this.setState({
+					selectedOptions: newSelectedOptions,
+					searchTerm: multiselect ? searchTerm : '',
+				});
+			}
 		} catch (error) {
 			console.error(error);
 		}

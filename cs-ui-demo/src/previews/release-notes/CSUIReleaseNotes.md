@@ -69,6 +69,7 @@
   * removed box shadow on mouse focus
 * CSLookup
   * fixed deleting search term with backspace deletes the whole term instead of one letter
+  * prevented state change on `onSelectChange` prop if return value is false
 * CSModal
   * <i>important</i> changed `visible` prop in `CSUnmountDelay` to be `false` by default
   * changed classes with `.cs-button` prefix to `.cs-btn`
