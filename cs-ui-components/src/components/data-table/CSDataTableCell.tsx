@@ -38,7 +38,7 @@ const CSDataTableCell = ({
 	const getCellClassName = useMemo(() => {
 		if (typeof cellClassName !== 'function') return cellClassName;
 		return cellClassName({ ...row, meta: rowMeta });
-	}, [cellClassName]);
+	}, [cellClassName, row, rowMeta]);
 
 	const tableColumnClasses = classNames(
 		'cs-data-table-cell',

@@ -73,7 +73,7 @@ const CSTreeItem = ({
 		// Hide if the tree isn't collapsible
 		// and the item does not have an explicit setting
 		return collapsible !== undefined || treeCollapsible;
-	}, [collapsible, treeCollapsible]);
+	}, [children, collapsible, treeCollapsible]);
 
 	const handleClick = (event?: React.MouseEvent<HTMLLIElement>) => {
 		event?.stopPropagation();

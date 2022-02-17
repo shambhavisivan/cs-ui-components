@@ -62,7 +62,7 @@ const CSTransferList = ({
 			(transferListRef.current?.querySelector(listItemElement) as HTMLElement)?.focus();
 		}
 		listDataLength.current = listItems.length;
-	}, [listItems]);
+	}, [listItemElement, listItems]);
 
 	const searchingFor = (term: any) => (item: any) => item.label.toLowerCase().includes(term.toLowerCase());
 

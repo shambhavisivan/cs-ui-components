@@ -52,7 +52,7 @@ const CSDataTableRow = ({
 	const [subsectionVisible, setSubsectionVisible] = useState<boolean>(!defaultCollapsible);
 
 	// Define row meta data for render functions
-	const rowMeta = {
+	const rowMeta = useMemo(() => ({
 		level,
 		selected: selectedKeys.has(row.key),
 		indeterminate: indeterminateKeys.has(row.key),
@@ -63,7 +63,7 @@ const CSDataTableRow = ({
 		expanded,
 		setExpanded,
 		toggleExpanded: () => setExpanded((prevExpanded: boolean) => !prevExpanded),
-	} as CSDataTableRowMetaInterface;
+	} as CSDataTableRowMetaInterface), [expanded, indeterminateKeys, level, readOnlyKeys, row.key, selectedKeys, subsectionVisible]);
 
 	const isCollapsible = useMemo(() => {
 		// Hide if the row is explicitly not collapsible
@@ -77,7 +77,7 @@ const CSDataTableRow = ({
 	// Determine whether the row has a subsection
 	const hasSubsection = useMemo(() => (
 		!!subsectionRender?.({ ...row, meta: rowMeta })
-	), [subsectionRender]);
+	), [row, rowMeta, subsectionRender]);
 
 	const renderCheckbox = () => {
 		if (!dataTableSelectable) return null;

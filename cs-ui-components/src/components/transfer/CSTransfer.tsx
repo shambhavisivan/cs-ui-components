@@ -58,7 +58,7 @@ const CSTransfer = ({
 	const transferItems = useMemo(() => ({
 		source: items.filter((item) => !targetKeys?.includes(item.key)),
 		target: items.filter((item) => targetKeys?.includes(item.key)),
-	}), [targetKeys]);
+	}), [items, targetKeys]);
 
 	const onSelectChange = (event: any,
 		key: React.ReactText,

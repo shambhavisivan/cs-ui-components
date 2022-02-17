@@ -145,7 +145,7 @@ const CSDataTable = ({
 	const extraIndent = useMemo(() => (
 		collapsible && (subsectionRender || rows.some((row: CSDataTableRowInterface) => (
 			row.children?.length && row.collapsible !== false
-		)))), [collapsible, rows]);
+		)))), [collapsible, rows, subsectionRender]);
 
 	return (
 		<CSDataTableProvider
