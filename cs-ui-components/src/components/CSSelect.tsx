@@ -8,6 +8,7 @@ import { CSCustomDataIconProps, CSCustomDataActionProps } from './custom-data/CS
 import CSIcon from './CSIcon';
 import CSCustomDataIcons from './custom-data/CSCustomDataIcons';
 import CSCustomDataActions from './custom-data/CSCustomDataActions';
+import KeyCode from '../util/KeyCode';
 
 export interface CSSelectProps {
 	[key: string]: any;
@@ -81,6 +82,12 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 	handleOnBlur = (e: React.FocusEvent<HTMLSelectElement>) => {
 		const { onBlur } = this.props;
 		onBlur?.(e.target.value);
+	}
+
+	handleOnKeyDown = (e: React.KeyboardEvent<HTMLSelectElement>) => {
+		const { onKeyDown, readOnly } = this.props;
+		if (readOnly && e.key !== KeyCode.Tab) e.preventDefault();
+		onKeyDown?.(e);
 	}
 
 	render() {
@@ -165,7 +172,7 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 							onBlur={this.handleOnBlur}
 							onChange={this.handleOnChange}
 							onClick={onClick}
-							onKeyDown={onKeyDown}
+							onKeyDown={this.handleOnKeyDown}
 							name={name}
 							value={value}
 							title={title}
