@@ -5,24 +5,20 @@ export const fields: any = [{
 	name: 'number-1',
 	required: true,
 	min: 1,
-	max: 5,
-	value: ''
+	max: 5
 }, {
 	fieldType: 'TEXT',
 	label: 'Text field',
 	name: 'text-1',
-	maxLength: 10,
-	value: ''
+	maxLength: 10
 }, {
 	fieldType: 'TOGGLE',
 	label: 'Toggle field',
-	name: 'toggle-1',
-	value: false
+	name: 'toggle-1'
 }, {
 	fieldType: 'SELECT',
 	label: 'Select field',
 	name: 'select-1',
-	value: 'red',
 	selectOptions: [{
 		key: 'red',
 		value: 'Red'
@@ -36,13 +32,11 @@ export const fields: any = [{
 }, {
 	fieldType: 'CHECKBOX',
 	label: 'Checkbox',
-	name: 'checkbox-1',
-	value: false
+	name: 'checkbox-1'
 }, {
 	fieldType: 'TEXTAREA',
 	label: 'Textarea field',
-	name: 'textarea-1',
-	value: ''
+	name: 'textarea-1'
 }];
 
 export const initialSectionData: CSFormData = [

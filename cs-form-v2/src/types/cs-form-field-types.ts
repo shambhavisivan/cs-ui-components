@@ -238,7 +238,8 @@ export interface CSFormToggleFieldProps extends CSFormFieldCommonProps {
 	value?: boolean;
 }
 
-type CSFormStandardFields = CSFormCheckboxFieldProps
+/** Only standard form fields types */
+export type CSFormStandardFields = CSFormCheckboxFieldProps
 	| CSFormCustomSelectFieldProps
 	| CSFormDateFieldProps
 	| CSFormDateTimeFieldProps

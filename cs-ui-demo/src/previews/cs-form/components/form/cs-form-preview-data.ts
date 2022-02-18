@@ -243,19 +243,16 @@ export const formErrorData: CSFormData = [
 			fieldType: 'NUMBER',
 			label: 'Number field',
 			name: 'number-form-error',
-			required: true,
-			value: ''
+			required: true
 		}, {
 			fieldType: 'TEXT',
 			label: 'Text field',
 			name: 'text-1',
-			maxLength: 10,
-			value: ''
+			maxLength: 10
 		}, {
 			fieldType: 'TOGGLE',
 			label: 'Toggle field',
-			name: 'toggle-1',
-			value: false
+			name: 'toggle-1'
 		}]
 	}
 ];

@@ -13,7 +13,7 @@ const validateField = (field: CSFormFieldData, value: any, customErrorLabels?: C
 	if (field.fieldType === 'CUSTOM-MODAL' || field.fieldType === 'CUSTOM') return null;
 
 	/** Check requiredness of the field regardless of the type */
-	if (field.required && !value) {
+	if (field.required && (!value || value === '')) {
 		if (customErrorLabels?.requiredFieldErrLabel) {
 			errors.push(customErrorLabels.requiredFieldErrLabel);
 		} else if (field.fieldType === 'RADIO') {
