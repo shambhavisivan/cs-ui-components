@@ -5,6 +5,7 @@ import { CSModalBodyProps } from '@cloudsense/cs-ui-components/dist/cs-ui-compon
 import { CSModalFooterProps } from '@cloudsense/cs-ui-components/dist/cs-ui-components/src/components/modal/CSModalFooter';
 import React from 'react';
 import { CSModalProps } from '@cloudsense/cs-ui-components/dist/cs-ui-components/src/components/modal/CSModal';
+import { CSDataTableRowInterface } from '@cloudsense/cs-ui-components';
 import { CSFormData } from './cs-form-types';
 
 type ExcludeCommonHelper<T, K extends string | number | symbol> = T extends unknown ? Omit<T, K> : never;
@@ -27,7 +28,6 @@ export interface CSFormFieldCommonProps {
 	required?: boolean;
 	styleClass?: string;
 	title?: string;
-	value?: any;
 }
 
 export interface CSFormFieldLayoutProps {
@@ -55,6 +55,7 @@ export type CSFormFieldType = 'CHECKBOX' |
 export interface CSFormCheckboxFieldProps extends CSFormFieldCommonProps {
 	fieldType: 'CHECKBOX';
 	indeterminate?: boolean;
+	value?: boolean;
 }
 
 /** CUSTOM FIELD */
@@ -107,6 +108,7 @@ export interface CSFormCustomSelectFieldProps extends Omit<CSFormFieldCommonProp
 	onClear?: () => void;
 	onSearch?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	options: Array<CSFormCustomSelectOption>;
+	value?: React.ReactText | Array<React.ReactText>;
 }
 
 /** DATE FIELD */
@@ -114,6 +116,7 @@ export interface CSFormDateFieldProps extends CSFormFieldCommonProps {
 	dateFormat?: string;
 	fieldType: 'DATE';
 	locale?: any;
+	value?: Date;
 }
 
 /** DATETIME FIELD */
@@ -143,6 +146,7 @@ export interface CSFormLookupFieldCommonProps {
 	columns: Array<CSFormLookupFieldTableColumn>;
 	mode: CSFormLookupFieldMode;
 	multiselect?: boolean;
+	value?: CSDataTableRowInterface | Array<CSDataTableRowInterface> | null;
 }
 
 export interface CSFormLookupFieldServerProps {
@@ -178,6 +182,7 @@ export interface CSFormNumberFieldProps extends CSFormFieldCommonProps {
 	max?: any;
 	min?: any;
 	useLocale?: boolean;
+	value?: any;
 }
 
 /** RADIO FIELD */
@@ -189,25 +194,15 @@ export interface CSFormRadioOption extends Pick<CSFormFieldCommonProps,
 	radioOptionValue: string;
 }
 
-// CSRadio doesn't support actions and icons so supported props are picked from CSFormFieldCommonProps type
-export interface CSFormRadioFieldProps extends Pick<CSFormFieldCommonProps,
-	'error' |
-	'errorMessage' |
-	'disabled' |
-	'helpText' |
-	'label' |
-	'name' |
-	'onBlur' |
-	'onClick' |
-	'onChange' |
-	'onKeyDown' |
-	'readOnly' |
-	'required' |
-	'styleClass' |
-	'value'
+// CSRadio doesn't support actions, icons and title so these props are omitted from CSFormFieldCommonProps type
+export interface CSFormRadioFieldProps extends Omit<CSFormFieldCommonProps,
+	'actions' |
+	'icons' |
+	'title'
 > {
 	fieldType: 'RADIO';
 	radioOptions: Array<CSFormRadioOption>;
+	value?: string;
 }
 
 /** SELECT FIELD */
@@ -219,12 +214,14 @@ export interface CSFormSelectOption {
 export interface CSFormSelectFieldProps extends CSFormFieldCommonProps {
 	fieldType: 'SELECT';
 	selectOptions: Array<CSFormSelectOption>;
+	value?: any;
 }
 
 /** TEXT FIELD */
 export interface CSFormTextFieldProps extends CSFormFieldCommonProps {
 	fieldType: 'TEXT';
 	maxLength?: number;
+	value?: string;
 }
 
 /** TEXTAREA FIELD */
@@ -232,11 +229,13 @@ export interface CSFormTextareaFieldProps extends CSFormFieldCommonProps {
 	fieldType: 'TEXTAREA';
 	maxHeight?: string;
 	rows?: number;
+	value?: string;
 }
 
 /** TOGGLE FIELD */
 export interface CSFormToggleFieldProps extends CSFormFieldCommonProps {
 	fieldType: 'TOGGLE';
+	value?: boolean;
 }
 
 type CSFormStandardFields = CSFormCheckboxFieldProps

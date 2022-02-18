@@ -8,6 +8,11 @@ export const CSFormChecboxFieldAttributes = {
 			type: 'boolean',
 			default: 'false',
 			description: 'Control the indeterminate state of the checkbox.'
+		}, {
+			name: 'value',
+			type: 'boolean',
+			default: 'false',
+			description: 'Set checked value of checkbox field.'
 		}
 	]
 };
@@ -38,6 +43,10 @@ export const CSFormCustomSelectFieldAttributes = {
 			link: '/cs-form/standard-form-fields#custom-select',
 			types: '(event) => void',
 			description: 'Handler method when the search term changes.'
+		}, {
+			name: 'value',
+			types: ['React.ReactText', 'Array<React.ReactText>'],
+			description: 'A single key or an array of keys corresponding to selected options.'
 		}
 	]
 };
@@ -74,6 +83,10 @@ export const CSFormDateFieldAttributes = {
 			name: 'locale',
 			types: 'any',
 			description: 'Set the datepicker locale.'
+		}, {
+			name: 'value',
+			types: 'Date',
+			description: 'Set selected date.'
 		}
 	]
 };
@@ -107,6 +120,10 @@ export const CSFormDateTimeFieldAttributes = {
 			link: '/cs-form/standard-form-fields#date-time',
 			types: 'number',
 			description: 'Set the interval between each time value. (eg. 15, 20, 30, 60, etc.)'
+		}, {
+			name: 'value',
+			types: 'Date',
+			description: 'Set selected date.'
 		}
 	]
 };
@@ -139,6 +156,14 @@ export const CSFormLookupFieldAttributes = {
 			required: true,
 			types: [`'client'`, `'server'`],
 			description: 'Set whether the component should run in client-side or server-side mode. The client-side mode loads records by reading the options prop and filtering takes place within the component, while the server-side mode enables asynchronous fetching of records with the fetchOptions prop, which also enables infinite scroll and setting the minimum search term length.'
+		}, {
+			name: 'value',
+			types: [
+				'CSDataTableRowInterface',
+				'Array<CSDataTableRowInterface>',
+				'null'
+			],
+			description: 'Set which values should be displayed in the lookup.'
 		}
 
 	]
@@ -220,6 +245,10 @@ export const CSFormNumberFieldAttributes = {
 			link: '/cs-form/standard-form-fields#number',
 			types: 'boolean',
 			description: 'Set whether the number field value will be formatted by the defined locale.'
+		}, {
+			name: 'value',
+			types: 'any',
+			description: 'Set value for number field.'
 		}
 	]
 };
@@ -237,6 +266,10 @@ export const CSFormRadioFieldAttributes = {
 			},
 			required: true,
 			description: 'Define options which will be rendered as a part of the grouped input radio elements.'
+		}, {
+			name: 'value',
+			types: 'string',
+			description: 'Set selected radio option value.'
 		}
 	]
 };
@@ -291,6 +324,10 @@ export const CSFormSelectFieldAttributes = {
 			},
 			required: true,
 			description: 'Set the options which will be available in the picklist.'
+		}, {
+			name: 'value',
+			types: 'any',
+			description: 'Set selected option value.'
 		}
 	]
 };
@@ -324,6 +361,10 @@ export const CSFormTextFieldAttributes = {
 			link: '/cs-form/standard-form-fields#text',
 			types: 'number',
 			description: 'Set the maximum length of the value.'
+		}, {
+			name: 'value',
+			types: 'string',
+			description: 'Set value for text field.'
 		}
 	]
 };
@@ -343,6 +384,10 @@ export const CSFormTextareaFieldAttributes = {
 			types: 'number',
 			default: '3',
 			description: 'Set how many rows the textarea defaults to.'
+		}, {
+			name: 'value',
+			types: 'string',
+			description: 'Set value for textarea field.'
 		}
 	]
 };

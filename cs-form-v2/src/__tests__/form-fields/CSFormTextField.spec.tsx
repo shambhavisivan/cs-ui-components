@@ -263,7 +263,7 @@ describe('CSFormTextField', () => {
 	});
 
 	it('should pass correct value to CSInputText', () => {
-		const value = 5;
+		const value = 'Text';
 		const uut = shallow(
 			<CSFormTextField
 				fieldType={fieldType}

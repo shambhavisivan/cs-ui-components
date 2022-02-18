@@ -441,7 +441,7 @@ const CSFormStandardFormFieldsPreview = () => {
 				<CSD.Heading level={2}>Title and Value</CSD.Heading>
 				<CSD.Text>The `title` property sets the title attribute for a form field. It represents advisory information for the field it belongs to.</CSD.Text>
 				<CSD.Text>An exception exists with the `title` prop on radio fields. It can only be set on radio options, not the radio field itself.</CSD.Text>
-				<CSD.Text>The `value` property specifies the value of the form field.</CSD.Text>
+				<CSD.Text>The `value` property specifies the value of the form field. It is type-checked for each field type and the types are described in the tables on Props tab.</CSD.Text>
 				<CSD.Text>
 					Considering that the entire form is stateless and isn't managing any input data, the `value` property of the desired field needs to be
 					updated on every field change. This provides flexibility for the form fields and form itself, since usually some values are updated conditionally with some external logic.

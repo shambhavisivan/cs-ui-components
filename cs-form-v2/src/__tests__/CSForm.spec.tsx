@@ -47,13 +47,13 @@ const dataWithNumberAndDate: CSFormData = [{
 		fieldType: 'DATE',
 		label: fieldLabel,
 		name: `${fieldName}_1`,
-		value: fieldValue,
+		value: new Date(),
 		readOnly: fieldReadOnly,
 	}, {
 		fieldType: 'DATETIME',
 		label: fieldLabel,
 		name: `${fieldName}_2`,
-		value: fieldValue,
+		value: new Date(),
 		readOnly: fieldReadOnly,
 	}, {
 		fieldType: 'NUMBER',

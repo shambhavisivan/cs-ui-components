@@ -106,11 +106,6 @@ export default {
 			link: '/cs-form/standard-form-fields#title-and-value',
 			types: 'string',
 			description: 'Set the field title.'
-		}, {
-			name: 'value',
-			link: '/cs-form/standard-form-fields#title-and-value',
-			types: 'any',
-			description: 'Set the value of the field.'
 		}
 	]
 };
