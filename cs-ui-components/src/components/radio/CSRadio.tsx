@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
 import CSLabel from '../CSLabel';
@@ -24,85 +24,82 @@ export interface CSRadioProps {
 	variant?: CSRadioVariant;
 }
 
-class CSRadio extends React.Component<CSRadioProps> {
-	public static defaultProps = {
-		variant: 'neutral',
-	};
+const CSRadio = ({
+	children,
+	className,
+	disabled,
+	error,
+	errorMessage,
+	helpText,
+	hidden,
+	id,
+	label,
+	labelHidden,
+	labelTitle,
+	required,
+	tooltipPosition,
+	variant = 'neutral',
+	forwardRef,
+	...rest
+}: CSRadioProps) => {
+	const { current: uniqueAutoId } = useRef(id || uuidv4());
 
-	render() {
-		const {
-			children,
-			className,
-			disabled,
-			error,
-			errorMessage,
-			helpText,
-			hidden,
-			id,
-			label,
-			labelHidden,
-			labelTitle,
-			required,
-			tooltipPosition,
-			variant,
-			...rest
-		} = this.props;
+	const radioWrapperClasses = classNames(
+		'cs-radio-wrapper',
+		{
+			[`${className}`]: className,
+			'cs-element-hidden': hidden,
+		},
+	);
 
-		const radioWrapperClasses = classNames(
-			'cs-radio-wrapper',
-			{
-				[`${className}`]: className,
-				'cs-element-hidden': hidden,
-			},
-		);
+	const radioGroupClasses = classNames(
+		'cs-radio-group',
+		{
+			'cs-radio-error': error === true,
+			[`cs-radio-${variant}`]: variant,
+			'cs-radio-disabled': disabled,
+		},
+	);
 
-		const radioGroupClasses = classNames(
-			'cs-radio-group',
-			{
-				'cs-radio-error': error === true,
-				[`cs-radio-${variant}`]: variant,
-				'cs-radio-disabled': disabled,
-			},
-		);
+	const childrenWithProps = React.Children.map(children, (child) => {
+		if (child) {
+			return React.cloneElement(
+				child as any,
+				{
+					ariaInvalid: error,
+					ariaRequired: required,
+					parentDisabled: disabled,
+				},
+			);
+		}
 
-		const uniqueAutoId = id || uuidv4();
+		return null;
+	});
 
-		const childrenWithProps = React.Children.map(children, (child) => {
-			if (child) {
-				return React.cloneElement(
-					child as any,
-					{
-						ariaInvalid: error,
-						ariaRequired: required,
-						parentDisabled: disabled,
-					},
-				);
-			}
-
-			return null;
-		});
-
-		return (
-			<div className={radioWrapperClasses} {...rest}>
-				{(label && !labelHidden)
-					&& (
-						<CSLabel
-							htmlFor={uniqueAutoId}
-							label={label}
-							helpText={helpText}
-							tooltipPosition={tooltipPosition}
-							required={required}
-							title={labelTitle ? label : null}
-						/>
-					)}
-				<div className={radioGroupClasses} id={uniqueAutoId} aria-label={label}>
-					{childrenWithProps}
-				</div>
-				{(error && errorMessage)
-					&& <CSFieldErrorMsg message={errorMessage} />}
+	return (
+		<div className={radioWrapperClasses} {...rest} ref={forwardRef}>
+			{(label && !labelHidden)
+				&& (
+					<CSLabel
+						htmlFor={uniqueAutoId}
+						label={label}
+						helpText={helpText}
+						tooltipPosition={tooltipPosition}
+						required={required}
+						title={labelTitle ? label : null}
+					/>
+				)}
+			<div className={radioGroupClasses} id={uniqueAutoId} aria-label={label}>
+				{childrenWithProps}
 			</div>
-		);
-	}
-}
+			{(error && errorMessage)
+				&& <CSFieldErrorMsg message={errorMessage} />}
+		</div>
+	);
+};
 
-export default CSRadio;
+const CSRadioWithRef = React.forwardRef<HTMLDivElement, CSRadioProps>((props: CSRadioProps, ref) => <CSRadio {...props} forwardRef={ref} />);
+
+CSRadioWithRef.displayName = 'CSRadio';
+
+export default CSRadioWithRef;

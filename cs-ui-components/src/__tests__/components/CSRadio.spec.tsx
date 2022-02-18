@@ -9,7 +9,7 @@ const name = 'Radio option name';
 
 describe('<CSRadio />', () => {
 	it('should render the default CSRadio', () => {
-		const uut = shallow(<CSRadio label={label} />);
+		const uut = shallow(<CSRadio label={label} />).dive();
 		// Should render a radio
 		const radio = uut.find('.cs-radio-wrapper > .cs-radio-neutral');
 		expect(radio).toHaveLength(1);
@@ -29,7 +29,7 @@ describe('<CSRadio />', () => {
 	});
 
 	it('should pass label to CSLabel', () => {
-		const uut = shallow(<CSRadio label={label} />);
+		const uut = shallow(<CSRadio label={label} />).dive();
 		expect(uut.find('.cs-radio-wrapper')).toHaveLength(1);
 		const radioLabel = uut.find('.cs-radio-wrapper > CSLabel');
 		expect(radioLabel).toHaveLength(1);
@@ -41,7 +41,7 @@ describe('<CSRadio />', () => {
 			<CSRadio label={label} disabled>
 				<CSRadioOption label={label} name={name} />
 			</CSRadio>,
-		);
+		).dive();
 		expect(uut.find('.cs-radio-group.cs-radio-disabled')).toHaveLength(1);
 		const radioOption = uut.find('CSRadioOption');
 		expect(radioOption.shallow().find('.cs-radio').props().disabled).toBeTruthy();
@@ -52,7 +52,7 @@ describe('<CSRadio />', () => {
 			<CSRadio label={label} error>
 				<CSRadioOption label={label} name={name} />
 			</CSRadio>,
-		);
+		).dive();
 		const radioOption = uut.find('CSRadioOption');
 		expect(uut.find('.cs-radio-wrapper > .cs-radio-error')).toHaveLength(1);
 		expect(radioOption.shallow().find('.cs-radio').prop('aria-invalid')).toBeTruthy();
@@ -66,7 +66,7 @@ describe('<CSRadio />', () => {
 				error
 				errorMessage={errorMessage}
 			/>,
-		);
+		).dive();
 		expect(uut.find('CSFieldErrorMsg')).toHaveLength(1);
 		expect(uut.find('CSFieldErrorMsg').prop('message')).toBe(errorMessage);
 	});
@@ -82,24 +82,24 @@ describe('<CSRadio />', () => {
 				<CSRadioOption label="red" name={name} />
 				<CSRadioOption label="blue" name={name} />
 			</CSRadio>,
-		);
+		).dive();
 		const radioWrapper = uut.find('.cs-radio-wrapper > CSLabel');
 		expect(radioWrapper.prop('helpText')).toBe(helpText);
 	});
 
 	it('should be hidden', () => {
-		const uut = shallow(<CSRadio label={label} hidden />);
+		const uut = shallow(<CSRadio label={label} hidden />).dive();
 		expect(uut.find('.cs-element-hidden')).toHaveLength(1);
 	});
 
 	it('should have a hidden label', () => {
-		const uut = shallow(<CSRadio label={label} labelHidden />);
+		const uut = shallow(<CSRadio label={label} labelHidden />).dive();
 		expect(uut.find('.cs-radio-wrapper > CSLabel')).toHaveLength(0);
 	});
 
 	it('should pass to CSLabel title prop', () => {
 		const labelTitle = 'This is a label';
-		const uut = shallow(<CSRadio label={labelTitle} labelTitle />);
+		const uut = shallow(<CSRadio label={labelTitle} labelTitle />).dive();
 		const radioLabel = uut.find('.cs-radio-wrapper > CSLabel');
 		expect(radioLabel.props().title).toBe(labelTitle);
 	});
@@ -109,7 +109,7 @@ describe('<CSRadio />', () => {
 			<CSRadio label={label} required>
 				<CSRadioOption label={label} name={name} />
 			</CSRadio>,
-		);
+		).dive();
 		const requiredLabel = uut.find('.cs-radio-wrapper > CSLabel');
 		expect(requiredLabel.prop('required')).toBeTruthy();
 		const radioOption = uut.find('CSRadioOption');
@@ -124,32 +124,32 @@ describe('<CSRadio />', () => {
 				helpText="Help text example"
 				tooltipPosition={tooltipPosition}
 			/>,
-		);
+		).dive();
 		const radioWrapperLabel = uut.find('.cs-radio-wrapper > CSLabel');
 		expect(radioWrapperLabel.prop('tooltipPosition')).toBe(tooltipPosition);
 	});
 
 	it('should render neutral radio buttons', () => {
-		const uut = shallow(<CSRadio label={label} variant="neutral" />);
+		const uut = shallow(<CSRadio label={label} variant="neutral" />).dive();
 		const radioOption = uut.find('.cs-radio-group.cs-radio-neutral');
 		expect(radioOption).toHaveLength(1);
 	});
 
 	it('should render brand radio buttons', () => {
-		const uut = shallow(<CSRadio label={label} variant="brand" />);
+		const uut = shallow(<CSRadio label={label} variant="brand" />).dive();
 		const radioOption = uut.find('.cs-radio-group.cs-radio-brand');
 		expect(radioOption).toHaveLength(1);
 	});
 
 	it('should have a custom class name', () => {
 		const customClass = 'custom-class';
-		const uut = shallow(<CSRadio label={label} className={customClass} />);
+		const uut = shallow(<CSRadio label={label} className={customClass} />).dive();
 		expect(uut.find(`.cs-radio-wrapper.${customClass}`)).toHaveLength(1);
 	});
 
 	it('should have a custom ID', () => {
 		const customId = 'custom-id';
-		const uut = shallow(<CSRadio label={label} id={customId} />);
+		const uut = shallow(<CSRadio label={label} id={customId} />).dive();
 		expect(uut.find(`.cs-radio-wrapper > .cs-radio-group#${customId}`)).toHaveLength(1);
 		expect(uut.find('.cs-radio-wrapper > CSLabel').props().htmlFor).toBe(customId);
 	});

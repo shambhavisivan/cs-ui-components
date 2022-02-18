@@ -20,100 +20,82 @@ export interface CSRadioOptionProps {
 	value?: string | number;
 }
 
-class CSRadioOption extends React.Component<CSRadioOptionProps> {
-	public radioOptionInnerRef: React.RefObject<HTMLInputElement>
-
-	constructor(props: CSRadioOptionProps) {
-		super(props);
-
-		this.toggleRadio = this.toggleRadio.bind(this);
-		this.radioOptionInnerRef = React.createRef();
-	}
-
-	toggleRadio(e: React.ChangeEvent<HTMLInputElement>) {
-		const { readOnly, onChange } = this.props;
-
+const CSRadioOption = ({
+	ariaInvalid,
+	ariaRequired,
+	checked,
+	className,
+	disabled,
+	id,
+	label,
+	name,
+	parentDisabled,
+	readOnly,
+	onBlur,
+	onChange,
+	onClick,
+	onKeyDown,
+	title,
+	value,
+	...rest
+}: CSRadioOptionProps) => {
+	const toggleRadio = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (readOnly) {
 			e.target.checked = e.target.defaultChecked;
 			e.preventDefault();
 			return;
 		}
 
-		if (onChange) {
-			onChange(e);
-		}
-	}
+		onChange?.(e);
+	};
 
-	render() {
-		const {
-			ariaInvalid,
-			ariaRequired,
-			checked,
-			className,
-			disabled,
-			id,
-			label,
-			name,
-			parentDisabled,
-			readOnly,
-			onBlur,
-			onChange,
-			onClick,
-			onKeyDown,
-			title,
-			value,
-			...rest
-		} = this.props;
+	const radioOptionWrapperClasses = classNames(
+		'cs-radio-option-wrapper',
+		{
+			'cs-radio-option-wrapper-read-only': readOnly,
+			'cs-radio-option-wrapper-disabled': disabled,
+			[`${className}`]: className,
+		},
+	);
 
-		const radioOptionWrapperClasses = classNames(
-			'cs-radio-option-wrapper',
-			{
-				'cs-radio-option-wrapper-read-only': readOnly,
-				'cs-radio-option-wrapper-disabled': disabled,
-				[`${className}`]: className,
-			},
-		);
+	const radioOptionClasses = classNames(
+		'cs-radio',
+		{
+			'cs-radio-read-only': readOnly,
+		},
+	);
 
-		const radioOptionClasses = classNames(
-			'cs-radio',
-			{
-				'cs-radio-read-only': readOnly,
-			},
-		);
-
-		return (
-			// eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-			<label
-				className={radioOptionWrapperClasses}
-				title={title}
-				onClick={(event) => event.stopPropagation()}
-				onKeyDown={(event) => event.stopPropagation()}
-			>
-				{/* readonly, invalid and required aria properties work well with role radio, unlike with radiomenuitem role which supports these attributes, but does not work well as a role and doesn't enter radio form mode in screen readers */}
-				{/* eslint-disable-next-line jsx-a11y/role-supports-aria-props */}
-				<input
-					onBlur={onBlur}
-					onChange={this.toggleRadio}
-					onClick={onClick}
-					onKeyDown={onKeyDown}
-					className={radioOptionClasses}
-					type="radio"
-					name={name}
-					disabled={disabled || parentDisabled}
-					id={id}
-					aria-readonly={readOnly}
-					aria-invalid={ariaInvalid}
-					aria-required={ariaRequired}
-					defaultChecked={checked}
-					ref={this.radioOptionInnerRef}
-					value={value}
-					{...rest}
-				/>
-				<span className="cs-radio-faux" />
-				<span className="cs-radio-option-label">{label}</span>
-			</label>
-		);
-	}
-}
+	return (
+		// eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+		<label
+			className={radioOptionWrapperClasses}
+			title={title}
+			onClick={(event) => event.stopPropagation()}
+			onKeyDown={(event) => event.stopPropagation()}
+		>
+			{/* readonly, invalid and required aria properties work well with role radio, unlike with radiomenuitem role which supports these attributes, but does not work well as a role and doesn't enter radio form mode in screen readers */}
+			{/* eslint-disable-next-line jsx-a11y/role-supports-aria-props */}
+			<input
+				onBlur={onBlur}
+				onChange={toggleRadio}
+				onClick={onClick}
+				onKeyDown={onKeyDown}
+				className={radioOptionClasses}
+				type="radio"
+				name={name}
+				disabled={disabled || parentDisabled}
+				id={id}
+				aria-readonly={readOnly}
+				aria-invalid={ariaInvalid}
+				aria-required={ariaRequired}
+				defaultChecked={checked}
+				value={value}
+				{...rest}
+			/>
+			<span className="cs-radio-faux" />
+			<span className="cs-radio-option-label">{label}</span>
+		</label>
+	);
+};
 
 export default CSRadioOption;

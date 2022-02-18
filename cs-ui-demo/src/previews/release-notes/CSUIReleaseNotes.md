@@ -75,10 +75,12 @@
   * changed classes with `.cs-button` prefix to `.cs-btn`
 * CSRadio
   * added `hidden` prop
+  * refactored to be a functional component
 * CSRadioOption
   * changed `name` prop to required
   * changed `cs-radio-label` class to `cs-radio-option-wrapper`
   * added `cs-radio-option-label` class to the label span
+  * refactored to be a functional component
 * CSSection
   * replaced collapsible button with `CSButton`
   * removed box shadow on mouse focus
