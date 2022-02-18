@@ -143,8 +143,9 @@ describe('CSFormCustomSelectField', () => {
 
 		const customSelect = uut.find(CSCustomSelect);
 		customSelect.prop('onSelect')({} as any);
-		customSelect.prop('onDeselect' as any)();
-		expect(handleOnChangeMock).toHaveBeenCalledTimes(2);
+		customSelect.prop('onDeselect')({} as any);
+		customSelect.prop('onClear')();
+		expect(handleOnChangeMock).toHaveBeenCalledTimes(3);
 	});
 
 	it('should call onClick event', () => {
