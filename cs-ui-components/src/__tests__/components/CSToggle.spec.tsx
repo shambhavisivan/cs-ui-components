@@ -23,12 +23,34 @@ const actionsValue = [
 describe('<CSToggle />', () => {
 	it('should render the default CSToggle', () => {
 		const uut = shallow(<CSToggle label={labelValue} />);
-		const toggleLabel = uut.find('.cs-toggle-wrapper > .cs-toggle-wrapper-outer > CSLabel');
+		// Should render a toggle
 		const toggle = uut.find('.cs-toggle');
-		// Make sure CSLabel received correct value for label prop
+		expect(toggle).toHaveLength(1);
+		// checked
+		expect(toggle.props().checked).toBeFalsy();
+		expect(toggle.prop('aria-checked')).toBeFalsy();
+		// disabled
+		expect(toggle.props().disabled).toBeFalsy();
+		// error
+		const toggleError = uut.find('.cs-toggle.cs-toggle-error');
+		expect(toggleError).toHaveLength(0);
+		// aria-invalid
+		expect(toggle.prop('aria-invalid')).toBeFalsy();
+		// Should render a label
+		const toggleLabel = uut.find('CSLabel');
+		expect(toggleLabel).toHaveLength(1);
 		expect(toggle.prop('aria-label')).toBe(labelValue);
-		// Make sure toggle input has aria-label set
 		expect(toggleLabel.prop('label')).toBe(labelValue);
+		// labelPosition
+		const toggleLabelLeft = uut.find('.cs-toggle.cs-toggle-label-left');
+		expect(toggleLabelLeft).toHaveLength(0);
+		// readOnly
+		const toggleReadOnly = uut.find('.cs-toggle.cs-toggle-readonly');
+		expect(toggleReadOnly).toHaveLength(0);
+		// required
+		expect(toggle.prop('required')).toBeFalsy();
+		expect(toggle.prop('aria-required')).toBeFalsy();
+		expect(toggleLabel.prop('required')).toBeFalsy();
 	});
 
 	it('should render custom actions and check if passed object is correct', () => {
