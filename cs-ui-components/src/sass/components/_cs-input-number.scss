@@ -5,12 +5,10 @@
 	display: flex;
 	flex-direction: column;
 	position: relative;
-	--cs-input-number-border-radius-value: var(--cs-input-number-border-radius);
-	--cs-input-number-options-spacing-value: var(--cs-input-number-options-spacing);
 
 	.cs-tooltip-wrapper.cs-tw-error {
 		position: absolute;
-		right: calc(var(--cs-input-number-options-spacing-value) - 0.25rem);
+		right: var(--cs-input-number-custom-data-width, 0.5rem);
 		top: 0.5625rem;
 	}
 
@@ -24,11 +22,11 @@
 
 	.cs-input-number {
 		@include input;
-		border-radius: var(--cs-input-number-border-radius-value, 0.25rem);
-		padding-right: var(--cs-input-number-options-spacing-value);
+		border-radius: var(--cs-input-number-border-radius, 0.25rem);
+		padding-right: var(--cs-input-number-custom-data-width, 0.75rem);
 
 		&.cs-input-number-hide-spinner-true {
-			-moz-appearance:textfield;
+			-moz-appearance: textfield;
 
 			&::-webkit-outer-spin-button,
 			&::-webkit-inner-spin-button {
@@ -53,7 +51,7 @@
 		}
 
 		&.cs-input-number-error-tooltip {
-			padding-right: calc(var(--cs-input-number-options-spacing-value) + 1rem);
+			padding-right: calc(var(--cs-input-number-custom-data-width, 0.5rem) + 1.25rem);
 		}
 	}
 
@@ -61,23 +59,10 @@
 	.component-version-input .version-preview {
 		overflow: visible;
 	}
-}
 
-// Options
-.cs-input-number-options {
-	bottom: 50%;
-	display: flex;
-	position: absolute;
-	right: 0.5rem;
-	transform: translateY(50%);
-
-	.cs-custom-data-item {
-		align-items: center;
-		display: flex;
-
-		&:not(:last-child),
-        > *:not(:last-child) {
-            margin-right: 0.25rem;
-        }
+	.cs-custom-data-wrapper {
+		position: absolute;
+		right: 0;
+		bottom: 0;
 	}
 }

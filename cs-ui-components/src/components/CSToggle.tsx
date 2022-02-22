@@ -4,15 +4,13 @@ import { v4 as uuidv4 } from 'uuid';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSLabel from './CSLabel';
 import { CSTooltipPosition } from './CSTooltip';
-import { CSCustomDataIconProps, CSCustomDataActionProps } from './custom-data/CSCustomData';
-import CSCustomDataIcons from './custom-data/CSCustomDataIcons';
-import CSCustomDataActions from './custom-data/CSCustomDataActions';
+import CSCustomData, { CSCustomDataAction, CSCustomDataIcon } from './CSCustomData';
 
 export type CSToggleLabelPosition = 'default' | 'left';
 
 export interface CSToggleProps {
 	[key: string]: any;
-	actions?: Array<CSCustomDataActionProps>;
+	actions?: Array<CSCustomDataAction>;
 	checked?: boolean;
 	className?: string;
 	disabled?: boolean;
@@ -20,7 +18,7 @@ export interface CSToggleProps {
 	errorMessage?: CSFieldErrorMsgType;
 	errorTooltip?: boolean;
 	helpText?: string;
-	icons?: Array<CSCustomDataIconProps>;
+	icons?: Array<CSCustomDataIcon>;
 	id?: string;
 	label: string;
 	labelHidden?: boolean;
@@ -101,26 +99,19 @@ class CSToggle extends React.Component<CSToggleProps> {
 			},
 		);
 
-		/* Set actions array once data is available */
-		let actionsList;
-		if (actions?.length > 0) {
-			actionsList = actions;
-		}
-
 		return (
 			<div className={toggleWrapperClasses}>
 				<div className="cs-toggle-wrapper-outer">
-					{(label && !labelHidden)
-						&& (
-							<CSLabel
-								htmlFor={this.uniqueAutoId}
-								label={label}
-								helpText={helpText}
-								tooltipPosition={tooltipPosition}
-								required={required}
-								title={labelTitle ? label : null}
-							/>
-						)}
+					{label && !labelHidden && (
+						<CSLabel
+							htmlFor={this.uniqueAutoId}
+							label={label}
+							helpText={helpText}
+							tooltipPosition={tooltipPosition}
+							required={required}
+							title={labelTitle ? label : null}
+						/>
+					)}
 					<div className="cs-toggle-wrapper-inner">
 						{/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
 						<label
@@ -147,22 +138,15 @@ class CSToggle extends React.Component<CSToggleProps> {
 							/>
 							<span className="cs-toggle-faux" title={title} />
 						</label>
-						{error
-							&& errorTooltip
-							&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
-						{(actions?.length || icons?.length)
-							&& (
-								<div className="cs-toggle-options">
-									{icons?.length && <CSCustomDataIcons icons={icons} />}
-									{actionsList?.length && <CSCustomDataActions actions={actions} />}
-								</div>
-							)}
-
+						{error && errorTooltip && errorMessage && (
+							<CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />
+						)}
+						<CSCustomData icons={icons} actions={actions} />
 					</div>
 				</div>
-				{!errorTooltip
-					&& error
-					&& <CSFieldErrorMsg message={errorMessage} />}
+				{!errorTooltip && error && errorMessage && (
+					<CSFieldErrorMsg message={errorMessage} />
+				)}
 			</div>
 		);
 	}

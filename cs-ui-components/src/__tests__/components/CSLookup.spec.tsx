@@ -2,6 +2,7 @@ import * as React from 'react';
 import { mount, shallow } from 'enzyme';
 import '../../setupTests';
 import CSLookup from '../../components/CSLookup';
+import { actions, icons } from '../common/custom-data';
 
 const label = 'Records';
 const columns = [
@@ -21,19 +22,6 @@ const options = [
 	{ key: 10, data: { Id: 10, Account: 'Rimac', Industry: 'Car manufacturing' } },
 	{ key: 11, data: { Id: 11, Account: 'News Corp', Industry: 'Mass media' } },
 ];
-const actions = [
-	{
-		action: () => jest.fn(),
-		icon: { iconName: 'delete' },
-		name: 'Delete',
-	},
-	{
-		action: () => jest.fn(),
-		icon: { iconName: 'add' },
-		name: 'Add',
-	},
-];
-const icons = [{ iconName: 'cart' }];
 const fieldToBeDisplayed = 'Account';
 const modeClient = 'client';
 const modeServer = 'server';
@@ -155,7 +143,7 @@ describe('<CSLookup />', () => {
 		expect(lookupSelectedOption.text()).toBe('Acme');
 	});
 
-	it('should pass actions to CSCustomDataActions', () => {
+	it('should pass actions to CSCustomData', () => {
 		const uut = shallow(
 			<CSLookup
 				label={label}
@@ -166,8 +154,8 @@ describe('<CSLookup />', () => {
 				actions={actions}
 			/>,
 		);
-		const lookupActions = uut.find('CSCustomDataActions');
-		expect(lookupActions.prop('actions')).toMatchObject(actions);
+		const lookupCustomData = uut.find('CSCustomData');
+		expect(lookupCustomData.prop('actions')).toMatchObject(actions);
 	});
 
 	it('should pass align to CSAutoposition', () => {
@@ -381,7 +369,7 @@ describe('<CSLookup />', () => {
 		expect(uut.find('.cs-lookup-wrapper.cs-lookup-hidden')).toHaveLength(1);
 	});
 
-	it('should render custom icons', () => {
+	it('should pass correct icons value to CSCustomData', () => {
 		const uut = shallow(
 			<CSLookup
 				label={label}
@@ -392,8 +380,8 @@ describe('<CSLookup />', () => {
 				icons={icons}
 			/>,
 		);
-		const lookupCustomIcons = uut.find('CSCustomDataIcons');
-		expect(lookupCustomIcons.prop('icons')).toMatchObject(icons);
+		const lookupCustomData = uut.find('CSCustomData');
+		expect(lookupCustomData.prop('icons')).toMatchObject(icons);
 	});
 
 	it('should hide label', () => {

@@ -6,11 +6,9 @@ import { debounce } from 'lodash';
 import CSLabel from './CSLabel';
 import CSButton from './CSButton';
 import CSIcon from './CSIcon';
-import CSCustomDataIcons from './custom-data/CSCustomDataIcons';
-import CSCustomDataActions from './custom-data/CSCustomDataActions';
+import CSCustomData, { CSCustomDataAction, CSCustomDataIcon } from './CSCustomData';
 import CSDataTable, { CSDataTableColumnInterface, CSDataTableRowInterface } from './data-table/CSDataTable';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
-import { CSCustomDataIconProps, CSCustomDataActionProps } from './custom-data/CSCustomData';
 import CSAutoposition from '../helpers/autoposition/CSAutoposition';
 import { CSAutopositions } from '../helpers/autoposition/cs-autoposition-types';
 import { CSTooltipPosition } from './CSTooltip';
@@ -21,7 +19,7 @@ export type CSLookupDropdownPosition = 'top' | 'bottom';
 
 export interface CSLookupCommonProps {
 	columns: Array<CSDataTableColumnInterface>;
-	actions?: Array<CSCustomDataActionProps>;
+	actions?: Array<CSCustomDataAction>;
 	align?: CSLookupDropdownAlign;
 	autoFocus?: boolean;
 	borderRadius?: string;
@@ -36,7 +34,7 @@ export interface CSLookupCommonProps {
 	gridCustomPopup?: boolean;
 	helpText?: string;
 	hidden?: boolean;
-	icons?: Array<CSCustomDataIconProps>;
+	icons?: Array<CSCustomDataIcon>;
 	id?: string;
 	label: string;
 	labelHidden?: boolean;
@@ -88,7 +86,7 @@ export interface CSLookupState {
 	dropdownOptions: Array<CSDataTableRowInterface>;
 	fetchingMode?: CSLookupFetchingMode;
 	lookupInputWidth?: number;
-	lookupOptionsWrapperWidth: number | null;
+	customDataWidth: number;
 	moreRecords?: boolean;
 	pageNo?: number;
 	searchTerm?: string;
@@ -107,7 +105,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 	private readonly uniqueAutoId: string;
 
-	private readonly lookupOptionsWrapperRef: React.RefObject<HTMLDivElement>;
+	private readonly customDataRef: React.RefObject<HTMLDivElement>;
 
 	private readonly lookupDropdownRef: React.RefObject<HTMLDivElement>;
 
@@ -125,14 +123,14 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		this.state = {
 			dropdownVisible: false,
 			dropdownOptions: [],
-			lookupOptionsWrapperWidth: null,
+			customDataWidth: 0,
 			pageNo: 0,
 			moreRecords: true,
 			searchTerm: '',
 			selectedOptions: [],
 		};
 
-		this.lookupOptionsWrapperRef = React.createRef();
+		this.customDataRef = React.createRef();
 		this.lookupDropdownRef = React.createRef();
 		this.lookupCloseButtonRef = React.createRef();
 		this.lookupInputRef = React.createRef();
@@ -149,10 +147,8 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 		this.setValue();
 
-		/* Get width of parent element and set state to width + 38 for extra spacing */
-		const lookupOptionsRect = this.lookupOptionsWrapperRef.current?.getBoundingClientRect();
 		this.setState({
-			lookupOptionsWrapperWidth: (lookupOptionsRect?.width ?? 0) + 38,
+			customDataWidth: this.customDataRef.current?.getBoundingClientRect().width,
 		});
 	}
 
@@ -485,7 +481,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			...rest
 		} = this.props;
 
-		const { lookupOptionsWrapperWidth } = this.state;
+		const { customDataWidth } = this.state;
 
 		const {
 			dropdownVisible,
@@ -530,7 +526,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 		const style: CSSProperties = {
 			'--cs-lookup-border-radius': borderRadius,
-			'--cs-lookup-options-spacing': `${lookupOptionsWrapperWidth}px`,
+			'--cs-lookup-custom-data-width': customDataWidth ? `${customDataWidth}px` : undefined,
 		};
 
 		const lookupClearClasses = classNames(
@@ -606,18 +602,6 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 					className="cs-lookup-dropdown-icon"
 				/>
 			);
-		};
-
-		const renderCustomIcons = () => {
-			if (!icons?.length) return null;
-
-			return <CSCustomDataIcons icons={icons} />;
-		};
-
-		const renderCustomActions = () => {
-			if (!actions?.length) return null;
-
-			return <CSCustomDataActions actions={actions} />;
 		};
 
 		const renderMinLengthMessage = () => (
@@ -718,13 +702,11 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 						{renderClearButton()}
 						{renderExpandIcon()}
 					</div>
-					{(actions?.length || icons?.length)
-						&& (
-							<div className="cs-lookup-options" ref={this.lookupOptionsWrapperRef}>
-								{renderCustomIcons()}
-								{renderCustomActions()}
-							</div>
-						)}
+					<CSCustomData
+						ref={this.customDataRef}
+						icons={icons}
+						actions={actions}
+					/>
 				</div>
 				{error && errorMessage && <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
 				{

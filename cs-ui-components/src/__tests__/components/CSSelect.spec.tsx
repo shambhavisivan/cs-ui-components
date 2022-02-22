@@ -2,22 +2,10 @@ import * as React from 'react';
 import { shallow, mount } from 'enzyme';
 import '../../setupTests';
 import CSSelect from '../../components/CSSelect';
+import { actions, icons } from '../common/custom-data';
 
 const labelValue = 'select label';
-const iconsValue = [{ iconName: 'cart' }];
 const errorMessageValue = 'there is an error';
-const actionsValue = [
-	{
-		action: () => jest.fn(),
-		icon: { iconName: 'delete' },
-		name: 'Delete',
-	},
-	{
-		action: () => jest.fn(),
-		icon: { iconName: 'add' },
-		name: 'Add',
-	},
-];
 
 describe('<CSSelect />', () => {
 	it('should render the default CSSelect', () => {
@@ -52,12 +40,11 @@ describe('<CSSelect />', () => {
 		expect(selectLabel.prop('label')).toBe(labelValue);
 	});
 
-	it('should pass actions to CSCustomDataActions', () => {
-		const uut = shallow(<CSSelect label={labelValue} actions={actionsValue} />);
-		const selectCustomActions = uut.find('.cs-select-wrapper CSCustomDataActions');
-		expect(selectCustomActions).toHaveLength(1);
-		// Make sure CSCustomDataActions received correct actions object
-		expect(selectCustomActions.prop('actions')).toMatchObject(actionsValue);
+	it('should pass actions to CSCustomData', () => {
+		const uut = shallow(<CSSelect label={labelValue} actions={actions} />);
+		const selectCustomData = uut.find('.cs-select-wrapper CSCustomData');
+		expect(selectCustomData).toHaveLength(1);
+		expect(selectCustomData.prop('actions')).toMatchObject(actions);
 	});
 
 	it('should set custom border radius', () => {
@@ -109,12 +96,11 @@ describe('<CSSelect />', () => {
 		expect(select).toHaveLength(1);
 	});
 
-	it('should pass icons to CSCustomDataIcons', () => {
-		const uut = shallow(<CSSelect label={labelValue} icons={iconsValue} />);
-		const selectCustomIcons = uut.find('.cs-select-wrapper CSCustomDataIcons');
-		expect(selectCustomIcons).toHaveLength(1);
-		// Make sure CSCustomDataIcons received correct icons object
-		expect(selectCustomIcons.prop('icons')).toMatchObject(iconsValue);
+	it('should pass icons to CSCustomData', () => {
+		const uut = shallow(<CSSelect label={labelValue} icons={icons} />);
+		const selectCustomData = uut.find('.cs-select-wrapper CSCustomData');
+		expect(selectCustomData).toHaveLength(1);
+		expect(selectCustomData.prop('icons')).toMatchObject(icons);
 	});
 
 	it('should hide label', () => {

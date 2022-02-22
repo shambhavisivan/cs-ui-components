@@ -4,9 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSLabel from './CSLabel';
 import { CSTooltipPosition } from './CSTooltip';
-import { CSCustomDataIconProps, CSCustomDataActionProps } from './custom-data/CSCustomData';
-import CSCustomDataIcons from './custom-data/CSCustomDataIcons';
-import CSCustomDataActions from './custom-data/CSCustomDataActions';
+import CSCustomData, { CSCustomDataAction, CSCustomDataIcon } from './CSCustomData';
 
 export interface CSInputNumberNumberLocale {
 	numLocale: string;
@@ -22,7 +20,7 @@ export type CSInputNumberLocaleStyle = 'decimal' | 'currency' | 'percent' | 'uni
 
 export interface CSInputNumberProps {
 	[key: string]: any;
-	actions?: Array<CSCustomDataActionProps>;
+	actions?: Array<CSCustomDataAction>;
 	borderRadius?: string;
 	className?: string;
 	disabled?: boolean;
@@ -32,7 +30,7 @@ export interface CSInputNumberProps {
 	helpText?: string;
 	hidden?: boolean;
 	hideSpinner?: boolean;
-	icons?: Array<CSCustomDataIconProps>;
+	icons?: Array<CSCustomDataIcon>;
 	id?: string;
 	label: string;
 	labelHidden?: boolean;
@@ -59,7 +57,7 @@ export interface CSInputNumberProps {
 }
 
 export interface CSInputNumberState {
-	inputNumberOptionsWrapperWidth: number | null;
+	customDataWidth: number;
 	showLocaleFormat?: boolean;
 	formattedValue?: string;
 }
@@ -71,7 +69,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 
 	public inputNumberInnerRef: React.RefObject<HTMLInputElement>;
 
-	private inputNumberOptionsWrapperRef: React.RefObject<HTMLDivElement>;
+	private customDataRef: React.RefObject<HTMLDivElement>;
 
 	private readonly uniqueAutoId: string;
 
@@ -80,21 +78,17 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 
 		this.uniqueAutoId = props.id ? props.id : uuidv4();
 
-		this.state = {
-			inputNumberOptionsWrapperWidth: null,
-		};
+		this.state = { customDataWidth: 0 };
 
-		this.inputNumberOptionsWrapperRef = React.createRef();
+		this.customDataRef = React.createRef();
 		this.inputNumberInnerRef = React.createRef();
 	}
 
 	componentDidMount() {
 		const { locale, value } = this.props;
 
-		/* Get width of parent element and set state to width + 16 for extra spacing */
-		const inputNumberOptionsRect = this.inputNumberOptionsWrapperRef.current?.getBoundingClientRect();
 		this.setState({
-			inputNumberOptionsWrapperWidth: (inputNumberOptionsRect?.width ?? 0) + 16,
+			customDataWidth: Number(this.customDataRef.current?.getBoundingClientRect().width),
 		});
 
 		if (locale) {
@@ -190,7 +184,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 			...rest
 		} = this.props;
 
-		const { formattedValue, inputNumberOptionsWrapperWidth, showLocaleFormat } = this.state;
+		const { formattedValue, customDataWidth, showLocaleFormat } = this.state;
 
 		const inputNumberWrapperClasses = classNames(
 			'cs-input-number-wrapper',
@@ -209,7 +203,7 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 		);
 		const style: CSSProperties = {
 			'--cs-input-number-border-radius': borderRadius,
-			'--cs-input-number-options-spacing': `${inputNumberOptionsWrapperWidth}px`,
+			'--cs-input-number-custom-data-width': customDataWidth ? `${customDataWidth}px` : undefined,
 		};
 
 		const setType = () => {
@@ -220,17 +214,16 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 
 		return (
 			<div className={inputNumberWrapperClasses} style={style}>
-				{(label && !labelHidden)
-					&& (
-						<CSLabel
-							htmlFor={this.uniqueAutoId}
-							label={label}
-							helpText={helpText}
-							tooltipPosition={tooltipPosition}
-							required={required}
-							title={labelTitle ? label : null}
-						/>
-					)}
+				{label && !labelHidden && (
+					<CSLabel
+						htmlFor={this.uniqueAutoId}
+						label={label}
+						helpText={helpText}
+						tooltipPosition={tooltipPosition}
+						required={required}
+						title={labelTitle ? label : null}
+					/>
+				)}
 				<div className="cs-input-number-wrapper-inner">
 					<input
 						className={inputNumberClasses}
@@ -264,17 +257,13 @@ class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberSta
 						ref={this.inputNumberInnerRef}
 						{...rest}
 					/>
-					{(actions?.length || icons?.length)
-						&& (
-							<div className="cs-input-number-options" ref={this.inputNumberOptionsWrapperRef}>
-								{icons?.length && <CSCustomDataIcons icons={icons} />}
-								{actions?.length && <CSCustomDataActions actions={actions} />}
-							</div>
-						)}
+					<CSCustomData
+						ref={this.customDataRef}
+						icons={icons}
+						actions={actions}
+					/>
 				</div>
-				{error
-					&& errorMessage
-					&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
+				{error && errorMessage && <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
 			</div>
 		);
 	}

@@ -23,6 +23,14 @@
   * renamed `showBorder` prop to `hideBorder` and reversed logic in `CSCardHeader`
 * CSCheckbox
   * Limited stopPropagation to only enter and space keys
+* CSCustomData
+  * <i>important</i> refactored the component
+  * changed the `actions` prop type to `Array<CSButtonProps>`
+  * changed the `icons` prop type to `Array<CSIconProps>`
+  * changed the `status` prop type to `CSIconProps`
+  * renamed all `getTooltip` attributes to `tooltip`
+  * changed the `tooltip` attribute type `CSTooltipProps`
+  * <i>important</i> these changes affect the following components: CSCheckbox, CSCustomSelect, CSDatepicker, CSDateTimePicker, CSInputNumber, CSInputText, CSLookup, CSSelect, CSTextarea, CSToggle
 * CSCustomSelect
   * <i>important</i> renamed the `actions` prop to `dropdownActions`
   * added `readOnly` prop

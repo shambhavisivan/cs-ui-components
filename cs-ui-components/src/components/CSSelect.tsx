@@ -4,15 +4,13 @@ import { v4 as uuidv4 } from 'uuid';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSLabel from './CSLabel';
 import { CSTooltipPosition } from './CSTooltip';
-import { CSCustomDataIconProps, CSCustomDataActionProps } from './custom-data/CSCustomData';
 import CSIcon from './CSIcon';
-import CSCustomDataIcons from './custom-data/CSCustomDataIcons';
-import CSCustomDataActions from './custom-data/CSCustomDataActions';
+import CSCustomData, { CSCustomDataAction, CSCustomDataIcon } from './CSCustomData';
 import KeyCode from '../util/KeyCode';
 
 export interface CSSelectProps {
 	[key: string]: any;
-	actions?: Array<CSCustomDataActionProps>;
+	actions?: Array<CSCustomDataAction>;
 	borderRadius?: string;
 	className?: string;
 	disabled?: boolean;
@@ -21,7 +19,7 @@ export interface CSSelectProps {
 	errorTooltip?: boolean;
 	helpText?: string;
 	hidden?: boolean;
-	icons?: Array<CSCustomDataIconProps>;
+	icons?: Array<CSCustomDataIcon>;
 	id?: string;
 	label: string;
 	labelHidden?: boolean;
@@ -39,7 +37,7 @@ export interface CSSelectProps {
 }
 
 export interface CSSelectState {
-	selectOptionsWrapperWidth: number | null;
+	customDataWidth: number;
 }
 
 class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
@@ -51,26 +49,22 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 
 	private readonly uniqueAutoId: string;
 
-	private selectOptionsWrapperRef: React.RefObject<HTMLDivElement>;
+	private customDataRef: React.RefObject<HTMLDivElement>;
 
 	constructor(props: CSSelectProps) {
 		super(props);
 
 		this.uniqueAutoId = props.id ? props.id : uuidv4();
 
-		this.state = {
-			selectOptionsWrapperWidth: null,
-		};
+		this.state = { customDataWidth: 0 };
 
-		this.selectOptionsWrapperRef = React.createRef();
+		this.customDataRef = React.createRef();
 		this.selectInnerRef = React.createRef();
 	}
 
 	componentDidMount() {
-		/* Get width of parent element and set state to width + 40 for extra spacing */
-		const selectOptionsRect = this.selectOptionsWrapperRef.current?.getBoundingClientRect();
 		this.setState({
-			selectOptionsWrapperWidth: (selectOptionsRect?.width ?? 0) + 40,
+			customDataWidth: this.customDataRef.current?.getBoundingClientRect()?.width,
 		});
 	}
 
@@ -120,7 +114,7 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 			...rest
 		} = this.props;
 
-		const { selectOptionsWrapperWidth } = this.state;
+		const { customDataWidth } = this.state;
 
 		const selectClasses = classNames(
 			'cs-select',
@@ -141,23 +135,22 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 		);
 		const style: CSSProperties = {
 			'--cs-select-border-radius': borderRadius,
-			'--cs-select-options-spacing': `${selectOptionsWrapperWidth}px`,
+			'--cs-select-custom-data-width': customDataWidth ? `${customDataWidth}px` : undefined,
 		};
 
 		return (
 			<div className={selectWrapperClasses} style={style}>
-				{(label && !labelHidden)
-					&& (
-						<CSLabel
-							htmlFor={this.uniqueAutoId}
-							label={label}
-							helpText={helpText}
-							tooltipPosition={tooltipPosition}
-							required={required}
-							title={labelTitle ? label : null}
-							className={disabled ? 'cs-label-disabled' : ''}
-						/>
-					)}
+				{label && !labelHidden && (
+					<CSLabel
+						htmlFor={this.uniqueAutoId}
+						label={label}
+						helpText={helpText}
+						tooltipPosition={tooltipPosition}
+						required={required}
+						title={labelTitle ? label : null}
+						className={disabled ? 'cs-label-disabled' : ''}
+					/>
+				)}
 				<div className="cs-select-wrapper-inner">
 					<div className="cs-select-group">
 						<select
@@ -181,20 +174,15 @@ class CSSelect extends React.Component<CSSelectProps, CSSelectState> {
 						>
 							{children}
 						</select>
-						{!readOnly
-							&& <CSIcon name="down" />}
+						{!readOnly && <CSIcon name="down" />}
 					</div>
-					{(actions?.length || icons?.length)
-						&& (
-							<div className="cs-select-options" ref={this.selectOptionsWrapperRef}>
-								{icons?.length && <CSCustomDataIcons icons={icons} />}
-								{actions?.length && <CSCustomDataActions actions={actions} />}
-							</div>
-						)}
+					<CSCustomData
+						ref={this.customDataRef}
+						icons={icons}
+						actions={actions}
+					/>
 				</div>
-				{error
-					&& errorMessage
-					&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
+				{error && errorMessage && <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
 			</div>
 		);
 	}

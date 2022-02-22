@@ -1,16 +1,9 @@
 .cs-custom-select-wrapper {
 	position: relative;
-	--cs-custom-select-options-spacing-value: calc(var(--cs-custom-select-options-spacing) + 0.25rem);
 
 	.cs-tw-error {
-		position: absolute;
-		right: calc(var(--cs-custom-select-options-spacing-value) + 1.75rem);
-		top: 50%;
-		transform: translateY(-50%);
-	}
-
-	> .cs-label-outer-wrapper ~ .cs-tw-error {
-		top: 1.75rem;
+		align-self: center;
+		margin-right: 0.25rem;
 	}
 
 	&.cs-custom-select-wrapper-read-only .cs-label-wrapper {
@@ -25,7 +18,7 @@
 		transition: border 100ms ease-in-out, background-color 100ms ease-in-out;
 		width: 100%;
 		position: relative;
-		padding: 0 3.5rem 0 0;
+		padding: 0 0.5rem 0 0;
 		border-radius: var(--cs-custom-select-border-radius, 0.25rem);
 		cursor: text;
 		@include overflow-ellipsis;
@@ -98,7 +91,8 @@
 	}
 
 	.cs-custom-select-value-wrapper {
-		position: absolute;
+		position: relative;
+		align-self: center;
 		margin-left: 0.25rem;
 		pointer-events: none;
 		font-size: 0.8125rem;
@@ -107,32 +101,22 @@
 	}
 
 	.cs-custom-select-input {
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
+		position: relative;
+		display: inline-flex;
+		flex: 1;
+		flex-shrink: 0;
 
 		input {
 			border: none;
 			outline: none;
 			width: 100%;
 			height: 100%;
-			padding-right: 3rem;
-			padding-left: 0.75rem;
+			padding: 0 0.5rem 0 0;
 			margin-left: 0.25rem;
 			overflow: hidden;
 			text-overflow: ellipsis;
 			background: inherit;
 			font-size: 0.8125rem;
-		}
-
-		&.cs-custom-select-input-error-tooltip {
-			padding-inline-end: 4rem;
-
-			~ .cs-custom-select-clear {
-				right: calc(var(--cs-custom-select-options-spacing-value) + 2.75rem);
-			}
 		}
 	}
 
@@ -146,27 +130,20 @@
 	}
 
 	.cs-custom-select-icon {
-		position: absolute;
-		right: 0.5rem;
 		align-self: center;
 		pointer-events: none;
 		transition: transform 200ms ease-in-out;
 	}
 
 	.cs-custom-select-clear {
-		position: absolute;
 		align-self: center;
-		right: 1.625rem;
-
-		&-options {
-			right: calc(var(--cs-custom-select-options-spacing) + 2rem);
-		}
 	}
 
 	.cs-custom-select-items {
 		display: inline-flex;
 		align-items: center;
 		flex-wrap: wrap;
+		overflow: hidden;
 		width: 100%;
 		max-width: 100%;
 		padding: 0.25rem 0 0.25rem 0.5rem;
@@ -205,17 +182,11 @@
 				@include overflow-ellipsis;
 			}
 		}
+	}
 
-		.cs-custom-select-input {
-			position: relative;
-			display: inline-flex;
-			flex: 1;
-			flex-shrink: 0;
-
-			input {
-				padding: 0;
-			}
-		}
+	.cs-custom-data-wrapper {
+		height: calc(2rem - 2px);
+		align-self: center;
 	}
 }
 
@@ -326,24 +297,3 @@
 	}
 }
 
-
-.cs-custom-select-options {
-	bottom: 50%;
-	display: flex;
-	position: absolute;
-	right: 1.75rem;
-	transform: translateY(50%);
-
-	.cs-custom-data-item {
-		align-items: center;
-		display: flex;
-
-		&:first-child {
-			margin-right: 0.125rem;
-		}
-
-		& > *:not(:last-child) {
-			margin-right: 0.25rem;
-		}
-}
-}

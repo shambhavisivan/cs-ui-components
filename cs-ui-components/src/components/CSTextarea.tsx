@@ -3,15 +3,13 @@ import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import { CSTooltipPosition } from './CSTooltip';
-import { CSCustomDataIconProps, CSCustomDataActionProps } from './custom-data/CSCustomData';
-import CSCustomDataIcons from './custom-data/CSCustomDataIcons';
-import CSCustomDataActions from './custom-data/CSCustomDataActions';
+import CSCustomData, { CSCustomDataAction, CSCustomDataIcon } from './CSCustomData';
 import CSLabel from './CSLabel';
 import CSButton from './CSButton';
 
 export interface CSTextareaProps {
 	[key: string]: any;
-	actions?: Array<CSCustomDataActionProps>;
+	actions?: Array<CSCustomDataAction>;
 	borderRadius?: string;
 	className?: string;
 	disabled?: boolean;
@@ -20,7 +18,7 @@ export interface CSTextareaProps {
 	errorTooltip?: boolean;
 	helpText?: string;
 	hidden?: boolean;
-	icons?: Array<CSCustomDataIconProps>;
+	icons?: Array<CSCustomDataIcon>;
 	id?: string;
 	label: string;
 	labelHidden?: boolean;
@@ -39,7 +37,7 @@ export interface CSTextareaProps {
 }
 
 export interface CSTextareaState {
-	textareaOptionsWrapperWidth: number | null;
+	customDataWidth: number;
 	expandButton: boolean;
 	expanded: boolean;
 	actualHeight: number;
@@ -55,18 +53,18 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 
 	private readonly uniqueAutoId: string;
 
-	private textareaOptionsWrapperRef: React.RefObject<HTMLDivElement>;
+	private customDataRef: React.RefObject<HTMLDivElement>;
 
 	constructor(props: CSTextareaProps) {
 		super(props);
 
 		this.uniqueAutoId = props.id ? props.id : uuidv4();
 
-		this.textareaOptionsWrapperRef = React.createRef();
+		this.customDataRef = React.createRef();
 		this.textareaInnerRef = React.createRef();
 
 		this.state = {
-			textareaOptionsWrapperWidth: null,
+			customDataWidth: 0,
 			expandButton: false,
 			expanded: false,
 			actualHeight: 0,
@@ -77,11 +75,9 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 	}
 
 	componentDidMount() {
-		/* Get width of parent element and set state to width + 12 for extra spacing */
 		const { readOnly } = this.props;
-		const textareaOptionsRect = this.textareaOptionsWrapperRef.current?.getBoundingClientRect();
 		this.setState({
-			textareaOptionsWrapperWidth: (textareaOptionsRect?.width ?? 0) + 12,
+			customDataWidth: this.customDataRef.current?.getBoundingClientRect().width,
 		});
 
 		if (readOnly && this.textareaInnerRef.current !== null) {
@@ -141,7 +137,7 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 		} = this.props;
 
 		const {
-			textareaOptionsWrapperWidth,
+			customDataWidth,
 			expandButton,
 			expanded,
 			actualHeight,
@@ -160,25 +156,18 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 			'--cs-textarea-read-only-min-height': readOnly && expandButton ? `${minHeight}px` : '',
 			'--cs-textarea-read-only-height': readOnly && expandButton ? `${actualHeight}px` : '',
 			'--cs-textarea-border-radius': borderRadius,
-			'--cs-textarea-options-spacing': icons || actions ? `${textareaOptionsWrapperWidth}px` : '',
+			'--cs-textarea-custom-data-width': customDataWidth ? `${customDataWidth}px` : undefined,
 		};
 		const textareaWrapperClasses = classNames(
 			'cs-textarea-wrapper',
 			{
 				'cs-element-hidden': hidden,
-				'cs-textarea-wrapper-options': actions || icons,
+				'cs-textarea-wrapper-options': actions?.length || icons?.length,
 				[`${className}`]: className,
 			},
 		);
 
-		const options = (actions || icons) && (
-			<div className="cs-textarea-options" ref={this.textareaOptionsWrapperRef}>
-				{icons?.length && <CSCustomDataIcons icons={icons} />}
-				{actions?.length && <CSCustomDataActions actions={actions} />}
-			</div>
-		);
-
-		const tooltipMessage = (error && errorTooltip) && (
+		const tooltipMessage = error && errorTooltip && errorMessage && (
 			<div className="cs-textarea-error-message">
 				<CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />
 			</div>
@@ -186,17 +175,16 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 
 		return (
 			<div className={textareaWrapperClasses} style={style}>
-				{(label && !labelHidden)
-					&& (
-						<CSLabel
-							htmlFor={this.uniqueAutoId}
-							label={label}
-							helpText={helpText}
-							tooltipPosition={tooltipPosition}
-							required={required}
-							title={labelTitle ? label : null}
-						/>
-					)}
+				{label && !labelHidden && (
+					<CSLabel
+						htmlFor={this.uniqueAutoId}
+						label={label}
+						helpText={helpText}
+						tooltipPosition={tooltipPosition}
+						required={required}
+						title={labelTitle ? label : null}
+					/>
+				)}
 				<div className="cs-textarea-wrapper-inner">
 					{expandButton && (
 						<CSButton
@@ -230,15 +218,16 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 					/>
 					{(actions || icons || errorTooltip) && (
 						<div className="cs-textarea-wrapper-inner-content">
-							{options}
+							<CSCustomData
+								ref={this.customDataRef}
+								icons={icons}
+								actions={actions}
+							/>
 							{tooltipMessage}
 						</div>
 					)}
 				</div>
-				{!errorTooltip
-					&& error
-					&& errorMessage
-					&& <CSFieldErrorMsg message={errorMessage} />}
+				{!errorTooltip && error && errorMessage && <CSFieldErrorMsg message={errorMessage} />}
 			</div>
 		);
 	}

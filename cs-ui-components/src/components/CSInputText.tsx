@@ -3,14 +3,12 @@ import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSLabel from './CSLabel';
-import { CSCustomDataIconProps, CSCustomDataActionProps } from './custom-data/CSCustomData';
-import CSCustomDataIcons from './custom-data/CSCustomDataIcons';
-import CSCustomDataActions from './custom-data/CSCustomDataActions';
+import CSCustomData, { CSCustomDataAction, CSCustomDataIcon } from './CSCustomData';
 import { CSTooltipPosition } from './CSTooltip';
 
 export interface CSInputTextProps {
 	[key: string]: any;
-	actions?: Array<CSCustomDataActionProps>;
+	actions?: Array<CSCustomDataAction>;
 	borderRadius?: string;
 	className?: string;
 	disabled?: boolean;
@@ -19,7 +17,7 @@ export interface CSInputTextProps {
 	errorTooltip?: boolean;
 	helpText?: string;
 	hidden?: boolean;
-	icons?: Array<CSCustomDataIconProps>;
+	icons?: Array<CSCustomDataIcon>;
 	id?: string;
 	label: string;
 	labelHidden?: boolean;
@@ -40,7 +38,7 @@ export interface CSInputTextProps {
 }
 
 export interface CSInputTextState {
-	inputTextOptionsWrapperWidth: number | null;
+	customDataWidth: number;
 }
 
 class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
@@ -48,26 +46,22 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 
 	private readonly uniqueAutoId: string | null;
 
-	private inputTextOptionsWrapperRef: React.RefObject<HTMLDivElement>;
+	private customDataRef: React.RefObject<HTMLDivElement>;
 
 	constructor(props: CSInputTextProps) {
 		super(props);
 
 		this.uniqueAutoId = props.id ? props.id : uuidv4();
 
-		this.state = {
-			inputTextOptionsWrapperWidth: null,
-		};
+		this.state = { customDataWidth: 0 };
 
-		this.inputTextOptionsWrapperRef = React.createRef();
+		this.customDataRef = React.createRef();
 		this.inputTextInnerRef = React.createRef();
 	}
 
 	componentDidMount() {
-		/* Get width of parent element and set state to width + 12 for extra spacing */
-		const inputTextOptionsRect = this.inputTextOptionsWrapperRef.current?.getBoundingClientRect();
 		this.setState({
-			inputTextOptionsWrapperWidth: (inputTextOptionsRect?.width ?? 0) + 12,
+			customDataWidth: this.customDataRef.current?.getBoundingClientRect().width,
 		});
 	}
 
@@ -104,7 +98,7 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 			...rest
 		} = this.props;
 
-		const { inputTextOptionsWrapperWidth } = this.state;
+		const { customDataWidth } = this.state;
 
 		const inputTextWrapperClasses = classNames(
 			'cs-input-text-wrapper',
@@ -117,27 +111,26 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 			'cs-input-text',
 			{
 				'cs-input-text-error': error,
-				'cs-input-text-errorTooltip': errorTooltip,
+				'cs-input-text-error-tooltip': errorTooltip,
 			},
 		);
 		const style: CSSProperties = {
 			'--cs-input-text-border-radius': borderRadius,
-			'--cs-input-text-options-spacing': `${inputTextOptionsWrapperWidth}px`,
+			'--cs-input-text-custom-data-width': customDataWidth ? `${customDataWidth}px` : undefined,
 		};
 
 		return (
 			<div className={inputTextWrapperClasses} style={style}>
-				{(label && !labelHidden)
-					&& (
-						<CSLabel
-							htmlFor={this.uniqueAutoId}
-							label={label}
-							helpText={helpText}
-							tooltipPosition={tooltipPosition}
-							required={required}
-							title={labelTitle ? label : null}
-						/>
-					)}
+				{label && !labelHidden && (
+					<CSLabel
+						htmlFor={this.uniqueAutoId}
+						label={label}
+						helpText={helpText}
+						tooltipPosition={tooltipPosition}
+						required={required}
+						title={labelTitle ? label : null}
+					/>
+				)}
 				<div className="cs-input-text-wrapper-inner">
 					<input
 						className={inputTextClasses}
@@ -163,17 +156,13 @@ class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
 						ref={this.inputTextInnerRef}
 						{...rest}
 					/>
-					{(actions?.length || icons?.length)
-						&& (
-							<div className="cs-input-text-options" ref={this.inputTextOptionsWrapperRef}>
-								{icons?.length && <CSCustomDataIcons icons={icons} />}
-								{actions?.length && <CSCustomDataActions actions={actions} />}
-							</div>
-						)}
+					<CSCustomData
+						ref={this.customDataRef}
+						icons={icons}
+						actions={actions}
+					/>
 				</div>
-				{error
-					&& errorMessage
-					&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
+				{error && errorMessage && <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
 			</div>
 		);
 	}

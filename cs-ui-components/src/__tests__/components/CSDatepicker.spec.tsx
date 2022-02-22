@@ -9,6 +9,7 @@ import {
 	subYears,
 } from 'date-fns';
 import CSDatepicker from '../../components/CSDatepicker';
+import { actions, icons } from '../common/custom-data';
 
 const labelValue = 'Select date';
 const errorMessage = 'Error message';
@@ -66,29 +67,17 @@ describe('<CSDatepicker />', () => {
 		expect(onChange).toHaveBeenCalledTimes(1);
 	});
 
-	it('should pass actions to CSCustomDataActions', () => {
-		const actionsValue = [
-			{
-				action: () => jest.fn(),
-				icon: { iconName: 'delete' },
-				name: 'Delete',
-			},
-			{
-				action: () => jest.fn(),
-				icon: { iconName: 'add' },
-				name: 'Add',
-			},
-		];
+	it('should pass actions to CSCustomData', () => {
 		const uut = shallow(
 			<CSDatepicker
 				label={labelValue}
 				onChange={onChange}
-				actions={actionsValue}
+				actions={actions}
 			/>,
 		);
-		const datepickerActions = uut.find('.cs-datepicker-wrapper CSCustomDataActions');
-		expect(datepickerActions).toHaveLength(1);
-		expect(datepickerActions.prop('actions')).toMatchObject(actionsValue);
+		const datepickerCustomData = uut.find('.cs-datepicker-wrapper CSCustomData');
+		expect(datepickerCustomData).toHaveLength(1);
+		expect(datepickerCustomData.prop('actions')).toMatchObject(actions);
 	});
 
 	it('should pass autoFocus to DatePicker', () => {
@@ -205,18 +194,17 @@ describe('<CSDatepicker />', () => {
 		expect(datepickerLabel.prop('helpText')).toBe(helpText);
 	});
 
-	it('should pass icons to CSCustomDataIcons', () => {
-		const iconsValue = [{ iconName: 'cart' }];
+	it('should pass icons to CSCustomData', () => {
 		const uut = shallow(
 			<CSDatepicker
 				label={labelValue}
 				onChange={onChange}
-				icons={iconsValue}
+				icons={icons}
 			/>,
 		);
-		const datepickerIcons = uut.find('.cs-datepicker-wrapper CSCustomDataIcons');
-		expect(datepickerIcons).toHaveLength(1);
-		expect(datepickerIcons.prop('icons')).toMatchObject(iconsValue);
+		const datepickerCustomData = uut.find('.cs-datepicker-wrapper CSCustomData');
+		expect(datepickerCustomData).toHaveLength(1);
+		expect(datepickerCustomData.prop('icons')).toMatchObject(icons);
 	});
 
 	it('should pass inline to DatePicker', () => {

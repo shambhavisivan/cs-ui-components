@@ -5,12 +5,10 @@
 	display: flex;
 	flex-direction: column;
 	position: relative;
-	--cs-input-text-border-radius-value: var(--cs-input-text-border-radius);
-	--cs-input-text-options-spacing-value: var(--cs-input-text-options-spacing);
 
 	.cs-tooltip-wrapper.cs-tw-error {
 		position: absolute;
-		right: var(--cs-input-text-options-spacing-value);
+		right: var(--cs-input-text-custom-data-width, 0.5rem);
 		top: 0.5625rem;
 	}
 
@@ -24,8 +22,8 @@
 
 	.cs-input-text {
 		@include input;
-		border-radius: var(--cs-input-text-border-radius-value, 0.25rem);
-		padding-right: var(--cs-input-text-options-spacing-value);
+		border-radius: var(--cs-input-text-border-radius, 0.25rem);
+		padding-right: var(--cs-input-text-custom-data-width, 0.75rem);
 
 		&:read-only {
 			pointer-events: none;
@@ -37,27 +35,14 @@
 			}
 		}
 
-		&.cs-input-text-errorTooltip {
-			padding-right: calc(var(--cs-input-text-options-spacing-value) + 1.25rem);
+		&.cs-input-text-error-tooltip {
+			padding-right: calc(var(--cs-input-text-custom-data-width, 0.5rem) + 1.25rem);
 		}
 	}
-}
 
-// Options
-.cs-input-text-options {
-	bottom: 50%;
-	display: flex;
-	position: absolute;
-	right: 0.5rem;
-	transform: translateY(50%);
-
-	.cs-custom-data-item {
-		align-items: center;
-		display: flex;
-
-		&:not(:last-child),
-        > *:not(:last-child) {
-            margin-right: 0.25rem;
-        }
+	.cs-custom-data-wrapper {
+		position: absolute;
+		right: 0;
+		bottom: 0;
 	}
 }

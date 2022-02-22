@@ -5,9 +5,6 @@
 	display: flex;
 	flex-direction: column;
 	position: relative;
-	--cs-textarea-max-height-value: var(--cs-textarea-max-height);
-	--cs-textarea-border-radius-value: var(--cs-textarea-border-radius);
-	--cs-textarea-options-spacing-value: var(--cs-textarea-options-spacing);
 
 	.cs-textarea-wrapper-inner {
 		display: flex;
@@ -37,16 +34,6 @@
 		}
 	}
 
-	&.cs-textarea-wrapper-options {
-		.cs-tw-error {
-			margin-inline-end: 0.25rem;
-		}
-
-		.cs-textarea-error-tooltip {
-			padding-right: calc(var(--cs-textarea-options-spacing-value) + 1.25rem);
-		}
-	}
-
 	&:not(.cs-textarea-wrapper-options) .cs-textarea-error-tooltip {
 		padding-right: 1.6125rem;
 	}
@@ -55,16 +42,19 @@
 		@include input;
 		overflow: auto;
 		min-height: 2.25rem;
-		padding: 0.5rem 0.75rem;
+		padding: 0.5rem var(--cs-textarea-custom-data-width, 0.75rem) 0.5rem 0.75rem;
 		line-height: 1.5;
 		resize: vertical;
-		max-height: var(--cs-textarea-max-height-value, 100%);
+		max-height: var(--cs-textarea-max-height, 100%);
 		white-space: break-spaces;
-		border-radius: var(--cs-textarea-border-radius-value, 0.25rem);
-		padding-right: var(--cs-textarea-options-spacing-value, 0.75rem);
+		border-radius: var(--cs-textarea-border-radius, 0.25rem);
+
+		&.cs-textarea-error-tooltip {
+			padding-right: calc(var(--cs-textarea-custom-data-width, 0.5rem) + 1.25rem);
+		}
 
 		&:read-only:not(:disabled) {
-			padding: 0 var(--cs-textarea-options-spacing-value, 0) 0 0;
+			padding: 0 var(--cs-textarea-custom-data-width, 0px) 0 0;
 			resize: none;
 			overflow: hidden;
 			height: var(--cs-textarea-read-only-height);
@@ -73,35 +63,15 @@
 	}
 }
 
-// Version
-.component-version-textarea .version-preview {
-	overflow: visible;
-}
-
-// Options
 .cs-textarea-wrapper-inner-content {
-	position: absolute;
-	top: 0.5rem;
-	right: 0.5rem;
 	display: flex;
 	align-items: center;
-
-	.cs-textarea-options {
-		display: flex;
-	}
-
-	.cs-custom-data-item {
-		align-items: center;
-		display: flex;
-
-		&:not(:last-child),
-		> *:not(:last-child) {
-			margin-right: 0.25rem;
-		}
-	}
-}
-
-.cs-textarea-options + .cs-textarea-error-message {
 	position: absolute;
-	right: 100%;
+	top: 0;
+	right: 0;
+
+	.cs-custom-data-wrapper + .cs-textarea-error-message {
+		position: absolute;
+		right: var(--cs-textarea-custom-data-width, 0.5rem);
+	}
 }

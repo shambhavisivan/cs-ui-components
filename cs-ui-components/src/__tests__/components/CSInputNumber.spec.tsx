@@ -2,6 +2,7 @@ import * as React from 'react';
 import { shallow } from 'enzyme';
 import '../../setupTests';
 import CSInputNumber from '../../components/CSInputNumber';
+import { actions, icons } from '../common/custom-data';
 
 const label = 'input number value';
 const errorMessage = 'input number error message';
@@ -37,19 +38,10 @@ describe('<CSInputNumber />', () => {
 		expect(hiddenInputNumberSpinner).toHaveLength(0);
 	});
 
-	it('should pass actions to CSCustomDataActions', () => {
-		const actions = [{
-			action: () => { },
-			icon: { iconName: 'delete' },
-			name: 'Delete',
-		}, {
-			action: () => { },
-			icon: { iconName: 'add' },
-			name: 'Add',
-		}];
+	it('should pass actions to CSCustomData', () => {
 		const uut = shallow(<CSInputNumber label={label} actions={actions} />);
-		const inputNumberActions = uut.find('CSCustomDataActions').prop('actions');
-		expect(inputNumberActions).toMatchObject(actions);
+		const inputNumberCustomData = uut.find('CSCustomData').prop('actions');
+		expect(inputNumberCustomData).toMatchObject(actions);
 	});
 
 	it('should set custom border radius', () => {
@@ -103,16 +95,10 @@ describe('<CSInputNumber />', () => {
 		expect(hiddenInputNumberSpinner).toHaveLength(1);
 	});
 
-	it('should pass icons to CSCustomDataIcons', () => {
-		const icons = [{
-			iconName: 'activity',
-		}, {
-			iconName: 'info',
-			getTooltip: { content: 'icons tooltip' },
-		}];
+	it('should pass icons to CSCustomData', () => {
 		const uut = shallow(<CSInputNumber label={label} icons={icons} />);
-		const inputNumberIcons = uut.find('CSCustomDataIcons').prop('icons');
-		expect(inputNumberIcons).toMatchObject(icons);
+		const inputNumberCustomData = uut.find('CSCustomData').prop('icons');
+		expect(inputNumberCustomData).toMatchObject(icons);
 	});
 
 	it('should hide the label', () => {

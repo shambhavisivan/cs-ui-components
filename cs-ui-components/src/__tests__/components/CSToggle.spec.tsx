@@ -2,23 +2,11 @@ import * as React from 'react';
 import { shallow } from 'enzyme';
 import '../../setupTests';
 import CSToggle from '../../components/CSToggle';
+import { actions, icons } from '../common/custom-data';
 
 const errorText = 'error message';
 const helpTextMsg = 'help text in tooltip';
-const iconsValue = [{ iconName: 'cart' }];
 const labelValue = 'toggle label';
-const actionsValue = [
-	{
-		action: () => jest.fn(),
-		icon: { iconName: 'delete' },
-		name: 'Delete',
-	},
-	{
-		action: () => jest.fn(),
-		icon: { iconName: 'add' },
-		name: 'Add',
-	},
-];
 
 describe('<CSToggle />', () => {
 	it('should render the default CSToggle', () => {
@@ -53,12 +41,11 @@ describe('<CSToggle />', () => {
 		expect(toggleLabel.prop('required')).toBeFalsy();
 	});
 
-	it('should render custom actions and check if passed object is correct', () => {
-		const uut = shallow(<CSToggle label={labelValue} actions={actionsValue} />);
-		const toggleCustomActions = uut.find('.cs-toggle-wrapper CSCustomDataActions');
-		expect(toggleCustomActions).toHaveLength(1);
-		// Make sure CSCustomDataActions received correct actions object
-		expect(toggleCustomActions.prop('actions')).toMatchObject(actionsValue);
+	it('should pass actions to CSCustomData', () => {
+		const uut = shallow(<CSToggle label={labelValue} actions={actions} />);
+		const toggleCSCustomData = uut.find('.cs-toggle-wrapper CSCustomData');
+		expect(toggleCSCustomData).toHaveLength(1);
+		expect(toggleCSCustomData.prop('actions')).toMatchObject(actions);
 	});
 
 	it('should set checked attribute', () => {
@@ -99,12 +86,11 @@ describe('<CSToggle />', () => {
 		expect(toggleLabel.prop('helpText')).toBe(helpTextMsg);
 	});
 
-	it('should pass icons to CSCustomDataIcons', () => {
-		const uut = shallow(<CSToggle label={labelValue} icons={iconsValue} />);
-		const toggleCustomIcons = uut.find('.cs-toggle-wrapper CSCustomDataIcons');
-		expect(toggleCustomIcons).toHaveLength(1);
-		// Make sure CSCustomDataIcons received correct icons object
-		expect(toggleCustomIcons.prop('icons')).toMatchObject(iconsValue);
+	it('should pass icons to CSCustomData', () => {
+		const uut = shallow(<CSToggle label={labelValue} icons={icons} />);
+		const toggleCustomData = uut.find('.cs-toggle-wrapper CSCustomData');
+		expect(toggleCustomData).toHaveLength(1);
+		expect(toggleCustomData.prop('icons')).toMatchObject(icons);
 	});
 
 	it('should hide label', () => {

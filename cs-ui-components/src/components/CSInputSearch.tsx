@@ -202,17 +202,16 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 
 		return (
 			<div className={inputSearchWrapperClasses}>
-				{(label && !labelHidden)
-					&& (
-						<CSLabel
-							htmlFor={this.uniqueAutoId}
-							label={label}
-							helpText={helpText}
-							tooltipPosition={tooltipPosition}
-							required={required}
-							title={labelTitle ? label : null}
-						/>
-					)}
+				{label && !labelHidden && (
+					<CSLabel
+						htmlFor={this.uniqueAutoId}
+						label={label}
+						helpText={helpText}
+						tooltipPosition={tooltipPosition}
+						required={required}
+						title={labelTitle ? label : null}
+					/>
+				)}
 				<div className={inputSearchGroupClasses} style={style}>
 					<CSIcon
 						name="search"
@@ -242,24 +241,21 @@ class CSInputSearch extends React.Component<CSInputSearchProps, CSInputSearchSta
 						title={title}
 						{...rest}
 					/>
-					{valueState
-						&& (
-							<CSButton
-								btnType="transparent"
-								btnStyle="brand"
-								className={inputClearClasses}
-								iconColor="var(--cs-input-clear)"
-								iconName="close"
-								labelHidden
-								label="clear"
-								onClick={this.clearSearch}
-								size="small"
-							/>
-						)}
+					{valueState && (
+						<CSButton
+							btnType="transparent"
+							btnStyle="brand"
+							className={inputClearClasses}
+							iconColor="var(--cs-input-clear)"
+							iconName="close"
+							labelHidden
+							label="clear"
+							onClick={this.clearSearch}
+							size="small"
+						/>
+					)}
 				</div>
-				{error
-					&& errorMessage
-					&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
+				{error && errorMessage && <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
 			</div>
 		);
 	}

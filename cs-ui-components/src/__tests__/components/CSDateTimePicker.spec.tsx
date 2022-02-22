@@ -3,12 +3,13 @@ import { shallow, mount } from 'enzyme';
 import '../../setupTests';
 import DatePicker from 'react-datepicker';
 import CSDateTimePicker from '../../components/CSDateTimePicker';
+import { actions, icons } from '../common/custom-data';
 
 const labelValue = 'Select date';
 const errorMessage = 'Error message';
 const minDate = 5;
 const maxDate = 5;
-const onChange = () => { };
+const onChange = () => {};
 
 describe('<CSDateTimePicker />', () => {
 	it('should render the default CSDateTimepicker', () => {
@@ -68,28 +69,16 @@ describe('<CSDateTimePicker />', () => {
 	});
 
 	it('should pass actions to CSDatepicker', () => {
-		const actionsValue = [
-			{
-				action: () => jest.fn(),
-				icon: { iconName: 'delete' },
-				name: 'Delete',
-			},
-			{
-				action: () => jest.fn(),
-				icon: { iconName: 'add' },
-				name: 'Add',
-			},
-		];
 		const uut = shallow(
 			<CSDateTimePicker
 				label={labelValue}
 				onChange={onChange}
-				actions={actionsValue}
+				actions={actions}
 			/>,
 		);
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker).toHaveLength(1);
-		expect(datepicker.prop('actions')).toMatchObject(actionsValue);
+		expect(datepicker.prop('actions')).toMatchObject(actions);
 	});
 
 	it('should pass autoFocus to CSDatepicker', () => {
@@ -208,16 +197,15 @@ describe('<CSDateTimePicker />', () => {
 	});
 
 	it('should pass icons to CSDatepicker', () => {
-		const iconsValue = [{ iconName: 'cart' }];
 		const uut = shallow(
 			<CSDateTimePicker
 				label={labelValue}
 				onChange={onChange}
-				icons={iconsValue}
+				icons={icons}
 			/>,
 		);
 		const datepicker = uut.dive().find('CSDatepicker');
-		expect(datepicker.prop('icons')).toMatchObject(iconsValue);
+		expect(datepicker.prop('icons')).toMatchObject(icons);
 	});
 
 	it('should pass inline to CSDatepicker', () => {

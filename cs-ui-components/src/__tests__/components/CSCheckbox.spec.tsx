@@ -2,22 +2,10 @@ import * as React from 'react';
 import { shallow } from 'enzyme';
 import '../../setupTests';
 import CSCheckbox from '../../components/CSCheckbox';
+import { actions, icons } from '../common/custom-data';
 
 const label = 'label';
-const iconsValue = [{ iconName: 'cart' }];
 const errorMessage = 'error message';
-const actionsValue = [
-	{
-		action: () => { },
-		icon: { iconName: 'delete' },
-		name: 'Delete',
-	},
-	{
-		action: () => { },
-		icon: { iconName: 'add' },
-		name: 'Add',
-	},
-];
 
 describe('<CSCheckbox />', () => {
 	it('should render the default CSCheckbox', () => {
@@ -65,11 +53,11 @@ describe('<CSCheckbox />', () => {
 		expect(checkbox.prop('aria-label')).toBe(label);
 	});
 
-	it('should pass actions to CSCustomDataActions', () => {
-		const uut = shallow(<CSCheckbox label={label} actions={actionsValue} />);
-		const checkboxCustomActions = uut.find('.cs-checkbox-options CSCustomDataActions');
-		expect(checkboxCustomActions).toHaveLength(1);
-		expect(checkboxCustomActions.prop('actions')).toMatchObject(actionsValue);
+	it('should pass actions to CSCustomData', () => {
+		const uut = shallow(<CSCheckbox label={label} actions={actions} />);
+		const checkboxCustomData = uut.find('CSCustomData');
+		expect(checkboxCustomData).toHaveLength(1);
+		expect(checkboxCustomData.prop('actions')).toMatchObject(actions);
 	});
 
 	it('should set custom border radius', () => {
@@ -122,12 +110,12 @@ describe('<CSCheckbox />', () => {
 		expect(uut.find('.cs-checkbox-wrapper.cs-element-hidden')).toHaveLength(1);
 	});
 
-	it('should pass icons to CSCustomDataIcons', () => {
-		const uut = shallow(<CSCheckbox label={label} icons={iconsValue} />);
-		const checkboxCustomIcons = uut.find('.cs-checkbox-options CSCustomDataIcons');
-		expect(checkboxCustomIcons).toHaveLength(1);
+	it('should pass icons to CSCustomData', () => {
+		const uut = shallow(<CSCheckbox label={label} icons={icons} />);
+		const checkboxCustomData = uut.find('CSCustomData');
+		expect(checkboxCustomData).toHaveLength(1);
 		// Make sure CSCustomDataActions received correct actions object
-		expect(checkboxCustomIcons.prop('icons')).toMatchObject(iconsValue);
+		expect(checkboxCustomData.prop('icons')).toMatchObject(icons);
 	});
 
 	it('should set indeterminate state', () => {

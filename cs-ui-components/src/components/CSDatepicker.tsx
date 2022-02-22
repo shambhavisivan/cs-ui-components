@@ -11,15 +11,13 @@ import CSIcon from './CSIcon';
 import CSLabel from './CSLabel';
 import { CSTooltipPosition } from './CSTooltip';
 import KeyCode from '../util/KeyCode';
-import { CSCustomDataIconProps, CSCustomDataActionProps } from './custom-data/CSCustomData';
-import CSCustomDataIcons from './custom-data/CSCustomDataIcons';
-import CSCustomDataActions from './custom-data/CSCustomDataActions';
+import CSCustomData, { CSCustomDataAction, CSCustomDataIcon } from './CSCustomData';
 
 export type CSDatepickerDropdownMode = 'select' | 'scroll';
 
 export interface CSDatepickerProps {
 	[key: string]: any;
-	actions?: Array<CSCustomDataActionProps>;
+	actions?: Array<CSCustomDataAction>;
 	autoFocus?: boolean;
 	borderRadius?: string;
 	className?: string;
@@ -30,7 +28,7 @@ export interface CSDatepickerProps {
 	errorMessage?: CSFieldErrorMsgType;
 	errorTooltip?: boolean;
 	helpText?: string;
-	icons?: Array<CSCustomDataIconProps>;
+	icons?: Array<CSCustomDataIcon>;
 	id?: string;
 	inline?: boolean;
 	isClearable?: boolean;
@@ -68,7 +66,7 @@ export interface CSDatepickerProps {
 }
 
 export interface CSDatepickerState {
-	datepickerOptionsWrapperWidth: number | null;
+	customDataWidth: number;
 }
 
 class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState> {
@@ -79,7 +77,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 
 	public datepickerInnerRef: React.RefObject<DatePicker>;
 
-	private datepickerOptionsWrapperRef: React.RefObject<HTMLDivElement>;
+	private customDataRef: React.RefObject<HTMLDivElement>;
 
 	private readonly uniqueAutoId: string;
 
@@ -87,12 +85,10 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 		super(props);
 
 		this.datepickerInnerRef = React.createRef();
-		this.datepickerOptionsWrapperRef = React.createRef();
+		this.customDataRef = React.createRef();
 		this.uniqueAutoId = props.id ? props.id : uuidv4();
 
-		this.state = {
-			datepickerOptionsWrapperWidth: null,
-		};
+		this.state = { customDataWidth: 0 };
 
 		if (props.locale) {
 			const localeCode = props.locale.replace('-', '');
@@ -104,10 +100,8 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 	}
 
 	componentDidMount() {
-		/* Get width of parent element and set state to width + 32 for extra spacing */
-		const datepickerOptionsRef = this.datepickerOptionsWrapperRef.current?.getBoundingClientRect();
 		this.setState({
-			datepickerOptionsWrapperWidth: (datepickerOptionsRef?.width ?? 0) + 32,
+			customDataWidth: this.customDataRef.current?.getBoundingClientRect().width,
 		});
 	}
 
@@ -173,7 +167,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 			...rest
 		} = this.props;
 
-		const { datepickerOptionsWrapperWidth } = this.state;
+		const { customDataWidth } = this.state;
 
 		const datepickerClasses = classNames(
 			'cs-datepicker-wrapper',
@@ -188,7 +182,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 		const style: CSSProperties = {
 			'--datepicker-width': width,
 			'--cs-datepicker-border-radius': borderRadius,
-			'--cs-datepicker-options-spacing': `${datepickerOptionsWrapperWidth}px`,
+			'--cs-datepicker-custom-data-width': customDataWidth ? `${customDataWidth}px` : undefined,
 		};
 		const calcMaxDate = () => {
 			if (maxDateYear) {
@@ -205,17 +199,16 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 
 		return (
 			<div className={datepickerClasses} style={style}>
-				{(label && !labelHidden && !inline)
-					&& (
-						<CSLabel
-							htmlFor={this.uniqueAutoId}
-							label={label}
-							helpText={helpText}
-							tooltipPosition={tooltipPosition}
-							required={required}
-							title={labelTitle ? label : null}
-						/>
-					)}
+				{label && !labelHidden && !inline && (
+					<CSLabel
+						htmlFor={this.uniqueAutoId}
+						label={label}
+						helpText={helpText}
+						tooltipPosition={tooltipPosition}
+						required={required}
+						title={labelTitle ? label : null}
+					/>
+				)}
 				<div className="cs-datepicker" title={title}>
 					<DatePicker
 						dateFormat={dateFormat}
@@ -252,18 +245,14 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 						value={value}
 						{...rest}
 					/>
+					<CSCustomData
+						ref={this.customDataRef}
+						icons={icons}
+						actions={actions}
+					/>
 				</div>
-				{(icons?.length || actions?.length)
-					&& (
-						<div className="cs-datepicker-options" ref={this.datepickerOptionsWrapperRef}>
-							{icons?.length && <CSCustomDataIcons icons={icons} />}
-							{actions?.length && <CSCustomDataActions actions={actions} />}
-						</div>
-					)}
 				{(!readOnly && !inline) && <CSIcon name="event" className="cs-datepicker-icon" size="0.875rem" />}
-				{error
-					&& errorMessage
-					&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
+				{error && errorMessage && <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
 			</div>
 		);
 	}

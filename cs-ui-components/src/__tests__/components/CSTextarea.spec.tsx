@@ -2,22 +2,10 @@ import * as React from 'react';
 import { shallow } from 'enzyme';
 import '../../setupTests';
 import CSTextarea from '../../components/CSTextarea';
+import { actions, icons } from '../common/custom-data';
 
 const labelValue = 'textarea label';
-const iconsValue = [{ iconName: 'cart' }];
 const errorText = 'error message';
-const actionsValue = [
-	{
-		action: () => jest.fn(),
-		icon: { iconName: 'delete' },
-		name: 'Delete',
-	},
-	{
-		action: () => jest.fn(),
-		icon: { iconName: 'add' },
-		name: 'Add',
-	},
-];
 
 describe('<CSTextarea />', () => {
 	it('should render the default CSTextarea', () => {
@@ -30,13 +18,11 @@ describe('<CSTextarea />', () => {
 		expect(textareaLabel.prop('label')).toBe(labelValue);
 	});
 
-	it('should render custom actions', () => {
-		const uut = shallow(<CSTextarea label={labelValue} actions={actionsValue} />);
-		const textareaCustomActions = uut.find('.cs-textarea-wrapper.cs-textarea-wrapper-options CSCustomDataActions');
-		// Make sure belonging class exists and CSCustomDataActions is rendered
-		expect(textareaCustomActions).toHaveLength(1);
-		// Make sure CSCustomDataActions received correct actions object
-		expect(textareaCustomActions.prop('actions')).toMatchObject(actionsValue);
+	it('should pass actions to CSCustomData', () => {
+		const uut = shallow(<CSTextarea label={labelValue} actions={actions} />);
+		const textareaCustomData = uut.find('.cs-textarea-wrapper-options CSCustomData');
+		expect(textareaCustomData).toHaveLength(1);
+		expect(textareaCustomData.prop('actions')).toMatchObject(actions);
 	});
 
 	it('should set custom border radius', () => {
@@ -93,13 +79,11 @@ describe('<CSTextarea />', () => {
 		expect(uut.find('.cs-textarea-wrapper.cs-element-hidden')).toHaveLength(1);
 	});
 
-	it('should render custom icons', () => {
-		const uut = shallow(<CSTextarea label={labelValue} icons={iconsValue} />);
-		const textareaCustomIcons = uut.find('.cs-textarea-wrapper.cs-textarea-wrapper-options CSCustomDataIcons');
-		// Make sure belonging class exists and CSCustomDataIcons is rendered
-		expect(textareaCustomIcons).toHaveLength(1);
-		// Make sure CSCustomDataIcons received correct icons object
-		expect(textareaCustomIcons.prop('icons')).toMatchObject(iconsValue);
+	it('should pass icons to CSCustomData', () => {
+		const uut = shallow(<CSTextarea label={labelValue} icons={icons} />);
+		const textareaCustomData = uut.find('.cs-textarea-wrapper-options CSCustomData');
+		expect(textareaCustomData).toHaveLength(1);
+		expect(textareaCustomData.prop('icons')).toMatchObject(icons);
 	});
 
 	it('should hide label', () => {

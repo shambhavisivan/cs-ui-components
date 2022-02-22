@@ -45,13 +45,10 @@ import CSCurrency, {
 import CSCustomData, {
 	CSCustomDataProps,
 	CSCustomDataIcon,
+	CSCustomDataAction,
 	CSCustomDataTooltip,
-	CSCustomDataIconProps,
-	CSCustomDataActionProps,
 	CSCustomDataMenuVariant,
-} from './components/custom-data/CSCustomData';
-import CSCustomDataActions, { CSCustomDataActionsProps } from './components/custom-data/CSCustomDataActions';
-import CSCustomDataIcons, { CSCustomDataIconsProps } from './components/custom-data/CSCustomDataIcons';
+} from './components/CSCustomData';
 
 import CSCustomSelect, {
 	CSCustomSelectDropdownAlignType,
@@ -251,14 +248,9 @@ export {
 	CSCurrencyProps,
 	CSCustomData,
 	CSCustomDataProps,
-	CSCustomDataActions,
-	CSCustomDataActionsProps,
-	CSCustomDataIcons,
-	CSCustomDataIconsProps,
 	CSCustomDataIcon,
+	CSCustomDataAction,
 	CSCustomDataTooltip,
-	CSCustomDataIconProps,
-	CSCustomDataActionProps,
 	CSCustomDataMenuVariant,
 	CSCustomSelect,
 	CSCustomSelectProps,

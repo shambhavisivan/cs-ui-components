@@ -4,9 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import CSLabel from './CSLabel';
 import { CSTooltipPosition } from './CSTooltip';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
-import { CSCustomDataIconProps, CSCustomDataActionProps } from './custom-data/CSCustomData';
-import CSCustomDataIcons from './custom-data/CSCustomDataIcons';
-import CSCustomDataActions from './custom-data/CSCustomDataActions';
+import CSCustomData, { CSCustomDataAction, CSCustomDataIcon } from './CSCustomData';
 import KeyCode from '../util/KeyCode';
 
 export type CSCheckboxVariant = 'neutral' | 'brand';
@@ -14,7 +12,7 @@ export type CSCheckboxLabelPosition = 'left' | 'right';
 
 export interface CSCheckboxProps {
 	[key: string]: any;
-	actions?: Array<CSCustomDataActionProps>;
+	actions?: Array<CSCustomDataAction>;
 	borderRadius?: string;
 	checked?: boolean;
 	className?: string;
@@ -24,7 +22,7 @@ export interface CSCheckboxProps {
 	errorTooltip?: boolean;
 	helpText?: string;
 	hidden?: boolean;
-	icons?: Array<CSCustomDataIconProps>;
+	icons?: Array<CSCustomDataIcon>;
 	id?: string;
 	indeterminate?: boolean;
 	label: string;
@@ -136,17 +134,16 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 				<div
 					className={checkboxWrapperClasses}
 				>
-					{(label && !labelHidden)
-						&& (
-							<CSLabel
-								htmlFor={this.uniqueAutoId}
-								label={label}
-								helpText={helpText}
-								tooltipPosition={tooltipPosition}
-								required={required}
-								title={labelTitle ? label : null}
-							/>
-						)}
+					{label && !labelHidden && (
+						<CSLabel
+							htmlFor={this.uniqueAutoId}
+							label={label}
+							helpText={helpText}
+							tooltipPosition={tooltipPosition}
+							required={required}
+							title={labelTitle ? label : null}
+						/>
+					)}
 					<div className="cs-checkbox-wrapper-inner">
 						{/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */}
 						<label
@@ -185,20 +182,14 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 								style={style}
 							/>
 						</label>
-						{error
-							&& errorTooltip
-							&& <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
-						{(actions?.length || icons?.length)
-							&& (
-								<div className="cs-checkbox-options">
-									{icons?.length && <CSCustomDataIcons icons={icons} />}
-									{actions?.length && <CSCustomDataActions actions={actions} />}
-								</div>
-							)}
+						{error && errorTooltip && errorMessage && (
+							<CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />
+						)}
+						<CSCustomData icons={icons} actions={actions} />
 					</div>
-					{!errorTooltip
-						&& error
-						&& <CSFieldErrorMsg message={errorMessage} />}
+					{!errorTooltip && error && errorMessage && (
+						<CSFieldErrorMsg message={errorMessage} />
+					)}
 				</div>
 			</>
 		);
