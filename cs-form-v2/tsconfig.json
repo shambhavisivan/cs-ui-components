@@ -12,7 +12,8 @@
 		"allowJs": true,
 		"noImplicitAny": true,
 		"allowSyntheticDefaultImports": true,
-		"esModuleInterop": true
+		"esModuleInterop": true,
+		"importsNotUsedAsValues": "preserve"
 	},
 	"include": ["src/**/*"],
 	"exclude": ["node_modules", "**/__tests__/*"]

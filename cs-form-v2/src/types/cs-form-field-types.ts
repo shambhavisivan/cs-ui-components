@@ -1,11 +1,12 @@
-/* eslint-disable import/no-unresolved */
-import { CSButtonProps as CSFormModalButton } from '@cloudsense/cs-ui-components/dist/cs-ui-components/src/components/CSButton';
-import { CSModalHeaderProps } from '@cloudsense/cs-ui-components/dist/cs-ui-components/src/components/modal/CSModalHeader';
-import { CSModalBodyProps } from '@cloudsense/cs-ui-components/dist/cs-ui-components/src/components/modal/CSModalBody';
-import { CSModalFooterProps } from '@cloudsense/cs-ui-components/dist/cs-ui-components/src/components/modal/CSModalFooter';
+import {
+	CSButtonProps as CSFormModalButton,
+	CSModalProps,
+	CSModalHeaderProps,
+	CSModalBodyProps,
+	CSModalFooterProps,
+	CSDataTableRowInterface,
+} from '@cloudsense/cs-ui-components';
 import React from 'react';
-import { CSModalProps } from '@cloudsense/cs-ui-components/dist/cs-ui-components/src/components/modal/CSModal';
-import { CSDataTableRowInterface } from '@cloudsense/cs-ui-components';
 import { CSFormData } from './cs-form-types';
 
 type ExcludeCommonHelper<T, K extends string | number | symbol> = T extends unknown ? Omit<T, K> : never;
