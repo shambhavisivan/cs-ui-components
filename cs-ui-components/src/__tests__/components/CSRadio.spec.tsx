@@ -4,12 +4,18 @@ import { shallow } from 'enzyme';
 import CSRadio from '../../components/radio/CSRadio';
 import CSRadioOption from '../../components/radio/CSRadioOption';
 
-const label = 'This is a label';
-const name = 'Radio option name';
+const label = 'label';
+const options = [{
+	key: 'zagreb',
+	label: 'Zagreb',
+}, {
+	key: 'chennai',
+	label: 'Chennai',
+}];
 
 describe('<CSRadio />', () => {
 	it('should render the default CSRadio', () => {
-		const uut = shallow(<CSRadio label={label} />).dive();
+		const uut = shallow(<CSRadio label={label} options={options} />).dive();
 		// Should render a radio
 		const radio = uut.find('.cs-radio-wrapper > .cs-radio-neutral');
 		expect(radio).toHaveLength(1);
@@ -21,6 +27,9 @@ describe('<CSRadio />', () => {
 		// error
 		expect(uut.find('.cs-radio-wrapper > .cs-radio-error')).toHaveLength(0);
 		expect(uut.find('.cs-radio-wrapper > .cs-radio-neutral').prop('aria-invalid')).toBeFalsy();
+		// Should render radio options
+		const radioOptions = uut.find('CSRadioOption');
+		expect(radioOptions).toHaveLength(options.length);
 		// required
 		expect(uut.find('.cs-radio-wrapper > CSLabel').prop('required')).toBeFalsy();
 		expect(uut.find('.cs-radio-wrapper > .cs-radio-neutral').prop('aria-required')).toBeFalsy();
@@ -36,26 +45,42 @@ describe('<CSRadio />', () => {
 		expect(radioLabel.prop('label')).toBe(label);
 	});
 
-	it('should set disabled attribute', () => {
+	it('should pass disabled to CSRadioOption', () => {
 		const uut = shallow(
-			<CSRadio label={label} disabled>
-				<CSRadioOption label={label} name={name} />
-			</CSRadio>,
+			<CSRadio
+				label={label}
+				options={options}
+				disabled
+			/>,
 		).dive();
+		const radioOptions = uut.find('CSRadioOption');
 		expect(uut.find('.cs-radio-group.cs-radio-disabled')).toHaveLength(1);
-		const radioOption = uut.find('CSRadioOption');
-		expect(radioOption.shallow().find('.cs-radio').props().disabled).toBeTruthy();
+
+		radioOptions.forEach((radioOption) => expect(radioOption.props().disabled).toBeTruthy());
 	});
 
-	it('should have error styling', () => {
+	it('should pass disabledKeys to CSRadioOption', () => {
+		const disabledKeys = ['zagreb'];
 		const uut = shallow(
-			<CSRadio label={label} error>
-				<CSRadioOption label={label} name={name} />
-			</CSRadio>,
+			<CSRadio
+				label={label}
+				options={options}
+				disabledKeys={disabledKeys}
+			/>,
 		).dive();
-		const radioOption = uut.find('CSRadioOption');
-		expect(uut.find('.cs-radio-wrapper > .cs-radio-error')).toHaveLength(1);
-		expect(radioOption.shallow().find('.cs-radio').prop('aria-invalid')).toBeTruthy();
+		const radioOptions = uut.find('CSRadioOption');
+
+		radioOptions.forEach((radioOption) => {
+			expect(radioOption.prop('disabled')).toBe(disabledKeys.includes(String(radioOption.prop('value'))));
+		});
+	});
+
+	it('should pass error to CSRadioOption', () => {
+		const uut = shallow(<CSRadio label={label} options={options} error />).dive();
+		const radioOptions = uut.find('CSRadioOption');
+		expect(uut.find('.cs-radio-group.cs-radio-error')).toHaveLength(1);
+
+		radioOptions.forEach((radioOption) => expect(radioOption.prop('ariaInvalid')).toBeTruthy());
 	});
 
 	it('should pass errorMessage to CSFieldErrorMsg', () => {
@@ -71,17 +96,15 @@ describe('<CSRadio />', () => {
 		expect(uut.find('CSFieldErrorMsg').prop('message')).toBe(errorMessage);
 	});
 
-	it('should pass helpText to CSTooltip', () => {
+	it('should pass helpText to CSLabel', () => {
 		const helpText = 'Help text example';
 		const uut = shallow(
 			<CSRadio
 				label={label}
+				options={options}
 				helpText={helpText}
 				tooltipPosition="bottom-right"
-			>
-				<CSRadioOption label="red" name={name} />
-				<CSRadioOption label="blue" name={name} />
-			</CSRadio>,
+			/>,
 		).dive();
 		const radioWrapper = uut.find('.cs-radio-wrapper > CSLabel');
 		expect(radioWrapper.prop('helpText')).toBe(helpText);
@@ -97,23 +120,122 @@ describe('<CSRadio />', () => {
 		expect(uut.find('.cs-radio-wrapper > CSLabel')).toHaveLength(0);
 	});
 
-	it('should pass to CSLabel title prop', () => {
-		const labelTitle = 'This is a label';
-		const uut = shallow(<CSRadio label={labelTitle} labelTitle />).dive();
+	it('should pass label to CSLabel as title', () => {
+		const uut = shallow(<CSRadio label={label} labelTitle />).dive();
 		const radioLabel = uut.find('.cs-radio-wrapper > CSLabel');
-		expect(radioLabel.props().title).toBe(labelTitle);
+		expect(radioLabel.prop('title')).toBe(label);
 	});
 
-	it('should set required attribute', () => {
+	it('should pass onBlur to CSRadioOption', () => {
+		const handleBlurMock = jest.fn();
 		const uut = shallow(
-			<CSRadio label={label} required>
-				<CSRadioOption label={label} name={name} />
-			</CSRadio>,
+			<CSRadio
+				label={label}
+				options={options}
+				onBlur={handleBlurMock}
+			/>,
 		).dive();
-		const requiredLabel = uut.find('.cs-radio-wrapper > CSLabel');
-		expect(requiredLabel.prop('required')).toBeTruthy();
-		const radioOption = uut.find('CSRadioOption');
-		expect(radioOption.shallow().find('.cs-radio').prop('aria-required')).toBeTruthy();
+		const radioOptions = uut.find('CSRadioOption');
+
+		radioOptions.forEach((radioOption) => expect(radioOption.prop('onBlur')).toBe(handleBlurMock));
+	});
+
+	it('should pass onChange to CSRadioOption', () => {
+		const handleChangeMock = jest.fn();
+		const uut = shallow(
+			<CSRadio
+				label={label}
+				options={options}
+				onChange={handleChangeMock}
+			/>,
+		).dive();
+		const radioOptions = uut.find('CSRadioOption');
+
+		radioOptions.forEach((radioOption) => expect(radioOption.prop('onChange')).toBe(handleChangeMock));
+	});
+
+	it('should pass onClick to CSRadioOption', () => {
+		const handleClickMock = jest.fn();
+		const uut = shallow(
+			<CSRadio
+				label={label}
+				options={options}
+				onClick={handleClickMock}
+			/>,
+		).dive();
+		const radioOptions = uut.find('CSRadioOption');
+
+		radioOptions.forEach((radioOption) => expect(radioOption.prop('onClick')).toBe(handleClickMock));
+	});
+
+	it('should pass onFocus to CSRadioOption', () => {
+		const handleFocusMock = jest.fn();
+		const uut = shallow(
+			<CSRadio
+				label={label}
+				options={options}
+				onFocus={handleFocusMock}
+			/>,
+		).dive();
+		const radioOptions = uut.find('CSRadioOption');
+
+		radioOptions.forEach((radioOption) => expect(radioOption.prop('onFocus')).toBe(handleFocusMock));
+	});
+
+	it('should pass onKeyDown to CSRadioOption', () => {
+		const handleKeyDownMock = jest.fn();
+		const uut = shallow(
+			<CSRadio
+				label={label}
+				options={options}
+				onKeyDown={handleKeyDownMock}
+			/>,
+		).dive();
+		const radioOptions = uut.find('CSRadioOption');
+
+		radioOptions.forEach((radioOption) => expect(radioOption.prop('onKeyDown')).toBe(handleKeyDownMock));
+	});
+
+	it('should pass readOnly to CSRadioOption', () => {
+		const uut = shallow(
+			<CSRadio
+				label={label}
+				options={options}
+				readOnly
+			/>,
+		).dive();
+		const radioOptions = uut.find('CSRadioOption');
+
+		radioOptions.forEach((radioOption) => expect(radioOption.prop('readOnly')).toBeTruthy());
+	});
+
+	it('should pass required to CSRadioOption', () => {
+		const uut = shallow(
+			<CSRadio
+				label={label}
+				options={options}
+				required
+			/>,
+		).dive();
+		const radioOptions = uut.find('CSRadioOption');
+
+		radioOptions.forEach((radioOption) => expect(radioOption.prop('ariaRequired')).toBeTruthy());
+	});
+
+	it('should pass selectedKey to CSRadioOption', () => {
+		const selectedKey = 'zagreb';
+		const uut = shallow(
+			<CSRadio
+				label={label}
+				options={options}
+				selectedKey={selectedKey}
+			/>,
+		).dive();
+		const radioOptions = uut.find('CSRadioOption');
+
+		radioOptions.forEach((radioOption) => {
+			expect(radioOption.prop('checked')).toBe(selectedKey === radioOption.prop('value'));
+		});
 	});
 
 	it('should pass tooltipPosition to CSLabel', () => {
@@ -162,11 +284,30 @@ describe('<CSRadio />', () => {
 });
 
 describe('<CSRadioOption />', () => {
+	const name = 'name';
+	const value = 'value';
+
 	it('should render the default CSRadioOption', () => {
-		const uut = shallow(<CSRadioOption name={name} />).shallow();
+		const uut = shallow(
+			<CSRadioOption
+				label={label}
+				checked={false}
+				name={name}
+				value={value}
+			/>,
+		);
 		// Should render a radio option
 		const radioOption = uut.find('.cs-radio');
 		expect(radioOption).toHaveLength(1);
+		// checked
+		expect(radioOption.props().checked).toBeFalsy();
+		// label
+		const optionLabel = (uut.find('.cs-radio-option-wrapper > .cs-radio-option-label'));
+		expect(optionLabel.text()).toBe(label);
+		// name
+		expect(radioOption.prop('name')).toBe(name);
+		// value
+		expect(radioOption.prop('value')).toBe(value);
 		// disabled
 		expect(radioOption.prop('disabled')).toBeFalsy();
 		// readOnly
@@ -178,29 +319,160 @@ describe('<CSRadioOption />', () => {
 	it('should be checked', () => {
 		const uut = shallow(
 			<CSRadioOption
-				label={label}
 				name={name}
+				label={label}
+				value={value}
 				checked
 			/>,
 		);
-		expect(uut.shallow().find('.cs-radio').prop('defaultChecked')).toBeTruthy();
+		expect(uut.find('.cs-radio').props().checked).toBeTruthy();
 	});
 
-	it('should set disabled attribute', () => {
+	it('should not be checked', () => {
 		const uut = shallow(
 			<CSRadioOption
-				label={label}
 				name={name}
-				disabled
+				label={label}
+				value={value}
+				checked={false}
 			/>,
 		);
-		expect(uut.shallow().find('.cs-radio').prop('disabled')).toBeTruthy();
+		expect(uut.find('.cs-radio').props().checked).toBeFalsy();
 	});
 
 	it('should have a label', () => {
-		const uut = shallow(<CSRadioOption label={label} name={name} />);
+		const uut = shallow(
+			<CSRadioOption
+				label={label}
+				checked={false}
+				name={name}
+				value={value}
+			/>,
+		);
 		const optionLabel = (uut.find('.cs-radio-option-wrapper > .cs-radio-option-label'));
 		expect(optionLabel.text()).toBe(label);
+	});
+
+	it('should have a name', () => {
+		const uut = shallow(
+			<CSRadioOption
+				label={label}
+				checked={false}
+				name={name}
+				value={value}
+			/>,
+		);
+		const radioOption = uut.find('.cs-radio');
+		expect(radioOption.prop('name')).toBe(name);
+	});
+
+	it('should have a value', () => {
+		const uut = shallow(
+			<CSRadioOption
+				label={label}
+				checked={false}
+				name={name}
+				value={value}
+			/>,
+		);
+		const radioOption = uut.find('.cs-radio');
+		expect(radioOption.prop('value')).toBe(value);
+	});
+
+	it('should be disabled', () => {
+		const uut = shallow(
+			<CSRadioOption
+				name={name}
+				checked={false}
+				label={label}
+				value={value}
+				disabled
+			/>,
+		);
+		expect(uut.find('.cs-radio').props().disabled).toBeTruthy();
+	});
+
+	it('should be readOnly', () => {
+		const uut = shallow(
+			<CSRadioOption
+				name={name}
+				checked={false}
+				label={label}
+				value={value}
+				readOnly
+			/>,
+		);
+		expect(uut.find('.cs-radio-read-only')).toHaveLength(1);
+		expect(uut.find('.cs-radio-read-only').prop('aria-readonly')).toBeTruthy();
+	});
+
+	it('should be required', () => {
+		const uut = shallow(
+			<CSRadioOption
+				name={name}
+				checked={false}
+				label={label}
+				value={value}
+				ariaRequired
+			/>,
+		);
+		expect(uut.find('.cs-radio').prop('aria-required')).toBeTruthy();
+	});
+
+	it('should have an error', () => {
+		const uut = shallow(
+			<CSRadioOption
+				name={name}
+				checked={false}
+				label={label}
+				value={value}
+				ariaInvalid
+			/>,
+		);
+		expect(uut.find('.cs-radio').prop('aria-invalid')).toBeTruthy();
+	});
+
+	it('should have a title', () => {
+		const title = 'title';
+		const uut = shallow(
+			<CSRadioOption
+				name={name}
+				checked={false}
+				label={label}
+				value={value}
+				title={title}
+			/>,
+		);
+		expect(uut.find('.cs-radio-option-wrapper').prop('title')).toBe(title);
+	});
+
+	it('should have a label', () => {
+		const uut = shallow(
+			<CSRadioOption
+				label={label}
+				checked={false}
+				name={name}
+				value={value}
+			/>,
+		);
+		const optionLabel = (uut.find('.cs-radio-option-wrapper > .cs-radio-option-label'));
+		expect(optionLabel.text()).toBe(label);
+	});
+
+	it('should use a working onBlur callback', () => {
+		const handleBlurMock = jest.fn();
+		const uut = shallow(
+			<CSRadioOption
+				label={label}
+				checked={false}
+				name={name}
+				value={value}
+				onBlur={handleBlurMock}
+			/>,
+		);
+		const radioOption = uut.find('.cs-radio-option-wrapper > .cs-radio');
+		radioOption.simulate('blur');
+		expect(handleBlurMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should use a working onChange callback', () => {
@@ -208,7 +480,9 @@ describe('<CSRadioOption />', () => {
 		const uut = shallow(
 			<CSRadioOption
 				label={label}
+				checked={false}
 				name={name}
+				value={value}
 				onChange={handleChangeMock}
 			/>,
 		);
@@ -222,7 +496,9 @@ describe('<CSRadioOption />', () => {
 		const uut = shallow(
 			<CSRadioOption
 				label={label}
+				checked={false}
 				name={name}
+				value={value}
 				onClick={handleClickMock}
 			/>,
 		);
@@ -236,71 +512,14 @@ describe('<CSRadioOption />', () => {
 		const uut = shallow(
 			<CSRadioOption
 				label={label}
+				checked={false}
 				name={name}
+				value={value}
 				onKeyDown={handleKeyDownMock}
 			/>,
 		);
 		const radioOption = uut.find('.cs-radio-option-wrapper > .cs-radio');
 		radioOption.simulate('keydown');
 		expect(handleKeyDownMock).toHaveBeenCalledTimes(1);
-	});
-
-	it('should set readOnly attribute', () => {
-		const uut = shallow(
-			<CSRadioOption
-				label={label}
-				name={name}
-				readOnly
-			/>,
-		);
-		expect(uut.shallow().find('.cs-radio-read-only').prop('aria-readonly')).toBeTruthy();
-	});
-
-	it('should set title attribute', () => {
-		const labelTitle = 'This is a label';
-		const uut = shallow(
-			<CSRadioOption
-				label={label}
-				name={name}
-				title={labelTitle}
-			/>,
-		);
-		expect(uut.find('.cs-radio-option-wrapper').prop('title')).toBe(labelTitle);
-	});
-
-	it('should have a custom class name', () => {
-		const customClass = 'custom-class';
-		const uut = shallow(
-			<CSRadioOption
-				label={label}
-				name={name}
-				className={customClass}
-			/>,
-		);
-		expect(uut.find(`.cs-radio-option-wrapper.${customClass}`)).toHaveLength(1);
-	});
-
-	it('should have a custom ID', () => {
-		const customId = 'custom-id';
-		const uut = shallow(
-			<CSRadioOption
-				label={label}
-				name={name}
-				id={customId}
-			/>,
-		);
-		expect(uut.find(`.cs-radio-option-wrapper > .cs-radio#${customId}`)).toHaveLength(1);
-	});
-
-	it('should accept arbitrary props', () => {
-		const uut = shallow(
-			<CSRadioOption
-				label={label}
-				name={name}
-				data-testid="rest"
-			/>,
-		);
-		const radioOption = uut.find({ 'data-testid': 'rest' });
-		expect(radioOption).toHaveLength(1);
 	});
 });

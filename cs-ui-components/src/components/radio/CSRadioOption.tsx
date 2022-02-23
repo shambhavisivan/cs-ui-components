@@ -2,59 +2,43 @@ import React from 'react';
 import classNames from 'classnames';
 
 export interface CSRadioOptionProps {
-	[key: string]: any;
 	ariaInvalid?: boolean;
 	ariaRequired?: boolean;
-	checked?: boolean;
-	className?: string;
+	checked: boolean;
 	disabled?: boolean;
-	id?: string;
-	label?: string;
+	label: string;
 	name: string;
-	onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
-	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-	onClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
-	onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+	onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
+	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+	onClick?: (event: React.MouseEvent<HTMLInputElement>) => void;
+	onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
+	onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 	readOnly?: boolean;
 	title?: string;
-	value?: string | number;
+	value: React.ReactText;
 }
 
 const CSRadioOption = ({
 	ariaInvalid,
 	ariaRequired,
 	checked,
-	className,
 	disabled,
-	id,
 	label,
 	name,
-	parentDisabled,
 	readOnly,
 	onBlur,
 	onChange,
 	onClick,
+	onFocus,
 	onKeyDown,
 	title,
 	value,
-	...rest
 }: CSRadioOptionProps) => {
-	const toggleRadio = (e: React.ChangeEvent<HTMLInputElement>) => {
-		if (readOnly) {
-			e.target.checked = e.target.defaultChecked;
-			e.preventDefault();
-			return;
-		}
-
-		onChange?.(e);
-	};
-
 	const radioOptionWrapperClasses = classNames(
 		'cs-radio-option-wrapper',
 		{
 			'cs-radio-option-wrapper-read-only': readOnly,
 			'cs-radio-option-wrapper-disabled': disabled,
-			[`${className}`]: className,
 		},
 	);
 
@@ -65,33 +49,36 @@ const CSRadioOption = ({
 		},
 	);
 
+	const handleClick = (event: React.MouseEvent<HTMLInputElement>) => {
+		event?.stopPropagation();
+		onClick?.(event);
+	};
+
+	const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+		event?.stopPropagation();
+		onKeyDown?.(event);
+	};
+
 	return (
-		// eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-		<label
-			className={radioOptionWrapperClasses}
-			title={title}
-			onClick={(event) => event.stopPropagation()}
-			onKeyDown={(event) => event.stopPropagation()}
-		>
-			{/* readonly, invalid and required aria properties work well with role radio, unlike with radiomenuitem role which supports these attributes, but does not work well as a role and doesn't enter radio form mode in screen readers */}
+		<label className={radioOptionWrapperClasses} title={title}>
+			{/* readonly, invalid and required aria properties work well with role radio, unlike with radiomenuitem role which supports these attributes,
+				but does not work well as a role and doesn't enter radio form mode in screen readers */}
 			{/* eslint-disable-next-line jsx-a11y/role-supports-aria-props */}
 			<input
+				onClick={handleClick}
+				onChange={onChange}
+				onFocus={onFocus}
 				onBlur={onBlur}
-				onChange={toggleRadio}
-				onClick={onClick}
-				onKeyDown={onKeyDown}
+				onKeyDown={handleKeyDown}
 				className={radioOptionClasses}
 				type="radio"
 				name={name}
-				disabled={disabled || parentDisabled}
-				id={id}
-				readOnly={readOnly}
+				disabled={disabled}
 				aria-readonly={readOnly}
 				aria-invalid={ariaInvalid}
 				aria-required={ariaRequired}
-				defaultChecked={checked}
 				value={value}
-				{...rest}
+				checked={checked}
 			/>
 			<span className="cs-radio-faux" />
 			<span className="cs-radio-option-label">{label}</span>

@@ -30,7 +30,7 @@ import CSModalPreview from './cs-ui/components/CSModalPreview';
 import CSPathPreview from './cs-ui/components/CSPathPreview';
 import CSProgressBarPreview from './cs-ui/components/CSProgressBarPreview';
 import CSProgressIndicatorPreview from './cs-ui/components/CSProgressIndicatorPreview';
-import CSRadioPreview from './cs-ui/components/CSRadioPreview';
+import CSRadioPreview from './cs-ui/components/cs-radio/CSRadioPreview';
 import CSSectionPreview from './cs-ui/components/CSSectionPreview';
 import CSSelectPreview from './cs-ui/components/CSSelectPreview';
 import CSSidebarPreview from './cs-ui/components/CSSidebarPreview';

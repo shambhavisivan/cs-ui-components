@@ -137,8 +137,11 @@ import CSProgressBar, {
 } from './components/CSProgressBar';
 import CSProgressIndicator, { CSProgressIndicatorProps } from './components/progress-indicator/CSProgressIndicator';
 import CSProgressIndicatorItem, { CSProgressIndicatorItemStatus, CSProgressIndicatorItemProps } from './components/progress-indicator/CSProgressIndicatorItem';
-import CSRadio, { CSRadioVariant, CSRadioProps } from './components/radio/CSRadio';
-import CSRadioOption, { CSRadioOptionProps } from './components/radio/CSRadioOption';
+import CSRadio, {
+	CSRadioProps,
+	CSRadioVariant,
+	CSRadioOptionInterface,
+} from './components/radio/CSRadio';
 import CSSection, { CSSectionErrorMsgType, CSSectionProps } from './components/CSSection';
 import CSSelect, { CSSelectProps } from './components/CSSelect';
 import CSSidebar, { CSSidebarOpensTo, CSSidebarProps } from './components/sidebar/CSSidebar';
@@ -370,9 +373,8 @@ export {
 	CSProgressIndicatorItemProps,
 	CSRadio,
 	CSRadioProps,
-	CSRadioOption,
-	CSRadioOptionProps,
 	CSRadioVariant,
+	CSRadioOptionInterface,
 	CSSection,
 	CSSectionErrorMsgType,
 	CSSectionProps,
