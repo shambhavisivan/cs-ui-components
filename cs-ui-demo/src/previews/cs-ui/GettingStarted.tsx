@@ -62,6 +62,7 @@ const GettingStarted = () => (
 				<CSD.ListItem>--z-index-path: 10;</CSD.ListItem>
 				<CSD.ListItem>--z-index-reset-zen-more-tabs-ul: 99;</CSD.ListItem>
 				<CSD.ListItem>--z-index-modal: 9000;</CSD.ListItem>
+				<CSD.ListItem>--z-index-datepicker-popper: 9001;</CSD.ListItem>
 				<CSD.ListItem>--z-index-dropdown-items-wrapper: 9001;</CSD.ListItem>
 				<CSD.ListItem>--z-index-custom-select-dropdown: 9001;</CSD.ListItem>
 				<CSD.ListItem>--z-index-lookup-dropdown: 9001;</CSD.ListItem>

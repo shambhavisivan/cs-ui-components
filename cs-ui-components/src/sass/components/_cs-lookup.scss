@@ -67,15 +67,13 @@
 			padding: 0 calc(var(--cs-lookup-custom-data-width, 0.625rem) + 2.375rem) 0 2rem;
 			border-radius: var(--cs-lookup-border-radius, 0.25rem);
 
-			&:read-only {
+			&[readonly] {
 				~ .cs-lookup-input-content {
+					cursor: default;
 					padding-left: 0;
-				}
-
-				&:focus-visible {
-					@include css4 {
-						box-shadow: 0 0 0.1875rem cvar(--cs-input-shadow);
-					}
+					left: 0;
+					pointer-events: all;
+					user-select: text;
 				}
 			}
 
@@ -109,6 +107,7 @@
 			text-overflow: ellipsis;
 			height: 1.875rem;
 			white-space: nowrap;
+			@include sc(--cs-input-c);
 
 			&.cs-lookup-dropdown-open {
 				@include sc(--cs-selected-input-option-c);
@@ -128,8 +127,8 @@
 	border-radius: 0.25rem;
 	max-width: Max(var(--cs-lookup-dropdown-width, 50rem), 50rem);
 	min-width: Min(
-		var(--cs-lookup-dropdown-width, var(--cs-lookup-input-width)),
-		var(--cs-lookup-input-width));
+			var(--cs-lookup-dropdown-width, var(--cs-lookup-input-width)),
+			var(--cs-lookup-input-width));
 	overflow-x: auto;
 	@include css4 {
 		border: 1px solid cvar(--cs-lookup-results-br);

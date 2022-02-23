@@ -31,8 +31,7 @@ describe('<CSCheckbox />', () => {
 		// aria-invalid
 		expect(checkbox.prop('aria-invalid')).toBeFalsy();
 		// readOnly
-		const checkboxReadOnly = uut.find('.cs-checkbox.cs-checkbox-readonly');
-		expect(checkboxReadOnly).toHaveLength(0);
+		expect(checkbox.prop('readOnly')).toBeFalsy();
 		// indeterminate
 		const checkboxIndeterminate = uut.find('.cs-checkbox.cs-checkbox-indeterminate');
 		expect(checkboxIndeterminate).toHaveLength(0);
@@ -185,8 +184,8 @@ describe('<CSCheckbox />', () => {
 
 	it('should set readOnly attribute', () => {
 		const uut = shallow(<CSCheckbox label={label} readOnly />);
-		const checkbox = uut.find('.cs-checkbox.cs-checkbox-read-only');
-		expect(checkbox).toHaveLength(1);
+		const checkbox = uut.find('.cs-checkbox');
+		expect(checkbox.prop('readOnly')).toBeTruthy();
 		expect(checkbox.prop('aria-readonly')).toBeTruthy();
 	});
 

@@ -4,8 +4,9 @@
 * General
   * added rules for eslint-plugin-react-hooks
   * added the latest icons to the SLDS icon set
-  * matched font sizes on all form elements
+  * matched font sizes across form components
   * equalized return types for form component events
+  * matched `readonly` and `disabled` styles across form components
 * CSAlert
   * fixed close button position when `styleFormat="scoped"`
   * fixed close button and icon styling when `styleType="light"`

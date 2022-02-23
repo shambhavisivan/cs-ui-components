@@ -65,7 +65,7 @@
 			}
 		}
 
-		&.cs-custom-select-input-wrapper-disabled {
+		&.cs-custom-select-input-wrapper-disabled:not(.cs-custom-select-input-wrapper-read-only) {
 			cursor: default;
 			user-select: none;
 			@include sbg(--cs-input-disabled-bg);
@@ -76,9 +76,13 @@
 
 		&.cs-custom-select-input-wrapper-read-only {
 			cursor: default;
-			pointer-events: none;
 			padding-left: 0;
 			border: none;
+			@include sbg(--cs-transparent);
+
+			&:focus-within {
+				box-shadow: none;
+			}
 
 			.cs-custom-select-items {
 				padding-left: 0;
@@ -94,7 +98,6 @@
 		position: relative;
 		align-self: center;
 		margin-left: 0.25rem;
-		pointer-events: none;
 		font-size: 0.8125rem;
 		line-height: 1rem;
 		@include overflow-ellipsis;
@@ -117,19 +120,23 @@
 			text-overflow: ellipsis;
 			background: inherit;
 			font-size: 0.8125rem;
+
+			&[readonly] {
+				display: none; // blocks selection of cs-custom-select-value-wrapper value
+			}
 		}
 	}
 
 	.cs-custom-select-value {
 		position: relative;
-		user-select: none;
+		@include sc(--cs-input-c);
 
 		&.cs-custom-select-dropdown-visible {
 			@include sc(--cs-selected-input-option-c);
 		}
 	}
 
-	.cs-custom-select-icon {
+	.cs-custom-select-dropdown-icon {
 		align-self: center;
 		pointer-events: none;
 		transition: transform 200ms ease-in-out;
@@ -179,6 +186,7 @@
 
 			.cs-custom-select-option-value {
 				line-height: initial;
+				@include sc(--cs-input-c);
 				@include overflow-ellipsis;
 			}
 		}
@@ -296,4 +304,3 @@
 		}
 	}
 }
-

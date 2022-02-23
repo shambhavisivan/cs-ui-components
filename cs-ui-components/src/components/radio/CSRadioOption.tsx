@@ -85,6 +85,7 @@ const CSRadioOption = ({
 				name={name}
 				disabled={disabled || parentDisabled}
 				id={id}
+				readOnly={readOnly}
 				aria-readonly={readOnly}
 				aria-invalid={ariaInvalid}
 				aria-required={ariaRequired}

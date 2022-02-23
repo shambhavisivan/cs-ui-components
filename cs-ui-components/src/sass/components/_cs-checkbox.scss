@@ -129,7 +129,7 @@
 				}
 			}
 
-			&:disabled + .cs-checkbox-faux {
+			&[disabled]:not([readonly]) + .cs-checkbox-faux {
 				cursor: default;
 				@include sbg(--cs-checkbox-disabled-bg);
 				@include css4 {
@@ -137,12 +137,12 @@
 				}
 			}
 
-			&:disabled:hover + .cs-checkbox-faux,
-			&:disabled:focus + .cs-checkbox-faux {
+			&[disabled]:not([readonly]):hover + .cs-checkbox-faux,
+			&[disabled]:not([readonly]):focus + .cs-checkbox-faux {
 				box-shadow: none;
 			}
 
-			&:disabled:checked + .cs-checkbox-faux {
+			&[disabled]:not([readonly]):checked + .cs-checkbox-faux {
 				&::after {
 					@include css4 {
 						border-bottom: 2px solid cvar(--cs-checkbox-disabled-checked-br);
@@ -151,7 +151,7 @@
 				}
 			}
 
-			&-read-only {
+			&[readonly] {
 				+ .cs-checkbox-faux {
 					cursor: default;
 					@include sbg(--cs-checkbox-disabled-bg);

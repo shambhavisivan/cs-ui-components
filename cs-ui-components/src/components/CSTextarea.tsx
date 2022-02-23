@@ -68,7 +68,7 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 			expandButton: false,
 			expanded: false,
 			actualHeight: 0,
-			minHeight: 0,
+			minHeight: 32,
 		};
 
 		this.handleReadOnly = this.handleReadOnly.bind(this);

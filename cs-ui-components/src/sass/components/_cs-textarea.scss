@@ -53,12 +53,15 @@
 			padding-right: calc(var(--cs-textarea-custom-data-width, 0.5rem) + 1.25rem);
 		}
 
-		&:read-only:not(:disabled) {
-			padding: 0 var(--cs-textarea-custom-data-width, 0px) 0 0;
+		&[readonly],
+		&[disabled] {
+			height: var(--cs-textarea-read-only-height);
+			min-height: var(--cs-textarea-read-only-min-height, 2rem);
+		}
+		&[readonly] {
 			resize: none;
 			overflow: hidden;
-			height: var(--cs-textarea-read-only-height);
-			min-height: var(--cs-textarea-read-only-min-height, 2.25rem);
+			padding: 0 var(--cs-textarea-options-spacing-value, 0) 0 0;
 		}
 	}
 }

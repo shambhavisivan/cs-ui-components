@@ -71,16 +71,15 @@ export const initialData: CSFormData = [
 			name: 'lookup-1',
 			mode: 'client',
 			columns: [{ key: 'Account', header: 'Account' },
-			{ key: 'Industry', header: 'Industry' }],
+				{ key: 'Industry', header: 'Industry' }],
 			options: [{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
-			{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
-			{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } },
-			{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }],
+				{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
+				{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } },
+				{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }],
 			fieldToBeDisplayed: 'Account'
 		}]
 	}
 ];
-
 export const localeData: CSFormData = [
 	{
 		sectionKey: 'section-locale',
@@ -105,7 +104,6 @@ export const localeData: CSFormData = [
 		}]
 	}
 ];
-
 export const eventsData: CSFormData = [
 	{
 		sectionKey: 'section-2',
@@ -132,7 +130,6 @@ export const eventsData: CSFormData = [
 		}]
 	}
 ];
-
 export const readOnlyData: CSFormData = [
 	{
 		sectionKey: 'section-1',
@@ -153,6 +150,11 @@ export const readOnlyData: CSFormData = [
 			label: 'Toggle field',
 			name: 'toggle-1',
 			value: true
+		}, {
+			fieldType: 'TOGGLE',
+			label: 'Toggle field',
+			name: 'toggle-1',
+			value: false
 		}, {
 			fieldType: 'SELECT',
 			label: 'Select field',
@@ -191,15 +193,14 @@ export const readOnlyData: CSFormData = [
 		}, {
 			fieldType: 'RADIO',
 			label: 'Select color:',
-			name: 'radio-2',
-			value: 'red',
+			name: 'radio-22',
+			value: 'red2',
 			radioOptions: [{
-				radioOptionValue: 'red',
-				label: 'Red'
-
+				radioOptionValue: 'red2',
+				label: 'Red2'
 			}, {
-				radioOptionValue: 'blue',
-				label: 'Blue'
+				radioOptionValue: 'blue2',
+				label: 'Blue2'
 			}]
 		}, {
 			fieldType: 'DATETIME',
@@ -212,11 +213,11 @@ export const readOnlyData: CSFormData = [
 			name: 'lookup-2',
 			mode: 'client',
 			columns: [{ key: 'Account', header: 'Account' },
-			{ key: 'Industry', header: 'Industry' }],
+				{ key: 'Industry', header: 'Industry' }],
 			options: [{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
-			{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
-			{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } },
-			{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }],
+				{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
+				{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } },
+				{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }],
 			fieldToBeDisplayed: 'Account',
 			value: { key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } }
 		}, {
@@ -233,7 +234,6 @@ export const readOnlyData: CSFormData = [
 		}]
 	}
 ];
-
 export const formErrorData: CSFormData = [
 	{
 		sectionKey: 'section-1',
@@ -253,6 +253,469 @@ export const formErrorData: CSFormData = [
 			fieldType: 'TOGGLE',
 			label: 'Toggle field',
 			name: 'toggle-1'
+		}]
+	}
+];
+
+export const standardDataTest: CSFormData = [
+	{
+		sectionKey: 'STANDARD',
+		label: 'STANDARD',
+		fields: [{
+			fieldType: 'NUMBER',
+			label: 'Number field',
+			name: 'number-1',
+			value: 3
+		}, {
+			fieldType: 'TEXT',
+			label: 'Text field',
+			name: 'text-1',
+			value: 'Example text.'
+		}, {
+			fieldType: 'TOGGLE',
+			label: 'Toggle field',
+			name: 'toggle-1',
+			value: true
+		}, {
+			fieldType: 'TOGGLE',
+			label: 'Toggle field',
+			name: 'toggle-1',
+			value: false
+		}, {
+			fieldType: 'SELECT',
+			label: 'Select field',
+			name: 'select-1',
+			selectOptions: [{
+				key: 'red',
+				value: 'Red'
+			}, {
+				key: 'blue',
+				value: 'Blue'
+			}, {
+				key: 'yellow',
+				value: 'Yellow'
+			}],
+			value: 'yellow'
+		}, {
+			fieldType: 'CHECKBOX',
+			label: 'Checkbox',
+			name: 'checkbox-1',
+			value: true
+		}, {
+			fieldType: 'TEXTAREA',
+			label: 'Textarea field',
+			name: 'textarea-1',
+			value: 'Example description.'
+		}, {
+			fieldType: 'TEXTAREA',
+			label: 'Textarea LONG ',
+			name: 'textarea-2',
+			value: 'Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum'
+		}]
+	}, {
+		sectionKey: 'STANDARD-2',
+		label: 'STANDARD-2',
+		fields: [{
+			fieldType: 'DATE',
+			label: 'Date field',
+			name: 'date-2',
+			value: new Date()
+		}, {
+			fieldType: 'RADIO',
+			label: 'Select color:',
+			name: 'radio-23',
+			value: 'red3',
+			radioOptions: [{
+				radioOptionValue: 'red3',
+				label: 'Red3'
+
+			}, {
+				radioOptionValue: 'blue3',
+				label: 'Blue3'
+			}]
+		}, {
+			fieldType: 'DATETIME',
+			label: 'Date-time field',
+			name: 'date-time-2',
+			value: new Date()
+		}, {
+			fieldType: 'LOOKUP',
+			label: 'Lookup field',
+			name: 'lookup-2',
+			mode: 'client',
+			columns: [{ key: 'Account', header: 'Account' },
+				{ key: 'Industry', header: 'Industry' }],
+			options: [{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
+				{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
+				{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } },
+				{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }],
+			fieldToBeDisplayed: 'Account',
+			value: { key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } }
+		}, {
+			fieldType: 'CUSTOM-SELECT',
+			label: 'Custom select field',
+			name: 'custom-select-2',
+			options: [
+				{ key: 0, label: 'Product' },
+				{ key: 1, label: 'Services' },
+				{ key: 2, label: 'Sales' },
+				{ key: 3, label: 'Marketing' }
+			],
+			value: 0
+		}]
+	}
+];
+
+export const readOnlyDataTest: CSFormData = [
+	{
+		sectionKey: 'READONLY-1',
+		label: 'READONLY-1',
+		fields: [{
+			fieldType: 'NUMBER',
+			label: 'Number field',
+			name: 'number-1',
+			value: 3
+		}, {
+			fieldType: 'TEXT',
+			label: 'Text field',
+			name: 'text-1',
+			value: 'Example text.'
+		}, {
+			fieldType: 'TOGGLE',
+			label: 'Toggle field',
+			name: 'toggle-1',
+			value: true
+		}, {
+			fieldType: 'TOGGLE',
+			label: 'Toggle field',
+			name: 'toggle-1',
+			value: false
+		}, {
+			fieldType: 'SELECT',
+			label: 'Select field',
+			name: 'select-1',
+			selectOptions: [{
+				key: 'red',
+				value: 'Red'
+			}, {
+				key: 'blue',
+				value: 'Blue'
+			}, {
+				key: 'yellow',
+				value: 'Yellow'
+			}],
+			value: 'yellow'
+		}, {
+			fieldType: 'CHECKBOX',
+			label: 'Checkbox',
+			name: 'checkbox-1',
+			value: true
+		}, {
+			fieldType: 'TEXTAREA',
+			label: 'Textarea field',
+			name: 'textarea-1',
+			value: 'Example description.'
+		}, {
+			fieldType: 'TEXTAREA',
+			label: 'Textarea LONG ',
+			name: 'textarea-2',
+			value: 'Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum'
+		}]
+	}, {
+		sectionKey: 'READONLY-2',
+		label: 'READONLY-2',
+		fields: [{
+			fieldType: 'DATE',
+			label: 'Date field',
+			name: 'date-2',
+			value: new Date()
+		}, {
+			fieldType: 'RADIO',
+			label: 'Select color:',
+			name: 'radio-24',
+			value: 'red4',
+			radioOptions: [{
+				radioOptionValue: 'red4',
+				label: 'Red4'
+			}, {
+				radioOptionValue: 'blue4',
+				label: 'Blue4'
+			}]
+		}, {
+			fieldType: 'DATETIME',
+			label: 'Date-time field',
+			name: 'date-time-2',
+			value: new Date()
+		}, {
+			fieldType: 'LOOKUP',
+			label: 'Lookup field',
+			name: 'lookup-2',
+			mode: 'client',
+			columns: [{ key: 'Account', header: 'Account' },
+				{ key: 'Industry', header: 'Industry' }],
+			options: [{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
+				{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
+				{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } },
+				{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }],
+			fieldToBeDisplayed: 'Account',
+			value: { key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } }
+		}, {
+			fieldType: 'CUSTOM-SELECT',
+			label: 'Custom select field',
+			name: 'custom-select-2',
+			options: [
+				{ key: 0, label: 'Product' },
+				{ key: 1, label: 'Services' },
+				{ key: 2, label: 'Sales' },
+				{ key: 3, label: 'Marketing' }
+			],
+			value: 0
+		}]
+	}
+];
+
+export const disabledDataTest: CSFormData = [
+	{
+		sectionKey: 'DISABLED-1',
+		label: 'DISABLED',
+		fields: [{
+			fieldType: 'NUMBER',
+			label: 'Number field',
+			name: 'number-1',
+			value: 3,
+			disabled: true
+		}, {
+			fieldType: 'TEXT',
+			label: 'Text field',
+			name: 'text-1',
+			value: 'Example text.',
+			disabled: true
+		}, {
+			fieldType: 'TOGGLE',
+			label: 'Toggle field',
+			name: 'toggle-1',
+			value: true,
+			disabled: true
+		}, {
+			fieldType: 'TOGGLE',
+			label: 'Toggle field',
+			name: 'toggle-1',
+			value: false,
+			disabled: true
+		}, {
+			fieldType: 'SELECT',
+			label: 'Select field',
+			name: 'select-1',
+			selectOptions: [{
+				key: 'red',
+				value: 'Red'
+			}, {
+				key: 'blue',
+				value: 'Blue'
+			}, {
+				key: 'yellow',
+				value: 'Yellow'
+			}],
+			value: 'yellow'
+			,
+			disabled: true
+		}, {
+			fieldType: 'CHECKBOX',
+			label: 'Checkbox',
+			name: 'checkbox-1',
+			value: true
+			,
+			disabled: true
+		}, {
+			fieldType: 'TEXTAREA',
+			label: 'Textarea field',
+			name: 'textarea-1',
+			value: 'Example description.',
+			disabled: true
+		}, {
+			fieldType: 'TEXTAREA',
+			label: 'Textarea LONG ',
+			name: 'textarea-2',
+			value: 'Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum',
+			disabled: true
+		}]
+	}, {
+		sectionKey: 'DISABLED-2',
+		label: 'DISABLED',
+		fields: [{
+			fieldType: 'DATE',
+			label: 'Date field',
+			name: 'date-2',
+			value: new Date(),
+			disabled: true
+		}, {
+			fieldType: 'RADIO',
+			label: 'Select color:',
+			name: 'radio-25',
+			value: 'red5',
+			radioOptions: [{
+				radioOptionValue: 'red5',
+				label: 'Red5'
+			}, {
+				radioOptionValue: 'blue5',
+				label: 'Blue5'
+			}],
+			disabled: true
+		}, {
+			fieldType: 'DATETIME',
+			label: 'Date-time field',
+			name: 'date-time-2',
+			value: new Date(),
+			disabled: true
+		}, {
+			fieldType: 'LOOKUP',
+			label: 'Lookup field',
+			name: 'lookup-2',
+			mode: 'client',
+			columns: [{ key: 'Account', header: 'Account' },
+				{ key: 'Industry', header: 'Industry' }],
+			options: [{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
+				{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
+				{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } },
+				{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }],
+			fieldToBeDisplayed: 'Account',
+			value: { key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
+			disabled: true
+		}, {
+			fieldType: 'CUSTOM-SELECT',
+			label: 'Custom select field',
+			name: 'custom-select-2',
+			options: [
+				{ key: 0, label: 'Product' },
+				{ key: 1, label: 'Services' },
+				{ key: 2, label: 'Sales' },
+				{ key: 3, label: 'Marketing' }
+			],
+			value: 0,
+			disabled: true
+		}]
+	}
+];
+
+export const disabled2DataTest: CSFormData = [
+	{
+		sectionKey: 'DISABLED-1',
+		label: 'DISABLED',
+		fields: [{
+			fieldType: 'NUMBER',
+			label: 'Number field',
+			name: 'number-1',
+			value: 3,
+			disabled: true
+		}, {
+			fieldType: 'TEXT',
+			label: 'Text field',
+			name: 'text-1',
+			value: 'Example text.',
+			disabled: true
+		}, {
+			fieldType: 'TOGGLE',
+			label: 'Toggle field',
+			name: 'toggle-1',
+			value: true,
+			disabled: true
+		}, {
+			fieldType: 'TOGGLE',
+			label: 'Toggle field',
+			name: 'toggle-1',
+			value: false,
+			disabled: true
+		}, {
+			fieldType: 'SELECT',
+			label: 'Select field',
+			name: 'select-1',
+			selectOptions: [{
+				key: 'red',
+				value: 'Red'
+			}, {
+				key: 'blue',
+				value: 'Blue'
+			}, {
+				key: 'yellow',
+				value: 'Yellow'
+			}],
+			value: 'yellow'
+			,
+			disabled: true
+		}, {
+			fieldType: 'CHECKBOX',
+			label: 'Checkbox',
+			name: 'checkbox-1',
+			value: true
+			,
+			disabled: true
+		}, {
+			fieldType: 'TEXTAREA',
+			label: 'Textarea field',
+			name: 'textarea-1',
+			value: 'Example description.',
+			disabled: true
+		}, {
+			fieldType: 'TEXTAREA',
+			label: 'Textarea LONG ',
+			name: 'textarea-2',
+			value: 'Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum',
+			disabled: true
+		}]
+	}, {
+		sectionKey: 'DISABLED-2',
+		label: 'DISABLED',
+		fields: [{
+			fieldType: 'DATE',
+			label: 'Date field',
+			name: 'date-2',
+			value: new Date(),
+			disabled: true
+		}, {
+			fieldType: 'RADIO',
+			label: 'Select color:',
+			name: 'radio-26',
+			value: 'red6',
+			radioOptions: [{
+				radioOptionValue: 'red6',
+				label: 'Red6'
+			}, {
+				radioOptionValue: 'blue6',
+				label: 'Blue6'
+			}],
+			disabled: true
+		}, {
+			fieldType: 'DATETIME',
+			label: 'Date-time field',
+			name: 'date-time-2',
+			value: new Date(),
+			disabled: true
+		}, {
+			fieldType: 'LOOKUP',
+			label: 'Lookup field',
+			name: 'lookup-2',
+			mode: 'client',
+			columns: [{ key: 'Account', header: 'Account' },
+				{ key: 'Industry', header: 'Industry' }],
+			options: [{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
+				{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
+				{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } },
+				{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }],
+			fieldToBeDisplayed: 'Account',
+			value: { key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
+			disabled: true
+		}, {
+			fieldType: 'CUSTOM-SELECT',
+			label: 'Custom select field',
+			name: 'custom-select-2',
+			options: [
+				{ key: 0, label: 'Product' },
+				{ key: 1, label: 'Services' },
+				{ key: 2, label: 'Sales' },
+				{ key: 3, label: 'Marketing' }
+			],
+			value: 0,
+			disabled: true
 		}]
 	}
 ];

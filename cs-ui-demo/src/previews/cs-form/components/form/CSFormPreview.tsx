@@ -11,14 +11,16 @@ import {
 	formErrorData,
 	initialData,
 	localeData,
-	readOnlyData
+	readOnlyData,
+	readOnlyDataTest,
+	disabledDataTest,
+	disabled2DataTest,
+	standardDataTest
 } from './cs-form-preview-data';
 import { CSForm, CSFormData, CSFormChangedFieldData, defineFormData } from '@cloudsense/cs-form-v2';
-
 interface CSFormPreviewData {
 	[key: string]: any;
 }
-
 const CSFormPreview = () => {
 	const formErrMsg = 'Form has errors. Please fill all required fields.';
 	const fieldErrLabels = {
@@ -31,7 +33,6 @@ const CSFormPreview = () => {
 		{ 'texarea-1': fieldErrLabels.required },
 		{ 'number-1': fieldErrLabels.max }
 	]);
-
 	const handleFieldChange = (stateName: string, field: CSFormChangedFieldData, logField?: boolean) => {
 		let newErrors: Array<any> = [...fieldErr];
 		if (stateName === 'formErrorData' && field.name === 'number-form-error') {
@@ -57,7 +58,6 @@ const CSFormPreview = () => {
 		setData(prevState => ({ ...prevState, [stateName]: newData }));
 		if (logField) { console.log(field); }
 	};
-
 	const customErrLabelsData: CSFormData = [
 		{
 			sectionKey: 'section-1',
@@ -83,14 +83,12 @@ const CSFormPreview = () => {
 			}]
 		}
 	];
-
 	const [data, setData] = useState<CSFormPreviewData>({
 		localeData,
 		eventsData,
 		formErrorData,
 		customErrLabelsData
 	});
-
 	return (
 		<CSD.Page
 			title="Form"
@@ -405,8 +403,40 @@ const CSFormPreview = () => {
 					/>
 				</CSD.Preview>
 			</CSD.Section>
+
+			<CSD.Heading>READONLY & DISABLED TEST</CSD.Heading>
+			<CSD.Section>
+				<CSD.Preview
+					table={CSFormProps}
+					related={['data', 'mode']}
+					code={`<CSForm data={data} />`}
+				>
+					<CSForm data={standardDataTest}/>
+				</CSD.Preview>
+				<CSD.Preview
+					table={CSFormProps}
+					related={['data', 'mode']}
+					code={`<CSForm data={data} mode="read-only" />`}
+				>
+					<CSForm data={readOnlyDataTest} mode="read-only" />
+				</CSD.Preview>
+				<CSD.Preview
+					table={CSFormProps}
+					related={['data', 'mode']}
+					code={`<CSForm data={data} />`}
+				>
+					<CSForm data={disabledDataTest} />
+				</CSD.Preview>
+				<span>disabled & readonly</span>
+				<CSD.Preview
+					table={CSFormProps}
+					related={['data', 'mode']}
+					code={`<CSForm data={data} />`}
+				>
+					<CSForm data={disabled2DataTest} mode="read-only" />
+				</CSD.Preview>
+			</CSD.Section>
 		</CSD.Page>
 	);
 };
-
 export default CSFormPreview;

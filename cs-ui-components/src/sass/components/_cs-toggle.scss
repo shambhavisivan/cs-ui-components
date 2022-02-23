@@ -95,7 +95,7 @@
 			}
 		}
 
-		&:disabled + .cs-toggle-faux {
+		&[disabled]:not([readonly]) + .cs-toggle-faux {
 			pointer-events: none;
 			opacity: 0.5;
 			@include sbg(--cs-toggle-disabled-bg);
@@ -108,9 +108,8 @@
 			}
 		}
 
-		&:disabled:checked + .cs-toggle-faux {
+		&[disabled]:not([readonly]):checked + .cs-toggle-faux {
 			pointer-events: none;
-			opacity: 0.5;
 			@include sbg(--cs-toggle-disabled-bg);
 			@include css4 {
 				border: 1px solid cvar(--cs-toggle-disabled-br);
@@ -167,8 +166,12 @@
 			}
 		}
 
-		&.cs-toggle-read-only + .cs-toggle-faux {
+		&[readonly] + .cs-toggle-faux {
 			pointer-events: none;
+			@include sbg(--cs-toggle-bg);
+			@include css4 {
+				border: 1px solid cvar(--cs-toggle-br);
+			}
 
 			&:hover + .cs-toggle-faux {
 				box-shadow: none;
@@ -217,8 +220,8 @@
 		display: flex;
 
 		&:not(:last-child),
-        > *:not(:last-child) {
-            margin-right: 0.25rem;
-        }
+		> *:not(:last-child) {
+			margin-right: 0.25rem;
+		}
 	}
 }

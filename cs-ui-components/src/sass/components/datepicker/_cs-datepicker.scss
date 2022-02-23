@@ -72,6 +72,7 @@
 			margin: 0;
 			transition: border 0.1s linear, background-color 0.1s linear;
 			width: 100%;
+			@include sc(--cs-input-c);
 			@include sbg(--cs-datepicker-bg);
 			@include css4 {
 				border: 1px solid cvar(--cs-datepicker-br);
@@ -86,19 +87,19 @@
 				}
 			}
 
-			&:disabled {
+			&[disabled]:not([readonly]) {
 				cursor: default;
 				user-select: none;
 				@include sbg(--cs-datepicker-disabled-bg);
 				@include css4 {
-					border-color: cvar(--cs-datepicker-disabled-br);
+					border-color: cvar(--cs-input-disabled-br);
 				}
 
 				&:active,
 				&:focus {
 					box-shadow: none;
 					@include css4 {
-						border-color: cvar(--cs-datepicker-disabled-br);
+						border-color: cvar(--cs-input-disabled-br);
 					}
 				}
 			}
@@ -107,6 +108,7 @@
 
 	.react-datepicker__tab-loop {
 		.react-datepicker-popper {
+			z-index: var(--z-index-datepicker-popper);
 			.react-datepicker {
 				.react-datepicker__triangle {
 					left: 2rem !important;
@@ -268,8 +270,8 @@
 
 					&:hover {
 						font-weight: $font-weight-bold;
-						@include sc(--cs-datepicker-c);
-						@include sbg(--cs-datepicker-hover-bg);
+						@include sc(--cs-datepicker-day-hover-c);
+						@include sbg(--cs-datepicker-day-hover-bg);
 					}
 
 					&:focus {
@@ -326,19 +328,19 @@
 			}
 		}
 
-		&:disabled {
+		&[disabled] {
 			cursor: default;
 			user-select: none;
 			@include sbg(--cs-datepicker-disabled-bg);
 			@include css4 {
-				border-color: cvar(--cs-datepicker-disabled-br);
+				border-color: cvar(--cs-input-disabled-br);
 			}
 
 			&:active,
 			&:focus {
 				box-shadow: none;
 				@include css4 {
-					border-color: cvar(--cs-datepicker-disabled-br);
+					border-color: cvar(--cs-input-disabled-br);
 				}
 			}
 		}
@@ -392,7 +394,6 @@
 	}
 
 	&-read-only .react-datepicker-wrapper input {
-		pointer-events: none;
 		cursor: default;
 		font-weight: $font-weight-normal;
 		padding-left: 0;

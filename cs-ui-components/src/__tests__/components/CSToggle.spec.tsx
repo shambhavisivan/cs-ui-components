@@ -33,8 +33,7 @@ describe('<CSToggle />', () => {
 		const toggleLabelLeft = uut.find('.cs-toggle.cs-toggle-label-left');
 		expect(toggleLabelLeft).toHaveLength(0);
 		// readOnly
-		const toggleReadOnly = uut.find('.cs-toggle.cs-toggle-readonly');
-		expect(toggleReadOnly).toHaveLength(0);
+		expect(toggle.prop('readOnly')).toBeFalsy();
 		// required
 		expect(toggle.prop('required')).toBeFalsy();
 		expect(toggle.prop('aria-required')).toBeFalsy();
@@ -141,8 +140,9 @@ describe('<CSToggle />', () => {
 
 	it('should set readOnly attribute', () => {
 		const uut = shallow(<CSToggle label={labelValue} readOnly />);
-		const toggle = uut.find('.cs-toggle.cs-toggle-read-only');
-		expect(toggle).toHaveLength(1);
+		const toggle = uut.find('.cs-toggle');
+		expect(toggle.prop('readOnly')).toBeTruthy();
+		console.log(uut.debug());
 		expect(toggle.prop('aria-readonly')).toBeTruthy();
 	});
 

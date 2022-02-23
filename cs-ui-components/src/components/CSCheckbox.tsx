@@ -107,7 +107,6 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 			'cs-checkbox',
 			{
 				'cs-checkbox-error': error === true,
-				'cs-checkbox-read-only': readOnly,
 				'cs-checkbox-indeterminate': indeterminate,
 			},
 		);
@@ -169,6 +168,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 								name={name}
 								ref={this.checkboxInnerRef}
 								aria-label={label}
+								readOnly={readOnly}
 								aria-readonly={readOnly}
 								aria-required={required}
 								aria-invalid={error}

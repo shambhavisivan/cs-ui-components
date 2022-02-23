@@ -14,7 +14,7 @@
 	background: none;
 	text-decoration: none;
 	font-family: inherit;
-	@include overflow-ellipsis;
+	max-width: 100%;
 	--cs-button-c: var(--cs-btn-custom-c, var(--cs-button-default-c));
 	--cs-button-bg: var(--cs-button-default-bg);
 	--cs-button-br: var(--cs-button-default-br);
@@ -168,6 +168,7 @@
 		}
 		.cs-btn-label, .cs-btn-icon {
 			height: calc(1.5rem - 0.125rem);
+			line-height: calc(1.5rem - 0.125rem);
 		}
 	}
 	&.cs-btn-size-xsmall {
@@ -188,6 +189,7 @@
 		}
 		.cs-btn-label, .cs-btn-icon {
 			height: calc(1.25rem - 0.125rem);
+			line-height: calc(1.25rem - 0.125rem);
 		}
 		&.cs-btn-no-icon {
 			padding: 0 0.25rem;

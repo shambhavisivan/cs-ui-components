@@ -251,7 +251,7 @@ const CSCustomSelect = ({
 	};
 
 	const renderSelectedOptions = () => {
-		if (((multiselect && !readOnly) && !showCompactMultiselect) || disabled) return null;
+		if (multiselect && !showCompactMultiselect) return null;
 
 		return (
 			<span className="cs-custom-select-value-wrapper">
@@ -401,14 +401,14 @@ const CSCustomSelect = ({
 		);
 	};
 
-	const renderDropdownChevron = () => {
-		if (disabled || readOnly) return null;
+	const renderDropdownIcon = () => {
+		if (readOnly) return null;
 
 		return (
 			<CSIcon
 				name="down"
 				rotate={dropdownVisible ? 180 : null}
-				className="cs-custom-select-icon"
+				className="cs-custom-select-dropdown-icon"
 			/>
 		);
 	};
@@ -487,7 +487,7 @@ const CSCustomSelect = ({
 					<CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />
 				)}
 				<CSCustomData actions={actions} icons={icons} />
-				{renderDropdownChevron()}
+				{renderDropdownIcon()}
 			</div>
 			{!errorTooltip && error && errorMessage && (
 				<CSFieldErrorMsg message={errorMessage} />

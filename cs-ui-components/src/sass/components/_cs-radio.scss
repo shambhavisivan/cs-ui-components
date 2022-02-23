@@ -101,16 +101,20 @@
 			}
 
 			// Disabled
-			&:disabled + .cs-radio-faux {
+			&[disabled]:not([readonly]) + .cs-radio-faux {
 				@include sbg(--cs-radio-disabled-bg);
 				@include css4 {
 					border: 1px solid cvar(--cs-radio-disabled-br);
 					box-shadow: none;
 				}
+
+				&::after {
+					@include sbg(--cs-radio-disabled-checked-bg);
+				}
 			}
 
 			// Read-only
-			&-read-only {
+			&[readonly] {
 				+ .cs-radio-faux {
 					cursor: default;
 					@include sbg(--cs-radio-disabled-bg);

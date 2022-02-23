@@ -8,6 +8,7 @@
 	transition: border 0.1s linear, background-color 0.1s linear;
 	width: 100%;
 	@include overflow-ellipsis;
+	@include sc(--cs-input-c);
 	@include sbg(--cs-input-bg);
 	@include css4 {
 		border: 1px solid cvar(--cs-input-br);
@@ -23,24 +24,7 @@
 		}
 	}
 
-	&:read-only:not(:disabled) {
-		cursor: default;
-		font-weight: $font-weight-normal;
-		padding-left: 0;
-		@include sbg(--cs-transparent);
-		@include css4 {
-			border-color: cvar(--cs-transparent);
-		}
-
-		&:active,
-		&:focus {
-			@include css4 {
-				box-shadow: none;
-			}
-		}
-	}
-
-	&:disabled {
+	&[disabled]:not([readonly]) {
 		cursor: default;
 		user-select: none;
 		@include sbg(--cs-input-disabled-bg);
@@ -54,6 +38,21 @@
 			@include css4 {
 				border-color: cvar(--cs-input-disabled-br);
 			}
+		}
+	}
+
+	&[readonly] {
+		cursor: default;
+		font-weight: $font-weight-normal;
+		padding-left: 0;
+		@include sbg(--cs-transparent);
+		@include css4 {
+			border-color: cvar(--cs-transparent);
+		}
+
+		&:active,
+		&:focus {
+			box-shadow: none;
 		}
 	}
 

@@ -87,7 +87,6 @@ class CSToggle extends React.Component<CSToggleProps> {
 			'cs-toggle',
 			{
 				'cs-toggle-error': error === true,
-				'cs-toggle-read-only': readOnly,
 			},
 		);
 
@@ -130,6 +129,7 @@ class CSToggle extends React.Component<CSToggleProps> {
 								required={required}
 								id={this.uniqueAutoId}
 								aria-label={label}
+								readOnly={readOnly}
 								aria-readonly={readOnly}
 								aria-required={required}
 								aria-invalid={error}

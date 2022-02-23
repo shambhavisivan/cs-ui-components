@@ -34,7 +34,9 @@
 			width: 100%;
 			border-radius: var(--cs-select-border-radius, 0.25rem);
 			-webkit-appearance: none;
+			opacity: 1; // user agent stylesheet is 0.7 on disabled
 			padding: 0 calc(var(--cs-select-custom-data-width, 0.625rem) + 1.375rem) 0 0.75rem;
+			@include sc(--cs-input-c);
 			@include sbg(--cs-input-bg);
 			@include css4 {
 				border: 1px solid cvar(--cs-input-br);
@@ -49,7 +51,7 @@
 				}
 			}
 
-			&:disabled {
+			&[disabled]:not(.cs-select-read-only) {
 				cursor: default;
 				user-select: none;
 				pointer-events: none;
@@ -69,6 +71,10 @@
 				pointer-events: none;
 				border: none;
 				padding: 0;
+
+				&:focus {
+					box-shadow: none;
+				}
 			}
 
 			// Error

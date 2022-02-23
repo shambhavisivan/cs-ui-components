@@ -592,7 +592,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 			);
 		};
 
-		const renderExpandIcon = () => {
+		const renderDropdownIcon = () => {
 			if (readOnly) return null;
 
 			return (
@@ -700,7 +700,7 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 						/>
 						{renderValues}
 						{renderClearButton()}
-						{renderExpandIcon()}
+						{renderDropdownIcon()}
 					</div>
 					<CSCustomData
 						ref={this.customDataRef}
