@@ -39,6 +39,7 @@
   * added `onDropdownClose` prop
   * added `actions` and `icons` support
   * added `onBlur` prop
+  * added `clearable` prop
   * changed `onDropdownClose` prop to execute when dropdown open and enter key pressed
   * improved clear button behaviour so that it doesn't deselect options when clearing search
   * fixed field height increase when items are selected

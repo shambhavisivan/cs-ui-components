@@ -15,6 +15,7 @@ const options = [
 class CSCustomSelectPreview extends React.Component {
 	state = {
 		singleSelectKey: undefined,
+		clearableKeys: [],
 		multiselectKeys: [],
 		multiselectCompactKeys: []
 	};
@@ -105,6 +106,31 @@ class CSCustomSelectPreview extends React.Component {
 									options={options}
 									label="Select department"
 									borderRadius="0"
+								/>`
+							}
+						]
+					}, {
+						propName: 'clearable',
+						variations: [
+							{
+								primaryVariants: 'clearable={true}',
+								component: <CSCustomSelect
+									options={options}
+									label="Select department"
+									selectedKeys={this.state.clearableKeys}
+									onClear={() => this.setState({ clearableKeys: [] })}
+									onSelect={(option: any) => this.setState((prevState: any) => ({
+										clearableKeys: prevState.clearableKeys === option.key ? undefined : option.key
+									}))}
+									clearable
+								/>,
+								code: `<CSCustomSelect
+									options={options}
+									label="Select department"
+									selectedKeys={selectedKeys}
+									onClear={handleClear}
+									onSelect={handleSelect}
+									clearable
 								/>`
 							}
 						]
@@ -729,6 +755,10 @@ class CSCustomSelectPreview extends React.Component {
 						types: 'string',
 						default: `'0.25rem'`,
 						description: 'Set a border radius style.'
+					}, {
+						name: 'clearable',
+						types: 'boolean',
+						description: 'Show or hide the clear button.'
 					}, {
 						name: 'disabled',
 						types: 'boolean',

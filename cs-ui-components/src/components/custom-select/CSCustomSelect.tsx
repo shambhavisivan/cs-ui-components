@@ -29,6 +29,7 @@ export interface CSCustomSelectProps {
 	align?: CSCustomSelectDropdownAlignType;
 	borderRadius?: string;
 	className?: string;
+	clearable?: boolean;
 	disabled?: boolean;
 	dropdownActions?: Array<CSButtonProps>;
 	error?: boolean;
@@ -69,6 +70,7 @@ const CSCustomSelect = ({
 	align = 'left',
 	borderRadius,
 	className,
+	clearable,
 	disabled,
 	dropdownActions,
 	error,
@@ -364,7 +366,7 @@ const CSCustomSelect = ({
 	};
 
 	const renderClearButton = () => {
-		if ((!searchTerm && !selectedKeysArray.length) || readOnly || disabled) return null;
+		if ((!searchTerm && (!selectedKeysArray.length || !clearable)) || readOnly || disabled) return null;
 
 		const handleClear = (event: React.KeyboardEvent<HTMLButtonElement> | React.MouseEvent<HTMLButtonElement>) => {
 			event.stopPropagation();

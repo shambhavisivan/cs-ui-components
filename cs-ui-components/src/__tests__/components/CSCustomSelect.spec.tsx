@@ -52,6 +52,8 @@ describe('<CSCustomSelect />', () => {
 		expect(customSelectWrapper.find('.cs-element-hidden')).toHaveLength(0);
 		// selection
 		expect(customSelect.find('.cs-custom-select-input-multiselect')).toHaveLength(0);
+		// clearable
+		expect(uut.find('CSButton.cs-custom-select-clear')).toHaveLength(0);
 	});
 
 	it('should pass label to CSLabel', () => {
@@ -98,6 +100,16 @@ describe('<CSCustomSelect />', () => {
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} borderRadius={borderRadiusSize} />).dive();
 		const customSelectStyle = uut.find('.cs-custom-select-input-wrapper').props().style;
 		expect(customSelectStyle).toHaveProperty('--cs-custom-select-border-radius', borderRadiusSize);
+	});
+
+	it('should not show a clear options button', () => {
+		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} selectedKeys={0} clearable={false} />).dive();
+		expect(uut.find('CSButton.cs-custom-select-clear')).toHaveLength(0);
+	});
+
+	it('should show a clear options button', () => {
+		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} selectedKeys={0} clearable />).dive();
+		expect(uut.find('CSButton.cs-custom-select-clear')).toHaveLength(1);
 	});
 
 	it('should set disabled attribute', () => {
@@ -227,6 +239,7 @@ describe('<CSCustomSelect />', () => {
 				options={options}
 				selectedKeys={0}
 				onClear={handleClearMock}
+				clearable
 			/>,
 		).dive();
 		const closeButton = uut.find('CSButton');
