@@ -101,6 +101,8 @@
   * set `expanded` prop to be `false` by default
   * fixed breaking error when no tabs are added inside `CSSidebar`
   * changed classes with `.cs-button` prefix to `.cs-btn`
+* CSSelect
+  * <i>important</i> made component deprecated and CSCustomSelect should be used instead
 * CSTextarea
   * added expand button when `readonly={true}` and content is larger than field
   * renamed class `.cs-textarea-options` to `.cs-textarea-error-message` on `errorTooltip`
