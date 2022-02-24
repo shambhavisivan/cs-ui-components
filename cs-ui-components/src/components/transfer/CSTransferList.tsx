@@ -26,7 +26,7 @@ export interface CSTransferListProps {
 	listType: CSTransferListType;
 	searchable?: boolean;
 	selectAll?: boolean;
-	selectList?: Array<React.ReactText>;
+	selectedKeys?: Array<React.ReactText>;
 	transferButtonsRef?: RefObject<any>;
 	variant: CSTransferVariant;
 }
@@ -39,7 +39,7 @@ const CSTransferList = ({
 	listType,
 	searchable,
 	selectAll,
-	selectList,
+	selectedKeys,
 	transferButtonsRef,
 	variant,
 }: CSTransferListProps) => {
@@ -109,6 +109,36 @@ const CSTransferList = ({
 		handleTransferButtonsNavigation(event);
 	};
 
+	const getNoItemsContent = (message: string) => (
+		<li className="cs-transfer-list-no-items">
+			<CSIcon
+				name="error"
+				color="var(--cs-transfer-list-no-items-c)"
+				size="1.5rem"
+			/>
+			<span className="cs-transfer-list-no-items-msg">{`No ${message}`}</span>
+		</li>
+	);
+
+	const getListContent = () => {
+		if (!listItems.length) return getNoItemsContent('items');
+
+		const filteredList = listItems?.filter(searchingFor(searchTerm)).map((item) => (
+			<CSTransferItem
+				key={item.key}
+				itemKey={item.key}
+				label={item.label}
+					// disabled={items.disabled}
+				onSelect={(e: any) => onSelectChange(e, item.key, selectedKeys, listType)}
+				itemVariant={variant}
+				selected={selectedKeys?.includes(item.key)}
+				listType={listType}
+			/>
+		));
+
+		return filteredList.length ? filteredList : getNoItemsContent('results');
+	};
+
 	return (
 		<div className="cs-transfer-list-wrapper">
 			<CSLabel
@@ -127,8 +157,8 @@ const CSTransferList = ({
 										label="select all"
 										labelHidden
 										variant="brand"
-										onChange={() => selectAllItems(listItems, selectList, listType)}
-										checked={listItems.length === selectList?.length && !!selectList?.length}
+										onChange={() => selectAllItems(listItems, selectedKeys, listType)}
+										checked={listItems.length === selectedKeys?.length && !!selectedKeys?.length}
 										disabled={!listItems.length}
 										onKeyDown={handleTransferButtonsNavigation}
 									/>
@@ -151,29 +181,7 @@ const CSTransferList = ({
 					aria-describedby={uniqueAutoId}
 					onKeyDown={handleListKeyDown}
 				>
-					{listItems.length
-						? listItems.filter(searchingFor(searchTerm)).map((items) => (
-							<CSTransferItem
-								key={items.key}
-								itemKey={items.key}
-								label={items.label}
-								// disabled={items.disabled}
-								onSelect={(e: any) => onSelectChange(e, items.key, selectList, listType)}
-								itemVariant={variant}
-								selected={selectList?.includes(items.key)}
-								listType={listType}
-							/>
-						))
-						: (
-							<li className="cs-transfer-list-no-data">
-								<CSIcon
-									name="error"
-									color="var(--cs-transfer-list-no-data-c)"
-									size="1.5rem"
-								/>
-								<span className="cs-transfer-list-no-data-text">No data</span>
-							</li>
-						)}
+					{getListContent()}
 				</ul>
 			</div>
 		</div>

@@ -62,9 +62,9 @@ const CSTransfer = ({
 
 	const onSelectChange = (event: any,
 		key: React.ReactText,
-		keysList: Array<React.ReactText>,
+		selectedKeys: Array<React.ReactText>,
 		listType: CSTransferListType) => {
-		let newKeysList: Array<React.ReactText> = [...keysList];
+		let newKeysList: Array<React.ReactText> = [...selectedKeys];
 
 		if (newKeysList.includes(key)) {
 			if (!(event.ctrlKey || event.metaKey) && variant === 'simple-list') {
@@ -81,9 +81,9 @@ const CSTransfer = ({
 		setSelected((prevState) => ({ ...prevState, [listType]: newKeysList }));
 	};
 
-	const selectAllItems = (itemsList: Array<CSTransferItemInterface>, selectList: Array<React.ReactText>, listType: CSTransferListType) => {
+	const selectAllItems = (itemsList: Array<CSTransferItemInterface>, selectedKeys: Array<React.ReactText>, listType: CSTransferListType) => {
 		const itemKeys = itemsList.map(({ key }) => key);
-		const selectedKeysList = itemKeys.length === selectList.length ? [] : itemKeys;
+		const selectedKeysList = itemKeys.length === selectedKeys.length ? [] : itemKeys;
 		setSelected((prevState) => ({ ...prevState, [listType]: selectedKeysList }));
 	};
 
@@ -154,7 +154,7 @@ const CSTransfer = ({
 					label={sourceLabel}
 					variant={variant}
 					listItems={transferItems.source}
-					selectList={selected.source}
+					selectedKeys={selected.source}
 					selectAll={selectAll}
 					searchable={searchable}
 					helpText={helpText?.source}
@@ -190,7 +190,7 @@ const CSTransfer = ({
 					label={targetLabel}
 					variant={variant}
 					listItems={transferItems.target}
-					selectList={selected.target}
+					selectedKeys={selected.target}
 					selectAll={selectAll}
 					searchable={searchable}
 					helpText={helpText?.target}

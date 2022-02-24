@@ -349,12 +349,12 @@ describe('<CSTransferList />', () => {
 				listType={sourceListType}
 			/>,
 		);
-		const noDataNode = uut.find('ul.cs-transfer-list > li.cs-transfer-list-no-data');
-		const noDataNodeIcon = noDataNode.find('CSIcon');
-		const noDataNodeText = noDataNode.find('span.cs-transfer-list-no-data-text').text();
-		expect(noDataNodeIcon.prop('name')).toBe('error');
-		expect(noDataNodeIcon.prop('color')).toBe('var(--cs-transfer-list-no-data-c)');
-		expect(noDataNodeText).toBe('No data');
+		const noItemsNode = uut.find('ul.cs-transfer-list > li.cs-transfer-list-no-items');
+		const noItemsNodeIcon = noItemsNode.find('CSIcon');
+		const noItemsMsg = noItemsNode.find('span.cs-transfer-list-no-items-msg').text();
+		expect(noItemsNodeIcon.prop('name')).toBe('error');
+		expect(noItemsNodeIcon.prop('color')).toBe('var(--cs-transfer-list-no-items-c)');
+		expect(noItemsMsg).toBe('No items');
 	});
 
 	it('should pass helpText to CSLabel', () => {
@@ -444,7 +444,7 @@ describe('<CSTransferList />', () => {
 		expect(transferItem.prop('label')).toBe('red');
 	});
 
-	it('should set CSTransferItem selected prop if key is in selectList', () => {
+	it('should render correct content if search results don\'t match any list items labels', () => {
 		const uut = shallow(
 			<CSTransferList
 				label={sourceListLabel}
@@ -452,7 +452,26 @@ describe('<CSTransferList />', () => {
 				variant={checkListVariant}
 				listType={sourceListType}
 				searchable
-				selectList={['ff0000']}
+			/>,
+		);
+		const inputSearch = uut.find('div.cs-transfer-list-header > CSInputSearch');
+		inputSearch.prop('onChange')({ target: { value: 'pink' } } as React.ChangeEvent<HTMLInputElement>);
+		const noItemsNode = uut.find('ul.cs-transfer-list > li.cs-transfer-list-no-items');
+		const noItemsNodeIcon = noItemsNode.find('CSIcon');
+		const noItemsMsg = noItemsNode.find('span.cs-transfer-list-no-items-msg').text();
+		expect(noItemsNodeIcon.prop('name')).toBe('error');
+		expect(noItemsNodeIcon.prop('color')).toBe('var(--cs-transfer-list-no-items-c)');
+		expect(noItemsMsg).toBe('No results');
+	});
+
+	it('should set CSTransferItem selected prop if key is in selectedKeys array prop', () => {
+		const uut = shallow(
+			<CSTransferList
+				label={sourceListLabel}
+				listItems={items}
+				variant={checkListVariant}
+				listType={sourceListType}
+				selectedKeys={['ff0000']}
 			/>,
 		);
 		const transferItem = uut.find('CSTransferItem').at(0);

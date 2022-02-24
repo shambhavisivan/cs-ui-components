@@ -70,8 +70,8 @@
 						}
 					}
 					&-disabled {
-						@include sc(--cs-transfer-list-item-disabled-c);
 						pointer-events: none;
+						@include sc(--cs-transfer-list-item-disabled-c);
 					}
 					&:focus {
 						outline: none;
@@ -94,16 +94,16 @@
 						}
 					}
 				}
-				.cs-transfer-list-no-data {
+				.cs-transfer-list-no-items {
 					display: flex;
 					flex-direction: column;
 					align-items: center;
 					justify-content: center;
 					height: 100%;
 				}
-				.cs-transfer-list-no-data-text {
-					@include sc(--cs-transfer-list-no-data-c);
-					margin-top: 0.5rem
+				.cs-transfer-list-no-items-msg {
+					margin-top: 0.5rem;
+					@include sc(--cs-transfer-list-no-items-c);
 				}
 			}
 		}

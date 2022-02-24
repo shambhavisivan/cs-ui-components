@@ -117,6 +117,10 @@
   * <i>important</i> renamed items `name` to `label`
   * <i>important</i> renamed `onChange` to `onTransfer`
   * <i>important</i> merged `sourceHelpText` and `targetHelpText` into `helpText` object prop which accepts `source` and `target` string properties - each for the corresponding transfer list
+  * fixed rendering correct content when filtering items returns no results
+  * renamed error messages when no items are rendered in the list
+  * renamed `.cs-transfer-list-no-data` to `.cs-transfer-list-no-items`
+  * renamed `.cs-transfer-list-no-data-text` to `.cs-transfer-list-no-items-msg`
 * Tests added to components
   * CSAutoposition
   * CSButton

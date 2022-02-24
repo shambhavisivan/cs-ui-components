@@ -3,10 +3,10 @@ import { CSTransferListType } from './CSTransferList';
 import { CSTransferItemInterface } from './CSTransfer';
 
 export interface CSTransferContextInterface {
-	onSelectChange: (event: any, key: React.ReactText, keysList: Array<React.ReactText>, listType: CSTransferListType) => void;
+	onSelectChange: (event: any, key: React.ReactText, selectedKeys: Array<React.ReactText>, listType: CSTransferListType) => void;
 	onTransfer: (key: React.ReactText | Array<React.ReactText>) => void;
 	oneWay?: boolean;
-	selectAllItems?: (itemsList: Array<CSTransferItemInterface>, selectList: Array<React.ReactText>, listType: CSTransferListType) => void;
+	selectAllItems?: (itemsList: Array<CSTransferItemInterface>, selectedKeys: Array<React.ReactText>, listType: CSTransferListType) => void;
 }
 
 export const CSTransferContext = createContext<CSTransferContextInterface>({
