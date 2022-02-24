@@ -219,12 +219,12 @@ describe('<CSDatepicker />', () => {
 		expect(datepicker.prop('inline')).toBeTruthy();
 	});
 
-	it('should pass isClearable to DatePicker', () => {
+	it('should pass clearable to DatePicker', () => {
 		const uut = shallow(
 			<CSDatepicker
 				label={labelValue}
 				onChange={onChange}
-				isClearable
+				clearable
 			/>,
 		);
 		const datepickerWrapper = uut.find('.cs-datepicker-wrapper-clearable');

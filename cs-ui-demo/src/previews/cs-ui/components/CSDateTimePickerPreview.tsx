@@ -143,6 +143,25 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 							}
 						]
 					}, {
+						propName: 'clearable',
+						variations: [
+							{
+								primaryVariants: 'clearable={true}',
+								component: <CSDateTimePicker
+									label="Enter date"
+									clearable
+									selected={this.state.dateClearable}
+									onChange={(date: Date) => this.setDate(date, 'Clearable')}
+								/>,
+								code: `<CSDateTimePicker
+									label="Enter date"
+									clearable
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
+							}
+						]
+					}, {
 						propName: 'dateFormat',
 						variations: [
 							{
@@ -392,25 +411,6 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 								code: `<CSDateTimePicker
 									label="Enter date"
 									inline
-									selected={this.state.selected}
-									onChange={(date: Date) => this.setState({ selected: date })}
-								/>`
-							}
-						]
-					}, {
-						propName: 'isClearable',
-						variations: [
-							{
-								primaryVariants: 'isClearable={true}',
-								component: <CSDateTimePicker
-									label="Enter date"
-									isClearable
-									selected={this.state.dateIsClearable}
-									onChange={(date: Date) => this.setDate(date, 'IsClearable')}
-								/>,
-								code: `<CSDateTimePicker
-									label="Enter date"
-									isClearable
 									selected={this.state.selected}
 									onChange={(date: Date) => this.setState({ selected: date })}
 								/>`
@@ -1080,6 +1080,10 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 						default: `'0.25rem'`,
 						description: 'Set a border radius style.'
 					}, {
+						name: 'clearable',
+						types: 'boolean',
+						description: 'Show or hide the clear button.'
+					}, {
 						name: 'dateFormat',
 						types: 'string',
 						default: `'MMMM d, yyyy h:mm aa'`,
@@ -1129,10 +1133,6 @@ class CSDateTimePickerPreview extends React.Component<{}, CSDateTimePickerPrevie
 						types: 'boolean',
 						default: 'false',
 						description: 'Display the popup inline with content'
-					}, {
-						name: 'isClearable',
-						types: 'boolean',
-						description: 'Show or hide the clear button.'
 					}, {
 						name: 'labelHidden',
 						types: 'boolean',

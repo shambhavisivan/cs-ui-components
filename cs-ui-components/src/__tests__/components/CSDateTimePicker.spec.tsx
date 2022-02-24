@@ -220,16 +220,16 @@ describe('<CSDateTimePicker />', () => {
 		expect(datepicker.prop('inline')).toBeTruthy();
 	});
 
-	it('should pass isClearable to CSDatepicker', () => {
+	it('should pass clearable to CSDatepicker', () => {
 		const uut = shallow(
 			<CSDateTimePicker
 				label={labelValue}
 				onChange={onChange}
-				isClearable
+				clearable
 			/>,
 		);
 		const datepicker = uut.dive().find('CSDatepicker');
-		expect(datepicker.prop('isClearable')).toBeTruthy();
+		expect(datepicker.prop('clearable')).toBeTruthy();
 	});
 
 	it('should pass labelHidden to CSDatepicker', () => {

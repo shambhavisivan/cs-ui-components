@@ -22,6 +22,7 @@ class CSDateTimePicker extends React.Component<CSDateTimePickerProps> {
 		const {
 			borderRadius,
 			className,
+			clearable,
 			dateFormat,
 			disabled,
 			dropdownMode,
@@ -31,7 +32,6 @@ class CSDateTimePicker extends React.Component<CSDateTimePickerProps> {
 			forwardRef,
 			helpText,
 			id,
-			isClearable,
 			label,
 			labelHidden,
 			labelTitle,

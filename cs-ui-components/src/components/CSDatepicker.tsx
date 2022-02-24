@@ -21,6 +21,7 @@ export interface CSDatepickerProps {
 	autoFocus?: boolean;
 	borderRadius?: string;
 	className?: string;
+	clearable?: boolean;
 	dateFormat?: string;
 	disabled?: boolean;
 	dropdownMode?: CSDatepickerDropdownMode;
@@ -31,7 +32,6 @@ export interface CSDatepickerProps {
 	icons?: Array<CSCustomDataIcon>;
 	id?: string;
 	inline?: boolean;
-	isClearable?: boolean;
 	label: string;
 	labelHidden?: boolean;
 	labelTitle?: boolean;
@@ -122,6 +122,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 			autoFocus,
 			borderRadius,
 			className,
+			clearable,
 			dateFormat,
 			disabled,
 			dropdownMode,
@@ -132,7 +133,6 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 			icons,
 			id,
 			inline,
-			isClearable,
 			label,
 			labelHidden,
 			labelTitle,
@@ -175,7 +175,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 				'cs-datepicker-wrapper-error': error,
 				'cs-datepicker-wrapper-error-tooltip': errorTooltip,
 				'cs-datepicker-wrapper-read-only': readOnly,
-				'cs-datepicker-wrapper-clearable': isClearable,
+				'cs-datepicker-wrapper-clearable': clearable,
 				[`${className}`]: className,
 			},
 		);
@@ -212,7 +212,7 @@ class CSDatepicker extends React.Component<CSDatepickerProps, CSDatepickerState>
 				<div className="cs-datepicker" title={title}>
 					<DatePicker
 						dateFormat={dateFormat}
-						isClearable={isClearable}
+						isClearable={clearable}
 						placeholderText={placeholder}
 						todayButton={todayButton}
 						disabled={disabled}

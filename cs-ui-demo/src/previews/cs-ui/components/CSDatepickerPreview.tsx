@@ -143,6 +143,25 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 							}
 						]
 					}, {
+						propName: 'clearable',
+						variations: [
+							{
+								primaryVariants: 'clearable={true}',
+								component: <CSDatepicker
+									label="Enter date"
+									clearable
+									selected={this.state.dateClearable}
+									onChange={(date: Date) => this.setDate(date, 'Clearable')}
+								/>,
+								code: `<CSDatepicker
+									label="Enter date"
+									clearable
+									selected={this.state.selected}
+									onChange={(date: Date) => this.setState({ selected: date })}
+								/>`
+							}
+						]
+					}, {
 						propName: 'dateFormat',
 						variations: [
 							{
@@ -392,25 +411,6 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 								code: `<CSDatepicker
 									label="Enter date"
 									inline
-									selected={this.state.selected}
-									onChange={(date: Date) => this.setState({ selected: date })}
-								/>`
-							}
-						]
-					}, {
-						propName: 'isClearable',
-						variations: [
-							{
-								primaryVariants: 'isClearable={true}',
-								component: <CSDatepicker
-									label="Enter date"
-									isClearable
-									selected={this.state.dateIsClearable}
-									onChange={(date: Date) => this.setDate(date, 'IsClearable')}
-								/>,
-								code: `<CSDatepicker
-									label="Enter date"
-									isClearable
 									selected={this.state.selected}
 									onChange={(date: Date) => this.setState({ selected: date })}
 								/>`
@@ -1033,6 +1033,10 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 						default: `'0.25rem'`,
 						description: 'Set a border radius style.'
 					}, {
+						name: 'clearable',
+						types: 'boolean',
+						description: 'Show or hide the clear button.'
+					}, {
 						name: 'dateFormat',
 						types: 'string',
 						default: `'dd-MM-yyyy'`,
@@ -1082,10 +1086,6 @@ class CSDatepickerPreview extends React.Component<{}, CSDatepickerPreviewState> 
 						types: 'boolean',
 						default: 'false',
 						description: 'Display the popup inline with content'
-					}, {
-						name: 'isClearable',
-						types: 'boolean',
-						description: 'Show or hide the clear button.'
 					}, {
 						name: 'labelHidden',
 						types: 'boolean',
