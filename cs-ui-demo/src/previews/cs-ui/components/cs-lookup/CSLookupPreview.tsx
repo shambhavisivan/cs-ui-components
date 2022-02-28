@@ -1,10 +1,15 @@
+// tslint:disable:no-console
 import React, { useState } from 'react';
-import { CSButtonSize, CSIconOrigin, CSLookup, CSTooltipPosition } from '@cloudsense/cs-ui-components';
+import { CSButtonSize, CSDataTableRowInterface, CSIconOrigin, CSLookup, CSTooltipPosition } from '@cloudsense/cs-ui-components';
 import * as CSD from '../../../../demo-components';
 import CSLookupProps from './cs-lookup-props';
 import ClientSideProps from './cs-lookup-client-props';
 import ServerSideProps from './cs-lookup-server-props';
 import CSLookupAccessibility from './cs-lookup-accessibility';
+
+interface CSLookupSelecteKeysState {
+	[key: string]: Array<React.ReactText>;
+}
 
 const columns = [
 	{ key: 'Account', header: 'Account' },
@@ -43,6 +48,10 @@ const options = [
 
 const CSLookupPreview = () => {
 	const [focused, setFocused] = useState<boolean>(false);
+	const [selectedKeys, setSelectedKeys] = useState<CSLookupSelecteKeysState>({
+		singleSelect: [1],
+		multiSelect: [1, 2, 3]
+	});
 
 	const handleBlur = () => alert('Lookup has lost focus.');
 	const handleClick = () => alert('Lookup input has been clicked.');
@@ -55,7 +64,22 @@ const CSLookupPreview = () => {
 	const handleClose = () => alert('Lookup has closed.');
 	const handleKeyDown = (event: any) => alert(`Key ${event.key} has been pressed.`);
 	const handleSearch = (event: any) => alert(event.target.value);
-	const handleSelectChange = (item: any) => alert(JSON.stringify(item));
+	const handleSelectChange = (option: CSDataTableRowInterface | null, stateName: string, multiselect?: boolean, logOption?: boolean) => {
+		const stateKeys = selectedKeys[stateName] ?? [];
+		const optionKey = option?.key;
+		let newKeys: Array<React.ReactText> = [];
+
+		if (optionKey) {
+			if (stateKeys?.includes(optionKey)) { newKeys = stateKeys.filter(key => key !== optionKey); }
+			else if (multiselect) { newKeys = [...stateKeys, optionKey]; }
+			else { newKeys = [optionKey]; }
+		}
+
+		setSelectedKeys(prevState => ({ ...prevState, [stateName]: newKeys }));
+
+		if (logOption) { console.log(option); }
+	};
+
 	const fetchData = async (searchTerm: any, pageSize: any, pageNo: any) => {
 		await new Promise(resolve => setTimeout(resolve, 2000));
 		if (searchTerm === '') {
@@ -110,7 +134,13 @@ const CSLookupPreview = () => {
 				<CSD.Preview
 					orientation="vertical"
 					table={clientWithBaseProps}
-					related={['label', 'columns', 'fieldToBeDisplayed', 'mode', 'options']}
+					related={[
+						'label',
+						'columns',
+						'fieldToBeDisplayed',
+						'mode',
+						'options'
+					]}
 					code={`
 						<CSLookup
 							label="Label"
@@ -118,6 +148,8 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 						/>
 					`}
 				>
@@ -127,6 +159,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.baseUsage}
+						onSelectChange={option => handleSelectChange(option, 'baseUsage')}
 					/>
 				</CSD.Preview>
 			</CSD.Section>
@@ -146,7 +180,13 @@ const CSLookupPreview = () => {
 				<CSD.Preview
 					orientation="vertical"
 					table={clientWithBaseProps}
-					related={['label', 'columns', 'fieldToBeDisplayed', 'mode', 'options']}
+					related={[
+						'label',
+						'columns',
+						'fieldToBeDisplayed',
+						'mode',
+						'options'
+					]}
 					code={`
 						<CSLookup
 							label="Label"
@@ -154,6 +194,8 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 						/>
 					`}
 				>
@@ -163,6 +205,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.displayingOptions}
+						onSelectChange={option => handleSelectChange(option, 'displayingOptions')}
 					/>
 				</CSD.Preview>
 			</CSD.Section>
@@ -176,7 +220,14 @@ const CSLookupPreview = () => {
 				<CSD.Preview
 					orientation="vertical"
 					table={clientWithBaseProps}
-					related={['label', 'columns', 'fieldToBeDisplayed', 'mode', 'options', 'loading']}
+					related={[
+						'label',
+						'columns',
+						'fieldToBeDisplayed',
+						'mode',
+						'options',
+						'loading'
+					]}
 					code={`
 						<CSLookup
 							label="Label"
@@ -208,7 +259,14 @@ const CSLookupPreview = () => {
 				<CSD.Preview
 					orientation="vertical"
 					table={clientWithBaseProps}
-					related={['label', 'columns', 'fieldToBeDisplayed', 'mode', 'options', 'searchBy']}
+					related={[
+						'label',
+						'columns',
+						'fieldToBeDisplayed',
+						'mode',
+						'options',
+						'searchBy'
+					]}
 					code={`
 						<CSLookup
 							label="Label"
@@ -216,6 +274,8 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							searchBy={['Industry']}
 						/>
 					`}
@@ -226,6 +286,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.clientSideSearch}
+						onSelectChange={option => handleSelectChange(option, 'clientSideSearch')}
 						searchBy={['Industry']}
 					/>
 				</CSD.Preview>
@@ -247,13 +309,22 @@ const CSLookupPreview = () => {
 				<CSD.Preview
 					orientation="vertical"
 					table={clientWithBaseProps}
-					related={['label', 'columns', 'fieldToBeDisplayed', 'mode', 'fetchOptions', 'pageSize']}
+					related={[
+						'label',
+						'columns',
+						'fieldToBeDisplayed',
+						'mode',
+						'fetchOptions',
+						'pageSize'
+					]}
 					code={`
 						<CSLookup
 							label="Label"
 							columns={columns}
 							fieldToBeDisplayed="Account"
 							mode="server"
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							fetchOptions={fetchData}
 							pageSize={5}
 						/>
@@ -264,6 +335,8 @@ const CSLookupPreview = () => {
 						columns={columns}
 						fieldToBeDisplayed="Account"
 						mode="server"
+						selectedKeys={selectedKeys.fetchingOptions}
+						onSelectChange={option => handleSelectChange(option, 'fetchingOptions')}
 						fetchOptions={fetchData}
 						pageSize={5}
 					/>
@@ -279,7 +352,15 @@ const CSLookupPreview = () => {
 				<CSD.Preview
 					orientation="vertical"
 					table={serverWithBaseProps}
-					related={['label', 'columns', 'fieldToBeDisplayed', 'mode', 'fetchOptions', 'pageSize', 'infiniteScroll']}
+					related={[
+						'label',
+						'columns',
+						'fieldToBeDisplayed',
+						'mode',
+						'fetchOptions',
+						'pageSize',
+						'infiniteScroll'
+					]}
 					code={`
 						<CSLookup
 							label="Label"
@@ -288,12 +369,16 @@ const CSLookupPreview = () => {
 							mode="server"
 							fetchOptions={fetchData}
 							pageSize={5}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 						/>
 						<CSLookup
 							label="Label"
 							columns={columns}
 							fieldToBeDisplayed="Account"
 							mode="server"
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							fetchOptions={fetchData}
 							pageSize={5}
 							infiniteScroll
@@ -305,6 +390,8 @@ const CSLookupPreview = () => {
 						columns={columns}
 						fieldToBeDisplayed="Account"
 						mode="server"
+						selectedKeys={selectedKeys.pageSize}
+						onSelectChange={option => handleSelectChange(option, 'pageSize')}
 						fetchOptions={fetchData}
 						pageSize={5}
 					/>
@@ -313,6 +400,8 @@ const CSLookupPreview = () => {
 						columns={columns}
 						fieldToBeDisplayed="Account"
 						mode="server"
+						selectedKeys={selectedKeys.infiniteScroll}
+						onSelectChange={option => handleSelectChange(option, 'infiniteScroll')}
 						fetchOptions={fetchData}
 						pageSize={5}
 						infiniteScroll
@@ -329,13 +418,23 @@ const CSLookupPreview = () => {
 				<CSD.Preview
 					orientation="vertical"
 					table={serverWithBaseProps}
-					related={['label', 'columns', 'fieldToBeDisplayed', 'mode', 'fetchOptions', 'pageSize', 'minTermLength']}
+					related={[
+						'label',
+						'columns',
+						'fieldToBeDisplayed',
+						'mode',
+						'fetchOptions',
+						'pageSize',
+						'minTermLength'
+					]}
 					code={`
 						<CSLookup
 							label="Label"
 							columns={columns}
 							fieldToBeDisplayed="Account"
 							mode="server"
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							fetchOptions={fetchData}
 							pageSize={5}
 							minTermLength={5}
@@ -347,6 +446,8 @@ const CSLookupPreview = () => {
 						columns={columns}
 						fieldToBeDisplayed="Account"
 						mode="server"
+						selectedKeys={selectedKeys.serverSideSearch}
+						onSelectChange={option => handleSelectChange(option, 'serverSideSearch')}
 						fetchOptions={fetchData}
 						pageSize={5}
 						minTermLength={5}
@@ -357,22 +458,30 @@ const CSLookupPreview = () => {
 			<CSD.Section>
 				<CSD.Heading level={2}>Selection</CSD.Heading>
 				<CSD.Text>
-					Some scenarios may call for a different approach to how values are presented or selected. There are three props that can be used to provide more or custom functionality.
+					Lookup component keeps no state, so it is necessary to manage an external state and pass desired option key(s) to `selectedKeys` prop in order to display selected options.
+					`selectedKeys` prop can accept one key or an array of keys, depending on the wanted behaviour.
 				</CSD.Text>
 				<CSD.Text>
-					The `value` prop allows you to set a default value for the lookup. This can be overidden by selecting a different option from the dropdown.
+					If user wants to allow selection of multiple options, user can define the `multiselect` prop which will allow this.
+					`multiselect` prop will change the behaviour of closing the dropdown after option selectio and set appropriate styles.
 				</CSD.Text>
 				<CSD.Text>
-					If you want to provide multiple options for the user rather than just allowing a single selection then the `multiselect` prop will allow this.
-				</CSD.Text>
-				<CSD.Text>
-					Finally if you want to run some logic once an option has been selected then the `onSelectChange` prop accepts a function and runs after each option is selected.
-					This can be combined with the `multiselect` prop to run multiple functions after each selection.
+					To receive currently selected option user can use `onSelectChange` prop which will provide an object of type `CSDataTableRowInterface` or null if selection is cleared via clear button.
+					Check browser console to see provided value when `onSelectChange` is triggered.
 				</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
 					table={clientWithBaseProps}
-					related={['label', 'columns', 'fieldToBeDisplayed', 'mode', 'options', 'value', 'onSelectChange', 'multiselect']}
+					related={[
+						'label',
+						'columns',
+						'fieldToBeDisplayed',
+						'mode',
+						'options',
+						'selectedKeys',
+						'onSelectChange',
+						'multiselect'
+					]}
 					code={`
 						<CSLookup
 							label="Label"
@@ -380,23 +489,18 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
-							value={{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } }}
-						/>
-						<CSLookup
-							label="Label"
-							columns={columns}
-							fieldToBeDisplayed="Account"
-							mode="client"
-							options={options}
-							multiselect
-						/>
-						<CSLookup
-							label="Label"
-							columns={columns}
-							fieldToBeDisplayed="Account"
-							mode="client"
-							options={options}
+							selectedKeys={selectedKeys}
 							onSelectChange={handleSelectChange}
+						/>
+						<CSLookup
+							label="Label"
+							columns={columns}
+							fieldToBeDisplayed="Account"
+							mode="client"
+							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
+							multiselect
 						/>
 					`}
 				>
@@ -406,7 +510,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
-						value={{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } }}
+						selectedKeys={selectedKeys.singleSelect}
+						onSelectChange={option => handleSelectChange(option, 'singleSelect', false, true)}
 					/>
 					<CSLookup
 						label="Label"
@@ -414,15 +519,9 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.multiSelect}
+						onSelectChange={option => handleSelectChange(option, 'multiSelect', true, true)}
 						multiselect
-					/>
-					<CSLookup
-						label="Label"
-						columns={columns}
-						fieldToBeDisplayed="Account"
-						mode="client"
-						options={options}
-						onSelectChange={handleSelectChange}
 					/>
 				</CSD.Preview>
 			</CSD.Section>
@@ -459,6 +558,8 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							onBlur={handleBlur}
 						/>
 						<CSLookup
@@ -467,6 +568,8 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							onClick={handleClick}
 						/>
 						<CSLookup
@@ -475,6 +578,8 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							onFocus={handleFocus}
 						/>
 						<CSLookup
@@ -483,6 +588,8 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							onDropdownClose={handleClose}
 						/>
 						<CSLookup
@@ -491,6 +598,8 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							onKeyDown={handleKeyDown}
 						/>
 						<CSLookup
@@ -499,6 +608,8 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							searchBy={['Id', 'Account']}
 							onSearch={handleSearch}
 						/>
@@ -510,6 +621,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.onBlur}
+						onSelectChange={option => handleSelectChange(option, 'onBlur')}
 						onBlur={handleBlur}
 					/>
 					<CSLookup
@@ -518,6 +631,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.onClick}
+						onSelectChange={option => handleSelectChange(option, 'onClick')}
 						onClick={handleClick}
 					/>
 					<CSLookup
@@ -526,6 +641,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.onFocus}
+						onSelectChange={option => handleSelectChange(option, 'onFocus')}
 						onFocus={handleFocus}
 					/>
 					<CSLookup
@@ -534,6 +651,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.onDropdownClose}
+						onSelectChange={option => handleSelectChange(option, 'onDropdownClose')}
 						onDropdownClose={handleClose}
 					/>
 					<CSLookup
@@ -542,6 +661,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.onKeyDown}
+						onSelectChange={option => handleSelectChange(option, 'onKeyDown')}
 						onKeyDown={handleKeyDown}
 					/>
 					<CSLookup
@@ -550,6 +671,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.onSearch}
+						onSelectChange={option => handleSelectChange(option, 'onSearch')}
 						searchBy={['Id', 'Account']}
 						onSearch={handleSearch}
 					/>
@@ -570,7 +693,16 @@ const CSLookupPreview = () => {
 				<CSD.Preview
 					orientation="vertical"
 					table={clientWithBaseProps}
-					related={['label', 'columns', 'fieldToBeDisplayed', 'mode', 'options', 'error', 'errorMessage', 'errorTooltip']}
+					related={[
+						'label',
+						'columns',
+						'fieldToBeDisplayed',
+						'mode',
+						'options',
+						'error',
+						'errorMessage',
+						'errorTooltip'
+					]}
 					code={`
 						<CSLookup
 							label="Label"
@@ -578,6 +710,8 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							error
 						/>
 						<CSLookup
@@ -586,6 +720,8 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							error
 							errorMessage="Error Message"
 						/>
@@ -595,6 +731,8 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							error
 							errorMessage="Error Message"
 							errorTooltip
@@ -607,6 +745,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.error}
+						onSelectChange={option => handleSelectChange(option, 'error')}
 						error
 					/>
 					<CSLookup
@@ -615,6 +755,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.errorMessage}
+						onSelectChange={option => handleSelectChange(option, 'errorMessage')}
 						error
 						errorMessage="Error Message"
 					/>
@@ -624,6 +766,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.errorTooltip}
+						onSelectChange={option => handleSelectChange(option, 'errorTooltip')}
 						error
 						errorMessage="Error Message"
 						errorTooltip
@@ -642,7 +786,17 @@ const CSLookupPreview = () => {
 				<CSD.Preview
 					orientation="vertical"
 					table={clientWithBaseProps}
-					related={['label', 'columns', 'fieldToBeDisplayed', 'mode', 'options', 'disabled', 'readOnly', 'required', 'hidden']}
+					related={[
+						'label',
+						'columns',
+						'fieldToBeDisplayed',
+						'mode',
+						'options',
+						'disabled',
+						'readOnly',
+						'required',
+						'hidden'
+					]}
 					code={`
 						<CSLookup
 							label="Label"
@@ -658,15 +812,7 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
-							hidden
-						/>
-						<CSLookup
-							label="Label"
-							columns={columns}
-							fieldToBeDisplayed="Account"
-							mode="client"
-							options={options}
-							value={{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } }}
+							selectedKeys={[1]}
 							readOnly
 						/>
 						<CSLookup
@@ -675,6 +821,16 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							hidden
+						/>
+						<CSLookup
+							label="Label"
+							columns={columns}
+							fieldToBeDisplayed="Account"
+							mode="client"
+							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							required
 						/>
 					`}
@@ -693,7 +849,7 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
-						value={{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } }}
+						selectedKeys={[1]}
 						readOnly
 					/>
 					<CSLookup
@@ -702,7 +858,7 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
-						required
+						hidden
 					/>
 					<CSLookup
 						label="Label"
@@ -710,7 +866,9 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
-						hidden
+						selectedKeys={selectedKeys.required}
+						onSelectChange={option => handleSelectChange(option, 'required')}
+						required
 					/>
 				</CSD.Preview>
 			</CSD.Section>
@@ -731,7 +889,15 @@ const CSLookupPreview = () => {
 				<CSD.Preview
 					orientation="vertical"
 					table={clientWithBaseProps}
-					related={['label', 'columns', 'fieldToBeDisplayed', 'mode', 'options', 'labelHidden', 'labelTitle']}
+					related={[
+						'label',
+						'columns',
+						'fieldToBeDisplayed',
+						'mode',
+						'options',
+						'labelHidden',
+						'labelTitle'
+					]}
 					code={`
 						<CSLookup
 							label="Label"
@@ -739,6 +905,8 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							labelHidden
 						/>
 						<CSLookup
@@ -747,6 +915,8 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							labelTitle
 						/>
 					`}
@@ -757,6 +927,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.labelHidden}
+						onSelectChange={option => handleSelectChange(option, 'labelHidden')}
 						labelHidden
 					/>
 					<CSLookup
@@ -765,6 +937,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.labelTitle}
+						onSelectChange={option => handleSelectChange(option, 'labelTitle')}
 						labelTitle
 					/>
 				</CSD.Preview>
@@ -784,7 +958,15 @@ const CSLookupPreview = () => {
 				<CSD.Preview
 					orientation="vertical"
 					table={clientWithBaseProps}
-					related={['label', 'columns', 'fieldToBeDisplayed', 'mode', 'options', 'helpText', 'tooltipPosition']}
+					related={[
+						'label',
+						'columns',
+						'fieldToBeDisplayed',
+						'mode',
+						'options',
+						'helpText',
+						'tooltipPosition'
+					]}
 					code={`
 						<CSLookup
 							label="Label"
@@ -792,6 +974,8 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							helpText="This is help text"
 						/>
 						<CSLookup
@@ -800,6 +984,8 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							helpText="This is help text"
 							tooltipPosition="top-left"
 						/>
@@ -811,6 +997,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.helpText}
+						onSelectChange={option => handleSelectChange(option, 'helpText')}
 						helpText="This is help text"
 					/>
 					<CSLookup
@@ -819,6 +1007,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.tooltipPosition}
+						onSelectChange={option => handleSelectChange(option, 'tooltipPosition')}
 						helpText="This is help text"
 						tooltipPosition="top-left"
 					/>
@@ -833,7 +1023,15 @@ const CSLookupPreview = () => {
 				<CSD.Preview
 					orientation="vertical"
 					table={clientWithBaseProps}
-					related={['label', 'columns', 'fieldToBeDisplayed', 'mode', 'options', 'placeholder', 'title']}
+					related={[
+						'label',
+						'columns',
+						'fieldToBeDisplayed',
+						'mode',
+						'options',
+						'placeholder',
+						'title'
+					]}
 					code={`
 						<CSLookup
 							label="Label"
@@ -841,6 +1039,8 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							placeholder="This is a placeholder"
 						/>
 						<CSLookup
@@ -849,6 +1049,8 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							title="This is a title"
 						/>
 					`}
@@ -859,6 +1061,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.placeholder}
+						onSelectChange={option => handleSelectChange(option, 'placeholder')}
 						placeholder="This is a placeholder"
 					/>
 					<CSLookup
@@ -867,6 +1071,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.title}
+						onSelectChange={option => handleSelectChange(option, 'title')}
 						title="This is a title"
 					/>
 				</CSD.Preview>
@@ -879,7 +1085,14 @@ const CSLookupPreview = () => {
 				<CSD.Preview
 					orientation="vertical"
 					table={clientWithBaseProps}
-					related={['label', 'columns', 'fieldToBeDisplayed', 'mode', 'options', 'autoFocus']}
+					related={[
+						'label',
+						'columns',
+						'fieldToBeDisplayed',
+						'mode',
+						'options',
+						'autoFocus'
+					]}
 					code={`
 						<CSLookup
 							label="Label"
@@ -887,6 +1100,8 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							autoFocus={false}
 						/>
 					`}
@@ -897,6 +1112,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.autoFocus}
+						onSelectChange={option => handleSelectChange(option, 'autoFocus')}
 						autoFocus={false}
 					/>
 				</CSD.Preview>
@@ -918,7 +1135,15 @@ const CSLookupPreview = () => {
 				<CSD.Preview
 					orientation="vertical"
 					table={clientWithBaseProps}
-					related={['label', 'columns', 'fieldToBeDisplayed', 'mode', 'options', 'actions', 'icons']}
+					related={[
+						'label',
+						'columns',
+						'fieldToBeDisplayed',
+						'mode',
+						'options',
+						'actions',
+						'icons'
+					]}
 					code={`
 						<CSLookup
 							label="CSLookup with custom actions"
@@ -926,6 +1151,8 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							actions={[
 								{
 									onClick: () => alert('Delete option called'),
@@ -955,6 +1182,8 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							icons={[
 								{ name: 'cart' },
 								{
@@ -979,6 +1208,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.actions}
+						onSelectChange={option => handleSelectChange(option, 'actions')}
 						actions={[
 							{
 								onClick: () => alert('Delete option called'),
@@ -1008,6 +1239,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.icons}
+						onSelectChange={option => handleSelectChange(option, 'icons')}
 						icons={[
 							{ name: 'cart' },
 							{
@@ -1040,7 +1273,15 @@ const CSLookupPreview = () => {
 				<CSD.Preview
 					orientation="vertical"
 					table={clientWithBaseProps}
-					related={['label', 'columns', 'fieldToBeDisplayed', 'mode', 'options', 'borderRadius', 'gridCustomPopup']}
+					related={[
+						'label',
+						'columns',
+						'fieldToBeDisplayed',
+						'mode',
+						'options',
+						'borderRadius',
+						'gridCustomPopup'
+					]}
 					code={`
 						<CSLookup
 							label="Label"
@@ -1048,6 +1289,8 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							borderRadius="2rem"
 						/>
 						<CSLookup
@@ -1056,6 +1299,8 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							gridCustomPopup
 						/>
 					`}
@@ -1066,6 +1311,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.borderRadius}
+						onSelectChange={option => handleSelectChange(option, 'borderRadius')}
 						borderRadius="2rem"
 					/>
 					<CSLookup
@@ -1074,6 +1321,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.gridCustomPopup}
+						onSelectChange={option => handleSelectChange(option, 'gridCustomPopup')}
 						gridCustomPopup
 					/>
 				</CSD.Preview>
@@ -1097,13 +1346,23 @@ const CSLookupPreview = () => {
 				<CSD.Preview
 					orientation="vertical"
 					table={clientWithBaseProps}
-					related={['label', 'columns', 'fieldToBeDisplayed', 'mode', 'options', 'position', 'align']}
+					related={[
+						'label',
+						'columns',
+						'fieldToBeDisplayed',
+						'mode',
+						'options',
+						'position',
+						'align'
+					]}
 					code={`
 						<CSLookup
 							label="Position is bottom by default"
 							columns={columns}
 							fieldToBeDisplayed="Account"
 							mode="client"
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							options={options}
 						/>
 						<CSLookup
@@ -1112,6 +1371,8 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							position="top"
 						/>
 						<CSLookup
@@ -1120,6 +1381,8 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 						/>
 						<CSLookup
 							label="Align can also be right"
@@ -1127,6 +1390,8 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							align="right"
 						/>
 					`}
@@ -1137,6 +1402,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.positionDefault}
+						onSelectChange={option => handleSelectChange(option, 'positionDefault')}
 					/>
 					<CSLookup
 						label="Position can also be top"
@@ -1144,6 +1411,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.positionTop}
+						onSelectChange={option => handleSelectChange(option, 'positionTop')}
 						position="top"
 					/>
 					<CSLookup
@@ -1152,6 +1421,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.alignDefault}
+						onSelectChange={option => handleSelectChange(option, 'alignDefault')}
 					/>
 					<CSLookup
 						label="Align can also be right"
@@ -1159,6 +1430,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.alignRight}
+						onSelectChange={option => handleSelectChange(option, 'alignRight')}
 						align="right"
 					/>
 				</CSD.Preview>
@@ -1171,7 +1444,15 @@ const CSLookupPreview = () => {
 				<CSD.Preview
 					orientation="vertical"
 					table={clientWithBaseProps}
-					related={['label', 'columns', 'fieldToBeDisplayed', 'mode', 'options', 'dropdownHeight, dropdownWidth']}
+					related={[
+						'label',
+						'columns',
+						'fieldToBeDisplayed',
+						'mode',
+						'options',
+						'dropdownHeight',
+						'dropdownWidth'
+					]}
 					code={`
 						<CSLookup
 							label="Height of the dropdown is 100px"
@@ -1179,6 +1460,8 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							dropdownHeight="100px"
 						/>
 						<CSLookup
@@ -1187,6 +1470,8 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							dropdownWidth="500px"
 						/>
 					`}
@@ -1197,6 +1482,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.dropdownHeight}
+						onSelectChange={option => handleSelectChange(option, 'dropdownHeight')}
 						dropdownHeight="100px"
 					/>
 					<CSLookup
@@ -1205,6 +1492,8 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
+						selectedKeys={selectedKeys.dropdownWidth}
+						onSelectChange={option => handleSelectChange(option, 'dropdownWidth')}
 						dropdownWidth="500px"
 					/>
 				</CSD.Preview>
@@ -1222,7 +1511,15 @@ const CSLookupPreview = () => {
 				<CSD.Preview
 					orientation="vertical"
 					table={clientWithBaseProps}
-					related={['label', 'columns', 'fieldToBeDisplayed', 'mode', 'options', 'id', 'className']}
+					related={[
+						'label',
+						'columns',
+						'fieldToBeDisplayed',
+						'mode',
+						'options',
+						'id',
+						'className'
+					]}
 					code={`
 						<CSLookup
 							fieldToBeDisplayed="Account"
@@ -1230,6 +1527,8 @@ const CSLookupPreview = () => {
 							options={options}
 							columns={columns}
 							mode="client"
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							className="custom-br-purple"
 						/>
 						<CSLookup
@@ -1238,6 +1537,8 @@ const CSLookupPreview = () => {
 							options={options}
 							columns={columns}
 							mode="client"
+							selectedKeys={selectedKeys}
+							onSelectChange={handleSelectChange}
 							id="custom-id"
 						/>
 					`}
@@ -1248,6 +1549,8 @@ const CSLookupPreview = () => {
 						options={options}
 						columns={columns}
 						mode="client"
+						selectedKeys={selectedKeys.className}
+						onSelectChange={option => handleSelectChange(option, 'className')}
 						className="custom-br-purple"
 					/>
 					<CSLookup
@@ -1256,6 +1559,8 @@ const CSLookupPreview = () => {
 						options={options}
 						columns={columns}
 						mode="client"
+						selectedKeys={selectedKeys.id}
+						onSelectChange={option => handleSelectChange(option, 'id')}
 						id="custom-id"
 					/>
 				</CSD.Preview>

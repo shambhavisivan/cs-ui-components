@@ -162,8 +162,8 @@ export default {
 		}, {
 			name: 'onSelectChange',
 			link: '/cs-ui/lookup#event-handling',
-			types: '(event) => any',
-			description: `Handler method for when the selection is changed. By returning false from handler method, selected item won't be updated. Undefined return value will evaluate as true.`
+			types: '(option) => void',
+			description: `Handler method for when the selection is changed.`
 		}, {
 			name: 'placeholder',
 			link: '/cs-ui/lookup#input-options',
@@ -191,6 +191,11 @@ export default {
 			default: 'false',
 			description: 'Make the lookup required.'
 		}, {
+			name: 'selectedKeys',
+			link: '/cs-ui/lookup#selection',
+			types: ['React.ReactText', 'Array<React.ReactText>'],
+			description: 'A single key or an array of keys corresponding to selected options.'
+		}, {
 			name: 'title',
 			link: '/cs-ui/lookup#input-options',
 			types: 'string',
@@ -217,15 +222,6 @@ export default {
 			},
 			default: `'top-right'`,
 			description: 'Set the tooltip position for the lookup.'
-		}, {
-			name: 'value',
-			link: '/cs-ui/lookup#selection',
-			types: [
-				'CSDataTableRowInterface',
-				'Array<CSDataTableRowInterface>',
-				'null'
-			],
-			description: 'Set which values should be displayed in the lookup.'
 		}, {
 			name: 'id',
 			link: '/cs-ui/lookup#ids-&-classes',
