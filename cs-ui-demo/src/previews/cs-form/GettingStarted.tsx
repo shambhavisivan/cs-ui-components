@@ -16,9 +16,10 @@ const GettingStarted = () => (
 				It also performs out-of-the-box validations for some form field attributes.
 			</CSD.Text>
 			<CSD.Text>
-				CSForm fields are grouped into two types: standard form fields and custom form fields.
+				CSForm fields are grouped into three types: standard form fields, custom form fields and layout form fields.
 				Standard form fields represent the basic form fields used for collecting input or displaying data (input fields, textarea, picklist etc.).
 				Custom form fields allow the user to display any custom content as an inline form field or within a custom modal.
+				Layout form fields allow the user to define the layout within a form section by adding empty spaces or lines between fields.
 			</CSD.Text>
 			<CSD.Text>In this documentation you will find detailed explainations for each part of this library.</CSD.Text>
 		</CSD.Section>

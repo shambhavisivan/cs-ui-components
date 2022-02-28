@@ -31,16 +31,21 @@ const CSFormSection = ({
 	);
 
 	const renderedFields = fields.map((field, index) => {
-		const key = field.fieldType !== 'CUSTOM-MODAL' && field.fieldType !== 'CUSTOM'
+		const key = field.fieldType !== 'CUSTOM-MODAL'
+			&& field.fieldType !== 'CUSTOM'
+			&& field.fieldType !== 'BUFFER'
 			? field.name
 			: `csf-custom-${index}`;
 
-		const events = field.fieldType !== 'CUSTOM-MODAL' && field.fieldType !== 'CUSTOM' ? {
-			onChange: (value: any) => handleFieldChange(sectionKey, field, value),
-			onBlur: (value: any) => handleFieldBlur(sectionKey, field, value),
-			onClick: () => handleFieldClick(field),
-			onKeyDown: (event: React.KeyboardEvent<HTMLElement>) => handleFieldKeyDown(field, event),
-		} : undefined;
+		const events = field.fieldType !== 'CUSTOM-MODAL'
+			&& field.fieldType !== 'CUSTOM'
+			&& field.fieldType !== 'BUFFER'
+			? {
+				onChange: (value: any) => handleFieldChange(sectionKey, field, value),
+				onBlur: (value: any) => handleFieldBlur(sectionKey, field, value),
+				onClick: () => handleFieldClick(field),
+				onKeyDown: (event: React.KeyboardEvent<HTMLElement>) => handleFieldKeyDown(field, event),
+			} : undefined;
 
 		return (
 			<CSFormField

@@ -8,6 +8,13 @@ const label = 'label';
 const name = 'field_name';
 
 describe('<CSFormField />', () => {
+	it('should render field wrapper only if fieldType is \'BUFFER\'', () => {
+		const uut = shallow(<CSFormField fieldType="BUFFER" />);
+		const fieldWrapper = uut.find('.csf-field-wrapper');
+		expect(fieldWrapper).toHaveLength(1);
+		expect(fieldWrapper.children()).toHaveLength(0);
+	});
+
 	it('should render CSFormCustomField if fieldType is \'CUSTOM\'', () => {
 		const uut = shallow(
 			<CSFormField

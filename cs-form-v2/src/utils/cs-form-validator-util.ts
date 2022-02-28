@@ -1,4 +1,4 @@
-import { CSFormCustomModalFieldProps, CSFormFieldData } from '../types/cs-form-field-types';
+import { CSFormBufferFieldProps, CSFormCustomModalFieldProps, CSFormFieldData } from '../types/cs-form-field-types';
 import { CSFormData, CSFormErrorLabels } from '../types/cs-form-types';
 
 const defaultErrorLabels: CSFormErrorLabels = {
@@ -10,7 +10,8 @@ const defaultErrorLabels: CSFormErrorLabels = {
 const validateField = (field: CSFormFieldData, value: any, customErrorLabels?: CSFormErrorLabels) => {
 	const errors: Array<string> = [];
 
-	if (field.fieldType === 'CUSTOM-MODAL' || field.fieldType === 'CUSTOM') return null;
+	// Validation is enabled only for standard form fields
+	if (field.fieldType === 'CUSTOM-MODAL' || field.fieldType === 'CUSTOM' || field.fieldType === 'BUFFER') return null;
 
 	/** Check requiredness of the field regardless of the type */
 	if (field.required && (!value || value === '')) {
@@ -54,7 +55,8 @@ const validateForm = (data: CSFormData, customErrorLabels?: CSFormErrorLabels) =
 	data.forEach(({ sectionKey, fields }) => {
 		const evaluatedFields = fields.filter((field) => field.fieldType !== 'CUSTOM' && field.fieldType !== 'CUSTOM-MODAL')
 			.map((field) => {
-				const { name, value } = field as Exclude<CSFormFieldData, CSFormCustomModalFieldProps>;
+				// name and value only exist on standard form fields, hence custom modal and buffer field props are excluded
+				const { name, value } = field as Exclude<CSFormFieldData, CSFormCustomModalFieldProps | CSFormBufferFieldProps >;
 				const errorMessage = validateField(field, value, customErrorLabels);
 				if (errorMessage) {
 					return {

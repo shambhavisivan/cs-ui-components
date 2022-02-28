@@ -1,5 +1,5 @@
 import React, { createContext, useContext, PropsWithChildren } from 'react';
-import { CSFormCustomModalFieldProps, CSFormFieldData } from './types/cs-form-field-types';
+import { CSFormBufferFieldProps, CSFormCustomModalFieldProps, CSFormFieldData } from './types/cs-form-field-types';
 import { CSFormProps } from './types/cs-form-types';
 import { validateField } from './utils/cs-form-validator-util';
 
@@ -22,7 +22,12 @@ export const CSFormContext = createContext<CSFormContextInterface>({
 });
 
 export const CSFormProvider = ({ children, columnNumber, data, errorLabels, locale, mode, onFieldBlur, onFieldChange, onFieldClick, onFieldKeyDown }: PropsWithChildren<CSFormProps>) => {
-	const handleFieldEvent = (sectionKey: string, field: Exclude<CSFormFieldData, CSFormCustomModalFieldProps>, newValue: any) => {
+	/*
+		Field events are handled only on standard form fields.
+		Custom modal and buffer field aren't standard form fields, so CSFormCustomModalFieldProps
+		and CSFormBufferFieldProps interfaces need to be excluded from CSFormFieldData since they don't contain name property.
+	*/
+	const handleFieldEvent = (sectionKey: string, field: Exclude<CSFormFieldData, CSFormCustomModalFieldProps | CSFormBufferFieldProps>, newValue: any) => {
 		const errorMessage = validateField(field, newValue, errorLabels);
 		const { name } = field;
 		if (errorMessage) {
@@ -41,12 +46,12 @@ export const CSFormProvider = ({ children, columnNumber, data, errorLabels, loca
 		};
 	};
 
-	const handleFieldChange = (sectionKey: string, field: Exclude<CSFormFieldData, CSFormCustomModalFieldProps>, newValue: any) => {
+	const handleFieldChange = (sectionKey: string, field: Exclude<CSFormFieldData, CSFormCustomModalFieldProps | CSFormBufferFieldProps>, newValue: any) => {
 		const newData = handleFieldEvent(sectionKey, field, newValue);
 		onFieldChange?.(newData);
 	};
 
-	const handleFieldBlur = (sectionKey: string, field: Exclude<CSFormFieldData, CSFormCustomModalFieldProps>, newValue: any) => {
+	const handleFieldBlur = (sectionKey: string, field: Exclude<CSFormFieldData, CSFormCustomModalFieldProps | CSFormBufferFieldProps>, newValue: any) => {
 		const newData = handleFieldEvent(sectionKey, field, newValue);
 		onFieldBlur?.(newData);
 	};

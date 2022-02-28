@@ -60,6 +60,8 @@ const CSFormField = ({
 			return <CSFormTextareaField {...rest} {...fieldReadOnly} {...fieldValue} />;
 		case 'TOGGLE':
 			return <CSFormToggleField {...rest} {...fieldReadOnly} />;
+		case 'BUFFER':
+			return null;
 		case 'TEXT':
 		default:
 			return <CSFormTextField {...rest} {...fieldReadOnly} {...fieldValue} />;
@@ -74,6 +76,7 @@ const CSFormField = ({
 		'csf-field-wrapper',
 		{
 			'csf-field-wrapper-custom': rest.fieldType === 'CUSTOM' || rest.fieldType === 'CUSTOM-MODAL',
+			'csf-field-wrapper-buffer': rest.fieldType === 'BUFFER',
 		},
 	);
 

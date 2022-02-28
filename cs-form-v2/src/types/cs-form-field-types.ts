@@ -39,7 +39,8 @@ export interface CSFormFieldLayoutProps {
 	showInNewLine?: boolean;
 }
 
-export type CSFormFieldType = 'CHECKBOX' |
+export type CSFormFieldType = 'BUFFER' |
+	'CHECKBOX' |
 	'CUSTOM' |
 	'CUSTOM-MODAL' |
 	'CUSTOM-SELECT' |
@@ -52,6 +53,11 @@ export type CSFormFieldType = 'CHECKBOX' |
 	'TEXT' |
 	'TEXTAREA' |
 	'TOGGLE';
+
+/** BUFFER FIELD */
+export interface CSFormBufferFieldProps extends CSFormFieldLayoutProps {
+	fieldType: 'BUFFER'
+}
 
 /** CHECKBOX FIELD */
 export interface CSFormCheckboxFieldProps extends CSFormFieldCommonProps {
@@ -246,13 +252,13 @@ export type CSFormStandardFields = CSFormCheckboxFieldProps
 	| CSFormTextareaFieldProps
 	| CSFormToggleFieldProps;
 
-type CSFormFields = CSFormStandardFields | CSFormCustomFieldProps | CSFormCustomModalFieldProps;
+type CSFormFields = CSFormStandardFields | CSFormBufferFieldProps | CSFormCustomFieldProps | CSFormCustomModalFieldProps;
 
 /** CSFormField props type */
 export type CSFormFieldProps = CSFormFieldLayoutProps & CSFormFields;
 
 /** Props per field defined in data prop. onClick, onChange, onBlur, onKeyDown and locale are excluded since they are defined on top of the whole CSForm */
-export type CSFormFieldData = CSFormFieldLayoutProps & (ExcludeCommonHelper<CSFormStandardFields, 'onClick' | 'onChange' | 'onBlur' | 'onKeyDown' | 'locale'> | CSFormCustomFieldProps | CSFormCustomModalFieldProps)
+export type CSFormFieldData = CSFormFieldLayoutProps & (ExcludeCommonHelper<CSFormStandardFields, 'onClick' | 'onChange' | 'onBlur' | 'onKeyDown' | 'locale'> | CSFormCustomFieldProps | CSFormCustomModalFieldProps | CSFormBufferFieldProps)
 
 /** Props used for form definition only, values for each field are excluded. */
-export type CSFormFieldDefinition = CSFormFieldLayoutProps & (ExcludeCommonHelper<CSFormStandardFields, 'onClick' | 'onChange' | 'onBlur' | 'onKeyDown' | 'locale' | 'value'> | CSFormCustomFieldProps | CSFormCustomModalFieldProps);
+export type CSFormFieldDefinition = CSFormFieldLayoutProps & (ExcludeCommonHelper<CSFormStandardFields, 'onClick' | 'onChange' | 'onBlur' | 'onKeyDown' | 'locale' | 'value'> | CSFormCustomFieldProps | CSFormCustomModalFieldProps| CSFormBufferFieldProps);
