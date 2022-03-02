@@ -1,7 +1,7 @@
-import Adapter from 'enzyme-adapter-react-16';
 import Enzyme from 'enzyme';
-import { calculateComponentStatus, isMandatoryFieldPresent } from '../../utils/ComponentStatusUtil';
+import Adapter from 'enzyme-adapter-react-16';
 import { FormSettings } from '../..';
+import { calculateComponentStatus, checkComponentStatus, isMandatoryFieldPresent } from '../../utils/ComponentStatusUtil';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -31,6 +31,48 @@ describe('calculateComponentStatus()', () => {
 	it('ranks mandatory as top priority', () => {
 		const result = calculateComponentStatus({ mandatory: 'true' }, formSettings, basket);
 		expect(result).toBe('mandatory');
+	});
+
+	it('returns visible when visible is true', () => {
+		const result = calculateComponentStatus({ mandatory: undefined, enabled: 'false', visible: 'true' }, formSettings, basket);
+		expect(result).toBe('visible');
+	});
+
+	it('returns visible when visible is expression which evaluates to truthy value', () => {
+		const result = calculateComponentStatus({ mandatory: undefined, visible: '1+2' }, formSettings, basket);
+		expect(result).toBe('visible');
+	});
+
+	it('returns hidden when visible is expression which evaluates to falsy value', () => {
+		const result = calculateComponentStatus({ mandatory: undefined, visible: '0' }, formSettings, basket);
+		expect(result).toBe('hidden');
+	});
+});
+
+describe('checkComponentStatus()', () => {
+	it('returns false when expression is undefined', () => {
+		const result = checkComponentStatus(formSettings, basket, undefined);
+		expect(result).toBe(false);
+	});
+
+	it('returns false when expression is false', () => {
+		const result = checkComponentStatus(formSettings, basket, 'false');
+		expect(result).toBe(false);
+	});
+
+	it('returns true when expression is true', () => {
+		const result = checkComponentStatus(formSettings, basket, 'true');
+		expect(result).toBe(true);
+	});
+
+	it('returns true when expression evaluates to truthy value', () => {
+		const result = checkComponentStatus(formSettings, basket, '1+2');
+		expect(result).toBe(true);
+	});
+
+	it('returns false when expression evaluates to falsy value', () => {
+		const result = checkComponentStatus(formSettings, basket, '5*0');
+		expect(result).toBe(false);
 	});
 });
 

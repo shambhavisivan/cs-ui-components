@@ -1,6 +1,6 @@
-import { evaluateCustomExpression } from './ExpressionEvaluator';
-import { ComponentStatusConfiguration, ComponentStatus } from '../types/ComponentStatus';
 import { FormSettings } from '..';
+import { ComponentStatus, ComponentStatusConfiguration } from '../types/ComponentStatus';
+import { evaluateCustomExpression } from './ExpressionEvaluator';
 
 /**
  * Calculate component status from the status config and the current values of form object/settings.
@@ -17,24 +17,31 @@ export function calculateComponentStatus(
 	formSettings: FormSettings,
 	data: Record<string, any>
 ): ComponentStatus {
-	if (config.mandatory) {
-		if (evaluateCustomExpression(formSettings, data, config.mandatory)) {
-			return 'mandatory';
-		}
+	if (checkComponentStatus(formSettings, data, config.mandatory)) {
+		return 'mandatory';
 	}
-	if (config.enabled) {
-		if (evaluateCustomExpression(formSettings, data, config.enabled)) {
-			return 'enabled';
-		}
+	if (checkComponentStatus(formSettings, data, config.enabled)) {
+		return 'enabled';
 	}
-	if (config.visible) {
-		if (evaluateCustomExpression(formSettings, data, config.visible)) {
-			return 'visible';
-		}
+	if (checkComponentStatus(formSettings, data, config.visible)) {
+		return 'visible';
 	}
 	return 'hidden';
 }
 
 export function isMandatoryFieldPresent(status: ComponentStatus, value: any) {
 	return status !== 'mandatory' || !!(value === 0 || (value && value !== ''));
+}
+
+export function checkComponentStatus(
+	formSettings: FormSettings,
+	data: Record<string, any>,
+	expression: any) {
+	if (!expression || String(expression).toLowerCase() === 'false') {
+		return false;
+	} else if (String(expression).toLowerCase() === 'true') {
+		return true;
+	} else {
+		return evaluateCustomExpression(formSettings, data, expression);
+	}
 }
