@@ -140,7 +140,7 @@ describe('<CSCheckbox />', () => {
 
 	it('should pass label to CSLabel as title', () => {
 		const uut = shallow(<CSCheckbox label={label} labelTitle />);
-		const checkboxLabel = uut.find('.cs-checkbox-wrapper > CSLabel');
+		const checkboxLabel = uut.find('.cs-checkbox-wrapper-outer > CSLabel');
 		expect(checkboxLabel.props().title).toBe('label');
 	});
 

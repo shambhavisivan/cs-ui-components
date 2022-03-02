@@ -6,8 +6,10 @@
 
 	&.cs-checkbox-label-left,
 	&.cs-checkbox-label-right {
-		flex-direction: row;
-		align-items: center;
+		.cs-checkbox-wrapper-outer {
+			display: flex;
+			align-items: center;
+		}
 
 		.cs-label-outer-wrapper {
 			padding-bottom: 0;

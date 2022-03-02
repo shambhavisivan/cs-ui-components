@@ -129,10 +129,8 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 		};
 
 		return (
-			<>
-				<div
-					className={checkboxWrapperClasses}
-				>
+			<div className={checkboxWrapperClasses}>
+				<div className="cs-checkbox-wrapper-outer">
 					{label && !labelHidden && (
 						<CSLabel
 							htmlFor={this.uniqueAutoId}
@@ -149,7 +147,7 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 							className="cs-checkbox-group"
 							onClick={(event) => event.stopPropagation()}
 							onKeyDown={(event) => {
-								// Stop propagation on enter/space keys only
+									// Stop propagation on enter/space keys only
 								if (event.key === KeyCode.Enter || event.key === KeyCode.Space) {
 									event.stopPropagation();
 								}
@@ -187,11 +185,11 @@ class CSCheckbox extends React.Component<CSCheckboxProps> {
 						)}
 						<CSCustomData icons={icons} actions={actions} />
 					</div>
-					{!errorTooltip && error && errorMessage && (
-						<CSFieldErrorMsg message={errorMessage} />
-					)}
 				</div>
-			</>
+				{!errorTooltip && error && errorMessage && (
+					<CSFieldErrorMsg message={errorMessage} />
+				)}
+			</div>
 		);
 	}
 }

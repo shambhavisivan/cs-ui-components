@@ -24,6 +24,7 @@
   * renamed `showBorder` prop to `hideBorder` and reversed logic in `CSCardHeader`
 * CSCheckbox
   * Limited stopPropagation to only enter and space keys
+  * fixed misalignment on labelPosition prop by adding `cs-checkbox-outer-wrapper` wrapper
 * CSCustomData
   * <i>important</i> refactored the component
   * changed the `actions` prop type to `Array<CSButtonProps>`
