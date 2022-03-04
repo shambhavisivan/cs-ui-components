@@ -13,7 +13,10 @@ export default {
 		}, {
 			name: 'rows',
 			link: '/cs-ui/data-table#base-usage',
-			types: 'boolean',
+			customTypes: {
+				name: 'Array<CSDataTableRow>',
+				types: 'See CSDataTable Row Attributes'
+			},
 			description: 'Define table rows. See CSDataTable Row Attributes for details.'
 		}, {
 			name: 'borderless',
