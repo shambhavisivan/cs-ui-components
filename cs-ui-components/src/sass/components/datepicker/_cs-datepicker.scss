@@ -52,7 +52,7 @@
 			.react-datepicker-popper[data-placement^="top"] {
 				.react-datepicker .react-datepicker__triangle {
 					@include css4 {
-						border-top-color: cvar(--cs-datepicker-today-bg);
+						border-top-color: cvar(--cs-datepicker-today-br);
 					}
 				}
 			}
@@ -114,7 +114,7 @@
 					left: 2rem !important;
 					transform: none !important;
 					@include css4 {
-						border-bottom-color: cvar(--cs-datepicker-bg);
+						border-bottom-color: cvar(--cs-datepicker-triangle-br);
 					}
 
 					&::before {
@@ -125,7 +125,7 @@
 				}
 
 				@include css4 {
-					border-top-color: cvar(--cs-datepicker-today-bg);
+					border-top-color: cvar(--cs-datepicker-br);
 				}
 			}
 
@@ -225,7 +225,6 @@
 		}
 
 		.react-datepicker__month-container {
-
 			.react-datepicker__header {
 				border-bottom: none;
 				@include sbg(--cs-datepicker-bg);
@@ -425,14 +424,16 @@
 
 		.react-datepicker__header,
 		.react-datepicker__time-container {
+			.react-datepicker__header {
+				border-top-left-radius: 0;
+			}
+
 			@include css4 {
 				border-color: cvar(--cs-datepicker-br);
 			}
 		}
 
 		.react-datepicker__header {
-			border-top-left-radius: 0;
-
 			.react-datepicker-time__header {
 				font-size: 0.8125rem;
 			}
