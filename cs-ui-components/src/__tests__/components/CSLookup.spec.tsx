@@ -53,7 +53,10 @@ describe('<CSLookup />', () => {
 				mode={modeClient}
 				fieldToBeDisplayed={fieldToBeDisplayed}
 				options={options}
-				selectedKeys={1}
+				value={[
+					{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
+					{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
+				]}
 			/>,
 		);
 		// Should render a lookup
@@ -125,7 +128,7 @@ describe('<CSLookup />', () => {
 		expect(lookupLabel.prop('label')).toBe(label);
 	});
 
-	it('should set selectedKeys and display correct field based on fieldToBeDisplay', () => {
+	it('should set lookup value and display correct field based on fieldToBeDisplay', () => {
 		const uut = shallow(
 			<CSLookup
 				label={label}
@@ -133,7 +136,7 @@ describe('<CSLookup />', () => {
 				mode={modeClient}
 				fieldToBeDisplayed={fieldToBeDisplayed}
 				options={options}
-				selectedKeys={1}
+				value={{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } }}
 			/>,
 		);
 		const lookupSelectedOption = uut.find('.cs-lookup-input-content');
@@ -420,7 +423,10 @@ describe('<CSLookup />', () => {
 				fieldToBeDisplayed={fieldToBeDisplayed}
 				options={options}
 				multiselect
-				selectedKeys={[1, 2]}
+				value={[
+					{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
+					{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
+				]}
 			/>,
 		);
 		const lookupInput = uut.find('.cs-lookup-input');
@@ -851,7 +857,10 @@ describe('<CSLookup />', () => {
 				mode={modeClient}
 				fieldToBeDisplayed={fieldToBeDisplayed}
 				options={options}
-				selectedKeys={[1, 2]}
+				value={[
+					{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
+					{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
+				]}
 				data-testid="rest"
 			/>,
 		);

@@ -83,9 +83,8 @@
 * CSListGroup
   * removed box shadow on mouse focus
 * CSLookup
-  * <i>important</i> removed internal state for option selection
-  * <i>important</i> added `selectedKeys` prop for displaying selected options
   * fixed deleting search term with backspace deletes the whole term instead of one letter
+  * prevented state change on `onSelectChange` prop if return value is false
 * CSModal
   * <i>important</i> changed `visible` prop in `CSUnmountDelay` to be `false` by default
   * changed classes with `.cs-button` prefix to `.cs-btn`
