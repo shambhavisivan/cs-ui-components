@@ -29,7 +29,18 @@ import {
 	fieldStyleData,
 	fieldTitleAndValueData
 } from './cs-form-common-props-preview-data';
-import { numberLocaleData, radioPropsData, selectPropsData } from './cs-form-specific-prop-preview-data';
+import {
+	checkboxPropsData,
+	customSelectPropsData,
+	datePropsData,
+	dateTimePropsData,
+	lookupPropsData,
+	numberLocaleData,
+	radioPropsData,
+	selectPropsData,
+	textareaPropsData,
+	textPropsData
+} from './cs-form-specific-prop-preview-data';
 
 const customSelectPath = '../cs-ui/custom-select#CSCustomSelect';
 const datePath = '../cs-ui/datepicker#CSDatepicker';
@@ -482,6 +493,23 @@ const CSFormStandardFormFieldsPreview = () => {
 				<CSD.List>
 					<CSD.ListItem><CSD.Link path="../cs-ui/checkbox#CSCheckbox-indeterminate">indeterminate</CSD.Link></CSD.ListItem>
 				</CSD.List>
+				<CSD.Preview
+					code={`
+						<CSForm
+							data={[{
+								...
+								fields: [{
+									fieldType: 'CHECKBOX',
+									label: 'Checkbox',
+									name: 'checkbox-1',
+									value: true
+								}]
+							}]}
+						/>
+					`}
+				>
+					<CSForm data={checkboxPropsData} />
+				</CSD.Preview>
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Custom Select</CSD.Heading>
@@ -493,6 +521,29 @@ const CSFormStandardFormFieldsPreview = () => {
 					<CSD.ListItem><CSD.Link path={`${customSelectPath}-selection`}>onClear</CSD.Link></CSD.ListItem>
 					<CSD.ListItem><CSD.Link path={`${customSelectPath}-onSearch`}>onSearch</CSD.Link></CSD.ListItem>
 				</CSD.List>
+				<CSD.Preview
+					code={`
+						<CSForm
+							data={[{
+								...
+								fields: [{
+									fieldType: 'CUSTOM-SELECT',
+									label: 'Custom select field',
+									name: 'custom-select-2',
+									options: [
+										{ key: 0, label: 'Product' },
+										{ key: 1, label: 'Services' },
+										{ key: 2, label: 'Sales' },
+										{ key: 3, label: 'Marketing' }
+									],
+									value: 0
+								}]
+							}]}
+						/>
+					`}
+				>
+					<CSForm data={customSelectPropsData} />
+				</CSD.Preview>
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Date</CSD.Heading>
@@ -501,6 +552,20 @@ const CSFormStandardFormFieldsPreview = () => {
 				<CSD.List>
 					<CSD.ListItem><CSD.Link path={`${datePath}-dateFormat`}>dateFormat</CSD.Link></CSD.ListItem>
 				</CSD.List>
+				<CSD.Preview
+					code={`
+						<CSForm
+							data={[{
+								fieldType: 'DATE',
+								label: 'Date field',
+								name: 'date-2',
+								value: new Date()
+							}]}
+						/>
+					`}
+				>
+					<CSForm data={datePropsData} />
+				</CSD.Preview>
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Date-time</CSD.Heading>
@@ -512,6 +577,20 @@ const CSFormStandardFormFieldsPreview = () => {
 					<CSD.ListItem><CSD.Link path={`${dateTimePath}-timeFormat`}>timeFormat</CSD.Link></CSD.ListItem>
 					<CSD.ListItem><CSD.Link path={`${dateTimePath}-timeIntervals`}>timeIntervals</CSD.Link></CSD.ListItem>
 				</CSD.List>
+				<CSD.Preview
+					code={`
+						<CSForm
+							data={[{
+								fieldType: 'DATETIME',
+								label: 'Date-time field',
+								name: 'date-time-2',
+								value: new Date()
+							}]}
+						/>
+					`}
+				>
+					<CSForm data={dateTimePropsData} />
+				</CSD.Preview>
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Lookup</CSD.Heading>
@@ -537,6 +616,33 @@ const CSFormStandardFormFieldsPreview = () => {
 					<CSD.ListItem><CSD.Link path={`${lookupPath}#search`}>minTermLength</CSD.Link></CSD.ListItem>
 					<CSD.ListItem><CSD.Link path={`${lookupPath}#pagination`}>pageSize</CSD.Link></CSD.ListItem>
 				</CSD.List>
+				<CSD.Preview
+					code={`
+						<CSForm
+							data={[{
+								...
+								fields: [
+									{
+										fieldType: 'LOOKUP',
+										label: 'Lookup field',
+										name: 'lookup-2',
+										mode: 'client',
+										columns: [{ key: 'Account', header: 'Account' },
+											{ key: 'Industry', header: 'Industry' }],
+										options: [{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
+											{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
+											{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } },
+											{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }],
+										fieldToBeDisplayed: 'Account',
+										value: { key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } }
+									}
+								]
+							}]}
+						/>
+					`}
+				>
+					<CSForm data={lookupPropsData} />
+				</CSD.Preview>
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Number</CSD.Heading>
@@ -672,18 +778,19 @@ const CSFormStandardFormFieldsPreview = () => {
 								fields: [
 									{
 										fieldType: 'SELECT',
-										label: 'Select car',
-										name: 'select-car',
+										label: 'Select field',
+										name: 'select-1',
 										selectOptions: [{
-											key: 'rimac',
-											value: 'Rimac'
+											key: 'red',
+											value: 'Red'
 										}, {
-											key: 'audi',
-											value: 'Audi'
+											key: 'blue',
+											value: 'Blue'
 										}, {
-											key: 'bmw',
-											value: 'BMW'
-										}]
+											key: 'yellow',
+											value: 'Yellow'
+										}],
+										value: 'yellow'
 									}
 								]
 							}]}
@@ -700,6 +807,25 @@ const CSFormStandardFormFieldsPreview = () => {
 				<CSD.List>
 					<CSD.ListItem><CSD.Link path="../cs-ui/input-text#CSInputText-maxLength">maxLength</CSD.Link></CSD.ListItem>
 				</CSD.List>
+				<CSD.Preview
+					code={`
+						<CSForm
+							data={[{
+								...
+								fields: [
+									{
+										fieldType: 'TEXT',
+										label: 'Text field',
+										name: 'text-1',
+										value: 'Example text.'
+									}
+								]
+							}]}
+						/>
+					`}
+				>
+					<CSForm data={textPropsData} />
+				</CSD.Preview>
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Textarea</CSD.Heading>
@@ -709,6 +835,25 @@ const CSFormStandardFormFieldsPreview = () => {
 					<CSD.ListItem><CSD.Link path={`${textareaPath}-maxHeight`}>maxHeight</CSD.Link></CSD.ListItem>
 					<CSD.ListItem><CSD.Link path={`${textareaPath}-rows`}>rows</CSD.Link></CSD.ListItem>
 				</CSD.List>
+				<CSD.Preview
+					code={`
+						<CSForm
+							data={[{
+								...
+								fields: [
+									{
+										fieldType: 'TEXTAREA',
+										label: 'Textarea field',
+										name: 'textarea-1',
+										value: 'Example description.'
+									}
+								]
+							}]}
+						/>
+					`}
+				>
+					<CSForm data={textareaPropsData} />
+				</CSD.Preview>
 			</CSD.Section>
 		</CSD.Page>
 	);
