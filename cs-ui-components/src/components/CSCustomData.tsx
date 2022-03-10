@@ -31,15 +31,17 @@ const CSCustomData = ({
 	className,
 	value,
 	icons,
+	id,
 	actions,
 	status,
 	title,
 	menuIcon,
 	forwardRef,
+	...rest
 }: CSCustomDataProps) => {
 	const customDataWrapperClasses = classNames(
 		'cs-custom-data-wrapper',
-		{ [`${className}`]: className },
+		{ [className]: className },
 	);
 
 	const renderIcon = (icon: CSCustomDataIcon, iconIndex?: number) => {
@@ -71,7 +73,12 @@ const CSCustomData = ({
 	}
 
 	return (
-		<div ref={forwardRef} className={customDataWrapperClasses}>
+		<div
+			ref={forwardRef}
+			id={id}
+			className={customDataWrapperClasses}
+			{...rest}
+		>
 			{value && <span className="cs-custom-data-value" title={title}>{value}</span>}
 			{icons?.map(renderIcon)}
 			{actions?.map(renderAction)}
