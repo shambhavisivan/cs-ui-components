@@ -44,7 +44,8 @@ export class CSGridLookupEditor
 			PaginatedLookupProps,
 		CSGridLookupEditorState
 	>
-	implements CSGridCellEditor {
+	implements CSGridCellEditor
+{
 	multiSelect: boolean = false;
 
 	gridApi: GridApi;

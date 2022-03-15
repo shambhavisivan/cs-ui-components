@@ -9,7 +9,7 @@ import {
 	CSGridCellEditorState
 } from '../interfaces/cs-grid-base-interfaces';
 import { CSGridCellEditorProps, DateProps } from '../interfaces/cs-grid-cell-props';
-import { createLocale, dateFormat } from '../utils/cs-grid-date-helper';
+import { dateFormat } from '../utils/cs-grid-date-helper';
 import KeyCode from '../utils/cs-grid-keycode';
 
 /**
@@ -20,8 +20,7 @@ export class CSGridDateEditor
 		CSGridCellEditorProps<string> & DateProps,
 		CSGridCellEditorState<string> & { inputValue?: string }
 	>
-	implements CSGridCellEditor
-{
+	implements CSGridCellEditor {
 	private divRef: React.RefObject<HTMLDivElement>;
 
 	constructor(props: CSGridCellEditorProps<string>) {
@@ -159,7 +158,7 @@ export class CSGridDateEditor
 					selected={selectedDate}
 					onSelect={this.onSelect}
 					onChange={this.onChange}
-					isClearable={true}
+					clearable={true}
 					borderRadius='0'
 					placeholder={placeholderText}
 					showMonthDropdown={true}
@@ -167,7 +166,7 @@ export class CSGridDateEditor
 					dropdownMode='select'
 					// onCalendarClose={this.props.stopEditing}
 					onKeyDown={this.onKeyDown}
-					locale={createLocale(this.props.userInfo.dateLocale)}
+					locale={this.props.userInfo.userLocale}
 					openToDate={openToDate}
 					inline={!this.props.textInputFormat ? true : false}
 					ref={(ref: any) => {

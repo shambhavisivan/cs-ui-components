@@ -16,8 +16,7 @@ import { CSGridCellError } from './cs-grid-cell-error';
  */
 export abstract class CSGridNumberEditor<P extends CSGridCellEditorProps<string | number>>
 	extends React.Component<P, CSGridCellEditorState<string | number>>
-	implements CSGridCellEditor
-{
+	implements CSGridCellEditor {
 	numberFormatType: NumberFormat = 'Decimal';
 	currencySymbol: string = '';
 	inputType = 'text';

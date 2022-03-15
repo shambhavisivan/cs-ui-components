@@ -17,11 +17,11 @@ export const CSCustomDataHelper: React.FC<{
 }> = ({ api, getIcons, getActions, menuIcon, nodeId, statusMessage, title, value }) => {
 	// Icons
 	const icons = getIcons?.(nodeId);
-	const iconsTransformed = getNewIcons(icons, nodeId);
+	const transformedIcons = getNewIcons(icons, nodeId);
 
 	// Actions
 	const actions = getActions?.(nodeId);
-	const actionsTransformed = getNewActions(actions, nodeId, api, value);
+	const transformedActions = getNewActions(actions, nodeId, api, value);
 
 	// Status
 	const status = getStatus(statusMessage);
@@ -30,8 +30,8 @@ export const CSCustomDataHelper: React.FC<{
 		<CSCustomData
 			menuIcon={menuIcon}
 			status={status}
-			actions={actionsTransformed}
-			icons={iconsTransformed}
+			actions={transformedActions}
+			icons={transformedIcons}
 			title={title}
 			value={value}
 		/>

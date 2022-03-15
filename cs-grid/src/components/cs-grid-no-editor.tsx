@@ -7,8 +7,7 @@ import { CSGridCellEditorProps } from '../interfaces/cs-grid-cell-props';
  */
 export class CSGridNoEditor
 	extends React.Component<CSGridCellEditorProps<any>>
-	implements CSGridCellEditor
-{
+	implements CSGridCellEditor {
 	constructor(props: CSGridCellEditorProps<any>) {
 		super(props);
 	}

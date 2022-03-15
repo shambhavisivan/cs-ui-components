@@ -8,7 +8,8 @@ import {
 	CSGridAction,
 	CSGridCellRendererProps,
 	Icon,
-	isStandardIcon
+	isStandardIcon,
+	StandardIcon
 } from '../interfaces/cs-grid-cell-props';
 import { noOfVisibleButtons } from '../utils/cs-grid-row-selection-helper';
 import { CSGridBaseRenderer } from './cs-grid-base-renderer';
@@ -89,6 +90,8 @@ export abstract class CSGridBaseActionsRenderer<
 
 			if (action.icon) {
 				if (isStandardIcon(action.icon)) {
+					const icon = action.icon as StandardIcon;
+
 					if (index < noOfInlineIcons) {
 						button = (
 							<CSButton
@@ -101,10 +104,10 @@ export abstract class CSGridBaseActionsRenderer<
 								size={action.size}
 								btnType={action.btnType}
 								btnStyle={action.btnStyle}
-								iconName={action.icon.iconName}
-								iconColor={action.icon.color}
-								iconOrigin={action.icon.iconOrigin}
-								iconSize={action.icon.iconSize}
+								iconName={icon.iconName}
+								iconColor={icon.color}
+								iconOrigin={icon.iconOrigin}
+								iconSize={icon.iconSize}
 								ref={(ref: HTMLButtonElement) => (this.buttonRefs[index] = ref)}
 								id={`icon-item-${this.props.node.id}-${colId}-${index}`}
 							/>
@@ -121,10 +124,10 @@ export abstract class CSGridBaseActionsRenderer<
 							size={action.size}
 							btnType={action.btnType}
 							btnStyle={action.btnStyle}
-							iconName={action.icon.iconName}
-							iconColor={action.icon.color ? action.icon.color : null}
-							iconOrigin={action.icon.iconOrigin}
-							iconSize={action.icon.iconSize}
+							iconName={icon.iconName}
+							iconColor={icon.color || null}
+							iconOrigin={icon.iconOrigin}
+							iconSize={icon.iconSize}
 							ref={(ref: HTMLButtonElement) => (this.dropdownBtnRef[index] = ref)}
 							id={`row-selection-list-item-${action.name}`}
 						/>

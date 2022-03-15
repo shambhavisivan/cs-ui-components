@@ -18,8 +18,7 @@ export abstract class CSGridBaseRenderer<
 		S extends CSGridCellRendererState<T> = CSGridCellRendererState<T>
 	>
 	extends React.Component<P, S>
-	implements CSGridCellRenderer
-{
+	implements CSGridCellRenderer {
 	constructor(props: P) {
 		super(props);
 

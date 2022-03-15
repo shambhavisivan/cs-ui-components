@@ -153,7 +153,10 @@
 	}
 }
 
-/* ICON FIELD STYLES */
+.ag-cell .cs-custom-data-wrapper {
+	width: 100%;
+}
+
 .cs-grid_icon-cell {
 	.cs-custom-data-item-wrapper {
 		margin-left: 0.25rem;

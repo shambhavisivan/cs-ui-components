@@ -9,8 +9,7 @@ import {
 
 export class CSGridRowSelectionRenderer
 	extends CSGridBaseActionsRenderer<boolean, CSGridBaseActionsRendererProps<boolean>>
-	implements CSGridCellRenderer
-{
+	implements CSGridCellRenderer {
 	buttonRefs: Array<HTMLButtonElement> = [];
 	dropdownRef: HTMLButtonElement;
 	focusedIndex = 0;

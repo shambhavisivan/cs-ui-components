@@ -47,7 +47,6 @@
 		"ag-grid"
 	],
 	"dependencies": {
-		"@cloudsense/react-datepicker-dynamiclocale": "2.0.1",
 		"ag-grid-community": "26.2.1",
 		"ag-grid-react": "26.2.0",
 		"jsdom": "^16.1.0",
@@ -61,7 +60,7 @@
 		"@babel/plugin-proposal-function-bind": "7.16.7",
 		"@babel/preset-env": "^7.16.7",
 		"@babel/preset-react": "7.16.7",
-		"@cloudsense/cs-ui-components": "2.0.0-alpha3",
+		"@cloudsense/cs-ui-components": "2.0.0-alpha7",
 		"@types/classnames": "^2.3.0",
 		"@types/enzyme": "^3.10.11",
 		"@types/jest": "^24.0.19",
@@ -108,7 +107,7 @@
 		"webpack-dev-server": "^3.11.0"
 	},
 	"peerDependencies": {
-		"@cloudsense/cs-ui-components": "2.0.0-alpha3",
+		"@cloudsense/cs-ui-components": "2.0.0-alpha7",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2"
 	}

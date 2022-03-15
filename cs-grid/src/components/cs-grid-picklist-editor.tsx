@@ -23,8 +23,7 @@ export class CSGridPicklistEditor
 		CSGridCellEditorProps<PicklistCellValueType> & PicklistProps,
 		CSGridPicklistEditorState
 	>
-	implements CSGridCellEditor
-{
+	implements CSGridCellEditor {
 	multiSelect: boolean = false;
 	customSelectInputRef: HTMLInputElement;
 	private divRef: React.RefObject<HTMLDivElement>;
@@ -93,6 +92,7 @@ export class CSGridPicklistEditor
 		return (
 			<div className='ag-theme-balham' ref={this.divRef}>
 				<CSCustomSelect
+					clearable={true}
 					dropdownActions={dropdownActions}
 					label='Search'
 					labelHidden={true}

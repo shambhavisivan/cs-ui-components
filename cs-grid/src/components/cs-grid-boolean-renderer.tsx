@@ -10,8 +10,7 @@ import { CSCustomDataHelper } from './cs-grid-custom-data-helper';
 
 export class CSGridBooleanRenderer
 	extends CSGridBaseRenderer<boolean>
-	implements CSGridCellRenderer
-{
+	implements CSGridCellRenderer {
 	constructor(props: CSGridCellRendererProps<boolean>) {
 		super(props);
 

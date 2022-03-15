@@ -10,8 +10,7 @@ import { CSGridCellError } from './cs-grid-cell-error';
 
 export class CSGridTextEditor
 	extends React.Component<CSGridCellEditorProps<string>, CSGridCellEditorState<string>>
-	implements CSGridCellEditor
-{
+	implements CSGridCellEditor {
 	inputRef: React.RefObject<HTMLInputElement>;
 
 	constructor(props: CSGridCellEditorProps<string>) {

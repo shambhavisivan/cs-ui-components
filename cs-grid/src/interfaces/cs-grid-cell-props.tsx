@@ -129,16 +129,19 @@ export interface StandardIcon extends Tooltip {
 	color?: string;
 }
 
-export function isStandardIcon(object: any): object is StandardIcon {
-	// Throw warning if standard icon isn't passed
-	if ('iconName' in object === false) {
-		console.warn('Icon must be a standard icon');
-
-		return;
+export const isStandardIcon = (icon: any) => {
+	if (icon === undefined) {
+		return false;
 	}
 
-	return 'iconName' in object;
-}
+	if (icon.iconName === undefined) {
+		console.warn(
+			`Using non-standard icons inside the 'getIcons' method is now deprecated. From now on, icons must be defined as objects with an 'iconName' property.`
+		);
+	}
+
+	return icon.iconName !== undefined;
+};
 
 /**
  * getOpenToDate - Opens to this date if no date is currently selected.
@@ -168,8 +171,6 @@ export interface Tooltip {
 		maxWidth?: string;
 		padding?: string;
 		stickyOnClick?: boolean;
-		iconName?: string;
-		iconColor?: string;
 	};
 }
 

@@ -58,26 +58,23 @@ export class App extends React.Component<object, AppState> {
 			exampleIntegerStep: 3500,
 			exampleLookup: {
 				data: {
-					hidden: '11111111111',
-					text1: 'Bob',
-					'text2.name.thirdPart': '645612'
+					text1: 'Bob the Great Bob the Great Bob the Great Bob the Great',
+					'text2.name.thirdPart': '0000'
 				},
 				key: 1
 			},
 			exampleMultiSelectLookup: [
 				{
 					data: {
-						hidden: '11111111111',
-						text1: 'Bob',
-						'text2.name.thirdPart': '645612'
+						text1: 'Bob the Great Bob the Great Bob the Great Bob the Great',
+						'text2.name.thirdPart': '0000'
 					},
 					key: 1
 				},
 				{
 					data: {
-						hidden: '11111111111',
 						text1: 'Harry',
-						'text2.name.thirdPart': '564768'
+						'text2.name.thirdPart': '0123'
 					},
 					key: 2
 				}
@@ -114,7 +111,7 @@ export class App extends React.Component<object, AppState> {
 			exampleLookup: {
 				data: {
 					text1: 'Harry',
-					'text2.name.thirdPart': '564768'
+					'text2.name.thirdPart': '1234'
 				},
 				key: 2
 			},
@@ -122,14 +119,14 @@ export class App extends React.Component<object, AppState> {
 				{
 					data: {
 						text1: 'Harry',
-						'text2.name.thirdPart': '564768'
+						'text2.name.thirdPart': '1234'
 					},
 					key: 2
 				},
 				{
 					data: {
 						text1: 'Sally',
-						'text2.name.thirdPart': '079845'
+						'text2.name.thirdPart': '9012'
 					},
 					key: 3
 				}
@@ -166,7 +163,7 @@ export class App extends React.Component<object, AppState> {
 			exampleLookup: {
 				data: {
 					text1: 'Sally',
-					'text2.name.thirdPart': '079845'
+					'text2.name.thirdPart': '9012'
 				},
 				key: 3
 			},
@@ -174,15 +171,14 @@ export class App extends React.Component<object, AppState> {
 				{
 					data: {
 						text1: 'Sally',
-						'text2.name.thirdPart': '079845'
+						'text2.name.thirdPart': '9012'
 					},
 					key: 3
 				},
 				{
 					data: {
-						hidden: '11111111111',
-						text1: 'Bob',
-						'text2.name.thirdPart': '645612'
+						text1: 'Bob the Great Bob the Great Bob the Great Bob the Great',
+						'text2.name.thirdPart': '0000'
 					},
 					key: 1
 				}
@@ -219,23 +215,23 @@ export class App extends React.Component<object, AppState> {
 			exampleIntegerStep: 99000,
 			exampleLookup: {
 				data: {
-					text1: 'Sue',
-					'text2.name.thirdPart': '123456'
+					text1: 'Mary',
+					'text2.name.thirdPart': '5678'
 				},
 				key: 7
 			},
 			exampleMultiSelectLookup: [
 				{
 					data: {
-						text1: 'Sue',
-						'text2.name.thirdPart': '123456'
+						text1: 'Mary',
+						'text2.name.thirdPart': '5678'
 					},
 					key: 7
 				},
 				{
 					data: {
-						text1: 'Sean',
-						'text2.name.thirdPart': '987654'
+						text1: 'Robert',
+						'text2.name.thirdPart': '4567'
 					},
 					key: 8
 				}
@@ -338,21 +334,15 @@ export class App extends React.Component<object, AppState> {
 			const results: CSGridLookupSearchResult = {
 				columnDefs: [
 					{
-						header: {
-							label: 'Name'
-						},
+						header: { label: 'Name' },
 						name: 'text1'
 					},
 					{
-						header: {
-							label: 'Order Number'
-						},
+						header: { label: 'Order Number' },
 						name: 'text2.name.thirdPart'
 					},
 					{
-						header: {
-							label: 'hidden'
-						},
+						header: { label: 'hidden' },
 						name: 'hidden',
 						visible: false
 					}
@@ -360,24 +350,80 @@ export class App extends React.Component<object, AppState> {
 				rowData: [
 					{
 						data: {
-							text1: 'Bob the Greatdfgdfgdfgdfgdfgdgdfgdfg / fgdf /d dfg / dfgdff /',
-							'text2.name.thirdPart': '1234567890987654321'
+							text1: 'Bob the Great Bob the Great Bob the Great Bob the Great',
+							'text2.name.thirdPart': '0000'
 						},
 						key: 1
 					},
 					{
 						data: {
 							text1: 'Harry',
-							'text2.name.thirdPart': '564768'
+							'text2.name.thirdPart': '0123'
 						},
 						key: 2
 					},
 					{
 						data: {
 							text1: 'Sally',
-							'text2.name.thirdPart': '079845'
+							'text2.name.thirdPart': '9012'
 						},
 						key: 3
+					},
+					{
+						data: {
+							text1: 'John',
+							'text2.name.thirdPart': '8901'
+						},
+						key: 4
+					},
+					{
+						data: {
+							text1: 'Dan',
+							'text2.name.thirdPart': '8790'
+						},
+						key: 5
+					},
+					{
+						data: {
+							text1: 'Jane',
+							'text2.name.thirdPart': '6789'
+						},
+						key: 6
+					},
+					{
+						data: {
+							text1: 'Mary',
+							'text2.name.thirdPart': '5678'
+						},
+						key: 7
+					},
+					{
+						data: {
+							text1: 'Robert',
+							'text2.name.thirdPart': '4567'
+						},
+						key: 8
+					},
+					{
+						data: {
+							text1: 'Andy',
+							'text2.name.thirdPart': '3456'
+						},
+						key: 9
+					},
+					{
+						data: {
+							text1: 'Daniel',
+							'text2.name.thirdPart': '2345'
+						},
+						key: 10
+					},
+					{
+						data: {
+							text1: 'Watson',
+							'text2.name.thirdPart': '1234'
+						},
+						key: 11
 					}
 				]
 			};
@@ -1219,9 +1265,8 @@ export class App extends React.Component<object, AppState> {
 				exampleLookup: {
 					cellValue: {
 						data: {
-							hidden: '11111111111',
-							text1: 'Bob',
-							'text2.name.thirdPart': '645612'
+							text1: 'Bob the Great Bob the Great Bob the Great Bob the Great',
+							'text2.name.thirdPart': '0000'
 						},
 						key: 1
 					}
@@ -1230,17 +1275,15 @@ export class App extends React.Component<object, AppState> {
 					cellValue: [
 						{
 							data: {
-								hidden: '11111111111',
-								text1: 'Bob',
-								'text2.name.thirdPart': '645612'
+								text1: 'Bob the Great Bob the Great Bob the Great Bob the Great',
+								'text2.name.thirdPart': '0000'
 							},
 							key: 1
 						},
 						{
 							data: {
-								hidden: '11111111111',
 								text1: 'Harry',
-								'text2.name.thirdPart': '564768'
+								'text2.name.thirdPart': '0123'
 							},
 							key: 2
 						}
@@ -1304,7 +1347,7 @@ export class App extends React.Component<object, AppState> {
 					cellValue: {
 						data: {
 							text1: 'Harry',
-							'text2.name.thirdPart': '564768'
+							'text2.name.thirdPart': '0123'
 						},
 						key: 2
 					},
@@ -1315,14 +1358,14 @@ export class App extends React.Component<object, AppState> {
 						{
 							data: {
 								text1: 'Harry',
-								'text2.name.thirdPart': '564768'
+								'text2.name.thirdPart': '0123'
 							},
 							key: 2
 						},
 						{
 							data: {
 								text1: 'Sally',
-								'text2.name.thirdPart': '079845'
+								'text2.name.thirdPart': '9012'
 							},
 							key: 3
 						}
@@ -1381,7 +1424,7 @@ export class App extends React.Component<object, AppState> {
 					cellValue: {
 						data: {
 							text1: 'Sally',
-							'text2.name.thirdPart': '079845'
+							'text2.name.thirdPart': '9012'
 						},
 						key: 3
 					}
@@ -1391,14 +1434,14 @@ export class App extends React.Component<object, AppState> {
 						{
 							data: {
 								text1: 'Sally',
-								'text2.name.thirdPart': '079845'
+								'text2.name.thirdPart': '9012'
 							},
 							key: 3
 						},
 						{
 							data: {
-								text1: 'Bob',
-								'text2.name.thirdPart': '645612'
+								text1: 'Bob the Great Bob the Great Bob the Great Bob the Great',
+								'text2.name.thirdPart': '0000'
 							},
 							key: 1
 						}
@@ -1462,8 +1505,8 @@ export class App extends React.Component<object, AppState> {
 				exampleLookup: {
 					cellValue: {
 						data: {
-							text1: 'Sue',
-							'text2.name.thirdPart': '123456'
+							text1: 'Mary',
+							'text2.name.thirdPart': '5678'
 						},
 						key: 7
 					},
@@ -1473,15 +1516,15 @@ export class App extends React.Component<object, AppState> {
 					cellValue: [
 						{
 							data: {
-								text1: 'Sue',
-								'text2.name.thirdPart': '123456'
+								text1: 'Mary',
+								'text2.name.thirdPart': '5678'
 							},
 							key: 7
 						},
 						{
 							data: {
-								text1: 'Sean',
-								'text2.name.thirdPart': '987654'
+								text1: 'Robert',
+								'text2.name.thirdPart': '4567'
 							},
 							key: 8
 						}

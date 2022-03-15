@@ -10,7 +10,7 @@ import {
 	CSGridCellEditor,
 	CSGridCellEditorState
 } from '../interfaces/cs-grid-base-interfaces';
-import { createLocale, dateFormat, dateTimeFormat, timeFormat } from '../utils/cs-grid-date-helper';
+import { dateFormat, dateTimeFormat, timeFormat } from '../utils/cs-grid-date-helper';
 import KeyCode from '../utils/cs-grid-keycode';
 
 /**
@@ -21,8 +21,7 @@ export class CSGridDateTimeEditor
 		CSGridCellEditorProps<string> & DateTimeProps,
 		CSGridCellEditorState<string>
 	>
-	implements CSGridCellEditor
-{
+	implements CSGridCellEditor {
 	private divRef: React.RefObject<HTMLDivElement>;
 	private localeFormat = `${moment
 		.localeData()
@@ -111,12 +110,12 @@ export class CSGridDateTimeEditor
 				<CSDateTimePicker
 					selected={date}
 					onChange={this.onChange}
-					isClearable={true}
+					clearable={true}
 					placeholder={placeholderText}
 					showMonthDropdown={true}
 					showYearDropdown={true}
 					dropdownMode='select'
-					locale={createLocale(this.props.userInfo.dateLocale)}
+					locale={this.props.userInfo.userLocale}
 					timeFormat={timeFormat}
 					timeIntervals={this.props.timeInterval || 5}
 					timeCaption={this.props.userInfo.dateLocale?.timeCaption ?? 'Time'}

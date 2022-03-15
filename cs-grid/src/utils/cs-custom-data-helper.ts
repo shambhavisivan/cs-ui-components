@@ -1,75 +1,55 @@
-import { CSTooltipVariant } from '@cloudsense/cs-ui-components';
 import { GridApi } from 'ag-grid-community';
-import { CSGridAction, Icon, isStandardIcon } from '../interfaces/cs-grid-cell-props';
+import { CSGridAction, Icon, isStandardIcon, StandardIcon } from '../interfaces/cs-grid-cell-props';
 
-// Map over Icons
-export function getNewIcons(icons: Array<Icon> = [], id: string) {
-	// Filter out non-standard icons
-	return icons.filter(isStandardIcon).map((icon) => {
-		// If standard icon return array of icons
-		if (isStandardIcon(icon)) {
-			const tooltip = icon.getTooltip?.(id);
+export const getNewIcons = (icons: Array<Icon> = [], id: string) => {
+	return icons.filter(isStandardIcon).map((icon: StandardIcon) => ({
+		color: icon.color,
+		name: icon.iconName,
+		origin: icon.iconOrigin,
+		size: icon.iconSize || '0.875rem',
+		tooltip: icon.getTooltip?.(id)
+	}));
+};
+
+export const getNewActions = <T>(
+	actions: Array<CSGridAction<T>> = [],
+	id: string,
+	api: GridApi,
+	cellValue: T
+) => {
+	return actions
+		.filter((action: CSGridAction<T>) => isStandardIcon(action.icon))
+		.map((action: CSGridAction<T>) => {
+			const icon = action.icon as StandardIcon;
+			const handleClick = () => {
+				api.stopEditing();
+
+				return action.action(id, cellValue);
+			};
 
 			return {
 				iconColor: icon.color,
 				iconName: icon.iconName,
 				iconOrigin: icon.iconOrigin,
-				iconSize: icon.iconSize,
-				getTooltip: tooltip
+				iconSize: icon.iconSize || '0.875rem',
+				label: action.name,
+				labelHidden: action.labelHidden,
+				onClick: handleClick,
+				size: action.size,
+				style: action.btnStyle,
+				tooltip: action.getTooltip?.(id),
+				type: action.btnType
 			};
-		}
-	});
-}
-
-// Map over Actions
-export function getNewActions<T>(
-	actions: Array<CSGridAction<T>> = [],
-	id: string,
-	api: GridApi,
-	cellValue: T
-) {
-	return actions
-		?.filter((action) => action.icon && isStandardIcon(action.icon))
-		.map((action) => {
-			if (action.icon) {
-				// If standard icon return action
-				if (isStandardIcon(action.icon)) {
-					const tooltip = action.getTooltip?.(id);
-
-					return {
-						action: () => {
-							// Prevent lookup opening onclick
-							api.stopEditing();
-
-							return action.action(id, cellValue);
-						},
-						btnType: action.btnType,
-						size: action.size,
-						btnStyle: action.btnStyle,
-						icon: {
-							iconColor: action.icon.color,
-							iconName: action.icon.iconName,
-							iconOrigin: action.icon.iconOrigin,
-							iconSize: action.icon.iconSize ? action.icon.iconSize : '0.875rem'
-						},
-						labelHidden: action.labelHidden,
-						name: action.name,
-						getTooltip: tooltip
-					};
-				}
-			}
 		});
-}
+};
 
-// Status
-export function getStatus(status: string) {
-	if (status) {
-		return {
-			iconName: 'warning',
-			getTooltip: {
-				content: status,
-				variant: 'error' as CSTooltipVariant
-			}
-		};
-	}
-}
+export const getStatus = (content: string) =>
+	content && {
+		color: 'var(--cs-tooltip-error-bg)',
+		name: 'warning',
+		size: '0.875rem',
+		tooltip: {
+			content,
+			variant: 'error'
+		}
+	};
