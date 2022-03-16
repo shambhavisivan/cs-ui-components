@@ -172,18 +172,28 @@
 		}
 
 		// Brand
-		&.cs-radio-brand .cs-radio {
-			&:checked + .cs-radio-faux {
-				@include sbg(--cs-radio-bg-brand);
-
-				&::after {
-					@include sbg(--cs-radio-bg-inner-brand);
+		&.cs-radio-brand {
+			.cs-radio {
+				&:checked + .cs-radio-faux {
+					@include sbg(--cs-radio-bg-brand);
+	
+					&::after {
+						@include sbg(--cs-radio-bg-inner-brand);
+					}
+				}
+				// Read-only + brand
+				&-read-only:checked + .cs-radio-faux::after {
+					@include sbg(--cs-radio-disabled-bg);
 				}
 			}
-			// Read-only + brand
-			&-read-only:checked + .cs-radio-faux::after {
-				@include sbg(--cs-radio-disabled-bg);
+
+			&.cs-radio-error {
+				.cs-radio {
+					&:checked + .cs-radio-faux {
+						@include sbg(--cs-radio-error-bg);
+					}
+				}
 			}
-		}
+		} 
 	}
 }
