@@ -1,4 +1,25 @@
+import React from 'react';
+import * as CSD from '../../../../demo-components';
+
 export default {
+	customContent: (
+		<CSD.Section>
+			<CSD.Text>
+				CSRadio is accessible, where accessibility conformance is settled with a component structure,
+				aria attributes and keyboard support.
+			</CSD.Text>
+			<CSD.Text>
+				<b>Keyboard support</b> is present with a variety of functions added to belonging buttons to ensure good user experience and smooth behaviour.
+			</CSD.Text>
+			<CSD.Text>
+				`ArrowDown` and `ArrowUp` will move through radio options. If the selection is on the last item, `ArrowDown` will move it to the first item,
+				and vice versa for `ArrowUp` if the selection is on first item.
+			</CSD.Text>
+			<CSD.Text>
+				With pressing `Space` on an already focused radio button the button will be selected.
+			</CSD.Text>
+		</CSD.Section>
+	),
 	criterionList: [
 		'1.3.1',
 		'1.4.1',
