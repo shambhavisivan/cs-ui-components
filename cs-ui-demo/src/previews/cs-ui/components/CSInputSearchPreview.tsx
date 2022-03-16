@@ -5,16 +5,23 @@ import Preview from '../Preview';
 
 interface CSInputSearchPreviewState {
 	focused: boolean;
+	value: string;
+	[key: string]: any;
 }
 
 class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState> {
-	state = { focused: false };
+	state: CSInputSearchPreviewState = {
+		focused: false,
+		value: ''
+	};
 
 	handleBlur = () => alert('Input has lost focus.');
-	handleChange = () => alert('Value has changed.');
+	handleChange = (event: React.ChangeEvent<HTMLInputElement>, key: string) => {
+		this.setState({ [key]: event.target.value  });
+	}
 	handleClick = () => alert('Input has been clicked.');
 	handleKeyDown = (event: any) => alert(`Key ${event.key} has been pressed.`);
-	handleClearSearch = () => alert('Value has been cleared.');
+	handleClearSearch = (key: string) => this.setState({ [key]: '' });
 	handleFocus = () => {
 		this.setState(prevState => {
 			if (!prevState.focused) {
@@ -40,8 +47,18 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 						},
 						variations: [
 							{
-								component: <CSInputSearch label="Type here" />,
-								code: '<CSInputSearch label="Type here" />'
+								component: <CSInputSearch
+									label="Type here"
+									value={this.state.label}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'label')}
+									onClearSearch={() => this.handleClearSearch('label')}
+								/>,
+								code: `<CSInputSearch
+									label="Type here"
+									value={value}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value)}
+									onClearSearch={() => setValue('')}
+								/>`
 							}
 						]
 					}, {
@@ -49,8 +66,20 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 						variations: [
 							{
 								primaryVariants: 'autoFocus={true}',
-								component: <CSInputSearch label="Type here" autoFocus />,
-								code: '<CSInputSearch label="Type here" autoFocus />'
+								component: <CSInputSearch
+									label="Type here"
+									value={this.state.autoFocus}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'autoFocus')}
+									onClearSearch={() => this.handleClearSearch('autoFocus')}
+									autoFocus
+								/>,
+								code: `<CSInputSearch
+									label="Type here"
+									value={value}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value)}
+									onClearSearch={() => setValue('')}
+									autoFocus
+								/>`
 							}
 						]
 					}, {
@@ -58,8 +87,20 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 						variations: [
 							{
 								primaryVariants: 'borderRadius="0"',
-								component: <CSInputSearch label="Type here" borderRadius="0" />,
-								code: '<CSInputSearch label="Type here" borderRadius="0" />'
+								component: <CSInputSearch
+									label="Type here"
+									value={this.state.borderRadius}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'borderRadius')}
+									onClearSearch={() => this.handleClearSearch('borderRadius')}
+									borderRadius="0"
+								/>,
+								code: `<CSInputSearch
+									label="Type here"
+									value={value}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value)}
+									onClearSearch={() => setValue('')}
+									borderRadius="0"
+								/>`
 							}
 						]
 					}, {
@@ -80,8 +121,20 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 						variations: [
 							{
 								primaryVariants: 'error={true}',
-								component: <CSInputSearch label="Type here" error />,
-								code: '<CSInputSearch label="Type here" error />'
+								component: <CSInputSearch
+									label="Type here"
+									value={this.state.error}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'error')}
+									onClearSearch={() => this.handleClearSearch('error')}
+									error
+								/>,
+								code: `<CSInputSearch
+									label="Type here"
+									value={value}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value)}
+									onClearSearch={() => setValue('')}
+									error
+								/>`
 							}
 						]
 					}, {
@@ -91,11 +144,17 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 								secondaryVariants: 'error={true}',
 								component: <CSInputSearch
 									label="Type here"
+									value={this.state.errorMessage}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'errorMessage')}
+									onClearSearch={() => this.handleClearSearch('errorMessage')}
 									error
 									errorMessage="Error message."
 								/>,
 								code: `<CSInputSearch
 									label="Type here"
+									value={value}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value)}
+									onClearSearch={() => setValue('')}
 									error
 									errorMessage="Error message."
 								/>`
@@ -109,12 +168,18 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 								secondaryVariants: 'error={true}',
 								component: <CSInputSearch
 									label="Enter value"
+									value={this.state.errorTooltip}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'errorTooltip')}
+									onClearSearch={() => this.handleClearSearch('errorTooltip')}
 									error
 									errorMessage="Error message."
 									errorTooltip
 								/>,
 								code: `<CSInputSearch
 									label="Enter value"
+									value={value}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value)}
+									onClearSearch={() => setValue('')}
 									error
 									errorMessage="Error message."
 									errorTooltip
@@ -125,8 +190,20 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 						propName: 'helpText',
 						variations: [
 							{
-								component: <CSInputSearch label="Type here" helpText="Help text example" />,
-								code: '<CSInputSearch label="Type here" helpText="Help text example" />'
+								component: <CSInputSearch
+									label="Type here"
+									value={this.state.helpText}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'helpText')}
+									onClearSearch={() => this.handleClearSearch('helpText')}
+									helpText="Help text example"
+								/>,
+								code: `<CSInputSearch
+									label="Type here"
+									value={value}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value)}
+									onClearSearch={() => setValue('')}
+									helpText="Help text example"
+								/>`
 							}
 						]
 					}, {
@@ -143,8 +220,20 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 						variations: [
 							{
 								primaryVariants: 'iconPosition="right"',
-								component: <CSInputSearch label="Type here" iconPosition="right" />,
-								code: '<CSInputSearch label="Type here" iconPosition="right" />'
+								component: <CSInputSearch
+									label="Type here"
+									value={this.state.iconPosition}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'iconPosition')}
+									onClearSearch={() => this.handleClearSearch('iconPosition')}
+									iconPosition="right"
+								/>,
+								code: `<CSInputSearch
+									label="Type here"
+									value={value}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value)}
+									onClearSearch={() => setValue('')}
+									iconPosition="right"
+								/>`
 							}
 						]
 					}, {
@@ -152,8 +241,20 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 						variations: [
 							{
 								primaryVariants: 'labelHidden={true}',
-								component: <CSInputSearch label="Type here" labelHidden />,
-								code: '<CSInputSearch label="Type here" labelHidden />'
+								component: <CSInputSearch
+									label="Type here"
+									value={this.state.labelHidden}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'labelHidden')}
+									onClearSearch={() => this.handleClearSearch('labelHidden')}
+									labelHidden
+								/>,
+								code: `<CSInputSearch
+									label="Type here"
+									value={value}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value)}
+									onClearSearch={() => setValue('')}
+									labelHidden
+								/>`
 							}
 						]
 					}, {
@@ -161,24 +262,61 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 						variations: [
 							{
 								primaryVariants: 'labelTitle={true}',
-								component: <CSInputSearch label="Type here" labelTitle />,
-								code: '<CSInputSearch label="Type here" labelTitle />'
+								component: <CSInputSearch
+									label="Type here"
+									value={this.state.labelTitle}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'labelTitle')}
+									onClearSearch={() => this.handleClearSearch('labelTitle')}
+									labelTitle
+								/>,
+								code: `<CSInputSearch
+									label="Type here"
+									value={value}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value)}
+									onClearSearch={() => setValue('')}
+									labelTitle
+								/>`
 							}
 						]
 					}, {
 						propName: 'onBlur',
 						variations: [
 							{
-								component: <CSInputSearch label="Type here" onBlur={this.handleBlur} />,
-								code: '<CSInputSearch label="Type here" onBlur={this.handleBlur} />'
+								component: <CSInputSearch
+									label="Type here"
+									value={this.state.onBlur}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'onBlur')}
+									onClearSearch={() => this.handleClearSearch('onBlur')}
+									onBlur={this.handleBlur}
+								/>,
+								code: `<CSInputSearch
+									label="Type here"
+									value={value}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value)}
+									onClearSearch={() => setValue('')}
+									onBlur={this.handleBlur}
+								/>`
 							}
 						]
 					}, {
 						propName: 'onChange',
 						variations: [
 							{
-								component: <CSInputSearch label="Type here" onChange={this.handleChange} />,
-								code: '<CSInputSearch label="Type here" onChange={this.handleChange} />'
+								component: <CSInputSearch
+									label="Type here"
+									value={this.state.onChange}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+										alert('Input has been changed.');
+										this.handleChange(event, 'onChange');
+									}}
+									onClearSearch={() => this.handleClearSearch('onChange')}
+								/>,
+								code: `<CSInputSearch
+									label="Type here"
+									value={value}
+									onChange={this.handleChange}
+									onClearSearch={() => setValue('')}
+								/>`
 							}
 						]
 					}, {
@@ -186,40 +324,101 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 						description: 'Provides option to call a function after search cleared to provide extra functionality',
 						variations: [
 							{
-								component: <CSInputSearch label="Type here" onClearSearch={this.handleClearSearch} />,
-								code: '<CSInputSearch label="Type here" onClearSearch={this.handleClearSearch} />'
+								component: <CSInputSearch
+									label="Type here"
+									value={this.state.onClearSearch}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'onClearSearch')}
+									onClearSearch={() =>  {
+										alert('Input has been cleared.');
+										this.handleClearSearch('onClearSearch');
+									}}
+								/>,
+								code: `<CSInputSearch
+									label="Type here"
+									value={value}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value)}
+									onClearSearch={this.handleClearSearch}
+								/>`
 							}
 						]
 					}, {
 						propName: 'onClick',
 						variations: [
 							{
-								component: <CSInputSearch label="Type here" onClick={this.handleClick} />,
-								code: '<CSInputSearch label="Type here" onClick={this.handleClick} />'
+								component: <CSInputSearch
+									label="Type here"
+									value={this.state.onClick}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'onClick')}
+									onClearSearch={() => this.handleClearSearch('onClick')}
+									onClick={this.handleClick}
+								/>,
+								code: `<CSInputSearch
+									label="Type here"
+									value={value}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value)}
+									onClearSearch={() => setValue('')}
+									onClick={this.handleClick}
+								/>`
 							}
 						]
 					}, {
 						propName: 'onFocus',
 						variations: [
 							{
-								component: <CSInputSearch label="Type here" onFocus={this.handleFocus} />,
-								code: '<CSInputSearch label="Type here" onFocus={this.handleFocus} />'
+								component: <CSInputSearch
+									label="Type here"
+									value={this.state.onFocus}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'onFocus')}
+									onClearSearch={() => this.handleClearSearch('onFocus')}
+									onFocus={this.handleFocus}
+								/>,
+								code: `<CSInputSearch
+									label="Type here"
+									value={value}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value)}
+									onClearSearch={() => setValue('')}
+									onFocus={this.handleFocus}
+								/>`
 							}
 						]
 					}, {
 						propName: 'onKeyDown',
 						variations: [
 							{
-								component: <CSInputSearch label="Type here" onKeyDown={this.handleKeyDown} />,
-								code: '<CSInputSearch label="Type here" onKeyDown={this.handleKeyDown} />'
+								component: <CSInputSearch
+									label="Type here"
+									value={this.state.onKeyDown}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'onKeyDown')}
+									onClearSearch={() => this.handleClearSearch('onKeyDown')}
+									onKeyDown={this.handleKeyDown}
+								/>,
+								code: `<CSInputSearch
+									label="Type here"
+									value={value}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value)}
+									onClearSearch={() => setValue('')}
+									onKeyDown={this.handleKeyDown}
+								/>`
 							}
 						]
 					}, {
 						propName: 'placeholder',
 						variations: [
 							{
-								component: <CSInputSearch label="Type here" placeholder="Search name" />,
-								code: '<CSInputSearch label="Type here" placeholder="Search name" />'
+								component: <CSInputSearch
+									label="Type here"
+									value={this.state.placeholder}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'placeholder')}
+									onClearSearch={() => this.handleClearSearch('placeholder')}
+									placeholder="Search name"
+								/>,
+								code: `<CSInputSearch
+									label="Type here"
+									value={value}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value)}
+									onClearSearch={() => setValue('')}
+									placeholder="Search name"
+								/>`
 							}
 						]
 					}, {
@@ -227,16 +426,40 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 						variations: [
 							{
 								primaryVariants: 'required={true}',
-								component: <CSInputSearch label="Type here" required />,
-								code: '<CSInputSearch label="Type here" required />'
+								component: <CSInputSearch
+									label="Type here"
+									value={this.state.required}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'required')}
+									onClearSearch={() => this.handleClearSearch('required')}
+									required
+								/>,
+								code: `<CSInputSearch
+									label="Type here"
+									value={value}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value)}
+									onClearSearch={() => setValue('')}
+									required
+								/>`
 							}
 						]
 					}, {
 						propName: 'title',
 						variations: [
 							{
-								component: <CSInputSearch label="Type here" title="This is a title" />,
-								code: '<CSInputSearch label="Type here" title="This is a title" />'
+								component: <CSInputSearch
+									label="Type here"
+									value={this.state.title}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'title')}
+									onClearSearch={() => this.handleClearSearch('title')}
+									title="This is a title"
+								/>,
+								code: `<CSInputSearch
+									label="Type here"
+									value={value}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value)}
+									onClearSearch={() => setValue('')}
+									title="This is a title"
+								/>`
 							}
 						]
 					}, {
@@ -251,11 +474,17 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 								secondaryVariants: 'helpText="text"',
 								component: <CSInputSearch
 									label="Type here"
+									value={this.state.tooltipPosition}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'tooltipPosition')}
+									onClearSearch={() => this.handleClearSearch('tooltipPosition')}
 									helpText="Help text example"
 									tooltipPosition="top-left"
 								/>,
 								code: `<CSInputSearch
 									label="Type here"
+									value={value}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value)}
+									onClearSearch={() => setValue('')}
 									helpText="Help text example"
 									tooltipPosition="top-left"
 								/>`
@@ -274,8 +503,20 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 						variations: [
 							{
 								primaryVariants: 'width="50%"',
-								component: <CSInputSearch label="Type here" width="50%" />,
-								code: '<CSInputSearch label="Type here" width="50%" />'
+								component: <CSInputSearch
+									label="Type here"
+									value={this.state.width}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'width')}
+									onClearSearch={() => this.handleClearSearch('width')}
+									width="50%"
+								/>,
+								code: `<CSInputSearch
+									label="Type here"
+									value={value}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value)}
+									onClearSearch={() => setValue('')}
+									width="50%"
+								/>`
 							}
 						]
 					}, {
@@ -288,11 +529,17 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 								],
 								component: <CSInputSearch
 									label="Type here"
+									value={this.state.idClass}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'idClass')}
+									onClearSearch={() => this.handleClearSearch('idClass')}
 									id="custom-id"
 									className="custom-br-mint"
 								/>,
 								code: `<CSInputSearch
 									label="Type here"
+									value={value}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value)}
+									onClearSearch={() => setValue('')}
 									id="custom-id"
 									className="custom-br-mint"
 								/>`

@@ -129,7 +129,14 @@ describe('<CSInputSearch />', () => {
 
 	it('should use a working onClearSearch callback', () => {
 		const handleClearSearchMock = jest.fn();
-		const uut = shallow(<CSInputSearch label={label} onClearSearch={handleClearSearchMock} />);
+		const value = 'value';
+		const uut = shallow(
+			<CSInputSearch
+				label={label}
+				value={value}
+				onClearSearch={handleClearSearchMock}
+			/>,
+		);
 		const inputSearch = uut.find('.cs-input-search');
 		inputSearch.simulate('change', { target: { value: 'x' } });
 		const clearButton = uut.find('CSButton');

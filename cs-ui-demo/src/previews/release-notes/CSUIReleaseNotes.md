@@ -79,6 +79,8 @@
 * CSInputNumber
   * added `locale` prop
   * refactored class based to functional component
+* CSInputSearch
+  * refactored class based to functional component
 * CSInputText
   * refactored class based to functional component
 * CSLabel
