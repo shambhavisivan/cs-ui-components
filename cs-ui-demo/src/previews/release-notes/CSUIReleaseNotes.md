@@ -82,6 +82,7 @@
   * refactored class based to functional component
 * CSInputSearch
   * refactored class based to functional component
+  * updated the markup to a new flex structure
 * CSInputText
   * refactored class based to functional component
 * CSLabel

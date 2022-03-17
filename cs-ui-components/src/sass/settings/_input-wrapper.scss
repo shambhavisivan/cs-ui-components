@@ -1,0 +1,50 @@
+@mixin input-wrapper {
+	.cs-input-wrapper {
+		display: flex;
+		align-items: center;
+		padding: 0 0.375rem;
+		transition: border 0.1s linear, background-color 0.1s linear;
+		cursor: text;
+		width: var(--cs-input-width, 100%);
+		border-radius: var(--cs-input-border-radius, 0.25rem);
+		@include sc(--cs-input-c);
+		@include sbg(--cs-input-bg);
+		@include css4 {
+			border: 1px solid cvar(--cs-input-br);
+		}
+
+		&-focused {
+			outline: 0;
+			@include css4 {
+				border-color: cvar(--cs-input-active-br);
+				box-shadow: 0 0 0.1875rem cvar(--cs-input-shadow);
+			}
+		}
+
+		&-error {
+			@include css4 {
+				border: 1px solid cvar(--cs-input-error-br);
+			}
+
+			&.cs-input-wrapper-focused {
+				@include css4 {
+					border-color: cvar(--cs-input-error-c);
+					box-shadow: 0 0 3px cvar(--cs-input-error-shadow);
+				}
+			}
+		}
+
+		&-disabled {
+			cursor: default;
+			user-select: none;
+			@include sbg(--cs-input-disabled-bg);
+			@include css4 {
+				border-color: cvar(--cs-input-disabled-br);
+			}
+		}
+
+		.cs-icon + .cs-tooltip-wrapper {
+			margin-left: 0.175rem;
+		}
+	}
+};

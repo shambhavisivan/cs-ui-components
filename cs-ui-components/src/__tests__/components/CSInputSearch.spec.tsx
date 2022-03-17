@@ -25,10 +25,9 @@ describe('<CSInputSearch />', () => {
 		expect(inputSearchError).toHaveLength(0);
 		expect(inputSearch.prop('aria-invalid')).toBeFalsy();
 		// iconPosition
-		const inputSearchGroup = uut.find('.cs-input-search-group.cs-icon-left');
-		expect(inputSearchGroup).toHaveLength(1);
+		expect(uut.find('CSIcon + .cs-input-search')).toHaveLength(1);
 		// hidden
-		const hiddenInputSearch = uut.find('.cs-input-search-wrapper.cs-element-hidden');
+		const hiddenInputSearch = uut.find('.cs-input-wrapper > .cs-element-hidden');
 		expect(hiddenInputSearch).toHaveLength(0);
 		// required
 		expect(inputSearch.props().required).toBeFalsy();
@@ -45,8 +44,8 @@ describe('<CSInputSearch />', () => {
 	it('should set custom border radius', () => {
 		const borderRadius = '0';
 		const uut = shallow(<CSInputSearch label={label} borderRadius={borderRadius} />);
-		const inputSearchStyle = uut.find('.cs-input-search-group').props().style;
-		expect(inputSearchStyle).toHaveProperty('--cs-input-search-border-radius', borderRadius);
+		const inputSearchStyle = uut.find('.cs-input-wrapper').props().style;
+		expect(inputSearchStyle).toHaveProperty('--cs-input-border-radius', borderRadius);
 	});
 
 	it('should set disabled attribute', () => {
@@ -57,9 +56,9 @@ describe('<CSInputSearch />', () => {
 
 	it('should display in the error state', () => {
 		const uut = shallow(<CSInputSearch label={label} error />);
-		const inputSearchError = uut.find('.cs-input-search.cs-input-search-error');
+		const inputSearchError = uut.find('.cs-input-wrapper.cs-input-wrapper-error');
 		expect(inputSearchError).toHaveLength(1);
-		expect(inputSearchError.prop('aria-invalid')).toBeTruthy();
+		expect(inputSearchError.find('.cs-input-search').prop('aria-invalid')).toBeTruthy();
 	});
 
 	it('should pass errorMessage to CSFieldErrorMsg', () => {
@@ -68,10 +67,15 @@ describe('<CSInputSearch />', () => {
 		expect(inputSearchErrorMsg.prop('message')).toBe(errorMessage);
 	});
 
-	it('should pass errorTooltip to CSFieldErrorMsg', () => {
-		const uut = shallow(<CSInputSearch label={label} error errorMessage={errorMessage} errorTooltip />);
-		const inputSearchErrorMsg = uut.find('CSFieldErrorMsg');
-		expect(inputSearchErrorMsg.prop('tooltipMessage')).toBeTruthy();
+	it('should pass errorMessage to CSTooltip', () => {
+		const uut = shallow(<CSInputSearch
+			label={label}
+			error
+			errorMessage={errorMessage}
+			errorTooltip
+		/>);
+		const CSTooltip = uut.find('CSTooltip');
+		expect(CSTooltip.prop('content')).toBe(errorMessage);
 	});
 
 	it('should pass helpText to CSLabel', () => {
@@ -89,13 +93,13 @@ describe('<CSInputSearch />', () => {
 
 	it('should left-position the search icon', () => {
 		const uut = shallow(<CSInputSearch label={label} iconPosition="left" />);
-		const inputSearch = uut.find('.cs-input-search-group.cs-icon-left');
+		const inputSearch = uut.find('CSIcon + .cs-input-search');
 		expect(inputSearch).toHaveLength(1);
 	});
 
 	it('should right-position the search icon', () => {
 		const uut = shallow(<CSInputSearch label={label} iconPosition="right" />);
-		const inputSearch = uut.find('.cs-input-search-group.cs-icon-right');
+		const inputSearch = uut.find('.cs-input-search + CSIcon');
 		expect(inputSearch).toHaveLength(1);
 	});
 
@@ -209,8 +213,8 @@ describe('<CSInputSearch />', () => {
 	it('should set a custom width', () => {
 		const width = '10rem';
 		const uut = shallow(<CSInputSearch label={label} width={width} />);
-		const inputSearchStyle = uut.find('.cs-input-search-group').props().style;
-		expect(inputSearchStyle).toHaveProperty('--search-width', width);
+		const inputSearchStyle = uut.find('.cs-input-wrapper').props().style;
+		expect(inputSearchStyle).toHaveProperty('--cs-input-width', width);
 	});
 
 	it('should have a custom class name', () => {

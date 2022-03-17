@@ -1,11 +1,11 @@
-import React, { CSSProperties, useImperativeHandle, useRef } from 'react';
+import React, { CSSProperties, useImperativeHandle, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
 import CSButton from './CSButton';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSLabel from './CSLabel';
 import CSIcon from './CSIcon';
-import { CSTooltipPosition } from './CSTooltip';
+import CSTooltip, { CSTooltipPosition } from './CSTooltip';
 
 export type CSInputSearchIconPosition = 'left' | 'right';
 
@@ -71,12 +71,22 @@ const CSInputSearch = ({
 }: CSInputSearchProps) => {
 	const inputSearchInnerRef = useRef<HTMLInputElement>(null);
 	const { current: uniqueAutoId } = useRef(id || uuidv4());
+	const [focused, setFocused] = useState(false);
+
+	const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+		setFocused(true);
+		onFocus?.(event);
+	};
+
+	const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+		setFocused(false);
+		onBlur?.(event);
+	};
 
 	useImperativeHandle(forwardRef, () => inputSearchInnerRef.current);
 
 	const handleClearSearch = () => {
 		onClearSearch?.();
-
 		inputSearchInnerRef.current?.focus();
 	};
 
@@ -88,78 +98,92 @@ const CSInputSearch = ({
 		},
 	);
 
-	const inputSearchGroupClasses = classNames(
-		'cs-input-search-group',
+	const inputWrapperClasses = classNames(
+		'cs-input-wrapper',
 		{
-			[`cs-icon-${iconPosition}`]: iconPosition,
+			'cs-input-wrapper-error': error,
+			'cs-input-wrapper-disabled': disabled,
+			'cs-input-wrapper-focused': focused,
 		},
 	);
 
 	const inputSearchClasses = classNames(
 		'cs-input-search',
-		{
-			'cs-input-search-error': error,
-		},
-	);
-
-	const inputClearClasses = classNames(
-		'cs-input-search-clear',
-		{
-			'cs-input-search-clear-tooltip': errorTooltip,
-		},
+		'cs-invisible-input',
 	);
 
 	const style: CSSProperties = {
-		'--search-width': width,
-		'--cs-input-search-border-radius': borderRadius,
+		'--cs-input-width': width,
+		'--cs-input-border-radius': borderRadius,
 	};
+
+	const renderLabel = () => {
+		if (!label || labelHidden) return null;
+
+		return (
+			<CSLabel
+				htmlFor={uniqueAutoId}
+				label={label}
+				helpText={helpText}
+				tooltipPosition={tooltipPosition}
+				required={required}
+				title={labelTitle ? label : null}
+			/>
+		);
+	};
+
+	const renderErrorMessage = () => {
+		if (!error || !errorMessage || errorTooltip) return null;
+
+		return <CSFieldErrorMsg message={errorMessage} />;
+	};
+
+	const renderErrorTooltip = () => {
+		if (!error || !errorTooltip) return null;
+
+		return <CSTooltip variant="error" content={errorMessage} />;
+	};
+
+	const searchIcon =	(
+		<CSIcon
+			name="search"
+			color="var(--cs-input-icon-fill)"
+			size="0.875rem"
+		/>
+	);
 
 	return (
 		<div className={inputSearchWrapperClasses}>
-			{label && !labelHidden && (
-				<CSLabel
-					htmlFor={uniqueAutoId}
-					label={label}
-					helpText={helpText}
-					tooltipPosition={tooltipPosition}
-					required={required}
-					title={labelTitle ? label : null}
-				/>
-			)}
-			<div className={inputSearchGroupClasses} style={style}>
-				<CSIcon
-					name="search"
-					className="cs-input-search-icon"
-					color="var(--cs-input-icon-fill)"
-					size="0.875rem"
-				/>
+			{renderLabel()}
+			<div className={inputWrapperClasses} style={style}>
+				{iconPosition === 'left' && searchIcon }
 				<input
-					className={inputSearchClasses}
 					autoFocus={autoFocus}
 					onChange={onChange}
 					id={uniqueAutoId}
+					className={inputSearchClasses}
 					placeholder={placeholder}
 					disabled={disabled}
 					required={required}
 					aria-label={label}
 					aria-invalid={error}
 					aria-required={required}
-					value={value}
+					value={!value && onChange ? '' : value}
 					type="text"
 					autoComplete="off"
 					ref={inputSearchInnerRef}
 					onKeyDown={onKeyDown}
-					onBlur={onBlur}
+					onBlur={handleBlur}
 					onClick={onClick}
-					onFocus={onFocus}
+					onFocus={handleFocus}
 					title={title}
 					{...rest}
 				/>
+				{iconPosition === 'right' && searchIcon}
 				{value && (
 					<CSButton
 						btnType="transparent"
 						btnStyle="brand"
-						className={inputClearClasses}
 						iconColor="var(--cs-input-clear)"
 						iconName="close"
 						labelHidden
@@ -168,8 +192,9 @@ const CSInputSearch = ({
 						size="small"
 					/>
 				)}
+				{renderErrorTooltip()}
 			</div>
-			{error && errorMessage && <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
+			{renderErrorMessage()}
 		</div>
 	);
 };

@@ -494,8 +494,16 @@ class CSInputSearchPreview extends React.Component<{}, CSInputSearchPreviewState
 						propName: 'value',
 						variations: [
 							{
-								component: <CSInputSearch label="Type here" value="Value" />,
-								code: '<CSInputSearch label="Type here" value="Value" />'
+								component: <CSInputSearch
+									label="Type here"
+									value="Value"
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => event.target.value}
+								/>,
+								code: `<CSInputSearch
+									label="Type here"
+									value="Value"
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'value')}
+								/>`
 							}
 						]
 					}, {
