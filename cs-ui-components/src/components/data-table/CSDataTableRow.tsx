@@ -109,7 +109,7 @@ const CSDataTableRow = ({
 
 	const renderExpandButton = () => {
 		// Do not render an expand button
-		// if the row isn't collapsible of it it has no subsections
+		// if the row isn't collapsible or if it has no subsections
 		if (!isCollapsible || (!hasSubsection && !children)) return null;
 
 		return (
@@ -136,7 +136,7 @@ const CSDataTableRow = ({
 		);
 	};
 
-	// Determines whether or not a hierarchical sub-level exists
+	// Determines whether a hierarchical sublevel exists
 	// Recursively renders new table groups to display children
 	const renderChildGroup = () => {
 		// Don't render if there are no children
@@ -306,6 +306,7 @@ const CSDataTableRow = ({
 				ref={rowRef}
 				role="row"
 				aria-level={level + 1}
+				aria-expanded={isCollapsible && (hasSubsection || children) ? rowMeta.expanded : undefined}
 				aria-selected={dataTableSelectable ? rowMeta.selected : undefined}
 				tabIndex={0}
 				onClick={handleRowClick}

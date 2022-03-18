@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { shallow, mount } from 'enzyme';
 import CSDataTable, { CSDataTableColumnAlign, CSDataTableRowWithMetaInterface } from '../../components/data-table/CSDataTable';
-import CSIcon from '../../components/CSIcon';
-import CSChip from '../../components/CSChip';
-import CSButton from '../../components/CSButton';
+import { CSCheckboxLabelPosition, CSCheckboxVariant } from '../../components/CSCheckbox';
+import { CSAutopositions } from '../../helpers/autoposition/cs-autoposition-types';
+import { actions, icons } from '../common/custom-data';
 
 const columns = [
 	{
@@ -58,38 +58,64 @@ const rows = [
 	},
 ];
 
+// This is meant to be used
+// as a generic object for testing
+// row specific attributes and
+// can be used well with the
+// spread syntax to reduce repetition
+const additionalRow = {
+	key: 'london',
+	data: {
+		name: 'London',
+		population: 9950000,
+		area: 1738,
+		timezone: 'GMT/BST',
+		elevation: 11,
+	},
+};
+
+// Generate a subset of rows
+// that can be used to test props
+// that should only apply to some rows
+const rowsSubset = rows.slice(0, -1);
+// Generate an array f keys from the objects above
+const rowKeysSubset = rowsSubset.map((rowSubset) => rowSubset.key);
+
+const sectionRender = (row: CSDataTableRowWithMetaInterface) => row.data!.country;
+
 describe('<CSDataTable />', () => {
 	it('should render default CSDataTable', () => {
 		const uut = mount(<CSDataTable columns={columns} rows={rows} />);
-		const dataTableRows = uut.find('.cs-data-table-body .cs-data-table-row-wrapper');
-		const dataTableHeaderCols = uut.find('.cs-data-table-header .cs-data-table-cell').at(0);
+		const dataTableFirstHeaderCell = uut.find('CSDataTableHeader .cs-data-table-cell').first();
+		const dataTableRows = uut.find('.cs-data-table-body CSDataTableRow');
+
 		// Make sure table header is shown
 		expect(uut.find('CSDataTableHeader')).toHaveLength(1);
 		// Make sure table group is shown
 		expect(uut.find('CSDataTableGroup')).toHaveLength(1);
-		// Make sure it has borderless false
+		// Make sure borders are visible
 		expect(uut.find('.cs-data-table-borderless')).toHaveLength(0);
-		// Make sure it has no striped row
+		// Make sure rows aren't striped
 		expect(uut.find('.cs-data-table-striped')).toHaveLength(0);
-		// Make sure it has no sticky header
+		// Make sure the header is sticky
 		expect(uut.find('.cs-data-table-sticky-header')).toHaveLength(1);
-		// Make sure it has no disable hover
+		// Make sure hover styles are set
 		expect(uut.find('.cs-data-table-disable-hover')).toHaveLength(0);
 		// Make sure the content is aligned left
-		expect(dataTableHeaderCols.hasClass('cs-data-table-align-center')).toBeFalsy();
-		expect(dataTableHeaderCols.hasClass('cs-data-table-align-right')).toBeFalsy();
+		expect(dataTableFirstHeaderCell.hasClass('cs-data-table-align-center')).toBeFalsy();
+		expect(dataTableFirstHeaderCell.hasClass('cs-data-table-align-right')).toBeFalsy();
 		dataTableRows.forEach((row) => {
-			expect(row.find('.cs-data-table-cell').at(0).hasClass('cs-data-table-align-center')).toBeFalsy();
-			expect(row.find('.cs-data-table-cell').at(0).hasClass('cs-data-table-align-right')).toBeFalsy();
+			expect(row.find('.cs-data-table-cell').first().hasClass('cs-data-table-align-center')).toBeFalsy();
+			expect(row.find('.cs-data-table-cell').first().hasClass('cs-data-table-align-right')).toBeFalsy();
 		});
-		// Make sure the wrap prop is false
-		expect(dataTableHeaderCols.find('.cs-data-table-column-wrap')).toHaveLength(0);
+		// Make sure wrapping is disabled
+		expect(dataTableFirstHeaderCell.find('.cs-data-table-column-wrap')).toHaveLength(0);
 		dataTableRows.forEach((row) => {
 			expect(row.find('.cs-data-table-cell.cs-data-table-column-wrap')).toHaveLength(0);
 		});
 	});
 
-	it('displays empty data table if no cols and rows', () => {
+	it('displays empty data table when no data is given', () => {
 		const uut = mount(<CSDataTable columns={[]} rows={[]} />);
 		const dataTableHeader = uut.find('CSDataTableHeader');
 		const dataTableGroup = uut.find('CSDataTableGroup');
@@ -98,49 +124,49 @@ describe('<CSDataTable />', () => {
 		expect(dataTableGroup.find('.cs-data-table-row')).toHaveLength(0);
 	});
 
-	it('should render table with no border', () => {
+	it('should hide horizontal borders', () => {
 		const uut = shallow(<CSDataTable columns={columns} rows={rows} borderless />);
 		expect(uut.find('.cs-data-table.cs-data-table-borderless')).toHaveLength(1);
 	});
 
-	it('should show column divider to the table', () => {
+	it('should show column dividers', () => {
 		const uut = shallow(<CSDataTable columns={columns} rows={rows} columnDividers />);
 		expect(uut.find('.cs-data-table.cs-data-table-column-dividers')).toHaveLength(1);
 	});
 
-	it('should render table with density as compact', () => {
+	it('should render table with compact density', () => {
 		const uut = shallow(<CSDataTable columns={columns} rows={rows} />);
 		expect(uut.find('.cs-data-table.cs-data-table-density-comfortable')).toHaveLength(0);
 		expect(uut.find('.cs-data-table.cs-data-table-density-spacious')).toHaveLength(0);
 	});
 
-	it('should render table with density as comfortable', () => {
+	it('should render table with comfortable density', () => {
 		const uut = shallow(<CSDataTable columns={columns} rows={rows} density="comfortable" />);
 		expect(uut.find('.cs-data-table.cs-data-table-density-comfortable')).toHaveLength(1);
 	});
 
-	it('should render table with density as spacious', () => {
+	it('should render table with spacious density', () => {
 		const uut = shallow(<CSDataTable columns={columns} rows={rows} density="spacious" />);
 		expect(uut.find('.cs-data-table.cs-data-table-density-spacious')).toHaveLength(1);
 	});
 
-	it('should disable the hover', () => {
+	it('should disable hover', () => {
 		const uut = shallow(<CSDataTable columns={columns} rows={rows} disableHover />);
 		expect(uut.find('.cs-data-table.cs-data-table-disable-hover')).toHaveLength(1);
 	});
 
-	it('should render the table without head', () => {
+	it('should render the table without a header', () => {
 		const uut = shallow(<CSDataTable columns={columns} rows={rows} headless />);
 		expect(uut.find('.cs-data-table.cs-data-table-headless')).toHaveLength(1);
 		expect(uut.find('CSDataTableHeader')).toHaveLength(0);
 	});
 
 	it('should render the table with max height', () => {
-		const dataTableHeight = '120px';
-		const uut = shallow(<CSDataTable columns={columns} rows={rows} maxHeight={dataTableHeight} />);
+		const maxHeight = '120px';
+		const uut = shallow(<CSDataTable columns={columns} rows={rows} maxHeight={maxHeight} />);
 
 		const dataTableStyle = uut.find('.cs-data-table-wrapper').get(0).props.style;
-		expect(dataTableStyle).toHaveProperty('--cs-data-table-max-height', dataTableHeight);
+		expect(dataTableStyle).toHaveProperty('--cs-data-table-max-height', maxHeight);
 	});
 
 	it('should set the row height', () => {
@@ -151,22 +177,14 @@ describe('<CSDataTable />', () => {
 		expect(dataTableStyle).toHaveProperty('--cs-data-table-row-height', rowHeight);
 	});
 
-	it('should render the table without fixed head', () => {
+	it('should render the table without a sticky header', () => {
 		const uut = shallow(<CSDataTable columns={columns} rows={rows} stickyHeader={false} />);
 		expect(uut.find('.cs-data-table.cs-data-table-sticky-header')).toHaveLength(0);
 	});
 
-	it('should render the table with striped row', () => {
+	it('should render the table with striped rows', () => {
 		const uut = shallow(<CSDataTable columns={columns} rows={rows} striped />);
 		expect(uut.find('.cs-data-table.cs-data-table-striped')).toHaveLength(1);
-	});
-
-	it('should have a custom class name', () => {
-		const customClass = 'custom-class';
-		const uut = shallow(<CSDataTable columns={columns} rows={rows} className={customClass} />);
-		const dataTable = uut.find(`.cs-data-table.${customClass}`);
-
-		expect(dataTable).toHaveLength(1);
 	});
 
 	it('should have a custom ID', () => {
@@ -177,537 +195,737 @@ describe('<CSDataTable />', () => {
 		expect(dataTable).toHaveLength(1);
 	});
 
-	it('should have title attribute in each columns', () => {
-		const columnWithTitle = [
-			{
-				key: 'country',
-				header: 'country',
-				title: true,
-			}, ...columns,
-		];
-		const uut = mount(<CSDataTable columns={columnWithTitle} rows={rows} />);
-		const dataTableRows = uut.find('.cs-data-table-body .cs-data-table-row-wrapper');
-		dataTableRows.forEach((row) => {
-			const tableBodyCell = row.find('.cs-data-table-cell').at(0).find('.cs-data-table-truncate');
-			const cellText = tableBodyCell.text();
-			expect(row.find('.cs-data-table-cell').at(0).find('.cs-data-table-truncate').prop('title')).toBe(cellText);
-		});
+	it('should have a custom class name', () => {
+		const customClass = 'custom-class';
+		const uut = shallow(<CSDataTable columns={columns} rows={rows} className={customClass} />);
+		const dataTable = uut.find(`.cs-data-table.${customClass}`);
+
+		expect(dataTable).toHaveLength(1);
 	});
 
-	it('should have align particular column to left', () => {
-		const columnAlignCenter = [
+	it('should accept arbitrary props', () => {
+		const testId = 'test-id';
+		const uut = shallow(<CSDataTable columns={columns} rows={rows} data-testid={testId} />);
+		const dataTable = uut.find({ 'data-testid': testId });
+		expect(dataTable).toHaveLength(1);
+	});
+});
+
+describe('<CSDataTable /> - columns', () => {
+	it('should left-align column contents', () => {
+		const extendedColumns = [
 			{
 				key: 'country',
 				header: 'country',
 				align: 'left' as CSDataTableColumnAlign,
 			}, ...columns,
 		];
-		const uut = mount(<CSDataTable columns={columnAlignCenter} rows={rows} />);
-		const dataTableRows = uut.find('.cs-data-table-body .cs-data-table-row-wrapper');
-		const dataTableHeaderCols = uut.find('.cs-data-table-header .cs-data-table-cell').at(0);
+		const uut = mount(<CSDataTable columns={extendedColumns} rows={rows} />);
 
-		expect(dataTableHeaderCols.hasClass('cs-data-table-align-left')).toBeTruthy();
+		const dataTableHeaderCells = uut.find('CSDataTableHeader .cs-data-table-cell');
+		expect(dataTableHeaderCells.at(0).hasClass('cs-data-table-align-left')).toBeTruthy();
+
+		const dataTableRows = uut.find('.cs-data-table-body CSDataTableRow');
 		dataTableRows.forEach((row) => {
 			expect(row.find('.cs-data-table-cell').at(0).hasClass('cs-data-table-align-left')).toBeTruthy();
 		});
 	});
 
-	it('should have align particular column to center', () => {
-		const columnAlignCenter = [
+	it('should center-align column contents', () => {
+		const extendedColumns = [
 			{
 				key: 'country',
 				header: 'country',
 				align: 'center' as CSDataTableColumnAlign,
 			}, ...columns,
 		];
-		const uut = mount(<CSDataTable columns={columnAlignCenter} rows={rows} />);
-		const dataTableRows = uut.find('.cs-data-table-body .cs-data-table-row-wrapper');
-		const dataTableHeaderCols = uut.find('.cs-data-table-header .cs-data-table-cell').at(0);
+		const uut = mount(<CSDataTable columns={extendedColumns} rows={rows} />);
 
-		expect(dataTableHeaderCols.hasClass('cs-data-table-align-center')).toBeTruthy();
+		const dataTableHeaderCells = uut.find('CSDataTableHeader .cs-data-table-cell');
+		expect(dataTableHeaderCells.at(0).hasClass('cs-data-table-align-center')).toBeTruthy();
+
+		const dataTableRows = uut.find('.cs-data-table-body CSDataTableRow');
 		dataTableRows.forEach((row) => {
 			expect(row.find('.cs-data-table-cell').at(0).hasClass('cs-data-table-align-center')).toBeTruthy();
 		});
 	});
 
-	it('should have align particular column to right', () => {
-		const columnAlignRight = [
+	it('should right-align column contents', () => {
+		const extendedColumns = [
 			{
 				key: 'country',
 				header: 'country',
 				align: 'right' as CSDataTableColumnAlign,
 			}, ...columns,
 		];
-		const uut = mount(<CSDataTable columns={columnAlignRight} rows={rows} />);
-		const dataTableRows = uut.find('.cs-data-table-body .cs-data-table-row-wrapper');
-		const dataTableHeaderCols = uut.find('.cs-data-table-header .cs-data-table-cell').at(0);
+		const uut = mount(<CSDataTable columns={extendedColumns} rows={rows} />);
 
-		expect(dataTableHeaderCols.hasClass('cs-data-table-align-right')).toBeTruthy();
+		const dataTableHeaderCells = uut.find('CSDataTableHeader .cs-data-table-cell');
+		expect(dataTableHeaderCells.at(0).hasClass('cs-data-table-align-right')).toBeTruthy();
+
+		const dataTableRows = uut.find('.cs-data-table-body CSDataTableRow');
 		dataTableRows.forEach((row) => {
 			expect(row.find('.cs-data-table-cell').at(0).hasClass('cs-data-table-align-right')).toBeTruthy();
 		});
 	});
 
-	it('should have column class name', () => {
+	it('should apply a custom CSS class to column body cells', () => {
+		const cellClassName = 'custom-class';
+		const extendedColumns = [
+			{
+				key: 'country',
+				header: 'country',
+				cellClassName,
+			}, ...columns,
+		];
+		const uut = mount(<CSDataTable columns={extendedColumns} rows={rows} />);
+
+		const dataTableRows = uut.find('.cs-data-table-body CSDataTableRow');
+		dataTableRows.forEach((row) => {
+			expect(row.find('.cs-data-table-cell').at(0).hasClass(cellClassName)).toBeTruthy();
+		});
+	});
+
+	it('should apply a dynamic CSS class to column body cells', () => {
 		const className = 'custom-class';
-		const columnClassNames = [
+		const cellClassName = (row: CSDataTableRowWithMetaInterface) => (row.data!.country === 'Croatia' ? className : '');
+		const extendedColumns = [
 			{
 				key: 'country',
 				header: 'country',
-				columnClassName: className,
+				cellClassName,
 			}, ...columns,
 		];
-		const uut = mount(<CSDataTable columns={columnClassNames} rows={rows} />);
-		const dataTableRows = uut.find('.cs-data-table-body .cs-data-table-row-wrapper');
-		const dataTableHeaderCols = uut.find('.cs-data-table-header .cs-data-table-cell').at(0);
-		expect(dataTableHeaderCols.hasClass(className)).toBeTruthy();
-		dataTableRows.forEach((row) => {
-			expect(row.find('.cs-data-table-cell').at(0).hasClass(className)).toBeTruthy();
+		const uut = mount(<CSDataTable columns={extendedColumns} rows={rows} />);
+
+		const dataTableRows = uut.find('.cs-data-table-body CSDataTableRow');
+		dataTableRows.forEach((row, rowIndex) => {
+			expect(row.find('.cs-data-table-cell').at(0).hasClass(className)).toBe(rows[rowIndex].data.country === 'Croatia');
 		});
 	});
 
-	it('should have cell class name', () => {
-		const className = 'custom-class';
-		const columnClassNames = [
+	it('should apply a custom CSS class to all column cells', () => {
+		const columnClassName = 'custom-class';
+		const extendedColumns = [
 			{
 				key: 'country',
 				header: 'country',
-				cellClassName: className,
+				columnClassName,
 			}, ...columns,
 		];
-		const uut = mount(<CSDataTable columns={columnClassNames} rows={rows} />);
-		const dataTableRows = uut.find('.cs-data-table-body .cs-data-table-row-wrapper');
+		const uut = mount(<CSDataTable columns={extendedColumns} rows={rows} />);
+
+		const dataTableHeaderCols = uut.find('CSDataTableHeader .cs-data-table-cell');
+		expect(dataTableHeaderCols.at(0).hasClass(columnClassName)).toBeTruthy();
+
+		const dataTableRows = uut.find('.cs-data-table-body CSDataTableRow');
 		dataTableRows.forEach((row) => {
-			expect(row.find('.cs-data-table-cell').at(0).hasClass(className)).toBeTruthy();
+			expect(row.find('.cs-data-table-cell').at(0).hasClass(columnClassName)).toBeTruthy();
 		});
 	});
 
-	it('should have  class name', () => {
-		const customClassName = 'custom-class';
-		const columnClassNames = [
-			{
-				key: 'population',
-				header: 'Population',
-				className: customClassName,
-			}, ...columns,
-		];
-		const uut = mount(<CSDataTable columns={columnClassNames} rows={rows} />);
-		const dataTableHeaderCols = uut.find('.cs-data-table-header .cs-data-table-cell').at(0);
-		expect(dataTableHeaderCols.hasClass(customClassName)).toBeTruthy();
-	});
-
-	it('should set flexbox grow', () => {
-		const cellGrow = 3;
-		const columnClassNames = [
+	it('should apply flexbox grow to the column', () => {
+		const grow = 3;
+		const extendedColumns = [
 			{
 				key: 'country',
 				header: 'country',
-				grow: cellGrow,
+				grow,
 			}, ...columns,
 		];
-		const uut = mount(<CSDataTable columns={columnClassNames} rows={rows} />);
-		const dataTableRows = uut.find('.cs-data-table-body .cs-data-table-row-wrapper');
-		const dataTableHeaderCols = uut.find('.cs-data-table-header .cs-data-table-cell').get(0);
+		const uut = mount(<CSDataTable columns={extendedColumns} rows={rows} />);
 
-		const dataTableHeaderCellStyle = dataTableHeaderCols.props.style;
-		expect(dataTableHeaderCellStyle).toHaveProperty('--cs-data-table-column-flex', cellGrow);
+		const dataTableHeaderCells = uut.find('CSDataTableHeader .cs-data-table-cell');
+		const dataTableHeaderFirstCellStyle = dataTableHeaderCells.get(0).props.style;
+		expect(dataTableHeaderFirstCellStyle).toHaveProperty('--cs-data-table-column-flex', grow);
 
+		const dataTableRows = uut.find('.cs-data-table-body CSDataTableRow');
 		dataTableRows.forEach((row) => {
-			const dataTableCellStyle = row.find('.cs-data-table-cell').get(0).props.style;
-			expect(dataTableCellStyle).toHaveProperty('--cs-data-table-column-flex', cellGrow);
+			const dataTableFirstCellStyle = row.find('.cs-data-table-cell').get(0).props.style;
+			expect(dataTableFirstCellStyle).toHaveProperty('--cs-data-table-column-flex', grow);
 		});
 	});
 
-	it('should have header as string', () => {
+	it('should render custom cell content', () => {
+		const render = (row: CSDataTableRowWithMetaInterface) => <div className="custom-content">{row.data!.name}</div>;
+		const extendedColumns = [
+			{
+				key: 'country',
+				header: 'country',
+				render,
+			}, ...columns,
+		];
+		const uut = mount(<CSDataTable columns={extendedColumns} rows={rows} />);
+
+		const dataTableRows = uut.find('.cs-data-table-body CSDataTableRow');
+		dataTableRows.forEach((row, rowIndex) => {
+			const dataTableFirstCellContent = row.find('.cs-data-table-cell').at(0).find('.custom-content');
+			expect(dataTableFirstCellContent).toHaveLength(1);
+			expect(dataTableFirstCellContent.text()).toBe(rows[rowIndex].data!.name);
+		});
+	});
+
+	it('should render a string header', () => {
 		const uut = mount(<CSDataTable columns={columns} rows={rows} />);
-		const dataTableHeaderCols = uut.find('.cs-data-table-header .cs-data-table-cell').at(0);
-		expect(dataTableHeaderCols.find('.cs-data-table-truncate').text()).toContain(columns[0].header);
+		const dataTableHeaderCells = uut.find('CSDataTableHeader .cs-data-table-cell');
+		expect(dataTableHeaderCells.at(0).find('.cs-data-table-truncate').text()).toBe(columns[0].header);
 	});
 
-	it('should have header as element', () => {
-		const columnIcon = [
+	it('should render a custom element header', () => {
+		const extendedColumns = [
 			{
 				key: 'country',
-				header: <CSIcon name="date_input" />,
+				header: <div className="custom-header" />,
 			}, ...columns,
 		];
-		const uut = mount(<CSDataTable columns={columnIcon} rows={rows} />);
-		const dataTableHeaderCols = uut.find('.cs-data-table-header .cs-data-table-cell').at(0);
-		expect(dataTableHeaderCols.find('CSIcon')).toHaveLength(1);
+		const uut = mount(<CSDataTable columns={extendedColumns} rows={rows} />);
+		const dataTableHeaderCells = uut.find('CSDataTableHeader .cs-data-table-cell');
+		expect(dataTableHeaderCells.at(0).find('div.custom-header')).toHaveLength(1);
 	});
 
-	it('should have render prop in column', () => {
-		const columnRender = [
+	it('should provide header title', () => {
+		const extendedColumns = [
 			{
 				key: 'country',
 				header: 'country',
-				render: (row: CSDataTableRowWithMetaInterface) => <CSChip text={row.data?.location} />,
+				headerTitle: true,
 			}, ...columns,
 		];
-		const uut = mount(<CSDataTable columns={columnRender} rows={rows} />);
-		const dataTableRows = uut.find('.cs-data-table-body .cs-data-table-row-wrapper');
+		const uut = mount(<CSDataTable columns={extendedColumns} rows={rows} />);
 
-		dataTableRows.forEach((row) => {
-			const dataTableRenderChip = row.find('.cs-data-table-row .cs-data-table-cell').at(0).find('CSChip');
-			expect(dataTableRenderChip).toHaveLength(1);
+		const dataTableHeaderFirstCell = uut.find('CSDataTableHeader .cs-data-table-cell .cs-data-table-truncate').at(0);
+		expect(dataTableHeaderFirstCell.props().title).toBe(extendedColumns[0].header);
+	});
+
+	it('should provide column cell titles', () => {
+		const extendedColumns = [
+			{
+				key: 'country',
+				header: 'country',
+				title: true,
+			}, ...columns,
+		];
+		const uut = mount(<CSDataTable columns={extendedColumns} rows={rows} />);
+
+		const dataTableRows = uut.find('.cs-data-table-body CSDataTableRow');
+		dataTableRows.forEach((row, rowIndex) => {
+			const dataTableFirstCell = row.find('.cs-data-table-cell .cs-data-table-truncate').at(0);
+			expect(dataTableFirstCell.props().title).toBe(String(rows[rowIndex].data.country));
 		});
 	});
 
-	it('should have given column width', () => {
-		const collWidth = '320px';
-		const columnsWidth = [
+	it('should apply custom column width', () => {
+		const width = '320px';
+		const extendedColumns = [
 			{
 				key: 'country',
 				header: 'country',
-				width: collWidth,
+				width,
 			}, ...columns,
 		];
-		const uut = mount(<CSDataTable columns={columnsWidth} rows={rows} />);
-		const dataTableRows = uut.find('.cs-data-table-body .cs-data-table-row-wrapper');
-		const dataTableHeaderCols = uut.find('.cs-data-table-header .cs-data-table-cell').get(0);
+		const uut = mount(<CSDataTable columns={extendedColumns} rows={rows} />);
 
-		const dataTableHeaderCellStyle = dataTableHeaderCols.props.style;
-		expect(dataTableHeaderCellStyle).toHaveProperty('--cs-data-table-column-width', collWidth);
+		const dataTableHeaderCells = uut.find('CSDataTableHeader .cs-data-table-cell');
+		expect(dataTableHeaderCells.get(0).props.style).toHaveProperty('--cs-data-table-column-width', width);
 
+		const dataTableRows = uut.find('.cs-data-table-body CSDataTableRow');
 		dataTableRows.forEach((row) => {
 			const dataTableCellStyle = row.find('.cs-data-table-cell').get(0).props.style;
-			expect(dataTableCellStyle).toHaveProperty('--cs-data-table-column-width', collWidth);
+			expect(dataTableCellStyle).toHaveProperty('--cs-data-table-column-width', width);
 		});
 	});
 
-	it('should wrap particular column', () => {
-		const columnClassNames = [
+	it('should apply content wrapping to a column', () => {
+		const extendedColumns = [
 			{
 				key: 'country',
 				header: 'country',
 				wrap: true,
 			}, ...columns,
 		];
-		const uut = mount(<CSDataTable columns={columnClassNames} rows={rows} />);
-		const dataTableRows = uut.find('.cs-data-table-body .cs-data-table-row-wrapper');
-		const dataTableHeaderCols = uut.find('.cs-data-table-header .cs-data-table-cell').at(0);
+		const uut = mount(<CSDataTable columns={extendedColumns} rows={rows} />);
 
-		const headerCol = dataTableHeaderCols.find('.cs-data-table-column-wrap');
-		expect(headerCol).toHaveLength(1);
+		const dataTableHeaderCells = uut.find('CSDataTableHeader .cs-data-table-cell');
+		expect(dataTableHeaderCells.at(0).hasClass('cs-data-table-column-wrap')).toBeTruthy();
 
+		const dataTableRows = uut.find('.cs-data-table-body CSDataTableRow');
 		dataTableRows.forEach((row) => {
-			const wrapColumn = row.find('.cs-data-table-row .cs-data-table-cell').at(0).find('.cs-data-table-column-wrap');
-			expect(wrapColumn).toHaveLength(1);
+			const dataTableFirstCell = row.find('.cs-data-table-cell').at(0);
+			expect(dataTableFirstCell.hasClass('cs-data-table-column-wrap')).toBeTruthy();
 		});
 	});
 
-	it('should have basic Hierarchy', () => {
-		const childrenRows = [
+	it('should apply a CSS class to the column header', () => {
+		const className = 'custom-class';
+		const extendedColumns = [
 			{
-				key: 'london',
-				children: rows,
-				data: {
-					name: 'London',
-					population: 1153235,
-					area: 641,
-					timezone: 'CET/CEST',
-					elevation: 158,
-					country: 'Croatia',
-				},
-			},
+				key: 'population',
+				header: 'Population',
+				className,
+			}, ...columns,
 		];
-		const uut = mount(<CSDataTable columns={columns} rows={childrenRows} />);
-		const dataTableRowWrapper = uut.find('.cs-data-table-body .cs-data-table-row-wrapper').at(0);
-		const dataTableRowBtn = dataTableRowWrapper.find('.cs-data-table-cell').first().find('CSButton').first();
+		const uut = mount(<CSDataTable columns={extendedColumns} rows={rows} />);
 
-		expect(dataTableRowBtn.prop('label')).toBe('Expand row');
-		expect(dataTableRowBtn.prop('iconRotate')).toBe(-90);
-		expect(dataTableRowWrapper.find('.cs-data-table-group')).toHaveLength(0);
+		const dataTableHeaderCells = uut.find('CSDataTableHeader .cs-data-table-cell');
+		expect(dataTableHeaderCells.at(0).hasClass(className)).toBeTruthy();
+	});
+});
 
-		dataTableRowBtn.first().simulate('click');
-		const hierarchyRowWrapper = uut.find('.cs-data-table-body .cs-data-table-row-wrapper').at(0);
+describe('<CSDataTable /> - rows', () => {
+	it('should set a custom row height', () => {
+		const height = '4rem';
+		const extendedRows = [{ ...additionalRow, height }, ...rows];
+		const uut = mount(<CSDataTable columns={columns} rows={extendedRows} />);
 
-		expect(hierarchyRowWrapper.find('.cs-data-table-cell').at(0).find('CSButton').first()
-			.prop('label')).toBe('Collapse row');
-		expect(hierarchyRowWrapper.find('.cs-data-table-cell').at(0).find('CSButton').first()
-			.prop('iconRotate')).toBe(null);
-		expect(hierarchyRowWrapper.find('.cs-data-table-group')).toHaveLength(1);
+		const dataTableFirstRow = uut.find('.cs-data-table-body .cs-data-table-row').at(0);
+		expect(dataTableFirstRow.get(0).props.style).toHaveProperty('--cs-data-table-row-height', height);
 	});
 
-	it('should have hierarchy with defaultCollapsed', () => {
-		const childrenRows = [
-			{
-				key: 'london',
-				children: rows,
-				data: {
-					name: 'London',
-					population: 1153235,
-					area: 641,
-					timezone: 'CET/CEST',
-					elevation: 158,
-					country: 'Croatia',
-				},
-			},
-		];
+	it('should render a custom row', () => {
+		const render = (row: CSDataTableRowWithMetaInterface) => <div className="custom-row">{row.data!.name}</div>;
+		const extendedRows = [{ ...additionalRow, render }, ...rows];
+		const uut = mount(<CSDataTable columns={columns} rows={extendedRows} />);
 
-		const uut = mount(<CSDataTable columns={columns} defaultCollapsed={false} rows={childrenRows} />);
-		const dataTableRowWrapper = uut.find('.cs-data-table-body .cs-data-table-row-wrapper').at(0);
-		const dataTableRowBtn = dataTableRowWrapper.find('.cs-data-table-cell').first().find('CSButton').first();
-		expect(uut.prop('defaultCollapsed')).toBeFalsy();
-		expect(dataTableRowBtn.prop('label')).toBe('Collapse row');
-		const childRows = dataTableRowWrapper.find('.cs-data-table-group');
-		expect(childRows).toHaveLength(1);
+		const dataTableFirstRow = uut.find('.cs-data-table-body .cs-data-table-row').at(0).find('.custom-row');
+		expect(dataTableFirstRow).toHaveLength(1);
+		expect(dataTableFirstRow.text()).toBe(additionalRow.data.name);
 	});
 
-	it('should have custom hierarchy with collapsible false', () => {
-		const childrenRows = [
-			{
-				key: 'london',
-				children: rows,
-				data: {
-					name: 'London',
-					population: 1153235,
-					area: 641,
-					timezone: 'CET/CEST',
-					elevation: 158,
-					country: 'Croatia',
-				},
-			},
-		];
-		const uut = mount(<CSDataTable collapsible={false} columns={columns} rows={childrenRows} />);
-		const dataTableRowWrapper = uut.find('.cs-data-table-body .cs-data-table-row-wrapper').at(0);
-		expect(uut.prop('collapsible')).toBeFalsy();
-		const childRows = dataTableRowWrapper.find('.cs-data-table-group');
-		expect(childRows).toHaveLength(0);
-	});
+	it('should have a custom class name', () => {
+		const className = 'custom-class';
+		const extendedRows = [{ ...additionalRow, className }, ...rows];
+		const uut = mount(<CSDataTable columns={columns} rows={extendedRows} />);
 
-	it('should have subsection as base', () => {
-		const sectionRender = (row: CSDataTableRowWithMetaInterface) => (
-			<div className="custom-classname">{row.data!.country}</div>
+		const dataTableFirstRow = uut.find('.cs-data-table-body .cs-data-table-row-wrapper').at(0);
+		expect(dataTableFirstRow.hasClass(className)).toBeTruthy();
+	});
+});
+
+describe('<CSDataTable /> - selectability', () => {
+	it('should be selectable with checkboxes', () => {
+		const uut = mount(
+			<CSDataTable
+				columns={columns}
+				rows={rows}
+				selectable
+				selectionType="checkbox"
+			/>,
 		);
-		const uut = mount(<CSDataTable columns={columns} rows={rows} subsectionRender={sectionRender} />);
-		const dataTableRowWrapper = uut.find('.cs-data-table-body .cs-data-table-row-wrapper');
+		const dataTable = uut.find('.cs-data-table.cs-data-table-checkbox-selection');
+		expect(dataTable).toHaveLength(1);
 
-		dataTableRowWrapper.forEach((row, index) => {
-			const subsectionBtn = row.find('.cs-data-table-cell').first().find('CSButton').first();
-			expect(subsectionBtn).toHaveLength(1);
-			expect(subsectionBtn.prop('label')).toBe('Expand row');
-			expect(subsectionBtn.prop('iconRotate')).toBe(-90);
-			expect(row.find('.cs-data-table-subsection')).toHaveLength(0);
+		const dataTableRowCheckboxes = uut.find('CSDataTableRow .cs-data-table-cell-checkbox > CSCheckbox');
+		expect(dataTableRowCheckboxes).toHaveLength(rows.length);
 
-			subsectionBtn.first().simulate('click');
-			const subsectionIndex = uut.find('.cs-data-table-body .cs-data-table-row-wrapper').at(index);
-
-			expect(subsectionIndex.find('.cs-data-table-cell').at(0).find('CSButton').first()
-				.prop('label')).toBe('Collapse row');
-			expect(subsectionIndex.find('.cs-data-table-cell').at(0).find('CSButton').first()
-				.prop('iconRotate')).toBe(null);
-			expect(subsectionIndex.find('.cs-data-table-subsection')).toHaveLength(1);
-		});
+		const dataTableFirstRowCheckbox = dataTableRowCheckboxes.first();
+		expect(dataTableFirstRowCheckbox.prop('label')).toBe('Select row');
+		expect(dataTableFirstRowCheckbox.prop('hidden')).toBeFalsy();
+		expect(dataTableFirstRowCheckbox.prop('labelHidden')).toBeTruthy();
 	});
 
-	it('should have subsection with Hierarchy', () => {
-		const childrenRows = [
-			{
-				key: 'london',
-				children: rows,
-				data: {
-					name: 'London',
-					population: 1153235,
-					area: 641,
-					timezone: 'CET/CEST',
-					elevation: 158,
-					country: 'Croatia',
-				},
-			},
-		];
-		const handleOnClick = jest.fn();
-		const sectionRender = (row: CSDataTableRowWithMetaInterface) => (
-			<div className="custom-classname">{row.data!.country}</div>
-		);
-		const uut = mount(<CSDataTable columns={columns} rows={childrenRows} subsectionRender={sectionRender} onClick={handleOnClick} />);
-		const dataTableRowWrapper = uut.find('.cs-data-table-body .cs-data-table-row-wrapper').at(0);
-		const dataTableRowBtn = dataTableRowWrapper.find('.cs-data-table-cell').first().find('CSButton').first();
-		dataTableRowBtn.first().simulate('click');
-
-		const subsection = uut.find('.cs-data-table-subsection');
-		expect(subsection).toHaveLength(1);
-		const subsectionDataTableRows = uut.find('.cs-data-table-subsection + CSDataTableGroup').find('.cs-data-table-row-wrapper');
-		subsectionDataTableRows.forEach((row, index) => {
-			const subsectionBtn = row.find('.cs-data-table-cell').first().find('CSButton').first();
-			expect(subsectionBtn.prop('label')).toBe('Expand row');
-			expect(subsectionBtn.prop('iconRotate')).toBe(-90);
-			expect(dataTableRowWrapper.at(index).find('.cs-data-table-subsection')).toHaveLength(0);
-
-			subsectionBtn.first().simulate('click');
-
-			const subsectionIndex = uut.find('.cs-data-table-body .cs-data-table-row-wrapper').at(index);
-			expect(subsectionIndex.find('.cs-data-table-cell').first().find('CSButton').first()
-				.prop('label')).toBe('Collapse row');
-			expect(subsectionIndex.find('.cs-data-table-cell').first().find('CSButton').first()
-				.prop('iconRotate')).toBe(null);
-		});
+	it('should not be selectable when overridden by row settings', () => {
+		const extendedRows = [{ ...additionalRow, selectable: false }, ...rows];
+		const uut = mount(<CSDataTable columns={columns} rows={extendedRows} selectable />);
+		const dataTableRowCheckbox = uut.find('CSDataTableRow').first().find('CSCheckbox');
+		expect(dataTableRowCheckbox).toHaveLength(0);
 	});
 
-	it('should have selective subsection in a row', () => {
-		const area = 500;
-		const renderSubsection = (row: CSDataTableRowWithMetaInterface) => (
-			row.data!.area > area ? <div className="custom-classname">{row.data!.country}</div> : null
+	it('should be selectable with entire row selection', () => {
+		const uut = mount(
+			<CSDataTable
+				columns={columns}
+				rows={rows}
+				selectable
+				selectionType="row"
+			/>,
 		);
-		const uut = mount(<CSDataTable columns={columns} rows={rows} subsectionRender={renderSubsection} />);
-		const dataTableRowWrapper = uut.find('.cs-data-table-body .cs-data-table-row-wrapper');
+		const dataTable = uut.find('.cs-data-table.cs-data-table-row-selection');
+		expect(dataTable).toHaveLength(1);
 
-		dataTableRowWrapper.forEach((row) => {
-			const tableBodyRowCell = row.find('.cs-data-table-cell').at(3);
-			const subsectionBtn = tableBodyRowCell.find('CSButton').first();
+		const dataTableRowCheckboxes = uut.find('CSDataTableRow .cs-data-table-cell-checkbox.cs-data-table-cell-checkbox-hidden > CSCheckbox');
+		expect(dataTableRowCheckboxes).toHaveLength(rows.length);
 
-			if (Number(tableBodyRowCell.find('.cs-data-table-truncate').text()) > area) {
-				expect(subsectionBtn).toHaveLength(1);
-				expect(subsectionBtn.prop('iconRotate')).toBe(-90);
+		const dataTableFirstRowCheckbox = dataTableRowCheckboxes.first();
+		expect(dataTableFirstRowCheckbox.prop('hidden')).toBeTruthy();
+	});
+
+	it('should render selected checkboxes', () => {
+		const uut = mount(
+			<CSDataTable
+				columns={columns}
+				rows={rows}
+				selectable
+				selectedKeys={rowKeysSubset}
+			/>,
+		);
+		const dataTableRows = uut.find('CSDataTableRow');
+
+		dataTableRows.forEach((dataTableRow) => {
+			const dataTableRowCheckbox = dataTableRow.find('CSCheckbox');
+			const dataTableRowElement = dataTableRow.find('.cs-data-table-row');
+			if (rowKeysSubset.includes((dataTableRow.prop('row') as any).key)) {
+				expect(dataTableRowElement.prop('aria-selected')).toBeTruthy();
+				expect(dataTableRowCheckbox.prop('checked')).toBeTruthy();
+				expect(dataTableRowCheckbox.prop('label')).toEqual('Deselect row');
 			} else {
-				expect(subsectionBtn).toHaveLength(0);
+				expect(dataTableRowElement.prop('aria-selected')).toBeFalsy();
+				expect(dataTableRowCheckbox.prop('checked')).toBeFalsy();
+				expect(dataTableRowCheckbox.prop('label')).toEqual('Select row');
 			}
 		});
 	});
 
-	it('should have onCollapseClick false', () => {
-		const onCollapseClick = (event: React.MouseEvent<HTMLButtonElement>, row: CSDataTableRowWithMetaInterface) => {
-			row.meta.toggleExpanded();
-			alert(`${row.data!.name} children are now ${!row.meta.expanded ? 'visible' : 'hidden'}.`);
-		};
-		const childrenRows = [
-			{
-				key: 'london',
-				children: rows,
-				data: {
-					name: 'London',
-					population: 1153235,
-					area: 641,
-					timezone: 'CET/CEST',
-					elevation: 158,
-					country: 'Croatia',
-				},
-			},
-		];
-		const uut = mount(<CSDataTable columns={columns} onCollapseClick={onCollapseClick} rows={childrenRows} />);
-		const dataTableRowWrapper = uut.find('.cs-data-table-body .cs-data-table-row-wrapper').at(0);
-		expect(uut.prop('collapsible')).toBeFalsy();
-		const childRows = dataTableRowWrapper.find('.cs-data-table-group');
-		expect(childRows).toHaveLength(0);
-	});
+	it('render indeterminate checkboxes', () => {
+		const uut = mount(
+			<CSDataTable
+				columns={columns}
+				rows={rows}
+				selectable
+				indeterminateKeys={rowKeysSubset}
+			/>,
+		);
+		const dataTableRows = uut.find('CSDataTableRow');
 
-	it('should have basic checkbox selection', () => {
-		const uut = mount(<CSDataTable columns={columns} rows={rows} selectable />);
-		const dataTableRows = uut.find('.cs-data-table-body .cs-data-table-row-wrapper');
-
-		dataTableRows.forEach((row) => {
-			const checkBoxWrapper = row.find('.cs-data-table-cell.cs-data-table-cell-checkbox').find('CSCheckbox');
-			expect(checkBoxWrapper.prop('checked')).toBeFalsy();
-			expect(checkBoxWrapper.prop('label')).toBe('Select row');
-			expect(checkBoxWrapper).toHaveLength(1);
+		dataTableRows.forEach((dataTableRow) => {
+			if (rowKeysSubset.includes((dataTableRow.prop('row') as any).key)) {
+				expect(dataTableRow.find('CSCheckbox').prop('indeterminate')).toBeTruthy();
+			} else {
+				expect(dataTableRow.find('CSCheckbox').prop('indeterminate')).toBeFalsy();
+			}
 		});
 	});
 
-	it('should have basic checkbox selection with OnSelectChange', () => {
-		const handleSelectChange = jest.fn();
-		const uut = mount(<CSDataTable columns={columns} rows={rows} selectable onSelectChange={handleSelectChange} />);
-		const dataTableRows = uut.find('.cs-data-table-body .cs-data-table-row-wrapper');
+	it('render read-only checkboxes', () => {
+		const uut = mount(
+			<CSDataTable
+				columns={columns}
+				rows={rows}
+				selectable
+				readOnlyKeys={rowKeysSubset}
+			/>,
+		);
+		const dataTableRows = uut.find('CSDataTableRow');
 
-		dataTableRows.forEach((row) => {
-			const checkBoxWrapper = row.find('.cs-data-table-cell.cs-data-table-cell-checkbox').find('CSCheckbox').first();
-			expect(checkBoxWrapper.prop('checked')).toBeFalsy();
-			expect(checkBoxWrapper.prop('label')).toBe('Select row');
-			checkBoxWrapper.simulate('click');
+		dataTableRows.forEach((dataTableRow) => {
+			if (rowKeysSubset.includes((dataTableRow.prop('row') as any).key)) {
+				expect(dataTableRow.find('CSCheckbox').prop('readOnly')).toBeTruthy();
+			} else {
+				expect(dataTableRow.find('CSCheckbox').prop('readOnly')).toBeFalsy();
+			}
 		});
 	});
 
-	it('should have advance checkbox selection with wrap', () => {
-		const handleSelectChange = jest.fn();
-		const selectedKey = '';
-		const advanceCols = [
-			{
-				key: 'country',
-				wrap: true,
-				width: '6rem',
-				render: () => (
-					<CSButton
-						label={'Enable' && 'Disable'}
-						onClick={() => {}}
-					/>
-				),
-			}, ...columns,
-		];
-		const uut = mount(<CSDataTable columns={advanceCols} rows={rows} selectable multiselect selectedKeys={selectedKey} onSelectChange={handleSelectChange} />);
-		const dataTableRows = uut.find('.cs-data-table-body .cs-data-table-row-wrapper');
+	it('should render selected rows', () => {
+		const uut = mount(
+			<CSDataTable
+				columns={columns}
+				rows={rows}
+				selectable
+				selectionType="row"
+				selectedKeys={rowKeysSubset}
+			/>,
+		);
+		const dataTableRows = uut.find('CSDataTableRow');
 
-		dataTableRows.forEach((row) => {
-			const checkBoxWrapper = row.find('.cs-data-table-cell.cs-data-table-cell-checkbox').find('CSCheckbox');
-			expect(checkBoxWrapper).toHaveLength(1);
-			checkBoxWrapper.first().simulate('click');
-			const rowColumnWrap = row.find('.cs-data-table-column-wrap');
-			expect(rowColumnWrap).toHaveLength(1);
-			const rowDisableBtn = rowColumnWrap.find('CSButton').first();
-			expect(rowDisableBtn).toHaveLength(1);
+		dataTableRows.forEach((dataTableRow) => {
+			const dataTableRowCheckbox = dataTableRow.find('CSCheckbox');
+			const dataTableRowElement = dataTableRow.find('.cs-data-table-row');
+			expect(dataTableRowCheckbox.prop('hidden')).toBeTruthy();
+
+			if (rowKeysSubset.includes((dataTableRow.prop('row') as any).key)) {
+				expect(dataTableRowElement.hasClass('cs-data-table-row-selected')).toBeTruthy();
+				expect(dataTableRowElement.prop('aria-selected')).toBeTruthy();
+				expect(dataTableRowCheckbox.prop('checked')).toBeTruthy();
+				expect(dataTableRowCheckbox.prop('label')).toEqual('Deselect row');
+			} else {
+				expect(dataTableRowElement.hasClass('cs-data-table-row-selected')).toBeFalsy();
+				expect(dataTableRowElement.prop('aria-selected')).toBeFalsy();
+				expect(dataTableRowCheckbox.prop('checked')).toBeFalsy();
+				expect(dataTableRowCheckbox.prop('label')).toEqual('Select row');
+			}
 		});
 	});
 
-	it('should select the all rows by selecting header checkbox', () => {
+	it('should use a working onSelectChange callback with checkboxes', () => {
 		const handleSelectChange = jest.fn();
-		const checkboxHeader = {
-			label: 'Select All',
-			labelHidden: true,
+		const uut = mount(
+			<CSDataTable
+				columns={columns}
+				rows={rows}
+				selectable
+				selectionType="checkbox"
+				onSelectChange={handleSelectChange}
+			/>,
+		);
+		const dataTableRowCheckbox = uut.find('CSDataTableRow CSCheckbox').first();
+		dataTableRowCheckbox.prop('onChange')({ stopPropagation: () => {} } as React.ChangeEvent);
+		expect(handleSelectChange).toHaveBeenCalledTimes(1);
+	});
+
+	it('should use a working onSelectChange callback with row select', () => {
+		const handleSelectChange = jest.fn();
+		const uut = mount(
+			<CSDataTable
+				columns={columns}
+				rows={rows}
+				selectable
+				selectionType="row"
+				onSelectChange={handleSelectChange}
+			/>,
+		);
+		const dataTableRowElement = uut.find('CSDataTableRow .cs-data-table-row').first();
+		dataTableRowElement.simulate('click');
+		expect(handleSelectChange).toHaveBeenCalledTimes(1);
+	});
+
+	it('should pass headerCheckbox to CSCheckbox', () => {
+		const headerCheckbox = {
+			label: 'label',
+			actions,
+			borderRadius: '0',
 			checked: true,
+			disabled: true,
+			error: true,
+			errorMessage: 'error message',
+			errorTooltip: true,
+			helpText: 'help text',
+			hidden: true,
+			icons,
+			indeterminate: true,
+			labelHidden: true,
+			labelPosition: 'right' as CSCheckboxLabelPosition,
+			labelTitle: true,
+			name: 'name',
+			onBlur: () => {},
 			onChange: () => {},
+			onClick: () => {},
+			onKeyDown: () => {},
+			readOnly: true,
+			required: true,
+			title: 'title',
+			tooltipPosition: 'bottom-left' as CSAutopositions,
+			variant: 'brand' as CSCheckboxVariant,
+			id: 'checkbox-id',
+			className: 'checkbox-class-name',
 		};
-		const uut = mount(<CSDataTable columns={columns} rows={rows} selectable multiselect onSelectChange={handleSelectChange} headerCheckbox={checkboxHeader} />);
-		const dataTableRows = uut.find('.cs-data-table-body .cs-data-table-row-wrapper');
-		const dataTableHeaderCheckbox = uut.find('.cs-data-table-header .cs-data-table-cell-checkbox').find('CSCheckbox');
-		expect(uut.find('.cs-data-table.cs-data-table-checkbox-selection')).toHaveLength(1);
-		expect(uut.find('CSDataTableHeader').prop('headerCheckbox')).toBe(checkboxHeader);
-		expect(dataTableHeaderCheckbox).toHaveLength(1);
-		expect(dataTableHeaderCheckbox.prop('label')).toBe('Select All');
 
-		dataTableRows.forEach(async (row) => {
-			const checkBoxWrapper = row.find('.cs-data-table-cell.cs-data-table-cell-checkbox').find('CSCheckbox');
-			expect(checkBoxWrapper).toHaveLength(1);
-		});
+		const uut = mount(
+			<CSDataTable
+				columns={columns}
+				rows={rows}
+				selectable
+				selectionType="checkbox"
+				headerCheckbox={headerCheckbox}
+			/>,
+		);
+
+		const dataTableHeaderCheckbox = uut.find('CSDataTableHeader CSCheckbox');
+		expect(dataTableHeaderCheckbox.length).toBe(1);
+		expect(dataTableHeaderCheckbox.props()).toMatchObject(headerCheckbox);
 	});
 
-	it('should able to select the whole row', () => {
-		const uut = mount(<CSDataTable columns={columns} rows={rows} selectable selectionType="row" />);
-		const dataTableRows = uut.find('.cs-data-table-body .cs-data-table-row-wrapper');
+	it('should support multiselect', () => {
+		const uut = shallow(
+			<CSDataTable
+				columns={columns}
+				rows={rows}
+				selectable
+				multiselect
+			/>,
+		);
+		expect(uut.find('.cs-data-table').prop('aria-multiselectable')).toBeTruthy();
+	});
+});
 
-		dataTableRows.forEach((row) => {
-			const dataTableRow = row.find('.cs-data-table-row');
-			expect(dataTableRow.prop('aria-selected')).toBeFalsy();
+describe('<CSDataTable /> - hierarchy', () => {
+	it('should render children', () => {
+		const extendedRows = [{ ...additionalRow, children: rows }];
+		const uut = mount(<CSDataTable columns={columns} rows={extendedRows} />);
+		const dataTableParentRow = uut.find('CSDataTableRow');
+		expect(dataTableParentRow).toHaveLength(1);
+		expect(dataTableParentRow.prop('aria-expanded')).toBeFalsy();
+		expect((dataTableParentRow.prop('row') as any).key).toEqual(additionalRow.key);
+		expect(uut.find('CSDataTableGroup')).toHaveLength(1);
+
+		const parentRowElement = dataTableParentRow.find('.cs-data-table-row');
+		expect(parentRowElement.prop('aria-level')).toEqual(1);
+		expect(parentRowElement.prop('style')).toHaveProperty('--cs-data-table-column-offset', '2rem');
+
+		const dataTableExpandButton = parentRowElement.find('CSButton').first();
+		expect(dataTableExpandButton.prop('label')).toEqual('Expand row');
+		expect(dataTableExpandButton.prop('iconRotate')).toEqual(-90);
+
+		const dataTableCollapsedChildren = uut.find('CSDataTableRow CSDataTableRow');
+		expect(dataTableCollapsedChildren).toHaveLength(0);
+
+		dataTableExpandButton.simulate('click');
+
+		const dataTableCollapseButton = uut.find('CSDataTableRow CSButton').first();
+		expect(dataTableCollapseButton.prop('label')).toEqual('Collapse row');
+		expect(dataTableCollapseButton.prop('iconRotate')).toEqual(null);
+
+		const dataTableExpandedChildren = uut.find('CSDataTableRow CSDataTableRow');
+		expect(dataTableExpandedChildren).toHaveLength(rows.length);
+
+		const dataTableExpandedChildrenElement = dataTableExpandedChildren.find('.cs-data-table-row');
+		expect(dataTableExpandedChildrenElement.first().prop('aria-level')).toEqual(2);
+		expect(dataTableExpandedChildrenElement.first().prop('style')).toHaveProperty('--cs-data-table-column-offset', '3rem');
+
+		dataTableExpandedChildren.forEach((child, childIndex) => {
+			expect((child.prop('row') as any).key).toEqual(rows[childIndex].key);
 		});
+
+		const dataTableFirstRow = uut.find('CSDataTableRow .cs-data-table-row').first();
+		expect(dataTableFirstRow.prop('aria-expanded')).toBeTruthy();
+		expect(uut.find('CSDataTableGroup')).toHaveLength(2);
 	});
 
-	it('should select the whole row with onSelectChange', () => {
-		const handleSelectChange = jest.fn();
-		const uut = mount(<CSDataTable columns={columns} rows={rows} selectable selectionType="row" onSelectChange={handleSelectChange} />);
-		const dataTableRows = uut.find('.cs-data-table-body .cs-data-table-row-wrapper');
+	it('should render children as expanded by default', () => {
+		const extendedRows = [{ ...additionalRow, children: rows }];
+		const uut = mount(<CSDataTable columns={columns} rows={extendedRows} defaultCollapsed={false} />);
+		const dataTableFirstRow = uut.find('CSDataTableRow .cs-data-table-row').first();
+		expect(dataTableFirstRow.prop('aria-expanded')).toBeTruthy();
 
-		dataTableRows.forEach((row, index) => {
-			const rowCheckbox = row.find('.cs-data-table-cell-checkbox').first();
-			expect(rowCheckbox.hasClass('cs-data-table-cell-checkbox-hidden')).toBeTruthy();
-			const dataTableRow = row.find('.cs-data-table-row');
-			dataTableRow.first().simulate('click');
-			expect(handleSelectChange).toHaveBeenCalledTimes(index + 1);
-		});
+		const dataTableCollapseButton = uut.find('CSDataTableRow CSButton').first();
+		expect(dataTableCollapseButton.prop('label')).toEqual('Collapse row');
+		expect(dataTableCollapseButton.prop('iconRotate')).toEqual(null);
+
+		const dataTableExpandedChildren = uut.find('CSDataTableRow CSDataTableRow');
+		expect(dataTableExpandedChildren).toHaveLength(rows.length);
+
+		dataTableCollapseButton.simulate('click');
+
+		const dataTableExpandButton = uut.find('CSDataTableRow CSButton').first();
+		expect(dataTableExpandButton.prop('label')).toEqual('Expand row');
+		expect(dataTableExpandButton.prop('iconRotate')).toEqual(-90);
+
+		const dataTableCollapsedChildren = uut.find('CSDataTableRow CSDataTableRow');
+		expect(dataTableCollapsedChildren).toHaveLength(0);
+
+		const dataTableParentRow = uut.find('CSDataTableRow');
+		expect(dataTableParentRow).toHaveLength(1);
+		expect(dataTableParentRow.prop('aria-expanded')).toBeFalsy();
 	});
 
-	it('should select all rows except restricted rows', () => {
-		const handleSelectChange = jest.fn();
-		const restrictedRows = [{
-			key: 'country',
-			selectable: false,
-			data: {
-				name: 'London',
-				population: 9950000,
-				area: 1738,
-				timezone: 'GMT/BST',
-				elevation: 11,
-			},
-		}, ...rows];
-		const uut = mount(<CSDataTable columns={columns} rows={restrictedRows} selectable multiselect onSelectChange={handleSelectChange} />);
-		const dataTableRows = uut.find('.cs-data-table-body .cs-data-table-row-wrapper').at(0);
-		const checkBoxWrapper = dataTableRows.find('.cs-data-table-cell-checkbox').find('.cs-checkbox-wrapper');
-		expect(checkBoxWrapper).toHaveLength(0);
+	it('should render children as collapsed by default when overridden by row settings', () => {
+		const extendedRows = [{ ...additionalRow, defaultCollapsed: true, children: rows }];
+		const uut = mount(<CSDataTable columns={columns} rows={extendedRows} defaultCollapsed={false} />);
+		expect(uut.find('CSDataTableRow CSDataTableRow')).toHaveLength(0);
+	});
+
+	it('should render children as expanded by default when overridden by row settings', () => {
+		const extendedRows = [{ ...additionalRow, defaultCollapsed: false, children: rows }];
+		const uut = mount(<CSDataTable columns={columns} rows={extendedRows} defaultCollapsed />);
+		expect(uut.find('CSDataTableRow CSDataTableRow')).toHaveLength(rows.length);
+	});
+
+	it('should render children without toggle controls', () => {
+		const extendedRows = [{ ...additionalRow, children: rows }];
+		const uut = mount(
+			<CSDataTable
+				columns={columns}
+				rows={extendedRows}
+				defaultCollapsed={false}
+				collapsible={false}
+			/>,
+		);
+
+		expect(uut.find('CSDataTableRow CSButton')).toHaveLength(0);
+		expect(uut.find('CSDataTableRow CSDataTableRow')).toHaveLength(rows.length);
+		expect(uut.find('CSDataTableRow .cs-data-table-row').first().prop('style')).toHaveProperty('--cs-data-table-column-offset', 0);
+		expect(uut.find('CSDataTableRow CSDataTableRow .cs-data-table-row').first().prop('style')).toHaveProperty('--cs-data-table-column-offset', '1rem');
+	});
+
+	it('should render children with toggle controls when overridden by row settings', () => {
+		const extendedRows = [{ ...additionalRow, collapsible: true, children: rows }];
+		const uut = mount(<CSDataTable columns={columns} rows={extendedRows} collapsible={false} />);
+		expect(uut.find('CSDataTableRow CSButton').first()).toHaveLength(1);
+	});
+
+	it('should render children without toggle controls when overridden by row settings', () => {
+		const extendedRows = [{ ...additionalRow, collapsible: false, children: rows }];
+		const uut = mount(<CSDataTable columns={columns} rows={extendedRows} collapsible />);
+		expect(uut.find('CSDataTableRow CSButton')).toHaveLength(0);
+	});
+
+	it('should use a working onCollapseClick callback', () => {
+		const handleCollapseClick = jest.fn();
+		const extendedRows = [{ ...additionalRow, children: rows }];
+		const uut = mount(<CSDataTable columns={columns} rows={extendedRows} onCollapseClick={handleCollapseClick} />);
+		const dataTableRowCollapseButton = uut.find('CSDataTableRow CSButton').first();
+		dataTableRowCollapseButton.prop('onClick')({ } as React.MouseEvent);
+		expect(handleCollapseClick).toHaveBeenCalledTimes(1);
+	});
+});
+
+describe('<CSDataTable /> - subsections', () => {
+	it('should render subsections', () => {
+		const uut = mount(<CSDataTable columns={columns} rows={rows} subsectionRender={sectionRender} />);
+		const dataTableCollapsedRowElement = uut.find('CSDataTableRow .cs-data-table-row').first();
+		expect(dataTableCollapsedRowElement.prop('aria-expanded')).toBeFalsy();
+		expect(uut.find('.cs-data-table-subsection')).toHaveLength(0);
+
+		const dataTableExpandButton = dataTableCollapsedRowElement.find('CSButton').first();
+		expect(dataTableExpandButton.prop('label')).toEqual('Expand row');
+		expect(dataTableExpandButton.prop('iconRotate')).toEqual(-90);
+
+		dataTableExpandButton.simulate('click');
+
+		const dataTableCollapseButton = uut.find('CSDataTableRow CSButton').first();
+		expect(dataTableCollapseButton.prop('label')).toEqual('Collapse row');
+		expect(dataTableCollapseButton.prop('iconRotate')).toEqual(null);
+
+		const dataTableExpandedRowElement = uut.find('CSDataTableRow .cs-data-table-row').first();
+		expect(dataTableExpandedRowElement.prop('aria-expanded')).toBeTruthy();
+		expect(uut.find('.cs-data-table-subsection')).toHaveLength(1);
+		expect(uut.find('.cs-data-table-subsection').text()).toBe(rows[0].data.country);
+	});
+
+	it('should render subsections as expanded by default', () => {
+		const uut = mount(
+			<CSDataTable
+				columns={columns}
+				rows={rows}
+				subsectionRender={sectionRender}
+				defaultCollapsed={false}
+			/>,
+		);
+		const dataTableCollapseButton = uut.find('CSDataTableRow CSButton').first();
+		expect(dataTableCollapseButton.prop('label')).toEqual('Collapse row');
+		expect(dataTableCollapseButton.prop('iconRotate')).toEqual(null);
+
+		const dataTableExpandedRowElement = uut.find('CSDataTableRow .cs-data-table-row').first();
+		expect(dataTableExpandedRowElement.prop('aria-expanded')).toBeTruthy();
+		expect(uut.find('.cs-data-table-subsection')).toHaveLength(rows.length);
+
+		dataTableCollapseButton.simulate('click');
+
+		const dataTableCollapsedRowElement = uut.find('CSDataTableRow .cs-data-table-row').first();
+		expect(dataTableCollapsedRowElement.prop('aria-expanded')).toBeFalsy();
+		expect(uut.find('.cs-data-table-subsection')).toHaveLength(rows.length - 1);
+
+		const dataTableExpandButton = dataTableCollapsedRowElement.find('CSButton').first();
+		expect(dataTableExpandButton.prop('label')).toEqual('Expand row');
+		expect(dataTableExpandButton.prop('iconRotate')).toEqual(-90);
+	});
+
+	it('should hide empty subsections', () => {
+		const area = 500;
+		const renderSubsection = (row: CSDataTableRowWithMetaInterface) => (
+			row.data!.area > area ? row.data!.country : null
+		);
+		const uut = mount(<CSDataTable columns={columns} rows={rows} subsectionRender={renderSubsection} />);
+		const dataTableRows = uut.find('CSDataTableRow');
+
+		dataTableRows.forEach((dataTableRow) => {
+			const dataTableTargetedCell = dataTableRow.find('.cs-data-table-truncate').at(2);
+			const dataTableExpandButton = dataTableRow.find('CSButton').first();
+
+			if (Number(dataTableTargetedCell.text()) > area) {
+				expect(dataTableExpandButton).toHaveLength(1);
+			} else {
+				expect(dataTableExpandButton).toHaveLength(0);
+			}
+		});
 	});
 });
