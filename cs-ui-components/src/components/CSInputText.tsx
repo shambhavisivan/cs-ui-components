@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import React, { useState, useRef, useCallback, CSSProperties } from 'react';
 import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
@@ -37,135 +37,118 @@ export interface CSInputTextProps {
 	value?: string;
 }
 
-export interface CSInputTextState {
-	customDataWidth: number;
-}
+const CSInputText = ({
+	actions,
+	borderRadius,
+	className,
+	disabled,
+	error,
+	errorMessage,
+	errorTooltip,
+	helpText,
+	hidden,
+	icons,
+	id,
+	label,
+	labelHidden,
+	labelTitle,
+	maxLength,
+	name,
+	onBlur,
+	onChange,
+	onClick,
+	onFocus,
+	onKeyDown,
+	placeholder,
+	readOnly,
+	required,
+	title,
+	tooltipPosition,
+	value,
+	forwardRef,
+	...rest
+}: CSInputTextProps) => {
+	const { current: uniqueAutoId } = useRef(id || uuidv4());
 
-class CSInputText extends React.Component<CSInputTextProps, CSInputTextState> {
-	public inputTextInnerRef: React.RefObject<HTMLInputElement>;
+	const [customDataWidth, updateCustomDataWidth] = useState(null);
 
-	private readonly uniqueAutoId: string | null;
+	const customDataRef = useCallback((node) => {
+		if (node !== null) {
+			updateCustomDataWidth(node.getBoundingClientRect().width);
+		}
+	}, [customDataWidth]);
 
-	private customDataRef: React.RefObject<HTMLDivElement>;
+	const inputTextWrapperClasses = classNames(
+		'cs-input-text-wrapper',
+		{
+			'cs-element-hidden': hidden,
+			[`${className}`]: className,
+		},
+	);
 
-	constructor(props: CSInputTextProps) {
-		super(props);
+	const inputTextClasses = classNames(
+		'cs-input-text',
+		{
+			'cs-input-text-error': error,
+			'cs-input-text-error-tooltip': errorTooltip,
+		},
+	);
 
-		this.uniqueAutoId = props.id ? props.id : uuidv4();
+	const style: CSSProperties = {
+		'--cs-input-text-border-radius': borderRadius,
+		'--cs-input-text-custom-data-width': customDataWidth ? `${customDataWidth}px` : undefined,
+	};
 
-		this.state = { customDataWidth: 0 };
-
-		this.customDataRef = React.createRef();
-		this.inputTextInnerRef = React.createRef();
-	}
-
-	componentDidMount() {
-		this.setState({
-			customDataWidth: this.customDataRef.current?.getBoundingClientRect().width,
-		});
-	}
-
-	render() {
-		const {
-			actions,
-			borderRadius,
-			className,
-			disabled,
-			error,
-			errorMessage,
-			errorTooltip,
-			helpText,
-			hidden,
-			icons,
-			id,
-			label,
-			labelHidden,
-			labelTitle,
-			maxLength,
-			name,
-			onBlur,
-			onChange,
-			onClick,
-			onFocus,
-			onKeyDown,
-			placeholder,
-			readOnly,
-			required,
-			title,
-			tooltipPosition,
-			type,
-			value,
-			...rest
-		} = this.props;
-
-		const { customDataWidth } = this.state;
-
-		const inputTextWrapperClasses = classNames(
-			'cs-input-text-wrapper',
-			{
-				'cs-element-hidden': hidden,
-				[`${className}`]: className,
-			},
-		);
-		const inputTextClasses = classNames(
-			'cs-input-text',
-			{
-				'cs-input-text-error': error,
-				'cs-input-text-error-tooltip': errorTooltip,
-			},
-		);
-		const style: CSSProperties = {
-			'--cs-input-text-border-radius': borderRadius,
-			'--cs-input-text-custom-data-width': customDataWidth ? `${customDataWidth}px` : undefined,
-		};
-
-		return (
-			<div className={inputTextWrapperClasses} style={style}>
-				{label && !labelHidden && (
-					<CSLabel
-						htmlFor={this.uniqueAutoId}
-						label={label}
-						helpText={helpText}
-						tooltipPosition={tooltipPosition}
-						required={required}
-						title={labelTitle ? label : null}
-					/>
-				)}
-				<div className="cs-input-text-wrapper-inner">
-					<input
-						className={inputTextClasses}
-						id={this.uniqueAutoId}
-						placeholder={placeholder}
-						disabled={disabled}
-						maxLength={maxLength}
-						readOnly={readOnly}
-						required={required}
-						value={value}
-						type="text"
-						aria-label={label}
-						aria-required={required}
-						aria-invalid={error}
-						autoComplete="off"
-						name={name}
-						onBlur={onBlur}
-						onChange={onChange}
-						onClick={onClick}
-						onFocus={onFocus}
-						onKeyDown={onKeyDown}
-						title={title}
-						ref={this.inputTextInnerRef}
-						{...rest}
-					/>
-					<CSCustomData
-						ref={this.customDataRef}
-						icons={icons}
-						actions={actions}
-					/>
-				</div>
-				{error && errorMessage && <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
+	return (
+		<div className={inputTextWrapperClasses} style={style}>
+			{label && !labelHidden && (
+				<CSLabel
+					htmlFor={uniqueAutoId}
+					label={label}
+					helpText={helpText}
+					tooltipPosition={tooltipPosition}
+					required={required}
+					title={labelTitle ? label : null}
+				/>
+			)}
+			<div className="cs-input-text-wrapper-inner">
+				<input
+					className={inputTextClasses}
+					id={uniqueAutoId}
+					placeholder={placeholder}
+					disabled={disabled}
+					maxLength={maxLength}
+					readOnly={readOnly}
+					required={required}
+					value={value}
+					type="text"
+					aria-label={label}
+					aria-required={required}
+					aria-invalid={error}
+					autoComplete="off"
+					name={name}
+					onBlur={onBlur}
+					onChange={onChange}
+					onClick={onClick}
+					onFocus={onFocus}
+					onKeyDown={onKeyDown}
+					title={title}
+					ref={forwardRef}
+					{...rest}
+				/>
+				<CSCustomData
+					ref={customDataRef}
+					icons={icons}
+					actions={actions}
+				/>
 			</div>
-		);
-	}
-}
+			{error && errorMessage && <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
+		</div>
+	);
+};
+
+const CSInputTextWithRef = React.forwardRef<HTMLDivElement, CSInputTextProps>((props: CSInputTextProps, ref) => <CSInputText {...props} forwardRef={ref} />);
+
+CSInputTextWithRef.displayName = 'CSInputText';
 
 export default CSInputText;
