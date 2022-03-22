@@ -77,8 +77,9 @@
   * <i>important</i> added `cs-input-file-wrapper`
 * CSInputNumber
   * added `locale` prop
+  * refactored class based to functional component
 * CSInputText
-  * refactored to a functional component
+  * refactored class based to functional component
 * CSLabel
   * <i>important</i> added `cs-label-outer-wrapper` and made `cs-label-wrapper` and `cs-tooltip-group` siblings
   * added `max-height` to label `cs-label-wrapper` class

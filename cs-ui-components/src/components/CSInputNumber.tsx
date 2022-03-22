@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, useCallback, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
@@ -56,217 +56,162 @@ export interface CSInputNumberProps {
 	value?: any;
 }
 
-export interface CSInputNumberState {
-	customDataWidth: number;
-	showLocaleFormat?: boolean;
-	formattedValue?: string;
-}
+const CSInputNumber = ({
+	actions,
+	borderRadius,
+	className,
+	disabled,
+	error,
+	errorMessage,
+	errorTooltip,
+	forwardRef,
+	helpText,
+	hidden,
+	hideSpinner,
+	icons,
+	id,
+	label,
+	labelHidden,
+	labelTitle,
+	locale,
+	max,
+	maxLength,
+	min,
+	name,
+	onBlur,
+	onChange,
+	onClick,
+	onFocus,
+	onKeyDown,
+	onPaste,
+	placeholder,
+	readOnly,
+	required,
+	step,
+	title,
+	tooltipPosition,
+	type = 'number',
+	value,
+	...rest
+}: CSInputNumberProps) => {
+	const [showLocaleFormat, setShowLocaleFormat] = useState(!!locale);
+	const [formattedNumberValue, setFormattedNumberValue] = useState(null);
+	const [customDataWidth, setCustomDataWidth] = useState(0);
+	const { current: uniqueAutoId } = useRef(id || uuidv4());
 
-class CSInputNumber extends React.Component<CSInputNumberProps, CSInputNumberState> {
-	public static defaultProps = {
-		type: 'number',
+	const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+		if (locale) setShowLocaleFormat(true);
+
+		onBlur?.(event);
 	};
 
-	public inputNumberInnerRef: React.RefObject<HTMLInputElement>;
+	const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => onChange?.(event.target.value);
 
-	private customDataRef: React.RefObject<HTMLDivElement>;
+	const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+		if (locale) setShowLocaleFormat(false);
 
-	private readonly uniqueAutoId: string;
+		onFocus?.(event);
+	};
 
-	constructor(props: CSInputNumberProps) {
-		super(props);
+	const formatNumber = (numberValue: any, numberLocale: CSInputNumberNumberLocale) => {
+		const { numLocale, options } = numberLocale;
 
-		this.uniqueAutoId = props.id ? props.id : uuidv4();
+		const formattedValue = new Intl.NumberFormat(numLocale, { ...options }).format(numberValue);
+		setFormattedNumberValue(formattedValue);
+	};
 
-		this.state = { customDataWidth: 0 };
-
-		this.customDataRef = React.createRef();
-		this.inputNumberInnerRef = React.createRef();
-	}
-
-	componentDidMount() {
-		const { locale, value } = this.props;
-
-		this.setState({
-			customDataWidth: Number(this.customDataRef.current?.getBoundingClientRect().width),
-		});
-
+	const setType = () => {
 		if (locale) {
-			this.setState({
-				showLocaleFormat: true,
-			});
-			this.formatNumber(value, locale);
-		}
-	}
+			return showLocaleFormat ? 'text' : 'number';
+		} return type;
+	};
 
-	componentDidUpdate(prevProps: CSInputNumberProps) {
-		const { locale, value } = this.props;
-		if (locale && prevProps.value !== value) {
-			this.formatNumber(value, locale);
-		}
-	}
+	useEffect(() => {
+		if (locale) formatNumber(value, locale);
+	}, [locale, value]);
 
-	onFocus: React.FocusEventHandler<HTMLInputElement> = (e) => {
-		const { onFocus, locale } = this.props;
+	const customDataRef = useCallback((node) => {
+		if (node !== null) setCustomDataWidth(node.getBoundingClientRect().width);
+	}, []);
 
-		if (locale) {
-			this.setState({ showLocaleFormat: false });
-		}
+	const inputNumberWrapperClasses = classNames(
+		'cs-input-number-wrapper',
+		{
+			'cs-element-hidden': hidden,
+			[`${className}`]: className,
+		},
+	);
+	const inputNumberClasses = classNames(
+		'cs-input-number',
+		{
+			'cs-input-number-error': error,
+			'cs-input-number-error-tooltip': errorTooltip,
+			[`cs-input-number-hide-spinner-${hideSpinner}`]: hideSpinner,
+		},
+	);
+	const style: CSSProperties = {
+		'--cs-input-number-border-radius': borderRadius,
+		'--cs-input-number-custom-data-width': customDataWidth ? `${customDataWidth}px` : undefined,
+	};
 
-		if (onFocus) {
-			onFocus(e);
-		}
-	}
-
-	onBlur: React.FocusEventHandler<HTMLInputElement> = (e) => {
-		const { onBlur, locale } = this.props;
-
-		if (locale) {
-			this.setState({ showLocaleFormat: true });
-		}
-
-		if (onBlur) {
-			onBlur(e);
-		}
-	}
-
-	handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const { onChange } = this.props;
-
-		if (onChange) {
-			onChange(e.target.value);
-		}
-	}
-
-	formatNumber = (value: any, locale: CSInputNumberNumberLocale) => {
-		const { numLocale, options } = locale;
-
-		const formattedValue = new Intl.NumberFormat(numLocale, { ...options }).format(value);
-		this.setState({ formattedValue });
-	}
-
-	render() {
-		const {
-			actions,
-			borderRadius,
-			className,
-			disabled,
-			error,
-			errorMessage,
-			errorTooltip,
-			helpText,
-			hidden,
-			hideSpinner,
-			icons,
-			id,
-			label,
-			labelHidden,
-			labelTitle,
-			locale,
-			max,
-			maxLength,
-			min,
-			name,
-			onBlur,
-			onChange,
-			onClick,
-			onFocus,
-			onKeyDown,
-			onPaste,
-			placeholder,
-			readOnly,
-			required,
-			step,
-			title,
-			tooltipPosition,
-			type,
-			value,
-			...rest
-		} = this.props;
-
-		const { formattedValue, customDataWidth, showLocaleFormat } = this.state;
-
-		const inputNumberWrapperClasses = classNames(
-			'cs-input-number-wrapper',
-			{
-				'cs-element-hidden': hidden,
-				[`${className}`]: className,
-			},
-		);
-		const inputNumberClasses = classNames(
-			'cs-input-number',
-			{
-				'cs-input-number-error': error,
-				'cs-input-number-error-tooltip': errorTooltip,
-				[`cs-input-number-hide-spinner-${hideSpinner}`]: hideSpinner,
-			},
-		);
-		const style: CSSProperties = {
-			'--cs-input-number-border-radius': borderRadius,
-			'--cs-input-number-custom-data-width': customDataWidth ? `${customDataWidth}px` : undefined,
-		};
-
-		const setType = () => {
-			if (locale) {
-				return showLocaleFormat ? 'text' : 'number';
-			} return type;
-		};
-
-		return (
-			<div className={inputNumberWrapperClasses} style={style}>
-				{label && !labelHidden && (
-					<CSLabel
-						htmlFor={this.uniqueAutoId}
-						label={label}
-						helpText={helpText}
-						tooltipPosition={tooltipPosition}
-						required={required}
-						title={labelTitle ? label : null}
-					/>
-				)}
-				<div className="cs-input-number-wrapper-inner">
-					<input
-						className={inputNumberClasses}
-						id={this.uniqueAutoId}
-						placeholder={placeholder}
-						min={min}
-						max={max}
-						name={name}
-						maxLength={type === 'text' ? maxLength : undefined}
-						readOnly={readOnly}
-						required={required}
-						disabled={disabled}
-						value={showLocaleFormat ? formattedValue : value}
-						type={setType()}
-						role="spinbutton"
-						aria-label={label}
-						aria-required={required}
-						aria-valuemin={min}
-						aria-valuemax={max}
-						aria-valuenow={value}
-						aria-invalid={error}
-						autoComplete="off"
-						onBlur={this.onBlur}
-						onFocus={this.onFocus}
-						onChange={this.handleOnChange}
-						onKeyDown={onKeyDown}
-						onPaste={onPaste}
-						onClick={onClick}
-						title={title}
-						step={step}
-						ref={this.inputNumberInnerRef}
-						{...rest}
-					/>
-					<CSCustomData
-						ref={this.customDataRef}
-						icons={icons}
-						actions={actions}
-					/>
-				</div>
-				{error && errorMessage && <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
+	return (
+		<div className={inputNumberWrapperClasses} style={style}>
+			{label && !labelHidden && (
+				<CSLabel
+					htmlFor={uniqueAutoId}
+					label={label}
+					helpText={helpText}
+					tooltipPosition={tooltipPosition}
+					required={required}
+					title={labelTitle ? label : null}
+				/>
+			)}
+			<div className="cs-input-number-wrapper-inner">
+				<input
+					className={inputNumberClasses}
+					id={uniqueAutoId}
+					placeholder={placeholder}
+					min={min}
+					max={max}
+					name={name}
+					maxLength={type === 'text' ? maxLength : undefined}
+					readOnly={readOnly}
+					required={required}
+					disabled={disabled}
+					value={showLocaleFormat ? formattedNumberValue : value}
+					type={setType()}
+					role="spinbutton"
+					aria-label={label}
+					aria-required={required}
+					aria-valuemin={min}
+					aria-valuemax={max}
+					aria-valuenow={value}
+					aria-invalid={error}
+					autoComplete="off"
+					onBlur={handleBlur}
+					onFocus={handleFocus}
+					onChange={handleOnChange}
+					onKeyDown={onKeyDown}
+					onPaste={onPaste}
+					onClick={onClick}
+					title={title}
+					step={step}
+					ref={forwardRef}
+					{...rest}
+				/>
+				<CSCustomData
+					ref={customDataRef}
+					icons={icons}
+					actions={actions}
+				/>
 			</div>
-		);
-	}
-}
+			{error && errorMessage && <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
+		</div>
+	);
+};
+
+const CSInputNumberWithRef = React.forwardRef<HTMLDivElement, CSInputNumberProps>((props: CSInputNumberProps, ref) => <CSInputNumber {...props} forwardRef={ref} />);
+
+CSInputNumberWithRef.displayName = 'CSInputNumber';
 
 export default CSInputNumber;
