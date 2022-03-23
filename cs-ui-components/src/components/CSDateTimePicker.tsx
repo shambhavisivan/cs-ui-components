@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import DatePicker from 'react-datepicker';
 import CSDatepicker, { CSDatepickerProps } from './CSDatepicker';
 
 export type CSDateTimePickerDropdownMode = 'select' | 'scroll';
@@ -45,6 +46,6 @@ const CSDateTimePicker = ({
 	);
 };
 
-const CSDateTimePickerWithRefs: React.ForwardRefExoticComponent<CSDateTimePickerProps & React.RefAttributes<CSDatepicker>> = React.forwardRef<CSDatepicker, CSDateTimePickerProps>((props: CSDateTimePickerProps, ref) => <CSDateTimePicker {...props} forwardRef={ref} />);
+const CSDateTimePickerWithRefs = React.forwardRef<DatePicker, CSDateTimePickerProps>((props: CSDateTimePickerProps, ref) => <CSDateTimePicker {...props} forwardRef={ref} />);
 
 export default CSDateTimePickerWithRefs;

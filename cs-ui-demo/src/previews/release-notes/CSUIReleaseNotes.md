@@ -62,6 +62,7 @@
   * <i>important</i> changed the `icClearable` prop name to `clearable`
   * <i>important</i> flipped the classes `cs-datepicker` and `cs-datepicker-wrapper`
   * <i>important</i> Fixed locale prop and console warnings for all languages
+  * refactored from class based to functional component
 * CSDateTimePicker
   * changed the `todayButton` prop from boolean to string
   * fixed dropdown arrow positioning issues when opens on right

@@ -13,7 +13,7 @@ const onChange = () => {};
 
 describe('<CSDateTimePicker />', () => {
 	it('should render the default CSDateTimepicker', () => {
-		const uut = shallow(<CSDateTimePicker label={labelValue} onChange={onChange} />);
+		const uut = shallow(<CSDateTimePicker label={labelValue} onChange={onChange} />).dive();
 		// Should render a datepicker
 		const datepicker = uut.dive().find('CSDatepicker');
 		// Should have a label
@@ -48,13 +48,13 @@ describe('<CSDateTimePicker />', () => {
 	});
 
 	it('should pass showTimeSelect to CSDatepicker', () => {
-		const uut = shallow(<CSDateTimePicker label={labelValue} onChange={onChange} />);
+		const uut = shallow(<CSDateTimePicker label={labelValue} onChange={onChange} />).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('showTimeSelect')).toBeTruthy();
 	});
 
 	it('should pass label to CSDatepicker', () => {
-		const uut = shallow(<CSDateTimePicker label={labelValue} onChange={onChange} />);
+		const uut = shallow(<CSDateTimePicker label={labelValue} onChange={onChange} />).dive();
 		const dateTimePickerLabel = uut.dive().find('CSDatepicker');
 		expect(dateTimePickerLabel.prop('label')).toBe(labelValue);
 	});
@@ -62,7 +62,7 @@ describe('<CSDateTimePicker />', () => {
 	it('should use a working onChange callback', () => {
 		const handleOnChangeMock = jest.fn();
 		const event: any = {};
-		const uut = shallow(<CSDateTimePicker label={labelValue} onChange={handleOnChangeMock} />);
+		const uut = shallow(<CSDateTimePicker label={labelValue} onChange={handleOnChangeMock} />).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		datepicker.prop('onChange')(event);
 		expect(handleOnChangeMock).toHaveBeenCalledTimes(1);
@@ -75,7 +75,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				actions={actions}
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker).toHaveLength(1);
 		expect(datepicker.prop('actions')).toMatchObject(actions);
@@ -88,7 +88,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				autoFocus
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('autoFocus')).toBeTruthy();
 	});
@@ -101,7 +101,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				borderRadius={borderRadius}
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('borderRadius')).toBe(borderRadius);
 	});
@@ -114,7 +114,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				dateFormat={dateFormat}
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('dateFormat')).toBe(dateFormat);
 	});
@@ -126,7 +126,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				disabled
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('disabled')).toBeTruthy();
 	});
@@ -139,7 +139,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				dropdownMode={dropdownMode}
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('dropdownMode')).toBe(dropdownMode);
 	});
@@ -151,7 +151,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				error
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('error')).toBeTruthy();
 	});
@@ -164,7 +164,7 @@ describe('<CSDateTimePicker />', () => {
 				error
 				errorMessage={errorMessage}
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('errorMessage')).toBe(errorMessage);
 	});
@@ -178,7 +178,7 @@ describe('<CSDateTimePicker />', () => {
 				errorMessage={errorMessage}
 				errorTooltip
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('errorTooltip')).toBeTruthy();
 	});
@@ -191,7 +191,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				helpText={helpText}
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('helpText')).toBe(helpText);
 	});
@@ -203,7 +203,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				icons={icons}
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('icons')).toMatchObject(icons);
 	});
@@ -215,7 +215,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				inline
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('inline')).toBeTruthy();
 	});
@@ -227,7 +227,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				clearable
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('clearable')).toBeTruthy();
 	});
@@ -239,7 +239,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				labelHidden
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('labelHidden')).toBeTruthy();
 	});
@@ -251,7 +251,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				labelTitle
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('labelTitle')).toBeTruthy();
 	});
@@ -281,7 +281,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				maxDate={maxDate}
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('maxDate')).toBe(maxDate);
 	});
@@ -294,7 +294,7 @@ describe('<CSDateTimePicker />', () => {
 				maxDate={maxDate}
 				maxDateYear
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('maxDateYear')).toBeTruthy();
 	});
@@ -306,7 +306,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				minDate={minDate}
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('minDate')).toBe(minDate);
 	});
@@ -319,7 +319,7 @@ describe('<CSDateTimePicker />', () => {
 				minDate={minDate}
 				minDateYear
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('minDateYear')).toBeTruthy();
 	});
@@ -332,7 +332,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				name={name}
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('name')).toBe(name);
 	});
@@ -346,7 +346,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				onBlur={handleOnBlurMock}
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		datepicker.prop('onBlur')(event);
 		expect(handleOnBlurMock).toHaveBeenCalledTimes(1);
@@ -360,7 +360,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				onClick={handleOnClickMock}
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		const event: any = {};
 		datepicker.prop('onClick')(event);
@@ -376,7 +376,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				onKeyDown={handleOnKeyDownMock}
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		datepicker.prop('onKeyDown')(event);
 		expect(handleOnKeyDownMock).toHaveBeenCalledTimes(1);
@@ -391,7 +391,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				onSelect={handleOnSelectMock}
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		datepicker.prop('onSelect')(event);
 		expect(handleOnSelectMock).toHaveBeenCalledTimes(1);
@@ -405,7 +405,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				placeholder={placeholder}
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('placeholder')).toBe(placeholder);
 	});
@@ -417,7 +417,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				readOnly
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('readOnly')).toBeTruthy();
 	});
@@ -429,7 +429,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				required
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('required')).toBeTruthy();
 	});
@@ -441,7 +441,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				scrollableYearDropdown
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('scrollableYearDropdown')).toBeTruthy();
 	});
@@ -454,7 +454,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				selected={selectedDate}
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('selected')).toBe(selectedDate);
 	});
@@ -466,7 +466,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				showMonthDropdown
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('showMonthDropdown')).toBeTruthy();
 	});
@@ -478,7 +478,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				showYearDropdown
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('showYearDropdown')).toBeTruthy();
 	});
@@ -491,7 +491,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				timeCaption={timeCaption}
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().dive().find(DatePicker);
 		expect(datepicker.prop('timeCaption')).toBe(timeCaption);
 	});
@@ -504,7 +504,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				timeFormat={timeFormat}
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().dive().find(DatePicker);
 		expect(datepicker.prop('timeFormat')).toBe(timeFormat);
 	});
@@ -517,7 +517,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				timeIntervals={timeIntervals}
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().dive().find(DatePicker);
 		expect(datepicker.prop('timeIntervals')).toBe(timeIntervals);
 	});
@@ -530,7 +530,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				title={title}
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('title')).toBe(title);
 	});
@@ -543,7 +543,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				todayButton={todayLabel}
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('todayButton')).toBe(todayLabel);
 	});
@@ -556,7 +556,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				tooltipPosition={tooltipPosition}
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('tooltipPosition')).toBe(tooltipPosition);
 	});
@@ -569,7 +569,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				value={value}
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('value')).toBe(value);
 	});
@@ -582,7 +582,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				width={width}
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('width')).toBe(width);
 	});
@@ -595,7 +595,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				yearDropdownItemNumber={yearDropdownItemNumber}
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('yearDropdownItemNumber')).toBe(yearDropdownItemNumber);
 	});
@@ -608,7 +608,7 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				className={customClass}
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('className')).toBe(`cs-datetimepicker ${customClass}`);
 	});
@@ -621,13 +621,13 @@ describe('<CSDateTimePicker />', () => {
 				onChange={onChange}
 				id={customId}
 			/>,
-		);
+		).dive();
 		const datepicker = uut.dive().find('CSDatepicker');
 		expect(datepicker.prop('id')).toBe(customId);
 	});
 
 	it('should accept arbitrary props', () => {
-		const uut = shallow(<CSDateTimePicker label={labelValue} data-testid="rest" />);
+		const uut = shallow(<CSDateTimePicker label={labelValue} data-testid="rest" />).dive();
 		const datepicker = uut.find({ 'data-testid': 'rest' });
 		expect(datepicker).toHaveLength(1);
 	});
