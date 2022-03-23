@@ -71,11 +71,11 @@ export const initialData: CSFormData = [
 			name: 'lookup-1',
 			mode: 'client',
 			columns: [{ key: 'Account', header: 'Account' },
-				{ key: 'Industry', header: 'Industry' }],
+			{ key: 'Industry', header: 'Industry' }],
 			options: [{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
-				{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
-				{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } },
-				{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }],
+			{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
+			{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } },
+			{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }],
 			fieldToBeDisplayed: 'Account'
 		}]
 	}
@@ -195,11 +195,11 @@ export const readOnlyData: CSFormData = [
 			label: 'Select color:',
 			name: 'radio-22',
 			value: 'red2',
-			radioOptions: [{
-				radioOptionValue: 'red2',
+			options: [{
+				key: 'red2',
 				label: 'Red2'
 			}, {
-				radioOptionValue: 'blue2',
+				key: 'blue2',
 				label: 'Blue2'
 			}]
 		}, {
@@ -213,11 +213,11 @@ export const readOnlyData: CSFormData = [
 			name: 'lookup-2',
 			mode: 'client',
 			columns: [{ key: 'Account', header: 'Account' },
-				{ key: 'Industry', header: 'Industry' }],
+			{ key: 'Industry', header: 'Industry' }],
 			options: [{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
-				{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
-				{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } },
-				{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }],
+			{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
+			{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } },
+			{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }],
 			fieldToBeDisplayed: 'Account',
 			value: { key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } }
 		}, {
@@ -325,12 +325,11 @@ export const standardDataTest: CSFormData = [
 			label: 'Select color:',
 			name: 'radio-23',
 			value: 'red3',
-			radioOptions: [{
-				radioOptionValue: 'red3',
+			options: [{
+				key: 'red3',
 				label: 'Red3'
-
 			}, {
-				radioOptionValue: 'blue3',
+				key: 'blue3',
 				label: 'Blue3'
 			}]
 		}, {
@@ -344,11 +343,11 @@ export const standardDataTest: CSFormData = [
 			name: 'lookup-2',
 			mode: 'client',
 			columns: [{ key: 'Account', header: 'Account' },
-				{ key: 'Industry', header: 'Industry' }],
+			{ key: 'Industry', header: 'Industry' }],
 			options: [{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
-				{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
-				{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } },
-				{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }],
+			{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
+			{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } },
+			{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }],
 			fieldToBeDisplayed: 'Account',
 			value: { key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } }
 		}, {
@@ -434,11 +433,11 @@ export const readOnlyDataTest: CSFormData = [
 			label: 'Select color:',
 			name: 'radio-24',
 			value: 'red4',
-			radioOptions: [{
-				radioOptionValue: 'red4',
+			options: [{
+				key: 'red4',
 				label: 'Red4'
 			}, {
-				radioOptionValue: 'blue4',
+				key: 'blue4',
 				label: 'Blue4'
 			}]
 		}, {
@@ -452,11 +451,11 @@ export const readOnlyDataTest: CSFormData = [
 			name: 'lookup-2',
 			mode: 'client',
 			columns: [{ key: 'Account', header: 'Account' },
-				{ key: 'Industry', header: 'Industry' }],
+			{ key: 'Industry', header: 'Industry' }],
 			options: [{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
-				{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
-				{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } },
-				{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }],
+			{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
+			{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } },
+			{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }],
 			fieldToBeDisplayed: 'Account',
 			value: { key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } }
 		}, {
@@ -553,11 +552,11 @@ export const disabledDataTest: CSFormData = [
 			label: 'Select color:',
 			name: 'radio-25',
 			value: 'red5',
-			radioOptions: [{
-				radioOptionValue: 'red5',
+			options: [{
+				key: 'red5',
 				label: 'Red5'
 			}, {
-				radioOptionValue: 'blue5',
+				key: 'blue5',
 				label: 'Blue5'
 			}],
 			disabled: true
@@ -573,11 +572,11 @@ export const disabledDataTest: CSFormData = [
 			name: 'lookup-2',
 			mode: 'client',
 			columns: [{ key: 'Account', header: 'Account' },
-				{ key: 'Industry', header: 'Industry' }],
+			{ key: 'Industry', header: 'Industry' }],
 			options: [{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
-				{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
-				{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } },
-				{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }],
+			{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
+			{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } },
+			{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }],
 			fieldToBeDisplayed: 'Account',
 			value: { key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
 			disabled: true
@@ -676,11 +675,11 @@ export const disabled2DataTest: CSFormData = [
 			label: 'Select color:',
 			name: 'radio-26',
 			value: 'red6',
-			radioOptions: [{
-				radioOptionValue: 'red6',
+			options: [{
+				key: 'red6',
 				label: 'Red6'
 			}, {
-				radioOptionValue: 'blue6',
+				key: 'blue6',
 				label: 'Blue6'
 			}],
 			disabled: true
@@ -696,11 +695,11 @@ export const disabled2DataTest: CSFormData = [
 			name: 'lookup-2',
 			mode: 'client',
 			columns: [{ key: 'Account', header: 'Account' },
-				{ key: 'Industry', header: 'Industry' }],
+			{ key: 'Industry', header: 'Industry' }],
 			options: [{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
-				{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
-				{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } },
-				{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }],
+			{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
+			{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } },
+			{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }],
 			fieldToBeDisplayed: 'Account',
 			value: { key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
 			disabled: true

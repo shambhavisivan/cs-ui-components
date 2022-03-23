@@ -1240,10 +1240,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cloudsense/cs-ui-components@2.0.0-alpha4":
-  version "2.0.0-alpha4"
-  resolved "https://registry.yarnpkg.com/@cloudsense/cs-ui-components/-/cs-ui-components-2.0.0-alpha4.tgz#19b609173decfc087316eb1b48cfc063c4d7055b"
-  integrity sha512-L69vWIgqMvWIPfcs7HxVm/hqSW3n/oo1yFlgpQ5A0ao7TfTfGRyOdy0ujZaov74Io7Oxui6BXzYXqa7eI17PEw==
+"@cloudsense/cs-ui-components@2.0.0-alpha7":
+  version "2.0.0-alpha7"
+  resolved "https://registry.yarnpkg.com/@cloudsense/cs-ui-components/-/cs-ui-components-2.0.0-alpha7.tgz#943e4b28578e2c71ee50835e6bf76f046f8789be"
+  integrity sha512-086Uwv+XSxvb6is1fR0QKG/a9X0NX0c8tPEPJ1mUOtgNB1d4/ZdJ9p5yKl7nmZR9DbeyNqjuPHQQBvPtiOvNdA==
   dependencies:
     classnames "^2.2.6"
     date-fns "^2.22.1"

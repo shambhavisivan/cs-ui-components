@@ -79,17 +79,17 @@ const CSAlertPlayground = () => {
 						name: 'variant',
 						required: true,
 						value: alertProps.variant,
-						radioOptions: [{
-							radioOptionValue: 'info',
+						options: [{
+							key: 'info',
 							label: 'info'
 						}, {
-							radioOptionValue: 'warning',
+							key: 'warning',
 							label: 'warning'
 						}, {
-							radioOptionValue: 'error',
+							key: 'error',
 							label: 'error'
 						}, {
-							radioOptionValue: 'base',
+							key: 'base',
 							label: 'base'
 						}]
 					}, {
@@ -119,11 +119,11 @@ const CSAlertPlayground = () => {
 						name: 'iconOrigin',
 						disabled: alertProps.iconHidden,
 						value: alertProps.iconOrigin,
-						radioOptions: [{
-							radioOptionValue: 'slds',
+						options: [{
+							key: 'slds',
 							label: 'slds'
 						}, {
-							radioOptionValue: 'cs',
+							key: 'cs',
 							label: 'cs'
 						}]
 					}, {
@@ -131,11 +131,11 @@ const CSAlertPlayground = () => {
 						label: 'styleFormat',
 						name: 'styleFormat',
 						value: alertProps.styleFormat,
-						radioOptions: [{
-							radioOptionValue: 'default',
+						options: [{
+							key: 'default',
 							label: 'default'
 						}, {
-							radioOptionValue: 'scoped',
+							key: 'scoped',
 							label: 'scoped'
 						}]
 					}, {
@@ -143,11 +143,11 @@ const CSAlertPlayground = () => {
 						label: 'styleType',
 						name: 'styleType',
 						value: alertProps.styleType,
-						radioOptions: [{
-							radioOptionValue: 'default',
+						options: [{
+							key: 'default',
 							label: 'default'
 						}, {
-							radioOptionValue: 'light',
+							key: 'light',
 							label: 'light'
 						}]
 					}, {
@@ -160,11 +160,11 @@ const CSAlertPlayground = () => {
 						label: 'textAlign',
 						name: 'textAlign',
 						value: alertProps.textAlign,
-						radioOptions: [{
-							radioOptionValue: 'left',
+						options: [{
+							key: 'left',
 							label: 'left'
 						}, {
-							radioOptionValue: 'center',
+							key: 'center',
 							label: 'center'
 						}]
 					}, {

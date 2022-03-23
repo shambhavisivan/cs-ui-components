@@ -214,12 +214,12 @@ export const fieldStyleData: CSFormData = [
 			label: 'Radio field',
 			name: 'radio-1',
 			styleClass: 'csd-custom-br-mint',
-			radioOptions: [{
-				radioOptionValue: 'red',
+			options: [{
+				key: 'red',
 				label: 'Red'
 
 			}, {
-				radioOptionValue: 'blue',
+				key: 'blue',
 				label: 'Blue'
 			}]
 		}]

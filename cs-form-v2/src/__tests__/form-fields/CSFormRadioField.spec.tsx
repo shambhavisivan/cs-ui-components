@@ -1,36 +1,38 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 import '../../setupTests';
-import { CSRadio, CSRadioOption } from '@cloudsense/cs-ui-components';
+import { CSRadio } from '@cloudsense/cs-ui-components';
 import CSFormRadioField from '../../form-fields/CSFormRadioField';
 
 const label = 'label';
 const fieldType = 'RADIO';
-const name = 'lang';
-const radioOptions = [
-	{ radioOptionValue: 'eng', label: 'English' },
-	{ radioOptionValue: 'cro', label: 'Croatian' },
-	{ radioOptionValue: 'fr', label: 'French' },
-];
+const name = 'city';
+const options = [{
+	key: 'zagreb',
+	label: 'Zagreb',
+}, {
+	key: 'chennai',
+	label: 'Chennai',
+}];
 
 describe('CSFormRadioField', () => {
-	it('should render passed options as children of CSRadio', () => {
+	it('should pass options to CSRadio', () => {
 		const uut = shallow(
 			<CSFormRadioField
-				radioOptions={radioOptions}
+				options={options}
 				fieldType={fieldType}
 				label={label}
 				name={name}
 			/>,
 		);
-		const options = uut.find(CSRadio).children();
-		expect(options).toHaveLength(3);
+		const radio = uut.find(CSRadio);
+		expect(JSON.stringify(radio.prop('options'))).toBe(JSON.stringify(options));
 	});
 
 	it('should pass correct label to CSRadio', () => {
 		const uut = shallow(
 			<CSFormRadioField
-				radioOptions={radioOptions}
+				options={options}
 				fieldType={fieldType}
 				label={label}
 				name={name}
@@ -43,7 +45,7 @@ describe('CSFormRadioField', () => {
 	it('should pass correct disabled value to CSRadio', () => {
 		const uut = shallow(
 			<CSFormRadioField
-				radioOptions={radioOptions}
+				options={options}
 				fieldType={fieldType}
 				label={label}
 				name={name}
@@ -54,10 +56,25 @@ describe('CSFormRadioField', () => {
 		expect(radio.prop('disabled')).toBeTruthy();
 	});
 
+	it('should pass correct disabledKeys value to CSRadio', () => {
+		const disabledKeys = ['zagreb', 'chennai'];
+		const uut = shallow(
+			<CSFormRadioField
+				options={options}
+				fieldType={fieldType}
+				label={label}
+				name={name}
+				disabledKeys={disabledKeys}
+			/>,
+		);
+		const radio = uut.find(CSRadio);
+		expect(JSON.stringify(radio.prop('disabledKeys'))).toBe(JSON.stringify(disabledKeys));
+	});
+
 	it('should pass correct error value to CSRadio', () => {
 		const uut = shallow(
 			<CSFormRadioField
-				radioOptions={radioOptions}
+				options={options}
 				fieldType={fieldType}
 				label={label}
 				name={name}
@@ -72,7 +89,7 @@ describe('CSFormRadioField', () => {
 		const errorMessage = 'Error message.';
 		const uut = shallow(
 			<CSFormRadioField
-				radioOptions={radioOptions}
+				options={options}
 				fieldType={fieldType}
 				label={label}
 				name={name}
@@ -88,7 +105,7 @@ describe('CSFormRadioField', () => {
 		const helpText = 'Help text.';
 		const uut = shallow(
 			<CSFormRadioField
-				radioOptions={radioOptions}
+				options={options}
 				fieldType={fieldType}
 				label={label}
 				name={name}
@@ -103,15 +120,15 @@ describe('CSFormRadioField', () => {
 		const handleOnBlurMock = jest.fn();
 		const uut = shallow(
 			<CSFormRadioField
-				radioOptions={radioOptions}
+				options={options}
 				fieldType={fieldType}
 				label={label}
 				name={name}
 				onBlur={handleOnBlurMock}
 			/>,
 		);
-		const options = uut.find(CSRadioOption);
-		options.first().simulate('blur', { target: { value: 'First' } });
+		const radio = uut.find(CSRadio);
+		radio.prop('onBlur')({ target: {} } as any);
 		expect(handleOnBlurMock).toHaveBeenCalledTimes(1);
 	});
 
@@ -119,15 +136,15 @@ describe('CSFormRadioField', () => {
 		const handleOnChangeMock = jest.fn();
 		const uut = shallow(
 			<CSFormRadioField
-				radioOptions={radioOptions}
+				options={options}
 				fieldType={fieldType}
 				label={label}
 				name={name}
 				onChange={handleOnChangeMock}
 			/>,
 		);
-		const options = uut.find(CSRadioOption);
-		options.first().simulate('change', { target: { value: 'First' } });
+		const radio = uut.find(CSRadio);
+		radio.prop('onChange')({ target: {} } as any);
 		expect(handleOnChangeMock).toHaveBeenCalledTimes(1);
 	});
 
@@ -135,15 +152,15 @@ describe('CSFormRadioField', () => {
 		const handleOnClickMock = jest.fn();
 		const uut = shallow(
 			<CSFormRadioField
-				radioOptions={radioOptions}
+				options={options}
 				fieldType={fieldType}
 				label={label}
 				name={name}
 				onClick={handleOnClickMock}
 			/>,
 		);
-		const options = uut.find(CSRadioOption);
-		options.first().simulate('click');
+		const radio = uut.find(CSRadio);
+		radio.prop('onClick')();
 		expect(handleOnClickMock).toHaveBeenCalledTimes(1);
 	});
 
@@ -151,22 +168,22 @@ describe('CSFormRadioField', () => {
 		const handleOnKeyDownMock = jest.fn();
 		const uut = shallow(
 			<CSFormRadioField
-				radioOptions={radioOptions}
+				options={options}
 				fieldType={fieldType}
 				label={label}
 				name={name}
 				onKeyDown={handleOnKeyDownMock}
 			/>,
 		);
-		const options = uut.find(CSRadioOption);
-		options.first().simulate('keydown');
+		const radio = uut.find(CSRadio);
+		radio.prop('onKeyDown')();
 		expect(handleOnKeyDownMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should pass correct readOnly value to CSRadio', () => {
 		const uut = shallow(
 			<CSFormRadioField
-				radioOptions={radioOptions}
+				options={options}
 				fieldType={fieldType}
 				label={label}
 				name={name}
@@ -180,7 +197,7 @@ describe('CSFormRadioField', () => {
 	it('should pass correct required value to CSRadio', () => {
 		const uut = shallow(
 			<CSFormRadioField
-				radioOptions={radioOptions}
+				options={options}
 				fieldType={fieldType}
 				label={label}
 				name={name}
@@ -195,7 +212,7 @@ describe('CSFormRadioField', () => {
 		const styleClass = 'custom-class';
 		const uut = shallow(
 			<CSFormRadioField
-				radioOptions={radioOptions}
+				options={options}
 				fieldType={fieldType}
 				label={label}
 				name={name}
@@ -207,99 +224,45 @@ describe('CSFormRadioField', () => {
 	});
 
 	it('should pass correct value to CSRadio', () => {
-		const value = 'eng';
+		const value = 'zagreb';
 		const uut = shallow(
 			<CSFormRadioField
-				radioOptions={radioOptions}
+				options={options}
 				fieldType={fieldType}
 				label={label}
 				name={name}
 				value={value}
 			/>,
 		);
-		const options = uut.find(CSRadioOption);
-		expect(options.first().prop('checked')).toBeTruthy();
+		const radio = uut.find(CSRadio);
+		expect(radio.prop('selectedKey')).toBe(value);
 	});
 
-	it('should pass correct option disabled value to CSRadioOption', () => {
-		const radioOptionDisabled = [{ radioOptionValue: 'eng', label: 'English', disabled: true }];
+	it('should pass correct name value to CSRadio', () => {
 		const uut = shallow(
 			<CSFormRadioField
-				radioOptions={radioOptionDisabled}
+				options={options}
 				fieldType={fieldType}
 				label={label}
 				name={name}
 			/>,
 		);
-		const options = uut.find(CSRadioOption);
-		expect(options.prop('disabled')).toBeTruthy();
+		const radio = uut.find(CSRadio);
+		expect(radio.prop('name')).toBe(name);
 	});
 
-	it('should pass correct label value to CSRadioOption', () => {
-		const uut = shallow(
-			<CSFormRadioField
-				radioOptions={radioOptions}
-				fieldType={fieldType}
-				label={label}
-				name={name}
-			/>,
-		);
-		const options = uut.find(CSRadioOption);
-		expect(options.first().prop('label')).toBe('English');
-	});
-
-	it('should pass correct name value to CSRadioOption', () => {
-		const uut = shallow(
-			<CSFormRadioField
-				radioOptions={radioOptions}
-				fieldType={fieldType}
-				label={label}
-				name={name}
-			/>,
-		);
-		const options = uut.find(CSRadioOption);
-		expect(options.first().prop('name')).toBe(name);
-	});
-
-	it('should pass correct radioOptionValue value to CSRadioOption', () => {
-		const uut = shallow(
-			<CSFormRadioField
-				radioOptions={radioOptions}
-				fieldType={fieldType}
-				label={label}
-				name={name}
-			/>,
-		);
-		const options = uut.find(CSRadioOption);
-		expect(options.first().prop('value')).toBe('eng');
-	});
-
-	it('should pass correct option readOnly value to CSRadioOption', () => {
-		const radioOptionReadOnly = [{ radioOptionValue: 'eng', label: 'English', readOnly: true }];
-		const uut = shallow(
-			<CSFormRadioField
-				radioOptions={radioOptionReadOnly}
-				fieldType={fieldType}
-				label={label}
-				name={name}
-			/>,
-		);
-		const option = uut.find(CSRadioOption);
-		expect(option.prop('readOnly')).toBeTruthy();
-	});
-
-	it('should pass correct option title to CSRadioOption', () => {
+	it('should pass correct options with title to CSRadio', () => {
 		const title = 'title';
-		const radioOptionWithTitle = [{ radioOptionValue: 'eng', label: 'English', title }];
+		const optionsWithTitle = options.map((option) => ({ ...option, title }));
 		const uut = shallow(
 			<CSFormRadioField
-				radioOptions={radioOptionWithTitle}
+				options={optionsWithTitle}
 				fieldType={fieldType}
 				label={label}
 				name={name}
 			/>,
 		);
-		const option = uut.find(CSRadioOption);
-		expect(option.prop('title')).toBe(title);
+		const option = uut.find(CSRadio);
+		expect(JSON.stringify(option.prop('options'))).toBe(JSON.stringify(optionsWithTitle));
 	});
 });

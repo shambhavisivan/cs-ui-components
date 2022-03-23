@@ -102,7 +102,7 @@ describe('<CSFormField />', () => {
 				fieldType="RADIO"
 				label={label}
 				name={name}
-				radioOptions={[]}
+				options={[]}
 			/>,
 		);
 		const radioField = uut.find('.csf-field-wrapper CSFormRadioField');

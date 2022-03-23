@@ -253,12 +253,18 @@ export const CSFormNumberFieldAttributes = {
 	]
 };
 
+/** Needs to be updated once CSRadio documentation is merged */
 export const CSFormRadioFieldAttributes = {
 	name: 'CSFormRadioField Specific',
 	type: 'attributes',
 	data: [
 		{
-			name: 'radioOptions',
+			name: 'disabledKeys',
+			link: '/cs-form/standard-form-fields#radio',
+			types: 'Array<React.Text>',
+			description: 'Set disabled radio options based on their keys.'
+		}, {
+			name: 'options',
 			link: '/cs-form/standard-form-fields#radio',
 			customTypes: {
 				name: 'Array<CSFormRadioOption>',
@@ -285,23 +291,11 @@ export const CSFormRadioOptionAttributes = {
 			required: true,
 			description: 'Set the radio option label.'
 		}, {
-			name: 'radioOptionValue',
+			name: 'key',
 			link: '/cs-form/standard-form-fields#radio',
 			required: true,
 			types: 'string',
-			description: 'Set the radio option value.'
-		}, {
-			name: 'readOnly',
-			link: '/cs-form/standard-form-fields#radio',
-			types: 'boolean',
-			default: 'false',
-			description: 'Control whether to apply the readonly attribute.'
-		}, {
-			name: 'disabled',
-			link: '/cs-form/standard-form-fields#radio',
-			types: 'boolean',
-			default: 'false',
-			description: 'Disable the radio option.'
+			description: 'Set the radio option key.'
 		}, {
 			name: 'title',
 			link: '/cs-form/standard-form-fields#radio',

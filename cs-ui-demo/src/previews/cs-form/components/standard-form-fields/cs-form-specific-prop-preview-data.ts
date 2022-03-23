@@ -75,11 +75,11 @@ export const lookupPropsData: CSFormData = [
 			name: 'lookup-2',
 			mode: 'client',
 			columns: [{ key: 'Account', header: 'Account' },
-				{ key: 'Industry', header: 'Industry' }],
+			{ key: 'Industry', header: 'Industry' }],
 			options: [{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
-				{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
-				{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } },
-				{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }],
+			{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
+			{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } },
+			{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }],
 			fieldToBeDisplayed: 'Account',
 			value: { key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } }
 		}]
@@ -116,49 +116,38 @@ export const radioPropsData: CSFormData = [
 			fieldType: 'RADIO',
 			label: 'Select color:',
 			name: 'radio-color',
-			radioOptions: [{
-				radioOptionValue: 'red',
+			value: 'red',
+			options: [{
+				key: 'red',
 				label: 'Red'
-
 			}, {
-				radioOptionValue: 'blue',
+				key: 'blue',
 				label: 'Blue'
 			}]
 		}, {
 			fieldType: 'RADIO',
 			label: 'Select fruit:',
 			name: 'radio-fruit',
-			radioOptions: [{
-				radioOptionValue: 'apple',
+			disabledKeys: ['apple'],
+			value: 'banana',
+			options: [{
+				key: 'banana',
+				label: 'Banana'
+			}, {
+				key: 'apple',
 				label: 'Apple'
-
-			}, {
-				radioOptionValue: 'banana',
-				label: 'Banana',
-				disabled: true
-			}]
-		}, {
-			fieldType: 'RADIO',
-			label: 'Select drink:',
-			name: 'radio-drink',
-			radioOptions: [{
-				radioOptionValue: 'cola',
-				label: 'Coca-cola',
-				readOnly: true
-			}, {
-				radioOptionValue: 'pepsi',
-				label: 'Pepsi'
 			}]
 		}, {
 			fieldType: 'RADIO',
 			label: 'Select season:',
 			name: 'radio-season',
-			radioOptions: [{
-				radioOptionValue: 'summer',
+			value: 'summer',
+			options: [{
+				key: 'summer',
 				label: 'Summer',
 				title: 'Summer season'
 			}, {
-				radioOptionValue: 'winter',
+				key: 'winter',
 				label: 'Winter',
 				title: 'Winter season'
 			}]

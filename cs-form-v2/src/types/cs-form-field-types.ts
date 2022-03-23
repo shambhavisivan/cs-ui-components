@@ -5,6 +5,7 @@ import {
 	CSModalBodyProps,
 	CSModalFooterProps,
 	CSDataTableRowInterface,
+	CSRadioOptionInterface as CSFormRadioOption,
 } from '@cloudsense/cs-ui-components';
 import React from 'react';
 import { CSFormData } from './cs-form-types';
@@ -187,23 +188,16 @@ export interface CSFormNumberFieldProps extends CSFormFieldCommonProps {
 }
 
 /** RADIO FIELD */
-export interface CSFormRadioOption extends Pick<CSFormFieldCommonProps,
-	'readOnly' |
-	'disabled' |
-	'title'> {
-	label: string;
-	radioOptionValue: string;
-}
-
-// CSRadio doesn't support actions, icons and title so these props are omitted from CSFormFieldCommonProps type
+// CSRadio doesn't support actions, icons and title so these props are omitted from CSFormFieldCommonProps type. Title can be set to radio option.
 export interface CSFormRadioFieldProps extends Omit<CSFormFieldCommonProps,
 	'actions' |
 	'icons' |
 	'title'
 > {
 	fieldType: 'RADIO';
-	radioOptions: Array<CSFormRadioOption>;
-	value?: string;
+	disabledKeys?: Array<React.ReactText>;
+	options: Array<CSFormRadioOption>;
+	value?: React.ReactText;
 }
 
 /** SELECT FIELD */

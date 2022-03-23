@@ -16,7 +16,7 @@
 		"@babel/core": "^7.8.4",
 		"@babel/preset-env": "^7.8.4",
 		"@babel/preset-react": "^7.8.3",
-		"@cloudsense/cs-ui-components": "2.0.0-alpha4",
+		"@cloudsense/cs-ui-components": "2.0.0-alpha7",
 		"@types/enzyme": "^3.10.8",
 		"@types/jest": "^26.0.23",
 		"@types/node": "^15.6.1",
@@ -55,7 +55,7 @@
 		"classnames": "^2.2.6"
 	},
 	"peerDependencies": {
-		"@cloudsense/cs-ui-components": "2.0.0",
+		"@cloudsense/cs-ui-components": "^2.0.0-alpha7",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2"
 	}

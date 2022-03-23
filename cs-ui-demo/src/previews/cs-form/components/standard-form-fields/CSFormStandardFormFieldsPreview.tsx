@@ -433,11 +433,11 @@ const CSFormStandardFormFieldsPreview = () => {
 									label: 'Radio field',
 									name: 'radio-1',
 									styleClass: 'csd-custom-br-mint',
-									radioOptions: [{
-										radioOptionValue: 'red',
+									options: [{
+										key: 'red',
 										label: 'Red'
 									}, {
-										radioOptionValue: 'blue',
+										key: 'blue',
 										label: 'Blue'
 									}]
 								}]
@@ -700,10 +700,14 @@ const CSFormStandardFormFieldsPreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Radio</CSD.Heading>
-				<CSD.Text> The radio field specific property is `radioOptions`.</CSD.Text>
-				<CSD.Text>`radioOptions` is an array prop which defines which options will be rendered as a part of the grouped input radio elements.</CSD.Text>
-				<CSD.Text>Each option is defined by the `label`, `radioOptionName` and `radioOptionValue` properties.</CSD.Text>
-				<CSD.Text>Also, `readOnly`, `disabled` and `title` properties can be defined for each radio option.</CSD.Text>
+				<CSD.Text> The radio field specific property are `options` and `disabledKeys`.</CSD.Text>
+				<CSD.Text> Exception is with `title` property on radio field as it can only be set to radio options.</CSD.Text>
+				<CSD.Text>Details about `options` and `disabledKeys` properties can be found below:</CSD.Text>
+				<CSD.List>
+					{/** Needs to be updated once CSRadio documentation is merged */}
+					<CSD.ListItem><CSD.Link path="#">options</CSD.Link></CSD.ListItem>
+					<CSD.ListItem><CSD.Link path="#">disabledKeys</CSD.Link></CSD.ListItem>
+				</CSD.List>
 				<CSD.Preview
 					code={`
 						<CSForm
@@ -713,47 +717,38 @@ const CSFormStandardFormFieldsPreview = () => {
 									fieldType: 'RADIO',
 									label: 'Select color:',
 									name: 'radio-color',
-									radioOptions: [{
-										radioOptionValue: 'red',
+									value: 'red',
+									options: [{
+										key: 'red',
 										label: 'Red'
 									}, {
-										radioOptionValue: 'blue',
+										key: 'blue',
 										label: 'Blue'
 									}]
 								}, {
 									fieldType: 'RADIO',
 									label: 'Select fruit:',
 									name: 'radio-fruit',
-									radioOptions: [{
-										radioOptionValue: 'apple',
+									disabledKeys: ['apple'],
+									value: 'banana',
+									options: [{
+										key: 'banana',
+										label: 'Banana'
+									}, {
+										key: 'apple',
 										label: 'Apple'
-									}, {
-										radioOptionValue: 'banana',
-										label: 'Banana',
-										disabled: true
-									}]
-								}, {
-									fieldType: 'RADIO',
-									label: 'Select drink:',
-									name: 'radio-drink',
-									radioOptions: [{
-										radioOptionValue: 'cola',
-										label: 'Coca-cola',
-										readOnly: true
-									}, {
-										radioOptionValue: 'pepsi',
-										label: 'Pepsi'
 									}]
 								}, {
 									fieldType: 'RADIO',
 									label: 'Select season:',
 									name: 'radio-season',
-									radioOptions: [{
-										radioOptionValue: 'summer',
+									value: 'summer',
+									options: [{
+										key: 'summer',
 										label: 'Summer',
 										title: 'Summer season'
 									}, {
-										radioOptionValue: 'winter',
+										key: 'winter',
 										label: 'Winter',
 										title: 'Winter season'
 									}]
