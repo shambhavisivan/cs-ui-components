@@ -65,6 +65,7 @@
   * fixed dropdown arrow positioning issues when opens on right
   * <i>important</i> changed the `icClearable` prop name to `clearable`
   * fixed timeFormat prop
+  * refactored from class based to functional component
 * CSDropdown
   * <i>important</i> removed `onClick` prop
   * added `routerLink` prop

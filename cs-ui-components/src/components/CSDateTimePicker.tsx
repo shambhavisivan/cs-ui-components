@@ -11,82 +11,39 @@ export interface CSDateTimePickerProps
 	timeIntervals?: number;
 }
 
-class CSDateTimePicker extends React.Component<CSDateTimePickerProps> {
-	public static defaultProps = {
-		dateFormat: 'Pp',
-		dropdownMode: 'scroll',
-		timeFormat: 'p',
-	};
+const CSDateTimePicker = ({
+	className,
+	dateFormat = 'Pp',
+	dropdownMode = 'scroll',
+	forwardRef,
+	label,
+	onChange,
+	selected,
+	timeFormat = 'p',
+	...rest
+}: CSDateTimePickerProps) => {
+	const dateTimePickerClasses = classNames(
+		'cs-datetimepicker',
+		{
+			[`${className}`]: className,
+		},
+	);
 
-	public render() {
-		const {
-			borderRadius,
-			className,
-			clearable,
-			dateFormat,
-			disabled,
-			dropdownMode,
-			error,
-			errorMessage,
-			errorTooltip,
-			forwardRef,
-			helpText,
-			id,
-			label,
-			labelHidden,
-			labelTitle,
-			locale,
-			maxDate,
-			maxDateYear,
-			minDate,
-			minDateYear,
-			name,
-			onBlur,
-			onChange,
-			onClick,
-			onKeyDown,
-			onSelect,
-			placeholder,
-			readOnly,
-			required,
-			scrollableYearDropdown,
-			selected,
-			showMonthDropdown,
-			showYearDropdown,
-			title,
-			todayButton,
-			tooltipPosition,
-			value,
-			width,
-			yearDropdownItemNumber,
-			timeFormat,
-			timeIntervals,
-			timeCaption,
-			...rest
-		} = this.props;
-
-		const dateTimePickerClasses = classNames(
-			'cs-datetimepicker',
-			{
-				[`${className}`]: className,
-			},
-		);
-
-		return (
-			<CSDatepicker
-				showTimeSelect
-				timeFormat={timeFormat}
-				onChange={onChange}
-				selected={selected}
-				label={label}
-				{...this.props}
-				{...rest}
-				className={dateTimePickerClasses}
-				ref={forwardRef}
-			/>
-		);
-	}
-}
+	return (
+		<CSDatepicker
+			showTimeSelect
+			timeFormat={timeFormat}
+			onChange={onChange}
+			selected={selected}
+			label={label}
+			dateFormat={dateFormat}
+			dropdownMode={dropdownMode}
+			className={dateTimePickerClasses}
+			ref={forwardRef}
+			{...rest}
+		/>
+	);
+};
 
 const CSDateTimePickerWithRefs: React.ForwardRefExoticComponent<CSDateTimePickerProps & React.RefAttributes<CSDatepicker>> = React.forwardRef<CSDatepicker, CSDateTimePickerProps>((props: CSDateTimePickerProps, ref) => <CSDateTimePicker {...props} forwardRef={ref} />);
 
