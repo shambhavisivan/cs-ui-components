@@ -1,3 +1,13 @@
+.csd-theme-light {
+	--csd-text-c: #{$cs-gray-dark-2};
+	--csd-release-notes-prop-bg: #{$cs-mint};
+}
+
+.csd-theme-dark {
+	--csd-text-c: #{$cs-gray-light-5};
+	--csd-release-notes-prop-bg: #{$cs-purple};
+}
+
 .cs-app-wrapper {
 	ul.csd-list,
 	ol.csd-list {
@@ -16,11 +26,29 @@
 	}
 
 	ul.csd-list {
-		list-style-type: var(--csd-list-style-type, disc);
+		list-style-type: disc;
 	}
 
 	ol.csd-list {
-		list-style-type: var(--csd-list-style-type, decimal);
+		list-style-type: decimal;
+	}
+
+	ul.csd-list-props {
+		display: flex;
+		margin: 1rem 1rem 0 1rem;
+
+		li {
+			display: flex;
+			font-family: monospace;
+			margin: 0 0.25rem 0 0;
+			padding: 0.25rem 0.5rem;
+			border-radius: 0.25rem;
+			color: var(--csd-text-c);
+			background: var(--csd-release-notes-prop-bg);
+		}
+	}
+
+	.csd-list-props + .csd-section {
+		margin-top: 0;
 	}
 }
-

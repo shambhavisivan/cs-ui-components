@@ -268,7 +268,7 @@ const CSCustomDataPreview = () => (
 				based on specific use cases. The different props will
 				render the component elements in a specific order from left to right:
 			</CSD.Text>
-			<CSD.List type="ol" styleType="number">
+			<CSD.List type="ol">
 				<CSD.ListItem>Value (extending to maximum available space)</CSD.ListItem>
 				<CSD.ListItem>Icons</CSD.ListItem>
 				<CSD.ListItem>Actions</CSD.ListItem>

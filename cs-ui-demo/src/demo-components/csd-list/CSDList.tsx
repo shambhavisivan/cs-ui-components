@@ -1,24 +1,28 @@
 import React from 'react';
+import classNames from 'classnames';
 
-export type CSDListType = 'ul' | 'ol';
+export type CSDListType = 'ul' | 'ol' | 'props';
 
 export interface CSDListProps {
 	children: any;
-	styleType?: string;
 	type?: CSDListType;
 }
 
 const CSDList = ({
 	children,
-	styleType = 'disc',
 	type = 'ul'
 }: CSDListProps) => {
 
-	const style = {
-		'--csd-list-style-type': styleType
-	};
+	const CSDListClasses = classNames(
+		'csd-list',
+		{
+			'csd-list-props': type === 'props'
+		}
+	);
 
-	return React.createElement(type, { style, className: 'csd-list' }, children);
+	const renderType = type === 'props' ? 'ul' : type;
+
+	return React.createElement(renderType, { className: CSDListClasses }, children);
 };
 
 export default CSDList;
