@@ -35,7 +35,7 @@
 
 	ul.csd-list-props {
 		display: flex;
-		margin: 1rem 1rem 0 1rem;
+		flex-wrap: wrap;
 
 		li {
 			display: flex;
@@ -46,6 +46,14 @@
 			color: var(--csd-text-c);
 			background: var(--csd-release-notes-prop-bg);
 		}
+	}
+
+	h1 + .csd-list-props {
+		margin: 1rem 1rem 0 1rem;
+	}
+
+	h2 + .csd-list-props {
+		margin: 1rem 1rem 1rem 0;
 	}
 
 	.csd-list-props + .csd-section {

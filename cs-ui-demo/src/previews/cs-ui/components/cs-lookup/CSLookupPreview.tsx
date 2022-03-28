@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { CSButtonSize, CSIconOrigin, CSLookup, CSTooltipPosition } from '@cloudsense/cs-ui-components';
 import * as CSD from '../../../../demo-components';
 import CSLookupProps from './cs-lookup-props';
@@ -72,6 +73,12 @@ const CSLookupPreview = () => {
 			routePrefix="cs-ui"
 		>
 			<CSD.Heading>Base Usage</CSD.Heading>
+			<CSD.List type="props">
+				<CSD.ListItem>label</CSD.ListItem>
+				<CSD.ListItem>columns</CSD.ListItem>
+				<CSD.ListItem>fieldToBeDisplayed</CSD.ListItem>
+				<CSD.ListItem>mode</CSD.ListItem>
+			</CSD.List>
 			<CSD.Section>
 				<CSD.Text>
 					CSLookup is an autocomplete combobox that will search against a database object.
@@ -119,6 +126,9 @@ const CSLookupPreview = () => {
 			<CSD.Heading>Client Side</CSD.Heading>
 			<CSD.Section>
 				<CSD.Heading level={2}>Displaying Options</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>options</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					When using `mode="client"`, the `options` prop is used to determine the list of values inside the lookup.
 					This is passed as an array of objects to the component. Each item in the array has two main values, `key` and `data`.
@@ -154,6 +164,9 @@ const CSLookupPreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Loading</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>loading</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					In some circumstances you may want to provide a loading icon inside the lookup dropdown until all the data for the dropdown has been fetched.
 					You can set the `loading` prop to `true` whilst the data is being fetched and to `false` once it is complete.
@@ -186,6 +199,9 @@ const CSLookupPreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Client Side Search</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>searchby</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					Search, by default works by searching through all the columns and filtering the results.
 					The `searchBy` prop allows you to override the default functionality and provide a specific column to search against.
@@ -224,6 +240,9 @@ const CSLookupPreview = () => {
 					props which aren't able to be used when `mode="client"`.
 				</CSD.Text>
 				<CSD.Heading level={2}>Fetching Options</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>fetchOptions</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					The `fetchOptions` prop accepts a function which will be called on every search or focus change if the `minTermLength` is set to `0`, which it is by default.
 					The function takes the search term, the page size (which determines the number of returned records)
@@ -257,8 +276,12 @@ const CSLookupPreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Pagination</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>pageSize</CSD.ListItem>
+					<CSD.ListItem>infiniteScroll</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
-					Pagination can be customised when using `mode="server"` in two ways. The first way which is also required is by using the `pageSize` prop.
+					Pagination can be customized when using `mode="server"` in two ways. The first way which is also required is by using the `pageSize` prop.
 					This sets the number of records that should be returned after each lookup records fetch. The second, `infiniteScroll`, determines whether
 					fetching additional records when the dropdown scroll hits the bottom is enabled, which by default is `false`.
 				</CSD.Text>
@@ -307,6 +330,9 @@ const CSLookupPreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Server Side Search</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>minTermLength</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					Sometimes there may be too many returned items in the lookup which could cause the search to be less effective at producing the results you are after.
 					If this is the case, then the `minTermLength` prop could help narrow down the results further by providing a minimum search term length.
@@ -342,11 +368,16 @@ const CSLookupPreview = () => {
 			<CSD.Heading>Interaction</CSD.Heading>
 			<CSD.Section>
 				<CSD.Heading level={2}>Selection</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>value</CSD.ListItem>
+					<CSD.ListItem>onSelectChange</CSD.ListItem>
+					<CSD.ListItem>multiselect</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					Some scenarios may call for a different approach to how values are presented or selected. There are three props that can be used to provide more or custom functionality.
 				</CSD.Text>
 				<CSD.Text>
-					The `value` prop allows you to set a default value for the lookup. This can be overidden by selecting a different option from the dropdown.
+					The `value` prop allows you to set a default value for the lookup. This can be overridden by selecting a different option from the dropdown.
 				</CSD.Text>
 				<CSD.Text>
 					If you want to provide multiple options for the user rather than just allowing a single selection then the `multiselect` prop will allow this.
@@ -414,12 +445,22 @@ const CSLookupPreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Event Handling</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>onBlur</CSD.ListItem>
+					<CSD.ListItem>onClick</CSD.ListItem>
+					<CSD.ListItem>onFocus</CSD.ListItem>
+					<CSD.ListItem>onDropdownClose</CSD.ListItem>
+					<CSD.ListItem>onKeyDown</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					CSLookup features seven event handler props. The first, `onSelectChange` is explained in the "Selection" part of this page above.
-					The others, `onBlur`, `onClick`, `onFocus`, `onDropdownClose`, `onKeyDown` and `onSearch` work in largely the same way where they pass a function which executes after certain criteria is met.
 				</CSD.Text>
 				<CSD.Text>
-					`onBlur`, `onClick`, `onFocus`, `onDropdownClose` and `onKeyDown` run on mouse or keyboard events. `onSearch`, however, runs each time a new letter is typed into the search field.
+					CSLookup supports these native events: `onBlur`, `onClick`, `onFocus` and `onKeyDown`.
+				</CSD.Text>
+				<CSD.Text>
+					Besides those, two synthetic events are exposed: `onDropdownClose`, which triggers once the dropdown collapses, and `onSearch`,
+					which triggers when the search term gets modified.
 				</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
@@ -545,10 +586,15 @@ const CSLookupPreview = () => {
 			<CSD.Heading>Shared Props</CSD.Heading>
 			<CSD.Section>
 				<CSD.Heading level={2}>Error</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>error</CSD.ListItem>
+					<CSD.ListItem>errorMessage</CSD.ListItem>
+					<CSD.ListItem>errorTooltip</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					Like most other form field components, CSLookup features three error props.
 					The first and most basic, `error` simply lets the user know if something is wrong.
-					If you want to elaborate on the problem and provide some information you can add the `errorMessage` prop in combination with the `error` prop.
+					Along this prop you should provide some information which you can add to the `errorMessage` prop.
 				</CSD.Text>
 				<CSD.Text>
 					If you want to provide a message but have limited space or a fixed layout then the `errorTooltip` prop may be the way forward.
@@ -559,14 +605,6 @@ const CSLookupPreview = () => {
 					table={clientWithBaseProps}
 					related={['label', 'columns', 'fieldToBeDisplayed', 'mode', 'options', 'error', 'errorMessage', 'errorTooltip']}
 					code={`
-						<CSLookup
-							label="Label"
-							columns={columns}
-							fieldToBeDisplayed="Account"
-							mode="client"
-							options={options}
-							error
-						/>
 						<CSLookup
 							label="Label"
 							columns={columns}
@@ -595,14 +633,6 @@ const CSLookupPreview = () => {
 						mode="client"
 						options={options}
 						error
-					/>
-					<CSLookup
-						label="Label"
-						columns={columns}
-						fieldToBeDisplayed="Account"
-						mode="client"
-						options={options}
-						error
 						errorMessage="Error Message"
 					/>
 					<CSLookup
@@ -619,12 +649,26 @@ const CSLookupPreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Restrictions</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>disabled</CSD.ListItem>
+					<CSD.ListItem>readOnly</CSD.ListItem>
+					<CSD.ListItem>required</CSD.ListItem>
+					<CSD.ListItem>hidden</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					Similar to the `error` props, most form fields including CSLookup feature a selection of boolean restriction props that
-					either prevent or require user interaction. Each prop can be used individually or in combination, however certain combinations
-					are recommended against such as combining `required` with any prop that prevents interaction.
+					either prevent or require user interaction.
+				</CSD.Text>
+				<CSD.Text>
 					Using the `readOnly` prop user won't be able to modify the input field anymore, however, user will still be able to focus it,
-					highlight it, and copy the text from it. Using the `disabled` prop input field will become unusable, un-clickable and the value will be hidden.
+					highlight it, and copy the text from it.
+				</CSD.Text>
+				<CSD.Text>
+					Using the `disabled` prop input field will become non-interactive. Disabled fields should not have value.
+				</CSD.Text>
+				<CSD.Text>
+					`required` prop will mark that completing the field is needed to proceed by adding a red asterisk in the label.
+					It should not be used alongside the `disabled` or `readOnly`.
 				</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
@@ -703,6 +747,12 @@ const CSLookupPreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Label Options</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>helpText</CSD.ListItem>
+					<CSD.ListItem>tooltipPosition</CSD.ListItem>
+					<CSD.ListItem>labelHidden</CSD.ListItem>
+					<CSD.ListItem>labelTitle</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					Some applications or use cases may require more or less information than a simple label can provide.
 					We have four props to vary the type of data shown on the label.
@@ -762,7 +812,7 @@ const CSLookupPreview = () => {
 				</CSD.Text>
 				<CSD.Text>
 					The tooltip can be customised further by using the `tooltipPosition` prop.
-					This takes one of twelve position values so that the position of the tooltip is explicity set.
+					This takes one of twelve position values so that the position of the tooltip is explicitly set.
 					The tooltip will take this position unless there is no space in the viewport.
 					In this case it would take a different value that would allow the entire tooltip to fit within the viewport.
 					If no `tooltipPosition` value is provided, the tooltip will take a default position of `top-right` unless it doesn't
@@ -813,6 +863,11 @@ const CSLookupPreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Input Options</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>placeholder</CSD.ListItem>
+					<CSD.ListItem>title</CSD.ListItem>
+					<CSD.ListItem>autoFocus</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					CSLookup has a few more general props which it shares with most input components.
 					There are `placeholder` and `title`, both of which accept a string and provide extra information to the user.
@@ -890,17 +945,31 @@ const CSLookupPreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Custom Data</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>actions</CSD.ListItem>
+					<CSD.ListItem>icons</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
-					Custom data can be added to most form field components including CSLookup. These can be applied using either the `actions` or `icons` props.
-					Both props allow for functionality which may not be possible to replicate with any other prop and can enable custom interactions or information.
+					Custom data can be added to most form field components including CSLookup.
+					These can be applied using either the `actions` or `icons` props.
 				</CSD.Text>
 				<CSD.Text>
-					The `actions` prop allows for custom functionality to be added to the component through the addition of `CSButton` as shown below.
-					`CSButton` can be customized inside the `actions` prop using all the props that it supports, only written in a json structure.
+					The `actions` prop allows for custom functionality to be added to the component through the addition of CSButton as shown in the example below.
+					Buttons can be set in the `actions` prop, which accepts an array of objects typed as `CSButtonProps`,
+					meaning that they share CSButton props as object attributes.
 				</CSD.Text>
 				<CSD.Text>
-					The `icons` prop allows for custom information to be added to the component through the addition of `CSIcon` as shown below.
-					`CSIcon` can be customized inside the `icons` prop using all the props that it supports, only written in a json structure.
+					The `icons` prop allows for custom icons to be added to the component through the addition of CSIcon as shown in the example below.
+					Icons can be set in the `icons` prop, which accepts an array of objects typed as `CSIconProps`,
+					meaning that they share CSIcon props as object attributes.
+				</CSD.Text>
+				<CSD.Text>
+					Both buttons and icons can be rendered with CSTooltips attached to them.
+					This can be done by setting the `tooltip` attribute on a button or icon object, which is typed as `CSTooltipProps`,
+					enabling the use of all CSTooltip props as object attributes.
+				</CSD.Text>
+				<CSD.Text>
+					If you want to read more, please do so at <NavLink to="/cs-ui/custom-data">Custom Data component</NavLink>.
 				</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
@@ -1013,16 +1082,19 @@ const CSLookupPreview = () => {
 					/>
 				</CSD.Preview>
 			</CSD.Section>
-			<CSD.Heading>Styling</CSD.Heading>
+			<CSD.Heading>Appearance</CSD.Heading>
 			<CSD.Section>
 				<CSD.Heading level={2}>General</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>borderRadius</CSD.ListItem>
+					<CSD.ListItem>gridCustomPopup</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
-					Adding the `borderRadius` prop allows for a custom border radius on the input element.
-					The border radius value is set to 0.25rem by default when this prop is left unused.
+					Adding the `borderRadius` prop allows custom border radius on the input element.
 				</CSD.Text>
 				<CSD.Text>
 					Setting `gridCustomPopup` to `true` adds the class `.ag-custom-component-popup` to the outer dropdown wrapper to allow support for AG Grid custom components.
-					This prevents the dropdown from closing on mouse click when inside the CSLookup component.
+					This prevents the dropdown from closing on mouse click when inside the CSLookup component. This will have no effect outside of cs-grid.
 				</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
@@ -1067,9 +1139,13 @@ const CSLookupPreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Dropdown Position</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>position</CSD.ListItem>
+					<CSD.ListItem>align</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					CSLookup features two props to determine the position of the dropdown.
-					These are `position` which determines verticial positioning and `align` which determines horizontal positioning.
+					These are `position` which determines vertical positioning and `align` which determines horizontal positioning.
 				</CSD.Text>
 				<CSD.Text>
 					By default `position` is set to open the dropdown to the `bottom` of the input field.
@@ -1152,6 +1228,10 @@ const CSLookupPreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Dropdown Size</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>dropdownHeight</CSD.ListItem>
+					<CSD.ListItem>dropdownWidth</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					CSLookup features two props to determine the size of the dropdown. These are `dropdownHeight` and `dropdownWidth`.
 				</CSD.Text>
@@ -1196,15 +1276,18 @@ const CSLookupPreview = () => {
 					/>
 				</CSD.Preview>
 			</CSD.Section>
-			<CSD.Heading>IDs & Classes</CSD.Heading>
 			<CSD.Section>
+				<CSD.Heading level={2}>IDs & Classes</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>id</CSD.ListItem>
+					<CSD.ListItem>className</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					It is possible to apply custom CSS classes and IDs to CSLookup using the `className` and `id` props respectively.
-					`className` is applied to the outer wrapper whilst `id` is applied to both the input element and the label.
+					`className` is applied to the outer wrapper whilst `id` is applied to both the input element and the label `for` attribute.
 				</CSD.Text>
 				<CSD.Text>
-					By default all input components have a randomly generated unique `id` applied so that functionality works out of the box,
-					and so that there are no duplicate `id` values at one time. Appling a custom `id` value will override the randomly generated `id` for that particular component.
+					If `id` is not specified, random unique id is generated, which is there for semantic association with belonging label.
 				</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
