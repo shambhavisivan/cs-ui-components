@@ -7,7 +7,7 @@
 }
 
 .csd-code {
-	--preview-code-margin: 0;
+	--preview-code-margin: 1rem  0 0 0;
 	border-bottom: 1px solid var(--csd-preview-br) !important;
 
 	* {
@@ -22,11 +22,11 @@
 	}
 
 	+ .csd-text {
-		margin-top: 2rem;
+		margin-top: 0.625rem;
 	}
-
-	+ .csd-code {
-		margin-block-start: 0.5rem !important;
+	+ .csd-list,
+	+ .csd-preview {
+		margin-top: 1rem;
 	}
 }
 

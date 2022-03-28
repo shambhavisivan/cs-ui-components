@@ -115,12 +115,6 @@
 	&:last-child {
 		margin-bottom: 0;
 
-		.csd-code:last-child {
-			--preview-code-margin: 0 0 -1rem 0;
-			border-radius: 0 0 0.5rem 0.5rem;
-			border-bottom: none !important;
-		}
-
 		.csd-preview-toolbar-wrapper:last-child .csd-preview-toolbar {
 			border-bottom: none;
 			margin-bottom: -1rem;
@@ -144,5 +138,15 @@
 				border-bottom: none;
 			}
 		}
+	}
+
+	.csd-code:last-child {
+		--preview-code-margin: 0;
+		border-radius: 0 0 0.5rem 0.5rem;
+		border-bottom: none !important;
+	}
+
+	+ .csd-code {
+		--preview-code-margin: 0;
 	}
 }
