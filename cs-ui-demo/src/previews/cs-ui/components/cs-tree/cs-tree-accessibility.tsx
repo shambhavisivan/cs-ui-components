@@ -26,9 +26,6 @@ export default {
 			'`role="group"` - set on group `ul` - enables enumeration of group items',
 			'`role="treeitem"` - set on `<li>`'
 		],
-		styling: [
-			'Focus state styles'
-		],
 		keyboardOperability: [
 			'Tree items focus enabled by `tabindex="0"`',
 			'`Enter` - select item',

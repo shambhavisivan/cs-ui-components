@@ -349,9 +349,6 @@ class CSToastPreview extends React.Component {
 					'`role="alert/status"` - depending on toast variant',
 					'`duration` - allowing setting large enough time'
 				],
-				styling: [
-					'Color contrast ratio > 4.5'
-				],
 				keyboardOperability: [
 					'Close button is `<CSButton>` and a child - allows keyboard focus'
 				]

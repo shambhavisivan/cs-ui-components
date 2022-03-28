@@ -652,9 +652,6 @@ class CSListPreview extends React.Component {
 					'`role="listitem"` - implicit on list item `<li>`',
 					'`role="option"` - simple list node items'
 				],
-				styling: [
-					'Focus state styles'
-				],
 				keyboardOperability: [
 					'List items focus enabled by `tabindex="0"`',
 					'`Enter` and `Space` - select item'

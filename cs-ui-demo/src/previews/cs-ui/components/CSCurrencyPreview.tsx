@@ -714,9 +714,6 @@ class CSCurrencyPreview extends React.Component {
 			requirements: {
 				structure: [
 					'`<span>` with text - visible to screen reader'
-				],
-				styling: [
-					'Color contrast ratio > 4.5'
 				]
 			}
 		}

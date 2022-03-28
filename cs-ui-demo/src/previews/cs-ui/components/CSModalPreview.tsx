@@ -1240,9 +1240,6 @@ class CSModalPreview extends React.Component<{}, CSModalPreviewState> {
 					'`role="dialog"`',
 					'`aria-describedby` - semantically connects title with parent modal div containing role, which is read once modal is opened'
 				],
-				styling: [
-					'Color contrast ratio > 4.5'
-				],
 				keyboardOperability: [
 					'Logic for focus management to move on modal when it is opened and to cycle within it until closed',
 					'Close button is `<button>` and a first child - allows keyboard focus',

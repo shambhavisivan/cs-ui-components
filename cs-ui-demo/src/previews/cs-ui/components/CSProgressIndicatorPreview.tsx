@@ -207,10 +207,6 @@ class CSProgressIndicatorPreview extends React.Component {
 					'`aria-current` - true when the step is in active status',
 					'`aria-roledescription` - role set to custom "step" to describe better rather than implicit role button'
 				],
-				styling: [
-					'Color contrast ratio > 4.5',
-					'Distinct hover and focus state styles'
-				],
 				keyboardOperability: [
 					'`<button>` OOTB focusable and supports clicks with `Enter` and `Space` keys'
 				]

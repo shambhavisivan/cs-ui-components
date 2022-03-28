@@ -870,9 +870,6 @@ class CSSidebarPreview extends React.Component<{}, CSSidebarPreviewState> {
 					'`aria-expanded` - true when sidebar is expanded',
 					'`role="complementary"` - implicit by `<aside>`, marks tangentially related content to main content of the page'
 				],
-				styling: [
-					'Distinct hover, active and focus state styles'
-				],
 				keyboardOperability: [
 					'Proper focus management and keyboard operability ensured by structure and `<CSButton>`'
 				]

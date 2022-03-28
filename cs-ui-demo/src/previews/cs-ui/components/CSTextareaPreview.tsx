@@ -510,9 +510,6 @@ class CSTextareaPreview extends React.Component<{}, CSTextareaPreviewState> {
 					'`aria-multiline="true"` - implicit with `<textarea>`',
 					'`contenteditable="true"` - implicit with `<textarea>`'
 				],
-				styling: [
-					'Focus state styles'
-				],
 				keyboardOperability: [
 					'`<textarea>` OOTB focusable'
 				]

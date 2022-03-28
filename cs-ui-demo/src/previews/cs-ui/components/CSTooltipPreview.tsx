@@ -842,10 +842,6 @@ class CSTooltipPreview extends React.Component {
 					'`aria-labelledby` - contains id pointing to tooltip body to associate tooltip icon with tooltip body',
 					'`role="tooltip"`'
 				],
-				styling: [
-					'Focus state styles',
-					'Text color contrast ratio > 4.5'
-				],
 				keyboardOperability: [
 					'Logic for tooltip to open on icon focus',
 					'Logic for tooltip to to stay opened when hovered over',

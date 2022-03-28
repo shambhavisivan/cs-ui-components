@@ -130,12 +130,6 @@ class CSSkipLinkPreview extends React.Component {
 				attributes: [
 					'`role="link"` - implicit with `<a>`'
 				],
-				styling: [
-					'Focus state styles',
-					'Hidden for non-keyboard users',
-					'Text color contrast ratio > 4.5',
-					'Underline to distinct it as a link'
-				],
 				keyboardOperability: [
 					'`<a>` OOTB focusable and supports `Space` key click'
 				]

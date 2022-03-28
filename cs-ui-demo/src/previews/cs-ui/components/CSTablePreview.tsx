@@ -1283,9 +1283,6 @@ class CSTablePreview extends React.Component {
 					'`role="rowgroup"` - div that wraps table row, represents `thead` or `tbody`',
 					'`role="cell"` - div that represents table cell'
 				],
-				styling: [
-					'Color contrast ratio > 4.5'
-				],
 				keyboardOperability: [
 					'Selectable table rows are focusable'
 				]

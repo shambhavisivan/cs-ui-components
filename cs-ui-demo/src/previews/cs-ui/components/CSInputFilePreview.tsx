@@ -329,10 +329,6 @@ class CSInputFilePreview extends React.Component {
 					'`aria-invalid` - true when there is an error',
 					'`title`'
 				],
-				styling: [
-					'Focus state styles',
-					'`<label>` styled as drop zone area'
-				],
 				keyboardOperability: [
 					'`<input>` OOTB focusable and supports clicks with `Enter` and `Space` keys',
 					'Logic around tooltip provided in order for tooltip to not break focus pattern when it is shown'

@@ -871,9 +871,6 @@ class CSDropdownPreview extends React.Component {
 					'`<ul>` wrapper `role="menu"`',
 					'`button role="menuitem"`'
 				],
-				styling: [
-					'Distinct hover, active and focus state styles'
-				],
 				keyboardOperability: [
 					'Proper focus management and keyboard operability ensured by structure and `<CSButton>`'
 				]

@@ -562,10 +562,6 @@ class CSTabPreview extends React.Component {
 					'`aria-invalid` - true when there is an error',
 					'`aria-current` - true when tab is selected'
 				],
-				styling: [
-					'Colors contrast ratio > 4.5 (note: disabled state fails)',
-					'Distinct hover, active and focus state styles'
-				],
 				keyboardOperability: [
 					'`<button>` OOTB focusable and supports clicks with `Enter` and `Space` keys'
 				]

@@ -245,10 +245,6 @@ class CSPathPreview extends React.Component {
 					'`aria-current` - true when item is active',
 					'`aria-invalid` - true when item in error'
 				],
-				styling: [
-					'Color contrast ratio > 4.5',
-					'Distinct hover, active and focus state styles'
-				],
 				keyboardOperability: [
 					'`<button>` OOTB focusable and supports `Enter` and `Space` click'
 				]

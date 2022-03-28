@@ -102,12 +102,7 @@ class CSFieldErrorMsgPreview extends React.Component {
 		accessibility: {
 			criterionList: [
 				'1.4.4'
-			],
-			requirements: {
-				styling: [
-					'Color contrast ratio > 4.5'
-				]
-			}
+			]
 		}
 	})
 

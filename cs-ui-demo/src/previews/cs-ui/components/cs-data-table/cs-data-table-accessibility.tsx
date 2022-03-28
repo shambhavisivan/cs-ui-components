@@ -17,9 +17,6 @@ export default {
 		attributes: [
 			'`scope="col"` - applied to all table header cells',
 			'`scope="row"` - applied to first cell of a row without a control, dropdown or checkbox'
-		],
-		styling: [
-			'Color contrast ratio > 4.5'
 		]
 	}
 };

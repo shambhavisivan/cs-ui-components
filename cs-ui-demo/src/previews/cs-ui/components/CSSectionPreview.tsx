@@ -355,9 +355,6 @@ class CSSectionPreview extends React.Component {
 					'`role="region"` - implicit by `<section>`',
 					'`aria-roledescription` - role set to custom "section" to describe better rather than implicit role region'
 				],
-				styling: [
-					'Focus state styles'
-				],
 				keyboardOperability: [
 					'`<button>` OOTB focusable and supports clicks with `Enter` and `Space` keys'
 				]

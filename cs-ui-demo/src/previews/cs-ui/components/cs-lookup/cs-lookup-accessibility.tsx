@@ -26,9 +26,6 @@ export default {
 			'`aria-required` - true when selecting an option is required',
 			'`aria-multiselectable` - announces if multi selection is possible'
 		],
-		styling: [
-			'Focus state styles'
-		],
 		keyboardOperability: [
 			'`<input>` OOTB focusable',
 			'`<CSButton>` - focusable and supports clicks with `Enter` and `Space`'

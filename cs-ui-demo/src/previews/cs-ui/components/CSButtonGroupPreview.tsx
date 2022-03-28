@@ -272,9 +272,6 @@ class CSButtonGroupPreview extends React.Component {
 					'`aria-labelledby` - contains id pointing to hidden span when `ariaDescription` is set which associates group with description',
 					'`role="group"`'
 				],
-				styling: [
-					'Distinct hover, active and focus state styles'
-				],
 				keyboardOperability: [
 					'Proper focus management and keyboard operability ensured by `<CSButton>`'
 				]

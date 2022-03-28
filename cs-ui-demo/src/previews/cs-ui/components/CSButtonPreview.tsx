@@ -1021,10 +1021,6 @@ class CSButtonPreview extends React.Component {
 					'`aria-label` - necessary when label is hidden',
 					'`role` - change role button if needed to a more accurate one such as menu item'
 				],
-				styling: [
-					'Color contrast ratio > 4.5 (note: disabled state fails)',
-					'Distinct hover, active and focus state styles'
-				],
 				keyboardOperability: [
 					'`<button>` OOTB focusable and supports clicks with `Enter` and `Space` keys'
 				]

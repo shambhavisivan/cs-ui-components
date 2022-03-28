@@ -162,9 +162,6 @@ class CSLabelPreview extends React.Component {
 			requirements: {
 				structure: [
 					'`<label>`'
-				],
-				styling: [
-					'Required status has an asterisk character in order to comply with rule to not describe error with color or text only'
 				]
 			}
 		}

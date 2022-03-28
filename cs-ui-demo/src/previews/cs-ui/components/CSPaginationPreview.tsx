@@ -71,9 +71,6 @@ class CSPaginationPreview extends React.Component {
 					'`aria-current` - true when page button is active (TODO)',
 					'`role="navigation"` - implicit by `<nav>`'
 				],
-				styling: [
-					'Focus state styles'
-				],
 				keyboardOperability: [
 					'`<a>` OOTB focusable and supports `Space` click'
 				]

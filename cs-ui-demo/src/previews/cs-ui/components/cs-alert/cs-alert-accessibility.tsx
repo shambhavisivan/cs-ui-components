@@ -12,9 +12,6 @@ export default {
 		attributes: [
 			'`role="alert/status"` - depending on alert variant'
 		],
-		styling: [
-			'Color contrast ratio > 4.5'
-		],
 		keyboardOperability: [
 			'Close button is a child `<button>` - allows keyboard focus'
 		]

@@ -13,9 +13,10 @@ import CSDSection from './CSDSection';
 export interface CSDAccessibilityProps {
 	criteria: Array<string>;
 	requirements: any;
+	customContent: React.ReactElement;
 }
 
-const CSDAccessibility = ({ criteria, requirements }: CSDAccessibilityProps) => {
+const CSDAccessibility = ({ criteria, requirements, customContent }: CSDAccessibilityProps) => {
 	const renderCriteria = () => {
 		if (!criteria) {
 			return null;
@@ -56,10 +57,6 @@ const CSDAccessibility = ({ criteria, requirements }: CSDAccessibilityProps) => 
 			rows.push({ key: 'attributes', data: { name: 'Props & Attributes', content: requirements.attributes } });
 		}
 
-		if (requirements.styling) {
-			rows.push({ key: 'styling', data: { name: 'Styling', content: requirements.styling } });
-		}
-
 		if (requirements.keyboardOperability) {
 			rows.push({ key: 'keyboardOperability', data: { name: 'Keyboard Operability', content: requirements.keyboardOperability } });
 		}
@@ -94,6 +91,7 @@ const CSDAccessibility = ({ criteria, requirements }: CSDAccessibilityProps) => 
 
 	return (
 		<>
+			{customContent}
 			{renderCriteria()}
 			{renderRequirements()}
 		</>

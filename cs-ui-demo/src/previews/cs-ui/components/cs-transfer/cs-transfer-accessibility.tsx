@@ -22,10 +22,6 @@ export default {
 			'`role="listbox"`',
 			'`role="option"`'
 		],
-		styling: [
-			'Color contrast ratio > 4.5',
-			'Distinct hover, active and focus state styles'
-		],
 		keyboardOperability: [
 			'Proper focus management and keyboard operability ensured by structure and `<CSButton>`',
 			'`Left` - move left to selection buttons or source list',

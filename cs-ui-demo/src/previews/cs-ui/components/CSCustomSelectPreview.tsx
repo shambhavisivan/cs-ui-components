@@ -956,9 +956,6 @@ class CSCustomSelectPreview extends React.Component {
 					'`aria-labelledby` - associate field with label',
 					'`aria-expanded`'
 				],
-				styling: [
-					'Focus state styles'
-				],
 				keyboardOperability: [
 					'Enter opens dropdown',
 					'Escape closes dropdown'
