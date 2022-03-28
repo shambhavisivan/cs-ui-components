@@ -1,6 +1,7 @@
 .csd-theme-light {
 	--csd-preview-bg: #{$cs-white};
 	--csd-preview-br: #{transparentize($cs-black, 0.9)};
+	--csd-preview-console-alert-bg: #{transparentize($cs-black, 0.9)};
 
 	--cs-tab-hover-br: #{$cs-mint};
 	--cs-tab-active-br: #{$cs-purple};
@@ -9,6 +10,7 @@
 .csd-theme-dark {
 	--csd-preview-bg: #212121;
 	--csd-preview-br: #{transparentize($cs-white, 0.9)};
+	--csd-preview-console-alert-bg: #{transparentize($cs-white, 0.9)};
 
 	--cs-tab-c: #{transparentize($cs-white, 0.2)};
 	--cs-tab-active-bg: #{$cs-black};
@@ -28,6 +30,7 @@
 			0 1px 3px var(--csd-shadow-light),
 			0 1px 2px var(--csd-shadow-medium);
 
+		.csd-preview-console-alert:first-child,
 		.csd-preview-toolbar-wrapper:first-child,
 		.csd-preview-showcase:first-child,
 		.csd-code:first-child,
@@ -55,6 +58,19 @@
 		&:not(:last-child) .csd-preview-toolbar-wrapper:last-child {
 			border-bottom: none;
 		}
+	}
+
+	.csd-preview-console-alert {
+		padding: 0.5rem 1rem;
+		color: var(--csd-text-c);
+		background-color: var(--csd-preview-console-alert-bg);
+		font-size: 0.75rem;
+		display: flex;
+		align-items: center;
+	}
+
+	.csd-preview-console-alert-icon {
+		margin-right: 0.5rem;
 	}
 
 	.csd-preview-showcase {

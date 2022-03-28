@@ -4,13 +4,13 @@ import * as CSD from '../../../../demo-components';
 import CSCustomDataProps from './cs-custom-data-props';
 
 const actions = [{
-	onClick: () => alert('Delete option called'),
+	onClick: () => console.log,
 	iconName: 'delete',
 	labelHidden: true,
 	size: 'small',
 	label: 'Delete'
 }, {
-	onClick: () => alert('Add option called'),
+	onClick: console.log,
 	iconName: 'add',
 	labelHidden: true,
 	size: 'small',

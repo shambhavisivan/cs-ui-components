@@ -15,20 +15,10 @@ const options = [{
 
 const CSRadioPreview = () => {
 	const [selectedKeys, setSelectedKeys] = useState<Record<string, string>>({});
-	const [focused, setFocused] = useState<boolean>(false);
 
-	const handleBlur = () => alert('Radio has lost focus.');
-	const handleClick = () => alert('Radio input has been clicked.');
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>, key: string) => {
 		setSelectedKeys((prevSelectedKeys: Record<string, string>) => ({...prevSelectedKeys, [key]: event.target.value}));
 	};
-	const handleFocus = () => {
-		setFocused((prevFocused: boolean) => !prevFocused);
-		if (focused) {
-			alert('Radio is focused.');
-		}
-	};
-	const handleKeyDown = (event: any) => alert(`Key ${event.key} has been pressed.`);
 
 	return (
 		<CSD.Page
@@ -359,6 +349,7 @@ const CSRadioPreview = () => {
 				<CSD.Preview
 					orientation="vertical"
 					table={CSRadioProps}
+					consoleAlert
 					related={[
 						'options',
 						'label',
@@ -373,7 +364,7 @@ const CSRadioPreview = () => {
 						<CSRadio
 							label="Radio with onBlur"
 							options={options}
-							onBlur={handleBlur}
+							onBlur={console.log}
 							selectedKey={selectedKey}
 							onChange={(event: React.ChangeEvent<HTMLInputElement) => setSelectedKey(event.target.value)}
 						/>
@@ -388,19 +379,22 @@ const CSRadioPreview = () => {
 							label="Radio with onChange"
 							options={options}
 							selectedKey={selectedKey}
-							onChange={handleChange}
+							onChange={(event: React.ChangeEvent<HTMLInputElement) => {
+								setSelectedKey(event.target.value);
+								console.log(event);
+							}}
 						/>
 						<CSRadio
 							label="Radio with onFocus"
 							options={options}
-							onFocus={handleFocus}
+							onFocus={console.log}
 							selectedKey={selectedKey}
 							onChange={(event: React.ChangeEvent<HTMLInputElement) => setSelectedKey(event.target.value)}
 						/>
 						<CSRadio
 							label="Radio with onKeyDown"
 							options={options}
-							onKeyDown={handleKeyDown}
+							onKeyDown={console.log}
 							selectedKey={selectedKey}
 							onChange={(event: React.ChangeEvent<HTMLInputElement) => setSelectedKey(event.target.value)}
 						/>
@@ -409,14 +403,14 @@ const CSRadioPreview = () => {
 					<CSRadio
 						label="Radio with onBlur"
 						options={options}
-						onBlur={handleBlur}
+						onBlur={console.log}
 						selectedKey={selectedKeys.onBlur}
 						onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'onBlur')}
 					/>
 					<CSRadio
 						label="Radio with onClick"
 						options={options}
-						onClick={handleClick}
+						onClick={console.log}
 						selectedKey={selectedKeys.onClick}
 						onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'onClick')}
 					/>
@@ -426,20 +420,20 @@ const CSRadioPreview = () => {
 						selectedKey={selectedKeys.onChange}
 						onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
 							handleChange(event, 'onChange');
-							alert('Radio input has been changed.');
+							console.log(event);
 						}}
 					/>
 					<CSRadio
 						label="Radio with onFocus"
 						options={options}
-						onFocus={handleFocus}
+						onFocus={console.log}
 						selectedKey={selectedKeys.onFocus}
 						onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'onFocus')}
 					/>
 					<CSRadio
 						label="Radio with onKeyDown"
 						options={options}
-						onKeyDown={handleKeyDown}
+						onKeyDown={console.log}
 						selectedKey={selectedKeys.onKeyDown}
 						onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'onKeyDown')}
 					/>

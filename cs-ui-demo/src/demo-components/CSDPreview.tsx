@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import { CSTab, CSTabGroup } from '@cloudsense/cs-ui-components';
+import { CSTab, CSTabGroup, CSIcon } from '@cloudsense/cs-ui-components';
 
 import CSDCode from './CSDCode';
 import CSDCopyButton from './CSDCopyButton';
@@ -17,6 +17,7 @@ export interface CSDPreviewTableInterface {
 export interface CSDPreviewProps {
 	children: React.ReactNode;
 	code?: string;
+	consoleAlert?: boolean;
 	orientation?: CSDPreviewOrientation;
 	related?: string | Array<string>;
 	table?: any;
@@ -25,11 +26,25 @@ export interface CSDPreviewProps {
 const CSDPreview = ({
 	children,
 	code,
+	consoleAlert,
 	orientation,
 	related,
 	table
 }: CSDPreviewProps) => {
 	const [visibleSection, setVisibleSection] = useState<CSDPreviewVisibleSectionType>(null);
+
+	const renderConsoleAlert = () => {
+		if (!consoleAlert) {
+			return null;
+		}
+
+		return (
+			<div className="csd-preview-console-alert">
+				<CSIcon name="apex" className="csd-preview-console-alert-icon" />
+				To make sure you're seeing all features of this preview, please open the console.
+			</div>
+		);
+	};
 
 	const renderToolbar = () => {
 		if (!code && !table) {
@@ -107,6 +122,7 @@ const CSDPreview = ({
 
 	return (
 		<div className="csd-preview">
+			{renderConsoleAlert()}
 			<div className={previewShowcaseClasses}>
 				{children}
 			</div>

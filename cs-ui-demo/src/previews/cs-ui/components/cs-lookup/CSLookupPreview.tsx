@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { CSButtonSize, CSIconOrigin, CSLookup, CSTooltipPosition } from '@cloudsense/cs-ui-components';
 import * as CSD from '../../../../demo-components';
 import CSLookupProps from './cs-lookup-props';
@@ -42,20 +42,6 @@ const options = [
 ];
 
 const CSLookupPreview = () => {
-	const [focused, setFocused] = useState<boolean>(false);
-
-	const handleBlur = () => alert('Lookup has lost focus.');
-	const handleClick = () => alert('Lookup input has been clicked.');
-	const handleFocus = () => {
-		setFocused((prevFocused: boolean) => !prevFocused);
-		if (focused) {
-			alert('Lookup is focused.');
-		}
-	};
-	const handleClose = () => alert('Lookup has closed.');
-	const handleKeyDown = (event: any) => alert(`Key ${event.key} has been pressed.`);
-	const handleSearch = (event: any) => alert(event.target.value);
-	const handleSelectChange = (item: any) => alert(JSON.stringify(item));
 	const fetchData = async (searchTerm: any, pageSize: any, pageNo: any) => {
 		await new Promise(resolve => setTimeout(resolve, 2000));
 		if (searchTerm === '') {
@@ -396,7 +382,7 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
-							onSelectChange={handleSelectChange}
+							onSelectChange={console.log}
 						/>
 					`}
 				>
@@ -422,7 +408,7 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
-						onSelectChange={handleSelectChange}
+						onSelectChange={console.log}
 					/>
 				</CSD.Preview>
 			</CSD.Section>
@@ -438,6 +424,7 @@ const CSLookupPreview = () => {
 				<CSD.Preview
 					orientation="vertical"
 					table={clientWithBaseProps}
+					consoleAlert
 					related={[
 						'label',
 						'columns',
@@ -459,7 +446,7 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
-							onBlur={handleBlur}
+							onBlur={console.log}
 						/>
 						<CSLookup
 							label="Lookup with onClick"
@@ -467,7 +454,7 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
-							onClick={handleClick}
+							onClick={console.log}
 						/>
 						<CSLookup
 							label="Lookup with onFocus"
@@ -475,7 +462,7 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
-							onFocus={handleFocus}
+							onFocus={console.log}
 						/>
 						<CSLookup
 							label="Lookup with onDropdownClose"
@@ -483,7 +470,7 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
-							onDropdownClose={handleClose}
+							onDropdownClose={() => console.log('onDropdownClose triggered')}
 						/>
 						<CSLookup
 							label="Lookup with onKeyDown"
@@ -491,7 +478,7 @@ const CSLookupPreview = () => {
 							fieldToBeDisplayed="Account"
 							mode="client"
 							options={options}
-							onKeyDown={handleKeyDown}
+							onKeyDown={console.log}
 						/>
 						<CSLookup
 							label="Lookup with onSearch"
@@ -500,7 +487,7 @@ const CSLookupPreview = () => {
 							mode="client"
 							options={options}
 							searchBy={['Id', 'Account']}
-							onSearch={handleSearch}
+							onSearch={console.log}
 						/>
 					`}
 				>
@@ -510,7 +497,7 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
-						onBlur={handleBlur}
+						onBlur={console.log}
 					/>
 					<CSLookup
 						label="Lookup with onClick"
@@ -518,7 +505,7 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
-						onClick={handleClick}
+						onClick={console.log}
 					/>
 					<CSLookup
 						label="Lookup with onFocus"
@@ -526,7 +513,7 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
-						onFocus={handleFocus}
+						onFocus={console.log}
 					/>
 					<CSLookup
 						label="Lookup with onDropdownClose"
@@ -534,7 +521,7 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
-						onDropdownClose={handleClose}
+						onDropdownClose={() => console.log('onDropdownClose triggered')}
 					/>
 					<CSLookup
 						label="Lookup with onKeyDown"
@@ -542,7 +529,7 @@ const CSLookupPreview = () => {
 						fieldToBeDisplayed="Account"
 						mode="client"
 						options={options}
-						onKeyDown={handleKeyDown}
+						onKeyDown={console.log}
 					/>
 					<CSLookup
 						label="Lookup with onSearch"
@@ -551,7 +538,7 @@ const CSLookupPreview = () => {
 						mode="client"
 						options={options}
 						searchBy={['Id', 'Account']}
-						onSearch={handleSearch}
+						onSearch={console.log}
 					/>
 				</CSD.Preview>
 			</CSD.Section>

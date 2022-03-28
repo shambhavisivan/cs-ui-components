@@ -46,12 +46,13 @@ const CSAlertPreview = () => (
 			<CSD.Preview
 				orientation="vertical"
 				table={CSAlertProps}
+				consoleAlert
 				related={['variant', 'closeButton', 'onClose', 'text']}
 				code={`
 					<CSAlert
 						variant="info"
 						closeButton
-						onClose={() => alert('The alert close button has been clicked.')}
+						onClose={console.log}
 						text="This is an alert with a close button."
 					/>
 				`}
@@ -59,7 +60,7 @@ const CSAlertPreview = () => (
 				<CSAlert
 					variant="info"
 					closeButton
-					onClose={() => alert('The alert close button has been clicked.')}
+					onClose={console.log}
 					text="This is an alert with a close button."
 				/>
 			</CSD.Preview>
@@ -85,7 +86,7 @@ const CSAlertPreview = () => (
 						variant="info"
 						iconHidden
 						closeButton
-						onClose={() => alert('The alert close button has been clicked.')}
+						onClose={console.log}
 						text="This is an alert with no icon and a close button."
 					/>
 					<CSAlert
@@ -114,7 +115,7 @@ const CSAlertPreview = () => (
 					variant="info"
 					iconHidden
 					closeButton
-					onClose={() => alert('The alert close button has been clicked.')}
+					onClose={console.log}
 					text="This is an alert with no icon and a close button."
 				/>
 				<CSAlert
@@ -216,14 +217,14 @@ const CSAlertPreview = () => (
 						styleFormat="scoped"
 						text="This is a scoped alert with a close button."
 						closeButton
-						onClose={() => alert('The alert close button has been clicked.')}
+						onClose={console.log}
 					/>
 					<CSAlert
 						variant="info"
 						styleFormat="scoped"
 						iconHidden
 						closeButton
-						onClose={() => alert('The alert close button has been clicked.')}
+						onClose={console.log}
 						text="This is a scoped alert with no icon and a close button."
 					/>
 					<CSAlert
@@ -244,14 +245,14 @@ const CSAlertPreview = () => (
 					styleFormat="scoped"
 					text="This is a scoped alert with a close button."
 					closeButton
-					onClose={() => alert('The alert close button has been clicked.')}
+					onClose={console.log}
 				/>
 				<CSAlert
 					variant="info"
 					styleFormat="scoped"
 					iconHidden
 					closeButton
-					onClose={() => alert('The alert close button has been clicked.')}
+					onClose={console.log}
 					text="This is a scoped alert with no icon and a close button."
 				/>
 				<CSAlert
@@ -280,7 +281,7 @@ const CSAlertPreview = () => (
 						variant="info"
 						styleType="light"
 						closeButton
-						onClose={() => alert('The alert close button has been clicked.')}
+						onClose={console.log}
 						text="This is a light info alert with a close button."
 					/>
 					<CSAlert
@@ -309,7 +310,7 @@ const CSAlertPreview = () => (
 					variant="info"
 					styleType="light"
 					closeButton
-					onClose={() => alert('The alert close button has been clicked.')}
+					onClose={console.log}
 					text="This is a light info alert with a close button."
 				/>
 				<CSAlert
@@ -348,7 +349,7 @@ const CSAlertPreview = () => (
 					<CSAlert
 						variant="info"
 						closeButton
-						onClose={() => alert('The alert close button has been clicked.')}
+						onClose={console.log}
 						text={[
 							'This is message #1 inside an alert with a close button.',
 							'This is message #2 inside an alert with a close button.'
@@ -358,7 +359,7 @@ const CSAlertPreview = () => (
 						variant="info"
 						iconHidden
 						closeButton
-						onClose={() => alert('The alert close button has been clicked.')}
+						onClose={console.log}
 						text={[
 							'This is message #1 inside an alert with no icon and a close button.',
 							'This is message #2 inside an alert with no icon and a close button.'
@@ -385,7 +386,7 @@ const CSAlertPreview = () => (
 				<CSAlert
 					variant="info"
 					closeButton
-					onClose={() => alert('The alert close button has been clicked.')}
+					onClose={console.log}
 					text={[
 						'This is message #1 inside an alert with a close button.',
 						'This is message #2 inside an alert with a close button.'
@@ -395,7 +396,7 @@ const CSAlertPreview = () => (
 					variant="info"
 					iconHidden
 					closeButton
-					onClose={() => alert('The alert close button has been clicked.')}
+					onClose={console.log}
 					text={[
 						'This is message #1 inside an alert with no icon and a close button.',
 						'This is message #2 inside an alert with no icon and a close button.'

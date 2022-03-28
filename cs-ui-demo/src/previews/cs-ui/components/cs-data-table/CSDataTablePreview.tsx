@@ -1154,13 +1154,14 @@ const CSDataTablePreview = () => {
 				<CSD.Preview
 					orientation="vertical"
 					table={CSDataTableProps}
+					consoleAlert
 					related={['columns', 'rows', 'subsectionRender', 'collapsible']}
 					code={`
 						<CSDataTable
 							columns={columns}
 							onCollapseClick={(event: React.MouseEvent<HTMLButtonElement>, row: CSDataTableRowWithMetaInterface) => {
 								row.meta.toggleExpanded();
-								alert(\`\${row.data!.name} children are now \${!row.meta.expanded ? 'visible' : 'hidden'}.\`);
+								console.log(\`\${row.data!.name} children are now \${!row.meta.expanded ? 'visible' : 'hidden'}.\`);
 							}}
 							rows={[{
 								key: 'london',
@@ -1181,7 +1182,7 @@ const CSDataTablePreview = () => {
 						columns={columns}
 						onCollapseClick={(event: React.MouseEvent<HTMLButtonElement>, row: CSDataTableRowWithMetaInterface) => {
 							row.meta.toggleExpanded();
-							alert(`${row.data!.name} children are now ${!row.meta.expanded ? 'visible' : 'hidden'}.`);
+							console.log(`${row.data!.name} children are now ${!row.meta.expanded ? 'visible' : 'hidden'}.`);
 						}}
 						rows={[{
 							key: 'london',
@@ -1221,7 +1222,7 @@ const CSDataTablePreview = () => {
 							columns={columns}
 							rows={rows}
 							subsectionRender={(row: CSDataTableRowWithMetaInterface) => (
-								<CSInputText label="Country" value={row.data!.country} />
+								<CSInputText label="Country" defaultValue={row.data!.country} />
 							)}
 						/>
 					`}
@@ -1230,7 +1231,7 @@ const CSDataTablePreview = () => {
 						columns={columns}
 						rows={rows}
 						subsectionRender={(row: CSDataTableRowWithMetaInterface) => (
-							<CSInputText label="Country" value={row.data!.country} />
+							<CSInputText label="Country" defaultValue={row.data!.country} />
 						)}
 					/>
 				</CSD.Preview>
@@ -1254,7 +1255,7 @@ const CSDataTablePreview = () => {
 						<CSDataTable
 							columns={columns}
 							subsectionRender={(row: CSDataTableRowWithMetaInterface) => (
-								<CSInputText label="Country" value={row.data!.country}/>
+								<CSInputText label="Country" defaultValue={row.data!.country}/>
 							)}
 							rows={[{
 								key: 'london',
@@ -1274,7 +1275,7 @@ const CSDataTablePreview = () => {
 					<CSDataTable
 						columns={columns}
 						subsectionRender={(row: CSDataTableRowWithMetaInterface) => (
-							<CSInputText label="Country" value={row.data!.country} />
+							<CSInputText label="Country" defaultValue={row.data!.country} />
 						)}
 						rows={[{
 							key: 'london',
@@ -1316,7 +1317,7 @@ const CSDataTablePreview = () => {
 							columns={columns}
 							rows={rows}
 							subsectionRender={(row: CSDataTableRowWithMetaInterface) => (
-								row.data!.area > 500 ? <CSInputText label="Country" value={row.data!.country} /> : null
+								row.data!.area > 500 ? <CSInputText label="Country" defaultValue={row.data!.country} /> : null
 							)}
 						/>
 					`}
@@ -1325,7 +1326,7 @@ const CSDataTablePreview = () => {
 						columns={columns}
 						rows={rows}
 						subsectionRender={(row: CSDataTableRowWithMetaInterface) => (
-							row.data!.area > 500 ? <CSInputText label="Country" value={row.data!.country} /> : null
+							row.data!.area > 500 ? <CSInputText label="Country" defaultValue={row.data!.country} /> : null
 						)}
 					/>
 				</CSD.Preview>
@@ -1362,7 +1363,7 @@ const CSDataTablePreview = () => {
 							rows={rows}
 							collapsible={false}
 							subsectionRender={(row: CSDataTableRowWithMetaInterface) => (
-								<CSInputText label="Country" value={row.data!.country} />
+								<CSInputText label="Country" defaultValue={row.data!.country} />
 							)}
 						/>
 					`}
@@ -1386,7 +1387,7 @@ const CSDataTablePreview = () => {
 						rows={rows}
 						collapsible={false}
 						subsectionRender={(row: CSDataTableRowWithMetaInterface) => (
-							<CSInputText label="Country" value={row.data!.country} />
+							<CSInputText label="Country" defaultValue={row.data!.country} />
 						)}
 					/>
 				</CSD.Preview>
@@ -1398,17 +1399,18 @@ const CSDataTablePreview = () => {
 				<CSD.Preview
 					orientation="vertical"
 					table={CSDataTableProps}
+					consoleAlert
 					related={['columns', 'rows', 'subsectionRender', 'collapsible']}
 					code={`
 						<CSDataTable
 							columns={columns}
 							rows={rows}
 							subsectionRender={(row: CSDataTableRowWithMetaInterface) => (
-								<CSInputText label="Country" value={row.data!.country} />
+								<CSInputText label="Country" defaultValue={row.data!.country} />
 							)}
 							onCollapseClick={(event: React.MouseEvent<HTMLButtonElement>, row: CSDataTableRowWithMetaInterface) => {
 								row.meta.toggleSubsectionVisible();
-								alert(\`\${row.data!.name} subsection is now \${!row.meta.expanded ? 'visible' : 'hidden'}.\`);
+								console.log(\`\${row.data!.name} subsection is now \${!row.meta.expanded ? 'visible' : 'hidden'}.\`);
 							}}
 						/>
 					`}
@@ -1417,11 +1419,11 @@ const CSDataTablePreview = () => {
 						columns={columns}
 						rows={rows}
 						subsectionRender={(row: CSDataTableRowWithMetaInterface) => (
-							<CSInputText label="Country" value={row.data!.country} />
+							<CSInputText label="Country" defaultValue={row.data!.country} />
 						)}
 						onCollapseClick={(event: React.MouseEvent<HTMLButtonElement>, row: CSDataTableRowWithMetaInterface) => {
 							row.meta.toggleSubsectionVisible();
-							alert(`${row.data!.name} subsection is now ${!row.meta.expanded ? 'visible' : 'hidden'}.`);
+							console.log(`${row.data!.name} subsection is now ${!row.meta.expanded ? 'visible' : 'hidden'}.`);
 						}}
 					/>
 				</CSD.Preview>

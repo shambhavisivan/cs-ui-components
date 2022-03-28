@@ -257,6 +257,7 @@ const CSTreePreview = () => {
 				<CSD.Preview
 					orientation="vertical"
 					table={CSTreeItemAttributes}
+					consoleAlert
 					related={['key', 'render', 'actions']}
 					code={`
 						<CSTree
@@ -265,11 +266,11 @@ const CSTreePreview = () => {
 								render: 'London',
 								actions: [{
 									label: 'Add',
-									onClick: () => alert('Added'),
+									onClick: console.log,
 									iconName: 'add'
 								}, {
 									label: 'Call',
-									onClick: () => alert('Called'),
+									onClick: console.log,
 									iconName: 'call'
 								}]
 							}, ...items]}
@@ -282,11 +283,11 @@ const CSTreePreview = () => {
 							render: 'London',
 							actions: [{
 								label: 'Add',
-								onClick: () => alert('Added'),
+								onClick: console.log,
 								iconName: 'add'
 							}, {
 								label: 'Call',
-								onClick: () => alert('Called'),
+								onClick: console.log,
 								iconName: 'call'
 							}]
 						}, ...items]}
@@ -301,6 +302,7 @@ const CSTreePreview = () => {
 				<CSD.Preview
 					orientation="vertical"
 					table={CSTreeProps}
+					consoleAlert
 					related={['items', 'displayActionsOnHover']}
 					code={`
 						<CSTree
@@ -310,11 +312,11 @@ const CSTreePreview = () => {
 								render: 'London',
 								actions: [{
 									label: 'Add',
-									onClick: () => alert('Added'),
+									onClick: console.log,
 									iconName: 'add'
 								}, {
 									label: 'Call',
-									onClick: () => alert('Called'),
+									onClick: console.log,
 									iconName: 'call'
 								}]
 							}, ...items]}
@@ -328,11 +330,11 @@ const CSTreePreview = () => {
 							render: 'London',
 							actions: [{
 								label: 'Add',
-								onClick: () => alert('Added'),
+								onClick: console.log,
 								iconName: 'add'
 							}, {
 								label: 'Call',
-								onClick: () => alert('Called'),
+								onClick: console.log,
 								iconName: 'call'
 							}]
 						}, ...items]}
