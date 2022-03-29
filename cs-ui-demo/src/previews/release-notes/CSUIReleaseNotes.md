@@ -34,6 +34,7 @@
   * changed the `tooltip` attribute type `CSTooltipProps`
   * <i>important</i> these changes affect the following components: CSCheckbox, CSCustomSelect, CSDatepicker, CSDateTimePicker, CSInputNumber, CSInputText, CSLookup, CSSelect, CSTextarea, CSToggle
 * CSCustomSelect
+  * removed deselecting feature using backspace
   * <i>important</i> renamed the `actions` prop to `dropdownActions`
   * added `readOnly` prop
   * added `errorTooltip` support

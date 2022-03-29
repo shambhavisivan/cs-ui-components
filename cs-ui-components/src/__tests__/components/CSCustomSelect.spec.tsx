@@ -309,23 +309,6 @@ describe('<CSCustomSelect />', () => {
 		expect(handleDeselect).toHaveBeenCalledTimes(1);
 	});
 
-	it('should use a working onDeselect callback when multiselect item deselected with backspace key', () => {
-		const handleDeselect = jest.fn();
-		const keys = [0, 2, 3];
-		const uut = shallow(
-			<CSCustomSelect
-				label={customSelectTextLabel}
-				options={options}
-				multiselect
-				onDeselect={handleDeselect}
-				selectedKeys={keys}
-			/>,
-		).dive();
-		const input = uut.find('input');
-		input.simulate('keydown', { key: 'Backspace' });
-		expect(handleDeselect).toHaveBeenCalledTimes(1);
-	});
-
 	it('should use a working onDropdownClose callback', () => {
 		const handleDropdownCloseMock = jest.fn();
 		const uut = shallow(<CSCustomSelect

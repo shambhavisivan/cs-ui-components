@@ -121,13 +121,6 @@ const CSCustomSelect = ({
 		setSearchTerm('');
 	}, [setDropdownVisible, onDropdownClose]);
 
-	const removeLastOption = () => {
-		if (!searchTerm && multiselect && selectedKeysArray.length) {
-			const lastSelectedOption = options.find((option: CSCustomSelectOptionInterface) => option.key === selectedKeysArray[selectedKeysArray.length - 1]);
-			if (lastSelectedOption) onDeselect?.(lastSelectedOption);
-		}
-	};
-
 	useImperativeHandle(forwardRef, () => customSelectInputRef.current);
 
 	useEffect(() => {
@@ -315,8 +308,6 @@ const CSCustomSelect = ({
 				const lastAction = customSelectDropdownRef.current?.parentElement?.lastElementChild?.lastElementChild;
 				if (lastAction) lastAction.focus();
 				else customSelectDropdownRef.current?.lastElementChild?.focus();
-			} else if (event.key === KeyCode.Backspace) {
-				removeLastOption();
 			} else if (event.key === KeyCode.Escape && dropdownVisible) {
 				closeDropdown();
 			} else if (event.key === KeyCode.Enter) {
@@ -449,7 +440,6 @@ const CSCustomSelect = ({
 								multiselect={multiselect}
 								focusInput={() => customSelectInputRef.current?.focus()}
 								closeDropdown={closeDropdown}
-								removeLastOption={removeLastOption}
 								onSelectChange={onSelect}
 							/>
 						))}
@@ -463,7 +453,6 @@ const CSCustomSelect = ({
 									action={button}
 									focusInput={() => customSelectInputRef.current?.focus()}
 									closeDropdown={closeDropdown}
-									removeLastOption={removeLastOption}
 								/>
 							))}
 						</div>

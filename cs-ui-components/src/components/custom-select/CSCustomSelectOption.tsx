@@ -10,7 +10,6 @@ export interface CSCustomSelectOptionProps {
 	multiselect?: boolean;
 	onSelectChange: (option: CSCustomSelectOptionInterface) => void;
 	option: CSCustomSelectOptionInterface,
-	removeLastOption?: () => void,
 	selected: boolean;
 }
 
@@ -20,7 +19,6 @@ const CSCustomSelectOption = ({
 	multiselect,
 	onSelectChange,
 	option,
-	removeLastOption,
 	selected,
 }: CSCustomSelectOptionProps) => {
 	const customSelectOptionRef = useRef(null);
@@ -65,9 +63,6 @@ const CSCustomSelectOption = ({
 		} else if (event.key === KeyCode.Tab) {
 			focusInput?.();
 			closeDropdown?.();
-		} else if (event.key === KeyCode.Backspace) {
-			focusInput?.();
-			removeLastOption?.();
 		} else {
 			focusInput?.();
 		}

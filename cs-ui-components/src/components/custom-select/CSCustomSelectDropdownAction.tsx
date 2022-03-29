@@ -7,14 +7,12 @@ export interface CSCustomSelectOptionProps {
 	action: CSButtonProps;
 	closeDropdown?: () => void;
 	focusInput?: () => void;
-	removeLastOption?: () => void,
 }
 
 const CSCustomSelectDropdownAction = ({
 	action,
 	closeDropdown,
 	focusInput,
-	removeLastOption,
 }: CSCustomSelectOptionProps) => {
 	const customSelectActionRef = useRef(null);
 
@@ -46,9 +44,6 @@ const CSCustomSelectDropdownAction = ({
 		} else if (event.key === KeyCode.Escape || event.key === KeyCode.Tab) {
 			focusInput?.();
 			closeDropdown?.();
-		} else if (event.key === KeyCode.Backspace) {
-			focusInput?.();
-			removeLastOption?.();
 		} else if (event.key !== KeyCode.Enter && event.key !== KeyCode.Space) {
 			focusInput?.();
 		}
