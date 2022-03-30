@@ -332,6 +332,34 @@ const CSDataTablePreview = () => {
 				</CSD.Preview>
 			</CSD.Section>
 			<CSD.Section>
+				<CSD.Heading level={2}>Event Handling</CSD.Heading>
+				<CSD.Text>
+					CSDataTable supports native scroll event which can be handled by using `onScroll` prop.
+					It allso supports `onCollapseClick` and details regarding this
+					event can be found <CSD.Link path="data-table#custom-hierarchy-toggles">here</CSD.Link>.
+				</CSD.Text>
+				<CSD.Preview
+					table={CSDataTableProps}
+					related={['columns', 'rows', 'maxHeight', 'onScroll']}
+					consoleAlert
+					code={`
+						<CSDataTable
+							columns={columns}
+							rows={rows}
+							maxHeight="6rem"
+							onScroll={console.log}
+						/>
+					`}
+				>
+					<CSDataTable
+						columns={columns}
+						rows={rows}
+						maxHeight="6rem"
+						onScroll={console.log}
+					/>
+				</CSD.Preview>
+			</CSD.Section>
+			<CSD.Section>
 				<CSD.Heading level={2}>IDs & Classes</CSD.Heading>
 				<CSD.Text>
 					It is possible to apply custom CSS classes to column headers,

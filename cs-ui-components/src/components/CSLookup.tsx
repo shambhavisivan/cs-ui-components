@@ -418,11 +418,15 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 		const { infiniteScroll, loading } = this.props;
 		const { moreRecords, fetchingMode } = this.state;
 
-		const tableCoordinates = (event.target as HTMLDivElement)?.lastElementChild?.firstElementChild?.getBoundingClientRect();
+		const tableGroupCoordinates = (event.target as HTMLDivElement)
+			?.firstElementChild
+			?.lastElementChild
+			?.firstElementChild
+			?.getBoundingClientRect();
 		const dropdownCoordinates = (this.lookupDropdownRef.current as HTMLDivElement)?.getBoundingClientRect();
 
-		if (infiniteScroll && tableCoordinates && dropdownCoordinates && !loading) {
-			if (dropdownCoordinates.bottom - tableCoordinates.bottom <= 1 && moreRecords && fetchingMode === undefined) {
+		if (infiniteScroll && tableGroupCoordinates && dropdownCoordinates && !loading) {
+			if (dropdownCoordinates.bottom - tableGroupCoordinates.bottom <= 1 && moreRecords && fetchingMode === undefined) {
 				this.setState((prevState) => ({
 					fetchingMode: 'after-scroll',
 					pageNo: prevState.pageNo + 1,

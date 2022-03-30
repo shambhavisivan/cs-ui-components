@@ -93,6 +93,11 @@ export default {
 			types: '(event, row) => void',
 			description: 'Handler method for overriding the subsection or children toggle button behaviour.'
 		}, {
+			name: 'onScroll',
+			link: '/cs-ui/data-table#event-handling',
+			types: '(event) => void',
+			description: 'Handler method for scroll event.'
+		}, {
 			name: 'onSelectChange',
 			link: '/cs-ui/data-table#basic-checkbox-selection',
 			types: '(event, row) => void',

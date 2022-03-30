@@ -79,6 +79,7 @@ export interface CSDataTableProps {
 	maxHeight?: string;
 	multiselect?: boolean;
 	onCollapseClick?: (event: React.MouseEvent<HTMLButtonElement>, row: CSDataTableRowWithMetaInterface) => void;
+	onScroll?: (event: React.UIEvent<HTMLDivElement, UIEvent>) => void;
 	onSelectChange?: (event: React.ChangeEvent<HTMLInputElement>, row: CSDataTableRowWithMetaInterface) => void;
 	readOnlyKeys?: React.ReactText | Array<React.ReactText>;
 	rowHeight?: string;
@@ -108,6 +109,7 @@ const CSDataTable = ({
 	maxHeight,
 	multiselect = false,
 	onCollapseClick,
+	onScroll,
 	onSelectChange,
 	readOnlyKeys,
 	rowHeight,
@@ -161,7 +163,11 @@ const CSDataTable = ({
 			dataTableSelectable={selectable}
 			dataTableSelectionType={selectionType}
 		>
-			<div className="cs-data-table-wrapper" style={tableStyles}>
+			<div
+				className="cs-data-table-wrapper"
+				style={tableStyles}
+				onScroll={onScroll}
+			>
 				<div
 					role="grid"
 					aria-multiselectable={selectable ? multiselect : undefined}

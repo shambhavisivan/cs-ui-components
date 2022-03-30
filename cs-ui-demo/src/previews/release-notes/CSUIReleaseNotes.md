@@ -55,6 +55,7 @@
   * flipped the default value for the `stickyHeader` prop to `true`
   * added `title` column attribute
   * added `headerTitle` column attribute
+  * added `onScroll` prop
 * CSDatePicker
   * changed the `todayButton` prop from boolean to string
   * fixed dropdown arrow positioning issues when opens on right
@@ -93,6 +94,7 @@
 * CSLookup
   * fixed deleting search term with backspace deletes the whole term instead of one letter
   * prevented state change on `onSelectChange` prop if return value is false
+  * fixed `infiniteScroll` functionality when scroll hits bottom of the dropdown
 * CSModal
   * <i>important</i> changed `visible` prop in `CSUnmountDelay` to be `false` by default
   * changed classes with `.cs-button` prefix to `.cs-btn`
