@@ -20,7 +20,7 @@ import CSImagePreview from './cs-ui/components/CSImagePreview';
 import CSInputFilePreview from './cs-ui/components/CSInputFilePreview';
 import CSInputNumberPreview from './cs-ui/components/CSInputNumberPreview';
 import CSInputSearchPreview from './cs-ui/components/CSInputSearchPreview';
-import CSInputTextPreview from './cs-ui/components/CSInputTextPreview';
+import CSInputTextPreview from './cs-ui/components/cs-input-text/CSInputTextPreview';
 import CSLabelPreview from './cs-ui/components/CSLabelPreview';
 import CSListPreview from './cs-ui/components/CSListPreview';
 import CSLookupPreview from './cs-ui/components/cs-lookup/CSLookupPreview';
