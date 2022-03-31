@@ -43,8 +43,42 @@
 			}
 		}
 
+		&-read-only {
+			cursor: default;
+			font-weight: $font-weight-normal;
+			padding-left: 0;
+			@include sbg(--cs-transparent);
+			@include css4 {
+				border-color: cvar(--cs-transparent);
+			}
+		}
+
 		.cs-icon + .cs-tooltip-wrapper {
 			margin-left: 0.175rem;
+		}
+
+		.cs-custom-data-wrapper,
+		.cs-tw-error {
+			margin-left: 0.25rem;
+		}
+
+		.cs-custom-data-wrapper {
+			.cs-custom-data-item {
+				&:first-child {
+					margin-left: 0;
+				}
+
+				&:last-child {
+					margin-right: 0;
+				}
+			}
+		}
+
+		.cs-invisible-input {
+			& + .cs-custom-data-wrapper,
+			& + .cs-tw-error {
+				margin-left: 0;
+			}
 		}
 	}
 };

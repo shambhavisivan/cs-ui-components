@@ -86,6 +86,7 @@
   * updated the markup to a new flex structure
 * CSInputText
   * refactored class based to functional component
+  * updated the markup to a new flex structure
 * CSLabel
   * <i>important</i> added `cs-label-outer-wrapper` and made `cs-label-wrapper` and `cs-tooltip-group` siblings
   * added `max-height` to label `cs-label-wrapper` class

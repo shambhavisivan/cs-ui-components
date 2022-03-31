@@ -1,10 +1,10 @@
-import React, { useState, useRef, useCallback, CSSProperties } from 'react';
+import React, { useState, useRef, CSSProperties, useImperativeHandle } from 'react';
 import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSLabel from './CSLabel';
 import CSCustomData, { CSCustomDataAction, CSCustomDataIcon } from './CSCustomData';
-import { CSTooltipPosition } from './CSTooltip';
+import CSTooltip, { CSTooltipPosition } from './CSTooltip';
 
 export interface CSInputTextProps {
 	[key: string]: any;
@@ -26,7 +26,7 @@ export interface CSInputTextProps {
 	name?: string;
 	onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-	onClick?: (event: React.MouseEvent<HTMLInputElement>) => void;
+	onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
 	onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
 	onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 	placeholder?: string;
@@ -68,50 +68,99 @@ const CSInputText = ({
 	forwardRef,
 	...rest
 }: CSInputTextProps) => {
-	const { current: uniqueAutoId } = useRef(id || uuidv4());
+	const { current: uniqueAutoId } = useRef<string>(id || uuidv4());
+	const [focused, setFocused] = useState<boolean>(false);
+	const inputTextRef = useRef<HTMLInputElement>(null);
 
-	const [customDataWidth, updateCustomDataWidth] = useState(null);
+	useImperativeHandle(forwardRef, () => inputTextRef.current);
 
-	const customDataRef = useCallback((node) => {
-		if (node !== null) {
-			updateCustomDataWidth(node.getBoundingClientRect().width);
+	const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+		onClick?.(event);
+		inputTextRef.current?.focus();
+	};
+
+	const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+		if (focused) event.preventDefault();
+	};
+
+	const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+		if (!readOnly) {
+			onFocus?.(event);
+			setFocused(true);
 		}
-	}, [customDataWidth]);
+	};
+
+	const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+		if (!readOnly) {
+			onBlur?.(event);
+			setFocused(false);
+		}
+	};
+
+	const renderLabel = () => {
+		if (!label || labelHidden) return null;
+
+		return (
+			<CSLabel
+				htmlFor={uniqueAutoId}
+				label={label}
+				helpText={helpText}
+				tooltipPosition={tooltipPosition}
+				required={required}
+				title={labelTitle ? label : null}
+			/>
+		);
+	};
+
+	const renderErrorMessage = () => {
+		if (!error || !errorMessage || errorTooltip) return null;
+
+		return <CSFieldErrorMsg message={errorMessage} />;
+	};
+
+	const renderErrorTooltip = () => {
+		if (!error || !errorTooltip) return null;
+
+		return <CSTooltip variant="error" content={errorMessage} />;
+	};
 
 	const inputTextWrapperClasses = classNames(
 		'cs-input-text-wrapper',
 		{
 			'cs-element-hidden': hidden,
-			[`${className}`]: className,
+			[className]: className,
+		},
+	);
+
+	const inputWrapperClasses = classNames(
+		'cs-input-wrapper',
+		{
+			'cs-input-wrapper-error': error,
+			'cs-input-wrapper-disabled': disabled,
+			'cs-input-wrapper-focused': focused,
+			'cs-input-wrapper-read-only': readOnly,
 		},
 	);
 
 	const inputTextClasses = classNames(
 		'cs-input-text',
-		{
-			'cs-input-text-error': error,
-			'cs-input-text-error-tooltip': errorTooltip,
-		},
+		'cs-invisible-input',
 	);
 
 	const style: CSSProperties = {
-		'--cs-input-text-border-radius': borderRadius,
-		'--cs-input-text-custom-data-width': customDataWidth ? `${customDataWidth}px` : undefined,
+		'--cs-input-border-radius': borderRadius,
 	};
 
 	return (
-		<div className={inputTextWrapperClasses} style={style}>
-			{label && !labelHidden && (
-				<CSLabel
-					htmlFor={uniqueAutoId}
-					label={label}
-					helpText={helpText}
-					tooltipPosition={tooltipPosition}
-					required={required}
-					title={labelTitle ? label : null}
-				/>
-			)}
-			<div className="cs-input-text-wrapper-inner">
+		<div className={inputTextWrapperClasses}>
+			{renderLabel()}
+			{/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+			<div
+				className={inputWrapperClasses}
+				style={style}
+				onClick={handleClick}
+				onMouseDown={handleMouseDown}
+			>
 				<input
 					className={inputTextClasses}
 					id={uniqueAutoId}
@@ -127,22 +176,18 @@ const CSInputText = ({
 					aria-invalid={error}
 					autoComplete="off"
 					name={name}
-					onBlur={onBlur}
+					onBlur={handleBlur}
 					onChange={onChange}
-					onClick={onClick}
-					onFocus={onFocus}
+					onFocus={handleFocus}
 					onKeyDown={onKeyDown}
 					title={title}
-					ref={forwardRef}
+					ref={inputTextRef}
 					{...rest}
 				/>
-				<CSCustomData
-					ref={customDataRef}
-					icons={icons}
-					actions={actions}
-				/>
+				<CSCustomData icons={icons} actions={actions} />
+				{renderErrorTooltip()}
 			</div>
-			{error && errorMessage && <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
+			{renderErrorMessage()}
 		</div>
 	);
 };

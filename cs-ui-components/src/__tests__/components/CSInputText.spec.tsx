@@ -47,19 +47,19 @@ describe('<CSInputText />', () => {
 
 	it('should set custom border radius', () => {
 		const uut = shallow(<CSInputText label={label} borderRadius="0" />);
-		const inputTextStyle = uut.find('.cs-input-text-wrapper').prop('style');
-		expect(inputTextStyle).toHaveProperty('--cs-input-text-border-radius', '0');
+		const inputTextStyle = uut.find('.cs-input-wrapper').prop('style');
+		expect(inputTextStyle).toHaveProperty('--cs-input-border-radius', '0');
 	});
 
 	it('should set disabled attribute', () => {
 		const uut = shallow(<CSInputText label={label} disabled />);
-		const inputText = uut.find('.cs-input-text');
+		const inputText = uut.find('.cs-input-wrapper-disabled > .cs-input-text');
 		expect(inputText.prop('disabled')).toBeTruthy();
 	});
 
 	it('should set input text to error state', () => {
 		const uut = shallow(<CSInputText label={label} error />);
-		const inputTextError = uut.find('.cs-input-text-error');
+		const inputTextError = uut.find('.cs-input-wrapper.cs-input-wrapper-error');
 		expect(inputTextError).toHaveLength(1);
 	});
 
@@ -70,9 +70,16 @@ describe('<CSInputText />', () => {
 	});
 
 	it('should pass errorTooltip to CSFieldErrorMsg', () => {
-		const uut = shallow(<CSInputText label={label} error errorMessage={errorMsg} errorTooltip />);
-		const inputTextErrorMsg = uut.find('CSFieldErrorMsg');
-		expect(inputTextErrorMsg.prop('tooltipMessage')).toBeTruthy();
+		const uut = shallow(
+			<CSInputText
+				label={label}
+				error
+				errorMessage={errorMsg}
+				errorTooltip
+			/>,
+		);
+		const CSTooltip = uut.find('CSTooltip');
+		expect(CSTooltip.prop('content')).toBe(errorMsg);
 	});
 
 	it('should pass helpText to CSLabel', () => {
@@ -137,7 +144,7 @@ describe('<CSInputText />', () => {
 	it('should use a working onClick callback', () => {
 		const handleClickMock = jest.fn();
 		const uut = shallow(<CSInputText label={label} onClick={handleClickMock} />);
-		const inputText = uut.find('.cs-input-text');
+		const inputText = uut.find('.cs-input-wrapper');
 		inputText.simulate('click');
 		expect(handleClickMock).toHaveBeenCalledTimes(1);
 	});
@@ -166,7 +173,7 @@ describe('<CSInputText />', () => {
 
 	it('should set readOnly attribute', () => {
 		const uut = shallow(<CSInputText label={label} readOnly />);
-		const inputText = uut.find('.cs-input-text');
+		const inputText = uut.find('.cs-input-wrapper-read-only > .cs-input-text');
 		expect(inputText.prop('readOnly')).toBeTruthy();
 	});
 
