@@ -84,6 +84,10 @@ const CSDataTablePreview = () => {
 			<CSD.Heading>General Props</CSD.Heading>
 			<CSD.Section>
 				<CSD.Heading level={2}>Base Usage</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>columns</CSD.ListItem>
+					<CSD.ListItem>rows</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					Data tables display information in a grid-like format of rows and columns.
 					They organize information in a way that's easy to scan
@@ -167,6 +171,9 @@ const CSDataTablePreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Density & Spacing</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>density</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					Data tables support three types of display density,
 					controlled by the `density` prop.
@@ -205,6 +212,10 @@ const CSDataTablePreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Borders</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>borderless</CSD.ListItem>
+					<CSD.ListItem>columnDividers</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>By default, data tables show horizontal dividers between rows, while vertical column dividers are hidden.</CSD.Text>
 				<CSD.Text>Vertical column dividers can be added by setting the `columnDividers` prop.</CSD.Text>
 				<CSD.Preview
@@ -236,6 +247,9 @@ const CSDataTablePreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Table Height</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>maxHeight</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					When restricting data table height, the `maxHeight` property can be used.
 					It accepts a string with a valid CSS max-height value.
@@ -262,6 +276,10 @@ const CSDataTablePreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Row Distinction Styles</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>disableHover</CSD.ListItem>
+					<CSD.ListItem>striped</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					The data table changes row background colour on hover
 					in order to make it easier to track the connected cells visually.
@@ -291,6 +309,10 @@ const CSDataTablePreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Header Display</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>headless</CSD.ListItem>
+					<CSD.ListItem>stickyHeader</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					The header row can be hidden when the table data doesn't need to be labelled
 					or when more appropriate labelling options are implemented.
@@ -333,6 +355,10 @@ const CSDataTablePreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Event Handling</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>onScroll</CSD.ListItem>
+					<CSD.ListItem>onCollapseClick</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					CSDataTable supports native scroll event which can be handled by using `onScroll` prop.
 					It allso supports `onCollapseClick` and details regarding this
@@ -361,6 +387,12 @@ const CSDataTablePreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>IDs & Classes</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>columnClassName</CSD.ListItem>
+					<CSD.ListItem>className</CSD.ListItem>
+					<CSD.ListItem>cellClassName</CSD.ListItem>
+					<CSD.ListItem>id</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					It is possible to apply custom CSS classes to column headers,
 					entire columns, all data cells inside a column or even individually targeted cells.
@@ -384,10 +416,13 @@ const CSDataTablePreview = () => {
 					`className` and `cellClassName` are applied after `columnClassName`,
 					which means their styles will override conflicting styles from `columnClassName`.
 				</CSD.Text>
+				<CSD.Text>
+					Table id can be added with `id`.
+				</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
 					table={CSDataTableColumnAttributes}
-					related={['key', 'header', 'columnClassName', 'className', 'cellClassName']}
+					related={['key', 'header', 'columnClassName', 'className', 'cellClassName', `id`]}
 					code={`
 						<CSDataTable
 							columns={[{
@@ -408,6 +443,7 @@ const CSDataTablePreview = () => {
 								cellClassName: (row: CSDataTableRowWithMetaInterface) => row.data?.timezone.includes('/') ? 'csd-custom-bg-mint' : ''
 							}]}
 							rows={rows}
+							id="custom-table-id"
 						/>
 					`}
 				>
@@ -430,6 +466,7 @@ const CSDataTablePreview = () => {
 							cellClassName: (row: CSDataTableRowWithMetaInterface) => row.data?.timezone.includes('/') ? 'csd-custom-bg-mint' : ''
 						}]}
 						rows={rows}
+						id="custom-table-id"
 					/>
 				</CSD.Preview>
 				<CSD.Text>
@@ -475,6 +512,9 @@ const CSDataTablePreview = () => {
 			<CSD.Heading>Row Controls</CSD.Heading>
 			<CSD.Section>
 				<CSD.Heading level={2}>Row Height</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>rowHeight</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					Controlling row height on the level of the entire data table
 					can be achieved with the `rowHeight` prop,
@@ -539,6 +579,9 @@ const CSDataTablePreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Rendering Custom Rows</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>render</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					It is possible to replace a row's content with custom elements.
 					That can be done by setting the `render` attribute on the row object.
@@ -629,6 +672,9 @@ const CSDataTablePreview = () => {
 			<CSD.Heading>Column Controls</CSD.Heading>
 			<CSD.Section>
 				<CSD.Heading level={2}>Custom Header Cells</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>header</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					Data tables make no assumptions about what a column
 					represents semantically based on the column key.
@@ -686,6 +732,9 @@ const CSDataTablePreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Column Width</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>width</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					Column width can be controlled by explicitly setting
 					the `width` attribute to a valid CSS with attribute value.
@@ -748,6 +797,9 @@ const CSDataTablePreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Cell Alignment</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>align</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					Cell contents can be aligned on a per-column basis
 					by setting the `align` attribute to either `'left'` (default),
@@ -794,6 +846,9 @@ const CSDataTablePreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Content Wrapping</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>wrap</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					When the content of a cell is about to overflow,
 					it will be cut off and ellipsised (where applicable).
@@ -831,6 +886,10 @@ const CSDataTablePreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Titles</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>title</CSD.ListItem>
+					<CSD.ListItem>headerTitle</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					Column cells sometimes truncate content by breaking off text with ellipsis.
 					In order to go around that, setting the `title` attribute on the column object to `true` will attach an HTML title attribute to the cell.
@@ -891,6 +950,9 @@ const CSDataTablePreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Rendering Custom Cells</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>render</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					Cells display the corresponding values from the `row.data` object.
 					This can be changed on a per-column basis by setting the `render`
@@ -950,6 +1012,11 @@ const CSDataTablePreview = () => {
 			<CSD.Heading>Hierarchy</CSD.Heading>
 			<CSD.Section>
 				<CSD.Heading level={2}>Basic Hierarchy</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>children</CSD.ListItem>
+					<CSD.ListItem>defaultCollapsed</CSD.ListItem>
+					<CSD.ListItem>collapsible</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					The `row` object is typed as recursive with regards to the
 					`children` attribute. The `children` attribute also accepts
@@ -1098,6 +1165,10 @@ const CSDataTablePreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Custom Hierarchy Toggles</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>render</CSD.ListItem>
+					<CSD.ListItem>onCollapseClick</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					Default controls can be added by setting
 					the `collapsible` prop to `false` and making use of the `toggleExpanded`
@@ -1230,6 +1301,9 @@ const CSDataTablePreview = () => {
 			<CSD.Heading>Subsections</CSD.Heading>
 			<CSD.Section>
 				<CSD.Heading level={2}>Basic Subsections</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>subsectionRender</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					When additional information, content or controls need to be shown,
 					the layout can easily become cluttered.
@@ -1361,6 +1435,9 @@ const CSDataTablePreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Custom Subsection Toggles</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>render</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					Since the subsection toggles share the toggle logic with
 					collapsible rows, the default controls can be added by setting
@@ -1459,6 +1536,12 @@ const CSDataTablePreview = () => {
 			<CSD.Heading>Selectability</CSD.Heading>
 			<CSD.Section>
 				<CSD.Heading level={2}>Basic Checkbox Selection</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>selectable</CSD.ListItem>
+					<CSD.ListItem>onSelectChange</CSD.ListItem>
+					<CSD.ListItem>selectedKeys</CSD.ListItem>
+					<CSD.ListItem>multiselect</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					Unlike collapsibility and subsections, which manage state under the hood,
 					the selectability aspect of data tables is completely stateless.
@@ -1567,6 +1650,13 @@ const CSDataTablePreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Advanced Checkbox Selection</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>selectable</CSD.ListItem>
+					<CSD.ListItem>onSelectChange</CSD.ListItem>
+					<CSD.ListItem>selectedKeys</CSD.ListItem>
+					<CSD.ListItem>indeterminateKeys</CSD.ListItem>
+					<CSD.ListItem>readOnlyKeys</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					Besides setting `selectedKeys`,
 					it is also possible to set `indeterminateKeys` and `readOnlyKeys`.
@@ -1639,6 +1729,9 @@ const CSDataTablePreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Header Checkbox</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>headerCheckbox</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					When in need of checkbox controls table-wise,
 					a header checkbox can be added. The `headerCheckbox`
@@ -1720,6 +1813,9 @@ const CSDataTablePreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Whole-Row Selection</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>selectionType</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					An alternative to displaying checkboxes
 					is having the whole row be clickable.
@@ -1808,6 +1904,9 @@ const CSDataTablePreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Restricting Selectability</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>selectable</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					When the data table is marked as selectable,
 					all the rows inherit the selectable property.
