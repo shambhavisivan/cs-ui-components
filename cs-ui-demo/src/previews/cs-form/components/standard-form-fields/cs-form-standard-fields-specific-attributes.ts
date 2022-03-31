@@ -310,7 +310,7 @@ export const CSFormSelectFieldAttributes = {
 	type: 'attributes',
 	data: [
 		{
-			name: 'selectOptions',
+			name: 'options',
 			link: '/cs-form/standard-form-fields#select',
 			customTypes: {
 				name: 'Array<CSFormSelectOption>',

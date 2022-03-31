@@ -3,36 +3,17 @@ import { shallow } from 'enzyme';
 import '../../setupTests';
 import { CSToggle } from '@cloudsense/cs-ui-components';
 import CSFormToggleField from '../../form-fields/CSFormToggleField';
+import { actions, icons } from '../test-data/custom-data';
 
 const label = 'label';
-const fieldType = 'TOGGLE';
+const type = 'TOGGLE';
 const name = 'toggle';
-const actions = [
-	{
-		action: () => jest.fn(),
-		icon: { iconName: 'check' },
-		labelHidden: true,
-		name: 'Check',
-	},
-	{
-		action: () => jest.fn(),
-		icon: { iconName: 'add' },
-		labelHidden: true,
-		name: 'Add',
-		getTooltip: {
-			content: ['actions tooltip'],
-			delay: 300,
-			stickyOnClick: true,
-		},
-	},
-];
-const icons = [{ iconName: 'activity' }];
 
 describe('CSFormToggleField', () => {
 	it('should pass correct label to CSToggle', () => {
 		const uut = shallow(
 			<CSFormToggleField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 			/>,
@@ -44,7 +25,7 @@ describe('CSFormToggleField', () => {
 	it('should pass correct name to CSToggle', () => {
 		const uut = shallow(
 			<CSFormToggleField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 			/>,
@@ -56,7 +37,7 @@ describe('CSFormToggleField', () => {
 	it('should pass correct actions list to CSToggle', () => {
 		const uut = shallow(
 			<CSFormToggleField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				actions={actions}
@@ -69,7 +50,7 @@ describe('CSFormToggleField', () => {
 	it('should pass correct disabled value to CSToggle', () => {
 		const uut = shallow(
 			<CSFormToggleField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				disabled
@@ -82,7 +63,7 @@ describe('CSFormToggleField', () => {
 	it('should pass correct error value to CSToggle', () => {
 		const uut = shallow(
 			<CSFormToggleField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				error
@@ -96,7 +77,7 @@ describe('CSFormToggleField', () => {
 		const errorMessage = 'Error message.';
 		const uut = shallow(
 			<CSFormToggleField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				error
@@ -111,7 +92,7 @@ describe('CSFormToggleField', () => {
 		const helpText = 'Help text.';
 		const uut = shallow(
 			<CSFormToggleField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				helpText={helpText}
@@ -124,7 +105,7 @@ describe('CSFormToggleField', () => {
 	it('should pass correct icons value to CSToggle', () => {
 		const uut = shallow(
 			<CSFormToggleField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				icons={icons}
@@ -138,7 +119,7 @@ describe('CSFormToggleField', () => {
 		const handleOnBlurMock = jest.fn();
 		const uut = shallow(
 			<CSFormToggleField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onBlur={handleOnBlurMock}
@@ -153,7 +134,7 @@ describe('CSFormToggleField', () => {
 		const handleOnChangeMock = jest.fn();
 		const uut = shallow(
 			<CSFormToggleField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onChange={handleOnChangeMock}
@@ -168,7 +149,7 @@ describe('CSFormToggleField', () => {
 		const handleOnClickMock = jest.fn();
 		const uut = shallow(
 			<CSFormToggleField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onClick={handleOnClickMock}
@@ -183,7 +164,7 @@ describe('CSFormToggleField', () => {
 		const handleOnKeyDownMock = jest.fn();
 		const uut = shallow(
 			<CSFormToggleField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onKeyDown={handleOnKeyDownMock}
@@ -197,7 +178,7 @@ describe('CSFormToggleField', () => {
 	it('should pass correct readOnly value to CSToggle', () => {
 		const uut = shallow(
 			<CSFormToggleField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				readOnly
@@ -210,7 +191,7 @@ describe('CSFormToggleField', () => {
 	it('should pass correct required value to CSToggle', () => {
 		const uut = shallow(
 			<CSFormToggleField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				required
@@ -224,7 +205,7 @@ describe('CSFormToggleField', () => {
 		const styleClass = 'custom-class';
 		const uut = shallow(
 			<CSFormToggleField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				styleClass={styleClass}
@@ -238,7 +219,7 @@ describe('CSFormToggleField', () => {
 		const title = 'title';
 		const uut = shallow(
 			<CSFormToggleField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				title={title}
@@ -252,7 +233,7 @@ describe('CSFormToggleField', () => {
 		const value = true;
 		const uut = shallow(
 			<CSFormToggleField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				value={value}

@@ -3,7 +3,7 @@ import { CSInputText } from '@cloudsense/cs-ui-components';
 import { CSFormTextFieldProps } from '../types/cs-form-field-types';
 
 const CSFormTextField = ({
-	fieldType,
+	type,
 	onBlur,
 	onChange,
 	styleClass,

@@ -2,19 +2,19 @@ import { CSFormData } from '@cloudsense/cs-form-v2';
 import { CSButtonSize, CSTooltipPosition, CSIconOrigin } from '@cloudsense/cs-ui-components';
 const actions = [
 	{
-		action: () => alert('Delete option called'),
-		icon: { iconName: 'delete' },
+		onClick: () => alert('Delete option called'),
+		iconName: 'delete',
 		labelHidden: true,
 		size: 'small' as CSButtonSize,
-		name: 'Delete'
+		label: 'Delete'
 	}, {
-		action: () => alert('Add option called'),
-		icon: { iconName: 'add' },
+		onClick: () => alert('Add option called'),
+		iconName: 'add',
 		labelHidden: true,
 		size: 'small' as CSButtonSize,
-		name: 'Add',
-		getTooltip: {
-			content: ['actions tooltip'],
+		label: 'Add',
+		tooltip: {
+			content: 'actions tooltip',
 			delay: 300,
 			padding: '0.5rem',
 			position: 'bottom-left' as CSTooltipPosition,
@@ -24,11 +24,11 @@ const actions = [
 ];
 
 export const icons = [
-	{ iconName: 'cart' },
+	{ name: 'cart' },
 	{
-		iconName: 'tag',
-		iconOrigin: 'cs' as CSIconOrigin,
-		getTooltip: {
+		name: 'tag',
+		origin: 'cs' as CSIconOrigin,
+		tooltip: {
 			content: ['icons tooltip'],
 			delay: 300,
 			maxWidth: '20rem',
@@ -45,26 +45,26 @@ export const fieldTypeData: CSFormData = [
 		label: 'Section',
 		collapsible: true,
 		fields: [{
-			fieldType: 'NUMBER',
+			type: 'NUMBER',
 			label: 'Number field',
 			name: 'number-1'
 		}, {
-			fieldType: 'TEXT',
+			type: 'TEXT',
 			label: 'Text field',
 			name: 'text-1'
 		}, {
-			fieldType: 'TEXTAREA',
+			type: 'TEXTAREA',
 			label: 'Textarea field',
 			name: 'textarea-1'
 		}, {
-			fieldType: 'TOGGLE',
+			type: 'TOGGLE',
 			label: 'Toggle field',
 			name: 'toggle-1'
 		}, {
-			fieldType: 'SELECT',
+			type: 'SELECT',
 			label: 'Select field',
 			name: 'select-1',
-			selectOptions: [{
+			options: [{
 				key: 'red',
 				value: 'Red'
 			}, {
@@ -75,11 +75,11 @@ export const fieldTypeData: CSFormData = [
 				value: 'Yellow'
 			}]
 		}, {
-			fieldType: 'DATE',
+			type: 'DATE',
 			label: 'Date field',
 			name: 'date-2'
 		}, {
-			fieldType: 'CHECKBOX',
+			type: 'CHECKBOX',
 			label: 'Checkbox',
 			name: 'checkbox-1'
 		}]
@@ -92,12 +92,12 @@ export const customOptionsData: CSFormData = [
 		label: 'Section',
 		collapsible: true,
 		fields: [{
-			fieldType: 'NUMBER',
+			type: 'NUMBER',
 			label: 'Number field',
 			name: 'number-1',
 			actions
 		}, {
-			fieldType: 'LOOKUP',
+			type: 'LOOKUP',
 			label: 'Lookup field',
 			name: 'lookup-1',
 			mode: 'client',
@@ -119,21 +119,21 @@ export const layoutPropsData: CSFormData = [
 		label: 'Section',
 		collapsible: true,
 		fields: [{
-			fieldType: 'TEXT',
+			type: 'TEXT',
 			label: 'Text field',
 			name: 'text-1',
 			grow: 2
 		}, {
-			fieldType: 'NUMBER',
+			type: 'NUMBER',
 			label: 'Number field',
 			name: 'number-1'
 		}, {
-			fieldType: 'TEXTAREA',
+			type: 'TEXTAREA',
 			label: 'Textarea field',
 			name: 'textarea-1',
 			showInNewLine: true
 		}, {
-			fieldType: 'TEXT',
+			type: 'TEXT',
 			label: 'Text field',
 			name: 'text-1-1'
 		}]
@@ -146,7 +146,7 @@ export const errorAndHelpTextData: CSFormData = [
 		label: 'Section',
 		collapsible: true,
 		fields: [{
-			fieldType: 'LOOKUP',
+			type: 'LOOKUP',
 			label: 'Lookup field',
 			name: 'lookup-1',
 			mode: 'client',
@@ -160,13 +160,13 @@ export const errorAndHelpTextData: CSFormData = [
 			error: true,
 			errorMessage: 'Account is invalid!'
 		}, {
-			fieldType: 'DATETIME',
+			type: 'DATETIME',
 			label: 'Datetime field',
 			name: 'date-time-1',
 			error: true,
 			errorMessage: 'Select correct date!'
 		}, {
-			fieldType: 'TEXTAREA',
+			type: 'TEXTAREA',
 			label: 'Textarea field',
 			name: 'textarea-1',
 			helpText: 'Enter description.'
@@ -180,23 +180,23 @@ export const fieldStateVisibilityData: CSFormData = [
 		label: 'Section',
 		collapsible: true,
 		fields: [{
-			fieldType: 'TOGGLE',
+			type: 'TOGGLE',
 			label: 'Toggle field',
 			name: 'toggle-1',
 			hidden: true
 		}, {
-			fieldType: 'TEXT',
+			type: 'TEXT',
 			label: 'Text field',
 			name: 'text-1',
 			disabled: true
 		}, {
-			fieldType: 'NUMBER',
+			type: 'NUMBER',
 			label: 'Number field',
 			name: 'number-1',
 			readOnly: true,
 			value: 2
 		}, {
-			fieldType: 'TEXTAREA',
+			type: 'TEXTAREA',
 			label: 'Textarea field',
 			name: 'textarea-1',
 			required: true
@@ -210,7 +210,7 @@ export const fieldStyleData: CSFormData = [
 		label: 'Section',
 		collapsible: true,
 		fields: [{
-			fieldType: 'RADIO',
+			type: 'RADIO',
 			label: 'Radio field',
 			name: 'radio-1',
 			styleClass: 'csd-custom-br-mint',
@@ -232,12 +232,12 @@ export const fieldTitleAndValueData: CSFormData = [
 		label: 'Section',
 		collapsible: true,
 		fields: [{
-			fieldType: 'TEXT',
+			type: 'TEXT',
 			label: 'Text field',
 			name: 'text-1',
 			title: 'Text field title'
 		}, {
-			fieldType: 'NUMBER',
+			type: 'NUMBER',
 			label: 'Number field',
 			name: 'number-1',
 			value: 2

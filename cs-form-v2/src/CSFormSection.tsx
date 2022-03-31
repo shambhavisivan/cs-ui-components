@@ -31,15 +31,15 @@ const CSFormSection = ({
 	);
 
 	const renderedFields = fields.map((field, index) => {
-		const key = field.fieldType !== 'CUSTOM-MODAL'
-			&& field.fieldType !== 'CUSTOM'
-			&& field.fieldType !== 'BUFFER'
+		const key = field.type !== 'CUSTOM-MODAL'
+			&& field.type !== 'CUSTOM'
+			&& field.type !== 'BUFFER'
 			? field.name
 			: `csf-custom-${index}`;
 
-		const events = field.fieldType !== 'CUSTOM-MODAL'
-			&& field.fieldType !== 'CUSTOM'
-			&& field.fieldType !== 'BUFFER'
+		const events = field.type !== 'CUSTOM-MODAL'
+			&& field.type !== 'CUSTOM'
+			&& field.type !== 'BUFFER'
 			? {
 				onChange: (value: any) => handleFieldChange(sectionKey, field, value),
 				onBlur: (value: any) => handleFieldBlur(sectionKey, field, value),

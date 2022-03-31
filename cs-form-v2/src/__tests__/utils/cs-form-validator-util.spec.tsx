@@ -4,14 +4,14 @@ import { CSFormFieldData } from '../../types/cs-form-field-types';
 import { CSFormData, CSFormErrorLabels } from '../../types/cs-form-types';
 
 const requiredField: CSFormFieldData = {
-	fieldType: 'TOGGLE',
+	type: 'TOGGLE',
 	label: 'label',
 	name: 'toggle',
 	required: true,
 };
 
 const numberField: CSFormFieldData = {
-	fieldType: 'NUMBER',
+	type: 'NUMBER',
 	label: 'label',
 	name: 'number',
 };

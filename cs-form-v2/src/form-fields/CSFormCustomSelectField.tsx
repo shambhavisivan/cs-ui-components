@@ -3,7 +3,7 @@ import { CSCustomSelect, CSCustomSelectOptionInterface } from '@cloudsense/cs-ui
 import { CSFormCustomSelectFieldProps } from '../types/cs-form-field-types';
 
 const CSFormCustomSelectField = ({
-	fieldType,
+	type,
 	onBlur,
 	onChange,
 	onClear,

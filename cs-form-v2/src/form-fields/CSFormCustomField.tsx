@@ -2,7 +2,7 @@ import React from 'react';
 import { CSFormCustomFieldProps } from '../types/cs-form-field-types';
 
 const CSFormCustomField = ({
-	fieldType,
+	type,
 	render,
 	...rest
 }: CSFormCustomFieldProps) => (

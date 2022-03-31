@@ -74,7 +74,7 @@ const CSAlertPlayground = () => {
 					label: 'Controls',
 					hideSectionHeader: true,
 					fields: [{
-						fieldType: 'RADIO',
+						type: 'RADIO',
 						label: 'variant',
 						name: 'variant',
 						required: true,
@@ -93,17 +93,17 @@ const CSAlertPlayground = () => {
 							label: 'base'
 						}]
 					}, {
-						fieldType: 'TOGGLE',
+						type: 'TOGGLE',
 						label: 'closeButton',
 						name: 'closeButton',
 						value: alertProps.closeButton
 					}, {
-						fieldType: 'TOGGLE',
+						type: 'TOGGLE',
 						label: 'iconHidden',
 						name: 'iconHidden',
 						value: alertProps.iconHidden
 					}, {
-						fieldType: 'CUSTOM-SELECT',
+						type: 'CUSTOM-SELECT',
 						label: 'iconName',
 						name: 'iconName',
 						disabled: alertProps.iconHidden,
@@ -114,7 +114,7 @@ const CSAlertPlayground = () => {
 							label: icon.name
 						}))
 					}, {
-						fieldType: 'RADIO',
+						type: 'RADIO',
 						label: 'iconOrigin',
 						name: 'iconOrigin',
 						disabled: alertProps.iconHidden,
@@ -127,7 +127,7 @@ const CSAlertPlayground = () => {
 							label: 'cs'
 						}]
 					}, {
-						fieldType: 'RADIO',
+						type: 'RADIO',
 						label: 'styleFormat',
 						name: 'styleFormat',
 						value: alertProps.styleFormat,
@@ -139,7 +139,7 @@ const CSAlertPlayground = () => {
 							label: 'scoped'
 						}]
 					}, {
-						fieldType: 'RADIO',
+						type: 'RADIO',
 						label: 'styleType',
 						name: 'styleType',
 						value: alertProps.styleType,
@@ -151,12 +151,12 @@ const CSAlertPlayground = () => {
 							label: 'light'
 						}]
 					}, {
-						fieldType: 'TEXT',
+						type: 'TEXT',
 						label: 'text',
 						name: 'text',
 						value: alertProps.text
 					}, {
-						fieldType: 'RADIO',
+						type: 'RADIO',
 						label: 'textAlign',
 						name: 'textAlign',
 						value: alertProps.textAlign,
@@ -168,12 +168,12 @@ const CSAlertPlayground = () => {
 							label: 'center'
 						}]
 					}, {
-						fieldType: 'TEXT',
+						type: 'TEXT',
 						label: 'id',
 						name: 'id',
 						value: alertProps.id
 					}, {
-						fieldType: 'TEXT',
+						type: 'TEXT',
 						label: 'className',
 						name: 'className',
 						value: alertProps.className

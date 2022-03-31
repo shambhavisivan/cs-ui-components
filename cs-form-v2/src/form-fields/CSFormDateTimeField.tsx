@@ -3,7 +3,7 @@ import { CSDateTimePicker } from '@cloudsense/cs-ui-components';
 import { CSFormDateTimeFieldProps } from '../types/cs-form-field-types';
 
 const CSFormDateTimeField = ({
-	fieldType,
+	type,
 	onBlur,
 	onChange,
 	styleClass,

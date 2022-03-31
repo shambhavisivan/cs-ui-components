@@ -3,36 +3,17 @@ import { shallow } from 'enzyme';
 import '../../setupTests';
 import { CSInputNumber } from '@cloudsense/cs-ui-components';
 import CSFormNumberField from '../../form-fields/CSFormNumberField';
+import { actions, icons } from '../test-data/custom-data';
 
 const label = 'label';
-const fieldType = 'NUMBER';
+const type = 'NUMBER';
 const name = 'number';
-const actions = [
-	{
-		action: () => jest.fn(),
-		icon: { iconName: 'check' },
-		labelHidden: true,
-		name: 'Check',
-	},
-	{
-		action: () => jest.fn(),
-		icon: { iconName: 'add' },
-		labelHidden: true,
-		name: 'Add',
-		getTooltip: {
-			content: ['actions tooltip'],
-			delay: 300,
-			stickyOnClick: true,
-		},
-	},
-];
-const icons = [{ iconName: 'activity' }];
 
 describe('CSFormNumberField', () => {
 	it('should pass correct label to CSInputNumber', () => {
 		const uut = shallow(
 			<CSFormNumberField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 			/>,
@@ -44,7 +25,7 @@ describe('CSFormNumberField', () => {
 	it('should pass correct name to CSInputNumber', () => {
 		const uut = shallow(
 			<CSFormNumberField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 			/>,
@@ -56,7 +37,7 @@ describe('CSFormNumberField', () => {
 	it('should pass correct actions list to CSInputNumber', () => {
 		const uut = shallow(
 			<CSFormNumberField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				actions={actions}
@@ -69,7 +50,7 @@ describe('CSFormNumberField', () => {
 	it('should pass correct disabled value to CSInputNumber', () => {
 		const uut = shallow(
 			<CSFormNumberField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				disabled
@@ -82,7 +63,7 @@ describe('CSFormNumberField', () => {
 	it('should pass correct error value to CSInputNumber', () => {
 		const uut = shallow(
 			<CSFormNumberField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				error
@@ -96,7 +77,7 @@ describe('CSFormNumberField', () => {
 		const errorMessage = 'Error message.';
 		const uut = shallow(
 			<CSFormNumberField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				error
@@ -111,7 +92,7 @@ describe('CSFormNumberField', () => {
 		const helpText = 'Help text.';
 		const uut = shallow(
 			<CSFormNumberField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				helpText={helpText}
@@ -124,7 +105,7 @@ describe('CSFormNumberField', () => {
 	it('should pass correct icons value to CSInputNumber', () => {
 		const uut = shallow(
 			<CSFormNumberField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				icons={icons}
@@ -138,7 +119,7 @@ describe('CSFormNumberField', () => {
 		const max = 8;
 		const uut = shallow(
 			<CSFormNumberField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				max={max}
@@ -152,7 +133,7 @@ describe('CSFormNumberField', () => {
 		const min = 4;
 		const uut = shallow(
 			<CSFormNumberField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				min={min}
@@ -166,7 +147,7 @@ describe('CSFormNumberField', () => {
 		const handleOnBlurMock = jest.fn();
 		const uut = shallow(
 			<CSFormNumberField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onBlur={handleOnBlurMock}
@@ -181,7 +162,7 @@ describe('CSFormNumberField', () => {
 		const handleOnChangeMock = jest.fn();
 		const uut = shallow(
 			<CSFormNumberField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onChange={handleOnChangeMock}
@@ -196,7 +177,7 @@ describe('CSFormNumberField', () => {
 		const handleOnClickMock = jest.fn();
 		const uut = shallow(
 			<CSFormNumberField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onClick={handleOnClickMock}
@@ -211,7 +192,7 @@ describe('CSFormNumberField', () => {
 		const handleOnKeyDownMock = jest.fn();
 		const uut = shallow(
 			<CSFormNumberField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onKeyDown={handleOnKeyDownMock}
@@ -225,7 +206,7 @@ describe('CSFormNumberField', () => {
 	it('should pass correct readOnly value to CSInputNumber', () => {
 		const uut = shallow(
 			<CSFormNumberField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				readOnly
@@ -238,7 +219,7 @@ describe('CSFormNumberField', () => {
 	it('should pass correct required value to CSInputNumber', () => {
 		const uut = shallow(
 			<CSFormNumberField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				required
@@ -252,7 +233,7 @@ describe('CSFormNumberField', () => {
 		const styleClass = 'custom-class';
 		const uut = shallow(
 			<CSFormNumberField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				styleClass={styleClass}
@@ -266,7 +247,7 @@ describe('CSFormNumberField', () => {
 		const title = 'title';
 		const uut = shallow(
 			<CSFormNumberField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				title={title}
@@ -280,7 +261,7 @@ describe('CSFormNumberField', () => {
 		const value = 5;
 		const uut = shallow(
 			<CSFormNumberField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				value={value}

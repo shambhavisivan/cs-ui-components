@@ -35,7 +35,7 @@ const CSFormField = ({
 	const fieldValue = { value: (rest as CSFormStandardFields).value ?? '' };
 
 	const renderFormField = () => {
-		switch (rest.fieldType) {
+		switch (rest.type) {
 		case 'CUSTOM':
 			return <CSFormCustomField {...rest} />;
 		case 'CUSTOM-MODAL':
@@ -75,8 +75,8 @@ const CSFormField = ({
 	const formFieldClasses = classNames(
 		'csf-field-wrapper',
 		{
-			'csf-field-wrapper-custom': rest.fieldType === 'CUSTOM' || rest.fieldType === 'CUSTOM-MODAL',
-			'csf-field-wrapper-buffer': rest.fieldType === 'BUFFER',
+			'csf-field-wrapper-custom': rest.type === 'CUSTOM' || rest.type === 'CUSTOM-MODAL',
+			'csf-field-wrapper-buffer': rest.type === 'BUFFER',
 		},
 	);
 

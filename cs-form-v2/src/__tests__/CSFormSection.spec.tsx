@@ -6,7 +6,7 @@ import CSFormSection from '../CSFormSection';
 import { CSFormFieldData } from '../types/cs-form-field-types';
 
 const fields: Array<CSFormFieldData> = [{
-	fieldType: 'NUMBER',
+	type: 'NUMBER',
 	label: 'label',
 	max: 9,
 	min: 1,
@@ -14,12 +14,12 @@ const fields: Array<CSFormFieldData> = [{
 	required: true,
 	name: 'number',
 }, {
-	fieldType: 'TEXT',
+	type: 'TEXT',
 	label: 'label',
 	value: 'Some text',
 	name: 'text',
 }, {
-	fieldType: 'CHECKBOX',
+	type: 'CHECKBOX',
 	label: 'label',
 	value: true,
 	name: 'checkbox',

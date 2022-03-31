@@ -78,13 +78,13 @@ const CSFormStandardFormFieldsPreview = () => {
 				<CSD.Text>Standard form fields are used for capturing user input and displaying values.</CSD.Text>
 				<CSD.Text>All field components are created using the `cs-ui-components` library.</CSD.Text>
 				<CSD.Text>Standard form fields are defined in CSForm's data prop as part of the section object's `fields` array.</CSD.Text>
-				<CSD.Text>CSForm distinguishes several types of fields and each field is defined by the `fieldType` property.</CSD.Text>
-				<CSD.Text>The table below shows which component will be rendered for each `fieldType` property value:</CSD.Text>
+				<CSD.Text>CSForm distinguishes several types of fields and each field is defined by the `type` property.</CSD.Text>
+				<CSD.Text>The table below shows which component will be rendered for each `type` property value:</CSD.Text>
 				<CSDataTable
 					columns={[
 						{
-							key: 'fieldType',
-							header: 'fieldType Value'
+							key: 'type',
+							header: 'Field Type Value'
 						}, {
 							key: 'component',
 							header: 'Corresponding Component'
@@ -94,67 +94,67 @@ const CSFormStandardFormFieldsPreview = () => {
 						{
 							key: 'checkbox',
 							data: {
-								fieldType: 'CHECKBOX',
+								type: 'CHECKBOX',
 								component: 'CSFormCheckboxField'
 							}
 						}, {
 							key: 'custom-select',
 							data: {
-								fieldType: 'CUSTOM-SELECT',
+								type: 'CUSTOM-SELECT',
 								component: 'CSFormCustomSelectField'
 							}
 						}, {
 							key: 'date',
 							data: {
-								fieldType: 'DATE',
+								type: 'DATE',
 								component: 'CSFormDateField'
 							}
 						}, {
 							key: 'datetime',
 							data: {
-								fieldType: 'DATETIME',
+								type: 'DATETIME',
 								component: 'CSFormDateTimeField'
 							}
 						}, {
 							key: 'lookup',
 							data: {
-								fieldType: 'LOOKUP',
+								type: 'LOOKUP',
 								component: 'CSFormLookupField'
 							}
 						}, {
 							key: 'number',
 							data: {
-								fieldType: 'NUMBER',
+								type: 'NUMBER',
 								component: 'CSFormNumberField'
 							}
 						}, {
 							key: 'radio',
 							data: {
-								fieldType: 'RADIO',
+								type: 'RADIO',
 								component: 'CSFormRadioField'
 							}
 						}, {
 							key: 'select',
 							data: {
-								fieldType: 'SELECT',
+								type: 'SELECT',
 								component: 'CSFormSelectField'
 							}
 						}, {
 							key: 'text',
 							data: {
-								fieldType: 'TEXT',
+								type: 'TEXT',
 								component: 'CSFormTextField'
 							}
 						}, {
 							key: 'textarea',
 							data: {
-								fieldType: 'TEXTAREA',
+								type: 'TEXTAREA',
 								component: 'CSFormTextareaField'
 							}
 						}, {
 							key: 'toggle',
 							data: {
-								fieldType: 'TOGGLE',
+								type: 'TOGGLE',
 								component: 'CSFormToggleField'
 							}
 						}
@@ -165,16 +165,16 @@ const CSFormStandardFormFieldsPreview = () => {
 			</CSD.Section>
 			<CSD.Heading>Common Properties</CSD.Heading>
 			<CSD.Section>
-				<CSD.Text>The form field object consists of properties which are common to all fields, regardless of the `fieldType` property value. </CSD.Text>
-				<CSD.Text>Common properites that are required for each field are `fieldType`, `name` and `label`.</CSD.Text>
+				<CSD.Text>The form field object consists of properties which are common to all fields, regardless of the `type` property value. </CSD.Text>
+				<CSD.Text>Common properites that are required for each field are `type`, `name` and `label`.</CSD.Text>
 				<CSD.Text>Each of the common properties is represented in the previews below.</CSD.Text>
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Required</CSD.Heading>
-				<CSD.Text>Common properites that are required for each field are `fieldType`, `name` and `label`.</CSD.Text>
+				<CSD.Text>Common properites that are required for each field are `type`, `name` and `label`.</CSD.Text>
 				<CSD.Text>
-					`fieldType` determines what kind of form field component will be rendered.
-					Defining `fieldType` enables access to properties which are specific to the type of the specific form field component.
+					`type` determines what kind of form field component will be rendered.
+					Defining `type` enables access to properties which are specific to the type of the specific form field component.
 				</CSD.Text>
 				<CSD.Text>The `name` property is used as a unique identifier for the form field. It’s also used for setting the input name attribute.</CSD.Text>
 				<CSD.Text>The `label` property will display a label above the actual field.</CSD.Text>
@@ -184,26 +184,26 @@ const CSFormStandardFormFieldsPreview = () => {
 							data={[{
 								...
 								fields: [{
-									fieldType: 'NUMBER',
+									type: 'NUMBER',
 									label: 'Number field',
 									name: 'number-1',
 								}, {
-									fieldType: 'TEXT',
+									type: 'TEXT',
 									label: 'Text field',
 									name: 'text-1',
 								}, {
-									fieldType: 'TEXTAREA',
+									type: 'TEXTAREA',
 									label: 'Textarea field',
 									name: 'textarea-1',
 								}, {
-									fieldType: 'TOGGLE',
+									type: 'TOGGLE',
 									label: 'Toggle field',
 									name: 'toggle-1',
 								}, {
-									fieldType: 'SELECT',
+									type: 'SELECT',
 									label: 'Select field',
 									name: 'select-1',
-									selectOptions: [{
+									options: [{
 										key: 'red',
 										value: 'Red'
 									}, {
@@ -214,11 +214,11 @@ const CSFormStandardFormFieldsPreview = () => {
 										value: 'Yellow'
 									}]
 								}, {
-									fieldType: 'DATE',
+									type: 'DATE',
 									label: 'Date field',
 									name: 'date-2',
 								}, {
-									fieldType: 'CHECKBOX',
+									type: 'CHECKBOX',
 									label: 'Checkbox',
 									name: 'checkbox-1',
 								}]
@@ -243,21 +243,21 @@ const CSFormStandardFormFieldsPreview = () => {
 							data={[{
 								...
 								fields: [{
-									fieldType: 'TEXT',
+									type: 'TEXT',
 									label: 'Text field',
 									name: 'text-1',
 									grow: 2
 								}, {
-									fieldType: 'NUMBER',
+									type: 'NUMBER',
 									label: 'Number field',
 									name: 'number-1',
 								}, {
-									fieldType: 'TEXTAREA',
+									type: 'TEXTAREA',
 									label: 'Textarea field',
 									name: 'textarea-1',
 									showInNewLine: true,
 								}, {
-									fieldType: 'TEXT',
+									type: 'TEXT',
 									label: 'Text field',
 									name: 'text-1-1',
 								}]}
@@ -276,31 +276,31 @@ const CSFormStandardFormFieldsPreview = () => {
 							data={[{
 								...
 								fields: [{
-									fieldType: 'NUMBER',
+									type: 'NUMBER',
 									name: 'number-1',
 									label: 'Number field',
 									actions: [{
-										action: () => alert('Delete option called'),
-										icon: { iconName: 'delete' },
-										labelHidden: true,
-										size: 'small' as CSButtonSize,
-										name: 'Delete'
+											onClick: () => alert('Delete option called'),
+											iconName: 'delete',
+											labelHidden: true,
+											size: 'small' as CSButtonSize,
+											label: 'Delete'
+										}, {
+											onClick: () => alert('Add option called'),
+											iconName: 'add',
+											labelHidden: true,
+											size: 'small' as CSButtonSize,
+											label: 'Add',
+											tooltip: {
+												content: 'actions tooltip',
+												delay: 300,
+												padding: '0.5rem',
+												position: 'bottom-left' as CSTooltipPosition,
+												stickyOnClick: true
+											}
+										}]
 									}, {
-										action: () => alert('Add option called'),
-										icon: { iconName: 'add' },
-										labelHidden: true,
-										size: 'small' as CSButtonSize,
-										name: 'Add',
-										getTooltip: {
-											content: ['actions tooltip'],
-											delay: 300,
-											padding: '0.5rem',
-											position: 'bottom-left' as CSTooltipPosition,
-											stickyOnClick: true
-										}
-									}]
-								}, {
-									fieldType: 'LOOKUP',
+									type: 'LOOKUP',
 									label: 'Lookup field',
 									name: 'lookup-1',
 									mode: 'client',
@@ -315,20 +315,21 @@ const CSFormStandardFormFieldsPreview = () => {
 										{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }
 									],
 									fieldToBeDisplayed: 'Account',
-									icons: [{
-										iconName: 'cart'
-									}, {
-										iconName: 'tag',
-										iconOrigin: 'cs' as CSIconOrigin,
-										getTooltip: {
-											content: ['icons tooltip'],
-											delay: 300,
-											maxWidth: '20rem',
-											padding: '0.5rem',
-											position: 'bottom-left' as CSTooltipPosition,
-											stickyOnClick: true
+									icons: [
+										{ name: 'cart' },
+										{
+											name: 'tag',
+											origin: 'cs' as CSIconOrigin,
+											tooltip: {
+												content: ['icons tooltip'],
+												delay: 300,
+												maxWidth: '20rem',
+												padding: '0.5rem',
+												position: 'bottom-left' as CSTooltipPosition,
+												stickyOnClick: true
+											}
 										}
-									}]
+									]
 								}]
 							}]}
 						/>
@@ -349,7 +350,7 @@ const CSFormStandardFormFieldsPreview = () => {
 							data={[{
 								...
 								fields: [{
-									fieldType: 'LOOKUP',
+									type: 'LOOKUP',
 									label: 'Lookup field',
 									name: 'lookup-2',
 									mode: 'client',
@@ -363,13 +364,13 @@ const CSFormStandardFormFieldsPreview = () => {
 									error: true,
 									errorMessage: 'Account is invalid!'
 								}, {
-									fieldType: 'DATETIME',
+									type: 'DATETIME',
 									label: 'Datetime field',
 									name: 'date-time-1',
 									error: true,
 									errorMessage: 'Select correct date!'
 								}, {
-									fieldType: 'TEXTAREA',
+									type: 'TEXTAREA',
 									label: 'Textarea field',
 									name: 'textarea-1',
 									helpText: 'Enter description.'
@@ -392,23 +393,23 @@ const CSFormStandardFormFieldsPreview = () => {
 							data={[{
 								...
 								fields: [{
-									fieldType: 'TOGGLE',
+									type: 'TOGGLE',
 									label: 'Toggle field',
 									name: 'toggle-1',
 									hidden: true
 								}, {
-									fieldType: 'TEXT',
+									type: 'TEXT',
 									label: 'Text field',
 									name: 'text-1',
 									disabled: true
 								}, {
-									fieldType: 'NUMBER',
+									type: 'NUMBER',
 									label: 'Number field',
 									name: 'number-1',
 									readOnly: true,
 									value: 2
 								}, {
-									fieldType: 'TEXTAREA',
+									type: 'TEXTAREA',
 									label: 'Textarea field',
 									name: 'textarea-1',
 									required: true
@@ -429,7 +430,7 @@ const CSFormStandardFormFieldsPreview = () => {
 							data={[{
 								...
 								fields: [{
-									fieldType: 'RADIO',
+									type: 'RADIO',
 									label: 'Radio field',
 									name: 'radio-1',
 									styleClass: 'csd-custom-br-mint',
@@ -463,12 +464,12 @@ const CSFormStandardFormFieldsPreview = () => {
 							data={[{
 								...
 								fields: [{
-									fieldType: 'TEXT',
+									type: 'TEXT',
 									label: 'Text field',
 									name: 'text-1',
 									title: 'Text field title'
 								}, {
-									fieldType: 'NUMBER',
+									type: 'NUMBER',
 									label: 'Number field',
 									name: 'number-1',
 									value: 2
@@ -483,7 +484,7 @@ const CSFormStandardFormFieldsPreview = () => {
 			<CSD.Heading>Field Type Specific Properties</CSD.Heading>
 			<CSD.Section>
 				<CSD.Text>Each of the field objects has properties which are specific to the type of field.</CSD.Text>
-				<CSD.Text>Field type specific properties are accessible by defining the desired type in the `fieldType` property.</CSD.Text>
+				<CSD.Text>Field type specific properties are accessible by defining the desired type in the `type` property.</CSD.Text>
 				<CSD.Text>Specific properties for each field type are listed below:</CSD.Text>
 			</CSD.Section>
 			<CSD.Section>
@@ -499,7 +500,7 @@ const CSFormStandardFormFieldsPreview = () => {
 							data={[{
 								...
 								fields: [{
-									fieldType: 'CHECKBOX',
+									type: 'CHECKBOX',
 									label: 'Checkbox',
 									name: 'checkbox-1',
 									value: true
@@ -527,7 +528,7 @@ const CSFormStandardFormFieldsPreview = () => {
 							data={[{
 								...
 								fields: [{
-									fieldType: 'CUSTOM-SELECT',
+									type: 'CUSTOM-SELECT',
 									label: 'Custom select field',
 									name: 'custom-select-2',
 									options: [
@@ -556,7 +557,7 @@ const CSFormStandardFormFieldsPreview = () => {
 					code={`
 						<CSForm
 							data={[{
-								fieldType: 'DATE',
+								type: 'DATE',
 								label: 'Date field',
 								name: 'date-2',
 								value: new Date()
@@ -581,7 +582,7 @@ const CSFormStandardFormFieldsPreview = () => {
 					code={`
 						<CSForm
 							data={[{
-								fieldType: 'DATETIME',
+								type: 'DATETIME',
 								label: 'Date-time field',
 								name: 'date-time-2',
 								value: new Date()
@@ -623,7 +624,7 @@ const CSFormStandardFormFieldsPreview = () => {
 								...
 								fields: [
 									{
-										fieldType: 'LOOKUP',
+										type: 'LOOKUP',
 										label: 'Lookup field',
 										name: 'lookup-2',
 										mode: 'client',
@@ -659,13 +660,13 @@ const CSFormStandardFormFieldsPreview = () => {
 							data={[{
 								...
 								fields: [{
-									fieldType: 'NUMBER',
+									type: 'NUMBER',
 									label: 'Number field',
 									name: 'number-1',
 									useLocale: true,
 									value: 100
 								}, {
-									fieldType: 'NUMBER',
+									type: 'NUMBER',
 									label: 'Number field',
 									name: 'number-2',
 									useLocale: false,
@@ -714,7 +715,7 @@ const CSFormStandardFormFieldsPreview = () => {
 							data={[{
 								...
 								fields: [{
-									fieldType: 'RADIO',
+									type: 'RADIO',
 									label: 'Select color:',
 									name: 'radio-color',
 									value: 'red',
@@ -726,7 +727,7 @@ const CSFormStandardFormFieldsPreview = () => {
 										label: 'Blue'
 									}]
 								}, {
-									fieldType: 'RADIO',
+									type: 'RADIO',
 									label: 'Select fruit:',
 									name: 'radio-fruit',
 									disabledKeys: ['apple'],
@@ -739,7 +740,7 @@ const CSFormStandardFormFieldsPreview = () => {
 										label: 'Apple'
 									}]
 								}, {
-									fieldType: 'RADIO',
+									type: 'RADIO',
 									label: 'Select season:',
 									name: 'radio-season',
 									value: 'summer',
@@ -762,9 +763,9 @@ const CSFormStandardFormFieldsPreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Select</CSD.Heading>
-				<CSD.Text>The select field specific property is `selectOptions`.</CSD.Text>
-				<CSD.Text>`selectOptions` is an array prop which defines the options available for selection.</CSD.Text>
-				<CSD.Text>Each object in the `selectOptions` array represents one option and it consists of 2 properties - `key` and `value`.</CSD.Text>
+				<CSD.Text>The select field specific property is `options`.</CSD.Text>
+				<CSD.Text>`options` is an array prop which defines the options available for selection.</CSD.Text>
+				<CSD.Text>Each object in the `options` array represents one option and it consists of 2 properties - `key` and `value`.</CSD.Text>
 				<CSD.Preview
 					code={`
 						<CSForm
@@ -772,12 +773,12 @@ const CSFormStandardFormFieldsPreview = () => {
 								...
 								fields: [
 									{
-										fieldType: 'SELECT',
-										label: 'Select field',
-										name: 'select-1',
-										selectOptions: [{
-											key: 'red',
-											value: 'Red'
+										type: 'SELECT',
+										label: 'Select car',
+										name: 'select-car',
+										options: [{
+											key: 'rimac',
+											value: 'Rimac'
 										}, {
 											key: 'blue',
 											value: 'Blue'
@@ -809,7 +810,7 @@ const CSFormStandardFormFieldsPreview = () => {
 								...
 								fields: [
 									{
-										fieldType: 'TEXT',
+										type: 'TEXT',
 										label: 'Text field',
 										name: 'text-1',
 										value: 'Example text.'
@@ -837,7 +838,7 @@ const CSFormStandardFormFieldsPreview = () => {
 								...
 								fields: [
 									{
-										fieldType: 'TEXTAREA',
+										type: 'TEXTAREA',
 										label: 'Textarea field',
 										name: 'textarea-1',
 										value: 'Example description.'

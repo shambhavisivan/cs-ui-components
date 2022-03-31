@@ -28,32 +28,32 @@ const CSFormLayoutFormFieldsPreview = () => {
 									label: 'First Section',
 									collapsible: true,
 									fields: [{
-										fieldType: 'NUMBER',
+										type: 'NUMBER',
 										label: 'Number field',
 										name: 'number-1'
 									}, {
-										fieldType: 'TEXT',
+										type: 'TEXT',
 										label: 'Text field',
 										name: 'text-1'
 									}, {
-										fieldType: 'BUFFER',
+										type: 'BUFFER',
 										grow: 2,
 										showInNewLine: true,
 									}, {
-										fieldType: 'TOGGLE',
+										type: 'TOGGLE',
 										label: 'Toggle field',
 										name: 'toggle-1'
 									}, {
-										fieldType: 'SELECT',
+										type: 'SELECT',
 										label: 'Select field',
 										name: 'select-1',
-										selectOptions: [...]
+										options: [...]
 									}, {
-										fieldType: 'CHECKBOX',
+										type: 'CHECKBOX',
 										label: 'Checkbox',
 										name: 'checkbox-1'
 									}, {
-										fieldType: 'TEXTAREA',
+										type: 'TEXTAREA',
 										label: 'Textarea field',
 										name: 'textarea-1'
 									}]
@@ -63,24 +63,24 @@ const CSFormLayoutFormFieldsPreview = () => {
 									label: 'Second section',
 									collapsible: true,
 									fields: [{
-										fieldType: 'DATE',
+										type: 'DATE',
 										label: 'Date field',
 										name: 'date-2'
 									}, {
-										fieldType: 'BUFFER'
+										type: 'BUFFER'
 									}, {
-										fieldType: 'DATETIME',
+										type: 'DATETIME',
 										label: 'Date-time field',
 										name: 'date-time-2'
 									}, {
-										fieldType: 'TEXTAREA',
+										type: 'TEXTAREA',
 										label: 'Textarea field',
 										name: 'textarea-2'
 									}, {
-										fieldType: 'BUFFER',
+										type: 'BUFFER',
 										grow: 4
 									}, {
-										fieldType: 'LOOKUP',
+										type: 'LOOKUP',
 										label: 'Lookup field',
 										name: 'lookup-2',
 										mode: 'client',
@@ -88,15 +88,15 @@ const CSFormLayoutFormFieldsPreview = () => {
 										options: [...],
 										fieldToBeDisplayed: 'Account'
 									}, {
-										fieldType: 'NUMBER',
+										type: 'NUMBER',
 										label: 'Number field',
 										name: 'number-2-2',
 									}, {
-										fieldType: 'TEXT',
+										type: 'TEXT',
 										label: 'Text field',
 										name: 'text-2',
 									}, {
-										fieldType: 'TOGGLE',
+										type: 'TOGGLE',
 										label: 'Toggle field',
 										name: 'toggle-2'
 									}]
@@ -112,26 +112,26 @@ const CSFormLayoutFormFieldsPreview = () => {
 								label: 'First Section',
 								collapsible: true,
 								fields: [{
-									fieldType: 'NUMBER',
+									type: 'NUMBER',
 									label: 'Number field',
 									name: 'number-1'
 								}, {
-									fieldType: 'TEXT',
+									type: 'TEXT',
 									label: 'Text field',
 									name: 'text-1'
 								}, {
-									fieldType: 'BUFFER',
+									type: 'BUFFER',
 									grow: 2,
 									showInNewLine: true
 								}, {
-									fieldType: 'TOGGLE',
+									type: 'TOGGLE',
 									label: 'Toggle field',
 									name: 'toggle-1'
 								}, {
-									fieldType: 'SELECT',
+									type: 'SELECT',
 									label: 'Select field',
 									name: 'select-1',
-									selectOptions: [{
+									options: [{
 										key: 'red',
 										value: 'Red'
 									}, {
@@ -142,11 +142,11 @@ const CSFormLayoutFormFieldsPreview = () => {
 										value: 'Yellow'
 									}]
 								}, {
-									fieldType: 'CHECKBOX',
+									type: 'CHECKBOX',
 									label: 'Checkbox',
 									name: 'checkbox-1'
 								}, {
-									fieldType: 'TEXTAREA',
+									type: 'TEXTAREA',
 									label: 'Textarea field',
 									name: 'textarea-1'
 								}]
@@ -156,24 +156,24 @@ const CSFormLayoutFormFieldsPreview = () => {
 								label: 'Second section',
 								collapsible: true,
 								fields: [{
-									fieldType: 'DATE',
+									type: 'DATE',
 									label: 'Date field',
 									name: 'date-2'
 								}, {
-									fieldType: 'BUFFER'
+									type: 'BUFFER'
 								}, {
-									fieldType: 'DATETIME',
+									type: 'DATETIME',
 									label: 'Date-time field',
 									name: 'date-time-2'
 								}, {
-									fieldType: 'TEXTAREA',
+									type: 'TEXTAREA',
 									label: 'Textarea field',
 									name: 'textarea-2'
 								}, {
-									fieldType: 'BUFFER',
+									type: 'BUFFER',
 									grow: 4
 								}, {
-									fieldType: 'LOOKUP',
+									type: 'LOOKUP',
 									label: 'Lookup field',
 									name: 'lookup-2',
 									mode: 'client',
@@ -185,15 +185,15 @@ const CSFormLayoutFormFieldsPreview = () => {
 									{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }],
 									fieldToBeDisplayed: 'Account'
 								}, {
-									fieldType: 'NUMBER',
+									type: 'NUMBER',
 									label: 'Number field',
 									name: 'number-2-2'
 								}, {
-									fieldType: 'TEXT',
+									type: 'TEXT',
 									label: 'Text field',
 									name: 'text-2'
 								}, {
-									fieldType: 'TOGGLE',
+									type: 'TOGGLE',
 									label: 'Toggle field',
 									name: 'toggle-2'
 								}]

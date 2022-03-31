@@ -6,7 +6,7 @@ export type CSFormMode = 'read-only';
 export type CSFormData = Array<CSFormSectionProps>;
 
 export interface CSFormChangedFieldData {
-	sectionKey: string;
+	sectionKey: React.ReactText;
 	name: string;
 	value: any;
 	errorMessage?: Array<string> | string;

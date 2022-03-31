@@ -59,7 +59,7 @@ const CSFormUtilsPreview = () => {
 				<CSD.Text>CSForm provides utility methods to facilitate the usage of the new form and migration from the old form.</CSD.Text>
 				<CSD.Text>Currently, there are 2 utility methods: `defineFormData()` and `validateForm()`.</CSD.Text>
 			</CSD.Section>
-			<CSD.Heading>Defining form data</CSD.Heading>
+			<CSD.Heading>Defining Form Data</CSD.Heading>
 			<CSD.Section>
 				<CSD.Text>`defineFormData()` generates the data which is used to render CSForm.</CSD.Text>
 				<CSD.Text>In most projects, the definition of form structure, field values and errors are kept as separate entities.</CSD.Text>
@@ -107,7 +107,7 @@ const CSFormUtilsPreview = () => {
 					/>
 				</CSD.Preview>
 			</CSD.Section>
-			<CSD.Heading>Form validation</CSD.Heading>
+			<CSD.Heading>Form Validation</CSD.Heading>
 			<CSD.Section>
 				<CSD.Text>
 					`validateForm()` can be used for validation of all fields in a form.

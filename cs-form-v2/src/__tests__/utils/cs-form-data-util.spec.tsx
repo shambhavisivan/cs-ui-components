@@ -5,7 +5,7 @@ const formDefinition: CSFormDefinition = [{
 	sectionKey: 'section_1',
 	label: 'section',
 	fields: [{
-		fieldType: 'TEXT',
+		type: 'TEXT',
 		name: 'text_1',
 		label: 'label',
 	}],
@@ -13,7 +13,7 @@ const formDefinition: CSFormDefinition = [{
 	sectionKey: 'section_2',
 	label: 'section',
 	fields: [{
-		fieldType: 'NUMBER',
+		type: 'NUMBER',
 		name: 'number_2',
 		label: 'label',
 	}],
@@ -35,7 +35,7 @@ const result = [{
 	sectionKey: 'section_1',
 	label: 'section',
 	fields: [{
-		fieldType: 'TEXT',
+		type: 'TEXT',
 		name: 'text_1',
 		label: 'label',
 		value: 'Example text',
@@ -47,7 +47,7 @@ const result = [{
 	sectionKey: 'section_2',
 	label: 'section',
 	fields: [{
-		fieldType: 'NUMBER',
+		type: 'NUMBER',
 		name: 'number_2',
 		label: 'label',
 		value: 2,
@@ -60,7 +60,7 @@ const resultWithoutErrors = [{
 	sectionKey: 'section_1',
 	label: 'section',
 	fields: [{
-		fieldType: 'TEXT',
+		type: 'TEXT',
 		name: 'text_1',
 		label: 'label',
 		value: 'Example text',
@@ -70,7 +70,7 @@ const resultWithoutErrors = [{
 	sectionKey: 'section_2',
 	label: 'section',
 	fields: [{
-		fieldType: 'NUMBER',
+		type: 'NUMBER',
 		name: 'number_2',
 		label: 'label',
 		value: 2,
@@ -81,7 +81,7 @@ const resultWithoutData = [{
 	sectionKey: 'section_1',
 	label: 'section',
 	fields: [{
-		fieldType: 'TEXT',
+		type: 'TEXT',
 		name: 'text_1',
 		label: 'label',
 		error: true,
@@ -91,7 +91,7 @@ const resultWithoutData = [{
 	sectionKey: 'section_2',
 	label: 'section',
 	fields: [{
-		fieldType: 'NUMBER',
+		type: 'NUMBER',
 		name: 'number_2',
 		label: 'label',
 		error: true,

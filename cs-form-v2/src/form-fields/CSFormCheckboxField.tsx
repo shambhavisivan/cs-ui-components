@@ -3,7 +3,7 @@ import { CSCheckbox } from '@cloudsense/cs-ui-components';
 import { CSFormCheckboxFieldProps } from '../types/cs-form-field-types';
 
 const CSFormCheckboxField = ({
-	fieldType,
+	type,
 	onBlur,
 	onChange,
 	styleClass,

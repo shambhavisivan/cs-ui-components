@@ -6,7 +6,7 @@ export const checkboxPropsData: CSFormData = [
 		label: 'Checkbox',
 		collapsible: true,
 		fields: [{
-			fieldType: 'CHECKBOX',
+			type: 'CHECKBOX',
 			label: 'Checkbox',
 			name: 'checkbox-1',
 			value: true
@@ -21,7 +21,7 @@ export const customSelectPropsData: CSFormData = [
 		collapsible: true,
 		fields: [
 			{
-				fieldType: 'CUSTOM-SELECT',
+				type: 'CUSTOM-SELECT',
 				label: 'Custom select field',
 				name: 'custom-select-2',
 				options: [
@@ -42,7 +42,7 @@ export const datePropsData: CSFormData = [
 		label: 'Date',
 		collapsible: true,
 		fields: [{
-			fieldType: 'DATE',
+			type: 'DATE',
 			label: 'Date field',
 			name: 'date-2',
 			value: new Date()
@@ -56,7 +56,7 @@ export const dateTimePropsData: CSFormData = [
 		label: 'Date time',
 		collapsible: true,
 		fields: [{
-			fieldType: 'DATETIME',
+			type: 'DATETIME',
 			label: 'Date-time field',
 			name: 'date-time-2',
 			value: new Date()
@@ -70,7 +70,7 @@ export const lookupPropsData: CSFormData = [
 		label: 'Lookup',
 		collapsible: true,
 		fields: [{
-			fieldType: 'LOOKUP',
+			type: 'LOOKUP',
 			label: 'Lookup field',
 			name: 'lookup-2',
 			mode: 'client',
@@ -92,13 +92,13 @@ export const numberLocaleData: CSFormData = [
 		label: 'Section',
 		collapsible: true,
 		fields: [{
-			fieldType: 'NUMBER',
+			type: 'NUMBER',
 			label: 'Number field with locale',
 			name: 'number-1',
 			useLocale: true,
 			value: 100
 		}, {
-			fieldType: 'NUMBER',
+			type: 'NUMBER',
 			label: 'Number field without locale',
 			name: 'number-2',
 			useLocale: false,
@@ -113,7 +113,7 @@ export const radioPropsData: CSFormData = [
 		label: 'Section',
 		collapsible: true,
 		fields: [{
-			fieldType: 'RADIO',
+			type: 'RADIO',
 			label: 'Select color:',
 			name: 'radio-color',
 			value: 'red',
@@ -125,7 +125,7 @@ export const radioPropsData: CSFormData = [
 				label: 'Blue'
 			}]
 		}, {
-			fieldType: 'RADIO',
+			type: 'RADIO',
 			label: 'Select fruit:',
 			name: 'radio-fruit',
 			disabledKeys: ['apple'],
@@ -138,7 +138,7 @@ export const radioPropsData: CSFormData = [
 				label: 'Apple'
 			}]
 		}, {
-			fieldType: 'RADIO',
+			type: 'RADIO',
 			label: 'Select season:',
 			name: 'radio-season',
 			value: 'summer',
@@ -162,12 +162,12 @@ export const selectPropsData: CSFormData = [
 		collapsible: true,
 		fields: [
 			{
-				fieldType: 'SELECT',
-				label: 'Select field',
-				name: 'select-1',
-				selectOptions: [{
-					key: 'red',
-					value: 'Red'
+				type: 'SELECT',
+				label: 'Select car',
+				name: 'select-car',
+				options: [{
+					key: 'rimac',
+					value: 'Rimac'
 				}, {
 					key: 'blue',
 					value: 'Blue'
@@ -188,7 +188,7 @@ export const textPropsData: CSFormData = [
 		collapsible: true,
 		fields: [
 			{
-				fieldType: 'TEXT',
+				type: 'TEXT',
 				label: 'Text field',
 				name: 'text-1',
 				value: 'Example text.'
@@ -204,7 +204,7 @@ export const textareaPropsData: CSFormData = [
 		collapsible: true,
 		fields: [
 			{
-				fieldType: 'TEXTAREA',
+				type: 'TEXTAREA',
 				label: 'Textarea field',
 				name: 'textarea-1',
 				value: 'Example description.'

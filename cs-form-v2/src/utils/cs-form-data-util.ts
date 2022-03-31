@@ -27,7 +27,7 @@ export const defineFormData = (formDefinition: CSFormDefinition, data?: Array<Re
 		const newFields = fields.map((field) => {
 			let newField;
 			// Custom modal and buffer fields don't contain values or error messages so they're omitted here
-			if (field.fieldType !== 'CUSTOM-MODAL' && field.fieldType !== 'BUFFER') {
+			if (field.type !== 'CUSTOM-MODAL' && field.type !== 'BUFFER') {
 				if (dataMap?.has(field?.name)) {
 					newField = { ...field, value: dataMap.get(field.name) };
 				} else {

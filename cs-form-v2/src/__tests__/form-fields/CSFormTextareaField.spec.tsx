@@ -3,36 +3,17 @@ import { shallow } from 'enzyme';
 import '../../setupTests';
 import { CSTextarea } from '@cloudsense/cs-ui-components';
 import CSFormTextareaField from '../../form-fields/CSFormTextareaField';
+import { actions, icons } from '../test-data/custom-data';
 
 const label = 'label';
-const fieldType = 'TEXTAREA';
+const type = 'TEXTAREA';
 const name = 'textarea';
-const actions = [
-	{
-		action: () => jest.fn(),
-		icon: { iconName: 'check' },
-		labelHidden: true,
-		name: 'Check',
-	},
-	{
-		action: () => jest.fn(),
-		icon: { iconName: 'add' },
-		labelHidden: true,
-		name: 'Add',
-		getTooltip: {
-			content: ['actions tooltip'],
-			delay: 300,
-			stickyOnClick: true,
-		},
-	},
-];
-const icons = [{ iconName: 'activity' }];
 
 describe('CSFormTextareaField', () => {
 	it('should pass correct label to CSTextarea', () => {
 		const uut = shallow(
 			<CSFormTextareaField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 			/>,
@@ -44,7 +25,7 @@ describe('CSFormTextareaField', () => {
 	it('should pass correct name to CSTextarea', () => {
 		const uut = shallow(
 			<CSFormTextareaField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 			/>,
@@ -56,7 +37,7 @@ describe('CSFormTextareaField', () => {
 	it('should pass correct actions list to CSTextarea', () => {
 		const uut = shallow(
 			<CSFormTextareaField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				actions={actions}
@@ -69,7 +50,7 @@ describe('CSFormTextareaField', () => {
 	it('should pass correct disabled value to CSTextarea', () => {
 		const uut = shallow(
 			<CSFormTextareaField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				disabled
@@ -82,7 +63,7 @@ describe('CSFormTextareaField', () => {
 	it('should pass correct error value to CSTextarea', () => {
 		const uut = shallow(
 			<CSFormTextareaField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				error
@@ -96,7 +77,7 @@ describe('CSFormTextareaField', () => {
 		const errorMessage = 'Error message.';
 		const uut = shallow(
 			<CSFormTextareaField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				error
@@ -111,7 +92,7 @@ describe('CSFormTextareaField', () => {
 		const helpText = 'Help text.';
 		const uut = shallow(
 			<CSFormTextareaField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				helpText={helpText}
@@ -124,7 +105,7 @@ describe('CSFormTextareaField', () => {
 	it('should pass correct icons value to CSTextarea', () => {
 		const uut = shallow(
 			<CSFormTextareaField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				icons={icons}
@@ -138,7 +119,7 @@ describe('CSFormTextareaField', () => {
 		const maxHeight = '200px';
 		const uut = shallow(
 			<CSFormTextareaField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				maxHeight={maxHeight}
@@ -152,7 +133,7 @@ describe('CSFormTextareaField', () => {
 		const handleOnBlurMock = jest.fn();
 		const uut = shallow(
 			<CSFormTextareaField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onBlur={handleOnBlurMock}
@@ -167,7 +148,7 @@ describe('CSFormTextareaField', () => {
 		const handleOnChangeMock = jest.fn();
 		const uut = shallow(
 			<CSFormTextareaField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onChange={handleOnChangeMock}
@@ -182,7 +163,7 @@ describe('CSFormTextareaField', () => {
 		const handleOnClickMock = jest.fn();
 		const uut = shallow(
 			<CSFormTextareaField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onClick={handleOnClickMock}
@@ -197,7 +178,7 @@ describe('CSFormTextareaField', () => {
 		const handleOnKeyDownMock = jest.fn();
 		const uut = shallow(
 			<CSFormTextareaField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onKeyDown={handleOnKeyDownMock}
@@ -211,7 +192,7 @@ describe('CSFormTextareaField', () => {
 	it('should pass correct readOnly value to CSTextarea', () => {
 		const uut = shallow(
 			<CSFormTextareaField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				readOnly
@@ -224,7 +205,7 @@ describe('CSFormTextareaField', () => {
 	it('should pass correct required value to CSTextarea', () => {
 		const uut = shallow(
 			<CSFormTextareaField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				required
@@ -238,7 +219,7 @@ describe('CSFormTextareaField', () => {
 		const rows = 5;
 		const uut = shallow(
 			<CSFormTextareaField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				rows={rows}
@@ -252,7 +233,7 @@ describe('CSFormTextareaField', () => {
 		const styleClass = 'custom-class';
 		const uut = shallow(
 			<CSFormTextareaField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				styleClass={styleClass}
@@ -266,7 +247,7 @@ describe('CSFormTextareaField', () => {
 		const title = 'title';
 		const uut = shallow(
 			<CSFormTextareaField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				title={title}
@@ -280,7 +261,7 @@ describe('CSFormTextareaField', () => {
 		const value = 'Text';
 		const uut = shallow(
 			<CSFormTextareaField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				value={value}

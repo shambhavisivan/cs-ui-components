@@ -6,13 +6,13 @@ export default [
 		label: 'Section',
 		collapsible: true,
 		fields: [{
-			fieldType: 'TEXT',
+			type: 'TEXT',
 			label: 'Text field',
 			name: 'text-1',
 			required: true,
 			value: ''
 		}, {
-			fieldType: 'NUMBER',
+			type: 'NUMBER',
 			label: 'Number field',
 			name: 'number-1',
 			min: 1,

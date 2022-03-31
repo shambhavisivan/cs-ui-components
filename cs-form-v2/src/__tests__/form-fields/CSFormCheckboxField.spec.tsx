@@ -3,36 +3,17 @@ import { shallow } from 'enzyme';
 import '../../setupTests';
 import { CSCheckbox } from '@cloudsense/cs-ui-components';
 import CSFormCheckboxField from '../../form-fields/CSFormCheckboxField';
+import { actions, icons } from '../test-data/custom-data';
 
 const label = 'label';
-const fieldType = 'CHECKBOX';
+const type = 'CHECKBOX';
 const name = 'checkbox';
-const actions = [
-	{
-		action: () => jest.fn(),
-		icon: { iconName: 'check' },
-		labelHidden: true,
-		name: 'Check',
-	},
-	{
-		action: () => jest.fn(),
-		icon: { iconName: 'add' },
-		labelHidden: true,
-		name: 'Add',
-		getTooltip: {
-			content: ['actions tooltip'],
-			delay: 300,
-			stickyOnClick: true,
-		},
-	},
-];
-const icons = [{ iconName: 'activity' }];
 
 describe('CSFormCheckboxField', () => {
 	it('should pass correct label to CSCheckbox', () => {
 		const uut = shallow(
 			<CSFormCheckboxField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 			/>,
@@ -44,7 +25,7 @@ describe('CSFormCheckboxField', () => {
 	it('should pass correct name to CSCheckbox', () => {
 		const uut = shallow(
 			<CSFormCheckboxField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 			/>,
@@ -56,7 +37,7 @@ describe('CSFormCheckboxField', () => {
 	it('should pass correct actions list to CSCheckbox', () => {
 		const uut = shallow(
 			<CSFormCheckboxField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				actions={actions}
@@ -69,7 +50,7 @@ describe('CSFormCheckboxField', () => {
 	it('should pass correct disabled value to CSCheckbox', () => {
 		const uut = shallow(
 			<CSFormCheckboxField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				disabled
@@ -82,7 +63,7 @@ describe('CSFormCheckboxField', () => {
 	it('should pass correct error value to CSCheckbox', () => {
 		const uut = shallow(
 			<CSFormCheckboxField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				error
@@ -96,7 +77,7 @@ describe('CSFormCheckboxField', () => {
 		const errorMessage = 'Error message.';
 		const uut = shallow(
 			<CSFormCheckboxField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				error
@@ -111,7 +92,7 @@ describe('CSFormCheckboxField', () => {
 		const helpText = 'Help text.';
 		const uut = shallow(
 			<CSFormCheckboxField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				helpText={helpText}
@@ -124,7 +105,7 @@ describe('CSFormCheckboxField', () => {
 	it('should pass correct icons value to CSCheckbox', () => {
 		const uut = shallow(
 			<CSFormCheckboxField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				icons={icons}
@@ -137,7 +118,7 @@ describe('CSFormCheckboxField', () => {
 	it('should pass correct indeterminate value to CSCheckbox', () => {
 		const uut = shallow(
 			<CSFormCheckboxField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				indeterminate
@@ -151,7 +132,7 @@ describe('CSFormCheckboxField', () => {
 		const handleOnBlurMock = jest.fn();
 		const uut = shallow(
 			<CSFormCheckboxField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onBlur={handleOnBlurMock}
@@ -166,7 +147,7 @@ describe('CSFormCheckboxField', () => {
 		const handleOnChangeMock = jest.fn();
 		const uut = shallow(
 			<CSFormCheckboxField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onChange={handleOnChangeMock}
@@ -181,7 +162,7 @@ describe('CSFormCheckboxField', () => {
 		const handleOnClickMock = jest.fn();
 		const uut = shallow(
 			<CSFormCheckboxField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onClick={handleOnClickMock}
@@ -196,7 +177,7 @@ describe('CSFormCheckboxField', () => {
 		const handleOnKeyDownMock = jest.fn();
 		const uut = shallow(
 			<CSFormCheckboxField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onKeyDown={handleOnKeyDownMock}
@@ -210,7 +191,7 @@ describe('CSFormCheckboxField', () => {
 	it('should pass correct readOnly value to CSCheckbox', () => {
 		const uut = shallow(
 			<CSFormCheckboxField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				readOnly
@@ -223,7 +204,7 @@ describe('CSFormCheckboxField', () => {
 	it('should pass correct required value to CSCheckbox', () => {
 		const uut = shallow(
 			<CSFormCheckboxField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				required
@@ -237,7 +218,7 @@ describe('CSFormCheckboxField', () => {
 		const styleClass = 'custom-class';
 		const uut = shallow(
 			<CSFormCheckboxField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				styleClass={styleClass}
@@ -251,7 +232,7 @@ describe('CSFormCheckboxField', () => {
 		const title = 'title';
 		const uut = shallow(
 			<CSFormCheckboxField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				title={title}
@@ -265,7 +246,7 @@ describe('CSFormCheckboxField', () => {
 		const value = true;
 		const uut = shallow(
 			<CSFormCheckboxField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				value={value}

@@ -8,17 +8,17 @@ const label = 'label';
 const name = 'field_name';
 
 describe('<CSFormField />', () => {
-	it('should render field wrapper only if fieldType is \'BUFFER\'', () => {
-		const uut = shallow(<CSFormField fieldType="BUFFER" />);
+	it('should render field wrapper only if field type is \'BUFFER\'', () => {
+		const uut = shallow(<CSFormField type="BUFFER" />);
 		const fieldWrapper = uut.find('.csf-field-wrapper');
 		expect(fieldWrapper).toHaveLength(1);
 		expect(fieldWrapper.children()).toHaveLength(0);
 	});
 
-	it('should render CSFormCustomField if fieldType is \'CUSTOM\'', () => {
+	it('should render CSFormCustomField if field type is \'CUSTOM\'', () => {
 		const uut = shallow(
 			<CSFormField
-				fieldType="CUSTOM"
+				type="CUSTOM"
 				render={<span>test</span>}
 			/>,
 		);
@@ -26,10 +26,10 @@ describe('<CSFormField />', () => {
 		expect(customField).toHaveLength(1);
 	});
 
-	it('should render CSFormCheckboxField if fieldType is \'CHECKBOX\'', () => {
+	it('should render CSFormCheckboxField if field type is \'CHECKBOX\'', () => {
 		const uut = shallow(
 			<CSFormField
-				fieldType="CHECKBOX"
+				type="CHECKBOX"
 				label={label}
 				name={name}
 			/>,
@@ -38,10 +38,10 @@ describe('<CSFormField />', () => {
 		expect(checkboxField).toHaveLength(1);
 	});
 
-	it('should render CSFormCustomSelectField if fieldType is \'CUSTOM-SELECT\'', () => {
+	it('should render CSFormCustomSelectField if field type is \'CUSTOM-SELECT\'', () => {
 		const uut = shallow(
 			<CSFormField
-				fieldType="CUSTOM-SELECT"
+				type="CUSTOM-SELECT"
 				label={label}
 				name={name}
 				options={[]}
@@ -51,10 +51,10 @@ describe('<CSFormField />', () => {
 		expect(customSelectField).toHaveLength(1);
 	});
 
-	it('should render CSFormDateField if fieldType is \'DATE\'', () => {
+	it('should render CSFormDateField if field type is \'DATE\'', () => {
 		const uut = shallow(
 			<CSFormField
-				fieldType="DATE"
+				type="DATE"
 				label={label}
 				name={name}
 			/>,
@@ -63,10 +63,10 @@ describe('<CSFormField />', () => {
 		expect(dateField).toHaveLength(1);
 	});
 
-	it('should render CSFormDateTimeField if fieldType is \'DATETIME\'', () => {
+	it('should render CSFormDateTimeField if field type is \'DATETIME\'', () => {
 		const uut = shallow(
 			<CSFormField
-				fieldType="DATETIME"
+				type="DATETIME"
 				label={label}
 				name={name}
 			/>,
@@ -75,10 +75,10 @@ describe('<CSFormField />', () => {
 		expect(dateTimeField).toHaveLength(1);
 	});
 
-	it('should render CSFormLookupField if fieldType is \'LOOKUP\'', () => {
+	it('should render CSFormLookupField if field type is \'LOOKUP\'', () => {
 		const uut = shallow(
 			<CSFormField
-				fieldType="LOOKUP"
+				type="LOOKUP"
 				label={label}
 				name={name}
 				mode="client"
@@ -91,10 +91,10 @@ describe('<CSFormField />', () => {
 		expect(lookupField).toHaveLength(1);
 	});
 
-	it('should render CSFormNumberField if fieldType is \'NUMBER\'', () => {
+	it('should render CSFormNumberField if field type is \'NUMBER\'', () => {
 		const uut = shallow(
 			<CSFormField
-				fieldType="NUMBER"
+				type="NUMBER"
 				label={label}
 				name={name}
 			/>,
@@ -103,10 +103,10 @@ describe('<CSFormField />', () => {
 		expect(numberField).toHaveLength(1);
 	});
 
-	it('should render CSFormRadioField if fieldType is \'RADIO\'', () => {
+	it('should render CSFormRadioField if field type is \'RADIO\'', () => {
 		const uut = shallow(
 			<CSFormField
-				fieldType="RADIO"
+				type="RADIO"
 				label={label}
 				name={name}
 				options={[]}
@@ -116,23 +116,23 @@ describe('<CSFormField />', () => {
 		expect(radioField).toHaveLength(1);
 	});
 
-	it('should render CSFormSelectField if fieldType is \'SELECT\'', () => {
+	it('should render CSFormSelectField if field type is \'SELECT\'', () => {
 		const uut = shallow(
 			<CSFormField
-				fieldType="SELECT"
+				type="SELECT"
 				label={label}
 				name={name}
-				selectOptions={[]}
+				options={[]}
 			/>,
 		);
 		const selectField = uut.find('.csf-field-wrapper CSFormSelectField');
 		expect(selectField).toHaveLength(1);
 	});
 
-	it('should render CSFormTextField if fieldType is \'TEXT\'', () => {
+	it('should render CSFormTextField if field type is \'TEXT\'', () => {
 		const uut = shallow(
 			<CSFormField
-				fieldType="TEXT"
+				type="TEXT"
 				label={label}
 				name={name}
 			/>,
@@ -141,10 +141,10 @@ describe('<CSFormField />', () => {
 		expect(textField).toHaveLength(1);
 	});
 
-	it('should render CSFormTextareaField if fieldType is \'TEXTAREA\'', () => {
+	it('should render CSFormTextareaField if field type is \'TEXTAREA\'', () => {
 		const uut = shallow(
 			<CSFormField
-				fieldType="TEXTAREA"
+				type="TEXTAREA"
 				label={label}
 				name={name}
 			/>,
@@ -153,10 +153,10 @@ describe('<CSFormField />', () => {
 		expect(textareaField).toHaveLength(1);
 	});
 
-	it('should render CSFormToggleField if fieldType is \'TOGGLE\'', () => {
+	it('should render CSFormToggleField if field type is \'TOGGLE\'', () => {
 		const uut = shallow(
 			<CSFormField
-				fieldType="TOGGLE"
+				type="TOGGLE"
 				label={label}
 				name={name}
 			/>,
@@ -168,7 +168,7 @@ describe('<CSFormField />', () => {
 	it('shouldn\'t render form field if hidden is set', () => {
 		const uut = shallow(
 			<CSFormField
-				fieldType="CHECKBOX"
+				type="CHECKBOX"
 				label={label}
 				name={name}
 				hidden
@@ -191,7 +191,7 @@ describe('<CSFormField />', () => {
 				}}
 			>
 				<CSFormField
-					fieldType="CHECKBOX"
+					type="CHECKBOX"
 					label={label}
 					name={name}
 				/>
@@ -214,7 +214,7 @@ describe('<CSFormField />', () => {
 				}}
 			>
 				<CSFormField
-					fieldType="CHECKBOX"
+					type="CHECKBOX"
 					label={label}
 					name={name}
 					grow={2}
@@ -228,7 +228,7 @@ describe('<CSFormField />', () => {
 	it('should render form field in a new line', () => {
 		const uut = shallow(
 			<CSFormField
-				fieldType="CHECKBOX"
+				type="CHECKBOX"
 				label={label}
 				name={name}
 				showInNewLine

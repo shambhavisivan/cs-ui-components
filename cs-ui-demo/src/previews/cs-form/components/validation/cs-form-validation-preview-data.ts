@@ -6,13 +6,13 @@ export default [
 		label: 'Section',
 		collapsible: true,
 		fields: [{
-			fieldType: 'TEXTAREA',
+			type: 'TEXTAREA',
 			label: 'Textarea field',
 			name: 'textarea-1',
 			required: true,
 			value: 'Example text.'
 		}, {
-			fieldType: 'NUMBER',
+			type: 'NUMBER',
 			label: 'Number field',
 			name: 'number-1',
 			min: 1,

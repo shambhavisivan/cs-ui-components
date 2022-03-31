@@ -5,7 +5,7 @@ import { CSCustomSelect } from '@cloudsense/cs-ui-components';
 import CSFormCustomSelectField from '../../form-fields/CSFormCustomSelectField';
 
 const label = 'label';
-const fieldType = 'CUSTOM-SELECT';
+const type = 'CUSTOM-SELECT';
 const name = 'custom-select';
 const customSelectOptions = [
 	{ key: 1, label: 'First' },
@@ -19,7 +19,7 @@ describe('CSFormCustomSelectField', () => {
 		const uut = shallow(
 			<CSFormCustomSelectField
 				options={customSelectOptions}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 			/>,
@@ -32,7 +32,7 @@ describe('CSFormCustomSelectField', () => {
 		const uut = shallow(
 			<CSFormCustomSelectField
 				options={customSelectOptions}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 			/>,
@@ -45,7 +45,7 @@ describe('CSFormCustomSelectField', () => {
 		const uut = shallow(
 			<CSFormCustomSelectField
 				options={customSelectOptions}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 			/>,
@@ -58,7 +58,7 @@ describe('CSFormCustomSelectField', () => {
 		const uut = shallow(
 			<CSFormCustomSelectField
 				options={customSelectOptions}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				disabled
@@ -72,7 +72,7 @@ describe('CSFormCustomSelectField', () => {
 		const uut = shallow(
 			<CSFormCustomSelectField
 				options={customSelectOptions}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				error
@@ -87,7 +87,7 @@ describe('CSFormCustomSelectField', () => {
 		const uut = shallow(
 			<CSFormCustomSelectField
 				options={customSelectOptions}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				error
@@ -103,7 +103,7 @@ describe('CSFormCustomSelectField', () => {
 		const uut = shallow(
 			<CSFormCustomSelectField
 				options={customSelectOptions}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				helpText={helpText}
@@ -118,7 +118,7 @@ describe('CSFormCustomSelectField', () => {
 		const uut = shallow(
 			<CSFormCustomSelectField
 				options={customSelectOptions}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onBlur={handleOnBlurMock}
@@ -134,7 +134,7 @@ describe('CSFormCustomSelectField', () => {
 		const uut = shallow(
 			<CSFormCustomSelectField
 				options={customSelectOptions}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onChange={handleOnChangeMock}
@@ -153,7 +153,7 @@ describe('CSFormCustomSelectField', () => {
 		const uut = shallow(
 			<CSFormCustomSelectField
 				options={customSelectOptions}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onClick={handleOnClickMock}
@@ -169,7 +169,7 @@ describe('CSFormCustomSelectField', () => {
 		const uut = shallow(
 			<CSFormCustomSelectField
 				options={customSelectOptions}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onKeyDown={handleOnKeyDownMock}
@@ -184,7 +184,7 @@ describe('CSFormCustomSelectField', () => {
 		const uut = shallow(
 			<CSFormCustomSelectField
 				options={customSelectOptions}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				readOnly
@@ -198,7 +198,7 @@ describe('CSFormCustomSelectField', () => {
 		const uut = shallow(
 			<CSFormCustomSelectField
 				options={customSelectOptions}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				required
@@ -213,7 +213,7 @@ describe('CSFormCustomSelectField', () => {
 		const uut = shallow(
 			<CSFormCustomSelectField
 				options={customSelectOptions}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				styleClass={styleClass}
@@ -228,7 +228,7 @@ describe('CSFormCustomSelectField', () => {
 		const uut = shallow(
 			<CSFormCustomSelectField
 				options={customSelectOptions}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				title={title}
@@ -243,7 +243,7 @@ describe('CSFormCustomSelectField', () => {
 		const uut = shallow(
 			<CSFormCustomSelectField
 				options={customSelectOptions}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				value={value}

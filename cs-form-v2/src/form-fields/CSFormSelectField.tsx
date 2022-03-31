@@ -3,14 +3,14 @@ import { CSSelect } from '@cloudsense/cs-ui-components';
 import { CSFormSelectFieldProps } from '../types/cs-form-field-types';
 
 const CSFormSelectField = ({
-	fieldType,
+	type,
 	onBlur,
 	onChange,
-	selectOptions,
+	options,
 	styleClass,
 	...props
 }: CSFormSelectFieldProps) => {
-	const renderPicklistOptions = () => selectOptions.map((option) => (
+	const renderPicklistOptions = () => options.map((option) => (
 		<option value={option.value} key={option.key}>{option.value}</option>
 	));
 	return (

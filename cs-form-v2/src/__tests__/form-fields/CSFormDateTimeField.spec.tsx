@@ -3,36 +3,17 @@ import { shallow } from 'enzyme';
 import '../../setupTests';
 import { CSDateTimePicker } from '@cloudsense/cs-ui-components';
 import CSFormDateTimeField from '../../form-fields/CSFormDateTimeField';
+import { actions, icons } from '../test-data/custom-data';
 
 const label = 'label';
-const fieldType = 'DATETIME';
+const type = 'DATETIME';
 const name = 'datetime';
-const actions = [
-	{
-		action: () => jest.fn(),
-		icon: { iconName: 'check' },
-		labelHidden: true,
-		name: 'Check',
-	},
-	{
-		action: () => jest.fn(),
-		icon: { iconName: 'add' },
-		labelHidden: true,
-		name: 'Add',
-		getTooltip: {
-			content: ['actions tooltip'],
-			delay: 300,
-			stickyOnClick: true,
-		},
-	},
-];
-const icons = [{ iconName: 'activity' }];
 
 describe('CSFormDateTimeField', () => {
 	it('should pass correct label to CSDateTimePicker', () => {
 		const uut = shallow(
 			<CSFormDateTimeField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 			/>,
@@ -44,7 +25,7 @@ describe('CSFormDateTimeField', () => {
 	it('should pass correct name to CSDateTimePicker', () => {
 		const uut = shallow(
 			<CSFormDateTimeField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 			/>,
@@ -56,7 +37,7 @@ describe('CSFormDateTimeField', () => {
 	it('should pass correct actions list to CSDateTimePicker', () => {
 		const uut = shallow(
 			<CSFormDateTimeField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				actions={actions}
@@ -70,7 +51,7 @@ describe('CSFormDateTimeField', () => {
 		const dateFormat = 'MM-dd-yyyy';
 		const uut = shallow(
 			<CSFormDateTimeField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				dateFormat={dateFormat}
@@ -83,7 +64,7 @@ describe('CSFormDateTimeField', () => {
 	it('should pass correct disabled value to CSDateTimePicker', () => {
 		const uut = shallow(
 			<CSFormDateTimeField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				disabled
@@ -96,7 +77,7 @@ describe('CSFormDateTimeField', () => {
 	it('should pass correct error value to CSDateTimePicker', () => {
 		const uut = shallow(
 			<CSFormDateTimeField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				error
@@ -110,7 +91,7 @@ describe('CSFormDateTimeField', () => {
 		const errorMessage = 'Error message.';
 		const uut = shallow(
 			<CSFormDateTimeField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				error
@@ -125,7 +106,7 @@ describe('CSFormDateTimeField', () => {
 		const helpText = 'Help text.';
 		const uut = shallow(
 			<CSFormDateTimeField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				helpText={helpText}
@@ -138,7 +119,7 @@ describe('CSFormDateTimeField', () => {
 	it('should pass correct icons value to CSDateTimePicker', () => {
 		const uut = shallow(
 			<CSFormDateTimeField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				icons={icons}
@@ -152,7 +133,7 @@ describe('CSFormDateTimeField', () => {
 		const locale = 'en-GB';
 		const uut = shallow(
 			<CSFormDateTimeField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				locale={locale}
@@ -166,7 +147,7 @@ describe('CSFormDateTimeField', () => {
 		const handleOnBlurMock = jest.fn();
 		const uut = shallow(
 			<CSFormDateTimeField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onBlur={handleOnBlurMock}
@@ -181,7 +162,7 @@ describe('CSFormDateTimeField', () => {
 		const handleOnChangeMock = jest.fn();
 		const uut = shallow(
 			<CSFormDateTimeField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onChange={handleOnChangeMock}
@@ -196,7 +177,7 @@ describe('CSFormDateTimeField', () => {
 		const handleOnClickMock = jest.fn();
 		const uut = shallow(
 			<CSFormDateTimeField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onClick={handleOnClickMock}
@@ -211,7 +192,7 @@ describe('CSFormDateTimeField', () => {
 		const handleOnKeyDownMock = jest.fn();
 		const uut = shallow(
 			<CSFormDateTimeField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onKeyDown={handleOnKeyDownMock}
@@ -225,7 +206,7 @@ describe('CSFormDateTimeField', () => {
 	it('should pass correct readOnly value to CSDateTimePicker', () => {
 		const uut = shallow(
 			<CSFormDateTimeField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				readOnly
@@ -238,7 +219,7 @@ describe('CSFormDateTimeField', () => {
 	it('should pass correct required value to CSDateTimePicker', () => {
 		const uut = shallow(
 			<CSFormDateTimeField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				required
@@ -252,7 +233,7 @@ describe('CSFormDateTimeField', () => {
 		const styleClass = 'custom-class';
 		const uut = shallow(
 			<CSFormDateTimeField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				styleClass={styleClass}
@@ -266,7 +247,7 @@ describe('CSFormDateTimeField', () => {
 		const timeCaption = 'Tick-Tock';
 		const uut = shallow(
 			<CSFormDateTimeField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				timeCaption={timeCaption}
@@ -280,7 +261,7 @@ describe('CSFormDateTimeField', () => {
 		const timeFormat = 'HH:mm:ss';
 		const uut = shallow(
 			<CSFormDateTimeField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				timeFormat={timeFormat}
@@ -294,7 +275,7 @@ describe('CSFormDateTimeField', () => {
 		const timeIntervals = 60;
 		const uut = shallow(
 			<CSFormDateTimeField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				timeIntervals={timeIntervals}
@@ -308,7 +289,7 @@ describe('CSFormDateTimeField', () => {
 		const title = 'title';
 		const uut = shallow(
 			<CSFormDateTimeField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				title={title}
@@ -322,7 +303,7 @@ describe('CSFormDateTimeField', () => {
 		const value = new Date();
 		const uut = shallow(
 			<CSFormDateTimeField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				value={value}

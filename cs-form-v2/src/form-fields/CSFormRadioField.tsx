@@ -3,7 +3,7 @@ import { CSRadio } from '@cloudsense/cs-ui-components';
 import { CSFormRadioFieldProps } from '../types/cs-form-field-types';
 
 const CSFormRadioField = ({
-	fieldType,
+	type,
 	onBlur,
 	onChange,
 	styleClass,

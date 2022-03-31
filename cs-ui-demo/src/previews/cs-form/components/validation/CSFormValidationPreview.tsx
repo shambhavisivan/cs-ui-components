@@ -55,13 +55,13 @@ const CSFormValidationPreview = () => {
 								label: 'Section',
 								collapsible: true,
 								fields: [{
-									fieldType: 'TEXTAREA',
+									type: 'TEXTAREA',
 									name: 'textarea-1',
 									label: 'Textarea field',
 									required: true,
 									value: 'Example text.',
 								}, {
-									fieldType: 'NUMBER',
+									type: 'NUMBER',
 									name: 'number-1',
 									label: 'Number field',
 									min: 1,

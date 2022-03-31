@@ -44,13 +44,13 @@ const CSFormCustomFormFieldsPreview = () => {
 					Like standard form fields, custom fields are defined in CSForm's data prop as part of the section object's fields array,
 					but they aren't subject to any validation and they don't need a unique name or label in order to be rendered.
 				</CSD.Text>
-				<CSD.Text>In order to render the desired custom field, the `fieldType` property needs to be defined.</CSD.Text>
-				<CSD.Text>The table below shows which component will be rendered for each fieldType property value:</CSD.Text>
+				<CSD.Text>In order to render the desired custom field, the `type` property needs to be defined.</CSD.Text>
+				<CSD.Text>The table below shows which component will be rendered for each type property value:</CSD.Text>
 				<CSDataTable
 					columns={[
 						{
-							key: 'fieldType',
-							header: 'fieldType Value'
+							key: 'type',
+							header: 'Field Type Value'
 						}, {
 							key: 'component',
 							header: 'Corresponding Component'
@@ -60,25 +60,25 @@ const CSFormCustomFormFieldsPreview = () => {
 						{
 							key: 'custom',
 							data: {
-								fieldType: 'CUSTOM',
+								type: 'CUSTOM',
 								component: 'CSFormCustomField'
 							}
 						}, {
 							key: 'custom-modal',
 							data: {
-								fieldType: 'CUSTOM-MODAL',
+								type: 'CUSTOM-MODAL',
 								component: 'CSFormCustomModalField'
 							}
 						}
 					]}
 				/>
-				<CSD.Text>Custom form fields also have common properties just like standard fields, and they also have specific properties based on the `fieldType` value.</CSD.Text>
+				<CSD.Text>Custom form fields also have common properties just like standard fields, and they also have specific properties based on the `type` value.</CSD.Text>
 				<CSD.Text>Both of these field types are explained and displayed below.</CSD.Text>
 			</CSD.Section>
 			<CSD.Heading>Common Properites</CSD.Heading>
 			<CSD.Section>
-				<CSD.Text>Custom fields share 4 properties: `fieldType`, `grow`, `showInNewLine` and `hidden`.</CSD.Text>
-				<CSD.Text>Just like in standard fields, `fieldType` defines which field will be rendered and enables access to a field's specific properties.</CSD.Text>
+				<CSD.Text>Custom fields share 4 properties: `type`, `grow`, `showInNewLine` and `hidden`.</CSD.Text>
+				<CSD.Text>Just like in standard fields, `type` defines which field will be rendered and enables access to a field's specific properties.</CSD.Text>
 				<CSD.Text>`grow` and `showInNewLine` define a field's width and position in the form section.</CSD.Text>
 				<CSD.Text>The `hidden` property hides the form field based on a condition.</CSD.Text>
 				<CSD.Preview
@@ -88,14 +88,14 @@ const CSFormCustomFormFieldsPreview = () => {
 							data={[{
 								...
 								fields: [{
-									fieldType: 'CUSTOM',
+									type: 'CUSTOM',
 									render: <CSTooltip content="Custom content tooltip" />,
 									grow: 3
 								}, {
-									fieldType: 'CUSTOM',
+									type: 'CUSTOM',
 									render: <CSChip text="Custom chip" />,
 								}, {
-									fieldType: 'CUSTOM-MODAL',
+									type: 'CUSTOM-MODAL',
 									showInNewLine: true,
 									modalButton: {
 										label: 'Open modal'
@@ -110,7 +110,7 @@ const CSFormCustomFormFieldsPreview = () => {
 										}
 									}
 								}, {
-									fieldType: 'CUSTOM',
+									type: 'CUSTOM',
 									render: <span>This is hidden.</span>,
 									hidden: true
 								}]
@@ -125,14 +125,14 @@ const CSFormCustomFormFieldsPreview = () => {
 								label: 'Section',
 								collapsible: true,
 								fields: [{
-									fieldType: 'CUSTOM',
+									type: 'CUSTOM',
 									render: <CSTooltip content="Custom content tooltip" />,
 									grow: 3
 								}, {
-									fieldType: 'CUSTOM',
+									type: 'CUSTOM',
 									render: <CSChip text="Custom chip" />
 								}, {
-									fieldType: 'CUSTOM-MODAL',
+									type: 'CUSTOM-MODAL',
 									showInNewLine: true,
 									modalButton: {
 										label: 'Open modal'
@@ -147,7 +147,7 @@ const CSFormCustomFormFieldsPreview = () => {
 										}
 									}
 								}, {
-									fieldType: 'CUSTOM',
+									type: 'CUSTOM',
 									render: <span>This is hidden.</span>,
 									hidden: true
 								}]
@@ -170,7 +170,7 @@ const CSFormCustomFormFieldsPreview = () => {
 							data={[{
 								...
 								fields: [{
-									fieldType: 'CUSTOM',
+									type: 'CUSTOM',
 									render: <CSInputSearch label="Custom search" />,
 									onBlur: () => console.log('Blur event was fired.'),
 									onFocus: () => console.log('Focus event was fired.'),
@@ -187,7 +187,7 @@ const CSFormCustomFormFieldsPreview = () => {
 							label: 'Section',
 							collapsible: true,
 							fields: [{
-								fieldType: 'CUSTOM',
+								type: 'CUSTOM',
 								render: <CSInputSearch label="Custom search" />,
 								onBlur: () => console.log('Blur event was fired.'),
 								onFocus: () => console.log('Focus event was fired.'),
@@ -217,7 +217,7 @@ const CSFormCustomFormFieldsPreview = () => {
 							collapsible: true,
 							fields: [
 								{
-									fieldType: 'CUSTOM-MODAL',
+									type: 'CUSTOM-MODAL',
 									modalButton: {
 										label: 'Open modal with static content'
 									},
@@ -234,7 +234,7 @@ const CSFormCustomFormFieldsPreview = () => {
 										}
 									}
 								}, {
-									fieldType: 'CUSTOM-MODAL',
+									type: 'CUSTOM-MODAL',
 									showInNewLine: true,
 									modalButton: {
 										label: 'Open modal with dynamic content'

@@ -33,12 +33,15 @@ const CSFormPreview = () => {
 		{ 'texarea-1': fieldErrLabels.required },
 		{ 'number-1': fieldErrLabels.max }
 	]);
+
 	const handleFieldChange = (stateName: string, field: CSFormChangedFieldData, logField?: boolean) => {
 		let newErrors: Array<any> = [...fieldErr];
+
 		if (stateName === 'formErrorData' && field.name === 'number-form-error') {
 			if (field.errorMessage) { setFormErr(formErrMsg); }
 			else { setFormErr(''); }
 		}
+
 		if (stateName === 'customErrLabelsData' || stateName === 'eventsData') {
 			if (field.errorMessage) {
 				if (newErrors?.find(err => Object.keys(err)[0] === field.name)) {
@@ -52,19 +55,21 @@ const CSFormPreview = () => {
 				newErrors = newErrors.filter(err => Object.keys(err)[0] !== field.name);
 			}
 		}
+
 		const newField = [{ [field.name]: field.value }];
 		setFieldErr(newErrors);
 		const newData = defineFormData(data[stateName], newField, newErrors);
 		setData(prevState => ({ ...prevState, [stateName]: newData }));
 		if (logField) { console.log(field); }
 	};
+
 	const customErrLabelsData: CSFormData = [
 		{
 			sectionKey: 'section-1',
 			label: 'First Section',
 			collapsible: true,
 			fields: [{
-				fieldType: 'TEXTAREA',
+				type: 'TEXTAREA',
 				name: 'textarea-1',
 				label: 'Textarea field',
 				required: true,
@@ -72,7 +77,7 @@ const CSFormPreview = () => {
 				error: true,
 				errorMessage: fieldErrLabels.required
 			}, {
-				fieldType: 'NUMBER',
+				type: 'NUMBER',
 				name: 'number-1',
 				label: 'Number field',
 				min: 1,
@@ -83,12 +88,14 @@ const CSFormPreview = () => {
 			}]
 		}
 	];
+
 	const [data, setData] = useState<CSFormPreviewData>({
 		localeData,
 		eventsData,
 		formErrorData,
 		customErrLabelsData
 	});
+
 	return (
 		<CSD.Page
 			title="Form"
@@ -123,82 +130,88 @@ const CSFormPreview = () => {
 					related={['data']}
 					code={`
 						<CSForm
-							data={[{
-								sectionKey: 'section-1',
-								label: 'First Section',
-								collapsible: true,
-								fields: [{
-									fieldType: 'NUMBER',
-									label: 'Number field',
-									name: 'number 1',
-									required: true,
-								}, {
-									fieldType: 'TEXT',
-									label: 'Text field',
-									name: 'text-1',
-								}, {
-									fieldType: 'TOGGLE',
-									label: 'Toggle field',
-									name: 'toggle-1'
-								}, {
-									fieldType: 'SELECT',
-									label: 'Select field',
-									name: 'select-1',
-									selectOptions: [{
-										key: 'red',
-										value: 'Red'
+							data={[
+								{
+									sectionKey: 'section-1',
+									label: 'First Section',
+									collapsible: true,
+									fields: [{
+										type: 'NUMBER',
+										label: 'Number field',
+										name: 'number 1',
+										required: true,
 									}, {
-										key: 'blue',
-										value: 'Blue'
+										type: 'TEXT',
+										label: 'Text field',
+										name: 'text-1',
 									}, {
-										key: 'yellow',
-										value: 'Yellow'
+										type: 'TOGGLE',
+										label: 'Toggle field',
+										name: 'toggle-1'
+									}, {
+										type: 'SELECT',
+										label: 'Select field',
+										name: 'select-1',
+										options: [{
+											key: 'red',
+											value: 'Red'
+										}, {
+											key: 'blue',
+											value: 'Blue'
+										}, {
+											key: 'yellow',
+											value: 'Yellow'
+										}]
+									}, {
+										type: 'CHECKBOX',
+										label: 'Checkbox',
+										name: 'checkbox-1'
+									}, {
+										type: 'TEXTAREA',
+										label: 'Textarea field',
+										name: 'textarea-1'
 									}]
-								}, {
-									fieldType: 'CHECKBOX',
-									label: 'Checkbox',
-									name: 'checkbox-1'
-								}, {
-									fieldType: 'TEXTAREA',
-									label: 'Textarea field',
-									name: 'textarea-1'
-								}]
-							},
-							{
-								sectionKey: 'section-2',
-								label: 'Second section',
-								collapsible: true,
-								fields: [{
-									fieldType: 'DATE',
-									label: 'Date field',
-									name: 'date-2',
-									disabled: true
-								}, {
-									fieldType: 'NUMBER',
-									label: 'Number field',
-									name: 'number-2'
-								}, {
-									fieldType: 'DATETIME',
-									label: 'Date-time field',
-									name: 'date-time-2'
-								}, {
-									fieldType: 'TEXTAREA',
-									label: 'Textarea field',
-									name: 'textarea-2'
-								}, {
-									fieldType: 'LOOKUP',
-									label: 'Lookup field',
-									name: 'lookup-2',
-									mode: 'client',
-									columns: [{ key: 'Account', header: 'Account' },
-									{ key: 'Industry', header: 'Industry' }],
-									options: [{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
-									{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
-									{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } },
-									{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }],
-									fieldToBeDisplayed: 'Account',
-								}]
-							}]}
+								},
+								{
+									sectionKey: 'section-2',
+									label: 'Second section',
+									collapsible: true,
+									fields: [{
+										type: 'DATE',
+										label: 'Date field',
+										name: 'date-2',
+										disabled: true
+									}, {
+										type: 'NUMBER',
+										label: 'Number field',
+										name: 'number-2'
+									}, {
+										type: 'DATETIME',
+										label: 'Date-time field',
+										name: 'date-time-2'
+									}, {
+										type: 'TEXTAREA',
+										label: 'Textarea field',
+										name: 'textarea-2'
+									}, {
+										type: 'LOOKUP',
+										label: 'Lookup field',
+										name: 'lookup-2',
+										mode: 'client',
+										columns: [
+											{ key: 'Account', header: 'Account' },
+											{ key: 'Industry', header: 'Industry' }
+										],
+										options: [
+											{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
+											{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
+											{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } },
+											{ key: 4, data: { Id: 4, Account: 'Elisa', Industry: 'Telecommunications' } }
+										],
+										fieldToBeDisplayed: 'Account',
+									}]
+								}
+							]}
 						/>
 					`}
 				>
@@ -308,18 +321,18 @@ const CSFormPreview = () => {
 									label: 'First Section',
 									collapsible: true,
 									fields: [{
-										fieldType: 'NUMBER',
+										type: 'NUMBER',
 										label: 'Number field',
 										name: 'number-locale',
 										useLocale: true,
 										value: 100
 									}, {
-										fieldType: 'DATE',
+										type: 'DATE',
 										label: 'Date field',
 										name: 'date-locale',
 										value: new Date()
 									}, {
-										fieldType: 'DATETIME',
+										type: 'DATETIME',
 										label: 'Date-time field',
 										name: 'date-time-locale',
 										value: new Date()
@@ -403,7 +416,6 @@ const CSFormPreview = () => {
 					/>
 				</CSD.Preview>
 			</CSD.Section>
-
 			<CSD.Heading>READONLY & DISABLED TEST</CSD.Heading>
 			<CSD.Section>
 				<CSD.Preview
@@ -411,7 +423,7 @@ const CSFormPreview = () => {
 					related={['data', 'mode']}
 					code={`<CSForm data={data} />`}
 				>
-					<CSForm data={standardDataTest}/>
+					<CSForm data={standardDataTest} />
 				</CSD.Preview>
 				<CSD.Preview
 					table={CSFormProps}

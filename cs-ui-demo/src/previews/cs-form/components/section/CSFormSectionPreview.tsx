@@ -63,26 +63,26 @@ const CSFormSectionPreview = () => {
 								sectionKey: 'standard-fields-section',
 								label: 'Standard Fields Section',
 								fields: [{
-									fieldType: 'NUMBER',
+									type: 'NUMBER',
 									label: 'Number field',
 									name: 'number-1',
 									required: true,
 									min: 1,
 									max: 5
 								}, {
-									fieldType: 'TEXT',
+									type: 'TEXT',
 									label: 'Text field',
 									name: 'text-1',
 									maxLength: 10
 								}, {
-									fieldType: 'TOGGLE',
+									type: 'TOGGLE',
 									label: 'Toggle field',
 									name: 'toggle-1'
 								}, {
-									fieldType: 'SELECT',
+									type: 'SELECT',
 									label: 'Select field',
 									name: 'select-1',
-									selectOptions: [{
+									options: [{
 										key: 'red',
 										value: 'Red'
 									}, {
@@ -93,11 +93,11 @@ const CSFormSectionPreview = () => {
 										value: 'Yellow'
 									}]
 								}, {
-									fieldType: 'CHECKBOX',
+									type: 'CHECKBOX',
 									label: 'Checkbox',
 									name: 'checkbox-1'
 								}, {
-									fieldType: 'TEXTAREA',
+									type: 'TEXTAREA',
 									label: 'Textarea field',
 									name: 'textarea-1'
 								}]

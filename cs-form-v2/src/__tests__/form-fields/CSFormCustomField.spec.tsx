@@ -4,11 +4,11 @@ import '../../setupTests';
 import CSFormCustomField from '../../form-fields/CSFormCustomField';
 
 const customElement = <input type="email" value="johndoe@cloudsense.com" />;
-const fieldType = 'CUSTOM';
+const type = 'CUSTOM';
 
 describe('<CSFormCustomField', () => {
 	it('should render custom element', () => {
-		const uut = shallow(<CSFormCustomField fieldType={fieldType} render={customElement} />);
+		const uut = shallow(<CSFormCustomField type={type} render={customElement} />);
 		const input = uut.find('input');
 		expect(input).toHaveLength(1);
 	});
@@ -17,7 +17,7 @@ describe('<CSFormCustomField', () => {
 		const handleOnBlurMock = jest.fn();
 		const uut = shallow(
 			<CSFormCustomField
-				fieldType={fieldType}
+				type={type}
 				render={customElement}
 				onBlur={handleOnBlurMock}
 			/>,
@@ -31,7 +31,7 @@ describe('<CSFormCustomField', () => {
 		const handleOnChangeMock = jest.fn();
 		const uut = shallow(
 			<CSFormCustomField
-				fieldType={fieldType}
+				type={type}
 				render={customElement}
 				onChange={handleOnChangeMock}
 			/>,
@@ -45,7 +45,7 @@ describe('<CSFormCustomField', () => {
 		const handleOnFocusMock = jest.fn();
 		const uut = shallow(
 			<CSFormCustomField
-				fieldType={fieldType}
+				type={type}
 				render={customElement}
 				onFocus={handleOnFocusMock}
 			/>,
@@ -59,7 +59,7 @@ describe('<CSFormCustomField', () => {
 		const id = 'id';
 		const uut = shallow(
 			<CSFormCustomField
-				fieldType={fieldType}
+				type={type}
 				render={customElement}
 				id={id}
 			/>,

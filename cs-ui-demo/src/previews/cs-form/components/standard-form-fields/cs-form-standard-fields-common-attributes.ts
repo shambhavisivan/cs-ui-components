@@ -3,7 +3,7 @@ export default {
 	type: 'attributes',
 	data: [
 		{
-			name: 'fieldType',
+			name: 'type',
 			link: '/cs-form/standard-form-fields#common-properties',
 			customTypes: {
 				name: 'CSFormFieldType',

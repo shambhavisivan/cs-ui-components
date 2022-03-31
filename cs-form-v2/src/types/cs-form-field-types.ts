@@ -4,6 +4,8 @@ import {
 	CSModalHeaderProps,
 	CSModalBodyProps,
 	CSModalFooterProps,
+	CSCustomDataIcon,
+	CSCustomDataAction,
 	CSDataTableRowInterface,
 	CSRadioOptionInterface as CSFormRadioOption,
 } from '@cloudsense/cs-ui-components';
@@ -14,12 +16,12 @@ type ExcludeCommonHelper<T, K extends string | number | symbol> = T extends unkn
 
 /** FORM FIELD PROPS */
 export interface CSFormFieldCommonProps {
-	actions?: Array<any>;
+	actions?: Array<CSCustomDataAction>;
 	disabled?: boolean;
 	error?: boolean;
 	errorMessage?: Array<string> | string;
 	helpText?: string;
-	icons?: Array<any>
+	icons?: Array<CSCustomDataIcon>;
 	label: string;
 	name: string;
 	onBlur?: (newValue?: any) => any;
@@ -33,7 +35,7 @@ export interface CSFormFieldCommonProps {
 }
 
 export interface CSFormFieldLayoutProps {
-	fieldType: CSFormFieldType;
+	type: CSFormFieldType;
 	hidden?: boolean;
 	grow?: number;
 	showInNewLine?: boolean;
@@ -56,19 +58,19 @@ export type CSFormFieldType = 'BUFFER' |
 
 /** BUFFER FIELD */
 export interface CSFormBufferFieldProps extends CSFormFieldLayoutProps {
-	fieldType: 'BUFFER'
+	type: 'BUFFER'
 }
 
 /** CHECKBOX FIELD */
 export interface CSFormCheckboxFieldProps extends CSFormFieldCommonProps {
-	fieldType: 'CHECKBOX';
+	type: 'CHECKBOX';
 	indeterminate?: boolean;
 	value?: boolean;
 }
 
 /** CUSTOM FIELD */
 export interface CSFormCustomFieldProps extends Pick<CSFormFieldCommonProps, 'onBlur' | 'onChange'> {
-	fieldType: 'CUSTOM',
+	type: 'CUSTOM',
 	onFocus?: (value?: any) => any;
 	render: React.ReactElement;
 	[key: string]: any;
@@ -99,7 +101,7 @@ export interface CSFormCustomModalProps extends Omit<CSModalProps, 'loading' | '
 }
 
 export interface CSFormCustomModalFieldProps {
-	fieldType: 'CUSTOM-MODAL';
+	type: 'CUSTOM-MODAL';
 	modalButton: CSFormModalButton;
 	modal: CSFormCustomModalProps;
 }
@@ -111,7 +113,7 @@ export interface CSFormCustomSelectOption {
 }
 
 export interface CSFormCustomSelectFieldProps extends Omit<CSFormFieldCommonProps, 'actions' | 'icons'> {
-	fieldType: 'CUSTOM-SELECT';
+	type: 'CUSTOM-SELECT';
 	multiselect?: boolean;
 	onClear?: () => void;
 	onSearch?: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -122,14 +124,14 @@ export interface CSFormCustomSelectFieldProps extends Omit<CSFormFieldCommonProp
 /** DATE FIELD */
 export interface CSFormDateFieldProps extends CSFormFieldCommonProps {
 	dateFormat?: string;
-	fieldType: 'DATE';
+	type: 'DATE';
 	locale?: any;
 	value?: Date;
 }
 
 /** DATETIME FIELD */
-export interface CSFormDateTimeFieldProps extends Omit<CSFormDateFieldProps, 'fieldType'> {
-	fieldType: 'DATETIME';
+export interface CSFormDateTimeFieldProps extends Omit<CSFormDateFieldProps, 'type'> {
+	type: 'DATETIME';
 	timeCaption?: string;
 	timeFormat?: string;
 	timeIntervals?: number;
@@ -149,7 +151,7 @@ export interface CSFormLookupFieldFetchResult {
 }
 
 export interface CSFormLookupFieldCommonProps {
-	fieldType: 'LOOKUP';
+	type: 'LOOKUP';
 	fieldToBeDisplayed: string;
 	columns: Array<CSFormLookupFieldTableColumn>;
 	mode: CSFormLookupFieldMode;
@@ -185,7 +187,7 @@ export type CSFormLookupFieldProps = CSFormLookupFieldCommonProps & CSFormFieldC
 
 /** NUMBER FIELD */
 export interface CSFormNumberFieldProps extends CSFormFieldCommonProps {
-	fieldType: 'NUMBER';
+	type: 'NUMBER';
 	locale?: any;
 	max?: any;
 	min?: any;
@@ -200,7 +202,7 @@ export interface CSFormRadioFieldProps extends Omit<CSFormFieldCommonProps,
 	'icons' |
 	'title'
 > {
-	fieldType: 'RADIO';
+	type: 'RADIO';
 	disabledKeys?: Array<React.ReactText>;
 	options: Array<CSFormRadioOption>;
 	value?: React.ReactText;
@@ -213,21 +215,21 @@ export interface CSFormSelectOption {
 }
 
 export interface CSFormSelectFieldProps extends CSFormFieldCommonProps {
-	fieldType: 'SELECT';
-	selectOptions: Array<CSFormSelectOption>;
+	type: 'SELECT';
+	options: Array<CSFormSelectOption>;
 	value?: any;
 }
 
 /** TEXT FIELD */
 export interface CSFormTextFieldProps extends CSFormFieldCommonProps {
-	fieldType: 'TEXT';
+	type: 'TEXT';
 	maxLength?: number;
 	value?: string;
 }
 
 /** TEXTAREA FIELD */
 export interface CSFormTextareaFieldProps extends CSFormFieldCommonProps {
-	fieldType: 'TEXTAREA';
+	type: 'TEXTAREA';
 	maxHeight?: string;
 	rows?: number;
 	value?: string;
@@ -235,7 +237,7 @@ export interface CSFormTextareaFieldProps extends CSFormFieldCommonProps {
 
 /** TOGGLE FIELD */
 export interface CSFormToggleFieldProps extends CSFormFieldCommonProps {
-	fieldType: 'TOGGLE';
+	type: 'TOGGLE';
 	value?: boolean;
 }
 

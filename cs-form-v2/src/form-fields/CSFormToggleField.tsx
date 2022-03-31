@@ -3,7 +3,7 @@ import { CSToggle } from '@cloudsense/cs-ui-components';
 import { CSFormToggleFieldProps } from '../types/cs-form-field-types';
 
 const CSFormToggleField = ({
-	fieldType,
+	type,
 	onBlur,
 	onChange,
 	styleClass,

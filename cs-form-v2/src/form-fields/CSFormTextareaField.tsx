@@ -3,7 +3,7 @@ import { CSTextarea } from '@cloudsense/cs-ui-components';
 import { CSFormTextareaFieldProps } from '../types/cs-form-field-types';
 
 const CSFormTextareaField = ({
-	fieldType,
+	type,
 	onBlur,
 	onChange,
 	styleClass,

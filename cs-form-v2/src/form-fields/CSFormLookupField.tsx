@@ -3,7 +3,7 @@ import { CSDataTableRowInterface, CSLookup } from '@cloudsense/cs-ui-components'
 import { CSFormLookupFieldProps } from '../types/cs-form-field-types';
 
 const CSFormLookupField = ({
-	fieldType,
+	type,
 	onBlur,
 	onChange,
 	styleClass,

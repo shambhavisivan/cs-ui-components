@@ -31,7 +31,7 @@ const data: CSFormData = [{
 	sectionKey,
 	label: sectionLabel,
 	fields: [{
-		fieldType: 'NUMBER',
+		type: 'NUMBER',
 		label: fieldLabel,
 		name: fieldName,
 		value: fieldValue,
@@ -44,19 +44,19 @@ const dataWithNumberAndDate: CSFormData = [{
 	sectionKey,
 	label: sectionLabel,
 	fields: [{
-		fieldType: 'DATE',
+		type: 'DATE',
 		label: fieldLabel,
 		name: `${fieldName}_1`,
 		value: new Date(),
 		readOnly: fieldReadOnly,
 	}, {
-		fieldType: 'DATETIME',
+		type: 'DATETIME',
 		label: fieldLabel,
 		name: `${fieldName}_2`,
 		value: new Date(),
 		readOnly: fieldReadOnly,
 	}, {
-		fieldType: 'NUMBER',
+		type: 'NUMBER',
 		label: fieldLabel,
 		name: `${fieldName}_3`,
 		value: fieldValue,

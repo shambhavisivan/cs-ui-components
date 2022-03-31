@@ -3,7 +3,7 @@ import { CSInputNumber } from '@cloudsense/cs-ui-components';
 import { CSFormNumberFieldProps } from '../types/cs-form-field-types';
 
 const CSFormNumberField = ({
-	fieldType,
+	type,
 	onBlur,
 	onChange,
 	styleClass,

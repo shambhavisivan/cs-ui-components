@@ -5,26 +5,26 @@ export const initialData: CSFormData = [
 		label: 'First Section',
 		collapsible: true,
 		fields: [{
-			fieldType: 'NUMBER',
+			type: 'NUMBER',
 			label: 'Number field',
 			name: 'number-1',
 			required: true,
 			min: 1,
 			max: 5
 		}, {
-			fieldType: 'TEXT',
+			type: 'TEXT',
 			label: 'Text field',
 			name: 'text-1',
 			maxLength: 10
 		}, {
-			fieldType: 'TOGGLE',
+			type: 'TOGGLE',
 			label: 'Toggle field',
 			name: 'toggle-1'
 		}, {
-			fieldType: 'SELECT',
+			type: 'SELECT',
 			label: 'Select field',
 			name: 'select-1',
-			selectOptions: [{
+			options: [{
 				key: 'red',
 				value: 'Red'
 			}, {
@@ -35,11 +35,11 @@ export const initialData: CSFormData = [
 				value: 'Yellow'
 			}]
 		}, {
-			fieldType: 'CHECKBOX',
+			type: 'CHECKBOX',
 			label: 'Checkbox',
 			name: 'checkbox-1'
 		}, {
-			fieldType: 'TEXTAREA',
+			type: 'TEXTAREA',
 			label: 'Textarea field',
 			name: 'textarea-1'
 		}]
@@ -49,24 +49,24 @@ export const initialData: CSFormData = [
 		label: 'Second section',
 		collapsible: true,
 		fields: [{
-			fieldType: 'DATE',
+			type: 'DATE',
 			label: 'Date field',
 			name: 'date-2',
 			disabled: true
 		}, {
-			fieldType: 'NUMBER',
+			type: 'NUMBER',
 			label: 'Number field',
 			name: 'number-2'
 		}, {
-			fieldType: 'DATETIME',
+			type: 'DATETIME',
 			label: 'Date-time field',
 			name: 'date-time-2'
 		}, {
-			fieldType: 'TEXTAREA',
+			type: 'TEXTAREA',
 			label: 'Textarea field',
 			name: 'textarea-1'
 		}, {
-			fieldType: 'LOOKUP',
+			type: 'LOOKUP',
 			label: 'Lookup field',
 			name: 'lookup-1',
 			mode: 'client',
@@ -80,86 +80,84 @@ export const initialData: CSFormData = [
 		}]
 	}
 ];
+
 export const localeData: CSFormData = [
 	{
 		sectionKey: 'section-locale',
 		label: 'First Section',
 		collapsible: true,
 		fields: [{
-			fieldType: 'NUMBER',
+			type: 'NUMBER',
 			label: 'Number field',
 			name: 'number-locale',
 			useLocale: true,
 			value: 100
 		}, {
-			fieldType: 'DATE',
+			type: 'DATE',
 			label: 'Date field',
 			name: 'date-locale',
 			value: new Date()
 		}, {
-			fieldType: 'DATETIME',
+			type: 'DATETIME',
 			label: 'Date-time field',
 			name: 'date-time-locale',
 			value: new Date()
 		}]
 	}
 ];
+
 export const eventsData: CSFormData = [
 	{
 		sectionKey: 'section-2',
 		label: 'First Section',
 		collapsible: true,
 		fields: [{
-			fieldType: 'NUMBER',
+			type: 'NUMBER',
 			label: 'Number field',
 			name: 'number-2',
 			min: 1,
 			max: 5,
 			value: 3
 		}, {
-			fieldType: 'TEXT',
+			type: 'TEXT',
 			label: 'Text field',
 			name: 'text-2',
 			required: true,
 			value: 'Example text'
 		}, {
-			fieldType: 'TOGGLE',
+			type: 'TOGGLE',
 			label: 'Toggle field',
 			name: 'toggle-2',
 			value: false
 		}]
 	}
 ];
+
 export const readOnlyData: CSFormData = [
 	{
 		sectionKey: 'section-1',
 		label: 'First Section',
 		collapsible: true,
 		fields: [{
-			fieldType: 'NUMBER',
+			type: 'NUMBER',
 			label: 'Number field',
 			name: 'number-1',
 			value: 3
 		}, {
-			fieldType: 'TEXT',
+			type: 'TEXT',
 			label: 'Text field',
 			name: 'text-1',
 			value: 'Example text.'
 		}, {
-			fieldType: 'TOGGLE',
+			type: 'TOGGLE',
 			label: 'Toggle field',
 			name: 'toggle-1',
 			value: true
 		}, {
-			fieldType: 'TOGGLE',
-			label: 'Toggle field',
-			name: 'toggle-1',
-			value: false
-		}, {
-			fieldType: 'SELECT',
+			type: 'SELECT',
 			label: 'Select field',
 			name: 'select-1',
-			selectOptions: [{
+			options: [{
 				key: 'red',
 				value: 'Red'
 			}, {
@@ -171,12 +169,12 @@ export const readOnlyData: CSFormData = [
 			}],
 			value: 'yellow'
 		}, {
-			fieldType: 'CHECKBOX',
+			type: 'CHECKBOX',
 			label: 'Checkbox',
 			name: 'checkbox-1',
 			value: true
 		}, {
-			fieldType: 'TEXTAREA',
+			type: 'TEXTAREA',
 			label: 'Textarea field',
 			name: 'textarea-1',
 			value: 'Example description.'
@@ -186,12 +184,12 @@ export const readOnlyData: CSFormData = [
 		label: 'Second section',
 		collapsible: true,
 		fields: [{
-			fieldType: 'DATE',
+			type: 'DATE',
 			label: 'Date field',
 			name: 'date-2',
 			value: new Date()
 		}, {
-			fieldType: 'RADIO',
+			type: 'RADIO',
 			label: 'Select color:',
 			name: 'radio-22',
 			value: 'red2',
@@ -203,12 +201,12 @@ export const readOnlyData: CSFormData = [
 				label: 'Blue2'
 			}]
 		}, {
-			fieldType: 'DATETIME',
+			type: 'DATETIME',
 			label: 'Date-time field',
 			name: 'date-time-2',
 			value: new Date()
 		}, {
-			fieldType: 'LOOKUP',
+			type: 'LOOKUP',
 			label: 'Lookup field',
 			name: 'lookup-2',
 			mode: 'client',
@@ -221,7 +219,7 @@ export const readOnlyData: CSFormData = [
 			fieldToBeDisplayed: 'Account',
 			value: { key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } }
 		}, {
-			fieldType: 'CUSTOM-SELECT',
+			type: 'CUSTOM-SELECT',
 			label: 'Custom select field',
 			name: 'custom-select-2',
 			options: [
@@ -234,23 +232,24 @@ export const readOnlyData: CSFormData = [
 		}]
 	}
 ];
+
 export const formErrorData: CSFormData = [
 	{
 		sectionKey: 'section-1',
 		label: 'First Section',
 		collapsible: true,
 		fields: [{
-			fieldType: 'NUMBER',
+			type: 'NUMBER',
 			label: 'Number field',
 			name: 'number-form-error',
 			required: true
 		}, {
-			fieldType: 'TEXT',
+			type: 'TEXT',
 			label: 'Text field',
 			name: 'text-1',
 			maxLength: 10
 		}, {
-			fieldType: 'TOGGLE',
+			type: 'TOGGLE',
 			label: 'Toggle field',
 			name: 'toggle-1'
 		}]
@@ -262,30 +261,30 @@ export const standardDataTest: CSFormData = [
 		sectionKey: 'STANDARD',
 		label: 'STANDARD',
 		fields: [{
-			fieldType: 'NUMBER',
+			type: 'NUMBER',
 			label: 'Number field',
 			name: 'number-1',
 			value: 3
 		}, {
-			fieldType: 'TEXT',
+			type: 'TEXT',
 			label: 'Text field',
 			name: 'text-1',
 			value: 'Example text.'
 		}, {
-			fieldType: 'TOGGLE',
+			type: 'TOGGLE',
 			label: 'Toggle field',
 			name: 'toggle-1',
 			value: true
 		}, {
-			fieldType: 'TOGGLE',
+			type: 'TOGGLE',
 			label: 'Toggle field',
 			name: 'toggle-1',
 			value: false
 		}, {
-			fieldType: 'SELECT',
+			type: 'SELECT',
 			label: 'Select field',
 			name: 'select-1',
-			selectOptions: [{
+			options: [{
 				key: 'red',
 				value: 'Red'
 			}, {
@@ -297,17 +296,17 @@ export const standardDataTest: CSFormData = [
 			}],
 			value: 'yellow'
 		}, {
-			fieldType: 'CHECKBOX',
+			type: 'CHECKBOX',
 			label: 'Checkbox',
 			name: 'checkbox-1',
 			value: true
 		}, {
-			fieldType: 'TEXTAREA',
+			type: 'TEXTAREA',
 			label: 'Textarea field',
 			name: 'textarea-1',
 			value: 'Example description.'
 		}, {
-			fieldType: 'TEXTAREA',
+			type: 'TEXTAREA',
 			label: 'Textarea LONG ',
 			name: 'textarea-2',
 			value: 'Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum'
@@ -316,12 +315,12 @@ export const standardDataTest: CSFormData = [
 		sectionKey: 'STANDARD-2',
 		label: 'STANDARD-2',
 		fields: [{
-			fieldType: 'DATE',
+			type: 'DATE',
 			label: 'Date field',
 			name: 'date-2',
 			value: new Date()
 		}, {
-			fieldType: 'RADIO',
+			type: 'RADIO',
 			label: 'Select color:',
 			name: 'radio-23',
 			value: 'red3',
@@ -333,12 +332,12 @@ export const standardDataTest: CSFormData = [
 				label: 'Blue3'
 			}]
 		}, {
-			fieldType: 'DATETIME',
+			type: 'DATETIME',
 			label: 'Date-time field',
 			name: 'date-time-2',
 			value: new Date()
 		}, {
-			fieldType: 'LOOKUP',
+			type: 'LOOKUP',
 			label: 'Lookup field',
 			name: 'lookup-2',
 			mode: 'client',
@@ -351,7 +350,7 @@ export const standardDataTest: CSFormData = [
 			fieldToBeDisplayed: 'Account',
 			value: { key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } }
 		}, {
-			fieldType: 'CUSTOM-SELECT',
+			type: 'CUSTOM-SELECT',
 			label: 'Custom select field',
 			name: 'custom-select-2',
 			options: [
@@ -370,30 +369,30 @@ export const readOnlyDataTest: CSFormData = [
 		sectionKey: 'READONLY-1',
 		label: 'READONLY-1',
 		fields: [{
-			fieldType: 'NUMBER',
+			type: 'NUMBER',
 			label: 'Number field',
 			name: 'number-1',
 			value: 3
 		}, {
-			fieldType: 'TEXT',
+			type: 'TEXT',
 			label: 'Text field',
 			name: 'text-1',
 			value: 'Example text.'
 		}, {
-			fieldType: 'TOGGLE',
+			type: 'TOGGLE',
 			label: 'Toggle field',
 			name: 'toggle-1',
 			value: true
 		}, {
-			fieldType: 'TOGGLE',
+			type: 'TOGGLE',
 			label: 'Toggle field',
 			name: 'toggle-1',
 			value: false
 		}, {
-			fieldType: 'SELECT',
+			type: 'SELECT',
 			label: 'Select field',
 			name: 'select-1',
-			selectOptions: [{
+			options: [{
 				key: 'red',
 				value: 'Red'
 			}, {
@@ -405,17 +404,17 @@ export const readOnlyDataTest: CSFormData = [
 			}],
 			value: 'yellow'
 		}, {
-			fieldType: 'CHECKBOX',
+			type: 'CHECKBOX',
 			label: 'Checkbox',
 			name: 'checkbox-1',
 			value: true
 		}, {
-			fieldType: 'TEXTAREA',
+			type: 'TEXTAREA',
 			label: 'Textarea field',
 			name: 'textarea-1',
 			value: 'Example description.'
 		}, {
-			fieldType: 'TEXTAREA',
+			type: 'TEXTAREA',
 			label: 'Textarea LONG ',
 			name: 'textarea-2',
 			value: 'Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum'
@@ -424,12 +423,12 @@ export const readOnlyDataTest: CSFormData = [
 		sectionKey: 'READONLY-2',
 		label: 'READONLY-2',
 		fields: [{
-			fieldType: 'DATE',
+			type: 'DATE',
 			label: 'Date field',
 			name: 'date-2',
 			value: new Date()
 		}, {
-			fieldType: 'RADIO',
+			type: 'RADIO',
 			label: 'Select color:',
 			name: 'radio-24',
 			value: 'red4',
@@ -441,12 +440,12 @@ export const readOnlyDataTest: CSFormData = [
 				label: 'Blue4'
 			}]
 		}, {
-			fieldType: 'DATETIME',
+			type: 'DATETIME',
 			label: 'Date-time field',
 			name: 'date-time-2',
 			value: new Date()
 		}, {
-			fieldType: 'LOOKUP',
+			type: 'LOOKUP',
 			label: 'Lookup field',
 			name: 'lookup-2',
 			mode: 'client',
@@ -459,7 +458,7 @@ export const readOnlyDataTest: CSFormData = [
 			fieldToBeDisplayed: 'Account',
 			value: { key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } }
 		}, {
-			fieldType: 'CUSTOM-SELECT',
+			type: 'CUSTOM-SELECT',
 			label: 'Custom select field',
 			name: 'custom-select-2',
 			options: [
@@ -478,34 +477,34 @@ export const disabledDataTest: CSFormData = [
 		sectionKey: 'DISABLED-1',
 		label: 'DISABLED',
 		fields: [{
-			fieldType: 'NUMBER',
+			type: 'NUMBER',
 			label: 'Number field',
 			name: 'number-1',
 			value: 3,
 			disabled: true
 		}, {
-			fieldType: 'TEXT',
+			type: 'TEXT',
 			label: 'Text field',
 			name: 'text-1',
 			value: 'Example text.',
 			disabled: true
 		}, {
-			fieldType: 'TOGGLE',
+			type: 'TOGGLE',
 			label: 'Toggle field',
 			name: 'toggle-1',
 			value: true,
 			disabled: true
 		}, {
-			fieldType: 'TOGGLE',
+			type: 'TOGGLE',
 			label: 'Toggle field',
 			name: 'toggle-1',
 			value: false,
 			disabled: true
 		}, {
-			fieldType: 'SELECT',
+			type: 'SELECT',
 			label: 'Select field',
 			name: 'select-1',
-			selectOptions: [{
+			options: [{
 				key: 'red',
 				value: 'Red'
 			}, {
@@ -519,20 +518,20 @@ export const disabledDataTest: CSFormData = [
 			,
 			disabled: true
 		}, {
-			fieldType: 'CHECKBOX',
+			type: 'CHECKBOX',
 			label: 'Checkbox',
 			name: 'checkbox-1',
 			value: true
 			,
 			disabled: true
 		}, {
-			fieldType: 'TEXTAREA',
+			type: 'TEXTAREA',
 			label: 'Textarea field',
 			name: 'textarea-1',
 			value: 'Example description.',
 			disabled: true
 		}, {
-			fieldType: 'TEXTAREA',
+			type: 'TEXTAREA',
 			label: 'Textarea LONG ',
 			name: 'textarea-2',
 			value: 'Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum',
@@ -542,13 +541,13 @@ export const disabledDataTest: CSFormData = [
 		sectionKey: 'DISABLED-2',
 		label: 'DISABLED',
 		fields: [{
-			fieldType: 'DATE',
+			type: 'DATE',
 			label: 'Date field',
 			name: 'date-2',
 			value: new Date(),
 			disabled: true
 		}, {
-			fieldType: 'RADIO',
+			type: 'RADIO',
 			label: 'Select color:',
 			name: 'radio-25',
 			value: 'red5',
@@ -561,13 +560,13 @@ export const disabledDataTest: CSFormData = [
 			}],
 			disabled: true
 		}, {
-			fieldType: 'DATETIME',
+			type: 'DATETIME',
 			label: 'Date-time field',
 			name: 'date-time-2',
 			value: new Date(),
 			disabled: true
 		}, {
-			fieldType: 'LOOKUP',
+			type: 'LOOKUP',
 			label: 'Lookup field',
 			name: 'lookup-2',
 			mode: 'client',
@@ -581,7 +580,7 @@ export const disabledDataTest: CSFormData = [
 			value: { key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
 			disabled: true
 		}, {
-			fieldType: 'CUSTOM-SELECT',
+			type: 'CUSTOM-SELECT',
 			label: 'Custom select field',
 			name: 'custom-select-2',
 			options: [
@@ -601,34 +600,34 @@ export const disabled2DataTest: CSFormData = [
 		sectionKey: 'DISABLED-1',
 		label: 'DISABLED',
 		fields: [{
-			fieldType: 'NUMBER',
+			type: 'NUMBER',
 			label: 'Number field',
 			name: 'number-1',
 			value: 3,
 			disabled: true
 		}, {
-			fieldType: 'TEXT',
+			type: 'TEXT',
 			label: 'Text field',
 			name: 'text-1',
 			value: 'Example text.',
 			disabled: true
 		}, {
-			fieldType: 'TOGGLE',
+			type: 'TOGGLE',
 			label: 'Toggle field',
 			name: 'toggle-1',
 			value: true,
 			disabled: true
 		}, {
-			fieldType: 'TOGGLE',
+			type: 'TOGGLE',
 			label: 'Toggle field',
 			name: 'toggle-1',
 			value: false,
 			disabled: true
 		}, {
-			fieldType: 'SELECT',
+			type: 'SELECT',
 			label: 'Select field',
 			name: 'select-1',
-			selectOptions: [{
+			options: [{
 				key: 'red',
 				value: 'Red'
 			}, {
@@ -642,20 +641,20 @@ export const disabled2DataTest: CSFormData = [
 			,
 			disabled: true
 		}, {
-			fieldType: 'CHECKBOX',
+			type: 'CHECKBOX',
 			label: 'Checkbox',
 			name: 'checkbox-1',
 			value: true
 			,
 			disabled: true
 		}, {
-			fieldType: 'TEXTAREA',
+			type: 'TEXTAREA',
 			label: 'Textarea field',
 			name: 'textarea-1',
 			value: 'Example description.',
 			disabled: true
 		}, {
-			fieldType: 'TEXTAREA',
+			type: 'TEXTAREA',
 			label: 'Textarea LONG ',
 			name: 'textarea-2',
 			value: 'Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum. Example description lorem ipsum dipsum pipsum',
@@ -665,13 +664,13 @@ export const disabled2DataTest: CSFormData = [
 		sectionKey: 'DISABLED-2',
 		label: 'DISABLED',
 		fields: [{
-			fieldType: 'DATE',
+			type: 'DATE',
 			label: 'Date field',
 			name: 'date-2',
 			value: new Date(),
 			disabled: true
 		}, {
-			fieldType: 'RADIO',
+			type: 'RADIO',
 			label: 'Select color:',
 			name: 'radio-26',
 			value: 'red6',
@@ -684,13 +683,13 @@ export const disabled2DataTest: CSFormData = [
 			}],
 			disabled: true
 		}, {
-			fieldType: 'DATETIME',
+			type: 'DATETIME',
 			label: 'Date-time field',
 			name: 'date-time-2',
 			value: new Date(),
 			disabled: true
 		}, {
-			fieldType: 'LOOKUP',
+			type: 'LOOKUP',
 			label: 'Lookup field',
 			name: 'lookup-2',
 			mode: 'client',
@@ -704,7 +703,7 @@ export const disabled2DataTest: CSFormData = [
 			value: { key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
 			disabled: true
 		}, {
-			fieldType: 'CUSTOM-SELECT',
+			type: 'CUSTOM-SELECT',
 			label: 'Custom select field',
 			name: 'custom-select-2',
 			options: [

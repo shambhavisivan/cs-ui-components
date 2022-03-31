@@ -3,31 +3,12 @@ import { shallow } from 'enzyme';
 import '../../setupTests';
 import { CSSelect } from '@cloudsense/cs-ui-components';
 import CSFormSelectField from '../../form-fields/CSFormSelectField';
+import { actions, icons } from '../test-data/custom-data';
 
 const label = 'label';
-const fieldType = 'SELECT';
+const type = 'SELECT';
 const name = 'select';
-const actions = [
-	{
-		action: () => jest.fn(),
-		icon: { iconName: 'check' },
-		labelHidden: true,
-		name: 'Check',
-	},
-	{
-		action: () => jest.fn(),
-		icon: { iconName: 'add' },
-		labelHidden: true,
-		name: 'Add',
-		getTooltip: {
-			content: ['actions tooltip'],
-			delay: 300,
-			stickyOnClick: true,
-		},
-	},
-];
-const icons = [{ iconName: 'activity' }];
-const selectOptions = [
+const options = [
 	{ key: 1, value: 'First' },
 	{ key: 2, value: 'Second' },
 	{ key: 3, value: 'Third' },
@@ -38,21 +19,21 @@ describe('CSFormSelectField', () => {
 	it('should render passed options as children of CSSelect', () => {
 		const uut = shallow(
 			<CSFormSelectField
-				selectOptions={selectOptions}
-				fieldType={fieldType}
+				options={options}
+				type={type}
 				label={label}
 				name={name}
 			/>,
 		);
-		const options = uut.find(CSSelect).children();
-		expect(options).toHaveLength(4);
+		const selectOptions = uut.find(CSSelect).children();
+		expect(selectOptions).toHaveLength(4);
 	});
 
 	it('should pass correct label to CSSelect', () => {
 		const uut = shallow(
 			<CSFormSelectField
-				selectOptions={selectOptions}
-				fieldType={fieldType}
+				options={options}
+				type={type}
 				label={label}
 				name={name}
 			/>,
@@ -64,8 +45,8 @@ describe('CSFormSelectField', () => {
 	it('should pass correct name to CSSelect', () => {
 		const uut = shallow(
 			<CSFormSelectField
-				selectOptions={selectOptions}
-				fieldType={fieldType}
+				options={options}
+				type={type}
 				label={label}
 				name={name}
 			/>,
@@ -77,8 +58,8 @@ describe('CSFormSelectField', () => {
 	it('should pass correct actions list to CSSelect', () => {
 		const uut = shallow(
 			<CSFormSelectField
-				selectOptions={selectOptions}
-				fieldType={fieldType}
+				options={options}
+				type={type}
 				label={label}
 				name={name}
 				actions={actions}
@@ -91,8 +72,8 @@ describe('CSFormSelectField', () => {
 	it('should pass correct disabled value to CSSelect', () => {
 		const uut = shallow(
 			<CSFormSelectField
-				selectOptions={selectOptions}
-				fieldType={fieldType}
+				options={options}
+				type={type}
 				label={label}
 				name={name}
 				disabled
@@ -105,8 +86,8 @@ describe('CSFormSelectField', () => {
 	it('should pass correct error value to CSSelect', () => {
 		const uut = shallow(
 			<CSFormSelectField
-				selectOptions={selectOptions}
-				fieldType={fieldType}
+				options={options}
+				type={type}
 				label={label}
 				name={name}
 				error
@@ -120,8 +101,8 @@ describe('CSFormSelectField', () => {
 		const errorMessage = 'Error message.';
 		const uut = shallow(
 			<CSFormSelectField
-				selectOptions={selectOptions}
-				fieldType={fieldType}
+				options={options}
+				type={type}
 				label={label}
 				name={name}
 				error
@@ -136,8 +117,8 @@ describe('CSFormSelectField', () => {
 		const helpText = 'Help text.';
 		const uut = shallow(
 			<CSFormSelectField
-				selectOptions={selectOptions}
-				fieldType={fieldType}
+				options={options}
+				type={type}
 				label={label}
 				name={name}
 				helpText={helpText}
@@ -150,8 +131,8 @@ describe('CSFormSelectField', () => {
 	it('should pass correct icons value to CSSelect', () => {
 		const uut = shallow(
 			<CSFormSelectField
-				selectOptions={selectOptions}
-				fieldType={fieldType}
+				options={options}
+				type={type}
 				label={label}
 				name={name}
 				icons={icons}
@@ -165,8 +146,8 @@ describe('CSFormSelectField', () => {
 		const handleOnBlurMock = jest.fn();
 		const uut = shallow(
 			<CSFormSelectField
-				selectOptions={selectOptions}
-				fieldType={fieldType}
+				options={options}
+				type={type}
 				label={label}
 				name={name}
 				onBlur={handleOnBlurMock}
@@ -181,8 +162,8 @@ describe('CSFormSelectField', () => {
 		const handleOnChangeMock = jest.fn();
 		const uut = shallow(
 			<CSFormSelectField
-				selectOptions={selectOptions}
-				fieldType={fieldType}
+				options={options}
+				type={type}
 				label={label}
 				name={name}
 				onChange={handleOnChangeMock}
@@ -197,8 +178,8 @@ describe('CSFormSelectField', () => {
 		const handleOnClickMock = jest.fn();
 		const uut = shallow(
 			<CSFormSelectField
-				selectOptions={selectOptions}
-				fieldType={fieldType}
+				options={options}
+				type={type}
 				label={label}
 				name={name}
 				onClick={handleOnClickMock}
@@ -213,8 +194,8 @@ describe('CSFormSelectField', () => {
 		const handleOnKeyDownMock = jest.fn();
 		const uut = shallow(
 			<CSFormSelectField
-				selectOptions={selectOptions}
-				fieldType={fieldType}
+				options={options}
+				type={type}
 				label={label}
 				name={name}
 				onKeyDown={handleOnKeyDownMock}
@@ -228,8 +209,8 @@ describe('CSFormSelectField', () => {
 	it('should pass correct readOnly value to CSSelect', () => {
 		const uut = shallow(
 			<CSFormSelectField
-				selectOptions={selectOptions}
-				fieldType={fieldType}
+				options={options}
+				type={type}
 				label={label}
 				name={name}
 				readOnly
@@ -242,8 +223,8 @@ describe('CSFormSelectField', () => {
 	it('should pass correct required value to CSSelect', () => {
 		const uut = shallow(
 			<CSFormSelectField
-				selectOptions={selectOptions}
-				fieldType={fieldType}
+				options={options}
+				type={type}
 				label={label}
 				name={name}
 				required
@@ -257,8 +238,8 @@ describe('CSFormSelectField', () => {
 		const styleClass = 'custom-class';
 		const uut = shallow(
 			<CSFormSelectField
-				selectOptions={selectOptions}
-				fieldType={fieldType}
+				options={options}
+				type={type}
 				label={label}
 				name={name}
 				styleClass={styleClass}
@@ -272,8 +253,8 @@ describe('CSFormSelectField', () => {
 		const title = 'title';
 		const uut = shallow(
 			<CSFormSelectField
-				selectOptions={selectOptions}
-				fieldType={fieldType}
+				options={options}
+				type={type}
 				label={label}
 				name={name}
 				title={title}
@@ -287,8 +268,8 @@ describe('CSFormSelectField', () => {
 		const value = 'Third';
 		const uut = shallow(
 			<CSFormSelectField
-				selectOptions={selectOptions}
-				fieldType={fieldType}
+				options={options}
+				type={type}
 				label={label}
 				name={name}
 				value={value}

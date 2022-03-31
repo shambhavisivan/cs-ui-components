@@ -11,13 +11,13 @@ const validateField = (field: CSFormFieldData, value: any, customErrorLabels?: C
 	const errors: Array<string> = [];
 
 	// Validation is enabled only for standard form fields
-	if (field.fieldType === 'CUSTOM-MODAL' || field.fieldType === 'CUSTOM' || field.fieldType === 'BUFFER') return null;
+	if (field.type === 'CUSTOM-MODAL' || field.type === 'CUSTOM' || field.type === 'BUFFER') return null;
 
 	/** Check requiredness of the field regardless of the type */
 	if (field.required && (!value || value === '')) {
 		if (customErrorLabels?.requiredFieldErrLabel) {
 			errors.push(customErrorLabels.requiredFieldErrLabel);
-		} else if (field.fieldType === 'RADIO') {
+		} else if (field.type === 'RADIO') {
 			errors.push('Radio options are required!');
 		} else {
 			errors.push(`${field.name} ${defaultErrorLabels.requiredFieldErrLabel}`);
@@ -25,7 +25,7 @@ const validateField = (field: CSFormFieldData, value: any, customErrorLabels?: C
 	}
 
 	/** Number field validations */
-	if (field.fieldType === 'NUMBER') {
+	if (field.type === 'NUMBER') {
 		if (value > field.max) {
 			if (customErrorLabels?.maxNumberFieldErrLabel) {
 				errors.push(customErrorLabels.maxNumberFieldErrLabel);
@@ -53,7 +53,7 @@ const validateField = (field: CSFormFieldData, value: any, customErrorLabels?: C
 const validateForm = (data: CSFormData, customErrorLabels?: CSFormErrorLabels) => {
 	let validationResults: Array<object> = [];
 	data.forEach(({ sectionKey, fields }) => {
-		const evaluatedFields = fields.filter((field) => field.fieldType !== 'CUSTOM' && field.fieldType !== 'CUSTOM-MODAL')
+		const evaluatedFields = fields.filter((field) => field.type !== 'CUSTOM' && field.type !== 'CUSTOM-MODAL')
 			.map((field) => {
 				// name and value only exist on standard form fields, hence custom modal and buffer field props are excluded
 				const { name, value } = field as Exclude<CSFormFieldData, CSFormCustomModalFieldProps | CSFormBufferFieldProps >;

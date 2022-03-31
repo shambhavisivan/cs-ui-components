@@ -5,7 +5,7 @@ import { CSRadio } from '@cloudsense/cs-ui-components';
 import CSFormRadioField from '../../form-fields/CSFormRadioField';
 
 const label = 'label';
-const fieldType = 'RADIO';
+const type = 'RADIO';
 const name = 'city';
 const options = [{
 	key: 'zagreb',
@@ -20,7 +20,7 @@ describe('CSFormRadioField', () => {
 		const uut = shallow(
 			<CSFormRadioField
 				options={options}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 			/>,
@@ -33,7 +33,7 @@ describe('CSFormRadioField', () => {
 		const uut = shallow(
 			<CSFormRadioField
 				options={options}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 			/>,
@@ -46,7 +46,7 @@ describe('CSFormRadioField', () => {
 		const uut = shallow(
 			<CSFormRadioField
 				options={options}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				disabled
@@ -61,7 +61,7 @@ describe('CSFormRadioField', () => {
 		const uut = shallow(
 			<CSFormRadioField
 				options={options}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				disabledKeys={disabledKeys}
@@ -75,7 +75,7 @@ describe('CSFormRadioField', () => {
 		const uut = shallow(
 			<CSFormRadioField
 				options={options}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				error
@@ -90,7 +90,7 @@ describe('CSFormRadioField', () => {
 		const uut = shallow(
 			<CSFormRadioField
 				options={options}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				error
@@ -106,7 +106,7 @@ describe('CSFormRadioField', () => {
 		const uut = shallow(
 			<CSFormRadioField
 				options={options}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				helpText={helpText}
@@ -121,7 +121,7 @@ describe('CSFormRadioField', () => {
 		const uut = shallow(
 			<CSFormRadioField
 				options={options}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onBlur={handleOnBlurMock}
@@ -137,7 +137,7 @@ describe('CSFormRadioField', () => {
 		const uut = shallow(
 			<CSFormRadioField
 				options={options}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onChange={handleOnChangeMock}
@@ -153,7 +153,7 @@ describe('CSFormRadioField', () => {
 		const uut = shallow(
 			<CSFormRadioField
 				options={options}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onClick={handleOnClickMock}
@@ -169,7 +169,7 @@ describe('CSFormRadioField', () => {
 		const uut = shallow(
 			<CSFormRadioField
 				options={options}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onKeyDown={handleOnKeyDownMock}
@@ -184,7 +184,7 @@ describe('CSFormRadioField', () => {
 		const uut = shallow(
 			<CSFormRadioField
 				options={options}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				readOnly
@@ -198,7 +198,7 @@ describe('CSFormRadioField', () => {
 		const uut = shallow(
 			<CSFormRadioField
 				options={options}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				required
@@ -213,7 +213,7 @@ describe('CSFormRadioField', () => {
 		const uut = shallow(
 			<CSFormRadioField
 				options={options}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				styleClass={styleClass}
@@ -228,7 +228,7 @@ describe('CSFormRadioField', () => {
 		const uut = shallow(
 			<CSFormRadioField
 				options={options}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				value={value}
@@ -242,7 +242,7 @@ describe('CSFormRadioField', () => {
 		const uut = shallow(
 			<CSFormRadioField
 				options={options}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 			/>,
@@ -257,7 +257,7 @@ describe('CSFormRadioField', () => {
 		const uut = shallow(
 			<CSFormRadioField
 				options={optionsWithTitle}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 			/>,

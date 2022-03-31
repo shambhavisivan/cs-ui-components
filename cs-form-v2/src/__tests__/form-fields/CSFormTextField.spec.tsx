@@ -3,36 +3,17 @@ import { shallow } from 'enzyme';
 import '../../setupTests';
 import { CSInputText } from '@cloudsense/cs-ui-components';
 import CSFormTextField from '../../form-fields/CSFormTextField';
+import { actions, icons } from '../test-data/custom-data';
 
 const label = 'label';
-const fieldType = 'TEXT';
+const type = 'TEXT';
 const name = 'text';
-const actions = [
-	{
-		action: () => jest.fn(),
-		icon: { iconName: 'check' },
-		labelHidden: true,
-		name: 'Check',
-	},
-	{
-		action: () => jest.fn(),
-		icon: { iconName: 'add' },
-		labelHidden: true,
-		name: 'Add',
-		getTooltip: {
-			content: ['actions tooltip'],
-			delay: 300,
-			stickyOnClick: true,
-		},
-	},
-];
-const icons = [{ iconName: 'activity' }];
 
 describe('CSFormTextField', () => {
 	it('should pass correct label to CSInputText', () => {
 		const uut = shallow(
 			<CSFormTextField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 			/>,
@@ -44,7 +25,7 @@ describe('CSFormTextField', () => {
 	it('should pass correct name to CSInputText', () => {
 		const uut = shallow(
 			<CSFormTextField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 			/>,
@@ -56,7 +37,7 @@ describe('CSFormTextField', () => {
 	it('should pass correct actions list to CSInputText', () => {
 		const uut = shallow(
 			<CSFormTextField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				actions={actions}
@@ -69,7 +50,7 @@ describe('CSFormTextField', () => {
 	it('should pass correct disabled value to CSInputText', () => {
 		const uut = shallow(
 			<CSFormTextField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				disabled
@@ -82,7 +63,7 @@ describe('CSFormTextField', () => {
 	it('should pass correct error value to CSInputText', () => {
 		const uut = shallow(
 			<CSFormTextField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				error
@@ -96,7 +77,7 @@ describe('CSFormTextField', () => {
 		const errorMessage = 'Error message.';
 		const uut = shallow(
 			<CSFormTextField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				error
@@ -111,7 +92,7 @@ describe('CSFormTextField', () => {
 		const helpText = 'Help text.';
 		const uut = shallow(
 			<CSFormTextField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				helpText={helpText}
@@ -124,7 +105,7 @@ describe('CSFormTextField', () => {
 	it('should pass correct icons value to CSInputText', () => {
 		const uut = shallow(
 			<CSFormTextField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				icons={icons}
@@ -138,7 +119,7 @@ describe('CSFormTextField', () => {
 		const maxLength = 8;
 		const uut = shallow(
 			<CSFormTextField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				maxLength={maxLength}
@@ -152,7 +133,7 @@ describe('CSFormTextField', () => {
 		const handleOnBlurMock = jest.fn();
 		const uut = shallow(
 			<CSFormTextField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onBlur={handleOnBlurMock}
@@ -167,7 +148,7 @@ describe('CSFormTextField', () => {
 		const handleOnChangeMock = jest.fn();
 		const uut = shallow(
 			<CSFormTextField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onChange={handleOnChangeMock}
@@ -182,7 +163,7 @@ describe('CSFormTextField', () => {
 		const handleOnClickMock = jest.fn();
 		const uut = shallow(
 			<CSFormTextField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onClick={handleOnClickMock}
@@ -197,7 +178,7 @@ describe('CSFormTextField', () => {
 		const handleOnKeyDownMock = jest.fn();
 		const uut = shallow(
 			<CSFormTextField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				onKeyDown={handleOnKeyDownMock}
@@ -211,7 +192,7 @@ describe('CSFormTextField', () => {
 	it('should pass correct readOnly value to CSInputText', () => {
 		const uut = shallow(
 			<CSFormTextField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				readOnly
@@ -224,7 +205,7 @@ describe('CSFormTextField', () => {
 	it('should pass correct required value to CSInputText', () => {
 		const uut = shallow(
 			<CSFormTextField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				required
@@ -238,7 +219,7 @@ describe('CSFormTextField', () => {
 		const styleClass = 'custom-class';
 		const uut = shallow(
 			<CSFormTextField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				styleClass={styleClass}
@@ -252,7 +233,7 @@ describe('CSFormTextField', () => {
 		const title = 'title';
 		const uut = shallow(
 			<CSFormTextField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				title={title}
@@ -266,7 +247,7 @@ describe('CSFormTextField', () => {
 		const value = 'Text';
 		const uut = shallow(
 			<CSFormTextField
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				value={value}

@@ -3,9 +3,10 @@ import { shallow } from 'enzyme';
 import '../../setupTests';
 import { CSLookup } from '@cloudsense/cs-ui-components';
 import CSFormLookupField from '../../form-fields/CSFormLookupField';
+import { actions, icons } from '../test-data/custom-data';
 
 const label = 'label';
-const fieldType = 'LOOKUP';
+const type = 'LOOKUP';
 const name = 'lookup';
 const modeClient = 'client';
 const modeServer = 'server';
@@ -21,19 +22,6 @@ const lookupOptions = [
 	{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
 	{ key: 3, data: { Id: 3, Account: 'Salesforce', Industry: 'Software' } },
 ];
-const actions = [
-	{
-		action: () => jest.fn(),
-		icon: { iconName: 'check' },
-		name: 'Check',
-	},
-	{
-		action: () => jest.fn(),
-		icon: { iconName: 'add' },
-		name: 'Add',
-	},
-];
-const icons = [{ iconName: 'activity' }];
 
 describe('CSFormLookupField', () => {
 	// Common props
@@ -41,7 +29,7 @@ describe('CSFormLookupField', () => {
 		const uut = shallow(
 			<CSFormLookupField
 				fieldToBeDisplayed={fieldToBeDisplayed}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				mode={modeClient}
@@ -57,7 +45,7 @@ describe('CSFormLookupField', () => {
 		const uut = shallow(
 			<CSFormLookupField
 				fieldToBeDisplayed={fieldToBeDisplayed}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				mode={modeClient}
@@ -73,7 +61,7 @@ describe('CSFormLookupField', () => {
 		const uut = shallow(
 			<CSFormLookupField
 				fieldToBeDisplayed={fieldToBeDisplayed}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				mode={modeClient}
@@ -89,7 +77,7 @@ describe('CSFormLookupField', () => {
 		const uut = shallow(
 			<CSFormLookupField
 				fieldToBeDisplayed={fieldToBeDisplayed}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				mode={modeClient}
@@ -106,7 +94,7 @@ describe('CSFormLookupField', () => {
 		const uut = shallow(
 			<CSFormLookupField
 				fieldToBeDisplayed={fieldToBeDisplayed}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				mode={modeClient}
@@ -123,7 +111,7 @@ describe('CSFormLookupField', () => {
 		const uut = shallow(
 			<CSFormLookupField
 				fieldToBeDisplayed={fieldToBeDisplayed}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				mode={modeClient}
@@ -141,7 +129,7 @@ describe('CSFormLookupField', () => {
 		const uut = shallow(
 			<CSFormLookupField
 				fieldToBeDisplayed={fieldToBeDisplayed}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				mode={modeClient}
@@ -160,7 +148,7 @@ describe('CSFormLookupField', () => {
 		const uut = shallow(
 			<CSFormLookupField
 				fieldToBeDisplayed={fieldToBeDisplayed}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				mode={modeClient}
@@ -177,7 +165,7 @@ describe('CSFormLookupField', () => {
 		const uut = shallow(
 			<CSFormLookupField
 				fieldToBeDisplayed={fieldToBeDisplayed}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				mode={modeClient}
@@ -195,7 +183,7 @@ describe('CSFormLookupField', () => {
 		const uut = shallow(
 			<CSFormLookupField
 				fieldToBeDisplayed={fieldToBeDisplayed}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				mode={modeClient}
@@ -215,7 +203,7 @@ describe('CSFormLookupField', () => {
 		const uut = shallow(
 			<CSFormLookupField
 				fieldToBeDisplayed={fieldToBeDisplayed}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				mode={modeClient}
@@ -226,7 +214,7 @@ describe('CSFormLookupField', () => {
 		);
 
 		const lookup = uut.find(CSLookup);
-		lookup.props().onSelectChange();
+		lookup.props().onSelectChange({} as any);
 		expect(handleOnChangeMock).toHaveBeenCalledTimes(1);
 	});
 
@@ -235,7 +223,7 @@ describe('CSFormLookupField', () => {
 		const uut = shallow(
 			<CSFormLookupField
 				fieldToBeDisplayed={fieldToBeDisplayed}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				mode={modeClient}
@@ -254,7 +242,7 @@ describe('CSFormLookupField', () => {
 		const uut = shallow(
 			<CSFormLookupField
 				fieldToBeDisplayed={fieldToBeDisplayed}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				mode={modeClient}
@@ -272,7 +260,7 @@ describe('CSFormLookupField', () => {
 		const uut = shallow(
 			<CSFormLookupField
 				fieldToBeDisplayed={fieldToBeDisplayed}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				mode={modeClient}
@@ -289,7 +277,7 @@ describe('CSFormLookupField', () => {
 		const uut = shallow(
 			<CSFormLookupField
 				fieldToBeDisplayed={fieldToBeDisplayed}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				mode={modeClient}
@@ -307,7 +295,7 @@ describe('CSFormLookupField', () => {
 		const uut = shallow(
 			<CSFormLookupField
 				fieldToBeDisplayed={fieldToBeDisplayed}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				mode={modeClient}
@@ -325,7 +313,7 @@ describe('CSFormLookupField', () => {
 		const uut = shallow(
 			<CSFormLookupField
 				fieldToBeDisplayed={fieldToBeDisplayed}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				mode={modeClient}
@@ -343,7 +331,7 @@ describe('CSFormLookupField', () => {
 		const uut = shallow(
 			<CSFormLookupField
 				fieldToBeDisplayed={fieldToBeDisplayed}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				mode={modeClient}
@@ -361,7 +349,7 @@ describe('CSFormLookupField', () => {
 		const uut = shallow(
 			<CSFormLookupField
 				fieldToBeDisplayed={fieldToBeDisplayed}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				mode={modeClient}
@@ -377,7 +365,7 @@ describe('CSFormLookupField', () => {
 		const uut = shallow(
 			<CSFormLookupField
 				fieldToBeDisplayed={fieldToBeDisplayed}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				mode={modeClient}
@@ -395,7 +383,7 @@ describe('CSFormLookupField', () => {
 		const uut = shallow(
 			<CSFormLookupField
 				fieldToBeDisplayed={fieldToBeDisplayed}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				mode={modeClient}
@@ -414,7 +402,7 @@ describe('CSFormLookupField', () => {
 		const uut = shallow(
 			<CSFormLookupField
 				fieldToBeDisplayed={fieldToBeDisplayed}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				mode={modeServer}
@@ -431,7 +419,7 @@ describe('CSFormLookupField', () => {
 		const uut = shallow(
 			<CSFormLookupField
 				fieldToBeDisplayed={fieldToBeDisplayed}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				mode={modeServer}
@@ -450,7 +438,7 @@ describe('CSFormLookupField', () => {
 		const uut = shallow(
 			<CSFormLookupField
 				fieldToBeDisplayed={fieldToBeDisplayed}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				mode={modeServer}
@@ -468,7 +456,7 @@ describe('CSFormLookupField', () => {
 		const uut = shallow(
 			<CSFormLookupField
 				fieldToBeDisplayed={fieldToBeDisplayed}
-				fieldType={fieldType}
+				type={type}
 				label={label}
 				name={name}
 				mode={modeServer}
