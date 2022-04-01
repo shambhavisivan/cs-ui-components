@@ -17,7 +17,7 @@ const CSAlertPreview = () => (
 		<CSD.Section>
 			<CSD.Heading level={2}>Variants</CSD.Heading>
 			<CSD.Text>To achieve proper styling and convey the context of an alert message, use one of the required variants.</CSD.Text>
-			<CSD.Text>Each variant will apply appropriate styling and a default contextual icon.</CSD.Text>
+			<CSD.Text>Each `variant` value will apply appropriate styling and a default contextual icon.</CSD.Text>
 			<CSD.Preview
 				orientation="vertical"
 				table={CSAlertProps}
@@ -37,6 +37,10 @@ const CSAlertPreview = () => (
 		</CSD.Section>
 		<CSD.Section>
 			<CSD.Heading level={2}>Closing</CSD.Heading>
+			<CSD.List type="props">
+				<CSD.ListItem>closeButton</CSD.ListItem>
+				<CSD.ListItem>onClose</CSD.ListItem>
+			</CSD.List>
 			<CSD.Text>Alerts can be dismissed with the `closeButton` and `onClose` props.</CSD.Text>
 			<CSD.Text>
 				`closeButton` renders a close button and applies styles that accommodate the alert content width to prevent overflows,
@@ -67,8 +71,13 @@ const CSAlertPreview = () => (
 		</CSD.Section>
 		<CSD.Section>
 			<CSD.Heading level={2}>Icons</CSD.Heading>
+			<CSD.List type="props">
+				<CSD.ListItem>iconHidden</CSD.ListItem>
+				<CSD.ListItem>iconName</CSD.ListItem>
+				<CSD.ListItem>iconOrigin</CSD.ListItem>
+			</CSD.List>
 			<CSD.Text>
-				By default, different alert variant display corresponding contextual icons.
+				By default, different alert variants display corresponding contextual icons.
 				Sometimes it might be useful not to display an icon,
 				which can be done by setting the `iconHidden` prop to true.
 			</CSD.Text>
@@ -200,6 +209,9 @@ const CSAlertPreview = () => (
 		</CSD.Section>
 		<CSD.Section>
 			<CSD.Heading level={2}>Emphasis</CSD.Heading>
+			<CSD.List type="props">
+				<CSD.ListItem>styleFormat</CSD.ListItem>
+			</CSD.List>
 			<CSD.Text>When extra highlight is needed, some of the alert's elements can be emphasised by adjusting the `styleFormat` prop.</CSD.Text>
 			<CSD.Text>When set to `'scoped'`, it will increase spacing and icon size.</CSD.Text>
 			<CSD.Preview
@@ -265,6 +277,9 @@ const CSAlertPreview = () => (
 		</CSD.Section>
 		<CSD.Section>
 			<CSD.Heading level={2}>Styling</CSD.Heading>
+			<CSD.List type="props">
+				<CSD.ListItem>styleType</CSD.ListItem>
+			</CSD.List>
 			<CSD.Text>All alert variant also support a light version by setting the `styleType` prop to `'light'`.</CSD.Text>
 			<CSD.Text>Appropriate inverse colours are set automatically and comply with accessibility standards.</CSD.Text>
 			<CSD.Preview
@@ -332,7 +347,7 @@ const CSAlertPreview = () => (
 		</CSD.Section>
 		<CSD.Section>
 			<CSD.Heading level={2}>Text</CSD.Heading>
-			<CSD.Text>Besides showing single messages, alerts can show multiple messages grouped within the same layout.</CSD.Text>
+			<CSD.Text>With `text` prop besides showing single messages, alerts can show multiple messages grouped within the same layout.</CSD.Text>
 			<CSD.Preview
 				orientation="vertical"
 				table={CSAlertProps}
@@ -414,6 +429,9 @@ const CSAlertPreview = () => (
 		</CSD.Section>
 		<CSD.Section>
 			<CSD.Heading level={2}>Alignment</CSD.Heading>
+			<CSD.List type="props">
+				<CSD.ListItem>textAlign</CSD.ListItem>
+			</CSD.List>
 			<CSD.Text>
 				By default, all messages are left-aligned, which is considered a better accessibility practice.
 				However, the native Salesforce alerts are usually centre-aligned.
@@ -486,6 +504,10 @@ const CSAlertPreview = () => (
 		</CSD.Section>
 		<CSD.Section>
 			<CSD.Heading level={2}>IDs & Classes</CSD.Heading>
+			<CSD.List type="props">
+				<CSD.ListItem>className</CSD.ListItem>
+				<CSD.ListItem>id</CSD.ListItem>
+			</CSD.List>
 			<CSD.Preview
 				orientation="vertical"
 				table={CSAlertProps}
