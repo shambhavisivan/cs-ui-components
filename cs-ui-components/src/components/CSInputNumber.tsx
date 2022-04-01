@@ -1,9 +1,9 @@
-import React, { CSSProperties, useCallback, useEffect, useRef, useState } from 'react';
+import React, { CSSProperties, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSLabel from './CSLabel';
-import { CSTooltipPosition } from './CSTooltip';
+import CSTooltip, { CSTooltipPosition } from './CSTooltip';
 import CSCustomData, { CSCustomDataAction, CSCustomDataIcon } from './CSCustomData';
 
 export interface CSInputNumberNumberLocale {
@@ -42,7 +42,7 @@ export interface CSInputNumberProps {
 	name?: string;
 	onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 	onChange?: (value?: any) => void;
-	onClick?: (event: React.MouseEvent<HTMLInputElement>) => void;
+	onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
 	onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
 	onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 	onPaste?: (event: React.ClipboardEvent<HTMLInputElement>) => void;
@@ -94,23 +94,41 @@ const CSInputNumber = ({
 	value,
 	...rest
 }: CSInputNumberProps) => {
-	const [showLocaleFormat, setShowLocaleFormat] = useState(!!locale);
-	const [formattedNumberValue, setFormattedNumberValue] = useState(null);
-	const [customDataWidth, setCustomDataWidth] = useState(0);
-	const { current: uniqueAutoId } = useRef(id || uuidv4());
+	const [showLocaleFormat, setShowLocaleFormat] = useState<boolean>(!!locale);
+	const [formattedNumberValue, setFormattedNumberValue] = useState<string>(null);
+	const { current: uniqueAutoId } = useRef<string>(id || uuidv4());
+	const [focused, setFocused] = useState<boolean>(false);
+	const inputNumberRef = useRef<HTMLInputElement>(null);
 
-	const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-		if (locale) setShowLocaleFormat(true);
+	useImperativeHandle(forwardRef, () => inputNumberRef.current);
 
-		onBlur?.(event);
+	const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+		onClick?.(event);
+		inputNumberRef.current?.focus();
 	};
 
-	const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => onChange?.(event.target.value);
+	const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+		if (focused) event.preventDefault();
+	};
+
+	const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+		if (!readOnly) {
+			setFocused(false);
+			onBlur?.(event);
+		}
+
+		if (locale) setShowLocaleFormat(true);
+	};
+
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => onChange?.(event.target.value);
 
 	const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
-		if (locale) setShowLocaleFormat(false);
+		if (!readOnly) {
+			setFocused(true);
+			onFocus?.(event);
+		}
 
-		onFocus?.(event);
+		if (locale) setShowLocaleFormat(false);
 	};
 
 	const formatNumber = (numberValue: any, numberLocale: CSInputNumberNumberLocale) => {
@@ -130,43 +148,72 @@ const CSInputNumber = ({
 		if (locale) formatNumber(value, locale);
 	}, [locale, value]);
 
-	const customDataRef = useCallback((node) => {
-		if (node !== null) setCustomDataWidth(node.getBoundingClientRect().width);
-	}, []);
+	const renderLabel = () => {
+		if (!label || labelHidden) return null;
+
+		return (
+			<CSLabel
+				htmlFor={uniqueAutoId}
+				label={label}
+				helpText={helpText}
+				tooltipPosition={tooltipPosition}
+				required={required}
+				title={labelTitle ? label : null}
+			/>
+		);
+	};
+
+	const renderErrorMessage = () => {
+		if (!error || !errorMessage || errorTooltip) return null;
+
+		return <CSFieldErrorMsg message={errorMessage} />;
+	};
+
+	const renderErrorTooltip = () => {
+		if (!error || !errorTooltip) return null;
+
+		return <CSTooltip variant="error" content={errorMessage} />;
+	};
 
 	const inputNumberWrapperClasses = classNames(
 		'cs-input-number-wrapper',
 		{
 			'cs-element-hidden': hidden,
-			[`${className}`]: className,
+			[className]: className,
 		},
 	);
+
+	const inputWrapperClasses = classNames(
+		'cs-input-wrapper',
+		{
+			'cs-input-wrapper-error': error,
+			'cs-input-wrapper-disabled': disabled,
+			'cs-input-wrapper-focused': focused,
+			'cs-input-wrapper-read-only': readOnly,
+		},
+	);
+
 	const inputNumberClasses = classNames(
 		'cs-input-number',
+		'cs-invisible-input',
 		{
-			'cs-input-number-error': error,
-			'cs-input-number-error-tooltip': errorTooltip,
 			[`cs-input-number-hide-spinner-${hideSpinner}`]: hideSpinner,
 		},
 	);
+
 	const style: CSSProperties = {
-		'--cs-input-number-border-radius': borderRadius,
-		'--cs-input-number-custom-data-width': customDataWidth ? `${customDataWidth}px` : undefined,
+		'--cs-input-border-radius': borderRadius,
 	};
 
 	return (
 		<div className={inputNumberWrapperClasses} style={style}>
-			{label && !labelHidden && (
-				<CSLabel
-					htmlFor={uniqueAutoId}
-					label={label}
-					helpText={helpText}
-					tooltipPosition={tooltipPosition}
-					required={required}
-					title={labelTitle ? label : null}
-				/>
-			)}
-			<div className="cs-input-number-wrapper-inner">
+			{renderLabel()}
+			{/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+			<div
+				className={inputWrapperClasses}
+				onClick={handleClick}
+				onMouseDown={handleMouseDown}
+			>
 				<input
 					className={inputNumberClasses}
 					id={uniqueAutoId}
@@ -190,22 +237,18 @@ const CSInputNumber = ({
 					autoComplete="off"
 					onBlur={handleBlur}
 					onFocus={handleFocus}
-					onChange={handleOnChange}
+					onChange={handleChange}
 					onKeyDown={onKeyDown}
 					onPaste={onPaste}
-					onClick={onClick}
 					title={title}
 					step={step}
-					ref={forwardRef}
+					ref={inputNumberRef}
 					{...rest}
 				/>
-				<CSCustomData
-					ref={customDataRef}
-					icons={icons}
-					actions={actions}
-				/>
+				<CSCustomData icons={icons} actions={actions} />
+				{renderErrorTooltip()}
 			</div>
-			{error && errorMessage && <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
+			{renderErrorMessage()}
 		</div>
 	);
 };

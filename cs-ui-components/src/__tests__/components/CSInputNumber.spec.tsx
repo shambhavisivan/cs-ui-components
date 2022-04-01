@@ -48,20 +48,20 @@ describe('<CSInputNumber />', () => {
 		const borderRadius = '0';
 		const uut = shallow(<CSInputNumber label={label} borderRadius={borderRadius} />);
 		const inputNumberStyle = uut.find('.cs-input-number-wrapper').props().style;
-		expect(inputNumberStyle).toHaveProperty('--cs-input-number-border-radius', borderRadius);
+		expect(inputNumberStyle).toHaveProperty('--cs-input-border-radius', borderRadius);
 	});
 
 	it('should set disabled attribute', () => {
 		const uut = shallow(<CSInputNumber label={label} disabled />);
-		const disabledInputNumber = uut.find('.cs-input-number');
+		const disabledInputNumber = uut.find('.cs-input-wrapper-disabled > .cs-input-number');
 		expect(disabledInputNumber.props().disabled).toBeTruthy();
 	});
 
 	it('should render in the error state', () => {
 		const uut = shallow(<CSInputNumber label={label} error />);
-		const inputNumberError = uut.find('.cs-input-number.cs-input-number-error');
+		const inputNumberError = uut.find('.cs-input-wrapper.cs-input-wrapper-error');
 		expect(inputNumberError).toHaveLength(1);
-		expect(inputNumberError.prop('aria-invalid')).toBeTruthy();
+		expect(uut.find('.cs-input-number').prop('aria-invalid')).toBeTruthy();
 	});
 
 	it('should pass errorMessage to CSFieldErrorMsg', () => {
@@ -72,8 +72,8 @@ describe('<CSInputNumber />', () => {
 
 	it('should pass errorTooltip to CSFieldErrorMsg', () => {
 		const uut = shallow(<CSInputNumber label={label} error errorMessage={errorMessage} errorTooltip />);
-		const inputNumberErrorMsg = uut.find('CSFieldErrorMsg');
-		expect(inputNumberErrorMsg.prop('tooltipMessage')).toBeTruthy();
+		const CSTooltip = uut.find('CSTooltip');
+		expect(CSTooltip.prop('content')).toBe(errorMessage);
 	});
 
 	it('should pass helpText to CSLabel', () => {
@@ -170,7 +170,7 @@ describe('<CSInputNumber />', () => {
 	it('should use a working onClick callback', () => {
 		const handleClickMock = jest.fn();
 		const uut = shallow(<CSInputNumber label={label} onClick={handleClickMock} />);
-		const inputNumber = uut.find('.cs-input-number');
+		const inputNumber = uut.find('.cs-input-wrapper');
 		inputNumber.simulate('click');
 		expect(handleClickMock).toHaveBeenCalledTimes(1);
 	});
@@ -200,7 +200,7 @@ describe('<CSInputNumber />', () => {
 
 	it('should set the readonly attribute', () => {
 		const uut = shallow(<CSInputNumber label={label} readOnly />);
-		const inputNumberReadOnly = uut.find('.cs-input-number').props().readOnly;
+		const inputNumberReadOnly = uut.find('.cs-input-wrapper-read-only > .cs-input-number').props().readOnly;
 		expect(inputNumberReadOnly).toBeTruthy();
 	});
 

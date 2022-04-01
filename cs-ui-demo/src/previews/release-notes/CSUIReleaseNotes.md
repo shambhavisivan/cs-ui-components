@@ -81,6 +81,7 @@
 * CSInputNumber
   * added `locale` prop
   * refactored class based to functional component
+  * updated the markup to a new flex structure
 * CSInputSearch
   * refactored class based to functional component
   * updated the markup to a new flex structure

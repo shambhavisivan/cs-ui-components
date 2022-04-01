@@ -51,6 +51,10 @@
 			@include css4 {
 				border-color: cvar(--cs-transparent);
 			}
+
+			.cs-invisible-input {
+				padding: 0;
+			}
 		}
 
 		.cs-icon + .cs-tooltip-wrapper {
