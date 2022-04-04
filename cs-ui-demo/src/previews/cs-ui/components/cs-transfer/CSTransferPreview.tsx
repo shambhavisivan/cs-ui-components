@@ -57,6 +57,9 @@ const CSTransferPreview = () => {
 			routePrefix="cs-ui"
 		>
 			<CSD.Heading>Base Usage</CSD.Heading>
+			<CSD.List type="props">
+				<CSD.ListItem>items</CSD.ListItem>
+			</CSD.List>
 			<CSD.Section>
 				<CSD.Text>
 					Define an array of objects to be used as a data source.
@@ -255,6 +258,11 @@ const CSTransferPreview = () => {
 				</CSD.Preview>
 			</CSD.Section>
 			<CSD.Heading>Label Options</CSD.Heading>
+			<CSD.List type="props">
+				<CSD.ListItem>sourceLabel</CSD.ListItem>
+				<CSD.ListItem>targetLabels</CSD.ListItem>
+				<CSD.ListItem>helpText</CSD.ListItem>
+			</CSD.List>
 			<CSD.Section>
 				<CSD.Text>
 					Set the source list and target list labels using the `sourceLabel` and `targetLabel` props.
@@ -315,8 +323,9 @@ const CSTransferPreview = () => {
 					/>
 				</CSD.Preview>
 			</CSD.Section>
-			<CSD.Heading>Styling</CSD.Heading>
+			<CSD.Heading>Appearance</CSD.Heading>
 			<CSD.Section>
+				<CSD.Heading level={2}>Variant</CSD.Heading>
 				<CSD.Text>Set a transfer list variant using the `variant` prop. It renders a simple list by default and a check list if that particular variant is set.</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
@@ -358,8 +367,12 @@ const CSTransferPreview = () => {
 					/>
 				</CSD.Preview>
 			</CSD.Section>
-			<CSD.Heading>IDs &amp; Classes</CSD.Heading>
 			<CSD.Section>
+				<CSD.Heading level={2}>IDs & Classes</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>className</CSD.ListItem>
+					<CSD.ListItem>id</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>You can provide a custom ID and class to the element which contains the transfer component.</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
