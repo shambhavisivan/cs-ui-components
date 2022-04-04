@@ -32,6 +32,9 @@ const CSTreePreview = () => {
 			<CSD.Heading>General Props</CSD.Heading>
 			<CSD.Section>
 				<CSD.Heading level={2}>Base Usage</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>items</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					Trees represent the visualization of a structure hierarchy.
 					It contains items which can be interactive, selectable, as well as nested and expanded or collapsed.
@@ -44,11 +47,11 @@ const CSTreePreview = () => {
 				<CSD.Text>
 					It is necessary to provide a unique key to the item object to allow delta updates and better performance.
 				</CSD.Text>
-				<CSD.Preview
-					orientation="vertical"
-					table={CSTreeProps}
-					related={['items']}
-					code={`
+				<CSD.Text>
+					In all CSTree examples we will be using simple items object with cities.
+				</CSD.Text>
+				<CSD.Code>
+					{`
 						const items = [{
 							key: 'zagreb',
 							render: 'Zagreb'
@@ -59,7 +62,13 @@ const CSTreePreview = () => {
 							key: 'leeds',
 							render: 'Leeds'
 						}];
-
+					`}
+				</CSD.Code>
+				<CSD.Preview
+					orientation="vertical"
+					table={CSTreeProps}
+					related={['items']}
+					code={`
 						<CSTree items={items} />
 					`}
 				>
@@ -68,6 +77,10 @@ const CSTreePreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>IDs & Classes</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>className</CSD.ListItem>
+					<CSD.ListItem>id</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					It is possible to apply custom CSS classes and IDs to CSTree
 					using the `className` and `id` props respectively.
@@ -120,6 +133,9 @@ const CSTreePreview = () => {
 			<CSD.Heading>Item Controls</CSD.Heading>
 			<CSD.Section>
 				<CSD.Heading level={2}>Item Height</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>itemHeight</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					Controlling item height on the tree level can be achieved with the `itemHeight` prop,
 					which accepts a string with a valid CSS max-height value.
@@ -135,6 +151,9 @@ const CSTreePreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Rendering Items</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>render</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					An item's content is set in the `render` attribute.
 					It can accept primitives such as `string` or `number`.
@@ -516,6 +535,11 @@ const CSTreePreview = () => {
 			<CSD.Heading>Selectability</CSD.Heading>
 			<CSD.Section>
 				<CSD.Heading level={2}>Basic Checkbox Selection</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>selectable</CSD.ListItem>
+					<CSD.ListItem>selectedKeys</CSD.ListItem>
+					<CSD.ListItem>onSelectChange</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					Unlike collapsibility, which manages state under the hood,
 					the selectability aspect of trees is completely stateless.
@@ -544,11 +568,9 @@ const CSTreePreview = () => {
 					be described in the `onSelectChange` prop,
 					which provides access to the item object of the `CSTreeItemWithMetaInterface` type.
 				</CSD.Text>
-				<CSD.Preview
-					orientation="vertical"
-					table={CSTreeProps}
-					related={['items', 'selectedKeys', 'onSelectChange', 'selectable']}
-					code={`
+				<CSD.Text>Here is an example method.</CSD.Text>
+				<CSD.Code>
+					{`
 						const handleSelectChange = (event: React.ChangeEvent, item: CSTreeItemWithMetaInterface) => {
 							setSelectedKeys((prevSelectedKeys: Array<React.ReactText>) => {
 								const prevIndex = prevSelectedKeys.indexOf(item.key);
@@ -561,7 +583,13 @@ const CSTreePreview = () => {
 								return newSelectedKeys;
 							});
 						}
-
+					`}
+				</CSD.Code>
+				<CSD.Preview
+					orientation="vertical"
+					table={CSTreeProps}
+					related={['items', 'selectedKeys', 'onSelectChange', 'selectable']}
+					code={`
 						<CSTree
 							items={items}
 							selectable
@@ -591,6 +619,13 @@ const CSTreePreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Advanced Checkbox Selection</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>selectable</CSD.ListItem>
+					<CSD.ListItem>selectedKeys</CSD.ListItem>
+					<CSD.ListItem>onSelectChange</CSD.ListItem>
+					<CSD.ListItem>indeterminateKeys</CSD.ListItem>
+					<CSD.ListItem>readOnlyKeys</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					Besides setting `selectedKeys`,
 					it is also possible to set `indeterminateKeys` and `readOnlyKeys`.
@@ -693,6 +728,10 @@ const CSTreePreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Active Item Selection</CSD.Heading>
+				<CSD.List type="props">
+					<CSD.ListItem>activeKey</CSD.ListItem>
+					<CSD.ListItem>onItemClick</CSD.ListItem>
+				</CSD.List>
 				<CSD.Text>
 					An alternative selection mode is the ability
 					to select a single active tree item. This is useful
@@ -703,15 +742,19 @@ const CSTreePreview = () => {
 					The active feature is intended to be used with the `onItemClick`
 					prop, which triggers a callback when an item has been clicked.
 				</CSD.Text>
+				<CSD.Text>Here is an example method.</CSD.Text>
+				<CSD.Code>
+					{`
+						const handleItemClick = (event: React.MouseEvent, item: CSTreeItemWithMetaInterface) => {
+							setActiveKey(item.key);
+						};
+					`}
+				</CSD.Code>
 				<CSD.Preview
 					orientation="vertical"
 					table={CSTreeProps}
 					related={['items', 'activeKey', 'onItemClick']}
 					code={`
-						const handleItemClick = (event: React.MouseEvent, item: CSTreeItemWithMetaInterface) => {
-							setActiveKey(item.key);
-						};
-
 						<CSTree
 							items={items}
 							selectable
