@@ -50,7 +50,7 @@ describe('<CSInputSearch />', () => {
 
 	it('should set disabled attribute', () => {
 		const uut = shallow(<CSInputSearch label={label} disabled />);
-		const disabledInputSearch = uut.find('.cs-input-search');
+		const disabledInputSearch = uut.find('.cs-input-wrapper-disabled > .cs-input-search');
 		expect(disabledInputSearch.props().disabled).toBeTruthy();
 	});
 
@@ -144,14 +144,14 @@ describe('<CSInputSearch />', () => {
 		const inputSearch = uut.find('.cs-input-search');
 		inputSearch.simulate('change', { target: { value: 'x' } });
 		const clearButton = uut.find('CSButton');
-		clearButton.simulate('click');
+		clearButton.simulate('click', { stopPropagation: () => { } });
 		expect(handleClearSearchMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should use a working onClick callback', () => {
 		const handleClickMock = jest.fn();
 		const uut = shallow(<CSInputSearch label={label} onClick={handleClickMock} />);
-		const inputSearch = uut.find('.cs-input-search');
+		const inputSearch = uut.find('.cs-input-wrapper');
 		inputSearch.simulate('click');
 		expect(handleClickMock).toHaveBeenCalledTimes(1);
 	});

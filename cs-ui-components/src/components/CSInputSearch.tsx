@@ -27,7 +27,7 @@ export interface CSInputSearchProps {
 	labelTitle?: boolean;
 	onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-	onClick?: (event: React.MouseEvent<HTMLInputElement>) => void;
+	onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
 	onClearSearch?: () => void;
 	onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
 	onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
@@ -69,25 +69,35 @@ const CSInputSearch = ({
 	width,
 	...rest
 }: CSInputSearchProps) => {
-	const inputSearchInnerRef = useRef<HTMLInputElement>(null);
-	const { current: uniqueAutoId } = useRef(id || uuidv4());
-	const [focused, setFocused] = useState(false);
+	const inputSearchRef = useRef<HTMLInputElement>(null);
+	const { current: uniqueAutoId } = useRef<string>(id || uuidv4());
+	const [focused, setFocused] = useState<boolean>(false);
+
+	const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+		onClick?.(event);
+		inputSearchRef.current?.focus();
+	};
+
+	const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+		if (focused) event.preventDefault();
+	};
 
 	const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
-		setFocused(true);
 		onFocus?.(event);
+		setFocused(true);
 	};
 
 	const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-		setFocused(false);
 		onBlur?.(event);
+		setFocused(false);
 	};
 
-	useImperativeHandle(forwardRef, () => inputSearchInnerRef.current);
+	useImperativeHandle(forwardRef, () => inputSearchRef.current);
 
-	const handleClearSearch = () => {
+	const handleClearSearch = (event: React.MouseEvent<HTMLButtonElement>) => {
 		onClearSearch?.();
-		inputSearchInnerRef.current?.focus();
+		inputSearchRef.current?.focus();
+		event.stopPropagation();
 	};
 
 	const inputSearchWrapperClasses = classNames(
@@ -155,7 +165,13 @@ const CSInputSearch = ({
 	return (
 		<div className={inputSearchWrapperClasses}>
 			{renderLabel()}
-			<div className={inputWrapperClasses} style={style}>
+			{/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+			<div
+				className={inputWrapperClasses}
+				style={style}
+				onClick={handleClick}
+				onMouseDown={handleMouseDown}
+			>
 				{iconPosition === 'left' && searchIcon }
 				<input
 					autoFocus={autoFocus}
@@ -171,10 +187,9 @@ const CSInputSearch = ({
 					value={!value && onChange ? '' : value}
 					type="text"
 					autoComplete="off"
-					ref={inputSearchInnerRef}
+					ref={inputSearchRef}
 					onKeyDown={onKeyDown}
 					onBlur={handleBlur}
-					onClick={onClick}
 					onFocus={handleFocus}
 					title={title}
 					{...rest}
