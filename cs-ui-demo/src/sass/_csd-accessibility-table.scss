@@ -1,6 +1,4 @@
 .csd-accessibility-table {
-	margin: 0 -1rem -1rem;
-	width: calc(100% + 2rem) !important;
 	border-radius: 0 0 0.5rem 0.5rem;
 	--cs-data-table-br: var(--csd-preview-br);
 
@@ -22,11 +20,19 @@
 		align-items: flex-start;
 	}
 
+	&.cs-data-table-disable-hover .cs-data-table-body .cs-data-table-row:hover .cs-data-table-cell:first-child {
+		background-color: var(--cs-data-table-header-bg);
+	}
+
 	.cs-data-table-row-wrapper:last-child > .cs-data-table-row {
 		border-bottom: none;
 	}
 
 	li {
 		line-height: 1.5rem;
+	}
+
+	.cs-data-table-body .cs-data-table-row .csd-inline-code {
+		display: inline-flex;
 	}
 }

@@ -91,6 +91,11 @@
 					text-overflow: ellipsis;
 					white-space: nowrap;
 					max-width: 100%;
+					display: inline-flex;
+
+					& + .csd-inline-code {
+						margin-left: 0.25rem;
+					}
 
 					&.csd-inline-code-custom {
 						margin-block-end: 0.25rem;
@@ -117,8 +122,4 @@
 			}
 		}
 	}
-}
-
-.cs-tooltip-body > .csd-inline-code + br {
-	display: none;
 }

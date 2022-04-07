@@ -142,13 +142,8 @@
 		}
 
 		.csd-table {
-			margin-bottom: -1rem;
 			border-bottom-left-radius: 0.5rem;
 			border-bottom-right-radius: 0.5rem;
-
-			.csd-inline-code + .csd-inline-code {
-				margin-left: 0.5rem;
-			}
 
 			.cs-data-table-row-wrapper:last-child .cs-data-table-row {
 				border-bottom: none;

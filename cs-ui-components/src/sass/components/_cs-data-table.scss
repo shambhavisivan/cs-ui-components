@@ -196,7 +196,7 @@
 	}
 
 	&.cs-data-table-disable-hover .cs-data-table-body .cs-data-table-row:hover .cs-data-table-cell {
-		@include sbg(--cs-data-table-cell-bg);
+		@include sbg(--cs-data-table-row-bg);
 		box-shadow: none;
 	}
 

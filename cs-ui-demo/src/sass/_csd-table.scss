@@ -1,4 +1,5 @@
-.csd-theme-dark {
+.csd-theme-dark .csd-section > .cs-data-table-wrapper,
+.csd-theme-dark .csd-preview > .cs-data-table-wrapper {
 	--cs-data-table-header-bg: #{transparentize($cs-white, 0.95)};
 	--cs-data-table-header-c: #{$cs-white};
 	--cs-data-table-row-bg: #212121;
@@ -6,32 +7,23 @@
 	--cs-data-table-br: var(--csd-preview-br);
 }
 
-.csd-table {
+.csd-section > .cs-data-table-wrapper {
+	margin: 0 -1rem -1rem;
+	width: calc(100% + 2rem);
+	max-width: calc(100% + 2rem);
+
+	.cs-data-table-header .cs-data-table-cell {
+		border-top: none;
+	}
+}
+
+.csd-section > .cs-data-table-wrapper,
+.csd-preview > .cs-data-table-wrapper {
+	border-radius: 0 0 0.5rem 0.5rem;
 	--cs-data-table-br: var(--csd-preview-br);
 
 	.csd-table-name * {
 		font-weight: 700;
-	}
-
-	&.csd-table-section {
-		margin: 0 -1rem -1rem;
-		width: calc(100% + 2rem) !important;
-		border-radius: 0 0 0.5rem 0.5rem;
-
-		@at-root .csd-section-transparent & {
-			border-radius: 0.5rem;
-			box-shadow:
-				0 1px 3px var(--csd-shadow-light),
-				0 1px 2px var(--csd-shadow-medium);
-
-			.cs-data-table-body {
-				border-top: none !important;
-			}
-		}
-
-		.cs-data-table-row-wrapper:last-child > .cs-data-table-row {
-			border-bottom: none;
-		}
 	}
 
 	.csd-inline-code {
@@ -49,5 +41,21 @@
 
 	.cs-tooltip-wrapper:not(:last-child) > .csd-inline-code {
 		margin-bottom: 0.5rem;
+	}
+
+	.cs-data-table-row-wrapper:last-child .cs-data-table-row .cs-data-table-cell {
+		border-bottom: none;
+	}
+}
+
+
+.csd-section-transparent > .cs-data-table-wrapper {
+	border-radius: 0.5rem;
+	box-shadow:
+		0 1px 3px var(--csd-shadow-light),
+		0 1px 2px var(--csd-shadow-medium);
+
+	.cs-data-table-body {
+		border-top: none !important;
 	}
 }
