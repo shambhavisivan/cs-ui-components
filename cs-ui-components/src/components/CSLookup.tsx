@@ -257,12 +257,13 @@ class CSLookup extends React.Component<CSLookupProps, CSLookupState> {
 
 	clearSearch = async () => {
 		const { mode, options, onSelectChange, multiselect } = this.props;
+		const { searchTerm, selectedOptions } = this.state;
 
 		try {
 			await onSelectChange?.(multiselect ? [] : undefined);
 			this.setState({
 				searchTerm: '',
-				selectedOptions: [],
+				selectedOptions: (searchTerm === '' ? [] : selectedOptions),
 				dropdownOptions: mode === 'client' ? options : [],
 			}, () => {
 				this.openDropdown();

@@ -414,6 +414,66 @@ describe('<CSLookup />', () => {
 		expect(lookupLabel.prop('title')).toBe(label);
 	});
 
+	it('should have clear button when given value in input or an option is selected', () => {
+		const uut = mount(
+			<CSLookup
+				label={label}
+				columns={columns}
+				mode={modeClient}
+				fieldToBeDisplayed={fieldToBeDisplayed}
+				options={options}
+				value={[
+					{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
+				]}
+			/>,
+		);
+		const lookupInput = uut.find('.cs-lookup-input');
+		const lookupSelectedOption = uut.find('.cs-lookup-input-content');
+		const clearButton = uut.find('.cs-btn.cs-lookup-clear');
+
+		expect(clearButton).toHaveLength(1);
+		lookupInput.simulate('change', { target: { name: 'value', value: 'hello' } });
+
+		// First click clears searchTerm
+		clearButton.simulate('click');
+		expect(lookupInput.prop('value')).toBe('');
+
+		// Second click clears selection
+		clearButton.simulate('click');
+		expect(lookupSelectedOption.text()).toBe('');
+	});
+
+	it('should have clear button when given value in input or multiple options are selected', () => {
+		const uut = mount(
+			<CSLookup
+				label={label}
+				columns={columns}
+				mode={modeClient}
+				fieldToBeDisplayed={fieldToBeDisplayed}
+				options={options}
+				multiselect
+				value={[
+					{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
+					{ key: 2, data: { Id: 2, Account: 'Global Media', Industry: 'Industry' } },
+				]}
+			/>,
+		);
+		const lookupInput = uut.find('.cs-lookup-input');
+		const lookupSelectedOption = uut.find('.cs-lookup-input-content');
+		const clearButton = uut.find('.cs-btn.cs-lookup-clear');
+
+		expect(clearButton).toHaveLength(1);
+		lookupInput.simulate('change', { target: { name: 'value', value: 'hello' } });
+
+		// First click clears searchTerm
+		clearButton.simulate('click');
+		expect(lookupInput.prop('value')).toBe('');
+
+		// Second click clears selection
+		clearButton.simulate('click');
+		expect(lookupSelectedOption.text()).toBe('');
+	});
+
 	it('should display multiple selected options', () => {
 		const uut = shallow(
 			<CSLookup
