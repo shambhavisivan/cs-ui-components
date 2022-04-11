@@ -1,6 +1,6 @@
 {
 	"name": "@cloudsense/cs-form-v2",
-	"version": "1.0.0-alpha2",
+	"version": "1.0.0-alpha5",
 	"description": "",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
