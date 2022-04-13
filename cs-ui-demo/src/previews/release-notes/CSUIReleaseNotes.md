@@ -84,9 +84,10 @@
 * CSListGroup
   * removed box shadow on mouse focus
 * CSLookup
+  * refactored class based to functional component
   * improved clear button behaviour so that it doesn't deselect options when search term is present
-  * fixed deleting search term with backspace deletes the whole term instead of one letter
   * prevented state change on `onSelectChange` prop if return value is false
+  * fixed deleting search term with backspace deletes the whole term instead of one letter
   * fixed `infiniteScroll` functionality when scroll hits bottom of the dropdown
 * CSModal
   * <i>important</i> changed `visible` prop in `CSUnmountDelay` to be `false` by default

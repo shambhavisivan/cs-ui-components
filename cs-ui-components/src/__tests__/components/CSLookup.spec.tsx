@@ -123,13 +123,13 @@ describe('<CSLookup />', () => {
 				fieldToBeDisplayed={fieldToBeDisplayed}
 				options={options}
 			/>,
-		);
+		).dive();
 		const lookupLabel = uut.find('CSLabel');
 		expect(lookupLabel.prop('label')).toBe(label);
 	});
 
 	it('should set lookup value and display correct field based on fieldToBeDisplay', () => {
-		const uut = shallow(
+		const uut = mount(
 			<CSLookup
 				label={label}
 				columns={columns}
@@ -153,7 +153,7 @@ describe('<CSLookup />', () => {
 				options={options}
 				actions={actions}
 			/>,
-		);
+		).dive();
 		const lookupCustomData = uut.find('CSCustomData');
 		expect(lookupCustomData.prop('actions')).toMatchObject(actions);
 	});
@@ -185,7 +185,7 @@ describe('<CSLookup />', () => {
 				options={options}
 				autoFocus
 			/>,
-		);
+		).dive();
 		const lookupInput = uut.find('.cs-lookup-input');
 		expect(lookupInput.props().autoFocus).toBeTruthy();
 	});
@@ -201,7 +201,7 @@ describe('<CSLookup />', () => {
 				options={options}
 				borderRadius={borderRadius}
 			/>,
-		);
+		).dive();
 		const lookupWrapperStyle = uut.find('.cs-lookup-wrapper').props().style;
 		expect(lookupWrapperStyle).toHaveProperty('--cs-lookup-border-radius', borderRadius);
 	});
@@ -216,7 +216,7 @@ describe('<CSLookup />', () => {
 				options={options}
 				disabled
 			/>,
-		);
+		).dive();
 		const lookupInput = uut.find('.cs-lookup-input');
 		expect(lookupInput.props().disabled).toBeTruthy();
 	});
@@ -283,7 +283,7 @@ describe('<CSLookup />', () => {
 				options={options}
 				error
 			/>,
-		);
+		).dive();
 		const lookupInputError = uut.find('.cs-lookup-input-error');
 		expect(lookupInputError).toHaveLength(1);
 		expect(lookupInputError.prop('aria-invalid')).toBeTruthy();
@@ -300,7 +300,7 @@ describe('<CSLookup />', () => {
 				error
 				errorMessage={errorMessage}
 			/>,
-		);
+		).dive();
 		const lookupErrorMsg = uut.find('CSFieldErrorMsg');
 		expect(lookupErrorMsg.prop('message')).toMatchObject(errorMessage);
 	});
@@ -317,7 +317,7 @@ describe('<CSLookup />', () => {
 				errorMessage={errorMessage}
 				errorTooltip
 			/>,
-		);
+		).dive();
 		const lookupErrorTooltip = uut.find('CSFieldErrorMsg');
 		expect(lookupErrorTooltip.prop('tooltipMessage')).toBeTruthy();
 	});
@@ -350,7 +350,7 @@ describe('<CSLookup />', () => {
 				options={options}
 				helpText={helpTextMsg}
 			/>,
-		);
+		).dive();
 		const lookupLabel = uut.find('CSLabel');
 		expect(lookupLabel.prop('helpText')).toBe(helpTextMsg);
 	});
@@ -365,7 +365,7 @@ describe('<CSLookup />', () => {
 				options={options}
 				hidden
 			/>,
-		);
+		).dive();
 		expect(uut.find('.cs-lookup-wrapper.cs-lookup-hidden')).toHaveLength(1);
 	});
 
@@ -379,7 +379,7 @@ describe('<CSLookup />', () => {
 				options={options}
 				icons={icons}
 			/>,
-		);
+		).dive();
 		const lookupCustomData = uut.find('CSCustomData');
 		expect(lookupCustomData.prop('icons')).toMatchObject(icons);
 	});
@@ -394,7 +394,7 @@ describe('<CSLookup />', () => {
 				options={options}
 				labelHidden
 			/>,
-		);
+		).dive();
 		const lookupLabel = uut.find('CSLabel');
 		expect(lookupLabel).toHaveLength(0);
 	});
@@ -409,7 +409,7 @@ describe('<CSLookup />', () => {
 				options={options}
 				labelTitle
 			/>,
-		);
+		).dive();
 		const lookupLabel = uut.find('CSLabel');
 		expect(lookupLabel.prop('title')).toBe(label);
 	});
@@ -475,7 +475,7 @@ describe('<CSLookup />', () => {
 	});
 
 	it('should display multiple selected options', () => {
-		const uut = shallow(
+		const uut = mount(
 			<CSLookup
 				label={label}
 				columns={columns}
@@ -491,6 +491,7 @@ describe('<CSLookup />', () => {
 		);
 		const lookupInput = uut.find('.cs-lookup-input');
 		const lookupSelectedOption = uut.find('.cs-lookup-input-content');
+		expect(lookupSelectedOption).toHaveLength(1);
 		expect(lookupSelectedOption.text()).toBe('Acme, Global Media');
 		expect(lookupInput.prop('aria-multiselectable')).toBeTruthy();
 	});
@@ -506,7 +507,7 @@ describe('<CSLookup />', () => {
 				options={options}
 				onBlur={handleBlurMock}
 			/>,
-		);
+		).dive();
 		const lookupInput = uut.find('.cs-lookup-input');
 		lookupInput.simulate('blur');
 		expect(handleBlurMock).toHaveBeenCalledTimes(1);
@@ -523,7 +524,7 @@ describe('<CSLookup />', () => {
 				options={options}
 				onClick={handleClickMock}
 			/>,
-		);
+		).dive();
 		const lookupInput = uut.find('.cs-lookup-input');
 		lookupInput.simulate('click');
 		expect(handleClickMock).toHaveBeenCalledTimes(1);
@@ -540,7 +541,7 @@ describe('<CSLookup />', () => {
 				options={options}
 				onFocus={handleFocusMock}
 			/>,
-		);
+		).dive();
 		const lookupInput = uut.find('.cs-lookup-input');
 		lookupInput.simulate('focus');
 		expect(handleFocusMock).toHaveBeenCalledTimes(1);
@@ -576,7 +577,7 @@ describe('<CSLookup />', () => {
 				options={options}
 				onKeyDown={handleKeyDownMock}
 			/>,
-		);
+		).dive();
 		const lookupInput = uut.find('.cs-lookup-input');
 		lookupInput.simulate('keydown', {} as any);
 		expect(handleKeyDownMock).toHaveBeenCalledTimes(1);
@@ -593,7 +594,7 @@ describe('<CSLookup />', () => {
 				options={options}
 				onSearch={handleSearchMock}
 			/>,
-		);
+		).dive();
 		const lookupInput = uut.find('.cs-lookup-input');
 		lookupInput.simulate('change', { target: { value: 'Text' } });
 		expect(handleSearchMock).toHaveBeenCalledTimes(1);
@@ -629,7 +630,7 @@ describe('<CSLookup />', () => {
 				options={options}
 				placeholder={placeholder}
 			/>,
-		);
+		).dive();
 		const lookupInput = uut.find('.cs-lookup-input');
 		expect(lookupInput.props().placeholder).toBe(placeholder);
 	});
@@ -661,7 +662,7 @@ describe('<CSLookup />', () => {
 				options={options}
 				readOnly
 			/>,
-		);
+		).dive();
 		const lookupInput = uut.find('.cs-lookup-input');
 		expect(lookupInput.props().readOnly).toBeTruthy();
 	});
@@ -676,7 +677,7 @@ describe('<CSLookup />', () => {
 				options={options}
 				required
 			/>,
-		);
+		).dive();
 		const lookupInput = uut.find('.cs-lookup-input');
 		expect(lookupInput.props().required).toBeTruthy();
 		expect(lookupInput.prop('aria-required')).toBeTruthy();
@@ -695,7 +696,7 @@ describe('<CSLookup />', () => {
 				options={options}
 				title={title}
 			/>,
-		);
+		).dive();
 		const lookupInput = uut.find('.cs-lookup-input');
 		expect(lookupInput.props().title).toBe(title);
 	});
@@ -711,7 +712,7 @@ describe('<CSLookup />', () => {
 				options={options}
 				tooltipPosition={tooltipPosition}
 			/>,
-		);
+		).dive();
 		const lookupLabel = uut.find('CSLabel');
 		expect(lookupLabel.prop('tooltipPosition')).toBe(tooltipPosition);
 	});
@@ -727,7 +728,7 @@ describe('<CSLookup />', () => {
 				options={options}
 				className={customClass}
 			/>,
-		);
+		).dive();
 		const lookupWrapper = uut.find(`.cs-lookup-wrapper.${customClass}`);
 		expect(lookupWrapper).toHaveLength(1);
 	});
@@ -743,7 +744,7 @@ describe('<CSLookup />', () => {
 				options={options}
 				id={customId}
 			/>,
-		);
+		).dive();
 		const lookupInput = uut.find('.cs-lookup-input');
 		const lookupLabel = uut.find('CSLabel');
 		expect(lookupInput.props().id).toBe(customId);
@@ -885,7 +886,7 @@ describe('<CSLookup />', () => {
 		expect(fetchDataMock).toHaveBeenCalledTimes(2);
 	});
 
-	it('should initiate options fetch when defined minTermLength is met', async () => {
+	it('should initiate options fetch only when defined minTermLength is met', async () => {
 		const fetchDataMock = jest.fn(fetchData);
 		const uut = mount(
 			<CSLookup
@@ -923,7 +924,7 @@ describe('<CSLookup />', () => {
 				]}
 				data-testid="rest"
 			/>,
-		);
+		).dive();
 		const lookup = uut.find({ 'data-testid': 'rest' });
 		expect(lookup).toHaveLength(1);
 	});
