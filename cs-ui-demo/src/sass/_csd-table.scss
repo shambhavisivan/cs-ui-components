@@ -8,7 +8,7 @@
 }
 
 .csd-section > .cs-data-table-wrapper {
-	margin: 0 -1rem -1rem;
+	margin: 0 -1rem;
 	width: calc(100% + 2rem);
 	max-width: calc(100% + 2rem);
 
@@ -57,5 +57,9 @@
 
 	.cs-data-table-body {
 		border-top: none !important;
+	}
+
+	& + .csd-text {
+		margin-top: 1rem;
 	}
 }

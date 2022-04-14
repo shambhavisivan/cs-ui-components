@@ -160,7 +160,7 @@ const CSFormStandardFormFieldsPreview = () => {
 						}
 					]}
 				/>
-				<CSD.Text><br />Each object in the `fields` array consists of certain properties.</CSD.Text>
+				<CSD.Text>Each object in the `fields` array consists of certain properties.</CSD.Text>
 				<CSD.Text>Standard form field properties are split into two groups: common properties and field type specific properties.</CSD.Text>
 			</CSD.Section>
 			<CSD.Heading>Common Properties</CSD.Heading>

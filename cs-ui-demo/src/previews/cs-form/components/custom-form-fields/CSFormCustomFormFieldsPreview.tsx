@@ -75,7 +75,7 @@ const CSFormCustomFormFieldsPreview = () => {
 				<CSD.Text>Custom form fields also have common properties just like standard fields, and they also have specific properties based on the `type` value.</CSD.Text>
 				<CSD.Text>Both of these field types are explained and displayed below.</CSD.Text>
 			</CSD.Section>
-			<CSD.Heading>Common Properites</CSD.Heading>
+			<CSD.Heading>Common Properties</CSD.Heading>
 			<CSD.Section>
 				<CSD.Text>Custom fields share 4 properties: `type`, `grow`, `showInNewLine` and `hidden`.</CSD.Text>
 				<CSD.Text>Just like in standard fields, `type` defines which field will be rendered and enables access to a field's specific properties.</CSD.Text>
