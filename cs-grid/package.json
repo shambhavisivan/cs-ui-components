@@ -47,8 +47,8 @@
 		"ag-grid"
 	],
 	"dependencies": {
-		"ag-grid-community": "26.2.1",
-		"ag-grid-react": "26.2.0",
+		"ag-grid-community": "25.1.0",
+		"ag-grid-react": "25.1.0",
 		"jsdom": "^16.1.0",
 		"keycode-js": "^3.1.0",
 		"lodash": "4.17.21",
@@ -60,7 +60,7 @@
 		"@babel/plugin-proposal-function-bind": "7.16.7",
 		"@babel/preset-env": "^7.16.7",
 		"@babel/preset-react": "7.16.7",
-		"@cloudsense/cs-ui-components": "2.0.0-alpha7",
+		"@cloudsense/cs-ui-components": "2.0.0-alpha8",
 		"@types/classnames": "^2.3.0",
 		"@types/enzyme": "^3.10.11",
 		"@types/jest": "^24.0.19",
@@ -107,7 +107,7 @@
 		"webpack-dev-server": "^3.11.0"
 	},
 	"peerDependencies": {
-		"@cloudsense/cs-ui-components": "2.0.0-alpha7",
+		"@cloudsense/cs-ui-components": "2.0.0-alpha8",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2"
 	}

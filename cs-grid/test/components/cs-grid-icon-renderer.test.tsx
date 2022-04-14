@@ -1,4 +1,4 @@
-import { Beans, ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
+import { ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
 import { shallow } from 'enzyme';
 import React from 'react';
 import { CSGridCellError } from '../../src/components/cs-grid-cell-error';
@@ -66,7 +66,7 @@ describe('CS Grid Icon Renderer', () => {
 			getValue: () => {
 				// Do nothing
 			},
-			node: new RowNode(new Beans()),
+			node: new RowNode(),
 			rowIndex: 0,
 			setValue: setValueMock,
 			userInfo,

@@ -1,4 +1,4 @@
-import { Beans, ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
+import { ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
 import { shallow } from 'enzyme';
 import React from 'react';
 import { CSGridNoEditor } from '../../src/components/cs-grid-no-editor';
@@ -46,7 +46,7 @@ describe('CS Grid No Editor', () => {
 			context: {},
 			data: {},
 			eGridCell: { className: 'className' } as any,
-			node: new RowNode(new Beans()),
+			node: new RowNode(),
 			rowIndex: 0,
 			stopEditing: stopEditingMock,
 			userInfo,

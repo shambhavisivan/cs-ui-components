@@ -1,4 +1,4 @@
-import { Beans, ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
+import { ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
 import { mount, shallow } from 'enzyme';
 import React from 'react';
 import { CSGridIntegerEditor } from '../../src/components/cs-grid-integer-editor';
@@ -24,7 +24,7 @@ describe('CS Grid Integer Editor', () => {
 
 	const colDef: ColDef = {};
 	const column: Column = new Column(colDef, null, 'colId', true);
-	const rowNode: RowNode = new RowNode(new Beans());
+	const rowNode: RowNode = new RowNode();
 
 	let cSGridCellEditorProps: CSGridCellEditorProps<number> & IntegerProps;
 

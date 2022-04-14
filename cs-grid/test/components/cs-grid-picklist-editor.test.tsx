@@ -1,4 +1,4 @@
-import { Beans, ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
+import { ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
 import { shallow } from 'enzyme';
 import React from 'react';
 import { CSGridPicklistEditor } from '../../src/components/cs-grid-picklist-editor';
@@ -29,7 +29,7 @@ describe('CS Grid Picklist Editor', () => {
 
 	const colDef: ColDef = {};
 	const column: Column = new Column(colDef, null, 'colId', true);
-	const rowNode: RowNode = new RowNode(new Beans());
+	const rowNode: RowNode = new RowNode();
 
 	let cSGridCellEditorProps: CSGridCellEditorProps<PicklistCellValueType> & PicklistProps;
 

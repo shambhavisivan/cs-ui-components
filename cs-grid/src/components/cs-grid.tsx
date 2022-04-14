@@ -412,7 +412,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 								sortable: true
 							}}
 							frameworkComponents={this.state.frameworkComponents}
-							stopEditingWhenCellsLoseFocus={
+							stopEditingWhenGridLosesFocus={
 								!this.featureFlags.flags.useColumnLevelFocus
 							}
 							suppressDragLeaveHidesColumns={true}
@@ -1178,7 +1178,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 
 						let trap;
 						// If focused elements
-						if (Array.isArray(focusable) && focusable.length > 0) {
+						if (focusable?.length > 0) {
 							if (
 								params.event.key === KeyCode.ArrowRight ||
 								params.event.key === KeyCode.Tab

@@ -1,4 +1,4 @@
-import { Beans, ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
+import { ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
 import { mount, shallow } from 'enzyme';
 import React from 'react';
 import { CSGridTextEditor } from '../../src/components/cs-grid-text-editor';
@@ -51,7 +51,7 @@ describe('CS Grid Text Editor', () => {
 			context: {},
 			data: {},
 			eGridCell: { className: 'className', contains: containsMock } as any,
-			node: new RowNode(new Beans()),
+			node: new RowNode(),
 			rowIndex: 0,
 			stopEditing: stopEditingMock,
 			userInfo,

@@ -29,7 +29,7 @@ export const CS_GRID_FEATURE_FLAGS: Record<CSGridFeatureFlag, CSGridFlagDefiniti
 	},
 	useColumnLevelFocus: {
 		name: 'Passes control to each editor for when the grid stops editing',
-		description: `Stops using the grid property "stopEditingWhenCellsLoseFocus" and requires each editor to decide when to stop editing.`,
+		description: `Stops using the grid property "stopEditingWhenGridLosesFocus" and requires each editor to decide when to stop editing.`,
 		default: false
 	}
 };

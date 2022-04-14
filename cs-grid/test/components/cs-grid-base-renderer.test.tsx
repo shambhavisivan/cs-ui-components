@@ -1,4 +1,4 @@
-import { Beans, ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
+import { ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
 import { shallow } from 'enzyme';
 import React from 'react';
 import { CSGridBaseRenderer } from '../../src/components/cs-grid-base-renderer';
@@ -56,7 +56,7 @@ describe('CS Grid Base Renderer', () => {
 			getValue: () => {
 				console.log('getValue called');
 			},
-			node: new RowNode(new Beans()),
+			node: new RowNode(),
 			rowIndex: 0,
 			setValue: (value: any) => {
 				console.log('setValue called');

@@ -1,4 +1,4 @@
-import { Beans, ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
+import { ColDef, Column, ColumnApi, GridApi, RowNode } from 'ag-grid-community';
 import { shallow } from 'enzyme';
 import React from 'react';
 import { CSGridIntegerRenderer } from '../../src/components/cs-grid-integer-renderer';
@@ -45,7 +45,7 @@ describe('CS Grid Integer Renderer', () => {
 			getValue: () => {
 				// Do nothing
 			},
-			node: new RowNode(new Beans()),
+			node: new RowNode(),
 			rowIndex: 0,
 			setValue: (value: any) => {
 				// Do nothing
