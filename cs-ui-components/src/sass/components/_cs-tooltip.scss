@@ -472,10 +472,6 @@
 		display: flex;
 	}
 
-	> .cs-tooltip-icon {
-		cursor: pointer;
-	}
-
 	&.cs-tw-info {
 		> .cs-tooltip-icon {
 			@include sf(--cs-tooltip-icon-info);
@@ -618,4 +614,8 @@
 			}
 		}
 	}
+}
+
+:not(.cs-autoposition) > .cs-tooltip-wrapper {
+	cursor: pointer;
 }
