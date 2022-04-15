@@ -108,7 +108,7 @@ const CSInputNumber = ({
 	};
 
 	const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
-		if (focused) event.preventDefault();
+		if (focused && (event.target as HTMLDivElement).classList.contains('cs-input-wrapper')) event.preventDefault();
 	};
 
 	const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
