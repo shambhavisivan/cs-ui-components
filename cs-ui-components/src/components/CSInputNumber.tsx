@@ -1,4 +1,4 @@
-import React, { CSSProperties, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import React, { CSSProperties, useImperativeHandle, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
@@ -27,6 +27,7 @@ export interface CSInputNumberProps {
 	error?: boolean;
 	errorMessage?: CSFieldErrorMsgType;
 	errorTooltip?: boolean;
+	fractionDigits?: number;
 	helpText?: string;
 	hidden?: boolean;
 	hideSpinner?: boolean;
@@ -65,6 +66,7 @@ const CSInputNumber = ({
 	errorMessage,
 	errorTooltip,
 	forwardRef,
+	fractionDigits,
 	helpText,
 	hidden,
 	hideSpinner,
@@ -94,10 +96,9 @@ const CSInputNumber = ({
 	value,
 	...rest
 }: CSInputNumberProps) => {
-	const [showLocaleFormat, setShowLocaleFormat] = useState<boolean>(!!locale);
-	const [formattedNumberValue, setFormattedNumberValue] = useState<string>(null);
+	const [showFormattedValue, toggleFormattedValue] = useState(!!locale || !!fractionDigits);
 	const { current: uniqueAutoId } = useRef<string>(id || uuidv4());
-	const [focused, setFocused] = useState<boolean>(false);
+	const [focused, setFocused] = useState(false);
 	const inputNumberRef = useRef<HTMLInputElement>(null);
 
 	useImperativeHandle(forwardRef, () => inputNumberRef.current);
@@ -117,7 +118,7 @@ const CSInputNumber = ({
 			onBlur?.(event);
 		}
 
-		if (locale) setShowLocaleFormat(true);
+		if (locale || fractionDigits) toggleFormattedValue(true);
 	};
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => onChange?.(event.target.value);
@@ -128,25 +129,19 @@ const CSInputNumber = ({
 			onFocus?.(event);
 		}
 
-		if (locale) setShowLocaleFormat(false);
+		if (locale || fractionDigits) toggleFormattedValue(false);
 	};
 
-	const formatNumber = (numberValue: any, numberLocale: CSInputNumberNumberLocale) => {
-		const { numLocale, options } = numberLocale;
+	const formatNumber = (numberValue: number, numberLocale?: CSInputNumberNumberLocale) => (locale
+		? new Intl.NumberFormat(numberLocale.numLocale, { ...numberLocale.options }).format(numberValue)
+		: Number(numberValue).toFixed(fractionDigits)
+	);
 
-		const formattedValue = new Intl.NumberFormat(numLocale, { ...options }).format(numberValue);
-		setFormattedNumberValue(formattedValue);
-	};
-
-	const setType = () => {
+	const getType = () => {
 		if (locale) {
-			return showLocaleFormat ? 'text' : 'number';
+			return showFormattedValue ? 'text' : 'number';
 		} return type;
 	};
-
-	useEffect(() => {
-		if (locale) formatNumber(value, locale);
-	}, [locale, value]);
 
 	const renderLabel = () => {
 		if (!label || labelHidden) return null;
@@ -225,8 +220,8 @@ const CSInputNumber = ({
 					readOnly={readOnly}
 					required={required}
 					disabled={disabled}
-					value={showLocaleFormat ? formattedNumberValue : value}
-					type={setType()}
+					value={showFormattedValue ? formatNumber(value, locale) : value ?? ''}
+					type={getType()}
 					role="spinbutton"
 					aria-label={label}
 					aria-required={required}

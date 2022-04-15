@@ -9,13 +9,15 @@ interface CSInputNumberPreviewState {
 	focused: boolean;
 	value: number;
 	localeValue: any;
+	decimalValue: any;
 }
 
 class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState> {
 	state = {
 		focused: false,
 		value: 1,
-		localeValue: 1211.3
+		localeValue: 1211.3,
+		decimalValue: 12.456
 	};
 
 	handleChange = () => alert('Value has changed.');
@@ -32,6 +34,7 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 		});
 	}
 	handleChangeForLocale = (value: any) => this.setState({ localeValue: value });
+	handleChangeForDecimal = (value: any) => this.setState({ decimalValue: value });
 
 	getDoc = () => ({
 		name: 'Input Number',
@@ -139,6 +142,27 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 							}
 						]
 					}, {
+						propName: 'fractionDigits',
+						alert: {
+							variant: 'info',
+							text: 'Locale format settings will override fractionDigits value.'
+						},
+						variations: [
+							{
+								component: <CSInputNumber
+									value={this.state.decimalValue}
+									label="Enter value"
+									fractionDigits={2}
+									onChange={this.handleChangeForDecimal} />,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={this.state.value}
+									fractionDigits={2}
+									onChange={(value: any) => this.setState({ value })}
+								/>`
+							}
+						]
+					}, {
 						propName: 'helpText',
 						variations: [
 							{
@@ -213,17 +237,17 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 									locale={{ numLocale: 'en-EN', options: { style: 'currency', currency: 'GBP' } }}
 									onChange={this.handleChangeForLocale} />,
 								code: `<CSInputNumber
-								label="Enter value"
-								value={this.state.value}
-								locale={{
+									label="Enter value"
+									value={this.state.value}
+									locale={{
 										numLocale: 'en-EN',
 										options: {
 											style: 'currency',
 											currency: 'GBP'
 										}
 									}}
-								onChange={(value: any) => this.setState({ value })}
-							/>`
+									onChange={(value: any) => this.setState({ value })}
+								/>`
 							}
 						]
 					}, {
@@ -488,6 +512,10 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 						name: 'errorTooltip',
 						types: 'boolean',
 						description: 'Show an error tooltip for the number input.'
+					}, {
+						name: 'fractionDigits',
+						types: 'number',
+						description: 'The number of digits to appear after the decimal point. Locale format settings will override fractionDigits value.'
 					}, {
 						name: 'helpText',
 						types: 'string',

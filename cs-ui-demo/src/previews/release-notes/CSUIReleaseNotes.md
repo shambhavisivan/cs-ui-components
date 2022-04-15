@@ -80,6 +80,7 @@
   * <i>important</i> added `cs-input-file-wrapper`
 * CSInputNumber
   * added `locale` prop
+  * added `fractionDigits` prop
   * refactored class based to functional component
   * updated the markup to a new flex structure
 * CSInputSearch

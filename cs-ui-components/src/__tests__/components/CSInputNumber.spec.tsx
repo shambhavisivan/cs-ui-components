@@ -70,6 +70,12 @@ describe('<CSInputNumber />', () => {
 		expect(inputNumberErrorMsg.prop('message')).toBe(errorMessage);
 	});
 
+	it('should format value based on fractionDigits value', () => {
+		const uut = shallow(<CSInputNumber label={label} fractionDigits={2} value={1.245} />);
+		const inputNumber = uut.find('.cs-input-number');
+		expect(inputNumber.prop('value')).toBe('1.25');
+	});
+
 	it('should pass errorTooltip to CSFieldErrorMsg', () => {
 		const uut = shallow(<CSInputNumber label={label} error errorMessage={errorMessage} errorTooltip />);
 		const CSTooltip = uut.find('CSTooltip');
