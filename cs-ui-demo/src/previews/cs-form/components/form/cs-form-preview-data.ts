@@ -21,20 +21,6 @@ export const initialData: CSFormData = [
 			label: 'Toggle field',
 			name: 'toggle-1'
 		}, {
-			type: 'SELECT',
-			label: 'Select field',
-			name: 'select-1',
-			options: [{
-				key: 'red',
-				value: 'Red'
-			}, {
-				key: 'blue',
-				value: 'Blue'
-			}, {
-				key: 'yellow',
-				value: 'Yellow'
-			}]
-		}, {
 			type: 'CHECKBOX',
 			label: 'Checkbox',
 			name: 'checkbox-1'
@@ -154,21 +140,6 @@ export const readOnlyData: CSFormData = [
 			name: 'toggle-1',
 			value: true
 		}, {
-			type: 'SELECT',
-			label: 'Select field',
-			name: 'select-1',
-			options: [{
-				key: 'red',
-				value: 'Red'
-			}, {
-				key: 'blue',
-				value: 'Blue'
-			}, {
-				key: 'yellow',
-				value: 'Yellow'
-			}],
-			value: 'yellow'
-		}, {
 			type: 'CHECKBOX',
 			label: 'Checkbox',
 			name: 'checkbox-1',
@@ -281,21 +252,6 @@ export const standardDataTest: CSFormData = [
 			name: 'toggle-1',
 			value: false
 		}, {
-			type: 'SELECT',
-			label: 'Select field',
-			name: 'select-1',
-			options: [{
-				key: 'red',
-				value: 'Red'
-			}, {
-				key: 'blue',
-				value: 'Blue'
-			}, {
-				key: 'yellow',
-				value: 'Yellow'
-			}],
-			value: 'yellow'
-		}, {
 			type: 'CHECKBOX',
 			label: 'Checkbox',
 			name: 'checkbox-1',
@@ -388,21 +344,6 @@ export const readOnlyDataTest: CSFormData = [
 			label: 'Toggle field',
 			name: 'toggle-1',
 			value: false
-		}, {
-			type: 'SELECT',
-			label: 'Select field',
-			name: 'select-1',
-			options: [{
-				key: 'red',
-				value: 'Red'
-			}, {
-				key: 'blue',
-				value: 'Blue'
-			}, {
-				key: 'yellow',
-				value: 'Yellow'
-			}],
-			value: 'yellow'
 		}, {
 			type: 'CHECKBOX',
 			label: 'Checkbox',
@@ -499,23 +440,6 @@ export const disabledDataTest: CSFormData = [
 			label: 'Toggle field',
 			name: 'toggle-1',
 			value: false,
-			disabled: true
-		}, {
-			type: 'SELECT',
-			label: 'Select field',
-			name: 'select-1',
-			options: [{
-				key: 'red',
-				value: 'Red'
-			}, {
-				key: 'blue',
-				value: 'Blue'
-			}, {
-				key: 'yellow',
-				value: 'Yellow'
-			}],
-			value: 'yellow'
-			,
 			disabled: true
 		}, {
 			type: 'CHECKBOX',
@@ -622,23 +546,6 @@ export const disabled2DataTest: CSFormData = [
 			label: 'Toggle field',
 			name: 'toggle-1',
 			value: false,
-			disabled: true
-		}, {
-			type: 'SELECT',
-			label: 'Select field',
-			name: 'select-1',
-			options: [{
-				key: 'red',
-				value: 'Red'
-			}, {
-				key: 'blue',
-				value: 'Blue'
-			}, {
-				key: 'yellow',
-				value: 'Yellow'
-			}],
-			value: 'yellow'
-			,
 			disabled: true
 		}, {
 			type: 'CHECKBOX',

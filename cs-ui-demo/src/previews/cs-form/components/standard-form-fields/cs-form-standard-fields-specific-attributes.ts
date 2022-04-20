@@ -305,47 +305,6 @@ export const CSFormRadioOptionAttributes = {
 	]
 };
 
-export const CSFormSelectFieldAttributes = {
-	name: 'CSFormSelectField Specific',
-	type: 'attributes',
-	data: [
-		{
-			name: 'options',
-			link: '/cs-form/standard-form-fields#select',
-			customTypes: {
-				name: 'Array<CSFormSelectOption>',
-				types: 'See CSFormSelectOption Attributes'
-			},
-			required: true,
-			description: 'Set the options which will be available in the picklist.'
-		}, {
-			name: 'value',
-			types: 'any',
-			description: 'Set selected option value.'
-		}
-	]
-};
-
-export const CSFormSelectOptionAttributes = {
-	name: 'CSFormSelectOption',
-	type: 'attributes',
-	data: [
-		{
-			name: 'key',
-			link: '/cs-form/standard-form-fields#select',
-			types: 'ReactText',
-			required: true,
-			description: 'Set a unique key for the select option.'
-		}, {
-			name: 'value',
-			link: '/cs-form/standard-form-fields#select',
-			types: 'string',
-			required: true,
-			description: 'Set the value of the select option.'
-		}
-	]
-};
-
 export const CSFormTextFieldAttributes = {
 	name: 'CSFormTextField Specific',
 	type: 'attributes',

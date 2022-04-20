@@ -44,11 +44,6 @@ const CSFormLayoutFormFieldsPreview = () => {
 										label: 'Toggle field',
 										name: 'toggle-1'
 									}, {
-										type: 'SELECT',
-										label: 'Select field',
-										name: 'select-1',
-										options: [...]
-									}, {
 										type: 'CHECKBOX',
 										label: 'Checkbox',
 										name: 'checkbox-1'
@@ -127,20 +122,6 @@ const CSFormLayoutFormFieldsPreview = () => {
 									type: 'TOGGLE',
 									label: 'Toggle field',
 									name: 'toggle-1'
-								}, {
-									type: 'SELECT',
-									label: 'Select field',
-									name: 'select-1',
-									options: [{
-										key: 'red',
-										value: 'Red'
-									}, {
-										key: 'blue',
-										value: 'Blue'
-									}, {
-										key: 'yellow',
-										value: 'Yellow'
-									}]
 								}, {
 									type: 'CHECKBOX',
 									label: 'Checkbox',

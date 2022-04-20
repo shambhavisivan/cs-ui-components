@@ -116,19 +116,6 @@ describe('<CSFormField />', () => {
 		expect(radioField).toHaveLength(1);
 	});
 
-	it('should render CSFormSelectField if field type is \'SELECT\'', () => {
-		const uut = shallow(
-			<CSFormField
-				type="SELECT"
-				label={label}
-				name={name}
-				options={[]}
-			/>,
-		);
-		const selectField = uut.find('.csf-field-wrapper CSFormSelectField');
-		expect(selectField).toHaveLength(1);
-	});
-
 	it('should render CSFormTextField if field type is \'TEXT\'', () => {
 		const uut = shallow(
 			<CSFormField

@@ -149,20 +149,6 @@ const CSFormPreview = () => {
 										label: 'Toggle field',
 										name: 'toggle-1'
 									}, {
-										type: 'SELECT',
-										label: 'Select field',
-										name: 'select-1',
-										options: [{
-											key: 'red',
-											value: 'Red'
-										}, {
-											key: 'blue',
-											value: 'Blue'
-										}, {
-											key: 'yellow',
-											value: 'Yellow'
-										}]
-									}, {
 										type: 'CHECKBOX',
 										label: 'Checkbox',
 										name: 'checkbox-1'

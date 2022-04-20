@@ -10,7 +10,6 @@ import CSFormDateTimeField from './form-fields/CSFormDateTimeField';
 import CSFormLookupField from './form-fields/CSFormLookupField';
 import CSFormNumberField from './form-fields/CSFormNumberField';
 import CSFormRadioField from './form-fields/CSFormRadioField';
-import CSFormSelectField from './form-fields/CSFormSelectField';
 import CSFormTextField from './form-fields/CSFormTextField';
 import CSFormTextareaField from './form-fields/CSFormTextareaField';
 import CSFormToggleField from './form-fields/CSFormToggleField';
@@ -54,8 +53,6 @@ const CSFormField = ({
 			return <CSFormNumberField locale={rest.useLocale && locale?.numberLocale} {...rest} {...fieldReadOnly} {...fieldValue} />;
 		case 'RADIO':
 			return <CSFormRadioField {...rest} />;
-		case 'SELECT':
-			return <CSFormSelectField {...rest} {...fieldReadOnly} />;
 		case 'TEXTAREA':
 			return <CSFormTextareaField {...rest} {...fieldReadOnly} {...fieldValue} />;
 		case 'TOGGLE':

@@ -15,8 +15,6 @@ import {
 	CSFormNumberFieldAttributes,
 	CSFormRadioFieldAttributes,
 	CSFormRadioOptionAttributes,
-	CSFormSelectFieldAttributes,
-	CSFormSelectOptionAttributes,
 	CSFormTextFieldAttributes,
 	CSFormTextareaFieldAttributes
 } from './cs-form-standard-fields-specific-attributes';
@@ -37,7 +35,6 @@ import {
 	lookupPropsData,
 	numberLocaleData,
 	radioPropsData,
-	selectPropsData,
 	textareaPropsData,
 	textPropsData
 } from './cs-form-specific-prop-preview-data';
@@ -66,8 +63,6 @@ const CSFormStandardFormFieldsPreview = () => {
 				CSFormNumberFieldAttributes,
 				CSFormRadioFieldAttributes,
 				CSFormRadioOptionAttributes,
-				CSFormSelectFieldAttributes,
-				CSFormSelectOptionAttributes,
 				CSFormTextFieldAttributes,
 				CSFormTextareaFieldAttributes
 			]}
@@ -134,12 +129,6 @@ const CSFormStandardFormFieldsPreview = () => {
 								component: 'CSFormRadioField'
 							}
 						}, {
-							key: 'select',
-							data: {
-								type: 'SELECT',
-								component: 'CSFormSelectField'
-							}
-						}, {
 							key: 'text',
 							data: {
 								type: 'TEXT',
@@ -199,20 +188,6 @@ const CSFormStandardFormFieldsPreview = () => {
 									type: 'TOGGLE',
 									label: 'Toggle field',
 									name: 'toggle-1',
-								}, {
-									type: 'SELECT',
-									label: 'Select field',
-									name: 'select-1',
-									options: [{
-										key: 'red',
-										value: 'Red'
-									}, {
-										key: 'blue',
-										value: 'Blue'
-									}, {
-										key: 'yellow',
-										value: 'Yellow'
-									}]
 								}, {
 									type: 'DATE',
 									label: 'Date field',
@@ -759,41 +734,6 @@ const CSFormStandardFormFieldsPreview = () => {
 					`}
 				>
 					<CSForm data={radioPropsData} />
-				</CSD.Preview>
-			</CSD.Section>
-			<CSD.Section>
-				<CSD.Heading level={2}>Select</CSD.Heading>
-				<CSD.Text>The select field specific property is `options`.</CSD.Text>
-				<CSD.Text>`options` is an array prop which defines the options available for selection.</CSD.Text>
-				<CSD.Text>Each object in the `options` array represents one option and it consists of 2 properties - `key` and `value`.</CSD.Text>
-				<CSD.Preview
-					code={`
-						<CSForm
-							data={[{
-								...
-								fields: [
-									{
-										type: 'SELECT',
-										label: 'Select car',
-										name: 'select-car',
-										options: [{
-											key: 'rimac',
-											value: 'Rimac'
-										}, {
-											key: 'blue',
-											value: 'Blue'
-										}, {
-											key: 'yellow',
-											value: 'Yellow'
-										}],
-										value: 'yellow'
-									}
-								]
-							}]}
-						/>
-					`}
-				>
-					<CSForm data={selectPropsData} />
 				</CSD.Preview>
 			</CSD.Section>
 			<CSD.Section>

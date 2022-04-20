@@ -15,7 +15,6 @@ export default {
 					`'LOOKUP'`,
 					`'NUMBER'`,
 					`'RADIO'`,
-					`'SELECT'`,
 					`'TEXT'`,
 					`'TEXTAREA'`,
 					`'TOGGLE'`

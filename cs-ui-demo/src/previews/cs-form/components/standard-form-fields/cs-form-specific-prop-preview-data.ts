@@ -155,32 +155,6 @@ export const radioPropsData: CSFormData = [
 	}
 ];
 
-export const selectPropsData: CSFormData = [
-	{
-		sectionKey: 'select-properties-section',
-		label: 'Select',
-		collapsible: true,
-		fields: [
-			{
-				type: 'SELECT',
-				label: 'Select car',
-				name: 'select-car',
-				options: [{
-					key: 'rimac',
-					value: 'Rimac'
-				}, {
-					key: 'blue',
-					value: 'Blue'
-				}, {
-					key: 'yellow',
-					value: 'Yellow'
-				}],
-				value: 'yellow'
-			}
-		]
-	}
-];
-
 export const textPropsData: CSFormData = [
 	{
 		sectionKey: 'text-properties-section',

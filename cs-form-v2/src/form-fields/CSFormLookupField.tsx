@@ -16,7 +16,7 @@ const CSFormLookupField = ({
 				? (
 					<CSLookup
 						onSelectChange={(value: CSDataTableRowInterface | Array<CSDataTableRowInterface>) => onChange(value)}
-						onBlur={(event, value: CSDataTableRowInterface | Array<CSDataTableRowInterface>) => onBlur(value)}
+						onBlur={(event: React.FocusEvent<HTMLInputElement>, value: CSDataTableRowInterface | Array<CSDataTableRowInterface>) => onBlur(value)}
 						className={styleClass}
 						{...props}
 					/>
@@ -24,7 +24,7 @@ const CSFormLookupField = ({
 				: (
 					<CSLookup
 						onSelectChange={(value: CSDataTableRowInterface | Array<CSDataTableRowInterface>) => onChange(value)}
-						onBlur={(event, value: CSDataTableRowInterface | Array<CSDataTableRowInterface>) => onBlur(value)}
+						onBlur={(event: React.FocusEvent<HTMLInputElement>, value: CSDataTableRowInterface | Array<CSDataTableRowInterface>) => onBlur(value)}
 						className={styleClass}
 						{...props}
 					/>

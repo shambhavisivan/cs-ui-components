@@ -51,7 +51,6 @@ export type CSFormFieldType = 'BUFFER' |
 	'LOOKUP' |
 	'NUMBER' |
 	'RADIO' |
-	'SELECT' |
 	'TEXT' |
 	'TEXTAREA' |
 	'TOGGLE';
@@ -208,18 +207,6 @@ export interface CSFormRadioFieldProps extends Omit<CSFormFieldCommonProps,
 	value?: React.ReactText;
 }
 
-/** SELECT FIELD */
-export interface CSFormSelectOption {
-	key: React.ReactText;
-	value: string;
-}
-
-export interface CSFormSelectFieldProps extends CSFormFieldCommonProps {
-	type: 'SELECT';
-	options: Array<CSFormSelectOption>;
-	value?: any;
-}
-
 /** TEXT FIELD */
 export interface CSFormTextFieldProps extends CSFormFieldCommonProps {
 	type: 'TEXT';
@@ -248,7 +235,6 @@ export type CSFormStandardFields = CSFormCheckboxFieldProps
 	| CSFormDateTimeFieldProps
 	| CSFormNumberFieldProps
 	| CSFormRadioFieldProps
-	| CSFormSelectFieldProps
 	| CSFormLookupFieldProps
 	| CSFormTextFieldProps
 	| CSFormTextareaFieldProps
