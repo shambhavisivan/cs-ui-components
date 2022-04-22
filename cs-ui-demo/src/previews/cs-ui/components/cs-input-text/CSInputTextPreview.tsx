@@ -6,15 +6,18 @@ import { actionsWithLog } from '../../helpers/actions';
 import { icons } from '../../helpers/icons';
 import { NavLink } from 'react-router-dom';
 
-const CSInputTextPreview = () => {
-	interface CSInputTextPreviewState {
-		[key: string]: string;
-	}
+interface CSInputTextPreviewState {
+	[key: string]: string;
+}
 
-	const [value, setValue] = useState<CSInputTextPreviewState>({key: 'value'});
+const CSInputTextPreview = () => {
+	const [value, setValue] = useState<CSInputTextPreviewState>({});
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>, key: string) => {
-		setValue({ [key]: event.target.value });
+		setValue((prevValue: CSInputTextPreviewState) => ({
+			...prevValue,
+			[key]: event.target.value
+		}));
 	};
 
 	return (
@@ -45,19 +48,17 @@ const CSInputTextPreview = () => {
 					table={CSInputTextProps}
 					related={['label', 'value']}
 					code={`
-						<CSInputText label="This is a label" onChange={handleChange}/>
 						<CSInputText
-							label="This is a label"
+							label="Label"
 							value={value}
 							onChange={handleChange}
 						/>
 					`}
 				>
-					<CSInputText label="This is a label" onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'label')}/>
 					<CSInputText
-						label="This is a label"
-						value={value.key}
-						onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'label')}
+						label="Label"
+						value={value.base}
+						onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'base')}
 					/>
 				</CSD.Preview>
 			</CSD.Section>
@@ -100,20 +101,46 @@ const CSInputTextPreview = () => {
 						'onKeyDown'
 					]}
 					code={`
-						<CSInputText label="Input Text with onBlur" onBlur={console.log} />
-						<CSInputText label="Input Text with onChange" onChange={handleChange} />
-						<CSInputText label="Input Text with onClick" onClick={console.log} />
-						<CSInputText label="Input Text with onFocus" onFocus={console.log} />
-						<CSInputText label="Input Text with onKeyDown" onKeyDown={console.log} />
+						<CSInputText
+							label="Input Text with onBlur"
+							value={value}
+							onChange={handleChange}
+							onBlur={console.log}
+						/>
+						<CSInputText
+							label="Input Text with onChange"
+							value={value}
+							onChange={handleChange}
+						/>
+						<CSInputText
+							label="Input Text with onClick"
+							value={value}
+							onChange={handleChange}
+							onClick={console.log}
+						/>
+						<CSInputText
+							label="Input Text with onFocus"
+							value={value}
+							onChange={handleChange}
+							onFocus={console.log}
+						/>
+						<CSInputText
+							label="Input Text with onKeyDown"
+							value={value}
+							onChange={handleChange}
+							onKeyDown={console.log}
+						/>
 					`}
 				>
 						<CSInputText
 							label="Input Text with onBlur"
-							onBlur={console.log}
+							value={value.onBlur}
 							onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'onBlur')}
+							onBlur={console.log}
 						/>
 						<CSInputText
 							label="Input Text with onChange"
+							value={value.onChange}
 							onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
 								console.log(event);
 								handleChange(event, 'onChange');
@@ -121,18 +148,21 @@ const CSInputTextPreview = () => {
 						/>
 						<CSInputText
 							label="Input Text with onClick"
-							onClick={console.log}
+							value={value.onClick}
 							onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'onClick')}
+							onClick={console.log}
 						/>
 						<CSInputText
 							label="Input Text with onFocus"
-							onFocus={console.log}
+							value={value.onFocus}
 							onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'onFocus')}
+							onFocus={console.log}
 						/>
 						<CSInputText
 							label="Input Text with onKeyDown"
-							onKeyDown={console.log}
+							value={value.onKeyDown}
 							onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'onKeyDown')}
+							onKeyDown={console.log}
 						/>
 				</CSD.Preview>
 			</CSD.Section>
@@ -164,32 +194,36 @@ const CSInputTextPreview = () => {
 					]}
 					code={`
 						<CSInputText
-							label="This is a label"
+							label="Label"
+							value={value}
+							onChange={handleChange}
 							error
 							errorMessage="Error Message"
-							onChange={handleChange}
 						/>
 						<CSInputText
-							label="This is a label"
+							label="Label"
+							value={value}
+							onChange={handleChange}
 							error
 							errorMessage="Error Message"
 							errorTooltip
-							onChange={handleChange}
 						/>
 					`}
 				>
 					<CSInputText
-						label="This is a label"
+						label="Label"
+						value={value.errorMessage}
+						onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'errorMessage')}
 						error
 						errorMessage="Error Message"
-						onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'errorMessage')}
 					/>
 					<CSInputText
-						label="This is a label"
+						label="Label"
+						value={value.errorTooltip}
+						onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'errorTooltip')}
 						error
 						errorMessage="Error Message"
 						errorTooltip
-						onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'errorTooltip')}
 					/>
 				</CSD.Preview>
 			</CSD.Section>
@@ -226,37 +260,31 @@ const CSInputTextPreview = () => {
 						'required'
 					]}
 					code={`
+						<CSInputText label="Label" disabled />
 						<CSInputText
-							label="This is a label"
-							disabled
-						/>
-						<CSInputText
-							label="This is a label"
+							label="Label"
 							value="value"
 							readOnly
-							onChange={handleChange}
 						/>
 						<CSInputText
-							label="This is a label"
-							required
+							label="Label"
+							value={value}
 							onChange={handleChange}
+							required
 						/>
 					`}
 				>
+					<CSInputText label="Label" disabled />
 					<CSInputText
-						label="This is a label"
-						disabled
-					/>
-					<CSInputText
-						label="This is a label"
+						label="Label"
 						value="value"
 						readOnly
-						onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'readOnly')}
 					/>
 					<CSInputText
-						label="This is a label"
-						required
+						label="Label"
+						value={value.required}
 						onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'required')}
+						required
 					/>
 				</CSD.Preview>
 				<CSD.Text>
@@ -266,9 +294,9 @@ const CSInputTextPreview = () => {
 					orientation="vertical"
 					table={CSInputTextProps}
 					related={['label', 'hidden']}
-					code={`<CSInputText label="This is a label" value="value" hidden />`}
+					code={`<CSInputText label="Label" value="value" hidden />`}
 				>
-					<CSInputText label="This is a label" hidden />
+					<CSInputText label="Label" value="value" hidden />
 				</CSD.Preview>
 			</CSD.Section>
 			<CSD.Section>
@@ -303,34 +331,40 @@ const CSInputTextPreview = () => {
 					]}
 					code={`
 						<CSInputText
-							label="This is a label"
+							label="Label"
+							value={value}
 							onChange={handleChange}
 						/>
 						<CSInputText
-							label="This is a label"
-						  labelHidden
+							label="Label"
+							value={value}
 							onChange={handleChange}
+							labelHidden
 						/>
 						<CSInputText
-						 	label="Label with a title"
+							label="Label"
+							value={value}
+							onChange={handleChange}
 							labelTitle
-							onChange={handleChange}
 						/>
 					`}
 				>
 					<CSInputText
-						label="This is a label"
-						onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'onChange')}
+						label="Label"
+						value={value.label}
+						onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'label')}
 					/>
 					<CSInputText
-						label="This is a label"
-						labelHidden
+						label="Label"
+						value={value.labelHidden}
 						onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'labelHidden')}
+						labelHidden
 					/>
 					<CSInputText
 						label="Label with a title"
-						labelTitle
+						value={value.labelTitle}
 						onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'labelTitle')}
+						labelTitle
 					/>
 				</CSD.Preview>
 				<CSD.Text>
@@ -359,28 +393,32 @@ const CSInputTextPreview = () => {
 					]}
 					code={`
 						<CSInputText
-							label="This is a label"
-							helpText="This is label"
+							label="Label"
+							value={value}
 							onChange={handleChange}
+							helpText="Help Text"
 						/>
 						<CSInputText
-							label="This is a label"
-							helpText="This is label"
-							tooltipPosition="top-left"
+							label="Label"
+							value={value}
 							onChange={handleChange}
+							helpText="Help Text"
+							tooltipPosition="top-left"
 						/>
 					`}
 				>
 					<CSInputText
-						label="This is a label"
-						helpText="This is label"
+						label="Label"
+						value={value.helpText}
 						onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'helpText')}
+						helpText="Help Text"
 					/>
 					<CSInputText
-						label="This is a label"
-						helpText="This is label"
-						tooltipPosition="top-left"
+						label="Label"
+						value={value.tooltipPosition}
 						onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'tooltipPosition')}
+						helpText="Help Text"
+						tooltipPosition="top-left"
 					/>
 				</CSD.Preview>
 			</CSD.Section>
@@ -407,16 +445,18 @@ const CSInputTextPreview = () => {
 					]}
 					code={`
 						<CSInputText
-							label="This is a label"
-							title="This is a title"
+							label="Label"
+							value={value}
 							onChange={handleChange}
+							title="Title"
 						/>
 					`}
 				>
 					<CSInputText
-						label="This is a label"
-						title="This is a title"
+						label="Label"
+						value={value.title}
 						onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'title')}
+						title="Title"
 					/>
 				</CSD.Preview>
 				<CSD.Text>
@@ -437,26 +477,30 @@ const CSInputTextPreview = () => {
 					]}
 					code={`
 						<CSInputText
-							label="This is a label"
-							name="Input Text"
+							label="Label"
+							value={value}
 							onChange={handleChange}
+							name="input-text"
 						/>
 						<CSInputText
-							label="This is a label"
-							placeholder="This is a placeholder"
+							label="Label"
+							value={value}
 							onChange={handleChange}
+							placeholder="Placeholder..."
 						/>
 					`}
 				>
 					<CSInputText
-						label="This is a label"
-						name="Input Text"
+						label="Label"
+						value={value.name}
 						onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'name')}
+						name="input-text"
 					/>
 					<CSInputText
-						label="This is a label"
-						placeholder="This is a placeholder"
+						label="Label"
+						value={value.placeholder}
 						onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'placeholder')}
+						placeholder="Placeholder..."
 					/>
 				</CSD.Preview>
 				<CSD.Text>
@@ -468,16 +512,18 @@ const CSInputTextPreview = () => {
 					related={['label', 'maxLength']}
 					code={`
 						<CSInputText
-							label="This is a label"
-							maxLength={10}
+							label="Label"
+							value={value}
 							onChange={handleChange}
+							maxLength={10}
 						/>
 					`}
 				>
 					<CSInputText
-						label="This is a label"
-						maxLength={10}
+						label="Label"
+						value={value.maxLength}
 						onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'maxLength')}
+						maxLength={10}
 					/>
 				</CSD.Preview>
 			</CSD.Section>
@@ -540,6 +586,7 @@ const CSInputTextPreview = () => {
 								}
 							}
 						];
+
 						const icons = [
 							{ name: 'cart' },
 							{
@@ -557,26 +604,31 @@ const CSInputTextPreview = () => {
 						];
 
 						<CSInputText
-							label="This is a label"
+							label="Label"
+							value={value}
+							onChange={handleChange}
 							actions={actions}
-							onChange={handleChange}
 						/>
+
 						<CSInputText
-							label="This is a label"
-							icons={icons}
+							label="Label"
+							value={value}
 							onChange={handleChange}
+							icons={icons}
 						/>
 					`}
 				>
 					<CSInputText
-						label="This is a label"
-						actions={actionsWithLog}
+						label="Label"
+						value={value.actions}
 						onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'actions')}
+						actions={actionsWithLog}
 					/>
 					<CSInputText
-						label="This is a label"
-						icons={icons}
+						label="Label"
+						value={value.icons}
 						onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'icons')}
+						icons={icons}
 					/>
 				</CSD.Preview>
 			</CSD.Section>
@@ -598,16 +650,18 @@ const CSInputTextPreview = () => {
 					]}
 					code={`
 						<CSInputText
-							label="This is a label"
-							borderRadius="1rem"
+							label="Label"
+							value={value}
 							onChange={handleChange}
+							borderRadius="1rem"
 						/>
 					`}
 				>
 					<CSInputText
-						label="This is a label"
-						borderRadius="1rem"
+						label="Label"
+						value={value.borderRadius}
 						onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'borderRadius')}
+						borderRadius="1rem"
 					/>
 				</CSD.Preview>
 			</CSD.Section>
@@ -634,26 +688,30 @@ const CSInputTextPreview = () => {
 					]}
 					code={`
 						<CSInputText
-							label="This is a label"
-							className="custom-br-purple"
+							label="Label"
+							value={value}
 							onChange={handleChange}
+							className="custom-br-purple"
 						/>
 						<CSInputText
-							label="This is a label"
-							id="custom-id"
+							label="Label"
+							value={value}
 							onChange={handleChange}
+							id="custom-id"
 						/>
 					`}
 				>
 					<CSInputText
-						label="This is a label"
+						label="Label"
+						value={value.className}
+						onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'className')}
 						className="custom-br-purple"
-						onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'class')}
 					/>
 					<CSInputText
-						label="This is a label"
-						id="custom-id"
+						label="Label"
+						value={value.id}
 						onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleChange(event, 'id')}
+						id="custom-id"
 					/>
 				</CSD.Preview>
 			</CSD.Section>
