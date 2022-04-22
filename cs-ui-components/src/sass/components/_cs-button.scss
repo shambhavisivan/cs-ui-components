@@ -94,6 +94,9 @@
 	}
 	&[disabled] {
 		cursor: default;
+		&:active::before {
+			filter: none;
+		}
 		&:active::after {
 			--cs-button-br: var(--cs-button-default-br);
 		}
