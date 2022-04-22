@@ -76,6 +76,9 @@ const CSCustomDataPreview = () => (
 				tooltip props are omitted due to them being provided by the button.
 				Setting a valid `tooltip` attribute wraps a tooltip around the button.
 			</CSD.Text>
+			<CSD.Text>
+				In this case, unlike CSButton, the default value for `iconSize` is set to `'0.875rem'`.
+			</CSD.Text>
 			<CSD.Preview
 				orientation="vertical"
 				table={CSCustomDataProps}

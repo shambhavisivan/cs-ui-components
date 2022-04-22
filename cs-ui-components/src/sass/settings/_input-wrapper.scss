@@ -2,9 +2,9 @@
 	.cs-input-wrapper {
 		display: flex;
 		align-items: center;
-		padding: 0 0.375rem;
 		transition: border 0.1s linear, background-color 0.1s linear;
 		cursor: text;
+		min-height: 2rem;
 		width: var(--cs-input-width, 100%);
 		border-radius: var(--cs-input-border-radius, 0.25rem);
 		@include sc(--cs-input-c);
@@ -13,6 +13,37 @@
 			border: 1px solid cvar(--cs-input-br);
 		}
 
+		/* LEFT SIDE ICONS */
+		.cs-input-type-indicator-icon {
+			margin-left: 0.25rem;
+
+			&:first-child {
+				margin-left: 0.5rem;
+			}
+		}
+
+		/* RIGHT SIDE ICONS */
+		input ~ .cs-btn,
+		input ~ .cs-tw-error,
+		input ~ .cs-input-type-indicator-icon {
+			margin-left: 0;
+			margin-right: 0.25rem;
+
+			&:last-child {
+				margin-right: 0.5rem;
+			}
+		}
+
+		.cs-custom-data-item {
+			margin-left: 0;
+			margin-right: 0.25rem;
+		}
+
+		input ~ .cs-custom-data-wrapper:last-child .cs-custom-data-item:last-child {
+			margin-right: 0.5rem;
+		}
+
+		/* STATE STYLES */
 		&-focused {
 			outline: 0;
 			@include css4 {
@@ -50,38 +81,6 @@
 			@include sbg(--cs-transparent);
 			@include css4 {
 				border-color: cvar(--cs-transparent);
-			}
-
-			.cs-invisible-input {
-				padding: 0;
-			}
-		}
-
-		.cs-icon + .cs-tooltip-wrapper {
-			margin-left: 0.175rem;
-		}
-
-		.cs-custom-data-wrapper,
-		.cs-tw-error {
-			margin-left: 0.25rem;
-		}
-
-		.cs-custom-data-wrapper {
-			.cs-custom-data-item {
-				&:first-child {
-					margin-left: 0;
-				}
-
-				&:last-child {
-					margin-right: 0;
-				}
-			}
-		}
-
-		.cs-invisible-input {
-			& + .cs-custom-data-wrapper,
-			& + .cs-tw-error {
-				margin-left: 0;
 			}
 		}
 	}

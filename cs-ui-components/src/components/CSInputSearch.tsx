@@ -156,9 +156,9 @@ const CSInputSearch = ({
 
 	const searchIcon =	(
 		<CSIcon
+			className="cs-input-type-indicator-icon"
 			name="search"
 			color="var(--cs-input-icon-fill)"
-			size="0.875rem"
 		/>
 	);
 
@@ -194,19 +194,20 @@ const CSInputSearch = ({
 					title={title}
 					{...rest}
 				/>
-				{iconPosition === 'right' && searchIcon}
 				{value && (
 					<CSButton
 						btnType="transparent"
 						btnStyle="brand"
 						iconColor="var(--cs-input-clear)"
 						iconName="close"
+						iconSize="0.875rem"
 						labelHidden
 						label="clear"
 						onClick={handleClearSearch}
-						size="small"
+						size="xsmall"
 					/>
 				)}
+				{iconPosition === 'right' && searchIcon}
 				{renderErrorTooltip()}
 			</div>
 			{renderErrorMessage()}

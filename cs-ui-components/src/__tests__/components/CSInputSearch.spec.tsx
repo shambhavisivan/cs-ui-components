@@ -99,7 +99,7 @@ describe('<CSInputSearch />', () => {
 
 	it('should right-position the search icon', () => {
 		const uut = shallow(<CSInputSearch label={label} iconPosition="right" />);
-		const inputSearch = uut.find('.cs-input-search + CSIcon');
+		const inputSearch = uut.find('.cs-input-search ~ CSIcon');
 		expect(inputSearch).toHaveLength(1);
 	});
 

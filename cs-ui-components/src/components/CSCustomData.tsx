@@ -58,7 +58,7 @@ const CSCustomData = ({
 
 	const renderAction = (action: CSCustomDataAction, actionIndex?: number) => {
 		const { tooltip, ...actionRest } = action;
-		let returnAction = <CSButton {...actionRest} />;
+		let returnAction = <CSButton iconSize="0.875rem" {...actionRest} />;
 
 		if (tooltip) {
 			const { content, ...tooltipRest } = tooltip;
