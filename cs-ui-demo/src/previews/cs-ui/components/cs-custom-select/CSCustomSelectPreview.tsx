@@ -374,6 +374,7 @@ const CSCustomSelectPreview = () => {
 				<CSD.List type="props">
 					<CSD.ListItem>onBlur</CSD.ListItem>
 					<CSD.ListItem>onClick</CSD.ListItem>
+					<CSD.ListItem>onFocus</CSD.ListItem>
 					<CSD.ListItem>onKeyDown</CSD.ListItem>
 					<CSD.ListItem>onDropdownClose</CSD.ListItem>
 					<CSD.ListItem>onClear</CSD.ListItem>
@@ -382,7 +383,7 @@ const CSCustomSelectPreview = () => {
 					These events work largely in a same way where they pass a function which executes after certain
 					criteria is met.
 				</CSD.Text>
-				<CSD.Text>CSCustomSelect supports these native events: `onBlur`, `onClick` and `onKeyDown`.</CSD.Text>
+				<CSD.Text>CSCustomSelect supports these native events: `onBlur`, `onClick`, `onFocus` and `onKeyDown`.</CSD.Text>
 				<CSD.Text>
 					Besides those, two synthetic events are exposed: `onDropdownClose`, which triggers once the dropdown
 					collapses, and `onClear` which triggers when the clear button is clicked if there is no search term.
@@ -404,6 +405,7 @@ const CSCustomSelectPreview = () => {
 						'onBlur',
 						'onClick',
 						'onDropdownClose',
+						'onFocus',
 						'onKeyDown',
 						'onClear'
 					]}
@@ -421,6 +423,13 @@ const CSCustomSelectPreview = () => {
 							onSelect={handleSelect}
 							selectedKeys={selectedKeys}
 							onClick={console.log}
+						/>
+						<CSCustomSelect
+							options={options}
+							label="Custom Select with onFocus"
+							onSelect={handleSelect}
+							selectedKeys={selectedKeys}
+							onFocus={console.log}
 						/>
 						<CSCustomSelect
 							options={options}
@@ -459,6 +468,13 @@ const CSCustomSelectPreview = () => {
 						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'onClickKeys')}
 						selectedKeys={selectedKeys.onClickKeys}
 						onClick={console.log}
+					/>
+					<CSCustomSelect
+						options={options}
+						label="Custom Select with onFocus"
+						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'onFocusKeys')}
+						selectedKeys={selectedKeys.onFocusKeys}
+						onFocus={console.log}
 					/>
 					<CSCustomSelect
 						options={options}

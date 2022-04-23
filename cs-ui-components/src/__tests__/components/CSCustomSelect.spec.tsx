@@ -22,7 +22,7 @@ const errorText = 'Error message';
 describe('<CSCustomSelect />', () => {
 	it('should render the default CSCustomSelect', () => {
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} />).dive();
-		uut.find('input').simulate('click');
+		uut.find('.cs-custom-select-input-wrapper').simulate('click');
 		// Should render custom select
 		const customSelect = uut.find('.cs-custom-select-input');
 		expect(customSelect).toHaveLength(1);
@@ -36,7 +36,7 @@ describe('<CSCustomSelect />', () => {
 		expect(autoposition.prop('initialPosition')).toContain('bottom');
 		// disabled
 		const customSelectInputWrapper = uut.find('.cs-custom-select-input-wrapper');
-		expect(customSelectInputWrapper.find('.cs-custom-select-input-wrapper-disabled')).toHaveLength(0);
+		expect(customSelectInputWrapper.find('.cs-input-wrapper-disabled')).toHaveLength(0);
 		// errorMessage
 		const fieldErrorMessage = uut.find('CSFieldErrorMsg');
 		expect(fieldErrorMessage).toHaveLength(0);
@@ -46,8 +46,8 @@ describe('<CSCustomSelect />', () => {
 		// readOnly
 		const readonlySelect = uut.find('.cs-custom-select-input-wrapper.cs-custom-select-read-only');
 		expect(readonlySelect).toHaveLength(0);
-		expect(customSelect.find('input').prop('aria-readonly')).toBeFalsy();
-		expect(uut.find('.cs-custom-select-input > input').props().readOnly).toBeFalsy();
+		expect(customSelect.find('.cs-custom-select-input').prop('aria-readonly')).toBeFalsy();
+		expect(uut.find('.cs-custom-select-input').props().readOnly).toBeFalsy();
 		// hidden
 		expect(customSelectWrapper.find('.cs-element-hidden')).toHaveLength(0);
 		// selection
@@ -76,7 +76,7 @@ describe('<CSCustomSelect />', () => {
 
 	it('should pass an array of option objects to CSCustomSelectOption', () => {
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} />).dive();
-		const customSelectInput = uut.find('.cs-custom-select-input > input');
+		const customSelectInput = uut.find('.cs-custom-select-input');
 		customSelectInput.simulate('click');
 		uut.find('CSCustomSelectOption').forEach((customSelectOption, optionIndex) => {
 			expect(customSelectOption.prop('option')).toMatchObject(options[optionIndex]);
@@ -85,13 +85,13 @@ describe('<CSCustomSelect />', () => {
 
 	it('should pass initialPosition right to CSAutoposition', () => {
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} align="left" />).dive();
-		uut.find('input').simulate('click');
+		uut.find('.cs-custom-select-input-wrapper').simulate('click');
 		expect(uut.find('CSAutoposition').prop('initialPosition')).toContain('right');
 	});
 
 	it('should pass initialPosition left to CSAutoposition', () => {
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} align="right" />).dive();
-		uut.find('input').simulate('click');
+		uut.find('.cs-custom-select-input-wrapper').simulate('click');
 		expect(uut.find('CSAutoposition').prop('initialPosition')).toContain('left');
 	});
 
@@ -99,7 +99,7 @@ describe('<CSCustomSelect />', () => {
 		const borderRadiusSize = '1rem';
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} borderRadius={borderRadiusSize} />).dive();
 		const customSelectStyle = uut.find('.cs-custom-select-input-wrapper').props().style;
-		expect(customSelectStyle).toHaveProperty('--cs-custom-select-border-radius', borderRadiusSize);
+		expect(customSelectStyle).toHaveProperty('--cs-input-border-radius', borderRadiusSize);
 	});
 
 	it('should not show a clear options button', () => {
@@ -109,13 +109,13 @@ describe('<CSCustomSelect />', () => {
 
 	it('should show a clear options button', () => {
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} selectedKeys={0} clearable />).dive();
-		expect(uut.find('CSButton.cs-custom-select-clear')).toHaveLength(1);
+		expect(uut.find('.cs-custom-select-clear-btn')).toHaveLength(1);
 	});
 
 	it('should set disabled attribute', () => {
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} disabled />).dive();
-		expect(uut.find('.cs-custom-select-input-wrapper-disabled')).toHaveLength(1);
-		expect(uut.find('.cs-custom-select-input > input').props().disabled).toEqual(true);
+		expect(uut.find('.cs-input-wrapper-disabled')).toHaveLength(1);
+		expect(uut.find('.cs-custom-select-input').props().disabled).toEqual(true);
 	});
 
 	it('should pass action objects to CSCustomSelectDropdownAction', () => {
@@ -139,7 +139,7 @@ describe('<CSCustomSelect />', () => {
 				dropdownActions={dropdownActions}
 			/>,
 		).dive();
-		const customSelectInput = uut.find('.cs-custom-select-input > input');
+		const customSelectInput = uut.find('.cs-custom-select-input-wrapper');
 		customSelectInput.simulate('click');
 		uut.find('.cs-autoposition CSCustomSelectDropdownAction').forEach((customSelectAction, actionIndex) => {
 			expect(customSelectAction.prop('action')).toMatchObject(dropdownActions[actionIndex]);
@@ -149,18 +149,25 @@ describe('<CSCustomSelect />', () => {
 
 	it('should render an error custom select', () => {
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} error />).dive();
-		const input = uut.find('input');
+		const input = uut.find('.cs-custom-select-input');
 		const inputAriaInvalid = input.prop('aria-invalid');
 		expect(inputAriaInvalid).toBeTruthy();
-		expect(uut.find('.cs-custom-select-input-wrapper-error')).toHaveLength(1);
+		expect(uut.find('.cs-input-wrapper-error')).toHaveLength(1);
 	});
 
-	it('should render an error message from string', () => {
-		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} error errorMessage={errorText} />).dive();
+	it('should pass errorMessage to CSFieldErrorMsg message', () => {
+		const uut = shallow(
+			<CSCustomSelect
+				label={customSelectTextLabel}
+				options={options}
+				error
+				errorMessage={errorText}
+			/>,
+		).dive();
 		expect(uut.find('CSFieldErrorMsg').prop('message')).toBe(errorText);
 	});
 
-	it('should pass errorMessage to CSTooltip', () => {
+	it('should pass errorMessage to CSTooltip content', () => {
 		const uut = shallow(
 			<CSCustomSelect
 				label={customSelectTextLabel}
@@ -170,13 +177,12 @@ describe('<CSCustomSelect />', () => {
 				errorTooltip
 			/>,
 		).dive();
-		expect(uut.find('CSFieldErrorMsg').prop('message')).toBe(errorText);
-		expect(uut.find('CSFieldErrorMsg').dive().find('CSTooltip').prop('content')).toBe(errorText);
+		expect(uut.find('CSTooltip').prop('content')).toBe(errorText);
 	});
 
 	it('should render gridCustomPopup class', () => {
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} gridCustomPopup />).dive();
-		const customSelectInput = uut.find('.cs-custom-select-input > input');
+		const customSelectInput = uut.find('.cs-custom-select-input-wrapper');
 		customSelectInput.simulate('click');
 		expect(uut.find('.cs-custom-select-dropdown-wrapper.ag-custom-component-popup')).toHaveLength(1);
 	});
@@ -226,8 +232,8 @@ describe('<CSCustomSelect />', () => {
 	it('should return multiple elements from selected keys with correct values', () => {
 		const keys = [0, 2, 3];
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} multiselect selectedKeys={keys} />).dive();
-		expect(uut.find('.cs-custom-select-input-wrapper-multiselect')).toHaveLength(1);
-		const customSelectMultiselectInput = uut.find('.cs-custom-select-input input');
+		expect(uut.find('.cs-custom-select-multiselect')).toHaveLength(1);
+		const customSelectMultiselectInput = uut.find('.cs-custom-select-input');
 		expect(customSelectMultiselectInput.prop('aria-multiselectable')).toBeTruthy();
 	});
 
@@ -256,7 +262,7 @@ describe('<CSCustomSelect />', () => {
 				onBlur={handleBlurMock}
 			/>,
 		).dive();
-		const input = uut.find('input');
+		const input = uut.find('.cs-custom-select-input');
 		input.simulate('blur');
 		expect(handleBlurMock).toHaveBeenCalledTimes(1);
 	});
@@ -270,7 +276,7 @@ describe('<CSCustomSelect />', () => {
 				onClick={handleClickMock}
 			/>,
 		).dive();
-		const input = uut.find('input');
+		const input = uut.find('.cs-custom-select-input-wrapper');
 		input.simulate('click');
 		expect(handleClickMock).toHaveBeenCalledTimes(1);
 	});
@@ -287,7 +293,7 @@ describe('<CSCustomSelect />', () => {
 				selectedKeys={keys}
 			/>,
 		).dive();
-		const button = uut.find('.cs-custom-select-items > .cs-custom-select-option > CSButton').at(0);
+		const button = uut.find('.cs-custom-select-items > .cs-custom-select-multiselect-item CSButton').at(0);
 		button.simulate('click', { preventDefault: () => { } });
 		expect(handleDeselect).toHaveBeenCalledTimes(1);
 	});
@@ -304,7 +310,7 @@ describe('<CSCustomSelect />', () => {
 				selectedKeys={keys}
 			/>,
 		).dive();
-		const button = uut.find('.cs-custom-select-items > .cs-custom-select-option > CSButton').at(0);
+		const button = uut.find('.cs-custom-select-items > .cs-custom-select-multiselect-item CSButton').at(0);
 		button.simulate('keydown', { key: 'Enter', preventDefault: () => { } });
 		expect(handleDeselect).toHaveBeenCalledTimes(1);
 	});
@@ -316,10 +322,24 @@ describe('<CSCustomSelect />', () => {
 			options={options}
 			onDropdownClose={handleDropdownCloseMock}
 		/>).dive();
-		const input = uut.find('input');
+		const input = uut.find('.cs-custom-select-input');
 		input.simulate('click');
 		input.simulate('keydown', { key: 'Tab' });
 		expect(handleDropdownCloseMock).toHaveBeenCalledTimes(1);
+	});
+
+	it('should use a working onFocus callback', () => {
+		const handleFocus = jest.fn();
+		const uut = shallow(
+			<CSCustomSelect
+				label={customSelectTextLabel}
+				options={options}
+				onFocus={handleFocus}
+			/>,
+		).dive();
+		const input = uut.find('.cs-custom-select-input');
+		input.simulate('focus');
+		expect(handleFocus).toHaveBeenCalledTimes(1);
 	});
 
 	it('should use a working onKeyDown callback', () => {
@@ -331,7 +351,7 @@ describe('<CSCustomSelect />', () => {
 				onKeyDown={handleKeyDownMock}
 			/>,
 		).dive();
-		const input = uut.find('input');
+		const input = uut.find('.cs-custom-select-input');
 		input.simulate('keydown', {} as any);
 		expect(handleKeyDownMock).toHaveBeenCalledTimes(1);
 	});
@@ -339,41 +359,41 @@ describe('<CSCustomSelect />', () => {
 	it('should use a working onSearch callback', () => {
 		const handleSearchMock = jest.fn();
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} onSearch={handleSearchMock} />).dive();
-		uut.find('input').simulate('change', { target: { value: 'test' } });
+		uut.find('.cs-custom-select-input').simulate('change', { target: { value: 'test' } });
 		expect(handleSearchMock).toHaveBeenCalledTimes(1);
 	});
 
 	it('should set placeholder', () => {
 		const placeholderText = 'Enter text';
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} placeholder={placeholderText} />).dive();
-		expect(uut.find('.cs-custom-select-input > input').prop('placeholder')).toBe(placeholderText);
+		expect(uut.find('.cs-custom-select-input').prop('placeholder')).toBe(placeholderText);
 	});
 
 	it('should set readOnly attribute', () => {
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} readOnly />).dive();
-		const customSelectInput = uut.find('.cs-custom-select-input-wrapper.cs-custom-select-input-wrapper-read-only');
-		expect(customSelectInput.find('.cs-custom-select-input input').prop('aria-readonly')).toBeTruthy();
-		expect(customSelectInput.find('.cs-custom-select-input input').props().readOnly).toBeTruthy();
+		const customSelectInput = uut.find('.cs-custom-select-input-wrapper.cs-input-wrapper-read-only');
+		expect(customSelectInput.find('.cs-custom-select-input').prop('aria-readonly')).toBeTruthy();
+		expect(customSelectInput.find('.cs-custom-select-input').props().readOnly).toBeTruthy();
 		expect(customSelectInput).toHaveLength(1);
 	});
 
 	it('should apply position bottom', () => {
 		const bottom = 'bottom';
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} position={bottom} />).dive();
-		uut.find('input').simulate('click');
+		uut.find('.cs-custom-select-input-wrapper').simulate('click');
 		expect(uut.find('CSAutoposition').prop('initialPosition')).toContain(bottom);
 	});
 
 	it('should apply position top', () => {
 		const top = 'top';
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} position={top} />).dive();
-		uut.find('input').simulate('click');
+		uut.find('.cs-custom-select-input-wrapper').simulate('click');
 		expect(uut.find('CSAutoposition').prop('initialPosition')).toContain(top);
 	});
 
 	it('should set required attribute', () => {
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} required />).dive();
-		expect(uut.find('.cs-custom-select-input > input').props().required).toEqual(true);
+		expect(uut.find('.cs-custom-select-input').props().required).toEqual(true);
 	});
 
 	it('should return one element from selected keys with correct value', () => {
@@ -391,7 +411,7 @@ describe('<CSCustomSelect />', () => {
 
 	it('should set title attribute', () => {
 		const uut = shallow(<CSCustomSelect label={customSelectTextLabel} options={options} title="title" />).dive();
-		const customSelectInput = uut.find('.cs-custom-select-input > input');
+		const customSelectInput = uut.find('.cs-custom-select-input');
 		expect(customSelectInput.props().title).toBe('title');
 	});
 

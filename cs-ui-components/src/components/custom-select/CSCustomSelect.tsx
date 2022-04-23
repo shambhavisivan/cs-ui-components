@@ -11,7 +11,7 @@ import CSCustomSelectOption from './CSCustomSelectOption';
 import CSCustomSelectDropdownAction from './CSCustomSelectDropdownAction';
 import CSButton, { CSButtonProps } from '../CSButton';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from '../CSFieldErrorMsg';
-import { CSTooltipPosition } from '../CSTooltip';
+import CSTooltip, { CSTooltipPosition } from '../CSTooltip';
 import CSCustomData, { CSCustomDataAction, CSCustomDataIcon } from '../CSCustomData';
 
 export type CSCustomSelectDropdownAlignType = 'left' | 'right';
@@ -49,6 +49,7 @@ export interface CSCustomSelectProps {
 	onClick?: (event: React.MouseEvent<HTMLInputElement>) => void;
 	onDeselect?: (option: CSCustomSelectOptionInterface) => void;
 	onDropdownClose?: () => void;
+	onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
 	onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 	onSearch?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	onSelect?: (option: CSCustomSelectOptionInterface) => void;
@@ -91,6 +92,7 @@ const CSCustomSelect = ({
 	onClick,
 	onDeselect,
 	onDropdownClose,
+	onFocus,
 	onKeyDown,
 	onSearch,
 	onSelect,
@@ -112,6 +114,7 @@ const CSCustomSelect = ({
 
 	const [searchTerm, setSearchTerm] = useState('');
 	const [dropdownVisible, setDropdownVisible] = useState(false);
+	const [focused, setFocused] = useState<boolean>(false);
 
 	const selectedKeysArray = Array.isArray(selectedKeys) ? selectedKeys : [selectedKeys];
 
@@ -135,32 +138,46 @@ const CSCustomSelect = ({
 		return () => document.removeEventListener('click', handleOutsideClick);
 	}, [customSelectInputWrapperRef, customSelectDropdownRef, closeDropdown]);
 
+	const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+		onBlur?.(event);
+		setFocused(false);
+	};
+
+	const handleClick = (event: React.MouseEvent<HTMLInputElement>) => {
+		if (readOnly) return;
+		setDropdownVisible(true);
+		onClick?.(event);
+		customSelectInputRef.current?.focus();
+	};
+
+	const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+		if (focused) event.preventDefault();
+	};
+
 	const customSelectWrapperClasses = classNames(
 		'cs-custom-select-wrapper',
 		{
+			'cs-custom-select-multiselect': multiselect && !showCompactMultiselect,
+			'cs-custom-select-dropdown-visible': dropdownVisible,
 			'cs-element-hidden': hidden,
-			'cs-custom-select-wrapper-read-only': readOnly,
 			[className]: className,
-			'cs-custom-select-wrapper-options': actions || icons,
 		},
 	);
 
-	const customSelectInputWrapperClasses = classNames(
+	const inputWrapperClasses = classNames(
 		'cs-custom-select-input-wrapper',
+		'cs-input-wrapper',
 		{
-			'cs-custom-select-input-wrapper-disabled': disabled,
-			'cs-custom-select-input-wrapper-read-only': readOnly,
-			'cs-custom-select-input-wrapper-error': error,
-			'cs-custom-select-input-wrapper-multiselect': multiselect,
-			'cs-custom-select-dropdown-visible': dropdownVisible,
+			'cs-input-wrapper-error': error,
+			'cs-input-wrapper-disabled': disabled,
+			'cs-input-wrapper-focused': focused,
+			'cs-input-wrapper-read-only': readOnly,
 		},
 	);
 
 	const customSelectInputClasses = classNames(
 		'cs-custom-select-input',
-		{
-			'cs-custom-select-input-error-tooltip': errorTooltip,
-		},
+		'cs-invisible-input',
 	);
 
 	const customSelectDropdownClasses = classNames(
@@ -170,23 +187,9 @@ const CSCustomSelect = ({
 		},
 	);
 
-	const selectedListItemClasses = classNames(
-		'cs-custom-select-value',
-		{
-			'cs-custom-select-dropdown-visible': dropdownVisible,
-		},
-	);
-
 	const style: CSSProperties = {
-		'--cs-custom-select-border-radius': borderRadius,
+		'--cs-input-border-radius': borderRadius,
 	};
-
-	const customSelectClearClasses = classNames(
-		'cs-custom-select-clear',
-		{
-			'cs-custom-select-clear-options': actions || icons,
-		},
-	);
 
 	const renderLabel = () => {
 		if (!label || labelHidden) return null;
@@ -212,41 +215,40 @@ const CSCustomSelect = ({
 			if (!selectedOption) return null;
 
 			return (
-				<li key={selectedOption.key} className="cs-custom-select-option cs-custom-select-item-multiselect">
-					<span className="cs-custom-select-option-value">
+				<div key={selectedOption.key} className="cs-custom-select-multiselect-item">
+					<span className="cs-custom-select-multiselect-item-value">
 						{selectedOption.label}
 					</span>
-					{!readOnly
-						? (
-							<CSButton
-								size="xsmall"
-								btnType="transparent"
-								iconColor="var(--cs-option-ms-item-selected-delete)"
-								iconName="close"
-								iconSize="0.75rem"
-								ariaLabel={`Deselect ${selectedOption.label}`}
-								label="Deselect item"
-								labelHidden
-								onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+					{!readOnly && (
+						<CSButton
+							size="xsmall"
+							btnType="transparent"
+							iconColor="var(--cs-option-ms-item-selected-delete)"
+							iconName="close"
+							iconSize="0.75rem"
+							ariaLabel={`Deselect ${selectedOption.label}`}
+							label="Deselect item"
+							labelHidden
+							onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+								event.preventDefault();
+								onDeselect?.(selectedOption);
+							}}
+							onKeyDown={(event: React.KeyboardEvent<HTMLButtonElement>) => {
+								if (event.key === KeyCode.Enter) {
 									event.preventDefault();
 									onDeselect?.(selectedOption);
-								}}
-								onKeyDown={(event: React.KeyboardEvent<HTMLButtonElement>) => {
-									if (event.key === KeyCode.Enter) {
-										event.preventDefault();
-										onDeselect?.(selectedOption);
-										customSelectInputRef.current?.focus();
-									}
-								}}
-							/>
-						) : null}
-				</li>
+									customSelectInputRef.current?.focus();
+								}
+							}}
+						/>
+					)}
+				</div>
 			);
 		});
 	};
 
 	const renderSelectedOptions = () => {
-		if (multiselect && !showCompactMultiselect) return null;
+		if ((multiselect && !showCompactMultiselect) || searchTerm) return null;
 
 		return (
 			<span className="cs-custom-select-value-wrapper">
@@ -256,7 +258,7 @@ const CSCustomSelect = ({
 					if (!selectedOption || (searchTerm && !showCompactMultiselect)) return null;
 
 					return (
-						<span key={selectedOption.key} className={selectedListItemClasses}>
+						<span key={selectedOption.key} className="cs-custom-select-value">
 							{selectedKeyIndex ? ', ' : null}
 							{selectedOption.label}
 						</span>
@@ -286,13 +288,13 @@ const CSCustomSelect = ({
 			onSearch?.(event);
 		};
 
-		const handleClick = (event: React.MouseEvent<HTMLInputElement>) => {
-			if (readOnly) return;
-			setDropdownVisible(true);
-			onClick?.(event);
+		const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+			if (!readOnly) {
+				setDropdownVisible(true);
+				setFocused(true);
+			}
+			onFocus?.(event);
 		};
-
-		const handleFocus = () => (!readOnly ? setDropdownVisible(true) : null);
 
 		const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
 			if (readOnly) return;
@@ -322,37 +324,35 @@ const CSCustomSelect = ({
 		};
 
 		return (
-			<ul className="cs-custom-select-items">
+			<div className="cs-custom-select-items">
 				{renderSelectedOptions()}
 				{renderMultiselectOptions()}
-				<div className={customSelectInputClasses}>
-					{renderBlinkingCursor()}
-					<input
-						ref={customSelectInputRef}
-						value={searchTerm}
-						type="text"
-						onChange={handleChange}
-						id={uniqueId}
-						required={required}
-						disabled={disabled}
-						readOnly={readOnly}
-						role="listbox"
-						aria-invalid={error}
-						aria-expanded={dropdownVisible}
-						aria-multiselectable={multiselect}
-						aria-readonly={readOnly}
-						aria-required={required}
-						title={title}
-						autoComplete="off"
-						placeholder={!selectedKeysArray.length ? placeholder : ''}
-						onClick={handleClick}
-						onFocus={handleFocus}
-						onBlur={onBlur}
-						onKeyDown={handleKeyDown}
-						{...rest}
-					/>
-				</div>
-			</ul>
+				{renderBlinkingCursor()}
+				<input
+					className={customSelectInputClasses}
+					ref={customSelectInputRef}
+					value={searchTerm}
+					type="text"
+					onChange={handleChange}
+					id={uniqueId}
+					required={required}
+					disabled={disabled}
+					readOnly={readOnly}
+					role="listbox"
+					aria-invalid={error}
+					aria-expanded={dropdownVisible}
+					aria-multiselectable={multiselect}
+					aria-readonly={readOnly}
+					aria-required={required}
+					title={title}
+					autoComplete="off"
+					placeholder={!selectedKeysArray.length ? placeholder : ''}
+					onFocus={handleFocus}
+					onBlur={handleBlur}
+					onKeyDown={handleKeyDown}
+					{...rest}
+				/>
+			</div>
 		);
 	};
 
@@ -382,14 +382,14 @@ const CSCustomSelect = ({
 			<CSButton
 				btnType="transparent"
 				btnStyle="brand"
-				className={customSelectClearClasses}
-				iconColor="var(--cs-input-clear)"
+				className="cs-custom-select-clear-btn"
 				iconName="close"
+				iconColor="var(--cs-input-clear)"
+				size="xsmall"
 				label="clear"
 				labelHidden
 				onKeyDown={handleClearKeyDown}
 				onClick={handleClearClick}
-				size="xsmall"
 			/>
 		);
 	};
@@ -399,9 +399,9 @@ const CSCustomSelect = ({
 
 		return (
 			<CSIcon
+				className="cs-input-type-indicator-icon"
 				name="down"
 				rotate={dropdownVisible ? 180 : null}
-				className="cs-custom-select-dropdown-icon"
 			/>
 		);
 	};
@@ -462,27 +462,36 @@ const CSCustomSelect = ({
 		);
 	};
 
+	const renderErrorMessage = () => {
+		if (!error || !errorMessage || errorTooltip) return null;
+
+		return <CSFieldErrorMsg message={errorMessage} />;
+	};
+
+	const renderErrorTooltip = () => {
+		if (!error || !errorTooltip) return null;
+
+		return <CSTooltip variant="error" content={errorMessage} />;
+	};
+
 	return (
-		<div id={id} className={customSelectWrapperClasses}>
+		<div className={customSelectWrapperClasses} id={id}>
 			{renderLabel()}
 			{/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
 			<div
+				className={inputWrapperClasses}
+				onClick={handleClick}
+				onMouseDown={handleMouseDown}
 				ref={customSelectInputWrapperRef}
-				className={customSelectInputWrapperClasses}
 				style={style}
-				onClick={() => customSelectInputRef.current.focus()}
 			>
 				{renderCustomSelectInput()}
 				{renderClearButton()}
-				{error && errorTooltip && errorMessage && (
-					<CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />
-				)}
 				<CSCustomData actions={actions} icons={icons} />
+				{renderErrorTooltip()}
 				{renderDropdownIcon()}
 			</div>
-			{!errorTooltip && error && errorMessage && (
-				<CSFieldErrorMsg message={errorMessage} />
-			)}
+			{renderErrorMessage()}
 			{renderOptions()}
 		</div>
 	);

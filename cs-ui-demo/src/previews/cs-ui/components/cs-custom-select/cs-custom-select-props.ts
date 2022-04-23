@@ -141,6 +141,11 @@ export default {
 			types: '() => void',
 			description: 'Handler method when custom select dropdown closes.'
 		}, {
+			name: 'onFocus',
+			link: '/cs-ui/custom-select#event-handling',
+			types: '(event) => void',
+			description: 'Handler method for the focus event.'
+		}, {
 			name: 'onKeyDown',
 			link: '/cs-ui/custom-select#event-handling',
 			types: '(event) => void',

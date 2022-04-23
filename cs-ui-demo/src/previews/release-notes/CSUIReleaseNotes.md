@@ -40,6 +40,7 @@
   * added `errorTooltip` support
   * added `onDropdownClose` prop
   * added `actions` and `icons` support
+  * added `onFocus` prop
   * added `onBlur` prop
   * added `clearable` prop
   * changed `onDropdownClose` prop to execute when dropdown open and enter key pressed
