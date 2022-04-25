@@ -622,9 +622,10 @@ const CSFormStandardFormFieldsPreview = () => {
 			</CSD.Section>
 			<CSD.Section>
 				<CSD.Heading level={2}>Number</CSD.Heading>
-				<CSD.Text>Number field specific properties are `max`, `min` and `useLocale`.</CSD.Text>
-				<CSD.Text>Details about `min` and `max` properties can be found below:</CSD.Text>
+				<CSD.Text>Number field specific properties are `fractionDigits`,`max`, `min` and `useLocale`.</CSD.Text>
+				<CSD.Text>Details about `fractionDigits`, `min`, `max` properties can be found below:</CSD.Text>
 				<CSD.List>
+					<CSD.ListItem><CSD.Link path={`${numberPath}-fractionDigits`}>fractionDigits</CSD.Link></CSD.ListItem>
 					<CSD.ListItem><CSD.Link path={`${numberPath}-max`}>max</CSD.Link></CSD.ListItem>
 					<CSD.ListItem><CSD.Link path={`${numberPath}-min`}>min</CSD.Link></CSD.ListItem>
 				</CSD.List>

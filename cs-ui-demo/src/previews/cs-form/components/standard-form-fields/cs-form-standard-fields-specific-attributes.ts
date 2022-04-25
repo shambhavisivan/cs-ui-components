@@ -231,6 +231,11 @@ export const CSFormNumberFieldAttributes = {
 	type: 'attributes',
 	data: [
 		{
+			name: 'fractionDigits',
+			link: '/cs-form/standard-form-fields#number',
+			types: 'number',
+			description: 'The number of digits to appear after the decimal point. Locale format settings will override fractionDigits value.'
+		}, {
 			name: 'max',
 			link: '/cs-form/standard-form-fields#number',
 			types: 'any',

@@ -88,6 +88,20 @@ describe('CSFormNumberField', () => {
 		expect(inputNumber.prop('errorMessage')).toBe(errorMessage);
 	});
 
+	it('should pass correct fractionDigits value to CSInputNumber', () => {
+		const fractionDigits = 2;
+		const uut = shallow(
+			<CSFormNumberField
+				type={type}
+				label={label}
+				name={name}
+				fractionDigits={fractionDigits}
+			/>,
+		);
+		const inputNumber = uut.find(CSInputNumber);
+		expect(inputNumber.prop('fractionDigits')).toBe(fractionDigits);
+	});
+
 	it('should pass correct help text to CSInputNumber', () => {
 		const helpText = 'Help text.';
 		const uut = shallow(

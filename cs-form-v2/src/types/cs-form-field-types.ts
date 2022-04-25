@@ -187,6 +187,7 @@ export type CSFormLookupFieldProps = CSFormLookupFieldCommonProps & CSFormFieldC
 /** NUMBER FIELD */
 export interface CSFormNumberFieldProps extends CSFormFieldCommonProps {
 	type: 'NUMBER';
+	fractionDigits?: number;
 	locale?: any;
 	max?: any;
 	min?: any;
