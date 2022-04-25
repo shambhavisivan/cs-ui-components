@@ -4,11 +4,11 @@ import { CSFormFieldCommonProps, CSFormFieldProps, CSFormStandardFields } from '
 import CSFormCheckboxField from './form-fields/CSFormCheckboxField';
 import CSFormCustomField from './form-fields/CSFormCustomField';
 import CSFormCustomModalField from './form-fields/CSFormCustomModalField';
-import CSFormCustomSelectField from './form-fields/CSFormCustomSelectField';
 import CSFormDateField from './form-fields/CSFormDateField';
 import CSFormDateTimeField from './form-fields/CSFormDateTimeField';
 import CSFormLookupField from './form-fields/CSFormLookupField';
 import CSFormNumberField from './form-fields/CSFormNumberField';
+import CSFormPicklistField from './form-fields/CSFormPicklistField';
 import CSFormRadioField from './form-fields/CSFormRadioField';
 import CSFormTextField from './form-fields/CSFormTextField';
 import CSFormTextareaField from './form-fields/CSFormTextareaField';
@@ -31,6 +31,8 @@ const CSFormField = ({
 	const formFieldGrow = grow * formFieldWidth;
 
 	const fieldReadOnly = { readOnly: mode === 'read-only' || (rest as CSFormFieldCommonProps).readOnly };
+
+	// Can be removed once the same logic is added to CSInputNumber, CSTextarea and CSInputText
 	const fieldValue = { value: (rest as CSFormStandardFields).value ?? '' };
 
 	const renderFormField = () => {
@@ -39,8 +41,6 @@ const CSFormField = ({
 			return <CSFormCustomField {...rest} />;
 		case 'CUSTOM-MODAL':
 			return <CSFormCustomModalField {...rest} />;
-		case 'CUSTOM-SELECT':
-			return <CSFormCustomSelectField {...rest} {...fieldReadOnly} />;
 		case 'CHECKBOX':
 			return <CSFormCheckboxField {...rest} {...fieldReadOnly} />;
 		case 'DATE':
@@ -51,6 +51,8 @@ const CSFormField = ({
 			return <CSFormLookupField {...rest} {...fieldReadOnly} />;
 		case 'NUMBER':
 			return <CSFormNumberField locale={rest.useLocale && locale?.numberLocale} {...rest} {...fieldReadOnly} {...fieldValue} />;
+		case 'PICKLIST':
+			return <CSFormPicklistField {...rest} {...fieldReadOnly} />;
 		case 'RADIO':
 			return <CSFormRadioField {...rest} />;
 		case 'TEXTAREA':

@@ -1,8 +1,8 @@
 import React from 'react';
 import { CSCustomSelect, CSCustomSelectOptionInterface } from '@cloudsense/cs-ui-components';
-import { CSFormCustomSelectFieldProps } from '../types/cs-form-field-types';
+import { CSFormPicklistFieldProps } from '../types/cs-form-field-types';
 
-const CSFormCustomSelectField = ({
+const CSFormPicklistField = ({
 	type,
 	onBlur,
 	onChange,
@@ -10,7 +10,7 @@ const CSFormCustomSelectField = ({
 	styleClass,
 	value,
 	...props
-}: CSFormCustomSelectFieldProps) => (
+}: CSFormPicklistFieldProps) => (
 	<CSCustomSelect
 		onSelect={(option: CSCustomSelectOptionInterface) => onChange(option.key)}
 		onDeselect={(option: CSCustomSelectOptionInterface) => onChange(option.key)}
@@ -25,4 +25,4 @@ const CSFormCustomSelectField = ({
 	/>
 );
 
-export default CSFormCustomSelectField;
+export default CSFormPicklistField;

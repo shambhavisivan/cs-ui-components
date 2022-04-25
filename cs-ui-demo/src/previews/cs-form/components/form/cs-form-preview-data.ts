@@ -190,9 +190,9 @@ export const readOnlyData: CSFormData = [
 			fieldToBeDisplayed: 'Account',
 			value: { key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } }
 		}, {
-			type: 'CUSTOM-SELECT',
-			label: 'Custom select field',
-			name: 'custom-select-2',
+			type: 'PICKLIST',
+			label: 'Picklist field',
+			name: 'picklist-2',
 			options: [
 				{ key: 0, label: 'Product' },
 				{ key: 1, label: 'Services' },
@@ -306,9 +306,9 @@ export const standardDataTest: CSFormData = [
 			fieldToBeDisplayed: 'Account',
 			value: { key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } }
 		}, {
-			type: 'CUSTOM-SELECT',
-			label: 'Custom select field',
-			name: 'custom-select-2',
+			type: 'PICKLIST',
+			label: 'Picklist field',
+			name: 'picklist-2',
 			options: [
 				{ key: 0, label: 'Product' },
 				{ key: 1, label: 'Services' },
@@ -399,9 +399,9 @@ export const readOnlyDataTest: CSFormData = [
 			fieldToBeDisplayed: 'Account',
 			value: { key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } }
 		}, {
-			type: 'CUSTOM-SELECT',
-			label: 'Custom select field',
-			name: 'custom-select-2',
+			type: 'PICKLIST',
+			label: 'Picklist field',
+			name: 'picklist-2',
 			options: [
 				{ key: 0, label: 'Product' },
 				{ key: 1, label: 'Services' },
@@ -504,9 +504,9 @@ export const disabledDataTest: CSFormData = [
 			value: { key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
 			disabled: true
 		}, {
-			type: 'CUSTOM-SELECT',
-			label: 'Custom select field',
-			name: 'custom-select-2',
+			type: 'PICKLIST',
+			label: 'Picklist field',
+			name: 'picklist-2',
 			options: [
 				{ key: 0, label: 'Product' },
 				{ key: 1, label: 'Services' },
@@ -610,9 +610,9 @@ export const disabled2DataTest: CSFormData = [
 			value: { key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } },
 			disabled: true
 		}, {
-			type: 'CUSTOM-SELECT',
-			label: 'Custom select field',
-			name: 'custom-select-2',
+			type: 'PICKLIST',
+			label: 'Picklist field',
+			name: 'picklist-2',
 			options: [
 				{ key: 0, label: 'Product' },
 				{ key: 1, label: 'Services' },

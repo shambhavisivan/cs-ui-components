@@ -103,7 +103,7 @@ const CSAlertPlayground = () => {
 						name: 'iconHidden',
 						value: alertProps.iconHidden
 					}, {
-						type: 'CUSTOM-SELECT',
+						type: 'PICKLIST',
 						label: 'iconName',
 						name: 'iconName',
 						disabled: alertProps.iconHidden,

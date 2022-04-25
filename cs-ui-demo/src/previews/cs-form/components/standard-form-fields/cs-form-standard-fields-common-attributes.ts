@@ -9,11 +9,11 @@ export default {
 				name: 'CSFormFieldType',
 				types: [
 					`'CHECKBOX'`,
-					`'CUSTOM-SELECT'`,
 					`'DATE'`,
 					`'DATETIME'`,
 					`'LOOKUP'`,
 					`'NUMBER'`,
+					`'PICKLIST'`,
 					`'RADIO'`,
 					`'TEXT'`,
 					`'TEXTAREA'`,

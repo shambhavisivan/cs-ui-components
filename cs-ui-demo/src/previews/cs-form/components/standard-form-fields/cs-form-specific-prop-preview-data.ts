@@ -14,28 +14,6 @@ export const checkboxPropsData: CSFormData = [
 	}
 ];
 
-export const customSelectPropsData: CSFormData = [
-	{
-		sectionKey: 'custom-select-properties-section',
-		label: 'Custom Select',
-		collapsible: true,
-		fields: [
-			{
-				type: 'CUSTOM-SELECT',
-				label: 'Custom select field',
-				name: 'custom-select-2',
-				options: [
-					{ key: 0, label: 'Product' },
-					{ key: 1, label: 'Services' },
-					{ key: 2, label: 'Sales' },
-					{ key: 3, label: 'Marketing' }
-				],
-				value: 0
-			}
-		]
-	}
-];
-
 export const datePropsData: CSFormData = [
 	{
 		sectionKey: 'date-properties-section',
@@ -104,6 +82,28 @@ export const numberLocaleData: CSFormData = [
 			useLocale: false,
 			value: 100
 		}]
+	}
+];
+
+export const picklistPropsData: CSFormData = [
+	{
+		sectionKey: 'picklist-properties-section',
+		label: 'Picklist',
+		collapsible: true,
+		fields: [
+			{
+				type: 'PICKLIST',
+				label: 'Picklist field',
+				name: 'picklist-2',
+				options: [
+					{ key: 0, label: 'Product' },
+					{ key: 1, label: 'Services' },
+					{ key: 2, label: 'Sales' },
+					{ key: 3, label: 'Marketing' }
+				],
+				value: 0
+			}
+		]
 	}
 ];
 

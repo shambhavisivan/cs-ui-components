@@ -38,17 +38,17 @@ describe('<CSFormField />', () => {
 		expect(checkboxField).toHaveLength(1);
 	});
 
-	it('should render CSFormCustomSelectField if field type is \'CUSTOM-SELECT\'', () => {
+	it('should render CSFormPicklistField if field type is \'PICKLIST\'', () => {
 		const uut = shallow(
 			<CSFormField
-				type="CUSTOM-SELECT"
+				type="PICKLIST"
 				label={label}
 				name={name}
 				options={[]}
 			/>,
 		);
-		const customSelectField = uut.find('.csf-field-wrapper CSFormCustomSelectField');
-		expect(customSelectField).toHaveLength(1);
+		const picklistField = uut.find('.csf-field-wrapper CSFormPicklistField');
+		expect(picklistField).toHaveLength(1);
 	});
 
 	it('should render CSFormDateField if field type is \'DATE\'', () => {

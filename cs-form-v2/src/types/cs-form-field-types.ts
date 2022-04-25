@@ -45,7 +45,7 @@ export type CSFormFieldType = 'BUFFER' |
 	'CHECKBOX' |
 	'CUSTOM' |
 	'CUSTOM-MODAL' |
-	'CUSTOM-SELECT' |
+	'PICKLIST' |
 	'DATE' |
 	'DATETIME' |
 	'LOOKUP' |
@@ -105,18 +105,18 @@ export interface CSFormCustomModalFieldProps {
 	modal: CSFormCustomModalProps;
 }
 
-/** CUSTOM SELECT FIELD */
-export interface CSFormCustomSelectOption {
+/** PICKLIST FIELD */
+export interface CSFormPicklistOption {
 	key: React.ReactText;
 	label: React.ReactText;
 }
 
-export interface CSFormCustomSelectFieldProps extends Omit<CSFormFieldCommonProps, 'actions' | 'icons'> {
-	type: 'CUSTOM-SELECT';
+export interface CSFormPicklistFieldProps extends Omit<CSFormFieldCommonProps, 'actions' | 'icons'> {
+	type: 'PICKLIST';
 	multiselect?: boolean;
 	onClear?: () => void;
 	onSearch?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-	options: Array<CSFormCustomSelectOption>;
+	options: Array<CSFormPicklistOption>;
 	value?: React.ReactText | Array<React.ReactText>;
 }
 
@@ -231,7 +231,7 @@ export interface CSFormToggleFieldProps extends CSFormFieldCommonProps {
 
 /** Only standard form fields types */
 export type CSFormStandardFields = CSFormCheckboxFieldProps
-	| CSFormCustomSelectFieldProps
+	| CSFormPicklistFieldProps
 	| CSFormDateFieldProps
 	| CSFormDateTimeFieldProps
 	| CSFormNumberFieldProps

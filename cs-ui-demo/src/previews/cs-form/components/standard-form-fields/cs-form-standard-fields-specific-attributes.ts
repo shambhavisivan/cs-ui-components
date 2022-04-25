@@ -17,30 +17,30 @@ export const CSFormChecboxFieldAttributes = {
 	]
 };
 
-export const CSFormCustomSelectFieldAttributes = {
-	name: 'CSFormCustomSelectField Specific',
+export const CSFormPicklistFieldAttributes = {
+	name: 'CSFormPicklistField Specific',
 	type: 'attributes',
 	data: [
 		{
 			name: 'options',
-			link: '/cs-form/standard-form-fields#custom-select',
+			link: '/cs-form/standard-form-fields#picklist',
 			required: true,
-			types: 'Array<CSFormCustomSelectOption>',
+			types: 'Array<CSFormPicklistOption>',
 			description: 'Array of objects with key and label attributes that define the available select options.'
 		}, {
 			name: 'multiselect',
-			link: '/cs-form/standard-form-fields#custom-select',
+			link: '/cs-form/standard-form-fields#picklist',
 			types: 'boolean',
 			default: 'false',
 			description: 'Add support for selecting multiple items.'
 		}, {
 			name: 'onClear',
-			link: '/cs-form/standard-form-fields#custom-select',
+			link: '/cs-form/standard-form-fields#picklist',
 			types: '() => void',
 			description: 'Handler method for clearing the selection.'
 		}, {
 			name: 'onSearch',
-			link: '/cs-form/standard-form-fields#custom-select',
+			link: '/cs-form/standard-form-fields#picklist',
 			types: '(event) => void',
 			description: 'Handler method when the search term changes.'
 		}, {
@@ -51,20 +51,20 @@ export const CSFormCustomSelectFieldAttributes = {
 	]
 };
 
-export const CSFormCustomSelectOptionAttributes = {
-	name: 'CSFormCustomSelectOption',
+export const CSFormPicklistOptionAttributes = {
+	name: 'CSFormPicklistOption',
 	type: 'attributes',
 	data: [
 		{
 			name: 'key',
 			types: 'ReactText',
 			required: true,
-			description: 'Set a unique key for the custom select option.'
+			description: 'Set a unique key for the picklist option.'
 		}, {
 			name: 'label',
 			types: 'ReactText',
 			required: true,
-			description: 'Set the label to display for the custom select option.'
+			description: 'Set the label to display for the picklist option.'
 		}
 	]
 };

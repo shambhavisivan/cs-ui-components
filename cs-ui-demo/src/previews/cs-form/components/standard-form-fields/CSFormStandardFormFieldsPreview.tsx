@@ -5,8 +5,8 @@ import * as CSD from '../../../../demo-components';
 import CSFormStandardFieldsCommonAttributes from './cs-form-standard-fields-common-attributes';
 import {
 	CSFormChecboxFieldAttributes,
-	CSFormCustomSelectFieldAttributes,
-	CSFormCustomSelectOptionAttributes,
+	CSFormPicklistFieldAttributes,
+	CSFormPicklistOptionAttributes,
 	CSFormDateFieldAttributes,
 	CSFormDateTimeFieldAttributes,
 	CSFormLookupFieldAttributes,
@@ -29,7 +29,7 @@ import {
 } from './cs-form-common-props-preview-data';
 import {
 	checkboxPropsData,
-	customSelectPropsData,
+	picklistPropsData,
 	datePropsData,
 	dateTimePropsData,
 	lookupPropsData,
@@ -39,7 +39,7 @@ import {
 	textPropsData
 } from './cs-form-specific-prop-preview-data';
 
-const customSelectPath = '../cs-ui/custom-select#CSCustomSelect';
+const picklistPath = '../cs-ui/custom-select#CSCustomSelect';
 const datePath = '../cs-ui/datepicker#CSDatepicker';
 const dateTimePath = '../cs-ui/date-time-picker#CSDateTimePicker';
 const lookupPath = '../cs-ui/lookup';
@@ -53,14 +53,14 @@ const CSFormStandardFormFieldsPreview = () => {
 			tables={[
 				CSFormStandardFieldsCommonAttributes,
 				CSFormChecboxFieldAttributes,
-				CSFormCustomSelectFieldAttributes,
-				CSFormCustomSelectOptionAttributes,
 				CSFormDateFieldAttributes,
 				CSFormDateTimeFieldAttributes,
 				CSFormLookupFieldAttributes,
 				CSFormLookupFieldClientAttributes,
 				CSFormLookupFieldServerAttributes,
 				CSFormNumberFieldAttributes,
+				CSFormPicklistFieldAttributes,
+				CSFormPicklistOptionAttributes,
 				CSFormRadioFieldAttributes,
 				CSFormRadioOptionAttributes,
 				CSFormTextFieldAttributes,
@@ -93,12 +93,6 @@ const CSFormStandardFormFieldsPreview = () => {
 								component: 'CSFormCheckboxField'
 							}
 						}, {
-							key: 'custom-select',
-							data: {
-								type: 'CUSTOM-SELECT',
-								component: 'CSFormCustomSelectField'
-							}
-						}, {
 							key: 'date',
 							data: {
 								type: 'DATE',
@@ -121,6 +115,12 @@ const CSFormStandardFormFieldsPreview = () => {
 							data: {
 								type: 'NUMBER',
 								component: 'CSFormNumberField'
+							}
+						}, {
+							key: 'picklist',
+							data: {
+								type: 'PICKLIST',
+								component: 'CSFormPicklistField'
 							}
 						}, {
 							key: 'radio',
@@ -488,40 +488,6 @@ const CSFormStandardFormFieldsPreview = () => {
 				</CSD.Preview>
 			</CSD.Section>
 			<CSD.Section>
-				<CSD.Heading level={2}>Custom Select</CSD.Heading>
-				<CSD.Text>Custom select field specific properties are `multiselect`, `onClear`, `onSearch` and `options`.</CSD.Text>
-				<CSD.Text>Details about each of the properties can be found below:</CSD.Text>
-				<CSD.List>
-					<CSD.ListItem><CSD.Link path={`${customSelectPath}-selection`}>options</CSD.Link></CSD.ListItem>
-					<CSD.ListItem><CSD.Link path={`${customSelectPath}-selection-multiselect`}>multiselect</CSD.Link></CSD.ListItem>
-					<CSD.ListItem><CSD.Link path={`${customSelectPath}-selection`}>onClear</CSD.Link></CSD.ListItem>
-					<CSD.ListItem><CSD.Link path={`${customSelectPath}-onSearch`}>onSearch</CSD.Link></CSD.ListItem>
-				</CSD.List>
-				<CSD.Preview
-					code={`
-						<CSForm
-							data={[{
-								...
-								fields: [{
-									type: 'CUSTOM-SELECT',
-									label: 'Custom select field',
-									name: 'custom-select-2',
-									options: [
-										{ key: 0, label: 'Product' },
-										{ key: 1, label: 'Services' },
-										{ key: 2, label: 'Sales' },
-										{ key: 3, label: 'Marketing' }
-									],
-									value: 0
-								}]
-							}]}
-						/>
-					`}
-				>
-					<CSForm data={customSelectPropsData} />
-				</CSD.Preview>
-			</CSD.Section>
-			<CSD.Section>
 				<CSD.Heading level={2}>Date</CSD.Heading>
 				<CSD.Text>Date field specific properties is `dateFormat`.</CSD.Text>
 				<CSD.Text>Details about the `dateFormat`property can be found below:</CSD.Text>
@@ -673,6 +639,40 @@ const CSFormStandardFormFieldsPreview = () => {
 							}
 						}}
 					/>
+				</CSD.Preview>
+			</CSD.Section>
+			<CSD.Section>
+				<CSD.Heading level={2}>Picklist</CSD.Heading>
+				<CSD.Text>Picklist field specific properties are `multiselect`, `onClear`, `onSearch` and `options`.</CSD.Text>
+				<CSD.Text>Details about each of the properties can be found below:</CSD.Text>
+				<CSD.List>
+					<CSD.ListItem><CSD.Link path={`${picklistPath}-selection`}>options</CSD.Link></CSD.ListItem>
+					<CSD.ListItem><CSD.Link path={`${picklistPath}-selection-multiselect`}>multiselect</CSD.Link></CSD.ListItem>
+					<CSD.ListItem><CSD.Link path={`${picklistPath}-selection`}>onClear</CSD.Link></CSD.ListItem>
+					<CSD.ListItem><CSD.Link path={`${picklistPath}-onSearch`}>onSearch</CSD.Link></CSD.ListItem>
+				</CSD.List>
+				<CSD.Preview
+					code={`
+						<CSForm
+							data={[{
+								...
+								fields: [{
+									type: 'PICKLIST',
+									label: 'Picklist field',
+									name: 'picklist-2',
+									options: [
+										{ key: 0, label: 'Product' },
+										{ key: 1, label: 'Services' },
+										{ key: 2, label: 'Sales' },
+										{ key: 3, label: 'Marketing' }
+									],
+									value: 0
+								}]
+							}]}
+						/>
+					`}
+				>
+					<CSForm data={picklistPropsData} />
 				</CSD.Preview>
 			</CSD.Section>
 			<CSD.Section>
