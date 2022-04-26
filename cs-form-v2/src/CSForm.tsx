@@ -14,6 +14,7 @@ const CSForm = ({
 	onFieldBlur,
 	onFieldChange,
 	onFieldClick,
+	onFieldFocus,
 	onFieldKeyDown,
 }: CSFormProps) => {
 	const renderSections = () => data.map((section) => (
@@ -29,6 +30,7 @@ const CSForm = ({
 			onFieldBlur={onFieldBlur}
 			onFieldChange={onFieldChange}
 			onFieldClick={onFieldClick}
+			onFieldFocus={onFieldFocus}
 			onFieldKeyDown={onFieldKeyDown}
 			errorLabels={errorLabels}
 		>

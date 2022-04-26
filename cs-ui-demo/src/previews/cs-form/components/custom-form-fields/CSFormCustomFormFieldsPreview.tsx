@@ -162,7 +162,6 @@ const CSFormCustomFormFieldsPreview = () => {
 				<CSD.Text>A custom field's specific properties are `render` `onBlur`, `onChange` and `onFocus`.</CSD.Text>
 				<CSD.Text>The `render` property takes any custom ReactElement and renders it in the form of an inline field.</CSD.Text>
 				<CSD.Text>`onBlur`,`onChange` and `onFocus` are event handlers which are fired on a corresponding field event (change, blur and focus).</CSD.Text>
-				<CSD.Text>A custom form field also allows for the definition of any arbitrary property which would suit the element defined in the `render` property.</CSD.Text>
 				<CSD.Preview
 					table={CSCustomFieldSpecificAttributes}
 					code={`
@@ -174,8 +173,7 @@ const CSFormCustomFormFieldsPreview = () => {
 									render: <CSInputSearch label="Custom search" />,
 									onBlur: () => console.log('Blur event was fired.'),
 									onFocus: () => console.log('Focus event was fired.'),
-									onChange: () => console.log('Change event was fired.'),
-									placeholder: 'Search...'
+									onChange: () => console.log('Change event was fired.')
 								}]
 							}]}
 						/>
@@ -191,8 +189,7 @@ const CSFormCustomFormFieldsPreview = () => {
 								render: <CSInputSearch label="Custom search" />,
 								onBlur: () => console.log('Blur event was fired.'),
 								onFocus: () => console.log('Focus event was fired.'),
-								onChange: () => console.log('Change event was fired.'),
-								placeholder: 'Search...'
+								onChange: () => console.log('Change event was fired.')
 							}]
 						}]}
 					/>

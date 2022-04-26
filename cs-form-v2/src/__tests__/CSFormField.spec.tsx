@@ -174,6 +174,7 @@ describe('<CSFormField />', () => {
 					handleFieldBlur: () => { },
 					handleFieldChange: () => { },
 					handleFieldClick: () => { },
+					handleFieldFocus: () => { },
 					handleFieldKeyDown: () => { },
 				}}
 			>
@@ -197,6 +198,7 @@ describe('<CSFormField />', () => {
 					handleFieldBlur: () => { },
 					handleFieldChange: () => { },
 					handleFieldClick: () => { },
+					handleFieldFocus: () => { },
 					handleFieldKeyDown: () => { },
 				}}
 			>

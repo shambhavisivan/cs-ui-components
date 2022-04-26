@@ -1,5 +1,5 @@
 import React, { createContext, useContext, PropsWithChildren } from 'react';
-import { CSFormBufferFieldProps, CSFormCustomModalFieldProps, CSFormFieldData } from './types/cs-form-field-types';
+import { CSFormBufferFieldProps, CSFormCustomFieldProps, CSFormCustomModalFieldProps, CSFormFieldData } from './types/cs-form-field-types';
 import { CSFormProps } from './types/cs-form-types';
 import { validateField } from './utils/cs-form-validator-util';
 
@@ -7,6 +7,7 @@ export type CSFormContextInterface = Pick<CSFormProps, 'data' | 'mode' | 'column
 	handleFieldBlur: (sectionKey: React.ReactText, field: CSFormFieldData, newValue: string) => void,
 	handleFieldChange: (sectionKey: React.ReactText, field: CSFormFieldData, newValue: string) => void,
 	handleFieldClick: (field: CSFormFieldData) => void;
+	handleFieldFocus: (sectionKey: React.ReactText, field: CSFormFieldData, newValue: string) => void,
 	handleFieldKeyDown: (field: CSFormFieldData, event: React.KeyboardEvent<HTMLElement>) => void;
 }
 export const CSFormContext = createContext<CSFormContextInterface>({
@@ -18,16 +19,34 @@ export const CSFormContext = createContext<CSFormContextInterface>({
 	handleFieldBlur: () => { },
 	handleFieldChange: () => { },
 	handleFieldClick: () => { },
+	handleFieldFocus: () => { },
 	handleFieldKeyDown: () => { },
 });
 
-export const CSFormProvider = ({ children, columnNumber, data, errorLabels, locale, mode, onFieldBlur, onFieldChange, onFieldClick, onFieldKeyDown }: PropsWithChildren<CSFormProps>) => {
+export const CSFormProvider = ({
+	children,
+	columnNumber,
+	data,
+	errorLabels,
+	locale,
+	mode,
+	onFieldBlur,
+	onFieldChange,
+	onFieldClick,
+	onFieldFocus,
+	onFieldKeyDown,
+}: PropsWithChildren<CSFormProps>) => {
 	/*
 		Field events are handled only on standard form fields.
-		Custom modal and buffer field aren't standard form fields, so CSFormCustomModalFieldProps
+		Custom, custom modal and buffer field aren't standard form fields, so CSFormCustomFieldProps, CSFormCustomModalFieldProps
 		and CSFormBufferFieldProps interfaces need to be excluded from CSFormFieldData since they don't contain name property.
 	*/
-	const handleFieldEvent = (sectionKey: React.ReactText, field: Exclude<CSFormFieldData, CSFormCustomModalFieldProps | CSFormBufferFieldProps>, newValue: any) => {
+	const handleFieldEvent = (sectionKey: React.ReactText,
+		field: Exclude<CSFormFieldData,
+			CSFormCustomModalFieldProps |
+			CSFormCustomFieldProps |
+			CSFormBufferFieldProps>,
+		newValue: any) => {
 		const errorMessage = validateField(field, newValue, errorLabels);
 		const { name } = field;
 		if (errorMessage) {
@@ -46,14 +65,38 @@ export const CSFormProvider = ({ children, columnNumber, data, errorLabels, loca
 		};
 	};
 
-	const handleFieldChange = (sectionKey: React.ReactText, field: Exclude<CSFormFieldData, CSFormCustomModalFieldProps | CSFormBufferFieldProps>, newValue: any) => {
+	const handleFieldChange = (sectionKey: React.ReactText,
+		field: Exclude<CSFormFieldData,
+			CSFormCustomModalFieldProps |
+			CSFormCustomFieldProps |
+			CSFormBufferFieldProps>,
+		newValue: any) => {
 		const newData = handleFieldEvent(sectionKey, field, newValue);
 		onFieldChange?.(newData);
 	};
 
-	const handleFieldBlur = (sectionKey: React.ReactText, field: Exclude<CSFormFieldData, CSFormCustomModalFieldProps | CSFormBufferFieldProps>, newValue: any) => {
+	const handleFieldBlur = (
+		sectionKey: React.ReactText,
+		field: Exclude<CSFormFieldData,
+			CSFormCustomModalFieldProps |
+			CSFormCustomFieldProps |
+			CSFormBufferFieldProps>,
+		newValue: any,
+	) => {
 		const newData = handleFieldEvent(sectionKey, field, newValue);
 		onFieldBlur?.(newData);
+	};
+
+	const handleFieldFocus = (
+		sectionKey: React.ReactText,
+		field: Exclude<CSFormFieldData,
+			CSFormCustomModalFieldProps |
+			CSFormCustomFieldProps |
+			CSFormBufferFieldProps>,
+		newValue: any,
+	) => {
+		const newData = handleFieldEvent(sectionKey, field, newValue);
+		onFieldFocus?.(newData);
 	};
 
 	const handleFieldClick = (field: CSFormFieldData) => {
@@ -74,6 +117,7 @@ export const CSFormProvider = ({ children, columnNumber, data, errorLabels, loca
 				handleFieldBlur,
 				handleFieldChange,
 				handleFieldClick,
+				handleFieldFocus,
 				handleFieldKeyDown,
 				errorLabels,
 			}}

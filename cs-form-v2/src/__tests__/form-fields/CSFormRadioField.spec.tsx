@@ -164,6 +164,22 @@ describe('CSFormRadioField', () => {
 		expect(handleOnClickMock).toHaveBeenCalledTimes(1);
 	});
 
+	it('should call onFocus event', () => {
+		const handleOnFocusMock = jest.fn();
+		const uut = shallow(
+			<CSFormRadioField
+				options={options}
+				type={type}
+				label={label}
+				name={name}
+				onFocus={handleOnFocusMock}
+			/>,
+		);
+		const radio = uut.find(CSRadio);
+		radio.prop('onFocus')({ target: {} } as any);
+		expect(handleOnFocusMock).toHaveBeenCalledTimes(1);
+	});
+
 	it('should call onKeyDown event', () => {
 		const handleOnKeyDownMock = jest.fn();
 		const uut = shallow(

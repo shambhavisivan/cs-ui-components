@@ -27,6 +27,7 @@ export interface CSFormFieldCommonProps {
 	onBlur?: (newValue?: any) => any;
 	onChange?: (newValue?: any) => any;
 	onClick?: () => void;
+	onFocus?: (newValue?: any) => any;
 	onKeyDown?: (event: React.KeyboardEvent<HTMLElement>) => void;
 	readOnly?: boolean;
 	required?: boolean;
@@ -72,7 +73,6 @@ export interface CSFormCustomFieldProps extends Pick<CSFormFieldCommonProps, 'on
 	type: 'CUSTOM',
 	onFocus?: (value?: any) => any;
 	render: React.ReactElement;
-	[key: string]: any;
 }
 
 /** CUSTOM MODAL FIELD */

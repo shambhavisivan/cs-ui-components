@@ -130,6 +130,21 @@ describe('CSFormToggleField', () => {
 		expect(handleOnBlurMock).toHaveBeenCalledTimes(1);
 	});
 
+	it('should call onFocus event', () => {
+		const handleOnFocusMock = jest.fn();
+		const uut = shallow(
+			<CSFormToggleField
+				type={type}
+				label={label}
+				name={name}
+				onFocus={handleOnFocusMock}
+			/>,
+		);
+		const toggle = uut.find(CSToggle);
+		toggle.simulate('focus', { target: { checked: false } });
+		expect(handleOnFocusMock).toHaveBeenCalledTimes(1);
+	});
+
 	it('should call onChange event', () => {
 		const handleOnChangeMock = jest.fn();
 		const uut = shallow(

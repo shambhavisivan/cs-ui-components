@@ -174,6 +174,21 @@ describe('CSFormTextareaField', () => {
 		expect(handleOnClickMock).toHaveBeenCalledTimes(1);
 	});
 
+	it('should call onFocus event', () => {
+		const handleOnFocusMock = jest.fn();
+		const uut = shallow(
+			<CSFormTextareaField
+				type={type}
+				label={label}
+				name={name}
+				onFocus={handleOnFocusMock}
+			/>,
+		);
+		const textarea = uut.find(CSTextarea);
+		textarea.simulate('focus', { target: { value: 'Text' } });
+		expect(handleOnFocusMock).toHaveBeenCalledTimes(1);
+	});
+
 	it('should call onKeyDown event', () => {
 		const handleOnKeyDownMock = jest.fn();
 		const uut = shallow(

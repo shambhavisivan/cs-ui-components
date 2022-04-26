@@ -188,6 +188,21 @@ describe('CSFormDateTimeField', () => {
 		expect(handleOnClickMock).toHaveBeenCalledTimes(1);
 	});
 
+	it('should call onFocus event', () => {
+		const handleOnFocusMock = jest.fn();
+		const uut = shallow(
+			<CSFormDateTimeField
+				type={type}
+				label={label}
+				name={name}
+				onFocus={handleOnFocusMock}
+			/>,
+		);
+		const dateTimePicker = uut.find(CSDateTimePicker);
+		dateTimePicker.simulate('focus', { target: { value: '1/1/2021' } });
+		expect(handleOnFocusMock).toHaveBeenCalledTimes(1);
+	});
+
 	it('should call onKeyDown event', () => {
 		const handleOnKeyDownMock = jest.fn();
 		const uut = shallow(

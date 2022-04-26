@@ -372,23 +372,31 @@ const CSFormPreview = () => {
 			</CSD.Section>
 			<CSD.Heading>Event Handling</CSD.Heading>
 			<CSD.Section>
-				<CSD.Text>CSForm handles four types of events: blur, change, click and keydown.</CSD.Text>
+				<CSD.Text>CSForm handles five types of events: blur, change, click, focus and keydown.</CSD.Text>
 				<CSD.Text>
-					Each time blur or change events are triggered, the form field which triggered the event will be validated and a unique field name,
+					Each time blur, change or focus events are triggered, the form field which triggered the event will be validated and a unique field name,
 					section key and value will be returned through the event handler props (onFieldBlur or onFieldChange).
 				</CSD.Text>
 				<CSD.Text>Also, the error message(s) will be returned if one of the form validations fails.</CSD.Text>
 				<CSD.Text>Triggering click or keydown events will return object with current field data.</CSD.Text>
-				<CSD.Text>Check the browser console to see the returned object when the field's blur, click or keydown event is triggered.</CSD.Text>
 				<CSD.Preview
 					table={CSFormProps}
-					related={['data', 'onFieldBlur', 'onFieldChange', 'onFieldClick', 'onFieldKeyDown']}
+					consoleAlert
+					related={[
+						'data',
+						'onFieldBlur',
+						'onFieldChange',
+						'onFieldClick',
+						'onFieldFocus',
+						'onFieldKeyDown'
+					]}
 					code={`
 						<CSForm
 							data={data}
 							onFieldChange={(newData) => setData(newData)}
 							onFieldBlur={console.log}
 							onFieldClick={console.log}
+							onFieldFocus={console.log}
 							onFieldKeyDown={console.log}
 						/>
 					`}
@@ -398,6 +406,7 @@ const CSFormPreview = () => {
 						onFieldChange={newData => handleFieldChange('eventsData', newData, true)}
 						onFieldBlur={console.log}
 						onFieldClick={console.log}
+						onFieldFocus={console.log}
 						onFieldKeyDown={console.log}
 					/>
 				</CSD.Preview>

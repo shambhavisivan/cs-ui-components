@@ -23,10 +23,6 @@ export default {
 			link: '/cs-form/custom-form-fields#custom-field',
 			type: '(value?: any) => any',
 			description: 'Handler method for the focus event.'
-		}, {
-			name: '[key: string]',
-			type: 'any',
-			description: 'Arbitrary support for custom field.'
 		}
 	]
 };

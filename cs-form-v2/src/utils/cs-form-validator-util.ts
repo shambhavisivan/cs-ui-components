@@ -1,4 +1,4 @@
-import { CSFormBufferFieldProps, CSFormCustomModalFieldProps, CSFormFieldData } from '../types/cs-form-field-types';
+import { CSFormBufferFieldProps, CSFormCustomFieldProps, CSFormCustomModalFieldProps, CSFormFieldData } from '../types/cs-form-field-types';
 import { CSFormData, CSFormErrorLabels } from '../types/cs-form-types';
 
 const defaultErrorLabels: CSFormErrorLabels = {
@@ -55,8 +55,8 @@ const validateForm = (data: CSFormData, customErrorLabels?: CSFormErrorLabels) =
 	data.forEach(({ sectionKey, fields }) => {
 		const evaluatedFields = fields.filter((field) => field.type !== 'CUSTOM' && field.type !== 'CUSTOM-MODAL')
 			.map((field) => {
-				// name and value only exist on standard form fields, hence custom modal and buffer field props are excluded
-				const { name, value } = field as Exclude<CSFormFieldData, CSFormCustomModalFieldProps | CSFormBufferFieldProps >;
+				// name and value only exist on standard form fields, hence custom, custom modal and buffer field props are excluded
+				const { name, value } = field as Exclude<CSFormFieldData, CSFormCustomModalFieldProps | CSFormCustomFieldProps | CSFormBufferFieldProps >;
 				const errorMessage = validateField(field, value, customErrorLabels);
 				if (errorMessage) {
 					return {

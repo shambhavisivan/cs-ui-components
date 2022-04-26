@@ -237,6 +237,26 @@ describe('CSFormLookupField', () => {
 		expect(handleOnClickMock).toHaveBeenCalledTimes(1);
 	});
 
+	it('should call onFocus event', () => {
+		const handleOnFocusMock = jest.fn();
+		const uut = shallow(
+			<CSFormLookupField
+				fieldToBeDisplayed={fieldToBeDisplayed}
+				type={type}
+				label={label}
+				name={name}
+				mode={modeClient}
+				columns={columns}
+				options={lookupOptions}
+				onFocus={handleOnFocusMock}
+			/>,
+		);
+
+		const lookup = uut.find(CSLookup);
+		lookup.props().onFocus({} as any);
+		expect(handleOnFocusMock).toHaveBeenCalledTimes(1);
+	});
+
 	it('should call onKeyDown event', () => {
 		const handleOnKeyDownMock = jest.fn();
 		const uut = shallow(

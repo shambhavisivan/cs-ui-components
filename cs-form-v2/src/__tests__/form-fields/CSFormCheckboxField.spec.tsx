@@ -158,6 +158,21 @@ describe('CSFormCheckboxField', () => {
 		expect(handleOnChangeMock).toHaveBeenCalled();
 	});
 
+	it('should call onFocus event', () => {
+		const handleOnFocusMock = jest.fn();
+		const uut = shallow(
+			<CSFormCheckboxField
+				type={type}
+				label={label}
+				name={name}
+				onFocus={handleOnFocusMock}
+			/>,
+		);
+		const checkbox = uut.find(CSCheckbox);
+		checkbox.simulate('focus', { target: { checked: false } });
+		expect(handleOnFocusMock).toHaveBeenCalled();
+	});
+
 	it('should call onClick event', () => {
 		const handleOnClickMock = jest.fn();
 		const uut = shallow(

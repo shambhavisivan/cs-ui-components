@@ -7,6 +7,7 @@ const CSFormPicklistField = ({
 	onBlur,
 	onChange,
 	onClear,
+	onFocus,
 	styleClass,
 	value,
 	...props
@@ -19,6 +20,7 @@ const CSFormPicklistField = ({
 			onClear?.();
 		}}
 		onBlur={() => onBlur(value)}
+		onFocus={() => onFocus(value)}
 		selectedKeys={value}
 		className={styleClass}
 		{...props}

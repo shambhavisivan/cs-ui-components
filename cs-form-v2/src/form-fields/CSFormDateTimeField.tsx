@@ -6,6 +6,7 @@ const CSFormDateTimeField = ({
 	type,
 	onBlur,
 	onChange,
+	onFocus,
 	styleClass,
 	value,
 	...props
@@ -14,6 +15,7 @@ const CSFormDateTimeField = ({
 		className={styleClass}
 		onChange={(date: Date) => onChange(date)}
 		onBlur={(e: React.FocusEvent<HTMLInputElement>) => onBlur(e.target.value)}
+		onFocus={(e: React.FocusEvent<HTMLInputElement>) => onFocus(e.target.value)}
 		selected={value}
 		{...props}
 	/>

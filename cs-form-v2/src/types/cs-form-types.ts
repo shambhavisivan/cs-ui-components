@@ -45,5 +45,6 @@ export interface CSFormProps {
 	onFieldBlur?: (newData: CSFormChangedFieldData) => void;
 	onFieldChange?: (newData: CSFormChangedFieldData) => void;
 	onFieldClick?: (fieldData: CSFormFieldData) => void;
+	onFieldFocus?: (newData: CSFormChangedFieldData) => void;
 	onFieldKeyDown?: (fieldData: CSFormFieldData, event: React.KeyboardEvent<HTMLElement>) => void;
 }

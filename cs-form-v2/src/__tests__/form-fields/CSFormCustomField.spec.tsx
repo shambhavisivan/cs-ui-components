@@ -54,17 +54,4 @@ describe('<CSFormCustomField', () => {
 		input.simulate('focus');
 		expect(handleOnFocusMock).toHaveBeenCalled();
 	});
-
-	it('should pass any arbitrary prop to custom field', () => {
-		const id = 'id';
-		const uut = shallow(
-			<CSFormCustomField
-				type={type}
-				render={customElement}
-				id={id}
-			/>,
-		);
-		const input = uut.find('input');
-		expect(input.props().id).toBe(id);
-	});
 });

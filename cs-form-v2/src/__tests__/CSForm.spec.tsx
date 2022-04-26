@@ -146,6 +146,16 @@ describe('<CSForm />', () => {
 		expect(onFieldClickMock).toHaveBeenCalledTimes(1);
 	});
 
+	it('should call onFieldFocus and return correct value', () => {
+		const onFieldFocusMock = jest.fn();
+		const uut = mount(<CSForm data={data} onFieldFocus={onFieldFocusMock} />);
+		const input = uut.find('.cs-input-number');
+		input.simulate('focus', { target: { value: changedValue } });
+		const form = uut.find('CSForm');
+		expect(form.prop('onFieldFocus')).toHaveBeenCalledWith(returnValue);
+		expect(onFieldFocusMock).toHaveBeenCalledTimes(1);
+	});
+
 	it('should call onFieldKeyDown', () => {
 		const onFieldKeyDownMock = jest.fn();
 		const uut = mount(<CSForm data={data} onFieldKeyDown={onFieldKeyDownMock} />);

@@ -6,6 +6,7 @@ const CSFormTextareaField = ({
 	type,
 	onBlur,
 	onChange,
+	onFocus,
 	styleClass,
 	...props
 }: CSFormTextareaFieldProps) => (
@@ -13,6 +14,7 @@ const CSFormTextareaField = ({
 		className={styleClass}
 		onBlur={(e: React.FocusEvent<HTMLTextAreaElement>) => onBlur(e.target.value)}
 		onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => onChange(e.target.value)}
+		onFocus={(e: React.FocusEvent<HTMLTextAreaElement>) => onFocus(e.target.value)}
 		{...props}
 	/>
 );

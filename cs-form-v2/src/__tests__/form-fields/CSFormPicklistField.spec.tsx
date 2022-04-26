@@ -164,6 +164,22 @@ describe('CSFormPicklistField', () => {
 		expect(handleOnClickMock).toHaveBeenCalledTimes(1);
 	});
 
+	it('should call onFocus event', () => {
+		const handleOnFocusMock = jest.fn();
+		const uut = shallow(
+			<CSFormPicklistField
+				options={picklistOptions}
+				type={type}
+				label={label}
+				name={name}
+				onFocus={handleOnFocusMock}
+			/>,
+		);
+		const customSelect = uut.find(CSCustomSelect);
+		customSelect.simulate('focus');
+		expect(handleOnFocusMock).toHaveBeenCalledTimes(1);
+	});
+
 	it('should call onKeyDown event', () => {
 		const handleOnKeyDownMock = jest.fn();
 		const uut = shallow(

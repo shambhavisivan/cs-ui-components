@@ -19,6 +19,7 @@ const CSFormSection = ({
 	const {
 		handleFieldBlur,
 		handleFieldChange,
+		handleFieldFocus,
 		handleFieldClick,
 		handleFieldKeyDown,
 	} = useCSForm();
@@ -44,6 +45,7 @@ const CSFormSection = ({
 				onChange: (value: any) => handleFieldChange(sectionKey, field, value),
 				onBlur: (value: any) => handleFieldBlur(sectionKey, field, value),
 				onClick: () => handleFieldClick(field),
+				onFocus: (value: any) => handleFieldFocus(sectionKey, field, value),
 				onKeyDown: (event: React.KeyboardEvent<HTMLElement>) => handleFieldKeyDown(field, event),
 			} : undefined;
 

@@ -6,6 +6,7 @@ const CSFormToggleField = ({
 	type,
 	onBlur,
 	onChange,
+	onFocus,
 	styleClass,
 	value,
 	...props
@@ -14,6 +15,7 @@ const CSFormToggleField = ({
 		className={styleClass}
 		onBlur={(e: React.FocusEvent<HTMLInputElement>) => onBlur(e.target.checked)}
 		onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.checked)}
+		onFocus={(e: React.FocusEvent<HTMLInputElement>) => onFocus(e.target.checked)}
 		checked={value}
 		{...props}
 	/>
