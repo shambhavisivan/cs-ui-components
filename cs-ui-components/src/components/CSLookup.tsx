@@ -11,7 +11,7 @@ import CSDataTable, { CSDataTableColumnInterface, CSDataTableRowInterface } from
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSAutoposition from '../helpers/autoposition/CSAutoposition';
 import { CSAutopositions } from '../helpers/autoposition/cs-autoposition-types';
-import { CSTooltipPosition } from './CSTooltip';
+import CSTooltip, { CSTooltipPosition } from './CSTooltip';
 import KeyCode from '../util/KeyCode';
 
 export type CSLookupDropdownAlign = 'left' | 'right';
@@ -134,17 +134,16 @@ const CSLookup = ({
 	const lookupDropdownRef = useRef<HTMLDivElement>(null);
 	const lookupCloseButtonRef = useRef<HTMLButtonElement>(null);
 	const lookupInputRef = useRef<HTMLInputElement>(null);
-	const lookupWrapperRef = useRef<HTMLInputElement>(null);
+	const lookupInputWrapperRef = useRef<HTMLDivElement>(null);
 
 	const [dropdownVisible, setDropdownVisible] = useState(false);
 	const [dropdownOptions, setDropdownOptions] = useState<Array<CSDataTableRowInterface>>([]);
 	const [fetchingMode, setFetchingMode] = useState<CSLookupFetchingMode>(undefined);
-	const [lookupInputWidth, setLookupInputWidth] = useState<number>(null);
-	const [customDataWidth, setCustomDataWidth] = useState(0);
 	const [moreRecords, setMoreRecords] = useState(true);
 	const [pageNo, setPageNo] = useState(0);
 	const [searchTerm, setSearchTerm] = useState('');
 	const [selectedOptions, setSelectedOptions] = useState<Array<CSDataTableRowInterface>>([]);
+	const [focused, setFocused] = useState<boolean>(false);
 
 	const mounted = useRef(false);
 
@@ -208,7 +207,7 @@ const CSLookup = ({
 
 	useEffect(() => {
 		const handleOutsideClick = (event: any) => {
-			const clickOutsideInput = lookupWrapperRef.current && !lookupWrapperRef.current.contains(event.target);
+			const clickOutsideInput = lookupInputWrapperRef.current && !lookupInputWrapperRef.current.contains(event.target);
 			const clickOutsideDropdown = lookupDropdownRef.current && !lookupDropdownRef.current.contains(event.target);
 			if (clickOutsideInput && clickOutsideDropdown) closeDropdown();
 		};
@@ -216,11 +215,7 @@ const CSLookup = ({
 		document.addEventListener('click', handleOutsideClick);
 
 		return () => document.removeEventListener('click', handleOutsideClick, true);
-	}, [lookupWrapperRef, lookupDropdownRef, closeDropdown]);
-
-	const customDataRef = useCallback((node) => {
-		if (node !== null) { setCustomDataWidth(node.getBoundingClientRect().width); }
-	}, []);
+	}, [lookupInputWrapperRef, lookupDropdownRef, closeDropdown]);
 
 	const executeClientSearch = (searchValue: string) => {
 		if (!searchValue) {
@@ -249,14 +244,15 @@ const CSLookup = ({
 	};
 
 	const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-		onBlur?.(event, multiselect ? selectedOptions : selectedOptions?.[0]);
+		if (!readOnly) {
+			setFocused(false);
+			onBlur?.(event, multiselect ? selectedOptions : selectedOptions?.[0]);
+		}
 	};
 
 	const openDropdown = () => {
 		if (readOnly || !lookupInputRef.current) return;
-		const lookupInputRect = lookupInputRef.current.getBoundingClientRect();
 		setDropdownVisible(true);
-		setLookupInputWidth(lookupInputRect.width);
 
 		if (mode === 'server' && minTermLength === 0) {
 			setFetchingMode('after-dropdown-open');
@@ -314,13 +310,22 @@ const CSLookup = ({
 	};
 
 	const handleClick = (event: React.MouseEvent<HTMLInputElement>) => {
+		if (readOnly || disabled) return;
 		if (!dropdownVisible) openDropdown();
 		onClick?.(event);
+		lookupInputRef.current?.focus();
 	};
 
 	const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
-		onFocus?.(event);
+		if (!readOnly) {
+			setFocused(true);
+			onFocus?.(event);
+		}
 		if (!dropdownVisible) openDropdown();
+	};
+
+	const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+		if (focused) event.preventDefault();
 	};
 
 	const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -408,27 +413,31 @@ const CSLookup = ({
 
 	const initialPosition = `${position}-${flipAlign(align)}` as CSAutopositions;
 
-	const lookupFieldWrapperClasses = classNames(
+	const lookupWrapperClasses = classNames(
 		'cs-lookup-wrapper',
 		{
 			'cs-lookup-hidden': hidden,
+			'cs-lookup-dropdown-open': dropdownVisible,
 			[`${className}`]: className,
+		},
+	);
+
+	const inputWrapperClasses = classNames(
+		'cs-lookup-input-wrapper',
+		'cs-input-wrapper',
+		{
+			'cs-input-wrapper-error': error,
+			'cs-input-wrapper-disabled': disabled,
+			'cs-input-wrapper-focused': focused,
+			'cs-input-wrapper-read-only': readOnly,
 		},
 	);
 
 	const lookupInputClasses = classNames(
 		'cs-lookup-input',
+		'cs-invisible-input',
 		{
 			'cs-dropdown-visible': dropdownVisible,
-			'cs-lookup-input-error': error,
-			'cs-lookup-input-error-tooltip': errorTooltip,
-		},
-	);
-
-	const lookupInputContent = classNames(
-		'cs-lookup-input-content',
-		{
-			'cs-lookup-dropdown-open': dropdownVisible,
 		},
 	);
 
@@ -440,21 +449,45 @@ const CSLookup = ({
 	);
 
 	const style: CSSProperties = {
-		'--cs-lookup-border-radius': borderRadius,
-		'--cs-lookup-custom-data-width': customDataWidth ? `${customDataWidth}px` : undefined,
+		'--cs-input-border-radius': borderRadius,
 	};
-
-	const lookupClearClasses = classNames(
-		'cs-lookup-clear',
-		{
-			'cs-lookup-clear-options': actions || icons,
-		},
-	);
 
 	const lookupDropdownStyle: CSSProperties = {
-		'--cs-lookup-input-width': lookupInputWidth ? `${lookupInputWidth}px` : '',
-		'--cs-lookup-dropdown-width': dropdownWidth,
+		'--cs-lookup-dropdown-width': dropdownWidth || `${lookupInputWrapperRef.current?.getBoundingClientRect().width}px`,
 	};
+
+	const renderLabel = () => {
+		if (!label || labelHidden) return null;
+
+		return (
+			<CSLabel
+				htmlFor={uniqueId}
+				label={label}
+				helpText={helpText}
+				tooltipPosition={tooltipPosition}
+				required={required}
+				title={labelTitle ? label : null}
+			/>
+		);
+	};
+
+	const renderSearchIcon = () => {
+		if (readOnly) return null;
+
+		return (
+			<CSIcon
+				className="cs-input-type-indicator-icon"
+				name="search"
+				color="var(--cs-input-icon-fill)"
+			/>
+		);
+	};
+
+	const renderLookupValue = (
+		<div className="cs-lookup-value">
+			{!searchTerm && selectedOptions?.map((option) => option?.data?.[fieldToBeDisplayed]).join(', ')}
+		</div>
+	);
 
 	const renderBlinkingCursor = () => {
 		if (!dropdownVisible || readOnly) return null;
@@ -470,30 +503,23 @@ const CSLookup = ({
 		return <div className="cs-blinking-cursor" style={{ left: width }} />;
 	};
 
-	const renderInputContent = (
-		<span className={lookupInputContent}>
-			{renderBlinkingCursor()}
-			{!searchTerm && selectedOptions?.map((option) => option?.data?.[fieldToBeDisplayed]).join(', ')}
-		</span>
-	);
-
 	const renderClearButton = () => {
 		if (!searchTerm && !selectedOptions.length) return null;
 		if (disabled || readOnly || fetchingMode || loading) return null;
 
 		return (
 			<CSButton
-				ref={lookupCloseButtonRef}
+				className="cs-lookup-clear-btn"
 				btnType="transparent"
 				btnStyle="brand"
-				className={lookupClearClasses}
-				iconColor="var(--cs-input-icon-fill)"
+				size="xsmall"
+				iconColor="var(--cs-input-clear)"
 				iconName="close"
 				labelHidden
 				label="clear"
+				ref={lookupCloseButtonRef}
 				onClick={clearSearch}
 				onKeyDown={handleClearKeyDown}
-				size="xsmall"
 			/>
 		);
 	};
@@ -503,9 +529,9 @@ const CSLookup = ({
 
 		return (
 			<CSIcon
+				className="cs-input-type-indicator-icon"
 				name="down"
 				rotate={dropdownVisible ? 180 : null}
-				className="cs-lookup-dropdown-icon"
 			/>
 		);
 	};
@@ -557,28 +583,32 @@ const CSLookup = ({
 		return null;
 	};
 
+	const renderErrorMessage = () => {
+		if (!error || !errorMessage || errorTooltip) return null;
+
+		return <CSFieldErrorMsg message={errorMessage} />;
+	};
+
+	const renderErrorTooltip = () => {
+		if (!error || !errorMessage || !errorTooltip) return null;
+
+		return <CSTooltip variant="error" content={errorMessage} />;
+	};
+
 	return (
-		<div className={lookupFieldWrapperClasses} style={style}>
-			{label && !labelHidden && (
-				<CSLabel
-					htmlFor={uniqueId}
-					label={label}
-					helpText={helpText}
-					tooltipPosition={tooltipPosition}
-					required={required}
-					title={labelTitle ? label : null}
-				/>
-			)}
-			<div className="cs-lookup-wrapper-inner">
-				<div ref={lookupWrapperRef} className="cs-lookup-input-wrapper">
-					{!readOnly && (
-						<CSIcon
-							name="search"
-							className="cs-lookup-search-icon"
-							color="var(--cs-input-icon-fill)"
-							size="1rem"
-						/>
-					)}
+		<div className={lookupWrapperClasses} style={style}>
+			{renderLabel()}
+			{/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+			<div
+				className={inputWrapperClasses}
+				onClick={handleClick}
+				onMouseDown={handleMouseDown}
+				ref={lookupInputWrapperRef}
+			>
+				{renderSearchIcon()}
+				<div className="cs-lookup-value-wrapper">
+					{renderLookupValue}
+					{renderBlinkingCursor()}
 					<input
 						className={lookupInputClasses}
 						autoComplete="off"
@@ -593,7 +623,6 @@ const CSLookup = ({
 						onFocus={handleFocus}
 						onKeyDown={handleKeyDown}
 						onChange={handleSearch}
-						onClick={handleClick}
 						title={title}
 						id={uniqueId}
 						ref={lookupInputRef}
@@ -604,21 +633,17 @@ const CSLookup = ({
 						aria-multiselectable={multiselect}
 						{...rest}
 					/>
-					{renderInputContent}
-					{renderClearButton()}
-					{renderDropdownIcon()}
 				</div>
-				<CSCustomData
-					ref={customDataRef}
-					icons={icons}
-					actions={actions}
-				/>
+				{renderClearButton()}
+				<CSCustomData icons={icons} actions={actions} />
+				{renderErrorTooltip()}
+				{renderDropdownIcon()}
 			</div>
-			{error && errorMessage && <CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />}
+			{renderErrorMessage()}
 			{
 				dropdownVisible && (
 					<CSAutoposition
-						referencePoint={lookupInputRef.current}
+						referencePoint={lookupInputWrapperRef.current}
 						positionSchema={['top-left', 'top-right', 'bottom-right', 'bottom-left']}
 						initialPosition={initialPosition}
 						zIndex="var(--z-index-lookup-dropdown)"

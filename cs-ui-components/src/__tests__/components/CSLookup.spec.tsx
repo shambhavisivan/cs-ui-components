@@ -89,7 +89,7 @@ describe('<CSLookup />', () => {
 		const lookupDropdownCustomPopup = uut.find('.cs-lookup-dropdown.ag-custom-component-popup');
 		expect(lookupDropdownCustomPopup).toHaveLength(0);
 		// options
-		const lookupSelectedOption = uut.find('.cs-lookup-input-content');
+		const lookupSelectedOption = uut.find('.cs-lookup-value');
 		expect(lookupSelectedOption.text()).toBe('Acme');
 		// multiselect
 		expect(lookupInput.prop('aria-multiselectable')).toBeFalsy();
@@ -139,7 +139,7 @@ describe('<CSLookup />', () => {
 				value={{ key: 1, data: { Id: 1, Account: 'Acme', Industry: 'Manufacturing' } }}
 			/>,
 		);
-		const lookupSelectedOption = uut.find('.cs-lookup-input-content');
+		const lookupSelectedOption = uut.find('.cs-lookup-value');
 		expect(lookupSelectedOption.text()).toBe('Acme');
 	});
 
@@ -203,7 +203,7 @@ describe('<CSLookup />', () => {
 			/>,
 		).dive();
 		const lookupWrapperStyle = uut.find('.cs-lookup-wrapper').props().style;
-		expect(lookupWrapperStyle).toHaveProperty('--cs-lookup-border-radius', borderRadius);
+		expect(lookupWrapperStyle).toHaveProperty('--cs-input-border-radius', borderRadius);
 	});
 
 	it('should set disabled attribute', () => {
@@ -284,9 +284,9 @@ describe('<CSLookup />', () => {
 				error
 			/>,
 		).dive();
-		const lookupInputError = uut.find('.cs-lookup-input-error');
-		expect(lookupInputError).toHaveLength(1);
-		expect(lookupInputError.prop('aria-invalid')).toBeTruthy();
+		expect(uut.find('.cs-input-wrapper-error')).toHaveLength(1);
+		const lookupInput = uut.find('.cs-lookup-input');
+		expect(lookupInput.prop('aria-invalid')).toBeTruthy();
 	});
 
 	it('should pass errorMessage to CSFieldErrorMsg', () => {
@@ -305,7 +305,7 @@ describe('<CSLookup />', () => {
 		expect(lookupErrorMsg.prop('message')).toMatchObject(errorMessage);
 	});
 
-	it('should pass errorTooltip to CSFieldErrorMsg', () => {
+	it('should pass errorMessage to CSTooltip content', () => {
 		const uut = shallow(
 			<CSLookup
 				label={label}
@@ -318,8 +318,8 @@ describe('<CSLookup />', () => {
 				errorTooltip
 			/>,
 		).dive();
-		const lookupErrorTooltip = uut.find('CSFieldErrorMsg');
-		expect(lookupErrorTooltip.prop('tooltipMessage')).toBeTruthy();
+		const lookupErrorTooltip = uut.find('CSTooltip');
+		expect(lookupErrorTooltip.prop('content')).toMatchObject(errorMessage);
 	});
 
 	it('should apply grid class to lookup dropdown wrapper', () => {
@@ -428,8 +428,8 @@ describe('<CSLookup />', () => {
 			/>,
 		);
 		const lookupInput = uut.find('.cs-lookup-input');
-		const lookupSelectedOption = uut.find('.cs-lookup-input-content');
-		const clearButton = uut.find('.cs-btn.cs-lookup-clear');
+		const lookupSelectedOption = uut.find('.cs-lookup-value');
+		const clearButton = uut.find('.cs-lookup-value-wrapper + .cs-lookup-clear-btn');
 
 		expect(clearButton).toHaveLength(1);
 		lookupInput.simulate('change', { target: { name: 'value', value: 'hello' } });
@@ -459,8 +459,8 @@ describe('<CSLookup />', () => {
 			/>,
 		);
 		const lookupInput = uut.find('.cs-lookup-input');
-		const lookupSelectedOption = uut.find('.cs-lookup-input-content');
-		const clearButton = uut.find('.cs-btn.cs-lookup-clear');
+		const lookupSelectedOption = uut.find('.cs-lookup-value');
+		const clearButton = uut.find('.cs-lookup-value-wrapper + .cs-lookup-clear-btn');
 
 		expect(clearButton).toHaveLength(1);
 		lookupInput.simulate('change', { target: { name: 'value', value: 'hello' } });
@@ -490,7 +490,7 @@ describe('<CSLookup />', () => {
 			/>,
 		);
 		const lookupInput = uut.find('.cs-lookup-input');
-		const lookupSelectedOption = uut.find('.cs-lookup-input-content');
+		const lookupSelectedOption = uut.find('.cs-lookup-value');
 		expect(lookupSelectedOption).toHaveLength(1);
 		expect(lookupSelectedOption.text()).toBe('Acme, Global Media');
 		expect(lookupInput.prop('aria-multiselectable')).toBeTruthy();
@@ -525,7 +525,7 @@ describe('<CSLookup />', () => {
 				onClick={handleClickMock}
 			/>,
 		).dive();
-		const lookupInput = uut.find('.cs-lookup-input');
+		const lookupInput = uut.find('.cs-lookup-input-wrapper');
 		lookupInput.simulate('click');
 		expect(handleClickMock).toHaveBeenCalledTimes(1);
 	});
