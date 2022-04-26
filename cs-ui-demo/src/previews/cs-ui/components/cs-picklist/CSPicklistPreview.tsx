@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { CSCustomSelect, CSCustomSelectOptionInterface } from '@cloudsense/cs-ui-components';
+import { CSPicklist, CSPicklistOptionInterface } from '@cloudsense/cs-ui-components';
 import * as CSD from '../../../../demo-components';
-import CSCustomSelectProps from './cs-custom-select-props';
-import CSCustomSelectAccessibility from './cs-custom-select-accessibility';
+import CSPicklistProps from './cs-picklist-props';
+import CSPicklistAccessibility from './cs-picklist-accessibility';
 import { actionsWithLog } from '../../helpers/actions';
 import { icons } from '../../helpers/icons';
 import { NavLink } from 'react-router-dom';
@@ -14,12 +14,12 @@ const options = [
 	{ key: 4, label: 'Marketing' }
 ];
 
-interface CSCustomSelectSelectedKeysState {
+interface CSPicklistSelectedKeysState {
 	[key: string]: Array<React.ReactText>;
 }
 
-const CSCustomSelectPreview = () => {
-	const [selectedKeys, setSelectedKeys] = useState<CSCustomSelectSelectedKeysState>({
+const CSPicklistPreview = () => {
+	const [selectedKeys, setSelectedKeys] = useState<CSPicklistSelectedKeysState>({
 		singleSelectKey: [1],
 		multiselectKeys: [1, 2],
 		multiselectCompactKeys: [2, 3],
@@ -27,8 +27,8 @@ const CSCustomSelectPreview = () => {
 		readOnly: [1]
 	});
 
-	const handleSelect = (option: CSCustomSelectOptionInterface, stateName: string, multiselect?: boolean) => {
-		setSelectedKeys((prevSelectedKeys: CSCustomSelectSelectedKeysState) => {
+	const handleSelect = (option: CSPicklistOptionInterface, stateName: string, multiselect?: boolean) => {
+		setSelectedKeys((prevSelectedKeys: CSPicklistSelectedKeysState) => {
 			let newSelectedKeys;
 			if (prevSelectedKeys[stateName]?.includes(option.key)) {
 				newSelectedKeys = prevSelectedKeys[stateName].filter((key: React.ReactText) => key !== option.key);
@@ -42,8 +42,8 @@ const CSCustomSelectPreview = () => {
 		});
 	};
 
-	const handleDeselect = (option: CSCustomSelectOptionInterface, stateName: string) => {
-		setSelectedKeys((prevSelectedKeys: CSCustomSelectSelectedKeysState) => {
+	const handleDeselect = (option: CSPicklistOptionInterface, stateName: string) => {
+		setSelectedKeys((prevSelectedKeys: CSPicklistSelectedKeysState) => {
 			const newSelectedKeys = prevSelectedKeys[stateName].filter(key => key !== option.key);
 			return { ...prevSelectedKeys, [stateName]: newSelectedKeys };
 		});
@@ -55,10 +55,10 @@ const CSCustomSelectPreview = () => {
 
 	return (
 		<CSD.Page
-			title="Custom Select"
+			title="Picklist"
 			accessible="yes"
-			accessibility={CSCustomSelectAccessibility}
-			tables={CSCustomSelectProps}
+			accessibility={CSPicklistAccessibility}
+			tables={CSPicklistProps}
 			routePrefix="cs-ui"
 		>
 			<CSD.Heading>Base Usage</CSD.Heading>
@@ -67,17 +67,17 @@ const CSCustomSelectPreview = () => {
 				<CSD.ListItem>options</CSD.ListItem>
 			</CSD.List>
 			<CSD.Section>
-				<CSD.Text>CSCustomSelect presents a menu of options to select.</CSD.Text>
+				<CSD.Text>CSPicklist presents a menu of options to select.</CSD.Text>
 				<CSD.Text>
 					`options` and `label` are the only required props.
-					`options` are key-value pair objects which render CustomSelect dropdown rows
+					`options` are key-value pair objects which render Picklist dropdown rows
 					that serve as selectable options.
 				</CSD.Text>
 				<CSD.Text>
 					<b>Search</b> works out of the box. To perform search, all you need to do is focus the field and start typing.
 					Options will filter with each typed character. More on search options can be read under search section.
 				</CSD.Text>
-				<CSD.Text>In all CSCustomSelect examples we will be using simple options object with departments.</CSD.Text>
+				<CSD.Text>In all CSPicklist examples we will be using simple options object with departments.</CSD.Text>
 				<CSD.Code>
 					{`
 						const options = {[
@@ -90,11 +90,11 @@ const CSCustomSelectPreview = () => {
 				</CSD.Code>
 				<CSD.Preview
 					orientation="vertical"
-					table={CSCustomSelectProps}
+					table={CSPicklistProps}
 					related={['options', 'label']}
-					code={`<CSCustomSelect options={options} label="Department" />`}
+					code={`<CSPicklist options={options} label="Department" />`}
 				>
-					<CSCustomSelect options={options} label="Department" />
+					<CSPicklist options={options} label="Department" />
 				</CSD.Preview>
 			</CSD.Section>
 			<CSD.Heading>Interaction</CSD.Heading>
@@ -107,22 +107,22 @@ const CSCustomSelectPreview = () => {
 					<CSD.ListItem>onClear</CSD.ListItem>
 				</CSD.List>
 				<CSD.Text>
-					CSCustomSelect component keeps no state, so it is necessary to manage an external state and
+					CSPicklist component keeps no state, so it is necessary to manage an external state and
 					pass desired option key(s) to `selectedKeys` prop in order to display selected options.
 					`selectedKeys` prop can accept one key or an array of keys.
 				</CSD.Text>
 				<CSD.Text>A function similar to the one below should be passed to `onSelect`.</CSD.Text>
 				<CSD.Code>
 					{`
-						const handleSelect = (option: CSCustomSelectOptionInterface) => {
+						const handleSelect = (option: CSPicklistOptionInterface) => {
 							setSelectedKey(option.key);
 						};
 					`}
 				</CSD.Code>
-				<CSD.Text>An example of working CSCustomSelect in its most basic form.</CSD.Text>
+				<CSD.Text>An example of working CSPicklist in its most basic form.</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
-					table={CSCustomSelectProps}
+					table={CSPicklistProps}
 					related={[
 						'label',
 						'options',
@@ -132,7 +132,7 @@ const CSCustomSelectPreview = () => {
 						'onClear'
 					]}
 					code={`
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Department"
 							onSelect={handleSelect}
@@ -140,10 +140,10 @@ const CSCustomSelectPreview = () => {
 						/>
 					`}
 				>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Department"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'basicSelect')}
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'basicSelect')}
 						selectedKeys={selectedKeys.basicSelect}
 					/>
 				</CSD.Preview>
@@ -161,7 +161,7 @@ const CSCustomSelectPreview = () => {
 				<CSD.Text>A basic clear method which clears selected key.</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
-					table={CSCustomSelectProps}
+					table={CSPicklistProps}
 					related={[
 						'label',
 						'options',
@@ -171,7 +171,7 @@ const CSCustomSelectPreview = () => {
 						'onClear'
 					]}
 					code={`
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Department"
 							onSelect={handleSelect}
@@ -181,10 +181,10 @@ const CSCustomSelectPreview = () => {
 						/>
 					`}
 				>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Department"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'clearExampleKeys')}
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'clearExampleKeys')}
 						selectedKeys={selectedKeys.clearExampleKeys}
 						clearable
 						onClear={() => handleClear('clearExampleKeys')}
@@ -214,12 +214,12 @@ const CSCustomSelectPreview = () => {
 					from the selection by calling the function passed to `onDeselect`.
 				</CSD.Text>
 				<CSD.Text>
-					The functions below describe options interaction of CSCustomSelect multiselect variant. They are
+					The functions below describe options interaction of CSPicklist multiselect variant. They are
 					passed to `onSelect` and `onDeselect` as seen in the example below.
 				</CSD.Text>
 				<CSD.Code>
 					{`
-						const handleMultiselect = (option: CSCustomSelectOptionInterface) => {
+						const handleMultiselect = (option: CSPicklistOptionInterface) => {
 							setMultiselectKeys((prevMultiselectKeys: Array<React.ReactText>) => {
 								if (prevMultiselectKeys.includes(option.key)) {
 									return prevMultiselectKeys.filter((key: React.ReactText) => key !== option.key);
@@ -232,7 +232,7 @@ const CSCustomSelectPreview = () => {
 				</CSD.Code>
 				<CSD.Code>
 					{`
-						const handleDeselect = (option: CSCustomSelectOptionInterface) => {
+						const handleDeselect = (option: CSPicklistOptionInterface) => {
 							setMultiselectKeys((prevMultiselectKeys: Array<React.ReactText>) => {
 								return prevMultiselectKeys.filter((key: React.ReactText) => key !== option.key);
 							});
@@ -241,7 +241,7 @@ const CSCustomSelectPreview = () => {
 				</CSD.Code>
 				<CSD.Preview
 					orientation="vertical"
-					table={CSCustomSelectProps}
+					table={CSPicklistProps}
 					related={[
 						'label',
 						'options',
@@ -252,7 +252,7 @@ const CSCustomSelectPreview = () => {
 						'onClear'
 					]}
 					code={`
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Department"
 							multiselect
@@ -264,12 +264,12 @@ const CSCustomSelectPreview = () => {
 						/>
 					`}
 				>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Department"
 						multiselect
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'multiselectKeys', true)}
-						onDeselect={(option: CSCustomSelectOptionInterface) => handleDeselect(option, 'multiselectKeys')}
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'multiselectKeys', true)}
+						onDeselect={(option: CSPicklistOptionInterface) => handleDeselect(option, 'multiselectKeys')}
 						selectedKeys={selectedKeys.multiselectKeys}
 						clearable
 						onClear={() => handleClear('multiselectKeys')}
@@ -295,7 +295,7 @@ const CSCustomSelectPreview = () => {
 						'onDeselect'
 					]}
 					code={`
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Department"
 							multiselect
@@ -308,13 +308,13 @@ const CSCustomSelectPreview = () => {
 						/>
 					`}
 				>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Department"
 						multiselect
 						showCompactMultiselect
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'multiselectCompactKeys', true)}
-						onDeselect={(option: CSCustomSelectOptionInterface) => handleDeselect(option, 'multiselectCompactKeys')}
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'multiselectCompactKeys', true)}
+						onDeselect={(option: CSPicklistOptionInterface) => handleDeselect(option, 'multiselectCompactKeys')}
 						selectedKeys={selectedKeys.multiselectCompactKeys}
 						clearable
 						onClear={() => handleClear('multiselectCompactKeys')}
@@ -342,7 +342,7 @@ const CSCustomSelectPreview = () => {
 				</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
-					table={CSCustomSelectProps}
+					table={CSPicklistProps}
 					consoleAlert
 					related={[
 						'label',
@@ -351,7 +351,7 @@ const CSCustomSelectPreview = () => {
 						'onSearch'
 					]}
 					code={`
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Department"
 							onSelect={handleSelect}
@@ -361,10 +361,10 @@ const CSCustomSelectPreview = () => {
 						/>
 					`}
 				>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Department"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'searchExampleKeys')}
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'searchExampleKeys')}
 						selectedKeys={selectedKeys.searchExampleKeys}
 						searchBy="all"
 						onSearch={console.log}
@@ -383,7 +383,7 @@ const CSCustomSelectPreview = () => {
 					These events work largely in a same way where they pass a function which executes after certain
 					criteria is met.
 				</CSD.Text>
-				<CSD.Text>CSCustomSelect supports these native events: `onBlur`, `onClick`, `onFocus` and `onKeyDown`.</CSD.Text>
+				<CSD.Text>CSPicklist supports these native events: `onBlur`, `onClick`, `onFocus` and `onKeyDown`.</CSD.Text>
 				<CSD.Text>
 					Besides those, two synthetic events are exposed: `onDropdownClose`, which triggers once the dropdown
 					collapses, and `onClear` which triggers when the clear button is clicked if there is no search term.
@@ -396,7 +396,7 @@ const CSCustomSelectPreview = () => {
 				</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
-					table={CSCustomSelectProps}
+					table={CSPicklistProps}
 					consoleAlert
 					related={[
 						'label',
@@ -410,44 +410,44 @@ const CSCustomSelectPreview = () => {
 						'onClear'
 					]}
 					code={`
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
-							label="Custom Select with onBlur"
+							label="Picklist with onBlur"
 							onSelect={handleSelect}
 							selectedKeys={selectedKeys}
 							onBlur={console.log}
 						/>
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
-							label="Custom Select with onClick"
+							label="Picklist with onClick"
 							onSelect={handleSelect}
 							selectedKeys={selectedKeys}
 							onClick={console.log}
 						/>
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
-							label="Custom Select with onFocus"
+							label="Picklist with onFocus"
 							onSelect={handleSelect}
 							selectedKeys={selectedKeys}
 							onFocus={console.log}
 						/>
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
-							label="Custom Select with onDropdownClose"
+							label="Picklist with onDropdownClose"
 							onSelect={handleSelect}
 							selectedKeys={selectedKeys}
 							onDropdownClose={() => console.log('onDropdownClose triggered')}
 						/>
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
-							label="Custom Select with onKeyDown"
+							label="Picklist with onKeyDown"
 							onSelect={handleSelect}
 							selectedKeys={selectedKeys}
 							onKeyDown={console.log}
 						/>
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
-							label="Custom Select with onClear"
+							label="Picklist with onClear"
 							onSelect={handleSelect}
 							selectedKeys={selectedKeys}
 							clearable
@@ -455,45 +455,45 @@ const CSCustomSelectPreview = () => {
 						/>
 					`}
 				>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
-						label="Custom Select with onBlur"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'onBlurKeys')}
+						label="Picklist with onBlur"
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'onBlurKeys')}
 						selectedKeys={selectedKeys.onBlurKeys}
 						onBlur={console.log}
 					/>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
-						label="Custom Select with onClick"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'onClickKeys')}
+						label="Picklist with onClick"
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'onClickKeys')}
 						selectedKeys={selectedKeys.onClickKeys}
 						onClick={console.log}
 					/>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
-						label="Custom Select with onFocus"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'onFocusKeys')}
+						label="Picklist with onFocus"
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'onFocusKeys')}
 						selectedKeys={selectedKeys.onFocusKeys}
 						onFocus={console.log}
 					/>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
-						label="Custom Select with onDropdownClose"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'onDropdownCloseKeys')}
+						label="Picklist with onDropdownClose"
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'onDropdownCloseKeys')}
 						selectedKeys={selectedKeys.onDropdownCloseKeys}
 						onDropdownClose={() => console.log('onDropdownClose triggered')}
 					/>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
-						label="Custom Select with onKeyDown"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'onKeyDownKeys')}
+						label="Picklist with onKeyDown"
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'onKeyDownKeys')}
 						selectedKeys={selectedKeys.onKeyDownKeys}
 						onKeyDown={console.log}
 					/>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
-						label="Custom Select with onClear"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'onClearKeys')}
+						label="Picklist with onClear"
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'onClearKeys')}
 						selectedKeys={selectedKeys.onClearKeys}
 						clearable
 						onClear={() => console.log('onClear triggered')}
@@ -514,7 +514,7 @@ const CSCustomSelectPreview = () => {
 				<CSD.Text>These buttons will spawn at the bottom after all of the options.</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
-					table={CSCustomSelectProps}
+					table={CSPicklistProps}
 					consoleAlert
 					related={[
 						'label',
@@ -529,7 +529,7 @@ const CSCustomSelectPreview = () => {
 							onClick: console.log
 						}];
 
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Department"
 							onSelect={handleSelect}
@@ -538,10 +538,10 @@ const CSCustomSelectPreview = () => {
 						/>
 					`}
 				>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Department"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'dropdownAction')}
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'dropdownAction')}
 						selectedKeys={selectedKeys.dropdownAction}
 						dropdownActions={[{
 							label: 'Add department',
@@ -560,7 +560,7 @@ const CSCustomSelectPreview = () => {
 					<CSD.ListItem>errorTooltip</CSD.ListItem>
 				</CSD.List>
 				<CSD.Text>
-					Like most other form field components, CSCustomSelect features three error props.
+					Like most other form field components, CSPicklist features three error props.
 					The first and most basic, `error` simply lets the user know if something is wrong.
 					Along this prop you should provide some information which you can add to the `errorMessage` prop.
 				</CSD.Text>
@@ -571,7 +571,7 @@ const CSCustomSelectPreview = () => {
 				</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
-					table={CSCustomSelectProps}
+					table={CSPicklistProps}
 					related={[
 						'label',
 						'options',
@@ -580,7 +580,7 @@ const CSCustomSelectPreview = () => {
 						'errorTooltip'
 					]}
 					code={`
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Department"
 							onSelect={handleSelect}
@@ -588,7 +588,7 @@ const CSCustomSelectPreview = () => {
 							error
 							errorMessage="This is an example error message"
 						/>
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Department"
 							onSelect={handleSelect}
@@ -599,18 +599,18 @@ const CSCustomSelectPreview = () => {
 						/>
 					`}
 				>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Department"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'errorMessage')}
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'errorMessage')}
 						selectedKeys={selectedKeys.errorMessage}
 						error
 						errorMessage="This is an example error message"
 					/>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Department"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'errorTooltip')}
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'errorTooltip')}
 						selectedKeys={selectedKeys.errorTooltip}
 						error
 						errorMessage="This is an example error message"
@@ -625,7 +625,7 @@ const CSCustomSelectPreview = () => {
 					<CSD.ListItem>hidden</CSD.ListItem>
 				</CSD.List>
 				<CSD.Text>
-					Similar to the `error` props, most form fields including CSCustomSelect feature a selection of boolean
+					Similar to the `error` props, most form fields including CSPicklist feature a selection of boolean
 					restriction props that either prevent or require user interaction.
 				</CSD.Text>
 				<CSD.Text>
@@ -641,7 +641,7 @@ const CSCustomSelectPreview = () => {
 				</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
-					table={CSCustomSelectProps}
+					table={CSPicklistProps}
 					related={[
 						'label',
 						'options',
@@ -650,21 +650,21 @@ const CSCustomSelectPreview = () => {
 						'required'
 					]}
 					code={`
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Department"
 							onSelect={handleSelect}
 							selectedKeys={selectedKeys}
 							disabled
 						/>
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Department"
 							onSelect={handleSelect}
 							selectedKeys={selectedKeys}
 							readOnly
 						/>
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Department"
 							onSelect={handleSelect}
@@ -673,24 +673,24 @@ const CSCustomSelectPreview = () => {
 						/>
 					`}
 				>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Department"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'disabled')}
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'disabled')}
 						selectedKeys={selectedKeys.disabled}
 						disabled
 					/>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Department"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'readOnly')}
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'readOnly')}
 						selectedKeys={selectedKeys.readOnly}
 						readOnly
 					/>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Department"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'required')}
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'required')}
 						selectedKeys={selectedKeys.required}
 						required
 					/>
@@ -698,21 +698,21 @@ const CSCustomSelectPreview = () => {
 				<CSD.Text>`hidden` prop is a boolean setting which will hide the input field when desired.</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
-					table={CSCustomSelectProps}
+					table={CSPicklistProps}
 					related={[
 						'label',
 						'options',
 						'hidden'
 					]}
 					code={`
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Department"
 							hidden
 						/>
 					`}
 				>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Department"
 						hidden
@@ -731,7 +731,7 @@ const CSCustomSelectPreview = () => {
 					it is still needed for accessibility reasons.
 				</CSD.Text>
 				<CSD.Text>
-					Some scenarios may require a CSCustomSelect without a label. This can be achieved by adding the
+					Some scenarios may require a CSPicklist without a label. This can be achieved by adding the
 					`labelHidden` prop which will hide the label visually, but keep the accessibility semantics.
 				</CSD.Text>
 				<CSD.Text>
@@ -740,7 +740,7 @@ const CSCustomSelectPreview = () => {
 				</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
-					table={CSCustomSelectProps}
+					table={CSPicklistProps}
 					related={[
 						'label',
 						'options',
@@ -748,20 +748,20 @@ const CSCustomSelectPreview = () => {
 						'labelTitle'
 					]}
 					code={`
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Label"
 							onSelect={handleSelect}
 							selectedKeys={selectedKeys}
 						/>
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Label with a title"
 							labelTitle="title"
 							onSelect={handleSelect}
 							selectedKeys={selectedKeys}
 						/>
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Label is visually hidden, but visible to screen readers"
 							labelHidden
@@ -770,24 +770,24 @@ const CSCustomSelectPreview = () => {
 						/>
 					`}
 				>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Label"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'label')}
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'label')}
 						selectedKeys={selectedKeys.label}
 					/>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Label with a title"
 						labelTitle="title"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'labelTitle')}
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'labelTitle')}
 						selectedKeys={selectedKeys.labelTitle}
 					/>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Label is visually hidden, but visible to screen readers"
 						labelHidden
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'labelHidden')}
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'labelHidden')}
 						selectedKeys={selectedKeys.labelHidden}
 					/>
 				</CSD.Preview>
@@ -808,7 +808,7 @@ const CSCustomSelectPreview = () => {
 				</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
-					table={CSCustomSelectProps}
+					table={CSPicklistProps}
 					related={[
 						'label',
 						'options',
@@ -816,14 +816,14 @@ const CSCustomSelectPreview = () => {
 						'tooltipPosition'
 					]}
 					code={`
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Department"
 							onSelect={handleSelect}
 							selectedKeys={selectedKeys}
 							helpText="Help text"
 						/>
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Department"
 							onSelect={handleSelect}
@@ -833,17 +833,17 @@ const CSCustomSelectPreview = () => {
 						/>
 					`}
 				>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Department"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'helpText')}
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'helpText')}
 						selectedKeys={selectedKeys.helpText}
 						helpText="Help text"
 					/>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Department"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'tooltipPosition')}
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'tooltipPosition')}
 						selectedKeys={selectedKeys.tooltipPosition}
 						helpText="Help text"
 						tooltipPosition="top-left"
@@ -860,7 +860,7 @@ const CSCustomSelectPreview = () => {
 				</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
-					table={CSCustomSelectProps}
+					table={CSPicklistProps}
 					related={[
 						'label',
 						'options',
@@ -868,7 +868,7 @@ const CSCustomSelectPreview = () => {
 						'placeholder'
 					]}
 					code={`
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Department"
 							onSelect={handleSelect}
@@ -877,10 +877,10 @@ const CSCustomSelectPreview = () => {
 						/>
 					`}
 				>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Department"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'title')}
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'title')}
 						selectedKeys={selectedKeys.title}
 						title="Department"
 					/>
@@ -892,7 +892,7 @@ const CSCustomSelectPreview = () => {
 				</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
-					table={CSCustomSelectProps}
+					table={CSPicklistProps}
 					related={[
 						'label',
 						'options',
@@ -900,14 +900,14 @@ const CSCustomSelectPreview = () => {
 						'placeholder'
 					]}
 					code={`
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Department"
 							onSelect={handleSelect}
 							selectedKeys={selectedKeys}
 							placeholder="Search..."
 						/>
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Department"
 							onSelect={handleSelect}
@@ -917,17 +917,17 @@ const CSCustomSelectPreview = () => {
 						/>
 					`}
 				>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Department"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'placeholder')}
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'placeholder')}
 						selectedKeys={selectedKeys.placeholder}
 						placeholder="Search..."
 					/>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Department"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'placeholderKeyOrLabel')}
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'placeholderKeyOrLabel')}
 						selectedKeys={selectedKeys.placeholderKeyOrLabel}
 						searchBy="all"
 						placeholder="Search by key or label..."
@@ -939,7 +939,7 @@ const CSCustomSelectPreview = () => {
 					<CSD.ListItem>icons</CSD.ListItem>
 				</CSD.List>
 				<CSD.Text>
-					Custom data can be added to most form field components including CSCustomSelect.
+					Custom data can be added to most form field components including CSPicklist.
 					These can be applied using either the `actions` or `icons` props.
 				</CSD.Text>
 				<CSD.Text>
@@ -962,7 +962,7 @@ const CSCustomSelectPreview = () => {
 				</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
-					table={CSCustomSelectProps}
+					table={CSPicklistProps}
 					consoleAlert
 					related={[
 						'label',
@@ -1010,14 +1010,14 @@ const CSCustomSelectPreview = () => {
 							}
 						];
 
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Department"
 							onSelect={handleSelect}
 							selectedKeys={selectedKeys}
 							actions={actions}
 						/>
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Department"
 							onSelect={handleSelect}
@@ -1026,17 +1026,17 @@ const CSCustomSelectPreview = () => {
 						/>
 					`}
 				>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Department"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'actions')}
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'actions')}
 						selectedKeys={selectedKeys.actions}
 						actions={actionsWithLog}
 					/>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Department"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'icons')}
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'icons')}
 						selectedKeys={selectedKeys.icons}
 						icons={icons}
 					/>
@@ -1055,11 +1055,11 @@ const CSCustomSelectPreview = () => {
 				<CSD.Text>
 					Setting `gridCustomPopup` to `true` adds the class `.ag-custom-component-popup` to the outer dropdown
 					wrapper to allow support for AG Grid custom components. This prevents the dropdown from closing on
-					mouse click when inside the CSCustomSelect component. This will have no effect outside of cs-grid.
+					mouse click when inside the CSPicklist component. This will have no effect outside of cs-grid.
 				</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
-					table={CSCustomSelectProps}
+					table={CSPicklistProps}
 					related={[
 						'label',
 						'options',
@@ -1067,7 +1067,7 @@ const CSCustomSelectPreview = () => {
 						`gridCustomPopup`
 					]}
 					code={`
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Department"
 							onSelect={handleSelect}
@@ -1076,10 +1076,10 @@ const CSCustomSelectPreview = () => {
 						/>
 					`}
 				>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Department"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'borderRadius')}
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'borderRadius')}
 						selectedKeys={selectedKeys.borderRadius}
 						borderRadius="0"
 					/>
@@ -1090,7 +1090,7 @@ const CSCustomSelectPreview = () => {
 					<CSD.ListItem>position</CSD.ListItem>
 				</CSD.List>
 				<CSD.Text>
-					CSCustomSelect features two props to determine the position of the dropdown.
+					CSPicklist features two props to determine the position of the dropdown.
 					These are `position` which determines vertical positioning and `align` which determines horizontal positioning.
 				</CSD.Text>
 				<CSD.Text>
@@ -1104,7 +1104,7 @@ const CSCustomSelectPreview = () => {
 				</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
-					table={CSCustomSelectProps}
+					table={CSPicklistProps}
 					related={[
 						'label',
 						'options',
@@ -1112,26 +1112,26 @@ const CSCustomSelectPreview = () => {
 						'position'
 					]}
 					code={`
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Bottom"
 							onSelect={handleSelect}
 							selectedKeys={selectedKeys}
 						/>
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Top"
 							onSelect={handleSelect}
 							selectedKeys={selectedKeys}
 							position="top"
 						/>
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Left"
 							onSelect={handleSelect}
 							selectedKeys={selectedKeys}
 						/>
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Right"
 							onSelect={handleSelect}
@@ -1140,29 +1140,29 @@ const CSCustomSelectPreview = () => {
 						/>
 					`}
 				>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Bottom"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'positionBottom')}
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'positionBottom')}
 						selectedKeys={selectedKeys.positionBottom}
 					/>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Top"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'positionTop')}
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'positionTop')}
 						selectedKeys={selectedKeys.positionTop}
 						position="top"
 					/>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Left"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'alignLeft')}
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'alignLeft')}
 						selectedKeys={selectedKeys.alignLeft}
 					/>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Right"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'alignRight')}
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'alignRight')}
 						selectedKeys={selectedKeys.alignRight}
 						align="right"
 					/>
@@ -1173,7 +1173,7 @@ const CSCustomSelectPreview = () => {
 					<CSD.ListItem>className</CSD.ListItem>
 				</CSD.List>
 				<CSD.Text>
-					It is possible to apply custom CSS classes and IDs to CSCustomSelect using the `className` and `id`
+					It is possible to apply custom CSS classes and IDs to CSPicklist using the `className` and `id`
 					props respectively. `className` is applied to the outer wrapper whilst `id` is applied to both the
 					input element and the label `for` attribute.
 				</CSD.Text>
@@ -1183,7 +1183,7 @@ const CSCustomSelectPreview = () => {
 				</CSD.Text>
 				<CSD.Preview
 					orientation="vertical"
-					table={CSCustomSelectProps}
+					table={CSPicklistProps}
 					related={[
 						'label',
 						'options',
@@ -1191,14 +1191,14 @@ const CSCustomSelectPreview = () => {
 						'className'
 					]}
 					code={`
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Department"
 							onSelect={handleSelect}
 							selectedKeys={selectedKeys}
 							className="custom-br-purple"
 						/>
-						<CSCustomSelect
+						<CSPicklist
 							options={options}
 							label="Department"
 							onSelect={handleSelect}
@@ -1207,17 +1207,17 @@ const CSCustomSelectPreview = () => {
 						/>
 					`}
 				>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Department"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'customClass')}
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'customClass')}
 						selectedKeys={selectedKeys.customClass}
 						className="custom-br-purple"
 					/>
-					<CSCustomSelect
+					<CSPicklist
 						options={options}
 						label="Department"
-						onSelect={(option: CSCustomSelectOptionInterface) => handleSelect(option, 'id')}
+						onSelect={(option: CSPicklistOptionInterface) => handleSelect(option, 'id')}
 						selectedKeys={selectedKeys.id}
 						id="custom-id"
 					/>
@@ -1227,4 +1227,4 @@ const CSCustomSelectPreview = () => {
 	);
 };
 
-export default CSCustomSelectPreview;
+export default CSPicklistPreview;

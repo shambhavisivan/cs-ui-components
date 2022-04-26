@@ -42,7 +42,7 @@ export default {
 				For the dropdown option selection you can use `ArrowUp` and `ArrowDown` buttons to move the current selection up or down.
 				If the current option is last and `ArrowDown` is clicked, the selection will cycle to the first option in dropdown and vice versa.
 				If the dropdown is collapsed, `ArrowDown` will open the dropdown as well.
-				Using `Tab` or `Shift` + `Tab` to move away from the CSCustomSelect will close the dropdown if its opened.
+				Using `Tab` or `Shift` + `Tab` to move away from the CSLookup will close the dropdown if its opened.
 				If there is a selected option, clear button is displayed and next focus after the field will go to the clear button.
 			</CSD.Text>
 		</CSD.Section>

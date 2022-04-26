@@ -23,7 +23,7 @@ class CSSelectPreview extends React.Component<{}, CSSelectPreviewState> {
 		accessible: 'yes',
 		alerts: {
 			variant: 'error',
-			text: 'CSSelect is deprecated and should not be used. Use CSCustomSelect instead.'
+			text: 'CSSelect is deprecated and should not be used. Use CSPicklist instead.'
 		},
 		components: [
 			{

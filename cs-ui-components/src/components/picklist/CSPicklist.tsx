@@ -7,26 +7,26 @@ import CSAutoposition from '../../helpers/autoposition/CSAutoposition';
 import { CSAutopositions } from '../../helpers/autoposition/cs-autoposition-types';
 import CSLabel from '../CSLabel';
 import CSIcon from '../CSIcon';
-import CSCustomSelectOption from './CSCustomSelectOption';
-import CSCustomSelectDropdownAction from './CSCustomSelectDropdownAction';
+import CSPicklistOption from './CSPicklistOption';
+import CSPicklistDropdownAction from './CSPicklistDropdownAction';
 import CSButton, { CSButtonProps } from '../CSButton';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from '../CSFieldErrorMsg';
 import CSTooltip, { CSTooltipPosition } from '../CSTooltip';
 import CSCustomData, { CSCustomDataAction, CSCustomDataIcon } from '../CSCustomData';
 
-export type CSCustomSelectDropdownAlignType = 'left' | 'right';
-export type CSCustomSelectDropdownPositionType = 'top' | 'bottom';
-export type CSCustomSelectSearchByType = 'label' | 'all';
+export type CSPicklistDropdownAlignType = 'left' | 'right';
+export type CSPicklistDropdownPositionType = 'top' | 'bottom';
+export type CSPicklistSearchByType = 'label' | 'all';
 
-export interface CSCustomSelectOptionInterface {
+export interface CSPicklistOptionInterface {
 	key: React.ReactText;
 	label: React.ReactText;
 }
 
-export interface CSCustomSelectProps {
+export interface CSPicklistProps {
 	actions?: Array<CSCustomDataAction>;
-	options: Array<CSCustomSelectOptionInterface>;
-	align?: CSCustomSelectDropdownAlignType;
+	options: Array<CSPicklistOptionInterface>;
+	align?: CSPicklistDropdownAlignType;
 	borderRadius?: string;
 	className?: string;
 	clearable?: boolean;
@@ -47,17 +47,17 @@ export interface CSCustomSelectProps {
 	onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 	onClear?: () => void;
 	onClick?: (event: React.MouseEvent<HTMLInputElement>) => void;
-	onDeselect?: (option: CSCustomSelectOptionInterface) => void;
+	onDeselect?: (option: CSPicklistOptionInterface) => void;
 	onDropdownClose?: () => void;
 	onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
 	onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 	onSearch?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-	onSelect?: (option: CSCustomSelectOptionInterface) => void;
+	onSelect?: (option: CSPicklistOptionInterface) => void;
 	placeholder?: string;
-	position?: CSCustomSelectDropdownPositionType;
+	position?: CSPicklistDropdownPositionType;
 	readOnly?: boolean;
 	required?: boolean;
-	searchBy?: CSCustomSelectSearchByType;
+	searchBy?: CSPicklistSearchByType;
 	selectedKeys?: React.ReactText | Array<React.ReactText>;
 	showCompactMultiselect?: boolean;
 	title?: string;
@@ -65,7 +65,7 @@ export interface CSCustomSelectProps {
 	[key: string]: any;
 }
 
-const CSCustomSelect = ({
+const CSPicklist = ({
 	actions,
 	options,
 	align = 'left',
@@ -106,11 +106,11 @@ const CSCustomSelect = ({
 	title,
 	tooltipPosition,
 	...rest
-}: CSCustomSelectProps) => {
+}: CSPicklistProps) => {
 	const { current: uniqueId } = useRef(id || uuidv4());
-	const customSelectInputWrapperRef = useRef(null);
-	const customSelectInputRef = useRef(null);
-	const customSelectDropdownRef = useRef(null);
+	const picklistInputWrapperRef = useRef(null);
+	const picklistInputRef = useRef(null);
+	const picklistDropdownRef = useRef(null);
 
 	const [searchTerm, setSearchTerm] = useState('');
 	const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -124,19 +124,19 @@ const CSCustomSelect = ({
 		setSearchTerm('');
 	}, [setDropdownVisible, onDropdownClose]);
 
-	useImperativeHandle(forwardRef, () => customSelectInputRef.current);
+	useImperativeHandle(forwardRef, () => picklistInputRef.current);
 
 	useEffect(() => {
 		const handleOutsideClick = (event: MouseEvent) => {
-			const clickOutsideInput = customSelectInputWrapperRef.current && !customSelectInputWrapperRef.current.contains(event.target);
-			const clickOutsideDropdown = customSelectDropdownRef.current && !customSelectDropdownRef.current.contains(event.target);
+			const clickOutsideInput = picklistInputWrapperRef.current && !picklistInputWrapperRef.current.contains(event.target);
+			const clickOutsideDropdown = picklistDropdownRef.current && !picklistDropdownRef.current.contains(event.target);
 			if (clickOutsideInput && clickOutsideDropdown) closeDropdown();
 		};
 
 		document.addEventListener('click', handleOutsideClick);
 
 		return () => document.removeEventListener('click', handleOutsideClick);
-	}, [customSelectInputWrapperRef, customSelectDropdownRef, closeDropdown]);
+	}, [picklistInputWrapperRef, picklistDropdownRef, closeDropdown]);
 
 	const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
 		onBlur?.(event);
@@ -147,25 +147,25 @@ const CSCustomSelect = ({
 		if (readOnly) return;
 		setDropdownVisible(true);
 		onClick?.(event);
-		customSelectInputRef.current?.focus();
+		picklistInputRef.current?.focus();
 	};
 
 	const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
 		if (focused) event.preventDefault();
 	};
 
-	const customSelectWrapperClasses = classNames(
-		'cs-custom-select-wrapper',
+	const picklistWrapperClasses = classNames(
+		'cs-picklist-wrapper',
 		{
-			'cs-custom-select-multiselect': multiselect && !showCompactMultiselect,
-			'cs-custom-select-dropdown-visible': dropdownVisible,
+			'cs-picklist-multiselect': multiselect && !showCompactMultiselect,
+			'cs-picklist-dropdown-visible': dropdownVisible,
 			'cs-element-hidden': hidden,
 			[className]: className,
 		},
 	);
 
 	const inputWrapperClasses = classNames(
-		'cs-custom-select-input-wrapper',
+		'cs-picklist-input-wrapper',
 		'cs-input-wrapper',
 		{
 			'cs-input-wrapper-error': error,
@@ -175,13 +175,13 @@ const CSCustomSelect = ({
 		},
 	);
 
-	const customSelectInputClasses = classNames(
-		'cs-custom-select-input',
+	const picklistInputClasses = classNames(
+		'cs-picklist-input',
 		'cs-invisible-input',
 	);
 
-	const customSelectDropdownClasses = classNames(
-		'cs-custom-select-dropdown-wrapper',
+	const picklistDropdownClasses = classNames(
+		'cs-picklist-dropdown-wrapper',
 		{
 			'ag-custom-component-popup': gridCustomPopup,
 		},
@@ -210,13 +210,13 @@ const CSCustomSelect = ({
 		if (readOnly || disabled || !multiselect || showCompactMultiselect || !selectedKeysArray.length) return null;
 
 		return selectedKeysArray.map((selectedKey: React.ReactText) => {
-			const selectedOption = options.find((option: CSCustomSelectOptionInterface) => option.key === selectedKey);
+			const selectedOption = options.find((option: CSPicklistOptionInterface) => option.key === selectedKey);
 
 			if (!selectedOption) return null;
 
 			return (
-				<div key={selectedOption.key} className="cs-custom-select-multiselect-item">
-					<span className="cs-custom-select-multiselect-item-value">
+				<div key={selectedOption.key} className="cs-picklist-multiselect-item">
+					<span className="cs-picklist-multiselect-item-value">
 						{selectedOption.label}
 					</span>
 					{!readOnly && (
@@ -237,7 +237,7 @@ const CSCustomSelect = ({
 								if (event.key === KeyCode.Enter) {
 									event.preventDefault();
 									onDeselect?.(selectedOption);
-									customSelectInputRef.current?.focus();
+									picklistInputRef.current?.focus();
 								}
 							}}
 						/>
@@ -251,14 +251,14 @@ const CSCustomSelect = ({
 		if ((multiselect && !showCompactMultiselect) || searchTerm) return null;
 
 		return (
-			<span className="cs-custom-select-value-wrapper">
+			<span className="cs-picklist-value-wrapper">
 				{selectedKeysArray.map((selectedKey: React.ReactText, selectedKeyIndex) => {
-					const selectedOption = options.find((option: CSCustomSelectOptionInterface) => option.key === selectedKey);
+					const selectedOption = options.find((option: CSPicklistOptionInterface) => option.key === selectedKey);
 
 					if (!selectedOption || (searchTerm && !showCompactMultiselect)) return null;
 
 					return (
-						<span key={selectedOption.key} className="cs-custom-select-value">
+						<span key={selectedOption.key} className="cs-picklist-value">
 							{selectedKeyIndex ? ', ' : null}
 							{selectedOption.label}
 						</span>
@@ -274,15 +274,15 @@ const CSCustomSelect = ({
 		const canvas = document.createElement('canvas');
 		const context = canvas.getContext('2d');
 		let width = 0;
-		if (context && customSelectInputRef.current) {
-			context.font = getComputedStyle(customSelectInputRef.current).font;
+		if (context && picklistInputRef.current) {
+			context.font = getComputedStyle(picklistInputRef.current).font;
 			width = context.measureText(searchTerm).width;
 		}
 
 		return <div className="cs-blinking-cursor" style={{ left: width }} />;
 	};
 
-	const renderCustomSelectInput = () => {
+	const renderPicklistInput = () => {
 		const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 			setSearchTerm(event.target.value);
 			onSearch?.(event);
@@ -303,13 +303,13 @@ const CSCustomSelect = ({
 			} else if (event.key === KeyCode.ArrowDown) {
 				event.preventDefault();
 				setDropdownVisible(true);
-				customSelectDropdownRef.current?.firstElementChild?.focus();
+				picklistDropdownRef.current?.firstElementChild?.focus();
 			} else if (event.key === KeyCode.ArrowUp) {
 				event.preventDefault();
 				setDropdownVisible(true);
-				const lastAction = customSelectDropdownRef.current?.parentElement?.lastElementChild?.lastElementChild;
+				const lastAction = picklistDropdownRef.current?.parentElement?.lastElementChild?.lastElementChild;
 				if (lastAction) lastAction.focus();
-				else customSelectDropdownRef.current?.lastElementChild?.focus();
+				else picklistDropdownRef.current?.lastElementChild?.focus();
 			} else if (event.key === KeyCode.Escape && dropdownVisible) {
 				closeDropdown();
 			} else if (event.key === KeyCode.Enter) {
@@ -324,13 +324,13 @@ const CSCustomSelect = ({
 		};
 
 		return (
-			<div className="cs-custom-select-items">
+			<div className="cs-picklist-items">
 				{renderSelectedOptions()}
 				{renderMultiselectOptions()}
 				{renderBlinkingCursor()}
 				<input
-					className={customSelectInputClasses}
-					ref={customSelectInputRef}
+					className={picklistInputClasses}
+					ref={picklistInputRef}
 					value={searchTerm}
 					type="text"
 					onChange={handleChange}
@@ -363,7 +363,7 @@ const CSCustomSelect = ({
 			event.stopPropagation();
 			if (searchTerm) setSearchTerm('');
 			else onClear?.();
-			customSelectInputRef.current?.focus();
+			picklistInputRef.current?.focus();
 		};
 
 		const handleClearClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -382,7 +382,7 @@ const CSCustomSelect = ({
 			<CSButton
 				btnType="transparent"
 				btnStyle="brand"
-				className="cs-custom-select-clear-btn"
+				className="cs-picklist-clear-btn"
 				iconName="close"
 				iconColor="var(--cs-input-clear)"
 				size="xsmall"
@@ -411,47 +411,47 @@ const CSCustomSelect = ({
 
 		const initialPosition = `${position}-${align === 'left' ? 'right' : 'left'}` as CSAutopositions;
 
-		const filteredOptions = searchTerm === '' ? options : options.filter((option: CSCustomSelectOptionInterface) => {
+		const filteredOptions = searchTerm === '' ? options : options.filter((option: CSPicklistOptionInterface) => {
 			if (searchBy === 'label') return option.label.toString().toLowerCase().includes(searchTerm.toString().toLowerCase());
 			return option.label.toString().toLowerCase().includes(searchTerm.toString().toLowerCase()) || option.key.toString().toLowerCase().includes(searchTerm.toString().toLowerCase());
 		});
 
 		return (
 			<CSAutoposition
-				referencePoint={customSelectInputWrapperRef.current}
+				referencePoint={picklistInputWrapperRef.current}
 				positionSchema={['top-left', 'top-right', 'bottom-right', 'bottom-left']}
 				initialPosition={initialPosition}
-				zIndex="var(--z-index-custom-select-dropdown)"
+				zIndex="var(--z-index-picklist-dropdown)"
 				trackRefPointWidth
 			>
-				<div className={customSelectDropdownClasses}>
-					<ul ref={customSelectDropdownRef} className="cs-custom-select-dropdown">
+				<div className={picklistDropdownClasses}>
+					<ul ref={picklistDropdownRef} className="cs-picklist-dropdown">
 						{!filteredOptions.length && (
-							<li className="cs-custom-select-no-data">
-								<CSIcon name="error" color="var(--cs-custom-select-no-data-c)" />
-								<span className="cs-custom-select-no-data-text">No data found</span>
+							<li className="cs-picklist-no-data">
+								<CSIcon name="error" color="var(--cs-picklist-no-data-c)" />
+								<span className="cs-picklist-no-data-text">No data found</span>
 							</li>
 						)}
-						{filteredOptions.map((option: CSCustomSelectOptionInterface) => (
-							<CSCustomSelectOption
+						{filteredOptions.map((option: CSPicklistOptionInterface) => (
+							<CSPicklistOption
 								key={option.key}
 								option={option}
 								selected={selectedKeysArray.indexOf(option.key) !== -1}
 								multiselect={multiselect}
-								focusInput={() => customSelectInputRef.current?.focus()}
+								focusInput={() => picklistInputRef.current?.focus()}
 								closeDropdown={closeDropdown}
 								onSelectChange={onSelect}
 							/>
 						))}
 					</ul>
 					{!dropdownActions ? '' : (
-						<div className="cs-custom-select-dropdown-action-wrapper">
+						<div className="cs-picklist-dropdown-action-wrapper">
 							{dropdownActions?.map((button: CSButtonProps, buttonIndex: number) => (
-								<CSCustomSelectDropdownAction
+								<CSPicklistDropdownAction
 									// eslint-disable-next-line react/no-array-index-key
 									key={buttonIndex}
 									action={button}
-									focusInput={() => customSelectInputRef.current?.focus()}
+									focusInput={() => picklistInputRef.current?.focus()}
 									closeDropdown={closeDropdown}
 								/>
 							))}
@@ -475,17 +475,17 @@ const CSCustomSelect = ({
 	};
 
 	return (
-		<div className={customSelectWrapperClasses} id={id}>
+		<div className={picklistWrapperClasses} id={id}>
 			{renderLabel()}
 			{/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
 			<div
 				className={inputWrapperClasses}
 				onClick={handleClick}
 				onMouseDown={handleMouseDown}
-				ref={customSelectInputWrapperRef}
+				ref={picklistInputWrapperRef}
 				style={style}
 			>
-				{renderCustomSelectInput()}
+				{renderPicklistInput()}
 				{renderClearButton()}
 				<CSCustomData actions={actions} icons={icons} />
 				{renderErrorTooltip()}
@@ -497,8 +497,8 @@ const CSCustomSelect = ({
 	);
 };
 
-const CSCustomSelectWithRef = React.forwardRef<HTMLInputElement, CSCustomSelectProps>((props: CSCustomSelectProps, ref) => <CSCustomSelect {...props} forwardRef={ref} />);
+const CSPicklistWithRef = React.forwardRef<HTMLInputElement, CSPicklistProps>((props: CSPicklistProps, ref) => <CSPicklist {...props} forwardRef={ref} />);
 
-CSCustomSelectWithRef.displayName = 'CSCustomSelect';
+CSPicklistWithRef.displayName = 'CSPicklist';
 
-export default CSCustomSelectWithRef;
+export default CSPicklistWithRef;

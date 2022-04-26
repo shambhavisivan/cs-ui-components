@@ -1,15 +1,15 @@
-.cs-custom-select-wrapper {
+.cs-picklist-wrapper {
 	display: flex;
 	flex-direction: column;
 	@include input-wrapper;
 	@include invisible-input;
 
-	.cs-custom-select-input-wrapper {
+	.cs-picklist-input-wrapper {
 		&:focus-within .cs-blinking-cursor { // Hide blinking cursor on input focus because native input blinking cursor is shown
 			display: none;
 		}
 
-		.cs-custom-select-items {
+		.cs-picklist-items {
 			position: relative;
 			display: flex;
 			align-items: center;
@@ -19,31 +19,31 @@
 			padding-left: 0.5rem;
 			padding-right: 0.25rem;
 
-			.cs-custom-select-input {
+			.cs-picklist-input {
 				min-width: 2rem;
 				padding: 0;
 			}
 		}
 
 		&.cs-input-wrapper-read-only {
-			.cs-custom-select-items {
+			.cs-picklist-items {
 				padding-left: 0;
 			}
-			.cs-custom-select-value-wrapper {
+			.cs-picklist-value-wrapper {
 				cursor: auto;
 				width: 100%;
 			}
 		}
 	}
 
-	.cs-custom-select-value-wrapper {
+	.cs-picklist-value-wrapper {
 		position: relative;
 		align-self: center;
 		font-size: 0.8125rem;
 		line-height: normal;
 		@include overflow-ellipsis;
 
-		.cs-custom-select-value {
+		.cs-picklist-value {
 			@include sc(--cs-input-c);
 		}
 	}
@@ -53,8 +53,8 @@
 		transition: transform 200ms ease-in-out;
 	}
 
-	&.cs-custom-select-dropdown-visible {
-		.cs-custom-select-value-wrapper {
+	&.cs-picklist-dropdown-visible {
+		.cs-picklist-value-wrapper {
 			position: absolute;
 			left: 0.5rem;
 			right: 0;
@@ -68,13 +68,13 @@
 			}
 		}
 
-		.cs-custom-select-value {
+		.cs-picklist-value {
 			@include sc(--cs-selected-input-option-c);
 		}
 	}
 
-	&.cs-custom-select-multiselect {
-		.cs-custom-select-items {
+	&.cs-picklist-multiselect {
+		.cs-picklist-items {
 			flex-wrap: wrap;
 			padding-left: 0.25rem;
 
@@ -86,13 +86,13 @@
 				}
 			}
 
-			.cs-custom-select-input {
+			.cs-picklist-input {
 				padding-left: 0.25rem;
 				min-height: 1.5rem;
 				height: 1.5rem;
 			}
 
-			.cs-custom-select-multiselect-item {
+			.cs-picklist-multiselect-item {
 				display: inline-flex;
 				align-items: center;
 				font-size: 0.8125rem;
@@ -101,7 +101,7 @@
 				border-radius: 0.25rem;
 				padding: 0 0.25rem 0 0.5rem;
 				margin: 0.125rem 0.25rem 0.125rem 0;
-				z-index: var(--z-index-custom-select-values);
+				z-index: var(--z-index-picklist-values);
 				@include sbg(--cs-option-ms-item-selected-bg);
 				@include css4 {
 					border: 1px solid cvar(--cs-option-ms-item-selected-br);
@@ -123,7 +123,7 @@
 					margin-right: 0;
 				}
 
-				.cs-custom-select-multiselect-item-value {
+				.cs-picklist-multiselect-item-value {
 					line-height: normal;
 					@include overflow-ellipsis;
 					@include sc(--cs-input-c);
@@ -133,11 +133,11 @@
 	}
 }
 
-/* CUSTOM SELECT DROPDOWN STYLES */
-.cs-custom-select-dropdown-wrapper {
+/* PICKLIST DROPDOWN STYLES */
+.cs-picklist-dropdown-wrapper {
 	width: 100%;
 
-	.cs-custom-select-dropdown {
+	.cs-picklist-dropdown {
 		border-radius: 0.25rem;
 		font-size: 0.8125rem;
 		list-style: none;
@@ -145,10 +145,10 @@
 		overflow-y: auto;
 		scroll-snap-type: y proximity;
 		padding: 0.25rem 0;
-		@include sbg(--cs-custom-select-dropdown-bg);
+		@include sbg(--cs-picklist-dropdown-bg);
 		@include css4 {
-			border: 1px solid cvar(--cs-custom-select-dropdown-br);
-			box-shadow: 0 2px 3px 0 cvar(--cs-custom-select-dropdown-shadow);
+			border: 1px solid cvar(--cs-picklist-dropdown-br);
+			box-shadow: 0 2px 3px 0 cvar(--cs-picklist-dropdown-shadow);
 		}
 
 		&:not(:only-child) {
@@ -157,18 +157,18 @@
 			border-bottom-right-radius: 0;
 		}
 
-		.cs-custom-select-no-data {
+		.cs-picklist-no-data {
 			display: flex;
 			align-items: center;
 			padding: 0.5rem;
 
-			.cs-custom-select-no-data-text {
-				@include sc(--cs-custom-select-no-data-c);
+			.cs-picklist-no-data-text {
+				@include sc(--cs-picklist-no-data-c);
 				margin-left: 0.5rem;
 			}
 		}
 
-		.cs-custom-select-option {
+		.cs-picklist-option {
 			cursor: pointer;
 			padding: 0.5rem 0.75rem;
 			outline: 0;
@@ -179,10 +179,10 @@
 
 			&:hover,
 			&:focus {
-				@include sbg(--cs-custom-select-dropdown-hover-bg);
+				@include sbg(--cs-picklist-dropdown-hover-bg);
 			}
 
-			&.cs-custom-select-option-selected {
+			&.cs-picklist-option-selected {
 				@include sbg(--cs-option-list-item-selected-bg);
 
 				&:hover,
@@ -195,11 +195,11 @@
 				margin-right: 0.5rem;
 			}
 
-			.cs-custom-select-option-value {
+			.cs-picklist-option-value {
 				@include overflow-ellipsis;
 			}
 
-			.cs-custom-select-option-check-icon {
+			.cs-picklist-option-check-icon {
 				display: flex;
 				justify-content: center;
 				width: 1.5rem;
@@ -208,8 +208,8 @@
 		}
 	}
 
-	.cs-custom-select-dropdown-action-wrapper {
-		.cs-custom-select-dropdown-action {
+	.cs-picklist-dropdown-action-wrapper {
+		.cs-picklist-dropdown-action {
 			width: 100%;
 
 			&:before {
@@ -218,7 +218,7 @@
 
 			&:after {
 				border-radius: 0 0 0.25rem 0.25rem;
-				border: 1px solid cvar(--cs-custom-select-dropdown-br);
+				border: 1px solid cvar(--cs-picklist-dropdown-br);
 			}
 
 			&:not(:last-child):not(:only-child):before,
@@ -230,7 +230,7 @@
 			&:hover,
 			&:focus {
 				&:before {
-					@include sbg(--cs-custom-select-dropdown-hover-bg);
+					@include sbg(--cs-picklist-dropdown-hover-bg);
 				}
 
 				&:after {

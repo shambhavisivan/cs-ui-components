@@ -1,32 +1,32 @@
 import React, { useRef } from 'react';
 import classNames from 'classnames';
-import { CSCustomSelectOptionInterface } from './CSCustomSelect';
+import { CSPicklistOptionInterface } from './CSPicklist';
 import CSIcon from '../CSIcon';
 import KeyCode from '../../util/KeyCode';
 
-export interface CSCustomSelectOptionProps {
+export interface CSPicklistOptionProps {
 	closeDropdown?: () => void;
 	focusInput?: () => void;
 	multiselect?: boolean;
-	onSelectChange: (option: CSCustomSelectOptionInterface) => void;
-	option: CSCustomSelectOptionInterface,
+	onSelectChange: (option: CSPicklistOptionInterface) => void;
+	option: CSPicklistOptionInterface,
 	selected: boolean;
 }
 
-const CSCustomSelectOption = ({
+const CSPicklistOption = ({
 	closeDropdown,
 	focusInput,
 	multiselect,
 	onSelectChange,
 	option,
 	selected,
-}: CSCustomSelectOptionProps) => {
-	const customSelectOptionRef = useRef(null);
+}: CSPicklistOptionProps) => {
+	const picklistOptionRef = useRef(null);
 
-	const optionClasses = classNames(
-		'cs-custom-select-option',
+	const picklistOptionClasses = classNames(
+		'cs-picklist-option',
 		{
-			'cs-custom-select-option-selected': !multiselect && selected,
+			'cs-picklist-option-selected': !multiselect && selected,
 		},
 	);
 
@@ -42,16 +42,16 @@ const CSCustomSelectOption = ({
 
 	const handleKeyDown = (event: React.KeyboardEvent<HTMLLIElement>) => {
 		if (event.key === KeyCode.ArrowDown) {
-			const nextSibling = customSelectOptionRef.current?.nextElementSibling;
-			const firstAction = customSelectOptionRef.current?.parentElement?.nextElementSibling?.firstElementChild;
-			const firstSibling = customSelectOptionRef.current?.parentElement?.firstElementChild;
+			const nextSibling = picklistOptionRef.current?.nextElementSibling;
+			const firstAction = picklistOptionRef.current?.parentElement?.nextElementSibling?.firstElementChild;
+			const firstSibling = picklistOptionRef.current?.parentElement?.firstElementChild;
 			if (nextSibling) nextSibling.focus();
 			else if (firstAction) firstAction.focus();
 			else firstSibling?.focus();
 		} else if (event.key === KeyCode.ArrowUp) {
-			const prevSibling = customSelectOptionRef.current?.previousElementSibling;
-			const lastAction = customSelectOptionRef.current?.parentElement?.nextElementSibling?.lastElementChild;
-			const lastSibling = customSelectOptionRef.current?.parentElement?.lastElementChild;
+			const prevSibling = picklistOptionRef.current?.previousElementSibling;
+			const lastAction = picklistOptionRef.current?.parentElement?.nextElementSibling?.lastElementChild;
+			const lastSibling = picklistOptionRef.current?.parentElement?.lastElementChild;
 			if (prevSibling) prevSibling.focus();
 			else if (lastAction) lastAction.focus();
 			else lastSibling?.focus();
@@ -71,25 +71,25 @@ const CSCustomSelectOption = ({
 	return (
 		<li
 			tabIndex={0}
-			ref={customSelectOptionRef}
+			ref={picklistOptionRef}
 			role="option"
 			aria-selected={selected}
-			className={optionClasses}
+			className={picklistOptionClasses}
 			onClick={handleSelectionChange}
 			onKeyDown={handleKeyDown}
 		>
 			{multiselect && (
-				<span className="cs-custom-select-option-check-icon">
+				<span className="cs-picklist-option-check-icon">
 					{selected && (
 						<CSIcon name="check" color="var(--cs-option-list-item-fill)" />
 					)}
 				</span>
 			)}
-			<span className="cs-custom-select-option-value">
+			<span className="cs-picklist-option-value">
 				{option.label}
 			</span>
 		</li>
 	);
 };
 
-export default CSCustomSelectOption;
+export default CSPicklistOption;

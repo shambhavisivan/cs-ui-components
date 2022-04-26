@@ -49,14 +49,13 @@ import CSCustomData, {
 	CSCustomDataTooltip,
 	CSCustomDataMenuVariant,
 } from './components/CSCustomData';
-
-import CSCustomSelect, {
-	CSCustomSelectDropdownAlignType,
-	CSCustomSelectDropdownPositionType,
-	CSCustomSelectOptionInterface,
-	CSCustomSelectSearchByType,
-	CSCustomSelectProps,
-} from './components/custom-select/CSCustomSelect';
+import CSPicklist, {
+	CSPicklistDropdownAlignType,
+	CSPicklistDropdownPositionType,
+	CSPicklistOptionInterface,
+	CSPicklistSearchByType,
+	CSPicklistProps,
+} from './components/picklist/CSPicklist';
 import CSDataTable, {
 	CSDataTableCellClassName,
 	CSDataTableColumnInterface,
@@ -255,12 +254,12 @@ export {
 	CSCustomDataAction,
 	CSCustomDataTooltip,
 	CSCustomDataMenuVariant,
-	CSCustomSelect,
-	CSCustomSelectProps,
-	CSCustomSelectDropdownAlignType,
-	CSCustomSelectDropdownPositionType,
-	CSCustomSelectOptionInterface,
-	CSCustomSelectSearchByType,
+	CSPicklist,
+	CSPicklistProps,
+	CSPicklistDropdownAlignType,
+	CSPicklistDropdownPositionType,
+	CSPicklistOptionInterface,
+	CSPicklistSearchByType,
 	CSDataTable,
 	CSDataTableCellClassName,
 	CSDataTableColumnInterface,

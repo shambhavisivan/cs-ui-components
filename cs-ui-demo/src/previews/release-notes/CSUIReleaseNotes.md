@@ -34,23 +34,8 @@
   * changed the `tooltip` attribute type `CSTooltipProps`
   * <i>important</i> these changes affect the following components: CSCheckbox, CSCustomSelect, CSDatepicker, CSDateTimePicker, CSInputNumber, CSInputText, CSLookup, CSSelect, CSTextarea, CSToggle
 * CSCustomSelect
-  * removed deselecting feature using backspace
-  * <i>important</i> renamed the `actions` prop to `dropdownActions`
-  * added `readOnly` prop
-  * added `errorTooltip` support
-  * added `onDropdownClose` prop
-  * added `actions` and `icons` support
-  * added `onFocus` prop
-  * added `onBlur` prop
-  * added `clearable` prop
-  * changed `onDropdownClose` prop to execute when dropdown open and enter key pressed
-  * improved clear button behaviour so that it doesn't deselect options when clearing search
-  * fixed field height increase when items are selected
-  * fixed field focus in `multiselect` when there are many items selected
-  * fixed keyboard `tab` to close dropdown when focus is inside dropdown
-  * fixed dropdown width issue on resizing the screen
-  * fixed text cursor positioning issues
-  * fixed dropdown keyboard navigation issues
+  * <i>important</i> renamed component to `CSPicklist`
+  * see `CSPicklist` for `CSCustomSelect` changelog
 * CSDataTable
   * <i>important</i> flipped the default value for the `defaultCollapsed` prop to `true`
   * flipped the default value for the `stickyHeader` prop to `true`
@@ -106,6 +91,25 @@
 * CSModal
   * <i>important</i> changed `visible` prop in `CSUnmountDelay` to be `false` by default
   * changed classes with `.cs-button` prefix to `.cs-btn`
+* CSPicklist
+  * <i>important</i> renamed `CSCustomSelect` to `CSPicklist`
+  * <i>important</i> renamed the `actions` prop to `dropdownActions`
+  * added `readOnly` prop
+  * added `errorTooltip` support
+  * added `onDropdownClose` prop
+  * added `actions` and `icons` support
+  * added `onFocus` prop
+  * added `onBlur` prop
+  * added `clearable` prop
+  * changed `onDropdownClose` prop to execute when dropdown open and enter key pressed
+  * improved clear button behaviour so that it doesn't deselect options when clearing search
+  * removed deselecting feature using backspace
+  * fixed field height increase when items are selected
+  * fixed field focus in `multiselect` when there are many items selected
+  * fixed keyboard `tab` to close dropdown when focus is inside dropdown
+  * fixed dropdown width issue on resizing the screen
+  * fixed text cursor positioning issues
+  * fixed dropdown keyboard navigation issues
 * CSRadio
   * <i>important</i> refactored the component
   * <i>important</i> added `options` prop which adds `CSRadioOption` as `Array<CSRadioOptionInterface>`

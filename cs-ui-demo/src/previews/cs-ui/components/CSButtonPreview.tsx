@@ -980,7 +980,7 @@ class CSButtonPreview extends React.Component {
 						description: 'Accessible attribute to indicate whether an object controlled by the button is a popup.'
 					}, {
 						name: 'ariaLabel',
-						required: 'CSCustomSelect',
+						required: 'CSPicklist',
 						types: 'string',
 						description: 'Override the aria-label attribute which is by default set by the label prop.'
 					}, {

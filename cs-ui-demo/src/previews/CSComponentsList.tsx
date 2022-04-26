@@ -8,7 +8,7 @@ import CSCheckboxPreview from './cs-ui/components/CSCheckboxPreview';
 import CSChipPreview from './cs-ui/components/CSChipPreview';
 import CSCurrencyPreview from './cs-ui/components/CSCurrencyPreview';
 import CSCustomDataPreview from './cs-ui/components/cs-custom-data/CSCustomDataPreview';
-import CSCustomSelectPreview from './cs-ui/components/cs-custom-select/CSCustomSelectPreview';
+import CSPicklistPreview from './cs-ui/components/cs-picklist/CSPicklistPreview';
 import CSDataTablePreview from './cs-ui/components/cs-data-table/CSDataTablePreview';
 import CSDatepickerPreview from './cs-ui/components/CSDatepickerPreview';
 import CSDateTimePickerPreview from './cs-ui/components/CSDateTimePickerPreview';
@@ -82,10 +82,6 @@ class CSComponentsList extends React.Component {
 				component: CSCustomDataPreview,
 				icon: 'edit_form'
 			}, {
-				name: 'Custom Select',
-				component: CSCustomSelectPreview,
-				icon: 'edit_form'
-			}, {
 				name: 'Data Table',
 				component: CSDataTablePreview
 			}, {
@@ -151,6 +147,10 @@ class CSComponentsList extends React.Component {
 			{
 				name: 'Path',
 				component: CSPathPreview
+			}, {
+				name: 'Picklist',
+				component: CSPicklistPreview,
+				icon: 'edit_form'
 			}, {
 				name: 'Progress Bar',
 				component: CSProgressBarPreview

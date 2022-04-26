@@ -50,7 +50,7 @@ const GettingStarted = () => (
 				<CSD.ListItem>--z-index-sidebar-visible-wrapper: 1;</CSD.ListItem>
 				<CSD.ListItem>--z-index-list-active: 1;</CSD.ListItem>
 				<CSD.ListItem>--z-index-slider-thumb: 1;</CSD.ListItem>
-				<CSD.ListItem>--z-index-custom-select-values: 2;</CSD.ListItem>
+				<CSD.ListItem>--z-index-picklist-values: 2;</CSD.ListItem>
 				<CSD.ListItem>--z-index-button-icon: 2;</CSD.ListItem>
 				<CSD.ListItem>--z-index-button-label: 2;</CSD.ListItem>
 				<CSD.ListItem>--z-index-dropdown-button: 2;</CSD.ListItem>
@@ -64,7 +64,7 @@ const GettingStarted = () => (
 				<CSD.ListItem>--z-index-modal: 9000;</CSD.ListItem>
 				<CSD.ListItem>--z-index-datepicker-popper: 9001;</CSD.ListItem>
 				<CSD.ListItem>--z-index-dropdown-items-wrapper: 9001;</CSD.ListItem>
-				<CSD.ListItem>--z-index-custom-select-dropdown: 9001;</CSD.ListItem>
+				<CSD.ListItem>--z-index-picklist-dropdown: 9001;</CSD.ListItem>
 				<CSD.ListItem>--z-index-lookup-dropdown: 9001;</CSD.ListItem>
 				<CSD.ListItem>--z-index-toast: 9005;</CSD.ListItem>
 				<CSD.ListItem>--z-index-tooltip: 9025;</CSD.ListItem>
