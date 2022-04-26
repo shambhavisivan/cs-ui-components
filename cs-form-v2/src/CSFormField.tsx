@@ -74,7 +74,6 @@ const CSFormField = ({
 	const formFieldClasses = classNames(
 		'csf-field-wrapper',
 		{
-			'csf-field-wrapper-custom': rest.type === 'CUSTOM' || rest.type === 'CUSTOM-MODAL',
 			'csf-field-wrapper-buffer': rest.type === 'BUFFER',
 		},
 	);

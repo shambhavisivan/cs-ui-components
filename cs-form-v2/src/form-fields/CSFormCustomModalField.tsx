@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { CSButton, CSModal, CSModalHeader, CSModalBody, CSModalFooter } from '@cloudsense/cs-ui-components';
+import { CSButton, CSModal, CSModalHeader, CSModalBody, CSModalFooter, CSLabel, CSFieldErrorMsg } from '@cloudsense/cs-ui-components';
+import classNames from 'classnames';
 import { CSFormCustomModalFieldProps } from '../types/cs-form-field-types';
 import { useCSForm } from '../CSFormContext';
 
 const CSFormCustomModalField = ({
+	label,
+	required,
+	error,
+	errorMessage,
 	modalButton,
 	modal,
 }: CSFormCustomModalFieldProps) => {
 	const { data } = useCSForm();
 	const { header, body, footer, onClose, ...modalRest } = modal;
-	const { onClick, ...modalButtonRest } = modalButton;
+	const { btnStyle, btnType, className, onClick, ...modalButtonRest } = modalButton;
 	const { headerContent, headerFactory, ...modalHeaderRest } = header;
 	const { bodyContent, bodyFactory, ...modalBodyRest } = body;
 
@@ -81,9 +86,26 @@ const CSFormCustomModalField = ({
 		return null;
 	};
 
+	const modalBtnClasses = classNames(
+		'csf-custom-modal-btn',
+		{
+			[`${className}`]: className,
+		},
+	);
+
 	return (
 		<>
-			<CSButton onClick={handleModalButtonClick} {...modalButtonRest} />
+			<div className="csf-custom-modal-field">
+				{label && <CSLabel label={label} required={required} />}
+				<CSButton
+					onClick={handleModalButtonClick}
+					btnStyle={error ? 'outline' : btnStyle}
+					btnType={error ? 'error' : btnType}
+					className={modalBtnClasses}
+					{...modalButtonRest}
+				/>
+				{error && errorMessage && <CSFieldErrorMsg message={errorMessage} />}
+			</div>
 			<CSModal visible={modalVisible} onClose={handleOnClose} loading={loading} {...modalRest}>
 				<CSModalHeader {...modalHeaderRest}>
 					{headerStateContent}

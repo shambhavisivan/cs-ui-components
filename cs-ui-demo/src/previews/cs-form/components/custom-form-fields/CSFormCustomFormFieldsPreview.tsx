@@ -1,7 +1,7 @@
 // tslint:disable:no-console
 import React from 'react';
 import * as CSD from '../../../../demo-components';
-import { CSButton, CSChip, CSDataTable, CSInputSearch, CSTooltip } from '@cloudsense/cs-ui-components';
+import { CSButton, CSChip, CSDataTable, CSTooltip } from '@cloudsense/cs-ui-components';
 import CSCustomFieldsCommonAttributes from './cs-form-custom-fields-common-attributes';
 import CSCustomFieldSpecificAttributes from './cs-form-custom-field-specific-attributes';
 import CSFormCustomModalFieldSpecificAttributes from './cs-form-custom-modal-field-specific-attributes';
@@ -77,8 +77,10 @@ const CSFormCustomFormFieldsPreview = () => {
 			</CSD.Section>
 			<CSD.Heading>Common Properties</CSD.Heading>
 			<CSD.Section>
-				<CSD.Text>Custom fields share 4 properties: `type`, `grow`, `showInNewLine` and `hidden`.</CSD.Text>
+				<CSD.Text>Custom fields share 8 properties: `type`, `label`, `required`, `error`, `errorMessage`, `grow`, `showInNewLine` and `hidden`.</CSD.Text>
 				<CSD.Text>Just like in standard fields, `type` defines which field will be rendered and enables access to a field's specific properties.</CSD.Text>
+				<CSD.Text>`label` displays explanatory label for the custom field, while `required` indicates requiredness of the field with red asterisk next to label.</CSD.Text>
+				<CSD.Text>`error` and `errorMessage` are used for displaying custom error message below the custom field.</CSD.Text>
 				<CSD.Text>`grow` and `showInNewLine` define a field's width and position in the form section.</CSD.Text>
 				<CSD.Text>The `hidden` property hides the form field based on a condition.</CSD.Text>
 				<CSD.Preview
@@ -89,13 +91,23 @@ const CSFormCustomFormFieldsPreview = () => {
 								...
 								fields: [{
 									type: 'CUSTOM',
+									label: 'Custom field with tooltip',
 									render: <CSTooltip content="Custom content tooltip" />,
-									grow: 3
+									grow: 2
 								}, {
 									type: 'CUSTOM',
+									label: 'Custom field with chip',
 									render: <CSChip text="Custom chip" />,
 								}, {
+									type: 'CUSTOM',
+									label: 'Custom field with error message',
+									render: <input type="text" />,
+									error: true,
+									errorMessage: "Example error message."
+								},{
 									type: 'CUSTOM-MODAL',
+									label: 'Custom modal field',
+									required: true,
 									showInNewLine: true,
 									modalButton: {
 										label: 'Open modal'
@@ -111,6 +123,7 @@ const CSFormCustomFormFieldsPreview = () => {
 									}
 								}, {
 									type: 'CUSTOM',
+									label: 'Hidden custom field',
 									render: <span>This is hidden.</span>,
 									hidden: true
 								}]
@@ -125,15 +138,25 @@ const CSFormCustomFormFieldsPreview = () => {
 								label: 'Section',
 								collapsible: true,
 								fields: [{
+									label: 'Custom field with tooltip',
 									type: 'CUSTOM',
 									render: <CSTooltip content="Custom content tooltip" />,
-									grow: 3
+									grow: 2
 								}, {
 									type: 'CUSTOM',
+									label: 'Custom field with chip',
 									render: <CSChip text="Custom chip" />
+								}, {
+									type: 'CUSTOM',
+									label: 'Custom field with error message',
+									render: <input type="text" />,
+									error: true,
+									errorMessage: 'Example error message.'
 								}, {
 									type: 'CUSTOM-MODAL',
 									showInNewLine: true,
+									label: 'Custom modal field',
+									required: true,
 									modalButton: {
 										label: 'Open modal'
 									},
@@ -148,6 +171,7 @@ const CSFormCustomFormFieldsPreview = () => {
 									}
 								}, {
 									type: 'CUSTOM',
+									label: 'Hidden custom field',
 									render: <span>This is hidden.</span>,
 									hidden: true
 								}]
@@ -170,7 +194,8 @@ const CSFormCustomFormFieldsPreview = () => {
 								...
 								fields: [{
 									type: 'CUSTOM',
-									render: <CSInputSearch label="Custom search" />,
+									label: 'Custom input',
+									render: <input type="text" />,
 									onBlur: () => console.log('Blur event was fired.'),
 									onFocus: () => console.log('Focus event was fired.'),
 									onChange: () => console.log('Change event was fired.')
@@ -186,7 +211,9 @@ const CSFormCustomFormFieldsPreview = () => {
 							collapsible: true,
 							fields: [{
 								type: 'CUSTOM',
-								render: <CSInputSearch label="Custom search" />,
+								label: 'Custom input',
+								required: true,
+								render: <input type="text" />,
 								onBlur: () => console.log('Blur event was fired.'),
 								onFocus: () => console.log('Focus event was fired.'),
 								onChange: () => console.log('Change event was fired.')
@@ -206,7 +233,63 @@ const CSFormCustomFormFieldsPreview = () => {
 					of custom content. Factory properties allow for the consumption of CSForm data in the custom content. They also provide a method for closing the modal which can be called
 					in a desired manner within the custom content.
 				</CSD.Text>
-				<CSD.Preview>
+				<CSD.Preview
+					table={CSFormCustomModalFieldSpecificAttributes}
+					related={['modalButton', 'modal']}
+					code={`
+						<CSForm
+							data={[{
+								...
+								fields: [
+									{
+										type: 'CUSTOM-MODAL',
+										label: 'Custom modal with static content',
+										modalButton: {
+											label: 'Open modal with static content'
+										},
+										modal: {
+											closeButton: true,
+											header: {
+												title: 'Modal with static content'
+											},
+											body: {
+												bodyContent: <span>Custom body static content</span>
+											},
+											footer: {
+												footerContent: <span>Custom footer static content</span>
+											}
+										}
+									}, {
+										type: 'CUSTOM-MODAL',
+										label: 'Custom modal with dynamic content',
+										showInNewLine: true,
+										modalButton: {
+											label: 'Open modal with dynamic content'
+										},
+										modal: {
+											closeButton: true,
+											header: {
+												title: 'Modal with dynamic content'
+											},
+											body: {
+												bodyFactory: async () => {
+													await new Promise(resolve => setTimeout(resolve, 3000));
+													return <span>Custom dynamic content</span>;
+												}
+											},
+											footer: {
+												footerFactory: async (data, closeModal) => {
+													await new Promise(resolve => setTimeout(resolve, 3000));
+													return <CSButton label="Close modal" onClick={closeModal} />;
+												}
+											}
+										}
+									}
+								]
+							}]}
+						/>
+					`}
+				>
 					<CSForm
 						data={[{
 							sectionKey: 'custom-modal-section',
@@ -215,6 +298,7 @@ const CSFormCustomFormFieldsPreview = () => {
 							fields: [
 								{
 									type: 'CUSTOM-MODAL',
+									label: 'Custom modal with static content',
 									modalButton: {
 										label: 'Open modal with static content'
 									},
@@ -232,6 +316,7 @@ const CSFormCustomFormFieldsPreview = () => {
 									}
 								}, {
 									type: 'CUSTOM-MODAL',
+									label: 'Custom modal with dynamic content',
 									showInNewLine: true,
 									modalButton: {
 										label: 'Open modal with dynamic content'
@@ -252,6 +337,75 @@ const CSFormCustomFormFieldsPreview = () => {
 												await new Promise(resolve => setTimeout(resolve, 3000));
 												return <CSButton label="Close modal" onClick={closeModal} />;
 											}
+										}
+									}
+								}
+							]
+						}]}
+					/>
+				</CSD.Preview>
+				<CSD.Text>
+					Additionaly, custom modal field provides visual representation of error state by setting the `error` property.
+					`error` property should always be used with `errorMessage` property to display descriptive error message.
+				</CSD.Text>
+				<CSD.Preview
+					table={CSCustomFieldsCommonAttributes}
+					related={['error']}
+					code={`
+						<CSForm
+							data={[{
+								...
+								fields: [
+									{
+										type: 'CUSTOM-MODAL',
+										label: 'Custom modal with error',
+										error: true,
+										errorMessage: 'Example error message.',
+										modalButton: {
+											label: 'Open modal with static content'
+										},
+										modal: {
+											closeButton: true,
+											header: {
+												title: 'Modal with static content'
+											},
+											body: {
+												bodyContent: <span>Custom body static content</span>
+											},
+											footer: {
+												footerContent: <span>Custom footer static content</span>
+											}
+										}
+									}
+								]
+							}]}
+						/>
+					`}
+				>
+					<CSForm
+						data={[{
+							sectionKey: 'custom-modal-error-section',
+							label: 'Section',
+							collapsible: true,
+							fields: [
+								{
+									type: 'CUSTOM-MODAL',
+									label: 'Custom modal with error',
+									error: true,
+									errorMessage: 'Example error message.',
+									modalButton: {
+										label: 'Open modal with static content'
+									},
+									modal: {
+										closeButton: true,
+										header: {
+											title: 'Modal with static content'
+										},
+										body: {
+											bodyContent: <span>Custom body static content</span>
+										},
+										footer: {
+											footerContent: <span>Custom footer static content</span>
 										}
 									}
 								}

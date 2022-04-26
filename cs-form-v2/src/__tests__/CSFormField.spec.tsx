@@ -18,12 +18,29 @@ describe('<CSFormField />', () => {
 	it('should render CSFormCustomField if field type is \'CUSTOM\'', () => {
 		const uut = shallow(
 			<CSFormField
+				label={label}
 				type="CUSTOM"
 				render={<span>test</span>}
 			/>,
 		);
 		const customField = uut.find('.csf-field-wrapper CSFormCustomField');
 		expect(customField).toHaveLength(1);
+	});
+
+	it('should render CSFormCustomModalField if field type is \'CUSTOM-MODAL\'', () => {
+		const uut = shallow(
+			<CSFormField
+				label={label}
+				type="CUSTOM-MODAL"
+				modalButton={{ label: 'Open modal' }}
+				modal={{
+					header: { title: 'Modal title' },
+					body: { bodyContent: <span>Example</span> },
+				}}
+			/>,
+		);
+		const customModalField = uut.find('.csf-field-wrapper CSFormCustomModalField');
+		expect(customModalField).toHaveLength(1);
 	});
 
 	it('should render CSFormCheckboxField if field type is \'CHECKBOX\'', () => {

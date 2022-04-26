@@ -69,7 +69,7 @@ export interface CSFormCheckboxFieldProps extends CSFormFieldCommonProps {
 }
 
 /** CUSTOM FIELD */
-export interface CSFormCustomFieldProps extends Pick<CSFormFieldCommonProps, 'onBlur' | 'onChange'> {
+export interface CSFormCustomFieldProps extends Pick<CSFormFieldCommonProps, 'label' | 'required'| 'error' | 'errorMessage'| 'onBlur' | 'onChange'> {
 	type: 'CUSTOM',
 	onFocus?: (value?: any) => any;
 	render: React.ReactElement;
@@ -99,7 +99,7 @@ export interface CSFormCustomModalProps extends Omit<CSModalProps, 'loading' | '
 	footer?: CSFormModalFooterAttributes;
 }
 
-export interface CSFormCustomModalFieldProps {
+export interface CSFormCustomModalFieldProps extends Pick<CSFormFieldCommonProps, 'label' | 'error'| 'errorMessage' | 'required'> {
 	type: 'CUSTOM-MODAL';
 	modalButton: CSFormModalButton;
 	modal: CSFormCustomModalProps;
