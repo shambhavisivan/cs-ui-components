@@ -8,10 +8,15 @@ changedFiles () {
 
 npm install -g yarn;
 
+if changedFiles | grep -q -e '^cs-ui-components' -e '^cs-form-v2' -e '^cs-ui-demo' ; then
+      echo "Installing packages (cs-ui, cs-form-v2, cs-ui-demo)"
+      yarn install --ignore-engines;
+      echo "Finished installing packages"
+fi
+
 if changedFiles | grep -q '^cs-ui-components'; then
     echo "Validating CS UI Components"
     cd cs-ui-components;
-    yarn install --ignore-engines;
     echo "Running CS UI Components Lint"
     yarn lint;
     echo "Building CS UI Components"
@@ -25,24 +30,23 @@ fi
 if changedFiles | grep -q '^cs-ui-demo'; then
     echo "Validating CS UI Demo"
     cd cs-ui-demo;
-    yarn install --ignore-engines;
     echo "Running CS UI Demo Lint"
     yarn lint;
     echo "Finished validating CS UI Demo"
     cd ..;
 fi
 
-if changedFiles | grep -q '^cs-form'; then
-    echo "Validating cs-form"
-    cd cs-form;
-    npm ci;
-    echo "Running cs-form Tests"
-    npm t;
-    echo "Building cs-form"
-    npm run build;
-    echo "Finished validating cs-form"
-    cd ..;
-fi
+#if changedFiles | grep -q '^cs-form'; then
+#    echo "Validating cs-form"
+#    cd cs-form;
+#    npm ci;
+#    echo "Running cs-form Tests"
+#    npm t;
+#    echo "Building cs-form"
+#    npm run build;
+#    echo "Finished validating cs-form"
+#    cd ..;
+#fi
 
 if changedFiles | grep -q '^cs-grid'; then
     echo "Validating cs-grid"
@@ -61,13 +65,12 @@ fi
 if changedFiles | grep -q '^cs-form-v2'; then
     echo "Validating cs-form-v2"
     cd cs-form-v2;
-    npm ci;
     echo "Running cs-form-v2 Lint"
-    npm run lint;
+    yarn lint;
     echo "Building cs-form-v2"
-    npm run build;
+    yarn build;
     echo "Running cs-form-v2 Tests"
-    npm run test;
+    yarn test;
     echo "Finished validating cs-form-v2"
     cd ..;
 fi
