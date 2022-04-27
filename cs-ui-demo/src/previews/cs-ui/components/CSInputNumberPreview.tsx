@@ -7,20 +7,51 @@ import Preview from '../Preview';
 
 interface CSInputNumberPreviewState {
 	focused: boolean;
-	value: string;
-	localeValue: any;
-	decimalValue: any;
+	label?: string;
+	actions?: string;
+	borderRadius?: string;
+	error?: string;
+	errorMessage?: string;
+	errorTooltip?: string;
+	fractionDigits?: string;
+	helpText?: string;
+	hideSpinner?: string;
+	icons?: string;
+	labelHidden?: string;
+	labelTitle?: string;
+	locale?: string;
+	max?: string;
+	maxLength?: string;
+	min?: string;
+	name?: string;
+	onBlur?: string;
+	onChange?: string;
+	onClick?: string;
+	onFocus?: string;
+	onKeyDown?: string;
+	onPaste?: string;
+	placeholder?: string;
+	readOnly?: string;
+	required?: string;
+	stepInteger?: string;
+	stepDecimal?: string;
+	stepAny?: string;
+	title?: string;
+	tooltipPosition?: string;
+	typeNumber?: string;
+	typeText?: string;
+	value?: string;
+	id?: string;
 }
 
 class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState> {
-	state = {
+	state: CSInputNumberPreviewState = {
 		focused: false,
 		value: '1',
-		localeValue: '1211.3',
-		decimalValue: '12.456'
+		locale: '1211.3',
+		stepDecimal: '12.456'
 	};
 
-	handleChange = () => alert('Value has changed.');
 	handleClick = () => alert('Input has been clicked.');
 	handleBlur = () => alert('Input has lost focus.');
 	handleKeyDown = (event: any) => alert(`Key ${event.key} has been pressed.`);
@@ -33,8 +64,12 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 			return { focused: !prevState.focused };
 		});
 	}
-	handleChangeForLocale = (event: React.ChangeEvent<HTMLInputElement>) => this.setState({ localeValue: event.target.value });
-	handleChangeForDecimal = (event: React.ChangeEvent<HTMLInputElement>) => this.setState({ decimalValue: event.target.value });
+	handleChange = (event: React.ChangeEvent<HTMLInputElement>, stateName: string) => {
+		this.setState((prevState: CSInputNumberPreviewState) => ({
+			...prevState,
+			[stateName]: Number(event.target.value)
+		}));
+	}
 
 	getDoc = () => ({
 		name: 'Input Number',
@@ -52,8 +87,16 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 						},
 						variations: [
 							{
-								component: <CSInputNumber label="Enter value" />,
-								code: '<CSInputNumber label="Enter value" />'
+								component: <CSInputNumber
+									label="Enter value"
+									value={this.state.label}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'label')}
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={value}
+									onChange={handleChange}
+								/>`
 							}
 						]
 					}, {
@@ -65,10 +108,14 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 								],
 								component: <CSInputNumber
 									label="Enter value"
+									value={this.state.actions}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'actions')}
 									actions={actions}
 								/>,
 								code: `<CSInputNumber
 									label="Enter value"
+									value={value}
+									onChange={handleChange}
 									actions={${actionsCode}}
 								/>`
 							}
@@ -78,8 +125,18 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 						variations: [
 							{
 								primaryVariants: 'borderRadius="0"',
-								component: <CSInputNumber label="Enter value" borderRadius="0" />,
-								code: '<CSInputNumber label="Enter value" borderRadius="0" />'
+								component: <CSInputNumber
+									label="Enter value"
+									value={this.state.borderRadius}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'borderRadius')}
+									borderRadius="0"
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={value}
+									onChange={handleChange}
+									borderRadius="0"
+								/>`
 							}
 						]
 					}, {
@@ -87,8 +144,16 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 						variations: [
 							{
 								primaryVariants: 'disabled={true}',
-								component: <CSInputNumber label="Enter value" disabled />,
-								code: '<CSInputNumber label="Enter value" disabled />'
+								component: <CSInputNumber
+									label="Enter value"
+									disabled
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={value}
+									onChange={handleChange}
+									disabled
+								/>`
 							}
 						]
 					}, {
@@ -100,8 +165,18 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 						variations: [
 							{
 								primaryVariants: 'error={true}',
-								component: <CSInputNumber label="Enter value" error />,
-								code: '<CSInputNumber label="Enter value" error />'
+								component: <CSInputNumber
+									label="Enter value"
+									value={this.state.error}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'error')}
+									error
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={value}
+									onChange={handleChange}
+									error
+								/>`
 							}
 						]
 					}, {
@@ -111,11 +186,15 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 								secondaryVariant: 'error={true}',
 								component: <CSInputNumber
 									label="Enter value"
+									value={this.state.errorMessage}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'errorMessage')}
 									error
 									errorMessage="Error message."
 								/>,
 								code: `<CSInputNumber
 									label="Enter value"
+									value={value}
+									onChange={handleChange}
 									error
 									errorMessage="Error message."
 								/>`
@@ -129,12 +208,16 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 								secondaryVariants: 'error={true}',
 								component: <CSInputNumber
 									label="Enter value"
+									value={this.state.errorTooltip}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'errorTooltip')}
 									error
 									errorMessage="Error message."
 									errorTooltip
 								/>,
 								code: `<CSInputNumber
 									label="Enter value"
+									value={value}
+									onChange={handleChange}
 									error
 									errorMessage="Error message."
 									errorTooltip
@@ -150,15 +233,16 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 						variations: [
 							{
 								component: <CSInputNumber
-									value={this.state.decimalValue}
 									label="Enter value"
+									value={this.state.fractionDigits}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'fractionDigits')}
 									fractionDigits={2}
-									onChange={this.handleChangeForDecimal} />,
+								/>,
 								code: `<CSInputNumber
 									label="Enter value"
-									value={this.state.value}
+									value={value}
+									onChange={handleChange}
 									fractionDigits={2}
-									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.setState({ value: event.target.value })}
 								/>`
 							}
 						]
@@ -166,8 +250,18 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 						propName: 'helpText',
 						variations: [
 							{
-								component: <CSInputNumber label="Enter value" helpText="Help text example" />,
-								code: '<CSInputNumber label="Enter value" helpText="Help text example" />'
+								component: <CSInputNumber
+									label="Enter value"
+									value={this.state.helpText}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'helpText')}
+									helpText="Help text example"
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={value}
+									onChange={handleChange}
+									helpText="Help text example"
+								/>`
 							}
 						]
 					}, {
@@ -175,8 +269,17 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 						variations: [
 							{
 								primaryVariants: 'hidden={true}',
-								component: <CSInputNumber label="Enter value" hidden />,
-								code: '<CSInputNumber label="Enter value" hidden />'
+								component: <CSInputNumber
+									label="Enter value"
+									value="123"
+									hidden
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={value}
+									onChange={handleChange}
+									hidden
+								/>`
 							}
 						]
 					}, {
@@ -184,8 +287,18 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 						variations: [
 							{
 								primaryVariants: 'hideSpinner={true}',
-								component: <CSInputNumber label="Enter value" hideSpinner />,
-								code: '<CSInputNumber label="Enter value" hideSpinner />'
+								component: <CSInputNumber
+									label="Enter value"
+									value={this.state.hideSpinner}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'hideSpinner')}
+									hideSpinner
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={value}
+									onChange={handleChange}
+									hideSpinner
+								/>`
 							}
 						]
 					}, {
@@ -197,10 +310,14 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 								],
 								component: <CSInputNumber
 									label="Enter value"
+									value={this.state.icons}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'icons')}
 									icons={icons}
 								/>,
 								code: `<CSInputNumber
 									label="Enter value"
+									value={value}
+									onChange={handleChange}
 									icons={${iconsCode}}
 								>`
 							}
@@ -210,8 +327,18 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 						variations: [
 							{
 								primaryVariants: 'labelHidden={true}',
-								component: <CSInputNumber label="Enter value" labelHidden />,
-								code: '<CSInputNumber label="Enter value" labelHidden />'
+								component: <CSInputNumber
+									label="Enter value"
+									value={this.state.labelHidden}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'labelHidden')}
+									labelHidden
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={value}
+									onChange={handleChange}
+									labelHidden
+								/>`
 							}
 						]
 					}, {
@@ -219,8 +346,18 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 						variations: [
 							{
 								primaryVariants: 'labelTitle={true}',
-								component: <CSInputNumber label="Enter value" labelTitle />,
-								code: '<CSInputNumber label="Enter value" labelTitle />'
+								component: <CSInputNumber
+									label="Enter value"
+									value={this.state.labelTitle}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'labelTitle')}
+									labelTitle
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={value}
+									onChange={handleChange}
+									labelTitle
+								/>`
 							}
 						]
 					}, {
@@ -232,13 +369,15 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 						variations: [
 							{
 								component: <CSInputNumber
-									value={this.state.localeValue}
 									label="Enter value"
+									value={this.state.locale}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'locale')}
 									locale={{ numLocale: 'en-EN', options: { style: 'currency', currency: 'GBP' } }}
-									onChange={this.handleChangeForLocale} />,
+								/>,
 								code: `<CSInputNumber
 									label="Enter value"
-									value={this.state.value}
+									value={value}
+									onChange={handleChange}
 									locale={{
 										numLocale: 'en-EN',
 										options: {
@@ -246,7 +385,6 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 											currency: 'GBP'
 										}
 									}}
-									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.setState({ value: event.target.value })}
 								/>`
 							}
 						]
@@ -254,8 +392,18 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 						propName: 'max',
 						variations: [
 							{
-								component: <CSInputNumber label="Enter value" max="5" />,
-								code: '<CSInputNumber label="Enter value" max="5" />'
+								component: <CSInputNumber
+									label="Enter value"
+									value={this.state.max}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'max')}
+									max="5"
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={value}
+									onChange={handleChange}
+									max="5"
+								/>`
 							}
 						]
 					}, {
@@ -267,80 +415,183 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 						variations: [
 							{
 								secondaryVariant: 'type="text"',
-								component: <CSInputNumber label="Enter value" type="text" maxLength={10} />,
-								code: '<CSInputNumber label="Enter value" type="text" maxLength={10} />'
+								component: <CSInputNumber
+									label="Enter value"
+									value={this.state.maxLength}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'maxLength')}
+									type="text"
+									maxLength={10}
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={value}
+									onChange={handleChange}
+									type="text"
+									maxLength={10}
+								/>`
 							}
 						]
 					}, {
 						propName: 'min',
 						variations: [
 							{
-								component: <CSInputNumber label="Enter value" min="1" />,
-								code: '<CSInputNumber label="Enter value" min="1" />'
+								component: <CSInputNumber
+									label="Enter value"
+									value={this.state.min}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'min')}
+									min="1"
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={value}
+									onChange={handleChange}
+									min="1"
+								/>`
 							}
 						]
 					}, {
 						propName: 'name',
 						variations: [
 							{
-								component: <CSInputNumber label="Enter value" name="Input number" />,
-								code: '<CSInputNumber label="Enter value" name="Input number" />'
+								component: <CSInputNumber
+									label="Enter value"
+									value={this.state.name}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'name')}
+									name="Input number"
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={value}
+									onChange={handleChange}
+									name="Input number"
+								/>`
 							}
 						]
 					}, {
 						propName: 'onBlur',
 						variations: [
 							{
-								component: <CSInputNumber label="Enter value" onBlur={this.handleBlur} />,
-								code: '<CSInputNumber label="Enter value" onBlur={this.handleBlur} />'
+								component: <CSInputNumber
+									label="Enter value"
+									value={this.state.onBlur}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'onBlur')}
+									onBlur={this.handleBlur}
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={value}
+									onChange={handleChange}
+									onBlur={handleBlur}
+								/>`
 							}
 						]
 					}, {
 						propName: 'onChange',
 						variations: [
 							{
-								component: <CSInputNumber label="Enter value" onChange={this.handleChange} />,
-								code: '<CSInputNumber label="Enter value" onChange={this.handleChange} />'
+								component: <CSInputNumber
+									label="Enter value"
+									value={this.state.onChange}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+										this.handleChange(event, 'onChange');
+										alert('Value has changed.');
+									}}
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={value}
+									onChange={handleChange}
+								/>`
 							}
 						]
 					}, {
 						propName: 'onClick',
 						variations: [
 							{
-								component: <CSInputNumber label="Enter value" onClick={this.handleClick} />,
-								code: '<CSInputNumber label="Enter value" onChange={this.handleClick} />'
+								component: <CSInputNumber
+									label="Enter value"
+									value={this.state.onClick}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'onClick')}
+									onClick={this.handleClick}
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={value}
+									onChange={handleChange}
+									onClick={handleClick}
+								/>`
 							}
 						]
 					}, {
 						propName: 'onFocus',
 						variations: [
 							{
-								component: <CSInputNumber label="Enter value" onFocus={this.handleFocus} />,
-								code: '<CSInputNumber label="Enter value" onFocus={this.handleFocus} />'
+								component: <CSInputNumber
+									label="Enter value"
+									value={this.state.onFocus}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'onFocus')}
+									onFocus={this.handleFocus}
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={value}
+									onChange={handleChange}
+									onFocus={handleFocus}
+								/>`
 							}
 						]
 					}, {
 						propName: 'onKeyDown',
 						variations: [
 							{
-								component: <CSInputNumber label="Enter value" onKeyDown={this.handleKeyDown} />,
-								code: '<CSInputNumber label="Enter value" onKeyDown={this.handleKeyDown} />'
+								component: <CSInputNumber
+									label="Enter value"
+									value={this.state.onKeyDown}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'onKeyDown')}
+									onKeyDown={this.handleKeyDown}
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={value}
+									onChange={handleChange}
+									onKeyDown={handleKeyDown}
+								/>`
 							}
 						]
 					}, {
 						propName: 'onPaste',
 						variations: [
 							{
-								component: <CSInputNumber label="Enter value" onPaste={this.handlePaste} />,
-								code: '<CSInputNumber label="Enter value" onPaste={this.handlePaste} />'
+								component: <CSInputNumber
+									label="Enter value"
+									value={this.state.onPaste}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'onPaste')}
+									onPaste={this.handlePaste}
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={value}
+									onChange={handleChange}
+									onPaste={handlePaste}
+								/>`
 							}
 						]
 					}, {
 						propName: 'placeholder',
 						variations: [
 							{
-								component: <CSInputNumber label="Enter value" placeholder="Placeholder text" />,
-								code: '<CSInputNumber label="Enter value" placeholder="Placeholder text" />'
+								component: <CSInputNumber
+									label="Enter value"
+									value={this.state.placeholder}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'placeholder')}
+									placeholder="Placeholder text"
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={value}
+									onChange={handleChange}
+									placeholder="Placeholder text"
+								/>`
 							}
 						]
 					}, {
@@ -350,10 +601,14 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 								primaryVariants: 'readOnly={true}',
 								component: <CSInputNumber
 									label="Enter value"
+									value={this.state.readOnly}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'readOnly')}
 									readOnly
 								/>,
 								code: `<CSInputNumber
 									label="Enter value"
+									value={value}
+									onChange={handleChange}
 									readOnly
 								/>`
 							}
@@ -363,8 +618,18 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 						variations: [
 							{
 								primaryVariants: 'required={true}',
-								component: <CSInputNumber label="Enter value" required />,
-								code: '<CSInputNumber label="Enter value" required />'
+								component: <CSInputNumber
+									label="Enter value"
+									value={this.state.required}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'required')}
+									required
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={value}
+									onChange={handleChange}
+									required
+								/>`
 							}
 						]
 					}, {
@@ -373,26 +638,66 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 							{
 								primaryVariants: 'step="1"',
 								quickLink: 'integer',
-								component: <CSInputNumber label="Enter value" step="1" />,
-								code: `<CSInputNumber label="Enter value" step="1" />`
+								component: <CSInputNumber
+									label="Enter value"
+									value={this.state.stepInteger}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'stepInteger')}
+									step="1"
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={value}
+									onChange={handleChange}
+									step="1"
+								/>`
 							}, {
 								primaryVariants: 'step="0.01"',
 								quickLink: 'decimal',
-								component: <CSInputNumber label="Enter value" step="0.01" />,
-								code: `<CSInputNumber label="Enter value" step="0.01" />`
+								component: <CSInputNumber
+									label="Enter value"
+									value={this.state.stepDecimal}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'stepDecimal')}
+									step="0.01"
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={value}
+									onChange={handleChange}
+									step="0.01"
+								/>`
 							}, {
 								primaryVariants: 'step="any"',
 								quickLink: 'any',
-								component: <CSInputNumber label="Enter value" step="any" />,
-								code: `<CSInputNumber label="Enter value" step="any" />`
+								component: <CSInputNumber
+									label="Enter value"
+									value={this.state.stepAny}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'stepAny')}
+									step="any"
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={value}
+									onChange={handleChange}
+									step="any"
+								/>`
 							}
 						]
 					}, {
 						propName: 'title',
 						variations: [
 							{
-								component: <CSInputNumber label="Enter value" title="This is a title" />,
-								code: '<CSInputNumber label="Enter value" title="This is a title" />'
+								component: <CSInputNumber
+									label="Enter value"
+									value={this.state.title}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'title')}
+									title="This is a title"
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={value}
+									onChange={handleChange}
+									title="This is a title"
+								/>`
 							}
 						]
 					}, {
@@ -407,11 +712,15 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 								secondaryVariant: 'helpText="text"',
 								component: <CSInputNumber
 									label="Enter value"
+									value={this.state.tooltipPosition}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'tooltipPosition')}
 									helpText="Help text example"
 									tooltipPosition="top-left"
 								/>,
 								code: `<CSInputNumber
 									label="Enter value"
+									value={value}
+									onChange={handleChange}
 									helpText="Help text example"
 									tooltipPosition="top-left"
 								/>`
@@ -423,13 +732,31 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 							{
 								primaryVariants: 'type="number"',
 								quickLink: 'number',
-								component: <CSInputNumber label="Enter value" />,
-								code: '<CSInputNumber label="Enter value" />'
+								component: <CSInputNumber
+									label="Enter value"
+									value={this.state.typeNumber}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'typeNumber')}
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={value}
+									onChange={handleChange}
+								/>`
 							}, {
 								primaryVariants: 'type="text"',
 								quickLink: 'text',
-								component: <CSInputNumber label="Enter value" type="text" />,
-								code: '<CSInputNumber label="Enter value" type="text" />'
+								component: <CSInputNumber
+									label="Enter value"
+									value={this.state.typeText}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'typeText')}
+									type="text"
+								/>,
+								code: `<CSInputNumber
+									label="Enter value"
+									value={value}
+									onChange={handleChange}
+									type="text"
+								/>`
 							}
 						]
 					}, {
@@ -440,12 +767,12 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 								component: <CSInputNumber
 									label="Enter value"
 									value={this.state.value}
-									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.setState({ value: event.target.value })}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'value')}
 								/>,
 								code: `<CSInputNumber
 									label="Enter value"
-									value={this.state.value}
-									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.setState({ value: event.target.value })}
+									value={value}
+									onChange={handleChange}
 								/>`
 							}
 						]
@@ -459,11 +786,15 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 								],
 								component: <CSInputNumber
 									label="Enter value"
+									value={this.state.id}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, 'id')}
 									id="custom-id"
 									className="custom-br-mint"
 								/>,
 								code: `<CSInputNumber
 									label="Enter value"
+									value={value}
+									onChange={handleChange}
 									id="custom-id"
 									className="custom-br-mint"
 								/>`
@@ -648,7 +979,7 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 						description: 'Set the number input field type.'
 					}, {
 						name: 'value',
-						types: 'any',
+						types: 'React.ReactText',
 						description: 'Set the number input default value.'
 					}, {
 						name: 'id',
