@@ -140,7 +140,7 @@ describe('<CSFormSection />', () => {
 	});
 
 	it('should pass correct custom class to CSSection', () => {
-		const customClass = 'custom-select';
+		const customClass = 'custom-class';
 		const uut = shallow(
 			<CSFormSection
 				sectionKey={sectionKey}

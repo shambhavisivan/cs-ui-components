@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 import '../../setupTests';
-import { CSCustomSelect } from '@cloudsense/cs-ui-components';
+import { CSPicklist } from '@cloudsense/cs-ui-components';
 import CSFormPicklistField from '../../form-fields/CSFormPicklistField';
 
 const label = 'label';
@@ -15,7 +15,7 @@ const picklistOptions = [
 ];
 
 describe('CSFormPicklistField', () => {
-	it('should pass correct options to CSCustomSelect', () => {
+	it('should pass correct options to CSPicklist', () => {
 		const uut = shallow(
 			<CSFormPicklistField
 				options={picklistOptions}
@@ -24,11 +24,11 @@ describe('CSFormPicklistField', () => {
 				name={name}
 			/>,
 		);
-		const picklist = uut.find(CSCustomSelect);
+		const picklist = uut.find(CSPicklist);
 		expect(JSON.stringify(picklist.prop('options'))).toBe(JSON.stringify(picklistOptions));
 	});
 
-	it('should pass correct label to CSCustomSelect', () => {
+	it('should pass correct label to CSPicklist', () => {
 		const uut = shallow(
 			<CSFormPicklistField
 				options={picklistOptions}
@@ -37,11 +37,11 @@ describe('CSFormPicklistField', () => {
 				name={name}
 			/>,
 		);
-		const picklist = uut.find(CSCustomSelect);
+		const picklist = uut.find(CSPicklist);
 		expect(picklist.prop('label')).toBe(label);
 	});
 
-	it('should pass correct name to CSCustomSelect', () => {
+	it('should pass correct name to CSPicklist', () => {
 		const uut = shallow(
 			<CSFormPicklistField
 				options={picklistOptions}
@@ -50,11 +50,11 @@ describe('CSFormPicklistField', () => {
 				name={name}
 			/>,
 		);
-		const picklist = uut.find(CSCustomSelect);
+		const picklist = uut.find(CSPicklist);
 		expect(picklist.prop('name')).toBe(name);
 	});
 
-	it('should pass correct disabled value to CSCustomSelect', () => {
+	it('should pass correct disabled value to CSPicklist', () => {
 		const uut = shallow(
 			<CSFormPicklistField
 				options={picklistOptions}
@@ -64,11 +64,11 @@ describe('CSFormPicklistField', () => {
 				disabled
 			/>,
 		);
-		const picklist = uut.find(CSCustomSelect);
+		const picklist = uut.find(CSPicklist);
 		expect(picklist.prop('disabled')).toBeTruthy();
 	});
 
-	it('should pass correct error value to CSCustomSelect', () => {
+	it('should pass correct error value to CSPicklist', () => {
 		const uut = shallow(
 			<CSFormPicklistField
 				options={picklistOptions}
@@ -78,11 +78,11 @@ describe('CSFormPicklistField', () => {
 				error
 			/>,
 		);
-		const picklist = uut.find(CSCustomSelect);
+		const picklist = uut.find(CSPicklist);
 		expect(picklist.prop('error')).toBeTruthy();
 	});
 
-	it('should pass correct error message to CSCustomSelect', () => {
+	it('should pass correct error message to CSPicklist', () => {
 		const errorMessage = 'Error message.';
 		const uut = shallow(
 			<CSFormPicklistField
@@ -94,11 +94,11 @@ describe('CSFormPicklistField', () => {
 				errorMessage={errorMessage}
 			/>,
 		);
-		const picklist = uut.find(CSCustomSelect);
+		const picklist = uut.find(CSPicklist);
 		expect(picklist.prop('errorMessage')).toBe(errorMessage);
 	});
 
-	it('should pass correct help text to CSCustomSelect', () => {
+	it('should pass correct help text to CSPicklist', () => {
 		const helpText = 'Help text.';
 		const uut = shallow(
 			<CSFormPicklistField
@@ -109,7 +109,7 @@ describe('CSFormPicklistField', () => {
 				helpText={helpText}
 			/>,
 		);
-		const picklist = uut.find(CSCustomSelect);
+		const picklist = uut.find(CSPicklist);
 		expect(picklist.prop('helpText')).toBe(helpText);
 	});
 
@@ -124,7 +124,7 @@ describe('CSFormPicklistField', () => {
 				onBlur={handleOnBlurMock}
 			/>,
 		);
-		const picklist = uut.find(CSCustomSelect);
+		const picklist = uut.find(CSPicklist);
 		picklist.simulate('blur');
 		expect(handleOnBlurMock).toHaveBeenCalledTimes(1);
 	});
@@ -141,7 +141,7 @@ describe('CSFormPicklistField', () => {
 			/>,
 		);
 
-		const picklist = uut.find(CSCustomSelect);
+		const picklist = uut.find(CSPicklist);
 		picklist.prop('onSelect')({} as any);
 		picklist.prop('onDeselect')({} as any);
 		picklist.prop('onClear')();
@@ -159,7 +159,7 @@ describe('CSFormPicklistField', () => {
 				onClick={handleOnClickMock}
 			/>,
 		);
-		const picklist = uut.find(CSCustomSelect);
+		const picklist = uut.find(CSPicklist);
 		picklist.simulate('click');
 		expect(handleOnClickMock).toHaveBeenCalledTimes(1);
 	});
@@ -175,8 +175,8 @@ describe('CSFormPicklistField', () => {
 				onFocus={handleOnFocusMock}
 			/>,
 		);
-		const customSelect = uut.find(CSCustomSelect);
-		customSelect.simulate('focus');
+		const picklist = uut.find(CSPicklist);
+		picklist.simulate('focus');
 		expect(handleOnFocusMock).toHaveBeenCalledTimes(1);
 	});
 
@@ -191,12 +191,12 @@ describe('CSFormPicklistField', () => {
 				onKeyDown={handleOnKeyDownMock}
 			/>,
 		);
-		const picklist = uut.find(CSCustomSelect);
+		const picklist = uut.find(CSPicklist);
 		picklist.simulate('keydown');
 		expect(handleOnKeyDownMock).toHaveBeenCalledTimes(1);
 	});
 
-	it('should pass correct readOnly value to CSCustomSelect', () => {
+	it('should pass correct readOnly value to CSPicklist', () => {
 		const uut = shallow(
 			<CSFormPicklistField
 				options={picklistOptions}
@@ -206,11 +206,11 @@ describe('CSFormPicklistField', () => {
 				readOnly
 			/>,
 		);
-		const picklist = uut.find(CSCustomSelect);
+		const picklist = uut.find(CSPicklist);
 		expect(picklist.prop('readOnly')).toBeTruthy();
 	});
 
-	it('should pass correct required value to CSCustomSelect', () => {
+	it('should pass correct required value to CSPicklist', () => {
 		const uut = shallow(
 			<CSFormPicklistField
 				options={picklistOptions}
@@ -220,11 +220,11 @@ describe('CSFormPicklistField', () => {
 				required
 			/>,
 		);
-		const picklist = uut.find(CSCustomSelect);
+		const picklist = uut.find(CSPicklist);
 		expect(picklist.prop('required')).toBeTruthy();
 	});
 
-	it('should pass correct styleClass to CSCustomSelect', () => {
+	it('should pass correct styleClass to CSPicklist', () => {
 		const styleClass = 'custom-class';
 		const uut = shallow(
 			<CSFormPicklistField
@@ -235,11 +235,11 @@ describe('CSFormPicklistField', () => {
 				styleClass={styleClass}
 			/>,
 		);
-		const picklist = uut.find(CSCustomSelect);
+		const picklist = uut.find(CSPicklist);
 		expect(picklist.prop('className')).toBe(styleClass);
 	});
 
-	it('should pass correct title to CSCustomSelect', () => {
+	it('should pass correct title to CSPicklist', () => {
 		const title = 'title';
 		const uut = shallow(
 			<CSFormPicklistField
@@ -250,11 +250,11 @@ describe('CSFormPicklistField', () => {
 				title={title}
 			/>,
 		);
-		const picklist = uut.find(CSCustomSelect);
+		const picklist = uut.find(CSPicklist);
 		expect(picklist.prop('title')).toBe(title);
 	});
 
-	it('should pass correct value to CSCustomSelect', () => {
+	it('should pass correct value to CSPicklist', () => {
 		const value = 3;
 		const uut = shallow(
 			<CSFormPicklistField
@@ -265,7 +265,7 @@ describe('CSFormPicklistField', () => {
 				value={value}
 			/>,
 		);
-		const picklist = uut.find(CSCustomSelect);
+		const picklist = uut.find(CSPicklist);
 		expect(picklist.prop('selectedKeys')).toBe(value);
 	});
 });

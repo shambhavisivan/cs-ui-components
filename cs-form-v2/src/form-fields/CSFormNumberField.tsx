@@ -13,7 +13,7 @@ const CSFormNumberField = ({
 }: CSFormNumberFieldProps) => (
 	<CSInputNumber
 		className={styleClass}
-		onChange={(value: any) => onChange(value)}
+		onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
 		onBlur={(e: React.FocusEvent<HTMLInputElement>) => onBlur(e.target.value)}
 		onFocus={(e: React.FocusEvent<HTMLInputElement>) => onFocus(e.target.value)}
 		{...props}

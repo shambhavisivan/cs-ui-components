@@ -1,5 +1,5 @@
 import React from 'react';
-import { CSCustomSelect, CSCustomSelectOptionInterface } from '@cloudsense/cs-ui-components';
+import { CSPicklist, CSPicklistOptionInterface } from '@cloudsense/cs-ui-components';
 import { CSFormPicklistFieldProps } from '../types/cs-form-field-types';
 
 const CSFormPicklistField = ({
@@ -12,9 +12,9 @@ const CSFormPicklistField = ({
 	value,
 	...props
 }: CSFormPicklistFieldProps) => (
-	<CSCustomSelect
-		onSelect={(option: CSCustomSelectOptionInterface) => onChange(option.key)}
-		onDeselect={(option: CSCustomSelectOptionInterface) => onChange(option.key)}
+	<CSPicklist
+		onSelect={(option: CSPicklistOptionInterface) => onChange(option.key)}
+		onDeselect={(option: CSPicklistOptionInterface) => onChange(option.key)}
 		onClear={() => {
 			onChange([]);
 			onClear?.();

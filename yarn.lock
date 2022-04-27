@@ -1240,21 +1240,6 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cloudsense/cs-ui-components@2.0.0-alpha8":
-  version "2.0.0-alpha8"
-  resolved "https://registry.yarnpkg.com/@cloudsense/cs-ui-components/-/cs-ui-components-2.0.0-alpha8.tgz#4c99a79a6a444bffc2cf6c83a6d1cc1f44d4b68d"
-  integrity sha512-pZpFKkcTrzvkVqrftm1Zd84Pxf0mifxxY0afXoHeBADdvWpTrCw/Dkd6s/TMh8viG+gBwgtD1RXXzQuHwpXqdA==
-  dependencies:
-    classnames "^2.2.6"
-    date-fns "^2.22.1"
-    lodash "^4.17.21"
-    rc-notification "^4.5.7"
-    react-datepicker "^4.1.1"
-    react-portal "4.2.1"
-    react-router-dom "^5.3.0"
-    resize-observer-polyfill "^1.5.1"
-    uuid "^8.3.2"
-
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.4.tgz#f864ae85004d0fcab6f50be9141c4da368d1656a"

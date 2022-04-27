@@ -39,10 +39,11 @@ import {
 	textPropsData
 } from './cs-form-specific-prop-preview-data';
 
-const picklistPath = '../cs-ui/custom-select#CSCustomSelect';
 const datePath = '../cs-ui/datepicker#CSDatepicker';
 const dateTimePath = '../cs-ui/date-time-picker#CSDateTimePicker';
-const lookupPath = '../cs-ui/lookup';
+const lookupPath = '../cs-ui/lookup#';
+const picklistPath = '../cs-ui/picklist#';
+const radioPath = '../cs-ui/radio#';
 const numberPath = '../cs-ui/input-number#CSInputNumber';
 const textareaPath = '../cs-ui/textarea#CSTextarea';
 
@@ -540,23 +541,23 @@ const CSFormStandardFormFieldsPreview = () => {
 				<CSD.Text>Each group of properties are listed below and the details of each property can be found by clicking on the desired property in the list.</CSD.Text>
 				<CSD.Text>Lookup field common properties:</CSD.Text>
 				<CSD.List>
-					<CSD.ListItem><CSD.Link path={`${lookupPath}#base-usage`}>fieldToBeDisplayed</CSD.Link></CSD.ListItem>
-					<CSD.ListItem><CSD.Link path={`${lookupPath}#base-usage`}>columns</CSD.Link></CSD.ListItem>
-					<CSD.ListItem><CSD.Link path={`${lookupPath}#base-usage`}>mode</CSD.Link></CSD.ListItem>
-					<CSD.ListItem><CSD.Link path={`${lookupPath}#selection`}>multiselect</CSD.Link></CSD.ListItem>
+					<CSD.ListItem><CSD.Link path={`${lookupPath}base-usage`}>fieldToBeDisplayed</CSD.Link></CSD.ListItem>
+					<CSD.ListItem><CSD.Link path={`${lookupPath}base-usage`}>columns</CSD.Link></CSD.ListItem>
+					<CSD.ListItem><CSD.Link path={`${lookupPath}base-usage`}>mode</CSD.Link></CSD.ListItem>
+					<CSD.ListItem><CSD.Link path={`${lookupPath}selection`}>multiselect</CSD.Link></CSD.ListItem>
 				</CSD.List>
 				<CSD.Text>Lookup field client-mode properties:</CSD.Text>
 				<CSD.List>
-					<CSD.ListItem><CSD.Link path={`${lookupPath}#displaying-options`}>options</CSD.Link></CSD.ListItem>
-					<CSD.ListItem><CSD.Link path={`${lookupPath}#loading`}>loading</CSD.Link></CSD.ListItem>
-					<CSD.ListItem><CSD.Link path={`${lookupPath}#search`}>searchBy</CSD.Link></CSD.ListItem>
+					<CSD.ListItem><CSD.Link path={`${lookupPath}displaying-options`}>options</CSD.Link></CSD.ListItem>
+					<CSD.ListItem><CSD.Link path={`${lookupPath}loading`}>loading</CSD.Link></CSD.ListItem>
+					<CSD.ListItem><CSD.Link path={`${lookupPath}search`}>searchBy</CSD.Link></CSD.ListItem>
 				</CSD.List>
 				<CSD.Text>Lookup field server-mode properties:</CSD.Text>
 				<CSD.List>
-					<CSD.ListItem><CSD.Link path={`${lookupPath}#fetching-options`}>fetchOptions</CSD.Link></CSD.ListItem>
-					<CSD.ListItem><CSD.Link path={`${lookupPath}#pagination`}>infiniteScroll</CSD.Link></CSD.ListItem>
-					<CSD.ListItem><CSD.Link path={`${lookupPath}#search`}>minTermLength</CSD.Link></CSD.ListItem>
-					<CSD.ListItem><CSD.Link path={`${lookupPath}#pagination`}>pageSize</CSD.Link></CSD.ListItem>
+					<CSD.ListItem><CSD.Link path={`${lookupPath}fetching-options`}>fetchOptions</CSD.Link></CSD.ListItem>
+					<CSD.ListItem><CSD.Link path={`${lookupPath}pagination`}>infiniteScroll</CSD.Link></CSD.ListItem>
+					<CSD.ListItem><CSD.Link path={`${lookupPath}server-side-search`}>minTermLength</CSD.Link></CSD.ListItem>
+					<CSD.ListItem><CSD.Link path={`${lookupPath}pagination`}>pageSize</CSD.Link></CSD.ListItem>
 				</CSD.List>
 				<CSD.Preview
 					code={`
@@ -646,10 +647,10 @@ const CSFormStandardFormFieldsPreview = () => {
 				<CSD.Text>Picklist field specific properties are `multiselect`, `onClear`, `onSearch` and `options`.</CSD.Text>
 				<CSD.Text>Details about each of the properties can be found below:</CSD.Text>
 				<CSD.List>
-					<CSD.ListItem><CSD.Link path={`${picklistPath}-selection`}>options</CSD.Link></CSD.ListItem>
-					<CSD.ListItem><CSD.Link path={`${picklistPath}-selection-multiselect`}>multiselect</CSD.Link></CSD.ListItem>
-					<CSD.ListItem><CSD.Link path={`${picklistPath}-selection`}>onClear</CSD.Link></CSD.ListItem>
-					<CSD.ListItem><CSD.Link path={`${picklistPath}-onSearch`}>onSearch</CSD.Link></CSD.ListItem>
+					<CSD.ListItem><CSD.Link path={`${picklistPath}base-usage`}>options</CSD.Link></CSD.ListItem>
+					<CSD.ListItem><CSD.Link path={`${picklistPath}multiselect`}>multiselect</CSD.Link></CSD.ListItem>
+					<CSD.ListItem><CSD.Link path={`${picklistPath}selection`}>onClear</CSD.Link></CSD.ListItem>
+					<CSD.ListItem><CSD.Link path={`${picklistPath}search`}>onSearch</CSD.Link></CSD.ListItem>
 				</CSD.List>
 				<CSD.Preview
 					code={`
@@ -681,9 +682,8 @@ const CSFormStandardFormFieldsPreview = () => {
 				<CSD.Text> Exception is with `title` property on radio field as it can only be set to radio options.</CSD.Text>
 				<CSD.Text>Details about `options` and `disabledKeys` properties can be found below:</CSD.Text>
 				<CSD.List>
-					{/** Needs to be updated once CSRadio documentation is merged */}
-					<CSD.ListItem><CSD.Link path="#">options</CSD.Link></CSD.ListItem>
-					<CSD.ListItem><CSD.Link path="#">disabledKeys</CSD.Link></CSD.ListItem>
+					<CSD.ListItem><CSD.Link path={`${radioPath}base-usage`}>options</CSD.Link></CSD.ListItem>
+					<CSD.ListItem><CSD.Link path={`${radioPath}restrictions`}>disabledKeys</CSD.Link></CSD.ListItem>
 				</CSD.List>
 				<CSD.Preview
 					code={`
@@ -742,7 +742,7 @@ const CSFormStandardFormFieldsPreview = () => {
 				<CSD.Text>The text field specific property is `maxLength`.</CSD.Text>
 				<CSD.Text>Details about the `maxLength` property can be found below:</CSD.Text>
 				<CSD.List>
-					<CSD.ListItem><CSD.Link path="../cs-ui/input-text#CSInputText-maxLength">maxLength</CSD.Link></CSD.ListItem>
+					<CSD.ListItem><CSD.Link path="../cs-ui/input-text#input-options">maxLength</CSD.Link></CSD.ListItem>
 				</CSD.List>
 				<CSD.Preview
 					code={`
