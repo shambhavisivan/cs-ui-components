@@ -129,7 +129,7 @@ export interface StandardIcon extends Tooltip {
 	color?: string;
 }
 
-export const isStandardIcon = (icon: any) => {
+export const isStandardIcon = (icon: any): icon is StandardIcon => {
 	if (icon === undefined) {
 		return false;
 	}

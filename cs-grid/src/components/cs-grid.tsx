@@ -9,7 +9,8 @@ import {
 	GetQuickFilterTextParams,
 	GridReadyEvent as _GridReadyEvent,
 	IDatasource,
-	IGetRowsParams
+	IGetRowsParams,
+	RowNode
 } from 'ag-grid-community';
 
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
@@ -143,6 +144,8 @@ export interface CSGridProps {
 	onRowDoubleClicked?(event: CellClickedEvent): void;
 	getRowClass?(rowGuid: string): string | Array<string>;
 	onColumnResized?(columnField: string, newWidth: number): void;
+	postSort?(nodes: RowNode[]): void;
+	filter?: string;
 }
 
 class CSGridState {
@@ -346,6 +349,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 							rowModelType={isDataSourceRowModel ? 'infinite' : undefined}
 							columnDefs={columnDefs}
 							rowData={this.state.rowData}
+							postSort={this.props.postSort}
 							pagination={paginationLocation !== 'None'}
 							paginationPageSize={pageSizes[0]}
 							suppressPaginationPanel={true}
@@ -357,7 +361,7 @@ export class CSGrid extends React.Component<CSGridProps, CSGridState> {
 							defaultColDef={{
 								comparator: CSGridDefaultComparator,
 								editable: true,
-								filter: true,
+								filter: this.props.filter ?? 'text',
 								filterParams: {
 									textFormatter: this.formatTextForFiltering
 								},
