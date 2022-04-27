@@ -168,13 +168,11 @@ export class CSGridDateEditor
 					onKeyDown={this.onKeyDown}
 					locale={this.props.userInfo.userLocale}
 					openToDate={openToDate}
-					inline={!this.props.textInputFormat ? true : false}
-					ref={(ref: any) => {
+					inline={!this.props.textInputFormat}
+					ref={(ref) => {
 						if (ref) {
 							setTimeout(() => {
-								if (ref.datepickerInnerRef.current) {
-									ref.datepickerInnerRef.current.setFocus();
-								}
+								ref.setFocus();
 							}, 20);
 						}
 					}}

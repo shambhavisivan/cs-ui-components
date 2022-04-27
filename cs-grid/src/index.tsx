@@ -304,27 +304,7 @@ export class App extends React.Component<object, AppState> {
 
 		const userInfo: UserInfo = {
 			currencyCode: 'EUR',
-			dateLocale: {
-				daysInFirstWeek: 5,
-				daysOfWeek: ['Sun', 'Mon', 'Die', 'Mit', 'Don', 'Fre', 'Sam'],
-				firstDayOfWeek: 0,
-				monthsOfYear: [
-					'Januar',
-					'Februar',
-					'März',
-					'April',
-					'Mai',
-					'Juni',
-					'Juli',
-					'August',
-					'September',
-					'Oktober',
-					'November',
-					'Dezember'
-				],
-				timeCaption: 'Zeit'
-			},
-			userLocale: 'fr-FR'
+			userLocale: 'fr'
 		};
 
 		const getLookupValues = (

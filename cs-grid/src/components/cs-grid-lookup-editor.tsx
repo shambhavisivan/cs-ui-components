@@ -128,10 +128,8 @@ export class CSGridLookupEditor
 					ref={(ref) => {
 						if (ref) {
 							setTimeout(() => {
-								if (ref.lookupInputRef.current) {
-									ref.lookupInputRef.current.focus();
-								}
-							}, 0);
+								ref.focus();
+							}, 20);
 						}
 					}}
 				/>

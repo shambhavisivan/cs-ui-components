@@ -125,9 +125,7 @@ export class CSGridDateTimeEditor
 					ref={(ref) => {
 						if (ref) {
 							setTimeout(() => {
-								if (ref.datepickerInnerRef.current) {
-									ref.datepickerInnerRef.current.setFocus();
-								}
+								ref.setFocus();
 							}, 20);
 						}
 					}}

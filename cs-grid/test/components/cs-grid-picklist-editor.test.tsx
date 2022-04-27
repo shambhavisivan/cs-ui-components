@@ -75,9 +75,9 @@ describe('CS Grid Picklist Editor', () => {
 		};
 	});
 
-	test('CSCustomSelect should have actions data', () => {
+	test('CSPicklist should have actions data', () => {
 		const cellEditor = shallow(<CSGridPicklistEditor {...cSGridCellEditorProps} />);
-		expect(cellEditor.find('CSCustomSelect').prop('dropdownActions')).toEqual(
+		expect(cellEditor.find('CSPicklist').prop('dropdownActions')).toEqual(
 			expect.arrayContaining([
 				expect.objectContaining({
 					label: expect.any(String),

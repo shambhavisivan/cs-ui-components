@@ -1,4 +1,4 @@
-import { CSCustomSelect, CSCustomSelectOptionInterface } from '@cloudsense/cs-ui-components';
+import { CSPicklist, CSPicklistOptionInterface } from '@cloudsense/cs-ui-components';
 import React from 'react';
 
 import {
@@ -25,7 +25,6 @@ export class CSGridPicklistEditor
 	>
 	implements CSGridCellEditor {
 	multiSelect: boolean = false;
-	customSelectInputRef: HTMLInputElement;
 	private divRef: React.RefObject<HTMLDivElement>;
 
 	constructor(props: CSGridCellEditorProps<PicklistCellValueType> & PicklistProps) {
@@ -91,7 +90,7 @@ export class CSGridPicklistEditor
 
 		return (
 			<div className='ag-theme-balham' ref={this.divRef}>
-				<CSCustomSelect
+				<CSPicklist
 					clearable={true}
 					dropdownActions={dropdownActions}
 					label='Search'
@@ -124,7 +123,7 @@ export class CSGridPicklistEditor
 		);
 	}
 
-	private handleChange = (option: CSCustomSelectOptionInterface) => {
+	private handleChange = (option: CSPicklistOptionInterface) => {
 		if (this.multiSelect) {
 			const currentCellValue = this.state.value.cellValue;
 			const newCellValue = Array.isArray(currentCellValue)
