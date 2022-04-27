@@ -149,7 +149,7 @@ const CSInputSearch = ({
 	};
 
 	const renderErrorTooltip = () => {
-		if (!error || !errorTooltip) return null;
+		if (!error || !errorMessage || !errorTooltip) return null;
 
 		return <CSTooltip variant="error" content={errorMessage} />;
 	};

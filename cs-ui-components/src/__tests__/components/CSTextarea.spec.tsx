@@ -20,7 +20,7 @@ describe('<CSTextarea />', () => {
 
 	it('should pass actions to CSCustomData', () => {
 		const uut = shallow(<CSTextarea label={labelValue} actions={actions} />);
-		const textareaCustomData = uut.find('.cs-textarea-wrapper-options CSCustomData');
+		const textareaCustomData = uut.find('CSCustomData');
 		expect(textareaCustomData).toHaveLength(1);
 		expect(textareaCustomData.prop('actions')).toMatchObject(actions);
 	});
@@ -38,31 +38,18 @@ describe('<CSTextarea />', () => {
 		expect(uut.find('.cs-textarea').props().disabled).toEqual(true);
 	});
 
-	it('should render textarea in error state', () => {
-		const uut = shallow(<CSTextarea label={labelValue} error />);
-		const textarea = uut.find('.cs-textarea.cs-textarea-error');
-		// Make sure aria-invalid is set
-		expect(textarea.prop('aria-invalid')).toBeTruthy();
-		// Make sure belonging class exists
-		expect(textarea).toHaveLength(1);
-	});
-
-	it('should pass errorMessage to CSFieldErrorMsg', () => {
+	it('should pass errorMessage to CSFieldErrorMsg message', () => {
 		const uut = shallow(<CSTextarea label={labelValue} error errorMessage={errorText} />);
 		const textareaErrorMsg = uut.find('.cs-textarea-wrapper CSFieldErrorMsg');
-		// Make sure CSFieldErrorMsg is rendered
-		expect(textareaErrorMsg).toHaveLength(1);
 		// Make sure CSFieldErrorMsg received correct value
 		expect(textareaErrorMsg.prop('message')).toBe(errorText);
 	});
 
-	it('should render textarea in error state with an error tooltip', () => {
+	it('should pass errorMessage to CSTooltip content', () => {
 		const uut = shallow(<CSTextarea label={labelValue} error errorMessage={errorText} errorTooltip />);
-		const textareaErrorTooltip = uut.find('.cs-textarea-wrapper CSFieldErrorMsg');
-		// Make sure belonging class exists
-		expect(uut.find('.cs-textarea.cs-textarea-error-tooltip')).toHaveLength(1);
-		// Make sure CSFieldErrorMsg prop tooltipMessage received correct value and casted in true
-		expect(textareaErrorTooltip.prop('tooltipMessage')).toBe(true);
+		const textareaErrorTooltip = uut.find('.cs-textarea-wrapper CSTooltip');
+		// Make sure CSTooltip received correct value
+		expect(textareaErrorTooltip.prop('content')).toBe(errorText);
 	});
 
 	it('should pass helpText to CSLabel', () => {
@@ -81,7 +68,7 @@ describe('<CSTextarea />', () => {
 
 	it('should pass icons to CSCustomData', () => {
 		const uut = shallow(<CSTextarea label={labelValue} icons={icons} />);
-		const textareaCustomData = uut.find('.cs-textarea-wrapper-options CSCustomData');
+		const textareaCustomData = uut.find('CSCustomData');
 		expect(textareaCustomData).toHaveLength(1);
 		expect(textareaCustomData.prop('icons')).toMatchObject(icons);
 	});

@@ -2,7 +2,7 @@ import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
-import { CSTooltipPosition } from './CSTooltip';
+import CSTooltip, { CSTooltipPosition } from './CSTooltip';
 import CSCustomData, { CSCustomDataAction, CSCustomDataIcon } from './CSCustomData';
 import CSLabel from './CSLabel';
 import CSButton from './CSButton';
@@ -37,7 +37,7 @@ export interface CSTextareaProps {
 }
 
 export interface CSTextareaState {
-	customDataWidth: number;
+	innerContentWidth: number;
 	expandButton: boolean;
 	expanded: boolean;
 	actualHeight: number;
@@ -53,31 +53,31 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 
 	private readonly uniqueAutoId: string;
 
-	private customDataRef: React.RefObject<HTMLDivElement>;
+	private textareaInnerContentRef: React.RefObject<HTMLDivElement>;
 
 	constructor(props: CSTextareaProps) {
 		super(props);
 
 		this.uniqueAutoId = props.id ? props.id : uuidv4();
 
-		this.customDataRef = React.createRef();
+		this.textareaInnerContentRef = React.createRef();
 		this.textareaInnerRef = React.createRef();
 
 		this.state = {
-			customDataWidth: 0,
+			innerContentWidth: 0,
 			expandButton: false,
 			expanded: false,
 			actualHeight: 0,
 			minHeight: 32,
 		};
 
-		this.handleReadOnly = this.handleReadOnly.bind(this);
+		this.handleExpand = this.handleExpand.bind(this);
 	}
 
 	componentDidMount() {
 		const { readOnly } = this.props;
 		this.setState({
-			customDataWidth: this.customDataRef.current?.getBoundingClientRect().width,
+			innerContentWidth: this.textareaInnerContentRef.current?.getBoundingClientRect().width,
 		});
 
 		if (readOnly && this.textareaInnerRef.current !== null) {
@@ -90,7 +90,7 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 		}
 	}
 
-	handleReadOnly() {
+	handleExpand() {
 		const { minHeight, expanded } = this.state;
 		if (!expanded) {
 			const { scrollHeight } = this.textareaInnerRef.current;
@@ -137,65 +137,94 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 		} = this.props;
 
 		const {
-			customDataWidth,
+			innerContentWidth,
 			expandButton,
 			expanded,
 			actualHeight,
 			minHeight,
 		} = this.state;
 
+		const textareaWrapperClasses = classNames(
+			'cs-textarea-wrapper',
+			{
+				'cs-textarea-expanded': expanded,
+				'cs-element-hidden': hidden,
+				[`${className}`]: className,
+			},
+		);
+
 		const textareaClasses = classNames(
 			'cs-textarea',
 			{
 				'cs-textarea-error': error,
-				'cs-textarea-error-tooltip': errorTooltip,
 			},
 		);
+
 		const style: CSSProperties = {
 			'--cs-textarea-max-height': maxHeight,
 			'--cs-textarea-read-only-min-height': readOnly && expandButton ? `${minHeight}px` : '',
 			'--cs-textarea-read-only-height': readOnly && expandButton ? `${actualHeight}px` : '',
 			'--cs-textarea-border-radius': borderRadius,
-			'--cs-textarea-custom-data-width': customDataWidth ? `${customDataWidth}px` : undefined,
+			'--cs-textarea-inner-content-width': innerContentWidth ? `${innerContentWidth}px` : undefined,
 		};
-		const textareaWrapperClasses = classNames(
-			'cs-textarea-wrapper',
-			{
-				'cs-element-hidden': hidden,
-				'cs-textarea-wrapper-options': actions?.length || icons?.length,
-				[`${className}`]: className,
-			},
-		);
 
-		const tooltipMessage = error && errorTooltip && errorMessage && (
-			<div className="cs-textarea-error-message">
-				<CSFieldErrorMsg message={errorMessage} tooltipMessage={errorTooltip} />
-			</div>
-		);
+		const renderErrorMessage = () => {
+			if (!error || !errorMessage || errorTooltip) return null;
+
+			return <CSFieldErrorMsg message={errorMessage} />;
+		};
+
+		const renderErrorTooltip = () => {
+			if (!error || !errorMessage || !errorTooltip) return null;
+
+			return <CSTooltip variant="error" content={errorMessage} />;
+		};
+
+		const renderLabel = () => {
+			if (!label || labelHidden) return null;
+
+			return (
+				<CSLabel
+					htmlFor={this.uniqueAutoId}
+					label={label}
+					helpText={helpText}
+					tooltipPosition={tooltipPosition}
+					required={required}
+					title={labelTitle ? label : null}
+				/>
+			);
+		};
+
+		const renderExpandButton = () => {
+			if (!expandButton) return null;
+
+			return (
+				<CSButton
+					label={expanded ? 'Show less...' : 'Show more...'}
+					className="cs-textarea-expand-btn"
+					btnStyle="brand"
+					btnType="transparent"
+					size="xsmall"
+					onClick={this.handleExpand}
+				/>
+			);
+		};
+
+		const renderInnerContent = () => {
+			if (!actions && !icons && !errorTooltip) return null;
+
+			return (
+				<div className="cs-textarea-wrapper-inner-content" ref={this.textareaInnerContentRef}>
+					<CSCustomData icons={icons} actions={actions} />
+					{renderErrorTooltip()}
+				</div>
+			);
+		};
 
 		return (
 			<div className={textareaWrapperClasses} style={style}>
-				{label && !labelHidden && (
-					<CSLabel
-						htmlFor={this.uniqueAutoId}
-						label={label}
-						helpText={helpText}
-						tooltipPosition={tooltipPosition}
-						required={required}
-						title={labelTitle ? label : null}
-					/>
-				)}
+				{renderLabel()}
 				<div className="cs-textarea-wrapper-inner">
-					{expandButton && (
-						<CSButton
-							label={expanded ? 'Show less...' : 'Show more...'}
-							className={expanded ? 'cs-textarea-expand-button cs-textarea-expanded' : 'cs-textarea-expand-button'}
-							btnStyle="brand"
-							btnType="transparent"
-							size="xsmall"
-							onClick={this.handleReadOnly}
-						/>
-					)}
 					<textarea
 						className={textareaClasses}
 						id={this.uniqueAutoId}
@@ -216,18 +245,10 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 						ref={this.textareaInnerRef}
 						{...rest}
 					/>
-					{(actions || icons || errorTooltip) && (
-						<div className="cs-textarea-wrapper-inner-content">
-							<CSCustomData
-								ref={this.customDataRef}
-								icons={icons}
-								actions={actions}
-							/>
-							{tooltipMessage}
-						</div>
-					)}
+					{renderInnerContent()}
+					{renderExpandButton()}
 				</div>
-				{!errorTooltip && error && errorMessage && <CSFieldErrorMsg message={errorMessage} />}
+				{renderErrorMessage()}
 			</div>
 		);
 	}
