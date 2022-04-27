@@ -79,6 +79,7 @@
   * set `label` prop to be optional
   * <i>important</i> added `cs-input-file-wrapper`
 * CSInputNumber
+  * <i>important</i> replaced `value` with `event` as `onChange` parameter
   * added `locale` prop
   * added `fractionDigits` prop
   * refactored class based to functional component

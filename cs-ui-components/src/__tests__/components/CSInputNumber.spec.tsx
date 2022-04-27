@@ -252,8 +252,8 @@ describe('<CSInputNumber />', () => {
 		const value = 10;
 		const uut = shallow(<CSInputNumber label={label} value={value} />);
 		const inputNumber = uut.find('.cs-input-number');
-		expect(inputNumber.props().value).toBe(value);
-		expect(inputNumber.prop('aria-valuenow')).toBe(value);
+		expect(inputNumber.props().value).toBe(String(value));
+		expect(inputNumber.prop('aria-valuenow')).toBe(Number(value));
 	});
 
 	it('should have a custom class name', () => {

@@ -42,7 +42,7 @@ export interface CSInputNumberProps {
 	min?: any;
 	name?: string;
 	onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
-	onChange?: (value?: any) => void;
+	onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
 	onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
 	onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
@@ -54,7 +54,7 @@ export interface CSInputNumberProps {
 	title?: string;
 	tooltipPosition?: CSTooltipPosition;
 	type?: string;
-	value?: any;
+	value?: React.ReactText;
 }
 
 const CSInputNumber = ({
@@ -121,8 +121,6 @@ const CSInputNumber = ({
 		if (locale || fractionDigits) toggleFormattedValue(true);
 	};
 
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => onChange?.(event.target.value);
-
 	const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
 		if (!readOnly) {
 			setFocused(true);
@@ -132,10 +130,13 @@ const CSInputNumber = ({
 		if (locale || fractionDigits) toggleFormattedValue(false);
 	};
 
-	const formatNumber = (numberValue: number, numberLocale?: CSInputNumberNumberLocale) => (locale
-		? new Intl.NumberFormat(numberLocale.numLocale, { ...numberLocale.options }).format(numberValue)
-		: Number(numberValue).toFixed(fractionDigits)
-	);
+	const formatNumber = () => {
+		if (!value) return '';
+		if (!showFormattedValue) return String(value);
+		if (!locale) return Number(value).toFixed(fractionDigits);
+
+		return String(new Intl.NumberFormat(locale.numLocale, { ...locale.options }).format(Number(value)));
+	};
 
 	const getType = () => {
 		if (locale) {
@@ -220,19 +221,19 @@ const CSInputNumber = ({
 					readOnly={readOnly}
 					required={required}
 					disabled={disabled}
-					value={showFormattedValue ? formatNumber(value, locale) : value ?? ''}
+					value={formatNumber()}
 					type={getType()}
 					role="spinbutton"
 					aria-label={label}
 					aria-required={required}
 					aria-valuemin={min}
 					aria-valuemax={max}
-					aria-valuenow={value}
+					aria-valuenow={Number(value)}
 					aria-invalid={error}
 					autoComplete="off"
 					onBlur={handleBlur}
 					onFocus={handleFocus}
-					onChange={handleChange}
+					onChange={onChange}
 					onKeyDown={onKeyDown}
 					onPaste={onPaste}
 					title={title}

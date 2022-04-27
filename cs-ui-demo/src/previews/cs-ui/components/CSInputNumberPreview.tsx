@@ -7,7 +7,7 @@ import Preview from '../Preview';
 
 interface CSInputNumberPreviewState {
 	focused: boolean;
-	value: number;
+	value: string;
 	localeValue: any;
 	decimalValue: any;
 }
@@ -15,9 +15,9 @@ interface CSInputNumberPreviewState {
 class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState> {
 	state = {
 		focused: false,
-		value: 1,
-		localeValue: 1211.3,
-		decimalValue: 12.456
+		value: '1',
+		localeValue: '1211.3',
+		decimalValue: '12.456'
 	};
 
 	handleChange = () => alert('Value has changed.');
@@ -33,8 +33,8 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 			return { focused: !prevState.focused };
 		});
 	}
-	handleChangeForLocale = (value: any) => this.setState({ localeValue: value });
-	handleChangeForDecimal = (value: any) => this.setState({ decimalValue: value });
+	handleChangeForLocale = (event: React.ChangeEvent<HTMLInputElement>) => this.setState({ localeValue: event.target.value });
+	handleChangeForDecimal = (event: React.ChangeEvent<HTMLInputElement>) => this.setState({ decimalValue: event.target.value });
 
 	getDoc = () => ({
 		name: 'Input Number',
@@ -158,7 +158,7 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 									label="Enter value"
 									value={this.state.value}
 									fractionDigits={2}
-									onChange={(value: any) => this.setState({ value })}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.setState({ value: event.target.value })}
 								/>`
 							}
 						]
@@ -246,7 +246,7 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 											currency: 'GBP'
 										}
 									}}
-									onChange={(value: any) => this.setState({ value })}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.setState({ value: event.target.value })}
 								/>`
 							}
 						]
@@ -351,12 +351,10 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 								component: <CSInputNumber
 									label="Enter value"
 									readOnly
-									value={12345}
 								/>,
 								code: `<CSInputNumber
 									label="Enter value"
 									readOnly
-									value={12345}
 								/>`
 							}
 						]
@@ -442,12 +440,12 @@ class CSInputNumberPreview extends React.Component<{}, CSInputNumberPreviewState
 								component: <CSInputNumber
 									label="Enter value"
 									value={this.state.value}
-									onChange={(value: any) => this.setState({ value })}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.setState({ value: event.target.value })}
 								/>,
 								code: `<CSInputNumber
 									label="Enter value"
 									value={this.state.value}
-									onChange={(value: any) => this.setState({ value })}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.setState({ value: event.target.value })}
 								/>`
 							}
 						]
