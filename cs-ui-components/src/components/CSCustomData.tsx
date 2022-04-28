@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import classNames from 'classnames';
 import CSButton, { CSButtonProps } from './CSButton';
@@ -39,6 +40,14 @@ const CSCustomData = ({
 	forwardRef,
 	...rest
 }: CSCustomDataProps) => {
+	const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+		event.stopPropagation();
+	};
+
+	const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+		event.stopPropagation();
+	};
+
 	const customDataWrapperClasses = classNames(
 		'cs-custom-data-wrapper',
 		{ [className]: className },
@@ -53,7 +62,16 @@ const CSCustomData = ({
 			returnIcon = <CSTooltip content={content} {...tooltipRest}>{returnIcon}</CSTooltip>;
 		}
 
-		return <div key={iconIndex} className="cs-custom-data-item">{returnIcon}</div>;
+		return (
+			<div
+				key={iconIndex}
+				className="cs-custom-data-item"
+				onKeyDown={handleKeyDown}
+				onClick={handleClick}
+			>
+				{returnIcon}
+			</div>
+		);
 	};
 
 	const renderAction = (action: CSCustomDataAction, actionIndex?: number) => {
@@ -65,7 +83,16 @@ const CSCustomData = ({
 			returnAction = <CSTooltip content={content} {...tooltipRest}>{returnAction}</CSTooltip>;
 		}
 
-		return <div key={actionIndex} className="cs-custom-data-item">{returnAction}</div>;
+		return (
+			<div
+				key={actionIndex}
+				className="cs-custom-data-item"
+				onKeyDown={handleKeyDown}
+				onClick={handleClick}
+			>
+				{returnAction}
+			</div>
+		);
 	};
 
 	if (!value && !icons?.length && !actions?.length && !status && !menuIcon) {
