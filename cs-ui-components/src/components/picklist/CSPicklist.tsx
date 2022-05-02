@@ -401,6 +401,7 @@ const CSPicklist = ({
 			<CSIcon
 				className="cs-input-type-indicator-icon"
 				name="down"
+				size="0.875rem"
 				rotate={dropdownVisible ? 180 : null}
 			/>
 		);

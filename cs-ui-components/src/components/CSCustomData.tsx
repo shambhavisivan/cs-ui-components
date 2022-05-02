@@ -95,6 +95,24 @@ const CSCustomData = ({
 		);
 	};
 
+	const renderMenuIcon = () => {
+		if (!menuIcon) return null;
+
+		if (menuIcon === 'datepicker') {
+			return (
+				<div className="cs-custom-data-item">
+					<CSIcon name="date_input" />
+				</div>
+			);
+		}
+
+		return (
+			<div className="cs-custom-data-item">
+				<CSIcon name="down" size="0.875rem" />
+			</div>
+		);
+	};
+
 	if (!value && !icons?.length && !actions?.length && !status && !menuIcon) {
 		return null;
 	}
@@ -110,11 +128,7 @@ const CSCustomData = ({
 			{icons?.map(renderIcon)}
 			{actions?.map(renderAction)}
 			{status && renderIcon(status)}
-			{menuIcon && (
-				<div className="cs-custom-data-item">
-					<CSIcon name={menuIcon === 'datepicker' ? 'date_input' : 'down'} />
-				</div>
-			)}
+			{renderMenuIcon()}
 		</div>
 	);
 };
