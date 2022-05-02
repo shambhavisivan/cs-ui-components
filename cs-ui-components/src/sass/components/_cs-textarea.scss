@@ -16,9 +16,10 @@
 		&[readonly],
 		&[disabled] {
 			height: var(--cs-textarea-read-only-height);
-			min-height: var(--cs-textarea-read-only-min-height, 2rem);
+			min-height: 2rem;
 		}
 		&[readonly] {
+			display: block;
 			resize: none;
 			overflow: hidden;
 		}
@@ -46,7 +47,7 @@
 		display: inline-flex;
 		position: absolute;
 		right: 0.25rem;
-		bottom: 0.25rem;
+		bottom: 0.1875rem;
 		@include css4 {
 			box-shadow: -5px 0px 10px 0 cvar(--cs-button-white-br);
 		}
@@ -59,7 +60,6 @@
 	&.cs-textarea-expanded {
 		.cs-textarea-expand-btn {
 			display: none;
-			bottom: 0.5rem;
 		}
 
 		.cs-textarea-wrapper-inner:hover .cs-textarea-expand-btn {

@@ -1,6 +1,7 @@
 import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
+import ResizeObserver from 'resize-observer-polyfill';
 import CSFieldErrorMsg, { CSFieldErrorMsgType } from './CSFieldErrorMsg';
 import CSTooltip, { CSTooltipPosition } from './CSTooltip';
 import CSCustomData, { CSCustomDataAction, CSCustomDataIcon } from './CSCustomData';
@@ -40,8 +41,7 @@ export interface CSTextareaState {
 	innerContentWidth: number;
 	expandButton: boolean;
 	expanded: boolean;
-	actualHeight: number;
-	minHeight: number;
+	height: number;
 }
 
 class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
@@ -55,6 +55,14 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 
 	private textareaInnerContentRef: React.RefObject<HTMLDivElement>;
 
+	resizeObserver = new ResizeObserver(() => {
+		const { scrollHeight } = this.textareaInnerRef.current;
+		this.setState({
+			expandButton: scrollHeight > 88,
+			height: scrollHeight,
+		});
+	})
+
 	constructor(props: CSTextareaProps) {
 		super(props);
 
@@ -67,8 +75,7 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 			innerContentWidth: 0,
 			expandButton: false,
 			expanded: false,
-			actualHeight: 0,
-			minHeight: 32,
+			height: 0,
 		};
 
 		this.handleExpand = this.handleExpand.bind(this);
@@ -80,30 +87,31 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 			innerContentWidth: this.textareaInnerContentRef.current?.getBoundingClientRect().width,
 		});
 
-		if (readOnly && this.textareaInnerRef.current !== null) {
-			const { scrollHeight } = this.textareaInnerRef.current;
-			this.setState({
-				expandButton: scrollHeight > 84,
-				minHeight: scrollHeight < 84 ? scrollHeight : 84,
-				actualHeight: scrollHeight < 84 ? scrollHeight : 84,
-			});
+		if (readOnly && this.textareaInnerRef.current) {
+			this.resizeObserver.observe(this.textareaInnerRef.current);
 		}
 	}
 
-	handleExpand() {
-		const { minHeight, expanded } = this.state;
-		if (!expanded) {
-			const { scrollHeight } = this.textareaInnerRef.current;
-			this.setState({
-				expanded: true,
-				actualHeight: scrollHeight > 84 ? scrollHeight : minHeight,
-			});
-		} else {
-			this.setState({
-				expanded: false,
-				actualHeight: minHeight,
-			});
+	componentDidUpdate(prevProps: Readonly<CSTextareaProps>) {
+		const { readOnly: prevReadOnly } = prevProps;
+		const { readOnly } = this.props;
+		if (prevReadOnly !== readOnly) {
+			if (readOnly && this.textareaInnerRef.current) {
+				this.resizeObserver.observe(this.textareaInnerRef.current);
+			} else {
+				this.resizeObserver.disconnect();
+			}
 		}
+	}
+
+	componentWillUnmount() {
+		this.resizeObserver.disconnect();
+	}
+
+	handleExpand() {
+		this.setState((prevState: CSTextareaState) => ({
+			expanded: !prevState.expanded,
+		}));
 	}
 
 	render() {
@@ -140,8 +148,7 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 			innerContentWidth,
 			expandButton,
 			expanded,
-			actualHeight,
-			minHeight,
+			height,
 		} = this.state;
 
 		const textareaWrapperClasses = classNames(
@@ -160,10 +167,16 @@ class CSTextarea extends React.Component<CSTextareaProps, CSTextareaState> {
 			},
 		);
 
+		const getMaxHeight = () => {
+			if (!readOnly) return maxHeight;
+			if (expanded) return `${height}px`;
+
+			return '5.5rem';
+		};
+
 		const style: CSSProperties = {
-			'--cs-textarea-max-height': maxHeight,
-			'--cs-textarea-read-only-min-height': readOnly && expandButton ? `${minHeight}px` : '',
-			'--cs-textarea-read-only-height': readOnly && expandButton ? `${actualHeight}px` : '',
+			'--cs-textarea-max-height': getMaxHeight(),
+			'--cs-textarea-read-only-height': readOnly ? `${height}px` : undefined,
 			'--cs-textarea-border-radius': borderRadius,
 			'--cs-textarea-inner-content-width': innerContentWidth ? `${innerContentWidth}px` : undefined,
 		};
